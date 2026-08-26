@@ -1,0 +1,15 @@
+{
+  "donor_environment": "LOCAL_AUDIT_OVER_GITHUB_AND_TWO_GIT_TREES",
+  "negative_transfer_retained": {
+    "example": "DISC-Q-TRANSFER-01 merged NEGATIVE via PR #1327",
+    "policy": "negatives retained as first-class results, never rewritten"
+  },
+  "schema": "ORION.V1.QuantumCensusDonorResult.v1",
+  "terminal_vocabulary_donor": {
+    "bound_receipt": {
+      "path": "raw/issue-1368.json",
+      "sha256": "3dde6e6f80298f41f55cad1713537de9adcc8dbcd793022510f78d94b172e7c9"
+    },
+    "source": "issue #1368 tranche vocabulary (per census method)"
+  }
+}

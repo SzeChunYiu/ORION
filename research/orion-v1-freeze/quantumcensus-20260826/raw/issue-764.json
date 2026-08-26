@@ -1,0 +1,60 @@
+{
+ "number": 764,
+ "title": "[ORION-QG QG-11] Lift structural regime geometry into fault-tolerant hardware/QEC phase diagrams",
+ "body": "Parent programme: #740\nStructural phase theorem lane: #760 / PR #761\nFull-stack semantic/resource context: ORION-QN #734; QG-10 #763\n\n## Status\n\n**FAULT-TOLERANT LIFT FRONTIER \u2014 transfer theorem or explicit nonlinearity/coupling failure.**\n\nORION-QG currently proves or predicts regimes under structural compiler objectives. Real fault-tolerant execution is governed by logical decomposition, QEC code distance, lattice-surgery geometry, magic-state factories, routing/congestion, measurement/feed-forward and hardware error/timing assumptions.\n\nQG-11 asks:\n\n> When can a proof-carrying structural compiler regime/normal-form phase be transported through a fault-tolerant resource model to yield a certified hardware/QEC regime boundary, and when do nonlinear stack effects invalidate that transport?\n\n## Strong donor subtraction\n\nThis lane gives zero novelty credit to full-stack QRE, FT compilers or hardware-aware multi-objective optimization:\n\n- **AutoQuREO** (2026) already provides automated full-stack QRE/optimization with configurable stack components, surrogate models and multi-objective design-space exploration;\n- **Microsoft Quantum Resource Estimator** already exposes logical/physical resource models, T-state/T-factory counts, physical qubits, runtime and space-time Pareto frontiers, including custom factories/QEC/hardware;\n- **Harvest** (2026) co-optimizes lattice-surgery placement/routing/scheduling with protocol-agnostic magic-state supply;\n- compilation-driven QRE already translates logical primitives into configurable physical-resource costs;\n- lattice-surgery scheduling/resource-aware FT compilation is established prior art.\n\nTherefore `resource estimation`, `T-factory modeling`, `Pareto hardware optimization`, `lattice-surgery scheduling`, and `hardware-aware compilation` are donor-owned.\n\nCandidate contribution is only the **proof-carrying transfer of ORION-QG regime geometry across resource layers**, including exact conditions under which a structural phase theorem remains valid and explicit CANNOT_CHECK/nonlinear bifurcation when it does not.\n\n## Two resource layers\n\n### Layer S \u2014 structural compiler coordinates\n\nFor a TARE/R6M example, a configuration carries a structural vector such as\n\n`r_S = (U_nc, U_c, TagSupport, F3Restore, Rotations, logical_qubits, measurements, ...)`.\n\nQG-8 reasons over linear scalarizations `theta \u00b7 r_S` and proves a support-two normal-form cone for particular theta half-spaces.\n\n### Layer F \u2014 FT stack coordinates\n\nA frozen FT model maps verified structural witnesses to\n\n`r_F = (T_count, T_depth, Clifford_count, logical_qubits, logical_depth, measurements, feedforward_rounds, physical_qubits, factory_qubits, factory_copies, QEC_cycles, runtime, space_time_volume, failure_budget, ...)`.\n\nThe mapping must carry exact stack identity:\n- logical primitive library/version;\n- compiler/lowering identity;\n- QEC code/model;\n- physical error model;\n- cycle/gate/measurement times;\n- T-factory/cultivation protocol;\n- layout/routing model;\n- target algorithm error budget.\n\n## F1 \u2014 affine-transfer theorem\n\nFirst study a deliberately bounded model where FT cost is an affine/monotone function of the structural vector:\n\n`r_F = A r_S + b`,\n\nand final scalar objective is `lambda \u00b7 r_F`.\n\nThen the induced structural coefficient vector is\n\n`theta = A^T lambda`.\n\nIf QG-8 certifies `theta` inside a structural phase cone, the normal-form theorem transfers mechanically.\n\nPositive theorem target:\n\n> Under an explicitly affine, witness-independent FT resource map A and monotone scalar objective lambda, every structural ORION-QG phase cell pulls back to a polyhedral FT objective/hardware cell via `A^T lambda`; theorem ownership and claim scope are preserved.\n\nThis linear-algebra statement itself is elementary; novelty, if any, is the certified compiler/FT instantiation and anti-laundering transfer protocol.\n\n## F2 \u2014 piecewise-affine stack effects\n\nReal resource models contain discrete changes:\n- code distance changes with error budget/runtime;\n- integer T-factory copy counts;\n- distillation protocol changes;\n- routing/layout changes;\n- parallelism and congestion saturation;\n- measurement/feed-forward critical paths.\n\nFreeze a stack model and partition it into cells in which the resource map is affine. Within each cell apply F1. Boundaries become **joint compiler/QEC phase surfaces**.\n\nRequired output per cell:\n- exact stack assumptions;\n- affine resource-map certificate or verified local formula;\n- induced theta;\n- ORION-QG structural phase;\n- resulting physical resource expression;\n- boundary predicates.\n\n## F3 \u2014 nonseparable counterexamples\n\nActively search for cases where two structural configurations with the same ORION-QG resource vector have different physical costs because of layout/schedule structure. Any such witness refutes vector sufficiency and forces the structural state to be enriched.\n\nCandidate nonlinear mechanisms:\n- two circuits with equal T-count/T-depth but different T-factory delivery congestion;\n- equal support/rotation count but different lattice-surgery routing;\n- same logical depth but different measurement/feed-forward critical path;\n- factory integer rounding causing a regime flip not predicted by linear theta;\n- code-distance changes caused by different runtime/error allocation.\n\nPositive discovery terminal:\n`QG11_STRUCTURAL_VECTOR_INSUFFICIENT__NEW_FT_COUPLING_COORDINATE_REQUIRED`\n\nThis is as valuable as a successful transfer because it identifies the missing physical coordinate.\n\n## F4 \u2014 real estimator integration\n\nAfter analytic calibration, use current Microsoft QRE or an equivalently frozen open resource estimator to evaluate the exact same verified ORION-QG witnesses under multiple hardware/QEC stacks.\n\nDo **not** use estimator output as proof of a structural theorem. Its role is:\n- instantiate/model physical coordinates;\n- locate candidate piecewise cells/crossovers;\n- validate analytic transfer predictions where estimator semantics match;\n- expose hidden coordinates where predictions fail.\n\nRequired frozen stacks should include at least two materially different regimes (e.g. generic surface-code-like stack and a different gate/error/timing/factory configuration). Custom model identity/digests are receipts.\n\n## F5 \u2014 hardware evolution forecast\n\nOnce a cell decomposition is frozen, select an unseen hardware/QEC parameter point, predict the preferred ORION-QG normal form and projected resource ordering **before** running the full estimator/compiler. Then reveal the estimator result.\n\nThis is the FT analogue of QG-3/QG-5 prospective regime forecasting.\n\n## Metrics\n\n- regime-transfer correctness;\n- false physical-regime promotion rate;\n- CANNOT_CHECK calibration;\n- fraction of parameter space covered by certified affine/piecewise cells;\n- physical resource prediction error within cells;\n- number/type of discovered missing physical coordinates;\n- stability of boundaries under reasonable stack uncertainty;\n- cross-estimator reproducibility where two estimators can model the same stack.\n\n## Dual harness\n\nGeneric ORION harness:\n- validates resource-map equations and stack identities;\n- independently recomputes induced theta/cell membership;\n- reconstructs estimator receipts.\n\nNative ORION-Q harness:\n- keeps `STRUCTURAL_THEOREM`, `FT_TRANSFER`, and `PHYSICAL_ESTIMATE` as distinct authority coordinates;\n- refuses transfer when resource map is nonlinear/unresolved;\n- reopens a physical regime receipt when stack/compiler/QEC identity changes.\n\n## Success terminals\n\n- `QG11_AFFINE_FT_REGIME_TRANSFER_MACHINE_CHECKED`\n- `QG11_PIECEWISE_FT_PHASE_DIAGRAM_SUPPORTED`\n- `QG11_PROSPECTIVE_FT_REGIME_FORECAST_CONFIRMED`\n- `QG11_STRUCTURAL_VECTOR_INSUFFICIENT__NEW_FT_COUPLING_COORDINATE_REQUIRED`\n- `QG11_ESTIMATOR_SEMANTICS_CANNOT_CHECK`\n- `QG11_DONOR_PARENT_FOUND`\n\n## Claim boundary\n\nThis lane does not claim real-QPU speedup. A resource estimator yields projected physical resources under its stack assumptions, not observed hardware advantage. Any end-to-end quantum advantage remains separately gated by ORION-QN access/state-preparation/baseline rules.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T12:46:12Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 768,
+     "title": "[ORION-QG QG-14] Compositional regime calculus: combine compiler optimality certificates across quantum subroutines",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T12:48:31Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 740,
+     "title": "[PROGRAMME] ORION-QG \u2014 Compilation Regime Geometry: maps, trades, predicates and forecasts for compilation families",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T21:08:07Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 843,
+     "title": "[ORION-QG QG-11C] Fault-tolerant lift closure: affine theorem plus explicit nonlinear insufficiency witness",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T11:28:36Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 907,
+     "title": "[ORION-Q MAX-R4F / QG-11D] Architecture-conditioned resource responsibility under DPF and syndrome-resolved Pauli rotations",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

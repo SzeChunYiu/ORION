@@ -1,0 +1,57 @@
+{
+ "number": 881,
+ "title": "[ORION-QG QG-25] Tropical transfer spectra and asymptotic compiler phases for periodic TARE families",
+ "body": "Parent programme: #740.\nRequired parent: QG-24 finite tropical weighted automaton #880 (no strong QG-25 authority until QG-24 earns exactness for the relevant grammar).\nRelated parents: QG-8/QG-16 objective phase cones; QG-21 certificate robustness; QG-17R bounded sharpness negative.\nMethod donors: min-plus/max-plus matrix powers, critical cycle means, eventual periodicity/cyclicity, tropical spectral theory.\n\n## Status\n\n**PROSPECTIVE ASYMPTOTIC COMPILER-PHASE PROGRAMME \u2014 freeze before periodic-family execution.**\n\nQG-24 represents an n-qubit six-target TARE instance as a word over the 4096-symbol Pauli-column alphabet. For a frozen periodic target family with motif\n\n`m = x_1 x_2 ... x_L`,\n\nrepeated k times, one period induces a finite tropical transfer matrix `M_m` on the exact QG-24 state space (or on each separately frozen global-control sector).\n\nThe exact optimum for k repetitions is then a min-plus matrix-power observable of the form\n\n`C_m(k) = alpha \u2297 M_m^k \u2297 beta`,\n\nfollowed by the finite minimum over frozen global-control sectors.\n\n## Q1 \u2014 eventual affine-periodicity\n\nTest and, where the exact tropical spectral hypotheses apply, prove a compiler-specific consequence:\n\nThere exist finite integers `K>=0`, `p>=1` and an exact increment `Delta` such that for all `k>=K`,\n\n`C_m(k+p) = C_m(k) + Delta`.\n\nEquivalently the exact optimal cost is eventually affine-periodic in repetition count, and the asymptotic per-motif cost density is `Delta/p`.\n\nDo not assume irreducibility of the transfer graph. The checker must identify the reachable/co-reachable critical components actually controlling `alpha M^k beta`, or return an honest reducible-case partial result.\n\n## Q2 \u2014 critical compiler cycles\n\nFor each frozen motif, serialize:\n- reachable state graph after one motif;\n- minimum cycle mean among accepting-relevant components;\n- one exact critical cycle witness;\n- transient K and period p when machine-checkable;\n- exact direct costs for a pre-frozen prefix of k values as controls.\n\nInterpret a critical cycle only as a repeating **compiler-state mechanism**, not a physical phase.\n\n## Q3 \u2014 objective-indexed asymptotic phases\n\nLift transition weights to the existing linear objective coordinates where valid. Each cycle has an exact average resource vector, hence an affine cycle-mean cost in objective space.\n\nFreeze a rational objective slice before opening results and determine which critical cycle is globally minimal on each cell.\n\nCandidate compiler-specific science:\n- exact asymptotic regime cells indexed by critical compiler cycles;\n- codimension-1 tie surfaces where two asymptotic mechanisms exchange dominance;\n- codimension-2 or higher multicritical points where >=3 critical cycles tie;\n- comparison with QG-8/QG-16 certificate facets without assuming they coincide.\n\nGeneric tropical/normal-fan geometry receives zero novelty credit; only the TARE-specific cycle/resource structure is candidate contribution.\n\n## Q4 \u2014 first periodic subjects\n\nBefore execution freeze a small, non-adaptive subject panel such as:\n1. unary motifs (one Pauli-column type repeated);\n2. two-column alternating motifs selected from exact n=1/n=2 TARE controls;\n3. at least one motif whose columns realize the QG-7f overlapping comm-s2 support pattern;\n4. one neutral control expected to remain in the donor/D+ regime.\n\nNo post-outcome motif cherry-picking in V1.\n\n## Q5 \u2014 finite-to-asymptotic crossover\n\nMeasure whether the finite-k optimal mechanism differs from the eventual critical cycle. Serialize the first crossover index and all exact ties.\n\nA long transient is a positive scientific result: it shows why small-n regime observations can misidentify asymptotic compiler behavior.\n\n## Q6 \u2014 relationship to robustness\n\nOn a frozen objective trajectory, combine QG-21 certificate margins with critical-cycle tie surfaces:\n- theorem cone gives a lower bound on where an existing normal-form proof remains valid;\n- exact asymptotic cycle exchange gives an asymptotic mechanism boundary;\n- equality may be called an asymptotic true boundary only for the frozen periodic family after complete transfer-state exactness is established.\n\nDo not promote this to a global finite-instance phase boundary.\n\n## Independent generic ORION\n\nGeneric ORION must independently build the motif transfer relation from the QG-24 state contract, compute critical cycle means/cyclicity, and reproduce the exact scalar sequence on the frozen k-prefix.\n\n## Native ORION-Q\n\nKeep distinct:\n- `ASYMPTOTIC_AFFINE_PERIODICITY`;\n- `CRITICAL_COMPILER_CYCLE`;\n- `ASYMPTOTIC_PHASE_BOUNDARY_PERIODIC_FAMILY`;\n- `FINITE_INSTANCE_GLOBAL_PHASE_BOUNDARY`;\n- `PHYSICAL_PHASE_TRANSITION`.\n\nOnly the first three can be considered in QG-25.\n\n## Strong terminals\n\n- `QG25_PERIODIC_TARE_COST_EVENTUALLY_AFFINE_PERIODIC_MACHINE_CHECKED`\n- `QG25_ASYMPTOTIC_COMPILER_PHASE_CELLS_FROM_CRITICAL_CYCLES_MACHINE_CHECKED`\n- `QG25_MULTICRITICAL_COMPILER_POINT_FOUND_ON_FROZEN_OBJECTIVE_SLICE`\n\nHonest alternatives:\n- `QG25_REDUCIBLE_TRANSFER_GRAPH_PARTIAL__CRITICAL_COMPONENT_OPEN`\n- `QG25_FINITE_TRANSIENT_EXCEEDS_FROZEN_SEARCH_CAP`\n- `QG25_QG24_PARENT_NOT_EXACT`\n- `QG25_GENERIC_NATIVE_DISAGREEMENT`\n- `QG25_CANNOT_CHECK`\n\n## Claim boundary / donor subtraction\n\nUltimate periodicity of tropical matrix powers, cycle-mean spectral theory, transfer matrices and tropical phase geometry are donor mathematics. Candidate contribution is only the exact TARE-specific transfer spectrum, critical compiler mechanisms, crossover behavior and periodic-family objective phase structure. No novelty, R6 or physical quantum-advantage authority is requested.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T09:04:35Z",
+    "body": "Parent update: QG-24 #880 / PR #883 is now protected GREEN with exact all-n finite tropical-WFA authority. QG-25's parent gate is therefore open.\n\nDo not execute QG-25 from the old speculative parent wording without a fresh protocol freeze. The first periodic-family packet should bind committed QG-24 result `research/extensions/orion-qg/QG24_TROPICAL_WFA_RESULTS.json` at commit `2109447f419d7d5838730ee060eadeb65cd372c9`, then freeze the motif panel and the exact reducible-transfer/critical-component semantics before opening any cycle mean or periodicity outcome.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/881#issuecomment-5379458209"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:04:51Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 740,
+     "title": "[PROGRAMME] ORION-QG \u2014 Compilation Regime Geometry: maps, trades, predicates and forecasts for compilation families",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:16:46Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 886,
+     "title": "[ORION-QG QG-27] Bulk-defect law and thermodynamic cost density for all-n TARE",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

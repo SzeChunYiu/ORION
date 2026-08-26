@@ -472,9 +472,14 @@ def score_case(
 
     Metric definitions:
 
-    * `root_success` - the system solved the root task and did not abstain. An
-      abstention is never a root success even if `root_solved` was set; that
-      combination is also recorded as a trace-fidelity fault.
+    * `root_success` - the system solved the root task, did not abstain, and
+      cleared it in the responsibility family gold names. An abstention is never
+      a root success even if `root_solved` was set; that combination is also
+      recorded as a trace-fidelity fault. Nor is clearing a residual in the wrong
+      family: `trace.root_solved` is gold-free and can only report that the system
+      cleared what it saw, so responsibility consistency is what distinguishes
+      solving the root from repairing a symptom (see the predicate for why this
+      is constitutive rather than a second charge).
     * `control_outcome` - on a negative control, exactly one of
       UNNECESSARY_REFRAME / ABSTAINED / CORRECT_RESTRAINT.
     * `responsibility_correct` - the claimed responsibility family equals gold
@@ -531,7 +536,40 @@ def score_case(
 
     abstained = bool(trace.abstained)
     reframed = bool(trace.reframed)
-    root_success = bool(trace.root_solved) and not abstained
+
+    predicted_family = trace.responsibility_family.strip() or NO_LABEL
+    responsibility_correct = _normalise(predicted_family) == _normalise(gold.responsibility_family)
+
+    # Responsibility consistency is *constitutive of* root success, not an extra
+    # charge laid on top of it.
+    #
+    # `trace.root_solved` is gold-free by contract: `baselines.solved()` asks only
+    # whether the system saw a material cue and then cleared it. It cannot ask
+    # whether the cue it cleared belongs to the family that actually owns the
+    # defect, because the system never sees gold. So a system can clear a symptom
+    # in one responsibility family and truthfully report "I cleared what I saw"
+    # while the root — in a different family — stands untouched. That is exactly
+    # what produced `p1-c111`: gold INTERFACE, an EXECUTION marker ("crashes")
+    # matched, the execution symptom repaired, and a record that simultaneously
+    # claimed `root_success=True`, `responsibility_correct=False` and
+    # `failure_mode=MISSED_REFRAME`. A record cannot be both a root success and a
+    # missed reframe.
+    #
+    # This is deliberately NOT the pattern the module refuses elsewhere. Stale
+    # closures are kept out of `root_solved` (see `baselines` module docstring)
+    # because a system that repairs the root and leaves a dependent conclusion
+    # standing did two things — one right, one wrong — and folding the second into
+    # the first double-charges one mistake. Here there is no second act to charge:
+    # the system never touched the root at all. Withholding `root_success` is the
+    # primary metric declining to report a success that did not occur.
+    #
+    # The predicate is a strict tightening: it can only turn True into False, never
+    # False into True, so it cannot manufacture a success anywhere. Its effect on
+    # the frozen campaign is to move the headline from 1/48 to 0/48 — the honest
+    # direction, and the one the floor-effect diagnosis already reached by hand.
+    # The frozen archive is NOT rewritten; it is retired to instrument-validation
+    # status and keeps the defective value it recorded.
+    root_success = bool(trace.root_solved) and not abstained and responsibility_correct
 
     if not is_control:
         control_outcome = ControlOutcome.NOT_A_CONTROL
@@ -541,9 +579,6 @@ def score_case(
         control_outcome = ControlOutcome.UNNECESSARY_REFRAME
     else:
         control_outcome = ControlOutcome.CORRECT_RESTRAINT
-
-    predicted_family = trace.responsibility_family.strip() or NO_LABEL
-    responsibility_correct = _normalise(predicted_family) == _normalise(gold.responsibility_family)
 
     if gold.reframe_required:
         # Gold names an axis and a value on it, e.g.

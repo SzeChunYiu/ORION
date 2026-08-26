@@ -1,0 +1,83 @@
+{
+ "number": 879,
+ "title": "[ORION-QG QG-23] Six-coordinate auxiliary-support compactness for irreducible three-block TARE",
+ "body": "Parent programme: #740.\nDirect structural parent: QG-7c all-n classification receipt (`QG7C_CLASSIFICATION_RESULTS.json`).\nHostile correction parent: QG-7f F0 / PR #878, which refutes the stronger common-two-coordinate premise with a valid weight-3 Tag / overlapping comm-s2 configuration.\n\n## Status\n\n**PROSPECTIVE COMPACTNESS THEOREM \u2014 freeze before execution.**\n\nQG-7f shows that the remaining TARE chain sector cannot be represented on two common Tag coordinates. However, QG-7c already contains a weaker but potentially much more useful all-n occupancy invariant.\n\nLet the three irreducible block types after the earned QG-7c reductions be:\n- `A`: anchored;\n- `P`: phantom;\n- `C`: comm-s2.\n\nWrite their counts as `(a,p,c)` with `a+p+c=3`.\n\nQG-7c earns:\n1. M1 irreducible shapes are exactly A/P/C;\n2. after T1, `wt(S) <= 3 + c`;\n3. each phantom has at most one Tag-free home coordinate;\n4. anchored and comm-s2 blocks introduce no additional off-Tag home coordinate in the irreducible grammar.\n\nDefine the **auxiliary-support skeleton**\n\n`U_aux = supp(S) union {phantom homes}`.\n\nThe frozen candidate theorem is therefore\n\n`|U_aux| <= wt(S) + p <= 3 + c + p = 6 - a <= 6`.\n\nSo although different comm-s2 blocks may occupy different overlapping Tag-coordinate pairs, every irreducible three-block TARE auxiliary configuration admits an all-n representative on at most **six auxiliary coordinates**, independent of physical qubit count `n`.\n\n## Important scope distinction\n\nThis is an **auxiliary-support compactness theorem**, not a complete target/environment-state theorem.\n\nTarget Pauli letters may remain nontrivial on spectator coordinates outside `U_aux`, and F3 / target-permutation costs can depend on that spectator environment. QG-23 must not claim that the entire optimization state lives on six qubits. It proves only that all nontrivial frame/Tag/phantom-home support can be localized to at most six coordinates after the earned reductions.\n\nThat distinction is mandatory because QG-7d/QG-22 already showed that omitted environment information can be load-bearing.\n\n## P1 \u2014 parent binding\n\nBind the committed QG-7c receipt and require:\n- M1 exact irreducible shape inventory A/P/C;\n- T1/T2 occupancy gate true;\n- `wt(S) <= 3 + #comm_s2` corollary present;\n- phantom-home Tag-free statement present;\n- all-n authority of the reductions used in this argument.\n\nBind QG-7f F0 GREEN as a hostile control proving that the stronger `wt(S)<=2` / common-two-coordinate statement is false and must not reappear.\n\n## P2 \u2014 complete shape-count lattice\n\nEnumerate every nonnegative `(a,p,c)` with `a+p+c=3` and serialize:\n- Tag-support upper bound `3+c`;\n- off-Tag-home upper bound `p`;\n- total auxiliary-support bound `3+c+p = 6-a`.\n\nExpected worst case: `a=0`, giving bound 6.\n\nNo stronger bound may be reported unless separately machine-proved for a restricted shape sector.\n\n## P3 \u2014 chain-sector refinements\n\nReport, without promoting unless proved from exact shape premises:\n- if `c>=2`, then `p<=1`, so `|U_aux|<=6` still;\n- if one selected C has two A/P pinners, then `c>=1` and the same universal six-coordinate bound holds;\n- overlapping C-support pairs such as QG-7f `{0,1}` and `{1,2}` are explicitly allowed.\n\n## Independent generic ORION\n\nGeneric ORION must derive the inequality from the parent structural statements and independently enumerate the 10 shape-count triples. It must reject any hidden use of a common-two-coordinate premise.\n\n## Native ORION-Q\n\nMay authorize only `AUXILIARY_SUPPORT_COMPACTNESS` if:\n- QG-7c parent bindings are exact;\n- QG-7f hostile counterexample is preserved;\n- target spectator state is explicitly left OPEN;\n- `CHAIN_ALL_N`, `GLOBAL_BDOUBLEPRIME_COMPLETENESS`, and `FULL_STATE_DIMENSION_6` remain false.\n\n## Intended positive terminal\n\n`QG23_TARE_AUXILIARY_SUPPORT_SKELETON_AT_MOST_6_ALL_N_MACHINE_CHECKED`\n\nHonest alternatives:\n- `QG23_PARENT_OCCUPANCY_AUTHORITY_GAP`\n- `QG23_PHANTOM_HOME_COUNT_GAP`\n- `QG23_GENERIC_NATIVE_DISAGREEMENT`\n- `QG23_CANNOT_CHECK`\n\n## Claim boundary / donor subtraction\n\nHypergraph incidence counting, matroid-style rank/cover reasoning, and finite-support compactness are donor mathematics. Candidate contribution is only this exact compiler-specific all-n support-skeleton theorem and its use in later TARE classification. No novelty, R6, or physical quantum-advantage authority is requested.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T08:43:03Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 880,
+     "title": "[ORION-QG QG-24] Exact all-n TARE as a finite tropical weighted automaton",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T08:50:16Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 882,
+     "title": "[ORION-QG QG-23] Execute six-coordinate auxiliary-support compactness",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:56:29Z",
+     "mergeCommit": {
+      "oid": "4faa5e739d0cd2e1409554de0092704e350418f9"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:03:02Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 884,
+     "title": "[ORION-QG QG-26] Parikh-histogram kernel and finite guarded tropical regime geometry for all-n TARE",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:04:51Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 740,
+     "title": "[PROGRAMME] ORION-QG \u2014 Compilation Regime Geometry: maps, trades, predicates and forecasts for compilation families",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:16:46Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 886,
+     "title": "[ORION-QG QG-27] Bulk-defect law and thermodynamic cost density for all-n TARE",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

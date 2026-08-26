@@ -1,0 +1,55 @@
+{
+  "artifact_binding": {
+    "bytes": 79762,
+    "path": "research/orion-v1-freeze/V1_QUANTUM_CENSUS_V1.json",
+    "sha256": "ea4168b04caa403304673e996dafe0c736c584a22e7ece164a2f3b35564320e2"
+  },
+  "authority_ceiling": {
+    "external_validation": "CANNOT_CHECK",
+    "paper_authority_delta": "NONE",
+    "physical_quantum_validity": "CANNOT_CHECK"
+  },
+  "bound_files": [
+    {
+      "bytes": 558,
+      "path": "DONOR_RESULT.json",
+      "sha256": "dafbaeaaf169ae15cff41910e84ecee4dbcdc3754579143fd7865d4a137a9326"
+    },
+    {
+      "bytes": 714,
+      "path": "FREEZE.json",
+      "sha256": "11415260769a327ef8c40d9dd1ce94578a2042bd240773696a22289e48708802"
+    },
+    {
+      "bytes": 256,
+      "path": "NEGATIVE_CONTROLS.json",
+      "sha256": "a1a9764324b2c887b44c32369c1062b30f5d43d85cff604cc20110ae4b28f6fe"
+    },
+    {
+      "bytes": 1109,
+      "path": "PRIMARY_RESULT.json",
+      "sha256": "763d2170efbbb4fcd641a85afb5be9c11ec589bdaa4b90a923d862b7112a6b4d"
+    },
+    {
+      "bytes": 18799,
+      "path": "RAW_MANIFEST.json",
+      "sha256": "17615290c3b1ff69034aefa30f284002255f9e423627f77733691ac0992f75e4"
+    },
+    {
+      "bytes": 636,
+      "path": "RESOURCE_LEDGER.json",
+      "sha256": "cc6f8e6d2175519dd2132c52f79bb66a59dd277643d73962b0d146ceae7fe9f2"
+    },
+    {
+      "bytes": 472,
+      "path": "TRANSFER_RESULT.json",
+      "sha256": "7629572ba97732792f97e0ed3e322a30d49b6b5a247b003b98bf7ce8a4547bc2"
+    }
+  ],
+  "gap_ledger_binding": {
+    "artifact": "research/orion-v1-freeze/V1_QUANTUM_CENSUS_V1.json",
+    "gap_id": "GAP-INTERNAL-QUANTUM-DISPOSITION",
+    "terminal": "V1_QUANTUM_FRONTIER_CENSUS_COMPLETE"
+  },
+  "schema": "ORION.V1.QuantumCensusResultBindingPacket.v1"
+}

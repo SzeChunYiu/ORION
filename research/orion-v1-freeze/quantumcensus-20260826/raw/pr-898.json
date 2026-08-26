@@ -1,0 +1,515 @@
+{
+ "number": 898,
+ "title": "ORION-RG: freeze Finite Regime Geometry F0 and implication counterexamples",
+ "state": "MERGED",
+ "merged": true,
+ "mergedAt": "2026-08-23T19:57:12Z",
+ "mergeCommit": {
+  "oid": "7337f5e1eab05c6e890a9280fbc1ee7aa45f6d4c"
+ },
+ "files": {
+  "totalCount": 118,
+  "nodes": [
+   {
+    "path": "development/orion-rg/REGIME_GEOMETRY_RG1_F0_FREEZE.md",
+    "additions": 134,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-rg/rg1_implication_counterexamples.py",
+    "additions": 132,
+    "deletions": 0
+   },
+   {
+    "path": "packages/orion-research-harness/src/orion_research_harness/domains/orion_rg/__init__.py",
+    "additions": 11,
+    "deletions": 0
+   },
+   {
+    "path": "packages/orion-research-harness/src/orion_research_harness/domains/orion_rg/x1a_davenport_3_5.py",
+    "additions": 260,
+    "deletions": 0
+   },
+   {
+    "path": "packages/orion-research-harness/src/orion_research_harness/domains/orion_rg/x1b_c15_candidate_proof_audit.py",
+    "additions": 112,
+    "deletions": 0
+   },
+   {
+    "path": "packages/orion-research-harness/src/orion_research_harness/domains/orion_rg/x1b_k3_scalar_confirm.py",
+    "additions": 104,
+    "deletions": 0
+   },
+   {
+    "path": "packages/orion-research-harness/src/orion_research_harness/domains/orion_rg/x1b_k4_anchored_replay.py",
+    "additions": 106,
+    "deletions": 0
+   },
+   {
+    "path": "packages/orion-research-harness/src/orion_research_harness/domains/orion_rg/x1c_c45_mixed_kernel.py",
+    "additions": 161,
+    "deletions": 0
+   },
+   {
+    "path": "packages/orion-research-harness/src/orion_research_harness/domains/registry.py",
+    "additions": 10,
+    "deletions": 0
+   },
+   {
+    "path": "packages/orion-research-harness/tests/test_orion_rg_c15_candidate_audit.py",
+    "additions": 51,
+    "deletions": 0
+   },
+   {
+    "path": "packages/orion-research-harness/tests/test_orion_rg_x1a.py",
+    "additions": 70,
+    "deletions": 0
+   },
+   {
+    "path": "packages/orion-research-harness/tests/test_orion_rg_x1b_k3_confirm.py",
+    "additions": 48,
+    "deletions": 0
+   },
+   {
+    "path": "packages/orion-research-harness/tests/test_orion_rg_x1b_live_campaigns.py",
+    "additions": 69,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C15_14PT_NO_SHORT_EXPLORATORY_CLASSIFICATION_2026-08-22.md",
+    "additions": 58,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C15_14PT_NO_SHORT_RAW_CONFIRM_PROTOCOL.md",
+    "additions": 59,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C15_14PT_NO_SHORT_RAW_CONFIRM_RESULT_2026-08-22.md",
+    "additions": 58,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C15_16PT_RAW_QUOTIENT_PROTOCOL.md",
+    "additions": 50,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C15_16PT_RAW_QUOTIENT_RESULT_2026-08-22.md",
+    "additions": 50,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C15_DAVENPORT_43_CANDIDATE_THEOREM_2026-08-22.md",
+    "additions": 324,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C15_DONOR_NUMERICAL_SPINE_AUDIT_2026-08-22.md",
+    "additions": 76,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C15_GREEDY_RESIDUAL_TREE_HOSTILE_AUDIT_2026-08-22.md",
+    "additions": 81,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C15_RESIDUAL_REDUCTION_TO_13_AND_10_2026-08-22.md",
+    "additions": 82,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C5CUBED_COFACTOR_FUNCTIONAL_COUPLING_2026-08-22.md",
+    "additions": 161,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C5CUBED_CROSS_DELETION_FUNCTIONAL_BOUNDARY_2026-08-22.md",
+    "additions": 79,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_C5CUBED_GLOBAL_TWO_EXTENSION_FORM_2026-08-22.md",
+    "additions": 155,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_GEROLDINGER_YANG_PGROUP_SCALARIZATION_DONOR_AUDIT_2026-08-22.md",
+    "additions": 113,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K3_10PT_RESIDUAL_CLOSURE_THEOREM_2026-08-22.md",
+    "additions": 95,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K3_RAW_NO_SYMMETRY_INDEPENDENT_REPLAY_2026-08-22.md",
+    "additions": 61,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K3_SCALAR_CONFIRMATORY_PROTOCOL.md",
+    "additions": 82,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K3_SUPPORT_CAP_COMPLETENESS_AUDIT_2026-08-22.md",
+    "additions": 43,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_13PT_ANCHORED_SCALAR_FIRST_RESULT_2026-08-22.md",
+    "additions": 135,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_13PT_ANCHORED_SCALAR_PROTOCOL.md",
+    "additions": 83,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_13PT_RESIDUAL_CLOSURE_THEOREM_2026-08-22.md",
+    "additions": 198,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_ALL_RANK3_COMPLETIONS_PROTOCOL.md",
+    "additions": 44,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_ALL_RANK3_COMPLETIONS_RESULT_2026-08-22.md",
+    "additions": 74,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_ALL_RANK3_RESIDUAL_LIFTS_SURVIVE_2026-08-22.md",
+    "additions": 49,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_COMMON_PREFIX_DIVISIBILITY_SIEVE_PROTOCOL.md",
+    "additions": 39,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_COMMON_PREFIX_DIVISIBILITY_SIEVE_RESULT_2026-08-22.md",
+    "additions": 44,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_COMMON_PREFIX_GROUP_ALGEBRA_LINEAR_RESULT_2026-08-22.md",
+    "additions": 45,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_COMMON_PREFIX_GROUP_ALGEBRA_PROTOCOL.md",
+    "additions": 57,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_COMMON_PREFIX_I10_PROTOCOL.md",
+    "additions": 41,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_COMMON_PREFIX_I10_RESULT_2026-08-22.md",
+    "additions": 62,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_DIAGONAL_COMPLETION_REDUCTION_2026-08-22.md",
+    "additions": 60,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_FINAL_MINRANK_RESULT_2026-08-22.md",
+    "additions": 71,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_FORBIDDEN_PREFIX_ILLEGAL_STATE_QUOTIENT_2026-08-22.md",
+    "additions": 79,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_FORBIDDEN_PREFIX_MINLAST_DOMINANCE_2026-08-22.md",
+    "additions": 46,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_GLOBAL_BILINEAR_LINEAR_FIRST_RESULT_2026-08-22.md",
+    "additions": 72,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_GLOBAL_BILINEAR_MINRANK_PROTOCOL.md",
+    "additions": 95,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_R3_10_FORBIDDEN_PREFIX_PRIMARY_RESULT_2026-08-22.md",
+    "additions": 48,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_R3_11_R3_12_FORBIDDEN_PREFIX_PRIMARY_RESULTS_2026-08-22.md",
+    "additions": 67,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK2_RADICAL_CENSUS_AND_CONTAINMENT_RESULT_2026-08-22.md",
+    "additions": 165,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK2_RADICAL_FINAL_PREFIX_INDEPENDENT_REPLAY_2026-08-22.md",
+    "additions": 70,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK2_RADICAL_FINAL_PREFIX_PRIMARY_RESULTS_2026-08-22.md",
+    "additions": 63,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK2_RADICAL_FINAL_PREFIX_PROTOCOL.md",
+    "additions": 55,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK2_RADICAL_MINIMAL_FORBIDDEN_PROTOCOL.md",
+    "additions": 67,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK2_RADICAL_NORMALIZATION_2026-08-22.md",
+    "additions": 81,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK2_RADICAL_SHEAR_SHORTCUT_REFUTED_2026-08-22.md",
+    "additions": 79,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK2_RESIDUAL_LIFT_OBSTRUCTION_2026-08-22.md",
+    "additions": 58,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK3_FORBIDDEN_GL_CLASSES_2026-08-22.md",
+    "additions": 71,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK3_FORBIDDEN_PREFIX_INDEPENDENT_REPLAY_2026-08-22.md",
+    "additions": 54,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK3_FORBIDDEN_PREFIX_PROTOCOL.md",
+    "additions": 36,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_RANK3_FORBIDDEN_STABILIZER_AUDIT_2026-08-22.md",
+    "additions": 33,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_TEN_PREFIX_FORBIDDEN_SUM_PROTOCOL.md",
+    "additions": 71,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_TEN_PREFIX_FORBIDDEN_SUM_RESULT_2026-08-22.md",
+    "additions": 59,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_TEN_PREFIX_INDEPENDENT_BFS_PROTOCOL.md",
+    "additions": 44,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_TEN_PREFIX_INDEPENDENT_CONFIRMATION_AND_SCOPE_2026-08-22.md",
+    "additions": 50,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_TEN_PREFIX_INDEPENDENT_NOMEMO_PROTOCOL.md",
+    "additions": 39,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_K4_TWO_COFACTOR_RELAXATION_REFUTED_2026-08-22.md",
+    "additions": 151,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1B_PGROUP_LOCAL_SCALARIZATION_2026-08-22.md",
+    "additions": 135,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1C_CHECKPOINT_2026-08-22.md",
+    "additions": 77,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1C_DONOR_PROVENANCE_REPAIR_Z3Z3Z3D_2026-08-22.md",
+    "additions": 49,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1C_DONOR_RANK2_KERNEL_BOUNDARY_2026-08-22.md",
+    "additions": 64,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1C_FORCED_KERNEL_FULL_ORDER_39_OF_42_2026-08-22.md",
+    "additions": 129,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1C_GREEDY_TRIPLE_DEFICIT_CASCADE_2026-08-22.md",
+    "additions": 98,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1C_MAXIMAL_KERNEL_COMPLETION_2026-08-22.md",
+    "additions": 80,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1C_NESTED_PRIMARY_EXTREMALITY_2026-08-22.md",
+    "additions": 77,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1C_ORDER5_DEFECT_UNIQUE_C3_ORBIT_2026-08-22.md",
+    "additions": 108,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1C_PRIMARY_PROJECTION_PACKING_CONSTRAINTS_2026-08-22.md",
+    "additions": 85,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1C_REVERSE_D7_ROUTE_REFUTED_2026-08-22.md",
+    "additions": 86,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/X1_CRITICAL_CORRECTION_C15_OPEN_2026-08-22.md",
+    "additions": 124,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_c15_14pt_no_short_raw_confirm.cpp",
+    "additions": 118,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_c15_16pt_raw_quotient_verify.cpp",
+    "additions": 77,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_c15_candidate_proof_audit.py",
+    "additions": 174,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_k3_raw_no_symmetry_replay.cpp",
+    "additions": 125,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_k3_scalar_residual_confirm.py",
+    "additions": 291,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_k3_scalar_residual_exploratory.py",
+    "additions": 269,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_k4_13pt_anchored_scalar.py",
+    "additions": 332,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_k4_global_bilinear_linear_stage.py",
+    "additions": 201,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_k4_rank2_radical_final_prefix_exact.cpp",
+    "additions": 16,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_k4_rank2_radical_final_prefix_nomemo_replay.cpp",
+    "additions": 88,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_k4_rank3_forbidden_prefix_exact.cpp",
+    "additions": 184,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_k4_rank3_forbidden_prefix_nomemo_replay.cpp",
+    "additions": 56,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_k4_ten_prefix_forbidden_sum_exact.cpp",
+    "additions": 149,
+    "deletions": 0
+   },
+   {
+    "path": "research/domains/orion-rg/x1b_k4_ten_prefix_forbidden_sum_nomemo.cpp",
+    "additions": 106,
+    "deletions": 0
+   },
+   {
+    "path": "research/orion-rg/X1A_AUDIT_FREEZE_SCHMID_PARITY_RECHECK_2026-08-22.md",
+    "additions": 52,
+    "deletions": 0
+   },
+   {
+    "path": "research/orion-rg/X1C_CORRECTION_FULL_ORDER_NOT_SUFFICIENT_FOR_NU_P_2026-08-22.md",
+    "additions": 40,
+    "deletions": 0
+   },
+   {
+    "path": "research/orion-rg/X1C_DEFICIENCY_ONE_NORMAL_FORM_2026-08-22.md",
+    "additions": 95,
+    "deletions": 0
+   },
+   {
+    "path": "research/orion-rg/X1C_DONOR_BHOWMIK_PROPOSITION8_2026-08-22.md",
+    "additions": 51,
+    "deletions": 0
+   },
+   {
+    "path": "research/orion-rg/X1C_DONOR_DEFICIENCY_ONE_SCOPE_2026-08-22.md",
+    "additions": 55,
+    "deletions": 0
+   },
+   {
+    "path": "research/orion-rg/X1C_DUAL_PRIMARY_PROJECTION_TRADE_2026-08-22.md",
+    "additions": 97,
+    "deletions": 0
+   }
+  ]
+ }
+}

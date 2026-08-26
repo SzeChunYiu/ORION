@@ -1,0 +1,89 @@
+{
+ "number": 790,
+ "title": "[ORION-QG QG-13 V4 / QG-9] All-n R6I support<=4 theorem via cumulative E2/E3 spectator-safe exchange",
+ "body": "Parent theorem miner: #767\nTightness theorem owner: #762\nV2: #777 / PR #779\nV3: #785 / PR #787\nCanonical parent theorem: QG-1 wave-1 R6I support<=5\n\n## Status\n\n**CONFIRMATORY ALL-n THEOREM PACKET \u2014 exploratory evidence disclosed.**\n\nAfter V3 was prospectively frozen, exploratory analysis showed that E2\u222aE3 covers all 216 five-column *fully accepting* support-five patterns. That is not sufficient for an all-n theorem because the partner generator may have additional active columns outside the selected support-five generator.\n\nA subsequent exploratory spectator analysis identified the stronger theorem domain below: **324 anchored five-column slices** satisfying only the necessary conditions inherited from an arbitrary all-n QG-1-irreducible optimum. E2\u222aE3 covered 324/324 in exploratory analysis. Those numbers are used to formulate this confirmatory theorem and therefore are not treated as blind discovery.\n\nV4 asks whether the ORION harnesses can independently machine-check the full all-n proof.\n\n## Frozen base / execution identity\n\nThe implementation branch must be created from current ORION main after this issue is registered. No V2/V3 result code is imported into the analyzer; their action semantics are re-derived from production R6I tables. Parent QG-1 may be opened only as an already-earned theorem premise and receipt binding.\n\n## Theorem target\n\n> For every qubit count n and every instance of the frozen R6I two-block rank-2 dependent-triple shared-2-bit-Tag grammar under the frozen unit support objective, the exact optimum is attained with all four independent frame generators `RA0,RA1,RB0,RB1` of global support <=4.\n\nEquivalently, `C_DP = C_cap4` for all n in the frozen R6I grammar.\n\n## Proof skeleton\n\nChoose a feasible configuration `Sigma` minimizing `(C,total_generator_support)` lexicographically over the finite unrestricted R6I search space.\n\n### P1 \u2014 inherit QG-1 irreducibility/support<=5\n\nQG-1's machine-checked SOLO/PAIR exchange theorem is an admitted parent premise. In a lexicographic minimum, no QG-1 move exists, so every generator has support <=5. V4 gives QG-1 full parent credit and does not re-claim support<=5.\n\n### P2 \u2014 selected support-five slice\n\nSuppose one independent generator `Rg` has support exactly five. Let `S=supp(Rg)`.\n\nOutside S, `Rg=I`. Therefore the five columns in S carry **all** contributions to:\n- `symp(Rg,Rother)=1` (anticommutation parity);\n- the two shared-Tag syndrome bits of Rg, whose branch label is nonzero in every accepted R6I state.\n\nThe partner generator may have arbitrary additional columns outside S. Its Tag syndrome inside S therefore need not itself be an accepting label.\n\n### P3 \u2014 necessary QG-1 irreducibility on the slice\n\nBecause Sigma has no QG-1 move:\n- selected-generator non-coincidence N-classes inside S are zero-sum-free;\n- coincidence C-classes inside S are zero-sum-free;\n- partner-generator N-classes **restricted to S** are zero-sum-free (any zero-sum subset inside S would already be a valid global QG-1 move, regardless of additional partner-only columns outside S).\n\nThese are necessary conditions; V4 deliberately enumerates a superset of globally realizable support-five slices if outside-spectator constraints are ignored.\n\n## Anchored-slice exhaustive lemma\n\nBuild local structural types directly from production R6I local tuples `(r0,r1,s0,s1)` and the inferred five-bit syndrome/action signatures.\n\nFor orientation g=0, enumerate every canonical multiset of exactly five columns with:\n1. R0 active on all five columns;\n2. XOR anticommutation bit = 1;\n3. R0 two-bit Tag label !=0;\n4. N0, restricted-N1 and C class multisets each have no nonempty zero-sum subset.\n\nDo **not** require the slice's R1 Tag label to be accepted; outside R1-only spectator columns may complete it.\n\nRepeat independently for orientation g=1 (R1 active on all five); do not assume symmetry without checking.\n\nFor each anchored slice, require at least one globally safe action from the cumulative frozen edit basis:\n- E2: two distinct columns, actions A/B/AB, total five-bit syndrome change zero, exact summed worst local cost delta <=0;\n- E3: three distinct columns, same conditions;\n- action must delete at least one letter of the **selected support-five generator**.\n\nPositive local lemma requires zero uncovered anchored slices in both orientations.\n\n## Spectator-extension lemma\n\nFor every certified E2/E3 move on S:\n- full five-bit block syndrome delta is exactly zero, so global anticommutation and both Tag labels are unchanged;\n- actions only zero generator letters and recompute dependent R2 locally;\n- Tag, targets, relative permutation, central choice, other block and all columns outside S are untouched;\n- frozen R6I cost is a sum of per-column frame + Restore costs plus unchanged Tag/global constants, with **no cross-column Restore factor**;\n- therefore the exact worst-case nonpositive local bound composes unchanged in the presence of arbitrary outside spectator columns.\n\nThe move deletes >=1 selected-generator letter, hence reduces support(Rg) from 5 to <=4 and strictly decreases total generator support. Cost does not increase. This contradicts lexicographic minimality.\n\nThus no generator in Sigma has support five; combined with QG-1 support<=5, every generator support<=4.\n\n## Required machine checks\n\n1. Production five-bit syndrome formula binds to R6I `_DELTA` exactly.\n2. Recompute the complete single-column A/B/AB resource table and exact E2/E3 safe class sets; do not import V2/V3 result files.\n3. Enumerate anchored-slice domains independently for g=0 and g=1.\n4. Report exact counts, coverage split E2/E3/union, and any first uncovered pattern.\n5. Verify every selected move deletes the chosen support-five generator.\n6. Verify syndrome-zero composition and exact nonpositive worst cost.\n7. Bind QG-1 parent receipt only after the anchored-slice lemma is sealed.\n8. Independently reconstruct the entire anchored-slice lemma in generic ORION without importing production `_DELTA`.\n9. Native ORION-Q must keep `LOCAL_LEMMA`, `SPECTATOR_EXTENSION`, and `ALL_N_THEOREM` obligations distinct; any missing obligation yields CANNOT_CHECK.\n\n## Honest terminals\n\n- `QG13V4_R6I_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED`\n- `QG13V4_ANCHORED_SLICE_COUNTEREXAMPLE`\n- `QG13V4_SPECTATOR_EXTENSION_GAP`\n- `QG13V4_PARENT_BINDING_FAILED`\n- `QG13V4_CANNOT_CHECK`\n\n## Next boundary\n\nA positive support<=4 theorem does not imply support four is tight. QG-9 must then reopen the tightness question at cap 3: exact support-4 witnesses or a stronger support<=3 exchange theorem.\n\n## Novelty / authority boundary\n\nFinite-field dependence, local exchange, dynamic programming, CEGIS and automated rewrite analysis are donor mathematics/methods. Candidate scientific contribution is only the frozen R6I all-n support<=4 normal-form theorem and its proof-carrying compiler instantiation. Novelty authority remains false pending independent external literature/peer review. No physical quantum-advantage claim.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T14:39:36Z",
+    "body": "Protected theorem result committed at `bdd77ddeea56fbeb75f69924d1c823feafc6d827` on `shadow/orion-qg-qg13-v4-r6i-support4-theorem`.\n\nEarned terminal: `QG13V4_R6I_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED`.\n\nBoth generator orientations: 24 structural types; 324 necessary anchored support-five slices; E2 covers 180, E3 covers 288, cumulative 324/324, zero uncovered. Production spectator-extension checks pass for both R6I blocks; QG-1 support<=5 parent was opened only after the local lemma seal. Generic ORION independently reproduced both 324/324 domains; native ORION-Q recorded `ACCEPT_SUPPORT4_THEOREM_EVIDENCE` / `THEOREM_RECORDED`.\n\nDurable files:\n- `research/extensions/orion-qg/QG13V4_SUPPORT4_RESULTS.json`\n- `development/orion-qg-regime-geometry/QG13V4_PROTECTED_RUN_RECEIPT_2026-08-21.json`\n\nClaim: `C_DP = C_cap4` for all n in the frozen R6I grammar. Tightness of support 4 remains open; no novelty/physical-advantage authority is granted.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/790#issuecomment-5371355512"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:32:30Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 791,
+     "title": "[ORION-QG QG-13 V4 / QG-9] Prove all-n R6I support<=4",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:46:40Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 793,
+     "title": "[ORION-QG QG-9 T1] Exact n=4 cap-3 witness hunt for R6I support-four tightness",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:54:19Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 797,
+     "title": "[ORION-QG QG-9 T1] Exact n=4 cap3 support-four tightness hunt",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:03:42Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 762,
+     "title": "[ORION-QG QG-9] Is rank-2 support five tight? Exact cap-4 witness hunt or stronger all-n bound",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:07:56Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 801,
+     "title": "[ORION-QG QG-9 T2] Counterexample-guided max-margin target synthesis for exact support-four tightness",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

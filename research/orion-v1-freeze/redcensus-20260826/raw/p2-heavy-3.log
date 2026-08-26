@@ -1,0 +1,16 @@
+
+[pytest-split] No test durations found. Pytest-split will split tests evenly when no durations are found. 
+[pytest-split] You can expect better results in consequent runs, when test timings have been documented.
+
+bringing up nodes...
+bringing up nodes...
+
+....                                                                     [100%]
+============================= slowest 10 durations =============================
+91.50s call     tests/unit/p2/test_p2_offline_systems.py::test_every_frozen_system_respects_host_budgets_and_never_emits_invalid_claims[no_route_independence_check]
+88.48s call     tests/unit/p2/test_p2_offline_systems.py::test_every_frozen_system_respects_host_budgets_and_never_emits_invalid_claims[route_stop_can_close_task]
+87.65s call     tests/unit/p2/test_p2_offline_systems.py::test_every_frozen_system_respects_host_budgets_and_never_emits_invalid_claims[orion_full]
+87.30s call     tests/unit/p2/test_p2_offline_systems.py::test_every_frozen_system_respects_host_budgets_and_never_emits_invalid_claims[no_question_conditioned_read_ledger]
+
+(6 durations < 0.005s hidden.  Use -vv to show these durations.)
+4 passed in 94.50s (0:01:34)

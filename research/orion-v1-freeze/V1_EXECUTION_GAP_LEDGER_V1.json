@@ -1,0 +1,189 @@
+{
+  "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+  "coverage": {
+    "complete": true,
+    "completion_dependencies": [
+      "V1-CENSUS-01",
+      "V1-RED-CENSUS-01",
+      "V1-Q-CENSUS-01"
+    ]
+  },
+  "gaps": [
+    {
+      "blocks_freeze": true,
+      "census_artifact": "research/orion-v1-freeze/V1_COMPONENT_BINDING_V1.json",
+      "census_terminal": "V1_COMPONENT_GRAPH_CONTENT_BOUND",
+      "class": "INTERNAL_LOCAL",
+      "coverage_note": "graph coverage.complete stays false while freeze_state is OPEN_BOOTSTRAP; the checker forbids a bootstrap completeness claim, so completeness flips atomically with the FROZEN transition",
+      "discharge_job": "V1-COMPONENT-BIND-01",
+      "gap_id": "GAP-INTERNAL-COMPONENT-BINDING",
+      "owner": "V1_FREEZE_THEORY_AND_SYSTEM_LANE",
+      "resolution_evidence": {
+        "binding_artifact": "research/orion-v1-freeze/V1_COMPONENT_BINDING_V1.json",
+        "catch_all_declarations_resolved": "CERTIFIED_ALGORITHMIC_NAVIGATION src/orion/ exploded to 22 explicit paths; QUANTUM_QG_QN_FRONTIER research/+development/ exploded to 306 explicit paths",
+        "components": 14,
+        "components_with_absent_paths": 4,
+        "dual_role_files_resolved": "src/orion/discovery/frontier_dominance.py owned by FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY with THEOREM_IDENTIFYING_DISCOVERY recorded as a witnessed dependency edge; src/orion/epistemic_state_v1/ owned by DYNAMIC_EPISTEMIC_STATE (reference implementation); remaining 24 src/orion/discovery files owned by THEOREM_IDENTIFYING_DISCOVERY",
+        "duplicate_owned_files": 0,
+        "duplicate_owned_files_before": 949,
+        "edges": 24,
+        "edges_backed_with_concrete_witness": 10,
+        "edges_newly_witnessed": [
+          "P1_P15_SCIENTIFIC_PROGRAMME->DYNAMIC_EPISTEMIC_STATE via scripts/check_p1_p15_dynamic_rewrite_v1.py token epistemic_state_v1 (file bound to P1_P15; the P1-P15 rewrite checker consumes the DES reference root)"
+        ],
+        "edges_unbacked_no_own_files_measurement_boundary": 14,
+        "edges_unbacked_no_typed_interface_witness": 0,
+        "edges_unbacked_no_typed_interface_witness_before": 5,
+        "files_owned_at_base": 10783,
+        "files_unowned_infrastructure_only": 1074,
+        "files_unowned_note": "tests/ .github/ docs/ scripts/ .integration/ provenance/ and root files were never claimed by any component in the original census either; no component declaration covers them and none was invented",
+        "frozen_base": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+        "spurious_edges_removed": [
+          "THEOREM_IDENTIFYING_DISCOVERY->DYNAMIC_EPISTEMIC_STATE (discovery-v1 builds on OSTC only; zero DES references in any spelling; DES self-describes as the P1-P15 shared object)",
+          "CERTIFIED_ALGORITHMIC_NAVIGATION->KNOWLEDGE_WEB_AND_PROOF_ECONOMY (zero knowledge-web/discovery-v2 references in the src/orion residual; knowledge_web.py has zero importers tree-wide)",
+          "EXECUTION_INTEGRITY_AND_RECEIPTS->OSTC_FOUNDATIONS (kernel receipt algebra deliberately independent: imports only orion.mechanics/orion.core; no foundations reference)",
+          "ORION_Q_TYPED_RESEARCH_STATE->OSTC_FOUNDATIONS (orion-q is external-literature-donor based; no OSTC reference)"
+        ],
+        "unimplemented_component_disposition": "DISCOVERY_SYNTHESIS_MODES bound explicitly as a ledgered execution gap: both declared files are absent at the frozen base and no synthesis-modes contract exists anywhere in the frozen tree, so implementation is out of scope for a frozen-base binding; node status records successor job V1-DISC-V3-SPEC-01 and the binding census emits it under components_with_no_binding and components_with_absent_paths"
+      },
+      "status": "RESOLVED"
+    },
+    {
+      "blocks_freeze": true,
+      "census_artifact": "research/orion-v1-freeze/V1_THEOREM_CENSUS_V1.json",
+      "census_terminal": "V1_THEOREM_CENSUS_COMPLETE",
+      "class": "INTERNAL_LOCAL",
+      "coverage_note": "theorem-ledger coverage.complete stays false while freeze_state is OPEN_BOOTSTRAP; the checker forbids a bootstrap completeness claim, so completeness flips atomically with the FROZEN transition",
+      "discharge_job": "V1-THEOREM-CENSUS-01",
+      "gap_id": "GAP-INTERNAL-THEOREM-CENSUS",
+      "owner": "V1_FREEZE_THEORY_AND_SYSTEM_LANE",
+      "resolution_evidence": {
+        "external_proof_review": "CANNOT_CHECK — same-programme mechanization only, not independently adjudicated",
+        "identity_collisions": 0,
+        "lean_build": "PASS — lake build at frozen base on LUNARC, Lean 4.33.0, no sorry/axiom holes",
+        "mechanized_ostc": 23,
+        "ostc": 24,
+        "ostc_missing_proof_artifact": 0,
+        "paper_level": 77,
+        "proof_status_overclaims": 0,
+        "structural_audit_only": 1,
+        "theorems_enumerated": 101
+      },
+      "status": "RESOLVED"
+    },
+    {
+      "blocks_freeze": true,
+      "class": "INTERNAL_LOCAL",
+      "discharge_job": "V1-CENSUS-01",
+      "gap_id": "GAP-INTERNAL-ISSUE-CENSUS",
+      "owner": "CODEX_COMPUTATION_SESSION",
+      "resolution_evidence": {
+        "census": "research/orion-v1-freeze/census-20260826/complete/OPEN_ISSUES.json",
+        "census_terminal": "V1_OPEN_ISSUE_CENSUS_COMPLETE",
+        "independent_checker": "scripts/check_v1_issue_denominator.py",
+        "open_issue_denominator": 159,
+        "pending_atomic_audits": 0
+      },
+      "status": "RESOLVED"
+    },
+    {
+      "blocks_freeze": true,
+      "census_artifact": "research/orion-v1-freeze/redcensus-20260826/complete/PRIMARY_RESULT.json",
+      "census_terminal": "V1_RED_CENSUS_COMPLETE",
+      "class": "INTERNAL_LOCAL",
+      "discharge_job": "V1-RED-CENSUS-01",
+      "gap_id": "GAP-INTERNAL-RED-CENSUS",
+      "owner": "CODEX_COMPUTATION_SESSION",
+      "resolution_evidence": {
+        "declared_runs": 8,
+        "environment": "python 3.12.13 / numpy 2.5.2 / scipy 1.18.0 / sklearn 1.9.0, ENV BOUND OK",
+        "errors": 0,
+        "exit_zero_runs": 8,
+        "failures": 0,
+        "frozen_base": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+        "packet": "research/orion-v1-freeze/redcensus-20260826/complete/RESULT_BINDING_PACKET.json",
+        "red_classifications": "vacuous: zero reds at the frozen base",
+        "skipped_failing_shard": 0,
+        "slurm_job": 3544000,
+        "total_tests": 7413
+      },
+      "status": "RESOLVED"
+    },
+    {
+      "blocks_freeze": true,
+      "class": "INTERNAL_LOCAL",
+      "discharge_job": "V1-Q-CENSUS-01",
+      "gap_id": "GAP-INTERNAL-QUANTUM-DISPOSITION",
+      "owner": "QUANTUM_TRANSFER_LEAD",
+      "status": "RESOLVED",
+      "census_artifact": "research/orion-v1-freeze/V1_QUANTUM_CENSUS_V1.json",
+      "census_terminal": "V1_QUANTUM_FRONTIER_CENSUS_COMPLETE",
+      "resolution_evidence": {
+        "execution_class": "LOCAL_AUDIT_NO_CLUSTER_ALLOCATION",
+        "frozen_base": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+        "identity_ambiguous_retained": [
+          1034,
+          1306,
+          1418
+        ],
+        "merged_material_result": 41,
+        "packet": "research/orion-v1-freeze/quantumcensus-20260826/complete/RESULT_BINDING_PACKET.json",
+        "pending_atomic_audit": [
+          937
+        ],
+        "raw_receipts": "120 files (56 issue + 64 PR GraphQL snapshots) under quantumcensus-20260826/raw/",
+        "scoped_issues": 56,
+        "scoped_out_enumerated": 103,
+        "tree_binding": "frozen base ef51b7b AND origin/main 926c7529, quantum surfaces byte-identical"
+      }
+    },
+    {
+      "blocks_freeze": true,
+      "census_artifact": "research/orion-discovery-v3/JOB_SPECS_V1.json",
+      "census_terminal": "DISCOVERY_V3_ALL_JOB_SPECIFICATIONS_FROZEN",
+      "class": "INTERNAL_LOCAL",
+      "discharge_job": "V1-DISC-V3-SPEC-01",
+      "gap_id": "GAP-INTERNAL-DISCOVERY-V3-SPECS",
+      "owner": "FORMAL_METHODS_LEAD",
+      "resolution_evidence": {
+        "backlog_jobs_bound_as_predecessors": 11,
+        "denominator_reconciliation": "denominator=13 per EXECUTION_TAKEOVER_MANIFEST_V1.json canonical_order (issue_1329_body_sha256 5d875643d74dfdc6c28551b2ac06305e71690142baa058c98dc6a9b29415f8b2); EXECUTION_BACKLOG_V1.json held 11 jobs from creation commit 5f4a83dce and never 13 (DEVELOPMENT_PACKET.md: '#1329 supersedes the prose order with 13 jobs but does not update the branch backlog'); the 11+2-executed hypothesis is false (research/orion-discovery-v2/exec/ holds 7 executed v2 jobs); DISC-Q-TRANSFER-01 is a v2 job merged NEGATIVE via PR #1327 (issue #1306, merged 2026-08-25T12:42:10Z), retained as V3-QUANTUM-REMINT-01 donor context and excluded from the V3 denominator; all 11 backlog ids bound exactly once as POTENTIAL_PREDECESSOR_NOT_ALIAS inside the 13 rows (10 rows; V3-DONOR-ENVELOPE-01 binds two)",
+        "frozen_base": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+        "jobs_specified": 13,
+        "packet": "research/orion-v1-freeze/discv3spec-20260826/complete/RESULT_BINDING_PACKET.json",
+        "registered_alternatives": 26,
+        "synthesis_modes_outcome": "DISCOVERY_SYNTHESIS_MODES successor obligation discharged at specification level: the V3-OPEN-MORPH-01 row is the frozen synthesis-modes contract (move-menu interface, OPEN_MOVE_CLASS admission, RN-T8 fair-dovetail scheduler, RN-T7 obstruction witness format); implementing src/orion/discovery/synthesis_modes.py and structural_navigation.py remains an execution-owner obligation",
+        "vocabulary_coverage": "22/22 theorems, 25/25 atoms, 7/7 parents bound across the 13 rows; 6 inference-bound fields, all on the three predecessor-less jobs (V3-PRECONDITION-LIVENESS-01, V3-CROSS-DOMAIN-01, V3-ATOMIC-PAPER-SYNC-01)"
+      },
+      "status": "RESOLVED"
+    },
+    {
+      "blocks_external_authority": true,
+      "blocks_local_freeze": false,
+      "class": "EXTERNAL_AUTHORITY",
+      "discharge_job": null,
+      "gap_id": "GAP-EXTERNAL-INDEPENDENT-PROOF",
+      "owner": "INDEPENDENT_REVIEWER",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "blocks_external_authority": true,
+      "blocks_local_freeze": false,
+      "class": "EXTERNAL_CUSTODY",
+      "discharge_job": null,
+      "gap_id": "GAP-EXTERNAL-PROSPECTIVE-CROSS-DOMAIN",
+      "owner": "INDEPENDENT_CUSTODIAN",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "blocks_external_authority": true,
+      "blocks_local_freeze": false,
+      "class": "EXTERNAL_AUTHORITY",
+      "discharge_job": null,
+      "gap_id": "GAP-EXTERNAL-NOVELTY",
+      "owner": "INDEPENDENT_NOVELTY_REVIEWER",
+      "status": "CANNOT_CHECK"
+    }
+  ],
+  "schema": "ORION.V1.ExecutionGapLedger.v1"
+}

@@ -1,0 +1,61 @@
+{
+ "number": 868,
+ "title": "[ORION-QG QG-22] Minimal hidden-home state quotient for the pinned comm-s2 J5 move",
+ "body": "Parent programme: #740\nDirect parent: QG-7d information closure PR #860 / issue #836.\nWave-3 state-compression frontier: issue #863 conceptually, but this lane uses fresh identifier QG-22 to avoid the earlier publication/Q3 QG-20 name collision.\n\n## Status\n\n**PROSPECTIVE STATE-QUOTIENT REOPEN \u2014 turn the exact QG-7d CANNOT_CHECK into a minimal-information theorem/refutation.**\n\nThe protected QG-7d information-closure dual harness established a precise obstruction: for a fixed visible pinned-PP T4b state, the omitted phantom-home environment ranges over all `4^6=4096` phase-free local assignments and changes the proposed J5 Restore delta across every integer from `-4` through `+4`. Therefore the current visible quotient cannot determine whether J5 is non-increasing.\n\nQG-22 does **not** weaken that negative. It asks the next representation question:\n\n> What is the smallest prospectively frozen structural signature of each hidden phantom-home branch that determines the exact J5 local delta, and does adding that state remove the information-theoretic ambiguity without importing the full raw environment?\n\nA compact exact quotient is useful even if the all-n B'' theorem still remains open; a failure to compress is equally valid.\n\n## Disclosed exploratory derivation before freeze\n\nExploratory first-principles analysis of the already-disclosed QG-7d local formula found that for one branch with hidden letters `(a,b,c)` and fixed J5 modifier `m`,\n\n`delta_m(a,b,c) = F3(a,b,c) - F3(a,b*m,c)`\n\nhas values `{-2,-1,0,1,2}` on the complete 64-state branch domain.\n\nA frozen candidate Boolean language was then checked exploratorily. The canonical five predicates\n\n- `b0 := [b=I]`\n- `ab := [a=b]`\n- `ac := [a=c]`\n- `bm0 := [b*m=I]` (equivalently `b=m`)\n- `a_bm := [a=b*m]`\n\npartition the 64 states into 18 nonempty cells and determine `delta_m` exactly for both relevant modifiers `m=Z` and `m=X`. No 4-predicate subset of the frozen candidate language determines the delta.\n\nBecause these facts were used to formulate the lane, QG-22 is **confirmatory**, not blind discovery. The dual harness must rederive them independently and may refute them.\n\n## Frozen candidate language\n\nThe complete candidate predicate library is fixed before official outcome:\n\n`a0,b0,c0,ab,ac,bc,am,bm0,cm,a_bm,c_bm`\n\nwith their literal phase-free Pauli meanings. No predicate may be added after outcome in V1.\n\nThe selected canonical candidate signature is frozen as `(b0,ab,ac,bm0,a_bm)` using lexicographic predicate order. A positive must also prove minimality within the **entire frozen 11-predicate library**, not only against the selected five.\n\n## Q1 \u2014 exact branch quotient\n\nFor each modifier `m in {Z,X}` enumerate all 64 `(a,b,c)` states from primitive phase-free Pauli algebra and compute exact J5 delta.\n\nRequired positive facts:\n- selected five-predicate signature has zero mixed-delta cells;\n- exactly 18 nonempty selected-signature cells;\n- the signature-to-delta table is identical under the canonical Pauli relabel that maps the two modifier controls;\n- exhaustive subset search over all 11 frozen predicates finds minimum determining cardinality exactly 5;\n- serialize every tied cardinality-5 subset and a concrete mixed-delta counterexample for every cardinality-4 subset.\n\n## Q2 \u2014 two-branch composition\n\nThe pinned PP hidden-home contribution is the sum of the two branch deltas (`m=Z` and `m=X`). Verify exhaustively over all 4096 six-letter environments that the pair of five-bit branch signatures determines the exact total delta.\n\nRequired controls:\n- reproduce parent total range `[-4,+4]` and every integer in between;\n- reproduce the parent 4096-domain size;\n- no mixed total-delta cell under the paired signature.\n\nThis establishes information sufficiency of the enriched hidden-home state for **pricing J5**, not all-n normalization.\n\n## Q3 \u2014 compression accounting\n\nReport:\n- raw branch states = 64;\n- exact selected-signature cells = 18;\n- raw two-branch environments = 4096;\n- realized paired-signature cells;\n- minimum frozen-predicate cardinality = 5;\n- whether an exact delta-only quotient is strictly coarser than the structural signature (expected, but it receives no structural state authority by itself because it encodes the answer rather than explanatory coordinates).\n\n## Q4 \u2014 next theorem interface, not part of the positive V1 claim\n\nIf the state quotient closes, a separate fresh freeze may join the exact hidden-home delta to the visible T4b pinned census and ask whether a **state-conditioned J5/fallback policy** closes all 32,556 PP failures. QG-22 V1 itself cannot claim the B'' all-n identity.\n\n## Dual harness\n\nGeneric ORION:\n- independently rebuild Pauli multiplication/F3;\n- enumerate the complete branch and two-branch domains;\n- independently search the full frozen feature-subset lattice;\n- verify every minimality counterexample.\n\nNative ORION-Q:\n- requires exact parent QG-7d information-closure binding;\n- keeps `STATE_QUOTIENT`, `J5_DELTA_DETERMINATION`, and `ALL_N_NORMALIZATION` separate;\n- blocks any all-n authority in V1.\n\n## Honest terminals\n\n- `QG22_HIDDEN_HOME_J5_DELTA_EXACTLY_DETERMINED_BY_MINIMAL_5_PREDICATE_STATE`\n- `QG22_SELECTED_STATE_INSUFFICIENT__MIXED_DELTA_CELL_FOUND`\n- `QG22_MINIMALITY_REFUTED__SMALLER_FROZEN_SIGNATURE_FOUND`\n- `QG22_PARENT_BINDING_GAP`\n- `QG22_GENERIC_NATIVE_DISAGREEMENT`\n- `QG22_CANNOT_CHECK`\n\n## Claim boundary\n\nAutomata/state minimization, partition refinement, Boolean feature minimization and finite exhaustive search are donor methods. Candidate contribution is only the exact compiler-specific hidden-home state quotient and its proof-carrying relationship to the QG-7d information obstruction. No novelty, R6, physical quantum advantage, or all-n B'' completeness follows automatically.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T06:55:13Z",
+    "body": "Protected QG-22 execution is GREEN under the dual harness (workflow run 32557926208, job 96994962011; deterministic replay green). Terminal: `QG22_HIDDEN_HOME_J5_DELTA_EXACTLY_DETERMINED_BY_MINIMAL_5_PREDICATE_STATE`. Exact result: minimum determining cardinality is 5 in the frozen 11-predicate language, with 4 tied minima; selected `(b0,ab,ac,bm0,a_bm)` has 18 exact branch states for both X/Z modifiers; all 330 four-predicate subsets have a concrete mixed-delta counterexample; paired 4096 hidden-home environments collapse to 324 exact structural states with 0 mixed-delta cells; parent total range [-4,+4] reproduced exactly. Generic ORION and native ORION-Q both ACCEPT. Authority remains local J5 hidden-home pricing only: `all_n_theorem_authority=false`, novelty/R6/physical-advantage false.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/868#issuecomment-5378759034"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T06:55:21Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 836,
+     "title": "[ORION-QG QG-7d] Last-link pinned comm-s2 closure: joint Tag relocation or exact B\u2034 obstruction",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T07:32:01Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 872,
+     "title": "[ORION-QG QG-7e] Close single-pinner PP comm-s2 sector over the full hidden-home environment",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T07:41:41Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 874,
+     "title": "[ORION-QG QG-7f] Final pinned-chain closure on the three-block pin graph",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

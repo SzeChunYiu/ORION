@@ -1,0 +1,48 @@
+{
+ "number": 927,
+ "title": "[ORION-QG] qg3-positive-forecast has no green baseline: stage-1 exceeds the harness 120s capability timeout",
+ "body": "## Status\n\n`orion-qg-qg3.yml` cannot pass on a GitHub-hosted runner, and has had **no green\nbaseline** \u2014 every other recent run of the workflow is `cancelled`.\n\n## Symptom\n\nStep *\"Run stage 1 + dual-harness pre-ground-truth admission\"* fails at\n`development/orion-qg-regime-geometry/run_qg3_dual_harness.py:43`:\n\n```\nRuntimeError: local harness capability failed: <error>\n```\n\nThe later `FileNotFoundError: artifacts/orion-qg-qg3-stage1.json` in the referee\nstep is downstream of this, not an independent fault.\n\n## Diagnosis\n\n`_run_local` requests the PYTHON capability with a hardcoded ceiling:\n\n```python\nrequest = workspace.get_or_create_request(\n    capability=\"PYTHON\", payload={\"code\": code, \"cwd\": \".\", \"timeout\": 120}\n)\n```\n\nand the code it runs is `research/extensions/orion-qg/qg3_stage1_select.py`.\n\nEvidence:\n\n- observed run: step started `2026-08-22T17:06:36Z`, raised at `17:08:37Z` \u2014\n  **121 s**, i.e. the 120 s ceiling plus overhead;\n- running `qg3_stage1_select.py` directly on a local machine also exceeds 120 s.\n  The exact runtime was **not** measured \u2014 two attempts were killed at the\n  120 s mark \u2014 so the only firm statement is `> 120 s`.\n\n## Why it was not seen before\n\nThe workflow sets\n\n```yaml\nconcurrency:\n  group: orion-qg-qg3-${{ github.event.pull_request.number || github.ref }}\n  cancel-in-progress: true\n```\n\nand every other recent run is on `claude/orion-harness-verification-b17qdj` with\nconclusion `cancelled`. PR #926 is simply the first to let the workflow run to\ncompletion, which is how the timeout surfaced. #926 adds only two scripts and\ntwo result JSONs under `research/extensions/orion-qg/`, none imported or globbed\nby the QG-3 harness; they match the workflow's `paths:` trigger and nothing more.\n\n## Suggested repair (belongs to the QG-3 lane, not filed with a patch)\n\nEither raise the `timeout` in `run_qg3_dual_harness.py` to cover the real\nstage-1 runtime, or reduce stage-1's work. Whichever is chosen, the actual\nruntime of `qg3_stage1_select.py` should be measured and recorded so the ceiling\nis set from evidence rather than guessed.\n\nWorth also asking whether `cancel-in-progress: true` is right for a protected\nforecast workflow: it is what kept this defect invisible.\n\nFound while running #926.\n",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T17:24:44Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 926,
+     "title": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not stay ignorant of the null result",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T18:26:30Z",
+     "mergeCommit": {
+      "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T20:40:06Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 941,
+     "title": "Fix QG-3 stage-1 harness timeout",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:58:40Z",
+     "mergeCommit": {
+      "oid": "c7783eabc3d4c0d75fe59aaf389b71f9204841e2"
+     }
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "number": 937,
+ "title": "[ORION-QG QG-37] One-corruption-resilient indexed probe identification",
+ "body": "Parent programme: #740.\nEarned structural parents: QG-32 #911 (joint summaries + certified fixed separator), QG-32c #928 (exact universal noiseless fixed minimum 5), QG-34 #924 (exact noiseless adaptive minimax depth 3).\nFair noiseless fixed baseline: QG-35 #932 (pending exact accepted receipt at registration time).\nFair comparison: QG-36 #933 (frozen receipt composition, pending QG-35).\n\nDonor areas to subtract: minimum test cover / distinguishing sensor placement; branch-and-bound test cover; active probing/adaptive diagnosis; separating systems and Ulam/R\u00e9nyi liar games; noisy adaptive group testing; error-correcting codes.\n\n## Status\n\n**PROSPECTIVE ROBUST-OBSERVATION FRONTIER. NO ROBUST CARDINALITY OR ADVANTAGE IS PREDICTED.**\n\nAll earned QG-32/QG-34 observation results assume exact probe answers. QG-37 asks a new robustness question:\n\n> How many indexed structural probes are required so that the 715-way local-response identity remains uniquely recoverable after the joint bulk+spectrum summary is known, even if **one selected probe response is adversarially corrupted**?\n\nThis is an ORION-Q research-control robustness question, not a hardware-noise or quantum-measurement claim.\n\n## Q1 \u2014 exact one-corruption fixed-code criterion\n\nFor a fixed selected probe set `P`, each orbit `o` has a multivalued response word `K_P(o)`.\n\nUnder at most one adversarially corrupted coordinate, unique decoding is possible iff every pair of distinct relevant orbit identities has Hamming distance at least 3:\n\n`d_H(K_P(a), K_P(b)) >= 3`.\n\nFor one known joint summary class `S`, define `R1(S)` as the minimum cardinality of a fixed probe set selected after `S` is known such that every pair in `S` is distinguished on at least three selected probes.\n\nDefine `R1_* = max_S R1(S)`.\n\nAlso define `R1_universal` for one fixed probe set that works across all 92 joint classes. Keep the class-conditioned and universal quantities separate.\n\n## Q2 \u2014 exact multicover formulation\n\nFor every orbit pair, probe `p` contributes one unit iff its exact responses differ. The robust fixed problem is therefore a minimum **3-cover of every pair**, not ordinary test cover.\n\nProduction exact method may use:\n- pair-demand branch-and-bound with residual demand 0..3;\n- safe dominance only when a probe's full pair-incidence dominates another's incidence;\n- lower bounds from total residual demand / maximum marginal contribution and per-pair remaining candidates;\n- QG-32/QG-35 noiseless solutions only as lower bounds or constructive seeds where logically valid, never as robust authority.\n\nGeneric ORION must use a different exact formulation, e.g. binary ILP / SAT / bounded exhaustive cardinality with constraints `sum_{p distinguishes pair} x_p >= 3`.\n\n## Q3 \u2014 decoding certificate\n\nFor every positive robust result, serialize and verify:\n- selected probe indices;\n- minimum pairwise response-word Hamming distance;\n- all pairs attaining the minimum distance;\n- an exact nearest-codeword decoder or equivalent proof that every radius-1 corrupted word maps to at most one orbit within its known summary class.\n\nA cardinality alone is insufficient.\n\n## Q4 \u2014 robustness overhead\n\nOnly after QG-35 is exact may compare class-conditioned noiseless `F(S)` to robust `R1(S)`.\n\nDefine per-class overhead `R1(S)-F(S)` and worst overhead, but do not interpret this as physical noise cost. It is redundancy required for one-error authority robustness in the structural-probe interface.\n\n## Q5 \u2014 ORION-Q consequence\n\nA GREEN result may authorize a domain-specific fail-closed rule:\n- when one structural probe answer may be unreliable, do not use a noiseless distinguishing set as identity authority;\n- require an exact radius-1 robust probe code / decoder, or escalate to richer state/referee.\n\nThis extends the QG-derived authority router from query scope to **evidence reliability scope**.\n\n## Independent verification\n\nProduction:\n- exact response matrix reconstruction;\n- exact minimum 3-cover per class and universal variant where tractable;\n- explicit decoder/distance certificate.\n\nGeneric ORION:\n- independent F2^2/F3 reconstruction;\n- separate exact optimization formulation;\n- independently recompute all pairwise distances and radius-1 decoding uniqueness.\n\nNative ORION-Q:\n- authorize only one-corruption structural-probe identity robustness on the frozen observation problem.\n\nWorkflow must require deterministic replay and reject a self-consistent tamper that lowers a claimed pairwise distance / removes a redundancy probe while recomputing result digest.\n\n## Hard boundaries\n\nAlways false:\n- hardware measurement noise model;\n- stochastic physical error rate;\n- fault-tolerant quantum-computing threshold claim;\n- full finite-n optimum probes;\n- generic coding/separating-system novelty;\n- physical quantum advantage.\n\n## Honest terminals\n\n- `QG37_EXACT_ONE_CORRUPTION_FIXED_PROBE_CODE_MACHINE_CHECKED`\n- `QG37_ROBUST_FIXED_UPPER_BOUND_ONLY`\n- `QG37_ROBUST_CODE_INFEASIBLE_IN_FROZEN_PROBE_LIBRARY`\n- `QG37_CANNOT_CHECK`\n\n## Donor subtraction\n\nMinimum test cover, separating systems, error-correcting Hamming-distance criteria, adaptive diagnosis and noisy group testing are established donor ideas. Candidate value is only the exact TARE/QG-32 response-code geometry and its scoped ORION-Q evidence-reliability consequence.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T21:49:12Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 947,
+     "title": "[ORION-QG QG-37] Execute one-corruption robust probe geometry",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:59:21Z",
+     "mergeCommit": {
+      "oid": "ee3930bfc152912247a225cb4a3b4e38f8ec8ca6"
+     }
+    }
+   }
+  ]
+ }
+}

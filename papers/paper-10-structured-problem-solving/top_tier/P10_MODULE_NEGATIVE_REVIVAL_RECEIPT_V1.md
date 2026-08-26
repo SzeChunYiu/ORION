@@ -75,7 +75,7 @@ withholds signs from four V1-positive modules as well.
 |---|---|---|
 | positive modules | 24 | 20 claimable positive, 0 claimable negative |
 | negative modules | 2 | 0 claimable; 6 sign-withheld (Control, CategoryTheory, Condensed, Topology, Order, RepresentationTheory) |
-| family sign test | p = 1.049e-5 (24/26) | p = 1.907e-6 (20/20 claimable) |
+| family sign test | p = 1.049e-5 (24/26) | p = 1.907e-6 (20/20 claimable) — **NOT a comparable improvement**: the V2 set is selected by per-module significance and excludes both adverse modules, so this is a denominator change. Do not cite as a gain. |
 | pooled delta | 0.104628 | 0.104628 (estimator unchanged — both repair arms data-rejected) |
 
 Resolution floor for design guidance: detecting the pooled effect (0.105) with

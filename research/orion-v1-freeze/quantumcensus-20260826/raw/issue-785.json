@@ -1,0 +1,41 @@
+{
+ "number": 785,
+ "title": "[ORION-QG QG-13 V3] Three-column combined-edit theorem mining for R6I support-five tightness",
+ "body": "Parent theorem-miner: #767\nV2 obstruction owner: #777 / PR #779\nTightness owner: #762\nFrozen base: `cad8b1b4d3be3668449658d10ef718eb1682d1c9`\nBranch: `shadow/orion-qg-qg13-v3-r6i-three-column-edits`\n\n## Status\n\n**PROSPECTIVE SUCCESSOR PACKET \u2014 V2 remains immutable.**\n\nQG-13 V2 proved that the frozen two-column E2 grammar is insufficient: among 216 support-five QG-1-irreducible structural patterns, 132 are covered by globally safe syndrome-cancelling two-column edits and 84 remain uncovered. The first canonical obstruction is committed under #777.\n\nV3 changes exactly one scientific degree of freedom: edit arity increases from two distinct columns to **three distinct columns**. The local action alphabet and semantics remain unchanged.\n\n## Frozen local actions\n\nPer selected column:\n- `A`: zero R0, recompute dependent R2;\n- `B`: zero R1, recompute R2;\n- `AB`: zero both independent generators, R2=I.\n\nNo Tag repair; targets, Tag, permutation, central choice and other block unchanged.\n\n## Three-column safety rule\n\nFor action/signature classes synthesized from the complete local R6I resource table, a triple `(a,b,c)` may be used only if:\n\n1. the XOR of its three inferred five-bit syndrome changes is zero;\n2. the sum of the three exact per-class worst local cost deltas is <=0;\n3. the action deletes at least one generator letter on each selected column;\n4. applying it to a structural pattern strictly lowers `(max_generator_support,total_generator_support)`.\n\nBecause the R6I objective has no cross-column Restore factor, the sum of exact per-class maxima is a valid exact worst-case bound for independently chosen columns.\n\n## Frozen global domain\n\nRecompute from production semantics the same canonical five-column structural domain used by V2:\n- accepting total five-bit block syndrome;\n- QG-1 SOLO/PAIR irreducible;\n- at least one generator support exactly five.\n\nV3 may not narrow to only the 84 V2 rows during theorem scoring; it must report coverage over the full frozen support-five domain and separately report whether all 84 V2-uncovered patterns are now covered.\n\n## Honest outcomes\n\n- `QG13V3_SUPPORT4_CANDIDATE`: every support-five irreducible pattern has a globally safe three-column move. Still candidate-only; all-n theorem authority remains false.\n- `QG13V3_V2_OBSTRUCTIONS_CLOSED_BUT_NEW_OBSTRUCTION_REMAINS`: all 84 V2 obstructions are closed but another support-five pattern remains under V3 scoring.\n- `QG13V3_MINIMAL_THREE_COLUMN_OBSTRUCTION`: at least one V2 obstruction survives all globally safe three-column edits; serialize the first.\n- `QG13V3_RESOURCE_BOUNDARY`: no globally safe three-column class exists.\n- semantic/binding/CANNOT_CHECK terminals remain fail-closed.\n\n## Anti-leakage\n\n- V3 code starts from current main, not the V2 branch.\n- V2 committed result may be opened only after V3 synthesizes its own action triples and structural census; it is then used solely to score closure of the 84 prior obstruction patterns.\n- no chemistry/protected subject; no network;\n- no post-outcome action or arity widening.\n\n## Claim boundary\n\nA V3 candidate does not prove support<=4 for all n until #762 opens a separate all-n theorem packet. Generic CEGIS/rewrite synthesis/finite-field dependence remain donor-owned.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:16:28Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 787,
+     "title": "[ORION-QG QG-13 V3] Three-column R6I theorem mining",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:26:23Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 790,
+     "title": "[ORION-QG QG-13 V4 / QG-9] All-n R6I support<=4 theorem via cumulative E2/E3 spectator-safe exchange",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

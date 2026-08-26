@@ -1,0 +1,55 @@
+{
+  "artifact_binding": {
+    "bytes": 63852,
+    "path": "research/orion-discovery-v3/JOB_SPECS_V1.json",
+    "sha256": "23340acc95c736003baa4b48d5bfed0b784e3cdf43b488c4abd0ee8f547083ab"
+  },
+  "authority_ceiling": {
+    "external_validation": "CANNOT_CHECK",
+    "paper_authority_delta": "NONE",
+    "specification_validity": "INTERNAL_THEORY_BINDING_ONLY"
+  },
+  "bound_files": [
+    {
+      "bytes": 3660,
+      "path": "DONOR_RESULT.json",
+      "sha256": "da1b2cce7386cc1e19ec911cc1e579aa07b6a4f1b8272c5083bbbfd8d8d75665"
+    },
+    {
+      "bytes": 561,
+      "path": "FREEZE.json",
+      "sha256": "427558c350ec58e0ed8695e72d2551aeb59fda72ab16d1534d0304b3c364806f"
+    },
+    {
+      "bytes": 3209,
+      "path": "NEGATIVE_CONTROLS.json",
+      "sha256": "0846ea2ee13c9a1ad2db5c02ce1c7eb0bd2b6d552547831f8eb8ac7b78c3d81d"
+    },
+    {
+      "bytes": 7256,
+      "path": "PRIMARY_RESULT.json",
+      "sha256": "4b0e7e7dc2b6ee05007243bb14356e2133fd2a2684b7405d0910e758399c5956"
+    },
+    {
+      "bytes": 1806,
+      "path": "RAW_MANIFEST.json",
+      "sha256": "3d415600094b37c392e5fbaee8d931ffe7c889144628fb500594d16d46c2163d"
+    },
+    {
+      "bytes": 250,
+      "path": "RESOURCE_LEDGER.json",
+      "sha256": "25273c59011f1ef2a3a641d9360931d6db6ba8c997c1d712364ef077a9969a88"
+    },
+    {
+      "bytes": 693,
+      "path": "TRANSFER_RESULT.json",
+      "sha256": "04c5ca3ea04631b275c3b1df7f44afeb4f6af974b842861ed2f8cef519352be5"
+    }
+  ],
+  "gap_ledger_binding": {
+    "artifact": "research/orion-discovery-v3/JOB_SPECS_V1.json",
+    "gap_id": "GAP-INTERNAL-DISCOVERY-V3-SPECS",
+    "terminal": "DISCOVERY_V3_ALL_JOB_SPECIFICATIONS_FROZEN"
+  },
+  "schema": "ORION.V1.DiscV3SpecResultBindingPacket.v1"
+}

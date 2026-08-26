@@ -1,0 +1,78 @@
+{
+ "number": 1416,
+ "title": "[R10][Q1][APPLICATION] Quantify resource value of the sharp support-two TARE normal form",
+ "body": "Parent programme: #1377. Q1 manuscript owner: `papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md`.\n\n## Research question\n\nDoes the proved sharp support-two normal form for the frozen shared-Tag TARE-M2 grammar provide material compiler/resource value on public Hamiltonians once the *actual* block-encoding resource model is charged, rather than only shrinking a raw representation family?\n\nThe analytic theorem `kappa_R6M=2` is already separately owned by Q1. This issue owns the application/significance experiment only and must not weaken the theorem boundary.\n\n## Required configurations\n\nOn a preregistered public Hamiltonian panel, compare where faithfully implementable:\n\n1. unrestricted exact TARE-M2 optimizer/referee;\n2. theorem-restricted support `<=2` exact optimizer;\n3. support `<=1` exact optimizer;\n4. donor/original TARE construction;\n5. standard LCU/block-encoding baseline;\n6. any current structured block-encoding baseline whose semantics and normalization conventions can be aligned exactly.\n\n## Metrics\n\n- frozen compiler objective and equality of unrestricted versus support-two optimum;\n- raw candidate/state count and explored states;\n- compile wall time, CPU time, peak RSS, and cache/storage footprint;\n- block-encoding Clifford/T/CNOT or equivalent gate counts;\n- ancilla count;\n- subnormalization/normalization factor and success-amplitude implications;\n- downstream QSVT/query resource proxy only when the dependency is explicitly derived;\n- regimes where support-two gives no wall-time/resource improvement.\n\n## Required controls\n\n- a known support-one-sharpness counterexample;\n- public instances where support one already suffices;\n- a case where raw candidate reduction does not translate into runtime benefit;\n- a resource model under which normalization dominates gate-count savings;\n- independent resource-accounting replay for at least one representative instance.\n\n## Deliverables\n\n- `Q1_APPLICATION_PROTOCOL_R10.md`\n- `Q1_PUBLIC_HAMILTONIAN_REGISTRY_R10.json`\n- `Q1_RESOURCE_MODEL_R10.md`\n- `Q1_APPLICATION_RESULTS_R10.json`\n- `Q1_APPLICATION_SECTION_R10.md`\n- current primary-source positioning for TARE, block encoding, Pauli/Hamiltonian compilation, and resource estimation.\n\n## Allowed terminals\n\n- `Q1_RESOURCE_VALUE_MATERIAL`\n- `Q1_NORMAL_FORM_VALUE_ONLY`\n- `Q1_RESOURCE_VALUE_NULL`\n- `Q1_RESOURCE_TRADEOFF_NORMALIZATION_DOMINATES`\n- `CANNOT_CHECK_FAITHFUL_RESOURCE_MODEL`\n- `CANNOT_CHECK_BASELINE_EQUIVALENCE`\n\nOnly measured resource/compiler benefit may be described as an application result. The theorem itself remains a sharp normal-form result even if the application terminal is null.\n\nDo not touch protected Task-3 lanes or reinterpret the result as a general block-encoding or quantum-advantage theorem.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-26T19:08:27Z",
+    "body": "## Q1-C resource audit \u2014 conditional logical map is now usable, but the application gate remains open\n\nDraft PR #1449 provides the first content-bound production-resource map for the frozen R6M support objective. Its strongest defensible result is narrow and useful:\n\n- under an explicit all-to-all compute/rotate/uncompute parity-ladder template, noncentral frame excess support maps to 4 logical two-qubit Clifford entanglers per coordinate and central excess support to 2;\n- Tag and factored Restore terms map to declared controlled-Pauli logical operations under the same native-control convention;\n- the fixed three-block family contains exactly nine arbitrary-angle rotations independent of frame support.\n\nThe PR correctly returns `PARTIAL_RESOURCE_MAP`, not a hardware result. It does **not** bind routing, cancellation, logical depth, rotation precision/synthesis, T count/depth, code distance, factories, physical qubits, spacetime or failure probability. Its internal QG-21 cross-check is adverse at the primary setting: donor-exact on 90/90 chemistry rows; only the registered sensitivity improves 18/90, by two logical two-qubit Cliffords. Preserve that null/adverse evidence.\n\nCurrent prior art makes a broad compiler-resource headline especially unsafe. Symphony (arXiv:2608.11579, submitted 2026-08-12; current v2 visible in August 2026) performs global binary-symplectic controlled-Pauli Clifford simplification and reports on HamLib average reductions of 59% in two-qubit gates and 91% in circuit depth, with the public PHOENIX repository treating Symphony as the newer holistic compiler. Therefore Q1 cannot infer production advantage merely from a bounded auxiliary-support normal form.\n\n### Next content-bound experiment\n\nFreeze one architecture-level benchmark packet before inspecting outcomes:\n\n1. public Hamiltonian instances and exact coefficients/angles;\n2. target logical gate set and connectivity/routing model;\n3. precision/error allocation and rotation-synthesis procedure;\n4. ancilla and scheduling rules, including whether parity ladders may be shared/cancelled;\n5. baselines: donor/original TARE where faithfully runnable, unrestricted R6M, support<=2 R6M, support<=1 RED control, and at least one current Pauli compiler such as Symphony/PHOENIX when the semantic objective is comparable;\n6. metrics: exact R6M objective, candidate count, compile wall time/RSS, logical 2q gates/depth, arbitrary-angle rotations, synthesized T count/T depth if the precision model is frozen, ancillas, and normalization/subnormalization cost;\n7. null controls where support<=2 changes no compiled resource, and a case where a current baseline remains better.\n\nAllowed interpretation should stay fail-closed: `Q1_RESOURCE_VALUE_MATERIAL`, `Q1_NORMAL_FORM_VALUE_ONLY`, `Q1_RESOURCE_VALUE_NULL`, or `CANNOT_CHECK_FAITHFUL_RESOURCE_MODEL`. Until this packet is executed, #1449 supports a **conditional logical-count identity and normal-form significance only**.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/1416#issuecomment-5429878809"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-26T16:59:40Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 1419,
+     "title": "[R10] Integrate exact application programme across five-paper portfolio",
+     "state": "OPEN",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-26T17:01:09Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 1421,
+     "title": "[R10][APPLICATIONS][HARNESS] Execute paper-grade application evidence across Q1, AB, C, D, and NQ",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-26T17:03:26Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 1418,
+     "title": "[R10][Q1][HARNESS] Production resource mapping and certified AI-guided exact compilation",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-26T17:33:29Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 1430,
+     "title": "[R10][Q1] Nine-qubit auxiliary core and O(n^9) exact checker",
+     "state": "OPEN",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   }
+  ]
+ }
+}

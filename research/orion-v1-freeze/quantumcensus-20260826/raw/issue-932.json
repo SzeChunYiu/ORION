@@ -1,0 +1,111 @@
+{
+ "number": 932,
+ "title": "[ORION-QG QG-35] Summary-conditioned fixed probe complexity: fair baseline for adaptive identification",
+ "body": "Parent programme: #740.\nDirect earned parents: QG-32 #911 (joint summary + universal 5-probe upper bound), QG-32c #928 (exact universal fixed minimum 5).\nPending comparison target: QG-34 #924 (exact adaptive minimax depth; outcome intentionally unknown at freeze).\n\n## Status\n\n**PROSPECTIVE FAIR-BASELINE LANE. FREEZE BEFORE ANY QG-34 ADAPTIVE DEPTH OUTCOME AND BEFORE ANY QG-35 CLASS-CONDITIONED FIXED-MINIMUM OUTCOME.**\n\nQG-32c proves minimum 5 for a **single universal fixed probe set** that works across all 92 known joint bulk+spectrum summary classes. But QG-34's adaptive policy is allowed to know the initial joint summary class before choosing its first probe. A fair nonadaptive comparator must receive the same side information.\n\nQG-35 therefore asks, for each initial joint class `S`:\n\n> What is the minimum number `F(S)` of indexed probes, chosen after `S` is known but fixed before any probe outcomes are seen, whose joint response signature separates every orbit in `S`?\n\nDefine `F_* = max_S F(S)`.\n\nNo value of `F(S)` or `F_*` is predicted.\n\n## Q1 \u2014 exact per-class fixed set-cover problem\n\nFor each of the 92 joint classes:\n- universe = unordered orbit pairs inside the class;\n- probe `p` covers a pair iff the two orbits have different exact `K[o,p]` response;\n- `F(S)` is the minimum number of probes covering every pair in that class.\n\nSingleton classes have `F(S)=0`.\n\n## Q2 \u2014 production exact solver\n\nProduction must independently reconstruct the response matrix and solve each class exactly using bounded branch-and-bound / depth search for cardinalities 0..4, with the earned universal five-probe set as a constructive `<=5` fallback only.\n\nAllowed sound reductions: identical coverage collapse, coverage dominance, uncovered-pair branching, max-cover cardinality lower bound, memoization.\n\nSerialize:\n- all 92 `F(S)` values;\n- class-size / minimum histograms;\n- `F_*` and worst classes;\n- canonical minimum witness probe set for every worst class;\n- exact verification that each witness separates its class.\n\n## Q3 \u2014 independent verification\n\nGeneric ORION must use a distinct exact formulation/state encoding. Preferred: complete 0/1/2-half-union meet-in-the-middle for `<=4` where possible, then direct exact witness verification; if a class requires 5, independently prove no <=4 cover and bind the universal five-probe upper bound.\n\nNative ORION-Q authorizes only summary-conditioned nonadaptive observation complexity on the frozen 715-orbit / 92-class problem.\n\nWorkflow requires deterministic replay and self-consistent class-minimum/witness tamper rejection.\n\n## Q4 \u2014 fair adaptivity comparison (only after QG-34 is independently GREEN)\n\nDo **not** compare QG-34 adaptive depth directly to QG-32c universal fixed minimum 5.\n\nThe fair comparison is:\n- class-conditioned nonadaptive worst case: `F_*`;\n- class-conditioned adaptive worst case: `D_*` from QG-34.\n\nOnly if both receipts are exact and `D_* < F_*` may a later composition authorize:\n`TARE_POSTSUMMARY_ADAPTIVITY_STRICTLY_REDUCES_WORST_CASE_OBSERVATION_COUNT`.\n\nIf `D_* == F_*`, record no strict adaptivity advantage. If either receipt is not exact, CANNOT_CHECK.\n\n## Hard boundaries\n\nAlways false:\n- hardware/measurement minimum;\n- full finite-n optimum;\n- generic adaptive-testing novelty;\n- physical quantum advantage;\n- claims about compilation cost itself rather than observation/identification count.\n\n## Donor subtraction\n\nSet cover and decision-tree comparisons are donor methods. Candidate value is the exact compiler-specific, side-information-matched fixed-vs-adaptive observation complexity.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 2,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T18:53:08Z",
+    "body": "QG-35 protected run 1 is **not accepted**. Production/generic differed on exactly one class: canonical joint class index 5, where production returned `F(5)=3` and independent MITM returned `F(5)=2`; all other 91 class minima and `F_*` agreed.\n\nRoot cause is a production search-method bug, not a scientific target change: the DFS combined uncovered-pair branching with a monotone `start` probe-index restriction. That restriction is unsound because a solution can contain a lower-index probe that does not cover the current pivot plus a higher-index probe that does; branching first on the pivot-covering higher-index probe then incorrectly makes the lower-index probe unavailable. The independent verifier exposed this counterexample.\n\nBefore rerun, production will remove only the `start` restriction and memoize exact feasibility by `(remaining_pairs, slots)`; already-selected probes cannot recur because their full coverage has been removed from `remaining_pairs`. The QG-35 scientific definition, domain, 0..5 cardinality ladder, five-probe upper-bound fallback, generic MITM verifier, native scope, replay/tamper gates, and QG-36 fair-comparison decision table are unchanged. Run 1 remains unearned.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/932#issuecomment-5382039685"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-23T18:26:46Z",
+    "body": "**Retraction notice (now on main via #926).** The headline this issue builds on is null-reproducible: the separation counts (`85/92`, `708/715`, `D_*=3 < F_*=4 < U_*=5`, the regret curve) are reproduced by a row-shuffle null, and `85 = 92\u22127` / `708 = 715\u22127` are identities forced by the class-size histogram frozen before any solver ran. See `development/orion-qg-regime-geometry/QG_RETRACTION_SELECTION_HEADLINES_V1.md` and `QG_ADVERSARIAL_REFEREE_REPORT.md`. What survives: C1(b) descriptor completeness (whose ceiling theorem is Lehmann 1959 per the lane's own prior-art audit), witness disjointness, and the depth-3 residual (16 classes / 168 masks vs null-A mean 8.9 / 384 \u2014 noting null B in the residual script is uninformative by construction, being exactly permutation-invariant). Work on this issue should either retarget the surviving residual or close as superseded.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/932#issuecomment-5387724893"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:40:35Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 924,
+     "title": "[ORION-QG QG-34] Exact adaptive probe tree above joint bulk+spectrum summaries",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:42:12Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 933,
+     "title": "[ORION-QG QG-36] Exact fair fixed-vs-adaptive post-summary composition",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:45:01Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 934,
+     "title": "[ORION-QG QG-35] Exact summary-conditioned fixed probe baseline",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:58:01Z",
+     "mergeCommit": {
+      "oid": "2d6fbe9b9db8eaf1afda09466c8fdba60d24028d"
+     }
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:57:17Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 937,
+     "title": "[ORION-QG QG-37] One-corruption-resilient indexed probe identification",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-23T18:26:26Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 926,
+     "title": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not stay ignorant of the null result",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T18:26:30Z",
+     "mergeCommit": {
+      "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4"
+     }
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   }
+  ]
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "number": 1306,
+ "title": "[DISCOVERY V2-Q] Extract ORION-Q structural donors without authority transfer",
+ "body": "## Status\n\n**STRUCTURAL-DONOR AND ADVERSARIAL-BENCHMARK LANE UNDER #1282.**\n\nCanonical audit: `research/orion-discovery-v2/ORION_Q_STRUCTURAL_DONOR_AUDIT_V1.md`  \nMachine-readable map: `research/orion-discovery-v2/Q_STRUCTURAL_DONOR_MAP_V1.json`\n\n```text\nq_paper_authority_transfer = FORBIDDEN_WITHOUT_TARGET_CORRESPONDENCE_AND_VALIDATION\ngeneric_discovery_authority = NONE\nphysical_quantum_authority = NONE\npaper_authority_delta = NONE\n```\n\n## Candidate donor families\n\n- TARE/expressivity: registered closure, obstruction, semantic extension versus macro.\n- Recursive recovery: negative history, minimum repair, well-founded progress or cycle.\n- Dual instrument: partially overlapping information partitions and joint target refinement.\n- Typed state: legal transitions, forbidden coercions, responsibility/scope effects.\n- Q-max workflows: donor closure, tare/subtraction, prospective held-out execution, resource bounds.\n- Q-adjacent exact mathematics: invariant, rank/support/atom, exact certificate and counterexample structure.\n\nThese are candidate **structures**, not transferred results.\n\n## Work packages\n\n- [ ] `DISC-Q-DONOR-01`: one `StructureCorrespondenceWitness.v1` per donor family.\n- [ ] `DISC-Q-NONCOMMUTE-01`: matched commuting/noncommuting edit-order benchmark.\n- [ ] `DISC-Q-MATH-01`: exact proposal-origin and proof-economy benchmark with hidden proof/counterexample.\n- [ ] `DISC-Q-INSTRUMENT-01`: minimum-cost target-refining instrument design in a frozen simulator.\n- [ ] Add vocabulary-only, post-outcome-map, supplied-grammar, and source-authority-laundering mutants.\n- [ ] Prove target-side validity independently of each source Q result.\n- [ ] Record broken correspondences and smallest target falsifiers.\n\n## Correspondence gate\n\nA transfer is admissible only when the witness binds:\n\n```text\nsource and target identities\nmapped target-bearing relations\npreserved consequences\nbroken correspondences\ntarget-specific assumptions\nsmallest target falsifiers\npre-outcome freeze\nsource and target authority ceilings\n```\n\n## Done conditions\n\nPositive terminal:\n\n```text\nQ_STRUCTURAL_DONORS_CLASSIFIED_WITHOUT_AUTHORITY_TRANSFER\n```\n\nHonest alternatives:\n\n```text\nQ_VOCABULARY_SIMILARITY_ONLY\nQ_STRUCTURE_DOES_NOT_TRANSFER\nQ_TARGET_VALIDITY_CANNOT_CHECK\nQ_SUPPLIED_GRAMMAR_ONLY\nQ_DONOR_COMPOSITION_SUFFICIENT\n```",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-25T12:42:08Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 1327,
+     "title": "[skip ci] Execute DISC-Q-TRANSFER-01: advantage does not survive charging (#1306)",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-25T12:42:10Z",
+     "mergeCommit": {
+      "oid": "675fcde4fd55468d48ed1c3dec6e00aa64326251"
+     }
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-25T12:42:11Z",
+    "commit": {
+     "oid": "675fcde4fd55468d48ed1c3dec6e00aa64326251",
+     "messageHeadline": "[skip ci] Execute DISC-Q-TRANSFER-01: the advantage does not survive \u2026"
+    }
+   }
+  ]
+ }
+}

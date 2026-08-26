@@ -1,0 +1,62 @@
+{
+ "number": 890,
+ "title": "[ORION-QG QG-29] Six-count defect saturation and universal k<=43 affine crossover on TARE scaling rays",
+ "body": "Parent programme: #740.\nDirect parents: QG-26 #884 / PR #885 guarded finite-template histogram geometry; QG-27 #886 / PR #887 bulk-defect band and exact asymptotic density.\nOptional symmetry parent: QG-28 #888 / PR #889 (if GREEN, the same theorem descends from 4096 raw types to 715 local-Clifford orbit counts, but QG-29 does not require it).\nMethod donors: monotone threshold systems, finite-size scaling, lower envelopes of affine functions, bounded integer defect potentials.\n\n## Status\n\n**PROSPECTIVE FINITE-SIZE SATURATION THEOREM \u2014 freeze before execution.**\n\nQG-26 earns\n\n`C_DP(N)=min_{tau feasible}[B_{r(tau)}(N)+K_tau]`\n\nwhere every active template uses at most six target-column occurrences total and feasibility is only multiplicity guards `N_t >= m_tau(t)`. QG-27 earns the universal template-defect band `-34 <= K_tau <= +8` for relevant optimal/one-active comparison purposes and four distinct bulk baseline forms.\n\n## Q1 \u2014 four bulk-class defect potentials\n\nFor each distinct bulk baseline form r in `{0,1,2,3}`, define\n\n`kappa_r(N) = min { K_tau : tau has bulk form r and its multiplicity guard is satisfied by N }`.\n\nThe exact optimizer becomes\n\n`C_DP(N)=min_r [B_r(N)+kappa_r(N)]`.\n\nA one-active feasible template exists for every valid N and every bulk form, so each kappa_r is finite and `kappa_r(N)<=8`. QG-27 gives `kappa_r(N)>=-34`.\n\nTherefore\n\n`kappa_r(N) in {-34,-33,...,8}`\n\n(43 integer levels).\n\n## Q2 \u2014 monotonicity and six-count truncation\n\nIf `N' >= N` coordinatewise, every template feasible at N remains feasible at N', hence\n\n`kappa_r(N') <= kappa_r(N)`.\n\nEvery template has total active multiplicity <=6. Thus every individual guard threshold satisfies `m_tau(t)<=6`, and template feasibility depends only on the clipped histogram\n\n`clip6(N)_t = min(N_t,6)`.\n\nTherefore\n\n`kappa_r(N)=kappa_r(clip6(N))`.\n\nThis is an exact finite-size saturation theorem for the defect term: counts above six affect only the extensive bulk linear forms, never which defect templates are available.\n\nIf QG-28 is GREEN, generic/native may additionally state the identical result on 715 orbit counts, but V1 authority must not depend on that optional parent.\n\n## Q3 \u2014 bounded number of defect-level changes\n\nAlong any coordinatewise nondecreasing histogram path, each integer kappa_r can strictly decrease at most 42 times because it is monotone and lies in the 43-level interval [-34,8].\n\nThis bounds **defect-level transitions**, not total optimal-regime switches after competition among the four bulk slopes.\n\n## Q4 \u2014 pure scaling rays saturate defect guards by k=6\n\nFix any valid nonzero integer motif histogram h and `N(k)=k h` for integer `k>=1`.\n\nFor every target type with `h_t>0`, `N_t(k)>=6` by k=6. For `h_t=0`, the count is always zero. Since every guard threshold is <=6, every template is either:\n- never feasible on the ray; or\n- feasible for every k>=6.\n\nHence each defect potential is exactly constant from k=6 onward:\n\n`kappa_r(kh)=kappa_r^*(h)` for all k>=6.\n\n## Q5 \u2014 universal affine-crossover bound k<=43\n\nFor k>=6,\n\n`C_DP(kh)=min_r [k*b_r(h)+kappa_r^*(h)]`,\n\nwhere every slope `b_r(h)=B_r(h)` is an integer and every intercept lies in [-34,8].\n\nLet `b_min=min_r b_r(h)`. If `b_r>b_min`, then the integer slope gap is at least 1. Against any minimal-slope line, the maximum possible intercept advantage is 42. Therefore for every k>=43,\n\n`k*(b_r-b_min) + (kappa_r^* - kappa_min^*) >= 43-42 > 0`.\n\nSo no strictly worse bulk slope can remain optimal at k>=43. Among the forms with slope b_min, the smallest stabilized intercept wins/ties forever.\n\nFrozen strong theorem candidate:\n\n> For every valid fixed-matching integer motif histogram h, there exists an exact integer q_h such that\n> `C_DP(kh)=k*B_min(h)+q_h` for every integer `k>=43`.\n\nThus QG-27's eventual-affinity statement admits a **universal grammar-level onset bound 43**, while all template-feasibility changes have already stopped by k=6.\n\nThe bound 43 is not claimed sharp.\n\n## Q6 \u2014 exact controls\n\nProduction and generic ORION must independently bind:\n- QG-26 max active occurrences =6 and guard form `N_t>=m_t`;\n- QG-27 defect interval [-34,8] and four bulk forms;\n- all K/resource quantities are integers;\n- one-active template existence for every valid target histogram and every target-permutation/bulk form.\n\nThen machine-enumerate the worst abstract four-line system over:\n- integer intercepts in [-34,8];\n- integer slopes with `b_min=0` and other gaps in `{0,1,2,3,4,5,6}`;\n- all choices of minimal-slope subset;\n\nand require that by k=43 every strictly positive-gap line is dominated, while k=42 is not universally sufficient under the abstract bound (serialize a tight abstract control such as slope gap 1 and intercept advantage -42).\n\nThis abstract tightness is only for the **derived bound calculus**, not a claim that a real TARE motif realizes the worst case.\n\n## Native ORION-Q\n\nMay authorize:\n- `DEFECT_POTENTIAL_CLIP6_SUFFICIENT`;\n- `DEFECT_LEVEL_CHANGES_AT_MOST_42_PER_BULK_CLASS`;\n- `PURE_SCALING_RAY_DEFECTS_STABLE_BY_K6`;\n- `PURE_SCALING_RAY_AFFINE_BY_K43`.\n\nMandatory false:\n- `K43_SHARP_FOR_REAL_TARE`;\n- `EXPLICIT_Q_H_FORECASTER`;\n- `FINITE_N_GLOBAL_PHASE_BOUNDARY`;\n- `CHAIN_ALL_N`;\n- `CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS`;\n- novelty/R6/physical-advantage authority.\n\n## Intended terminal\n\n`QG29_TARE_DEFECTS_CLIP_AT_6_AND_ALL_SCALING_RAYS_AFFINE_BY_K43_MACHINE_CHECKED`\n\nHonest alternatives: guard-threshold premise refuted; defect-band binding gap; abstract crossover arithmetic refuted; generic/native disagreement; CANNOT_CHECK.\n\n## Donor subtraction\n\nMonotone threshold systems, finite-size scaling and affine-envelope arguments are established donor mathematics. Candidate contribution is only the exact TARE-specific clip-at-six defect theorem and universal k<=43 affine-onset bound.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T09:40:07Z",
+    "body": "QG-29 protected execution is GREEN on PR #891.\n\nEarned terminal: `QG29_TARE_DEFECTS_CLIP_AT_6_AND_ALL_SCALING_RAYS_AFFINE_BY_K43_MACHINE_CHECKED`.\n\nProtected consequences:\n- each bulk-class defect potential satisfies `kappa_r(N)=kappa_r(clip6(N))`;\n- 43 integer defect levels `[-34,8]`, so at most 42 strict level drops per bulk class along any coordinatewise nondecreasing histogram path;\n- on every pure scaling ray `N(k)=kh`, all eventual template guards are stable by `k=6`;\n- exact cost is guaranteed affine with the minimum bulk slope for every `k>=43`;\n- abstract obstruction census: 11,094 pairwise classes, minimum strict margin 1 at k=43;\n- k=42 is not universally sufficient at this information level: `(slope,intercept)=(0,8)` and `(1,-34)` tie exactly at 42 and separate at 43.\n\nProtected result: `research/extensions/orion-qg/QG29_DEFECT_SATURATION_RESULTS.json` on branch `codex/orion-qg-qg29-defect-saturation-20260822`.\n\nThe 43 bound is **not** claimed sharp for realized TARE motifs; `K43_SHARP_FOR_REAL_TARE=false`, with chain/B'' completeness and finite-n global phase authority still false.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/890#issuecomment-5379591888"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:36:13Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 891,
+     "title": "[ORION-QG QG-29] Clip-at-six defect saturation and universal k=43 affine onset",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:56:52Z",
+     "mergeCommit": {
+      "oid": "4b3d988fb57e22efb589922d49f16a0d4846e425"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:38:11Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 893,
+     "title": "[ORION-QG QG-30] Exact 45-bin bulk coarse-graining and bulk/defect scale separation",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   }
+  ]
+ }
+}

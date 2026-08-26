@@ -1,0 +1,72 @@
+{
+ "number": 886,
+ "title": "[ORION-QG QG-27] Bulk-defect law and thermodynamic cost density for all-n TARE",
+ "body": "Parent programme: #740.\nDirect parents: QG-23 #879 / PR #882 auxiliary-support compactness; QG-26 #884 / PR #885 guarded histogram geometry.\nRelated parent: QG-25 #881 (older generic tropical spectral programme; QG-27 is a stronger TARE-specific route on exact scaling rays).\nMethod donors: thermodynamic limits, surface/boundary corrections, finite-defect expansions, subextensive corrections, lower envelopes of finitely many affine functions.\n\n## Status\n\n**PROSPECTIVE BULK\u2013DEFECT / THERMODYNAMIC-LIMIT THEOREM \u2014 freeze before execution.**\n\nQG-26 earns, for every valid fixed-matching histogram `N in N^4096`,\n\n`C_DP(N) = min_{tau feasible} [B_{pi(tau)}(N) + K_tau]`,\n\nwith an optimum whose nontrivial auxiliary letters occupy at most six physical columns. There are 8 target-permutation baselines, collapsing in QG-26 to 4 exact vectors.\n\nThis implies the auxiliary optimization is a finite **defect correction** on top of an extensive spectator/bulk baseline.\n\n## Q1 \u2014 universal all-n defect band\n\nDefine\n\n`B_min(N) = min_pi B_pi(N)`.\n\nFor any QG-23-normalized accepted template with `k<=6` active columns:\n- its structural frame/Tag term, including the frozen `-18` offset, is at least 2 because all six frames are nonzero and the shared Tag has support at least 1;\n- each active column replaces one spectator two-branch F3 baseline in `[0,6]` with another two-branch F3 value in `[0,6]`, so its local correction lies in `[-6,+6]`.\n\nHence every accepted normalized template obeys\n\n`K_tau >= 2 - 6*k >= -34`.\n\nTherefore\n\n`C_DP(N) >= B_min(N) - 34`.\n\nFor the upper bound, choose a target-permutation pi attaining `B_min(N)` and any physical target column type present in N. On that one coordinate use any of the exact 48 feasible one-qubit shared-label frame/Tag rows from QG-24/QG-26; use identity auxiliary letters everywhere else. The one-active structural term is exactly 2 and its F3 correction is at most +6. Therefore\n\n`C_DP(N) <= B_min(N) + 8`.\n\nFrozen candidate band:\n\n`B_min(N)-34 <= C_DP(N) <= B_min(N)+8`\n\nfor every valid fixed-matching TARE histogram and every physical n.\n\nThe constants are deliberately crude universal bounds, not claimed sharp. A successor may tighten them only prospectively.\n\n## Q2 \u2014 vanishing auxiliary density / thermodynamic limit\n\nFor any sequence of valid histograms `N^(m)` with total qubit count `n_m=sum_t N_t^(m) -> infinity` and empirical frequencies\n\n`p_t = lim_m N_t^(m)/n_m`\n\nexisting componentwise, divide the Q1 band by `n_m` to obtain\n\n`C_DP(N^(m))/n_m -> min_pi sum_t p_t b_pi(t)`.\n\nThus the exact asymptotic cost density is determined solely by the finite set of spectator baseline linear forms; all optimized frame/Tag structure is subextensive `O(1)`.\n\nThis may be called a **compiler thermodynamic-limit / bulk-density theorem**, not a physical thermodynamic phase transition.\n\n## Q3 \u2014 exact scaling rays are eventually affine\n\nFix a valid integer histogram motif `h` such that every one of the six target components is nonzero somewhere in h. Let\n\n`N(k)=k h`, `k>=1`.\n\nBy QG-26, every finite template tau is either:\n- never feasible on the ray because it requires a column type t with `h_t=0`; or\n- feasible for all `k >= K_tau = max_t ceil(m_tau(t)/h_t)` over its used types.\n\nWhenever feasible,\n\n`C_tau(kh)=k B_pi(h)+K_tau_const`.\n\nThe lower envelope of finitely many affine functions is eventually one affine function (or several identical/tied functions). Therefore there exist exact integers `K>=1`, slope `s` and intercept `q` such that\n\n`C_DP(kh)=k*s+q` for every `k>=K`.\n\nMoreover, because for every target permutation pi and every target type present in h there exists a one-active feasible shared-label template, the asymptotic slope is exactly\n\n`s = min_pi B_pi(h)`.\n\nSo QG-27 strengthens the generic QG-25 expectation from eventual affine-periodicity to **eventual exact affinity with period 1** on pure repetition rays.\n\n## Q4 \u2014 asymptotic count-space phase cells\n\nFor normalized frequency vectors p, define the four distinct QG-26 bulk forms `beta_r(p)` corresponding to the four distinct spectator baseline vectors.\n\nThe asymptotic density is\n\n`e(p)=min_r beta_r(p)`.\n\nTherefore the frequency simplex is partitioned by a finite normal-fan-like arrangement of exact linear tie hyperplanes into **bulk compiler phase cells**. These are asymptotic TARE cost-density mechanisms only.\n\nQG-27 V1 may authorize existence of this four-form asymptotic phase geometry and exact tie equations. It must not claim finite-n global phase boundaries or physical phases.\n\n## Q5 \u2014 complete local bound verification\n\nProduction and generic analyzers independently enumerate:\n- all 4096 target column types;\n- all 8 target permutations;\n- all `4^7` local auxiliary-letter tuples;\n- all 8 central tuples where relevant;\n- all 48 one-active accepted auxiliary rows.\n\nRequired exact local controls:\n1. spectator baseline range exactly `[0,6]`;\n2. arbitrary active two-branch F3 range exactly `[0,6]`;\n3. active F3 correction range exactly `[-6,+6]` over the complete local target/auxiliary domain;\n4. structural term over every globally feasible support-capped auxiliary configuration is >=2 as a theorem from support/nonzero counts, with the one-active 48-row family attaining exactly 2;\n5. for every target type and every target permutation, at least one one-active accepted row exists, so the +8 upper construction never depends on target chemistry/content.\n\nNo exhaustive global template universe is needed for the universal band.\n\n## Q6 \u2014 frozen scaling-ray controls\n\nBefore execution freeze a small deterministic panel derived only from QG-26 baseline vectors:\n- one unary valid motif if available; otherwise the lexicographically first valid motif of minimum support;\n- one two-type motif where two distinct bulk forms tie;\n- one motif strictly selecting each distinct baseline form when such a motif exists within a bounded search over histogram support <=2.\n\nThese controls are for exact slope/tie verification only. Do not fit K or q from them and promote globally.\n\n## Independent generic ORION\n\nGeneric ORION must rebuild phase-free Pauli/F3 algebra and QG-26 baseline vectors independently, derive the local correction extrema and the `[-34,+8]` band independently, and verify the finite-lower-envelope argument on the frozen ray controls without importing production QG-27 code.\n\n## Native ORION-Q\n\nMay authorize only:\n- `BULK_DEFECT_UNIFORM_BOUND_ALL_N`;\n- `ASYMPTOTIC_COST_DENSITY_EXACT`;\n- `PURE_SCALING_RAY_EVENTUALLY_AFFINE`;\n- `ASYMPTOTIC_COUNT_SPACE_PHASE_GEOMETRY`.\n\nMandatory false:\n- `DEFECT_CONSTANTS_SHARP`;\n- `FINITE_N_GLOBAL_PHASE_BOUNDARY`;\n- `PHYSICAL_PHASE_TRANSITION`;\n- `CHAIN_ALL_N`;\n- `CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS`;\n- novelty/R6/physical-advantage authority.\n\n## Intended strong terminal\n\n`QG27_TARE_BULK_DEFECT_LAW_AND_EXACT_ASYMPTOTIC_COST_DENSITY_ALL_N_MACHINE_CHECKED`\n\nHonest alternatives:\n- `QG27_LOCAL_CORRECTION_BOUND_REFUTED`\n- `QG27_ONE_ACTIVE_UPPER_CONSTRUCTION_GAP`\n- `QG27_QG26_PARENT_BINDING_GAP`\n- `QG27_GENERIC_NATIVE_DISAGREEMENT`\n- `QG27_CANNOT_CHECK`\n\n## Donor subtraction\n\nThermodynamic limits, finite-size/boundary corrections, lower envelopes of affine functions, normal fans and asymptotic density arguments are established mathematics and receive zero novelty credit. Candidate contribution is only the exact TARE-specific bounded-defect theorem, exact bulk cost-density law and period-1 eventual-affinity consequence. No physical thermodynamic claim is requested.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:22:11Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 887,
+     "title": "[ORION-QG QG-27] Bulk-defect law and exact asymptotic TARE cost density",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:56:44Z",
+     "mergeCommit": {
+      "oid": "66a35569c6646ad7a7497e39482c529e3dd75004"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:25:37Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 888,
+     "title": "[ORION-QG QG-28] Exact local-Clifford orbit compression of TARE column-count geometry from 4096 to 715 types",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:31:05Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 890,
+     "title": "[ORION-QG QG-29] Six-count defect saturation and universal k<=43 affine crossover on TARE scaling rays",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:38:11Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 893,
+     "title": "[ORION-QG QG-30] Exact 45-bin bulk coarse-graining and bulk/defect scale separation",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,52 @@
+{
+ "number": 793,
+ "title": "[ORION-QG QG-9 T1] Exact n=4 cap-3 witness hunt for R6I support-four tightness",
+ "body": "Parent tightness programme: #762\nEarned support<=4 theorem: #790 / PR #791\nTheorem miner: #767\n\n## Status\n\n**PROSPECTIVE EXACT TIGHTNESS HUNT \u2014 witness or bounded negative, no preferred outcome.**\n\nQG-13 V4 has now machine-checked `C_DP = C_cap4` for all n in the frozen R6I grammar. Tightness of four remains open. Exploratory anchored-slice analysis at support four finds 432 necessary QG-1-irreducible slices per generator orientation; the cumulative E2/E3 edit basis covers 396 and leaves 36 canonical obstruction slices. A four-column extension of the same globally-worst edit abstraction does not close those 36. These exploratory facts motivate the candidate generator but are not themselves tightness evidence.\n\nT1 asks:\n\n> Does there exist an n=4 R6I instance with a feasible support-4 compilation whose cost is strictly below the exact optimum over all configurations with every independent generator support<=3?\n\nA single strict witness proves the all-n support<=4 theorem is tight.\n\n## Why n=4\n\nSupport four cannot be necessary below four qubits. n=4 is therefore the minimal exact witness size.\n\n## Frozen candidate generation \u2014 no cap3 scores allowed\n\nRecompute from production semantics the canonical support-4 anchored obstruction slices for orientation g=0 and g=1:\n- selected generator active on all four columns;\n- selected anticommutation parity=1;\n- selected two-bit Tag label nonzero;\n- selected/partner N classes and C classes zero-sum-free;\n- no globally safe E2/E3 move deletes the selected generator.\n\nCandidate generation never calls the cap3 referee.\n\nFor each obstruction in canonical order:\n1. choose, within each local structural type, the lexicographically first realization minimizing local Tag support `wt(s0)+wt(s1)`;\n2. assemble desired block A (or B for orientation1) frame generators and shared Tag;\n3. choose the other block's rank-2 frame pair by exhaustive n=4 search minimizing `(Uanti, total frame support, lexicographic frame codes)` subject to the **same ordered two Tag labels** under the chosen shared Tag;\n4. set each block's target triple equal to its desired rank-2 frame triple `(R0,R1,R0R1)` \u2014 identity-Restore inverse design, the strongest target template for that desired frame under the frozen objective;\n5. retain only candidates whose desired two-block frame/Tag configuration passes the production witness semantics; record its exact feasible cost `U4`.\n\nFreeze a scan cap of the first **36 candidates per orientation** (72 maximum) in canonical obstruction order. Stop at the first strict tightness witness; do not widen the candidate grammar after outcome.\n\n## Exact cap-3 referee\n\nFor each candidate compute\n\n`C_cap3 = min cost over the full frozen R6I grammar with support(RA0), support(RA1), support(RB0), support(RB1) <=3`.\n\nUse an exact MILP over the same production local option algebra, looped over the frozen 54 `(relative B permutation, central A, central B)` configurations.\n\nFor each fixed configuration:\n- one binary variable selects one local option per qubit after exact dominance compression by `(10-bit delta, four-generator activity mask)`;\n- ten parity equations enforce one of the six exact production accepting states, with integer parity-carry variables;\n- four support inequalities enforce total generator activity<=3;\n- objective is the exact production local raw cost, subtracting the frozen global Uanti constant only after optimization;\n- accepting-state choice is encoded by six binary selector variables in the same MILP.\n\nSolver: frozen SciPy/HiGHS stack available in ORION CI, `mip_rel_gap=0` / optimal termination required. Record solver/version/model dimensions, primal integrality residuals and every constraint residual.\n\nEarly rejection is allowed: if any fixed configuration proves `C_cap3 <= U4`, that candidate cannot be a tight witness and the remaining configurations for that candidate need not be solved. A **positive** candidate requires every one of the 54 fixed configurations solved optimally and global `C_cap3 > U4`.\n\n## Tightness proof\n\nIf a candidate has a verified feasible support-4 configuration of cost U4 and exact `C_cap3 > U4`, then\n\n`C_DP <= U4 < C_cap3`.\n\nTherefore no support<=3 configuration is globally optimal, while V4 already proves some support<=4 optimum exists for every instance. Hence support four is necessary on that instance and the all-n support bound 4 is tight.\n\nThe feasible support-4 configuration does **not** need to be proven globally optimal for the strict-gap argument.\n\n## Independent verification\n\nGeneric ORION harness:\n- reconstruct candidate frame/Tag feasibility and U4 independently;\n- rebuild the compressed MILP from the mathematical R6I specification without importing production `_DELTA` for any claimed positive;\n- rerun all 54 fixed configs for a positive candidate;\n- verify solver optimal status, integrality and exact objective recomputation.\n\nNative ORION-Q harness keeps states:\n- `TIGHT_WITNESS`\n- `NO_WITNESS_IN_FROZEN_PANEL`\n- `SOLVER_CANNOT_CHECK`\n- `CANDIDATE_BINDING_FAILURE`\n\nseparate. A finite no-witness scan cannot imply support<=3 theorem authority.\n\n## Honest terminals\n\n- `QG9T1_R6I_SUPPORT4_TIGHT_WITNESS_EXACT`\n- `QG9T1_NO_SUPPORT4_TIGHT_WITNESS_IN_FROZEN_PANEL`\n- `QG9T1_CAP3_SOLVER_CANNOT_CHECK`\n- `QG9T1_CANDIDATE_BINDING_FAILURE`\n\n## Claim boundary\n\nA positive is an exact mathematical tightness witness for the frozen R6I objective/grammar, not a physical quantum advantage. MILP/HiGHS, inverse design and support-capped optimization are donor methods. Novelty authority remains false pending external review.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:54:19Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 797,
+     "title": "[ORION-QG QG-9 T1] Exact n=4 cap3 support-four tightness hunt",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:03:42Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 762,
+     "title": "[ORION-QG QG-9] Is rank-2 support five tight? Exact cap-4 witness hunt or stronger all-n bound",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:07:56Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 801,
+     "title": "[ORION-QG QG-9 T2] Counterexample-guided max-margin target synthesis for exact support-four tightness",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

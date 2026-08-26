@@ -24,6 +24,19 @@ Verify another lane's work only in isolation: extract with `git archive <ref>` i
 - Process failures worth learning from become records under `research/failures/` following the existing format (Observed / Failure / Failure class / Correct response / General lesson candidate).
 - High-impact code changes require a development packet per `development/README.md` before implementation, whichever agent implements them.
 
+## Paper writing rule (operator mandate, 2026-08-26)
+
+Every session — Claude, Codex, ChatGPT, any lane — that writes or rewrites
+manuscript content in `papers/` (new papers **and** refactors/polish of existing
+ones, including figures, citations, and response letters) **must apply the
+`nature-*` skills package**, vendored at `papers/skills/nature/`. Claude sessions
+invoke the skills via the Skill tool; sessions without it read the vendored
+`SKILL.md` files and follow them as written protocol. Full rules, lifecycle→skill
+map, and compliance record: `papers/PAPER_WRITING_SKILLS_PROTOCOL_V1.md`. A
+manuscript PR without a `skills-applied:` line in its body is a process defect.
+The package governs craft only; claim authority stays with the freeze control
+plane and result-claim ledgers.
+
 ## Conflict minimization
 
 - Prefer **additive files** over edits to files another lane is actively changing; check the other lanes' diffs first (`git diff main..<their-head> --stat`).

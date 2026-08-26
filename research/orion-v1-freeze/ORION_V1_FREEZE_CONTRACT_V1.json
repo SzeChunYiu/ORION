@@ -1,0 +1,76 @@
+{
+  "allowed_issue_dispositions": [
+    "COORDINATION_CONTROL",
+    "LOCAL_REPAIR",
+    "FROZEN_EXECUTION_SUCCESSOR",
+    "EXTERNAL_AUTHORITY_OR_ACCESS_BLOCKER",
+    "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+    "OBSOLETE_OR_DUPLICATE",
+    "PAPER_CANDIDATE_BLOCKED",
+    "PENDING_ATOMIC_AUDIT"
+  ],
+  "authority_ceiling": {
+    "architecture": "BOOTSTRAP_CONTROL_PLANE_ONLY",
+    "external_validation": "CANNOT_CHECK",
+    "internal_implementation": "CANNOT_CHECK_UNTIL_FULL_RED_CENSUS",
+    "local_formalism": "PARTIAL_CENSUS_PENDING",
+    "novelty": "CANNOT_CHECK",
+    "physical_quantum_validity": "CANNOT_CHECK",
+    "publication": "NONE",
+    "quantum_advantage": "CANNOT_CHECK"
+  },
+  "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+  "base_tree": "5d5ff0985551b0a94453ea6eaa9925bda3e10fa2",
+  "expert_roles": [
+    {
+      "background": "proof theory, formal semantics, mechanized verification, countermodel design",
+      "role_id": "FORMAL_METHODS_LEAD",
+      "veto": "No theorem or freeze terminal without explicit assumptions, falsifiers, and proof/evidence class."
+    },
+    {
+      "background": "content-addressed builds, CI, manifests, execution receipts, release engineering",
+      "role_id": "SYSTEMS_REPRODUCIBILITY_LEAD",
+      "veto": "No component or result is frozen without exact identity, checker coverage, and mutation tests."
+    },
+    {
+      "background": "quantum information, algorithms, coding theory, resource accounting",
+      "role_id": "QUANTUM_TRANSFER_LEAD",
+      "veto": "No structural transfer is promoted to physical validity or advantage without target-native validation and full resources."
+    },
+    {
+      "background": "scientific inference, peer-review standards, claims/evidence governance",
+      "role_id": "PUBLICATION_AUTHORITY_LEAD",
+      "veto": "No manuscript claim exceeds the strongest independently authorized evidence."
+    },
+    {
+      "background": "prospective experiment design, HPC execution, negative controls, custody",
+      "role_id": "EXECUTION_AND_EMPIRICAL_LEAD",
+      "veto": "No post-outcome redesign, denominator repair, dropped adverse row, or proxy substitution."
+    }
+  ],
+  "freeze_state": "FROZEN",
+  "generated_at_utc": "2026-08-26T05:40:07Z",
+  "immutable_boundaries": [
+    "historical receipts and negative evidence",
+    "protected P1 finalizer, Slurm, LUNARC, custody, and immutable-OID paths",
+    "P1-P15 computation packets integrated before this lane",
+    "same-owner replay cannot become independent authority",
+    "CANNOT_CHECK cannot be rewritten as success"
+  ],
+  "lane_branch": "shadow/orion-v1-freeze-control-plane-20260826",
+  "parent_issues": [
+    1357,
+    1358,
+    1359
+  ],
+  "schema": "ORION.V1.FreezeContract.v1",
+  "terminal": "ORION_V1_ARCHITECTURE_AND_LOCAL_FORMALISM_FROZEN",
+  "terminal_requirements": {
+    "architecture_and_local_formalism_frozen": true,
+    "internal_implementation_gaps_zero": true,
+    "unclassified_open_issues_zero": true,
+    "external_or_heavy_blockers_explicitly_ledgered": true,
+    "all_manifest_digests_valid": true,
+    "paper_authority_delta": "NONE"
+  }
+}

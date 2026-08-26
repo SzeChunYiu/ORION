@@ -1,0 +1,397 @@
+{
+ "number": 762,
+ "title": "[ORION-QG QG-9] Is rank-2 support five tight? Exact cap-4 witness hunt or stronger all-n bound",
+ "body": "Parent programme: #740\nCanonical theorem: QG-1 in wave-1 closure (`generator support <=5` all n)\nIndependent corroboration: #747 / PR #748 dual-harness support-five theorem\nRelated automatic quotient lane: #756 / PR #759\n\n## Status\n\n**TIGHTNESS FRONTIER \u2014 constructive witness or stronger theorem, no preferred outcome.**\n\nQG-1 proves that every optimum of the frozen R6I rank-2 shared-Tag grammar has each independent frame generator supported on at most five qubits. The canonical proof obtains `5 = |N_jg|<=3 + |C_j|<=2`; the independent proof route obtains the same bound from a 5-dimensional conserved-syndrome quotient.\n\nBut the current evidence gives **no instance requiring support five**. QG-1's stress panel is suspiciously stronger: on all tested n=3 instances unrestricted DP, brute, cap-2 and cap-1 coincide. The closure packet therefore leaves tightness of 5 as residual R5.\n\nQG-9 asks:\n\n> Is support five genuinely necessary for some frozen-R6I instance, or can the all-n theorem be strengthened to support <=4 (or lower)?\n\n## Exact cap-4 referee at the minimal possible witness size n=5\n\nA support-five necessity witness must have `n>=5`; choose **n=5** as the first exact domain.\n\nFor n=5, a generator has support <=4 iff it is identity at at least one qubit. Therefore the exact cap-4 optimum can be written as\n\n`C_cap4 = min_{z_A0,z_A1,z_B0,z_B1 in {0,...,4}} C_DP[ R_A0(z_A0)=I, R_A1(z_A1)=I, R_B0(z_B0)=I, R_B1(z_B1)=I ]`.\n\nThere are exactly `5^4=625` zero-witness assignments. The constrained DP must reuse the frozen R6I transition/acceptance/cost algebra and force the specified local generator letters to identity before the per-qubit min-plus update. Taking the minimum over the 625 assignments is **exact**, including configurations with multiple identity positions (they appear under multiple assignments).\n\nHard binding controls:\n- removing all zero constraints reproduces frozen unrestricted `shared_tag_exact`;\n- at n<=3, the same zero-witness method for cap n-1 must agree with the independent `PairTables.capped_costs` implementation from canonical QG-1;\n- selected cap-4 witnesses are reconstructed and passed through the frozen R6I witness verifier.\n\n## Counterexample-first / inverse-design arm\n\nRandom targets are a weak search because high-support frames pay substantial Uanti cost. Instead generate instances from **irreducible support-five frame/Tag configurations** and choose target triples to reward those frames.\n\n### Stage A \u2014 joint exceptional class skeletons\n\nEnumerate realizable n=5 blocks whose support-five generator has exactly the canonical proof's maximal zero-sum-free decomposition:\n- non-coincidence `N_jg` size 3 with distinct nonzero linearly independent F2^3 classes and odd alpha sum;\n- coincidence `C_j` size 2 with distinct nonzero F2^2 classes;\n- shared Tag labels valid/nonzero/distinct;\n- both generators nonzero, symplectic product 1.\n\nAlso include the independent F2^5 rank-5 boundary patterns from PR #748 as a separate skeleton family.\n\nCanonicalize qubit permutations and globally valid Pauli-letter relabelings before target generation.\n\n### Stage B \u2014 inverse target templates\n\nFor each skeleton, create target triples from the desired frames using frozen Restore templates rather than uniform random targets:\n\n1. `IDENTITY_RESTORE`: `P_k = R_k` so the desired frame has zero Restore support;\n2. `ONE_DEFECT`: one branch Restore is one weight-one Pauli;\n3. `CROSS_BLOCK_SHARED_DEFECT`: A/B Restores deliberately align under the same Tag labels;\n4. `CENTRAL_FAVOR`: defects placed to favor the designated central branch;\n5. `ANTI_CAP4`: defects occupy all five qubits so every forced-zero cap-4 variant loses at least one alignment opportunity.\n\nAll template families/order/caps are frozen before any cap-4 result.\n\nFor each generated pair of blocks:\n- compute unrestricted exact DP;\n- compute exact cap-4 optimum via 625 zero-witness assignments;\n- if `C_unrestricted < C_cap4`, serialize the first witness and stop the positive-discovery arm.\n\nPositive tightness terminal:\n\n`QG9_SUPPORT5_TIGHT_WITNESS_FOUND`\n\nrequires a proof-carrying unrestricted witness with at least one generator of support exactly 5 and an independently reconstructed cap-4 lower bound strictly above it.\n\n## Stronger-theorem arm if no witness\n\nAbsence in a frozen finite search cannot prove cap4. Instead use the surviving irreducible skeletons to discover a **combined exchange** missed by QG-1.\n\nThe canonical proof treats non-coincidence SOLO moves and coincidence PAIR moves separately. A possible stronger move can combine:\n- a non-zero-sum subset from `N_j0`;\n- a non-zero-sum subset from `N_j1`;\n- a subset of coincidence columns;\n\nso their **joint five conserved coordinates** cancel even when none of the three components is individually zero-sum.\n\nRequired search/theorem programme:\n1. enumerate every joint zero-sum-free `(N0,N1,C)` exceptional class pattern compatible with support 5;\n2. test all semantics-preserving combined deletion masks and exact local cost changes against adversarial target letters/centrals;\n3. classify whether every support-five irreducible pattern has a non-increasing combined move;\n4. if yes, prove all-n support<=4 by lexicographic descent;\n5. if not, extract a minimal algebraic obstruction and feed it back into the inverse-design witness generator.\n\nPossible stronger terminals:\n- `QG9_RANK2_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED`\n- `QG9_RANK2_ALL_N_SUPPORT3_SUFFICIENCY_MACHINE_CHECKED`\n\nAny stronger theorem must bind the full production R6I acceptance/cost semantics and independently replay the move inequalities; no inference from failure to find a witness.\n\n## Search efficiency / exactness\n\nThe n=5 unrestricted DP remains the frozen 10-bit XOR DP. The cap-4 referee should memoize constrained local tables by `(qubit, forced-zero-mask, target letters, centrals)` so the 625 outer assignments do not require 625 independent full rebuilds.\n\nA second exact implementation should either:\n- formulate support counts directly in an augmented DP state and compare with the zero-witness result on a smaller panel; or\n- use branch-and-bound over support-capped symplectic frame pairs on selected n=4 controls.\n\n## Dual harness\n\nGeneric ORION harness:\n- prospectively freezes the skeleton/template search;\n- executes unrestricted + cap4 referees;\n- independently reconstructs any strict witness/lower bound;\n- if no witness, drives combined-exchange enumeration rather than declaring a theorem from search absence.\n\nNative ORION-Q harness:\n- maintains `TIGHT_WITNESS / STRONGER_THEOREM / SEARCH_NEGATIVE_ONLY / CANNOT_CHECK` as separate responsibility states;\n- a cap4 strict gap is sufficient for tightness;\n- finite search equality can never self-promote support4 theorem authority.\n\n## Novelty boundary\n\nBinary linear dependence, Davenport constants, support-capped dynamic programming and inverse design are donor mathematics/algorithms. Candidate contribution is only the exact tightness characterization or improved all-n normal form of this rank-2 shared-Tag quantum compilation grammar. No physical quantum-speedup claim follows.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 6,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T13:50:27Z",
+    "body": "**QG-13 V2 prospective theorem candidate \u2014 frozen next, before repository outcome.**\n\nExploratory algebra after the protected QG-13 V1 recovery found a materially stronger edit grammar for the canonical QG-1 boundary.\n\nAt one R6I block/qubit allow only production-semantic actions:\n- `d0`: zero local `R0`, recompute dependent `R2=R0R1`;\n- `d1`: zero local `R1`, recompute `R2`;\n- `db`: zero both local generators, recompute `R2`.\n\nEach action carries an exact 5-bit change in\n`(<R0,R1>, <S0,R0>, <S1,R0>, <S0,R1>, <S1,R1>)`\nand an exact local objective delta. No Tag/target/central changes are free.\n\nExploratory complete local reduction gave 28 realizable semantic descriptor types. For one generator at support 5, after excluding every pattern already reducible by canonical QG-1 SOLO/PAIR moves and allowing arbitrary completion outside that generator support, there are **324** irreducible descriptor multisets. For **all 324**, a combination of `{d0,d1,db}` exists whose 5-bit XOR is zero, reduces the selected generator support, and has worst-case total delta <=0 for every central choice and adversarial local targets. 288 are strictly cost-decreasing; 36 are cost ties with strict support descent.\n\nThe same grammar does **not** collapse support 4 automatically: 36 support-4 irreducible patterns survive. Thus the prospective theorem is specifically:\n\n`R6I all-n generator support <=4`, using canonical QG-1 support<=5 as the parent theorem plus a new support-5 elimination lemma.\n\nThis is scratch discovery only. I am freezing a new V2 packet under QG-13 before any repository checker outcome. A positive run must independently recover all descriptor/action/pattern counts and the support-4 boundary; a mismatch/refutation is first-class.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/762#issuecomment-5370649965"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T14:17:23Z",
+    "body": "## QG-9 V2 protected theorem earned \u2014 support bound improves 5 -> 4\n\nExact scientific head: `58536ef2898bdd3f7a68e2bfde9b5aedef876a2e`.\nProtected workflow: `orion-qg-qg9-support4` run `32490719629`; artifact `9449659633`, digest `sha256:fdcf4dbec8390f5408f6f5c721f5e2a7f43519eef563c3c7000ba2a47a0a86d2`.\n\nEarned terminal:\n`QG9_RANK2_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED`\n\nMachine facts:\n- production algebra bound exactly;\n- 28 local descriptors / 240 concrete representatives / 119,808 adversarial action-target cost cases;\n- broad QG-1-irreducible support-5 boundary: **324 patterns**, all **324/324** admit a five-signature-preserving, support-reducing combined move with worst-case cost <=0 for every central choice;\n- independent generic implementation reproduces 324/324 and zero unsafe;\n- native ORION-Q: `ACCEPT_SUPPORT4`;\n- canonical QG-1 supplies all-n support<=5, so closing every support-5 irreducible boundary gives all-n support<=4 by lexicographic descent.\n\nHostile boundary control:\n- support-4 domain: **432** retained irreducible patterns;\n- **36** remain unsafe under this deletion-only combined grammar.\n- therefore `support3_authority=false` and `tightness_authority=false` remain mandatory.\n\nDurable result/receipt commits now on PR #786 branch: `826fc872...` and `51d81c44...`.\n\nNext research direction is a separately frozen richer support-nonincreasing **relabel + delete** edit grammar against those 36 support-4 survivors; V2 itself will not be mutated.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/762#issuecomment-5371074725"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T14:36:39Z",
+    "body": "## QG-9 V3 protected theorem earned \u2014 support bound improves 4 -> 3\n\nExact scientific head after engineering-only tie-break repair: `66de4da5a6e029fac632575c3a97590cfc866092`.\nProtected workflow: `orion-qg-qg9-support3` run `32492395951`; artifact `9450349107`, digest `sha256:f8757808d924ed3f1efa72c1c65efab944a35401cf7c8ec68d1a0b65f3f73a40`.\n\nEarned terminal:\n`QG9_RANK2_ALL_N_SUPPORT3_SUFFICIENCY_MACHINE_CHECKED`\n\nProtected facts:\n- 46 concrete action-profile types under the support-nonincreasing relabel+delete grammar;\n- all 36 V2 support-4 survivor descriptors expand to 288 concrete profile cases;\n- **288/288 safe, 0 unsafe** under full five-signature preservation and adversarial all-target/all-central cost bounds;\n- independent generic implementation reproduces the exact 288/0 result;\n- native ORION-Q: `ACCEPT_SUPPORT3`;\n- parent V2 protected support<=4 theorem binds exactly.\n\nBroad support-3 anti-overclaim control: 180 V2-survivor descriptors -> 612 profile cases, 591 safe / 21 unsafe. Therefore V3 explicitly grants `support2_authority=false` and `tightness_authority=false`.\n\nDurable result/receipt commits: `601a5ba3...`, `4d70700b...`.\nFailed predecessor run `32492089671` is retained as engineering-only (`None` vs tuple tie-break); no scientific terminal was reached there.\n\nSuccessor finding (exploratory only): all 21 broad support-3 unsafe cases appear to violate the full R6I nonzero/distinct two-generator Tag-label acceptance condition. This is now being tested in a separate prospectively frozen V4; V3 itself is immutable.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/762#issuecomment-5371322870"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T14:47:40Z",
+    "body": "## QG-9 V4 protected theorem earned \u2014 support bound improves 3 -> 2\n\nExact scientific head: `0689e42cde3c5dffaf7f25a440060a3abd6e2116`.\nProtected workflow: `orion-qg-qg9-support2` run `32493415691`; artifact `9450792101`, digest `sha256:8731f0516f65a0266753afa6113ecc44fd1b2700655fd020e9c6093d92d434ab`.\n\nEarned terminal:\n`QG9_RANK2_ALL_N_SUPPORT2_SUFFICIENCY_MACHINE_CHECKED`\n\nKey protected evidence:\n- parent V3 boundary reconstructs exactly: 252 support-3 irreducibles, 180 V2 survivors, 612 V3 profile cases, 21 broad unsafe;\n- full R6I acceptance leaves **300 accepted support-3 profile cases, all 300 safe, 0 unsafe**;\n- every one of the 21 broad unsafe cases violates the exact nonzero/distinct two-generator Tag-label rule (`r1_label=0` or `r0_label==r1_label`);\n- independent generic implementation reproduces all counts and zero accepted support-3 unsafe;\n- native ORION-Q: `ACCEPT_SUPPORT2`.\n\nHostile support-2 control:\n- 72 QG-1-irreducible / V2-survivor descriptors;\n- 144 V3 action-profile cases;\n- **72 fully accepted**, of which **36 safe / 36 unsafe** under the current relabel grammar.\nThus support-1/tightness authority remains false.\n\nDurable result/receipt commits: `59821126...`, `a80dbd57...`.\n\nNext lane changes methodology: exact n=2 target-level tightness. A support-cap-1 exact referee will be compared against unrestricted/cap-2 on inverse-designed instances derived prospectively from the 36 accepted method obstructions. A strict gap would prove support 2 is actually necessary; absence will not self-promote support<=1.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/762#issuecomment-5371444500"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T15:03:41Z",
+    "body": "Frontier update after protected QG-13 V4:\n\n- Canonical R6I normal-form floor is now **support<=4 for all n**, not support<=5. Protected terminal `QG13V4_R6I_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED`; result commit `bdd77ddeea56fbeb75f69924d1c823feafc6d827`; theorem issue #790 / PR #791.\n- V2 two-column theorem grammar: 216 support-five patterns, 132 covered, 84 minimal obstructions; protected at `f03b302d...`.\n- V3 three-column grammar: E3 covers 180/216 and closes all 84 V2 obstructions; cumulative E2\u222aE3 covers 216/216; protected at `8e47a33a...`.\n- V4 spectator-safe arbitrary-n proof: 324 necessary anchored support-five slices per orientation, E2=180, E3=288, union=324/324; generic + native harness ACCEPT.\n\nTherefore the open tightness question has moved to **cap 3**. Active prospective exact witness lane: #793 / PR #797, n=4 exact cap3 MILP against 36 frozen support-four obstruction slots/orientation. A finite negative cannot authorize support<=3; a strict `C_DP<=U4<C_cap3` witness proves support four tight.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/762#issuecomment-5371620112"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T19:07:51Z",
+    "body": "**The QG-9 ladder is merged to main** (`beea3034`, via conflict-resolved delivery PR #830). The stacked PRs #786 / #789 / #792 / #796 / #809 / #813 / #815 are closed as delivered \u2014 their content is on main verbatim.\n\n**Result: the R6I rank-2 shared-Tag grammar has intrinsic support number \u03ba = 1.**\n\n| Rung | Terminal |\n|---|---|\n| QG-1 | support \u2264 5 all n |\n| V2 | `QG9_RANK2_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED` |\n| V3 | `QG9_RANK2_ALL_N_SUPPORT3_SUFFICIENCY_MACHINE_CHECKED` |\n| V4 | `QG9_RANK2_ALL_N_SUPPORT2_SUFFICIENCY_MACHINE_CHECKED` |\n| V5 | `QG9_NO_SUPPORT2_TIGHT_WITNESS_IN_FROZEN_INVERSE_PANEL` (honest negative; granted no support-1 authority \u2014 correctly) |\n| **V6** | **`QG9_RANK2_ALL_N_SUPPORT1_SUFFICIENCY_MACHINE_CHECKED`** \u2014 `C_DP = C_cap1` for every n; with support-0 infeasible, \u03ba_R6I = 1 exactly |\n| QG-16 | `QG16_R6I_OBJECTIVE_INDEXED_SUPPORT1_CONE_ALL_N_MACHINE_CHECKED`, `GLOBAL_PHASE_BOUNDARY_SHARPNESS = OPEN` preserved |\n\n**Verification I performed before merging** (not taking the receipts on trust): V6's analyzer re-run reproduces `result_digest` `587b4b80\u2026d31a4f` bit-identically against the committed protected receipt \u2014 and again on the merged tree; support-4/3/2 analyzers re-run with all gates true; `qg9_support2_generic_verify` ACCEPT and `qg16_generic_verify` ACCEPT_SUPPORT (independent finite-field rebuild); harness suite 132 passed.\n\nThe methodological point worth recording: V1\u2013V5 all stalled because their edit grammars were *per-block syndrome-preserving*. V6 succeeded by **relocating the shared Tag** after localizing each block to one anticommuting core \u2014 a whole-system rebuild. The ladder's five failed rungs weren't wasted work; each one's obstruction census is what showed the residue was structural rather than local, which is what motivated changing the proof system rather than enlarging the move menu.\n\n---\n_Generated by [Claude Code](https://claude.ai/code)_",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/762#issuecomment-5374129760"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T12:26:03Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 740,
+     "title": "[PROGRAMME] ORION-QG \u2014 Compilation Regime Geometry: maps, trades, predicates and forecasts for compilation families",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T13:39:07Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 776,
+     "title": "[ORION-QG QG-13] Recover normal-form theorems from production compiler semantics",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T13:45:00Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 767,
+     "title": "[ORION-QG QG-13] Automatic normal-form theorem synthesis from production compiler semantics",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T13:54:34Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 777,
+     "title": "[ORION-QG QG-13 V2] Prospectively mine a combined-deletion theorem for R6I support-five tightness",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:04:54Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 779,
+     "title": "[ORION-QG QG-13 V2] Mine combined R6I edits for support-five tightness",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:06:48Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 781,
+     "title": "[ORION-QG QG-13 V2] Eliminate R6I support-five boundary by combined deletion",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:08:46Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 784,
+     "title": "[EXECUTION-ONLY][QG-13 V2] Protected support-four theorem run",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:10:03Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 785,
+     "title": "[ORION-QG QG-13 V3] Three-column combined-edit theorem mining for R6I support-five tightness",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:10:33Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 786,
+     "title": "[ORION-QG QG-9] Prove all-n support-4 closure by combined R6I exchange",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:16:28Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 787,
+     "title": "[ORION-QG QG-13 V3] Three-column R6I theorem mining",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:25:47Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 789,
+     "title": "[ORION-QG QG-9 V3] Prove all-n support-3 closure with support-nonincreasing relabel exchange",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:26:23Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 790,
+     "title": "[ORION-QG QG-13 V4 / QG-9] All-n R6I support<=4 theorem via cumulative E2/E3 spectator-safe exchange",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:32:30Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 791,
+     "title": "[ORION-QG QG-13 V4 / QG-9] Prove all-n R6I support<=4",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:40:32Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 792,
+     "title": "[ORION-QG QG-9 V4] Prove all-n support-2 closure from full R6I acceptance",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:46:40Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 793,
+     "title": "[ORION-QG QG-9 T1] Exact n=4 cap-3 witness hunt for R6I support-four tightness",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:48:51Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 795,
+     "title": "[ORION-QG QG-9 V5] Is support two tight? Prospective n=2 cap-1 exact-referee hunt",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:53:24Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 796,
+     "title": "[ORION-QG QG-9 V5] Prospectively prove support-2 tightness with an exact cap-1 referee",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:54:19Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 797,
+     "title": "[ORION-QG QG-9 T1] Exact n=4 cap3 support-four tightness hunt",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:58:12Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 798,
+     "title": "[ORION-QG QG-15] Compiler support-compression spectrum: quotient dimension, edit hierarchy, and exact normal-form support",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:07:56Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 801,
+     "title": "[ORION-QG QG-9 T2] Counterexample-guided max-margin target synthesis for exact support-four tightness",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:20:46Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 803,
+     "title": "[ORION-QG QG-9 T2] Exact support-two tightness: n=2 cap1 inverse-design hunt",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:27:30Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 805,
+     "title": "[ORION-QG QG-9 T2] Exact n=2 cap1 support-two tightness hunt",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:58:26Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 807,
+     "title": "[ORION-QG QG-9 V6] Whole-system Tag-relocating normalization: prove R6I support\u22641 or find exact obstruction",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T16:06:04Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 809,
+     "title": "[ORION-QG QG-9 V6] Prove all-n R6I support\u22641 by whole-system Tag relocation",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T19:43:10Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 835,
+     "title": "[ORION-QG QG-18] Is TARE's intrinsic support number 1 or 2?",
+     "state": "CLOSED"
+    }
+   }
+  ]
+ }
+}

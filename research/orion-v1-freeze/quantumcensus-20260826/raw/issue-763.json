@@ -1,0 +1,60 @@
+{
+ "number": 763,
+ "title": "[ORION-QG QG-10] Certified interval regime geometry without an exact global referee",
+ "body": "Parent programme: #740\nMotivating residual: wave-2 R6 \u2014 transfer ORION-QG to a third family where exhaustive/global exact DP is not available\nFounding exact-geometry families: R6M shared-Tag TARE; SixLCU PREP/SELECT\nRelated automatic theorem infrastructure: #756 / PR #759\n\n## Status\n\n**SCALABILITY FRONTIER \u2014 replace exact optimum labels by proof-carrying upper/lower envelopes with an explicit unresolved region.**\n\nORION-QG wave 1 works because each studied family has an exact finite referee: unrestricted DP or exhaustive enumeration. That is scientifically clean but cannot be the final field definition; realistic quantum compilation families quickly make exact global optimization intractable.\n\nQG-10 asks:\n\n> Can compilation regime geometry be defined and prospectively certified when the true optimum is unavailable, using independently derived upper/lower bounds that prove regime membership only when intervals separate and otherwise return CANNOT_CHECK?\n\n## Certified interval object\n\nFor an instance x and compilation family F, maintain a **cost interval**\n\n`I_F(x) = [L_F(x), U_F(x)]`\n\nwhere:\n- `U_F` is the exact cost of a verified feasible witness;\n- `L_F` is a proof-carrying lower bound valid for every member of F;\n- both include the same frozen objective/access/resource coordinates.\n\nFor the unrestricted parent optimum `OPT`, maintain `[L_*, U_*]` where `U_*` is the best verified compilation found and `L_*` is a global relaxation/lower bound.\n\nNo midpoint or heuristic score has scientific authority.\n\n## Interval regime logic\n\n### Certified family optimality\nF is certified globally optimal if\n\n`U_F <= min_G L_G` and `U_F <= L_*`\n\nwhere G ranges over all registered competing families not containing F. Equality/ties are retained explicitly.\n\n### Certified strict trade\nA trade family T strictly beats donor D if\n\n`U_T < L_D`.\n\n### Certified donor exactness\nIf donor D is a subfamily of unrestricted space and\n\n`U_D == L_*`,\n\nthen D is globally exact without solving the unrestricted optimizer.\n\n### Certified non-membership\nIf `L_F > U_*`, family F cannot contain an optimum.\n\n### Unresolved band\nIf intervals overlap so none of the above conditions follows, terminal is `CANNOT_CHECK_INTERVAL_OVERLAP`. The system must not pick the smallest midpoint or best heuristic and call it a regime.\n\n## Lower-bound library \u2014 donor first right of refusal\n\nQG-10 does not claim lower-bound techniques themselves. Candidate sources:\n\n1. **semantic relaxations:** drop coupling/placement constraints to obtain a cheaper superset problem;\n2. **local/resource inequalities:** sum certified per-coordinate minima like R6N/R6S exchange bounds;\n3. **LP/MILP/SMT relaxations:** use solver lower bounds / UNSAT depth certificates where available;\n4. **cut/packing bounds:** routing/connectivity or Pauli-commutation lower bounds;\n5. **dual bounds:** Lagrangian or convex-relaxation certificates;\n6. **decomposition bounds:** solve blocks exactly while dropping inter-block coupling;\n7. **complexity-theorem lower bounds:** parameter/gate-count minima when a theorem applies.\n\nEvery bound must declare exact assumptions and be independently reconstructible.\n\n## Strong prior-art subtraction\n\nExact/optimal quantum compilation and solver-based optimality certification are established:\n- SAT/SMT and exact synthesis methods certify optimal circuits on bounded instances;\n- 2026 Auto-Stabilizer-Check iteratively invokes SMT and certifies nonexistence of depth-6 syndrome-extraction circuits for IBM BB-code instances while returning near-optimal solutions on timeout;\n- formal compiler work routinely uses exact small-instance baselines and scalable heuristics.\n\nTherefore QG-10 cannot claim novelty for branch-and-bound, lower bounds, SMT UNSAT certificates, exact synthesis, or approximation gaps.\n\nThe candidate contribution is only the **regime-geometry layer built from heterogeneous certified bounds**, with explicit anti-laundering rules and prospective regime forecasts under partial exact knowledge.\n\n## Required calibration on existing exact families\n\nBefore touching a non-exact third family, hide exact ground truth and validate interval geometry on ORION-QG families where exact DP already exists.\n\n### C1 \u2014 R6M TARE blind-referee calibration\nFor all 9,547 QG-5b compared instances:\n- construct intervals using only registered lower-bound modules and feasible family witnesses;\n- hide `C_DP` from the interval classifier;\n- classify donor/split/borrow\u2032/unresolved;\n- only after classification reveal exact DP and score soundness.\n\nPrimary metrics:\n- **false certification rate must be 0**;\n- resolved fraction / coverage;\n- interval width;\n- regime precision conditional on certification;\n- lower-bound compute cost.\n\n### C2 \u2014 SixLCU calibration\nRepeat on QG-4 exhaustive domains. Test whether the pairs-only predicate and family bounds yield certified membership without reading exact optimum.\n\n### C3 \u2014 adversarial weakened bounds\nDeliberately remove one lower-bound source; resolved fraction should fall, but false certification must remain zero. This distinguishes a sound CANNOT_CHECK system from one that fills evidence gaps with guesses.\n\n## Third-family target\n\nAfter calibration, choose a materially different quantum compilation/resource family for which:\n- exact global optimum is unavailable at target size;\n- at least two meaningful restricted families and one global lower bound exist;\n- witness validity is efficiently checkable;\n- objective/access semantics are exact enough for matched comparison.\n\nCandidate classes to research, donor-first:\n- larger LCU/block-encoding PREP/SELECT synthesis;\n- Hamiltonian Pauli-rotation grouping/synthesis beyond exact enumeration;\n- qLDPC syndrome-extraction scheduling where SMT supplies lower bounds/certificates but not always full optimum;\n- hardware-constrained lattice-surgery/surface-code scheduling;\n- large Paulihedral/ZX extraction choices with independent gate/depth lower bounds.\n\nSelection must be prospectively frozen after donor review.\n\n## Certified forecast object\n\nA regime forecast may output only:\n\n- `CERTIFIED_DONOR_EXACT`\n- `CERTIFIED_TRADE_<id>`\n- `CERTIFIED_FAMILY_NONOPTIMAL_<id>`\n- `MULTIPLE_CERTIFIED_TIE`\n- `CANNOT_CHECK_INTERVAL_OVERLAP`\n\nand carries the exact interval endpoints/bound certificates that force the terminal.\n\n## Active bound acquisition\n\nWhen CANNOT_CHECK, ORION may choose an additional computation by value of information:\n- tighten the global lower bound;\n- optimize one family further to lower its upper bound;\n- prove/refute a coupling constraint;\n- split the instance into a regime-specific subproblem.\n\nThis uses ORION's existing epistemic computation layer; it is a research-cost policy, not part of the mathematical certification itself.\n\n## Dual harness\n\nGeneric ORION harness:\n- verifies every witness and lower-bound certificate independently;\n- runs blind-ground-truth calibration;\n- reconstructs interval-derived terminals.\n\nNative ORION-Q harness:\n- enforces non-overlap logic and CANNOT_CHECK;\n- prevents heuristic incumbent scores from entering lower-bound fields;\n- controls active bound acquisition under a frozen budget.\n\n## Success terminals\n\nCalibration success:\n`QG10_CERTIFIED_INTERVAL_GEOMETRY_SOUND__ZERO_FALSE_CERTIFICATIONS_ON_EXACT_CALIBRATION`\n\nThird-family positive:\n`QG10_INTERVAL_REGIME_GEOMETRY_TRANSFERRED_BEYOND_EXACT_REFEREE`\n\nHonest alternatives:\n- `QG10_BOUNDS_TOO_WEAK__MOSTLY_CANNOT_CHECK`\n- `QG10_FALSE_CERTIFICATION_FOUND`\n- `QG10_THIRD_FAMILY_DONOR_OWNS_OBJECT`\n- `QG10_CANNOT_CHECK`\n\n## Publication significance\n\nIf successful, this removes the largest scalability objection to ORION-QG. Exact regime geometry becomes one end of a spectrum; at larger scale the framework still makes **sound regime statements with abstention**, rather than silently replacing the exact referee by an optimizer heuristic.\n\nNo physical quantum-speedup claim follows.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T12:28:12Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 764,
+     "title": "[ORION-QG QG-11] Lift structural regime geometry into fault-tolerant hardware/QEC phase diagrams",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T12:30:04Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 765,
+     "title": "[ORION-QG QG-12] Certificate arity: when global quantum-compilation regime boundaries have low-order witnesses",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T12:48:31Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 740,
+     "title": "[PROGRAMME] ORION-QG \u2014 Compilation Regime Geometry: maps, trades, predicates and forecasts for compilation families",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T21:07:56Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 842,
+     "title": "[ORION-QG QG-10C] Interval-geometry closure calibration on exact families before third-family escalation",
+     "state": "CLOSED"
+    }
+   }
+  ]
+ }
+}

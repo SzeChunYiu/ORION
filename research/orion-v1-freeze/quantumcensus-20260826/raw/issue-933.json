@@ -1,0 +1,94 @@
+{
+ "number": 933,
+ "title": "[ORION-QG QG-36] Exact fair fixed-vs-adaptive post-summary composition",
+ "body": "Parent programme: #740.\nProspective baseline parent: QG-35 #932 (summary-conditioned nonadaptive fixed probe complexity; outcome unknown at freeze).\nEarned adaptive parent: QG-34 #924 (`D_* = 3` exact on the frozen 715-orbit / 92 joint-summary-class observation problem).\nEarned universal fixed context: QG-32c #928 (universal fixed minimum 5; context only, not the fair comparator).\n\n## Status\n\n**PROSPECTIVE COMPOSITION RULE. FREEZE BEFORE ANY QG-35 RESULT.**\n\nThe fair comparison must give fixed and adaptive policies the same side information: the joint bulk+spectrum summary class is known before any indexed probe is selected.\n\nQG-35 will earn, if exact, `F(S)` = minimum number of probes chosen after class `S` is known but fixed before response outcomes, and `F_* = max_S F(S)`.\nQG-34 has already earned `D_* = 3` for adaptive policies under the same known-class side information.\n\nQG-36 is a pure receipt composition. It performs no new search and must not inspect raw hidden compiler states beyond the two parent receipts.\n\n## Frozen decision table\n\nIf either parent lacks exact authority -> `QG36_CANNOT_CHECK`.\n\nIf `D_* > F_*` -> `QG36_PARENT_INCONSISTENCY__ADAPTIVE_WORSE_THAN_OPTIMAL_FIXED` because an adaptive policy can emulate any fixed policy.\n\nIf `D_* == F_*` -> `QG36_NO_STRICT_POSTSUMMARY_ADAPTIVITY_ADVANTAGE__EXACT_TIE`.\n\nIf `D_* < F_*` -> `QG36_TARE_POSTSUMMARY_ADAPTIVITY_STRICTLY_REDUCES_WORST_CASE_OBSERVATION_COUNT`.\n\nNo value of `F_*` is predicted.\n\n## Allowed positive interpretation\n\nOnly the strict branch may authorize:\n`TARE_POSTSUMMARY_ADAPTIVITY_STRICTLY_REDUCES_WORST_CASE_OBSERVATION_COUNT=true`.\n\nThis means only: conditional choice of the next indexed structural probe reduces worst-case **observation count** for identifying the frozen 715-way indexed local-response state after the joint summary is known.\n\nIt does not imply lower compilation cost, physical quantum advantage, hardware measurement optimality, or generic active-learning novelty.\n\n## Required composition checks\n\n- QG-34 exact adaptive receipt bound by hash and exact scope;\n- QG-35 exact class-conditioned fixed receipt bound by hash and exact scope;\n- same 715 orbits / 384 probes / 92 joint classes and same class ordering/hash;\n- `D(S) <= F(S)` for every one of the 92 classes, not only the maxima;\n- exact maxima recomputed from the parent class-depth/minimum arrays;\n- false-authority fields remain false.\n\n## Verification\n\nProduction composition: read only immutable QG-34/QG-35 committed receipts and apply the frozen decision table.\nGeneric ORION: independently recompute all 92 pointwise inequalities and maxima from the receipts.\nNative ORION-Q: authorize only the observation-count comparison.\nWorkflow: deterministic replay + self-consistent parent-array/max tamper rejection.\n\n## Hard boundaries\n\nAlways false:\n- compiler optimization-cost advantage;\n- hardware/measurement minimum;\n- full finite-n identification optimum;\n- generic adaptive-testing novelty;\n- autonomous skill-selection authority;\n- physical quantum advantage.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-23T18:26:47Z",
+    "body": "**Retraction notice (now on main via #926).** The headline this issue builds on is null-reproducible: the separation counts (`85/92`, `708/715`, `D_*=3 < F_*=4 < U_*=5`, the regret curve) are reproduced by a row-shuffle null, and `85 = 92\u22127` / `708 = 715\u22127` are identities forced by the class-size histogram frozen before any solver ran. See `development/orion-qg-regime-geometry/QG_RETRACTION_SELECTION_HEADLINES_V1.md` and `QG_ADVERSARIAL_REFEREE_REPORT.md`. What survives: C1(b) descriptor completeness (whose ceiling theorem is Lehmann 1959 per the lane's own prior-art audit), witness disjointness, and the depth-3 residual (16 classes / 168 masks vs null-A mean 8.9 / 384 \u2014 noting null B in the residual script is uninformative by construction, being exactly permutation-invariant). Work on this issue should either retarget the surviving residual or close as superseded.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/933#issuecomment-5387724960"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:45:01Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 934,
+     "title": "[ORION-QG QG-35] Exact summary-conditioned fixed probe baseline",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:58:01Z",
+     "mergeCommit": {
+      "oid": "2d6fbe9b9db8eaf1afda09466c8fdba60d24028d"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:50:54Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 936,
+     "title": "[ORION-QG QG-36] Frozen fair fixed-vs-adaptive receipt composition",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:58:05Z",
+     "mergeCommit": {
+      "oid": "59a0d8514596263c84da7ed5d614f8e71e70dfd1"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:57:17Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 937,
+     "title": "[ORION-QG QG-37] One-corruption-resilient indexed probe identification",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-23T18:26:26Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 926,
+     "title": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not stay ignorant of the null result",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T18:26:30Z",
+     "mergeCommit": {
+      "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4"
+     }
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   }
+  ]
+ }
+}

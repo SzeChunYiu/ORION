@@ -1,0 +1,50 @@
+{
+  "authority_ceiling": {
+    "external_validation": "NONE",
+    "internal_implementation_at_frozen_base": "AUDITABLE",
+    "paper_authority_delta": "NONE"
+  },
+  "bound_files": [
+    {
+      "bytes": 256,
+      "path": "DONOR_RESULT.json",
+      "sha256": "7dabf34d6ca1686ba2364c25863eae98f0c0bd65ade6b8f1032358ac6f1f42ad"
+    },
+    {
+      "bytes": 872,
+      "path": "FREEZE.json",
+      "sha256": "ad046e5ee852386abae95b3dd50671b091bca4c75bf270ba97eda32c2058ac8f"
+    },
+    {
+      "bytes": 383,
+      "path": "NEGATIVE_CONTROLS.json",
+      "sha256": "8650cb23519dfc81c4140e08f9abbd802331e64ea21833bf534b1a8070832942"
+    },
+    {
+      "bytes": 279,
+      "path": "PRIMARY_RESULT.json",
+      "sha256": "47bd78d6d6cb37a5a27fc7e4fae303c1063e7b3a527e331b10b95573eca18273"
+    },
+    {
+      "bytes": 6527,
+      "path": "RAW_MANIFEST.json",
+      "sha256": "aebd95f0470e9df689ff1dcd1fb7630dcfa6b3f8d750c5329f7ab4835c76c282"
+    },
+    {
+      "bytes": 190,
+      "path": "RESOURCE_LEDGER.json",
+      "sha256": "67a2e71261157e8bb177760c92903f4c8c7dec3f358608c7023bb8dee910e7e7"
+    },
+    {
+      "bytes": 178,
+      "path": "TRANSFER_RESULT.json",
+      "sha256": "aac6a31f8b2c88f49928d04cffbc4fb38e723b4df79d8b6720e3b317f558e3f8"
+    }
+  ],
+  "gap_ledger_binding": {
+    "census_artifact": "research/orion-v1-freeze/redcensus-20260826/complete/PRIMARY_RESULT.json",
+    "gap_id": "GAP-INTERNAL-RED-CENSUS",
+    "terminal": "V1_RED_CENSUS_COMPLETE"
+  },
+  "schema": "ORION.V1.RedCensusResultBindingPacket.v1"
+}

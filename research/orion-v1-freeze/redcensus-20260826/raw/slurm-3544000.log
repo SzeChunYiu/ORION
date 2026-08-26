@@ -1,0 +1,26 @@
+ENV BOUND OK
+### RUN fast :: python -m pytest -q --ignore=tests/unit/p2 --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/fast.xml -p no:cacheprovider
+fast rc=0 secs=1349
+### RUN p2-heavy-1 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 1 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-1.xml -p no:cacheprovider
+p2-heavy-1 rc=0 secs=90
+### RUN p2-heavy-2 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 2 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-2.xml -p no:cacheprovider
+p2-heavy-2 rc=0 secs=91
+### RUN p2-heavy-3 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 3 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-3.xml -p no:cacheprovider
+p2-heavy-3 rc=0 secs=95
+### RUN p2-heavy-4 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 4 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-4.xml -p no:cacheprovider
+p2-heavy-4 rc=0 secs=91
+### RUN p2-heavy-5 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 5 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-5.xml -p no:cacheprovider
+p2-heavy-5 rc=0 secs=9
+### RUN p2-heavy-6 :: python -m pytest -q tests/unit/p2/test_p2_offline_systems.py --splits 6 --group 6 -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-heavy-6.xml -p no:cacheprovider
+p2-heavy-6 rc=0 secs=10
+### RUN p2-rest :: python -m pytest -q tests/unit/p2 --ignore=tests/unit/p2/test_p2_offline_systems.py -n auto --durations=10 --junitxml=/projects/hep/fs9/users/scyiu/redcensus-out/p2-rest.xml -p no:cacheprovider
+p2-rest rc=0 secs=53
+=== EXIT CODES ===
+fast rc=0 secs=1349
+p2-heavy-1 rc=0 secs=90
+p2-heavy-2 rc=0 secs=91
+p2-heavy-3 rc=0 secs=95
+p2-heavy-4 rc=0 secs=91
+p2-heavy-5 rc=0 secs=9
+p2-heavy-6 rc=0 secs=10
+p2-rest rc=0 secs=53

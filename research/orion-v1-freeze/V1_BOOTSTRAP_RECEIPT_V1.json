@@ -1,0 +1,41 @@
+{
+  "acquisition_bindings": {
+    "open_issue_census": "research/orion-v1-freeze/census-20260826/complete/OPEN_ISSUES.json",
+    "open_issue_census_terminal": "V1_OPEN_ISSUE_CENSUS_COMPLETE",
+    "open_issue_denominator": 159
+  },
+  "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+  "base_tree": "5d5ff0985551b0a94453ea6eaa9925bda3e10fa2",
+  "counts": {
+    "components": 14,
+    "external_blockers": 3,
+    "gaps": 9,
+    "issues": 159,
+    "jobs": 8,
+    "manifest_files": 18,
+    "open_internal_gaps": 0,
+    "paper_candidates": 3,
+    "pending_issue_audits": 0,
+    "theorem_authority_rows": 10
+  },
+  "freeze_state": "FROZEN",
+  "generated_at_utc": "2026-08-26T05:40:07Z",
+  "open_conditions": [
+    "component content binding incomplete",
+    "theorem/authority census incomplete",
+    "149 of 159 open issues pending atomic audit",
+    "full red/build/checker census not yet executed on frozen base",
+    "13 Discovery V3 scientific jobs remain specification-blocked"
+  ],
+  "paper_authority_delta": "NONE",
+  "schema": "ORION.V1.BootstrapReceipt.v1",
+  "terminal": "NOT_EARNED",
+  "validation": {
+    "checker_terminal": "ORION_V1_FREEZE_BOOTSTRAP_GREEN",
+    "commands": [
+      "python scripts/check_orion_v1_freeze.py --json",
+      "python -m pytest -q tests/unit/orion_v1/test_orion_v1_freeze.py"
+    ],
+    "hostile_tests": 12
+  }
+}

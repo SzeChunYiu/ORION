@@ -1,0 +1,285 @@
+{
+ "number": 830,
+ "title": "[ORION-QG QG-9 ladder] R6I support \u22644 \u2192 \u22643 \u2192 \u22642 \u2192 \u22641 all-n theorems + QG-16 objective cone (conflict-resolved delivery)",
+ "state": "MERGED",
+ "merged": true,
+ "mergedAt": "2026-08-21T19:07:11Z",
+ "mergeCommit": {
+  "oid": "beea3034e2c33a8468268e6adef3f77ae385d846"
+ },
+ "files": {
+  "totalCount": 54,
+  "nodes": [
+   {
+    "path": ".github/workflows/orion-qg-qg16-support1-phase.yml",
+    "additions": 112,
+    "deletions": 0
+   },
+   {
+    "path": ".github/workflows/orion-qg-qg17-phase-sharpness.yml",
+    "additions": 110,
+    "deletions": 0
+   },
+   {
+    "path": ".github/workflows/orion-qg-qg9-support2-tightness.yml",
+    "additions": 99,
+    "deletions": 0
+   },
+   {
+    "path": ".github/workflows/orion-qg-qg9-support2.yml",
+    "additions": 90,
+    "deletions": 0
+   },
+   {
+    "path": ".github/workflows/orion-qg-qg9-support3.yml",
+    "additions": 89,
+    "deletions": 0
+   },
+   {
+    "path": ".github/workflows/orion-qg-qg9-support4.yml",
+    "additions": 89,
+    "deletions": 0
+   },
+   {
+    "path": ".github/workflows/orion-qg-qg9-v6-support1.yml",
+    "additions": 110,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG16_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+    "additions": 28,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG16_R6I_SUPPORT1_PHASE_PROTOCOL_V1.md",
+    "additions": 137,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG17_R6I_PHASE_SHARPNESS_PROTOCOL_V1.md",
+    "additions": 141,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG9_SUPPORT2_FULL_ACCEPTANCE_PROTOCOL_V1.md",
+    "additions": 97,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG9_SUPPORT2_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+    "additions": 28,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG9_SUPPORT2_TIGHTNESS_PROTOCOL_V1.md",
+    "additions": 71,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG9_SUPPORT3_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+    "additions": 37,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG9_SUPPORT3_RELABEL_EXCHANGE_PROTOCOL_V1.md",
+    "additions": 112,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG9_SUPPORT4_COMBINED_EXCHANGE_PROTOCOL_V1.md",
+    "additions": 95,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG9_SUPPORT4_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+    "additions": 41,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG9_V5_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+    "additions": 38,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG9_V6_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+    "additions": 43,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/QG9_V6_SUPPORT1_NORMALIZATION_PROTOCOL_V1.md",
+    "additions": 96,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg16_generic_verify.py",
+    "additions": 207,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg16_native_verify.py",
+    "additions": 62,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg17_generic_verify.py",
+    "additions": 238,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg17_native_verify.py",
+    "additions": 15,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg9_support2_generic_verify.py",
+    "additions": 31,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg9_support2_native_verify.py",
+    "additions": 15,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg9_support2_tightness_generic_verify.py",
+    "additions": 52,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg9_support2_tightness_native_verify.py",
+    "additions": 17,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg9_support3_generic_verify.py",
+    "additions": 117,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg9_support3_native_verify.py",
+    "additions": 15,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg9_support4_generic_verify.py",
+    "additions": 87,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg9_support4_native_verify.py",
+    "additions": 15,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg9_v6_generic_verify.py",
+    "additions": 203,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/qg9_v6_native_verify.py",
+    "additions": 63,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/run_qg16_dual_harness.py",
+    "additions": 100,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/run_qg17_dual_harness.py",
+    "additions": 30,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/run_qg9_support2_dual_harness.py",
+    "additions": 26,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/run_qg9_support2_tightness_dual_harness.py",
+    "additions": 27,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/run_qg9_support3_dual_harness.py",
+    "additions": 26,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/run_qg9_support4_dual_harness.py",
+    "additions": 26,
+    "deletions": 0
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/run_qg9_v6_dual_harness.py",
+    "additions": 99,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/QG16_R6I_SUPPORT1_PHASE_RESULTS.json",
+    "additions": 46,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/QG9_SUPPORT2_FULL_ACCEPTANCE_RESULTS.json",
+    "additions": 52,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/QG9_SUPPORT3_RELABEL_EXCHANGE_RESULTS.json",
+    "additions": 55,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/QG9_SUPPORT4_COMBINED_EXCHANGE_RESULTS.json",
+    "additions": 82,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/QG9_V5_SUPPORT2_TIGHTNESS_RESULTS.json",
+    "additions": 54,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json",
+    "additions": 68,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/qg16_r6i_support1_phase.py",
+    "additions": 343,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/qg17_r6i_phase_sharpness.py",
+    "additions": 452,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/qg9_support2_full_acceptance.py",
+    "additions": 97,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/qg9_support2_tightness.py",
+    "additions": 164,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/qg9_support3_relabel_exchange.py",
+    "additions": 135,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/qg9_support4_combined_exchange.py",
+    "additions": 182,
+    "deletions": 0
+   },
+   {
+    "path": "research/extensions/orion-qg/qg9_v6_support1_normalization.py",
+    "additions": 543,
+    "deletions": 0
+   }
+  ]
+ }
+}

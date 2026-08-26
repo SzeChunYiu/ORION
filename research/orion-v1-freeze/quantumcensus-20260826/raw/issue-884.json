@@ -1,0 +1,95 @@
+{
+ "number": 884,
+ "title": "[ORION-QG QG-26] Parikh-histogram kernel and finite guarded tropical regime geometry for all-n TARE",
+ "body": "Parent programme: #740.\nPrimary structural parent: QG-23 #879 / PR #882, protected GREEN auxiliary-support theorem (`|U_aux|<=6` all n).\nRelated parent: QG-24 #880 / PR #883 finite tropical weighted-automaton lane (independent route; QG-26 does not require QG-24 for its core histogram theorem).\nMethod donors: Parikh images, commutative automata/rational series, Presburger/semilinear geometry, tropical/min-plus piecewise-affine functions.\n\n## Status\n\n**PROSPECTIVE COMMUTATIVE REGIME-GEOMETRY THEOREM \u2014 freeze before template enumeration/outcome.**\n\nQG-23 earns that after the all-n QG-7c reductions there exists an optimum whose entire nontrivial auxiliary support\n\n`U_aux = supp(Tag) union all frame-support / phantom-home coordinates`\n\nhas cardinality at most six. (For A/C, frame support is on Tag coordinates; for P, the only extra coordinate is its one Tag-free home.)\n\nOutside `U_aux`, every frame and Tag letter is identity. Therefore Restore letters equal the target letters there, and the F3 contribution of a spectator coordinate is fixed once the global target-permutation tuple is fixed.\n\nThis suggests a stronger exact representation in **column-count space** rather than word/order space.\n\n## Q1 \u2014 Parikh / histogram state\n\nFor a fixed matching, each qubit column is one type\n\n`t in Sigma = {I,X,Y,Z}^6`, `|Sigma|=4096`.\n\nLet `N_t` be the number of physical qubits with type t. The vector\n\n`N=(N_t)_{t in Sigma} in N^4096`\n\nis the Parikh/histogram image of the six-target instance.\n\nSimultaneously permuting physical qubit coordinates does not change Pauli weights, symplectic products, the F3 rule, Tag/frame feasibility or the frozen unit objective. QG-26 must machine-bind this permutation invariance rather than assume it from terminology.\n\n## Q2 \u2014 spectator baseline\n\nFor each of the 8 target-permutation tuples `pi`, define the exact linear spectator baseline\n\n`B_pi(N) = sum_t N_t * b_pi(t)`,\n\nwhere `b_pi(t)` is the two-branch F3 cost of target column type t when all six frame letters and the Tag letter are identity.\n\nAll `b_pi(t)` are integers derived from the frozen 64-entry F3 table. There are exactly 8 baseline coefficient vectors in `Z^4096`.\n\n## Q3 \u2014 finite active templates\n\nAn **active template** tau records, up to permutation of active coordinates:\n- one of the 8 target-permutation tuples;\n- one of the 8 central-bit tuples;\n- `k<=6` active column types (with multiplicity);\n- on each active coordinate, six local frame letters plus one Tag letter;\n- the accumulated six frame-support counts, three frame-pair symplectic parities and six Tag/frame syndrome parities;\n- final exact R6M acceptance.\n\nRequire that every listed active coordinate actually contains at least one nonidentity auxiliary letter. Frames/Tag are identity on every unlisted coordinate.\n\nBecause `k<=6`, the target alphabet and local auxiliary alphabet are finite, the complete semantic template universe is finite and independent of physical n.\n\nNo claim is made that the explicit universe is small.\n\n## Q4 \u2014 guarded affine cost of one template\n\nFor one accepted template tau with target-type multiplicities `m_tau(t)`, feasibility on histogram N is the finite threshold guard\n\n`N_t >= m_tau(t)` for every t used by tau.\n\nFor every feasible N, tau has exact cost\n\n`C_tau(N) = B_pi(N) + K_tau`,\n\nwhere `K_tau` is an integer constant equal to:\n- exact frame/Tag structural cost of the active auxiliary letters (including the frozen -18 offset), plus\n- on each active coordinate, `F3_restore_with_aux - b_pi(target_type)`.\n\nThus each template contributes one affine function over an upward-closed integer guard region.\n\n## Q5 \u2014 exact all-n finite guarded tropical representation\n\nProve both directions:\n\n1. Every QG-23-normalized optimal configuration determines one accepted template tau of size <=6, so its cost is represented by `C_tau(N)`.\n2. Every accepted template whose multiplicity guard is satisfied can be realized by assigning its active entries to distinct physical columns of the required types; the resulting full configuration is original-R6M admissible and has exactly `C_tau(N)`.\n\nTherefore, on every valid six-target histogram,\n\n`C_DP(N) = min_{tau feasible on N} [B_{pi(tau)}(N) + K_tau]`.\n\nEquivalently, exact all-n TARE cost factors through the 4096-dimensional column histogram and is a **finite guarded tropical/min-affine function** of N.\n\nThis is the core QG-26 theorem.\n\n## Q6 \u2014 exact regime cells in count space\n\nEach template's guard is Presburger/semilinear (`N_t>=m_t`), and pairwise cost ties/dominance are integer affine inequalities because baselines are linear and corrections constant.\n\nHence the valid histogram cone admits a finite partition into exact integer polyhedral/semilinear cells on which one finite set of templates is optimal.\n\nCandidate compiler-specific science:\n- an all-n exact **count-space regime geometry**;\n- finite template identities for every exact compiler regime;\n- exact tie walls/multicritical cells in target-column-count space;\n- a direct connection between QG-5/QG-5b forecasting and the complete (possibly enormous) template basis.\n\nGeneric Presburger/tropical cell decomposition receives zero novelty credit.\n\n## Q7 \u2014 strong compression consequences\n\nThe theorem may state only:\n- target qubit **order** is irrelevant; the histogram is sufficient;\n- after an O(n) histogram pass, dependence on physical n enters only through the 4096 integer counts;\n- the active auxiliary correction needs at most six selected histogram occurrences.\n\nDo not claim a practical constant-time compiler without an explicit tractable template representation.\n\nA successor may seek symmetry quotienting of the 4096 types or a compact generated template/test-set basis.\n\n## Q8 \u2014 hostile controls\n\nMandatory controls:\n- QG-7f's weight-3 overlapping comm-s2 configuration must be representable; no hidden common-two-coordinate assumption;\n- QG-22/QG-7e show local environment information matters, so active target-column types must be retained exactly rather than collapsed to natural low-order features;\n- spectator target contributions may depend on the global target permutation, hence all 8 baselines must remain distinct until machine equality proves otherwise.\n\n## Independent generic ORION\n\nGeneric ORION must independently reconstruct phase-free Pauli/F3 algebra and verify:\n- qubit-permutation invariance;\n- the 8 spectator baseline vectors;\n- template cost decomposition on a frozen exhaustive small template domain;\n- histogram-realization bijection for serialized templates;\n- no dependence on physical coordinate identities remains after type/multiplicity replacement.\n\nIt need not enumerate the complete astronomical template universe to prove finiteness; it must prove the finite bound and decomposition structurally.\n\n## Native ORION-Q\n\nKeep distinct:\n- `HISTOGRAM_SUFFICIENT_STATISTIC_ALL_N`;\n- `FINITE_GUARDED_TROPICAL_TEMPLATE_REPRESENTATION`;\n- `EXPLICIT_TEMPLATE_BASIS_ENUMERATED`;\n- `PRACTICAL_STATIC_FORECASTER`;\n- `CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS`;\n- `CHAIN_ALL_N`.\n\nOnly the first two are candidate V1 authorities.\n\n## Strong intended terminal\n\n`QG26_TARE_EXACT_COST_IS_FINITE_GUARDED_TROPICAL_FUNCTION_OF_4096_COLUMN_COUNTS_ALL_N`\n\nHonest alternatives:\n- `QG26_QG23_AUX_SUPPORT_BINDING_GAP`\n- `QG26_SPECTATOR_BASELINE_NOT_AFFINE__MISSING_COUPLING`\n- `QG26_HISTOGRAM_REALIZATION_COUNTEREXAMPLE`\n- `QG26_GENERIC_NATIVE_DISAGREEMENT`\n- `QG26_CANNOT_CHECK`\n\n## Donor subtraction / novelty boundary\n\nParikh images, commutative monoids, rational/weighted series, Presburger arithmetic, semilinear sets, tropical polynomials and finite min-affine decompositions are established theory and receive zero novelty credit. Candidate contribution is only the exact TARE-specific all-n histogram sufficiency theorem, six-active-column correction structure, and resulting compiler regime geometry. No R6 or physical quantum-advantage authority is requested.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T09:15:39Z",
+    "body": "QG-26 protected execution is GREEN on PR #885.\n\nEarned terminal: `QG26_TARE_EXACT_COST_IS_FINITE_GUARDED_TROPICAL_FUNCTION_OF_4096_COLUMN_COUNTS_ALL_N`.\n\nProtected facts:\n- exact target-column histogram dimension 4096; physical qubit order is irrelevant for the frozen grammar;\n- 8 target-permutation spectator baselines collapse to **4 distinct exact coefficient vectors**, paired by complementary branch flips: 000~111, 001~110, 010~101, 011~100;\n- every baseline vector has coefficient histogram `{0:1,1:24,2:198,3:696,4:1305,5:1296,6:576}`;\n- QG-23 caps an optimum's nontrivial auxiliary correction to <=6 target-column occurrences;\n- exact all-n form: `C_DP(N)=min_{tau feasible}[B_pi(tau)(N)+K_tau]` with finite multiplicity guards `N_t>=m_tau(t)`;\n- hence an exact finite semilinear/integer-polyhedral optimal-template regime geometry exists in target-column-count space;\n- exhaustive controls: 1,572,864 one-active decomposition rows, 131,072 structural-cost rows, 768 equal-type placement controls, zero mismatches;\n- finite ordered template-universe witness has active labeled-choice base 67,104,768 and 49-digit upper bound `5843866091514747548682615357344867751387234828288` (finiteness only, not tractability);\n- generic ORION and native ORION-Q both ACCEPT; deterministic analyzer replay byte-identical.\n\nProtected result: `research/extensions/orion-qg/QG26_PARIKH_HISTOGRAM_RESULTS.json`, commit `9313d86a9a2c5dcbff17a7fd7202e9d247b0cf23`.\n\nAuthority remains separated: explicit template basis, practical forecaster, chain closure, B'' completeness and global objective-space phase boundary remain false.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/884#issuecomment-5379499908"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:04:51Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 740,
+     "title": "[PROGRAMME] ORION-QG \u2014 Compilation Regime Geometry: maps, trades, predicates and forecasts for compilation families",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:10:51Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 885,
+     "title": "[ORION-QG QG-26] Exact all-n TARE regime geometry in target-column histogram space",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:56:39Z",
+     "mergeCommit": {
+      "oid": "9ea1f43a61a824e1dcfae96b6b9df1b1831bae1d"
+     }
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:16:46Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 886,
+     "title": "[ORION-QG QG-27] Bulk-defect law and thermodynamic cost density for all-n TARE",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:25:37Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 888,
+     "title": "[ORION-QG QG-28] Exact local-Clifford orbit compression of TARE column-count geometry from 4096 to 715 types",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:31:05Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 890,
+     "title": "[ORION-QG QG-29] Six-count defect saturation and universal k<=43 affine crossover on TARE scaling rays",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

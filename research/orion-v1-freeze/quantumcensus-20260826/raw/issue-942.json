@@ -1,0 +1,76 @@
+{
+ "number": 942,
+ "title": "[ORION-QG QG-38] Exact observation-cost hierarchy: adaptive 3 < conditioned fixed 4 < universal fixed 5",
+ "body": "## Question\nUnder the identical QG-32 indexed local-response semantics and the same known joint bulk+spectrum summary partition, compose the already-earned exact authorities without changing their scientific problems:\n\n1. `D*`: worst-case class-conditioned **adaptive** observation depth (QG-34/QG-36).\n2. `F*`: worst-case class-conditioned **nonadaptive fixed-set** minimum, where the fixed set may depend on the known summary class (QG-35/QG-36).\n3. `U*`: minimum **one universal nonadaptive fixed set** that works across all 715 indexed identities after the same summaries (QG-32c).\n\n## Frozen decision table\nA positive exact hierarchy is allowed only if all parent receipts are authority-bearing, independently accepted, bind the same QG-32 parent hash / 715-orbit / 384-probe / 92-summary universe, and mechanically yield `D* < F* < U*`. A tie or reversed inequality must be emitted as its own exact terminal. Any parent/provenance/semantic mismatch is `CANNOT_CHECK`.\n\n## Required outputs\n- exact `(D*, F*, U*)`;\n- both gaps and ratios, without interpreting them as hardware/runtime advantage;\n- semantic labels for what information is available before probe choice;\n- independent receipt-only verifier agreement;\n- deterministic replay;\n- tamper tests for each parent value/hash;\n- hard-false fields for hardware measurement minimum, full finite-n compiler optimum probe minimum, compiler runtime/cost advantage, generic active-learning novelty, and physical quantum advantage.\n\n## Claim ceiling\nThis is a theorem about exact **observation complexity for the frozen indexed-identity query**, not an experimental runtime speedup and not a hardware-measurement lower bound. It is a receipt-only composition of already-earned exact parents; no blinded/prospective novelty credit is claimed for the numeric ordering itself.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-23T18:26:48Z",
+    "body": "**Retraction notice (now on main via #926).** The headline this issue builds on is null-reproducible: the separation counts (`85/92`, `708/715`, `D_*=3 < F_*=4 < U_*=5`, the regret curve) are reproduced by a row-shuffle null, and `85 = 92\u22127` / `708 = 715\u22127` are identities forced by the class-size histogram frozen before any solver ran. See `development/orion-qg-regime-geometry/QG_RETRACTION_SELECTION_HEADLINES_V1.md` and `QG_ADVERSARIAL_REFEREE_REPORT.md`. What survives: C1(b) descriptor completeness (whose ceiling theorem is Lehmann 1959 per the lane's own prior-art audit), witness disjointness, and the depth-3 residual (16 classes / 168 masks vs null-A mean 8.9 / 384 \u2014 noting null B in the residual script is uninformative by construction, being exactly permutation-invariant). Work on this issue should either retarget the surviving residual or close as superseded.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/942#issuecomment-5387725058"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T20:53:25Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 944,
+     "title": "[ORION-QG QG-38] Exact 3 < 4 < 5 observation-cost hierarchy",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:59:00Z",
+     "mergeCommit": {
+      "oid": "e3ff9d118184148a619ed25c486894440b73c851"
+     }
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:15:30Z",
+    "commit": {
+     "oid": "865f65e3e8db1b5dc38e978fab165365a8e8cc3c",
+     "messageHeadline": "ORION-QG: independent confirmation of the 3 < 4 < 5 observation-cost \u2026"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-23T18:26:26Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 926,
+     "title": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not stay ignorant of the null result",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T18:26:30Z",
+     "mergeCommit": {
+      "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4"
+     }
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-23T18:26:32Z",
+    "commit": {
+     "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4",
+     "messageHeadline": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not\u2026"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   }
+  ]
+ }
+}

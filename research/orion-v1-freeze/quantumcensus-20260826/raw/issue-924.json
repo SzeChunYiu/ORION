@@ -1,0 +1,244 @@
+{
+ "number": 924,
+ "title": "[ORION-QG QG-34] Exact adaptive probe tree above joint bulk+spectrum summaries",
+ "body": "Parent programme: #740.\nDirect earned parent: QG-32 #911 certified five-probe fixed upper bound above joint bulk+spectrum summaries.\nRelated exact successor: QG-32b #918 (fixed <=4 feasibility, outcome intentionally not assumed here).\nORION-Q transfer parent: MAX-R4E #903.\nDonor methods: decision-tree minimization, adaptive testing, twenty-questions/identification trees, active feature acquisition, dynamic programming on partitions.\n\n## Status\n\n**PROSPECTIVE ADAPTIVE FRONTIER. FREEZE BEFORE ANY ADAPTIVE DEPTH OUTCOME.**\n\nQG-32 reconstructs 92 exact joint `(bulk signature, unlabeled defect spectrum)` classes over 715 local-Clifford orbit types and certifies that five fixed indexed probes suffice to recover the complete indexed local-response identity. QG-32 explicitly does **not** authorize adaptive-tree optimality.\n\nQG-34 asks a different question:\n\n> If the next indexed probe may be chosen as a function of previous probe outcomes, what is the exact minimum worst-case number of probes needed to identify the 715-way indexed local-response state after the cheap joint summaries are known?\n\nNo adaptive depth is predicted. QG-34 does not depend on whether QG-32b later proves the fixed minimum is 5 or finds a <=4 fixed witness.\n\n## Q1 \u2014 exact post-summary identification states\n\nReconstruct from primitives:\n- 715 orbit types;\n- 92 joint summary classes;\n- 384 probe response coordinates;\n- within each joint class, the exact response table.\n\nEach initial joint class is an identification state `S`. A probe partitions `S` by exact integer K response.\n\n## Q2 \u2014 minimax adaptive depth\n\nFor any non-singleton state `S`, define\n\n`D(S) = 1 + min_p max_v D({o in S : K_p(o)=v})`,\n\nwith `D(singleton)=0`, where probes that do not split `S` are ignored.\n\nPrimary target:\n\n`D_* = max over the 92 initial joint classes D(S)`.\n\nThis is the minimum worst-case number of additional indexed probes required after the joint summaries.\n\nRequired output:\n- exact `D(S)` histogram across initial joint classes;\n- worst classes;\n- a canonical policy/tree for at least one worst class;\n- exact verification that every leaf is a singleton orbit type;\n- total unique DP states visited / memoized.\n\n## Q3 \u2014 lower-bound certificate\n\nA positive exact depth claim requires an independent lower bound, not only a constructed tree.\n\nAllowed lower bounds include:\n- exact dynamic-programming Bellman proof over every reachable subset state;\n- per-state response-arity information lower bounds when tight;\n- independently replayable infeasibility of depth `d-1` for every worst class.\n\nProduction may use memoized minimax DP; generic ORION must independently reconstruct the response partitions and re-derive `D_*` using a separate DP implementation / state encoding.\n\n## Q4 \u2014 expected-depth secondary objective\n\nOnly after worst-case minimax depth is sealed, optionally compute expected probe depth under frozen priors:\n1. uniform over the 715 orbit types;\n2. raw-column prior induced by the QG-28 4096-type orbit multiplicities.\n\nDo not tune the minimax tree after seeing expected-depth outcomes unless registered as a separate lexicographic optimization stage.\n\n## Q5 \u2014 fixed-vs-adaptive separation\n\nCompare, without laundering authority:\n- QG-32 certified fixed upper bound 5;\n- QG-32b exact fixed minimum if/when independently earned;\n- QG-34 exact adaptive worst-case depth.\n\nIf adaptive depth is strictly below the exact fixed minimum, QG-34 may authorize a compiler-specific **adaptivity advantage in observation count** for this identification problem only.\n\nThis is not a quantum computational advantage and not a hardware-measurement statement.\n\n## Q6 \u2014 ORION-Q interpretation\n\nIf exact adaptive depth is small, ORION-Q may use the result as a domain-specific active-verification operator:\n- carry cheap joint summaries by default;\n- ask the next indexed structural probe conditionally on prior answers;\n- stop exactly when the local-response identity is determined.\n\nIf adaptive depth remains large, that is an information-barrier result and should tell ORION-Q not to expect cheap adaptive recovery.\n\n## Independent verification\n\nProduction:\n- exact memoized minimax DP over response-induced subset states;\n- parent bindings after reconstruction.\n\nGeneric ORION:\n- independent F2^2/F3 reconstruction and independent subset-state DP encoding/order;\n- verify every claimed policy split and depth.\n\nNative ORION-Q:\n- query-scoped adaptive identification authority only.\n\nWorkflow must include deterministic replay and a self-consistent depth/policy tamper that the generic verifier rejects.\n\n## Hard boundaries\n\nMandatory false:\n- fixed-probe minimum unless separately earned;\n- full finite-n optimum identification depth;\n- physical/hardware measurement minimum;\n- generic adaptive-testing novelty;\n- physical quantum advantage.\n\n## Allowed terminals\n\n- `QG34_EXACT_MINIMAX_ADAPTIVE_PROBE_DEPTH_MACHINE_CHECKED`\n- `QG34_ADAPTIVE_POLICY_UPPER_BOUND_ONLY`\n- `QG34_CANNOT_CHECK`\n\n## Donor subtraction\n\nAdaptive decision trees and minimax identification are donor methods. Candidate value is the exact TARE-specific observation tree and its query-scoped active-verification consequence.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T18:40:34Z",
+    "body": "Protected QG-34 run is GREEN end-to-end on its first execution. Exact adaptive minimax result on the frozen 715-orbit / 92 joint-summary-class observation problem:\n\n- worst-case adaptive depth `D_* = 3`;\n- class-depth histogram: `{0:7, 1:30, 2:39, 3:16}`;\n- orbit-mass histogram: `{0:7, 1:72, 2:282, 3:354}`;\n- 16 worst classes, including both size-48 classes;\n- production exact subset-mask DP made 1,065 memoized feasibility calls; independent generic ORION used global-orbit tuple states and reproduced every one of the 92 depths exactly;\n- the serialized first worst-class policy has depth 3 and 12 singleton leaves; policy tamper was rejected; native/replay/authority gates passed.\n\nThis earns exact adaptive minimax authority for the frozen post-summary identification query. It does **not** yet earn a strict adaptivity advantage: QG-32c's exact minimum 5 is for one universal fixed set, whereas QG-34 conditions on the known summary class. QG-35 #932 was frozen before this QG-34 outcome to compute the fair summary-conditioned nonadaptive baseline `F_*`.\n\nSealed files: `research/extensions/orion-qg/QG34_ADAPTIVE_PROBE_TREE_RESULTS.json` and `development/orion-qg-regime-geometry/QG34_PROTECTED_RUN_RECEIPT_2026-08-22.json`. Stronger hardware/full-finite/global-state/novelty/physical-advantage claims remain false.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/924#issuecomment-5381986917"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T16:53:13Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 926,
+     "title": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not stay ignorant of the null result",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T18:26:30Z",
+     "mergeCommit": {
+      "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4"
+     }
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T17:28:43Z",
+    "commit": {
+     "oid": "fc961b58795dbe68e8271aa5cf1463b61d2e18c7",
+     "messageHeadline": "ORION-QG: C1 decided -- the defect spectrum IS the maximal symmetry q\u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T17:37:53Z",
+    "commit": {
+     "oid": "2a1f1ea41575705fcc15dea1fe11fdb240f306ee",
+     "messageHeadline": "ORION-QG QG-34: pre-outcome freeze of the adaptive probe tree atom"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T17:46:55Z",
+    "commit": {
+     "oid": "ccf31548e5dd517ba840634957df41c9eb17de5e",
+     "messageHeadline": "ORION-QG QG-34: exact minimax adaptive probe depth D_* = 3"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T18:22:39Z",
+    "commit": {
+     "oid": "382d01e56a83175e62132e6a05bf74263c2fbb13",
+     "messageHeadline": "ORION-QG: Check B correction + assimilation ledger for the symmetry/i\u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T18:29:15Z",
+    "commit": {
+     "oid": "3d44ce6bb62324661e9a291d72648f7eb5984b0d",
+     "messageHeadline": "ORION-QG QG-35: existence is free, selection is provably not"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T18:37:06Z",
+    "commit": {
+     "oid": "538dbdc3d315fbec4f71ff72d961e1f9f59380b1",
+     "messageHeadline": "ORION-QG: the cost-annotated ladder is a COSTUME -- tested negative, \u2026"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:37:54Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 931,
+     "title": "[ORION-QG QG-34] Exact adaptive post-summary probe tree",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:57:56Z",
+     "mergeCommit": {
+      "oid": "5bd853d51534f86cd1496e4122cddb08f16f2974"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:38:38Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 932,
+     "title": "[ORION-QG QG-35] Summary-conditioned fixed probe complexity: fair baseline for adaptive identification",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T18:41:33Z",
+    "commit": {
+     "oid": "dd29b99b6489cbac3082ac2b6954372a9f587149",
+     "messageHeadline": "ORION-QG QG-36: at instance level, existence is not free either"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:42:12Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 933,
+     "title": "[ORION-QG QG-36] Exact fair fixed-vs-adaptive post-summary composition",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:57:17Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 937,
+     "title": "[ORION-QG QG-37] One-corruption-resilient indexed probe identification",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T20:58:12Z",
+    "commit": {
+     "oid": "abdcf322a657583db3af5a1d944246d377522a77",
+     "messageHeadline": "ORION-QG QG-35b: the price of selection, and of actionability"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:15:30Z",
+    "commit": {
+     "oid": "865f65e3e8db1b5dc38e978fab165365a8e8cc3c",
+     "messageHeadline": "ORION-QG: independent confirmation of the 3 < 4 < 5 observation-cost \u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:23:10Z",
+    "commit": {
+     "oid": "1190d6de28bd011bdcab5df05b9d92ca3bbf297f",
+     "messageHeadline": "ORION-QG QG-39: what the impossibility costs -- the selection regret \u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:39:00Z",
+    "commit": {
+     "oid": "0196290375c095f9d9709e2df143c8aab374e8ef",
+     "messageHeadline": "ORION-QG QG-40: the selection phenomenon reproduces in a production c\u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:41:35Z",
+    "commit": {
+     "oid": "ac6ca0cf92ab3b6b2befb87fd518e90244173bab",
+     "messageHeadline": "ORION-QG QG-41: the separation holds on SixLCU, and exposes a middle \u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:49:25Z",
+    "commit": {
+     "oid": "25a3623a6cbe20e381d156b8690468e6ed2a19c3",
+     "messageHeadline": "ORION-QG: one-command reproduction + falsification ledger"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T22:07:00Z",
+    "commit": {
+     "oid": "f4356f62c6087a0a6ead73cbe47a2bd4c67529d2",
+     "messageHeadline": "ORION-QG QG-42: the selection phenomenon in two production compilers,\u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T22:34:39Z",
+    "commit": {
+     "oid": "b502365c2948debc4576d41f83a1c6b7ffc3dfca",
+     "messageHeadline": "RETRACTION: the QG-35 headline separation counts are null-reproducible"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T22:50:20Z",
+    "commit": {
+     "oid": "407d0af82b23b13b7d1b9b40a8d22fa09eb68c50",
+     "messageHeadline": "QG: the cost-calibration gap is closed by being resolved -- verdict (c)"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-23T01:56:22Z",
+    "commit": {
+     "oid": "87a8c096e46b57e4b4946fad985eeafb6ddf72b6",
+     "messageHeadline": "QG: the residual is real -- and it is probe degeneracy, not depth"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-23T18:26:32Z",
+    "commit": {
+     "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4",
+     "messageHeadline": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not\u2026"
+    }
+   }
+  ]
+ }
+}

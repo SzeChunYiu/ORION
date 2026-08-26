@@ -1,0 +1,2500 @@
+{
+  "authority_delta": "NONE",
+  "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+  "components": {
+    "CERTIFIED_ALGORITHMIC_NAVIGATION": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "kind": "blob",
+          "oid": "313ec911bd9faa9bd69e353416b3867ecd65271e",
+          "path": "src/orion/__init__.py",
+          "sha256": "064cba301aa424e82d1f13c34b4bc4143877c1a9c212f686e6759037c51699f2"
+        },
+        {
+          "kind": "blob",
+          "oid": "f9042704a7d3607cf329f3d424d312c5022c24d5",
+          "path": "src/orion/adoption.py",
+          "sha256": "f70d224ce9e6a6ecf1ec2e4a6e71cc6b80cbfd98b541d1680445fcbc4c5512db"
+        },
+        {
+          "files": 25,
+          "kind": "tree",
+          "oid": "906c5536552509193ac3d6a38b085f2922a6fbe1",
+          "path": "src/orion/benchmarks/"
+        },
+        {
+          "kind": "blob",
+          "oid": "bc2a94fdc737d76483781542862e51480b6a0558",
+          "path": "src/orion/conformance.py",
+          "sha256": "7c2287f0291a01e53d5430c1c517263a11bf236f096d9bb22e207302d23923ed"
+        },
+        {
+          "files": 18,
+          "kind": "tree",
+          "oid": "9888c06b1efa77de819950f04c7c9340ef2249cd",
+          "path": "src/orion/core/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "b974bf13541318df8533f7f3b84fb8fcc90ddd56",
+          "path": "src/orion/development/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "f6285cecef13fd4dc9a0639425186ae79382918d",
+          "path": "src/orion/donors/"
+        },
+        {
+          "files": 25,
+          "kind": "tree",
+          "oid": "04a2290d038c4e1dbfb3038e5abc98da48865699",
+          "path": "src/orion/engine/"
+        },
+        {
+          "files": 6,
+          "kind": "tree",
+          "oid": "a78cdb57cbf0cbd82f25474e9c3a6c8f08cfd771",
+          "path": "src/orion/experience/"
+        },
+        {
+          "files": 5,
+          "kind": "tree",
+          "oid": "adaf36b9d1ddfb8245e7c4509a34e8e7a8ba0df5",
+          "path": "src/orion/goal_evolution/"
+        },
+        {
+          "files": 32,
+          "kind": "tree",
+          "oid": "e1b90a0889a819c1f2c14d7cca53c6a7b83aa722",
+          "path": "src/orion/knowledge/"
+        },
+        {
+          "files": 32,
+          "kind": "tree",
+          "oid": "fc0935f7c70349a1d88836dab5e70f16610dbb3d",
+          "path": "src/orion/mechanics/"
+        },
+        {
+          "files": 10,
+          "kind": "tree",
+          "oid": "2c9182002a3c5d00c16bf2915dee7983a39e0e95",
+          "path": "src/orion/novelty/"
+        },
+        {
+          "files": 59,
+          "kind": "tree",
+          "oid": "6d8c9895a1b7e05c468cc5f2ee32201a587bc756",
+          "path": "src/orion/programme/"
+        },
+        {
+          "files": 39,
+          "kind": "tree",
+          "oid": "6de8760568bb7367135c58af7a4038ed56e2e46e",
+          "path": "src/orion/providers/"
+        },
+        {
+          "files": 6,
+          "kind": "tree",
+          "oid": "07182d7ff241be46d2bf2ab02cd5abc7bf1445ef",
+          "path": "src/orion/publication/"
+        },
+        {
+          "files": 5,
+          "kind": "tree",
+          "oid": "cd9197fa71c2d3f12efb2cf0a5aa256720971ac3",
+          "path": "src/orion/quantum/"
+        },
+        {
+          "kind": "blob",
+          "oid": "f26b4cd49b4d99d472fcdff3ab447f1920744be5",
+          "path": "src/orion/registry.py",
+          "sha256": "49f342e01d855bb4b4c37ad95b3dbeb0eeb3bdb14b24f165c02272736229f9de"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "2dd2729e6454e6679f44a9d545a6c44e42075f43",
+          "path": "src/orion/runtime/"
+        },
+        {
+          "files": 60,
+          "kind": "tree",
+          "oid": "4b0a371d8353b98ce7c98d09833e0c2dac6bd214",
+          "path": "src/orion/self_orion/"
+        },
+        {
+          "files": 257,
+          "kind": "tree",
+          "oid": "9eaafeacc31f6604e845bb77eff612e1a0678567",
+          "path": "src/orion/study/"
+        },
+        {
+          "files": 54,
+          "kind": "tree",
+          "oid": "f46c2b6b460f557afce7eb72962446fcdb119ac6",
+          "path": "src/orion/transfer/"
+        }
+      ]
+    },
+    "DISCOVERY_SYNTHESIS_MODES": {
+      "absent_paths": [
+        "src/orion/discovery/synthesis_modes.py",
+        "src/orion/discovery/structural_navigation.py"
+      ],
+      "bindings": []
+    },
+    "DYNAMIC_EPISTEMIC_STATE": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 321,
+          "kind": "tree",
+          "oid": "4fb5dcab2637649e553a0a2ae593157f72398546",
+          "path": "research/orion-epistemic-state-v1/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "ae1c6485e10890d254c473908f2545703667b3dd",
+          "path": "src/orion/epistemic_state_v1/"
+        }
+      ]
+    },
+    "EXECUTION_INTEGRITY_AND_RECEIPTS": {
+      "absent_paths": [
+        "src/orion/execution/"
+      ],
+      "bindings": [
+        {
+          "files": 170,
+          "kind": "tree",
+          "oid": "a8687e4ae24d4c882ad3320b2f56a83d40a0d918",
+          "path": "packages/orion-research-harness/"
+        },
+        {
+          "files": 33,
+          "kind": "tree",
+          "oid": "1d1602e456cc85c73f430bd4543583b5142c9196",
+          "path": "src/orion/kernel/"
+        }
+      ]
+    },
+    "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "797dd7556e0d73b7b97ff6b1e8d629bc6f57accd",
+          "path": "research/orion-discovery-v3/"
+        },
+        {
+          "kind": "blob",
+          "oid": "c20ef9b40c39cd65d7d53f8296223ccc01bda305",
+          "path": "src/orion/discovery/frontier_dominance.py",
+          "sha256": "69e791a6dcbecee6d09ec27dfea19a2b2e8561317b3677bb65bcc8d76f231f15"
+        }
+      ]
+    },
+    "KNOWLEDGE_WEB_AND_PROOF_ECONOMY": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 45,
+          "kind": "tree",
+          "oid": "a66b22fc61e334ba774015e309100537b5950787",
+          "path": "research/orion-discovery-v2/"
+        }
+      ]
+    },
+    "ORION_Q_TYPED_RESEARCH_STATE": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 139,
+          "kind": "tree",
+          "oid": "81c0d03d5f3da35c6f35dfdd6d523ac8f180847c",
+          "path": "research/extensions/orion-q/"
+        },
+        {
+          "files": 137,
+          "kind": "tree",
+          "oid": "c97cf3f12c6c9f8707bc75a9788a7e3a97352964",
+          "path": "development/orion-q-max-r0/"
+        }
+      ]
+    },
+    "OSTC_FOUNDATIONS": {
+      "absent_paths": [
+        "src/orion/foundations/"
+      ],
+      "bindings": [
+        {
+          "files": 150,
+          "kind": "tree",
+          "oid": "359289f1a7b0af6f9db7a92bc0ae478bbe15501f",
+          "path": "research/orion-foundations-v3/"
+        }
+      ]
+    },
+    "P16_P18_PUBLICATION_CANDIDATES": {
+      "absent_paths": [],
+      "bindings": []
+    },
+    "P1_P15_SCIENTIFIC_PROGRAMME": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 3701,
+          "kind": "tree",
+          "oid": "1a5a8f5f28c22d85e5e792778b42d47236da7258",
+          "path": "papers/"
+        },
+        {
+          "files": 74,
+          "kind": "tree",
+          "oid": "599811e305d8abbb49fe61dcb76d971e51a3155d",
+          "path": "research/paper-programme-v1/"
+        },
+        {
+          "kind": "blob",
+          "oid": "d5ef9fad33ae2cfa4f39dff70516fc25497d6af2",
+          "path": "scripts/check_p1_p15_dynamic_rewrite_v1.py",
+          "sha256": "88fb8a8766c7977391861b729909f1a81e6a1c51d632e0c522de52bc3b5dd848"
+        }
+      ]
+    },
+    "POST_FREEZE_EXTERNAL_EXECUTION": {
+      "absent_paths": [],
+      "bindings": []
+    },
+    "QUANTUM_QG_QN_FRONTIER": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "f0e881dd5728ac3bee789af7e944a8cb087db4b4",
+          "path": "research/assimilation-programme-v1/"
+        },
+        {
+          "files": 5,
+          "kind": "tree",
+          "oid": "4d4e2ac626059f73ef7c7a9f2ccb1bf905c5a67c",
+          "path": "research/assimilation/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "fc9028cb8362a5d87db1de2aef38d198a27176d9",
+          "path": "research/campaign-runs/"
+        },
+        {
+          "files": 7,
+          "kind": "tree",
+          "oid": "b0e530c7924b247df81930073f9f8d67aa9ffa8c",
+          "path": "research/campaigns/"
+        },
+        {
+          "files": 239,
+          "kind": "tree",
+          "oid": "ff1642a41322014aa9f2263b03dd36cb586dea5e",
+          "path": "research/claim_expansion/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "58c00182d48cd854ac506bbe50bed37a1ad7676d",
+          "path": "research/closures/"
+        },
+        {
+          "files": 7,
+          "kind": "tree",
+          "oid": "0ede21e28c0f4d5aa9977fba10dff4fd49b72296",
+          "path": "research/cross-domain-mechanic-transfer-v1/"
+        },
+        {
+          "files": 57,
+          "kind": "tree",
+          "oid": "a214018d7395ab04673bf2d74f98a01c1ebea404",
+          "path": "research/development/"
+        },
+        {
+          "files": 89,
+          "kind": "tree",
+          "oid": "f04d85959671aa2bbd66491c7b18bb684af3c7be",
+          "path": "research/domains/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "b34c57257e8776ccf886224ccbee72f799d14249",
+          "path": "research/external-evidence-boundary-v1/"
+        },
+        {
+          "files": 59,
+          "kind": "tree",
+          "oid": "569fcfc95727b7c75508bb410fc6f02dce135109",
+          "path": "research/failures/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "033733c3b8394f03c8017d788269612e0ef7c91c",
+          "path": "research/formal-engine-readiness-v1/"
+        },
+        {
+          "files": 6,
+          "kind": "tree",
+          "oid": "9489f9a4ec0b43aebfadda3b50ff6acba6dfb156",
+          "path": "research/foundational-discharge/"
+        },
+        {
+          "files": 16,
+          "kind": "tree",
+          "oid": "843ce9081816c2763c055e3c2519d88cd062724c",
+          "path": "research/frontier-support-state-v1/"
+        },
+        {
+          "files": 3,
+          "kind": "tree",
+          "oid": "c8b4a20e298316d773f9629a3ba74f6dfe58df78",
+          "path": "research/goal-evolution/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "af6b165aefa23ae2ec86d9dc7f6b337596a83cd5",
+          "path": "research/knowledge/"
+        },
+        {
+          "files": 8,
+          "kind": "tree",
+          "oid": "f238f0119cf77b0458bd3ffdd89b428967982091",
+          "path": "research/negative-recovery/"
+        },
+        {
+          "files": 14,
+          "kind": "tree",
+          "oid": "11eea9b11e805b27f3c38cc90b3f09e10640e934",
+          "path": "research/novelty/"
+        },
+        {
+          "files": 92,
+          "kind": "tree",
+          "oid": "e0da6318f659742eb050532ccffc7cd44f6bc266",
+          "path": "research/orion-rg/"
+        },
+        {
+          "files": 16,
+          "kind": "tree",
+          "oid": "367cee086910660f45ca87d03a5dec13fe4a9726",
+          "path": "research/p3-coordinate-necessity-v1/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "40285066a4d2bd38e50f5dc6e424810fee520851",
+          "path": "research/p3-partial-observation-harm-v1/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "4b1a5a62e34e5954e0cf70a9f13611f703932670",
+          "path": "research/p3-partial-observation-record-gold-v1/"
+        },
+        {
+          "files": 9,
+          "kind": "tree",
+          "oid": "be84cfcc39c7105fd7c7e642aa297a12a7a6f655",
+          "path": "research/p4-partial-evidence-acquisition-v2/"
+        },
+        {
+          "files": 14,
+          "kind": "tree",
+          "oid": "c6f12a354aafcf1040440425b388a2d00bc6bed6",
+          "path": "research/paper-programme-v2/"
+        },
+        {
+          "files": 5,
+          "kind": "tree",
+          "oid": "d7388bed86847024362b0d6b524517ed289129ce",
+          "path": "research/phase-4-protocol/"
+        },
+        {
+          "files": 12,
+          "kind": "tree",
+          "oid": "bb4a5851e4690febce0c09e5265c487cc8e74952",
+          "path": "research/phase2/"
+        },
+        {
+          "files": 9,
+          "kind": "tree",
+          "oid": "3da8f1c7ac54a4c573f05d30e5d03b08d8b294aa",
+          "path": "research/publication/"
+        },
+        {
+          "files": 82,
+          "kind": "tree",
+          "oid": "127f915982b8ac3ee209c87383ba85cf360b80f8",
+          "path": "research/revival/"
+        },
+        {
+          "files": 36,
+          "kind": "tree",
+          "oid": "1ad53db99bebc452e5c4cdd1522966c859f746ce",
+          "path": "research/saturation/"
+        },
+        {
+          "files": 20,
+          "kind": "tree",
+          "oid": "e7a62ef937c48108b7b51dc32fbb28fe49cb8c07",
+          "path": "research/self-orion-v3/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "5956f8dda8b40183f3e1ef49759b8791fff34d50",
+          "path": "research/structural-assimilation-v1/"
+        },
+        {
+          "files": 15,
+          "kind": "tree",
+          "oid": "22ca39bc1a21c53de2fdd1ffcccea04a0cc48dc7",
+          "path": "research/technical-companions/"
+        },
+        {
+          "files": 20,
+          "kind": "tree",
+          "oid": "e9b707faa7292966f94d50452eeea216e2a9ec47",
+          "path": "research/verification/"
+        },
+        {
+          "files": 5,
+          "kind": "tree",
+          "oid": "2135d62b84e2fb7885fbaccb1a7afc510a540aa0",
+          "path": "research/verified-structural-transfer-v1/"
+        },
+        {
+          "files": 16,
+          "kind": "tree",
+          "oid": "d1f6906517cc6cb899e27704779129bb9252ddea",
+          "path": "research/verified-structural-transfer-v2/"
+        },
+        {
+          "files": 19,
+          "kind": "tree",
+          "oid": "e2ad4b2690812936fa16327495223ed6027567d0",
+          "path": "research/extensions/meta-orion-recursive-scientific-evolution/"
+        },
+        {
+          "files": 15,
+          "kind": "tree",
+          "oid": "84a9875b94ebfdeb8ce764f1dacaf98e8e871ca8",
+          "path": "research/extensions/orion-ea/"
+        },
+        {
+          "files": 37,
+          "kind": "tree",
+          "oid": "b0d95522133a49be73f6c18a6cb5e57e6854194d",
+          "path": "research/extensions/orion-frontier-v2/"
+        },
+        {
+          "files": 48,
+          "kind": "tree",
+          "oid": "2f533591668273f4bee5e5d9f015a9793b92cf9b",
+          "path": "research/extensions/orion-jump-recursive-atoms/"
+        },
+        {
+          "files": 224,
+          "kind": "tree",
+          "oid": "8bede29fa6b9ab5c10cdf0a226ab9c8f21de288f",
+          "path": "research/extensions/orion-qg/"
+        },
+        {
+          "files": 8,
+          "kind": "tree",
+          "oid": "9ea5e887f2e05ca66a448da388c6bde8f3e0645c",
+          "path": "research/extensions/orion-qn/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "e05723443809e54769dceac97ca087b982af0214",
+          "path": "research/extensions/p1-p3-structure/"
+        },
+        {
+          "files": 17,
+          "kind": "tree",
+          "oid": "d59b439d59727116d3b4a28816d24f47331a5ec0",
+          "path": "research/extensions/p10-structured-reasoning/"
+        },
+        {
+          "files": 26,
+          "kind": "tree",
+          "oid": "396740999a17cbd4fa0a518f9c68daf0c9b505f7",
+          "path": "research/extensions/p6-higher-order-epistemic-mechanics/"
+        },
+        {
+          "files": 9,
+          "kind": "tree",
+          "oid": "47dbe9dc0e2433d0a7e3ada85bcc6e516963bd5d",
+          "path": "research/extensions/p6-method-fibres/"
+        },
+        {
+          "files": 8,
+          "kind": "tree",
+          "oid": "3354c2ab94c69a60cb0f0e34a8f970b6319a8e1c",
+          "path": "research/extensions/p7-method-space/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "165471418330adda8b588da95979c16989a0b73a",
+          "path": "research/extensions/p8-method-authority/"
+        },
+        {
+          "files": 60,
+          "kind": "tree",
+          "oid": "e964084290cfde7ec5705a29993fdd09d48645e2",
+          "path": "research/extensions/p9-p10-structural-scaling/"
+        },
+        {
+          "files": 76,
+          "kind": "tree",
+          "oid": "9750bbf5ef86b7610450e01e7f6dd02cb70b48c8",
+          "path": "research/extensions/p9-structured-neural/"
+        },
+        {
+          "kind": "blob",
+          "oid": "d2be56e38acdc53d1e62951e24171e0d45168b1e",
+          "path": "development/BOOTSTRAP_READINESS.md",
+          "sha256": "a3c32fa387555e212d8cce0a686aeadc054147c7756e60c7fd3a55f8c7672c04"
+        },
+        {
+          "files": 5,
+          "kind": "tree",
+          "oid": "3721d836eab9d5b6a0b3efcfda4368d213f86048",
+          "path": "development/CODEX_P1_P2_LANE_20260823_p2-existing-arm-convex-rescue-v12/"
+        },
+        {
+          "files": 10,
+          "kind": "tree",
+          "oid": "3db6d975d2c239c83abd0fe45d7b2d4762e43134",
+          "path": "development/CODEX_P3_P4_LANE_20260823_P3_PROVIDER_NATIVE_IDENTITY_V15/"
+        },
+        {
+          "kind": "blob",
+          "oid": "a82ca189305def730009364124c215bab3ee2d12",
+          "path": "development/ISSUE_102_P5_PROTECTED_SUITE_FREEZE.md",
+          "sha256": "d0e9e931fdcfe21fa17388780283497f1851de8800d43094b7115c4faaf76210"
+        },
+        {
+          "kind": "blob",
+          "oid": "e8436f77bd890775bddd5ec91334e028245c226d",
+          "path": "development/ISSUE_102_P5_V2_EVIDENCE_BINDING.md",
+          "sha256": "9022c5731000d1542182cf86f59b2cbbcb35a56a25d266b45b915e0caec52f7e"
+        },
+        {
+          "kind": "blob",
+          "oid": "cfcf27924d30af696e66bb3c7ac6bd4a05ca8f0c",
+          "path": "development/ISSUE_281_PARTIAL_EVIDENCE_ACQUISITION_PACKET.md",
+          "sha256": "d776ea812e4ad89ee0c093fee56b4184b2d4c4ec356cc5a30a17db9c4ac96257"
+        },
+        {
+          "kind": "blob",
+          "oid": "b05abd62dfdb92e9109ce80f0bf7dad6ccf867b0",
+          "path": "development/ISSUE_282_CAUSAL_REPAIR_PACKET.md",
+          "sha256": "f8e29fb13f1f6bc9352ca51d4809ea11d1484190170b88339e6101759ffe6480"
+        },
+        {
+          "kind": "blob",
+          "oid": "9c5259c6f7e31021ccab6d74d2e493a39cd3c298",
+          "path": "development/ISSUE_628_RSSI_EXACT_BENCHMARK_PACKET.md",
+          "sha256": "1bf579614461e990822fe724ac050e6efbbb738c89af1b22f85f898b26be5ddf"
+        },
+        {
+          "kind": "blob",
+          "oid": "5e12b85db012d9625d754b5c81f43bc4f968e3c5",
+          "path": "development/ISSUE_629_CEGAR_PROJECTION_PACKET.md",
+          "sha256": "5d00e4be485aa3cbf3f26a8c8e2603df88651945dba114d02fa63671ba580fca"
+        },
+        {
+          "kind": "blob",
+          "oid": "4a8594b2a2c44b39327db2fa68d26e4fd954aca3",
+          "path": "development/ISSUE_629_D4_DELAYED_DEBT_PACKET.md",
+          "sha256": "de9c05ff04e898e5992829264b8794eb33c858a0761e6d868c5ba30ac6918777"
+        },
+        {
+          "kind": "blob",
+          "oid": "144f241353009a29a06a6cdf7191929bdc6288bb",
+          "path": "development/ISSUE_629_GENERIC_JUSTIFICATION_DONOR_PACKET.md",
+          "sha256": "90919792c6fc6dc13d6e69a8c089f8eff4212a19ca46c34c00847deccb6c9041"
+        },
+        {
+          "kind": "blob",
+          "oid": "6f6f82daf71f819e9124ae1609c1818679c84bbc",
+          "path": "development/ISSUE_629_SUCCESSOR_CONDITIONED_STATE_PACKET.md",
+          "sha256": "dea9fd4c77bd13f645dc57d229b746ceed7af1c6f9aa16d8c2fe959e73a6d3ac"
+        },
+        {
+          "kind": "blob",
+          "oid": "6fe160dd494f23ee4008fafc666cac8d1fb7ab7b",
+          "path": "development/MECHANICS_PROGRAM.md",
+          "sha256": "2f0b1f7fcca530919411a7399970742e7c6348084a5ead40830175f369138d5a"
+        },
+        {
+          "kind": "blob",
+          "oid": "b512f3fc7eb39e6930a5829dcbcc6456d9580825",
+          "path": "development/P2_PUBLICATION_CLOSURE_PACKET_2026-08-17.md",
+          "sha256": "a113345681c02fe4b2519b7c18519abec8701a1da152e99f54c286e53d1c6c10"
+        },
+        {
+          "kind": "blob",
+          "oid": "ae2633c1477216f936d2a4507797ed40076a8c9b",
+          "path": "development/P4_PROTECTED_CLOSURE_PACKET_2026-08-16.md",
+          "sha256": "c76aac3b2f041141dd045126cc0c369d3327bd6170a00a5d4d8637e909c07eaf"
+        },
+        {
+          "kind": "blob",
+          "oid": "d1ab7d8f84f951ae06a8b6735a06968052b9494c",
+          "path": "development/P6_P10_PUBLICATION_CLOSURE_PACKET_2026-08-18.md",
+          "sha256": "f7f410f511d24f3fc2d43313c3f043922654f281482a62a859a96ee099c2668f"
+        },
+        {
+          "kind": "blob",
+          "oid": "f622fb9d72fa6972c1b095026ac18d1eb3067df9",
+          "path": "development/PHASE3_PREFREEZE_PACKET.md",
+          "sha256": "9967a53327965193c41c56468e37e559e2ce07b277295cdd9c90c0f5de41c0fe"
+        },
+        {
+          "kind": "blob",
+          "oid": "9d76b8c48435a3719fecb403c92785fc23d5435a",
+          "path": "development/PHASE4_PREPARATORY_RECEIPTS_PACKET.md",
+          "sha256": "04f1876aa35778feaad9d6a437002523d8be3c48b9cf24cf5c95faaa7e2bc586"
+        },
+        {
+          "kind": "blob",
+          "oid": "e2a15267b2e76e181af2aa80e595ffb31c6d32a0",
+          "path": "development/README.md",
+          "sha256": "ed7e6f226bcca80b1798921d184dccc99e3c5141bdb5da7bc8472ba4c76a4850"
+        },
+        {
+          "files": 7,
+          "kind": "tree",
+          "oid": "6fd32324ce811d8ded79b41d935c14e09cfafe37",
+          "path": "development/active-identification-theory-2026-08-23/"
+        },
+        {
+          "files": 6,
+          "kind": "tree",
+          "oid": "5571071a53c56a8a714f0af77e901ebaf53f29aa",
+          "path": "development/active-identification-theory-review-2026-08-23/"
+        },
+        {
+          "files": 6,
+          "kind": "tree",
+          "oid": "e7413699c06e0d1f04531ac226d3806c9fbe0f4a",
+          "path": "development/adversarial-theory-harness-2026-08-23/"
+        },
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "a0bcaed0aa8f2d27254d2cdc052ec81dca500df3",
+          "path": "development/comparator-binding-harness-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "4f952fedaea94c32f5301b8cd6fd3b3dd1c27838",
+          "path": "development/cross-domain-mechanic-transfer-v1/"
+        },
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "b142ad000d4af4804d57f4cfc725a5c200cbf026",
+          "path": "development/cross-domain-transfer-closure/"
+        },
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "7b03289bcc4fb4cc308376da17146d29ef176815",
+          "path": "development/cross-session-empirical-provenance-audit-2026-08-23/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "04c02fcc610f68945abb680f891cb4e3a4301699",
+          "path": "development/cross-session-update-ingestion-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "bd558820473d323c2b25e4313a69c886ffd7f456",
+          "path": "development/discovery-morphology-atlas-closure-v1/"
+        },
+        {
+          "files": 3,
+          "kind": "tree",
+          "oid": "72d4bfd0fd008605bb7b596761a17bcdc4129035",
+          "path": "development/donor-envelope-core-v1/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "9bbe9a094016cb780ac2c37a542629e2b9bc9b3a",
+          "path": "development/failure-atlas-schema-pilot-v1/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "12a8318069588106a65a2c0f577ca8a7cdc818eb",
+          "path": "development/failure-atom-pilot-closure-v1/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "5e27d550610408cf8a17abe085459e8bb8b05cee",
+          "path": "development/failure-epistemology-prospective-closure-v1/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "e3f980c4b6521b5bdad3c16188a9c1ae98cc516a",
+          "path": "development/five-paper-hardening-r2-2026-08-25/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "b4270afcbf12c3ef883c89e21a6e8733b1b066b7",
+          "path": "development/five-paper-submission-v3-2026-08-25/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "98fa63b20b92d41c7371cde1c255f1ee83af92b8",
+          "path": "development/five-paper-top-tier-2026-08-24/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "05920b2d83fc199ac2d41560180e76cebf136050",
+          "path": "development/higher-order-computation-containment-social-t4-t6/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "09ceef6946ddfdf960d55c118f9e78327166a702",
+          "path": "development/higher-order-epistemic-control-t7/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "bdd02b9e5f8663fb8934c3a3da61a904be4ce996",
+          "path": "development/higher-order-responsibility-interface-t2-t3/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "3ecf5b4d86a16be3ca47659517fa0632f877639a",
+          "path": "development/issue-1086-p11-adverse-integration-2026-08-24/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "f1d3254fea538416039c796df8c3d27766a467c9",
+          "path": "development/issue-1086-p12-lifecycle-integration-2026-08-24/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "48aebabd1349ee16b5a0960ba9d22a8c697ad6ab",
+          "path": "development/issue-1086-p6-p8-easy-closure-2026-08-24/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "a32a0a3f6f52032766a08b4aff6048de4d986527",
+          "path": "development/issue-1086-p9-replay-divergence-2026-08-24/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "40ade3391aeff720564875226b0e75f7b97041ad",
+          "path": "development/issue-1086-portfolio-disposition-2026-08-24/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "abe3eca99182c134e5cc1fbf47729aa76530efa2",
+          "path": "development/jump-atom-pilot-closure-v1/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "57a481365910e516eb12d8602f90d2fdbdca22da",
+          "path": "development/jump-programme-closure-v1/"
+        },
+        {
+          "files": 19,
+          "kind": "tree",
+          "oid": "6cb97e522d9d632760b60a1b3968211fb5d5fd81",
+          "path": "development/naturalistic-panel-harness-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "e717cf05bf85cec1affc3d579a5bd804b8b770fd",
+          "path": "development/orion-discovery-failure-episodes-v1/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "4120c8de031b80ce71fb605a6395742f76cb07ba",
+          "path": "development/orion-q-breakthrough/"
+        },
+        {
+          "files": 23,
+          "kind": "tree",
+          "oid": "1541792b01fbf280e42c40c9f0eeec3bf700c77a",
+          "path": "development/orion-q-nlane-closure/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "c5a60a5156dfe7f04934854923cc110dd638de7a",
+          "path": "development/orion-q-qc0a-mixed-arbitration/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "4de1b101dfe452e73693eef64470050abf133237",
+          "path": "development/orion-q-qc2a/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "537ebeff42b4baaa078031edd66f2e52d9407548",
+          "path": "development/orion-q-qc2b/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "e195301be20c96880f71ac5d02d7b12dfce3a596",
+          "path": "development/orion-q-qc2c/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "0b3002a0d13c02cb827946cfcf869c3672d9d1aa",
+          "path": "development/orion-q-qc2d/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "05d1d6caddf082483f7e04a6a33aa9afaa40b7ab",
+          "path": "development/orion-q-qc4a-proxy/"
+        },
+        {
+          "files": 430,
+          "kind": "tree",
+          "oid": "d1621d6bd73e1e32675ac4c099f4092ee1b181aa",
+          "path": "development/orion-qg-regime-geometry/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "cb358c27be85a30449ac50dace91c8a54b47036a",
+          "path": "development/orion-qn-q0-q1/"
+        },
+        {
+          "files": 3,
+          "kind": "tree",
+          "oid": "ffe9da85b475223afd0e5b1eea3ff074b8bd1011",
+          "path": "development/orion-qn-q2/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "831c9a45a42703b9365e64e16383c1545fb7f695",
+          "path": "development/orion-recursive-atoms-failure-v1/"
+        },
+        {
+          "files": 82,
+          "kind": "tree",
+          "oid": "cf4a86dfc0d3a8090b783542150ecba64d4567d9",
+          "path": "development/orion-research-harness/"
+        },
+        {
+          "files": 43,
+          "kind": "tree",
+          "oid": "feded47727ef09e6cd0e5a2a243b91842572d84d",
+          "path": "development/orion-rg-davenport/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "07d58dd0e2f11ab380f19b09c820cd0a6603d3e8",
+          "path": "development/orion-rg/"
+        },
+        {
+          "files": 33,
+          "kind": "tree",
+          "oid": "cac6233b998b90f1c8101b9943562d6c011e03e0",
+          "path": "development/orion-v3-execution-takeover-2026-08-25/"
+        },
+        {
+          "files": 9,
+          "kind": "tree",
+          "oid": "9e604b0a9083de0cc74374d61259c52f0284d89d",
+          "path": "development/p1-adapter-blind-owner-ratification-v10-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "6bfebd42ef53dcfc3f35c9be92211b7a5c1cf608",
+          "path": "development/p1-archive-grid-integrity/"
+        },
+        {
+          "kind": "blob",
+          "oid": "68fec79fbf6543f6fbb5f4f7be7681fd164a5de8",
+          "path": "development/p1-authority-value-freeze-20260817.md",
+          "sha256": "abe69b40794800ff448935ba384639c9cf455c899557c2cb0878fc3670eb4d5f"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "f75229ef9841de1059d8dd213f967cf7ab39b3f9",
+          "path": "development/p1-causal-responsibility-v2/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "f01ff02d86615f7b4a2056b40f63b0a3e38dbd6d",
+          "path": "development/p1-maps-alias-defect-confirmation-2026-08-25/"
+        },
+        {
+          "files": 10,
+          "kind": "tree",
+          "oid": "9f9e64bf961373b674013139a2905fbfaec1dd46",
+          "path": "development/p1-naturalistic-transport-successor-2026-08-23/"
+        },
+        {
+          "kind": "blob",
+          "oid": "e0eae5610dac5e2c54db32f9463226325b98c089",
+          "path": "development/p1-necessity-certificate-freeze-20260817.md",
+          "sha256": "439184f755803ee4f9233662760f4e695cbe374af676d18781569d2424dee911"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "2bc36f36547f67a2c9f4a8343634c149b467dd23",
+          "path": "development/p1-negative-diagnostic-semantics/"
+        },
+        {
+          "files": 19,
+          "kind": "tree",
+          "oid": "f3a61e6cb11d1f4b8a5f00d2de2d7f8b68698b02",
+          "path": "development/p1-owner-algebra-construct-validity-v4-2026-08-23/"
+        },
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "bef163b8f8f824c06a5965eb6624cc3b523904c5",
+          "path": "development/p1-owner-custody-positive-successor-v11-2026-08-24/"
+        },
+        {
+          "files": 12,
+          "kind": "tree",
+          "oid": "0e6757097e8a74a67aef0d2e39bb0085c09874dc",
+          "path": "development/p1-owner-custody-positive-successor-v12-2026-08-24/"
+        },
+        {
+          "files": 18,
+          "kind": "tree",
+          "oid": "ac783c3b653a972a94dd25e02ef6590446e0f89c",
+          "path": "development/p1-owner-custody-positive-successor-v13-2026-08-24/"
+        },
+        {
+          "files": 7,
+          "kind": "tree",
+          "oid": "53ac6ad531e292971b359ca0edef2f7d655094a6",
+          "path": "development/p1-p15-publication-closure-2026-08-22/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "cfe5e6ceebf44ef75ac7d509caaeba2082e2890f",
+          "path": "development/p1-p15-recursive-resolution-ledger/"
+        },
+        {
+          "files": 3,
+          "kind": "tree",
+          "oid": "2a7643784733747f20992fead3bf312bddc5cdcd",
+          "path": "development/p1-p2-readiness-audit-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "468bf8d5229e357069b27e60a2c3b2c59e834bac",
+          "path": "development/p1-p5-adversarial-scientific-review-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "886cd23742fd23cb02ff21696d727a78a440b143",
+          "path": "development/p1-p5-successor-preoutcome-closure/"
+        },
+        {
+          "files": 8,
+          "kind": "tree",
+          "oid": "3a08dc4895e6e7a1afab1234d340a509043cb299",
+          "path": "development/p1-p5-top-tier-positioning-audit-2026-08-23/"
+        },
+        {
+          "files": 3,
+          "kind": "tree",
+          "oid": "ee35bcc060ecc42eac790c96fdfe2d340e89ceeb",
+          "path": "development/p1-p5-unified-integration-2026-08-24/"
+        },
+        {
+          "kind": "blob",
+          "oid": "af0e3d42dfb30ac9addf3672c818db3bebe387d4",
+          "path": "development/p1-peer-review-sweep-20260817.md",
+          "sha256": "e1340ac71c344d23cd76365972f323d32b52330deebc8d7bc21472e3e2278004"
+        },
+        {
+          "files": 10,
+          "kind": "tree",
+          "oid": "2df5a27df087750bffabb7539bfd42807a9c5c7f",
+          "path": "development/p1-public-naturalistic-successor-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "b468da52c6247e3964bd95df76f807f5669cba62",
+          "path": "development/p1-r7-wide-successor/"
+        },
+        {
+          "files": 25,
+          "kind": "tree",
+          "oid": "5ece8464b0c64577b15e7393fb6fb615e0361dfd",
+          "path": "development/p1-rw-rights-relation-census-v2-2026-08-23/"
+        },
+        {
+          "files": 7,
+          "kind": "tree",
+          "oid": "58936cad20ae0ee22d7c97220fe39f633e409969",
+          "path": "development/p1-scienceagentbench-analysis-freeze-v1-2026-08-24/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "62aed407d1d05e6d50f7e89e58bbc8fc7809655e",
+          "path": "development/p1-scienceagentbench-artifact-identity-v1-2026-08-24/"
+        },
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "f58e17643e59f4676103a573bffd48dedb45a554",
+          "path": "development/p1-scienceagentbench-backend-canonical-map-discriminator-v4-2026-08-25/"
+        },
+        {
+          "files": 15,
+          "kind": "tree",
+          "oid": "e88493d8f61050c3c97478cc1cfa49c950f5370c",
+          "path": "development/p1-scienceagentbench-backend-canonical-map-discriminator-v4-job-3537910-result-2026-08-25/"
+        },
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "12f256c6baed37f5db848703604c592a8f06967b",
+          "path": "development/p1-scienceagentbench-backend-canonical-map-discriminator-v5-2026-08-25/"
+        },
+        {
+          "files": 18,
+          "kind": "tree",
+          "oid": "faa496baefdbeb0f032b75c95b30c3196d56edb9",
+          "path": "development/p1-scienceagentbench-backend-canonical-map-discriminator-v5-job-3537915-result-2026-08-25/"
+        },
+        {
+          "files": 10,
+          "kind": "tree",
+          "oid": "2736aee992478610719c890fa309a113ed139b9c",
+          "path": "development/p1-scienceagentbench-codex-route-v1-2026-08-24/"
+        },
+        {
+          "files": 8,
+          "kind": "tree",
+          "oid": "35b2f7ec7b4966b48fcd47afc71975f559efc39b",
+          "path": "development/p1-scienceagentbench-direct-route-freeze-v1-2026-08-24/"
+        },
+        {
+          "files": 8,
+          "kind": "tree",
+          "oid": "467325d946e0dc085d43b61b317e58b9108b0a80",
+          "path": "development/p1-scienceagentbench-direct-route-slurm-preflight-v1-2026-08-24/"
+        },
+        {
+          "files": 15,
+          "kind": "tree",
+          "oid": "caadd392bb0c69f16bc7f1a6226f414d456eae7c",
+          "path": "development/p1-scienceagentbench-exact-tokenizer-probe-v1-2026-08-24/"
+        },
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "cb9e9b29a6cd89acf7ea4c5008197d48f7121eca",
+          "path": "development/p1-scienceagentbench-gpu-visibility-diagnostic-v6-2026-08-25/"
+        },
+        {
+          "files": 8,
+          "kind": "tree",
+          "oid": "f6d887cef6f30643fbc09edb6d19069eb50bd138",
+          "path": "development/p1-scienceagentbench-gpu-visibility-diagnostic-v6-deployment-validation-result-2026-08-25/"
+        },
+        {
+          "files": 12,
+          "kind": "tree",
+          "oid": "e082982d8579b48d8fb5797d75b225d1c30959dc",
+          "path": "development/p1-scienceagentbench-gpu-visibility-diagnostic-v7-2026-08-25/"
+        },
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "3217c30e91255e196d57240f0db9c7965816d3b2",
+          "path": "development/p1-scienceagentbench-gpu-visibility-diagnostic-v7-job-3537988-result-2026-08-25/"
+        },
+        {
+          "files": 13,
+          "kind": "tree",
+          "oid": "4b085b9810fd9691b88422d990e6716ccf03a44d",
+          "path": "development/p1-scienceagentbench-gpu-visibility-diagnostic-v8-2026-08-25/"
+        },
+        {
+          "files": 13,
+          "kind": "tree",
+          "oid": "fc0d3e7a9e442bb01a1eaea12ad0c1c7bd4780a8",
+          "path": "development/p1-scienceagentbench-gpu-visibility-diagnostic-v8-job-3538042-result-2026-08-25/"
+        },
+        {
+          "files": 9,
+          "kind": "tree",
+          "oid": "973a9e68cdd7f1a03b930e7f5a68af9eccceeaa7",
+          "path": "development/p1-scienceagentbench-lunarc-artifact-v1-2026-08-24/"
+        },
+        {
+          "files": 67,
+          "kind": "tree",
+          "oid": "ee1e09f20af53fba9f4b6710f59b246eda487e3c",
+          "path": "development/p1-scienceagentbench-lunarc-fullcontext-replay-v1-2026-08-24/"
+        },
+        {
+          "files": 8,
+          "kind": "tree",
+          "oid": "b4eadc278cce948c990cb4a4195f53d95ca96141",
+          "path": "development/p1-scienceagentbench-lunarc-generation-adapter-v1-2026-08-24/"
+        },
+        {
+          "files": 39,
+          "kind": "tree",
+          "oid": "ed5c47e18c4fe711c51054b75fcc0198f9f6abba",
+          "path": "development/p1-scienceagentbench-lunarc-longseed-mechanism-v1-2026-08-24/"
+        },
+        {
+          "files": 39,
+          "kind": "tree",
+          "oid": "e831242b610ce6a852d8568662cc25a41c58c35a",
+          "path": "development/p1-scienceagentbench-lunarc-longseed-structured-v1-2026-08-24/"
+        },
+        {
+          "files": 31,
+          "kind": "tree",
+          "oid": "ace5205e45c882d73712d33b2b1aea025d893e16",
+          "path": "development/p1-scienceagentbench-lunarc-official-base-v1-2026-08-24/"
+        },
+        {
+          "files": 114,
+          "kind": "tree",
+          "oid": "10153ccc87fc26e313b1785695a4fe88addf428c",
+          "path": "development/p1-scienceagentbench-lunarc-openweight-v1-2026-08-24/"
+        },
+        {
+          "files": 10,
+          "kind": "tree",
+          "oid": "2b7aa13c8081bf79500506fc662dc585bc46580d",
+          "path": "development/p1-scienceagentbench-lunarc-runtime-v1-2026-08-24/"
+        },
+        {
+          "files": 107,
+          "kind": "tree",
+          "oid": "63e95256bb737df3614a0af200a1c4df9026731b",
+          "path": "development/p1-scienceagentbench-lunarc-seed-repair-v1-2026-08-24/"
+        },
+        {
+          "files": 6,
+          "kind": "tree",
+          "oid": "17c2bbf9c2a76b9b6bbc77578694e7703d77bcff",
+          "path": "development/p1-scienceagentbench-preflight-2026-08-24/"
+        },
+        {
+          "files": 7,
+          "kind": "tree",
+          "oid": "56f6358aaf2e9f6847f5530a2aec22590d74fcba",
+          "path": "development/p1-scienceagentbench-protected-prompt-fit-preflight-v1-2026-08-24/"
+        },
+        {
+          "files": 9,
+          "kind": "tree",
+          "oid": "1990c74056e045ac73b107bb22ff1eabd75ac3c1",
+          "path": "development/p1-scienceagentbench-protected-prompt-fit-result-v1-2026-08-24/"
+        },
+        {
+          "files": 17,
+          "kind": "tree",
+          "oid": "e73f76015e883fcd1a79aa0e2698e2d2d79b5c48",
+          "path": "development/p1-scienceagentbench-protected-prompt-fit-successor-v2-2026-08-24/"
+        },
+        {
+          "files": 14,
+          "kind": "tree",
+          "oid": "723b05dc16ed83f6e925937bdcfed601ddc8c91f",
+          "path": "development/p1-scienceagentbench-protected-rr1-direct-route-freeze-v1-2026-08-24/"
+        },
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "2d72e4225a08496f061b816f9990f39cbcf13081",
+          "path": "development/p1-scienceagentbench-protected-rr1-execution-successor-v2-2026-08-24/"
+        },
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "bd987d44b9cd04109a052685020cc54458fbd02c",
+          "path": "development/p1-scienceagentbench-protected-rr1-execution-successor-v3-2026-08-25/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "406e08ac7413143de77d4d3ce0784ff08ea542a8",
+          "path": "development/p1-scienceagentbench-protected-rr1-execution-successor-v4-2026-08-25/"
+        },
+        {
+          "files": 9,
+          "kind": "tree",
+          "oid": "cb49a724f1caae4a1fb8eb336d4d28f0c5880682",
+          "path": "development/p1-scienceagentbench-protected-rr1-one-tuple-finalizer-freeze-v1-2026-08-24/"
+        },
+        {
+          "files": 7,
+          "kind": "tree",
+          "oid": "8da214542d060f0b6dea4d3754595079939aafad",
+          "path": "development/p1-scienceagentbench-runner-v1-2026-08-24/"
+        },
+        {
+          "files": 7,
+          "kind": "tree",
+          "oid": "bd612d7170c19a9a75f1ddac6720b6b0dc4e29bb",
+          "path": "development/p1-scienceagentbench-runner-v2-cost-amendment-2026-08-24/"
+        },
+        {
+          "files": 9,
+          "kind": "tree",
+          "oid": "72e8969dabd90b32f1edd43a4e1372fe2b175274",
+          "path": "development/p1-scientific-blocker-compression-2026-08-23/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "e386b33173431c5b6f4be1a9269fca440974fbc2",
+          "path": "development/p1-scientific-takeover-2026-08-23/"
+        },
+        {
+          "files": 19,
+          "kind": "tree",
+          "oid": "31bd8ed2149f8c2907bb98580960aa1d6bc5af9c",
+          "path": "development/p1-source-native-target-semantics-v8-2026-08-23/"
+        },
+        {
+          "files": 20,
+          "kind": "tree",
+          "oid": "86de59380ab690cf43014f208cdc64f584fb2dce",
+          "path": "development/p1-structured-action-semantics-v3-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "9f8433be542c78f2547aad8a7793b467c30ae917",
+          "path": "development/p1-u-gpt-r1-ard/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "de2a889b891a03e9289dcd4f74624009e6c78fab",
+          "path": "development/p1-u-gpt-r2-naturalistic/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "fd24b766d7dda63b7a61091cd1f479fad4315f31",
+          "path": "development/p1-u-gpt-r3-source-universe/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "837ce678059c121dfb44e505ce33db125bd9c125",
+          "path": "development/p1-u-gpt-r4-matched-pairs/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "77a97d4ed23941a7e5821fba3ef86d208682cbab",
+          "path": "development/p1-u-gpt-r5-fixed-r4-sources/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "45006e563302ac343eb8978c45efab03415ba87f",
+          "path": "development/p1-u-gpt-r6-native-runtime/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "e8308175be7848e9d0decf14ad204446c2c81c98",
+          "path": "development/p11-p15-confirmatory-execution/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "292286feb02421922e28fcbcb8e371919013280a",
+          "path": "development/p11i-wide-high-width-replication/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "9477e9ae1182702a105bb421f3b216536662cd92",
+          "path": "development/p12-p13-active-authority-correction/"
+        },
+        {
+          "files": 7,
+          "kind": "tree",
+          "oid": "c7292aa315abbaf7dfa80bf9756c9384209d3cc6",
+          "path": "development/p13-p14-live-git-acquisition-v1/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "6e9ba5f65c09b921836583d6cb25c8814fcccc93",
+          "path": "development/p13-p14-public-lifecycle-v1/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "2850234349d423d947a23a0a245affdbe18cf791",
+          "path": "development/p14-active-positive-authority/"
+        },
+        {
+          "files": 3,
+          "kind": "tree",
+          "oid": "77d83bfa3249eeebf3212e386ce694915387c270",
+          "path": "development/p15-public-runtime-v1/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "1f75566e5d3edcace570b3cac2872ab26dccfe1a",
+          "path": "development/p15-q3-package-release-readiness-2026-08-24/"
+        },
+        {
+          "files": 24,
+          "kind": "tree",
+          "oid": "c8e3b4c929eee7a0e2674aad80ad74221b468a55",
+          "path": "development/p2-continuous-recall-effort-v6-2026-08-23/"
+        },
+        {
+          "files": 16,
+          "kind": "tree",
+          "oid": "fb89f76cdef5e32afe9f6e0fc1f3331a83056c78",
+          "path": "development/p2-donor-envelopment-v8-2026-08-23/"
+        },
+        {
+          "files": 15,
+          "kind": "tree",
+          "oid": "e5da0899635c61065772dcec06a12f494ee80147",
+          "path": "development/p2-kifms-transparent-execution-v7-2026-08-23/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "034d77ce7e594e064eec941478db510fa2b16023",
+          "path": "development/p2-nmi-target-stress-test-2026-08-24/"
+        },
+        {
+          "files": 21,
+          "kind": "tree",
+          "oid": "51fcd59c6508f0fc9b3c2a0d95ccef25376a895a",
+          "path": "development/p2-openalex-public-successor-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "6c58dcd1fceb8d149a8cdb6d03fda33a5cd62270",
+          "path": "development/p2-resolution-gate-v1/"
+        },
+        {
+          "files": 6,
+          "kind": "tree",
+          "oid": "461150d79c624b5b4302374e3f4f23442291f261",
+          "path": "development/p2-safe-residual-envelope-theory-v11-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "d9109d9d6225cfbb4e208eaf565e75c37d57a65c",
+          "path": "development/p2-scientific-ascent-2026-08-23/"
+        },
+        {
+          "files": 10,
+          "kind": "tree",
+          "oid": "bfaa069b43bc037a624150c5865381aa9b53a1d9",
+          "path": "development/p2-source-disjoint-title-emphasis-v9-2026-08-23/"
+        },
+        {
+          "files": 13,
+          "kind": "tree",
+          "oid": "9b92da16b6bc346f4733ace64ef8a8b0e07972bd",
+          "path": "development/p2-state-expanding-acquisition-v12-2026-08-24/"
+        },
+        {
+          "files": 14,
+          "kind": "tree",
+          "oid": "624e47870be7628c47074728b4f0c71930c1785f",
+          "path": "development/p2-state-expanding-acquisition-v13-2026-08-24/"
+        },
+        {
+          "files": 14,
+          "kind": "tree",
+          "oid": "ce1520dc8c767b048c7af89022e51c1e4b88e2c2",
+          "path": "development/p2-state-expanding-acquisition-v14-2026-08-24/"
+        },
+        {
+          "files": 31,
+          "kind": "tree",
+          "oid": "bfd6db3fddf2f49185a8593817eda6acbbdc1265",
+          "path": "development/p2-state-expanding-acquisition-v15-2026-08-24/"
+        },
+        {
+          "files": 26,
+          "kind": "tree",
+          "oid": "f8d7760c6df68b47ff0484c47ecd150630e2d021",
+          "path": "development/p2-swift-content-disjoint-v5-2026-08-23/"
+        },
+        {
+          "files": 13,
+          "kind": "tree",
+          "oid": "97c95bc79dc5896eb91fa949fd3ce5d3accf41b3",
+          "path": "development/p2-swift-controller-factorization-v4-2026-08-23/"
+        },
+        {
+          "files": 21,
+          "kind": "tree",
+          "oid": "e5dbc669264fc1a96d06dd590848f18e99ee90e3",
+          "path": "development/p2-swift-cross-review-controller-transport-2026-08-23/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "610bbef414cd274a1de231d084c498e5a284fa1c",
+          "path": "development/p2-synergy-adaptive-portfolio-successor-2026-08-23/"
+        },
+        {
+          "files": 5,
+          "kind": "tree",
+          "oid": "b86d0cde87bf4c4950b904e4e49c22cbb8a8d384",
+          "path": "development/p2-synergy-confirmatory-successor-2026-08-23/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "f0c89a2d063ca72646c1a35f9901e1bd684a4c22",
+          "path": "development/p2-synergy-safe-acquisition-successor-2026-08-23/"
+        },
+        {
+          "files": 8,
+          "kind": "tree",
+          "oid": "002a1eb50d11cddd78eb990e8612ca3dc0149eab",
+          "path": "development/p2-synergy-screening-successor-2026-08-23/"
+        },
+        {
+          "files": 10,
+          "kind": "tree",
+          "oid": "f29cfb67d2c441e1cbbe39ec2ac68aa3908e9740",
+          "path": "development/p2-title-emphasis-conflict-resolved-v10-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "fd90ecb3cc1b4c388efe98510656daec96a99a7d",
+          "path": "development/p2-v12-v15-manuscript-integration-review-2026-08-24/"
+        },
+        {
+          "files": 5,
+          "kind": "tree",
+          "oid": "30a5da2cd284ffe3964ca8b47d91d5c47f1d7362",
+          "path": "development/p2-zenodo-active-comparator-audit-2026-08-23/"
+        },
+        {
+          "files": 13,
+          "kind": "tree",
+          "oid": "4a95d466110c70296d661ee58326f86b06a8efc9",
+          "path": "development/p2-zenodo-transport-successor-2026-08-23/"
+        },
+        {
+          "files": 7,
+          "kind": "tree",
+          "oid": "2ddddb0971f62aa392b412b800db395502ccfcce",
+          "path": "development/p3-aml-java8-prospective-comparator-v16-2026-08-23/"
+        },
+        {
+          "files": 21,
+          "kind": "tree",
+          "oid": "a0db1a6b892e1ad9e9157f7004a9a40358ca1866",
+          "path": "development/p3-authoritative-negative-semantics-v5-2026-08-23/"
+        },
+        {
+          "files": 25,
+          "kind": "tree",
+          "oid": "242b7daf5b95a114658ccab3df451306b91483b6",
+          "path": "development/p3-authority-composition-theory-v7t-2026-08-23/"
+        },
+        {
+          "files": 24,
+          "kind": "tree",
+          "oid": "76a484db38607cfb78eeaaa3c72f3b9bb3d1560a",
+          "path": "development/p3-bertmap-execution-binding-v7-2026-08-23/"
+        },
+        {
+          "files": 15,
+          "kind": "tree",
+          "oid": "9b462643a7a39bc79f4e228cc4979d9a6f35656c",
+          "path": "development/p3-bertmap-table-reader-repair-v8-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "7c4d84eee26ceb298e969998a285ddc6295431e7",
+          "path": "development/p3-bounded-publication-closure/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "18053757f8566b38853b49dcf153b70d8416e453",
+          "path": "development/p3-comparator-arm-disposition-v22-2026-08-24/"
+        },
+        {
+          "files": 31,
+          "kind": "tree",
+          "oid": "60b7d62102533b5966bc618e6500013cb0ce84ef",
+          "path": "development/p3-comparator-native-preflight-v6-2026-08-23/"
+        },
+        {
+          "files": 14,
+          "kind": "tree",
+          "oid": "ae6868388de39345f1bc9d2ff694b268c699bd51",
+          "path": "development/p3-deeponto-class-surface-v19-2026-08-24/"
+        },
+        {
+          "files": 31,
+          "kind": "tree",
+          "oid": "6abc7a4735cb1445c73058f5defd96db19be53ae",
+          "path": "development/p3-direct-iri-decoder-common-scoring-v21-2026-08-24/"
+        },
+        {
+          "files": 42,
+          "kind": "tree",
+          "oid": "c98cd5a43f98dedbe998dc15b65210edd35a1600",
+          "path": "development/p3-full-native-runtime-v12-2026-08-23/"
+        },
+        {
+          "files": 10,
+          "kind": "tree",
+          "oid": "c10949922d70ee9bd177ba562db3c30e3095cef9",
+          "path": "development/p3-java17-add-opens-microgate-v10-2026-08-23/"
+        },
+        {
+          "files": 106,
+          "kind": "tree",
+          "oid": "52629cff57bf505164ea8a5937218a3e86b1c006",
+          "path": "development/p3-logmap-manifest-classpath-v11-2026-08-23/"
+        },
+        {
+          "files": 22,
+          "kind": "tree",
+          "oid": "657433610aa7a0333118c3a87ac09349b65de1f0",
+          "path": "development/p3-oaei-bertmap-common-scoring-v17-2026-08-24/"
+        },
+        {
+          "files": 21,
+          "kind": "tree",
+          "oid": "1291c58af96d22fd78a443836cb7974e1209ec0c",
+          "path": "development/p3-oaei-bertmap-common-scoring-v20-2026-08-24/"
+        },
+        {
+          "files": 25,
+          "kind": "tree",
+          "oid": "0c4e29653c75b5dca5bdeab0414d44f423dc53ce",
+          "path": "development/p3-oaei-cross-construct-successor-2026-08-23/"
+        },
+        {
+          "files": 20,
+          "kind": "tree",
+          "oid": "f2113bad4a413ccb4a94779a3c56ce70d45f348e",
+          "path": "development/p3-oaei-public-development-execution-2026-08-23/"
+        },
+        {
+          "files": 20,
+          "kind": "tree",
+          "oid": "d8ee2f67a3bcc6080c32545c9f266cf767398ac5",
+          "path": "development/p3-optional-wrapper-typed-decoder-v13-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "e8a1983f2416d14500b28bda292b9a3d5af35ab5",
+          "path": "development/p3-p9-p11-p15-lifecycle/"
+        },
+        {
+          "files": 5,
+          "kind": "tree",
+          "oid": "86224ebb0d177cdefa8e97432ce47865a68c693f",
+          "path": "development/p3-provider-native-identity-packet-v15-2026-08-23/"
+        },
+        {
+          "files": 24,
+          "kind": "tree",
+          "oid": "5b590c3bd33492331b93fd2bf3af49b84e5d102b",
+          "path": "development/p3-public-data-successor-2026-08-23/"
+        },
+        {
+          "files": 38,
+          "kind": "tree",
+          "oid": "7271ede97dbc87d4e11e68d7da2857964f00de96",
+          "path": "development/p3-public-data-successor-review-2026-08-23/"
+        },
+        {
+          "files": 6,
+          "kind": "tree",
+          "oid": "743c918bd821a4132497e71d521be31db6cfa792",
+          "path": "development/p3-public-reference-alignment-v14-2026-08-23/"
+        },
+        {
+          "files": 49,
+          "kind": "tree",
+          "oid": "9f6ec170c91da422a814bc5817fc35a538fbf98d",
+          "path": "development/p3-repaired-native-runtime-v9-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "97e952115c992fd328df3646486181bfdb33d295",
+          "path": "development/p3-scientific-ascent-2026-08-23/"
+        },
+        {
+          "files": 18,
+          "kind": "tree",
+          "oid": "245b77cc185a504f206a94a42fd1b824f553785c",
+          "path": "development/p3-selective-envelope-harm-successor-v4-2026-08-23/"
+        },
+        {
+          "files": 14,
+          "kind": "tree",
+          "oid": "13fbe7737e7bcb22d030bcc3632e89d58a9b7148",
+          "path": "development/p3-structural-reasoner-compatibility-v18-2026-08-24/"
+        },
+        {
+          "files": 19,
+          "kind": "tree",
+          "oid": "4fba118b9f6f3b51d754f467164e8b74165958af",
+          "path": "development/p4-datacite-m5-source-expansion-2026-08-23/"
+        },
+        {
+          "files": 41,
+          "kind": "tree",
+          "oid": "b232cb2afd976454f8ab8276395ba221608ad8cb",
+          "path": "development/p4-exact-edge-build-provenance-v12-2026-08-24/"
+        },
+        {
+          "files": 174,
+          "kind": "tree",
+          "oid": "1025e8b113452156ec2e2f0f36b4c42f25fdd053",
+          "path": "development/p4-exact-edge-lineage-authority-v10-2026-08-24/"
+        },
+        {
+          "files": 36,
+          "kind": "tree",
+          "oid": "d7045b88439fcd3026637c9c2ee2a4d2a5c75a7a",
+          "path": "development/p4-exact-edge-lineage-authority-v11-2026-08-24/"
+        },
+        {
+          "files": 223,
+          "kind": "tree",
+          "oid": "41b6ac7b733ae6ccff92e8a28ca35ba16e228a61",
+          "path": "development/p4-exact-edge-lineage-authority-v9-2026-08-23/"
+        },
+        {
+          "files": 16,
+          "kind": "tree",
+          "oid": "9d8f6c7eb4bade343aec93846bfc52fe41ffe0ae",
+          "path": "development/p4-m6-joss-bridge-repair-v6-2026-08-23/"
+        },
+        {
+          "files": 27,
+          "kind": "tree",
+          "oid": "03a80305c7dafcb7e88d523af89be892b273eb44",
+          "path": "development/p4-m6-joss-exact-version-bridge-v5-2026-08-23/"
+        },
+        {
+          "files": 18,
+          "kind": "tree",
+          "oid": "e60c2f9d00079db88fd1139d8c80346031a06f24",
+          "path": "development/p4-m6-source-provider-successor-v4-2026-08-23/"
+        },
+        {
+          "files": 4,
+          "kind": "tree",
+          "oid": "88d7ee0a6d440f61c2f0d4883b3a42058ed00b2b",
+          "path": "development/p4-p5-readiness-audit-2026-08-23/"
+        },
+        {
+          "files": 56,
+          "kind": "tree",
+          "oid": "9dadec235aa892bb30f206dd093b1ecbb4f7cf56",
+          "path": "development/p4-scientific-ascent-2026-08-23/"
+        },
+        {
+          "files": 15,
+          "kind": "tree",
+          "oid": "03481059952416ab934b13bb0ab4e23ec507600c",
+          "path": "development/p4-source-universe-successor-v3-2026-08-23/"
+        },
+        {
+          "files": 13,
+          "kind": "tree",
+          "oid": "4786ee81977963ae4ea22483b2b633e3692f474e",
+          "path": "development/p4-unresolved-identity-v7-2026-08-23/"
+        },
+        {
+          "files": 31,
+          "kind": "tree",
+          "oid": "353a2e87e0486dcb3493c107a34d79254a1f5e92",
+          "path": "development/p4-unresolved-identity-v8-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "72eab515a96665955fa693d871f75be7a805a2c8",
+          "path": "development/p4-v3-claim-axis-authority/"
+        },
+        {
+          "files": 24,
+          "kind": "tree",
+          "oid": "991f5665fb100349981351d574f0ca5ebaa1125a",
+          "path": "development/p5-adias-execution-binding-v4-2026-08-23/"
+        },
+        {
+          "files": 14,
+          "kind": "tree",
+          "oid": "48777f7ab7deac1b83807ee8a7ad7aef32793f19",
+          "path": "development/p5-c2-authoritative-route-discriminator-v10-2026-08-23/"
+        },
+        {
+          "files": 41,
+          "kind": "tree",
+          "oid": "1beb495d516fe4e77a925c9f29e21a0cdb5c3006",
+          "path": "development/p5-c2-lawful-native-byte-successor-v11-2026-08-24/"
+        },
+        {
+          "files": 15,
+          "kind": "tree",
+          "oid": "88c6224e8393d19a1873e62f82eddcc3536212b8",
+          "path": "development/p5-c2-lawful-native-byte-successor-v12-2026-08-24/"
+        },
+        {
+          "files": 53,
+          "kind": "tree",
+          "oid": "cc18b7e85460c6365a0830c3a0364c4f6e5b5c59",
+          "path": "development/p5-c2-lawful-native-byte-successor-v13-2026-08-24/"
+        },
+        {
+          "files": 3,
+          "kind": "tree",
+          "oid": "13cb84754826d332ab2a2dcd866941f274bc5663",
+          "path": "development/p5-c2-v11-v13-manuscript-integration-audit-2026-08-24/"
+        },
+        {
+          "files": 19,
+          "kind": "tree",
+          "oid": "179fd755a9114e079e82b1a1f4b4dd4e716db2dd",
+          "path": "development/p5-c3-native-environment-v8-2026-08-23/"
+        },
+        {
+          "files": 12,
+          "kind": "tree",
+          "oid": "387a853a876f1d492afed370b4dcdfc953ca840f",
+          "path": "development/p5-c3-outcome-free-successor-v9-2026-08-23/"
+        },
+        {
+          "files": 23,
+          "kind": "tree",
+          "oid": "a8af782104473864b3611a5d14b75abb02ccd009",
+          "path": "development/p5-common-visible-case-rights-v6-2026-08-23/"
+        },
+        {
+          "files": 24,
+          "kind": "tree",
+          "oid": "20c3e79eb90e7437afd3bb971a8918cb4f0ab229",
+          "path": "development/p5-dgm-execution-binding-v4-2026-08-23/"
+        },
+        {
+          "files": 25,
+          "kind": "tree",
+          "oid": "d04a046f3d5e886727f05eb2809f154e4a567e90",
+          "path": "development/p5-double-ratchet-execution-binding-v4-2026-08-23/"
+        },
+        {
+          "files": 24,
+          "kind": "tree",
+          "oid": "e37265d4be1d34d54322b8516974a8223cb93237",
+          "path": "development/p5-moss-execution-binding-v4-2026-08-23/"
+        },
+        {
+          "files": 26,
+          "kind": "tree",
+          "oid": "e584298dea92b362c2a0053d030d63ae41357621",
+          "path": "development/p5-native-task-environment-fanout-v7-2026-08-23/"
+        },
+        {
+          "files": 13,
+          "kind": "tree",
+          "oid": "0612fb6331517f9c545ef26d5a80b3efab99a758",
+          "path": "development/p5-panelwide-root-closure-v5-2026-08-23/"
+        },
+        {
+          "files": 10,
+          "kind": "tree",
+          "oid": "6d4f1a8d20843cee246f287ba6a5c7faa6cce56b",
+          "path": "development/p5-public-development-protected-freshness-bridge-2026-08-23/"
+        },
+        {
+          "files": 48,
+          "kind": "tree",
+          "oid": "4b925cb0d2647966b4754462f38ef8445b96d48b",
+          "path": "development/p5-rd02-defects4j-public-factorial-2026-08-23/"
+        },
+        {
+          "files": 24,
+          "kind": "tree",
+          "oid": "180cd2abf094b6cdb09326c9ba450d33b1a86a43",
+          "path": "development/p5-scienceclaw-execution-binding-v4-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "3a85853430d24c03639cf736afcddde4a7b90201",
+          "path": "development/p5-scientific-ascent-2026-08-23/"
+        },
+        {
+          "files": 18,
+          "kind": "tree",
+          "oid": "35224c5ea5ecf1ca0e55896c8da00cd6b4892fc1",
+          "path": "development/p5-six-arm-adapter-refinement-v3-2026-08-23/"
+        },
+        {
+          "files": 17,
+          "kind": "tree",
+          "oid": "ecc7069a4be509d85c4d891a3bc0ce5dc0529eb4",
+          "path": "development/p5-six-arm-comparator-panel-2026-08-23/"
+        },
+        {
+          "files": 20,
+          "kind": "tree",
+          "oid": "b2ca8157dc82e323fdff1cb8a55e4171113ceed2",
+          "path": "development/p5-six-arm-terminal-adapters-v2-2026-08-23/"
+        },
+        {
+          "files": 21,
+          "kind": "tree",
+          "oid": "c5375a0546e3f8757e766e520caafdc281042fcf",
+          "path": "development/p5-swe-agent-execution-binding-v4-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "38129fb5c90ae03b15e6a8c7581ddc9126b64fd0",
+          "path": "development/p6-higher-order-epistemic-mechanics/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "5241cddb84e603c75d6cbe0327a02f70e4b2124c",
+          "path": "development/p6-p10-evidence-closure/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "dbff667eae69b36fd0dfb6ff16ecd5baed64c4b0",
+          "path": "development/p6-p15-public-campaign-runner-2026-08-24/"
+        },
+        {
+          "files": 5,
+          "kind": "tree",
+          "oid": "d886ba84052dcc46963a543649ec12deb90116af",
+          "path": "development/p6-p8-smt-scale-campaign-lunarc-2026-08-24/"
+        },
+        {
+          "files": 8,
+          "kind": "tree",
+          "oid": "ae76bd346122ce641bb3d5023b39176a85b5d73b",
+          "path": "development/p6-public-selective-revalidation-v1/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "8c2232197b0f841ec72e5cfab88a5a3ed27f5f27",
+          "path": "development/p6-successor-formal-closure/"
+        },
+        {
+          "files": 8,
+          "kind": "tree",
+          "oid": "136fddba3a3b4973eab66a952b961359126256bf",
+          "path": "development/p7-public-nonretrieval-v1/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "63cfbf0bf1cbf533b55529c987e517251bd557d8",
+          "path": "development/p9-a2-a4-explicit/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "eaa2343f55df850e2e83cabb8df329d6f0379518",
+          "path": "development/p9-a5-explicit-inference/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "f0cef0ca9db5adc8ef1d1776ce7c1b92db436ef8",
+          "path": "development/p9-d1-method-transfer/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "981dcb329c0d221a073bd20875259c3f3dd25002",
+          "path": "development/p9-independent-verification/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "f2298342973f6c9caedd0f1e4274df1bd3548bfb",
+          "path": "development/p9-m1-classical/"
+        },
+        {
+          "files": 3,
+          "kind": "tree",
+          "oid": "ba07616a85c09a8a3db3b4a92bce897a49196421",
+          "path": "development/p9-structured-epistemic-neural-computation/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "951f5d8686c782066f8a17ad28ee05e5ad499515",
+          "path": "development/paper-v2-adoption-freeze-20260816/"
+        },
+        {
+          "files": 3,
+          "kind": "tree",
+          "oid": "a45c51a8dc1510b1a2bbfb5aa31ec57a59ac53ae",
+          "path": "development/phase3/"
+        },
+        {
+          "files": 5,
+          "kind": "tree",
+          "oid": "ace2793e501d19544a3c7c244712aa8c3ded8963",
+          "path": "development/protected-goal-evolution-closure/"
+        },
+        {
+          "files": 7,
+          "kind": "tree",
+          "oid": "73a94344e9a48eddd43de0c38077ef6dfd32c709",
+          "path": "development/provider-diverse-metadata-census-2026-08-23/"
+        },
+        {
+          "files": 9,
+          "kind": "tree",
+          "oid": "de700f037593bb0d49451552d704ac6b4b6f3f82",
+          "path": "development/provider-rights-and-history-successor-2026-08-23/"
+        },
+        {
+          "files": 13,
+          "kind": "tree",
+          "oid": "15a5c7f6c61c57a52e2164c5ee00463a597e4b01",
+          "path": "development/public-empirical-data-binding-2026-08-23/"
+        },
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "6beb96f7acbfa0c410f98c7db23a52ef47d52638",
+          "path": "development/q-paper-recursive-refinement/"
+        },
+        {
+          "files": 32,
+          "kind": "tree",
+          "oid": "065a794603c159aca057f1b3a16b867803737ae2",
+          "path": "development/q1-q4-publication-closure-2026-08-22/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "31092d62da6d05fce3d17c927305dc710714bbf7",
+          "path": "development/recursive-atom-calculus-closure-v1/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "b258ff59f8797b81b8331d4e6ecf87e2082a9d2e",
+          "path": "development/result-lifecycle-v1/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "982ab80cb40b96497a273f1c9ff3a90c96b3cc00",
+          "path": "development/self-orion-v3-revision-level/"
+        },
+        {
+          "files": 2,
+          "kind": "tree",
+          "oid": "265768698bfacead0bc6d76511de415253d74bf2",
+          "path": "development/shared-infra-box-conformance-v1-2026-08-24/"
+        },
+        {
+          "files": 6,
+          "kind": "tree",
+          "oid": "94117aefb56824a5144a7db45944057668cddf51",
+          "path": "development/state-indexed-active-identification-theory-2026-08-23/"
+        },
+        {
+          "files": 50,
+          "kind": "tree",
+          "oid": "77cd7c8ee853957f9e19cda0d718ae369db6550d",
+          "path": "development/top-tier-scientific-takeover-2026-08-23/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "e4c5646d2798ee463cb3c4cb7aa80ff6dbd75d87",
+          "path": "development/verified-structural-transfer-v1/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "571656a1a99642f42ef30319643de361b66a7bcd",
+          "path": "development/verified-structural-transfer-v2/"
+        },
+        {
+          "files": 1,
+          "kind": "tree",
+          "oid": "66b858aed2f41b8c4345d62c429bc36fea1edcdc",
+          "path": "development/zero-error-jump-prospective-v1/"
+        }
+      ]
+    },
+    "THEOREM_IDENTIFYING_DISCOVERY": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 14,
+          "kind": "tree",
+          "oid": "20c1ded7e21e2223f6ff24ad30ea46335765cf61",
+          "path": "research/orion-discovery-v1/"
+        },
+        {
+          "kind": "blob",
+          "oid": "3392b7b9fe5776a8a9615cebc257b651f7bf2629",
+          "path": "src/orion/discovery/__init__.py",
+          "sha256": "113a092c300e32af2070efeee3574b2824ec3438e2a31bc09958b5dc65eb6681"
+        },
+        {
+          "kind": "blob",
+          "oid": "ef2f841607bd4e2b66726c01202d7a012734809a",
+          "path": "src/orion/discovery/concept_candidate.py",
+          "sha256": "687b13588b5f78183aa291bbd3c262b84e6adeaf15690f6af9d9f64addd18a9c"
+        },
+        {
+          "kind": "blob",
+          "oid": "a18bbcce49785ab327d8d2c7cb20527a74337fd6",
+          "path": "src/orion/discovery/decision_geometry.py",
+          "sha256": "7261365b8b9cbec7a1e774eeb1953df5089a6821d64bcdc44249faf94718a73e"
+        },
+        {
+          "kind": "blob",
+          "oid": "8efe3052b1047f347ee4d21c2f18fd2b5d99d730",
+          "path": "src/orion/discovery/discovery_morphology_closure.py",
+          "sha256": "8b08200c1b704340a35014113aa8d43d72be3518770981ad20af095ee726c3c7"
+        },
+        {
+          "kind": "blob",
+          "oid": "775228027fd19d547aa3df4df963aabaa4d3fbeb",
+          "path": "src/orion/discovery/episodes.py",
+          "sha256": "b07f5fd477ce8ed965430824b9f76d684130cb54d710bff6f3f3471141b4b572"
+        },
+        {
+          "kind": "blob",
+          "oid": "f627b5a49ef77ed7e585bb90c595b90639763d04",
+          "path": "src/orion/discovery/epistemic_tension.py",
+          "sha256": "18359056ec7f63c7264798c2d2b8297a8effd7ae030f56ecc0948c61d3631e58"
+        },
+        {
+          "kind": "blob",
+          "oid": "5c39667c9dfb0dbf1011153e4ba7be404af10ce1",
+          "path": "src/orion/discovery/executable_regime_witness.py",
+          "sha256": "84c69034838fb4b403a427622e58cc69ade2df3101c233fe153e0bd096d22d48"
+        },
+        {
+          "kind": "blob",
+          "oid": "93dcc8f0b4912229e98d6400d186bfe91bcb9626",
+          "path": "src/orion/discovery/execution_takeover.py",
+          "sha256": "b28859987cf90734a13939ad523083c87301fd8efdbf3d7c8eb26cbdec736432"
+        },
+        {
+          "kind": "blob",
+          "oid": "384798bc58fcd382060430b4844aa578216e7334",
+          "path": "src/orion/discovery/failure_atlas_closure.py",
+          "sha256": "33d33c05eb2da71c1fecde07837a6821caa2fac44504810e371865049cda5a14"
+        },
+        {
+          "kind": "blob",
+          "oid": "cecd0a8f5111f316fcbc73569b16d946d85adce3",
+          "path": "src/orion/discovery/failure_atlas_closure_v2.py",
+          "sha256": "f1fdcb43d23282893422ab36352f57ef4c9531d585f9a35682d56a88415af9d2"
+        },
+        {
+          "kind": "blob",
+          "oid": "64c10bf6246d9374751949a8f44094b4a6e8d7ad",
+          "path": "src/orion/discovery/failure_atom_pilot_closure.py",
+          "sha256": "cd4a39dd0ed9b0a5e90f144fcabd352266af77ba9cc027f44490e69483344ea8"
+        },
+        {
+          "kind": "blob",
+          "oid": "083131caff50ab8871fde141ebba116303895a86",
+          "path": "src/orion/discovery/failure_epistemology_prospective.py",
+          "sha256": "ebf319c766c7fa7f496435e9fcf765f46e0f6ef8e75075cc0ecdc80dfb3dbe84"
+        },
+        {
+          "kind": "blob",
+          "oid": "c64893413645ea6405073cf954189ec2381f7d87",
+          "path": "src/orion/discovery/harness_identifiability.py",
+          "sha256": "52cef4873ad5230fa089cd70ed24cf171988ea6874af543d103169023d12c795"
+        },
+        {
+          "kind": "blob",
+          "oid": "1bc709c911734547eabe4d98696f1c826e6c7b31",
+          "path": "src/orion/discovery/jump_atom_pilot_closure.py",
+          "sha256": "917c2e71fd604ae579c522a0862f838bab1e72ce635ebd10c8393d51bea83ea8"
+        },
+        {
+          "kind": "blob",
+          "oid": "33e582e4821f587cd72eaf7cbd6fa880ac3b8704",
+          "path": "src/orion/discovery/jump_programme_closure.py",
+          "sha256": "b767775ff0a35d1f87fc5f47a05c9bc3d303a1b3463020ea4f3a5dc64bfaf587"
+        },
+        {
+          "kind": "blob",
+          "oid": "96158307df8e48694cf4199a6c6f0cd4b9d0ef09",
+          "path": "src/orion/discovery/knowledge_web.py",
+          "sha256": "3114a6e8f3f115a7ed84fd7f23ee45845b2f89328f31bd4e236a145e31f7560a"
+        },
+        {
+          "kind": "blob",
+          "oid": "4bdfb625ee0672fbf50fc0af64b1315ab2b0eb3b",
+          "path": "src/orion/discovery/model_chronology.py",
+          "sha256": "eab5064956a57684d1c03d623cee9d9135ee883156580ac1d10d1dbdcf8c35c8"
+        },
+        {
+          "kind": "blob",
+          "oid": "387bc1bc9a165d6e620320f02127b217540fb25f",
+          "path": "src/orion/discovery/proposal_origin.py",
+          "sha256": "f443bec9bd6488c1947aa04e65e6885c57d0d6da4963d26ac938a33eb26cd275"
+        },
+        {
+          "kind": "blob",
+          "oid": "7108386e79112fc1ab3c2d68d6e213942f318403",
+          "path": "src/orion/discovery/recursive_atom_calculus_closure.py",
+          "sha256": "15962f1fb11ddf420867c261fc8c243df27609d2a0ca74c8ada832b3bd25fbe9"
+        },
+        {
+          "kind": "blob",
+          "oid": "14e4fc51b894b1045ab8305f7f11cd742247a3b9",
+          "path": "src/orion/discovery/thought_experiment.py",
+          "sha256": "82c7439f74290492a55053eae36f172f7402bd371e8795da1f9e81b943ab2e45"
+        },
+        {
+          "kind": "blob",
+          "oid": "5cfd7b662f63ed0cb11d21509f7bbabc951e0dd5",
+          "path": "src/orion/discovery/zero_error_jump_benchmark.py",
+          "sha256": "7ef1e5d8afa15500d235db96a6d106841ef0e3c72cb81f901810d98626caec3f"
+        },
+        {
+          "kind": "blob",
+          "oid": "e47cf353110322d922a0e8c077d0e7563f9eb9d5",
+          "path": "src/orion/discovery/zero_error_jump_benchmark_v2.py",
+          "sha256": "b8ab982f052f7afa77edc747f7de056579374e5b11af4f84410c07d63ec8d4c3"
+        },
+        {
+          "kind": "blob",
+          "oid": "5e5dd7deec2d9cffaf7b6607f142cff6334b3d33",
+          "path": "src/orion/discovery/zero_error_jump_independent.py",
+          "sha256": "f734cbe8eca4ae03989a627217ad9286d80bf91d369c139c61ad6d362e3e0ada"
+        },
+        {
+          "kind": "blob",
+          "oid": "17f2d1e14120783b14690737a4c08bdccd97bba0",
+          "path": "src/orion/discovery/zero_error_jump_independent_v2.py",
+          "sha256": "818c88d04c573fb511f5b4123f20949510450deaaf6a1884b4e73f510db6e2d2"
+        }
+      ]
+    },
+    "V1_FREEZE_CONTROL_PLANE": {
+      "absent_paths": [
+        "research/orion-v1-freeze/",
+        "scripts/check_orion_v1_freeze.py"
+      ],
+      "bindings": []
+    }
+  },
+  "components_with_absent_paths": [
+    "DISCOVERY_SYNTHESIS_MODES",
+    "EXECUTION_INTEGRITY_AND_RECEIPTS",
+    "OSTC_FOUNDATIONS",
+    "V1_FREEZE_CONTROL_PLANE"
+  ],
+  "components_with_no_binding": [
+    "DISCOVERY_SYNTHESIS_MODES",
+    "P16_P18_PUBLICATION_CANDIDATES",
+    "POST_FREEZE_EXTERNAL_EXECUTION",
+    "V1_FREEZE_CONTROL_PLANE"
+  ],
+  "dependency_edges": [
+    {
+      "backed": true,
+      "from": "DYNAMIC_EPISTEMIC_STATE",
+      "reason": null,
+      "to": "OSTC_FOUNDATIONS",
+      "witness": {
+        "file": "research/orion-epistemic-state-v1/results/DES-CENSUS-01/LABEL_CENSUS_V1.json",
+        "token": "foundations"
+      }
+    },
+    {
+      "backed": true,
+      "from": "THEOREM_IDENTIFYING_DISCOVERY",
+      "reason": null,
+      "to": "OSTC_FOUNDATIONS",
+      "witness": {
+        "file": "research/orion-discovery-v1/AI_EXECUTOR_PROMPT_V1.md",
+        "token": "foundations"
+      }
+    },
+    {
+      "backed": true,
+      "from": "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "reason": null,
+      "to": "THEOREM_IDENTIFYING_DISCOVERY",
+      "witness": {
+        "file": "research/orion-discovery-v2/EXECUTION_BACKLOG_V1.json",
+        "token": "discovery"
+      }
+    },
+    {
+      "backed": false,
+      "from": "DISCOVERY_SYNTHESIS_MODES",
+      "reason": "NO_OWN_FILES",
+      "to": "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "witness": null
+    },
+    {
+      "backed": true,
+      "from": "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "reason": null,
+      "to": "DISCOVERY_SYNTHESIS_MODES",
+      "witness": {
+        "file": "research/orion-discovery-v3/AI_EXECUTOR_PROMPT_V1.md",
+        "token": "discovery"
+      }
+    },
+    {
+      "backed": true,
+      "from": "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "reason": null,
+      "to": "THEOREM_IDENTIFYING_DISCOVERY",
+      "witness": {
+        "file": "research/orion-discovery-v3/AI_EXECUTOR_PROMPT_V1.md",
+        "token": "discovery"
+      }
+    },
+    {
+      "backed": true,
+      "from": "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "reason": null,
+      "to": "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "witness": {
+        "file": "src/orion/benchmarks/authority_attacks.py",
+        "token": "discovery"
+      }
+    },
+    {
+      "backed": true,
+      "from": "P1_P15_SCIENTIFIC_PROGRAMME",
+      "reason": null,
+      "to": "DYNAMIC_EPISTEMIC_STATE",
+      "witness": {
+        "file": "scripts/check_p1_p15_dynamic_rewrite_v1.py",
+        "token": "epistemic_state_v1"
+      }
+    },
+    {
+      "backed": true,
+      "from": "P1_P15_SCIENTIFIC_PROGRAMME",
+      "reason": null,
+      "to": "EXECUTION_INTEGRITY_AND_RECEIPTS",
+      "witness": {
+        "file": "papers/ACADEMIC_REFINEMENT_2026-08-20.md",
+        "token": "execution"
+      }
+    },
+    {
+      "backed": true,
+      "from": "ORION_Q_TYPED_RESEARCH_STATE",
+      "reason": null,
+      "to": "THEOREM_IDENTIFYING_DISCOVERY",
+      "witness": {
+        "file": "development/orion-q-max-r0/DEVELOPMENT_PACKET.md",
+        "token": "discovery"
+      }
+    },
+    {
+      "backed": true,
+      "from": "QUANTUM_QG_QN_FRONTIER",
+      "reason": null,
+      "to": "ORION_Q_TYPED_RESEARCH_STATE",
+      "witness": {
+        "file": "development/orion-q-nlane-closure/N1_A_PROTOCOL.md",
+        "token": "research/extensions/orion-q"
+      }
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "OSTC_FOUNDATIONS",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "DYNAMIC_EPISTEMIC_STATE",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "THEOREM_IDENTIFYING_DISCOVERY",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "DISCOVERY_SYNTHESIS_MODES",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "EXECUTION_INTEGRITY_AND_RECEIPTS",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "P1_P15_SCIENTIFIC_PROGRAMME",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "ORION_Q_TYPED_RESEARCH_STATE",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "QUANTUM_QG_QN_FRONTIER",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "P16_P18_PUBLICATION_CANDIDATES",
+      "reason": "NO_OWN_FILES",
+      "to": "V1_FREEZE_CONTROL_PLANE",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "POST_FREEZE_EXTERNAL_EXECUTION",
+      "reason": "NO_OWN_FILES",
+      "to": "V1_FREEZE_CONTROL_PLANE",
+      "witness": null
+    }
+  ],
+  "duplicate_ownership": {},
+  "schema": "ORION.V1.ComponentBinding.v1",
+  "summary": {
+    "components": 14,
+    "components_with_absent_paths": 4,
+    "components_with_no_binding": 4,
+    "duplicate_owned_files": 0,
+    "edges": 24,
+    "edges_unbacked": 14
+  }
+}
