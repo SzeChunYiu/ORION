@@ -14,11 +14,14 @@ import itertools
 import json
 from pathlib import Path
 import random
+import sys
 
 HERE = Path(__file__).resolve().parent
 SPEC = importlib.util.spec_from_file_location("action_regret", HERE / "verify_action_regret_r10.py")
 MOD = importlib.util.module_from_spec(SPEC)
 assert SPEC and SPEC.loader
+# dataclasses in the imported module inspect sys.modules during class creation.
+sys.modules[SPEC.name] = MOD
 SPEC.loader.exec_module(MOD)
 
 SCHEMA = "ORION.FiberGuard.RandomizedSafeFeatureCover.R10.v1"
