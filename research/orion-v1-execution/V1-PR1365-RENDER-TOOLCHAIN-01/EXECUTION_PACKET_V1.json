@@ -1,0 +1,146 @@
+{
+  "authority": {
+    "clipping_audit_authority": "TARGET_OF_THIS_PACKET",
+    "external_scientific_validation": "NOT_APPLICABLE",
+    "grants_merge_authority": false,
+    "grants_orion_v1_freeze": false,
+    "grants_paper_authority": false,
+    "paper_authority_delta": "NONE",
+    "publication_readiness": "NOT_GRANTED"
+  },
+  "coordination": {
+    "active_pr": 1365,
+    "executor": "CODEX_SESSION_01a03963-d804-7320-b10a-2b828119df93",
+    "required_codex_branch": "codex/orion-v1-pr1365-render-toolchain-20260826",
+    "source_branch": "codex/orion-postmerge-clipping-repair-20260826"
+  },
+  "frozen_source": {
+    "base_main_commit": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+    "merge_test_commit": "b09001392b66ebe252420b7549eb62ff72ea121d",
+    "source_commit": "6be938e293b87a84e034b801e6da6af4a17fa70c",
+    "source_tree": "04ca0b1ef7a5327f8c39b9c490e84330e3798994",
+    "workflow_blob": "ffa18a1647f5a79a772e5c2616d5096fd32201ea"
+  },
+  "observed_failure": {
+    "artifact_id": 9602837530,
+    "artifact_name": "current-manuscript-clipping-audit-b09001392b66ebe252420b7549eb62ff72ea121d",
+    "artifact_sha256": "4d3b580faf79c6850d0c684343cca7f75e3fdb93c03a181bf3629e611a113bfc",
+    "cancelled_at_utc": "2026-08-26T10:27:04Z",
+    "completed_scientific_or_render_steps": 0,
+    "failure_class": "MONOLITHIC_RENDER_TOOLCHAIN_INSTALL_EXHAUSTED_WORKFLOW_BUDGET",
+    "job_id": 98128505834,
+    "last_started_step": "Install pinned PDF and TeX toolchains",
+    "preexisting_pdf_count_uploaded": 15,
+    "run_id": 32953019111,
+    "started_at_utc": "2026-08-26T09:26:53Z",
+    "step_outcome": "CANCELLED",
+    "workflow_outcome": "CANCELLED",
+    "workflow_timeout_minutes": 60,
+    "interpretation": "The uploaded PDFs are the checkout's pre-existing bytes. No regression test, clean rebuild, clipping audit, or byte-equality gate executed, so the artifact carries no clean-render authority."
+  },
+  "question": "Can the exact pinned Ubuntu 24.04 PDF/TeX toolchain be installed under a bounded, observable protocol and then cleanly rebuild, geometry-audit, and byte-compare all fifteen manuscripts without changing scientific sources or clipping baselines?",
+  "scope": {
+    "allowed_paths": [
+      ".github/workflows/manuscript-clipping-audit.yml",
+      "development/orion-v1-pr1365-render-toolchain-2026-08-26/DEVELOPMENT_PACKET.md",
+      "research/orion-v1-execution/results/V1-PR1365-RENDER-TOOLCHAIN-01/**"
+    ],
+    "forbidden_paths_and_classes": [
+      "papers/**",
+      "scripts/audit_manuscript_clipping.py",
+      "scripts/render_md_tex.py",
+      "tests/**",
+      "papers/MANUSCRIPT_CLIPPING_BASELINE.json",
+      "content-binding baselines",
+      "scientific results, claims, authorities, manuscripts, bibliographies, figures, or PDFs",
+      "P1 finalizer, Slurm, LUNARC, custody, integrity, and immutable-OID paths"
+    ],
+    "no_artifact_substitution": true,
+    "no_baseline_waiver": true,
+    "no_source_or_pdf_edit": true
+  },
+  "implementation_requirements": {
+    "installation_observability": [
+      "Remove `-qq` from the result-bearing apt install so package progress and the last active package are retained.",
+      "Set `DEBIAN_FRONTEND=noninteractive` and `Dpkg::Use-Pty=0`.",
+      "Emit disk, memory, dpkg-lock-holder, apt-cache policy, and package-state diagnostics before installation.",
+      "Wrap apt update and apt install in separate explicit bounded commands; timeout must return a typed failure and may not fall through to render steps.",
+      "Use Acquire::Retries and bounded HTTP/HTTPS timeouts; do not silently retry forever.",
+      "Persist apt stdout/stderr, package candidate versions, installed versions, elapsed duration, and exit status as artifacts."
+    ],
+    "exact_toolchain": [
+      "Retain the exact package set and exact version table already frozen in the workflow unless a candidate version is unavailable on the same ubuntu-24.04 image.",
+      "If an exact version is unavailable, return RENDER_TOOLCHAIN_VERSION_UNAVAILABLE; do not substitute another TeX distribution or image in this packet.",
+      "Retain Python 3.12 and PyMuPDF 1.28.2.",
+      "Record the runner image, image version, kernel, Python, pip package hashes, dpkg package versions, latexmk version, pdfTeX version, and poppler version."
+    ],
+    "execution_separation": [
+      "Toolchain installation must complete and verify before tests or manuscript builds begin.",
+      "The 15 entry-point denominator must be computed before the first build and retained in a manifest.",
+      "Each manuscript build must have its own bounded command, source epoch, exit status, log SHA-256, PDF SHA-256, and duration so one hung manuscript is identifiable.",
+      "Run the clipping regression unit tests before the 15 builds.",
+      "Run geometry audit and tracked-PDF equality only after all 15 clean builds succeed."
+    ],
+    "artifact_integrity": [
+      "The always-upload step must include a machine-readable stage-status ledger that distinguishes PREEXISTING_CHECKOUT_PDF from CLEAN_REBUILT_PDF.",
+      "A cancelled or failed build must never upload a pre-existing PDF under a name implying a clean rebuild.",
+      "Upload apt logs, toolchain manifest, entry-point manifest, per-paper build logs, per-paper build receipts, geometry report, and byte-diff report.",
+      "The final binding packet must SHA-256 every uploaded file and state whether clean-render authority was earned."
+    ]
+  },
+  "execution_protocol": {
+    "commands": [
+      "git status --porcelain=v2 --branch",
+      "test \"$(git rev-parse HEAD)\" = 6be938e293b87a84e034b801e6da6af4a17fa70c",
+      "test \"$(git rev-parse HEAD^{tree})\" = 04ca0b1ef7a5327f8c39b9c490e84330e3798994",
+      "python -m py_compile scripts/audit_manuscript_clipping.py scripts/render_md_tex.py",
+      "python -m pytest -q tests/unit/scripts/test_audit_manuscript_clipping.py",
+      "git diff --check"
+    ],
+    "workflow_replay": [
+      "Push only the workflow/development-packet repair to the required Codex branch.",
+      "Open or update the PR against the same base and execute `manuscript-clipping-audit` on the exact resulting head.",
+      "Do not import PDFs or logs from the cancelled run as rebuilt outputs.",
+      "If the exact toolchain installation times out again, retain diagnostics and return the typed resource terminal rather than raising the global timeout or replacing the toolchain without a successor freeze."
+    ]
+  },
+  "acceptance": {
+    "requirements": [
+      "Exact pinned toolchain installation succeeds and every frozen package version matches.",
+      "Clipping regression unit tests pass.",
+      "Exactly 15 current manuscript entry points are found.",
+      "Exactly 15 clean builds succeed under their frozen SOURCE_DATE_EPOCH values.",
+      "No undefined citation/reference warning is retained.",
+      "Geometry audit returns zero new clipping and zero stale baseline rows.",
+      "All 15 tracked main.pdf files are byte-identical to the clean rebuild.",
+      "Every stage and artifact is content-bound; no pre-existing PDF is mislabeled as rebuilt.",
+      "No forbidden path changes."
+    ],
+    "success_terminal": "PR1365_ALL_15_MANUSCRIPTS_CLEAN_REBUILT_GEOMETRY_GREEN_AND_BYTE_IDENTICAL"
+  },
+  "terminals": {
+    "honest_alternatives": [
+      "RENDER_TOOLCHAIN_VERSION_UNAVAILABLE",
+      "RENDER_TOOLCHAIN_INSTALL_TIMEOUT",
+      "RENDER_TOOLCHAIN_INSTALL_FAILURE",
+      "MANUSCRIPT_ENTRY_DENOMINATOR_DRIFT",
+      "MANUSCRIPT_BUILD_FAILURE",
+      "MANUSCRIPT_BUILD_TIMEOUT",
+      "UNDEFINED_REFERENCE_OR_CITATION",
+      "MANUSCRIPT_CLIPPING_FOUND",
+      "CLIPPING_BASELINE_STALE",
+      "TRACKED_PDF_BYTE_DRIFT",
+      "ARTIFACT_STAGE_IDENTITY_AMBIGUOUS",
+      "CANNOT_CHECK"
+    ],
+    "non_implications": [
+      "PR #1365 merge authorized",
+      "P1-P15 scientifically finalized",
+      "P1-P15 top-tier ready",
+      "independent reproduction complete",
+      "ORION V1 frozen"
+    ]
+  },
+  "schema": "ORION.V1.ExecutionPacket.v1",
+  "packet_id": "V1-PR1365-RENDER-TOOLCHAIN-01"
+}
