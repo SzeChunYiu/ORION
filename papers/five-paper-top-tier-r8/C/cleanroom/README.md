@@ -14,10 +14,14 @@ blind independent comparison or a replay PASS. The independence terminal is
 
 The committed `R8_PACKET_COMMIT.json` now uses the non-self-referential v2
 subject/publication binding. Before any dispatcher starts, the executor runs
-the canonical packet validator, requires the exact frozen source ref, resolves
-the scientific subject rather than the packet-publication commit, and
-preserves the packet's engineering-only authority boundary. The packet itself
-still grants neither execution nor LUNARC authority.
+the canonical packet validator, validates the source-ref observation frozen
+inside the packet, resolves the scientific subject rather than the
+packet-publication commit, and preserves the packet's engineering-only
+authority boundary. A locally present mutable source ref must still equal the
+frozen observation or validation fails; a checkout may omit that mutable ref
+and then records `NOT_AVAILABLE_LOCALLY` rather than inventing current-ref
+authority. The packet itself still grants neither execution nor LUNARC
+authority.
 
 The hardened executor additionally requires a separate external
 `ORION.FiberGuardCleanroomExecutionAuthorization.v1` object. That object must

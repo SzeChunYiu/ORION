@@ -185,7 +185,7 @@ def verify_receipt(
         if (
             packet.get("schema") != "ORION.FivePaperR8.PacketPublicationBinding.v1"
             or packet.get("terminal") != "R8_PACKET_SUBJECT_AND_PUBLICATION_IDENTITIES_BOUND"
-            or packet.get("source_ref_status") != "EXACT"
+            or packet.get("source_ref_status") not in {"EXACT", "NOT_AVAILABLE_LOCALLY"}
             or packet.get("authority") != fg.PACKET_AUTHORITY
             or packet.get("validated_at_checkout") != provenance.get("git_commit")
             or type(subject) is not dict

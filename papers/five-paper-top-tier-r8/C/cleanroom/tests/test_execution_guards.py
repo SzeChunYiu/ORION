@@ -142,7 +142,7 @@ def test_exact_v2_subject_and_publication_binding_resolves_at_checkout() -> None
     repository = cleanroom.parents[3]
     packet = fg.require_packet_identity(repository / fg.PACKET_PATH, repository=repository)
     assert packet["terminal"] == "R8_PACKET_SUBJECT_AND_PUBLICATION_IDENTITIES_BOUND"
-    assert packet["source_ref_status"] == "EXACT"
+    assert packet["source_ref_status"] in {"EXACT", "NOT_AVAILABLE_LOCALLY"}
     assert packet["scientific_subject"]["commit"] == ("0c451e862a0eeddac7c673813c4dc499f134b088")
     assert packet["scientific_subject"]["tree"] == ("dbf96cce53d21d25584479fb740473293fae75e0")
     assert packet["packet_publication"]["commit"] != packet["scientific_subject"]["commit"]
