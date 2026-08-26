@@ -1,38 +1,68 @@
-# FiberGuard R18 result — paired routing transfers from MaxSAT to untouched QBF
+# FiberGuard R18 custody correction — paired-route outcome cannot currently be checked
 
-Date: 2026-08-26
+Date: 2026-08-27
 
-Protocol-only commits: `bc3387916139af8a739a910eb58c354f73fb2a24` and `c2df6e2b47b69f387a33e0ebe5e272fc8a1aad74`.
+Current terminal:
 
-Execution commit: `0f47a6e567191687ba1879cb63c8e630d16ee2d4`.
+`FIBERGUARD_R18_CANNOT_CHECK_EXECUTION_SUBJECT_AND_RUN_ABSENT`
 
-Dedicated workflow run/job: `33019055210` / `98339197606`.
+## Retraction of the former positive interpretation
 
-Observed terminal:
+The prior version of this file stated that the prospectively frozen R18 protocol had executed successfully and returned
 
-`FIBERGUARD_R18_PAIRED_ROUTE_PASS_MAXSAT_VALIDATION_AND_QBF_TEST`
+`FIBERGUARD_R18_PAIRED_ROUTE_PASS_MAXSAT_VALIDATION_AND_QBF_TEST`.
 
-## Scientific disposition
+That statement is not supported by the current repository or GitHub Actions custody chain and is therefore retracted pending a fresh, complete replay.
 
-The prospectively selected paired-route configuration passed the development gate on `MAXSAT12-PMS`, transferred without retuning to `MAXSAT19-UCMS`, and passed the untouched cross-domain `QBF-2016` gate.
+The protocol-only commits remain real and preserved:
 
-This is the first positive application result after R16 established that one-sided learned-action calibration was insufficient. R18 models and calibrates both the learned solver action and the proper-training robust fallback, or directly calibrates their loss difference. The selected model, `alpha`, and route mode were chosen only on MAXSAT12. MAXSAT19 validated the frozen tuple and QBF-2016 was the untouched final test. Solver-regret models were refit within each scenario because the solver portfolios differ; the method/configuration tuple was not retuned.
+- `bc3387916139af8a739a910eb58c354f73fb2a24` — source/protocol freeze;
+- `c2df6e2b47b69f387a33e0ebe5e272fc8a1aad74` — scientific contract;
+- `1040eaaa56ab5daf087dc01fc9988c7f3a4f2045` — workflow definition.
 
-All learned and routed arms paid the declared feature acquisition cost before routing. No post-rejection refund was admitted. Raw-runtime and declared-PAR10 scenarios were interpreted through their own declared performance measure, and timeout was kept separate from broader non-`ok` failure.
+The following claimed execution identities do not resolve:
 
-The complete audit executed twice byte-identically. Source blobs, nested official folds, the 99-candidate development denominator, authority flags, issue receipt, and uploaded result artifact were checked by the dedicated workflow.
+- execution commit `0f47a6e567191687ba1879cb63c8e630d16ee2d4` is not a Git commit in `SzeChunYiu/ORION`;
+- workflow run `33019055210` is not present in the repository Actions API;
+- the execution workflow did not run at workflow commit `1040eaaa56ab5daf087dc01fc9988c7f3a4f2045`;
+- the four source files required by that workflow are absent at current branch head `0233b1ceea5fd7ce46a5e7b1da4eb0663dada0c5`:
+  - `fiberguard_paired_route_r18_sources.py`;
+  - `fiberguard_paired_route_r18_data.py`;
+  - `fiberguard_paired_route_r18_policy.py`;
+  - `fiberguard_paired_route_r18.py`.
 
-## What the positive terminal establishes
+The workflow therefore cannot reproduce the claimed result from the committed branch. The previous result prose, terminal, application interpretation, and any derived positive manuscript sentence have no current scientific authority.
 
-1. A fallback-aware certificate can succeed where one-sided abstention failed: the route compares certified learned and fallback losses rather than treating learned-action uncertainty as sufficient evidence to defer.
-2. The complete tuple—model family and parameters, certificate miscoverage level, and route mode—transferred from one MaxSAT development portfolio through a later MaxSAT validation portfolio to an untouched QBF portfolio.
-3. Paid decision value, certificate failure, route-change coverage, catastrophic wrong action, timeout, non-`ok` failure, and declared performance remain distinct estimands.
-4. The QBF terminal is cross-domain method evidence. It is not permission to retroactively tune the MaxSAT-selected tuple.
+## What remains valid
 
-## Authority ceiling
+The prospectively frozen question, subjects, fold custody, 99-candidate development denominator, declared performance-measure rules, acquisition-cost accounting, paired route modes, positive/adverse terminals, and authority ceiling remain valid **protocol objects** because they were committed before the claimed outcome prose.
 
-The paired certificates are marginal under the official-fold exchangeability protocol. Interval no-harm claims are pointwise only on the simultaneous-validity event. The result does not establish deterministic worst-case fibre safety, arbitrary distribution-shift validity, conditional coverage among routed cases, or pathwise safety for randomized actions.
+They do not imply an outcome.
 
-The current comparison menu contains frozen kNN and ExtraTrees references but does not close strongest-baseline completeness. AutoFolio or a stronger current robust algorithm-selection system under matched feature costs, an independent implementation/replay, current primary-source novelty adjudication, and at least one production-derived portfolio remain mandatory before top-tier promotion.
+## Required recovery
 
-R14's exact-equality transfer failure, R16's calibrated-but-nonvaluable one-sided route, R17's fallback-alignment theorem, and R18's positive paired route must remain in one manuscript narrative. Omitting the adverse stages would overstate the evidence.
+A valid successor must:
+
+1. commit the complete executable source before the recovery run;
+2. bind every source file and external corpus blob;
+3. execute the unchanged frozen protocol on `MAXSAT12-PMS`, `MAXSAT19-UCMS`, and `QBF-2016`;
+4. run twice byte-identically;
+5. publish the complete JSON result and raw terminal durably, not only as a short-lived artifact;
+6. preserve all four registered positive/null/adverse terminals;
+7. label the new run **outcome-exposed recovery corroboration**, because the former positive outcome prose has already been seen;
+8. refuse any R18 application or manuscript promotion until that successor exists and independently replays.
+
+No missing runner behavior, candidate selection, target outcome, or metric is reconstructed from the former positive prose. Doing so would convert an unsupported result into an outcome-tuned implementation.
+
+## Authority boundary
+
+- protocol freeze: `VERIFIED_INTERNAL`;
+- execution subject: `ABSENT`;
+- workflow execution: `ABSENT`;
+- complete result receipt: `ABSENT`;
+- scientific R18 outcome: `CANNOT_CHECK`;
+- external independence: `CANNOT_CHECK`;
+- production value: false;
+- journal authority: false.
+
+R14's exact-equality transfer failure, R16's one-sided selective-value failure, and R17's fallback-alignment theory remain unaffected. R18 is not positive evidence until the recovery obligations above are met.
