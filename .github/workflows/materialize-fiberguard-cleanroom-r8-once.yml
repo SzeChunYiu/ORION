@@ -1,0 +1,49 @@
+name: Materialize FiberGuard clean-room replay once
+
+on:
+  push:
+    branches: [codex/five-paper-top-tier-r8-c-cleanroom-20260826]
+    paths:
+      - '.github/workflows/materialize-fiberguard-cleanroom-r8-once.yml'
+      - 'development/five-paper-r8-c-cleanroom/payload-part-*'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/five-paper-top-tier-r8-c-cleanroom-20260826
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Verify and extract content-bound clean-room payload
+        run: |
+          set -euo pipefail
+          echo 'dfef1eb32c7d2b9ffd693e06ea27fca8632aa3f00b6b0df9afce9b8ad7136586  development/five-paper-r8-c-cleanroom/payload-part-00' | sha256sum -c -
+          cat development/five-paper-r8-c-cleanroom/payload-part-* > /tmp/fiberguard-cleanroom.b64
+          echo 'dfef1eb32c7d2b9ffd693e06ea27fca8632aa3f00b6b0df9afce9b8ad7136586  /tmp/fiberguard-cleanroom.b64' | sha256sum -c -
+          base64 -d /tmp/fiberguard-cleanroom.b64 > /tmp/fiberguard-cleanroom.tar.gz
+          echo '48dfa3d4cea133ae3dfab21d1ba13d03037c771087fe6863f0e1117b4e55f0e4  /tmp/fiberguard-cleanroom.tar.gz' | sha256sum -c -
+          tar -xzf /tmp/fiberguard-cleanroom.tar.gz -C .
+          python -m pip install --upgrade pip
+          python -m pip install 'networkx==3.6.1'
+          python papers/five-paper-top-tier-r8/C/cleanroom/fiberguard_cleanroom_r8.py --output /tmp/FIBERGUARD_CLEANROOM_R8_RESULTS.json > /tmp/fiberguard-cleanroom.stdout
+          cmp /tmp/FIBERGUARD_CLEANROOM_R8_RESULTS.json papers/five-paper-top-tier-r8/C/cleanroom/FIBERGUARD_CLEANROOM_R8_RESULTS.json
+          python -m json.tool papers/five-paper-top-tier-r8/C/cleanroom/FIBERGUARD_CLEANROOM_REPLAY_RECEIPT_R8.json >/dev/null
+      - name: Commit clean-room replay packet
+        run: |
+          set -euo pipefail
+          rm -f development/five-paper-r8-c-cleanroom/payload-part-*
+          rmdir development/five-paper-r8-c-cleanroom 2>/dev/null || true
+          rm -f .github/workflows/materialize-fiberguard-cleanroom-r8-once.yml
+          git config user.name 'ORION R8 clean-room operator'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -A
+          git commit -m 'research: add independent FiberGuard clean-room replay'
+          git push origin HEAD:codex/five-paper-top-tier-r8-c-cleanroom-20260826
