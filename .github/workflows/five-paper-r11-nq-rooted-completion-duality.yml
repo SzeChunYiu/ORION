@@ -1,0 +1,93 @@
+name: five-paper-r11-nq-rooted-completion-duality
+
+on:
+  push:
+    branches:
+      - chatgpt/r11-nq-rooted-completion-duality-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/NQ/ROOTED_COMPLETION_DUALITY_R11.md'
+      - 'papers/five-paper-top-tier-r8/NQ/ROOTED_COMPLETION_PRIOR_ART_R11.md'
+      - 'papers/five-paper-top-tier-r8/NQ/verify_rooted_completion_duality_r11.py'
+      - '.github/workflows/five-paper-r11-nq-rooted-completion-duality.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/NQ/ROOTED_COMPLETION_DUALITY_R11.md'
+      - 'papers/five-paper-top-tier-r8/NQ/ROOTED_COMPLETION_PRIOR_ART_R11.md'
+      - 'papers/five-paper-top-tier-r8/NQ/verify_rooted_completion_duality_r11.py'
+      - '.github/workflows/five-paper-r11-nq-rooted-completion-duality.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rooted-completion-controls:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile exact verifier
+        run: python -m py_compile papers/five-paper-top-tier-r8/NQ/verify_rooted_completion_duality_r11.py
+
+      - name: Replay complete finite controls twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='papers/five-paper-top-tier-r8/NQ/verify_rooted_completion_duality_r11.py'
+          result='papers/five-paper-top-tier-r8/NQ/ROOTED_COMPLETION_DUALITY_R11_RESULTS.json'
+          python "$script" > "$RUNNER_TEMP/terminal-a.txt"
+          cp "$result" "$RUNNER_TEMP/result-a.json"
+          python "$script" > "$RUNNER_TEMP/terminal-b.txt"
+          cp "$result" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          grep -q '^NQ_ROOTED_COMPLETION_DUALITY_R11_PASS$' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Enforce theorem controls and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, pathlib
+          row = json.loads((pathlib.Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text())
+          assert row['schema'] == 'ORION.NQ.RootedCompletionDuality.R11.v1'
+          assert row['status'] == 'NQ_ROOTED_COMPLETION_DUALITY_R11_PASS'
+          totals = row['complete_small_panels']['totals']
+          assert totals['sequences'] == 585
+          assert totals['independent_partition_oracle_checks'] == 1170
+          assert totals['source_maximum_packings'] == totals['rooted_maximum_factorizations'] == 2746
+          assert totals['hereditary_lattice_checks'] == 85624
+          assert row['generated_rank_three_controls']['generated_cases'] == 300
+          skeletons = row['rooted_c5_cubed_skeletons']
+          assert skeletons['rooted_skeleton_count'] == 31
+          assert skeletons['unrooted_skeleton_count'] == 11
+          authority = row['authority']
+          assert authority['universal_theorem_from_computation'] is False
+          assert authority['D3_C5_cubed_independently_replayed'] is False
+          assert authority['D4_C5_cubed_closed'] is False
+          assert authority['external_novelty_review_complete'] is False
+          assert authority['journal_authority'] is False
+          print('NQ_ROOTED_COMPLETION_AUTHORITY_VERIFIED')
+          PY
+
+      - name: Stage immutable finite-control artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/nq-rooted-completion-duality-r11"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/ROOTED_COMPLETION_DUALITY_R11_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nq-rooted-completion-duality-r11
+          path: ${{ runner.temp }}/nq-rooted-completion-duality-r11/
+          if-no-files-found: error
+          retention-days: 30
