@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ORION.Q1.FiniteAttackReceiptR9.schema.json",
+  "title": "ORION Q1 structurally independent finite attack receipt",
+  "type": "object",
+  "required": [
+    "schema",
+    "source_binding",
+    "implementation_independence",
+    "finite_domain",
+    "controls",
+    "results",
+    "manifests",
+    "terminal",
+    "authority"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ORION.Q1.FiniteAttackReceiptR9.v1"
+    },
+    "source_binding": {
+      "type": "object",
+      "required": [
+        "repository",
+        "commit_sha",
+        "manuscript_blob_sha",
+        "definition_blob_sha",
+        "claim_ledger_blob_sha"
+      ],
+      "properties": {
+        "repository": {"const": "SzeChunYiu/ORION"},
+        "commit_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "manuscript_blob_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "definition_blob_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "claim_ledger_blob_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+      },
+      "additionalProperties": true
+    },
+    "implementation_independence": {
+      "type": "object",
+      "required": [
+        "language_and_solver",
+        "registered_code_imported",
+        "registered_canonicalizer_imported",
+        "registered_witnesses_used_as_inputs",
+        "neutral_interchange_only",
+        "independence_explanation"
+      ],
+      "properties": {
+        "language_and_solver": {"type": "string", "minLength": 1},
+        "registered_code_imported": {"const": false},
+        "registered_canonicalizer_imported": {"const": false},
+        "registered_witnesses_used_as_inputs": {"type": "boolean"},
+        "neutral_interchange_only": {"type": "boolean"},
+        "independence_explanation": {"type": "string", "minLength": 20}
+      },
+      "additionalProperties": true
+    },
+    "finite_domain": {
+      "type": "object",
+      "required": [
+        "instance_generator",
+        "scope_parameters",
+        "instance_count",
+        "symmetry_group",
+        "canonicalization_method",
+        "completeness_argument"
+      ],
+      "properties": {
+        "instance_generator": {"type": "string", "minLength": 1},
+        "scope_parameters": {"type": "object"},
+        "instance_count": {"type": "integer", "minimum": 0},
+        "symmetry_group": {"type": "string", "minLength": 1},
+        "canonicalization_method": {"type": "string", "minLength": 1},
+        "completeness_argument": {"type": "string", "minLength": 20}
+      },
+      "additionalProperties": true
+    },
+    "controls": {
+      "type": "object",
+      "required": [
+        "support_two_positive",
+        "support_one_cases",
+        "support_two_lower_witnesses",
+        "broken_shared_tag_negative",
+        "omitted_move_negative",
+        "objective_ties",
+        "metamorphic_relabeling",
+        "outside_scope_support_three",
+        "resource_terminal_preserved"
+      ],
+      "properties": {
+        "support_two_positive": {"type": "boolean"},
+        "support_one_cases": {"type": "boolean"},
+        "support_two_lower_witnesses": {"type": "boolean"},
+        "broken_shared_tag_negative": {"type": "boolean"},
+        "omitted_move_negative": {"type": "boolean"},
+        "objective_ties": {"type": "boolean"},
+        "metamorphic_relabeling": {"type": "boolean"},
+        "outside_scope_support_three": {"type": "boolean"},
+        "resource_terminal_preserved": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "results": {
+      "type": "object",
+      "required": [
+        "instances_checked",
+        "minimum_support_histogram",
+        "support_three_counterexamples",
+        "semantic_evaluator_disagreements",
+        "solver_disagreements",
+        "symmetry_leakage_cases"
+      ],
+      "properties": {
+        "instances_checked": {"type": "integer", "minimum": 0},
+        "minimum_support_histogram": {"type": "object"},
+        "support_three_counterexamples": {"type": "array"},
+        "semantic_evaluator_disagreements": {"type": "array"},
+        "solver_disagreements": {"type": "array"},
+        "symmetry_leakage_cases": {"type": "array"}
+      },
+      "additionalProperties": true
+    },
+    "manifests": {
+      "type": "object",
+      "required": [
+        "source_manifest_sha256",
+        "result_manifest_sha256",
+        "environment_manifest_sha256",
+        "negative_control_manifest_sha256"
+      ],
+      "properties": {
+        "source_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "result_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "environment_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "negative_control_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": true
+    },
+    "terminal": {
+      "enum": [
+        "NO_SUPPORT3_COUNTEREXAMPLE_IN_DECLARED_FINITE_DOMAIN",
+        "SUPPORT3_COUNTEREXAMPLE",
+        "ENCODING_DISAGREEMENT",
+        "SEMANTIC_EVALUATOR_DISAGREEMENT",
+        "SYMMETRY_LEAKAGE",
+        "RESOURCE_EXHAUSTED",
+        "CANNOT_CHECK"
+      ]
+    },
+    "authority": {
+      "type": "object",
+      "required": [
+        "finite_domain_only",
+        "proves_all_size_theorem",
+        "grants_production_resource_authority",
+        "grants_journal_authority"
+      ],
+      "properties": {
+        "finite_domain_only": {"const": true},
+        "proves_all_size_theorem": {"const": false},
+        "grants_production_resource_authority": {"const": false},
+        "grants_journal_authority": {"const": false}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
