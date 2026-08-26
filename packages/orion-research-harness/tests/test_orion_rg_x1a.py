@@ -57,7 +57,7 @@ def test_x1a_control_orders_donor_refusal_before_deficit_reframe():
     )
     d2 = decide_campaign(blocked, manifest)
     assert d2.selected_id == "COMPUTE:X1A_ONE_BLOCK_DEFICIT"
-    assert d2.revision["selected_revision_mechanic_id"] == "REV:X1A_REFRAME_TO_LIFT_COMPATIBLE_OBSTRUCTION"
+    assert d2.revision["selected_mechanic_id"] == "REV:X1A_REFRAME_TO_LIFT_COMPATIBLE_OBSTRUCTION"
 
 
 def test_x1a_finite_calibration_cannot_claim_family_theorem():

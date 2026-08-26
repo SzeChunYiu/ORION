@@ -168,12 +168,17 @@ def _p2() -> tuple[bool, bool, str]:
         seed=1,
         run_manifest_hash="c" * 64,
     )
-    positive = local.record["metrics"]["premature_task_closure"] == 0.0
-    route_audits = [
-        item for item in local.artifact["evaluation"]["stop_audits"]
-        if item["scope"] == StopScope.ROUTE.value
-    ]
-    positive = positive and bool(route_audits) and route_audits[0]["premature"] is False
+    local_evaluation = local.artifact["evaluation"]
+    route_audits = local_evaluation["route_stop_audits"]
+    exhaustion_audits = local_evaluation["route_exhaustion_audits"]
+    positive = (
+        local.record["metrics"]["premature_task_closure"] == 0.0
+        and bool(route_audits)
+        and route_audits[0]["false_positive"] is False
+        and route_audits[0]["cannot_check"] is False
+        and bool(exhaustion_audits)
+        and exhaustion_audits[0]["route_id"] == route_audits[0]["route_id"]
+    )
 
     global_claim = execute_p2(
         _P2SingleRoute(close=True),
@@ -182,15 +187,21 @@ def _p2() -> tuple[bool, bool, str]:
         seed=1,
         run_manifest_hash="c" * 64,
     )
-    task_audit = next(
-        item for item in global_claim.artifact["evaluation"]["stop_audits"]
+    global_evaluation = global_claim.artifact["evaluation"]
+    task_decision = next(
+        item for item in global_claim.artifact["trace"]["stop_decisions"]
         if item["scope"] == StopScope.TASK.value
     )
     fail_closed = (
         global_claim.record["status"] == "FAIL"
         and global_claim.record["failure_class"] == "premature_closure"
-        and task_audit["premature"] is True
-        and task_audit["still_reachable_count"] > 0
+        and task_decision["declared"] is True
+        and global_evaluation["premature_closure"] is True
+        and global_claim.record["metrics"]["premature_task_closure"] == 1.0
+        and global_claim.record["metrics"][
+            "task_residual_discoverable_within_budget"
+        ]
+        > 0.0
     )
     return positive, fail_closed, "live P2 discovery suite route-stop/task-stop evaluator"
 

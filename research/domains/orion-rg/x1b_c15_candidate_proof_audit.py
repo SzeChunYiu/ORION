@@ -42,7 +42,7 @@ REQUIRED_TEXT = {
     ],
     "research/domains/orion-rg/X1B_C15_14PT_NO_SHORT_RAW_CONFIRM_RESULT_2026-08-22.md": [
         "38,376",
-        "failures: **0**",
+        "Failures:\n\n**0**.",
     ],
     "research/domains/orion-rg/X1B_C15_16PT_RAW_QUOTIENT_RESULT_2026-08-22.md": [
         "packed4 702",
