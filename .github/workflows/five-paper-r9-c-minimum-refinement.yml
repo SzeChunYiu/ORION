@@ -1,0 +1,34 @@
+name: Five-paper R9 C minimum exact refinement
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/r9-c-minimum-refinement-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/MINIMUM_EXACT_REFINEMENT_R9_ADDENDUM.md'
+      - 'papers/five-paper-top-tier-r8/C/REFINEMENT_HITTING_SET_PRIOR_ART_R9.json'
+      - 'papers/five-paper-top-tier-r8/C/verify_minimum_exact_refinement_r9.py'
+      - 'papers/five-paper-top-tier-r8/C/MINIMUM_EXACT_REFINEMENT_R9_RESULTS.json'
+      - '.github/workflows/five-paper-r9-c-minimum-refinement.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-reduction-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Preserve registered result
+        run: cp papers/five-paper-top-tier-r8/C/MINIMUM_EXACT_REFINEMENT_R9_RESULTS.json /tmp/registered.json
+      - name: Replay exact reduction audit
+        run: python papers/five-paper-top-tier-r8/C/verify_minimum_exact_refinement_r9.py > /tmp/replay.stdout
+      - name: Require byte-exact registered result
+        run: cmp /tmp/registered.json papers/five-paper-top-tier-r8/C/MINIMUM_EXACT_REFINEMENT_R9_RESULTS.json
+      - name: Require clean artifact tree
+        run: git diff --exit-code -- papers/five-paper-top-tier-r8/C/MINIMUM_EXACT_REFINEMENT_R9_RESULTS.json
