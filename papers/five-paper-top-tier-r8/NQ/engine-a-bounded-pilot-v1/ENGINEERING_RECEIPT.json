@@ -1,0 +1,26 @@
+{
+  "certificate_valid": null,
+  "exhaustive": true,
+  "exposure_markers": [
+    "EXPECTED_OUTCOME_EXPOSURE",
+    "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+  ],
+  "full_coverage": true,
+  "independence_terminal": "CANNOT_CHECK",
+  "input_sha256": "918695e5ad71f12a3acc777f0b8163db8858583569f0e0697fde5320ace2d552",
+  "metrics": {
+    "frontier_peak": 1,
+    "k": 1,
+    "layers_completed": 0,
+    "sequence_length": 0,
+    "states_explored": 0
+  },
+  "reasons": [
+    "all DP layers completed without a target state"
+  ],
+  "result_sha256": "241a5e1a27170d8e25960f5817aafa984e40684564cbea78a700834a73a9a5c6",
+  "result_status": "NEGATIVE",
+  "schema_version": "nq-engine-a-receipt-v1",
+  "source_manifest_sha256": "6f3a5ecec9d05a7663edb91302ac17e5b8e6e27f0ed0ce554ea68e1f159b6c97",
+  "terminal": "ENGINEERING_NEGATIVE"
+}
