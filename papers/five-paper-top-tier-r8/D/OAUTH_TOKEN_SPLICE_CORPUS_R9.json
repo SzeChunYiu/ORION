@@ -1,0 +1,456 @@
+{
+  "as_of": "2026-08-26",
+  "authority": {
+    "captured_real_attack_traffic": false,
+    "independent_domain_adjudication": false,
+    "synthetic_records_derived_from_official_rfc_requirements": true
+  },
+  "cases": [
+    {
+      "case_id": "CLEAN_BEARER_ADMIN",
+      "description": "One JWT access-token record contains every required validation and authorization fact.",
+      "expected_authorized": true,
+      "expected_reason": "all bearer premises belong to one validated token coordinate",
+      "mode": "bearer",
+      "records": [
+        {
+          "coordinate": "tok:a|iss:trusted|sub:alice|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "issuer_trusted",
+            "not_expired",
+            "scope_admin",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-a"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "SAME_TOKEN_FRAGMENTATION_ALLOWED",
+      "description": "Two validators emit complementary facts for the same content-bound token coordinate.",
+      "expected_authorized": true,
+      "expected_reason": "content-bound records for the same token may compose",
+      "mode": "bearer",
+      "records": [
+        {
+          "coordinate": "tok:a|iss:trusted|sub:alice|aud:rs1",
+          "facts": [
+            "issuer_trusted",
+            "not_expired",
+            "signature_valid",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-a-validation"
+        },
+        {
+          "coordinate": "tok:a|iss:trusted|sub:alice|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "scope_admin",
+            "subject_alice"
+          ],
+          "record_id": "token-a-authorization"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "DECLARED_MULTI_AUDIENCE_ADMIN",
+      "description": "A single validated token is explicitly valid at RS1 and carries an RS1-meaningful admin scope.",
+      "expected_authorized": true,
+      "expected_reason": "the relevant audience, subject, scope, and validation facts remain bound to one token",
+      "mode": "bearer",
+      "records": [
+        {
+          "coordinate": "tok:multi|iss:trusted|sub:alice|aud:rs1+rs2",
+          "facts": [
+            "aud_rs1",
+            "aud_rs2",
+            "issuer_trusted",
+            "not_expired",
+            "scope_admin",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-multi"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "READ_ONLY_TOKEN",
+      "description": "A valid RS1 token carries read scope but no admin scope.",
+      "expected_authorized": false,
+      "expected_reason": "admin scope is absent",
+      "mode": "bearer",
+      "records": [
+        {
+          "coordinate": "tok:read|iss:trusted|sub:alice|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "issuer_trusted",
+            "not_expired",
+            "scope_read",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-read"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "AUDIENCE_SCOPE_SPLICE",
+      "description": "RS1 audience and subject come from one token while admin scope comes from an RS2 token.",
+      "expected_authorized": false,
+      "expected_reason": "scope and audience are not carried by the same access token",
+      "mode": "bearer",
+      "records": [
+        {
+          "coordinate": "tok:rs1|iss:trusted|sub:alice|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "issuer_trusted",
+            "not_expired",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-rs1"
+        },
+        {
+          "coordinate": "tok:rs2|iss:trusted|sub:alice|aud:rs2",
+          "facts": [
+            "aud_rs2",
+            "issuer_trusted",
+            "not_expired",
+            "scope_admin",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-rs2-admin"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "SUBJECT_SCOPE_SPLICE",
+      "description": "Alice identity comes from one token while admin scope comes from Mallory's token.",
+      "expected_authorized": false,
+      "expected_reason": "subject and admin authorization are bound to different tokens",
+      "mode": "bearer",
+      "records": [
+        {
+          "coordinate": "tok:alice|iss:trusted|sub:alice|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "issuer_trusted",
+            "not_expired",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-alice"
+        },
+        {
+          "coordinate": "tok:mallory|iss:trusted|sub:mallory|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "issuer_trusted",
+            "not_expired",
+            "scope_admin",
+            "signature_valid",
+            "subject_mallory",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-mallory-admin"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "ISSUER_SCOPE_SPLICE",
+      "description": "Trusted-issuer validation comes from one token while admin scope comes from an untrusted issuer.",
+      "expected_authorized": false,
+      "expected_reason": "the token carrying admin scope lacks the expected issuer",
+      "mode": "bearer",
+      "records": [
+        {
+          "coordinate": "tok:trusted|iss:trusted|sub:alice|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "issuer_trusted",
+            "not_expired",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-trusted"
+        },
+        {
+          "coordinate": "tok:evil|iss:untrusted|sub:alice|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "issuer_untrusted",
+            "not_expired",
+            "scope_admin",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-untrusted-admin"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "EXPIRY_LAUNDERING",
+      "description": "An expired admin token is combined with freshness from a different token.",
+      "expected_authorized": false,
+      "expected_reason": "freshness and admin scope belong to different tokens",
+      "mode": "bearer",
+      "records": [
+        {
+          "coordinate": "tok:expired|iss:trusted|sub:alice|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "issuer_trusted",
+            "scope_admin",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-expired-admin"
+        },
+        {
+          "coordinate": "tok:fresh|iss:trusted|sub:alice|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "issuer_trusted",
+            "not_expired",
+            "scope_read",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-fresh-read"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "REVOCATION_LAUNDERING",
+      "description": "The admin token's signature fact is directly refuted but a second token still has a valid signature.",
+      "expected_authorized": false,
+      "expected_reason": "direct refutation is coordinate-specific and cannot be laundered through another token",
+      "mode": "bearer",
+      "records": [
+        {
+          "coordinate": "tok:revoked|iss:trusted|sub:alice|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "issuer_trusted",
+            "not_expired",
+            "scope_admin",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-revoked-admin"
+        },
+        {
+          "coordinate": "tok:other|iss:trusted|sub:alice|aud:rs1",
+          "facts": [
+            "aud_rs1",
+            "issuer_trusted",
+            "not_expired",
+            "scope_read",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-other"
+        }
+      ],
+      "refutations": [
+        {
+          "coordinate": "tok:revoked|iss:trusted|sub:alice|aud:rs1",
+          "fact": "signature_valid"
+        }
+      ]
+    },
+    {
+      "case_id": "CLEAN_DPOP_ADMIN",
+      "description": "One DPoP-bound token and its matching proof carry every required fact.",
+      "expected_authorized": true,
+      "expected_reason": "token, key, access-token hash, method, URI, and authorization facts share one coordinate",
+      "mode": "dpop",
+      "records": [
+        {
+          "coordinate": "tok:dpop-a|iss:trusted|sub:alice|aud:rs1|key:k1",
+          "facts": [
+            "aud_rs1",
+            "dpop_ath_matches",
+            "dpop_key_matches",
+            "dpop_method_matches",
+            "dpop_proof_signature_valid",
+            "dpop_token_bound",
+            "dpop_uri_matches",
+            "issuer_trusted",
+            "not_expired",
+            "scope_admin",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-dpop-a"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "DPOP_KEY_SPLICE",
+      "description": "A valid admin token bound to K1 is combined with a proof under K2.",
+      "expected_authorized": false,
+      "expected_reason": "the proof key and access-token binding do not belong to the same token coordinate",
+      "mode": "dpop",
+      "records": [
+        {
+          "coordinate": "tok:dpop-a|iss:trusted|sub:alice|aud:rs1|key:k1",
+          "facts": [
+            "aud_rs1",
+            "dpop_token_bound",
+            "issuer_trusted",
+            "not_expired",
+            "scope_admin",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-k1"
+        },
+        {
+          "coordinate": "tok:dpop-b|iss:trusted|sub:alice|aud:rs1|key:k2",
+          "facts": [
+            "dpop_ath_matches",
+            "dpop_key_matches",
+            "dpop_method_matches",
+            "dpop_proof_signature_valid",
+            "dpop_uri_matches"
+          ],
+          "record_id": "proof-k2"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "DPOP_ATH_SPLICE",
+      "description": "The access-token hash match is imported from a proof for a different token.",
+      "expected_authorized": false,
+      "expected_reason": "the ath evidence is not bound to the presented access token",
+      "mode": "dpop",
+      "records": [
+        {
+          "coordinate": "tok:dpop-a|iss:trusted|sub:alice|aud:rs1|key:k1",
+          "facts": [
+            "aud_rs1",
+            "dpop_key_matches",
+            "dpop_method_matches",
+            "dpop_proof_signature_valid",
+            "dpop_token_bound",
+            "dpop_uri_matches",
+            "issuer_trusted",
+            "not_expired",
+            "scope_admin",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-and-proof-a"
+        },
+        {
+          "coordinate": "tok:dpop-b|iss:trusted|sub:alice|aud:rs1|key:k1",
+          "facts": [
+            "dpop_ath_matches"
+          ],
+          "record_id": "proof-b-ath"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "DPOP_URI_SPLICE",
+      "description": "The target-URI match is imported from a proof issued for another request.",
+      "expected_authorized": false,
+      "expected_reason": "the URI match must be checked on the same DPoP proof used with the token",
+      "mode": "dpop",
+      "records": [
+        {
+          "coordinate": "tok:dpop-a|iss:trusted|sub:alice|aud:rs1|key:k1|htu:wrong",
+          "facts": [
+            "aud_rs1",
+            "dpop_ath_matches",
+            "dpop_key_matches",
+            "dpop_method_matches",
+            "dpop_proof_signature_valid",
+            "dpop_token_bound",
+            "issuer_trusted",
+            "not_expired",
+            "scope_admin",
+            "signature_valid",
+            "subject_alice",
+            "typ_at_jwt"
+          ],
+          "record_id": "token-and-proof-a"
+        },
+        {
+          "coordinate": "tok:dpop-c|iss:trusted|sub:alice|aud:rs1|key:k1|htu:rs1",
+          "facts": [
+            "dpop_uri_matches"
+          ],
+          "record_id": "proof-c-uri"
+        }
+      ],
+      "refutations": []
+    },
+    {
+      "case_id": "UNALIGNED_SAME_TOKEN_FRAGMENTS",
+      "description": "Complementary facts plausibly refer to one token but no content-bound identifier aligns them.",
+      "expected_authorized": false,
+      "expected_reason": "authorization must fail closed until the records are content-bound to the same token",
+      "mode": "bearer",
+      "records": [
+        {
+          "coordinate": "unbound:validation-fragment",
+          "facts": [
+            "issuer_trusted",
+            "not_expired",
+            "signature_valid",
+            "typ_at_jwt"
+          ],
+          "record_id": "validator-fragment"
+        },
+        {
+          "coordinate": "unbound:authorization-fragment",
+          "facts": [
+            "aud_rs1",
+            "scope_admin",
+            "subject_alice"
+          ],
+          "record_id": "authorization-fragment"
+        }
+      ],
+      "refutations": []
+    }
+  ],
+  "coordinate_contract": "token/request evidence may compose only when its content-bound coordinate is identical",
+  "query": "authorize Alice for an RS1 admin action",
+  "schema": "ORION.TypedAuthority.OAuthTokenSpliceCorpusR9.v1"
+}
