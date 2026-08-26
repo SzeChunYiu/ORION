@@ -16,6 +16,21 @@
       "sha256": "14537d9d24ff6fd58804c5cc67333cc8f6d5236ed87a5a232542851c8133a7d9"
     },
     {
+      "bytes": 14444,
+      "path": "FULL_CENSUS_DECLARED_MANIFEST.json",
+      "sha256": "534be1a9f17065877a7871d28ef8deedb32d45f82a7b3b0873b05f65e1d46cfa"
+    },
+    {
+      "bytes": 3166,
+      "path": "FULL_CENSUS_MANIFEST_SCHEMA.json",
+      "sha256": "33978e74376e865ad6cb7f9341bcdbf1e8cf34e1580f6b6d3442ce50e3135c57"
+    },
+    {
+      "bytes": 2803,
+      "path": "FULL_REPLAY_AUTHORIZATION.json",
+      "sha256": "a41aaf953894a3476e57e3b9c59efa48ac9a351fa7a619d5653ea3f006d16aed"
+    },
+    {
       "bytes": 2219,
       "path": "INPUT_SCHEMA.json",
       "sha256": "ca09972d894c7485c927a5b05c7baeb7c568bb9897927efa1dc3b327e57387c6"
@@ -36,9 +51,9 @@
       "sha256": "48e31f817b35a0a0ab1e9ac0adc6f02005e5e4a4dc341a364c5723541598f91e"
     },
     {
-      "bytes": 967,
+      "bytes": 1400,
       "path": "SUBMISSION_BLOCKER.json",
-      "sha256": "d6595fa875586c8293738ed68aa2a773f6a00bc0d1ec3c8a4ad1107e6af684c9"
+      "sha256": "ff6bdf3b8f307a980c9f1a608ef984045d5bba516a170d671e84c2a415f21b85"
     },
     {
       "bytes": 22827,
@@ -46,9 +61,34 @@
       "sha256": "96bdba1145a15107d15f7fae75ed584eef2d3cbe00370fc51176c0d8dd6f0920"
     },
     {
-      "bytes": 5154,
+      "bytes": 21500,
+      "path": "batch_external_drup.py",
+      "sha256": "35a390f31b5b1b56f9424a7d151fda6147f47e7991aae58507ac5693202a02d8"
+    },
+    {
+      "bytes": 5836,
       "path": "build_manifest.py",
-      "sha256": "78f98013078436c179a1474a0d178756982b7d7524bcb7828834eb9b3f2429a3"
+      "sha256": "e60df5aedc8b4642949c67b357d9686d0b1d6acab58be1a5d1c4bed9be64297a"
+    },
+    {
+      "bytes": 37339,
+      "path": "crb_census.py",
+      "sha256": "dbf85dbcbb63c31625541354837c9f0b6a5606bef788ffb04f194d4ef7666d31"
+    },
+    {
+      "bytes": 1727,
+      "path": "docs/plans/2026-08-26-crb-full-manifest-design.md",
+      "sha256": "dd49273d6bf40b28ba55b79d34066947b26a5789540c5a299eb5d0cb68f25986"
+    },
+    {
+      "bytes": 718,
+      "path": "docs/plans/2026-08-26-crb-full-manifest-implementation.md",
+      "sha256": "7b979918030d2d85604daaa20f610b3eae06691f7e62bd02f8a412b473ec2d0c"
+    },
+    {
+      "bytes": 8090,
+      "path": "docs/plans/2026-08-27-crb-census-coverage-argument.md",
+      "sha256": "3a0efeab257ecebbf0ca65918da02abfb8329a80781ef1f86352590fc88f79e0"
     },
     {
       "bytes": 16327,
@@ -59,6 +99,11 @@
       "bytes": 19749,
       "path": "external_drup.py",
       "sha256": "4c71d05b6040234c9235194668545d8b5bfd76aefc48f56b1af9e2e0e3900e3e"
+    },
+    {
+      "bytes": 31865,
+      "path": "full_manifest.py",
+      "sha256": "d98069102594dfd04a5d9140fd3368ccea0c7c47aa23df96bdc28234bdacef3d"
     },
     {
       "bytes": 34,
@@ -76,6 +121,16 @@
       "sha256": "e2956d5fffbfe39c997d6f6af7f41a31e718252377b80c60411ed61a37602e77"
     },
     {
+      "bytes": 7521,
+      "path": "slurm/job_nq_r9_crb_full_census.slurm",
+      "sha256": "eea102a733ee310fd8d06d9f0175e1b53883fd00e0102d605f69bc76731d19e6"
+    },
+    {
+      "bytes": 5382,
+      "path": "slurm/submit_crb_full_census.sh",
+      "sha256": "4f14727e99aba5afb7aceb59cfc618f3651ca35fd847a037b3282552410a020b"
+    },
+    {
       "bytes": 5059,
       "path": "symmetry.py",
       "sha256": "4c8adbc79ca1f3090b46a06155c3996a8d7d9cb73abd063a2bf219194070b511"
@@ -84,6 +139,16 @@
       "bytes": 12245,
       "path": "tests/test_batch_and_authority.py",
       "sha256": "0e882aba1d897271b65d699cdb47dcda0f1d2a4549c64359dfee8274eafd3171"
+    },
+    {
+      "bytes": 9163,
+      "path": "tests/test_batch_external_drup.py",
+      "sha256": "076094e0f48ad126177af183535a0cf77b86fb9d654c248a460a42a321437137"
+    },
+    {
+      "bytes": 6227,
+      "path": "tests/test_crb_census.py",
+      "sha256": "95f3ebe3aa8951ae2b8b02187063a6f1fa42dc505054c9c25c61b7ccf3346fdd"
     },
     {
       "bytes": 4934,
@@ -96,6 +161,11 @@
       "sha256": "bf92d942d463debe8cb8ab8edbccafe25200086e8729bbbc38a81d46bf72f63b"
     },
     {
+      "bytes": 5757,
+      "path": "tests/test_full_manifest.py",
+      "sha256": "bc2f27abe0858c42003ba6593a385b53b9fc3c509557107fa67469c85e8a6714"
+    },
+    {
       "bytes": 4259,
       "path": "tests/test_source_packet.py",
       "sha256": "5d1ea6f8496d51b09a5ca2f9941f1570f414d199be465ca33857c9740246db41"
@@ -106,7 +176,7 @@
       "sha256": "f53d441f04b598a1ee4f1a451af360aaee38706501360d37c16c58481c915c87"
     }
   ],
-  "manifest_sha256": "67d4827ac9a602da1dc9133d54e25756d52bdc7f091f4265c4df7e3b357153c4",
+  "manifest_sha256": "b943b1bbd9be254fa16a10ad89b8a42599da2500361f859a2b5428f3e96de124",
   "schema": "ORION.NQ.EngineB.SourceManifest.v1",
   "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
 }

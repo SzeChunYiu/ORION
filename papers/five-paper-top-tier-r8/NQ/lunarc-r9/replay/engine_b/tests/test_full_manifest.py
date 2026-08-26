@@ -69,13 +69,9 @@ def test_candidate_records_are_exact_canonical_and_outcome_free(tmp_path: Path) 
         fm.parse_candidate_line(noncanonical, spec, expected_ordinal=0)
 
     promoted = dict(record, status="SAT")
-    promoted["candidate_sha256"] = fm.payload_sha256(
-        promoted, digest_field="candidate_sha256"
-    )
+    promoted["candidate_sha256"] = fm.payload_sha256(promoted, digest_field="candidate_sha256")
     with pytest.raises(fm.CandidateStreamMismatch, match="fields"):
-        fm.parse_candidate_line(
-            eb.canonical_json_bytes(promoted) + b"\n", spec, expected_ordinal=0
-        )
+        fm.parse_candidate_line(eb.canonical_json_bytes(promoted) + b"\n", spec, expected_ordinal=0)
 
 
 def test_materializer_writes_exact_frozen_shards_and_rejects_gaps(tmp_path: Path) -> None:
@@ -101,9 +97,7 @@ def test_materializer_writes_exact_frozen_shards_and_rejects_gaps(tmp_path: Path
     assert manifest["authority"]["scientific_authority_delta"] == "NONE"
     assert manifest["authority"]["normalization_completeness"] == "CANNOT_CHECK"
 
-    stream.write_bytes(
-        b"".join(eb.canonical_json_bytes(record) + b"\n" for record in records[:-1])
-    )
+    stream.write_bytes(b"".join(eb.canonical_json_bytes(record) + b"\n" for record in records[:-1]))
     with pytest.raises(fm.CandidateStreamMismatch, match="expected 5"):
         fm.materialize_scope(stream, plan["scopes"][0], tmp_path / "short")
 

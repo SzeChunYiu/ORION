@@ -22,8 +22,13 @@
     "tree": "b64f2188238e5fc869680ca117d241a0a3615349"
   },
   "engine_b": {
+    "full_replay_authorization": {
+      "nonduplication_key": "ca871511dc13db070dc328c2021b1bec3f12ec28c0fd315b1f242cc97abfa94e",
+      "packet": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/FULL_REPLAY_AUTHORIZATION.json",
+      "partition_plan_sha256": "14c04a132c16a738a199587a00bdddc9d50e32bf3437595af5572560baf28029"
+    },
     "imports_engine_a": false,
-    "source_manifest_sha256": "daa673588db36afcc02bd346a9527664d0965b9b8a53894e67b2900124758162",
+    "source_manifest_sha256": "b943b1bbd9be254fa16a10ad89b8a42599da2500361f859a2b5428f3e96de124",
     "state_representation": "CNF occurrence-bin variables plus modular prefix-sum automata",
     "symmetry": "fixed span basis plus literal GL(r,5) matrix-action enumeration"
   },
@@ -41,7 +46,7 @@
     "renamed_key_permits_duplicate": false,
     "resubmission_forbidden": true
   },
-  "remaining_blocker": "CR-B-generated full matrix/candidate/orbit manifests, audited normalization and 98,622/230,983 partitions, external DRUP checking, full-resource authorization, and a genuinely nonduplicate key are absent",
+  "remaining_blocker": "LUNARC execution of the authorized CR-B full-census replay (generation, per-record SAT execution, external DRUP verification of every UNSAT certificate) and root review of the local commit",
   "replay_source_manifest_sha256": "29d853a2fd0cea72d37ba2df703afa689f1180dd5a4646e87b0c0fa66efccb15",
   "schema": "ORION.NQ.R9.CRBCustodyBinding.v1",
   "scientific_subject": "0c451e862a0eeddac7c673813c4dc499f134b088",
