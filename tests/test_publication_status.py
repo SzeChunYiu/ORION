@@ -43,7 +43,7 @@ def test_committed_scoreboard_matches_derived_artifacts():
 
 
 def test_scoped_readiness_reflects_the_artifacts_not_the_ambition():
-    """Three of five are ready on scoped gates; two are blocked, and honestly so.
+    """Two of five are ready on scoped gates; three are blocked, and honestly so.
 
     This asserted all five until the repository corrected itself past it. P1 and
     P5 now declare CANNOT_CHECK in their own JOURNAL_READINESS -- P5's frozen
@@ -51,7 +51,8 @@ def test_scoped_readiness_reflects_the_artifacts_not_the_ambition():
     supporting artifacts the scoreboard requires. The papers were honest; the
     committed scoreboard and this test were the stale pair.
 
-    P3 is ready on its bounded mapping / P3-X identity-authority claim, not the
+    P2 now retains its bounded scientific endpoint while declaring the current
+    package not submission-ready. P3 is ready on its bounded mapping / P3-X identity-authority claim, not the
     unexecuted raw-text/downstream programme. Scoped readiness must not launder
     an excluded claim into evidence, and neither must it launder an unready
     paper into a ready one.
@@ -61,14 +62,14 @@ def test_scoped_readiness_reflects_the_artifacts_not_the_ambition():
     derived = module.derive_scoreboard(ROOT)
     by_id = {paper["paper_id"]: paper for paper in derived["papers"]}
 
-    for paper_id in ("P2", "P3", "P4"):
+    for paper_id in ("P3", "P4"):
         assert by_id[paper_id]["status"] == "PEER_REVIEW_READY", paper_id
         assert by_id[paper_id]["journal_readiness_terminal"] == "PEER_REVIEW_READY"
         assert by_id[paper_id]["attestation_paths"], paper_id
         assert by_id[paper_id]["claim_ledgers"], paper_id
         assert not by_id[paper_id]["missing_artifacts"], paper_id
 
-    for paper_id in ("P1", "P5"):
+    for paper_id in ("P1", "P2", "P5"):
         assert by_id[paper_id]["status"] == "BLOCKED", paper_id
         assert by_id[paper_id]["journal_readiness_terminal"] == "CANNOT_CHECK", paper_id
         assert by_id[paper_id]["missing_artifacts"], (
@@ -76,34 +77,30 @@ def test_scoped_readiness_reflects_the_artifacts_not_the_ambition():
             "block is unactionable"
         )
 
-    assert derived["programme"]["papers_peer_review_ready"] == ["P2", "P3", "P4"]
+    assert derived["programme"]["papers_peer_review_ready"] == ["P3", "P4"]
     assert derived["programme"]["close_allowed"] is False
     assert derived["programme"]["status"] == "BLOCKED"
 
 
-def test_p2_readiness_rests_on_an_unambiguous_terminal_line():
-    """Guard the mechanism, not just the outcome.
+def test_p2_package_non_readiness_is_machine_scorable():
+    """Guard the current package boundary, not an obsolete readiness label.
 
-    P2's readiness is read from one line. If a scope caveat drifts back onto
-    that line so it names both PEER_REVIEW_READY and CANNOT_CHECK, the parser
-    resolves fail-closed and P2 silently returns BLOCKED -- and every downstream
-    test starts failing for a reason that has nothing to do with P2's evidence.
-    Naming the cause here means the failure message points at the sentence.
-
-    Previously called module.terminal_line_is_ambiguous, which does not exist;
-    the test raised AttributeError rather than checking anything, so the drift it
-    guards against would not have been caught.
+    P2 retains the bounded P2_NARROWED scientific endpoint, but its current
+    package lacks a current immutable render and audit. The publication
+    scoreboard therefore maps the exact package terminal to CANNOT_CHECK while
+    leaving the bounded scientific endpoint and external-superiority boundary
+    visible on their separate axes.
     """
     module = _load_module()
     readiness = (
         ROOT / "papers" / "paper-02-open-world-scientific-discovery" / "JOURNAL_READINESS.md"
     ).read_text(encoding="utf-8")
     terminal = module.parse_journal_readiness_terminal(readiness)
-    assert terminal == "PEER_REVIEW_READY", (
-        "P2's terminal line no longer resolves to PEER_REVIEW_READY "
-        f"(got {terminal!r}); the scoreboard reads one line and resolves it "
-        "fail-closed, so a scope caveat on that line blocks the paper"
-    )
+    assert terminal == "CANNOT_CHECK"
+    assert "P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY" in readiness
+    assert "P2_NARROWED" in readiness
+    assert "External ORION-vs-baseline superiority remains" in readiness
+    assert "CANNOT_CHECK" in readiness
 
 
 def test_p1_block_is_artifact_backed_not_inferred_from_a_closed_issue():

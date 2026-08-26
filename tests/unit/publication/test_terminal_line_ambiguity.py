@@ -91,7 +91,7 @@ def test_unambiguous_lines_are_not_flagged() -> None:
 
 
 def test_p2_on_disk_declares_one_terminal() -> None:
-    """Guard the specific file, so the scoped caveat cannot drift back onto the line."""
+    """P2's package terminal is one explicit fail-closed declaration."""
 
     scoreboard = _scoreboard()
     text = P2_READINESS.read_text(encoding="utf-8")
@@ -99,11 +99,9 @@ def test_p2_on_disk_declares_one_terminal() -> None:
         "P2's terminal line names both terminals again; move the scope caveat onto "
         "its own line"
     )
-    assert scoreboard.parse_journal_readiness_terminal(text) == "PEER_REVIEW_READY"
-    # The exclusion must remain visible to a reader. Removing the ambiguity by
-    # deleting the caveat would pass the checks above and would be dishonest.
+    assert scoreboard.parse_journal_readiness_terminal(text) == "CANNOT_CHECK"
+    assert "P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY" in text
+    assert "P2_NARROWED" in text
+    # The external-superiority exclusion must remain visible to a reader.
     assert "CANNOT_CHECK" in text, "the excluded superiority claim is no longer recorded"
-    # Matched loosely on purpose: the caveat is bolded in the file ("is **not**
-    # part of the ready claim"), and an assertion that breaks on emphasis would be
-    # a test about markdown rather than about the exclusion surviving.
-    assert "part of the ready claim" in text
+    assert "External ORION-vs-baseline superiority remains" in text
