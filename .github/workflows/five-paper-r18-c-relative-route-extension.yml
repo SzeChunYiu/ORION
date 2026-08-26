@@ -1,0 +1,131 @@
+name: five-paper-r18-c-relative-route-extension
+
+on:
+  push:
+    branches:
+      - chatgpt/r18-c-relative-route-extension-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18.md'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_relative_route_extension_r18.py'
+      - 'papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json'
+      - 'papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_HARNESS.json'
+      - '.github/workflows/five-paper-r18-c-relative-route-extension.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18.md'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_relative_route_extension_r18.py'
+      - 'papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json'
+      - 'papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_HARNESS.json'
+      - '.github/workflows/five-paper-r18-c-relative-route-extension.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-relative-route-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile and replay twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          script="$root/verify_fiberguard_relative_route_extension_r18.py"
+          registered="$root/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json"
+          python -m py_compile "$script"
+          python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$registered"
+          grep -qx 'FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18_PASS' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify theorem surface and fail-closed harness
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('papers/five-paper-top-tier-r8/C')
+          harness = json.loads((root / 'RELATIVE_ROUTE_EXTENSION_R18_HARNESS.json').read_text())
+          result = json.loads((root / 'RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json').read_text())
+          manuscript = (root / 'FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18.md').read_text()
+          lines = manuscript.splitlines()
+
+          assert harness['schema'] == 'ORION.FiberGuard.RelativeRouteHarness.R18.v1'
+          assert harness['source_parent_commit'] == 'f34b61e0051289588eaf144a580dca7bc9b7e707'
+          assert harness['internal_theory_terminal'] == 'FIBERGUARD_INTERNAL_FINITE_THEORY_ARCHITECTURE_CLOSED_R18'
+          assert harness['application_terminal'] == 'PAIRED_PRE_ACQUISITION_ROUTE_EXPERIMENT_NOT_EXECUTED'
+          assert harness['publication_terminal'] == 'NOT_SUBMISSION_READY'
+          assert len(harness['required_theorem_headings']) == 9
+          for heading in harness['required_theorem_headings']:
+              assert lines.count(heading) == 1, heading
+          for boundary in harness['required_explicit_boundaries']:
+              assert boundary in manuscript, boundary
+
+          gates = harness['gates']
+          assert gates['common_oracle_and_action_specific_costs_explicit'] is True
+          assert gates['closed_world_structural_and_statistical_authority_separated'] is True
+          assert gates['pre_and_post_acquisition_routing_separated'] is True
+          assert gates['direct_relative_and_absolute_loss_certificates_separated'] is True
+          assert gates['drift_margin_required_for_transfer'] is True
+          assert gates['paired_ASlib_experiment_executed'] is False
+          assert gates['pre_acquisition_route_experiment_executed'] is False
+          assert gates['structural_metric_validated_on_ASlib'] is False
+          assert gates['non_SAT_transfer_executed'] is False
+          assert gates['external_independence'] is False
+          assert gates['specialist_novelty_adjudication'] is False
+          assert gates['journal_authority'] is False
+
+          assert result['schema'] == 'ORION.FiberGuard.RelativeRouteExtension.R18.v1'
+          assert result['source_base_commit'] == harness['source_parent_commit']
+          assert result['terminal'] == 'FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18_PASS'
+          assert all(result['controls'].values())
+          assert result['lipschitz_relative_extension'] == {
+              'bound_checks': 9072,
+              'hostile_underestimated_constant_failures': 56,
+              'training_anchor_monotonicity_checks': 8316,
+          }
+          assert result['finite_route_measurability']['label_gate_pairs'] == 1364
+          assert result['timing']['pre_post_identity_systems'] == 2000
+          assert result['timing']['unbounded_gap_rows'] == 20
+          assert result['transfer']['drift_interval_checks'] == 1323
+          authority = result['authority']
+          assert authority['paired_ASlib_experiment_executed'] is False
+          assert authority['pre_acquisition_route_experiment_executed'] is False
+          assert authority['structural_metric_validated_on_ASlib'] is False
+          assert authority['non_SAT_transfer_executed'] is False
+          assert authority['grants_journal_authority'] is False
+          print('RELATIVE_ROUTE_R18_HARNESS_VALID')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage immutable audit artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-relative-route-r18"
+          mkdir -p "$out"
+          cp papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json "$out/"
+          cp papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_HARNESS.json "$out/"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-relative-route-r18
+          path: ${{ runner.temp }}/fiberguard-relative-route-r18/
+          if-no-files-found: error
+          retention-days: 30
