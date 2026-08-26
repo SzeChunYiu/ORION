@@ -9,9 +9,14 @@
   "authorized_at_utc": "2026-08-26T15:29:46Z",
   "authority": "engineering_resource_pilot_only",
   "correction": {
-    "corrected_at_utc": "2026-08-26T15:34:55Z",
-    "corrects_packet_sha256": "7e42cbb10d40cf9249791af279823338da13205524276dbcaac5b66e3fa89809",
-    "reason": "Pre-submission LUNARC inspection showed that compute is not an active partition; the packet was corrected to the active default CPU partition lu48 before any job was submitted."
+    "corrected_at_utc": "2026-08-26T15:40:47Z",
+    "corrects_packet_sha256": "204e6492632cf8ac36c01ed8eaa9413cf4926b9a4ddf5a0e1741aad4b66b5d6f",
+    "prior_correction": {
+      "corrected_at_utc": "2026-08-26T15:34:55Z",
+      "corrects_packet_sha256": "7e42cbb10d40cf9249791af279823338da13205524276dbcaac5b66e3fa89809",
+      "reason": "Pre-submission LUNARC inspection showed that compute is not an active partition; no job was submitted."
+    },
+    "reason": "Independent pre-submission review removed the remaining lu48 partition assumption, replaced the invalid combined Python module name with the verified two-module load sequence, and added an immutable noncircular submit-script binding before any job was submitted."
   },
   "bounded_denominator": {
     "candidate_edge_budget_per_invocation": 7,
@@ -105,13 +110,23 @@
   "safe_to_submit": true,
   "schema_version": "nq-engine-a-lunarc-authorization-v1",
   "scientific_terminal": "CANNOT_CHECK",
+  "submit_script_binding": {
+    "commit": "d64818acd9acef74fcf2a4e89a0ebfa098153963",
+    "git_blob": "737b556a4912763fdb5ad485b3555b59a3b63c45",
+    "path": "papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/submit_nq_engine_a_bounded_pilot.sh",
+    "sha256": "2970b0afee279255006b8a19275cb53688441a7871dac47abcd1a0bc2cd64a5d",
+    "tree": "2fc6ada65c88ca1eebef257f7e648666c3f85a29"
+  },
   "slurm": {
     "cpus_per_task": 1,
     "job_name": "nq-ea-pilot",
     "memory_gib": 4,
     "nodes": 1,
-    "partition": "lu48",
-    "python_module": "Python/3.11.5-GCCcore-13.2.0",
+    "partition_selection": "scheduler_default",
+    "python_modules": [
+      "GCCcore/13.2.0",
+      "Python/3.11.5"
+    ],
     "tasks": 1,
     "walltime": "00:30:00"
   }
