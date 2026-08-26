@@ -1,0 +1,136 @@
+{
+  "schema": "ORION.Cleanup.PostFreezeReceipt.v1",
+  "wave": "post-freeze cleanup + organization",
+  "date": "2026-08-27",
+  "base_main": "3a1a83178",
+  "branch": "cleanup/post-freeze-20260827",
+  "scope_exclusions_respected": [
+    "research/orion-v1-freeze/ (digest-bound, read-only; untouched, sha256-verified by checker)",
+    "papers/skills/, papers/candidates/, papers/archive/, papers/orion-*/ (fresh R0 output; no file inside touched)",
+    ".github/workflows/* (no workflow deleted)"
+  ],
+  "summary": {
+    "removed": 0,
+    "moved": 10,
+    "uncertain_kept": 5
+  },
+  "moves": [
+    {
+      "path": "P1_CASE_GENERATION_PLAN.md",
+      "action": "moved",
+      "to": "papers/P1_CASE_GENERATION_PLAN.md",
+      "evidence": "P1 benchmark case-generation plan; subject matter (HIDDEN_SHIFT_CASE_SCHEMA_V1.json, generate_cases.py) lives in papers/orion-11-recursive-epistemic-reconstruction/protocol/; joins the P1_P15_* programme-doc family at papers/ top level. Only references were historical DES-CENSUS-01 manifests (subject_commit-bound) and P1_EXPANSION_FACTS.md (moved together). No CI/scripts/tests/Makefile references.",
+      "successor": "papers/P1_CASE_GENERATION_PLAN.md"
+    },
+    {
+      "path": "P1_EXPANSION_FACTS.md",
+      "action": "moved",
+      "to": "papers/P1_EXPANSION_FACTS.md",
+      "evidence": "Companion P1 expansion facts; cross-references P1_CASE_GENERATION_PLAN.md (moved to same dir, bare-name refs still resolve). Referenced only by DES-CENSUS-01 historical manifests and the plan doc.",
+      "successor": "papers/P1_EXPANSION_FACTS.md"
+    },
+    {
+      "path": "Q_SERIES_DRIFT_FINDING.md",
+      "action": "moved",
+      "to": "papers/Q_SERIES_DRIFT_FINDING.md",
+      "evidence": "Q-series drift finding about papers/Q_SERIES_CONTENT_BINDING_V1.json and the drift-ratchet tests; joins the existing Q_SERIES_* family (Q_SERIES_FINAL_READINESS_2026-08-22.md, Q_SERIES_TOP_TIER_REFACTOR_2026-08-22.md, Q_SERIES_CONTENT_BINDING_V1.json) at papers/ top level. Root-relative path style inside the doc matches papers/ house style.",
+      "successor": "papers/Q_SERIES_DRIFT_FINDING.md"
+    },
+    {
+      "path": "CHECKER_CORPUS_SURVEY.md",
+      "action": "moved",
+      "to": "papers/CHECKER_CORPUS_SURVEY.md",
+      "evidence": "Survey of the 109 check_*.py under papers/ (executed on LUNARC, denominator-carrying record). Its whole subject is papers/; sibling survey genre (Q_QG_*_V1.md reports) lives at papers/ top level. Referenced only by DES-CENSUS-01 historical manifests.",
+      "successor": "papers/CHECKER_CORPUS_SURVEY.md"
+    },
+    {
+      "path": "LATEX_BUILD_SURVEY.md",
+      "action": "moved",
+      "to": "papers/LATEX_BUILD_SURVEY.md",
+      "evidence": "Survey compiling every main.tex under papers/ with Tectonic (17/26 built, denominator recorded). Subject is papers/; same survey genre as the Q_QG_* publication reports at papers/ top level. Referenced only by DES-CENSUS-01 historical manifests.",
+      "successor": "papers/LATEX_BUILD_SURVEY.md"
+    },
+    {
+      "path": "P2_MIGRATION_DEFECT.md",
+      "action": "moved",
+      "to": "development/P2_MIGRATION_DEFECT.md",
+      "evidence": "Resolved issue-record for the #1078 P2 vocabulary migration (src/orion/study/p2/{runner,baselines,arb_systems}.py). Genre-matches the ISSUE_*_PACKET records already loose in development/ (ISSUE_281, ISSUE_628, ISSUE_629...). Referenced only by DES-CENSUS-01 historical manifests.",
+      "successor": "development/P2_MIGRATION_DEFECT.md"
+    },
+    {
+      "path": "P4_PREPARATORY_SCOPE.md",
+      "action": "moved",
+      "to": "development/P4_PREPARATORY_SCOPE.md",
+      "evidence": "Phase-4 preparatory work packet (issue #210 dependency analysis). Joins sibling packets PHASE3_PREFREEZE_PACKET.md and PHASE4_PREPARATORY_RECEIPTS_PACKET.md in development/. Cross-referenced by P4_PREPARATORY_SUMMARY.md (moved together).",
+      "successor": "development/P4_PREPARATORY_SCOPE.md"
+    },
+    {
+      "path": "P4_PREPARATORY_SUMMARY.md",
+      "action": "moved",
+      "to": "development/P4_PREPARATORY_SUMMARY.md",
+      "evidence": "Phase-4 preparatory summary packet; references P4_PREPARATORY_SCOPE.md, PHASE_4_CONSTITUTIONAL_BOUNDARY.md and PHASE_4_KNOWLEDGE_LAYER_VERSIONING.md by bare filename \u2014 all four moved to the same directory so those references still resolve.",
+      "successor": "development/P4_PREPARATORY_SUMMARY.md"
+    },
+    {
+      "path": "PHASE_4_CONSTITUTIONAL_BOUNDARY.md",
+      "action": "moved",
+      "to": "development/PHASE_4_CONSTITUTIONAL_BOUNDARY.md",
+      "evidence": "Phase-4 constitutional-boundary protocol record; kept with the other Phase-3/Phase-4 packets in development/ to preserve the bare-filename reference from P4_PREPARATORY_SUMMARY.md. Protocol successor-in-interest: docs/06-programme/phase-4-programme-protocol.md (untouched).",
+      "successor": "development/PHASE_4_CONSTITUTIONAL_BOUNDARY.md"
+    },
+    {
+      "path": "PHASE_4_KNOWLEDGE_LAYER_VERSIONING.md",
+      "action": "moved",
+      "to": "development/PHASE_4_KNOWLEDGE_LAYER_VERSIONING.md",
+      "evidence": "Phase-4 knowledge-layer versioning protocol record; moved with the Phase-4 packet group (see above) to keep intra-group references resolving.",
+      "successor": "development/PHASE_4_KNOWLEDGE_LAYER_VERSIONING.md"
+    }
+  ],
+  "removals": [],
+  "removals_note": "Zero files deleted. Every deletion candidate investigated failed the evidence bar: tracked .log/.out files inside development/ lanes are declared evidence by .gitignore policy comments; papers/**/main.markdown.out are deliberately tracked (P11-P14, per .gitignore comment); TeX intermediates are scoped-ignored and none are tracked outside those; all zero-reference scripts (regen_v1_freeze_package.py, bind_v1_components.py, census_v1_theorems.py) are freeze-control-plane tooling; run_p5_glm_attribution.py is imported by run_p5_glm_attribution_v2.py; duplicate-content pairs across papers/archive vs papers/candidates and across lane receipts are preserved-by-design copies in excluded dirs.",
+  "uncertain_kept": [
+    {
+      "path": ".integration/five-paper-hardening-r2-correction/",
+      "action": "kept",
+      "verdict": "uncertain \u2014 needs operator",
+      "evidence": "Staged 2026-08-25 02:27-02:29 in 6 commits ('fix(theory): stage correction segment NN'); consuming workflow materialize-five-paper-hardening-r2-correction-once.yml (added 46c133e70) never completed \u2014 the payload dir and the workflow were never deleted in any commit, and no commit after staging touched the workflow's target files (papers/orion-01..03 MANUSCRIPT_V2/CLAIM_LEDGER_R2 history: only 3f363fb4b creation + 3a1a83178 R0 rename). The corrections the payload carries were therefore never applied. Additionally the staged stream is corrupt as stored: corr_00.b64 carries 12001 base64 data chars (1 mod 4) so no assembly order yields the workflow's pinned sha256 f59994ab... \u2014 the once-cycle could not succeed in its current form. Deleting destroys the only copy of un-materialized corrections."
+    },
+    {
+      "path": ".integration/five-paper-hardening-r2-correction-v2/",
+      "action": "kept",
+      "verdict": "uncertain \u2014 needs operator",
+      "evidence": "Six lead_*.b64 staged 2026-08-25 02:41-02:54 ('fix(theory): stage corrected lead 00..05'). lead_02.b64 carries 4001 base64 data chars (1 mod 4) \u2014 the set cannot be reassembled into the gzip stream it was split from, and no workflow or script in the repo references -v2 at all. Never consumed (never deleted). Same class as above: broken-but-unique bytes, operator decision required."
+    },
+    {
+      "path": ".integration/p9p10.part00-09",
+      "action": "kept",
+      "verdict": "uncertain \u2014 needs operator",
+      "evidence": "Extracts cleanly via python (49 files: orion_learning_machine framework + phase2_real_source experiments). 16 member files exist nowhere else in the tree (RESULTS_PHASE2A.json, RESULTS_PHASE2B.json, raw_phase2a/b*.txt, RESEARCH_PROGRAMME_V0.md, CLOSURE_MANIFEST.json, CORPUS_PROVENANCE.json, HF_MATHLIB_TACTICS_SAMPLE.json, framework/{ARCHITECTURE.md,pyproject.toml,README.md,INTEGRATION_CONTRACT_P6_P8.md}, PHASE2_REAL_SOURCE_PLAN.md), and results of that family are referenced by papers/orion-learning-machine/experiments/phase2_real_source/run_phase2a.py. Also note: python-reassembled tar.gz sha256 e4080f15... != the workflow-pinned 027a09c1... (preserve-sweep re-split; GNU base64 -d of the current parts would not reproduce the pinned digest either). Only carrier of those bytes \u2014 kept."
+    },
+    {
+      "path": "papers/HOUSE_STYLE_TODO.md",
+      "action": "kept",
+      "verdict": "uncertain \u2014 needs operator (likely still-pending backlog)",
+      "evidence": "Zero live references (only DES-CENSUS-01 manifests), but content is an explicitly PARKED decision record: 'Not yet done... Written down here so the decisions survive' (recorded 2026-08-21). Deleting would drop open manuscript-style decisions."
+    },
+    {
+      "path": ".github/workflows/materialize-*-once.yml (2 files) + papers/quantum_preprint/ + papers/TOP_TIER_PROMOTION_README_SNIPPET.md + examples/llm_integration.py",
+      "action": "kept",
+      "verdict": "verified live or out-of-scope",
+      "evidence": "Workflows: CI files untouched per wave scope (and each is the only consumer of a kept payload). quantum_preprint/ (2 files) is Q1/QG2 quantum-preprint tooling referenced by the q-series lane history. TOP_TIER_PROMOTION_README_SNIPPET.md is the pointer doc for the live TOP_TIER_PROMOTION_PROGRAM_V1.md programme. examples/llm_integration.py imports src/orion/providers/{llm,retrieval,verification} which all still exist (live public-API example)."
+    }
+  ],
+  "reference_policy_note": "DES-CENSUS-01 manifests (research/orion-epistemic-state-v1/results/DES-CENSUS-01/) still cite the pre-move root paths. They are subject_commit-bound historical census records and were deliberately NOT edited; the moved files' bytes (and therefore their content hashes) are unchanged by git mv.",
+  "verification": {
+    "check_orion_v1_freeze": {
+      "exit": 0,
+      "stdout": "ORION_V1_ARCHITECTURE_AND_LOCAL_FORMALISM_FROZEN components=14 authority_rows=10 issues=159 pending=0 jobs=8 open_internal_gaps=0 manifest_files=18"
+    },
+    "check_p1_p15_dynamic_rewrite_v1": {
+      "exit": 0,
+      "stdout": "P1_P15_DYNAMIC_REWRITE_V1 PASS papers=15 theorems=91 jobs=25 result_packets=25 claim_boundaries=15"
+    },
+    "old_paper_id_spot_check": "Pre-R0 ids (theory-A-multitag-constraint-rank, theory-C-low-order-information, nonquantum-c5cubed-davenport, theory-D-falsification-authority) appear outside archive/candidates/freeze ONLY in papers/PAPER_ALIASES.md, papers/PAPER_RENAME_RECEIPT_V1.json, tests/unit/publication/test_five_theory_publication_wave.py and the DES-CENSUS-01 historical manifests - i.e. the alias registry, rename receipt, rename-contract test and bound census records. No stale live usage; this wave added none.",
+    "git_status": "10 renames (R, content-identical) + 1 new receipt file"
+  }
+}
