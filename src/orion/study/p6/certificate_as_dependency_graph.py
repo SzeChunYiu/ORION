@@ -56,6 +56,7 @@ remains true that no evaluator outside this lane has checked any of it, which is
 from __future__ import annotations
 
 from copy import deepcopy
+from dataclasses import dataclass
 from enum import Enum
 from functools import lru_cache
 from itertools import combinations
@@ -193,6 +194,172 @@ FRAME_CONDITION_IDS: tuple[str, ...] = (
     "coordinates_do_not_support_each_other",
     "the_certificate_is_not_a_coordinate",
 )
+
+
+@dataclass(frozen=True)
+class FiniteFrameCountermodel:
+    """One explicit finite model showing that a frame condition is needed."""
+
+    theorem: str
+    nodes: tuple[int, ...]
+    certificate: int
+    coordinates: frozenset[int]
+    edges: frozenset[tuple[int, int]]
+    changed: frozenset[int] = frozenset()
+
+
+# Publication authority uses these explicit witnesses instead of asking a
+# timed solver to rediscover the same tiny models under machine load.
+FRAME_CONDITION_COUNTERMODELS: Mapping[str, FiniteFrameCountermodel] = {
+    "coordinates_support_the_certificate": FiniteFrameCountermodel(
+        CERTIFICATE_WITHDRAWN.name,
+        (0, 1),
+        1,
+        frozenset({0}),
+        frozenset(),
+        frozenset({0}),
+    ),
+    "coordinates_do_not_support_each_other": FiniteFrameCountermodel(
+        CERTIFICATE_SUPPORTS_NOTHING.name,
+        (0,),
+        0,
+        frozenset(),
+        frozenset({(0, 0)}),
+    ),
+    "the_certificate_is_not_a_coordinate": FiniteFrameCountermodel(
+        CERTIFICATE_SUPPORTS_NOTHING.name,
+        (0,),
+        0,
+        frozenset({0}),
+        frozenset({(0, 0)}),
+    ),
+}
+
+
+def _finite_reachability(
+    model: FiniteFrameCountermodel,
+) -> tuple[set[tuple[int, int]], dict[tuple[int, int], int]]:
+    """Return reflexive-transitive reachability and exact shortest ranks."""
+
+    infinity = len(model.nodes) + 1
+    distance = {
+        (source, target): (0 if source == target else infinity)
+        for source in model.nodes
+        for target in model.nodes
+    }
+    for source, target in model.edges:
+        distance[source, target] = min(distance[source, target], 1)
+    for middle in model.nodes:
+        for source in model.nodes:
+            for target in model.nodes:
+                distance[source, target] = min(
+                    distance[source, target],
+                    distance[source, middle] + distance[middle, target],
+                )
+    return (
+        {pair for pair, length in distance.items() if length < infinity},
+        distance,
+    )
+
+
+def _frame_condition_holds(
+    model: FiniteFrameCountermodel, condition: str
+) -> bool:
+    if condition == "coordinates_support_the_certificate":
+        return all(
+            (node, model.certificate) in model.edges for node in model.coordinates
+        )
+    if condition == "coordinates_do_not_support_each_other":
+        return all(
+            source in model.coordinates and target == model.certificate
+            for source, target in model.edges
+        )
+    if condition == "the_certificate_is_not_a_coordinate":
+        return model.certificate not in model.coordinates
+    raise ValueError(f"unknown frame condition {condition!r}")
+
+
+def _finite_closure_contract_holds(model: FiniteFrameCountermodel) -> bool:
+    """Check the exact finite counterpart of every `_closure_axioms` clause."""
+
+    nodes = set(model.nodes)
+    if not nodes or model.certificate not in nodes or not model.coordinates <= nodes:
+        return False
+    if any(
+        source not in nodes or target not in nodes for source, target in model.edges
+    ):
+        return False
+    if not model.changed <= nodes:
+        return False
+
+    reach, distance = _finite_reachability(model)
+    if any((node, node) not in reach for node in nodes):
+        return False
+    if any(
+        (source, target) not in reach
+        for source, middle in reach
+        for edge_source, target in model.edges
+        if middle == edge_source
+    ):
+        return False
+    if any(
+        (source, target) not in reach
+        for source, middle in reach
+        for middle_2, target in reach
+        if middle == middle_2
+    ):
+        return False
+    for source, target in reach:
+        if source == target:
+            continue
+        if not any(
+            (source, predecessor) in reach
+            and (predecessor, target) in model.edges
+            and distance[source, predecessor] < distance[source, target]
+            for predecessor in nodes
+        ):
+            return False
+    return True
+
+
+def _finite_theorem_holds(model: FiniteFrameCountermodel) -> bool:
+    reach, _distance = _finite_reachability(model)
+
+    def reopened(node: int) -> bool:
+        return node not in model.changed and any(
+            source in model.changed and (source, node) in reach
+            for source in model.nodes
+        )
+
+    if model.theorem == CERTIFICATE_WITHDRAWN.name:
+        damage_is_coordinate_only = model.changed <= model.coordinates
+        antecedent = bool(model.coordinates & model.changed)
+        return (
+            not damage_is_coordinate_only
+            or not antecedent
+            or reopened(model.certificate)
+        )
+    if model.theorem == CERTIFICATE_SUPPORTS_NOTHING.name:
+        return all(source != model.certificate for source, _target in model.edges)
+    raise ValueError(f"no finite evaluator for theorem {model.theorem!r}")
+
+
+def verify_constructive_frame_countermodel(condition: str, theorem: str) -> bool:
+    """Verify a declared countermodel without solver search or time limits."""
+
+    model = FRAME_CONDITION_COUNTERMODELS.get(condition)
+    if model is None or model.theorem != theorem:
+        return False
+    return (
+        all(
+            _frame_condition_holds(model, other)
+            for other in FRAME_CONDITION_IDS
+            if other != condition
+        )
+        and not _frame_condition_holds(model, condition)
+        and _finite_closure_contract_holds(model)
+        and not _finite_theorem_holds(model)
+    )
 
 
 def _interpretation_axioms(
@@ -376,11 +543,19 @@ class RefutationSearch(str, Enum):
 
 
 def search_for_a_countermodel(
-    axioms: list[Any], claim: Any, cert: Any, *, size: int = REFUTATION_WORLD_SIZE, timeout_ms: int = 20000
+    axioms: list[Any],
+    claim: Any,
+    cert: Any,
+    *,
+    size: int = REFUTATION_WORLD_SIZE,
+    timeout_ms: int = 20000,
+    condition: str | None = None,
+    theorem: str | None = None,
 ) -> RefutationSearch:
     """Look for a countermodel in a universe of at most ``size`` nodes.
 
-    Needed because the unbounded search is not stable. Asking the solver to
+    Publication-critical witnesses are checked constructively first. For all
+    other pairs this bounded diagnostic is needed because the unbounded search is not stable. Asking the solver to
     refute a universally quantified claim over an uninterpreted sort leaves it
     hunting for a model it may or may not find, and the same drop returns a
     countermodel on one run and ``unknown`` on the next --- which would make a
@@ -388,6 +563,16 @@ def search_for_a_countermodel(
     search finite, and returning three values rather than two keeps the two ways
     of not finding one apart.
     """
+
+    if condition is not None and theorem is not None:
+        witness = FRAME_CONDITION_COUNTERMODELS.get(condition)
+        if witness is not None and witness.theorem == theorem:
+            if not verify_constructive_frame_countermodel(condition, theorem):
+                raise AssertionError(
+                    "declared finite countermodel failed verification: "
+                    f"{condition}/{theorem}"
+                )
+            return RefutationSearch.COUNTERMODEL
 
     solver = require_z3()
     Node = cert.sort()
@@ -471,7 +656,7 @@ def _measure_frame_conditions(
     proof_runner: Any,
     countermodel_search: Any,
 ) -> dict[str, Any]:
-    """Drop each frame condition and record which theorems are *refuted*.
+    """Drop each frame condition and verify its preregistered countermodel.
 
     Three corrections stack up in this function and each was forced.
 
@@ -487,12 +672,11 @@ def _measure_frame_conditions(
     sound in that direction only: a countermodel in a small universe is a
     countermodel, while failing to find one there proves nothing.
 
-    **Repeated, because even bounded it is not deterministic.** One condition
-    yields two, one or three refutations on successive identical runs. So the
-    measurement is taken ``repeats`` times and reported as a stable core --- the
-    theorems refuted on *every* run --- and an intermittent remainder. A
-    condition counts as load-bearing only on its stable core, which is the
-    strictest of the three readings and the only one that does not move.
+    **Preregistered constructive target.** Searching every theorem/drop pair
+    made the reported stable core depend on which extra models a timed solver
+    happened to discover. Each condition now owns one explicit finite witness
+    and one theorem identity before the audit runs. Repetition verifies receipt
+    stability; it is no longer an attempt to stabilize model discovery.
     """
 
     baseline = {
@@ -505,14 +689,21 @@ def _measure_frame_conditions(
     ever: dict[str, set[str]] = {}
     undecided: dict[str, set[str]] = {}
     for condition in FRAME_CONDITION_IDS:
+        target_theorem = FRAME_CONDITION_COUNTERMODELS[condition].theorem
         rounds: list[set[str]] = []
         gave_up: set[str] = set()
         for _ in range(repeats):
             found: set[str] = set()
             for name, axioms, claim, cert in _drop_queries(condition):
-                if name not in baseline:
+                if name not in baseline or name != target_theorem:
                     continue
-                verdict = countermodel_search(axioms, claim, cert)
+                verdict = countermodel_search(
+                    axioms,
+                    claim,
+                    cert,
+                    condition=condition,
+                    theorem=name,
+                )
                 if verdict is RefutationSearch.COUNTERMODEL:
                     found.add(name)
                 elif verdict is RefutationSearch.UNDECIDED:
@@ -556,8 +747,10 @@ def _measure_frame_conditions(
             else Outcome.PASS.value
         ),
         "criterion": (
-            "a condition is load-bearing only when dropping it yields a countermodel to "
-            "some theorem on every one of the repeated runs. A theorem that merely stops "
+            "a condition is load-bearing only when dropping it yields a verified "
+            "countermodel to its preregistered theorem on every one of the repeated runs. The "
+            "publication-critical witnesses are explicit finite models, so their "
+            "verification does not depend on timed model discovery. A theorem that merely stops "
             "being provable is not counted, because an unknown return is a fact about the "
             "search; and a theorem refuted on some runs but not others is reported "
             "separately rather than credited, because the solver's model search on this "
@@ -831,14 +1024,16 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
         "undischarged": undischarged,
         "frame_conditions": frames,
         "load_bearing_criterion_history": (
-            "This measurement has been wrong twice. It first counted any theorem that "
+            "This measurement has been wrong three times. It first counted any theorem that "
             "stopped being discharged, which credits an axiom for the solver failing to "
             "settle a question. Requiring a countermodel then made it unstable, because "
             "refuting a universally quantified claim over an uninterpreted sort is an "
-            "unbounded model search. It now asks for a countermodel in a bounded world "
-            "-- sound in that direction only -- and takes the intersection over repeated "
-            "runs. The conclusion survived both corrections; the per-condition detail "
-            "did not, and the difference is recorded rather than quietly restated."
+            "unbounded model search. Bounding and repeating that search still left the "
+            "stable core dependent on wall-clock model discovery. The authority path now "
+            "verifies one preregistered explicit finite countermodel for each condition; "
+            "other solver-found countermodels are diagnostics only. The conclusion survived "
+            "all corrections; the per-condition detail did not, and the difference is "
+            "recorded rather than quietly restated."
         ),
         "published_counts": counts,
         "interpretation_sensitivity": sensitivity,
@@ -846,7 +1041,7 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
             "P6's certificate model is an interpretation of the reopening semantics "
             "already proved general: a certificate over n coordinates is the star graph "
             "on n+1 nodes, damage is a changed set on the coordinate nodes, and repair "
-            "removes coordinates from it. Under that reading five theorems are "
+            "removes coordinates from it. Under that reading six theorems are "
             "discharged by Z3 over an uninterpreted node sort and for any number of "
             "coordinates -- any damage withdraws the certificate, a full repair restores "
             "it, a partial repair does not, undamaged coordinates are never collateral "
@@ -859,19 +1054,20 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
             "running the committed descendants over the interpreted graph, so the finite "
             "result is an instance of the theorems produced by the implementation "
             "P6-U-T1 verified against them, rather than a separate enumeration that "
-            "agrees with them. Each of the four frame conditions is shown to carry at "
-            "least one theorem by dropping it, and three wrong dependency graphs are "
+            "agrees with them. Each of the three frame conditions is shown to carry its "
+            "preregistered theorem by an explicit finite countermodel, and three wrong dependency graphs are "
             "tried against the interpretation, and each of the three surviving frame "
-            "conditions is necessary under the strictest of three readings: dropping it "
-            "yields an actual countermodel, in a bounded world, on every one of the "
-            "repeated runs. Two weaker readings were rejected on the way. Counting a "
+            "conditions is necessary without relying on timed model discovery. Dropping "
+            "coordinate support admits a two-node no-edge model refuting withdrawal; "
+            "dropping the edge restriction admits a one-node self-edge model refuting "
+            "certificate sinkhood; and allowing the certificate to be a coordinate admits "
+            "the same self-edge refutation while satisfying the other two conditions. "
+            "Counting a "
             "theorem that merely stopped being provable inflates every condition's "
             "weight, because an unknown return is a fact about the solver's search "
-            "rather than evidence the axiom was carrying anything. And a single run is "
-            "not a measurement here: the model search is not deterministic on this "
-            "encoding, and the edge-restriction condition refutes between one and three "
-            "theorems on identical repeated runs, of which exactly one falls every "
-            "time. The counts do not carry the interpretation on "
+            "rather than evidence the axiom was carrying anything. Extra countermodels "
+            "found by the generic bounded search remain non-authoritative diagnostics. "
+            "The counts do not carry the interpretation on "
             "their own and this is measured rather than assumed: a chain through the "
             "coordinates into the certificate, the star with coordinate cross-edges and "
             "the complete graph all return 1,055 exactly, because the counts test "

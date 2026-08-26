@@ -107,7 +107,7 @@ class TestTheInterpretationIsProved:
         assert first == second
         assert first is not second
         assert second["outcome"] == Outcome.CANNOT_CHECK.value
-        assert calls == len(cg.FRAME_CONDITION_IDS) * len(cg.THEOREMS) * 2
+        assert calls == len(cg.FRAME_CONDITION_IDS) * 2
 
         first["conditions_left_undecided"].append("caller mutation")
         third = cg.frame_conditions_are_load_bearing(timeout_ms=1, repeats=2)
@@ -115,6 +115,37 @@ class TestTheInterpretationIsProved:
 
 
 class TestTheFrameConditionsCarryTheProof:
+    def test_every_frame_condition_has_a_constructive_countermodel(self) -> None:
+        """Load-bearing authority must not depend on a timed model search."""
+
+        assert set(cg.FRAME_CONDITION_COUNTERMODELS) == set(cg.FRAME_CONDITION_IDS)
+        for condition, witness in cg.FRAME_CONDITION_COUNTERMODELS.items():
+            assert cg.verify_constructive_frame_countermodel(
+                condition, witness.theorem
+            ), condition
+
+    def test_constructive_countermodels_are_dispatched_before_z3_search(self) -> None:
+        """Even a one-millisecond budget verifies each declared witness."""
+
+        for condition, witness in cg.FRAME_CONDITION_COUNTERMODELS.items():
+            row = next(
+                item
+                for item in cg._drop_queries(condition)
+                if item[0] == witness.theorem
+            )
+            name, axioms, claim, cert = row
+            assert (
+                cg.search_for_a_countermodel(
+                    axioms,
+                    claim,
+                    cert,
+                    condition=condition,
+                    theorem=name,
+                    timeout_ms=1,
+                )
+                is cg.RefutationSearch.COUNTERMODEL
+            )
+
     def test_every_condition_loses_at_least_one_theorem_when_dropped(
         self, load_bearing: dict
     ) -> None:
@@ -150,9 +181,8 @@ class TestTheFrameConditionsCarryTheProof:
     def test_which_theorem_each_condition_always_carries(
         self, condition: str, expected_core: set[str], load_bearing: dict
     ) -> None:
-        # The stable core, not an equality against one run. The edge-restriction
-        # condition refutes between one and three theorems depending on how the
-        # solver's model search goes; exactly one of them falls every time.
+        # The stable preregistered core, not a post-outcome choice among whichever
+        # extra countermodels a timed solver happened to discover.
         core = set(load_bearing["theorems_refuted_on_every_run"][condition])
         assert core <= expected_core
         assert core
