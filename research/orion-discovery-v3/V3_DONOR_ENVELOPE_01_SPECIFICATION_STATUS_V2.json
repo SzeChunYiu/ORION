@@ -1,0 +1,132 @@
+{
+  "schema": "orion.discovery.v3.donor-envelope-specification-status.v2",
+  "job_id": "V3-DONOR-ENVELOPE-01",
+  "authoritative_v3_base_git_sha": "422148dd8ab307e08f6cde1a945ccaab4bb07f1a",
+  "issue_1329_body": {
+    "bytes": 9196,
+    "sha256": "966221d12aa3cb93378d5a712c65fa50be7eed8cef659eb2c8d78b4c44f39215",
+    "atom_count_statement": 25
+  },
+  "atomic_map": {
+    "path": "research/orion-discovery-v3/ATOMIC_NOVELTY_AND_SUPERIORITY_MAP_V1.json",
+    "sha256": "115c8963c170b707c4c36c15c9fc40993d125a47354c689ef3565e21ebff2ddf",
+    "atom_count": 25
+  },
+  "outcomes_accessed": false,
+  "execution_authorized": false,
+  "paper_authority_delta": "NONE",
+  "external_novelty": "CANNOT_CHECK",
+  "readiness": "BLOCKED_SPECIFICATION",
+  "terminal": "CANNOT_FREEZE_PROTOCOL__MATERIAL_ARTIFACTS_AND_STUDY_UNITS_UNBOUND",
+  "runnable_on_lunarc": false,
+  "scheduler_submission": null,
+  "resolved_internal_gaps": [
+    {
+      "id": "TASK_DENOMINATOR_CONFLICT",
+      "resolution": "25 ordered unique atom IDs; issue #1329 prose corrected to 25",
+      "evidence_sha256": "115c8963c170b707c4c36c15c9fc40993d125a47354c689ef3565e21ebff2ddf"
+    },
+    {
+      "id": "TAXONOMY_CENSUS",
+      "resolution": "77 atom-label occurrences and 75 distinct labels content-bound; explicitly non-executable"
+    },
+    {
+      "id": "JOB_TERMINAL_ROUTES",
+      "resolution": "Positive, adverse/null and CANNOT_CHECK routes inherited without retuning from DISC-V3-DONOR-01; issue alternatives retained separately"
+    },
+    {
+      "id": "MATCHING_POLICY",
+      "resolution": "Same visible information, same tools, donor first refusal, outcome-blind freeze, Pareto ordering and no scalarization fixed"
+    },
+    {
+      "id": "PARTITION_SHAPE",
+      "resolution": "Required shape registered as 25 unresolved slots for each HELD_OUT, COUNTERFACTUAL and PROSPECTIVE partition; these null slots are not frozen inputs."
+    }
+  ],
+  "remaining_blockers": [
+    {
+      "id": "EXECUTABLE_DONOR_ARTIFACTS_AND_INTERFACES_MISSING",
+      "record_count": 75,
+      "exact_missing_fields": [
+        "donor_id",
+        "source_archive_path",
+        "source_archive_sha256",
+        "source_archive_bytes",
+        "license_or_rights_record_sha256",
+        "entrypoint_argv",
+        "runner_sha256",
+        "environment_manifest_sha256",
+        "interface_contract_sha256",
+        "input_schema_sha256",
+        "output_schema_sha256",
+        "terminal_map_sha256"
+      ],
+      "resolution_authority": "External artifact acquisition plus explicit donor selection/mapping; taxonomy prose is insufficient."
+    },
+    {
+      "id": "IDEAL_DONOR_PRODUCT_COMPOSITION_ARTIFACTS_MISSING",
+      "record_count": 25,
+      "exact_missing_fields": [
+        "component_donor_ids",
+        "composition_runner_sha256",
+        "interface_contract_sha256",
+        "product_artifact_sha256"
+      ],
+      "resolution_authority": "Requires complete executable donor identities first, then an independently implemented composition."
+    },
+    {
+      "id": "CANDIDATE_ARTIFACT_MISSING",
+      "record_count": 1,
+      "exact_missing_fields": [
+        "candidate_id",
+        "candidate_source_archive_sha256",
+        "candidate_runner_sha256",
+        "candidate_interface_contract_sha256",
+        "candidate_environment_manifest_sha256"
+      ],
+      "resolution_authority": "Author must designate an executable candidate; finite reference semantics are not the candidate."
+    },
+    {
+      "id": "SCIENTIFIC_INPUT_AND_PARTITION_UNITS_MISSING",
+      "record_count": 75,
+      "exact_missing_fields": [
+        "unit_id",
+        "input_artifact_sha256",
+        "custody_record_sha256",
+        "candidate_visible_bundle_sha256"
+      ],
+      "resolution_authority": "Requires independently authored or lawfully acquired units and custody; empty semantic slots are not data."
+    },
+    {
+      "id": "SCIENTIFIC_EVALUATOR_AND_GOLD_MISSING",
+      "record_count": 1,
+      "exact_missing_fields": [
+        "evaluator_id",
+        "evaluator_source_sha256",
+        "gold_oracle_sha256",
+        "scoring_contract_sha256",
+        "terminal_mapping_sha256",
+        "custody_record_sha256"
+      ],
+      "resolution_authority": "Requires outcome-hidden evaluator/gold bytes outside candidate write authority."
+    },
+    {
+      "id": "MATCHED_CONTRACT_BYTES_AND_CAPS_MISSING",
+      "record_count": 1,
+      "exact_missing_fields": [
+        "information_contract_sha256",
+        "tool_contract_sha256",
+        "resource_contract_sha256",
+        "resource_dimensions",
+        "resource_cap_vector"
+      ],
+      "resolution_authority": "Requires author choice of actual providers/tools and prospectively priced or Pareto-accounted caps."
+    }
+  ],
+  "nonclaims": [
+    "No donor system was executed.",
+    "No donor byte, interface, study unit, gold answer or evaluator was invented.",
+    "No HPC job is authorized.",
+    "No superiority, novelty, paper, venue or external authority is created."
+  ]
+}

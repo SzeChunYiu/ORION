@@ -1,0 +1,921 @@
+{
+  "schema": "orion.discovery.v3.donor-envelope-task-partition-manifest.v2",
+  "job_id": "V3-DONOR-ENVELOPE-01",
+  "authoritative_v3_base_git_sha": "422148dd8ab307e08f6cde1a945ccaab4bb07f1a",
+  "issue_1329_body": {
+    "bytes": 9196,
+    "sha256": "966221d12aa3cb93378d5a712c65fa50be7eed8cef659eb2c8d78b4c44f39215",
+    "atom_count_statement": 25
+  },
+  "atomic_map": {
+    "path": "research/orion-discovery-v3/ATOMIC_NOVELTY_AND_SUPERIORITY_MAP_V1.json",
+    "sha256": "115c8963c170b707c4c36c15c9fc40993d125a47354c689ef3565e21ebff2ddf",
+    "atom_count": 25
+  },
+  "outcomes_accessed": false,
+  "execution_authorized": false,
+  "paper_authority_delta": "NONE",
+  "external_novelty": "CANNOT_CHECK",
+  "denominator_resolution": {
+    "canonical_atom_count": 25,
+    "basis": "The authoritative machine-readable map contains 25 ordered, unique atom IDs; issue #1329 was corrected from stale prose count 24 to 25 before any outcome access.",
+    "previous_conflict": "RESOLVED",
+    "taxonomy_occurrence_count": 77,
+    "distinct_taxonomy_label_count": 75
+  },
+  "tasks": [
+    {
+      "ordinal": 1,
+      "task_id": "ATOM::KNOWLEDGE_ACQUISITION",
+      "atom_id": "KNOWLEDGE_ACQUISITION",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::INFORMATION_RETRIEVAL",
+        "DONOR-TAXONOMY::OPEN_WORLD_SEARCH",
+        "DONOR-TAXONOMY::LITERATURE_AGENTS"
+      ],
+      "orion_residual_target": "Route-aware acquisition with explicit censoring, coverage obligations, source/model chronology, and no history-only closure.",
+      "strongest_superiority_target": "Prospectively improve closure and missing-route calibration versus retrieval agents under matched access.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 2,
+      "task_id": "ATOM::PROBLEM_DECOMPOSITION",
+      "atom_id": "PROBLEM_DECOMPOSITION",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::DUAL_SPACE_SEARCH",
+        "DONOR-TAXONOMY::FOUR_SPACE_DISCOVERY",
+        "DONOR-TAXONOMY::MECHANISTIC_DECOMPOSITION",
+        "DONOR-TAXONOMY::C_K_THEORY"
+      ],
+      "orion_residual_target": "Typed atomic obligations with a verified recomposition rule, clause witnesses, alternative support families, and OPEN_MOVE_CLASS.",
+      "strongest_superiority_target": "Outperform sourced parent decompositions on unseen multi-layer incidents without losing correct unresolvedness.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 3,
+      "task_id": "ATOM::TYPED_KNOWLEDGE_WEB",
+      "atom_id": "TYPED_KNOWLEDGE_WEB",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::KNOWLEDGE_GRAPHS",
+        "DONOR-TAXONOMY::PROVENANCE_GRAPHS",
+        "DONOR-TAXONOMY::DEPENDENCY_DAGS"
+      ],
+      "orion_residual_target": "Scientific object types, hyperedge support families, responsibility/authority scopes, blocker and revocation semantics, and content-bound change impact.",
+      "strongest_superiority_target": "Achieve higher responsible-layer and impact-closure accuracy than graph-only baselines.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 4,
+      "task_id": "ATOM::DONOR_COMPOSITION",
+      "atom_id": "DONOR_COMPOSITION",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::MODULAR_SYNTHESIS",
+        "DONOR-TAXONOMY::ENSEMBLE_METHODS",
+        "DONOR-TAXONOMY::COMPONENT_LIBRARIES"
+      ],
+      "orion_residual_target": "Ideal donor-product first refusal, minimum donor product, interaction-order accounting, and no novelty for supplied recombination.",
+      "strongest_superiority_target": "Preserve donor closure and isolate only load-bearing interaction residuals.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 5,
+      "task_id": "ATOM::STRUCTURAL_TRANSFER",
+      "atom_id": "STRUCTURAL_TRANSFER",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::GENTNER_STRUCTURE_MAPPING",
+        "DONOR-TAXONOMY::ANALOGICAL_REASONING",
+        "DONOR-TAXONOMY::CAUSAL_ABSTRACTION"
+      ],
+      "orion_residual_target": "Pre-outcome typed correspondence, broken-relation debt, target-native validation, negative twins, and explicit non-transfer of authority.",
+      "strongest_superiority_target": "Beat vocabulary/embedding analogies on held-out target consequences and smallest falsifiers.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 6,
+      "task_id": "ATOM::REPRESENTATION_CHANGE",
+      "atom_id": "REPRESENTATION_CHANGE",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::KAPLAN_SIMON_INSIGHT",
+        "DONOR-TAXONOMY::OHLSSON_REPRESENTATIONAL_CHANGE",
+        "DONOR-TAXONOMY::SUFFICIENT_STATISTICS"
+      ],
+      "orion_residual_target": "Responsibility-relative fibre sufficiency, no-answer laundering, exact target risk, and minimum discriminating refinement.",
+      "strongest_superiority_target": "Predict when re-representation\u2014not more search\u2014strictly changes the attainable scientific terminal.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 7,
+      "task_id": "ATOM::ONTOLOGY_AND_QUESTION_INVENTION",
+      "atom_id": "ONTOLOGY_AND_QUESTION_INVENTION",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::C_K_THEORY",
+        "DONOR-TAXONOMY::QUESTION_GENERATION",
+        "DONOR-TAXONOMY::CONCEPT_INVENTION"
+      ],
+      "orion_residual_target": "Origin-bound new object/question proposals with semantic non-reducibility and target consequence obligations.",
+      "strongest_superiority_target": "Generate unsupplied questions or objects that unlock verified hidden consequences and transfer.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 8,
+      "task_id": "ATOM::MECHANISM_CONSTRUCTION",
+      "atom_id": "MECHANISM_CONSTRUCTION",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::MACHAMER_DARDEN_CRAVER_MECHANISMS",
+        "DONOR-TAXONOMY::CAUSAL_DISCOVERY"
+      ],
+      "orion_residual_target": "Entities/activities plus executable obligation, counterfactual, intervention and evidence interfaces under scientific admission.",
+      "strongest_superiority_target": "Distinguish true mechanism construction from descriptive correlation and donor-composed explanation.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 9,
+      "task_id": "ATOM::METHOD_LANGUAGE_EXPANSION",
+      "atom_id": "METHOD_LANGUAGE_EXPANSION",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::PROGRAM_SYNTHESIS",
+        "DONOR-TAXONOMY::CEGIS",
+        "DONOR-TAXONOMY::ALPHAEVOLVE",
+        "DONOR-TAXONOMY::THEOREM_PROVING"
+      ],
+      "orion_residual_target": "Certified outside-closure obstruction before expansion, primitive-minimal edit, known-method controls and false-invention accounting.",
+      "strongest_superiority_target": "Reach held-out targets that ideal search/evolution donors cannot reach inside the old language.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 10,
+      "task_id": "ATOM::EXPERIMENT_AND_INSTRUMENT_DESIGN",
+      "atom_id": "EXPERIMENT_AND_INSTRUMENT_DESIGN",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::ACTIVE_LEARNING",
+        "DONOR-TAXONOMY::BAYESIAN_EXPERIMENTAL_DESIGN",
+        "DONOR-TAXONOMY::SELF_DRIVING_LABS"
+      ],
+      "orion_residual_target": "Target-partition refinement, action/instrument feasibility, scientific responsibility and minimum decisive evidence cost.",
+      "strongest_superiority_target": "Choose cheaper experiments that separate the correct scientific alternatives with lower false closure.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 11,
+      "task_id": "ATOM::HYPOTHESIS_EVOLUTION",
+      "atom_id": "HYPOTHESIS_EVOLUTION",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::CO_SCIENTIST",
+        "DONOR-TAXONOMY::MULTI_AGENT_DEBATE",
+        "DONOR-TAXONOMY::EVOLUTIONARY_SEARCH"
+      ],
+      "orion_residual_target": "Theorem-identifying tournament support, proposal origin, donor-first refusal, negative-history retention and non-self-promotion.",
+      "strongest_superiority_target": "Retain Co-Scientist-style ideation gains while reducing shortcut, vacuity and false-promotion rates.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 12,
+      "task_id": "ATOM::AUTONOMOUS_DOMAIN_ANALYSIS",
+      "atom_id": "AUTONOMOUS_DOMAIN_ANALYSIS",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::ROBIN",
+        "DONOR-TAXONOMY::CELLVOYAGER",
+        "DONOR-TAXONOMY::SPARK",
+        "DONOR-TAXONOMY::AGENTICSCIML"
+      ],
+      "orion_residual_target": "Cross-domain obstruction diagnosis, responsibility typing, residual novelty and authority separation over domain-native loops.",
+      "strongest_superiority_target": "Transfer one frozen controller across qualitatively different domains without domain-specific hidden logic.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 13,
+      "task_id": "ATOM::THEOREM_IDENTIFYING_HARNESS",
+      "atom_id": "THEOREM_IDENTIFYING_HARNESS",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::BENCHMARKING",
+        "DONOR-TAXONOMY::MUTATION_TESTING",
+        "DONOR-TAXONOMY::PROPERTY_BASED_TESTING"
+      ],
+      "orion_residual_target": "Signature separation from constant, weakened, circular, leaky, donor-equivalent and precondition-empty alternatives.",
+      "strongest_superiority_target": "Reduce false confirmation on unseen scientific harness defects while retaining valid positives.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 14,
+      "task_id": "ATOM::PROPOSAL_ORIGIN_AND_CHRONOLOGY",
+      "atom_id": "PROPOSAL_ORIGIN_AND_CHRONOLOGY",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::PROVENANCE",
+        "DONOR-TAXONOMY::DATA_LINEAGE",
+        "DONOR-TAXONOMY::HISTORICAL_SOURCE_CUTOFFS"
+      ],
+      "orion_residual_target": "Content-bound supplied/retrieved/generated origin, model chronology, counterfactual neutralization and prospective escrow.",
+      "strongest_superiority_target": "Separate memorized rediscovery from mechanism transfer and present-day discovery.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 15,
+      "task_id": "ATOM::PROOF_AND_EXPERIMENT_ECONOMY",
+      "atom_id": "PROOF_AND_EXPERIMENT_ECONOMY",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::VALUE_OF_INFORMATION",
+        "DONOR-TAXONOMY::METAREASONING",
+        "DONOR-TAXONOMY::OPTIMAL_EXPERIMENT_DESIGN"
+      ],
+      "orion_residual_target": "Exact Pareto identifying portfolios, explicit scalar prices only, authority/custody as hard constraints, and CANNOT_CHECK not zero cost.",
+      "strongest_superiority_target": "Find a lower-cost identifying proof/experiment without hidden exchange rates.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 16,
+      "task_id": "ATOM::RESPONSIBILITY_DIAGNOSIS",
+      "atom_id": "RESPONSIBILITY_DIAGNOSIS",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::ROOT_CAUSE_ANALYSIS",
+        "DONOR-TAXONOMY::CAUSAL_DEBUGGING",
+        "DONOR-TAXONOMY::SCIENTIFIC_METAREASONING"
+      ],
+      "orion_residual_target": "Intervention-signature identifiability over information, formulation, method, instrument, resource, validation and custody layers.",
+      "strongest_superiority_target": "Prospectively identify the load-bearing layer and next discriminator better than strong debugging/research agents.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 17,
+      "task_id": "ATOM::NUMERICAL_OUTCOME_IDENTITY",
+      "atom_id": "NUMERICAL_OUTCOME_IDENTITY",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::REPRODUCIBLE_NUMERICS",
+        "DONOR-TAXONOMY::ENVIRONMENT_MANIFESTS",
+        "DONOR-TAXONOMY::EXACT_REDUCTIONS"
+      ],
+      "orion_residual_target": "Minimum execution identity sufficient to predict or preserve claim-level scientific terminals across build/provider/architecture changes.",
+      "strongest_superiority_target": "Predict held-out terminal flips more accurately and cheaply than versions, hashes or generic canaries.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 18,
+      "task_id": "ATOM::SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+      "atom_id": "SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::ACCESS_CONTROL",
+        "DONOR-TAXONOMY::PROOF_CARRYING_ACTIONS",
+        "DONOR-TAXONOMY::EVIDENCE_LEDGERS"
+      ],
+      "orion_residual_target": "Typed bridge from native validity to exact target responsibility, support-family blockers, revocation, and no silent authority amplification.",
+      "strongest_superiority_target": "Prevent false scientific promotion while preserving every valid donor-authorized success.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 19,
+      "task_id": "ATOM::EXECUTION_SCIENCE_NONINTERFERENCE",
+      "atom_id": "EXECUTION_SCIENCE_NONINTERFERENCE",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::PROVENANCE",
+        "DONOR-TAXONOMY::ATTESTATION",
+        "DONOR-TAXONOMY::REPLAY_SYSTEMS"
+      ],
+      "orion_residual_target": "Formal separation of execution integrity, scientific validity and scientific authority, with explicit bridge requirement.",
+      "strongest_superiority_target": "Show richer provenance improves execution assurance without being misread as scientific truth.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 20,
+      "task_id": "ATOM::NEGATIVE_HISTORY_AND_REOPENING",
+      "atom_id": "NEGATIVE_HISTORY_AND_REOPENING",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::CONTINUAL_LEARNING",
+        "DONOR-TAXONOMY::VERSION_CONTROL",
+        "DONOR-TAXONOMY::BELIEF_REVISION"
+      ],
+      "orion_residual_target": "Append-only failed/null/harmful candidates, exact support-family revocation, regime-sensitive reopening and selective preservation.",
+      "strongest_superiority_target": "Use negative history to reduce repeated errors and improve future regime decisions without over-revocation.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 21,
+      "task_id": "ATOM::SELF_APPLICATION_AND_ADOPTION",
+      "atom_id": "SELF_APPLICATION_AND_ADOPTION",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::SELF_IMPROVING_AGENTS",
+        "DONOR-TAXONOMY::ANYTIME_VALID_EVALUATION",
+        "DONOR-TAXONOMY::CONSTITUTIONAL_AI"
+      ],
+      "orion_residual_target": "Proposer/evaluator/adopter separation, protected roots, immutable historical receipts, well-founded progress and no self-promotion.",
+      "strongest_superiority_target": "Improve ORION prospectively while defeating circular patches and preserving adverse evidence.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 22,
+      "task_id": "ATOM::DISCOVERY_TRIANGULATION",
+      "atom_id": "DISCOVERY_TRIANGULATION",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::HISTORICAL_RECONSTRUCTION",
+        "DONOR-TAXONOMY::COUNTERFACTUAL_BENCHMARKS",
+        "DONOR-TAXONOMY::PROSPECTIVE_TRIALS"
+      ],
+      "orion_residual_target": "Non-compensatory historical, counterfactual and prospective lanes with framework-equivalence witnesses.",
+      "strongest_superiority_target": "Demonstrate a transferable discovery mechanism rather than memorization, synthetic specialization or luck.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 23,
+      "task_id": "ATOM::QUANTUM_STACK_RESPONSIBILITY",
+      "atom_id": "QUANTUM_STACK_RESPONSIBILITY",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::QUANTUM_COMPILATION",
+        "DONOR-TAXONOMY::RESOURCE_ESTIMATION",
+        "DONOR-TAXONOMY::FAULT_TOLERANT_LOWERING"
+      ],
+      "orion_residual_target": "Stack-indexed responsibility maps, minimal reminted resource coordinate, stale-certificate reopening and policy value.",
+      "strongest_superiority_target": "Predict end-to-end resource-ordering changes on held-out real circuits when the lowering stack changes.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 24,
+      "task_id": "ATOM::OPEN_MORPHOLOGY",
+      "atom_id": "OPEN_MORPHOLOGY",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::UNIVERSAL_SEARCH",
+        "DONOR-TAXONOMY::PROGRAM_ENUMERATION",
+        "DONOR-TAXONOMY::OPEN_ENDED_EVOLUTION"
+      ],
+      "orion_residual_target": "Proof-carrying registration of new scientific move classes, fair dovetailing, donor subtraction and scientific admission.",
+      "strongest_superiority_target": "Recover useful moves outside every frozen finite morphology without granting novelty before validation.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    },
+    {
+      "ordinal": 25,
+      "task_id": "ATOM::FRONTIER_DOMINANCE",
+      "atom_id": "FRONTIER_DOMINANCE",
+      "nearest_donor_taxonomy_ids": [
+        "DONOR-TAXONOMY::LEADERBOARDS",
+        "DONOR-TAXONOMY::PARETO_OPTIMIZATION",
+        "DONOR-TAXONOMY::ALGORITHM_PORTFOLIOS"
+      ],
+      "orion_residual_target": "Conservative dominance over the ideal donor envelope plus strict scientifically valid expansion outside donor-union closure.",
+      "strongest_superiority_target": "Earn a strict frontier win with zero donor-closure, calibration or unpriced resource regression.",
+      "status": "TASK_SEMANTICS_BOUND__SCIENTIFIC_UNITS_UNPOPULATED"
+    }
+  ],
+  "partitions": [
+    {
+      "partition_id": "HELD_OUT",
+      "status": "REQUIRED_UNPOPULATED",
+      "unit_slots": [
+        {
+          "atom_id": "KNOWLEDGE_ACQUISITION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "PROBLEM_DECOMPOSITION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "TYPED_KNOWLEDGE_WEB",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "DONOR_COMPOSITION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "STRUCTURAL_TRANSFER",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "REPRESENTATION_CHANGE",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "ONTOLOGY_AND_QUESTION_INVENTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "MECHANISM_CONSTRUCTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "METHOD_LANGUAGE_EXPANSION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "EXPERIMENT_AND_INSTRUMENT_DESIGN",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "HYPOTHESIS_EVOLUTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "AUTONOMOUS_DOMAIN_ANALYSIS",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "THEOREM_IDENTIFYING_HARNESS",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "PROPOSAL_ORIGIN_AND_CHRONOLOGY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "PROOF_AND_EXPERIMENT_ECONOMY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "RESPONSIBILITY_DIAGNOSIS",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "NUMERICAL_OUTCOME_IDENTITY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "EXECUTION_SCIENCE_NONINTERFERENCE",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "NEGATIVE_HISTORY_AND_REOPENING",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "SELF_APPLICATION_AND_ADOPTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "DISCOVERY_TRIANGULATION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "QUANTUM_STACK_RESPONSIBILITY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "OPEN_MORPHOLOGY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "FRONTIER_DOMINANCE",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        }
+      ],
+      "immutable_missing_fields_per_slot": [
+        "unit_id",
+        "input_artifact_sha256",
+        "custody_record_sha256",
+        "candidate_visible_bundle_sha256"
+      ]
+    },
+    {
+      "partition_id": "COUNTERFACTUAL",
+      "status": "REQUIRED_UNPOPULATED",
+      "unit_slots": [
+        {
+          "atom_id": "KNOWLEDGE_ACQUISITION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "PROBLEM_DECOMPOSITION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "TYPED_KNOWLEDGE_WEB",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "DONOR_COMPOSITION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "STRUCTURAL_TRANSFER",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "REPRESENTATION_CHANGE",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "ONTOLOGY_AND_QUESTION_INVENTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "MECHANISM_CONSTRUCTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "METHOD_LANGUAGE_EXPANSION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "EXPERIMENT_AND_INSTRUMENT_DESIGN",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "HYPOTHESIS_EVOLUTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "AUTONOMOUS_DOMAIN_ANALYSIS",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "THEOREM_IDENTIFYING_HARNESS",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "PROPOSAL_ORIGIN_AND_CHRONOLOGY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "PROOF_AND_EXPERIMENT_ECONOMY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "RESPONSIBILITY_DIAGNOSIS",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "NUMERICAL_OUTCOME_IDENTITY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "EXECUTION_SCIENCE_NONINTERFERENCE",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "NEGATIVE_HISTORY_AND_REOPENING",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "SELF_APPLICATION_AND_ADOPTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "DISCOVERY_TRIANGULATION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "QUANTUM_STACK_RESPONSIBILITY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "OPEN_MORPHOLOGY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "FRONTIER_DOMINANCE",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        }
+      ],
+      "immutable_missing_fields_per_slot": [
+        "unit_id",
+        "input_artifact_sha256",
+        "custody_record_sha256",
+        "candidate_visible_bundle_sha256"
+      ]
+    },
+    {
+      "partition_id": "PROSPECTIVE",
+      "status": "REQUIRED_UNPOPULATED",
+      "unit_slots": [
+        {
+          "atom_id": "KNOWLEDGE_ACQUISITION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "PROBLEM_DECOMPOSITION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "TYPED_KNOWLEDGE_WEB",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "DONOR_COMPOSITION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "STRUCTURAL_TRANSFER",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "REPRESENTATION_CHANGE",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "ONTOLOGY_AND_QUESTION_INVENTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "MECHANISM_CONSTRUCTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "METHOD_LANGUAGE_EXPANSION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "EXPERIMENT_AND_INSTRUMENT_DESIGN",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "HYPOTHESIS_EVOLUTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "AUTONOMOUS_DOMAIN_ANALYSIS",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "THEOREM_IDENTIFYING_HARNESS",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "PROPOSAL_ORIGIN_AND_CHRONOLOGY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "PROOF_AND_EXPERIMENT_ECONOMY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "RESPONSIBILITY_DIAGNOSIS",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "NUMERICAL_OUTCOME_IDENTITY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "EXECUTION_SCIENCE_NONINTERFERENCE",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "NEGATIVE_HISTORY_AND_REOPENING",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "SELF_APPLICATION_AND_ADOPTION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "DISCOVERY_TRIANGULATION",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "QUANTUM_STACK_RESPONSIBILITY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "OPEN_MORPHOLOGY",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        },
+        {
+          "atom_id": "FRONTIER_DOMINANCE",
+          "unit_id": null,
+          "input_artifact_sha256": null,
+          "custody_record_sha256": null,
+          "candidate_visible_bundle_sha256": null
+        }
+      ],
+      "immutable_missing_fields_per_slot": [
+        "unit_id",
+        "input_artifact_sha256",
+        "custody_record_sha256",
+        "candidate_visible_bundle_sha256"
+      ]
+    }
+  ],
+  "scientific_unit_count": 0,
+  "runnable": false,
+  "authority_boundary": "An atom-level semantic slot is not an empirical task. No held-out, counterfactual, or prospective unit exists until all four slot fields are content-bound."
+}

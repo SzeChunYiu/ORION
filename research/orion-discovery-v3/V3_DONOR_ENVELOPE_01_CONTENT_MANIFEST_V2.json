@@ -1,0 +1,32 @@
+{
+  "schema": "orion.discovery.v3.donor-envelope-content-manifest.v2",
+  "job_id": "V3-DONOR-ENVELOPE-01",
+  "authoritative_v3_base_git_sha": "422148dd8ab307e08f6cde1a945ccaab4bb07f1a",
+  "state": "BLOCKED_SPECIFICATION",
+  "execution_authorized": false,
+  "runnable_on_lunarc": false,
+  "outcomes_accessed": false,
+  "files": {
+    "research/orion-discovery-v3/V3_DONOR_ENVELOPE_01_MATERIAL_REGISTRY_V2.json": {
+      "bytes": 117350,
+      "sha256": "34153858d006f505d4d2ffb1abd9b072a9da753f65385aa2acbb5a9dc4db5ea4"
+    },
+    "research/orion-discovery-v3/V3_DONOR_ENVELOPE_01_TASK_PARTITION_MANIFEST_V2.json": {
+      "bytes": 36660,
+      "sha256": "68a4f6b7eca94dcfdbdf8d5280ff0d159bbc66b3af22fbbb76b75a0cf2eb4d7d"
+    },
+    "research/orion-discovery-v3/V3_DONOR_ENVELOPE_01_PROTOCOL_CANDIDATE_V2.json": {
+      "bytes": 6246,
+      "sha256": "3517bb7235b99fd2f81f7d804918637f1d155bd70c7bb98fc45789c692c611b5"
+    },
+    "research/orion-discovery-v3/V3_DONOR_ENVELOPE_01_SPECIFICATION_STATUS_V2.json": {
+      "bytes": 4999,
+      "sha256": "7d4f29f46f843dc11677eb44b134c295f4dff247dbbb4bb4515b62ceac3b35b5"
+    },
+    "scripts/check_v3_donor_envelope_spec_v2.py": {
+      "bytes": 13042,
+      "sha256": "a2434dee778a8eea281e60c8fa38c83b9fe0149da337616633f9a3166da8c3ad"
+    }
+  },
+  "authority_boundary": "Content binding proves only packet integrity. It does not supply any null donor, candidate, task, evaluator, custody, tool or resource field."
+}
