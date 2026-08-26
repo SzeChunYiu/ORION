@@ -6,9 +6,10 @@ This ledger governs application language across Q1, integrated A+B, Paper C, Pap
 
 | ID | Atomic claim | Current authority | Required promotion evidence | Boundary / forbidden promotion |
 |---|---|---|---|---|
-| APP-CORE-1 | The portfolio can be organized as `NORMALIZE -> IDENTIFY -> AUTHORIZE -> VERIFY`. | `SPECIFIED_ARCHITECTURE` | Executable wrapper plus component contracts | Architecture alone is not a systems contribution. |
+| APP-CORE-1 | If `NORMALIZE`, `IDENTIFY`, `AUTHORIZE`, and `VERIFY` have sound checkers and execute fail-closed, every emitted action is exact for the original problem and carries the required typed authority. | `THEOREM_SUPPORTED` in `CERTIFICATE_CONTROL_PLANE_THEOREMS_R9.md` | Machine-checked hostile fixtures for implementation authority | The composition theorem alone is not an empirical systems contribution. |
 | APP-CORE-2 | The full certificate control plane improves cross-domain exact workflows. | `OPEN` | #1411 strong terminal on at least two external task families | Component success may not be summed into cross-domain impact. |
-| APP-CORE-3 | A failure at any one certificate layer should block unqualified execution. | `DESIGN_RULE` | Implemented fail-closed semantics and hostile tests | Does not establish optimality of the four-layer decomposition. |
+| APP-CORE-3 | Each of the four certificate layers is independently necessary: deleting any one admits a finite invalid-execution witness while the other three remain sound. | `THEOREM_SUPPORTED` in `CERTIFICATE_CONTROL_PLANE_THEOREMS_R9.md` | Executable separation fixtures for implementation corroboration | Necessity of these checks does not establish optimality or uniqueness of the four-layer decomposition. |
+| APP-CORE-4 | Representation refinement can only shrink exact fibres, while additional refutation can only shrink positive-calculus authority sets. | `THEOREM_SUPPORTED` | Component theorem proofs and cross-layer checker tests | The two monotonicities are distinct and may not be conflated into one confidence score. |
 | APP-Q1-1 | The Q1 theorem exactly controls support in its frozen grammar. | `THEOREM_OWNED_BY_Q1` | Q1 proof/replay | Does not identify a production resource. |
 | APP-Q1-2 | The Q1 support object maps faithfully to a maintained production compiler/runtime artifact. | `OPEN` | Complete mapping and move registry under #1409 | Toy/internal grammar is insufficient. |
 | APP-Q1-3 | Q1 materially reduces a named production resource or exact-search cost. | `OPEN` | `APP_Q1_PRODUCTION_RESOURCE_MAPPING_MATERIAL` | No hardware or universal compiler claim. |
@@ -48,4 +49,4 @@ This ledger governs application language across Q1, integrated A+B, Paper C, Pap
 
 ## Current application terminal
 
-`APPLICATION_CLAIMS_R9_LEDGERED__CORE_THEOREM_BRIDGES_IDENTIFIED__PRODUCTION_AND_EXTERNAL_EFFECTS_OPEN`
+`APPLICATION_CLAIMS_R9_LEDGERED__CONTROL_PLANE_COMPOSITION_PROVED__PRODUCTION_AND_EXTERNAL_EFFECTS_OPEN`
