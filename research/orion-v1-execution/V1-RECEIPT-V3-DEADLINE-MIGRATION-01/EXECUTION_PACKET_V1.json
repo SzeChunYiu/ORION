@@ -1,0 +1,172 @@
+{
+  "allowed_write_paths": [
+    "src/orion/kernel/process_receipt.py",
+    "tests/unit/kernel/test_process_receipt_v3_deadline_migrated_v1.py",
+    ".github/workflows/orion-v1-receipt-v3-deadline-migrated-v1.yml",
+    "development/orion-v1-receipt-v3-deadline-migration-2026-08-26/**",
+    "research/orion-v1-execution/V1-RECEIPT-V3-DEADLINE-MIGRATION-01/**"
+  ],
+  "authority_boundary": {
+    "external_validation": "CANNOT_CHECK",
+    "independent_reproduction": "CANNOT_CHECK_FROM_SAME_REPOSITORY_CI",
+    "novelty": "CANNOT_CHECK",
+    "orion_v1_freeze": "NOT_GRANTED_BY_THIS_JOB",
+    "p1_p15_manuscript_edits": "FORBIDDEN",
+    "paper_authority_delta": "NONE",
+    "physical_quantum_validity": "CANNOT_CHECK",
+    "quantum_advantage": "CANNOT_CHECK"
+  },
+  "baseline_commands": [
+    "python -m pytest --collect-only -q /tmp/test_process_receipt_v3_deadline_hostile.py",
+    "python -m pytest -q --runxfail /tmp/test_process_receipt_v3_deadline_hostile.py --junitxml=/tmp/deadline-baseline.xml -ra",
+    "python -m pytest -q --runxfail tests/unit/kernel/test_process_receipt_v3.py tests/unit/kernel/test_process_receipt_v3_hostile.py tests/unit/kernel/test_process_receipt_v3_wait_hostile.py --junitxml=/tmp/current-hostile-baseline.xml -ra"
+  ],
+  "codex_thread": "codex://threads/01a03963-d804-7320-b10a-2b828119df93",
+  "execution_class": "LOCAL_CI_ENGINEERING_MIGRATION_NOT_LUNARC",
+  "execution_owner": "CODEX_COMPUTATION_SESSION",
+  "final_verification_commands": [
+    "python -m py_compile src/orion/kernel/process_receipt.py tests/unit/kernel/test_process_receipt_v3_deadline_migrated_v1.py",
+    "python -m pytest --collect-only -q tests/unit/kernel/test_process_receipt_v3_deadline_migrated_v1.py",
+    "python -m pytest -q --runxfail tests/unit/kernel/test_process_receipt_v3.py tests/unit/kernel/test_process_receipt_v3_hostile.py tests/unit/kernel/test_process_receipt_v3_wait_hostile.py tests/unit/kernel/test_process_receipt_v3_deadline_migrated_v1.py --junitxml=research/orion-v1-execution/V1-RECEIPT-V3-DEADLINE-MIGRATION-01/run-a.xml -ra | tee research/orion-v1-execution/V1-RECEIPT-V3-DEADLINE-MIGRATION-01/run-a.log",
+    "python -m pytest -q --runxfail tests/unit/kernel/test_process_receipt_v3.py tests/unit/kernel/test_process_receipt_v3_hostile.py tests/unit/kernel/test_process_receipt_v3_wait_hostile.py tests/unit/kernel/test_process_receipt_v3_deadline_migrated_v1.py --junitxml=research/orion-v1-execution/V1-RECEIPT-V3-DEADLINE-MIGRATION-01/run-b.xml -ra | tee research/orion-v1-execution/V1-RECEIPT-V3-DEADLINE-MIGRATION-01/run-b.log",
+    "python scripts/check_orion_v1_freeze.py --json",
+    "python -m pytest -q --runxfail tests/unit/orion_v1/test_orion_v1_freeze.py",
+    "git diff --check",
+    "test -z \"$(git status --porcelain | grep '^??' | grep -v '^?? research/orion-v1-execution/V1-RECEIPT-V3-DEADLINE-MIGRATION-01/' || true)\""
+  ],
+  "forbidden_write_paths": [
+    "papers/**",
+    "research/orion-epistemic-state-v1/results/**",
+    "historical receipt/result bytes",
+    "P1 finalizer/Slurm/LUNARC/custody/immutable-OID paths",
+    "tests/unit/kernel/test_process_receipt_v3_hostile.py",
+    "tests/unit/kernel/test_process_receipt_v3_wait_hostile.py",
+    "the archive commit or archived test object"
+  ],
+  "frozen_at_utc": "2026-08-26T08:27:03Z",
+  "honest_failure_terminals": [
+    "V1_RECEIPT_V3_CURRENT_DEADLINE_SEMANTIC_DEFECT_FOUND",
+    "V1_RECEIPT_V3_ARCHIVED_REQUIREMENT_OBSOLETE_WITH_PROOF",
+    "V1_RECEIPT_V3_DEADLINE_MIGRATION_DENOMINATOR_INCOMPLETE",
+    "V1_RECEIPT_V3_DEADLINE_MIGRATION_REPLAY_DISAGREEMENT",
+    "V1_RECEIPT_V3_DEADLINE_MIGRATION_CANNOT_CHECK"
+  ],
+  "input_identities": {
+    "archive_commit": "7d9532a3057b8f66ee0862f64bf8630d8c96ff15",
+    "archive_module_blob": "fbf742efaba55dbee442ae721361af18775ec6ee",
+    "archive_test_blob": "55b3399b3c732a4b8303799be28ffef2439f0e5b",
+    "archive_test_path": "tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py",
+    "archive_test_sha256": "103c3678e34ea33b7657bec911c8d604b97196bdbf56df40df3f4d2ab8cc051d",
+    "baseline_deadline_denominator": 120,
+    "baseline_deadline_failures": 78,
+    "baseline_deadline_passes": 42,
+    "baseline_diagnostic_artifact": {
+      "artifact_id": 9598533111,
+      "github_artifact_digest": "sha256:208f44b5cd7fcc8ab01f1a1e2ba7cc3dc0825fafbf55fb108b72a2c546490c55",
+      "workflow_run_id": 32946709780
+    },
+    "current_declared_hostile_denominator": 113,
+    "current_declared_hostile_terminal": "V1_RECEIPT_V3_CURRENT_DECLARED_HOSTILE_FRONTIER_GREEN",
+    "current_hostile_artifact": {
+      "artifact_id": 9598531211,
+      "github_artifact_digest": "sha256:5b15eb870fe610181efeabdc386480eedf4cd4e76e476f220cfe6138435fb862",
+      "workflow_run_id": 32946709783
+    },
+    "current_module_blob": "fbf742efaba55dbee442ae721361af18775ec6ee",
+    "current_module_path": "src/orion/kernel/process_receipt.py",
+    "current_module_sha256": "6aa20d8cc15f65abe4077a8fe960b44b61b9ff7c227beb3e2ce39eaa385fb9f7"
+  },
+  "migration_contract": {
+    "archived_node_map": "Exactly 120 unique archived node IDs must map one-to-one to 120 prospectively named successor node IDs.",
+    "classification_required_for_each_baseline_failure": [
+      "LEGACY_API_SHAPE_ONLY",
+      "CURRENT_SEMANTIC_DEFECT",
+      "OBSOLETE_DUPLICATE_WITH_PROOF",
+      "CANNOT_MIGRATE_WITHOUT_NEW_SEMANTICS"
+    ],
+    "historical_bytes": "IMMUTABLE",
+    "no_drop_rule": "No archived node may disappear, become skipped/xfail, or be represented only by prose.",
+    "repair_rule": "Modify the current kernel only for a demonstrated current semantic defect; otherwise migrate the oracle through a new test identity without weakening it.",
+    "same_node_and_outcome_denominator_between_runs": true,
+    "semantic_preservation_rule": "Every successor row must state the archived invariant and show that the successor assertion is at least as strict at the same public boundary.",
+    "two_clean_runs": true
+  },
+  "packet_id": "V1-RECEIPT-V3-DEADLINE-MIGRATION-01",
+  "pre_mutation_commands": [
+    "git fetch origin shadow/orion-v1-freeze-control-plane-20260826",
+    "test \"$(git rev-parse refs/remotes/origin/shadow/orion-v1-freeze-control-plane-20260826)\" = ed6aa96485e583fdf47fc483d92702e8928c6a2c",
+    "git cat-file -e ed6aa96485e583fdf47fc483d92702e8928c6a2c^{commit}",
+    "test \"$(git rev-parse ed6aa96485e583fdf47fc483d92702e8928c6a2c^{tree})\" = 1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081",
+    "git checkout -b codex/orion-v1-receipt-v3-deadline-migration-20260826 ed6aa96485e583fdf47fc483d92702e8928c6a2c",
+    "test -z \"$(git status --porcelain)\"",
+    "git cat-file -e 7d9532a3057b8f66ee0862f64bf8630d8c96ff15^{commit}",
+    "test \"$(git rev-parse 7d9532a3057b8f66ee0862f64bf8630d8c96ff15:tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py)\" = 55b3399b3c732a4b8303799be28ffef2439f0e5b",
+    "git show 7d9532a3057b8f66ee0862f64bf8630d8c96ff15:tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py > /tmp/test_process_receipt_v3_deadline_hostile.py",
+    "test \"$(sha256sum /tmp/test_process_receipt_v3_deadline_hostile.py | cut -d' ' -f1)\" = 103c3678e34ea33b7657bec911c8d604b97196bdbf56df40df3f4d2ab8cc051d",
+    "test \"$(git rev-parse HEAD:src/orion/kernel/process_receipt.py)\" = fbf742efaba55dbee442ae721361af18775ec6ee",
+    "test \"$(sha256sum src/orion/kernel/process_receipt.py | cut -d' ' -f1)\" = 6aa20d8cc15f65abe4077a8fe960b44b61b9ff7c227beb3e2ce39eaa385fb9f7"
+  ],
+  "question": "Can the immutable 120-test archived strict-deadline oracle be prospectively migrated to the current Receipt V3 public semantics without dropping an invariant, weakening fail-closed behavior, or changing historical bytes?",
+  "repository": "SzeChunYiu/ORION",
+  "required_environment": {
+    "dependency_command": "python -m pip install -e '.[dev,candidates]' --constraint .github/ci-fast-replay-constraints.txt",
+    "minimum_cpu_cores": 2,
+    "minimum_free_disk_gib": 10,
+    "minimum_memory_gib": 7,
+    "network_policy": "Network may be used only for repository/dependency acquisition; tests and result materialization must not depend on network outcomes.",
+    "python": "3.12.13",
+    "required_environment_receipts": [
+      "uname -a",
+      "cat /etc/os-release",
+      "python --version",
+      "python -m pip freeze",
+      "env | sort with secrets redacted",
+      "sha256sum pyproject.toml uv.lock .github/ci-fast-replay-constraints.txt"
+    ],
+    "runner": "GitHub Actions ubuntu-24.04 or an isolated equivalent Linux x86_64 checkout",
+    "wall_clock_limit_minutes": 45
+  },
+  "required_output_directory": "research/orion-v1-execution/V1-RECEIPT-V3-DEADLINE-MIGRATION-01",
+  "required_outputs": [
+    "FREEZE.json",
+    "RAW_MANIFEST.json",
+    "PRIMARY_RESULT.json",
+    "DONOR_RESULT.json",
+    "NEGATIVE_CONTROLS.json",
+    "RESOURCE_LEDGER.json",
+    "TRANSFER_RESULT.json",
+    "RESULT_BINDING_PACKET.json",
+    "MIGRATION_PLAN.json",
+    "MIGRATION_CLASSIFICATION.json",
+    "ARCHIVED_TO_SUCCESSOR_NODE_MAP.json",
+    "run-a.log",
+    "run-a.xml",
+    "run-b.log",
+    "run-b.xml"
+  ],
+  "schema": "ORION.V1.ExecutionPacket.v1",
+  "source_identity": {
+    "frozen_base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+    "required_codex_branch": "codex/orion-v1-receipt-v3-deadline-migration-20260826",
+    "required_source_branch_head": "ed6aa96485e583fdf47fc483d92702e8928c6a2c",
+    "required_source_tree": "1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081",
+    "source_branch": "shadow/orion-v1-freeze-control-plane-20260826",
+    "tested_pull_request_checkout_commit": "ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+    "tested_pull_request_checkout_tree": "1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081"
+  },
+  "success_requirements": {
+    "archived_denominator": 120,
+    "classification_rows_for_baseline_failures": 78,
+    "clean_replays": 2,
+    "combined_denominator": 233,
+    "errors": 0,
+    "failures": 0,
+    "mapping_rows": 120,
+    "protected_path_changes": 0,
+    "result_packet_digest_validation": true,
+    "skipped": 0,
+    "successor_deadline_denominator": 120,
+    "xfail_or_xpass": "FORBIDDEN_UNDER_RUNXFAIL"
+  },
+  "success_terminal": "V1_RECEIPT_V3_DEADLINE_PROTOCOL_PROSPECTIVELY_MIGRATED_AND_GREEN"
+}
