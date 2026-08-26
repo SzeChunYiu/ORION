@@ -13,7 +13,18 @@
   "external_drup_checker_control": "MATERIALIZED_ONE_ENGINEERING_CONTROL_ONLY",
   "full_bundle_external_drup_verification": "WIRED_NOT_RUN_PENDING_LUNARC_JOB",
   "input_bundle": "GENERATED_BY_CRB_CENSUS_GENERATOR_PENDING_EXECUTION",
-  "lunarc_submission": "NOT_SUBMITTED",
+  "lunarc_submission": {
+    "attempts": [
+      {
+        "failure_terminal": "SLURM_TMPDIR_UNSET_ON_LUNARC",
+        "job_id": 3544050,
+        "nonduplication_key": "07e8b0389f37d2c890cdc050f0f3db2a13d94002dedd94cfcf8a1ce6c0128384",
+        "outcome": "FAILED_AT_ENV_BINDING_IN_ONE_SECOND_NO_COMPUTE_STARTED",
+        "remediation": "node-local root now resolves to SLURM_TMPDIR when exported and otherwise to the SLURM-precreated /local/slurmtmp.<jobid>, with a 40 GiB free-space floor"
+      }
+    ],
+    "status": "RESUBMITTING_AFTER_ENV_FIX"
+  },
   "predicate_fix_disclosure": "PAIR_DP_TRANSITIONS_FIXED_THIS_COMMIT_COUNTS_MAY_DIVERGE_FROM_FROZEN_DENOMINATORS_JOB_FAILS_CLOSED_ON_DIVERGENCE",
   "required_before_submission": [
     "root review of local commit"

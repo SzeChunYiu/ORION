@@ -23,8 +23,9 @@
 #   (external checking), NQ_CR_B_DURABLE_COPY_CORRUPT (durable copy-out).
 #
 # Output layout: all intermediate artifacts, including the per-record CNF and
-# DRUP proof streams (tens of GB), are written node-local under SLURM_TMPDIR
-# and vanish with the node allocation.  Phase 4 copies the sealed proof chain
+# DRUP proof streams (tens of GB), are written node-local (SLURM_TMPDIR when
+# exported, otherwise the SLURM-precreated /local/slurmtmp.<jobid>) and
+# vanish with the node allocation.  Phase 4 copies the sealed proof chain
 # (receipts, manifests, coverage declarations, certificates, batch lines,
 # frozen shards) durably, gzip-compressed, with a raw-byte SHA256SUMS ledger;
 # per-record CNF/DRUP digests are sealed inside the certificates and batch
@@ -36,10 +37,15 @@ SUBJECT_COMMIT=0c451e862a0eeddac7c673813c4dc499f134b088
 REPOSITORY="${SLURM_SUBMIT_DIR:?submit from the exact repository checkout}"
 AUTHORIZED_COMMIT="${NQ_CRB_AUTHORIZED_COMMIT:?bind the reviewed authorization commit}"
 ENGINE_ROOT="${REPOSITORY}/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b"
-OUTPUT_ROOT="${SLURM_TMPDIR:?}/nq-crb-output"
+# LUNARC does not export SLURM_TMPDIR; SLURM pre-creates the per-job
+# node-local directory /local/slurmtmp.<jobid> on the 1.5 TB NVMe local disk.
+# All intermediate artifacts (venv, checker build, tens of GB of CNF/DRUP
+# proofs, census streams) live there and vanish with the allocation.
+NODE_LOCAL_ROOT="${SLURM_TMPDIR:-/local/slurmtmp.${SLURM_JOB_ID}}"
+OUTPUT_ROOT="${NODE_LOCAL_ROOT}/nq-crb-output"
 DURABLE_ROOT="${NQ_CRB_DURABLE_ROOT:-${ENGINE_ROOT}/results/${SLURM_JOB_ID}}"
-VENV="${SLURM_TMPDIR:?}/nq-crb-venv"
-DRUP_SOURCE="${SLURM_TMPDIR}/drat-trim-source"
+VENV="${NODE_LOCAL_ROOT}/nq-crb-venv"
+DRUP_SOURCE="${NODE_LOCAL_ROOT}/drat-trim-source"
 COVERAGE_ARGUMENT="${ENGINE_ROOT}/docs/plans/2026-08-27-crb-census-coverage-argument.md"
 D2_SCOPE=NQ_D2_NORMALIZED_LENGTH_19
 D3_SCOPE=NQ_D3_STRUCTURED_LENGTH_25
@@ -54,6 +60,14 @@ git -C "${REPOSITORY}" diff --quiet
 git -C "${REPOSITORY}" diff --cached --quiet
 git -C "${REPOSITORY}" merge-base --is-ancestor "${SUBJECT_COMMIT}" HEAD
 log "identity bound: ${AUTHORIZED_COMMIT}"
+
+mkdir -p "${NODE_LOCAL_ROOT}"
+AVAILABLE_KB="$(df -k "${NODE_LOCAL_ROOT}" | awk 'NR==2 {print $4}')"
+if [[ "${AVAILABLE_KB}" -lt 41943040 ]]; then
+  log "NQ_CR_B_NODE_LOCAL_INSUFFICIENT: ${AVAILABLE_KB} KiB free on ${NODE_LOCAL_ROOT} (40 GiB floor)"
+  exit 1
+fi
+log "node-local scratch ready: ${NODE_LOCAL_ROOT} (${AVAILABLE_KB} KiB free)"
 
 python3 -m venv "${VENV}"
 "${VENV}/bin/python" -m pip install --disable-pip-version-check --no-input \
