@@ -68,6 +68,36 @@ def test_subject_identity_uses_the_content_bound_v2_successor() -> None:
     assert any(path.endswith("CONTENT_MANIFEST_V2.json") for path in target.evidence)
 
 
+def test_latest_replay_contract_is_the_authoritative_result_binding() -> None:
+    """A V4 successor must be assessed instead of the retained V3 predecessor."""
+
+    target = checker.assess_targets(ROOT, "P6")["immutable_raw_result_formats"]
+
+    assert target.status == "BOUND"
+    assert any(path.endswith("P6_LOCAL_REPLAY_CONTRACT_V4.json") for path in target.evidence)
+
+
+def test_invalid_latest_contract_cannot_fall_back_to_a_valid_predecessor(
+    tmp_path: Path,
+) -> None:
+    """Retaining V3 history must not let a malformed V4 silently disappear."""
+
+    root = _copy_subject(tmp_path, "P6")
+    contract_path = (
+        root
+        / checker.PAPERS["P6"]
+        / "evidence/local/P6_LOCAL_REPLAY_CONTRACT_V4.json"
+    )
+    contract = json.loads(contract_path.read_text(encoding="utf-8"))
+    contract["schema_version"] = "orion.local-replay-contract.v999"
+    contract_path.write_text(json.dumps(contract, indent=2) + "\n", encoding="utf-8")
+
+    target = checker.assess_targets(root, "P6")["immutable_raw_result_formats"]
+
+    assert target.status == "PARTIAL"
+    assert any(path.endswith("P6_LOCAL_REPLAY_CONTRACT_V4.json") for path in target.evidence)
+
+
 def test_subject_identity_falls_back_to_v1_only_when_v2_is_absent(tmp_path: Path) -> None:
     root = _copy_subject(tmp_path, "P6")
     (root / checker.PAPERS["P6"] / "CONTENT_MANIFEST_V2.json").unlink()

@@ -3,6 +3,38 @@
 \usepackage{amsmath,amssymb,booktabs}
 \usepackage[hidelinks]{hyperref}
 \usepackage[pipeTables]{markdown}
+\usepackage{seqsplit}
+% The manuscript carries frozen terminal names, hashes, and other identifiers
+% that must remain verbatim.  Spaced snippets receive explicit breakable spaces;
+% compact identities stay atomic but can move as a unit to the next line; only
+% no-space identities wider than 6 em split.  The width test is deliberate:
+% Markdown encodes one visible underscore as a renderer macro, so raw TeX token
+% counts do not measure the visible identity and can misclassify long terminals.
+\ExplSyntaxOn
+\cs_new_protected:Npn \orion_code_span:n #1
+  {
+    % A code span can be the first material in a Markdown paragraph.  Enter
+    % horizontal mode before the width probe so the compact-box branch stays
+    % inline instead of becoming a standalone vertical-list box.
+    \mode_leave_vertical:
+    \group_begin:
+    \tl_if_in:nnTF {#1} { ~ }
+      {
+        \seq_set_split:Nnn \l_tmpa_seq { ~ } {#1}
+        \texttt{\seq_use:Nn \l_tmpa_seq { \space\allowbreak }}
+      }
+      {
+        \hbox_set:Nn \l_tmpa_box { \texttt{#1} }
+        \dim_compare:nNnTF { \box_wd:N \l_tmpa_box } > { 6em }
+          { \allowbreak\texttt{\seqsplit{#1}} }
+          { \allowbreak\box_use:N \l_tmpa_box }
+      }
+    \group_end:
+  }
+\cs_new_eq:NN \orionCodeSpan \orion_code_span:n
+\ExplSyntaxOff
+\renewcommand{\markdownRendererCodeSpan}[1]{\orionCodeSpan{#1}}
+\setlength{\emergencystretch}{1.5em}
 % pdflatex cannot typeset these code points unaided, and the canonical prose is
 % Markdown, where an author writes them naturally. Without this the P11 build
 % died on its first "≥" with "Unicode character ≥ (U+2265) not set up for use

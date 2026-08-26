@@ -317,12 +317,18 @@ def test_the_precision_fix_lost_no_classification() -> None:
     ``MISSING_DECLARATION``, +1 ``MISSING_ACCESS``, and +1
     ``INSUFFICIENT_EVIDENCE``. That takes the exact classified-emitter ratchet
     from 204 to 218 while retaining every adverse and unresolved state.
+
+    P6's explicit certificate report adds the 219th classified emitter. Its
+    external-independent-validation field remains ``CANNOT_CHECK`` because the
+    report, model, theorems, and tests are all from the same lane; no independent
+    validator identity is bound. Regenerating the inventory must retain that
+    boundary rather than dropping it because the surrounding formal checks pass.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    # Current source derives 218 classified emitters; keep this exact, not a lower bound.
-    assert sum(classified.values()) == 218, classified
+    # Current source derives 219 classified emitters; keep this exact, not a lower bound.
+    assert sum(classified.values()) == 219, classified
     assert committed["with_reason"] < committed["blocker_sites"]
     assert committed["with_reason"] >= sum(classified.values()), (
         "more sites are classified than carry a reason, so something is classifying on nothing"
