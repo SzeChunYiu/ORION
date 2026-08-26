@@ -139,11 +139,23 @@
     },
     {
       "blocks_freeze": true,
+      "census_artifact": "research/orion-discovery-v3/JOB_SPECS_V1.json",
+      "census_terminal": "DISCOVERY_V3_ALL_JOB_SPECIFICATIONS_FROZEN",
       "class": "INTERNAL_LOCAL",
       "discharge_job": "V1-DISC-V3-SPEC-01",
       "gap_id": "GAP-INTERNAL-DISCOVERY-V3-SPECS",
       "owner": "FORMAL_METHODS_LEAD",
-      "status": "OPEN"
+      "resolution_evidence": {
+        "backlog_jobs_bound_as_predecessors": 11,
+        "denominator_reconciliation": "denominator=13 per EXECUTION_TAKEOVER_MANIFEST_V1.json canonical_order (issue_1329_body_sha256 5d875643d74dfdc6c28551b2ac06305e71690142baa058c98dc6a9b29415f8b2); EXECUTION_BACKLOG_V1.json held 11 jobs from creation commit 5f4a83dce and never 13 (DEVELOPMENT_PACKET.md: '#1329 supersedes the prose order with 13 jobs but does not update the branch backlog'); the 11+2-executed hypothesis is false (research/orion-discovery-v2/exec/ holds 7 executed v2 jobs); DISC-Q-TRANSFER-01 is a v2 job merged NEGATIVE via PR #1327 (issue #1306, merged 2026-08-25T12:42:10Z), retained as V3-QUANTUM-REMINT-01 donor context and excluded from the V3 denominator; all 11 backlog ids bound exactly once as POTENTIAL_PREDECESSOR_NOT_ALIAS inside the 13 rows (10 rows; V3-DONOR-ENVELOPE-01 binds two)",
+        "frozen_base": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+        "jobs_specified": 13,
+        "packet": "research/orion-v1-freeze/discv3spec-20260826/complete/RESULT_BINDING_PACKET.json",
+        "registered_alternatives": 26,
+        "synthesis_modes_outcome": "DISCOVERY_SYNTHESIS_MODES successor obligation discharged at specification level: the V3-OPEN-MORPH-01 row is the frozen synthesis-modes contract (move-menu interface, OPEN_MOVE_CLASS admission, RN-T8 fair-dovetail scheduler, RN-T7 obstruction witness format); implementing src/orion/discovery/synthesis_modes.py and structural_navigation.py remains an execution-owner obligation",
+        "vocabulary_coverage": "22/22 theorems, 25/25 atoms, 7/7 parents bound across the 13 rows; 6 inference-bound fields, all on the three predecessor-less jobs (V3-PRECONDITION-LIVENESS-01, V3-CROSS-DOMAIN-01, V3-ATOMIC-PAPER-SYNC-01)"
+      },
+      "status": "RESOLVED"
     },
     {
       "blocks_external_authority": true,

@@ -1,0 +1,1042 @@
+{
+  "coverage": {
+    "atoms_bound": 25,
+    "atoms_total": 25,
+    "parents_bound": 7,
+    "parents_total": 7,
+    "theorems_bound": 22,
+    "theorems_total": 22
+  },
+  "denominator_reconciliation": {
+    "backlog_jobs_bound_as_predecessors": 11,
+    "evidence": [
+      "research/orion-discovery-v3/EXECUTION_TAKEOVER_MANIFEST_V1.json source_identity: issue_1329_body_sha256=5d875643d74dfdc6c28551b2ac06305e71690142baa058c98dc6a9b29415f8b2, predecessor_backlog_sha256=756ccc89299cc912d75ddaca7902237265262a4323a523dd483e0c0b33da6884, canonical_order length 13",
+      "EXECUTION_BACKLOG_V1.json at creation commit 5f4a83dceffbc783e0df946b22378524b123ec7e holds 11 jobs and never held 13 (git log over the path shows no 13-job revision)",
+      "development/orion-v3-execution-takeover-2026-08-25/DEVELOPMENT_PACKET.md: '#1329 supersedes the prose order with 13 jobs but does not update the branch backlog'",
+      "the 11+2 hypothesis is false: research/orion-discovery-v2/exec/ contains 7 executed DISC-* job dirs, not 2; executed v2 jobs are outside the V3 denominator",
+      "DISC-Q-TRANSFER-01 is a discovery-v2 job merged NEGATIVE via PR #1327 (issue #1306, 'advantage does not survive charging', merged 2026-08-25T12:42:10Z); it informs V3-QUANTUM-REMINT-01 donor context and is excluded from the V3 denominator",
+      "positions 3 (V3-PRECONDITION-LIVENESS-01), 7 (V3-CROSS-DOMAIN-01), 12 (V3-ATOMIC-PAPER-SYNC-01) carry no backlog predecessor; the other 10 rows bind the 11 backlog ids (V3-DONOR-ENVELOPE-01 binds two)"
+    ],
+    "jobs_specified": 13,
+    "verdict": "denominator = 13 (issue #1329 canonical order), with all 11 backlog jobs bound as POTENTIAL_PREDECESSOR_NOT_ALIAS inside the 13 rows; specifying 13 covers both denominators"
+  },
+  "frozen_base": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+  "inference_bound_fields": [
+    "V3-ATOMIC-PAPER-SYNC-01.noncompute_resolution",
+    "V3-ATOMIC-PAPER-SYNC-01.resource_class_basis",
+    "V3-CROSS-DOMAIN-01.resource_class_basis",
+    "V3-CROSS-DOMAIN-01.theorem_binding",
+    "V3-PRECONDITION-LIVENESS-01.resource_class_basis",
+    "V3-PRECONDITION-LIVENESS-01.theorem_binding"
+  ],
+  "jobs": [
+    {
+      "acquisition_gate": "Every donor artifact, interface contract, task manifest and evaluator must be sha256-registered with zero outcome-bearing bytes before the candidate system is given any task; the acquisition layer (src/orion/knowledge/donor_envelope.py fail-closed evidence-class gate at the frozen base) must reject unregistered or outcome-leaking inputs.",
+      "atom_bindings": [
+        "DONOR_COMPOSITION",
+        "FRONTIER_DOMINANCE",
+        "KNOWLEDGE_ACQUISITION",
+        "HYPOTHESIS_EVOLUTION",
+        "METHOD_LANGUAGE_EXPANSION",
+        "AUTONOMOUS_DOMAIN_ANALYSIS"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "Donor registry, input bundle and task manifest escrowed with content hashes and source/model chronology receipts; no post-outcome retrieval into the frozen protocol; escrow unlock permitted only after the sealed decision log hash exists.",
+      "depends_on": [],
+      "donor_first_comparison": {
+        "donor_product": "Ideal donor product over the registered family: retrieval/reasoning research agent, Co-Scientist-style multi-agent hypothesis evolution, AlphaEvolve-style evaluator-guided program evolution, domain-native autonomous discovery agent, and their legal compositions (NEAREST_WORK section 4 items 1-5).",
+        "first_refusal_rule": "FD-T5: every residual claim relative to individual donors is refused until the ideal product has run under the same contract.",
+        "matched_resources": "Identical candidate-visible information I, tool/model/instrument access A, evaluator V, vector budget B and custody/chronology policy rho; donors receive every scientific ingredient the candidate receives before any residual is declared."
+      },
+      "job_id": "V3-DONOR-ENVELOPE-01",
+      "negative_twin": {
+        "control_design": "Within-task-class label shuffle of donor/candidate outcome rows before dominance evaluation, plus one planted hidden-answer interface leak.",
+        "expected_signature": "Shuffled run collapses dominance structure to chance (no strict-win surplus); the planted leak must trip the FD-T3/D4 matched-contract violation counter. Failure of either detector is a harness defect, not a null result."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "Donor family is the modern AI-discovery set (NEAREST_WORK_ABSORPTION_AND_RESIDUAL_V1.md section 2/4); no classical human-parent source is an execution input for this job.",
+      "parent_bindings": [],
+      "position": 1,
+      "predecessors": [
+        {
+          "job_id": "DISC-V3-DONOR-01",
+          "relationship": "POTENTIAL_PREDECESSOR_NOT_ALIAS",
+          "scientific_question_sha256": "620a046539ccd3b90d3a9c5d183533ed86e6296819340a644827aa6f18801dda"
+        },
+        {
+          "job_id": "DISC-V3-DOM-01",
+          "relationship": "POTENTIAL_PREDECESSOR_NOT_ALIAS",
+          "scientific_question_sha256": "93bf417598bd2eecf14db12401907517a2e1b406bf159b699baf98900f3f1d76"
+        }
+      ],
+      "prospective_execution_contract": {
+        "decision_point": "Dominance decision D1-D4 per task before any outcome terminal exists..",
+        "frozen_code_surfaces": [
+          "src/orion/knowledge/donor_envelope.py",
+          "src/orion/knowledge/evaluation.py",
+          "src/orion/discovery/frontier_dominance.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "donor registry (sha256 per donor artifact + interface contract)",
+          "task manifest + input bundle (sha256)",
+          "evaluator + ideal-product composition spec (sha256)",
+          "candidate system profile (sha256)",
+          "matched information/tool/vector-resource contracts (sha256)"
+        ],
+        "outcome_access_denial": "Dominance decision D1-D4 per task before any outcome terminal exists."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_DONOR_PRODUCT_SUFFICIENT",
+          "statement": "The information-matched ideal donor product (retrieval agent composed with Co-Scientist-style evolution, AlphaEvolve-style code evolution and a domain-native agent, all legal interfaces combined) matches the candidate on the full frozen task class, so no residual exists."
+        },
+        {
+          "hypothesis_id": "H_ENVELOPE_DOMINANCE_WITH_STRICT_WIN",
+          "statement": "The candidate weakly dominates the executed donor envelope with at least one strict outside-closure success."
+        }
+      ],
+      "resource_class_basis": "backlog_predecessor DISC-V3-DONOR-01",
+      "resource_class_frozen": "heavy_models",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "Executes the ideal donor product first-refusal layer (FD-T5) under the frozen comparison contract (FD-T0), decides weak dominance D1-D4 (FD-T1) by the finite normal form (FD-T3) with vector resources never scalarized without a frozen price vector (FD-T4).",
+        "inference_bound": false,
+        "theorem_ids": [
+          "FD-T0",
+          "FD-T1",
+          "FD-T3",
+          "FD-T4",
+          "FD-T5"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "Candidate hypergraph corpus and the admissible explanation-family registry are sha256-frozen before atlas computation begins; corpus cells carrying outcome labels are partitioned so enumeration reads only the pre-registered feature side.",
+      "atom_bindings": [
+        "TYPED_KNOWLEDGE_WEB",
+        "DONOR_COMPOSITION",
+        "PROBLEM_DECOMPOSITION"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "Corpus provenance, correspondence verification receipts and the frozen enumeration order are escrowed; any corpus mutation after freeze reopens the job under a new successor identity.",
+      "depends_on": [
+        "V3-DONOR-ENVELOPE-01"
+      ],
+      "donor_first_comparison": {
+        "donor_product": "Per-donor singleton explanation families plus their pairwise unions executed on the identical corpus, i.e. the atlas without ideal-product composition.",
+        "first_refusal_rule": "A node/edge is declared residual only after every registered donor explanation family and their legal compositions have been given refusal on that cell.",
+        "matched_resources": "Same corpus bytes, same correspondence verifier, same enumeration budget per family."
+      },
+      "job_id": "V3-RESIDUAL-ATLAS-01",
+      "negative_twin": {
+        "control_design": "Layer- and relation-preserving isomorphism rename of the corpus (RN-T2 control) plus a donor-to-explanation assignment shuffle.",
+        "expected_signature": "Renamed corpus yields isomorphic residual families (non-isomorphic output = checker defect); shuffled assignment cannot shrink any minimal residual below the RN-T1 monotonicity floor (violation = checker defect)."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "Donor explanations are verified structure-mapping correspondences (Gentner) over the layered entity/activity/organization ontology (Machamer-Darden-Craver); both mappings are frozen in the parent source map.",
+      "parent_bindings": [
+        "GENTNER_STRUCTURE_MAPPING_1983",
+        "MACHAMER_DARDEN_CRAVER_MECHANISMS_2000"
+      ],
+      "position": 2,
+      "predecessors": [
+        {
+          "job_id": "DISC-V3-RES-01",
+          "relationship": "POTENTIAL_PREDECESSOR_NOT_ALIAS",
+          "scientific_question_sha256": "ec82af196648b4c7520ab28554b3b0b2ba884a581f7197a34dc729bbfbbfc5b8"
+        }
+      ],
+      "prospective_execution_contract": {
+        "decision_point": "Residual-family enumeration commits per-cell before any downstream use.",
+        "frozen_code_surfaces": [
+          "src/orion/discovery/knowledge_web.py",
+          "src/orion/discovery/frontier_dominance.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "candidate hypergraph corpus (sha256)",
+          "admissible explanation-family registry (sha256)",
+          "correspondence verifier (sha256)",
+          "enumeration order + budget (sha256)"
+        ],
+        "outcome_access_denial": "Residual-family enumeration commits per-cell before any downstream use; corpus outcome side never read."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_SINGLETON_ABSORPTION",
+          "statement": "Singleton donor explanations absorb all candidate structure, so the minimal residual family is empty or node-free on every corpus cell."
+        },
+        {
+          "hypothesis_id": "H_INTERACTION_RESIDUAL_PRESENT",
+          "statement": "Inclusion-minimal residuals survive with unabsorbed interaction/hyperedge structure (RN-T3 witness) even where all component nodes are donor-owned."
+        }
+      ],
+      "resource_class_basis": "backlog_predecessor DISC-V3-RES-01",
+      "resource_class_frozen": "heavy_cpu",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "Enumerates admissible donor explanation families over the candidate hypergraph corpus and identifies donor-expansion monotonicity (RN-T1), isomorphism invariance (RN-T2), interaction-only residuals (RN-T3), nonuniqueness of minimal residuals (RN-T5), composition subadditivity (RN-T6) and the composition-hyperedge residual ceiling (FD-T8).",
+        "inference_bound": false,
+        "theorem_ids": [
+          "RN-T1",
+          "RN-T2",
+          "RN-T3",
+          "RN-T5",
+          "RN-T6",
+          "FD-T8"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "Guard registry, both strata definitions and the mutation panel are sha256-frozen before any guard evaluation; guards may read only pre-registered decision-side features.",
+      "atom_bindings": [
+        "THEOREM_IDENTIFYING_HARNESS",
+        "SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+        "EXECUTION_SCIENCE_NONINTERFERENCE",
+        "EXPERIMENT_AND_INSTRUMENT_DESIGN"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "Mutation outcomes are sealed until the full panel is executed; no guard may be edited between strata runs (edits freeze a successor identity instead).",
+      "depends_on": [
+        "V3-RESIDUAL-ATLAS-01"
+      ],
+      "donor_first_comparison": {
+        "donor_product": "Unguarded / scalar-benchmark admission baseline: the same campaign decisions made by a leaderboard-style admission rule with the guard layer removed.",
+        "first_refusal_rule": "No claimed guard benefit is reported before the guard-free donor has run the identical stream and its false-promotion and closure regressions are counted.",
+        "matched_resources": "Identical task stream, compute budget and information access; only the admission guard layer differs."
+      },
+      "job_id": "V3-PRECONDITION-LIVENESS-01",
+      "negative_twin": {
+        "control_design": "Mutation panel over the guard registry: deletion of each singleton guard and of each inclusion-minimal guard set, plus placebo no-op mutations.",
+        "expected_signature": "Placebo mutations produce exactly zero flips; singleton deletions partition into flipping (load-bearing) and non-flipping (inert) sets whose minimal flipping sets are unique per RN-T12 semantics. Non-partition = harness defect."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "Guard audit is internal campaign machinery; no classical parent source is an input.",
+      "parent_bindings": [],
+      "position": 3,
+      "predecessors": [],
+      "prospective_execution_contract": {
+        "decision_point": "Mutation outcomes sealed per panel.",
+        "frozen_code_surfaces": [
+          "src/orion/discovery/harness_identifiability.py",
+          "src/orion/discovery/frontier_dominance.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "guard registry (sha256)",
+          "positive + negative strata definitions (sha256)",
+          "mutation panel schedule (sha256)",
+          "violation-counter definitions (sha256)"
+        ],
+        "outcome_access_denial": "Mutation outcomes sealed per panel; guards read only pre-registered decision-side features."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_GUARDS_LOAD_BEARING",
+          "statement": "Deleting any load-bearing guard flips the corresponding normal-form violation counter on the positive stratum while inert guards flip nothing."
+        },
+        {
+          "hypothesis_id": "H_GUARDS_INERT",
+          "statement": "Guard-free admission matches guarded admission on violation counts in both strata, so the guard layer is decoration."
+        }
+      ],
+      "resource_class_basis": "inference: finite guard enumeration mirrors the FINITE_REFERENCE_RECEIPT_V1.json census class (ordinary local computation); no backlog predecessor exists to inherit from",
+      "resource_class_frozen": "ordinary_cpu",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "Audits every load-bearing campaign guard in both strata: normal-form violation counters implement D1-D4 liveness (FD-T1, FD-T3), exhaustive guard-registry enumeration returns exactly the nondominated guard portfolios (RN-T9), a unique cheapest guard/ experiment claim is licensed only by a complete nonnegative price vector frozen in advance (RN-T10), and independently executed guard-deletion mutations identify the inclusion-minimal load-bearing guard sets (RN-T12).",
+        "inference_bound": true,
+        "inference_note": "Takeover-manifest question is terse (audit every load-bearing campaign guard for both strata); theorem set inference-bound to the finite reference receipt machinery (profile census violation counters, dovetail enumeration) plus the RN-T12 mutation semantics. No backlog predecessor exists for this job.",
+        "theorem_ids": [
+          "FD-T1",
+          "FD-T3",
+          "RN-T9",
+          "RN-T10",
+          "RN-T12"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "The three-domain incident panel is acquired and sha256-frozen by independent custody before any diagnosis run; candidate and donors receive only the pre-registered decision-side features of each incident.",
+      "atom_bindings": [
+        "RESPONSIBILITY_DIAGNOSIS",
+        "STRUCTURAL_TRANSFER",
+        "DISCOVERY_TRIANGULATION"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "Unseen incidents stay under external custody (GAP-EXTERNAL-PROSPECTIVE-CROSS-DOMAIN); ground-truth layer labels are released only after both candidate and donor decision logs are sealed and hashed.",
+      "depends_on": [
+        "V3-PRECONDITION-LIVENESS-01"
+      ],
+      "donor_first_comparison": {
+        "donor_product": "Strong debugging/research agents (root-cause baselines over the same incident telemetry) per the RESPONSIBILITY_DIAGNOSIS atom superiority target.",
+        "first_refusal_rule": "Typed-diagnosis superiority is claimed only after the strongest registered debugging donor has first refusal on every incident.",
+        "matched_resources": "Same incident stream, same telemetry information, same tool access, same evaluator and cost accounting."
+      },
+      "job_id": "DISC-RESPONSIBILITY-01",
+      "negative_twin": {
+        "control_design": "Incident-layer label shuffle across the unseen panel plus a candidate-identity blinding swap in the adjudication record.",
+        "expected_signature": "Shuffled labels drive diagnosis accuracy to chance; blinded adjudication must not track candidate identity. Above-chance shuffled accuracy or identity-tracking adjudication is a harness defect."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "Layer taxonomy traces to the mechanism levels of Machamer-Darden-Craver; cross-domain localization claims are Gentner-style relational correspondences requiring target-native validity.",
+      "parent_bindings": [
+        "MACHAMER_DARDEN_CRAVER_MECHANISMS_2000",
+        "GENTNER_STRUCTURE_MAPPING_1983"
+      ],
+      "position": 4,
+      "predecessors": [
+        {
+          "job_id": "DISC-V3-RESP-01",
+          "relationship": "POTENTIAL_PREDECESSOR_NOT_ALIAS",
+          "scientific_question_sha256": "522b3ab58ee3c819271723679ad32943d8b068bbcc3c711cf7fbbc9cade0a802"
+        }
+      ],
+      "prospective_execution_contract": {
+        "decision_point": "Ground-truth layer labels released only after candidate+donor decision logs are hashed..",
+        "frozen_code_surfaces": [
+          "src/orion/discovery/failure_epistemology_prospective.py",
+          "src/orion/discovery/proposal_origin.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "three-domain incident panel under external custody (sha256)",
+          "decision-side telemetry contract (sha256)",
+          "donor debugging-agent panel (sha256)",
+          "adjudication rubric (sha256)"
+        ],
+        "outcome_access_denial": "Ground-truth layer labels released only after candidate+donor decision logs are hashed."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_TYPED_LAYER_DIAGNOSIS",
+          "statement": "Typed responsibility localization (information, formulation, method, instrument, resource, validation, custody layers) prospectively identifies the load-bearing layer and the minimum discriminating successor better than donor baselines on unseen incidents across at least three domains."
+        },
+        {
+          "hypothesis_id": "H_UNTYPED_DEBUGGING_SUFFICIENT",
+          "statement": "A single-layer strong debugging/research-agent baseline matches typed diagnosis accuracy and successor selection at equal cost."
+        }
+      ],
+      "resource_class_basis": "backlog_predecessor DISC-V3-RESP-01",
+      "resource_class_frozen": "external_custody_heavy_models",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "Prospective unseen-incident test of responsibility-layer localization: identical outcome signatures across layers must not be used as identification (FD-T6), and the strong terminal requires prospective unseen-incident success, not historical/in-sample success (FD-T9).",
+        "inference_bound": false,
+        "theorem_ids": [
+          "FD-T6",
+          "FD-T9"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "Build/provider/architecture matrix, claim registry and terminal-prediction targets are sha256-frozen before execution; predictions are sealed before any outcome terminal is observed.",
+      "atom_bindings": [
+        "NUMERICAL_OUTCOME_IDENTITY",
+        "EXECUTION_SCIENCE_NONINTERFERENCE",
+        "THEOREM_IDENTIFYING_HARNESS"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "Claim-terminal outcomes are held sealed until the full prediction matrix is committed; multi-environment execution receipts are escrowed with provider chronology.",
+      "depends_on": [
+        "DISC-RESPONSIBILITY-01"
+      ],
+      "donor_first_comparison": {
+        "donor_product": "Manifest-level identity donors: pinned versions, content hashes and generic numerical canaries (the NUMERICAL_OUTCOME_IDENTITY atom superiority target names them explicitly).",
+        "first_refusal_rule": "Terminal-flip prediction claims are refused until the manifest/hash/canary donors have been run on the identical matrix with the same budget.",
+        "matched_resources": "Same monitoring budget, same matrix cells, same claim-terminal oracle release schedule."
+      },
+      "job_id": "DISC-NUMERIC-IDENTITY-01",
+      "negative_twin": {
+        "control_design": "Environment-relabel permutation of the matrix manifest (build/provider labels shuffled against execution records) plus a canary-only prediction control.",
+        "expected_signature": "Relabeled matrix yields no differential identity claims (any claimed identity under permutation is a false-identification defect); canary-only control fixes the donor floor."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "Numerical execution identity has no classical human-parent source; parents are not inputs.",
+      "parent_bindings": [],
+      "position": 5,
+      "predecessors": [
+        {
+          "job_id": "DISC-V3-NUM-01",
+          "relationship": "POTENTIAL_PREDECESSOR_NOT_ALIAS",
+          "scientific_question_sha256": "9a2b8e07208f019458ae2901e7b8c6652c584cdddb167dc87ba61d25881fa9bf"
+        }
+      ],
+      "prospective_execution_contract": {
+        "decision_point": "Predictions sealed before any claim-terminal outcome is observed..",
+        "frozen_code_surfaces": [
+          "src/orion/knowledge/identity.py",
+          "src/orion/discovery/model_chronology.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "build/provider/architecture matrix (sha256)",
+          "claim registry (sha256)",
+          "terminal-prediction targets (sha256)",
+          "numerical tolerance contract (sha256)"
+        ],
+        "outcome_access_denial": "Predictions sealed before any claim-terminal outcome is observed."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_IDENTITY_PREDICTIVE",
+          "statement": "A minimum execution identity (NumericalOutcomeIdentity.v1) predicts or preserves claim-level scientific terminals across the frozen build/provider/architecture matrix more accurately and cheaply than manifest-level donors."
+        },
+        {
+          "hypothesis_id": "H_MANIFEST_SUFFICIENT",
+          "statement": "Version strings, content hashes or generic canaries already predict terminal flips; the identity layer adds nothing."
+        }
+      ],
+      "resource_class_basis": "backlog_predecessor DISC-V3-NUM-01",
+      "resource_class_frozen": "hpc_multi_environment",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "The build/provider/architecture matrix is a frozen comparison contract (FD-T0); claim-level terminal identity must be identifying, not merely outcome-signature coincidence (FD-T6); environment renaming must not change claim identity (RN-T2 isomorphism invariance).",
+        "inference_bound": false,
+        "theorem_ids": [
+          "FD-T0",
+          "FD-T6",
+          "RN-T2"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "Hidden fresh-primitive worlds and the frozen move menu are sha256-registered by independent custody before any search run; world verifiers expose only accept/reject and never answer-bearing internals.",
+      "atom_bindings": [
+        "OPEN_MORPHOLOGY",
+        "METHOD_LANGUAGE_EXPANSION",
+        "REPRESENTATION_CHANGE",
+        "ONTOLOGY_AND_QUESTION_INVENTION"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "World generator seeds and required-primitive tags stay escrowed until all systems' move logs are sealed; custody follows the prospective-cross-domain external custody gap.",
+      "depends_on": [
+        "DISC-NUMERIC-IDENTITY-01"
+      ],
+      "donor_first_comparison": {
+        "donor_product": "Fixed-morphology search, fair-dovetail enumeration (RN-T8 schedule) and AlphaEvolve-style evaluator-guided evolution, all under identical world access and evaluation budget.",
+        "first_refusal_rule": "No outside-menu win is claimed until fixed morphology, fair dovetail and the evolution donor have each had first refusal on the same worlds.",
+        "matched_resources": "Same hidden-world verifier access, same candidate-visible information, same compute budget, same move-evaluation accounting."
+      },
+      "job_id": "V3-OPEN-MORPH-01",
+      "negative_twin": {
+        "control_design": "Primitive-removed worlds (target requires a primitive absent from every menu including the registered open moves) plus vocabulary-only mutant worlds.",
+        "expected_signature": "On primitive-removed worlds no system succeeds (obstruction sanity: any success is leakage); on vocabulary-only mutants the open-morphology advantage must vanish to the fair-dovetail control level."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "Move menus are Kaplan-Simon generators/constraints; escaping an impasse by changing the move language is Knoblich-Ohlsson representational change; registering undecidable-expanding concept moves is Hatchuel-Weil C-K expansion.",
+      "parent_bindings": [
+        "KAPLAN_SIMON_INSIGHT_1990",
+        "KNOBLICH_OHLSSON_REPRESENTATIONAL_CHANGE_1999",
+        "HATCHUEL_WEIL_CK_2003"
+      ],
+      "position": 6,
+      "predecessors": [
+        {
+          "job_id": "DISC-V3-OPEN-01",
+          "relationship": "POTENTIAL_PREDECESSOR_NOT_ALIAS",
+          "scientific_question_sha256": "f67a276c27da9f1b8b141c15cb3a911655b0217461cfd1bc8994a170eb5f7c5f"
+        }
+      ],
+      "prospective_execution_contract": {
+        "decision_point": "World verifiers expose accept/reject only.",
+        "frozen_code_surfaces": [
+          "src/orion/discovery/discovery_morphology_closure.py",
+          "src/orion/discovery/synthesis_modes.py (declared absent at frozen base; implementation obligation under this contract)",
+          "src/orion/discovery/structural_navigation.py (declared absent at frozen base; implementation obligation under this contract)"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "frozen move menu + OPEN_MOVE_CLASS admission rule (sha256)",
+          "hidden fresh-primitive worlds under external custody (sha256)",
+          "fair-dovetail schedule + budget (sha256)",
+          "evolution-donor profile (sha256)"
+        ],
+        "outcome_access_denial": "World verifiers expose accept/reject only; required-primitive tags escrowed until move logs sealed."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_OPEN_MOVE_REQUIRED",
+          "statement": "There exist hidden registered targets whose verifier accepts only outputs using a primitive outside the frozen menu closure, so fixed morphology fails and only registered open-move admission reaches them (empirical RN-T7 witness)."
+        },
+        {
+          "hypothesis_id": "H_DONOR_EVOLUTION_SUFFICIENT",
+          "statement": "AlphaEvolve-style evaluator-guided evolution inside the old language reaches every fresh-primitive world, so no morphology expansion is load-bearing."
+        }
+      ],
+      "resource_class_basis": "backlog_predecessor DISC-V3-OPEN-01",
+      "resource_class_frozen": "heavy_cpu_models",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": {
+        "authority": "TYPED_REFERENCE_ONLY (as ledgered in the component graph)",
+        "component_graph_binding": "DISCOVERY_SYNTHESIS_MODES (V1_COMPONENT_GRAPH_V1.json) is ABSENT_AT_FROZEN_BASE with successor V1-DISC-V3-SPEC-01; this row is that successor specification. It freezes the candidate-generation synthesis-modes contract: the frozen move-menu interface, the registered OPEN_MOVE_CLASS admission rule, the fair-dovetail scheduler contract (RN-T8) and the outside-menu obstruction witness format (RN-T7) that src/orion/discovery/synthesis_modes.py and src/orion/discovery/structural_navigation.py must implement for the execution owner.",
+        "implementation_disposition": "Both declared component paths remain absent at the frozen base; writing them is an execution-owner implementation obligation under this contract, not part of V1-DISC-V3-SPEC-01. No new science is introduced here: the contract is the frozen OPEN_MORPHOLOGY atom target plus theorems RN-T7/RN-T8.",
+        "is_discovery_synthesis_modes_contract": true
+      },
+      "theorem_binding": {
+        "identification_role": "Empirically identifies the no-fixed-morphology obstruction (RN-T7) on hidden fresh-primitive worlds, the fair-dovetail relative-completeness schedule (RN-T8) as the matched-budget control, and the evolution-donor first refusal (FD-T5).",
+        "inference_bound": false,
+        "theorem_ids": [
+          "RN-T7",
+          "RN-T8",
+          "FD-T5"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "Source/target domain pairs and target-native validators are sha256-frozen before transfer runs; validators check target-native consequences only, never source-side surface overlap.",
+      "atom_bindings": [
+        "STRUCTURAL_TRANSFER",
+        "DISCOVERY_TRIANGULATION",
+        "REPRESENTATION_CHANGE"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "Held-out target consequences stay sealed until candidate and donor transfer artifacts are committed; broken-correspondence debt is recorded, never silently repaired.",
+      "depends_on": [
+        "V3-OPEN-MORPH-01"
+      ],
+      "donor_first_comparison": {
+        "donor_product": "Vocabulary/embedding analogy transfer (embedding similarity retrieval plus surface-mapped reuse), the donor named in the STRUCTURAL_TRANSFER atom superiority target.",
+        "first_refusal_rule": "Structural-transfer claims are refused until the embedding-analogy donor has run the identical pairs.",
+        "matched_resources": "Same source/target corpora, same retrieval access, same target validators, same budget."
+      },
+      "job_id": "V3-CROSS-DOMAIN-01",
+      "negative_twin": {
+        "control_design": "Vocabulary-only mutant target domains: layer- and relation-preserving renamings of source domains with no structural novelty.",
+        "expected_signature": "Structural-transfer advantage over the analogy donor collapses to null on renamed mutants (residual gain under pure renaming is a false-identification defect)."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "Relational-structure-preserving transfer is the Gentner parent; target-native mechanistic validity is the Machamer-Darden-Craver parent.",
+      "parent_bindings": [
+        "GENTNER_STRUCTURE_MAPPING_1983",
+        "MACHAMER_DARDEN_CRAVER_MECHANISMS_2000"
+      ],
+      "position": 7,
+      "predecessors": [],
+      "prospective_execution_contract": {
+        "decision_point": "Held-out target consequences sealed until transfer artifacts committed..",
+        "frozen_code_surfaces": [
+          "src/orion/discovery/knowledge_web.py",
+          "src/orion/knowledge/assimilation.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "source/target domain pairs (sha256)",
+          "target-native validators (sha256)",
+          "vocabulary-mutant panel (sha256)",
+          "analogy-donor profile (sha256)"
+        ],
+        "outcome_access_denial": "Held-out target consequences sealed until transfer artifacts committed."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_STRUCTURAL_TRANSFER",
+          "statement": "Pre-outcome typed correspondence with target-native validation beats vocabulary/embedding analogy donors on held-out target consequences and smallest falsifiers."
+        },
+        {
+          "hypothesis_id": "H_VOCABULARY_RELEARNING",
+          "statement": "Apparent transfer gains are vocabulary-surface relearning and vanish under renaming controls."
+        }
+      ],
+      "resource_class_basis": "inference: target-native validation across multiple domain pairs at model scale; no backlog predecessor exists to inherit from",
+      "resource_class_frozen": "heavy_cpu_models",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "Vocabulary-only mutants are the RN-T2 renaming control (surface change must not create transfer); the transfer endpoint must be a changed hidden consequence (RN-T4); the strong terminal is prospective target-native success (FD-T9).",
+        "inference_bound": true,
+        "inference_note": "No backlog predecessor exists for this job; theorem set bound from the STRUCTURAL_TRANSFER atom targets (pre-outcome typed correspondence, negative twins, target-native validation) which cite exactly these theorems.",
+        "theorem_ids": [
+          "RN-T2",
+          "RN-T4",
+          "FD-T9"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "The exact problem, its ambient formal theory and the donor-grammar closure definition are externally escrowed and sha256-frozen before any search run; the candidate sees only the problem statement and the accept/reject verifier.",
+      "atom_bindings": [
+        "FRONTIER_DOMINANCE",
+        "MECHANISM_CONSTRUCTION",
+        "PROOF_AND_EXPERIMENT_ECONOMY"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "External escrow (GAP-EXTERNAL-PROSPECTIVE-CROSS-DOMAIN class): the hidden consequence and its twins stay sealed until candidate and donor logs are sealed and hashed; the escrow custodian is not the execution owner.",
+      "depends_on": [
+        "V3-CROSS-DOMAIN-01"
+      ],
+      "donor_first_comparison": {
+        "donor_product": "Donor grammar: the strongest registered formal-tool automation (proof-assistant tactic/hammer stacks) executed on the identical escrowed problem at matched compute and interface access.",
+        "first_refusal_rule": "FD-T5 via RN-T11: the outside-closure claim is refused until the donor grammar has been exhausted on the same problem.",
+        "matched_resources": "Same escrowed problem statement, same formal ambient theory, same verification oracle, same compute budget and chronology policy."
+      },
+      "job_id": "V3-FRONTIER-MATH-01",
+      "negative_twin": {
+        "control_design": "Consequence-frozen twins (escrowed variants whose target consequence is provably invariant under every registered move class) plus a hostile absorption injection (a donor-grammar proof artifact of a near variant planted in the corpus).",
+        "expected_signature": "No system may claim a win on consequence-frozen twins (any win is leakage); the injected donor proof must be absorbed by the donor family rather than counted as residual. Either detector failing is a harness defect."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "Exact-domain mathematics is the target domain, not a human-discovery parent; no classical parent source is an input.",
+      "parent_bindings": [],
+      "position": 8,
+      "predecessors": [
+        {
+          "job_id": "DISC-V3-FRONTIER-MATH-01",
+          "relationship": "POTENTIAL_PREDECESSOR_NOT_ALIAS",
+          "scientific_question_sha256": "e4467bea110a6efeb2ee55af329acae6c4eb00b07e1db7b11c5563c1ccc6dbc5"
+        }
+      ],
+      "prospective_execution_contract": {
+        "decision_point": "Verifier accept/reject only.",
+        "frozen_code_surfaces": [
+          "src/orion/discovery/frontier_dominance.py",
+          "src/orion/discovery/harness_identifiability.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "escrowed exact problem + ambient theory (sha256)",
+          "donor-grammar closure definition (sha256)",
+          "hidden consequence + twins under external escrow (sha256)"
+        ],
+        "outcome_access_denial": "Verifier accept/reject only; consequence and twins sealed until candidate+donor logs hashed."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_STRICT_OUTSIDE_CLOSURE_WIN",
+          "statement": "The candidate produces a registered consequence of the escrowed problem that is outside the frozen donor-grammar closure and survives the full RN-T11 certificate."
+        },
+        {
+          "hypothesis_id": "H_DONOR_GRAMMAR_SUFFICIENT",
+          "statement": "The strongest donor grammar (formal-tool automation over the same escrowed problem) already reaches every consequence the candidate reaches, so no outside-closure witness exists."
+        }
+      ],
+      "resource_class_basis": "backlog_predecessor DISC-V3-FRONTIER-MATH-01",
+      "resource_class_frozen": "external_escrow_heavy_compute",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "The exact-domain frontier problem is a finite frozen task class evaluated under the FD-T3 normal form; the terminal ORION_STRICT_FRONTIER_MATH_EXPANSION_CANDIDATE is exactly the RN-T11 certificate (old-closure exhaustion, unsupplied origin, nonempty load-bearing residual, hidden consequence, transfer, donor first refusal, independent validity), and RN-T4 forbids counting a residual that changes no hidden consequence.",
+        "inference_bound": false,
+        "theorem_ids": [
+          "FD-T3",
+          "RN-T4",
+          "RN-T11"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "Faithful DPF stack artifacts, the reliability-matched alternative stack, the workload and the resource-vector definition are sha256-frozen before execution; execution records carry device/model chronology receipts per the model-chronology discipline.",
+      "atom_bindings": [
+        "QUANTUM_STACK_RESPONSIBILITY",
+        "NUMERICAL_OUTCOME_IDENTITY",
+        "EXECUTION_SCIENCE_NONINTERFERENCE"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "Held-out execution windows stay sealed until attribution decisions are committed; any post-outcome stack retuning reopens the job under a new identity.",
+      "depends_on": [
+        "V3-FRONTIER-MATH-01"
+      ],
+      "donor_context": {
+        "v2_predecessor_result": "DISC-Q-TRANSFER-01 (discovery-v2) merged NEGATIVE via PR #1327 / issue #1306: the v2 quantum-transfer advantage did not survive charging. Retained as first-class negative context; this job may not assume any uncharged advantage."
+      },
+      "donor_first_comparison": {
+        "donor_product": "Reliability-matched alternative stack (classical or alternative quantum) executed on the identical workload and decision stream.",
+        "first_refusal_rule": "No stack-indexed responsibility claim is reported before the reliability-matched alternative stack has run the identical stream.",
+        "matched_resources": "Matched reliability envelope, matched information and instrumentation access, matched vector budget accounting; resource vectors compared componentwise per FD-T4 with no implicit scalarization."
+      },
+      "job_id": "V3-QUANTUM-REMINT-01",
+      "negative_twin": {
+        "control_design": "Chronology shuffle of stack-execution records (device-use windows permuted against decision logs) plus reliability-label blinding swap between the two stacks.",
+        "expected_signature": "Shuffled chronology drives responsibility attribution to chance or to a recorded nonidentifiability verdict (FD-T6-adjacent guard); blinded adjudication must not track stack identity. Either detector failing is a harness defect."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "Quantum-stack responsibility has no classical human-discovery parent; parents are not inputs.",
+      "parent_bindings": [],
+      "position": 9,
+      "predecessors": [
+        {
+          "job_id": "DISC-V3-Q-01",
+          "relationship": "POTENTIAL_PREDECESSOR_NOT_ALIAS",
+          "scientific_question_sha256": "42bec432b72eadee11743404e2b5dca16a017890c403886e1629c9b881489a0e"
+        }
+      ],
+      "prospective_execution_contract": {
+        "decision_point": "Attribution decisions committed before held-out windows unseal.",
+        "frozen_code_surfaces": [
+          "src/orion/knowledge/model_chronology.py",
+          "src/orion/knowledge/measurement.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "faithful DPF stack artifacts + chronology receipts (sha256)",
+          "reliability-matched alternative stack (sha256)",
+          "workload + resource-vector definition (sha256)",
+          "held-out execution windows (sha256, sealed)"
+        ],
+        "outcome_access_denial": "Attribution decisions committed before held-out windows unseal; no post-outcome stack retuning."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_STACK_INDEXED",
+          "statement": "Responsibility attribution indexed by the faithful DPF stack (which stack layer owns which discovery decision) is prospectively supported on held-out execution records against a reliability-matched alternative stack."
+        },
+        {
+          "hypothesis_id": "H_STACK_INVARIANT",
+          "statement": "A reliability-matched alternative stack reproduces the same responsibility structure, so stack identity is not load-bearing."
+        }
+      ],
+      "resource_class_basis": "backlog_predecessor DISC-V3-Q-01",
+      "resource_class_frozen": "quantum_hpc",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "Stack-indexed resource responsibility is decided only under one fixed matched contract (FD-T1); fault-tolerated quantum and classical stacks produce Pareto-incomparable resource vectors that cannot be ranked without an externally frozen price vector (FD-T4); only prospective held-out runs license the strong terminal (FD-T9).",
+        "inference_bound": false,
+        "theorem_ids": [
+          "FD-T1",
+          "FD-T4",
+          "FD-T9"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "The historical source corpus, per-parent source receipts and the counterfactual twin schedule are sha256-frozen before triangulation; sources are adjudicated independently of the triangulation engine.",
+      "atom_bindings": [
+        "DISCOVERY_TRIANGULATION",
+        "NEGATIVE_HISTORY_AND_REOPENING",
+        "KNOWLEDGE_ACQUISITION"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "Source adjudication receipts stay sealed until the triangulation output is committed; recall cells are recorded as unfilled, never backfilled post hoc.",
+      "depends_on": [
+        "V3-QUANTUM-REMINT-01"
+      ],
+      "donor_first_comparison": {
+        "donor_product": "Literature-scan donor: a strong retrieval/reading agent producing the same parent-to-atom matrix without source adjudication, at matched reading budget.",
+        "first_refusal_rule": "The sourced-parent matrix is compared only after the unsourced literature-scan donor has produced its matrix on the identical corpus.",
+        "matched_resources": "Same corpus access window, same retrieval tools, same adjudication budget; only source adjudication and twin protocol differ."
+      },
+      "job_id": "V3-HISTORICAL-TRIANGULATION-01",
+      "negative_twin": {
+        "control_design": "Counterfactual twins: the triangulation is rerun with each parent family removed in turn; plus a source-label permutation over the corpus.",
+        "expected_signature": "Parent-family removal degrades exactly the cells that family covers (predictable, attributable degradation); label permutation yields an isomorphic triangulated matrix (any differential claim under permutation is a false-identification defect)."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "The historical corpus is exactly the seven-family parent source map (HUMAN_DISCOVERY_PARENT_SOURCE_MAP_V1.json); all seven are inputs to this job.",
+      "parent_bindings": [
+        "KLAHR_DUNBAR_DUAL_SPACE_1988",
+        "SCHUNN_KLAHR_FOUR_SPACE_1995",
+        "GENTNER_STRUCTURE_MAPPING_1983",
+        "MACHAMER_DARDEN_CRAVER_MECHANISMS_2000",
+        "KAPLAN_SIMON_INSIGHT_1990",
+        "KNOBLICH_OHLSSON_REPRESENTATIONAL_CHANGE_1999",
+        "HATCHUEL_WEIL_CK_2003"
+      ],
+      "position": 10,
+      "predecessors": [
+        {
+          "job_id": "DISC-V3-SOURCE-01",
+          "relationship": "POTENTIAL_PREDECESSOR_NOT_ALIAS",
+          "scientific_question_sha256": "e08f7642ff5904af10885acdb472dd5ee189a1a46039f3e0c12c270ad7913cec"
+        }
+      ],
+      "prospective_execution_contract": {
+        "decision_point": "Adjudication receipts sealed until triangulation output committed.",
+        "frozen_code_surfaces": [
+          "src/orion/knowledge/ledger.py",
+          "src/orion/knowledge/ingest.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "historical source corpus + per-parent receipts (sha256)",
+          "counterfactual twin schedule (sha256)",
+          "literature-scan donor profile (sha256)"
+        ],
+        "outcome_access_denial": "Adjudication receipts sealed until triangulation output committed; recall cells recorded unfilled."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_PARENTS_COMPLETE",
+          "statement": "Independently sourced historical parents plus counterfactual twins triangulate the atom lattice with zero recall-filled cells (the backlog positive terminal HUMAN_PARENT_SOURCE_MATRIX_EXECUTED_WITH_ZERO_RECALL_FILLED_CELLS)."
+        },
+        {
+          "hypothesis_id": "H_PARENTS_INCOMPLETE",
+          "statement": "The seven-parent corpus is incomplete: removing at least one parent family leaves atom cells that only unfilled recall could cover."
+        }
+      ],
+      "resource_class_basis": "backlog_predecessor DISC-V3-SOURCE-01",
+      "resource_class_frozen": "ordinary_cpu",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "Historical (in-sample) triangulation success alone establishes nothing prospective (FD-T9); source-attribution permutation must transport the triangulated structure isomorphically (RN-T2), so parent-label shuffles are the invariance control.",
+        "inference_bound": false,
+        "theorem_ids": [
+          "FD-T9",
+          "RN-T2"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "The blinded task panel, matched information/cost contract and adjudication rubric are sha256-frozen by external custody before any system runs.",
+      "atom_bindings": [
+        "SELF_APPLICATION_AND_ADOPTION",
+        "FRONTIER_DOMINANCE",
+        "THEOREM_IDENTIFYING_HARNESS"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "External adjudication (GAP-EXTERNAL-PROSPECTIVE-CROSS-DOMAIN class): adjudicators stay blind to system identity until all decision logs are sealed; unblinding before seal voids the run.",
+      "depends_on": [
+        "V3-HISTORICAL-TRIANGULATION-01"
+      ],
+      "donor_first_comparison": {
+        "donor_product": "Strong general research agents (frontier agent baselines) on the identical blinded panel.",
+        "first_refusal_rule": "No decision-value claim is reported before every registered strong-agent donor has run the identical panel under the identical contract.",
+        "matched_resources": "Identical task panel, identical information and tool access, identical cost accounting per FD-T0/FD-T4; external adjudication shared."
+      },
+      "job_id": "V3-RSE-DOMINANCE-01",
+      "negative_twin": {
+        "control_design": "Blinded label swap (adjudicators receive artifacts with system identity permuted) plus task-panel stratification shuffle.",
+        "expected_signature": "Adjudication scores must not track true system identity better than the permutation allows; shuffled stratification must not create or destroy strict wins. Either effect appearing is a harness defect."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "Self-application study of the research system; no classical parent source is an input.",
+      "parent_bindings": [],
+      "position": 11,
+      "predecessors": [
+        {
+          "job_id": "DISC-V3-RSE-01",
+          "relationship": "POTENTIAL_PREDECESSOR_NOT_ALIAS",
+          "scientific_question_sha256": "b02fe2fa7501b8ab29f8378101c1b307f8ad0204754bfe0fec7a40e3fabbe187"
+        }
+      ],
+      "prospective_execution_contract": {
+        "decision_point": "Adjudicators blind to system identity until all decision logs sealed..",
+        "frozen_code_surfaces": [
+          "src/orion/discovery/frontier_dominance.py",
+          "src/orion/discovery/harness_identifiability.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "blinded task panel under external custody (sha256)",
+          "matched information/cost contract (sha256)",
+          "adjudication rubric (sha256)",
+          "strong-agent donor profiles (sha256)"
+        ],
+        "outcome_access_denial": "Adjudicators blind to system identity until all decision logs sealed."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_ORION_DECISION_VALUE",
+          "statement": "On a blinded externally adjudicated panel at matched information and cost, ORION-driven research decisions weakly dominate strong-agent baselines with at least one strict win (backlog terminal ORION_V3_RESEARCH_DECISION_VALUE_SUPPORTED)."
+        },
+        {
+          "hypothesis_id": "H_STRONG_AGENT_PARITY",
+          "statement": "Strong general research agents match ORION decision quality at equal cost, so no self-application residual exists."
+        }
+      ],
+      "resource_class_basis": "backlog_predecessor DISC-V3-RSE-01",
+      "resource_class_frozen": "external_panel_models",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "The matched research-system study is a frozen comparison contract (FD-T0) whose dominance relation (FD-T1) is evaluated on a finite blinded task panel (FD-T3) with componentwise cost vectors (FD-T4); systems with identical outcome signatures on frozen support cannot be separated (FD-T6), so blinding is constitutive, not decoration.",
+        "inference_bound": false,
+        "theorem_ids": [
+          "FD-T0",
+          "FD-T1",
+          "FD-T3",
+          "FD-T4",
+          "FD-T6"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "Manuscript snapshot, ledger snapshot and the validation-bundle registry are sha256-frozen before sync; no bundle may be edited after freeze.",
+      "atom_bindings": [
+        "SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+        "NEGATIVE_HISTORY_AND_REOPENING",
+        "THEOREM_IDENTIFYING_HARNESS",
+        "PROPOSAL_ORIGIN_AND_CHRONOLOGY"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "Reconciliation decisions are committed before any manuscript edit lands; independent claim audit receipts are escrowed; rejected changes are retained, never silently dropped.",
+      "depends_on": [
+        "V3-RSE-DOMINANCE-01"
+      ],
+      "donor_first_comparison": {
+        "donor_product": "Naive-diff donor: plain textual/structural diff between manuscript claims and ledger atoms with no validation gating.",
+        "first_refusal_rule": "The gated sync is credited only against the naive-diff donor run on the identical pair, with rejection precision as the comparison axis.",
+        "matched_resources": "Same manuscript bytes, same ledger snapshot, same tooling budget; only the validation gate differs."
+      },
+      "job_id": "V3-ATOMIC-PAPER-SYNC-01",
+      "negative_twin": {
+        "control_design": "Seeded unbacked atom perturbation (inject claim edits with no validated bundle behind them) plus predecessor-label shuffle (reassign bundles to wrong jobs).",
+        "expected_signature": "Every seeded perturbation is rejected with a recorded reason; label-shuffled bundles produce zero accepted changes (accepting under wrong provenance is a harness defect)."
+      },
+      "noncompute_resolution": {
+        "blocker_resolved": "RESULT_BUNDLE_CONTRACT_MISMATCH_FOR_NONCOMPUTE_JOB",
+        "inference_bound": true,
+        "resolution": "This job emits no compute reports; under V3_EXECUTOR_BUNDLE_V1 its outputs are the claim-level reconciliation records: CLAIM_DELTA.json plus a paper-sync receipt enumerating every proposed atomic claim change, each gated on a validated predecessor result bundle (RAW_MANIFEST + RESULT_BINDING_PACKET of the producing job). FRONTIER_DOMINANCE_REPORT/RESIDUAL_FAMILY_REPORT are consumed read-only from validated predecessor bundles, never synthesized here. Independent check is an independent claim audit, satisfying required_one_of."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "Claim-admission bookkeeping; no classical parent source is an input.",
+      "parent_bindings": [],
+      "position": 12,
+      "predecessors": [],
+      "prospective_execution_contract": {
+        "decision_point": "Reconciliation decisions committed before any manuscript edit lands.",
+        "frozen_code_surfaces": [
+          "src/orion/knowledge/ledger.py",
+          "src/orion/discovery/proposal_origin.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "manuscript snapshot (sha256)",
+          "ledger snapshot (sha256)",
+          "validated-bundle registry: per producing job RAW_MANIFEST + RESULT_BINDING_PACKET (sha256)"
+        ],
+        "outcome_access_denial": "Reconciliation decisions committed before any manuscript edit lands; rejected changes retained."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_EARNED_SYNC_ONLY",
+          "statement": "Only claim changes traceable to validated predecessor result bundles enter the manuscript; every unbacked change is rejected and logged."
+        },
+        {
+          "hypothesis_id": "H_NAIVE_DIFF_SUFFICIENT",
+          "statement": "A naive manuscript-vs-ledger textual diff produces an equally correct synchronization without validation gating."
+        }
+      ],
+      "resource_class_basis": "inference: reconciliation over committed bundles is local noncompute work; no backlog predecessor exists to inherit from",
+      "resource_class_frozen": "ordinary_cpu",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "A synchronized manuscript is a conservative successor: preserving every previously earned outside-closure witness, it only strictly expands the claimed family (FD-T2); no internal computation grants paper authority (FD-T7), so the sync itself carries authority delta NONE.",
+        "inference_bound": false,
+        "theorem_ids": [
+          "FD-T2",
+          "FD-T7"
+        ]
+      }
+    },
+    {
+      "acquisition_gate": "The final residual family, its producing bundles and the refreshed search snapshot are sha256-frozen before adjudication; the reviewer receives the frozen snapshot, not live editable state.",
+      "atom_bindings": [
+        "SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+        "FRONTIER_DOMINANCE",
+        "NEGATIVE_HISTORY_AND_REOPENING"
+      ],
+      "authority_delta": "NONE",
+      "custody_gate": "External authority custody (GAP-EXTERNAL-NOVELTY): the independent reviewer is assigned before outcomes are shared; adjudication receipts are escrowed with reviewer identity and search-window chronology.",
+      "depends_on": [
+        "V3-ATOMIC-PAPER-SYNC-01"
+      ],
+      "donor_first_comparison": {
+        "donor_product": "Refreshed external literature/search baseline: the nearest-work absorption family refreshed at review time, executed against the final residual family.",
+        "first_refusal_rule": "FD-T5: the residual is submitted to external review only after the refreshed absorption family has had first refusal on it.",
+        "matched_resources": "Same residual family bytes, same search-tool access window, same adjudication rubric as the candidate side."
+      },
+      "job_id": "V3-NOVELTY-REVIEW-01",
+      "negative_twin": {
+        "control_design": "Hostile absorption injection (an adversarially constructed nearest-work claim engineered to look like it absorbs the residual) plus reviewer-identity blinding on the origin of the residual.",
+        "expected_signature": "The injected claim is correctly classified (absorbed-by-injection or not) with reasons; blinding must prevent origin-tracking bias. Misclassification of the injection or origin-tracking scores is a harness defect."
+      },
+      "paper_authority_delta": "NONE",
+      "parent_binding_note": "External novelty adjudication has no classical parent source; the reviewer is external authority.",
+      "parent_bindings": [],
+      "position": 13,
+      "predecessors": [
+        {
+          "job_id": "DISC-V3-NOV-01",
+          "relationship": "POTENTIAL_PREDECESSOR_NOT_ALIAS",
+          "scientific_question_sha256": "1565090e077cab9289ec95d771e8a15baf33a03a9923acebc712e6b1fabb9827"
+        }
+      ],
+      "prospective_execution_contract": {
+        "decision_point": "Reviewer assigned before outcomes shared.",
+        "frozen_code_surfaces": [
+          "src/orion/knowledge/assimilation.py",
+          "src/orion/knowledge/ignorance.py"
+        ],
+        "frozen_common_surfaces": [
+          "git tree ef51b7b9263a72c725dc9d2045627b934b772a92 (every cited module content-hashed at freeze)"
+        ],
+        "frozen_inputs": [
+          "final residual family + producing bundles (sha256)",
+          "refreshed nearest-work search snapshot (sha256)",
+          "reviewer assignment record (sha256)"
+        ],
+        "outcome_access_denial": "Reviewer assigned before outcomes shared; frozen snapshot only, no live editable state."
+      },
+      "registered_alternatives": [
+        {
+          "hypothesis_id": "H_RESIDUAL_SURVIVES",
+          "statement": "An independent reviewer with a refreshed nearest-work search confirms the residual family survives absorption (backlog terminal EXTERNAL_RESIDUAL_NOVELTY_SUPPORTED)."
+        },
+        {
+          "hypothesis_id": "H_DONOR_ABSORBS",
+          "statement": "The refreshed nearest-work search absorbs the residual family, so no external novelty remains."
+        }
+      ],
+      "resource_class_basis": "backlog_predecessor DISC-V3-NOV-01",
+      "resource_class_frozen": "external_authority",
+      "result_bundle_contract_id": "V3_EXECUTOR_BUNDLE_V1",
+      "synthesis_modes_contract": null,
+      "theorem_binding": {
+        "identification_role": "The reviewer adjudicates the final residual family after donor-first refusal has been executed (FD-T5), with no internal computation able to substitute for external novelty authority (FD-T7); the review scope is exactly the inclusion-minimal residual family, where adding donors cannot increase minimal residuals (RN-T1) and multiple minimal families require an explicit target criterion (RN-T5).",
+        "inference_bound": false,
+        "theorem_ids": [
+          "FD-T5",
+          "FD-T7",
+          "RN-T1",
+          "RN-T5"
+        ]
+      }
+    }
+  ],
+  "schema": "ORION.V3.JobSpecs.v1",
+  "source_identity": {
+    "issue_1329_body_sha256": "5d875643d74dfdc6c28551b2ac06305e71690142baa058c98dc6a9b29415f8b2",
+    "predecessor_backlog_sha256": "756ccc89299cc912d75ddaca7902237265262a4323a523dd483e0c0b33da6884",
+    "v3_git_sha": "5f4a83dceffbc783e0df946b22378524b123ec7e"
+  },
+  "synthesis_modes_binding": {
+    "authority": "TYPED_REFERENCE_ONLY",
+    "component": "DISCOVERY_SYNTHESIS_MODES",
+    "component_graph_status": "ABSENT_AT_FROZEN_BASE_LEDGERED_EXECUTION_GAP_SUCCESSOR_V1-DISC-V3-SPEC-01",
+    "implementation_disposition": "src/orion/discovery/synthesis_modes.py and src/orion/discovery/structural_navigation.py remain absent at the frozen base; writing them is an execution-owner obligation under this frozen contract, not part of V1-DISC-V3-SPEC-01 and not new science.",
+    "outcome": "V3-OPEN-MORPH-01's specification row IS the Discovery synthesis-modes contract at specification level: it freezes the move-menu interface, OPEN_MOVE_CLASS admission rule, fair-dovetail scheduler contract (RN-T8) and outside-menu obstruction witness format (RN-T7) that the two declared component paths must implement."
+  }
+}

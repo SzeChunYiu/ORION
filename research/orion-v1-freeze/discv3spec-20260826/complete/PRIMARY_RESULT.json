@@ -1,0 +1,240 @@
+{
+  "coverage": {
+    "atoms_bound": 25,
+    "atoms_total": 25,
+    "parents_bound": 7,
+    "parents_total": 7,
+    "registered_alternatives": 26,
+    "theorems_bound": 22,
+    "theorems_total": 22
+  },
+  "denominator_reconciliation": {
+    "backlog_jobs_bound_as_predecessors": 11,
+    "evidence": [
+      "research/orion-discovery-v3/EXECUTION_TAKEOVER_MANIFEST_V1.json source_identity: issue_1329_body_sha256=5d875643d74dfdc6c28551b2ac06305e71690142baa058c98dc6a9b29415f8b2, predecessor_backlog_sha256=756ccc89299cc912d75ddaca7902237265262a4323a523dd483e0c0b33da6884, canonical_order length 13",
+      "EXECUTION_BACKLOG_V1.json at creation commit 5f4a83dceffbc783e0df946b22378524b123ec7e holds 11 jobs and never held 13 (git log over the path shows no 13-job revision)",
+      "development/orion-v3-execution-takeover-2026-08-25/DEVELOPMENT_PACKET.md: '#1329 supersedes the prose order with 13 jobs but does not update the branch backlog'",
+      "the 11+2 hypothesis is false: research/orion-discovery-v2/exec/ contains 7 executed DISC-* job dirs, not 2; executed v2 jobs are outside the V3 denominator",
+      "DISC-Q-TRANSFER-01 is a discovery-v2 job merged NEGATIVE via PR #1327 (issue #1306, 'advantage does not survive charging', merged 2026-08-25T12:42:10Z); it informs V3-QUANTUM-REMINT-01 donor context and is excluded from the V3 denominator",
+      "positions 3 (V3-PRECONDITION-LIVENESS-01), 7 (V3-CROSS-DOMAIN-01), 12 (V3-ATOMIC-PAPER-SYNC-01) carry no backlog predecessor; the other 10 rows bind the 11 backlog ids (V3-DONOR-ENVELOPE-01 binds two)"
+    ],
+    "jobs_specified": 13,
+    "verdict": "denominator = 13 (issue #1329 canonical order), with all 11 backlog jobs bound as POTENTIAL_PREDECESSOR_NOT_ALIAS inside the 13 rows; specifying 13 covers both denominators"
+  },
+  "inference_bound_fields": [
+    "V3-ATOMIC-PAPER-SYNC-01.noncompute_resolution",
+    "V3-ATOMIC-PAPER-SYNC-01.resource_class_basis",
+    "V3-CROSS-DOMAIN-01.resource_class_basis",
+    "V3-CROSS-DOMAIN-01.theorem_binding",
+    "V3-PRECONDITION-LIVENESS-01.resource_class_basis",
+    "V3-PRECONDITION-LIVENESS-01.theorem_binding"
+  ],
+  "per_job_binding_coverage": {
+    "DISC-NUMERIC-IDENTITY-01": {
+      "atoms": [
+        "NUMERICAL_OUTCOME_IDENTITY",
+        "EXECUTION_SCIENCE_NONINTERFERENCE",
+        "THEOREM_IDENTIFYING_HARNESS"
+      ],
+      "parents": [],
+      "theorems": [
+        "FD-T0",
+        "FD-T6",
+        "RN-T2"
+      ]
+    },
+    "DISC-RESPONSIBILITY-01": {
+      "atoms": [
+        "RESPONSIBILITY_DIAGNOSIS",
+        "STRUCTURAL_TRANSFER",
+        "DISCOVERY_TRIANGULATION"
+      ],
+      "parents": [
+        "MACHAMER_DARDEN_CRAVER_MECHANISMS_2000",
+        "GENTNER_STRUCTURE_MAPPING_1983"
+      ],
+      "theorems": [
+        "FD-T6",
+        "FD-T9"
+      ]
+    },
+    "V3-ATOMIC-PAPER-SYNC-01": {
+      "atoms": [
+        "SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+        "NEGATIVE_HISTORY_AND_REOPENING",
+        "THEOREM_IDENTIFYING_HARNESS",
+        "PROPOSAL_ORIGIN_AND_CHRONOLOGY"
+      ],
+      "parents": [],
+      "theorems": [
+        "FD-T2",
+        "FD-T7"
+      ]
+    },
+    "V3-CROSS-DOMAIN-01": {
+      "atoms": [
+        "STRUCTURAL_TRANSFER",
+        "DISCOVERY_TRIANGULATION",
+        "REPRESENTATION_CHANGE"
+      ],
+      "parents": [
+        "GENTNER_STRUCTURE_MAPPING_1983",
+        "MACHAMER_DARDEN_CRAVER_MECHANISMS_2000"
+      ],
+      "theorems": [
+        "RN-T2",
+        "RN-T4",
+        "FD-T9"
+      ]
+    },
+    "V3-DONOR-ENVELOPE-01": {
+      "atoms": [
+        "DONOR_COMPOSITION",
+        "FRONTIER_DOMINANCE",
+        "KNOWLEDGE_ACQUISITION",
+        "HYPOTHESIS_EVOLUTION",
+        "METHOD_LANGUAGE_EXPANSION",
+        "AUTONOMOUS_DOMAIN_ANALYSIS"
+      ],
+      "parents": [],
+      "theorems": [
+        "FD-T0",
+        "FD-T1",
+        "FD-T3",
+        "FD-T4",
+        "FD-T5"
+      ]
+    },
+    "V3-FRONTIER-MATH-01": {
+      "atoms": [
+        "FRONTIER_DOMINANCE",
+        "MECHANISM_CONSTRUCTION",
+        "PROOF_AND_EXPERIMENT_ECONOMY"
+      ],
+      "parents": [],
+      "theorems": [
+        "FD-T3",
+        "RN-T4",
+        "RN-T11"
+      ]
+    },
+    "V3-HISTORICAL-TRIANGULATION-01": {
+      "atoms": [
+        "DISCOVERY_TRIANGULATION",
+        "NEGATIVE_HISTORY_AND_REOPENING",
+        "KNOWLEDGE_ACQUISITION"
+      ],
+      "parents": [
+        "KLAHR_DUNBAR_DUAL_SPACE_1988",
+        "SCHUNN_KLAHR_FOUR_SPACE_1995",
+        "GENTNER_STRUCTURE_MAPPING_1983",
+        "MACHAMER_DARDEN_CRAVER_MECHANISMS_2000",
+        "KAPLAN_SIMON_INSIGHT_1990",
+        "KNOBLICH_OHLSSON_REPRESENTATIONAL_CHANGE_1999",
+        "HATCHUEL_WEIL_CK_2003"
+      ],
+      "theorems": [
+        "FD-T9",
+        "RN-T2"
+      ]
+    },
+    "V3-NOVELTY-REVIEW-01": {
+      "atoms": [
+        "SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+        "FRONTIER_DOMINANCE",
+        "NEGATIVE_HISTORY_AND_REOPENING"
+      ],
+      "parents": [],
+      "theorems": [
+        "FD-T5",
+        "FD-T7",
+        "RN-T1",
+        "RN-T5"
+      ]
+    },
+    "V3-OPEN-MORPH-01": {
+      "atoms": [
+        "OPEN_MORPHOLOGY",
+        "METHOD_LANGUAGE_EXPANSION",
+        "REPRESENTATION_CHANGE",
+        "ONTOLOGY_AND_QUESTION_INVENTION"
+      ],
+      "parents": [
+        "KAPLAN_SIMON_INSIGHT_1990",
+        "KNOBLICH_OHLSSON_REPRESENTATIONAL_CHANGE_1999",
+        "HATCHUEL_WEIL_CK_2003"
+      ],
+      "theorems": [
+        "RN-T7",
+        "RN-T8",
+        "FD-T5"
+      ]
+    },
+    "V3-PRECONDITION-LIVENESS-01": {
+      "atoms": [
+        "THEOREM_IDENTIFYING_HARNESS",
+        "SCIENTIFIC_ADMISSION_AND_AUTHORITY",
+        "EXECUTION_SCIENCE_NONINTERFERENCE",
+        "EXPERIMENT_AND_INSTRUMENT_DESIGN"
+      ],
+      "parents": [],
+      "theorems": [
+        "FD-T1",
+        "FD-T3",
+        "RN-T9",
+        "RN-T10",
+        "RN-T12"
+      ]
+    },
+    "V3-QUANTUM-REMINT-01": {
+      "atoms": [
+        "QUANTUM_STACK_RESPONSIBILITY",
+        "NUMERICAL_OUTCOME_IDENTITY",
+        "EXECUTION_SCIENCE_NONINTERFERENCE"
+      ],
+      "parents": [],
+      "theorems": [
+        "FD-T1",
+        "FD-T4",
+        "FD-T9"
+      ]
+    },
+    "V3-RESIDUAL-ATLAS-01": {
+      "atoms": [
+        "TYPED_KNOWLEDGE_WEB",
+        "DONOR_COMPOSITION",
+        "PROBLEM_DECOMPOSITION"
+      ],
+      "parents": [
+        "GENTNER_STRUCTURE_MAPPING_1983",
+        "MACHAMER_DARDEN_CRAVER_MECHANISMS_2000"
+      ],
+      "theorems": [
+        "RN-T1",
+        "RN-T2",
+        "RN-T3",
+        "RN-T5",
+        "RN-T6",
+        "FD-T8"
+      ]
+    },
+    "V3-RSE-DOMINANCE-01": {
+      "atoms": [
+        "SELF_APPLICATION_AND_ADOPTION",
+        "FRONTIER_DOMINANCE",
+        "THEOREM_IDENTIFYING_HARNESS"
+      ],
+      "parents": [],
+      "theorems": [
+        "FD-T0",
+        "FD-T1",
+        "FD-T3",
+        "FD-T4",
+        "FD-T6"
+      ]
+    }
+  },
+  "schema": "ORION.V1.DiscV3SpecPrimaryResult.v1",
+  "synthesis_modes_outcome": "V3-OPEN-MORPH-01's specification row IS the Discovery synthesis-modes contract at specification level: it freezes the move-menu interface, OPEN_MOVE_CLASS admission rule, fair-dovetail scheduler contract (RN-T8) and outside-menu obstruction witness format (RN-T7) that the two declared component paths must implement.",
+  "terminal": "DISCOVERY_V3_ALL_JOB_SPECIFICATIONS_FROZEN"
+}
