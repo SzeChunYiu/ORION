@@ -1,0 +1,30 @@
+{
+  "architecture": {
+    "existing_nq_algorithm_read_or_imported": false,
+    "factorization_representation": "SAT prefix-sum automata with occurrence-to-bin variables",
+    "normalization_or_pruning": "NONE_IN_PREDICATE_ENGINE",
+    "primitive": "componentwise base-five C_5^3 addition",
+    "reference_control": "slow explicit occurrence partition enumerator"
+  },
+  "blinded_independence": "NOT_CLAIMED",
+  "certificate_policy": {
+    "sat": "explicit disjoint occurrence-index bins, independently resummed",
+    "unsat": "CNF-bound DRUP trace; remains CANNOT_CHECK until externally checked"
+  },
+  "d4_policy": {
+    "default": "OPEN",
+    "full_closure_requirement": "every remaining mathematical stratum plus complete audited reduction",
+    "partial_stratum": "OPEN",
+    "resource_exhaustion": "CANNOT_CHECK_RESOURCE_BOUND"
+  },
+  "input_coverage_policy": "hash-bound declaration plus separate proof audit; declaration alone is not completeness authority",
+  "maximum_sequence_length": 31,
+  "required_bins": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "schema": "ORION.NQ.EngineB.SourceProtocol.v1",
+  "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
+}
