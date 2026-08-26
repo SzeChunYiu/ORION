@@ -1,0 +1,164 @@
+{
+  "$id": "urn:orion:nq-engine-a:canonical-augmentation-controls:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "algorithm_terminal": {
+      "const": "CANONICAL_AUGMENTATION_SMALL_DOMAIN_EQUIVALENCE_PASS"
+    },
+    "authority": {
+      "const": "engineering_small_domain_equivalence_only"
+    },
+    "exposure_markers": {
+      "const": [
+        "EXPECTED_OUTCOME_EXPOSURE",
+        "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+      ]
+    },
+    "full_census_executed": {
+      "const": false
+    },
+    "full_execution_terminal": {
+      "const": "NOT_EXECUTED__CANNOT_CHECK"
+    },
+    "hostile_controls": {
+      "additionalProperties": false,
+      "properties": {
+        "full_gl_stabilizer_orbit_mismatches": {
+          "const": 0
+        },
+        "full_gl_stabilizer_reference_groups": {
+          "const": [
+            "C_2^2",
+            "C_3^2"
+          ]
+        },
+        "noncanonical_parent_accepted": {
+          "const": 0
+        },
+        "resource_partial_level_promoted": {
+          "const": 0
+        }
+      },
+      "required": [
+        "full_gl_stabilizer_reference_groups",
+        "full_gl_stabilizer_orbit_mismatches",
+        "noncanonical_parent_accepted",
+        "resource_partial_level_promoted"
+      ],
+      "type": "object"
+    },
+    "independence_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "panels": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "augmentation_candidate_edges": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "duplicates_in_output": {
+            "const": 0
+          },
+          "group": {
+            "additionalProperties": false,
+            "properties": {
+              "d": {
+                "minimum": 1,
+                "type": "integer"
+              },
+              "p": {
+                "minimum": 2,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "p",
+              "d"
+            ],
+            "type": "object"
+          },
+          "length": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "mismatches": {
+            "const": 0
+          },
+          "panel_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "profile": {
+            "type": "object"
+          },
+          "pruned_k_disjoint": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "pruned_short_zero_sum": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "raw_candidates": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "raw_canonical_before_filter": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "receipt_source": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "record_sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "records": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "panel_id",
+          "group",
+          "length",
+          "profile",
+          "raw_candidates",
+          "augmentation_candidate_edges",
+          "records",
+          "record_sha256",
+          "mismatches",
+          "duplicates_in_output"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "published_full_counts_used_as_acceptance": {
+      "const": false
+    },
+    "schema_version": {
+      "const": "nq-engine-a-canonical-augmentation-controls-v1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "independence_terminal",
+    "exposure_markers",
+    "authority",
+    "full_census_executed",
+    "published_full_counts_used_as_acceptance",
+    "panels",
+    "algorithm_terminal",
+    "full_execution_terminal",
+    "hostile_controls"
+  ],
+  "title": "Canonical augmentation raw-equivalence controls",
+  "type": "object"
+}

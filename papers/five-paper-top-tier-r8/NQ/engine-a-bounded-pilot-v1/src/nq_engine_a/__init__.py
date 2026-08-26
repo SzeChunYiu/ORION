@@ -1,0 +1,8 @@
+"""NQ Engine A engineering staging package.
+
+This package is not independent replay evidence.
+"""
+
+EXPOSURE_MARKER = "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+EXPECTED_OUTCOME_MARKER = "EXPECTED_OUTCOME_EXPOSURE"
+INDEPENDENCE_TERMINAL = "CANNOT_CHECK"

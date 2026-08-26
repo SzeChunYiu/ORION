@@ -1,0 +1,59 @@
+{
+  "$id": "urn:orion:nq-engine-a:coverage:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "canonical_accepted": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "full_domain_covered": {
+      "type": "boolean"
+    },
+    "raw_candidates_seen": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "raw_start": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "raw_stop_exclusive": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "resume_rank": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": "nq-engine-a-coverage-v1"
+    },
+    "status": {
+      "enum": [
+        "COMPLETE",
+        "PARTIAL_SLICE",
+        "CANNOT_CHECK_RESOURCE_BOUND"
+      ]
+    },
+    "total_raw_candidates": {
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "total_raw_candidates",
+    "raw_start",
+    "raw_stop_exclusive",
+    "raw_candidates_seen",
+    "canonical_accepted",
+    "full_domain_covered"
+  ],
+  "title": "NQ Engine A orderly coverage",
+  "type": "object"
+}

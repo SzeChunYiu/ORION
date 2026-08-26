@@ -1,0 +1,613 @@
+{
+  "$id": "urn:orion:nq-engine-a:checkpoint-run:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "terminal": {
+            "const": "CHECKPOINT_LEVEL_COMPLETE__NOT_GLOBAL"
+          }
+        },
+        "required": [
+          "terminal"
+        ]
+      },
+      "then": {
+        "properties": {
+          "checkpoint": {
+            "additionalProperties": false,
+            "properties": {
+              "accepted_children": {
+                "items": {
+                  "items": {
+                    "items": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              "candidate_edge_budget": {
+                "minimum": 1,
+                "type": "integer"
+              },
+              "candidates": {
+                "items": {
+                  "items": {
+                    "items": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              "checkpoint_sha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "configuration_sha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "counters": {
+                "additionalProperties": false,
+                "properties": {
+                  "candidate_edges": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "canonical_parent_rejections": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "duplicate_children_collapsed": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "extension_orbit_representatives": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "parents_expanded": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "pruned_k_disjoint": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "pruned_short_zero_sum": {
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "parents_expanded",
+                  "extension_orbit_representatives",
+                  "candidate_edges",
+                  "canonical_parent_rejections",
+                  "duplicate_children_collapsed",
+                  "pruned_short_zero_sum",
+                  "pruned_k_disjoint"
+                ],
+                "type": "object"
+              },
+              "cursor": {
+                "additionalProperties": false,
+                "properties": {
+                  "evaluation_index": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "parent_index": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "representative_index": {
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "parent_index",
+                  "representative_index",
+                  "evaluation_index"
+                ],
+                "type": "object"
+              },
+              "exposure_markers": {
+                "const": [
+                  "EXPECTED_OUTCOME_EXPOSURE",
+                  "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+                ]
+              },
+              "group": {
+                "additionalProperties": false,
+                "properties": {
+                  "d": {
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "p": {
+                    "minimum": 2,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "p",
+                  "d"
+                ],
+                "type": "object"
+              },
+              "independence_terminal": {
+                "const": "CANNOT_CHECK"
+              },
+              "parent_level": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "parent_range": {
+                "items": false,
+                "prefixItems": [
+                  {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  {
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                ],
+                "type": "array"
+              },
+              "parent_records_sha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "phase": {
+                "enum": [
+                  "COLLECT_CANDIDATES",
+                  "EVALUATE_CANDIDATES",
+                  "COMPLETE"
+                ]
+              },
+              "profile": {
+                "additionalProperties": false,
+                "properties": {
+                  "forbid_k_disjoint": {
+                    "minimum": 1,
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "max_factor_states": {
+                    "minimum": 1,
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "short_zero_sum_cutoff": {
+                    "minimum": 1,
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "short_zero_sum_cutoff",
+                  "forbid_k_disjoint",
+                  "max_factor_states"
+                ],
+                "type": "object"
+              },
+              "protocol_sha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "schema_version": {
+                "const": "nq-engine-a-checkpoint-state-v1"
+              },
+              "scientific_terminal": {
+                "const": "CANNOT_CHECK"
+              },
+              "source_manifest_sha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "target_level": {
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "schema_version",
+              "independence_terminal",
+              "exposure_markers",
+              "scientific_terminal",
+              "protocol_sha256",
+              "source_manifest_sha256",
+              "parent_records_sha256",
+              "configuration_sha256",
+              "group",
+              "parent_level",
+              "target_level",
+              "parent_range",
+              "candidate_edge_budget",
+              "profile",
+              "phase",
+              "cursor",
+              "candidates",
+              "accepted_children",
+              "counters",
+              "checkpoint_sha256"
+            ],
+            "type": "object"
+          },
+          "full_range_coverage": {
+            "const": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "not": {
+          "properties": {
+            "terminal": {
+              "const": "CHECKPOINT_LEVEL_COMPLETE__NOT_GLOBAL"
+            }
+          },
+          "required": [
+            "terminal"
+          ]
+        }
+      },
+      "then": {
+        "properties": {
+          "full_range_coverage": {
+            "const": false
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "authority": {
+      "const": "engineering_checkpoint_only"
+    },
+    "checkpoint": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "accepted_children": {
+              "items": {
+                "items": {
+                  "items": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              "type": "array"
+            },
+            "candidate_edge_budget": {
+              "minimum": 1,
+              "type": "integer"
+            },
+            "candidates": {
+              "items": {
+                "items": {
+                  "items": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              "type": "array"
+            },
+            "checkpoint_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "configuration_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "counters": {
+              "additionalProperties": false,
+              "properties": {
+                "candidate_edges": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "canonical_parent_rejections": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "duplicate_children_collapsed": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "extension_orbit_representatives": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "parents_expanded": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "pruned_k_disjoint": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "pruned_short_zero_sum": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "parents_expanded",
+                "extension_orbit_representatives",
+                "candidate_edges",
+                "canonical_parent_rejections",
+                "duplicate_children_collapsed",
+                "pruned_short_zero_sum",
+                "pruned_k_disjoint"
+              ],
+              "type": "object"
+            },
+            "cursor": {
+              "additionalProperties": false,
+              "properties": {
+                "evaluation_index": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "parent_index": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "representative_index": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "parent_index",
+                "representative_index",
+                "evaluation_index"
+              ],
+              "type": "object"
+            },
+            "exposure_markers": {
+              "const": [
+                "EXPECTED_OUTCOME_EXPOSURE",
+                "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+              ]
+            },
+            "group": {
+              "additionalProperties": false,
+              "properties": {
+                "d": {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "p": {
+                  "minimum": 2,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "p",
+                "d"
+              ],
+              "type": "object"
+            },
+            "independence_terminal": {
+              "const": "CANNOT_CHECK"
+            },
+            "parent_level": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "parent_range": {
+              "items": false,
+              "prefixItems": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              ],
+              "type": "array"
+            },
+            "parent_records_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "phase": {
+              "enum": [
+                "COLLECT_CANDIDATES",
+                "EVALUATE_CANDIDATES",
+                "COMPLETE"
+              ]
+            },
+            "profile": {
+              "additionalProperties": false,
+              "properties": {
+                "forbid_k_disjoint": {
+                  "minimum": 1,
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "max_factor_states": {
+                  "minimum": 1,
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "short_zero_sum_cutoff": {
+                  "minimum": 1,
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "short_zero_sum_cutoff",
+                "forbid_k_disjoint",
+                "max_factor_states"
+              ],
+              "type": "object"
+            },
+            "protocol_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "schema_version": {
+              "const": "nq-engine-a-checkpoint-state-v1"
+            },
+            "scientific_terminal": {
+              "const": "CANNOT_CHECK"
+            },
+            "source_manifest_sha256": {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            "target_level": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "schema_version",
+            "independence_terminal",
+            "exposure_markers",
+            "scientific_terminal",
+            "protocol_sha256",
+            "source_manifest_sha256",
+            "parent_records_sha256",
+            "configuration_sha256",
+            "group",
+            "parent_level",
+            "target_level",
+            "parent_range",
+            "candidate_edge_budget",
+            "profile",
+            "phase",
+            "cursor",
+            "candidates",
+            "accepted_children",
+            "counters",
+            "checkpoint_sha256"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "errors": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "exposure_markers": {
+      "const": [
+        "EXPECTED_OUTCOME_EXPOSURE",
+        "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+      ]
+    },
+    "full_range_coverage": {
+      "type": "boolean"
+    },
+    "global_coverage": {
+      "const": false
+    },
+    "independence_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "parent_level": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "parent_range": {
+      "items": false,
+      "prefixItems": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "minimum": 1,
+          "type": "integer"
+        }
+      ],
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "nq-engine-a-checkpoint-run-v1"
+    },
+    "scientific_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "target_level": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "terminal": {
+      "enum": [
+        "CHECKPOINT_SAVED__NOT_GLOBAL",
+        "CHECKPOINT_LEVEL_COMPLETE__NOT_GLOBAL",
+        "CANNOT_CHECK_RESOURCE_BOUND",
+        "CANNOT_CHECK_CHECKPOINT_MISMATCH"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "terminal",
+    "authority",
+    "independence_terminal",
+    "exposure_markers",
+    "scientific_terminal",
+    "parent_level",
+    "target_level",
+    "parent_range",
+    "full_range_coverage",
+    "global_coverage",
+    "checkpoint",
+    "errors"
+  ],
+  "title": "Fail-closed NQ Engine-A checkpoint run",
+  "type": "object"
+}
