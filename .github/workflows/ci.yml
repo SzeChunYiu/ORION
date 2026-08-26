@@ -41,10 +41,11 @@ jobs:
   fast:
     name: fast (all but p2)
     runs-on: ubuntu-latest
-    # Run 32906069990 reached 15m16s and was cancelled while the unchanged
-    # full-coverage command was still running. Match the existing long-lane
-    # budget rather than dropping or skipping tests.
-    timeout-minutes: 25
+    # Run 32915463499 exhausted the 25-minute job budget while this unchanged
+    # full-coverage command was still running; the same suite passes locally in
+    # 19m51s.  Keep the complete suite and give slower hosted runners measured
+    # headroom rather than dropping or skipping tests.
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
