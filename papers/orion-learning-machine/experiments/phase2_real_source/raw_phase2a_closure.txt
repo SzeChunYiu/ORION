@@ -1,0 +1,388 @@
+{
+  "authority": "REAL-SOURCE STRUCTURE-MINING ONLY; NO LEAN KERNEL REPLAY",
+  "files": 7,
+  "donors": [
+    "YuanheZ/lean-stat-learning-theory",
+    "auto-res/lean-rademacher"
+  ],
+  "theorem_trajectories": 31,
+  "family_actions": 106,
+  "raw_actions": 105,
+  "unique_families": 11,
+  "unique_raw_actions": 17,
+  "family_counts": {
+    "unfold": 7,
+    "apply": 35,
+    "simplify": 14,
+    "ring_normalize": 4,
+    "calculation": 18,
+    "introduce": 8,
+    "rewrite": 12,
+    "linear_arithmetic": 3,
+    "cases": 1,
+    "logic_normalize": 1,
+    "filter_reasoning": 3
+  },
+  "raw_counts": {
+    "unfold": 7,
+    "apply": 15,
+    "simp": 8,
+    "exact": 27,
+    "ring": 1,
+    "have": 14,
+    "intro": 8,
+    "choose": 1,
+    "rw": 10,
+    "obtain": 1,
+    "calc": 4,
+    "by_cases": 1,
+    "push": 1,
+    "filter_upwards": 3,
+    "haveI": 1,
+    "simpa": 2,
+    "linarith": 1
+  },
+  "loo": {
+    "family": {
+      "bigram_coverage": 0.5733333333333334,
+      "trigram_coverage": 0.20754716981132076,
+      "markov": {
+        "markov": 0.24,
+        "unigram": 0.30666666666666664,
+        "n": 75,
+        "per_source": [
+          [
+            "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean",
+            {
+              "markov": 0.19047619047619047,
+              "unigram": 0.42857142857142855,
+              "n": 21
+            }
+          ],
+          [
+            "YuanheZ_lean-stat-learning-theory/ConvergenceL1Subseq.lean",
+            {
+              "markov": 0.0,
+              "unigram": 0.5,
+              "n": 2
+            }
+          ],
+          [
+            "YuanheZ_lean-stat-learning-theory/LipschitzProperty.lean",
+            {
+              "markov": 0.2,
+              "unigram": 0.2,
+              "n": 35
+            }
+          ],
+          [
+            "auto-res_lean-rademacher/Confidence.extract.lean",
+            {
+              "markov": 0.0,
+              "unigram": 0.0,
+              "n": 3
+            }
+          ],
+          [
+            "auto-res_lean-rademacher/FiniteClass.lean",
+            {
+              "markov": 0.5,
+              "unigram": 0.5,
+              "n": 4
+            }
+          ],
+          [
+            "auto-res_lean-rademacher/LipschitzParameter.lean",
+            {
+              "markov": 0.375,
+              "unigram": 0.375,
+              "n": 8
+            }
+          ],
+          [
+            "auto-res_lean-rademacher/RKHS.extract.lean",
+            {
+              "markov": 1.0,
+              "unigram": 0.5,
+              "n": 2
+            }
+          ]
+        ]
+      }
+    },
+    "raw": {
+      "bigram_coverage": 0.44594594594594594,
+      "trigram_coverage": 0.14,
+      "markov": {
+        "markov": 0.24324324324324326,
+        "unigram": 0.3108108108108108,
+        "n": 74,
+        "per_source": [
+          [
+            "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean",
+            {
+              "markov": 0.3333333333333333,
+              "unigram": 0.3333333333333333,
+              "n": 21
+            }
+          ],
+          [
+            "YuanheZ_lean-stat-learning-theory/ConvergenceL1Subseq.lean",
+            {
+              "markov": 0.0,
+              "unigram": 1.0,
+              "n": 1
+            }
+          ],
+          [
+            "YuanheZ_lean-stat-learning-theory/LipschitzProperty.lean",
+            {
+              "markov": 0.15151515151515152,
+              "unigram": 0.21212121212121213,
+              "n": 33
+            }
+          ],
+          [
+            "auto-res_lean-rademacher/Confidence.extract.lean",
+            {
+              "markov": 0.0,
+              "unigram": 0.3333333333333333,
+              "n": 3
+            }
+          ],
+          [
+            "auto-res_lean-rademacher/FiniteClass.lean",
+            {
+              "markov": 0.5,
+              "unigram": 0.5,
+              "n": 4
+            }
+          ],
+          [
+            "auto-res_lean-rademacher/LipschitzParameter.lean",
+            {
+              "markov": 0.25,
+              "unigram": 0.25,
+              "n": 8
+            }
+          ],
+          [
+            "auto-res_lean-rademacher/RKHS.extract.lean",
+            {
+              "markov": 0.5,
+              "unigram": 0.75,
+              "n": 4
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "cross_donor": {
+    "family": {
+      "YuanheZ/lean-stat-learning-theory": {
+        "train_on_other_test_on_this": {
+          "markov": 0.15517241379310345,
+          "unigram": 0.034482758620689655,
+          "n": 58
+        },
+        "bigram_coverage": 0.22413793103448276
+      },
+      "auto-res/lean-rademacher": {
+        "train_on_other_test_on_this": {
+          "markov": 0.35294117647058826,
+          "unigram": 0.35294117647058826,
+          "n": 17
+        },
+        "bigram_coverage": 0.5294117647058824
+      }
+    },
+    "raw": {
+      "YuanheZ/lean-stat-learning-theory": {
+        "train_on_other_test_on_this": {
+          "markov": 0.2,
+          "unigram": 0.2727272727272727,
+          "n": 55
+        },
+        "bigram_coverage": 0.18181818181818182
+      },
+      "auto-res/lean-rademacher": {
+        "train_on_other_test_on_this": {
+          "markov": 0.42105263157894735,
+          "unigram": 0.42105263157894735,
+          "n": 19
+        },
+        "bigram_coverage": 0.47368421052631576
+      }
+    }
+  },
+  "cross_donor_macros": [
+    {
+      "macro_id": "macro:introduce>apply",
+      "sequence": [
+        "introduce",
+        "apply"
+      ],
+      "support": 5,
+      "donors": [
+        "YuanheZ/lean-stat-learning-theory",
+        "auto-res/lean-rademacher"
+      ],
+      "source_trajectories": [
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean::exists_dyadicNets",
+        "auto-res_lean-rademacher/FiniteClass.lean::uniform_deviation_tail_bound_finite_of_dudley_delta",
+        "auto-res_lean-rademacher/FiniteClass.lean::uniform_deviation_tail_bound_finite_of_dudley_quarter_delta",
+        "auto-res_lean-rademacher/LipschitzParameter.lean::uniform_deviation_tail_bound_lipschitzParameter_dudley_delta",
+        "auto-res_lean-rademacher/RKHS.extract.lean::rkhs_rademacherComplexity_le"
+      ],
+      "source_ids": [
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean",
+        "auto-res_lean-rademacher/FiniteClass.lean",
+        "auto-res_lean-rademacher/LipschitzParameter.lean",
+        "auto-res_lean-rademacher/RKHS.extract.lean"
+      ],
+      "transfer_support": 0
+    },
+    {
+      "macro_id": "macro:rewrite>apply",
+      "sequence": [
+        "rewrite",
+        "apply"
+      ],
+      "support": 5,
+      "donors": [
+        "YuanheZ/lean-stat-learning-theory",
+        "auto-res/lean-rademacher"
+      ],
+      "source_trajectories": [
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean::dist_nearestInFinset_le",
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean::exists_near_in_net",
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean::telescoping_bound",
+        "YuanheZ_lean-stat-learning-theory/LipschitzProperty.lean::integrable_exp_mul_abs_eval_stdGaussianPi",
+        "auto-res_lean-rademacher/LipschitzParameter.lean::uniform_deviation_tail_bound_lipschitzParameter_dudley_delta"
+      ],
+      "source_ids": [
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean",
+        "YuanheZ_lean-stat-learning-theory/LipschitzProperty.lean",
+        "auto-res_lean-rademacher/LipschitzParameter.lean"
+      ],
+      "transfer_support": 0
+    },
+    {
+      "macro_id": "macro:apply>simplify",
+      "sequence": [
+        "apply",
+        "simplify"
+      ],
+      "support": 3,
+      "donors": [
+        "YuanheZ/lean-stat-learning-theory",
+        "auto-res/lean-rademacher"
+      ],
+      "source_trajectories": [
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean::dyadicScale_mono",
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean::dyadicScale_pos",
+        "auto-res_lean-rademacher/Confidence.extract.lean::two_mul_exp_neg_sampleConfidenceRadius_sq"
+      ],
+      "source_ids": [
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean",
+        "auto-res_lean-rademacher/Confidence.extract.lean"
+      ],
+      "transfer_support": 0
+    },
+    {
+      "macro_id": "macro:calculation>introduce",
+      "sequence": [
+        "calculation",
+        "introduce"
+      ],
+      "support": 3,
+      "donors": [
+        "YuanheZ/lean-stat-learning-theory",
+        "auto-res/lean-rademacher"
+      ],
+      "source_trajectories": [
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean::exists_dyadicNets",
+        "YuanheZ_lean-stat-learning-theory/LipschitzProperty.lean::integrable_exp_mul_abs_eval_stdGaussianPi",
+        "auto-res_lean-rademacher/LipschitzParameter.lean::uniform_deviation_tail_bound_lipschitzParameter_dudley_delta"
+      ],
+      "source_ids": [
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean",
+        "YuanheZ_lean-stat-learning-theory/LipschitzProperty.lean",
+        "auto-res_lean-rademacher/LipschitzParameter.lean"
+      ],
+      "transfer_support": 0
+    },
+    {
+      "macro_id": "macro:calculation>simplify",
+      "sequence": [
+        "calculation",
+        "simplify"
+      ],
+      "support": 3,
+      "donors": [
+        "YuanheZ/lean-stat-learning-theory",
+        "auto-res/lean-rademacher"
+      ],
+      "source_trajectories": [
+        "YuanheZ_lean-stat-learning-theory/ConvergenceL1Subseq.lean::exists_seq_tendsto_ae_of_tendsto_eLpNorm_one",
+        "YuanheZ_lean-stat-learning-theory/LipschitzProperty.lean::lipschitz_linear_growth",
+        "auto-res_lean-rademacher/Confidence.extract.lean::exp_neg_deterministicConfidenceRadius_sq"
+      ],
+      "source_ids": [
+        "YuanheZ_lean-stat-learning-theory/ConvergenceL1Subseq.lean",
+        "YuanheZ_lean-stat-learning-theory/LipschitzProperty.lean",
+        "auto-res_lean-rademacher/Confidence.extract.lean"
+      ],
+      "transfer_support": 0
+    },
+    {
+      "macro_id": "macro:calculation>introduce>apply",
+      "sequence": [
+        "calculation",
+        "introduce",
+        "apply"
+      ],
+      "support": 2,
+      "donors": [
+        "YuanheZ/lean-stat-learning-theory",
+        "auto-res/lean-rademacher"
+      ],
+      "source_trajectories": [
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean::exists_dyadicNets",
+        "auto-res_lean-rademacher/LipschitzParameter.lean::uniform_deviation_tail_bound_lipschitzParameter_dudley_delta"
+      ],
+      "source_ids": [
+        "YuanheZ_lean-stat-learning-theory/Chaining.extract.lean",
+        "auto-res_lean-rademacher/LipschitzParameter.lean"
+      ],
+      "transfer_support": 0
+    }
+  ],
+  "provenance_audit": {
+    "macros_checked": 6,
+    "failures": [],
+    "pass": true
+  },
+  "library": {
+    "mechanics": 11,
+    "mechanics_with_both_donors": 6,
+    "macros": 12
+  },
+  "shuffle": {
+    "bigram": {
+      "observed": 5,
+      "shuffle_mean": 5.632,
+      "shuffle_sd": 1.204398605113772,
+      "empirical_p_ge": 0.8291708291708292,
+      "reps": 1000
+    },
+    "trigram": {
+      "observed": 1,
+      "shuffle_mean": 0.644,
+      "shuffle_sd": 0.7478395549848911,
+      "empirical_p_ge": 0.4995004995004995,
+      "reps": 1000
+    }
+  }
+}

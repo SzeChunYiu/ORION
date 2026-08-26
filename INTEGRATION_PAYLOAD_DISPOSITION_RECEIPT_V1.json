@@ -1,0 +1,138 @@
+{
+ "schema": "ORION.IntegrationPayloadDisposition.v1",
+ "date": "2026-08-27",
+ "scope": "Disposition of the three staged .integration/ transport payloads flagged uncertain_kept=5 in CLEANUP_POST_FREEZE_RECEIPT_V1.json (items 1-3) plus their two one-shot workflows.",
+ "payloads": [
+  {
+   "payload": ".integration/five-paper-hardening-r2-correction/",
+   "disposition": "DELETED",
+   "evidence": {
+    "content_already_on_main": "R2 correction materialized by GHA run 32791397422 (documented in development/five-paper-hardening-r2-2026-08-25/POST_MATERIALIZATION_GATE.md) and landed on main via commit 3f363fb4b; papers/verify_five_theory_hardening_r2.py + papers/FIVE_THEORY_HARDENING_R2_RESULTS.json live on main.",
+    "transport_unrecoverable_vs_pin": "Concatenated stream 60889 data chars == 1 mod 4; pinned sha256 f59994ab... never reproduced by: full single-char deletion sweep over all 60889 positions, single-char substitution sweep over corr_00 (64x12001). Deflate stream decodes clean only through decoded byte 9018 (char ~12024, the corr_00/corr_01 seam); byte-9018-clean-prefix contradicts any single-insertion-in-corr_00 theory, so the damage is multi-edit or the chunker emitted a stream that never matched the pin. base64 -d rejects 1-mod-4 at commit time: the consuming workflow could never have passed its own sha256 gate on main.",
+    "workflow": "materialize-five-paper-hardening-r2-correction-once.yml DELETED: triggers only on PR head_ref shadow/five-paper-hardening-r2-20260825; its documented purpose (materialize + remove transport) already executed on the shadow branch; main never carried the removal commit. This change completes that removal on main."
+   }
+  },
+  {
+   "payload": ".integration/five-paper-hardening-r2-correction-v2/",
+   "disposition": "DELETED",
+   "evidence": {
+    "no_consumer": "No workflow, test, or script references correction-v2 or its lead_*.b64 files (git grep over .github/ tests/ scripts/ on origin/main).",
+    "transport_unrecoverable": "lead_02.b64 = 4001 data chars == 1 mod 4; no pin exists anywhere to verify against even in principle.",
+    "superseded_by": "Direct landing 3f363fb4b (same correction cycle)."
+   }
+  },
+  {
+   "payload": ".integration/p9p10.part00-09",
+   "disposition": "DELETED after landing its 16 tree-unique files",
+   "evidence": {
+    "decode": "131998 data chars == 2 mod 4 (padding lost); truncated decode yields 98991 bytes starting 1f8b08; all 49 members full-read OK (no truncation of content).",
+    "sha_divergence": "reassembled sha256 e4080f15... != workflow pin 027a09c1... (pin predates the padding loss / stream regeneration; content verified by full structural read instead of the pin).",
+    "classification": "23 files byte-identical to main, 10 diverged (main newer: phase0/phase1 experiments, V2 verify scripts, publication manifests), 16 unique.",
+    "unique_files_landed": [
+     "papers/orion-learning-machine/RESEARCH_PROGRAMME_V0.md",
+     "papers/orion-learning-machine/CLOSURE_MANIFEST.json",
+     "papers/orion-learning-machine/framework/README.md",
+     "papers/orion-learning-machine/framework/ARCHITECTURE.md",
+     "papers/orion-learning-machine/framework/INTEGRATION_CONTRACT_P6_P8.md",
+     "papers/orion-learning-machine/framework/pyproject.toml",
+     "papers/orion-learning-machine/experiments/phase2_real_source/HF_MATHLIB_TACTICS_SAMPLE.json",
+     "papers/orion-learning-machine/experiments/phase2_real_source/RESULTS_PHASE2A.json",
+     "papers/orion-learning-machine/experiments/phase2_real_source/raw_phase2a_closure.txt",
+     "papers/orion-learning-machine/experiments/phase2_real_source/RESULTS_PHASE2B.json",
+     "papers/orion-learning-machine/experiments/phase2_real_source/RESULTS_PHASE2.md",
+     "papers/orion-learning-machine/experiments/phase2_real_source/raw_phase2a.txt",
+     "papers/orion-learning-machine/experiments/phase2_real_source/raw_phase2b_closure.txt",
+     "papers/orion-learning-machine/experiments/phase2_real_source/raw_phase2b.txt",
+     "papers/orion-learning-machine/experiments/phase2_real_source/CORPUS_PROVENANCE.json",
+     "papers/orion-learning-machine/experiments/PHASE2_REAL_SOURCE_PLAN.md"
+    ],
+    "diverged_kept_main": "REPRODUCE_LOCAL_CLOSURE.sh, VERIFY_LOCAL_CLOSURE.sh, framework/orion_learning_machine/{types,__init__,math_eval,runtime,adapters/lean_source}.py, framework/tests/{test_learning_machine_integration,test_math_eval,test_lean_source}.py",
+    "note": "experiments/phase2_real_source/RESULTS_PHASE2A.json is byte-identical to existing papers/orion-learning-machine/results/PHASE2A_RESULTS.json (path twin, landed anyway for run_phase2a.py in-place artifact consistency). CLOSURE_MANIFEST.json references additional sandbox files (EXPERT_REVIEW_CLOSURE.md, LOCAL_CLOSURE_REPORT.md, RESEARCH_PROGRAMME_V1.md, closure_full_console.txt, ...) not carried by the payload nor present on main: pre-existing gap, recorded here, not invented.",
+    "workflow": "materialize-p9p10-integration.yml DELETED: triggered only on push to shadow/p6-p10-integration-2026-08-18 touching the workflow file itself; superseded by this direct landing."
+   }
+  }
+ ],
+ "landed_files": [
+  {
+   "path": "papers/orion-learning-machine/RESEARCH_PROGRAMME_V0.md",
+   "bytes": 7018,
+   "sha256": "85bb94a71932ab3ecf08114bd3d8624972519284dd5ab524a2d120f37782f0c3"
+  },
+  {
+   "path": "papers/orion-learning-machine/CLOSURE_MANIFEST.json",
+   "bytes": 16869,
+   "sha256": "5be705bbdc8e076d1c678a6ecc70bae80bd9b71f1978c9956c6614160a1331f2"
+  },
+  {
+   "path": "papers/orion-learning-machine/framework/README.md",
+   "bytes": 3089,
+   "sha256": "cda66a035dd5c0f85eeff77f8ce45d9234e971c042283c344d033c3749b12bba"
+  },
+  {
+   "path": "papers/orion-learning-machine/framework/ARCHITECTURE.md",
+   "bytes": 2555,
+   "sha256": "b638b58aa4dbb6be4bd54fa8d0f0ec3f377ea92e308726846f9c457b9c09596b"
+  },
+  {
+   "path": "papers/orion-learning-machine/framework/INTEGRATION_CONTRACT_P6_P8.md",
+   "bytes": 1586,
+   "sha256": "4037164182ea57e236c370014b105454e1869556df317bb991d9982b3972824d"
+  },
+  {
+   "path": "papers/orion-learning-machine/framework/pyproject.toml",
+   "bytes": 174,
+   "sha256": "8dad980af0230c9af305b4ba4a9b1b5a9d4a9dae79706c8e827091af2b1b5ccb"
+  },
+  {
+   "path": "papers/orion-learning-machine/experiments/phase2_real_source/HF_MATHLIB_TACTICS_SAMPLE.json",
+   "bytes": 3715,
+   "sha256": "f1dd305656de58cedc43bbc4cacc137edebccd966f9288618853359b69bbfe9a"
+  },
+  {
+   "path": "papers/orion-learning-machine/experiments/phase2_real_source/RESULTS_PHASE2A.json",
+   "bytes": 11263,
+   "sha256": "7b3068e76660996dea2952a01ac32f352510e64a2df441062545790c8af7e36b"
+  },
+  {
+   "path": "papers/orion-learning-machine/experiments/phase2_real_source/raw_phase2a_closure.txt",
+   "bytes": 11263,
+   "sha256": "7b3068e76660996dea2952a01ac32f352510e64a2df441062545790c8af7e36b"
+  },
+  {
+   "path": "papers/orion-learning-machine/experiments/phase2_real_source/RESULTS_PHASE2B.json",
+   "bytes": 4393,
+   "sha256": "75ae8ce0a442837260b0f2b72a6e550d0fdfdad14e5974f837d9724de109dc37"
+  },
+  {
+   "path": "papers/orion-learning-machine/experiments/phase2_real_source/RESULTS_PHASE2.md",
+   "bytes": 3138,
+   "sha256": "cb8d000e980477718af4374683c609e6b9b7560487922e5527c0df55e3ce8af4"
+  },
+  {
+   "path": "papers/orion-learning-machine/experiments/phase2_real_source/raw_phase2a.txt",
+   "bytes": 11263,
+   "sha256": "7b3068e76660996dea2952a01ac32f352510e64a2df441062545790c8af7e36b"
+  },
+  {
+   "path": "papers/orion-learning-machine/experiments/phase2_real_source/raw_phase2b_closure.txt",
+   "bytes": 4393,
+   "sha256": "75ae8ce0a442837260b0f2b72a6e550d0fdfdad14e5974f837d9724de109dc37"
+  },
+  {
+   "path": "papers/orion-learning-machine/experiments/phase2_real_source/raw_phase2b.txt",
+   "bytes": 4393,
+   "sha256": "75ae8ce0a442837260b0f2b72a6e550d0fdfdad14e5974f837d9724de109dc37"
+  },
+  {
+   "path": "papers/orion-learning-machine/experiments/phase2_real_source/CORPUS_PROVENANCE.json",
+   "bytes": 4480,
+   "sha256": "ed10a0bead89528cde2ccbfe690393878a0cd77e9d93dd0c13d8757dea1cedc1"
+  },
+  {
+   "path": "papers/orion-learning-machine/experiments/PHASE2_REAL_SOURCE_PLAN.md",
+   "bytes": 12451,
+   "sha256": "ce7e512d44dace3b85d03e81bdd5bf94a868658faf7a5653e4cc222c22ab11b9"
+  }
+ ],
+ "checks_after_change": "freeze checker + P1_P15 checker re-run locally on this branch (both terminal PASS, see PR body)."
+}
