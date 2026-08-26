@@ -1,0 +1,293 @@
+{
+  "all_domains_have_nonzero_diameter": true,
+  "authority": {
+    "finite_exact_on_declared_domains": true,
+    "general_real_world_prevalence": false,
+    "grants_scientific_authority": false,
+    "independent_external_replay": false
+  },
+  "content_sha256": "12a18c23aaca33dee65b0f12e0d0a27c3ff801788c9778dca25a19f1186a2afb",
+  "domains": [
+    {
+      "domain": "GRAPH_COLOURING_N6",
+      "endpoint_values": [
+        3,
+        4
+      ],
+      "endpoint_witnesses": [
+        {
+          "edge_mask": 6011
+        },
+        {
+          "edge_mask": 6014
+        }
+      ],
+      "fibre_count": 136,
+      "fibre_multiplicity": 720,
+      "independent_target_checks": 32768,
+      "instance_count": 32768,
+      "instance_space": "all labeled simple graphs on six vertices",
+      "maximum_fibre_diameter": 1,
+      "refinement_experiment": {
+        "candidate_results": {
+          "clique_number": {
+            "ambiguous_fibre_count": 2,
+            "maximum_fibre_diameter": 1,
+            "refined_fibre_count": 139
+          },
+          "connected_component_count": {
+            "ambiguous_fibre_count": 5,
+            "maximum_fibre_diameter": 1,
+            "refined_fibre_count": 137
+          },
+          "four_cycle_count": {
+            "ambiguous_fibre_count": 0,
+            "maximum_fibre_diameter": 0,
+            "refined_fibre_count": 146
+          }
+        },
+        "collision_guided_result": {
+          "ambiguous_fibre_count": 0,
+          "maximum_fibre_diameter": 0,
+          "refined_fibre_count": 146
+        },
+        "collision_guided_selection": "four_cycle_count",
+        "matched_baseline_result": {
+          "ambiguous_fibre_count": 5,
+          "maximum_fibre_diameter": 1,
+          "refined_fibre_count": 137
+        },
+        "matched_baseline_selection": "connected_component_count",
+        "strict_improvement_over_baseline": true
+      },
+      "representation": {
+        "feature": [
+          [
+            2,
+            3,
+            3,
+            4,
+            4,
+            4
+          ],
+          5
+        ],
+        "name": "sorted_degree_sequence_plus_triangle_count"
+      },
+      "status": "FINITE_EXACT",
+      "target": "chromatic_number"
+    },
+    {
+      "domain": "SET_COVER_U5_M5",
+      "endpoint_values": [
+        2,
+        3
+      ],
+      "endpoint_witnesses": [
+        {
+          "sets": [
+            1,
+            3,
+            5,
+            14,
+            26
+          ]
+        },
+        {
+          "sets": [
+            1,
+            3,
+            12,
+            21,
+            22
+          ]
+        }
+      ],
+      "fibre_count": 909,
+      "fibre_multiplicity": 1740,
+      "independent_target_checks": 155106,
+      "instance_count": 155106,
+      "instance_space": "all five-set subfamilies of nonempty subsets of a five-element universe that cover the universe",
+      "maximum_fibre_diameter": 1,
+      "refinement_experiment": {
+        "candidate_results": {
+          "element_frequency_multiset": {
+            "ambiguous_fibre_count": 58,
+            "maximum_fibre_diameter": 1,
+            "refined_fibre_count": 1015
+          },
+          "pairwise_union_multiset": {
+            "ambiguous_fibre_count": 0,
+            "maximum_fibre_diameter": 0,
+            "refined_fibre_count": 1511
+          },
+          "triple_intersection_multiset": {
+            "ambiguous_fibre_count": 58,
+            "maximum_fibre_diameter": 1,
+            "refined_fibre_count": 1109
+          }
+        },
+        "collision_guided_result": {
+          "ambiguous_fibre_count": 0,
+          "maximum_fibre_diameter": 0,
+          "refined_fibre_count": 1511
+        },
+        "collision_guided_selection": "pairwise_union_multiset",
+        "matched_baseline_result": {
+          "ambiguous_fibre_count": 58,
+          "maximum_fibre_diameter": 1,
+          "refined_fibre_count": 1015
+        },
+        "matched_baseline_selection": "element_frequency_multiset",
+        "strict_improvement_over_baseline": true
+      },
+      "representation": {
+        "feature": [
+          [
+            1,
+            2,
+            2,
+            3,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ]
+        ],
+        "name": "sorted_set_sizes_plus_pairwise_intersection_multiset"
+      },
+      "status": "FINITE_EXACT",
+      "target": "minimum_cover_size"
+    },
+    {
+      "domain": "TWO_CNF_N4_M5",
+      "endpoint_values": [
+        0,
+        4
+      ],
+      "endpoint_witnesses": [
+        {
+          "clauses": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              -1
+            ],
+            [
+              3,
+              -1
+            ],
+            [
+              -2,
+              -3
+            ]
+          ]
+        },
+        {
+          "clauses": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              -1
+            ],
+            [
+              -1,
+              -2
+            ]
+          ]
+        }
+      ],
+      "fibre_count": 13032,
+      "fibre_multiplicity": 11,
+      "independent_target_checks": 42504,
+      "instance_count": 42504,
+      "instance_space": "all five-clause subsets of the 24 non-tautological binary clauses on four labeled variables",
+      "maximum_fibre_diameter": 4,
+      "refinement_experiment": {
+        "candidate_results": {
+          "global_clause_sign_type_counts": {
+            "ambiguous_fibre_count": 5888,
+            "maximum_fibre_diameter": 4,
+            "refined_fibre_count": 25912
+          },
+          "labeled_variable_pair_signed_profile": {
+            "ambiguous_fibre_count": 0,
+            "maximum_fibre_diameter": 0,
+            "refined_fibre_count": 42504
+          },
+          "variable_pair_signed_profile_multiset": {
+            "ambiguous_fibre_count": 2468,
+            "maximum_fibre_diameter": 2,
+            "refined_fibre_count": 33322
+          }
+        },
+        "collision_guided_result": {
+          "ambiguous_fibre_count": 0,
+          "maximum_fibre_diameter": 0,
+          "refined_fibre_count": 42504
+        },
+        "collision_guided_selection": "labeled_variable_pair_signed_profile",
+        "matched_baseline_result": {
+          "ambiguous_fibre_count": 5888,
+          "maximum_fibre_diameter": 4,
+          "refined_fibre_count": 25912
+        },
+        "matched_baseline_selection": "global_clause_sign_type_counts",
+        "strict_improvement_over_baseline": true
+      },
+      "representation": {
+        "feature": [
+          [
+            2,
+            2,
+            2,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            2,
+            2,
+            0,
+            1,
+            0,
+            0
+          ]
+        ],
+        "name": "signed_variable_occurrence_counts_plus_labeled_variable_pair_cooccurrence"
+      },
+      "status": "FINITE_EXACT",
+      "target": "number_of_satisfying_assignments"
+    }
+  ],
+  "schema": "ORION.FiberGuardR8.Results.v1"
+}

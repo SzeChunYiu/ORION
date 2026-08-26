@@ -1,0 +1,170 @@
+{
+  "schema": "ORION.FivePaperTopTierR8.BlockerRegistry.v1",
+  "date": "2026-08-26",
+  "repository": "SzeChunYiu/ORION",
+  "branch": "codex/five-paper-top-tier-r8-20260826",
+  "base_commit": "99049ff6dfbdd78590bbdae0d24b9037aae83e3c",
+  "authority": {
+    "grants_scientific_authority": false,
+    "grants_novelty_authority": false,
+    "grants_journal_readiness": false
+  },
+  "blockers": [
+    {
+      "id": "PORT-01",
+      "paper": "PORTFOLIO",
+      "priority": "P0",
+      "problem": "A/B/Q1 identity overlap",
+      "status": "CLOSED_INTERNAL_R8",
+      "result": "A and B consolidated; Q1 retains R6M support-two ownership",
+      "evidence": ["PROGRAMME.md", "AB/MANUSCRIPT_R8_CONSOLIDATED.md"],
+      "remaining_boundary": "editor and primary-source overlap review"
+    },
+    {
+      "id": "AB-01",
+      "paper": "AB",
+      "priority": "P0",
+      "problem": "No realized non-Q1 production separation",
+      "status": "CLOSED_MATHEMATICALLY_R8",
+      "result": "XOR-aggregation grammar has exact weak budget d and strong production budget 1",
+      "evidence": [
+        "AB/artifact/xor_production_separation_r8.py",
+        "AB/artifact/XOR_PRODUCTION_SEPARATION_R8_RESULTS.json"
+      ],
+      "remaining_boundary": "production significance and nearest-work audit"
+    },
+    {
+      "id": "AB-02",
+      "paper": "AB",
+      "priority": "P0",
+      "problem": "Integrated theorem narrative absent",
+      "status": "CLOSED_DRAFT_R8",
+      "result": "A+B results integrated into one manuscript draft",
+      "evidence": ["AB/MANUSCRIPT_R8_CONSOLIDATED.md"],
+      "remaining_boundary": "specialist proof and citation review"
+    },
+    {
+      "id": "AB-03",
+      "paper": "AB",
+      "priority": "P1",
+      "problem": "No measured consequence on an external exact optimizer",
+      "status": "OPEN_EXTERNAL",
+      "required_terminal": "AB_EXTERNAL_PRODUCTION_CASE_PASS_OR_NARROWED",
+      "execution_packet": "CODEX_LUNARC_EXECUTION_PACKET.md#job-ab-r8-2"
+    },
+    {
+      "id": "C-01",
+      "paper": "C",
+      "priority": "P0",
+      "problem": "Single-domain compiler construction",
+      "status": "CLOSED_INTERNAL_R8",
+      "result": "Three exact domains totaling 230378 instances",
+      "evidence": [
+        "C/artifact/fiberguard_r8.py",
+        "C/artifact/FIBERGUARD_R8_RESULTS.json"
+      ],
+      "remaining_boundary": "independent replay and current decision-theory audit"
+    },
+    {
+      "id": "C-02",
+      "paper": "C",
+      "priority": "P1",
+      "problem": "No evaluated representation-refinement consequence",
+      "status": "CLOSED_INTERNAL_R8",
+      "result": "Collision-guided refinement strictly beats matched baseline in all three exact panels",
+      "evidence": ["C/artifact/FIBERGUARD_R8_RESULTS.json"],
+      "remaining_boundary": "distributional/real-instance prevalence is not inferred"
+    },
+    {
+      "id": "C-03",
+      "paper": "C",
+      "priority": "P0",
+      "problem": "Nearest-work positioning against sufficiency and information comparison",
+      "status": "OPEN_LITERATURE",
+      "required_terminal": "C_PRIMARY_SOURCE_POSITIONING_PASS",
+      "execution_packet": "CODEX_LUNARC_EXECUTION_PACKET.md#job-c-r8-2"
+    },
+    {
+      "id": "D-01",
+      "paper": "D",
+      "priority": "P0",
+      "problem": "Unsafe merge theorem lacked hostile implementation",
+      "status": "CLOSED_INTERNAL_R8",
+      "result": "Three splice classes, two valid controls, and 16.8M-pair exact census",
+      "evidence": [
+        "D/artifact/typed_authority_merge_r8.py",
+        "D/artifact/TYPED_AUTHORITY_MERGE_R8_RESULTS.json"
+      ],
+      "remaining_boundary": "independent replay"
+    },
+    {
+      "id": "D-02",
+      "paper": "D",
+      "priority": "P0",
+      "problem": "No independently sourced real rule system",
+      "status": "OPEN_EXTERNAL",
+      "required_terminal": "D_REAL_POLICY_CASE_EXPERT_VALIDATED",
+      "execution_packet": "CODEX_LUNARC_EXECUTION_PACKET.md#job-d-r8-2"
+    },
+    {
+      "id": "D-03",
+      "paper": "D",
+      "priority": "P0",
+      "problem": "2026 Datalog/provenance overlap",
+      "status": "OPEN_LITERATURE",
+      "required_terminal": "D_PRIMARY_SOURCE_OVERLAP_AUDIT_PASS",
+      "execution_packet": "CODEX_LUNARC_EXECUTION_PACKET.md#job-d-r8-1"
+    },
+    {
+      "id": "NQ-01",
+      "paper": "NQ",
+      "priority": "P0",
+      "problem": "D2, D3, and short spectrum lack clean-room replay authority",
+      "status": "OPEN_LUNARC",
+      "required_terminal": "NQ_D2_D3_INDEPENDENT_REPLAY_PASS",
+      "execution_packet": "CODEX_LUNARC_EXECUTION_PACKET.md#job-nq-r8-1"
+    },
+    {
+      "id": "NQ-02",
+      "paper": "NQ",
+      "priority": "P0",
+      "problem": "27-diagonal surviving 4,4 and 4,2,2 lift-aware branches",
+      "status": "OPEN_LUNARC",
+      "required_terminal": "NQ27_LIFT_AWARE_UNSAT_OR_SURVIVOR_REPLAYED",
+      "execution_packet": "CODEX_LUNARC_EXECUTION_PACKET.md#job-nq-r8-2"
+    },
+    {
+      "id": "NQ-03",
+      "paper": "NQ",
+      "priority": "P0",
+      "problem": "Exact D4(C5^3) unresolved",
+      "status": "OPEN_MATHEMATICS",
+      "required_terminal": "D4_EXACT_30_OR_31_WITH_PROOF",
+      "boundary": "not required for the reframed exact-D2/D3 corridor paper, but required for any D4 headline"
+    },
+    {
+      "id": "ALL-01",
+      "paper": "ALL",
+      "priority": "P0",
+      "problem": "Primary-source citation verification",
+      "status": "OPEN_LITERATURE",
+      "required_terminal": "ALL_PRIMARY_CITATIONS_VERIFIED"
+    },
+    {
+      "id": "ALL-02",
+      "paper": "ALL",
+      "priority": "P0",
+      "problem": "Named human proof/citation/code verifiers",
+      "status": "OPEN_HUMAN",
+      "required_terminal": "SIGNED_VERIFICATION_LEDGERS_COMPLETE"
+    },
+    {
+      "id": "ALL-03",
+      "paper": "ALL",
+      "priority": "P1",
+      "problem": "Immutable archival release and DOI",
+      "status": "OPEN_RELEASE",
+      "required_terminal": "IMMUTABLE_RELEASE_ARCHIVED"
+    }
+  ]
+}

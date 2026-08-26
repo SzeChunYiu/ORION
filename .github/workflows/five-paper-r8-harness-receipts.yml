@@ -1,0 +1,42 @@
+name: Five-paper R8 harness receipt archive
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/five-paper-top-tier-r8-20260826]
+    paths:
+      - 'papers/five-paper-top-tier-r8/HARNESS_RECEIPT_TRIGGER_R8.md'
+      - '.github/workflows/five-paper-r8-harness-receipts.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  archive-receipts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Verify content-bound packet
+        run: python papers/five-paper-top-tier-r8/harness/validate_r8_artifacts.py
+      - name: Initialize harness and stop at first host handoff
+        run: bash papers/five-paper-top-tier-r8/harness/bootstrap_r8.sh .orion-five-paper-r8
+      - name: Archive receipts, requests, state, and handoff
+        uses: actions/upload-artifact@v4
+        with:
+          name: five-paper-r8-harness-receipts
+          path: |
+            .orion-five-paper-r8
+            papers/five-paper-top-tier-r8/harness/*.json
+            papers/five-paper-top-tier-r8/harness/*.md
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30

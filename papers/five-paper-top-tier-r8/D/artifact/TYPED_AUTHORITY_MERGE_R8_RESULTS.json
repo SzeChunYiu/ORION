@@ -1,0 +1,161 @@
+{
+  "attack_suite": [
+    {
+      "case_id": "SEED_RULE_SPLICE",
+      "closed_union_criterion": false,
+      "coordinate_closures": [
+        [
+          "a"
+        ],
+        []
+      ],
+      "coordinatewise_union": [
+        "a"
+      ],
+      "expected_safe": false,
+      "merged_closure": [
+        "a",
+        "target"
+      ],
+      "safe_merge": false,
+      "spliced_claims": [
+        "target"
+      ]
+    },
+    {
+      "case_id": "CONJUNCTIVE_PREMISE_SPLICE",
+      "closed_union_criterion": false,
+      "coordinate_closures": [
+        [
+          "a"
+        ],
+        [
+          "b"
+        ]
+      ],
+      "coordinatewise_union": [
+        "a",
+        "b"
+      ],
+      "expected_safe": false,
+      "merged_closure": [
+        "a",
+        "b",
+        "target"
+      ],
+      "safe_merge": false,
+      "spliced_claims": [
+        "target"
+      ]
+    },
+    {
+      "case_id": "RECURSIVE_BRIDGE_SPLICE",
+      "closed_union_criterion": false,
+      "coordinate_closures": [
+        [
+          "a"
+        ],
+        []
+      ],
+      "coordinatewise_union": [
+        "a"
+      ],
+      "expected_safe": false,
+      "merged_closure": [
+        "a",
+        "b",
+        "c",
+        "target"
+      ],
+      "safe_merge": false,
+      "spliced_claims": [
+        "b",
+        "c",
+        "target"
+      ]
+    },
+    {
+      "case_id": "DOMINANCE_SAFE_CONTROL",
+      "closed_union_criterion": true,
+      "coordinate_closures": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "a",
+          "b",
+          "c",
+          "target"
+        ]
+      ],
+      "coordinatewise_union": [
+        "a",
+        "b",
+        "c",
+        "target"
+      ],
+      "expected_safe": true,
+      "merged_closure": [
+        "a",
+        "b",
+        "c",
+        "target"
+      ],
+      "safe_merge": true,
+      "spliced_claims": []
+    },
+    {
+      "case_id": "DISCONNECTED_SAFE_CONTROL",
+      "closed_union_criterion": true,
+      "coordinate_closures": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "c",
+          "target"
+        ]
+      ],
+      "coordinatewise_union": [
+        "a",
+        "b",
+        "c",
+        "target"
+      ],
+      "expected_safe": true,
+      "merged_closure": [
+        "a",
+        "b",
+        "c",
+        "target"
+      ],
+      "safe_merge": true,
+      "spliced_claims": []
+    }
+  ],
+  "authority": {
+    "finite_attack_audit": true,
+    "general_theorem_authority": "DISPLAYED_PROOF_REQUIRED",
+    "grants_scientific_authority": false,
+    "real_policy_validation": false
+  },
+  "content_sha256": "bf89eab2c9cbcb2de81c6d625371f90900f06cecaf1f813fa2c62e7892b804bc",
+  "exhaustive_audit": {
+    "claim_count": 3,
+    "coordinate_signature_count": 4096,
+    "maximum_new_claims_from_splicing": 2,
+    "ordered_coordinate_pair_count": 16777216,
+    "rule_pool": {
+      "binary_conjunctive_rules": 3,
+      "total_rules": 9,
+      "unary_rules": 6
+    },
+    "safe_merge_iff_closed_union_mismatches": 0,
+    "safe_pair_count": 15898624,
+    "status": "FINITE_EXACT",
+    "unsafe_pair_count": 878592
+  },
+  "schema": "ORION.TypedAuthorityMergeR8.Results.v1"
+}
