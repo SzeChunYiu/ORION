@@ -1,0 +1,33 @@
+name: Five-paper R9 AB general fusion separation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/r9-ab-general-fusion-separation-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/AB/GENERAL_FUSION_SEPARATION_R9_ADDENDUM.md'
+      - 'papers/five-paper-top-tier-r8/AB/verify_general_fusion_separation_r9.py'
+      - 'papers/five-paper-top-tier-r8/AB/GENERAL_FUSION_SEPARATION_R9_RESULTS.json'
+      - '.github/workflows/five-paper-r9-ab-general-fusion.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-all-group-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Preserve registered result
+        run: cp papers/five-paper-top-tier-r8/AB/GENERAL_FUSION_SEPARATION_R9_RESULTS.json /tmp/registered.json
+      - name: Replay bounded fusion audit
+        run: python papers/five-paper-top-tier-r8/AB/verify_general_fusion_separation_r9.py > /tmp/replay.stdout
+      - name: Require byte-exact registered result
+        run: cmp /tmp/registered.json papers/five-paper-top-tier-r8/AB/GENERAL_FUSION_SEPARATION_R9_RESULTS.json
+      - name: Require clean artifact tree
+        run: git diff --exit-code -- papers/five-paper-top-tier-r8/AB/GENERAL_FUSION_SEPARATION_R9_RESULTS.json
