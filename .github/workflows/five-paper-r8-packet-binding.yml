@@ -1,0 +1,52 @@
+name: Five-paper R8 packet binding
+
+on:
+  pull_request:
+    paths:
+      - "papers/five-paper-top-tier-r8/R8_PACKET_COMMIT.json"
+      - "papers/five-paper-top-tier-r8/R8_PACKET_COMMIT_V1_PRESERVED.json"
+      - "papers/five-paper-top-tier-r8/R8_PACKET_PUBLICATION_BINDING.json"
+      - "papers/five-paper-top-tier-r8/R8_PACKET_BINDING.md"
+      - "papers/five-paper-top-tier-r8/harness/read_packet_commit.py"
+      - "papers/five-paper-top-tier-r8/harness/validate_r8_packet_binding.py"
+      - "tests/unit/five_paper_r8/test_r8_packet_binding.py"
+      - ".github/workflows/five-paper-r8-packet-binding.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch exact observed source ref
+        run: >-
+          git fetch --no-tags origin
+          refs/heads/codex/five-paper-top-tier-r8-20260826:refs/remotes/origin/codex/five-paper-top-tier-r8-20260826
+      - name: Install test runner
+        run: python -m pip install pytest==8.4.1
+      - name: Compile custody validator
+        run: >-
+          python -m py_compile
+          papers/five-paper-top-tier-r8/harness/validate_r8_packet_binding.py
+          papers/five-paper-top-tier-r8/harness/read_packet_commit.py
+      - name: Run hostile binding tests
+        run: python -m pytest -q tests/unit/five_paper_r8/test_r8_packet_binding.py
+      - name: Verify exact packet identities
+        run: >-
+          python papers/five-paper-top-tier-r8/harness/validate_r8_packet_binding.py
+          --require-source-ref
+      - name: Verify exact checkout resolution
+        run: >-
+          test "$(python papers/five-paper-top-tier-r8/harness/read_packet_commit.py --require-source-ref)"
+          = "0c451e862a0eeddac7c673813c4dc499f134b088"
+      - name: Patch hygiene
+        run: git diff --check
