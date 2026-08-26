@@ -47,13 +47,12 @@ def evidence_status(value: str) -> str:
     mapping = {
         "BOUNDED_PASS": "PASS",
         "BOUNDARY": "NULL",
-        "MIXED": "ADVERSE",
         "NOT_AUTHORITY": "CANNOT_CHECK",
     }
     return mapping.get(
         value,
         value
-        if value in {"PASS", "FAIL", "UNKNOWN", "CANNOT_CHECK", "NULL", "ADVERSE"}
+        if value in {"PASS", "FAIL", "UNKNOWN", "CANNOT_CHECK", "NULL", "ADVERSE", "MIXED"}
         else "UNKNOWN",
     )
 

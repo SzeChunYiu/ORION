@@ -681,13 +681,19 @@ if selected_metrics:
     values = [numeric_value(row) for row in rows]
     unit = str(first(rows[0], "unit", default="receipt unit"))
     metric_label = human_label(METRIC_NAME, 40)
+    is_unsafe_reuse = METRIC_NAME == "unsafe_reuse_rate"
+    direction_note = "; lower is better" if is_unsafe_reuse else ""
     y = list(range(len(values)))
     bars = ax.barh(y, values, height=0.62, color="#455a64")
     ax.set_yticks(y, labels)
     ax.invert_yaxis()
-    ax.set_xlabel(f"{metric_label} ({unit}; lower is better)")
-    ax.set_ylabel("paper and arm")
-    ax.set_title("Unsafe reuse by P13 control arm (bounded internal receipts)")
+    ax.set_xlabel(f"{metric_label} ({unit}{direction_note})")
+    ax.set_ylabel("paper and receipt row")
+    ax.set_title(
+        "Unsafe reuse by P13 control arm (bounded internal receipts)"
+        if is_unsafe_reuse
+        else f"Raw receipt values: {metric_label}"
+    )
     if unit.lower() in {"rate", "fraction", "proportion", "probability"}:
         ax.set_xlim(0, 1)
     for bar, value in zip(bars, values):
@@ -702,7 +708,11 @@ if selected_metrics:
     fig.text(
         0.5,
         0.01,
-        "A zero bar is a bounded receipt value, not evidence of external safety authority.",
+        (
+            "A zero bar is a bounded receipt value, not evidence of external safety authority."
+            if is_unsafe_reuse
+            else "Receipt-level display only; favorable direction and external authority are not inferred."
+        ),
         ha="center",
         fontsize=9,
         color="#455a64",
@@ -778,17 +788,15 @@ and apply non-escalation componentwise. A favorable scalar coordinate cannot era
     _markdown(
         "anomaly-controls-doc",
         r"""
-## Editable selectors and triage threshold
+## Editable selectors and exact-label filter
 
-Severity rank is a **display-only triage order**, not scientific authority. Unknown severities are retained at rank 0 by default. The unfiltered anomaly count is always printed.
+Anomaly labels are categorical and are not assigned an unsupported ordinal severity rank. Paper and exact-status filters change only the visible subset. The unfiltered anomaly count is always printed.
 """,
     ),
     _code(
         "anomaly-controls",
         r"""
 PAPERS = [f"P{i}" for i in range(1, 16)]
-SEVERITY_RANK = {"INFO": 0, "LOW": 1, "MEDIUM": 2, "HIGH": 3, "CRITICAL": 4}
-MIN_SEVERITY_RANK = 0
 STATUS_CONTAINS = None
 DISPLAY_LIMIT = 100
 """,
@@ -808,7 +816,6 @@ The left plot counts exact stored anomaly labels. The right plot maps each retai
 selected_anomalies = [
     row for row in anomalies
     if paper_id(row) in PAPERS
-    and SEVERITY_RANK.get(str(first(row, "severity", default="INFO")).upper(), 0) >= MIN_SEVERITY_RANK
     and (STATUS_CONTAINS is None or STATUS_CONTAINS.upper() in exact_status(row).upper())
 ]
 severity_labels = sorted({str(first(row, "severity", default="UNSPECIFIED")) for row in selected_anomalies})

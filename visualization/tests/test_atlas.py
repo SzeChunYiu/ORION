@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import hashlib
 import json
+import os
 from pathlib import Path
 
 
@@ -21,6 +22,26 @@ def load_script(name: str):
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def execute_notebook_with_parameters(name: str, overrides: dict[str, object]) -> dict:
+    notebook = json.loads((VIS / "notebooks" / name).read_text(encoding="utf-8"))
+    namespace: dict[str, object] = {"__name__": "__review_test__"}
+    previous = Path.cwd()
+    try:
+        os.chdir(VIS)
+        for index, cell in enumerate(notebook["cells"]):
+            if cell["cell_type"] != "code":
+                continue
+            source = "".join(cell.get("source", []))
+            exec(compile(source, f"{name}:{index}", "exec"), namespace, namespace)
+            if "plt" in namespace:
+                namespace["plt"].show = lambda *args, **kwargs: None
+            if "parameters" in cell.get("metadata", {}).get("tags", []):
+                namespace.update(overrides)
+        return namespace
+    finally:
+        os.chdir(previous)
 
 
 def test_atlas_has_exact_canonical_paper_and_source_counts() -> None:
@@ -189,6 +210,43 @@ def test_notebooks_are_valid_json_with_latex_parameters_and_compilable_code() ->
                 compile("".join(cell.get("source", [])), f"{path.name}:{index}", "exec")
 
 
+def test_governance_notebook_nondefault_metric_uses_neutral_dynamic_copy() -> None:
+    namespace = execute_notebook_with_parameters(
+        "03_p11_p15_state_governance_harness.ipynb",
+        {"METRIC_NAME": "compiled_minus_universal_delta", "MIN_VALUE": None},
+    )
+    ax = namespace["ax"]
+    assert len(namespace["selected_metrics"]) == 30
+    assert "compiled minus universal delta" in ax.get_title().lower()
+    assert "unsafe reuse" not in ax.get_title().lower()
+    assert "p13" not in ax.get_title().lower()
+    assert "lower is better" not in ax.get_xlabel().lower()
+
+
+def test_anomaly_notebook_has_no_unsupported_ordinal_severity_filter() -> None:
+    path = VIS / "notebooks/04_anomaly_audit.ipynb"
+    notebook = json.loads(path.read_text(encoding="utf-8"))
+    code = "\n".join(
+        "".join(cell.get("source", []))
+        for cell in notebook["cells"]
+        if cell["cell_type"] == "code"
+    )
+    assert "SEVERITY_RANK" not in code
+    assert "MIN_SEVERITY_RANK" not in code
+
+    namespace = execute_notebook_with_parameters(path.name, {})
+    assert len(namespace["selected_anomalies"]) == 14
+    assert {row["severity"] for row in namespace["selected_anomalies"]} == {
+        "ADVERSE",
+        "BOUNDARY",
+        "CANNOT_CHECK",
+        "FAIL",
+        "MIXED",
+        "NOT_AUTHORITY",
+        "NULL",
+    }
+
+
 def test_interactive_html_is_self_contained_and_filterable() -> None:
     text = (VIS / "figures/interactive/evidence_atlas.html").read_text(encoding="utf-8")
     lower = text.lower()
@@ -210,6 +268,11 @@ def test_interactive_html_is_self_contained_and_filterable() -> None:
 
 
 def test_figure_copy_separates_receipt_disposition_from_external_authority() -> None:
+    gate_svg = (VIS / "figures/static/svg/01_paper_gate_matrix.svg").read_text(
+        encoding="utf-8"
+    )
+    assert ">MIXED<" in gate_svg
+
     p15_svg = (VIS / "figures/static/svg/12_p15_workflow_matrix.svg").read_text(
         encoding="utf-8"
     )

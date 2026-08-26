@@ -26,6 +26,7 @@ STATUS_COLORS: dict[EvidenceStatus, str] = {
     EvidenceStatus.CANNOT_CHECK: "#6F2DBD",  # purple
     EvidenceStatus.NULL: "#B8B8B8",  # light gray
     EvidenceStatus.ADVERSE: "#CC79A7",  # reddish purple
+    EvidenceStatus.MIXED: "#E69F00",  # orange
 }
 
 STATUS_MARKERS: dict[EvidenceStatus, str] = {
@@ -35,6 +36,7 @@ STATUS_MARKERS: dict[EvidenceStatus, str] = {
     EvidenceStatus.CANNOT_CHECK: "s",
     EvidenceStatus.NULL: "P",
     EvidenceStatus.ADVERSE: "v",
+    EvidenceStatus.MIXED: "h",
 }
 
 STATUS_SYMBOLS: dict[EvidenceStatus, str] = {
@@ -44,6 +46,7 @@ STATUS_SYMBOLS: dict[EvidenceStatus, str] = {
     EvidenceStatus.CANNOT_CHECK: "C/C",
     EvidenceStatus.NULL: "null",
     EvidenceStatus.ADVERSE: "adv",
+    EvidenceStatus.MIXED: "mix",
 }
 
 

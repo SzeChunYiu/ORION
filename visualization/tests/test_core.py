@@ -67,6 +67,10 @@ def test_status_classification_preserves_non_success_states(
     assert classify_status(raw) is expected
 
 
+def test_status_classification_preserves_mixed_as_a_distinct_state() -> None:
+    assert classify_status("mixed").value == "MIXED"
+
+
 def test_status_classification_rejects_unrecognised_values() -> None:
     with pytest.raises(ValueError, match="unrecognised evidence status"):
         classify_status("looks-good")
@@ -80,6 +84,7 @@ def test_status_palette_has_distinct_colors() -> None:
         EvidenceStatus.CANNOT_CHECK,
         EvidenceStatus.NULL,
         EvidenceStatus.ADVERSE,
+        EvidenceStatus("MIXED"),
     }
     assert required <= STATUS_COLORS.keys()
     assert len({STATUS_COLORS[item] for item in required}) == len(required)
@@ -166,12 +171,12 @@ def test_numeric_plot_suite_renders(tmp_path: Path) -> None:
 
 def test_categorical_and_dependency_plots_render(tmp_path: Path) -> None:
     fig, ax = plot_status_matrix(
-        [["PASS", "FAIL"], [None, "CANNOT_CHECK"]],
-        ["P1", "P2"],
+        [["PASS", "FAIL"], [None, "CANNOT_CHECK"], ["MIXED", "ADVERSE"]],
+        ["P1", "P2", "P15"],
         ["replay", "external"],
     )
     cell_text = {text.get_text() for text in ax.texts}
-    assert {"PASS", "FAIL", "NULL", "CANNOT\nCHECK"} <= cell_text
+    assert {"PASS", "FAIL", "NULL", "CANNOT\nCHECK", "MIXED", "ADVERSE"} <= cell_text
     assert "UNKNOWN" not in {text.get_text() for text in ax.get_legend().get_texts()}
     _assert_rendered(fig, tmp_path, "status-matrix")
 

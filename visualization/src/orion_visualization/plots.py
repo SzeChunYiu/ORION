@@ -402,10 +402,13 @@ def plot_status_matrix(
         EvidenceStatus.CANNOT_CHECK: "CANNOT CHECK",
         EvidenceStatus.NULL: "NULL",
         EvidenceStatus.ADVERSE: "ADVERSE",
+        EvidenceStatus.MIXED: "MIXED",
     }
     for row_index, states in enumerate(classified):
         for column_index, state in enumerate(states):
-            text_color = "#111827" if state in {EvidenceStatus.NULL} else "white"
+            text_color = (
+                "#111827" if state in {EvidenceStatus.NULL, EvidenceStatus.MIXED} else "white"
+            )
             label = display[state].replace(" ", "\n")
             ax.text(
                 column_index,

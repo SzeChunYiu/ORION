@@ -20,6 +20,7 @@ class EvidenceStatus(str, Enum):
     CANNOT_CHECK = "CANNOT_CHECK"
     NULL = "NULL"
     ADVERSE = "ADVERSE"
+    MIXED = "MIXED"
 
 
 class AuthorityLevel(str, Enum):
@@ -56,6 +57,7 @@ _ALIASES: dict[str, EvidenceStatus] = {
     "adverse_result": EvidenceStatus.ADVERSE,
     "harmful": EvidenceStatus.ADVERSE,
     "negative_result": EvidenceStatus.ADVERSE,
+    "mixed": EvidenceStatus.MIXED,
 }
 
 
