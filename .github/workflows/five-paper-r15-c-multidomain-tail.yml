@@ -6,12 +6,16 @@ on:
       - chatgpt/r15-c-multidomain-tail-20260826
     paths:
       - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_PROTOCOL.md'
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_SCHEMA_REPAIR.md'
       - 'papers/five-paper-top-tier-r8/C/fiberguard_multidomain_r15.py'
+      - 'papers/five-paper-top-tier-r8/C/fiberguard_multidomain_r15_schema_repair.py'
       - '.github/workflows/five-paper-r15-c-multidomain-tail.yml'
   pull_request:
     paths:
       - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_PROTOCOL.md'
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_SCHEMA_REPAIR.md'
       - 'papers/five-paper-top-tier-r8/C/fiberguard_multidomain_r15.py'
+      - 'papers/five-paper-top-tier-r8/C/fiberguard_multidomain_r15_schema_repair.py'
       - '.github/workflows/five-paper-r15-c-multidomain-tail.yml'
   workflow_dispatch:
 
@@ -57,15 +61,18 @@ jobs:
           python -m py_compile \
             "$root/fiberguard_aslib_sat12_all_r11.py" \
             "$root/fiberguard_aslib_transfer_r14.py" \
-            "$root/fiberguard_multidomain_r15.py"
-          python "$root/fiberguard_multidomain_r15.py" --self-test | tee "$RUNNER_TEMP/self-test.json"
+            "$root/fiberguard_multidomain_r15.py" \
+            "$root/fiberguard_multidomain_r15_schema_repair.py"
+          python "$root/fiberguard_multidomain_r15_schema_repair.py" --self-test | tee "$RUNNER_TEMP/self-test.json"
           grep -q '"lexicographic_gate":true' "$RUNNER_TEMP/self-test.json"
+          grep -q '"single_measure_alias":true' "$RUNNER_TEMP/self-test.json"
+          grep -q '"ambiguous_measure_rejected":true' "$RUNNER_TEMP/self-test.json"
 
-      - name: Execute frozen multi-domain audit twice
+      - name: Execute frozen multi-domain audit twice through schema adapter
         shell: bash
         run: |
           set -euo pipefail
-          script='papers/five-paper-top-tier-r8/C/fiberguard_multidomain_r15.py'
+          script='papers/five-paper-top-tier-r8/C/fiberguard_multidomain_r15_schema_repair.py'
           root="$RUNNER_TEMP/aslib_data"
           python "$script" --aslib-root "$root" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
           python "$script" --aslib-root "$root" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
@@ -73,7 +80,7 @@ jobs:
           cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
           grep -q '^FIBERGUARD_MULTIDOMAIN_R15_PASS ' "$RUNNER_TEMP/terminal-a.txt"
 
-      - name: Verify registry, gates and authority ceiling
+      - name: Verify registry, schema custody, gates and authority ceiling
         shell: bash
         run: |
           set -euo pipefail
@@ -94,6 +101,20 @@ jobs:
               'GRAPHS-2015',
           ]
           assert all(result['controls'].values())
+          adapter = result['source_schema_adapter']
+          assert adapter['first_failed_run_id'] == 33015635958
+          assert adapter['first_failed_job_id'] == 98333009427
+          assert adapter['first_failure_terminal'] == 'PRE_AGGREGATE_SCHEMA_INCOMPATIBILITY'
+          assert adapter['scientific_protocol_changed'] is False
+          assert adapter['scenario_registry_changed'] is False
+          assert adapter['splits_changed'] is False
+          assert adapter['arms_changed'] is False
+          assert adapter['objectives_or_gates_changed'] is False
+          assert set(adapter['observed_performance_columns']) == {
+              'ASP-POTASSCO',
+              'CSP-Minizinc-Time-2016',
+              'GRAPHS-2015',
+          }
           assert len(result['scenarios']) == 3
           assert all(len(scenario['splits']) == 2 for scenario in result['scenarios'])
           assert all(
