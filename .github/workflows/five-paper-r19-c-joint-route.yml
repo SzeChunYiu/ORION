@@ -40,15 +40,14 @@ jobs:
           root='papers/five-paper-top-tier-r8/C'
           core="$root/fiberguard_joint_route_r19_core.py"
           script="$root/verify_fiberguard_joint_route_r19.py"
+          registered="$root/JOINT_ROUTE_R19_RESULTS.json"
           python -m py_compile "$core" "$script"
           python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
           python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
           cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
           cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$registered"
           grep -q '^FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT_PASS ' "$RUNNER_TEMP/terminal-a.txt"
-          echo 'BEGIN_R19_RESULT_JSON'
-          cat "$RUNNER_TEMP/result-a.json"
-          echo 'END_R19_RESULT_JSON'
 
       - name: Verify hostile controls and authority ceiling
         shell: bash
