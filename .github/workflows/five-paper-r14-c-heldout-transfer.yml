@@ -1,0 +1,143 @@
+name: five-paper-r14-c-heldout-transfer
+
+on:
+  push:
+    branches:
+      - chatgpt/r14-c-prospective-heldout-transfer-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_HELDOUT_TRANSFER_PROTOCOL_R14.md'
+      - 'papers/five-paper-top-tier-r8/C/HELDOUT_TRANSFER_PROTOCOL_R14.json'
+      - 'papers/five-paper-top-tier-r8/C/fiberguard_aslib_heldout_r14.py'
+      - '.github/workflows/five-paper-r14-c-heldout-transfer.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  prospective-heldout-transfer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install frozen runtime dependencies
+        run: python -m pip install 'numpy==2.1.3' 'PyYAML==6.0.2'
+
+      - name: Materialize pinned ASlib SAT12-ALL corpus
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/aslib_data"
+          git init "$root"
+          git -C "$root" remote add origin https://github.com/coseal/aslib_data.git
+          git -C "$root" config core.sparseCheckout true
+          printf '/SAT12-ALL/\n' > "$root/.git/info/sparse-checkout"
+          git -C "$root" fetch --depth 1 origin 551b22beef8df17de59286b4822ef720e0aa4d6f
+          git -C "$root" checkout --detach FETCH_HEAD
+          test "$(git -C "$root" rev-parse HEAD)" = '551b22beef8df17de59286b4822ef720e0aa4d6f'
+
+      - name: Execute prospectively frozen audit twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          script="$root/fiberguard_aslib_heldout_r14.py"
+          protocol="$root/HELDOUT_TRANSFER_PROTOCOL_R14.json"
+          python -m py_compile "$script"
+          python "$script" \
+            --aslib-root "$RUNNER_TEMP/aslib_data" \
+            --protocol "$protocol" \
+            --protocol-commit "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/result-a.json" \
+            --comment-output "$RUNNER_TEMP/comment-a.md" \
+            | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" \
+            --aslib-root "$RUNNER_TEMP/aslib_data" \
+            --protocol "$protocol" \
+            --protocol-commit "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/result-b.json" \
+            --comment-output "$RUNNER_TEMP/comment-b.md" \
+            | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/comment-a.md" "$RUNNER_TEMP/comment-b.md"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+
+      - name: Verify controls and fail-closed authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              (Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text()
+          )
+          assert result['schema'] == 'ORION.FiberGuard.ASlibHeldout.R14.v1'
+          assert result['prospective_binding']['protocol_execution_commit'] == os.environ['GITHUB_SHA']
+          assert result['prospective_binding']['result_absent_from_protocol_inputs'] is True
+          assert all(result['controls'].values())
+          assert result['corpus']['instance_count'] == 1614
+          assert result['corpus']['algorithm_count'] == 31
+          assert result['corpus']['candidate_representation_count'] == 513
+          assert result['split_audit']['official_cv_repetition'] == 1
+          assert result['split_audit']['family']['zero_family_overlap'] is True
+          assert result['authority']['heldout_transfer_within_pinned_ASlib_scenario'] is True
+          assert result['authority']['cross_scenario_transfer'] is False
+          assert result['authority']['strong_learned_baseline_complete'] is False
+          assert result['authority']['adaptive_R12_R13_policy_executed'] is False
+          assert result['authority']['grants_journal_authority'] is False
+          allowed = {
+              'FIBERGUARD_ASLIB_HELDOUT_R14_PASS_BOTH_OFFICIAL_AND_FAMILY',
+              'FIBERGUARD_ASLIB_HELDOUT_R14_OFFICIAL_ONLY__FAMILY_SHIFT_FAIL',
+              'FIBERGUARD_ASLIB_HELDOUT_R14_PARTIAL_MEAN_ONLY',
+              'FIBERGUARD_ASLIB_HELDOUT_R14_NO_EXACT_TRANSFER',
+          }
+          assert result['terminal'] in allowed
+          print('R14_PROSPECTIVE_HELDOUT_RESULT_VERIFIED', result['terminal'])
+          PY
+
+      - name: Publish one content-bound result comment
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          existing="$({
+            gh api --paginate "repos/$GITHUB_REPOSITORY/issues/1386/comments" \
+              --jq ".[] | select(.body | contains(\"$GITHUB_SHA\")) | .id"
+          } | head -n 1)"
+          if [ -z "$existing" ]; then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/issues/1386/comments" \
+              -F "body=@$RUNNER_TEMP/comment-a.md" >/dev/null
+          else
+            echo "result comment already exists as $existing"
+          fi
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage complete immutable result artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-heldout-r14"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/FIBERGUARD_ASLIB_HELDOUT_R14_RESULTS.json"
+          cp "$RUNNER_TEMP/comment-a.md" "$out/RESULT_COMMENT.md"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-aslib-heldout-r14-${{ github.sha }}
+          path: ${{ runner.temp }}/fiberguard-heldout-r14/
+          if-no-files-found: error
+          retention-days: 30
