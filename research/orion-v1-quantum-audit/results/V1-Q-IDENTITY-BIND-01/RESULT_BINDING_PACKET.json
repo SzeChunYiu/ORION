@@ -1,0 +1,81 @@
+{
+  "authoritative_execution_packet": {
+    "commit": "c1f46469f1cdd2735c7c95d48398a7111a62c4fe",
+    "git_blob": "05e00e977bdfcae7847e1834ad40d27ceb4d885c",
+    "path": "research/orion-v1-quantum-audit/V1-Q-IDENTITY-BIND-01/EXECUTION_PACKET_V1.json",
+    "sha256": "2ef6ee96c338a58d0b49762ce5f9bd103565493d4b666d095b8b096e2831f701"
+  },
+  "authority_ceiling": {
+    "external_novelty": "CANNOT_CHECK",
+    "issue_closure_authority": "NONE",
+    "paper_authority_delta": "NONE",
+    "physical_quantum_validity": "CANNOT_CHECK",
+    "quantum_advantage": "CANNOT_CHECK",
+    "scientific_disposition": "NONE"
+  },
+  "bound_files": [
+    {
+      "bytes": 2569,
+      "path": "FREEZE.json",
+      "sha256": "f990cec7c8dff6a11df04bf68f0fe62cbe1f449e8fc681cf720546fabad2e8c8"
+    },
+    {
+      "bytes": 487605,
+      "path": "RAW_MANIFEST.json",
+      "sha256": "764ac625cb911e87a7881565ddf46cc8d4416fad2146cff4112ff2738469d162"
+    },
+    {
+      "bytes": 379358,
+      "path": "ISSUE_IDENTITY_LEDGER.json",
+      "sha256": "64fc8a48d9c0d89edf364847df4d92586f09a723b4f575ae366ea808f2a517af"
+    },
+    {
+      "bytes": 200236,
+      "path": "LINKED_PR_COMMIT_LEDGER.json",
+      "sha256": "f668a94eee9c7e892cbd5f336e7f69f75d87747ba8c213fa3641e5bd36fe7aaf"
+    },
+    {
+      "bytes": 145205,
+      "path": "CURRENT_MAIN_PRESENCE_LEDGER.json",
+      "sha256": "6c824be681ca3850aec5569bcc0e7226a6ebf6bdcba877b2d159c3361e80d7af"
+    },
+    {
+      "bytes": 17020,
+      "path": "COMMON_CORE_ROUTE_LEDGER.json",
+      "sha256": "06bca0d4f9be16d5a58b19b86d552b5190695318efebffd0d3496d77ee60f893"
+    },
+    {
+      "bytes": 2620,
+      "path": "NEGATIVE_CONTROLS.json",
+      "sha256": "ef175133d8163bfadecf0010a51c5725294ecff29965ffdbcda2a4c281a29f4b"
+    },
+    {
+      "bytes": 661,
+      "path": "RESOURCE_LEDGER.json",
+      "sha256": "f45e406d0494e49d8d9f67e1aa8e2cda991f6727ff570341321ee12b07d9917e"
+    },
+    {
+      "bytes": 337692,
+      "path": "CENSUS_INPUT.zip",
+      "sha256": "115b2ea69dba24bcf1a5959403dc6165ffc4b5b59ad4a5d81fd78ca293f408da"
+    },
+    {
+      "bytes": 53900501,
+      "path": "RAW_RESPONSES.zip",
+      "sha256": "f58cefac12175247fe8c152a18cef1047b4508eb0a9dc67450fe3bd06ae647df"
+    }
+  ],
+  "common_core_row_count": 14,
+  "denominator_count": 67,
+  "grants_issue_closure": false,
+  "grants_orion_v1_freeze": false,
+  "grants_paper_authority": false,
+  "grants_scientific_disposition": false,
+  "issue_identity_row_count": 67,
+  "linked_pr_row_count": 163,
+  "packet_id": "V1-Q-IDENTITY-BIND-01",
+  "paper_authority_delta": "NONE",
+  "presence_row_count": 215,
+  "schema": "ORION.V1.QuantumIdentityResultBindingPacket.v1",
+  "terminal": "V1_QUANTUM_67_ISSUE_IDENTITY_AND_ROUTE_CENSUS_COMPLETE"
+}
