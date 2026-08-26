@@ -1,0 +1,161 @@
+{
+  "schema": "ORION.FiberGuard.CrossScenarioConformal.Protocol.R16.v1",
+  "parent_commit": "e431e9f187667431858f42e236bd74e57f658c31",
+  "created_utc": "2026-08-26",
+  "question": "Can a development-selected probabilistic action-regret certificate preserve safety and paid decision value on later SAT solver portfolios after exact-equality transfer failed?",
+  "upstream": {
+    "repository": "https://github.com/coseal/aslib_data.git",
+    "commit": "551b22beef8df17de59286b4822ef720e0aa4d6f"
+  },
+  "scenarios": {
+    "development": {
+      "name": "SAT16-MAIN",
+      "acquisition_step": "ALL",
+      "files": {
+        "description.txt": "4dedbb1485a9f9aacac485da2762dd99734dfcf3",
+        "algorithm_runs.arff": "4b8fe472cead1d2899ac60b58c1dc62a51787fe9",
+        "feature_values.arff": "7810a1bef046eb2cd117e6690e7659e4cb5f6768",
+        "feature_costs.arff": "bc6fc92c6247faa327e29592fdc7c1c40c1db411",
+        "feature_runstatus.arff": "d90604fb6f1c693902281fff985ea5b37340c6be",
+        "cv.arff": "c381fc609860d21f9dc9ffdad642fd78711ff3aa"
+      }
+    },
+    "validation": {
+      "name": "SAT18-EXP",
+      "acquisition_step": "ALL",
+      "files": {
+        "description.txt": "e8e6eaa71505fa382e1baf04e924dae042a908c4",
+        "algorithm_runs.arff": "c8abc93acb6c6278c4104dee8054d524ec956450",
+        "feature_values.arff": "d7dff33bd8a35d9bde6ebfae77e9ae0b7645fd2c",
+        "feature_costs.arff": "74218286ae15ed61bf0d6750a1baa88d99b91a5b",
+        "feature_runstatus.arff": "f32352e4839614911d71fdab9f1fc407897dab81",
+        "cv.arff": "8cfbf7ec6fcd07185ac197133979238662472943"
+      }
+    },
+    "test": {
+      "name": "SAT20-MAIN",
+      "acquisition_step": "BASE",
+      "files": {
+        "description.txt": "e3fe096f7fb8f7ef06d5494bd95a429d522acd18",
+        "algorithm_runs.arff": "8df5349d7c7e139b190c10fcd15606cdcd8d76cb",
+        "feature_values.arff": "ce896d548a83fe9357a9eac273dd87866f5eb638",
+        "feature_costs.arff": "143bef9c9a889f166dec2ca612e595e596e2ce6d",
+        "feature_runstatus.arff": "71b04101d2ca6c9c3825924446447e74729c3b4b",
+        "cv.arff": "3e67a0b0d4f153b32d8cd995d59200ed45cda390"
+      }
+    }
+  },
+  "portable_representation": {
+    "source": "intersection of deterministic features provided by the declared acquisition step in all three scenarios",
+    "canonical_name": "remove BASE prefix, remove non-alphanumeric characters, uppercase",
+    "collision_policy": "fail closed on any within-scenario canonical-name collision",
+    "minimum_common_features": 40,
+    "missingness": "training-median imputation plus one missingness indicator per common feature",
+    "scaling": "training mean and standard deviation, with zero-variance scale replaced by one",
+    "runstatus": "one-hot ok,presolved,timeout,memout,crash,other"
+  },
+  "split": {
+    "official_cv_repetition": 1,
+    "expected_folds": 10,
+    "test_fold": "f",
+    "calibration_fold": "1 + (f mod 10)",
+    "proper_training_folds": "all remaining eight folds"
+  },
+  "model_candidates": {
+    "knn": {
+      "neighbors": [4, 8, 16, 32],
+      "weights": "distance"
+    },
+    "extra_trees": {
+      "n_estimators": 128,
+      "min_samples_leaf": [1, 2, 4, 8],
+      "max_features": [0.5, 1.0],
+      "random_state": 20260826,
+      "n_jobs": 1
+    },
+    "random_forest": {
+      "n_estimators": 128,
+      "min_samples_leaf": [1, 4],
+      "max_features": [0.5, 1.0],
+      "random_state": 20260826,
+      "n_jobs": 1
+    }
+  },
+  "certificate_candidates": {
+    "alpha": [0.05, 0.1, 0.2],
+    "epsilon_cutoff_fraction": [0.01, 0.05, 0.2, 1.0],
+    "score": "realized selected-action regret minus clipped predicted selected-action regret",
+    "quantile_rank": "ceil((n_calibration+1)*(1-alpha)); infinity if rank exceeds n_calibration",
+    "upper_bound": "max(0, predicted selected-action regret + calibration quantile)",
+    "deployment": "use learned action iff upper bound <= epsilon, otherwise use proper-training global robust fallback"
+  },
+  "development_selection": {
+    "subject": "SAT16-MAIN official ten-fold aggregate only",
+    "feasible_constraints": {
+      "deployment_coverage_minimum": 0.1,
+      "selective_mean_no_larger_than_fallback": true,
+      "selective_p95_no_larger_than_fallback": true,
+      "selective_catastrophic_rate_strictly_lower_than_full_model": true
+    },
+    "objective": "minimum selective mean total excess; then catastrophic rate, p95, negative deployment coverage, model family, model parameters, alpha, epsilon fraction",
+    "no_feasible_configuration": "select the global objective minimum but emit development-gate failure"
+  },
+  "frozen_reference_baselines": {
+    "knn": {"neighbors": 16, "weights": "distance"},
+    "extra_trees": {"n_estimators": 256, "min_samples_leaf": 2, "max_features": 1.0, "random_state": 20260826, "n_jobs": 1}
+  },
+  "arms": [
+    "proper-training single-best solver",
+    "proper-training global robust solver",
+    "frozen 16-NN full selector",
+    "frozen ExtraTrees full selector",
+    "development-selected full learned selector",
+    "development-selected split-conformal selective selector"
+  ],
+  "cost_and_oracle": {
+    "solver_failure": "PAR10 at each scenario's declared cutoff",
+    "feature_failure": "recorded finite acquisition cost, otherwise the scenario cutoff",
+    "total_excess": "acquisition cost + selected solver PAR10 - statewise virtual-best PAR10",
+    "common_baseline": "statewise virtual-best solver with zero acquisition cost"
+  },
+  "reported_certificate_semantics": {
+    "guarantee": "under exchangeability and a configuration fixed before the target scenario, P(deploy and selected-action regret > epsilon) <= alpha",
+    "not_guaranteed": [
+      "conditional coverage among deployed cases",
+      "worst-case fibre safety",
+      "family-shift validity",
+      "pathwise safety for randomized actions"
+    ]
+  },
+  "validation_and_test_gate": {
+    "full_model_mean_strictly_lower_than_fallback": true,
+    "selective_mean_overhead": "at most 10 percent of the full-model gain over fallback",
+    "selective_catastrophic_rate": "strictly lower than the development-selected full model",
+    "selective_p95": "no larger than fallback",
+    "deployment_coverage_minimum": 0.1,
+    "empirical_joint_false_certificate_rate": "no larger than alpha + 0.02"
+  },
+  "terminals": [
+    "FIBERGUARD_R16_CROSS_SCENARIO_CERTIFICATE_PASS_VALIDATION_AND_TEST",
+    "FIBERGUARD_R16_VALIDATION_PASS__UNTOUCHED_TEST_FAIL",
+    "FIBERGUARD_R16_DEVELOPMENT_ONLY__VALIDATION_FAIL",
+    "FIBERGUARD_R16_NO_PORTABLE_CERTIFICATE_VALUE",
+    "CANNOT_CHECK_COMMON_FEATURE_SCHEMA",
+    "CANNOT_CHECK_UPSTREAM_BINDING",
+    "CANNOT_CHECK_RESOURCE_BOUND"
+  ],
+  "authority": {
+    "result_must_be_absent_from_protocol_commit": true,
+    "SAT12_ALL_may_not_select_any_R16_parameter": true,
+    "SAT16_MAIN_is_development_only": true,
+    "SAT18_EXP_is_validation_only_and_may_not_retune": true,
+    "SAT20_MAIN_is_untouched_test": true,
+    "scenario_solver_portfolios_may_differ": true,
+    "method_hyperparameters_transfer_but_solver_models_are_refit_within_scenario": true,
+    "split_conformal_is_marginal_not_worst_case": true,
+    "AutoFolio_or_current_strongest_baseline_complete": false,
+    "external_independence": false,
+    "production_value": false,
+    "journal_authority": false
+  }
+}

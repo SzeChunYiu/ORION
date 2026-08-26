@@ -1,0 +1,153 @@
+name: five-paper-r16-c-cross-scenario-conformal
+
+on:
+  push:
+    branches:
+      - chatgpt/r16-c-cross-scenario-conformal-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_CROSS_SCENARIO_CONFORMAL_R16.md'
+      - 'papers/five-paper-top-tier-r8/C/CROSS_SCENARIO_CONFORMAL_PROTOCOL_R16.json'
+      - 'papers/five-paper-top-tier-r8/C/fiberguard_cross_scenario_conformal_r16.py'
+      - '.github/workflows/five-paper-r16-c-cross-scenario-conformal.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  prospective-cross-scenario-certificate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install frozen runtime dependencies
+        run: >-
+          python -m pip install
+          'numpy==2.1.3'
+          'scikit-learn==1.5.2'
+          'PyYAML==6.0.2'
+
+      - name: Materialize pinned ASlib scenarios
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/aslib_data"
+          git init "$root"
+          git -C "$root" remote add origin https://github.com/coseal/aslib_data.git
+          git -C "$root" config core.sparseCheckout true
+          {
+            printf '/SAT16-MAIN/\n'
+            printf '/SAT18-EXP/\n'
+            printf '/SAT20-MAIN/\n'
+          } > "$root/.git/info/sparse-checkout"
+          git -C "$root" fetch --depth 1 origin 551b22beef8df17de59286b4822ef720e0aa4d6f
+          git -C "$root" checkout --detach FETCH_HEAD
+          test "$(git -C "$root" rev-parse HEAD)" = '551b22beef8df17de59286b4822ef720e0aa4d6f'
+
+      - name: Execute prospectively frozen audit twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          script="$root/fiberguard_cross_scenario_conformal_r16.py"
+          protocol="$root/CROSS_SCENARIO_CONFORMAL_PROTOCOL_R16.json"
+          python -m py_compile "$script"
+          python "$script" \
+            --aslib-root "$RUNNER_TEMP/aslib_data" \
+            --protocol "$protocol" \
+            --protocol-commit "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/result-a.json" \
+            --comment-output "$RUNNER_TEMP/comment-a.md" \
+            | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" \
+            --aslib-root "$RUNNER_TEMP/aslib_data" \
+            --protocol "$protocol" \
+            --protocol-commit "$GITHUB_SHA" \
+            --output "$RUNNER_TEMP/result-b.json" \
+            --comment-output "$RUNNER_TEMP/comment-b.md" \
+            | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/comment-a.md" "$RUNNER_TEMP/comment-b.md"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+
+      - name: Verify custody, controls, and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              (Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text()
+          )
+          assert result['schema'] == 'ORION.FiberGuard.CrossScenarioConformal.R16.v1'
+          binding = result['prospective_binding']
+          assert binding['protocol_execution_commit'] == os.environ['GITHUB_SHA']
+          assert binding['result_absent_from_protocol_inputs'] is True
+          assert all(result['controls'].values())
+          assert result['portable_representation']['common_feature_count'] >= 40
+          assert result['development']['candidate_count'] == 768
+          assert result['scenarios']['SAT16-MAIN']['algorithm_count'] > 1
+          assert result['scenarios']['SAT18-EXP']['algorithm_count'] > 1
+          assert result['scenarios']['SAT20-MAIN']['algorithm_count'] > 1
+          assert result['authority']['split_conformal_guarantee'] == 'MARGINAL_UNDER_EXCHANGEABILITY'
+          assert result['authority']['worst_case_fibre_safety'] is False
+          assert result['authority']['family_shift_validity'] is False
+          assert result['authority']['strongest_algorithm_selection_baseline_complete'] is False
+          assert result['authority']['external_independence'] is False
+          assert result['authority']['grants_journal_authority'] is False
+          allowed = {
+              'FIBERGUARD_R16_CROSS_SCENARIO_CERTIFICATE_PASS_VALIDATION_AND_TEST',
+              'FIBERGUARD_R16_VALIDATION_PASS__UNTOUCHED_TEST_FAIL',
+              'FIBERGUARD_R16_DEVELOPMENT_ONLY__VALIDATION_FAIL',
+              'FIBERGUARD_R16_NO_PORTABLE_CERTIFICATE_VALUE',
+          }
+          assert result['terminal'] in allowed
+          print('R16_CROSS_SCENARIO_RESULT_VERIFIED', result['terminal'])
+          PY
+
+      - name: Publish one content-bound result comment
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          existing="$({
+            gh api --paginate "repos/$GITHUB_REPOSITORY/issues/1386/comments" \
+              --jq ".[] | select(.body | contains(\"$GITHUB_SHA\")) | .id"
+          } | head -n 1)"
+          if [ -z "$existing" ]; then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/issues/1386/comments" \
+              -F "body=@$RUNNER_TEMP/comment-a.md" >/dev/null
+          else
+            echo "result comment already exists as $existing"
+          fi
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage complete immutable result artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-cross-scenario-r16"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/FIBERGUARD_CROSS_SCENARIO_R16_RESULTS.json"
+          cp "$RUNNER_TEMP/comment-a.md" "$out/RESULT_COMMENT.md"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-cross-scenario-r16-${{ github.sha }}
+          path: ${{ runner.temp }}/fiberguard-cross-scenario-r16/
+          if-no-files-found: error
+          retention-days: 30
