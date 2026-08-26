@@ -350,7 +350,7 @@ def main() -> int:
             "instance_count": 15,
             "symmetry_group": "global branch exchange (orientation fixed), plus audited X/Z relabel, coordinate, block and target-swap orbits",
             "canonicalization_method": "fresh recursive perfect-matching generator and source-digest target selector; no registered canonicalizer",
-            "completeness_argument": "Three qubits is the smallest qubit count on which a frame can have support three. For the one predeclared digest-selected six-target subject, every one of its 15 perfect matchings is present. Within every matching, the solver spans the full phase-free frame and Tag alphabets, every target permutation, every central-branch choice, and proves exact optima separately at support caps one, two, and three. This is complete only for that declared finite subject, not for all n=3 target sets.",
+            "completeness_argument": "Three qubits is the smallest qubit count on which a frame can have support three. For the one deterministically digest-selected six-target subject, every one of its 15 perfect matchings is present. Within every matching, the solver spans the full phase-free frame and Tag alphabets, every target permutation, every central-branch choice, and proves exact optima separately at support caps one, two, and three. This is complete only for that declared finite subject, not for all n=3 target sets.",
         },
         "controls": {
             "support_two_positive": negative["support_two_lower"]["result"][

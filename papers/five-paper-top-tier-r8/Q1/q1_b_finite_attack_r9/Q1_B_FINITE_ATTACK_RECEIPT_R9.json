@@ -21,7 +21,7 @@
   },
   "finite_domain": {
     "canonicalization_method": "fresh recursive perfect-matching generator and source-digest target selector; no registered canonicalizer",
-    "completeness_argument": "Three qubits is the smallest qubit count on which a frame can have support three. For the one predeclared digest-selected six-target subject, every one of its 15 perfect matchings is present. Within every matching, the solver spans the full phase-free frame and Tag alphabets, every target permutation, every central-branch choice, and proves exact optima separately at support caps one, two, and three. This is complete only for that declared finite subject, not for all n=3 target sets.",
+    "completeness_argument": "Three qubits is the smallest qubit count on which a frame can have support three. For the one deterministically digest-selected six-target subject, every one of its 15 perfect matchings is present. Within every matching, the solver spans the full phase-free frame and Tag alphabets, every target permutation, every central-branch choice, and proves exact optima separately at support caps one, two, and three. This is complete only for that declared finite subject, not for all n=3 target sets.",
     "instance_count": 15,
     "instance_generator": "six unique full-alphabet n=3 targets selected by the canonical manuscript SHA-256 prefix; deterministic recursion enumerates all perfect matchings",
     "scope_parameters": {
@@ -52,7 +52,7 @@
   "manifests": {
     "environment_manifest_sha256": "45f9e4472a87075a55eaa7ea15193faaf042496ad549fb106eed4b260c0ab24e",
     "negative_control_manifest_sha256": "70a5ac46351fb87b5c82ddfdbd8f630128cf90d7f22e5db4ae9a6513cf684373",
-    "result_manifest_sha256": "7993b4d17fcb72e80ea0e7af69a709e7dc218e686a9911998e15cc83ec3c289a",
+    "result_manifest_sha256": "ee574784740da934d82f4623d4acbed591b552ffb893205a0b9330ade9fe9352",
     "source_manifest_sha256": "0d1fe2dcaf5eb33971dcb5cbed0bdade32fd2a039ab68ab120f48deb03e6e0fd"
   },
   "results": {
