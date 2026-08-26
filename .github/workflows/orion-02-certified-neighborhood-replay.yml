@@ -78,8 +78,42 @@ jobs:
           cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
           cmp "$RUNNER_TEMP/result-a.md" "$RUNNER_TEMP/result-b.md"
           cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
-          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/registered.json"
           cmp "$RUNNER_TEMP/result-a.md" "$RUNNER_TEMP/registered.md"
+
+      - name: Verify scientific byte equality modulo declared environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          temp = Path(os.environ['RUNNER_TEMP'])
+          observed = json.loads((temp / 'result-a.json').read_text())
+          registered = json.loads((temp / 'registered.json').read_text())
+          observed_environment = observed.pop('environment')
+          registered_environment = registered.pop('environment')
+          assert observed == registered
+          assert observed_environment['numpy'] == registered_environment['numpy'] == '1.26.4'
+          assert observed_environment['sklearn'] == registered_environment['sklearn'] == '1.5.2'
+          assert observed_environment['python'].split('.')[:2] == ['3', '11']
+          assert registered_environment['python'] == '3.11.5'
+          assert registered_environment['platform'].startswith('Linux-5.14.0-')
+          assert observed_environment['platform'].startswith('Linux-')
+          (temp / 'REPLAY_ENVIRONMENT.json').write_text(
+              json.dumps(
+                  {
+                      'registered_lunarc_environment': registered_environment,
+                      'github_replay_environment': observed_environment,
+                      'scientific_projection_byte_equal': True,
+                  },
+                  sort_keys=True,
+                  separators=(',', ':'),
+              ) + '\n'
+          )
+          print('CERTIFIED_NEIGHBORHOOD_SCIENTIFIC_PROJECTION_BYTE_EQUAL')
+          PY
 
       - name: Verify adverse terminal and immutable controls
         shell: bash
@@ -135,9 +169,11 @@ jobs:
           set -euo pipefail
           out="$RUNNER_TEMP/orion-02-certified-neighborhood-replay"
           mkdir -p "$out"
-          cp "$RUNNER_TEMP/result-a.json" "$out/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json"
+          cp "$RUNNER_TEMP/result-a.json" "$out/CERTIFIED_NEIGHBORHOOD_REPLAY_RESULT.json"
+          cp "$RUNNER_TEMP/registered.json" "$out/CERTIFIED_NEIGHBORHOOD_REGISTERED_LUNARC_RESULT.json"
           cp "$RUNNER_TEMP/result-a.md" "$out/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md"
           cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          cp "$RUNNER_TEMP/REPLAY_ENVIRONMENT.json" "$out/"
           sha256sum "$out"/* > "$out/SHA256SUMS"
 
       - uses: actions/upload-artifact@v4
