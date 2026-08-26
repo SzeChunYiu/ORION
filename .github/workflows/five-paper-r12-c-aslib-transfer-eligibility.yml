@@ -1,0 +1,89 @@
+name: five-paper-r12-c-aslib-transfer-eligibility
+
+on:
+  push:
+    branches:
+      - chatgpt/r12-c-aslib-transfer-eligibility-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/select_aslib_sat_transfer_targets_r12.py'
+      - '.github/workflows/five-paper-r12-c-aslib-transfer-eligibility.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/select_aslib_sat_transfer_targets_r12.py'
+      - '.github/workflows/five-paper-r12-c-aslib-transfer-eligibility.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  metadata-only-eligibility:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install frozen parser dependency
+        run: python -m pip install 'PyYAML==6.0.2'
+
+      - name: Fetch pinned ASlib commit without checking out outcome blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/aslib_data"
+          git init "$root"
+          git -C "$root" remote add origin https://github.com/coseal/aslib_data.git
+          git -C "$root" fetch --depth 1 --filter=blob:none origin 551b22beef8df17de59286b4822ef720e0aa4d6f
+          git -C "$root" checkout --detach --no-checkout FETCH_HEAD
+          test "$(git -C "$root" rev-parse HEAD)" = '551b22beef8df17de59286b4822ef720e0aa4d6f'
+
+      - name: Freeze metadata-only eligibility twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='papers/five-paper-top-tier-r8/C/select_aslib_sat_transfer_targets_r12.py'
+          root="$RUNNER_TEMP/aslib_data"
+          python "$script" --aslib-git-root "$root" --output "$RUNNER_TEMP/eligibility-a.json" | tee "$RUNNER_TEMP/terminal.txt"
+          python "$script" --aslib-git-root "$root" --output "$RUNNER_TEMP/eligibility-b.json"
+          cmp "$RUNNER_TEMP/eligibility-a.json" "$RUNNER_TEMP/eligibility-b.json"
+          grep -q '^FIBERGUARD_ASLIB_TRANSFER_ELIGIBILITY_FROZEN ' "$RUNNER_TEMP/terminal.txt"
+
+      - name: Enforce outcome blindness
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, pathlib
+          p = pathlib.Path(os.environ['RUNNER_TEMP']) / 'eligibility-a.json'
+          r = json.loads(p.read_text())
+          assert r['schema'] == 'ORION.FiberGuard.ASlibSATTransferEligibility.R12.v1'
+          assert r['authority']['metadata_only'] is True
+          assert r['authority']['target_algorithm_outcomes_read'] is False
+          assert r['authority']['target_feature_values_read'] is False
+          assert r['authority']['target_feature_cost_values_read'] is False
+          assert r['authority']['target_runstatus_values_read'] is False
+          assert r['authority']['representation_reselection_allowed'] is False
+          assert r['upstream']['source_result_sha256'] == '7c0778836101d5fe44b024e302c3fc0848faf5a994fc1e51b80831d82fd5e652'
+          print('ASLIB_TRANSFER_ELIGIBILITY_AUTHORITY_VERIFIED')
+          PY
+
+      - name: Stage frozen eligibility artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-aslib-transfer-eligibility-r12"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/eligibility-a.json" "$out/FIBERGUARD_ASLIB_TRANSFER_ELIGIBILITY_R12.json"
+          cp "$RUNNER_TEMP/terminal.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-aslib-transfer-eligibility-r12
+          path: ${{ runner.temp }}/fiberguard-aslib-transfer-eligibility-r12/
+          if-no-files-found: error
+          retention-days: 30
