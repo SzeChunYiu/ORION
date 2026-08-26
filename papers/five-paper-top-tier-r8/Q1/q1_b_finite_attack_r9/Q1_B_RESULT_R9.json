@@ -1,0 +1,1392 @@
+{
+  "finite_domain": {
+    "complete_over": "all perfect matchings of the six digest-selected unique targets",
+    "matching_count": 15,
+    "n": 3,
+    "targets": [
+      "XII",
+      "YXI",
+      "YZZ",
+      "ZIY",
+      "ZXX",
+      "ZYY"
+    ]
+  },
+  "instances": [
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "YXI"
+        ],
+        [
+          "ZIY",
+          "YZZ"
+        ],
+        [
+          "ZYY",
+          "XII"
+        ]
+      ],
+      "exact_optimum": 10,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.00",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.00",
+        "maximum_frame_support": 1,
+        "objective": 10,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 8,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "IXX",
+            "IXI"
+          ],
+          [
+            "IIY",
+            "IZZ"
+          ],
+          [
+            "IYY",
+            "III"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 10,
+        "2": 10,
+        "3": 10
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 1,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 1,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "XII"
+            ],
+            "target_permutation": 0
+          }
+        ],
+        "objective": 10,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "ZII",
+        "witness_sha256": "93418230d51201aa78b3839b0574071a3ec6c2d53c45d093ed687f83d6ef9b3e"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "YXI"
+        ],
+        [
+          "ZIY",
+          "ZYY"
+        ],
+        [
+          "YZZ",
+          "XII"
+        ]
+      ],
+      "exact_optimum": 11,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.01",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.01",
+        "maximum_frame_support": 1,
+        "objective": 11,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 9,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "IXI",
+            "IXX"
+          ],
+          [
+            "XIY",
+            "IYY"
+          ],
+          [
+            "IZZ",
+            "III"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 11,
+        "2": 11,
+        "3": 11
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 1
+          },
+          {
+            "central_branch": 1,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "XII"
+            ],
+            "target_permutation": 0
+          }
+        ],
+        "objective": 11,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "YII",
+        "witness_sha256": "64b739603427eb77ce93e046638ffb90fbeba2a579922c3e43588ea7db43d93b"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "YXI"
+        ],
+        [
+          "ZIY",
+          "XII"
+        ],
+        [
+          "YZZ",
+          "ZYY"
+        ]
+      ],
+      "exact_optimum": 10,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.02",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.02",
+        "maximum_frame_support": 1,
+        "objective": 10,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 8,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "IXX",
+            "IXI"
+          ],
+          [
+            "IIY",
+            "III"
+          ],
+          [
+            "IYY",
+            "IZZ"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 10,
+        "2": 10,
+        "3": 10
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "XII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 1
+          }
+        ],
+        "objective": 10,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "ZII",
+        "witness_sha256": "f463a8f8b46717d9e3dfa8cfbf74895d853fad4846b5c6336a78b5219bc9f9fd"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "ZIY"
+        ],
+        [
+          "YXI",
+          "YZZ"
+        ],
+        [
+          "ZYY",
+          "XII"
+        ]
+      ],
+      "exact_optimum": 11,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.03",
+      "minimum_support_among_optima": 2,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.03",
+        "maximum_frame_support": 2,
+        "objective": 11,
+        "objective_terms": {
+          "frame": 4,
+          "restore": 5,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "ZXI",
+            "ZII"
+          ],
+          [
+            "IXI",
+            "ZZI"
+          ],
+          [
+            "XXI",
+            "ZII"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 12,
+        "2": 11,
+        "3": 11
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frames": [
+              "IIX",
+              "IIY"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 1,
+            "frames": [
+              "YII",
+              "XIZ"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 1,
+            "frames": [
+              "IXI",
+              "IYY"
+            ],
+            "target_permutation": 1
+          }
+        ],
+        "objective": 11,
+        "orientation": 0,
+        "support_cap": 2,
+        "tag": "IIX",
+        "witness_sha256": "5bf3610d0b3813361169d5edb0d91edae07ca69dc574730b4027bb102d2b8669"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "ZIY"
+        ],
+        [
+          "YXI",
+          "ZYY"
+        ],
+        [
+          "YZZ",
+          "XII"
+        ]
+      ],
+      "exact_optimum": 11,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.04",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.04",
+        "maximum_frame_support": 1,
+        "objective": 11,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 9,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "XXX",
+            "IIY"
+          ],
+          [
+            "IXI",
+            "IYY"
+          ],
+          [
+            "IZZ",
+            "III"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 11,
+        "2": 11,
+        "3": 11
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 1,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 1,
+            "frames": [
+              "YII",
+              "XII"
+            ],
+            "target_permutation": 0
+          }
+        ],
+        "objective": 11,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "YII",
+        "witness_sha256": "3eb754110db7ad0bb5488f54b5d86cc08bb04d6d794dff6a0e3f623cff29258a"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "ZIY"
+        ],
+        [
+          "YXI",
+          "XII"
+        ],
+        [
+          "YZZ",
+          "ZYY"
+        ]
+      ],
+      "exact_optimum": 11,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.05",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.05",
+        "maximum_frame_support": 1,
+        "objective": 11,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 9,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "XIY",
+            "IXX"
+          ],
+          [
+            "IXI",
+            "III"
+          ],
+          [
+            "IZZ",
+            "IYY"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 11,
+        "2": 11,
+        "3": 11
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 1
+          },
+          {
+            "central_branch": 1,
+            "frames": [
+              "YII",
+              "XII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 1,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 0
+          }
+        ],
+        "objective": 11,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "YII",
+        "witness_sha256": "7776446dd14ff2edf2aa2f9f80f74e55e7b986a693f1d725e373e3eef97a81a9"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "YZZ"
+        ],
+        [
+          "YXI",
+          "ZIY"
+        ],
+        [
+          "ZYY",
+          "XII"
+        ]
+      ],
+      "exact_optimum": 10,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.06",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.06",
+        "maximum_frame_support": 1,
+        "objective": 10,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 8,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "IXX",
+            "IZZ"
+          ],
+          [
+            "IIY",
+            "IXI"
+          ],
+          [
+            "IYY",
+            "III"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 10,
+        "2": 10,
+        "3": 10
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 1
+          },
+          {
+            "central_branch": 1,
+            "frames": [
+              "ZII",
+              "XII"
+            ],
+            "target_permutation": 0
+          }
+        ],
+        "objective": 10,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "ZII",
+        "witness_sha256": "88a112ea6a007970a2b7074e220bab58ee982d040804627b65c4d7a5f736329a"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "YZZ"
+        ],
+        [
+          "YXI",
+          "ZYY"
+        ],
+        [
+          "ZIY",
+          "XII"
+        ]
+      ],
+      "exact_optimum": 10,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.07",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.07",
+        "maximum_frame_support": 1,
+        "objective": 10,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 8,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "IXX",
+            "IZZ"
+          ],
+          [
+            "IYY",
+            "IXI"
+          ],
+          [
+            "IIY",
+            "III"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 10,
+        "2": 10,
+        "3": 10
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 1,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 1
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "XII"
+            ],
+            "target_permutation": 0
+          }
+        ],
+        "objective": 10,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "ZII",
+        "witness_sha256": "7a9f9e63c405a2494519dfa1b1c4d224adaa6f558cad3c7364022b5768518906"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "YZZ"
+        ],
+        [
+          "YXI",
+          "XII"
+        ],
+        [
+          "ZIY",
+          "ZYY"
+        ]
+      ],
+      "exact_optimum": 11,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.08",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.08",
+        "maximum_frame_support": 1,
+        "objective": 11,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 9,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "IZZ",
+            "IXX"
+          ],
+          [
+            "IXI",
+            "III"
+          ],
+          [
+            "XIY",
+            "IYY"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 11,
+        "2": 11,
+        "3": 11
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 1
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "XII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 0
+          }
+        ],
+        "objective": 11,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "YII",
+        "witness_sha256": "2ead5972393b56325791ab2d6e19206ef1b423d38b20ff21ddc129edcfeac624"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "ZYY"
+        ],
+        [
+          "YXI",
+          "ZIY"
+        ],
+        [
+          "YZZ",
+          "XII"
+        ]
+      ],
+      "exact_optimum": 11,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.09",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.09",
+        "maximum_frame_support": 1,
+        "objective": 11,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 9,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "XYY",
+            "IXX"
+          ],
+          [
+            "IXI",
+            "IIY"
+          ],
+          [
+            "IZZ",
+            "III"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 11,
+        "2": 11,
+        "3": 11
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 1
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "XII"
+            ],
+            "target_permutation": 0
+          }
+        ],
+        "objective": 11,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "YII",
+        "witness_sha256": "16311061e7cdba79bdd26025bc31afd87eff889de1ed0d199ae970641012e83a"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "ZYY"
+        ],
+        [
+          "YXI",
+          "YZZ"
+        ],
+        [
+          "ZIY",
+          "XII"
+        ]
+      ],
+      "exact_optimum": 12,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.10",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.10",
+        "maximum_frame_support": 1,
+        "objective": 12,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 10,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "IXX",
+            "XYY"
+          ],
+          [
+            "XXI",
+            "IZZ"
+          ],
+          [
+            "IIY",
+            "III"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 12,
+        "2": 12,
+        "3": 12
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 1,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "XII"
+            ],
+            "target_permutation": 0
+          }
+        ],
+        "objective": 12,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "ZII",
+        "witness_sha256": "25aa9b1c61d23a7397a55b83a263905f45cc24d79a2dfde329e3bd2af8e4bf52"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "ZYY"
+        ],
+        [
+          "YXI",
+          "XII"
+        ],
+        [
+          "ZIY",
+          "YZZ"
+        ]
+      ],
+      "exact_optimum": 11,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.11",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.11",
+        "maximum_frame_support": 1,
+        "objective": 11,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 9,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "XXX",
+            "IYY"
+          ],
+          [
+            "IXI",
+            "III"
+          ],
+          [
+            "IZZ",
+            "IIY"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 11,
+        "2": 11,
+        "3": 11
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "XII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "YII",
+              "ZII"
+            ],
+            "target_permutation": 1
+          }
+        ],
+        "objective": 11,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "YII",
+        "witness_sha256": "c6c240d675decc014346c8f7dd2a33fc6cef282be9410fe67ac5fd232c9fef0d"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "XII"
+        ],
+        [
+          "YXI",
+          "ZIY"
+        ],
+        [
+          "YZZ",
+          "ZYY"
+        ]
+      ],
+      "exact_optimum": 10,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.12",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.12",
+        "maximum_frame_support": 1,
+        "objective": 10,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 8,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "IXX",
+            "III"
+          ],
+          [
+            "IIY",
+            "IXI"
+          ],
+          [
+            "IYY",
+            "IZZ"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 10,
+        "2": 10,
+        "3": 10
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 1,
+            "frames": [
+              "ZII",
+              "XII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 1,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 1
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 1
+          }
+        ],
+        "objective": 10,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "ZII",
+        "witness_sha256": "fa5b1e98294328cc7562a9f3e5c9448e4d648a1ea45886a5e815c46e16a68b90"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "XII"
+        ],
+        [
+          "YXI",
+          "YZZ"
+        ],
+        [
+          "ZIY",
+          "ZYY"
+        ]
+      ],
+      "exact_optimum": 12,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.13",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.13",
+        "maximum_frame_support": 1,
+        "objective": 12,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 10,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "III",
+            "IXX"
+          ],
+          [
+            "ZXI",
+            "IZZ"
+          ],
+          [
+            "YIY",
+            "IYY"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 12,
+        "2": 12,
+        "3": 12
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frames": [
+              "XII",
+              "ZII"
+            ],
+            "target_permutation": 1
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "XII",
+              "YII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "XII",
+              "ZII"
+            ],
+            "target_permutation": 0
+          }
+        ],
+        "objective": 12,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "XII",
+        "witness_sha256": "933696b0dae0be24f1debf56ba00ef715e0fd1dde07fe5a9132cfe08b4795e07"
+      }
+    },
+    {
+      "blocks": [
+        [
+          "ZXX",
+          "XII"
+        ],
+        [
+          "YXI",
+          "ZYY"
+        ],
+        [
+          "ZIY",
+          "YZZ"
+        ]
+      ],
+      "exact_optimum": 10,
+      "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.14",
+      "minimum_support_among_optima": 1,
+      "n": 3,
+      "production_moves": {
+        "central_branch_choice": true,
+        "target_permutation": true
+      },
+      "scope": "R6M_SHARED_ONE_BIT_TAG",
+      "semantic_evaluation": {
+        "errors": [],
+        "instance_id": "Q1B.N3.SOURCE_DIGEST.MATCHING.14",
+        "maximum_frame_support": 1,
+        "objective": 10,
+        "objective_terms": {
+          "frame": 0,
+          "restore": 8,
+          "tag": 2
+        },
+        "restores": [
+          [
+            "IXX",
+            "III"
+          ],
+          [
+            "IYY",
+            "IXI"
+          ],
+          [
+            "IIY",
+            "IZZ"
+          ]
+        ],
+        "schema": "ORION.Q1B.IndependentSemanticEvaluationR9.v1",
+        "valid": true
+      },
+      "support_bounded_objectives": {
+        "1": 10,
+        "2": 10,
+        "3": 10
+      },
+      "terminal": "EXACT_OPTIMUM",
+      "witness": {
+        "blocks": [
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "XII"
+            ],
+            "target_permutation": 0
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 1
+          },
+          {
+            "central_branch": 0,
+            "frames": [
+              "ZII",
+              "YII"
+            ],
+            "target_permutation": 0
+          }
+        ],
+        "objective": 10,
+        "orientation": 0,
+        "support_cap": 1,
+        "tag": "ZII",
+        "witness_sha256": "c813207518c55903a27a6ce32a193dfdded4af69b95e2b488851d5aaf8a3f887"
+      }
+    }
+  ],
+  "minimum_support_histogram": {
+    "1": 14,
+    "2": 1
+  },
+  "resource_exhausted_instances": [],
+  "schema": "ORION.Q1B.FiniteAttackResultR9.v1",
+  "semantic_evaluator_disagreements": [],
+  "source_commit": "1e18787841d99d76a3c7661505838d2eca8780db",
+  "support_three_counterexamples": [],
+  "terminal": "NO_SUPPORT3_COUNTEREXAMPLE_IN_DECLARED_FINITE_DOMAIN"
+}

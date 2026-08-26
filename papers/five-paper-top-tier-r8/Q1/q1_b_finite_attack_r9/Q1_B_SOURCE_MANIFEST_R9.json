@@ -1,0 +1,54 @@
+{
+  "commit_sha": "1e18787841d99d76a3c7661505838d2eca8780db",
+  "files": {
+    "claim_ledger": {
+      "blob_sha": "67459ecca65f160b52af470fe6a2582f6af95ed3",
+      "path": "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V3.md",
+      "sha256": "f278639f2606404be4276f20dc9f17e49e5b7702f906f7a4cb4a4c46074c994a"
+    },
+    "definition": {
+      "blob_sha": "a22754e8afef0e9914b75b37f0aee673ccd2ca95",
+      "path": "papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md",
+      "sha256": "ad4f3704cfac4569b74725cb8608ed5f5ba88b847d2d8a2820b3e184d9d1dae6"
+    },
+    "manuscript": {
+      "blob_sha": "6c4c59452397024d96cf6d103f474b7b0a07e536",
+      "path": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md",
+      "sha256": "8522ab344c105866798ca64019f2e5bdf75f4c4445c0c6a0525a573a0c2b5377"
+    },
+    "nearest_work": {
+      "blob_sha": "1bb4fc5129a6fdb5203c81e10d5cc6fbde300d84",
+      "path": "papers/Q-paper-01-tare-expressivity/NEAREST_WORK_DELTA_V3.md",
+      "sha256": "9b24ddccfed873dd2319aa2f2cafff9bc80638941fd0008b827cf57efde42b7b"
+    }
+  },
+  "forbidden_sources": {
+    "q1_a_work_read": false,
+    "registered_canonicalizer_read_or_imported": false,
+    "registered_result_receipts_read": false,
+    "registered_solver_read_or_imported": false,
+    "registered_support_two_checker_read_or_imported": false,
+    "registered_witness_generator_read_or_imported": false
+  },
+  "grammar_transcription": {
+    "frame_objective": "sum m*(w(R)-1), central m=2 and noncentral m=4",
+    "frames": "two nonidentity anticommuting frame Paulis per block",
+    "instance": "six phase-free target Paulis in three two-target blocks",
+    "production_moves": [
+      "target permutation in each block",
+      "central branch choice in each block"
+    ],
+    "restore": "T_jk=P_j,pi_j(k)*R_jk phase-free",
+    "restore_objective": "per branch and coordinate F3=1 for three equal nonidentity letters, otherwise ordinary nonidentity count",
+    "shared_tag": "one nonidentity Tag with common branch orientation",
+    "tag_objective": "2*w(S)"
+  },
+  "opaque_registered_tree_bindings_not_traversed": {
+    "implementation_result_tree": "81c0d03d5f3da35c6f35dfdd6d523ac8f180847c",
+    "support_one_protocol_tree": "c97cf3f12c6c9f8707bc75a9788a7e3a97352964"
+  },
+  "repository": "SzeChunYiu/ORION",
+  "schema": "ORION.Q1B.SourceManifestR9.v1",
+  "selected_by": "PR #1428 issuecomment-5428931879",
+  "selection_authority": "BOUNDED_INTERNAL_SELECTION_NOT_EXTERNAL_AUTHORITY"
+}

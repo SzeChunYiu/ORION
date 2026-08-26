@@ -1,0 +1,151 @@
+{
+  "base_instance": {
+    "blocks": [
+      [
+        "ZY",
+        "YX"
+      ],
+      [
+        "ZX",
+        "ZI"
+      ],
+      [
+        "XI",
+        "IY"
+      ]
+    ],
+    "instance_id": "Q1B.N2.SOURCE_DIGEST.LOWER_CONTROL",
+    "n": 2,
+    "scope": "R6M_SHARED_ONE_BIT_TAG"
+  },
+  "base_signature": {
+    "exact_optimum": 7,
+    "minimum_support_among_optima": 2,
+    "support_bounded_objectives": {
+      "1": 8,
+      "2": 7
+    }
+  },
+  "global_branch_symmetry": "orientation fixed to zero; global branch exchange maps orientation one bijectively while target permutation and central choice remain explicit",
+  "orbits": {
+    "block_2_0_1": {
+      "instance": {
+        "blocks": [
+          [
+            "XI",
+            "IY"
+          ],
+          [
+            "ZY",
+            "YX"
+          ],
+          [
+            "ZX",
+            "ZI"
+          ]
+        ],
+        "instance_id": "Q1B.N2.SOURCE_DIGEST.LOWER_CONTROL.BLOCK_ORBIT",
+        "n": 2,
+        "scope": "R6M_SHARED_ONE_BIT_TAG"
+      },
+      "result_signature": {
+        "exact_optimum": 7,
+        "minimum_support_among_optima": 2,
+        "support_bounded_objectives": {
+          "1": 8,
+          "2": 7
+        }
+      }
+    },
+    "coordinate_reverse": {
+      "instance": {
+        "blocks": [
+          [
+            "YZ",
+            "XY"
+          ],
+          [
+            "XZ",
+            "IZ"
+          ],
+          [
+            "IX",
+            "YI"
+          ]
+        ],
+        "instance_id": "Q1B.N2.SOURCE_DIGEST.LOWER_CONTROL.COORDINATE_ORBIT",
+        "n": 2,
+        "scope": "R6M_SHARED_ONE_BIT_TAG"
+      },
+      "result_signature": {
+        "exact_optimum": 7,
+        "minimum_support_among_optima": 2,
+        "support_bounded_objectives": {
+          "1": 8,
+          "2": 7
+        }
+      }
+    },
+    "first_block_target_swap": {
+      "instance": {
+        "blocks": [
+          [
+            "YX",
+            "ZY"
+          ],
+          [
+            "ZX",
+            "ZI"
+          ],
+          [
+            "XI",
+            "IY"
+          ]
+        ],
+        "instance_id": "Q1B.N2.SOURCE_DIGEST.LOWER_CONTROL.TARGET_SWAP_ORBIT",
+        "n": 2,
+        "scope": "R6M_SHARED_ONE_BIT_TAG"
+      },
+      "result_signature": {
+        "exact_optimum": 7,
+        "minimum_support_among_optima": 2,
+        "support_bounded_objectives": {
+          "1": 8,
+          "2": 7
+        }
+      }
+    },
+    "letter_X_Z_swap": {
+      "instance": {
+        "blocks": [
+          [
+            "XY",
+            "YZ"
+          ],
+          [
+            "XZ",
+            "XI"
+          ],
+          [
+            "ZI",
+            "IY"
+          ]
+        ],
+        "instance_id": "Q1B.N2.SOURCE_DIGEST.LOWER_CONTROL.LETTER_ORBIT",
+        "n": 2,
+        "scope": "R6M_SHARED_ONE_BIT_TAG"
+      },
+      "result_signature": {
+        "exact_optimum": 7,
+        "minimum_support_among_optima": 2,
+        "support_bounded_objectives": {
+          "1": 8,
+          "2": 7
+        }
+      }
+    }
+  },
+  "schema": "ORION.Q1B.OrbitReceiptR9.v1",
+  "symmetry_leakage_cases": [],
+  "terminal": "ORBIT_INVARIANCE_GREEN"
+}

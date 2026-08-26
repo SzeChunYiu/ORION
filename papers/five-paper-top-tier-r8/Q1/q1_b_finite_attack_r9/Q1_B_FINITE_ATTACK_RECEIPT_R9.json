@@ -1,0 +1,80 @@
+{
+  "authority": {
+    "finite_domain_only": true,
+    "grants_journal_authority": false,
+    "grants_production_resource_authority": false,
+    "journal_authority": "CANNOT_CHECK",
+    "proves_all_size_theorem": false,
+    "same_program_independence": "CANNOT_CHECK",
+    "scientific_disposition": "BOUNDED_CORROBORATIVE_ONLY"
+  },
+  "controls": {
+    "broken_shared_tag_negative": true,
+    "metamorphic_relabeling": true,
+    "objective_ties": true,
+    "omitted_move_negative": true,
+    "outside_scope_support_three": true,
+    "resource_terminal_preserved": true,
+    "support_one_cases": true,
+    "support_two_lower_witnesses": true,
+    "support_two_positive": true
+  },
+  "finite_domain": {
+    "canonicalization_method": "fresh recursive perfect-matching generator and source-digest target selector; no registered canonicalizer",
+    "completeness_argument": "Three qubits is the smallest qubit count on which a frame can have support three. For the one predeclared digest-selected six-target subject, every one of its 15 perfect matchings is present. Within every matching, the solver spans the full phase-free frame and Tag alphabets, every target permutation, every central-branch choice, and proves exact optima separately at support caps one, two, and three. This is complete only for that declared finite subject, not for all n=3 target sets.",
+    "instance_count": 15,
+    "instance_generator": "six unique full-alphabet n=3 targets selected by the canonical manuscript SHA-256 prefix; deterministic recursion enumerates all perfect matchings",
+    "scope_parameters": {
+      "all_perfect_matchings": 15,
+      "central_branch_choices": "all 2^3",
+      "n": 3,
+      "phase_free_frame_alphabet": "{I,X,Y,Z}^3 minus identity",
+      "phase_free_tag_alphabet": "{I,X,Y,Z}^3 minus identity",
+      "support_caps_proved": [
+        1,
+        2,
+        3
+      ],
+      "target_permutations": "all 2^3",
+      "target_set_count": 1,
+      "unique_targets": 6
+    },
+    "symmetry_group": "global branch exchange (orientation fixed), plus audited X/Z relabel, coordinate, block and target-swap orbits"
+  },
+  "implementation_independence": {
+    "independence_explanation": "The R6M grammar was transcribed directly from content-bound paper definitions into fresh integer constraints. No registered implementation/result tree was traversed. A separate Z3-free evaluator recomputes every committed witness, but both implementations were authored in the same lane.",
+    "language_and_solver": "Python 3.13.12 + Z3 5.1.0 finite integer encoding",
+    "neutral_interchange_only": true,
+    "registered_canonicalizer_imported": false,
+    "registered_code_imported": false,
+    "registered_witnesses_used_as_inputs": false
+  },
+  "manifests": {
+    "environment_manifest_sha256": "45f9e4472a87075a55eaa7ea15193faaf042496ad549fb106eed4b260c0ab24e",
+    "negative_control_manifest_sha256": "70a5ac46351fb87b5c82ddfdbd8f630128cf90d7f22e5db4ae9a6513cf684373",
+    "result_manifest_sha256": "7993b4d17fcb72e80ea0e7af69a709e7dc218e686a9911998e15cc83ec3c289a",
+    "source_manifest_sha256": "0d1fe2dcaf5eb33971dcb5cbed0bdade32fd2a039ab68ab120f48deb03e6e0fd"
+  },
+  "results": {
+    "instances_checked": 15,
+    "minimum_support_histogram": {
+      "1": 14,
+      "2": 1
+    },
+    "resource_exhausted_instances": [],
+    "semantic_evaluator_disagreements": [],
+    "solver_disagreements": [],
+    "support_three_counterexamples": [],
+    "symmetry_leakage_cases": []
+  },
+  "schema": "ORION.Q1.FiniteAttackReceiptR9.v1",
+  "source_binding": {
+    "claim_ledger_blob_sha": "67459ecca65f160b52af470fe6a2582f6af95ed3",
+    "commit_sha": "1e18787841d99d76a3c7661505838d2eca8780db",
+    "definition_blob_sha": "a22754e8afef0e9914b75b37f0aee673ccd2ca95",
+    "manuscript_blob_sha": "6c4c59452397024d96cf6d103f474b7b0a07e536",
+    "repository": "SzeChunYiu/ORION"
+  },
+  "terminal": "NO_SUPPORT3_COUNTEREXAMPLE_IN_DECLARED_FINITE_DOMAIN",
+  "typed_terminal": "Q1_B_NO_SUPPORT3_COUNTEREXAMPLE_IN_DECLARED_FINITE_DOMAIN__BOUNDED_CORROBORATION_ONLY"
+}
