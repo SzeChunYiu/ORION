@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "open_issue_census": {
+      "artifact_id": 9598519591,
+      "digest": "sha256:115b2ea69dba24bcf1a5959403dc6165ffc4b5b59ad4a5d81fd78ca293f408da",
+      "workflow_run_id": 32946709713
+    },
+    "receipt_v3_deadline_diagnostic": {
+      "artifact_id": 9598533111,
+      "digest": "sha256:208f44b5cd7fcc8ab01f1a1e2ba7cc3dc0825fafbf55fb108b72a2c546490c55",
+      "workflow_run_id": 32946709780
+    },
+    "receipt_v3_hostile_audit": {
+      "artifact_id": 9598531211,
+      "digest": "sha256:5b15eb870fe610181efeabdc386480eedf4cd4e76e476f220cfe6138435fb862",
+      "workflow_run_id": 32946709783
+    }
+  },
+  "bound_parent": {
+    "branch": "shadow/orion-v1-freeze-control-plane-20260826",
+    "commit": "ed6aa96485e583fdf47fc483d92702e8928c6a2c",
+    "tree": "1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081"
+  },
+  "files": [
+    {
+      "blob_sha": "9316959d4547693d62353ed16323b2c05538da36",
+      "created_by_commit": "33541d490bd5b9baeae61c6cee6d9224655e78d7",
+      "path": "research/orion-v1-freeze/orion_final_gate/summary.json",
+      "sha256": "7d4bcf7d19801b4eba25790a8bfeb2238d09e65e77bb65e4840d643095058826"
+    },
+    {
+      "blob_sha": "66801457935e1e6c9edcb46131e99b37c59e2f4c",
+      "created_by_commit": "7d3862e5f4c208c4df71d644144ad940369eb353",
+      "path": "research/orion-v1-execution/V1-RECEIPT-V3-DEADLINE-MIGRATION-01/EXECUTION_PACKET_V1.json",
+      "sha256": "cd2e740b0f2f10e27efe671007dc902c85ab85e3769b2a73695442419e0c07c8"
+    }
+  ],
+  "publication_branch": "shadow/orion-v1-deadline-migration-freeze-20260826",
+  "schema": "ORION.V1.FinalGateBinding.v1"
+}
