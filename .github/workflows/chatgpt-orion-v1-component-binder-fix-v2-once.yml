@@ -1,0 +1,71 @@
+name: ChatGPT ORION V1 component binder fix v2 once
+
+on:
+  push:
+    branches:
+      - shadow/orion-v1-deadline-migration-freeze-20260826
+    paths:
+      - ".github/workflows/chatgpt-orion-v1-component-binder-fix-v2-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: shadow/orion-v1-deadline-migration-freeze-20260826
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.13"
+      - name: Apply exact deterministic repairs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          script = Path("scripts/build_orion_v1_component_binding.py")
+          text = script.read_text(encoding="utf-8")
+          old_elapsed = '        "elapsed_seconds": round(time.monotonic() - started, 6),\n'
+          new_elapsed = '        "elapsed_seconds": "NOT_CONTENT_BOUND",\n'
+          if text.count(old_elapsed) != 1:
+              raise SystemExit(f"expected one runtime field; found {text.count(old_elapsed)}")
+          script.write_text(text.replace(old_elapsed, new_elapsed), encoding="utf-8")
+
+          test = Path("tests/unit/orion_v1/test_component_binding_builder.py")
+          test_text = test.read_text(encoding="utf-8")
+          old_import = "import subprocess\nfrom pathlib import Path\n"
+          new_import = "import subprocess\nimport sys\nfrom pathlib import Path\n"
+          if test_text.count(old_import) != 1:
+              raise SystemExit("test import insertion point is not unique")
+          test_text = test_text.replace(old_import, new_import)
+          old_exec = "    module = importlib.util.module_from_spec(spec)\n    spec.loader.exec_module(module)\n"
+          new_exec = "    module = importlib.util.module_from_spec(spec)\n    sys.modules[spec.name] = module\n    spec.loader.exec_module(module)\n"
+          if test_text.count(old_exec) != 1:
+              raise SystemExit("module registration insertion point is not unique")
+          test.write_text(test_text.replace(old_exec, new_exec), encoding="utf-8")
+          PY
+      - name: Run hostile tests and deterministic double build
+        run: |
+          python -m pip install --disable-pip-version-check pytest
+          python -m py_compile scripts/build_orion_v1_component_binding.py tests/unit/orion_v1/test_component_binding_builder.py
+          python -m pytest -q tests/unit/orion_v1/test_component_binding_builder.py
+          rm -rf /tmp/component-a /tmp/component-b
+          python scripts/build_orion_v1_component_binding.py --root . --ref HEAD --output-dir /tmp/component-a
+          python scripts/build_orion_v1_component_binding.py --root . --ref HEAD --output-dir /tmp/component-b
+          diff -ru /tmp/component-a /tmp/component-b
+          git diff --check
+      - name: Commit with remote-ref precondition
+        env:
+          TARGET_BRANCH: shadow/orion-v1-deadline-migration-freeze-20260826
+        run: |
+          git config user.name "ORION V1 component-binding repair"
+          git config user.email "actions@users.noreply.github.com"
+          git add scripts/build_orion_v1_component_binding.py tests/unit/orion_v1/test_component_binding_builder.py
+          git commit -m "fix: make V1 component binding deterministic and import-safe"
+          remote_head="$(git ls-remote origin "refs/heads/${TARGET_BRANCH}" | cut -f1)"
+          test "${remote_head}" = "${GITHUB_SHA}"
+          git push origin "HEAD:refs/heads/${TARGET_BRANCH}"

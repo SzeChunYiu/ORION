@@ -1,0 +1,179 @@
+{
+  "allowed_write_paths": [
+    "scripts/audit_orion_v1_quantum_issue_dispositions.py",
+    "tests/unit/orion_v1/test_quantum_issue_disposition_audit.py",
+    ".github/workflows/orion-v1-quantum-issue-disposition-audit.yml",
+    "development/orion-v1-quantum-issue-disposition-2026-08-26/**",
+    "research/orion-v1-execution/V1-QUANTUM-ISSUE-DISPOSITION-01/**"
+  ],
+  "audit_contract": {
+    "allowed_dispositions": [
+      "MERGED_MATERIAL_RESULT_REMAINING_AUTHORITY_OPEN",
+      "OPEN_THEOREM_OR_EXECUTION",
+      "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+      "DUPLICATE_OR_SUBSUMED_WITH_EXACT_OWNER",
+      "COORDINATION_ONLY",
+      "EXTERNAL_AUTHORITY_OR_ACCESS_BLOCKER",
+      "CANNOT_CHECK"
+    ],
+    "authority_axes": [
+      "mathematical_theorem",
+      "mechanized_or_finite_proof",
+      "implementation",
+      "execution_receipt",
+      "resource_accounting",
+      "physical_quantum_validity",
+      "target_transfer",
+      "external_novelty",
+      "publication"
+    ],
+    "candidate_source_order": "Preserve the exact order and issue numbers from QUANTUM_CANDIDATES.json.",
+    "current_main_binding": "No issue is classified as material-result-merged unless exact result/checker paths exist in the frozen current-main tree or a merged commit is explicitly bound with a reason it is not yet on main.",
+    "denominator": 67,
+    "issue_mutation": "FORBIDDEN",
+    "novelty_boundary": "Issue prose, same-programme search, and a green checker cannot grant external novelty.",
+    "one_row_per_candidate": true,
+    "pagination": "Follow every Link rel=next page; retain raw response bodies, headers, status, ETag, acquisition time, and SHA-256.",
+    "paper_edits": "FORBIDDEN",
+    "quantum_claim_boundary": "Quantum structure does not imply physical validity or quantum advantage. These axes remain CANNOT_CHECK unless target-native physical and resource evidence is independently bound.",
+    "required_api_surfaces": [
+      "issue body",
+      "all issue comments",
+      "all issue timeline pages",
+      "linked pull requests",
+      "merged commits",
+      "current-main path presence",
+      "result/receipt/checker files"
+    ],
+    "shared_core_rule": "Group issues by exact shared mathematical/implementation core, but retain all 67 issue rows and exact owner/subsumption edges."
+  },
+  "authority_boundary": {
+    "external_novelty": "CANNOT_CHECK",
+    "issue_closure_authority": "NONE",
+    "orion_v1_freeze": "NOT_GRANTED_BY_THIS_JOB",
+    "paper_authority_delta": "NONE",
+    "physical_quantum_validity": "CANNOT_CHECK_UNLESS_INDEPENDENT_TARGET_NATIVE_EVIDENCE_IS_BOUND",
+    "publication": "NONE",
+    "quantum_advantage": "CANNOT_CHECK_UNLESS_FULL_MATCHED_RESOURCE_EVIDENCE_IS_BOUND"
+  },
+  "codex_thread": "codex://threads/01a03963-d804-7320-b10a-2b828119df93",
+  "execution_class": "READ_ONLY_GITHUB_AND_LOCAL_SEMANTIC_AUDIT_NOT_LUNARC",
+  "execution_owner": "CODEX_COMPUTATION_SESSION",
+  "forbidden_write_paths": [
+    "papers/**",
+    "src/orion/**",
+    "research/extensions/orion-q/**",
+    "research/orion-epistemic-state-v1/results/**",
+    "historical receipts and result bytes",
+    "P1 finalizer/Slurm/LUNARC/custody/immutable-OID paths",
+    "GitHub issues, comments, labels, milestones, PRs, refs, releases, and workflow dispatch state"
+  ],
+  "frozen_at_utc": "2026-08-26T08:38:00Z",
+  "honest_failure_terminals": [
+    "V1_QUANTUM_CENSUS_API_PAGINATION_INCOMPLETE",
+    "V1_QUANTUM_CENSUS_RESULT_IDENTITY_AMBIGUOUS",
+    "V1_QUANTUM_CENSUS_CURRENT_MAIN_BINDING_INCOMPLETE",
+    "V1_QUANTUM_CENSUS_AUTHORITY_OVERCLAIM_FOUND",
+    "V1_QUANTUM_CENSUS_CANNOT_CHECK"
+  ],
+  "implementation_outputs": {
+    "output_directory": "research/orion-v1-execution/V1-QUANTUM-ISSUE-DISPOSITION-01",
+    "script": "scripts/audit_orion_v1_quantum_issue_dispositions.py",
+    "tests": "tests/unit/orion_v1/test_quantum_issue_disposition_audit.py",
+    "workflow": ".github/workflows/orion-v1-quantum-issue-disposition-audit.yml"
+  },
+  "input_identities": {
+    "acquisition_checkout_commit": "2e6b1caf5daae54b110c6f3e5b5075c9bc206c28",
+    "acquisition_checkout_tree": "8fe8abe4dae535233adc64e2626a7444be85d154",
+    "candidate_classification": "LEXICAL_ACQUISITION_CANDIDATES_ONLY__NO_SCIENTIFIC_DISPOSITION",
+    "census_artifact_digest": "sha256:115b2ea69dba24bcf1a5959403dc6165ffc4b5b59ad4a5d81fd78ca293f408da",
+    "census_artifact_id": 9598519591,
+    "census_artifact_name": "orion-v1-open-issue-census-ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+    "census_workflow_run_id": 32946709713,
+    "open_issue_denominator": 129,
+    "quantum_candidate_denominator": 67,
+    "quantum_candidates_path": "complete/QUANTUM_CANDIDATES.json",
+    "quantum_candidates_sha256": "5d386a9e6868e28401d913a2510b6daef8069588a5e7653b4201de287c3fbd16",
+    "result_binding_packet_sha256": "56566213961beaa10974a786588a33ead6e800c700747f84ba904d96b8afb414"
+  },
+  "packet_id": "V1-QUANTUM-ISSUE-DISPOSITION-01",
+  "pre_mutation_commands": [
+    "git fetch origin shadow/orion-v1-deadline-migration-freeze-20260826",
+    "test \"$(git rev-parse refs/remotes/origin/shadow/orion-v1-deadline-migration-freeze-20260826)\" = efad0e4fa1724ef884046e21def9dfcb6e95355a",
+    "test \"$(git rev-parse efad0e4fa1724ef884046e21def9dfcb6e95355a^{tree})\" = 3c5c43c22b25f56263169b192d863e0db7ba93bf",
+    "git checkout -b codex/orion-v1-quantum-issue-disposition-20260826 efad0e4fa1724ef884046e21def9dfcb6e95355a",
+    "test -z \"$(git status --porcelain)\"",
+    "gh api -H 'X-GitHub-Api-Version: 2022-11-28' /repos/SzeChunYiu/ORION/actions/artifacts/9598519591 > /tmp/orion-v1-census-artifact-metadata.json",
+    "test \"$(python -c 'import json;print(json.load(open(\"/tmp/orion-v1-census-artifact-metadata.json\"))[\"digest\"])')\" = sha256:115b2ea69dba24bcf1a5959403dc6165ffc4b5b59ad4a5d81fd78ca293f408da",
+    "curl --fail --location --silent --show-error -H \"Authorization: Bearer ${GITHUB_TOKEN}\" -H 'X-GitHub-Api-Version: 2022-11-28' https://api.github.com/repos/SzeChunYiu/ORION/actions/artifacts/9598519591/zip -o /tmp/orion-v1-open-issue-census.zip",
+    "test \"$(sha256sum /tmp/orion-v1-open-issue-census.zip | cut -d' ' -f1)\" = 115b2ea69dba24bcf1a5959403dc6165ffc4b5b59ad4a5d81fd78ca293f408da",
+    "rm -rf /tmp/orion-v1-open-issue-census && mkdir /tmp/orion-v1-open-issue-census && unzip -q /tmp/orion-v1-open-issue-census.zip -d /tmp/orion-v1-open-issue-census",
+    "test \"$(sha256sum /tmp/orion-v1-open-issue-census/complete/RESULT_BINDING_PACKET.json | cut -d' ' -f1)\" = 56566213961beaa10974a786588a33ead6e800c700747f84ba904d96b8afb414",
+    "test \"$(sha256sum /tmp/orion-v1-open-issue-census/complete/QUANTUM_CANDIDATES.json | cut -d' ' -f1)\" = 5d386a9e6868e28401d913a2510b6daef8069588a5e7653b4201de287c3fbd16",
+    "test \"$(python -c 'import json;print(json.load(open(\"/tmp/orion-v1-open-issue-census/complete/QUANTUM_CANDIDATES.json\"))[\"count\"])')\" = 67"
+  ],
+  "question": "For each of the 67 acquisition-only quantum/frontier candidates in the frozen complete open-issue census, what exact current-main result, theorem, implementation, resource, physical, transfer, novelty, and remaining-work authority exists?",
+  "repository": "SzeChunYiu/ORION",
+  "required_environment": {
+    "github_api_version": "2022-11-28",
+    "github_cli": "record exact gh --version",
+    "minimum_cpu_cores": 2,
+    "minimum_free_disk_gib": 10,
+    "minimum_memory_gib": 7,
+    "network_policy": "GitHub API reads only; no issue, PR, label, branch, ref, release, workflow, or comment mutation.",
+    "python": "3.12.13",
+    "runner": "GitHub Actions ubuntu-24.04 or isolated Linux x86_64",
+    "token_permissions": [
+      "contents:read",
+      "issues:read",
+      "pull_requests:read",
+      "actions:read"
+    ],
+    "token_write_permissions": "FORBIDDEN",
+    "wall_clock_limit_minutes": 90
+  },
+  "required_outputs": [
+    "FREEZE.json",
+    "RAW_MANIFEST.json",
+    "PRIMARY_RESULT.json",
+    "DONOR_RESULT.json",
+    "NEGATIVE_CONTROLS.json",
+    "RESOURCE_LEDGER.json",
+    "TRANSFER_RESULT.json",
+    "RESULT_BINDING_PACKET.json",
+    "QUANTUM_ISSUE_DISPOSITIONS.json",
+    "SHARED_CORE_MAP.json",
+    "DUPLICATE_SUBSUMPTION_MAP.json",
+    "THEOREM_RESULT_BINDINGS.json",
+    "raw/**"
+  ],
+  "schema": "ORION.V1.ExecutionPacket.v1",
+  "source_identity": {
+    "frozen_base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+    "required_codex_branch": "codex/orion-v1-quantum-issue-disposition-20260826",
+    "required_source_commit": "efad0e4fa1724ef884046e21def9dfcb6e95355a",
+    "required_source_tree": "3c5c43c22b25f56263169b192d863e0db7ba93bf",
+    "source_branch": "shadow/orion-v1-deadline-migration-freeze-20260826"
+  },
+  "success_requirements": {
+    "bound_file_digests_valid": true,
+    "candidate_rows": 67,
+    "duplicate_issue_numbers": 0,
+    "missing_issue_rows": 0,
+    "paper_authority_delta": "NONE",
+    "physical_quantum_overclaims": 0,
+    "quantum_advantage_overclaims": 0,
+    "raw_pagination_incomplete": 0,
+    "unbound_material_result_rows": 0,
+    "unrecognized_dispositions": 0
+  },
+  "success_terminal": "V1_QUANTUM_FRONTIER_CENSUS_COMPLETE",
+  "verification_commands": [
+    "python -m py_compile scripts/audit_orion_v1_quantum_issue_dispositions.py",
+    "python -m pytest -q tests/unit/orion_v1/test_quantum_issue_disposition_audit.py",
+    "python scripts/audit_orion_v1_quantum_issue_dispositions.py --repository SzeChunYiu/ORION --source-census /tmp/orion-v1-open-issue-census/complete/QUANTUM_CANDIDATES.json --source-result-binding /tmp/orion-v1-open-issue-census/complete/RESULT_BINDING_PACKET.json --source-commit efad0e4fa1724ef884046e21def9dfcb6e95355a --output-dir research/orion-v1-execution/V1-QUANTUM-ISSUE-DISPOSITION-01 --github-api-version 2022-11-28",
+    "python scripts/check_orion_v1_freeze.py --json",
+    "python -m pytest -q --runxfail tests/unit/orion_v1/test_orion_v1_freeze.py",
+    "git diff --check"
+  ]
+}

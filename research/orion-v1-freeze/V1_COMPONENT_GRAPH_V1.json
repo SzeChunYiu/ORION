@@ -11,9 +11,15 @@
       "depends_on": [],
       "id": "OSTC_FOUNDATIONS",
       "layer": "formalism",
+      "path_dispositions": [
+        {
+          "authority_delta": "NONE",
+          "disposition": "NO_MERGED_RUNTIME_PACKAGE__THEORY_AND_LEAN_ARE_BOUND_UNDER_RESEARCH_PATH",
+          "path": "src/orion/foundations/"
+        }
+      ],
       "paths": [
-        "research/orion-foundations-v3/",
-        "src/orion/foundations/"
+        "research/orion-foundations-v3/"
       ],
       "status": "MERGED_INTERNAL_THEORY_REQUIRES_V1_DIGEST_BINDING"
     },
@@ -56,17 +62,24 @@
       "status": "MERGED_REFERENCE_IMPLEMENTATION_WITH_EXECUTION_REMAINDER"
     },
     {
-      "authority": "TYPED_REFERENCE_ONLY",
+      "authority": "NONE_PENDING_INTEGRATION",
       "depends_on": [
         "KNOWLEDGE_WEB_AND_PROOF_ECONOMY"
       ],
       "id": "DISCOVERY_SYNTHESIS_MODES",
       "layer": "candidate_generation",
-      "paths": [
-        "src/orion/discovery/synthesis_modes.py",
-        "src/orion/discovery/structural_navigation.py"
-      ],
-      "status": "PRESENT_REQUIRES_CANONICAL_MAIN_BINDING_AUDIT"
+      "pending_integration": {
+        "authority_delta": "NONE",
+        "head": "3fcb7fa30e2370cf4769eaa6900ce6d0ca8246d2",
+        "paths": [
+          "src/orion/discovery/synthesis_modes.py",
+          "src/orion/discovery/structural_navigation.py"
+        ],
+        "pull_request": 1300,
+        "state_at_census": "OPEN_DRAFT_UNMERGED"
+      },
+      "paths": [],
+      "status": "UNMERGED_DRAFT_PR_1300_NOT_PART_OF_CURRENT_V1"
     },
     {
       "authority": "NO_PRESENT_DAY_SUPERIORITY_OR_NOVELTY_AUTHORITY",
@@ -101,10 +114,16 @@
       ],
       "id": "EXECUTION_INTEGRITY_AND_RECEIPTS",
       "layer": "execution",
+      "path_dispositions": [
+        {
+          "authority_delta": "NONE",
+          "disposition": "NO_DEDICATED_PACKAGE__CURRENT_IMPLEMENTATION_IS_SPLIT_BETWEEN_RESEARCH_HARNESS_AND_KERNEL",
+          "path": "src/orion/execution/"
+        }
+      ],
       "paths": [
         "packages/orion-research-harness/",
-        "src/orion/kernel/",
-        "src/orion/execution/"
+        "src/orion/kernel/"
       ],
       "status": "MERGED_LARGE_SURFACE_REQUIRES_FULL_RED_AND_API_CENSUS"
     },
