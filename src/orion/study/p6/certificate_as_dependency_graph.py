@@ -77,7 +77,7 @@ from orion.study.p6.reopening_calculus_smt import (
     _vocabulary,
 )
 
-SCHEMA_VERSION = "orion.p6.certificate-as-dependency-graph.v1"
+SCHEMA_VERSION = "orion.p6.certificate-as-dependency-graph.v2"
 
 #: P6's five donor families and five lift coordinates, from the shipped module.
 from orion.study.p6 import lift_theories as _lift_theories  # noqa: E402
@@ -87,6 +87,42 @@ COORDINATES: tuple[str, ...] = _lift_theories.LIFT_COORDINATES
 
 PUBLISHED_FULL_RESTORATIONS = 155
 PUBLISHED_PROPER_SUBSET_FAILURES = 1055
+
+# Adverse hosted-runner observations are retained in the successor receipt.
+# They are failure provenance for the retired at-most-four-node discovery path,
+# not evidence against the explicit countermodels that replace it.
+ADVERSE_EXECUTION_HISTORY: tuple[Mapping[str, Any], ...] = (
+    {
+        "run_id": 32927946106,
+        "head_sha": "8a966761677e9fac40bbbe69ed9a382cb2370206",
+        "url": "https://github.com/SzeChunYiu/ORION/actions/runs/32927946106",
+        "outcome": "FAIL_RETAINED",
+        "observed": (
+            "the at-most-four-node discovery reported "
+            "coordinates_do_not_support_each_other only intermittently; the CLI "
+            "returned 3 and the suite ended 1 failed, 6707 passed"
+        ),
+        "claim_boundary": (
+            "the run did not establish a stable countermodel core; it did not show "
+            "the frame condition inert"
+        ),
+    },
+    {
+        "run_id": 32946736266,
+        "head_sha": "4d80fe679bea289a00f19fb5a2ea393fe2fae669",
+        "url": "https://github.com/SzeChunYiu/ORION/actions/runs/32946736266",
+        "outcome": "FAIL_RETAINED",
+        "observed": (
+            "under full-suite load the known one-node witness for "
+            "coordinates_do_not_support_each_other returned UNKNOWN in one repeated "
+            "at-most-four-node search, cascading to four P6 assertions and CLI exit 3"
+        ),
+        "claim_boundary": (
+            "UNKNOWN was CANNOT_CHECK about that search; it was never evidence that "
+            "the condition was inert or that a theorem had been refuted"
+        ),
+    },
+)
 
 
 CERTIFICATE_WITHDRAWN = Theorem(
@@ -1019,6 +1055,13 @@ def build_report(repo_root: Any, *, date: str) -> dict[str, Any]:
         "all_discharged": not undischarged,
         "undischarged": undischarged,
         "frame_conditions": frames,
+        "adverse_execution_history": [dict(row) for row in ADVERSE_EXECUTION_HISTORY],
+        "authority": {
+            "scope": "LOCAL_SAME_LANE_FORMAL_CERTIFICATE_CHECK",
+            "self_authored": True,
+            "external_independent_validation": Outcome.CANNOT_CHECK.value,
+            "grants_scientific_authority": "NONE",
+        },
         "load_bearing_criterion_history": (
             "This measurement has been wrong twice. It first counted any theorem that "
             "stopped being discharged, which credits an axiom for the solver failing to "
@@ -1098,17 +1141,25 @@ def main(argv: list[str]) -> int:
     )
     parser.add_argument("--repo-root", type=Path, default=Path.cwd())
     parser.add_argument("--date", required=True)
-    parser.add_argument("--output", type=Path, default=None)
+    destination = parser.add_mutually_exclusive_group()
+    destination.add_argument("--output", type=Path, default=None)
+    destination.add_argument("--check-output", type=Path, default=None)
     args = parser.parse_args(argv)
 
     report = build_report(args.repo_root, date=args.date)
+    serialized = json.dumps(report, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
     if args.output is not None:
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(
-            json.dumps(report, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
-            encoding="utf-8",
-        )
+        args.output.write_text(serialized, encoding="utf-8")
         print(f"written: {args.output}")
+    if args.check_output is not None:
+        if not args.check_output.is_file():
+            print(f"MISSING FROZEN RECEIPT: {args.check_output}")
+            return 4
+        if args.check_output.read_text(encoding="utf-8") != serialized:
+            print(f"FROZEN RECEIPT DRIFT: {args.check_output}")
+            return 4
+        print(f"verified without overwrite: {args.check_output}")
 
     for item in report["theorems"]:
         print(f"  {item['outcome']:15s} {item['name']}")

@@ -320,6 +320,21 @@ class TestWhatTheCountsCanAndCannotIdentify:
 
 
 class TestTheReport:
+    def test_v2_records_the_adverse_ci_history(self) -> None:
+        report = cg.build_report(REPO_ROOT, date="2026-08-26")
+        assert report["schema_version"] == "orion.p6.certificate-as-dependency-graph.v2"
+        assert {row["run_id"] for row in report["adverse_execution_history"]} == {
+            32927946106,
+            32946736266,
+        }
+        assert all(row["outcome"] == "FAIL_RETAINED" for row in report["adverse_execution_history"])
+        assert report["authority"] == {
+            "scope": "LOCAL_SAME_LANE_FORMAL_CERTIFICATE_CHECK",
+            "self_authored": True,
+            "external_independent_validation": Outcome.CANNOT_CHECK.value,
+            "grants_scientific_authority": "NONE",
+        }
+
     def test_the_report_is_clean_and_names_its_limits(self) -> None:
         report = cg.build_report(REPO_ROOT, date="2026-08-22")
         assert report["all_discharged"] is True
@@ -341,6 +356,78 @@ class TestTheReport:
         written = json.loads(out.read_text(encoding="utf-8"))
         assert written["record"] == "P6_CERTIFICATE_AS_DEPENDENCY_GRAPH"
         assert len(written["theorems"]) == len(cg.THEOREMS)
+
+    def test_check_output_fails_closed_without_overwriting(self, tmp_path: Path) -> None:
+        receipt = tmp_path / "receipt.json"
+        sentinel = '{"stale": true}\n'
+        receipt.write_text(sentinel, encoding="utf-8")
+
+        try:
+            code = cg.main(
+                [
+                    "--repo-root",
+                    str(REPO_ROOT),
+                    "--date",
+                    "2026-08-26",
+                    "--check-output",
+                    str(receipt),
+                ]
+            )
+        except SystemExit as exc:
+            code = int(exc.code)
+
+        assert code == 4
+        assert receipt.read_text(encoding="utf-8") == sentinel
+
+    def test_reproduce_v4_checks_the_v2_receipt_without_overwriting_it(self) -> None:
+        makefile = (
+            REPO_ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/Makefile"
+        ).read_text(encoding="utf-8")
+        assert "reproduce-v4: reproduce-v3" in makefile
+        assert "P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_V2_2026-08-26.json" in makefile
+        assert "--check-output" in makefile
+
+    def test_v4_contract_binds_the_actual_generator_and_authority_ceiling(self) -> None:
+        import hashlib
+
+        path = (
+            REPO_ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/evidence/local/"
+            "P6_LOCAL_REPLAY_CONTRACT_V4.json"
+        )
+        assert path.is_file()
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        assert payload["schema_version"] == "orion.local-replay-contract.v4"
+        assert payload["one_command"].endswith("reproduce-v4")
+        assert payload["self_authorizing"] is True
+        assert payload["independent_replay"] is False
+        assert payload["external_independent_validation"] == Outcome.CANNOT_CHECK.value
+        assert payload["grants_scientific_authority"] == "NONE"
+
+        entries = {row["path"]: row["sha256"] for row in payload["execution_inputs"]}
+        required = {
+            "uv.lock",
+            "src/orion/study/p6/certificate_as_dependency_graph.py",
+            "src/orion/study/p6/reopening_calculus_smt.py",
+            "src/orion/study/p6/lift_theories.py",
+            "src/orion/programme/mechanized.py",
+            "src/orion/programme/records.py",
+            "tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py",
+        }
+        assert required <= set(entries)
+        bound = {}
+        for key in ("execution_inputs", "raw_inputs", "raw_outputs", "historical_predecessors"):
+            bound.update({row["path"]: row["sha256"] for row in payload[key]})
+        for relative, expected in bound.items():
+            actual = hashlib.sha256((REPO_ROOT / relative).read_bytes()).hexdigest()
+            assert actual == expected, relative
+
+        receipt = (
+            REPO_ROOT / "papers/paper-06-formal-epistemic-structures-and-mechanics/formal/"
+            "mechanized/P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_V2_2026-08-26.json"
+        )
+        assert json.loads(receipt.read_text(encoding="utf-8")) == cg.build_report(
+            REPO_ROOT, date="2026-08-26"
+        )
 
 
 class TestASearchThatGaveUpIsNotAFinding:
