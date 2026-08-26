@@ -331,6 +331,14 @@ def test_execution_provenance_binds_command_resources_and_stream_hashes(
     assert provenance["workers"] == 3
     assert provenance["wall_time_seconds"] == 2.5
     assert provenance["maximum_rss"] == 12345
+    assert provenance["maximum_rss_scope"] == (
+        "RUSAGE_SELF_EXECUTOR_ONLY__EXCLUDES_CHILD_PROCESS_PEAKS"
+    )
+    assert provenance["maximum_rss_unit"] in {
+        "KiB",
+        "bytes",
+        "CANNOT_CHECK_PLATFORM_NATIVE",
+    }
     assert provenance["exit_code"] == 0
     assert provenance["stdout_sha256"] == hashlib.sha256(b"panel progress\n").hexdigest()
     assert provenance["stderr_sha256"] == hashlib.sha256(b"").hexdigest()

@@ -1,0 +1,107 @@
+{
+  "authority": {
+    "blinding_breach": "BLINDING_BREACH_ISSUE_BODY",
+    "comparison_to_frozen_outcomes": "PERFORMED_POST_EXECUTION",
+    "corrected_code_full_panel_execution": "NOT_RUN",
+    "duplicate_submission_forbidden": true,
+    "engineering_execution": "VALID",
+    "independence_terminal": "CANNOT_CHECK",
+    "scientific_terminal": "C_FIBERGUARD_DISAGREEMENT"
+  },
+  "disagreements": {
+    "endpoint_selection": {
+      "cause": "executed implementation selected the minimum canonical representation and minimum canonical-JSON witness bytes; frozen artifact selects max (diameter,multiplicity,repr(feature)) and retains first strict endpoint witnesses",
+      "graph": {
+        "executed_representation": [
+          [
+            1,
+            2,
+            2,
+            2,
+            2,
+            3
+          ],
+          0
+        ],
+        "executed_targets": [
+          2,
+          3
+        ],
+        "frozen_representation": [
+          [
+            2,
+            3,
+            3,
+            4,
+            4,
+            4
+          ],
+          5
+        ],
+        "frozen_targets": [
+          3,
+          4
+        ]
+      },
+      "set_cover": {
+        "representation_and_targets": "MATCH",
+        "witnesses": "DISAGREE"
+      },
+      "two_cnf": {
+        "representation_targets_and_witnesses": "DISAGREE"
+      }
+    },
+    "two_cnf_global_clause_sign_type_counts": {
+      "cause": "executed implementation merged (+,-) and (-,+)",
+      "executed": {
+        "ambiguous_fibre_count": 5856,
+        "definition": "three bins by number of positive literals",
+        "maximum_target_diameter": 4,
+        "refined_fibre_count": 20532
+      },
+      "frozen": {
+        "ambiguous_fibre_count": 5888,
+        "definition": "four oriented bins (++,+-,-+,--) by variable-label order",
+        "maximum_target_diameter": 4,
+        "refined_fibre_count": 25912
+      }
+    }
+  },
+  "executed_implementation_commit": "1298ebdc817acad021dd6ee29598bd6aa5c46ff0",
+  "executed_implementation_tree": "d9eb1a240e48794bfd9e6eedceb9f2672573024b",
+  "matched": {
+    "base_fibre_counts": {
+      "graphs": 136,
+      "set_cover": 909,
+      "two_cnf": 13032
+    },
+    "endpoint_fibre_multiplicities": {
+      "graphs": 720,
+      "set_cover": 1740,
+      "two_cnf": 11
+    },
+    "instance_counts": {
+      "graphs": 32768,
+      "set_cover": 155106,
+      "two_cnf": 42504
+    },
+    "maximum_target_diameters": {
+      "graphs": 1,
+      "set_cover": 1,
+      "two_cnf": 4
+    },
+    "non_global_sign_candidate_summaries": "MATCH"
+  },
+  "reference_result_sha256": "b6cbcd28fab0754750d65e1d98c3b218581aa2f4c4a814bc4685fe70563b2eaa",
+  "reference_subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
+  "resource_observation": {
+    "allocated_cpus": 16,
+    "dispatcher_max_processes": 3,
+    "requested_memory": "32G",
+    "sacct_step_max_rss": "4328K",
+    "terminal": "RESOURCE_OVERALLOCATED_NOT_SCIENTIFIC_FAILURE"
+  },
+  "result_sha256": "c9e6653ea5611cfcf61969f144998cb1538f04501157b43ef8ec32cf6dc628e9",
+  "schema": "ORION.FiberGuardPostExecutionCrossAudit.v1",
+  "slurm_job_id": "3542082"
+}

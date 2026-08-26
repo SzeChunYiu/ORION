@@ -72,11 +72,13 @@ def test_cnf_generator_representation_and_dual_targets_are_exact() -> None:
     assert len(clauses) == 24
     assert len(clauses) == len(set(clauses))
     assert all(abs(a) != abs(b) for a, b in clauses)
-    assert all(abs(a) < abs(b) for a, b in clauses)
+    assert clauses[0] == (1, 2)
+    assert clauses[8] == (2, -1)
+    assert clauses[-1] == (-3, -4)
 
-    formula = ((1, 2), (1, -2), (-1, 2), (-1, -2), (3, 4))
+    formula = ((1, 2), (1, -2), (2, -1), (3, 4), (-1, -2))
     expected_representation = (
-        ((2, 2), (2, 2), (1, 0), (1, 0)),
+        (2, 2, 1, 1, 2, 2, 0, 0),
         (4, 0, 0, 0, 0, 1),
     )
     assert fg.cnf_representation(formula) == expected_representation
@@ -89,9 +91,9 @@ def test_cnf_generator_representation_and_dual_targets_are_exact() -> None:
 
 
 def test_cnf_refinements_preserve_signed_pair_binding() -> None:
-    formula = ((1, 2), (1, -2), (-1, 2), (-1, -2), (3, 4))
+    formula = ((1, 2), (1, -2), (2, -1), (3, 4), (-1, -2))
     features = fg.cnf_refinements(formula)
-    assert features["global_clause_sign_type_counts"] == (1, 2, 2)
+    assert features["global_clause_sign_type_counts"] == (2, 1, 1, 1)
     assert features["unlabeled_signed_pair_profiles"] == (
         (0, 0, 0, 0),
         (0, 0, 0, 0),
@@ -134,17 +136,17 @@ def test_generic_audit_selects_endpoint_deterministically_and_checks_it_third_wa
     assert result["selected_endpoint_fibre"] == {
         "fibre_multiplicity": 3,
         "high_target": 2,
-        "high_witness": 4,
+        "high_witness": 5,
         "low_target": 0,
-        "low_witness": 0,
-        "representation": [0],
+        "low_witness": 1,
+        "representation": [1],
     }
     assert result["candidate_refinements"]["mod_three"] == {
         "ambiguous_fibre_count": 0,
         "fibre_count": 6,
         "maximum_target_diameter": 0,
     }
-    assert checked == [0, 4]
+    assert checked == [1, 5]
 
 
 def test_audit_rejects_duplicate_instances_and_solver_disagreement() -> None:
@@ -255,3 +257,17 @@ def test_protocol_domain_counts_are_derived_not_hard_coded_in_generators() -> No
         "set_cover": len(fg.cover_families()),
         "two_cnf": len(tuple(combinations(fg.binary_clauses(), 5))),
     }
+
+
+def test_post_execution_protocol_freezes_oriented_signs_and_forbids_duplicate() -> None:
+    protocol = json.loads(
+        (Path(__file__).resolve().parents[1] / "SOURCE_PROTOCOL.json").read_text()
+    )
+    assert protocol["schema"] == "ORION.FiberGuardCleanroomSourceProtocol.v2"
+    definition = protocol["domains"]["two_cnf"]["candidate_definitions"]
+    assert "(++,+-,-+,--)" in definition["global_clause_sign_type_counts"]
+    assert protocol["execution_custody"]["completed_job"] == "3542082"
+    assert protocol["execution_custody"]["duplicate_submission_forbidden"] is True
+    assert protocol["post_execution_diagnostic"]["corrected_successor_full_panel_execution"] == (
+        "NOT_RUN"
+    )

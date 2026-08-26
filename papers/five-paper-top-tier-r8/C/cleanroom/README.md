@@ -12,6 +12,23 @@ implementation may be used for engineering review, but it cannot supply a
 blind independent comparison or a replay PASS. The independence terminal is
 `CANNOT_CHECK`; a later truly blinded external worker is required.
 
+## Completed execution and adverse cross-audit
+
+LUNARC job `3542082` completed at implementation commit
+`1298ebdc817acad021dd6ee29598bd6aa5c46ff0`; its sealed result SHA-256 is
+`c9e6653ea5611cfcf61969f144998cb1538f04501157b43ef8ec32cf6dc628e9`.
+The execution and receipt are valid engineering evidence. A post-execution
+comparison with the frozen subject found a real definition mismatch in the
+2-CNF global sign-type candidate and different endpoint tie-breaking. The
+scientific terminal is therefore `C_FIBERGUARD_DISAGREEMENT__CANNOT_CHECK`,
+not replay PASS. The completed receipt is preserved unchanged.
+
+This successor corrects the under-specified four-bin sign convention and
+frozen deterministic endpoint policy for diagnostic/framework purposes only.
+The corrected full panels have **not** been executed, the correction is not an
+independent replay, and duplicate submission of JOB-C-R8-1 is forbidden. See
+`review/POST_EXECUTION_CROSS_AUDIT_JOB_3542082.json`.
+
 The committed `R8_PACKET_COMMIT.json` now uses the non-self-referential v2
 subject/publication binding. Before any dispatcher starts, the executor runs
 the canonical packet validator, validates the source-ref observation frozen
@@ -29,8 +46,8 @@ be issued after root review and bind the exact scientific subject, exact clean
 implementation commit/tree, exact source-manifest digest, JOB-C-R8-1, and
 explicit execution plus LUNARC grants. That authorization is a separate,
 external reviewed object and is valid only for the exact final implementation
-commit, tree, and source-manifest digest. No result from the reference artifact
-is read here.
+commit, tree, and source-manifest digest. The executed commit did not read the
+reference artifact; this post-execution diagnostic successor necessarily did.
 
 ## Components
 
@@ -45,7 +62,7 @@ is read here.
   authorization, and provenance verification.
 - `slurm/job_c_r8_1.slurm`: prepared 16-core, 32-GB, two-hour job using an
   external run directory so logs/results cannot dirty the authorized checkout;
-  not submitted.
+  job `3542082` is complete and must not be duplicated.
 - `tests/`: primitive, hostile, identity, manifest, and receipt tests.
 
 ## Permitted local validation

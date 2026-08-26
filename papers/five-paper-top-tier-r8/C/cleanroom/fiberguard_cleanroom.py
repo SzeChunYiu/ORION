@@ -356,11 +356,10 @@ def _selected_union(family: Sequence[int], choices: Sequence[int]) -> int:
 
 @lru_cache(maxsize=1)
 def binary_clauses() -> tuple[tuple[int, int], ...]:
-    clauses = []
-    for left, right in VARIABLE_PAIRS:
-        for left_sign, right_sign in SIGN_PATTERNS:
-            clauses.append((left_sign * left, right_sign * right))
-    return tuple(clauses)
+    literals = tuple(range(1, 5)) + tuple(range(-1, -5, -1))
+    return tuple(
+        (left, right) for left, right in combinations(literals, 2) if abs(left) != abs(right)
+    )
 
 
 @lru_cache(maxsize=1)
@@ -381,17 +380,20 @@ def _require_formula(formula: Sequence[Sequence[int]]) -> tuple[tuple[int, int],
 
 def cnf_representation(
     formula: Sequence[Sequence[int]],
-) -> tuple[tuple[tuple[int, int], ...], tuple[int, ...]]:
+) -> tuple[tuple[int, ...], tuple[int, ...]]:
     value = _require_formula(formula)
-    occurrences = []
-    for variable in range(1, 5):
-        positive = sum(literal == variable for clause in value for literal in clause)
-        negative = sum(literal == -variable for clause in value for literal in clause)
-        occurrences.append((positive, negative))
+    positive = tuple(
+        sum(literal == variable for clause in value for literal in clause)
+        for variable in range(1, 5)
+    )
+    negative = tuple(
+        sum(literal == -variable for clause in value for literal in clause)
+        for variable in range(1, 5)
+    )
     pair_counts = tuple(
         sum({abs(a), abs(b)} == {left, right} for a, b in value) for left, right in VARIABLE_PAIRS
     )
-    return tuple(occurrences), pair_counts
+    return positive + negative, pair_counts
 
 
 def _literal_true(literal: int, assignment: int) -> bool:
@@ -439,23 +441,25 @@ def cnf_count_by_clause_recursion(formula: Sequence[Sequence[int]]) -> int:
 
 
 def _signed_pair_profiles(formula: tuple[tuple[int, int], ...]) -> tuple[tuple[int, ...], ...]:
+    oriented = tuple(
+        (left, right) if abs(left) < abs(right) else (right, left) for left, right in formula
+    )
     profiles = []
     for left, right in VARIABLE_PAIRS:
         counts = []
         for left_sign, right_sign in SIGN_PATTERNS:
             expected = (left_sign * left, right_sign * right)
-            counts.append(sum(clause == expected for clause in formula))
+            counts.append(sum(clause == expected for clause in oriented))
         profiles.append(tuple(counts))
     return tuple(profiles)
 
 
 def cnf_refinements(formula: Sequence[Sequence[int]]) -> dict[str, object]:
     value = _require_formula(formula)
-    sign_type_counts = tuple(
-        sum(sum(literal > 0 for literal in clause) == positives for clause in value)
-        for positives in range(3)
-    )
     profiles = _signed_pair_profiles(value)
+    # Sign types are oriented by the lower/higher variable labels.  Collapsing
+    # (+,-) and (-,+) into one "one positive" bin changes the frozen candidate.
+    sign_type_counts = tuple(sum(profile[index] for profile in profiles) for index in range(4))
     return {
         "global_clause_sign_type_counts": sign_type_counts,
         "unlabeled_signed_pair_profiles": tuple(sorted(profiles)),
@@ -467,11 +471,12 @@ def cnf_endpoint_check(formula: Sequence[Sequence[int]]) -> dict[str, object]:
     """Third checker using a direct assignment table and direct counters."""
 
     value = tuple(tuple(clause) for clause in formula)
-    occurrences = tuple(
-        (
-            sum(literal == variable for clause in value for literal in clause),
-            sum(literal == -variable for clause in value for literal in clause),
-        )
+    positive = tuple(
+        sum(literal == variable for clause in value for literal in clause)
+        for variable in range(1, 5)
+    )
+    negative = tuple(
+        sum(literal == -variable for clause in value for literal in clause)
         for variable in range(1, 5)
     )
     pair_counts = tuple(
@@ -489,7 +494,7 @@ def cnf_endpoint_check(formula: Sequence[Sequence[int]]) -> dict[str, object]:
                 satisfied = False
                 break
         target += satisfied
-    return {"representation": (occurrences, pair_counts), "target": target}
+    return {"representation": (positive + negative, pair_counts), "target": target}
 
 
 def _jsonable(value: Any) -> Any:
@@ -557,18 +562,11 @@ def _update_fibre(
         fibres[key] = _FibreState(1, target, target, serialized, serialized, instance, instance)
         return
     existing.count += 1
-    serialized_bytes = canonical_json_bytes(serialized)
-    if target < existing.minimum or (
-        target == existing.minimum
-        and serialized_bytes < canonical_json_bytes(existing.low_serialized)
-    ):
+    if target < existing.minimum:
         existing.minimum = target
         existing.low_serialized = serialized
         existing.low_instance = instance
-    if target > existing.maximum or (
-        target == existing.maximum
-        and serialized_bytes < canonical_json_bytes(existing.high_serialized)
-    ):
+    if target > existing.maximum:
         existing.maximum = target
         existing.high_serialized = serialized
         existing.high_instance = instance
@@ -630,14 +628,13 @@ def audit_records(
     if not primary:
         raise ValueError("declared finite domain is empty")
 
-    maximum_diameter = max(state.maximum - state.minimum for state in primary.values())
-    endpoint_key, endpoint_state = min(
-        (
-            (key, state)
-            for key, state in primary.items()
-            if state.maximum - state.minimum == maximum_diameter
+    endpoint_key, endpoint_state = max(
+        primary.items(),
+        key=lambda item: (
+            item[1].maximum - item[1].minimum,
+            item[1].count,
+            repr(item[0]),
         ),
-        key=lambda item: (-item[1].count, canonical_json_bytes(_jsonable(item[0]))),
     )
     for endpoint_instance, expected_target in (
         (endpoint_state.low_instance, endpoint_state.minimum),
@@ -690,7 +687,7 @@ def _audit_graph_panel() -> dict[str, Any]:
             name: _select_refinement(graph_refinements, name)
             for name in ("clique_number", "component_count", "four_cycle_count")
         },
-        serialize_instance=lambda mask: mask,
+        serialize_instance=lambda mask: {"edge_mask": mask},
         endpoint_checker=graph_endpoint_check,
     )
 
@@ -708,7 +705,7 @@ def _audit_cover_panel() -> dict[str, Any]:
                 "triple_intersection_multiset",
             )
         },
-        serialize_instance=list,
+        serialize_instance=lambda family: {"sets": list(family)},
         endpoint_checker=cover_endpoint_check,
     )
 
@@ -726,7 +723,7 @@ def _audit_cnf_panel() -> dict[str, Any]:
                 "unlabeled_signed_pair_profiles",
             )
         },
-        serialize_instance=lambda formula: [list(clause) for clause in formula],
+        serialize_instance=lambda formula: {"clauses": [list(clause) for clause in formula]},
         endpoint_checker=cnf_endpoint_check,
     )
 
@@ -773,7 +770,7 @@ def expected_domain_counts() -> dict[str, int]:
 def validate_non_outcome_fixtures() -> dict[str, Any]:
     triangle = sum(1 << GRAPH_EDGE_INDEX[edge] for edge in ((0, 1), (0, 2), (1, 2)))
     singleton_cover = (1, 2, 4, 8, 16)
-    contradictory_formula = ((1, 2), (1, -2), (-1, 2), (-1, -2), (3, 4))
+    contradictory_formula = ((1, 2), (1, -2), (2, -1), (3, 4), (-1, -2))
     checks = {
         "graph_dual_solver_fixture": graph_chromatic_by_coloring(triangle)
         == graph_chromatic_by_independent_cover(triangle)
@@ -1205,6 +1202,13 @@ def build_execution_provenance(
     """Build the exact run/environment record sealed into an execution receipt."""
 
     status = _git_status(repository)
+    maximum_rss_unit = (
+        "KiB"
+        if sys.platform.startswith("linux")
+        else "bytes"
+        if sys.platform == "darwin"
+        else "CANNOT_CHECK_PLATFORM_NATIVE"
+    )
     return {
         "schema": "ORION.FiberGuardCleanroomExecutionProvenance.v1",
         "git_commit": _git_output(repository, "rev-parse", "HEAD"),
@@ -1224,6 +1228,8 @@ def build_execution_provenance(
         "ended_at": ended_at,
         "wall_time_seconds": wall_time_seconds,
         "maximum_rss": maximum_rss,
+        "maximum_rss_unit": maximum_rss_unit,
+        "maximum_rss_scope": "RUSAGE_SELF_EXECUTOR_ONLY__EXCLUDES_CHILD_PROCESS_PEAKS",
         "exit_code": exit_code,
         "stdout_bytes": len(stdout),
         "stdout_sha256": hashlib.sha256(stdout).hexdigest(),

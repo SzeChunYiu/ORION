@@ -70,6 +70,8 @@ EXECUTION_PROVENANCE_FIELDS = {
     "ended_at",
     "wall_time_seconds",
     "maximum_rss",
+    "maximum_rss_unit",
+    "maximum_rss_scope",
     "exit_code",
     "stdout_bytes",
     "stdout_sha256",
@@ -164,6 +166,10 @@ def verify_receipt(
             or not provenance["command"]
             or type(provenance.get("maximum_rss")) is not int
             or provenance["maximum_rss"] < 0
+            or provenance.get("maximum_rss_unit")
+            not in {"KiB", "bytes", "CANNOT_CHECK_PLATFORM_NATIVE"}
+            or provenance.get("maximum_rss_scope")
+            != "RUSAGE_SELF_EXECUTOR_ONLY__EXCLUDES_CHILD_PROCESS_PEAKS"
             or type(provenance.get("wall_time_seconds")) not in {int, float}
             or provenance["wall_time_seconds"] < 0
         ):
