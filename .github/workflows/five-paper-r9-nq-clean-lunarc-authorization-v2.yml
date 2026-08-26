@@ -1,0 +1,38 @@
+name: Five-paper R9 NQ clean LUNARC authorization v2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/r9-nq-clean-lunarc-authorization-v2-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/NQ/ENGINE_A_CLEAN_INTEGRATION_R9.json'
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/**'
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-authorization-clean-r9/**'
+      - '.github/workflows/five-paper-r9-nq-clean-lunarc-authorization-v2.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  static-authorization-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate unchanged payload trees and one-shot envelope
+        run: |
+          python papers/five-paper-top-tier-r8/NQ/lunarc-authorization-clean-r9/validate_clean_lunarc_authorization_r9.py \
+            | tee /tmp/NQ_CLEAN_LUNARC_AUTHORIZATION_VALIDATION_R9_V2.json
+      - name: Archive static authorization receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: nq-clean-lunarc-authorization-r9-v2
+          path: /tmp/NQ_CLEAN_LUNARC_AUTHORIZATION_VALIDATION_R9_V2.json
+          if-no-files-found: error
+          retention-days: 30
