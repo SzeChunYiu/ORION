@@ -1,0 +1,38 @@
+name: Paper D R10 minimum hybrid splicing
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [chatgpt/r10-d-minimum-splicing-20260826]
+    paths:
+      - 'papers/five-paper-top-tier-r8/D/MINIMUM_HYBRID_SPLICING_R10.md'
+      - 'papers/five-paper-top-tier-r8/D/verify_minimum_hybrid_splicing_r10.py'
+      - '.github/workflows/five-paper-r10-d-minimum-splicing.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run exact finite controls
+        run: |
+          set -euo pipefail
+          python papers/five-paper-top-tier-r8/D/verify_minimum_hybrid_splicing_r10.py | tee /tmp/minimum-splicing.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          obj=json.loads(Path('/tmp/minimum-splicing.json').read_text())
+          assert obj['status']=='PASS'
+          assert obj['exhaustive_transformed_set_systems']==5070
+          assert obj['cover_shift_mismatches']==0
+          assert obj['splicing_width_mismatches']==0
+          assert obj['witness_semantics_failures']==0
+          assert obj['authority']['external_policy_value'] is False
+          PY
