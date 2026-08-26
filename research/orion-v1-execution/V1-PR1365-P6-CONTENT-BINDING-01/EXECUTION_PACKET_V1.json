@@ -1,0 +1,231 @@
+{
+  "authority": {
+    "external_independent_validation": "CANNOT_CHECK",
+    "grants_orion_v1_freeze": false,
+    "grants_paper_authority": false,
+    "grants_publication_readiness": false,
+    "grants_scientific_authority": "NONE",
+    "novelty": "CANNOT_CHECK",
+    "paper_authority_delta": "NONE",
+    "physical_quantum_validity": "NOT_APPLICABLE",
+    "quantum_advantage": "NOT_APPLICABLE"
+  },
+  "coordination": {
+    "active_codex_branch": "codex/orion-postmerge-clipping-repair-20260826",
+    "active_pr": 1365,
+    "executor": "CODEX_SESSION_01a03963-d804-7320-b10a-2b828119df93",
+    "packet_branch": "shadow/orion-v1-pr1365-p6-binding-freeze-20260826",
+    "writing_boundary": "The executor may update only derived custody artifacts declared in allowed_paths. It must not edit scientific prose, algorithms, tests, claims, authority, frozen results, or baselines."
+  },
+  "frozen_source": {
+    "base_main_commit": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+    "merge_test_commit": "b09001392b66ebe252420b7549eb62ff72ea121d",
+    "source_branch": "codex/orion-postmerge-clipping-repair-20260826",
+    "source_commit": "6be938e293b87a84e034b801e6da6af4a17fa70c",
+    "source_tree": "04ca0b1ef7a5327f8c39b9c490e84330e3798994"
+  },
+  "observed_state": {
+    "algorithmic_execution": {
+      "dual_lane_run": 32953019054,
+      "dual_lane_terminal": "SUCCESS",
+      "focused_candidate_theory_result": "33_PASSED",
+      "interpretation": "The deterministic P6 countermodel repair is substantively green. This packet repairs exact content custody and does not redesign the theorem or algorithm."
+    },
+    "blocking_runs": [
+      {
+        "job_id": 98128505225,
+        "run_id": 32953018937,
+        "workflow": "ci",
+        "failure_class": "P6_CONTENT_BINDING_AND_DERIVED_INVENTORY_DRIFT"
+      },
+      {
+        "job_id": 98128505226,
+        "run_id": 32953018989,
+        "workflow": "clean-install-reproduction",
+        "failure_class": "CANNOT_CHECK_INVENTORY_DRIFT"
+      },
+      {
+        "job_id": 98128504735,
+        "run_id": 32953018871,
+        "workflow": "p6-p8-candidate-ci",
+        "failure_class": "P6_EXACT_SOURCE_BINDING_DRIFT"
+      }
+    ],
+    "clipping_run": {
+      "run_id": 32953019111,
+      "status_at_freeze": "IN_PROGRESS",
+      "rule": "Its later result must be retained as new evidence. It may not be inferred or backfilled into this packet."
+    },
+    "inventory_drift": {
+      "committed_total_sites": 722,
+      "derived_total_sites": 723,
+      "committed_missing_identity": 36,
+      "derived_missing_identity": 37,
+      "new_sites": [
+        "study/p6/certificate_as_dependency_graph.py:782",
+        "study/p6/certificate_as_dependency_graph.py:1062"
+      ],
+      "stale_site": "study/p6/certificate_as_dependency_graph.py:554"
+    },
+    "p6_binding_failures": [
+      "CONTENT_MANIFEST_V2.json does not describe all current P6 successor files and current source bytes",
+      "SHA256SUMS omits P6_LOCAL_REPLAY_CONTRACT_V4.json",
+      "SHA256SUMS omits P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_V2_2026-08-26.json",
+      "SHA256SUMS has stale digests for manuscript/FINAL_V5.md",
+      "SHA256SUMS has stale digests for manuscript/sections/05-axiom-minimality.tex",
+      "manuscript/main.pdf is not yet bound to the changed source bytes",
+      "subject_commit 3fad64d473104799ea5406e29da7fa0c022432bf no longer contains the complete bound byte set"
+    ],
+    "preserved_external_execution": [
+      {
+        "job_id": "3540214",
+        "outcome": "PASS",
+        "terminal": "PR1365_LUNARC_P12_P14_PARAGRAPH_MODE_PASS"
+      },
+      {
+        "job_id": "3540209",
+        "outcome": "FAIL_RETAINED",
+        "exit_code": 12,
+        "failure_class": "FIXTURE_ERROR"
+      }
+    ]
+  },
+  "repair_scope": {
+    "allowed_paths": [
+      "research/development/cannot_check_inventory.json",
+      "papers/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json",
+      "papers/paper-06-formal-epistemic-structures-and-mechanics/SHA256SUMS",
+      "papers/paper-06-formal-epistemic-structures-and-mechanics/content_binding_v2/SHA256SUMS",
+      "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/main.pdf"
+    ],
+    "conditionally_allowed_paths": [
+      {
+        "path": "papers/paper-06-formal-epistemic-structures-and-mechanics/content_binding_v2/CONTENT_MANIFEST_V2.json",
+        "condition": "Only if the repository's existing V2 binding materializer proves this is the canonical generated manifest path. Do not create a parallel authority surface by guess."
+      }
+    ],
+    "forbidden_paths_and_classes": [
+      "src/orion/**",
+      "tests/**",
+      "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/*.tex",
+      "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/*.md",
+      "papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/sections/**",
+      "papers/paper-06-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER*",
+      "papers/paper-06-formal-epistemic-structures-and-mechanics/P6_ACTIVE_CLAIM_AUTHORITY_V1.json",
+      "papers/CONTENT_BINDING_DRIFT_BASELINE_V1.json",
+      "papers/MANUSCRIPT_CLIPPING_BASELINE.json",
+      "research/orion-epistemic-state-v1/results/**",
+      "historical receipts and adverse evidence",
+      "P1 finalizer, Slurm, LUNARC, custody, integrity, and immutable-OID paths"
+    ],
+    "no_baseline_waiver": true,
+    "no_manifest_shrinkage": true,
+    "no_scientific_source_edit": true
+  },
+  "execution_protocol": {
+    "phase_a_content_commit": {
+      "purpose": "Generate and verify the exact current P6 derived bytes without yet claiming that a manifest binds the same commit that introduces it.",
+      "preconditions": [
+        "Fetch the source commit by exact SHA and verify source tree identity.",
+        "Create a fresh Codex-owned branch/worktree from the exact source commit.",
+        "Confirm the worktree is clean before every command.",
+        "Do not copy uncommitted bytes from another lane."
+      ],
+      "commands": [
+        "git status --porcelain=v2 --branch",
+        "test \"$(git rev-parse HEAD)\" = 6be938e293b87a84e034b801e6da6af4a17fa70c",
+        "test \"$(git rev-parse HEAD^{tree})\" = 04ca0b1ef7a5327f8c39b9c490e84330e3798994",
+        "uv sync --frozen --all-extras",
+        "make -C papers/paper-06-formal-epistemic-structures-and-mechanics reproduce-v4",
+        "python -m pytest -q tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py tests/unit/candidates/test_p6_p8_candidate_embedding.py tests/unit/candidates/test_p6_p8_theory_closure_v21.py tests/unit/candidates/test_p6_p8_merged_review_suites.py",
+        "python research/development/cannot_check_inventory.py --write",
+        "python research/development/cannot_check_inventory.py --check",
+        "SOURCE_DATE_EPOCH=$(git log -1 --format=%ct -- papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript ':(exclude)papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript/main.pdf'); export SOURCE_DATE_EPOCH FORCE_SOURCE_DATE=1; cd papers/paper-06-formal-epistemic-structures-and-mechanics/manuscript && latexmk -C main.tex >/dev/null && latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex",
+        "git diff --check",
+        "git status --short"
+      ],
+      "required_commit": {
+        "name": "CONTENT_COMMIT_S",
+        "contents": [
+          "regenerated cannot_check_inventory.json",
+          "clean pinned P6 manuscript/main.pdf"
+        ],
+        "rule": "CONTENT_COMMIT_S must contain the final semantic/source/result/PDF bytes that the V2 manifest will bind. It must not include the V2 manifest or checksum-layer update itself."
+      }
+    },
+    "phase_b_binding_commit": {
+      "purpose": "Regenerate the P6 V2 manifest and both checksum layers so they bind CONTENT_COMMIT_S and its tree exactly.",
+      "requirements": [
+        "Use the repository's canonical content-binding materializer or derive its exact algorithm from existing checker code; do not hand-select a flattering subset.",
+        "Include P6_LOCAL_REPLAY_CONTRACT_V4.json and P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_V2_2026-08-26.json.",
+        "Include the current FINAL_V5.md, 05-axiom-minimality.tex, and rebuilt main.pdf bytes.",
+        "Retain every previously bound file unless the canonical exclusion rule proves it is a build artifact or historical manifest layer.",
+        "Set subject_commit to CONTENT_COMMIT_S and subject_tree to CONTENT_COMMIT_S^{tree}.",
+        "Set subject_commit_status to BOUND only after every local byte and git-show byte matches.",
+        "Do not set external_independent_validation or paper authority to a positive state."
+      ],
+      "required_commit": {
+        "name": "BINDING_COMMIT_B",
+        "contents": [
+          "CONTENT_MANIFEST_V2.json",
+          "P6 SHA256SUMS",
+          "P6 content_binding_v2/SHA256SUMS"
+        ],
+        "rule": "BINDING_COMMIT_B may contain only generated binding artifacts. The manifest must bind CONTENT_COMMIT_S, not BINDING_COMMIT_B."
+      }
+    }
+  },
+  "acceptance": {
+    "commands": [
+      "python papers/candidates/checkers/check_content_binding_v1.py --check",
+      "python papers/candidates/checkers/check_reproducibility_targets_v2.py --candidate P6 --json",
+      "python -m pytest -q tests/unit/candidates/test_candidate_content_binding.py tests/unit/candidates/test_candidate_reproducibility_targets_v2.py tests/unit/candidates/test_p6_commutation_contract_binding.py tests/unit/candidates/test_p6_p10_evidence_closure.py tests/unit/programme/test_content_binding_coverage.py tests/unit/programme/test_content_binding_drift_ratchet.py tests/unit/study/p6/test_p6_certificate_as_dependency_graph.py",
+      "python research/development/cannot_check_inventory.py --check",
+      "python -m pytest -q --ignore=tests/unit/p2",
+      "git diff --check",
+      "git status --porcelain=v2"
+    ],
+    "expected_invariants": [
+      "P6 semantic outputs and theorem terminals are unchanged from the green deterministic repair.",
+      "P6 exact subject identity is BOUND to CONTENT_COMMIT_S and its exact tree.",
+      "P6 reproducibility target counts are BOUND=8, CANNOT_CHECK=1, DEFERRED=1, unless a checker change already present in the frozen source proves a stricter honest state; any change must be explained, not coerced.",
+      "The regenerated CANNOT_CHECK inventory exactly equals its derived current value; the frozen observed expectation is total_sites=723 and MISSING_IDENTITY=37.",
+      "No content-binding or clipping baseline is changed.",
+      "The pinned clean P6 PDF is byte-identical to the committed P6 main.pdf.",
+      "No skipped, xfailed, quarantined, deleted, or weakened test is introduced.",
+      "No source or result path outside allowed_paths changes."
+    ],
+    "required_return_packet": [
+      "FREEZE.json",
+      "RAW_MANIFEST.json",
+      "PRIMARY_RESULT.json",
+      "DONOR_RESULT.json",
+      "NEGATIVE_CONTROLS.json",
+      "RESOURCE_LEDGER.json",
+      "TRANSFER_RESULT.json",
+      "RESULT_BINDING_PACKET.json"
+    ]
+  },
+  "terminals": {
+    "success": "PR1365_P6_CONTENT_BINDING_AND_DERIVED_CUSTODY_GREEN",
+    "honest_alternatives": [
+      "P6_SEMANTIC_REPLAY_DRIFT",
+      "P6_BINDING_SOURCE_MUTATION_REQUIRED",
+      "P6_PDF_NOT_REPRODUCIBLE",
+      "P6_SUBJECT_COMMIT_NOT_EXACT",
+      "CANNOT_CHECK_INVENTORY_DRIFT_UNRESOLVED",
+      "P6_BINDING_MATERIALIZER_AMBIGUOUS",
+      "CANNOT_CHECK"
+    ],
+    "non_implications": [
+      "ORION V1 frozen",
+      "P6 top-tier ready",
+      "P1-P15 finalized",
+      "external novelty supported",
+      "independent reproduction complete",
+      "peer review complete"
+    ]
+  },
+  "schema": "ORION.V1.ExecutionPacket.v1",
+  "packet_id": "V1-PR1365-P6-CONTENT-BINDING-01"
+}
