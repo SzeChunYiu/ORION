@@ -12,7 +12,9 @@ copy existing NQ algorithms or result files.
 - an independent literal-matrix `GL(r,5)` symmetry implementation for the
   frozen rank-at-most-two pre-census controls;
 - a slow subset/partition reference for small controls;
-- SAT witness and hash-bound UNSAT-proof certificate formats;
+- SAT witness and V2 byte-bound DIMACS/DRUP UNSAT certificate formats;
+- a source-pinned external `drat-trim` packaging protocol and one materialized
+  negative engineering control;
 - canonical JSONL input records and coverage manifests;
 - guarded parallel PySAT execution;
 - deterministic source and receipt bindings;
@@ -23,9 +25,15 @@ copy existing NQ algorithms or result files.
 
 Public issue and programme text exposed expected early-constant counts before
 implementation. Blinded independence is therefore not claimed. Local fixture
-tests and Engine B execution are engineering evidence only. Full replay still
-requires Engine A agreement, proof audit of census coverage, and external DRUP
-checking where UNSAT records occur.
+tests, the one externally checked DRUP control, and Engine B execution are
+engineering evidence only. Full replay still requires Engine A agreement,
+proof audit of census coverage, full byte-bound input partitions, and external
+DRUP checking for every UNSAT record in a complete bundle.
+
+The materialized external control proves only that the pinned checker can
+verify the existing small negative fixture against an independently rebuilt
+Engine-B DIMACS file. It does not run the 98,622- or 230,983-record censuses,
+audit their partitions, or create scientific or paper authority.
 
 `D_4(C_5^3)` remains OPEN. Partial support strata do not close it. Allocation
 exhaustion is `CANNOT_CHECK_RESOURCE_BOUND`, never a theorem or counterexample.

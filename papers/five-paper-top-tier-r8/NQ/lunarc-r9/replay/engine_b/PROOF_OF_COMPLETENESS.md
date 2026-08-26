@@ -52,11 +52,29 @@ and no symmetry-breaking assumption that could remove a valid model.
 
 ## UNSAT certificates
 
-The execution adapter requests a DRUP trace from the SAT solver and binds its
-bytes, CNF digest, sequence digest, subject commit, and solver identity. An
-UNSAT result remains `UNSAT_PROOF_EMITTED_REQUIRES_EXTERNAL_CHECK` until a
-separate proof checker validates the trace. Merely hashing the trace is not a
-logical proof check.
+The execution adapter requests a DRUP trace from the SAT solver and writes the
+exact deterministic DIMACS CNF checked by that trace. UNSAT certificate V2
+binds the CNF bytes, CNF semantic digest, proof bytes, sequence digest, subject
+commit, and solver identity. Its verifier reconstructs the Engine-B CNF and
+requires byte equality with the bound DIMACS file. An UNSAT result remains
+`UNSAT_PROOF_EMITTED_REQUIRES_EXTERNAL_CHECK` until a separate proof checker
+validates the trace. Merely hashing the trace is not a logical proof check.
+
+## External DRUP engineering control
+
+`EXTERNAL_DRUP_CHECKER_PROTOCOL.json` pins the external `drat-trim` source
+commit and tree, license, build command, binary location, invocation, timeout,
+and success marker. The fail-closed runner rejects a dirty tracked source tree,
+wrong commit or tree, non-executable or out-of-tree binary, nonzero exit, or
+missing exact `s VERIFIED` line. Its receipt binds the protocol, source and
+binary identities, input record, V2 certificate, CNF, proof, stdout, and
+stderr.
+
+The materialized negative control checks exactly one small UNSAT fixture. It
+does not execute either full census, audit normalization or partitions, check
+all full-bundle UNSAT proofs, establish independent replay authority, or change
+paper authority. Those fields remain `CANNOT_CHECK`/`NONE`, and
+`D_4(C_5^3)` remains OPEN.
 
 ## Census and theorem boundary
 

@@ -22,6 +22,7 @@ SOURCE_PATHS = tuple(
         (
             "BLINDING_DISCLOSURE.json",
             "CERTIFICATE_SCHEMA.json",
+            "EXTERNAL_DRUP_CHECKER_PROTOCOL.json",
             "INPUT_SCHEMA.json",
             "PROOF_OF_COMPLETENESS.md",
             "README.md",
@@ -31,11 +32,13 @@ SOURCE_PATHS = tuple(
             "batch_engine_b.py",
             "build_manifest.py",
             "engine_b.py",
+            "external_drup.py",
             "run_engine_b.py",
             "slurm/job_nq_r8_engine_b.slurm",
             "symmetry.py",
             "tests/test_batch_and_authority.py",
             "tests/test_engine_b_primitives.py",
+            "tests/test_external_drup.py",
             "tests/test_source_packet.py",
             "verify_receipt.py",
         )

@@ -17,8 +17,11 @@ def test_source_allowlist_is_exact_local_and_has_no_existing_nq_artifact() -> No
     assert "engine_b.py" in paths
     assert "symmetry.py" in paths
     assert "PROOF_OF_COMPLETENESS.md" in paths
+    assert "EXTERNAL_DRUP_CHECKER_PROTOCOL.json" in paths
+    assert "external_drup.py" in paths
     assert "requirements.txt" in paths
     assert "tests/test_engine_b_primitives.py" in paths
+    assert "tests/test_external_drup.py" in paths
     assert all(not path.startswith("../") for path in paths)
     assert all("x1f" not in path.lower() and "result" not in path.lower() for path in paths)
 
