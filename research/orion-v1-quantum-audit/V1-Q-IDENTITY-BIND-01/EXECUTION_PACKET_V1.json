@@ -1,0 +1,174 @@
+{
+  "authority": {
+    "external_novelty": "CANNOT_CHECK",
+    "grants_issue_closure": false,
+    "grants_orion_v1_freeze": false,
+    "grants_paper_authority": false,
+    "grants_scientific_disposition": false,
+    "paper_authority_delta": "NONE",
+    "physical_quantum_validity": "CANNOT_CHECK",
+    "quantum_advantage": "CANNOT_CHECK"
+  },
+  "coordination": {
+    "executor": "CODEX_SESSION_01a03963-d804-7320-b10a-2b828119df93",
+    "required_codex_branch": "codex/orion-v1-quantum-identity-bind-20260826",
+    "source_branch": "shadow/orion-v1-quantum-semantic-intake-20260826"
+  },
+  "frozen_source": {
+    "base_main_commit": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+    "source_commit": "bf9ee8fa34ffba7531de18e54b58eba4a641601c",
+    "source_tree": "88f8a6c2b24fcec02f2752b78946a7a14652c33c"
+  },
+  "input_identities": {
+    "census": {
+      "acquired_at_utc": "2026-08-26T08:14:32.786136Z",
+      "artifact_id": 9598519591,
+      "artifact_name": "orion-v1-open-issue-census-ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+      "artifact_sha256": "115b2ea69dba24bcf1a5959403dc6165ffc4b5b59ad4a5d81fd78ca293f408da",
+      "checkout_commit": "ec0c2a250eb86ce5677feaf00da05e1d9714b4ee",
+      "checkout_tree": "1fc4b2bc647c60f21ef8def2ed6647fa9d8fb081",
+      "lexical_candidate_count": 67,
+      "open_issue_count": 129,
+      "workflow_head_sha": "ed6aa96485e583fdf47fc483d92702e8928c6a2c",
+      "workflow_run_id": 32946709713
+    },
+    "semantic_intake": {
+      "path": "research/orion-v1-quantum-audit/V1_QUANTUM_SEMANTIC_INTAKE_V1.json",
+      "commit": "bf9ee8fa34ffba7531de18e54b58eba4a641601c"
+    }
+  },
+  "resources": {
+    "environment": "ubuntu-latest or equivalent Linux x86_64",
+    "github_permissions": [
+      "actions:read",
+      "contents:read",
+      "issues:read",
+      "pull-requests:read"
+    ],
+    "network": "GitHub API only",
+    "python": "3.12.13",
+    "suggested_cpu_cores": 2,
+    "suggested_memory_gib": 8,
+    "timeout_minutes": 30
+  },
+  "question": "For every one of the 67 denominator-visible lexical candidates, what exact issue, comment, timeline, linked-PR, merge-commit, current-main-presence, named-artifact, and next-adjudication route can be bound without assigning scientific success from prose or administrative state?",
+  "implementation": {
+    "allowed_paths": [
+      "development/orion-v1-quantum-identity-bind-2026-08-26/DEVELOPMENT_PACKET.md",
+      "scripts/audit_orion_v1_quantum_identity.py",
+      "tests/unit/orion_v1/test_quantum_identity_audit.py",
+      "research/orion-v1-quantum-audit/results/V1-Q-IDENTITY-BIND-01/**",
+      ".github/workflows/orion-v1-quantum-identity-audit.yml"
+    ],
+    "forbidden_paths_and_classes": [
+      "src/orion/**",
+      "papers/**",
+      "existing research result bytes",
+      "existing theorem or claim ledgers",
+      "existing issue bodies or comments except the final coordination comment",
+      "P1 finalizer, Slurm, LUNARC, custody, integrity, and immutable-OID paths",
+      "content-binding or clipping baselines"
+    ],
+    "required_development_atoms": [
+      "exact acquisition and pagination identity",
+      "issue versus pull-request separation",
+      "body/comment/timeline byte custody",
+      "linked-PR evidence versus lexical reference",
+      "merged commit ancestry against frozen base main",
+      "current-main artifact presence versus branch-only evidence",
+      "common-core grouping without administrative mass closure",
+      "authority non-transfer and CANNOT_CHECK preservation"
+    ]
+  },
+  "execution_protocol": {
+    "commands": [
+      "git status --porcelain=v2 --branch",
+      "test \"$(git rev-parse HEAD)\" = bf9ee8fa34ffba7531de18e54b58eba4a641601c",
+      "test \"$(git rev-parse HEAD^{tree})\" = 88f8a6c2b24fcec02f2752b78946a7a14652c33c",
+      "python -m py_compile scripts/audit_orion_v1_quantum_identity.py",
+      "python -m pytest -q tests/unit/orion_v1/test_quantum_identity_audit.py",
+      "mkdir -p .orion-v1-input && gh api repos/SzeChunYiu/ORION/actions/artifacts/9598519591/zip > .orion-v1-input/census.zip",
+      "echo '115b2ea69dba24bcf1a5959403dc6165ffc4b5b59ad4a5d81fd78ca293f408da  .orion-v1-input/census.zip' | sha256sum -c -",
+      "python scripts/audit_orion_v1_quantum_identity.py --repository SzeChunYiu/ORION --census-zip .orion-v1-input/census.zip --semantic-intake research/orion-v1-quantum-audit/V1_QUANTUM_SEMANTIC_INTAKE_V1.json --frozen-base-main ef51b7b9263a72c725dc9d2045627b934b772a92 --output-dir research/orion-v1-quantum-audit/results/V1-Q-IDENTITY-BIND-01 --github-token-env GITHUB_TOKEN",
+      "python scripts/audit_orion_v1_quantum_identity.py --check --output-dir research/orion-v1-quantum-audit/results/V1-Q-IDENTITY-BIND-01",
+      "git diff --check"
+    ],
+    "pagination_rules": [
+      "Fetch every issue comment page and every timeline page until Link rel=next is absent.",
+      "Retain raw response bytes, selected response headers, request URL, status, byte count, and SHA-256.",
+      "Record API rate-limit censorship or unstable issue revision as a typed negative terminal.",
+      "Do not infer a PR link merely because an issue number occurs in unrelated prose."
+    ],
+    "binding_rules": [
+      "One row is required for every one of the 67 intake issue numbers.",
+      "Issue title/body identity must bind the census body SHA-256; later drift is recorded as a successor snapshot, not silently substituted.",
+      "Comments and timeline events are acquisition evidence, not scientific truth.",
+      "A PR is linked only through an explicit issue/PR relationship, exact URL/reference with context, closing reference, cross-reference event, or a retained CANNOT_CHECK route.",
+      "Every merge commit must be checked for ancestry in frozen base main and current remote main separately.",
+      "Branch-only or unmerged result paths cannot be classified as current-main evidence.",
+      "No row may receive PROVEN, FORMALLY_CHECKED, COMPUTATIONALLY_GREEN_BOUNDED, or any other final scientific disposition in this identity-binding tranche.",
+      "Lexical false positives remain rows with an explicit direct-denominator exclusion reason.",
+      "Coordination/publication rows remain dependency gates and cannot absorb the disposition of child scientific issues."
+    ]
+  },
+  "required_outputs": {
+    "directory": "research/orion-v1-quantum-audit/results/V1-Q-IDENTITY-BIND-01",
+    "files": [
+      "FREEZE.json",
+      "RAW_MANIFEST.json",
+      "ISSUE_IDENTITY_LEDGER.json",
+      "LINKED_PR_COMMIT_LEDGER.json",
+      "CURRENT_MAIN_PRESENCE_LEDGER.json",
+      "COMMON_CORE_ROUTE_LEDGER.json",
+      "NEGATIVE_CONTROLS.json",
+      "RESOURCE_LEDGER.json",
+      "RESULT_BINDING_PACKET.json"
+    ],
+    "row_requirements": [
+      "issue number, title, body SHA-256, acquisition update time and current update time",
+      "complete comment and timeline page identities",
+      "semantic intake class and common-core id",
+      "explicit linked PRs, PR state, head/base identities and merge commits",
+      "frozen-base-main ancestry and current-main ancestry",
+      "named result/artifact paths and current-main presence state",
+      "identity status and next adjudication route",
+      "authority ceiling and paper_authority_delta=NONE"
+    ]
+  },
+  "negative_controls": [
+    "remove one of the 67 issue rows",
+    "duplicate an issue row",
+    "replace an issue body with same-length different bytes",
+    "truncate a comment or timeline page",
+    "treat a pull request as an issue",
+    "accept a lexical issue-number mention as a linked PR without context",
+    "treat a merged PR whose merge commit is absent from main as current-main authority",
+    "promote branch-only result bytes",
+    "assign a final scientific disposition from issue prose or checkbox state",
+    "drop #632 or #1366 instead of retaining explicit lexical-false-positive rows",
+    "transfer source quantum authority to a discovery or publication consumer"
+  ],
+  "terminals": {
+    "success": "V1_QUANTUM_67_ISSUE_IDENTITY_AND_ROUTE_CENSUS_COMPLETE",
+    "honest_alternatives": [
+      "QUANTUM_CANDIDATE_DENOMINATOR_MISMATCH",
+      "ISSUE_REVISION_DRIFT_REQUIRES_SUCCESSOR_SNAPSHOT",
+      "COMMENT_OR_TIMELINE_PAGINATION_INCOMPLETE",
+      "LINKED_PR_IDENTITY_AMBIGUOUS",
+      "CURRENT_MAIN_ANCESTRY_CANNOT_CHECK",
+      "RATE_LIMIT_CENSORED",
+      "CANNOT_CHECK"
+    ],
+    "non_implications": [
+      "V1_QUANTUM_FRONTIER_AUDIT_CLOSED",
+      "any quantum issue scientifically closed",
+      "physical quantum validity",
+      "quantum advantage",
+      "external novelty",
+      "P18 manuscript authorization",
+      "ORION V1 frozen"
+    ]
+  },
+  "schema": "ORION.V1.ExecutionPacket.v1",
+  "packet_id": "V1-Q-IDENTITY-BIND-01"
+}
