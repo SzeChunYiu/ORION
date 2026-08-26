@@ -1,0 +1,551 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_strict_main_result_payloads_cannot_bypass_protocol_in_finalize[channel_eof] _
+
+kind = 'channel_eof'
+
+    @pytest.mark.parametrize("kind", ("channel_eof", "empty_ready"))
+    def test_strict_main_result_payloads_cannot_bypass_protocol_in_finalize(
+        kind: str,
+    ) -> None:
+        oracle = _oracle()
+        subject = oracle._subject()
+        invocation = oracle._invocation(subject)
+        _binding, _child, events = oracle._status_registered_prefix(
+            subject,
+            invocation,
+        )
+        events = oracle._append(
+            events,
+            FinalizationBegin(),
+            phase=EventPhase.FINALIZE,
+        )
+        payload = (
+            ChannelEof(Channel.STATUS, effect_occurrence_id=oracle.HEX_C)
+            if kind == "channel_eof"
+            else EmptyReadyObserved(effect_occurrence_id=oracle.HEX_C)
+        )
+        events = oracle._append(events, payload, phase=EventPhase.FINALIZE)
+
+        with pytest.raises(
+            ValueError,
+            match=r"(?i)(?:FINALIZE|MAIN|result|transaction|effect)",
+        ):
+>           oracle._reduce_strict(subject, invocation, events)
+
+research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/test_hostile_review_regressions.py:72:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py:1037: in _reduce_strict
+    return reduce_process_events(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+subject = ProcessCommandSubject(operation=<ProcessOperation.PROTECTED_GIT: 'PROTECTED_GIT'>, logical_argv=('git', 'status', '--p...ae05e9d539a51861f0c083e', deadline_decoder_identity='6ca72cf9568bfa3f1b131253faf70d5ef2219b5771289e040379e3dafadcd2fa')
+events = (ProcessLifecycleEvent(event_index=0, previous_event_hash=None, phase=<EventPhase.MAIN: 'MAIN'>, payload=DeadlineBindi...ntries_parsed=0, git_tag_steps=0), event_hash='66218f95c0c40b5720995545dc6d02d06535989847af506bab18b57fb5e3b2ea'), ...)
+
+    def reduce_process_events(
+        subject: ProcessCommandSubject,
+        events: tuple[ProcessLifecycleEvent, ...],
+        *,
+        invocation_occurrence_id: str | None = None,
+    ) -> ProcessDerivedState:
+        _validate_process_command_subject(subject)
+        _require_registered_wait_decoder(
+            subject.wait_decoder_identity,
+            subject.wait_supported_signals,
+            subject.wait_nonblocking_option_mask,
+        )
+        if invocation_occurrence_id is not None:
+            _require_hash(invocation_occurrence_id, "invocation_occurrence_id")
+        _require_exact_tuple(events, "events")
+        if len(events) > MAX_PROCESS_EVENT_COUNT:
+            raise ValueError("process event count cap is exceeded")
+        strict_trace = _validate_strict_deadline_trace(
+            subject,
+            events,
+            invocation_occurrence_id,
+        )
+
+        acquired: list[Channel] = []
+        nonblocking: list[Channel] = []
+        registered: list[Channel] = []
+        unregistered: list[Channel] = []
+        eof_seen: set[Channel] = set()
+        retained = {channel: b"" for channel in Channel}
+        acquired_output = {channel: b"" for channel in Channel}
+        observed = {channel: 0 for channel in Channel}
+        channel_states = {channel: ChannelState.UNACQUIRED for channel in Channel}
+        close_dispositions = {
+            channel: CloseDisposition.NOT_ATTEMPTED for channel in Channel
+        }
+        close_attempts = {channel: 0 for channel in Channel}
+        selector_state = SelectorState.UNCREATED
+        process_state = ProcessState.NOT_STARTED
+        child_pid: int | None = None
+        process_group_id: int | None = None
+        pre_root_observation: RootIdentityObservation | None = None
+        post_root_observation: RootIdentityObservation | None = None
+        timeout_observation: TimeoutObservation | None = None
+        deadline_binding: DeadlineBinding | None = None
+        deadline_refusal: DeadlineRefusal | None = None
+        handoff_state = HandoffState.NOT_REACHED
+        exit_state = ExitState.UNOBSERVED
+        returncode: int | None = None
+        termination_signal: int | None = None
+        reap_disposition = ReapDisposition.UNOBSERVED
+        wait_observed = False
+        post_disposition = PostDisposition.UNOBSERVED
+        finalization_state = FinalizationState.NOT_STARTED
+        main_work = ProcessWorkVector.zero()
+        finalize_work = ProcessWorkVector.zero()
+        finalize_indices: list[int] = []
+        retry_counts: dict[tuple[ProcessStage, ProcessTarget, RetryKind], int] = {}
+        successful_select_pending = False
+        ready_pending: set[Channel] = set()
+        successful_read_pending: Channel | None = None
+        retry_pending: tuple[ProcessStage, ProcessTarget, RetryKind] | None = None
+        first_primary: FailureOccurrence | None = None
+        recurrence_signatures: list[str] = []
+        failure_occurrences: list[FailureOccurrence] = []
+        previous_hash: str | None = None
+
+        def record_derived_failure(
+            event: ProcessLifecycleEvent,
+            *,
+            stage: ProcessStage,
+            target: ProcessTarget,
+            kind: FailureKind,
+            mechanism_errno: int | None,
+            close_disposition: CloseDisposition | None = None,
+            supplied_role: FailureRole | None = None,
+            causal_discriminator: tuple[str, ...] = (),
+        ) -> None:
+            nonlocal first_primary
+            role = FailureRole.PRIMARY if not failure_occurrences else FailureRole.CLEANUP
+            if supplied_role is not None and supplied_role is not role:
+                raise ValueError("supplied failure role contradicts reducer chronology")
+            occurrence, signature = _record_failure(
+                command_subject_hash=subject.command_subject_hash,
+                invocation_occurrence_id=invocation_occurrence_id,
+                event=event,
+                stage=stage,
+                target=target,
+                kind=kind,
+                mechanism_errno=mechanism_errno,
+                role=role,
+                close_disposition=close_disposition,
+                acquired_prefix=tuple(acquired),
+                nonblocking_prefix=tuple(nonblocking),
+                registered_prefix=tuple(registered),
+                process_state=process_state,
+                handoff_state=handoff_state,
+                selector_state=selector_state,
+                causal_discriminator=causal_discriminator,
+            )
+            recurrence_signatures.append(signature)
+            failure_occurrences.append(occurrence)
+            if first_primary is None:
+                first_primary = occurrence
+
+        for index, event in enumerate(events):
+            if type(event) is not ProcessLifecycleEvent:
+                raise ProcessEventChainError(
+                    "events must contain exact ProcessLifecycleEvent values"
+                )
+            _validate_event_link(event, index, previous_hash)
+            previous_hash = event.event_hash
+
+            if retry_pending is not None and not isinstance(event.payload, RetryObserved):
+                raise ValueError("retryable attempt requires immediate RetryObserved")
+            if successful_select_pending and not isinstance(event.payload, ReadyBatch):
+                raise ValueError("successful select requires immediate ReadyBatch")
+            if successful_read_pending is not None and not isinstance(
+                event.payload, (BytesObserved, ChannelEof)
+            ):
+                raise ValueError("successful read requires immediate bytes or EOF")
+
+            if index > 0 and (
+                deadline_refusal is not None
+                or (
+                    deadline_binding is not None
+                    and deadline_binding.start_admission_state
+                    is StartAdmissionState.DENIED_EXPIRED
+                )
+            ):
+                raise ValueError(
+                    "deadline refusal or expired start admission forbids continuation"
+                )
+
+            if post_disposition is not PostDisposition.UNOBSERVED:
+                raise ValueError("POST must be the final lifecycle event")
+            payload = event.payload
+            if type(payload) in {DeadlineBinding, DeadlineRefusal}:
+                if index != 0 or event.phase is not EventPhase.MAIN:
+                    raise ValueError(
+                        "deadline binding or refusal must be the initial event"
+                    )
+                if invocation_occurrence_id is None:
+                    raise ValueError("strict deadline prefix requires an invocation")
+                if payload.invocation_occurrence_id != invocation_occurrence_id:
+                    raise ValueError(
+                        "deadline prefix is bound to another invocation occurrence"
+                    )
+                if payload.requested_timeout_ns != subject.requested_timeout_ns:
+                    raise ValueError(
+                        "deadline requested timeout does not match command subject"
+                    )
+                if (
+                    subject.clock_contract_hash is None
+                    or subject.deadline_decoder_identity is None
+                ):
+                    raise ValueError("strict deadline prefix requires a strict subject")
+                if payload.clock_contract_hash != subject.clock_contract_hash:
+                    raise ValueError(
+                        "deadline clock contract does not match command subject"
+                    )
+                if payload.deadline_decoder_identity != subject.deadline_decoder_identity:
+                    raise ValueError(
+                        "deadline decoder identity does not match command subject"
+                    )
+            mandatory_finalize = _requires_finalize_lane(payload)
+            effective_phase = EventPhase.FINALIZE if mandatory_finalize else event.phase
+            if mandatory_finalize and event.phase is not EventPhase.FINALIZE:
+                stage, target = _payload_stage_target(payload)
+                record_derived_failure(
+                    event,
+                    stage=stage,
+                    target=target,
+                    kind=FailureKind.PROTOCOL,
+                    mechanism_errno=None,
+                    causal_discriminator=("cleanup_labelled_main",),
+                )
+            if isinstance(payload, FinalizationBegin):
+                if event.phase is not EventPhase.FINALIZE:
+                    raise ValueError("FINALIZATION_BEGIN must be a FINALIZE event")
+                if finalization_state is not FinalizationState.NOT_STARTED:
+                    raise ValueError("FINALIZATION_BEGIN may occur only once")
+                if event.work_delta != ProcessWorkVector.zero():
+                    raise ValueError("FINALIZATION_BEGIN must charge zero work")
+                finalization_state = FinalizationState.IN_PROGRESS
+            elif event.phase is EventPhase.FINALIZE:
+                if finalization_state is FinalizationState.NOT_STARTED:
+                    raise ValueError("FINALIZE event precedes FINALIZATION_BEGIN")
+            elif finalization_state is not FinalizationState.NOT_STARTED:
+                raise ValueError("MAIN event cannot follow FINALIZATION_BEGIN")
+
+            if event.phase is EventPhase.FINALIZE:
+                if isinstance(payload, OperationAttempt) and payload.stage in {
+                    ProcessStage.PROCESS_START,
+                    ProcessStage.SELECTOR_CREATE,
+                    ProcessStage.NONBLOCKING_CONFIGURE,
+                    ProcessStage.SELECTOR_REGISTER,
+                    ProcessStage.SELECT,
+                    ProcessStage.READ,
+                }:
+                    raise ValueError(
+                        f"{payload.stage.value} is not permitted during FINALIZE"
+                    )
+                if isinstance(
+                    payload,
+                    (
+                        DescriptorAcquired,
+                        ReadyBatch,
+                        BytesObserved,
+                        HandoffTransition,
+                        ChildIdentityBound,
+                    ),
+                ):
+                    raise ValueError(
+                        f"{type(payload).__name__} is not permitted during FINALIZE"
+                    )
+                if isinstance(payload, RetryObserved) and (
+                    payload.stage is not ProcessStage.WAIT
+                    or payload.target is not ProcessTarget.PROCESS
+                    or payload.kind is not RetryKind.INTERRUPTED
+                    or retry_pending
+                    != (ProcessStage.WAIT, ProcessTarget.PROCESS, RetryKind.INTERRUPTED)
+                ):
+                    raise ValueError(
+                        "only an immediate WAIT/EINTR RetryObserved is permitted "
+                        "during FINALIZE"
+                    )
+
+            required_work = _required_work_delta(payload, effective_phase)
+            if effective_phase is EventPhase.MAIN:
+                main_work = main_work + required_work
+                if main_work.exceeds(subject.work_envelope.main_limit):
+                    raise ValueError("main work envelope accounting is exhausted")
+            else:
+                finalize_indices.append(index)
+                finalize_work = finalize_work + required_work
+                if finalize_work.exceeds(subject.work_envelope.finalize_limit):
+                    raise ValueError("finalize work envelope accounting is exhausted")
+
+            if type(payload) is DeadlineBinding:
+                deadline_binding = payload
+                if payload.start_admission_state is StartAdmissionState.DENIED_EXPIRED:
+                    record_derived_failure(
+                        event,
+                        stage=ProcessStage.PROCESS_START,
+                        target=ProcessTarget.PROCESS,
+                        kind=FailureKind.TIMEOUT,
+                        mechanism_errno=None,
+                        causal_discriminator=(
+                            "expired_deadline_binding",
+                            payload.winning_source.value,
+                        ),
+                    )
+            elif type(payload) is DeadlineRefusal:
+                deadline_refusal = payload
+                record_derived_failure(
+                    event,
+                    stage=ProcessStage.PROCESS_START,
+                    target=ProcessTarget.PROCESS,
+                    kind=FailureKind.RESOURCE_EXHAUSTED,
+                    mechanism_errno=None,
+                    causal_discriminator=(
+                        "deadline_refusal",
+                        payload.reason.value,
+                    ),
+                )
+            elif type(payload) is ProcessStartCompletion:
+                if index in strict_trace.crossing_event_indices:
+                    record_derived_failure(
+                        event,
+                        stage=ProcessStage.TIMEOUT,
+                        target=ProcessTarget.PROCESS,
+                        kind=FailureKind.TIMEOUT,
+                        mechanism_errno=None,
+                        causal_discriminator=(
+                            "process_start_completion_crossed",
+                            deadline_binding.winning_source.value
+                            if deadline_binding is not None
+                            else "UNKNOWN",
+                        ),
+                    )
+            elif type(payload) is DeadlineAdmission:
+                pass
+            elif type(payload) is DeadlineCompletion:
+                if index in strict_trace.crossing_event_indices:
+                    record_derived_failure(
+                        event,
+                        stage=ProcessStage.TIMEOUT,
+                        target=ProcessTarget.PROCESS,
+                        kind=FailureKind.TIMEOUT,
+                        mechanism_errno=None,
+                        causal_discriminator=(
+                            "effect_completion_crossed",
+                            deadline_binding.winning_source.value
+                            if deadline_binding is not None
+                            else "UNKNOWN",
+                        ),
+                    )
+            elif isinstance(payload, DescriptorAcquired):
+                if event.phase is not EventPhase.MAIN:
+                    raise ValueError("descriptor acquisition cannot occur during FINALIZE")
+                expected = (
+                    _CHANNELS[len(acquired)] if len(acquired) < len(_CHANNELS) else None
+                )
+                if payload.channel is not expected:
+                    raise ValueError("descriptor acquisition must extend canonical prefix")
+                acquired.append(payload.channel)
+                channel_states[payload.channel] = ChannelState.ACQUIRED
+            elif isinstance(payload, ChildIdentityBound):
+                if (
+                    event.phase is not EventPhase.MAIN
+                    or process_state is not ProcessState.STARTED
+                    or child_pid is not None
+                ):
+                    raise ValueError(
+                        "child/process-group identity requires one started occurrence"
+                    )
+                child_pid = payload.child_pid
+                process_group_id = payload.process_group_id
+            elif isinstance(payload, RootIdentityObservation):
+                if payload.phase is RootObservationPhase.PRE:
+                    if (
+                        event.phase is not EventPhase.MAIN
+                        or process_state is not ProcessState.NOT_STARTED
+                        or pre_root_observation is not None
+                    ):
+                        raise ValueError(
+                            "PRE root observation has invalid lifecycle position"
+                        )
+                    pre_root_observation = payload
+                else:
+                    if finalization_state is not FinalizationState.IN_PROGRESS:
+                        raise ValueError("POST requires an active finalization traversal")
+                    if any(
+                        channel in acquired
+                        and close_dispositions[channel] is CloseDisposition.NOT_ATTEMPTED
+                        for channel in Channel
+                    ):
+                        raise ValueError("POST must follow descriptor cleanup traversal")
+                    if selector_state is SelectorState.CREATED:
+                        raise ValueError("POST must follow selector cleanup traversal")
+                    if process_state is ProcessState.STARTED and (
+                        not wait_observed or reap_disposition is ReapDisposition.UNOBSERVED
+                    ):
+                        raise ValueError(
+                            "POST must follow an exact child wait/reap or typed unknown reap"
+                        )
+                    post_root_observation = payload
+                    post_disposition = PostDisposition[payload.disposition.name]
+                    finalization_state = FinalizationState.COMPLETE
+            elif isinstance(payload, ReadyBatch):
+                strict_result = strict_trace.enabled and (
+                    payload.effect_occurrence_id is not None
+                )
+                if not strict_result and not successful_select_pending:
+                    raise ValueError("ReadyBatch requires a successful select")
+                if index in strict_trace.censored_result_indices:
+                    continue
+                for channel in payload.channels:
+                    if channel_states[channel] is not ChannelState.REGISTERED:
+                        raise ValueError("ready channel must currently be registered")
+                    if channel in ready_pending:
+                        raise ValueError("ready channel is already pending consumption")
+                ready_pending.update(payload.channels)
+                successful_select_pending = False
+            elif isinstance(payload, EmptyReadyObserved):
+                pass
+            elif isinstance(payload, BytesObserved):
+                strict_result = strict_trace.enabled and (
+                    payload.effect_occurrence_id is not None
+                )
+                if not strict_result and successful_read_pending is not payload.channel:
+                    raise ValueError("bytes require a successful read of that channel")
+                if index in strict_trace.censored_result_indices:
+                    continue
+                if channel_states[payload.channel] is not ChannelState.REGISTERED:
+                    raise ValueError("bytes require a registered channel")
+                observed[payload.channel] += len(payload.acquired_bytes)
+                acquired_output[payload.channel] += payload.acquired_bytes
+                retained[payload.channel] += payload.retained_prefix_delta
+                _validate_output_bounds(subject, acquired_output, retained)
+                if len(payload.acquired_bytes) > len(payload.retained_prefix_delta):
+                    record_derived_failure(
+                        event,
+                        stage=ProcessStage.READ,
+                        target=_CHANNEL_TARGET[payload.channel],
+                        kind=FailureKind.RESOURCE_EXHAUSTED,
+                        mechanism_errno=None,
+                        causal_discriminator=(
+                            "unretained_limit_sentinel",
+                            payload.channel.value,
+                        ),
+                    )
+                ready_pending.remove(payload.channel)
+                successful_read_pending = None
+            elif isinstance(payload, ChannelEof):
+                strict_result = strict_trace.enabled and (
+                    payload.effect_occurrence_id is not None
+                )
+                if not strict_result and successful_read_pending is not payload.channel:
+                    raise ValueError("EOF requires a successful read of that channel")
+                if index in strict_trace.censored_result_indices:
+                    continue
+                if channel_states[payload.channel] is not ChannelState.REGISTERED:
+                    raise ValueError("EOF requires a registered channel")
+                if payload.channel in eof_seen:
+                    raise ValueError("channel EOF cannot be observed twice")
+                eof_seen.add(payload.channel)
+                channel_states[payload.channel] = ChannelState.EOF
+>               ready_pending.remove(payload.channel)
+E               KeyError: <Channel.STATUS: 'status'>
+
+src/orion/kernel/process_receipt.py:4648: KeyError
+_ test_strict_main_result_payloads_cannot_bypass_protocol_in_finalize[empty_ready] _
+
+kind = 'empty_ready'
+
+    @pytest.mark.parametrize("kind", ("channel_eof", "empty_ready"))
+    def test_strict_main_result_payloads_cannot_bypass_protocol_in_finalize(
+        kind: str,
+    ) -> None:
+        oracle = _oracle()
+        subject = oracle._subject()
+        invocation = oracle._invocation(subject)
+        _binding, _child, events = oracle._status_registered_prefix(
+            subject,
+            invocation,
+        )
+        events = oracle._append(
+            events,
+            FinalizationBegin(),
+            phase=EventPhase.FINALIZE,
+        )
+        payload = (
+            ChannelEof(Channel.STATUS, effect_occurrence_id=oracle.HEX_C)
+            if kind == "channel_eof"
+            else EmptyReadyObserved(effect_occurrence_id=oracle.HEX_C)
+        )
+        events = oracle._append(events, payload, phase=EventPhase.FINALIZE)
+
+>       with pytest.raises(
+            ValueError,
+            match=r"(?i)(?:FINALIZE|MAIN|result|transaction|effect)",
+        ):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/test_hostile_review_regressions.py:68: Failed
+______ test_deadline_completion_construction_has_no_module_global_history ______
+
+    def test_deadline_completion_construction_has_no_module_global_history() -> None:
+>       assert not hasattr(process_receipt, "_STRICT_ADMISSION_OBSERVED_BY_EFFECT")
+E       AssertionError: assert not True
+E        +  where True = hasattr(process_receipt, '_STRICT_ADMISSION_OBSERVED_BY_EFFECT')
+
+research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/test_hostile_review_regressions.py:76: AssertionError
+_____ test_retry_observation_must_immediately_follow_its_completed_effect ______
+
+    def test_retry_observation_must_immediately_follow_its_completed_effect() -> None:
+        oracle = _oracle()
+        subject = oracle._subject()
+        invocation = oracle._invocation(subject)
+        binding, child, events = oracle._started(subject, invocation)
+        events, _create, _create_completion = oracle._append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECTOR_CREATE,
+            ProcessTarget.SELECTOR,
+            admission_ns=oracle.START_NS + 1,
+            completion_ns=oracle.START_NS + 1,
+        )
+        events, select_admission, _select_completion = oracle._append_effect(
+            events,
+            invocation,
+            binding,
+            child,
+            ProcessStage.SELECT,
+            ProcessTarget.SELECTOR,
+            admission_ns=oracle.START_NS + 2,
+            completion_ns=oracle.START_NS + 3,
+            result="EMPTY_READY",
+        )
+        events = oracle._append(events, DescriptorAcquired(Channel.STATUS))
+        events = oracle._append(
+            events,
+            oracle._retry_with_deadline(
+                ProcessStage.SELECT,
+                ProcessTarget.SELECTOR,
+                RetryKind.EMPTY_READY,
+                1,
+                select_admission.effect_occurrence_id,
+            ),
+        )
+
+>       with pytest.raises(
+            ValueError,
+            match=r"(?i)(?:retry|immediate|intervening|completed effect)",
+        ):
+E       Failed: DID NOT RAISE <class 'ValueError'>
+
+research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/test_hostile_review_regressions.py:117: Failed
+=========================== short test summary info ============================
+FAILED research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/test_hostile_review_regressions.py::test_strict_main_result_payloads_cannot_bypass_protocol_in_finalize[channel_eof]
+FAILED research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/test_hostile_review_regressions.py::test_strict_main_result_payloads_cannot_bypass_protocol_in_finalize[empty_ready]
+FAILED research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/test_hostile_review_regressions.py::test_deadline_completion_construction_has_no_module_global_history
+FAILED research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/test_hostile_review_regressions.py::test_retry_observation_must_immediately_follow_its_completed_effect
+4 failed in 0.35s

@@ -1,0 +1,43 @@
+{
+  "authority_ceiling": {
+    "full_dual_lane_execution": "OPEN",
+    "independent_reproduction": "CANNOT_CHECK",
+    "linux_ci_reproduction": "CANNOT_CHECK_UNTIL_PUSH",
+    "local_process_receipt_conformance": "GREEN",
+    "orion_v1_freeze": "NOT_GRANTED",
+    "paper_authority_delta": "NONE",
+    "publication_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "hostile_review_repairs": {
+    "finalize_rejects_strict_main_results": "GREEN",
+    "no_module_global_admission_history": "GREEN",
+    "plain_string_replay_defers_chronology_to_reducer": "GREEN",
+    "retry_authority_invalidated_by_intervening_main_event": "GREEN",
+    "same_digest_admissions_are_thread_isolated": "GREEN",
+    "serialized_effect_identity_unchanged": "GREEN"
+  },
+  "implementation_commit": "73f87baf581865d89f5df492ede27aa9e1171dd6",
+  "implementation_tree": "96ea7388c608ae9ec2cfdba9997134f8909b5a3b",
+  "non_implications": [
+    "V1_RECEIPT_V3_HOSTILE_FRONTIER_CLOSED globally",
+    "full dual-lane execution complete",
+    "independent reproduction complete",
+    "ORION V1 frozen",
+    "P15 publication ready"
+  ],
+  "obligations": {
+    "child_identity_dual_dialect": "GREEN",
+    "clock_regression_and_occurrence_relinking": "GREEN",
+    "deadline_crossing_irreversibility": "GREEN",
+    "failed_spawn_crossing_knowledge": "GREEN",
+    "finalize_reserve_after_crossing": "GREEN",
+    "legacy_byte_identity": "GREEN",
+    "process_start_pre_post_protocol": "GREEN",
+    "selector_timeout_exact_encoding": "GREEN",
+    "strict_effect_transaction_protocol": "GREEN",
+    "strict_legacy_lane_separation": "GREEN"
+  },
+  "schema": "ORION.V1.ReceiptV3DeadlineP1TransferResult.v1",
+  "terminal": "CONSERVATIVE_STRICT_DEADLINE_TRANSFER_GREEN_LOCALLY"
+}

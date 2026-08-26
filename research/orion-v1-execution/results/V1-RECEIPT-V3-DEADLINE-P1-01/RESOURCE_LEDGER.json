@@ -1,0 +1,52 @@
+{
+  "adverse_resource_evidence": {
+    "failed_install_attempts": 2,
+    "logs": [
+      "fresh_constrained_install_red_disk.log",
+      "fresh_constrained_install_red_disk_retry2.log"
+    ],
+    "other_worktrees_deleted": false,
+    "reason": "ENOSPC before cache cleanup",
+    "repository_evidence_deleted": false
+  },
+  "authority_ceiling": {
+    "full_dual_lane_execution": "OPEN",
+    "independent_reproduction": "CANNOT_CHECK",
+    "linux_ci_reproduction": "CANNOT_CHECK_UNTIL_PUSH",
+    "local_process_receipt_conformance": "GREEN",
+    "orion_v1_freeze": "NOT_GRANTED",
+    "paper_authority_delta": "NONE",
+    "publication_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "compute": {
+    "external_scientific_executions": 0,
+    "gpu_jobs_submitted": 0,
+    "local_pytest_processes": "recorded_in_logs",
+    "lunarc_jobs_submitted": 0
+  },
+  "disk_policy": "SPARSE_WORKTREE_NO_OTHER_WORKTREE_DELETION",
+  "environment": {
+    "editable_install_performed": true,
+    "fresh_venv": "/tmp/orion-v1-receipt-v3-hostile-final",
+    "install_command": "python -m pip install -e '.[dev,candidates]' --constraint .github/ci-fast-replay-constraints.txt",
+    "install_exit_code": 0,
+    "pip_no_cache_dir": true,
+    "pytest": "9.1.1"
+  },
+  "execution_host": {
+    "machine": "arm64",
+    "platform": "macOS-26.4-arm64-arm-64bit",
+    "python": "3.12.13 (main, Mar  3 2026, 12:39:30) [Clang 21.0.0 (clang-2100.0.123.102)]"
+  },
+  "implementation_commit": "73f87baf581865d89f5df492ede27aa9e1171dd6",
+  "implementation_tree": "96ea7388c608ae9ec2cfdba9997134f8909b5a3b",
+  "schema": "ORION.V1.ReceiptV3DeadlineP1ResourceLedger.v1",
+  "timings_seconds": {
+    "combined_hashseed_0": 1.585,
+    "combined_hashseed_1": 1.576,
+    "darwin_broad_control": 1.566,
+    "deadline_final": 1.184,
+    "hostile_review_regressions": 0.231
+  }
+}

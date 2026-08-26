@@ -1,0 +1,44 @@
+{
+  "authority_ceiling": {
+    "full_dual_lane_execution": "OPEN",
+    "independent_reproduction": "CANNOT_CHECK",
+    "linux_ci_reproduction": "CANNOT_CHECK_UNTIL_PUSH",
+    "local_process_receipt_conformance": "GREEN",
+    "orion_v1_freeze": "NOT_GRANTED",
+    "paper_authority_delta": "NONE",
+    "publication_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "closure_binding": {
+    "binds_immediately_preceding_result_publication_commit": true,
+    "self_binding": "NOT_ATTEMPTED",
+    "self_binding_reason": "This closure is added by a later commit and cannot recursively bind the commit containing itself."
+  },
+  "denominator_status": {
+    "frozen_combined_linux": 233,
+    "frozen_deadline": 120,
+    "frozen_denominators_retuned": false,
+    "separate_hostile_review_regressions": 8
+  },
+  "implementation_commit": "73f87baf581865d89f5df492ede27aa9e1171dd6",
+  "implementation_tree": "96ea7388c608ae9ec2cfdba9997134f8909b5a3b",
+  "packet_id": "V1-RECEIPT-V3-DEADLINE-P1-01",
+  "published_records": {
+    "raw_manifest": {
+      "bytes": 10187,
+      "git_blob": "e95670c60c6b1d2625be7c3cabaa0ffc8f8b68df",
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/RAW_MANIFEST.json",
+      "sha256": "3c950d7cb960bdafdfd508665904471e60b68b823fc48d1bf17fdde9e4827566"
+    },
+    "result_binding_packet": {
+      "bytes": 12438,
+      "git_blob": "fb48ecc2957f1b2c9df1f5603573c6c5d02575af",
+      "path": "research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/RESULT_BINDING_PACKET.json",
+      "sha256": "684a6d1b3386edef23d61c5044a6ca8d3b22cbfd298193282975632abbb963e8"
+    }
+  },
+  "result_publication_commit": "a6c609d55e31b72573fb87374a84926fa33ceac3",
+  "result_publication_tree": "3c2ff6cc5bfa7aeb2a3db5c7ae6842e26c013618",
+  "schema": "ORION.V1.ReceiptV3DeadlineP1PublicationClosure.v1",
+  "terminal": "RESULT_PUBLICATION_BOUND_WITHOUT_SELF_BINDING"
+}

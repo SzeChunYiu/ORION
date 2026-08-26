@@ -1,0 +1,13 @@
+{
+  "authoritative_linux_denominator": 233,
+  "local_darwin_collected": 234,
+  "local_extra_not_in_linux_artifact": [
+    "tests/unit/kernel/test_process_receipt_v3_wait_hostile.py::test_wait_options_reject_unrequested_job_control_and_unknown_bits[waitid-wstopped]"
+  ],
+  "local_selected": 233,
+  "platform_errno_substitutions": {
+    "darwin_EINPROGRESS": 36,
+    "linux_EINPROGRESS": 115
+  },
+  "schema": "ORION.V1.PlatformNodeIdMapping.v1"
+}

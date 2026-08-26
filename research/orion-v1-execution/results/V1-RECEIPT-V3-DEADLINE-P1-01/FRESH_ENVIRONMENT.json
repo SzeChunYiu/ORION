@@ -1,0 +1,69 @@
+{
+  "authority_ceiling": {
+    "full_dual_lane_execution": "OPEN",
+    "independent_reproduction": "CANNOT_CHECK",
+    "linux_ci_reproduction": "CANNOT_CHECK_UNTIL_PUSH",
+    "local_process_receipt_conformance": "GREEN",
+    "orion_v1_freeze": "NOT_GRANTED",
+    "paper_authority_delta": "NONE",
+    "publication_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "environment": {
+    "fresh_venv": "/tmp/orion-v1-receipt-v3-hostile-final",
+    "pip_no_cache_dir": true,
+    "platform": "macOS-26.4-arm64-arm-64bit",
+    "python_executable": "/private/tmp/orion-v1-receipt-v3-hostile-final/bin/python",
+    "python_version": "3.12.13"
+  },
+  "implementation_commit": "73f87baf581865d89f5df492ede27aa9e1171dd6",
+  "implementation_tree": "96ea7388c608ae9ec2cfdba9997134f8909b5a3b",
+  "install": {
+    "adverse_reason": "ENOSPC before cache cleanup; no protocol or dependency retuning",
+    "command": "python -m pip install -e '.[dev,candidates]' --constraint .github/ci-fast-replay-constraints.txt",
+    "exit_code": 0,
+    "log": "fresh_constrained_install.log",
+    "pip_freeze": "fresh_constrained_pip_freeze.txt",
+    "preserved_adverse_attempts": [
+      {
+        "exit_code": 1,
+        "log": "fresh_constrained_install_red_disk.log",
+        "reason": "ENOSPC"
+      },
+      {
+        "exit_code": 1,
+        "log": "fresh_constrained_install_red_disk_retry2.log",
+        "reason": "ENOSPC"
+      }
+    ]
+  },
+  "schema": "ORION.V1.ReceiptV3DeadlineP1FreshEnvironment.v1",
+  "tests": {
+    "darwin_broad_control": {
+      "failed": 0,
+      "passed": 234,
+      "time_seconds": 1.566
+    },
+    "hostile_review_regressions": {
+      "failed": 0,
+      "passed": 8,
+      "separate_from_frozen_denominators": true,
+      "time_seconds": 0.231
+    },
+    "immutable_deadline_oracle": {
+      "failed": 0,
+      "passed": 120,
+      "time_seconds": 1.184
+    },
+    "mapped_combined_hashseed_0": {
+      "failed": 0,
+      "passed": 233,
+      "time_seconds": 1.585
+    },
+    "mapped_combined_hashseed_1": {
+      "failed": 0,
+      "passed": 233,
+      "time_seconds": 1.576
+    }
+  }
+}

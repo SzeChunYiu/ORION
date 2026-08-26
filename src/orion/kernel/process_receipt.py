@@ -93,6 +93,7 @@ _DEADLINE_REFUSAL_DOMAIN = "orion.host-evidence-process-deadline-refusal.v1"
 _DEADLINE_ADMISSION_DOMAIN = "orion.host-evidence-process-deadline-admission.v1"
 _DEADLINE_COMPLETION_DOMAIN = "orion.host-evidence-process-deadline-completion.v1"
 _PROCESS_START_COMPLETION_DOMAIN = "orion.host-evidence-process-start-completion.v1"
+_CHILD_OCCURRENCE_DOMAIN = "orion.host-evidence-process-child-occurrence.v1"
 _EFFECT_OCCURRENCE_DOMAIN = "orion.host-evidence-process-effect-occurrence.v1"
 _SELECT_TIMEOUT_CONTRACT_DOMAIN = (
     "orion.host-evidence-process-select-timeout-contract.v1"
@@ -477,6 +478,60 @@ def _require_hash(value: object, name: str) -> None:
         raise ValueError(f"{name} must be a lowercase SHA-256 hexadecimal digest")
 
 
+class _ObservedEffectOccurrenceId(str):
+    """Value-local capture token for an effect occurrence.
+
+    The textual value remains the exact SHA-256 occurrence identity.  The
+    private coordinate is deliberately not serialized or hashed: it carries
+    only the admission observation made by the capture-side factory so a
+    completion created from that same in-memory token can reject local clock
+    regression without consulting shared mutable history.  Deserialized plain
+    strings retain the same byte identity and are validated contextually by the
+    reducer.
+    """
+
+    __slots__ = ("_admission_observed_monotonic_ns",)
+
+    def __new__(
+        cls,
+        value: str,
+        admission_observed_monotonic_ns: int,
+    ) -> _ObservedEffectOccurrenceId:
+        _require_hash(value, "effect_occurrence_id")
+        _require_bounded_int(
+            admission_observed_monotonic_ns,
+            "admission_observed_monotonic_ns",
+            MAX_PROCESS_MONOTONIC_NS,
+        )
+        instance = super().__new__(cls, value)
+        object.__setattr__(
+            instance,
+            "_admission_observed_monotonic_ns",
+            admission_observed_monotonic_ns,
+        )
+        return instance
+
+    @property
+    def admission_observed_monotonic_ns(self) -> int:
+        return self._admission_observed_monotonic_ns
+
+    def __setattr__(self, name: str, value: object) -> None:
+        raise AttributeError("effect occurrence capture tokens are immutable")
+
+
+def _require_effect_occurrence_id(value: object, name: str) -> None:
+    if type(value) not in {str, _ObservedEffectOccurrenceId}:
+        raise ValueError(
+            f"{name} must be an exact string or an intrinsic capture token"
+        )
+    _require_hash(str(value), name)
+
+
+def _plain_effect_occurrence_id(value: str) -> str:
+    _require_effect_occurrence_id(value, "effect_occurrence_id")
+    return str(value)
+
+
 def _validate_stage_target(stage: ProcessStage, target: ProcessTarget) -> None:
     _require_exact_enum(stage, ProcessStage, "stage")
     _require_exact_enum(target, ProcessTarget, "target")
@@ -733,6 +788,21 @@ class SelectTimeoutContract:
                 "select_timeout_contract_hash does not match registered contract"
             )
         object.__setattr__(self, "select_timeout_contract_hash", expected)
+
+    def encode_timeout_float64_bits(self, remaining_ns: int) -> str:
+        """Encode an exact remaining-time observation for the registered backend.
+
+        The encoded argument is never an authority-bearing duration by itself; the
+        integer nanosecond coordinate remains authoritative.  Keeping the encoder on
+        the frozen contract makes replay able to reject even one-ULP substitutions.
+        """
+
+        _require_bounded_int(
+            remaining_ns,
+            "remaining_ns",
+            MAX_PROCESS_MONOTONIC_NS,
+        )
+        return struct.pack(">d", remaining_ns / 1_000_000_000).hex()
 
 
 _CLOCK_INFO = time.get_clock_info("monotonic")
@@ -1736,7 +1806,10 @@ class SelectCallArgument:
     select_call_argument_hash: str = ""
 
     def __post_init__(self) -> None:
-        _require_hash(self.effect_occurrence_id, "effect_occurrence_id")
+        _require_effect_occurrence_id(
+            self.effect_occurrence_id,
+            "effect_occurrence_id",
+        )
         _require_bounded_int(
             self.remaining_ns,
             "remaining_ns",
@@ -1768,7 +1841,9 @@ class SelectCallArgument:
         )
         expected = canonical_digest(
             {
-                "effect_occurrence_id": self.effect_occurrence_id,
+                "effect_occurrence_id": _plain_effect_occurrence_id(
+                    self.effect_occurrence_id
+                ),
                 "remaining_ns": self.remaining_ns,
                 "timeout_argument_float64_bits": (self.timeout_argument_float64_bits),
                 "semantic_requested_wait_ns": self.semantic_requested_wait_ns,
@@ -1810,9 +1885,12 @@ class DeadlineAdmission:
             (self.deadline_binding_hash, "deadline_binding_hash"),
             (self.child_occurrence_id, "child_occurrence_id"),
             (self.clock_domain_occurrence_id, "clock_domain_occurrence_id"),
-            (self.effect_occurrence_id, "effect_occurrence_id"),
         ):
             _require_hash(value, name)
+        _require_effect_occurrence_id(
+            self.effect_occurrence_id,
+            "effect_occurrence_id",
+        )
         _validate_stage_target(self.stage, self.target)
         _require_positive_int(self.attempt_ordinal, "attempt_ordinal")
         _require_bounded_int(
@@ -1889,7 +1967,9 @@ class DeadlineAdmission:
                     if self.select_call_argument is not None
                     else None
                 ),
-                "effect_occurrence_id": self.effect_occurrence_id,
+                "effect_occurrence_id": _plain_effect_occurrence_id(
+                    self.effect_occurrence_id
+                ),
             },
             domain=_DEADLINE_ADMISSION_DOMAIN,
         )
@@ -1899,8 +1979,103 @@ class DeadlineAdmission:
 
     @classmethod
     def from_observation(cls, **coordinates: object) -> DeadlineAdmission:
-        raise ValueError(
-            "deadline admission construction requires the strict effect transaction"
+        required = {
+            "invocation_occurrence_id",
+            "deadline_binding_hash",
+            "child_occurrence_id",
+            "clock_domain_occurrence_id",
+            "stage",
+            "target",
+            "attempt_ordinal",
+            "admission_event_index",
+            "admission_previous_event_hash",
+            "deadline_monotonic_ns",
+            "observed_monotonic_ns",
+            "select_timeout_contract",
+            "timeout_argument_float64_bits",
+        }
+        if set(coordinates) != required:
+            raise ValueError("deadline admission requires exact strict coordinates")
+        deadline_ns = coordinates["deadline_monotonic_ns"]
+        observed_ns = coordinates["observed_monotonic_ns"]
+        _require_bounded_int(
+            deadline_ns,
+            "deadline_monotonic_ns",
+            MAX_PROCESS_MONOTONIC_NS,
+        )
+        _require_bounded_int(
+            observed_ns,
+            "observed_monotonic_ns",
+            MAX_PROCESS_MONOTONIC_NS,
+        )
+        if observed_ns >= deadline_ns:
+            raise ValueError("deadline admission is crossed or expired")
+        stage = coordinates["stage"]
+        target = coordinates["target"]
+        _validate_stage_target(stage, target)
+        effect_occurrence_digest = canonical_digest(
+            {
+                "invocation_occurrence_id": coordinates["invocation_occurrence_id"],
+                "deadline_binding_hash": coordinates["deadline_binding_hash"],
+                "child_occurrence_id": coordinates["child_occurrence_id"],
+                "clock_domain_occurrence_id": coordinates[
+                    "clock_domain_occurrence_id"
+                ],
+                "stage": stage.value,
+                "target": target.value,
+                "attempt_ordinal": coordinates["attempt_ordinal"],
+                "admission_event_index": coordinates["admission_event_index"],
+                "admission_previous_event_hash": coordinates[
+                    "admission_previous_event_hash"
+                ],
+            },
+            domain=_EFFECT_OCCURRENCE_DOMAIN,
+        )
+        effect_occurrence_id = _ObservedEffectOccurrenceId(
+            effect_occurrence_digest,
+            observed_ns,
+        )
+        remaining_ns = deadline_ns - observed_ns
+        select_argument: SelectCallArgument | None = None
+        contract = coordinates["select_timeout_contract"]
+        supplied_bits = coordinates["timeout_argument_float64_bits"]
+        if stage is ProcessStage.SELECT:
+            if type(contract) is not SelectTimeoutContract:
+                raise ValueError("SELECT admission requires a select timeout contract")
+            _require_registered_select_timeout_contract_hash(
+                contract.select_timeout_contract_hash
+            )
+            expected_bits = contract.encode_timeout_float64_bits(remaining_ns)
+            if supplied_bits != expected_bits:
+                raise ValueError(
+                    "select timeout float64 encoder must use exact remaining time"
+                )
+            select_argument = SelectCallArgument(
+                effect_occurrence_id=effect_occurrence_id,
+                remaining_ns=remaining_ns,
+                timeout_argument_float64_bits=expected_bits,
+                semantic_requested_wait_ns=remaining_ns,
+                select_timeout_contract_hash=contract.select_timeout_contract_hash,
+            )
+        elif contract is not None or supplied_bits is not None:
+            raise ValueError("non-SELECT admission cannot carry a select timeout")
+        return cls(
+            phase=DeadlineEffectPhase.PRE_EFFECT,
+            invocation_occurrence_id=coordinates["invocation_occurrence_id"],
+            deadline_binding_hash=coordinates["deadline_binding_hash"],
+            child_occurrence_id=coordinates["child_occurrence_id"],
+            clock_domain_occurrence_id=coordinates["clock_domain_occurrence_id"],
+            stage=stage,
+            target=target,
+            attempt_ordinal=coordinates["attempt_ordinal"],
+            admission_event_index=coordinates["admission_event_index"],
+            admission_previous_event_hash=coordinates["admission_previous_event_hash"],
+            deadline_monotonic_ns=deadline_ns,
+            observed_monotonic_ns=observed_ns,
+            remaining_ns=remaining_ns,
+            crossed=False,
+            select_call_argument=select_argument,
+            effect_occurrence_id=effect_occurrence_id,
         )
 
 
@@ -1923,8 +2098,11 @@ class DeadlineCompletion:
         _require_exact_enum(self.phase, DeadlineEffectPhase, "phase")
         if self.phase is not DeadlineEffectPhase.POST_EFFECT:
             raise ValueError("deadline completion must use POST_EFFECT")
+        _require_effect_occurrence_id(
+            self.effect_occurrence_id,
+            "effect_occurrence_id",
+        )
         for value, name in (
-            (self.effect_occurrence_id, "effect_occurrence_id"),
             (self.deadline_binding_hash, "deadline_binding_hash"),
             (self.child_occurrence_id, "child_occurrence_id"),
             (self.clock_domain_occurrence_id, "clock_domain_occurrence_id"),
@@ -1960,7 +2138,9 @@ class DeadlineCompletion:
         expected = canonical_digest(
             {
                 "phase": self.phase.value,
-                "effect_occurrence_id": self.effect_occurrence_id,
+                "effect_occurrence_id": _plain_effect_occurrence_id(
+                    self.effect_occurrence_id
+                ),
                 "deadline_binding_hash": self.deadline_binding_hash,
                 "child_occurrence_id": self.child_occurrence_id,
                 "clock_domain_occurrence_id": self.clock_domain_occurrence_id,
@@ -1990,6 +2170,14 @@ class DeadlineCompletion:
         deadline_monotonic_ns: int,
         observed_monotonic_ns: int,
     ) -> DeadlineCompletion:
+        if (
+            type(effect_occurrence_id) is _ObservedEffectOccurrenceId
+            and observed_monotonic_ns
+            < effect_occurrence_id.admission_observed_monotonic_ns
+        ):
+            raise ValueError(
+                "deadline completion clock observation regresses before admission"
+            )
         return cls(
             phase=DeadlineEffectPhase.POST_EFFECT,
             effect_occurrence_id=effect_occurrence_id,
@@ -2106,7 +2294,10 @@ class EmptyReadyObserved:
     effect_occurrence_id: str
 
     def __post_init__(self) -> None:
-        _require_hash(self.effect_occurrence_id, "effect_occurrence_id")
+        _require_effect_occurrence_id(
+            self.effect_occurrence_id,
+            "effect_occurrence_id",
+        )
 
 
 @dataclass(frozen=True)
@@ -2122,6 +2313,9 @@ class ChildIdentityBound:
     child_pid: int
     process_group_id: int
     deadline_monotonic_ns: int
+    invocation_occurrence_id: str | None = None
+    deadline_binding_hash: str | None = None
+    child_occurrence_id: str | None = None
 
     def __post_init__(self) -> None:
         for value, name in (
@@ -2138,6 +2332,37 @@ class ChildIdentityBound:
         )
         if self.deadline_monotonic_ns == 0:
             raise ValueError("deadline_monotonic_ns must be positive")
+        strict_coordinates = (
+            self.invocation_occurrence_id,
+            self.deadline_binding_hash,
+        )
+        if any(value is not None for value in strict_coordinates):
+            if any(value is None for value in strict_coordinates):
+                raise ValueError("strict child occurrence coordinates are incomplete")
+            assert self.invocation_occurrence_id is not None
+            assert self.deadline_binding_hash is not None
+            _require_hash(
+                self.invocation_occurrence_id,
+                "invocation_occurrence_id",
+            )
+            _require_hash(self.deadline_binding_hash, "deadline_binding_hash")
+            expected = canonical_digest(
+                {
+                    "invocation_occurrence_id": self.invocation_occurrence_id,
+                    "deadline_binding_hash": self.deadline_binding_hash,
+                    "child_pid": self.child_pid,
+                    "process_group_id": self.process_group_id,
+                    "deadline_monotonic_ns": self.deadline_monotonic_ns,
+                },
+                domain=_CHILD_OCCURRENCE_DOMAIN,
+            )
+            if self.child_occurrence_id not in {None, expected}:
+                raise ValueError(
+                    "child occurrence is not derived from invocation and binding"
+                )
+            object.__setattr__(self, "child_occurrence_id", expected)
+        elif self.child_occurrence_id is not None:
+            raise ValueError("strict child occurrence coordinates are incomplete")
 
 
 @dataclass(frozen=True)
@@ -2200,7 +2425,10 @@ class ReadyBatch:
         if ranks != sorted(ranks):
             raise ValueError("ready batch must use canonical channel order")
         if self.effect_occurrence_id is not None:
-            _require_hash(self.effect_occurrence_id, "effect_occurrence_id")
+            _require_effect_occurrence_id(
+                self.effect_occurrence_id,
+                "effect_occurrence_id",
+            )
 
 
 @dataclass(frozen=True)
@@ -2221,7 +2449,10 @@ class BytesObserved:
         if not self.acquired_bytes.startswith(self.retained_prefix_delta):
             raise ValueError("retained_prefix_delta must be a prefix of acquired_bytes")
         if self.effect_occurrence_id is not None:
-            _require_hash(self.effect_occurrence_id, "effect_occurrence_id")
+            _require_effect_occurrence_id(
+                self.effect_occurrence_id,
+                "effect_occurrence_id",
+            )
 
 
 @dataclass(frozen=True)
@@ -2232,7 +2463,10 @@ class ChannelEof:
     def __post_init__(self) -> None:
         _require_exact_enum(self.channel, Channel, "channel")
         if self.effect_occurrence_id is not None:
-            _require_hash(self.effect_occurrence_id, "effect_occurrence_id")
+            _require_effect_occurrence_id(
+                self.effect_occurrence_id,
+                "effect_occurrence_id",
+            )
 
 
 @dataclass(frozen=True)
@@ -2867,6 +3101,10 @@ class TimeoutObservation:
     observed_monotonic_ns: int
     crossed: bool
     handoff_state: HandoffState
+    deadline_binding_hash: str | None = None
+    child_occurrence_id: str | None = None
+    clock_domain_occurrence_id: str | None = None
+    remaining_ns: int | None = None
 
     def __post_init__(self) -> None:
         _require_bounded_int(
@@ -2886,6 +3124,36 @@ class TimeoutObservation:
         _require_exact_enum(self.handoff_state, HandoffState, "handoff_state")
         if self.crossed != (self.observed_monotonic_ns >= self.deadline_monotonic_ns):
             raise ValueError("timeout crossing contradicts monotonic observations")
+        strict_coordinates = (
+            self.deadline_binding_hash,
+            self.child_occurrence_id,
+            self.clock_domain_occurrence_id,
+            self.remaining_ns,
+        )
+        if any(value is not None for value in strict_coordinates):
+            if any(value is None for value in strict_coordinates):
+                raise ValueError("strict timeout binding coordinates are incomplete")
+            assert self.deadline_binding_hash is not None
+            assert self.child_occurrence_id is not None
+            assert self.clock_domain_occurrence_id is not None
+            assert self.remaining_ns is not None
+            _require_hash(self.deadline_binding_hash, "deadline_binding_hash")
+            _require_hash(self.child_occurrence_id, "child_occurrence_id")
+            _require_hash(
+                self.clock_domain_occurrence_id,
+                "clock_domain_occurrence_id",
+            )
+            _require_bounded_int(
+                self.remaining_ns,
+                "remaining_ns",
+                MAX_PROCESS_MONOTONIC_NS,
+            )
+            expected_remaining = max(
+                0,
+                self.deadline_monotonic_ns - self.observed_monotonic_ns,
+            )
+            if self.remaining_ns != expected_remaining:
+                raise ValueError("strict timeout remaining is inconsistent")
 
 
 @dataclass(frozen=True)
@@ -2901,7 +3169,10 @@ class RetryObserved:
         _require_exact_enum(self.kind, RetryKind, "kind")
         _require_positive_int(self.ordinal, "ordinal")
         if self.effect_occurrence_id is not None:
-            _require_hash(self.effect_occurrence_id, "effect_occurrence_id")
+            _require_effect_occurrence_id(
+                self.effect_occurrence_id,
+                "effect_occurrence_id",
+            )
 
 
 @dataclass(frozen=True)
@@ -2929,7 +3200,10 @@ class OperationAttempt:
                 raise ValueError("strict effect attempt coordinates must be complete")
             assert self.effect_occurrence_id is not None
             assert self.attempt_ordinal is not None
-            _require_hash(self.effect_occurrence_id, "effect_occurrence_id")
+            _require_effect_occurrence_id(
+                self.effect_occurrence_id,
+                "effect_occurrence_id",
+            )
             _require_positive_int(self.attempt_ordinal, "attempt_ordinal")
         if self.stage is ProcessStage.POST:
             raise ValueError("POST must use the typed PostAttempt payload")
@@ -3227,9 +3501,53 @@ _PAYLOAD_TYPES = (
 )
 
 
-def _validate_closed_event_payload(payload: object) -> None:
+def _payload_uses_strict_dialect(payload: object) -> bool:
+    if type(payload) in {
+        DeadlineBinding,
+        DeadlineRefusal,
+        DeadlineAdmission,
+        DeadlineCompletion,
+        ProcessStartCompletion,
+        EmptyReadyObserved,
+    }:
+        return True
+    if isinstance(payload, ChildIdentityBound):
+        return payload.invocation_occurrence_id is not None
+    if isinstance(payload, TimeoutObservation):
+        return payload.deadline_binding_hash is not None
+    return isinstance(payload, (OperationAttempt, ReadyBatch, BytesObserved, ChannelEof, RetryObserved)) and payload.effect_occurrence_id is not None
+
+
+def _payload_defers_contextual_replay(payload: object) -> bool:
+    if type(payload) in {
+        DeadlineAdmission,
+        DeadlineCompletion,
+        ProcessStartCompletion,
+        EmptyReadyObserved,
+    }:
+        return True
+    if isinstance(payload, ChildIdentityBound):
+        return payload.invocation_occurrence_id is not None
+    if isinstance(payload, TimeoutObservation):
+        return payload.deadline_binding_hash is not None
+    return isinstance(
+        payload,
+        (OperationAttempt, ReadyBatch, BytesObserved, ChannelEof, RetryObserved),
+    ) and payload.effect_occurrence_id is not None
+
+
+def _validate_closed_event_payload(
+    payload: object,
+    *,
+    replay_strict_coordinates: bool = False,
+) -> None:
     if type(payload) not in _PAYLOAD_TYPES:
         raise ValueError("payload must be an exact closed process-event payload")
+    # Strict payloads deliberately permit capture followed by reducer-side
+    # rederivation.  This lets replay expose contextual forgeries (chain index,
+    # predecessor, binding, child, effect) instead of trusting construction.
+    if _payload_defers_contextual_replay(payload) and not replay_strict_coordinates:
+        return
     if type(payload) is DeadlineAdmission and payload.select_call_argument is not None:
         _require_stable_constructor_replay(
             payload.select_call_argument,
@@ -3363,7 +3681,10 @@ class ProcessLifecycleEvent:
 def _validate_process_lifecycle_event(event: object) -> None:
     if type(event) is not ProcessLifecycleEvent:
         raise ValueError("event must be an exact ProcessLifecycleEvent")
-    _validate_closed_event_payload(event.payload)
+    _validate_closed_event_payload(
+        event.payload,
+        replay_strict_coordinates=True,
+    )
     _validate_process_work_vector(event.work_delta, "event work_delta")
     _require_stable_constructor_replay(
         event,
@@ -3410,6 +3731,7 @@ class FailureOccurrence:
     # optional occurrence binding.  The hash remains serialized and directly
     # comparable, but does not make otherwise identical reductions unequal.
     occurrence_hash: str = field(compare=False)
+    causal_discriminator: tuple[str, ...] = field(default=(), compare=False)
 
 
 @dataclass(frozen=True)
@@ -3536,6 +3858,7 @@ def _record_failure(
         role,
         close_disposition,
         occurrence_hash,
+        causal_discriminator,
     )
     return occurrence, signature
 
@@ -3646,6 +3969,376 @@ def _payload_stage_target(
     return ProcessStage.POST, ProcessTarget.ROOT
 
 
+@dataclass(frozen=True)
+class _StrictTraceValidation:
+    enabled: bool
+    censored_result_indices: frozenset[int] = frozenset()
+    crossing_event_indices: frozenset[int] = frozenset()
+    crossing_effect_occurrences: tuple[str, ...] = ()
+
+
+def _subject_uses_strict_deadline(subject: ProcessCommandSubject) -> bool:
+    return subject.clock_contract_hash is not None
+
+
+def _validate_strict_deadline_trace(
+    subject: ProcessCommandSubject,
+    events: tuple[ProcessLifecycleEvent, ...],
+    invocation_occurrence_id: str | None,
+) -> _StrictTraceValidation:
+    strict_subject = _subject_uses_strict_deadline(subject)
+    strict_payload_present = any(
+        type(event) is ProcessLifecycleEvent
+        and _payload_uses_strict_dialect(event.payload)
+        for event in events
+    )
+    if not strict_subject:
+        if strict_payload_present:
+            raise ValueError(
+                "strict deadline payload cannot enter the legacy dialect"
+            )
+        return _StrictTraceValidation(False)
+    if invocation_occurrence_id is None:
+        raise ValueError("strict deadline trace requires an invocation occurrence")
+    if not events or type(events[0].payload) not in {DeadlineBinding, DeadlineRefusal}:
+        raise ValueError("strict deadline trace requires an initial deadline binding")
+
+    initial = events[0].payload
+    if type(initial) is DeadlineRefusal:
+        if len(events) != 1:
+            raise ValueError("strict deadline refusal forbids later trace events")
+        return _StrictTraceValidation(True)
+    assert type(initial) is DeadlineBinding
+    binding = initial
+    if binding.start_admission_state is StartAdmissionState.DENIED_EXPIRED:
+        if len(events) != 1:
+            raise ValueError("expired strict deadline start admission forbids spawn")
+        return _StrictTraceValidation(True)
+
+    child: ChildIdentityBound | None = None
+    last_observed_ns = binding.started_monotonic_ns
+    deadline_latched = False
+    global_effect_ordinal = 0
+    censored_results: set[int] = set()
+    crossing_indices: set[int] = set()
+    crossing_effects: list[str] = []
+    completed_effect: tuple[DeadlineAdmission, OperationAttempt, object | None] | None = (
+        None
+    )
+
+    index = 1
+    if index < len(events):
+        start_attempt = events[index].payload
+        if not (
+            type(start_attempt) is OperationAttempt
+            and start_attempt.stage is ProcessStage.PROCESS_START
+            and start_attempt.target is ProcessTarget.PROCESS
+            and start_attempt.effect_occurrence_id is None
+        ):
+            raise ValueError(
+                "strict deadline binding requires the process-start attempt"
+            )
+        index += 1
+        start_succeeded = start_attempt.outcome is OperationOutcome.SUCCEEDED
+        if start_succeeded:
+            if index >= len(events) or type(events[index].payload) is not ChildIdentityBound:
+                raise ValueError("successful strict start requires an exact child")
+            child = events[index].payload
+            if (
+                child.invocation_occurrence_id != invocation_occurrence_id
+                or child.deadline_binding_hash != binding.deadline_binding_hash
+                or child.deadline_monotonic_ns
+                != binding.effective_deadline_monotonic_ns
+            ):
+                raise ValueError(
+                    "child occurrence does not match invocation deadline binding"
+                )
+            expected_child_occurrence = canonical_digest(
+                {
+                    "invocation_occurrence_id": invocation_occurrence_id,
+                    "deadline_binding_hash": binding.deadline_binding_hash,
+                    "child_pid": child.child_pid,
+                    "process_group_id": child.process_group_id,
+                    "deadline_monotonic_ns": child.deadline_monotonic_ns,
+                },
+                domain=_CHILD_OCCURRENCE_DOMAIN,
+            )
+            if child.child_occurrence_id != expected_child_occurrence:
+                raise ValueError(
+                    "child occurrence is not derived from invocation and binding"
+                )
+            index += 1
+        elif index < len(events) and type(events[index].payload) is ChildIdentityBound:
+            raise ValueError("failed strict start cannot invent a child occurrence")
+
+        if index >= len(events) or type(events[index].payload) is not ProcessStartCompletion:
+            raise ValueError("strict process-start completion is pending")
+        completion = events[index].payload
+        expected_previous = events[index - 1].event_hash
+        if (
+            completion.completion_event_index != index
+            or completion.completion_previous_event_hash != expected_previous
+        ):
+            raise ValueError(
+                "process-start completion event index or previous chain is invalid"
+            )
+        if (
+            completion.invocation_occurrence_id != invocation_occurrence_id
+            or completion.deadline_binding_hash != binding.deadline_binding_hash
+            or completion.clock_domain_occurrence_id
+            != binding.clock_domain_occurrence_id
+            or completion.deadline_monotonic_ns
+            != binding.effective_deadline_monotonic_ns
+        ):
+            raise ValueError(
+                "process-start completion provenance does not match invocation binding"
+            )
+        if completion.observed_monotonic_ns < binding.started_monotonic_ns:
+            raise ValueError("process-start completion clock chronology regressed")
+        if start_succeeded != (completion.child_occurrence_id is not None):
+            raise ValueError(
+                "process-start success and child completion coordinates disagree"
+            )
+        if child is not None and completion.child_occurrence_id != child.child_occurrence_id:
+            raise ValueError("process-start completion names another child occurrence")
+        last_observed_ns = completion.observed_monotonic_ns
+        if completion.crossed:
+            deadline_latched = True
+            crossing_indices.add(index)
+        index += 1
+
+    effect_stages = {
+        ProcessStage.SELECTOR_CREATE,
+        ProcessStage.NONBLOCKING_CONFIGURE,
+        ProcessStage.SELECTOR_REGISTER,
+        ProcessStage.SELECT,
+        ProcessStage.READ,
+    }
+    result_types = (ReadyBatch, EmptyReadyObserved, BytesObserved, ChannelEof)
+
+    while index < len(events):
+        event = events[index]
+        payload = event.payload
+        if (
+            completed_effect is not None
+            and event.phase is EventPhase.MAIN
+            and not (
+                type(payload) is RetryObserved
+                and payload.effect_occurrence_id is not None
+            )
+        ):
+            # Strict retry authority is created by one completed effect and is
+            # valid only for the immediately following MAIN event.  Once any
+            # other MAIN observation is admitted, a later retry cannot reach
+            # back across that observation and reuse the completed effect.
+            completed_effect = None
+        if event.phase is EventPhase.FINALIZE:
+            index += 1
+            continue
+        if deadline_latched:
+            raise ValueError(
+                "strict deadline timeout is latched; later MAIN effects are forbidden"
+            )
+        if type(payload) is DeadlineAdmission:
+            if child is None:
+                raise ValueError("deadline admission requires a strict child occurrence")
+            global_effect_ordinal += 1
+            admission = payload
+            if admission.attempt_ordinal != global_effect_ordinal:
+                raise ValueError(
+                    "strict effect ordinal must be globally consecutive"
+                )
+            if (
+                admission.admission_event_index != index
+                or admission.admission_previous_event_hash
+                != events[index - 1].event_hash
+            ):
+                raise ValueError(
+                    "deadline admission event predecessor or reuse is invalid"
+                )
+            if (
+                admission.invocation_occurrence_id != invocation_occurrence_id
+                or admission.deadline_binding_hash != binding.deadline_binding_hash
+                or admission.child_occurrence_id != child.child_occurrence_id
+                or admission.clock_domain_occurrence_id
+                != binding.clock_domain_occurrence_id
+                or admission.deadline_monotonic_ns
+                != binding.effective_deadline_monotonic_ns
+            ):
+                raise ValueError(
+                    "deadline admission clock or child occurrence binding is invalid"
+                )
+            if admission.observed_monotonic_ns < last_observed_ns:
+                raise ValueError("deadline admission clock observation regressed")
+            if admission.crossed:
+                raise ValueError("crossed deadline cannot authorize an admission")
+            last_observed_ns = admission.observed_monotonic_ns
+            index += 1
+            if index >= len(events) or type(events[index].payload) is not OperationAttempt:
+                raise ValueError(
+                    "deadline admission requires an immediate effect attempt predecessor"
+                )
+            attempt = events[index].payload
+            if (
+                attempt.effect_occurrence_id != admission.effect_occurrence_id
+                or attempt.attempt_ordinal != admission.attempt_ordinal
+                or attempt.stage is not admission.stage
+                or attempt.target is not admission.target
+            ):
+                mismatch = (
+                    "stage"
+                    if attempt.stage is not admission.stage
+                    else "target"
+                    if attempt.target is not admission.target
+                    else "effect occurrence"
+                )
+                raise ValueError(
+                    f"{mismatch} does not match strict effect admission"
+                )
+            if attempt.stage not in effect_stages:
+                raise ValueError("strict admission names a non-effect stage")
+            index += 1
+            result: object | None = None
+            result_index: int | None = None
+            if index < len(events) and isinstance(events[index].payload, result_types):
+                result = events[index].payload
+                result_index = index
+                if getattr(result, "effect_occurrence_id", None) != (
+                    admission.effect_occurrence_id
+                ):
+                    raise ValueError(
+                        "strict result is unbound or names another effect occurrence"
+                    )
+                index += 1
+                if index < len(events) and isinstance(
+                    events[index].payload, result_types
+                ):
+                    raise ValueError(
+                        "strict effect requires exactly one intrinsic result"
+                    )
+            if attempt.outcome is OperationOutcome.SUCCEEDED:
+                if admission.stage is ProcessStage.SELECT and not isinstance(
+                    result, (ReadyBatch, EmptyReadyObserved)
+                ):
+                    raise ValueError(
+                        "successful SELECT requires one ready or empty result before completion"
+                    )
+                if admission.stage is ProcessStage.READ and not isinstance(
+                    result, (BytesObserved, ChannelEof)
+                ):
+                    raise ValueError(
+                        "successful READ requires one bytes or EOF result before completion"
+                    )
+                if admission.stage not in {ProcessStage.SELECT, ProcessStage.READ} and (
+                    result is not None
+                ):
+                    raise ValueError("non-result strict effect has an unrelated result")
+            elif result is not None:
+                raise ValueError("failed or retryable strict effect cannot carry a result")
+            if index >= len(events) or type(events[index].payload) is not DeadlineCompletion:
+                raise ValueError("strict effect completion is pending or non-contiguous")
+            effect_completion = events[index].payload
+            if (
+                effect_completion.completion_event_index != index
+                or effect_completion.completion_previous_event_hash
+                != events[index - 1].event_hash
+                or effect_completion.effect_occurrence_id
+                != admission.effect_occurrence_id
+            ):
+                raise ValueError(
+                    "deadline completion effect event index or predecessor is invalid"
+                )
+            if (
+                effect_completion.deadline_binding_hash
+                != binding.deadline_binding_hash
+                or effect_completion.child_occurrence_id != child.child_occurrence_id
+                or effect_completion.clock_domain_occurrence_id
+                != binding.clock_domain_occurrence_id
+                or effect_completion.deadline_monotonic_ns
+                != binding.effective_deadline_monotonic_ns
+            ):
+                raise ValueError(
+                    "deadline completion child or clock binding is invalid"
+                )
+            if effect_completion.observed_monotonic_ns < last_observed_ns:
+                raise ValueError("deadline completion clock observation regressed")
+            last_observed_ns = effect_completion.observed_monotonic_ns
+            completed_effect = (admission, attempt, result)
+            if effect_completion.crossed:
+                deadline_latched = True
+                crossing_indices.add(index)
+                crossing_effects.append(
+                    _plain_effect_occurrence_id(admission.effect_occurrence_id)
+                )
+                if result_index is not None and isinstance(result, ChannelEof):
+                    censored_results.add(result_index)
+            index += 1
+            continue
+        if type(payload) is RetryObserved and payload.effect_occurrence_id is not None:
+            if completed_effect is None:
+                raise ValueError("strict retry has no completed effect occurrence")
+            admission, attempt, result = completed_effect
+            if payload.effect_occurrence_id != admission.effect_occurrence_id:
+                raise ValueError("retry names another completed effect occurrence")
+            if (
+                admission.stage is ProcessStage.SELECT
+                and payload.kind is RetryKind.INTERRUPTED
+            ):
+                raise ValueError(
+                    "internal selector EINTR wrapper cannot expose a visible retry"
+                )
+            expected_retry = None
+            if isinstance(result, EmptyReadyObserved):
+                expected_retry = RetryKind.EMPTY_READY
+            elif attempt.outcome is OperationOutcome.RETRYABLE:
+                expected_retry = {
+                    FailureKind.READINESS_RACE: RetryKind.WOULD_BLOCK,
+                    FailureKind.WOULD_BLOCK: RetryKind.WOULD_BLOCK,
+                    FailureKind.INTERRUPTED: RetryKind.INTERRUPTED,
+                    FailureKind.EMPTY_READY: RetryKind.EMPTY_READY,
+                }.get(attempt.failure_kind)
+            if payload.kind is not expected_retry:
+                raise ValueError("retry does not match the completed effect outcome")
+            completed_effect = None
+            index += 1
+            continue
+        if isinstance(payload, result_types):
+            raise ValueError(
+                "strict result is unbound, duplicated, or appears after completion"
+            )
+        if type(payload) is OperationAttempt and payload.stage in effect_stages:
+            raise ValueError(
+                "strict effect attempt requires an immediate deadline admission"
+            )
+        if type(payload) is DeadlineCompletion:
+            raise ValueError("deadline completion has no pending effect")
+        if type(payload) is TimeoutObservation:
+            if child is None:
+                raise ValueError("strict timeout requires a child occurrence")
+            if (
+                payload.deadline_binding_hash != binding.deadline_binding_hash
+                or payload.child_occurrence_id != child.child_occurrence_id
+                or payload.clock_domain_occurrence_id
+                != binding.clock_domain_occurrence_id
+            ):
+                raise ValueError("timeout child occurrence binding is invalid")
+            if payload.observed_monotonic_ns < last_observed_ns:
+                raise ValueError("timeout clock observation regressed")
+            last_observed_ns = payload.observed_monotonic_ns
+            if payload.crossed:
+                deadline_latched = True
+            index += 1
+            continue
+        index += 1
+
+    return _StrictTraceValidation(
+        True,
+        frozenset(censored_results),
+        frozenset(crossing_indices),
+        tuple(crossing_effects),
+    )
+
+
 def reduce_process_events(
     subject: ProcessCommandSubject,
     events: tuple[ProcessLifecycleEvent, ...],
@@ -3663,6 +4356,11 @@ def reduce_process_events(
     _require_exact_tuple(events, "events")
     if len(events) > MAX_PROCESS_EVENT_COUNT:
         raise ValueError("process event count cap is exceeded")
+    strict_trace = _validate_strict_deadline_trace(
+        subject,
+        events,
+        invocation_occurrence_id,
+    )
 
     acquired: list[Channel] = []
     nonblocking: list[Channel] = []
@@ -3832,6 +4530,28 @@ def reduce_process_events(
             raise ValueError("MAIN event cannot follow FINALIZATION_BEGIN")
 
         if event.phase is EventPhase.FINALIZE:
+            if isinstance(
+                payload,
+                (
+                    DeadlineBinding,
+                    DeadlineRefusal,
+                    DeadlineAdmission,
+                    DeadlineCompletion,
+                    ProcessStartCompletion,
+                    DescriptorAcquired,
+                    ChildIdentityBound,
+                    ReadyBatch,
+                    EmptyReadyObserved,
+                    BytesObserved,
+                    ChannelEof,
+                    HandoffTransition,
+                    TimeoutObservation,
+                ),
+            ):
+                raise ValueError(
+                    f"{type(payload).__name__} is a MAIN transaction payload "
+                    "and is not permitted during FINALIZE"
+                )
             if isinstance(payload, OperationAttempt) and payload.stage in {
                 ProcessStage.PROCESS_START,
                 ProcessStage.SELECTOR_CREATE,
@@ -3842,19 +4562,6 @@ def reduce_process_events(
             }:
                 raise ValueError(
                     f"{payload.stage.value} is not permitted during FINALIZE"
-                )
-            if isinstance(
-                payload,
-                (
-                    DescriptorAcquired,
-                    ReadyBatch,
-                    BytesObserved,
-                    HandoffTransition,
-                    ChildIdentityBound,
-                ),
-            ):
-                raise ValueError(
-                    f"{type(payload).__name__} is not permitted during FINALIZE"
                 )
             if isinstance(payload, RetryObserved) and (
                 payload.stage is not ProcessStage.WAIT
@@ -3906,6 +4613,38 @@ def reduce_process_events(
                     payload.reason.value,
                 ),
             )
+        elif type(payload) is ProcessStartCompletion:
+            if index in strict_trace.crossing_event_indices:
+                record_derived_failure(
+                    event,
+                    stage=ProcessStage.TIMEOUT,
+                    target=ProcessTarget.PROCESS,
+                    kind=FailureKind.TIMEOUT,
+                    mechanism_errno=None,
+                    causal_discriminator=(
+                        "process_start_completion_crossed",
+                        deadline_binding.winning_source.value
+                        if deadline_binding is not None
+                        else "UNKNOWN",
+                    ),
+                )
+        elif type(payload) is DeadlineAdmission:
+            pass
+        elif type(payload) is DeadlineCompletion:
+            if index in strict_trace.crossing_event_indices:
+                record_derived_failure(
+                    event,
+                    stage=ProcessStage.TIMEOUT,
+                    target=ProcessTarget.PROCESS,
+                    kind=FailureKind.TIMEOUT,
+                    mechanism_errno=None,
+                    causal_discriminator=(
+                        "effect_completion_crossed",
+                        deadline_binding.winning_source.value
+                        if deadline_binding is not None
+                        else "UNKNOWN",
+                    ),
+                )
         elif isinstance(payload, DescriptorAcquired):
             if event.phase is not EventPhase.MAIN:
                 raise ValueError("descriptor acquisition cannot occur during FINALIZE")
@@ -3959,8 +4698,13 @@ def reduce_process_events(
                 post_disposition = PostDisposition[payload.disposition.name]
                 finalization_state = FinalizationState.COMPLETE
         elif isinstance(payload, ReadyBatch):
-            if not successful_select_pending:
+            strict_result = strict_trace.enabled and (
+                payload.effect_occurrence_id is not None
+            )
+            if not strict_result and not successful_select_pending:
                 raise ValueError("ReadyBatch requires a successful select")
+            if index in strict_trace.censored_result_indices:
+                continue
             for channel in payload.channels:
                 if channel_states[channel] is not ChannelState.REGISTERED:
                     raise ValueError("ready channel must currently be registered")
@@ -3968,9 +4712,16 @@ def reduce_process_events(
                     raise ValueError("ready channel is already pending consumption")
             ready_pending.update(payload.channels)
             successful_select_pending = False
+        elif isinstance(payload, EmptyReadyObserved):
+            pass
         elif isinstance(payload, BytesObserved):
-            if successful_read_pending is not payload.channel:
+            strict_result = strict_trace.enabled and (
+                payload.effect_occurrence_id is not None
+            )
+            if not strict_result and successful_read_pending is not payload.channel:
                 raise ValueError("bytes require a successful read of that channel")
+            if index in strict_trace.censored_result_indices:
+                continue
             if channel_states[payload.channel] is not ChannelState.REGISTERED:
                 raise ValueError("bytes require a registered channel")
             observed[payload.channel] += len(payload.acquired_bytes)
@@ -3992,8 +4743,13 @@ def reduce_process_events(
             ready_pending.remove(payload.channel)
             successful_read_pending = None
         elif isinstance(payload, ChannelEof):
-            if successful_read_pending is not payload.channel:
+            strict_result = strict_trace.enabled and (
+                payload.effect_occurrence_id is not None
+            )
+            if not strict_result and successful_read_pending is not payload.channel:
                 raise ValueError("EOF requires a successful read of that channel")
+            if index in strict_trace.censored_result_indices:
+                continue
             if channel_states[payload.channel] is not ChannelState.REGISTERED:
                 raise ValueError("EOF requires a registered channel")
             if payload.channel in eof_seen:
@@ -4225,10 +4981,18 @@ def reduce_process_events(
                     target=ProcessTarget.PROCESS,
                     kind=FailureKind.TIMEOUT,
                     mechanism_errno=None,
+                    causal_discriminator=(
+                        deadline_binding.winning_source.value
+                        if deadline_binding is not None
+                        else "UNKNOWN",
+                    ),
                 )
         elif isinstance(payload, RetryObserved):
             key = (payload.stage, payload.target, payload.kind)
-            if retry_pending != key:
+            strict_retry = strict_trace.enabled and (
+                payload.effect_occurrence_id is not None
+            )
+            if not strict_retry and retry_pending != key:
                 raise ValueError(
                     "retry event requires matching preceding retryable attempt"
                 )
@@ -4241,8 +5005,12 @@ def reduce_process_events(
             retry_counts[key] = payload.ordinal
             if payload.stage is ProcessStage.READ:
                 ready_pending.discard(_TARGET_CHANNEL[payload.target])
-            retry_pending = None
+            if not strict_retry:
+                retry_pending = None
         elif isinstance(payload, OperationAttempt):
+            strict_effect_attempt = strict_trace.enabled and (
+                payload.effect_occurrence_id is not None
+            )
             if payload.stage is ProcessStage.TIMEOUT:
                 raise ValueError(
                     "TIMEOUT must use the typed TimeoutObservation payload "
@@ -4335,6 +5103,8 @@ def reduce_process_events(
                 ):
                     raise ValueError("selector close requires unregister traversal")
             if payload.outcome is OperationOutcome.RETRYABLE:
+                if strict_effect_attempt:
+                    continue
                 retry_kind = {
                     FailureKind.EMPTY_READY: RetryKind.EMPTY_READY,
                     FailureKind.INTERRUPTED: RetryKind.INTERRUPTED,
@@ -4395,9 +5165,11 @@ def reduce_process_events(
                     raise ValueError("process may be started only once")
                 process_state = ProcessState.STARTED
             elif payload.stage is ProcessStage.SELECT:
-                successful_select_pending = True
+                if not strict_effect_attempt:
+                    successful_select_pending = True
             elif payload.stage is ProcessStage.READ:
-                successful_read_pending = _TARGET_CHANNEL[payload.target]
+                if not strict_effect_attempt:
+                    successful_read_pending = _TARGET_CHANNEL[payload.target]
             elif payload.stage is ProcessStage.SELECTOR_CREATE:
                 if selector_state is not SelectorState.UNCREATED:
                     raise ValueError("selector may be created only once")
@@ -4597,6 +5369,9 @@ def reduce_process_events(
         can_project_success=can_project,
         deadline_binding=deadline_binding,
         deadline_refusal=deadline_refusal,
+        deadline_censored_effect_occurrences=(
+            strict_trace.crossing_effect_occurrences
+        ),
     )
 
 
@@ -4730,10 +5505,18 @@ def _uses_strict_terminal_deadline_prefix(
     )
 
 
+def _uses_strict_deadline_trace(
+    events: tuple[ProcessLifecycleEvent, ...],
+) -> bool:
+    return bool(events) and type(events[0]) is ProcessLifecycleEvent and type(
+        events[0].payload
+    ) in {DeadlineBinding, DeadlineRefusal}
+
+
 def _receipt_identity_pair(
     events: tuple[ProcessLifecycleEvent, ...],
 ) -> tuple[str, str]:
-    if _uses_strict_terminal_deadline_prefix(events):
+    if _uses_strict_deadline_trace(events):
         return (
             PROCESS_RECEIPT_STRICT_DEADLINE_REDUCER_IDENTITY,
             PROCESS_RECEIPT_STRICT_DEADLINE_REPLAY_IDENTITY,
@@ -4748,7 +5531,7 @@ def _strict_terminal_prefix_matches_invocation(
     invocation: MaterializedInvocation,
     events: tuple[ProcessLifecycleEvent, ...],
 ) -> bool:
-    if not _uses_strict_terminal_deadline_prefix(events):
+    if not _uses_strict_deadline_trace(events):
         return True
     payload = events[0].payload
     assert isinstance(payload, (DeadlineBinding, DeadlineRefusal))
@@ -4769,8 +5552,19 @@ def build_process_receipt(
 ) -> ProcessReceiptV3:
     _validate_process_command_subject(subject)
     _validate_materialized_invocation(invocation)
+    _require_exact_tuple(events, "events")
+    for event in events:
+        _validate_process_lifecycle_event(event)
     if invocation.command_subject_hash != subject.command_subject_hash:
         raise ValueError("materialized invocation is bound to another command subject")
+    strict_subject = _subject_uses_strict_deadline(subject)
+    strict_invocation = invocation.strict_deadline_contract_identity is not None
+    if strict_subject != strict_invocation:
+        raise ValueError(
+            "strict subject and invocation cannot mix legacy deadline dialects"
+        )
+    if strict_invocation and not _uses_strict_deadline_trace(events):
+        raise ValueError("strict invocation requires a deadline-binding trace")
     state = reduce_process_events(
         subject,
         events,
@@ -5046,7 +5840,9 @@ def _event_payload(payload: ProcessEventPayload) -> dict[str, object]:
             "crossed": payload.crossed,
             "select_call_argument": (
                 {
-                    "effect_occurrence_id": select_argument.effect_occurrence_id,
+                    "effect_occurrence_id": _plain_effect_occurrence_id(
+                        select_argument.effect_occurrence_id
+                    ),
                     "remaining_ns": select_argument.remaining_ns,
                     "timeout_argument_float64_bits": (
                         select_argument.timeout_argument_float64_bits
@@ -5064,14 +5860,18 @@ def _event_payload(payload: ProcessEventPayload) -> dict[str, object]:
                 if select_argument is not None
                 else None
             ),
-            "effect_occurrence_id": payload.effect_occurrence_id,
+            "effect_occurrence_id": _plain_effect_occurrence_id(
+                payload.effect_occurrence_id
+            ),
             "deadline_admission_hash": payload.deadline_admission_hash,
         }
     if isinstance(payload, DeadlineCompletion):
         return {
             "kind": "DEADLINE_COMPLETION",
             "phase": payload.phase.value,
-            "effect_occurrence_id": payload.effect_occurrence_id,
+            "effect_occurrence_id": _plain_effect_occurrence_id(
+                payload.effect_occurrence_id
+            ),
             "deadline_binding_hash": payload.deadline_binding_hash,
             "child_occurrence_id": payload.child_occurrence_id,
             "clock_domain_occurrence_id": payload.clock_domain_occurrence_id,
@@ -5101,12 +5901,21 @@ def _event_payload(payload: ProcessEventPayload) -> dict[str, object]:
     if isinstance(payload, DescriptorAcquired):
         return {"kind": "DESCRIPTOR_ACQUIRED", "channel": payload.channel.value}
     if isinstance(payload, ChildIdentityBound):
-        return {
+        value = {
             "kind": "CHILD_IDENTITY_BOUND",
             "child_pid": payload.child_pid,
             "process_group_id": payload.process_group_id,
             "deadline_monotonic_ns": payload.deadline_monotonic_ns,
         }
+        if payload.child_occurrence_id is not None:
+            value.update(
+                {
+                    "invocation_occurrence_id": payload.invocation_occurrence_id,
+                    "deadline_binding_hash": payload.deadline_binding_hash,
+                    "child_occurrence_id": payload.child_occurrence_id,
+                }
+            )
+        return value
     if isinstance(payload, RootIdentityObservation):
         return {
             "kind": "ROOT_IDENTITY_OBSERVATION",
@@ -5129,12 +5938,16 @@ def _event_payload(payload: ProcessEventPayload) -> dict[str, object]:
             "channels": tuple(channel.value for channel in payload.channels),
         }
         if payload.effect_occurrence_id is not None:
-            value["effect_occurrence_id"] = payload.effect_occurrence_id
+            value["effect_occurrence_id"] = _plain_effect_occurrence_id(
+                payload.effect_occurrence_id
+            )
         return value
     if isinstance(payload, EmptyReadyObserved):
         return {
             "kind": "EMPTY_READY_OBSERVED",
-            "effect_occurrence_id": payload.effect_occurrence_id,
+            "effect_occurrence_id": _plain_effect_occurrence_id(
+                payload.effect_occurrence_id
+            ),
         }
     if isinstance(payload, BytesObserved):
         value = {
@@ -5144,12 +5957,16 @@ def _event_payload(payload: ProcessEventPayload) -> dict[str, object]:
             "retained_prefix_delta_hex": payload.retained_prefix_delta.hex(),
         }
         if payload.effect_occurrence_id is not None:
-            value["effect_occurrence_id"] = payload.effect_occurrence_id
+            value["effect_occurrence_id"] = _plain_effect_occurrence_id(
+                payload.effect_occurrence_id
+            )
         return value
     if isinstance(payload, ChannelEof):
         value = {"kind": "CHANNEL_EOF", "channel": payload.channel.value}
         if payload.effect_occurrence_id is not None:
-            value["effect_occurrence_id"] = payload.effect_occurrence_id
+            value["effect_occurrence_id"] = _plain_effect_occurrence_id(
+                payload.effect_occurrence_id
+            )
         return value
     if isinstance(payload, HandoffTransition):
         return {"kind": "HANDOFF_TRANSITION", "state": payload.state.value}
@@ -5196,13 +6013,25 @@ def _event_payload(payload: ProcessEventPayload) -> dict[str, object]:
             "mechanism_errno": payload.mechanism_errno,
         }
     if isinstance(payload, TimeoutObservation):
-        return {
+        value = {
             "kind": "TIMEOUT_OBSERVATION",
             "deadline_monotonic_ns": payload.deadline_monotonic_ns,
             "observed_monotonic_ns": payload.observed_monotonic_ns,
             "crossed": payload.crossed,
             "handoff_state": payload.handoff_state.value,
         }
+        if payload.deadline_binding_hash is not None:
+            value.update(
+                {
+                    "deadline_binding_hash": payload.deadline_binding_hash,
+                    "child_occurrence_id": payload.child_occurrence_id,
+                    "clock_domain_occurrence_id": (
+                        payload.clock_domain_occurrence_id
+                    ),
+                    "remaining_ns": payload.remaining_ns,
+                }
+            )
+        return value
     if isinstance(payload, RetryObserved):
         value = {
             "kind": "RETRY_OBSERVED",
@@ -5212,7 +6041,9 @@ def _event_payload(payload: ProcessEventPayload) -> dict[str, object]:
             "ordinal": payload.ordinal,
         }
         if payload.effect_occurrence_id is not None:
-            value["effect_occurrence_id"] = payload.effect_occurrence_id
+            value["effect_occurrence_id"] = _plain_effect_occurrence_id(
+                payload.effect_occurrence_id
+            )
         return value
     if isinstance(payload, OperationAttempt):
         value = {
@@ -5225,7 +6056,9 @@ def _event_payload(payload: ProcessEventPayload) -> dict[str, object]:
             "failure_role": payload.failure_role.value,
         }
         if payload.effect_occurrence_id is not None:
-            value["effect_occurrence_id"] = payload.effect_occurrence_id
+            value["effect_occurrence_id"] = _plain_effect_occurrence_id(
+                payload.effect_occurrence_id
+            )
             value["attempt_ordinal"] = payload.attempt_ordinal
         return value
     if isinstance(payload, CloseAttempt):
