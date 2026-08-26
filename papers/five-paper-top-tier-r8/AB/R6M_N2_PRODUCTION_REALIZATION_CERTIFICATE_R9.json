@@ -1,0 +1,923 @@
+{
+  "authority": {
+    "computed_certificate_waste_interpretable": false,
+    "dp_vs_independent_brute_agreement": true,
+    "finite_n2_runner_enumeration": true,
+    "journal_authority": false,
+    "production_lower_transfer_established": false,
+    "production_registry_complete": false,
+    "quantum_compiler_result": false
+  },
+  "claimed_weak_terminal_bound": 8,
+  "finite_enumeration": {
+    "all_dp_brute_agree": true,
+    "central_configurations": 8,
+    "cost_histogram": {
+      "6": 8,
+      "7": 20,
+      "8": 4
+    },
+    "feasible_inner_candidate_evaluations": 31457280,
+    "feasible_inner_candidates_per_outer_configuration": 983040,
+    "matching": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "maximum_cost": 8,
+    "minimum_cost": 6,
+    "n_qubits": 2,
+    "outer_configurations": 32,
+    "pair_count_histogram_over_nonzero_tag_and_orientation": {
+      "32": 30
+    },
+    "panel": "n2_a",
+    "relative_permutation_configurations": 4,
+    "target_pairs": [
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    ]
+  },
+  "instance_id": "R6M_N2_A_CURRENT_RUNNER_FAIL_CLOSED_V1",
+  "language_separation": {
+    "abstract_support_reduction_language": "NO_REGISTERED_R6M_WEAK_SHORTENING_LANGUAGE",
+    "current_r6m_computation": "FINITE_FEASIBILITY_AND_OBJECTIVE_ARGMIN",
+    "production_shortening_move_registry": "ABSENT",
+    "reason_no_moves_are_invented": "Changing an outer optimizer choice or selecting a lower-cost candidate is not a declared semantics-preserving production rewrite."
+  },
+  "production_moves": [],
+  "production_registry": {
+    "completeness_argument": "The bound R6M implementation exhaustively enumerates feasible candidates and returns a deterministic argmin, but it does not define an extensional shortening-move registry. Enumerating the current runner cannot prove that this missing production registry is complete.",
+    "declared_complete": false,
+    "source_manifest_sha256": "53488b15912d3ad30d9a4f547c17a31ebb54a9c9a4328663217e4deed455cd6d"
+  },
+  "require_production_confluence": false,
+  "schema": "ORION.AB.FiniteProductionRealizationInstanceR9.v1",
+  "source_binding": {
+    "bindings": [
+      {
+        "git_blob_sha1": "48214ac16ce956a109cbce39a25d59b77eb95b3a",
+        "path": "development/orion-q-max-r0/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_PROTOCOL.md",
+        "role": "r6m_protocol",
+        "sha256": "33465bd585f09a8d936aaa38d90beb4916943f826eb970bfeced102eeac93986"
+      },
+      {
+        "git_blob_sha1": "ead51fc9d03e25acf3d65557cb0f08fd1eb98873",
+        "path": "research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py",
+        "role": "r6m_runner",
+        "sha256": "7c6579db5f4afbc1738e8b3d96aa3730023bc3831d1fc4950ab34e071c0e3d90"
+      },
+      {
+        "git_blob_sha1": "e7b6253a74f6ffb588a09304767f0281292f9616",
+        "path": "research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json",
+        "role": "r6m_registered_result",
+        "sha256": "5f182cd6fc66d3e1a748c1ee407b020011bb40dad045ab22b0d4f1db094fcb28"
+      },
+      {
+        "git_blob_sha1": "b8f8b9fdf6fa8c35c5f83553436e96741514eb6c",
+        "path": "development/orion-q-max-r0/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_PROTOCOL.md",
+        "role": "support_two_protocol",
+        "sha256": "831585f6f5f13630ecc71201450895effee532b71684776347e2de84d156af5c"
+      },
+      {
+        "git_blob_sha1": "8ba39b8b2bb082c7207c57f4dabcf4dc263b17f3",
+        "path": "research/extensions/orion-q/max_r6p_weight2_frame_donor_closure.py",
+        "role": "support_two_runner",
+        "sha256": "1006ab0293727ebb994b1202118bc60e779eb5432f820222c6ffbf22304d5965"
+      },
+      {
+        "git_blob_sha1": "1562625a91d177d83c49fbfd32bc790871c323e8",
+        "path": "research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json",
+        "role": "support_two_registered_result",
+        "sha256": "3eef07d16353b606a133d7fb977d5039ad1c639c7a531a47ae82be4be9051190"
+      },
+      {
+        "git_blob_sha1": "6c4c59452397024d96cf6d103f474b7b0a07e536",
+        "path": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md",
+        "role": "q1_manuscript",
+        "sha256": "8522ab344c105866798ca64019f2e5bdf75f4c4445c0c6a0525a573a0c2b5377"
+      },
+      {
+        "git_blob_sha1": "67459ecca65f160b52af470fe6a2582f6af95ed3",
+        "path": "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V3.md",
+        "role": "q1_claim_ledger",
+        "sha256": "f278639f2606404be4276f20dc9f17e49e5b7702f906f7a4cb4a4c46074c994a"
+      }
+    ],
+    "source_commit": "1e18787841d99d76a3c7661505838d2eca8780db"
+  },
+  "states": [
+    {
+      "abstract_support": 6,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 6,
+      "feasible": true,
+      "id": "n2_a:pb0:pc0:c000",
+      "independent_brute_cost": 6,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        6
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          0,
+          0
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 6
+    },
+    {
+      "abstract_support": 6,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 6,
+      "feasible": true,
+      "id": "n2_a:pb0:pc0:c001",
+      "independent_brute_cost": 6,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        6
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          0,
+          1
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 6
+    },
+    {
+      "abstract_support": 6,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 6,
+      "feasible": true,
+      "id": "n2_a:pb0:pc0:c010",
+      "independent_brute_cost": 6,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        6
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          1,
+          0
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 6
+    },
+    {
+      "abstract_support": 6,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 6,
+      "feasible": true,
+      "id": "n2_a:pb0:pc0:c011",
+      "independent_brute_cost": 6,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        6
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          1,
+          1
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 6
+    },
+    {
+      "abstract_support": 6,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 6,
+      "feasible": true,
+      "id": "n2_a:pb0:pc0:c100",
+      "independent_brute_cost": 6,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        6
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          0,
+          0
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 6
+    },
+    {
+      "abstract_support": 6,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 6,
+      "feasible": true,
+      "id": "n2_a:pb0:pc0:c101",
+      "independent_brute_cost": 6,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        6
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          0,
+          1
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 6
+    },
+    {
+      "abstract_support": 6,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 6,
+      "feasible": true,
+      "id": "n2_a:pb0:pc0:c110",
+      "independent_brute_cost": 6,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        6
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          1,
+          0
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 6
+    },
+    {
+      "abstract_support": 6,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 6,
+      "feasible": true,
+      "id": "n2_a:pb0:pc0:c111",
+      "independent_brute_cost": 6,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        6
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          1,
+          1
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 6
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb0:pc1:c000",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          0,
+          0
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb0:pc1:c001",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          0,
+          1
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb0:pc1:c010",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          1,
+          0
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb0:pc1:c011",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          1,
+          1
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb0:pc1:c100",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          0,
+          0
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb0:pc1:c101",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          0,
+          1
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb0:pc1:c110",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          1,
+          0
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb0:pc1:c111",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          1,
+          1
+        ],
+        "relative_permutation_B": 0,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc0:c000",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          0,
+          0
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc0:c001",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          0,
+          1
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc0:c010",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          1,
+          0
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc0:c011",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          1,
+          1
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc0:c100",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          0,
+          0
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc0:c101",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          0,
+          1
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc0:c110",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          1,
+          0
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc0:c111",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          1,
+          1
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 0
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc1:c000",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          0,
+          0
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 8,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 8,
+      "feasible": true,
+      "id": "n2_a:pb1:pc1:c001",
+      "independent_brute_cost": 8,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        8
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          0,
+          1
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 8
+    },
+    {
+      "abstract_support": 8,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 8,
+      "feasible": true,
+      "id": "n2_a:pb1:pc1:c010",
+      "independent_brute_cost": 8,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        8
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          1,
+          0
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 8
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc1:c011",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          0,
+          1,
+          1
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc1:c100",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          0,
+          0
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    },
+    {
+      "abstract_support": 8,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 8,
+      "feasible": true,
+      "id": "n2_a:pb1:pc1:c101",
+      "independent_brute_cost": 8,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        8
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          0,
+          1
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 8
+    },
+    {
+      "abstract_support": 8,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 8,
+      "feasible": true,
+      "id": "n2_a:pb1:pc1:c110",
+      "independent_brute_cost": 8,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        8
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          1,
+          0
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 8
+    },
+    {
+      "abstract_support": 7,
+      "abstraction": "R6M_OUTER_CONFIGURATION_MINIMUM",
+      "agreement": true,
+      "dp_cost": 7,
+      "feasible": true,
+      "id": "n2_a:pb1:pc1:c111",
+      "independent_brute_cost": 7,
+      "inner_argmin": "EXHAUSTIVE_N2_GLOBAL_PAULI_FRAME_AND_SHARED_TAG_ENUMERATION",
+      "objective_rank": [
+        7
+      ],
+      "outer_configuration": {
+        "centrals": [
+          1,
+          1,
+          1
+        ],
+        "relative_permutation_B": 1,
+        "relative_permutation_C": 1
+      },
+      "semantics": "R6M_N2_A_FROZEN_TARGET_PANEL_AND_MATCHING",
+      "support": 7
+    }
+  ],
+  "weak_moves": [],
+  "weak_terminal_witnesses": [
+    "n2_a:pb1:pc1:c001",
+    "n2_a:pb1:pc1:c010",
+    "n2_a:pb1:pc1:c101",
+    "n2_a:pb1:pc1:c110"
+  ]
+}
