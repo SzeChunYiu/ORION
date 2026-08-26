@@ -1,0 +1,49 @@
+{
+  "authority": {
+    "comparison_to_frozen_outcomes": "NOT_PERFORMED",
+    "independence_terminal": "CANNOT_CHECK",
+    "paper_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "base_commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
+  "blinding_breach": "BLINDING_BREACH_ISSUE_BODY",
+  "domains": {
+    "graphs": {
+      "candidates": [
+        "clique_number",
+        "component_count",
+        "four_cycle_count"
+      ],
+      "domain": "all labeled simple graphs on six vertices",
+      "representation": "sorted degree sequence and triangle count",
+      "target": "chromatic number"
+    },
+    "set_cover": {
+      "candidates": [
+        "element_frequency_multiset",
+        "pairwise_union_multiset",
+        "triple_intersection_multiset"
+      ],
+      "domain": "five-set covering subfamilies of the 31 nonempty subsets of a five-element labeled universe",
+      "representation": "set-size multiset and pairwise-intersection multiset",
+      "target": "minimum cover size"
+    },
+    "two_cnf": {
+      "candidates": [
+        "global_clause_sign_type_counts",
+        "unlabeled_signed_pair_profiles",
+        "labeled_signed_pair_profile"
+      ],
+      "domain": "five-clause subsets of the 24 non-tautological binary clauses on four labeled variables",
+      "representation": "signed variable occurrence counts and labeled unsigned variable-pair co-occurrence counts",
+      "target": "satisfying-assignment count"
+    }
+  },
+  "endpoint_selection": {
+    "fibre": "maximum target diameter, then maximum multiplicity, then canonical representation bytes",
+    "witness": "minimum canonical instance bytes at each target endpoint",
+    "third_checker": "recompute the selected representation and both endpoint targets with a small direct checker"
+  },
+  "schema": "ORION.FiberGuardCleanroomSourceProtocol.v1",
+  "target_solver_rule": "two structurally different exact solvers must agree instance by instance or execution aborts"
+}

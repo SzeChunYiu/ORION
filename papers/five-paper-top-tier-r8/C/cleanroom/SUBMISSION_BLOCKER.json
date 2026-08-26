@@ -1,0 +1,9 @@
+{
+  "exhaustive_execution": "BLOCKED",
+  "independence_terminal": "CANNOT_CHECK",
+  "lunarc_submission": "NOT_SUBMITTED",
+  "packet_commit_observed": "TO_BE_BOUND_AFTER_MATERIALIZATION",
+  "reason": "R8_PACKET_COMMIT.json contains an unresolved packet_commit placeholder",
+  "required_transition": "Bind an exact 40-hex packet commit, verify it is an ancestor of the clean-room checkout, then obtain root review before submission",
+  "schema": "ORION.FiberGuardCleanroomSubmissionBlocker.v1"
+}
