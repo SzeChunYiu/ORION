@@ -367,9 +367,13 @@ def evaluate_split(
         runtime[train_rows][neighbor_rows].mean(axis=1), axis=1
     )
 
-    # frozen RF router reused unchanged from the harness
+    # frozen RF router reused unchanged from the harness, on the harness's own
+    # impute-only featurization (median fill, no standardization)
+    x_train_imp, x_held_imp = harness.impute(
+        x_all[train_rows], x_all[held_rows]
+    )
     rf_action, _ = harness.fit_router(
-        phi_train, runtime[train_rows], solved[train_rows], phi_held
+        x_train_imp, runtime[train_rows], solved[train_rows], x_held_imp
     )
 
     # exact-equality control
@@ -463,6 +467,12 @@ def evaluate_split(
     nbr_action = np.where(
         covered, primary["action_held"], sbs_solver
     ).astype(int)
+    pca10 = relations.get("NBR_PCA10")
+    if pca10 is not None:
+        covered_pca = pca10["value_held"] <= PRIMARY_EPSILON
+        nbr_pca_action = np.where(
+            covered_pca, pca10["action_held"], sbs_solver
+        ).astype(int)
 
     arms_cost: dict[str, np.ndarray] = {}
     arms_solved: dict[str, np.ndarray] = {}
@@ -478,6 +488,10 @@ def evaluate_split(
     arms_cost["NBR_CERT_FULL"] = runtime[held_rows, nbr_action]
     arms_solved["NBR_CERT_FULL"] = solved[held_rows, nbr_action]
     arms_attempt["NBR_CERT_FULL"] = covered
+    if pca10 is not None:
+        arms_cost["NBR_CERT_PCA10"] = runtime[held_rows, nbr_pca_action]
+        arms_solved["NBR_CERT_PCA10"] = solved[held_rows, nbr_pca_action]
+        arms_attempt["NBR_CERT_PCA10"] = covered_pca
     arms_cost["EXACT_EQ"] = runtime[held_rows, eq_action]
     arms_solved["EXACT_EQ"] = solved[held_rows, eq_action]
     arms_attempt["EXACT_EQ"] = eq_covered
@@ -535,6 +549,9 @@ def evaluate_split(
             "dev_calibration_instances": int(len(cal_rows)),
             "sbs_solver": data["algorithms"][sbs_solver],
             "knn_k": int(knn_k),
+            "rf_router_featurization": (
+                "harness.impute (DEV-TRAIN median fill, no standardization)"
+            ),
             **split_receipt_extra,
         },
         "metrics": metrics,
@@ -715,10 +732,10 @@ def main() -> None:
     result["disposition"] = "EXECUTED__FROZEN_PROTOCOL_APPLIED"
 
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
-    JSON_PATH.write_text(
-        json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-    )
-    MARKDOWN_PATH.write_text(render_markdown(result), encoding="utf-8")
+    with JSON_PATH.open("x", encoding="utf-8") as handle:
+        handle.write(json.dumps(result, indent=2, sort_keys=True) + "\n")
+    with MARKDOWN_PATH.open("x", encoding="utf-8") as handle:
+        handle.write(render_markdown(result))
     print(f"wrote {JSON_PATH}")
     print(f"wrote {MARKDOWN_PATH}")
     print(json.dumps({"overall_verdict": overall,
