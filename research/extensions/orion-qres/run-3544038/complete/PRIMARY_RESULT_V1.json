@@ -1,0 +1,25 @@
+{
+ "answer": "No. Across 28 donor families spanning all 56 census issues, every claimed quantum-structural resource gain terminates in a negative terminal: 2 HIDDEN_ORACLE, 7 COMPILER_COST_UNBOUND, 3 VERIFICATION_COST_UNBOUND, 5 DONOR_EQUIVALENT, 11 CANNOT_CHECK. No donor retains an uncharged resource advantage; equalities and adverse outcomes are retained as first-class results.",
+ "authority_ceiling": {
+  "external_validation": "CANNOT_CHECK",
+  "novelty": "CANNOT_CHECK",
+  "physical_quantum_validity": "CANNOT_CHECK",
+  "quantum_advantage": "CANNOT_CHECK"
+ },
+ "gap_ledger_binding": "V1_QUANTUM_FRONTIER_CENSUS_COMPLETE",
+ "generated_utc": "2026-08-26T23:07:11Z",
+ "job_id": "V1-Q-RESOURCE-01",
+ "ledger_entry_status_bound": "BLOCKED_ON_V1-Q-CENSUS-01",
+ "negative_terminals_allowed": [
+  "HIDDEN_ORACLE",
+  "COMPILER_COST_UNBOUND",
+  "VERIFICATION_COST_UNBOUND",
+  "DONOR_EQUIVALENT",
+  "CANNOT_CHECK"
+ ],
+ "paper_authority_delta": "NONE",
+ "question": "Do claimed quantum-structural gains survive complete oracle, compiler, verification, sampling, and recovery costs?",
+ "schema": "ORION.V1.QuantumResource.PrimaryResult.v1",
+ "surviving_resource_advantage_count": 0,
+ "terminal": "V1_QUANTUM_RESOURCE_ACCOUNTING_COMPLETE"
+}
