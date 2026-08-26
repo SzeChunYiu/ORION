@@ -6,6 +6,14 @@ import json
 from pathlib import Path
 import sys
 
+import pytest
+
+
+pytest.importorskip(
+    "fitz",
+    reason="PyMuPDF is exercised by the dedicated manuscript-clipping workflow",
+)
+
 
 ROOT = Path(__file__).resolve().parents[3]
 SPEC = importlib.util.spec_from_file_location(
@@ -113,6 +121,15 @@ def test_baseline_write_fails_closed_when_any_pdf_is_unreadable(
 
     assert audit.main() == 3
     assert not target.exists()
+
+
+def test_main_fails_closed_when_pymupdf_is_unavailable(monkeypatch, capsys) -> None:
+    monkeypatch.setattr(audit, "fitz", None)
+
+    assert audit.main() == 3
+    assert capsys.readouterr().out == (
+        "CANNOT_CHECK: PyMuPDF (fitz) is not installed; cannot audit any PDF\n"
+    )
 
 
 def test_unreadable_pdf_takes_precedence_over_simultaneous_findings(

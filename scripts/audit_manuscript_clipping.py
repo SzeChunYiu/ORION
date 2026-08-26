@@ -31,8 +31,7 @@ from pathlib import Path
 try:
     import fitz  # PyMuPDF
 except ImportError:
-    print("CANNOT_CHECK: PyMuPDF (fitz) is not installed; cannot audit any PDF")
-    sys.exit(3)
+    fitz = None
 
 # PyMuPDF reports glyph-ink bounds, not TeX line-box bounds. On a justified
 # pdfTeX line whose box ends exactly at the margin, italic/round glyph ink can
@@ -116,6 +115,10 @@ def key(finding: dict) -> str:
 
 
 def main() -> int:
+    if fitz is None:
+        print("CANNOT_CHECK: PyMuPDF (fitz) is not installed; cannot audit any PDF")
+        return 3
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("pdfs", nargs="*", type=Path)
     parser.add_argument(
