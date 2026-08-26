@@ -1,0 +1,179 @@
+{
+  "allowed_terminals": [
+    "COMPLETED_ENGINEERING_PILOT_ONLY__CANNOT_CHECK",
+    "CANNOT_CHECK_ENVIRONMENT",
+    "CANNOT_CHECK_RESOURCE_BOUND",
+    "CANNOT_CHECK_CHECKPOINT_MISMATCH"
+  ],
+  "authorization_terminal": "AUTHORIZED_BY_LATER_USER_EXECUTE_INSTRUCTION__BOUNDED_PILOT_ONLY",
+  "authorized_at_utc": "2026-08-26T15:29:46Z",
+  "authority": "engineering_resource_pilot_only",
+  "correction": {
+    "corrected_at_utc": "2026-08-26T15:56:11Z",
+    "corrects_packet_sha256": "c29e6a4cd179b582947f466c088bd2f20dc0ff25d01883ff0e39bf35a9867fd9",
+    "prior_correction": {
+      "corrected_at_utc": "2026-08-26T15:50:42Z",
+      "corrects_packet_sha256": "d2c60f9f386a83c62d16dafe9e09a64055867053ddce4a90e6d6664f775ff3ae",
+      "prior_correction": {
+        "corrected_at_utc": "2026-08-26T15:40:47Z",
+        "corrects_packet_sha256": "204e6492632cf8ac36c01ed8eaa9413cf4926b9a4ddf5a0e1741aad4b66b5d6f",
+        "prior_correction": {
+          "corrected_at_utc": "2026-08-26T15:34:55Z",
+          "corrects_packet_sha256": "7e42cbb10d40cf9249791af279823338da13205524276dbcaac5b66e3fa89809",
+          "reason": "Pre-submission LUNARC inspection showed that compute is not an active partition; no job was submitted."
+        },
+        "reason": "Independent pre-submission review removed the remaining lu48 partition assumption, replaced the invalid combined Python module name with the verified two-module load sequence, and added an immutable noncircular submit-script binding before any job was submitted."
+      },
+      "reason": "The first exact attempt failed before sbatch when the full remote checkout exceeded disk quota; the checkout was replaced without changing the frozen source, scientific payload, or non-duplication key by a blobless partial fetch and an exact two-directory sparse checkout."
+    },
+    "reason": "The second exact attempt failed before sbatch because no default project was available; the valid lu48 association account lu2026-2-51 is now supplied explicitly without changing the scheduler-default partition, frozen source, scientific payload, or non-duplication key."
+  },
+  "bounded_denominator": {
+    "candidate_edge_budget_per_invocation": 7,
+    "donor_ranges": [
+      [0, 8],
+      [8, 16],
+      [16, 20]
+    ],
+    "factorization_k": 2,
+    "factorization_max_states": 250000,
+    "full_census_authorized": false,
+    "group": {
+      "d": 3,
+      "p": 5
+    },
+    "parent_count": 20,
+    "parent_level": 3,
+    "parent_range": [0, 20],
+    "parent_records_sha256": "4de1ffc69d855e58f7f05fd11778dc3e46aca058ccd69b362f0a7b24a7766a10",
+    "target_level": 4,
+    "target_transform_count": 16,
+    "target_witness_sha256": "d2ea73ee6f5287b6e1b7adb5baf28fe5ccfe3f156144f50001a49ba1fd8014e5"
+  },
+  "exact_command": "bash papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/submit_nq_engine_a_bounded_pilot.sh",
+  "execution_source": {
+    "base_branch": "codex/five-paper-top-tier-r8-packet-binding-20260826",
+    "base_commit": "45957e01c63be6a523ee4cbc9ed2b8a2a71dbcac",
+    "branch": "codex/nq-engine-a-bounded-pilot-r8-20260826",
+    "commit": "ce3ad440337c1bd413a8e5202c94a67374721403",
+    "engine_path": "papers/five-paper-top-tier-r8/NQ/engine-a-bounded-pilot-v1",
+    "repository": "https://github.com/SzeChunYiu/ORION.git",
+    "runner_git_blob": "7e32d6c71945669438ec2160872334ad4caec074",
+    "runner_path": "papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/run_nq_engine_a_bounded_pilot.slurm",
+    "runner_sha256": "26a8a32155ac204454d4f7ee68f898f706f21c15a817e7035052b6aae69e2ff7",
+    "source_manifest_file_sha256": "b343b580411b87028b87af321e0b3ae44add4d066fe695c44cefb0527fac8045",
+    "source_tree_sha256": "6d51977e77e3a8d9438183f1ea41bde7632d0de39ea8c18352a3b759ea080bde",
+    "staging_tree_sha256": "28f4175fdf13583344b9909d09b790a405ff18f426e8d2640f68534f9ac3f667",
+    "tree": "75230e3fdb53822139817ff744925d63220c193a"
+  },
+  "exposure_markers": [
+    "EXPECTED_OUTCOME_EXPOSURE",
+    "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+  ],
+  "forbidden_promotions": [
+    "full_census",
+    "two_engine_pass",
+    "independent_replay",
+    "scientific_negative",
+    "paper_or_journal_authority"
+  ],
+  "frozen_local_evidence": {
+    "checkpoint_output_sha256": "b4b16c3e43d3d15268647a662e2e62cafc3bb8525c049458a6bad5a380c984f6",
+    "donor_output_sha256": "f8bee93b9133b133f758dfeda37e2a75e30d6954296d7f6df549572aa0f21895",
+    "non_duplication_key": "5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f62307",
+    "outcome_boundary": "All 16 expected-outcome-exposed negatives are engineering observations only and remain CANNOT_CHECK for independence/science.",
+    "protocol_sha256": "059970ec26cd0767028a75aae92de70e53fbb0cb9f7439cff7696cc237351f69",
+    "receipt_sha256": "9c2380ccf5805f2fd3a47eaff757d0a113130a2a8728794c6ddb6b03e4c3e5d4",
+    "target_dp_status_counts": {
+      "CANNOT_CHECK_RESOURCE_BOUND": 0,
+      "NEGATIVE": 16,
+      "POSITIVE": 0
+    }
+  },
+  "historical_protocol_preservation": {
+    "historical_lunarc_submission_authorized": false,
+    "path": "papers/five-paper-top-tier-r8/NQ/engine-a-bounded-pilot-v1/TARGET_RESOURCE_PILOT_PROTOCOL.json",
+    "rewritten": false,
+    "sha256": "059970ec26cd0767028a75aae92de70e53fbb0cb9f7439cff7696cc237351f69",
+    "statement": "The earlier prospective local protocol remains byte-identical and historically records lunarc_submission_authorized=false. This later packet records a new authorization from the user's current explicit execute instruction; it does not rewrite, retune, or reinterpret the earlier protocol or its local outcomes."
+  },
+  "independence_terminal": "CANNOT_CHECK",
+  "non_duplication": {
+    "key": "5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f62307",
+    "lock_path": "/home/scyiu/orion-nq-engine-a-bounded-pilot/5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f62307/.submission-lock",
+    "output_root": "/home/scyiu/orion-nq-engine-a-bounded-pilot/5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f62307",
+    "preflight_matching_queue_entries": 0,
+    "preflight_observed_at_utc": "2026-08-26T15:28:00Z",
+    "preflight_path_exists": false,
+    "submit_script_must_recheck": true
+  },
+  "outputs": {
+    "checksums": "SHA256SUMS",
+    "metadata": "LUNARC_RUN_METADATA.json",
+    "receipt": "TARGET_RESOURCE_PILOT_RECEIPT.json",
+    "run_directory_template": "/home/scyiu/orion-nq-engine-a-bounded-pilot/5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f62307/run-%j",
+    "slurm_log_template": "/home/scyiu/orion-nq-engine-a-bounded-pilot/5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f62307/slurm-%j.out",
+    "submission_record": "SUBMISSION.json",
+    "terminal": "TERMINAL.txt"
+  },
+  "packet_id": "NQ-ENGINE-A-BOUNDED-PILOT-LUNARC-20260826",
+  "remote_checkout": {
+    "filter": "blob:none",
+    "sparse_paths": [
+      "papers/five-paper-top-tier-r8/NQ/engine-a-bounded-pilot-v1",
+      "papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1"
+    ],
+    "strategy": "partial_fetch_exact_sparse_checkout"
+  },
+  "safe_to_submit": true,
+  "schema_version": "nq-engine-a-lunarc-authorization-v1",
+  "scientific_terminal": "CANNOT_CHECK",
+  "submit_script_binding": {
+    "commit": "c11e46db77f48c8cb1674cea5a098bec8b2e8f32",
+    "git_blob": "ceea80dbb474590471c6169834768493c1fd25ae",
+    "path": "papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/submit_nq_engine_a_bounded_pilot.sh",
+    "sha256": "c8fc3f9173a66b210f9f307cb3a9a1929525e5d457345ab8745c0190c422b403",
+    "tree": "57642a99a8ef25a1bc22bc8e35641c964fa5f3f4"
+  },
+  "submission_attempt_history": [
+    {
+      "attempted_at_utc": "CANNOT_CHECK",
+      "error": "Disk quota exceeded during the remote source checkout",
+      "non_duplication_root_after": "ABSENT",
+      "protocol_changed": false,
+      "queue_matching_entries_after": 0,
+      "recorded_at_utc": "2026-08-26T15:50:42Z",
+      "scientific_result_created": false,
+      "slurm_job_created": false,
+      "source_changed": false,
+      "terminal": "FAILED_PRE_SBATCH__DISK_QUOTA_EXCEEDED"
+    },
+    {
+      "account_added": "lu2026-2-51",
+      "attempted_at_utc": "CANNOT_CHECK",
+      "error": "No default project available at sbatch admission",
+      "non_duplication_root_after": "ABSENT",
+      "protocol_changed": false,
+      "queue_matching_entries_after": 0,
+      "recorded_at_utc": "2026-08-26T15:56:11Z",
+      "scientific_result_created": false,
+      "slurm_job_created": false,
+      "source_changed": false,
+      "terminal": "FAILED_PRE_SBATCH__NO_DEFAULT_PROJECT"
+    }
+  ],
+  "slurm": {
+    "account": "lu2026-2-51",
+    "cpus_per_task": 1,
+    "job_name": "nq-ea-pilot",
+    "memory_gib": 4,
+    "nodes": 1,
+    "partition_selection": "scheduler_default",
+    "python_modules": [
+      "GCCcore/13.2.0",
+      "Python/3.11.5"
+    ],
+    "tasks": 1,
+    "walltime": "00:30:00"
+  }
+}

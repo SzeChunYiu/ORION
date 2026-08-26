@@ -1,0 +1,89 @@
+{
+  "$id": "urn:orion:nq-engine-a:input:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "exposure_markers": {
+      "allOf": [
+        {
+          "contains": {
+            "const": "EXPECTED_OUTCOME_EXPOSURE"
+          }
+        },
+        {
+          "contains": {
+            "const": "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+          }
+        }
+      ],
+      "items": {
+        "enum": [
+          "EXPECTED_OUTCOME_EXPOSURE",
+          "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+        ]
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "group": {
+      "additionalProperties": false,
+      "properties": {
+        "d": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "p": {
+          "minimum": 2,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "p",
+        "d"
+      ],
+      "type": "object"
+    },
+    "k": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "limits": {
+      "additionalProperties": false,
+      "properties": {
+        "max_raw_candidates": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "max_states": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "nq-engine-a-input-v1"
+    },
+    "sequence": {
+      "items": {
+        "items": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "type": "array"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "exposure_markers",
+    "group",
+    "sequence",
+    "k"
+  ],
+  "title": "NQ Engine A input",
+  "type": "object"
+}

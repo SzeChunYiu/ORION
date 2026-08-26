@@ -1,0 +1,66 @@
+{
+  "authority": "engineering_conformance_only",
+  "canonical_orderly_control": {
+    "canonical_accepted": 4,
+    "group": {
+      "d": 2,
+      "p": 2
+    },
+    "length": 2,
+    "raw_candidates": 10
+  },
+  "exposure_markers": [
+    "EXPECTED_OUTCOME_EXPOSURE",
+    "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+  ],
+  "independence_terminal": "CANNOT_CHECK",
+  "oracle": "separate exhaustive labelled-bin assignment",
+  "panels": [
+    {
+      "group": {
+        "d": 1,
+        "p": 2
+      },
+      "k": 2,
+      "length_range": [
+        0,
+        6
+      ],
+      "mismatches": 0,
+      "negative": 6,
+      "positive": 22,
+      "sequences_checked": 28
+    },
+    {
+      "group": {
+        "d": 1,
+        "p": 3
+      },
+      "k": 2,
+      "length_range": [
+        0,
+        4
+      ],
+      "mismatches": 0,
+      "negative": 19,
+      "positive": 16,
+      "sequences_checked": 35
+    },
+    {
+      "group": {
+        "d": 2,
+        "p": 2
+      },
+      "k": 2,
+      "length_range": [
+        0,
+        3
+      ],
+      "mismatches": 0,
+      "negative": 27,
+      "positive": 8,
+      "sequences_checked": 35
+    }
+  ],
+  "schema_version": "nq-engine-a-small-controls-v1"
+}

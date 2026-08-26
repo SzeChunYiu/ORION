@@ -1,0 +1,93 @@
+{
+  "authority": "prospective_engineering_resource_pilot_only",
+  "checkpoint_child_level": {
+    "candidate_edge_budget_per_invocation": 7,
+    "constraints": {
+      "forbid_k_disjoint": null,
+      "max_factor_states": null,
+      "short_zero_sum_cutoff": null
+    },
+    "group": {
+      "d": 3,
+      "p": 5
+    },
+    "parent_level": 3,
+    "parent_manifest": {
+      "canonical_json_newline": true,
+      "record_count": 20,
+      "record_sha256": "4de1ffc69d855e58f7f05fd11778dc3e46aca058ccd69b362f0a7b24a7766a10",
+      "source_control_sha256": "22d94f05c32b1afe11ab41a32e36a7fda16334870459bee068135dafd9d8538b"
+    },
+    "parent_range": [
+      0,
+      20
+    ],
+    "target_level": 4
+  },
+  "donor_slice_ranges": {
+    "class_index_semantics": "half_open",
+    "merge_requires_exact_order_nonoverlap_coverage_and_uninterrupted_union_dedup_equality": true,
+    "ranges": [
+      [
+        0,
+        8
+      ],
+      [
+        8,
+        16
+      ],
+      [
+        16,
+        20
+      ]
+    ]
+  },
+  "execution": {
+    "full_census_authorized": false,
+    "lunarc_submission_authorized": false,
+    "prospective_terminal": "PILOT_PLANNED_STOP__NOT_EXECUTED__CANNOT_CHECK",
+    "scientific_terminal": "CANNOT_CHECK"
+  },
+  "exposure_markers": [
+    "EXPECTED_OUTCOME_EXPOSURE",
+    "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+  ],
+  "frozen_at_utc": "2026-08-26T14:58:46Z",
+  "independence_terminal": "CANNOT_CHECK",
+  "pilot_id": "nq-engine-a-c5cubed-checkpoint-resource-pilot-v1",
+  "resource_envelope_rule": {
+    "cpu_count": 1,
+    "memory_gib": "max(4, ceil(4 * observed_process_max_rss_gib))",
+    "scope": "future_same_pilot_only_not_full_census",
+    "wall_minutes": "max(30, ceil(10 * observed_total_elapsed_minutes))"
+  },
+  "schema_version": "nq-engine-a-target-resource-pilot-protocol-v1",
+  "target_kernel_panel": {
+    "case_count": 16,
+    "donor_fixture_path": "fixtures/d2_lower_witness.json",
+    "donor_fixture_sha256": "d2ea73ee6f5287b6e1b7adb5baf28fe5ccfe3f156144f50001a49ba1fd8014e5",
+    "factorization_k": 2,
+    "factorization_max_states": 250000,
+    "group": {
+      "d": 3,
+      "p": 5
+    },
+    "kernels": [
+      "canonicalization",
+      "donor_slice_expansion",
+      "extension_orbit_stabilizer_construction",
+      "exact_two_bin_factorization_dp"
+    ],
+    "matrix_generation": {
+      "algorithm": "for counter=0,1,... take SHA256(seed_label || ':' || decimal(counter)); read the first 9 bytes; reduce each byte modulo 5 in row-major order; retain iff rank over F5 is 3 and the matrix has not appeared earlier; stop after 16 retained matrices",
+      "seed_label": "orion-nq-engine-a-target-resource-pilot-v1"
+    },
+    "measurement": {
+      "clock": "time.perf_counter_ns",
+      "process_max_rss": "resource.getrusage(resource.RUSAGE_SELF).ru_maxrss with platform unit recorded",
+      "repetitions_per_case": 1
+    },
+    "scientific_promotion_allowed": false,
+    "witness_length": 19
+  }
+}

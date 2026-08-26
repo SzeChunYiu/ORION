@@ -1,0 +1,31 @@
+{
+  "authority": {
+    "blinded_independence": "NOT_CLAIMED",
+    "d4_c5_cubed": "OPEN",
+    "paper_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "bindings": {
+    "source_manifest_sha256": "daa673588db36afcc02bd346a9527664d0965b9b8a53894e67b2900124758162"
+  },
+  "payload": {
+    "blinded_independence": "NOT_CLAIMED",
+    "blinding_disclosure": "PUBLIC_PROGRAMME_EXPECTED_OUTCOMES_EXPOSED",
+    "checks": {
+      "all_125_elements_round_trip": true,
+      "negative_control_unsat": true,
+      "negative_matches_slow_reference": true,
+      "positive_control_sat": true,
+      "positive_matches_slow_reference": true,
+      "primitive_inverse_law": true
+    },
+    "d4_c5_cubed": "OPEN",
+    "full_scientific_execution": "NOT_RUN",
+    "full_strata_closed": false,
+    "lunarc_submission": "NOT_SUBMITTED",
+    "terminal": "NQ_ENGINE_B_NON_OUTCOME_FIXTURES_VALIDATED"
+  },
+  "receipt_sha256": "cd019f8fd61eab091935c0d5de5de6ca73500e7304b6132d2d9551e54eea31a0",
+  "schema": "ORION.NQ.EngineB.Receipt.v1",
+  "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
+}

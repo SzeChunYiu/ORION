@@ -1,0 +1,52 @@
+{
+  "allowed_terminal": "NQ_CR_A_CR_B_RANK2_PREFIX_CONTROL_PASS",
+  "authority_ceiling": "ENGINEERING_CONTROL_ONLY__FULL_REPLAY_NOT_RUN__CANNOT_CHECK",
+  "commands": [
+    "PYTHONPATH=papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay:papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b python3 papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/control_replay.py",
+    "PYTHONPATH=papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay:papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b python3 papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/verify_control_receipt.py"
+  ],
+  "custody_parent": "6167aa27e9b7aebd4fcc766159cdc80bf3b3130a",
+  "engine_a": {
+    "implementation": "canonical orderly generation plus exact multi-bin subset-sum DP",
+    "tree": "b64f2188238e5fc869680ca117d241a0a3615349"
+  },
+  "engine_b": {
+    "factorization": "CNF occurrence-bin variables plus prefix-sum automata",
+    "symmetry": "fixed span basis plus literal GL(r,5) matrix-action enumeration"
+  },
+  "expected_control": {
+    "case_count": 61,
+    "cases_sha256": "7d43325db99ef9954e35774df18d26b1c6711245fcc7c9b676854339d8127fc2",
+    "engine_a_pass_sha256": "46003efcc2e95d5ecdf782c5b12c41a7adaf50545e33511f168c1c87e411a35c",
+    "engine_b_pass_sha256": "502aa1c6ccb0f89b5aeb69a390ee27030097c50f3968066936c73379e08ca704",
+    "mismatch_count": 0,
+    "negative_count": 52,
+    "orbit_range_sha256": "8480476f382464dfc508170869eaec510c571cac1a652278db1125ed303b03a5",
+    "positive_count": 9,
+    "receipt_sha256": "54bd7f017a306b61b72daf81a78bc4c66a8d676178deefb28a97e5fabd497059",
+    "reference_pass_sha256": "fa6e7a49d3846fd91c43ac525cece2c469af3c62dc7dc75a8b4057bedf91f15f"
+  },
+  "full_census_authorized": false,
+  "grammar": {
+    "alphabet_coordinates": [
+      [0, 0, 0],
+      [1, 0, 0],
+      [4, 0, 0],
+      [0, 1, 0],
+      [0, 4, 0]
+    ],
+    "lengths": [2, 3, 4],
+    "rank": 2,
+    "required_bins": 2,
+    "sequence_kind": "all nondecreasing multisets over the exact alphabet"
+  },
+  "independence_boundary": "structurally different code and state representations; expected scientific outcomes were exposed, so blinded or external independence is not claimed",
+  "lunarc_submission_authorized": false,
+  "nonduplication": {
+    "engine_a_pilot_job": 3542994,
+    "engine_a_pilot_key": "5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f62307",
+    "rule": "terminal completed; never resubmit"
+  },
+  "schema": "ORION.NQ.R9.CRABRank2ControlProtocol.v1",
+  "scientific_subject": "0c451e862a0eeddac7c673813c4dc499f134b088"
+}

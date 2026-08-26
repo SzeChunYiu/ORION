@@ -1,0 +1,47 @@
+{
+  "authority": "expected_outcome_exposed_control_only",
+  "controls": [
+    {
+      "certificate_present": false,
+      "control_id": "permitted_d2_lower_witness",
+      "exhaustive": true,
+      "fixture": "d2_lower_witness.json",
+      "frontier_peak": 8000,
+      "k": 2,
+      "layers_completed": 19,
+      "max_states": null,
+      "states_explored": 73693,
+      "status": "NEGATIVE"
+    },
+    {
+      "certificate_present": true,
+      "control_id": "permitted_d3_lower_witness",
+      "exhaustive": true,
+      "fixture": "d3_lower_witness.json",
+      "frontier_peak": 8001,
+      "k": 2,
+      "layers_completed": 20,
+      "max_states": null,
+      "states_explored": 89568,
+      "status": "POSITIVE"
+    },
+    {
+      "certificate_present": false,
+      "control_id": "permitted_d3_lower_witness",
+      "exhaustive": true,
+      "fixture": "d3_lower_witness.json",
+      "frontier_peak": 264295,
+      "k": 3,
+      "layers_completed": 24,
+      "max_states": 300000,
+      "states_explored": 5402339,
+      "status": "NEGATIVE"
+    }
+  ],
+  "exposure_markers": [
+    "EXPECTED_OUTCOME_EXPOSURE",
+    "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+  ],
+  "independence_terminal": "CANNOT_CHECK",
+  "schema_version": "nq-engine-a-permitted-lower-controls-v1"
+}
