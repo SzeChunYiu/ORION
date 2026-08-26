@@ -6,11 +6,15 @@ on:
       - chatgpt/r12-d-first-mixing-20260826
     paths:
       - 'papers/five-paper-top-tier-r8/D/ORIGIN_WITNESS_FIRST_MIXING_R12.md'
+      - 'papers/five-paper-top-tier-r8/D/FIRST_MIXING_R12_RESULT.md'
+      - 'papers/five-paper-top-tier-r8/D/FIRST_MIXING_R12_RESULTS.json'
       - 'papers/five-paper-top-tier-r8/D/verify_origin_witness_first_mixing_r12.py'
       - '.github/workflows/five-paper-r12-d-first-mixing.yml'
   pull_request:
     paths:
       - 'papers/five-paper-top-tier-r8/D/ORIGIN_WITNESS_FIRST_MIXING_R12.md'
+      - 'papers/five-paper-top-tier-r8/D/FIRST_MIXING_R12_RESULT.md'
+      - 'papers/five-paper-top-tier-r8/D/FIRST_MIXING_R12_RESULTS.json'
       - 'papers/five-paper-top-tier-r8/D/verify_origin_witness_first_mixing_r12.py'
       - '.github/workflows/five-paper-r12-d-first-mixing.yml'
   workflow_dispatch:
@@ -97,12 +101,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          script='papers/five-paper-top-tier-r8/D/verify_origin_witness_first_mixing_r12.py'
+          root='papers/five-paper-top-tier-r8/D'
+          script="$root/verify_origin_witness_first_mixing_r12.py"
+          registered="$root/FIRST_MIXING_R12_RESULTS.json"
           python -m py_compile "$script"
           python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
           python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
           cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
           cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$registered"
           grep -q '^TYPED_AUTHORITY_FIRST_MIXING_R12_PASS ' "$RUNNER_TEMP/terminal-a.txt"
 
       - name: Verify theorem controls and authority ceiling
