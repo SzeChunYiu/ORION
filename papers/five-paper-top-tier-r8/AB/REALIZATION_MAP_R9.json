@@ -1,0 +1,29 @@
+{
+  "schema": "ORION.AB.RealizationMapR9.v1",
+  "grammar_id": "F2D5_XOR_AGGREGATION",
+  "map": {
+    "production_to_abstract": "identity on the multiset of nonzero F_2^5 letters",
+    "abstract_to_production_on_declared_scope": "identity",
+    "support_preserved": true,
+    "semantic_total_preserved": true
+  },
+  "weak_terminal_witness": {
+    "abstract_word": [1, 2, 4, 8, 16],
+    "production_preimage": [1, 2, 4, 8, 16],
+    "support": 5,
+    "total_xor": 31,
+    "irreducibility_reason": "the standard basis is linearly independent, hence no nonempty submultiset has XOR zero"
+  },
+  "strong_normal_form": {
+    "state": [31],
+    "support": 1,
+    "semantic_total": 31,
+    "support_zero_infeasible": true
+  },
+  "certificate_gap": {
+    "weak_certificate_complexity": 5,
+    "intrinsic_production_support": 1,
+    "waste": 4,
+    "status": "REALIZED_ON_EXPLICIT_GRAMMAR"
+  }
+}
