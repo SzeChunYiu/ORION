@@ -13,10 +13,11 @@ from .workspace import ResearchWorkspace
 _LOCAL_CAPABILITIES = {"FILE_READ", "FILE_WRITE", "FILE_LIST", "SHELL", "PYTHON"}
 _MAX_TEXT_CHARS = 1_000_000
 _MAX_LIST_ENTRIES = 10_000
-_MAX_PROCESS_OUTPUT_BYTES = 100_000
+# Keep process receipts bounded while admitting current registered campaign
+# result tokens (the X1-B k4 replay is about 285 KiB as one JSON line).
+_MAX_PROCESS_OUTPUT_BYTES = 1_000_000
 _DEFAULT_MAX_PROCESS_TIMEOUT_SECONDS = 120
 _MAX_PROCESS_TIMEOUT_OVERRIDE_LIMIT_SECONDS = 600
-_MAX_PROCESS_TIMEOUT_SECONDS = 7_200
 _DRAIN_JOIN_SECONDS = 1.0
 
 #: The complete payload vocabulary of each local capability. The request digest
@@ -83,7 +84,7 @@ def _validated_max_chars(value: Any) -> int:
     return max_chars
 
 
-def _process_timeout_ceiling() -> int:
+def _legacy_process_timeout_ceiling() -> int:
     raw = os.environ.get("ORION_HARNESS_MAX_PROCESS_TIMEOUT_SECONDS")
     if raw is None:
         return _DEFAULT_MAX_PROCESS_TIMEOUT_SECONDS
@@ -97,7 +98,7 @@ def _process_timeout_ceiling() -> int:
 
 
 def _validated_process_timeout(value: Any) -> int:
-    return min(max(int(value), 1), _process_timeout_ceiling())
+    return min(max(int(value), 1), _legacy_process_timeout_ceiling())
 
 
 def _read_text_bounded(path: Path, max_chars: int) -> str:
@@ -177,7 +178,7 @@ def _finish_drainers(process: subprocess.Popen[bytes], threads: tuple[threading.
 #: budget from a real negative. `CAPABILITY_FAILED` alone cannot.
 _BUDGET_EXHAUSTED_PREFIX = "BUDGET_EXHAUSTED_CANNOT_CHECK"
 
-_DEFAULT_PROCESS_TIMEOUT_CEILING = 900
+_DEFAULT_PROCESS_TIMEOUT_CEILING = 3600
 _MAX_PROCESS_TIMEOUT_CEILING = 3600
 
 
@@ -239,9 +240,10 @@ def execute_local(
                 "SHELL/PYTHON local execution is disabled for this workspace; "
                 "reinitialize with --allow-process-tools to opt in"
             )
-        timeout = _validated_process_timeout(payload.get("timeout", 60))
-        timeout = min(max(int(payload.get("timeout", 60)), 1), _MAX_PROCESS_TIMEOUT_SECONDS)
-        timeout = min(max(int(payload.get("timeout", 60)), 1), _process_timeout_ceiling())
+        timeout = min(
+            max(int(payload.get("timeout", 60)), 1),
+            _process_timeout_ceiling(),
+        )
         cwd = _confined(root, str(payload.get("cwd", ".")))
         if not cwd.is_dir():
             raise NotADirectoryError(cwd)

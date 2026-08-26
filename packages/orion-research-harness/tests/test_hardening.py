@@ -19,7 +19,7 @@ from orion_research_harness.broker import (
     HostCapabilityRequired,
 )
 from orion_research_harness.cli import main as cli_main
-from orion_research_harness.local_tools import execute_local
+from orion_research_harness.local_tools import _MAX_PROCESS_OUTPUT_BYTES, execute_local
 from orion_research_harness.protocol import CapabilityRequest
 from orion_research_harness.runner import run_problem
 from orion_research_harness.workspace import ResearchWorkspace
@@ -265,11 +265,16 @@ def test_file_reads_and_process_output_are_bounded_before_return(tmp_path: Path)
     result = execute_local(
         process_workspace,
         "PYTHON",
-        {"code": "import sys; sys.stdout.write('z' * 150000)"},
+        {
+            "code": (
+                "import sys; sys.stdout.write('z' * "
+                f"{_MAX_PROCESS_OUTPUT_BYTES + 50_000})"
+            )
+        },
     )
     assert result["returncode"] == 0
     assert result["sandboxed"] is False
-    assert len(result["stdout"]) < 101000
+    assert len(result["stdout"]) < _MAX_PROCESS_OUTPUT_BYTES + 1_000
     assert "truncated 50000 bytes" in result["stdout"]
 
 
