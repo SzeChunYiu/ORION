@@ -94,7 +94,8 @@ jobs:
           assert binding['result_absent_from_protocol_inputs'] is True
           assert all(result['controls'].values())
           assert result['portable_representation']['common_feature_count'] >= 40
-          assert result['development']['candidate_count'] == 768
+          # 16 frozen model specifications x 3 alpha values x 4 epsilon values.
+          assert result['development']['candidate_count'] == 192
           assert result['scenarios']['SAT16-MAIN']['algorithm_count'] > 1
           assert result['scenarios']['SAT18-EXP']['algorithm_count'] > 1
           assert result['scenarios']['SAT20-MAIN']['algorithm_count'] > 1
