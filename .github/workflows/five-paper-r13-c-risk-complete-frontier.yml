@@ -1,0 +1,96 @@
+name: five-paper-r13-c-risk-complete-frontier
+
+on:
+  push:
+    branches:
+      - chatgpt/r13-c-risk-complete-frontier-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_RISK_COMPLETE_FRONTIER_R13.md'
+      - 'papers/five-paper-top-tier-r8/C/RISK_COMPLETE_FRONTIER_PRIOR_ART_R13.md'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_risk_complete_frontier_r13.py'
+      - '.github/workflows/five-paper-r13-c-risk-complete-frontier.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_RISK_COMPLETE_FRONTIER_R13.md'
+      - 'papers/five-paper-top-tier-r8/C/RISK_COMPLETE_FRONTIER_PRIOR_ART_R13.md'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_risk_complete_frontier_r13.py'
+      - '.github/workflows/five-paper-r13-c-risk-complete-frontier.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-risk-frontier-controls:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile exact implementations
+        run: |
+          python -m py_compile \
+            papers/five-paper-top-tier-r8/C/fiberguard_profile_bellman_r12_core.py \
+            papers/five-paper-top-tier-r8/C/verify_fiberguard_risk_complete_frontier_r13.py
+
+      - name: Replay finite controls twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='papers/five-paper-top-tier-r8/C/verify_fiberguard_risk_complete_frontier_r13.py'
+          result='papers/five-paper-top-tier-r8/C/RISK_COMPLETE_FRONTIER_R13_RESULTS.json'
+          python "$script" > "$RUNNER_TEMP/terminal-a.txt"
+          cp "$result" "$RUNNER_TEMP/result-a.json"
+          python "$script" > "$RUNNER_TEMP/terminal-b.txt"
+          cp "$result" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          grep -q '^FIBERGUARD_RISK_COMPLETE_FRONTIER_R13_PASS$' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Enforce authority and hostile controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, pathlib
+          path = pathlib.Path(os.environ['RUNNER_TEMP']) / 'result-a.json'
+          row = json.loads(path.read_text())
+          assert row['schema'] == 'ORION.FiberGuard.RiskCompleteFrontier.R13.v1'
+          assert row['status'] == 'FIBERGUARD_RISK_COMPLETE_FRONTIER_R13_PASS'
+          assert row['frontier_controls']['monotone_risk_equalities_checked'] == 16080
+          assert row['game_controls']['primal_dual_equalities'] >= 290
+          assert row['adaptive_controls']['generated_adaptive_systems'] == 60
+          hostile = row['hostile_examples']
+          assert hostile['unsupported_deterministic_minimax_value'] == 2
+          assert hostile['unsupported_randomized_value'] == '3/2'
+          assert hostile['randomization_gap_family'][-1]['ratio'] == 12
+          authority = row['authority']
+          assert authority['analytic_theorems_from_computation'] is False
+          assert authority['generic_pareto_theory_claimed_novel'] is False
+          assert authority['generic_minimax_duality_claimed_novel'] is False
+          assert authority['randomized_pathwise_certificate_improvement'] is False
+          assert authority['adaptive_aslib_experiment_executed'] is False
+          assert authority['journal_authority'] is False
+          print('RISK_COMPLETE_FRONTIER_AUTHORITY_VERIFIED')
+          PY
+
+      - name: Stage immutable result artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-risk-complete-frontier-r13"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/RISK_COMPLETE_FRONTIER_R13_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-risk-complete-frontier-r13
+          path: ${{ runner.temp }}/fiberguard-risk-complete-frontier-r13/
+          if-no-files-found: error
+          retention-days: 30
