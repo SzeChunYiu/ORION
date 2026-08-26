@@ -43,7 +43,15 @@ jobs:
           python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
           cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
           cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
-          cmp "$RUNNER_TEMP/result-a.json" "$registered"
+          if ! cmp "$RUNNER_TEMP/result-a.json" "$registered"; then
+            echo '::group::Generated exact receipt'
+            cat "$RUNNER_TEMP/result-a.json"
+            echo '::endgroup::'
+            echo '::group::Committed receipt'
+            cat "$registered"
+            echo '::endgroup::'
+            exit 1
+          fi
           grep -q '^FIBERGUARD_COVERAGE_TAX_R15_PASS ' "$RUNNER_TEMP/terminal-a.txt"
 
       - name: Verify theorem controls and authority ceiling
