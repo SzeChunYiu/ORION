@@ -2,21 +2,39 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,booktabs}
 \usepackage[hidelinks]{hyperref}
+\usepackage{iftex}
 \usepackage[pipeTables]{markdown}
 % pdflatex cannot typeset these code points unaided, and the canonical prose is
 % Markdown, where an author writes them naturally. Without this the P11 build
 % died on its first "≥" with "Unicode character ≥ (U+2265) not set up for use
 % with LaTeX" and produced no PDF at all, while the committed main.pdf stayed on
 % disk from an earlier source -- a stale artifact beside a red build.
-\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
-\DeclareUnicodeCharacter{2013}{--}
-\DeclareUnicodeCharacter{2014}{---}
-\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
-\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
-\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
-\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
-\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
-\DeclareUnicodeCharacter{2260}{\ensuremath{\neq}}
+\ifPDFTeX
+  \DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+  \DeclareUnicodeCharacter{2013}{--}
+  \DeclareUnicodeCharacter{2014}{---}
+  \DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+  \DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+  \DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+  \DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
+  \DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+  \DeclareUnicodeCharacter{2260}{\ensuremath{\neq}}
+\else
+  \usepackage{newunicodechar}
+  \newunicodechar{×}{\ensuremath{\times}}
+  \newunicodechar{–}{--}
+  \newunicodechar{—}{---}
+  \newunicodechar{→}{\ensuremath{\rightarrow}}
+  \newunicodechar{∈}{\ensuremath{\in}}
+  \newunicodechar{≤}{\ensuremath{\leq}}
+  \newunicodechar{≥}{\ensuremath{\geq}}
+  \newunicodechar{≈}{\ensuremath{\approx}}
+  \newunicodechar{≠}{\ensuremath{\neq}}
+\fi
+% Preserve identifier text exactly while allowing breaks at semantic
+% underscore boundaries rather than clipping or splitting inside a word.
+\renewcommand{\markdownRendererUnderscore}{\_\allowbreak}
+\setlength{\emergencystretch}{2em}
 \title{State as Computation: Moving Structural Search between Representation Construction and Downstream Reasoning}
 \author{ORION-P11}
 \date{21 August 2026}

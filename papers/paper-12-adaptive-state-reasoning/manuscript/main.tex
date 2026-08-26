@@ -3,6 +3,12 @@
 \usepackage{amsmath,amssymb,booktabs}
 \usepackage[hidelinks]{hyperref}
 \usepackage[pipeTables]{markdown}
+\usepackage{seqsplit}
+% The manuscript carries frozen terminal names, hashes, and other identifiers
+% that must remain verbatim.  Make those code spans line-breakable instead of
+% letting TeX place their right-hand tails outside the page.
+\renewcommand{\markdownRendererCodeSpan}[1]{\texttt{\seqsplit{#1}}}
+\setlength{\emergencystretch}{1.5em}
 % pdflatex cannot typeset these code points unaided, and the canonical prose is
 % Markdown, where an author writes them naturally. Without this the P11 build
 % died on its first "≥" with "Unicode character ≥ (U+2265) not set up for use
