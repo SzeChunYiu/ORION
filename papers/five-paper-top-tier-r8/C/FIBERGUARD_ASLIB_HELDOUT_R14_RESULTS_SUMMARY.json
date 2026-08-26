@@ -1,0 +1,159 @@
+{
+  "schema": "ORION.FiberGuard.ASlibHeldout.R14.Summary.v1",
+  "protocol_execution_commit": "346f55216b788bdbe60f229da099375190dda5f6",
+  "protocol_sha256": "7c0b135a8d529bf63ac3d02d0d33cacd18b6bc86d1b48647922bdde9ee95d2cf",
+  "workflow_run": 33012492715,
+  "workflow_job": 98322103716,
+  "issue_comment": 5430973130,
+  "terminal": "FIBERGUARD_ASLIB_HELDOUT_R14_PARTIAL_MEAN_ONLY",
+  "full_result_sha256": "b50e4ec5ed065b3884019d65be5901bb78c1be011ba2a73cef77c0bf76321391",
+  "corpus": {
+    "instances": 1614,
+    "algorithms": 31,
+    "features": 115,
+    "feature_steps": 10,
+    "candidate_representations": 513,
+    "algorithm_measurements": 50034,
+    "ok": 23086,
+    "timeout": 26948,
+    "par10": 12000.0
+  },
+  "official_cv": {
+    "strong_transfer_gate": false,
+    "training_selected_representation_histogram": [
+      {"steps": ["Pre", "lobjois"], "fold_count": 9},
+      {"steps": ["Basic", "Pre"], "fold_count": 1}
+    ],
+    "arms": {
+      "single_best_solver": {
+        "mean_total_excess": 2838.5681350681534,
+        "p95_total_excess": 11994.57,
+        "maximum_total_excess": 12000.0,
+        "catastrophic_wrong_action_rate": 0.23482032218091697
+      },
+      "no_feature_robust": {
+        "mean_total_excess": 5448.31466542751,
+        "p95_total_excess": 11999.97,
+        "maximum_total_excess": 12000.0,
+        "catastrophic_wrong_action_rate": 0.45291201982651796
+      },
+      "all_features_exact": {
+        "mean_total_excess": 5629.070972738537,
+        "p95_total_excess": 12028.25,
+        "maximum_total_excess": 28904.57,
+        "catastrophic_wrong_action_rate": 0.45291201982651796,
+        "exact_signature_seen_coverage": 0.012391573729863693
+      },
+      "frozen_representation_exact": {
+        "mean_total_excess": 5471.317980173481,
+        "p95_total_excess": 12001.98,
+        "maximum_total_excess": 12370.140000000001,
+        "catastrophic_wrong_action_rate": 0.45291201982651796,
+        "exact_signature_seen_coverage": 0.012391573729863693
+      },
+      "training_selected_exact": {
+        "mean_total_excess": 5380.232187112763,
+        "median_total_excess": 610.9649999999999,
+        "p95_total_excess": 12001.98,
+        "maximum_total_excess": 12370.140000000001,
+        "mean_feature_cost": 22.974684014869887,
+        "maximum_feature_cost": 2400.0,
+        "catastrophic_wrong_action_count": 719,
+        "catastrophic_wrong_action_rate": 0.4454770755885997,
+        "exact_signature_seen_count": 52,
+        "exact_signature_seen_coverage": 0.0322180916976456
+      },
+      "knn_frozen_representation": {
+        "mean_total_excess": 1465.0932775712515,
+        "median_total_excess": 9.63,
+        "p95_total_excess": 11934.33,
+        "maximum_total_excess": 12012.220000000001,
+        "mean_feature_cost": 22.74003097893433,
+        "maximum_feature_cost": 1712.0,
+        "catastrophic_wrong_action_count": 193,
+        "catastrophic_wrong_action_rate": 0.11957868649318464
+      }
+    }
+  },
+  "leave_family_out": {
+    "families": 219,
+    "fold_instance_counts": [323, 323, 323, 323, 322],
+    "fold_family_counts": [43, 43, 44, 45, 44],
+    "zero_family_overlap": true,
+    "strong_transfer_gate": false,
+    "training_selected_representation_histogram": [
+      {"steps": ["Pre", "lobjois"], "fold_count": 4},
+      {"steps": ["Basic", "Pre"], "fold_count": 1}
+    ],
+    "arms": {
+      "single_best_solver": {
+        "mean_total_excess": 2838.5681350681534,
+        "p95_total_excess": 11994.57,
+        "maximum_total_excess": 12000.0,
+        "catastrophic_wrong_action_rate": 0.23482032218091697
+      },
+      "no_feature_robust": {
+        "mean_total_excess": 5448.31466542751,
+        "p95_total_excess": 11999.97,
+        "maximum_total_excess": 12000.0,
+        "catastrophic_wrong_action_rate": 0.45291201982651796
+      },
+      "all_features_exact": {
+        "mean_total_excess": 5629.0712763320935,
+        "p95_total_excess": 12028.25,
+        "maximum_total_excess": 28904.57,
+        "catastrophic_wrong_action_rate": 0.45291201982651796,
+        "exact_signature_seen_coverage": 0.010532837670384139
+      },
+      "frozen_representation_exact": {
+        "mean_total_excess": 5471.318308550186,
+        "p95_total_excess": 12001.98,
+        "maximum_total_excess": 12370.140000000001,
+        "catastrophic_wrong_action_rate": 0.45291201982651796,
+        "exact_signature_seen_coverage": 0.012391573729863693
+      },
+      "training_selected_exact": {
+        "mean_total_excess": 5341.5854337050805,
+        "median_total_excess": 587.145,
+        "p95_total_excess": 12001.95,
+        "maximum_total_excess": 12370.140000000001,
+        "mean_feature_cost": 22.773909541511774,
+        "maximum_feature_cost": 2400.0,
+        "catastrophic_wrong_action_count": 714,
+        "catastrophic_wrong_action_rate": 0.4423791821561338,
+        "exact_signature_seen_count": 82,
+        "exact_signature_seen_coverage": 0.05080545229244114
+      },
+      "knn_frozen_representation": {
+        "mean_total_excess": 1982.363884758364,
+        "median_total_excess": 14.365,
+        "p95_total_excess": 12000.34,
+        "maximum_total_excess": 13689.05,
+        "mean_feature_cost": 22.74003097893433,
+        "maximum_feature_cost": 1712.0,
+        "catastrophic_wrong_action_count": 262,
+        "catastrophic_wrong_action_rate": 0.1623296158612144
+      }
+    }
+  },
+  "controls": {
+    "all_candidate_representations_training_only": true,
+    "family_cv_complete": true,
+    "family_overlap_zero": true,
+    "frozen_R11_control_not_retuned": true,
+    "official_cv_complete": true,
+    "same_oracle_baseline_all_arms": true,
+    "test_runtimes_not_used_for_training_selection": true,
+    "double_replay_byte_identical": true
+  },
+  "scientific_disposition": {
+    "R11_same_corpus_exact_result_valid": true,
+    "exact_equality_policy_inductive_transfer_supported": false,
+    "exact_signature_coverage_is_top_tier_blocker": true,
+    "transparent_knn_dominates_exact_policy_on_mean_and_catastrophic_rate": true,
+    "adaptive_R12_R13_ASlib_execution_authorized": false,
+    "cross_scenario_transfer": false,
+    "external_independence": false,
+    "journal_authority": false
+  }
+}
