@@ -1,0 +1,119 @@
+name: five-paper-r17-c-journal-synthesis
+
+on:
+  push:
+    branches:
+      - chatgpt/r17-c-journal-synthesis-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/MANUSCRIPT_C_R17_FIBERGUARD.md'
+      - 'papers/five-paper-top-tier-r8/C/CLAIM_LEDGER_C_R17.json'
+      - 'papers/five-paper-top-tier-r8/C/PRIOR_ART_MATRIX_C_R17.md'
+      - 'papers/five-paper-top-tier-r8/C/JOURNAL_GATE_C_R17.md'
+      - 'papers/five-paper-top-tier-r8/C/check_fiberguard_r17_journal_package.py'
+      - '.github/workflows/five-paper-r17-c-journal-synthesis.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/MANUSCRIPT_C_R17_FIBERGUARD.md'
+      - 'papers/five-paper-top-tier-r8/C/CLAIM_LEDGER_C_R17.json'
+      - 'papers/five-paper-top-tier-r8/C/PRIOR_ART_MATRIX_C_R17.md'
+      - 'papers/five-paper-top-tier-r8/C/JOURNAL_GATE_C_R17.md'
+      - 'papers/five-paper-top-tier-r8/C/check_fiberguard_r17_journal_package.py'
+      - '.github/workflows/five-paper-r17-c-journal-synthesis.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  journal-package-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify exact evidence ancestry and source identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          parent='00cbeeec87027b3510e91d4ee0a68cca6ac3476c'
+          git merge-base --is-ancestor "$parent" HEAD
+          test "$(git rev-parse "$parent:papers/five-paper-top-tier-r8/C/FIBERGUARD_ASLIB_TRANSFER_R14_RESULTS_SUMMARY.json")" = '2008acef9aedf20c7689cd27ec271a5278616a30'
+          test "$(git rev-parse "$parent:papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_RESULTS_SUMMARY.json")" = '693017d85ff4f914815d759cbe1ae004a0e29b56'
+          test "$(git rev-parse "$parent:papers/five-paper-top-tier-r8/C/FIBERGUARD_LEARNED_COMPARATOR_R16_RESULTS_SUMMARY.json")" = '86f9d7646d2752455d54174160a9007db1ed6c15'
+
+      - name: Run fail-closed manuscript and authority audit twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          script="$root/check_fiberguard_r17_journal_package.py"
+          python -m py_compile "$script"
+          python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          grep -q '^C_INTERNAL_THEORY_AND_MANUSCRIPT_COMPLETE__EXTERNAL_JOURNAL_GATES_OPEN ' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify fail-closed authority surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text())
+          assert result['schema'] == 'ORION.FiberGuard.JournalPackage.R17.v1'
+          assert result['terminal'] == 'C_INTERNAL_THEORY_AND_MANUSCRIPT_COMPLETE__EXTERNAL_JOURNAL_GATES_OPEN'
+          assert result['source_parent'] == '00cbeeec87027b3510e91d4ee0a68cca6ac3476c'
+          assert result['claim_count'] == 22
+          assert result['theorem_claim_count'] == 9
+          assert result['empirical_claim_count'] == 7
+          assert result['refuted_or_open_boundary_count'] == 5
+          assert result['preserved_terminals']['R14'] == 'FROZEN_R14_ROBUST_TRANSFER_GATE_FAIL__MEAN_EXCESS_IMPROVES'
+          assert result['preserved_terminals']['R15'] == 'C_MULTIDOMAIN_CATASTROPHE_TAIL_VALUE_TWO_OF_THREE'
+          assert result['preserved_terminals']['R16'] == {
+              'C_LEARNED_AND_FIBERGUARD_MIXED_NO_DOMINANCE': 1,
+              'C_RF_REGRESSION_DOMINATES_FIBERGUARD': 2,
+          }
+          authority = result['authority']
+          assert authority['journal_authority'] is False
+          assert authority['external_replication'] == 'CANNOT_CHECK'
+          assert authority['novelty_adjudication'] == 'CANNOT_CHECK'
+          print('FIBERGUARD_R17_JOURNAL_PACKAGE_VERIFIED')
+          PY
+
+      - name: Check JSON and diff hygiene
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool papers/five-paper-top-tier-r8/C/CLAIM_LEDGER_C_R17.json >/dev/null
+          git diff --check
+
+      - name: Stage immutable audit artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-r17-journal-package"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/FIBERGUARD_R17_JOURNAL_AUDIT.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          cp papers/five-paper-top-tier-r8/C/MANUSCRIPT_C_R17_FIBERGUARD.md "$out/"
+          cp papers/five-paper-top-tier-r8/C/CLAIM_LEDGER_C_R17.json "$out/"
+          cp papers/five-paper-top-tier-r8/C/PRIOR_ART_MATRIX_C_R17.md "$out/"
+          cp papers/five-paper-top-tier-r8/C/JOURNAL_GATE_C_R17.md "$out/"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-r17-journal-package
+          path: ${{ runner.temp }}/fiberguard-r17-journal-package/
+          if-no-files-found: error
+          retention-days: 30
