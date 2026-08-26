@@ -1,0 +1,37 @@
+name: Integrated AB R10 unbounded certificate waste
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [chatgpt/r10-ab-unbounded-certificate-waste-20260826]
+    paths:
+      - 'papers/five-paper-top-tier-r8/AB/UNBOUNDED_CERTIFICATE_WASTE_R10.md'
+      - 'papers/five-paper-top-tier-r8/AB/verify_unbounded_certificate_waste_r10.py'
+      - '.github/workflows/five-paper-r10-ab-unbounded-waste.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run finite exact controls
+        run: |
+          set -euo pipefail
+          python papers/five-paper-top-tier-r8/AB/verify_unbounded_certificate_waste_r10.py | tee /tmp/ab-r10.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          obj=json.loads(Path('/tmp/ab-r10.json').read_text())
+          assert obj['status']=='PASS'
+          assert len(obj['panels'])==9
+          assert all(r['maximum_weak_terminal_support']==r['expected_weak_terminal_support'] for r in obj['panels'])
+          assert all(r['intrinsic_strong_support']==1 for r in obj['panels'])
+          assert obj['authority']['external_rewrite_system_significance'] is False
+          PY
