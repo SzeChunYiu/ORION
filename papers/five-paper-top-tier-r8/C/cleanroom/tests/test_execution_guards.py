@@ -54,6 +54,46 @@ def _committed_repository(root: Path) -> tuple[Path, str, str, str, str]:
     return repository, subject, subject_tree, implementation, implementation_tree
 
 
+def _packet_validation(
+    *, subject: str, subject_tree: str, implementation: str, implementation_tree: str
+) -> dict[str, object]:
+    return {
+        "schema": "ORION.FivePaperR8.PacketPublicationBinding.v1",
+        "terminal": "R8_PACKET_SUBJECT_AND_PUBLICATION_IDENTITIES_BOUND",
+        "scientific_subject": {
+            "commit": subject,
+            "tree": subject_tree,
+            "source_branch": "codex/five-paper-top-tier-r8-20260826",
+            "source_ref": "refs/heads/codex/five-paper-top-tier-r8-20260826",
+            "source_ref_observed_commit": subject,
+            "exact_checkout_required": True,
+            "scope": "synthetic unit-test subject",
+        },
+        "packet_publication": {
+            "commit": implementation,
+            "tree": implementation_tree,
+            "path": fg.PACKET_PATH.as_posix(),
+            "git_blob": "a" * 40,
+            "sha256": "b" * 64,
+            "bytes": 1,
+        },
+        "predecessor_packet": {
+            "schema": "ORION.FivePaperR8.PacketCommit.v1",
+            "publication_commit": subject,
+            "publication_tree": subject_tree,
+            "path": fg.PACKET_PATH.as_posix(),
+            "git_blob": "c" * 40,
+            "sha256": "d" * 64,
+            "bytes": 1,
+            "preserved_path": ("papers/five-paper-top-tier-r8/R8_PACKET_COMMIT_V1_PRESERVED.json"),
+            "status": "PRESERVED_AS_HISTORICAL_INVALID_SELF_REFERENCE_ATTEMPT",
+        },
+        "authority": dict(fg.PACKET_AUTHORITY),
+        "validated_at_checkout": implementation,
+        "source_ref_status": "EXACT",
+    }
+
+
 def test_fixture_receipt_is_sealed_without_packet_or_panel_outcomes(tmp_path: Path) -> None:
     manifest = _manifest(tmp_path)
     receipt = run_replay.prepare_fixture_receipt(manifest)
@@ -64,7 +104,7 @@ def test_fixture_receipt_is_sealed_without_packet_or_panel_outcomes(tmp_path: Pa
     assert receipt["payload"]["blinding_breach"] == "BLINDING_BREACH_ISSUE_BODY"
 
 
-def test_execute_mode_checks_packet_before_dispatch(
+def test_execute_mode_rejects_legacy_placeholder_packet_before_dispatch(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     manifest = _manifest(tmp_path)
@@ -87,7 +127,7 @@ def test_execute_mode_checks_packet_before_dispatch(
         return {"workers": workers}
 
     monkeypatch.setattr(run_replay.fg, "execute_all_panels", forbidden_dispatch)
-    with pytest.raises(fg.PacketIdentityUnresolved, match="placeholder"):
+    with pytest.raises(fg.PacketIdentityMismatch, match="canonical v2 packet"):
         run_replay.prepare_execution_receipt(
             manifest=manifest,
             packet_path=packet_path,
@@ -97,10 +137,24 @@ def test_execute_mode_checks_packet_before_dispatch(
     assert not dispatched
 
 
+def test_exact_v2_subject_and_publication_binding_resolves_at_checkout() -> None:
+    cleanroom = Path(__file__).resolve().parents[1]
+    repository = cleanroom.parents[3]
+    packet = fg.require_packet_identity(repository / fg.PACKET_PATH, repository=repository)
+    assert packet["terminal"] == "R8_PACKET_SUBJECT_AND_PUBLICATION_IDENTITIES_BOUND"
+    assert packet["source_ref_status"] == "EXACT"
+    assert packet["scientific_subject"]["commit"] == ("0c451e862a0eeddac7c673813c4dc499f134b088")
+    assert packet["scientific_subject"]["tree"] == ("dbf96cce53d21d25584479fb740473293fae75e0")
+    assert packet["packet_publication"]["commit"] != packet["scientific_subject"]["commit"]
+    assert packet["authority"] == fg.PACKET_AUTHORITY
+
+
 def test_execute_mode_checks_external_authority_before_dispatch(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    repository, subject, _, _, _ = _committed_repository(tmp_path)
+    repository, subject, subject_tree, implementation, implementation_tree = _committed_repository(
+        tmp_path
+    )
     manifest = fg.build_manifest(repository, ("source.py",))
     packet_path = tmp_path / "R8_PACKET_COMMIT.json"
     packet_path.write_text(
@@ -121,6 +175,16 @@ def test_execute_mode_checks_external_authority_before_dispatch(
         return {"workers": workers}
 
     monkeypatch.setattr(run_replay.fg, "execute_all_panels", forbidden_dispatch)
+    monkeypatch.setattr(
+        run_replay.fg,
+        "require_packet_identity",
+        lambda packet_path, *, repository: _packet_validation(
+            subject=subject,
+            subject_tree=subject_tree,
+            implementation=implementation,
+            implementation_tree=implementation_tree,
+        ),
+    )
     with pytest.raises(fg.ExecutionAuthorizationMismatch, match="external root-review"):
         run_replay.prepare_execution_receipt(
             manifest=manifest,
@@ -214,6 +278,35 @@ def test_external_authorization_binds_exact_clean_commit_tree_and_subject(
         )
 
 
+def test_checkout_scope_accepts_full_or_exact_r8_sparse_cone(tmp_path: Path) -> None:
+    repository = tmp_path / "scope-repository"
+    repository.mkdir()
+    subprocess.run(["git", "init", "-q"], cwd=repository, check=True)
+    subprocess.run(
+        ["git", "config", "user.email", "scope@example.invalid"], cwd=repository, check=True
+    )
+    subprocess.run(["git", "config", "user.name", "Scope test"], cwd=repository, check=True)
+    for relative in fg.SPARSE_REQUIRED_FILES:
+        path = repository / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(f"bound {relative.as_posix()}\n")
+    subprocess.run(["git", "add", "."], cwd=repository, check=True)
+    subprocess.run(["git", "commit", "-q", "-m", "scope"], cwd=repository, check=True)
+    assert fg.require_checkout_scope(repository) == "FULL"
+
+    subprocess.run(["git", "sparse-checkout", "init", "--cone"], cwd=repository, check=True)
+    subprocess.run(
+        ["git", "sparse-checkout", "set", *fg.SPARSE_CHECKOUT_PATHS],
+        cwd=repository,
+        check=True,
+    )
+    assert fg.require_checkout_scope(repository) == "SPARSE_EXACT_FIVE_PAPER_R8"
+
+    subprocess.run(["git", "sparse-checkout", "set", "papers"], cwd=repository, check=True)
+    with pytest.raises(fg.ExecutionAuthorizationMismatch, match="exact R8 scope"):
+        fg.require_checkout_scope(repository)
+
+
 def test_execution_provenance_binds_command_resources_and_stream_hashes(
     tmp_path: Path,
 ) -> None:
@@ -234,6 +327,7 @@ def test_execution_provenance_binds_command_resources_and_stream_hashes(
     assert provenance["git_commit"] == implementation
     assert provenance["git_tree"] == implementation_tree
     assert provenance["git_status"] == "CLEAN"
+    assert provenance["checkout_scope"] == "FULL"
     assert provenance["workers"] == 3
     assert provenance["wall_time_seconds"] == 2.5
     assert provenance["maximum_rss"] == 12345
@@ -297,15 +391,17 @@ def test_authorized_execution_receipt_binds_identity_and_provenance(
     )
     manifest = fg.build_manifest(repository, ("source.py",))
     packet = tmp_path / "packet.json"
-    packet.write_text(
-        json.dumps(
-            {
-                "schema": "ORION.FivePaperR8.PacketCommit.v1",
-                "packet_commit": subject,
-                "base_commit": subject,
-                "branch": "codex/five-paper-top-tier-r8-20260826",
-            }
-        )
+    packet.write_text("{}\n")
+    packet_validation = _packet_validation(
+        subject=subject,
+        subject_tree=subject_tree,
+        implementation=implementation,
+        implementation_tree=implementation_tree,
+    )
+    monkeypatch.setattr(
+        run_replay.fg,
+        "require_packet_identity",
+        lambda packet_path, *, repository: packet_validation,
     )
     authorization = tmp_path / "authorization.json"
     authorization.write_text(
@@ -361,6 +457,37 @@ def test_authorized_execution_receipt_binds_identity_and_provenance(
     )
     assert receipt["payload"]["execution_provenance"]["git_status"] == "CLEAN"
     assert receipt["payload"]["execution_authorization"]["implementation_commit"] == implementation
+
+    mutated_payload = json.loads(json.dumps(receipt["payload"]))
+    mutated_payload["packet_identity"]["predecessor_packet"] = {}
+    mutated_receipt = fg.seal_payload(
+        mutated_payload,
+        manifest_sha256=str(manifest["manifest_sha256"]),
+    )
+    with pytest.raises(verify_receipt.ReceiptMismatch, match="packet identity values"):
+        verify_receipt.verify_receipt(
+            root=repository,
+            manifest=manifest,
+            receipt=mutated_receipt,
+            authorization_path=authorization,
+        )
+
+    swapped_payload = json.loads(json.dumps(receipt["payload"]))
+    swapped_subject = swapped_payload["packet_identity"]["scientific_subject"]
+    swapped_publication = swapped_payload["packet_identity"]["packet_publication"]
+    swapped_subject["commit"] = swapped_publication["commit"]
+    swapped_subject["source_ref_observed_commit"] = swapped_publication["commit"]
+    swapped_receipt = fg.seal_payload(
+        swapped_payload,
+        manifest_sha256=str(manifest["manifest_sha256"]),
+    )
+    with pytest.raises(verify_receipt.ReceiptMismatch, match="packet identity values"):
+        verify_receipt.verify_receipt(
+            root=repository,
+            manifest=manifest,
+            receipt=swapped_receipt,
+            authorization_path=authorization,
+        )
 
 
 def test_slurm_envelope_and_packet_gate_are_static() -> None:

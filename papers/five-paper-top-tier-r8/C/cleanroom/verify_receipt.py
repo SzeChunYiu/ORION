@@ -46,7 +46,7 @@ EXECUTION_FIELDS = {
     "execution_authorization",
     "execution_provenance",
 }
-PACKET_IDENTITY_FIELDS = {"schema", "packet_commit", "base_commit", "branch"}
+PACKET_IDENTITY_FIELDS = fg.PACKET_VALIDATION_FIELDS
 EXECUTION_AUTHORIZATION_FIELDS = fg.AUTHORIZATION_FIELDS | {
     "authorization_bytes",
     "authorization_sha256",
@@ -56,6 +56,7 @@ EXECUTION_PROVENANCE_FIELDS = {
     "git_commit",
     "git_tree",
     "git_status",
+    "checkout_scope",
     "python_version",
     "python_executable",
     "python_implementation",
@@ -149,6 +150,11 @@ def verify_receipt(
             raise ReceiptMismatch("execution provenance schema mismatch")
         if provenance.get("git_status") != "CLEAN":
             raise ReceiptMismatch("execution provenance checkout is dirty")
+        if provenance.get("checkout_scope") not in {
+            "FULL",
+            "SPARSE_EXACT_FIVE_PAPER_R8",
+        }:
+            raise ReceiptMismatch("execution provenance checkout scope is invalid")
         if provenance.get("exit_code") != 0:
             raise ReceiptMismatch("execution provenance exit code is not zero")
         if (
@@ -173,11 +179,66 @@ def verify_receipt(
         packet = payload.get("packet_identity")
         if type(packet) is not dict or set(packet) != PACKET_IDENTITY_FIELDS:
             raise ReceiptMismatch("execution packet identity schema is not exact")
+        subject = packet.get("scientific_subject")
+        publication = packet.get("packet_publication")
+        predecessor = packet.get("predecessor_packet")
         if (
-            packet.get("schema") != "ORION.FivePaperR8.PacketCommit.v1"
-            or packet.get("branch") != "codex/five-paper-top-tier-r8-20260826"
-            or not fg.HEX_SHA1.fullmatch(str(packet.get("packet_commit")))
-            or not fg.HEX_SHA1.fullmatch(str(packet.get("base_commit")))
+            packet.get("schema") != "ORION.FivePaperR8.PacketPublicationBinding.v1"
+            or packet.get("terminal") != "R8_PACKET_SUBJECT_AND_PUBLICATION_IDENTITIES_BOUND"
+            or packet.get("source_ref_status") != "EXACT"
+            or packet.get("authority") != fg.PACKET_AUTHORITY
+            or packet.get("validated_at_checkout") != provenance.get("git_commit")
+            or type(subject) is not dict
+            or set(subject)
+            != {
+                "commit",
+                "tree",
+                "source_branch",
+                "source_ref",
+                "source_ref_observed_commit",
+                "exact_checkout_required",
+                "scope",
+            }
+            or subject.get("source_branch") != "codex/five-paper-top-tier-r8-20260826"
+            or subject.get("source_ref") != "refs/heads/codex/five-paper-top-tier-r8-20260826"
+            or subject.get("source_ref_observed_commit") != subject.get("commit")
+            or subject.get("exact_checkout_required") is not True
+            or not fg.HEX_SHA1.fullmatch(str(subject.get("commit")))
+            or not fg.HEX_SHA1.fullmatch(str(subject.get("tree")))
+            or type(publication) is not dict
+            or set(publication) != {"commit", "tree", "path", "git_blob", "sha256", "bytes"}
+            or publication.get("commit") == subject.get("commit")
+            or publication.get("path") != fg.PACKET_PATH.as_posix()
+            or not fg.HEX_SHA1.fullmatch(str(publication.get("commit")))
+            or not fg.HEX_SHA1.fullmatch(str(publication.get("tree")))
+            or not fg.HEX_SHA1.fullmatch(str(publication.get("git_blob")))
+            or not fg.HEX_SHA256.fullmatch(str(publication.get("sha256")))
+            or type(publication.get("bytes")) is not int
+            or publication["bytes"] <= 0
+            or type(predecessor) is not dict
+            or set(predecessor)
+            != {
+                "schema",
+                "publication_commit",
+                "publication_tree",
+                "path",
+                "git_blob",
+                "sha256",
+                "bytes",
+                "preserved_path",
+                "status",
+            }
+            or predecessor.get("schema") != "ORION.FivePaperR8.PacketCommit.v1"
+            or predecessor.get("path") != fg.PACKET_PATH.as_posix()
+            or predecessor.get("preserved_path")
+            != "papers/five-paper-top-tier-r8/R8_PACKET_COMMIT_V1_PRESERVED.json"
+            or predecessor.get("status") != "PRESERVED_AS_HISTORICAL_INVALID_SELF_REFERENCE_ATTEMPT"
+            or not fg.HEX_SHA1.fullmatch(str(predecessor.get("publication_commit")))
+            or not fg.HEX_SHA1.fullmatch(str(predecessor.get("publication_tree")))
+            or not fg.HEX_SHA1.fullmatch(str(predecessor.get("git_blob")))
+            or not fg.HEX_SHA256.fullmatch(str(predecessor.get("sha256")))
+            or type(predecessor.get("bytes")) is not int
+            or predecessor["bytes"] <= 0
         ):
             raise ReceiptMismatch("execution packet identity values are invalid")
         authorization = payload.get("execution_authorization")
@@ -188,7 +249,8 @@ def verify_receipt(
             or authorization.get("authority_terminal") != "ROOT_REVIEW_AUTHORIZED"
             or authorization.get("grants_execution_authority") is not True
             or authorization.get("grants_lunarc_submission") is not True
-            or authorization.get("scientific_subject_commit") != packet["packet_commit"]
+            or authorization.get("scientific_subject_commit") != subject["commit"]
+            or authorization.get("scientific_subject_tree") != subject["tree"]
             or authorization.get("implementation_commit") != provenance["git_commit"]
             or authorization.get("implementation_tree") != provenance["git_tree"]
             or authorization.get("source_manifest_sha256") != manifest["manifest_sha256"]

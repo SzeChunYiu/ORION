@@ -12,18 +12,21 @@ implementation may be used for engineering review, but it cannot supply a
 blind independent comparison or a replay PASS. The independence terminal is
 `CANNOT_CHECK`; a later truly blinded external worker is required.
 
-The committed `R8_PACKET_COMMIT.json` in this branch remains the unresolved
-legacy placeholder. Draft PR #1382's v2 publication binding is not integrated
-into this checkout and explicitly grants neither execution nor LUNARC
-authority. Exhaustive execution therefore remains blocked.
+The committed `R8_PACKET_COMMIT.json` now uses the non-self-referential v2
+subject/publication binding. Before any dispatcher starts, the executor runs
+the canonical packet validator, requires the exact frozen source ref, resolves
+the scientific subject rather than the packet-publication commit, and
+preserves the packet's engineering-only authority boundary. The packet itself
+still grants neither execution nor LUNARC authority.
 
 The hardened executor additionally requires a separate external
 `ORION.FiberGuardCleanroomExecutionAuthorization.v1` object. That object must
 be issued after root review and bind the exact scientific subject, exact clean
 implementation commit/tree, exact source-manifest digest, JOB-C-R8-1, and
-explicit execution plus LUNARC grants. No such object exists in this lane.
-`BLOCKED_NO_LUNARC_EXECUTION_AUTHORITY__CANNOT_CHECK` remains the only honest
-execution disposition. No result from the reference artifact is read here.
+explicit execution plus LUNARC grants. That authorization is a separate,
+external reviewed object and is valid only for the exact final implementation
+commit, tree, and source-manifest digest. No result from the reference artifact
+is read here.
 
 ## Components
 
@@ -52,10 +55,18 @@ python verify_receipt.py --receipt NON_OUTCOME_VALIDATION.json
 
 This path does not execute or summarize any complete scientific panel.
 
-## Blocked execution contract
+## Execution contract
 
 The SLURM script must be submitted from an external run directory whose
 `logs/` subdirectory already exists. `ORION_REPOSITORY` must name the exact
 clean checkout and `FIBERGUARD_EXECUTION_AUTHORIZATION` must name the reviewed
-external authorization object. Until both the packet transition and external
-authorization exist, do not submit the script.
+external authorization object. Submit only after both the canonical v2 packet
+validator and the external exact-checkout authorization pass in the clean
+checkout. A full checkout is accepted. A quota-constrained sparse checkout is
+accepted only in cone mode with the single exact path
+`papers/five-paper-top-tier-r8`; required packet, publication-binding,
+preserved-predecessor, and validator files must all be materialized and match
+their committed Git blobs. Any different sparse pattern fails closed.
+Execution does not cure `BLINDING_BREACH_ISSUE_BODY`, change
+independence from `CANNOT_CHECK`, compare against frozen outcomes, or confer
+scientific, novelty, or publication authority.

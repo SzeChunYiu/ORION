@@ -30,23 +30,23 @@ def test_manifest_verifier_rejects_duplicate_or_unsorted_paths(tmp_path: Path) -
     manifest = fg.build_manifest(tmp_path, ("a.txt", "b.txt"))
     manifest["files"] = [manifest["files"][1], manifest["files"][0]]
     core = {"schema": manifest["schema"], "files": manifest["files"]}
-    manifest["manifest_sha256"] = __import__("hashlib").sha256(
-        fg.canonical_json_bytes(core)
-    ).hexdigest()
+    manifest["manifest_sha256"] = (
+        __import__("hashlib").sha256(fg.canonical_json_bytes(core)).hexdigest()
+    )
     with pytest.raises(fg.ManifestMismatch, match="sorted"):
         fg.verify_manifest(tmp_path, manifest)
 
     duplicate = fg.build_manifest(tmp_path, ("a.txt", "b.txt"))
     duplicate["files"] = [duplicate["files"][0], duplicate["files"][0]]
     core = {"schema": duplicate["schema"], "files": duplicate["files"]}
-    duplicate["manifest_sha256"] = __import__("hashlib").sha256(
-        fg.canonical_json_bytes(core)
-    ).hexdigest()
+    duplicate["manifest_sha256"] = (
+        __import__("hashlib").sha256(fg.canonical_json_bytes(core)).hexdigest()
+    )
     with pytest.raises(fg.ManifestMismatch, match="unique"):
         fg.verify_manifest(tmp_path, duplicate)
 
 
-def test_packet_gate_rejects_unbound_extra_fields_and_bad_base(tmp_path: Path) -> None:
+def test_packet_gate_rejects_noncanonical_and_symlinked_paths(tmp_path: Path) -> None:
     packet_path = tmp_path / "R8_PACKET_COMMIT.json"
     base = {
         "schema": "ORION.FivePaperR8.PacketCommit.v1",
@@ -55,12 +55,14 @@ def test_packet_gate_rejects_unbound_extra_fields_and_bad_base(tmp_path: Path) -
         "branch": "codex/five-paper-top-tier-r8-20260826",
     }
     packet_path.write_text(json.dumps({**base, "unexpected": "field"}))
-    with pytest.raises(fg.PacketIdentityMismatch, match="fields"):
+    with pytest.raises(fg.PacketIdentityMismatch, match="canonical v2 packet"):
         fg.require_packet_identity(packet_path, repository=tmp_path)
 
-    packet_path.write_text(json.dumps({**base, "base_commit": "placeholder"}))
-    with pytest.raises(fg.PacketIdentityMismatch, match="base commit"):
-        fg.require_packet_identity(packet_path, repository=tmp_path)
+    canonical = tmp_path / fg.PACKET_PATH
+    canonical.parent.mkdir(parents=True)
+    canonical.symlink_to(packet_path)
+    with pytest.raises(fg.PacketIdentityMismatch, match="canonical v2 packet"):
+        fg.require_packet_identity(canonical, repository=tmp_path)
 
 
 def test_audit_rejects_boolean_and_negative_targets() -> None:

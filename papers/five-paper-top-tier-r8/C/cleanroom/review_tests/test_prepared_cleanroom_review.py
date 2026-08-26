@@ -61,7 +61,7 @@ def test_blinding_breach_and_cannot_check_are_preserved() -> None:
     assert non_outcome["payload"]["comparison_to_frozen_outcomes"] == "NOT_PERFORMED"
 
 
-def test_pr1382_v2_packet_shape_cannot_unlock_the_legacy_v1_gate(tmp_path: Path) -> None:
+def test_incomplete_v2_packet_cannot_bypass_the_canonical_binding_gate(tmp_path: Path) -> None:
     packet = tmp_path / "R8_PACKET_COMMIT.json"
     packet.write_text(
         json.dumps(
@@ -79,11 +79,11 @@ def test_pr1382_v2_packet_shape_cannot_unlock_the_legacy_v1_gate(tmp_path: Path)
             }
         )
     )
-    with pytest.raises(fg.PacketIdentityMismatch, match="fields"):
+    with pytest.raises(fg.PacketIdentityMismatch, match="canonical v2 packet"):
         fg.require_packet_identity(packet, repository=REPOSITORY)
 
 
-def test_legacy_packet_gate_rejects_an_unchecked_base_object(tmp_path: Path) -> None:
+def test_legacy_packet_cannot_bypass_the_canonical_v2_path(tmp_path: Path) -> None:
     subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
     subprocess.run(
         ["git", "config", "user.email", "review@example.invalid"], cwd=tmp_path, check=True
@@ -108,7 +108,7 @@ def test_legacy_packet_gate_rejects_an_unchecked_base_object(tmp_path: Path) -> 
             }
         )
     )
-    with pytest.raises(fg.PacketIdentityMismatch, match="base commit object"):
+    with pytest.raises(fg.PacketIdentityMismatch, match="canonical v2 packet"):
         fg.require_packet_identity(packet, repository=tmp_path)
     assert subprocess.check_output(["git", "status", "--porcelain"], cwd=tmp_path, text=True)
 

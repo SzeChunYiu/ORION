@@ -55,6 +55,37 @@ VARIABLE_PAIRS = tuple(combinations(range(1, 5), 2))
 SIGN_PATTERNS = ((1, 1), (1, -1), (-1, 1), (-1, -1))
 HEX_SHA1 = re.compile(r"[0-9a-f]{40}")
 HEX_SHA256 = re.compile(r"[0-9a-f]{64}")
+PACKET_PATH = Path("papers/five-paper-top-tier-r8/R8_PACKET_COMMIT.json")
+PACKET_VALIDATOR_PATH = Path("papers/five-paper-top-tier-r8/harness/validate_r8_packet_binding.py")
+PACKET_VALIDATOR_BYTES = 17030
+PACKET_VALIDATOR_GIT_BLOB = "7696860dc4898e4ef101f9aa3ef7339835eb3c19"
+PACKET_VALIDATOR_SHA256 = "fe27fc176553b1f06bd05808bb6ca0008c4ee6b74d6bf18265ccd97f688d5737"
+PACKET_VALIDATION_FIELDS = {
+    "schema",
+    "terminal",
+    "scientific_subject",
+    "packet_publication",
+    "predecessor_packet",
+    "authority",
+    "validated_at_checkout",
+    "source_ref_status",
+}
+PACKET_AUTHORITY = {
+    "identity_authority": "ENGINEERING_CUSTODY_ONLY",
+    "scientific_disposition": "NONE",
+    "paper_authority_delta": "NONE",
+    "publication_readiness_delta": "NONE",
+    "external_novelty": "CANNOT_CHECK",
+    "grants_execution_authority": False,
+    "grants_lunarc_submission": False,
+}
+SPARSE_CHECKOUT_PATHS = ("papers/five-paper-top-tier-r8",)
+SPARSE_REQUIRED_FILES = (
+    PACKET_PATH,
+    Path("papers/five-paper-top-tier-r8/R8_PACKET_PUBLICATION_BINDING.json"),
+    Path("papers/five-paper-top-tier-r8/R8_PACKET_COMMIT_V1_PRESERVED.json"),
+    PACKET_VALIDATOR_PATH,
+)
 
 
 def _edge_bit(left: int, right: int) -> int:
@@ -942,27 +973,134 @@ def _git_status(repository: Path) -> str:
         raise ExecutionAuthorizationMismatch("cannot inspect checkout cleanliness") from error
 
 
+def require_checkout_scope(repository: Path) -> str:
+    """Accept a full checkout or one exact, materialized cone-mode sparse scope."""
+
+    sparse = subprocess.run(
+        ["git", "config", "--bool", "core.sparseCheckout"],
+        cwd=repository,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if sparse.returncode == 1 or sparse.stdout.strip() == "false":
+        return "FULL"
+    if sparse.returncode != 0 or sparse.stdout.strip() != "true":
+        raise ExecutionAuthorizationMismatch("cannot resolve sparse-checkout state")
+    cone = subprocess.run(
+        ["git", "config", "--bool", "core.sparseCheckoutCone"],
+        cwd=repository,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if cone.returncode != 0 or cone.stdout.strip() != "true":
+        raise ExecutionAuthorizationMismatch("sparse checkout must use exact cone mode")
+    try:
+        listed = subprocess.check_output(
+            ["git", "sparse-checkout", "list"],
+            cwd=repository,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        )
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise ExecutionAuthorizationMismatch("cannot resolve sparse-checkout paths") from error
+    paths = tuple(line.strip() for line in listed.splitlines() if line.strip())
+    if paths != SPARSE_CHECKOUT_PATHS:
+        raise ExecutionAuthorizationMismatch("sparse-checkout paths are not the exact R8 scope")
+    for relative in SPARSE_REQUIRED_FILES:
+        path = repository / relative
+        if path.is_symlink() or not path.is_file():
+            raise ExecutionAuthorizationMismatch(
+                f"sparse checkout did not materialize required path: {relative.as_posix()}"
+            )
+        working_blob = subprocess.check_output(
+            ["git", "hash-object", relative.as_posix()],
+            cwd=repository,
+            text=True,
+        ).strip()
+        committed_blob = _git_output(repository, "rev-parse", f"HEAD:{relative.as_posix()}")
+        if working_blob != committed_blob:
+            raise ExecutionAuthorizationMismatch(
+                f"sparse checkout materialized path drifted: {relative.as_posix()}"
+            )
+    return "SPARSE_EXACT_FIVE_PAPER_R8"
+
+
 def require_packet_identity(packet_path: Path, *, repository: Path) -> dict[str, Any]:
-    packet = json.loads(packet_path.read_text())
-    if set(packet) != {"schema", "packet_commit", "base_commit", "branch"}:
-        raise PacketIdentityMismatch("packet identity fields are not exact")
-    if packet.get("schema") != "ORION.FivePaperR8.PacketCommit.v1":
-        raise PacketIdentityMismatch("packet identity schema mismatch")
-    commit = packet.get("packet_commit")
-    if type(commit) is not str or not HEX_SHA1.fullmatch(commit):
-        raise PacketIdentityUnresolved("packet commit is an unresolved placeholder")
-    if packet.get("branch") != "codex/five-paper-top-tier-r8-20260826":
-        raise PacketIdentityMismatch("packet branch identity mismatch")
-    if type(packet.get("base_commit")) is not str or not HEX_SHA1.fullmatch(packet["base_commit"]):
-        raise PacketIdentityMismatch("packet base commit is not a lowercase 40-hex identity")
-    if not _git_commit_exists(repository, commit):
-        raise PacketIdentityMismatch("packet commit object is unavailable")
-    if not _git_commit_exists(repository, packet["base_commit"]):
-        raise PacketIdentityMismatch("packet base commit object is unavailable")
-    if not _git_is_ancestor_of(repository, packet["base_commit"], commit):
-        raise PacketIdentityMismatch("packet base commit is not an ancestor of the packet commit")
-    if not _git_is_ancestor(repository, commit):
-        raise PacketIdentityMismatch("packet commit is not an ancestor of the clean-room checkout")
+    """Resolve the frozen subject only through the exact validated v2 packet pair.
+
+    The v1 packet was a self-referential placeholder and is permanently invalid.
+    The canonical v2 validator binds the subject, packet-publication commit, and
+    successor publication record before this function returns a subject identity.
+    """
+
+    repository = repository.resolve()
+    expected_packet = repository / PACKET_PATH
+    validator = repository / PACKET_VALIDATOR_PATH
+    try:
+        if packet_path.is_symlink() or packet_path.resolve() != expected_packet.resolve():
+            raise PacketIdentityMismatch("packet path is not the canonical v2 packet")
+        if validator.is_symlink() or not validator.is_file():
+            raise PacketIdentityMismatch("canonical packet validator is unavailable")
+        validator_bytes = validator.read_bytes()
+        if (
+            len(validator_bytes) != PACKET_VALIDATOR_BYTES
+            or hashlib.sha256(validator_bytes).hexdigest() != PACKET_VALIDATOR_SHA256
+            or _git_output(repository, "rev-parse", f"HEAD:{PACKET_VALIDATOR_PATH.as_posix()}")
+            != PACKET_VALIDATOR_GIT_BLOB
+        ):
+            raise PacketIdentityMismatch("canonical packet validator identity drifted")
+    except (OSError, ExecutionAuthorizationMismatch) as error:
+        raise PacketIdentityMismatch("packet or validator path cannot be resolved") from error
+
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(validator),
+            "--repo-root",
+            str(repository),
+            "--require-source-ref",
+            "--json",
+        ],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        check=False,
+    )
+    if completed.returncode != 0:
+        detail = completed.stderr.strip() or completed.stdout.strip() or "no diagnostic"
+        raise PacketIdentityMismatch(f"v2 packet publication binding failed: {detail}")
+    try:
+        packet = json.loads(completed.stdout)
+    except json.JSONDecodeError as error:
+        raise PacketIdentityMismatch("v2 packet validator returned invalid JSON") from error
+    if type(packet) is not dict or set(packet) != PACKET_VALIDATION_FIELDS:
+        raise PacketIdentityMismatch("validated packet result fields are not exact")
+    subject = packet.get("scientific_subject")
+    publication = packet.get("packet_publication")
+    if (
+        packet.get("schema") != "ORION.FivePaperR8.PacketPublicationBinding.v1"
+        or packet.get("terminal") != "R8_PACKET_SUBJECT_AND_PUBLICATION_IDENTITIES_BOUND"
+        or packet.get("source_ref_status") != "EXACT"
+        or packet.get("authority") != PACKET_AUTHORITY
+        or type(subject) is not dict
+        or type(publication) is not dict
+        or type(subject.get("commit")) is not str
+        or not HEX_SHA1.fullmatch(subject["commit"])
+        or type(subject.get("tree")) is not str
+        or not HEX_SHA1.fullmatch(subject["tree"])
+        or publication.get("commit") == subject["commit"]
+    ):
+        raise PacketIdentityMismatch("validated v2 packet values are not exact")
+    try:
+        head = _git_output(repository, "rev-parse", "HEAD")
+    except ExecutionAuthorizationMismatch as error:
+        raise PacketIdentityMismatch("packet validator checkout cannot be resolved") from error
+    if packet.get("validated_at_checkout") != head:
+        raise PacketIdentityMismatch("packet validator checkout identity drifted")
     return packet
 
 
@@ -1042,6 +1180,7 @@ def require_execution_authorization(
         )
     if _git_status(repository):
         raise ExecutionAuthorizationMismatch("execution requires an exact clean checkout")
+    require_checkout_scope(repository)
 
     return {
         **authorization,
@@ -1072,6 +1211,7 @@ def build_execution_provenance(
         "git_commit": _git_output(repository, "rev-parse", "HEAD"),
         "git_tree": _git_output(repository, "rev-parse", "HEAD^{tree}"),
         "git_status": "CLEAN" if not status else f"DIRTY:{status}",
+        "checkout_scope": require_checkout_scope(repository),
         "python_version": sys.version,
         "python_executable": sys.executable,
         "python_implementation": platform.python_implementation(),

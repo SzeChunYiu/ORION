@@ -53,7 +53,7 @@ def prepare_execution_receipt(
     authorization = fg.require_execution_authorization(
         authorization_path,
         repository=repository,
-        scientific_subject_commit=packet["packet_commit"],
+        scientific_subject_commit=packet["scientific_subject"]["commit"],
         source_manifest_sha256=str(manifest["manifest_sha256"]),
     )
     stdout = io.StringIO()
@@ -66,12 +66,7 @@ def prepare_execution_receipt(
         payload = fg.execute_all_panels(workers=workers)
     end = time.perf_counter_ns()
     ended_at = datetime.now(timezone.utc).isoformat(timespec="microseconds").replace("+00:00", "Z")
-    payload["packet_identity"] = {
-        "schema": packet["schema"],
-        "packet_commit": packet["packet_commit"],
-        "base_commit": packet["base_commit"],
-        "branch": packet["branch"],
-    }
+    payload["packet_identity"] = packet
     payload["execution_authorization"] = authorization
     payload["execution_provenance"] = fg.build_execution_provenance(
         repository=repository,

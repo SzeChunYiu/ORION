@@ -206,7 +206,7 @@ def test_manifest_is_deterministic_and_detects_tampering(tmp_path: Path) -> None
         fg.verify_manifest(tmp_path, first)
 
 
-def test_packet_gate_rejects_placeholder_and_non_ancestor(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+def test_packet_gate_rejects_legacy_and_noncanonical_paths(tmp_path: Path) -> None:
     packet = tmp_path / "R8_PACKET_COMMIT.json"
     packet.write_text(
         json.dumps(
@@ -218,7 +218,7 @@ def test_packet_gate_rejects_placeholder_and_non_ancestor(tmp_path: Path, monkey
             }
         )
     )
-    with pytest.raises(fg.PacketIdentityUnresolved, match="placeholder"):
+    with pytest.raises(fg.PacketIdentityMismatch, match="canonical v2 packet"):
         fg.require_packet_identity(packet, repository=tmp_path)
 
     packet.write_text(
@@ -231,9 +231,7 @@ def test_packet_gate_rejects_placeholder_and_non_ancestor(tmp_path: Path, monkey
             }
         )
     )
-    monkeypatch.setattr(fg, "_git_commit_exists", lambda *_: True)
-    monkeypatch.setattr(fg, "_git_is_ancestor", lambda *_: False)
-    with pytest.raises(fg.PacketIdentityMismatch, match="not an ancestor"):
+    with pytest.raises(fg.PacketIdentityMismatch, match="canonical v2 packet"):
         fg.require_packet_identity(packet, repository=tmp_path)
 
 

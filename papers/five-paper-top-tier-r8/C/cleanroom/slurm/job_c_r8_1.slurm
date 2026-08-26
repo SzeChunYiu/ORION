@@ -35,6 +35,12 @@ cd "${REPOSITORY}"
   printf 'run_root=%s\n' "${RUN_ROOT_REAL}"
   git rev-parse HEAD 'HEAD^{tree}'
   git status --porcelain=v1 --untracked-files=all
+  printf 'core.sparseCheckout=%s\n' "$(git config --bool core.sparseCheckout || printf false)"
+  if test "$(git config --bool core.sparseCheckout || printf false)" = true; then
+    printf 'sparse_checkout_paths_begin\n'
+    git sparse-checkout list
+    printf 'sparse_checkout_paths_end\n'
+  fi
   "${PYTHON_BIN}" --version
   command -v "${PYTHON_BIN}"
   uname -a
