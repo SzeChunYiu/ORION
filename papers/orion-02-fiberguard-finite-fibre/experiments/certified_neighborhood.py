@@ -294,10 +294,11 @@ def self_test() -> dict[str, Any]:
         np.linalg.norm(gradients, axis=1).max()
     )
     train, query = features[:120], features[120:]
+    query_rows = np.arange(120, n)
     value, action = certificate_upper_bounds(
         train, regret[:120], true_constant, query
     )
-    realized = regret[120:, action]
+    realized = regret[query_rows, action]
     violations = int(np.sum(realized > value + 1e-9))
     if violations != 0:
         raise AssertionError(
@@ -307,7 +308,7 @@ def self_test() -> dict[str, Any]:
         train, regret[:120], true_constant * 0.25, query
     )
     hostile_violations = int(
-        np.sum(regret[120:, hostile_action] > hostile_value + 1e-9)
+        np.sum(regret[query_rows, hostile_action] > hostile_value + 1e-9)
     )
     if hostile_violations == 0:
         raise AssertionError(
