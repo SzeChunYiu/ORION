@@ -1,0 +1,10 @@
+{
+  "schema": "ORION.NQ.LunarcAuthorizationRevocationR9.v1",
+  "revoked_authorization_id": "NQ-ENGINE-A-CLEAN-R9-ONE-SHOT-20260826",
+  "revoked_branch": "chatgpt/r9-nq-clean-lunarc-authorization-20260826",
+  "revoked_at_utc": "2026-08-26T00:00:00Z",
+  "submission_authority": false,
+  "reason": "Authorization material was placed inside the purportedly immutable wrapper payload, changing the wrapper tree and making the content binding self-inconsistent.",
+  "replacement_branch": "chatgpt/r9-nq-clean-lunarc-authorization-v2-20260826",
+  "fail_closed_instruction": "Do not submit, retry, patch, or reinterpret the V1 packet. Only a passing V2 static receipt followed by live account and nonduplication checks can authorize the one bounded submission."
+}
