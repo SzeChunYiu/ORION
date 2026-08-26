@@ -15,6 +15,7 @@ sys.path.insert(0, str(CLEANROOM))
 
 import build_manifest  # noqa: E402
 import fiberguard_cleanroom as fg  # noqa: E402
+import run_replay  # noqa: E402
 import verify_receipt  # noqa: E402
 
 
@@ -55,6 +56,7 @@ def test_blinding_breach_and_cannot_check_are_preserved() -> None:
     assert protocol["authority"]["independence_terminal"] == "CANNOT_CHECK"
     assert blocker["independence_terminal"] == "CANNOT_CHECK"
     assert blocker["lunarc_submission"] == "NOT_SUBMITTED"
+    assert blocker["terminal"] == "BLOCKED_NO_LUNARC_EXECUTION_AUTHORITY__CANNOT_CHECK"
     assert non_outcome["payload"]["full_panel_execution"] == "NOT_RUN"
     assert non_outcome["payload"]["comparison_to_frozen_outcomes"] == "NOT_PERFORMED"
 
@@ -81,7 +83,7 @@ def test_pr1382_v2_packet_shape_cannot_unlock_the_legacy_v1_gate(tmp_path: Path)
         fg.require_packet_identity(packet, repository=REPOSITORY)
 
 
-def test_legacy_packet_gate_accepts_dirty_checkout_and_unchecked_base(tmp_path: Path) -> None:
+def test_legacy_packet_gate_rejects_an_unchecked_base_object(tmp_path: Path) -> None:
     subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
     subprocess.run(
         ["git", "config", "user.email", "review@example.invalid"], cwd=tmp_path, check=True
@@ -106,20 +108,25 @@ def test_legacy_packet_gate_accepts_dirty_checkout_and_unchecked_base(tmp_path: 
             }
         )
     )
-    accepted = fg.require_packet_identity(packet, repository=tmp_path)
-    assert accepted["packet_commit"] == subject
-    assert accepted["base_commit"] == "f" * 40
+    with pytest.raises(fg.PacketIdentityMismatch, match="base commit object"):
+        fg.require_packet_identity(packet, repository=tmp_path)
     assert subprocess.check_output(["git", "status", "--porcelain"], cwd=tmp_path, text=True)
 
 
-def test_manifest_verifier_accepts_an_incomplete_execution_allowlist(tmp_path: Path) -> None:
+def test_execution_manifest_gate_rejects_an_incomplete_allowlist(tmp_path: Path) -> None:
     (tmp_path / "one.py").write_text("value = 1\n")
     incomplete = fg.build_manifest(tmp_path, ("one.py",))
     fg.verify_manifest(tmp_path, incomplete)
-    assert {record["path"] for record in incomplete["files"]} != set(build_manifest.SOURCE_PATHS)
+    with pytest.raises(fg.ManifestMismatch, match="exact required allowlist"):
+        fg.verify_manifest(
+            tmp_path,
+            incomplete,
+            required_paths=build_manifest.SOURCE_PATHS,
+        )
+    assert "required_paths=build_manifest.SOURCE_PATHS" in inspect.getsource(run_replay.main)
 
 
-def test_receipt_verifier_accepts_semantically_overstated_payload(tmp_path: Path) -> None:
+def test_receipt_verifier_rejects_semantically_overstated_payload(tmp_path: Path) -> None:
     (tmp_path / "one.py").write_text("value = 1\n")
     manifest = fg.build_manifest(tmp_path, ("one.py",))
     synthetic = fg.seal_payload(
@@ -130,8 +137,12 @@ def test_receipt_verifier_accepts_semantically_overstated_payload(tmp_path: Path
         },
         manifest_sha256=manifest["manifest_sha256"],
     )
-    verify_receipt.verify_receipt(root=tmp_path, manifest=manifest, receipt=synthetic)
-    assert synthetic["payload"]["independence_terminal"] == "FORBIDDEN_PASS"
+    with pytest.raises(verify_receipt.ReceiptMismatch, match="payload schema"):
+        verify_receipt.verify_receipt(
+            root=tmp_path,
+            manifest=manifest,
+            receipt=synthetic,
+        )
 
 
 def test_third_checkers_are_algorithmically_distinct_but_same_source_custody() -> None:
@@ -149,20 +160,21 @@ def test_third_checkers_are_algorithmically_distinct_but_same_source_custody() -
     assert "cnf_count_by_truth_table" not in inspect.getsource(fg.cnf_endpoint_check)
 
 
-def test_slurm_envelope_is_adequate_but_provenance_incomplete() -> None:
+def test_slurm_envelope_keeps_external_run_and_authorization_gates() -> None:
     script = (CLEANROOM / "slurm" / "job_c_r8_1.slurm").read_text()
     assert "#SBATCH --cpus-per-task=16" in script
     assert "#SBATCH --mem=32G" in script
     assert "#SBATCH --time=02:00:00" in script
     assert "--workers 16" in script
-    assert len(fg.DOMAIN_RUNNERS) == 3
     for required_provenance in (
         "git rev-parse HEAD",
         "git status --porcelain",
-        "python3 --version",
-        "sacct",
+        "--authorization-file",
+        "ORION_REPOSITORY",
+        "FIBERGUARD_EXECUTION_AUTHORIZATION",
     ):
-        assert required_provenance not in script
+        assert required_provenance in script
+    assert len(fg.DOMAIN_RUNNERS) == 3
 
 
 def test_non_outcome_receipt_contains_no_execution_provenance() -> None:

@@ -44,6 +44,15 @@
     "witness": "minimum canonical instance bytes at each target endpoint",
     "third_checker": "recompute the selected representation and both endpoint targets with a small direct checker"
   },
+  "execution_custody": {
+    "authorization_schema": "ORION.FiberGuardCleanroomExecutionAuthorization.v1",
+    "clean_checkout_required": true,
+    "exact_implementation_commit_tree_required": true,
+    "exact_source_allowlist_required": true,
+    "external_authorization_required": true,
+    "run_directory": "OUTSIDE_REPOSITORY",
+    "terminal_without_authority": "BLOCKED_NO_LUNARC_EXECUTION_AUTHORITY__CANNOT_CHECK"
+  },
   "schema": "ORION.FiberGuardCleanroomSourceProtocol.v1",
   "target_solver_rule": "two structurally different exact solvers must agree instance by instance or execution aborts"
 }

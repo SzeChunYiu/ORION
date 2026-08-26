@@ -10,8 +10,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
+import os
+import platform
 import re
 import subprocess
+import sys
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass
 from functools import lru_cache
@@ -38,6 +42,10 @@ class PacketIdentityUnresolved(RuntimeError):
 
 class PacketIdentityMismatch(RuntimeError):
     """Raised when a resolved packet identity is not bound to this checkout."""
+
+
+class ExecutionAuthorizationMismatch(RuntimeError):
+    """Raised when external root-review execution authority is absent or drifts."""
 
 
 GRAPH_VERTICES = tuple(range(6))
@@ -77,11 +85,7 @@ def graph_representation(edge_mask: int) -> tuple[tuple[int, ...], int]:
     degrees = tuple(sorted(neighbors.bit_count() for neighbors in adjacency))
     triangles = 0
     for first, second, third in combinations(GRAPH_VERTICES, 3):
-        required = (
-            _edge_bit(first, second)
-            | _edge_bit(first, third)
-            | _edge_bit(second, third)
-        )
+        required = _edge_bit(first, second) | _edge_bit(first, third) | _edge_bit(second, third)
         triangles += (edge_mask & required) == required
     return degrees, triangles
 
@@ -205,8 +209,7 @@ def graph_endpoint_check(edge_mask: int) -> dict[str, object]:
             cursor += 1
     degrees = tuple(sorted(sum(row) for row in matrix))
     triangles = sum(
-        matrix[a][b] and matrix[a][c] and matrix[b][c]
-        for a, b, c in combinations(range(6), 3)
+        matrix[a][b] and matrix[a][c] and matrix[b][c] for a, b, c in combinations(range(6), 3)
     )
     target = None
     for palette in range(1, 7):
@@ -247,7 +250,9 @@ def _require_cover_family(family: Sequence[int]) -> tuple[int, ...]:
 def cover_representation(family: Sequence[int]) -> tuple[tuple[int, ...], tuple[int, ...]]:
     value = _require_cover_family(family)
     sizes = tuple(sorted(mask.bit_count() for mask in value))
-    intersections = tuple(sorted((left & right).bit_count() for left, right in combinations(value, 2)))
+    intersections = tuple(
+        sorted((left & right).bit_count() for left, right in combinations(value, 2))
+    )
     return sizes, intersections
 
 
@@ -282,7 +287,9 @@ def cover_size_by_mask_dp(family: Sequence[int]) -> int:
 
 def cover_refinements(family: Sequence[int]) -> dict[str, tuple[int, ...]]:
     value = _require_cover_family(family)
-    frequencies = tuple(sorted(sum(bool(mask & (1 << element)) for mask in value) for element in range(5)))
+    frequencies = tuple(
+        sorted(sum(bool(mask & (1 << element)) for mask in value) for element in range(5))
+    )
     unions = tuple(sorted((left | right).bit_count() for left, right in combinations(value, 2)))
     triples = tuple(sorted((a & b & c).bit_count() for a, b, c in combinations(value, 3)))
     return {
@@ -303,8 +310,7 @@ def cover_endpoint_check(family: Sequence[int]) -> dict[str, object]:
     target = min(
         sum(choice)
         for choice in product((0, 1), repeat=5)
-        if any(choice)
-        and _selected_union(value, choice) == 31
+        if any(choice) and _selected_union(value, choice) == 31
     )
     return {"representation": (sizes, intersections), "target": target}
 
@@ -352,8 +358,7 @@ def cnf_representation(
         negative = sum(literal == -variable for clause in value for literal in clause)
         occurrences.append((positive, negative))
     pair_counts = tuple(
-        sum({abs(a), abs(b)} == {left, right} for a, b in value)
-        for left, right in VARIABLE_PAIRS
+        sum({abs(a), abs(b)} == {left, right} for a, b in value) for left, right in VARIABLE_PAIRS
     )
     return tuple(occurrences), pair_counts
 
@@ -439,8 +444,7 @@ def cnf_endpoint_check(formula: Sequence[Sequence[int]]) -> dict[str, object]:
         for variable in range(1, 5)
     )
     pair_counts = tuple(
-        sum(tuple(sorted((abs(a), abs(b)))) == pair for a, b in value)
-        for pair in VARIABLE_PAIRS
+        sum(tuple(sorted((abs(a), abs(b)))) == pair for a, b in value) for pair in VARIABLE_PAIRS
     )
     target = 0
     for bits in product((False, True), repeat=4):
@@ -463,7 +467,14 @@ def _jsonable(value: Any) -> Any:
     if isinstance(value, list):
         return [_jsonable(item) for item in value]
     if isinstance(value, dict):
-        return {str(key): _jsonable(item) for key, item in sorted(value.items(), key=lambda item: str(item[0]))}
+        return {
+            str(key): _jsonable(item)
+            for key, item in sorted(value.items(), key=lambda item: str(item[0]))
+        }
+    if type(value) is float:
+        if not math.isfinite(value):
+            raise TypeError("non-finite floats are not canonical-JSON compatible")
+        return value
     if value is None or type(value) in {str, int, bool}:
         return value
     raise TypeError(f"value is not canonical-JSON compatible: {type(value).__name__}")
@@ -483,7 +494,10 @@ def _freeze(value: Any) -> Any:
     if isinstance(value, (tuple, list)):
         return tuple(_freeze(item) for item in value)
     if isinstance(value, dict):
-        return tuple((str(key), _freeze(item)) for key, item in sorted(value.items(), key=lambda item: str(item[0])))
+        return tuple(
+            (str(key), _freeze(item))
+            for key, item in sorted(value.items(), key=lambda item: str(item[0]))
+        )
     if value is None or type(value) in {str, int, bool}:
         return value
     raise TypeError(f"value is not fibre-key compatible: {type(value).__name__}")
@@ -514,13 +528,15 @@ def _update_fibre(
     existing.count += 1
     serialized_bytes = canonical_json_bytes(serialized)
     if target < existing.minimum or (
-        target == existing.minimum and serialized_bytes < canonical_json_bytes(existing.low_serialized)
+        target == existing.minimum
+        and serialized_bytes < canonical_json_bytes(existing.low_serialized)
     ):
         existing.minimum = target
         existing.low_serialized = serialized
         existing.low_instance = instance
     if target > existing.maximum or (
-        target == existing.maximum and serialized_bytes < canonical_json_bytes(existing.high_serialized)
+        target == existing.maximum
+        and serialized_bytes < canonical_json_bytes(existing.high_serialized)
     ):
         existing.maximum = target
         existing.high_serialized = serialized
@@ -597,7 +613,10 @@ def audit_records(
         (endpoint_state.high_instance, endpoint_state.maximum),
     ):
         check = endpoint_checker(endpoint_instance)
-        if _freeze(check.get("representation")) != endpoint_key or check.get("target") != expected_target:
+        if (
+            _freeze(check.get("representation")) != endpoint_key
+            or check.get("target") != expected_target
+        ):
             raise EndpointCheckerDisagreement(
                 "endpoint checker disagrees with the primary fibre or target"
             )
@@ -813,19 +832,32 @@ def build_manifest(root: Path, paths: Sequence[str]) -> dict[str, Any]:
     return {**core, "manifest_sha256": hashlib.sha256(canonical_json_bytes(core)).hexdigest()}
 
 
-def verify_manifest(root: Path, manifest: Mapping[str, Any]) -> None:
+def verify_manifest(
+    root: Path,
+    manifest: Mapping[str, Any],
+    *,
+    required_paths: Sequence[str] | None = None,
+) -> None:
     if manifest.get("schema") != "ORION.FiberGuardCleanroomManifest.v1":
         raise ManifestMismatch("manifest schema mismatch")
     files = manifest.get("files")
     if type(files) is not list:
         raise ManifestMismatch("manifest file list is missing")
-    if any(type(record) is not dict or set(record) != {"bytes", "path", "sha256"} for record in files):
+    if any(
+        type(record) is not dict or set(record) != {"bytes", "path", "sha256"} for record in files
+    ):
         raise ManifestMismatch("manifest record shape is not exact")
     paths = [record["path"] for record in files]
     if paths != sorted(paths):
         raise ManifestMismatch("manifest paths are not sorted")
     if len(paths) != len(set(paths)):
         raise ManifestMismatch("manifest paths are not unique")
+    if required_paths is not None:
+        exact_required = tuple(sorted(required_paths))
+        if len(exact_required) != len(set(exact_required)):
+            raise ManifestMismatch("exact required allowlist is not unique")
+        if tuple(paths) != exact_required:
+            raise ManifestMismatch("manifest does not match the exact required allowlist")
     expected_core = _manifest_core(files)
     expected_digest = hashlib.sha256(canonical_json_bytes(expected_core)).hexdigest()
     if manifest.get("manifest_sha256") != expected_digest:
@@ -871,6 +903,45 @@ def _git_is_ancestor(repository: Path, commit: str) -> bool:
     )
 
 
+def _git_output(repository: Path, *arguments: str) -> str:
+    try:
+        return subprocess.check_output(
+            ["git", *arguments],
+            cwd=repository,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise ExecutionAuthorizationMismatch(
+            f"cannot resolve git identity: {' '.join(arguments)}"
+        ) from error
+
+
+def _git_is_ancestor_of(repository: Path, ancestor: str, descendant: str) -> bool:
+    return (
+        subprocess.run(
+            ["git", "merge-base", "--is-ancestor", ancestor, descendant],
+            cwd=repository,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        ).returncode
+        == 0
+    )
+
+
+def _git_status(repository: Path) -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "status", "--porcelain=v1", "--untracked-files=all"],
+            cwd=repository,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise ExecutionAuthorizationMismatch("cannot inspect checkout cleanliness") from error
+
+
 def require_packet_identity(packet_path: Path, *, repository: Path) -> dict[str, Any]:
     packet = json.loads(packet_path.read_text())
     if set(packet) != {"schema", "packet_commit", "base_commit", "branch"}:
@@ -886,6 +957,137 @@ def require_packet_identity(packet_path: Path, *, repository: Path) -> dict[str,
         raise PacketIdentityMismatch("packet base commit is not a lowercase 40-hex identity")
     if not _git_commit_exists(repository, commit):
         raise PacketIdentityMismatch("packet commit object is unavailable")
+    if not _git_commit_exists(repository, packet["base_commit"]):
+        raise PacketIdentityMismatch("packet base commit object is unavailable")
+    if not _git_is_ancestor_of(repository, packet["base_commit"], commit):
+        raise PacketIdentityMismatch("packet base commit is not an ancestor of the packet commit")
     if not _git_is_ancestor(repository, commit):
         raise PacketIdentityMismatch("packet commit is not an ancestor of the clean-room checkout")
     return packet
+
+
+AUTHORIZATION_FIELDS = {
+    "schema",
+    "job_id",
+    "scientific_subject_commit",
+    "scientific_subject_tree",
+    "implementation_commit",
+    "implementation_tree",
+    "source_manifest_sha256",
+    "grants_execution_authority",
+    "grants_lunarc_submission",
+    "authority_terminal",
+}
+
+
+def require_execution_authorization(
+    authorization_path: Path,
+    *,
+    repository: Path,
+    scientific_subject_commit: str,
+    source_manifest_sha256: str,
+) -> dict[str, Any]:
+    """Require an external object binding the exact clean implementation checkout."""
+
+    try:
+        raw = authorization_path.read_bytes()
+        authorization = json.loads(raw)
+    except (OSError, json.JSONDecodeError) as error:
+        raise ExecutionAuthorizationMismatch(
+            "execution authorization object is unavailable or invalid"
+        ) from error
+    if type(authorization) is not dict or set(authorization) != AUTHORIZATION_FIELDS:
+        raise ExecutionAuthorizationMismatch("execution authorization fields are not exact")
+    if authorization["schema"] != "ORION.FiberGuardCleanroomExecutionAuthorization.v1":
+        raise ExecutionAuthorizationMismatch("execution authorization schema mismatch")
+    if authorization["job_id"] != "JOB-C-R8-1":
+        raise ExecutionAuthorizationMismatch("execution authorization job mismatch")
+    for name in (
+        "scientific_subject_commit",
+        "implementation_commit",
+    ):
+        if type(authorization[name]) is not str or not HEX_SHA1.fullmatch(authorization[name]):
+            raise ExecutionAuthorizationMismatch(f"authorization {name} is invalid")
+    for name in (
+        "scientific_subject_tree",
+        "implementation_tree",
+    ):
+        if type(authorization[name]) is not str or not HEX_SHA1.fullmatch(authorization[name]):
+            raise ExecutionAuthorizationMismatch(f"authorization {name} is invalid")
+    if authorization["scientific_subject_commit"] != scientific_subject_commit:
+        raise ExecutionAuthorizationMismatch("authorization scientific subject mismatch")
+    if authorization["source_manifest_sha256"] != source_manifest_sha256:
+        raise ExecutionAuthorizationMismatch("authorization source manifest mismatch")
+    if not HEX_SHA256.fullmatch(source_manifest_sha256):
+        raise ExecutionAuthorizationMismatch("authorization source manifest digest is invalid")
+    if authorization["grants_execution_authority"] is not True:
+        raise ExecutionAuthorizationMismatch("execution authority is not granted")
+    if authorization["grants_lunarc_submission"] is not True:
+        raise ExecutionAuthorizationMismatch("LUNARC submission authority is not granted")
+    if authorization["authority_terminal"] != "ROOT_REVIEW_AUTHORIZED":
+        raise ExecutionAuthorizationMismatch("root-review authorization terminal is absent")
+
+    subject_tree = _git_output(repository, "rev-parse", f"{scientific_subject_commit}^{{tree}}")
+    if subject_tree != authorization["scientific_subject_tree"]:
+        raise ExecutionAuthorizationMismatch("authorization scientific subject tree mismatch")
+    head = _git_output(repository, "rev-parse", "HEAD")
+    tree = _git_output(repository, "rev-parse", "HEAD^{tree}")
+    if head != authorization["implementation_commit"]:
+        raise ExecutionAuthorizationMismatch("authorization does not bind exact HEAD")
+    if tree != authorization["implementation_tree"]:
+        raise ExecutionAuthorizationMismatch("authorization does not bind exact HEAD tree")
+    if not _git_is_ancestor_of(repository, scientific_subject_commit, head):
+        raise ExecutionAuthorizationMismatch(
+            "authorized implementation does not descend from the scientific subject"
+        )
+    if _git_status(repository):
+        raise ExecutionAuthorizationMismatch("execution requires an exact clean checkout")
+
+    return {
+        **authorization,
+        "authorization_bytes": len(raw),
+        "authorization_sha256": hashlib.sha256(raw).hexdigest(),
+    }
+
+
+def build_execution_provenance(
+    *,
+    repository: Path,
+    workers: int,
+    command: Sequence[str],
+    started_at: str,
+    ended_at: str,
+    wall_time_seconds: float,
+    maximum_rss: int,
+    exit_code: int,
+    stdout: bytes,
+    stderr: bytes,
+    slurm_job_id: str,
+) -> dict[str, Any]:
+    """Build the exact run/environment record sealed into an execution receipt."""
+
+    status = _git_status(repository)
+    return {
+        "schema": "ORION.FiberGuardCleanroomExecutionProvenance.v1",
+        "git_commit": _git_output(repository, "rev-parse", "HEAD"),
+        "git_tree": _git_output(repository, "rev-parse", "HEAD^{tree}"),
+        "git_status": "CLEAN" if not status else f"DIRTY:{status}",
+        "python_version": sys.version,
+        "python_executable": sys.executable,
+        "python_implementation": platform.python_implementation(),
+        "platform": platform.platform(),
+        "processor": platform.processor() or "CANNOT_CHECK",
+        "cpu_count": os.cpu_count(),
+        "workers": workers,
+        "command": list(command),
+        "slurm_job_id": slurm_job_id,
+        "started_at": started_at,
+        "ended_at": ended_at,
+        "wall_time_seconds": wall_time_seconds,
+        "maximum_rss": maximum_rss,
+        "exit_code": exit_code,
+        "stdout_bytes": len(stdout),
+        "stdout_sha256": hashlib.sha256(stdout).hexdigest(),
+        "stderr_bytes": len(stderr),
+        "stderr_sha256": hashlib.sha256(stderr).hexdigest(),
+    }

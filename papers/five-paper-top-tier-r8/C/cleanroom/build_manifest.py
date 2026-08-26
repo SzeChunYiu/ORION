@@ -19,6 +19,7 @@ SOURCE_PATHS = tuple(
             "SOURCE_PROTOCOL.json",
             "SUBMISSION_BLOCKER.json",
             "build_manifest.py",
+            "conftest.py",
             "fiberguard_cleanroom.py",
             "run_replay.py",
             "slurm/job_c_r8_1.slurm",

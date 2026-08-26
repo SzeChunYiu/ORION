@@ -137,3 +137,29 @@ At minimum, a successor owned by the implementation lane must:
 Until those transitions occur, the only honest execution disposition is:
 
 `BLOCKED_NO_LUNARC_EXECUTION_AUTHORITY__CANNOT_CHECK`
+
+## Successor hardening addendum
+
+The implementation descendant after this review repairs the narrow engineering
+gaps without changing any finite-panel grammar or executing a full panel:
+
+- repository-root pytest collection now loads the clean-room modules through a
+  manifest-bound local `conftest.py`;
+- execution requires the exact `build_manifest.SOURCE_PATHS` allowlist;
+- the legacy v1 base object must exist and be an ancestor of its packet commit;
+- a separate external root-review authorization must bind JOB-C-R8-1, the
+  scientific subject, exact clean implementation commit/tree, source-manifest
+  digest, and explicit execution plus LUNARC grants;
+- receipts now fail closed on exact payload, authority, packet,
+  authorization, and provenance schemas;
+- successful execution receipts bind clean Git identity, interpreter and
+  platform, command, worker/CPU information, SLURM job id, timestamps, wall
+  time, maximum RSS, exit code, and captured stream byte hashes;
+- the SLURM run directory, logs, environment record, and result are kept
+  outside the authorized repository checkout.
+
+These changes do **not** integrate draft PR #1382's v2 reader, do not create an
+authorization object, do not cure the permanent blinding breach, and do not
+grant LUNARC submission or scientific authority. The terminal remains:
+
+`BLOCKED_NO_LUNARC_EXECUTION_AUTHORITY__CANNOT_CHECK`
