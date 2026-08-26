@@ -6,7 +6,11 @@ P11 subtracts all of those primitives.
 
 The residual is a **joint placement account**:
 
-`raw state -> construction work -> task-facing state -> decoder/search work -> verified outcome`
+`raw state -> construction work -> task-facing state`
+
+followed by
+
+`task-facing state -> decoder/search work -> verified outcome`
 
 with a future horizon:
 

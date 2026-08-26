@@ -244,25 +244,36 @@ of an axiom that is doing the work, and the two are indistinguishable from
 inside. The check that told them apart is worth more here than the axiom it
 removed.
 
-That check has since been wrong twice, and both corrections are worth stating
-because they change what "load-bearing" can mean rather than only how it is
-computed. It first counted any theorem that stopped being *proved* when an axiom
-was dropped. That credits an axiom for the solver failing to settle a question:
-a solver returning `unknown` has said nothing about whether the theorem still
-holds. Requiring an actual countermodel fixed the criterion and broke the
-stability, because refuting a universally quantified claim over an uninterpreted
-sort is an unbounded model search — the same dropped axiom yielded a
-countermodel on one run and `unknown` on the next. The measurement now asks for
-a countermodel in a universe bounded to four nodes, which is sound in that
-direction and in no other (a countermodel in a small universe is a countermodel;
-failing to find one there proves nothing), and takes the intersection over
-repeated runs.
+The criterion was corrected in stages because each earlier version could turn a
+fact about search into a claim about an axiom. Counting any theorem that stopped
+being *proved* credited an axiom when the solver returned `unknown`. Requiring an
+actual countermodel removed that error, but an open model search was unstable.
+Bounding discovery to at most four nodes did not remove the instability: CI run
+32927946106 reported the edge restriction only intermittently, and run
+32946736266 returned `unknown` for its known one-node witness under full-suite
+load, cascading to four P6 test failures. Both adverse runs remain failure
+provenance; neither showed the condition inert.
 
-Under that strictest reading all three conditions remain necessary, so the
-conclusion survived both corrections. The per-condition detail did not: the
-edge-restriction condition refutes between one and three theorems on identical
-repeated runs, of which exactly one falls every time, and only that one is
-credited to it.
+The current measurement no longer discovers a witness. It verifies one pinned,
+fully specified exact-domain countermodel for each condition. Without coordinate
+support, a two-node world has an unchanged non-coordinate certificate, one
+changed coordinate, identity reachability and no edges; this refutes withdrawal
+by any damage. Without the edge restriction, a one-node world has a
+non-coordinate certificate with a self-edge; this refutes the derived claim that
+the certificate supports nothing. Without certificate non-coordinateness, a
+one-node world makes the changed certificate itself a coordinate with a
+self-edge; because changed nodes are not reopened, this again refutes withdrawal.
+All three tables use reflexive reachability and zero ranks. The solver checks the
+remaining axioms, the exact domain, every table entry and the negated named
+theorem. A certificate is credited only when every repeated check returns an
+actual countermodel; `unknown` remains `CANNOT_CHECK`, and an invalid supplied
+model is a failed certificate rather than evidence of inertness.
+
+These certificates establish local logical necessity relative to this
+formalization and theorem set only. They were written and checked in the same
+lane. External or independent validation remains `CANNOT_CHECK` under P6-U-T4;
+the certificates provide neither empirical evidence nor external scientific
+authority.
 
 ## Bounded general statement
 
