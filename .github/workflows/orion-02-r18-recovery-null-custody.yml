@@ -1,0 +1,99 @@
+name: orion-02-r18-recovery-null-custody
+
+on:
+  push:
+    branches:
+      - chatgpt/orion-02-r18-null-current-main-20260827
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/extensions/r18/**'
+      - '.github/workflows/orion-02-r18-recovery-null-custody.yml'
+  pull_request:
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/extensions/r18/**'
+      - '.github/workflows/orion-02-r18-recovery-null-custody.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-r18-recovery-null:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Materialize exact source-branch recovery bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin refs/heads/chatgpt/r18-c-paired-route-20260826
+          source=FETCH_HEAD
+          root='papers/five-paper-top-tier-r8/C'
+          git show "$source:$root/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json" > "$RUNNER_TEMP/result.json"
+          git show "$source:$root/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_TERMINAL.txt" > "$RUNNER_TEMP/terminal.txt"
+          git show "$source:$root/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_COMMENT.md" > "$RUNNER_TEMP/comment.md"
+          git show "$source:$root/FIBERGUARD_PAIRED_ROUTE_R18_RESULT.md" > "$RUNNER_TEMP/interpretation.md"
+          test "$(sha256sum "$RUNNER_TEMP/result.json" | cut -d' ' -f1)" = '8136ac6e614406a51270342d73786dfec43a9ecdac81f62e815cd14d1a739c45'
+          grep -q '^FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE ' "$RUNNER_TEMP/terminal.txt"
+
+      - name: Verify null result and current-main custody
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          root = Path('papers/orion-02-fiberguard-finite-fibre/extensions/r18')
+          custody = json.loads((root / 'R18_RECOVERY_CUSTODY.json').read_text())
+          result = json.loads((Path(os.environ['RUNNER_TEMP']) / 'result.json').read_text())
+          assert custody['schema'] == 'ORION.ORION02.R18RecoveryCustody.v1'
+          assert custody['former_positive_terminal'] == 'RETRACTED'
+          assert custody['current_terminal'] == 'FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE'
+          recovery = custody['recovery']
+          assert recovery['immutable_subject'] == 'ac4a50f85a147f5933cd2055809c7ac30b29e3c1'
+          assert recovery['execution_run'] == 33023149716
+          assert recovery['execution_job'] == 98358163251
+          assert recovery['verification_run'] == 33024187320
+          assert recovery['candidate_denominator'] == 99
+          assert result['schema'] == 'ORION.FiberGuard.PairedRoute.R18.v1'
+          assert result['terminal'] == custody['current_terminal']
+          assert result['development']['candidate_count'] == 99
+          assert result['development']['feasible_candidate_count'] == 0
+          assert result['development']['selected_route']['metrics']['route_change_coverage'] == 0.0
+          assert result['validation']['selected_route']['metrics']['route_change_coverage'] == 0.0
+          assert result['test']['selected_route']['metrics']['route_change_coverage'] == 0.0
+          assert result['authority']['recovery_status'] == 'OUTCOME_EXPOSED_CORROBORATION'
+          assert result['authority']['strongest_algorithm_selection_baseline_complete'] is False
+          assert result['authority']['external_independence'] is False
+          assert result['authority']['grants_journal_authority'] is False
+          assert custody['authority']['journal_authority'] is False
+          print('ORION_02_R18_RECOVERY_NULL_CUSTODY_VERIFIED')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage reviewer custody artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/orion-02-r18-recovery-null"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result.json" "$out/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal.txt" "$out/TERMINAL.txt"
+          cp "$RUNNER_TEMP/comment.md" "$out/RECOVERY_COMMENT.md"
+          cp "$RUNNER_TEMP/interpretation.md" "$out/R18_RESULT_INTERPRETATION.md"
+          cp 'papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_CUSTODY.json' "$out/"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-02-r18-recovery-null
+          path: ${{ runner.temp }}/orion-02-r18-recovery-null/
+          if-no-files-found: error
+          retention-days: 30
