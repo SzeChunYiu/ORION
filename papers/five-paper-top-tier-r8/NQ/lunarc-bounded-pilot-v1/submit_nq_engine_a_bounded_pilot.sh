@@ -4,12 +4,10 @@ set -euo pipefail
 REPOSITORY="https://github.com/SzeChunYiu/ORION.git"
 SOURCE_COMMIT="ce3ad440337c1bd413a8e5202c94a67374721403"
 SOURCE_TREE="75230e3fdb53822139817ff744925d63220c193a"
-AUTHORIZATION_COMMIT="69ec8d24814dda88162b9ef12a0b506616f47a32"
-AUTHORIZATION_TREE="45a69c92288e5d0bbbe16377d084a7f076f1ebb3"
 AUTHORIZATION_PATH="papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/LUNARC_AUTHORIZATION_PACKET.json"
-AUTHORIZATION_SHA256="204e6492632cf8ac36c01ed8eaa9413cf4926b9a4ddf5a0e1741aad4b66b5d6f"
 RUNNER_PATH="papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/run_nq_engine_a_bounded_pilot.slurm"
 RUNNER_SHA256="26a8a32155ac204454d4f7ee68f898f706f21c15a817e7035052b6aae69e2ff7"
+SUBMIT_SCRIPT_PATH="papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/submit_nq_engine_a_bounded_pilot.sh"
 SOURCE_MANIFEST_SHA256="b343b580411b87028b87af321e0b3ae44add4d066fe695c44cefb0527fac8045"
 PROTOCOL_SHA256="059970ec26cd0767028a75aae92de70e53fbb0cb9f7439cff7696cc237351f69"
 LOCAL_RECEIPT_SHA256="9c2380ccf5805f2fd3a47eaff757d0a113130a2a8728794c6ddb6b03e4c3e5d4"
@@ -17,9 +15,53 @@ NON_DUPLICATION_KEY="5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f
 REMOTE_OUTPUT_ROOT="/home/scyiu/orion-nq-engine-a-bounded-pilot/${NON_DUPLICATION_KEY}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(git -C "${SCRIPT_DIR}" rev-parse --show-toplevel)"
+LOCAL_SUBMIT_SCRIPT="${REPO_ROOT}/${SUBMIT_SCRIPT_PATH}"
 LOCAL_AUTHORIZATION_PACKET="${SCRIPT_DIR}/LUNARC_AUTHORIZATION_PACKET.json"
-test "$(shasum -a 256 "${LOCAL_AUTHORIZATION_PACKET}" | awk '{print $1}')" = \
-  "${AUTHORIZATION_SHA256}"
+
+packet_field() {
+  python3 - "${LOCAL_AUTHORIZATION_PACKET}" "$1" <<'PY'
+import json
+import sys
+
+value = json.loads(open(sys.argv[1], encoding="utf-8").read())
+for part in sys.argv[2].split("."):
+    value = value[part]
+if not isinstance(value, str):
+    raise SystemExit(f"packet field {sys.argv[2]} must be a string")
+print(value)
+PY
+}
+
+SUBMIT_SOURCE_COMMIT="$(packet_field submit_script_binding.commit)"
+SUBMIT_SOURCE_TREE="$(packet_field submit_script_binding.tree)"
+SUBMIT_SOURCE_PATH="$(packet_field submit_script_binding.path)"
+SUBMIT_SOURCE_BLOB="$(packet_field submit_script_binding.git_blob)"
+SUBMIT_SOURCE_SHA256="$(packet_field submit_script_binding.sha256)"
+
+test "${SUBMIT_SOURCE_PATH}" = "${SUBMIT_SCRIPT_PATH}"
+test "$(shasum -a 256 "${LOCAL_SUBMIT_SCRIPT}" | awk '{print $1}')" = \
+  "${SUBMIT_SOURCE_SHA256}"
+test "$(git -C "${REPO_ROOT}" rev-parse "${SUBMIT_SOURCE_COMMIT}^{tree}")" = \
+  "${SUBMIT_SOURCE_TREE}"
+test "$(git -C "${REPO_ROOT}" rev-parse "${SUBMIT_SOURCE_COMMIT}:${SUBMIT_SOURCE_PATH}")" = \
+  "${SUBMIT_SOURCE_BLOB}"
+test "$(git -C "${REPO_ROOT}" show "${SUBMIT_SOURCE_COMMIT}:${SUBMIT_SOURCE_PATH}" | shasum -a 256 | awk '{print $1}')" = \
+  "${SUBMIT_SOURCE_SHA256}"
+
+AUTHORIZATION_COMMIT="$(git -C "${REPO_ROOT}" rev-parse HEAD)"
+AUTHORIZATION_TREE="$(git -C "${REPO_ROOT}" rev-parse 'HEAD^{tree}')"
+AUTHORIZATION_SHA256="$(shasum -a 256 "${LOCAL_AUTHORIZATION_PACKET}" | awk '{print $1}')"
+test "$(git -C "${REPO_ROOT}" rev-parse "${AUTHORIZATION_COMMIT}:${SUBMIT_SCRIPT_PATH}")" = \
+  "${SUBMIT_SOURCE_BLOB}"
+test "$(git -C "${REPO_ROOT}" rev-parse "${AUTHORIZATION_COMMIT}:${AUTHORIZATION_PATH}")" = \
+  "$(git -C "${REPO_ROOT}" hash-object "${LOCAL_AUTHORIZATION_PACKET}")"
+git -C "${REPO_ROOT}" merge-base --is-ancestor \
+  "${SUBMIT_SOURCE_COMMIT}" "${AUTHORIZATION_COMMIT}"
+git -C "${REPO_ROOT}" diff --quiet HEAD -- \
+  "${SUBMIT_SCRIPT_PATH}" "${AUTHORIZATION_PATH}"
+git -C "${REPO_ROOT}" diff --cached --quiet -- \
+  "${SUBMIT_SCRIPT_PATH}" "${AUTHORIZATION_PATH}"
 
 ssh -O check lunarc 2>/dev/null && echo "Connected" || /Users/billy/lunarc-init.sh
 
@@ -33,6 +75,11 @@ ssh lunarc bash -s -- \
   "${AUTHORIZATION_SHA256}" \
   "${RUNNER_PATH}" \
   "${RUNNER_SHA256}" \
+  "${SUBMIT_SOURCE_COMMIT}" \
+  "${SUBMIT_SOURCE_TREE}" \
+  "${SUBMIT_SOURCE_PATH}" \
+  "${SUBMIT_SOURCE_BLOB}" \
+  "${SUBMIT_SOURCE_SHA256}" \
   "${SOURCE_MANIFEST_SHA256}" \
   "${PROTOCOL_SHA256}" \
   "${LOCAL_RECEIPT_SHA256}" \
@@ -50,11 +97,16 @@ AUTHORIZATION_PATH="$6"
 AUTHORIZATION_SHA256="$7"
 RUNNER_PATH="$8"
 RUNNER_SHA256="$9"
-SOURCE_MANIFEST_SHA256="${10}"
-PROTOCOL_SHA256="${11}"
-LOCAL_RECEIPT_SHA256="${12}"
-NON_DUPLICATION_KEY="${13}"
-OUTPUT_ROOT="${14}"
+SUBMIT_SOURCE_COMMIT="${10}"
+SUBMIT_SOURCE_TREE="${11}"
+SUBMIT_SOURCE_PATH="${12}"
+SUBMIT_SOURCE_BLOB="${13}"
+SUBMIT_SOURCE_SHA256="${14}"
+SOURCE_MANIFEST_SHA256="${15}"
+PROTOCOL_SHA256="${16}"
+LOCAL_RECEIPT_SHA256="${17}"
+NON_DUPLICATION_KEY="${18}"
+OUTPUT_ROOT="${19}"
 
 if test -e "${OUTPUT_ROOT}"; then
   echo "Refusing duplicate: non-duplication root already exists: ${OUTPUT_ROOT}" >&2
@@ -95,11 +147,21 @@ git -C "${SOURCE_DIR}" show "${AUTHORIZATION_COMMIT}:${AUTHORIZATION_PATH}" > \
   "${AUTHORIZATION_PACKET}"
 test "$(sha256sum "${AUTHORIZATION_PACKET}" | awk '{print $1}')" = \
   "${AUTHORIZATION_SHA256}"
+test "$(git -C "${SOURCE_DIR}" rev-parse "${AUTHORIZATION_COMMIT}:${SUBMIT_SOURCE_PATH}")" = \
+  "${SUBMIT_SOURCE_BLOB}"
+git -C "${SOURCE_DIR}" fetch -q --no-tags --depth=1 origin "${SUBMIT_SOURCE_COMMIT}"
+test "$(git -C "${SOURCE_DIR}" rev-parse FETCH_HEAD)" = "${SUBMIT_SOURCE_COMMIT}"
+test "$(git -C "${SOURCE_DIR}" rev-parse "${SUBMIT_SOURCE_COMMIT}^{tree}")" = \
+  "${SUBMIT_SOURCE_TREE}"
+test "$(git -C "${SOURCE_DIR}" rev-parse "${SUBMIT_SOURCE_COMMIT}:${SUBMIT_SOURCE_PATH}")" = \
+  "${SUBMIT_SOURCE_BLOB}"
+test "$(git -C "${SOURCE_DIR}" show "${SUBMIT_SOURCE_COMMIT}:${SUBMIT_SOURCE_PATH}" | sha256sum | awk '{print $1}')" = \
+  "${SUBMIT_SOURCE_SHA256}"
 
-module load Python/3.11.5-GCCcore-13.2.0
+module load GCCcore/13.2.0
+module load Python/3.11.5
 cd "${SOURCE_DIR}"
 JOB_ID="$(sbatch --parsable \
-  --partition=lu48 \
   --nodes=1 \
   --ntasks=1 \
   --cpus-per-task=1 \
@@ -113,6 +175,8 @@ SUBMITTED=1
 
 export JOB_ID OUTPUT_ROOT SOURCE_COMMIT SOURCE_TREE AUTHORIZATION_COMMIT AUTHORIZATION_TREE
 export AUTHORIZATION_SHA256 NON_DUPLICATION_KEY
+export SUBMIT_SOURCE_COMMIT SUBMIT_SOURCE_TREE SUBMIT_SOURCE_PATH SUBMIT_SOURCE_BLOB
+export SUBMIT_SOURCE_SHA256
 python3 - <<'PY'
 import json
 import os
@@ -127,6 +191,11 @@ payload = {
     "authorization_commit": os.environ["AUTHORIZATION_COMMIT"],
     "authorization_tree": os.environ["AUTHORIZATION_TREE"],
     "authorization_packet_sha256": os.environ["AUTHORIZATION_SHA256"],
+    "submit_script_commit": os.environ["SUBMIT_SOURCE_COMMIT"],
+    "submit_script_tree": os.environ["SUBMIT_SOURCE_TREE"],
+    "submit_script_path": os.environ["SUBMIT_SOURCE_PATH"],
+    "submit_script_git_blob": os.environ["SUBMIT_SOURCE_BLOB"],
+    "submit_script_sha256": os.environ["SUBMIT_SOURCE_SHA256"],
     "non_duplication_key": os.environ["NON_DUPLICATION_KEY"],
     "authority": "engineering_resource_pilot_only",
     "scientific_terminal": "CANNOT_CHECK",
