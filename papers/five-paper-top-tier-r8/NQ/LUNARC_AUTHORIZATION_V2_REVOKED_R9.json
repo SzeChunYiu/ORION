@@ -1,0 +1,10 @@
+{
+  "schema": "ORION.NQ.LunarcAuthorizationRevocationR9.v2",
+  "revoked_authorization_id": "NQ-ENGINE-A-CLEAN-R9-ONE-SHOT-V2-20260826",
+  "revoked_branch": "chatgpt/r9-nq-clean-lunarc-authorization-v2-20260826",
+  "revoked_at_utc": "2026-08-26T00:00:00Z",
+  "submission_authority": false,
+  "reason": "The V2 static validator used git ls-tree -d -r, which is not the registered robust recursive enumeration primitive for proving nested tree presence. No V2 scheduler submission is authorized.",
+  "replacement_branch": "chatgpt/r9-nq-clean-lunarc-authorization-v3-20260826",
+  "fail_closed_instruction": "Do not submit, retry, patch, or reinterpret V2. Only a passing V3 static receipt followed by live account, scheduler, and V3 nonduplication checks can authorize the one bounded submission."
+}
