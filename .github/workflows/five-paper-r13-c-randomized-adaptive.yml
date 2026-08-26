@@ -1,0 +1,118 @@
+name: five-paper-r13-c-randomized-adaptive
+
+on:
+  push:
+    branches:
+      - chatgpt/r13-c-randomized-adaptive-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_RANDOMIZED_ADAPTIVE_R13.md'
+      - 'papers/five-paper-top-tier-r8/C/fiberguard_randomized_adaptive_r13_core.py'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_randomized_adaptive_r13.py'
+      - 'papers/five-paper-top-tier-r8/C/RANDOMIZED_ADAPTIVE_R13_RESULTS.json'
+      - '.github/workflows/five-paper-r13-c-randomized-adaptive.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_RANDOMIZED_ADAPTIVE_R13.md'
+      - 'papers/five-paper-top-tier-r8/C/fiberguard_randomized_adaptive_r13_core.py'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_randomized_adaptive_r13.py'
+      - 'papers/five-paper-top-tier-r8/C/RANDOMIZED_ADAPTIVE_R13_RESULTS.json'
+      - '.github/workflows/five-paper-r13-c-randomized-adaptive.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-randomized-adaptive-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile and replay twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          core="$root/fiberguard_randomized_adaptive_r13_core.py"
+          script="$root/verify_fiberguard_randomized_adaptive_r13.py"
+          registered="$root/RANDOMIZED_ADAPTIVE_R13_RESULTS.json"
+          python -m py_compile "$core" "$script"
+          python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$registered"
+          grep -q '^FIBERGUARD_RANDOMIZED_ADAPTIVE_R13_PASS ' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify exact certificates and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              (Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text()
+          )
+          assert result['schema'] == 'ORION.FiberGuard.RandomizedAdaptive.R13.v1'
+          assert result['source_base_commit'] == '91373ddf3eb17535ea623d0b7998adb307fcd9de'
+          assert result['terminal'] == 'FIBERGUARD_RANDOMIZED_ADAPTIVE_R13_PASS'
+          assert all(result['controls'].values())
+
+          random = result['random_exact_agreement']
+          assert random['systems'] == 300
+          assert random['additional_prior_checks'] == 1200
+          assert random['strict_randomization_improvements'] == 194
+          assert random['mixed_policy_support_histogram'] == {
+              '1': 100,
+              '2': 161,
+              '3': 39,
+          }
+
+          hostile = result['hostile_two_state_certificate']
+          assert hostile['deterministic_pathwise_value'] == '7'
+          assert hostile['randomized_expected_value'] == '6'
+          assert hostile['adversary_distribution'] == ['1/2', '1/2']
+
+          random_gap = result['unbounded_randomization_gap'][-1]
+          assert random_gap['ratio'] == 16
+          assert random_gap['randomized_expected_value'] == '1'
+          adaptivity_gap = result['unbounded_randomized_adaptivity_gap'][-1]
+          assert adaptivity_gap['ratio'] == 10
+          assert adaptivity_gap['best_randomized_static_value'] == '10'
+          assert adaptivity_gap['randomized_adaptive_value'] == '1'
+
+          authority = result['authority']
+          assert authority['ASlib_randomized_adaptive_experiment_executed'] is False
+          assert authority['tail_or_pathwise_safety'] is False
+          assert authority['unseen_instance_generalization'] is False
+          assert authority['grants_journal_authority'] is False
+          print('RANDOMIZED_ADAPTIVE_R13_RESULT_VERIFIED')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage immutable audit artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-randomized-adaptive-r13"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/RANDOMIZED_ADAPTIVE_R13_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-randomized-adaptive-r13
+          path: ${{ runner.temp }}/fiberguard-randomized-adaptive-r13/
+          if-no-files-found: error
+          retention-days: 30
