@@ -1,0 +1,97 @@
+name: five-paper-r15-c-coverage-tax
+
+on:
+  push:
+    branches:
+      - chatgpt/r15-c-coverage-tax-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_COVERAGE_TAX_R15.md'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_coverage_tax_r15.py'
+      - 'papers/five-paper-top-tier-r8/C/COVERAGE_TAX_R15_RESULTS.json'
+      - '.github/workflows/five-paper-r15-c-coverage-tax.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_COVERAGE_TAX_R15.md'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_coverage_tax_r15.py'
+      - 'papers/five-paper-top-tier-r8/C/COVERAGE_TAX_R15_RESULTS.json'
+      - '.github/workflows/five-paper-r15-c-coverage-tax.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-coverage-tax-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile and replay twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          script="$root/verify_fiberguard_coverage_tax_r15.py"
+          registered="$root/COVERAGE_TAX_R15_RESULTS.json"
+          python -m py_compile "$script"
+          python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$registered"
+          grep -q '^FIBERGUARD_COVERAGE_TAX_R15_PASS ' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify theorem controls and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              (Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text()
+          )
+          assert result['schema'] == 'ORION.FiberGuard.CoverageTax.R15.v1'
+          assert result['source_base_commit'] == '29edf9936fe56cd3720d78e6be2542106f2671fd'
+          assert result['terminal'] == 'FIBERGUARD_COVERAGE_TAX_R15_PASS'
+          assert all(result['controls'].values())
+          assert result['random_coverage_tax']['systems'] == 3000
+          assert result['atomic_missing_mass']['distributions'] == 91
+          assert result['sample_only_extension_attack']['same_signature_extensions'] == 100
+          assert result['lipschitz_transfer_certificate']['systems'] == 500
+          assert result['R14_exact_instantiation']['official_cv']['seen'] == 52
+          assert result['R14_exact_instantiation']['leave_family_out']['seen'] == 82
+          authority = result['authority']
+          assert authority['neighborhood_metric_selected'] is False
+          assert authority['lipschitz_constant_externally_validated'] is False
+          assert authority['cross_scenario_transfer'] is False
+          assert authority['grants_journal_authority'] is False
+          print('COVERAGE_TAX_R15_RESULT_VERIFIED')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage immutable audit artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-coverage-tax-r15"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/COVERAGE_TAX_R15_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-coverage-tax-r15
+          path: ${{ runner.temp }}/fiberguard-coverage-tax-r15/
+          if-no-files-found: error
+          retention-days: 30
