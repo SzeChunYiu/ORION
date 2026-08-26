@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/billy/Documents/Codex/2026-08-25/can-you-connect-to-lunarc-x20/work/orion-five-paper-r8-c-cleanroom/papers/five-paper-top-tier-r8/C/cleanroom/run_replay.py", line 91, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/Users/billy/Documents/Codex/2026-08-25/can-you-connect-to-lunarc-x20/work/orion-five-paper-r8-c-cleanroom/papers/five-paper-top-tier-r8/C/cleanroom/run_replay.py", line 80, in main
+    receipt = prepare_execution_receipt(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/billy/Documents/Codex/2026-08-25/can-you-connect-to-lunarc-x20/work/orion-five-paper-r8-c-cleanroom/papers/five-paper-top-tier-r8/C/cleanroom/run_replay.py", line 38, in prepare_execution_receipt
+    packet = fg.require_packet_identity(packet_path, repository=repository)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/billy/Documents/Codex/2026-08-25/can-you-connect-to-lunarc-x20/work/orion-five-paper-r8-c-cleanroom/papers/five-paper-top-tier-r8/C/cleanroom/fiberguard_cleanroom.py", line 882, in require_packet_identity
+    raise PacketIdentityUnresolved("packet commit is an unresolved placeholder")
+fiberguard_cleanroom.PacketIdentityUnresolved: packet commit is an unresolved placeholder
+exit_code=1

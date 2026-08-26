@@ -1,0 +1,11 @@
+{
+  "exhaustive_execution": "BLOCKED",
+  "execution_authorization": "NOT_SUPPLIED",
+  "independence_terminal": "CANNOT_CHECK",
+  "lunarc_submission": "NOT_SUBMITTED",
+  "packet_commit_observed": "TO_BE_BOUND_AFTER_MATERIALIZATION",
+  "reason": "The branch retains the unresolved legacy packet and no external root-review authorization binds an exact clean implementation commit/tree and source manifest",
+  "required_transition": "Integrate the reviewed non-self-referential packet reader, then publish a separate external authorization object binding the exact clean implementation commit/tree, source manifest, JOB-C-R8-1, and explicit execution plus LUNARC grants",
+  "schema": "ORION.FiberGuardCleanroomSubmissionBlocker.v1",
+  "terminal": "BLOCKED_NO_LUNARC_EXECUTION_AUTHORITY__CANNOT_CHECK"
+}

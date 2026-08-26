@@ -1,0 +1,75 @@
+{
+  "authority": {
+    "comparison_to_frozen_outcomes": "PERFORMED_POST_EXECUTION_DIAGNOSTIC",
+    "independence_terminal": "CANNOT_CHECK",
+    "paper_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "base_commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
+  "blinding_breach": "BLINDING_BREACH_ISSUE_BODY",
+  "domains": {
+    "graphs": {
+      "candidates": [
+        "clique_number",
+        "component_count",
+        "four_cycle_count"
+      ],
+      "domain": "all labeled simple graphs on six vertices",
+      "representation": "sorted degree sequence and triangle count",
+      "target": "chromatic number"
+    },
+    "set_cover": {
+      "candidates": [
+        "element_frequency_multiset",
+        "pairwise_union_multiset",
+        "triple_intersection_multiset"
+      ],
+      "domain": "five-set covering subfamilies of the 31 nonempty subsets of a five-element labeled universe",
+      "representation": "set-size multiset and pairwise-intersection multiset",
+      "target": "minimum cover size"
+    },
+    "two_cnf": {
+      "candidate_definitions": {
+        "global_clause_sign_type_counts": "four oriented counts (++,+-,-+,--) after orienting each clause by lower then higher variable label",
+        "labeled_signed_pair_profile": "six labeled variable-pair profiles in lexicographic pair order, each with oriented bins (++,+-,-+,--)",
+        "unlabeled_signed_pair_profiles": "sorted multiset of the four-bin oriented sign profile for each unordered variable pair"
+      },
+      "candidates": [
+        "global_clause_sign_type_counts",
+        "unlabeled_signed_pair_profiles",
+        "labeled_signed_pair_profile"
+      ],
+      "clause_enumeration": "unordered literal pairs from [1,2,3,4,-1,-2,-3,-4] in combination order, excluding same-variable tautologies",
+      "domain": "five-clause subsets of the 24 non-tautological binary clauses on four labeled variables",
+      "representation": "signed variable occurrence counts and labeled unsigned variable-pair co-occurrence counts",
+      "representation_layout": "positive occurrence counts for variables 1..4, then negative occurrence counts for variables 1..4; then labeled unsigned pair counts in lexicographic variable-pair order",
+      "target": "satisfying-assignment count"
+    }
+  },
+  "endpoint_selection": {
+    "fibre": "maximum lexicographic tuple (target diameter, fibre multiplicity, repr(representation))",
+    "third_checker": "recompute the selected representation and both endpoint targets with a small direct checker",
+    "witness": "retain the first enumerated witness when a strict new minimum or maximum target is observed; equal-target witnesses do not replace it"
+  },
+  "execution_custody": {
+    "authorization_schema": "ORION.FiberGuardCleanroomExecutionAuthorization.v1",
+    "clean_checkout_required": true,
+    "completed_job": "3542082",
+    "completed_job_terminal": "C_FIBERGUARD_DISAGREEMENT__CANNOT_CHECK",
+    "duplicate_submission_forbidden": true,
+    "exact_implementation_commit_tree_required": true,
+    "exact_source_allowlist_required": true,
+    "external_authorization_required": true,
+    "run_directory": "OUTSIDE_REPOSITORY",
+    "terminal_without_authority": "BLOCKED_NO_LUNARC_EXECUTION_AUTHORITY__CANNOT_CHECK"
+  },
+  "post_execution_diagnostic": {
+    "corrected_successor_full_panel_execution": "NOT_RUN",
+    "correction_is_not_independent_replay": true,
+    "executed_implementation_commit": "1298ebdc817acad021dd6ee29598bd6aa5c46ff0",
+    "executed_result_sha256": "c9e6653ea5611cfcf61969f144998cb1538f04501157b43ef8ec32cf6dc628e9",
+    "scientific_terminal": "C_FIBERGUARD_DISAGREEMENT__CANNOT_CHECK"
+  },
+  "schema": "ORION.FiberGuardCleanroomSourceProtocol.v2",
+  "target_solver_rule": "two structurally different exact solvers must agree instance by instance or execution aborts"
+}
