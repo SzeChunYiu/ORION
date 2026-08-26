@@ -9,19 +9,24 @@
   "authorized_at_utc": "2026-08-26T15:29:46Z",
   "authority": "engineering_resource_pilot_only",
   "correction": {
-    "corrected_at_utc": "2026-08-26T15:50:42Z",
-    "corrects_packet_sha256": "d2c60f9f386a83c62d16dafe9e09a64055867053ddce4a90e6d6664f775ff3ae",
+    "corrected_at_utc": "2026-08-26T15:56:11Z",
+    "corrects_packet_sha256": "c29e6a4cd179b582947f466c088bd2f20dc0ff25d01883ff0e39bf35a9867fd9",
     "prior_correction": {
-      "corrected_at_utc": "2026-08-26T15:40:47Z",
-      "corrects_packet_sha256": "204e6492632cf8ac36c01ed8eaa9413cf4926b9a4ddf5a0e1741aad4b66b5d6f",
+      "corrected_at_utc": "2026-08-26T15:50:42Z",
+      "corrects_packet_sha256": "d2c60f9f386a83c62d16dafe9e09a64055867053ddce4a90e6d6664f775ff3ae",
       "prior_correction": {
-        "corrected_at_utc": "2026-08-26T15:34:55Z",
-        "corrects_packet_sha256": "7e42cbb10d40cf9249791af279823338da13205524276dbcaac5b66e3fa89809",
-        "reason": "Pre-submission LUNARC inspection showed that compute is not an active partition; no job was submitted."
+        "corrected_at_utc": "2026-08-26T15:40:47Z",
+        "corrects_packet_sha256": "204e6492632cf8ac36c01ed8eaa9413cf4926b9a4ddf5a0e1741aad4b66b5d6f",
+        "prior_correction": {
+          "corrected_at_utc": "2026-08-26T15:34:55Z",
+          "corrects_packet_sha256": "7e42cbb10d40cf9249791af279823338da13205524276dbcaac5b66e3fa89809",
+          "reason": "Pre-submission LUNARC inspection showed that compute is not an active partition; no job was submitted."
+        },
+        "reason": "Independent pre-submission review removed the remaining lu48 partition assumption, replaced the invalid combined Python module name with the verified two-module load sequence, and added an immutable noncircular submit-script binding before any job was submitted."
       },
-      "reason": "Independent pre-submission review removed the remaining lu48 partition assumption, replaced the invalid combined Python module name with the verified two-module load sequence, and added an immutable noncircular submit-script binding before any job was submitted."
+      "reason": "The first exact attempt failed before sbatch when the full remote checkout exceeded disk quota; the checkout was replaced without changing the frozen source, scientific payload, or non-duplication key by a blobless partial fetch and an exact two-directory sparse checkout."
     },
-    "reason": "The first exact attempt failed before sbatch when the full remote checkout exceeded disk quota; the checkout was replaced without changing the frozen source, scientific payload, or non-duplication key by a blobless partial fetch and an exact two-directory sparse checkout."
+    "reason": "The second exact attempt failed before sbatch because no default project was available; the valid lu48 association account lu2026-2-51 is now supplied explicitly without changing the scheduler-default partition, frozen source, scientific payload, or non-duplication key."
   },
   "bounded_denominator": {
     "candidate_edge_budget_per_invocation": 7,
@@ -124,11 +129,11 @@
   "schema_version": "nq-engine-a-lunarc-authorization-v1",
   "scientific_terminal": "CANNOT_CHECK",
   "submit_script_binding": {
-    "commit": "49d5c16da2be4b3c3cf6be3b120b259caa14ccb1",
-    "git_blob": "469f75ecb3568bba168a4f416b4cdd9c0b801a81",
+    "commit": "c11e46db77f48c8cb1674cea5a098bec8b2e8f32",
+    "git_blob": "ceea80dbb474590471c6169834768493c1fd25ae",
     "path": "papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/submit_nq_engine_a_bounded_pilot.sh",
-    "sha256": "c0b89dc0b72540e376135dbe9ad6eddf30900dee2e1582deec4e9db5c8eed8e8",
-    "tree": "4fbfd3b48891ffb18b60904109addee3e73d2440"
+    "sha256": "c8fc3f9173a66b210f9f307cb3a9a1929525e5d457345ab8745c0190c422b403",
+    "tree": "57642a99a8ef25a1bc22bc8e35641c964fa5f3f4"
   },
   "submission_attempt_history": [
     {
@@ -142,9 +147,23 @@
       "slurm_job_created": false,
       "source_changed": false,
       "terminal": "FAILED_PRE_SBATCH__DISK_QUOTA_EXCEEDED"
+    },
+    {
+      "account_added": "lu2026-2-51",
+      "attempted_at_utc": "CANNOT_CHECK",
+      "error": "No default project available at sbatch admission",
+      "non_duplication_root_after": "ABSENT",
+      "protocol_changed": false,
+      "queue_matching_entries_after": 0,
+      "recorded_at_utc": "2026-08-26T15:56:11Z",
+      "scientific_result_created": false,
+      "slurm_job_created": false,
+      "source_changed": false,
+      "terminal": "FAILED_PRE_SBATCH__NO_DEFAULT_PROJECT"
     }
   ],
   "slurm": {
+    "account": "lu2026-2-51",
     "cpus_per_task": 1,
     "job_name": "nq-ea-pilot",
     "memory_gib": 4,
