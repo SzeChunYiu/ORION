@@ -1,0 +1,115 @@
+name: five-paper-r17-c-fallback-alignment
+
+on:
+  push:
+    branches:
+      - chatgpt/r17-c-fallback-alignment-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_FALLBACK_ALIGNMENT_R17.md'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_fallback_alignment_r17.py'
+      - 'papers/five-paper-top-tier-r8/C/FALLBACK_ALIGNMENT_R17_RESULTS.json'
+      - '.github/workflows/five-paper-r17-c-fallback-alignment.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_FALLBACK_ALIGNMENT_R17.md'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_fallback_alignment_r17.py'
+      - 'papers/five-paper-top-tier-r8/C/FALLBACK_ALIGNMENT_R17_RESULTS.json'
+      - '.github/workflows/five-paper-r17-c-fallback-alignment.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-fallback-alignment-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile and replay twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          script="$root/verify_fiberguard_fallback_alignment_r17.py"
+          registered="$root/FALLBACK_ALIGNMENT_R17_RESULTS.json"
+          python -m py_compile "$script"
+          python "$script" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/result-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$registered"
+          grep -q '^FIBERGUARD_FALLBACK_ALIGNMENT_R17_PASS ' "$RUNNER_TEMP/terminal-a.txt"
+
+      - name: Verify exact identities and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          result = json.loads(
+              (Path(os.environ['RUNNER_TEMP']) / 'result-a.json').read_text()
+          )
+          assert result['schema'] == 'ORION.FiberGuard.FallbackAlignment.R17.v1'
+          assert result['source_base_commit'] == '6bc502966c6d8f2a7a97db234a4c20216e6feac9'
+          assert result['terminal'] == 'FIBERGUARD_FALLBACK_ALIGNMENT_R17_PASS'
+          assert all(result['controls'].values())
+
+          identities = result['random_exact_identities']
+          assert identities == {
+              'systems': 5000,
+              'mean_identity_checks': 5000,
+              'binary_event_identity_checks': 5000,
+              'robust_identity_checks': 5000,
+              'strict_robust_criterion_checks': 5000,
+          }
+          sorting = result['optimal_rejection_sorting']
+          assert sorting['systems'] == 1000
+          assert sorting['explicit_rejection_subsets'] == 74676
+          paired = result['paired_upper_routing']
+          assert paired['systems'] == 3000
+          assert paired['valid_paired_state_checks'] == 39338
+          assert paired['systems_with_strict_route_gain_over_both_fixed_arms'] == 2704
+          assert result['certificate_only_impossibility']['calibrated_learned_action_attacks'] == 100
+
+          r16 = result['R16_exact_instantiation']
+          assert r16['SAT16_MAIN']['fallback_minus_learned_mean_on_rejected'].startswith('4994.1812')
+          assert r16['SAT18_EXP']['fallback_minus_learned_mean_on_rejected'].startswith('26604.0724')
+          assert r16['SAT20_MAIN']['fallback_minus_learned_mean_on_rejected'] == '-686.70723953125'
+
+          authority = result['authority']
+          assert authority['R16_terminal_preserved'] == 'FIBERGUARD_R16_NO_PORTABLE_CERTIFICATE_VALUE'
+          assert authority['paired_fallback_certificate_executed_on_ASlib'] is False
+          assert authority['strongest_algorithm_selection_baseline_complete'] is False
+          assert authority['production_value'] is False
+          assert authority['grants_journal_authority'] is False
+          print('FALLBACK_ALIGNMENT_R17_RESULT_VERIFIED')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage immutable audit artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-fallback-alignment-r17"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/FALLBACK_ALIGNMENT_R17_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-fallback-alignment-r17
+          path: ${{ runner.temp }}/fiberguard-fallback-alignment-r17/
+          if-no-files-found: error
+          retention-days: 30
