@@ -1,0 +1,34 @@
+{
+  "schema": "ORION.AB.ProductionGrammarR9.v1",
+  "grammar_id": "F2D5_XOR_AGGREGATION",
+  "dimension": 5,
+  "alphabet": {
+    "carrier": "F_2^5 minus zero",
+    "encoding": "integers 1 through 31 with bitwise XOR",
+    "size": 31
+  },
+  "states": {
+    "type": "finite multiset",
+    "admissibility": [
+      "every letter is nonzero",
+      "the total XOR is nonzero"
+    ]
+  },
+  "semantics": {
+    "observable": "total XOR",
+    "equivalence": "states are semantically equivalent exactly when their total XOR agrees"
+  },
+  "support_functional": "multiset cardinality",
+  "objective": {
+    "direction": "minimize",
+    "value": "multiset cardinality"
+  },
+  "weak_proof_language": ["DELETE_ZERO"],
+  "complete_production_language": ["DELETE_ZERO", "FUSE_DISTINCT_PAIR"],
+  "completeness_statement": "The production grammar is defined to admit exactly the two universally quantified schemas in complete_production_language; no auxiliary, global, or cross-component state exists outside the multiset.",
+  "scope_exclusions": [
+    "not a claimed equivalent of every TARE implementation",
+    "not a physical circuit-resource model",
+    "not an algorithm-independent runtime model"
+  ]
+}
