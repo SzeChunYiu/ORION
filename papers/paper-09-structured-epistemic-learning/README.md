@@ -4,6 +4,17 @@ Working title: **When Structure Is the Model: Causal Information/Accessibility/C
 
 Target venue: **Transactions on Machine Learning Research (TMLR)**, subject to the final current-donor and package gate.
 
+## Canonical current pointers
+
+- **Current science manuscript:** `manuscript/main.tex`
+- **Current authority:** `P9_ACTIVE_CLAIM_AUTHORITY_V1.json`
+- **Current readiness:** `JOURNAL_READINESS.md`
+
+`JOURNAL_READINESS.md` is the historical bounded review-branch ledger, not
+authority for the later causal-diagnostic endpoint or for submission. The
+active-authority record scopes that ledger and the pre-result claim ledger
+without rewriting their append-only history.
+
 ## Current scientific identity
 
 P9 is no longer a pre-result architecture proposal. Its current top-tier object is a **causal diagnostic of failure location**: when a task fails, distinguish missing semantic information, inaccessible information/representation, insufficient computation, and missing method/coverage rather than escalating model size or compute generically.
