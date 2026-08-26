@@ -14,12 +14,7 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 CHECKER_PATH = REPO_ROOT / "scripts/check_orion_v1_freeze.py"
 PACKAGE = Path("research/orion-v1-freeze")
 MANIFEST = PACKAGE / "V1_FREEZE_MANIFEST_V1.json"
-FIXED = [
-    Path("development/orion-v1-freeze-control-plane-2026-08-26/DEVELOPMENT_PACKET.md"),
-    Path("scripts/check_orion_v1_freeze.py"),
-    Path("tests/unit/orion_v1/test_orion_v1_freeze.py"),
-    Path(".github/workflows/orion-v1-freeze.yml"),
-]
+
 
 
 def _load_checker() -> ModuleType:
@@ -32,6 +27,7 @@ def _load_checker() -> ModuleType:
 
 CHECKER = _load_checker()
 ValidationError = CHECKER.ValidationError
+FIXED = [Path(p) for p in sorted(CHECKER.FIXED)]
 
 
 def _copy_control_plane(tmp_path: Path) -> Path:
@@ -73,14 +69,14 @@ def test_bootstrap_package_validates() -> None:
     assert summary["counts"] == {
         "components": 14,
         "theorem_authority_rows": 10,
-        "issues": 52,
-        "pending_issue_audits": 42,
+        "issues": 159,
+        "pending_issue_audits": 0,
         "jobs": 8,
         "gaps": 9,
-        "open_internal_gaps": 6,
+        "open_internal_gaps": 5,
         "external_blockers": 3,
         "paper_candidates": 3,
-        "manifest_files": 13,
+        "manifest_files": 14,
     }
 
 

@@ -26,6 +26,7 @@ FILES = {
 FIXED = {
     "development/orion-v1-freeze-control-plane-2026-08-26/DEVELOPMENT_PACKET.md",
     "scripts/check_orion_v1_freeze.py",
+    "scripts/check_v1_issue_denominator.py",
     "tests/unit/orion_v1/test_orion_v1_freeze.py",
     ".github/workflows/orion-v1-freeze.yml",
 }

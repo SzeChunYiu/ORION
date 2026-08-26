@@ -31,7 +31,14 @@
       "discharge_job": "V1-CENSUS-01",
       "gap_id": "GAP-INTERNAL-ISSUE-CENSUS",
       "owner": "CODEX_COMPUTATION_SESSION",
-      "status": "OPEN"
+      "resolution_evidence": {
+        "census": "research/orion-v1-freeze/census-20260826/complete/OPEN_ISSUES.json",
+        "census_terminal": "V1_OPEN_ISSUE_CENSUS_COMPLETE",
+        "independent_checker": "scripts/check_v1_issue_denominator.py",
+        "open_issue_denominator": 159,
+        "pending_atomic_audits": 0
+      },
+      "status": "RESOLVED"
     },
     {
       "blocks_freeze": true,

@@ -13,18 +13,17 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 PKG = Path("research/orion-v1-freeze")
 MANIFEST = "V1_FREEZE_MANIFEST_V1.json"
 RECEIPT = "V1_BOOTSTRAP_RECEIPT_V1.json"
-FIXED = {
-    "development/orion-v1-freeze-control-plane-2026-08-26/DEVELOPMENT_PACKET.md",
-    "scripts/check_orion_v1_freeze.py",
-    "tests/unit/orion_v1/test_orion_v1_freeze.py",
-    ".github/workflows/orion-v1-freeze.yml",
-}
+# Imported, never duplicated: a second copy of this set would silently drift
+# from the checker's and the manifest would then bind the wrong file list.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from check_orion_v1_freeze import FIXED  # noqa: E402
 
 
 def load(root: Path, name: str) -> dict[str, Any]:
