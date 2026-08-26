@@ -76,7 +76,7 @@ def main() -> None:
         req(manuscript.is_file(), f"{paper_id} manuscript")
         text = manuscript.read_text()
         lower = text.lower()
-        req(f"{paper_id}-DES-01" in text, f"{paper_id} job binding")
+        req(f"ORION-{index + 10}-DES-01" in text, f"{paper_id} job binding")
         req("paper_authority_delta = NONE" in text, f"{paper_id} authority boundary")
         req("absorbs" in lower, f"{paper_id} nearest-work absorption gate")
         req(
