@@ -1,0 +1,87 @@
+name: five-paper-r13-c-monotone-risk-frontier
+
+on:
+  push:
+    branches:
+      - chatgpt/r13-c-monotone-risk-frontier-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_MONOTONE_RISK_FRONTIER_R13.md'
+      - 'papers/five-paper-top-tier-r8/C/MONOTONE_RISK_FRONTIER_PRIOR_ART_R13.md'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_monotone_risk_frontier_r13.py'
+      - '.github/workflows/five-paper-r13-c-monotone-risk-frontier.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_MONOTONE_RISK_FRONTIER_R13.md'
+      - 'papers/five-paper-top-tier-r8/C/MONOTONE_RISK_FRONTIER_PRIOR_ART_R13.md'
+      - 'papers/five-paper-top-tier-r8/C/verify_fiberguard_monotone_risk_frontier_r13.py'
+      - '.github/workflows/five-paper-r13-c-monotone-risk-frontier.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  monotone-risk-controls:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile exact verifier
+        run: |
+          python -m py_compile \
+            papers/five-paper-top-tier-r8/C/fiberguard_profile_bellman_r12_core.py \
+            papers/five-paper-top-tier-r8/C/verify_fiberguard_monotone_risk_frontier_r13.py
+      - name: Replay twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='papers/five-paper-top-tier-r8/C/verify_fiberguard_monotone_risk_frontier_r13.py'
+          result='papers/five-paper-top-tier-r8/C/MONOTONE_RISK_FRONTIER_R13_RESULTS.json'
+          python "$script" > "$RUNNER_TEMP/terminal-a.txt"
+          cp "$result" "$RUNNER_TEMP/result-a.json"
+          python "$script" > "$RUNNER_TEMP/terminal-b.txt"
+          cp "$result" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          grep -q '^FIBERGUARD_MONOTONE_RISK_FRONTIER_R13_PASS$' "$RUNNER_TEMP/terminal-a.txt"
+      - name: Enforce controls and authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, pathlib
+          row=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'result-a.json').read_text())
+          assert row['schema']=='ORION.FiberGuard.MonotoneRiskFrontier.R13.v1'
+          assert row['status']=='FIBERGUARD_MONOTONE_RISK_FRONTIER_R13_PASS'
+          exact=row['exhaustive_profile_controls']
+          assert exact['profile_sets']==766
+          assert exact['strict_isotone_separators']==1058
+          assert exact['monotone_risk_equalities']==16080
+          assert row['adaptive_profile_controls']['adaptive_systems']==80
+          assert row['unsupported_scalarization_control']['weighted_sum_grid_points_rejecting_robust_optimum']==101
+          authority=row['authority']
+          assert authority['universal_theorem_from_computation'] is False
+          assert authority['generic_pareto_theory_claimed_novel'] is False
+          assert authority['randomized_minimax_claimed_here'] is False
+          assert authority['heldout_transfer_established'] is False
+          assert authority['journal_authority'] is False
+          print('MONOTONE_RISK_FRONTIER_AUTHORITY_VERIFIED')
+          PY
+      - name: Stage artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-monotone-risk-frontier-r13"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/MONOTONE_RISK_FRONTIER_R13_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-monotone-risk-frontier-r13
+          path: ${{ runner.temp }}/fiberguard-monotone-risk-frontier-r13/
+          if-no-files-found: error
+          retention-days: 30
