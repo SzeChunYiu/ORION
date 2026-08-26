@@ -1,0 +1,4247 @@
+{
+  "authority_delta": "NONE",
+  "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+  "components": {
+    "CERTIFIED_ALGORITHMIC_NAVIGATION": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 707,
+          "kind": "tree",
+          "oid": "b1bb960f2284768e386eab04e97e3bcf1796c15c",
+          "path": "src/orion/"
+        }
+      ]
+    },
+    "DISCOVERY_SYNTHESIS_MODES": {
+      "absent_paths": [
+        "src/orion/discovery/synthesis_modes.py",
+        "src/orion/discovery/structural_navigation.py"
+      ],
+      "bindings": []
+    },
+    "DYNAMIC_EPISTEMIC_STATE": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 321,
+          "kind": "tree",
+          "oid": "4fb5dcab2637649e553a0a2ae593157f72398546",
+          "path": "research/orion-epistemic-state-v1/"
+        }
+      ]
+    },
+    "EXECUTION_INTEGRITY_AND_RECEIPTS": {
+      "absent_paths": [
+        "src/orion/execution/"
+      ],
+      "bindings": [
+        {
+          "files": 170,
+          "kind": "tree",
+          "oid": "a8687e4ae24d4c882ad3320b2f56a83d40a0d918",
+          "path": "packages/orion-research-harness/"
+        },
+        {
+          "files": 33,
+          "kind": "tree",
+          "oid": "1d1602e456cc85c73f430bd4543583b5142c9196",
+          "path": "src/orion/kernel/"
+        }
+      ]
+    },
+    "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 11,
+          "kind": "tree",
+          "oid": "797dd7556e0d73b7b97ff6b1e8d629bc6f57accd",
+          "path": "research/orion-discovery-v3/"
+        },
+        {
+          "kind": "blob",
+          "oid": "c20ef9b40c39cd65d7d53f8296223ccc01bda305",
+          "path": "src/orion/discovery/frontier_dominance.py",
+          "sha256": "69e791a6dcbecee6d09ec27dfea19a2b2e8561317b3677bb65bcc8d76f231f15"
+        }
+      ]
+    },
+    "KNOWLEDGE_WEB_AND_PROOF_ECONOMY": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 45,
+          "kind": "tree",
+          "oid": "a66b22fc61e334ba774015e309100537b5950787",
+          "path": "research/orion-discovery-v2/"
+        }
+      ]
+    },
+    "ORION_Q_TYPED_RESEARCH_STATE": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 139,
+          "kind": "tree",
+          "oid": "81c0d03d5f3da35c6f35dfdd6d523ac8f180847c",
+          "path": "research/extensions/orion-q/"
+        },
+        {
+          "files": 137,
+          "kind": "tree",
+          "oid": "c97cf3f12c6c9f8707bc75a9788a7e3a97352964",
+          "path": "development/orion-q-max-r0/"
+        }
+      ]
+    },
+    "OSTC_FOUNDATIONS": {
+      "absent_paths": [
+        "src/orion/foundations/"
+      ],
+      "bindings": [
+        {
+          "files": 150,
+          "kind": "tree",
+          "oid": "359289f1a7b0af6f9db7a92bc0ae478bbe15501f",
+          "path": "research/orion-foundations-v3/"
+        }
+      ]
+    },
+    "P16_P18_PUBLICATION_CANDIDATES": {
+      "absent_paths": [],
+      "bindings": []
+    },
+    "P1_P15_SCIENTIFIC_PROGRAMME": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 3701,
+          "kind": "tree",
+          "oid": "1a5a8f5f28c22d85e5e792778b42d47236da7258",
+          "path": "papers/"
+        },
+        {
+          "files": 74,
+          "kind": "tree",
+          "oid": "599811e305d8abbb49fe61dcb76d971e51a3155d",
+          "path": "research/paper-programme-v1/"
+        }
+      ]
+    },
+    "POST_FREEZE_EXTERNAL_EXECUTION": {
+      "absent_paths": [],
+      "bindings": []
+    },
+    "QUANTUM_QG_QN_FRONTIER": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 2189,
+          "kind": "tree",
+          "oid": "a0803af9f4ce221580f9d82718d94109d13da204",
+          "path": "research/"
+        },
+        {
+          "files": 4015,
+          "kind": "tree",
+          "oid": "6744fb44cfca333403e64d8a1d697090010babef",
+          "path": "development/"
+        }
+      ]
+    },
+    "THEOREM_IDENTIFYING_DISCOVERY": {
+      "absent_paths": [],
+      "bindings": [
+        {
+          "files": 14,
+          "kind": "tree",
+          "oid": "20c1ded7e21e2223f6ff24ad30ea46335765cf61",
+          "path": "research/orion-discovery-v1/"
+        },
+        {
+          "files": 25,
+          "kind": "tree",
+          "oid": "9a80ccf816a37e5c6b4a23292527d02bfb7cc33f",
+          "path": "src/orion/discovery/"
+        }
+      ]
+    },
+    "V1_FREEZE_CONTROL_PLANE": {
+      "absent_paths": [
+        "research/orion-v1-freeze/",
+        "scripts/check_orion_v1_freeze.py"
+      ],
+      "bindings": []
+    }
+  },
+  "components_with_absent_paths": [
+    "DISCOVERY_SYNTHESIS_MODES",
+    "EXECUTION_INTEGRITY_AND_RECEIPTS",
+    "OSTC_FOUNDATIONS",
+    "V1_FREEZE_CONTROL_PLANE"
+  ],
+  "components_with_no_binding": [
+    "DISCOVERY_SYNTHESIS_MODES",
+    "P16_P18_PUBLICATION_CANDIDATES",
+    "POST_FREEZE_EXTERNAL_EXECUTION",
+    "V1_FREEZE_CONTROL_PLANE"
+  ],
+  "dependency_edges": [
+    {
+      "backed": true,
+      "from": "DYNAMIC_EPISTEMIC_STATE",
+      "reason": null,
+      "to": "OSTC_FOUNDATIONS",
+      "witness": {
+        "file": "research/orion-epistemic-state-v1/results/DES-CENSUS-01/LABEL_CENSUS_V1.json",
+        "token": "foundations"
+      }
+    },
+    {
+      "backed": true,
+      "from": "THEOREM_IDENTIFYING_DISCOVERY",
+      "reason": null,
+      "to": "OSTC_FOUNDATIONS",
+      "witness": {
+        "file": "research/orion-discovery-v1/AI_EXECUTOR_PROMPT_V1.md",
+        "token": "foundations"
+      }
+    },
+    {
+      "backed": false,
+      "from": "THEOREM_IDENTIFYING_DISCOVERY",
+      "reason": "NO_TYPED_INTERFACE_WITNESS",
+      "to": "DYNAMIC_EPISTEMIC_STATE",
+      "witness": null
+    },
+    {
+      "backed": true,
+      "from": "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "reason": null,
+      "to": "THEOREM_IDENTIFYING_DISCOVERY",
+      "witness": {
+        "file": "research/orion-discovery-v2/EXECUTION_BACKLOG_V1.json",
+        "token": "discovery"
+      }
+    },
+    {
+      "backed": false,
+      "from": "DISCOVERY_SYNTHESIS_MODES",
+      "reason": "NO_OWN_FILES",
+      "to": "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "witness": null
+    },
+    {
+      "backed": true,
+      "from": "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "reason": null,
+      "to": "DISCOVERY_SYNTHESIS_MODES",
+      "witness": {
+        "file": "research/orion-discovery-v3/AI_EXECUTOR_PROMPT_V1.md",
+        "token": "discovery"
+      }
+    },
+    {
+      "backed": false,
+      "from": "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "reason": "NO_TYPED_INTERFACE_WITNESS",
+      "to": "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "witness": null
+    },
+    {
+      "backed": true,
+      "from": "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "reason": null,
+      "to": "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "witness": {
+        "file": "src/orion/benchmarks/authority_attacks.py",
+        "token": "discovery"
+      }
+    },
+    {
+      "backed": false,
+      "from": "EXECUTION_INTEGRITY_AND_RECEIPTS",
+      "reason": "NO_TYPED_INTERFACE_WITNESS",
+      "to": "OSTC_FOUNDATIONS",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "P1_P15_SCIENTIFIC_PROGRAMME",
+      "reason": "NO_TYPED_INTERFACE_WITNESS",
+      "to": "DYNAMIC_EPISTEMIC_STATE",
+      "witness": null
+    },
+    {
+      "backed": true,
+      "from": "P1_P15_SCIENTIFIC_PROGRAMME",
+      "reason": null,
+      "to": "EXECUTION_INTEGRITY_AND_RECEIPTS",
+      "witness": {
+        "file": "papers/ACADEMIC_REFINEMENT_2026-08-20.md",
+        "token": "execution"
+      }
+    },
+    {
+      "backed": false,
+      "from": "ORION_Q_TYPED_RESEARCH_STATE",
+      "reason": "NO_TYPED_INTERFACE_WITNESS",
+      "to": "OSTC_FOUNDATIONS",
+      "witness": null
+    },
+    {
+      "backed": true,
+      "from": "ORION_Q_TYPED_RESEARCH_STATE",
+      "reason": null,
+      "to": "THEOREM_IDENTIFYING_DISCOVERY",
+      "witness": {
+        "file": "development/orion-q-max-r0/DEVELOPMENT_PACKET.md",
+        "token": "discovery"
+      }
+    },
+    {
+      "backed": true,
+      "from": "QUANTUM_QG_QN_FRONTIER",
+      "reason": null,
+      "to": "ORION_Q_TYPED_RESEARCH_STATE",
+      "witness": {
+        "file": "development/orion-q-max-r0/DEVELOPMENT_PACKET.md",
+        "token": "orion-q-max-r0"
+      }
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "OSTC_FOUNDATIONS",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "DYNAMIC_EPISTEMIC_STATE",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "THEOREM_IDENTIFYING_DISCOVERY",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "DISCOVERY_SYNTHESIS_MODES",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "EXECUTION_INTEGRITY_AND_RECEIPTS",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "P1_P15_SCIENTIFIC_PROGRAMME",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "ORION_Q_TYPED_RESEARCH_STATE",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "V1_FREEZE_CONTROL_PLANE",
+      "reason": "NO_OWN_FILES",
+      "to": "QUANTUM_QG_QN_FRONTIER",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "P16_P18_PUBLICATION_CANDIDATES",
+      "reason": "NO_OWN_FILES",
+      "to": "V1_FREEZE_CONTROL_PLANE",
+      "witness": null
+    },
+    {
+      "backed": false,
+      "from": "POST_FREEZE_EXTERNAL_EXECUTION",
+      "reason": "NO_OWN_FILES",
+      "to": "V1_FREEZE_CONTROL_PLANE",
+      "witness": null
+    }
+  ],
+  "diagnosis": {
+    "absent_declared_paths": {
+      "DISCOVERY_SYNTHESIS_MODES": [
+        "src/orion/discovery/synthesis_modes.py",
+        "src/orion/discovery/structural_navigation.py"
+      ],
+      "EXECUTION_INTEGRITY_AND_RECEIPTS": [
+        "src/orion/execution/"
+      ],
+      "OSTC_FOUNDATIONS": [
+        "src/orion/foundations/"
+      ],
+      "V1_FREEZE_CONTROL_PLANE": [
+        "research/orion-v1-freeze/",
+        "scripts/check_orion_v1_freeze.py"
+      ]
+    },
+    "absent_verification": "basename search over all 11857 frozen-tree files: synthesis_modes and structural_navigation occur nowhere; src/orion has no foundations/ or execution/ directory",
+    "ambiguous_owner_root_cause": [
+      "QUANTUM_QG_QN_FRONTIER declares research/ and development/, the entire research and development trees, so it also owns the declared paths of OSTC_FOUNDATIONS, DYNAMIC_EPISTEMIC_STATE, KNOWLEDGE_WEB_AND_PROOF_ECONOMY, ORION_Q_TYPED_RESEARCH_STATE and P1_P15_SCIENTIFIC_PROGRAMME (866 of 949 duplicate files)",
+      "CERTIFIED_ALGORITHMIC_NAVIGATION declares src/orion/, the whole package, so it also owns src/orion/kernel/ (EXECUTION_INTEGRITY_AND_RECEIPTS, 33 files) and src/orion/discovery/ (THEOREM_IDENTIFYING_DISCOVERY)"
+    ],
+    "census_status": "COMPLETE \u2014 every declared component path was resolved against the frozen tree",
+    "component_status": "NOT_FREEZE_READY \u2014 the declared graph is not a partition",
+    "incomplete_declaration": "DYNAMIC_EPISTEMIC_STATE declares only research/orion-epistemic-state-v1/ although src/orion/epistemic_state_v1/ exists in the frozen tree",
+    "successor_required": "narrow the two catch-all path declarations to real ownership, implement or retire DISCOVERY_SYNTHESIS_MODES, and either witness or explicitly open the 5 unwitnessed edges, before architecture_and_local_formalism_frozen can hold",
+    "unbacked_edges": {
+      "NO_OWN_FILES": "14 edges from the four components that own no files at the frozen base",
+      "NO_TYPED_INTERFACE_WITNESS": "5 edges with no reference from the dependent's own files into the dependency",
+      "detector_validation": "the token matcher was normalized across - and _ spellings after it was suspected of false negatives; git grep -E 'epistemic[-_]state[-_]v1' over papers and src/orion/study independently returns 0 matches, confirming the P1_P15 -> DYNAMIC_EPISTEMIC_STATE edge is genuinely unwitnessed"
+    },
+    "v1_freeze_control_plane_note": "its two paths are absent at ef51b7b9 because this lane created them after the frozen base. Measurement boundary, not a missing implementation."
+  },
+  "duplicate_ownership": {
+    "development/orion-q-max-r0/DEVELOPMENT_PACKET.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/DUAL_HARNESS_LANE_B_RECEIPT.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/HARNESS_R6_DRIVE_VERIFICATION_2026-08-21.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R1_OPERATOR_ARBITRATION_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R2_CROSS_DOMAIN_RESEARCH_OPERATOR_TRANSFER_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R3E_PERSISTENT_SKILL_STREAM_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R3E_PROTECTED_SKILL_ADMISSION_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R3_METHOD_LANGUAGE_EXPANSION_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R4A_CONFIRMATORY_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R4B_TARE_SPLIT_MAJORISATION_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R4C_HETEROGENEOUS_PAIR_COMPILER_CONFIRMATORY_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R4D_EXACT_TARE_PAIR_RESOURCE_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R4D_SYMPLECTIC_PAIR_COMPILER_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R4EA_AUTHORITY_INDEXED_ROUTER_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R4EB0_HELDOUT_QG32_FORECAST_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R4EB1_PROTECTED_RUN_RECEIPT_2026-08-22.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R4EB1_SIXLCU_LABEL_VALUE_FORECAST_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R4E_QG_SKILL_REPLAY_CALIBRATION_PROTOCOL_V1.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R4_GROUPED_SPARSE_QSVT_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R5B_PROOF_CARRYING_REPLAY_AND_OUTER_ACCOUNTING_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R5B_PROTOCOL_ERRATUM_1.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R5D_BASELINE_BINDING_ERRATUM.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R5D_CONTROLLED_MULTIWINDOW_DEVELOPMENT_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R5E_TRUE_INCUMBENT_12TERM_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R5F_H4_TRUE_INCUMBENT_CONFIRMATION_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R5G_H4_INDEPENDENT_REPLAY_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R5H_MIXED_CARDINALITY_DONOR_COMPOSED_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R5I_GENERAL_M_TARE_DONOR_RELAXATION_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R5J_ANCHORED_DEPENDENT_TARE3_DEVELOPMENT_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R5_N2_JOINT_INTERNAL_RESOURCE_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6B_TARE_TRANSFORMATION_REUSE_DONOR_ABSORPTION_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6C_DUAL_LANE_RESIDUAL_DIAGNOSIS_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6D_SIXTERM_PARTITION_REPRESENTATION_COOPT_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6E_DEEP_P10_EXACT_FRAME_SATURATION_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6F_DONOR_CLIFFORD_PRECONDITIONED_TARE3_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6G_JOINT_CLIFFORD_TARE3_COOPT_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6H_PARTIAL_TAG_SHARING_DONOR_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6J_PARTIAL_RESTORE_FACTOR_DONOR_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_ERRATUM_1.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6N_SUPPORT_DOMINANCE_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6O_ENLARGED_TAG_DONOR_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6Q_REGIME_PREDICATE_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6S_ALL_N_COMPOSITION_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_COEFFICIENT_FACTORISATION_DONOR_ABSORPTION.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_DONOR_CLOSURE_COMPUTATION_PACKET.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_1.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_2.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_EXACT_TARE3_DP_ERRATUM_3.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_EXACT_TARE3_FINAL_HOSTILE_NOVELTY_FREEZE.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_EXACT_TARE3_JOINT_FRAME_DP_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_EXACT_TARE3_PROSPECTIVE_ERRATUM_1.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_EXACT_TARE3_PROSPECTIVE_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_INTERFACE_CLOSURE_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_NATIVE_METHOD_LANGUAGE_GATE_ERRATUM_1.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_NATIVE_METHOD_LANGUAGE_GATE_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_NATIVE_SELF_ORION_CONTROL_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_NOVELTY_SATURATION_PREAUDIT.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_P10_CANDIDATE_BLIND_FRAME_OPTIMIZER_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/MAX_R6_P10_FRAME_OPTIMIZER_ERRATUM_1.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/ORION_Q_RESEARCH_HARNESS_V1_ERRATUM_1.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/ORION_Q_RESEARCH_HARNESS_V1_PROTOCOL.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/PROGRAMME_CLOSURE_PACKET_2026-08-21.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/DUAL_HARNESS_LANE_A_RECEIPT.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/problems/6c814a704e77f4c53bb6ec0ae2b40d71d94032baaf553d1e67a051a37a18437e.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/09e1110e1f82b9897a7bb49bc191a3461dc913c7662cdbbeef47f857d16c95e2.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/0e9baccb8a6889348a8b2e7fe176335b8d0db881f753af989fefcce915884836.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/1287ce6f66808e76ae4d8ef366d21f580ec70efc10bd198824f7844dac7a6fc4.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/1293d0f49f1087eb5f2a07d565c2659c149563ce6fb7fc44384e1fcb0ad5c0a3.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/2402a11afed5c441b8cbbb5c0f6d10c6218cdc933baf7c3c201555854ba62fcd.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/2d1369f798c8be13a6023a763aeb068ba298382da1353d8e274ddc430b529935.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/39a1b027eb603612a4459710215563d6597805ad7ee495d9d967af7b0ff053b8.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/414e4683dd13d50f612ef4cdf9b4786a7c073098dcb4f647abde5a99e15e0c26.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/4271679b6982922c42e675d7be1da6d174959788b6c378a12e777ad223e621ee.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/472af8c44954380bada07379752e9229185538539fbc73d1589dc50ea2f5419b.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/781b2f923caf7dd79f35881f2a642139962f1404addd99af45cef9d9230fd7c5.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/8fd6e237794d41b579b39e8f8e26283a2e083771f46be59f88040d8721f71fd2.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/add53f92b568e45cb25bd3afa86903f158963f542138ea8bdc73bf6f740734b1.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/d1a511d7ab78e991959b840a437aec8dc3d512bff0cc6e803065baafa8a6a579.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/requests/d756cd6ef15fae0201b29c0d5953eca7390ddae720b900c2b9ea9c021e28f35b.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/09e1110e1f82b9897a7bb49bc191a3461dc913c7662cdbbeef47f857d16c95e2.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/0e9baccb8a6889348a8b2e7fe176335b8d0db881f753af989fefcce915884836.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/1287ce6f66808e76ae4d8ef366d21f580ec70efc10bd198824f7844dac7a6fc4.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/1293d0f49f1087eb5f2a07d565c2659c149563ce6fb7fc44384e1fcb0ad5c0a3.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/2402a11afed5c441b8cbbb5c0f6d10c6218cdc933baf7c3c201555854ba62fcd.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/2d1369f798c8be13a6023a763aeb068ba298382da1353d8e274ddc430b529935.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/39a1b027eb603612a4459710215563d6597805ad7ee495d9d967af7b0ff053b8.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/414e4683dd13d50f612ef4cdf9b4786a7c073098dcb4f647abde5a99e15e0c26.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/4271679b6982922c42e675d7be1da6d174959788b6c378a12e777ad223e621ee.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/472af8c44954380bada07379752e9229185538539fbc73d1589dc50ea2f5419b.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/781b2f923caf7dd79f35881f2a642139962f1404addd99af45cef9d9230fd7c5.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/8fd6e237794d41b579b39e8f8e26283a2e083771f46be59f88040d8721f71fd2.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/add53f92b568e45cb25bd3afa86903f158963f542138ea8bdc73bf6f740734b1.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/d1a511d7ab78e991959b840a437aec8dc3d512bff0cc6e803065baafa8a6a579.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/results/d756cd6ef15fae0201b29c0d5953eca7390ddae720b900c2b9ea9c021e28f35b.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/runs/72b84804a02eef26f53d8ab04e13961414d155cdceafadfe58ebc846c30f4256.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/dual-harness-benchmark-v0/lane-a-receipts/session.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/CAMPAIGN_RUN_RECEIPT.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-cycles/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000000-a65b6545baee99e5.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-cycles/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000001-77c064f24b250c5e.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-cycles/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000002-df9cf95158212d11.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-cycles/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000003-b81c95ea02d1328f.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-states/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000000.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-states/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000001.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-states/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000002.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-states/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000003.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaign-states/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc/00000004.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/campaigns/e6c7f72d033b1f9ec57a5d9934244baa2949197f5fbc5ecd9a1d018b502578cc.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/requests/097807232fd53e73a9c553f079bf15cc92ba4e45cdc58c7cdd7db9fddee86c11.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/requests/573c7b2e9c41a56b624bc19472f5e2a8f4def83406d4e3c127956202bd8d1178.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/requests/974144b14085332c8eac5a3ca0186b4d7e7059308b416857c9d21904f35e57d5.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/requests/ebc1bbb83d17b1ac33fb54000843cc0c6e42fbcf60a993c75bbe3fb4f0db98e2.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/results/097807232fd53e73a9c553f079bf15cc92ba4e45cdc58c7cdd7db9fddee86c11.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/results/573c7b2e9c41a56b624bc19472f5e2a8f4def83406d4e3c127956202bd8d1178.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/results/974144b14085332c8eac5a3ca0186b4d7e7059308b416857c9d21904f35e57d5.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/results/ebc1bbb83d17b1ac33fb54000843cc0c6e42fbcf60a993c75bbe3fb4f0db98e2.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/harness-r6-drive-2026-08-21/session.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/max_r4e_qg_skill_replay_generic_verify.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/max_r4e_qg_skill_replay_native_verify.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/max_r4ea_generic_verify.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/max_r4ea_native_verify.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/max_r4eb0_generic_verify.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/max_r4eb0_native_verify.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/max_r4eb1_generic_verify.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/max_r4eb1_native_verify.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/run_max_r4ea_dual_harness.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/run_max_r4eb0_dual_harness.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/run_max_r4eb1_dual_harness.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/suite-confirmation-2026-08-21/JUNIT_FULL_SUITE.xml": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "development/orion-q-max-r0/suite-confirmation-2026-08-21/SUITE_RECEIPT.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/CLOSURE_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/DONOR_STRUCTURAL_MATRIX_V0.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/DONOR_STRUCTURAL_MATRIX_V1.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/DONOR_STRUCTURAL_MATRIX_V2.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/DONOR_SUPERSYSTEM_V1.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R0_HETEROGENEOUS_ARENA_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R1_OPERATOR_ARBITRATION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R2_KNOWN_OPERATOR_TRANSFER_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R3B_JOINT_OBLIGATION_BINDING_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R3E_MILESTONE.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R3E_PERSISTENT_SKILL_STREAM_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R3E_PROTECTED_SKILL_ADMISSION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R4A_GROUPED_SPARSE_QSVT_CONFIRMATORY_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R4B_TARE_SPLIT_MAJORISATION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R4C_FRESH_H2_HETEROGENEOUS_PAIR_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R4D_H2O_DUCC_CONFIRMATION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R4EA_AUTHORITY_INDEXED_ROUTER_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R4EB0_HELDOUT_QG32_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R4EB1_SIXLCU_LABEL_VALUE_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R4E_QG_SKILL_REPLAY_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R5B_N2_PROOF_OUTER_REPLAY_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R5_N2_JOINT_INTERNAL_CONFIRMATION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6N_SUPPORT_DOMINANCE_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6Q_REGIME_PREDICATE_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6R_PROSPECTIVE_FRESH_SUBJECT_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6_DONOR_CLOSURE_H4_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6_FOQCS_INTERFACE_ENVELOPE_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N0_STATE.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N1_STATE.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6_NATIVE_CONTROL_N2_STATE.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/MAX_R6_NATIVE_SELF_ORION_N0_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/NO_MAN_LAND_INTERFACE_FREEZE_V1.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/PROGRAMME_CLOSURE_2026-08-20.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/PROGRAMME_TERMINALS_2026-08-20.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/S0_REOPEN_2026-08-20.md": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/closure_experiment.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r0_heterogeneous_arena.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r1_operator_arbitration.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r2_known_operator_transfer.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r3b_joint_obligation_binding.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r4b_tare_split_majorization.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r4d_h2o_ducc_confirmation.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r4d_h2o_ducc_confirmation_strict.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r4e_qg_skill_replay_calibration.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r4ea_authority_indexed_router.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r4eb0_heldout_qg32_adjudicator.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r4eb1_sixlcu_label_value_adjudicator.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5_h2o_full_pair_gate_development.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5_n2_joint_internal_confirmation.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5_n2_joint_internal_confirmation_strict.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5b_n2_independent_replay.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5b_n2_proof_outer_replay.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5c_n2_controlled_cost_development.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5d_n2_controlled_multiwindow_development.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5e_n2_true_incumbent_12term_development.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5f_h4_controlled_confirmation.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5g_h4_independent_replay.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5h_mixed_cardinality_development.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5h_mixed_cardinality_development_fast.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5h_subject_fast.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5j_anchored_dependent_tare3_development.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r5j_anchored_dependent_tare3_development_strong.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_donor_closure_h4.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_donor_closure_h4_fast.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_exact_tare3_end_to_end_verify.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_exact_tare3_joint_frame_dp.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_exact_tare3_prospective_primary.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_exact_tare3_prospective_replay.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_foqcs_interface_envelope.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_native_self_orion_n0.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_native_self_orion_n1.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_native_self_orion_n2.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_native_self_orion_n2_atomic.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6_p10_candidate_blind_frame_optimizer.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6b_tare_transformation_reuse_donor.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6b_tare_transformation_reuse_donor_verified.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6c_dual_lane_residual_diagnosis.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6d_sixterm_partition_representation_coopt.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6e_deep_p10_exact_frame_saturation.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6e_deep_p10_exact_frame_saturation_fast.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6f_donor_clifford_preconditioned_tare3.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6g_joint_clifford_tare3_coopt.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6h_partial_tag_sharing_donor.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6i_exact_rank2_shared_tag_dp.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6j_partial_restore_factor_donor.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6k_exact_rank2_shared_tag_restore_factor_dp.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6l_three_tare2_shared_factor_donor.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6n_support_dominance_audit.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6o_enlarged_tag_donor_closure.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6p_weight2_frame_donor_closure.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6q_regime_predicate.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6r_prospective_fresh_subject.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/max_r6s_all_n_composition.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N1_A_PARAM_SCHEMA_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N1_B_GRAMMAR_GROWTH_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N1_C_COSTLY_VERIFICATION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N1_D_REPRESENTATION_EDIT_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N1_LOWER_BOUND_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N2_F3_PARTIAL_EVIDENCE_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N2_F4_ACCESS_EDITS_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N2_F5B_DONOR_COMPARISON_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N2_F5_CROSSOVER_PREDICTION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N3_A_SYMBOLIC_INDUCTION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N3_B_OBLIGATION_EXPANSION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N3_C_OPERATOR_INDUCTION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N3_D_REPRESENTATION_VARIABLES_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N4_A_UNKNOWN_VOI_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N4_B_STALE_RECEIPT_REOPENING_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N4_C_INTERVAL_PARETO_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N4_D_LAUNDERING_DETECTION_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N4_E_ACTIVE_EXPERIMENTS_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n1_lower_bound.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n1a_parameterized_schema_invention.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n1b_failure_conditioned_grammar_growth.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n1c_costly_verification_voi.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n1d_representation_frame_edit.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n2_f3_partial_evidence.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n2_f4_access_edits.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n2_f5_crossover_prediction.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n2_f5b_donor_comparison.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n3_a_symbolic_induction.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n3_b_obligation_expansion.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n3_c_operator_induction.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n3_d_representation_variables.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n4_a_unknown_voi.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n4_b_stale_receipt_reopening.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n4_c_interval_pareto.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n4_d_laundering_detection.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n4_e_active_experiments.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/extensions/orion-q/nlanes/n4_f3_remint_transport.py": [
+      "ORION_Q_TYPED_RESEARCH_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v1/AI_EXECUTOR_PROMPT_V1.md": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/DISCOVERY_THEOREM_LEDGER_V1.json": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/EDG_FINITE_CENSUS_V1.json": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/EPISTEMIC_DECISION_GEOMETRY_V1.md": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/EXECUTION_BACKLOG_V1.json": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/EXECUTION_STATUS_V1.json": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/EXPERT_REVIEW_AND_ATOMIC_GAP_MAP_V1.md": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/GENERATIVE_REACH_AND_DISCOVERY_CREDIT_V1.md": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/HISTORICAL_COUNTERFACTUAL_PROSPECTIVE_TRIANGULATION_V1.md": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/OSTC_EXECUTION_IDENTIFIABILITY_MATRIX_V1.json": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/README.md": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/THEOREM_IDENTIFYING_HARNESS_V1.md": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/VACUITY_AND_REPAIR_ATLAS_V1.md": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v1/run_edg_finite_census.py": [
+      "QUANTUM_QG_QN_FRONTIER",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "research/orion-discovery-v2/EXECUTION_BACKLOG_V1.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/KNOWLEDGE_WEB_NAVIGATION_PROOF_ECONOMY_AND_SELF_APPLICATION_V1.md": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/README.md": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/THEOREM_LEDGER_V1.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-HUMAN-DECOMP-01/DECOMPOSITION_EQUIVALENCE_MATRIX.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-HUMAN-DECOMP-01/EPISODE_AND_CONTROL_MANIFEST.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-HUMAN-DECOMP-01/FALSE_CERTAINTY_AND_OPEN_MOVE_COUNTS.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-HUMAN-DECOMP-01/MODEL_CHRONOLOGY_RECEIPTS.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-HUMAN-DECOMP-01/disc_human_decomp_01.py": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-IMPACT-01/CHANGE_IMPACT_GRAPH_V1.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-IMPACT-01/CHANGE_IMPACT_RECEIPT_V1.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-IMPACT-01/DRIFT_AND_BINDING_BOUNDARY.md": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-IMPACT-01/SYNC_OBLIGATION_MATRIX.md": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-IMPACT-01/disc_impact_01.py": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-OOD-MORPH-01/GENERATOR_LEAKAGE_CHECKER.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-OOD-MORPH-01/OPEN_MOVE_CLASS_GENERATOR.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-OOD-MORPH-01/REGISTERED_BASIS_FAILURES.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-OOD-MORPH-01/SECTION_3_SOURCE.md": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-OOD-MORPH-01/SUCCESSOR_MOVE_OR_CANNOT_CHECK_RECEIPTS.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-OOD-MORPH-01/basis_solver.py": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-OOD-MORPH-01/disc_ood_morph_01.py": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-OOD-MORPH-01/worlds.py": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-PROOF-ECONOMY-01/ADEQUATE_PLAN_CENSUS.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-PROOF-ECONOMY-01/COUNTEREXAMPLE_ECONOMY_CASES.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-PROOF-ECONOMY-01/PARETO_PROOF_FRONTIER.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-PROOF-ECONOMY-01/PROOF_OBLIGATION_REGISTER.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-PROOF-ECONOMY-01/disc_proof_economy_01.py": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/DONOR_FIRST_REFUSAL.md": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/MATCHED_RESOURCE_RECEIPT.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/Q_TRANSFER_CONTRACT_V1.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/RELATIONAL_CORRESPONDENCE_WITNESS.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/TARGET_NATIVE_VALIDATION_RECEIPT.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/disc_q_transfer_01.py": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-SELF-01/CHANGE_IMPACT_RECEIPT_V1.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-SELF-01/EXTERNAL_ADOPTION_DISPOSITION.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-SELF-01/HIDDEN_CONSEQUENCE_RECEIPT.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-SELF-01/OLD_CLOSURE_CERTIFICATE.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-SELF-01/PROPOSAL_ORIGIN_V1.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-SELF-01/SELF_APPLICATION_CONTRACT_V1.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-SELF-01/disc_self_01.py": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-WEB-01/KNOWLEDGE_WEB_V1.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-WEB-01/MISSING_INGREDIENT_ATLAS.md": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-WEB-01/SUPPORT_FAMILY_STATUS_V1.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-WEB-01/THEOREM_IDENTIFYING_HARNESS_RECEIPT.json": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v2/exec/DISC-WEB-01/disc_web_01.py": [
+      "KNOWLEDGE_WEB_AND_PROOF_ECONOMY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v3/AI_EXECUTOR_PROMPT_V1.md": [
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v3/ATOMIC_NOVELTY_AND_SUPERIORITY_MAP_V1.json": [
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v3/EXECUTION_BACKLOG_V1.json": [
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v3/EXECUTION_TAKEOVER_MANIFEST_V1.json": [
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v3/FINITE_REFERENCE_RECEIPT_V1.json": [
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v3/HUMAN_DISCOVERY_PARENT_SOURCE_MAP_V1.json": [
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v3/NEAREST_WORK_ABSORPTION_AND_RESIDUAL_V1.md": [
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v3/RESIDUAL_NOVELTY_CALCULUS_V1.md": [
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v3/SCIENTIFIC_FRONTIER_DOMINANCE_V1.md": [
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v3/THEOREM_LEDGER_V1.json": [
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-discovery-v3/V3_DONOR_ENVELOPE_01_SPECIFICATION_AUDIT_V1.json": [
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/AI_EXECUTOR_PROMPT_V1.md": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/COMPUTE_EXECUTION_BACKLOG_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/DYNAMIC_EPISTEMIC_STATE_CALCULUS_V1.md": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/THEOREM_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/WRITING_AUTHORITY_AND_RESULT_BINDING_V1.md": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/LABEL_CENSUS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/LABEL_SEMANTIC_DECOMPOSITION_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/UNCLASSIFIED_BLOCKER_ATLAS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/run_des_census.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-CENSUS-01/test_run_des_census.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/LABEL_DECISION_COLLISION_ATLAS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/MINIMAL_COLLISION_WITNESSES_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/run_des_collision_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-COLLISION-01/test_des_collision_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/P1_P15_IDEAL_DONOR_FRONTIERS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/PROVIDER_RECEIPTS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/QUERY_ATOMS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/RAW_DISCOVERY_ROWS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/ROBUST_RESIDUAL_ATLAS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-DONOR-FRONTIER-01/run_des_donor_frontier_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/FRONTIER_MATH_DISCOVERY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/OUTSIDE_CLOSURE_CERTIFICATE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/run_des_frontier_math_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-FRONTIER-MATH-01/test_des_frontier_math_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/HISTORICAL_COUNTERFACTUAL_ATLAS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/MODEL_CHRONOLOGY_RECEIPTS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/run_des_historical.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-HISTORICAL-01/test_run_des_historical.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/CLAIM_ATOMS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/P1_P15_EXTERNAL_NOVELTY_RECEIPTS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/run_des_novelty_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-NOVELTY-01/test_des_novelty_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/LEGACY_PROJECTION_CORRESPONDENCE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/NONRECONSTRUCTION_WITNESSES_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/run_des_projection_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/EXTERNAL_SCORER_RECEIPT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/RESPONSIBILITY_IDENTIFICATION_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/run_des_responsibility_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-RESPONSIBILITY-01/test_des_responsibility_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-SATURATION-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-SATURATION-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-SATURATION-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-SATURATION-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-SATURATION-01/RAW_CASES_V1.jsonl": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-SATURATION-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-SATURATION-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-SATURATION-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-SATURATION-01/SEARCH_SATURATION_AND_REMOTE_JUMP_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-SATURATION-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-SATURATION-01/execute_des_saturation_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/FREEZE_ARITHMETIC_ERRATUM_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/MINIMAL_COUNTERMODELS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/PREFLIGHT_FAILURE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/RAW_CASES_V1.jsonl": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/UPDATE_ALGEBRA_RECEIPT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/DES-UPDATE-01/execute_des_update_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P1-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P1-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P1-DES-01/LUNARC_PREFLIGHT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P1-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P1-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P1-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P1-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P1-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P1-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P1-DES-01/run_p1_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P1-DES-01/test_p1_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/LUNARC_PREFLIGHT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/P10_OBSTRUCTION_AND_FALSE_INVENTION_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/run_p10_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P10-DES-01/test_p10_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P11-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P11-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P11-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P11-DES-01/P11_ACQUISITION_AUDIT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P11-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P11-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P11-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P11-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P11-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P11-DES-01/run_p11_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P11-DES-01/test_p11_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/LUNARC_PREFLIGHT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/SHA256SUMS": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/run_p12_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/test_p12_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P12-DES-01/validate_p12_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/CASE_OUTCOMES_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/COMMON_PACKET_BINDINGS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/CONTROL_INPUT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/DETERMINISTIC_REPLAY_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/EXTERNAL_LIFECYCLE_CUSTODY_AUDIT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/LUNARC_JOB_3539872.err": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/LUNARC_JOB_3539872.out": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/LUNARC_SHA256SUMS": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/run_p13_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P13-DES-01/test_p13_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P14-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P14-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P14-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P14-DES-01/P14_DYNAMIC_GOVERNANCE_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P14-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P14-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P14-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P14-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P14-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P14-DES-01/run_p14_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P14-DES-01/test_p14_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/LUNARC_PREFLIGHT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/P15_PRODUCTION_NONINTERFERENCE_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/run_p15_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P15-DES-01/test_p15_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/FOCUSED_VERIFICATION_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/LUNARC_EXECUTION_RECEIPT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/P2-DES-01_3539863.err": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/P2-DES-01_3539863.out": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/P2-DES-01_3539865.err": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/P2-DES-01_3539865.out": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/P2-DES-01_RESULT_ARCHIVE_V1.tar.gz": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/P2-DES-01_RESULT_ARCHIVE_V1.tar.gz.sha256": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/PRE_SCORE_POLICY_OUTPUTS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/RAW_POLICY_OUTCOMES_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/SHA256SUMS": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/p2_des_01.slurm": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/run_p2_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/test_p2_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P2-DES-01/validate_p2_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P3-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P3-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P3-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P3-DES-01/P3_DYNAMIC_GLUING_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P3-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P3-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P3-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P3-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P3-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P3-DES-01/run_p3_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P3-DES-01/test_p3_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P4-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P4-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P4-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P4-DES-01/P4_DYNAMIC_PROMOTION_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P4-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P4-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P4-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P4-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P4-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P4-DES-01/run_p4_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P4-DES-01/test_p4_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/LUNARC_PREFLIGHT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/P5_PROTECTED_ADOPTION_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/run_p5_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P5-DES-01/test_p5_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/DOMAIN_REVALIDATION_OUTCOMES_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/IMPLEMENTATION_ERRATUM_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/NATIVE_CHECKER_RECEIPTS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/PREFLIGHT_FAILURE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/run_p6_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P6-DES-01/test_p6_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P7-DES-01/EXECUTION_FAILURE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P7-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P7-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P7-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P7-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P7-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P7-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P7-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P7-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P7-DES-01/run_p7_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P7-DES-01/test_p7_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P8-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P8-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P8-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P8-DES-01/P8_DYNAMIC_AUTHORITY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P8-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P8-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P8-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P8-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P8-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P8-DES-01/run_p8_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P8-DES-01/test_p8_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/ACQUISITION_PREFLIGHT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/FREEZE_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/IDEAL_DONOR_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/NEGATIVE_CONTROLS_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/PLANNED_CELL_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/PRIMARY_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/RAW_MANIFEST_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/RESOURCE_LEDGER_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/RESULT_BINDING_PACKET_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/TRANSFER_RESULT_V1.json": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/run_p9_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-epistemic-state-v1/results/P9-DES-01/test_p9_des_01.py": [
+      "DYNAMIC_EPISTEMIC_STATE",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/AI_EXECUTION_PROMPT_V1.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/ASSUMPTION_LEDGER_V1.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/AUDIT_RECEIPT_V1.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/EXECUTION_ONLY_BACKLOG_V1.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/FORMALIZATION_COVERAGE_V1.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/ISSUE_COMPLETION_MATRIX_V1.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/ORION_SCIENTIFIC_TRANSITION_CALCULUS_V1.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/P1_P15_THEORY_UPGRADES_V1.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/P1_THEORY_SUPERSESSION_V1.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/PAPER_THEOREM_LEDGER_V1.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/PAPER_THEOREM_PACKAGES_V1.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/PAPER_THEOREM_PROOFS_V1.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/PROGRAMME_BREAKTHROUGH_THEOREMS_V1.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/README.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/THEOREM_DERIVATIONS_T0_T23_V1.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/THEOREM_LEDGER_V1.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/check_completion_receipt_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/check_foundations_v3.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/check_paper_theorem_ledger_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-CM-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-CM-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-CM-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-CM-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-CM-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-CM-01/check_countermodel_atlas_independent_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-CM-01/run_countermodel_atlas_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-NOV-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-NOV-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-NOV-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-NOV-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-NOV-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P1-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P1-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P1-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P1-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P1-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P1-01/run_structural_cores_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P10-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P10-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P10-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P10-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P10-01/run_p10b.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P10-02/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P10-02/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P10-02/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P10-02/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P10-02/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P10-02/run_sat_sep.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P11-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P11-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P11-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P11-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P11-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P11-01/check_phase_diagram_independent_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P11-01/run_phase_diagram_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P12-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P12-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P12-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P12-01/OSTC_T17_SUCCESSOR_NARROWING_V1.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P12-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P12-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P12-01/check_allocation_regret_independent_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P12-01/run_allocation_regret_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P13-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P13-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P13-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P13-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P13-01/run_p13b.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P14-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P14-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P14-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P14-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P14-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P14-01/run_structural_cores_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P15-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P15-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P15-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P15-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P15-01/run_p15b.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P2-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P2-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P2-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P2-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P2-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P2-01/check_closure_impossibility_independent_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P2-01/run_closure_impossibility_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P3-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P3-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P3-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P3-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P3-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P3-01/check_full_abstraction_independent_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P3-01/run_full_abstraction_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P4-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P4-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P4-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P4-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P4-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P4-01/run_structural_cores_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P5-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P5-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P5-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P5-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P5-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P5-01/run_structural_cores_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P6-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P6-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P6-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P6-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P6-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P6-01/check_revalidation_hypergraph_independent_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P6-01/run_revalidation_hypergraph_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P7-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P7-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P7-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P7-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P7-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P7-01/check_regime_loops_independent_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P7-01/run_regime_loops_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P8-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P8-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P8-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P8-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P8-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P8-01/run_structural_cores_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P9-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P9-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P9-01/GRID_SUFFICIENCY_PROBE_V1.md": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P9-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P9-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P9-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P9-01/check_intervention_identifiability_independent_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-P9-01/run_intervention_identifiability_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-PA-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-PA-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-PA-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-PA-01/OSTC_Decidable.lean": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-PA-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-PA-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-PA-01/lean_out.txt": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-XP-01/CLAIM_DELTA.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-XP-01/EXECUTION_PROTOCOL.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-XP-01/INDEPENDENT_CHECKER_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-XP-01/RAW_RESULT_MANIFEST.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-XP-01/RESULT_RECEIPT.json": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/exec/EXEC-XP-01/run_t23_coupling_v1.py": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/formal/lean/OrionFoundations.lean": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/formal/lean/OrionFoundations/Core.lean": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/formal/lean/lakefile.toml": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/orion-foundations-v3/formal/lean/lean-toolchain": [
+      "OSTC_FOUNDATIONS",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/BASELINE_ARTIFACT_ATLAS_2026-08-16.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/CLAIM_STATE_BOXES.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/COMPUTATION_CONTAINMENT_SOCIAL_HANDOFF_2026-08-18.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/FLAGSHIP_FALSIFIER_RESULTS_V1.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/FOREIGN_BRANCH_FOREST_DISPOSITION_2026-08-24.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/HIGHER_ORDER_EPISTEMIC_MECHANICS_HANDOFF_2026-08-18.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/HIGHER_ORDER_EPISTEMIC_MECHANICS_T7_HANDOFF_2026-08-18.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/JOURNAL_READINESS_AUDIT_2026-08-16.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/JOURNAL_READINESS_AUDIT_2026-08-16_SUPERSEDE_P3_V1.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/JOURNAL_READINESS_STANDARD.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/NEAREST_WORK_ATLAS.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/NEAREST_WORK_SUPPLEMENT_2026-08-16.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/NEGATIVE_REVIVAL_BACKLOG_V1.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P11D_P11H_P14A_RETENTION_RECEIPT_2026-08-24.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P1_P10_SUPERIORITY_TERMINAL_LEDGER_2026-08-21.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P1_P10_SUPERIORITY_TERMINAL_LEDGER_V1.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P1_P10_SUPERIORITY_TERMINAL_REPORT_2026-08-21.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P1_P15_ACTIVE_BLOCKER_MATRIX_2026-08-22.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P1_P15_RECURSIVE_RESOLUTION_LEDGER_2026-08-23.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P1_P2_P4_P5_RETENTION_RECEIPT_2026-08-24.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P1_P2_SUCCESSOR_WRITEBACK_LINEAGE_2026-08-21.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P1_R6_NATIVE_PRIMARY_RECEIPT_2026-08-21.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P3_BOUNDED_PUBLICATION_TRACK_2026-08-18.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P5_CAUSAL_REPAIR_LITERATURE_SATURATION_2026-08-17.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P5_NEAREST_WORK_CLOSURE_2026-08-16.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P5_PACE_STAGED_ACCEPTANCE_DISPOSITION_2026-08-16.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/P7_P9_P10_RETENTION_RECEIPT_2026-08-24.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/PAPER_01_RECURSIVE_RECONSTRUCTION.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/PAPER_02_OPEN_WORLD_DISCOVERY.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/PAPER_03_GLOBAL_PORTRAIT.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/PAPER_04_VERIFIED_DISCOVERY.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/PAPER_05_SELF_ORION.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/PRE_EXPERIMENT_CLOSURE_2026-08-16.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/PUBLICATION_CLOSURE_EVIDENCE_GATES.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/README.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/REGISTERED_DISCRIMINATIONS_THE_ARTIFACT_CANNOT_EXPRESS.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/RESPONSIBILITY_INTERFACE_HANDOFF_2026-08-18.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/REVIVAL_BACKLOG_V1.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/RSE_P1_P10_HANDOFF_2026-08-20.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/SATURATION_LEDGER.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/SELF_ORION_V3_T8_HANDOFF_2026-08-18.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/acquisition/ACQUISITION_ROUTE_PROBE.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/acquisition/EXTERNAL_ACQUISITION_AUDIT_2026-08-23.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/acquisition/INDEPENDENT_RESEARCHER_ACQUISITION_PLAN.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/acquisition/P1_R7A_BLOCKER_PARTITION_2026-08-23.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/acquisition/P4_P14D_BLOCKED_BY_CONSTANT_2026-08-23.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/acquisition/P7_P8_P10_P11_MISFILING_AUDIT_2026-08-23.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/acquisition/REMAINING_BLOCKERS_2026-08-23.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/acquisition/check_acquisition_audit.py": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/acquisition/probe_acquisition_routes.py": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/audit_resolution_ledger.py": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/fixtures/P3_PARTIAL_IDENTIFICATION_ATTAINABILITY_FIXTURE_V1.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/fixtures/P4_NATURALISTIC_IDENTIFIABILITY_ATTAINABILITY_FIXTURE_V1.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/fixtures/P5_REVISION_LEVEL_ATTAINABILITY_FIXTURE_V1.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/journal_package/CHECKBOX_AUDIT_160.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/journal_package/README.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/journal_package/SCHEMA_V1.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/journal_package/check_journal_package.py": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/p6-clean-room/P6_CLEAN_ROOM_REPLAY_PACKET_V1.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/p6-clean-room/P6_THIRD_ENVIRONMENT_REPLAY_2026-08-23.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/p6-clean-room/P6_UV_LOCK_COUPLING_2026-08-23.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/p6-clean-room/verify_clean_room_receipt_v1.py": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/protocols/ANALYSIS_STANDARD_V1.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/protocols/EXECUTION_FREEZE_CHECKLIST_V1.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/protocols/PUBLICATION_PROTOCOL_SCHEMA_V1.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/protocols/README.md": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/protocols/RESULT_RECORD_SCHEMA_V1.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/protocols/RUN_MANIFEST_SCHEMA_V1.json": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/protocols/publication_manifest.py": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/protocols/publication_stats.py": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/protocols/publication_svg.py": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/render_claim_state_boxes.py": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "research/paper-programme-v1/run_p1_p5_successor_preflight.py": [
+      "P1_P15_SCIENTIFIC_PROGRAMME",
+      "QUANTUM_QG_QN_FRONTIER"
+    ],
+    "src/orion/discovery/__init__.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/concept_candidate.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/decision_geometry.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/discovery_morphology_closure.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/episodes.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/epistemic_tension.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/executable_regime_witness.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/execution_takeover.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/failure_atlas_closure.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/failure_atlas_closure_v2.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/failure_atom_pilot_closure.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/failure_epistemology_prospective.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/frontier_dominance.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/harness_identifiability.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/jump_atom_pilot_closure.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/jump_programme_closure.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/knowledge_web.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/model_chronology.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/proposal_origin.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/recursive_atom_calculus_closure.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/thought_experiment.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/zero_error_jump_benchmark.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/zero_error_jump_benchmark_v2.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/zero_error_jump_independent.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/discovery/zero_error_jump_independent_v2.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "THEOREM_IDENTIFYING_DISCOVERY"
+    ],
+    "src/orion/kernel/__init__.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/__main__.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/apply.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/assurance.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/authority_state.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/authorization.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/battery.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/checks/__init__.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/checks/claude_lane.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/cli.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/driver.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/evidence.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/gate.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/guards.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/hard_gates.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/host.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/migration.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/process_receipt.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/protected_flow.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/protected_identity.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/registry.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/replay.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/report.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/round.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/saturation.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/scheduler.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/sources.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/store.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/support.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/transaction.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/transition.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/transition_reducer.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ],
+    "src/orion/kernel/workorder.py": [
+      "CERTIFIED_ALGORITHMIC_NAVIGATION",
+      "EXECUTION_INTEGRITY_AND_RECEIPTS"
+    ]
+  },
+  "schema": "ORION.V1.ComponentBinding.v1",
+  "summary": {
+    "components": 14,
+    "components_with_absent_paths": 4,
+    "components_with_no_binding": 4,
+    "duplicate_owned_files": 949,
+    "edges": 27,
+    "edges_unbacked": 19
+  },
+  "terminal": "AMBIGUOUS_COMPONENT_OWNER"
+}

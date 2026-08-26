@@ -76,7 +76,7 @@ def test_bootstrap_package_validates() -> None:
         "open_internal_gaps": 5,
         "external_blockers": 3,
         "paper_candidates": 3,
-        "manifest_files": 14,
+        "manifest_files": 15,
     }
 
 
