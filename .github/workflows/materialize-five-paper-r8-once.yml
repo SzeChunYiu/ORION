@@ -57,10 +57,6 @@ jobs:
               before = hashlib.sha256(data).hexdigest()
               print(name, 'uploaded_bytes', len(data), 'uploaded_sha256', before)
 
-              # The connector transport introduced exactly three independently
-              # diagnosed byte defects. Repair only those known byte strings,
-              # fail closed on every other mismatch, and then verify the
-              # canonical per-part digest before decoding the archive.
               if name == 'part-00' and before == known_uploaded[name]:
                   assert len(data) == 9001 and data[-1:] == b'N'
                   del data[-1]
@@ -91,7 +87,7 @@ jobs:
           test -f /tmp/five-paper-r8-materialized/papers/five-paper-top-tier-r8/PROGRAMME.md
           test -f /tmp/five-paper-r8-materialized/.github/workflows/five-paper-r8-harness.yml
 
-      - name: Materialize onto content-bound target branch
+      - name: Materialize research packet onto target branch
         shell: bash
         run: |
           set -euo pipefail
@@ -100,8 +96,6 @@ jobs:
           git fetch origin "${TARGET_BRANCH}"
           git checkout -B "${TARGET_BRANCH}" "origin/${TARGET_BRANCH}"
           cp -a /tmp/five-paper-r8-materialized/. .
-          rm -rf development/five-paper-r8/payload
-          rm -f .github/workflows/materialize-five-paper-r8-once.yml
 
           python papers/five-paper-top-tier-r8/harness/validate_r8_artifacts.py
           python - <<'PY'
@@ -121,6 +115,9 @@ jobs:
           print('manifest verification PASS', manifest['file_count'])
           PY
 
-          git add .github/workflows/five-paper-r8-harness.yml papers/five-paper-top-tier-r8
+          # GitHub Apps cannot update workflow files without the workflows
+          # permission. The connector will add the already-verified workflow
+          # in the immediately following commit. Stage only the research tree.
+          git add papers/five-paper-top-tier-r8
           git commit -m "research: materialize five-paper top-tier R8 programme"
           git push origin "${TARGET_BRANCH}"
