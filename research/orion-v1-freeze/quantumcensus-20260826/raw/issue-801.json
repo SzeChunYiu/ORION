@@ -1,0 +1,30 @@
+{
+ "number": 801,
+ "title": "[ORION-QG QG-9 T2] Counterexample-guided max-margin target synthesis for exact support-four tightness",
+ "body": "Parent tightness programme: #762\nT1 bounded negative: #793 / PR #797 / result commit `8813f759f425c93f382f7f3771028875f33bec7c`\nAll-n support<=4 theorem: #790 / PR #791\n\n## Status\n\n**PROSPECTIVE TIGHTNESS SUCCESSOR \u2014 new target synthesis, same exact cap3 referee.**\n\nT1 tested the identity-Restore inverse-design template on the first 36 support-four obstruction slots per orientation. After the pre-frozen production-validity filter, 36 candidates remained (18/orientation); every one had an exact support<=3 competitor in the first canonical fixed configuration, with `C_cap3-U4` between -21 and -18. Generic ORION replayed all 36 rejection MILPs. This rules out the simplest inverse design but does not imply support<=3.\n\nT2 asks whether the same structural support-four obstructions can become genuinely tight under **adversarially synthesized target triples**.\n\n## Frozen candidate support-four configurations\n\nRecompute the same T1 valid desired frame/Tag configurations from production semantics and the same first 36 obstruction slots/orientation. Do not import T1 cap3 scores during synthesis initialization; T1 is opened only after the candidate-support list is digest-sealed to bind lineage.\n\nThe desired support-four frame/Tag configuration remains fixed during target synthesis. Only the two target rank-2 triples are changed.\n\n## Target domain\n\nFor each block, a target triple is represented by an ordered anticommuting n=4 Pauli pair `(P0,P1)` with `symp(P0,P1)=1` and `P2=P0*P1`. This is the **complete** frozen R6I rank-2 target-pair domain at n=4: 255 nonzero first generators x 128 anticommuting second generators = 32,640 ordered pairs per block.\n\nNo chemistry or coefficient information enters.\n\n## Exact max-margin objective\n\nFor fixed desired support-four configuration W4 and target pair choices `(TA,TB)`, define\n\n`margin(TA,TB) = C_cap3(TA,TB) - C_W4(TA,TB)`.\n\n`C_W4` is the exact feasible cost of W4 under those targets. `C_cap3` is the exact support<=3 optimum under the full 54-config frozen R6I grammar using the T1 MILP.\n\nA strict positive margin is an exact tightness witness.\n\n## Counterexample-guided target synthesis\n\nA full 32,640^2 target-pair product cannot be naively enumerated. T2 uses a frozen constraint-generation loop, donor-methodology similar to CEGIS/robust optimization:\n\n1. Start from the identity-Restore target pair used by T1.\n2. Exact cap3 oracle returns the current best cap3 competitor and its proof-carrying frame/Tag/permutation/central witness.\n3. Add that competitor to a frozen adversary set J.\n4. Solve a **target master problem** over the complete 32,640-pair domain per block:\n   `maximize m` subject to `m <= C_j(TA,TB)-C_W4(TA,TB)` for every `j in J`.\n   Costs against a fixed competitor decompose into exact block-A and block-B lookup arrays plus target-independent frame/Tag constants. The master must be solved exactly; acceptable implementations are MILP one-hot pair selection or an exact finite max-min algorithm.\n5. Run the exact cap3 oracle on the master-selected target. If its true margin equals the master lower-envelope value and the returned competitor is already represented, the robust max-margin is certified for this W4.\n6. Otherwise add the new exact competitor and repeat.\n\nPer W4 loop cap: 32 oracle iterations. If convergence is not proven within 32, terminal for that W4 is CANNOT_CHECK; do not treat the best heuristic margin as evidence.\n\n## Candidate ordering / global scan\n\nProcess the same T1 retained support-four configurations in canonical order. Freeze a cap of the first **12 valid W4 configurations per orientation** (24 maximum) for T2 because each requires a robust target-synthesis loop. Stop at the first exact positive margin; otherwise report every converged max margin and CANNOT_CHECK row.\n\n## Exact positive proof\n\nFor a converged target with margin>0:\n- reconstruct W4 feasibility and exact cost independently;\n- rerun all 54 cap3 fixed configurations to prove the exact global `C_cap3`;\n- require `C_DP <= C_W4 < C_cap3`;\n- bind V4 all-n support<=4 theorem.\n\nThen support four is **tight** for the frozen R6I grammar.\n\n## Independent harness\n\nGeneric ORION:\n- independently reconstruct complete 32,640 target-pair domain;\n- reconstruct every stored cap3 competitor and master inequality;\n- independently solve the final max-margin master;\n- for a positive, rerun all 54 cap3 configs;\n- for a converged nonpositive row, verify the final oracle competitor witnesses the nonpositive robust margin.\n\nNative ORION-Q states:\n- `TIGHT_WITNESS`\n- `ROBUST_MARGIN_NONPOSITIVE`\n- `MASTER_ORACLE_DID_NOT_CONVERGE`\n- `SOLVER_CANNOT_CHECK`\n- `BINDING_FAILURE`\n\nA nonpositive finite set of W4 configurations does not authorize support<=3.\n\n## Honest terminals\n\n- `QG9T2_R6I_SUPPORT4_TIGHT_WITNESS_EXACT`\n- `QG9T2_ALL_CONVERGED_MARGINS_NONPOSITIVE_IN_FROZEN_PANEL`\n- `QG9T2_MASTER_ORACLE_NONCONVERGENCE`\n- `QG9T2_CAP3_SOLVER_CANNOT_CHECK`\n- `QG9T2_BINDING_FAILURE`\n\n## Donor/claim boundary\n\nCEGIS, robust optimization, adversarial synthesis, MILP and inverse design are donor methods. The scientific object is only an exact R6I support-four tightness witness or the bounded robust-margin map on the frozen configurations. Novelty authority remains false pending external review; no physical quantum-advantage claim.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:08:14Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 797,
+     "title": "[ORION-QG QG-9 T1] Exact n=4 cap3 support-four tightness hunt",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   }
+  ]
+ }
+}

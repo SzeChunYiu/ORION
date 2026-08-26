@@ -1,0 +1,121 @@
+{
+ "number": 888,
+ "title": "[ORION-QG QG-28] Exact local-Clifford orbit compression of TARE column-count geometry from 4096 to 715 types",
+ "body": "Parent programme: #740.\nDirect parents: QG-26 #884 / PR #885 exact 4096-column histogram geometry; QG-27 #886 / PR #887 bulk four-form asymptotic geometry.\nMethod donors: finite group actions, Burnside/P\u00f3lya counting, invariant theory, local Clifford/symplectic automorphisms.\n\n## Status\n\n**PROSPECTIVE EXACT SYMMETRY-QUOTIENT THEOREM \u2014 freeze before execution.**\n\nQG-26 proves that, for a fixed matching, exact all-n TARE cost depends only on the 4096-dimensional histogram of six-target local Pauli-column types\n\n`t in {I,X,Y,Z}^6`.\n\nThe phase-free one-qubit Pauli algebra is `F_2^2`. Its full automorphism group is\n\n`GL(2,2) ~= S_3`,\n\nwhich fixes I and permutes X,Y,Z. The frozen TARE grammar uses only quantities invariant/equivariant under this automorphism: local multiplication, symplectic anticommutation, nonidentity weight, equality/nonidentity in F3, and sums/XORs of these local quantities.\n\nCrucially, a different automorphism may be applied at **each physical qubit coordinate independently**, provided it is applied simultaneously to all six target letters and every local frame/Tag letter at that coordinate. This is a local-Clifford conjugation symmetry of the abstract cost/feasibility problem.\n\n## Q1 \u2014 complete local equivariance\n\nEnumerate all 6 automorphisms phi of `{I,X,Y,Z}` fixing I and permuting X,Y,Z. Require for every phi and every local letters:\n- `phi(local_mul(a,b)) = local_mul(phi(a),phi(b))` for all 16 pairs;\n- `local_symp(phi(a),phi(b)) = local_symp(a,b)` for all 16 pairs;\n- `local_wt(phi(a)) = local_wt(a)` for all 4 letters;\n- `F3(phi(a),phi(b),phi(c)) = F3(a,b,c)` for all 64 triples.\n\nProduction binds these independently reconstructed identities to frozen R6M tables. Generic ORION rebuilds `F_2^2` independently.\n\n## Q2 \u2014 exact orbit census on target-column alphabet\n\nLet S3 act diagonally on the six entries of one target-column type.\n\nBurnside fixed sets are frozen falsifiable targets:\n- identity: `4^6 = 4096` fixed types;\n- each of the 3 transpositions of X/Y/Z fixes exactly I plus one nonidentity letter, hence `2^6 = 64` types;\n- each of the 2 three-cycles fixes only I, hence `1^6 = 1` type.\n\nTherefore expected orbit count:\n\n`(4096 + 3*64 + 2*1)/6 = 715`.\n\nEnumerate the complete 4096 types and require exact orbit-size distribution:\n- 1 orbit of size 1;\n- 63 orbits of size 3;\n- 651 orbits of size 6.\n\nEvery type receives a deterministic canonical representative, lexicographically minimum in its orbit.\n\n## Q3 \u2014 independent-coordinate symmetry and 715-count sufficient statistic\n\nBecause the S3 automorphism can be chosen independently per physical coordinate, every n-qubit target instance can be transformed cost-preservingly so that each qubit column is its canonical orbit representative.\n\nThus if `M_o` is the total number of columns belonging to orbit o, the 715-vector\n\n`M=(M_o)`\n\nis an exact sufficient statistic: any two valid target instances with the same 715 orbit-count vector have the same frozen exact optimum.\n\nThis is stronger than merely saying the 4096 histogram is invariant under one global S3 action.\n\n## Mandatory unsafe-symmetry barrier\n\nBlock permutations and swaps of the two target strings inside each block are only **global** relabelings of whole target strings. They cannot be chosen independently at each physical coordinate.\n\nQG-28 V1 must explicitly reject the tempting but invalid step of aggregating the 4096 column types under an independently applied block/branch-position group. A local combined S3\u00d7(S2^3\u22caS3) orbit count (which would be much smaller) is not a sufficient statistic unless a separate cross-column theorem is proved.\n\nNative ORION-Q must keep `INDEPENDENT_POSITION_RELABEL_PER_COLUMN=false`.\n\n## Q4 \u2014 QG-26 guarded tropical geometry descends to 715 orbit counts\n\nFor each QG-26 active template, independently transform each active coordinate's target type to its canonical S3 orbit representative and apply the same local automorphism to that coordinate's six frame letters and Tag letter. Equivariance preserves:\n- acceptance;\n- local structural support cost;\n- Restore/F3 correction;\n- multiplicity.\n\nSpectator baseline coefficients are constant on each S3 orbit. Therefore every QG-26 baseline vector descends from 4096 coefficients to 715 orbit coefficients, and every active-template guard becomes an orbit-count multiplicity guard.\n\nHence exact all-n cost admits a finite guarded min-affine representation directly on `N^715`.\n\n## Q5 \u2014 exact baseline quotient controls\n\nReconstruct all 8 QG-26 spectator baseline vectors and require:\n- each is constant on every one of the 715 S3 orbits;\n- the eight vectors still collapse to 4 distinct quotient vectors;\n- each 715-vector has exact representative-value histogram\n  `{0:1,1:8,2:44,3:128,4:222,5:216,6:96}`;\n- lifting each quotient vector back to 4096 entries using orbit membership reproduces the parent QG-26 vector exactly.\n\nThe histogram above counts orbits, not weighted alphabet multiplicity; do not confuse it with QG-26's 4096-entry coefficient histogram.\n\n## Q6 \u2014 exact active-template local controls\n\nOn all 715 canonical target representatives, all 48 one-coordinate feasible shared-label auxiliary rows, all 8 target-permutation tuples and canonical central tuple `(0,0,0)`, verify that:\n- direct local cost before canonicalization equals local cost after applying every admissible automorphism mapping the target to its canonical rep and transforming auxiliary letters with it;\n- the baseline-plus-K decomposition is unchanged.\n\nGeneric ORION independently reproduces aggregate digests.\n\n## Q7 \u2014 compression consequence\n\nQG-28 may authorize:\n- `LOCAL_CLIFFORD_ORBIT_COUNT = 715`;\n- `ORBIT_HISTOGRAM_SUFFICIENT_STATISTIC_ALL_N`;\n- `GUARDED_TROPICAL_GEOMETRY_DESCENDS_TO_715_COUNTS`;\n- exact local-Clifford invariance under independently chosen per-qubit automorphisms.\n\nIt may **not** authorize:\n- a smaller independent per-column quotient using global target-position relabelings;\n- explicit complete template-basis enumeration;\n- practical static forecaster;\n- chain/B'' completeness;\n- physical equivalence beyond the abstract frozen compiler objective.\n\n## Intended terminal\n\n`QG28_TARE_EXACT_COST_DESCENDS_TO_715_LOCAL_CLIFFORD_COLUMN_ORBIT_COUNTS_ALL_N`\n\nHonest alternatives:\n- `QG28_LOCAL_AUTOMORPHISM_EQUIVARIANCE_REFUTED`\n- `QG28_BASELINE_NOT_CONSTANT_ON_ORBIT`\n- `QG28_ACTIVE_TEMPLATE_CANONICALIZATION_COUNTEREXAMPLE`\n- `QG28_QG26_PARENT_BINDING_GAP`\n- `QG28_GENERIC_NATIVE_DISAGREEMENT`\n- `QG28_CANNOT_CHECK`\n\n## Donor subtraction\n\nBurnside/P\u00f3lya enumeration, group actions, finite-field automorphisms, invariant theory and local Clifford conjugation are established mathematics/quantum-information methods and receive zero novelty credit. Candidate contribution is only the exact TARE-specific 4096\u2192715 sufficient-statistic theorem and descent of its all-n count-space regime geometry.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T09:33:17Z",
+    "body": "QG-28 protected execution is GREEN on PR #889.\n\nEarned terminal: `QG28_TARE_EXACT_COST_DESCENDS_TO_715_LOCAL_CLIFFORD_COLUMN_ORBIT_COUNTS_ALL_N`.\n\nProtected facts:\n- exact local per-qubit `GL(2,2) ~= S3` equivariance under independent Pauli-axis relabeling;\n- 4096 target-column types -> exactly **715** safe local-Clifford orbits by Burnside;\n- orbit sizes: `1\u00d71, 63\u00d73, 651\u00d76`;\n- QG-26's eight spectator vectors remain four distinct quotient vectors and are constant on every orbit;\n- every quotient vector has 715-orbit coefficient histogram `{0:1,1:8,2:44,3:128,4:222,5:216,6:96}`;\n- complete active canonicalization control: **1,572,864** rows, zero mismatches; production cost-before/cost-after SHA256 both `ca88dc90212cd25de52e2105323895ebbb9f35c1bfa503bba58f949646bf9860`;\n- generic ORION and native ORION-Q both ACCEPT; deterministic replay byte-identical.\n\nProtected result: `research/extensions/orion-qg/QG28_LOCAL_CLIFFORD_ORBIT_RESULTS.json`, commit `29d53e143e26ecb71e974f9c66ede7719b8e7364`.\n\nHard safety boundary remains enforced: `INDEPENDENT_POSITION_RELABEL_PER_COLUMN=false` and `COMBINED_LOCAL_POSITION_QUOTIENT_54=false`; block/target-position relabelings remain global whole-string symmetries, not coordinatewise freedoms.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/888#issuecomment-5379566158"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:28:42Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 889,
+     "title": "[ORION-QG QG-28] Exact 4096\u2192715 local-Clifford orbit compression",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:56:48Z",
+     "mergeCommit": {
+      "oid": "733dfc5aff50aa19d3c4454e312fe69813213a60"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:31:05Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 890,
+     "title": "[ORION-QG QG-29] Six-count defect saturation and universal k<=43 affine crossover on TARE scaling rays",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:38:11Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 893,
+     "title": "[ORION-QG QG-30] Exact 45-bin bulk coarse-graining and bulk/defect scale separation",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T16:53:13Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 926,
+     "title": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not stay ignorant of the null result",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T18:26:30Z",
+     "mergeCommit": {
+      "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4"
+     }
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T17:28:43Z",
+    "commit": {
+     "oid": "fc961b58795dbe68e8271aa5cf1463b61d2e18c7",
+     "messageHeadline": "ORION-QG: C1 decided -- the defect spectrum IS the maximal symmetry q\u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T18:22:39Z",
+    "commit": {
+     "oid": "382d01e56a83175e62132e6a05bf74263c2fbb13",
+     "messageHeadline": "ORION-QG: Check B correction + assimilation ledger for the symmetry/i\u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T18:37:06Z",
+    "commit": {
+     "oid": "538dbdc3d315fbec4f71ff72d961e1f9f59380b1",
+     "messageHeadline": "ORION-QG: the cost-annotated ladder is a COSTUME -- tested negative, \u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-23T18:26:31Z",
+    "commit": {
+     "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4",
+     "messageHeadline": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not\u2026"
+    }
+   }
+  ]
+ }
+}

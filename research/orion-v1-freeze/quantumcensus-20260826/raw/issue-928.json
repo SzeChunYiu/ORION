@@ -1,0 +1,138 @@
+{
+ "number": 928,
+ "title": "[ORION-QG QG-32c] Independent exact MITM replication of four-probe infeasibility",
+ "body": "Parent programme: #740.\nEarned parent: QG-32 #911 (certified fixed five-probe upper bound only).\nPrimary candidate under replication: QG-32b #918 / draft PR #919. Its production depth-4 search returned NO for <=4, but the prospectively frozen independent MILP timed out; therefore **QG-32b has no exact fixed-minimum authority**.\n\n## Status\n\n**POST-RESULT INDEPENDENT REPLICATION. FREEZE COMPLETE BEFORE QG-32c EXECUTION.**\n\nThe visible primary candidate is explicitly not treated as authority. QG-32c independently reconstructs the QG-32 observation problem from the already-earned generic primitives and decides whether any <=4 fixed indexed-probe separator exists.\n\nFrozen method: exact 2+2 meet-in-the-middle. Enumerate every unique coverage union reachable with 0/1/2 nondominated probe classes. A <=4 cover exists iff two half-unions cover all 5,895 unresolved pairs. No QG-32b production code, artifact, memo table, branching order, or witness may be read by the solver.\n\nAllowed terminals:\n- `QG32C_INDEPENDENT_REPLICATION_CONFIRMS_NO_FOUR_PROBE_SEPARATOR`\n- `QG32C_INDEPENDENT_REPLICATION_FINDS_FOUR_OR_FEWER_SEPARATOR`\n- `QG32C_CANNOT_CHECK`\n\nA separate generic verifier rebuilds the half-union family with different ordering/filter logic; native ORION-Q gates only fixed indexed-identity authority. Deterministic replay and self-consistent semantic tamper rejection are mandatory.\n\nIf and only if QG-32c independently returns NO with all gates GREEN, its lower bound >=5 may be combined with QG-32's already-earned five-probe upper bound to authorize exact fixed minimum 5 for the indexed local-response identity query after the frozen joint bulk+spectrum summaries.\n\nAlways false: adaptive-tree optimality (QG-34 separate), full finite-n optimum probes, hardware/measurement minimum, QG-28 global state minimality, novelty authority, physical quantum advantage.\n\nFrozen protocol: `development/orion-qg-regime-geometry/QG32C_INDEPENDENT_MITM_REPLICATION_PROTOCOL_V1.md`.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 2,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T18:35:25Z",
+    "body": "Protected QG-32c replication is GREEN end-to-end. Exact independent MITM result: `EXISTS_SEPARATOR_AT_MOST_4=false` over the reconstructed 715 orbits / 384 probes / 92 joint classes / 5,895 unresolved pairs. Production enumerated 14,181 unique 0/1/2-probe half-unions and found no completing 2+2 pair; the independent verifier regenerated the same decision with a different ordering/filter path and tested 111,551,060 exact candidate completions. Native gate, deterministic replay, and self-consistent semantic tamper rejection all passed.\n\nTherefore, combining this independently replicated lower bound `minimum >= 5` with QG-32's already-earned five-probe separator, the **exact fixed indexed-probe minimum is 5** for recovering the 715-way indexed local-response identity after the frozen joint bulk+spectrum summaries.\n\nScope remains hard-bounded: no adaptive-tree optimality (QG-34 separate), no full finite-n optimum, no hardware measurement minimum, no global-state minimality, no novelty or physical quantum-advantage authority. Sealed files: `research/extensions/orion-qg/QG32C_MITM_REPLICATION_RESULTS.json` and `development/orion-qg-regime-geometry/QG32C_PROTECTED_RUN_RECEIPT_2026-08-22.json`.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/928#issuecomment-5381965746"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-23T18:26:45Z",
+    "body": "**Retraction notice (now on main via #926).** The headline this issue builds on is null-reproducible: the separation counts (`85/92`, `708/715`, `D_*=3 < F_*=4 < U_*=5`, the regret curve) are reproduced by a row-shuffle null, and `85 = 92\u22127` / `708 = 715\u22127` are identities forced by the class-size histogram frozen before any solver ran. See `development/orion-qg-regime-geometry/QG_RETRACTION_SELECTION_HEADLINES_V1.md` and `QG_ADVERSARIAL_REFEREE_REPORT.md`. What survives: C1(b) descriptor completeness (whose ceiling theorem is Lehmann 1959 per the lane's own prior-art audit), witness disjointness, and the depth-3 residual (16 classes / 168 masks vs null-A mean 8.9 / 384 \u2014 noting null B in the residual script is uninformative by construction, being exactly permutation-invariant). Work on this issue should either retarget the surviving residual or close as superseded.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/928#issuecomment-5387724789"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:24:52Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 929,
+     "title": "[ORION-QG QG-32c] Independent MITM replication of <=4 fixed-probe decision",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:57:51Z",
+     "mergeCommit": {
+      "oid": "1b11d0f773684cff255b5b994af176e883218c4f"
+     }
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:35:40Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 918,
+     "title": "[ORION-QG QG-32b] Exact four-probe feasibility above joint bulk+spectrum summaries",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:38:38Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 932,
+     "title": "[ORION-QG QG-35] Summary-conditioned fixed probe complexity: fair baseline for adaptive identification",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:42:12Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 933,
+     "title": "[ORION-QG QG-36] Exact fair fixed-vs-adaptive post-summary composition",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:57:17Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 937,
+     "title": "[ORION-QG QG-37] One-corruption-resilient indexed probe identification",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:15:30Z",
+    "commit": {
+     "oid": "865f65e3e8db1b5dc38e978fab165365a8e8cc3c",
+     "messageHeadline": "ORION-QG: independent confirmation of the 3 < 4 < 5 observation-cost \u2026"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-23T18:26:26Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 926,
+     "title": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not stay ignorant of the null result",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T18:26:30Z",
+     "mergeCommit": {
+      "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4"
+     }
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-23T18:26:32Z",
+    "commit": {
+     "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4",
+     "messageHeadline": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not\u2026"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   }
+  ]
+ }
+}

@@ -1,0 +1,71 @@
+{
+ "number": 814,
+ "title": "[ORION-QG QG-17] Sharpness attack on the R6I support1 objective phase: exact weighted cap1 vs frozen support2 witnesses",
+ "body": "Parent phase theorem: #811 / PR #813 / protected receipt commit `406886f55aaaa08a4b310d336e3c98a87371e97e`\nParent support1 theorem: #807 / PR #809\nFrozen adversarial generator: canonical QG-9 V5 #795 / PR #796\n\n## Status\n\n**PROSPECTIVE PHASE-SHARPNESS EXPERIMENT \u2014 exact support2 witness vs exact weighted cap1, no unrestricted weighted DP required.**\n\nQG-16 proves support1 for all n inside a four-facet objective cone but deliberately leaves global sharpness OPEN. QG-17 attacks that boundary using the exact V5 obstruction-derived n=2 candidate generator already frozen before its unit-objective outcome.\n\n## Key implication\n\nFor any objective theta, if a verified feasible support2 configuration has cost `C2(theta)` and the exact support<=1 optimum has cost `C_cap1(theta)`, then\n\n`C_DP(theta) <= C2(theta) < C_cap1(theta)`\n\nis already sufficient to prove that support1 is **not** globally sufficient at theta. No unrestricted weighted DP call is needed.\n\n## Frozen objectives\n\nReuse QG-16's pre-registered outside controls, in this order:\n\n1. `O_tag_out=(t_nc,t_c,t_tag,t_r)=(4,2,5/2,1)`;\n2. `O_restore_out=(4,2,2,5/4)`;\n3. `O_nc_out=(3/2,3/2,1,1)`.\n\nAlso compute O0=(4,2,2,1) only as a negative/binding control; QG-16 already proves cap1 exact there.\n\nAll arithmetic is exact `Fraction`.\n\n## Candidate generator \u2014 imported frozen V5 order\n\nUse **without modification** the V5 generator from `qg9_support2_tightness.py`:\n- 36 accepted support2 method-obstruction types;\n- 1,296 concrete unique blocks;\n- 4,104 compatible SELF/CROSS block pairs;\n- template families in exact frozen order:\n  `IDENTITY_RESTORE`, `ONE_DEFECT_A`, `ONE_DEFECT_B`, `MATCHED_DEFECT`;\n- candidate enumeration order unchanged.\n\nQG-17 may reprice these candidates but may not add new targets/templates after outcomes.\n\n## Feasible support2 witness cost\n\nFor each V5 candidate `(block A, block B, targets A/B)`:\n- use the candidate's exact frame generators and the shared `(S0,S1)` carried by its compatible block group;\n- verify R6I acceptance exactly;\n- minimize central choice separately for each block under `(t_c,t_nc)`;\n- minimize the frozen relative-B target permutation for block B;\n- compute exact weighted Restore and Tag terms.\n\nThis gives a verified feasible `C2(theta)`; it need not be globally cap2-optimal for a strict gap to be decisive.\n\n## Exact weighted cap1 referee\n\nEnumerate the exact 12 ordered support1 anticommuting frame pairs per block. For each A/B pair:\n- frame extra is zero (all three local frame weights are one);\n- minimize A Restore over its frozen target order;\n- minimize B Restore over all 6 relative target permutations;\n- enumerate all shared Tag strings and retain equal nonzero distinct labels;\n- minimize `t_r*Restore + t_tag*TagSupport` exactly.\n\nCache static Tag-support minima by frame-pair pair and target Restore minima by target triple. A second independent implementation must reconstruct the same cap1 value.\n\n## Prospective selection / outputs\n\nFor each objective independently, scan the entire frozen V5 order and record the **first** strict witness with `C2<C_cap1`; continue scanning to obtain:\n- strict-witness count;\n- maximum gap `C_cap1-C2`;\n- first and maximum-gap witnesses;\n- family/pair-kind histogram.\n\nO0 is required to have zero strict witnesses; otherwise parent binding fails.\n\n## Affine witness certificate\n\nFor every selected support2 witness and its selected cap1 optimum, serialize their integer resource vectors:\n\n`r2=(U_c_extra,U_nc_extra,TagSupport,RestoreSupport)`\n`r1=(0,0,TagSupport_cap1,RestoreSupport_cap1)`.\n\nThen the exact difference is\n\n`Delta(theta)=(r2-r1)\u00b7(t_c,t_nc,t_tag,t_r)`.\n\nReport the zero hyperplane and evaluate it at O0 and the selected outside point. If the hyperplane is proportional to a QG-16 facet, record `FACET_SHARPNESS_WITNESS`; otherwise record a new true-phase boundary candidate.\n\nNo claim that a finite witness proves the entire global boundary; it proves non-support1 at the witnessed objective and can prove local sharpness of a specific facet only when the affine zero set matches it.\n\n## Independent generic ORION\n\nRebuild phase-free Pauli algebra, all 12 cap1 frame pairs, weighted cap1 referee, support2 witness resource vector and strict inequality independently. It need not regenerate all 211,248 candidates to verify a positive witness; it must reconstruct each selected witness from serialized raw frames/Tag/targets.\n\n## Native ORION-Q\n\nResponsibilities:\n- `SUPPORT2_PHASE_WITNESS`\n- `NO_WITNESS_ON_FROZEN_V5_DOMAIN`\n- `PARENT_BINDING_GAP`\n- `GENERIC_DISAGREEMENT`\n\nIt must keep `GLOBAL_PHASE_BOUNDARY_COMPLETE=false` unless a separate theorem closes it.\n\n## Positive terminals\n\n- `QG17_SUPPORT2_PHASE_WITNESS_FOUND_AT_FROZEN_OUTSIDE_OBJECTIVE`\n- stronger annotation `QG17_QG16_FACET_LOCALLY_SHARP_BY_AFFINE_WITNESS` when exact hyperplane proportionality holds.\n\nHonest negative: `QG17_NO_SUPPORT2_WITNESS_IN_FROZEN_V5_DOMAIN`.\n\n## Claim boundary\n\nNo novelty credit for parametric optimization/Pareto methods. A positive establishes an exact compiler normal-form phase transition at a frozen structural objective; no physical quantum-advantage claim follows.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T16:28:15Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 815,
+     "title": "[ORION-QG QG-17] Test sharpness of the R6I support\u22641 objective phase",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T21:07:46Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 841,
+     "title": "[ORION-QG QG-17R] Corrected phase-sharpness replay after infeasible cap1-cell bug",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T21:40:00Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 855,
+     "title": "[ORION-QG QG-17R] Corrected support1 phase-sharpness execution on frozen 211,248-candidate world",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:55:11Z",
+     "mergeCommit": {
+      "oid": "733be69a272477b73e640ce9f7901451ba9ab3a8"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T06:31:35Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 866,
+     "title": "[SUPERSEDED by #855] QG-17 frozen execution trigger",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   }
+  ]
+ }
+}

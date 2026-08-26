@@ -1,0 +1,46 @@
+{
+ "number": 874,
+ "title": "[ORION-QG QG-7f] Final pinned-chain closure on the three-block pin graph",
+ "body": "Parent programme: #740\nLast-link parent: QG-7d #836.\nEarned sibling: J7 PA single-pinner all-n closure, PR #870, dual-harness GREEN.\nState instrument: QG-22 #868 / PR #869, dual-harness GREEN (18-state exact hidden-home J5 quotient per phantom home).\nPending sibling: QG-7e #872 / PR #873, single-pinner PP all-hidden-environment confirmatory lane.\n\n## Status\n\n**REGISTERED FINAL-CHAIN FRONTIER \u2014 do not execute/freeze an outcome packet until QG-7e has an honest terminal.**\n\nThe remaining QG-7d obligation is no longer an amorphous `pinned comm-s2` sector. After J7 and, if positive, QG-7e, the only unclosed shapes are exactly those excluded by the original QG-7d chain gate:\n\n1. one selected comm-s2 block has **two simultaneous pinners** among the other two TARE blocks; and/or\n2. a pinner is itself **comm-s2**, producing a two-/three-block pin chain or cycle.\n\nBecause frozen R6M has exactly three blocks and QG-7c already proves frame support<=2 and Tag support<=2, this is a finite structural object.\n\n## Key structural reduction to prove first\n\nFrom the QG-7c M1 inventory, an irreducible comm-s2 block has both support coordinates occupied by the shared Tag. Since global Tag support is <=2, **all comm-s2 blocks in one configuration must use the same two Tag coordinates `{b,a}`** (up to order/relabeling).\n\nTherefore chain growth cannot create arbitrarily many comm-s2 coordinates. Extra coordinates can arise only as phantom homes of non-comm-s2 pinners. With three blocks there are at most two such homes.\n\nStrong target:\n\n> Every remaining pinned-chain configuration can be represented on the two common Tag coordinates plus at most two phantom-home coordinates, with a finite directed pin graph on three block vertices.\n\nThis representation lemma must be machine checked before any normalization theorem.\n\n## F1 \u2014 canonical pin-graph inventory\n\nDefine the pin relation from the exact QG-7c T4b semantics, not from a new informal graph rule. Canonicalize under block permutation and Tag-coordinate swap.\n\nRequired graph/shape census distinguishes at least:\n- selected C with two non-C pinners (`A/P` combinations);\n- C -> C chain with third block A/P;\n- mutual two-C pinning with third A/P;\n- three-C path/cycle where semantically realizable;\n- mixed cases with one/two phantom homes.\n\nHere `A/P/C` are the already-earned irreducible anchored / phantom / comm-s2 M1 shapes. No new block type may be introduced in V1.\n\n## F2 \u2014 compose hidden-home quotients rather than raw 4^24 enumeration\n\nEach phantom home carries the exact six-letter local environment studied by QG-22. Reuse only the **proved state map**, not its answer as an unverified shortcut:\n\n- raw one-home domain 4096 -> 18 exact structural cells for the relevant home delta;\n- at most two phantom homes -> at most `18^2=324` paired structural states before graph/visible constraints.\n\nGeneric ORION must independently verify that the QG-22 quotient remains sufficient when two home coordinates coexist; if cross-home F3 interactions arise, the product quotient is refuted and the missing coupling coordinate becomes the result.\n\n## F3 \u2014 counterexample-first known-family discriminator\n\nFor every canonical chain state, compute a proof-carrying feasible reference and exact known-family costs/upper bounds:\n- parent G1-G4 / J7-style whole-component relocations;\n- exact D+;\n- exact B\u2032;\n- exact B\u2033 where type-correct.\n\nIf a feasible chain member has\n\n`U_chain < min(C_Dplus, f_Bprime, f_Bsecond)`\n\nthen it is a genuine **fifth TARE support-two configuration/regime witness**. Preserve the first canonical strict row and stop theorem promotion; unrestricted DP is optional for the strict known-family separation.\n\nNo post-outcome B\u2034 definition is allowed in the same freeze.\n\n## F4 \u2014 whole-component relocation theorem if no fifth regime\n\nIf the counterexample arm is negative, search a prospectively frozen joint exchange over the entire connected pin component, rather than repeatedly normalizing one pinner while recreating another.\n\nCandidate measure remains the original QG-7d well-founded measure:\n\n`M=(#comm_s2 blocks, #pinned comm_s2 incidences, Tag weight)` lexicographically.\n\nA positive move must:\n- be non-increasing in exact frozen unit cost for every canonical visible/hidden state;\n- strictly decrease M;\n- not create a new comm-s2 block or pin incidence outside the connected component;\n- preserve exact shared labels/acceptance.\n\nAllowed handoff after the joint move: already-earned D+/B\u2032/B\u2033 only.\n\n## F5 \u2014 all-n composition\n\nA complete finite chain inventory plus a move that strictly decreases M is sufficient to lift the local result to all n only if all spectator coordinates are proved inert/unchanged or carried by a complete local state quotient.\n\nFinite n=3/n=4 absence alone may not authorize the theorem.\n\n## Dual harness\n\nGeneric ORION:\n- rebuild M1 A/P/C shape semantics and the pin relation independently;\n- reconstruct the canonical graph census;\n- independently validate QG-22 home-state composition or produce a cross-home counterexample;\n- replay every known-family strict witness / normalization move from primitive Pauli/F3 rules.\n\nNative ORION-Q keeps distinct:\n- `CHAIN_REPRESENTATION_COMPLETE`\n- `FIFTH_REGIME_WITNESS`\n- `CHAIN_ALL_N_NORMALIZATION`\n- `GLOBAL_BDOUBLEPRIME_COMPLETENESS`\n\nNo global B\u2033 completeness until QG-7e (or its honest alternative) plus QG-7f both close and the complete QG-7c composition chain is rebound.\n\n## Honest terminals\n\n- `QG7F_CHAIN_REPRESENTATION_FINITE__NORMALIZATION_OPEN`\n- `QG7F_FIFTH_SUPPORT2_REGIME_FOUND__PIN_CHAIN_WITNESS`\n- `QG7F_PIN_CHAIN_CLOSED_ALL_N_MACHINE_CHECKED`\n- `QG7F_QG22_PRODUCT_STATE_INSUFFICIENT__CROSS_HOME_COUPLING_FOUND`\n- `QG7F_PARTIAL__<obligation>_OPEN`\n- `QG7F_CANNOT_CHECK`\n\n## Claim boundary\n\nFinite graph enumeration, state-product quotients, lexicographic descent and compiler-family optimization are donor methods. Candidate contribution is only the exact frozen TARE chain classification/theorem or counterexample. No novelty, R6 or physical quantum advantage.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T08:17:18Z",
+    "body": "**F0 dual-harness result (2026-08-22): representation premise REFUTED.** Draft PR #878, workflow run `32561761076`, generic ORION + native ORION-Q + byte-identical replay all GREEN. Terminal: `QG7F_TWO_COORD_REDUCTION_REFUTED__TAG3_MULTI_COMM_S2_CONFIGURATION`.\n\nThe registered issue text contains a load-bearing premise that is not earned by QG-7c: it says QG-7c proves global Tag support <=2 in the comm-s2 sector. QG-7c T2 actually gives `wt(S) <= 3 + #comm-s2`; the weight-3 consolidation result is comm-s2-free/conditional on the still-open comm-s2 sector.\n\nFrozen explicit counterexample to the narrower representation premise, local codes `I=0,X=1,Y=2,Z=3`:\n- `S=(X,X,X)`, wt=3;\n- anchored A `(XII,YII)`;\n- comm-s2 B `(YYI,ZII)`, support `{0,1}`;\n- comm-s2 C `(IYY,IZI)`, support `{1,2}`.\n\nBoth C blocks independently satisfy the exact M1 comm-s2 conditions, have no class-(0,0) Lemma-E single-zeroing coordinate, all three blocks anticommute internally and share labels `(0,1)`, yet B/C use different support pairs. Thus the next chain representation may **not** assume one common two-coordinate Tag support.\n\nAuthority remains deliberately narrow: `CHAIN_REPRESENTATION_COMPLETE=false`, `CHAIN_ALL_N=false`, `GLOBAL_BDOUBLEPRIME_COMPLETENESS=false`, `FIFTH_REGIME_FOUND=false`. The successor must either (a) enumerate overlapping comm-s2 support-pair hypergraphs inside higher-weight shared Tags, or (b) first prove a new global Tag-support reduction specifically for the actual remaining chain sector.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/874#issuecomment-5379238970"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T08:18:06Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 740,
+     "title": "[PROGRAMME] ORION-QG \u2014 Compilation Regime Geometry: maps, trades, predicates and forecasts for compilation families",
+     "state": "CLOSED"
+    }
+   }
+  ]
+ }
+}

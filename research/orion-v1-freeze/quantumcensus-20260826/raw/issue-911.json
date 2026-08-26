@@ -1,0 +1,280 @@
+{
+ "number": 911,
+ "title": "[ORION-QG QG-32] Minimal separating probe basis above the bulk+spectrum abstraction lattice",
+ "body": "Parent programme: #740.\nDirect parent: QG-31 #904 / committed query-indexed abstraction result.\nORION-Q transfer parent: MAX-R4E #903 / mechanism calibration #908.\nDonor methods: minimum test cover / distinguishing set, set cover / hitting set, active feature acquisition, decision trees, experimental design, partition refinement.\n\n## Status\n\n**PROSPECTIVE FRONTIER LANE. FREEZE BEFORE ANY MINIMUM-PROBE OUTCOME.**\n\nQG-31 proves three exact observation partitions over the 715 TARE local-Clifford orbit types:\n- bulk signature: 45 classes;\n- unlabeled one-active defect spectrum: 54 classes;\n- full indexed 384-probe response: 715 classes;\n- bulk and spectrum are incomparable;\n- even their joint information is not enough to recover the indexed response, because QG-31 has an explicit same-bulk + same-spectrum + different-indexed witness.\n\nThe next question is operational:\n\n> Once the cheap bulk and unlabeled-spectrum summaries are known, what is the **smallest fixed subset of the 384 indexed probes** whose K-values make all 715 orbit types distinguishable?\n\nNo target cardinality is frozen. The answer may be large; a negative compression result is first-class.\n\n## Q1 \u2014 exact joint base partition\n\nDefine\n\n`A_joint(o) = (A_bulk(o), A_spectrum(o))`.\n\nReconstruct all 715 orbit types and report:\n- exact number `N_joint` of joint classes;\n- class-size histogram;\n- all non-singleton class sizes;\n- largest unresolved joint class;\n- exact number of unresolved orbit pairs after joint summaries.\n\nThis count is a protected outcome, not a predeclared expectation.\n\n## Q2 \u2014 fixed separating probe set\n\nFor probe index `p in {0,...,383}`, let `K_p(o)` be QG-31's ordered one-active response coordinate.\n\nA probe subset `P` is **joint-separating** iff the map\n\n`o -> (A_joint(o), (K_p(o))_{p in P})`\n\nis injective on all 715 orbit types.\n\nFind the minimum cardinality\n\n`m_joint = min |P|`.\n\nRequired:\n- explicit lexicographically canonical minimum probe set among all minima;\n- for every selected probe: target permutation + auxiliary row + frame/Tag data;\n- exact verification that all 715 signatures are distinct;\n- lower-bound certificate showing no set of size `< m_joint` separates all unresolved pairs.\n\n## Q3 \u2014 exact hitting-set formulation\n\nBuild the unresolved-pair universe only within joint classes. For every probe `p`, define the set of unresolved pairs it distinguishes.\n\nA valid probe basis is exactly a hitting/set-cover solution over these pair constraints.\n\nThe production solver may use branch-and-bound, ILP, SAT, or exhaustive combinatorial search, but the committed result must include a solver-independent certificate that the generic verifier can reconstruct:\n- unresolved-pair count;\n- selected probe set;\n- coverage witness for every pair;\n- lower-bound proof object appropriate to the solver (e.g. disjoint/private pair packing, exact branch certificate, or independently replayable exhaustive layer failure).\n\nA heuristic set without a minimum proof earns only `UPPER_BOUND` authority.\n\n## Q4 \u2014 baselines / ablations\n\nAlso report, without conflating their authority:\n\n1. `m_raw` or best exact bounds for probes needed if **no** bulk/spectrum summary is supplied;\n2. probes needed above **bulk only**;\n3. probes needed above **spectrum only**;\n4. probes needed above **joint bulk+spectrum**.\n\nIf exact minima for all four are computationally expensive, QG-32's primary theorem is `m_joint`; the others may be certified bounds.\n\nThis ablation measures the value of combining cheap summary observations before active probing.\n\n## Q5 \u2014 adaptive successor registration\n\nA fixed probe basis may still be wasteful. If `m_joint` is nontrivial, register but do not silently execute a successor for an adaptive decision tree minimizing:\n- worst-case number of probes;\n- mean probes under frozen orbit priors;\n- or both.\n\nDo not call the fixed-basis result an adaptive optimum.\n\n## Q6 \u2014 ORION-Q interpretation\n\nIf a small exact `m_joint` is earned, the allowed ORION-Q research-control statement is:\n\n> For this compiler-local observation problem, cheap bulk+spectrum summaries plus `m_joint` fixed indexed probes recover the complete 715-way local-response identity, so a finer claim can be authorized by active acquisition rather than carrying all 384 indexed responses by default.\n\nThis is a domain-specific active-verification primitive. It does not establish generic optimal experimental design.\n\nIf `m_joint` is large, that is equally useful: it quantifies the information barrier and tells ORION-Q not to expect cheap active recovery.\n\n## Independent verification\n\nProduction:\n- binds QG-31 committed receipt;\n- reconstructs exact 715\u00d7384 response matrix;\n- solves the minimum joint-separating probe problem.\n\nGeneric ORION:\n- independently rebuilds phase-free F2^2/F3 semantics, 715 local-Clifford orbits, 384 probes, joint partition and pair-distinguishing matrix;\n- verifies the selected set and minimum proof without importing the production solver.\n\nNative ORION-Q:\n- authorizes only the fixed-probe, query-scoped active-verification result;\n- no global optimizer/minimal-state/physical authority.\n\n## Claim ladder\n\n- `QG32_JOINT_PARTITION_RECONSTRUCTED`\n- `QG32_JOINT_SEPARATING_PROBE_UPPER_BOUND_CERTIFIED`\n- `QG32_MINIMUM_JOINT_SEPARATING_PROBE_BASIS_MACHINE_CHECKED`\n- successor only: adaptive probe tree optimality.\n\n## Hard boundaries\n\nMandatory false unless separately proved:\n- minimum probes for the full finite-n optimum;\n- minimum experimental measurements on hardware;\n- global QG-28 state minimality;\n- generic active-learning/test-cover novelty;\n- physical quantum advantage.\n\n## Intended strong terminal\n\n`QG32_MINIMUM_FIXED_PROBE_BASIS_ABOVE_JOINT_BULK_SPECTRUM_MACHINE_CHECKED`\n\nHonest alternatives: only an upper/lower bound, joint response unexpectedly injective (contradicts parent and should fail parent binding), solver certificate gap, generic/native disagreement, or CANNOT_CHECK.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T14:23:40Z",
+    "body": "QG-32 now has a protected **GREEN upper-bound-only result**, committed at `research/extensions/orion-qg/QG32_MIN_SEPARATING_PROBES_RESULTS.json` (`33bf62e54a6c1fce8ce7dd1a648dad08226eb99d`).\n\nExecution head: `07e6685e4098c4fc74edb1a14ebbc9734009dd8a`\nWorkflow run: `32578227800`\nArtifact: `9477117607`, SHA256 `be338aa191162370af2b628eec5b5e25becf8b343c8a814d023ed7572dd4ceb5`\n\nEarned exact reconstruction:\n- joint `(bulk,spectrum)` classes: **92**;\n- largest joint class: **48**;\n- unresolved pairs inside joint classes: **5,895**;\n- 384 physical probes collapse to **168** distinct pair-coverage patterns.\n\nEarned active-verification result:\n- deterministic fixed probe set `[18,68,101,181,139]` separates all **715** indexed local-response identities;\n- therefore `certified_probe_upper_bound = 5`;\n- this avoids carrying **379 of 384** indexed probe coordinates for this scoped identity-separation task after joint summaries.\n\nNot earned:\n- `minimum_probe_cardinality` remains `null`;\n- HiGHS found incumbent objective 5 but hit its proof time limit, so `MINIMUM_FIXED_PROBE_BASIS_AUTHORITY=false`.\n\nGeneric ORION independently rebuilt the 715\u00d7384 semantics and accepted only `UPPER_ONLY`; native ORION-Q accepted only `JOINT_SUMMARY_PLUS_CERTIFIED_FIXED_PROBE_UPPER_BOUND_ONLY`. Replay was byte-identical, and a self-consistent tamper removing one selected probe was rejected.\n\nNext exact successor should ask the clean decision question: **does any 4-probe separating set exist?** QG-32 itself must remain historical upper-bound-only.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/911#issuecomment-5380885902"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T13:58:31Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 913,
+     "title": "[ORION-QG QG-32] Minimum fixed separating probes above joint bulk+spectrum summaries",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:57:33Z",
+     "mergeCommit": {
+      "oid": "9f4134c5fc759c42229a01f839e5a8cda7aa72c5"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:00:37Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 914,
+     "title": "[ORION-Q MAX-R4E-B0] Prospective held-out TARE transfer: pre-outcome action forecast on QG-32",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:01:21Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 903,
+     "title": "[ORION-Q MAX-R4E] Prospectively admit QG-derived exact research skills into real quantum method search",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:25:52Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 918,
+     "title": "[ORION-QG QG-32b] Exact four-probe feasibility above joint bulk+spectrum summaries",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:53:04Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 924,
+     "title": "[ORION-QG QG-34] Exact adaptive probe tree above joint bulk+spectrum summaries",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T16:53:13Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 926,
+     "title": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not stay ignorant of the null result",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T18:26:30Z",
+     "mergeCommit": {
+      "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4"
+     }
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T17:28:43Z",
+    "commit": {
+     "oid": "fc961b58795dbe68e8271aa5cf1463b61d2e18c7",
+     "messageHeadline": "ORION-QG: C1 decided -- the defect spectrum IS the maximal symmetry q\u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T17:46:55Z",
+    "commit": {
+     "oid": "ccf31548e5dd517ba840634957df41c9eb17de5e",
+     "messageHeadline": "ORION-QG QG-34: exact minimax adaptive probe depth D_* = 3"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T18:22:39Z",
+    "commit": {
+     "oid": "382d01e56a83175e62132e6a05bf74263c2fbb13",
+     "messageHeadline": "ORION-QG: Check B correction + assimilation ledger for the symmetry/i\u2026"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:24:05Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 928,
+     "title": "[ORION-QG QG-32c] Independent exact MITM replication of four-probe infeasibility",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T18:29:15Z",
+    "commit": {
+     "oid": "3d44ce6bb62324661e9a291d72648f7eb5984b0d",
+     "messageHeadline": "ORION-QG QG-35: existence is free, selection is provably not"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T18:37:06Z",
+    "commit": {
+     "oid": "538dbdc3d315fbec4f71ff72d961e1f9f59380b1",
+     "messageHeadline": "ORION-QG: the cost-annotated ladder is a COSTUME -- tested negative, \u2026"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:38:38Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 932,
+     "title": "[ORION-QG QG-35] Summary-conditioned fixed probe complexity: fair baseline for adaptive identification",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T18:41:33Z",
+    "commit": {
+     "oid": "dd29b99b6489cbac3082ac2b6954372a9f587149",
+     "messageHeadline": "ORION-QG QG-36: at instance level, existence is not free either"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:57:17Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 937,
+     "title": "[ORION-QG QG-37] One-corruption-resilient indexed probe identification",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T20:58:12Z",
+    "commit": {
+     "oid": "abdcf322a657583db3af5a1d944246d377522a77",
+     "messageHeadline": "ORION-QG QG-35b: the price of selection, and of actionability"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:15:30Z",
+    "commit": {
+     "oid": "865f65e3e8db1b5dc38e978fab165365a8e8cc3c",
+     "messageHeadline": "ORION-QG: independent confirmation of the 3 < 4 < 5 observation-cost \u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:23:09Z",
+    "commit": {
+     "oid": "1190d6de28bd011bdcab5df05b9d92ca3bbf297f",
+     "messageHeadline": "ORION-QG QG-39: what the impossibility costs -- the selection regret \u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:39:00Z",
+    "commit": {
+     "oid": "0196290375c095f9d9709e2df143c8aab374e8ef",
+     "messageHeadline": "ORION-QG QG-40: the selection phenomenon reproduces in a production c\u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:41:35Z",
+    "commit": {
+     "oid": "ac6ca0cf92ab3b6b2befb87fd518e90244173bab",
+     "messageHeadline": "ORION-QG QG-41: the separation holds on SixLCU, and exposes a middle \u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:49:25Z",
+    "commit": {
+     "oid": "25a3623a6cbe20e381d156b8690468e6ed2a19c3",
+     "messageHeadline": "ORION-QG: one-command reproduction + falsification ledger"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T22:07:00Z",
+    "commit": {
+     "oid": "f4356f62c6087a0a6ead73cbe47a2bd4c67529d2",
+     "messageHeadline": "ORION-QG QG-42: the selection phenomenon in two production compilers,\u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T22:34:39Z",
+    "commit": {
+     "oid": "b502365c2948debc4576d41f83a1c6b7ffc3dfca",
+     "messageHeadline": "RETRACTION: the QG-35 headline separation counts are null-reproducible"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T22:50:20Z",
+    "commit": {
+     "oid": "407d0af82b23b13b7d1b9b40a8d22fa09eb68c50",
+     "messageHeadline": "QG: the cost-calibration gap is closed by being resolved -- verdict (c)"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-23T01:56:22Z",
+    "commit": {
+     "oid": "87a8c096e46b57e4b4946fad985eeafb6ddf72b6",
+     "messageHeadline": "QG: the residual is real -- and it is probe degeneracy, not depth"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-23T18:26:31Z",
+    "commit": {
+     "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4",
+     "messageHeadline": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not\u2026"
+    }
+   }
+  ]
+ }
+}

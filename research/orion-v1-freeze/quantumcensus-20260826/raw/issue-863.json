@@ -1,0 +1,131 @@
+{
+ "number": 863,
+ "title": "[ORION-QG QG-20] Minimal regime state: exact compiler-state quotients for boundary determination",
+ "body": "Parent programme: #740\nDirect parents: QG-15/QG-15b StabPrep boundary refutation; registered QG-15c enlarged-vocabulary successor; QG-10 interval geometry; production min-plus/exact-DP state machinery.\n\n## Status\n\n**WAVE-3 INFORMATION FRONTIER \u2014 replace ad hoc feature engineering by the coarsest exact compiler-state summary that preserves regime/optimal-cost decisions.**\n\nQG-15b established a hard negative: the frozen 13-feature StabPrep vocabulary contains mixed cells with both donor-exact and donor-inexact instances, giving an irreducible 43/1146 error floor. The decisive question is no longer merely \u201cadd better features.\u201d It is:\n\n> What is the **minimal sufficient state** of a compilation problem for deciding the regime label or exact residual optimum, and how much larger is that state than the natural structural vocabulary?\n\nThis lane introduces a compiler-specific state-quotient object. It does not claim novelty for automata minimization, bisimulation, abstract interpretation, sufficient statistics, state aggregation, weighted automata, or dynamic programming.\n\n## Strong donor subtraction\n\nAbsorb completely:\n- Myhill\u2013Nerode style state equivalence/minimal automata;\n- bisimulation and exact state abstraction for control/transition systems;\n- weighted/min-plus automata and partition refinement;\n- abstract interpretation and quotient domains;\n- sufficient-state/value-equivalence ideas in dynamic programming/MDPs.\n\nRelevant donor references include weighted-automata minimization/partition-refinement work and classical quotient-of-abstract-interpretation results. Candidate contribution is restricted to the **exact compiler-regime quotient**, its measured complexity, and its relation to ORION-QG certificate arity/feature determination.\n\n## Q1 \u2014 define regime equivalence\n\nFix a frozen compiler family, objective identity and admissible continuation grammar. For partial compiler states `s,t`, define progressively stronger equivalences:\n\n### E_label \u2014 regime-label equivalence\n`s ~_label t` iff for every admissible continuation/input suffix `z`, the final regime label is identical from `s+z` and `t+z`.\n\n### E_value \u2014 optimal residual-value equivalence\n`s ~_value t` iff for every admissible continuation `z`, the exact optimal residual cost differs by the same declared additive offset (or is exactly equal under a normalized convention).\n\n### E_policy \u2014 optimal-action equivalence\n`s ~_policy t` iff the same certified first action/family remains optimal for every admissible continuation, with ties preserved explicitly.\n\nDo not collapse these notions. `E_label` may be much coarser than `E_value`.\n\n## Q2 \u2014 finite exact quotient on StabPrep\n\nUse the exact StabPrep state graph already frozen for QG-15 (n<=4 bounded domains) as the first laboratory.\n\n1. expose the exact transition system and final donor-exact labels/costs;\n2. run backward partition refinement from terminal distinctions;\n3. compute the coarsest exact quotient for `E_label` and, where tractable, `E_value`;\n4. serialize quotient cardinality, class-size distribution, and minimal distinguishing suffixes for every merged/split class;\n5. independently verify that every pair merged by the quotient is indistinguishable under all admitted continuations in the bounded complete graph.\n\nNo heuristic clustering is allowed to authorize exactness.\n\n## Q3 \u2014 diagnose the QG-15b mixed cells\n\nMap each of the 12 known mixed 13-feature cells into the exact quotient.\n\nRequired answer:\n- do the positive/negative members fall into different exact quotient classes?\n- which transition/history distinctions separate them?\n- is the missing information local path state, pivot/order history, route occupancy, global schedule residue, or another exact coordinate?\n\nThe output is an **obstruction explanation**, not just a new feature list.\n\n## Q4 \u2014 freeze a minimal enlarged vocabulary\n\nOnly after Q2/Q3 are sealed, derive a candidate human-readable feature map `phi*` from quotient distinctions, then freeze it before evaluating held-out labels.\n\nGoals, in order:\n1. exact determination under a compact interpretable subset;\n2. if exactness requires the full quotient, prove that compression limit honestly;\n3. measure the smallest subset of candidate coordinates whose induced cells refine the exact `E_label` quotient on the complete bounded domain.\n\nThis lane must not silently contaminate QG-15c's prospective freeze. If QG-15c has already frozen a vocabulary independently, use QG-20 only as an after-the-fact explanation/control. If not, QG-20 may generate the candidate vocabulary but the QG-15c evaluation must freeze before outcome.\n\n## Q5 \u2014 regime-state complexity\n\nDefine compiler-specific quantities on a bounded domain X:\n\n- `N_label(X)` = number of exact `E_label` quotient classes;\n- `N_value(X)` = number of exact `E_value` classes;\n- `b_label(X)=ceil(log2 N_label)` as an information lower bound on any lossless finite code;\n- feature overhead = bits/coordinates used by a proposed vocabulary relative to the quotient lower bound.\n\nFor growing n, ask whether `N_label(n)` stabilizes, grows polynomially, or explodes. No all-n inference from n<=4 absence/growth.\n\nThis creates a second axis beside QG-12 certificate arity:\n\n- **certificate arity**: how locally a failure can be witnessed;\n- **regime-state complexity**: how much information must be retained to decide the boundary for every continuation.\n\nThey need not correlate.\n\n## Q6 \u2014 transfer to R6M/R6I\n\nCalibration families:\n- R6M TARE, where low-dimensional Tag/syndrome states and finite trade structure suggest a small quotient;\n- R6I, where QG-9 V6 shows that a globally meaningful relocation step beats the original 5-dimensional local syndrome upper bound.\n\nTest whether the exact quotient explains why R6I's production syndrome rank 5 is loose while intrinsic support is 1: the DP state may carry information required for exact optimization that is unnecessary for the final support-normal-form decision.\n\n## Q7 \u2014 weighted/min-plus formulation\n\nWhere a family is an exact min-plus DP, represent the compiler as a weighted transition system. Determine which quotient notion preserves:\n- exact value functions;\n- only donor-exact labels;\n- only normal-form/support phase labels.\n\nWeighted-automata/min-plus theory is donor machinery; ORION-QG's value is the semantic mapping and measured compiler quotient.\n\n## Independent verification\n\nGeneric ORION:\n- rebuild the finite transition graph from primitive compiler semantics;\n- implement independent partition refinement/minimization;\n- validate every quotient class by exhaustive continuation equivalence on the complete bounded graph;\n- produce minimal distinguishing suffixes/counterexamples for any incorrect merge.\n\nNative ORION-Q:\n- keep `BOUNDED_EXACT_QUOTIENT`, `FEATURE_DETERMINATION`, `HELD_OUT_PREDICATE`, and `ALL_N_STATE_COMPLEXITY` distinct;\n- prohibit finite-graph quotient results from self-promoting to scalable/all-n claims.\n\n## Strong terminals\n\n- `QG20_STABPREP_EXACT_REGIME_QUOTIENT_COMPUTED`\n- `QG20_MIXED_CELLS_EXPLAINED_BY_MISSING_STATE_COORDINATE`\n- `QG20_MINIMAL_ENLARGED_VOCABULARY_RECOVERS_FEATURE_DETERMINATION`\n- `QG20_REGIME_LABEL_COMPRESSES_FAR_BELOW_EXACT_VALUE_STATE`\n\nHonest alternatives:\n- `QG20_EXACT_REGIME_STATE_REQUIRES_NEAR_FULL_OPTIMIZER_STATE`\n- `QG20_QUOTIENT_GROWS_WITH_N__NO_BOUNDED_STATE_SUMMARY_EVIDENCE`\n- `QG20_WEIGHTED_EQUIVALENCE_CANNOT_CHECK`\n- `QG20_CANNOT_CHECK`\n\n## Literature anchors / novelty boundary\n\n- Classical Myhill\u2013Nerode/minimal-automaton theory and bisimulation are fully donor-owned.\n- Giacobazzi/Ranzato-style abstract-domain quotienting is donor-owned.\n- Weighted/min-plus automata minimization and partition refinement are donor-owned; recent formal work shows efficient refinement for broad weighted transition systems, while exact minimization questions vary by semiring/model.\n\nCandidate scientific contribution is only a prospectively verified **quantitative compiler-state quotient for regime determination** and the resulting explanation/limits of low-order boundary features. No physical quantum advantage follows.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 2,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T23:21:29Z",
+    "body": "ORION-EA quantum handoff after #957/#963 closure: QG-20 is a much better exact quantum crossover than a generic 'LLM + quantum' benchmark.\n\nIf QG-20 exposes a frozen mixed-cell / exact-quotient residual, a learned proposer can be tested **proposal-side only**: given permitted training-side counterexamples/state traces, propose a new executable human-readable coordinate intended to refine the current compiler-state vocabulary. QG-20 remains the scientific owner/referee and decides whether the coordinate actually separates quotient classes / transfers to held-out continuations.\n\nMandatory controls from EA research:\n- generic feature synthesis / partition refinement / program synthesis get the same evidence and budget;\n- if exact quotient refinement directly constructs the needed coordinate, credit the exact method, not the LLM;\n- no finite hidden feature menu if exhaustive verification fits the budget (`EAJ_FINITE_MENU_CLASS_CLOSED`);\n- candidate coordinate must be frozen before protected continuation outcomes;\n- identity/remint changes are not semantic-coordinate discoveries;\n- quantum theorem/quotient ownership stays QG-20.\n\nThis is a possible P10/P11/Jump consumer of QG-20, not a new quantum claim under EA.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/863#issuecomment-5383125383"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T23:36:56Z",
+    "body": "## Top-tier recovery binding \u2014 QG-20 as the exact quantum falsification/recovery laboratory\n\nCoordinator #964 binds any QG-20 mixed-cell / quotient / enlarged-vocabulary negative into the dual-harness recovery loop while QG-20 retains all compiler/theorem authority.\n\nLane A: generic ORION recursive research harness over exact quotient/counterexample receipts and current feature/state-abstraction donors.\nLane B: native ORION-Q/QG controller + exact transition graph/partition-refinement/DP referee.\n\nIf the current human-readable vocabulary remains insufficient, diagnose whether the cause is: one compact missing coordinate, history/continuation state, representation change, shared/global coupling, near-full optimizer state requirement, or donor partition-refinement/state-abstraction sufficiency.\n\nOnly a compact residual may proceed to a learned proposal experiment, and exact feature synthesis, partition refinement, symbolic/program synthesis and graph/state abstraction must receive the same information/budget first. If the exact quotient itself directly supplies the necessary state, credit the exact method and do not call the LLM the discoverer.\n\nThis lane can strengthen the top-tier P11/P10 story only with a prospectively frozen held-out transfer result; otherwise its negative/lower-bound result remains a valuable exact boundary.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/863#issuecomment-5383179040"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T06:26:27Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 865,
+     "title": "[ORION-QG] Wave-3 frontier: universal trades, minimal regime state, robustness margins",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:55:41Z",
+     "mergeCommit": {
+      "oid": "deedaa6f08453fe1c9ca02836c3dd0034b046035"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T06:26:34Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 740,
+     "title": "[PROGRAMME] ORION-QG \u2014 Compilation Regime Geometry: maps, trades, predicates and forecasts for compilation families",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T06:45:38Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 868,
+     "title": "[ORION-QG QG-22] Minimal hidden-home state quotient for the pinned comm-s2 J5 move",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T23:15:09Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 963,
+     "title": "[ORION-EAJ] Learned epistemic schema evolution under bounded language insufficiency",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T23:22:04Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 959,
+     "title": "P11: add positive wide high-width replication",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:39:27Z",
+     "mergeCommit": {
+      "oid": "8a4b035359c271523a192183d6e25b341a39a413"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T23:23:46Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 962,
+     "title": "[ORION-EA] Close fixed-schema EA studies and route EAJ into existing owners",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:38:48Z",
+     "mergeCommit": {
+      "oid": "2c19d9cd87564d234719fac4321268560185c8ee"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T23:36:19Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 964,
+     "title": "[RESEARCH GOAL RECOVERY] Dual-harness recursive resolution of P9/P10/P11/EA negatives",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   }
+  ]
+ }
+}

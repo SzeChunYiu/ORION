@@ -1,0 +1,95 @@
+{
+ "number": 880,
+ "title": "[ORION-QG QG-24] Exact all-n TARE as a finite tropical weighted automaton",
+ "body": "Parent programme: #740.\nStructural parents: R6S all-n frame-support<=2 theorem; QG-7c T1/M1/T2 normalization; QG-23 auxiliary-support compactness #879 (must earn an honest terminal before full unrestricted-optimum authority).\nMethod donors: weighted automata / rational series over the tropical `(min,+)` semiring, transfer matrices, finite-state dynamic programming.\n\n## Status\n\n**PROSPECTIVE FINITE-STATE COMPILER THEOREM \u2014 freeze before automaton construction/outcome.**\n\nThe fixed three-block R6M/TARE grammar has six target Pauli strings. Read an n-qubit instance column-by-column. Each qubit column is a symbol\n\n`x_q = (P_A0,P_A1,P_B0,P_B1,P_C0,P_C1) in {I,X,Y,Z}^6`,\n\nso the target alphabet has exactly `4^6 = 4096` symbols.\n\nUnder the earned structural normal forms, there exists an optimum with:\n- every one of the six frame Paulis of support <=2 (R6S);\n- shared Tag support <=6 (QG-23/QG-7c occupancy route, if QG-23 is GREEN).\n\nFor fixed global target permutations, central-branch bits, and label orientation, every remaining semantic constraint is an additive/cumulative finite-state quantity across qubit columns.\n\n## Q1 \u2014 exact state variables\n\nFor one fixed global-control sector, construct a tropical weighted automaton whose state tracks only:\n\n1. six frame support counters in `{0,1,2}`;\n2. one Tag support counter in `{0,...,6}`;\n3. three accumulated frame-pair symplectic parities `<R_j0,R_j1>`;\n4. six accumulated Tag/frame syndrome parities `<S,R_jk>`.\n\nA direct unreduced upper bound is therefore\n\n`3^6 * 7 * 2^9 = 2,612,736`\n\nstates per fixed global-control sector, before reachability/symmetry minimization.\n\nThe global discrete controls may be external loops rather than state coordinates:\n- 8 target-permutation tuples;\n- 8 central-bit tuples;\n- 2 common label orientations.\n\nNo state-size novelty is claimed from this naive bound.\n\n## Q2 \u2014 exact local transition cost\n\nFor each input column and each local choice of six frame letters plus one Tag letter:\n- update support counters;\n- update all nine symplectic parity bits using phase-free Pauli algebra over `F_2^2`;\n- add exact local F3 Restore contribution after the fixed target permutation;\n- add frame-support multiplier contribution (`2` central, `4` noncentral per active support unit under the frozen unit objective);\n- add Tag contribution `2` per nonidentity Tag letter.\n\nSubtract the fixed per-block Uanti offsets only at final acceptance (or use an exactly equivalent initialization convention).\n\nThe automaton weight is over the tropical semiring: path multiplication is ordinary addition and alternative runs combine by minimum.\n\n## Q3 \u2014 final acceptance\n\nAccept only states satisfying the original R6M semantics:\n- each frame Pauli nonzero and support<=2;\n- every block frame pair has global symplectic parity 1;\n- the six final Tag/frame syndromes equal one common `(0,1)` or `(1,0)` branch orientation across all three blocks;\n- Tag support within the frozen cap;\n- all fixed global controls are respected.\n\nThe minimum accepting path across all 128 global-control sectors is the automaton optimum.\n\n## Q4 \u2014 equality to unrestricted exact DP\n\nFull positive authority requires both inclusions:\n\n1. every accepting automaton path is an admissible original TARE configuration, so `C_DP <= C_WFA`;\n2. parent normal-form theorems guarantee at least one unrestricted optimum has frame support<=2 and Tag support<=6, so it appears as an accepting path, giving `C_WFA <= C_DP`.\n\nTherefore `C_WFA = C_DP` for every n.\n\nIf QG-23 cannot provide the Tag<=6 existence theorem, QG-24 may still earn only a bounded-Tag exact compiler result and must not promote unrestricted equality.\n\n## Q5 \u2014 protected cross-checks\n\nBefore all-n authority, compare the automaton against independently protected exact-DP receipts on frozen domains:\n- exhaustive n=1;\n- structured/exhaustive n=2 domains already used by ORION-Q;\n- frozen n=2-3 random/chemistry panels where exact DP receipts exist.\n\nEvery mismatch serializes the target word, automaton accepting path, DP witness and first differing cost component.\n\n## Q6 \u2014 minimization as a separate science question\n\nAfter exactness is sealed, minimize reachable state by continuation equivalence / weighted-automaton methods. This is diagnostic only in V1. Do not alter the exact state language after seeing the minimized quotient.\n\nInteresting outputs include:\n- reachable-state count by prefix length;\n- exact quotient size;\n- which counters/parities are information-theoretically redundant;\n- whether the QG-22 hidden-home state appears as a local quotient of this global machine.\n\n## Independent generic ORION\n\nGeneric ORION must build phase-free Pauli multiplication/symplectic/F3 independently and implement a separate automaton evaluator. It may share the frozen state specification but not production transition tables.\n\n## Native ORION-Q\n\nKeep distinct:\n- `FINITE_STATE_EXACT_COMPILER`;\n- `UNRESTRICTED_DP_EQUALITY_ALL_N`;\n- `AUTOMATON_MINIMALITY`;\n- `CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS`.\n\nA finite-state exact optimizer does not by itself prove B'' family completeness or a human closed-form regime theorem.\n\n## Strong intended terminal\n\n`QG24_TARE_UNRESTRICTED_EXACT_OPTIMUM_RECOGNIZED_BY_FINITE_TROPICAL_AUTOMATON_ALL_N`\n\nHonest alternatives:\n- `QG24_BOUNDED_TAG_AUTOMATON_EXACT__UNRESTRICTED_TAG_CAP_OPEN`\n- `QG24_STATE_SPECIFICATION_MISSING_GLOBAL_CONSTRAINT`\n- `QG24_DP_AUTOMATON_COUNTEREXAMPLE`\n- `QG24_GENERIC_NATIVE_DISAGREEMENT`\n- `QG24_CANNOT_CHECK`\n\n## Claim boundary / donor subtraction\n\nWeighted automata, tropical semirings, transfer matrices, finite-state DP and automaton minimization are established mathematics/computer science and receive zero novelty credit. Candidate contribution is only the exact compiler-specific representation theorem, proof-carrying construction, and any resulting TARE-specific state quotient. No R6 or physical quantum-advantage authority is requested.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 2,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T08:55:38Z",
+    "body": "Pre-freeze semantic audit correction before QG-24 execution:\n\n1. The exact WFA does **not** require QG-23's full auxiliary-skeleton theorem as a logical parent. R6S already earns existence of an optimum with all six frames support<=2; QG-7c M1/T1/T2 then gives an optimum with `wt(Tag)<=3+#comm_s2<=6`. QG-23 remains a useful hostile-corrected compactness control, but the exact finite-state theorem can bind directly to R6S + the all-n QG-7c reductions.\n2. The common label orientation need not be an external factor-2 sector. Final acceptance can require branch-0 syndromes all equal, branch-1 syndromes all equal, and the two values distinct. Thus the global-control sectors are 8 target-permutation tuples \u00d7 8 central-bit tuples = **64**.\n3. Raw state count per fixed sector remains exactly `3^6 * 7 * 2^9 = 2,612,736`: six frame-support counters, one Tag-support counter, three frame-pair parity bits, six Tag/frame syndrome bits.\n4. Production audit of frozen `config_cost`/`config_labels` confirms these are Markov-complete coordinates: cost is a qubit-local sum plus `-18`, and acceptance depends only on support/nonzero conditions and those nine accumulated parities.\n\nThese corrections are prospective and are being frozen into the execution protocol before any QG-24 outcome.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/880#issuecomment-5379424441"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T09:04:24Z",
+    "body": "QG-24 protected execution is GREEN on PR #883.\n\nEarned terminal: `QG24_TARE_UNRESTRICTED_EXACT_OPTIMUM_RECOGNIZED_BY_FINITE_TROPICAL_AUTOMATON_ALL_N`.\n\nProtected facts:\n- 4096-symbol six-target column alphabet;\n- 64 fixed global-control sectors;\n- 2,612,736 raw states per sector from six frame support counters, one Tag support counter and nine symplectic parity bits;\n- 16,384 local auxiliary choices per input column;\n- complete n=1 semantic calibration: 48 feasible shared-Tag/frame rows \u00d7 all target permutations/centrals \u00d7 729 valid targets, zero production-vs-WFA formula mismatches and zero minimum mismatches;\n- n=1 minimum-cost fingerprint SHA256 `47786e6b70c771dfd62d2d0f2619b7e54b858a8cd1c576e949b90ca86571b8c3`, histogram `{2:168,3:411,4:126,5:24}`;\n- generic ORION and native ORION-Q both ACCEPT; deterministic analyzer replay byte-identical;\n- all-n equality binds R6S frame support<=2 plus pre-T4b QG-7c M1/T1/T2 Tag support<=6. The open QG-7f chain normalization theorem is explicitly not used.\n\nProtected committed result: `research/extensions/orion-qg/QG24_TROPICAL_WFA_RESULTS.json`, commit `2109447f419d7d5838730ee060eadeb65cd372c9`.\n\nAuthority remains separated: `AUTOMATON_MINIMALITY=false`, `CLOSED_FORM_BDOUBLEPRIME_COMPLETENESS=false`, `CHAIN_ALL_N=false`, `ASYMPTOTIC_PHASE_BOUNDARY=false`.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/880#issuecomment-5379457473"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T08:43:38Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 881,
+     "title": "[ORION-QG QG-25] Tropical transfer spectra and asymptotic compiler phases for periodic TARE families",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:00:42Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 883,
+     "title": "[ORION-QG QG-24] Exact all-n TARE as a finite tropical weighted automaton",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:56:34Z",
+     "mergeCommit": {
+      "oid": "c772d406940a52ec83ed2321a41d890aaca54717"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:03:02Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 884,
+     "title": "[ORION-QG QG-26] Parikh-histogram kernel and finite guarded tropical regime geometry for all-n TARE",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T09:04:51Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 740,
+     "title": "[PROGRAMME] ORION-QG \u2014 Compilation Regime Geometry: maps, trades, predicates and forecasts for compilation families",
+     "state": "CLOSED"
+    }
+   }
+  ]
+ }
+}

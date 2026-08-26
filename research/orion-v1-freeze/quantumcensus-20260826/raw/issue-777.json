@@ -1,0 +1,86 @@
+{
+ "number": 777,
+ "title": "[ORION-QG QG-13 V2] Prospectively mine a combined-deletion theorem for R6I support-five tightness",
+ "body": "Parent theorem-miner programme: #767\nTightness owner: #762\nCanonical theorem parents: QG-1 wave-1 support<=5 theorem; QG-13 V1 protected recovery PR #776\nFrozen base for V2: `3202e52371d018b5f6547ed44490f089400d8485`\nBranch: `shadow/orion-qg-qg13-v2-r6i-combined-edits`\n\n## Status\n\n**PROSPECTIVE NEW-THEOREM PACKET \u2014 parent answers may not be imported during synthesis.**\n\nQG-13 V1 earned only a recovery result: from production R6M/R6I transition/resource semantics it independently recovered the known quotient dimensions/support bounds and the QG-8 objective cone. V2 is the first genuinely new theorem-mining attempt.\n\n## Scientific target\n\nDetermine whether a frozen grammar of **combined R6I column deletions** can improve the all-n generator support bound from 5 to 4, or else produce a minimal algebraic obstruction proving that this edit grammar cannot close QG-9.\n\nThe key gap in QG-1 is that SOLO and PAIR moves are applied separately. A support-5 irreducible configuration may have no zero-sum subset inside any one certified move family while still admitting a *joint* rewrite whose total five-coordinate syndrome change cancels.\n\n## Frozen edit grammar E2\n\nFor two distinct local columns q,r of one R6I block, candidate edits may choose one of the following local actions at each column:\n\n- `A`: zero generator R0 only, recompute dependent R2;\n- `B`: zero generator R1 only, recompute dependent R2;\n- `AB`: zero both R0,R1, hence R2 becomes identity;\n- `KEEP`.\n\nAt least two generator letters must be deleted across the two columns. Tag letters, targets, block permutation, central choices and the other block are unchanged. No Tag repair is allowed in V2.\n\nThe miner must infer the production 5-coordinate syndrome change of every legal action from the exact R6I transition semantics. It may compose two local actions only when their total change is zero in the inferred quotient and the resulting block remains rank-2/anticommuting.\n\n## Complete local resource domain\n\nFor every action pair in E2, sweep all production local Pauli letters, target letters, central branches and Tag letters needed to compute the exact two-column objective delta under the frozen R6I unit objective.\n\nThe theorem miner records:\n- exact syndrome-change vectors;\n- exact cost-delta set and worst delta;\n- whether every zero-total-syndrome action pair is non-increasing;\n- equality/positive witnesses;\n- action family and local context for the first counterexample.\n\nA single semantics-valid positive-cost zero-syndrome combined edit refutes that edit as a universal theorem step.\n\n## Global theorem test\n\nThe first global target is deliberately narrow:\n\n> Every support-5 block pattern admitted by the frozen QG-9 obstruction grammar has at least one semantics-preserving non-increasing E2 move that reduces the maximum support of a support-5 generator.\n\nV2 must prospectively freeze the obstruction grammar before evaluating it. The starting domain is the QG-9 structural census: realizable five-column accepting patterns surviving existing QG-1 SOLO/PAIR moves, including the support-5 subset.\n\nThe miner may emit one of:\n\n1. `QG13V2_SUPPORT4_CANDIDATE` \u2014 every frozen support-5 obstruction admits a certified reducing E2 move and the compositional proof obligations needed for all-n support<=4 are explicit;\n2. `QG13V2_MINIMAL_COMBINED_EDIT_OBSTRUCTION` \u2014 serialize the first support-5 obstruction for which no non-increasing E2 move exists;\n3. `QG13V2_RESOURCE_COUNTEREXAMPLE` \u2014 a zero-syndrome E2 edit can increase cost, so the edit grammar cannot be used universally;\n4. `QG13V2_SEMANTIC_QUOTIENT_INCOMPLETE` / `CANNOT_CHECK`.\n\nFinite obstruction coverage alone cannot authorize the all-n support<=4 theorem. A positive candidate still requires generic ORION to reconstruct the local action/resource tables and native ORION-Q to confirm that every proof obligation is explicit. The final theorem remains owned by #762 unless an independent all-n proof packet is subsequently frozen and passed.\n\n## Anti-leakage controls\n\n- V2 code starts from current main, not the V1 branch.\n- QG-1/QG-13 V1 result files are forbidden during syndrome/resource synthesis.\n- Parent receipts may be opened only after the candidate/obstruction packet is sealed, for comparison and lineage.\n- No chemistry/protected subject data.\n- No post-outcome edit-grammar widening.\n\n## Donor boundary\n\nCEGIS, superoptimization, rewrite synthesis, finite-field dependence, local search and automated theorem conjecture generation are prior art. Candidate contribution is only the proof-carrying R6I compiler result or obstruction found under this prospectively frozen quantum-compilation edit grammar.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T14:09:14Z",
+    "body": "Protected V2 result committed on `shadow/orion-qg-qg13-v2-r6i-combined-edits` at `f03b302dd8d65a3339ad473f75853b6c964dffda`.\n\nEarned terminal: `QG13V2_MINIMAL_COMBINED_EDIT_OBSTRUCTION`.\n\nExact protected counts: production signature binding 624/624; 119,808 action rows -> 42 action/signature classes; 78 syndrome-cancelling action-pair classes, 68 globally safe and 10 unsafe; 44,580 accepting five-column patterns; 1,662 QG-1-irreducible; 216 support-five; 132 covered by globally safe E2; **84 uncovered**. Generic ORION independently reproduced all counts and first obstruction; native ORION-Q selected `RESP:OBS` and recorded `ACCEPT_MINIMAL_OBSTRUCTION` / `OBSTRUCTION_RECORDED`.\n\nFirst obstruction: pattern indices `[4,5,10,16,24]`, supports `[5,5]`, total syndrome 27, representatives `(X,X,Y,Y)`, `(X,Y,I,I)`, `(X,Y,I,Z)`, `(X,Y,Z,X)`, `(X,X,Y,I)` in `(r0,r1,s0,s1)` notation.\n\nInterpretation is bounded: the frozen two-column E2 grammar cannot prove support<=4. This does **not** prove support five globally tight against larger edit grammars or exact cap-4 optimization. Successor work must use a new prospectively frozen packet.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/777#issuecomment-5370930931"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:04:54Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 779,
+     "title": "[ORION-QG QG-13 V2] Mine combined R6I edits for support-five tightness",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-21T14:09:04Z",
+    "commit": {
+     "oid": "cad8b1b4d3be3668449658d10ef718eb1682d1c9",
+     "messageHeadline": "Merge PR #778: [ORION-QG QG-13] theorem miner recovers R6M and R6I pa\u2026"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:10:03Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 785,
+     "title": "[ORION-QG QG-13 V3] Three-column combined-edit theorem mining for R6I support-five tightness",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:16:28Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 787,
+     "title": "[ORION-QG QG-13 V3] Three-column R6I theorem mining",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T14:26:23Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 790,
+     "title": "[ORION-QG QG-13 V4 / QG-9] All-n R6I support<=4 theorem via cumulative E2/E3 spectator-safe exchange",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

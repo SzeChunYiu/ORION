@@ -1,0 +1,127 @@
+{
+ "number": 918,
+ "title": "[ORION-QG QG-32b] Exact four-probe feasibility above joint bulk+spectrum summaries",
+ "body": "Parent: QG-32 #911 / committed upper-bound-only result `QG32_MIN_SEPARATING_PROBES_RESULTS.json`.\nDirect structural parent: QG-31 #904.\n\n## Status\n\n**PROSPECTIVE EXACT SUCCESSOR. FREEZE BEFORE ANY FOUR-PROBE FEASIBILITY OUTCOME.**\n\nQG-32 has earned only:\n- 92 exact joint `(bulk,spectrum)` classes;\n- 5,895 unresolved pairs;\n- a certified five-probe separator `[18,68,101,181,139]`;\n- `minimum <= 5`;\n- no exact minimum authority.\n\nTherefore the next scientific question is the exact decision problem:\n\n> Does there exist any subset of at most **4** of the 384 indexed probes whose responses, together with the frozen joint bulk+spectrum summaries, separate all 715 local-response identities?\n\nThis issue must never rewrite QG-32 as if QG-32 itself proved minimum 5.\n\n## Frozen universe\n\nReconstruct from primitives exactly as QG-32:\n- 715 local-Clifford orbit representatives;\n- 384 indexed one-active probes;\n- 92 joint bulk+spectrum classes;\n- 5,895 unresolved unordered orbit pairs inside joint classes;\n- pair/probe distinction relation.\n\nBind the committed QG-32 receipt only after independent reconstruction.\n\n## Q1 \u2014 four-probe feasibility\n\nPrimary decision:\n\n`EXISTS_P4 := exists P subset probes, |P| <= 4, such that every unresolved pair is distinguished by at least one p in P`.\n\nAllowed terminals:\n- `QG32B_FOUR_PROBE_SEPARATOR_EXISTS__WITNESS_MACHINE_CHECKED`\n- `QG32B_NO_FOUR_PROBE_SEPARATOR__FIVE_IS_EXACT_MINIMUM_MACHINE_CHECKED`\n- `QG32B_CANNOT_CHECK`\n\nIf YES:\n- serialize a canonical sorted witness of size <=4;\n- verify it separates all 715 identities above joint summaries;\n- do **not** infer minimum unless smaller-cardinality successors are also closed.\n\nIf NO:\n- together with QG-32's certified 5-probe upper bound, authorize exact fixed-probe minimum `m_joint = 5` for this query only.\n\n## Q2 \u2014 production exact solver\n\nProduction must use an exact decision procedure, not the QG-32 time-capped optimization MILP.\n\nPreferred formulation:\n- collapse probes with identical pair-coverage bitsets;\n- remove coverage-dominated probe classes when safe;\n- exact depth-limited branch search for <=4, choosing an uncovered pair with the fewest candidate probe classes;\n- bitset coverage and admissible coverage-count lower bounds;\n- deterministic branch order.\n\nSerialize:\n- physical probe count;\n- distinct coverage class count;\n- nondominated coverage class count;\n- search nodes / prunes;\n- YES witness or complete NO certificate digest.\n\n## Q3 \u2014 independent generic verifier\n\nGeneric ORION must independently rebuild the pair/probe relation from phase-free F2^2/F3 semantics and use a materially different exact check.\n\nPreferred independent method:\n- meet-in-the-middle over unions of 0,1,2 probe coverage classes;\n- test whether any union of two <=2-class partial covers reaches the full unresolved-pair universe;\n- independently validate any YES witness or prove NO by exhaustive pair-union coverage.\n\nIt must not import production branch-search state/cache or trust its coverage matrix.\n\n## Q4 \u2014 native authority\n\nIf NO and generic agrees:\n- `MINIMUM_FIXED_PROBE_CARDINALITY = 5`\n- scope: **joint bulk+spectrum summaries -> complete indexed local-response identity on the frozen 715 orbit universe**.\n\nMandatory false:\n- minimum probes for full finite-n optimum;\n- hardware measurement minimum;\n- adaptive query-tree optimum;\n- global QG-28 state minimality;\n- novelty / physical quantum advantage.\n\nIf YES:\n- authorize only the explicit <=4 separator and its exact separation property;\n- no minimum authority.\n\n## Tamper control\n\nThe protected workflow must demonstrate rejection of a self-consistent tamper:\n- for a NO result, flip the decision to YES with a bogus 4-probe witness and recompute digest; generic verifier must reject;\n- for a YES result, delete/alter one witness probe and recompute digest; generic verifier must reject.\n\n## Claim boundary\n\nA NO result plus QG-32's certified five-probe separator closes only the **fixed-probe cardinality** for the indexed-response identity query after joint summaries. It does not close adaptive probing or other scientific queries.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T18:35:39Z",
+    "body": "QG-32b itself remains correctly recorded as lacking independent MILP closure (the frozen MILP timed out), so its own prospectively frozen verification contract was not rewritten post-outcome. A separate post-result independent replication was registered as QG-32c #928 / draft PR #929 and is now GREEN.\n\nQG-32c independently reconstructed the observation problem and used exact 2+2 meet-in-the-middle cover decision; it confirmed **no <=4 fixed indexed-probe separator**. Its generic verifier used a distinct exact MITM ordering/filter implementation; native/replay/tamper gates all passed.\n\nCombined with QG-32's already-certified 5-probe separator, exact fixed minimum `5` is now earned at the programme level for the frozen indexed local-response identity query after joint bulk+spectrum summaries. This promotion is supported by QG-32 + QG-32c, not by laundering QG-32b's timed-out independent lane.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/918#issuecomment-5381966707"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:32:36Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 919,
+     "title": "[SUPERSEDED by #929] QG-32b exact four-probe attempt \u2014 independent MILP resource-bound",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:53:04Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 924,
+     "title": "[ORION-QG QG-34] Exact adaptive probe tree above joint bulk+spectrum summaries",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T16:53:13Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 926,
+     "title": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not stay ignorant of the null result",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T18:26:30Z",
+     "mergeCommit": {
+      "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4"
+     }
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T17:28:43Z",
+    "commit": {
+     "oid": "fc961b58795dbe68e8271aa5cf1463b61d2e18c7",
+     "messageHeadline": "ORION-QG: C1 decided -- the defect spectrum IS the maximal symmetry q\u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T17:37:53Z",
+    "commit": {
+     "oid": "2a1f1ea41575705fcc15dea1fe11fdb240f306ee",
+     "messageHeadline": "ORION-QG QG-34: pre-outcome freeze of the adaptive probe tree atom"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T17:46:55Z",
+    "commit": {
+     "oid": "ccf31548e5dd517ba840634957df41c9eb17de5e",
+     "messageHeadline": "ORION-QG QG-34: exact minimax adaptive probe depth D_* = 3"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T18:24:05Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 928,
+     "title": "[ORION-QG QG-32c] Independent exact MITM replication of four-probe infeasibility",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T21:15:30Z",
+    "commit": {
+     "oid": "865f65e3e8db1b5dc38e978fab165365a8e8cc3c",
+     "messageHeadline": "ORION-QG: independent confirmation of the 3 < 4 < 5 observation-cost \u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-23T18:26:32Z",
+    "commit": {
+     "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4",
+     "messageHeadline": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not\u2026"
+    }
+   }
+  ]
+ }
+}

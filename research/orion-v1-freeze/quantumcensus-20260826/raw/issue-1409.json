@@ -1,0 +1,63 @@
+{
+ "number": 1409,
+ "title": "[R9][APP-Q1][CODEX] Production quantum/compiler realization of the sharp support theorem",
+ "body": "Parent: #1403. Coordinate with #1377 and the active Codex thread `codex://threads/01a03963-d804-7320-b10a-2b828119df93`.\n\n## Frozen question\n\nDoes the sharp Q1 support theorem bind to an actual compiler/runtime resource and produce a material exact benefit under a production-faithful move grammar and semantics?\n\n## Required realization\n\nSelect one maintained quantum/Pauli compilation stack or exact simulation workflow. Freeze the exact intermediate representation, allowed compiler moves, semantic equivalence test, objective/resource, and the mapping from the Q1 theorem's support object to production artifacts.\n\n## Required arms\n\n1. native compiler/runtime;\n2. theorem-guided normal form;\n3. strongest native optimization pass set;\n4. theorem-guided plus native passes;\n5. hostile incomplete-move registry that must fail closed.\n\n## Required outputs\n\n- exact semantic-equivalence checks;\n- support/resource distributions;\n- compilation/search time, memory, circuit/term count or other bound resource;\n- theorem-certificate size and verification time;\n- cases where production moves beat the abstract certificate;\n- cases where the theorem is inapplicable;\n- a complete move-registry and abstraction-realization audit.\n\n## Allowed terminals\n\n- `APP_Q1_PRODUCTION_RESOURCE_MAPPING_MATERIAL`\n- `APP_Q1_MAPPING_SOUND__NO_MATERIAL_BENEFIT`\n- `APP_Q1_PRODUCTION_MOVES_COLLAPSE_SEPARATION`\n- `APP_Q1_ABSTRACTION_NOT_FAITHFUL`\n- `APP_Q1_MOVE_REGISTRY_INCOMPLETE`\n- `CANNOT_CHECK_STACK_OR_LICENSE`\n- `CANNOT_CHECK_PRODUCTION_EQUIVALENCE`\n\nA toy grammar or internal simulator alone cannot grant production-impact language.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-26T16:25:22Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 1410,
+     "title": "[R9][APPLICATIONS][MANUSCRIPTS] Bind application evidence into the five papers without overclaim",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-26T16:25:41Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 1411,
+     "title": "[R9][APP-PORTFOLIO][CODEX] Cross-paper certificate control plane integration study",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-26T16:37:06Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 1414,
+     "title": "[R9] Add exact applications family and Codex execution contracts",
+     "state": "OPEN",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-26T16:37:30Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 1400,
+     "title": "[R8/CODEX] Execute the isolated top-tier closure queue with LUNARC receipts",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

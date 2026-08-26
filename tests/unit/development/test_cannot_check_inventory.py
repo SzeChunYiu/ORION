@@ -72,6 +72,125 @@ def test_observing_sites_are_not_counted_as_blockers() -> None:
     assert sum(committed["classification"].values()) == len(blockers)
 
 
+def test_enum_members_define_the_vocabulary_instead_of_emitting_it() -> None:
+    """`CANNOT_CHECK = \"CANNOT_CHECK\"` inside an `Enum` is how the token exists.
+
+    The v2 inventory keyed `ENUM_MEMBER` on the enclosing statement being the
+    `ClassDef`, which no value node can satisfy -- a member's value node is
+    always wrapped in the `Assign` inside the class body -- so the kind was
+    unreachable and all 117 member definitions were counted as blockers. They
+    are the instrument's own vocabulary, not checks that failed to run, and an
+    assignment inside a *method* of such a class is still an ordinary emission.
+    """
+
+    committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
+    members = [site for site in committed["sites"] if site["kind"] == "ENUM_MEMBER"]
+    assert len(members) == 117, len(members)
+    assert all(site["role"] == "DEFINES" for site in members)
+    assert all(site["category"] == "NOT_A_BLOCKER" for site in members)
+    assert committed["instrument_sites"] == len(members)
+    assert (
+        committed["blocker_sites"]
+        + committed["observing_sites"]
+        + committed["instrument_sites"]
+        == committed["total_sites"]
+    )
+
+    module = _load_module()
+    source = (
+        "import enum\n"
+        "\n"
+        "\n"
+        "class Verdict(enum.Enum):\n"
+        '    CANNOT_CHECK = "CANNOT_CHECK"\n'
+        "\n"
+        "    def describe(self) -> str:\n"
+        '        marker = "CANNOT_CHECK"\n'
+        "        return marker\n"
+    )
+    import ast
+
+    tree = ast.parse(source)
+    enclosing = module._enclosing(tree)
+    kinds = [
+        module._site_kind(statement, node, in_enum_body)
+        for node in ast.walk(tree)
+        if module._is_cannot_check(node)
+        for (_, statement, _, _, in_enum_body) in [enclosing[id(node)]]
+    ]
+    assert kinds == ["ENUM_MEMBER", "ASSIGN"]
+
+
+def test_ternary_body_inherits_the_guard_and_the_else_does_not() -> None:
+    """`Verdict.CANNOT_CHECK if frozen_round is None else ...` owes the same
+    obligation the matching `if` form would; the `else` side runs when the
+    precondition held, exactly as for `if`/`else`."""
+
+    module = _load_module()
+    source = 'def f(x):\n    return "CANNOT_CHECK" if x is None else "PASS"\n'
+    import ast
+
+    tree = ast.parse(source)
+    enclosing = module._enclosing(tree)
+    guards = {
+        node.value: enclosing[id(node)][2]
+        for node in ast.walk(tree)
+        if isinstance(node, ast.Constant) and isinstance(node.value, str) and node.value != "x"
+    }
+    assert guards == {"CANNOT_CHECK": "x", "PASS": None}
+
+
+def test_accumulated_reasons_classify_a_site_one_statement_away(tmp_path) -> None:
+    """`missing.append(...)` then `return Report(CANNOT_CHECK, tuple(missing))`
+    is one report split across statements; the site itself carries no literal."""
+
+    module = _load_module()
+    (tmp_path / "gate.py").write_text(
+        "from verdict import Verdict\n"
+        "\n"
+        "\n"
+        "def gate(provider_key):\n"
+        "    missing = []\n"
+        "    if provider_key is None:\n"
+        '        missing.append("external provider unavailable")\n'
+        "    if missing:\n"
+        "        return Report(Verdict.CANNOT_CHECK, tuple(missing))\n"
+        "    return Report(Verdict.PASS, ())\n",
+        encoding="utf-8",
+    )
+    sites = module.collect_sites(tmp_path)
+    emitted = [site for site in sites if site["role"] == "EMITS"]
+    assert len(emitted) == 1
+    assert emitted[0]["method"] == "adjacent_literal"
+    assert emitted[0]["category"] == "UNAVAILABLE_PROVIDER"
+    assert emitted[0]["derived_reason"] == "external provider unavailable"
+
+
+def test_a_function_without_extractable_literals_stays_unclassified(tmp_path) -> None:
+    """Nothing is classified on nothing: no sibling literal, no accumulated
+    literal and no nameable guard means `UNCLASSIFIED`, with the method left
+    unset rather than papered over."""
+
+    module = _load_module()
+    (tmp_path / "fold.py").write_text(
+        "from state import State\n"
+        "\n"
+        "\n"
+        "def worst(outcomes):\n"
+        "    for outcome in outcomes:\n"
+        "        if outcome.state is State.CANNOT_CHECK:\n"
+        "            return State.CANNOT_CHECK\n"
+        "    return State.PASS\n",
+        encoding="utf-8",
+    )
+    sites = module.collect_sites(tmp_path)
+    emitted = [site for site in sites if site["role"] == "EMITS"]
+    assert len(emitted) == 1
+    assert emitted[0]["category"] == "UNCLASSIFIED"
+    assert emitted[0]["method"] is None
+    assert emitted[0]["adjacent_reasons"] == []
+
+
 def test_unclassified_is_a_distinct_state_from_a_category() -> None:
     """`could not classify` must not be reported as `classified as other`."""
 
@@ -323,13 +442,38 @@ def test_the_precision_fix_lost_no_classification() -> None:
     report, model, theorems, and tests are all from the same lane; no independent
     validator identity is bound. Regenerating the inventory must retain that
     boundary rather than dropping it because the surrounding formal checks pass.
+
+    The v3 instrument repair takes the ratchet from 219 to 254 without touching a
+    single file under ``src/orion``: every change below is the reader reading the
+    same source more faithfully. Two defects had been suppressing real signal.
+    ``ENUM_MEMBER`` was keyed on the enclosing statement being the ``ClassDef``,
+    which no value node can satisfy, so all 117 member definitions were counted as
+    blockers; they leave the blocker set as role ``DEFINES`` -- 116 had been
+    UNCLASSIFIED and one MISSING_ACCESS via a context needle -- dropping blockers
+    658 -> 541. And the guard reader ignored ``ast.IfExp``, so a ternary's taken
+    branch never inherited the obligation its ``if`` form always did; three sites
+    (``self_orion/staged_gate.py``, ``study/p1/adjudication.py``,
+    ``study/p1/tables.py``) become MISSING_DECLARATION with the obligation named.
+    One deliberate extension follows the accumulate-then-emit idiom: reasons are
+    additionally read from ``.append``/``.extend``/``.add`` calls earlier in the
+    same function, which classifies 40 sites as ``adjacent_literal`` -- 33 out of
+    UNCLASSIFIED and 7 that a derived precondition had placed as
+    MISSING_DECLARATION, where the now-visible adjacent cause outranks the derived
+    obligation. Net: 219 - 1 + 33 + 3 = 254 classified emitters, UNCLASSIFIED
+    439 -> 287, total sites unchanged at 723.
     """
 
     committed = json.loads(INVENTORY_PATH.read_text(encoding="utf-8"))
     classified = {k: v for k, v in committed["classification"].items() if k != "UNCLASSIFIED"}
-    # Current source derives 219 classified emitters; keep this exact, not a lower bound.
-    assert sum(classified.values()) == 219, classified
+    # Current source derives 254 classified emitters; keep this exact, not a lower bound.
+    assert sum(classified.values()) == 254, classified
     assert committed["with_reason"] < committed["blocker_sites"]
-    assert committed["with_reason"] >= sum(classified.values()), (
-        "more sites are classified than carry a reason, so something is classifying on nothing"
-    )
+    # Nothing classifies on nothing: every classified emitter names its evidence,
+    # and no unclassified emitter claims a method.
+    classified_sites = [s for s in committed["sites"] if s["role"] == "EMITS" and s["category"] != "UNCLASSIFIED"]
+    unclassified_sites = [s for s in committed["sites"] if s["role"] == "EMITS" and s["category"] == "UNCLASSIFIED"]
+    assert sum(committed["classification_methods"].values()) == committed["blocker_sites"]
+    assert sum(v for k, v in committed["classification_methods"].items() if k != "none") == len(classified_sites)
+    assert committed["classification_methods"]["none"] == len(unclassified_sites)
+    assert all(s["method"] is not None for s in classified_sites)
+    assert all(s["method"] is None for s in unclassified_sites)

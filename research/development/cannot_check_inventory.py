@@ -7,7 +7,7 @@ committed output and a `--check` mode, following `research/publication/scoreboar
 the artifact is derived, and drift between derived and committed is a test failure
 rather than something a reader has to notice.
 
-Two decisions are load-bearing.
+Five decisions are load-bearing.
 
 **`UNCLASSIFIED` is not `OTHER`.** A site whose reason cannot be extracted has not
 been classified as "none of the above" -- it has not been classified at all. An
@@ -19,6 +19,35 @@ that ran as a checker that worked. The two states are counted separately here, a
 **Sites are classified from evidence, never from position.** The rules read the
 reason text and the enclosing names. When none matches, the site is `UNCLASSIFIED`;
 nothing is assigned a category because it happened to sit in a particular file.
+
+**A definition of the vocabulary is not an emission.** `CANNOT_CHECK = "CANNOT_CHECK"`
+inside an `Enum` is how the token exists at all; it is not a check that failed to
+run. Such sites are `ENUM_MEMBER`, role `DEFINES`, category `NOT_A_BLOCKER`, counted
+as `instrument_sites`. The v2 inventory never emitted `ENUM_MEMBER`: the kind was
+keyed on the enclosing statement being the `ClassDef`, but a member's value node is
+always wrapped in the `Assign` inside the class body, so all 117 member definitions
+were mis-counted as blockers. The kind is now keyed on that `Assign` sitting
+directly in an `Enum`-derived class body -- an assignment inside a *method* of such
+a class is an ordinary emission, not a member definition.
+
+**A ternary's taken branch owes what its `if` form owes.** `Verdict.CANNOT_CHECK if
+frozen_round is None else ...` means the caller never supplied `frozen_round`, which
+is a `MISSING_DECLARATION` exactly as the matching `if` form was always read. The
+v2 guard reader only walked `ast.If`, so ternary sites silently carried no derived
+obligation. In both forms only the taken branch inherits the guard; the `else` side
+runs when the precondition held.
+
+**A reason can live one statement away.** `missing.append("no declared scope")`
+followed by `return Report(CANNOT_CHECK, tuple(missing))` is one idiom split across
+statements; reading only the site statement records the second half as carrying no
+reason at all. When a site statement carries no literal of its own, reasons are
+also read from accumulation calls (`.append`/`.extend`/`.add`) earlier in the same
+function, and a site classified that way says so with `method: "adjacent_literal"`.
+Nothing else in the function is read -- docstrings, log lines and dict keys are not
+causes -- and a site with no extractable literal anywhere in its function stays
+`UNCLASSIFIED` rather than being forced into a category. A stated cause, whether
+sibling or adjacent, outranks a derived obligation; `method` records which evidence
+produced the category.
 """
 
 from __future__ import annotations
@@ -33,7 +62,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 SOURCE_ROOT = REPO_ROOT / "src" / "orion"
 INVENTORY_PATH = Path(__file__).resolve().parent / "cannot_check_inventory.json"
-SCHEMA_VERSION = "orion.cannot-check-inventory.v2"
+SCHEMA_VERSION = "orion.cannot-check-inventory.v3"
 
 #: Issue #322's blocker vocabulary, plus the explicit "could not classify" state.
 CATEGORIES = (
@@ -112,8 +141,50 @@ def _is_cannot_check(node: ast.AST) -> bool:
 #: resolve.
 OBSERVING_KINDS = frozenset({"BRANCH"})
 
+#: Statement kinds that *define* the `CANNOT_CHECK` vocabulary rather than emit a
+#: verdict. An enum member definition is how the token exists; it is not a check
+#: that failed to run, so it has nothing to resolve and is counted separately as
+#: `instrument_sites` instead of inflating `blocker_sites`.
+INSTRUMENT_KINDS = frozenset({"ENUM_MEMBER"})
 
-def _site_kind(statement: ast.AST) -> str:
+#: Bases that make a `ClassDef` an enum for `ENUM_MEMBER` purposes.
+_ENUM_BASE_NAMES = frozenset({"Enum", "IntEnum", "StrEnum", "Flag", "IntFlag"})
+
+
+def _derives_from_enum(classdef: ast.ClassDef) -> bool:
+    for base in classdef.bases:
+        if isinstance(base, ast.Name) and base.id in _ENUM_BASE_NAMES:
+            return True
+        if isinstance(base, ast.Attribute) and base.attr in _ENUM_BASE_NAMES:
+            return True
+    return False
+
+
+def _is_enum_member_definition(statement: ast.AST, node: ast.AST) -> bool:
+    """True when `node` is the value being bound as the enum member itself.
+
+    The enclosing statement of a member's value is always the `Assign` (or
+    `AnnAssign`) inside the class body, never the `ClassDef`; keying `ENUM_MEMBER`
+    on the `ClassDef` made the kind unreachable. The value must be the bound node
+    itself and the target a bare name, so `x = Status.CANNOT_CHECK` elsewhere in
+    the class body -- an alias at best -- and attribute/subscript assignments in
+    methods are not member definitions.
+    """
+
+    if isinstance(statement, ast.Assign):
+        return (
+            len(statement.targets) == 1
+            and isinstance(statement.targets[0], ast.Name)
+            and statement.value is node
+        )
+    if isinstance(statement, ast.AnnAssign):
+        return isinstance(statement.target, ast.Name) and statement.value is node
+    return False
+
+
+def _site_kind(statement: ast.AST, node: ast.AST, in_enum_body: bool) -> str:
+    if in_enum_body and _is_enum_member_definition(statement, node):
+        return "ENUM_MEMBER"
     if isinstance(statement, ast.Return):
         return "RETURN"
     if isinstance(statement, (ast.Assign, ast.AnnAssign, ast.AugAssign)):
@@ -124,8 +195,6 @@ def _site_kind(statement: ast.AST) -> str:
         return "BRANCH"
     if isinstance(statement, ast.Expr):
         return "EXPRESSION"
-    if isinstance(statement, ast.ClassDef):
-        return "ENUM_MEMBER"
     return "OTHER_STATEMENT"
 
 
@@ -202,6 +271,41 @@ def _reason_strings(statement: ast.AST) -> tuple[str, ...]:
     return tuple(dict.fromkeys(found))
 
 
+#: Calls that accumulate reasons for the report a function later emits.
+_ACCUMULATION_METHODS = frozenset({"append", "extend", "add"})
+
+
+def _accumulation_reasons(function: ast.AST, site: ast.AST) -> tuple[str, ...]:
+    """Reason literals the function accumulates before reaching the site.
+
+    The idiom is one report split across statements: `missing.append("no declared
+    scope")` lines ending in `return Report(CANNOT_CHECK, tuple(missing))`. The
+    site statement carries no literal of its own, so the causes are read from
+    accumulation calls earlier in the same function -- earlier, because an
+    accumulate-then-emit idiom cannot have been fed by a later line. Only
+    `.append`/`.extend`/`.add` arguments are read: a docstring, a log line or a
+    dict key in the same function is not a cause, and reading it would attribute
+    incidental prose to the site. Nested `def` and `class` bodies are skipped;
+    their accumulations feed their own sites.
+    """
+
+    found: list[str] = []
+    stack = list(ast.iter_child_nodes(function))
+    while stack:
+        node = stack.pop()
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            continue
+        if (
+            isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Attribute)
+            and node.func.attr in _ACCUMULATION_METHODS
+            and node.lineno < site.lineno
+        ):
+            found.extend(_reason_strings(node))
+        stack.extend(ast.iter_child_nodes(node))
+    return tuple(dict.fromkeys(found))
+
+
 def classify(reasons: tuple[str, ...], context: str) -> str:
     """Classify from the reason text and enclosing names, or say so."""
 
@@ -246,32 +350,64 @@ def _unmet_precondition(test: ast.AST) -> str | None:
     return None
 
 
-def _enclosing(tree: ast.AST) -> dict[int, tuple[str, ast.AST, str | None]]:
-    """Map each node id to (qualified enclosing name, statement, unmet precondition)."""
+def _enclosing(
+    tree: ast.AST,
+) -> dict[int, tuple[str, ast.AST, str | None, ast.FunctionDef | ast.AsyncFunctionDef | None, bool]]:
+    """Map each node id to (qualified enclosing name, statement, unmet
+    precondition, enclosing function, directly-inside-an-Enum-body).
 
-    mapping: dict[int, tuple[str, ast.AST, str | None]] = {}
+    The precondition is derived from `if` tests *and* ternary (`IfExp`) tests:
+    `Verdict.CANNOT_CHECK if frozen_round is None else ...` owes exactly the
+    obligation the matching `if` form would. In both forms only the taken branch
+    inherits the guard; the `else` side runs when the precondition held.
 
-    def walk(node: ast.AST, prefix: str, statement: ast.AST | None, guard: str | None) -> None:
+    `in_enum_body` is true only for nodes sitting directly in the body of an
+    `Enum`-derived class -- not inside a method of one, and not inside a nested
+    plain class -- which is what separates an enum member definition from an
+    ordinary emission.
+    """
+
+    mapping: dict[
+        int, tuple[str, ast.AST, str | None, ast.FunctionDef | ast.AsyncFunctionDef | None, bool]
+    ] = {}
+
+    def walk(
+        node: ast.AST,
+        prefix: str,
+        statement: ast.AST | None,
+        guard: str | None,
+        function: ast.FunctionDef | ast.AsyncFunctionDef | None,
+        in_enum_body: bool,
+    ) -> None:
         name = prefix
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
             name = f"{prefix}.{node.name}" if prefix else node.name
         current = node if isinstance(node, ast.stmt) else statement
-        mapping[id(node)] = (name, current or node, guard)
-        if isinstance(node, ast.If):
-            # Only the taken branch inherits the guard. The `else` body runs when
+        mapping[id(node)] = (name, current or node, guard, function, in_enum_body)
+        child_function = function
+        child_enum_body = in_enum_body
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            child_function = node
+            child_enum_body = False
+        elif isinstance(node, ast.ClassDef):
+            child_enum_body = _derives_from_enum(node)
+        if isinstance(node, (ast.If, ast.IfExp)):
+            # Only the taken branch inherits the guard. The `else` side runs when
             # the precondition held, so attributing the same missing input to it
-            # would be exactly backwards.
+            # would be exactly backwards. The same holds for the ternary form.
             body_guard = _unmet_precondition(node.test) or guard
-            walk(node.test, name, current, guard)
-            for child in node.body:
-                walk(child, name, current, body_guard)
-            for child in node.orelse:
-                walk(child, name, current, guard)
+            walk(node.test, name, current, guard, child_function, child_enum_body)
+            body = node.body if isinstance(node.body, list) else [node.body]
+            orelse = node.orelse if isinstance(node.orelse, list) else [node.orelse]
+            for child in body:
+                walk(child, name, current, body_guard, child_function, child_enum_body)
+            for child in orelse:
+                walk(child, name, current, guard, child_function, child_enum_body)
             return
         for child in ast.iter_child_nodes(node):
-            walk(child, name, current, guard)
+            walk(child, name, current, guard, child_function, child_enum_body)
 
-    walk(tree, "", None, None)
+    walk(tree, "", None, None, None, False)
     return mapping
 
 
@@ -285,10 +421,19 @@ def collect_sites(source_root: Path = SOURCE_ROOT) -> list[dict[str, object]]:
         for node in ast.walk(tree):
             if not _is_cannot_check(node):
                 continue
-            context, statement, precondition = enclosing.get(id(node), ("", node, None))
+            context, statement, precondition, function, in_enum_body = enclosing.get(
+                id(node), ("", node, None, None, False)
+            )
             reasons = _reason_strings(statement)
-            kind = _site_kind(statement)
-            role = "OBSERVES" if kind in OBSERVING_KINDS else "EMITS"
+            kind = _site_kind(statement, node, in_enum_body)
+            if kind in OBSERVING_KINDS:
+                role = "OBSERVES"
+            elif kind in INSTRUMENT_KINDS:
+                role = "DEFINES"
+            else:
+                role = "EMITS"
+            adjacent: tuple[str, ...] = ()
+            method: str | None = None
             if role != "EMITS":
                 category = "NOT_A_BLOCKER"
             else:
@@ -298,9 +443,25 @@ def collect_sites(source_root: Path = SOURCE_ROOT) -> list[dict[str, object]]:
                 # problem. MISSING_DECLARATION is the fallback for sites the reason
                 # rules cannot place -- there it is strictly better than
                 # UNCLASSIFIED, because the guard names the obligation exactly.
+                # Adjacent reasons are reason text found one statement away, so
+                # they keep the same precedence over the derived obligation; the
+                # `method` field records which evidence produced the category.
                 category = classify(reasons, context)
-                if category == "UNCLASSIFIED" and precondition is not None:
-                    category = "MISSING_DECLARATION"
+                if category != "UNCLASSIFIED":
+                    method = "statement_literal"
+                else:
+                    # Sibling text that fails to place the site is usually an id or
+                    # title riding along in the same call (`case_id=...`), not a
+                    # cause; it has had its chance, so the accumulated reasons are
+                    # still worth reading when the site remains unplaced.
+                    if function is not None:
+                        adjacent = _accumulation_reasons(function, node)
+                        if adjacent:
+                            adjacent_category = classify(adjacent, context)
+                            if adjacent_category != "UNCLASSIFIED":
+                                category, method = adjacent_category, "adjacent_literal"
+                    if category == "UNCLASSIFIED" and precondition is not None:
+                        category, method = "MISSING_DECLARATION", "unmet_precondition"
             sites.append(
                 {
                     "file": str(path.relative_to(source_root)),
@@ -310,6 +471,11 @@ def collect_sites(source_root: Path = SOURCE_ROOT) -> list[dict[str, object]]:
                     "role": role,
                     "reasons": list(reasons),
                     "has_reason": bool(reasons),
+                    "adjacent_reasons": list(adjacent),
+                    "derived_reason": (
+                        "; ".join(adjacent) if method == "adjacent_literal" else None
+                    ),
+                    "method": method,
                     "unmet_precondition": precondition,
                     "missing_obligation": (
                         # What the guard establishes, and no more. Some of these
@@ -330,9 +496,15 @@ def collect_sites(source_root: Path = SOURCE_ROOT) -> list[dict[str, object]]:
 def derive_inventory(source_root: Path = SOURCE_ROOT) -> dict[str, object]:
     sites = collect_sites(source_root)
     blockers = [site for site in sites if site["role"] == "EMITS"]
+    observers = [site for site in sites if site["role"] == "OBSERVES"]
+    defines = [site for site in sites if site["role"] == "DEFINES"]
     counts = {category: 0 for category in CATEGORIES}
     for site in blockers:
         counts[str(site["category"])] += 1
+    methods: dict[str, int] = {}
+    for site in blockers:
+        key = str(site["method"]) if site["method"] else "none"
+        methods[key] = methods.get(key, 0) + 1
     return {
         "schema_version": SCHEMA_VERSION,
         "issue": 322,
@@ -341,14 +513,31 @@ def derive_inventory(source_root: Path = SOURCE_ROOT) -> dict[str, object]:
         "source_root": str(source_root.relative_to(REPO_ROOT)),
         "total_sites": len(sites),
         "blocker_sites": len(blockers),
-        "observing_sites": len(sites) - len(blockers),
+        "observing_sites": len(observers),
+        "instrument_sites": len(defines),
         "with_reason": sum(1 for site in blockers if site["has_reason"]),
+        "with_adjacent_reason": sum(1 for site in blockers if site["adjacent_reasons"]),
         "with_derived_obligation": sum(1 for site in blockers if site["missing_obligation"]),
+        "unclassified_without_evidence": sum(
+            1
+            for site in blockers
+            if site["category"] == "UNCLASSIFIED"
+            and not site["reasons"]
+            and not site["adjacent_reasons"]
+            and not site["unmet_precondition"]
+        ),
         "classification": counts,
+        "classification_methods": methods,
         "unclassified_note": (
-            "UNCLASSIFIED means the site carried no extractable reason, not that it "
-            "was examined and found to be none of the listed categories. Driving this "
-            "count down is the work; reclassifying it to OTHER is not."
+            "UNCLASSIFIED is the residue after three reads, in precedence order: the "
+            "site's own statement literals, literals accumulated one statement away "
+            "(`missing.append(...)`) earlier in the same function, and a structurally "
+            "nameable guard (`x is None`, `not x`). A site here either carries reason "
+            "text that matches no category needle -- a vocabulary gap, resolvable only "
+            "by adding a reviewed needle -- or carries no extractable evidence at all "
+            "(see `unclassified_without_evidence`); those are the candidates for "
+            "source-level obligation declarations, which this instrument will not "
+            "invent. Driving the count down is the work; reclassifying it to OTHER is not."
         ),
         "sites": sites,
     }

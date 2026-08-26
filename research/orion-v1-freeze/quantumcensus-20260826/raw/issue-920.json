@@ -1,0 +1,110 @@
+{
+ "number": 920,
+ "title": "[ORION-QG QG-33] SixLCU label-vs-value quotient separation on exact improvement magnitude",
+ "body": "Parent programme: #740.\nDirect parents: QG-12 SixLCU all-instance P0 label theorem; QG-15b frozen-predicate-language calibration.\nORION-Q transfer parent: MAX-R4E #903.\n\n## Status\n\n**PROSPECTIVE DIFFERENT-FAMILY TARGET. FREEZE BEFORE ANY QG-33 GAP-FIBER OUTCOME.**\n\nExisting earned facts must remain unchanged:\n- QG-12: for frozen SixLCU, `C_F == C_U iff P0` all admitted instances/all n.\n- QG-15b on complete n=2 SixLCU domain: a one-literal frozen-vocabulary predicate at K1D1 exactly classifies the donor-optimal label (`E_floor=0`).\n\nThese are **label** results. QG-33 asks a richer value question:\n\n> Does the same minimal label abstraction also determine the exact optimization improvement magnitude `Delta = C_U - C_F`, or do identical label-abstraction states contain multiple exact gap values?\n\nNo outcome is frozen.\n\n## Q1 \u2014 complete frozen n=2 gap census\n\nUse exactly the committed QG-4/QG-15b complete n=2 SixLCU universe and production evaluator. For every instance compute:\n- `C_U` donor cost;\n- `C_F` exact frozen-family optimum;\n- `Delta = C_U - C_F >= 0`;\n- the exact frozen one-literal K1D1 classifier selected/authorized by QG-15b;\n- QG-12/P0 label as an independent label binding.\n\nRequired counts:\n- total instances;\n- exact `Delta` histogram;\n- label confusion against QG-12/P0;\n- per-one-literal-cell `Delta` histograms.\n\n## Q2 \u2014 label-abstraction value sufficiency\n\nDefine `A_label` as the binary output of the minimal exact one-literal donor-optimal classifier.\n\nTest exact value sufficiency:\n\n`VALUE_SUFFICIENT(A_label) := Delta is constant on every A_label equivalence class.`\n\nIf false, serialize the lexicographically first pair of instances with:\n- identical `A_label`;\n- different exact `Delta`;\n- both exact costs;\n- frozen feature vectors;\n- QG-12/P0 labels.\n\nAllowed positive separation terminal:\n`QG33_SIXLCU_EXACT_LABEL_QUOTIENT_IS_NOT_EXACT_VALUE_QUOTIENT__N2_COMPLETE`\n\nHonest alternative:\n`QG33_SIXLCU_ONE_LITERAL_LABEL_QUOTIENT_ALSO_VALUE_SUFFICIENT__N2_COMPLETE`\n\nEither outcome is bounded to the complete frozen n=2 domain unless a separate symbolic theorem is added later.\n\n## Q3 \u2014 frozen feature-vector value floor\n\nUsing the complete frozen **QG-15b SixLCU feature vector** (not arbitrary new features), group n=2 instances by identical feature vector and compute:\n- number of feature cells;\n- mixed-`Delta` cell count;\n- irreducible exact-value prediction floor under this frozen feature vocabulary: `sum_cell (cell_size - max_delta_frequency_in_cell)`;\n- first mixed-value cell if any.\n\nThis distinguishes:\n- one-literal label insufficiency only;\n- full frozen-vocabulary information insufficiency.\n\nDo not search a new feature language in QG-33.\n\n## Q4 \u2014 query-indexed abstraction interpretation\n\nQG-33 may authorize only the exact compiler-specific relation between:\n- donor-optimal **label** query;\n- exact improvement **value** query;\n- the frozen one-literal and full-feature abstractions.\n\nIf label abstraction is value-insufficient, this is a cross-family confirmation of QG-31's query-indexed-authority lesson: an abstraction exact for one scientific question can be invalid for a richer one.\n\nIf the full frozen feature vector is also value-insufficient, register a successor state-vocabulary lane; do not improvise features after outcome.\n\n## Independent verification\n\nProduction:\n- imports committed SixLCU production evaluator unmodified;\n- reconstructs complete n=2 instances, QG-15b frozen features and exact gap census.\n\nGeneric ORION:\n- independently derives/evaluates SixLCU partition costs from the committed production formulas or independently reimplements the QG-4 cost semantics;\n- reconstructs `Delta`, label cells and feature cells without importing production QG-33 results.\n\nNative ORION-Q:\n- authorizes only label-vs-value quotient statements on the declared domain.\n\nWorkflow requires deterministic replay and a self-consistent witness/value-sufficiency tamper rejection.\n\n## Hard boundaries\n\n- no all-n value theorem from n=2 census;\n- no claim the one-literal predicate is globally minimal outside QG-15b's frozen language/domain;\n- no generic abstract-interpretation novelty;\n- no physical quantum advantage.\n\n## Donor subtraction\n\nSufficient statistics, label-vs-value state separation and feature-cell irreducibility are donor concepts. Candidate value is the exact SixLCU instantiation and cross-family authority boundary.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T18:26:49Z",
+    "body": "Protected QG-33 run is GREEN and the exact result is now sealed on branch `codex/orion-qg-qg33-sixlcu-label-value-20260822` as `research/extensions/orion-qg/QG33_SIXLCU_LABEL_VALUE_RESULTS.json` (result digest `64b8c8f85bd07086fc92671b2ec8e353bd927983db2173a801096f1d597350d3`).\n\nEarned bounded result on the complete frozen SixLCU n=2 domain (38,760 instances):\n- one-literal donor-optimal label abstraction remains exact for its label query but is **not exact-value sufficient** for `Delta=C_U-C_F`;\n- 17 exact Delta values occur; the canonical same-label witness has Delta 12 vs 6;\n- the full frozen 11-feature vector has 310 cells, 8 mixed-Delta cells, and irreducible exact-value error floor 411;\n- canonical mixed full-feature cell has Delta histogram {4:252, 5:72};\n- the prior bounded-gain surrogate is complete on 32,391 instances and incomplete on 6,369, so it remains diagnostic only and has no exact-value authority.\n\nIndependent generic ORION reconstructed all 203 partition costs and reproduced the full histogram/cell/floor result exactly; native gate, deterministic replay, and self-consistent semantic tamper rejection all passed. Stronger boundaries remain false: no all-n value theorem, no global predicate minimality, no new feature-vocabulary authority, no novelty/physical-advantage claim.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/920#issuecomment-5381929965"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:35:44Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 921,
+     "title": "[ORION-Q MAX-R4E-B1] Prospective different-family transfer on SixLCU label\u2192value authority",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:38:45Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 922,
+     "title": "[ORION-Q MAX-R4E-B1] Frozen prospective SixLCU label\u2192value transfer adjudicator",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:57:43Z",
+     "mergeCommit": {
+      "oid": "02c5c7f17ef8dd8fa552c71672dcf27912257ce6"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:47:02Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 923,
+     "title": "[ORION-QG QG-33] SixLCU exact label-vs-value quotient on complete n=2 domain",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:57:47Z",
+     "mergeCommit": {
+      "oid": "b90bc567250e7cffb489d2bf458cc22d956fe8c2"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T16:53:13Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 926,
+     "title": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not stay ignorant of the null result",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T18:26:30Z",
+     "mergeCommit": {
+      "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4"
+     }
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T17:28:43Z",
+    "commit": {
+     "oid": "fc961b58795dbe68e8271aa5cf1463b61d2e18c7",
+     "messageHeadline": "ORION-QG: C1 decided -- the defect spectrum IS the maximal symmetry q\u2026"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-23T18:26:32Z",
+    "commit": {
+     "oid": "2589801ac93f7f16ae91b27d00dc4931e89f16a4",
+     "messageHeadline": "[ORION-QG] Land the QG-28..42 arc WITH its retraction \u2014 main must not\u2026"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "number": 864,
+ "title": "[ORION-QG QG-21] Certified regime robustness radius under objective and stack uncertainty",
+ "body": "Parent programme: #740\nDirect parents: QG-8 objective-indexed support cone; QG-16 R6I support1 cone; QG-17 phase-sharpness attack; QG-10 interval geometry; QG-11 FT/QEC transfer; QG-14 compositional regime calculus.\n\n## Status\n\n**WAVE-3 ROBUSTNESS FRONTIER \u2014 quantify how far a proof-carrying compiler regime remains certified when objective coefficients, estimator parameters, or downstream stack assumptions vary.**\n\nORION-QG already has exact certificate cones in objective space, but it usually reports only `inside/outside` and keeps true global boundary sharpness OPEN. The missing object is a rigorous separation between:\n\n1. **certificate margin** \u2014 distance from a point/set to the boundary of the currently proved sufficient region;\n2. **true phase margin** \u2014 distance to an actual global change of optimal normal form/regime.\n\nThese are not interchangeable. A proof cone may be conservative. QG-21 must never call a certificate radius a true phase radius unless a separately verified sharpness/completeness argument closes the gap.\n\n## Strong donor subtraction\n\nRobust optimization, sensitivity analysis, parametric programming, uncertainty propagation, polyhedral distance calculations, dual norms, interval analysis, and robust control are donor mathematics. Piecewise-affine resource maps and critical regions are also established.\n\nCandidate contribution is restricted to a **compiler-specific proof-carrying robustness certificate** that composes ORION-QG regime theorems with exact uncertainty sets and preserves the distinction between theorem applicability and the unknown true phase diagram.\n\n## Q1 \u2014 exact certificate margin on QG-8 / QG-16\n\nFor a certified polyhedral regime\n\n`K = { theta : A theta >= 0 }`,\n\nfix an explicit normalization/gauge before any margin is reported (examples: `t_r=1` for the QG-8/QG-16 slices, or a declared norm-simplex when scale is physically meaningful).\n\nFor a point `theta0 in K`, compute exact rational facet slacks `s_i = a_i\u00b7theta0`. Under a declared perturbation norm `||.||`, the distance to facet i is\n\n`rho_i = s_i / ||a_i||_*`,\n\nwhere `||.||_*` is the donor dual norm. The certified point radius is `rho_cert = min_i rho_i` within the declared gauge/feasible coefficient domain.\n\nRequired first calibrations:\n- QG-8 support<=2 cone `t_c >= 2 t_r`, `t_nc >= 2 t_r`;\n- QG-16 full four-facet support1 certificate, preserving any separate `t_c<=t_nc` premise rather than silently assuming it;\n- equality controls must return radius zero exactly.\n\nAll arithmetic used for theorem gates is exact rational/algebraic where possible. Floating distances are display-only unless an independently certified interval encloses them.\n\n## Q2 \u2014 robust uncertainty sets, not just points\n\nLet `Theta` be a frozen uncertainty set for objective coefficients (box, simplex, rational polytope, or finite union of certified cells).\n\nA normal-form theorem is robustly valid on Theta only if\n\n`Theta subseteq K`.\n\nFor convex rational polytopes and linear certificate inequalities, verify containment exactly by vertex/facet optimization or LP certificates. For boxes, compute worst facet margin analytically.\n\nOutputs:\n- minimum certificate slack over Theta;\n- active worst-case facet and witness point;\n- maximal uniform box/polytope expansion that remains inside the certificate;\n- exact CANNOT_CHECK if the uncertainty representation cannot be certified.\n\nNo midpoint or nominal-point substitution may authorize robust validity.\n\n## Q3 \u2014 witness-side upper bounds on the true margin\n\nUse QG-17 and other exact outside-cone witnesses to bound the unknown true phase boundary from the opposite side.\n\nFor a verified pair of feasible configurations with resource difference `d`, the tie surface is\n\n`d\u00b7theta = 0`.\n\nIf one side is globally certified support1 and the other has an exact strict support2-vs-cap1 witness, then along a frozen one-dimensional path or affine slice these two facts bracket a true transition. Distinguish:\n- lower bound from theorem applicability;\n- upper bound from explicit globally discriminating witness;\n- exact boundary only if the brackets coincide or a complete phase argument proves no intervening regime.\n\nQG-17's finite witness hyperplanes are natural first controls, but QG-21 may not generalize them beyond their verified objectives/slices.\n\n## Q4 \u2014 sensitivity tubes along hardware/stack trajectories\n\nA practical compiler objective often comes from a downstream resource model. For an affine FT map\n\n`r_F = A r_S + b`, final objective `lambda\u00b7r_F` induces structural coefficients `theta=A^T lambda`.\n\nGiven uncertainty in lambda, A, or both:\n- propagate a proof-carrying enclosure for the induced theta set;\n- certify the entire enclosure lies in a structural QG cone before transferring the normal-form theorem;\n- report the nearest stack-parameter perturbation that can leave the certified cell.\n\nThis is a QG-11/QG-21 interface. The affine mathematics is donor-owned. If code distance, factory count, routing, or scheduling creates a piecewise/nonseparable map, split into verified cells or return `STACK_NONLINEARITY_CANNOT_CERTIFY_SINGLE_RADIUS`.\n\n## Q5 \u2014 compositional robustness\n\nFor QG-14 component interfaces, carry not only a regime label but a **margin/assumption budget**:\n\n- component certificate region K_i;\n- current parameter/uncertainty set Theta_i;\n- distance to local invalidation;\n- latent/shared coupling assumptions;\n- dependency edges indicating which downstream certificates reopen when a margin is crossed.\n\nUnder strictly separable composition, the global certified radius is limited by the first component certificate to fail after the declared parameter map. Under shared-budget coupling, recompute the coupled feasible parameter region; `min(local radii)` is not automatically valid.\n\nA counterexample in which all local margins are positive but a hidden coupling causes a global regime flip is a strong positive result because it identifies a missing coupling coordinate.\n\n## Q6 \u2014 prospective drift forecast\n\nAfter calibration, freeze a parameter trajectory or uncertainty expansion before opening the full optimizer/estimator result.\n\nExamples:\n- slowly vary `t_tag/t_r` across a QG-16 facet;\n- vary a factory/runtime coefficient in a QG-11 affine or piecewise-affine cell;\n- vary a shared budget in a QG-14 two-component calibration.\n\nPredict prospectively:\n- the interval in which the existing theorem remains certified;\n- the first point at which certificate authority must stop;\n- if a sharpness witness exists, a bracket for the first true regime change.\n\nScore false continuation of authority as a hard failure. Conservative early abstention is allowed and measured.\n\n## Q7 \u2014 robustness profile, not one scalar when anisotropic\n\nA single norm radius can hide highly anisotropic phase geometry. Also serialize:\n- exact per-facet slacks;\n- directional radii for declared scientifically meaningful coefficient directions;\n- active-facet changes along paths;\n- uncertainty-set volume/coverage only as a secondary descriptive metric.\n\nThe primary scientific object remains the exact certificate region plus its scope, not a visually convenient scalar.\n\n## Independent verification\n\nGeneric ORION:\n- reconstruct all parent cone inequalities from protected receipts rather than copied prose where available;\n- independently solve every rational containment/min-margin problem;\n- recompute witness tie hyperplanes from serialized resource vectors;\n- validate any propagated FT/stack uncertainty enclosure.\n\nNative ORION-Q:\n- keep `CERTIFICATE_MARGIN`, `TRUE_PHASE_BRACKET`, `TRUE_PHASE_BOUNDARY`, `FT_TRANSFER_MARGIN`, and `COMPOSITION_MARGIN` as separate authority coordinates;\n- fail closed if a certificate margin is relabeled as physical/global sharpness;\n- reopen dependent receipts when an assumption identity or uncertainty set changes.\n\n## Strong terminals\n\n- `QG21_CERTIFIED_REGIME_ROBUSTNESS_RADIUS_MACHINE_CHECKED`\n- `QG21_UNCERTAINTY_POLYTOPE_FULLY_COVERED_BY_REGIME_CERTIFICATE`\n- `QG21_CERTIFICATE_AND_WITNESS_BRACKET_TRUE_PHASE_ON_FROZEN_SLICE`\n- `QG21_CERTIFICATE_MARGIN_MATCHES_TRUE_BOUNDARY_ON_FROZEN_SLICE`\n- `QG21_HARDWARE_UNCERTAINTY_SET_COVERED_BY_TRANSFERRED_CERTIFICATE`\n\nHonest alternatives:\n- `QG21_CERTIFICATE_MARGIN_LOOSE__TRUE_BOUNDARY_UNRESOLVED`\n- `QG21_STACK_NONLINEARITY_BREAKS_SINGLE_RADIUS`\n- `QG21_LOCAL_MARGINS_FAIL_UNDER_HIDDEN_COMPOSITION_COUPLING`\n- `QG21_CANNOT_CHECK`\n\n## Claim boundary\n\nNo novelty credit for robust optimization/sensitivity/polyhedral distance mathematics. No physical quantum-advantage claim. A positive result certifies only the frozen compiler theorem's persistence over a declared coefficient/stack uncertainty set. Existing QG protocols/results remain read-only parents, and the protected stretched-N2 subject remains sealed.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T08:17:32Z",
+    "body": "**QG-21 V1 calibration is GREEN under the dual harness.** Draft PR #877, workflow `32561466154`, analyzer + independent generic ORION + native ORION-Q + deterministic replay all pass. Exact G1 (`t_r` fixed) L-infinity results: QG-8 O0/O2 radius `0`; QG-16 O0 radius `0`; QG-16 strict interior `O_in=(5,3,2,1)` radius exactly `1/2`, active facet `t_c+t_nc-2*t_r-2*t_tag>=0`. All frozen O_in boxes through eps=`1/5` remain inside the certificate. Outside controls are explicitly `CERTIFICATE_NOT_APPLICABLE__NOT_REGIME_CHANGE`. Native authority is `CERTIFICATE_MARGIN` only; `TRUE_PHASE_BOUNDARY=false`, global sharpness remains OPEN. Protected result receipt committed as `research/extensions/orion-qg/QG21_REGIME_ROBUSTNESS_RESULTS.json`.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/864#issuecomment-5379240216"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T06:26:27Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 865,
+     "title": "[ORION-QG] Wave-3 frontier: universal trades, minimal regime state, robustness margins",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:55:41Z",
+     "mergeCommit": {
+      "oid": "deedaa6f08453fe1c9ca02836c3dd0034b046035"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T06:26:34Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 740,
+     "title": "[PROGRAMME] ORION-QG \u2014 Compilation Regime Geometry: maps, trades, predicates and forecasts for compilation families",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "IssueComment"
+   }
+  ]
+ }
+}

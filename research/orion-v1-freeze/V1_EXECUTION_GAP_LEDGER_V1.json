@@ -12,13 +12,41 @@
     {
       "blocks_freeze": true,
       "census_artifact": "research/orion-v1-freeze/V1_COMPONENT_BINDING_V1.json",
-      "census_terminal": "AMBIGUOUS_COMPONENT_OWNER",
+      "census_terminal": "V1_COMPONENT_GRAPH_CONTENT_BOUND",
       "class": "INTERNAL_LOCAL",
-      "diagnosis": "binding census complete; graph is not a partition (949 duplicate-owned files from two catch-all declarations), one component unimplemented, 5 dependency edges unwitnessed",
+      "coverage_note": "graph coverage.complete stays false while freeze_state is OPEN_BOOTSTRAP; the checker forbids a bootstrap completeness claim, so completeness flips atomically with the FROZEN transition",
       "discharge_job": "V1-COMPONENT-BIND-01",
       "gap_id": "GAP-INTERNAL-COMPONENT-BINDING",
       "owner": "V1_FREEZE_THEORY_AND_SYSTEM_LANE",
-      "status": "OPEN"
+      "resolution_evidence": {
+        "binding_artifact": "research/orion-v1-freeze/V1_COMPONENT_BINDING_V1.json",
+        "catch_all_declarations_resolved": "CERTIFIED_ALGORITHMIC_NAVIGATION src/orion/ exploded to 22 explicit paths; QUANTUM_QG_QN_FRONTIER research/+development/ exploded to 306 explicit paths",
+        "components": 14,
+        "components_with_absent_paths": 4,
+        "dual_role_files_resolved": "src/orion/discovery/frontier_dominance.py owned by FRONTIER_DOMINANCE_AND_RESIDUAL_NOVELTY with THEOREM_IDENTIFYING_DISCOVERY recorded as a witnessed dependency edge; src/orion/epistemic_state_v1/ owned by DYNAMIC_EPISTEMIC_STATE (reference implementation); remaining 24 src/orion/discovery files owned by THEOREM_IDENTIFYING_DISCOVERY",
+        "duplicate_owned_files": 0,
+        "duplicate_owned_files_before": 949,
+        "edges": 24,
+        "edges_backed_with_concrete_witness": 10,
+        "edges_newly_witnessed": [
+          "P1_P15_SCIENTIFIC_PROGRAMME->DYNAMIC_EPISTEMIC_STATE via scripts/check_p1_p15_dynamic_rewrite_v1.py token epistemic_state_v1 (file bound to P1_P15; the P1-P15 rewrite checker consumes the DES reference root)"
+        ],
+        "edges_unbacked_no_own_files_measurement_boundary": 14,
+        "edges_unbacked_no_typed_interface_witness": 0,
+        "edges_unbacked_no_typed_interface_witness_before": 5,
+        "files_owned_at_base": 10783,
+        "files_unowned_infrastructure_only": 1074,
+        "files_unowned_note": "tests/ .github/ docs/ scripts/ .integration/ provenance/ and root files were never claimed by any component in the original census either; no component declaration covers them and none was invented",
+        "frozen_base": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+        "spurious_edges_removed": [
+          "THEOREM_IDENTIFYING_DISCOVERY->DYNAMIC_EPISTEMIC_STATE (discovery-v1 builds on OSTC only; zero DES references in any spelling; DES self-describes as the P1-P15 shared object)",
+          "CERTIFIED_ALGORITHMIC_NAVIGATION->KNOWLEDGE_WEB_AND_PROOF_ECONOMY (zero knowledge-web/discovery-v2 references in the src/orion residual; knowledge_web.py has zero importers tree-wide)",
+          "EXECUTION_INTEGRITY_AND_RECEIPTS->OSTC_FOUNDATIONS (kernel receipt algebra deliberately independent: imports only orion.mechanics/orion.core; no foundations reference)",
+          "ORION_Q_TYPED_RESEARCH_STATE->OSTC_FOUNDATIONS (orion-q is external-literature-donor based; no OSTC reference)"
+        ],
+        "unimplemented_component_disposition": "DISCOVERY_SYNTHESIS_MODES bound explicitly as a ledgered execution gap: both declared files are absent at the frozen base and no synthesis-modes contract exists anywhere in the frozen tree, so implementation is out of scope for a frozen-base binding; node status records successor job V1-DISC-V3-SPEC-01 and the binding census emits it under components_with_no_binding and components_with_absent_paths"
+      },
+      "status": "RESOLVED"
     },
     {
       "blocks_freeze": true,
@@ -87,7 +115,27 @@
       "discharge_job": "V1-Q-CENSUS-01",
       "gap_id": "GAP-INTERNAL-QUANTUM-DISPOSITION",
       "owner": "QUANTUM_TRANSFER_LEAD",
-      "status": "OPEN"
+      "status": "RESOLVED",
+      "census_artifact": "research/orion-v1-freeze/V1_QUANTUM_CENSUS_V1.json",
+      "census_terminal": "V1_QUANTUM_FRONTIER_CENSUS_COMPLETE",
+      "resolution_evidence": {
+        "execution_class": "LOCAL_AUDIT_NO_CLUSTER_ALLOCATION",
+        "frozen_base": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+        "identity_ambiguous_retained": [
+          1034,
+          1306,
+          1418
+        ],
+        "merged_material_result": 41,
+        "packet": "research/orion-v1-freeze/quantumcensus-20260826/complete/RESULT_BINDING_PACKET.json",
+        "pending_atomic_audit": [
+          937
+        ],
+        "raw_receipts": "120 files (56 issue + 64 PR GraphQL snapshots) under quantumcensus-20260826/raw/",
+        "scoped_issues": 56,
+        "scoped_out_enumerated": 103,
+        "tree_binding": "frozen base ef51b7b AND origin/main 926c7529, quantum surfaces byte-identical"
+      }
     },
     {
       "blocks_freeze": true,

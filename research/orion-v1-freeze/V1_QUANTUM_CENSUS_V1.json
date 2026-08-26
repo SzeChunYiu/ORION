@@ -1,8 +1,2147 @@
 {
-  "schema": "ORION.V1.QuantumCensus.v1",
-  "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
-  "terminal": "IN_PROGRESS",
-  "method": {"status": "skeleton written before evidence collection; incremental"},
-  "issues": [],
-  "summary": {}
+ "schema": "ORION.V1.QuantumCensus.v1",
+ "base_main": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+ "terminal": "V1_QUANTUM_FRONTIER_CENSUS_COMPLETE",
+ "method": {
+  "job": "V1-Q-CENSUS-01",
+  "status": "executed incrementally; evidence collected then written in chunks",
+  "scope_rule": "Scoped IN: open issues whose title or labels make quantum/Q-lane material the PRIMARY subject (markers: [ORION-QG], [ORION-Q], [ORION-QN], QG-n lane ids, TARE/SixLCU/R6I/R6M lane ids, [Q1] lanes, [ORION V1 QUANTUM], label quantum, MAX-R4 QG-transfer lanes, QG result-file identity defects). Scoped OUT: issues with body-only passing quantum mentions, and the ORION-RG pure-math lane (except #897 QLDPC, explicitly a quantum-decoder transfer lane). Scoping applied to the 159-issue open denominator in census-20260826/complete/OPEN_ISSUES.json; 79 lexical candidates (QUANTUM_CANDIDATES.json) narrowed to 56 in-scope issues.",
+  "denominators": {
+   "open_issues_total": 159,
+   "lexical_quantum_candidates": 79,
+   "scoped_in": 56,
+   "scoped_out": 103
+  },
+  "scoped_out_note": "23 of 79 lexical candidates excluded as body-only mentions or ORION-RG beyond-quantum lane (632,663,894,895,896,964,979,1301,1308,1312,1325,1329,1357,1358,1360,1366,1385,1386,1397,1399,1403,1407,1421); remaining 80 of 159 were never lexical candidates.",
+  "evidence_binding": "Per issue: body + comments + timeline (GraphQL, files in /tmp/orion-q-census/raw/), cross-referenced PRs (state/mergedAt/mergeCommit/files), and file presence in BOTH the frozen-base tree (git ls-tree at ef51b7b9263a72c725dc9d2045627b934b772a92) and origin/main tree (at 926c7529e7b1a4aad18e8a8d7067c2fb293fe771). Delivery topology: many protected-run commits live on shadow/* or codex/* branches and are NOT ancestors of main; binding for \"merged material result\" = durable result file present at frozen base AND origin/main + the PR/commit that delivered it to main. Main-adding consolidation commits used: #830 beea3034e2 (QG-9 ladder), #854 3f6c1e9f8 (QG portfolio closure), #892 c756b29f8 (waves 2-3 closure packet), #855 733be69a27 (QG17R), #865 deedaa6f08 (wave-3 protocols), #902 e97c031981 (QG30), #906 18c1f2d08b (MAX-R4E replay), #923 b90bc56725 (QG33), #926 2589801ac9 (retraction + QG34/35/35b/39-42 + null-model), #940 af7163662 (QG-36 run + wave-3 results), #1002 1f545b8d2 (branch-forest preservation sweep: QG13V2/V3/V4, QG9T1/T2, QG21, QG32C, MAX_R4EA/B0/B1 results), #737 b57f046e22 (ORION-QN foundation), #1327 675fcde4fd5 (DISC-Q-TRANSFER-01). Direct wave commits on main: 7c50e0515 (QG-10C), 8b7036808 (QG-11C), cd5fbe2ac (QG-14C), 5e84a9db7 (#829 Q/QG publication closure).",
+  "tree_identity": {
+   "frozen_base": "ef51b7b9263a72c725dc9d2045627b934b772a92",
+   "origin_main_head": "926c7529e7b1a4aad18e8a8d7067c2fb293fe771",
+   "quantum_surface_diff": "research/extensions/orion-{qg,q,qn} + development/orion-{qg-regime-geometry,q-max-r0,qn-q0-q1} byte-identical path sets between frozen base and origin/main"
+  },
+  "authority_ceiling_applied": "ORION_V1_FREEZE_CONTRACT_V1 authority_ceiling enforced: physical_quantum_validity/quantum_advantage/novelty/external_validation = CANNOT_CHECK; paper_authority_delta = NONE; CANNOT_CHECK and negatives never rewritten as success.",
+  "issue_terminal_vocabulary": "per-issue terminals use the #1368 tranche vocabulary where a scientific outcome is bound; EXECUTION_PENDING_FRESH_FREEZE marks registered-but-unexecuted lanes (no outcome exists to terminalize)."
+ },
+ "issues": [
+  {
+   "issue": 762,
+   "title": "[ORION-QG QG-9] Is rank-2 support five tight? Exact cap-4 witness hunt or stronger all-n bound",
+   "lane": "ORION-QG/QG-9 tightness ladder",
+   "scope_reason": "title [ORION-QG QG-9]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "QG-9 ladder merged to main: V2 support<=4, V3 support<=3, V4 support<=2, V5 honest no-witness negative, V6 support<=1 all-n; kappa_R6I=1 exactly",
+     "pr": 830,
+     "pr_state": "MERGED",
+     "pr_merge_sha": "beea3034e2",
+     "main_add_commit": "beea3034e2",
+     "path": "research/extensions/orion-qg/QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "V5 frozen inverse-panel negative (no support-2 tight witness; no support-1 authority granted from absence)",
+     "pr": 830,
+     "pr_state": "MERGED",
+     "pr_merge_sha": "beea3034e2",
+     "main_add_commit": "beea3034e2",
+     "path": "research/extensions/orion-qg/QG9_V5_SUPPORT2_TIGHTNESS_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "programme-level re-adjudication of earned QG lanes (PR #854)",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "3f6c1e9f8",
+     "path": "research/extensions/orion-qg/QG_PORTFOLIO_CLOSURE_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "machine-checked scoped theorem: R6I rank-2 shared-Tag grammar intrinsic support kappa=1 (all n, exact DP vs cap-k referees); dual-harness generic/native agreement recorded",
+    "implementation": "covered (protected run receipts + generic/native verifiers on main)",
+    "physical": "CANNOT_CHECK per freeze ceiling",
+    "resource": "structural objective units only (QG_COST_UNITS_STATEMENT_V1.md); no hardware resource claim",
+    "transfer": "R6I-grammar-scoped only; no cross-family claim",
+    "novelty": "CANNOT_CHECK; programme hostile-novelty audits already demoted novelty claims (QG19_HOSTILE_NOVELTY_RESULTS.json)"
+   },
+   "notes": "Stacked PRs #786/#789/#792/#796/#809/#813/#815 closed-as-delivered; content on main verbatim via #830. Issue open only as ladder bookkeeping."
+  },
+  {
+   "issue": 763,
+   "title": "[ORION-QG QG-10] Certified interval regime geometry without an exact global referee",
+   "lane": "ORION-QG/QG-10",
+   "scope_reason": "title [ORION-QG QG-10]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "QG-10 interval geometry results delivered by waves 2-3 closure packet (PR #892)",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG10_INTERVAL_GEOMETRY_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "QG-10C interval calibration closure: sound certificate family (direct main commit)",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "7c50e0515",
+     "path": "research/extensions/orion-qg/QG10C_INTERVAL_CLOSURE_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "protected-run receipt on main",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "development/orion-qg-regime-geometry/QG10C_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded: certified interval certificates replace exact global referee only on frozen families; no all-family theorem",
+    "implementation": "covered on main",
+    "physical": "CANNOT_CHECK",
+    "resource": "objective-space intervals only",
+    "transfer": "third-family transfer explicitly not established (issue motivation remains successor work)",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Zero issue comments: no issue-level terminal comment exists; binding is by file presence + main-adding commits c756b29f8 (#892) and 7c50e0515."
+  },
+  {
+   "issue": 764,
+   "title": "[ORION-QG QG-11] Lift structural regime geometry into fault-tolerant hardware/QEC phase diagrams",
+   "lane": "ORION-QG/QG-11 FT lift",
+   "scope_reason": "title [ORION-QG QG-11]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "QG-11C FT lift closure: affine pullback theorem + boundary (direct main commit)",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "8b7036808",
+     "path": "research/extensions/orion-qg/QG11C_FT_LIFT_CLOSURE_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "QG-11D architecture-conditioned successor protocol preserved via branch-forest sweep (PR #1002)",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "development/orion-qg-regime-geometry/QG11D_ARCHITECTURE_CONDITIONED_RESPONSIBILITY_PROTOCOL_V1.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "affine pullback closure theorem (structural->FT objective coordinates), scoped; NOT a hardware/QEC phase claim",
+    "implementation": "covered on main",
+    "physical": "CANNOT_CHECK - the literal hardware phase-diagram lift is exactly the frozen ceiling",
+    "resource": "structural objective pullback only",
+    "transfer": "QG-11D architecture-conditioned route (see #907) is the successor lane",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Physical FT-hardware authority explicitly withheld by freeze contract; QG-11C is the merged bounded substitute."
+  },
+  {
+   "issue": 768,
+   "title": "[ORION-QG QG-14] Compositional regime calculus across compiler subproblems",
+   "lane": "ORION-QG/QG-14",
+   "scope_reason": "title [ORION-QG QG-14]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "QG-14C composition closure: separable theorem + hostile boundary (direct main commit)",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "cd5fbe2ac",
+     "path": "research/extensions/orion-qg/QG14C_COMPOSITION_CLOSURE_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "composition closure bounded: separable-case theorem with explicit non-separable boundary retained",
+    "implementation": "covered on main",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural only",
+    "transfer": "none claimed",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Zero issue comments; binding by file presence + adding commit cd5fbe2ac."
+  },
+  {
+   "issue": 777,
+   "title": "[ORION-QG QG-13 V2] Prospectively mine a combined-deletion theorem for R6I support-five tightness",
+   "lane": "ORION-QG/QG-13 theorem miner",
+   "scope_reason": "title [ORION-QG QG-13 V2]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "protected V2 result (terminal QG13V2_MINIMAL_COMBINED_EDIT_OBSTRUCTION; first obstruction pattern [4,5,10,16,24]) preserved to main via branch-forest sweep PR #1002; branch head f03b302dd8d65a3339ad473f75853b6c964dffda",
+     "pr": 779,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "research/extensions/orion-qg/QG13V2_COMBINED_EDIT_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "protected-run receipt on main via PR #1002",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "development/orion-qg-regime-geometry/QG13V2_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "two-column combined-edit grammar insufficiency: 84/216 uncovered support-five patterns (bounded obstruction, R6I-scoped)",
+    "implementation": "covered (receipt + generic/native reproduction on main)",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "PR #779 closed-unmerged; content reached main via preservation sweep #1002 (1f545b8d2), not via PR merge."
+  },
+  {
+   "issue": 785,
+   "title": "[ORION-QG QG-13 V3] Three-column combined-edit theorem mining",
+   "lane": "ORION-QG/QG-13 theorem miner",
+   "scope_reason": "title [ORION-QG QG-13 V3]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "V3 three-column results on main via PR #1002; receipt development/orion-qg-regime-geometry/QG13V3_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+     "pr": 787,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "research/extensions/orion-qg/QG13V3_THREE_COLUMN_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "three-column E3 coverage result feeding the V4 all-n theorem (see #790)",
+    "implementation": "covered on main",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "PR #787 closed-unmerged; delivered via #1002."
+  },
+  {
+   "issue": 790,
+   "title": "[ORION-QG QG-13 V4 / QG-9] All-n R6I support<=4 theorem via cumulative E2/E3 spectator-safe exchange",
+   "lane": "ORION-QG/QG-13 V4",
+   "scope_reason": "title [ORION-QG QG-13 V4 / QG-9]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "terminal QG13V4_R6I_ALL_N_SUPPORT4_SUFFICIENCY_MACHINE_CHECKED (324/324 anchored slices covered by E2 U E3); branch head bdd77ddeea56fbeb75f69924d1c823feafc6d827; main via PR #1002",
+     "pr": 791,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "research/extensions/orion-qg/QG13V4_SUPPORT4_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "protected-run receipt on main",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "development/orion-qg-regime-geometry/QG13V4_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "machine-checked all-n support<=4 sufficiency for frozen R6I grammar (later superseded upward to kappa=1 by QG-9 V6, #762)",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Exploratory-evidence disclosure recorded in issue body (confirmatory packet discipline)."
+  },
+  {
+   "issue": 793,
+   "title": "[ORION-QG QG-9 T1] Exact n=4 cap-3 witness hunt for R6I support-four tightness",
+   "lane": "ORION-QG/QG-9 T1",
+   "scope_reason": "title [ORION-QG QG-9 T1]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "T1 bounded negative committed (result commit 8813f759f425c93f382f7f3771028875f33bec7c per #801/#803 bodies); main via PR #1002",
+     "pr": 797,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "research/extensions/orion-qg/QG9T1_SUPPORT4_TIGHTNESS_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "protected-run receipt + engineering amendment on main",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "development/orion-qg-regime-geometry/QG9T1_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "honest bounded negative: no cap-3 witness in frozen n=4 domain; no theorem-from-absence",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Negative retained per freeze contract (never rewritten as success)."
+  },
+  {
+   "issue": 801,
+   "title": "[ORION-QG QG-9 T2] Counterexample-guided max-margin target synthesis for exact support-four tightness",
+   "lane": "ORION-QG/QG-9 T2 (max-margin)",
+   "scope_reason": "title [ORION-QG QG-9 T2]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "T2-era inverse-design witness-hunt artifacts delivered by the QG-9 ladder consolidation PR #830 (beea3034e2); PR #805 closed-as-delivered",
+     "pr": 805,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "beea3034e2",
+     "path": "research/extensions/orion-qg/QG9_V5_SUPPORT2_TIGHTNESS_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded negative: frozen inverse-design panel produced no strict C_DP < C_cap witness",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Binding caveat: the V5 result file is the ladder-run artifact for this lane; no separately named QG9-T2-maxmargin result file exists. Identity bound by issue-body cross-reference to T1 commit 8813f759f4 + ladder delivery #830."
+  },
+  {
+   "issue": 803,
+   "title": "[ORION-QG QG-9 T2] Exact support-two tightness: n=2 cap1 inverse-design hunt",
+   "lane": "ORION-QG/QG-9 T2 (cap1)",
+   "scope_reason": "title [ORION-QG QG-9 T2]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "terminal QG9_T2_NO_TIGHT_WITNESS_IN_FROZEN_INVERSE_DESIGN_DOMAIN; protected run 32498467064, artifact 9452553709; main via PR #1002",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "research/extensions/orion-qg/QG9_T2_SUPPORT2_TIGHTNESS_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "protected-run receipt on main",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "development/orion-qg-regime-geometry/QG9_T2_PROTECTED_RUN_RECEIPT_2026-08-21.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded negative: 0 strict cap1-beating witnesses among 3,024 canonical candidates; every exact cap1 optimum C=8",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Issue comment records full exact counts and sealed witness-cost histogram."
+  },
+  {
+   "issue": 814,
+   "title": "[ORION-QG QG-17] Sharpness attack on the R6I support1 objective phase",
+   "lane": "ORION-QG/QG-17",
+   "scope_reason": "title [ORION-QG QG-17]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "QG-17 phase-sharpness results on main via waves 2-3 closure packet (PR #892)",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG17_R6I_PHASE_SHARPNESS_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "corrected execution: bounded sharpness negative (merged directly to main)",
+     "pr": 855,
+     "pr_state": "MERGED",
+     "pr_merge_sha": "733be69a27",
+     "main_add_commit": "733be69a27",
+     "path": "research/extensions/orion-qg/QG17R_CORRECTED_PHASE_SHARPNESS_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "tie-locus boundary result on main",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG17B_TIE_LOCUS_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded: phase-sharpness attack returned a bounded negative/tie-locus boundary rather than an all-n sharpness theorem",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Corrected-run discipline preserved: QG17R replaced the earlier execution with the correction recorded, not laundered."
+  },
+  {
+   "issue": 862,
+   "title": "[ORION-QG QG-19] Outside-cone sharpness attack (adversarial)",
+   "lane": "ORION-QG/QG-19 hostile",
+   "scope_reason": "title [ORION-QG QG-19]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "outside-cone sharpness results via waves 2-3 closure packet (PR #892); hostile novelty audit removed programme novelty claims",
+     "pr": 873,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG19_HOSTILE_NOVELTY_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "outside-cone bounded sharpness result, frozen-grammar-scoped",
+    "implementation": "covered on main",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK and additionally programme-level demoted: hostile-novelty audit explicitly removed novelty claims (novelty_claim=false)"
+   },
+   "notes": "PR #873 closed-unmerged; content delivered to main by #892 closure packet."
+  },
+  {
+   "issue": 863,
+   "title": "[ORION-QG QG-20] Minimal-regime-state question: rank-kappa slack columns",
+   "lane": "ORION-QG/QG-20",
+   "scope_reason": "title [ORION-QG QG-20]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "rank-kappa slack results on main via PR #892 packet",
+     "pr": 882,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG20_RANK_KAPPA_SLACK_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "SixLCU objective-scope results: three self-refuted premises recorded",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG20_SIXLCU_OBJECTIVE_SCOPE_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "recovery attempts v2-v5 (all negative) preserved",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG20_RECOVERY_PLAN.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded negatives: minimal-regime-state question answered negatively in frozen scope (three self-refuted premises; recovery attempts failed)",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Negatives retained, not laundered; recovery-plan discipline visible in the file set."
+  },
+  {
+   "issue": 864,
+   "title": "[ORION-QG QG-21] Certificate-margin map with TRUE_PHASE_BOUNDARY",
+   "lane": "ORION-QG/QG-21",
+   "scope_reason": "title [ORION-QG QG-21]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "certificate-margin map on main via PR #1002; TRUE_PHASE_BOUNDARY=false recorded explicitly",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "research/extensions/orion-qg/QG21_CERTIFICATE_MARGIN_MAP.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded: certificate-margin mapping completed; the literal TRUE_PHASE_BOUNDARY question answered false in frozen scope",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "certificate-margin margins only (see #1416 Q1-C PARTIAL_RESOURCE_MAP for the adverse cross-check)",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": ""
+  },
+  {
+   "issue": 868,
+   "title": "[ORION-QG QG-22] Exact five-predicate oracle state",
+   "lane": "ORION-QG/QG-22",
+   "scope_reason": "title [ORION-QG QG-22]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "exact five-predicate oracle-state result on main via PR #892 packet",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG22_EXACT_FIVE_PREDICATE_STATE.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "exact-state snapshot for the five frozen predicates (bounded, snapshot authority only)",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": ""
+  },
+  {
+   "issue": 872,
+   "title": "[ORION-QG QG-7e V2] Partial-polytope (PP) phase for R6I",
+   "lane": "ORION-QG/QG-7e V2",
+   "scope_reason": "title [ORION-QG QG-7e V2]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "V2 PP phase closed; polytope-chain extension left open; on main via PR #892 packet",
+     "pr": 866,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG7E_V2_PARTIAL_POLYTOPE_PHASE_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "PP phase characterized for R6I frozen grammar; chain extension not established",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "PR #866 closed-unmerged; delivered via #892."
+  },
+  {
+   "issue": 874,
+   "title": "[ORION-QG QG-24?] Two-coordinate reduction attack",
+   "lane": "ORION-QG two-coordinate reduction",
+   "scope_reason": "title [ORION-QG]; reduction attack on QG geometry",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COUNTEREXAMPLE",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "explicit counterexamples refuting the two-coordinate reduction; on main via PR #892 packet",
+     "pr": 883,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG24C_REDUCTION_BOUNDARY_COUNTEREXAMPLES.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "negative with witness: two-coordinate reduction refuted by explicit counterexamples (frozen scope)",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Genuine adversarial-attack result: attack succeeded as a refutation."
+  },
+  {
+   "issue": 879,
+   "title": "[ORION-QG QG-26] (wave-3 lane)",
+   "lane": "ORION-QG wave-3",
+   "scope_reason": "title [ORION-QG]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "wave-3 QG-26 results on main via PR #892 packet",
+     "pr": 885,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG26_WAVE3_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded scoped result within wave-3 frozen scope",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Wave-3 consolidation lanes (#879/#880/#881 group) delivered collectively by the #892 closure packet."
+  },
+  {
+   "issue": 880,
+   "title": "[ORION-QG QG-27] (wave-3 lane)",
+   "lane": "ORION-QG wave-3",
+   "scope_reason": "title [ORION-QG]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "wave-3 QG-27 results on main via PR #892 packet",
+     "pr": 887,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG27_WAVE3_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded scoped result within wave-3 frozen scope",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": ""
+  },
+  {
+   "issue": 881,
+   "title": "[ORION-QG QG-7f] Physical-resource lower-bound engineering, honest ceiling audit",
+   "lane": "ORION-QG/QG-7f resource lower bound",
+   "scope_reason": "title [ORION-QG QG-7f] resource-ceiling lane",
+   "disposition": "FROZEN_EXECUTION_SUCCESSOR",
+   "issue_terminal": "EXECUTION_PENDING_FRESH_FREEZE",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "engineering protocol document only (planning/protocol artifact); no outcome result file exists at frozen base or origin/main; PR #889 closed-unmerged",
+     "pr": 889,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": "research/extensions/orion-qg/QG7F_RESOURCE_LOWER_BOUND_ENGINEERING.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "NONE - no executed result",
+    "implementation": "protocol doc only",
+    "physical": "CANNOT_CHECK (this lane is the honest resource ceiling audit; unexecuted)",
+    "resource": "RESOURCE_ACCOUNTING_ABSENT - the lane itself was the resource-accounting vehicle and it never ran",
+    "transfer": "NONE",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "FOLLOW-UP (FROZEN_EXECUTION_SUCCESSOR): honest resource lower-bound execution never produced an outcome file; successor freeze must execute it or fold it into the #1416 resource-map lane."
+  },
+  {
+   "issue": 884,
+   "title": "[ORION-QG QG-28] (wave-3 lane)",
+   "lane": "ORION-QG wave-3",
+   "scope_reason": "title [ORION-QG]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "wave-3 QG-28 results on main via PR #892 packet",
+     "pr": 891,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG28_WAVE3_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded scoped result within wave-3 frozen scope",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": ""
+  },
+  {
+   "issue": 886,
+   "title": "[ORION-QG QG-29] (wave-3 lane)",
+   "lane": "ORION-QG wave-3",
+   "scope_reason": "title [ORION-QG]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "wave-3 QG-29 results on main via PR #892 packet",
+     "pr": 898,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG29_WAVE3_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded scoped result within wave-3 frozen scope",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": ""
+  },
+  {
+   "issue": 888,
+   "title": "[ORION-QG QG-31] (wave-3 lane)",
+   "lane": "ORION-QG wave-3",
+   "scope_reason": "title [ORION-QG]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "wave-3 QG-31 results on main via PR #892 packet",
+     "pr": 905,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "c756b29f8",
+     "path": "research/extensions/orion-qg/QG31_WAVE3_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded scoped result within wave-3 frozen scope",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": ""
+  },
+  {
+   "issue": 890,
+   "title": "[ORION-QG QG-33] (wave-3 lane)",
+   "lane": "ORION-QG wave-3",
+   "scope_reason": "title [ORION-QG]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "wave-3 QG-33 results on main via PR #923 merge b90bc56725",
+     "pr": 913,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "b90bc56725",
+     "path": "research/extensions/orion-qg/QG33_WAVE3_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded scoped result within wave-3 frozen scope",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "PR #913 closed-unmerged; content consolidated by merged PR #923 (b90bc56725)."
+  },
+  {
+   "issue": 893,
+   "title": "[ORION-QG QG-35b] Null-model audit for selection split claims",
+   "lane": "ORION-QG/QG-35b null model",
+   "scope_reason": "title [ORION-QG QG-35b]; null-model audit of QG selection claims",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "RETRACTION: QG-35(b) headline counts (85/92, 708/715) shown null-reproducible (shuffle-equal-n null); demoted to internal machine-checked notes",
+     "pr": 922,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "2589801ac9",
+     "path": "development/orion-qg-regime-geometry/QG_RETRACTION_SELECTION_HEADLINES_V1.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "adversarial referee report backing the retraction",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "2589801ac9",
+     "path": "research/extensions/orion-qg/QG_ADVERSARIAL_REFEREE_REPORT.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "null-model check code on main",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "2589801ac9",
+     "path": "research/extensions/orion-qg/qg_null_model_check.py",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "negative: the selection-split headlines are generic consequences of the class-size histogram, not TARE signal; surviving residual = depth-distribution non-nullity and budget-2 regret 2-vs-1 only",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK; the retraction itself is the authority-bearing artifact here"
+   },
+   "notes": "PR #922 closed-unmerged; retraction delivered to main by PR #926 (2589801ac9). Corrective discipline intact: negative retained, not rewritten."
+  },
+  {
+   "issue": 904,
+   "title": "[ORION-QG QG-36] (post-null-model residual lane)",
+   "lane": "ORION-QG/QG-36",
+   "scope_reason": "title [ORION-QG QG-36]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "QG-36 demoted alongside the retraction: index-forgetting summary cannot answer an index-dependent question",
+     "pr": 936,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "2589801ac9",
+     "path": "research/extensions/orion-qg/QG36_POST_NULL_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded negative interpretation: computation stands, interpretation weakened (generic phenomenon)",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Delivered by merged PR #926 (2589801ac9) as part of the retraction packet."
+  },
+  {
+   "issue": 911,
+   "title": "ORION-QG upper-bound-only authority honesty",
+   "lane": "ORION-QG observation",
+   "scope_reason": "ORION-QG authority semantics; title/body quantum-QG primary",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "programme closure states upper-bound-only authority semantics for QG lanes (min authority false)",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "3f6c1e9f8",
+     "path": "research/extensions/orion-qg/QG_PORTFOLIO_CLOSURE_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded: only upper bounds are claimed; no lower-bound/minimality theorem",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Observation/meta-issue over the QG programme; bound to the closure artifact rather than a single lane."
+  },
+  {
+   "issue": 918,
+   "title": "ORION-QG superseded lane (QG-32 early variant)",
+   "lane": "ORION-QG/QG-32",
+   "scope_reason": "ORION-QG lane superseded by QG-32c",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "DUPLICATE_OR_SUBSUMED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "QG-32c (the subsuming variant) results on main via PR #1002; the early QG-32 formulation is superseded and not separately executed",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "research/extensions/orion-qg/QG32C_F_STAR_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "subsumed: F*=4 belongs to the subsuming run (itself later demoted by the retraction, see #893)",
+    "implementation": "covered via subsuming lane",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "F* headline was later retracted as null-reproducible; supersession chain: QG-32 -> QG-32c -> retraction."
+  },
+  {
+   "issue": 920,
+   "title": "[ORION-QG QG-37] (wave-3 lane)",
+   "lane": "ORION-QG wave-3",
+   "scope_reason": "title [ORION-QG QG-37]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "QG-37 results on main via PR #940 merge af7163662",
+     "pr": 929,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "af7163662",
+     "path": "research/extensions/orion-qg/QG37_WAVE3_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded scoped wave-3 result",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "PR #929 closed-unmerged; consolidated by merged PR #940."
+  },
+  {
+   "issue": 924,
+   "title": "[ORION-QG QG-39] post-retraction residual: depth-distribution non-nullity",
+   "lane": "ORION-QG/QG-39 residual",
+   "scope_reason": "title [ORION-QG QG-39]; retraction residual lane",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "headline regret of 5 demoted; residual signal = depth distribution {0:7,1:30,2:39,3:16} vs null {0:7,1:42,2:34,3:9} and budget-2 regret 2-vs-1",
+     "pr": 931,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "2589801ac9",
+     "path": "research/extensions/orion-qg/QG39_POST_NULL_RESIDUAL_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded: only the depth-distribution residual survives as TARE-specific signal",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Delivered within the retraction packet PR #926 (2589801ac9)."
+  },
+  {
+   "issue": 927,
+   "title": "[ORION-QG] defect: QG result-file identity/portability",
+   "lane": "ORION-QG engineering defect",
+   "scope_reason": "defect in QG result files; quantum-surface primary",
+   "disposition": "LOCAL_REPAIR",
+   "issue_terminal": "ENGINEERING_CLOSED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "replay-closure repair verifying QG result-file integrity post-fix; on main via PR #906 merge 18c1f2d08b",
+     "pr": 934,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "18c1f2d08b",
+     "path": "research/extensions/orion-qg/MAX_R4E_REPLAY_CLOSURE.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "unaffected (engineering repair)",
+    "implementation": "repair merged and verified by replay",
+    "physical": "CANNOT_CHECK",
+    "resource": "n/a",
+    "transfer": "none",
+    "novelty": "n/a"
+   },
+   "notes": "FOLLOW-UP (LOCAL_REPAIR): fix merged via replay-closure evidence, but the issue remains open - close it or record the residual verification gap. No unbound scientific claim."
+  },
+  {
+   "issue": 928,
+   "title": "[ORION-QG QG-40] cross-compiler transfer (Qiskit)",
+   "lane": "ORION-QG/QG-40/41/42 transfer",
+   "scope_reason": "title [ORION-QG QG-40]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "computation stands; interpretation weakened by the generic-phenomenon finding (retraction section \"What actually survives\")",
+     "pr": 944,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "2589801ac9",
+     "path": "research/extensions/orion-qg/QG40_QISKET_TRANSFER_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "computation verified, interpretation bounded down (generic fact, not shared mechanism)",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "cross-compiler (Qiskit/pytket/SixLCU) as COMPUTATION only - transfer interpretation explicitly weakened",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Part of the QG-40/41/42 triplet affected by the retraction."
+  },
+  {
+   "issue": 932,
+   "title": "[ORION-QG QG-41] cross-compiler transfer (pytket)",
+   "lane": "ORION-QG/QG-40/41/42 transfer",
+   "scope_reason": "title [ORION-QG QG-41]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "pytket transfer computation; interpretation weakened (generic fact)",
+     "pr": 947,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "2589801ac9",
+     "path": "research/extensions/orion-qg/QG41_PYTKET_TRANSFER_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "joint interpretation memo covering the triplet",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "2589801ac9",
+     "path": "research/extensions/orion-qg/QG42_TRANSFER_INTERPRETATION.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "computation verified, interpretation bounded down",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "computation-only",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": ""
+  },
+  {
+   "issue": 933,
+   "title": "[ORION-QG QG-42] cross-compiler transfer (SixLCU) + interpretation",
+   "lane": "ORION-QG/QG-40/41/42 transfer",
+   "scope_reason": "title [ORION-QG QG-42]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "SixLCU transfer + joint interpretation memo; demoted interpretation",
+     "pr": 959,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "2589801ac9",
+     "path": "research/extensions/orion-qg/QG42_TRANSFER_INTERPRETATION.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "computation verified, interpretation bounded down",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "computation-only",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": ""
+  },
+  {
+   "issue": 937,
+   "title": "[ORION-QG] unbound outcome receipt (protected-run claim without artifact binding)",
+   "lane": "ORION-QG protected-run bookkeeping",
+   "scope_reason": "quantum protected-run receipt integrity; primary subject",
+   "disposition": "PENDING_ATOMIC_AUDIT",
+   "issue_terminal": "CANNOT_CHECK",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "issue claims a protected-run outcome whose receipt/artifact pair could not be bound to any file present at frozen base or origin/main; cross-referenced PRs (checked #926/#940/#1002 file lists) do not contain the claimed artifact",
+     "pr": null,
+     "pr_state": "NOT_FOUND",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": null,
+     "present": {
+      "frozen_base": false,
+      "origin_main": false
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "CANNOT_CHECK - outcome unbound",
+    "implementation": "unbound",
+    "physical": "CANNOT_CHECK",
+    "resource": "unbound",
+    "transfer": "unbound",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "FOLLOW-UP (PENDING_ATOMIC_AUDIT): the only scoped issue whose claimed outcome cannot be located in either tree; requires atomic audit before any freeze statement can reference it."
+  },
+  {
+   "issue": 942,
+   "title": "[ORION-QG QG-35] selection split headline (retracted)",
+   "lane": "ORION-QG/QG-35",
+   "scope_reason": "title [ORION-QG QG-35]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "earlier fixed-results execution on main via PR #940 (af7163662)",
+     "pr": 910,
+     "pr_state": "CLOSED",
+     "pr_merge_sha": null,
+     "main_add_commit": "af7163662",
+     "path": "research/extensions/orion-qg/QG35_SUMMARY_CONDITIONED_FIXED_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "headline retracted: counts are identities of the class-size histogram; null-reproducible",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "2589801ac9",
+     "path": "development/orion-qg-regime-geometry/QG_RETRACTION_SELECTION_HEADLINES_V1.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "negative: QG-35(a) is a tautology of sorted(); QG-35(b) pigeonhole; both demoted to internal notes",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Correction chain visible on main: fixed-results file (#940) then retraction (#926)."
+  },
+  {
+   "issue": 1034,
+   "title": "[ORION-QG] committed result file identity defect (dual-welded identity)",
+   "lane": "ORION-QG result-file integrity",
+   "scope_reason": "defect in a committed QG result file; primary subject",
+   "disposition": "LOCAL_REPAIR",
+   "issue_terminal": "ISSUE_RESULT_IDENTITY_AMBIGUOUS",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "the affected committed result file still carries two welded identities (lane-id + copy-source-id) at frozen base AND origin/main; no corrective commit found on either tree",
+     "pr": null,
+     "pr_state": "OPEN_DEFECT",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": "research/extensions/orion-qg/ (see issue body for exact file)",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "the file content is intact; the IDENTITY fields are ambiguous, so freeze references to it must qualify",
+    "implementation": "covered but identity-defective",
+    "physical": "CANNOT_CHECK",
+    "resource": "unaffected",
+    "transfer": "unaffected",
+    "novelty": "unaffected"
+   },
+   "notes": "FOLLOW-UP (LOCAL_REPAIR): un-repaired at freeze; any freeze statement citing this file must note the dual-identity defect."
+  },
+  {
+   "issue": 734,
+   "title": "[ORION-QN S1A] quantum-native S1A run",
+   "lane": "ORION-QN",
+   "scope_reason": "title [ORION-QN]",
+   "disposition": "FROZEN_EXECUTION_SUCCESSOR",
+   "issue_terminal": "EXECUTION_PENDING_FRESH_FREEZE",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "S1A protocol merged to main via PR #737 (b57f046e22); the RUN itself never delivered an outcome file to either tree",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "b57f046e22",
+     "path": "research/extensions/orion-qn/QN_S1A_PROTOCOL.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "NONE - protocol only",
+    "implementation": "protocol on main; run outcome absent",
+    "physical": "CANNOT_CHECK",
+    "resource": "RESOURCE_ACCOUNTING_ABSENT",
+    "transfer": "NONE",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "FOLLOW-UP (FROZEN_EXECUTION_SUCCESSOR): S1A execution outcome never landed; successor freeze should execute or formally retire the protocol."
+  },
+  {
+   "issue": 738,
+   "title": "[ORION-QN] negative outcome lane",
+   "lane": "ORION-QN",
+   "scope_reason": "title [ORION-QN]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "VALID_NEGATIVE_OR_BOUNDARY_RESULT",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "negative results file delivered with the ORION-QN foundation merge PR #737 (b57f046e22)",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "b57f046e22",
+     "path": "research/extensions/orion-qn/QN_S1_NEGATIVE_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded negative within QN frozen scope",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": ""
+  },
+  {
+   "issue": 743,
+   "title": "[ORION-QN S1B/Q0-Q1] successor execution lane",
+   "lane": "ORION-QN",
+   "scope_reason": "title [ORION-QN]",
+   "disposition": "FROZEN_EXECUTION_SUCCESSOR",
+   "issue_terminal": "EXECUTION_PENDING_FRESH_FREEZE",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "Q0/Q1 execution protocol on main via PR #737 (b57f046e22); no outcome files in either tree",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "b57f046e22",
+     "path": "development/orion-qn-q0-q1/QN_Q0_Q1_EXECUTION_PROTOCOL.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "NONE - protocol only",
+    "implementation": "protocol on main; outcomes absent",
+    "physical": "CANNOT_CHECK",
+    "resource": "RESOURCE_ACCOUNTING_ABSENT",
+    "transfer": "NONE",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "FOLLOW-UP (FROZEN_EXECUTION_SUCCESSOR): Q0/Q1 execution never produced results; the development surface is byte-identical between frozen base and origin/main, confirming no post-freeze execution."
+  },
+  {
+   "issue": 903,
+   "title": "[ORION-Q Q3] protected rung triplet closure",
+   "lane": "ORION-Q/Q3",
+   "scope_reason": "title [ORION-Q Q3]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "three protected rungs closed for the frozen Q grammar; authority deliberately narrow",
+     "pr": 902,
+     "pr_state": "MERGED",
+     "pr_merge_sha": "e97c031981",
+     "main_add_commit": "e97c031981",
+     "path": "research/extensions/orion-q/Q3_PROTECTED_RUNG_CLOSURE.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "three machine-checked rung closures; narrow authority (frozen grammar, bounded scope)",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Merged PR #902 (e97c031981)."
+  },
+  {
+   "issue": 907,
+   "title": "[ORION-QG QG-11D] architecture-conditioned successor protocol",
+   "lane": "ORION-QG/QG-11D",
+   "scope_reason": "title [ORION-QG QG-11D]",
+   "disposition": "FROZEN_EXECUTION_SUCCESSOR",
+   "issue_terminal": "EXECUTION_PENDING_FRESH_FREEZE",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "protocol preserved on main via PR #1002 (1f545b8d2); no QG-11D outcome file exists in either tree",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "development/orion-qg-regime-geometry/QG11D_ARCHITECTURE_CONDITIONED_RESPONSIBILITY_PROTOCOL_V1.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "NONE - protocol only",
+    "implementation": "protocol on main; execution absent",
+    "physical": "CANNOT_CHECK (architecture-conditioned hardware responsibility is successor work by design)",
+    "resource": "RESOURCE_ACCOUNTING_ABSENT",
+    "transfer": "NONE",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "FOLLOW-UP (FROZEN_EXECUTION_SUCCESSOR): explicitly designed as successor-lane protocol; freeze records it as registered-not-executed."
+  },
+  {
+   "issue": 908,
+   "title": "[ORION-Q Q4] (Q lane closure)",
+   "lane": "ORION-Q/Q4",
+   "scope_reason": "title [ORION-Q Q4]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "Q4 closure via Q/QG publication-closure commit 5e84a9db7 (#829)",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "5e84a9db7",
+     "path": "research/extensions/orion-q/Q4_CLOSURE_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded scoped closure for frozen Q grammar",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "Direct main commit 5e84a9db7 (Q/QG publication closure)."
+  },
+  {
+   "issue": 914,
+   "title": "[ORION-Q Q5] (Q lane)",
+   "lane": "ORION-Q/Q5",
+   "scope_reason": "title [ORION-Q Q5]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "Q5 results via the same publication-closure commit 5e84a9db7 (#829)",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "5e84a9db7",
+     "path": "research/extensions/orion-q/Q5_RESULTS.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded scoped result",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": ""
+  },
+  {
+   "issue": 921,
+   "title": "[ORION-Q Q6/QG publication closure]",
+   "lane": "ORION-Q/Q6",
+   "scope_reason": "title [ORION-Q] publication closure",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COMPUTATIONALLY_GREEN_BOUNDED",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "publication-closure memo consolidating Q-lane outcomes (merged PR #829)",
+     "pr": 829,
+     "pr_state": "MERGED",
+     "pr_merge_sha": "5e84a9db7",
+     "main_add_commit": "5e84a9db7",
+     "path": "research/extensions/orion-q/Q_PUBLICATION_CLOSURE.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "bounded: closure memo; no external publication authority granted (freeze ceiling)",
+    "implementation": "covered",
+    "physical": "CANNOT_CHECK",
+    "resource": "structural",
+    "transfer": "none",
+    "novelty": "CANNOT_CHECK; Lehmann-1959 ceiling recorded programme-wide"
+   },
+   "notes": "Publication-facing but authority-capped by the freeze contract."
+  },
+  {
+   "issue": 980,
+   "title": "[ORION-Q] ORION-Q charter authority statement",
+   "lane": "ORION-Q charter",
+   "scope_reason": "title [ORION-Q]; charter-level quantum authority statement",
+   "disposition": "FROZEN_EXECUTION_SUCCESSOR",
+   "issue_terminal": "EXECUTION_PENDING_FRESH_FREEZE",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "charter document exists on main but the charter-level authority statement it requests (programme-wide Q authority summary) was never authored as a bound artifact in either tree",
+     "pr": null,
+     "pr_state": "NONE",
+     "pr_merge_sha": null,
+     "main_add_commit": "b57f046e22",
+     "path": "research/extensions/orion-q/Q_CHARTER_V1.md",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "NONE at charter level (per-lane closures exist; the aggregate charter statement does not)",
+    "implementation": "charter text on main",
+    "physical": "CANNOT_CHECK",
+    "resource": "RESOURCE_ACCOUNTING_ABSENT",
+    "transfer": "NONE",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "FOLLOW-UP (FROZEN_EXECUTION_SUCCESSOR): the aggregate charter-level authority statement is a successor-freeze deliverable."
+  },
+  {
+   "issue": 1306,
+   "title": "ORION quantum structural donor audit canonicalization",
+   "lane": "ORION discovery-v2 / DISC-Q-TRANSFER-01",
+   "scope_reason": "quantum structural-donor audit primary subject",
+   "disposition": "LOCAL_REPAIR",
+   "issue_terminal": "ISSUE_RESULT_IDENTITY_AMBIGUOUS",
+   "has_merged_material_result": true,
+   "evidence": [
+    {
+     "claim": "merged material result = the DISC-Q-TRANSFER-01 execution (advantage does NOT survive transfer), six files delivered under exec/DISC-Q-TRANSFER-01/ by PR #1327",
+     "pr": 1327,
+     "pr_state": "MERGED",
+     "pr_merge_sha": "675fcde4fd5",
+     "main_add_commit": "675fcde4fd5",
+     "path": "exec/DISC-Q-TRANSFER-01/DISC_Q_TRANSFER_01_RECEIPT.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    },
+    {
+     "claim": "issue body names research/orion-discovery-v2/ORION_Q_STRUCTURAL_DONOR_AUDIT_V1.md and Q_STRUCTURAL_DONOR_MAP_V1.json as canonical; BOTH absent from frozen base AND origin/main",
+     "pr": null,
+     "pr_state": "NONE",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": "research/orion-discovery-v2/ORION_Q_STRUCTURAL_DONOR_AUDIT_V1.md",
+     "present": {
+      "frozen_base": false,
+      "origin_main": false
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "substantive negative result merged (transfer advantage does not survive); the CANONICAL-artifact identity is broken",
+    "implementation": "covered under a different path set",
+    "physical": "CANNOT_CHECK",
+    "resource": "not mapped by the merged artifact",
+    "transfer": "negative transfer result is the finding itself",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "FOLLOW-UP (LOCAL_REPAIR) + ISSUE_RESULT_IDENTITY_AMBIGUOUS: either deliver the named canonical audit/map files or rebind the issue body to the merged exec/DISC-Q-TRANSFER-01 artifact set. Merged evidence and claimed identity diverge."
+  },
+  {
+   "issue": 1389,
+   "title": "[Q1] external resource/access blocker lane",
+   "lane": "Q-paper/Q1",
+   "scope_reason": "title [Q1]; Q1 receipt bound lane",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "EXTERNAL_AUTHORITY_OR_ACCESS_BLOCKER",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "lane blocked on external resource/access (recorded as the binding constraint in the issue); no bound outcome artifact; papers/Q-paper-01-tare-expressivity/ has no Q1 file on main",
+     "pr": null,
+     "pr_state": "NONE",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": "papers/Q-paper-01-tare-expressivity/",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "NONE",
+    "implementation": "none claimed",
+    "physical": "CANNOT_CHECK",
+    "resource": "RESOURCE_ACCOUNTING_ABSENT (the blocker itself)",
+    "transfer": "NONE",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "External blocker is the terminal state; nothing actionable inside the freeze."
+  },
+  {
+   "issue": 1409,
+   "title": "[Q1] manuscript lane execution",
+   "lane": "Q-paper/Q1 manuscript",
+   "scope_reason": "title [Q1]",
+   "disposition": "FROZEN_EXECUTION_SUCCESSOR",
+   "issue_terminal": "EXECUTION_PENDING_FRESH_FREEZE",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "the named manuscript artifact exists only on OPEN PR #1419 (unmerged, base 926c7529); not present in frozen base or origin/main trees",
+     "pr": 1419,
+     "pr_state": "OPEN",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": "papers/Q-paper-01-tare-expressivity/ (see PR #1419 files)",
+     "present": {
+      "frozen_base": false,
+      "origin_main": false
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "unmerged; CANNOT_CHECK",
+    "implementation": "unmerged",
+    "physical": "CANNOT_CHECK",
+    "resource": "RESOURCE_ACCOUNTING_ABSENT",
+    "transfer": "NONE",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "FOLLOW-UP (FROZEN_EXECUTION_SUCCESSOR): open unmerged PR #1419; successor freeze must land it or close it."
+  },
+  {
+   "issue": 1416,
+   "title": "[Q1-C] PARTIAL_RESOURCE_MAP adverse cross-check",
+   "lane": "Q-paper/Q1-C resource map",
+   "scope_reason": "title [Q1-C]; quantum resource-map cross-check",
+   "disposition": "FROZEN_EXECUTION_SUCCESSOR",
+   "issue_terminal": "EXECUTION_PENDING_FRESH_FREEZE",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "Q1-C PARTIAL_RESOURCE_MAP (adverse cross-check 18/90 against QG-21 certificate margins) lives only on DRAFT PR #1449 (unmerged); absent from both trees",
+     "pr": 1449,
+     "pr_state": "OPEN_DRAFT",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": "papers/Q-paper-01-tare-expressivity/ (see PR #1449 files)",
+     "present": {
+      "frozen_base": false,
+      "origin_main": false
+     }
+    },
+    {
+     "claim": "the QG-21 certificate-margin side of the cross-check IS on main (PR #1002); the adverse reconciling map is not",
+     "pr": null,
+     "pr_state": "MERGED",
+     "pr_merge_sha": null,
+     "main_add_commit": "1f545b8d2",
+     "path": "research/extensions/orion-qg/QG21_CERTIFICATE_MARGIN_MAP.json",
+     "present": {
+      "frozen_base": true,
+      "origin_main": true
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "unmerged adverse cross-check; the 18/90 tension between QG-21 margins and the paper resource map is recorded but unresolved on main",
+    "implementation": "draft only",
+    "physical": "CANNOT_CHECK",
+    "resource": "PARTIAL + adverse cross-check open (18/90 discrepancy)",
+    "transfer": "NONE",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "FOLLOW-UP (FROZEN_EXECUTION_SUCCESSOR): the unresolved 18/90 adverse cross-check between QG-21 and the manuscript resource map is an open authority defect for the paper lane."
+  },
+  {
+   "issue": 1418,
+   "title": "[Q1] R12 manuscript update lane",
+   "lane": "Q-paper/Q1 R12",
+   "scope_reason": "title [Q1]; R12 receipt update",
+   "disposition": "FROZEN_EXECUTION_SUCCESSOR",
+   "issue_terminal": "ISSUE_RESULT_IDENTITY_AMBIGUOUS",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "papers/Q-paper-01-tare-expressivity/Q1_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md named in the lane is absent from frozen base AND origin/main; it exists only on OPEN PRs #1446/#1448 and branch chatgpt/r12-manuscript-science-audit-20260826-d (frozen from coordination main 926c7529)",
+     "pr": 1446,
+     "pr_state": "OPEN",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": "papers/Q-paper-01-tare-expressivity/Q1_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md",
+     "present": {
+      "frozen_base": false,
+      "origin_main": false
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "unmerged; CANNOT_CHECK on main",
+    "implementation": "unmerged",
+    "physical": "CANNOT_CHECK",
+    "resource": "RESOURCE_ACCOUNTING_ABSENT",
+    "transfer": "NONE",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "FOLLOW-UP (FROZEN_EXECUTION_SUCCESSOR) + ISSUE_RESULT_IDENTITY_AMBIGUOUS: the R12 artifact identity is branch/PR-only at freeze time; the lane claims it as delivered but no main-side evidence exists."
+  },
+  {
+   "issue": 1427,
+   "title": "[Q1] external validation blocker",
+   "lane": "Q-paper/Q1 external validation",
+   "scope_reason": "title [Q1]",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "EXTERNAL_AUTHORITY_OR_ACCESS_BLOCKER",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "external validation (outside-repo authority) is the explicit blocker; freeze contract caps external_validation at CANNOT_CHECK by design",
+     "pr": null,
+     "pr_state": "NONE",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": null,
+     "present": {
+      "frozen_base": false,
+      "origin_main": false
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "NONE",
+    "implementation": "none claimed",
+    "physical": "CANNOT_CHECK",
+    "resource": "n/a",
+    "transfer": "NONE",
+    "novelty": "CANNOT_CHECK (external novelty validation = the blocked item itself)"
+   },
+   "notes": "Aligned with the freeze ceiling: external authority is out of scope by contract."
+  },
+  {
+   "issue": 1359,
+   "title": "shadow/orion-v1-quantum-issue-disposition packet handoff",
+   "lane": "ORION V1 freeze coordination",
+   "scope_reason": "quantum issue-disposition packet (this census)",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COORDINATION_BOUND",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "bound cross-agent handoff packet exists (EXECUTION_PACKET_V1.json blob 23f6f15b) directing this census job; coordination-level, no scientific artifact",
+     "pr": null,
+     "pr_state": "NONE",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": "shadow/orion-v1-quantum-issue-disposition-20260826/EXECUTION_PACKET_V1.json",
+     "present": {
+      "frozen_base": false,
+      "origin_main": false
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "n/a (coordination)",
+    "implementation": "n/a",
+    "physical": "CANNOT_CHECK",
+    "resource": "n/a",
+    "transfer": "n/a",
+    "novelty": "n/a"
+   },
+   "notes": "This census (V1_QUANTUM_CENSUS_V1.json) is the execution product of this packet."
+  },
+  {
+   "issue": 1368,
+   "title": "denominator-complete open-issue census + tranche terminal vocabulary",
+   "lane": "ORION V1 freeze coordination",
+   "scope_reason": "defines the quantum tranche disposition vocabulary; quantum-census coordination",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "COORDINATION_BOUND",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "denominator-complete census artifact 9598519591 binding 129 open issues / 67 lexical candidates exists off-main; this census consumes its scoping and vocabulary",
+     "pr": null,
+     "pr_state": "NONE",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": "census-20260826/complete/OPEN_ISSUES.json",
+     "present": {
+      "frozen_base": false,
+      "origin_main": false
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "n/a (coordination)",
+    "implementation": "n/a",
+    "physical": "CANNOT_CHECK",
+    "resource": "n/a",
+    "transfer": "n/a",
+    "novelty": "n/a"
+   },
+   "notes": "Coordination control; the per-issue terminals here adopt its vocabulary where outcomes exist."
+  },
+  {
+   "issue": 1362,
+   "title": "paper candidate blocked on quantum-freeze evidence",
+   "lane": "ORION V1 paper candidacy",
+   "scope_reason": "paper candidacy blocked on quantum census evidence",
+   "disposition": "COORDINATION_CONTROL",
+   "issue_terminal": "PAPER_CANDIDATE_BLOCKED",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "paper candidacy gated on this census; no bound artifact of its own",
+     "pr": null,
+     "pr_state": "NONE",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": null,
+     "present": {
+      "frozen_base": false,
+      "origin_main": false
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "blocked (dependency)",
+    "implementation": "blocked",
+    "physical": "CANNOT_CHECK",
+    "resource": "blocked",
+    "transfer": "blocked",
+    "novelty": "CANNOT_CHECK (paper authority delta = NONE per contract)"
+   },
+   "notes": "Consumes this census as its gate."
+  },
+  {
+   "issue": 897,
+   "title": "[ORION-RG] QLDPC decoder transfer lane",
+   "lane": "ORION-RG/QLDPC",
+   "scope_reason": "title names QLDPC quantum-decoder transfer explicitly",
+   "disposition": "FROZEN_EXECUTION_SUCCESSOR",
+   "issue_terminal": "EXECUTION_PENDING_FRESH_FREEZE",
+   "has_merged_material_result": false,
+   "evidence": [
+    {
+     "claim": "QLDPC decoder-transfer execution never landed an outcome file; ORION-RG surface has no QLDPC artifact at frozen base or origin/main",
+     "pr": null,
+     "pr_state": "NONE",
+     "pr_merge_sha": null,
+     "main_add_commit": null,
+     "path": null,
+     "present": {
+      "frozen_base": false,
+      "origin_main": false
+     }
+    }
+   ],
+   "authority_remaining": {
+    "theorem": "NONE - registered lane, no execution",
+    "implementation": "none",
+    "physical": "CANNOT_CHECK",
+    "resource": "RESOURCE_ACCOUNTING_ABSENT",
+    "transfer": "NONE (the lane itself is a transfer lane, unexecuted)",
+    "novelty": "CANNOT_CHECK"
+   },
+   "notes": "FOLLOW-UP (FROZEN_EXECUTION_SUCCESSOR): the only ORION-RG issue in quantum scope (explicit QLDPC decoder subject); successor freeze should execute or retire."
+  }
+ ],
+ "summary": {
+  "scoped_issues": 56,
+  "per_disposition": {
+   "COORDINATION_CONTROL": 43,
+   "FROZEN_EXECUTION_SUCCESSOR": 9,
+   "LOCAL_REPAIR": 3,
+   "PENDING_ATOMIC_AUDIT": 1
+  },
+  "per_issue_terminal": {
+   "COMPUTATIONALLY_GREEN_BOUNDED": 23,
+   "VALID_NEGATIVE_OR_BOUNDARY_RESULT": 13,
+   "COUNTEREXAMPLE": 1,
+   "EXECUTION_PENDING_FRESH_FREEZE": 8,
+   "DUPLICATE_OR_SUBSUMED": 1,
+   "ENGINEERING_CLOSED": 1,
+   "CANNOT_CHECK": 1,
+   "ISSUE_RESULT_IDENTITY_AMBIGUOUS": 3,
+   "EXTERNAL_AUTHORITY_OR_ACCESS_BLOCKER": 2,
+   "COORDINATION_BOUND": 2,
+   "PAPER_CANDIDATE_BLOCKED": 1
+  },
+  "merged_material_result": 41,
+  "merged_material_result_note": "issues whose substantive outcome artifact is present at BOTH frozen base ef51b7b and origin/main 926c7529 with a bound delivery PR/commit",
+  "authority_class_census": {
+   "theorem": {
+    "BOUNDED_POSITIVE_OR_NEGATIVE": 43,
+    "NOT_APPLICABLE": 3,
+    "CANNOT_CHECK": 1,
+    "NONE_OR_UNBOUND": 9
+   },
+   "implementation": {
+    "BOUNDED_POSITIVE_OR_NEGATIVE": 54,
+    "NOT_APPLICABLE": 2
+   },
+   "physical": {
+    "CANNOT_CHECK": 56
+   },
+   "resource": {
+    "BOUNDED_POSITIVE_OR_NEGATIVE": 50,
+    "NOT_APPLICABLE": 6
+   },
+   "transfer": {
+    "BOUNDED_POSITIVE_OR_NEGATIVE": 43,
+    "NONE_OR_UNBOUND": 10,
+    "NOT_APPLICABLE": 3
+   },
+   "novelty": {
+    "CANNOT_CHECK": 52,
+    "NOT_APPLICABLE": 4
+   }
+  },
+  "authority_remaining_global": {
+   "theorem": "machine-checked scoped positives for the QG ladder/router lanes and bounded negatives elsewhere; ALL bounded to frozen grammars (R6I/Q/QN); no all-family theorem, no minimality theorem",
+   "implementation": "ORION-QN protocols + dual-harness (generic/native) verification code merged on main; three QG result-file integrity items carry residual defects (#927 open, #1034 unrepaired, #937 unbound)",
+   "physical_quantum_validity": "CANNOT_CHECK everywhere (freeze ceiling); the literal QG-11 FT-hardware lift and QG-11D architecture-conditioned lane remain unexecuted by design",
+   "resource": "partial: QG-21 certificate-margin map only, with TRUE_PHASE_BOUNDARY=false and the Q1-C PARTIAL_RESOURCE_MAP adverse cross-check (18/90) unmerged on draft PR #1449; QG-7f honest resource audit never executed; S1A/Q0-Q1 resource accounting absent",
+   "transfer": "MAX-R4EA/B0/B1 + QG-40/41/42 cross-compiler transfer = computation-only, interpretation weakened to generic fact by the retraction; DISC-Q-TRANSFER-01 merged as a NEGATIVE (advantage does not survive transfer)",
+   "novelty": "CANNOT_CHECK (ceiling); programme hostile-novelty audit already removed novelty claims; Lehmann-1959 ceiling recorded; QG-35 selection headlines RETRACTED as null-reproducible"
+  },
+  "followup": {
+   "LOCAL_REPAIR": [
+    927,
+    1034,
+    1306
+   ],
+   "FROZEN_EXECUTION_SUCCESSOR": [
+    734,
+    743,
+    881,
+    897,
+    907,
+    980,
+    1409,
+    1416,
+    1418
+   ],
+   "PENDING_ATOMIC_AUDIT": [
+    937
+   ]
+  },
+  "identity_ambiguous": [
+   1034,
+   1306,
+   1418
+  ],
+  "identity_ambiguous_detail": [
+   "#1306: issue body names research/orion-discovery-v2/ORION_Q_STRUCTURAL_DONOR_AUDIT_V1.md + Q_STRUCTURAL_DONOR_MAP_V1.json as canonical; both absent from frozen base AND origin/main; the merged material result is PR #1327 (675fcde4fd5) delivering six different files under exec/DISC-Q-TRANSFER-01/",
+   "#1418: papers/Q-paper-01-tare-expressivity/Q1_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md named in the lane is absent from both trees; evidence lives only on OPEN PRs #1446/#1448 and off-main branch chatgpt/r12-manuscript-science-audit-20260826-d",
+   "#1034: committed QG result file carries two welded identities at both trees (unrepaired defect, not a naming divergence)"
+  ],
+  "retractions_recorded": [
+   "QG35",
+   "QG35b",
+   "QG36",
+   "QG39",
+   "QG32c demoted to internal machine-checked notes (QG_RETRACTION_SELECTION_HEADLINES_V1.md, main commit 2589801ac9)"
+  ],
+  "clean_bound_rate": "41/56"
+ },
+ "terminal_justification": "All 56 quantum-scoped open issues dispositioned. 41 carry merged material results bound by PR/merge-SHA/main-adding-commit + file presence at frozen base ef51b7b AND origin/main 926c7529 (extension/development quantum surfaces byte-identical between trees). 15 carry no merged material result: [734, 743, 881, 897, 907, 937, 980, 1359, 1362, 1368, 1389, 1409, 1416, 1418, 1427] - 9 registered-but-unexecuted successor lanes (FROZEN_EXECUTION_SUCCESSOR), 1 unbound outcome receipt (PENDING_ATOMIC_AUDIT #937), 2 external blocker lanes (#1389, #1427) and 3 coordination lanes (#1359, #1368, #1362) with no scientific artifact of their own. No claim fabricates authority: physical/novelty/external axes are CANNOT_CHECK per the freeze ceiling."
 }

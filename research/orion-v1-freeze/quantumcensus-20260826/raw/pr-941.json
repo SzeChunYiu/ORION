@@ -1,0 +1,40 @@
+{
+ "number": 941,
+ "title": "Fix QG-3 stage-1 harness timeout",
+ "state": "MERGED",
+ "merged": true,
+ "mergedAt": "2026-08-23T19:58:40Z",
+ "mergeCommit": {
+  "oid": "c7783eabc3d4c0d75fe59aaf389b71f9204841e2"
+ },
+ "files": {
+  "totalCount": 5,
+  "nodes": [
+   {
+    "path": ".github/workflows/orion-qg-qg3.yml",
+    "additions": 16,
+    "deletions": 56
+   },
+   {
+    "path": ".github/workflows/orion-research-harness.yml",
+    "additions": 25,
+    "deletions": 1
+   },
+   {
+    "path": "development/orion-qg-regime-geometry/run_qg3_dual_harness.py",
+    "additions": 35,
+    "deletions": 4
+   },
+   {
+    "path": "packages/orion-research-harness/src/orion_research_harness/local_tools.py",
+    "additions": 53,
+    "deletions": 103
+   },
+   {
+    "path": "packages/orion-research-harness/tests/test_local_limits.py",
+    "additions": 25,
+    "deletions": 34
+   }
+  ]
+ }
+}

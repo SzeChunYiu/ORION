@@ -1,0 +1,116 @@
+{
+ "number": 893,
+ "title": "[ORION-QG QG-30] Exact 45-bin bulk coarse-graining and bulk/defect scale separation",
+ "body": "Parent programme: #740.\nDirect parents: QG-27 #886 / PR #887 exact four-form bulk-density theorem; QG-28 #888 / PR #889 exact 715 local-Clifford orbit-count sufficient statistic.\nRelated parent: QG-29 #890 / PR #891 finite-size defect-saturation lane.\nMethod donors: renormalization/coarse-graining, sufficient statistics, invariant theory, universality classes, bulk-versus-defect decomposition.\n\n## Status\n\n**PROSPECTIVE EXACT BULK COARSE-GRAINING THEOREM \u2014 freeze before execution.**\n\nQG-28 reduces the exact finite-size target-column histogram from 4096 raw Pauli types to 715 safe local-Clifford orbits. QG-27 shows that the thermodynamic/asymptotic cost density depends only on four distinct spectator bulk baseline forms `b_0,b_1,b_2,b_3`.\n\nFor each of the 715 local-Clifford column orbits o define its **bulk signature**\n\n`s(o)=(b_0(o),b_1(o),b_2(o),b_3(o)) in {0,...,6}^4`.\n\nComplete enumeration of the QG-28 canonical orbit representatives yields a frozen target of exactly **45 distinct bulk signatures**.\n\n## Q1 \u2014 exact 45-signature census\n\nRebuild the 715 QG-28 orbits and four QG-27/QG-28 quotient baseline vectors independently. Group the 715 orbits by the ordered four-tuple `s(o)`.\n\nFrozen expected count: **45** distinct signatures.\n\nSerialize the complete 45-signature table with:\n- signature tuple;\n- number of local-Clifford orbits in the signature;\n- total number of original 4096 raw column types represented by those orbits;\n- lexicographically first orbit representative;\n- SHA256 of the member-orbit representative list.\n\nRequired totals: orbit multiplicities sum to 715 and raw-type multiplicities sum to 4096.\n\nNo post-outcome merging of signatures in V1.\n\n## Q2 \u2014 exact bulk sufficient statistic\n\nFor an n-qubit target instance let `H_s` be the total number of physical columns whose local-Clifford orbit has bulk signature s. The 45-vector H is obtained by summing the 715 orbit counts within each signature class.\n\nFor every bulk form r,\n\n`B_r(N)=sum_s H_s * s_r`.\n\nTherefore QG-27's exact asymptotic density\n\n`e(p)=min_r beta_r(p)`\n\nand every pure-scaling-ray bulk slope `B_min(h)` depend only on the 45 signature counts, not on the full 715-orbit histogram.\n\nThus 45 bins are an exact sufficient statistic for the **bulk/asymptotic** TARE geometry.\n\n## Q3 \u2014 mandatory finite-size information barrier\n\nQG-30 must **not** claim that 45 bins suffice for the full finite-n exact optimizer or defect potentials.\n\nQG-28/QG-26 active-template corrections depend on exact local target/auxiliary structure, and different local-Clifford orbits can share the same four bulk coefficients while admitting different defect templates.\n\nV1 must actively search for a frozen pair of QG-28 orbit representatives with the same bulk signature but different one-active template correction profiles over the 48 feasible one-column shared-label auxiliary rows. If found, serialize it as an explicit information-loss witness showing:\n\n`BULK_SIGNATURE_SUFFICIENT_FOR_FULL_DEFECT = false`.\n\nIf no such pair is found in the complete 715-orbit one-active profile census, report that as a positive surprise and register a successor; do not silently promote full sufficiency in V1.\n\n## Q4 \u2014 complete one-active defect-profile census\n\nFor each of the 715 orbit representatives, compute an exact one-active **defect profile** under the frozen QG-26/QG-28 control language:\n- all 48 feasible shared-label frame/Tag rows;\n- all 8 target-permutation tuples;\n- canonical central tuple `(0,0,0)`;\n- store the sorted multiset (or canonical vector) of `K = structural + F3_aux - spectator_baseline` values.\n\nGroup by the 45 bulk signatures and count how many distinct defect profiles occur inside each signature.\n\nThis measures exact bulk-to-defect information loss without claiming the one-active profile is a complete finite-size defect invariant.\n\n## Q5 \u2014 renormalization-style scale separation\n\nA positive QG-30 result may state:\n- 4096 raw types -> 715 exact finite-size local-Clifford orbits -> 45 exact bulk signatures;\n- the 45-bin map preserves all extensive/asymptotic bulk costs exactly;\n- the 715-bin level retains strictly more finite-defect information if Q3 finds a witness;\n- QG-29's bounded O(1) defect term is the information-bearing correction discarded by the 45-bin coarse-graining.\n\nThis is an exact compiler-specific **bulk/defect scale separation**, not a physical renormalization-group flow or universality claim.\n\n## Q6 \u2014 asymptotic phase geometry on 45 counts\n\nRe-express the four QG-27 bulk forms directly as coefficient rows in `Z^45`. Serialize all six pairwise tie coefficient vectors and their support sizes in signature space.\n\nThe normalized 45-frequency simplex has exact asymptotic compiler cells under the lower envelope of these four linear forms.\n\nNo finite-n global phase boundary authority.\n\n## Independent generic ORION\n\nGeneric ORION must independently rebuild F2^2, the 715 local-Clifford orbits, the four baseline forms, the 45 signature census, and the complete one-active defect-profile grouping. It may bind QG-28/QG-27 parent hashes only after its local construction is sealed.\n\n## Native ORION-Q\n\nMay authorize:\n- `BULK_SIGNATURE_COUNT_45`\n- `BULK_45_HISTOGRAM_SUFFICIENT_FOR_ASYMPTOTIC_DENSITY`\n- `ASYMPTOTIC_PHASE_GEOMETRY_DESCENDS_TO_45_COUNTS`\n- `BULK_DEFECT_SCALE_SEPARATION` only if Q3 produces explicit information-loss evidence.\n\nMandatory false:\n- `BULK_SIGNATURE_SUFFICIENT_FOR_FULL_DEFECT`\n- `FULL_FINITE_N_OPTIMUM_FROM_45_COUNTS`\n- `PHYSICAL_RENORMALIZATION_GROUP`\n- `FINITE_N_GLOBAL_PHASE_BOUNDARY`\n- chain/B'' completeness and novelty/R6/physical-advantage authority.\n\n## Intended strong terminal\n\n`QG30_TARE_BULK_GEOMETRY_COMPRESSES_EXACTLY_TO_45_SIGNATURE_COUNTS__DEFECT_INFORMATION_REMAINS`\n\nHonest alternatives:\n- `QG30_SIGNATURE_COUNT_MISMATCH`\n- `QG30_BULK_BASELINE_NOT_CONSTANT_ON_SIGNATURE`\n- `QG30_NO_ONE_ACTIVE_DEFECT_INFORMATION_LOSS_FOUND__SUCCESSOR_REQUIRED`\n- `QG30_QG28_PARENT_BINDING_GAP`\n- `QG30_GENERIC_NATIVE_DISAGREEMENT`\n- `QG30_CANNOT_CHECK`\n\n## Donor subtraction\n\nCoarse-graining, sufficient statistics, invariant partitions and bulk/defect decompositions are established donor ideas. Candidate contribution is only the exact TARE-specific 715\u219245 bulk compression and the demonstrated separation between extensive bulk information and bounded compiler-defect information.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T11:02:14Z",
+    "body": "QG-30 protected result is now **GREEN and committed** on draft PR #902.\n\nExecution head: `eafb9d236cef7f145715270b7f757234e7e44c9d`\nWorkflow run: `32569106009`\nCommitted custody: `research/extensions/orion-qg/QG30_BULK_COARSE_GRAIN_RESULTS.json` at commit `645fd92900587ccae551c7d876ae56dffa2950ac`.\n\nEarned result:\n- 715 exact local-Clifford finite-size orbit bins coarse-grain to **45 exact bulk-signature bins** for asymptotic density / bulk phase geometry;\n- complete one-active census: **274,560** rows;\n- **54** distinct one-active finite-defect profiles;\n- **15** of the 45 bulk signatures contain >1 defect profile;\n- first lexicographic information-loss witness has common bulk signature `(2,2,2,2)` but representatives `(I,I,I,I,X,X)` and `(I,I,I,I,X,Y)` have different defect profiles. At the first canonical control row, `K=5` vs `K=4`.\n\nTherefore `BULK_DEFECT_SCALE_SEPARATION=true`, while the stronger statements remain explicitly false: `BULK_SIGNATURE_SUFFICIENT_FOR_FULL_DEFECT`, `FULL_FINITE_N_OPTIMUM_FROM_45_COUNTS`, physical RG, finite-n global phase boundary, chain/B'' completeness, novelty/R6/physical-advantage authority.\n\nThe first two workflow attempts exposed only receipt/authority metadata binding defects (QG-28 nested receipt field, then authority-key naming). No scientific target or outcome was changed after seeing results.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/893#issuecomment-5379880984"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T10:50:40Z",
+    "commit": {
+     "oid": "fce4f0c5250f6cc6ce7464b0848f6c658a5e694b",
+     "messageHeadline": "QG-30: correct issue binding to #893 before protected outcome"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-22T10:51:09Z",
+    "commit": {
+     "oid": "4f5d9182b262a8cec7ba805ed890bbb7ae275a35",
+     "messageHeadline": "QG-30: correct receipt issue binding to #893 before outcome"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T10:53:00Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 902,
+     "title": "[ORION-QG QG-30] Exact 715\u219245 bulk coarse-graining with defect information barrier",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:57:16Z",
+     "mergeCommit": {
+      "oid": "e97c0319819b8703abcc032d6277ecb81a668178"
+     }
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T11:00:35Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 894,
+     "title": "[ORION-RG RG-0] Finite Regime Geometry \u2014 general theorem programme beyond quantum compilation",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T11:08:10Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 904,
+     "title": "[ORION-QG QG-31] Query-indexed abstraction ladder: 45 bulk classes, 54 defect spectra, 715 local-response classes",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T13:41:09Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 908,
+     "title": "[ORION-Q MAX-R4E-A] Exact authority-indexed abstraction router on real compiler receipts",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-23T19:57:18Z",
+    "commit": {
+     "oid": "e97c0319819b8703abcc032d6277ecb81a668178",
+     "messageHeadline": "[ORION-QG QG-30] Exact 715\u219245 bulk coarse-graining with defect inform\u2026"
+    }
+   },
+   {
+    "__typename": "ReferencedEvent",
+    "createdAt": "2026-08-23T19:58:26Z",
+    "commit": {
+     "oid": "af71636625acdf724c3bfcfee44d762d1385d477",
+     "messageHeadline": "Run QG-36 with frozen QG-35 parent receipts (#940)"
+    }
+   }
+  ]
+ }
+}

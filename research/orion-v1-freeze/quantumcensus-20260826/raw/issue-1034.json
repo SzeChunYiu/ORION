@@ -1,0 +1,15 @@
+{
+ "number": 1034,
+ "title": "QG34: adjudicate welded committed-result identities instead of last-key-wins parsing",
+ "body": "`research/extensions/orion-qg/QG34_ADAPTIVE_PROBE_TREE_RESULTS.json` is validly readable by permissive JSON parsers but contains duplicate/conflicting top-level scientific identity fields:\n\n- schema: `ORIONQG.QG34.CommittedResult.v1` vs `ORION.QG.QG34.CommittedResult.v1`\n- terminal: `QG34_EXACT_MINIMAX_ADAPTIVE_DEPTH_MACHINE_CHECKED` vs `QG34_EXACT_MINIMAX_ADAPTIVE_DEPTH_ESTABLISHED`\n- source_result_digest: `7c48f505...` vs `d13a0d25...`\n\nThis predates the #1013 parse-only repair; the #940 head already contains both objects welded together. The frozen QG34 protocol/freeze names `QG34_EXACT_MINIMAX_ADAPTIVE_DEPTH_ESTABLISHED` as the production result terminal, while `development/orion-qg-regime-geometry/QG34_PROTECTED_RUN_RECEIPT_2026-08-22.json` records `QG34_EXACT_MINIMAX_ADAPTIVE_DEPTH_MACHINE_CHECKED` as the dual-harness protected-run terminal. Those are different layers, not safely interchangeable aliases.\n\nDo not fix this by deleting whichever duplicate appears first/last. Reconstruct the intended committed-result schema from the production result materializer and the dual-harness receipt, then give each identity a distinct named field (or select one canonical terminal only if the protocol explicitly authorizes that interpretation). Add duplicate-key rejection for the committed result so ordinary `json.loads` cannot silently choose an authority state.\n\nThis is intentionally left in the difficult/authority lane; the cleanup lane will not choose a scientific terminal or source digest by JSON key order.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 0,
+  "nodes": []
+ },
+ "timelineItems": {
+  "nodes": []
+ }
+}

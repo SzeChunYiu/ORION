@@ -1,0 +1,187 @@
+{
+ "number": 734,
+ "title": "[ORION-QN FRAMEWORK + PAPER PROGRAMME] Quantum-native ORION semantics, local simulation, end-to-end advantage, and classical authority",
+ "body": "# Status\n\n**CANONICAL ORION-QN PROGRAMME / ORION-REPOSITORY ONLY.**\n\nAll future ORION-QN issues, branches, commits, research artifacts, protocols, experiments, implementations and paper material live in `SzeChunYiu/ORION`. The earlier cross-repository planning issue `SzeChunYiu/RAKL#752` is historical provenance only and is superseded by this issue. No new ORION-QN work is to be committed to RAKL.\n\n# Mission\n\nOpen a new prospective research programme for **ORION-QN (Quantum-Native ORION)**: a full classical/quantum/hybrid execution semantics for the ORION framework.\n\nThis is **not** a rewrite of the existing P1\u2013P10 papers and it is **not** an attempt to translate every Python function into a quantum circuit. The research question is:\n\n> Can every ORION mechanic receive a formally specified classical / quantum / hybrid execution semantics, with quantum execution admitted only when its access model, state preparation, oracle construction, measurement, verification and end-to-end resource cost are explicit, while scientific authority remains classically governed, and can selected ORION workloads demonstrate genuine quantum value against the strongest same-information classical/dequantized incumbent?\n\nA successful ORION-QN may conclude that some operations are `CLASSICAL_REQUIRED`, some `QUANTUM_ELIGIBLE`, and some `HYBRID_PREFERRED`. Selective quantum use is success; forcing unsuitable mechanics onto a QPU is not.\n\n# Publication boundary\n\nThe existing ORION P1\u2013P10 papers remain their own classical scientific objects. ORION-QN is a **new framework and publication family**, not `P1-Q ... P10-Q` manuscript extensions.\n\nDefault publication strategy:\n\n1. **QN0 / flagship first:** `ORION-QN: A Quantum-Native Architecture for Evidence-Governed Autonomous Scientific Discovery` \u2014 full architecture, semantic IR, access/resource contracts, proof-carrying execution, hybrid routing, local simulation, resource estimation and one strong vertical slice.\n2. Promote a companion paper only when a track earns a scientifically distinct result:\n   - **QN-I \u2014 Quantum semantics for evidence-governed research systems**;\n   - **QN-II \u2014 Proof-carrying quantum computation / QuantumReceipt**;\n   - **QN-III \u2014 End-to-end quantum advantage in autonomous discovery**;\n   - **QN-IV \u2014 Self-optimizing hybrid quantum\u2013classical research**.\n3. The labels `P1-Q ... P10-Q` may be used internally to map mechanics, but they are **semantic map labels, not paper identities**.\n\n# Local-computer-first requirement\n\nOwning a quantum computer is **not** an architectural requirement.\n\nORION-QN must support three explicitly separated evidence modes:\n\n```text\nLOCAL_SIMULATION\n  ordinary CPU/GPU simulates the quantum state/circuit\n  -> establishes semantics/correctness only\n\nRESOURCE_ESTIMATION\n  ordinary CPU estimates logical/physical FT resources\n  -> establishes projected resource regimes only\n\nREAL_QPU\n  optional remote or owned hardware execution\n  -> may establish hardware evidence when separately verified\n```\n\nConstitutional rule:\n\n> No ORION-QN programme may require ownership of a QPU for framework development, semantic verification, classical-baseline evaluation, quantum-circuit simulation, or fault-tolerant resource analysis. Real-QPU access is an optional evidence tier, not an architectural dependency.\n\nA CPU simulation of a quantum algorithm **does not constitute quantum speedup**. Simulator, logical-resource, projected-FT and real-QPU evidence are separate authority classes.\n\n# Immutable prior evidence / non-reopening\n\nPrior ORION-Q work remains evidence and negative history; it does not self-authorize ORION-QN claims. Relevant parents include #633, #671, #674\u2013#677, #679, #694, #695 and #698.\n\nThe previous closure/recovery results must remain visible, especially:\n\n- no hidden stronger oracle;\n- no free state preparation;\n- no free readout;\n- QC2/exhaustive-search negative controls;\n- fully known interface graph classical closure;\n- donor ownership of broad generic quantum synthesis;\n- resource-model failures such as implementation overhead erasing proxy advantages.\n\nAny real quantum-method contribution still requires a fresh prospectively frozen target, donor set, code/model identity, access/resource contract, strong baselines and independent novelty/correctness review.\n\n# Expert cell / veto roles\n\nEvery result-bearing tranche is reviewed through six lenses:\n\n- **Q1 quantum algorithms / complexity:** query/algebraic validity and strongest classical/quantum parents;\n- **Q2 quantum PL / reversible systems:** physical semantics, linearity, no-cloning, uncomputation, compiler boundary;\n- **Q3 verification / statistics:** measurement contracts, uncertainty, independent reconstruction;\n- **Q4 FTQC / resources:** QEC, logical-to-physical accounting, T factories, runtime, shots and backend assumptions;\n- **Q5 ORION architecture:** preserve P1\u2013P10 responsibility/authority boundaries;\n- **Q6 hostile dequantization / no-hidden-speedup reviewer:** attack access, QRAM/state-prep, preprocessing, readout and weak baselines.\n\nSame-context expert review is not independent scientific authority.\n\n# Non-compensatory constitutional invariants\n\n1. `NO_STRONGER_ORACLE` \u2014 quantum interface must be supplied by the problem or constructible with charged cost/error.\n2. `NO_FREE_STATE_PREPARATION` \u2014 QRAM/amplitude/state loading and reusable preparations are explicit resources.\n3. `NO_FREE_READOUT` \u2014 shots, estimation, reconstruction and measurement error are charged.\n4. `NO_AUTHORITY_LAUNDERING` \u2014 quantum success cannot self-grant validity, novelty, adoption or search-stop authority.\n5. `NO_NEGATIVE_HISTORY_REWRITE` \u2014 prior nulls/refutations remain immutable.\n6. `SAME_ADMITTED_INFORMATION` \u2014 quantum and classical baselines receive matched semantic information/access.\n7. `STRONGEST_FAIR_CLASSICAL_OR_DEQUANTIZED_BASELINE` \u2014 optimized classical/dequantized methods get first right of refusal.\n8. `NO_SIMULATOR_EQUALS_HARDWARE_CLAIM`.\n9. `NO_LOGICAL_EQUALS_PHYSICAL_CLAIM`.\n10. `RESOURCE_VECTOR_NOT_ONE_SCORE` \u2014 preprocessing, prep, oracle build, calls, qubits, depth, T-count/depth, ancilla, physical qubits, runtime, shots, postprocessing, verifier, memory, wall time and error remain visible.\n11. `BACKEND_OR_REVISION_DRIFT_REOPENS_RECEIPTS`.\n12. `CLASSICAL_FALLBACK_PRESERVES_SCIENCE` \u2014 unavailable QPU must not fabricate scientific failure evidence.\n\n# Foundation programme F0\u2013F14\n\nEach atom needs: definition, nearest work, strongest incumbent, candidate residual, assumptions/access model, falsifier, known-answer/no-alarm controls, output schema, allowed claim and stop condition.\n\n- **F0 provenance / programme identity / non-reopening**\n- **F1 claim taxonomy:** feasibility vs query/algebraic vs projected-FT vs end-to-end physical advantage\n- **F2 state ontology:** classical authoritative state, quantum registers, preparation metadata, measurement-derived evidence, inaccessible state\n- **F3 ORION Quantum Semantic IR:** linear/affine quantum resources above backend syntax\n- **F4 access/oracle/state-preparation algebra**\n- **F5 reversible semantics / garbage / uncomputation / measurement boundaries**\n- **F6 measurement/readout/observability contract**\n- **F7 correctness/formal/statistical/optional cryptographic verification**\n- **F8 logical-to-physical/QEC/resource receipt**\n- **F9 end-to-end advantage and dequantization adjudicator**\n- **F10 hybrid scheduler / quantum eligibility router**\n- **F11 backend portability/lowering to current quantum IRs/toolchains**\n- **F12 quantum negative history and typed reopen conditions**\n- **F13 protected benchmark/evaluation substrate**\n- **F14 cross-paper/cross-mechanic invariant audit**\n\n# Core objects\n\nFreeze versioned schemas for at least:\n\n```text\nQProblemContract\nQSemanticStateView\nQProgramIR\nQAccessContract\nQStatePreparationContract\nQOracleContract\nQKernel\nQMeasurementContract\nQResourceReceipt\nQVerificationReceipt\nQuantumReceipt\nQAdvantageReceipt\nQFallbackContract\nQBackendIdentity\n```\n\nEvery `QKernel` must bind:\n\n- owning ORION mechanic / semantic problem;\n- classical semantics;\n- quantum semantics;\n- eligibility condition;\n- access/state-preparation/oracle contracts;\n- error and measurement contracts;\n- logical and projected physical resource models;\n- verification contract;\n- strongest classical/dequantized baseline;\n- fallback semantics;\n- exact claim ceiling.\n\n# End-to-end cost doctrine\n\nNo quantum advantage claim may omit:\n\n```text\nC_Q = C_preprocess\n    + C_state_prepare\n    + C_oracle_build\n    + C_compile\n    + C_logical_execute\n    + C_QEC_physical\n    + C_measure\n    + C_reconstruct\n    + C_verify\n```\n\nand its fair classical/dequantized comparator `C_C` under the same admitted information/access contract.\n\nQuery advantage is useful evidence but must never be reported as end-to-end physical advantage unless the full accounting supports it.\n\n# First result-bearing vertical slice: P6-Q + P2-Q + P4-Q\n\nStart here before self-optimization or broad quantum-native learning.\n\n## VS1 semantic search object\n\nBuild exact, locally simulable search worlds:\n\n1. **S1 \u2014 unstructured finite admissible candidate search**: classical exhaustive/optimized search vs Grover/amplitude-amplification family under identical predicate access.\n2. **S2 \u2014 structured/backtracking search**: strongest classical backtracking vs quantum backtracking/walk where theorem assumptions match.\n3. **S3 \u2014 expensive-oracle hostile family**: query advantage may disappear once oracle construction/evaluation dominates.\n4. **S4 \u2014 classical-index/amortization hostile family**: repeated queries may make a classical index/preprocessing route dominate.\n\nFor every subject, record both the simulated quantum execution and the true classical baseline. The local simulator is a semantic/verifier instrument, not the performance comparator.\n\n## Required receipts\n\nA successful VS1 result needs independent reconstruction of:\n\n`problem -> access -> state prep -> oracle -> quantum program -> measurement -> estimator -> output -> resource vector -> claim ceiling`.\n\n# P1\u2013P10 semantic mapping\n\nThe programme must eventually determine, for every existing ORION mechanic, one of:\n\n```text\nCLASSICAL_REQUIRED\nQUANTUM_SEMANTICS_DEFINED\nQUANTUM_FEASIBLE_NO_ADVANTAGE\nQUANTUM_QUERY_ADVANTAGE_ONLY\nQUANTUM_PROJECTED_FT_ADVANTAGE\nQUANTUM_END_TO_END_ADVANTAGE_SUPPORTED\nDEQUANTIZED_PARENT_SUFFICIENT\nCLASSICAL_PARENT_SUFFICIENT\nCANNOT_CHECK_HARDWARE\nCANNOT_CHECK_ACCESS_MODEL\nINVALID\n```\n\nP8/authority remains classical/constitutional even if quantum computation supplies evidence. P9/P10 quantum outputs remain capability outputs and cannot self-authorize novelty/adoption/closure.\n\n# Execution ladder\n\n- **Q0** provenance, repository, donor and chronology freeze\n- **Q1** semantic/access/measurement/resource contracts\n- **Q2** first P6-Q/P2-Q/P4-Q vertical slice on local simulation + classical baselines\n- **Q3** FT resource projection / hardware evidence boundary\n- **Q4** P1/P7 semantic mapping\n- **Q5** P3 mapping and state-preparation/dequantization stress\n- **Q6** P9 screening with mandatory classical/dequantized baselines\n- **Q7** P10 method-search residual with prior QC2 negative as mandatory control\n- **Q8** P5 governed recursive development / hybrid routing\n- **Q9** full P1\u2013P10 semantic coverage\n- **Q10** mixed-workload end-to-end router benchmark\n- **Q11** independent replay, novelty and hostile review\n\n# Claim ladder\n\n- `L0 ORION_QN_P1_P10_SEMANTIC_COVERAGE`\n- `L1 ORION_QN_SCOPED_QUANTUM_QUERY_ADVANTAGE`\n- `L2 ORION_QN_PROJECTED_FT_PARETO_REGIME`\n- `L3 ORION_QN_END_TO_END_QUANTUM_ADVANTAGE_SUPPORTED`\n- `L4 ORION_QN_FULL_P1_P10_SEMANTIC_COVERAGE__SELECTIVE_END_TO_END_QUANTUM_VALUE_SUPPORTED`\n\nValid bounded/negative terminals include:\n\n- `ORION_QN_SEMANTIC_COVERAGE__NO_END_TO_END_QUANTUM_ADVANTAGE`\n- `ORION_QN_QUERY_ADVANTAGE_ONLY__INPUT_OR_QEC_COST_DOMINATES`\n- `ORION_QN_DEQUANTIZED_PARENT_SUFFICIENT`\n- `ORION_QN_HYBRID_ROUTING_VALUE_ONLY`\n- `ORION_QN_HARDWARE_CANNOT_CHECK_AT_CUTOFF`\n- `ORION_QN_SEMANTIC_INCOMPATIBILITY_FOUND`\n- `ORION_QN_PROGRAMME_SATURATED_NO_DISTINCT_RESIDUAL`\n\n# Immediate first tranche\n\n- [ ] freeze `ORION_QN_PROVENANCE_BOUNDARY_V1` in this repository;\n- [ ] freeze current ORION `main` commit and literature cutoff;\n- [ ] build atom-by-atom donor matrix with at least two no-material-change literature rounds before novelty language;\n- [ ] define first versions of semantic/access/preparation/oracle/measurement/resource/verification receipts;\n- [ ] freeze local-simulation evidence classes and simulator != hardware claim boundary;\n- [ ] freeze VS1 S1\u2013S4 protocols before protected outcomes;\n- [ ] execute query-model/local-simulator runs and strongest matched classical baselines;\n- [ ] produce projected FT resource estimates separately;\n- [ ] independently reconstruct the first `QuantumReceipt`;\n- [ ] update this issue with exact commits/receipts and unresolved vetoes.\n\n# Governing scientific principle\n\nORION-QN should make ORION **more discriminating about quantum computation, not more enthusiastic about it**. The strongest intended behavior is the ability to produce statements such as:\n\n> this discovery search is quantum-eligible; this knowledge query is classically superior; this verification path is hybrid; this authority operation is classical-required; this learned method dequantizes; this method-search result has query advantage only; this real-QPU claim cannot yet be checked.\n\nEvery such statement must be backed by explicit contracts and receipts.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 5,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T08:47:02Z",
+    "body": "## Q0/Q1 tranche opened \u2014 ORION repository only\n\nCanonical implementation/research lane is now live entirely in this repository.\n\n**Frozen base:** `d7312bc7fda4a84490acbc8b7964904fbedb3a93`  \n**Branch:** `shadow/orion-qn-q0-q1-foundation`  \n**Draft PR:** #737  \n**Current head:** `1fb55c5155bcd3f93058032f51233fa150cefab2`\n\n### Committed research/protocol artifacts\n- `research/extensions/orion-qn/ORION_QN_PROVENANCE_BOUNDARY_V1.md` \u2014 Q0 repository/publication/evidence boundary, prior ORION-Q lineage, two literature saturation passes (`NO_MATERIAL_CHANGE` to first architecture), explicit no-novelty/no-speedup authority;\n- `research/extensions/orion-qn/ORION_QN_CONTRACTS_V1.md` \u2014 QProblem/access/preparation/oracle/program/measurement/backend/resource/verification/kernel/fallback/QuantumReceipt/QAdvantageReceipt semantics;\n- `research/extensions/orion-qn/VS1_P6_P2_P4_LOCAL_SIMULATION_PROTOCOL_V1.md` \u2014 prospectively frozen S1\u2013S4 local-simulation/search protocol, matched classical baselines, hostile oracle/index regimes, measurement and P4 reconstruction rules;\n- `development/orion-qn-q0-q1/DEVELOPMENT_PACKET.md` \u2014 high-impact implementation gate and frozen first code hypothesis.\n\n### First executable contract atom\nAdded isolated dependency-free `src/orion/quantum/contracts.py` + hostile tests. It mechanically rejects simulator\u2192FT/hardware authority laundering, resource-estimator\u2192observed-hardware laundering, mismatched problem/information/tolerance, unresolved stronger quantum interfaces, and unresolved end-to-end resources for stronger claims. Bounded negative/classical/dequantized/CANNOT_CHECK terminals remain first-class.\n\nNo existing P1\u2013P10 or authority file is modified. No Qiskit or vendor SDK is a core dependency in this tranche.\n\n### Current verification state\nPR #737 is draft and not merged. GitHub Actions runs for `ci`, `orion-research-harness`, and `p6-p8-candidate-ci` are queued at the time of this comment. No green/merge/scientific authority is claimed yet.\n\n### Next registered discriminator\nAfter Q1 contract review/CI: implement S1 unstructured-search local simulator adapter under the already-frozen VS1 protocol, retain true classical baselines separately from CPU simulator runtime, and reconstruct the first P4-style `QuantumReceipt` independently.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/734#issuecomment-5367678442"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T09:50:56Z",
+    "body": "### ORION-QN frontier update \u2014 2026-08-21\n\nCurrent result-bearing head remains `e4f8be9ae4fca39041aed7031ac2224cf184b98c`; I am deliberately not pushing another commit until the frozen S1A Actions/harness campaign on this head completes, because branch pushes cancel/restart the concurrency-scoped result-bearing workflow.\n\nS1A execution infrastructure is now committed on PR #737: pinned Qiskit 2.5.1 / Aer 0.17.2, frozen n=3..10 \u00d7 8 cases, one-shot measurement/retry accounting, `orion-research-harness` PYTHON request/result receipts, independent P4 reconstruction, and artifact upload. Current workflow: `orion-qn-vs1` run `32469745334`; status at last inspection: `queued`. **No result/green/advantage claim is made yet.**\n\nHostile donor research materially narrowed the prospective contribution:\n\n- Brehm/Weggemans 2026 already own structured k-SAT hybrid benchmarking against strong modern classical SAT solving with T-depth/T-count and crossover analysis.\n- current oracle-resource work already owns detailed oracle synthesis/resource optimization.\n- Predict and Conquer already owns predictive quantum/classical algorithm + parameter selection from non-functional performance models.\n- AutoQuREO already owns broad full-stack QRE + multi-objective stack optimization.\n- qstack already owns compositional hybrid FT compilation across QEC/ISA layers; QBlue already owns typed/mechanized verified quantum compilation in Hamiltonian simulation.\n- 2026 end-to-end runtime methodology already attacks overhead-excluding quantum runtime claims and strong-classical comparator choice.\n- DARPA QB/QBI already owns the broad `computational value > cost` + independent V&V framing.\n- SACM / dynamic assurance / defeater literature already owns generic claims-arguments-evidence graphs, evidence lifecycle/change-impact invalidation, continuous assurance, and negative/defeater argumentation.\n\nTherefore ORION-QN must **not** claim novelty for hybrid benchmarking, resource accounting, routing, verified compilation, end-to-end runtime, independent V&V, or dynamic assurance primitives themselves.\n\nThe remaining researchable systems hypothesis is now empirical and compositional:\n\n> Under matched information/tools/budgets, does ORION's typed epistemic state (access derivability + theorem applicability + scoped failure/reopen history + measurement/verification state + separated P8 authority) produce better calibrated quantum/classical research decisions, fewer false quantum promotions, and fewer repeated invalid routes than a faithful donor-composed selector/QRE/verifier/assurance-case baseline?\n\nThis hypothesis can fail cleanly to `DONOR_COMPOSITION_SUFFICIENT`. If it survives, the contribution is the measured incremental value of the ORION epistemic composition, not ownership of the donor mechanisms.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/734#issuecomment-5368309903"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T10:02:34Z",
+    "body": "### Pre-outcome S1A access-model reopening \u2014 stronger-oracle defect found\n\nBefore the first S1A Actions outcome, hostile review found a load-bearing access-model defect in the current campaign adjudication.\n\nThe simulator necessarily receives evaluator-known `marked_index` to construct the phase oracle fixture. The campaign then hard-coded `QAccessMatch(same_information=True, stronger_quantum_interface_unresolved=False)` when adjudicating `QUANTUM_QUERY_ADVANTAGE_ONLY`. That is too implicit: it does not distinguish the **standard quantum query model**, where coherent unit-cost `U_f` is explicitly supplied as an access primitive, from an ordinary problem that supplies only a classical callable predicate `f(x)` and would require coherent-oracle construction/derivation.\n\nCurrent query-complexity references explicitly define quantum query access as access to unitary `U_f` at unit query cost; access-model work also distinguishes coherent from restricted/incoherent access. Therefore a query-only result is defensible only under an explicitly frozen coherent-oracle query model. It cannot be silently transported to `CLASSICAL_PREDICATE_ONLY` input.\n\n**Pre-outcome correction rule:**\n\n- `NATIVE_COHERENT_QUERY_ORACLE` -> may earn a bounded `QUANTUM_QUERY_ADVANTAGE_ONLY` terminal if the matched query gates pass;\n- `DERIVED_COHERENT_ORACLE` -> positive terminal only after derivation/access obligation is resolved;\n- `CLASSICAL_PREDICATE_ONLY` or unspecified quantum access -> `CANNOT_CHECK_ACCESS_MODEL` for the quantum route until coherent construction is derived/costed.\n\nThe existing frozen S1A packet is retained unchanged as chronology. I am adding an additive correction amendment + RED tests, then hardening Q1 so positive receipts require an explicit quantum access mode. This necessarily restarts the still-queued result-bearing workflow, but occurs before outcome access and strengthens rather than weakens the gate.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/734#issuecomment-5368420141"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T10:11:07Z",
+    "body": "### Pre-outcome S1A benchmark-dependence reopening \u2014 public fixture distribution invalidates C1/C2 as advantage baselines\n\nA second hostile review found another load-bearing issue **before any S1A result**.\n\nThe frozen eight marked positions per `n` are generated by a public deterministic rule/seed committed in the repository. A classical strategy with access to the published benchmark construction can precompute that eight-position support and query those locations first. Therefore the original C1 ordered scan / C2 random-permutation means are not the strongest classical comparator under all public benchmark side information.\n\nThis is not hypothetical: Pal/Sharma/Podila 2026 (`Loophole-Robust Certification of Quantum Advantage`, arXiv:2607.13090) formalize benchmark-correlated classical side resources and show that construction-side information can close apparent quantum/classical gaps.\n\n**Pre-outcome correction:**\n\n- retain the eight deterministic cases unchanged as **semantic/conformance fixtures only**;\n- they may validate circuit semantics, actual measurement, retry/query accounting, backend identity, and P4 reconstruction;\n- they may **not** supply the quantum-advantage comparator means;\n- adjudicate `QUANTUM_QUERY_ADVANTAGE_ONLY` only in the explicitly registered standard unstructured query model with a hidden marked item uniformly distributed over all `N` positions;\n- use the analytic quantum single-run success `p = sin^2((2r+1)theta)` and compare `r` coherent queries against the optimal no-side-information classical oracle-query requirement needed to attain the same verified success probability;\n- preserve both worst/query-budget and expected classical-query coordinates;\n- record `fixture_cases_used_for_advantage = false` and reject any artifact that changes it;\n- ordinary classical-predicate input still remains `CANNOT_CHECK_ACCESS_MODEL` under the separate access amendment.\n\nThis makes the synthetic fixtures an implementation verifier, not an engineered distribution that can manufacture an advantage. The original S1A packet remains immutable history; a second additive amendment and RED\u2192GREEN tests will encode this stronger gate before the first result-bearing run.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/734#issuecomment-5368501175"
+   },
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T10:26:33Z",
+    "body": "### Exact S1A v4 execution identity frozen\n\nFinal result-bearing branch identity for the current base-case campaign is now:\n\n- base: `d7312bc7fda4a84490acbc8b7964904fbedb3a93`\n- branch: `shadow/orion-qn-q0-q1-foundation`\n- head: `9ca249cca6dc0339451daffc134df5ca6b1610a0`\n- draft PR: #737\n- dedicated workflow: `orion-qn-vs1` run `32472444884`, job `96741873468`\n- latest status inspected: **queued**, no steps/logs allocated yet.\n\nThe head incorporates all three pre-outcome scientific corrections:\n\n1. explicit coherent-oracle access mode / ordinary-input `CANNOT_CHECK_ACCESS_MODEL`;\n2. public deterministic fixtures demoted to semantic conformance only, with advantage adjudicated on an independent hidden-uniform query model;\n3. strongest classical hidden-uniform comparator allows a free final guess after `K` failed queries, so `p_c=(K+1)/N` and `K_match=ceil(p_q*N)-1`.\n\nIt also removes the harness stdout-size dependency: the result-bearing PYTHON capability writes a standalone campaign JSON, returns only path/SHA-256/byte-count metadata, the driver recomputes that binding, and a second verifier independently rereads/re-hashes the standalone file before P4 reconstruction. Full harness workspace/request/result artifacts are uploaded by the exact workflow.\n\n**No S1A result is recorded yet.** A queued workflow is not evidence. Branch writes are frozen while this exact head awaits a runner.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/734#issuecomment-5368639603"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T08:35:00Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 633,
+     "title": "[REOPENED PROGRAMME] ORION-Q \u2014 recursive recovery of negative quantum results",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T08:35:06Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 679,
+     "title": "[ORION-Q MAX] General self-expanding quantum scientist \u2014 absorb specialist AI systems and outperform the donor-composed incumbent",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T08:35:12Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 694,
+     "title": "[ORION-Q MAX-R3B] Proof-carrying quantum obligation transport across representation/interface edits",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T08:35:18Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 695,
+     "title": "[ORION-Q MAX-R3E] Protected self-evolving quantum research skills under access, proof, resource and authority constraints",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T08:35:25Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 698,
+     "title": "[ORION-Q MAX-R4] Real quantum method contribution \u2014 structure-aware stochasticization with TARE/sparse-QSVT incumbent",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T08:46:19Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 737,
+     "title": "[ORION-QN] Q0/Q1 foundation + harnessed S1A query-model base case",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:54:11Z",
+     "mergeCommit": {
+      "oid": "b57f046e226b3ebca2c2d76c44856fb242ca9426"
+     }
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T09:52:12Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 738,
+     "title": "[ORION-QN Q2] Calibrated quantum eligibility beyond donor-composed selection/QRE/assurance",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T10:21:53Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 743,
+     "title": "[ORION-QN VS1-S2] Structured search: theorem eligibility vs scaling vs strong-classical/FT utility",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T10:59:49Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 745,
+     "title": "[ORION-QG QG-3] Prospective positive trade-regime forecast with dual-harness custody",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T12:28:12Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 764,
+     "title": "[ORION-QG QG-11] Lift structural regime geometry into fault-tolerant hardware/QEC phase diagrams",
+     "state": "OPEN"
+    }
+   }
+  ]
+ }
+}

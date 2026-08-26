@@ -1,0 +1,64 @@
+{
+ "number": 803,
+ "title": "[ORION-QG QG-9 T2] Exact support-two tightness: n=2 cap1 inverse-design hunt",
+ "body": "Parent tightness programme: #762\nEarned parent theorem: PR #792 / protected receipt commit `a80dbd57d9124f058de7465a13de8c69416c368b`\nParent terminal: `QG9_RANK2_ALL_N_SUPPORT2_SUFFICIENCY_MACHINE_CHECKED`\n\n## Status\n\n**PROSPECTIVE TIGHTNESS EXPERIMENT \u2014 exact witness or bounded negative; no theorem-from-absence.**\n\nThe protected parent theorem proves every frozen-R6I optimum admits all four independent generators with support <=2 for every n. It explicitly leaves support<=1 and support-2 tightness open; 36 fully accepted support-2 action-profile cases remain unsafe under the current relabel grammar.\n\nQG-9 T2 asks the decisive constructive question:\n\n> Does there exist a frozen-R6I instance for which the unrestricted optimum is strictly cheaper than every support<=1 configuration?\n\nA single exact witness with\n\n`C_DP < C_cap1`\n\nproves support 2 is genuinely necessary and closes the tightness question positively.\n\n## Minimal witness size and support-1 structure\n\nTake `n=2`. A nonzero support<=1 generator is localized to one qubit. Since the two independent generators of a block must anticommute, two support<=1 generators on different qubits commute; therefore every support-1 rank-2 block has both independent generators on the **same qubit**, with different nonidentity Pauli letters. The dependent third generator is localized to that same qubit.\n\nThis rigid structure makes the exact cap1 referee finite and independently checkable.\n\n## Cap1-blind inverse-design candidate generation\n\nCandidates are generated **before any cap1 cost is opened** from the parent support-2 boundary:\n\n1. reconstruct the concrete two-column states underlying the 36 fully accepted support-2 method-obstruction type cases from the frozen parent V3/V4 descriptor/action-profile machinery;\n2. retain concrete blocks satisfying full R6I acceptance and with at least one independent generator of support exactly 2;\n3. canonicalize under qubit swap and globally valid one-qubit Pauli-letter relabeling where the full target/Tag construction is transformed consistently;\n4. for each canonical block state, build a two-block instance initially by using the same accepted block state for A and B so the shared Tag labels match by construction;\n5. set each target triple equal to its desired rank-2 frame triple (`P_k = R_k`), giving the sealed support-2 witness zero Restore support;\n6. choose the lexicographically minimal central pair among those minimizing the desired witness Uanti cost;\n7. record candidate digest/order and desired support-2 witness cost `U2`.\n\nNo cap1 optimizer, unrestricted DP result, or parent tightness result may be consulted during candidate construction.\n\nCandidate order is canonical-state lexicographic order. Scan every canonical candidate produced by the frozen generator; no post-outcome widening.\n\n## Exact production cap1 referee\n\nFor n=2 enumerate every ordered support<=1 anticommuting generator pair for each block. There are exactly 12 such pairs (6 ordered one-qubit anticommuting pairs at either qubit).\n\nFor each candidate target pair:\n- block A target order is frozen;\n- block B takes the exact minimum over all six relative target permutations;\n- central branch is minimized over all three choices per block;\n- shared Tag cost is minimized exactly over all `(S0,S1)` Pauli strings subject to equal nonzero distinct branch labels across both blocks.\n\nThe resulting minimum is `C_cap1` for the frozen R6I grammar under support<=1.\n\nProduction bindings:\n- the 12 support1 frame pairs are a subset of the frozen production symplectic-pair space;\n- direct member-cost recomputation uses frozen `_MUL/_SYMP/_LW`;\n- on committed n=1/n=2 hostile controls, a vacuous cap reproduces production `shared_tag_exact` / brute values.\n\n## Positive witness gate\n\nFor the first candidate with `U2 < C_cap1`:\n1. open unrestricted production `shared_tag_exact` only after `U2` and `C_cap1` are sealed;\n2. require `C_DP <= U2 < C_cap1`;\n3. serialize the production unrestricted witness and independently recompute every cost/acceptance field;\n4. require at least one independent generator of some unrestricted optimum witness to have support 2, or conservatively state only the strict cap1 gap if production tie-breaking returns another support-2 representation;\n5. rerun an independent global support1 brute enumerator written without the production cap1 helper and require identical `C_cap1`.\n\nPositive terminal:\n\n`QG9_SUPPORT2_TIGHT_WITNESS_FOUND__CAP1_STRICT_GAP`\n\nThis proves support 2 is necessary for the frozen R6I family.\n\n## Honest negative\n\nIf every frozen inverse-designed candidate satisfies `U2 >= C_cap1`, return\n\n`QG9_T2_NO_TIGHT_WITNESS_IN_FROZEN_INVERSE_DESIGN_DOMAIN`.\n\nThis is only a bounded negative. It cannot authorize support<=1. The surviving accepted support-2 obstruction types then feed a new theorem/edit search.\n\n## Independent generic ORION path\n\nGeneric ORION must independently:\n- rebuild phase-free one-qubit Pauli multiplication/symplectic/weight algebra;\n- reconstruct all 12 support1 frame pairs;\n- compute the exact cap1 optimum by direct enumeration of frame pairs, shared Tag strings, central choices and B permutations;\n- reconstruct the candidate generator and first strict witness / all bounded-negative rows;\n- compare against production only after its independent calculation is sealed.\n\n## Native ORION-Q path\n\nMaintain distinct responsibilities:\n- `TIGHT_WITNESS`\n- `BOUNDED_NEGATIVE_ONLY`\n- `CAP1_REFEREE_DISAGREEMENT`\n- `CANNOT_CHECK`\n\nNative ORION-Q must never map a finite no-witness result to support1 authority.\n\n## Claim boundary\n\nNo novelty authority and no physical quantum-advantage claim follow automatically. This lane establishes only tightness/non-tightness evidence for the frozen R6I compiler normal form under the unit objective.",
+ "labels": {
+  "nodes": []
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-21T15:40:26Z",
+    "body": "### Protected T2 result \u2014 bounded negative, committed\n\nExact protected run: `orion-qg-qg9-t2-tightness` run `32498467064`, execution head `247b22e8462a725650253ef44c2f58978faced6d`, artifact `9452553709`, digest `sha256:dbdf73a58580b3a81ab7e65b0554e016535d5c454764e02e73a316c9eda5f893`.\n\nTerminal: `QG9_T2_NO_TIGHT_WITNESS_IN_FROZEN_INVERSE_DESIGN_DOMAIN`.\n\n- parent accepted support-2 method-obstruction types: 36;\n- 6,048 concrete accepted unsafe ordered pairs -> 3,024 qubit-swap-canonical candidates;\n- 54 distinct target-frame classes;\n- exact cap1 search: 12 ordered support1 anticommuting frame pairs/block, all Tag strings, centrals, and B permutations;\n- strict `C_DP < C_cap1` witnesses: **0**;\n- every exact cap1 optimum had `C_cap1=8`;\n- sealed support-2 witness costs: 16 (540), 18 (1,800), 20 (684), so cap1 beat these inverse-designed witnesses by 8\u201312 units;\n- unrestricted DP remained sealed because no candidate passed the strict pre-open gate;\n- generic ORION: `ACCEPT`; native ORION-Q: `ACCEPT_BOUNDED_NEGATIVE`; both accept; stage1/referee deterministic replay green.\n\nDurable result commit: `004d99e42ba5fc6860f716140dfc85b98aad5330`; protected receipt commit: `402fb66c19ca652610aa49b611e15d08070a6dd0`.\n\n**Authority boundary:** this is not a support<=1 theorem and does not prove support 2 non-tight. It authorizes a new prospective support1 theorem-or-counterexample lane only. The next attack should explain whether every fully accepted support-2 boundary configuration admits a label-preserving single-qubit normalization, rather than enlarging the finite search post hoc.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/803#issuecomment-5372027674"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:27:30Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 805,
+     "title": "[ORION-QG QG-9 T2] Exact n=2 cap1 support-two tightness hunt",
+     "state": "CLOSED",
+     "merged": false,
+     "mergedAt": null,
+     "mergeCommit": null
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:46:36Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 795,
+     "title": "[ORION-QG QG-9 V5] Is support two tight? Prospective n=2 cap-1 exact-referee hunt",
+     "state": "CLOSED"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-21T15:58:26Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 807,
+     "title": "[ORION-QG QG-9 V6] Whole-system Tag-relocating normalization: prove R6I support\u22641 or find exact obstruction",
+     "state": "CLOSED"
+    }
+   }
+  ]
+ }
+}

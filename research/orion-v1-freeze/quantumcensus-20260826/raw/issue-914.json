@@ -1,0 +1,89 @@
+{
+ "number": 914,
+ "title": "[ORION-Q MAX-R4E-B0] Prospective held-out TARE transfer: pre-outcome action forecast on QG-32",
+ "body": "Parent: MAX-R4E #903.\nSkill source frozen before target outcome: MAX-R4E-A #908 / draft PR #910.\nIndependent retrospective control: MAX-R4E replay PR #906.\nHeld-out target: QG-32 #911 / draft PR #913.\n\n## Status\n\n**PROSPECTIVE HELD-OUT SAME-DOMAIN TRANSFER. FREEZE THIS ACTION FORECAST BEFORE QG-32 PROTECTED OUTCOME IS READ.**\n\nThis is the first non-retrospective test of the QG-derived ORION-Q research-control skill. It is intentionally only T1/TARE-domain transfer, not compiler-general transfer.\n\n## Frozen visible target information\n\nThe skill may use only facts available before QG-32 outcome:\n- QG-31 proves bulk (45) and defect-spectrum (54) partitions are incomparable;\n- full indexed 384-probe response is injective on 715 local-Clifford orbit types;\n- QG-31 gives at least one same-bulk + same-spectrum + different-indexed witness, so joint cheap summaries alone are insufficient for the indexed-response identity query;\n- QG-32's frozen query asks for the minimum fixed subset of indexed probes that, **above joint bulk+spectrum summaries**, recovers all 715 indexed-response identities;\n- no minimum cardinality or probe set is visible;\n- QG-32 explicitly denies full-finite-optimum, hardware-measurement, adaptive-tree, global-state-minimality and novelty authority.\n\nQG-32 result cardinality, selected probes, joint class count, unresolved-pair count, solver outputs, logs and artifacts are protected hidden outcomes for this forecast.\n\n## Frozen MAX-R4E-A action forecast\n\nThe authority-indexed skill predicts the following research action **without predicting the numerical minimum**:\n\n1. `DO_NOT_USE_BULK45_ALONE` for indexed local-response identity.\n2. `DO_NOT_USE_SPECTRUM54_ALONE` for indexed local-response identity.\n3. `DO_NOT_TREAT_JOINT_BULK_SPECTRUM_AS_ALREADY_SUFFICIENT`; parent QG-31 has a direct collision.\n4. `LOCALIZE_VERIFICATION_TO_UNRESOLVED_JOINT_CLASSES`; pairs already separated by cheap summaries need no indexed probe.\n5. `ACQUIRE_ONLY_INDEXED_PROBES_NEEDED_TO_SEPARATE_REMAINING_PAIRS`, using an exact minimum/separation certificate if available.\n6. If an exact fixed-probe minimum is independently certified, authorize only `JOINT_SUMMARY_PLUS_FIXED_PROBES -> INDEXED_LOCAL_RESPONSE_IDENTITY`.\n7. If minimum proof fails, retain only the certified separating upper bound / richer indexed response; **do not** promote a heuristic minimum.\n8. Regardless of outcome, keep full finite-n optimum, hardware measurement, adaptive decision-tree, global state minimality, novelty and physical advantage unauthorized.\n\n## Frozen decision classes\n\nPost-outcome adjudication may score only one of:\n- `BORNE_OUT_EXACT_MINIMUM`: QG-32 proves an exact minimum fixed probe basis and the forecasted localized action is valid.\n- `BORNE_OUT_UPPER_BOUND_ONLY`: QG-32 finds a certified separating set but no exact minimum; forecast's fail-closed branch is correct.\n- `REFUTED_JOINT_ALREADY_SUFFICIENT`: would contradict the frozen QG-31 collision and must trigger parent-binding review.\n- `REFUTED_PROBE_LOCALIZATION_INVALID`: exact QG-32 semantics show unresolved-pair localization is not sufficient.\n- `CANNOT_CHECK`.\n\n## Metrics\n\n- action-class correctness;\n- false-authority count (must be 0);\n- whether forecast selected the correct information layer before numerical outcome;\n- whether it predicted a number/probe set (must be false; numerical guessing is disallowed);\n- post-outcome work avoided relative to carrying all 384 indexed probes, reported only if QG-32 earns a smaller exact/certified set;\n- authority-boundary preservation.\n\n## Positive rung\n\n`MAX_R4EB0_QG_DERIVED_AUTHORITY_SKILL_TRANSFERS_PROSPECTIVELY_TO_HELD_OUT_TARE_QUERY`\n\nrequires the forecast action class to be borne out, zero authority violations, and no hidden-outcome dependence.\n\nEven positive remains:\n- `MAX_R4E_QG_SKILLS_COMPILER_GENERAL = false`;\n- `MAX_R4E_QG_SKILLS_REAL_METHOD_SEARCH_VALUE = false`;\n- `MAX_R4E_QG_SKILLS_BROAD_QUANTUM_RESEARCH_TRANSFER = false`;\n- no real quantum superiority / novelty authority.\n\nThe next rung must use a materially different compiler family whose target result is frozen after this skill forecast.",
+ "labels": {
+  "nodes": [
+   {
+    "name": "research"
+   }
+  ]
+ },
+ "comments": {
+  "totalCount": 1,
+  "nodes": [
+   {
+    "author": {
+     "login": "SzeChunYiu"
+    },
+    "createdAt": "2026-08-22T14:29:23Z",
+    "body": "MAX-R4E-B0 is protected **GREEN** and the pre-outcome forecast was borne out on its frozen `UPPER_BOUND_ONLY` branch.\n\nExecution head: `0e803371e4e2119c2e4ebe7db285205f89fdcbb2`\nWorkflow run: `32578628970`\nArtifact: `9477225290`, SHA256 `0c04a51ea6fee6f328bc8933efdc02ab133cb83b675708a0f07233a13dcc6bbb`\nCommitted receipt: `research/extensions/orion-q/MAX_R4EB0_HELDOUT_QG32_RESULTS.json` at commit `9a9ab3a844a9a681414961ccfdf9ac5a2710275d`.\n\nFrozen forecast properties:\n- no numerical target/probe guess;\n- hidden-outcome dependency count 0;\n- false-authority count 0;\n- predicted joint-summary localization + residual indexed-probe acquisition;\n- predicted exact-minimum authority only if independently closed, otherwise upper-bound-only.\n\nQG-32 later earned exactly the allowed fallback: a certified five-probe separator with no minimum authority. Generic ORION independently adjudicated `BORNE_OUT_UPPER_BOUND_ONLY`; native ORION-Q accepted responsibility only as `PROSPECTIVE_SAME_DOMAIN_ACTION_TRANSFER_ONLY`. Replay and a self-consistent adjudication tamper both passed their gates.\n\nEarned rung: `MAX_R4EB0_QG_DERIVED_AUTHORITY_SKILL_TRANSFERS_PROSPECTIVELY_TO_HELD_OUT_TARE_QUERY`.\n\nStill false: compiler-general transfer, real-method search value, broad quantum transfer, autonomous skill-selection authority, general quantum-science improvement, novelty/physical advantage.",
+    "url": "https://github.com/SzeChunYiu/ORION/issues/914#issuecomment-5380910819"
+   }
+  ]
+ },
+ "timelineItems": {
+  "nodes": [
+   {
+    "__typename": "LabeledEvent"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:01:21Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 903,
+     "title": "[ORION-Q MAX-R4E] Prospectively admit QG-derived exact research skills into real quantum method search",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:10:09Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 917,
+     "title": "[ORION-Q MAX-R4E-B0] Frozen prospective held-out QG-32 action adjudicator",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:57:38Z",
+     "mergeCommit": {
+      "oid": "490cdea9c51767f0fc90929ca0e9482d5f1d3334"
+     }
+    }
+   },
+   {
+    "__typename": "IssueComment"
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:35:44Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "Issue",
+     "number": 921,
+     "title": "[ORION-Q MAX-R4E-B1] Prospective different-family transfer on SixLCU label\u2192value authority",
+     "state": "OPEN"
+    }
+   },
+   {
+    "__typename": "CrossReferencedEvent",
+    "createdAt": "2026-08-22T14:38:45Z",
+    "willCloseTarget": false,
+    "source": {
+     "__typename": "PullRequest",
+     "number": 922,
+     "title": "[ORION-Q MAX-R4E-B1] Frozen prospective SixLCU label\u2192value transfer adjudicator",
+     "state": "MERGED",
+     "merged": true,
+     "mergedAt": "2026-08-23T19:57:43Z",
+     "mergeCommit": {
+      "oid": "02c5c7f17ef8dd8fa552c71672dcf27912257ce6"
+     }
+    }
+   }
+  ]
+ }
+}
