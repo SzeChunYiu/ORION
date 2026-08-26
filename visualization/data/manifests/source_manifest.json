@@ -2,13 +2,13 @@
   "authority_boundary": "REPOSITORY_RECEIPTS_ONLY__NO_EXTERNAL_AUTHORITY_DELTA",
   "evidence_snapshot": {
     "schema": "orion.visualization.evidence-source-set.v1",
-    "source_catalog_sha256": "af21f5ff520ddb52e365fa6539b8e6a94ee912e9a8924381edb61d951fd6646c",
-    "source_count": 23,
-    "source_set_sha256": "0e538fb2dc91e88f8c5fd2f14c8f3f3fbce295f49992b79f296ccc90adfc5bb4"
+    "source_catalog_sha256": "61f136d13e64efc780666575ea8d9b326d6bfeaed2bf328f93950ddd9d5c2d34",
+    "source_count": 43,
+    "source_set_sha256": "29b878fcf5265758ac8fb81c700e484350cf5987b1bcee38c511ba8cfbf16d1f"
   },
   "schema": "orion.visualization.source-manifest.v1",
-  "source_catalog_sha256": "af21f5ff520ddb52e365fa6539b8e6a94ee912e9a8924381edb61d951fd6646c",
-  "source_count": 23,
+  "source_catalog_sha256": "61f136d13e64efc780666575ea8d9b326d6bfeaed2bf328f93950ddd9d5c2d34",
+  "source_count": 43,
   "sources": [
     {
       "authority_tier": "REGISTRY",
@@ -419,6 +419,399 @@
       "role": "bounded attestation composition result and full-key-compromise negative boundary",
       "sha256": "7da36a4b3cd462e6f4e841e67faae25683c866ab6105be00029802aeb050db0a",
       "transform_id": "p15-attestation-boundary-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 35149,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p1_des_packet",
+      "paper": "P1",
+      "path": "research/orion-epistemic-state-v1/results/P1-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P1 execution coverage, exact terminal, and authority boundary",
+      "sha256": "8fd2f57de3b287c745462af83fb4c0c36479f82e046acc901af3d5a7d54b58b0",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 108360,
+      "declared_schema": "orion.p2-des-01.result-binding-packet.v1",
+      "detected_schema": "orion.p2-des-01.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p2_des_packet",
+      "paper": "P2",
+      "path": "research/orion-epistemic-state-v1/results/P2-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P2 execution coverage, exact terminal, and authority boundary",
+      "sha256": "a5d0d45963a0ac7bc88673ece37e7e018b7b1dc5345479ff8f44c9297307c4d2",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 1843,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p3_des_packet",
+      "paper": "P3",
+      "path": "research/orion-epistemic-state-v1/results/P3-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P3 execution coverage, exact terminal, and authority boundary",
+      "sha256": "468b15e5da8c2d075092f7fe65e8291654d4b90e7f959af70e5afd0971db4769",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 1978,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p4_des_packet",
+      "paper": "P4",
+      "path": "research/orion-epistemic-state-v1/results/P4-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P4 execution coverage, exact terminal, and authority boundary",
+      "sha256": "b2264893d9dbbae9e532787babfb3fd60f55ddf4aa654202b2457f5375f1adea",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 542841,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p5_des_packet",
+      "paper": "P5",
+      "path": "research/orion-epistemic-state-v1/results/P5-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P5 execution coverage, exact terminal, and authority boundary",
+      "sha256": "6da830042f9533200c78c98af318befdc773ac0d5d976834cbc43ab364e5e4c5",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 9367,
+      "declared_schema": "orion.p6-des.result-binding-packet.v1",
+      "detected_schema": "orion.p6-des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p6_des_packet",
+      "paper": "P6",
+      "path": "research/orion-epistemic-state-v1/results/P6-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P6 execution coverage, exact terminal, and authority boundary",
+      "sha256": "fdc5a68d96beff59b70e47188f627d5182188827140f212518a0612967d24e69",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 1998,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p7_des_packet",
+      "paper": "P7",
+      "path": "research/orion-epistemic-state-v1/results/P7-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P7 execution coverage, exact terminal, and authority boundary",
+      "sha256": "7ee8b846523e16f267639d5f74542af2337c8e47bfe3e24bb1dfd6741a282c0b",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 1988,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p8_des_packet",
+      "paper": "P8",
+      "path": "research/orion-epistemic-state-v1/results/P8-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P8 execution coverage, exact terminal, and authority boundary",
+      "sha256": "78202b701cf4167ca998cb0926f18afab4bf6fce691c504266feb94d4fc369f8",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 379886,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.p9-des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p9_des_packet",
+      "paper": "P9",
+      "path": "research/orion-epistemic-state-v1/results/P9-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P9 execution coverage, exact terminal, and authority boundary",
+      "sha256": "b85531ab2ff3659aa6b61442ef80b4a2a461252d5317c972c09c65d031f6c337",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 159201,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p10_des_packet",
+      "paper": "P10",
+      "path": "research/orion-epistemic-state-v1/results/P10-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P10 execution coverage, exact terminal, and authority boundary",
+      "sha256": "25eedd1128bb5469b93bdc340379705c1ad9d5defc366cff7c27155f113c7ff9",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 2256,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p11_des_packet",
+      "paper": "P11",
+      "path": "research/orion-epistemic-state-v1/results/P11-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P11 execution coverage, exact terminal, and authority boundary",
+      "sha256": "2dbcdff1dc8d4d5b893a0f041f827d748fdda77ac5b737eb8d5482680f617d43",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 61965,
+      "declared_schema": "orion.p12-des-01.result-binding-packet.v1",
+      "detected_schema": "orion.p12-des-01.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p12_des_packet",
+      "paper": "P12",
+      "path": "research/orion-epistemic-state-v1/results/P12-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P12 execution coverage, exact terminal, and authority boundary",
+      "sha256": "a68532d67fa2afeb66895e88d126a8ae9fbb5046ff19daa63a35166e5afb31b0",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 75182,
+      "declared_schema": "orion.p13-des.result-binding-packet.v1",
+      "detected_schema": "orion.p13-des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p13_des_packet",
+      "paper": "P13",
+      "path": "research/orion-epistemic-state-v1/results/P13-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P13 execution coverage, exact terminal, and authority boundary",
+      "sha256": "f5fc94e348a9605d3c89254022acf18a6ed8b564ca1eca8a54f9366648b91ddd",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 1965,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p14_des_packet",
+      "paper": "P14",
+      "path": "research/orion-epistemic-state-v1/results/P14-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P14 execution coverage, exact terminal, and authority boundary",
+      "sha256": "9e4eea45e81af1148c8250615fc202ffecfc79a7f7ef35b6712528f55f5e80d6",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 25673,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p15_des_packet",
+      "paper": "P15",
+      "path": "research/orion-epistemic-state-v1/results/P15-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P15 execution coverage, exact terminal, and authority boundary",
+      "sha256": "d7195d73a564fbba12fc7467acacf94e180bc514be9ae6764baa81ef4ff32b74",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FINITE_INTERNAL_NONRECONSTRUCTION_WITNESS",
+      "bytes": 1185438,
+      "declared_schema": "orion.des.label-decision-collision-atlas.v1",
+      "detected_schema": "orion.des.label-decision-collision-atlas.v1",
+      "fields": [
+        "finite_class.case_count",
+        "denominators",
+        "terminal_counts",
+        "action_counts",
+        "terminal"
+      ],
+      "id": "des_collision_atlas",
+      "paper": "FRAMEWORK",
+      "path": "research/orion-epistemic-state-v1/results/DES-COLLISION-01/LABEL_DECISION_COLLISION_ATLAS_V1.json",
+      "role": "finite-state label/decision collision mechanism receipt",
+      "sha256": "f54831e7f7f29c4ce51403dc643f6c416fe4febd8b44d2d9a67c17bd3ab085b5",
+      "transform_id": "framework-mechanics-v1"
+    },
+    {
+      "authority_tier": "FINITE_INTERNAL_ALGEBRA_REPLAY",
+      "bytes": 3951,
+      "declared_schema": "orion.dynamic-epistemic-state.update-algebra-receipt.v1",
+      "detected_schema": "orion.dynamic-epistemic-state.update-algebra-receipt.v1",
+      "fields": [
+        "finite_class",
+        "laws",
+        "mutation_results",
+        "terminal",
+        "paper_authority_delta"
+      ],
+      "id": "des_update_algebra",
+      "paper": "FRAMEWORK",
+      "path": "research/orion-epistemic-state-v1/results/DES-UPDATE-01/UPDATE_ALGEBRA_RECEIPT_V1.json",
+      "role": "finite update-law and mutation receipt",
+      "sha256": "41e94113880ff29b16c1fd1ee6fba3c4142ac98de709d477a67845a98df0f1b8",
+      "transform_id": "framework-mechanics-v1"
+    },
+    {
+      "authority_tier": "FINITE_INTERNAL_PROJECTION_REPLAY",
+      "bytes": 1191,
+      "declared_schema": "orion.dynamic-epistemic-state.legacy-projection-correspondence.v1",
+      "detected_schema": "orion.dynamic-epistemic-state.legacy-projection-correspondence.v1",
+      "fields": [
+        "projection_row_denominator",
+        "matched_projection_rows",
+        "mismatches",
+        "surface_results",
+        "terminal"
+      ],
+      "id": "des_projection_correspondence",
+      "paper": "FRAMEWORK",
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/LEGACY_PROJECTION_CORRESPONDENCE_V1.json",
+      "role": "legacy projection replay correspondence",
+      "sha256": "db8e59b54f56e50b7aaa2487cf8d3e0d88c711682e03f15d3c303855bf1b55bf",
+      "transform_id": "framework-mechanics-v1"
+    },
+    {
+      "authority_tier": "FINITE_INTERNAL_NONRECONSTRUCTION_WITNESS",
+      "bytes": 15649,
+      "declared_schema": "orion.dynamic-epistemic-state.nonreconstruction-witnesses.v1",
+      "detected_schema": "orion.dynamic-epistemic-state.nonreconstruction-witnesses.v1",
+      "fields": [
+        "group_count",
+        "all_reachable_groups_noninjective",
+        "groups_with_action_divergence",
+        "witnesses"
+      ],
+      "id": "des_projection_witnesses",
+      "paper": "FRAMEWORK",
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/NONRECONSTRUCTION_WITNESSES_V1.json",
+      "role": "finite nonreconstruction and action-divergence witnesses",
+      "sha256": "e9ef75571cfc69f59b8387b11cb4e05fef9b0cd983a571286ba11eae7b767993",
+      "transform_id": "framework-mechanics-v1"
+    },
+    {
+      "authority_tier": "FINITE_INTERNAL_RESOURCE_CAP_CENSORED",
+      "bytes": 3321518,
+      "declared_schema": "orion.dynamic-epistemic-state.result-binding-packet.v1",
+      "detected_schema": "orion.dynamic-epistemic-state.result-binding-packet.v1",
+      "fields": [
+        "occurrence_denominators",
+        "transfer.held_out_classification_rate",
+        "censoring_results",
+        "exact_terminal"
+      ],
+      "id": "des_census_packet",
+      "paper": "FRAMEWORK",
+      "path": "research/orion-epistemic-state-v1/results/DES-CENSUS-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "source-tree label census and held-out mechanical classification boundary",
+      "sha256": "c961a7930deec9fec4f8961d24da8de19a60f0d61b7e689499de94584022c334",
+      "transform_id": "framework-mechanics-v1"
     }
   ]
 }

@@ -22,6 +22,8 @@ or a journal-readiness ranking.
 | `10_p13_three_objective_tradeoff` | Evaluate cost, verified correctness, and unsafe reuse together. | Five arm-level summaries from one bounded randomized finite-world receipt. | Cost × correctness scatter; unsafe-reuse rate is both color-coded and printed; black outline is three-objective nondomination; correctness axis is explicitly 0.90-1.00. | Unsafe reuse cannot disappear behind a favorable 2D projection; population safety and external authority are explicitly disclaimed. |
 | `11_p14_governance_rates` | Compare the three common governance rates while preserving their opposite desirable directions. | Five arms on 28 internally authored specification-separated cases; receipt-reported rates. | Three 0-1 dot panels with padded endpoints so markers at exactly 0 or 1 remain whole; each title states higher- or lower-is-better; no shared desirability palette. | False promotion is not visually rewarded; absent intervals and missing external adjudication are stated. |
 | `12_p15_workflow_matrix` | Distinguish successful lifecycle/replay checks from scientific-contract and claim-authority checks. | One categorical state per workflow × gate. | Fixed workflow order; concise human row labels; full `PASS`/`CANNOT CHECK` cell text. | Title uses the exact `AUTHORIZED_SCIENCE` receipt disposition and a footer states that it is not publication or external authority; the fourth workflow remains `CANNOT CHECK`. |
+| `13_des_execution_coverage` | Separate activity from valid frozen-scope execution across #1332 without comparing heterogeneous absolute denominators. | One planned/observed/valid triple per DES packet in that paper's own registered unit. | Each row normalizes only to its own planned denominator; nested bar thickness and exact `valid/observed/planned` labels distinguish the three quantities. | The title says “not performance”; P4 mechanical execution and P7 invalid generation remain visibly different from valid coverage; all external states remain `CANNOT CHECK`. |
+| `14_framework_mechanics_receipts` | Explain why four core computations are internally coherent while retaining information-loss and censoring boundaries. | Separate terminal/action state counts, mutation detection fractions, projection terminal counts, and census classification counts. | Four facets retain separate axes and denominators; heatmap shading is explicitly `log(1+count)`, exact counts are printed, and classification is a 100% composition bar. | Zero law failures does not erase census residuals; exact projection replay does not erase noninjectivity; the title limits all panels to finite internal receipts. |
 
 ## Final-size review checklist
 
@@ -44,30 +46,38 @@ never pooled across units.
 
 ## Inspection record — 2026-08-26
 
-- **Static PNGs:** all 13 were opened and inspected individually at original
-  resolution after the final render. Titles, labels, axes, notes, marks, and
+- **Static PNGs:** all 15 were opened and inspected individually at original
+  resolution after their final render. Titles, labels, axes, notes, marks, and
   adverse-state encodings passed the checklist above. The inspection directly
   triggered repairs to framework arrowheads, P1 annotations, P2/P14 footers,
-  P6/P7 labels, and misleading frontier legends before the final pass.
+  P6/P7 labels, misleading frontier legends, and the initial DES-coverage legend
+  collision before the final pass.
 - **Static SVGs:** the deterministic checker confirms editable text and matching
   file coverage; the PNG inspection is the rasterized final-size visual check.
-- **Notebook figures:** all five default notebook figures were executed, captured,
+- **Notebook figures:** all six default notebooks were executed; every default figure was captured,
   and visually inspected. The formal metric matrix was transposed to eliminate
   long-label collisions. The flagship explorer now directly labels methods and
   fixes rate axes to 0-1; the P13 unsafe-reuse explorer uses horizontal labels,
   an explicit lower-is-better direction, and the full 0-1 rate scale. The
   anomaly view now maps each paper to its exact retained label instead of
   drawing fourteen nearly identical count bars. Raw-value/ECDF views replaced
-  the density display.
+  the density display. The new DES notebook retains planned/observed/valid
+  coverage, exact denominators, zero-valid markers, finite collision counts,
+  mutation fractions, projection counts, and the censored census residual.
 - **Interactive HTML:** the self-contained source and responsive CSS/JavaScript
   contract was inspected in a browser at desktop and 390-pixel mobile widths.
-  Controls fit and stack vertically at the narrow width; the source-table
-  wrapper was approximately 313 pixels wide while the table retained an
-  approximately 1,884-pixel scroll width, SHA cells remained on one line, and
-  horizontal scrolling exposed every column. The responsive layout reduced the
-  full mobile page height from approximately 15,288 to 7,136 pixels without
-  dropping content. Humanized labels, signed diverging bars, source paths, and
-  digests remained readable. The regenerated P15 matrix was also inspected at
+  Controls fit and stack vertically at the narrow width; their mobile position
+  is non-sticky so the tall control stack cannot cover plot rows. A review-detected
+  overflow from the unbroken authority-boundary token was repaired with explicit
+  wrapping; at a 390-pixel viewport the document scroll width is now exactly 390
+  pixels. The source-table wrapper is approximately 328 pixels wide while the
+  expanded 43-source table retains an approximately 1,913-pixel scroll width;
+  SHA cells remained on one line, and horizontal scrolling exposed every
+  column. The full mobile page is approximately 9,595 pixels high after adding
+  the DES section and expanded source inventory. All 15 DES bars and their
+  exact labels remained inside their rows. Humanized labels, signed diverging
+  bars, source paths, and digests remained readable. The regenerated P15 matrix
+  was also inspected at
   original resolution: its three-line title, exact `AUTHORIZED_SCIENCE`
   disposition, external-authority disclaimer, row labels, and cell text were
   fully visible without overlap or clipping.

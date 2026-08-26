@@ -123,11 +123,14 @@ metrics_by_paper = atlas.get("metrics", {})
 metrics = as_rows(atlas.get("metric_records", []))
 anomalies = as_rows(atlas.get("anomalies", []))
 sources = as_rows(atlas.get("sources", []))
+des_execution = as_rows(atlas.get("des_execution", []))
+framework_mechanics = atlas.get("framework_mechanics", {})
 
 print(f"Atlas: {ATLAS_PATH}")
 print(
     f"Loaded {len(paper_states)} paper states, {len(metrics)} metrics, "
-    f"{len(anomalies)} anomalies and {len(sources)} sources."
+    f"{len(anomalies)} anomalies, {len(des_execution)} frozen DES rows and "
+    f"{len(sources)} sources."
 )
 '''
 
@@ -818,6 +821,8 @@ selected_anomalies = [
     if paper_id(row) in PAPERS
     and (STATUS_CONTAINS is None or STATUS_CONTAINS.upper() in exact_status(row).upper())
 ]
+
+
 severity_labels = sorted({str(first(row, "severity", default="UNSPECIFIED")) for row in selected_anomalies})
 severity_counts = [sum(str(first(row, "severity", default="UNSPECIFIED")) == label for row in selected_anomalies) for label in severity_labels]
 fig, (ax_severity, ax_inventory) = plt.subplots(1, 2, figsize=(13, 5.5), gridspec_kw={"width_ratios": [0.9, 1.2]})
@@ -911,6 +916,204 @@ An anomaly plot can expose contradictions, missingness, and boundary cases. It c
     ),
 ]
 
+DES_EXECUTION_CELLS = [
+    _markdown(
+        "des-title",
+        r"""
+# Frozen #1332 DES execution and framework mechanics
+
+## Scope and authority
+
+This notebook keeps the frozen `P1-DES-01` through `P15-DES-01` execution packets separate from the other bounded studies in the atlas. It distinguishes **planned**, **observed/executed**, and **valid at the packet's registered internal scope**. None of these is external scientific authority. Every DES packet retains `external_authority_state=CANNOT_CHECK` and paper-authority delta `NONE`.
+
+Missing or unscored outcomes remain missing, `CANNOT_CHECK`, or invalid. They are never filled with estimated performance values.
+""",
+    ),
+    _markdown(
+        "des-theory",
+        r"""
+## Theory, methodology, and algorithms
+
+For each paper's own registered denominator, define execution coverage—not performance—as
+
+$$c_{\mathrm{obs}}=\frac{n_{\mathrm{observed}}}{n_{\mathrm{planned}}},\qquad
+c_{\mathrm{valid}}=\frac{n_{\mathrm{valid}}}{n_{\mathrm{planned}}},\qquad
+0\le c_{\mathrm{valid}}\le c_{\mathrm{obs}}\le 1.$$
+
+The distinction is load-bearing: P4 has mechanically executed arm-cases without external terminal-gold scores, while P7 generated almost all planned rows but has zero valid rows because its frozen denominator drifted.
+
+For legacy projection $\pi$ and next-action rule $a$, a finite collision witness has
+
+$$\pi(s_1)=\pi(s_2),\qquad a(s_1)\ne a(s_2).$$
+
+Such a witness shows that the legacy terminal cannot reconstruct the decision-relevant state on the enumerated class. The update receipt separately checks finite algebraic laws such as idempotence,
+
+$$\mathcal{T}(\mathcal{T}(S,e),e)=\mathcal{T}(S,e),$$
+
+plus replay, commutation/noncommutation, revocation locality, authority non-amplification, and six registered mutants. These are finite internal checks, not universal theorems or external validation.
+""",
+    ),
+    _code("des-load", BOOTSTRAP),
+    _code("des-style", STYLE + "\n\n" + DISPLAY_HELPERS),
+    _markdown(
+        "des-controls-doc",
+        r"""
+## Editable selectors
+
+Choose which paper rows to display. The selector only changes presentation; it does not change denominators, terminals, anomaly records, or authority.
+""",
+    ),
+    _code(
+        "des-controls",
+        r"""
+PAPERS = [f"P{i}" for i in range(1, 16)]
+DISPLAY_LIMIT = 30
+""",
+        tags=["parameters"],
+    ),
+    _markdown(
+        "des-results-doc",
+        r"""
+## Results: planned, observed, and valid coverage
+
+Bars are normalized **within each paper's own unit**. Absolute denominators are printed at right and must not be pooled across papers. A short black mark at zero makes an exact zero valid count visible.
+""",
+    ),
+    _code(
+        "des-coverage",
+        r"""
+selected_des = [row for row in des_execution if paper_id(row) in PAPERS]
+selected_des.sort(key=lambda row: int(paper_id(row)[1:]))
+y = list(range(len(selected_des)))[::-1]
+observed_pct = [100 * row["observed"] / row["planned"] for row in selected_des]
+valid_pct = [100 * row["valid"] / row["planned"] for row in selected_des]
+fig, ax = plt.subplots(figsize=(12, max(5.5, 0.43 * len(selected_des) + 1.8)))
+ax.barh(y, [100] * len(selected_des), height=0.60, color="#e0e0e0", label="Planned")
+ax.barh(y, observed_pct, height=0.42, color="#42a5f5", label="Observed / executed")
+ax.barh(y, valid_pct, height=0.20, color="#00897b", label="Valid at registered internal scope")
+for y_value, row, valid in zip(y, selected_des, valid_pct):
+    if valid == 0:
+        ax.scatter(0, y_value, marker="|", s=90, color="#212121", linewidth=1.6, zorder=4)
+    ax.text(102, y_value, f"{row['valid']}/{row['observed']}/{row['planned']} {row['unit']}", va="center", fontsize=8)
+ax.set_xlim(0, 145)
+ax.set_xticks(range(0, 101, 20), [f"{value}%" for value in range(0, 101, 20)])
+ax.set_yticks(y, [paper_id(row) for row in selected_des])
+ax.set_xlabel("Within-paper denominator coverage (not performance)")
+ax.set_ylabel("Frozen DES job")
+ax.set_title("Frozen DES execution coverage — gray planned · blue observed · green valid")
+ax.grid(axis="x", alpha=0.20)
+plt.tight_layout()
+plt.show()
+""",
+    ),
+    _code(
+        "des-table",
+        r"""
+print_records(
+    selected_des,
+    ["paper_id", "job_id", "planned", "observed", "valid", "unit", "status", "terminal", "external_authority_state", "paper_authority_delta", "source_id"],
+    DISPLAY_LIMIT,
+)
+""",
+    ),
+    _markdown(
+        "des-mechanics-doc",
+        r"""
+## Results: finite mechanics receipts
+
+The following views use distinct estimands: terminal/action collision counts, mutation detection fractions, projection replay counts, and source-census classification shares. They are deliberately not collapsed into one framework score.
+""",
+    ),
+    _code(
+        "des-mechanics",
+        r"""
+collision = framework_mechanics["collision"]
+update = framework_mechanics["update_algebra"]
+projection = framework_mechanics["projection"]
+census = framework_mechanics["census"]
+
+fig, axes = plt.subplots(2, 2, figsize=(13, 9))
+
+terminals = ["ADMISSIBLE", "BLOCKED", "CANNOT_CHECK"]
+actions = ["ACQUIRE_EVIDENCE", "DISCRIMINATE", "OBTAIN_EXTERNAL_CUSTODY", "REVALIDATE", "STOP"]
+matrix = [[collision["terminal_action_counts"].get(t, {}).get(a, 0) for a in actions] for t in terminals]
+image = axes[0, 0].imshow([[__import__("math").log1p(value) for value in row] for row in matrix], cmap="Blues", aspect="auto")
+for r, row in enumerate(matrix):
+    for c, value in enumerate(row):
+        axes[0, 0].text(c, r, str(value), ha="center", va="center", fontsize=8)
+axes[0, 0].set_xticks(range(len(actions)), [human_label(a, 12) for a in actions], rotation=25)
+axes[0, 0].set_yticks(range(len(terminals)), [human_label(t, 16) for t in terminals])
+axes[0, 0].set_title(f"Terminal → action states\n{collision['different_action_pairs']:,}/{collision['same_terminal_pairs']:,} same-terminal pairs diverge")
+
+mutations = update["mutations"]
+mutation_y = list(range(len(mutations)))[::-1]
+rates = [100 * row["detections"] / row["cases"] for row in mutations]
+axes[0, 1].hlines(mutation_y, 0, rates, color="#bbdefb", linewidth=2)
+axes[0, 1].scatter(rates, mutation_y, color="#1565c0", s=55)
+for y_value, rate, row in zip(mutation_y, rates, mutations):
+    axes[0, 1].text(min(rate + 2, 103), y_value, f"{row['detections']:,}/{row['cases']:,}", va="center", fontsize=8)
+axes[0, 1].set_xlim(0, 118)
+axes[0, 1].set_yticks(mutation_y, [human_label(row["mutation"], 24) for row in mutations])
+axes[0, 1].set_xlabel("Detection rate (%)")
+axes[0, 1].set_title(f"{update['mutations_killed']}/{update['mutation_count']} mutants killed; law failures={update['law_failures']}")
+
+surface_names = ["PROMOTION_V1", "READINESS_V1"]
+projection_terminals = ["ADMISSIBLE", "BLOCKED", "CANNOT_CHECK", "PROVISIONAL"]
+surface_matrix = [[projection["surface_results"][surface]["terminal_counts"].get(t, 0) for t in projection_terminals] for surface in surface_names]
+axes[1, 0].imshow([[__import__("math").log1p(value) for value in row] for row in surface_matrix], cmap="PuBuGn", aspect="auto")
+for r, row in enumerate(surface_matrix):
+    for c, value in enumerate(row):
+        axes[1, 0].text(c, r, str(value), ha="center", va="center", fontsize=8)
+axes[1, 0].set_xticks(range(len(projection_terminals)), [human_label(t, 16) for t in projection_terminals], rotation=25)
+axes[1, 0].set_yticks(range(len(surface_names)), [surface.replace("_V1", "").title() for surface in surface_names])
+axes[1, 0].set_title(f"Projection replay {projection['matched_rows']:,}/{projection['row_denominator']:,}\n{projection['noninjective_groups']}/7 groups noninjective; {projection['action_divergent_groups']} action-divergent")
+
+held = census["folds"][str(census["held_out_fold"])]
+counts = [
+    [census["classified_occurrences"], census["unclassified_occurrences"]],
+    [held["classified"], held["unclassified"]],
+]
+totals = [sum(row) for row in counts]
+classified = [100 * row[0] / total for row, total in zip(counts, totals)]
+unclassified = [100 - value for value in classified]
+census_y = [1, 0]
+axes[1, 1].barh(census_y, classified, color="#1565c0", label="Classified")
+axes[1, 1].barh(census_y, unclassified, left=classified, color="#ef6c00", label="Unclassified retained")
+for y_value, left, row in zip(census_y, classified, counts):
+    axes[1, 1].text(left / 2, y_value, f"{row[0]:,}", ha="center", va="center", color="white", fontsize=8)
+    axes[1, 1].text(left + (100 - left) / 2, y_value, f"{row[1]:,}", ha="center", va="center", color="white", fontsize=8)
+axes[1, 1].set_xlim(0, 100)
+axes[1, 1].set_yticks(census_y, ["All occurrences", f"Held-out fold {census['held_out_fold']}"])
+axes[1, 1].set_xlabel("Occurrence share (%)")
+axes[1, 1].set_title(f"Source census n={census['occurrences']:,}\n{census['terminal']}; text-cap-censored files={census['likely_text_cap_censored_count']}")
+axes[1, 1].legend(frameon=False, loc="lower center", bbox_to_anchor=(0.5, -0.28), ncol=2)
+
+fig.suptitle("Finite internal framework-mechanics receipts — no external authority delta")
+plt.tight_layout()
+plt.show()
+""",
+    ),
+    _markdown(
+        "des-discussion",
+        r"""
+## Discussion and anomaly inspection
+
+- **P2, P6, and P8** reach 100% valid coverage only for their registered bounded internal/public-reference units; external authority still remains `CANNOT_CHECK`.
+- **P4** has 900/1,500 mechanically executed arm-cases but 0 external terminal-gold scores. Mechanical execution is not scientific scoring.
+- **P7** has 736/738 observed rows but 0 valid rows. Near-complete generation cannot rescue a frozen-denominator violation.
+- **P11 and P14** inspected all eight acquisition requirements/artifacts, but bound/present valid inputs remain 0. Preflight activity is not outcome execution.
+- **P13** has 288/720 valid internal planner cells and 432 `CANNOT_CHECK` cells; the full intended control is therefore not attained.
+- The collision atlas shows 4,355 different-action pairs among 9,201 same-terminal pairs on 144 finite states. This demonstrates finite nonreconstruction on the declared class, not empirical superiority.
+- The update receipt records zero failures across 249,216 registered law cases and kills all six mutants. That is strong finite conformance evidence, not a universal proof.
+- The projection receipt matches 5,760/5,760 rows while all seven reachable groups remain noninjective and six are action-divergent. Exact replay and information loss can coexist.
+- The census retains 121,985 unclassified occurrences and terminal `RESOURCE_CAP_CENSORED`; classification success must not erase the residual.
+
+## Claim ceiling
+
+The notebook may show why the registered computations are internally coherent and where they fail. It may not claim external independence, population validity, universal necessity, superiority, novelty, or journal readiness. The remedy for a missing authority component is a new identity-bound experiment or external review—not a different plot.
+""",
+    ),
+]
 
 NOTEBOOKS = {
     "00_framework_overview.ipynb": OVERVIEW_CELLS,
@@ -918,6 +1121,7 @@ NOTEBOOKS = {
     "02_p6_p10_formal_structured.ipynb": FORMAL_CELLS,
     "03_p11_p15_state_governance_harness.ipynb": GOVERNANCE_CELLS,
     "04_anomaly_audit.ipynb": ANOMALY_CELLS,
+    "05_frozen_des_execution.ipynb": DES_EXECUTION_CELLS,
 }
 
 

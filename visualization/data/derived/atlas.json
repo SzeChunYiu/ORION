@@ -217,11 +217,283 @@
     }
   ],
   "authority_boundary": "REPOSITORY_RECEIPTS_ONLY__NO_EXTERNAL_AUTHORITY_DELTA",
+  "des_execution": [
+    {
+      "claim_ceiling": "PROTECTED_PREFLIGHT_OR_PROSPECTIVE_MATCHED_STUDY_RESULT_ONLY__NO_MODEL_GENERAL_OPEN_ENDED_OR_EXTERNAL_SUPERIORITY_AUTHORITY",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P1-DES-01",
+      "observed": 0,
+      "observed_path": "denominators.run_cells_executed",
+      "paper": "P1",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P1",
+      "planned": 3750,
+      "planned_path": "denominators.planned_run_cell_denominator",
+      "source_id": "p1_des_packet",
+      "status": "CANNOT_CHECK",
+      "terminal": "PROTECTED_SCIENCEAGENTBENCH_AND_FRESH_COUNTERFACTUAL_CUSTODY_UNAVAILABLE",
+      "unit": "run cells",
+      "valid": 0,
+      "valid_path": "denominators.run_cells_executed"
+    },
+    {
+      "claim_ceiling": "Public TREC-COVID qrels-bounded internal comparison only; no full P2 superiority, global closure, transfer, external independence, or paper-authority claim.",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P2-DES-01",
+      "observed": 400,
+      "observed_path": "denominators.case_policy_rows_retained",
+      "paper": "P2",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P2",
+      "planned": 400,
+      "planned_path": "denominators.case_policy_rows_expected",
+      "source_id": "p2_des_packet",
+      "status": "BOUNDED_PUBLIC_EXECUTION",
+      "terminal": "CANNOT_CHECK_STRONG_DONOR_OR_TRANSFER_BINDING_UNAVAILABLE",
+      "unit": "topic-policy rows",
+      "valid": 400,
+      "valid_path": "denominators.case_policy_rows_retained"
+    },
+    {
+      "claim_ceiling": "RIGHTS_AND_CASE_UNIVERSE_PREFLIGHT_ONLY__PREEXISTING_ONE_CASE_DEVELOPMENT_OUTCOMES_NOT_REUSED_AS_PROSPECTIVE_MULTI_CASE_EVIDENCE",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P3-DES-01",
+      "observed": 0,
+      "observed_path": "executed_cell_denominator",
+      "paper": "P3",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P3",
+      "planned": 20,
+      "planned_path": "scheduled_cell_denominator",
+      "source_id": "p3_des_packet",
+      "status": "CANNOT_CHECK",
+      "terminal": "P3_MULTI_CASE_LAWFUL_EVALUATION_UNAVAILABLE",
+      "unit": "evaluation cells",
+      "valid": 0,
+      "valid_path": "executed_cell_denominator"
+    },
+    {
+      "claim_ceiling": "SCIFACT_EXTERNAL_SEMANTIC_COORDINATE_AND_INTERNAL_POLICY_DIVERGENCE_ONLY__NO_INDEPENDENT_PROMOTION_TERMINAL_TRUTH__NO_POLICY_SUPERIORITY",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P4-DES-01",
+      "observed": 900,
+      "observed_path": "mechanically_executed_arm_cases",
+      "paper": "P4",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P4",
+      "planned": 1500,
+      "planned_path": "arm_case_denominator",
+      "source_id": "p4_des_packet",
+      "status": "CANNOT_CHECK_EXTERNAL_SCORE",
+      "terminal": "EXTERNAL_PROMOTION_TERMINAL_GOLD_UNAVAILABLE",
+      "unit": "arm-cases",
+      "valid": 0,
+      "valid_path": "externally_terminal_scored_cases"
+    },
+    {
+      "claim_ceiling": "PROTECTED_PREFLIGHT_OR_PROSPECTIVE_MATCHED_STUDY_RESULT_ONLY__NO_GENERAL_SELF_IMPROVEMENT_SUPERIORITY_ADOPTION_OR_EXTERNAL_AUTHORITY",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P5-DES-01",
+      "observed": 0,
+      "observed_path": "denominators.run_cells_executed",
+      "paper": "P5",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P5",
+      "planned": 53472,
+      "planned_path": "denominators.planned_run_cell_denominator",
+      "source_id": "p5_des_packet",
+      "status": "CANNOT_CHECK",
+      "terminal": "SWE_BENCH_RIGHTS_AND_PROTECTED_FRESH_ADOPTION_CUSTODY_UNAVAILABLE",
+      "unit": "run cells",
+      "valid": 0,
+      "valid_path": "denominators.run_cells_executed"
+    },
+    {
+      "claim_ceiling": "BOUNDED_CONTENT_BOUND_REPLAY_OVER_16_PREEXISTING_REAL_TRANSITIONS_PLUS_INTERNAL_FINITE_CONTROLS__NO_BLINDED_PROSPECTIVE_EXTERNAL_NOVELTY_UNIVERSAL_MINIMALITY_OR_DEPLOYED_SYSTEM_SUPERIORITY_AUTHORITY",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P6-DES-01",
+      "observed": 16,
+      "observed_path": "case_outcomes.length",
+      "paper": "P6",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P6",
+      "planned": 16,
+      "planned_path": "denominators.primary_case_denominator",
+      "source_id": "p6_des_packet",
+      "status": "BOUNDED_INTERNAL_VALID",
+      "terminal": "EXACT_DYNAMIC_REVALIDATION_STRICTLY_EXTENDS_NATIVE_DEPENDENCY_SELECTION",
+      "unit": "transition cases",
+      "valid": 16,
+      "valid_path": "case_outcomes.length"
+    },
+    {
+      "claim_ceiling": "INVALID_EXECUTION_RECEIPT_ONLY__NO_REGIME_TRANSPORT_RESULT__NO_EXTERNAL_AUTHORITY",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P7-DES-01",
+      "observed": 736,
+      "observed_path": "observed_generated_case_denominator",
+      "paper": "P7",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P7",
+      "planned": 738,
+      "planned_path": "planned_case_denominator",
+      "source_id": "p7_des_packet",
+      "status": "INVALID",
+      "terminal": "FROZEN_CASE_DENOMINATOR_DRIFT_INVALIDATES_EXECUTION",
+      "unit": "generated cases",
+      "valid": 0,
+      "valid_path": "valid_case_denominator"
+    },
+    {
+      "claim_ceiling": "FRESH_NATIVE_BINARY_CONFORMANCE_REPLAY_AND_SAME_PROGRAMME_SCIENTIFIC_GOLD_ONLY__NOT_PROSPECTIVE__NO_EXTERNAL_ADJUDICATION_OR_DEPLOYED_IDEAL_PRODUCT_AUTHORITY",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P8-DES-01",
+      "observed": 44,
+      "observed_path": "executed_case_denominator",
+      "paper": "P8",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P8",
+      "planned": 44,
+      "planned_path": "case_denominator",
+      "source_id": "p8_des_packet",
+      "status": "BOUNDED_INTERNAL_REPLAY",
+      "terminal": "NATIVE_EQUIVALENCE_REPLAY_INTERNAL_ONLY_EXTERNAL_ADJUDICATION_UNAVAILABLE",
+      "unit": "replay cases",
+      "valid": 44,
+      "valid_path": "executed_case_denominator"
+    },
+    {
+      "claim_ceiling": "ACQUISITION_AND_PRECONDITION_RESULT_ONLY__NO_OPEN_WEIGHT_FRONTIER_CAUSE_TERMINAL_FLIP_NUMERICAL_IDENTITY_SCALING_LAW_OR_EXTERNAL_SUPERIORITY_AUTHORITY",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P9-DES-01",
+      "observed": 0,
+      "observed_path": "denominators.cells_executed",
+      "paper": "P9",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P9",
+      "planned": 1356,
+      "planned_path": "denominators.planned_cell_denominator",
+      "source_id": "p9_des_packet",
+      "status": "CANNOT_CHECK",
+      "terminal": "OPEN_WEIGHT_AND_NUMERICAL_BUILD_CUSTODY_UNAVAILABLE",
+      "unit": "execution cells",
+      "valid": 0,
+      "valid_path": "denominators.cells_executed"
+    },
+    {
+      "claim_ceiling": "FROZEN_ACQUISITION_PREFLIGHT_OR_PROTECTED_NATIVE_VERIFIER_RESULT_ONLY__NO_UNRESTRICTED_INVENTION_GENERAL_SUPERIORITY_OR_EXTERNAL_AUTHORITY",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P10-DES-01",
+      "observed": 0,
+      "observed_path": "denominators.run_cells_executed",
+      "paper": "P10",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P10",
+      "planned": 12960,
+      "planned_path": "denominators.planned_run_cell_denominator",
+      "source_id": "p10_des_packet",
+      "status": "CANNOT_CHECK",
+      "terminal": "P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT",
+      "unit": "run cells",
+      "valid": 0,
+      "valid_path": "denominators.run_cells_executed"
+    },
+    {
+      "claim_ceiling": "ACQUISITION_AUDIT_ONLY__ZERO_SCIENTIFIC_CASES_EXECUTED__NO_REAL_SYSTEM_REPLICATION_OR_RESOURCE_FRONTIER_AUTHORITY",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P11-DES-01",
+      "observed": 8,
+      "observed_path": "resource_vector.acquisition_requirements_checked",
+      "paper": "P11",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P11",
+      "planned": 8,
+      "planned_path": "acquisition_requirement_denominator",
+      "source_id": "p11_des_packet",
+      "status": "CANNOT_CHECK",
+      "terminal": "P11_DATASETS_MODELS_TRANSCRIPTS_NOT_CONTENT_BOUND",
+      "unit": "acquisition requirements",
+      "valid": 0,
+      "valid_path": "bound_requirements"
+    },
+    {
+      "claim_ceiling": null,
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P12-DES-01",
+      "observed": 0,
+      "observed_path": "denominators.clean_license_cases_executed",
+      "paper": "P12",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P12",
+      "planned": 96,
+      "planned_path": "denominators.clean_license_cases_planned",
+      "source_id": "p12_des_packet",
+      "status": "CANNOT_CHECK",
+      "terminal": "CANNOT_CHECK_PROTECTED_SUBSTRATE_AND_NONFLAT_SUCCESSOR_NOT_RUN",
+      "unit": "clean-license cases",
+      "valid": 0,
+      "valid_path": "denominators.clean_license_cases_executed"
+    },
+    {
+      "claim_ceiling": "RETROSPECTIVE_INTERNAL_144_STATE_ACTION_CONTROL_ONLY__NO_FIVE_ARM_SHARED_PANEL__NO_PROSPECTIVE_EXTERNAL_LIFECYCLE_GOVERNANCE_NOVELTY_OR_POPULATION_AUTHORITY",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P13-DES-01",
+      "observed": 288,
+      "observed_path": "denominators.executed_planner_cell_denominator",
+      "paper": "P13",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P13",
+      "planned": 720,
+      "planned_path": "denominators.planner_cell_denominator",
+      "source_id": "p13_des_packet",
+      "status": "BOUNDED_PARTIAL_INTERNAL",
+      "terminal": "BOUNDED_DYNAMIC_STATE_BEATS_TERMINAL_ONLY__FULL_P13_CONTROL_CANNOT_CHECK",
+      "unit": "planner cells",
+      "valid": 288,
+      "valid_path": "denominators.executed_planner_cell_denominator"
+    },
+    {
+      "claim_ceiling": "EXTERNAL_ACQUISITION_PREFLIGHT_ONLY__ZERO_UNSEEN_INCIDENTS_EXECUTED__NO_CAUSAL_GOVERNANCE_OR_EXTERNAL_VALIDATION_AUTHORITY",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P14-DES-01",
+      "observed": 8,
+      "observed_path": "resource_vector.acquisition_artifacts_checked",
+      "paper": "P14",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P14",
+      "planned": 8,
+      "planned_path": "acquisition_artifact_denominator",
+      "source_id": "p14_des_packet",
+      "status": "CANNOT_CHECK",
+      "terminal": "P14D_EXTERNAL_ACQUISITION_BLOCKED",
+      "unit": "acquisition artifacts",
+      "valid": 0,
+      "valid_path": "present_artifacts"
+    },
+    {
+      "claim_ceiling": "P15-DES-01 may report only the frozen production study's attained terminal. Missing production transfers preserve all 50 planned cases and 6300 run cells as CANNOT_CHECK and add no production-scale, population, external-replication, site-independence, novelty, adoption or manuscript authority. Existing bounded positive and adverse P15 evidence remains unchanged.",
+      "external_authority_state": "CANNOT_CHECK",
+      "job_id": "P15-DES-01",
+      "observed": 0,
+      "observed_path": "denominators.run_cells_executed",
+      "paper": "P15",
+      "paper_authority_delta": "NONE",
+      "paper_id": "P15",
+      "planned": 6300,
+      "planned_path": "denominators.planned_run_cell_denominator",
+      "source_id": "p15_des_packet",
+      "status": "CANNOT_CHECK",
+      "terminal": "P15_PRODUCTION_HOST_PROCESS_KEY_CUSTODY_AND_CROSS_SITE_REPLAY_CANNOT_CHECK",
+      "unit": "run cells",
+      "valid": 0,
+      "valid_path": "denominators.run_cells_executed"
+    }
+  ],
   "evidence_snapshot": {
     "schema": "orion.visualization.evidence-source-set.v1",
-    "source_catalog_sha256": "af21f5ff520ddb52e365fa6539b8e6a94ee912e9a8924381edb61d951fd6646c",
-    "source_count": 23,
-    "source_set_sha256": "0e538fb2dc91e88f8c5fd2f14c8f3f3fbce295f49992b79f296ccc90adfc5bb4"
+    "source_catalog_sha256": "61f136d13e64efc780666575ea8d9b326d6bfeaed2bf328f93950ddd9d5c2d34",
+    "source_count": 43,
+    "source_set_sha256": "29b878fcf5265758ac8fb81c700e484350cf5987b1bcee38c511ba8cfbf16d1f"
   },
   "framework": {
     "edges": [
@@ -378,6 +650,214 @@
         "role": "research harness"
       }
     ]
+  },
+  "framework_mechanics": {
+    "census": {
+      "claim_ceiling": "INTERNAL_SOURCE_TREE_CENSUS_ONLY__NO_EMPIRICAL_NOVELTY_OR_PAPER_AUTHORITY",
+      "classified_occurrences": 194857,
+      "family_counts": {
+        "cannot_check_reason": 24537,
+        "composite_label": 244153,
+        "dependency": 9502,
+        "status": 45319,
+        "terminal": 9267,
+        "transition": 42054
+      },
+      "folds": {
+        "0": {
+          "classified": 38044,
+          "files": 2250,
+          "occurrences": 61277,
+          "unclassified": 23233
+        },
+        "1": {
+          "classified": 29738,
+          "files": 2329,
+          "occurrences": 52100,
+          "unclassified": 22362
+        },
+        "2": {
+          "classified": 45643,
+          "files": 2283,
+          "occurrences": 79659,
+          "unclassified": 34016
+        },
+        "3": {
+          "classified": 28840,
+          "files": 2252,
+          "occurrences": 47825,
+          "unclassified": 18985
+        },
+        "4": {
+          "classified": 52592,
+          "files": 2320,
+          "occurrences": 75981,
+          "unclassified": 23389
+        }
+      },
+      "held_out_classification_rate": 0.6921730432608152,
+      "held_out_fold": 4,
+      "likely_text_cap_censored_count": 2,
+      "likely_text_unreadable_count": 0,
+      "occurrences": 316842,
+      "parsed_text_files": 11240,
+      "retained_excluded_files": 194,
+      "source_id": "des_census_packet",
+      "terminal": "RESOURCE_CAP_CENSORED",
+      "tracked_entries": 11434,
+      "unclassified_occurrences": 121985,
+      "unique_labels": 63017
+    },
+    "collision": {
+      "all_state_pairs": 10296,
+      "claim_ceiling": "FINITE_DECLARED_STATE_CLASS_NONRECONSTRUCTION_WITNESS_ONLY__NO_EMPIRICAL_SUPERIORITY__NO_EXTERNAL_AUTHORITY",
+      "different_action_pairs": 4355,
+      "minimum_collision_hamming_distance": 1,
+      "same_terminal_pairs": 9201,
+      "source_id": "des_collision_atlas",
+      "state_count": 144,
+      "terminal": "DYNAMIC_STATE_STRICTLY_DISTINGUISHES_LEGACY_COLLISIONS",
+      "terminal_action_counts": {
+        "ADMISSIBLE": {
+          "STOP": 1
+        },
+        "BLOCKED": {
+          "ACQUIRE_EVIDENCE": 36,
+          "DISCRIMINATE": 92,
+          "OBTAIN_EXTERNAL_CUSTODY": 1,
+          "REVALIDATE": 7
+        },
+        "CANNOT_CHECK": {
+          "DISCRIMINATE": 4,
+          "OBTAIN_EXTERNAL_CUSTODY": 3
+        }
+      }
+    },
+    "projection": {
+      "action_divergent_groups": 6,
+      "all_reachable_groups_noninjective": true,
+      "authority": "INTERNAL_REPLAY_NOT_EXTERNAL_INDEPENDENCE",
+      "matched_rows": 5760,
+      "mismatch_count": 0,
+      "noninjective_groups": 7,
+      "row_denominator": 5760,
+      "source_ids": [
+        "des_projection_correspondence",
+        "des_projection_witnesses"
+      ],
+      "state_cases": 2880,
+      "surface_results": {
+        "PROMOTION_V1": {
+          "reachable_terminals": [
+            "ADMISSIBLE",
+            "BLOCKED",
+            "CANNOT_CHECK"
+          ],
+          "terminal_counts": {
+            "ADMISSIBLE": 10,
+            "BLOCKED": 1360,
+            "CANNOT_CHECK": 1510
+          }
+        },
+        "READINESS_V1": {
+          "reachable_terminals": [
+            "ADMISSIBLE",
+            "BLOCKED",
+            "CANNOT_CHECK",
+            "PROVISIONAL"
+          ],
+          "terminal_counts": {
+            "ADMISSIBLE": 2,
+            "BLOCKED": 1364,
+            "CANNOT_CHECK": 1512,
+            "PROVISIONAL": 2
+          }
+        }
+      },
+      "terminal": "LEGACY_PROJECTION_REPLAY_EXACT",
+      "unresolved_semantics_retained": true
+    },
+    "update_algebra": {
+      "claim_ceiling": "FINITE_DECLARED_CLASS_INTERNAL_REPLAY_AND_MUTATION_EVIDENCE_ONLY",
+      "event_instances": 10752,
+      "law_failures": 0,
+      "laws": [
+        {
+          "fail": 0,
+          "law": "DES-AUTHORITY-NO-AMPLIFICATION",
+          "pass": 11520
+        },
+        {
+          "fail": 0,
+          "law": "DES-T5-IDEMPOTENCE",
+          "pass": 10752
+        },
+        {
+          "fail": 0,
+          "law": "DES-T5-REPLAY-DETERMINISM",
+          "pass": 161280
+        },
+        {
+          "fail": 0,
+          "law": "DES-T6-EXPLICIT-NONCOMMUTATION",
+          "pass": 1536
+        },
+        {
+          "fail": 0,
+          "law": "DES-T6-INDEPENDENT-COMMUTATION",
+          "pass": 61824
+        },
+        {
+          "fail": 0,
+          "law": "DES-T7-REVOCATION-LOCALITY",
+          "pass": 2304
+        }
+      ],
+      "mutation_count": 6,
+      "mutations": [
+        {
+          "cases": 150528,
+          "detections": 6144,
+          "killed": true,
+          "mutation": "M-REPLAY-ORDER"
+        },
+        {
+          "cases": 10368,
+          "detections": 10368,
+          "killed": true,
+          "mutation": "M-IDEMPOTENCE-DUPLICATE"
+        },
+        {
+          "cases": 768,
+          "detections": 768,
+          "killed": true,
+          "mutation": "M-COMMUTATION-HIDDEN-WRITE"
+        },
+        {
+          "cases": 1536,
+          "detections": 1536,
+          "killed": true,
+          "mutation": "M-NONCOMMUTATION-CANONICALIZE"
+        },
+        {
+          "cases": 768,
+          "detections": 384,
+          "killed": true,
+          "mutation": "M-REVOCATION-GLOBAL"
+        },
+        {
+          "cases": 384,
+          "detections": 384,
+          "killed": true,
+          "mutation": "M-AUTHORITY-PERMIT"
+        }
+      ],
+      "mutations_killed": 6,
+      "paper_authority_delta": "NONE",
+      "source_id": "des_update_algebra",
+      "states": 768,
+      "terminal": "DYNAMIC_UPDATE_ALGEBRA_FINITE_CLASS_GREEN"
+    }
   },
   "gate_states": [
     {
@@ -5648,7 +6128,8 @@
   "notes": [
     "Incompatible units are not pooled across papers.",
     "Finite witnesses, hashes, tests, and same-owner replay are not external authority.",
-    "Interactive outputs are presentation-only and inherit this claim ceiling."
+    "Interactive outputs are presentation-only and inherit this claim ceiling.",
+    "Frozen DES execution coverage is a separate layer; attempted, valid, and externally authoritative are not synonyms."
   ],
   "paper_states": [
     {
@@ -6421,6 +6902,399 @@
       "role": "bounded attestation composition result and full-key-compromise negative boundary",
       "sha256": "7da36a4b3cd462e6f4e841e67faae25683c866ab6105be00029802aeb050db0a",
       "transform_id": "p15-attestation-boundary-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 35149,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p1_des_packet",
+      "paper": "P1",
+      "path": "research/orion-epistemic-state-v1/results/P1-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P1 execution coverage, exact terminal, and authority boundary",
+      "sha256": "8fd2f57de3b287c745462af83fb4c0c36479f82e046acc901af3d5a7d54b58b0",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 108360,
+      "declared_schema": "orion.p2-des-01.result-binding-packet.v1",
+      "detected_schema": "orion.p2-des-01.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p2_des_packet",
+      "paper": "P2",
+      "path": "research/orion-epistemic-state-v1/results/P2-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P2 execution coverage, exact terminal, and authority boundary",
+      "sha256": "a5d0d45963a0ac7bc88673ece37e7e018b7b1dc5345479ff8f44c9297307c4d2",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 1843,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p3_des_packet",
+      "paper": "P3",
+      "path": "research/orion-epistemic-state-v1/results/P3-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P3 execution coverage, exact terminal, and authority boundary",
+      "sha256": "468b15e5da8c2d075092f7fe65e8291654d4b90e7f959af70e5afd0971db4769",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 1978,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p4_des_packet",
+      "paper": "P4",
+      "path": "research/orion-epistemic-state-v1/results/P4-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P4 execution coverage, exact terminal, and authority boundary",
+      "sha256": "b2264893d9dbbae9e532787babfb3fd60f55ddf4aa654202b2457f5375f1adea",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 542841,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p5_des_packet",
+      "paper": "P5",
+      "path": "research/orion-epistemic-state-v1/results/P5-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P5 execution coverage, exact terminal, and authority boundary",
+      "sha256": "6da830042f9533200c78c98af318befdc773ac0d5d976834cbc43ab364e5e4c5",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 9367,
+      "declared_schema": "orion.p6-des.result-binding-packet.v1",
+      "detected_schema": "orion.p6-des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p6_des_packet",
+      "paper": "P6",
+      "path": "research/orion-epistemic-state-v1/results/P6-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P6 execution coverage, exact terminal, and authority boundary",
+      "sha256": "fdc5a68d96beff59b70e47188f627d5182188827140f212518a0612967d24e69",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 1998,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p7_des_packet",
+      "paper": "P7",
+      "path": "research/orion-epistemic-state-v1/results/P7-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P7 execution coverage, exact terminal, and authority boundary",
+      "sha256": "7ee8b846523e16f267639d5f74542af2337c8e47bfe3e24bb1dfd6741a282c0b",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 1988,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p8_des_packet",
+      "paper": "P8",
+      "path": "research/orion-epistemic-state-v1/results/P8-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P8 execution coverage, exact terminal, and authority boundary",
+      "sha256": "78202b701cf4167ca998cb0926f18afab4bf6fce691c504266feb94d4fc369f8",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 379886,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.p9-des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p9_des_packet",
+      "paper": "P9",
+      "path": "research/orion-epistemic-state-v1/results/P9-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P9 execution coverage, exact terminal, and authority boundary",
+      "sha256": "b85531ab2ff3659aa6b61442ef80b4a2a461252d5317c972c09c65d031f6c337",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 159201,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p10_des_packet",
+      "paper": "P10",
+      "path": "research/orion-epistemic-state-v1/results/P10-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P10 execution coverage, exact terminal, and authority boundary",
+      "sha256": "25eedd1128bb5469b93bdc340379705c1ad9d5defc366cff7c27155f113c7ff9",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 2256,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p11_des_packet",
+      "paper": "P11",
+      "path": "research/orion-epistemic-state-v1/results/P11-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P11 execution coverage, exact terminal, and authority boundary",
+      "sha256": "2dbcdff1dc8d4d5b893a0f041f827d748fdda77ac5b737eb8d5482680f617d43",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 61965,
+      "declared_schema": "orion.p12-des-01.result-binding-packet.v1",
+      "detected_schema": "orion.p12-des-01.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p12_des_packet",
+      "paper": "P12",
+      "path": "research/orion-epistemic-state-v1/results/P12-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P12 execution coverage, exact terminal, and authority boundary",
+      "sha256": "a68532d67fa2afeb66895e88d126a8ae9fbb5046ff19daa63a35166e5afb31b0",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 75182,
+      "declared_schema": "orion.p13-des.result-binding-packet.v1",
+      "detected_schema": "orion.p13-des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p13_des_packet",
+      "paper": "P13",
+      "path": "research/orion-epistemic-state-v1/results/P13-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P13 execution coverage, exact terminal, and authority boundary",
+      "sha256": "f5fc94e348a9605d3c89254022acf18a6ed8b564ca1eca8a54f9366648b91ddd",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 1965,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p14_des_packet",
+      "paper": "P14",
+      "path": "research/orion-epistemic-state-v1/results/P14-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P14 execution coverage, exact terminal, and authority boundary",
+      "sha256": "9e4eea45e81af1148c8250615fc202ffecfc79a7f7ef35b6712528f55f5e80d6",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FROZEN_DES_EXECUTION_PACKET_NO_EXTERNAL_AUTHORITY_DELTA",
+      "bytes": 25673,
+      "declared_schema": "orion.des.result-binding-packet.v1",
+      "detected_schema": "orion.des.result-binding-packet.v1",
+      "fields": [
+        "job_id",
+        "exact_terminal",
+        "external_authority_state",
+        "paper authority delta",
+        "planned/observed/valid denominators",
+        "claim_ceiling"
+      ],
+      "id": "p15_des_packet",
+      "paper": "P15",
+      "path": "research/orion-epistemic-state-v1/results/P15-DES-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "frozen #1332 P15 execution coverage, exact terminal, and authority boundary",
+      "sha256": "d7195d73a564fbba12fc7467acacf94e180bc514be9ae6764baa81ef4ff32b74",
+      "transform_id": "des-coverage-v1"
+    },
+    {
+      "authority_tier": "FINITE_INTERNAL_NONRECONSTRUCTION_WITNESS",
+      "bytes": 1185438,
+      "declared_schema": "orion.des.label-decision-collision-atlas.v1",
+      "detected_schema": "orion.des.label-decision-collision-atlas.v1",
+      "fields": [
+        "finite_class.case_count",
+        "denominators",
+        "terminal_counts",
+        "action_counts",
+        "terminal"
+      ],
+      "id": "des_collision_atlas",
+      "paper": "FRAMEWORK",
+      "path": "research/orion-epistemic-state-v1/results/DES-COLLISION-01/LABEL_DECISION_COLLISION_ATLAS_V1.json",
+      "role": "finite-state label/decision collision mechanism receipt",
+      "sha256": "f54831e7f7f29c4ce51403dc643f6c416fe4febd8b44d2d9a67c17bd3ab085b5",
+      "transform_id": "framework-mechanics-v1"
+    },
+    {
+      "authority_tier": "FINITE_INTERNAL_ALGEBRA_REPLAY",
+      "bytes": 3951,
+      "declared_schema": "orion.dynamic-epistemic-state.update-algebra-receipt.v1",
+      "detected_schema": "orion.dynamic-epistemic-state.update-algebra-receipt.v1",
+      "fields": [
+        "finite_class",
+        "laws",
+        "mutation_results",
+        "terminal",
+        "paper_authority_delta"
+      ],
+      "id": "des_update_algebra",
+      "paper": "FRAMEWORK",
+      "path": "research/orion-epistemic-state-v1/results/DES-UPDATE-01/UPDATE_ALGEBRA_RECEIPT_V1.json",
+      "role": "finite update-law and mutation receipt",
+      "sha256": "41e94113880ff29b16c1fd1ee6fba3c4142ac98de709d477a67845a98df0f1b8",
+      "transform_id": "framework-mechanics-v1"
+    },
+    {
+      "authority_tier": "FINITE_INTERNAL_PROJECTION_REPLAY",
+      "bytes": 1191,
+      "declared_schema": "orion.dynamic-epistemic-state.legacy-projection-correspondence.v1",
+      "detected_schema": "orion.dynamic-epistemic-state.legacy-projection-correspondence.v1",
+      "fields": [
+        "projection_row_denominator",
+        "matched_projection_rows",
+        "mismatches",
+        "surface_results",
+        "terminal"
+      ],
+      "id": "des_projection_correspondence",
+      "paper": "FRAMEWORK",
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/LEGACY_PROJECTION_CORRESPONDENCE_V1.json",
+      "role": "legacy projection replay correspondence",
+      "sha256": "db8e59b54f56e50b7aaa2487cf8d3e0d88c711682e03f15d3c303855bf1b55bf",
+      "transform_id": "framework-mechanics-v1"
+    },
+    {
+      "authority_tier": "FINITE_INTERNAL_NONRECONSTRUCTION_WITNESS",
+      "bytes": 15649,
+      "declared_schema": "orion.dynamic-epistemic-state.nonreconstruction-witnesses.v1",
+      "detected_schema": "orion.dynamic-epistemic-state.nonreconstruction-witnesses.v1",
+      "fields": [
+        "group_count",
+        "all_reachable_groups_noninjective",
+        "groups_with_action_divergence",
+        "witnesses"
+      ],
+      "id": "des_projection_witnesses",
+      "paper": "FRAMEWORK",
+      "path": "research/orion-epistemic-state-v1/results/DES-PROJECTION-01/NONRECONSTRUCTION_WITNESSES_V1.json",
+      "role": "finite nonreconstruction and action-divergence witnesses",
+      "sha256": "e9ef75571cfc69f59b8387b11cb4e05fef9b0cd983a571286ba11eae7b767993",
+      "transform_id": "framework-mechanics-v1"
+    },
+    {
+      "authority_tier": "FINITE_INTERNAL_RESOURCE_CAP_CENSORED",
+      "bytes": 3321518,
+      "declared_schema": "orion.dynamic-epistemic-state.result-binding-packet.v1",
+      "detected_schema": "orion.dynamic-epistemic-state.result-binding-packet.v1",
+      "fields": [
+        "occurrence_denominators",
+        "transfer.held_out_classification_rate",
+        "censoring_results",
+        "exact_terminal"
+      ],
+      "id": "des_census_packet",
+      "paper": "FRAMEWORK",
+      "path": "research/orion-epistemic-state-v1/results/DES-CENSUS-01/RESULT_BINDING_PACKET_V1.json",
+      "role": "source-tree label census and held-out mechanical classification boundary",
+      "sha256": "c961a7930deec9fec4f8961d24da8de19a60f0d61b7e689499de94584022c334",
+      "transform_id": "framework-mechanics-v1"
     }
   ]
 }

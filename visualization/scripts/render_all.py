@@ -657,6 +657,198 @@ def render(atlas: dict, output_root: Path) -> list[Path]:
         ax.get_legend().remove()
     outputs += save_both(fig, "12_p15_workflow_matrix", output_root)
 
+    # 13. Frozen #1332 DES coverage.  Each row is normalized only by its own
+    # registered denominator; the percentages are execution coverage, never a
+    # performance or readiness score.  Observed and valid remain separate so
+    # P4's mechanical execution and P7's invalid near-complete generation are
+    # not promoted into scientific outcomes.
+    des_rows = atlas["des_execution"]
+    y = np.arange(len(des_rows))[::-1]
+    observed_pct = np.asarray(
+        [100 * row["observed"] / row["planned"] for row in des_rows], dtype=float
+    )
+    valid_pct = np.asarray(
+        [100 * row["valid"] / row["planned"] for row in des_rows], dtype=float
+    )
+    fig, ax = plt.subplots(figsize=(11.8, 7.4), constrained_layout=True)
+    ax.barh(y, np.full(len(des_rows), 100.0), height=0.60, color="#E5E7EB", label="Planned")
+    ax.barh(y, observed_pct, height=0.42, color="#56B4E9", label="Observed / executed")
+    ax.barh(y, valid_pct, height=0.20, color="#009E73", label="Valid at registered internal scope")
+    for y_value, row, observed_value, valid_value in zip(
+        y, des_rows, observed_pct, valid_pct, strict=True
+    ):
+        if valid_value == 0:
+            ax.scatter(0, y_value, marker="|", s=90, color="#111827", linewidth=1.6, zorder=4)
+        ax.text(
+            102,
+            y_value,
+            f"{row['valid']}/{row['observed']}/{row['planned']} {row['unit']}",
+            va="center",
+            fontsize=7.5,
+        )
+    ax.set(
+        xlim=(0, 142),
+        xticks=np.arange(0, 101, 20),
+        xticklabels=[f"{value}%" for value in range(0, 101, 20)],
+        yticks=y,
+        yticklabels=[row["paper"] for row in des_rows],
+        xlabel="Within-paper registered denominator coverage (not performance)",
+        ylabel="Frozen DES job",
+        title=(
+            "Frozen #1332 P1–P15 execution coverage\n"
+            "right labels = valid / observed / planned in each paper's own unit; "
+            "gray planned · blue observed · green valid"
+        ),
+    )
+    ax.grid(axis="x", color="#E5E7EB", linewidth=0.8)
+    ax.text(
+        0,
+        -0.09,
+        "All external-authority states remain CANNOT CHECK and every paper-authority delta remains NONE.",
+        transform=ax.transAxes,
+        fontsize=8,
+        color="#4B5563",
+    )
+    outputs += save_both(fig, "13_des_execution_coverage", output_root)
+
+    # 14. Core dynamic-state mechanics.  Four different estimands remain in
+    # separate panels; no cross-panel scalar or authority score is computed.
+    mechanics = atlas["framework_mechanics"]
+    collision = mechanics["collision"]
+    update = mechanics["update_algebra"]
+    projection = mechanics["projection"]
+    census = mechanics["census"]
+    fig, axes = plt.subplots(2, 2, figsize=(12.2, 8.8), constrained_layout=True)
+
+    terminal_order = ["ADMISSIBLE", "BLOCKED", "CANNOT_CHECK"]
+    action_order = [
+        "ACQUIRE_EVIDENCE",
+        "DISCRIMINATE",
+        "OBTAIN_EXTERNAL_CUSTODY",
+        "REVALIDATE",
+        "STOP",
+    ]
+    action_labels = ["Acquire", "Discriminate", "Custody", "Revalidate", "Stop"]
+    collision_matrix = np.asarray(
+        [
+            [collision["terminal_action_counts"].get(terminal, {}).get(action, 0) for action in action_order]
+            for terminal in terminal_order
+        ],
+        dtype=int,
+    )
+    ax = axes[0, 0]
+    image = ax.imshow(np.log1p(collision_matrix), cmap="Blues", aspect="auto")
+    for row_index in range(collision_matrix.shape[0]):
+        for column_index in range(collision_matrix.shape[1]):
+            ax.text(column_index, row_index, str(collision_matrix[row_index, column_index]), ha="center", va="center", fontsize=8)
+    ax.set(
+        xticks=np.arange(len(action_labels)),
+        xticklabels=action_labels,
+        yticks=np.arange(len(terminal_order)),
+        yticklabels=[label.replace("_", " ") for label in terminal_order],
+        xlabel="Next action",
+        ylabel="Legacy terminal",
+        title=(
+            f"A. Terminal → action collisions (n={collision['state_count']} states)\n"
+            f"{collision['different_action_pairs']:,}/{collision['same_terminal_pairs']:,} same-terminal pairs diverge"
+        ),
+    )
+    ax.tick_params(axis="x", rotation=25)
+    colorbar = fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04)
+    colorbar.set_label("log(1 + state count)")
+
+    ax = axes[0, 1]
+    mutations = update["mutations"]
+    mutation_y = np.arange(len(mutations))[::-1]
+    mutation_rates = np.asarray(
+        [100 * row["detections"] / row["cases"] for row in mutations], dtype=float
+    )
+    ax.hlines(mutation_y, 0, mutation_rates, color="#BFD7EA", linewidth=2)
+    ax.scatter(mutation_rates, mutation_y, s=58, color="#0072B2", edgecolor="white", zorder=3)
+    for y_value, rate, row in zip(mutation_y, mutation_rates, mutations, strict=True):
+        ax.text(min(rate + 2, 103), y_value, f"{row['detections']:,}/{row['cases']:,}", va="center", fontsize=7.5)
+    total_law_cases = sum(row["pass"] + row["fail"] for row in update["laws"])
+    ax.set(
+        xlim=(0, 118),
+        xticks=np.arange(0, 101, 20),
+        xticklabels=[f"{value}%" for value in range(0, 101, 20)],
+        yticks=mutation_y,
+        yticklabels=[row["mutation"].removeprefix("M-").replace("-", " ").title() for row in mutations],
+        xlabel="Detected mutation cases / exercised mutation cases",
+        title=(
+            f"B. Update algebra: {update['mutations_killed']}/{update['mutation_count']} mutants killed\n"
+            f"registered law failures = {update['law_failures']} across {total_law_cases:,} law cases"
+        ),
+    )
+    ax.grid(axis="x", color="#E5E7EB", linewidth=0.8)
+
+    ax = axes[1, 0]
+    surfaces = ["PROMOTION_V1", "READINESS_V1"]
+    projection_terminals = ["ADMISSIBLE", "BLOCKED", "CANNOT_CHECK", "PROVISIONAL"]
+    projection_matrix = np.asarray(
+        [
+            [
+                projection["surface_results"][surface]["terminal_counts"].get(terminal, 0)
+                for terminal in projection_terminals
+            ]
+            for surface in surfaces
+        ],
+        dtype=int,
+    )
+    image = ax.imshow(np.log1p(projection_matrix), cmap="PuBuGn", aspect="auto")
+    for row_index in range(projection_matrix.shape[0]):
+        for column_index in range(projection_matrix.shape[1]):
+            ax.text(column_index, row_index, str(projection_matrix[row_index, column_index]), ha="center", va="center", fontsize=8)
+    ax.set(
+        xticks=np.arange(len(projection_terminals)),
+        xticklabels=[label.replace("_", " ") for label in projection_terminals],
+        yticks=np.arange(len(surfaces)),
+        yticklabels=[surface.replace("_V1", "").title() for surface in surfaces],
+        xlabel="Legacy terminal",
+        ylabel="Projection surface",
+        title=(
+            f"C. Projection replay: {projection['matched_rows']:,}/{projection['row_denominator']:,} rows match\n"
+            f"{projection['noninjective_groups']}/{projection['noninjective_groups']} groups noninjective; "
+            f"{projection['action_divergent_groups']} action-divergent"
+        ),
+    )
+    ax.tick_params(axis="x", rotation=25)
+    colorbar = fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04)
+    colorbar.set_label("log(1 + row count)")
+
+    ax = axes[1, 1]
+    held_out = census["folds"][str(census["held_out_fold"])]
+    all_counts = [census["classified_occurrences"], census["unclassified_occurrences"]]
+    held_counts = [held_out["classified"], held_out["unclassified"]]
+    totals = [sum(all_counts), sum(held_counts)]
+    classified_pct = [100 * all_counts[0] / totals[0], 100 * held_counts[0] / totals[1]]
+    unclassified_pct = [100 - value for value in classified_pct]
+    census_y = np.arange(2)[::-1]
+    ax.barh(census_y, classified_pct, color="#0072B2", label="Classified")
+    ax.barh(census_y, unclassified_pct, left=classified_pct, color="#D55E00", label="Unclassified retained")
+    for y_value, left, counts in zip(census_y, classified_pct, [all_counts, held_counts], strict=True):
+        ax.text(left / 2, y_value, f"{counts[0]:,}", ha="center", va="center", color="white", fontsize=8)
+        ax.text(left + (100 - left) / 2, y_value, f"{counts[1]:,}", ha="center", va="center", color="white", fontsize=8)
+    ax.set(
+        xlim=(0, 100),
+        xticks=np.arange(0, 101, 20),
+        xticklabels=[f"{value}%" for value in range(0, 101, 20)],
+        yticks=census_y,
+        yticklabels=["All occurrences", f"Held-out fold {census['held_out_fold']}"],
+        xlabel="Occurrence share",
+        title=(
+            f"D. Source-tree census (n={census['occurrences']:,} occurrences)\n"
+            f"terminal={census['terminal']}; text-cap-censored files={census['likely_text_cap_censored_count']}"
+        ),
+    )
+    ax.legend(frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.13), ncol=2)
+
+    fig.suptitle(
+        "Dynamic epistemic-state mechanics — finite internal receipts only; no external authority delta",
+        fontsize=14,
+    )
+    outputs += save_both(fig, "14_framework_mechanics_receipts", output_root)
+
     return outputs
 
 

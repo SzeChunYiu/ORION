@@ -67,6 +67,26 @@ P15's full-key-compromise outcome is a load-bearing negative, not an anomaly to
 clean away. It establishes the boundary of what the signature layer observes:
 verification under a key does not establish custody or truth.
 
+### 7. Frozen DES activity-versus-validity separation
+
+The #1332 execution layer exposes three additional interpretation traps:
+
+- P4 executed 900/1,500 arm-cases mechanically but externally scored 0; the
+  missing terminal gold is not a zero effect estimate.
+- P7 generated 736/738 planned rows but retains 0 valid rows because the frozen
+  denominator drift invalidates the execution.
+- P11 and P14 checked all eight acquisition requirements/artifacts while binding
+  or finding 0. Complete preflight activity is not scientific case execution.
+
+### 8. Finite conformance with retained residuals
+
+The core mechanics receipts pair favorable finite checks with explicit limits:
+the update algebra records 0 law failures and 6/6 killed mutants, while the
+source census retains 121,985 unclassified occurrences, two text-cap-censored
+files, and terminal `RESOURCE_CAP_CENSORED`. Exact projection replay likewise
+does not remove the seven noninjective terminal groups or six action-divergent
+groups. These are complementary facts, not contradictions to average away.
+
 ## Plotting safeguards
 
 - Display exact status strings and source identifiers in tables/tooltips.

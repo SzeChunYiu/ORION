@@ -49,10 +49,48 @@ def test_atlas_has_exact_canonical_paper_and_source_counts() -> None:
     assert atlas["schema"] == "orion.visualization.evidence-atlas.v1"
     assert [row["paper"] for row in atlas["paper_states"]] == [f"P{i}" for i in range(1, 16)]
     assert len(atlas["gate_states"]) == 45
-    assert len(atlas["sources"]) == 23
+    assert len(atlas["sources"]) == 43
     assert len(atlas["anomalies"]) == 14
     assert sorted(atlas["metrics"]) == sorted(f"P{i}" for i in range(1, 16))
     assert atlas["authority_boundary"] == "REPOSITORY_RECEIPTS_ONLY__NO_EXTERNAL_AUTHORITY_DELTA"
+
+
+def test_frozen_des_execution_layer_preserves_attempted_valid_and_authority_boundaries() -> None:
+    atlas = load_atlas()
+    rows = {row["paper"]: row for row in atlas["des_execution"]}
+    assert list(rows) == [f"P{i}" for i in range(1, 16)]
+    assert rows["P2"]["planned"] == rows["P2"]["observed"] == rows["P2"]["valid"] == 400
+    assert rows["P4"]["planned"] == 1500
+    assert rows["P4"]["observed"] == 900
+    assert rows["P4"]["valid"] == 0
+    assert rows["P7"]["planned"] == 738
+    assert rows["P7"]["observed"] == 736
+    assert rows["P7"]["valid"] == 0
+    assert rows["P13"]["planned"] == 720
+    assert rows["P13"]["observed"] == rows["P13"]["valid"] == 288
+    assert all(row["external_authority_state"] == "CANNOT_CHECK" for row in rows.values())
+    assert all(row["paper_authority_delta"] == "NONE" for row in rows.values())
+    assert all(0 <= row["valid"] <= row["observed"] <= row["planned"] for row in rows.values())
+
+
+def test_framework_mechanics_layer_retains_finite_counts_failures_and_censoring() -> None:
+    mechanics = load_atlas()["framework_mechanics"]
+    collision = mechanics["collision"]
+    assert collision["state_count"] == 144
+    assert collision["same_terminal_pairs"] == 9201
+    assert collision["different_action_pairs"] == 4355
+    update = mechanics["update_algebra"]
+    assert update["law_failures"] == 0
+    assert update["mutations_killed"] == update["mutation_count"] == 6
+    projection = mechanics["projection"]
+    assert projection["matched_rows"] == projection["row_denominator"] == 5760
+    assert projection["noninjective_groups"] == 7
+    assert projection["action_divergent_groups"] == 6
+    census = mechanics["census"]
+    assert census["occurrences"] == 316842
+    assert census["classified_occurrences"] + census["unclassified_occurrences"] == census["occurrences"]
+    assert census["likely_text_cap_censored_count"] == 2
+    assert census["terminal"] == "RESOURCE_CAP_CENSORED"
 
 
 def test_load_bearing_anomaly_claims_are_bound_to_exact_registered_receipts() -> None:
@@ -191,7 +229,7 @@ def test_source_validator_distinguishes_checked_drift_and_absence(tmp_path: Path
 
 def test_notebooks_are_valid_json_with_latex_parameters_and_compilable_code() -> None:
     paths = sorted((VIS / "notebooks").glob("*.ipynb"))
-    assert len(paths) == 5
+    assert len(paths) == 6
     for path in paths:
         notebook = json.loads(path.read_text(encoding="utf-8"))
         assert notebook["nbformat"] == 4
@@ -223,6 +261,19 @@ def test_governance_notebook_nondefault_metric_uses_neutral_dynamic_copy() -> No
     assert "lower is better" not in ax.get_xlabel().lower()
 
 
+def test_des_notebook_keeps_planned_observed_valid_and_authority_separate() -> None:
+    namespace = execute_notebook_with_parameters("05_frozen_des_execution.ipynb", {})
+    rows = {row["paper"]: row for row in namespace["selected_des"]}
+    assert len(rows) == 15
+    assert rows["P4"]["planned"] == 1500
+    assert rows["P4"]["observed"] == 900
+    assert rows["P4"]["valid"] == 0
+    assert rows["P7"]["planned"] == 738
+    assert rows["P7"]["observed"] == 736
+    assert rows["P7"]["valid"] == 0
+    assert all(row["external_authority_state"] == "CANNOT_CHECK" for row in rows.values())
+
+
 def test_anomaly_notebook_has_no_unsupported_ordinal_severity_filter() -> None:
     path = VIS / "notebooks/04_anomaly_audit.ipynb"
     notebook = json.loads(path.read_text(encoding="utf-8"))
@@ -252,16 +303,24 @@ def test_interactive_html_is_self_contained_and_filterable() -> None:
     lower = text.lower()
     assert "http://" not in lower and "https://" not in lower
     assert "<script src=" not in lower and "<link rel=" not in lower
-    for required in ("atlas-data", 'id="paper"', 'id="metric"', 'id="anomalies"'):
+    for required in (
+        "atlas-data",
+        'id="paper"',
+        'id="metric"',
+        'id="des-execution"',
+        'id="anomalies"',
+    ):
         assert required in text
     for responsive_or_signed in (
         "@media(max-width:650px)",
         ".bar-row{grid-template-columns:1fr}",
-        ".controls{display:grid;grid-template-columns:minmax(0,1fr)}",
+        ".controls{display:grid;grid-template-columns:minmax(0,1fr);position:static}",
         ".controls select,.controls input{margin-left:0;max-width:100%;width:100%;min-width:0}",
+        ".boundary{overflow-wrap:anywhere}",
         ".source-table{min-width:",
         ".source-hash{white-space:nowrap}",
         'class="zero"',
+        'class="des-zero"',
         "x.value<0?'negative'",
     ):
         assert responsive_or_signed in text
@@ -289,10 +348,21 @@ def test_figure_copy_separates_receipt_disposition_from_external_authority() -> 
     )
     assert "mean labels use a separate top annotation band" in p12_svg
 
+    des_svg = (VIS / "figures/static/svg/13_des_execution_coverage.svg").read_text(
+        encoding="utf-8"
+    )
+    assert "not performance" in des_svg
+    assert "external-authority states remain CANNOT CHECK" in des_svg
+
+    mechanics_svg = (
+        VIS / "figures/static/svg/14_framework_mechanics_receipts.svg"
+    ).read_text(encoding="utf-8")
+    assert "finite internal receipts only" in mechanics_svg
+
 
 def test_generated_svgs_have_no_trailing_whitespace() -> None:
     paths = sorted((VIS / "figures/static/svg").glob("*.svg"))
-    assert len(paths) == 13
+    assert len(paths) == 15
     for path in paths:
         lines = path.read_text(encoding="utf-8").splitlines()
         assert all(line == line.rstrip() for line in lines), path.name
@@ -314,6 +384,8 @@ def test_static_figure_set_uses_audited_plot_grammars() -> None:
         "10_p13_three_objective_tradeoff",
         "11_p14_governance_rates",
         "12_p15_workflow_matrix",
+        "13_des_execution_coverage",
+        "14_framework_mechanics_receipts",
     }
     audit = (VIS / "reports/FIGURE_QA.md").read_text(encoding="utf-8")
     assert "no KDE" in audit

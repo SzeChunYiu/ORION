@@ -28,6 +28,9 @@ its source path, scope, status, and authority fields in
 7. **No portfolio score.** P1-P15 use heterogeneous evidence units, estimands,
    scopes, and gates. The atlas does not average them into readiness, quality,
    or acceptance probabilities.
+8. **Coverage is not performance.** Frozen DES `planned`, `observed`, and
+   `valid` counts use paper-specific units. A complete or nearly complete bar
+   says nothing about effect size, external validity, or paper authority.
 
 ## Paper-specific ceilings
 
@@ -48,6 +51,22 @@ its source path, scope, status, and authority fields in
 | P13 | The bounded finite five-arm by four-corruption-world study plus the separately registered P13A historical-negative fields. | The finite result does not generalize beyond that matrix, and exact historical terminal `P14_CONTROLLED_SUFFICIENCY_DEBT_GATE_NOT_MET` remains part of the evidence under its received label. |
 | P14 | The 28 internally authored cases and the separate 67-packet pilot analytics. | The pilot analytics are `NOT_AUTHORITY`; internal procedures are not independent frontier-agent execution or human adjudication. |
 | P15 | Four real-workflow receipts (three `AUTHORIZED_SCIENCE` receipt dispositions and one honest `CANNOT_CHECK`) and bounded attestation results, including 0 signature detections and 6 false promotions under full key compromise. | A receipt disposition is not publication/external authority. Signature validity does not prove key custody, fact truth, scientific validity, or claim authority; full-key compromise is outside signature-layer authority. |
+
+## Frozen DES and framework-mechanics ceilings
+
+- `13_des_execution_coverage` compares only within-paper denominator coverage.
+  P4's 900 mechanically executed arm-cases remain 0 externally terminal-scored
+  cases; P7's 736 observed rows remain 0 valid rows.
+- The collision atlas is a finite nonreconstruction witness over 144 declared
+  states. It is not evidence of empirical superiority or universal necessity.
+- The update-algebra receipt's zero failures and 6/6 killed mutants are finite
+  replay/mutation evidence, not a universal proof.
+- Exact 5,760/5,760 legacy-projection replay can coexist with noninjectivity:
+  every reachable terminal group has multiple full-state preimages and six of
+  seven groups contain action divergence.
+- The source census retains 121,985 unclassified occurrences and terminal
+  `RESOURCE_CAP_CENSORED`; its held-out mechanical classification rate is not a
+  scientific generalization estimate.
 
 ## Permitted language
 

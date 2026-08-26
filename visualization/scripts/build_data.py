@@ -906,6 +906,195 @@ def build_metrics(payload: dict[str, Any]) -> dict[str, Any]:
     return metrics
 
 
+def exact_count(value: Any, label: str) -> int:
+    if isinstance(value, bool):
+        raise ValueError(f"{label} is a boolean, not a count")
+    number = finite(value, label)
+    if number < 0 or not number.is_integer():
+        raise ValueError(f"{label} is not a non-negative integer count")
+    return int(number)
+
+
+def nested(payload: dict[str, Any], path: str) -> Any:
+    value: Any = payload
+    for part in path.split("."):
+        if part == "length":
+            if not isinstance(value, list):
+                raise ValueError(f"{path} requests length of a non-list")
+            value = len(value)
+        else:
+            if not isinstance(value, dict) or part not in value:
+                raise KeyError(f"missing registered field {path}")
+            value = value[part]
+    return value
+
+
+def normalize_des_execution(payloads: dict[str, Any]) -> list[dict[str, Any]]:
+    """Normalize the frozen #1332 execution packets without pooling estimands.
+
+    Planned, observed, and valid are coverage counts within each paper's own
+    registered unit.  They are not performance scores, and their absolute
+    magnitudes are never compared across papers.
+    """
+
+    mapping = {
+        "P1": ("denominators.planned_run_cell_denominator", "denominators.run_cells_executed", "denominators.run_cells_executed", "run cells", "CANNOT_CHECK"),
+        "P2": ("denominators.case_policy_rows_expected", "denominators.case_policy_rows_retained", "denominators.case_policy_rows_retained", "topic-policy rows", "BOUNDED_PUBLIC_EXECUTION"),
+        "P3": ("scheduled_cell_denominator", "executed_cell_denominator", "executed_cell_denominator", "evaluation cells", "CANNOT_CHECK"),
+        "P4": ("arm_case_denominator", "mechanically_executed_arm_cases", "externally_terminal_scored_cases", "arm-cases", "CANNOT_CHECK_EXTERNAL_SCORE"),
+        "P5": ("denominators.planned_run_cell_denominator", "denominators.run_cells_executed", "denominators.run_cells_executed", "run cells", "CANNOT_CHECK"),
+        "P6": ("denominators.primary_case_denominator", "case_outcomes.length", "case_outcomes.length", "transition cases", "BOUNDED_INTERNAL_VALID"),
+        "P7": ("planned_case_denominator", "observed_generated_case_denominator", "valid_case_denominator", "generated cases", "INVALID"),
+        "P8": ("case_denominator", "executed_case_denominator", "executed_case_denominator", "replay cases", "BOUNDED_INTERNAL_REPLAY"),
+        "P9": ("denominators.planned_cell_denominator", "denominators.cells_executed", "denominators.cells_executed", "execution cells", "CANNOT_CHECK"),
+        "P10": ("denominators.planned_run_cell_denominator", "denominators.run_cells_executed", "denominators.run_cells_executed", "run cells", "CANNOT_CHECK"),
+        "P11": ("acquisition_requirement_denominator", "resource_vector.acquisition_requirements_checked", "bound_requirements", "acquisition requirements", "CANNOT_CHECK"),
+        "P12": ("denominators.clean_license_cases_planned", "denominators.clean_license_cases_executed", "denominators.clean_license_cases_executed", "clean-license cases", "CANNOT_CHECK"),
+        "P13": ("denominators.planner_cell_denominator", "denominators.executed_planner_cell_denominator", "denominators.executed_planner_cell_denominator", "planner cells", "BOUNDED_PARTIAL_INTERNAL"),
+        "P14": ("acquisition_artifact_denominator", "resource_vector.acquisition_artifacts_checked", "present_artifacts", "acquisition artifacts", "CANNOT_CHECK"),
+        "P15": ("denominators.planned_run_cell_denominator", "denominators.run_cells_executed", "denominators.run_cells_executed", "run cells", "CANNOT_CHECK"),
+    }
+    rows: list[dict[str, Any]] = []
+    for index in range(1, 16):
+        paper = f"P{index}"
+        source_id = f"p{index}_des_packet"
+        payload = payloads[source_id]
+        planned_path, observed_path, valid_path, unit, status = mapping[paper]
+        planned = exact_count(nested(payload, planned_path), f"{paper} planned")
+        observed = exact_count(nested(payload, observed_path), f"{paper} observed")
+        valid = exact_count(nested(payload, valid_path), f"{paper} valid")
+        if not 0 <= valid <= observed <= planned:
+            raise ValueError(f"{paper} violates valid <= observed <= planned")
+        authority_delta = payload.get(
+            "paper_authority_delta",
+            payload.get("computation_session_paper_authority_delta"),
+        )
+        if authority_delta != "NONE":
+            raise ValueError(f"{paper} must retain paper authority delta NONE")
+        if payload.get("external_authority_state") != "CANNOT_CHECK":
+            raise ValueError(f"{paper} must retain external authority CANNOT_CHECK")
+        rows.append(
+            {
+                "paper": paper,
+                "paper_id": paper,
+                "job_id": payload["job_id"],
+                "planned": planned,
+                "observed": observed,
+                "valid": valid,
+                "unit": unit,
+                "planned_path": planned_path,
+                "observed_path": observed_path,
+                "valid_path": valid_path,
+                "status": status,
+                "terminal": payload["exact_terminal"],
+                "external_authority_state": payload["external_authority_state"],
+                "paper_authority_delta": authority_delta,
+                "claim_ceiling": payload.get("claim_ceiling"),
+                "source_id": source_id,
+            }
+        )
+    return rows
+
+
+def normalize_framework_mechanics(payloads: dict[str, Any]) -> dict[str, Any]:
+    collision = payloads["des_collision_atlas"]
+    update = payloads["des_update_algebra"]
+    correspondence = payloads["des_projection_correspondence"]
+    witnesses = payloads["des_projection_witnesses"]
+    census = payloads["des_census_packet"]
+
+    laws = [
+        {
+            "law": law,
+            "pass": exact_count(counts["PASS"], f"{law} PASS"),
+            "fail": exact_count(counts["FAIL"], f"{law} FAIL"),
+        }
+        for law, counts in sorted(update["laws"].items())
+    ]
+    mutations = [
+        {
+            "mutation": row["mutation_id"],
+            "cases": exact_count(row["cases"], f"{row['mutation_id']} cases"),
+            "detections": exact_count(
+                row["detections"], f"{row['mutation_id']} detections"
+            ),
+            "killed": bool(row["killed"]),
+        }
+        for row in update["mutation_results"]
+    ]
+    occurrences = census["occurrence_denominators"]
+    classified = exact_count(occurrences["classified_occurrences"], "classified occurrences")
+    unclassified = exact_count(
+        occurrences["unclassified_occurrences"], "unclassified occurrences"
+    )
+    total = exact_count(occurrences["occurrences"], "occurrences")
+    if classified + unclassified != total:
+        raise ValueError("census classified and unclassified counts do not close")
+
+    return {
+        "collision": {
+            "state_count": exact_count(collision["finite_class"]["case_count"], "collision states"),
+            "all_state_pairs": exact_count(collision["denominators"]["all_state_pairs"], "all state pairs"),
+            "same_terminal_pairs": exact_count(collision["denominators"]["same_legacy_terminal_pairs"], "same-terminal pairs"),
+            "different_action_pairs": exact_count(collision["denominators"]["different_action_collision_pairs"], "different-action pairs"),
+            "terminal_action_counts": collision["label_action_counts"],
+            "minimum_collision_hamming_distance": exact_count(collision["minimum_collision_hamming_distance"], "minimum collision distance"),
+            "terminal": collision["terminal"],
+            "claim_ceiling": collision["authority_ceiling"],
+            "source_id": "des_collision_atlas",
+        },
+        "update_algebra": {
+            "states": exact_count(update["finite_class"]["states"], "update states"),
+            "event_instances": exact_count(update["finite_class"]["event_instances"], "event instances"),
+            "laws": laws,
+            "law_failures": sum(row["fail"] for row in laws),
+            "mutations": mutations,
+            "mutation_count": len(mutations),
+            "mutations_killed": sum(row["killed"] for row in mutations),
+            "terminal": update["terminal"],
+            "claim_ceiling": update["claim_ceiling"],
+            "paper_authority_delta": update["paper_authority_delta"],
+            "source_id": "des_update_algebra",
+        },
+        "projection": {
+            "state_cases": exact_count(correspondence["state_case_denominator"], "projection states"),
+            "row_denominator": exact_count(correspondence["projection_row_denominator"], "projection rows"),
+            "matched_rows": exact_count(correspondence["matched_projection_rows"], "matched projection rows"),
+            "mismatch_count": len(correspondence["mismatches"]),
+            "surface_results": correspondence["surface_results"],
+            "noninjective_groups": exact_count(witnesses["group_count"], "noninjective groups"),
+            "all_reachable_groups_noninjective": bool(witnesses["all_reachable_groups_noninjective"]),
+            "action_divergent_groups": exact_count(witnesses["groups_with_action_divergence"], "action-divergent groups"),
+            "unresolved_semantics_retained": bool(correspondence["unresolved_semantics_retained"]),
+            "terminal": correspondence["terminal"],
+            "authority": correspondence["authority"],
+            "source_ids": ["des_projection_correspondence", "des_projection_witnesses"],
+        },
+        "census": {
+            "tracked_entries": exact_count(occurrences["tracked_entries"], "tracked entries"),
+            "parsed_text_files": exact_count(occurrences["parsed_text_files"], "parsed text files"),
+            "retained_excluded_files": exact_count(occurrences["retained_excluded_files"], "retained excluded files"),
+            "occurrences": total,
+            "classified_occurrences": classified,
+            "unclassified_occurrences": unclassified,
+            "unique_labels": exact_count(occurrences["unique_labels"], "unique labels"),
+            "family_counts": {
+                key.removeprefix("family_"): exact_count(value, key)
+                for key, value in occurrences.items()
+                if key.startswith("family_")
+            },
+            "folds": census["transfer"]["folds"],
+            "held_out_fold": exact_count(census["transfer"]["held_out_fold"], "held-out fold"),
+            "held_out_classification_rate": finite(census["transfer"]["held_out_classification_rate"], "held-out classification rate"),
+            "likely_text_cap_censored_count": exact_count(census["censoring_results"]["likely_text_cap_censored_count"], "text-cap censored count"),
+            "likely_text_unreadable_count": exact_count(census["censoring_results"]["likely_text_unreadable_count"], "unreadable count"),
+            "terminal": census["exact_terminal"],
+            "claim_ceiling": census["claim_ceiling"],
+            "source_id": "des_census_packet",
+        },
+    }
+
+
 def framework() -> dict[str, Any]:
     groups = {
         "P1": "state",
@@ -976,6 +1165,8 @@ def build(root: Path, atlas_path: Path, manifest_path: Path) -> None:
         "paper_states": normalize_paper_states(ledger),
         "gate_states": gate_states(metrics),
         "framework": framework(),
+        "des_execution": normalize_des_execution(payloads),
+        "framework_mechanics": normalize_framework_mechanics(payloads),
         "metrics": metrics,
         "metric_records": flat_metric_records(metrics),
         "anomalies": anomalies(metrics),
@@ -984,6 +1175,7 @@ def build(root: Path, atlas_path: Path, manifest_path: Path) -> None:
             "Incompatible units are not pooled across papers.",
             "Finite witnesses, hashes, tests, and same-owner replay are not external authority.",
             "Interactive outputs are presentation-only and inherit this claim ceiling.",
+            "Frozen DES execution coverage is a separate layer; attempted, valid, and externally authoritative are not synonyms.",
         ],
     }
     manifest = {

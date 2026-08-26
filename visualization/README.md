@@ -39,8 +39,9 @@ visualization/
     02_p6_p10_formal_structured.ipynb
     03_p11_p15_state_governance_harness.ipynb
     04_anomaly_audit.ipynb
+    05_frozen_des_execution.ipynb
   figures/
-    static/                         13 deterministic PNG/SVG reference figures
+    static/                         15 deterministic PNG/SVG reference figures
     interactive/evidence_atlas.html offline filterable presentation artifact
   generated/manifests/             output byte/digest binding
   reports/
@@ -74,7 +75,7 @@ uv run --extra plots pytest -q visualization/tests
 ```
 
 `make_notebooks.py` uses only the Python standard library and deterministically
-writes the five notebook JSON files. Notebook runtime cells expect matplotlib
+writes the six notebook JSON files. Notebook runtime cells expect matplotlib
 and add `visualization/src` to `sys.path`. Static-figure tooling may use the
 scientific packages already declared by the repository.
 
@@ -109,6 +110,10 @@ unfiltered anomaly count remain unchanged.
    external-authority, and signature-boundary views.
 5. **Anomaly audit** — filterable anomaly inventory with exact counts and the
    mandatory P2, P5, P7, P9-P15 findings.
+6. **Frozen DES execution** — the #1332 P1-DES-01 through P15-DES-01 planned,
+   observed, and valid-coverage layer, plus finite collision, update-algebra,
+   projection, and source-census mechanics. Coverage is normalized only within
+   each paper's own unit and is never treated as performance or authority.
 
 Plots intentionally avoid pooling incompatible measurements. An ECDF is created
 only for one exact selected metric; categorical heatmaps are labelled as binary
@@ -128,6 +133,12 @@ not acquire stronger authority merely because it is interactive.
 If a declared source is missing or has drifted, the correct response is a
 failed integrity check or an explicit unresolved status—not a network fetch or
 an imputed value.
+
+The frozen DES layer is intentionally distinct from the paper-specific bounded
+studies used elsewhere in the atlas. A DES packet may report mechanical or
+preflight activity while its scientific result remains invalid, unscored, or
+`CANNOT_CHECK`; the notebook and figure therefore keep `planned`, `observed`,
+and `valid` as three separate quantities.
 
 ## Evidence and authority boundary
 
