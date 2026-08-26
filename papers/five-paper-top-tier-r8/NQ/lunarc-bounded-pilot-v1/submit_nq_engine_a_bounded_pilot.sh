@@ -176,6 +176,7 @@ module load GCCcore/13.2.0
 module load Python/3.11.5
 cd "${SOURCE_DIR}"
 JOB_ID="$(sbatch --parsable \
+  --account=lu2026-2-51 \
   --nodes=1 \
   --ntasks=1 \
   --cpus-per-task=1 \
