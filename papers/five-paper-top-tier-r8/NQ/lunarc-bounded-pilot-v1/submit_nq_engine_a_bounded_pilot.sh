@@ -4,10 +4,10 @@ set -euo pipefail
 REPOSITORY="https://github.com/SzeChunYiu/ORION.git"
 SOURCE_COMMIT="ce3ad440337c1bd413a8e5202c94a67374721403"
 SOURCE_TREE="75230e3fdb53822139817ff744925d63220c193a"
-AUTHORIZATION_COMMIT="f46a0541e381e45e363f940083d0cf03019085e3"
-AUTHORIZATION_TREE="e33424102784b80a3dfcf609983d54fa3322cbcc"
+AUTHORIZATION_COMMIT="69ec8d24814dda88162b9ef12a0b506616f47a32"
+AUTHORIZATION_TREE="45a69c92288e5d0bbbe16377d084a7f076f1ebb3"
 AUTHORIZATION_PATH="papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/LUNARC_AUTHORIZATION_PACKET.json"
-AUTHORIZATION_SHA256="7e42cbb10d40cf9249791af279823338da13205524276dbcaac5b66e3fa89809"
+AUTHORIZATION_SHA256="204e6492632cf8ac36c01ed8eaa9413cf4926b9a4ddf5a0e1741aad4b66b5d6f"
 RUNNER_PATH="papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/run_nq_engine_a_bounded_pilot.slurm"
 RUNNER_SHA256="26a8a32155ac204454d4f7ee68f898f706f21c15a817e7035052b6aae69e2ff7"
 SOURCE_MANIFEST_SHA256="b343b580411b87028b87af321e0b3ae44add4d066fe695c44cefb0527fac8045"
@@ -99,7 +99,7 @@ test "$(sha256sum "${AUTHORIZATION_PACKET}" | awk '{print $1}')" = \
 module load Python/3.11.5-GCCcore-13.2.0
 cd "${SOURCE_DIR}"
 JOB_ID="$(sbatch --parsable \
-  --partition=compute \
+  --partition=lu48 \
   --nodes=1 \
   --ntasks=1 \
   --cpus-per-task=1 \
