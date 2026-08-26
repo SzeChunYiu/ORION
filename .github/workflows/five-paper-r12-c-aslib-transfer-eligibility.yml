@@ -38,8 +38,8 @@ jobs:
           git init "$root"
           git -C "$root" remote add origin https://github.com/coseal/aslib_data.git
           git -C "$root" fetch --depth 1 --filter=blob:none origin 551b22beef8df17de59286b4822ef720e0aa4d6f
-          git -C "$root" checkout --detach --no-checkout FETCH_HEAD
-          test "$(git -C "$root" rev-parse HEAD)" = '551b22beef8df17de59286b4822ef720e0aa4d6f'
+          test "$(git -C "$root" rev-parse FETCH_HEAD)" = '551b22beef8df17de59286b4822ef720e0aa4d6f'
+          test -z "$(find "$root" -mindepth 1 -maxdepth 1 ! -name .git -print -quit)"
 
       - name: Freeze metadata-only eligibility twice
         shell: bash
@@ -47,8 +47,8 @@ jobs:
           set -euo pipefail
           script='papers/five-paper-top-tier-r8/C/select_aslib_sat_transfer_targets_r12.py'
           root="$RUNNER_TEMP/aslib_data"
-          python "$script" --aslib-git-root "$root" --output "$RUNNER_TEMP/eligibility-a.json" | tee "$RUNNER_TEMP/terminal.txt"
-          python "$script" --aslib-git-root "$root" --output "$RUNNER_TEMP/eligibility-b.json"
+          python "$script" --aslib-git-root "$root" --ref FETCH_HEAD --output "$RUNNER_TEMP/eligibility-a.json" | tee "$RUNNER_TEMP/terminal.txt"
+          python "$script" --aslib-git-root "$root" --ref FETCH_HEAD --output "$RUNNER_TEMP/eligibility-b.json"
           cmp "$RUNNER_TEMP/eligibility-a.json" "$RUNNER_TEMP/eligibility-b.json"
           grep -q '^FIBERGUARD_ASLIB_TRANSFER_ELIGIBILITY_FROZEN ' "$RUNNER_TEMP/terminal.txt"
 
@@ -62,12 +62,14 @@ jobs:
           r = json.loads(p.read_text())
           assert r['schema'] == 'ORION.FiberGuard.ASlibSATTransferEligibility.R12.v1'
           assert r['authority']['metadata_only'] is True
+          assert r['authority']['repository_worktree_checked_out'] is False
           assert r['authority']['target_algorithm_outcomes_read'] is False
           assert r['authority']['target_feature_values_read'] is False
           assert r['authority']['target_feature_cost_values_read'] is False
           assert r['authority']['target_runstatus_values_read'] is False
           assert r['authority']['representation_reselection_allowed'] is False
           assert r['upstream']['source_result_sha256'] == '7c0778836101d5fe44b024e302c3fc0848faf5a994fc1e51b80831d82fd5e652'
+          assert r['upstream']['inspected_ref'] == 'FETCH_HEAD'
           print('ASLIB_TRANSFER_ELIGIBILITY_AUTHORITY_VERIFIED')
           PY
 
