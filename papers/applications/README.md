@@ -13,6 +13,8 @@ The application family consumes four distinct certificate types.
 3. **AUTHORIZE — Paper D.** Typed licenses and origins determine whether a derivation is permitted for a proposed action after evidence merge or retraction. Reachability without the required authority coordinate is not authorization.
 4. **VERIFY — Nonquantum paper and exact solvers.** Proof-producing search, independent replay, and hostile controls determine whether the claimed exact result is computationally supported. The `C_5^3` programme also supplies a difficult benchmark for disjoint binary-kernel packing and search-to-proof conversion.
 
+`CERTIFICATE_CONTROL_PLANE_THEOREMS_R9.md` proves the fail-closed composition result: when all four checkers are sound, every emitted action is exact for the original problem and carries its required typed authority. The note also gives finite separation witnesses showing that each layer is independently necessary. This is analytic application authority, not yet evidence that the integrated system improves an external workflow.
+
 A cross-paper application may combine these interfaces into a model-independent certificate control plane, but it becomes a standalone application paper only after a unique cross-domain system result survives component ablations and current-source review.
 
 ## Active coordination
@@ -68,7 +70,8 @@ Future work, same-author toy examples, proposals, unreviewed policies, and local
 - `APPLICATION_EXPERIMENT_QUEUE_R9.json`: machine-readable Codex/harness queue.
 - `PRIMARY_SOURCE_POSITIONING_R9.md`: closest current sources and residual claims.
 - `MANUSCRIPT_IMPORT_MAP_R9.md`: exact application paragraphs permitted in Q1, integrated A+B, C, D, and NQ.
+- `CERTIFICATE_CONTROL_PLANE_THEOREMS_R9.md`: analytic composition and independent-necessity theorems for the integrated application architecture.
 
 ## Current terminal
 
-`APPLICATION_FAMILY_R9_ACTIVE__CODEX_TASKS_DISPATCHED__THEOREM_TO_SYSTEM_ATLAS_IN_PROGRESS__NO_EXTERNAL_IMPACT_PROMOTED`
+`APPLICATION_FAMILY_R9_ACTIVE__CODEX_TASKS_DISPATCHED__CONTROL_PLANE_COMPOSITION_PROVED__EXTERNAL_EFFECTS_OPEN`
