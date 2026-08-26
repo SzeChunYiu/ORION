@@ -9,12 +9,17 @@ on:
       - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_PROTOCOL_R18.md'
       - 'papers/five-paper-top-tier-r8/C/fiberguard_paired_route_r18*.py'
       - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json'
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_TERMINAL.txt'
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_COMMENT.md'
       - '.github/workflows/five-paper-r18-c-paired-route.yml'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   issues: write
+
+env:
+  R18_RECOVERY_SUBJECT: ac4a50f85a147f5933cd2055809c7ac30b29e3c1
 
 jobs:
   outcome-exposed-recovery-paired-route-audit:
@@ -22,10 +27,25 @@ jobs:
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: Verify immutable recovery subject
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          git cat-file -e "$R18_RECOVERY_SUBJECT^{commit}"
+          git diff --exit-code "$R18_RECOVERY_SUBJECT" HEAD -- \
+            "$root/PAIRED_ROUTE_PROTOCOL_R18.json" \
+            "$root/fiberguard_paired_route_r18_sources.py" \
+            "$root/fiberguard_paired_route_r18_data.py" \
+            "$root/fiberguard_paired_route_r18_policy.py" \
+            "$root/fiberguard_paired_route_r18.py"
 
       - name: Install frozen runtime dependencies
         run: >-
@@ -66,14 +86,14 @@ jobs:
           python "$script" \
             --aslib-root "$RUNNER_TEMP/aslib_data" \
             --protocol "$protocol" \
-            --protocol-commit "$GITHUB_SHA" \
+            --protocol-commit "$R18_RECOVERY_SUBJECT" \
             --output "$RUNNER_TEMP/result-a.json" \
             --comment-output "$RUNNER_TEMP/comment-a.md" \
             | tee "$RUNNER_TEMP/terminal-a.txt"
           python "$script" \
             --aslib-root "$RUNNER_TEMP/aslib_data" \
             --protocol "$protocol" \
-            --protocol-commit "$GITHUB_SHA" \
+            --protocol-commit "$R18_RECOVERY_SUBJECT" \
             --output "$RUNNER_TEMP/result-b.json" \
             --comment-output "$RUNNER_TEMP/comment-b.md" \
             | tee "$RUNNER_TEMP/terminal-b.txt"
@@ -95,7 +115,7 @@ jobs:
           )
           assert result['schema'] == 'ORION.FiberGuard.PairedRoute.R18.v1'
           binding = result['prospective_binding']
-          assert binding['protocol_execution_commit'] == os.environ['GITHUB_SHA']
+          assert binding['protocol_execution_commit'] == os.environ['R18_RECOVERY_SUBJECT']
           assert binding['result_absent_from_protocol_inputs'] is True
           assert binding['withdrawn_positive_prose_used_as_input'] is False
           assert binding['outcome_exposed_recovery'] is True
@@ -120,8 +140,24 @@ jobs:
               'FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE',
           }
           assert result['terminal'] in allowed
+          assert result['terminal'] == 'FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE'
           print('R18_RECOVERY_RESULT_VERIFIED', result['terminal'])
           PY
+
+      - name: Require durable result bytes when already published
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          registered="$root/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json"
+          terminal="$root/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_TERMINAL.txt"
+          comment="$root/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_COMMENT.md"
+          if [ -e "$registered" ] || [ -e "$terminal" ] || [ -e "$comment" ]; then
+            test -f "$registered" && test -f "$terminal" && test -f "$comment"
+            cmp "$RUNNER_TEMP/result-a.json" "$registered"
+            cmp "$RUNNER_TEMP/terminal-a.txt" "$terminal"
+            cmp "$RUNNER_TEMP/comment-a.md" "$comment"
+          fi
 
       - name: Publish one content-bound recovery comment
         shell: bash
@@ -131,7 +167,7 @@ jobs:
           set -euo pipefail
           existing="$({
             gh api --paginate "repos/$GITHUB_REPOSITORY/issues/1386/comments" \
-              --jq ".[] | select(.body | contains(\"$GITHUB_SHA\")) | .id"
+              --jq ".[] | select(.body | contains(\"$R18_RECOVERY_SUBJECT\")) | .id"
           } | head -n 1)"
           if [ -z "$existing" ]; then
             gh api --method POST "repos/$GITHUB_REPOSITORY/issues/1386/comments" \
@@ -160,3 +196,26 @@ jobs:
           path: ${{ runner.temp }}/fiberguard-paired-route-r18-recovery/
           if-no-files-found: error
           retention-days: 30
+
+      - name: Publish durable recovery bytes once
+        if: github.event_name == 'push' && github.ref == 'refs/heads/chatgpt/r18-c-paired-route-20260826'
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/C'
+          registered="$root/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json"
+          terminal="$root/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_TERMINAL.txt"
+          comment="$root/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_COMMENT.md"
+          if [ ! -e "$registered" ] && [ ! -e "$terminal" ] && [ ! -e "$comment" ]; then
+            cp "$RUNNER_TEMP/result-a.json" "$registered"
+            cp "$RUNNER_TEMP/terminal-a.txt" "$terminal"
+            cp "$RUNNER_TEMP/comment-a.md" "$comment"
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add "$registered" "$terminal" "$comment"
+            git commit -m 'results(C): bind R18 recovery null terminal'
+            git push origin HEAD:refs/heads/chatgpt/r18-c-paired-route-20260826
+          else
+            test -f "$registered" && test -f "$terminal" && test -f "$comment"
+            echo 'durable recovery bytes already present'
+          fi
