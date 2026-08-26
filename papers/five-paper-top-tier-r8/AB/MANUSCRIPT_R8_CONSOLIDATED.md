@@ -143,7 +143,7 @@ This equality makes the rank bound exact for the deletion language. It does not 
 
 ## 4. Exact terminal complexity of zero-sum deletion
 
-Consider the abstract language whose states are nonzero-total words over `A` and whose only move deletes a nonempty proper zero-sum subsequence.
+Consider the abstract language whose states are nonzero-total words over `A` and whose only move deletes a nonempty proper zero-sum subsequence. Assume `A` contains at least one nonzero element, so this state universe is nonempty.
 
 **Theorem 2 (exact deletion-language complexity).** The maximum terminal length is exactly `zsf(H;A)`.
 
@@ -236,6 +236,8 @@ This is finite but not asserted polynomial-time solvable.
 
 Let `phi:H -> K` be a homomorphism, `N=ker(phi)`, and `B=phi(A)`.
 
+For Theorems 9 and 10, assume `A` is nonempty.
+
 ### 7.1 Lower obstruction
 
 **Theorem 8 (homomorphic lower bound).**
@@ -258,7 +260,7 @@ Let `atom(K;B)` be the maximum length of a minimal nonempty zero-sum word over `
 
 ### 7.3 Kernel-weighted refinement
 
-For every nonzero `n in N`, define `omega(n)` as the maximum source length of a word `U` over `A` such that `phi(U)` is a minimal image-zero word and `sum U=n`. Omit unrealized kernel sums. For a zero-sum-free word `n_1...n_q` over the realized kernel alphabet, assign weight `sum_i omega(n_i)`. Let `Z_omega` be the maximum such score.
+For every nonzero `n in N`, define `omega(n)` as the maximum source length of a word `U` over `A` such that `phi(U)` is a minimal image-zero word and `sum U=n`. Omit unrealized kernel sums. For a zero-sum-free word `n_1...n_q` over the realized kernel alphabet, assign weight `sum_i omega(n_i)`. Let `Z_omega` be the maximum such score. If there is no realized nonzero kernel sum, define `Z_omega=0`, attained by the empty kernel word.
 
 **Theorem 10 (kernel-weighted quotient bound).**
 
@@ -284,7 +286,7 @@ Exact deletion dominance may fail by a bounded amount while semantic soundness p
 
 **Proof.** Each deletion lowers support by at least one, so at most `n-z` deletions occur. Sum the defects. ∎
 
-**Theorem 12 (coordinate-defect normal form).** If deleting a zero-sum set `T` increases cost by at most `delta |T|`, there is a support-`z` representative of cost at most `OPT+delta n`.
+**Theorem 12 (coordinate-defect normal form).** Let `delta>=0`. If a deletion-only descent never reactivates a deleted coordinate and deleting a zero-sum set `T` increases cost by at most `delta |T|`, there is a representative of support at most `z` and cost at most `OPT+delta n`.
 
 **Proof.** Deleted coordinate sets are disjoint over the descent. Telescope the objective changes. ∎
 
@@ -340,7 +342,7 @@ For exact certificate budget `beta` and intrinsic budget `kappa`, the ratio is
 
 `V_beta/V_kappa = q^{beta-kappa} kappa!/beta! * n^{beta-kappa}(1+o(1))`.
 
-For independent interaction blocks, multiply the component ratios. The exponent is the sum of blockwise certificate waste.
+For independent interaction blocks, the component ratios multiply only for a Cartesian-product enumerator with separate block-local budgets and coordinate counts. Under that architecture, the exponent is the sum of blockwise certificate waste.
 
 This statement belongs to the declared enumerator. Algorithms using dynamic programming, implicit states, branch-and-bound, algebraic elimination, or stronger production moves may have different behavior.
 
@@ -401,6 +403,8 @@ Defect normal forms permit a solver to report a sparse state together with an ex
 
 Sparse optimal solutions in integer and combinatorial optimization, Davenport constants and restricted zero-sum invariants, weighted and quotient methods, terminating rewrite systems, proof complexity, exact synthesis, parity networks, and Pauli compilers are established areas. The final submission must verify every citation against primary sources and compare exact hypotheses and conclusions.
 
+Linear straight-line programs over `GF(2)` already identify program length with XOR-gate count, and prior work gives a fixed instance whose unrestricted optimum is four while every cancellation-free program needs five, as well as a factor-`3/2` lower bound for cancellation-free methods [7]. Later work proves asymptotically larger cancellation-free versus unrestricted XOR-circuit gaps [8]. These results absorb the broad claim that allowing a stronger XOR/cancellation language can strictly reduce circuit size. They do not realize the destructive AB multiset grammar: straight-line-program steps add `u xor v` to a reusable base while retaining the operands, whereas AB fusion removes both operands. No AB-specific external residual is claimed without a bidirectional representation, move, terminal, and cost map.
+
 The residual contribution claimed here is narrower:
 
 - one vocabulary separating intrinsic, normalization, and proof-language support;
@@ -429,7 +433,7 @@ Limitations are substantive.
 4. Enumeration penalties are not complexity-class lower bounds.
 5. Structural support is not physical cost unless a validated resource map says so.
 6. Intrinsic language requires a lower witness under the complete production grammar.
-7. Current novelty authority remains open pending primary-source and specialist review.
+7. Broad weak-versus-strong XOR novelty is donor-absorbed by cancellation-free versus unrestricted XOR-circuit work; any narrower AB-specific residual remains `CANNOT_CHECK` pending a faithful bidirectional external mapping and specialist review.
 
 ---
 
@@ -453,5 +457,6 @@ A generative language model assisted theorem consolidation, manuscript organizat
 4. P. Diaconis and B. Sturmfels, “Algebraic Algorithms for Sampling from Conditional Distributions,” *Annals of Statistics* 26 (1998), 363–397.
 5. G. Li et al., “Paulihedral: A Generalized Block-Wise Compiler Optimization Framework for Quantum Simulation Kernels,” ASPLOS 2022.
 6. N. Schillo, A. Sturm, and R. Quay, “TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation,” arXiv:2601.05740 (2026).
-7. Primary sources on parity-network and XOR-circuit synthesis to be added after the frozen nearest-work audit.
-8. Primary sources on terminating rewrite-system derivational complexity and proof-language simulations to be added after the frozen nearest-work audit.
+7. J. Boyar, P. Matthews, and R. Peralta, “Logic Minimization Techniques with Applications to Cryptology,” *Journal of Cryptology* 26 (2013), 280–312, doi:10.1007/s00145-012-9124-7.
+8. M. G. Find and J. Boyar, “Cancellation-Free Circuits in Unbounded and Bounded Depth,” *Theoretical Computer Science* 590 (2015), 17–26, doi:10.1016/j.tcs.2014.10.014.
+9. Primary sources on terminating rewrite-system derivational complexity and proof-language simulations to be added after the frozen nearest-work audit.

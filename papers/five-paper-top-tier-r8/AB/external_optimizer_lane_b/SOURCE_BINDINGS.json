@@ -1,0 +1,228 @@
+{
+  "schema": "orion.ab.external_optimizer_source_bindings.v2",
+  "frozen_at_utc": "2026-08-26T14:14:44Z",
+  "candidate": "MQT_QMAP_CLIFFORD_SYNTHESIS",
+  "primary_paper": {
+    "title": "A SAT Encoding for Optimal Clifford Circuit Synthesis",
+    "authors": [
+      "Sarah Schneider",
+      "Lukas Burgholzer",
+      "Robert Wille"
+    ],
+    "doi": "10.1145/3566097.3567929",
+    "doi_url": "https://doi.org/10.1145/3566097.3567929",
+    "arxiv_id": "2208.11713v2",
+    "url": "https://arxiv.org/pdf/2208.11713v2",
+    "sha256": "bea4eea2fc32f6d35b0df4fc68501c93b032083d42a66f90fcab219b0c03c082",
+    "bytes": 880523,
+    "cache_path": "schneider_burgholzer_wille_2023_arxiv_2208.11713v2.pdf",
+    "authority_boundary": "Corrected author paper. It binds the implementation to QMAP commit 6a0d8a2 and narrows the reported evaluation from 27 to 6 qubits; it does not establish an AB realization."
+  },
+  "open_code": {
+    "repository": "https://github.com/munich-quantum-toolkit/qmap",
+    "commit": "6a0d8a2ff411a0e2c9604c71aff80ba633c0d660",
+    "tree": "9a5ad960beb63a0cc23f78b289e629da58b99941",
+    "license": "MIT",
+    "license_file_sha256": "2f6bbcb1f09b63ea6c282ef7a09ef7296aa83e4d86566380c3ba5a84c036593b",
+    "files": [
+      {
+        "path": "include/cliffordsynthesis/encoding/GateEncoder.hpp",
+        "cache_path": "qmap/include/cliffordsynthesis/encoding/GateEncoder.hpp",
+        "sha256": "f29bc98465f092df3676040f3d995a2f5432ea89b56a342b5cb0000dd72d0530",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/include/cliffordsynthesis/encoding/GateEncoder.hpp#L71-L73",
+        "evidence": "Complete seven-entry single-qubit gate inventory."
+      },
+      {
+        "path": "src/cliffordsynthesis/encoding/GateEncoder.cpp",
+        "cache_path": "qmap/src/cliffordsynthesis/encoding/GateEncoder.cpp",
+        "sha256": "fe53ea968267e25b94080f8b0c2540508cfdc6c2b87cb803dff6f6ce9578f955",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/src/cliffordsynthesis/encoding/GateEncoder.cpp#L52-L67",
+        "additional_lines": "L216-L231",
+        "evidence": "Ordered control-target variables and extraction exclusively as CX gates."
+      },
+      {
+        "path": "include/cliffordsynthesis/TargetMetric.hpp",
+        "cache_path": "qmap/include/cliffordsynthesis/TargetMetric.hpp",
+        "sha256": "de43c3362ba2bd1c2037d1e7a5aadd2225c710cfc59a3387822536eb201ffab1",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/include/cliffordsynthesis/TargetMetric.hpp#L17-L26",
+        "evidence": "Frozen target metrics: gates, two-qubit gates, and depth."
+      },
+      {
+        "path": "include/cliffordsynthesis/Tableau.hpp",
+        "cache_path": "qmap/include/cliffordsynthesis/Tableau.hpp",
+        "sha256": "0eded6dd657205a5fc8e99521c669f7f240de4b127832e20d4373ad3922f6a01",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/include/cliffordsynthesis/Tableau.hpp#L45-L60",
+        "evidence": "Tableau constructors fix the object to n or 2n rows for n qubits."
+      },
+      {
+        "path": "src/cliffordsynthesis/Tableau.cpp",
+        "cache_path": "qmap/src/cliffordsynthesis/Tableau.cpp",
+        "sha256": "44f5504a107fd946b0e470418cc92ae4fd789c1c6bff733a5b344b80866bf722",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/src/cliffordsynthesis/Tableau.cpp#L204-L230",
+        "evidence": "Concrete allocation of n or 2n rows, each with 2n binary coordinates plus phase."
+      },
+      {
+        "path": "src/cliffordsynthesis/encoding/TableauEncoder.cpp",
+        "cache_path": "qmap/src/cliffordsynthesis/encoding/TableauEncoder.cpp",
+        "sha256": "235c086646494286b470c4b2832efa02f1bf9dc0bacc36b3509c12e2d0cb3378",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/src/cliffordsynthesis/encoding/TableauEncoder.cpp#L93-L173",
+        "evidence": "Phase-free H, S, Sdg, and CX coordinate actions used by the invariant checker."
+      },
+      {
+        "path": "src/cliffordsynthesis/encoding/MultiGateEncoder.cpp",
+        "cache_path": "qmap/src/cliffordsynthesis/encoding/MultiGateEncoder.cpp",
+        "sha256": "066c08261ac92566fca21e046c2a599ddcff901465b2f6582b7f53b50ea56b76",
+        "permalink": "https://github.com/munich-quantum-toolkit/qmap/blob/6a0d8a2ff411a0e2c9604c71aff80ba633c0d660/src/cliffordsynthesis/encoding/MultiGateEncoder.cpp#L27-L47",
+        "additional_lines": "L49-L115",
+        "evidence": "Depth encoding permits a compatible set of primitive gates per time step, with exactly one gate role per qubit; each layer is a composition of invertible primitive actions."
+      }
+    ]
+  },
+  "local_ab_contract": {
+    "base_commit": "ee685107cf537810fe17df67d7a6bd0f4c7a0116",
+    "files": [
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/artifact/xor_production_separation_r8.py",
+        "sha256": "379c58e0d4a209a59d738035578879d06db82949b2ae95617ecb5d611bab226f",
+        "evidence": "Frozen weak deletion, strong fusion, and live-fragment objective."
+      },
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/artifact/XOR_PRODUCTION_SEPARATION_R8_RESULTS.json",
+        "sha256": "e2670cf73c30e409f52b6270a5f66a5612856f4093fc3580c1ee4574767283a5",
+        "evidence": "Frozen exhaustive calibration results."
+      }
+    ]
+  },
+  "audit_boundary": {
+    "kind": "SOURCE_LEVEL_CONTRACT_AND_INVARIANT_AUDIT",
+    "upstream_binary_executed": false,
+    "reason_not_executed": "The necessary representation-and-cost faithfulness obligations are refuted before optimizer execution can have AB authority.",
+    "not_authorized": [
+      "EXTERNAL_PRODUCTION_REALIZATION",
+      "RUNTIME_OR_STATE_VOLUME_IMPROVEMENT",
+      "HARDWARE_ADVANTAGE",
+      "NOVELTY",
+      "JOURNAL_ACCEPTANCE",
+      "Q1_EXTENSION"
+    ]
+  },
+  "reviewed_hostile_audit": {
+    "commit": "82e94b19b9b79733bd5353cb433e48fe338e4423",
+    "tree": "a81360e61b5c4bfed9a45009f419b77f01735a18",
+    "scientific_subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
+    "scientific_subject_tree": "dbf96cce53d21d25584479fb740473293fae75e0",
+    "files": [
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/AB_HOSTILE_THEOREM_REVIEW_R8.md",
+        "git_blob": "b6e3f624ef36b33e48c5d0cb5d65880263f5e078",
+        "sha256": "71c4b2364c9fd41f78df94279d3e9eb474ff36fe1dc67a445343f77d3bfc41b2",
+        "bytes": 10004
+      },
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/artifact/AB_HOSTILE_PREMISE_AUDIT_R8_RESULTS.json",
+        "git_blob": "211bc46373f9dfb020af1058ccd479bcde3814db",
+        "sha256": "03a4a2e2fc76b034db5acf1fd00d869ce4716ab0dc7ceea1e534fae5a8fa1a40",
+        "bytes": 25030
+      },
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/artifact/ab_hostile_premise_audit_r8.py",
+        "git_blob": "e8ed8abdfe4266b28adad12fa1ecb204fd51362f",
+        "sha256": "34b719e232f7537595d647979774cb910dc3c7ebde167fe8b601269f53e660a6",
+        "bytes": 35170
+      },
+      {
+        "path": "papers/five-paper-top-tier-r8/AB/tests/test_ab_hostile_premise_audit_r8.py",
+        "git_blob": "7a164c0d6de9ea9468e57fffd827967abe44682c",
+        "sha256": "8853cc5362c82b7fbe37bd6c1d78c1a9167a8058cf8e26880be323c5e0836cba",
+        "bytes": 5143
+      }
+    ],
+    "cross_audit_terminal": "AB_THEOREM_REPAIR_PARTIAL_PASS__T10_CONVENTION_REQUIRED",
+    "authority_boundary": "Internal hostile-review object only. It does not establish novelty, external significance, runtime or hardware advantage, Q1 authority, journal readiness, or top-tier readiness."
+  },
+  "donor_primary_sources": [
+    {
+      "title": "Logic Minimization Techniques with Applications to Cryptology",
+      "authors": [
+        "Joan Boyar",
+        "Philip Matthews",
+        "Rene Peralta"
+      ],
+      "journal": "Journal of Cryptology",
+      "year": 2013,
+      "volume": 26,
+      "pages": "280-312",
+      "doi": "10.1007/s00145-012-9124-7",
+      "doi_url": "https://doi.org/10.1007/s00145-012-9124-7",
+      "url": "https://link.springer.com/content/pdf/10.1007/s00145-012-9124-7.pdf",
+      "cache_path": "r8-harness-responses/search_raw/boyar_peralta_2012.pdf",
+      "sha256": "d71379d217872301f6b085b3cc2383bc98b14e4413f4fde8c1dcdf1c88cc6d2c",
+      "bytes": 380528,
+      "absorbed_claim": "Unrestricted XOR straight-line programs can be strictly smaller than cancellation-free programs; fixed optimum 4 versus 5 and an asymptotic factor-3/2 lower bound are explicit.",
+      "authority_boundary": "Primary technical source for donor absorption only; it does not implement AB destructive fusion."
+    },
+    {
+      "title": "Cancellation-Free Circuits in Unbounded and Bounded Depth",
+      "authors": [
+        "Magnus Gausdal Find",
+        "Joan Boyar"
+      ],
+      "journal": "Theoretical Computer Science",
+      "year": 2015,
+      "volume": 590,
+      "pages": "17-26",
+      "doi": "10.1016/j.tcs.2014.10.014",
+      "doi_url": "https://doi.org/10.1016/j.tcs.2014.10.014",
+      "arxiv_id": "1305.3041v2",
+      "url": "https://arxiv.org/pdf/1305.3041v2",
+      "cache_path": "r8-harness-responses/search_raw/arxiv_1305.3041.pdf",
+      "sha256": "f551ed1e386663b70ee0fe544c20b9d0fb0db83a031fa9fe777c7dbc1847247a",
+      "bytes": 247527,
+      "absorbed_claim": "Cancellation-free circuits can be asymptotically larger than unrestricted XOR circuits, including at constant depth.",
+      "authority_boundary": "Primary technical source for donor absorption only; it supplies no bidirectional representation, move, terminal, or cost map to AB."
+    }
+  ],
+  "harness_notes_non_authoritative": {
+    "authority": "PROVENANCE_ONLY__NOT_PRIMARY_SOURCE_OR_NOVELTY_MATHEMATICAL_VENUE_JOURNAL_AUTHORITY",
+    "files": [
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.711a71eb817dc4ae98d31891769a76a70bdb78e3c71027a3dd86b40a4ab50173.response.json",
+        "sha256": "ca5554525f1dd21c2aa82f0e04d51168cb6f66045a7ced76b93604948d52a27d",
+        "bytes": 4380
+      },
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.dc6c1dcb885cbf245f5b8b22c63d1756e14816e9e9ca9533daa6fdd5aa5b6dcc.search-plan.json",
+        "sha256": "fc60e94ec359d3d5f836cce606c52c8485b47f17e4e74e72d01992873bda2942",
+        "bytes": 1300
+      },
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.web-round1.json",
+        "sha256": "1e6be097c15e6831394bcf4720215c4457e5b0581601c9ad6128fca4dc355cb4",
+        "bytes": 3853
+      },
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.web-round2-parent.json",
+        "sha256": "d26328454fbce4532cd5355f1a16fce46c8aeb3c7160f50f6c71287ee793fd07",
+        "bytes": 3381
+      },
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.web-round3-omission.json",
+        "sha256": "c39d6748e4980abe3a110297d0d4213ad6de52bae9661738c5d9cce773faae5e",
+        "bytes": 3209
+      },
+      {
+        "cache_path": "r8-harness-responses/AB-R8-TOP-TIER.web-round4-fresh.json",
+        "sha256": "eb5b44d4d4ae53c32e35d1ede2f0ec399b44f3fb0983a543d0736f5cb6d7b45d",
+        "bytes": 3146
+      }
+    ]
+  },
+  "integration_patch_binding": {
+    "path": "MINIMAL_SAFE_INTEGRATION_PATCH.diff",
+    "target_commit": "82e94b19b9b79733bd5353cb433e48fe338e4423",
+    "target_tree": "a81360e61b5c4bfed9a45009f419b77f01735a18",
+    "sha256": "0ebe9192f94839585a6d36661ffd0d9ce764a8b5490deb0faf88bfdd4a42d137",
+    "bytes": 12195,
+    "authority": "Narrow proposed manuscript and claim-ledger edits. Apply-check success does not grant theorem, novelty, external, runtime, physical, Q1, venue, or journal authority."
+  }
+}

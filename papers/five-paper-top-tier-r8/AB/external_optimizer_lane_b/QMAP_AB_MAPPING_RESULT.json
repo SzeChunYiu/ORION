@@ -1,0 +1,41 @@
+{
+  "candidate": "MQT_QMAP_CLIFFORD_SYNTHESIS",
+  "claim_ceiling": [
+    "NO_EXTERNAL_PRODUCTION_REALIZATION",
+    "NO_RUNTIME_OR_STATE_VOLUME_CONSEQUENCE",
+    "NO_NOVELTY_OR_VENUE_INFERENCE",
+    "NO_HARDWARE_ADVANTAGE",
+    "NO_Q1_EXTENSION"
+  ],
+  "faithful_external_realization": false,
+  "mapping_table": [
+    {
+      "disposition": "REFUTED",
+      "obligation": "AB_WEAK_DELETE_TO_QMAP",
+      "reason": "AB delete can reduce live-fragment cardinality and GF(2) rank; every QMAP gate preserves tableau row count and projected rank."
+    },
+    {
+      "disposition": "REFUTED",
+      "obligation": "AB_STRONG_FUSE_TO_QMAP",
+      "reason": "AB fuse is many-to-one and removes one live fragment; every QMAP gate is invertible on a fixed-size tableau."
+    },
+    {
+      "disposition": "REFUTED",
+      "obligation": "QMAP_MOVES_TO_AB_BIDIRECTIONAL",
+      "reason": "QMAP moves have legal Clifford inverses, while AB delete/fuse have no legal inverse without adding allocation or garbage moves."
+    },
+    {
+      "disposition": "REFUTED",
+      "obligation": "ONE_COST_CONTRACT",
+      "reason": "AB live-fragment cost decreases under fuse; QMAP gate-count/depth costs accumulate applied nonidentity gates."
+    },
+    {
+      "disposition": "CANNOT_CHECK",
+      "obligation": "REALIZED_WEAK_TERMINAL",
+      "reason": "No representation- and cost-faithful mapping survives, so QMAP cannot realize an AB weak terminal under the frozen contract."
+    }
+  ],
+  "next_smallest_discriminator": "EXTERNAL_MOVE_DECREASES_LIVE_FRAGMENT_CARDINALITY_WITHOUT_GARBAGE_QUOTIENT",
+  "schema": "orion.ab.external_optimizer_faithfulness.v1",
+  "terminal": "CANNOT_CHECK"
+}
