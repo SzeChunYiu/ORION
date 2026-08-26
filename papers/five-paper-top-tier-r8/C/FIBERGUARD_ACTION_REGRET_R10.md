@@ -6,7 +6,7 @@ Status: analytic extension for solver selection, branching, routing, and other f
 
 ## 1. Setup
 
-Let `X` be a finite exact instance/state space, `Phi:X->Y` a frozen representation, `A` a finite action set, and `C(a,x)` the declared deterministic cost of action `a` on instance `x`.
+Let `X` be a finite exact instance/state space, `Phi:X->Y` a frozen representation, `A` a nonempty finite action set, and `C(a,x)` the declared finite deterministic cost of action `a` on instance `x`. Maxima over representation values below are taken only over the attained image `Phi(X)`, so every fibre is nonempty.
 
 Examples:
 
@@ -24,6 +24,8 @@ and
 `R(a,x)=C(a,x)-C*(x) >= 0`.
 
 For a representation value `y`, let `F_y={x:Phi(x)=y}`.
+
+All action, refinement, and defer costs combined in one scalar recursion must use one frozen unit or a prospectively frozen scalar utility conversion. Runtime, node count, memory, prediction loss, and feature cost cannot be added merely because they are all reported numbers. Timeouts, crashes, and censored runs require a frozen finite penalty or a separate resource-incomparable terminal; post-outcome penalty selection is forbidden.
 
 ## 2. Exact deterministic representation regret
 
@@ -81,6 +83,8 @@ subject to
 
 The global randomized representation-only value is `max_y rho_rand(F_y)`.
 
+This is an ex-ante mixed policy evaluated by worst-case expected regret: the state adversary may choose `x` after seeing the declared distribution but not the sampled action. It is not a high-probability, pathwise, or adaptive-adversary guarantee. Any operational use must freeze the random seed/custody and separately report tail losses when they matter.
+
 Unlike scalar absolute-error estimation, randomization can strictly reduce finite-action regret. The manuscript must therefore use the LP value rather than inherit the scalar endpoint argument.
 
 ## 5. Refinement monotonicity
@@ -117,6 +121,10 @@ For adversarial/worst-case downstream state, the exact finite-horizon value is
 
 The proof is standard finite dynamic programming once the state is the exact information fibre. The important FiberGuard contract is that every leaf action is justified by an exact fibre-regret certificate.
 
+The recursion assumes a finite horizon, an acyclic refinement graph, and costs expressed in the same frozen unit as terminal regret. If refinements can repeat, alter future prices, or reveal state-dependent costs not encoded by the fibre, the fibre alone is not a sufficient Bellman state and the theorem does not apply without state augmentation.
+
+Exactness also requires the declared fibre to be complete. Applying the formula to observed members of a sampled corpus gives an empirical within-sample certificate only; it is not an upper bound for unseen members sharing the representation.
+
 ## 7. Solver-selection experiment contract
 
 Freeze:
@@ -127,6 +135,8 @@ Freeze:
 4. the exact feature map `Phi` used by the selector;
 5. cost matrix `C(a,x)`;
 6. candidate feature refinements and acquisition costs.
+
+The freeze must additionally specify the common decision-cost unit (or immutable scalarization), timeout/crash/censoring semantics, the ex-ante randomization protocol, and whether each reported fibre is census-complete or sample-only.
 
 Emit per fibre:
 
