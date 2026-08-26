@@ -46,3 +46,7 @@ The receipt supports all of the following narrow statements:
 - the application correctly fails closed at the missing extensional move registry.
 
 It does not establish an R6M production lower bound, a complete compiler grammar, quantum advantage, novelty, external validation or journal authority. Promotion requires an explicit semantics-preserving production move registry, an omission-hostile completeness argument, objective nonincrease for every move, and a realizing witness irreducible under all admitted moves.
+
+## LUNARC execution binding
+
+The same frozen payload at Git SHA `a70a1abc9b645bf66dc14864cdff11cd6a06fd1f` was replayed by LUNARC job `3543875`, which completed with exit code `0:0` after 31,457,280 candidate evaluations. The result and certificate bytes match the committed SHA-256 digests exactly. `R6M_N2_LUNARC_EXECUTION_RECEIPT_R9.json` binds the SLURM state, source SHA, output hashes, preserved adverse terminal and authority ceiling; its SHA-256 is `adfff444457a370be673ad0fa7f17ffeaf7c013228aa1e829dcdf741ec3b2f91`. Jobs `3543870` and `3543874` are retained as wrapper-only failures before the scientific entrypoint and produced no scientific outcome.
