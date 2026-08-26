@@ -1,0 +1,39 @@
+name: FiberGuard R10 safe feature cover
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [chatgpt/r10-c-safe-feature-cover-20260826]
+    paths:
+      - 'papers/five-paper-top-tier-r8/C/MINIMUM_SAFE_FEATURE_COVER_R10.md'
+      - 'papers/five-paper-top-tier-r8/C/verify_safe_feature_cover_r10.py'
+      - '.github/workflows/five-paper-r10-c-safe-feature-cover.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run exact controls
+        run: |
+          set -euo pipefail
+          python papers/five-paper-top-tier-r8/C/verify_safe_feature_cover_r10.py | tee /tmp/safe-feature-cover.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          obj=json.loads(Path('/tmp/safe-feature-cover.json').read_text())
+          assert obj['status']=='PASS'
+          assert obj['generated_cases']==1000
+          assert obj['conflict_size_bound_violations']==0
+          assert obj['optimum_cost_mismatches']==0
+          assert obj['three_action_pairwise_insufficiency_control']=='PASS'
+          assert obj['four_action_tightness_control']=='PASS'
+          assert obj['authority']['external_solver_selection_value'] is False
+          PY
