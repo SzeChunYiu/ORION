@@ -3,6 +3,11 @@
 \usepackage{amsmath,amssymb,booktabs}
 \usepackage[hidelinks]{hyperref}
 \usepackage[pipeTables]{markdown}
+\usepackage{seqsplit}
+% Preserve exact receipt/terminal strings while permitting typographic line
+% breaks inside their monospace rendering.
+\renewcommand{\markdownRendererCodeSpan}[1]{\texttt{\seqsplit{#1}}}
+\setlength{\emergencystretch}{1.5em}
 % pdflatex cannot typeset these code points unaided, and the canonical prose is
 % Markdown, where an author writes them naturally. Without this the P11 build
 % died on its first "≥" with "Unicode character ≥ (U+2265) not set up for use

@@ -12,7 +12,7 @@ The explicit specification is internal to the programme, not a human external-ad
 
 Terminal: `P14C_SPECIFICATION_SEPARATED_GOVERNANCE_CONFORMANCE_SUPPORTED`.
 
-| policy | disposition accuracy | false promotion | useful-discovery recall |
+| policy | accuracy | false promotion | discovery recall |
 |---|---:|---:|---:|
 | **ORION_RSE_FULL** | **1.0000** | **0.0000** | **1.0000** |
 | `MULTI_REVIEW` | 0.857143 | 0.142857 | 1.0000 |
@@ -28,12 +28,12 @@ The question that disqualified P14A's negative is asked of P14C's positive, over
 
 Over that register exactly one subject clears all eight gates and six fail at least one, so the conjunction prints **two** distinct terminals. `accuracy_advantage_ge_0_10` fails for the donor, interaction and negative-history ablations, so it is refutable rather than assumed. `strongest_baseline_false_promotion_ge_0_10` is a benchmark-difficulty precondition and holds in every admissible table by construction — the property P14A's corresponding certificate lacked, where it was unsatisfiable instead.
 
-P14A's two frozen bars, registered verbatim and read here:
+P14A's two frozen bars, registered verbatim and read here, are both met:
 
-| P14A gate, threshold unchanged | reachable interval here | realized | verdict |
-|---|---|---:|---|
-| `strongest_baseline_false_promotion_ge_0_05` | [0.142857, 0.142857] over admissible tables | 0.142857 | **met** |
-| `accuracy_gain_ge_0_08` | [0.000000, 0.142857] over admissible subjects | 0.142857 | **met** |
+- `strongest_baseline_false_promotion_ge_0_05`: reachable interval
+  [0.142857, 0.142857] over admissible tables; realized 0.142857.
+- `accuracy_gain_ge_0_08`: reachable interval [0.000000, 0.142857] over
+  admissible subjects; realized 0.142857.
 
 The 0.08 bar sits strictly inside its interval, so it could have gone either way. The question P14A's gates encoded is answered affirmatively at P14A's own thresholds, under P14C's protocol identity, with nothing of P14A edited.
 

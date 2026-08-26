@@ -14,4 +14,4 @@ The live residual is the **competition between those actions under one resource 
 
 > State construction and downstream reasoning are two places to spend test-time computation. A valid joint-allocation result must hold total resource fixed and strictly improve over policies allowed to adapt either axis alone.
 
-In the current donor set, adaptive-compute methods optimize downstream reasoning/sampling/search or generation control; they do not make costed state construction and downstream reasoning symmetric decision variables under the same matched envelope and then require superiority over both one-axis adaptive controls.
+Current adaptive-compute donors optimize downstream reasoning, sampling, search or generation control. They do not make costed state construction and downstream reasoning symmetric decision variables under the same matched envelope, then require superiority over both one-axis adaptive controls.

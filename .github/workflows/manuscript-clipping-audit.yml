@@ -8,8 +8,11 @@ name: manuscript-clipping-audit
 on:
   pull_request:
     paths:
-      - 'papers/**/*.pdf'
+      - 'papers/**/manuscript/**'
+      - 'papers/**/journal_package/**'
       - 'scripts/audit_manuscript_clipping.py'
+      - 'scripts/render_md_tex.py'
+      - 'tests/unit/scripts/test_audit_manuscript_clipping.py'
       - 'papers/MANUSCRIPT_CLIPPING_BASELINE.json'
       - '.github/workflows/manuscript-clipping-audit.yml'
   push:
@@ -22,26 +25,121 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-24.04
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python -m pip install 'pymupdf>=1.24'
-      - name: Audit every built manuscript PDF
+      - name: Install pinned PDF and TeX toolchains
         shell: bash
         run: |
           set -euo pipefail
-          mapfile -t pdfs < <(find papers -type f \
-            \( -path '*/manuscript/main.pdf' -o -path '*/journal_package/manuscript.pdf' \) | sort)
-          if [ "${#pdfs[@]}" -eq 0 ]; then
-            echo "::error::no built manuscript PDF found -- the audit checked nothing"
+          python -m pip install 'pymupdf==1.28.2' pytest
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            latexmk texlive-binaries texlive-base texlive-latex-base \
+            texlive-latex-recommended texlive-latex-extra texlive-pictures \
+            texlive-fonts-recommended texlive-bibtex-extra texlive-science \
+            texlive-plain-generic texlive-lang-greek lmodern fonts-lmodern \
+            fonts-texgyre fonts-texgyre-math fonts-urw-base35 libkpathsea6 \
+            libptexenc1 libsynctex2 libtexlua53-5 poppler-utils libpoppler134 \
+            poppler-data fontconfig libc-bin
+          cat > /tmp/expected-render-packages.tsv <<'EOF'
+          texlive-binaries	2023.20230311.66589-9build3
+          texlive-base	2023.20240207-1
+          texlive-latex-base	2023.20240207-1
+          texlive-latex-recommended	2023.20240207-1
+          texlive-latex-extra	2023.20240207-1
+          texlive-fonts-recommended	2023.20240207-1
+          texlive-bibtex-extra	2023.20240207-1
+          texlive-science	2023.20240207-1
+          texlive-pictures	2023.20240207-1
+          texlive-plain-generic	2023.20240207-1
+          texlive-lang-greek	2023.20240207-1
+          latexmk	1:4.83-1
+          libkpathsea6	2023.20230311.66589-9build3
+          libptexenc1	2023.20230311.66589-9build3
+          libsynctex2	2023.20230311.66589-9build3
+          libtexlua53-5	2023.20230311.66589-9build3
+          fonts-lmodern	2.005-1
+          lmodern	2.005-1
+          fonts-texgyre	20180621-6
+          fonts-texgyre-math	20180621-6
+          fonts-urw-base35	20200910-8
+          poppler-utils	24.02.0-1ubuntu9.9
+          libpoppler134	24.02.0-1ubuntu9.9
+          poppler-data	0.4.12-1
+          fontconfig	2.15.0-1.1ubuntu2
+          libc-bin	2.39-0ubuntu8.8
+          EOF
+          while IFS=$'\t' read -r package expected; do
+            actual="$(dpkg-query -W -f='${Version}' "$package")"
+            test "$actual" = "$expected" || {
+              echo "render toolchain drift: $package expected $expected, got $actual" >&2
+              exit 1
+            }
+          done < /tmp/expected-render-packages.tsv
+      - name: Test clipping-audit regression cases
+        run: python -m pytest -q tests/unit/scripts/test_audit_manuscript_clipping.py
+      - name: Rebuild every current P1-P15 working manuscript
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          entries=(papers/paper-??-*/manuscript/main.tex)
+          test "${#entries[@]}" -eq 15 || {
+            echo "::error::expected 15 P1-P15 manuscript entry points, found ${#entries[@]}"
             exit 1
-          fi
-          echo "auditing ${#pdfs[@]} PDFs"
+          }
+          for entry in "${entries[@]}"; do
+            manuscript_dir="$(dirname "$entry")"
+            # A PDF-only artifact-import commit must not move its own render
+            # epoch and create a circular byte mismatch. Derive the epoch from
+            # authoritative source inputs while excluding the derived PDF.
+            source_epoch="$(git log -1 --format=%ct -- \
+              "$manuscript_dir" \
+              ":(exclude)$manuscript_dir/main.pdf")"
+            test -n "$source_epoch"
+            echo "rendering $entry at SOURCE_DATE_EPOCH=$source_epoch"
+            (
+              cd "$manuscript_dir"
+              export SOURCE_DATE_EPOCH="$source_epoch"
+              export FORCE_SOURCE_DATE=1
+              latexmk -C main.tex >/dev/null
+              latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex
+              if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references|undefined citations' main.log; then
+                echo "undefined reference or citation in $entry" >&2
+                exit 1
+              fi
+            )
+          done
+      - name: Audit current PDFs and preserve superseded package custody
+        shell: bash
+        run: |
+          set -euo pipefail
           # Exit 2 = new clipping or a stale baseline entry. Exit 3 = could not
           # check, which is failed here rather than reported as clean.
-          python scripts/audit_manuscript_clipping.py "${pdfs[@]}" \
+          python scripts/audit_manuscript_clipping.py --discover-current \
             --root "$PWD" --baseline papers/MANUSCRIPT_CLIPPING_BASELINE.json
+      - name: Require checked-in working PDFs to match the clean rebuild
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code -- ':(glob)papers/paper-??-*/manuscript/main.pdf' || {
+            echo '::error::tracked manuscript PDF bytes are stale relative to the clean pinned rebuild'
+            exit 1
+          }
+      - name: Archive rebuilt PDFs and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-manuscript-clipping-audit-${{ github.sha }}
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            papers/paper-??-*/manuscript/main.pdf
+            papers/paper-??-*/manuscript/main.log
