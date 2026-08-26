@@ -1,0 +1,232 @@
+{
+  "schema": "ORION.FivePaperApplications.ExperimentQueue.R9.v1",
+  "created_date": "2026-08-26",
+  "coordination": {
+    "codex_thread": "codex://threads/01a03963-d804-7320-b10a-2b828119df93",
+    "parent_issue": 1403,
+    "execution_issue": 1400,
+    "application_branch": "codex/five-paper-applications-r9-20260826",
+    "scientific_branch": "codex/five-paper-top-tier-r8-20260826",
+    "scientific_head_at_freeze": "b598a7ba0806a06ec46581875f20b20106cbfe55",
+    "protected_exclusions": [
+      "PR #1365",
+      "codex/orion-postmerge-clipping-repair-20260826",
+      "protected Task-3 branch",
+      "protected Task-3 files"
+    ]
+  },
+  "global_contract": {
+    "applications_folder": "papers/applications",
+    "not_p16_plus": true,
+    "freeze_before_aggregate_results": [
+      "corpus",
+      "license_and_revision",
+      "representation",
+      "target_or_policy_query",
+      "arms",
+      "budgets",
+      "metrics",
+      "estimands",
+      "promotion_gate"
+    ],
+    "receipt_fields": [
+      "branch",
+      "commit",
+      "dirty_state",
+      "environment",
+      "source_revision_and_license",
+      "commands",
+      "seeds_or_partition_ids",
+      "exit_codes",
+      "wall_time",
+      "maximum_rss",
+      "raw_output_digests",
+      "result_digest",
+      "terminal",
+      "authority_ceiling"
+    ],
+    "non_independence": [
+      "same-owner CI",
+      "second seed",
+      "second solver over identical generated clauses",
+      "repeat execution of the same implementation"
+    ]
+  },
+  "lanes": [
+    {
+      "id": "APP-C",
+      "issue": 1404,
+      "priority": 1,
+      "question": "Does an exact architecture-bound fibre gate reduce learned-optimization decision risk at matched feature and exact-solver cost?",
+      "artifact_root": "papers/applications/experiments/app-c-fiberguard",
+      "host_capabilities": [
+        "public corpus acquisition and license audit",
+        "exact combinatorial solvers",
+        "message-passing or WL equivalence computation",
+        "model training or frozen model inference",
+        "conformal/selective baselines",
+        "clean-room replay"
+      ],
+      "required_first_receipt": "CORPUS_REPRESENTATION_TARGET_ARMS_COSTS_FROZEN",
+      "dependencies": [],
+      "allowed_terminals": [
+        "APP_C_FIBERGUARD_REDUCES_DECISION_RISK_AT_MATCHED_COST",
+        "APP_C_EXACT_COLLISIONS_FOUND__NO_OPERATIONAL_GAIN",
+        "APP_C_ARCHITECTURE_EQUIVALENCE_TOO_EXPENSIVE",
+        "APP_C_EXTERNAL_COLLISION_PREVALENCE_LOW",
+        "APP_C_REFINEMENT_COST_ERASES_VALUE",
+        "CANNOT_CHECK_CORPUS_OR_LICENSE",
+        "CANNOT_CHECK_EXACT_TARGET",
+        "CANNOT_CHECK_RESOURCE_BOUND"
+      ],
+      "promotion_ceiling": "A3 until external or structurally independent replay; finite synthetic collision families alone remain A2."
+    },
+    {
+      "id": "APP-AB",
+      "issue": 1407,
+      "priority": 2,
+      "question": "Can a complete production move audit produce a sound and materially useful interaction-aware exact-search cap?",
+      "artifact_root": "papers/applications/experiments/app-ab-certified-search",
+      "host_capabilities": [
+        "production move-registry audit",
+        "exact search instrumentation",
+        "proof/certificate checker",
+        "Pauli or modular compiler",
+        "non-Pauli exact optimizer"
+      ],
+      "required_first_receipt": "MOVE_REGISTRY_REPRESENTATION_AND_SEMANTICS_FROZEN",
+      "dependencies": [],
+      "allowed_terminals": [
+        "APP_AB_CERTIFIED_CAP_MATERIAL_AND_TRANSFERRED",
+        "APP_AB_SOUND_CAP__NO_MATERIAL_SEARCH_VALUE",
+        "APP_AB_REALIZATION_FAILS__ABSTRACT_ONLY",
+        "APP_AB_CROSS_MOVE_COLLAPSES_CLAIM",
+        "APP_AB_MOVE_REGISTRY_INCOMPLETE",
+        "CANNOT_CHECK_PRODUCTION_EQUIVALENCE",
+        "CANNOT_CHECK_RESOURCE_BOUND"
+      ],
+      "promotion_ceiling": "No production-intrinsic language without a realizing state and complete-move irreducibility."
+    },
+    {
+      "id": "APP-Q1",
+      "issue": 1409,
+      "priority": 3,
+      "question": "Does the sharp Q1 support theorem bind to a material resource in a maintained production compiler/runtime?",
+      "artifact_root": "papers/applications/experiments/app-q1-production",
+      "host_capabilities": [
+        "maintained quantum or Pauli stack",
+        "exact semantic equivalence checks",
+        "compiler pass inventory",
+        "resource instrumentation"
+      ],
+      "required_first_receipt": "STACK_IR_MOVE_SET_AND_RESOURCE_MAP_FROZEN",
+      "dependencies": [
+        "APP-AB move-registry schema may be reused after content binding"
+      ],
+      "allowed_terminals": [
+        "APP_Q1_PRODUCTION_RESOURCE_MAPPING_MATERIAL",
+        "APP_Q1_MAPPING_SOUND__NO_MATERIAL_BENEFIT",
+        "APP_Q1_PRODUCTION_MOVES_COLLAPSE_SEPARATION",
+        "APP_Q1_ABSTRACTION_NOT_FAITHFUL",
+        "APP_Q1_MOVE_REGISTRY_INCOMPLETE",
+        "CANNOT_CHECK_STACK_OR_LICENSE",
+        "CANNOT_CHECK_PRODUCTION_EQUIVALENCE"
+      ],
+      "promotion_ceiling": "One maintained stack supports a scoped production claim, not universal quantum/compiler impact."
+    },
+    {
+      "id": "APP-D",
+      "issue": 1406,
+      "priority": 4,
+      "question": "Does typed authority prevent a reviewed tool/action authorization error missed by untyped or lineage-only systems?",
+      "artifact_root": "papers/applications/experiments/app-d-typed-authority",
+      "host_capabilities": [
+        "external policy corpus",
+        "license audit",
+        "domain encoders or adjudicators",
+        "agent/tool trace runner",
+        "lineage and policy baselines"
+      ],
+      "required_first_receipt": "EXTERNAL_POLICY_QUERY_AND_ADJUDICATION_PROTOCOL_FROZEN",
+      "dependencies": [],
+      "allowed_terminals": [
+        "APP_D_TYPED_AUTHORITY_PREVENTS_REVIEWED_OPERATIONAL_ERROR",
+        "APP_D_TYPED_AND_UNTYPED_EQUIVALENT_ON_DOMAIN",
+        "APP_D_LINEAGE_BASELINE_ALREADY_SUFFICIENT",
+        "APP_D_POLICY_REQUIRES_RICHER_SEMANTICS",
+        "APP_D_ENCODING_DISAGREEMENT_BLOCKS_CLAIM",
+        "CANNOT_CHECK_EXTERNAL_POLICY_OR_LICENSE",
+        "CANNOT_CHECK_DOMAIN_REVIEW"
+      ],
+      "promotion_ceiling": "A2 for internal hostile corpus; A4 requires independently maintained policy and adjudication."
+    },
+    {
+      "id": "APP-NQ",
+      "issue": 1408,
+      "priority": 5,
+      "question": "Do ORION proof-producing search methods transfer to disjoint binary-kernel packing and independent solver evaluation?",
+      "artifact_root": "papers/applications/experiments/app-nq-kernel-packing",
+      "host_capabilities": [
+        "LUNARC CPU",
+        "dynamic programming",
+        "independently generated SAT or CP-SAT",
+        "symmetry canonicalization",
+        "proof/cut checker"
+      ],
+      "required_first_receipt": "INSTANCE_CLASSES_ENGINE_INDEPENDENCE_AND_CUT_CHECKER_FROZEN",
+      "dependencies": [
+        "issue #1383 environment validation",
+        "registered exact-constant authority remains unchanged"
+      ],
+      "allowed_terminals": [
+        "APP_NQ_SEARCH_TO_PROOF_TRANSFER_REPRODUCED",
+        "APP_NQ_METHOD_USEFUL_ONLY_ON_C5CUBED",
+        "APP_NQ_AI_CUTS_NO_INCREMENTAL_VALUE",
+        "APP_NQ_ENGINE_DISAGREEMENT",
+        "APP_NQ_INVALID_CUT_DETECTED",
+        "CANNOT_CHECK_RESOURCE_BOUND",
+        "CANNOT_CHECK_INDEPENDENT_REPLAY"
+      ],
+      "promotion_ceiling": "Algorithmic transfer only; benchmark results cannot grant mathematical constant, novelty, or D4 authority."
+    },
+    {
+      "id": "APP-PORTFOLIO",
+      "issue": 1411,
+      "priority": 6,
+      "question": "Does the integrated NORMALIZE-IDENTIFY-AUTHORIZE-VERIFY control plane add unique cross-domain value beyond component systems?",
+      "artifact_root": "papers/applications/experiments/app-portfolio-control-plane",
+      "host_capabilities": [
+        "at least two external task families",
+        "model/tool runtime wrapper",
+        "component ablations",
+        "matched budget accounting"
+      ],
+      "required_first_receipt": "COMPONENT_INTERFACES_TASK_PARTITIONS_AND_PRIMARY_ENDPOINT_FROZEN",
+      "dependencies": [
+        "at least two component lanes reach A3 or stronger"
+      ],
+      "allowed_terminals": [
+        "APP_PORTFOLIO_CERTIFICATE_CONTROL_PLANE_CROSS_DOMAIN_GAIN",
+        "APP_PORTFOLIO_NO_INCREMENTAL_VALUE_OVER_COMPONENTS",
+        "APP_PORTFOLIO_INTEGRATION_COST_ERASES_GAIN",
+        "CANNOT_CHECK_CROSS_DOMAIN_TASKS",
+        "CANNOT_CHECK_MATCHED_BUDGETS"
+      ],
+      "promotion_ceiling": "Standalone application paper only after unique non-additive cross-domain result and current-source review."
+    }
+  ],
+  "manuscript_integration": {
+    "issue": 1410,
+    "rule": "Only claims with a completed terminal and ledger-approved authority may be imported into canonical manuscripts.",
+    "required_fields_per_paragraph": [
+      "theorem_or_finite_result",
+      "system_bridge",
+      "evidence_artifact_and_terminal",
+      "domain_and_query",
+      "quantitative_result",
+      "authority_ceiling",
+      "prohibited_inference"
+    ]
+  },
+  "current_terminal": "APPLICATION_QUEUE_R9_FROZEN__CODEX_DISPATCHED__NO_EXTERNAL_EFFECT_PROMOTED"
+}
