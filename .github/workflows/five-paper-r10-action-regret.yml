@@ -1,0 +1,39 @@
+name: Five-paper R10 FiberGuard action regret
+
+on:
+  pull_request:
+    paths:
+      - "papers/five-paper-top-tier-r8/C/FIBERGUARD_ACTION_REGRET_R10.md"
+      - "papers/five-paper-top-tier-r8/C/verify_action_regret_r10.py"
+      - "papers/five-paper-top-tier-r8/C/verify_refinement_bellman_r9.py"
+      - "papers/five-paper-top-tier-r8/C/ACTION_REGRET_R10_RESULTS.json"
+      - "papers/five-paper-top-tier-r8/C/REFINEMENT_BELLMAN_R9_RESULTS.json"
+      - ".github/workflows/five-paper-r10-action-regret.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-finite-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile independent verifiers
+        run: |
+          python -m py_compile \
+            papers/five-paper-top-tier-r8/C/verify_action_regret_r10.py \
+            papers/five-paper-top-tier-r8/C/verify_refinement_bellman_r9.py
+      - name: Replay exact action-regret controls
+        run: python papers/five-paper-top-tier-r8/C/verify_action_regret_r10.py
+      - name: Replay refinement Bellman controls
+        run: python papers/five-paper-top-tier-r8/C/verify_refinement_bellman_r9.py
+      - name: Require committed receipts to match replay
+        run: |
+          git diff --exit-code -- \
+            papers/five-paper-top-tier-r8/C/ACTION_REGRET_R10_RESULTS.json \
+            papers/five-paper-top-tier-r8/C/REFINEMENT_BELLMAN_R9_RESULTS.json
