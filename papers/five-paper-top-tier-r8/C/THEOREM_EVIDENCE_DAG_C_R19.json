@@ -1,0 +1,155 @@
+{
+  "schema": "ORION.FiberGuard.TheoremEvidenceDAG.C.R19.v1",
+  "root_thesis": "Exact representation certificates are closed-world objects; every inductive, adaptive, randomized, or routed extension requires an explicit additional authority premise.",
+  "nodes": [
+    {
+      "id": "F0",
+      "kind": "definition",
+      "label": "Frozen finite state space, representation fibres, target or action cost, one statewise oracle",
+      "depends_on": []
+    },
+    {
+      "id": "F1",
+      "kind": "theorem",
+      "label": "Exact target diameter and deterministic action regret on complete fibres",
+      "depends_on": ["F0"],
+      "claims": ["C19-T1"]
+    },
+    {
+      "id": "F2",
+      "kind": "theorem",
+      "label": "Randomized fibre minimax and epsilon-safe actions",
+      "depends_on": ["F1"],
+      "claims": ["C19-T1"]
+    },
+    {
+      "id": "F3",
+      "kind": "theorem",
+      "label": "Small worst-fibre witnesses and minimal action conflicts",
+      "depends_on": ["F1"],
+      "claims": ["C19-T2"]
+    },
+    {
+      "id": "F4",
+      "kind": "theorem",
+      "label": "Static representation repair as exact weighted cover",
+      "depends_on": ["F3"],
+      "claims": ["C19-T3"]
+    },
+    {
+      "id": "A1",
+      "kind": "theorem",
+      "label": "Statewise adaptive loss-profile Bellman recursion and Pareto pruning",
+      "depends_on": ["F1"],
+      "claims": ["C19-T4"]
+    },
+    {
+      "id": "A2",
+      "kind": "theorem",
+      "label": "Cell-constant iff boundary for universal scalar charge decomposition",
+      "depends_on": ["A1"],
+      "claims": ["C19-T4"]
+    },
+    {
+      "id": "A3",
+      "kind": "theorem",
+      "label": "Randomized adaptive convex-profile game, small upper receipt, dual Bayes lower receipt",
+      "depends_on": ["A1", "F2"],
+      "claims": ["C19-T5"]
+    },
+    {
+      "id": "I1",
+      "kind": "impossibility",
+      "label": "Unseen same-signature states are unconstrained by finite training bytes",
+      "depends_on": ["F0"],
+      "claims": ["C19-T6"]
+    },
+    {
+      "id": "I2",
+      "kind": "escape_hatch",
+      "label": "Closed-world completeness, valid structural extension, or statistical authority",
+      "depends_on": ["I1"],
+      "claims": ["C19-T6"]
+    },
+    {
+      "id": "R1",
+      "kind": "theorem",
+      "label": "Paired fallback-minus-learned relative-loss certificates",
+      "depends_on": ["F1", "I2"],
+      "claims": ["C19-T7"]
+    },
+    {
+      "id": "R2",
+      "kind": "theorem",
+      "label": "Pre/post acquisition identity and route measurability",
+      "depends_on": ["A1", "R1"],
+      "claims": ["C19-T7"]
+    },
+    {
+      "id": "R3",
+      "kind": "theorem",
+      "label": "Structural relative-loss extension and drift-margin transfer",
+      "depends_on": ["R1", "I2"],
+      "claims": ["C19-T7"]
+    },
+    {
+      "id": "E1",
+      "kind": "evidence",
+      "label": "R8 three-domain exact collision census",
+      "depends_on": ["F1"],
+      "claims": ["C19-E1"]
+    },
+    {
+      "id": "E2",
+      "kind": "evidence",
+      "label": "R9 seven-vertex nontransfer and repair atlas",
+      "depends_on": ["F1", "F4"],
+      "claims": ["C19-E2"]
+    },
+    {
+      "id": "E3",
+      "kind": "evidence",
+      "label": "R11 positive complete-corpus same-unit ASlib discriminator",
+      "depends_on": ["F1", "F3", "F4"],
+      "claims": ["C19-E3"]
+    },
+    {
+      "id": "E4",
+      "kind": "refutation",
+      "label": "R14 prospective exact-equality inductive failure",
+      "depends_on": ["I1", "E3"],
+      "claims": ["C19-E4"]
+    },
+    {
+      "id": "E5",
+      "kind": "partial_or_adverse",
+      "label": "R14/R15 coarsening, coverage-tax, and certificate-boundary results",
+      "depends_on": ["I2", "E4"],
+      "claims": ["C19-E5"]
+    },
+    {
+      "id": "E6",
+      "kind": "refutation",
+      "label": "R16 cross-scenario marginal-certificate value failure and fallback sign reversal",
+      "depends_on": ["R1", "E5"],
+      "claims": ["C19-E6"]
+    },
+    {
+      "id": "E7",
+      "kind": "corroboration",
+      "label": "R12/R13/R17/R18 exact finite implementation controls",
+      "depends_on": ["A1", "A2", "A3", "R1", "R2", "R3"],
+      "claims": ["C19-E7"]
+    }
+  ],
+  "required_paths_to_conclusion": [
+    ["F0", "F1", "F3", "F4", "E3"],
+    ["F0", "I1", "E4"],
+    ["F0", "F1", "A1", "A2", "E7"],
+    ["F0", "F1", "F2", "A3", "E7"],
+    ["F0", "I1", "I2", "R1", "E6"],
+    ["F0", "F1", "A1", "R1", "R2", "E7"],
+    ["F0", "I1", "I2", "R1", "R3", "E7"]
+  ],
+  "publication_rule": "A reader-visible conclusion must cite both the positive transductive path E3 and the inductive/fallback refutation paths E4 and E6."
+}
