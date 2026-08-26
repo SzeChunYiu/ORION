@@ -5,6 +5,10 @@ The locked representation is {Pre, lobjois}, selected previously on SAT12-ALL.
 This selector is deliberately outcome-blind: it reads only Git tree path names and
 scenario description.txt blobs. It never reads algorithm_runs, feature_values,
 feature_costs, feature_runstatus, ground truth, or CV outcome content.
+
+The repository need not be checked out. A fetched ref such as FETCH_HEAD is
+sufficient; with a blob-filtered fetch, only description blobs requested by
+`git show` are materialized.
 """
 from __future__ import annotations
 
@@ -74,12 +78,12 @@ def normalize_performance_type(raw: Any) -> tuple[str, ...]:
     return (str(raw).lower(),)
 
 
-def run(repo: Path) -> dict[str, Any]:
-    head = git(repo, "rev-parse", "HEAD")
-    if head != ASLIB_COMMIT:
-        raise ValueError(f"ASlib HEAD mismatch: {head} != {ASLIB_COMMIT}")
+def run(repo: Path, ref: str) -> dict[str, Any]:
+    resolved = git(repo, "rev-parse", ref)
+    if resolved != ASLIB_COMMIT:
+        raise ValueError(f"ASlib ref mismatch: {resolved} != {ASLIB_COMMIT}")
 
-    paths = set(git(repo, "ls-tree", "-r", "--name-only", "HEAD").splitlines())
+    paths = set(git(repo, "ls-tree", "-r", "--name-only", ref).splitlines())
     scenario_names = sorted(
         {
             path.split("/", 1)[0]
@@ -104,7 +108,8 @@ def run(repo: Path) -> dict[str, Any]:
             excluded.append({"scenario": scenario, "reasons": reasons or ["missing_description"]})
             continue
 
-        text = git(repo, "show", f"HEAD:{description_path}")
+        # This is the only blob content read from a target scenario.
+        text = git(repo, "show", f"{ref}:{description_path}")
         descriptions_read.append(description_path)
         desc = yaml.safe_load(text)
         if not isinstance(desc, dict):
@@ -144,7 +149,7 @@ def run(repo: Path) -> dict[str, Any]:
 
         row = {
             "scenario": scenario,
-            "description_blob_sha1": git(repo, "rev-parse", f"HEAD:{description_path}"),
+            "description_blob_sha1": git(repo, "rev-parse", f"{ref}:{description_path}"),
             "algorithm_cutoff_time": cutoff,
             "performance_type": list(performance_types),
             "locked_steps": list(LOCKED_STEPS),
@@ -161,6 +166,7 @@ def run(repo: Path) -> dict[str, Any]:
         "status": "ELIGIBILITY_FROZEN",
         "authority": {
             "metadata_only": True,
+            "repository_worktree_checked_out": False,
             "target_algorithm_outcomes_read": False,
             "target_feature_values_read": False,
             "target_feature_cost_values_read": False,
@@ -171,6 +177,7 @@ def run(repo: Path) -> dict[str, Any]:
         },
         "upstream": {
             "commit": ASLIB_COMMIT,
+            "inspected_ref": ref,
             "source_scenario": SOURCE_SCENARIO,
             "source_result_sha256": SOURCE_RESULT_SHA256,
         },
@@ -199,9 +206,10 @@ def run(repo: Path) -> dict[str, Any]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--aslib-git-root", type=Path, required=True)
+    parser.add_argument("--ref", default="HEAD")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    result = run(args.aslib_git_root)
+    result = run(args.aslib_git_root, args.ref)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(canonical_json(result) + "\n", encoding="utf-8")
     print(
