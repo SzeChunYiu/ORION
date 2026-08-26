@@ -1,0 +1,42 @@
+name: Typed Authority R9 OAuth token-splice corpus
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/D/OAUTH_*_R9*.json'
+      - 'papers/five-paper-top-tier-r8/D/verify_oauth_token_splicing_r9.py'
+      - 'papers/five-paper-top-tier-r8/D/OAUTH_TOKEN_SPLICE_R9_ADDENDUM.md'
+      - 'papers/five-paper-top-tier-r8/D/OAUTH_TOKEN_SPLICE_R9_PROTOCOL.md'
+      - '.github/workflows/five-paper-r9-d-oauth-splicing.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay RFC-grounded hostile corpus
+        run: |
+          set -euo pipefail
+          cp papers/five-paper-top-tier-r8/D/OAUTH_TOKEN_SPLICE_R9_RESULTS.json /tmp/expected.json
+          python papers/five-paper-top-tier-r8/D/verify_oauth_token_splicing_r9.py > /tmp/stdout.json
+          cmp /tmp/expected.json papers/five-paper-top-tier-r8/D/OAUTH_TOKEN_SPLICE_R9_RESULTS.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          obj=json.loads(Path('/tmp/expected.json').read_text())
+          summary=obj['summary']
+          assert summary['case_count']==14
+          assert summary['typed_expected_agreement']==14
+          assert summary['typed_false_positive_count']==0
+          assert summary['typed_false_negative_count']==0
+          assert summary['untyped_false_positive_count']==9
+          assert summary['independent_formula_agreement_count']==14
+          PY
