@@ -1,0 +1,49 @@
+name: Five-paper R9 Q1 source discovery
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/r9-q1-independent-audit-packet-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/Q1/**'
+      - '.github/workflows/five-paper-r9-q1-source-discovery.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  discover-and-bind-candidates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Discover content-bound support-two candidates
+        run: |
+          python papers/five-paper-top-tier-r8/Q1/discover_q1_support_two_sources_r9.py \
+            | tee /tmp/Q1_SUPPORT_TWO_SOURCE_DISCOVERY_R9.stdout
+      - name: Require nonempty candidate inventory
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('papers/five-paper-top-tier-r8/Q1/Q1_SUPPORT_TWO_SOURCE_CANDIDATES_R9.json')
+          data = json.loads(p.read_text())
+          assert data['candidate_count'] > 0
+          assert data['selection_status'] == 'BINDING_REQUIRED'
+          assert data['authority']['selects_authoritative_theorem'] is False
+          PY
+      - name: Archive candidate binding inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: q1-support-two-source-candidates-r9
+          path: |
+            papers/five-paper-top-tier-r8/Q1/Q1_SUPPORT_TWO_SOURCE_CANDIDATES_R9.json
+            /tmp/Q1_SUPPORT_TWO_SOURCE_DISCOVERY_R9.stdout
+          if-no-files-found: error
+          retention-days: 30
