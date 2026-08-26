@@ -1,0 +1,37 @@
+{
+ "classical_donor_products_supplied": [
+  "C1 per-objective donor-exactness recomputation",
+  "C2 exact FT-dominance fractions",
+  "C3 objective-reweighting inversion recomputation",
+  "C4 S1A classical query ceiling + brute-force verification",
+  "C5 observation-hierarchy classical probing donor",
+  "C6 oracle-charging control binding"
+ ],
+ "generated_utc": "2026-08-26T23:07:11Z",
+ "job_id": "V1-Q-RESOURCE-01",
+ "next_job": null,
+ "next_job_note": "no successor job is scheduled by this lane; the freeze ledger lists no job depending on V1-Q-RESOURCE-01; successor scheduling belongs to the freeze owner. The classical donor product built here (C4) is the binding comparator for the QN successor lanes.",
+ "paper_authority_delta": "NONE",
+ "residual_open_lanes": {
+  "FROZEN_EXECUTION_SUCCESSOR": [
+   734,
+   743,
+   881,
+   897,
+   907,
+   980,
+   1409,
+   1416,
+   1418
+  ],
+  "LOCAL_REPAIR": [
+   927,
+   1034,
+   1306
+  ],
+  "PENDING_ATOMIC_AUDIT": [
+   937
+  ]
+ },
+ "schema": "ORION.V1.QuantumResource.TransferResult.v1"
+}

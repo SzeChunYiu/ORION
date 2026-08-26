@@ -1,0 +1,216 @@
+{
+ "generated_utc": "2026-08-26T23:07:11Z",
+ "job_id": "V1-Q-RESOURCE-01",
+ "ledger": {
+  "compiler_units": {
+   "donor_rows": [
+    "QR-D01",
+    "QR-D03",
+    "QR-D04",
+    "QR-D05",
+    "QR-D06",
+    "QR-D08",
+    "QR-D09",
+    "QR-D11",
+    "QR-D12",
+    "QR-D13",
+    "QR-D14",
+    "QR-D17",
+    "QR-D18",
+    "QR-D23",
+    "QR-D24"
+   ],
+   "residual_open_rows": [
+    "QR-D03",
+    "QR-D08",
+    "QR-D11",
+    "QR-D13",
+    "QR-D14",
+    "QR-D23",
+    "QR-D24"
+   ],
+   "surviving_resource_advantage_count": 0,
+   "terminal_counts": {
+    "CANNOT_CHECK": 5,
+    "COMPILER_COST_UNBOUND": 7,
+    "DONOR_EQUIVALENT": 3
+   }
+  },
+  "hardware": {
+   "donor_rows": [
+    "QR-D03",
+    "QR-D09",
+    "QR-D13",
+    "QR-D21",
+    "QR-D25",
+    "QR-D26"
+   ],
+   "residual_open_rows": [
+    "QR-D03",
+    "QR-D13",
+    "QR-D21",
+    "QR-D25",
+    "QR-D26"
+   ],
+   "surviving_resource_advantage_count": 0,
+   "terminal_counts": {
+    "CANNOT_CHECK": 5,
+    "DONOR_EQUIVALENT": 1
+   }
+  },
+  "information": {
+   "donor_rows": [
+    "QR-D05",
+    "QR-D07",
+    "QR-D08",
+    "QR-D10",
+    "QR-D12",
+    "QR-D15",
+    "QR-D16",
+    "QR-D21",
+    "QR-D22",
+    "QR-D27",
+    "QR-D28"
+   ],
+   "residual_open_rows": [
+    "QR-D07",
+    "QR-D08",
+    "QR-D10",
+    "QR-D21",
+    "QR-D22"
+   ],
+   "surviving_resource_advantage_count": 0,
+   "terminal_counts": {
+    "CANNOT_CHECK": 5,
+    "COMPILER_COST_UNBOUND": 1,
+    "DONOR_EQUIVALENT": 3,
+    "HIDDEN_ORACLE": 2
+   }
+  },
+  "oracle": {
+   "donor_rows": [
+    "QR-D10",
+    "QR-D21",
+    "QR-D27"
+   ],
+   "residual_open_rows": [
+    "QR-D10",
+    "QR-D21"
+   ],
+   "surviving_resource_advantage_count": 0,
+   "terminal_counts": {
+    "CANNOT_CHECK": 1,
+    "HIDDEN_ORACLE": 2
+   }
+  },
+  "recovery": {
+   "donor_rows": [
+    "QR-D20",
+    "QR-D26"
+   ],
+   "residual_open_rows": [
+    "QR-D20",
+    "QR-D26"
+   ],
+   "surviving_resource_advantage_count": 0,
+   "terminal_counts": {
+    "CANNOT_CHECK": 1,
+    "VERIFICATION_COST_UNBOUND": 1
+   }
+  },
+  "sampling": {
+   "donor_rows": [
+    "QR-D02",
+    "QR-D15",
+    "QR-D16",
+    "QR-D19",
+    "QR-D21"
+   ],
+   "residual_open_rows": [
+    "QR-D19",
+    "QR-D21"
+   ],
+   "surviving_resource_advantage_count": 0,
+   "terminal_counts": {
+    "CANNOT_CHECK": 1,
+    "DONOR_EQUIVALENT": 2,
+    "VERIFICATION_COST_UNBOUND": 2
+   }
+  },
+  "totals": {
+   "census_issues_out_of_scope": [
+    1359,
+    1362,
+    1368
+   ],
+   "donor_rows": 28,
+   "residual_open_rows": [
+    "QR-D03",
+    "QR-D07",
+    "QR-D08",
+    "QR-D10",
+    "QR-D11",
+    "QR-D13",
+    "QR-D14",
+    "QR-D19",
+    "QR-D20",
+    "QR-D21",
+    "QR-D22",
+    "QR-D23",
+    "QR-D24",
+    "QR-D25",
+    "QR-D26"
+   ],
+   "surviving_resource_advantage_count": 0,
+   "terminal_counts": {
+    "CANNOT_CHECK": 11,
+    "COMPILER_COST_UNBOUND": 7,
+    "DONOR_EQUIVALENT": 5,
+    "HIDDEN_ORACLE": 2,
+    "VERIFICATION_COST_UNBOUND": 3
+   }
+  },
+  "verification": {
+   "donor_rows": [
+    "QR-D02",
+    "QR-D06",
+    "QR-D07",
+    "QR-D11",
+    "QR-D14",
+    "QR-D19",
+    "QR-D20",
+    "QR-D22",
+    "QR-D24",
+    "QR-D25"
+   ],
+   "residual_open_rows": [
+    "QR-D07",
+    "QR-D11",
+    "QR-D14",
+    "QR-D19",
+    "QR-D20",
+    "QR-D22",
+    "QR-D24",
+    "QR-D25"
+   ],
+   "surviving_resource_advantage_count": 0,
+   "terminal_counts": {
+    "CANNOT_CHECK": 5,
+    "COMPILER_COST_UNBOUND": 1,
+    "DONOR_EQUIVALENT": 1,
+    "VERIFICATION_COST_UNBOUND": 3
+   }
+  }
+ },
+ "resource_classes": [
+  "oracle",
+  "information",
+  "compiler_units",
+  "verification",
+  "sampling",
+  "recovery",
+  "hardware"
+ ],
+ "schema": "ORION.V1.QuantumResource.ResourceLedger.v1",
+ "statement": "Complete enumeration of information, oracle, compiler, verification, sampling, recovery and hardware resources claimed by the census-kept donors; no class contains a donor whose claimed advantage survives complete charging."
+}

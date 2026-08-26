@@ -1,0 +1,636 @@
+{
+ "census_issues_covered": 53,
+ "census_issues_out_of_scope": [
+  1359,
+  1362,
+  1368
+ ],
+ "donor_count": 28,
+ "donors": [
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json",
+    "research/extensions/orion-qg/QG9_V5_SUPPORT2_TIGHTNESS_RESULTS.json",
+    "research/extensions/orion-qg/QG13V4_SUPPORT4_RESULTS.json",
+    "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json",
+    "development/orion-qg-regime-geometry/QG_COST_UNITS_STATEMENT_V1.md"
+   ],
+   "census_binding_defect": null,
+   "census_issues": [
+    762,
+    793,
+    801,
+    803,
+    790
+   ],
+   "claimed_resource_requirement": "Support-count reductions in the frozen (4,2,2,1) role-weighted tally: fewer frame/Tag/Restore support units claimed as cheaper compilations.",
+   "classical_or_structural_donor": "The stipulated exchange rates themselves: QG_COST_UNITS_STATEMENT_V1.md records rotations priced at zero and rates stipulated, not measured; the programme's own O1 (T-count) reweighting is the information-matched alternative accounting.",
+   "donor_id": "QR-D01",
+   "family": "QG-9 / R6I-R6S support-cap ladder + all-n composition theorem",
+   "residual_open": false,
+   "resource_classes": [
+    "compiler_units"
+   ],
+   "source_theorem_or_result": "Rank-2 support-five tightness and support<=1 / support<=2 sufficiency normalization (QG9 V5/V6, QG9T1, QG9-T2), support<=4 cumulative theorem (QG-13V4), and the all-n composition theorem (unrestricted exact DP optimum equals D++ optimum for every n).",
+   "terminal": "COMPILER_COST_UNBOUND",
+   "terminal_justification": "Support tallies are not counts of any physical resource. Under the programme's own declared O1 T-count reweighting, 7752/9261 structured instances change regime and chemistry donor-exactness falls 30/30 to 0/30 (NEGATIVE_CONTROLS.c3_qg2_o1_inversion). No compiler cost is bound by these units, so the claimed gain cannot survive compilation."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG10_INTERVAL_GEOMETRY_RESULTS.json",
+    "research/extensions/orion-qg/QG10C_INTERVAL_CLOSURE_RESULTS.json",
+    "research/extensions/orion-qg/QG10C_PROTECTED_RUN_RECEIPT_2026-08-21.json"
+   ],
+   "census_binding_defect": null,
+   "census_issues": [
+    763
+   ],
+   "claimed_resource_requirement": "Cheaper certification: interval certificates claimed to certify regime geometry at lower exact-compute cost than exact solving.",
+   "classical_or_structural_donor": "Direct exact DP over the same frozen instance set: the closure's own terminal (donor-dependent or weak value) concedes the interval route's incremental value does not separate from the exact-verification donor.",
+   "donor_id": "QR-D02",
+   "family": "QG-10 / QG-10C certified interval regime geometry",
+   "residual_open": false,
+   "resource_classes": [
+    "verification",
+    "sampling"
+   ],
+   "source_theorem_or_result": "Sound certification of regime geometry by certified interval arithmetic without an exact geometry oracle; closure terminal: incremental interval value donor-dependent or weak.",
+   "terminal": "VERIFICATION_COST_UNBOUND",
+   "terminal_justification": "The certified-interval route's claimed saving is a verification-cost claim. Its own committed terminal records the incremental value as donor-dependent or weak, i.e. the saving is not established against the exact-verification baseline; the verification resource actually spent (protected-run receipts) is accounted but the claimed verification advantage is not bounded below by any committed artifact."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG11C_FT_LIFT_CLOSURE_RESULTS.json",
+    "research/extensions/orion-qg/QG11D_ARCHITECTURE_CONDITIONED_RESPONSIBILITY_PROTOCOL_V1.md"
+   ],
+   "census_binding_defect": null,
+   "census_issues": [
+    764,
+    907
+   ],
+   "claimed_resource_requirement": "Regime geometry claimed to lift into fault-tolerant hardware cost hierarchies (compile-time structural choice reduces FT cost).",
+   "classical_or_structural_donor": "The nonlinear counterexample inside the committed result: the lift is refuted wherever the cost map is nonlinear, and the real-estimator leg cannot be checked inside the freeze.",
+   "donor_id": "QR-D03",
+   "family": "QG-11 / QG-11C / QG-11D fault-tolerant lift",
+   "residual_open": true,
+   "resource_classes": [
+    "compiler_units",
+    "hardware"
+   ],
+   "source_theorem_or_result": "Affine FT phase pullback proved with nonlinear factory counterexample; real-estimator leg terminal: REAL_ESTIMATOR_CANNOT_CHECK; architecture-conditioned successor protocol frozen but not executed.",
+   "terminal": "CANNOT_CHECK",
+   "terminal_justification": "The FT lift's resource claim cannot be charged: the committed closure itself states the real-estimator leg cannot be checked, and the architecture-conditioned successor (QG-11D) is a frozen protocol with no executed result. No FT cost number exists to compare against."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG13V2_COMBINED_EDIT_RESULTS.json",
+    "research/extensions/orion-qg/QG13V3_THREE_COLUMN_RESULTS.json"
+   ],
+   "census_binding_defect": null,
+   "census_issues": [
+    777,
+    785
+   ],
+   "claimed_resource_requirement": "Compositional editing of the Tag/frame structure claimed to reduce the support tally at fixed coverage.",
+   "classical_or_structural_donor": "The obstruction theorems themselves: the committed terminals record obstruction, i.e. the structural donor (unedited grammar) matches or beats every mined combined edit on the frozen tally.",
+   "donor_id": "QR-D04",
+   "family": "QG-13 V2/V3 combined-deletion theorem mining",
+   "residual_open": false,
+   "resource_classes": [
+    "compiler_units"
+   ],
+   "source_theorem_or_result": "Combined-edit obstruction theorems: minimal combined-edit mined and obstructed (QG13V2), three-column combined-edit theorem mining (QG13V3).",
+   "terminal": "COMPILER_COST_UNBOUND",
+   "terminal_justification": "The mined edits trade one stipulated unit for another inside the same unbound (4,2,2,1) tally; the obstruction results already concede no tally reduction, and even a tally reduction would bind no compiler cost (same unit defect as QR-D01)."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG14C_COMPOSITION_CLOSURE_RESULTS.json"
+   ],
+   "census_binding_defect": null,
+   "census_issues": [
+    768
+   ],
+   "claimed_resource_requirement": "Local subproblem selection claimed to compose into globally cheaper compilations without re-solving.",
+   "classical_or_structural_donor": "The hidden-coupling counterexample inside the committed result: local selection is refuted and only a coupling-aware (global-information) summary recovers control, i.e. the global exact donor is required.",
+   "donor_id": "QR-D05",
+   "family": "QG-14 / QG-14C compositional regime calculus",
+   "residual_open": false,
+   "resource_classes": [
+    "compiler_units",
+    "information"
+   ],
+   "source_theorem_or_result": "Separable composition proved; hidden coupling refutes local selection; coupling-aware summary recovers control.",
+   "terminal": "COMPILER_COST_UNBOUND",
+   "terminal_justification": "Composition's claimed saving is a compile-time saving in the same unbound support tally; the committed result's own claim boundary states bounded theorem/counterexample control only, no universal interface compression claim. No compiler cost is bound."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG17_R6I_PHASE_SHARPNESS_RESULTS.json",
+    "research/extensions/orion-qg/QG17R_CORRECTED_PHASE_SHARPNESS_RESULTS.json",
+    "research/extensions/orion-qg/QG17B_TIE_LOCUS_RESULTS.json"
+   ],
+   "census_binding_defect": null,
+   "census_issues": [
+    814
+   ],
+   "claimed_resource_requirement": "Phase-boundary sharpness claimed as certificate-margin strength for the support-one sufficiency statement.",
+   "classical_or_structural_donor": "The corrected sharpness run itself: no support-two witness exists in the frozen domain, so the certificate margin claimed by sharpness is matched by the exhaustive-search donor on the same domain.",
+   "donor_id": "QR-D06",
+   "family": "QG-17 / QG-17R phase sharpness attacks",
+   "residual_open": false,
+   "resource_classes": [
+    "verification",
+    "compiler_units"
+   ],
+   "source_theorem_or_result": "Adversarial sharpness attack on the R6I support-one objective phase; corrected phase sharpness finds no support-two witness in the frozen V5 domain; tie-locus analysis.",
+   "terminal": "COMPILER_COST_UNBOUND",
+   "terminal_justification": "Certificate margins are measured in the same unbound stipulated tally; the sharpness certificate does not price the verification compute it would license, and the domain-bound no-witness result means no compilation-cost differential is established."
+  },
+  {
+   "artifact_bindings": [],
+   "census_binding_defect": "census evidence path QG19_HOSTILE_NOVELTY_RESULTS.json absent from origin/main despite present:origin_main=true",
+   "census_issues": [
+    862
+   ],
+   "claimed_resource_requirement": "Novelty of the regime geometry claimed robust outside the constructing cone, i.e. no cheaper classical re-derivation anticipated.",
+   "classical_or_structural_donor": "No committed artifact is bound: the census evidence path QG19_HOSTILE_NOVELTY_RESULTS.json is absent from origin/main.",
+   "donor_id": "QR-D07",
+   "family": "QG-19 outside-cone hostile novelty attack",
+   "residual_open": true,
+   "resource_classes": [
+    "information",
+    "verification"
+   ],
+   "source_theorem_or_result": "Hostile outside-cone sharpness attack on the novelty statement.",
+   "terminal": "CANNOT_CHECK",
+   "terminal_justification": "The hostile novelty attack's committed artifact is missing from origin/main under the census-bound name; without it neither the claimed margin nor the hostile control can be charged. Recorded as a census binding defect, not as a pass."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG20_RANK_KAPPA_SLACK_RESULTS.json",
+    "research/extensions/orion-qg/QG20_SIXLCU_OBJECTIVE_SCOPE_RESULTS.json"
+   ],
+   "census_binding_defect": "QG20_RECOVERY_PLAN.md census path absent from origin/main",
+   "census_issues": [
+    863
+   ],
+   "claimed_resource_requirement": "Slack-column structure claimed to predict cheap regime state without full recomputation (a representation-compression resource claim).",
+   "classical_or_structural_donor": "The committed claim boundary itself: alternative closed-form accounts (slack = mu; slack = rank-1 indicators; etc.) are not excluded by the data, so an information-matched simpler account matches the claim.",
+   "donor_id": "QR-D08",
+   "family": "QG-20 rank-kappa slack columns",
+   "residual_open": true,
+   "resource_classes": [
+    "information",
+    "compiler_units"
+   ],
+   "source_theorem_or_result": "Rank-kappa slack measured exactly on two families under QG-6 certified ranks; fails under the margin-aligned block rewrite; third family not derivable; alternative accounts not excluded by the data.",
+   "terminal": "CANNOT_CHECK",
+   "terminal_justification": "Partial by its own terminal and non-exclusive against simpler classical accounts; a third measured family is not derivable. The compression claim cannot be bound to any resource without excluding the simpler donors, which the data do not."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json"
+   ],
+   "census_binding_defect": null,
+   "census_issues": [
+    864
+   ],
+   "claimed_resource_requirement": "T-weighted objective claimed to capture fault-tolerant cost differentials between compilations inside the frozen family.",
+   "classical_or_structural_donor": "The donor subtraction executed in the committed result: theta_FT is donor-exact on 90/90 real chemistry rows; the entire non-Clifford term is the family constant 9*kappa_T and cancels from every comparison, so the T-ratio between any two family members is exactly 1 (recomputed in NEGATIVE_CONTROLS.c1/c2).",
+   "donor_id": "QR-D09",
+   "family": "QG-21 certificate-margin map (theta_FT primary objective)",
+   "residual_open": false,
+   "resource_classes": [
+    "compiler_units",
+    "hardware"
+   ],
+   "source_theorem_or_result": "theta_FT(x) = t_nc*N_rot(x) + c_T*[support units]; N_rot = 9 family-constant, so theta_FT differences reduce exactly to the two-qubit Clifford count difference (reduction lemma); donor-exact 90/90 rows at the PRIMARY objective; S1 18/90 improved by exactly 2 Cliffords.",
+   "terminal": "DONOR_EQUIVALENT",
+   "terminal_justification": "The information-matched donor (the donor construction itself, already optimal on 90/90 rows at the primary objective) matches the claimed gain exactly; the residual defensible improvement is 2 two-qubit Cliffords on 18/90 rows, at most 1/11 of the Clifford-side cost and at most 2/270 of the family-constant T backdrop (exact fractions in NEGATIVE_CONTROLS.c2_ft_dominance). Equality retained as a first-class result."
+  },
+  {
+   "artifact_bindings": [],
+   "census_binding_defect": "census evidence path QG22_EXACT_FIVE_PREDICATE_STATE.json absent from origin/main despite present:origin_main=true",
+   "census_issues": [
+    868
+   ],
+   "claimed_resource_requirement": "Joint predicate state claimed queryable, licensing predicate-certified selection without paying for each predicate separately.",
+   "classical_or_structural_donor": "The construction itself is an oracle resource: preparing/querying the exact joint state presupposes the answer the five predicates certify. The information-matched classical donor is exhaustive evaluation of the five predicates, which contains exactly that information at bookkept cost (the DISC-Q oracle-charging precedent, QR-D27).",
+   "donor_id": "QR-D10",
+   "family": "QG-22 exact five-predicate oracle state",
+   "residual_open": true,
+   "resource_classes": [
+    "oracle",
+    "information"
+   ],
+   "source_theorem_or_result": "Exact joint state of the five certification predicates claimed as an oracle construction.",
+   "terminal": "HIDDEN_ORACLE",
+   "terminal_justification": "The claimed joint state is available only by charging the hidden oracle/producer of the state; uncharged, it embeds the certified information for free. The census evidence path QG22_EXACT_FIVE_PREDICATE_STATE.json is additionally absent from origin/main (binding defect), but the terminal follows from the access model itself."
+  },
+  {
+   "artifact_bindings": [],
+   "census_binding_defect": "census evidence path QG7E_V2_PARTIAL_POLYTOPE_PHASE_RESULTS.json absent from origin/main despite present:origin_main=true",
+   "census_issues": [
+    872
+   ],
+   "claimed_resource_requirement": "Polytope relaxation claimed to certify phase membership at lower exact-compute cost.",
+   "classical_or_structural_donor": "Partial (relaxed) certification is weaker than the exact witness donor; where the relaxation is partial, the exact DP donor already certifies strictly more.",
+   "donor_id": "QR-D11",
+   "family": "QG-7e V2 partial-polytope phase",
+   "residual_open": true,
+   "resource_classes": [
+    "verification",
+    "compiler_units"
+   ],
+   "source_theorem_or_result": "Partial-polytope phase for R6I claimed to refine the certificate geometry cheaply.",
+   "terminal": "CANNOT_CHECK",
+   "terminal_justification": "No committed artifact on origin/main binds the partial-polytope phase (census path absent); the relaxation's claimed verification saving cannot be charged or compared."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG7F_CHAIN_REPRESENTATION_AUDIT_RESULTS.json"
+   ],
+   "census_binding_defect": "census evidence path QG24C_REDUCTION_BOUNDARY_COUNTEREXAMPLES.json absent from origin/main; refutation re-bound to QG7F audit artifact",
+   "census_issues": [
+    874
+   ],
+   "claimed_resource_requirement": "Reduction claimed to shrink the certificate/accounting state space (fewer coordinates to certify).",
+   "classical_or_structural_donor": "The committed QG7F chain-representation audit: the two-coordinate reduction is REFUTED by a TAG3 multi-comm S2 configuration; both representations accept, so the full-coordinate incumbent donor remains necessary and the claimed shrink does not exist.",
+   "donor_id": "QR-D12",
+   "family": "QG-24 two-coordinate reduction attack",
+   "residual_open": false,
+   "resource_classes": [
+    "information",
+    "compiler_units"
+   ],
+   "source_theorem_or_result": "Claim that the R6 chain's accounting reduces to two coordinates.",
+   "terminal": "DONOR_EQUIVALENT",
+   "terminal_justification": "Adverse outcome retained as first-class: the reduced representation is refuted and the incumbent full-grammar donor matches every accepted configuration; the claimed resource saving is void. Census path QG24C_REDUCTION_BOUNDARY_COUNTEREXAMPLES.json is absent from origin/main; the refutation is bound to the QG7F audit artifact that IS present (and exists at both frozen base and origin/main)."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG7F_CHAIN_REPRESENTATION_AUDIT_RESULTS.json"
+   ],
+   "census_binding_defect": "issue #881 census title (QG-7f) conflicts with raw capture title (QG-25 tropical); census path QG7F_RESOURCE_LOWER_BOUND_ENGINEERING.md absent from origin/main",
+   "census_issues": [
+    881
+   ],
+   "claimed_resource_requirement": "Asymptotic tropical/compiler-phase analysis claimed to bound resource growth for periodic families.",
+   "classical_or_structural_donor": "No executed tropical-transfer resource product exists; the physical-resource lower-bound engineering named by the census row (QG-7f honest ceiling audit) was never executed either.",
+   "donor_id": "QR-D13",
+   "family": "QG-25 tropical transfer spectra / asymptotic compiler phases",
+   "residual_open": true,
+   "resource_classes": [
+    "compiler_units",
+    "hardware"
+   ],
+   "source_theorem_or_result": "Tropical transfer spectra and asymptotic compiler phases for periodic TARE families (raw issue title; census row titles the issue QG-7f physical-resource lower-bound engineering).",
+   "terminal": "CANNOT_CHECK",
+   "terminal_justification": "Title conflict in the census binding (issue #881 raw title is the QG-25 tropical lane; the census row calls it QG-7f) plus a missing census evidence path: neither the tropical asymptotics nor the honest lower-bound audit has a committed artifact to charge. FROZEN_EXECUTION_SUCCESSOR: open."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG26_NERODE_MINIMALITY_RESULTS.json",
+    "research/extensions/orion-qg/QG26_PARIKH_HISTOGRAM_RESULTS.json"
+   ],
+   "census_binding_defect": "seven census wave-3 paths *_WAVE3_RESULTS.json absent from origin/main despite present:origin_main=true",
+   "census_issues": [
+    879,
+    880,
+    884,
+    886,
+    888,
+    890,
+    920
+   ],
+   "claimed_resource_requirement": "Extended regime-geometry certificates claimed to carry over to new structural coordinates.",
+   "classical_or_structural_donor": "Same unit defect as QR-D01: wave-3 certificates are tallies in the stipulated (4,2,2,1) units with rotations priced at zero.",
+   "donor_id": "QR-D14",
+   "family": "QG wave-3 lanes (QG-26/27/28/29/31/33/37)",
+   "residual_open": true,
+   "resource_classes": [
+    "compiler_units",
+    "verification"
+   ],
+   "source_theorem_or_result": "Wave-3 regime-geometry extensions (Nerode minimality, Parikh histograms, etc. per the actual wave-3 artifacts on main).",
+   "terminal": "CANNOT_CHECK",
+   "terminal_justification": "All seven census-bound wave-3 artifact paths (QG26/27/28/29/31/33/37_WAVE3_RESULTS.json) are absent from origin/main despite present:origin_main=true; the actually-present wave-3 artifacts carry different names and were not re-bound by the census. Resource claims cannot be charged against unbound artifacts; recorded as census binding defects."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG32C_OBSERVATION_COST_HIERARCHY_RESULTS.json"
+   ],
+   "census_binding_defect": "census evidence path QG32C_F_STAR_RESULTS.json absent from origin/main; re-bound to QG32C_OBSERVATION_COST_HIERARCHY_RESULTS.json",
+   "census_issues": [
+    918
+   ],
+   "claimed_resource_requirement": "Adaptive probing claimed to identify orbit type at strictly lower observation cost (3 vs 4 vs 5 probes).",
+   "classical_or_structural_donor": "The adaptive strategy itself is a CLASSICAL probing scheme: the information-matched classical donor (adaptive query order over the same probe alphabet) attains the 3-probe bound. No coherent-oracle resource is used.",
+   "donor_id": "QR-D15",
+   "family": "QG-32 early variant / QG-32C observation-cost hierarchy",
+   "residual_open": false,
+   "resource_classes": [
+    "sampling",
+    "information"
+   ],
+   "source_theorem_or_result": "Observation-cost hierarchy independently recomputed from main: adaptive D*=3 < class-conditioned F*=4 < universal U*=5; four-probe cover refuted by exhaustive enumeration of 32018910 subsets.",
+   "terminal": "DONOR_EQUIVALENT",
+   "terminal_justification": "The observation-cost separation is real but entirely classical: the adaptive classical donor attains the minimum; no quantum-structural resource advantage exists to survive charging (recomputed in NEGATIVE_CONTROLS.c5_observation_hierarchy). Census path QG32C_F_STAR_RESULTS.json absent; re-bound to the committed QG32C artifact present on main."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG35_SUMMARY_CONDITIONED_FIXED_RESULTS.json",
+    "research/extensions/orion-qg/QG_RETRACTION_SELECTION_HEADLINES_V1.md",
+    "research/extensions/orion-qg/qg_null_model_check.py",
+    "research/extensions/orion-qg/QG41_SIXLCU_BROAD_CLASS_RESULTS.json"
+   ],
+   "census_binding_defect": "census evidence path QG36_POST_NULL_RESULTS.json absent from origin/main; residual re-bound to QG41 instance-level arm",
+   "census_issues": [
+    942,
+    893,
+    904
+   ],
+   "claimed_resource_requirement": "Selection between equal-spectrum compilations claimed to carry measurable cost signal.",
+   "classical_or_structural_donor": "The null model itself: qg_null_model_check.py reproduces the selection headlines under the null, so the information-matched null donor matches the claimed signal; the QG-41 instance-level arm reproduces the same failure on a second family (3651063/5862960 failing probe pairs).",
+   "donor_id": "QR-D16",
+   "family": "QG-35/35b/36 selection split, null-model audit, post-null residual",
+   "residual_open": false,
+   "resource_classes": [
+    "information",
+    "sampling"
+   ],
+   "source_theorem_or_result": "Selection-split headline retracted after the null-model audit; summary-conditioned fixed-probe complexity machine-checked; instance-level residual failure.",
+   "terminal": "DONOR_EQUIVALENT",
+   "terminal_justification": "Headline retracted in favour of the null donor: the claimed selection signal is matched by the null model and the residual instance-level failure reproduces cross-family. Equality/adverse outcome retained as first-class. Census path QG36_POST_NULL_RESULTS.json absent; residual re-bound via the QG-41 instance-level arm."
+  },
+  {
+   "artifact_bindings": [
+    "development/orion-qg-regime-geometry/QG_COST_UNITS_STATEMENT_V1.md"
+   ],
+   "census_binding_defect": "census evidence path QG39_POST_NULL_RESIDUAL_RESULTS.json absent from origin/main; deflation re-bound to QG_COST_UNITS_STATEMENT_V1.md",
+   "census_issues": [
+    924
+   ],
+   "claimed_resource_requirement": "Residual depth signal claimed to survive the null-model retraction.",
+   "classical_or_structural_donor": "The exact recomputation in QG_COST_UNITS_STATEMENT_V1.md: the frame term is identically 18 at n=1 under EVERY weight vector, the Tag weight cancels, and K = t_tag + t_r*dF3 is affine in one structural count with t_r unmeasured across the declared span {0,1,3}.",
+   "donor_id": "QR-D17",
+   "family": "QG-39 post-retraction depth-distribution residual",
+   "residual_open": false,
+   "resource_classes": [
+    "compiler_units"
+   ],
+   "source_theorem_or_result": "Depth-distribution non-null residual claimed after the selection retraction.",
+   "terminal": "COMPILER_COST_UNBOUND",
+   "terminal_justification": "The claimed residual magnitude is unbound: the regret is exactly 5*t_r factored-Restore Pauli letters and t_r is unmeasured across the programme's own declared span (0, 1, or 3 giving regret 0, 5 or 15). Nothing in the construction fixes which; the depth claim cannot be priced. Census path QG39_POST_NULL_RESIDUAL_RESULTS.json absent; deflation bound to the committed cost-units statement."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG40_PRODUCTION_COMPILER_SEPARATION_RESULTS.json",
+    "research/extensions/orion-qg/QG41_SIXLCU_BROAD_CLASS_RESULTS.json",
+    "research/extensions/orion-qg/QG42_PRODUCTION_COMPILER_TRANSFER_RESULTS.json"
+   ],
+   "census_binding_defect": "census evidence paths QG40_QISKET_TRANSFER_RESULTS.json, QG41_PYTKET_TRANSFER_RESULTS.json, QG42_TRANSFER_INTERPRETATION.md absent from origin/main; re-bound to actual committed artifacts",
+   "census_issues": [
+    928,
+    932,
+    933
+   ],
+   "claimed_resource_requirement": "Structural choice phenomena claimed to transfer to production compilers, implying compile-time savings measurable in production compiler cost.",
+   "classical_or_structural_donor": "The committed WARNING in the transfer artifact itself: phenomenon-transfer check only, NOT a performance comparison, and no cost number is comparable to ORION config_cost.",
+   "donor_id": "QR-D18",
+   "family": "QG-40/41/42 production-compiler transfers",
+   "residual_open": false,
+   "resource_classes": [
+    "compiler_units"
+   ],
+   "source_theorem_or_result": "Existence/selection separation probed in Qiskit 2.5.2 (existence NOT free in 5/10 classes, selection reproduces, one instrument defect caught and repaired), SixLCU broad class (existence FREE, selection impossible, shape determined; instance-level failure reproduces), and phenomenon transfer (validated deterministic maps, relabelling covariance 8/8).",
+   "terminal": "COMPILER_COST_UNBOUND",
+   "terminal_justification": "The transfer artifacts transfer a PHENOMENON, not a cost: no production-compiler cost differential is measured anywhere in the committed results, so the claimed compile-time saving is unbound in the target compiler's own cost units. Census paths QG40_QISKET_TRANSFER_RESULTS.json / QG41_PYTKET_TRANSFER_RESULTS.json / QG42_TRANSFER_INTERPRETATION.md absent; re-bound to the actual committed artifacts."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/run_qg3_dual_harness.py"
+   ],
+   "census_binding_defect": null,
+   "census_issues": [
+    927
+   ],
+   "claimed_resource_requirement": "Track-A positive forecast claimed executable inside the frozen harness budget.",
+   "classical_or_structural_donor": "The harness budget itself: the frozen dual-harness cap (120s stage-1) is the declared verification resource, and the track-A run exceeds it.",
+   "donor_id": "QR-D19",
+   "family": "QG-3 track-A dual-harness baseline",
+   "residual_open": true,
+   "resource_classes": [
+    "verification",
+    "sampling"
+   ],
+   "source_theorem_or_result": "qg3-positive-forecast track A: no green baseline; stage-1 exceeds the frozen 120s harness cap.",
+   "terminal": "VERIFICATION_COST_UNBOUND",
+   "terminal_justification": "The claimed result cannot be verified inside its declared verification budget: stage-1 exceeds the harness 120s cap and no green baseline exists (LOCAL_REPAIR lane still open in the census). The verification cost is unbound relative to the declared resources."
+  },
+  {
+   "artifact_bindings": [],
+   "census_binding_defect": "#937 evidence rows have null paths; #1034 evidence is '(see issue body for exact file)' \u2014 no tree binding",
+   "census_issues": [
+    937,
+    1034
+   ],
+   "claimed_resource_requirement": "Outcome receipts claimed to certify protected-run results without the underlying artifact or with a defective file identity.",
+   "classical_or_structural_donor": "The receipt-verification procedure itself: an unbound receipt cannot be re-verified from the tree, and a dual-welded identity defeats content-hash binding.",
+   "donor_id": "QR-D20",
+   "family": "Unbound outcome receipt + committed-file identity defect",
+   "residual_open": true,
+   "resource_classes": [
+    "verification",
+    "recovery"
+   ],
+   "source_theorem_or_result": "Protected-run outcome receipt without artifact (pending atomic audit); dual-welded identity defect on a committed result file.",
+   "terminal": "VERIFICATION_COST_UNBOUND",
+   "terminal_justification": "Verification of the claimed outcomes is unbound: #937's receipt has no artifact (pending atomic audit) and #1034's committed file carries a dual identity defect (LOCAL_REPAIR lane open). Both are first-class negatives: the verification resource required to certify these claims exceeds what the receipts declare."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qn/S1A_CLASSICAL_QUERY_CEILING_AMENDMENT_V1.md"
+   ],
+   "census_binding_defect": "QN_S1A_PROTOCOL.md, QN_S1_NEGATIVE_RESULTS.json, QN_Q0_Q1_EXECUTION_PROTOCOL.md census paths absent from origin/main (unexecuted lanes)",
+   "census_issues": [
+    734,
+    738,
+    743
+   ],
+   "claimed_resource_requirement": "Quantum-native query-complexity separation claimed over the classical query ceiling (Grover-type r versus classical K).",
+   "classical_or_structural_donor": "THIS JOB CONSTRUCTS THE CLASSICAL DONOR PRODUCT: the corrected classical query ceiling p_c(K) = (K+1)/N with free final guess, K_match = max(0, ceil(p_q*N) - 1), E_C = K_match - K_match*(K_match-1)/(2N), with exact-rational Grover success p_q = W_r((N-1)/N)^2 / N via the even Chebyshev recurrence W_{r+1} = (4u-2)W_r - W_{r-1}, and brute-force strategy enumeration verifying the ceiling for N <= 8 (NEGATIVE_CONTROLS.c4).",
+   "donor_id": "QR-D21",
+   "family": "ORION-QN quantum-native lanes (S1A, negative lane, S1B/Q0-Q1)",
+   "residual_open": true,
+   "resource_classes": [
+    "oracle",
+    "sampling",
+    "hardware",
+    "information"
+   ],
+   "source_theorem_or_result": "Quantum-native S1A run (mission: explicit access model, oracle construction, measurement, verification, end-to-end resource cost, strongest same-information classical incumbent), the negative outcome lane, and the S1B/Q0-Q1 successor execution lane \u2014 all unexecuted at freeze.",
+   "terminal": "CANNOT_CHECK",
+   "terminal_justification": "The quantum-native arm was never executed (census has_merged_material_result=false for #734/#743; QN protocol artifacts absent from origin/main), so no quantum-side resource number exists to charge. What CAN be done is done here: the information-matched classical donor product is constructed and machine-checked so the successor run has a binding comparator. The S1A fairness amendment explicitly licenses no physical or end-to-end advantage."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG30_BULK_COARSE_GRAIN_RESULTS.json"
+   ],
+   "census_binding_defect": "Q3/Q4/Q5/Q_PUBLICATION/Q_CHARTER census paths absent from origin/main despite present:origin_main=true on #903/#908/#914/#921",
+   "census_issues": [
+    903,
+    908,
+    914,
+    921,
+    980
+   ],
+   "claimed_resource_requirement": "ORION-Q lane closures claimed to retire quantum-structural questions with committed evidence.",
+   "classical_or_structural_donor": "The actually-delivered bulk coarse-grain artifact (QG30: TARE bulk geometry compresses exactly to 45 signature counts, defect information remains) is the only committed main-tree product in this cluster.",
+   "donor_id": "QR-D22",
+   "family": "ORION-Q lane closures (Q3-Q6) and charter",
+   "residual_open": true,
+   "resource_classes": [
+    "verification",
+    "information"
+   ],
+   "source_theorem_or_result": "Protected rung triplet closure (Q3), Q4 closure, Q5, Q6/QG publication closure, and the ORION-Q charter authority statement.",
+   "terminal": "CANNOT_CHECK",
+   "terminal_justification": "The census-bound closure artifacts (Q3_PROTECTED_RUNG_CLOSURE.json, Q4_CLOSURE_RESULTS.json, Q5_RESULTS.json, Q_PUBLICATION_CLOSURE.md, Q_CHARTER_V1.md) are all absent from origin/main despite present:origin_main=true on four of them; the charter and several closures are unexecuted at freeze. Resource claims cannot be charged against absent artifacts."
+  },
+  {
+   "artifact_bindings": [
+    "papers/orion-05-tare-expressivity/CLAIM_LEDGER_V3.md"
+   ],
+   "census_binding_defect": null,
+   "census_issues": [
+    1389,
+    1409,
+    1418
+   ],
+   "claimed_resource_requirement": "Support-count expressivity theorems claimed as compilation-cost statements in the manuscript.",
+   "classical_or_structural_donor": "The manuscript's own claim ledger: the sharp support-two result EXPLICITLY EXCLUDES fault-tolerant resource advantage and physical quantum advantage from its claim scope.",
+   "donor_id": "QR-D23",
+   "family": "Q1 / TARE manuscript resource claims",
+   "residual_open": true,
+   "resource_classes": [
+    "compiler_units"
+   ],
+   "source_theorem_or_result": "TARE expressivity manuscript lane: sharp support-two theorem (kappa_R6M = 2) with EXACT SHARPNESS, and the receipt-bound manuscript update lane.",
+   "terminal": "COMPILER_COST_UNBOUND",
+   "terminal_justification": "The manuscript's support-count claims are in the stipulated (4,2,2,1) tally (QR-D01 unit defect): the dominant fault-tolerant term is the family-constant 9 rotations and is invariant under every compilation choice inside the grammar, so no FT resource advantage is claimable from these theorems \u2014 exactly as the claim ledger's exclusion states. External blocker lanes (#1389) remain open."
+  },
+  {
+   "artifact_bindings": [],
+   "census_binding_defect": "evidence is draft PR #1449 (unmerged; base is not main); census path QG21_CERTIFICATE_MARGIN_MAP.json absent from origin/main",
+   "census_issues": [
+    1416
+   ],
+   "claimed_resource_requirement": "Conditional Clifford-count resource map claimed as the strongest defensible resource statement for the TARE family.",
+   "classical_or_structural_donor": "The donor subtraction already executed in the draft: subtracting 16 version-bound literature sources leaves the conditional Clifford map donor-matched (novelty not established), and the internal cross-check preserves the QG-21 donor-exactness adverse result.",
+   "donor_id": "QR-D24",
+   "family": "Q1-C production-resource literature map (partial)",
+   "residual_open": true,
+   "resource_classes": [
+    "compiler_units",
+    "verification"
+   ],
+   "source_theorem_or_result": "PARTIAL_RESOURCE_MAP: six support-unit configurations mapped to conditional logical two-qubit Clifford counts with 9 family-constant rotations, refusing T-count/T-depth/qubit/spacetime/hardware claims; internal cross-check PRESERVES the adverse QG-21 result; literature subtraction over 16 version-bound sources; NOVELTY_NOT_ESTABLISHED. Draft PR #1449 (unmerged, base chatgpt/r9-q1-independent-audit-packet-20260826).",
+   "terminal": "DONOR_EQUIVALENT",
+   "terminal_justification": "The strongest defensible map is conditional, partial, and donor-matched: it preserves the QG-21 adverse cross-check (90/90 donor-exact, 18/90 improved by 2 Cliffords) and its literature subtraction leaves no residual capability. Equality/adverse outcome retained as first-class. NOTE: this row binds an UNMERGED draft (PR #1449), not origin/main \u2014 weaker evidence class, recorded as such."
+  },
+  {
+   "artifact_bindings": [],
+   "census_binding_defect": null,
+   "census_issues": [
+    1427
+   ],
+   "claimed_resource_requirement": "Manuscript claims held pending external validation.",
+   "classical_or_structural_donor": "No external validator exists inside the freeze; external validation is by definition outside the executable scope.",
+   "donor_id": "QR-D25",
+   "family": "Q1 external validation blocker",
+   "residual_open": true,
+   "resource_classes": [
+    "verification",
+    "hardware"
+   ],
+   "source_theorem_or_result": "External validation of Q1 claims blocked (no reviewer-external execution).",
+   "terminal": "CANNOT_CHECK",
+   "terminal_justification": "External validation is not executable inside the frozen base; the authority ceiling assigns external_validation = CANNOT_CHECK. Blocked lane, retained open."
+  },
+  {
+   "artifact_bindings": [],
+   "census_binding_defect": null,
+   "census_issues": [
+    897
+   ],
+   "claimed_resource_requirement": "Quantum code decoder transfer claimed as a resource-relevant structural result.",
+   "classical_or_structural_donor": "No executed arm; no classical decoder comparison constructed.",
+   "donor_id": "QR-D26",
+   "family": "ORION-RG QLDPC decoder transfer",
+   "residual_open": true,
+   "resource_classes": [
+    "hardware",
+    "recovery"
+   ],
+   "source_theorem_or_result": "Quantum LDPC decoder transfer lane (census-class FROZEN_EXECUTION_SUCCESSOR, not executed).",
+   "terminal": "CANNOT_CHECK",
+   "terminal_justification": "Unexecuted successor lane (has_merged_material_result=false, null evidence rows): nothing to charge. Retained open."
+  },
+  {
+   "artifact_bindings": [
+    "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/MATCHED_RESOURCE_RECEIPT.json",
+    "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/disc_q_transfer_01.py"
+   ],
+   "census_binding_defect": null,
+   "census_issues": [
+    1306
+   ],
+   "claimed_resource_requirement": "Cross-domain structural transfer claimed to carry a cost advantage into the target domain.",
+   "classical_or_structural_donor": "The donor arm itself: total enumeration with the same adequacy predicate and validator, same instance and obligation set.",
+   "donor_id": "QR-D27",
+   "family": "DISC-Q matched-resource transfer (oracle-charging control)",
+   "residual_open": false,
+   "resource_classes": [
+    "oracle",
+    "information"
+   ],
+   "source_theorem_or_result": "Exact cross-domain transfer with matched-resource accounting: terminal SURFACE_ANALOGY_OR_RESOURCE_ADVANTAGE_ONLY; verdict APPARENT_ADVANTAGE_DISAPPEARS_UNDER_ORACLE_CHARGING; donor arm total enumeration resource vector [524287, 524287, 1536, 763, 0]; anti-laundering note: kappa is not available a priori in the target and the transferred arm is charged oracle subsets.",
+   "terminal": "HIDDEN_ORACLE",
+   "terminal_justification": "Control precedent executed with integers only: the transfer's apparent advantage disappears once the hidden oracle that produced kappa is charged (disjuncts RESOURCE_ADVANTAGE_DOES_NOT_SURVIVE_ORACLE_CHARGING and DONOR_SUBTRACTION_RESIDUAL_CAPABILITY_EMPTY both fired; gate.passed=false). This row is the executed template for every HIDDEN_ORACLE charge in this ledger."
+  },
+  {
+   "artifact_bindings": [
+    "research/extensions/orion-qg/QG_PORTFOLIO_CLOSURE_RESULTS.json",
+    "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json"
+   ],
+   "census_binding_defect": null,
+   "census_issues": [
+    911
+   ],
+   "claimed_resource_requirement": "No uncharged advantage is claimed: the portfolio's authority statements are upper-bound-only.",
+   "classical_or_structural_donor": "Every bound artifact in this ledger: physical_quantum_advantage_claim = false is machine-checked in the QG-21 result (the primary objective artifact).",
+   "donor_id": "QR-D28",
+   "family": "QG portfolio closure and upper-bound-only authority honesty",
+   "residual_open": false,
+   "resource_classes": [
+    "information"
+   ],
+   "source_theorem_or_result": "QG earned portfolio lanes adjudicated closed with mixed theorem/refutation and boundaries preserved; upper-bound-only authority conceded by the programme.",
+   "terminal": "CANNOT_CHECK",
+   "terminal_justification": "The honesty lane concedes the vacuity: with upper-bound-only authority and physical_quantum_advantage_claim=false machine-recorded in the primary artifacts, there is no claimed resource advantage whose survival could be checked beyond the per-donor accounting above. Retained as a first-class negative: the question is vacuous here, not satisfied."
+  }
+ ],
+ "generated_utc": "2026-08-26T23:07:11Z",
+ "job_id": "V1-Q-RESOURCE-01",
+ "schema": "ORION.V1.QuantumResource.DonorResult.v1",
+ "surviving_resource_advantage_count": 0,
+ "terminal_counts": {
+  "CANNOT_CHECK": 11,
+  "COMPILER_COST_UNBOUND": 7,
+  "DONOR_EQUIVALENT": 5,
+  "HIDDEN_ORACLE": 2,
+  "VERIFICATION_COST_UNBOUND": 3
+ }
+}
