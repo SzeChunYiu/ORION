@@ -24,6 +24,8 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12.13"
@@ -85,9 +87,34 @@ jobs:
           tests/unit/kernel/test_process_receipt_v3_wait_hostile.py
           tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py
           --junitxml=receipt-v3-deadline-p1/run-b.xml
+      - name: Execute post-publication hostile review regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          hostile=research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/test_hostile_review_regressions.py
+          python -m pytest --collect-only -q "$hostile" \
+            | tee receipt-v3-deadline-p1/hostile-review-collect.txt
+          python - <<'PY'
+          from pathlib import Path
+
+          lines = Path(
+              "receipt-v3-deadline-p1/hostile-review-collect.txt"
+          ).read_text().splitlines()
+          nodes = [line.strip() for line in lines if "::test_" in line]
+          if len(nodes) != len(set(nodes)) or len(nodes) != 8:
+              raise SystemExit(
+                  f"hostile-review denominator drift: {len(nodes)=}, "
+                  f"unique={len(set(nodes))}"
+              )
+          PY
+          python -m pytest -q --runxfail "$hostile" \
+            --junitxml=receipt-v3-deadline-p1/hostile-review.xml
       - name: Compile and diff hygiene
         run: |
-          python -m py_compile src/orion/kernel/process_receipt.py tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py
+          python -m py_compile \
+            src/orion/kernel/process_receipt.py \
+            tests/unit/kernel/test_process_receipt_v3_deadline_hostile.py \
+            research/orion-v1-execution/results/V1-RECEIPT-V3-DEADLINE-P1-01/test_hostile_review_regressions.py
           git diff --check HEAD^
       - name: Upload immutable audit logs
         if: always()
