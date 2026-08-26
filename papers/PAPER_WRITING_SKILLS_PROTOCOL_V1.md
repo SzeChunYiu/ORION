@@ -92,3 +92,37 @@ This protocol supersedes any conflicting style guidance in older paper-programme
 documents (they remain binding on *substance*: gates, evidence, venues). When an
 older doc and a skill disagree on craft, the skill wins; when they disagree on
 what may be claimed, the freeze package wins.
+
+## 7. House style (binding for all manuscript work)
+
+Absorbed 2026-08-27 from `papers/HOUSE_STYLE_TODO.md` (agreed 2026-08-21; the
+parked TODO retires into `papers/archive/2026-08-pre-unification/`). These are
+craft rules and bind every new or rewritten manuscript exactly like the skills:
+
+1. **Standalone contributions.** Papers 1–14 (ORION-11…24) must not presuppose
+   that the composed system exists. Each paper is a mechanism, its theory, and
+   its experiment. The system is assembled and named only in Paper 15
+   (ORION-25). A paper needing a sibling result **cites it** like any other
+   reference — no internal cross-references to sibling papers or a shared
+   programme.
+2. **Mechanism as subject.** Remove the system name from the body; claims are
+   about the mechanism ("routes count as independent only when independence is
+   earned"). Name the implementation once, in Methods or Availability, as the
+   artifact under test.
+3. **No machine tokens in prose.** `CANNOT_CHECK`, `TIER_B_committed`,
+   `P2_WIDE_EXTERNAL_CANNOT_CHECK` and similar are internal vocabulary. State
+   the three-valued outcome idea once, in plain English, in Methods; in prose
+   say "remains undetermined".
+4. **No repository paths or artifact filenames in the narrative** — they belong
+   in Data Availability.
+5. **No defensive scaffolding sections.** "Problem and claim boundary" is an
+   Introduction; "Nearest work" is Related Work that positions the contribution
+   among neighbours. The claim boundary stays — stated once, in prose, in
+   Limitations.
+6. **No tables of open-literature checks.** Discuss the neighbouring work and
+   cite it.
+7. **Internal identifiers out of prose.** An experiment id gets one
+   reader-holdable name ("the exact-contract battery").
+
+Scope order: ORION-12 first, reviewed, then the same treatment per paper as each
+is finished. All R2 rewrite waves apply this section from their first draft.
