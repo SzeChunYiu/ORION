@@ -109,6 +109,11 @@ def render_table(payload: dict) -> str:
             "transport_failure", 0
         )
     )
+    exploratory_cannot_check = int(
+        systems["adaptive_multiroute_exploratory"]["status_counts"].get(
+            "CANNOT_CHECK", 0
+        )
+    )
     lines.extend(
         [
             "",
@@ -122,7 +127,7 @@ def render_table(payload: dict) -> str:
             f"- the `no_unavailable_route_open_state` ablation converts those same safety cases into {unavailable_pc} premature-closure failures;",
             f"- the `no_content_identity_dedup` ablation creates {dedup_budget} budget-exhaustion failures after duplicate work consumes the read budget;",
             "- simple/single-pass baselines terminate with premature closure because reachable relevant material remains on unexercised routes;",
-            f"- the exploratory adaptive comparator exposes {exploratory_transport} terminal `transport_failure` cases in addition to its premature closures.",
+            f"- the exploratory adaptive comparator retains {exploratory_cannot_check} censored tasks as `CANNOT_CHECK`; under the current canonical vocabulary, {exploratory_transport} of those remain encoded as terminal `transport_failure` labels rather than being promoted into failures.",
             "",
             f"Source of record: `RESULTS_SUMMARY_V1.json`, itself checked by clean-CI regeneration against the frozen {n_records}-run record digest.",
             "",

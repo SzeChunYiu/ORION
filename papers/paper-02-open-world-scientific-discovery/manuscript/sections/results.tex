@@ -104,11 +104,10 @@ separate.  The exact-index attestation endpoint returned 404, independent
 custody remained open, and zero index, census, ranking or metric run occurred.
 
 The offline campaign is summarized by a single immutable publication record.
-It binds the full
-\OfflineRunRecordCount{}-record set by SHA-256
-\idt{27b8e55b68a65906fe0971ed2f24a814d31d66a1423d38782bb121c7f06e1525}
+It binds the full 16,380-record set by SHA-256
+\idt{c6430a651810f8e7a794aa0c1091794963c43389a1e5080c02c2807a2fc2c574}
 and the corresponding rich-artifact hash list by
-\idt{ed5cf7bd823fcabd6a57658a05560bd5f1e30256aa3f8eb8404325c493ed3cfe}.
+\idt{d851f168faaf50969198180ecc61a6ac361c72556ceeb992f011af307dd00c37}.
 The exact run manifest was committed before the first outcome snapshot.  The
 mechanism projection used for Figures~\ref{fig:p2-4}--\ref{fig:p2-5} is archived
 separately; it records the same two source digests and is regenerated from
@@ -119,11 +118,10 @@ these artifacts and where it lives.
 
 \subsection{Controlled-index comparison}
 The governed system attains mean complete-gold recall 0.979487 and precision 1.0.  It
-passes 319 of \OfflineTaskCount{} tasks, fails on 59 tasks after
-honestly exhausting its route-call budgets without certifying completeness, and
-leaves 12 tasks undetermined because a route holding unretrieved
-relevant material becomes unavailable; it never certifies a censored task
-complete.  Its premature-task-closure rate is
+passes 260 of \OfflineTaskCount{} tasks, fails on 59 tasks after honestly exhausting its
+route-call budgets without certifying completeness, and leaves 71 tasks
+undetermined because a route holding unretrieved relevant material becomes
+unavailable; it never certifies a censored task complete.  Its premature-task-closure rate is
 0.  The strongest of the six protocol-frozen confirmatory baselines is the
 protocol-driven systematic-review comparator, with mean recall 0.666667.  That
 comparator claims task completion on all \OfflineTaskCount{} tasks while reachable gold remains,
@@ -139,7 +137,7 @@ of real-web superiority.
 \hline
 System & Recall & Premature closure & Pass & Cannot check & Fail \\
 \hline
-Governed system & 0.979487 & 0.00 & 0.82 & 0.03 & 0.15 \\
+Governed system & 0.979487 & 0.00 & 0.67 & 0.18 & 0.15 \\
 Protocol-driven SLR & 0.666667 & 1.00 & 0.00 & 0.00 & 1.00 \\
 Sparse+dense hybrid & 0.555556 & 1.00 & 0.00 & 0.00 & 1.00 \\
 One-pass RAG & 0.555556 & 1.00 & 0.00 & 0.00 & 1.00 \\
@@ -191,14 +189,14 @@ serve as competitive systems.
 
 Removing content-identity deduplication is less catastrophic but measurably
 wasteful in the controlled world: mean duplicate-processing rate rises from 0
-to 0.101446, 145 of \OfflineTaskCount{} tasks exhaust the read budget, pass rate falls from 0.817949
-to 0.605128, and mean recall falls to 0.952707.  Removing the question coordinate
+to 0.31453, 193 of \OfflineTaskCount{} tasks exhaust the read budget, pass rate falls from 0.666667
+to 0.369231, and mean recall falls to 0.939031.  Removing the question coordinate
 from the read ledger leaves aggregate recall unchanged at 0.979487 but changes
 the extraction-question-shift mechanism exactly where expected: the mean count
 of legitimate rereads on that family falls from 3.666667 to 1.0.  This is a mechanism
 result, not evidence of a recall gain from the ledger.  Finally, removing the
 unavailable-route open state leaves mean recall numerically unchanged but turns
-the 12 censored undetermined cases into asserted completions and
+the 71 censored undetermined cases into asserted completions and
 premature-closure failures.  The distinction is therefore one of epistemic
 safety rather than headline recall.
 
@@ -274,12 +272,12 @@ per-review metric before emitting the counts.  These results identify where the
 bounded probe fails; they do not establish superiority for the full system.
 
 \subsection{Failure analysis and external status}
-Under the evaluator's fixed terminal-failure precedence, premature closure is
-the dominant failure class in the controlled companion; the exploratory
-adaptive comparator also exposes 65 transport-failure classifications, while
-the no-dedup ablation exposes 145 budget-exhaustion failures.  The governed
-system's only terminal failure classification is honest budget exhaustion on 59
-tasks: 319 tasks pass, 12 are censored, and premature closure remains at zero.
+Under the evaluator's fixed terminal-failure precedence, the exploratory
+adaptive comparator exposes 296 premature-closure and 16 present-but-missed
+classifications while retaining 78 cases as \texttt{CANNOT\_CHECK}; the no-dedup ablation
+exposes 193 budget-exhaustion failures.  The governed system's only terminal
+failure classification is honest budget exhaustion on 59 tasks: 260 tasks pass,
+71 are censored, and premature closure remains at zero.
 The full per-system taxonomy is archived beside the publication summary.
 
 A gold-defined route-stop replay is archived as supplementary material.

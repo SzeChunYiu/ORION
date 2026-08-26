@@ -7,12 +7,11 @@ rate-limit as a scientific zero.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 import sys
 from pathlib import Path
-
-import pytest
 
 from orion.study.p2.one_stage_attribution import (
     FailureStage,
@@ -34,7 +33,12 @@ LEDGER = PAPER / "evidence" / "external_results" / "ONE_STAGE_FAILURE_ATTRIBUTIO
 DEEP_ATTR = PAPER / "evidence" / "external_results" / "DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json"
 DEEP_ARCHIVE = PAPER / "evidence" / "external_results" / "DEEP_OFFICIAL_ARCHIVE_V1.json"
 WIDE_PROBE = PAPER / "evidence" / "external_results" / "AUTORESEARCHBENCH_WIDE_KEYLESS_PROBE_V1.json"
-SUMMARY = PAPER / "evidence" / "offline_results" / "RESULTS_SUMMARY_V1.json"
+SUMMARY = (
+    PAPER
+    / "evidence"
+    / "offline_results"
+    / "RESULTS_SUMMARY_PRE_CANONICAL_VOCABULARY_2026-08-25.json"
+)
 
 ALPHAFOLD = "AlphaFold protein structure prediction"
 
@@ -215,7 +219,7 @@ def test_deep_zero_hit_archive_is_candidate_generation() -> None:
     assert ledger["allocator_architecture"] == "not_licensed_before_external_test"
 
 
-def test_committed_receipts_exist_and_bind_the_390_task_summary() -> None:
+def test_committed_receipts_exist_and_bind_the_historical_390_task_summary() -> None:
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
     receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
     freeze = json.loads(WIDE_FREEZE.read_text(encoding="utf-8"))
@@ -232,7 +236,10 @@ def test_committed_receipts_exist_and_bind_the_390_task_summary() -> None:
     assert receipt["content_hashes"]["record_digest_sha256"] == summary["frozen_run"][
         "record_digest_sha256"
     ]
-    assert len(receipt["content_hashes"]["results_summary_file_sha256"]) == 64
+    assert receipt["content_hashes"]["results_summary_file_sha256"] == hashlib.sha256(
+        SUMMARY.read_bytes()
+    ).hexdigest()
+    assert receipt["artifact"] == "evidence/offline_results/RESULTS_SUMMARY_V1.json"
     assert receipt["regeneration"]["match"] is True
     assert receipt["close_issue"] is False
 

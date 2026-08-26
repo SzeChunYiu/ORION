@@ -181,7 +181,7 @@ def test_budget_stops_a_runaway_system(suite) -> None:
     assert system.attempts > task.budget.max_route_calls, "the system really did keep asking"
     assert system.refusals > 0, "and it really was refused"
     assert outcome.record["cost"]["search_queries"] == float(task.budget.max_route_calls)
-    assert outcome.trace.budget_exhausted == "route_calls"
+    assert outcome.trace.truncated_at_cap == "route_calls"
 
 
 def test_the_session_stays_closed_once_exhausted(suite) -> None:
@@ -210,7 +210,7 @@ def test_a_frugal_system_is_not_flagged_as_exhausted(suite) -> None:
     outcome = execute(
         Frugal(), suite.world, task, seed=1, run_manifest_hash=FIXTURE_RUN_MANIFEST_HASH
     )
-    assert outcome.trace.budget_exhausted == ""
+    assert outcome.trace.truncated_at_cap == ""
     assert outcome.record["failure_class"] != "budget_exhausted"
     assert outcome.record["cost"]["search_queries"] == 2.0
 
@@ -338,7 +338,7 @@ def test_metrics_are_numbers_and_structure_lives_in_the_hashed_artifact(suite) -
     )
     assert outcome.record["raw_artifact_hash"] == outcome.artifact_hash
     evaluation = outcome.artifact["evaluation"]
-    assert isinstance(evaluation["discovered_gold_identities"], list)
+    assert isinstance(evaluation["discovered_gold_ids"], list)
     assert isinstance(evaluation["route_contributions"], list)
 
 

@@ -232,6 +232,7 @@ class Evaluation:
     unseen_encounters: int
 
     resources: tuple[tuple[str, float], ...]
+    max_route_calls: int
 
     def oracle_block(self) -> dict[str, Any]:
         """The plan's `oracle.*` namespace: B5, B6, B8, B10 under their own names."""
@@ -323,6 +324,12 @@ class Evaluation:
                 else 0.0
             ),
             "unseen_encounters": float(self.unseen_encounters),
+            # Stable result-record projection retained for the committed P2
+            # analyses. The canonical post-#1078 fields above additionally
+            # expose encounter and execution denominators separately.
+            "duplicate_processing_count": float(self.already_read_executed),
+            "legitimate_reread_count": float(self.legitimate_executed),
+            "first_read_count": float(self.unseen_encounters),
             "routes_used": float(sum(1 for item in self.route_contributions if item.attempts)),
             "mean_route_pair_overlap": (
                 sum(item[2] for item in self.route_pair_overlap) / len(self.route_pair_overlap)
@@ -380,6 +387,9 @@ class Evaluation:
             "route_exhaustion_audits": [item.as_json() for item in self.route_exhaustion_audits],
             "closure_declared": self.closure_declared,
             "truncated_at_cap": self.truncated_at_cap,
+            "task_residual_discoverable_within_budget": (
+                self.task_residual_discoverable_within_budget
+            ),
             "premature_closure": self.premature_closure,
             "closure_cannot_check": self.closure_cannot_check,
             "censored_ids": list(self.censored_ids),
@@ -390,6 +400,7 @@ class Evaluation:
                 for identity, frame in self.encounter_pairs
             ],
             "resources": {name: value for name, value in self.resources},
+            "max_route_calls": self.max_route_calls,
             "metrics": self.numeric_metrics(),
             "authority_flags": self.authority_flags(),
             "oracle": self.oracle_block(),
@@ -631,12 +642,19 @@ def _status_and_failure(
     if trace.error_class:
         return "FAIL", "candidate_error"
     if trace.truncated_at_cap:
-        return "FAIL", "TRUNCATED_AT_CAP"
+        # Stable external failure vocabulary: the trace field now names the
+        # truncating cap, but downstream result records still classify the
+        # retained outcome as budget_exhausted.
+        return "FAIL", "budget_exhausted"
     if premature:
         return "FAIL", "premature_closure"
+    if closure_cannot_check and trace.report.task_closed_as_complete:
+        # Claiming completeness while a provider/open obligation censors
+        # material is a false authority claim, not an unscorable refusal.
+        return "FAIL", "premature_closure"
     if closure_cannot_check:
-        # O4: an unresolved obligation could bear on coverage, so the coverage
-        # verdict is refused rather than guessed.
+        # Refusing authority under an unresolved obligation is the safe
+        # behaviour the paper claims and therefore remains CANNOT_CHECK.
         return "CANNOT_CHECK", None
     if trace.report.abstained:
         return "CANNOT_CHECK", None
@@ -727,7 +745,7 @@ def evaluate(inputs: EvaluationInputs) -> Evaluation:
         unsupported=unsupported,
         false_positives=false_positives,
         premature=premature,
-        closure_cannot_check=closure_cannot_check and closure_declared,
+        closure_cannot_check=closure_cannot_check,
         gold_set_complete=task.protected_gold.gold_set_complete,
         retrieved=frozenset(retrieved),
     )
@@ -768,6 +786,7 @@ def evaluate(inputs: EvaluationInputs) -> Evaluation:
         already_read_executed=sum(1 for item in already if item.executed),
         unseen_encounters=unseen,
         resources=tuple(sorted(trace.resources.as_json().items())),
+        max_route_calls=inputs.caps.max_route_calls,
     )
 
 

@@ -143,23 +143,22 @@ def test_open_defects_stay_visible_as_advisory_on_a_green_run(paper: Path) -> No
 
 
 def test_claim_deleted_from_manuscript_is_caught(paper: Path) -> None:
-    target = claim(load_ledger(paper), "P2-C01")["sentence"]
+    target = claim(load_ledger(paper), "P2-I-A01")["sentence"]
     main = paper / "manuscript" / "main.tex"
     source = main.read_text(encoding="utf-8")
-    # Delete the abstract's headline result by its distinctive opening.  The
-    # task count is a generated macro in main.tex, so the anchor must not
-    # depend on the expanded digit.
-    start = source.index("In a frozen ")
-    end = source.index("targeted negative ablations expose the intended failure modes.") + len(
-        "targeted negative ablations expose the intended failure modes."
-    )
+    # Delete a current integrated abstract claim by its source spelling.  The
+    # checker expands the generated task-count macro before matching it to the
+    # ledger sentence, so this mutation intentionally targets the macro form.
+    start = source.index(r"A \OfflineTaskCount{}-task controlled")
+    end_text = "external screening does not establish superiority."
+    end = source.index(end_text, start) + len(end_text)
     main.write_text(source[:start] + source[end:], encoding="utf-8")
 
     proc = run(paper)
     assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
     assert "LEDGER_SENTENCE_MISSING" in messages(proc)
-    assert "P2-C01" in messages(proc)
-    assert target[:40] not in ""  # sentence really was the ledgered one
+    assert "P2-I-A01" in messages(proc)
+    assert target.startswith("A 390-task controlled index")
 
 
 def test_reworded_claim_is_caught(paper: Path) -> None:
@@ -168,8 +167,8 @@ def test_reworded_claim_is_caught(paper: Path) -> None:
     source = main.read_text(encoding="utf-8")
     main.write_text(
         source.replace(
-            "the governed system reaches mean recall",
-            "the governed system approaches mean recall",
+            "external screening does not establish superiority",
+            "external screening does not demonstrate superiority",
         ),
         encoding="utf-8",
     )
@@ -429,12 +428,12 @@ def test_ledger_number_rotting_away_from_the_manuscript_is_caught(paper: Path) -
 
 def test_role_swap_is_caught_by_positional_binding(paper: Path) -> None:
     """Same numbers, swapped systems: unordered matching would pass this."""
-    main = paper / "manuscript" / "main.tex"
-    source = main.read_text(encoding="utf-8")
-    main.write_text(
+    results = paper / "manuscript" / "sections" / "results.tex"
+    source = results.read_text(encoding="utf-8")
+    results.write_text(
         source.replace(
-            "the governed system reaches mean recall 0.979487 versus 0.666667 for the",
-            "the governed system reaches mean recall 0.666667 versus 0.979487 for the",
+            "requires 385 tasks, which the assembled \\OfflineTaskCount{} tasks reach",
+            "requires 390 tasks, which the assembled 385 tasks reach",
         ),
         encoding="utf-8",
     )
@@ -685,8 +684,8 @@ def test_drift_failure_names_the_current_manuscript_text(paper: Path) -> None:
     main = paper / "manuscript" / "main.tex"
     main.write_text(
         main.read_text(encoding="utf-8").replace(
-            "targeted negative ablations expose the intended failure modes.",
-            "targeted negative ablations reveal the intended failure modes.",
+            "external screening does not establish superiority.",
+            "external screening does not demonstrate superiority.",
         ),
         encoding="utf-8",
     )
@@ -694,7 +693,7 @@ def test_drift_failure_names_the_current_manuscript_text(paper: Path) -> None:
     assert proc.returncode == EXIT_VIOLATIONS, messages(proc)
     assert "LEDGER_SENTENCE_MISSING" in messages(proc)
     assert "manuscript:" in messages(proc)
-    assert "reveal the intended failure modes" in messages(proc)
+    assert "does not demonstrate superiority" in messages(proc)
 
 
 def test_sentence_matching_only_as_a_substring_is_refused(paper: Path) -> None:

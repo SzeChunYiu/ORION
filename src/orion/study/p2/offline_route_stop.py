@@ -25,7 +25,7 @@ def _trace_signature(outcome: RunOutcome) -> tuple[Any, ...]:
             for event in outcome.trace.route_trials
         ),
         tuple(
-            (item.index, item.scope, item.route_id, item.reason, item.claimed_complete)
+            (item.index, item.scope, item.route_id, item.reason, item.declared)
             for item in outcome.trace.stop_decisions
         ),
     )
