@@ -1,4 +1,4 @@
-name: five-paper-r18-c-paired-route
+name: five-paper-r18-c-paired-route-recovery
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
       - 'papers/five-paper-top-tier-r8/C/PAIRED_ROUTE_PROTOCOL_R18.json'
       - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_PROTOCOL_R18.md'
       - 'papers/five-paper-top-tier-r8/C/fiberguard_paired_route_r18*.py'
+      - 'papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json'
       - '.github/workflows/five-paper-r18-c-paired-route.yml'
   workflow_dispatch:
 
@@ -16,7 +17,7 @@ permissions:
   issues: write
 
 jobs:
-  prospective-paired-route-audit:
+  outcome-exposed-recovery-paired-route-audit:
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     steps:
@@ -50,7 +51,7 @@ jobs:
           git -C "$root" checkout --detach FETCH_HEAD
           test "$(git -C "$root" rev-parse HEAD)" = '551b22beef8df17de59286b4822ef720e0aa4d6f'
 
-      - name: Execute prospectively frozen paired-route audit twice
+      - name: Execute frozen paired-route recovery twice
         shell: bash
         run: |
           set -euo pipefail
@@ -80,7 +81,7 @@ jobs:
           cmp "$RUNNER_TEMP/comment-a.md" "$RUNNER_TEMP/comment-b.md"
           cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
 
-      - name: Verify custody, controls, and authority ceiling
+      - name: Verify custody, controls, and fail-closed authority
         shell: bash
         run: |
           set -euo pipefail
@@ -96,17 +97,22 @@ jobs:
           binding = result['prospective_binding']
           assert binding['protocol_execution_commit'] == os.environ['GITHUB_SHA']
           assert binding['result_absent_from_protocol_inputs'] is True
+          assert binding['withdrawn_positive_prose_used_as_input'] is False
+          assert binding['outcome_exposed_recovery'] is True
+          assert binding['prospective_first_result'] is False
           assert result['development']['candidate_count'] == 99
           assert all(result['controls'].values())
           assert set(result['scenarios']) == {'MAXSAT12-PMS', 'MAXSAT19-UCMS', 'QBF-2016'}
           assert all(panel['algorithm_count'] > 1 for panel in result['scenarios'].values())
-          assert result['authority']['paired_certificates'] == 'MARGINAL_UNDER_EXCHANGEABILITY'
-          assert result['authority']['interval_no_harm'] == 'POINTWISE_ON_JOINT_VALIDITY_EVENT'
-          assert result['authority']['worst_case_fibre_safety'] is False
-          assert result['authority']['strongest_algorithm_selection_baseline_complete'] is False
-          assert result['authority']['external_independence'] is False
-          assert result['authority']['production_value'] is False
-          assert result['authority']['grants_journal_authority'] is False
+          authority = result['authority']
+          assert authority['paired_certificates'] == 'MARGINAL_UNDER_EXCHANGEABILITY'
+          assert authority['interval_no_harm'] == 'POINTWISE_ON_JOINT_VALIDITY_EVENT'
+          assert authority['worst_case_fibre_safety'] is False
+          assert authority['strongest_algorithm_selection_baseline_complete'] is False
+          assert authority['external_independence'] is False
+          assert authority['production_value'] is False
+          assert authority['grants_journal_authority'] is False
+          assert authority['recovery_status'] == 'OUTCOME_EXPOSED_CORROBORATION'
           allowed = {
               'FIBERGUARD_R18_PAIRED_ROUTE_PASS_MAXSAT_VALIDATION_AND_QBF_TEST',
               'FIBERGUARD_R18_MAXSAT_VALIDATION_PASS__QBF_TEST_FAIL',
@@ -114,10 +120,10 @@ jobs:
               'FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE',
           }
           assert result['terminal'] in allowed
-          print('R18_PAIRED_ROUTE_RESULT_VERIFIED', result['terminal'])
+          print('R18_RECOVERY_RESULT_VERIFIED', result['terminal'])
           PY
 
-      - name: Publish one content-bound result comment
+      - name: Publish one content-bound recovery comment
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -131,26 +137,26 @@ jobs:
             gh api --method POST "repos/$GITHUB_REPOSITORY/issues/1386/comments" \
               -F "body=@$RUNNER_TEMP/comment-a.md" >/dev/null
           else
-            echo "result comment already exists as $existing"
+            echo "recovery comment already exists as $existing"
           fi
 
       - name: Check diff hygiene
         run: git diff --check
 
-      - name: Stage complete immutable result artifact
+      - name: Stage complete immutable recovery artifact
         shell: bash
         run: |
           set -euo pipefail
-          out="$RUNNER_TEMP/fiberguard-paired-route-r18"
+          out="$RUNNER_TEMP/fiberguard-paired-route-r18-recovery"
           mkdir -p "$out"
-          cp "$RUNNER_TEMP/result-a.json" "$out/FIBERGUARD_PAIRED_ROUTE_R18_RESULTS.json"
-          cp "$RUNNER_TEMP/comment-a.md" "$out/RESULT_COMMENT.md"
+          cp "$RUNNER_TEMP/result-a.json" "$out/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json"
+          cp "$RUNNER_TEMP/comment-a.md" "$out/RECOVERY_COMMENT.md"
           cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
           sha256sum "$out"/* > "$out/SHA256SUMS"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: fiberguard-paired-route-r18-${{ github.sha }}
-          path: ${{ runner.temp }}/fiberguard-paired-route-r18/
+          name: fiberguard-paired-route-r18-recovery-${{ github.sha }}
+          path: ${{ runner.temp }}/fiberguard-paired-route-r18-recovery/
           if-no-files-found: error
           retention-days: 30
