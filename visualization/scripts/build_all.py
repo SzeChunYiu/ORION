@@ -7,7 +7,6 @@ import argparse
 import hashlib
 import json
 import os
-import platform
 import subprocess
 import sys
 from pathlib import Path
@@ -29,14 +28,6 @@ def run(*args: str) -> None:
     source = str(ROOT / "visualization/src")
     environment["PYTHONPATH"] = source + os.pathsep + environment.get("PYTHONPATH", "")
     subprocess.run([sys.executable, *args], cwd=ROOT, env=environment, check=True)
-
-
-def package_version(name: str) -> str | None:
-    try:
-        module = __import__(name)
-        return str(getattr(module, "__version__", "present"))
-    except ImportError:
-        return None
 
 
 def build(output_root: Path) -> Path:
@@ -67,11 +58,6 @@ def build(output_root: Path) -> Path:
     manifest = {
         "schema": "orion.visualization.output-manifest.v1",
         "authority_boundary": AUTHORITY_BOUNDARY,
-        "python": platform.python_version(),
-        "renderers": {
-            "matplotlib": package_version("matplotlib"),
-            "numpy": package_version("numpy"),
-        },
         "file_count": len(files),
         "files": [
             {

@@ -249,6 +249,7 @@ def render(atlas: dict, output_root: Path) -> list[Path]:
     # 5. P2 comparable rates on separate full 0-1 axes.  Reads use a different
     # unit and remain in atlas.json/notebooks rather than sharing this scale.
     p2_arms = metrics["P2"]["arms"]
+    p2_gate = metrics["P2"]["gate"]
     p2_labels = {
         "bm25": "BM25",
         "orion_full": "ORION full",
@@ -275,7 +276,11 @@ def render(atlas: dict, output_root: Path) -> list[Path]:
     fig.text(
         0.5,
         -0.04,
-        "FAIL: recall noninferiority interval crossed −0.02 and ORION used 175.7% more reads.",
+        (
+            "FAIL: recall noninferiority interval crossed "
+            f"{p2_gate['criteria']['recall_noninferiority']['margin']:.2f} and ORION used "
+            f"{p2_gate['criteria']['cost_reduction']['reads_vs_comparator_pct']:.1f}% more reads."
+        ),
         ha="center",
         fontsize=8,
         color="#9A3412",
@@ -365,7 +370,7 @@ def render(atlas: dict, output_root: Path) -> list[Path]:
         ylabel="Enumerated formula-event count (log scale)",
         title=(
             "P6/P7 finite event counts: identical totals are not independent replication\n"
-            "Separate finite receipts; P7's distinct 738/736 programme execution remains invalid"
+            f"Separate finite receipts; P7's distinct {metrics['P7']['planned_cases']}/{metrics['P7']['observed_cases']} programme execution remains invalid"
         ),
     )
     ax.grid(axis="y", color="#E5E7EB", linewidth=0.8, which="both")
@@ -445,7 +450,15 @@ def render(atlas: dict, output_root: Path) -> list[Path]:
             zorder=2,
         )
         ax.scatter(index, deltas.mean(), s=84, marker="D", color="#0072B2", zorder=3)
-        ax.text(index, deltas.mean() + 0.012, f"mean {deltas.mean():.3f}", ha="center", fontsize=8)
+        ax.text(
+            index,
+            0.344,
+            f"mean {deltas.mean():.3f}",
+            ha="center",
+            va="center",
+            fontsize=8,
+        )
+    ax.axhspan(0.329, 0.359, color="#F3F6F8", zorder=0)
     ax.axhline(0.0, color="#111827", linewidth=1.0)
     ax.axhline(
         0.12, color="#E69F00", linewidth=1.2, linestyle="--", label="Per-stratum mean gate = 0.12"
@@ -455,12 +468,15 @@ def render(atlas: dict, output_root: Path) -> list[Path]:
     )
     ax.set(
         xlim=(-0.45, len(sigma_values) - 0.55),
-        ylim=(0.0, 0.34),
+        ylim=(0.0, 0.36),
         xticks=np.arange(len(sigma_values)),
         xticklabels=[f"σ = {sigma:.1f}" for sigma in sigma_values],
         xlabel="Registered noise stratum",
         ylabel="Allocation-rate gain vs stronger one-signal arm",
-        title="P12 family-block gains by registered noise σ (8 blocks per stratum)",
+        title=(
+            "P12 family-block gains by registered noise σ (8 blocks per stratum)\n"
+            "mean labels use a separate top annotation band"
+        ),
     )
     ax.grid(axis="y", color="#E5E7EB", linewidth=0.8)
     ax.legend(frameon=False, loc="lower left")
@@ -580,7 +596,11 @@ def render(atlas: dict, output_root: Path) -> list[Path]:
                 va="center",
                 fontsize=8,
             )
-        ax.set(xlim=(0.0, 1.0), xlabel="Rate (fixed 0–1 scale)", title=title)
+        ax.set(
+            xlim=(-0.025, 1.025),
+            xlabel="Rate (fixed 0–1 scale; padded endpoints)",
+            title=title,
+        )
         ax.grid(axis="x", color="#E5E7EB", linewidth=0.8)
     axes[0].set(yticks=y_positions, yticklabels=[p14_labels[row["arm"]] for row in p14_arms])
     fig.suptitle("P14 governance-contract conformance on 28 internally authored cases")
@@ -626,7 +646,11 @@ def render(atlas: dict, output_root: Path) -> list[Path]:
             for row in p15
         ],
         ["Spawn", "Output", "Replay", "Contract", "Authority"],
-        title="P15 bounded workflow contract: 3 claim-authorized; 1 CANNOT CHECK",
+        title=(
+            "P15 bounded workflow-contract receipts\n"
+            "3 receipt-level AUTHORIZED_SCIENCE; 1 CANNOT CHECK\n"
+            "Receipt dispositions only — not publication or external authority"
+        ),
     )
     ax = fig.axes[0]
     ax.tick_params(axis="x")

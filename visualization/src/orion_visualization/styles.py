@@ -116,6 +116,15 @@ def save_figure(
             metadata=metadata,
             bbox_inches="tight",
         )
+        if format_name == "svg":
+            # Matplotlib may leave spaces at the ends of path-data lines. They
+            # are semantically irrelevant XML whitespace but make the generated
+            # artifacts fail Git's whitespace check, so canonicalize them.
+            lines = target.read_text(encoding="utf-8").splitlines()
+            target.write_text(
+                "\n".join(line.rstrip() for line in lines) + "\n",
+                encoding="utf-8",
+            )
         outputs.append(target)
     return tuple(outputs)
 

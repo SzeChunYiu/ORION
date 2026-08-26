@@ -2,63 +2,78 @@
   "anomalies": [
     {
       "anomaly_id": "A01-P2",
-      "explanation": "Overall gate fails although nDCG@10 improves: recall noninferiority CI crosses the margin and reads rise 175.7%.",
-      "finding": "Overall gate fails although nDCG@10 improves: recall noninferiority CI crosses the margin and reads rise 175.7%.",
+      "explanation": "Overall gate is FAIL although nDCG@10 improves: recall noninferiority CI lower bound -0.02729 crosses the -0.02 margin and reads rise 175.7%.",
+      "finding": "Overall gate is FAIL although nDCG@10 improves: recall noninferiority CI lower bound -0.02729 crosses the -0.02 margin and reads rise 175.7%.",
       "kind": "frozen_gate",
       "paper": "P2",
       "paper_id": "P2",
       "severity": "FAIL",
       "source_id": "p2_trec_covid",
+      "source_ids": [
+        "p2_trec_covid"
+      ],
       "status": "FAIL",
-      "summary": "Overall gate fails although nDCG@10 improves: recall noninferiority CI crosses the margin and reads rise 175.7%."
+      "summary": "Overall gate is FAIL although nDCG@10 improves: recall noninferiority CI lower bound -0.02729 crosses the -0.02 margin and reads rise 175.7%."
     },
     {
       "anomaly_id": "A02-P3",
-      "explanation": "The false-split comparison is exactly zero on 32 deterministic cases; a zero delta is not a necessity proof.",
-      "finding": "The false-split comparison is exactly zero on 32 deterministic cases; a zero delta is not a necessity proof.",
+      "explanation": "The false-split comparison is exactly 0 on 32 deterministic cases; a zero delta is not a necessity proof.",
+      "finding": "The false-split comparison is exactly 0 on 32 deterministic cases; a zero delta is not a necessity proof.",
       "kind": "zero_delta",
       "paper": "P3",
       "paper_id": "P3",
       "severity": "NULL",
       "source_id": "p3_confirmatory",
+      "source_ids": [
+        "p3_confirmatory"
+      ],
       "status": "NULL",
-      "summary": "The false-split comparison is exactly zero on 32 deterministic cases; a zero delta is not a necessity proof."
+      "summary": "The false-split comparison is exactly 0 on 32 deterministic cases; a zero delta is not a necessity proof."
     },
     {
       "anomaly_id": "A03-P4",
-      "explanation": "P4-X ties the ideal typed product at 400/400; this locates a factorization boundary rather than superiority over the ideal.",
-      "finding": "P4-X ties the ideal typed product at 400/400; this locates a factorization boundary rather than superiority over the ideal.",
+      "explanation": "P4-X ties the ideal typed product at 400/400 versus 400/400; this locates a factorization boundary rather than superiority over the ideal.",
+      "finding": "P4-X ties the ideal typed product at 400/400 versus 400/400; this locates a factorization boundary rather than superiority over the ideal.",
       "kind": "ideal_tie",
       "paper": "P4",
       "paper_id": "P4",
       "severity": "BOUNDARY",
       "source_id": "p4_protected",
+      "source_ids": [
+        "p4_protected"
+      ],
       "status": "BOUNDARY",
-      "summary": "P4-X ties the ideal typed product at 400/400; this locates a factorization boundary rather than superiority over the ideal."
+      "summary": "P4-X ties the ideal typed product at 400/400 versus 400/400; this locates a factorization boundary rather than superiority over the ideal."
     },
     {
       "anomaly_id": "A04-P5",
-      "explanation": "The requested model was glm-5.2 but both arms report served model glm-5.3.",
-      "finding": "The requested model was glm-5.2 but both arms report served model glm-5.3.",
+      "explanation": "The requested model was glm-5.2 but the arms report served model(s) glm-5.3.",
+      "finding": "The requested model was glm-5.2 but the arms report served model(s) glm-5.3.",
       "kind": "execution_identity_drift",
       "paper": "P5",
       "paper_id": "P5",
       "severity": "ADVERSE",
       "source_id": "p5_attribution",
+      "source_ids": [
+        "p5_attribution"
+      ],
       "status": "ADVERSE",
-      "summary": "The requested model was glm-5.2 but both arms report served model glm-5.3."
+      "summary": "The requested model was glm-5.2 but the arms report served model(s) glm-5.3."
     },
     {
       "anomaly_id": "A05-P6",
-      "explanation": "The 320 evaluations include a donor multiplier of five; the receipt says the liftability rule does not read that axis.",
-      "finding": "The 320 evaluations include a donor multiplier of five; the receipt says the liftability rule does not read that axis.",
+      "explanation": "The 320 evaluations include a donor multiplier of 5; read_by_liftable=false.",
+      "finding": "The 320 evaluations include a donor multiplier of 5; read_by_liftable=false.",
       "kind": "replication_multiplier",
       "paper": "P6",
       "paper_id": "P6",
       "severity": "BOUNDARY",
       "source_id": "p6_certificate_lifting",
+      "source_ids": [
+        "p6_certificate_lifting"
+      ],
       "status": "BOUNDARY",
-      "summary": "The 320 evaluations include a donor multiplier of five; the receipt says the liftability rule does not read that axis."
+      "summary": "The 320 evaluations include a donor multiplier of 5; read_by_liftable=false."
     },
     {
       "anomaly_id": "A06-P7",
@@ -69,107 +84,145 @@
       "paper_id": "P7",
       "severity": "FAIL",
       "source_id": "portfolio_claim_ledger",
+      "source_ids": [
+        "portfolio_claim_ledger"
+      ],
       "status": "FAIL",
       "summary": "The programme preserves an invalid run with 738 planned versus 736 observed cases; it supports no empirical transport claim."
     },
     {
       "anomaly_id": "A07-P8",
-      "explanation": "The historical 169 chains collapse to one distinct state; the representative-pair calculus audit is the informative evidence.",
-      "finding": "The historical 169 chains collapse to one distinct state; the representative-pair calculus audit is the informative evidence.",
+      "explanation": "The historical 169 chains collapse to 1 distinct state; the representative-pair calculus audit is the informative evidence.",
+      "finding": "The historical 169 chains collapse to 1 distinct state; the representative-pair calculus audit is the informative evidence.",
       "kind": "state_multiplicity",
       "paper": "P8",
       "paper_id": "P8",
       "severity": "BOUNDARY",
       "source_id": "p8_chain_calculus",
+      "source_ids": [
+        "p8_chain_calculus"
+      ],
       "status": "BOUNDARY",
-      "summary": "The historical 169 chains collapse to one distinct state; the representative-pair calculus audit is the informative evidence."
+      "summary": "The historical 169 chains collapse to 1 distinct state; the representative-pair calculus audit is the informative evidence."
     },
     {
       "anomaly_id": "A08-P9",
-      "explanation": "The digits accessibility task has protected_gold=CANNOT_CHECK; it must not be scored as correct or incorrect.",
-      "finding": "The digits accessibility task has protected_gold=CANNOT_CHECK; it must not be scored as correct or incorrect.",
+      "explanation": "The digits D-A task has protected_gold=CANNOT_CHECK. A separate revival receipt retains P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED (append-only, unchanged) while recording archive-matched replay consistency restoration; neither fact authorizes the frozen scientific successor.",
+      "finding": "The digits D-A task has protected_gold=CANNOT_CHECK. A separate revival receipt retains P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED (append-only, unchanged) while recording archive-matched replay consistency restoration; neither fact authorizes the frozen scientific successor.",
       "kind": "missing_gold",
       "paper": "P9",
       "paper_id": "P9",
       "severity": "CANNOT_CHECK",
       "source_id": "p9_diagnostic",
+      "source_ids": [
+        "p9_diagnostic",
+        "p9_replay_revival"
+      ],
       "status": "CANNOT_CHECK",
-      "summary": "The digits accessibility task has protected_gold=CANNOT_CHECK; it must not be scored as correct or incorrect."
+      "summary": "The digits D-A task has protected_gold=CANNOT_CHECK. A separate revival receipt retains P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED (append-only, unchanged) while recording archive-matched replay consistency restoration; neither fact authorizes the frozen scientific successor."
     },
     {
       "anomaly_id": "A09-P10",
-      "explanation": "H1-H6 is prospective and outcome-blind; the full frozen donor/evaluator inputs are absent.",
-      "finding": "H1-H6 is prospective and outcome-blind; the full frozen donor/evaluator inputs are absent.",
+      "explanation": "H1-H6 is prospective with minimum_total_tasks=400 and outcome_accessed=false; no prospective result exists.",
+      "finding": "H1-H6 is prospective with minimum_total_tasks=400 and outcome_accessed=false; no prospective result exists.",
       "kind": "not_executed",
       "paper": "P10",
       "paper_id": "P10",
       "severity": "CANNOT_CHECK",
       "source_id": "p10_prospective",
+      "source_ids": [
+        "p10_prospective"
+      ],
       "status": "CANNOT_CHECK",
-      "summary": "H1-H6 is prospective and outcome-blind; the full frozen donor/evaluator inputs are absent."
+      "summary": "H1-H6 is prospective with minimum_total_tasks=400 and outcome_accessed=false; no prospective result exists."
     },
     {
       "anomaly_id": "A10-P11",
-      "explanation": "Support counts are LINEAR 3/10, RBF 5/10 and KNN 5/10; the primary terminal is GATE_NOT_MET.",
-      "finding": "Support counts are LINEAR 3/10, RBF 5/10 and KNN 5/10; the primary terminal is GATE_NOT_MET.",
+      "explanation": "Support counts are LINEAR 3/10, RBF 5/10 and KNN 5/10; the primary terminal is P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET.",
+      "finding": "Support counts are LINEAR 3/10, RBF 5/10 and KNN 5/10; the primary terminal is P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET.",
       "kind": "gate_not_met",
       "paper": "P11",
       "paper_id": "P11",
       "severity": "FAIL",
       "source_id": "p11_query_phase",
+      "source_ids": [
+        "p11_query_phase"
+      ],
       "status": "FAIL",
-      "summary": "Support counts are LINEAR 3/10, RBF 5/10 and KNN 5/10; the primary terminal is GATE_NOT_MET."
+      "summary": "Support counts are LINEAR 3/10, RBF 5/10 and KNN 5/10; the primary terminal is P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET."
     },
     {
       "anomaly_id": "A11-P12",
-      "explanation": "The bounded equal-action result does not discharge the protected forward-time/non-flat successor claim.",
-      "finding": "The bounded equal-action result does not discharge the protected forward-time/non-flat successor claim.",
+      "explanation": "The 32-family equal-action result is bounded; active authority records forward_time_deployability=CANNOT_CHECK and public-data campaign_executed=false.",
+      "finding": "The 32-family equal-action result is bounded; active authority records forward_time_deployability=CANNOT_CHECK and public-data campaign_executed=false.",
       "kind": "forward_time_boundary",
       "paper": "P12",
       "paper_id": "P12",
       "severity": "CANNOT_CHECK",
       "source_id": "p12_signal_complementarity",
+      "source_ids": [
+        "p12_signal_complementarity",
+        "p12_active_authority"
+      ],
       "status": "CANNOT_CHECK",
-      "summary": "The bounded equal-action result does not discharge the protected forward-time/non-flat successor claim."
+      "summary": "The 32-family equal-action result is bounded; active authority records forward_time_deployability=CANNOT_CHECK and public-data campaign_executed=false."
     },
     {
       "anomaly_id": "A12-P13",
-      "explanation": "The composed finite-world positive result does not erase the earlier controlled-sufficiency-debt negative boundary.",
-      "finding": "The composed finite-world positive result does not erase the earlier controlled-sufficiency-debt negative boundary.",
+      "explanation": "The 5-arm/4-world composed result does not erase the P13A receipt's retained terminal P14_CONTROLLED_SUFFICIENCY_DEBT_GATE_NOT_MET: observed max deviation 0.05566406 exceeds its 0.05 threshold.",
+      "finding": "The 5-arm/4-world composed result does not erase the P13A receipt's retained terminal P14_CONTROLLED_SUFFICIENCY_DEBT_GATE_NOT_MET: observed max deviation 0.05566406 exceeds its 0.05 threshold.",
       "kind": "historical_negative_retained",
       "paper": "P13",
       "paper_id": "P13",
       "severity": "ADVERSE",
       "source_id": "p13_composed_safety",
+      "source_ids": [
+        "p13_composed_safety",
+        "p13_historical_boundary"
+      ],
       "status": "ADVERSE",
-      "summary": "The composed finite-world positive result does not erase the earlier controlled-sufficiency-debt negative boundary."
+      "summary": "The 5-arm/4-world composed result does not erase the P13A receipt's retained terminal P14_CONTROLLED_SUFFICIENCY_DEBT_GATE_NOT_MET: observed max deviation 0.05566406 exceeds its 0.05 threshold."
     },
     {
       "anomaly_id": "A13-P14",
-      "explanation": "The 28-case P14C panel is internally authored; external pilot analytics explicitly remain NOT_AUTHORITY.",
-      "finding": "The 28-case P14C panel is internally authored; external pilot analytics explicitly remain NOT_AUTHORITY.",
+      "explanation": "The 28-case P14C panel is internally authored; the separate 67-packet pilot analytics remain NOT_AUTHORITY because Frontier-agent execution and independent human adjudication have not run; pilot systems are deterministic procedures, not adjudicators.",
+      "finding": "The 28-case P14C panel is internally authored; the separate 67-packet pilot analytics remain NOT_AUTHORITY because Frontier-agent execution and independent human adjudication have not run; pilot systems are deterministic procedures, not adjudicators.",
       "kind": "authored_panel",
       "paper": "P14",
       "paper_id": "P14",
       "severity": "NOT_AUTHORITY",
       "source_id": "p14_governance",
+      "source_ids": [
+        "p14_governance",
+        "p14_external_pilot"
+      ],
       "status": "NOT_AUTHORITY",
-      "summary": "The 28-case P14C panel is internally authored; external pilot analytics explicitly remain NOT_AUTHORITY."
+      "summary": "The 28-case P14C panel is internally authored; the separate 67-packet pilot analytics remain NOT_AUTHORITY because Frontier-agent execution and independent human adjudication have not run; pilot systems are deterministic procedures, not adjudicators."
     },
     {
       "anomaly_id": "A14-P15",
-      "explanation": "Three workflow receipts authorize bounded science; the native-Lean workflow remains CANNOT_CHECK because the scientific contract is absent.",
-      "finding": "Three workflow receipts authorize bounded science; the native-Lean workflow remains CANNOT_CHECK because the scientific contract is absent.",
+      "explanation": "Workflow receipts contain 3 AUTHORIZED_SCIENCE dispositions and 1 CANNOT_CHECK. Separately, full key compromise records 0 signature-layer detections and 6 false promotions.",
+      "finding": "Workflow receipts contain 3 AUTHORIZED_SCIENCE dispositions and 1 CANNOT_CHECK. Separately, full key compromise records 0 signature-layer detections and 6 false promotions.",
       "kind": "honest_non_authorization",
       "paper": "P15",
       "paper_id": "P15",
       "severity": "MIXED",
       "source_id": "p15_workflows",
+      "source_ids": [
+        "p15_workflows",
+        "p15_active_authority"
+      ],
       "status": "MIXED",
-      "summary": "Three workflow receipts authorize bounded science; the native-Lean workflow remains CANNOT_CHECK because the scientific contract is absent."
+      "summary": "Workflow receipts contain 3 AUTHORIZED_SCIENCE dispositions and 1 CANNOT_CHECK. Separately, full key compromise records 0 signature-layer detections and 6 false promotions."
     }
   ],
   "authority_boundary": "REPOSITORY_RECEIPTS_ONLY__NO_EXTERNAL_AUTHORITY_DELTA",
+  "evidence_snapshot": {
+    "schema": "orion.visualization.evidence-source-set.v1",
+    "source_catalog_sha256": "af21f5ff520ddb52e365fa6539b8e6a94ee912e9a8924381edb61d951fd6646c",
+    "source_count": 23,
+    "source_set_sha256": "0e538fb2dc91e88f8c5fd2f14c8f3f3fbce295f49992b79f296ccc90adfc5bb4"
+  },
   "framework": {
     "edges": [
       {
@@ -444,7 +497,7 @@
     {
       "gate": "bounded_result",
       "paper": "P7",
-      "reason": "programme execution invalidated by planned/observed denominator drift",
+      "reason": "programme execution invalidated by 738/736 planned/observed denominator drift",
       "state": "FAIL"
     },
     {
@@ -480,7 +533,7 @@
     {
       "gate": "bounded_result",
       "paper": "P9",
-      "reason": "one protected-gold cell is CANNOT_CHECK and replay discrepancy remains",
+      "reason": "1 protected-gold cell is CANNOT_CHECK; the append-only replay failure terminal remains recorded",
       "state": "CANNOT_CHECK"
     },
     {
@@ -534,7 +587,7 @@
     {
       "gate": "bounded_result",
       "paper": "P12",
-      "reason": "equal-action complementarity is bounded; forward-time successor not established",
+      "reason": "equal-action complementarity is bounded; forward-time deployability is CANNOT_CHECK",
       "state": "BOUNDED_PASS"
     },
     {
@@ -588,7 +641,7 @@
     {
       "gate": "bounded_result",
       "paper": "P15",
-      "reason": "three authorized workflows and one honest CANNOT_CHECK",
+      "reason": "3 receipt-level AUTHORIZED_SCIENCE dispositions and 1 CANNOT_CHECK",
       "state": "MIXED"
     },
     {
@@ -3889,6 +3942,7 @@
       "terminal": "P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET"
     },
     "P12": {
+      "external_public_benchmark_status": "CANNOT_CHECK_NO_BOUND_PUBLIC_DATA_RESULT",
       "families": [
         {
           "correct_counts": {
@@ -4564,6 +4618,7 @@
         }
       ],
       "forward_time_state": "CANNOT_CHECK",
+      "public_data_campaign_executed": false,
       "summary": {
         "mean_delta_by_sigma": {
           "0.2": 0.2532958984375,
@@ -4644,6 +4699,12 @@
         }
       ],
       "authority_boundary": "registered_composed_finite_world_randomized",
+      "historical_negative": {
+        "observed_max_deviation": 0.0556640625,
+        "registered_threshold": 0.05,
+        "relabelled": false,
+        "terminal": "P14_CONTROLLED_SUFFICIENCY_DEBT_GATE_NOT_MET"
+      },
       "terminal": "P13C_COMPOSED_SAFETY_EFFICACY_SUPPORTED",
       "worlds": [
         {
@@ -4736,11 +4797,23 @@
         }
       ],
       "case_count": 28,
-      "claim_authority": "Specification-separated governance-contract conformance only. External scientific validity requires blinded independent adjudication."
+      "claim_authority": "Specification-separated governance-contract conformance only. External scientific validity requires blinded independent adjudication.",
+      "external_pilot": {
+        "authority_status": "NOT_AUTHORITY",
+        "packets": 67,
+        "promotion_status": "PENDING_EXTERNAL",
+        "reason": "Frontier-agent execution and independent human adjudication have not run; pilot systems are deterministic procedures, not adjudicators."
+      }
     },
     "P15": {
       "authorized_count": 3,
       "cannot_check_count": 1,
+      "full_key_compromise": {
+        "boundary": "Composed-signature validity is evidence about the key set, not about key custody or fact truth; chain-plus-SEI inherits key custody as an unregistered premise.",
+        "false_promotions": 6,
+        "promotion_allowed": false,
+        "signature_detections": 0
+      },
       "workflows": [
         {
           "claim_authority": true,
@@ -5229,6 +5302,7 @@
         0.3275,
         0.4225
       ],
+      "case_count": 400,
       "claim_ceiling": "BOUNDED_EXACT_HETEROGENEOUS_SCIENTIFIC_PROMOTION_CONTRACTS",
       "p4x_minus_b1": 0.375
     },
@@ -5362,6 +5436,15 @@
       "diagnosis_scored_correct": 4,
       "generic_correct": 1,
       "generic_false_compute_escalations": 4,
+      "replay_boundary": {
+        "archive_matched_all_configs": true,
+        "archived_accuracy": 0.5,
+        "boundary": "the fix restores replay-channel consistency, not the validity of the prior-valued 0.5 as a representation measurement; D1v1.3 ORDERED_MULTIPLICITY_ROBUSTNESS remains the frozen scientific successor (PROSPECTIVE_FROZEN_NOT_EXECUTED, protected inputs absent)",
+        "failure_terminal": "P9_D1V1_2_LOCKED_ENV_REPRODUCTION_FAILED (append-only, unchanged)",
+        "lane_verdict": "ROOT_CAUSED_AND_REPLAY_CONSISTENCY_RESTORED: infrastructure defect (lock/archive solver-stack mismatch) fixed by archive-matched pinning with exact per-case reproduction; scientific repair remains with frozen D1v1.3",
+        "locked_reproduction_accuracy": 0.75,
+        "negative": "D1v1.2 locked-env replay FAILED: archived TYPED_SERIALIZED_BAG accuracy 0.50 vs locked reproduction 0.75"
+      },
       "rows": [
         {
           "base_probe": 0.924791086350975,
@@ -6141,6 +6224,25 @@
       "transform_id": "p9-row-v1"
     },
     {
+      "authority_tier": "BOUNDED_INTERNAL_REPLAY_REPAIR_WITH_NEGATIVE_RETAINED",
+      "bytes": 7070,
+      "declared_schema": "orion.p9.transport-replay-revival-receipt.v1",
+      "detected_schema": "orion.p9.transport-replay-revival-receipt.v1",
+      "fields": [
+        "NR-06.negative",
+        "NR-06.retest.agreement",
+        "NR-06.replay_failure_terminal",
+        "NR-06.boundary",
+        "lane_verdicts.NR-06"
+      ],
+      "id": "p9_replay_revival",
+      "paper": "P9",
+      "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_TRANSPORT_AND_REPLAY_REVIVAL_RECEIPT_V1.json",
+      "role": "append-only replay failure, archive-matched consistency repair, and remaining scientific boundary",
+      "sha256": "b0f2d641cf885d02c459e25ddc0b6215eb7b56958ef290a90721b2bda5002934",
+      "transform_id": "p9-replay-boundary-v1"
+    },
+    {
       "authority_tier": "PROSPECTIVE_NOT_EXECUTED",
       "bytes": 3270,
       "declared_schema": "orion.p10.prospective-attainability.v1",
@@ -6195,6 +6297,24 @@
       "transform_id": "p12-family-v1"
     },
     {
+      "authority_tier": "ACTIVE_INTERNAL_AUTHORITY_WITH_FORWARD_TIME_CANNOT_CHECK",
+      "bytes": 10984,
+      "declared_schema": "ORION.P12.ActiveClaimAuthority.v5",
+      "detected_schema": "ORION.P12.ActiveClaimAuthority.v5",
+      "fields": [
+        "price_aware_successor_leaf.forward_time_deployability",
+        "stopgo_campaign_leaf.campaign_executed",
+        "external_public_benchmark_status",
+        "forbidden_promotions"
+      ],
+      "id": "p12_active_authority",
+      "paper": "P12",
+      "path": "papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V5.json",
+      "role": "active authority, forward-time boundary, and unexecuted public-data campaign",
+      "sha256": "6721bd886fec6b17d6fcbb8cf81bd8a32f5f9712db9b91bcc19543fc879d85f3",
+      "transform_id": "p12-authority-boundary-v1"
+    },
+    {
       "authority_tier": "BOUNDED_RANDOMIZED_FINITE_WORLD",
       "bytes": 11595,
       "declared_schema": "ORION.P13C.ComposedSafetyEfficacy.Result.v1",
@@ -6211,6 +6331,24 @@
       "role": "five-arm finite safety-cost comparison",
       "sha256": "84b86b7081750aafadc0452c658030c9fdd051e0eaab5c9e90ddc8b0212acb73",
       "transform_id": "p13-safety-cost-v1"
+    },
+    {
+      "authority_tier": "BOUNDED_INTERNAL_WITH_HISTORICAL_NEGATIVE_RETAINED",
+      "bytes": 1958,
+      "declared_schema": "ORION.P13A.ResponsibilitySafeReuseReceipt.v1",
+      "detected_schema": "ORION.P13A.ResponsibilitySafeReuseReceipt.v1",
+      "fields": [
+        "historical_negative_retained",
+        "terminal",
+        "summary",
+        "gates"
+      ],
+      "id": "p13_historical_boundary",
+      "paper": "P13",
+      "path": "papers/paper-13-responsibility-carrying-state/P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json",
+      "role": "historical negative retained beside the later composed finite-world result",
+      "sha256": "d4bb9a5a03048b3b64c8187e7184fb710bda5d2e9c1eaf889f2b42f24b514822",
+      "transform_id": "p13-historical-negative-v1"
     },
     {
       "authority_tier": "BOUNDED_INTERNAL_NOT_EXTERNAL",
@@ -6231,6 +6369,24 @@
       "transform_id": "p14-arm-v1"
     },
     {
+      "authority_tier": "NOT_AUTHORITY_PENDING_EXTERNAL_EXECUTION_AND_ADJUDICATION",
+      "bytes": 5658,
+      "declared_schema": "P14_EXTERNAL_PILOT_ANALYTICS_V1",
+      "detected_schema": "P14_EXTERNAL_PILOT_ANALYTICS_V1",
+      "fields": [
+        "authority_status_all",
+        "co_primary_promotion_condition",
+        "suite",
+        "metrics"
+      ],
+      "id": "p14_external_pilot",
+      "paper": "P14",
+      "path": "papers/paper-14-orion-rse/top_tier/external_v1/pilot/analytics/p14_external_pilot_analytics_v1.json",
+      "role": "67-packet pilot analytics and explicit non-authority disposition",
+      "sha256": "d140bf1df2c939e0c01e67710252abfd0f6699c285feef5848fe37633b611afb",
+      "transform_id": "p14-external-pilot-boundary-v1"
+    },
+    {
       "authority_tier": "MIXED_THREE_AUTHORIZED_ONE_CANNOT_CHECK",
       "bytes": 5150,
       "declared_schema": "P15.RealWorkflowReceipts.v1",
@@ -6247,7 +6403,24 @@
       "role": "four real workflow lifecycle and authority receipts",
       "sha256": "87812194ad77f3cb2be19cd9dbeacb43b662bc35eb6df3b700f4521620f6d200",
       "transform_id": "p15-workflow-v1"
+    },
+    {
+      "authority_tier": "BOUNDED_INTERNAL_ATTESTATION_WITH_COMPROMISE_NEGATIVE",
+      "bytes": 3935,
+      "declared_schema": "ORION.P15.ActiveClaimAuthority.v3",
+      "detected_schema": "ORION.P15.ActiveClaimAuthority.v3",
+      "fields": [
+        "bounded_findings",
+        "full_key_compromise_boundary",
+        "forbidden_states",
+        "promotion_allowed"
+      ],
+      "id": "p15_active_authority",
+      "paper": "P15",
+      "path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V3.json",
+      "role": "bounded attestation composition result and full-key-compromise negative boundary",
+      "sha256": "7da36a4b3cd462e6f4e841e67faae25683c866ab6105be00029802aeb050db0a",
+      "transform_id": "p15-attestation-boundary-v1"
     }
-  ],
-  "subject_commit": "ef51b7b9263a72c725dc9d2045627b934b772a92"
+  ]
 }

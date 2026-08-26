@@ -37,9 +37,10 @@ label{{font-weight:650}} select,input{{font:inherit;padding:6px 8px;margin-left:
 .grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}} .card{{border:1px solid var(--line);border-left:6px solid var(--blue);padding:10px;border-radius:7px}}
 .FAIL{{border-left-color:var(--fail)}} .CANNOT_CHECK{{border-left-color:var(--cc)}} .ADVERSE,.MIXED{{border-left-color:var(--adv)}}
 .bar-row{{display:grid;grid-template-columns:minmax(170px,1fr) 4fr 90px;gap:8px;align-items:center;margin:6px 0}} .track{{position:relative;background:#e9eef2;height:16px;overflow:hidden}} .bar{{position:absolute;top:0;background:var(--blue);height:100%}} .bar.negative{{background:var(--fail)}} .zero{{position:absolute;top:0;bottom:0;width:1px;background:var(--ink);opacity:.65}}
-table{{border-collapse:collapse;width:100%;font-size:13px}} th,td{{border-bottom:1px solid var(--line);text-align:left;padding:7px;vertical-align:top}} th{{position:sticky;top:63px;background:white}}
-code,.card small,.card p{{overflow-wrap:anywhere}} .card small{{display:block}} .muted{{color:var(--muted)}} .empty{{padding:12px;color:var(--muted)}}
-@media(max-width:650px){{header,main{{padding:12px}} .bar-row{{grid-template-columns:1fr}} th{{position:static}}}}
+table{{border-collapse:collapse;width:100%;font-size:13px}} th,td{{border-bottom:1px solid var(--line);text-align:left;padding:7px;vertical-align:top}} th{{background:white}}
+.source-scroll{{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain}} .source-table{{min-width:880px;table-layout:auto}} .source-path code{{overflow-wrap:normal;word-break:normal}} .source-hash{{white-space:nowrap}}
+.card small,.card p{{overflow-wrap:anywhere}} .card small{{display:block}} .muted{{color:var(--muted)}} .empty{{padding:12px;color:var(--muted)}}
+@media(max-width:650px){{header,main{{padding:12px}} .controls{{display:grid;grid-template-columns:minmax(0,1fr)}} .controls label{{display:grid;gap:4px}} .controls select,.controls input{{margin-left:0;max-width:100%;width:100%;min-width:0}} .controls button{{justify-self:start}} .bar-row{{grid-template-columns:1fr}} th{{position:static}}}}
 </style>
 </head>
 <body><header><h1>ORION P1-P15 evidence atlas</h1>
@@ -52,7 +53,7 @@ code,.card small,.card p{{overflow-wrap:anywhere}} .card small{{display:block}} 
 <section><h2>Paper terminals</h2><div id="states" class="grid"></div></section>
 <section><h2>Exact metric records</h2><p class="muted">Bars scale within the visible exact metric only. Different units are never combined into one bar scale.</p><div id="bars"></div></section>
 <section><h2>Anomalies and adverse boundaries</h2><div id="anomalies" class="grid"></div></section>
-<section><h2>Source bindings</h2><div style="overflow:auto"><table><thead><tr><th>Paper</th><th>ID</th><th>Path</th><th>SHA-256</th><th>Authority tier</th></tr></thead><tbody id="sources"></tbody></table></div></section>
+<section><h2>Source bindings</h2><p class="muted">On narrow screens, scroll this table horizontally; paths and digests are kept readable.</p><div class="source-scroll" tabindex="0"><table class="source-table"><thead><tr><th>Paper</th><th>ID</th><th>Path</th><th>SHA-256</th><th>Authority tier</th></tr></thead><tbody id="sources"></tbody></table></div></section>
 </main>
 <script id="atlas-data" type="application/json">{encoded}</script>
 <script>
@@ -69,8 +70,8 @@ function render(){{
  const units=[...new Set(rows.map(x=>x.unit))], exact=[...new Set(rows.map(x=>x.metric))];
  if(rows.length && exact.length===1 && units.length===1){{const lo=Math.min(0,...rows.map(x=>x.value)),hi=Math.max(0,...rows.map(x=>x.value)),span=Math.max(hi-lo,1e-12),zero=100*(0-lo)/span;byId('bars').innerHTML=rows.slice(0,120).map(x=>{{const left=100*(Math.min(0,x.value)-lo)/span,width=100*Math.abs(x.value)/span;return `<div class="bar-row"><span>${{esc(x.paper_id)}} · ${{esc(pretty(x.arm||x.case_id||x.name))}}</span><span class="track"><span class="zero" style="left:${{zero}}%"></span><span class="bar ${{x.value<0?'negative':''}}" style="left:${{left}}%;width:${{width}}%"></span></span><code>${{Number(x.value).toPrecision(5)}} ${{esc(x.unit)}}</code></div>`}}).join('')}}
  else byId('bars').innerHTML=`<p class="empty">Choose one exact metric to enable a unit-preserving bar view. ${{rows.length}} records currently match.</p>`;
- const anomalies=D.anomalies.filter(keep);byId('anomalies').innerHTML=anomalies.length?anomalies.map(x=>`<article class="card ${{esc(x.severity)}}"><b>${{esc(x.paper_id)}} · ${{esc(x.severity)}}</b><p>${{esc(x.finding)}}</p><small>Source: ${{esc(x.source_id)}}</small></article>`).join(''):'<p class="empty">No matching anomalies. Unfiltered atlas retains '+D.anomalies.length+'.</p>';
- const sources=D.sources.filter(x=>paper.value==='ALL'||x.paper===paper.value);byId('sources').innerHTML=sources.map(x=>`<tr><td>${{esc(x.paper)}}</td><td>${{esc(x.id)}}</td><td><code>${{esc(x.path)}}</code></td><td><code>${{esc(x.sha256)}}</code></td><td>${{esc(x.authority_tier)}}</td></tr>`).join('');
+ const anomalies=D.anomalies.filter(keep);byId('anomalies').innerHTML=anomalies.length?anomalies.map(x=>`<article class="card ${{esc(x.severity)}}"><b>${{esc(x.paper_id)}} · ${{esc(x.severity)}}</b><p>${{esc(x.finding)}}</p><small>Sources: ${{esc((x.source_ids||[x.source_id]).join(', '))}}</small></article>`).join(''):'<p class="empty">No matching anomalies. Unfiltered atlas retains '+D.anomalies.length+'.</p>';
+ const sources=D.sources.filter(x=>paper.value==='ALL'||x.paper===paper.value);byId('sources').innerHTML=sources.map(x=>`<tr><td>${{esc(x.paper)}}</td><td>${{esc(x.id)}}</td><td class="source-path"><code>${{esc(x.path)}}</code></td><td class="source-hash"><code>${{esc(x.sha256)}}</code></td><td>${{esc(x.authority_tier)}}</td></tr>`).join('');
 }}
 [paper,status,metric].forEach(x=>x.addEventListener('input',render));byId('reset').onclick=()=>{{paper.value='ALL';status.value='';metric.value='ALL';render()}};render();
 </script></body></html>"""

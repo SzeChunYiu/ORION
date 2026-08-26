@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 
@@ -27,10 +28,74 @@ def test_atlas_has_exact_canonical_paper_and_source_counts() -> None:
     assert atlas["schema"] == "orion.visualization.evidence-atlas.v1"
     assert [row["paper"] for row in atlas["paper_states"]] == [f"P{i}" for i in range(1, 16)]
     assert len(atlas["gate_states"]) == 45
-    assert len(atlas["sources"]) == 18
+    assert len(atlas["sources"]) == 23
     assert len(atlas["anomalies"]) == 14
     assert sorted(atlas["metrics"]) == sorted(f"P{i}" for i in range(1, 16))
     assert atlas["authority_boundary"] == "REPOSITORY_RECEIPTS_ONLY__NO_EXTERNAL_AUTHORITY_DELTA"
+
+
+def test_load_bearing_anomaly_claims_are_bound_to_exact_registered_receipts() -> None:
+    atlas = load_atlas()
+    source_ids = {row["id"] for row in atlas["sources"]}
+    expected = {
+        "p9_replay_revival",
+        "p12_active_authority",
+        "p13_historical_boundary",
+        "p14_external_pilot",
+        "p15_active_authority",
+    }
+    assert expected <= source_ids
+
+    anomalies = {row["paper"]: row for row in atlas["anomalies"]}
+    assert anomalies["P9"]["source_ids"] == ["p9_diagnostic", "p9_replay_revival"]
+    assert anomalies["P12"]["source_ids"] == [
+        "p12_signal_complementarity",
+        "p12_active_authority",
+    ]
+    assert anomalies["P13"]["source_ids"] == [
+        "p13_composed_safety",
+        "p13_historical_boundary",
+    ]
+    assert anomalies["P14"]["source_ids"] == ["p14_governance", "p14_external_pilot"]
+    assert anomalies["P15"]["source_ids"] == ["p15_workflows", "p15_active_authority"]
+
+    metrics = atlas["metrics"]
+    assert metrics["P9"]["replay_boundary"]["archived_accuracy"] == 0.5
+    assert metrics["P9"]["replay_boundary"]["locked_reproduction_accuracy"] == 0.75
+    assert metrics["P12"]["forward_time_state"] == "CANNOT_CHECK"
+    assert metrics["P12"]["public_data_campaign_executed"] is False
+    assert metrics["P13"]["historical_negative"]["observed_max_deviation"] == 0.0556640625
+    assert metrics["P14"]["external_pilot"]["authority_status"] == "NOT_AUTHORITY"
+    assert metrics["P15"]["full_key_compromise"]["signature_detections"] == 0
+    assert metrics["P15"]["full_key_compromise"]["false_promotions"] == 6
+
+
+def test_evidence_snapshot_is_content_derived_and_non_self_referential() -> None:
+    atlas = load_atlas()
+    source_manifest = json.loads(
+        (VIS / "data/manifests/source_manifest.json").read_text(encoding="utf-8")
+    )
+    snapshot = atlas["evidence_snapshot"]
+    assert snapshot == source_manifest["evidence_snapshot"]
+    assert snapshot["source_count"] == len(atlas["sources"])
+    canonical = [
+        {
+            key: source[key]
+            for key in ("bytes", "declared_schema", "id", "path", "sha256")
+        }
+        for source in atlas["sources"]
+    ]
+    payload = json.dumps(canonical, sort_keys=True, separators=(",", ":")).encode()
+    assert snapshot["source_set_sha256"] == hashlib.sha256(payload).hexdigest()
+    for generated in (atlas, source_manifest):
+        assert "subject_commit" not in generated
+        assert "subject_tree" not in generated
+
+    output_manifest = json.loads(
+        (VIS / "generated/manifests/output_manifest.json").read_text(encoding="utf-8")
+    )
+    assert "python" not in output_manifest
+    assert "renderers" not in output_manifest
 
 
 def test_adverse_and_cannot_check_rows_are_not_hidden() -> None:
@@ -134,10 +199,40 @@ def test_interactive_html_is_self_contained_and_filterable() -> None:
     for responsive_or_signed in (
         "@media(max-width:650px)",
         ".bar-row{grid-template-columns:1fr}",
+        ".controls{display:grid;grid-template-columns:minmax(0,1fr)}",
+        ".controls select,.controls input{margin-left:0;max-width:100%;width:100%;min-width:0}",
+        ".source-table{min-width:",
+        ".source-hash{white-space:nowrap}",
         'class="zero"',
         "x.value<0?'negative'",
     ):
         assert responsive_or_signed in text
+
+
+def test_figure_copy_separates_receipt_disposition_from_external_authority() -> None:
+    p15_svg = (VIS / "figures/static/svg/12_p15_workflow_matrix.svg").read_text(
+        encoding="utf-8"
+    )
+    assert "3 receipt-level AUTHORIZED_SCIENCE" in p15_svg
+    assert "not publication or external authority" in p15_svg
+
+    p14_svg = (VIS / "figures/static/svg/11_p14_governance_rates.svg").read_text(
+        encoding="utf-8"
+    )
+    assert "fixed 0–1 scale; padded endpoints" in p14_svg
+
+    p12_svg = (VIS / "figures/static/svg/09_p12_family_blocks_by_sigma.svg").read_text(
+        encoding="utf-8"
+    )
+    assert "mean labels use a separate top annotation band" in p12_svg
+
+
+def test_generated_svgs_have_no_trailing_whitespace() -> None:
+    paths = sorted((VIS / "figures/static/svg").glob("*.svg"))
+    assert len(paths) == 13
+    for path in paths:
+        lines = path.read_text(encoding="utf-8").splitlines()
+        assert all(line == line.rstrip() for line in lines), path.name
 
 
 def test_static_figure_set_uses_audited_plot_grammars() -> None:

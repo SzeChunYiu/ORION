@@ -18,10 +18,10 @@ or a journal-readiness ranking.
 | `06_p6_p7_formal_counts` | Compare event-class counts while retaining the donor-multiplied magnitude range. | Enumerated formula events in the separate P6/P7 finite receipts. | Side-by-side bars on a disclosed log-count axis; counts are printed; categories are neutral event types. | Identical totals are not called replication; P7's separate 738/736 invalid programme execution is printed. |
 | `07_p11_delta_ecdf` | Read the cumulative distribution of compiled-minus-universal query deltas. | Thirty registered query-level balanced-accuracy differences. | Percentage-point ECDF with every observation as a rug and a zero reference. | Title retains terminal `GATE_NOT_MET`; positive direction is explicit. |
 | `08_p11_delta_strip` | Inspect every raw P11 query delta and the extreme negative tail without smoothing. | Same thirty registered query deltas, sorted only for display. | Raw dot plot in percentage points; no KDE or inferred continuous density. | Negative/non-positive observations are retained and visually distinct; view is descriptive. |
-| `09_p12_family_blocks_by_sigma` | Check whether the bounded complementarity gain persists across registered noise strata and family blocks. | Thirty-two independent family RNG blocks, eight per sigma stratum. | All raw block deltas plus stratum means; y-axis includes zero and registered 0.12/0.15 gates; no interpolating line. | The plot shows finite registered strata, not a continuous response curve or forward-time generalization. |
+| `09_p12_family_blocks_by_sigma` | Check whether the bounded complementarity gain persists across registered noise strata and family blocks. | Thirty-two independent family RNG blocks, eight per sigma stratum. | All raw block deltas plus stratum means; mean labels occupy a separate top annotation band; y-axis includes zero and registered 0.12/0.15 gates; no interpolating line. | The plot shows finite registered strata, not a continuous response curve or forward-time generalization. |
 | `10_p13_three_objective_tradeoff` | Evaluate cost, verified correctness, and unsafe reuse together. | Five arm-level summaries from one bounded randomized finite-world receipt. | Cost × correctness scatter; unsafe-reuse rate is both color-coded and printed; black outline is three-objective nondomination; correctness axis is explicitly 0.90-1.00. | Unsafe reuse cannot disappear behind a favorable 2D projection; population safety and external authority are explicitly disclaimed. |
-| `11_p14_governance_rates` | Compare the three common governance rates while preserving their opposite desirable directions. | Five arms on 28 internally authored specification-separated cases; receipt-reported rates. | Three fixed 0-1 dot panels; each title states higher- or lower-is-better; no shared desirability palette. | False promotion is not visually rewarded; absent intervals and missing external adjudication are stated. |
-| `12_p15_workflow_matrix` | Distinguish successful lifecycle/replay checks from scientific-contract and claim-authority checks. | One categorical state per workflow × gate. | Fixed workflow order; concise human row labels; full `PASS`/`CANNOT CHECK` cell text. | Title qualifies authorization as bounded workflow-contract authority; the fourth workflow remains `CANNOT CHECK`. |
+| `11_p14_governance_rates` | Compare the three common governance rates while preserving their opposite desirable directions. | Five arms on 28 internally authored specification-separated cases; receipt-reported rates. | Three 0-1 dot panels with padded endpoints so markers at exactly 0 or 1 remain whole; each title states higher- or lower-is-better; no shared desirability palette. | False promotion is not visually rewarded; absent intervals and missing external adjudication are stated. |
+| `12_p15_workflow_matrix` | Distinguish successful lifecycle/replay checks from scientific-contract and claim-authority checks. | One categorical state per workflow × gate. | Fixed workflow order; concise human row labels; full `PASS`/`CANNOT CHECK` cell text. | Title uses the exact `AUTHORIZED_SCIENCE` receipt disposition and a footer states that it is not publication or external authority; the fourth workflow remains `CANNOT CHECK`. |
 
 ## Final-size review checklist
 
@@ -38,8 +38,9 @@ For every PNG and SVG, approval requires all of the following:
    size.
 
 The interactive atlas is presentation-only. Desktop and narrow-width inspection
-must confirm that controls wrap, long source paths break safely, tables remain
-horizontally scrollable, and exact metrics are never pooled across units.
+must confirm that controls wrap, the source table retains a readable minimum
+width with horizontal scrolling, digests remain intact, and exact metrics are
+never pooled across units.
 
 ## Inspection record — 2026-08-26
 
@@ -59,11 +60,17 @@ horizontally scrollable, and exact metrics are never pooled across units.
   drawing fourteen nearly identical count bars. Raw-value/ECDF views replaced
   the density display.
 - **Interactive HTML:** the self-contained source and responsive CSS/JavaScript
-  contract were audited, including narrow-width stacking, path wrapping,
-  horizontal table scrolling, humanized labels, and signed diverging bars.
-  Pixel-level browser inspection is `CANNOT_CHECK` in this environment because
-  the browser runtime cannot access local files or the local-only server. This
-  limitation does not change the static-figure or notebook visual-QA result.
+  contract was inspected in a browser at desktop and 390-pixel mobile widths.
+  Controls fit and stack vertically at the narrow width; the source-table
+  wrapper was approximately 313 pixels wide while the table retained an
+  approximately 1,884-pixel scroll width, SHA cells remained on one line, and
+  horizontal scrolling exposed every column. The responsive layout reduced the
+  full mobile page height from approximately 15,288 to 7,136 pixels without
+  dropping content. Humanized labels, signed diverging bars, source paths, and
+  digests remained readable. The regenerated P15 matrix was also inspected at
+  original resolution: its three-line title, exact `AUTHORIZED_SCIENCE`
+  disposition, external-authority disclaimer, row labels, and cell text were
+  fully visible without overlap or clipping.
 
 ## Automated source-preflight interpretation
 

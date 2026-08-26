@@ -11,7 +11,7 @@ import argparse
 import hashlib
 import json
 import math
-import subprocess
+import re
 from pathlib import Path
 from typing import Any
 
@@ -52,15 +52,6 @@ def detected_schema(payload: Any) -> str | None:
     return None
 
 
-def git_value(root: Path, *args: str) -> str | None:
-    try:
-        return subprocess.check_output(
-            ["git", "-C", str(root), *args], text=True, stderr=subprocess.DEVNULL
-        ).strip()
-    except (OSError, subprocess.CalledProcessError):
-        return None
-
-
 def source_manifest(
     root: Path, catalog: dict[str, Any]
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
@@ -90,6 +81,42 @@ def source_manifest(
             }
         )
     return records, payloads
+
+
+def evidence_snapshot(root: Path, sources: list[dict[str, Any]]) -> dict[str, Any]:
+    """Return a stable evidence identity derived only from registered source bytes.
+
+    A commit or tree identifier would be self-referential when embedded in a
+    committed generated file.  The source-set digest instead binds the exact
+    scientific inputs without depending on the generated output's future Git
+    identity or on the local Python environment.
+    """
+
+    identity_keys = ("bytes", "declared_schema", "id", "path", "sha256")
+    identity = [{key: source[key] for key in identity_keys} for source in sources]
+    canonical = json.dumps(identity, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return {
+        "schema": "orion.visualization.evidence-source-set.v1",
+        "source_catalog_sha256": sha256(root / "visualization/source_catalog.json"),
+        "source_count": len(sources),
+        "source_set_sha256": hashlib.sha256(canonical).hexdigest(),
+    }
+
+
+def planned_observed_from_ledger(ledger: dict[str, Any], paper: str) -> tuple[int, int]:
+    item = next(row for row in ledger["papers"] if row["paper"] == paper)
+    text = " ".join(str(value) for value in item.get("allowed", []))
+    match = re.search(r"planned\s+(\d+)\s+versus\s+observed\s+(\d+)", text, re.IGNORECASE)
+    if not match:
+        raise ValueError(f"{paper} ledger lacks exact planned/observed denominator")
+    return int(match.group(1)), int(match.group(2))
+
+
+def historical_chain_counts(text: str) -> tuple[int, int]:
+    match = re.search(r"all\s+(\d+)\s+ordered pairs compose to\s+(\d+)\s+distinct state", text)
+    if not match:
+        raise ValueError("P8 receipt lacks exact historical chain/distinct-state counts")
+    return int(match.group(1)), int(match.group(2))
 
 
 def normalize_paper_states(ledger: dict[str, Any]) -> list[dict[str, Any]]:
@@ -157,7 +184,11 @@ def normalize_paper_states(ledger: dict[str, Any]) -> list[dict[str, Any]]:
     return rows
 
 
-def gate_states() -> list[dict[str, str]]:
+def gate_states(metrics: dict[str, Any]) -> list[dict[str, str]]:
+    p7 = metrics["P7"]
+    p9 = metrics["P9"]
+    p12 = metrics["P12"]
+    p15 = metrics["P15"]
     bounded = {
         "P1": (
             "BOUNDED_PASS",
@@ -168,21 +199,27 @@ def gate_states() -> list[dict[str, str]]:
         "P4": ("BOUNDED_PASS", "400 exact heterogeneous contracts; ideal typed product ties"),
         "P5": ("ADVERSE", "24 authored cases per arm with requested/served model drift"),
         "P6": ("BOUNDED_PASS", "complete finite certificate-lifting state space"),
-        "P7": ("FAIL", "programme execution invalidated by planned/observed denominator drift"),
+        "P7": (
+            "FAIL",
+            f"programme execution invalidated by {p7['planned_cases']}/{p7['observed_cases']} planned/observed denominator drift",
+        ),
         "P8": ("BOUNDED_PASS", "mechanized calculus and representative-pair internal audit"),
         "P9": (
             "CANNOT_CHECK",
-            "one protected-gold cell is CANNOT_CHECK and replay discrepancy remains",
+            f"{p9['cannot_check_rows']} protected-gold cell is CANNOT_CHECK; the append-only replay failure terminal remains recorded",
         ),
         "P10": ("CANNOT_CHECK", "prospective H1-H6 outcome was not executed"),
         "P11": ("FAIL", "query-family primary terminal is GATE_NOT_MET"),
         "P12": (
             "BOUNDED_PASS",
-            "equal-action complementarity is bounded; forward-time successor not established",
+            f"equal-action complementarity is bounded; forward-time deployability is {p12['forward_time_state']}",
         ),
         "P13": ("BOUNDED_PASS", "registered randomized finite-world comparison"),
         "P14": ("BOUNDED_PASS", "28 internally authored governance-contract cases"),
-        "P15": ("MIXED", "three authorized workflows and one honest CANNOT_CHECK"),
+        "P15": (
+            "MIXED",
+            f"{p15['authorized_count']} receipt-level AUTHORIZED_SCIENCE dispositions and {p15['cannot_check_count']} CANNOT_CHECK",
+        ),
     }
     rows: list[dict[str, str]] = []
     for paper in [f"P{i}" for i in range(1, 16)]:
@@ -207,105 +244,190 @@ def gate_states() -> list[dict[str, str]]:
     return rows
 
 
-def anomalies() -> list[dict[str, str]]:
+def anomalies(metrics: dict[str, Any]) -> list[dict[str, Any]]:
+    p2_gate = metrics["P2"]["gate"]
+    p3_false_split = metrics["P3"]["primary_comparisons"]["false_split_orion_minus_exact"]
+    p4 = metrics["P4"]
+    p5 = metrics["P5"]
+    p6 = metrics["P6"]
+    p7 = metrics["P7"]
+    p8 = metrics["P8"]
+    p9 = metrics["P9"]
+    p10 = metrics["P10"]
+    p11 = metrics["P11"]
+    p12 = metrics["P12"]
+    p13 = metrics["P13"]
+    p14 = metrics["P14"]
+    p15 = metrics["P15"]
+
+    p4x = next(row for row in p4["arms"] if row["arm"] == "P4_X")
+    p4_ideal = next(row for row in p4["arms"] if row["arm"] == "B3_IDEAL_TYPED_PRODUCT")
+    p5_served = sorted({model for row in p5["arms"] for model in row["served_models"]})
+    p9_cannot_check = next(row for row in p9["rows"] if row["protected_gold"] == "CANNOT_CHECK")
+    p13_negative = p13["historical_negative"]
+    p14_external = p14["external_pilot"]
+    p15_compromise = p15["full_key_compromise"]
     rows = [
         {
             "paper": "P2",
             "severity": "FAIL",
             "kind": "frozen_gate",
             "source_id": "p2_trec_covid",
-            "finding": "Overall gate fails although nDCG@10 improves: recall noninferiority CI crosses the margin and reads rise 175.7%.",
+            "source_ids": ["p2_trec_covid"],
+            "finding": (
+                f"Overall gate is {p2_gate['overall']} although nDCG@10 improves: recall noninferiority CI lower bound "
+                f"{p2_gate['criteria']['recall_noninferiority']['bootstrap_ci95'][0]:.5f} crosses the "
+                f"{p2_gate['criteria']['recall_noninferiority']['margin']:.2f} margin and reads rise "
+                f"{p2_gate['criteria']['cost_reduction']['reads_vs_comparator_pct']:.1f}%."
+            ),
         },
         {
             "paper": "P3",
             "severity": "NULL",
             "kind": "zero_delta",
             "source_id": "p3_confirmatory",
-            "finding": "The false-split comparison is exactly zero on 32 deterministic cases; a zero delta is not a necessity proof.",
+            "source_ids": ["p3_confirmatory"],
+            "finding": (
+                f"The false-split comparison is exactly {p3_false_split['candidate_minus_baseline']:g} on "
+                f"{int(p3_false_split['n'])} deterministic cases; a zero delta is not a necessity proof."
+            ),
         },
         {
             "paper": "P4",
             "severity": "BOUNDARY",
             "kind": "ideal_tie",
             "source_id": "p4_protected",
-            "finding": "P4-X ties the ideal typed product at 400/400; this locates a factorization boundary rather than superiority over the ideal.",
+            "source_ids": ["p4_protected"],
+            "finding": (
+                f"P4-X ties the ideal typed product at {int(p4x['accuracy'] * p4['case_count'])}/"
+                f"{p4['case_count']} versus {int(p4_ideal['accuracy'] * p4['case_count'])}/"
+                f"{p4['case_count']}; this locates a factorization boundary rather than superiority over the ideal."
+            ),
         },
         {
             "paper": "P5",
             "severity": "ADVERSE",
             "kind": "execution_identity_drift",
             "source_id": "p5_attribution",
-            "finding": "The requested model was glm-5.2 but both arms report served model glm-5.3.",
+            "source_ids": ["p5_attribution"],
+            "finding": f"The requested model was {p5['requested_model']} but the arms report served model(s) {', '.join(p5_served)}.",
         },
         {
             "paper": "P6",
             "severity": "BOUNDARY",
             "kind": "replication_multiplier",
             "source_id": "p6_certificate_lifting",
-            "finding": "The 320 evaluations include a donor multiplier of five; the receipt says the liftability rule does not read that axis.",
+            "source_ids": ["p6_certificate_lifting"],
+            "finding": (
+                f"The {p6['state_evaluations']} evaluations include a donor multiplier of "
+                f"{p6['donor_axis']['multiplier']}; read_by_liftable={str(p6['donor_axis']['read_by_liftable']).lower()}."
+            ),
         },
         {
             "paper": "P7",
             "severity": "FAIL",
             "kind": "denominator_drift",
             "source_id": "portfolio_claim_ledger",
-            "finding": "The programme preserves an invalid run with 738 planned versus 736 observed cases; it supports no empirical transport claim.",
+            "source_ids": ["portfolio_claim_ledger"],
+            "finding": (
+                f"The programme preserves an invalid run with {p7['planned_cases']} planned versus "
+                f"{p7['observed_cases']} observed cases; it supports no empirical transport claim."
+            ),
         },
         {
             "paper": "P8",
             "severity": "BOUNDARY",
             "kind": "state_multiplicity",
             "source_id": "p8_chain_calculus",
-            "finding": "The historical 169 chains collapse to one distinct state; the representative-pair calculus audit is the informative evidence.",
+            "source_ids": ["p8_chain_calculus"],
+            "finding": (
+                f"The historical {p8['historical_chain_count']} chains collapse to "
+                f"{p8['historical_distinct_states']} distinct state; the representative-pair calculus audit is the informative evidence."
+            ),
         },
         {
             "paper": "P9",
             "severity": "CANNOT_CHECK",
             "kind": "missing_gold",
             "source_id": "p9_diagnostic",
-            "finding": "The digits accessibility task has protected_gold=CANNOT_CHECK; it must not be scored as correct or incorrect.",
+            "source_ids": ["p9_diagnostic", "p9_replay_revival"],
+            "finding": (
+                f"The {p9_cannot_check['domain']} {p9_cannot_check['task']} task has protected_gold=CANNOT_CHECK. "
+                f"A separate revival receipt retains {p9['replay_boundary']['failure_terminal']} while recording "
+                "archive-matched replay consistency restoration; neither fact authorizes the frozen scientific successor."
+            ),
         },
         {
             "paper": "P10",
             "severity": "CANNOT_CHECK",
             "kind": "not_executed",
             "source_id": "p10_prospective",
-            "finding": "H1-H6 is prospective and outcome-blind; the full frozen donor/evaluator inputs are absent.",
+            "source_ids": ["p10_prospective"],
+            "finding": (
+                f"H1-H6 is prospective with minimum_total_tasks={p10['design']['minimum_total_tasks']} and "
+                f"outcome_accessed={str(p10['outcome_accessed']).lower()}; no prospective result exists."
+            ),
         },
         {
             "paper": "P11",
             "severity": "FAIL",
             "kind": "gate_not_met",
             "source_id": "p11_query_phase",
-            "finding": "Support counts are LINEAR 3/10, RBF 5/10 and KNN 5/10; the primary terminal is GATE_NOT_MET.",
+            "source_ids": ["p11_query_phase"],
+            "finding": (
+                f"Support counts are LINEAR {p11['support_counts']['LINEAR']}/10, RBF "
+                f"{p11['support_counts']['RBF']}/10 and KNN {p11['support_counts']['KNN']}/10; "
+                f"the primary terminal is {p11['terminal']}."
+            ),
         },
         {
             "paper": "P12",
             "severity": "CANNOT_CHECK",
             "kind": "forward_time_boundary",
             "source_id": "p12_signal_complementarity",
-            "finding": "The bounded equal-action result does not discharge the protected forward-time/non-flat successor claim.",
+            "source_ids": ["p12_signal_complementarity", "p12_active_authority"],
+            "finding": (
+                f"The {len(p12['families'])}-family equal-action result is bounded; active authority records "
+                f"forward_time_deployability={p12['forward_time_state']} and "
+                f"public-data campaign_executed={str(p12['public_data_campaign_executed']).lower()}."
+            ),
         },
         {
             "paper": "P13",
             "severity": "ADVERSE",
             "kind": "historical_negative_retained",
             "source_id": "p13_composed_safety",
-            "finding": "The composed finite-world positive result does not erase the earlier controlled-sufficiency-debt negative boundary.",
+            "source_ids": ["p13_composed_safety", "p13_historical_boundary"],
+            "finding": (
+                f"The {len(p13['arms'])}-arm/{len(p13['worlds'])}-world composed result does not erase the "
+                f"P13A receipt's retained terminal {p13_negative['terminal']}: observed max deviation "
+                f"{p13_negative['observed_max_deviation']:.8f} exceeds its {p13_negative['registered_threshold']:.2f} threshold."
+            ),
         },
         {
             "paper": "P14",
             "severity": "NOT_AUTHORITY",
             "kind": "authored_panel",
             "source_id": "p14_governance",
-            "finding": "The 28-case P14C panel is internally authored; external pilot analytics explicitly remain NOT_AUTHORITY.",
+            "source_ids": ["p14_governance", "p14_external_pilot"],
+            "finding": (
+                f"The {p14['case_count']}-case P14C panel is internally authored; the separate "
+                f"{p14_external['packets']}-packet pilot analytics remain {p14_external['authority_status']} "
+                f"because {p14_external['reason']}"
+            ),
         },
         {
             "paper": "P15",
             "severity": "MIXED",
             "kind": "honest_non_authorization",
             "source_id": "p15_workflows",
-            "finding": "Three workflow receipts authorize bounded science; the native-Lean workflow remains CANNOT_CHECK because the scientific contract is absent.",
+            "source_ids": ["p15_workflows", "p15_active_authority"],
+            "finding": (
+                f"Workflow receipts contain {p15['authorized_count']} AUTHORIZED_SCIENCE dispositions and "
+                f"{p15['cannot_check_count']} CANNOT_CHECK. Separately, full key compromise records "
+                f"{p15_compromise['signature_detections']} signature-layer detections and "
+                f"{p15_compromise['false_promotions']} false promotions."
+            ),
         },
     ]
     for index, row in enumerate(rows, start=1):
@@ -561,6 +683,7 @@ def build_metrics(payload: dict[str, Any]) -> dict[str, Any]:
         "p4x_minus_b1": p4["p4x_minus_b1"],
         "bootstrap_95_ci": p4["bootstrap_95_ci"],
         "claim_ceiling": p4["claim_ceiling"],
+        "case_count": int(p4["case_count"]),
     }
 
     p5 = payload["p5_attribution"]
@@ -578,8 +701,10 @@ def build_metrics(payload: dict[str, Any]) -> dict[str, Any]:
         ],
     }
 
+    ledger = payload["portfolio_claim_ledger"]
     p6 = payload["p6_certificate_lifting"]
     p7 = payload["p7_closure_carrying"]
+    p7_planned, p7_observed = planned_observed_from_ledger(ledger, "P7")
     metrics["P6"] = {
         "coordinates": p6["science_coordinates"],
         "state_evaluations": p6["state_evaluations"],
@@ -606,11 +731,12 @@ def build_metrics(payload: dict[str, Any]) -> dict[str, Any]:
         "donor_axis": p7["donor_axis"],
         "terminal": p7["terminal"],
         "programme_execution_state": "INVALID_EXECUTION_RETAINED",
-        "planned_cases": 738,
-        "observed_cases": 736,
+        "planned_cases": p7_planned,
+        "observed_cases": p7_observed,
     }
 
     p8 = payload["p8_chain_calculus"]
+    p8_chain_count, p8_distinct_states = historical_chain_counts(p8["what_the_169_costs"])
     metrics["P8"] = {
         "chain_ladder": [
             {"length": index + 1, "outcome": row["outcome"], "name": row["name"]}
@@ -619,11 +745,12 @@ def build_metrics(payload: dict[str, Any]) -> dict[str, Any]:
         "chain_bound": p8["chain_ladder"]["bound"],
         "representative_pairs_checked": p8["composition_soundness"]["representative_pairs_checked"],
         "unsound_pairs": p8["composition_soundness"]["unsound_pairs"],
-        "historical_chain_count": 169,
-        "historical_distinct_states": 1,
+        "historical_chain_count": p8_chain_count,
+        "historical_distinct_states": p8_distinct_states,
     }
 
     p9 = payload["p9_diagnostic"]
+    p9_replay = payload["p9_replay_revival"]
     if len(p9["rows"]) != 5:
         raise ValueError("P9 expected five diagnostic tasks")
     metrics["P9"] = {
@@ -639,6 +766,23 @@ def build_metrics(payload: dict[str, Any]) -> dict[str, Any]:
         "generic_false_compute_escalations": sum(
             bool(row["generic_false_compute_escalation"]) for row in p9["rows"]
         ),
+        "replay_boundary": {
+            "negative": p9_replay["NR-06"]["negative"],
+            "archived_accuracy": finite(
+                p9_replay["NR-06"]["retest"]["agreement"]["typed_serialized_bag_accuracy"],
+                "P9 archived replay accuracy",
+            ),
+            "locked_reproduction_accuracy": finite(
+                re.search(r"locked reproduction\s+([0-9.]+)", p9_replay["NR-06"]["negative"])[1],
+                "P9 locked reproduction accuracy",
+            ),
+            "archive_matched_all_configs": bool(
+                p9_replay["NR-06"]["retest"]["agreement"]["all_selected_configs_match"]
+            ),
+            "failure_terminal": p9_replay["NR-06"]["replay_failure_terminal"],
+            "boundary": p9_replay["NR-06"]["boundary"],
+            "lane_verdict": p9_replay["lane_verdicts"]["NR-06"],
+        },
     }
 
     p10 = payload["p10_prospective"]
@@ -664,16 +808,24 @@ def build_metrics(payload: dict[str, Any]) -> dict[str, Any]:
     }
 
     p12 = payload["p12_signal_complementarity"]
+    p12_authority = payload["p12_active_authority"]
     if len(p12["core"]["families"]) != 32:
         raise ValueError("P12 expected 32 independent family blocks")
     metrics["P12"] = {
         "families": p12["core"]["families"],
         "summary": p12["summary"],
         "terminal": p12["terminal"],
-        "forward_time_state": "CANNOT_CHECK",
+        "forward_time_state": p12_authority["price_aware_successor_leaf"][
+            "forward_time_deployability"
+        ],
+        "public_data_campaign_executed": bool(
+            p12_authority["stopgo_campaign_leaf"]["campaign_executed"]
+        ),
+        "external_public_benchmark_status": p12_authority["external_public_benchmark_status"],
     }
 
     p13 = payload["p13_composed_safety"]
+    p13_historical = payload["p13_historical_boundary"]
     metrics["P13"] = {
         "arms": [{"arm": arm, **values} for arm, values in sorted(p13["summary"]["arms"].items())],
         "worlds": [
@@ -682,9 +834,11 @@ def build_metrics(payload: dict[str, Any]) -> dict[str, Any]:
         ],
         "terminal": p13["terminal"],
         "authority_boundary": p13["core"]["authority_boundary"],
+        "historical_negative": p13_historical["historical_negative_retained"],
     }
 
     p14 = payload["p14_governance"]
+    p14_external = payload["p14_external_pilot"]
     if int(p14["case_count"]) != 28:
         raise ValueError("P14 expected 28 internally authored cases")
     metrics["P14"] = {
@@ -694,9 +848,16 @@ def build_metrics(payload: dict[str, Any]) -> dict[str, Any]:
         ],
         "case_count": 28,
         "claim_authority": p14["claim_authority"],
+        "external_pilot": {
+            "authority_status": p14_external["authority_status_all"],
+            "promotion_status": p14_external["co_primary_promotion_condition"]["status"],
+            "reason": p14_external["co_primary_promotion_condition"]["reason"],
+            "packets": int(p14_external["suite"]["packets"]),
+        },
     }
 
     p15 = payload["p15_workflows"]
+    p15_authority = payload["p15_active_authority"]
     if len(p15["receipts"]) != 4:
         raise ValueError("P15 expected four workflow receipts")
     lifecycle_fields = [
@@ -730,6 +891,16 @@ def build_metrics(payload: dict[str, Any]) -> dict[str, Any]:
         "cannot_check_count": sum(
             row["expected_disposition"] == "CANNOT_CHECK" for row in p15["receipts"]
         ),
+        "full_key_compromise": {
+            "signature_detections": int(
+                p15_authority["bounded_findings"]["full_key_compromise_signature_detections"]
+            ),
+            "false_promotions": int(
+                p15_authority["bounded_findings"]["full_key_compromise_false_promotions"]
+            ),
+            "boundary": p15_authority["full_key_compromise_boundary"],
+            "promotion_allowed": bool(p15_authority["promotion_allowed"]),
+        },
     }
 
     return metrics
@@ -797,16 +968,17 @@ def build(root: Path, atlas_path: Path, manifest_path: Path) -> None:
     sources, payloads = source_manifest(root, catalog)
     ledger = payloads["portfolio_claim_ledger"]
     metrics = build_metrics(payloads)
+    snapshot = evidence_snapshot(root, sources)
     atlas = {
         "schema": SCHEMA,
         "authority_boundary": AUTHORITY_BOUNDARY,
-        "subject_commit": git_value(root, "rev-parse", "HEAD"),
+        "evidence_snapshot": snapshot,
         "paper_states": normalize_paper_states(ledger),
-        "gate_states": gate_states(),
+        "gate_states": gate_states(metrics),
         "framework": framework(),
         "metrics": metrics,
         "metric_records": flat_metric_records(metrics),
-        "anomalies": anomalies(),
+        "anomalies": anomalies(metrics),
         "sources": sources,
         "notes": [
             "Incompatible units are not pooled across papers.",
@@ -817,8 +989,7 @@ def build(root: Path, atlas_path: Path, manifest_path: Path) -> None:
     manifest = {
         "schema": "orion.visualization.source-manifest.v1",
         "authority_boundary": AUTHORITY_BOUNDARY,
-        "subject_commit": git_value(root, "rev-parse", "HEAD"),
-        "subject_tree": git_value(root, "rev-parse", "HEAD^{tree}"),
+        "evidence_snapshot": snapshot,
         "source_catalog_sha256": sha256(root / "visualization/source_catalog.json"),
         "source_count": len(sources),
         "sources": sources,

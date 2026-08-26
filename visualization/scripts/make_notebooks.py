@@ -579,7 +579,7 @@ print_records(formal_anomalies, ["paper_id", "anomaly_id", "severity", "status",
 ## Discussion: anomalies and honest negatives
 
 - **P7:** 738 cases were planned but only 736 were observed. The run is invalid; the residual is $738-736=2$, not a rounding issue or a near-pass.
-- **P9:** the digits result remains `CANNOT_CHECK`, including the recorded replay discrepancy. Do not select the more favorable side of the discrepancy.
+- **P9:** the digits D-A result remains `CANNOT_CHECK`. A separately registered revival receipt preserves the append-only replay-failure terminal, records archive-matched replay agreement, and leaves the scientific successor frozen and unexecuted. Do not erase either the historical failure or the remaining scientific boundary.
 - **P10:** the prospective study was not executed. Protocol existence, code, or historical results are not a substitute for prospective observations.
 
 P6 finite-certificate evidence remains bounded to the explicit certified structures. P8 should be read only through its exact atlas status and source receipt.
@@ -733,10 +733,10 @@ print_records(governance_anomalies, ["paper_id", "anomaly_id", "severity", "stat
 ## Discussion: gate and authority boundaries
 
 - **P11:** 30 query results and support counts `LINEAR=3`, `RBF=5`, `KNN=5` coexist with terminal `GATE_NOT_MET`; counts do not override the gate.
-- **P12:** 32 receipt families span $\sigma\in\{0.2,0.4,0.6,0.8\}$, but forward-time authority remains `CANNOT_CHECK`; historical evidence was withheld rather than substituted.
-- **P13:** the five-arm/four-corruption-world result is bounded finite and must retain its historical adverse result.
-- **P14:** the 28 internally authored cases are not an external pilot. The external-pilot authority is `NOT_AUTHORITY`.
-- **P15:** four real-workflow receipts include three authorized dispositions and one honest `CANNOT_CHECK`. Separately, the full key-set compromise arm recorded 0/6 signature-layer detections, exposing the boundary: valid signatures do not prove custody or truth.
+- **P12:** 32 receipt families span $\sigma\in\{0.2,0.4,0.6,0.8\}$; the registered active-authority receipt says `forward_time_deployability=CANNOT_CHECK` and `campaign_executed=false` for the public-data stop/go campaign.
+- **P13:** the five-arm/four-corruption-world result is bounded finite. A separately registered P13A receipt retains historical terminal `P14_CONTROLLED_SUFFICIENCY_DEBT_GATE_NOT_MET` with observed maximum deviation $0.0556640625>0.05$; the exact historical label is preserved rather than silently renamed.
+- **P14:** the 28 internally authored cases are not an external pilot. The separate 67-packet pilot analytics receipt is `NOT_AUTHORITY` because frontier-agent execution and independent human adjudication have not run.
+- **P15:** four real-workflow receipts include three `AUTHORIZED_SCIENCE` receipt dispositions and one honest `CANNOT_CHECK`; these are not publication/external-authority labels. Separately, the active-authority receipt records 0 signature-layer detections and 6 false promotions under full key compromise, exposing the boundary: valid signatures do not prove custody or truth.
 
 ## Claim ceiling
 
@@ -874,7 +874,7 @@ plt.show()
         r"""
 print_records(
     selected_anomalies,
-    ["paper_id", "anomaly_id", "severity", "status", "summary", "observed", "expected", "explanation", "source_id"],
+    ["paper_id", "anomaly_id", "severity", "status", "summary", "observed", "expected", "explanation", "source_ids"],
     DISPLAY_LIMIT,
 )
 """,
@@ -887,13 +887,13 @@ print_records(
 1. **P2:** overall `FAIL` despite nDCG; a favorable coordinate cannot replace the registered terminal.
 2. **P5:** requested `glm-5.2`, served `glm-5.3`; requested-condition identity was not met.
 3. **P7:** 738 planned, 736 observed; the run is invalid and the coverage residual is 2.
-4. **P9:** digits result is `CANNOT_CHECK`, with a replay discrepancy retained.
+4. **P9:** digits D-A is `CANNOT_CHECK`; the replay-revival receipt keeps the old failure terminal, records archive-matched agreement, and leaves the scientific successor unexecuted.
 5. **P10:** prospective experiment not executed; no empirical promotion is available.
 6. **P11:** terminal `GATE_NOT_MET`, despite available query/support-count rows.
-7. **P12:** forward-time status `CANNOT_CHECK`; historical evidence was withheld.
-8. **P13:** bounded finite result plus historical adverse evidence; neither may erase the other.
-9. **P14:** external pilot is `NOT_AUTHORITY`; internally authored cases are not external validation.
-10. **P15:** signature verification stops at the full-key-compromise boundary and cannot establish custody, fact truth, or scientific authority.
+7. **P12:** `forward_time_deployability=CANNOT_CHECK`; the registered public-data stop/go campaign is not executed.
+8. **P13:** bounded finite result plus the separately registered historical adverse terminal; neither may erase the other.
+9. **P14:** the 67-packet pilot analytics are `NOT_AUTHORITY`; internally authored cases are not external validation.
+10. **P15:** full key compromise produced 0 signature detections and 6 false promotions; verification cannot establish custody, fact truth, or scientific authority.
 
 Use `visualization/reports/ANOMALY_AUDIT.md` for the explanation and next-discriminator table.
 

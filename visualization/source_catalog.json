@@ -123,6 +123,16 @@
       "fields": ["rows[*].diagnosis_correct", "rows[*].generic_correct", "rows[*].protected_gold", "rows[*].resource"]
     },
     {
+      "id": "p9_replay_revival",
+      "paper": "P9",
+      "path": "papers/paper-09-structured-epistemic-learning/evidence/P9_TRANSPORT_AND_REPLAY_REVIVAL_RECEIPT_V1.json",
+      "schema": "orion.p9.transport-replay-revival-receipt.v1",
+      "role": "append-only replay failure, archive-matched consistency repair, and remaining scientific boundary",
+      "authority_tier": "BOUNDED_INTERNAL_REPLAY_REPAIR_WITH_NEGATIVE_RETAINED",
+      "transform_id": "p9-replay-boundary-v1",
+      "fields": ["NR-06.negative", "NR-06.retest.agreement", "NR-06.replay_failure_terminal", "NR-06.boundary", "lane_verdicts.NR-06"]
+    },
+    {
       "id": "p10_prospective",
       "paper": "P10",
       "path": "papers/paper-10-structured-problem-solving/evidence/P10_H1_H6_PROSPECTIVE_ATTAINABILITY_2026-08-23.json",
@@ -153,6 +163,16 @@
       "fields": ["core.families", "summary", "gates", "terminal"]
     },
     {
+      "id": "p12_active_authority",
+      "paper": "P12",
+      "path": "papers/paper-12-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V5.json",
+      "schema": "ORION.P12.ActiveClaimAuthority.v5",
+      "role": "active authority, forward-time boundary, and unexecuted public-data campaign",
+      "authority_tier": "ACTIVE_INTERNAL_AUTHORITY_WITH_FORWARD_TIME_CANNOT_CHECK",
+      "transform_id": "p12-authority-boundary-v1",
+      "fields": ["price_aware_successor_leaf.forward_time_deployability", "stopgo_campaign_leaf.campaign_executed", "external_public_benchmark_status", "forbidden_promotions"]
+    },
+    {
       "id": "p13_composed_safety",
       "paper": "P13",
       "path": "papers/paper-13-responsibility-carrying-state/P13C_COMPOSED_RESULT_V1.json",
@@ -161,6 +181,16 @@
       "authority_tier": "BOUNDED_RANDOMIZED_FINITE_WORLD",
       "transform_id": "p13-safety-cost-v1",
       "fields": ["summary.arms", "summary.unverified_by_world", "gates", "terminal"]
+    },
+    {
+      "id": "p13_historical_boundary",
+      "paper": "P13",
+      "path": "papers/paper-13-responsibility-carrying-state/P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json",
+      "schema": "ORION.P13A.ResponsibilitySafeReuseReceipt.v1",
+      "role": "historical negative retained beside the later composed finite-world result",
+      "authority_tier": "BOUNDED_INTERNAL_WITH_HISTORICAL_NEGATIVE_RETAINED",
+      "transform_id": "p13-historical-negative-v1",
+      "fields": ["historical_negative_retained", "terminal", "summary", "gates"]
     },
     {
       "id": "p14_governance",
@@ -173,6 +203,16 @@
       "fields": ["summary", "ablations", "case_count", "claim_authority"]
     },
     {
+      "id": "p14_external_pilot",
+      "paper": "P14",
+      "path": "papers/paper-14-orion-rse/top_tier/external_v1/pilot/analytics/p14_external_pilot_analytics_v1.json",
+      "schema": "P14_EXTERNAL_PILOT_ANALYTICS_V1",
+      "role": "67-packet pilot analytics and explicit non-authority disposition",
+      "authority_tier": "NOT_AUTHORITY_PENDING_EXTERNAL_EXECUTION_AND_ADJUDICATION",
+      "transform_id": "p14-external-pilot-boundary-v1",
+      "fields": ["authority_status_all", "co_primary_promotion_condition", "suite", "metrics"]
+    },
+    {
       "id": "p15_workflows",
       "paper": "P15",
       "path": "papers/paper-15-orion-research-harness/top_tier/p15_real_workflow_receipts_v1.json",
@@ -181,6 +221,16 @@
       "authority_tier": "MIXED_THREE_AUTHORIZED_ONE_CANNOT_CHECK",
       "transform_id": "p15-workflow-v1",
       "fields": ["receipts[*].execution lifecycle", "receipts[*].scientific_contract_valid", "receipts[*].claim_authority", "receipts[*].expected_disposition"]
+    },
+    {
+      "id": "p15_active_authority",
+      "paper": "P15",
+      "path": "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V3.json",
+      "schema": "ORION.P15.ActiveClaimAuthority.v3",
+      "role": "bounded attestation composition result and full-key-compromise negative boundary",
+      "authority_tier": "BOUNDED_INTERNAL_ATTESTATION_WITH_COMPROMISE_NEGATIVE",
+      "transform_id": "p15-attestation-boundary-v1",
+      "fields": ["bounded_findings", "full_key_compromise_boundary", "forbidden_states", "promotion_allowed"]
     }
   ]
 }

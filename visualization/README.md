@@ -42,7 +42,7 @@ visualization/
   figures/
     static/                         13 deterministic PNG/SVG reference figures
     interactive/evidence_atlas.html offline filterable presentation artifact
-  generated/manifests/             output byte/digest/version binding
+  generated/manifests/             output byte/digest binding
   reports/
     CLAIM_CEILINGS.md               permitted and prohibited interpretation
     ANOMALY_AUDIT.md                anomaly explanations and next discriminators
@@ -53,6 +53,12 @@ visualization/
 Generated directories may be absent before the first data/figure build. The
 committed source catalog and source receipts—not a notebook's in-memory
 objects—define the scientific inputs.
+
+The generated atlas and source manifest identify that input snapshot with a
+canonical SHA-256 over source IDs, paths, schemas, byte counts, and exact source
+digests. They deliberately do not embed the current Git `HEAD`/tree or local
+package versions: those values are self-referential or machine-dependent when
+placed in an exactly compared committed output.
 
 ## Build from the repository root
 

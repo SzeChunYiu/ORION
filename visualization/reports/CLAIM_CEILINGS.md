@@ -41,13 +41,13 @@ its source path, scope, status, and authority fields in
 | P6 | Explicit finite certificates and their verifier outcomes at the registered domain. | A complete finite witness is not a universal theorem or independent validation. |
 | P7 | Planned and observed denominators and their exact residual. | 738 planned versus 736 observed makes the run invalid; “nearly complete” is not an admissible promotion. |
 | P8 | Only the exact structured authority result and status bound in its cited receipt. | No broader autonomy or external-authority claim may be inferred from the display. |
-| P9 | Exact diagnostic/learning rows, including the digits status. | Digits remains `CANNOT_CHECK`; the recorded replay discrepancy cannot be silently resolved in the favorable direction. |
+| P9 | Exact diagnostic/learning rows, including the digits status, plus the separately registered replay-revival boundary. | Digits remains `CANNOT_CHECK`; archive-matched consistency repair does not erase the append-only replay-failure terminal or execute the frozen scientific successor. |
 | P10 | Protocol and gate state for the prospective study, plus separately scoped earlier artifacts. | The prospective study was not executed; code, protocol text, or historical artifacts are not prospective results. |
 | P11 | 30 query-result rows and support counts `LINEAR=3`, `RBF=5`, `KNN=5`. | The registered terminal is `GATE_NOT_MET`; support counts do not overrule it. |
-| P12 | The receipt-bound 32-family structure across sigma values 0.2, 0.4, 0.6, and 0.8, plus any historical rows explicitly admitted by their source. | Forward-time remains `CANNOT_CHECK`; historical evidence was withheld rather than substituted for forward-time authority. |
-| P13 | The bounded finite five-arm by four-corruption-world study. | The finite result does not generalize beyond that matrix, and the historical adverse result remains part of the evidence. |
-| P14 | The 28 internally authored cases and their internal dispositions. | The external pilot is `NOT_AUTHORITY`; internal authorship is not external pilot independence. |
-| P15 | Four real-workflow receipts (three authorized and one honest `CANNOT_CHECK`) and bounded attestation results, including 0/6 signature-layer detections under full key-set compromise. | Signature validity does not prove key custody, fact truth, scientific validity, or claim authority; full-key compromise is outside signature-layer authority. |
+| P12 | The receipt-bound 32-family structure across sigma values 0.2, 0.4, 0.6, and 0.8. | Active V5 authority records `forward_time_deployability=CANNOT_CHECK` and `campaign_executed=false`; the bounded family panel cannot substitute for either result. |
+| P13 | The bounded finite five-arm by four-corruption-world study plus the separately registered P13A historical-negative fields. | The finite result does not generalize beyond that matrix, and exact historical terminal `P14_CONTROLLED_SUFFICIENCY_DEBT_GATE_NOT_MET` remains part of the evidence under its received label. |
+| P14 | The 28 internally authored cases and the separate 67-packet pilot analytics. | The pilot analytics are `NOT_AUTHORITY`; internal procedures are not independent frontier-agent execution or human adjudication. |
+| P15 | Four real-workflow receipts (three `AUTHORIZED_SCIENCE` receipt dispositions and one honest `CANNOT_CHECK`) and bounded attestation results, including 0 signature detections and 6 false promotions under full key compromise. | A receipt disposition is not publication/external authority. Signature validity does not prove key custody, fact truth, scientific validity, or claim authority; full-key compromise is outside signature-layer authority. |
 
 ## Permitted language
 
