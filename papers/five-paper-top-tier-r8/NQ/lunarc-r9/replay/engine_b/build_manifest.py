@@ -93,8 +93,7 @@ def verify_source_manifest(root: Path, manifest: Mapping[str, Any]) -> None:
         raise SourceManifestMismatch("source manifest subject mismatch")
     files = manifest["files"]
     if type(files) is not list or any(
-        type(record) is not dict or set(record) != {"path", "bytes", "sha256"}
-        for record in files
+        type(record) is not dict or set(record) != {"path", "bytes", "sha256"} for record in files
     ):
         raise SourceManifestMismatch("source manifest file records are invalid")
     paths = [record["path"] for record in files]
@@ -115,9 +114,7 @@ def verify_source_manifest(root: Path, manifest: Mapping[str, Any]) -> None:
         try:
             data = source.read_bytes()
         except OSError as error:
-            raise SourceManifestMismatch(
-                f"source file is unavailable: {path}"
-            ) from error
+            raise SourceManifestMismatch(f"source file is unavailable: {path}") from error
         observed = {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
         if observed != {"bytes": record["bytes"], "sha256": record["sha256"]}:
             raise SourceManifestMismatch(f"source manifest mismatch for {path}")

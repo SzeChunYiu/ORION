@@ -30,9 +30,7 @@ def _write_bundle(root: Path, *, complete: bool = True) -> tuple[Path, Path]:
         },
     )
     stream = root / "records.jsonl"
-    stream.write_bytes(
-        b"".join(eb.canonical_json_bytes(record) + b"\n" for record in records)
-    )
+    stream.write_bytes(b"".join(eb.canonical_json_bytes(record) + b"\n" for record in records))
     coverage = root / "coverage.json"
     coverage.write_text(
         json.dumps(
@@ -112,9 +110,7 @@ def test_record_parser_rejects_noncanonical_lines_and_duplicate_ids(
 
 def test_fixture_receipt_preserves_open_and_imperfect_blinding_boundaries() -> None:
     receipt = run_engine_b.build_fixture_receipt(source_manifest_sha256="b" * 64)
-    assert (
-        receipt["payload"]["terminal"] == "NQ_ENGINE_B_NON_OUTCOME_FIXTURES_VALIDATED"
-    )
+    assert receipt["payload"]["terminal"] == "NQ_ENGINE_B_NON_OUTCOME_FIXTURES_VALIDATED"
     assert receipt["payload"]["d4_c5_cubed"] == "OPEN"
     assert receipt["payload"]["blinded_independence"] == "NOT_CLAIMED"
     assert receipt["payload"]["full_strata_closed"] is False
@@ -215,9 +211,7 @@ def test_receipt_digest_is_tamper_evident() -> None:
     assert (
         digest
         == hashlib.sha256(
-            eb.canonical_json_bytes(
-                {k: v for k, v in receipt.items() if k != "receipt_sha256"}
-            )
+            eb.canonical_json_bytes({k: v for k, v in receipt.items() if k != "receipt_sha256"})
         ).hexdigest()
     )
     receipt["payload"]["d4_c5_cubed"] = "CLOSED"

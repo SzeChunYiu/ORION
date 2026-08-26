@@ -44,9 +44,7 @@ REQUIRED_FIELDS = {
 }
 
 
-def verify_control_protocol(
-    protocol: Mapping[str, Any], receipt: Mapping[str, Any]
-) -> None:
+def verify_control_protocol(protocol: Mapping[str, Any], receipt: Mapping[str, Any]) -> None:
     if protocol.get("schema") != "ORION.NQ.R9.CRABRank2ControlProtocol.v1":
         raise ControlReceiptMismatch("control protocol schema mismatch")
     if protocol.get("scientific_subject") != replay.SCIENTIFIC_SUBJECT:
@@ -60,9 +58,7 @@ def verify_control_protocol(
     if protocol.get("lunarc_submission_authorized") is not False:
         raise ControlReceiptMismatch("control protocol unexpectedly authorizes LUNARC")
     if protocol.get("full_census_authorized") is not False:
-        raise ControlReceiptMismatch(
-            "control protocol unexpectedly authorizes full census"
-        )
+        raise ControlReceiptMismatch("control protocol unexpectedly authorizes full census")
     expected = protocol.get("expected_control")
     observed = {
         key: receipt[key]
@@ -80,9 +76,7 @@ def verify_control_protocol(
         )
     }
     if expected != observed:
-        raise ControlReceiptMismatch(
-            "receipt does not match frozen protocol expectations"
-        )
+        raise ControlReceiptMismatch("receipt does not match frozen protocol expectations")
 
 
 def verify_control_receipt(receipt: Mapping[str, Any], *, rerun: bool = True) -> None:
@@ -100,9 +94,7 @@ def verify_control_receipt(receipt: Mapping[str, Any], *, rerun: bool = True) ->
     if receipt["receipt_sha256"] != expected_digest:
         raise ControlReceiptMismatch("control receipt digest mismatch")
     if receipt["terminal"] != replay.PASS_TERMINAL or receipt["mismatch_count"] != 0:
-        raise ControlReceiptMismatch(
-            "two-engine control did not reach the frozen PASS terminal"
-        )
+        raise ControlReceiptMismatch("two-engine control did not reach the frozen PASS terminal")
     if receipt["disagreements"] != []:
         raise ControlReceiptMismatch("PASS receipt retains disagreement witnesses")
     if receipt["positive_count"] + receipt["negative_count"] != receipt["case_count"]:
@@ -132,9 +124,7 @@ def verify_control_receipt(receipt: Mapping[str, Any], *, rerun: bool = True) ->
             {key: value for key, value in case.items() if key != "case_sha256"}
         )
         if observed != case["case_sha256"]:
-            raise ControlReceiptMismatch(
-                f"case digest mismatch: {case.get('record_id')}"
-            )
+            raise ControlReceiptMismatch(f"case digest mismatch: {case.get('record_id')}")
         case_digests.append(case["case_sha256"])
         engine_a_records.append(case["engine_a_record_sha256"])
         engine_b_records.append(case["engine_b_record_sha256"])
@@ -159,9 +149,7 @@ def verify_control_receipt(receipt: Mapping[str, Any], *, rerun: bool = True) ->
     if rerun:
         expected = replay.build_control_receipt()
         if receipt != expected:
-            raise ControlReceiptMismatch(
-                "receipt does not match deterministic two-engine replay"
-            )
+            raise ControlReceiptMismatch("receipt does not match deterministic two-engine replay")
 
 
 def main() -> int:

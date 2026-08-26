@@ -26,9 +26,7 @@ def _rank(vectors: Iterable[Sequence[int]]) -> int:
     rows = [list(vector) for vector in vectors if any(vector)]
     rank = 0
     for column in range(3):
-        pivot = next(
-            (row for row in range(rank, len(rows)) if rows[row][column] % 5), None
-        )
+        pivot = next((row for row in range(rank, len(rows)) if rows[row][column] % 5), None)
         if pivot is None:
             continue
         rows[rank], rows[pivot] = rows[pivot], rows[rank]
@@ -90,9 +88,7 @@ def invertible_matrices(rank: int) -> tuple[Matrix, ...]:
         return ((),)
     matrices = []
     for entries in product(range(5), repeat=rank * rank):
-        matrix = tuple(
-            tuple(entries[row * rank : (row + 1) * rank]) for row in range(rank)
-        )
+        matrix = tuple(tuple(entries[row * rank : (row + 1) * rank]) for row in range(rank))
         if _matrix_rank(matrix) == rank:
             matrices.append(matrix)
     return tuple(matrices)
@@ -100,8 +96,7 @@ def invertible_matrices(rank: int) -> tuple[Matrix, ...]:
 
 def _matvec(matrix: Matrix, vector: tuple[int, ...]) -> tuple[int, ...]:
     return tuple(
-        sum(entry * coordinate for entry, coordinate in zip(row, vector, strict=True))
-        % 5
+        sum(entry * coordinate for entry, coordinate in zip(row, vector, strict=True)) % 5
         for row in matrix
     )
 

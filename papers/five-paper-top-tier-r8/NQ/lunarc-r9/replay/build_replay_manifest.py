@@ -60,9 +60,7 @@ def _core(files: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def build_replay_manifest(
-    root: Path, paths: Sequence[str] = REPLAY_PATHS
-) -> dict[str, Any]:
+def build_replay_manifest(root: Path, paths: Sequence[str] = REPLAY_PATHS) -> dict[str, Any]:
     normalized = tuple(sorted(set(paths)))
     if len(normalized) != len(paths):
         raise ValueError("replay manifest paths must be unique")
@@ -84,9 +82,7 @@ def verify_replay_manifest(root: Path, manifest: Mapping[str, Any]) -> None:
     if manifest["engine_b_independence"] != "STANDALONE_NO_ENGINE_A_IMPORT":
         raise ReplayManifestMismatch("replay manifest independence boundary mismatch")
     if manifest["full_census_authorized"] is not False:
-        raise ReplayManifestMismatch(
-            "replay manifest unexpectedly authorizes full census"
-        )
+        raise ReplayManifestMismatch("replay manifest unexpectedly authorizes full census")
     files = manifest["files"]
     if type(files) is not list or [record.get("path") for record in files] != sorted(
         record.get("path") for record in files
@@ -98,13 +94,9 @@ def verify_replay_manifest(root: Path, manifest: Mapping[str, Any]) -> None:
         try:
             observed = _file_record(root.resolve(), record["path"])
         except (KeyError, OSError, TypeError, ValueError) as error:
-            raise ReplayManifestMismatch(
-                "replay manifest file is unavailable"
-            ) from error
+            raise ReplayManifestMismatch("replay manifest file is unavailable") from error
         if observed != record:
-            raise ReplayManifestMismatch(
-                f"replay manifest mismatch for {record['path']}"
-            )
+            raise ReplayManifestMismatch(f"replay manifest mismatch for {record['path']}")
 
 
 def main() -> int:

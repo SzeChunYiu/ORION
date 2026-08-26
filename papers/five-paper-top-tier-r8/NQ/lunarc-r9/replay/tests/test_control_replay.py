@@ -33,8 +33,7 @@ def test_matrix_action_symmetry_is_independent_and_permutation_invariant() -> No
         eb.encode_element((0, 4, 0)),
     )
     transformed = tuple(
-        eb.encode_element(_linear_map(eb.decode_element(element)))
-        for element in sequence
+        eb.encode_element(_linear_map(eb.decode_element(element))) for element in sequence
     )
     expected = symmetry.canonical_matrix_action(sequence)
     assert symmetry.canonical_matrix_action(transformed) == expected

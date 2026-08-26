@@ -46,8 +46,7 @@ def test_sat_encoding_matches_every_explicit_bin_assignment_on_small_control() -
             for bin_index in range(2)
         )
         expected = all(bins) and all(
-            eb.sum_elements(sequence[index] for index in selected) == eb.ZERO
-            for selected in bins
+            eb.sum_elements(sequence[index] for index in selected) == eb.ZERO for selected in bins
         )
         assert observed is expected
 
@@ -82,11 +81,8 @@ def test_permutation_does_not_change_factorization_decision() -> None:
     reversed_sequence = tuple(reversed(sequence))
     assert eb.has_k_disjoint_zero_sums_bruteforce(sequence, 2)
     assert eb.has_k_disjoint_zero_sums_bruteforce(reversed_sequence, 2)
-    assert (
-        eb.solve_cnf_dpll(eb.build_factorization_cnf(sequence, 2).cnf) is not None
-    ) == (
-        eb.solve_cnf_dpll(eb.build_factorization_cnf(reversed_sequence, 2).cnf)
-        is not None
+    assert (eb.solve_cnf_dpll(eb.build_factorization_cnf(sequence, 2).cnf) is not None) == (
+        eb.solve_cnf_dpll(eb.build_factorization_cnf(reversed_sequence, 2).cnf) is not None
     )
 
 
