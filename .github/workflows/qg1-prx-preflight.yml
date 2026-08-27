@@ -87,9 +87,21 @@ jobs:
           set -euo pipefail
           pdfinfo build/qg1_prx/source/main.pdf > build/qg1_prx/pdfinfo.txt
           pdftotext build/qg1_prx/source/main.pdf build/qg1_prx/pdf.txt
-          grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' build/qg1_prx/pdf.txt
-          grep -Fq 'References' build/qg1_prx/pdf.txt
-          if grep -Eq '\[@[A-Za-z0-9_:-]+' build/qg1_prx/pdf.txt; then
+          # pdftotext re-wraps the REVtex byline at rendered line breaks, so a
+          # placeholder split across two PDF lines would evade a single-line
+          # grep. Match on whitespace-collapsed text instead.
+          tr -s '[:space:]' ' ' < build/qg1_prx/pdf.txt > build/qg1_prx/pdf_flat.txt
+          if ! grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' build/qg1_prx/pdf_flat.txt; then
+            echo 'QG1_PRX_AUTHOR_PLACEHOLDER_MISSING=FAIL'
+            grep -n -i -m 3 'AUTHOR METADATA' build/qg1_prx/pdf.txt || true
+            exit 1
+          fi
+          if ! grep -Fq 'References' build/qg1_prx/pdf_flat.txt; then
+            echo 'QG1_PRX_REFERENCES_SECTION_MISSING=FAIL'
+            grep -n -i -m 3 'references' build/qg1_prx/pdf.txt || true
+            exit 1
+          fi
+          if grep -Eq '\[@[A-Za-z0-9_:-]+' build/qg1_prx/pdf_flat.txt; then
             echo 'QG1_PRX_UNRESOLVED_CITATION_TOKEN=FAIL'
             exit 1
           fi

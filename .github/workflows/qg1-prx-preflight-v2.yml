@@ -84,9 +84,21 @@ jobs:
           test -s main.pdf
           pdftotext main.pdf ../pdf.txt
           pdfinfo main.pdf > ../pdfinfo.txt
-          grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' ../pdf.txt
-          grep -Fq 'References' ../pdf.txt
-          if grep -Eq '\[@[A-Za-z0-9_:-]+' ../pdf.txt; then
+          # pdftotext re-wraps the REVtex byline at rendered line breaks, so a
+          # placeholder split across two PDF lines would evade a single-line
+          # grep. Match on whitespace-collapsed text instead.
+          tr -s '[:space:]' ' ' < ../pdf.txt > ../pdf_flat.txt
+          if ! grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' ../pdf_flat.txt; then
+            echo 'QG1_PRX_V2_AUTHOR_PLACEHOLDER_MISSING=FAIL'
+            grep -n -i -m 3 'AUTHOR METADATA' ../pdf.txt || true
+            exit 1
+          fi
+          if ! grep -Fq 'References' ../pdf_flat.txt; then
+            echo 'QG1_PRX_V2_REFERENCES_SECTION_MISSING=FAIL'
+            grep -n -i -m 3 'references' ../pdf.txt || true
+            exit 1
+          fi
+          if grep -Eq '\[@[A-Za-z0-9_:-]+' ../pdf_flat.txt; then
             echo 'QG1_PRX_V2_UNRESOLVED_CITATION_TOKEN=FAIL'
             exit 1
           fi
