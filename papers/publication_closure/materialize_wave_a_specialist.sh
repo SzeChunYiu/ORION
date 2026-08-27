@@ -163,7 +163,8 @@ PY
   cp "$work/ABSTRACT_WORD_COUNT.txt" "$out/ABSTRACT_WORD_COUNT.txt"
   cp "$TQE_ABSTRACTS" "$out/TQE_ABSTRACTS_V1.json"
   cp "$Q_REPLAY_RECEIPT" "$out/QUANTUM_REPLAY_RECEIPT_V1.json"
-  (cd "$out" && sha256sum main.pdf main.tex references.bib SCIENTIFIC_MASTER_CITED.md ABSTRACT_WORD_COUNT.txt TQE_ABSTRACTS_V1.json QUANTUM_REPLAY_RECEIPT_V1.json > SHA256SUMS)
+  cp -R "$Q_REPLAY_DIR/quantum-replay-raw" "$out/quantum-replay-raw"
+  find "$out" -type f ! -name SHA256SUMS -print0 | sort -z | while IFS= read -r -d '' f; do sha256sum "$f"; done | sed "s#  $out/#  #" > "$out/SHA256SUMS"
 done
 
 # ---------------------------------------------------------------------------
