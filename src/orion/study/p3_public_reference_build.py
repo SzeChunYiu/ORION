@@ -69,20 +69,37 @@ class UnpinnedCorpus(ValueError):
 #: re-asserts that commit before every build. Those per-file pins live in
 #: ``p3_public_reference_muse_pins.json`` beside this module and carry the
 #: commit as their identity --- a verified statement, not a stamp.
-MUSE_PIN_MANIFEST = Path(__file__).with_name("p3_public_reference_muse_pins.json")
-MUSE_PIN_SCHEMA = "ORION.P3.MuseCorpusPins.v1"
+#: Both verified-commit corpora (MUSE, SciSchema) share one manifest shape and
+#: one loader; only the file name, schema tag, dataset name and identity prefix
+#: differ. SciSchema got the same promotion check as MUSE: all 49 files under
+#: ``schemas/`` checked out of scischema/scischema at the commit above and
+#: digest-compared (49/49).
+PIN_MANIFESTS = {
+    "MUSE": (
+        "p3_public_reference_muse_pins.json",
+        "ORION.P3.MuseCorpusPins.v1",
+        "muse",
+    ),
+    "SciSchema": (
+        "p3_public_reference_scischema_pins.json",
+        "ORION.P3.SciSchemaCorpusPins.v1",
+        "scischema",
+    ),
+}
 
 
-def _load_muse_pins() -> tuple[CorpusPin, ...]:
-    raw = json.loads(MUSE_PIN_MANIFEST.read_text(encoding="utf-8"))
-    if raw.get("schema") != MUSE_PIN_SCHEMA:
-        raise ValueError(f"unsupported MUSE pin manifest schema: {raw.get('schema')!r}")
+def _load_committed_pins(dataset: str) -> tuple[CorpusPin, ...]:
+    manifest_name, schema, prefix = PIN_MANIFESTS[dataset]
+    manifest = Path(__file__).with_name(manifest_name)
+    raw = json.loads(manifest.read_text(encoding="utf-8"))
+    if raw.get("schema") != schema:
+        raise ValueError(f"unsupported {dataset} pin manifest schema: {raw.get('schema')!r}")
     commit = str(raw.get("verified_commit", ""))
     if len(commit) != 40:
-        raise ValueError("MUSE pin manifest must name the verified upstream commit")
+        raise ValueError(f"{dataset} pin manifest must name the verified upstream commit")
     files = raw.get("files")
     if not isinstance(files, list) or not files:
-        raise ValueError("MUSE pin manifest requires at least one file")
+        raise ValueError(f"{dataset} pin manifest requires at least one file")
     pins: list[CorpusPin] = []
     seen: set[str] = set()
     for row in files:
@@ -90,14 +107,14 @@ def _load_muse_pins() -> tuple[CorpusPin, ...]:
         digest = str(row.get("sha256", ""))
         source = str(row.get("source", ""))
         if not rel or len(digest) != 64 or not source.startswith("https://"):
-            raise ValueError(f"malformed MUSE pin row: {row!r}")
+            raise ValueError(f"malformed {dataset} pin row: {row!r}")
         if rel in seen:
-            raise ValueError(f"duplicate MUSE pin path: {rel}")
+            raise ValueError(f"duplicate {dataset} pin path: {rel}")
         seen.add(rel)
         pins.append(
             CorpusPin(
-                dataset="MUSE",
-                identity=f"muse@{commit}",
+                dataset=dataset,
+                identity=f"{prefix}@{commit}",
                 sha256=digest,
                 source=source,
             )
@@ -124,7 +141,8 @@ PINNED_CORPORA: tuple[CorpusPin, ...] = (
             "#data/claims_dev.jsonl"
         ),
     ),
-    *_load_muse_pins(),
+    *_load_committed_pins("MUSE"),
+    *_load_committed_pins("SciSchema"),
 )
 
 
