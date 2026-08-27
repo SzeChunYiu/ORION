@@ -22,7 +22,7 @@ python papers/candidates/checkers/p7_finite_falsifiers_v1.py
 ORION14_TMP="${RUNNER_TEMP:-/tmp}/orion14-filing"
 rm -rf "$ORION14_TMP"
 mkdir -p "$ORION14_TMP"
-python papers/orion-14-verified-scientific-discovery/check_filing_preflight.py \
+python papers/publication_closure/check_orion14_filing_preflight.py \
   --root "$ROOT" \
   --as-of "$(date -u +%F)" \
   --write-json "$ORION14_TMP/REPOSITORY_FILING_PREFLIGHT_V1.json" \
@@ -172,7 +172,7 @@ printf '%s\n' \
 # ORION-14: use the current tracked TMLR PDF/source after the green filing preflight.
 out='papers/publication_closure/submissions/ORION-14/TMLR'
 rm -rf "$out"
-mkdir -p "$out/source"
+mkdir -p "$out/source/manuscript"
 cp papers/orion-14-verified-scientific-discovery/manuscript/main.pdf "$out/main.pdf"
 cp -R papers/orion-14-verified-scientific-discovery/manuscript/. "$out/source/manuscript/"
 if [ -d papers/orion-14-verified-scientific-discovery/journal_package ]; then
@@ -230,8 +230,6 @@ if ! git diff --cached --quiet; then
   git commit -m 'papers(publication): close Wave A specialist repository packages [wave-a-materialized]'
 fi
 
-# The push is part of the operation: the final committed receipt, not a CI log,
-# is the repository-side closure object.
 git push origin HEAD:chatgpt/orion-publication-closure-wave-a-20260827
 
 printf 'WAVE_A_RENDER_COMMIT=%s\n' "$RENDER_COMMIT"
