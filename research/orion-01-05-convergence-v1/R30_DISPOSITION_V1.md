@@ -27,25 +27,37 @@ hostile control, or `CANNOT_CHECK` boundary carried by its donor branches.
    branch (`HTTP 404`), not a custody PASS.
 6. No successful R30 finalizer/current-main custody run or materialized R30
    output receipt binds the proposed cross-language status to the advertised
-   clean release. Any independently valid R20 checker result retains only its
-   original same-owner, branch-local authority ceiling.
-7. The R20 disposition consumed by the generator itself leaves ORION-01
+   clean release. The only artifact from the first finalizer was a 136-byte ZIP
+   whose sole member was an empty `SHA256SUMS`; it contained no status, PDF, or
+   release packet.
+7. The standard-library Rust checker source and prose terminal exist on #1492,
+   but the 2026-08-27 10:26Z workflow census is 47 runs with **zero successes**
+   (37 failed, 9 `action_required`, 1 cancelled). No durable Rust result or terminal file
+   exists; executable attempts failed on the stale R18 digest before Rust
+   compile/replay. Treat it as a checker candidate, not an executed PASS.
+8. The source tree itself says
+   `ORION02_R30_RELEASE_FILESET_FROZEN__RESULT_RECEIPT_REQUIRED`; its journal
+   gate leaves scientific CI and manuscript compile pending, data rights,
+   external replay and archive open, novelty `CANNOT_CHECK_EXTERNAL`, and
+   submission `NOT_AUTHORIZED`. The rights audit requires author review of
+   scenario-data rights; it is not legal clearance.
+9. The R20 disposition consumed by the generator itself leaves ORION-01
    production transfer, ORION-03 theorem/domain authority, ORION-04 full
    replay authority, and ORION-05 measured resource value open.
-8. The advertised programme terminal
+10. The advertised programme terminal
    `FIVE_PAPER_R30_INTERNAL_FINAL_STATUS_BOUND__ONLY_EXTERNAL_AUTHOR_LEGAL_PRODUCTION_AND_SUBMISSION_INPUTS_OPEN`
    is not the terminal encoded by `finalize_r30.py`, which instead emits
    `FIVE_PAPER_R30_INTERNAL_EXECUTABLE_WORK_COMPLETE__EXTERNAL_PRODUCTION_RIGHTS_AND_SUBMISSION_GATES_OPEN`.
    The generator also contains two different ORION-02 release-terminal strings.
    Therefore the pasted final label is not even a deterministic reconstruction
    of the unexecuted generator.
-9. The advertised D wrapper terminal is not the committed R20 audit terminal.
+11. The advertised D wrapper terminal is not the committed R20 audit terminal.
    The committed audit produced a false negative because it required a literal
    scalar `68`; the raw byte-stable result records `12 + 56 = 68` hybrid atoms
    and certificates and retains
    `TYPED_AUTHORITY_FIRST_MIXING_R12_PASS`. This preserves a bounded internal
    theorem, not an external real-domain result.
-10. The advertised NQ label concerns a proposed pre-execution subject audit.
+12. The advertised NQ label concerns a proposed pre-execution subject audit.
     It cannot override the later job-3544056 execution failure; D2/D3 numerical
     authority remains `CANNOT_CHECK` and D4 remains open.
 

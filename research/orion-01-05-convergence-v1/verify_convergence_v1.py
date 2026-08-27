@@ -216,6 +216,40 @@ EXPECTED_STACK_PRS = {
 
 EXPECTED_ACTION_ARTIFACTS = {
     (
+        33023149716,
+        9627389618,
+        "fiberguard-paired-route-r18-recovery-ac4a50f85a147f5933cd2055809c7ac30b29e3c1",
+        "a750d59572d28d17f63329bfb2ce2c633a081063f19d0d8c3c4bdbf45edb1fa1",
+    ): {
+        "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json": (
+            255051,
+            "e5a4bb3c913405ec10be0cd8db3e8091deb3a3f14a855f2a5402770071e336b9",
+        ),
+        "SHA256SUMS": (
+            464,
+            "dfbd5f433027ba4f527a85f7544f3c9c4ce78cf8279e6590617f820122020cf7",
+        ),
+        "RECOVERY_COMMENT.md": (
+            1157,
+            "41a5de9b857db02bbde9465a3c1345fde19f30dc07719f878a96f3741a457680",
+        ),
+        "TERMINAL.txt": (
+            158,
+            "e213fa6f4084ea9ed6b6b38504188d664675e919c23bc7f6111424b5463401cf",
+        ),
+    },
+    (
+        33047609008,
+        9636339561,
+        "five-paper-r30-final",
+        "5b6188d5276dba7f081c7d2d3106cb2cef92588c577d15394848949ae7ffdba3",
+    ): {
+        "SHA256SUMS": (
+            0,
+            "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        ),
+    },
+    (
         33049783681,
         9637176781,
         "fiberguard-r20-bnsl-adaptive",
@@ -234,6 +268,45 @@ EXPECTED_ACTION_ARTIFACTS = {
             "c843a0cb1c0a5a13863f27518e721cf8786334fba21a088f8ca4350ec947c49e",
         ),
     }
+}
+
+EXPECTED_R30_FAILURES = {
+    33047609008: {
+        "workflow": "one-shot-r30-finalize-internal-programme",
+        "head_sha": "95592385f3d6dba64335d602a7d723212c8b21ad",
+        "failed_step": "Materialize exact R18 result and R19 current subject",
+        "cause": "STALE_R18_RESULT_SHA256",
+    },
+    33048246343: {
+        "workflow": "one-shot-r30-recover-latest-failure",
+        "head_sha": "0670f3c7379c8e29ec449cde2f3772cb8355ce22",
+        "failed_step": "Diagnose, harden, and schedule one retry",
+        "cause": "GITHUB_APP_WORKFLOW_UPDATE_REJECTED",
+    },
+    33048471274: {
+        "workflow": "one-shot-r30-final-ensure",
+        "head_sha": "155ac91341c3a6c00e621ae0eeb8207b1bfd3128",
+        "failed_step": "Diagnose latest failed finalizer and schedule hardened retry",
+        "cause": "GITHUB_APP_WORKFLOW_UPDATE_REJECTED",
+    },
+    33048664001: {
+        "workflow": "one-shot-r30-clean-branch-recovery",
+        "head_sha": "4f5fec5197e179a7364fce3d7a753a718de49f78",
+        "failed_step": "Inspect clean-branch custody",
+        "cause": "INTENDED_CLEAN_BRANCH_NOT_FOUND_HTTP_404",
+    },
+    33048836610: {
+        "workflow": "one-shot-r30-author-handoff",
+        "head_sha": "3b8da33ca691f7329b7d939e85940fa723f7dc5f",
+        "failed_step": "Wait for green clean current-main custody",
+        "cause": "INTENDED_CLEAN_BRANCH_NOT_FOUND_HTTP_404",
+    },
+    33048974820: {
+        "workflow": "one-shot-r30-bind-final-status",
+        "head_sha": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+        "failed_step": "Wait for author handoff and green clean custody",
+        "cause": "INTENDED_CLEAN_BRANCH_NOT_FOUND_HTTP_404",
+    },
 }
 
 
@@ -459,6 +532,160 @@ def validate_action_artifact_archive(repo: Path, custody: dict[str, Any]) -> Non
     )
     require(custody["authority"]["adaptive_superiority"] is False, "artifact authority")
     require(custody["authority"]["external_independence"] is False, "artifact independence")
+
+
+def validate_r18_action_artifact_archive(repo: Path, custody: dict[str, Any]) -> None:
+    require(
+        custody.get("schema") == "ORION.FiberGuard.ActionArtifactArchiveCustody.v1",
+        "R18 artifact custody schema",
+    )
+    require(
+        custody.get("terminal")
+        == "R18_ACTION_ARTIFACT_ARCHIVED__NULL_AND_RETRACTION_PRESERVED",
+        "R18 artifact custody terminal",
+    )
+    api = custody["api_snapshot"]
+    require(
+        api
+        == {
+            "repository": "SzeChunYiu/ORION",
+            "verified_at": "2026-08-27T10:27:38Z",
+            "run": 33023149716,
+            "workflow_id": 343322586,
+            "workflow": "five-paper-r18-c-paired-route-recovery",
+            "event": "push",
+            "head_branch": "chatgpt/r18-c-paired-route-20260826",
+            "head_sha": "ac4a50f85a147f5933cd2055809c7ac30b29e3c1",
+            "run_conclusion": "success",
+            "artifact_id": 9627389618,
+            "artifact_name": (
+                "fiberguard-paired-route-r18-recovery-"
+                "ac4a50f85a147f5933cd2055809c7ac30b29e3c1"
+            ),
+            "artifact_size_in_bytes": 22592,
+            "artifact_created_at": "2026-08-26T23:25:52Z",
+            "artifact_expires_at": "2026-09-25T23:25:51Z",
+            "artifact_expired_at_snapshot": False,
+        },
+        "R18 artifact Actions provenance",
+    )
+    archive = custody["archive"]
+    identity = (
+        api["run"],
+        api["artifact_id"],
+        api["artifact_name"],
+        archive["sha256"],
+    )
+    require(identity in EXPECTED_ACTION_ARTIFACTS, "R18 artifact custody identity")
+    expected = EXPECTED_ACTION_ARTIFACTS[identity]
+    archive_path = repo / archive["path"]
+    require(archive_path.is_file(), "R18 artifact archive absent")
+    require(
+        archive_path.stat().st_size == archive["bytes"] == 22592,
+        "R18 artifact archive bytes",
+    )
+    require(sha256(archive_path) == archive["sha256"], "R18 artifact archive SHA")
+
+    with zipfile.ZipFile(archive_path) as bundle:
+        infos = bundle.infolist()
+        names = [row.filename for row in infos]
+        require(len(names) == len(set(names)), "duplicate R18 artifact ZIP member")
+        require(set(names) == set(expected), "R18 artifact ZIP member set")
+        require(bundle.testzip() is None, "R18 artifact ZIP CRC")
+        require(
+            all(
+                not row.is_dir()
+                and not row.flag_bits & 0x1
+                and "/" not in row.filename
+                and "\\" not in row.filename
+                and row.filename not in {".", ".."}
+                for row in infos
+            ),
+            "unsafe R18 artifact ZIP member",
+        )
+        payloads = {name: bundle.read(name) for name in names}
+
+    custody_members = custody["members"]
+    require(set(custody_members) == set(expected), "R18 artifact custody member set")
+    for name, (expected_bytes, expected_sha) in expected.items():
+        payload = payloads[name]
+        require(len(payload) == expected_bytes, f"R18 artifact member bytes: {name}")
+        require(
+            sha256_bytes(payload) == expected_sha,
+            f"R18 artifact member SHA: {name}",
+        )
+        row = custody_members[name]
+        require(
+            row["bytes"] == expected_bytes and row["sha256"] == expected_sha,
+            f"R18 artifact custody member binding: {name}",
+        )
+        canonical_path = row.get("canonical_copy")
+        if canonical_path is not None:
+            require(
+                (repo / canonical_path).read_bytes() == payload,
+                f"R18 artifact canonical-copy drift: {name}",
+            )
+
+    checksum_rows = {
+        line.split()[1].rsplit("/", 1)[-1]: line.split()[0]
+        for line in payloads["SHA256SUMS"].decode("utf-8").splitlines()
+        if len(line.split()) == 2
+    }
+    require(
+        checksum_rows
+        == {
+            name: expected[name][1]
+            for name in (
+                "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json",
+                "RECOVERY_COMMENT.md",
+                "TERMINAL.txt",
+            )
+        },
+        "R18 artifact internal SHA256SUMS",
+    )
+    require(
+        custody["scientific_disposition"]
+        == {
+            "terminal": R18_TERMINAL,
+            "former_positive_terminal": "RETRACTED_UNSUPPORTED_EXECUTION_IDENTITY",
+            "outcome_exposed_recovery": True,
+        },
+        "R18 artifact scientific disposition",
+    )
+    authority = custody["authority"]
+    require(authority["artifact_custody"] is True, "R18 artifact custody authority")
+    require(authority["same_owner_execution"] is True, "R18 same-owner boundary")
+    for key in (
+        "external_independence",
+        "production_value",
+        "novelty_authority",
+        "journal_authority",
+        "submission_authorized",
+    ):
+        require(authority[key] is False, f"R18 artifact authority promoted: {key}")
+
+    registered = load(
+        repo
+        / "papers/orion-02-fiberguard-finite-fibre/extensions/r18/"
+        "R18_RECOVERY_CUSTODY_V2.json"
+    )
+    registered_artifact = registered["artifact"]
+    require(
+        registered_artifact["id"] == api["artifact_id"]
+        and registered_artifact["name"] == api["artifact_name"]
+        and registered_artifact["zip_sha256"] == archive["sha256"],
+        "R18 registered artifact identity drift",
+    )
+    for name in (
+        "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json",
+        "RECOVERY_COMMENT.md",
+        "TERMINAL.txt",
+    ):
+        require(
+            registered_artifact["files"][name]["bytes"] == expected[name][0]
+            and registered_artifact["files"][name]["sha256"] == expected[name][1],
+            f"R18 registered artifact member drift: {name}",
+        )
 
 
 def validate_manifest(
@@ -999,6 +1226,8 @@ def validate_science(repo: Path, *, require_donor_objects: bool = False) -> None
         "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json"
     ]
     require(r18_registered["sha256"] == sha256(r18root / "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json"), "R18 custody SHA")
+    r18_action_custody = load(r18root / "R18_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json")
+    validate_r18_action_artifact_archive(repo, r18_action_custody)
 
     r19root = croot / "extensions/r19"
     r19 = load(r19root / "JOINT_ROUTE_R19_RESULTS.json")
@@ -1068,13 +1297,109 @@ def validate_science(repo: Path, *, require_donor_objects: bool = False) -> None
     r30runs = load(repo / "research/orion-01-05-convergence-v1/R30_FAILURE_RUNS_V1.json")
     r30 = load(repo / "research/orion-01-05-convergence-v1/R30_FAILURE_CUSTODY_V1.json")
     require(r30runs["disposition"] == R30_TERMINAL, "R30 run disposition")
-    require(len(r30runs["r30_runs"]) == 6, "R30 run denominator")
+    require(r30runs["r30_run_count"] == len(EXPECTED_R30_FAILURES), "R30 run denominator")
+    observed_r30_failures = {
+        row["run"]: {
+            "workflow": row["workflow"],
+            "head_sha": row["head_sha"],
+            "failed_step": row["failed_step"],
+            "cause": row["cause"],
+        }
+        for row in r30runs["r30_runs"]
+    }
+    require(observed_r30_failures == EXPECTED_R30_FAILURES, "R30 failure receipt drift")
     require(all(row["conclusion"] == "failure" for row in r30runs["r30_runs"]), "R30 failures")
+    require(
+        all(
+            row["url"]
+            == f"https://github.com/SzeChunYiu/ORION/actions/runs/{row['run']}"
+            for row in r30runs["r30_runs"]
+        ),
+        "R30 failure URL drift",
+    )
+    require(
+        r30runs["authoritative_successful_r30_finalizer"] is False
+        and r30runs["final_receipts_materialized"] is False,
+        "R30 all-failed disposition",
+    )
     require(33048978721 not in {row["run"] for row in r30runs["r30_runs"]}, "R18 mixed into R30")
     require(r30["terminal"] == R30_TERMINAL, "R30 custody terminal")
     require(r30["related_non_r30_custody_failure"]["run"] == 33048978721, "R18 custody separation")
     require(r30["live_repository_observations"]["intended_clean_branch_exists"] is False, "R30 branch")
     require(r30["live_repository_observations"]["final_outputs_present_on_current_main"] is False, "R30 outputs")
+    rust = r30["unmaterialized_cross_language_claim"]
+    require(
+        rust["workflow_id"] == 343511583
+        and rust["live_run_census"]
+        == {
+            "total": 47,
+            "success": 0,
+            "failure": 37,
+            "action_required": 9,
+            "cancelled": 1,
+        }
+        and rust["durable_result_or_terminal_present"] is False
+        and rust["disposition"]
+        == "CHECKER_CANDIDATE_AND_PROSE_ONLY__NO_EXECUTED_PASS",
+        "R30 Rust checker execution promoted",
+    )
+    package_state = r30["source_tree_package_state"]
+    require(
+        package_state
+        == {
+            "head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+            "release_fileset_terminal": (
+                "ORION02_R30_RELEASE_FILESET_FROZEN__RESULT_RECEIPT_REQUIRED"
+            ),
+            "scientific_internal": "PENDING_CI",
+            "manuscript_internal_compile": "PENDING_CI",
+            "data_rights": "OPEN",
+            "external_replay": "OPEN",
+            "novelty": "CANNOT_CHECK_EXTERNAL",
+            "archive": "OPEN",
+            "submission": "NOT_AUTHORIZED",
+            "rights_audit_terminal": (
+                "ASLIB_REPOSITORY_LICENSE_PRESENT__"
+                "SCENARIO_DATA_RIGHTS_REQUIRE_AUTHOR_REVIEW"
+            ),
+        },
+        "R30 source-tree package state promoted",
+    )
+    failed_artifact = r30["failed_finalization_artifact"]
+    require(
+        failed_artifact["run"] == 33047609008
+        and failed_artifact["artifact_id"] == 9636339561
+        and failed_artifact["artifact_name"] == "five-paper-r30-final"
+        and failed_artifact["reported_size_bytes"] == 136
+        and failed_artifact["downloaded_zip_sha256"]
+        == "5b6188d5276dba7f081c7d2d3106cb2cef92588c577d15394848949ae7ffdba3"
+        and failed_artifact["disposition"]
+        == "EMPTY_CHECKSUM_MEMBER_ONLY__NO_R30_STATUS_PDF_OR_RELEASE_PACKET",
+        "R30 failed artifact identity drift",
+    )
+    failed_archive = repo / failed_artifact["archive_path"]
+    require(
+        failed_archive.is_file()
+        and failed_archive.stat().st_size == failed_artifact["reported_size_bytes"]
+        and sha256(failed_archive) == failed_artifact["downloaded_zip_sha256"],
+        "R30 failed artifact archive drift",
+    )
+    with zipfile.ZipFile(failed_archive) as bundle:
+        require(bundle.namelist() == ["SHA256SUMS"], "R30 failed artifact member set")
+        empty_checksum = bundle.read("SHA256SUMS")
+    require(empty_checksum == b"", "R30 failed artifact member is not empty")
+    require(
+        failed_artifact["members"]
+        == {
+            "SHA256SUMS": {
+                "bytes": 0,
+                "sha256": (
+                    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                ),
+            }
+        },
+        "R30 failed artifact member custody drift",
+    )
 
     supersession = load(
         repo / "research/orion-01-05-convergence-v1/SUPERSESSION_PLAN_V1.json"

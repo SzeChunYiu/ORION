@@ -45,6 +45,50 @@
     "scientific_result_retracted": false,
     "superseded_by_additive_custody": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_CUSTODY_V2.json"
   },
+  "failed_finalization_artifact": {
+    "run": 33047609008,
+    "artifact_id": 9636339561,
+    "artifact_name": "five-paper-r30-final",
+    "reported_size_bytes": 136,
+    "downloaded_zip_sha256": "5b6188d5276dba7f081c7d2d3106cb2cef92588c577d15394848949ae7ffdba3",
+    "members": {
+      "SHA256SUMS": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "disposition": "EMPTY_CHECKSUM_MEMBER_ONLY__NO_R30_STATUS_PDF_OR_RELEASE_PACKET",
+    "archive_path": "research/orion-01-05-convergence-v1/R30_FAILED_FINAL_ARTIFACT_9636339561.zip"
+  },
+  "unmaterialized_cross_language_claim": {
+    "workflow_id": 343511583,
+    "workflow_name": "orion-02-r20-cross-language-rust",
+    "verified_at": "2026-08-27T10:26:45Z",
+    "live_run_census": {
+      "total": 47,
+      "success": 0,
+      "failure": 37,
+      "action_required": 9,
+      "cancelled": 1
+    },
+    "checker_source_and_prose_present_on_pr_1492": true,
+    "durable_result_or_terminal_present": false,
+    "blocking_cause": "STALE_R18_RESULT_SHA256_BEFORE_RUST_COMPILE_OR_REPLAY",
+    "disposition": "CHECKER_CANDIDATE_AND_PROSE_ONLY__NO_EXECUTED_PASS",
+    "snapshot_rule": "A later independently bound execution would be successor evidence; it would not retroactively materialize the failed R30 release."
+  },
+  "source_tree_package_state": {
+    "head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+    "release_fileset_terminal": "ORION02_R30_RELEASE_FILESET_FROZEN__RESULT_RECEIPT_REQUIRED",
+    "scientific_internal": "PENDING_CI",
+    "manuscript_internal_compile": "PENDING_CI",
+    "data_rights": "OPEN",
+    "external_replay": "OPEN",
+    "novelty": "CANNOT_CHECK_EXTERNAL",
+    "archive": "OPEN",
+    "submission": "NOT_AUTHORIZED",
+    "rights_audit_terminal": "ASLIB_REPOSITORY_LICENSE_PRESENT__SCENARIO_DATA_RIGHTS_REQUIRE_AUTHOR_REVIEW"
+  },
   "preserved_science": [
     "FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE",
     "RETRACTED_UNSUPPORTED_R18_POSITIVE_INTERPRETATION",

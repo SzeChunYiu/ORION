@@ -178,6 +178,42 @@ def test_bnsl_actions_archive_rejects_fabricated_identity_and_tampering(
         convergence.validate_action_artifact_archive(ROOT, tampered)
 
 
+def test_vendored_r18_actions_archive_is_verified_offline() -> None:
+    custody_path = (
+        ROOT
+        / "papers/orion-02-fiberguard-finite-fibre/extensions/r18/"
+        "R18_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json"
+    )
+    assert custody_path.is_file(), "R18 Actions artifact custody record absent"
+    custody = json.loads(custody_path.read_text(encoding="utf-8"))
+    convergence.validate_r18_action_artifact_archive(ROOT, custody)
+
+
+def test_r18_actions_archive_rejects_fabricated_identity_and_tampering(
+    tmp_path: Path,
+) -> None:
+    custody_path = (
+        ROOT
+        / "papers/orion-02-fiberguard-finite-fibre/extensions/r18/"
+        "R18_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json"
+    )
+    original = json.loads(custody_path.read_text(encoding="utf-8"))
+    fabricated = json.loads(json.dumps(original))
+    fabricated["api_snapshot"]["artifact_id"] += 1
+    with pytest.raises(AssertionError, match="Actions provenance"):
+        convergence.validate_r18_action_artifact_archive(ROOT, fabricated)
+
+    source = ROOT / original["archive"]["path"]
+    tampered_path = tmp_path / "tampered-r18.zip"
+    payload = bytearray(source.read_bytes())
+    payload[-1] ^= 1
+    tampered_path.write_bytes(payload)
+    tampered = json.loads(json.dumps(original))
+    tampered["archive"]["path"] = str(tampered_path)
+    with pytest.raises(AssertionError, match="archive SHA"):
+        convergence.validate_r18_action_artifact_archive(ROOT, tampered)
+
+
 def test_publication_gate_and_venue_ladder_are_canonical_orion_id_artifacts() -> None:
     gate_path = HERE / "PUBLICATION_GATE_V1.json"
     ladder_path = HERE / "PROVISIONAL_VENUE_LADDER_V1.md"
@@ -539,4 +575,42 @@ def test_controlling_adverse_record_cannot_be_omitted_from_summary(
 
     monkeypatch.setattr(convergence, "load", load_missing_adverse)
     with pytest.raises(AssertionError, match="summary omits or invents"):
+        validate_science(ROOT)
+
+
+def test_unexecuted_r30_rust_checker_cannot_be_promoted(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    original_load = convergence.load
+    custody_path = HERE / "R30_FAILURE_CUSTODY_V1.json"
+    custody = json.loads(custody_path.read_text(encoding="utf-8"))
+    custody["unmaterialized_cross_language_claim"]["live_run_census"][
+        "success"
+    ] = 1
+
+    def load_promoted_rust(path: Path):
+        if path.resolve() == custody_path.resolve():
+            return custody
+        return original_load(path)
+
+    monkeypatch.setattr(convergence, "load", load_promoted_rust)
+    with pytest.raises(AssertionError, match="R30 Rust checker execution promoted"):
+        validate_science(ROOT)
+
+
+def test_r30_failure_cause_is_fail_closed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    original_load = convergence.load
+    runs_path = HERE / "R30_FAILURE_RUNS_V1.json"
+    runs = json.loads(runs_path.read_text(encoding="utf-8"))
+    runs["r30_runs"][0]["cause"] = "FABRICATED_PASS_CAUSE"
+
+    def load_corrupted_runs(path: Path):
+        if path.resolve() == runs_path.resolve():
+            return runs
+        return original_load(path)
+
+    monkeypatch.setattr(convergence, "load", load_corrupted_runs)
+    with pytest.raises(AssertionError, match="R30 failure receipt drift"):
         validate_science(ROOT)

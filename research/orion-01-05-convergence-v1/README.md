@@ -61,6 +61,11 @@ R30_NOT_MATERIALIZED__CUSTODY_AND_FINAL_BINDING_FAILED
 ```
 
 See `R30_DISPOSITION_V1.md`. This does not retract any R18/R19 science.
+The advertised Rust checker remains source/prose only: its live workflow
+snapshot has 47 runs and zero successes, with no durable result receipt. The
+only downloaded R30 finalizer artifact is a 136-byte ZIP containing one empty
+`SHA256SUMS`, not a status, PDF, or reviewer packet. The R30 source tree itself
+still requires a result receipt and records submission as unauthorized.
 
 The report's exact final terminal also differs from the terminal encoded by
 its own `finalize_r30.py`, so the prose terminal cannot be reconstructed merely
@@ -97,6 +102,13 @@ the verifier emits
 SHA remain content-integrity evidence but no longer prove continuous
 commit/path provenance. Summary labels are never substitutes for raw terminals
 or `CANNOT_CHECK` outcomes.
+
+The expiring successful R18 and BNSL GitHub Actions ZIPs are vendored with
+whole-archive SHA-256, exact member sets, internal checksum validation, and
+byte-equality checks against their canonical copies. The failed R30 finalizer's
+empty artifact is also vendored. These are custody improvements only; they do
+not create external independence, production value, novelty, or journal
+authority.
 
 The existing canonical claim ledgers for all five papers are also bound by
 baseline Git blob and SHA-256, with every claim ID classified as established at
