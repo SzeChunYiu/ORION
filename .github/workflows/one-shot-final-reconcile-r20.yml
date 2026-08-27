@@ -1,0 +1,85 @@
+name: one-shot-final-reconcile-r20
+
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths: ['.github/workflows/one-shot-final-reconcile-r20.yml']
+  workflow_dispatch:
+
+permissions: {contents: write}
+
+jobs:
+  reconcile-after-concurrent-one-shots:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion-02-r18-null-current-main-20260827
+          fetch-depth: 0
+      - name: Allow prior one-shot commits to settle
+        run: sleep 360
+      - name: Reset to latest branch and enforce final source state
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch='chatgpt/orion-02-r18-null-current-main-20260827'
+          git fetch --no-tags origin "$branch"
+          git reset --hard FETCH_HEAD
+
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          rust=Path('papers/orion-02-fiberguard-finite-fibre/verify_r20_cross_language.rs')
+          text=rust.read_text()
+          text=text.replace("match self.bytes.get(self.pos) {\n            Some(b'0')", "match self.bytes.get(self.pos).copied() {\n            Some(b'0')")
+          text=text.replace("matches!(self.bytes.get(self.pos), Some(b'0'..=b'9'))", "matches!(self.bytes.get(self.pos).copied(), Some(b'0'..=b'9'))")
+          text=text.replace("matches!(self.bytes.get(self.pos), Some(b'e') | Some(b'E'))", "matches!(self.bytes.get(self.pos).copied(), Some(b'e') | Some(b'E'))")
+          text=text.replace("matches!(self.bytes.get(self.pos), Some(b'+') | Some(b'-'))", "matches!(self.bytes.get(self.pos).copied(), Some(b'+') | Some(b'-'))")
+          rust.write_text(text)
+
+          tex=Path('papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_R20.tex')
+          manuscript=tex.read_text()
+          replacement=r'''\begin{theorem}[No-free extension]\label{thm:nofree}
+          Let $S$ be any finite observed fibre with $|\A|\ge2$, and suppose no constraint is imposed on costs at unseen states sharing the same representation value.  For every $M>0$, there is a finite extension that agrees with every observed cost on $S$ but whose extended fibre has deterministic regret at least $M$.
+          \end{theorem}
+          \begin{proof}
+          Keep every observed cost unchanged.  For each action $a\in\A$, add one unseen state $x_a$ with $C(a,x_a)=0$ and $C(b,x_a)=M$ for every $b\ne a$.  At every new state the oracle cost is zero.  Fix any common action $b$.  Because $|\A|\ge2$, choose $a\ne b$; then $R(b,x_a)=M$.  Hence every common action has worst-state regret at least $M$, so the extended fibre has deterministic regret at least $M$ while all observed bytes remain unchanged.
+          \end{proof}'''.replace('          ','')
+          pattern=r'\\begin\{theorem\}\[No-free extension\]\\label\{thm:nofree\}.*?\\end\{proof\}'
+          manuscript,count=re.subn(pattern,lambda _:replacement,manuscript,count=1,flags=re.DOTALL)
+          if count!=1: raise SystemExit(f'no-free theorem count {count}')
+          reproducibility_old='The repository binds protocols, source revisions, exact result digests, negative terminals, and authority ceilings.  The complete R18 recovery result is durably retained; the R19 replacement theorem has a byte-stable verifier; the neighbourhood refutation was executed prospectively on LUNARC and is undergoing cross-host replay.  Same-owner CI and finite re-execution are implementation corroboration, not external peer review.'
+          reproducibility_new='The repository binds protocols, source revisions, exact result digests, negative terminals, and authority ceilings.  The complete R18 recovery result is durably retained; the R19 replacement theorem has a byte-stable verifier; and a standard-library-only Rust implementation independently parses the R18 and R19 receipts and recomputes theorem-critical finite controls without importing the ORION Python machinery.  The neighbourhood refutation was executed prospectively on LUNARC and is undergoing cross-host replay.  Same-owner CI, cross-language reconstruction, and finite re-execution are implementation corroboration, not external peer review.'
+          if reproducibility_old in manuscript: manuscript=manuscript.replace(reproducibility_old,reproducibility_new)
+          tex.write_text(manuscript)
+
+          story=Path('papers/orion-02-fiberguard-finite-fibre/CURRENT_STORY_R20.md')
+          content=story.read_text()
+          insertion='## 4.1 Cross-language implementation control\n\nA standard-library-only Rust checker now parses the durable R18 and R19 JSON subjects directly and recomputes the no-free-extension, fallback-alignment, witness-compression, lower-image, joint-marginal, route-coarsening, and acquisition-timing controls. It shares repository ownership but not language, parser, or ORION Python implementation. Its authority is same-owner structural corroboration, not external independence.\n\n'
+          if insertion not in content:
+            anchor='## 5. What the paper claims'
+            if anchor not in content: raise SystemExit('story anchor absent')
+            content=content.replace(anchor,insertion+anchor)
+          story.write_text(content)
+          PY
+
+          rustc --edition=2021 -C opt-level=0 papers/orion-02-fiberguard-finite-fibre/verify_r20_cross_language.rs -o "$RUNNER_TEMP/rust-checker"
+          grep -q 'For each action.*add one unseen state' papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_R20.tex
+
+          for path in .github/workflows/one-shot-*.yml; do [ -e "$path" ] && rm -f "$path"; done
+          rm -f research/five-paper-top-tier-r20/audit_nq_pr1472.py
+          rm -f .github/workflows/nq-pr1472-exact-subject-audit-r20.yml
+          rm -f .github/workflows/orion-02-r20-story.yml .github/workflows/orion-02-r20-manuscript.yml .github/workflows/orion-02-r20-finite-verifier.yml
+          rm -f .github/workflows/rematerialize-orion-02-r20-current-main.yml
+
+          # Any receipt emitted before this final source reconciliation is stale.
+          rm -f papers/orion-02-fiberguard-finite-fibre/INTERNAL_RELEASE_RECEIPT_R20.json
+          rm -f papers/orion-02-fiberguard-finite-fibre/INTERNAL_WORKFLOW_META_R20.json
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'chore(R20): reconcile final internal source and rotate stale receipts'
+          git push origin HEAD:refs/heads/$branch
