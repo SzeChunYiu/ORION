@@ -1,0 +1,71 @@
+name: orion15-final-freeze
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/orion15-final-freeze-20260827
+    paths:
+      - 'papers/publication_closure/remaining11/check_orion15_final_freeze.py'
+      - '.github/workflows/orion15-final-freeze.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orion15-final-freeze
+  cancel-in-progress: true
+
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion15-final-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion15-final-freeze-20260827
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install project and test dependencies
+        run: python -m pip install --disable-pip-version-check -e . pytest
+      - name: Compile final freeze gate
+        run: python -m py_compile papers/publication_closure/remaining11/check_orion15_final_freeze.py
+      - name: Re-run non-self-promotion host controls
+        run: python -m pytest -q tests/unit/self_orion/test_revision_gate.py tests/unit/self_orion/test_epistemic_control.py
+      - name: Re-run frozen revision-level policy tests
+        run: python -m pytest -q tests/unit/study/p5
+      - name: Require tests to leave canonical ORION-15 paper bytes unchanged
+        run: git diff --exit-code -- papers/orion-15-self-orion
+      - name: Write exact science/content freeze receipt
+        run: python papers/publication_closure/remaining11/check_orion15_final_freeze.py
+      - name: Commit exact freeze receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          receipt='papers/publication_closure/receipts/remaining11/ORION-15_SCIENCE_CONTENT_FREEZE_V1.json'
+          test -s "$receipt"
+          python - "$receipt" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]))
+          assert x['science_frozen'] is True and x['paper_content_frozen'] is True
+          assert x['successor_required_for_future_science'] is True
+          assert x['submission_authority'] is False
+          assert x['diagnostic_result']['correct']==21 and x['diagnostic_result']['total']==24
+          assert x['revision_panel']['full_t7_correct']==12 and x['revision_panel']['total']==96
+          print(x['terminal'])
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$receipt"
+          git diff --check --cached
+          git commit -m 'papers(publication): freeze ORION-15 scoped science and content [orion15-final-frozen]'
+          git push origin HEAD:chatgpt/orion15-final-freeze-20260827
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion15-final-freeze-${{ github.sha }}
+          path: papers/publication_closure/receipts/remaining11/ORION-15_SCIENCE_CONTENT_FREEZE_V1.json
+          if-no-files-found: error
+          retention-days: 30
