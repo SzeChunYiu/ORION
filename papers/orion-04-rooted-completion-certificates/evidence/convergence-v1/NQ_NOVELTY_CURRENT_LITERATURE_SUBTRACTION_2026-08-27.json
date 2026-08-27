@@ -1,0 +1,254 @@
+{
+  "schema": "ORION.NQ.NoveltyCurrentLiteratureSubtraction.2026-08-27.v1",
+  "audit_date": "2026-08-27",
+  "audit_lane": "orion-04-nq-current-novelty-subtraction",
+  "mandate": [
+    "issue #1507 immediate-order item 3: current novelty audit (top-tier requirement)",
+    "issue #1541 closure playbook: novelty leg of the top-tier gate"
+  ],
+  "claim_set_source": [
+    "papers/orion-04-rooted-completion-certificates/CLAIM_LEDGER_R2.md (N2-C1..N2-C13)",
+    "papers/orion-04-rooted-completion-certificates/CLAIM_LEDGER.md (N-C1..N-C13)"
+  ],
+  "prior_in_repo_audits_reused": [
+    "development/orion-rg-davenport/X1_PRIOR_ART_AUDIT_V1.md",
+    "development/orion-rg-davenport/X1Q_PRIOR_ART_CORRECTION_AND_ETA_BOUNDARY_V1.md",
+    "development/orion-rg-davenport/X1J_CONJECTURE_49_PRIOR_ART_MAP.md",
+    "papers/FIVE_THEORY_PAPERS_LITERATURE_SEARCH_LOG_2026-08-24.md"
+  ],
+  "search_routes_executed": [
+    {
+      "route": "1 exact term",
+      "method": "web searches: D_k(C_5^3), D_2(C_5^3), s_{<=6}, corridor strings",
+      "executed": "2026-08-27",
+      "result": "no collision"
+    },
+    {
+      "route": "2 synonyms/function-only",
+      "method": "multiwise Davenport, k-th Davenport, k-wise, constrained Davenport, fully weighted",
+      "executed": "2026-08-27",
+      "result": "no collision; surfaced NW3"
+    },
+    {
+      "route": "3 problem decomposition",
+      "method": "rank-3 exact multiwise; unweighted s_{<=k} p-groups; witness census enumeration",
+      "executed": "2026-08-27",
+      "result": "no collision; NW3/NW4 confirmed nearest"
+    },
+    {
+      "route": "4 parent discipline/history",
+      "method": "Freeze-Schmid 0905.4248 and Girard-Schmid 1806.07636 abstract re-fetch",
+      "executed": "2026-08-27",
+      "result": "coverage statements confirmed/sharpened"
+    },
+    {
+      "route": "5 benchmark/implementation repositories",
+      "method": "not applicable (pure math); nearest analogue codetables.de/MinT diagonals noted in NW3",
+      "executed": "2026-08-27",
+      "result": "no collision"
+    },
+    {
+      "route": "6 cited-by/related work",
+      "method": "Semantic Scholar citation graph of arXiv:0905.4248 enumerated in full: 39 citing papers, each title triaged, 4 pulled to abstract/full text",
+      "executed": "2026-08-27",
+      "result": "no collision; NW3/NW8 added"
+    },
+    {
+      "route": "7 hostile assume-solved",
+      "method": "SAT/computational/witness-census/exhaustive searches incl. Heisenberg exponent-5 line",
+      "executed": "2026-08-27",
+      "result": "no collision; NW6/NW7 added (non-abelian genre neighbors)"
+    }
+  ],
+  "nearest_work_rows": [
+    {
+      "row_id": "NW1",
+      "title": "Remarks on a generalization of the Davenport constant",
+      "authors": "Michael Freeze; Wolfgang A. Schmid",
+      "year": "2010",
+      "venue": "arXiv:0905.4248v2",
+      "identifiers": {
+        "arxiv": "0905.4248"
+      },
+      "inspection_status": "abstract re-fetched 2026-08-27 (arxiv.org/abs); already recorded in 11 in-repo files",
+      "identity_digest": "e6e2c0fb875a240700101e8d8daafa06b5baa304d226854248fd3453463f3c7f",
+      "what_source_owns": "Eventual-arithmetic-progression recurrence D_k(G)=D_0+k*exp; exact D_k for elementary 2-groups of rank 4 and 5 (rank<=3 previously known, 2-groups only); general upper/lower bounds.",
+      "subtraction_from_orion04_claims": "NONE. Exact-value inventory is 2-groups only; no C_5^3 or odd-exponent rank-3 multiwise values; corridor 5k+10<=D_k(C_5^3)<=5k+11 not present.",
+      "residual_after_subtraction": "All N2-C1 corridor novelty and N-C-lineage D_2/D_3 exact-value novelty intact."
+    },
+    {
+      "row_id": "NW2",
+      "title": "Direct zero-sum problems for certain groups of rank three",
+      "authors": "Benjamin Girard; Wolfgang Schmid",
+      "year": "2019",
+      "venue": "J. Number Theory 197 (2019) 297-316",
+      "identifiers": {
+        "arxiv": "1806.07636",
+        "doi": "10.1016/j.jnt.2018.08.016"
+      },
+      "inspection_status": "abstract re-fetched 2026-08-27; recorded in X1Q ledger (1 file); coverage statement sharpened this pass",
+      "identity_digest": "29c3aeaa870b77963b394c9d2bd7612712d8cbe62cdb57a69f2acc8821b26f81",
+      "what_source_owns": "Exact eta-constant and ALL multiwise Davenport constants for rank-3 groups G ~= C_2 + C_{n2} + C_{n3} with 2|n2|n3 (even/2-primary rank-three family); EGZ under Property D assumptions.",
+      "subtraction_from_orion04_claims": "NONE for C_5^3: the determined family is exactly the even (C_2-leading) rank-three groups; odd elementary rank-three excluded.",
+      "residual_after_subtraction": "Multiwise-exact rank-three literature covers only the even family; D_2(C_5^3)=20 / D_3(C_5^3)=25 remain unreported."
+    },
+    {
+      "row_id": "NW3",
+      "title": "Multi-wise and constrained fully weighted Davenport constants and interactions with coding theory",
+      "authors": "Luz E. Marchan; Oscar Ordaz; Irene Santos; Wolfgang A. Schmid",
+      "year": "2014",
+      "venue": "arXiv:1407.1966",
+      "identifiers": {
+        "arxiv": "1407.1966"
+      },
+      "inspection_status": "NEW ROW this pass. Full text extracted (pdftotext, 1597 lines) and Theorems 5.4-5.7, 6.1, 6.2 read directly; not previously recorded in any in-repo ledger (git grep: 0 files)",
+      "identity_digest": "0aa8555c8dcea01d4466a4f26fdb40fc4e1538d4757ebec14cf1550ca148f4df",
+      "what_source_owns": "Fully-weighted (A={1..exp-1}) constrained constants for C_p^r via coding-theory tables (codetables.de/MinT diagonal n-k=r): s_{A,<=2}(C_5^3)=32, s_{A,<=3}(C_5^3)=7, s_{A,<=d}(C_5^3)=4 for d>=4; all multi-wise D_{A,m} for rank<=2 and C_3^3; UNWEIGHTED s_{<=d} values only for C_2^r, r=4..10.",
+      "subtraction_from_orion04_claims": "NONE. All C_5^3 values in this source are fully-weighted variants; the unweighted s_{<=6}(C_5^3)=24 and s_{<=7}(C_5^3)=19 claimed by ORION-04 do not appear; unweighted multiwise D_m(C_5^3) absent (section 6 covers rank<=2 and C_3^3 only).",
+      "residual_after_subtraction": "Closest numeric neighbor of the s_{<=k} claims on record: same group, same constrained-invariant family, weighted variant. Strengthens the claim-family's plausibility (table-diagonal method) while subtracting nothing."
+    },
+    {
+      "row_id": "NW4",
+      "title": "On zero-sum subsequences in a finite abelian group of length not exceeding a given number",
+      "authors": "Kevin Zhao",
+      "year": "2025",
+      "venue": "arXiv:2506.21383",
+      "identifiers": {
+        "arxiv": "2506.21383"
+      },
+      "inspection_status": "abstract fetched 2026-08-27; already recorded in X1J map (triaged 'different invariant') and ALREADY ABSORBED as donor: Lemma 4.4 is the upper bound used in X1F0 D_2(C_5^3)=20 derivation",
+      "identity_digest": "1b2de73118929a4f108eb561c4783aa03941bd44612714494a80d1303116a3c0",
+      "what_source_owns": "Unweighted s_{<=k}(G) for finite abelian p-groups: conjecture k_G=(D(G)+1)/2; k_G<=D(G)-2 for r(G)>=2 except C_2^3, C_2^4; lower bounds for s_{<=k}(G).",
+      "subtraction_from_orion04_claims": "NONE (donor, not competitor). No exact C_5^3 s_{<=k} values; no multiwise D_k.",
+      "residual_after_subtraction": "Donor lineage intact; ORION-04 exact values s_{<=6}=24 / s_{<=7}=19 sit deeper than any published exact value on this line."
+    },
+    {
+      "row_id": "NW5",
+      "title": "On the Inverse Problem of the k-th Davenport Constants for Groups of Rank 2",
+      "authors": "Qinghai Zhong (et al.)",
+      "year": "2025",
+      "venue": "Combinatorica 45 (2025); arXiv:2503.21231",
+      "identifiers": {
+        "arxiv": "2503.21231",
+        "doi": "10.1007/s00493-025-00153-3"
+      },
+      "inspection_status": "abstract known from prior audits; re-confirmed present in cited-by sweep 2026-08-27; recorded in X1K/X1Q",
+      "identity_digest": "7c0455efe0f4a3a4c6a365cf26690f153c2500a51e1f6a3b180a2e68fe87bbe5",
+      "what_source_owns": "Inverse problem (structure of extremal sequences) for D_k on rank-2 groups.",
+      "subtraction_from_orion04_claims": "NONE. Rank 2 only; C_5^3 (rank 3) outside scope.",
+      "residual_after_subtraction": "Rank-2 inverse line published as recorded; ORION-04 rank-3 claims untouched."
+    },
+    {
+      "row_id": "NW6",
+      "title": "The small Davenport constant of the Heisenberg group of order 125 / of order 343",
+      "authors": "A. Volkmann (343); 125 paper as listed",
+      "year": "2026",
+      "venue": "arXiv:2607.14379 (125); arXiv:2608.13747 (343, Volkmann)",
+      "identifiers": {
+        "arxiv": [
+          "2607.14379",
+          "2608.13747"
+        ]
+      },
+      "inspection_status": "NEW ROWS this pass (surfaced 2026-08-27 hostile route; not in any in-repo ledger): abstracts inspected; 343 paper: counterexample-guided SAT over 30 strata + independently implemented checker verifying 9,920,815 witnesses",
+      "identity_digest": "2ca8874724665aa051471b7ac69d7d4d2c85705db6cef0b322bfabdb21d4a853",
+      "what_source_owns": "Small Davenport constant d(H) for NON-ABELIAN Heisenberg groups of order 5^3 and 7^3; SAT strata + independent witness-checker methodology.",
+      "subtraction_from_orion04_claims": "NONE. Different (non-abelian) groups and different constant (small d, not multiwise D_k / unweighted s_{<=k}); no C_5^3 value.",
+      "residual_after_subtraction": "Methodological nearest-art only: establishes the SAT-plus-witness-census-plus-independent-checker genre as current publishable practice; ORION-04's method is genre-standard, its VALUES and governance framing remain unclaimed elsewhere."
+    },
+    {
+      "row_id": "NW7",
+      "title": "A Uniform Proof for the Small Davenport Constant of the Exponent-p Heisenberg Group",
+      "authors": "(uniform exponent-p line)",
+      "year": "2026",
+      "venue": "arXiv:2608.18651",
+      "identifiers": {
+        "arxiv": "2608.18651"
+      },
+      "inspection_status": "NEW ROW this pass (hostile route 2026-08-27); abstract inspected",
+      "identity_digest": "b498c4cafde98589e06c2427d6e6512e7b6853d2ee73cba5b8e1aa5637d98565",
+      "what_source_owns": "Uniform (case-free) proof of small Davenport constant for exponent-p Heisenberg groups via contraction induction + Cauchy-Davenport.",
+      "subtraction_from_orion04_claims": "NONE. Non-abelian Heisenberg family; not C_5^3, not multiwise.",
+      "residual_after_subtraction": "No subtraction; indicates the non-abelian line is converging to uniform proofs while the abelian rank-3 multiwise C_5^3 problem stays open."
+    },
+    {
+      "row_id": "NW8",
+      "title": "Note on the Davenport's constant for finite abelian groups with rank three",
+      "authors": "(cited-by triage)",
+      "year": "2019",
+      "venue": "arXiv:1910.10984",
+      "identifiers": {
+        "arxiv": "1910.10984"
+      },
+      "inspection_status": "abstract inspected 2026-08-27 during cited-by enumeration (row of 39)",
+      "identity_digest": "d1cbdae2824e561629d5432c8fd3477624319f5e578907f82a53fc7478753a91",
+      "what_source_owns": "Upper bound for CLASSICAL D(G) on rank-3 groups: D(C_{n1}+C_{n2}+C_{n3}) <= sum(n_i-1)+1+(a_3-3)(n_1-1), a_3<=20369.",
+      "subtraction_from_orion04_claims": "NONE. Classical D only (D(C_5^3)=13 is classical); no multiwise D_k, no s_{<=k}.",
+      "residual_after_subtraction": "No subtraction."
+    }
+  ],
+  "per_claim_family_subtraction": [
+    {
+      "family": "F1 corridor 5k+10<=D_k(C_5^3)<=5k+11 (N2-C1,C2)",
+      "collision_found": false,
+      "state": "NOVELTY_SUPPORTED",
+      "note": "Literature owns only the eventual-AP recurrence and general bounds; no C_5^3-specific corridor."
+    },
+    {
+      "family": "F2 exact values D_2(C_5^3)=20, D_3(C_5^3)=25",
+      "collision_found": false,
+      "state": "NOVELTY_SUPPORTED",
+      "note": "Exact multiwise inventory across all searched sources: C_2^r (r<=5), rank<=2 all groups, C_3^3 (weighted fully + classical), C_2+C_{2m}+C_{2mn}. Odd elementary rank-3 absent."
+    },
+    {
+      "family": "F3 unweighted s_{<=6}(C_5^3)=24, s_{<=7}(C_5^3)=19",
+      "collision_found": false,
+      "state": "NOVELTY_SUPPORTED",
+      "note": "Nearest: fully-weighted C_5^3 values 32/7/4 (NW3) and unweighted p-group bounds/conjectures (NW4). No unweighted C_5^3 exact values published."
+    },
+    {
+      "family": "F4 witness censuses 98,622 (length-19) / 230,983 (length-25)",
+      "collision_found": false,
+      "state": "NOVELTY_SUPPORTED",
+      "note": "No abelian C_5^3 census found; genre neighbor is the non-abelian Heisenberg-343 census (9,920,815 witnesses, NW6)."
+    },
+    {
+      "family": "F5 symbolic compression c2=31-s-3c4, c1=2s-31+2c4 + rank-3 forcing (N2-C5,C6)",
+      "collision_found": false,
+      "state": "NOVELTY_SUPPORTED",
+      "note": "Paper-internal apparatus; rank-2/3 inverse literature recorded in X1J does not reach these identities."
+    },
+    {
+      "family": "F6 open problems D_4 in {30,31}, 31 in C_0(C_5^3) (N2-C9..C11)",
+      "collision_found": false,
+      "state": "NOT_A_NOVELTY_CLAIM",
+      "note": "Confirmed OPEN in every searched source; no publication claims either resolution. Top-tier significance bar (JCTA) remains blocked on D_4 per 2026-08-24 log."
+    }
+  ],
+  "cannot_check": [
+    "MathSciNet: no access",
+    "zbMATH: no access",
+    "Google Scholar: no access",
+    "ScienceDirect full texts (HTTP 403): Guan-Yuan-Zeng JCTA 2011 and published Gao-Zhuang version remain unread at full-text level (carried from X1J)"
+  ],
+  "novelty_state_overall": "NOVELTY_SUPPORTED",
+  "novelty_state_caveat": "Weak-negative-evidence framing per research/novelty/README.md: 'not found' in reachable sources is not proof of novelty; closed databases remain unchecked (cannot_check list). No executed hostile already-solved route beyond route 7; LLM novelty scores not used.",
+  "delta_vs_prior_repo_audits": [
+    "NEW: NW3 (arXiv:1407.1966) recorded for the first time - fully-weighted C_5^3 constrained values 32/7/4 and coding-theory diagonal method; nearest numeric neighbor of F3.",
+    "NEW: NW6/NW7 (arXiv:2607.14379, 2608.13747, 2608.18651) recorded for the first time - 2026 Heisenberg small-D SAT/witness-census genre; methodological nearest-art, non-abelian.",
+    "SHARPENED: Girard-Schmid 1806.07636 coverage statement (even rank-three family only) made explicit at the coverage level.",
+    "CONFIRMED: Freeze-Schmid exact values are elementary 2-groups only; Zhao 2506.21383 stays a donor (X1F0 Lemma 4.4); Zhong rank-2 inverse line unchanged.",
+    "NO COLLISION FOUND for any of F1-F5; F6 (D_4, C_0(31)) confirmed open globally."
+  ],
+  "top_tier_gate_assessment": {
+    "novelty_leg": "AUDITED_FRESH_2026-08-27_NO_SUBTRACTION (this artifact)",
+    "replay_leg": "EXECUTED_ONCE_FAILED (job 3544056, see evidence/crb-full-replay/post-execution/job-3544056/); root cause single-stage: implementation (float in canonical serializer), NOT protocol/model/budget",
+    "revival_pass_status": "STAGED_NOT_EXECUTABLE_WITHOUT_OPERATOR: repair packet = PR 1562 successor-v1 (int-timing repair + fail-closed submission gate + tests), CI green on p2 matrix at audit time; successor execution requires a NEW operator-supplied one-shot authorization key (AWAITING_NEW_ONE_SHOT_AUTHORIZATION.json; no agent may self-authorize or reuse a prior key)",
+    "top_tier_gate_pass": false,
+    "terminal_certified_this_session": "NONE",
+    "terminal_movement": "Novelty leg refreshed and strengthened (no subtraction, 3 new nearest-work rows); replay leg remains in the recorded failure state; the binding blocker for every terminal is the operator-supplied successor one-shot key. Without it the lane cannot move to TOP_TIER_GATE_PASS nor to an honest failure terminal.",
+    "fallback_D2_D3_publishable": "BLOCKED on replay authority (post-execution receipt: D2/D3 CANNOT_CHECK); D4 explicitly open everywhere."
+  },
+  "inspection_timestamp": "2026-08-27T21:35:00+02:00",
+  "artifact_digest_note": "row identity_digest = sha256(row_id|title|year|inspection_timestamp)"
+}
