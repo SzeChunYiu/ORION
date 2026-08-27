@@ -1,0 +1,80 @@
+name: remaining11-orion15-24-freeze
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/remaining11-orion15-24-freeze-20260827
+    paths:
+      - 'papers/orion-15-self-orion/PUBLICATION_FREEZE_ADDENDUM_V1.md'
+      - 'papers/orion-24-orion-rse/PUBLICATION_FREEZE_ADDENDUM_V1.md'
+      - 'papers/publication_closure/remaining11/check_orion15_24_science_content_freeze.py'
+      - '.github/workflows/remaining11-orion15-24-freeze.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: remaining11-orion15-24-freeze
+  cancel-in-progress: true
+
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion15-24-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/remaining11-orion15-24-freeze-20260827
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install lightweight verification dependency
+        run: python -m pip install --disable-pip-version-check pytest
+      - name: Compile freeze and authoritative replay verifiers
+        run: |
+          python -m py_compile papers/publication_closure/remaining11/check_orion15_24_science_content_freeze.py
+          python -m py_compile papers/orion-24-orion-rse/verify_p14c_protocol_adjudication_v2.py
+      - name: Re-run Self-ORION host/non-self-promotion unit controls
+        run: python -m pytest -q tests/unit/self_orion/test_revision_gate.py tests/unit/self_orion/test_epistemic_control.py
+      - name: Re-run ORION-24 authoritative two-subprocess protocol adjudication
+        run: python papers/orion-24-orion-rse/verify_p14c_protocol_adjudication_v2.py > "$RUNNER_TEMP/p14c-replay.json"
+      - name: Require replay to leave existing paper bytes unchanged
+        run: git diff --exit-code -- papers/orion-15-self-orion papers/orion-24-orion-rse
+      - name: Write bounded science/content freeze receipts
+        run: python papers/publication_closure/remaining11/check_orion15_24_science_content_freeze.py
+      - name: Verify receipts and commit atomically
+        shell: bash
+        run: |
+          set -euo pipefail
+          for n in 15 24; do
+            f="papers/publication_closure/receipts/remaining11/ORION-${n}_SCIENCE_CONTENT_FREEZE_V1.json"
+            test -s "$f"
+            python - "$f" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]))
+          assert x['science_frozen'] is True
+          assert x['paper_content_frozen'] is True
+          assert x['submission_authority'] is False
+          print(x['terminal'])
+          PY
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/publication_closure/receipts/remaining11/ORION-{15,24}_SCIENCE_CONTENT_FREEZE_V1.json
+          git diff --check --cached
+          git commit -m 'papers(publication): freeze ORION-15/24 earned science and content [orion15-24-frozen]'
+          git push origin HEAD:chatgpt/remaining11-orion15-24-freeze-20260827
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion15-24-science-content-freeze-${{ github.sha }}
+          path: |
+            papers/publication_closure/receipts/remaining11/ORION-15_SCIENCE_CONTENT_FREEZE_V1.json
+            papers/publication_closure/receipts/remaining11/ORION-24_SCIENCE_CONTENT_FREEZE_V1.json
+            ${{ runner.temp }}/p14c-replay.json
+          if-no-files-found: error
+          retention-days: 30
