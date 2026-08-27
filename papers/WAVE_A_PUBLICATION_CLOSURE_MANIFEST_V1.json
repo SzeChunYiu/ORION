@@ -1,0 +1,146 @@
+{
+  "schema": "ORION.PublicationClosureWaveA.v1",
+  "date": "2026-08-27",
+  "owner_issue": 1541,
+  "authority_delta": "NONE",
+  "rules": {
+    "text_only_promotion_forbidden": true,
+    "negative_history_required": true,
+    "public_external_authority_preferred": true,
+    "protocol_before_outcomes": true,
+    "independent_verification_required": true,
+    "final_submission_bytes_required": true
+  },
+  "required_protocol_sections": [
+    "Maximum current claim",
+    "Required artifacts",
+    "Registered terminals"
+  ],
+  "papers": [
+    {
+      "paper_id": "ORION-14",
+      "directory": "papers/orion-14-verified-scientific-discovery",
+      "priority": 1,
+      "lane": "PACKAGE_ONLY",
+      "current_posture": "BOUNDED_PEER_REVIEW_READY",
+      "science_reopen": "ONLY_ON_DIRECT_DONOR_SUBSUMPTION_CORRECTNESS_DEFECT_OR_EDITOR_DISCRIMINATOR",
+      "required_phases": [
+        "FILING_TIME_FRESHNESS",
+        "HOSTILE_REVIEW",
+        "CLEAN_REPRODUCTION",
+        "VISUAL_AUDIT",
+        "FINAL_BYTE_BINDING",
+        "HUMAN_FILING_ATTESTATIONS"
+      ]
+    },
+    {
+      "paper_id": "ORION-09",
+      "directory": "papers/orion-09-compilation-regime-geometry",
+      "priority": 2,
+      "lane": "OUTCOME_EXECUTION",
+      "current_posture": "TOP_TIER_STRETCH",
+      "discriminator": "INDEPENDENT_PUBLIC_FAMILY_OR_STRONGER_GENERAL_THEOREM",
+      "required_phases": [
+        "PROTOCOL_FREEZE",
+        "IMPLEMENTATION",
+        "OUTCOME_EXECUTION",
+        "INDEPENDENT_REPLAY_OR_PROOF",
+        "MANUSCRIPT_BINDING"
+      ]
+    },
+    {
+      "paper_id": "ORION-23",
+      "directory": "papers/orion-23-responsibility-carrying-state",
+      "priority": 3,
+      "lane": "OUTCOME_EXECUTION",
+      "current_posture": "STRONG_BOUNDED_RESULT",
+      "discriminator": "PUBLIC_REAL_WORKFLOW_RESPONSIBILITY_TRANSFER",
+      "required_phases": [
+        "PUBLIC_WORLD_ACQUISITION",
+        "PROTOCOL_FREEZE",
+        "BASELINE_FIDELITY",
+        "OUTCOME_EXECUTION",
+        "INDEPENDENT_REPLAY",
+        "MANUSCRIPT_BINDING"
+      ]
+    },
+    {
+      "paper_id": "ORION-19",
+      "directory": "papers/orion-19-structured-epistemic-learning",
+      "priority": 4,
+      "lane": "OUTCOME_EXECUTION",
+      "current_posture": "STRONG_MIXED_RESULT",
+      "discriminator": "HOSTILE_REPRESENTATION_ATTACKS_AND_PUBLIC_MULTI_MODEL_TRANSFER",
+      "required_phases": [
+        "PROTOCOL_FREEZE",
+        "HOSTILE_ATTACK_IMPLEMENTATION",
+        "PUBLIC_MODEL_TASK_BINDING",
+        "OUTCOME_EXECUTION",
+        "INDEPENDENT_CAUSAL_ANALYSIS",
+        "MANUSCRIPT_BINDING"
+      ]
+    },
+    {
+      "paper_id": "ORION-05",
+      "directory": "papers/orion-05-tare-expressivity",
+      "priority": 5,
+      "lane": "IMPLEMENT_AND_EXECUTE",
+      "current_posture": "STRONG_THEOREM_PAPER",
+      "discriminator": "ACTIVE_CORE_CROSSOVER_AND_SECOND_COMPILER_FAMILY",
+      "required_phases": [
+        "PROTOCOL_FREEZE",
+        "ACTIVE_CORE_IMPLEMENTATION",
+        "EXACT_CROSSOVER_EXECUTION",
+        "SECOND_FAMILY_EXECUTION",
+        "INDEPENDENT_PROOF_AND_RESULT_AUDIT",
+        "MANUSCRIPT_BINDING"
+      ]
+    },
+    {
+      "paper_id": "ORION-17",
+      "directory": "papers/orion-17-epistemic-navigation-open-worlds",
+      "priority": 6,
+      "lane": "OUTCOME_EXECUTION",
+      "current_posture": "STRONG_THREE_CLASS_RESULT",
+      "discriminator": "TARGET_AMBIGUITY_AND_PUBLIC_DONOR_LENS_TRANSFER",
+      "required_phases": [
+        "TARGET_TRUTH_PROTOCOL",
+        "DONOR_FIDELITY",
+        "PUBLIC_REGIME_BINDING",
+        "OUTCOME_EXECUTION",
+        "INDEPENDENT_REPLAY",
+        "MANUSCRIPT_BINDING"
+      ]
+    },
+    {
+      "paper_id": "ORION-22",
+      "directory": "papers/orion-22-adaptive-state-reasoning",
+      "priority": 7,
+      "lane": "EXECUTE_FROZEN_SUITE",
+      "current_posture": "STRONG_BOUNDED_ALLOCATOR_TRANSFER",
+      "discriminator": "PRICE_TASK_AND_HIDDEN_PARAMETER_ROBUSTNESS",
+      "required_phases": [
+        "FROZEN_AUTHORITY_VALIDATION",
+        "ROBUSTNESS_EXECUTION",
+        "INDEPENDENT_ORACLE_AND_REGRET",
+        "RESOURCE_AUDIT",
+        "MANUSCRIPT_BINDING"
+      ]
+    },
+    {
+      "paper_id": "ORION-10",
+      "directory": "papers/orion-10-certified-static-forecasting",
+      "priority": 8,
+      "lane": "OUTCOME_EXECUTION",
+      "current_posture": "STRONG_EXACT_COMPILER_PAPER",
+      "discriminator": "SECOND_FAMILY_DECISION_VALUE",
+      "required_phases": [
+        "PROTOCOL_FREEZE",
+        "SECOND_FAMILY_BINDING",
+        "DECISION_ENDPOINT_EXECUTION",
+        "INDEPENDENT_EXACT_SCORING",
+        "MANUSCRIPT_BINDING"
+      ]
+    }
+  ]
+}
