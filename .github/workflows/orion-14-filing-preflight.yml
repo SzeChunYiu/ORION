@@ -5,12 +5,14 @@ on:
   pull_request:
     paths:
       - 'papers/orion-14-verified-scientific-discovery/**'
+      - 'papers/publication_closure/check_orion14_filing_preflight.py'
       - '.github/workflows/orion-14-filing-preflight.yml'
   push:
     branches:
       - chatgpt/orion-publication-closure-wave-a-20260827
     paths:
       - 'papers/orion-14-verified-scientific-discovery/**'
+      - 'papers/publication_closure/check_orion14_filing_preflight.py'
       - '.github/workflows/orion-14-filing-preflight.yml'
 
 permissions:
@@ -18,7 +20,7 @@ permissions:
 
 concurrency:
   group: orion-14-filing-preflight-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   repository-filing-preflight:
@@ -34,7 +36,7 @@ jobs:
           python-version: '3.11'
 
       - name: Compile fail-closed preflight
-        run: python -m py_compile papers/orion-14-verified-scientific-discovery/check_filing_preflight.py
+        run: python -m py_compile papers/publication_closure/check_orion14_filing_preflight.py
 
       - name: Run repository filing preflight
         shell: bash
@@ -42,7 +44,7 @@ jobs:
           set -euo pipefail
           out="$RUNNER_TEMP/orion-14-filing-preflight"
           mkdir -p "$out"
-          python papers/orion-14-verified-scientific-discovery/check_filing_preflight.py \
+          python papers/publication_closure/check_orion14_filing_preflight.py \
             --root "$GITHUB_WORKSPACE" \
             --as-of "$(date -u +%F)" \
             --write-json "$out/ORION14_REPOSITORY_FILING_PREFLIGHT_V1.json" \
@@ -50,10 +52,6 @@ jobs:
             | tee "$out/stdout.json"
           sha256sum "$out"/* > "$out/SHA256SUMS"
 
-      # Deliberately paper-scoped: the repository-wide publication scoreboard
-      # belongs to generic CI and imports optional runtime dependencies unrelated
-      # to ORION-14. The native p4-tmlr-submission-audit workflow is the render /
-      # claim / package authority for this paper and runs independently on the PR.
       - name: Require no patch hygiene defects
         run: git diff --check
 
