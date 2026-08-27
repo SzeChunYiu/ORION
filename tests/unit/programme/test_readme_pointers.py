@@ -15,8 +15,8 @@ from orion.programme.readme_pointers import (
 
 
 def _paper(tmp_path: Path, readme: str) -> Path:
-    for i in range(1, 16):
-        d = tmp_path / "papers" / f"paper-{i:02d}-fake"
+    for i in range(11, 26):
+        d = tmp_path / "papers" / f"orion-{i:02d}-fake"
         d.mkdir(parents=True)
         (d / "README.md").write_text(readme)
     return tmp_path

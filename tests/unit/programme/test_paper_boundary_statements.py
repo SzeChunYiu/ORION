@@ -50,7 +50,7 @@ def test_p3_states_its_analysis_unit_for_v21() -> None:
 def test_p5_names_its_three_residual_errors() -> None:
     """21/24 with three errors counted but unnamed is not checkable."""
     text = _flat(PAPERS / "orion-15-self-orion/JOURNAL_READINESS.md")
-    for case in ("P5-HC-002", "P5-HC-012", "P5-HC-018"):
+    for case in ("ORION-15-HC-002", "ORION-15-HC-012", "ORION-15-HC-018"):
         assert case in text, f"{case} is a residual error but is not named"
     assert "RETRIEVAL_MISS" in text and "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE" in text
     assert "21/24" in text

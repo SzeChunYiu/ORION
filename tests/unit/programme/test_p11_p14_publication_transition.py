@@ -13,6 +13,16 @@ from orion.programme.superiority_terminals import FUTURE_PAPER_DIRECTORIES
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PAPER_IDS = ("P11", "P12", "P13", "P14")
 
+#: Public stable IDs after the R0 namespace unification
+#: (``papers/PAPER_ALIASES.md``: P11->ORION-21 .. P14->ORION-24). The internal
+#: programme keys above stay P11-P14; the README labels are the unified ids.
+STABLE_IDS = {
+    "P11": "ORION-21",
+    "P12": "ORION-22",
+    "P13": "ORION-23",
+    "P14": "ORION-24",
+}
+
 EXPECTED_CURRENT_DECISIONS = {
     "P11": ("READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_THEORY/SYSTEMS_SUPERIORITY_RESULT",),
     "P12": ("CONTROLLED_LIFECYCLE_RESULT_BOUND__PUBLIC_TRANSFER_OPEN",),
@@ -33,7 +43,7 @@ def test_p11_to_p14_are_either_honest_placeholders_or_complete_canonical_package
         readme = root / "README.md"
         assert readme.is_file(), f"{paper_id} has no README"
         text = readme.read_text(encoding="utf-8")
-        assert f"ORION-{paper_id}" in text
+        assert STABLE_IDS[paper_id] in text
 
         manuscript = root / "MANUSCRIPT.md"
         placeholder = "NO_PROTECTED_RESULT" in text
