@@ -4,9 +4,14 @@
 //! Git revision.  The control stage independently implements the frozen
 //! origin-preserving record predicate without importing ORION Python code.
 
-use cedar_testing::integration_testing::perform_integration_test_from_json;
+use cedar_testing::cedar_test_impl::RustEngine;
+use cedar_testing::integration_testing::{
+    parse_entities_from_test, parse_policies_from_test, parse_schema_from_test,
+    perform_integration_test, JsonTest,
+};
 use std::collections::BTreeSet;
 use std::env;
+use std::fs;
 use std::path::{Path, PathBuf};
 
 const INTEGRATION_COMMIT: &str = "75989795c75d861270ce6cac38ef9d9e5b220a0c";
@@ -209,9 +214,40 @@ fn controls() -> Vec<ControlResult<'static>> {
 }
 
 fn run_native(snapshot: &Path) {
-    env::set_var("CEDAR_INTEGRATION_TESTS_PATH", snapshot);
     for fixture in ["1.json", "2.json", "3.json", "4.json", "5.json"] {
-        perform_integration_test_from_json(PathBuf::from("tests/multi").join(fixture));
+        let fixture_path = snapshot.join("tests/multi").join(fixture);
+        eprintln!("Running test: {fixture_path:?}");
+        let fixture_text = fs::read_to_string(&fixture_path)
+            .unwrap_or_else(|error| panic!("failed to read {}: {error}", fixture_path.display()));
+        let test: JsonTest = serde_json::from_str(&fixture_text)
+            .unwrap_or_else(|error| panic!("failed to parse {}: {error}", fixture_path.display()));
+
+        // The pinned upstream resolver treats CEDAR_INTEGRATION_TESTS_PATH as
+        // an exact file override rather than a directory prefix.  Bind each
+        // referenced source explicitly before calling the upstream parsers.
+        env::set_var(
+            "CEDAR_INTEGRATION_TESTS_PATH",
+            snapshot.join(&test.policies),
+        );
+        let policies = parse_policies_from_test(&test);
+        env::set_var("CEDAR_INTEGRATION_TESTS_PATH", snapshot.join(&test.schema));
+        let schema = parse_schema_from_test(&test);
+        env::set_var(
+            "CEDAR_INTEGRATION_TESTS_PATH",
+            snapshot.join(&test.entities),
+        );
+        let entities = parse_entities_from_test(&test, &schema);
+        env::remove_var("CEDAR_INTEGRATION_TESTS_PATH");
+
+        perform_integration_test(
+            policies,
+            entities,
+            schema,
+            test.should_validate,
+            test.requests,
+            &fixture_path.display().to_string(),
+            &RustEngine::new(),
+        );
     }
 }
 
