@@ -116,6 +116,16 @@ jobs:
           sha256sum "$RUNNER_TEMP"/orion03-receipts/* \
             > "$RUNNER_TEMP/orion03-receipts/SHA256SUMS"
 
+      - name: Replay hostile mutation review
+        run: |
+          set -euo pipefail
+          python "$ROUND_DIR/hostile_review.py" \
+            --emit "$RUNNER_TEMP/orion03-receipts/HOSTILE_REVIEW_V1.json"
+          cmp "$RUNNER_TEMP/orion03-receipts/HOSTILE_REVIEW_V1.json" \
+            "$ROUND_DIR/HOSTILE_REVIEW_V1.json"
+          sha256sum "$RUNNER_TEMP"/orion03-receipts/* \
+            > "$RUNNER_TEMP/orion03-receipts/SHA256SUMS"
+
       - name: Upload exact adjudication receipts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:

@@ -16,6 +16,7 @@ The package deliberately separates three questions:
 Injected hostile controls test the mechanism but do not become real-domain
 evidence. The existing safe Agentgateway control remains safe.
 
-Files are introduced in two chronological commits: protocol/source/executables
-first, then immutable result receipts and the bounded scientific disposition.
-Dedicated CI replays Python, Rust, native Cedar and Lean checks.
+Files are introduced chronologically: protocol/source/executables first; an
+additive zero-request path-binding failure and correction second; then immutable
+result receipts and the bounded scientific disposition. Dedicated CI replays
+Python, Rust, native Cedar, Lean and hostile mutation checks.

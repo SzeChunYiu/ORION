@@ -22,6 +22,7 @@ SOURCE_MANIFEST = HERE / "SOURCE_BINDING_V1.json"
 PYTHON_RECEIPT = HERE / "PYTHON_ADJUDICATION_V1.json"
 RUST_RECEIPT = HERE / "RUST_ADJUDICATION_V1.json"
 LEAN_RECEIPT = HERE / "LEAN_ADJUDICATION_V1.json"
+HOSTILE_RECEIPT = HERE / "HOSTILE_REVIEW_V1.json"
 FINAL_RESULT = HERE / "ROUND1_RESULTS_V1.json"
 AGENTGATEWAY = (
     HERE.parent
@@ -378,6 +379,19 @@ def verify_final() -> None:
     if lean.get("theorems_checked") != 4:
         fail("Lean theorem denominator drift")
 
+    hostile = read_json(HOSTILE_RECEIPT)
+    if hostile.get("schema") != "ORION.ORION03.CedarMultiPolicy.HostileReview.v1":
+        fail("hostile-review schema drift")
+    if hostile.get("terminal") != "ORION03_R1_HOSTILE_MUTATION_REVIEW_PASS":
+        fail("hostile-review terminal is not PASS")
+    if hostile.get("mutations_rejected") != 6 or hostile.get("mutations_total") != 6:
+        fail("hostile-review denominator drift")
+    if any(
+        row.get("status") != "REJECTED_AS_REQUIRED"
+        for row in hostile.get("mutations", [])
+    ):
+        fail("hostile review accepted a mutation")
+
     result = read_json(FINAL_RESULT)
     if result.get("schema") != "ORION.ORION03.CedarMultiPolicy.Round1Result.v1":
         fail("final result schema drift")
@@ -392,6 +406,7 @@ def verify_final() -> None:
         ("python", PYTHON_RECEIPT),
         ("rust", RUST_RECEIPT),
         ("lean", LEAN_RECEIPT),
+        ("hostile", HOSTILE_RECEIPT),
     ):
         if receipt_hashes.get(label, {}).get("sha256") != sha256(path):
             fail(f"final result {label} receipt binding drift")
