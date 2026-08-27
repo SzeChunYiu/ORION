@@ -1,0 +1,111 @@
+name: five-paper-programme-finalizer-r20
+
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/INTERNAL_WORKFLOW_META_R20.json'
+      - 'research/five-paper-top-tier-r20/results/PROGRAMME_DISPOSITION_R20.json'
+      - '.github/workflows/five-paper-programme-finalizer-r20.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  bind-programme-terminal:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Verify exact internal subjects
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          orion=Path('papers/orion-02-fiberguard-finite-fibre')
+          programme=Path('research/five-paper-top-tier-r20/results')
+          meta=json.loads((orion/'INTERNAL_WORKFLOW_META_R20.json').read_text())
+          disposition=json.loads((programme/'PROGRAMME_DISPOSITION_R20.json').read_text())
+          assert meta['schema']=='ORION.ORION02.InternalWorkflowMetaReceipt.R20.v1'
+          assert meta['all_required_internal_workflows_green'] is True
+          assert meta['terminal']=='ORION02_R20_INTERNAL_WORKFLOW_META_PASS__EXTERNAL_GATES_OPEN'
+          assert disposition['schema']=='ORION.FivePaper.ProgrammeDisposition.R20.v1'
+          assert set(disposition['lanes'])=={'NQ','AB','D','Q1'}
+          for lane in disposition['lanes'].values():
+            assert lane['authority']['journal_authority'] is False
+          print('FIVE_PAPER_PROGRAMME_SUBJECTS_VALID')
+          PY
+      - name: Generate exact programme terminal
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          orion=Path('papers/orion-02-fiberguard-finite-fibre')
+          programme=Path('research/five-paper-top-tier-r20/results')
+          meta=json.loads((orion/'INTERNAL_WORKFLOW_META_R20.json').read_text())
+          disposition=json.loads((programme/'PROGRAMME_DISPOSITION_R20.json').read_text())
+          lanes=disposition['lanes']
+          result={
+            'schema':'ORION.FivePaper.InternalProgrammeTerminal.R20.v1',
+            'terminal':'FIVE_PAPER_R20_INTERNAL_WORK_COMPLETE__EXTERNAL_PRODUCTION_AND_SUBMISSION_GATES_OPEN',
+            'ORION_02':{
+              'internal_workflows_green':True,
+              'terminal':meta['terminal'],
+              'scientific_story':'exact finite-fibre theory plus preserved prospective deployment refutations',
+            },
+            'NQ':lanes['NQ'],
+            'AB':lanes['AB'],
+            'D':lanes['D'],
+            'Q1':lanes['Q1'],
+            'remaining_author_decisions':[
+              'author order, affiliations, ORCID, corresponding author, funding, conflicts and contributions',
+              'venue and article type for each paper',
+              'ASlib and other source-data rights interpretation and archive licences',
+              'external decision-theory, domain, algorithm-selection and quantum review',
+              'structurally independent external reproduction',
+              'current-primary-source novelty adjudication',
+              'permanent DOI/archive and exact upload-byte approval',
+            ],
+            'authority':{
+              'internal_work_complete_at_stated_lane_ceiling':True,
+              'external_independence':False,
+              'novelty':False,
+              'rights_complete':False,
+              'production_authority_for_all_lanes':False,
+              'journal_authority':False,
+              'submission_authorized':False,
+            },
+          }
+          Path('research/five-paper-top-tier-r20/PROGRAMME_INTERNAL_TERMINAL_R20.json').write_text(json.dumps(result,sort_keys=True,separators=(',',':'))+'\n')
+          lines=['# Five-paper R20 internal terminal','',f"`{result['terminal']}`",'', 'All internally executable theorem, custody, adverse-result, manuscript, and fail-closed audit work on the frozen subjects has been completed or classified at its exact lane authority. The remaining items require external parties, production registries, author/legal metadata, or venue submission decisions and are not synthesized into positive authority.','', '## Lane terminals','']
+          lines.append(f"- ORION-02: `{meta['terminal']}`")
+          for name in ('NQ','AB','D','Q1'):lines.append(f"- {name}: `{lanes[name]['terminal']}`")
+          lines.extend(['','## Remaining author/external decisions',''])
+          lines.extend(f'- {item}' for item in result['remaining_author_decisions'])
+          lines.extend(['','Journal authority and submission authorization remain false.',''])
+          Path('research/five-paper-top-tier-r20/PROGRAMME_INTERNAL_TERMINAL_R20.md').write_text('\n'.join(lines))
+          PY
+      - name: Publish idempotent programme issue update
+        shell: bash
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          marker='FIVE_PAPER_R20_INTERNAL_WORK_COMPLETE__EXTERNAL_PRODUCTION_AND_SUBMISSION_GATES_OPEN'
+          existing="$(gh api --paginate "repos/$GITHUB_REPOSITORY/issues/1377/comments" --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)"
+          if [ -z "$existing" ]; then gh api --method POST "repos/$GITHUB_REPOSITORY/issues/1377/comments" -F 'body=@research/five-paper-top-tier-r20/PROGRAMME_INTERNAL_TERMINAL_R20.md' >/dev/null; else echo "programme terminal already published as $existing"; fi
+      - name: Commit programme terminal once
+        if: github.event_name == 'push' && github.ref == 'refs/heads/chatgpt/orion-02-r18-null-current-main-20260827'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]';git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/five-paper-top-tier-r20/PROGRAMME_INTERNAL_TERMINAL_R20.json research/five-paper-top-tier-r20/PROGRAMME_INTERNAL_TERMINAL_R20.md
+          if git diff --cached --quiet; then echo 'programme terminal unchanged'; else git commit -m 'results(R20): bind five-paper internal programme terminal';git push origin HEAD:refs/heads/chatgpt/orion-02-r18-null-current-main-20260827; fi
+      - run: git diff --check
