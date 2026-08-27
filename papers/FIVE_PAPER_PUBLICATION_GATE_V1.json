@@ -1,0 +1,132 @@
+{
+  "schema": "ORION.FivePaperPublicationGate.v1",
+  "generated_date": "2026-08-27",
+  "base_subject": {
+    "branch": "main",
+    "commit": "6d2d1699be7b5dfc1dd8b2721829b908ff4fb3d8"
+  },
+  "policy": {
+    "first_route": "TOP_TIER_FIRST",
+    "fallback_route": "STRONG_SPECIALIST_JOURNAL",
+    "fallback_may_weaken_scientific_gate": false,
+    "negative_and_cannot_check_results_must_remain_visible": true,
+    "same_scientific_evidence_package_for_both_routes": true,
+    "protected_task3_touched": false
+  },
+  "publication_terminals": [
+    "TOP_TIER_GATE_PASS__SUBMIT_STRONGEST_DEFENSIBLE_VENUE",
+    "TOP_TIER_SIGNIFICANCE_GATE_NOT_MET__SCIENTIFIC_CORE_CLEAR__SUBMIT_SPECIALIST_FALLBACK",
+    "SCIENTIFIC_CORE_NOT_CLEAR__DO_NOT_SUBMIT"
+  ],
+  "expert_veto_roles": [
+    "THEOREM_FORMAL",
+    "EMPIRICAL_REPRODUCIBILITY",
+    "DOMAIN_PRIOR_ART",
+    "VENUE_EDITOR"
+  ],
+  "papers": [
+    {
+      "paper": "ORION-01",
+      "lane": "AB",
+      "publication_terminal": "UNDECIDED",
+      "scientific_core_status": "AUDIT_OPEN",
+      "top_tier_blockers": [
+        "PRODUCTION_MOVE_REGISTRY_COMPLETENESS",
+        "REALIZATION_BOTH_DIRECTIONS",
+        "STRUCTURALLY_INDEPENDENT_TERMINALITY_REPLAY",
+        "PRODUCTION_SCALING_SIGNIFICANCE",
+        "CURRENT_PRIOR_ART_SUBTRACTION"
+      ],
+      "fallback_core": "ABSTRACT_CERTIFICATE_REALIZATION_AND_NON_IDENTIFIABILITY_ONLY_IF_INDEPENDENTLY_CLEAR",
+      "fallback_forbidden_claims": [
+        "INTRINSIC_PRODUCTION_SEPARATION_WITHOUT_COMPLETE_MOVE_AUTHORITY"
+      ],
+      "owner_issue": 1385
+    },
+    {
+      "paper": "ORION-02",
+      "lane": "FIBERGUARD",
+      "publication_terminal": "UNDECIDED",
+      "scientific_core_status": "AUDIT_OPEN",
+      "top_tier_blockers": [
+        "GENERAL_BOUNDARY_SIGNIFICANCE_OR_UNTOUCHED_DOMAIN_DISCRIMINATOR",
+        "STRONG_INFORMATION_MATCHED_BASELINES",
+        "INDEPENDENT_REPLAY_AND_CUSTODY",
+        "CURRENT_ALGORITHM_SELECTION_PRIOR_ART_SUBTRACTION"
+      ],
+      "fallback_core": "EXACT_FINITE_FIBRE_THEORY_PLUS_PROSPECTIVE_INDUCTIVE_BOUNDARY_FAILURES",
+      "required_adverse_evidence": [
+        "R14_R16_ADVERSE",
+        "R18_NO_ROUTE_VALUE_WHERE_CLEANLY_BOUND",
+        "C_NBR_CERTIFICATE_INVALID",
+        "CORRECTED_C_NBR2_ZERO_COVERAGE_BOUNDARY"
+      ],
+      "fallback_forbidden_claims": [
+        "SOLVER_SELECTION_SUPERIORITY",
+        "FAMILY_SHIFT_VALIDITY_WITHOUT_SEPARATE_ARGUMENT"
+      ],
+      "owner_issue": 1386
+    },
+    {
+      "paper": "ORION-03",
+      "lane": "TYPED_AUTHORITY",
+      "publication_terminal": "UNDECIDED",
+      "scientific_core_status": "AUDIT_OPEN",
+      "top_tier_blockers": [
+        "INDEPENDENT_DOMAIN_OWNED_POLICY_CORPUS",
+        "BLINDED_OR_INDEPENDENT_DOMAIN_ADJUDICATION",
+        "STRUCTURALLY_INDEPENDENT_MERGE_SAFETY_REPLAY",
+        "CURRENT_POLICY_PROVENANCE_PRIOR_ART_SUBTRACTION"
+      ],
+      "fallback_core": "FORMAL_TYPED_NONPROMOTION_CALCULUS_AND_MERGE_SAFETY_WITH_EXPLICIT_SEMANTIC_BOUNDARY",
+      "fallback_forbidden_claims": [
+        "REAL_OPERATIONAL_AUTHORIZATION_ERROR_PREVENTED_WITHOUT_DOMAIN_EVIDENCE",
+        "NEGATION_DEFAULT_OR_PROBABILISTIC_SEMANTICS_WITHOUT_NEW_FORMALISM"
+      ],
+      "owner_issue": 1387
+    },
+    {
+      "paper": "ORION-04",
+      "lane": "NQ",
+      "publication_terminal": "UNDECIDED",
+      "scientific_core_status": "BLOCKED_ON_INDEPENDENT_REPLAY",
+      "top_tier_blockers": [
+        "FULL_STRUCTURALLY_INDEPENDENT_CRB_REPLAY",
+        "COMPLETE_MANIFEST_AND_PROOF_CERTIFICATE_VERIFICATION",
+        "CURRENT_ZERO_SUM_PRIOR_ART_AND_CONVENTION_AUDIT"
+      ],
+      "top_tier_strengthener_not_core_authority": "D4_EXACT_RESULT",
+      "fallback_core": "INDEPENDENTLY_REPLAYED_D2_D3_EXACT_MATHEMATICS_WITH_D4_EXPLICITLY_OPEN",
+      "fallback_forbidden_claims": [
+        "D2_D3_HEADLINE_BEFORE_CRB_AUTHORITY",
+        "D4_INFERENCE_FROM_PARTIAL_OR_COMPRESSED_SEARCH"
+      ],
+      "owner_issues": [1383, 1384]
+    },
+    {
+      "paper": "ORION-05",
+      "lane": "Q1",
+      "publication_terminal": "UNDECIDED",
+      "scientific_core_status": "AUDIT_OPEN",
+      "top_tier_blockers": [
+        "INDEPENDENT_SUPPORT_TWO_PROOF_REVIEW",
+        "INDEPENDENT_FINITE_ATTACK",
+        "FAITHFUL_PRODUCTION_RESOURCE_MAP_FOR_PRODUCTION_HEADLINE",
+        "MATCHED_CURRENT_COMPILER_BASELINES",
+        "INDEPENDENT_RESOURCE_REPLAY",
+        "CURRENT_QUANTUM_COMPILATION_PRIOR_ART_SUBTRACTION"
+      ],
+      "fallback_core": "SCOPED_SHARP_SUPPORT_TWO_THEOREM_PLUS_EXACT_COMPUTATIONAL_AND_RESOURCE_BOUNDARIES",
+      "required_adverse_evidence": [
+        "DONOR_EQUIVALENT_OR_COMPILER_UNBOUND_WHERE_APPLICABLE",
+        "Q1_XOVER_MACHINE_PANEL_BUDGET_SCOPED_TIMEOUT_BOUNDARY"
+      ],
+      "fallback_forbidden_claims": [
+        "PHYSICAL_QUANTUM_ADVANTAGE",
+        "UNIVERSAL_RUNTIME_ACCELERATION",
+        "UNIVERSAL_N5_N6_SIZE_ONLY_FEASIBILITY_CROSSOVER"
+      ],
+      "owner_issues": [1418, 1416]
+    }
+  ]
+}
