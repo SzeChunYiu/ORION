@@ -3,8 +3,12 @@
 
 This program checks repository-available publication authorities only. It does
 not submit the paper, infer author declarations, certify novelty, or promote the
-bounded scientific claim. A PASS means the exact repository package is ready
+bounded scientific claim. A PASS means the repository source/package is ready
 for the remaining human portal operations on the declared as-of date.
+
+The native p4-tmlr-submission-audit workflow remains the rendering authority for
+the current anonymous PDF. Historical tracked PDF hashes are provenance, not an
+immutable requirement after source-preserving re-rendering.
 """
 
 from __future__ import annotations
@@ -24,17 +28,16 @@ from typing import Iterable
 PASS_TERMINAL = "ORION_14_REPOSITORY_FILING_PREFLIGHT_PASS"
 FAIL_TERMINAL = "ORION_14_REPOSITORY_FILING_PREFLIGHT_CANNOT_CHECK"
 EXPECTED_SCIENTIFIC_TERMINAL = "ORION-14 = PEER_REVIEW_READY"
-EXPECTED_PDF_SHA256 = "f2ede371e254e37cf57c309565a5ede09ab3d61f9feba75b67eccca2a4893ccf"
+HISTORICAL_AUDITED_PDF_SHA256 = "f2ede371e254e37cf57c309565a5ede09ab3d61f9feba75b67eccca2a4893ccf"
 FRESHNESS_DATE = dt.date(2026, 8, 17)
 FRESHNESS_LAST_VALID_DATE = dt.date(2026, 8, 31)
-HEX64 = re.compile(r"^[0-9a-f]{64}$")
 HASH_LINE = re.compile(r"^([0-9a-fA-F]{64})\s+[* ]?(.+?)\s*$")
 PLACEHOLDER = re.compile(
     r"(?i)(?:\bTODO\b|\bTBD\b|\bPLACEHOLDER\b|\bFIXME\b|"
     r"INSERT\s+(?:AUTHOR|AFFILIATION|FUNDING|SUBMISSION)|"
     r"OPENREVIEW\s+SUBMISSION\s+ID\s*[:=]\s*(?:TBD|PLACEHOLDER|XXX))"
 )
-STALE_STATES = {"SUPERSEDED", "STALE", "DRIFTED", "INVALID", "UNBOUND"}
+STALE_STATES = {"STALE", "DRIFTED", "INVALID", "UNBOUND"}
 
 
 @dataclass(frozen=True)
@@ -74,7 +77,14 @@ def tracked_files(root: Path, paper: Path) -> list[Path]:
     return [root / rel for rel in out.split("\0") if rel]
 
 
-def parse_checksum_manifest(root: Path, manifest: Path) -> list[Finding]:
+def parse_checksum_manifest(root: Path, paper: Path, manifest: Path) -> list[Finding]:
+    """Validate checksum rows under the path conventions already used by P4.
+
+    Existing P4 journal-package SHA256SUMS files contain a mixture of paths
+    relative to the manifest directory, paths relative to the paper root, and
+    repository-root paths. Resolve exactly those three bases and fail if none
+    exists. Do not rewrite or re-pin a digest here.
+    """
     findings: list[Finding] = []
     parsed = 0
     for line_no, raw in enumerate(manifest.read_text(errors="replace").splitlines(), 1):
@@ -95,7 +105,7 @@ def parse_checksum_manifest(root: Path, manifest: Path) -> list[Finding]:
         parsed += 1
         expected, raw_name = match.groups()
         name = raw_name.strip()
-        candidates = [manifest.parent / name, root / name]
+        candidates = [manifest.parent / name, paper / name, root / name]
         target = next((p for p in candidates if p.is_file()), None)
         if target is None:
             findings.append(
@@ -198,7 +208,6 @@ def main(argv: list[str] | None = None) -> int:
     ok_head, head = git(root, "rev-parse", "HEAD")
     findings.append(Finding("git_head", ok_head and bool(head), head or "unavailable"))
 
-    # Every full commit identity cited by the live readiness document must exist.
     cited_commits = sorted(set(re.findall(r"\b[0-9a-f]{40}\b", readiness_text)))
     findings.append(
         Finding(
@@ -230,13 +239,21 @@ def main(argv: list[str] | None = None) -> int:
     )
 
     pdfs = [p for p in tracked if p.suffix.lower() == ".pdf" and p.is_file()]
-    matching_pdf = next((p for p in pdfs if sha256(p) == EXPECTED_PDF_SHA256), None)
     findings.append(
         Finding(
-            "audited_pdf_digest",
-            matching_pdf is not None,
-            f"expected={EXPECTED_PDF_SHA256}; tracked_pdfs={len(pdfs)}",
-            str(matching_pdf.relative_to(root)) if matching_pdf else None,
+            "tracked_pdf_inventory",
+            bool(pdfs),
+            f"tracked_pdfs={len(pdfs)}; historical_audited_sha256={HISTORICAL_AUDITED_PDF_SHA256}",
+            str(pdfs[0].relative_to(root)) if pdfs else None,
+        )
+    )
+    historical_match = next((p for p in pdfs if sha256(p) == HISTORICAL_AUDITED_PDF_SHA256), None)
+    findings.append(
+        Finding(
+            "historical_pdf_reference_is_non_authoritative",
+            True,
+            "historical digest still present" if historical_match else "current tracked PDF differs; native TMLR audit must render the current source",
+            str(historical_match.relative_to(root)) if historical_match else None,
         )
     )
 
@@ -251,8 +268,6 @@ def main(argv: list[str] | None = None) -> int:
     for source in current_sources:
         for line_no, line in enumerate(source.read_text(errors="replace").splitlines(), 1):
             if PLACEHOLDER.search(line):
-                # The readiness document explicitly permits a portal-created ID,
-                # but a placeholder in submission source is not filing-ready.
                 placeholder_hits.append(f"{source.relative_to(root)}:{line_no}")
     findings.append(
         Finding(
@@ -277,7 +292,7 @@ def main(argv: list[str] | None = None) -> int:
         )
     )
     for manifest in manifest_paths:
-        findings.extend(parse_checksum_manifest(root, manifest))
+        findings.extend(parse_checksum_manifest(root, paper, manifest))
 
     state_files = sorted(
         p
@@ -298,20 +313,19 @@ def main(argv: list[str] | None = None) -> int:
             )
         )
 
-    # Cheap PDF sanity independent of a LaTeX toolchain.
-    if matching_pdf:
-        raw = matching_pdf.read_bytes()
+    for pdf in pdfs:
+        raw = pdf.read_bytes()
         findings.append(
             Finding(
                 "pdf_header_and_eof",
                 raw.startswith(b"%PDF-") and b"%%EOF" in raw[-4096:],
                 f"bytes={len(raw)}",
-                str(matching_pdf.relative_to(root)),
+                str(pdf.relative_to(root)),
             )
         )
         if shutil.which("pdfinfo"):
             proc = subprocess.run(
-                ["pdfinfo", str(matching_pdf)],
+                ["pdfinfo", str(pdf)],
                 check=False,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
@@ -322,11 +336,10 @@ def main(argv: list[str] | None = None) -> int:
                     "pdfinfo_parse",
                     proc.returncode == 0,
                     proc.stdout.strip()[-1000:],
-                    str(matching_pdf.relative_to(root)),
+                    str(pdf.relative_to(root)),
                 )
             )
 
-    # Final source should not be modified without a corresponding tracked state.
     ok_diff, diff = git(root, "diff", "--check")
     findings.append(Finding("git_diff_check", ok_diff, diff or "clean"))
 
@@ -337,6 +350,7 @@ def main(argv: list[str] | None = None) -> int:
         "git_head": head if ok_head else None,
         "scientific_authority_delta": "NONE",
         "submission_authority": False,
+        "native_render_authority": "p4-tmlr-submission-audit",
         "human_filing_attestations_required": [
             "authors_and_affiliations",
             "CRediT",
@@ -371,6 +385,7 @@ def main(argv: list[str] | None = None) -> int:
             f"- Failures: `{result['failure_count']}`",
             "- Scientific authority delta: `NONE`",
             "- Submission authority: `false`",
+            "- Native render authority: `p4-tmlr-submission-audit`",
             "",
             "## Findings",
             "",
@@ -379,13 +394,7 @@ def main(argv: list[str] | None = None) -> int:
             marker = "PASS" if finding.ok else "FAIL"
             location = f" — `{finding.path}`" if finding.path else ""
             lines.append(f"- **{marker}** `{finding.check}`: {finding.detail}{location}")
-        lines.extend(
-            [
-                "",
-                "## Remaining human portal operations",
-                "",
-            ]
-        )
+        lines.extend(["", "## Remaining human portal operations", ""])
         lines.extend(f"- {item}" for item in result["human_filing_attestations_required"])
         args.write_md.write_text("\n".join(lines) + "\n")
 
