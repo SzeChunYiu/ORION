@@ -1,0 +1,183 @@
+#!/usr/bin/env python3
+"""Build the fail-closed repository-side specialist closure receipt for Wave A.
+
+This script never submits a paper and never invents author declarations. It
+requires one target-specific package per Wave-A paper, validates package hashes
+and PDF structure, and checks current content binding for the manuscript trees
+that were changed during this closure wave. The resulting terminal means only
+that repository-side scientific/reproduction/package work is closed for the
+bounded specialist claim; listed human filing attestations remain open.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import subprocess
+from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parents[2]
+TARGETS = ROOT / "papers/publication_closure/WAVE_A_SPECIALIST_TARGETS_V1.json"
+SUBMISSIONS = ROOT / "papers/publication_closure/submissions"
+TERMINAL = "GOOD_SPECIALIST_REPOSITORY_PACKAGE_READY__HUMAN_FILING_ATTESTATIONS_OPEN"
+
+PACKAGE = {
+    "ORION-05": ("TQE", ["main.pdf", "main.tex", "references.bib", "SCIENTIFIC_MASTER_CITED.md", "SHA256SUMS", "ABSTRACT_WORD_COUNT.txt"]),
+    "ORION-09": ("TQE", ["main.pdf", "main.tex", "references.bib", "SCIENTIFIC_MASTER_CITED.md", "SHA256SUMS", "ABSTRACT_WORD_COUNT.txt"]),
+    "ORION-10": ("TQE", ["main.pdf", "main.tex", "references.bib", "SCIENTIFIC_MASTER_CITED.md", "SHA256SUMS", "ABSTRACT_WORD_COUNT.txt"]),
+    "ORION-14": ("TMLR", ["main.pdf", "source", "REPOSITORY_FILING_PREFLIGHT_V1.json", "SHA256SUMS"]),
+    "ORION-17": ("AIJ", ["main.pdf", "AIJ_MANUSCRIPT.tex", "bibliography.bib", "CHECKS.txt", "SHA256SUMS"]),
+    "ORION-19": ("TMLR", ["main.pdf", "main.tex", "references.bib", "sections", "CHECKS.txt", "SHA256SUMS"]),
+    "ORION-22": ("TMLR", ["main.pdf", "main.tex", "references.bib", "sections", "CHECKS.txt", "SHA256SUMS"]),
+    "ORION-23": ("JAAMAS", ["main.pdf", "main.tex", "references.bib", "sections", "JAAMAS_INFORMATION_SHEET.md", "CHECKS.txt", "SHA256SUMS"]),
+}
+
+CURRENT_BINDING = {
+    "ORION-19": ROOT / "papers/orion-19-structured-epistemic-learning/CONTENT_MANIFEST_V1.json",
+    "ORION-22": ROOT / "papers/orion-22-adaptive-state-reasoning/CONTENT_MANIFEST_V1.json",
+    "ORION-23": ROOT / "papers/orion-23-responsibility-carrying-state/CONTENT_MANIFEST_V1.json",
+}
+
+
+def sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def git(*args: str) -> str:
+    return subprocess.check_output(["git", "-C", str(ROOT), *args], text=True).strip()
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise SystemExit(f"not a JSON object: {path}")
+    return value
+
+
+def verify_sha_manifest(base: Path) -> list[dict[str, Any]]:
+    manifest = base / "SHA256SUMS"
+    rows: list[dict[str, Any]] = []
+    for raw in manifest.read_text(encoding="utf-8").splitlines():
+        if not raw.strip():
+            continue
+        expected, name = raw.split(None, 1)
+        name = name.lstrip("* ")
+        target = base / name
+        if not target.is_file():
+            raise SystemExit(f"missing SHA256SUMS target: {target}")
+        observed = sha256(target)
+        if observed != expected:
+            raise SystemExit(f"SHA256 mismatch: {target}: {observed} != {expected}")
+        rows.append({"path": str(target.relative_to(ROOT)), "sha256": observed, "bytes": target.stat().st_size})
+    if not rows:
+        raise SystemExit(f"empty SHA256SUMS: {manifest}")
+    return rows
+
+
+def pdf_ok(path: Path) -> bool:
+    raw = path.read_bytes()
+    return raw.startswith(b"%PDF-") and b"%%EOF" in raw[-8192:]
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--source-commit", required=True)
+    ap.add_argument("--package-commit", default=None)
+    ap.add_argument("--out", required=True)
+    args = ap.parse_args()
+
+    targets = load_json(TARGETS)
+    target_rows = targets.get("targets")
+    if not isinstance(target_rows, dict) or set(target_rows) != set(PACKAGE):
+        raise SystemExit("specialist target set does not match Wave A")
+
+    papers: dict[str, Any] = {}
+    for paper_id, (venue_dir, required) in PACKAGE.items():
+        base = SUBMISSIONS / paper_id / venue_dir
+        if not base.is_dir():
+            raise SystemExit(f"missing package directory: {base}")
+        for name in required:
+            if not (base / name).exists():
+                raise SystemExit(f"missing package component: {base / name}")
+        pdf = base / "main.pdf"
+        if not pdf_ok(pdf):
+            raise SystemExit(f"invalid PDF structure: {pdf}")
+        hash_rows = verify_sha_manifest(base)
+        filing = target_rows[paper_id].get("human_only_before_filing")
+        if not isinstance(filing, list) or not filing:
+            raise SystemExit(f"human filing list missing for {paper_id}")
+        row: dict[str, Any] = {
+            "venue": target_rows[paper_id]["primary"],
+            "article_type": target_rows[paper_id]["article_type"],
+            "claim_surface": target_rows[paper_id]["claim_surface"],
+            "package_dir": str(base.relative_to(ROOT)),
+            "pdf_sha256": sha256(pdf),
+            "pdf_bytes": pdf.stat().st_size,
+            "package_hash_rows": hash_rows,
+            "human_only_before_filing": filing,
+            "top_tier_route": target_rows[paper_id]["optional_stronger_route"],
+            "repository_terminal": TERMINAL,
+            "submission_authority": False,
+        }
+        manifest_path = CURRENT_BINDING.get(paper_id)
+        if manifest_path:
+            manifest = load_json(manifest_path)
+            if manifest.get("subject_commit_status") != "BOUND":
+                raise SystemExit(f"current content manifest not BOUND: {paper_id}")
+            if manifest.get("subject_commit_blocker") not in (None, ""):
+                raise SystemExit(f"content manifest has blocker: {paper_id}")
+            row["content_manifest"] = {
+                "path": str(manifest_path.relative_to(ROOT)),
+                "sha256": sha256(manifest_path),
+                "subject_commit": manifest.get("subject_commit"),
+                "status": manifest.get("subject_commit_status"),
+            }
+        if paper_id == "ORION-14":
+            preflight = load_json(base / "REPOSITORY_FILING_PREFLIGHT_V1.json")
+            if preflight.get("ok") is not True or preflight.get("failure_count") != 0:
+                raise SystemExit("ORION-14 filing preflight not green")
+            row["filing_preflight_terminal"] = preflight.get("terminal")
+        if paper_id in {"ORION-05", "ORION-09", "ORION-10"}:
+            count_text = (base / "ABSTRACT_WORD_COUNT.txt").read_text().strip()
+            try:
+                count = int(count_text)
+            except ValueError as exc:
+                raise SystemExit(f"bad abstract count for {paper_id}: {count_text}") from exc
+            if not 150 <= count <= 250:
+                raise SystemExit(f"TQE abstract word count outside 150..250 for {paper_id}: {count}")
+            row["abstract_word_count"] = count
+        papers[paper_id] = row
+
+    receipt = {
+        "schema": "ORION.WaveASpecialistClosureReceipt.v1",
+        "date": "2026-08-27",
+        "source_commit": args.source_commit,
+        "package_commit": args.package_commit,
+        "generated_from_head": git("rev-parse", "HEAD"),
+        "target_manifest": str(TARGETS.relative_to(ROOT)),
+        "target_manifest_sha256": sha256(TARGETS),
+        "paper_count": len(papers),
+        "papers": papers,
+        "terminal": TERMINAL,
+        "all_repository_side_specialist_packages_ready": True,
+        "all_top_tier_discriminators_required_for_specialist_closure": False,
+        "scientific_authority_delta_from_receipt": "NONE",
+        "external_human_peer_review_claimed": False,
+        "submission_authority": False,
+        "boundary": "Repository-side bounded specialist objects are complete. Authorship, declarations and journal-portal filing remain human attestations; optional stronger experiments do not block these bounded packages."
+    }
+    out = ROOT / args.out
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(TERMINAL)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
