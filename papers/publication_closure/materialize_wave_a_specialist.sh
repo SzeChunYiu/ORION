@@ -59,8 +59,7 @@ python papers/publication_closure/check_orion14_filing_preflight.py \
   --write-md "$ORION14_TMP/REPOSITORY_FILING_PREFLIGHT_V1.md"
 
 bash papers/orion-19-structured-epistemic-learning/build_tmlr_pdf.sh
-python papers/orion-22-adaptive-state-reasoning/check_p12_lifecycle_integration_v4.py
-python papers/orion-22-adaptive-state-reasoning/check_p12_stopgo_integration_v1.py
+python papers/publication_closure/check_orion22_r0_rebind_equivalence.py
 make -C papers/orion-22-adaptive-state-reasoning/manuscript
 PYTHONPATH=src python papers/orion-23-responsibility-carrying-state/check_lifecycle_consolidation_binding_v1.py
 make -C papers/orion-23-responsibility-carrying-state/manuscript
@@ -117,8 +116,7 @@ SOURCE_COMMIT="$(git rev-parse HEAD)"
 # the content-bound paper trees.
 python papers/orion-19-structured-epistemic-learning/reproduce_final.py
 python papers/orion-19-structured-epistemic-learning/audit_final_manuscript.py
-python papers/orion-22-adaptive-state-reasoning/check_p12_lifecycle_integration_v4.py
-python papers/orion-22-adaptive-state-reasoning/check_p12_stopgo_integration_v1.py
+python papers/publication_closure/check_orion22_r0_rebind_equivalence.py
 PYTHONPATH=src python papers/orion-23-responsibility-carrying-state/check_lifecycle_consolidation_binding_v1.py
 
 git diff --exit-code -- \
