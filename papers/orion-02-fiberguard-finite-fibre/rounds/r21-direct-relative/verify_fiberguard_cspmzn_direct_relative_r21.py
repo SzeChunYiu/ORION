@@ -342,6 +342,12 @@ def verify_result(result_path: Path, repo_root: Path, subject_repo: Path) -> Non
     protocol_path = result_path.with_name("FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_PROTOCOL.md")
     assert custody["corrected_execution"]["executor_sha256"] == sha256_file(executor_path)
     assert custody["corrected_execution"]["protocol_sha256"] == sha256_file(protocol_path)
+    assert custody["preserved_prerequisite"] == {
+        "executor_emitted_terminal": False,
+        "record_kind": "ADDITIVE_POST_FAILURE_DISPOSITION",
+        "scenario": "TSP-LION2015",
+        "terminal": "CANNOT_CHECK_TSP_DIRECT_RELATIVE_SOURCE_OR_RESOURCE",
+    }
 
     tsp_failure = json.loads(
         result_path.with_name(
@@ -349,6 +355,8 @@ def verify_result(result_path: Path, repo_root: Path, subject_repo: Path) -> Non
         ).read_text(encoding="utf-8")
     )
     assert tsp_failure["terminal"] == "CANNOT_CHECK_TSP_DIRECT_RELATIVE_SOURCE_OR_RESOURCE"
+    assert tsp_failure["record_kind"] == "ADDITIVE_POST_FAILURE_DISPOSITION"
+    assert tsp_failure["execution"]["executor_emitted_terminal"] is False
     assert tsp_failure["authority"]["grants_round_2_scientific_adjudication"] is False
     assert tsp_failure["missing_cost_audit"]["affected_instance_step_cells"] == 21
 

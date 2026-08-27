@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - ".github/workflows/orion-02-r21-cspmzn-direct-relative.yml"
-      - "papers/orion-02-fiberguard-finite-fibre/extensions/r21/**"
+      - "papers/orion-02-fiberguard-finite-fibre/rounds/r21-direct-relative/**"
       - "papers/orion-02-fiberguard-finite-fibre/extensions/r11/**"
       - "papers/orion-02-fiberguard-finite-fibre/extensions/r14/**"
       - "papers/orion-02-fiberguard-finite-fibre/extensions/r15/**"
@@ -19,7 +19,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/orion-02-r21-cspmzn-direct-relative.yml"
-      - "papers/orion-02-fiberguard-finite-fibre/extensions/r21/**"
+      - "papers/orion-02-fiberguard-finite-fibre/rounds/r21-direct-relative/**"
       - "papers/orion-02-fiberguard-finite-fibre/extensions/r11/**"
       - "papers/orion-02-fiberguard-finite-fibre/extensions/r14/**"
       - "papers/orion-02-fiberguard-finite-fibre/extensions/r15/**"
@@ -49,7 +49,7 @@ jobs:
       MKL_NUM_THREADS: "1"
       NUMEXPR_NUM_THREADS: "1"
       SUBJECT_COMMIT: 551b22beef8df17de59286b4822ef720e0aa4d6f
-      R21: papers/orion-02-fiberguard-finite-fibre/extensions/r21
+      R21: papers/orion-02-fiberguard-finite-fibre/rounds/r21-direct-relative
     steps:
       - uses: actions/checkout@v4
         with:
@@ -74,6 +74,8 @@ jobs:
 
       - name: Static and hygiene gates
         run: |
+          test -L "$R21/../r19"
+          test "$(readlink "$R21/../r19")" = "../extensions/r19"
           python "$R21/fiberguard_tsp_direct_relative_r21.py" --self-test
           python "$R21/fiberguard_cspmzn_direct_relative_r21.py" --self-test
           python -m py_compile \

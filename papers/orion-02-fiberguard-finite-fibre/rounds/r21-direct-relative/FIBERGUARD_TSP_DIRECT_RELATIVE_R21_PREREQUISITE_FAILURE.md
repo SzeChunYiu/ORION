@@ -8,6 +8,10 @@ legal pair, route interval, test loss, or scientific comparison was produced.
 CANNOT_CHECK_TSP_DIRECT_RELATIVE_SOURCE_OR_RESOURCE
 ```
 
+This label is an additive post-failure disposition, not an executor-emitted
+terminal: the frozen executor raised its recorded `ValueError` and wrote no
+result or terminal file.
+
 The first exact witness was `tsplib_eil51/eax_probing`: every recorded cost is
 missing and the aggregated feature status is `presolved`. The complete source
 audit found 21 such `eax_probing` instance-step cells among 3,106 instances.
@@ -21,4 +25,3 @@ or positive Round-2 route result. It does not consume a distinct mechanism and
 does not permit BNSL retuning. The same frozen direct-relative/joint-route
 mechanism therefore moves to a separately frozen untouched recovery subject
 whose metadata declares a numeric feature cutoff.
-
