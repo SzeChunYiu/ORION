@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: wave-a-specialist-materialize
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   materialize:
@@ -215,10 +215,7 @@ jobs:
           cp "$work/main.pdf" "$out/main.pdf"
           cp "$work/main.tex" "$out/AIJ_MANUSCRIPT.tex"
           cp "$work/bibliography.bib" "$out/bibliography.bib"
-          printf '%s\n' \
-            'formal/check_countermodels.py: PASS' \
-            'p7_finite_falsifiers_v1.py: PASS' \
-            'AIJ LaTeX build: PASS' > "$out/CHECKS.txt"
+          printf '%s\n' 'formal/check_countermodels.py: PASS' 'p7_finite_falsifiers_v1.py: PASS' 'AIJ LaTeX build: PASS' > "$out/CHECKS.txt"
           (cd "$out" && sha256sum main.pdf AIJ_MANUSCRIPT.tex bibliography.bib CHECKS.txt > SHA256SUMS)
 
       - name: Materialize ORION-14 TMLR package
