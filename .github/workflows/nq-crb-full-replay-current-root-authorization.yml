@@ -1,0 +1,175 @@
+name: nq-crb-full-replay-current-root-authorization
+
+on:
+  push:
+    branches:
+      - chatgpt/nq-crb-full-replay-current-root-20260827
+    paths:
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/CURRENT_ROOT_FULL_REPLAY_REVIEW.json'
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/CURRENT_ROOT_FULL_REPLAY_AUTHORIZATION_RECEIPT.json'
+      - '.github/workflows/nq-crb-full-replay-current-root-authorization.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/CURRENT_ROOT_FULL_REPLAY_REVIEW.json'
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/CURRENT_ROOT_FULL_REPLAY_AUTHORIZATION_RECEIPT.json'
+      - '.github/workflows/nq-crb-full-replay-current-root-authorization.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  current-root-authorization:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      AUTHORIZED_COMMIT: 20365f254807015d8db46a370f006f8be462b3f8
+      CONTROL_RUN: '33043441292'
+      CONTROL_JOB: '98421959850'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify immutable authorized tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay'
+          engine="$root/engine_b"
+          git cat-file -e "$AUTHORIZED_COMMIT^{commit}"
+          test "$(git rev-parse "$AUTHORIZED_COMMIT:$engine/CURRENT_ROOT_FULL_REPLAY_REVIEW.json")" = 'b2af969d330d74f286e178e6f27b1f8d9e275511'
+          test "$(git rev-parse "$AUTHORIZED_COMMIT:$engine/FULL_REPLAY_AUTHORIZATION.json")" = '3fb8f81065de8794371373adf75d9d906bccbe3e'
+          test "$(git rev-parse "$AUTHORIZED_COMMIT:$engine/SOURCE_MANIFEST.json")" = '095faaff230bd4ae0e1d4fc4b7c8b4b7bf2148b0'
+          test "$(git rev-parse "$AUTHORIZED_COMMIT:$root/REPLAY_SOURCE_MANIFEST.json")" = 'ccccaf59fef378a17360af6db5e1fc7fc854646e'
+          test "$(git rev-parse "$AUTHORIZED_COMMIT:$engine/slurm/submit_crb_full_census.sh")" = '42e0d54d19bea77adeef6f5dafc2aa9b113f4ef7'
+          test "$(git rev-parse "$AUTHORIZED_COMMIT:$engine/slurm/job_nq_r9_crb_full_census.slurm")" = 'e0e77542e7bfadb7c79e389253bfb8501758da8b'
+          git diff --exit-code "$AUTHORIZED_COMMIT" HEAD -- \
+            "$root/engine_b.py" \
+            "$root/crb_census.py" \
+            "$root/full_manifest.py" \
+            "$engine/engine_b.py" \
+            "$engine/crb_census.py" \
+            "$engine/full_manifest.py" \
+            "$engine/slurm/submit_crb_full_census.sh" \
+            "$engine/slurm/job_nq_r9_crb_full_census.slurm" \
+            "$engine/FULL_REPLAY_AUTHORIZATION.json" \
+            "$engine/SOURCE_MANIFEST.json" \
+            "$root/REPLAY_SOURCE_MANIFEST.json"
+
+      - name: Verify packet, scripts, denominators, and nonduplication key
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          root=Path('papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay')
+          engine=root/'engine_b'
+          review=json.loads((engine/'CURRENT_ROOT_FULL_REPLAY_REVIEW.json').read_text())
+          receipt=json.loads((engine/'CURRENT_ROOT_FULL_REPLAY_AUTHORIZATION_RECEIPT.json').read_text())
+          authorization=json.loads((engine/'FULL_REPLAY_AUTHORIZATION.json').read_text())
+          source=json.loads((engine/'SOURCE_MANIFEST.json').read_text())
+          replay=json.loads((root/'REPLAY_SOURCE_MANIFEST.json').read_text())
+          assert review['schema']=='ORION.NQ.EngineB.CurrentRootFullReplayReview.v1'
+          assert review['reviewed_parent_commit']=='63950633df0b6665f90981f922a9ca748c1b9b3d'
+          assert review['terminal']=='NQ_CRB_FULL_REPLAY_CURRENT_ROOT_REVIEW_PASS__ONE_SUBMISSION_AUTHORIZED'
+          assert all(review['root_review'].values())
+          assert review['authority']['full_census_executed'] is False
+          assert review['authority']['D2_C5_cubed']=='CANNOT_CHECK'
+          assert review['authority']['D3_C5_cubed']=='CANNOT_CHECK'
+          assert review['authority']['D4_C5_cubed']=='OPEN'
+          assert receipt['authorized_commit']==os.environ['AUTHORIZED_COMMIT']
+          assert receipt['review_git_blob']=='b2af969d330d74f286e178e6f27b1f8d9e275511'
+          assert receipt['attempt_budget']==1
+          assert receipt['authority_before_execution']=={
+              'full_census_executed':False,
+              'D2_D3_numerical_authority':False,
+              'D4_authority':False,
+              'external_independence':False,
+              'journal_authority':False,
+          }
+          assert source['manifest_sha256']=='273743ce7a49294593aa80968b298ce21dce634a754cb6cef8b016bdc625a449'
+          assert replay['manifest_sha256']=='15191d204051557109957848b21db20241437beae8f75ddfcb8ac0088a41f564'
+          assert replay['full_census_authorized'] is False
+          assert [row['expected_record_count'] for row in authorization['declared_scopes']]==[98622,230983]
+          assert authorization['authority']['full_census_executed'] is False
+          payload={key:value for key,value in authorization.items() if key not in ('nonduplication_key','submission')}
+          key=hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          assert key==authorization['nonduplication_key']==receipt['nonduplication_key']=='741454d7d6b513ccd80d2aa9a78d2a9f5076fe8075341d0ecc8e95566ecc28ea'
+          assert review['submission']['prior_failed_attempt']['nonduplication_key']!=key
+          assert review['submission']['prior_failed_attempt']['compute_started'] is False
+          files={
+              engine/'slurm/submit_crb_full_census.sh':'4f14727e99aba5afb7aceb59cfc618f3651ca35fd847a037b3282552410a020b',
+              engine/'slurm/job_nq_r9_crb_full_census.slurm':'a1b5ae2d4a47969fc185a3d98c449a7fabf35a2f3a74800e3eeb2aadf4b8ca30',
+          }
+          for path,expected in files.items():
+              assert hashlib.sha256(path.read_bytes()).hexdigest()==expected
+          assert '/local/slurmtmp.${SLURM_JOB_ID}' in (engine/'slurm/job_nq_r9_crb_full_census.slurm').read_text()
+          assert 'REFUSED_DUPLICATE' in (engine/'slurm/submit_crb_full_census.sh').read_text()
+          print('NQ_CRB_FULL_REPLAY_PACKET_AND_NONDUPLICATION_VERIFIED')
+          PY
+
+      - name: Verify exact control run remained green
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          import urllib.request
+
+          headers={
+              'Accept':'application/vnd.github+json',
+              'Authorization':f"Bearer {os.environ['GH_TOKEN']}",
+              'X-GitHub-Api-Version':'2022-11-28',
+              'User-Agent':'ORION-NQ-current-root-authorization',
+          }
+          base=f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}"
+          with urllib.request.urlopen(urllib.request.Request(base+f"/actions/runs/{os.environ['CONTROL_RUN']}",headers=headers)) as response:
+              run=json.load(response)
+          with urllib.request.urlopen(urllib.request.Request(base+f"/actions/jobs/{os.environ['CONTROL_JOB']}",headers=headers)) as response:
+              job=json.load(response)
+          assert run['name']=='Five-paper R9 NQ CR-B control gate'
+          assert run['status']=='completed' and run['conclusion']=='success'
+          assert job['run_id']==int(os.environ['CONTROL_RUN'])
+          assert job['status']=='completed' and job['conclusion']=='success'
+          steps={row['name']:row['conclusion'] for row in job['steps']}
+          assert steps['Run CR-B lint and format gates']=='success'
+          assert steps['Build exact external DRUP checker']=='success'
+          assert steps['Run focused and hostile controls']=='success'
+          print('NQ_CRB_CURRENT_ROOT_CONTROL_RUN_GREEN')
+          PY
+
+      - name: Check diff hygiene
+        run: git diff --check
+
+      - name: Stage authorization artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/nq-crb-current-root-authorization"
+          mkdir -p "$out"
+          root='papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b'
+          cp "$root/CURRENT_ROOT_FULL_REPLAY_REVIEW.json" "$out/"
+          cp "$root/CURRENT_ROOT_FULL_REPLAY_AUTHORIZATION_RECEIPT.json" "$out/"
+          printf '%s\n' 'NQ_CRB_FULL_REPLAY_CURRENT_ROOT_AUTHORIZATION_PASS__ONE_LUNARC_SUBMISSION_PENDING' > "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nq-crb-current-root-authorization
+          path: ${{ runner.temp }}/nq-crb-current-root-authorization/
+          if-no-files-found: error
+          retention-days: 30
