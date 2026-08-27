@@ -188,7 +188,7 @@ def neighborhood_predictor(
     distances = pairwise_distances(phi_query, phi_train)
     neighbour_rows = np.argsort(distances, axis=1, kind="stable")[:, :mu]
     m = regret_train[neighbour_rows].mean(axis=1)
-    d1 = distances[:, 0]
+    d1 = distances[np.arange(len(phi_query)), neighbour_rows[:, 0]]
     a_base = np.argmin(m, axis=1)
     return m, d1, a_base
 
@@ -560,7 +560,7 @@ def evaluate_split(
         nearest = pairwise_distances(
             representations[arm["representation"]][2],
             representations[arm["representation"]][0],
-        )[:, 0]
+        ).min(axis=1)
         arm["receipt"]["covered_median_d1"] = (
             float(np.median(nearest[covered])) if covered.any() else None
         )
