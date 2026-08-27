@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """Independent replay and structural verifier for the ORION-01 Round-2 study.
 
-Two evidence layers:
+Two evidence layers, two outcome paths:
 
-* structural: the committed SUBSET receipt must carry the frozen schema, a
+* success path: the committed SUBSET receipt must carry the frozen schema, a
   legal terminal, all gates passed, sorted rows, and no floating-point
-  numbers anywhere (receipts are ints/bools/strings/lists only);
-* replay: every committed subset row is re-executed from the frozen task
-  domain with the pinned production system and must reproduce the committed
-  row byte-for-byte (canonical JSON equality).
+  numbers anywhere (receipts are ints/bools/strings/lists only); every
+  subset row is then re-executed and must reproduce byte-for-byte;
+* fail-closed path (no SUBSET receipt exists): the committed RESULTS receipt
+  must carry the fail terminal, passing audits and freeze binding, and every
+  one of its rows — cap rows included — is re-executed and must reproduce
+  byte-for-byte, so a fail-closed outcome is enforced as strongly as a
+  positive one.
 
 Usage:
     python verify_orion01_round2_atomic.py           # verify + replay
@@ -52,6 +55,113 @@ def load_receipt_no_floats(path: Path) -> dict[str, Any]:
     if not path.is_file():
         raise VerificationFailure(f"missing receipt: {path.name}")
     return json.loads(path.read_text(encoding="utf-8"), parse_float=_reject_float)
+
+
+def assert_failure_structure(results: dict[str, Any], study: Any) -> None:
+    """Structure gate for the fail-closed outcome path (no subset receipt).
+
+    A fail-closed run writes only the RESULTS receipt.  The terminal, audits,
+    freeze binding, and row shapes are enforced here; every row (including the
+    cap rows) is replayed by ``replay_results_rows`` below, so the committed
+    failure receipt is as strongly bound as the success-subset path.
+    """
+
+    registry = study.load_registry()
+    if results["schema"] != "ORION.ORION01.Round2.PyZXAtomicCheckerRegistryResults.v1":
+        raise VerificationFailure("unexpected results schema")
+    if results["paper_id"] != "ORION-01" or results["round"] != 2:
+        raise VerificationFailure("results receipt is not ORION-01 Round 2")
+    outcome = results["outcome"]
+    if outcome["terminal"] != study.FAIL_TERMINAL:
+        raise VerificationFailure(
+            f"failure receipt carries an unexpected terminal: {outcome['terminal']}"
+        )
+    if not outcome.get("failure_kind") or not outcome.get("failure_message"):
+        raise VerificationFailure("failure receipt lacks failure kind/message")
+    if outcome["records_completed_before_failure"] != len(results["rows"]):
+        raise VerificationFailure("records_completed_before_failure does not match rows")
+    audits = results["audits"]
+    if audits["primitive_closure_exact"] is not True:
+        raise VerificationFailure("primitive closure audit failed on the failure receipt")
+    if audits["hostile_omissions_rejected"] != 12:
+        raise VerificationFailure("hostile omission audit failed on the failure receipt")
+    if audits["mutator_method_surface_covered"] is not True:
+        raise VerificationFailure("mutator surface audit failed on the failure receipt")
+    if audits["guard_purity_all_pure"] is not True:
+        raise VerificationFailure("guard purity audit failed on the failure receipt")
+    if results["freeze_binding"]["introduced_in_one_commit"] is not True:
+        raise VerificationFailure("frozen inputs were not introduced in one commit")
+    if results["source_verification"]["commit"] != study.EXPECTED_COMMIT:
+        raise VerificationFailure("failure receipt bound to an unexpected commit")
+    rows = results["rows"]
+    indexes = [row["word_index"] for row in rows]
+    if indexes != sorted(indexes):
+        raise VerificationFailure("results rows are not sorted by word index")
+    primary = [row for row in rows if row["domain"] == "primary"]
+    probe = [row for row in rows if row["domain"] == "probe"]
+    if len(primary) != registry["input_domain"]["primary_word_count"]:
+        raise VerificationFailure(f"primary domain count mismatch: {len(primary)}")
+    if len(probe) != registry["input_domain"]["boundary_probe_length6_word_count"]:
+        raise VerificationFailure(f"probe domain count mismatch: {len(probe)}")
+    cap_rows = [row for row in rows if row.get("cap_hit")]
+    if not cap_rows:
+        raise VerificationFailure("fail-closed receipt without any cap row")
+    for row in cap_rows:
+        if row["domain"] != "primary":
+            raise VerificationFailure("cap row outside the primary domain")
+        if "native_resource" in row or "witness" in row:
+            raise VerificationFailure("cap row carries arm fields")
+    for row in rows:
+        if row.get("cap_hit"):
+            continue
+        if row["domain"] == "primary" and not row.get("interaction_census"):
+            raise VerificationFailure("completed primary row without census")
+        if not row["witness_replay_ok"]:
+            raise VerificationFailure("witness replay flagged false in committed receipt")
+        if row["domain"] == "primary" and not row["native_state_represented"]:
+            raise VerificationFailure("native output unrepresented for a primary word")
+
+
+def replay_results_rows(results: dict[str, Any], study: Any) -> int:
+    """Replay every committed failure-receipt row, cap rows included."""
+
+    registry = study.load_registry()
+    cap = int(registry["max_states_per_input_fail_closed"])
+    replayed = 0
+    for committed in results["rows"]:
+        task = study.WordTask(
+            word=tuple(committed["word"]),
+            word_index=committed["word_index"],
+            mode="execute",
+            domain=committed["domain"],
+            cap=cap,
+        )
+        fresh = study.analyze_word(task)
+        if committed.get("cap_hit"):
+            if not fresh.get("cap_hit"):
+                raise VerificationFailure(
+                    f"cap row did not reproduce its cap hit: {committed['word']}"
+                )
+            fresh = {
+                key: fresh[key]
+                for key in (
+                    "word",
+                    "word_index",
+                    "domain",
+                    "start_sha256",
+                    "cap_hit",
+                    "reachable_states",
+                    "reachable_transitions",
+                    "move_attempts",
+                    "semantic_edges_checked",
+                )
+            }
+        if study.canonical_json(fresh) != study.canonical_json(committed):
+            raise VerificationFailure(
+                f"results replay mismatch: word_index={committed['word_index']}"
+            )
+        replayed += 1
+    return replayed
 
 
 def assert_subset_structure(subset: dict[str, Any], study: Any) -> None:
@@ -128,10 +238,16 @@ def main(argv: list[str] | None = None) -> int:
 
     study = _load_module()
     try:
-        subset = load_receipt_no_floats(study.SUBSET_RESULTS_PATH)
-        assert_subset_structure(subset, study)
-        replayed = replay_subset_rows(subset, study)
-        terminal = subset["outcome"]["terminal"]
+        if study.SUBSET_RESULTS_PATH.is_file():
+            subset = load_receipt_no_floats(study.SUBSET_RESULTS_PATH)
+            assert_subset_structure(subset, study)
+            replayed = replay_subset_rows(subset, study)
+            terminal = subset["outcome"]["terminal"]
+        else:
+            results = load_receipt_no_floats(study.RESULTS_PATH)
+            assert_failure_structure(results, study)
+            replayed = replay_results_rows(results, study)
+            terminal = results["outcome"]["terminal"]
     except VerificationFailure as failure:
         print(f"VERIFICATION_FAILURE: {failure}")
         return 4
