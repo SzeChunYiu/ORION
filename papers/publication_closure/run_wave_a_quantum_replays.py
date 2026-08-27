@@ -4,7 +4,8 @@
 The runner deliberately selects deterministic, safe-output checks. It does not
 rerun heavy chemistry DPs or overwrite tracked scientific receipts. It combines:
 
-* ORION-05's standalone no-ORION-import proof sanity;
+* ORION-05's standalone no-ORION-import support-two proof sanity;
+* ORION-05 R11's committed executable result plus a fresh isolated pair-count replay;
 * the Q-series publication/content-binding synchronization tests;
 * QG9 V6's support-one normalization theorem replay;
 * QG12's all-instance SixLCU P0 theorem replay; and
@@ -27,6 +28,11 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 SCHEMA = "ORION.WaveAQuantumReplayReceipt.v1"
 RAW_DIR_NAME = "quantum-replay-raw"
+R11_RESULT = ROOT / "papers/orion-05-tare-expressivity/Q1_R11_SPARSE_DIRECT_EXECUTABLE_RESULT_V1.json"
+R11_PROTOCOL = ROOT / "papers/orion-05-tare-expressivity/Q1_R11_SPARSE_DIRECT_EXECUTABLE_PROTOCOL_V1.md"
+R11_SOLVER = ROOT / "papers/orion-05-tare-expressivity/q1_r11_sparse_direct_solver.py"
+R11_PAIR_CHECKER = ROOT / "papers/orion-05-tare-expressivity/q1_r11_pair_count_independent.py"
+R11_TERMINAL = "Q1_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM"
 
 
 def sha256(path: Path) -> str:
@@ -75,6 +81,48 @@ def assert_q1(value: dict[str, Any]) -> None:
         raise SystemExit("ORION-05 support>=3 class lemma failed")
     if len(classes.get("w2_failures", [])) != 4:
         raise SystemExit("ORION-05 sharp support-two boundary drifted")
+
+
+def assert_r11_result(value: dict[str, Any]) -> None:
+    if value.get("terminal") != R11_TERMINAL:
+        raise SystemExit(f"ORION-05 R11 terminal drifted: {value.get('terminal')}")
+    authority = value.get("authority")
+    if not isinstance(authority, dict):
+        raise SystemExit("ORION-05 R11 authority object missing")
+    expected_authority = {
+        "algorithmic_theorem": True,
+        "novelty_authority": False,
+        "physical_quantum_resource_authority": False,
+        "production_runtime_value": False,
+        "submission_authority": False,
+        "scope": "frozen R6M six-slot grammar and declared objective only",
+    }
+    for key, expected in expected_authority.items():
+        if authority.get(key) != expected:
+            raise SystemExit(f"ORION-05 R11 authority drifted: {key}")
+    if value.get("protocol_sha256") != sha256(R11_PROTOCOL):
+        raise SystemExit("ORION-05 R11 live protocol digest drifted")
+    if value.get("solver_sha256") != sha256(R11_SOLVER):
+        raise SystemExit("ORION-05 R11 live solver digest drifted")
+    if value.get("pair_checker_sha256") != sha256(R11_PAIR_CHECKER):
+        raise SystemExit("ORION-05 R11 live independent checker digest drifted")
+    gates = value.get("gates")
+    if not isinstance(gates, dict) or not gates or not all(gates.values()):
+        raise SystemExit("ORION-05 R11 executable gates not uniformly green")
+    complete = value.get("complete_n1")
+    if not isinstance(complete, dict) or complete.get("pass") is not True:
+        raise SystemExit("ORION-05 R11 complete n=1 gate not green")
+    if complete.get("denominator") != 729 or complete.get("expected_denominator") != 729:
+        raise SystemExit("ORION-05 R11 complete n=1 denominator drifted")
+    qg7 = value.get("qg7_support2")
+    if not isinstance(qg7, dict) or qg7.get("pass") is not True:
+        raise SystemExit("ORION-05 R11 registered support-two panel not green")
+    isolation = value.get("source_isolation")
+    if not isinstance(isolation, dict) or isolation.get("pass") is not True:
+        raise SystemExit("ORION-05 R11 source isolation not green")
+    independent = value.get("independent_pair_checker")
+    if not isinstance(independent, dict) or independent.get("pass") is not True:
+        raise SystemExit("ORION-05 R11 recorded independent checker not green")
 
 
 def assert_qg9(value: dict[str, Any]) -> None:
@@ -145,6 +193,16 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("cannot parse ORION-05 independent proof sanity output") from exc
     assert_q1(q1)
 
+    r11 = load(R11_RESULT)
+    assert_r11_result(r11)
+    r11_pair_log = raw / "orion05-r11-independent-pair-checker.log"
+    r11_pair_stdout = run([sys.executable, str(R11_PAIR_CHECKER.relative_to(ROOT))], stdout_path=r11_pair_log)
+    if "Q1_R11_INDEPENDENT_FINITE_CHECK_PASS" not in r11_pair_stdout:
+        raise SystemExit("ORION-05 R11 fresh independent pair replay missing PASS terminal")
+    recorded_independent = r11.get("independent_pair_checker", {})
+    if sha256(r11_pair_log) != recorded_independent.get("stdout_sha256"):
+        raise SystemExit("ORION-05 R11 fresh independent pair replay digest differs from committed result")
+
     pytest_log = raw / "q-series-publication-sync-pytest.log"
     pytest_cmd = [
         sys.executable,
@@ -209,6 +267,20 @@ def main(argv: list[str] | None = None) -> int:
             "support2_sharp_failure_patterns": len(q1["class_lemma"]["w2_failures"]),
             "support3_to_8_failures": q1["class_lemma"]["w3_to_w8_failure_count"],
             "stdout_sha256": sha256(q1_stdout),
+            "r11": {
+                "terminal": r11["terminal"],
+                "algorithmic_theorem": r11["authority"]["algorithmic_theorem"],
+                "scope": r11["authority"]["scope"],
+                "novelty_authority": r11["authority"]["novelty_authority"],
+                "production_runtime_value": r11["authority"]["production_runtime_value"],
+                "complete_n1_denominator": r11["complete_n1"]["denominator"],
+                "all_executable_gates": all(r11["gates"].values()),
+                "result_sha256": sha256(R11_RESULT),
+                "protocol_sha256": sha256(R11_PROTOCOL),
+                "solver_sha256": sha256(R11_SOLVER),
+                "pair_checker_sha256": sha256(R11_PAIR_CHECKER),
+                "fresh_pair_replay_sha256": sha256(r11_pair_log),
+            },
         },
         "q_series_publication_sync": {
             "pytest_status": "PASS",
@@ -241,6 +313,7 @@ def main(argv: list[str] | None = None) -> int:
         },
         "raw_artifacts": {
             "q1_stdout": package_rel(q1_stdout),
+            "r11_pair_checker_log": package_rel(r11_pair_log),
             "pytest_log": package_rel(pytest_log),
             "qg9": package_rel(qg9_path),
             "qg12": package_rel(qg12_path),
