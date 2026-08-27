@@ -42,6 +42,32 @@ class IndependentMechanicsTests(unittest.TestCase):
         self.assertEqual(members, ["d", "e"])
         self.assertFalse(used)
 
+    def test_pool_replay_tolerates_only_one_serialized_bound_unit(self) -> None:
+        verifier = load_verifier()
+        rebuilt = {
+            "dataset": {
+                "fold": 2,
+                "members": ["a", "b"],
+                "used_backoff": True,
+                "admissible": ["hgb"],
+                "best_bound": 0.017178063488,
+            }
+        }
+        stored = {
+            "dataset": {
+                **rebuilt["dataset"],
+                "best_bound": 0.017178063489,
+            }
+        }
+        self.assertTrue(verifier.pool_record_replay_matches(rebuilt, stored))
+
+        stored["dataset"]["best_bound"] = 0.017178063490
+        self.assertFalse(verifier.pool_record_replay_matches(rebuilt, stored))
+
+        stored["dataset"]["best_bound"] = 0.017178063489
+        stored["dataset"]["members"] = ["a", "c"]
+        self.assertFalse(verifier.pool_record_replay_matches(rebuilt, stored))
+
 
 if __name__ == "__main__":
     unittest.main()

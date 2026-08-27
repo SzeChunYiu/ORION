@@ -38,6 +38,12 @@ VALIDITY_GATE = 0.10
 MATERIAL_FRACTION = 0.05
 BOOTSTRAP_REPLICATES = 20_000
 BOOTSTRAP_SEED_TEXT = "ORION02_R23_PMLB_DENSITY_BACKOFF_BOOTSTRAP_V1"
+# The executor derives a bound from full-precision primitive outcomes and then
+# serializes it to 12 decimal places.  The receipt stores those primitive
+# outcomes at the same 12-place precision, so independently subtracting the
+# serialized primitives can differ from the serialized original subtraction
+# by one final decimal unit.  No structural field receives this tolerance.
+SERIALIZED_BOUND_ABS_TOL = 1.1e-12
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -119,6 +125,38 @@ def full_state_pool_record(name: str, roles: dict[str, list[str]], meta: dict[st
         "admissible": admissible,
         "best_bound": json_float(min(wc[arm] for arm in admissible)) if admissible else None,
     }
+
+
+def pool_record_replay_matches(rebuilt: dict[str, dict[str, Any]],
+                               stored: dict[str, dict[str, Any]]) -> bool:
+    """Require exact pool replay except for one-unit serialization roundoff.
+
+    Dataset identities, record schemas, folds, selected members, backoff flags,
+    and admissible arms remain byte-semantically exact.  Only ``best_bound``
+    may use the explicitly bounded absolute tolerance justified above.
+    """
+    if set(rebuilt) != set(stored):
+        return False
+    for name in rebuilt:
+        left = rebuilt[name]
+        right = stored[name]
+        if set(left) != set(right):
+            return False
+        for key in left:
+            if key == "best_bound":
+                if left[key] is None or right[key] is None:
+                    if left[key] is not right[key]:
+                        return False
+                elif not math.isclose(
+                    float(left[key]),
+                    float(right[key]),
+                    rel_tol=0.0,
+                    abs_tol=SERIALIZED_BOUND_ABS_TOL,
+                ):
+                    return False
+            elif left[key] != right[key]:
+                return False
+    return True
 
 
 def independent_arm_summary(rows: dict[str, dict[str, Any]]) -> dict[str, Any]:
@@ -264,7 +302,10 @@ def main() -> int:
                 row["fold"] = int(fold)
                 rebuilt[name] = row
         rebuilt = {name: rebuilt[name] for name in sorted(rebuilt)}
-        failures += check(f"full-state pool replay {mode}", rebuilt == stored_records)
+        failures += check(
+            f"full-state pool replay {mode}",
+            pool_record_replay_matches(rebuilt, stored_records),
+        )
         coverage = json_float(float(np.mean([bool(row["admissible"]) for row in rebuilt.values()])))
         expected_cov = {
             MODE_EXACT: payload["coverage"]["r22c_exact_full_state"],
