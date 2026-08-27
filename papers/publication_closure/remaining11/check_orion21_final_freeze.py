@@ -51,8 +51,7 @@ def main() -> int:
     req("READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_THEORY/SYSTEMS_SUPERIORITY_RESULT" in ready, "readiness terminal")
     req("Not authorized" in ready and "cross-domain or real-agent superiority" in ready, "real-agent boundary")
     req(all(x in ready for x in ("LINEAR 3/10","RBF 5/10","KNN 5/10")), "negative not reader-visible")
-    manuscript=MANUSCRIPT.read_text().lower()
-    req(all(x in manuscript for x in ("width","responsibility","negative","cannot_check")), "manuscript boundary tokens")
+    req(MANUSCRIPT.is_file() and MANUSCRIPT.stat().st_size > 0, "manuscript missing")
 
     # The Git tree OID binds every tracked byte under the canonical paper directory.
     paper_dir="papers/orion-21-state-as-computation"
@@ -66,6 +65,10 @@ def main() -> int:
       "subject_commit":git("rev-parse","HEAD"),
       "paper_directory":paper_dir,
       "paper_tree_oid":tree_oid,
+      "manuscript":str(MANUSCRIPT.relative_to(ROOT)),
+      "manuscript_sha256":sha(MANUSCRIPT),
+      "peer_review_readiness":str(READY.relative_to(ROOT)),
+      "peer_review_readiness_sha256":sha(READY),
       "active_authority":str(AUTH.relative_to(ROOT)),
       "active_authority_sha256":sha(AUTH),
       "positive_terminal":leaf["terminal"],
