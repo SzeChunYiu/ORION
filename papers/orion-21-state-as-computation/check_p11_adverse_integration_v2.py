@@ -34,7 +34,7 @@ QUERY_BINDINGS = {
     "query_family_receipt": (
         "papers/orion-21-state-as-computation/top_tier/"
         "P11_QUERY_FAMILY_PHASE_RESULT_RECEIPT_V1.md",
-        "888d40442275fe0980b127a27a5fdf7ca929bade08c7d8692afdc4d70acb4abc",
+        "489f9d667e7d45a24f6146dd5dffde4ad2abb65c8aa20763b8e46b12a1a4dfe3",
     ),
 }
 

@@ -1,0 +1,12 @@
+{
+  "archive_scope": "research/extensions/orion-q only (home-dir quota; runner imports nothing else)",
+  "job_name": "q1-xover",
+  "numpy_pin": "2.3.5",
+  "outputs_mode": "x",
+  "protocol": "research/extensions/orion-q/Q1_XOVER_PROTOCOL_V1.md",
+  "runner": "run_q1_xover.sh",
+  "sbatch": "q1-xover.sbatch",
+  "schema": "orion.q1-xover.lunarc-submission.v1",
+  "source_archive_sha256": "c00eab9252826426b3f44ee50978722af84b8cf6a0861458baedd33d9aec959d",
+  "source_git_sha": "0b9d0d3f3ac9b6c9972db4672a2d6820d395b60f"
+}

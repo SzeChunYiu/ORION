@@ -1,4 +1,4 @@
-# P15 provenance interoperability result receipt V1
+# ORION-25 provenance interoperability result receipt V1
 
 **Run:** GitHub Actions `32655587115`  
 **Artifact:** `p15-provenance-interop-v1`, artifact ID `9497399857`  
@@ -22,7 +22,7 @@
 `22` cases total:
 
 - `18` already-frozen hostile SEI cases;
-- `4` real ORION workflow receipts: P6 bounded ETS positive, P9 authoritative Qwen negative, P10 bounded OCME positive, and P10 native-Lean `CANNOT_CHECK`.
+- `4` real ORION workflow receipts: ORION-16 bounded ETS positive, ORION-19 authoritative Qwen negative, ORION-20 bounded OCME positive, and ORION-20 native-Lean `CANNOT_CHECK`.
 
 The real fixtures carry no new scientific authority; they reuse dispositions already bound by their source receipts.
 
@@ -47,10 +47,10 @@ Wall-time measurement (`~0.03 s` for the small corpus on the hosted runner) is i
 - `SEI-COMPLETE-INVALID-SCIENCE`: complete valid execution provenance remains `INVALID_SCIENCE` when the independent scientific contract is supplied, while provenance-only remains `CANNOT_CHECK`.
 - `SEI-DUAL-AGREE-WRONG`: lane agreement plus replay does not become correctness; imported disposition remains `INVALID_SCIENCE`.
 - `SEI-DUAL-DISAGREE-VERIFIED`: lane disagreement does not block a separately verified valid scientific result.
-- `REAL-P10-NATIVE-LEAN-CANNOT-CHECK`: a real successfully executed provenance record with insufficient scientific coverage remains `CANNOT_CHECK` through both donor representations.
+- `REAL-ORION-20-NATIVE-LEAN-CANNOT-CHECK`: a real successfully executed provenance record with insufficient scientific coverage remains `CANNOT_CHECK` through both donor representations.
 
 ## Scientific disposition
 
-P15 now demonstrates **representation-independent scientific admission above real provenance standards** at bounded scope. It interoperates with a production W3C PROV implementation and a current RO-Crate 1.3/Workflow-Run structural projection rather than requiring proprietary provenance. Provenance supplies execution evidence; the independent scientific/authority record supplies scientific admission. Neither layer is silently collapsed into the other.
+ORION-25 now demonstrates **representation-independent scientific admission above real provenance standards** at bounded scope. It interoperates with a production W3C PROV implementation and a current RO-Crate 1.3/Workflow-Run structural projection rather than requiring proprietary provenance. Provenance supplies execution evidence; the independent scientific/authority record supplies scientific admission. Neither layer is silently collapsed into the other.
 
 This closes the provenance-interoperability and second-implementation gaps for the tested scope. It does not establish superiority over cryptographic proof-of-execution/attestation products, production-scale overhead, broad host/runtime fault diversity, or independent external scientific adjudication.

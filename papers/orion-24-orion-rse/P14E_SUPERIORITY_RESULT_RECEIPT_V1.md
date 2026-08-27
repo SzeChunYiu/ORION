@@ -2,7 +2,7 @@
 
 **Terminal:** `P14E_SPECIFICATION_SEPARATED_SUPERIORITY_SUPPORTED` (first execution; all twelve frozen gates green)
 
-**Result SHA-256:** `1103a62f8bae0976bf09ce7aae8b8c7a5423d196d20b911e59728058ab23d24b`
+**Result SHA-256:** `410db4554585e5ce9b6f94b01cc92d7f116f9fd693b60bca2e1ac1eeb4f51679`
 
 **Freeze-before-execution:** protocol, rule table, and runner committed before the first benchmark execution. Two fresh-subprocess replay, cores byte-identical (`sha256 9950c27c2eebf885…`). Runtime ~4 s per subprocess, single process, stdlib only.
 

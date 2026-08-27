@@ -184,7 +184,7 @@ def test_receipt_keeps_its_historical_blob_identity_and_current_drift_is_explici
         "8bbc5884cde50dc84bb8f3b477cfdb29fe9845f9"
     )
     current_workflow_blob = _git_blob_sha(WORKFLOW_PATH)
-    assert current_workflow_blob == "4be3f42da2696dd662391cbef8a1b3ed1feee8c0"
+    assert current_workflow_blob == "d42f55fae071aec38d4ce34773f4d80e494bae44"
     assert current_workflow_blob != receipt["workflow_registry"]["workflow_blob_sha"]
     assert receipt["workflow_registry"]["preflight_blob_sha"] == _git_blob_sha(
         REPO_ROOT / "src" / "orion" / "self_orion" / "phase2_preflight.py"
