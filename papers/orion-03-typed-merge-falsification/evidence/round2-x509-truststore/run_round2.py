@@ -14,6 +14,7 @@ receipt. Fail-closed on any structural anomaly.
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
 import os
@@ -203,12 +204,17 @@ def corpus_cert_graph(engine):
              "-ext", "authorityKeyIdentifier"],
             capture_output=True, text=True, timeout=30, env=engine.env,
         ).stdout
+        spki = subprocess.run(
+            [engine.binary, "x509", "-in", str(path), "-pubkey", "-noout"],
+            capture_output=True, text=True, timeout=30, env=engine.env,
+        ).stdout
         info[name] = {
             "is_cert": True,
             "subject": subj.split("subject=", 1)[-1].strip(),
             "issuer": issuer.split("issuer=", 1)[-1].strip(),
             "ski": _keyid(ski),
             "aki": _keyid(aki),
+            "spki_sha256": _spki_digest(spki),
         }
     edges = {}
     name_only_edges = []
@@ -228,7 +234,7 @@ def corpus_cert_graph(engine):
             edges.setdefault(base(u), []).append(base(v))
     for k in edges:
         edges[k] = sorted(set(edges[k]))
-    probe_calls = len(files) + 4 * sum(
+    probe_calls = len(files) + 5 * sum(
         1 for v in info.values() if v.get("is_cert")
     )
     return info, edges, sorted(name_only_edges), probe_calls
@@ -241,17 +247,51 @@ def _keyid(ext_output):
     return None
 
 
+def _spki_digest(pubkey_output):
+    b64 = "".join(
+        line
+        for line in pubkey_output.splitlines()
+        if line and not line.startswith("-----")
+    )
+    try:
+        der = base64.b64decode(b64)
+    except Exception:
+        return None
+    if not der:
+        return None
+    return hashlib.sha256(der).hexdigest()
+
+
 def structural_chains(graph_info, edges, leaf_name, held, anchors):
     """All structural chains leaf -> anchor with intermediates in held.
 
     held/anchors are sets of corpus filenames; the leaf itself is exempt from
     the held requirement (it is the request, not store material).
+
+    Two anchor rules mirror the engine: (a) an issuer-chain terminating in an
+    anchor (covers -partial_chain anchoring at a trusted intermediate); and
+    (b) the engine's "last-resort direct leaf match": a trusted certificate
+    with the SAME subject and SAME public key as the leaf anchors at depth 0
+    (a zero-length chain). Purpose/EKU/trust admission on the anchor is
+    policy, not structure, and is intentionally NOT modeled here.
     """
     leaf = base(leaf_name)
     if leaf + ".pem" not in graph_info or not graph_info[leaf + ".pem"].get("is_cert"):
         return []
     anchors = {base(a) for a in anchors}
     held = {base(h) for h in held}
+    chains = []
+    leaf_info = graph_info[leaf + ".pem"]
+    for a in sorted(anchors):
+        a_info = graph_info.get(a + ".pem")
+        if not a_info or not a_info.get("is_cert"):
+            continue
+        if (
+            a_info.get("subject") == leaf_info.get("subject")
+            and a_info.get("spki_sha256") is not None
+            and a_info.get("spki_sha256") == leaf_info.get("spki_sha256")
+        ):
+            chains.append([leaf])
 
     def dfs(node, path):
         if node in anchors:
@@ -266,7 +306,8 @@ def structural_chains(graph_info, edges, leaf_name, held, anchors):
                 continue
             yield from dfs(nxt, path + [node])
 
-    return [c for c in dfs(leaf, [])]
+    chains.extend(dfs(leaf, []))
+    return chains
 
 
 def origin_holds(state):

@@ -183,3 +183,28 @@ Any positive terminal is a mechanism demonstration on upstream-authored
 corpus materials with the pinned native engine: it does not claim a specific
 production incident, whole-PKI security, external human review, novelty of
 X.509 chain building, or journal/submission authority.
+
+## 9. Post-freeze amendment (before any results; repair commit follows 56fc0772)
+
+The first diagnostic execution after the freeze commit surfaced a gap in the
+C3 white-box model, not in the corpus or the task manifest (both unchanged;
+TASK_MANIFEST_V2.json sha256 stays
+ff54dbd02346d8369a4fa11e71ba179cb74fedfcad8280c97dd47e3dc29e5aff):
+
+- 18 of 1962 tasks triggered C3 disagreements, every one of them an
+  upstream `-partial_chain` row of the "last-resort direct leaf match" family
+  (upstream recipe rows 227-239). Under `-partial_chain`, the engine also
+  anchors a chain at depth 0 when the store contains a certificate with the
+  SAME subject and SAME public key as the leaf — even when it is a different
+  file (ee+serverAuth vs ee-cert) — while the white-box model only modeled
+  issuer-chain termination at a trusted certificate.
+- Repair: the structural model gains the second anchor rule (zero-length
+  chain on subject+SPKI identity; SPKI = sha256 of the DER SubjectPublicKeyInfo).
+  Purpose/EKU/trust admission on the anchor remains deliberately unmodeled
+  (policy, not structure): C3 keeps its one-directional soundness
+  (engine-valid implies structurally derivable). All 18 disagreements
+  resolve; no corpus byte, task, or expected label changed.
+- C1 note recorded for the results commit: 5 of 191 upstream rows sit in the
+  FIPS-provider SKIP block and carry the perl runtime token `@prov`; they are
+  not statically executable and are honestly counted as disagreements
+  (anchor rate 186/191 = 97.38% >= 95% gate with them included).
