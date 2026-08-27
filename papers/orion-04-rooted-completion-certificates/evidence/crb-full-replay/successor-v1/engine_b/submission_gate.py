@@ -385,6 +385,54 @@ def terminalize_submission(
         return dict(entry)
 
 
+def terminalize_started_submission(
+    global_root: Path,
+    prebind_path: Path,
+    *,
+    key: str,
+    job_id: int,
+    successor_commit: str,
+    process_exit_code: int,
+    phase: str,
+) -> dict[str, Any]:
+    """Consume a submitted key when its bound job exits, without adjudicating science."""
+
+    if not isinstance(key, str) or not SHA256.fullmatch(key):
+        raise RegistryRefused("submission key is malformed")
+    if type(job_id) is not int or isinstance(job_id, bool) or job_id <= 0:
+        raise RegistryRefused("terminal job id is malformed")
+    if type(successor_commit) is not str or not COMMIT.fullmatch(successor_commit):
+        raise RegistryRefused("terminal successor commit is malformed")
+    if (
+        type(process_exit_code) is not int
+        or isinstance(process_exit_code, bool)
+        or not 0 <= process_exit_code <= 255
+    ):
+        raise RegistryRefused("process exit code is malformed")
+    if type(phase) is not str or not FAILURE_STAGE.fullmatch(phase):
+        raise RegistryRefused("process exit phase is malformed")
+    with _locked_registry(global_root, prebind_path) as (path, registry):
+        matches = [
+            entry for entry in registry["submissions"] if entry.get("nonduplication_key") == key
+        ]
+        if len(matches) != 1 or matches[0].get("status") != "SUBMITTED":
+            raise RegistryRefused("submitted attempt is missing or already terminal")
+        entry = matches[0]
+        if entry.get("job_id") != job_id or entry.get("successor_commit") != successor_commit:
+            raise RegistryRefused("submitted attempt job identity mismatch")
+        outcome = "SUCCESS" if process_exit_code == 0 else "FAILURE"
+        entry["status"] = f"PROCESS_EXIT_{outcome}_KEY_CONSUMED"
+        entry["updated_at_utc"] = _utc_now()
+        entry["process_exit"] = {
+            "terminal": f"ORION04_CRB_PROCESS_EXIT_{outcome}",
+            "exit_code": process_exit_code,
+            "phase": phase,
+        }
+        entry["scientific_authority_delta"] = "NONE"
+        _atomic_registry(path, registry)
+        return dict(entry)
+
+
 def assert_submitted_attempt(
     global_root: Path,
     prebind_path: Path,
@@ -437,6 +485,14 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     terminalize.add_argument("--failure-exit-code", type=int, required=True)
     terminalize.add_argument("--failure-command", required=True)
     terminalize.add_argument("--scheduler-reconciliation", required=True)
+    started = subparsers.add_parser("terminalize-started")
+    started.add_argument("--global-root", type=Path, required=True)
+    started.add_argument("--prebind", type=Path, required=True)
+    started.add_argument("--key", required=True)
+    started.add_argument("--job-id", type=int, required=True)
+    started.add_argument("--successor-commit", required=True)
+    started.add_argument("--process-exit-code", type=int, required=True)
+    started.add_argument("--phase", required=True)
     asserted = subparsers.add_parser("assert-submitted")
     asserted.add_argument("--global-root", type=Path, required=True)
     asserted.add_argument("--prebind", type=Path, required=True)
@@ -478,6 +534,16 @@ def main(argv: Sequence[str] | None = None) -> int:
             failure_exit_code=args.failure_exit_code,
             failure_command=args.failure_command,
             scheduler_reconciliation=args.scheduler_reconciliation,
+        )
+    elif args.command == "terminalize-started":
+        result = terminalize_started_submission(
+            args.global_root,
+            args.prebind,
+            key=args.key,
+            job_id=args.job_id,
+            successor_commit=args.successor_commit,
+            process_exit_code=args.process_exit_code,
+            phase=args.phase,
         )
     else:
         result = assert_submitted_attempt(

@@ -43,6 +43,7 @@ EXECUTION_WALL=14400
 EXECUTION_THREADS=32
 DRUP_THREADS=48
 PHASE=BOOTSTRAP
+REGISTRY_TERMINALIZATION_FAILURE=70
 
 log() { printf '[%s] %s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$*"; }
 
@@ -72,6 +73,19 @@ on_exit() {
   local status="$1"
   set +e
   trap - ERR EXIT
+  if ! python3 "${ENGINE_ROOT}/submission_gate.py" terminalize-started \
+    --global-root "${GLOBAL_REGISTRY_ROOT}" --prebind "${PREBIND}" \
+    --key "${NON_DUPLICATION_KEY}" --job-id "${SLURM_JOB_ID}" \
+    --successor-commit "${AUTHORIZED_COMMIT}" \
+    --process-exit-code "${status}" --phase "${PHASE}" >/dev/null; then
+    printf 'ORION04_CRB_REGISTRY_TERMINALIZATION_FAILED\nexit=%s\nphase=%s\njob_id=%s\n' \
+      "${status}" "${PHASE}" "${SLURM_JOB_ID}" \
+      > "${DURABLE_ROOT}/REGISTRY_TERMINALIZATION_FALLBACK.txt"
+    if [[ "${status}" -eq 0 ]]; then
+      status="${REGISTRY_TERMINALIZATION_FAILURE}"
+      PHASE=REGISTRY_TERMINALIZATION_FAILED
+    fi
+  fi
   python3 "${ENGINE_ROOT}/replay_custody.py" exit-receipt "${DURABLE_ROOT}" \
     --exit-code "${status}" --phase "${PHASE}" >/dev/null 2>&1 || \
     printf 'EXIT_RECEIPT_FALLBACK exit=%s phase=%s\n' "${status}" "${PHASE}" \

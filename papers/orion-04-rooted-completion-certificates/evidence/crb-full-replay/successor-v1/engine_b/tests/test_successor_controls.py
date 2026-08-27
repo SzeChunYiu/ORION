@@ -402,6 +402,105 @@ def test_terminalization_consumes_reserved_and_submitted_entries(tmp_path: Path)
         assert terminal["scientific_authority_delta"] == "NONE"
 
 
+@pytest.mark.parametrize(
+    ("process_exit_code", "expected_status", "expected_terminal"),
+    (
+        (0, "PROCESS_EXIT_SUCCESS_KEY_CONSUMED", "ORION04_CRB_PROCESS_EXIT_SUCCESS"),
+        (17, "PROCESS_EXIT_FAILURE_KEY_CONSUMED", "ORION04_CRB_PROCESS_EXIT_FAILURE"),
+    ),
+)
+def test_started_job_terminalization_consumes_key_and_unblocks_next_authorization(
+    tmp_path: Path,
+    process_exit_code: int,
+    expected_status: str,
+    expected_terminal: str,
+) -> None:
+    prebind = SUCCESSOR_ROOT / "GLOBAL_REGISTRY_PREBIND_V1.json"
+    global_root = tmp_path / "global"
+    global_root.mkdir()
+    first = _authorization(
+        durable_root=str(tmp_path / "durable-first"), registry_root=str(global_root)
+    )
+    first["authorization"]["authorized_by"] = "operator-ticket-ORION04-first"
+    first["nonduplication_key"] = gate.derive_nonduplication_key(first)
+    first_key = str(first["nonduplication_key"])
+    gate.reserve_submission(global_root, prebind, first)
+    gate.update_submission(
+        global_root,
+        prebind,
+        key=first_key,
+        status="SUBMITTED",
+        job_id=424242,
+    )
+
+    terminal = gate.terminalize_started_submission(
+        global_root,
+        prebind,
+        key=first_key,
+        job_id=424242,
+        successor_commit="a" * 40,
+        process_exit_code=process_exit_code,
+        phase="PROCESS_COMPLETE_AWAITING_ADJUDICATION",
+    )
+    assert terminal["status"] == expected_status
+    assert terminal["job_id"] == 424242
+    assert terminal["process_exit"] == {
+        "terminal": expected_terminal,
+        "exit_code": process_exit_code,
+        "phase": "PROCESS_COMPLETE_AWAITING_ADJUDICATION",
+    }
+    assert terminal["scientific_authority_delta"] == "NONE"
+
+    second = _authorization(
+        durable_root=str(tmp_path / "durable-second"), registry_root=str(global_root)
+    )
+    second["authorization"]["authorized_by"] = "operator-ticket-ORION04-second"
+    second["nonduplication_key"] = gate.derive_nonduplication_key(second)
+    assert gate.reserve_submission(global_root, prebind, second)["status"] == "RESERVED"
+
+
+def test_started_job_terminalization_identity_mismatch_stays_active(tmp_path: Path) -> None:
+    prebind = SUCCESSOR_ROOT / "GLOBAL_REGISTRY_PREBIND_V1.json"
+    global_root = tmp_path / "global"
+    global_root.mkdir()
+    first = _authorization(
+        durable_root=str(tmp_path / "durable-first"), registry_root=str(global_root)
+    )
+    first["authorization"]["authorized_by"] = "operator-ticket-ORION04-first"
+    first["nonduplication_key"] = gate.derive_nonduplication_key(first)
+    first_key = str(first["nonduplication_key"])
+    gate.reserve_submission(global_root, prebind, first)
+    gate.update_submission(
+        global_root,
+        prebind,
+        key=first_key,
+        status="SUBMITTED",
+        job_id=424242,
+    )
+
+    with pytest.raises(gate.RegistryRefused, match="job identity"):
+        gate.terminalize_started_submission(
+            global_root,
+            prebind,
+            key=first_key,
+            job_id=424243,
+            successor_commit="a" * 40,
+            process_exit_code=0,
+            phase="PROCESS_COMPLETE_AWAITING_ADJUDICATION",
+        )
+    registry = json.loads((global_root / gate.REGISTRY_FILENAME).read_text())
+    entry = next(row for row in registry["submissions"] if row["nonduplication_key"] == first_key)
+    assert entry["status"] == "SUBMITTED"
+
+    second = _authorization(
+        durable_root=str(tmp_path / "durable-second"), registry_root=str(global_root)
+    )
+    second["authorization"]["authorized_by"] = "operator-ticket-ORION04-second"
+    second["nonduplication_key"] = gate.derive_nonduplication_key(second)
+    with pytest.raises(gate.RegistryRefused, match="attempt is active"):
+        gate.reserve_submission(global_root, prebind, second)
+
+
 def test_submit_script_cancels_and_terminalizes_held_job_on_release_failure(
     tmp_path: Path,
 ) -> None:
@@ -595,6 +694,17 @@ def test_successor_job_orders_checkpoint_before_phase2_and_uses_canonical_path()
     assert "--hold" in submit and "scontrol release" in submit
     assert "scancel" in submit
     assert "terminalize" in submit
+
+
+def test_successor_job_terminalizes_started_registry_on_every_exit() -> None:
+    script = (ENGINE_ROOT / "slurm" / "job_orion04_crb_full_replay.slurm").read_text()
+    on_exit = script[script.index("on_exit()") : script.index("trap 'on_err")]
+    assert "terminalize-started" in on_exit
+    assert '--process-exit-code "${status}"' in on_exit
+    assert '--phase "${PHASE}"' in on_exit
+    assert '--successor-commit "${AUTHORIZED_COMMIT}"' in on_exit
+    assert "ORION04_CRB_REGISTRY_TERMINALIZATION_FAILED" in on_exit
+    assert "REGISTRY_TERMINALIZATION_FAILURE=70" in script
 
 
 def test_donor_disposition_classifies_every_immutable_manifest_entry() -> None:
