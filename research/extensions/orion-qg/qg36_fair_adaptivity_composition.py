@@ -10,7 +10,7 @@ Q34=ROOT/"research/extensions/orion-qg/QG34_ADAPTIVE_PROBE_TREE_RESULTS.json"
 Q35=ROOT/"research/extensions/orion-qg/QG35_SUMMARY_CONDITIONED_FIXED_RESULTS.json"
 Q35_DUAL=ROOT/"development/orion-qg-regime-geometry/QG35_PROTECTED_RUN_RECEIPT_2026-08-22.json"
 OUT=ROOT/"artifacts/orion-qg-qg36-fair-adaptivity-composition.json";TOKEN="ORIONQG_QG36="
-Q34_GIT_BLOB_SHA1="61ad64ed01036b1dd44d7c684c35e43c62534c29"
+Q34_GIT_BLOB_SHA1="0fb6e2a0b6ff7d9960ab09942a402a304a890d71"
 STRICT="QG36_TARE_POSTSUMMARY_ADAPTIVITY_STRICTLY_REDUCES_WORST_CASE_OBSERVATION_COUNT";TIE="QG36_NO_STRICT_POSTSUMMARY_ADAPTIVITY_ADVANTAGE__EXACT_TIE";BAD="QG36_PARENT_INCONSISTENCY__ADAPTIVE_WORSE_THAN_OPTIMAL_FIXED"
 def canon(v:Any)->str:return json.dumps(v,sort_keys=True,separators=(",",":"),allow_nan=False)
 def shaf(p:Path)->str:return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -18,11 +18,18 @@ def git_blob_sha1(p:Path)->str:
  b=p.read_bytes();return hashlib.sha1(b"blob "+str(len(b)).encode()+b"\0"+b).hexdigest()
 def valid_result_digest(d):
  u={k:v for k,v in d.items() if k!='result_digest'};return d.get('result_digest')==hashlib.sha256(canon(u).encode()).hexdigest()
+def no_dupes(pairs):
+ d={}
+ for k,v in pairs:
+  if k in d:raise ValueError("duplicate committed-result keys: "+k)
+  d[k]=v
+ return d
+def load_committed_result(p):return json.loads(p.read_text(),object_pairs_hook=no_dupes)
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--output',type=Path,default=OUT);ns=ap.parse_args()
  if not Q35.exists() or not Q35_DUAL.exists():
   print(TOKEN+canon({'terminal':'QG36_QG35_TARGET_RECEIPT_MISSING__CANNOT_CHECK'}));return 2
- a=json.loads(Q34.read_text());f=json.loads(Q35.read_text());fd=json.loads(Q35_DUAL.read_text());D=a.get('class_depths');F=f.get('class_minima')
+ a=load_committed_result(Q34);f=json.loads(Q35.read_text());fd=json.loads(Q35_DUAL.read_text());D=a.get('class_depths');F=f.get('class_minima')
  q34_blob_ok=git_blob_sha1(Q34)==Q34_GIT_BLOB_SHA1
  aq=q34_blob_ok and a.get('terminal')=='QG34_EXACT_MINIMAX_ADAPTIVE_PROBE_DEPTH_MACHINE_CHECKED' and a.get('both_accept') is True and a.get('EXACT_ADAPTIVE_MINIMAX_AUTHORITY') is True and isinstance(D,list) and len(D)==92 and a.get('worst_case_depth')==max(D)
  raw_digest_ok=valid_result_digest(f)
