@@ -41,8 +41,25 @@ jobs:
           python papers/orion-21-state-as-computation/top_tier/check_decoder_attacks_independent_v1.py > "$RUNNER_TEMP/decoder.json"
           python papers/orion-21-state-as-computation/top_tier/run_donor_compiler_comparator_v1.py > p11_donor_comparator_v1.json
           python papers/orion-21-state-as-computation/top_tier/check_donor_comparator_independent_v1.py > "$RUNNER_TEMP/donor.json"
-      - name: Re-run selective-placement independent implementation
-        run: python papers/orion-21-state-as-computation/top_tier/check_selective_placement_independent_v1.py > "$RUNNER_TEMP/selective.json"
+      - name: Re-run selective-placement independent implementation without mutating tracked evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          tracked='papers/orion-21-state-as-computation/top_tier/p11_selective_placement_independent_v1.json'
+          cp "$tracked" "$RUNNER_TEMP/selective-tracked-before.json"
+          python papers/orion-21-state-as-computation/top_tier/check_selective_placement_independent_v1.py > "$RUNNER_TEMP/selective.json"
+          cp "$tracked" "$RUNNER_TEMP/selective-tracked-live.json"
+          python - "$RUNNER_TEMP/selective-tracked-before.json" "$RUNNER_TEMP/selective-tracked-live.json" <<'PY'
+          import json, sys
+          old=json.load(open(sys.argv[1])); new=json.load(open(sys.argv[2]))
+          assert new['terminal']=='P11_SELECTIVE_PLACEMENT_SECOND_INDEPENDENT_CHECKER_GREEN', new['terminal']
+          old_core=dict(old); new_core=dict(new)
+          for key in ('protocol_sha256','receipt_sha256'):
+              old_core.pop(key,None); new_core.pop(key,None)
+          assert old_core==new_core, 'selective-placement science payload drifted beyond binding hashes'
+          print('ORION21_SELECTIVE_PLACEMENT_SCIENCE_PAYLOAD_STABLE')
+          PY
+          git checkout -- "$tracked"
       - name: Reproduce the registered ten-responsibility negative exactly
         shell: bash
         run: |
@@ -88,6 +105,7 @@ jobs:
             ${{ runner.temp }}/decoder.json
             ${{ runner.temp }}/donor.json
             ${{ runner.temp }}/selective.json
+            ${{ runner.temp }}/selective-tracked-live.json
             ${{ runner.temp }}/query-negative.out
           if-no-files-found: error
           retention-days: 30
