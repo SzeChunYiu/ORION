@@ -1,0 +1,53 @@
+name: orion25-final-content-freeze
+on:
+  workflow_dispatch:
+  push:
+    branches: [chatgpt/orion25-final-content-freeze-20260827]
+    paths:
+      - 'papers/publication_closure/remaining11/check_orion25_final_content_freeze.py'
+      - '.github/workflows/orion25-final-content-freeze.yml'
+permissions: {contents: write}
+concurrency: {group: orion25-final-content-freeze, cancel-in-progress: true}
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion25-final-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: chatgpt/orion25-final-content-freeze-20260827, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install independent-check dependencies
+        run: python -m pip install --disable-pip-version-check -e '.[independent-checks]' cryptography
+      - name: Compile freeze checker
+        run: python -m py_compile papers/publication_closure/remaining11/check_orion25_final_content_freeze.py
+      - name: Re-run provenance independent checker
+        run: python papers/orion-25-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py > "$RUNNER_TEMP/provenance.json"
+      - name: Re-run attestation independent checker
+        run: python papers/orion-25-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py > "$RUNNER_TEMP/attestation.json"
+      - name: Require independent checks to leave paper bytes unchanged
+        run: git diff --exit-code -- papers/orion-25-orion-research-harness
+      - name: Write current-authority whole-tree receipt
+        run: python papers/publication_closure/remaining11/check_orion25_final_content_freeze.py
+      - name: Validate and commit receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          f='papers/publication_closure/receipts/remaining11/ORION-25_SCIENCE_CONTENT_FREEZE_V1.json'
+          python - "$f" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1])); assert x['science_frozen'] and x['paper_content_frozen']; assert not x['submission_authority']; assert x['bounded_findings']['full_key_compromise_false_promotions']==6; print(x['terminal'])
+          PY
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$f"; git diff --check --cached
+          git commit -m 'papers(publication): freeze ORION-25 science and content [orion25-final-frozen]'
+          git push origin HEAD:chatgpt/orion25-final-content-freeze-20260827
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion25-final-freeze-${{ github.sha }}
+          path: |
+            papers/publication_closure/receipts/remaining11/ORION-25_SCIENCE_CONTENT_FREEZE_V1.json
+            ${{ runner.temp }}/provenance.json
+            ${{ runner.temp }}/attestation.json
+          if-no-files-found: error
