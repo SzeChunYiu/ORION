@@ -1,0 +1,67 @@
+{
+  "schema": "ORION.ORION02.Round3ReplacementSourceStatus.v1",
+  "date": "2026-08-27",
+  "status": "RESEARCH_ONLY__NOT_FROZEN__NO_SOURCE_DATA_BYTES_ACCESSED",
+  "aslib_repository_eligible": false,
+  "preferred_candidate": {
+    "name": "PMLB",
+    "repository": "https://github.com/EpistasisLab/pmlb.git",
+    "commit": "7c1f4bdc00136dc2e55c87fa6b8ba6e8af6d1a68",
+    "tree": "ca5d36e9093c2f7360db57198c8c0586a3217a60",
+    "repository_license_blob": "ac14bc5ab72e5c2fc5643d879ad6bcc2be4d260a",
+    "summary_metadata_path": "pmlb/all_summary_stats.tsv",
+    "summary_metadata_blob": "88c393504f3ad6c354f5d178de181543878e7782",
+    "accessed_before_status": [
+      "repository commit metadata",
+      "repository tree metadata",
+      "repository-level MIT license",
+      "summary metadata"
+    ],
+    "not_accessed_before_status": [
+      "dataset bytes",
+      "per-dataset generated algorithm outcomes"
+    ],
+    "metadata_only_candidate_filter": {
+      "task": "classification",
+      "deprecated": false,
+      "gametes": false,
+      "minimum_instances": 200,
+      "maximum_instances": 2000,
+      "minimum_features": 2,
+      "maximum_features": 40,
+      "minimum_classes": 2,
+      "maximum_classes": 6,
+      "maximum_imbalance": 0.4,
+      "candidate_count": 45
+    },
+    "strengths": [
+      "independent of the exposed ASlib repository",
+      "public immutable Git objects are available",
+      "multiple classification datasets support dataset-level held-out evaluation",
+      "the source contains raw prediction tasks rather than precomputed algorithm-selection outcomes"
+    ],
+    "unresolved_before_freeze": [
+      "bind the exact selected dataset objects or LFS object identifiers",
+      "review per-dataset rights and provenance; the repository-level MIT license alone is not final author/legal authority",
+      "predeclare the deterministic model portfolio and all randomness",
+      "define semantically defensible feature groups and acquisition charges without looking at outcomes",
+      "freeze dataset-level folds, balanced-error endpoint, proposal-order baselines, exact finite shield, and mutually exclusive terminals",
+      "add hostile synthetic controls, pinned requirements, and a freeze-only workflow that cannot retrieve datasets"
+    ]
+  },
+  "other_considered_families": [
+    {
+      "name": "auto-sklearn benchmark metadata",
+      "status": "DEFERRED",
+      "reason": "The inspected endpoint is solution quality while feature costs are time-valued, so the decision-loss and acquisition-charge semantics are not yet aligned."
+    },
+    {
+      "name": "SATzilla sources",
+      "status": "REJECTED_FOR_THIS_ROUND",
+      "reason": "No sufficiently clear repository license binding was established, and reuse would add algorithm-selection prior-art and provenance pressure."
+    }
+  ],
+  "round_executed": false,
+  "freeze_materialized": false,
+  "protected_task3_or_p9_touched": false
+}
