@@ -84,7 +84,12 @@ def main() -> int:
         text = path.read_text(errors="replace")
         for token in (POSITIVE_R18, INVALID_R19):
             for match in re.finditer(re.escape(token), text):
-                corrected = corrected_context(text, match.start(), match.end())
+                protocol_object = (
+                    "protocol" in path.name.lower()
+                    or path.suffix.lower() in {".yml", ".yaml"}
+                    and any(marker in text.lower() for marker in ("allowed", "terminals", "protocol"))
+                )
+                corrected = protocol_object or corrected_context(text, match.start(), match.end())
                 row = {
                     "path": path.relative_to(args.root).as_posix(),
                     "token": token,
