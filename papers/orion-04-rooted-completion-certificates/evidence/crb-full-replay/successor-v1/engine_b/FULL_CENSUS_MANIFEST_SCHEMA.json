@@ -1,0 +1,40 @@
+{
+  "$id": "ORION.NQ.EngineB.FullCensusManifestSchemas.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CR-B full-census manifest schema registry",
+  "description": "Declares the schema identifiers every CR-B full-census manifest artifact carries in its 'schema' member. Each identifier names a frozen, verify-side-enforced contract; the enforcing verifier is named per identifier. All digests are lowercase sha256 hex; all JSONL lines are canonical engine_b JSON terminated by a single newline; every sealed object carries its own digest field computed over the canonical bytes with that field removed.",
+  "type": "object",
+  "schemas": {
+    "ORION.NQ.EngineB.FullCensusDeclaredPlan.v1": {
+      "artifact": "FULL_CENSUS_DECLARED_MANIFEST.json",
+      "enforced_by": "full_manifest.verify_partition_plan",
+      "contents": "both declared census scopes, their frozen denominators (98622 and 230983), and the contiguous ordinal partitions (25 and 57) with record_count, sealed by plan_sha256"
+    },
+    "ORION.NQ.EngineB.MatrixActionManifest.v1": {
+      "artifact": "regenerated in-memory and digest-bound into every candidate record",
+      "enforced_by": "full_manifest.verify_matrix_action_manifest",
+      "contents": "the complete GL(3,5) matrix-action enumeration: 1488000 matrices, 9 bytes payload per matrix, sealed by matrix_sha256"
+    },
+    "ORION.NQ.EngineB.CensusCandidate.v1": {
+      "artifact": "candidates/<SCOPE>.candidates.jsonl",
+      "enforced_by": "full_manifest.parse_candidate_line",
+      "contents": "one canonical JSONL line per census record carrying ordinal, sequence, matrix_witness_sha256, orbit_key_sha256, derivation_sha256, sealed by candidate_sha256; outcome-free by construction"
+    },
+    "ORION.NQ.EngineB.MaterializedScope.v1": {
+      "artifact": "bundle/<SCOPE>/SCOPE_MANIFEST.json plus its frozen 4096-record shards",
+      "enforced_by": "full_manifest.verify_materialized_scope",
+      "contents": "the frozen shard layout of one scope: shard paths relative to the scope root, byte counts, payload digests, first and last record ids, ordinal coverage of the whole scope"
+    },
+    "ORION.NQ.EngineB.FullCensusDeclarationReceipt.v1": {
+      "artifact": "FULL_CENSUS_DECLARATION_RECEIPT.json",
+      "enforced_by": "full_manifest.verify_declaration_receipt",
+      "contents": "the input-identity declaration binding origin_main_commit, stack_parent_commit, source_manifest_sha256 and plan_sha256 with zero execution authority and lunarc_submission NOT_SUBMITTED at seal time"
+    },
+    "ORION.NQ.EngineB.ExternalDRUPBatchReceipt.v1": {
+      "artifact": "results/<JOB>/<SCOPE>/DRUP_BATCH_RECEIPT.json",
+      "enforced_by": "batch_external_drup.verify_batch_receipt",
+      "contents": "per-scope external DRUP batch outcome: pinned protocol and checker tree identity, per-line receipts, counts, and the all-UNSAT-verified terminal"
+    }
+  },
+  "independence_clause": "No schema in this registry admits an Engine-A module, canonicalized candidate list, forbidden set, orbit manifest, or aggregate result as an input; frozen denominators enter only as fail-closed expected counts."
+}
