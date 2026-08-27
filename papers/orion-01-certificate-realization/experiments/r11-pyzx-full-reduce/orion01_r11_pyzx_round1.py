@@ -31,6 +31,7 @@ from pyzx.utils import VertexType
 
 
 HERE = Path(__file__).resolve().parent
+REPO_ROOT = HERE.parents[3]
 REGISTRY_PATH = HERE / "ORION01_R11_PYZX_SOURCE_REGISTRY.json"
 PROTOCOL_PATH = HERE / "ORION01_R11_PYZX_ROUND1_PROTOCOL.md"
 RESULTS_PATH = HERE / "ORION01_R11_PYZX_RESULTS.json"
@@ -578,7 +579,7 @@ def hostile_authority_controls() -> dict[str, Any]:
 def _git(*args: str) -> str:
     try:
         return subprocess.check_output(
-            ["git", *args], cwd=HERE, text=True, stderr=subprocess.STDOUT
+            ["git", *args], cwd=REPO_ROOT, text=True, stderr=subprocess.STDOUT
         ).strip()
     except subprocess.CalledProcessError as exc:  # pragma: no cover - CI/repo prerequisite
         raise StudyFailure(f"git binding failed: {' '.join(args)}: {exc.output}") from exc
@@ -609,6 +610,13 @@ def protocol_freeze_binding() -> dict[str, str]:
     return {
         "freeze_commit": freeze_commit,
         "head_at_execution": _git("rev-parse", "HEAD"),
+        "runner_last_change_commit": _git(
+            "log",
+            "--format=%H",
+            "-1",
+            "--",
+            Path(__file__).resolve().relative_to(repo).as_posix(),
+        ),
         "frozen_blob_manifest_sha256": sha256_text(canonical_json(rows)),
     }
 
