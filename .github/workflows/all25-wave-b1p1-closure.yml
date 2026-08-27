@@ -1,0 +1,52 @@
+name: all25-wave-b1p1-closure
+
+on:
+  push:
+    branches:
+      - 'chatgpt/all25-publication-closure-20260827'
+    paths:
+      - 'papers/check_all25_closure_manifest.py'
+      - 'papers/ALL_25_CLOSURE_MANIFEST_V1.json'
+      - 'papers/publication_closure/materialize_wave_b1p1_specialist.sh'
+      - '.github/workflows/all25-wave-b1p1-closure.yml'
+      - 'papers/orion-11-recursive-epistemic-reconstruction/**'
+      - 'papers/orion-12-open-world-scientific-discovery/**'
+      - 'papers/orion-13-global-knowledge-portrait/**'
+      - 'research/revival/p1/confirmatory/v2.2/**'
+      - 'scripts/audit_manuscript_clipping.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: all25-wave-b1p1-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  materialize-bounded-specialists:
+    if: ${{ !contains(github.event.head_commit.message, '[wave-b1p1-materialized]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: chatgpt/all25-publication-closure-20260827
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install verification and publication runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]' PyMuPDF
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            latexmk poppler-utils lmodern \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-bibtex-extra texlive-publishers
+      - name: Materialize ORION-11/12/13 bounded specialist packages
+        run: bash papers/publication_closure/materialize_wave_b1p1_specialist.sh
