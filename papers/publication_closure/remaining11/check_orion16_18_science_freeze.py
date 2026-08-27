@@ -12,7 +12,7 @@ def blob(p): return git('hash-object',str(p))
 def freeze16():
     p=ROOT/'papers/orion-16-formal-epistemic-structures-and-mechanics'
     r=p/'top_tier/P6_REAL_TRANSITION_AUDIT_RESULT_RECEIPT_V1.md'; t=r.read_text(); m=(p/'manuscript/FINAL_V5.md').read_text()
-    for tok in ('P6_REAL_TRANSITION_AUDIT_V1_SUPPORTED','P6_REAL_TRANSITION_AUDIT_SECOND_INDEPENDENT_CHECKER_GREEN','16','4 real-domain families','0 unnecessary reopen'):
+    for tok in ('P6_REAL_TRANSITION_AUDIT_V1_SUPPORTED','P6_REAL_TRANSITION_AUDIT_SECOND_INDEPENDENT_CHECKER_GREEN','16','rocrate-standard','p9-artifact-recovery','p10-native-coverage','p15-provenance-import','0` unnecessary reopen','9` unsafe false-admissible','donor_unsafe_family_count: 4'):
         req(tok in t,f'ORION-16 result token missing: {tok}')
     for tok in ('61,440','51,712','withdraw','tautolog'):
         req(tok.lower() in m.lower(),f'ORION-16 repaired-manuscript boundary missing: {tok}')
@@ -20,7 +20,7 @@ def freeze16():
 def freeze18():
     p=ROOT/'papers/orion-18-epistemic-authority-autonomous-science'
     r=p/'top_tier/P8_REAL_EVIDENCE_DISCHARGE_RESULT_RECEIPT_V1.md'; t=r.read_text()
-    for tok in ('P8_REAL_EVIDENCE_DISCHARGE_V1_SUPPORTED','P8_REAL_EVIDENCE_DISCHARGE_SECOND_INDEPENDENT_CHECKER_GREEN','20','4-domain','zero false promotions'):
+    for tok in ('P8_REAL_EVIDENCE_DISCHARGE_V1_SUPPORTED','P8_REAL_EVIDENCE_DISCHARGE_SECOND_INDEPENDENT_CHECKER_GREEN','20','empirical','formal','multiple_support','systems','zero false promotions','all_support_revocation_blocks: true','partial_revocation_preserves_support: true'):
         req(tok.lower() in t.lower(),f'ORION-18 result token missing: {tok}')
     return {'schema':'ORION.Remaining11.ScienceFreeze.v1','paper_id':'ORION-18','title':'Epistemic Authority in Autonomous Science','date':'2026-08-27','subject_commit':git('rev-parse','HEAD'),'result_receipt':str(r.relative_to(ROOT)),'result_receipt_git_blob':blob(r),'terminal':'ORION_18_BOUNDED_SCIENCE_FROZEN__GENERAL_AUTHORITY_PROMOTION_PENDING','science_frozen':True,'top_tier_ready':False,'submission_authority':False,'bounded_claim':'Bounded scientific-authorization theory plus the frozen 20-case/4-domain real evidence-discharge study with zero false promotions.','remaining_top_tier_work':['sound donor-composition to general-calculus interpretation','real integrated authorization/evidence donor','independent scientific adjudication'],'boundary':'No autonomous scientific authority in the wild or general authority calculus is claimed.'}
 def main():
