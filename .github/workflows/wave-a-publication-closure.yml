@@ -7,14 +7,14 @@ on:
       - 'papers/PUBLICATION_CLOSURE_WAVE_A_V1.md'
       - 'papers/WAVE_A_PUBLICATION_CLOSURE_MANIFEST_V1.json'
       - 'papers/check_wave_a_publication_closure.py'
-      - 'papers/orion-05-tare-expressivity/PUBLICATION_CLOSURE_WAVE_A_V1.md'
-      - 'papers/orion-09-compilation-regime-geometry/PUBLICATION_CLOSURE_WAVE_A_V1.md'
-      - 'papers/orion-10-certified-static-forecasting/PUBLICATION_CLOSURE_WAVE_A_V1.md'
-      - 'papers/orion-14-verified-scientific-discovery/PUBLICATION_CLOSURE_WAVE_A_V1.md'
-      - 'papers/orion-17-epistemic-navigation-open-worlds/PUBLICATION_CLOSURE_WAVE_A_V1.md'
-      - 'papers/orion-19-structured-epistemic-learning/PUBLICATION_CLOSURE_WAVE_A_V1.md'
-      - 'papers/orion-22-adaptive-state-reasoning/PUBLICATION_CLOSURE_WAVE_A_V1.md'
-      - 'papers/orion-23-responsibility-carrying-state/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/publication_closure/**'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/build_q_qg_cited_masters.py'
+      - 'papers/quantum_preprint/**'
+      - 'papers/orion-19-structured-epistemic-learning/manuscript/**'
+      - 'papers/orion-22-adaptive-state-reasoning/manuscript/**'
+      - 'papers/orion-23-responsibility-carrying-state/manuscript/**'
       - '.github/workflows/wave-a-publication-closure.yml'
   push:
     branches:
@@ -23,15 +23,22 @@ on:
       - 'papers/PUBLICATION_CLOSURE_WAVE_A_V1.md'
       - 'papers/WAVE_A_PUBLICATION_CLOSURE_MANIFEST_V1.json'
       - 'papers/check_wave_a_publication_closure.py'
-      - 'papers/orion-*/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/publication_closure/**'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/build_q_qg_cited_masters.py'
+      - 'papers/quantum_preprint/**'
+      - 'papers/orion-19-structured-epistemic-learning/manuscript/**'
+      - 'papers/orion-22-adaptive-state-reasoning/manuscript/**'
+      - 'papers/orion-23-responsibility-carrying-state/manuscript/**'
       - '.github/workflows/wave-a-publication-closure.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: wave-a-publication-closure-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate:
@@ -46,11 +53,57 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Compile checker
-        run: python -m py_compile papers/check_wave_a_publication_closure.py
+      - name: Compile checker and closure receipt builder
+        run: |
+          python -m py_compile papers/check_wave_a_publication_closure.py
+          python -m py_compile papers/publication_closure/build_wave_a_specialist_receipt.py
 
       - name: Validate frozen Wave-A structure
         run: python papers/check_wave_a_publication_closure.py --root "$GITHUB_WORKSPACE" --json
 
       - name: Verify patch hygiene
         run: git diff --check
+
+  materialize-specialist:
+    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '[wave-a-materialized]') }}
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion-publication-closure-wave-a-20260827
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install publication runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            pandoc latexmk poppler-utils zip \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-fonts-extra texlive-bibtex-extra \
+            texlive-publishers lmodern
+
+      - name: Materialize all eight bounded specialist packages and publish receipt
+        shell: bash
+        run: bash papers/publication_closure/materialize_wave_a_specialist.sh
+
+      - name: Archive repository-side closure objects
+        uses: actions/upload-artifact@v4
+        with:
+          name: wave-a-specialist-closure-${{ github.sha }}
+          path: |
+            papers/publication_closure/submissions
+            papers/publication_closure/receipts/WAVE_A_SPECIALIST_CLOSURE_V1.json
+          if-no-files-found: error
+          retention-days: 30
