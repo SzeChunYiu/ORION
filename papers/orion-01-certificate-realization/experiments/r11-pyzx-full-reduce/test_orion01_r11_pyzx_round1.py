@@ -84,6 +84,11 @@ def test_post_review_registry_controls_are_genuine_and_additive() -> None:
         item["disposition"] == "REJECTED"
         for item in committed["mutated_registry_omissions"]
     )
+    assert all(
+        item["registry_surface_removed"] is True
+        and item["rejection_kind"] == "UNREGISTERED_PINNED_SOURCE_CALL"
+        for item in committed["mutated_registry_omissions"]
+    )
     findings = committed["review_findings"]
     assert findings["original_inline_omission_loop"]["disposition"].startswith(
         "NON_IDENTIFYING_TAUTOLOGICAL_COMPARISON"

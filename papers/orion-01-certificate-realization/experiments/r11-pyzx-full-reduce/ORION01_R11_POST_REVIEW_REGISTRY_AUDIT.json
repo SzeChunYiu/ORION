@@ -59,68 +59,97 @@
     {
       "disposition": "REJECTED",
       "omitted": "fuse_simp",
-      "reason": "source call-closure mismatch for spider_simp: observed=['remove_self_loop_simp'] expected=['fuse_simp', 'remove_self_loop_simp']"
+      "reason": "unregistered pinned source call: extra={'spider_simp': ['fuse_simp']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['remove_self_loop_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     },
     {
       "disposition": "REJECTED",
       "omitted": "remove_self_loop_simp",
-      "reason": "source call-closure mismatch for spider_simp: observed=['fuse_simp'] expected=['fuse_simp', 'remove_self_loop_simp']"
+      "reason": "unregistered pinned source call: extra={'spider_simp': ['remove_self_loop_simp']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     },
     {
       "disposition": "REJECTED",
       "omitted": "to_gh",
-      "reason": "source call-closure mismatch for interior_clifford_simp: observed=['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp'] expected=['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh']"
+      "reason": "unregistered pinned source call: extra={'interior_clifford_simp': ['to_gh']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     },
     {
       "disposition": "REJECTED",
       "omitted": "id_simp",
-      "reason": "source call-closure mismatch for interior_clifford_simp: observed=['lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'] expected=['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh']"
+      "reason": "unregistered pinned source call: extra={'interior_clifford_simp': ['id_simp']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     },
     {
       "disposition": "REJECTED",
       "omitted": "pivot_simp",
-      "reason": "source call-closure mismatch for interior_clifford_simp: observed=['id_simp', 'lcomp_simp', 'spider_simp', 'to_gh'] expected=['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh']"
+      "reason": "unregistered pinned source call: extra={'interior_clifford_simp': ['pivot_simp']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     },
     {
       "disposition": "REJECTED",
       "omitted": "lcomp_simp",
-      "reason": "source call-closure mismatch for interior_clifford_simp: observed=['id_simp', 'pivot_simp', 'spider_simp', 'to_gh'] expected=['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh']"
+      "reason": "unregistered pinned source call: extra={'interior_clifford_simp': ['lcomp_simp']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     },
     {
       "disposition": "REJECTED",
       "omitted": "pivot_boundary_simp",
-      "reason": "source call-closure mismatch for clifford_simp: observed=['interior_clifford_simp'] expected=['interior_clifford_simp', 'pivot_boundary_simp']"
+      "reason": "unregistered pinned source call: extra={'clifford_simp': ['pivot_boundary_simp']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     },
     {
       "disposition": "REJECTED",
       "omitted": "pivot_gadget_simp",
-      "reason": "source call-closure mismatch for full_reduce: observed=['BaseGraph.remove_isolated_vertices', 'clifford_simp', 'copy_simp', 'gadget_simp', 'interior_clifford_simp', 'supplementarity_simp'] expected=['BaseGraph.remove_isolated_vertices', 'clifford_simp', 'copy_simp', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp']"
+      "reason": "unregistered pinned source call: extra={'full_reduce': ['pivot_gadget_simp']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     },
     {
       "disposition": "REJECTED",
       "omitted": "gadget_simp",
-      "reason": "source call-closure mismatch for full_reduce: observed=['BaseGraph.remove_isolated_vertices', 'clifford_simp', 'copy_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'] expected=['BaseGraph.remove_isolated_vertices', 'clifford_simp', 'copy_simp', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp']"
+      "reason": "unregistered pinned source call: extra={'full_reduce': ['gadget_simp']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     },
     {
       "disposition": "REJECTED",
       "omitted": "copy_simp",
-      "reason": "source call-closure mismatch for full_reduce: observed=['BaseGraph.remove_isolated_vertices', 'clifford_simp', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'] expected=['BaseGraph.remove_isolated_vertices', 'clifford_simp', 'copy_simp', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp']"
+      "reason": "unregistered pinned source call: extra={'full_reduce': ['copy_simp']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     },
     {
       "disposition": "REJECTED",
       "omitted": "supplementarity_simp",
-      "reason": "source call-closure mismatch for full_reduce: observed=['BaseGraph.remove_isolated_vertices', 'clifford_simp', 'copy_simp', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp'] expected=['BaseGraph.remove_isolated_vertices', 'clifford_simp', 'copy_simp', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp']"
+      "reason": "unregistered pinned source call: extra={'full_reduce': ['supplementarity_simp']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     },
     {
       "disposition": "REJECTED",
       "omitted": "remove_isolated_vertices",
-      "reason": "unclassified source-reachable symbol: BaseGraph.remove_isolated_vertices"
+      "reason": "unregistered pinned source call: extra={'full_reduce': ['g.remove_isolated_vertices']} missing={} observed={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.remove_isolated_vertices', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']} expected={'clifford_simp': ['interior_clifford_simp', 'pivot_boundary_simp'], 'full_reduce': ['ValueError', 'any', 'clifford_simp', 'copy_simp', 'g.types', 'g.vertices', 'gadget_simp', 'interior_clifford_simp', 'pivot_gadget_simp', 'supplementarity_simp'], 'interior_clifford_simp': ['id_simp', 'lcomp_simp', 'pivot_simp', 'spider_simp', 'to_gh'], 'spider_simp': ['fuse_simp', 'remove_self_loop_simp']}",
+      "registry_surface_removed": true,
+      "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL"
     }
   ],
   "mutated_registry_omissions_rejected": 12,
   "paper_id": "ORION-01",
   "raw_science_terminal": "CANNOT_CHECK_MOVE_COMPLETENESS",
   "review_findings": {
+    "first_post_review_mutation_replay": {
+      "disposition": "INTERNAL_FIELD_MISMATCH__NOT_INDEPENDENT_SOURCE_OMISSION_AUTHORITY",
+      "raw_bytes_rewritten": false,
+      "repair": "REMOVE_EACH_SYMBOL_FROM_ALL_REGISTRY_SURFACES_AND_RERUN_UNFILTERED_SOURCE_CALL_AUDIT"
+    },
     "original_inline_omission_loop": {
       "disposition": "NON_IDENTIFYING_TAUTOLOGICAL_COMPARISON__NOT_AUTHORITY",
       "raw_bytes_rewritten": false,

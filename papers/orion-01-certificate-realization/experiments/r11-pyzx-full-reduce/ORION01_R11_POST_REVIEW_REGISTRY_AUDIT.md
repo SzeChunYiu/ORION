@@ -19,14 +19,18 @@ Two auxiliary controls in the frozen runner were insufficient as written:
    comparing the control graph, so it could not by itself exclude an omitted
    unknown call.
 
-The additive verifier repairs both controls without changing outcome bytes. It
-actually removes each of the twelve entries from a copied frozen registry and
-requires `derive_source_registry` to reject every mutant. It also inventories
-**every** call expression in the four pinned PyZX control functions, then
-requires the complete call set to equal the frozen expected inventory. The
-only explicitly non-mutating calls outside the twelve registered rewrite
-macros and control wrappers are `ValueError`, `any`, `g.types`, and
-`g.vertices` in `full_reduce`.
+The first additive mutation replay also left `control_call_graph` unchanged, so
+its rejections arose from inconsistent registry fields rather than an
+independent source omission audit. That intermediate control is likewise
+non-authoritative. The corrected verifier removes each of the twelve entries
+from `registered_symbol_order`, `registered_schemas`, **and** the control call
+graph, then reruns the unfiltered source-call audit. Every mutant is rejected
+because its omitted operation remains visible in the pinned source. It also
+inventories **every** call expression in the four pinned PyZX control
+functions and requires the complete call set to equal the frozen expected
+inventory. The only explicitly non-mutating calls outside the twelve
+registered rewrite macros and control wrappers are `ValueError`, `any`,
+`g.types`, and `g.vertices` in `full_reduce`.
 
 This repair corroborates only the exact pinned-source structural audit. It does
 not establish a complete contextual production registry, a certificate gap,

@@ -86,8 +86,20 @@ def call_name(node: ast.Call) -> str:
     raise study.StudyFailure(f"unclassified call expression: {ast.dump(node.func)}")
 
 
-def full_call_inventory() -> dict[str, list[str]]:
-    registry = study.load_registry()
+def expected_call_inventory(registry: Mapping[str, Any]) -> dict[str, list[str]]:
+    expected: dict[str, list[str]] = {}
+    for parent, children in registry["control_call_graph"].items():
+        normalized = [
+            "g.remove_isolated_vertices"
+            if child == "BaseGraph.remove_isolated_vertices"
+            else child
+            for child in children
+        ]
+        expected[parent] = sorted(normalized + BENIGN_NONMUTATING_CALLS[parent])
+    return expected
+
+
+def full_call_inventory(registry: Mapping[str, Any]) -> dict[str, list[str]]:
     study.verify_installed_source(registry)
     source = study.pyzx_source_root() / "pyzx/simplify.py"
     tree = ast.parse(source.read_text(encoding="utf-8"), filename=str(source))
@@ -100,9 +112,26 @@ def full_call_inventory() -> dict[str, list[str]]:
         name: sorted({call_name(node) for node in ast.walk(functions[name]) if isinstance(node, ast.Call)})
         for name in EXPECTED_ALL_CALLS
     }
-    if observed != EXPECTED_ALL_CALLS:
+    expected = expected_call_inventory(registry)
+    if expected != EXPECTED_ALL_CALLS and registry == study.load_registry():
         raise study.StudyFailure(
-            f"unclassified pinned control-flow call: observed={observed} expected={EXPECTED_ALL_CALLS}"
+            f"frozen registry/full-call expectation mismatch: expected={expected} "
+            f"frozen={EXPECTED_ALL_CALLS}"
+        )
+    if observed != expected:
+        extra = {
+            parent: sorted(set(observed[parent]) - set(expected[parent]))
+            for parent in observed
+            if set(observed[parent]) - set(expected[parent])
+        }
+        missing = {
+            parent: sorted(set(expected[parent]) - set(observed[parent]))
+            for parent in observed
+            if set(expected[parent]) - set(observed[parent])
+        }
+        kind = "unregistered pinned source call" if extra else "missing pinned source call"
+        raise study.StudyFailure(
+            f"{kind}: extra={extra} missing={missing} observed={observed} expected={expected}"
         )
     return observed
 
@@ -117,10 +146,38 @@ def mutation_replay(registry: Mapping[str, Any]) -> list[dict[str, str]]:
         mutated["registered_schemas"] = [
             item for item in mutated["registered_schemas"] if item["symbol"] != symbol
         ]
+        removed_from_graph = 0
+        for parent, children in mutated["control_call_graph"].items():
+            retained = []
+            for child in children:
+                normalized = (
+                    "remove_isolated_vertices"
+                    if child == "BaseGraph.remove_isolated_vertices"
+                    else child
+                )
+                if normalized == symbol:
+                    removed_from_graph += 1
+                else:
+                    retained.append(child)
+            mutated["control_call_graph"][parent] = retained
+        if removed_from_graph != 1:
+            raise study.StudyFailure(
+                f"registry symbol does not have one control-graph surface: {symbol}"
+            )
         try:
-            study.derive_source_registry(mutated)
+            full_call_inventory(mutated)
         except study.StudyFailure as error:
-            rows.append({"omitted": symbol, "disposition": "REJECTED", "reason": str(error)})
+            if "unregistered pinned source call" not in str(error):
+                raise
+            rows.append(
+                {
+                    "omitted": symbol,
+                    "disposition": "REJECTED",
+                    "reason": str(error),
+                    "registry_surface_removed": True,
+                    "rejection_kind": "UNREGISTERED_PINNED_SOURCE_CALL",
+                }
+            )
         else:  # pragma: no cover - enforced by the hostile mutation replay
             raise study.StudyFailure(f"mutated registry omission was accepted: {symbol}")
     return rows
@@ -129,7 +186,7 @@ def mutation_replay(registry: Mapping[str, Any]) -> list[dict[str, str]]:
 def build_receipt() -> dict[str, Any]:
     registry = study.load_registry()
     result = json.loads(RESULT_PATH.read_text(encoding="utf-8"))
-    inventory = full_call_inventory()
+    inventory = full_call_inventory(registry)
     mutations = mutation_replay(registry)
     if result["terminal"] != study.FAIL_TERMINAL:
         raise study.StudyFailure("raw adverse terminal drift")
@@ -158,6 +215,11 @@ def build_receipt() -> dict[str, Any]:
                 "disposition": "INSUFFICIENT_ALONE_TO_EXCLUDE_UNKNOWN_CALLS",
                 "raw_bytes_rewritten": False,
                 "repair": "FULL_PINNED_CONTROL_CALL_INVENTORY_WITH_EXPLICIT_BENIGN_CLASSIFICATION",
+            },
+            "first_post_review_mutation_replay": {
+                "disposition": "INTERNAL_FIELD_MISMATCH__NOT_INDEPENDENT_SOURCE_OMISSION_AUTHORITY",
+                "raw_bytes_rewritten": False,
+                "repair": "REMOVE_EACH_SYMBOL_FROM_ALL_REGISTRY_SURFACES_AND_RERUN_UNFILTERED_SOURCE_CALL_AUDIT",
             },
         },
         "full_pinned_control_call_inventory": inventory,
