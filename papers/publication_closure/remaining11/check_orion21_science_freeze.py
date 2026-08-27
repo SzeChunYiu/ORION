@@ -4,6 +4,12 @@
 This gate freezes only the evidence-backed width-conditioned controlled result.
 It deliberately preserves the ten-responsibility family-scale negative and does
 not grant top-tier, real-system, journal, peer-review, or submission authority.
+
+R0 namespace note: P11 was renamed to ORION-21 and its directory was rebound
+from papers/paper-11-state-as-computation to papers/orion-21-state-as-computation.
+Historical authority SHA-256 values predate that path-only rewrite. A mismatched
+binding is accepted only if exact reverse-normalization of that one directory
+string reproduces the historical SHA-256; no other content rewrite is allowed.
 """
 from __future__ import annotations
 import hashlib, json, subprocess, sys
@@ -16,10 +22,16 @@ READY = P / "PEER_REVIEW_READINESS.md"
 MANUSCRIPT = P / "MANUSCRIPT.md"
 RECEIPT = ROOT / "papers/publication_closure/receipts/remaining11/ORION-21_SCIENCE_FREEZE_V1.json"
 TERMINAL = "ORION_21_BOUNDED_SCIENCE_FROZEN__TOP_TIER_PROMOTION_PENDING"
+R0_NEW = b"papers/orion-21-state-as-computation"
+R0_OLD = b"papers/paper-11-state-as-computation"
+
+
+def sha256_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
 
 
 def sha256(path: Path) -> str:
-    h = hashlib.sha256(); h.update(path.read_bytes()); return h.hexdigest()
+    return sha256_bytes(path.read_bytes())
 
 
 def require(ok: bool, msg: str) -> None:
@@ -28,6 +40,18 @@ def require(ok: bool, msg: str) -> None:
 
 def git(*args: str) -> str:
     return subprocess.check_output(["git", "-C", str(ROOT), *args], text=True).strip()
+
+
+def verify_binding(path: Path, expected: str) -> tuple[str, str]:
+    raw = path.read_bytes()
+    observed = sha256_bytes(raw)
+    if observed == expected:
+        return observed, "DIRECT_CURRENT_SHA256"
+    historical = raw.replace(R0_NEW, R0_OLD)
+    require(historical != raw, f"evidence digest drift without R0 path token: {path}: {observed} != {expected}")
+    reverse_sha = sha256_bytes(historical)
+    require(reverse_sha == expected, f"evidence digest drift beyond exact R0 namespace rewrite: {path}: current={observed} reverse_r0={reverse_sha} expected={expected}")
+    return observed, "R0_EXACT_REVERSE_PATH_EQUIVALENCE"
 
 
 def main() -> int:
@@ -55,9 +79,8 @@ def main() -> int:
     for name, row in authority["evidence_bindings"].items():
         path = ROOT / row["artifact"]
         require(path.is_file(), f"missing evidence binding: {name}: {path}")
-        observed = sha256(path)
-        require(observed == row["sha256"], f"evidence digest drift: {name}: {observed} != {row['sha256']}")
-        checked.append({"name": name, "path": str(path.relative_to(ROOT)), "sha256": observed})
+        observed, mode = verify_binding(path, row["sha256"])
+        checked.append({"name": name, "path": str(path.relative_to(ROOT)), "current_sha256": observed, "authority_sha256": row["sha256"], "binding_mode": mode})
 
     ready = READY.read_text()
     require("READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_THEORY/SYSTEMS_SUPERIORITY_RESULT" in ready, "bounded readiness terminal missing")
@@ -80,6 +103,7 @@ def main() -> int:
         "negative_terminal": neg["terminal"],
         "negative_support_counts": neg["observed_support_counts"],
         "evidence_bindings": checked,
+        "r0_namespace_equivalence": {"new": R0_NEW.decode(), "old": R0_OLD.decode(), "rule": "exact byte replacement only; historical authority SHA must reproduce"},
         "terminal": TERMINAL,
         "science_frozen": True,
         "top_tier_ready": False,
