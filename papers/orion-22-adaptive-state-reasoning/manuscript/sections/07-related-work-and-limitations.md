@@ -1,10 +1,14 @@
 # Relation to current adaptive-compute literature and limitations
 
-Strategic test-time-compute allocation, constrained policies and “when to
-think” methods already own adaptive reasoning amount. Retrieval, compression
-and state-construction systems already own dynamic context. ORION-22's residual is
+Strategic test-time-compute allocation, constrained policies and learned “when
+to think” methods already own adaptive reasoning amount. In particular,
+Kassenaar, Yang and François-Lavet learn a per-problem choice among short and
+long reasoning modes, obtaining substantial token savings on held-out reasoning
+tasks [@kassenaar2026when]. Retrieval, compression and state-construction
+systems likewise own dynamic context. The residual claim here is narrower:
 joint **resource-locus allocation** under one receipt, with an equal-action
-capability across signal ablations.
+capability contract across signal ablations. It is not a claim to have invented
+adaptive test-time compute allocation.
 
 The bounded evidence does not support a universal allocation law. The transfer
 set contains nine constructed exact-domain cases, and its heterogeneous charged
