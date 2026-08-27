@@ -1,0 +1,13 @@
+{
+  "archive_scope": "research/extensions/orion-q only (home-dir quota; runner imports nothing else)",
+  "job_name": "q1-xover",
+  "numpy_pin": "2.3.5",
+  "outputs_mode": "x",
+  "protocol": "research/extensions/orion-q/Q1_XOVER_PROTOCOL_V1.md",
+  "rerun_of": "job 3544037 (determinism checker repair only; see commit 24c3e503)",
+  "runner": "run_q1_xover.sh",
+  "sbatch": "q1-xover.sbatch",
+  "schema": "orion.q1-xover.lunarc-submission.v1",
+  "source_archive_sha256": "5dcaab2daa86c6436995a40ba13b03cc5a2e0ef1eb689e0342436466b62f9e10",
+  "source_git_sha": "24c3e503037ec4a84b5b32e47d6c6e734547ca64"
+}
