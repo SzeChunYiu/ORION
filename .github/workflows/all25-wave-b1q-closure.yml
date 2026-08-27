@@ -1,0 +1,54 @@
+name: all25-wave-b1q-closure
+
+on:
+  push:
+    branches:
+      - 'chatgpt/all25-publication-closure-20260827'
+    paths:
+      - 'papers/ALL_25_CLOSURE_MANIFEST_V1.json'
+      - 'papers/publication_closure/materialize_wave_b1q_specialist.sh'
+      - '.github/workflows/all25-wave-b1q-closure.yml'
+      - 'papers/orion-06-recursive-recovery/**'
+      - 'papers/orion-07-dual-instrument/**'
+      - 'papers/orion-08-typed-state/**'
+      - 'papers/Q_QG_SCIENCE_MANIFESTS_V1.json'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/build_q_qg_cited_masters.py'
+      - 'papers/check_q_qg_science_manifests.py'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: all25-wave-b1q-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  materialize-bounded-specialists:
+    if: ${{ !contains(github.event.head_commit.message, '[wave-b1q-materialized]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: chatgpt/all25-publication-closure-20260827
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install publication runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            pandoc poppler-utils curl zip lmodern \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-bibtex-extra texlive-publishers
+      - name: Materialize ORION-06/07/08 bounded specialist packages
+        run: bash papers/publication_closure/materialize_wave_b1q_specialist.sh
