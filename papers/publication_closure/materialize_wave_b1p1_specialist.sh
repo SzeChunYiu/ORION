@@ -128,9 +128,22 @@ assert_text papers/orion-12-open-world-scientific-discovery/JOURNAL_READINESS.md
 assert_text papers/orion-12-open-world-scientific-discovery/JOURNAL_READINESS.md 'External ORION-vs-baseline superiority remains `CANNOT_CHECK`'
 python - <<'PY'
 from pathlib import Path
-p=Path('papers/orion-12-open-world-scientific-discovery/JOURNAL_READINESS.md').read_text()
-for phrase in ('Information Processing & Management', 'JASIST', 'methods/system-design'):
-    assert phrase in p, phrase
+import re
+p=Path('papers/orion-12-open-world-scientific-discovery/JOURNAL_READINESS.md')
+text=p.read_text(encoding='utf-8')
+required=(
+    r'Paper 2 is now a \*\*methods\s*/\s*critical system-design paper\*\*',
+    r'Primary target:\*\* \*Information Processing\s*&\s*Management\*',
+    r'Fallback:\s*JASIST',
+    r'proof of open-world completeness',
+    r'generic lexical/dense/reasoning-aware/field-aware retrieval novelty',
+)
+missing=[pattern for pattern in required if re.search(pattern,text,re.I|re.S) is None]
+assert not missing, missing
+# The scope must retain the adverse external comparison instead of allowing a
+# positive bounded/offline result to promote the excluded claim.
+assert 'External ORION-vs-baseline superiority remains `CANNOT_CHECK`' in text
+assert 'not an externally supported ORION-vs-baseline superiority paper' in text
 print('ORION12_BOUNDED_TARGET_BOUNDARY=PASS')
 PY
 work="$(build_scratch_pdf papers/orion-12-open-world-scientific-discovery orion12)"
