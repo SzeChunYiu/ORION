@@ -137,6 +137,10 @@ Separate learned/fallback envelopes can permit diagonal pairings that no legal p
 
 This explains why neither one-sided calibration nor paired marginal calibration is sufficient. A useful route certificate must be a certificate of the deployed joint policy.
 
+## 4.1 Cross-language implementation control
+
+A standard-library-only Rust checker now parses the durable R18 and R19 JSON subjects directly and recomputes the no-free-extension, fallback-alignment, witness-compression, lower-image, joint-marginal, route-coarsening, and acquisition-timing controls. It shares repository ownership but not language, parser, or ORION Python implementation. Its authority is same-owner structural corroboration, not external independence.
+
 ## 5. What the paper claims
 
 The strongest defensible claim is:
