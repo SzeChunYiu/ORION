@@ -1,6 +1,6 @@
 # ORION-24 Gate-Attainability Adjudication V1
 
-**Paper:** ORION-ORION-24 — ORION-RSE
+**Paper:** ORION-24 — ORION-RSE
 **Issue:** #669
 **Schema:** `ORION.ORION-24.GateAttainabilityAdjudication.v1`
 **Receipt:** `P14_GATE_ATTAINABILITY_ADJUDICATION_V1.json`

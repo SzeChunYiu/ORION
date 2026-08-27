@@ -79,7 +79,7 @@ def render(data: dict) -> str:
         )
 
     lines = [
-        "# Table P2-S1 — Complete-gold route-stop oracle replay",
+        "# Table ORION-12-S1 — Complete-gold route-stop oracle replay",
         "",
         f"**Authority:** `{expected_authority}`; {n_tasks} frozen tasks. Deterministic repeat seeds were checked for identical route/stop traces and collapsed within task before counting denominators. The authority is an achieved precision tier, not a promoted primary claim.",
         "",

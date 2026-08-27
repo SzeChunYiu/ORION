@@ -1,4 +1,4 @@
-# ORION-ORION-15 protected hidden-cause suite freeze V1
+# ORION-15 protected hidden-cause suite freeze V1
 
 This procedure is the host-side bridge between the design-frozen protocol and a later `EXECUTION_FROZEN` run. It does **not** publish a hidden-cause benchmark into the repository and it does **not** produce empirical evidence.
 

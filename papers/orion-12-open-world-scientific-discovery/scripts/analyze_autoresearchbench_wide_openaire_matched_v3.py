@@ -86,7 +86,9 @@ def analyze_v3(**kwargs: Any) -> dict[str, Any]:
     output_path = Path(kwargs["output_path"])
 
     v3_freeze = v4.load_and_validate_freeze(v3_freeze_path)
-    if v4.git_blob_sha1(v2_freeze_path) != v3_freeze["parent_v2"]["git_blob_sha"]:
+    if not v4.parent_v2_blob_is_bound(
+        v3_freeze["parent_v2"], v4.git_blob_sha1(v2_freeze_path)
+    ):
         raise ValueError("V3 evaluator is not bound to the exact V2 parent blob")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     validate_v3_manifest(

@@ -1,4 +1,4 @@
-# ORION-ORION-13 Journal Gate Check
+# ORION-13 Journal Gate Check
 
 **Status:** PREPARATORY (gold study not yet executed)
 

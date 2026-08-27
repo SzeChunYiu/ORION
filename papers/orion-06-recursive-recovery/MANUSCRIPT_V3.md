@@ -1,6 +1,6 @@
 # Recursive Recovery of Negative Quantum Results: An Auditable Successor Protocol for Research Programmes
 
-**ORION-ORION-02 Manuscript V3 — publication draft**  
+**ORION-02 Manuscript V3 — publication draft**  
 Scientific cut: `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 Foundation: `PUBLICATION_FOUNDATION_V2.md`  
 Graph: `Q2_TRANSITION_GRAPH_V2.json`  

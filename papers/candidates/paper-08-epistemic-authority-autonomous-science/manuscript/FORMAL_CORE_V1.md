@@ -216,7 +216,7 @@ Suppose candidate transformation `m` can rewrite both the predicate deciding its
 #### Proof
 The candidate may choose a constant-accepting predicate or produce candidate-controlled evidence satisfying its own accepting branch. Because no protected external constraint relates admission to the external property, internal acceptance does not imply that property. `\square`
 
-## 9. ORION ORION-11–ORION-15 embeddings
+## 9. ORION-11–ORION-15 embeddings
 
 These embeddings are ownership constraints, not new contributions.
 

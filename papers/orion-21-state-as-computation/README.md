@@ -1,6 +1,6 @@
 # ORION-21 — State as Computation
 
-**Stable ID:** ORION-ORION-21  
+**Stable ID:** ORION-21  
 **Paper issue:** #471  
 **Shared tracks:** #664 accessibility-work accounting · #667 state optionality  
 **Programme:** #670

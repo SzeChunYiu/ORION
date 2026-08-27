@@ -1,4 +1,4 @@
-# ORION-ORION-13 adjudication policy V1
+# ORION-13 adjudication policy V1
 
 ## Frozen sequence
 

@@ -1,4 +1,4 @@
-# ORION-ORION-13 annotation handbook V1
+# ORION-13 annotation handbook V1
 
 **Status:** frozen before final gold labeling and before final model-output inspection.
 

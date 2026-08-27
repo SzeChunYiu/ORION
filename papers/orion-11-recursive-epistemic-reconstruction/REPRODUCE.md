@@ -1,4 +1,4 @@
-# ORION-ORION-11 — reproducing the headline results
+# ORION-11 — reproducing the headline results
 
 Scope: how to verify the powered ORION-11 v2.2.4 primary and disjoint replication,
 regenerate their publication figure, and retain the historical V1 table path.

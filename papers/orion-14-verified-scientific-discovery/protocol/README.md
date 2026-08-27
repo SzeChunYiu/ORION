@@ -1,4 +1,4 @@
-# ORION-ORION-14 prospective authority protocol
+# ORION-14 prospective authority protocol
 
 **Protocol:** `ORION-14.protected-authority.v1`  
 **Status:** `DESIGN_FROZEN`  

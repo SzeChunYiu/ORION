@@ -1,4 +1,4 @@
-# ORION-ORION-14 Claim Ledger — protected V2
+# ORION-14 Claim Ledger — protected V2
 
 > **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
 > subsequently rewritten so that its claims are about the mechanism rather than

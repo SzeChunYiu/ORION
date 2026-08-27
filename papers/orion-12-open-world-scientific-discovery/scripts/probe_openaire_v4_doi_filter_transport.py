@@ -54,6 +54,19 @@ def git_blob_sha1(path: Path) -> str:
     return hashlib.sha1(b"blob " + str(len(body)).encode() + b"\0" + body).hexdigest()
 
 
+def parent_v2_blob_is_bound(parent: dict[str, Any], actual_blob: str) -> bool:
+    # git_blob_sha is the authenticated historical identity (the blob at
+    # head_sha, under path_at_head). The R0 namespace unification renamed the
+    # file and its internal self-references; that post-rename blob is recorded
+    # as post_rename_git_blob_sha and is accepted so same-tree execution
+    # binding keeps verifying. Nothing else may ever match.
+    allowed = {parent.get("git_blob_sha")}
+    if parent.get("post_rename_git_blob_sha"):
+        allowed.add(parent["post_rename_git_blob_sha"])
+    allowed.discard(None)
+    return actual_blob in allowed
+
+
 def _normalized_unique(dois: Iterable[str]) -> list[str]:
     normalized = [v2.v1.normalize_doi(doi) for doi in dois]
     return list(dict.fromkeys(doi for doi in normalized if doi))
@@ -90,7 +103,7 @@ def load_and_validate_freeze(path: Path) -> dict[str, Any]:
     parent = freeze["parent_v2"]
     parent_path = PAPER / "protocol" / Path(parent["path"]).name
     actual_blob = git_blob_sha1(parent_path)
-    if actual_blob != parent.get("git_blob_sha"):
+    if not parent_v2_blob_is_bound(parent, actual_blob):
         raise ValueError(f"V2 parent freeze drift: {actual_blob} != {parent.get('git_blob_sha')}")
     change = freeze["v3_transport_change"]
     if change.get("change_class") != "DOI_CROSSWALK_TRANSPORT_ONLY":

@@ -1,6 +1,6 @@
 # Compilation Regime Geometry: Exact Trade Mechanisms, Intrinsic Support, Objective Certificates, and Boundary Identifiability
 
-**ORION-ORION-09 Manuscript V3 — current-main publication-synthesis draft**  
+**ORION-09 Manuscript V3 — current-main publication-synthesis draft**  
 Scientific refresh cut: `main@c5ba39fef4f25c46de5fb69bf07f50530f4693ca`  
 Foundation: `PUBLICATION_FOUNDATION_V3.md`  
 Prior draft: `MANUSCRIPT_V2.md`

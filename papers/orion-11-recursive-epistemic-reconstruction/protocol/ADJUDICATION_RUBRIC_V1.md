@@ -1,4 +1,4 @@
-# ORION-ORION-11 Adjudication Rubric V1 — MODEL-BASED PANEL
+# ORION-11 Adjudication Rubric V1 — MODEL-BASED PANEL
 
 **Provenance: MODEL-BASED. This rubric governs a panel of language-model judges, not humans.**
 Every label produced under it carries `AdjudicationStatus.MODEL_ADJUDICATED`, which is a tier

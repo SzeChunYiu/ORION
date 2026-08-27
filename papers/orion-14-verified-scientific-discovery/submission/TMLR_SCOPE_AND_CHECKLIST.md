@@ -1,4 +1,4 @@
-# TMLR Scope and Submission Checklist — ORION-ORION-14
+# TMLR Scope and Submission Checklist — ORION-14
 
 **Readiness:** `PEER_REVIEW_READY`  
 Target venue: **Transactions on Machine Learning Research (TMLR)**.

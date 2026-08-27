@@ -1,6 +1,6 @@
 # ORION-03 publication foundation V2 — Dual-instrument research control
 
-**Paper:** ORION-ORION-03  
+**Paper:** ORION-03  
 **Publication cut:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 **Current evidence state:** one completed benchmark instance + scored deferred coordinate; instrument defects D2/D3 remain open  
 **Status:** `SCIENTIFIC_SERIES_INCOMPLETE__PROTOCOL_READY_FOR_ADDITIONAL_INSTANCES`

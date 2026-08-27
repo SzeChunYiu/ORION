@@ -1,4 +1,4 @@
-# ORION-ORION-11 journal-readiness plan — Recursive Epistemic Reconstruction
+# ORION-11 journal-readiness plan — Recursive Epistemic Reconstruction
 
 > **Authority correction 2026-08-24.** This checklist preserves the scientific
 > audit and its historical negative evidence, but it no longer promotes that

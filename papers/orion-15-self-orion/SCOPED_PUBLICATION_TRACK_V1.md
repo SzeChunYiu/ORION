@@ -1,4 +1,4 @@
-# ORION-ORION-15 scoped publication track V1
+# ORION-15 scoped publication track V1
 
 **Status:** `SCOPED_NON_SELF_PROMOTION_TRACK_SELECTED`  
 **Date:** 2026-08-20

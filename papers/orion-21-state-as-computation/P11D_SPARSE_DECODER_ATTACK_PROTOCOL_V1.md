@@ -1,6 +1,6 @@
 # P11D Sparse-Decoder Hostile Attack Protocol V1
 
-**Paper:** ORION-ORION-21 — State as Computation  
+**Paper:** ORION-21 — State as Computation  
 **Issue:** #471  
 **Protocol:** `ORION.P11D.SparseDecoderAttack.v1`  
 **Frozen:** 2026-08-21 before protected execution.

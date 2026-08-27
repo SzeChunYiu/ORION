@@ -1,4 +1,4 @@
-# ORION-ORION-15 journal-package snapshot
+# ORION-15 journal-package snapshot
 
 **Package status:** `SUPERSEDED`; not peer-review ready.  
 **General scientific terminal:** `CANNOT_CHECK`.  

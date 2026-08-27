@@ -124,7 +124,7 @@ jobs:
           grep -Fq 'Anonymous' build/q3_tmlr/pdf.txt
           grep -Fq 'References' build/q3_tmlr/pdf.txt
           grep -Fq '39,489' build/q3_tmlr/pdf.txt
-          grep -Fq 'Q3-R2' build/q3_tmlr/pdf.txt
+          grep -Fq 'ORION-03-R2' build/q3_tmlr/pdf.txt
           if grep -Eq '\[@[A-Za-z0-9_:-]+' build/q3_tmlr/pdf.txt; then
             echo 'Q3_TMLR_UNRESOLVED_CITATION_TOKEN=FAIL'
             exit 1

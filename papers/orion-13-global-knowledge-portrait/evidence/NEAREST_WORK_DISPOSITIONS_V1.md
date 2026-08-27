@@ -1,4 +1,4 @@
-# ORION-ORION-13 nearest-work dispositions V1 — journal-readiness audit
+# ORION-13 nearest-work dispositions V1 — journal-readiness audit
 
 **Status:** COMPREHENSIVE, covering all 13 mechanism families requested in issue #100.  
 **Supersedes:** `NEAREST_WORK_ATLAS.md` Paper III rows, `NEAREST_WORK_SUPPLEMENT_2026-08-16.md` Paper III section.  

@@ -1,8 +1,8 @@
-# ORION-ORION-21 reopen protocol V3 — content-bound longitudinal evaluation and native proof-mechanism transfer
+# ORION-21 reopen protocol V3 — content-bound longitudinal evaluation and native proof-mechanism transfer
 
 **Status:** prospective reopen protocol; historical ORION-20/ORION-21 bytes and terminals remain immutable.  
 **Date:** 2026-08-20.  
-**Paper identity:** ORION-ORION-21, Content-Bound Mathematical Evaluation (#471).  
+**Paper identity:** ORION-21, Content-Bound Mathematical Evaluation (#471).  
 **Historical source directory:** this directory retains its original `paper-10-*` path by preservation policy.
 
 ## 1. Why ORION-21 must reopen around a new residual

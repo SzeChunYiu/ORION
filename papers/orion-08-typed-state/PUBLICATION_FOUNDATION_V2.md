@@ -1,6 +1,6 @@
 # ORION-04 publication foundation V2 — Typed/scoped partial-knowledge state
 
-**Paper:** ORION-ORION-04  
+**Paper:** ORION-04  
 **Publication cut:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 **Evidence base:** six exact-synthetic mechanism-isolation worlds + bounded N1-C/N2-F5B results  
 **Status:** `SCIENCE_COMPLETE_FOR_BOUNDED_SYNTHESIS__MANUSCRIPT_PACKAGE_REBUILD_REQUIRED`

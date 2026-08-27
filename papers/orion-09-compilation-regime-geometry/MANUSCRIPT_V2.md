@@ -1,6 +1,6 @@
 # Compilation Regime Geometry: Exact Trade Mechanisms, Objective Phases, and Boundary Identifiability Across Quantum Compiler Families
 
-**ORION-ORION-09 Manuscript V2 — publication-synthesis draft**  
+**ORION-09 Manuscript V2 — publication-synthesis draft**  
 Publication cut: `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 Claim authority: `CLAIM_LEDGER.md`, `PUBLICATION_FOUNDATION_V2.md`, committed QG wave-1/wave-2 receipts
 

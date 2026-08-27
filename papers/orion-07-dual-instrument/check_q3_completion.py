@@ -108,7 +108,7 @@ def main() -> int:
     contam = Q3 / "Q3_CONTAMINATION_DISPOSITION_2026-08-22.md"
     if contam.is_file():
         body = contam.read_text(encoding="utf-8")
-        for token in ("Q3-V1 / QG-7d", "Q3-V2 / QG-15c", "CONTAMINATED"):
+        for token in ("ORION-03-V1 / QG-7d", "ORION-03-V2 / QG-15c", "CONTAMINATED"):
             if token not in body:
                 errors.append(f"CONTAMINATED_SLOT_VISIBILITY_LOST:{token}")
 

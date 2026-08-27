@@ -1,6 +1,6 @@
 # P11H Execution Receipt V1
 
-**Paper:** ORION-ORION-21 — State as Computation
+**Paper:** ORION-21 — State as Computation
 **Protocol:** `ORION.P11H.PooledSparsityLadderAttack.v1`
 (`P11H_POOLED_SPARSITY_LADDER_PROTOCOL_V1.md`, frozen 2026-08-22 before the preflight)
 **Executable:** `run_p11h_pooled_sparsity_ladder_v1.py`

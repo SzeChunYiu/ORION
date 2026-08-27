@@ -1,4 +1,4 @@
-# ORION-ORION-13 scoped publication track V2
+# ORION-13 scoped publication track V2
 
 **Status:** `SCOPED_IDENTITY_AUTHORITY_TRACK_SELECTED`  
 **Selection update:** 2026-08-20  

@@ -70,7 +70,7 @@ def test_bootstrap_package_validates() -> None:
     assert summary["counts"] == {
         "components": 14,
         "theorem_authority_rows": 10,
-        "issues": 159,
+        "issues": 167,
         "pending_issue_audits": 0,
         "jobs": 8,
         "gaps": 9,

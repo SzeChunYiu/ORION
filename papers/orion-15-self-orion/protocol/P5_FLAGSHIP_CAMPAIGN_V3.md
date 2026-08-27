@@ -1,4 +1,4 @@
-# ORION-ORION-15 flagship campaign V3 — responsibility-gated self-improvement under protected fresh transfer
+# ORION-15 flagship campaign V3 — responsibility-gated self-improvement under protected fresh transfer
 
 **Status:** prospective research protocol; no result is implied by this document.  
 **Date:** 2026-08-20.  
@@ -324,7 +324,7 @@ Before any final protected outcome:
 
 ## 15. Paper-closing evidence package
 
-A true `ORION-ORION-15 = PEER_REVIEW_READY` terminal should contain:
+A true `ORION-15 = PEER_REVIEW_READY` terminal should contain:
 
 - exact protected run manifest and content hashes;
 - raw candidate pool and per-policy decisions;

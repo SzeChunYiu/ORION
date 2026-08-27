@@ -1,4 +1,4 @@
-# ORION-ORION-15 prospective self-improvement protocol
+# ORION-15 prospective self-improvement protocol
 
 ## V1 — hidden-cause fresh transfer
 

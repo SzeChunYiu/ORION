@@ -12,7 +12,7 @@
 
 ## 1. Purpose and authority boundary
 
-This map is the **only** sanctioned adapter from external SciFact gold labels into ORION ORION-14
+This map is the **only** sanctioned adapter from external SciFact gold labels into ORION-14
 semantic-support and authority-terminal states. It is frozen **before** any SciFact scoring so
 that label semantics cannot be tuned to outcomes. It is an adapter, not an adjudicator: it
 creates no external scientific authority and performs no adjudication of its own.

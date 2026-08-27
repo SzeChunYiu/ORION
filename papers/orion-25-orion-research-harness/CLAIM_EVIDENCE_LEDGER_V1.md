@@ -1,6 +1,6 @@
 # ORION-25 Scientific Execution Integrity — claim/evidence ledger V1
 
-**Paper:** ORION-ORION-25  
+**Paper:** ORION-25  
 **Programme:** #977  
 **Paper issue:** #979  
 **Current strongest terminal:** `P15_SEI_BOUNDED_FAULT_V1_GREEN`  

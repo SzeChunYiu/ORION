@@ -1,4 +1,4 @@
-# ORION ORION-16–ORION-25 top-tier promotion programme V1
+# ORION-16–ORION-25 top-tier promotion programme V1
 
 **Owner issue:** #977  
 **Date:** 2026-08-23  

@@ -94,7 +94,7 @@ R0–R3 established that typed/scoped research state can carry decision informat
 - R0: scoped failure state improves success/cost relative to raw history in synthetic research worlds.
 - R1: typed scoped state perfectly separates the registered operator-arbitration cases.
 - R2: once the same complete typed state is given to a generic learner, transfer is perfect; no ORION-specific policy advantage survives.
-- R3B: local independent receipts have an exact 1/2 ceiling on balanced hostile pairs while joint obligation binding reaches 1.0, but the mechanism is owned by existing ORION ORION-17/ORION-14 binding and is absorbed rather than rebranded as a new method.
+- R3B: local independent receipts have an exact 1/2 ceiling on balanced hostile pairs while joint obligation binding reaches 1.0, but the mechanism is owned by existing ORION-17/ORION-14 binding and is absorbed rather than rebranded as a new method.
 - R3E: protected skill admission leaves a bounded positive in exact-synthetic scope, without establishing real quantum-algorithm invention.
 
 The methodological point is that a positive-looking mechanism can be scientifically useful while still yielding zero novelty after donor subtraction.

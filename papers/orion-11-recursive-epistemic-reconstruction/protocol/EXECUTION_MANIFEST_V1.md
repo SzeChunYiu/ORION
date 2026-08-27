@@ -1,4 +1,4 @@
-# ORION-ORION-11 Execution Manifest V1
+# ORION-11 Execution Manifest V1
 
 **Provenance.** This manifest binds the frozen protocol `ORION-11.hidden-formulation.v1.1`
 (DESIGN_FROZEN, `outcome_accessed: false`) to concrete execution bindings.

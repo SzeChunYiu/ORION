@@ -1,4 +1,4 @@
-# ORION-ORION-15 fresh-transfer policy V1
+# ORION-15 fresh-transfer policy V1
 
 ## Why replay is insufficient
 

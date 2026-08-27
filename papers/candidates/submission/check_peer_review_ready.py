@@ -161,7 +161,7 @@ def main() -> None:
             "literature terminal missing")
 
     claims = text(CAND / "SUBMISSION_CLAIM_AUTHORITY_V1.md")
-    for paper in ("P6-S1", "P7-S1", "P8-S1"):
+    for paper in ("ORION-16-S1", "ORION-17-S1", "ORION-18-S1"):
         require(paper in claims, f"submission claim authority missing for {paper}")
     require("SUBMISSION_HEADLINE_AUTHORITY = COMPLETE" in claims,
             "submission claim-authority terminal missing")

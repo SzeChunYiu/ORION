@@ -1,4 +1,4 @@
-# ORION-ORION-13 scoped venue decision V1
+# ORION-13 scoped venue decision V1
 
 **Checked:** 2026-08-18  
 **Track:** `SCOPED_PUBLICATION_TRACK_V1.md`  

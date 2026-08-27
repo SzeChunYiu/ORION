@@ -121,4 +121,4 @@ Many scientific spaces cannot be objectively enumerated. Topology is partly repr
 
 ## 10. Conclusion
 
-The candidate thesis is that open-world research is not only a problem of choosing paths but of maintaining justified orientation in a space whose structure may itself be wrong. ORION-17 will survive only if an evolving-topology navigation model yields a distinct formal and empirical contribution beyond existing graph/search/planning work and ORION ORION-12.
+The candidate thesis is that open-world research is not only a problem of choosing paths but of maintaining justified orientation in a space whose structure may itself be wrong. ORION-17 will survive only if an evolving-topology navigation model yields a distinct formal and empirical contribution beyond existing graph/search/planning work and ORION-12.
