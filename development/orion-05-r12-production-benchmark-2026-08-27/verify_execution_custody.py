@@ -79,9 +79,15 @@ def main() -> int:
     assert len(first) == comparison["comparison"]["attempt_count_each"] == 120
 
     sys.path.insert(0, str(ROOT))
-    from papers.orion_05_r12_production_benchmark import verify_result_bundle
+    from papers.orion_05_r12_production_benchmark import (
+        compare_attempt_scientific_outcomes,
+        verify_result_bundle,
+    )
 
     result = verify_result_bundle(CANONICAL)
+    scientific_comparison = compare_attempt_scientific_outcomes(
+        ATTEMPT_1 / "RAW_ATTEMPTS.jsonl", ATTEMPT_2 / "RAW_ATTEMPTS.jsonl"
+    )
     failure = load(ATTEMPT_1 / "FAILURE_RECEIPT.json")
     environment = load(ATTEMPT_2 / "BENCHMARK_ENVIRONMENT.json")
     assert result["terminal"] == status["terminal"] == custody["science_terminal"]
@@ -90,6 +96,13 @@ def main() -> int:
     assert result["full_subject"]["support_two_timeouts"] == 6
     assert result["full_subject"]["unrestricted_complete"] is True
     assert result["decision"]["positive_rule_satisfied"] is False
+    assert scientific_comparison == {
+        "attempt_ids_equal": True,
+        "attempts_compared": 120,
+        "scientific_mismatch_count": 0,
+        "scientific_mismatch_attempt_ids": [],
+        "status_counts": {"COMPLETED": 108, "TIMEOUT": 12},
+    }
     assert failure["terminal"] == custody["attempt_1"]["disposition"]
     assert failure["authority"]["round2_consumed_by_this_wrapper_failure"] is False
     assert environment["commit"] == custody["frozen_chain"]["defect_only_repair_commit"]

@@ -45,6 +45,9 @@ R11_VERIFIER_SOURCE = PAPER / "orion05_r11_sparse_equivalence_verify.py"
 ALGORITHMS = ("support_two", "unrestricted_dp")
 FULL = "FULL_SUBJECT"
 METRICS = ("wall_ns", "cpu_ns", "peak_rss_kib", "verification_ns")
+MACHINE_SPECIFIC_ATTEMPT_FIELDS = frozenset(
+    {"pid", "cpu_affinity", "wall_ns", "cpu_ns", "peak_rss_kib", "verification_ns"}
+)
 
 
 def canonical_json(value: Any) -> str:
@@ -734,6 +737,56 @@ def verify_result_bundle(
     if committed["terminal"] not in set(protocol["decision_rule"]["terminals"].values()):
         raise AssertionError("R12 terminal is not predeclared")
     return committed
+
+
+def compare_attempt_scientific_outcomes(first_raw: Path, second_raw: Path) -> dict[str, Any]:
+    """Compare retry bundles while excluding machine-specific measurements.
+
+    Attempt 1 reached every child measurement but its post-measurement wrapper
+    failed.  A defect-only successor may therefore corroborate the scientific
+    rows, but timing, process identity, affinity and RSS remain execution-local
+    and are never required to be byte-identical.
+    """
+
+    def load(path: Path) -> dict[str, dict[str, Any]]:
+        rows = [json.loads(line) for line in path.read_text().splitlines() if line]
+        ids = [row.get("attempt_id") for row in rows]
+        if None in ids or len(ids) != len(set(ids)):
+            raise AssertionError(f"missing or duplicate attempt ID in {path}")
+        return {str(row["attempt_id"]): row for row in rows}
+
+    first = load(first_raw)
+    second = load(second_raw)
+    all_ids = sorted(set(first) | set(second))
+    mismatches = []
+    for attempt_id in all_ids:
+        if attempt_id not in first or attempt_id not in second:
+            mismatches.append(attempt_id)
+            continue
+        first_science = {
+            key: value
+            for key, value in first[attempt_id].items()
+            if key not in MACHINE_SPECIFIC_ATTEMPT_FIELDS
+        }
+        second_science = {
+            key: value
+            for key, value in second[attempt_id].items()
+            if key not in MACHINE_SPECIFIC_ATTEMPT_FIELDS
+        }
+        if first_science != second_science:
+            mismatches.append(attempt_id)
+
+    status_counts: dict[str, int] = {}
+    for row in second.values():
+        status = str(row.get("status"))
+        status_counts[status] = status_counts.get(status, 0) + 1
+    return {
+        "attempt_ids_equal": set(first) == set(second),
+        "attempts_compared": len(all_ids),
+        "scientific_mismatch_count": len(mismatches),
+        "scientific_mismatch_attempt_ids": mismatches,
+        "status_counts": dict(sorted(status_counts.items())),
+    }
 
 
 def parse_projection(value: str) -> int | str:

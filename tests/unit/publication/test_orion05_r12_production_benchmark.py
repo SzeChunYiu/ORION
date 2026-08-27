@@ -207,3 +207,43 @@ def test_archive_deployment_resolves_exact_bound_source_commit(tmp_path) -> None
     assert resolve_source_commit(tmp_path, {"ORION05_R12_SOURCE_COMMIT": commit}) == commit
     with pytest.raises(AssertionError):
         resolve_source_commit(tmp_path, {"ORION05_R12_SOURCE_COMMIT": "0" * 40})
+
+
+def test_committed_round2_bundle_replays_to_frozen_null_terminal() -> None:
+    from papers.orion_05_r12_production_benchmark import verify_result_bundle
+
+    result_dir = Path(
+        "papers/orion-05-tare-expressivity/rounds/r12-production-benchmark/result"
+    )
+    verified = verify_result_bundle(result_dir)
+    assert verified["terminal"] == "ORION05_R12_EXACT_BUT_NO_PRODUCTION_VALUE"
+    assert verified["rounds"] == {
+        "consumed": 2,
+        "maximum": 3,
+        "science_status": "OPEN",
+    }
+    assert verified["attempt_counts"] == {
+        "completed": 108,
+        "errors": 0,
+        "timeouts": 12,
+        "total": 120,
+    }
+
+
+def test_attempt1_and_attempt2_have_identical_scientific_outcomes() -> None:
+    from papers.orion_05_r12_production_benchmark import (
+        compare_attempt_scientific_outcomes,
+    )
+
+    packet = Path("development/orion-05-r12-production-benchmark-2026-08-27")
+    comparison = compare_attempt_scientific_outcomes(
+        packet / "attempt-1-job-3549585" / "RAW_ATTEMPTS.jsonl",
+        packet / "attempt-2-job-3549607" / "RAW_ATTEMPTS.jsonl",
+    )
+    assert comparison == {
+        "attempt_ids_equal": True,
+        "attempts_compared": 120,
+        "scientific_mismatch_count": 0,
+        "scientific_mismatch_attempt_ids": [],
+        "status_counts": {"COMPLETED": 108, "TIMEOUT": 12},
+    }
