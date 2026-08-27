@@ -1,0 +1,74 @@
+name: one-shot-fix-orion-02-cnbr2-d1
+
+on:
+  push:
+    branches:
+      - chatgpt/orion-02-cnbr2-defect-recovery-20260827
+    paths:
+      - '.github/workflows/one-shot-fix-orion-02-cnbr2-d1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply-defect-only-repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion-02-cnbr2-defect-recovery-20260827
+          fetch-depth: 0
+
+      - name: Verify frozen defective subject and protocol
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/experiments'
+          test "$(git rev-parse HEAD:$root/certified_neighborhood_conformal.py)" = '2608d414b2ef3e92d9f6ab3d9e3ce06d6b035cd8'
+          test "$(git rev-parse HEAD:$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_PROTOCOL_V1.md)" = 'de7c303c6a0f9374d07ff7259dcbfe5557e24c66'
+
+      - name: Apply exactly two nearest-anchor expression repairs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('papers/orion-02-fiberguard-finite-fibre/experiments/certified_neighborhood_conformal.py')
+          text = path.read_text()
+          predictor_old = '    d1 = distances[:, 0]\n'
+          predictor_new = '    d1 = distances[np.arange(len(phi_query)), neighbour_rows[:, 0]]\n'
+          receipt_old = '''        nearest = pairwise_distances(
+              representations[arm["representation"]][2],
+              representations[arm["representation"]][0],
+          )[:, 0]
+          '''
+          receipt_new = '''        nearest = pairwise_distances(
+              representations[arm["representation"]][2],
+              representations[arm["representation"]][0],
+          ).min(axis=1)
+          '''
+          assert text.count(predictor_old) == 1, text.count(predictor_old)
+          assert text.count(receipt_old) == 1, text.count(receipt_old)
+          text = text.replace(predictor_old, predictor_new)
+          text = text.replace(receipt_old, receipt_new)
+          assert 'd1 = distances[:, 0]' not in text
+          path.write_text(text)
+          PY
+          rm .github/workflows/one-shot-fix-orion-02-cnbr2-d1.yml
+
+      - name: Verify patch scope and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          changed="$(git diff --name-only)"
+          printf '%s\n' "$changed"
+          test "$changed" = $'.github/workflows/one-shot-fix-orion-02-cnbr2-d1.yml\npapers/orion-02-fiberguard-finite-fibre/experiments/certified_neighborhood_conformal.py'
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A .github/workflows/one-shot-fix-orion-02-cnbr2-d1.yml papers/orion-02-fiberguard-finite-fibre/experiments/certified_neighborhood_conformal.py
+          git commit -m 'fix(ORION-02): use rowwise nearest anchor in C-NBR2'
+          git push origin HEAD:refs/heads/chatgpt/orion-02-cnbr2-defect-recovery-20260827
