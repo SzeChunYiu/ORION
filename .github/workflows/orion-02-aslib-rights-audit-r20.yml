@@ -1,0 +1,54 @@
+name: orion-02-aslib-rights-audit-r20
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/audit_aslib_rights_r20.py'
+      - '.github/workflows/orion-02-aslib-rights-audit-r20.yml'
+  pull_request:
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/audit_aslib_rights_r20.py'
+      - '.github/workflows/orion-02-aslib-rights-audit-r20.yml'
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  rights-preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Audit pinned public source twice
+        shell: bash
+        env: {GITHUB_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          script='papers/orion-02-fiberguard-finite-fibre/audit_aslib_rights_r20.py';python -m py_compile "$script"
+          python "$script" --output "$RUNNER_TEMP/a.json" | tee "$RUNNER_TEMP/a.txt"
+          python "$script" --output "$RUNNER_TEMP/b.json" | tee "$RUNNER_TEMP/b.txt"
+          cmp "$RUNNER_TEMP/a.json" "$RUNNER_TEMP/b.json";cmp "$RUNNER_TEMP/a.txt" "$RUNNER_TEMP/b.txt"
+      - name: Preserve legal ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          r=json.loads((Path(os.environ['RUNNER_TEMP'])/'a.json').read_text())
+          assert r['schema']=='ORION.ORION02.ASlibRightsAudit.R20.v1'
+          assert r['commit']=='551b22beef8df17de59286b4822ef720e0aa4d6f'
+          assert len(r['scenarios'])==5 and all(row['present_at_commit'] for row in r['scenarios'])
+          assert r['authority']['legal_interpretation_complete'] is False
+          assert r['authority']['redistribution_authorized'] is False
+          assert r['authority']['journal_data_rights_complete'] is False
+          print('ORION_02_ASLIB_RIGHTS_FAIL_CLOSED',r['terminal'])
+          PY
+      - run: git diff --check
+      - name: Stage rights packet
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/orion-02-aslib-rights";mkdir -p "$out";cp "$RUNNER_TEMP/a.json" "$out/ASLIB_RIGHTS_AUDIT_R20.json";cp "$RUNNER_TEMP/a.txt" "$out/TERMINAL.txt";sha256sum "$out"/* > "$out/SHA256SUMS"
+      - uses: actions/upload-artifact@v4
+        with: {name: orion-02-aslib-rights-r20, path: '${{ runner.temp }}/orion-02-aslib-rights/', if-no-files-found: error, retention-days: 30}
