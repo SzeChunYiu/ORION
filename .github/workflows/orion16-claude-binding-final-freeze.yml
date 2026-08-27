@@ -51,7 +51,9 @@ jobs:
             'papers/orion-16-formal-epistemic-structures-and-mechanics/content_binding_v2/SHA256SUMS',
             'papers/publication_closure/receipts/remaining11/ORION-16_V2_MANIFEST_REPIN_V1.json',
           }
-          actual=set(filter(None,subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()))
+          tracked=set(filter(None,subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()))
+          untracked=set(filter(None,subprocess.check_output(['git','ls-files','--others','--exclude-standard'],text=True).splitlines()))
+          actual=tracked|untracked
           assert actual==expected,(sorted(actual),sorted(expected))
           print('ORION16_V2_REPIN_DIFF_EXACT')
           PY
