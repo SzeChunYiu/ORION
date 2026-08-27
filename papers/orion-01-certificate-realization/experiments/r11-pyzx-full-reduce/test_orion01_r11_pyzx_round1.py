@@ -18,6 +18,7 @@ sys.modules[SPEC.name] = study
 SPEC.loader.exec_module(study)
 
 VERIFY_PATH = HERE / "verify_orion01_r11_pyzx_counterexample.py"
+INTERPRETATION_PATH = HERE / "ORION01_R11_PYZX_ADVERSE_INTERPRETATION.md"
 VERIFY_SPEC = importlib.util.spec_from_file_location(
     "verify_orion01_r11_pyzx_counterexample", VERIFY_PATH
 )
@@ -117,6 +118,14 @@ def test_adverse_counterexample_replays_byte_identically() -> None:
     assert committed["counterexample"]["production_full_reduce_on_same_source_word"][
         "semantics_equal_including_scalar"
     ] is True
+
+
+def test_adverse_interpretation_reports_exact_committed_residuals() -> None:
+    result = json.loads(adverse.RESULT_PATH.read_text())
+    interpretation = INTERPRETATION_PATH.read_text()
+    counterexample = result["counterexample"]
+    assert f"`{counterexample['max_absolute_matrix_residual']}`" in interpretation
+    assert f"`{counterexample['frobenius_matrix_residual']}`" in interpretation
 
 
 def test_round_consumption_and_authority_are_fail_closed() -> None:

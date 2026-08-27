@@ -42,7 +42,7 @@ fc217397673f7daf78672942239dfbb0c4596e5e07a3ff892b9003a0d60353c0
 ```
 
 The matrix residual has maximum absolute entry `0.707106781187` and Frobenius
-norm `2.0`. This is not a rounding-only scalar discrepancy.
+norm `1.53073372946`. This is not a rounding-only scalar discrepancy.
 
 ## Correct boundary
 
