@@ -15,7 +15,7 @@ The comparison gives both policy classes identical side information: the exact i
 
 ## Frozen parent binding
 
-QG-34 committed parent `QG34_ADAPTIVE_PROBE_TREE_RESULTS.json` is already earned and is frozen into QG-36 by exact Git blob SHA `61ad64ed01036b1dd44d7c684c35e43c62534c29`. It must provide:
+QG-34 committed parent `QG34_ADAPTIVE_PROBE_TREE_RESULTS.json` is already earned and is frozen into QG-36 by exact Git blob SHA `0fb6e2a0b6ff7d9960ab09942a402a304a890d71`. It must provide:
 - terminal `QG34_EXACT_MINIMAX_ADAPTIVE_PROBE_DEPTH_MACHINE_CHECKED`;
 - `both_accept=true`;
 - `EXACT_ADAPTIVE_MINIMAX_AUTHORITY=true`;

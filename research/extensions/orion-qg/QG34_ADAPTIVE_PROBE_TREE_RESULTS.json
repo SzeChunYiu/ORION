@@ -55,7 +55,6 @@
       "meaning": "no depth-2 adaptive tree resolves any of the 16 worst classes, so 3 is minimal not merely achieved"
     }
   },
-  "issue": "SzeChunYiu/ORION#924",
   "primitives_recomputed_from_main": {
     "bulk_classes": 45,
     "indexed_probes": 384,
@@ -87,14 +86,17 @@
     },
     "distinct_states_valued": 4441
   },
-  "schema": "ORION.QG.QG34.CommittedResult.v1",
+  "freeze_registry": {
+    "issue": "SzeChunYiu/ORION#924",
+    "schema": "ORION.QG.QG34.CommittedResult.v1",
+    "terminal": "QG34_EXACT_MINIMAX_ADAPTIVE_DEPTH_ESTABLISHED",
+    "source_result_digest": "d13a0d25ec20a08a28dae59d8f420be3b19b48a1be278ffe3adf1aa99afed75e"
+  },
   "secondary_Q4_expected_depth": {
     "computed_after_minimax_sealed": true,
     "uniform_prior_over_715_types": 2.374825,
     "used_to_select_minimax_tree": false
   },
-  "source_result_digest": "d13a0d25ec20a08a28dae59d8f420be3b19b48a1be278ffe3adf1aa99afed75e",
-  "terminal": "QG34_EXACT_MINIMAX_ADAPTIVE_DEPTH_ESTABLISHED",
   "witness_tree": {
     "all_leaves_singleton": true,
     "class_size": 48,
