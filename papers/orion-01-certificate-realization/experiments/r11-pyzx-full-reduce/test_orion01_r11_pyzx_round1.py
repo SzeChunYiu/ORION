@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import json
 from pathlib import Path
+import subprocess
 import sys
 
 import numpy as np
@@ -15,6 +16,15 @@ assert SPEC is not None and SPEC.loader is not None
 study = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = study
 SPEC.loader.exec_module(study)
+
+VERIFY_PATH = HERE / "verify_orion01_r11_pyzx_counterexample.py"
+VERIFY_SPEC = importlib.util.spec_from_file_location(
+    "verify_orion01_r11_pyzx_counterexample", VERIFY_PATH
+)
+assert VERIFY_SPEC is not None and VERIFY_SPEC.loader is not None
+adverse = importlib.util.module_from_spec(VERIFY_SPEC)
+sys.modules[VERIFY_SPEC.name] = adverse
+VERIFY_SPEC.loader.exec_module(adverse)
 
 
 def test_frozen_registry_shape_and_authority_boundary() -> None:
@@ -89,3 +99,92 @@ def test_protocol_and_registry_are_result_free_before_execution() -> None:
         "AB_R11_DONOR_EQUIVALENT",
         "CANNOT_CHECK_MOVE_COMPLETENESS",
     ]
+
+
+def test_adverse_counterexample_replays_byte_identically() -> None:
+    fresh = adverse.verify_counterexample()
+    committed = json.loads(adverse.RESULT_PATH.read_text())
+    assert adverse.render(fresh) == adverse.RESULT_PATH.read_text()
+    assert fresh == committed
+    assert committed["terminal"] == study.FAIL_TERMINAL
+    assert committed["input_domain"]["first_failing_word_zero_based_index"] == 73
+    assert committed["input_domain"]["first_failing_word_one_based_ordinal"] == 74
+    assert committed["input_domain"]["complete_domain_executed"] is False
+    assert committed["counterexample"]["source_word"] == ["H0", "H0", "H0"]
+    assert committed["counterexample"]["adverse_operation"] == "pivot_boundary_simp"
+    assert committed["counterexample"]["dense_semantics_equal_including_scalar"] is False
+    assert committed["counterexample"]["dense_semantics_equal_up_to_nonzero_scalar"] is False
+    assert committed["counterexample"]["production_full_reduce_on_same_source_word"][
+        "semantics_equal_including_scalar"
+    ] is True
+
+
+def test_round_consumption_and_authority_are_fail_closed() -> None:
+    result = json.loads(adverse.RESULT_PATH.read_text())
+    status = json.loads((HERE / "ORION01_R11_ROUND1_STATUS.json").read_text())
+    failure_1 = json.loads((HERE / "ORION01_R11_EXECUTION_FAILURE_01.json").read_text())
+    failure_2 = json.loads((HERE / "ORION01_R11_EXECUTION_FAILURE_02.json").read_text())
+
+    assert status["terminal"] == "CANNOT_CHECK_MOVE_COMPLETENESS"
+    assert status["rounds"] == {
+        "consumed": 1,
+        "maximum": 3,
+        "current": "ROUND_1_ADVERSE_CANNOT_CHECK_CONTEXTUAL_GUARD__ROUND_2_OPEN",
+    }
+    assert result["round_accounting"]["round_disposition"] == "ADVERSE_CANNOT_CHECK"
+    assert result["round_accounting"]["same_incomplete_macro_language_may_not_be_relabeled_as_round_2"] is True
+    assert failure_1["authority"]["science_result_established"] is False
+    assert failure_2["authority"]["science_result_established"] is False
+    assert failure_1["terminal"] == failure_2["terminal"] == result["terminal"]
+
+    assert result["authority"]["bounded_counterexample_established"] is True
+    assert result["authority"]["production_full_reduce_refuted"] is False
+    assert result["authority"]["complete_contextual_registry_established"] is False
+    assert result["authority"]["realized_certificate_gap_established"] is False
+    assert result["authority"]["bounded_null_established"] is False
+    assert result["authority"]["external_independence"] is False
+    assert result["authority"]["novelty"] is False
+    assert result["authority"]["journal_authority"] is False
+    assert result["authority"]["submission_authorized"] is False
+    assert result["authority"]["protected_task3_or_p9"] is False
+
+
+def test_prospective_chronology_is_preserved_across_failure_receipts() -> None:
+    result = json.loads(adverse.RESULT_PATH.read_text())
+    freeze = result["protocol_freeze"]["freeze_commit"]
+    failure_1_commit = subprocess.check_output(
+        [
+            "git",
+            "-C",
+            str(study.REPO_ROOT),
+            "log",
+            "--diff-filter=A",
+            "--format=%H",
+            "-1",
+            "--",
+            adverse.FAILURE_01.relative_to(study.REPO_ROOT).as_posix(),
+        ],
+        text=True,
+    ).strip()
+    failure_2_commit = subprocess.check_output(
+        [
+            "git",
+            "-C",
+            str(study.REPO_ROOT),
+            "log",
+            "--diff-filter=A",
+            "--format=%H",
+            "-1",
+            "--",
+            adverse.FAILURE_02.relative_to(study.REPO_ROOT).as_posix(),
+        ],
+        text=True,
+    ).strip()
+    assert freeze == "449b254a8b0265747e8dc70dd771d432dd296b83"
+    assert failure_1_commit == "29bba3d89363d05ec98436d5f9a707aaa7368e41"
+    assert failure_2_commit == result["protocol_freeze"]["runner_last_change_commit"]
+    for earlier, later in ((freeze, failure_1_commit), (failure_1_commit, failure_2_commit)):
+        subprocess.run(
+            ["git", "-C", str(study.REPO_ROOT), "merge-base", "--is-ancestor", earlier, later],
+            check=True,
+        )

@@ -117,3 +117,25 @@ Round 1; neither outcome closes ORION-01 globally.
 No terminal authorizes a physical or hardware advantage, all-PyZX or
 all-ZX-calculus completeness, generic compiler optimality, external novelty,
 journal authority, submission, or any protected Task-3/P9 claim.
+
+## Post-execution disposition
+
+Round 1 terminated adversely at the prospectively frozen semantics gate:
+
+```text
+CANNOT_CHECK_MOVE_COMPLETENESS
+```
+
+On input word `H0,H0,H0`, the registered prefix
+`pivot_boundary_simp -> copy_simp -> to_gh` preserves the dense linear map,
+but a second callable `pivot_boundary_simp` changes it even up to nonzero
+scalar. The scheduled production `full_reduce` entry point preserves semantics
+on the same input and is **not refuted**. The result therefore establishes only
+a deterministic counterexample to treating the twelve callable macros as a
+freely reorderable sound grammar without their scheduler context.
+
+The prospective public execution consumes Round 1 as
+`ADVERSE_CANNOT_CHECK`; it authorizes neither the strict-gap terminal nor the
+complete-domain null. Both execution-failure receipts remain preserved. Round
+2 must use source-complete contextual guards or a scientifically distinct
+public grammar and may not delete or outcome-restrict this counterexample.

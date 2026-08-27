@@ -37,27 +37,19 @@ jobs:
         run: |
           python -m ruff check \
             papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/orion01_r11_pyzx_round1.py \
-            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/test_orion01_r11_pyzx_round1.py
+            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/test_orion01_r11_pyzx_round1.py \
+            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/verify_orion01_r11_pyzx_counterexample.py
           python -m pytest -q \
             papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/test_orion01_r11_pyzx_round1.py
-      - name: Replay exact bounded study and require committed bytes
+      - name: Replay adverse contextual-guard counterexample and require committed bytes
         run: |
           set -euo pipefail
-          runner=papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/orion01_r11_pyzx_round1.py
-          python "$runner" --check | tee /tmp/orion01-r11.out
-          terminal=$(python - <<'PY'
-          import json
-          from pathlib import Path
-          p = Path('papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_RESULTS.json')
-          row = json.loads(p.read_text())
-          assert row['terminal'] != 'CANNOT_CHECK_MOVE_COMPLETENESS'
-          assert all(row['gates'].values())
-          print(row['terminal'])
-          PY
-          )
-          grep -Fx "$terminal" /tmp/orion01-r11.out
+          root=papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce
+          python "$root/verify_orion01_r11_pyzx_counterexample.py" --check \
+            | tee /tmp/orion01-r11.out
+          grep -Fx 'CANNOT_CHECK_MOVE_COMPLETENESS' /tmp/orion01-r11.out
           git diff --exit-code -- \
-            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_RESULTS.json
+            "$root/ORION01_R11_PYZX_RESULTS.json"
       - name: Enforce narrow authority and ORION-01-only custody
         env:
           EVENT_NAME: ${{ github.event_name }}
@@ -71,13 +63,31 @@ jobs:
           root = Path('papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce')
           result = json.loads((root / 'ORION01_R11_PYZX_RESULTS.json').read_text())
           registry = json.loads((root / 'ORION01_R11_PYZX_SOURCE_REGISTRY.json').read_text())
+          status = json.loads((root / 'ORION01_R11_ROUND1_STATUS.json').read_text())
+          failure_1 = json.loads((root / 'ORION01_R11_EXECUTION_FAILURE_01.json').read_text())
+          failure_2 = json.loads((root / 'ORION01_R11_EXECUTION_FAILURE_02.json').read_text())
           assert result['paper_id'] == 'ORION-01'
           assert result['round'] == 1
+          assert result['terminal'] == 'CANNOT_CHECK_MOVE_COMPLETENESS'
           assert result['round_accounting']['consumed'] == 1
+          assert result['round_accounting']['round_disposition'] == 'ADVERSE_CANNOT_CHECK'
           assert result['round_accounting']['science_status_after_this_round'] == 'OPEN'
-          assert result['search']['source_words_completed'] == 4681
+          assert result['input_domain']['executed_before_fail_closed_terminal'] == 74
+          assert not result['input_domain']['complete_domain_executed']
           assert result['registry_audit']['hostile_omissions_rejected'] == 12
-          assert result['critical_interactions']['ordered_pair_count'] == 144
+          witness = result['counterexample']
+          assert witness['source_word'] == ['H0', 'H0', 'H0']
+          assert witness['adverse_operation'] == 'pivot_boundary_simp'
+          assert not witness['dense_semantics_equal_including_scalar']
+          assert not witness['dense_semantics_equal_up_to_nonzero_scalar']
+          assert witness['production_full_reduce_on_same_source_word']['semantics_equal_including_scalar']
+          assert result['gates']['free_reordering_semantics_gate'] is False
+          assert result['gates']['strict_gap_or_bounded_null_authorized'] is False
+          assert result['authority']['bounded_counterexample_established']
+          assert not result['authority']['production_full_reduce_refuted']
+          assert not result['authority']['complete_contextual_registry_established']
+          assert not result['authority']['realized_certificate_gap_established']
+          assert not result['authority']['bounded_null_established']
           assert not any([
               result['authority']['all_pyzx_completeness'],
               result['authority']['all_zx_calculus_completeness'],
@@ -89,6 +99,12 @@ jobs:
               result['authority']['submission_authorized'],
               result['authority']['protected_task3_or_p9'],
           ])
+          assert status['terminal'] == result['terminal']
+          assert status['rounds']['consumed'] == 1
+          assert status['rounds']['current'] == 'ROUND_1_ADVERSE_CANNOT_CHECK_CONTEXTUAL_GUARD__ROUND_2_OPEN'
+          assert failure_1['terminal'] == failure_2['terminal'] == result['terminal']
+          assert not failure_1['authority']['science_result_established']
+          assert not failure_2['authority']['science_result_established']
           assert registry['source']['commit'] == 'dade7d46f193635bbdaefd8fcde837f9449fddc5'
           PY
           if [ "$EVENT_NAME" = pull_request ]; then
