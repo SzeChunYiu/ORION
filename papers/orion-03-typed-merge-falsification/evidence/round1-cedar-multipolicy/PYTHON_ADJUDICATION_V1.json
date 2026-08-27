@@ -1,0 +1,253 @@
+{
+  "authority": {
+    "blinded": false,
+    "external_independence": "CANNOT_CHECK",
+    "hostile_controls_can_grant_real_domain_positive": false,
+    "journal_authority": false,
+    "native_engine_authority_requires_rust_receipt": true,
+    "novelty": false,
+    "public_labels_visible_to_executor": true,
+    "submission_authorized": false
+  },
+  "corpus": {
+    "allow": 9,
+    "deny": 6,
+    "errors": 0,
+    "forbids": 5,
+    "nonempty_reason_sets": 13,
+    "permits": 8,
+    "policies": 13,
+    "policy_counts": {
+      "tests/multi/policies_1.cedar": {
+        "forbids": 0,
+        "permits": 2,
+        "policies": 2
+      },
+      "tests/multi/policies_2.cedar": {
+        "forbids": 1,
+        "permits": 1,
+        "policies": 2
+      },
+      "tests/multi/policies_3.cedar": {
+        "forbids": 1,
+        "permits": 1,
+        "policies": 2
+      },
+      "tests/multi/policies_4.cedar": {
+        "forbids": 2,
+        "permits": 2,
+        "policies": 4
+      },
+      "tests/multi/policies_5.cedar": {
+        "forbids": 1,
+        "permits": 2,
+        "policies": 3
+      }
+    },
+    "reason_cardinality": {
+      "0": 2,
+      "1": 11,
+      "2": 2
+    }
+  },
+  "preliminary_terminal": "D_R11_POLICY_REQUIRES_RICHER_SEMANTICS",
+  "request_rows": [
+    {
+      "case": "multi_1_request_0",
+      "decision": "ALLOW",
+      "errors": 0,
+      "flat_projection_decision": "ALLOW",
+      "reason_origins": [
+        "policy0"
+      ],
+      "typed_projection_decision": "ALLOW",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_1_request_1",
+      "decision": "ALLOW",
+      "errors": 0,
+      "flat_projection_decision": "ALLOW",
+      "reason_origins": [
+        "policy1"
+      ],
+      "typed_projection_decision": "ALLOW",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_1_request_2",
+      "decision": "DENY",
+      "errors": 0,
+      "flat_projection_decision": "DENY",
+      "reason_origins": [],
+      "typed_projection_decision": "DENY",
+      "typed_provenance_kind": "DEFAULT_DENY_NO_POLICY_ORIGIN"
+    },
+    {
+      "case": "multi_1_request_3",
+      "decision": "DENY",
+      "errors": 0,
+      "flat_projection_decision": "DENY",
+      "reason_origins": [],
+      "typed_projection_decision": "DENY",
+      "typed_provenance_kind": "DEFAULT_DENY_NO_POLICY_ORIGIN"
+    },
+    {
+      "case": "multi_2_request_0",
+      "decision": "ALLOW",
+      "errors": 0,
+      "flat_projection_decision": "ALLOW",
+      "reason_origins": [
+        "policy0"
+      ],
+      "typed_projection_decision": "ALLOW",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_2_request_1",
+      "decision": "DENY",
+      "errors": 0,
+      "flat_projection_decision": "DENY",
+      "reason_origins": [
+        "policy1"
+      ],
+      "typed_projection_decision": "DENY",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_3_request_0",
+      "decision": "ALLOW",
+      "errors": 0,
+      "flat_projection_decision": "ALLOW",
+      "reason_origins": [
+        "policy0"
+      ],
+      "typed_projection_decision": "ALLOW",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_3_request_1",
+      "decision": "ALLOW",
+      "errors": 0,
+      "flat_projection_decision": "ALLOW",
+      "reason_origins": [
+        "policy0"
+      ],
+      "typed_projection_decision": "ALLOW",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_3_request_2",
+      "decision": "ALLOW",
+      "errors": 0,
+      "flat_projection_decision": "ALLOW",
+      "reason_origins": [
+        "policy0"
+      ],
+      "typed_projection_decision": "ALLOW",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_3_request_3",
+      "decision": "DENY",
+      "errors": 0,
+      "flat_projection_decision": "DENY",
+      "reason_origins": [
+        "policy1"
+      ],
+      "typed_projection_decision": "DENY",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_4_request_0",
+      "decision": "ALLOW",
+      "errors": 0,
+      "flat_projection_decision": "ALLOW",
+      "reason_origins": [
+        "policy0",
+        "policy1"
+      ],
+      "typed_projection_decision": "ALLOW",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_4_request_1",
+      "decision": "DENY",
+      "errors": 0,
+      "flat_projection_decision": "DENY",
+      "reason_origins": [
+        "policy2",
+        "policy3"
+      ],
+      "typed_projection_decision": "DENY",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_4_request_2",
+      "decision": "DENY",
+      "errors": 0,
+      "flat_projection_decision": "DENY",
+      "reason_origins": [
+        "policy3"
+      ],
+      "typed_projection_decision": "DENY",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_5_request_0",
+      "decision": "ALLOW",
+      "errors": 0,
+      "flat_projection_decision": "ALLOW",
+      "reason_origins": [
+        "policy0"
+      ],
+      "typed_projection_decision": "ALLOW",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    },
+    {
+      "case": "multi_5_request_1",
+      "decision": "ALLOW",
+      "errors": 0,
+      "flat_projection_decision": "ALLOW",
+      "reason_origins": [
+        "policy2"
+      ],
+      "typed_projection_decision": "ALLOW",
+      "typed_provenance_kind": "NATIVE_POLICY_REASON_SET"
+    }
+  ],
+  "safe_control": {
+    "must_not_be_called_vulnerability": true,
+    "path": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/AGENTGATEWAY_ORIGIN_WITNESS_SAFE_MERGE_R11_RESULTS_SUMMARY.json",
+    "sha256": "18f05100d6a982a6274e8fe15920ca708bc2ff40f070cd16a96445aa4b963a35",
+    "terminal": "AGENTGATEWAY_RULESETS_ORIGIN_WITNESS_SAFE"
+  },
+  "schema": "ORION.ORION03.CedarMultiPolicy.PythonAdjudication.v1",
+  "source": {
+    "binding": "PASS",
+    "cedar_submodule_commit": "bcb8bd93a292b59ae8f1dcf53b9b4176a2d3405d",
+    "commit": "75989795c75d861270ce6cac38ef9d9e5b220a0c",
+    "files": 18,
+    "fixtures": 5,
+    "requests": 15
+  },
+  "systems": {
+    "flat_projection": {
+      "decision_agreement_by_definition": 15,
+      "origin_ids_retained": 0,
+      "role": "ORIGIN_ERASED_NATIVE_RESPONSE_PROJECTION_ONLY"
+    },
+    "native_cedar": "REQUIRED_FROM_RUST_RECEIPT",
+    "typed_projection": {
+      "decision_agreement_by_definition": 15,
+      "default_deny_is_not_promoted_to_policy_origin": 2,
+      "native_nonempty_reason_sets_retained_exactly": 13,
+      "role": "NATIVE_POLICY_REASON_RETENTION_ONLY"
+    }
+  },
+  "upstream_source_authority_semantics": {
+    "matching_key_paths": [],
+    "policy_reason_ids_are_not_upstream_evidence_licences": true,
+    "present": false
+  }
+}
