@@ -940,6 +940,7 @@ def execute(subject_repo: Path) -> dict[str, Any]:
             "uncertainty_only": uncertainty_choose_learned,
             "random_rate_matched": random_choose_learned,
             "oracle_route": learned_loss <= fallback_loss,
+            "post_acquisition_same_route": direct_choose_learned.copy(),
         }
         arm_losses = {
             arm: np.where(choice, learned_loss, fallback_loss) for arm, choice in decisions.items()
@@ -1148,7 +1149,12 @@ def execute(subject_repo: Path) -> dict[str, Any]:
         "shuffled_relative_labels_authorized": False,
         "shuffled_relative_predictions_differ": shuffled_never_authorized,
         "one_out_of_fold_loss_per_instance_per_arm": all(
-            set(row["losses"]) == set(arm_names) for row in rows_out
+            set(row["losses"])
+            == set(row["choices"])
+            == set(row["timeouts"])
+            == set(row["acquisition"])
+            == set(arm_names)
+            for row in rows_out
         ),
         **r19_hostile_controls(r19_core),
     }
