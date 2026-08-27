@@ -1,0 +1,116 @@
+name: one-shot-r30-bind-final-status
+
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths: ['.github/workflows/one-shot-r30-bind-final-status.yml']
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  bind-final-clean-status:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion-02-r18-null-current-main-20260827
+          fetch-depth: 0
+      - name: Wait for author handoff and green clean custody
+        id: wait
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch='chatgpt/five-paper-r30-current-main-20260827'
+          deadline=$((SECONDS+4800))
+          while :; do
+            sha="$(gh api "repos/$GITHUB_REPOSITORY/branches/$branch" --jq .commit.sha)"
+            handoff="$(gh api "repos/$GITHUB_REPOSITORY/contents/papers/orion-02-fiberguard-finite-fibre/AUTHOR_HANDOFF_R30.json?ref=$branch" --jq .sha 2>/dev/null || true)"
+            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$sha&per_page=100" --jq '.workflow_runs | map(select(.name=="five-paper-r30-current-main-custody")) | sort_by(.id) | reverse | .[0].id // empty')"
+            if [ -n "$handoff" ] && [ -n "$run" ]; then
+              status="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" --jq .status)";conclusion="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" --jq .conclusion)"
+              if [ "$status" = completed ]; then
+                test "$conclusion" = success
+                echo "sha=$sha" >> "$GITHUB_OUTPUT";echo "run=$run" >> "$GITHUB_OUTPUT";break
+              fi
+            fi
+            test "$SECONDS" -lt "$deadline";sleep 30
+          done
+      - name: Write final status to clean branch
+        shell: bash
+        env:
+          GREEN_SHA: ${{ steps.wait.outputs.sha }}
+          GREEN_RUN: ${{ steps.wait.outputs.run }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch='chatgpt/five-paper-r30-current-main-20260827'
+          git fetch --no-tags origin "$branch";git checkout -B "$branch" FETCH_HEAD
+          pr="$(gh pr list --head "$branch" --state all --json number --jq '.[0].number')"
+          export PR_NUMBER="$pr"
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          root=Path('papers/orion-02-fiberguard-finite-fibre')
+          handoff=json.loads((root/'AUTHOR_HANDOFF_R30.json').read_text())
+          internal=json.loads((root/'INTERNAL_RELEASE_RECEIPT_R30.json').read_text())
+          programme=json.loads(Path('research/five-paper-top-tier-r30/PROGRAMME_INTERNAL_TERMINAL_R30.json').read_text())
+          result={
+            'schema':'ORION.FivePaper.FinalInternalStatus.R30.v1',
+            'clean_current_main_commit':os.environ['GREEN_SHA'],
+            'clean_custody_run':int(os.environ['GREEN_RUN']),
+            'clean_pull_request':int(os.environ['PR_NUMBER']),
+            'internal_release_terminal':internal['terminal'],
+            'programme_terminal':programme['terminal'],
+            'author_handoff_terminal':handoff['terminal'],
+            'terminal':'FIVE_PAPER_R30_INTERNAL_FINAL_STATUS_BOUND__ONLY_EXTERNAL_AUTHOR_LEGAL_PRODUCTION_AND_SUBMISSION_INPUTS_OPEN',
+            'authority':{
+              'all_internally_executable_gates_closed_at_stated_ceiling':True,
+              'external_independence':False,
+              'novelty':False,
+              'rights_complete':False,
+              'production_authority_for_all_lanes':False,
+              'journal_authority':False,
+              'submission_authorized':False,
+            },
+          }
+          (root/'FINAL_STATUS_R30.json').write_text(json.dumps(result,sort_keys=True,separators=(',',':'))+'\n')
+          lines=['# Five-paper R30 final internal status','',f"`{result['terminal']}`",'',f"Clean current-main PR: #{result['clean_pull_request']}.",f"Clean custody run: {result['clean_custody_run']}.",'','All internally executable gates are closed at their stated claim ceilings. The remaining fields require external reviewers, independent reproducer custody, production owners, author/legal metadata, archive providers, or journal portal action.','', 'External independence, novelty, rights completeness, journal authority, and submission authorization remain false.','']
+          (root/'FINAL_STATUS_R30.md').write_text('\n'.join(lines))
+          PY
+          git config user.name 'github-actions[bot]';git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/orion-02-fiberguard-finite-fibre/FINAL_STATUS_R30.json papers/orion-02-fiberguard-finite-fibre/FINAL_STATUS_R30.md
+          if git diff --cached --quiet; then echo 'final status already current'; else git commit -m 'results(R30): bind final internal programme status';git push origin HEAD:refs/heads/$branch;fi
+          git rev-parse HEAD > "$RUNNER_TEMP/final-sha.txt";echo "$pr" > "$RUNNER_TEMP/pr.txt"
+      - name: Wait for final-status head custody replay
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          sha="$(cat "$RUNNER_TEMP/final-sha.txt")";deadline=$((SECONDS+3600))
+          while :; do
+            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$sha&per_page=100" --jq '.workflow_runs | map(select(.name=="five-paper-r30-current-main-custody")) | sort_by(.id) | reverse | .[0].id // empty')"
+            if [ -n "$run" ]; then status="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" --jq .status)";conclusion="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" --jq .conclusion)";if [ "$status" = completed ]; then test "$conclusion" = success;echo "$run" > "$RUNNER_TEMP/final-run.txt";break;fi;fi
+            test "$SECONDS" -lt "$deadline";sleep 30
+          done
+      - name: Update clean PR with final internal boundary
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          pr="$(cat "$RUNNER_TEMP/pr.txt")"
+          body='Clean child of live main with exact R30 source/result custody. The final-status head passed `five-paper-r30-current-main-custody`. Internally executable theorem, adverse-result, cross-language, manuscript, rights-preflight, retraction, and lane-classification gates are closed at their explicit ceilings. External independence, novelty, legal rights interpretation, production registry/case/resource inputs, author metadata, permanent archive, journal authority, and submission authorization remain open/false.'
+          gh pr edit "$pr" --title '[R30] Five-paper internal final status and ORION-02 exact-fibre manuscript' --body "$body"
+          marker='FIVE_PAPER_R30_INTERNAL_FINAL_STATUS_BOUND__ONLY_EXTERNAL_AUTHOR_LEGAL_PRODUCTION_AND_SUBMISSION_INPUTS_OPEN'
+          existing="$(gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$pr/comments" --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)"
+          if [ -z "$existing" ]; then gh pr comment "$pr" --body "Final-status head $(cat "$RUNNER_TEMP/final-sha.txt") passed custody run $(cat "$RUNNER_TEMP/final-run.txt").\n\n$marker\n\nNo external or submission authority is granted.";fi
+          echo "Final clean PR #$pr; custody run $(cat "$RUNNER_TEMP/final-run.txt")"
