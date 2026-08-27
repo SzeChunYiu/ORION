@@ -1,0 +1,199 @@
+{
+  "authority_scope": "PROSPECTIVE_PROTOCOL_ONLY",
+  "benchmark_local_revision_classes": [
+    "EVIDENCE_REPAIR",
+    "MEASUREMENT_REPAIR",
+    "WITHIN_CLASS_MODEL_REPAIR",
+    "MODEL_CLASS_EXPANSION",
+    "REPRESENTATION_REGIME_REPAIR",
+    "EXECUTION_REPAIR",
+    "EVALUATOR_REPAIR",
+    "UNRESOLVED"
+  ],
+  "candidate_access": {
+    "protected": [
+      "actual diagnostic outcomes",
+      "gold revision responsibility",
+      "protected evaluator internals",
+      "fresh-transfer labels/results before final decision",
+      "confirmatory split allocation"
+    ],
+    "visible": [
+      "case_id",
+      "symptom_family",
+      "visible_symptom",
+      "candidate_visible_context",
+      "competing_revision_classes",
+      "hypothesis discriminator predictions",
+      "allowed diagnostics and costs",
+      "diagnostic budget",
+      "revision invasiveness map",
+      "preservation obligations",
+      "allowed change surface",
+      "fresh-transfer family identity"
+    ]
+  },
+  "confirmatory_execution_bindings": {
+    "baseline_config_sha256": "833e8fc54f36bd857f8c645d80399bc0fb790c3fe659ad74109357fb8ffa7270",
+    "candidate_packet_sha256": "4170bf5715a7c7f68e11de73cd7ae1b843d9cfd2d83700965f3b6c685b2f0e20",
+    "candidate_policy_owner": "SelfOrionV4Policy",
+    "evaluation_epoch": "P5V4-CONFIRMATORY-EPOCH-2026-08-27",
+    "evaluator_sha256": "c91c5c08fab098d1a229ffcdfa86316dbe9cab460936f1c9255ab5e29479db0c",
+    "final_split_sha256": "2e89a1aee8dd53ead9dfbb968ec7e9228f4f7843214f5f267a429f46130edb19",
+    "fresh_transfer_evaluator_sha256": "65799fc3d653d21a0449d2faff6f8b3f5488ef08be58e20545d3857f42694c07",
+    "outcome_accessed": true,
+    "protected_evaluator_owner": "ExternalProtectedEvaluator",
+    "protected_suite_commitment": "341e7163158e7bcb9a410b5c76aa211736747a230ab4ab5ed63c2fa3461a864a",
+    "result_verifier_owner": "#283",
+    "subject_revision": "cde12fda4c1a0a8d3f09fc207e6c8b5c6c3fd536"
+  },
+  "confirmatory_execution_receipt": {
+    "execution_id": "P5V4-CONFIRMATORY-EXECUTION-2026-08-27",
+    "grants_scientific_authority": false,
+    "independent_verification": "pending #283; this record binds execution, not authority",
+    "parent_accuracy": 0.8888888888888888,
+    "path": "research/self-orion-v4/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-27.json",
+    "receipt_sha256": "fcb0acf42289583efa265d2f2e396ddd50814944faca074a188957c6e2489e42",
+    "rule_order_fired": [
+      4
+    ],
+    "schema_version": "orion.p5.self-orion-v4.confirmatory-execution-receipt.v1",
+    "subject_accuracy": 1.0,
+    "subject_authority_violation_count": 0,
+    "terminal_under_frozen_rules": "REVISION_LEVEL_DISCRIMINATION_SUPPORTED"
+  },
+  "confirmatory_hypothesis_status": "EXECUTED_2026-08-27_TERMINAL_REVISION_LEVEL_DISCRIMINATION_SUPPORTED",
+  "confirmatory_required_baseline_bindings": [
+    "m_open_only",
+    "world_model_revision",
+    "representation_regime_revision"
+  ],
+  "feedback_intervention_controls": [
+    "NORMAL",
+    "PERMUTED",
+    "NONE",
+    "CONTRADICTORY",
+    "RANDOM"
+  ],
+  "grants_peer_review_ready": false,
+  "grants_scientific_authority": false,
+  "mandatory_secondary_endpoints": [
+    "correct_unresolved_rate",
+    "preservation_stratum_correct_refusal_rate",
+    "preservation_violation_rate",
+    "evaluator_or_authority_violation_rate",
+    "diagnostic_action_count",
+    "diagnostic_cost",
+    "feedback_permutation_sensitivity",
+    "no_feedback_sensitivity",
+    "re_execution_digest_equality"
+  ],
+  "negative_result_policy": "Null, harmful, M-open-sufficient, diagnosis-only, not-replicated, overconservative, safety-floor-broken and missed-safety outcomes are retained as valid terminals and may not be retuned into a positive claim. The V3 negative terminal and its one-stage attribution remain visible in the record alongside this successor execution.",
+  "no_scalar_science_score": true,
+  "outcome_accessed": true,
+  "paper_id": "P5",
+  "policy_families": [
+    {
+      "id": "no_revision",
+      "implementation": "NO_REVISION",
+      "issue_1541_arm": "a_no_edit",
+      "role": "fixed/no-revision control; issue #1541 arm (a) no-edit"
+    },
+    {
+      "id": "direct_self_edit",
+      "implementation": "DIRECT_SELF_EDIT",
+      "issue_1541_arm": "b_direct_self_edit",
+      "role": "broad self-edit control; issue #1541 arm (b) direct-self-edit"
+    },
+    {
+      "donor": "arxiv:2608.09696",
+      "id": "m_open_only",
+      "implementation": "M_OPEN_ONLY",
+      "official_reproduction": false,
+      "role": "M-open model-class-expansion mechanism comparator"
+    },
+    {
+      "donor": "arxiv:2606.30639",
+      "id": "world_model_revision",
+      "implementation": "WORLD_MODEL_REVISION",
+      "official_reproduction": false,
+      "role": "world-model update mechanism comparator"
+    },
+    {
+      "donor": "arxiv:2606.01444",
+      "id": "representation_regime_revision",
+      "implementation": "REPRESENTATION_REGIME_ONLY",
+      "official_reproduction": false,
+      "role": "representation-regime revision mechanism comparator"
+    },
+    {
+      "id": "generic_causal_diagnosis",
+      "implementation": "GENERIC_CAUSAL_DIAGNOSIS",
+      "role": "multi-hypothesis bounded diagnosis control"
+    },
+    {
+      "id": "full_t7",
+      "implementation": "FULL_T7",
+      "role": "V3 confirmatory subject re-measured unchanged as parent arm on the successor panel"
+    },
+    {
+      "id": "full_t7_v4",
+      "implementation": "FULL_T7_V4",
+      "role": "V4 preservation-wired subject (revival lever mechanism completion)"
+    },
+    {
+      "id": "random_diagnostic",
+      "implementation": "RANDOM_DIAGNOSTIC",
+      "role": "diagnostic-selection chance control"
+    },
+    {
+      "id": "always_unresolved",
+      "implementation": "ALWAYS_UNRESOLVED",
+      "role": "refusal floor"
+    },
+    {
+      "analysis_only": true,
+      "id": "oracle_ceiling",
+      "implementation": "ORACLE_CEILING",
+      "role": "protected-gold ceiling; analysis only"
+    }
+  ],
+  "possible_scientific_terminals_after_real_execution": [
+    "CANNOT_CHECK",
+    "HARMFUL_REFUTED",
+    "NO_INCREMENTAL_VALUE",
+    "REVISION_LEVEL_DISCRIMINATION_SUPPORTED",
+    "M_OPEN_SUFFICIENT",
+    "DIAGNOSIS_ONLY",
+    "REVISION_EFFECT_NOT_REPLICATED",
+    "OVERCONSERVATIVE",
+    "BROKEN_SHUT_SAFETY_FLOOR",
+    "NEGATIVE_MISSED_SAFETY_OR_ACCURACY"
+  ],
+  "protocol_id": "P5.self-orion-v4.revision-level.v1",
+  "protocol_status": "CONFIRMATORY_EXECUTED_2026-08-27_TERMINAL_REVISION_LEVEL_DISCRIMINATION_SUPPORTED",
+  "publication_rule": "No development or preflight terminal supports H1-H4, peer-review readiness, or novelty. Any result-bearing update requires exact final bindings, protected execution, independent #283 verification, and #287 nearest-work/novelty authority.",
+  "relationship_to_existing_p5": {
+    "protocol_v1": "UNCHANGED",
+    "self_orion_v3": "predecessor; terminal NO_TERMINAL_UNDER_FROZEN_RULES retained as immutable negative",
+    "v4_role": "pre-registered revival execution of the V3 lever: successor panel + preservation-wired subject + surjective terminal list"
+  },
+  "research_question": "On the pre-registered successor panel (development-contract expectation sets completable within the bounded protocol, ambiguous UNRESOLVED cases, and preservation-conflict cases), does the preservation-wired bounded T7 subject reduce wrong or over-broad revision and authority violations while preserving fresh-transfer performance relative to matched strong mechanism comparators and its own V3 parent?",
+  "revival_linkage": {
+    "lever_mechanism_completion": "FULL_T7_V4 wires candidate-visible preservation obligations into assess_mechanic as obligation_states + forbidden_writes, exercising the revision-gate blocking branch that the frozen V3 subject left unreachable; the V3 unexercised-branch defect is closed by making the protected panel contain cases whose correct terminal requires that branch",
+    "pre_registered_lever": "successor panel with hypothesis expectation sets completable within the bounded protocol (the committed development-suite contract) plus preservation-conflict cases exercising the revision-gate blocking branch; strictly more coverage than the V3 panel; frozen rules surjective onto the outcome space this execution exposed",
+    "v3_one_stage_attribution": "confirmatory generator modeled TWO diagnostics per hypothesis expectation map while the bounded T7 session observes exactly ONE; frozen V3 decision list was not surjective onto the exposed outcome space",
+    "v3_receipt": "research/self-orion-v3/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json",
+    "v3_terminal": "NO_TERMINAL_UNDER_FROZEN_RULES"
+  },
+  "same_symptom_requirement": "Each scored cause-confusable family must contain at least two cases with materially similar candidate-visible symptoms but different protected gold responsibility/revision labels, or an explicit UNRESOLVED gold case; preservation-conflict cases add a third stratum whose correct terminal is refusal.",
+  "schema_version": "orion.p5.self-orion-v4-revision-level-protocol.v1",
+  "structural_binding_status": {
+    "current_blocker": "MDA_PRIMARY_FULL_TEXT_NOT_SOURCE_GROUNDED_2026-08-19",
+    "current_disposition": "CANNOT_CHECK",
+    "programme_receipt_frozen": true,
+    "programme_receipt_owner": "#454",
+    "rule": "The #454 receipt schema/packet is frozen but its programme disposition remains CANNOT_CHECK while MDA lacks a full structural source; no comparator may be labelled official reproduction without an official-reproduction binding."
+  },
+  "terminal_selection_rule": "First-match over the frozen order in research/self-orion-v4/confirmatory/CONFIRMATORY_DECISION_RULES_V2.json; the final rule is unconditional, so exactly one terminal always fires (surjective by construction)."
+}
