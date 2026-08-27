@@ -1,0 +1,146 @@
+name: one-shot-publish-five-paper-disposition-r20
+
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths: ['.github/workflows/one-shot-publish-five-paper-disposition-r20.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion-02-r18-null-current-main-20260827
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+
+      - name: Fetch exact active PR subjects
+        shell: bash
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          for pr in 1472 1469 1466 1449; do
+            gh api "repos/$GITHUB_REPOSITORY/pulls/$pr" > "$RUNNER_TEMP/pr-$pr.json"
+            base="$(jq -r .base.sha "$RUNNER_TEMP/pr-$pr.json")"
+            head="$(jq -r .head.sha "$RUNNER_TEMP/pr-$pr.json")"
+            git fetch --no-tags origin "$base" "$head"
+            git worktree add --detach "$RUNNER_TEMP/pr-$pr" "$head"
+            printf '%s\n' "$base" > "$RUNNER_TEMP/base-$pr.txt"
+            printf '%s\n' "$head" > "$RUNNER_TEMP/head-$pr.txt"
+          done
+
+      - name: Execute specialist audits twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='research/five-paper-top-tier-r20/results'
+          mkdir -p "$out"
+          python -m py_compile \
+            research/five-paper-top-tier-r20/audit_nq_pr1472_v2.py \
+            research/five-paper-top-tier-r20/audit_ab_pr1469.py \
+            research/five-paper-top-tier-r20/audit_d_pr1466.py \
+            research/five-paper-top-tier-r20/audit_q1_pr1449.py
+          for suffix in a b; do
+            python research/five-paper-top-tier-r20/audit_nq_pr1472_v2.py --repo "$RUNNER_TEMP/pr-1472" --base "$(cat "$RUNNER_TEMP/base-1472.txt")" --head "$(cat "$RUNNER_TEMP/head-1472.txt")" --output "$RUNNER_TEMP/nq-$suffix.json" | tee "$RUNNER_TEMP/nq-$suffix.txt"
+            python research/five-paper-top-tier-r20/audit_ab_pr1469.py --repo "$RUNNER_TEMP/pr-1469" --base "$(cat "$RUNNER_TEMP/base-1469.txt")" --head "$(cat "$RUNNER_TEMP/head-1469.txt")" --output "$RUNNER_TEMP/ab-$suffix.json" | tee "$RUNNER_TEMP/ab-$suffix.txt"
+            python research/five-paper-top-tier-r20/audit_d_pr1466.py --repo "$RUNNER_TEMP/pr-1466" --base "$(cat "$RUNNER_TEMP/base-1466.txt")" --head "$(cat "$RUNNER_TEMP/head-1466.txt")" --output "$RUNNER_TEMP/d-$suffix.json" | tee "$RUNNER_TEMP/d-$suffix.txt"
+            python research/five-paper-top-tier-r20/audit_q1_pr1449.py --repo "$RUNNER_TEMP/pr-1449" --base "$(cat "$RUNNER_TEMP/base-1449.txt")" --head "$(cat "$RUNNER_TEMP/head-1449.txt")" --output "$RUNNER_TEMP/q1-$suffix.json" | tee "$RUNNER_TEMP/q1-$suffix.txt"
+          done
+          for lane in nq ab d q1; do cmp "$RUNNER_TEMP/$lane-a.json" "$RUNNER_TEMP/$lane-b.json"; cmp "$RUNNER_TEMP/$lane-a.txt" "$RUNNER_TEMP/$lane-b.txt"; done
+          cp "$RUNNER_TEMP/nq-a.json" "$out/NQ_PR1472_EXACT_SUBJECT_AUDIT_V2.json"
+          cp "$RUNNER_TEMP/ab-a.json" "$out/AB_PR1469_PRODUCTION_REGISTRY_AUDIT.json"
+          cp "$RUNNER_TEMP/d-a.json" "$out/D_PR1466_FIRST_MIXING_AUDIT.json"
+          cp "$RUNNER_TEMP/q1-a.json" "$out/Q1_PR1449_RESOURCE_AUDIT.json"
+          for pr in 1472 1469 1466 1449; do cp "$RUNNER_TEMP/pr-$pr.json" "$out/PR$pr.json"; done
+
+      - name: Generate exact programme disposition
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('research/five-paper-top-tier-r20/results')
+          lanes={
+            'NQ':json.loads((root/'NQ_PR1472_EXACT_SUBJECT_AUDIT_V2.json').read_text()),
+            'AB':json.loads((root/'AB_PR1469_PRODUCTION_REGISTRY_AUDIT.json').read_text()),
+            'D':json.loads((root/'D_PR1466_FIRST_MIXING_AUDIT.json').read_text()),
+            'Q1':json.loads((root/'Q1_PR1449_RESOURCE_AUDIT.json').read_text()),
+          }
+          lines=['# Five-paper R20 exact blocker disposition','','Generated from exact PR head/base subjects. An audit PASS grants only the authority named by that auditor; external review and journal authority remain open.','', '| Lane | Exact PR | Audit terminal | Internal authority | Remaining blocker |','|---|---:|---|---|---|']
+          remaining={
+            'NQ':'Full proof-clean CR-B subject with complete denominators and external proof checks, or retain numerical CANNOT_CHECK.',
+            'AB':'Extensional executable production move registry, omission-hostile completeness, and native production transfer.',
+            'D':'Independently maintained multi-record integration and external adjudication; real Agentgateway control remains safe.',
+            'Q1':'Matched current-compiler resource experiment including routing, synthesis precision, and physical/logical resource accounting.',
+          }
+          prs={'NQ':1472,'AB':1469,'D':1466,'Q1':1449}
+          authority={
+            'NQ':str(lanes['NQ']['authority']['D2_D3_numerical_authority']).lower(),
+            'AB':str(lanes['AB']['authority']['production_transfer']).lower(),
+            'D':str(lanes['D']['authority']['analytic_first_mixing_theorem']).lower(),
+            'Q1':str(lanes['Q1']['authority']['logical_template_map']).lower(),
+          }
+          for lane in ('NQ','AB','D','Q1'):
+            lines.append(f"| {lane} | #{prs[lane]} | `{lanes[lane]['terminal']}` | {authority[lane]} | {remaining[lane]} |")
+          lines.extend(['','## Exact gate vectors',''])
+          for lane in ('NQ','AB','D','Q1'):
+            lines.append(f'### {lane}')
+            lines.append('')
+            for key,value in lanes[lane]['gates'].items():
+              lines.append(f'- `{key}`: `{str(value).lower()}`')
+            lines.append('')
+          lines.extend(['## Authority ceiling','','- external independence: false','- novelty: false / not established','- production authority: only where the lane-specific audit explicitly passes','- journal authority: false',''])
+          (root/'PROGRAMME_DISPOSITION_R20.md').write_text('\n'.join(lines))
+          snapshot={'schema':'ORION.FivePaper.ProgrammeDisposition.R20.v1','lanes':{lane:{'terminal':value['terminal'],'gates':value['gates'],'authority':value['authority']} for lane,value in lanes.items()},'authority':{'external_independence':False,'novelty':False,'journal_authority':False}}
+          (root/'PROGRAMME_DISPOSITION_R20.json').write_text(json.dumps(snapshot,sort_keys=True,separators=(',',':'))+'\n')
+          PY
+          sha256sum research/five-paper-top-tier-r20/results/* > research/five-paper-top-tier-r20/results/SHA256SUMS.tmp
+          mv research/five-paper-top-tier-r20/results/SHA256SUMS.tmp research/five-paper-top-tier-r20/results/SHA256SUMS
+
+      - name: Publish idempotent issue dispositions
+        shell: bash
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('research/five-paper-top-tier-r20/results')
+          mapping={
+            1384:json.loads((root/'NQ_PR1472_EXACT_SUBJECT_AUDIT_V2.json').read_text()),
+            1385:json.loads((root/'AB_PR1469_PRODUCTION_REGISTRY_AUDIT.json').read_text()),
+            1387:json.loads((root/'D_PR1466_FIRST_MIXING_AUDIT.json').read_text()),
+            1416:json.loads((root/'Q1_PR1449_RESOURCE_AUDIT.json').read_text()),
+          }
+          for issue,result in mapping.items():
+            lines=[f"## R20 exact-subject audit: `{result['terminal']}`",'',f"Audited head: `{result['head_sha']}` against base `{result['base_sha']}`.",'','Gate vector:']
+            lines.extend(f"- `{key}`: `{str(value).lower()}`" for key,value in result['gates'].items())
+            lines.extend(['','Authority remains fail-closed: external independence and journal authority are false. This comment does not promote any claim beyond the lane-specific authority object.','',f"Audit marker: `R20-AUDIT-{result['head_sha']}`"])
+            Path(f'/tmp/issue-{issue}.md').write_text('\n'.join(lines)+'\n')
+          PY
+          for issue in 1384 1385 1387 1416; do
+            marker="$(grep '^Audit marker:' "/tmp/issue-$issue.md" | cut -d'`' -f2)"
+            existing="$(gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$issue/comments" --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)"
+            if [ -z "$existing" ]; then gh api --method POST "repos/$GITHUB_REPOSITORY/issues/$issue/comments" -F "body=@/tmp/issue-$issue.md" >/dev/null; else echo "issue $issue already has $existing"; fi
+          done
+
+      - name: Commit immutable disposition snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/one-shot-publish-five-paper-disposition-r20.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add research/five-paper-top-tier-r20/results .github/workflows/one-shot-publish-five-paper-disposition-r20.yml
+          git commit -m 'audit(R20): bind exact NQ AB D Q1 blocker disposition'
+          git push origin HEAD:refs/heads/chatgpt/orion-02-r18-null-current-main-20260827
