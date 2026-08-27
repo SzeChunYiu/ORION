@@ -24,10 +24,26 @@ both passes).
 
 ## Verdict and prediction outcomes
 
-`RUN_INCOMPLETE` — by protocol semantics this is the designed label for
-"P1–P5 confirmed, P6_feasibility_rule refuted"; it is not an infrastructure
-failure. Every integrity gate passed (mode-`x` outputs, module hashes embedded,
+Recorded verdict: `RUN_INCOMPLETE`, retained here exactly as the runner emitted
+it. Every integrity gate passed (mode-`x` outputs, module hashes embedded,
 in-memory-only guard extension, all witnesses re-verified).
+
+The protocol defines `RUN_INCOMPLETE` as "infrastructure/budget failure after
+one revival attempt". Both halves of that definition are recorded here rather
+than resolved:
+
+- **Budget precondition — satisfied.** `P6_feasibility_rule` evaluated `false`
+  solely through its `timeouts == 0` clause, with 12/12 sampled n=6 cells
+  exhausting the 600 s/cell budget. That is a budget outcome.
+- **Revival precondition — not satisfied.** Run 2 (job 3544067) was a
+  determinism-checker repair (per-family rng reseed), not a budget revival; no
+  revival attempt was made.
+
+This discrepancy is recorded, not adjudicated, and the label stands as emitted.
+An earlier draft of this section asserted that `RUN_INCOMPLETE` is "the designed
+label for P1–P5 confirmed, P6 refuted" and "not an infrastructure failure"; the
+protocol's outcome space does not say that, and the claim is withdrawn. See
+"P6 outcome — coverage accounting" below, and #1509.
 
 | Prediction | Statement | Outcome |
 |------------|-----------|---------|
@@ -36,7 +52,7 @@ in-memory-only guard extension, all witnesses re-verified).
 | P3 family-size identity | active-core family == unrestricted iff n<=2; strict subset for 3<=n<=20 | **TRUE** (729==729 at n=1, 11390625==11390625 at n=2; 2176782336 < 62523502209 at n=3) |
 | P4 witness support | every verified A_DXX witness has six-frame support total <= 12 | **TRUE** (all witnesses verified; support within bound) |
 | P5 R6Q identity on fresh subject | `C_DP == min(C_R6L, C_Dplus, f_B)` on all 15 fresh matchings with matching regime labels | **TRUE** (chemistry H4/N2 and fresh-subject cells: all cost matches, all regime matches, all dxx pinches equal) |
-| P6 feasibility rule | direct A_DXX attempted iff n<=6, no timeouts | **REFUTED** — all 12 n=6 cells hit the 600 s/cell budget (0 executed) |
+| P6 feasibility rule | direct A_DXX attempted iff n<=6; chemistry/fresh cells record `A_PRIORI_INFEASIBLE_N_GT_6` / containment pinch | **`false` as recorded** — reached via the evaluator's `timeouts == 0` clause; all 12 n=6 cells hit the 600 s/cell budget (0 executed). See coverage accounting below. |
 
 ## Crossover table (frozen config: seed 20260827, panel 128 instances/family)
 
@@ -77,14 +93,52 @@ for exhaustive direct verification therefore lies strictly between n=5 and n=6
 under this budget; the DP/R6L/D+ certificates continue to cover all n. No DP
 acceleration claim is made.
 
-## P6 failure detail
+## P6 outcome — coverage accounting
 
-`P6_feasibility_rule` requires (i) zero `dxx_timeout_or_error` across the panel
-and (ii) `A_PRIORI_INFEASIBLE_N_GT_6`/`CONTAINMENT_PINCH_EQUAL_ENDPOINTS`
-statuses for any n>6 cell. The panel stops at n=6, so (ii) is vacuous; (i)
-fails with 12 timeouts — the 4 sampled n=6 instances in each of the three
-families. No cost mismatch, witness failure, or bound violation occurred; the
-refutation is purely resource-exhaustion at the budget frontier.
+**Recorded value: `prediction_outcomes.P6_feasibility_rule = false`.** That is
+the evaluator's output; it stands unmodified, and nothing in this section
+re-evaluates it.
+
+`evaluate_predictions` computes P6 as a two-clause conjunction: (i)
+`timeouts == 0` across the panel, and (ii) for any cell with
+`n > DIRECT_DXX_MAX_N`, a status of `A_PRIORI_INFEASIBLE_N_GT_6` or
+`CONTAINMENT_PINCH_EQUAL_ENDPOINTS`. In this run:
+
+- Clause (i) is **false**: 12 timeouts — the 4 sampled n=6 instances in each of
+  the three families.
+- Clause (ii) **never fires**: panel cell `n` values are `[1..6]` and
+  `DIRECT_DXX_MAX_N = 6`, so no panel cell satisfies `n > 6`.
+
+The recorded `false` is therefore produced entirely by clause (i). No cost
+mismatch, witness failure, or bound violation occurred; the failing clause is
+resource exhaustion at the budget frontier.
+
+**Coverage limit on the registered statement.** P6 is registered as "direct
+A_DXX attempted iff n<=6; chemistry/fresh cells record
+`A_PRIORI_INFEASIBLE_N_GT_6` (or containment pinch where endpoints are equal)".
+Clause (i) has no counterpart in that text, and clause (ii) is evaluated over
+`panel` rather than over the chemistry/fresh cells the text names — which in
+this receipt sit at n=8 (`H4`) and n=12 (`N2`, `fresh_subject`). The registered
+structural claim was thus **not evaluated in the regime where it applies**. For
+the record, those cells carry 30/30 `CONTAINMENT_PINCH_EQUAL_ENDPOINTS` and
+`fresh_subject` reports `all_dxx_pinched_equal: true`. That is recorded as
+coverage information only; it is **not** a re-evaluation of P6, which remains
+`false` as emitted.
+
+Whether the divergence warrants a corrected re-emission is deferred to #1509
+(defect-only frozen rerun, requiring external authorization) and #1508 (guard
+asserting each prediction's evaluator matches its registered statement). Neither
+is actioned here: the protocol and the runner are both hash-pinned inside this
+receipt (`protocol_sha256`, `integrity.module_hashes`), so V1 cannot be amended
+in place — any correction must emit a new receipt and retain V1 as provenance.
+
+**The empirical finding is independent of the labelling question and stands as
+recorded:** exact direct A_DXX exhausts the 600 s/cell budget at n=6 on 12/12
+sampled instances, against 372/372 completing at n<=5.
+
+Consumers note: in this receipt `verdict` and `prediction_outcomes` describe the
+outcome differently, so a tool keying on **either field alone** will get a wrong
+answer about this study. Read both and reconcile.
 
 ## Integrity receipts
 
