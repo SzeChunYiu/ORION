@@ -707,6 +707,19 @@ def test_successor_job_terminalizes_started_registry_on_every_exit() -> None:
     assert "REGISTRY_TERMINALIZATION_FAILURE=70" in script
 
 
+def test_successor_job_routes_term_and_int_through_exit_terminalization() -> None:
+    script = (ENGINE_ROOT / "slurm" / "job_orion04_crb_full_replay.slurm").read_text()
+    signal_handler = script[script.index("on_signal()") : script.index("on_exit()")]
+    assert "trap '' INT TERM" in signal_handler
+    assert 'PHASE="SIGNAL_${signal}"' in signal_handler
+    assert 'exit "${status}"' in signal_handler
+    assert "trap 'on_signal TERM 143' TERM" in script
+    assert "trap 'on_signal INT 130' INT" in script
+    on_exit = script[script.index("on_exit()") : script.index("trap 'on_err")]
+    assert "trap - ERR EXIT" in on_exit
+    assert "trap '' INT TERM" in on_exit
+
+
 def test_donor_disposition_classifies_every_immutable_manifest_entry() -> None:
     source = json.loads((SUCCESSOR_ROOT / "DONOR_SOURCE_MANIFEST_V1.json").read_text())
     disposition = json.loads((SUCCESSOR_ROOT / "DONOR_DISPOSITION_V1.json").read_text())

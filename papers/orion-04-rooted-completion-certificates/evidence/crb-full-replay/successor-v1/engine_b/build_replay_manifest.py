@@ -14,7 +14,7 @@ import engine_b as eb
 
 
 SCHEMA = "ORION.ORION04.CRB.ReplaySourceManifest.v1"
-CURRENT_MAIN_BASE = "f9ea29855578fadd131c115a24dd0e927def4776"
+CURRENT_MAIN_BASE = "fafe9c2c8ebeffbfde673a8a4d4194d9733cce04"
 REPLAY_PATHS = tuple(
     sorted(
         (

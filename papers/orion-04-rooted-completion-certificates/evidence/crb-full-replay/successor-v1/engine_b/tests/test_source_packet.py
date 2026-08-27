@@ -72,7 +72,7 @@ def test_checked_in_replay_manifest_binds_successor_without_live_authorization()
     successor = Path(__file__).resolve().parents[2]
     manifest = json.loads((successor / "REPLAY_SOURCE_MANIFEST_V1.json").read_text())
     build_replay_manifest.verify_replay_manifest(successor, manifest)
-    expected_base = "f9ea29855578fadd131c115a24dd0e927def4776"
+    expected_base = "fafe9c2c8ebeffbfde673a8a4d4194d9733cce04"
     assert build_replay_manifest.CURRENT_MAIN_BASE == expected_base
     assert manifest["current_main_base"] == expected_base
     paths = tuple(item["path"] for item in manifest["files"])

@@ -69,10 +69,20 @@ on_err() {
   return "${status}"
 }
 
+on_signal() {
+  local signal="$1" status="$2"
+  trap '' INT TERM
+  set +e
+  PHASE="SIGNAL_${signal}"
+  on_err "${status}" "${LINENO}" "signal ${signal}"
+  exit "${status}"
+}
+
 on_exit() {
   local status="$1"
   set +e
   trap - ERR EXIT
+  trap '' INT TERM
   if ! python3 "${ENGINE_ROOT}/submission_gate.py" terminalize-started \
     --global-root "${GLOBAL_REGISTRY_ROOT}" --prebind "${PREBIND}" \
     --key "${NON_DUPLICATION_KEY}" --job-id "${SLURM_JOB_ID}" \
@@ -95,6 +105,8 @@ on_exit() {
 
 trap 'on_err "$?" "$LINENO" "$BASH_COMMAND"' ERR
 trap 'on_exit "$?"' EXIT
+trap 'on_signal TERM 143' TERM
+trap 'on_signal INT 130' INT
 
 AUTHORIZATION_SHA256="$(sha256sum "${AUTHORIZATION_PATH}" | awk '{print $1}')"
 python3 "${ENGINE_ROOT}/replay_custody.py" capture-environment "${DURABLE_ROOT}" \
