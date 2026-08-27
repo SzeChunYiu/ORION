@@ -1,0 +1,200 @@
+{
+  "attempt": {
+    "attempt_id": "ORION02-REVIVAL-001-R23-HAMMING-K2",
+    "attempt_ordinal": 1,
+    "counting_basis": [
+      "prospectively distinct science frozen before outcome",
+      "mechanism-matched Hamming-k2 lever",
+      "corrected exact-cell parent on identical outcomes and custody",
+      "scientific terminal reached twice",
+      "result, corrected-parent, and terminal bytes identical across two complete processes",
+      "both preserved outputs independently verified after a verifier-only serialization amendment",
+      "all stored hostile controls pass and a greater-than-tolerance mutation is rejected"
+    ],
+    "counts_toward_100": true,
+    "paper_remains_active": true,
+    "remaining_attempts_after_this": 99,
+    "stop_condition_reached": false
+  },
+  "authority": {
+    "external_independent_replay": false,
+    "freeze_authorized": false,
+    "original_r22_negative_must_remain_visible": true,
+    "r23_adverse_result_must_remain_visible": true,
+    "scientific_authority_delta": "NONE",
+    "submission_authorized": false,
+    "top_tier_gate_pass": false
+  },
+  "date": "2026-08-28",
+  "execution": {
+    "byte_identical_corrected_parent": true,
+    "byte_identical_result": true,
+    "byte_identical_terminal": true,
+    "corrected_parent": {
+      "bytes": 214851,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/FIBERGUARD_PMLB_R22_CORRECTED_EXACT_RECEIPT.json",
+      "sha256": "7711739fa1854e9c69d4cf02a61ba7175934baabb66a89f2012845320d4cc32a"
+    },
+    "failed_stage": "INDEPENDENT_VERIFY",
+    "job_stderr": {
+      "bytes": 3610,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/ORION02_R23_JOB_3550005.err",
+      "sha256": "413b97c495455b4330c74ebfc3fd8ce271a4f076d469c4ee89e4b4ecdf021817"
+    },
+    "job_stdout": {
+      "bytes": 13,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/ORION02_R23_JOB_3550005.out",
+      "sha256": "db662b85ce74acfa13a88d3c69103c4141faa8a23d4f04088390a5251a9de36d"
+    },
+    "preserved_complete_processes": 2,
+    "result": {
+      "bytes": 495057,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_RESULTS.json",
+      "sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77"
+    },
+    "run_a_log": {
+      "bytes": 216,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_RUN_A.log",
+      "sha256": "e597daa47bc21da6f66b9d35d3937ab77a1b0551b573f76b56e1a9ccfdc54db9"
+    },
+    "run_b_log": {
+      "bytes": 216,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_RUN_B.log",
+      "sha256": "e597daa47bc21da6f66b9d35d3937ab77a1b0551b573f76b56e1a9ccfdc54db9"
+    },
+    "scientific_recomputation_after_failure": false,
+    "slurm": {
+      "account": "lu2026-2-51",
+      "allocated_cpu_seconds_upper_bound": 2060,
+      "allocated_cpus": 2,
+      "elapsed": "00:17:10",
+      "elapsed_seconds": 1030,
+      "end": "2026-08-28T00:21:46",
+      "exit_code": "1:0",
+      "gpu_used": false,
+      "job_id": "3550005",
+      "max_rss": "",
+      "monetary_cost": "NOT_MEASURED",
+      "node": "cn087",
+      "partition": "lu48",
+      "requested_memory": "16G",
+      "start": "2026-08-28T00:04:36",
+      "state": "FAILED",
+      "total_cpu": "00:00:00"
+    },
+    "terminal_file": {
+      "bytes": 48,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_TERMINAL.txt",
+      "sha256": "326f481871077a039d425bca8a0f914ec418a3129c43dd76603531c0c6ae2c32"
+    },
+    "timings": {
+      "bytes": 454,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_TIMINGS.json",
+      "sha256": "522fbd2f45873ee00c2438e3a568cb2b094829d6b1114d9208b0576e443aac2f"
+    },
+    "wrapper_exit_was_post_outcome_verifier_failure": true
+  },
+  "freeze_and_amendment": {
+    "attempt_policy_registration_commit": "d15a1de9d25ab751613eee8b2a1fe296732118b3",
+    "failure_preservation_commit": "b444bdaf9cd95c07e79457efe5d4548e90f802d7",
+    "protocol_executor_freeze_commit": "d8b8771986ef8397925852961c6fd38f2b3ec95d",
+    "science_digest_binding_commit": "de4df47f48351355afcc6da0eef91d671ba70725",
+    "verifier_amendment_commit": "ee3009dfb2789abc75d63aac6ec7576380f793b0",
+    "verifier_amendment_post_outcome": true,
+    "verifier_amendment_receipt": {
+      "bytes": 2678,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/R23_VERIFIER_SERIALIZATION_AMENDMENT_A.json",
+      "sha256": "01877266bf0532e23447ce6db0cd268eaad6a1c0cb4e71fc673089c67a0d79b2"
+    },
+    "verifier_amendment_scientific_bytes_changed": false
+  },
+  "measured_boundary": {
+    "corrected_exact_full_state_coverage": 0.0,
+    "coverage_gain_over_corrected_parent": 0.727272727273,
+    "coverage_target": 0.95,
+    "hamming_k2_full_state_coverage": 0.727272727273,
+    "hamming_underperforms_lexical_negative_control": true,
+    "human_result": {
+      "bytes": 2900,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_RESULT.md",
+      "sha256": "20c88c9ee10d3afa500163736d7a72fd9b55c7279d738c238265fd49970541fd"
+    },
+    "learned_mean_groups_acquired": 1.113636363636,
+    "learned_minus_static_ci95": [
+      -0.011716227308,
+      0.008821064426
+    ],
+    "learned_minus_static_mean_excess": -0.001218244987,
+    "lexical_k2_negative_control_coverage": 0.886363636364,
+    "matched_static_minus_exact_ci95": [
+      -0.007979258917,
+      0.010033119242
+    ],
+    "matched_static_minus_exact_mean_excess": 0.001295960276,
+    "n_evaluations": 44,
+    "primary_certified_n": 42,
+    "primary_strict_bound_violations": 24,
+    "static_mean_groups_acquired": 0.840909090909,
+    "terminal": "C_R23_PMLB_BACKOFF_COVERAGE_IMPROVED_BELOW_GATE",
+    "terminal_disposition": "ADVERSE__COVERAGE_IMPROVED_BELOW_GATE"
+  },
+  "schema": "ORION.FiberGuard.PMLBProposalOrdering.R23.Custody.v1",
+  "science_bindings": {
+    "executed_slurm_sha256": "09b6c0b0505a0ec6326d1b01c222c99bc128604adc58d547ad3f1c53b4dc80d9",
+    "executor_sha256": "6bb4e377462249c3630ceacc56073ba385a82805c79eda58809c42b8ee1562aa",
+    "original_r22_result_sha256": "39f47c7806ba77b94a495851f5d51fa111e551db983aa7a31607d5b4bc4f2623",
+    "pmlb_commit": "7c1f4bdc00136dc2e55c87fa6b8ba6e8af6d1a68",
+    "pmlb_tree": "ca5d36e9093c2f7360db57198c8c0586a3217a60",
+    "post_amendment_slurm_sha256": "563282f370bf527d28defd41c9a71cb7ef7c4792c6d763c97590fd2f8a94baa6",
+    "post_amendment_verifier_sha256": "4c8d57f8398d4575097eba16ac7fcd21e467745ad00cfa31df928358e59c6bed",
+    "pre_amendment_verifier_sha256": "fef1f621f5fe43942201d013a682355a5441379ee57ecbb2f607165e52d16997",
+    "protocol_sha256": "54574ec9fa5364fb0ad8e5857678930dac3b4483f1b7a9da96829d8e6f0c447f",
+    "wrapper_sha256": "f47fb411acda6735ca636160defcdd926c98e6ed5f57967051b683d4a4203f04"
+  },
+  "verification": {
+    "all_gating_controls_pass": true,
+    "canonical_verification": {
+      "bytes": 2460,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_VERIFICATION.txt",
+      "sha256": "81da1182a48cf0ac3c7f9cf49a613d37fd6c3dc1d016238d7900ebaf006333d7"
+    },
+    "failure_scope": "best_bound serialization order only: 6 Hamming records and 10 lexical-control records, max absolute difference 1e-12; zero structural differences",
+    "final_materialized": {
+      "bytes": 3795,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/ORION02_R23_FINAL_MATERIALIZED_VERIFY.txt",
+      "sha256": "4230eb1084ec7d6090dd5ed43ee4e40b322df0929770ad8d947325645284f630"
+    },
+    "hostile_greater_than_tolerance_rejection": {
+      "bytes": 3810,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/ORION02_R23_POST_AMENDMENT_HOSTILE_TOLERANCE_REJECTION.txt",
+      "sha256": "03be874dc422f1d5ec1d16ec8d25162410d1c95c0280145a94c052838bbb8a10"
+    },
+    "post_amendment_logs_byte_identical": true,
+    "post_amendment_self_test": {
+      "bytes": 13,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/ORION02_R23_POST_AMENDMENT_SELF_TEST.txt",
+      "sha256": "db662b85ce74acfa13a88d3c69103c4141faa8a23d4f04088390a5251a9de36d"
+    },
+    "post_amendment_unit_tests": {
+      "bytes": 3707,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/ORION02_R23_POST_AMENDMENT_TESTS.txt",
+      "sha256": "260bc2c6aca8ea28f465b0887be957dbed2f5dfbc2aaeccbedc73b4cc2aee8e4"
+    },
+    "pre_amendment_failure_count": 2,
+    "pre_amendment_failure_log": {
+      "bytes": 3810,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/ORION02_R23_JOB_3550005_VERIFIER_PRE_AMENDMENT.txt",
+      "sha256": "cb9d50c02b2499a66b6ec13be9add3724caa3d69c363416d6045afec21e8519f"
+    },
+    "preserved_run_a_post_amendment": {
+      "bytes": 3795,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/ORION02_R23_POST_AMENDMENT_VERIFY_RUN_A.txt",
+      "sha256": "4230eb1084ec7d6090dd5ed43ee4e40b322df0929770ad8d947325645284f630"
+    },
+    "preserved_run_b_post_amendment": {
+      "bytes": 3795,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/ORION02_R23_POST_AMENDMENT_VERIFY_RUN_B.txt",
+      "sha256": "4230eb1084ec7d6090dd5ed43ee4e40b322df0929770ad8d947325645284f630"
+    }
+  }
+}
