@@ -779,10 +779,17 @@ def main() -> dict[str, Any]:
 
     if not smoke:
         projection_run1 = determinism_projection(receipt, DETERMINISM_MAX_N)
-        rng2 = np.random.default_rng(SEED)
+        # Checker repair (post-run, commit-level root cause): the main panel run
+        # reseeds `rng = default_rng(SEED)` PER FAMILY; this double-run originally
+        # seeded rng2 once outside the family loop, so from the second family
+        # onward it compared cells built from a different RNG stream position —
+        # a harness artifact, not scientific nondeterminism. Reseed per family to
+        # reproduce the main run's stream schedule exactly. Panel/prediction code
+        # is untouched; rerun outcomes must reproduce run 1 (job 3544037).
         rerun_rows: list = []
         panel2 = {}
         for family in FAMILIES:
+            rng2 = np.random.default_rng(SEED)
             cells = []
             for n in sorted(k for k in panel_sizes if k <= DETERMINISM_MAX_N):
                 cells.append(
