@@ -2,41 +2,37 @@
 
 ## Maximum current claim
 
-ORION-05 has a sharp support-two theorem, exact counterexamples, and a scoped compiler-family interpretation after subtracting TARE and related donor ownership. The remaining top-tier bridge is prospective: implement the active-core mechanism, determine exact resource crossover, and test whether the theorem predicts useful behaviour in an independent compiler family.
+ORION-05 now has two linked bounded theorem layers under the same frozen shared-Tag R6M/TARE-M2 grammar and declared objective. First, the sharp all-`n` support theorem proves that every admitted instance has an exact optimum with frame support at most two, with exact counterexamples showing support one is not uniformly sufficient and later counterexamples preventing promotion of a small named support-two taxonomy to a universal closed form. Second, the prospectively frozen R11 executable gate has reached terminal `Q1_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM`: the support-two structure yields a constructive direct exact `O(n^9)` sparse-search algorithm after `O(n)` preprocessing for this six-slot grammar. R11 explicitly grants no production-runtime value, physical quantum-resource authority, generic TARE complexity, novelty authority, or submission authority.
+
+The remaining top-tier bridge is therefore no longer “implement a direct exact algorithm.” It is practical/external: measure production crossover with full resource accounting and test transfer to an independent public compiler family.
 
 ## Good specialist finish
 
-- [ ] Complete the proof-free readability pass so the practical object, theorem, assumptions, counterexamples, and nonclaims are understandable before formal details.
-- [ ] Independently check every theorem/counterexample and bind the canonical manuscript to the current result/proof artifacts.
-- [ ] Retain support-three sharpness and universal two-trade statements as unearned/open where applicable.
-- [ ] Finish Quantum-quality references, figures/tables, reproducibility, current PDF audit, and final package bytes.
+- [ ] Make the practical object, support-two theorem, R11 direct algorithm, assumptions, exact counterexamples, and nonclaims understandable before formal details.
+- [ ] Independently replay the support theorem sanity checks and the R11 isolated pair-count checker; bind protocol, solver, checker and result digests into the TQE submission projection.
+- [ ] Keep support-two sharpness, later taxonomy refutations, and the distinction between polynomial exact complexity and measured production value visible.
+- [ ] Keep current compiler-selection/tuning parents explicit and claim no generic compiler-option or TARE design novelty.
+- [ ] Finish TQE references, 150–250-word venue abstract, reproducibility bundle, current PDF audit, and exact submission-package hashes.
 
-The empirical routes below are optional top-tier discriminators and do not block the bounded theorem paper once the specialist finish is green.
+The empirical routes below are optional top-tier discriminators and do not block the bounded theorem/algorithm paper once the specialist finish is green.
 
-## Top-tier discriminator A — prospective active core
-
-- [ ] Specify the active-core algorithm solely from pre-outcome theory and current compiler interfaces.
-- [ ] Freeze supported operations, failure/abstention behaviour, deterministic tie handling, cache policy, and resource accounting before running benchmarks.
-- [ ] Implement it without reading benchmark outcomes beyond development/self-test cases.
-- [ ] Add outcome-blind unit, mutation, exact-small-instance, and hostile controls.
-
-## Top-tier discriminator B — exact crossover/resource evaluation
+## Optional top-tier discriminator A — measured production crossover
 
 Freeze and report the complete vector:
 
 `R = (compiler preprocessing, representation/state, candidate enumeration/search, oracle/verifier calls, model/solver compute, latency, memory/cache, recovery/reconstruction)`
 
-- [ ] Compare active core to TARE/native compiler behaviour, direct support enumeration, and the strongest applicable public donor product.
+- [ ] Compare the direct sparse solver or faithful production realization to the historical dense exact implementation, TARE/native compiler behaviour where meaningfully mappable, direct support enumeration, and the strongest applicable public donor product.
 - [ ] Use exact small/medium instances to validate outputs and larger public workloads only where native ground truth/evaluation is reliable.
-- [ ] Pre-register crossover endpoints: result quality/correctness, support/search reduction, total resource use, and failure coverage.
-- [ ] Do not convert lower search degree into practical speed/value without measurement.
+- [ ] Pre-register crossover endpoints: correctness, search reduction, total resource use, latency/memory, failure coverage, and the regime where the sparse method should not help.
+- [ ] Do not convert the proved `O(n^9)` bound into a wall-clock or hardware claim without measurement.
 
-## Top-tier discriminator C — independent compiler family
+## Optional top-tier discriminator B — independent compiler family
 
 - [ ] Select one public compiler/toolchain not developed for ORION and materially different from the original family.
 - [ ] Bind repository revision, benchmark suite, native options, objective, evaluator, and licence.
 - [ ] Freeze the theorem-derived prediction before executing the family.
-- [ ] Register `NOT_REALIZABLE_IN_FAMILY` as an honest terminal when the proof-language object lacks a valid production realization.
+- [ ] Register `NOT_REALIZABLE_IN_FAMILY` when the proof-language object lacks a valid production realization rather than silently approximating it.
 
 ## Public/external resources
 
@@ -49,17 +45,22 @@ Freeze and report the complete vector:
 ## Hostile controls
 
 - [ ] exact counterexamples 8<9 and 5<6 remain failures for any overbroad rule;
-- [ ] family where alphabet ceiling equals rank, so the refinement should add no value;
-- [ ] objective change outside the theorem's scope;
-- [ ] active-core cache/preprocessing charged fully;
+- [ ] all later support-two taxonomy counterexamples remain reader-visible;
+- [ ] R11 may not import/fall back to the historical dense DP, materialize the forbidden exponential table, or sweep all Tags;
+- [ ] objective change outside theorem scope;
+- [ ] preprocessing/cache/search/memory charged fully in any practical comparison;
 - [ ] support-label permutation and parser/serialization mutation;
-- [ ] native compiler given identical optimization/evaluator access;
-- [ ] unsupported realization fails closed rather than silently approximating.
+- [ ] native compiler gets identical evaluator/cache access;
+- [ ] unsupported realization fails closed rather than being counted as success.
 
 ## Registered terminals
 
-- `ACTIVE_CORE_IMPLEMENTATION_VALID`
-- `ACTIVE_CORE_IMPLEMENTATION_INVALID`
+Current specialist theorem terminal:
+
+- `Q1_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM`
+
+Optional stronger terminals:
+
 - `EXACT_CROSSOVER_VALUE_SUPPORTED`
 - `NO_RESOURCE_CROSSOVER_VALUE`
 - `SECOND_FAMILY_TRANSFER_SUPPORTED`
@@ -68,13 +69,21 @@ Freeze and report the complete vector:
 
 ## Required artifacts
 
-- [ ] protocol commit preceding benchmark outcomes;
-- [ ] active-core source and exact self-tests;
-- [ ] public compiler/workload manifest;
-- [ ] complete baseline configs and resource logs;
-- [ ] raw results and failure ledger;
-- [ ] independent implementation/proof audit;
-- [ ] generated crossover table/figures;
-- [ ] claim ledger and manuscript/package update.
+For specialist closure:
 
-A positive top-tier bridge requires an implementation, measured crossover, and independent-family evidence. The theorem paper remains publishable if the empirical bridge is null or not realizable, provided the result is reported without rewriting the theorem's scope.
+- [ ] original R11 protocol and exact result;
+- [ ] direct solver and isolated pair-count checker identities;
+- [ ] fresh independent pair-count replay inside the Wave-A quantum receipt;
+- [ ] result-bound TQE submission projection and projection report;
+- [ ] cited scientific master plus current literature subtraction;
+- [ ] TQE PDF/source, replay raw bundle and SHA-256 manifest.
+
+For optional top-tier work:
+
+- [ ] pre-outcome public compiler/workload protocol;
+- [ ] complete baseline configs/resource logs;
+- [ ] raw results/failure ledger;
+- [ ] independent implementation/output audit;
+- [ ] generated crossover/transfer figures and result-bound manuscript update.
+
+The bounded support theorem plus executed direct exact algorithm is publishable even if practical crossover or second-family transfer is null or not realizable, provided those limits are reported without rewriting the theorem's scope.
