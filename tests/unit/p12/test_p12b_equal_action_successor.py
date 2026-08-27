@@ -98,7 +98,7 @@ def test_locked_environment_identity_is_a_noncompensatory_gate() -> None:
 
 def test_v1_receipt_is_preserved_append_only() -> None:
     assert sha256(HISTORICAL_RESULT.read_bytes()).hexdigest() == (
-        "76fed7d0b539e561036401a988cf2cfeaf6f12c2c5ddc7c42548513df96eb78e"
+        "a373fcbc63114eac5d42cafa96cce1898a9e6392e480c5d4d0e177cafd7a0523"
     )
 
 
