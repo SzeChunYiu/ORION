@@ -81,6 +81,7 @@ jobs:
           bibtex main
           pdflatex -interaction=nonstopmode -halt-on-error main.tex
           pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
           test -s main.pdf
           pdftotext main.pdf ../pdf.txt
           pdfinfo main.pdf > ../pdfinfo.txt
@@ -94,9 +95,14 @@ jobs:
             exit 1
           fi
           if ! grep -Fq 'References' ../pdf_flat.txt; then
-            echo 'QG1_PRX_V2_REFERENCES_SECTION_MISSING=FAIL'
-            grep -n -i -m 3 'references' ../pdf.txt || true
-            exit 1
+            # REVTeX typesets the bibliography heading as letterspaced small
+            # caps; pdftotext splits those glyph runs ("R EFEREN CES"), so
+            # retry with all whitespace removed before declaring failure.
+            if ! tr -d '[:space:]' < ../pdf.txt | grep -Eq 'REFERENCES|References'; then
+              echo 'QG1_PRX_V2_REFERENCES_SECTION_MISSING=FAIL'
+              grep -n -i -m 3 'eferen' ../pdf.txt || true
+              exit 1
+            fi
           fi
           if grep -Eq '\[@[A-Za-z0-9_:-]+' ../pdf_flat.txt; then
             echo 'QG1_PRX_V2_UNRESOLVED_CITATION_TOKEN=FAIL'
