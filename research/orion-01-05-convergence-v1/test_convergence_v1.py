@@ -16,8 +16,10 @@ sys.path.insert(0, str(HERE))
 import verify_convergence_v1 as convergence  # noqa: E402
 from verify_convergence_v1 import (  # noqa: E402
     json_pointer,
+    validate_action_artifact_archive,
     validate_changed_paths,
     validate_entry,
+    validate_event_base,
     validate_manifest,
     validate_science,
     verify,
@@ -108,10 +110,70 @@ def test_github_artifact_member_mapping_must_be_unique(
         validate_manifest(ROOT)
 
 
-def test_missing_optional_donor_is_explicitly_cannot_reverify(
+def test_unregistered_github_artifact_identity_fails_closed(tmp_path: Path) -> None:
+    destination = tmp_path / "result.json"
+    destination.write_text("{}\n", encoding="utf-8")
+    entry = {
+        "destination": "result.json",
+        "bytes": destination.stat().st_size,
+        "sha256": convergence.sha256(destination),
+        "source": {
+            "kind": "github_actions_artifact",
+            "run": 1,
+            "artifact_id": 2,
+            "artifact_name": "fabricated",
+            "artifact_zip_sha256": "0" * 64,
+            "member": "result.json",
+            "member_bytes": destination.stat().st_size,
+            "member_sha256": convergence.sha256(destination),
+        },
+    }
+    with pytest.raises(AssertionError, match="unregistered artifact identity"):
+        validate_entry(tmp_path, entry)
+
+
+@pytest.mark.parametrize(
+    "relative_path",
+    [
+        (
+            "papers/orion-02-fiberguard-finite-fibre/extensions/r18/"
+            "R18_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json"
+        ),
+        (
+            "papers/orion-02-fiberguard-finite-fibre/extensions/r20/"
+            "BNSL_R20_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json"
+        ),
+    ],
+)
+def test_vendored_action_artifact_archives_validate_offline(
+    relative_path: str,
+) -> None:
+    custody = convergence.load(ROOT / relative_path)
+    validate_action_artifact_archive(ROOT, custody)
+
+
+def test_action_artifact_archive_custody_fails_closed_on_member_drift() -> None:
+    custody_path = (
+        ROOT
+        / "papers/orion-02-fiberguard-finite-fibre/extensions/r20/"
+        "BNSL_R20_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json"
+    )
+    custody = convergence.load(custody_path)
+    custody["members"]["TERMINAL.txt"]["sha256"] = "0" * 64
+    with pytest.raises(AssertionError, match="artifact custody member drift"):
+        validate_action_artifact_archive(ROOT, custody)
+
+
+def test_duplicate_json_keys_fail_closed(tmp_path: Path) -> None:
+    path = tmp_path / "duplicate.json"
+    path.write_text('{"terminal":"PASS","terminal":"FAIL"}\n', encoding="utf-8")
+    with pytest.raises(AssertionError, match="duplicate JSON key"):
+        convergence.load(path)
+
+
+def test_missing_required_donor_commit_path_fails_closed(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
-    capsys: pytest.CaptureFixture[str],
 ) -> None:
     destination = tmp_path / "donor.txt"
     destination.write_text("historical donor\n", encoding="utf-8")
@@ -127,144 +189,13 @@ def test_missing_optional_donor_is_explicitly_cannot_reverify(
             "commit": "f" * 40,
             "path": "historical/donor.txt",
             "blob": blob,
-            "object_required_in_checkout": False,
-            "object_absence_disposition": (
-                "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
-            ),
+            "object_required_in_checkout": True,
         },
     }
     monkeypatch.setattr(convergence, "git_object_exists", lambda *_args: False)
 
-    validate_entry(tmp_path, entry, require_donor_objects=False)
-    assert "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY" in capsys.readouterr().out
-
     with pytest.raises(AssertionError, match="required donor commit/path unavailable"):
-        validate_entry(tmp_path, entry, require_donor_objects=True)
-
-
-def test_vendored_bnsl_actions_archive_is_verified_offline() -> None:
-    custody_path = (
-        ROOT
-        / "papers/orion-02-fiberguard-finite-fibre/extensions/r20/"
-        "BNSL_R20_ACTION_ARTIFACT_CUSTODY_V1.json"
-    )
-    assert custody_path.is_file(), "BNSL Actions artifact custody record absent"
-    custody = json.loads(custody_path.read_text(encoding="utf-8"))
-    convergence.validate_action_artifact_archive(ROOT, custody)
-
-
-def test_bnsl_actions_archive_rejects_fabricated_identity_and_tampering(
-    tmp_path: Path,
-) -> None:
-    custody_path = (
-        ROOT
-        / "papers/orion-02-fiberguard-finite-fibre/extensions/r20/"
-        "BNSL_R20_ACTION_ARTIFACT_CUSTODY_V1.json"
-    )
-    original = json.loads(custody_path.read_text(encoding="utf-8"))
-    fabricated = json.loads(json.dumps(original))
-    fabricated["github_actions"]["artifact_id"] += 1
-    with pytest.raises(AssertionError, match="artifact custody identity"):
-        convergence.validate_action_artifact_archive(ROOT, fabricated)
-
-    source = ROOT / original["archive"]["path"]
-    tampered_path = tmp_path / "tampered.zip"
-    payload = bytearray(source.read_bytes())
-    payload[-1] ^= 1
-    tampered_path.write_bytes(payload)
-    tampered = json.loads(json.dumps(original))
-    tampered["archive"]["path"] = str(tampered_path)
-    with pytest.raises(AssertionError, match="artifact archive SHA"):
-        convergence.validate_action_artifact_archive(ROOT, tampered)
-
-
-def test_vendored_r18_actions_archive_is_verified_offline() -> None:
-    custody_path = (
-        ROOT
-        / "papers/orion-02-fiberguard-finite-fibre/extensions/r18/"
-        "R18_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json"
-    )
-    assert custody_path.is_file(), "R18 Actions artifact custody record absent"
-    custody = json.loads(custody_path.read_text(encoding="utf-8"))
-    convergence.validate_r18_action_artifact_archive(ROOT, custody)
-
-
-def test_r18_actions_archive_rejects_fabricated_identity_and_tampering(
-    tmp_path: Path,
-) -> None:
-    custody_path = (
-        ROOT
-        / "papers/orion-02-fiberguard-finite-fibre/extensions/r18/"
-        "R18_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json"
-    )
-    original = json.loads(custody_path.read_text(encoding="utf-8"))
-    fabricated = json.loads(json.dumps(original))
-    fabricated["api_snapshot"]["artifact_id"] += 1
-    with pytest.raises(AssertionError, match="Actions provenance"):
-        convergence.validate_r18_action_artifact_archive(ROOT, fabricated)
-
-    source = ROOT / original["archive"]["path"]
-    tampered_path = tmp_path / "tampered-r18.zip"
-    payload = bytearray(source.read_bytes())
-    payload[-1] ^= 1
-    tampered_path.write_bytes(payload)
-    tampered = json.loads(json.dumps(original))
-    tampered["archive"]["path"] = str(tampered_path)
-    with pytest.raises(AssertionError, match="archive SHA"):
-        convergence.validate_r18_action_artifact_archive(ROOT, tampered)
-
-
-def test_publication_gate_and_venue_ladder_are_canonical_orion_id_artifacts() -> None:
-    gate_path = HERE / "PUBLICATION_GATE_V1.json"
-    ladder_path = HERE / "PROVISIONAL_VENUE_LADDER_V1.md"
-    assert gate_path.is_file()
-    assert ladder_path.is_file()
-    gate = json.loads(gate_path.read_text(encoding="utf-8"))
-    assert set(gate["papers"]) == {f"ORION-{i:02d}" for i in range(1, 6)}
-    for paper in gate["papers"].values():
-        assert paper["science_status"] == "OPEN"
-        assert paper["top_tier_submission_ready"] is False
-        assert paper["specialist_submission_ready"] is False
-        assert paper["submission_authorized"] is False
-    ladder = ladder_path.read_text(encoding="utf-8")
-    for paper_id in gate["papers"]:
-        assert paper_id in ladder
-    assert "Recheck official venue criteria" in ladder
-
-
-def test_stack_artifact_dispositions_cover_every_frozen_pr_file() -> None:
-    ledger = json.loads(
-        (HERE / "STACK_ARTIFACT_DISPOSITIONS_V1.json").read_text(encoding="utf-8")
-    )
-    expected_counts = {
-        1471: 11,
-        1475: 5,
-        1485: 7,
-        1488: 11,
-        1489: 11,
-        1492: 54,
-        1503: 3,
-        1506: 3,
-        1534: 4,
-    }
-    assert ledger["source_pr_file_counts"] == {
-        str(number): count for number, count in expected_counts.items()
-    }
-    rows = ledger["files"]
-    observed = {}
-    for row in rows:
-        key = (row["source_pr"], row["source_path"])
-        assert key not in observed
-        observed[key] = row
-        assert row["disposition"] in {
-            "BYTE_MATERIALIZED_CANONICAL_DONOR",
-            "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
-            "HISTORICAL_ONLY_NOT_CANONICALIZED",
-            "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
-            "CONSUMED_AUTHORIZATION_WITH_FAILURE_CUSTODY_PRESERVED",
-        }
-    for number, count in expected_counts.items():
-        assert sum(row["source_pr"] == number for row in rows) == count
+        validate_entry(tmp_path, entry)
 
 
 def test_r18_runner_imports_under_declared_replay_environment() -> None:
@@ -318,7 +249,7 @@ def test_r18_replay_dependency_lock_and_data_free_preflight() -> None:
     )
 
 
-def test_cli_rejects_event_base_that_differs_from_manifest_baseline() -> None:
+def test_cli_rejects_event_base_that_is_not_the_exact_manifest_commit() -> None:
     verifier = HERE / "verify_convergence_v1.py"
     completed = subprocess.run(
         [
@@ -338,16 +269,41 @@ def test_cli_rejects_event_base_that_differs_from_manifest_baseline() -> None:
     assert "event base commit mismatch" in completed.stderr
 
 
-def test_workflow_supplies_exact_pr_base_but_uses_manifest_baseline_on_push() -> None:
+def test_event_base_rejects_same_tree_at_a_different_commit(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    manifest = json.loads(
+        (HERE / "DONOR_MANIFEST_V1.json").read_text(encoding="utf-8")
+    )
+    monkeypatch.setattr(convergence, "git", lambda *_args, **_kwargs: "f" * 40)
+    with pytest.raises(AssertionError, match="event base commit mismatch"):
+        validate_event_base(ROOT, manifest, "HEAD")
+
+
+def test_workflow_supplies_exact_pr_base_and_full_donor_history() -> None:
     workflow = (ROOT / ".github/workflows/orion-01-05-convergence-v1.yml").read_text(
         encoding="utf-8"
     )
     assert "github.event.pull_request.base.sha" in workflow
     assert "fetch-depth: 0" in workflow
-    assert 'if [ "$GITHUB_EVENT_NAME" = "pull_request" ]' in workflow
     assert '--event-base "$PR_BASE_SHA"' in workflow
-    assert "--require-donor-objects" in workflow
-    assert "github.event.before" not in workflow
+
+
+def test_repository_paths_and_claim_tables_fail_closed(tmp_path: Path) -> None:
+    with pytest.raises(AssertionError, match="noncanonical repository path"):
+        convergence.repo_path(tmp_path, "../escape.json", "test")
+    with pytest.raises(AssertionError, match="unsafe repository path"):
+        convergence.repo_path(tmp_path, "folder\\escape.json", "test")
+
+    ledger = tmp_path / "ledger.md"
+    ledger.write_text(
+        "# Ledger\n\n| ID | Claim | Status | Boundary |\n"
+        "|---|---|---|---|\n"
+        "| A2-C1 | malformed | extra | cell | hidden |\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(AssertionError, match="exactly four columns"):
+        convergence.claim_ledger_ids(ledger)
 
 
 def test_manifest_requires_every_expected_path_to_have_a_source_binding(
@@ -405,9 +361,10 @@ def test_supersession_is_conditional_and_never_erases_adverse_results() -> None:
     closures = set(plan["after_convergence_merge"]["close_pull_requests"])
     assert closures == {1471, 1475, 1485, 1488, 1489, 1492, 1503, 1506, 1534}
     assert {1449, 1466, 1469, 1472, 1524}.isdisjoint(closures)
-    assert "unabsorbed_manuscript_package_and_policy_pull_requests" not in plan[
-        "keep_open_after_convergence"
-    ]
+    assert (
+        "unabsorbed_manuscript_package_and_policy_pull_requests"
+        not in plan["keep_open_after_convergence"]
+    )
     assert "adverse, null, harmful, timeout, and CANNOT_CHECK outcomes" in plan[
         "never_superseded"
     ]
@@ -557,24 +514,72 @@ def test_science_status_and_candidate_authority_are_fail_closed(
         validate_science(ROOT)
 
 
-def test_controlling_adverse_record_cannot_be_omitted_from_summary(
+@pytest.mark.parametrize(
+    ("mutation", "message"),
+    [
+        (
+            lambda status: status["papers"]["ORION-01"]["rounds"].__setitem__(
+                "consumed", 3
+            ),
+            "ORION-01 round accounting",
+        ),
+        (
+            lambda status: status["papers"]["ORION-03"]["authority"].__setitem__(
+                "journal_authority_established", True
+            ),
+            "ORION-03 authority promoted",
+        ),
+        (
+            lambda status: status["papers"]["ORION-05"]["evidence_status"][
+                "pending_candidates"
+            ][0].__setitem__("source_head", "f" * 40),
+            "ORION-05 candidate identity drift",
+        ),
+        (
+            lambda status: status["papers"]["ORION-01"]["claim_ledgers"][0][
+                "claim_dispositions"
+            ]["established_at_stated_ceiling"].remove("A2-C1"),
+            "ORION-01 structured claim-ledger disposition drift",
+        ),
+    ],
+)
+def test_round_authority_candidate_and_claim_ledger_are_fail_closed(
+    monkeypatch: pytest.MonkeyPatch,
+    mutation,
+    message: str,
+) -> None:
+    original_load = convergence.load
+    status_path = HERE / "SCIENCE_STATUS_V1.json"
+    status = json.loads(status_path.read_text(encoding="utf-8"))
+    mutation(status)
+
+    def load_mutated(path: Path):
+        if path.resolve() == status_path.resolve():
+            return status
+        return original_load(path)
+
+    monkeypatch.setattr(convergence, "load", load_mutated)
+    with pytest.raises(AssertionError, match=message):
+        validate_science(ROOT)
+
+
+def test_candidate_terminal_cannot_be_emitted_inside_convergence_status(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     original_load = convergence.load
     status_path = HERE / "SCIENCE_STATUS_V1.json"
     status = json.loads(status_path.read_text(encoding="utf-8"))
-    derived = status["papers"]["ORION-02"]["evidence_status"][
-        "convergence_summary"
-    ]["derived_from"]
-    derived.remove("ORION02_R18_RETRACTION")
+    status["papers"]["ORION-05"]["evidence_status"]["pending_candidates"][0][
+        "emitted_terminal"
+    ] = "FABRICATED_PASS"
 
-    def load_missing_adverse(path: Path):
+    def load_emitted(path: Path):
         if path.resolve() == status_path.resolve():
             return status
         return original_load(path)
 
-    monkeypatch.setattr(convergence, "load", load_missing_adverse)
-    with pytest.raises(AssertionError, match="summary omits or invents"):
+    monkeypatch.setattr(convergence, "load", load_emitted)
+    with pytest.raises(AssertionError, match="candidate terminal promoted"):
         validate_science(ROOT)
 
 
@@ -598,7 +603,7 @@ def test_unexecuted_r30_rust_checker_cannot_be_promoted(
         validate_science(ROOT)
 
 
-def test_r30_failure_cause_is_fail_closed(
+def test_r30_failure_cause_and_run_identity_are_fail_closed(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     original_load = convergence.load
@@ -613,4 +618,245 @@ def test_r30_failure_cause_is_fail_closed(
 
     monkeypatch.setattr(convergence, "load", load_corrupted_runs)
     with pytest.raises(AssertionError, match="R30 failure receipt drift"):
+        validate_science(ROOT)
+
+
+def test_controlling_adverse_record_cannot_be_omitted_from_summary(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    original_load = convergence.load
+    status_path = HERE / "SCIENCE_STATUS_V1.json"
+    status = json.loads(status_path.read_text(encoding="utf-8"))
+    derived = status["papers"]["ORION-02"]["evidence_status"][
+        "convergence_summary"
+    ]["derived_from"]
+    derived.remove("ORION02_R18_RETRACTION")
+
+    def load_missing_adverse(path: Path):
+        if path.resolve() == status_path.resolve():
+            return status
+        return original_load(path)
+
+    monkeypatch.setattr(convergence, "load", load_missing_adverse)
+    with pytest.raises(AssertionError, match="summary omits or invents"):
+        validate_science(ROOT)
+
+
+
+def test_publication_gate_and_venue_ladder_are_canonical_orion_id_artifacts() -> None:
+    gate_path = HERE / "PUBLICATION_GATE_V1.json"
+    ladder_path = HERE / "PROVISIONAL_VENUE_LADDER_V1.md"
+    assert gate_path.is_file()
+    assert ladder_path.is_file()
+    gate = json.loads(gate_path.read_text(encoding="utf-8"))
+    assert set(gate["papers"]) == {f"ORION-{i:02d}" for i in range(1, 6)}
+    for paper in gate["papers"].values():
+        assert paper["science_status"] == "OPEN"
+        assert paper["top_tier_submission_ready"] is False
+        assert paper["specialist_submission_ready"] is False
+        assert paper["submission_authorized"] is False
+    ladder = ladder_path.read_text(encoding="utf-8")
+    for paper_id in gate["papers"]:
+        assert paper_id in ladder
+    assert "Recheck official venue criteria" in ladder
+
+
+def test_stack_artifact_dispositions_cover_every_frozen_pr_file() -> None:
+    ledger = json.loads(
+        (HERE / "STACK_ARTIFACT_DISPOSITIONS_V1.json").read_text(encoding="utf-8")
+    )
+    expected_counts = {
+        1471: 11,
+        1475: 5,
+        1485: 7,
+        1488: 11,
+        1489: 11,
+        1492: 54,
+        1503: 3,
+        1506: 3,
+        1534: 4,
+    }
+    assert ledger["source_pr_file_counts"] == {
+        str(number): count for number, count in expected_counts.items()
+    }
+    rows = ledger["files"]
+    observed = {}
+    for row in rows:
+        key = (row["source_pr"], row["source_path"])
+        assert key not in observed
+        observed[key] = row
+        assert row["disposition"] in {
+            "BYTE_MATERIALIZED_CANONICAL_DONOR",
+            "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+            "HISTORICAL_ONLY_NOT_CANONICALIZED",
+            "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+            "CONSUMED_AUTHORIZATION_WITH_FAILURE_CUSTODY_PRESERVED",
+        }
+    for number, count in expected_counts.items():
+        assert sum(row["source_pr"] == number for row in rows) == count
+
+
+def test_failed_r30_archive_binding_fails_closed(tmp_path: Path) -> None:
+    source = HERE / "R30_FAILED_FINAL_ARTIFACT_9636339561.zip"
+    destination = tmp_path / "failed-r30.zip"
+    destination.write_bytes(source.read_bytes())
+    entry = {
+        "destination": "failed-r30.zip",
+        "bytes": destination.stat().st_size,
+        "sha256": convergence.sha256(destination),
+        "source": {
+            "kind": "github_actions_artifact_archive",
+            "run": 33047609008,
+            "artifact_id": 9636339561,
+            "artifact_name": "five-paper-r30-final",
+            "artifact_zip_bytes": 136,
+        },
+    }
+    validate_entry(tmp_path, entry)
+    entry["source"]["artifact_zip_bytes"] = 0
+    with pytest.raises(AssertionError, match="failed R30 artifact archive binding"):
+        validate_entry(tmp_path, entry)
+
+
+@pytest.mark.parametrize(
+    ("relative_path", "authority_key"),
+    [
+        (
+            "papers/orion-02-fiberguard-finite-fibre/extensions/r18/"
+            "R18_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json",
+            "novelty_authority",
+        ),
+        (
+            "papers/orion-02-fiberguard-finite-fibre/extensions/r20/"
+            "BNSL_R20_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json",
+            "novelty_authority",
+        ),
+        (
+            "papers/orion-02-fiberguard-finite-fibre/extensions/r20/"
+            "BNSL_R20_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json",
+            "adaptive_superiority",
+        ),
+    ],
+)
+def test_action_artifact_authority_promotions_fail_closed(
+    relative_path: str,
+    authority_key: str,
+) -> None:
+    custody = convergence.load(ROOT / relative_path)
+    custody["authority"][authority_key] = True
+    with pytest.raises(AssertionError, match="artifact authority disposition drift"):
+        validate_action_artifact_archive(ROOT, custody)
+
+
+@pytest.mark.parametrize(
+    ("filename", "key_path", "promoted_value", "expected_message"),
+    [
+        (
+            "R30_FAILURE_RUNS_V1.json",
+            ("r30_run_count",),
+            5,
+            "R30 run denominator",
+        ),
+        (
+            "R30_FAILURE_RUNS_V1.json",
+            ("authoritative_successful_r30_finalizer",),
+            True,
+            "R30 all-failed disposition",
+        ),
+        (
+            "R30_FAILURE_RUNS_V1.json",
+            ("final_receipts_materialized",),
+            True,
+            "R30 all-failed disposition",
+        ),
+        (
+            "R30_FAILURE_RUNS_V1.json",
+            ("authority", "novelty"),
+            True,
+            "R30 runs authority promoted",
+        ),
+        (
+            "R30_FAILURE_CUSTODY_V1.json",
+            ("unmaterialized_cross_language_claim", "workflow_id"),
+            1,
+            "R30 Rust checker execution promoted",
+        ),
+        (
+            "R30_FAILURE_CUSTODY_V1.json",
+            ("source_tree_package_state", "head"),
+            "f" * 40,
+            "R30 source-tree package state promoted",
+        ),
+        (
+            "R30_FAILURE_CUSTODY_V1.json",
+            ("source_tree_package_state", "rights_audit_terminal"),
+            "RIGHTS_COMPLETE",
+            "R30 source-tree package state promoted",
+        ),
+        (
+            "R30_FAILURE_CUSTODY_V1.json",
+            ("authority", "novelty"),
+            True,
+            "R30 custody authority promoted",
+        ),
+        (
+            "R30_FAILURE_CUSTODY_V1.json",
+            ("preserved_science",),
+            [
+                "FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE",
+                "FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT_PASS",
+            ],
+            "R30 preserved science drift",
+        ),
+        (
+            "R30_FAILURE_CUSTODY_V1.json",
+            ("live_repository_observations", "final_outputs_present_on_current_main"),
+            True,
+            "R30 live repository snapshot drift",
+        ),
+    ],
+)
+def test_r30_release_and_authority_fields_fail_closed(
+    filename: str,
+    key_path: tuple[str, ...],
+    promoted_value: object,
+    expected_message: str,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    original_load = convergence.load
+    target_path = HERE / filename
+    document = json.loads(target_path.read_text(encoding="utf-8"))
+    cursor = document
+    for key in key_path[:-1]:
+        cursor = cursor[key]
+    cursor[key_path[-1]] = promoted_value
+
+    def load_mutated(path: Path):
+        if path.resolve() == target_path.resolve():
+            return document
+        return original_load(path)
+
+    monkeypatch.setattr(convergence, "load", load_mutated)
+    with pytest.raises(AssertionError, match=expected_message):
+        validate_science(ROOT)
+
+
+def test_supersession_reachability_condition_fails_closed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    original_load = convergence.load
+    plan_path = HERE / "SUPERSESSION_PLAN_V1.json"
+    plan = json.loads(plan_path.read_text(encoding="utf-8"))
+    plan["after_convergence_merge"]["conditions"].remove(
+        "donor commit:path objects remain reachable through source branches or an "
+        "archival ref/bundle"
+    )
+
+    def load_without_reachability(path: Path):
+        if path.resolve() == plan_path.resolve():
+            return plan
+        return original_load(path)
+
+    monkeypatch.setattr(convergence, "load", load_without_reachability)
+    with pytest.raises(AssertionError, match="convergence supersession plan drift"):
         validate_science(ROOT)

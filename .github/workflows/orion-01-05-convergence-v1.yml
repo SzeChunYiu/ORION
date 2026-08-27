@@ -76,13 +76,10 @@ jobs:
           cmp "$RUNNER_TEMP/orion03-a.json" "$orion03/FIRST_MIXING_R12_RESULTS.json"
       - name: Verify complete evidence and fail-closed diff
         env:
-          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-        run: |
-          args=(--repo . --check-diff)
-          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            args+=(--event-base "$PR_BASE_SHA" --require-donor-objects)
-          fi
-          python research/orion-01-05-convergence-v1/verify_convergence_v1.py "${args[@]}"
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha || 'b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1' }}
+        run: >-
+          python research/orion-01-05-convergence-v1/verify_convergence_v1.py
+          --repo . --check-diff --event-base "$PR_BASE_SHA"
       - name: Run focused convergence and ORION-04 custody tests
         run: >-
           python -m pytest -q

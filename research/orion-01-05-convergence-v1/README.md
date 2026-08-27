@@ -61,11 +61,13 @@ R30_NOT_MATERIALIZED__CUSTODY_AND_FINAL_BINDING_FAILED
 ```
 
 See `R30_DISPOSITION_V1.md`. This does not retract any R18/R19 science.
-The advertised Rust checker remains source/prose only: its live workflow
-snapshot has 47 runs and zero successes, with no durable result receipt. The
-only downloaded R30 finalizer artifact is a 136-byte ZIP containing one empty
-`SHA256SUMS`, not a status, PDF, or reviewer packet. The R30 source tree itself
-still requires a result receipt and records submission as unauthorized.
+The Rust checker remains source/prose only: its live workflow has zero
+successful runs and no durable result receipt. An R20 visual artifact is at
+most a branch-local package fragment, not the advertised clean-current-main
+R30 reviewer packet. The only downloaded R30 finalizer artifact is a vendored
+136-byte ZIP containing one empty `SHA256SUMS`, not a status, PDF, or release
+packet. The R30 source tree itself still says a result receipt is required and
+submission is not authorized.
 
 The report's exact final terminal also differs from the terminal encoded by
 its own `finalize_r30.py`, so the prose terminal cannot be reconstructed merely
@@ -93,22 +95,18 @@ specialist fallback gate.
 
 The canonical paper directories also contain byte-identical donor copies for
 the exact ORION-01; ORION-02 R11/R14/R15/R16/R17/R18/R19; ORION-03;
-ORION-04 pre-execution audit; and ORION-05 records used by that hierarchy.
-`DONOR_MANIFEST_V1.json` records each copy's verified source commit/path, Git
-blob, byte count, and SHA-256. Pull-request verification requires every donor
-object and exact source bytes. If a historical Git object later disappears,
-the verifier emits
-`CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY`; the destination blob and
-SHA remain content-integrity evidence but no longer prove continuous
-commit/path provenance. Summary labels are never substitutes for raw terminals
-or `CANNOT_CHECK` outcomes.
+ORION-04 pre-execution audit plus the job-3544056 failure; and ORION-05 records
+used by that hierarchy.
+`DONOR_MANIFEST_V1.json` binds each copy to its source commit, path, Git blob,
+byte count, and SHA-256; summary labels are never used as substitutes for raw
+terminals or `CANNOT_CHECK` outcomes.
 
-The expiring successful R18 and BNSL GitHub Actions ZIPs are vendored with
-whole-archive SHA-256, exact member sets, internal checksum validation, and
-byte-equality checks against their canonical copies. The failed R30 finalizer's
-empty artifact is also vendored. These are custody improvements only; they do
-not create external independence, production value, novelty, or journal
-authority.
+The expiring successful R18 and BNSL GitHub Actions ZIPs are vendored with API
+snapshots, whole-archive SHA-256, exact member sets, internal checksum files,
+and byte-equality checks against the canonical copies. The failed R30
+finalizer's empty artifact is also vendored. These are custody improvements
+only; they do not create external independence, production value, novelty, or
+journal authority.
 
 The existing canonical claim ledgers for all five papers are also bound by
 baseline Git blob and SHA-256, with every claim ID classified as established at
@@ -132,18 +130,26 @@ supersede raw result bytes, adverse/null/retracted history, protected Task-3,
 or any frozen scientific subject. Old PRs may be closed with a link to the
 merged successor; their commits remain provenance.
 
+Closing a donor PR must not delete its source branch or otherwise make the
+bound `commit:path` objects unreachable before an archival ref/bundle exists.
+The V1 verifier requires every donor object during PR and merged-main
+verification. If a historical object later becomes unavailable, provenance is
+`CANNOT_REVERIFY_COMMIT_PATH`; the copied blob and SHA-256 remain content
+integrity only and may not be promoted into provenance or scientific authority.
+
 `SUPERSESSION_PLAN_V1.json` gives the exact conditional close/keep-open list.
 No PR or issue is superseded merely because this branch exists.
-`STACK_ARTIFACT_DISPOSITIONS_V1.json` now disposes every file at the frozen
-heads of #1471, #1475, #1485, #1488, #1489, #1492, #1503, #1506, and #1534 as
+`STACK_ARTIFACT_DISPOSITIONS_V1.json` disposes every file at the frozen heads
+of #1471, #1475, #1485, #1488, #1489, #1492, #1503, #1506, and #1534 as
 byte-materialized donor evidence, semantic governance replacement, consumed
 authorization, superseded workflow, or historical-only material. This permits
-conditional PR closure only after merge and merged-main verification. PR #1489
+conditional closure only after merge and merged-main verification. PR #1489
 remains correctly identified as an R19 FiberGuard story draft, not an R30 PR;
 the misidentification belongs to the pasted R30 report.
 
 This V1 package is an immutable baseline-to-head snapshot. It may merge only
-while its PR base still has the tree recorded in `DONOR_MANIFEST_V1.json`.
+while its event base is the exact commit (and tree) recorded in
+`DONOR_MANIFEST_V1.json`.
 Later material changes to these paths require a freshly based successor
 version rather than silently editing V1; the merged-main check intentionally
 fails closed on unregistered additions or modifications.

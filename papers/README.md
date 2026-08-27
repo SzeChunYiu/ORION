@@ -107,7 +107,7 @@ The machine-readable publication contract is `Q_SERIES_FINAL_SPEC_V1.json`; the 
 
 | Q paper | Role | Canonical manuscript | Current bounded internal status |
 |---|---|---|---|
-| `orion-05-tare-expressivity/` | quantum-compilation mathematics | `MANUSCRIPT_SUBMISSION_DRAFT.md` | sharp `kappa_R6M=2` theorem package complete; journal formatting/upload work remains |
+| `orion-05-tare-expressivity/` | quantum-compilation mathematics | `MANUSCRIPT_SUBMISSION_DRAFT.md` | bounded `kappa_R6M=2` core/package complete; current science closure, runtime candidate, external-authority, and submission gates remain open under convergence V1 |
 | `orion-06-recursive-recovery/` | negative-result recovery methodology | `MANUSCRIPT_V2.md` | complete single-programme case study; cross-domain protocol is optional successor research |
 | `orion-07-dual-instrument/` | scientific decision instruments / deferred scoring | `MANUSCRIPT_V2.md` | complete systems/benchmark-definition paper with one V0 measurement; calibration study deferred |
 | `orion-08-typed-state/` | typed/scoped epistemic state under partial knowledge | `MANUSCRIPT_V2.md` | complete exact-synthetic mechanism/benchmark paper; real-domain study deferred |

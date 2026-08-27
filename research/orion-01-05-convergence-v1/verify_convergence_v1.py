@@ -6,7 +6,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
+import re
 import subprocess
 from typing import Any
 import zipfile
@@ -30,8 +31,6 @@ NQ_FAILURE = (
     "NQ_CRB_FULL_REPLAY_JOB_3544056_FAILED_CENSUS_RECEIPT_SERIALIZATION__"
     "D2_D3_AUTHORITY_CANNOT_CHECK"
 )
-CANNOT_REVERIFY_DONOR = "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
-
 ALLOWED_EXACT_PATHS = {
     ".github/workflows/orion-01-05-convergence-v1.yml",
     "papers/README.md",
@@ -270,6 +269,93 @@ EXPECTED_ACTION_ARTIFACTS = {
     }
 }
 
+EXPECTED_ACTION_ARTIFACT_METADATA = {
+    9627389618: {
+        "repository": "SzeChunYiu/ORION",
+        "run": 33023149716,
+        "workflow_id": 343322586,
+        "workflow": "five-paper-r18-c-paired-route-recovery",
+        "event": "push",
+        "head_branch": "chatgpt/r18-c-paired-route-20260826",
+        "head_sha": "ac4a50f85a147f5933cd2055809c7ac30b29e3c1",
+        "run_conclusion": "success",
+        "artifact_id": 9627389618,
+        "artifact_name": (
+            "fiberguard-paired-route-r18-recovery-"
+            "ac4a50f85a147f5933cd2055809c7ac30b29e3c1"
+        ),
+        "artifact_size_in_bytes": 22592,
+        "artifact_created_at": "2026-08-26T23:25:52Z",
+        "artifact_expires_at": "2026-09-25T23:25:51Z",
+        "artifact_expired_at_snapshot": False,
+    },
+    9637176781: {
+        "repository": "SzeChunYiu/ORION",
+        "run": 33049783681,
+        "workflow_id": 343559703,
+        "workflow": "FiberGuard R20 BNSL adaptive",
+        "event": "pull_request",
+        "head_branch": "chatgpt/c-r20-bnsl-adaptive-20260827",
+        "head_sha": "911ac9876c97b78e4c5e50654251a3f59dac9257",
+        "run_conclusion": "success",
+        "artifact_id": 9637176781,
+        "artifact_name": "fiberguard-r20-bnsl-adaptive",
+        "artifact_size_in_bytes": 4997,
+        "artifact_created_at": "2026-08-27T07:30:53Z",
+        "artifact_expires_at": "2026-09-26T07:30:52Z",
+        "artifact_expired_at_snapshot": False,
+    },
+}
+
+EXPECTED_ACTION_ARCHIVE_CUSTODY = {
+    9627389618: {
+        "path": (
+            "papers/orion-02-fiberguard-finite-fibre/extensions/r18/"
+            "R18_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json"
+        ),
+        "terminal": "R18_ACTION_ARTIFACT_ARCHIVED__NULL_AND_RETRACTION_PRESERVED",
+        "scientific_disposition": {
+            "terminal": R18_TERMINAL,
+            "former_positive_terminal": "RETRACTED_UNSUPPORTED_EXECUTION_IDENTITY",
+            "outcome_exposed_recovery": True,
+        },
+        "authority": {
+            "artifact_custody": True,
+            "same_owner_execution": True,
+            "external_independence": False,
+            "production_value": False,
+            "novelty_authority": False,
+            "journal_authority": False,
+            "submission_authorized": False,
+        },
+    },
+    9637176781: {
+        "path": (
+            "papers/orion-02-fiberguard-finite-fibre/extensions/r20/"
+            "BNSL_R20_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json"
+        ),
+        "terminal": (
+            "BNSL_R20_ACTION_ARTIFACT_ARCHIVED__RAW_TERMINAL_QUARANTINED__"
+            "NULL_INTERPRETATION_PRESERVED"
+        ),
+        "scientific_disposition": {
+            "raw_terminal": "C_R20_BNSL_ADAPTIVE_MATERIAL_VALUE",
+            "raw_terminal_disposition": BNSL_QUARANTINE,
+            "additive_interpretation": BNSL_NULL,
+        },
+        "authority": {
+            "artifact_custody": True,
+            "same_owner_execution": True,
+            "adaptive_superiority": False,
+            "production_value": False,
+            "external_independence": False,
+            "novelty_authority": False,
+            "journal_authority": False,
+            "submission_authorized": False,
+        },
+    },
+}
+
 EXPECTED_R30_FAILURES = {
     33047609008: {
         "workflow": "one-shot-r30-finalize-internal-programme",
@@ -337,6 +423,37 @@ def require(condition: bool, message: str) -> None:
         raise AssertionError(message)
 
 
+def require_oid(value: Any, label: str) -> str:
+    require(
+        isinstance(value, str) and re.fullmatch(r"[0-9a-f]{40}", value) is not None,
+        f"invalid Git object identity: {label}",
+    )
+    return value
+
+
+def repo_path(repo: Path, raw: Any, label: str) -> Path:
+    """Return one canonical repository-contained POSIX path or fail closed."""
+    require(isinstance(raw, str) and bool(raw), f"invalid repository path: {label}")
+    require(
+        "\\" not in raw and "\x00" not in raw and "\n" not in raw and "\r" not in raw,
+        f"unsafe repository path: {label}",
+    )
+    pure = PurePosixPath(raw)
+    require(not pure.is_absolute(), f"absolute repository path: {label}")
+    require(
+        pure.as_posix() == raw
+        and all(part not in {"", ".", ".."} for part in pure.parts)
+        and pure.parts[0] != ".git",
+        f"noncanonical repository path: {label}",
+    )
+    candidate = repo.joinpath(*pure.parts)
+    require(
+        candidate.resolve(strict=False).is_relative_to(repo.resolve()),
+        f"repository path escapes checkout: {label}",
+    )
+    return candidate
+
+
 def git(repo: Path, *args: str, binary: bool = False) -> str | bytes:
     return subprocess.check_output(
         ["git", *args], cwd=repo, text=not binary
@@ -356,47 +473,8 @@ def git_object_exists(repo: Path, spec: str) -> bool:
     )
 
 
-def validate_git_donor(
-    repo: Path,
-    *,
-    destination: Path,
-    destination_label: str,
-    source: dict[str, Any],
-    require_donor_objects: bool,
-) -> None:
-    destination_blob = str(git(repo, "hash-object", destination_label)).strip()
-    require(destination_blob == source["blob"], f"donor blob drift: {destination_label}")
-    source_spec = f"{source['commit']}:{source['path']}"
-    if git_object_exists(repo, source_spec):
-        require(
-            str(git(repo, "rev-parse", source_spec)).strip() == source["blob"],
-            f"donor commit/path blob drift: {destination_label}",
-        )
-        require(
-            git(repo, "show", source_spec, binary=True) == destination.read_bytes(),
-            f"donor byte drift: {destination_label}",
-        )
-        return
-
-    require(
-        not require_donor_objects,
-        f"required donor commit/path unavailable: {destination_label}",
-    )
-    require(
-        source.get("object_required_in_checkout") is False
-        and source.get("object_absence_disposition") == CANNOT_REVERIFY_DONOR,
-        f"missing donor object lacks explicit CANNOT_REVERIFY disposition: {destination_label}",
-    )
-    print(f"{CANNOT_REVERIFY_DONOR}: {destination_label}")
-
-
-def validate_entry(
-    repo: Path,
-    entry: dict[str, Any],
-    *,
-    require_donor_objects: bool = False,
-) -> None:
-    destination = repo / entry["destination"]
+def validate_entry(repo: Path, entry: dict[str, Any]) -> None:
+    destination = repo_path(repo, entry.get("destination"), "manifest destination")
     require(destination.is_file(), f"missing destination: {entry['destination']}")
     payload = destination.read_bytes()
     require(len(payload) == entry["bytes"], f"byte count drift: {entry['destination']}")
@@ -407,13 +485,29 @@ def validate_entry(
 
     source = entry["source"]
     if source["kind"] == "git":
-        validate_git_donor(
-            repo,
-            destination=destination,
-            destination_label=entry["destination"],
-            source=source,
-            require_donor_objects=require_donor_objects,
+        require_oid(source.get("commit"), f"donor commit for {entry['destination']}")
+        require_oid(source.get("blob"), f"donor blob for {entry['destination']}")
+        repo_path(repo, source.get("path"), f"donor path for {entry['destination']}")
+        require(
+            source.get("object_required_in_checkout") is True,
+            f"donor commit/path verification made optional: {entry['destination']}",
         )
+        destination_blob = git(repo, "hash-object", entry["destination"])
+        require(
+            str(destination_blob).strip() == source["blob"],
+            f"donor blob drift: {entry['destination']}",
+        )
+        source_spec = f"{source['commit']}:{source['path']}"
+        require(
+            git_object_exists(repo, source_spec),
+            f"required donor commit/path unavailable: {entry['destination']}",
+        )
+        require(
+            str(git(repo, "rev-parse", source_spec)).strip() == source["blob"],
+            f"donor commit/path blob drift: {entry['destination']}",
+        )
+        source_payload = git(repo, "show", source_spec, binary=True)
+        require(source_payload == payload, f"donor byte drift: {entry['destination']}")
     elif source["kind"] == "github_actions_artifact":
         identity = (
             source["run"],
@@ -436,280 +530,177 @@ def validate_entry(
             "artifact member differs from independently registered custody",
         )
     elif source["kind"] == "github_actions_artifact_archive":
+        artifact_id = source.get("artifact_id")
         identity = (
-            source["run"],
-            source["artifact_id"],
+            source.get("run"),
+            artifact_id,
             source.get("artifact_name"),
             entry["sha256"],
         )
-        require(identity in EXPECTED_ACTION_ARTIFACTS, "unregistered artifact archive")
-        require(source.get("artifact_zip_bytes") == entry["bytes"], "artifact ZIP bytes")
+        require(identity in EXPECTED_ACTION_ARTIFACTS, "artifact archive identity drift")
+        if artifact_id == 9636339561:
+            require(
+                entry["bytes"] == 136
+                and source.get("artifact_zip_bytes") == entry["bytes"],
+                "failed R30 artifact archive binding absent or inconsistent",
+            )
+        else:
+            require(
+                artifact_id in EXPECTED_ACTION_ARTIFACT_METADATA,
+                "unregistered artifact archive identity",
+            )
+            metadata = EXPECTED_ACTION_ARTIFACT_METADATA[artifact_id]
+            require(
+                entry["bytes"] == metadata["artifact_size_in_bytes"]
+                and source.get("artifact_zip_sha256") == entry["sha256"]
+                and source.get("custody_record")
+                == EXPECTED_ACTION_ARCHIVE_CUSTODY[artifact_id]["path"],
+                "artifact archive binding absent or inconsistent",
+            )
     elif source["kind"] == "convergence_generated":
         require(source["generator"] == "ORION-01-05 convergence V1", "bad generator")
     else:
         raise AssertionError(f"unknown source kind: {source['kind']}")
 
 
+def _sha256sums_members(payload: bytes) -> dict[str, str]:
+    result: dict[str, str] = {}
+    for line in payload.decode("utf-8").splitlines():
+        match = re.fullmatch(r"([0-9a-f]{64})  (.+)", line)
+        require(match is not None, "artifact SHA256SUMS row malformed")
+        member = PurePosixPath(match.group(2)).name
+        require(member not in result, "artifact SHA256SUMS duplicate member")
+        result[member] = match.group(1)
+    require(result, "artifact SHA256SUMS is empty")
+    return result
+
+
 def validate_action_artifact_archive(repo: Path, custody: dict[str, Any]) -> None:
     require(
-        custody.get("schema") == "ORION.FiberGuard.BNSLActionArtifactCustody.v1",
-        "artifact custody schema",
-    )
-    action = custody["github_actions"]
-    archive = custody["archive"]
-    identity = (
-        action["run"],
-        action["artifact_id"],
-        action["artifact_name"],
-        archive["sha256"],
-    )
-    require(identity in EXPECTED_ACTION_ARTIFACTS, "artifact custody identity")
-    require(
-        action
-        == {
-            "repository": "SzeChunYiu/ORION",
-            "run": 33049783681,
-            "workflow": "FiberGuard R20 BNSL adaptive",
-            "head_branch": "chatgpt/c-r20-bnsl-adaptive-20260827",
-            "head_sha": "911ac9876c97b78e4c5e50654251a3f59dac9257",
-            "conclusion": "success",
-            "artifact_id": 9637176781,
-            "artifact_name": "fiberguard-r20-bnsl-adaptive",
-            "artifact_created_at": "2026-08-27T07:30:53Z",
-        },
-        "artifact Actions provenance",
-    )
-    expected = EXPECTED_ACTION_ARTIFACTS[identity]
-    archive_path = repo / archive["path"]
-    require(archive_path.is_file(), "artifact archive absent")
-    require(archive_path.stat().st_size == archive["bytes"], "artifact archive bytes")
-    require(sha256(archive_path) == archive["sha256"], "artifact archive SHA")
-    require(archive["bytes"] == 4997, "unexpected artifact archive size")
-
-    with zipfile.ZipFile(archive_path) as bundle:
-        infos = bundle.infolist()
-        names = [row.filename for row in infos]
-        require(len(names) == len(set(names)), "duplicate artifact ZIP member")
-        require(set(names) == set(expected), "artifact ZIP member set")
-        require(
-            all("/" not in name and "\\" not in name and name not in {".", ".."}
-                for name in names),
-            "unsafe artifact ZIP member",
-        )
-        payloads = {name: bundle.read(name) for name in names}
-
-    custody_members = custody["members"]
-    require(set(custody_members) == set(expected), "artifact custody member set")
-    for name, (expected_bytes, expected_sha) in expected.items():
-        payload = payloads[name]
-        require(len(payload) == expected_bytes, f"artifact member bytes: {name}")
-        require(sha256_bytes(payload) == expected_sha, f"artifact member SHA: {name}")
-        row = custody_members[name]
-        require(
-            row["bytes"] == expected_bytes and row["sha256"] == expected_sha,
-            f"artifact custody member binding: {name}",
-        )
-        canonical_path = row.get("canonical_copy")
-        if canonical_path is not None:
-            require(
-                (repo / canonical_path).read_bytes() == payload,
-                f"artifact canonical-copy drift: {name}",
-            )
-
-    checksum_lines = payloads["SHA256SUMS"].decode("utf-8").splitlines()
-    checksum_rows = {
-        line.split()[1].rsplit("/", 1)[-1]: line.split()[0]
-        for line in checksum_lines
-        if len(line.split()) == 2
-    }
-    require(
-        checksum_rows
-        == {
-            name: expected[name][1]
-            for name in ("FIBERGUARD_BNSL_ADAPTIVE_R20_RESULTS.json", "TERMINAL.txt")
-        },
-        "artifact internal SHA256SUMS",
-    )
-    require(custody["authority"]["adaptive_superiority"] is False, "artifact authority")
-    require(custody["authority"]["external_independence"] is False, "artifact independence")
-
-
-def validate_r18_action_artifact_archive(repo: Path, custody: dict[str, Any]) -> None:
-    require(
         custody.get("schema") == "ORION.FiberGuard.ActionArtifactArchiveCustody.v1",
-        "R18 artifact custody schema",
-    )
-    require(
-        custody.get("terminal")
-        == "R18_ACTION_ARTIFACT_ARCHIVED__NULL_AND_RETRACTION_PRESERVED",
-        "R18 artifact custody terminal",
+        "artifact archive custody schema",
     )
     api = custody["api_snapshot"]
+    artifact_id = api.get("artifact_id")
     require(
-        api
-        == {
-            "repository": "SzeChunYiu/ORION",
-            "verified_at": "2026-08-27T10:27:38Z",
-            "run": 33023149716,
-            "workflow_id": 343322586,
-            "workflow": "five-paper-r18-c-paired-route-recovery",
-            "event": "push",
-            "head_branch": "chatgpt/r18-c-paired-route-20260826",
-            "head_sha": "ac4a50f85a147f5933cd2055809c7ac30b29e3c1",
-            "run_conclusion": "success",
-            "artifact_id": 9627389618,
-            "artifact_name": (
-                "fiberguard-paired-route-r18-recovery-"
-                "ac4a50f85a147f5933cd2055809c7ac30b29e3c1"
-            ),
-            "artifact_size_in_bytes": 22592,
-            "artifact_created_at": "2026-08-26T23:25:52Z",
-            "artifact_expires_at": "2026-09-25T23:25:51Z",
-            "artifact_expired_at_snapshot": False,
-        },
-        "R18 artifact Actions provenance",
+        artifact_id in EXPECTED_ACTION_ARTIFACT_METADATA,
+        "unknown archived artifact identity",
     )
-    archive = custody["archive"]
-    identity = (
-        api["run"],
-        api["artifact_id"],
-        api["artifact_name"],
-        archive["sha256"],
-    )
-    require(identity in EXPECTED_ACTION_ARTIFACTS, "R18 artifact custody identity")
-    expected = EXPECTED_ACTION_ARTIFACTS[identity]
-    archive_path = repo / archive["path"]
-    require(archive_path.is_file(), "R18 artifact archive absent")
+    expected_metadata = EXPECTED_ACTION_ARTIFACT_METADATA[artifact_id]
     require(
-        archive_path.stat().st_size == archive["bytes"] == 22592,
-        "R18 artifact archive bytes",
+        set(api) == set(expected_metadata) | {"verified_at"},
+        "artifact API snapshot fields drift",
     )
-    require(sha256(archive_path) == archive["sha256"], "R18 artifact archive SHA")
+    require(
+        all(api.get(key) == value for key, value in expected_metadata.items()),
+        "artifact API snapshot identity drift",
+    )
+    require(
+        isinstance(api.get("verified_at"), str)
+        and re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z", api["verified_at"])
+        is not None,
+        "artifact API verification time malformed",
+    )
 
+    expected_custody = EXPECTED_ACTION_ARCHIVE_CUSTODY[artifact_id]
+    require(custody.get("terminal") == expected_custody["terminal"], "artifact custody terminal")
+    require(
+        custody.get("scientific_disposition") == expected_custody["scientific_disposition"],
+        "artifact scientific disposition drift",
+    )
+    require(
+        custody.get("authority") == expected_custody["authority"],
+        "artifact authority disposition drift",
+    )
+
+    archive = custody["archive"]
+    archive_path = repo_path(repo, archive.get("path"), "artifact archive")
+    require(archive_path.is_file(), "artifact archive absent")
+    archive_payload = archive_path.read_bytes()
+    archive_sha = sha256_bytes(archive_payload)
+    require(
+        archive.get("bytes") == len(archive_payload)
+        == expected_metadata["artifact_size_in_bytes"],
+        "artifact archive byte drift",
+    )
+    expected_identity = (
+        api["run"],
+        artifact_id,
+        api["artifact_name"],
+        archive_sha,
+    )
+    require(expected_identity in EXPECTED_ACTION_ARTIFACTS, "artifact archive SHA drift")
+    require(archive.get("sha256") == archive_sha, "artifact custody archive SHA drift")
+
+    expected_members = EXPECTED_ACTION_ARTIFACTS[expected_identity]
+    members = custody["members"]
+    require(set(members) == set(expected_members), "artifact custody member set drift")
     with zipfile.ZipFile(archive_path) as bundle:
         infos = bundle.infolist()
-        names = [row.filename for row in infos]
-        require(len(names) == len(set(names)), "duplicate R18 artifact ZIP member")
-        require(set(names) == set(expected), "R18 artifact ZIP member set")
-        require(bundle.testzip() is None, "R18 artifact ZIP CRC")
-        require(
-            all(
-                not row.is_dir()
-                and not row.flag_bits & 0x1
-                and "/" not in row.filename
-                and "\\" not in row.filename
-                and row.filename not in {".", ".."}
-                for row in infos
-            ),
-            "unsafe R18 artifact ZIP member",
-        )
-        payloads = {name: bundle.read(name) for name in names}
-
-    custody_members = custody["members"]
-    require(set(custody_members) == set(expected), "R18 artifact custody member set")
-    for name, (expected_bytes, expected_sha) in expected.items():
-        payload = payloads[name]
-        require(len(payload) == expected_bytes, f"R18 artifact member bytes: {name}")
-        require(
-            sha256_bytes(payload) == expected_sha,
-            f"R18 artifact member SHA: {name}",
-        )
-        row = custody_members[name]
-        require(
-            row["bytes"] == expected_bytes and row["sha256"] == expected_sha,
-            f"R18 artifact custody member binding: {name}",
-        )
-        canonical_path = row.get("canonical_copy")
-        if canonical_path is not None:
+        names = [info.filename for info in infos]
+        require(len(names) == len(set(names)), "artifact archive duplicate member")
+        require(set(names) == set(expected_members), "artifact archive member set drift")
+        require(bundle.testzip() is None, "artifact archive CRC failure")
+        payloads: dict[str, bytes] = {}
+        for info in infos:
+            require(not info.is_dir(), "artifact archive directory member")
+            require(info.flag_bits & 0x1 == 0, "artifact archive encrypted member")
+            member_path = PurePosixPath(info.filename)
             require(
-                (repo / canonical_path).read_bytes() == payload,
-                f"R18 artifact canonical-copy drift: {name}",
+                not member_path.is_absolute()
+                and member_path.as_posix() == info.filename
+                and len(member_path.parts) == 1
+                and member_path.parts[0] not in {"", ".", ".."},
+                "artifact archive unsafe member path",
             )
-
-    checksum_rows = {
-        line.split()[1].rsplit("/", 1)[-1]: line.split()[0]
-        for line in payloads["SHA256SUMS"].decode("utf-8").splitlines()
-        if len(line.split()) == 2
-    }
-    require(
-        checksum_rows
-        == {
-            name: expected[name][1]
-            for name in (
-                "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json",
-                "RECOVERY_COMMENT.md",
-                "TERMINAL.txt",
+            payload = bundle.read(info)
+            payloads[info.filename] = payload
+            expected_bytes, expected_sha = expected_members[info.filename]
+            require(
+                info.file_size == len(payload) == expected_bytes
+                and sha256_bytes(payload) == expected_sha,
+                f"artifact archive member drift: {info.filename}",
             )
-        },
-        "R18 artifact internal SHA256SUMS",
-    )
+            record = members[info.filename]
+            require(
+                record.get("bytes") == expected_bytes
+                and record.get("sha256") == expected_sha,
+                f"artifact custody member drift: {info.filename}",
+            )
+            canonical_copy = record.get("canonical_copy")
+            if canonical_copy is not None:
+                canonical = repo_path(
+                    repo,
+                    canonical_copy,
+                    f"artifact canonical copy {info.filename}",
+                )
+                require(
+                    canonical.is_file() and canonical.read_bytes() == payload,
+                    f"artifact canonical-copy drift: {info.filename}",
+                )
+
+    checksum_members = _sha256sums_members(payloads["SHA256SUMS"])
     require(
-        custody["scientific_disposition"]
+        checksum_members
         == {
-            "terminal": R18_TERMINAL,
-            "former_positive_terminal": "RETRACTED_UNSUPPORTED_EXECUTION_IDENTITY",
-            "outcome_exposed_recovery": True,
+            name: digest
+            for name, (_size, digest) in expected_members.items()
+            if name != "SHA256SUMS"
         },
-        "R18 artifact scientific disposition",
+        "artifact internal SHA256SUMS drift",
     )
-    authority = custody["authority"]
-    require(authority["artifact_custody"] is True, "R18 artifact custody authority")
-    require(authority["same_owner_execution"] is True, "R18 same-owner boundary")
-    for key in (
-        "external_independence",
-        "production_value",
-        "novelty_authority",
-        "journal_authority",
-        "submission_authorized",
-    ):
-        require(authority[key] is False, f"R18 artifact authority promoted: {key}")
-
-    registered = load(
-        repo
-        / "papers/orion-02-fiberguard-finite-fibre/extensions/r18/"
-        "R18_RECOVERY_CUSTODY_V2.json"
-    )
-    registered_artifact = registered["artifact"]
-    require(
-        registered_artifact["id"] == api["artifact_id"]
-        and registered_artifact["name"] == api["artifact_name"]
-        and registered_artifact["zip_sha256"] == archive["sha256"],
-        "R18 registered artifact identity drift",
-    )
-    for name in (
-        "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json",
-        "RECOVERY_COMMENT.md",
-        "TERMINAL.txt",
-    ):
-        require(
-            registered_artifact["files"][name]["bytes"] == expected[name][0]
-            and registered_artifact["files"][name]["sha256"] == expected[name][1],
-            f"R18 registered artifact member drift: {name}",
-        )
 
 
-def validate_manifest(
-    repo: Path, *, require_donor_objects: bool = False
-) -> dict[str, Any]:
+def validate_manifest(repo: Path) -> dict[str, Any]:
     manifest = load(repo / MANIFEST.relative_to(ROOT))
     require(
         manifest["schema"] == "ORION.ORION0105.ScienceConvergenceDonorManifest.v1",
         "manifest schema",
     )
     require(manifest["terminal"] == CONVERGENCE_TERMINAL, "manifest terminal")
-    require(
-        manifest.get("donor_object_policy")
-        == {
-            "pull_request_verification": (
-                "REQUIRE_EVERY_GIT_COMMIT_PATH_OBJECT_AND_EXACT_BYTES"
-            ),
-            "later_merged_main_when_historical_object_absent": CANNOT_REVERIFY_DONOR,
-            "destination_blob_and_sha256_remain_content_integrity_only": True,
-            "absence_never_promotes_provenance_or_scientific_authority": True,
-        },
-        "donor object policy",
-    )
     destinations = [row["destination"] for row in manifest["files"]]
+    for destination in destinations:
+        repo_path(repo, destination, "manifest destination")
     require(len(destinations) == len(set(destinations)), "duplicate manifest destinations")
     manifest_path = MANIFEST.relative_to(ROOT).as_posix()
     self_binding = manifest["manifest_self_binding"]
@@ -720,12 +711,21 @@ def validate_manifest(
         "manifest self-binding rule",
     )
     require(manifest_path not in destinations, "manifest self listed as ordinary file")
-    expected_paths = set(manifest["expected_changed_paths"])
+    expected_path_rows = manifest["expected_changed_paths"]
+    require(
+        len(expected_path_rows) == len(set(expected_path_rows)),
+        "duplicate expected changed path",
+    )
+    for path in expected_path_rows:
+        repo_path(repo, path, "expected changed path")
+    expected_paths = set(expected_path_rows)
     require(
         set(destinations) | {manifest_path} == expected_paths,
         "manifest destination coverage mismatch",
     )
     baseline = manifest["baseline"]
+    require_oid(baseline.get("commit"), "manifest baseline commit")
+    require_oid(baseline.get("tree"), "manifest baseline tree")
     observed_baseline_tree = str(
         git(repo, "rev-parse", f"{baseline['commit']}^{{tree}}")
     ).strip()
@@ -742,15 +742,16 @@ def validate_manifest(
             )
             artifact_member_mappings.add(mapping)
     for row in manifest["files"]:
-        validate_entry(repo, row, require_donor_objects=require_donor_objects)
+        validate_entry(repo, row)
 
     for row in manifest["bound_existing_files"]:
         path = row["path"]
+        current = repo_path(repo, path, f"existing binding {path}")
+        require_oid(row.get("blob"), f"existing binding blob {path}")
         require(
             row.get("baseline_commit") == baseline["commit"],
             f"existing binding baseline drift: {path}",
         )
-        current = repo / path
         require(current.is_file(), f"missing existing binding: {path}")
         require(current.stat().st_size == row["bytes"], f"existing byte drift: {path}")
         require(sha256(current) == row["sha256"], f"existing SHA drift: {path}")
@@ -779,26 +780,43 @@ def json_pointer(document: Any, pointer: str) -> Any:
     return current
 
 
+def _strict_markdown_row(line: str, path: Path) -> list[str]:
+    require(line.startswith("|") and line.endswith("|"), f"malformed table row: {path}")
+    cells = [cell.strip() for cell in line[1:-1].split("|")]
+    require(len(cells) == 4, f"claim ledger table must have exactly four columns: {path}")
+    return cells
+
+
 def claim_ledger_ids(path: Path) -> list[str]:
+    table_lines = [
+        line.strip()
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip().startswith("|")
+    ]
+    require(len(table_lines) >= 3, f"claim ledger has no complete table: {path}")
+    require(
+        _strict_markdown_row(table_lines[0], path)[0] == "ID",
+        f"claim ledger first table column is not ID: {path}",
+    )
+    separator = _strict_markdown_row(table_lines[1], path)
+    require(
+        all(re.fullmatch(r":?-{3,}:?", cell) is not None for cell in separator),
+        f"claim ledger separator malformed: {path}",
+    )
     ids: list[str] = []
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if not line.startswith("|"):
-            continue
-        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
-        if len(cells) < 4 or cells[0] == "ID" or set(cells[0]) <= {"-"}:
-            continue
-        ids.append(cells[0])
+    for line in table_lines[2:]:
+        claim_id = _strict_markdown_row(line, path)[0]
+        require(
+            re.fullmatch(r"[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+", claim_id) is not None,
+            f"claim ledger ID malformed: {path}",
+        )
+        ids.append(claim_id)
     require(ids, f"claim ledger has no rows: {path}")
     require(len(ids) == len(set(ids)), f"claim ledger has duplicate IDs: {path}")
     return ids
 
 
-def validate_preserved_exact_terminals(
-    repo: Path,
-    status: dict[str, Any],
-    *,
-    require_donor_objects: bool = False,
-) -> None:
+def validate_preserved_exact_terminals(repo: Path, status: dict[str, Any]) -> None:
     allowed_kinds = {
         "RAW_SCIENCE_TERMINAL",
         "AUDIT_DISPOSITION",
@@ -832,7 +850,11 @@ def validate_preserved_exact_terminals(
         for record in records:
             require(record["record_kind"] in allowed_kinds, "evidence record kind")
             source = record["source"]
-            canonical = repo / source["canonical_copy"]
+            canonical = repo_path(
+                repo,
+                source.get("canonical_copy"),
+                f"evidence canonical copy {record['id']}",
+            )
             require(canonical.is_file(), f"evidence canonical copy absent: {canonical}")
             require(
                 json_pointer(load(canonical), source["json_pointer"])
@@ -845,6 +867,9 @@ def validate_preserved_exact_terminals(
                     set(source) >= {"commit", "path", "blob"},
                     f"evidence donor source incomplete: {record['id']}",
                 )
+                require_oid(source.get("commit"), f"evidence donor commit {record['id']}")
+                require_oid(source.get("blob"), f"evidence donor blob {record['id']}")
+                repo_path(repo, source.get("path"), f"evidence donor path {record['id']}")
                 canonical_blob = str(
                     git(repo, "hash-object", source["canonical_copy"])
                 ).strip()
@@ -853,28 +878,20 @@ def validate_preserved_exact_terminals(
                     f"evidence canonical blob drift: {record['id']}",
                 )
                 source_spec = f"{source['commit']}:{source['path']}"
-                if git_object_exists(repo, source_spec):
-                    require(
-                        str(git(repo, "rev-parse", source_spec)).strip()
-                        == source["blob"],
-                        f"evidence donor source drift: {record['id']}",
-                    )
-                    require(
-                        git(repo, "show", source_spec, binary=True)
-                        == canonical.read_bytes(),
-                        f"evidence donor byte drift: {record['id']}",
-                    )
-                else:
-                    require(
-                        not require_donor_objects,
-                        f"required evidence donor commit/path unavailable: {record['id']}",
-                    )
-                    require(
-                        source.get("object_absence_disposition")
-                        == CANNOT_REVERIFY_DONOR,
-                        f"evidence donor absence not explicit: {record['id']}",
-                    )
-                    print(f"{CANNOT_REVERIFY_DONOR}: evidence {record['id']}")
+                require(
+                    git_object_exists(repo, source_spec),
+                    f"evidence donor commit/path unavailable: {record['id']}",
+                )
+                require(
+                    str(git(repo, "rev-parse", source_spec)).strip()
+                    == source["blob"],
+                    f"evidence donor source drift: {record['id']}",
+                )
+                require(
+                    git(repo, "show", source_spec, binary=True)
+                    == canonical.read_bytes(),
+                    f"evidence donor byte drift: {record['id']}",
+                )
             elif source["kind"] == "canonical_convergence_file":
                 require(
                     sha256(canonical) == source["sha256"],
@@ -900,7 +917,12 @@ def validate_preserved_exact_terminals(
 
 
 def validate_publication_controls(repo: Path, status: dict[str, Any]) -> None:
-    gate = load(repo / "research/orion-01-05-convergence-v1/PUBLICATION_GATE_V1.json")
+    gate_path = repo_path(
+        repo,
+        "research/orion-01-05-convergence-v1/PUBLICATION_GATE_V1.json",
+        "publication gate",
+    )
+    gate = load(gate_path)
     require(gate["schema"] == "ORION.ORION0105.PublicationGate.v1", "publication gate schema")
     require(
         gate["terminal"]
@@ -934,36 +956,65 @@ def validate_publication_controls(repo: Path, status: dict[str, Any]) -> None:
             f"{paper_id} publication boundary incomplete",
         )
     require(not any(gate["global_authority"].values()), "publication global authority")
-    ladder = (
-        repo / "research/orion-01-05-convergence-v1/PROVISIONAL_VENUE_LADDER_V1.md"
-    ).read_text(encoding="utf-8")
+    ladder_path = repo_path(
+        repo,
+        "research/orion-01-05-convergence-v1/PROVISIONAL_VENUE_LADDER_V1.md",
+        "venue ladder",
+    )
+    ladder = ladder_path.read_text(encoding="utf-8")
     require("Recheck official venue criteria" in ladder, "venue live-recheck rule")
     for paper_id in gate["papers"]:
         require(paper_id in ladder, f"venue ladder omits {paper_id}")
 
 
-def validate_stack_dispositions(
-    repo: Path, *, require_donor_objects: bool = False
-) -> None:
-    ledger = load(
-        repo / "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+def validate_stack_dispositions(repo: Path) -> None:
+    ledger_path = repo_path(
+        repo,
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json",
+        "stack disposition ledger",
     )
+    ledger = load(ledger_path)
     require(
         ledger["schema"] == "ORION.ORION0105.StackArtifactDispositions.v1",
         "stack disposition schema",
     )
     require(
-        ledger.get("source_object_absence_disposition") == CANNOT_REVERIFY_DONOR,
+        ledger.get("source_object_absence_disposition")
+        == "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY",
         "stack object-absence policy",
     )
-    expected_counts = {str(number): count for number, (_, count) in EXPECTED_STACK_PRS.items()}
+    expected_counts = {
+        str(number): count for number, (_, count) in EXPECTED_STACK_PRS.items()
+    }
     require(ledger["source_pr_file_counts"] == expected_counts, "stack PR file counts")
     snapshots = ledger["source_pr_snapshots"]
     require(set(snapshots) == set(expected_counts), "stack PR snapshot keys")
+    rows = ledger["files"]
+    keys = [(row["source_pr"], row["source_path"]) for row in rows]
+    require(
+        len(keys) == len(set(keys)) == sum(expected_counts.values()),
+        "stack row coverage",
+    )
+
     for number, (head, count) in EXPECTED_STACK_PRS.items():
         snapshot = snapshots[str(number)]
+        require_oid(snapshot.get("baseRefOid"), f"stack PR {number} base")
+        require_oid(snapshot.get("headRefOid"), f"stack PR {number} head")
         require(snapshot["headRefOid"] == head, f"stack PR {number} head")
         require(snapshot["file_count"] == count, f"stack PR {number} file count")
+        base = snapshot["baseRefOid"]
+        require(
+            git_object_exists(repo, f"{base}^{{commit}}")
+            and git_object_exists(repo, f"{head}^{{commit}}"),
+            f"required stack PR range unavailable: {number}",
+        )
+        expected_paths = {
+            row["source_path"] for row in rows if row["source_pr"] == number
+        }
+        observed_paths = set(
+            str(git(repo, "diff", "--name-only", f"{base}..{head}")).splitlines()
+        )
+        require(observed_paths == expected_paths, f"stack PR {number} path coverage")
 
     allowed = {
         "BYTE_MATERIALIZED_CANONICAL_DONOR",
@@ -972,56 +1023,37 @@ def validate_stack_dispositions(
         "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
         "CONSUMED_AUTHORIZATION_WITH_FAILURE_CUSTODY_PRESERVED",
     }
-    rows = ledger["files"]
-    keys = [(row["source_pr"], row["source_path"]) for row in rows]
-    require(len(keys) == len(set(keys)) == sum(expected_counts.values()), "stack row coverage")
-    for number in EXPECTED_STACK_PRS:
-        snapshot = snapshots[str(number)]
-        expected_paths = {
-            row["source_path"] for row in rows if row["source_pr"] == number
-        }
-        base = snapshot["baseRefOid"]
-        head = snapshot["headRefOid"]
-        if git_object_exists(repo, f"{base}^{{commit}}") and git_object_exists(
-            repo, f"{head}^{{commit}}"
-        ):
-            observed_paths = set(
-                str(git(repo, "diff", "--name-only", f"{base}..{head}")).splitlines()
-            )
-            require(observed_paths == expected_paths, f"stack PR {number} path coverage")
-        else:
-            require(
-                not require_donor_objects,
-                f"required stack PR range unavailable: {number}",
-            )
-            print(f"{CANNOT_REVERIFY_DONOR}: PR {number} diff range")
     for row in rows:
         require(row["disposition"] in allowed, "stack disposition value")
-        expected_head = EXPECTED_STACK_PRS[row["source_pr"]][0]
+        number = row["source_pr"]
+        expected_head = EXPECTED_STACK_PRS[number][0]
         require(row["source_head"] == expected_head, "stack row head")
-        require(len(row["source_blob"]) == 40, "stack source blob")
+        require_oid(row.get("source_blob"), "stack source blob")
+        repo_path(repo, row.get("source_path"), "stack source path")
         require(row["canonical_paths"], "stack canonical disposition path absent")
-        for path in row["canonical_paths"]:
-            require((repo / path).is_file(), f"stack canonical path absent: {path}")
+        canonical_paths = [
+            repo_path(repo, path, "stack canonical path")
+            for path in row["canonical_paths"]
+        ]
+        require(
+            all(path.is_file() for path in canonical_paths),
+            "stack canonical path absent",
+        )
         source_spec = f"{row['source_head']}:{row['source_path']}"
-        if git_object_exists(repo, source_spec):
-            require(
-                str(git(repo, "rev-parse", source_spec)).strip() == row["source_blob"],
-                "stack source blob drift",
-            )
-        else:
-            require(
-                not require_donor_objects,
-                f"required stack source unavailable: {row['source_pr']}:{row['source_path']}",
-            )
-            print(
-                f"{CANNOT_REVERIFY_DONOR}: PR {row['source_pr']} {row['source_path']}"
-            )
+        require(
+            git_object_exists(repo, source_spec),
+            f"required stack source unavailable: {number}:{row['source_path']}",
+        )
+        require(
+            str(git(repo, "rev-parse", source_spec)).strip() == row["source_blob"],
+            "stack source blob drift",
+        )
         if row["disposition"] == "BYTE_MATERIALIZED_CANONICAL_DONOR":
             require(
                 all(
-                    str(git(repo, "hash-object", path)).strip() == row["source_blob"]
-                    for path in row["canonical_paths"]
+                    str(git(repo, "hash-object", str(path.relative_to(repo)))).strip()
+                    == row["source_blob"]
+                    for path in canonical_paths
                 ),
                 "stack byte-materialized destination drift",
             )
@@ -1036,7 +1068,7 @@ def validate_stack_dispositions(
     require(ledger["protected_task3_touched"] is False, "stack touches Task-3")
 
 
-def validate_science(repo: Path, *, require_donor_objects: bool = False) -> None:
+def validate_science(repo: Path) -> None:
     status = load(repo / STATUS.relative_to(ROOT))
     require(status["terminal"] == CONVERGENCE_TERMINAL, "status terminal")
     require(set(status["papers"]) == {f"ORION-{i:02d}" for i in range(1, 6)}, "paper IDs")
@@ -1054,7 +1086,7 @@ def validate_science(repo: Path, *, require_donor_objects: bool = False) -> None
             f"{paper_id} structured claim-ledger disposition drift",
         )
         for ledger in expected_ledgers:
-            ledger_path = repo / ledger["path"]
+            ledger_path = repo_path(repo, ledger["path"], f"{paper_id} claim ledger")
             require(ledger_path.is_file(), f"{paper_id} claim ledger absent")
             require(sha256(ledger_path) == ledger["sha256"], f"{paper_id} claim ledger SHA")
             require(
@@ -1089,7 +1121,7 @@ def validate_science(repo: Path, *, require_donor_objects: bool = False) -> None
     )
     require(not any(status["global_authority"].values()), "global authority promoted")
     validate_publication_controls(repo, status)
-    validate_stack_dispositions(repo, require_donor_objects=require_donor_objects)
+    validate_stack_dispositions(repo)
     require(
         status["papers"]["ORION-02"].get("completed_round_issues") == [1533]
         and status["papers"]["ORION-02"].get("absorbed_science_pull_requests")
@@ -1107,9 +1139,7 @@ def validate_science(repo: Path, *, require_donor_objects: bool = False) -> None
         require("double-count" in ownership[claim_family].get("rule", "") or (
             claim_family != "R6M_TARE_SUPPORT_EXPRESSIVITY"
         ), "R6M double-novelty guard")
-    validate_preserved_exact_terminals(
-        repo, status, require_donor_objects=require_donor_objects
-    )
+    validate_preserved_exact_terminals(repo, status)
 
     expected_q1_candidate = {
         "id": "ORION05_R11_DIRECT_SOLVER",
@@ -1226,8 +1256,6 @@ def validate_science(repo: Path, *, require_donor_objects: bool = False) -> None
         "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json"
     ]
     require(r18_registered["sha256"] == sha256(r18root / "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json"), "R18 custody SHA")
-    r18_action_custody = load(r18root / "R18_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json")
-    validate_r18_action_artifact_archive(repo, r18_action_custody)
 
     r19root = croot / "extensions/r19"
     r19 = load(r19root / "JOINT_ROUTE_R19_RESULTS.json")
@@ -1251,8 +1279,11 @@ def validate_science(repo: Path, *, require_donor_objects: bool = False) -> None
     require(bnsl_custody["raw_terminal_disposition"] == BNSL_QUARANTINE, "BNSL quarantine")
     require(bnsl_custody["additive_interpretation"] == BNSL_NULL, "BNSL null interpretation")
     require(bnsl_custody["authority"]["adaptive_superiority"] is False, "BNSL superiority ceiling")
-    action_custody = load(r20root / "BNSL_R20_ACTION_ARTIFACT_CUSTODY_V1.json")
-    validate_action_artifact_archive(repo, action_custody)
+
+    for expected in EXPECTED_ACTION_ARCHIVE_CUSTODY.values():
+        custody_path = repo_path(repo, expected["path"], "artifact custody record")
+        require(custody_path.is_file(), "artifact custody record absent")
+        validate_action_artifact_archive(repo, load(custody_path))
 
     results = croot / "experiments/results"
     cnbr = load(results / "CERTIFIED_NEIGHBORHOOD_RESULT_V1.json")
@@ -1296,56 +1327,190 @@ def validate_science(repo: Path, *, require_donor_objects: bool = False) -> None
 
     r30runs = load(repo / "research/orion-01-05-convergence-v1/R30_FAILURE_RUNS_V1.json")
     r30 = load(repo / "research/orion-01-05-convergence-v1/R30_FAILURE_CUSTODY_V1.json")
-    require(r30runs["disposition"] == R30_TERMINAL, "R30 run disposition")
-    require(r30runs["r30_run_count"] == len(EXPECTED_R30_FAILURES), "R30 run denominator")
-    observed_r30_failures = {
-        row["run"]: {
-            "workflow": row["workflow"],
-            "head_sha": row["head_sha"],
-            "failed_step": row["failed_step"],
-            "cause": row["cause"],
-        }
-        for row in r30runs["r30_runs"]
-    }
-    require(observed_r30_failures == EXPECTED_R30_FAILURES, "R30 failure receipt drift")
-    require(all(row["conclusion"] == "failure" for row in r30runs["r30_runs"]), "R30 failures")
     require(
-        all(
-            row["url"]
-            == f"https://github.com/SzeChunYiu/ORION/actions/runs/{row['run']}"
-            for row in r30runs["r30_runs"]
-        ),
-        "R30 failure URL drift",
+        set(r30runs)
+        == {
+            "schema",
+            "disposition",
+            "r30_runs",
+            "r30_run_count",
+            "related_r18_custody_run_recorded_separately",
+            "authoritative_successful_r30_finalizer",
+            "intended_clean_branch_exists",
+            "final_receipts_materialized",
+            "scientific_results_retracted",
+            "authority",
+            "audit_snapshot",
+        },
+        "R30 runs fields drift",
     )
     require(
-        r30runs["authoritative_successful_r30_finalizer"] is False
-        and r30runs["final_receipts_materialized"] is False,
+        r30runs["schema"] == "ORION.ORION0105.R30FailureRuns.v1"
+        and r30runs["disposition"] == R30_TERMINAL,
+        "R30 run disposition",
+    )
+    require(
+        r30runs["r30_run_count"] == len(EXPECTED_R30_FAILURES),
+        "R30 run denominator",
+    )
+    r30_rows = {row["run"]: row for row in r30runs["r30_runs"]}
+    require(
+        len(r30_rows) == len(r30runs["r30_runs"])
+        and set(r30_rows) == set(EXPECTED_R30_FAILURES),
+        "R30 failure-run identity set",
+    )
+    for run, expected in EXPECTED_R30_FAILURES.items():
+        require(
+            r30_rows[run]
+            == {
+                "run": run,
+                **expected,
+                "conclusion": "failure",
+                "url": f"https://github.com/SzeChunYiu/ORION/actions/runs/{run}",
+            },
+            f"R30 failure receipt drift: {run}",
+        )
+    require(
+        r30runs["related_r18_custody_run_recorded_separately"]
+        == "R30_FAILURE_CUSTODY_V1.json"
+        and r30runs["authoritative_successful_r30_finalizer"] is False
+        and r30runs["intended_clean_branch_exists"] is False
+        and r30runs["final_receipts_materialized"] is False
+        and r30runs["scientific_results_retracted"] is False,
         "R30 all-failed disposition",
     )
-    require(33048978721 not in {row["run"] for row in r30runs["r30_runs"]}, "R18 mixed into R30")
-    require(r30["terminal"] == R30_TERMINAL, "R30 custody terminal")
-    require(r30["related_non_r30_custody_failure"]["run"] == 33048978721, "R18 custody separation")
-    require(r30["live_repository_observations"]["intended_clean_branch_exists"] is False, "R30 branch")
-    require(r30["live_repository_observations"]["final_outputs_present_on_current_main"] is False, "R30 outputs")
-    rust = r30["unmaterialized_cross_language_claim"]
     require(
-        rust["workflow_id"] == 343511583
-        and rust["live_run_census"]
+        r30runs["authority"]
         == {
-            "total": 47,
-            "success": 0,
-            "failure": 37,
-            "action_required": 9,
-            "cancelled": 1,
-        }
-        and rust["durable_result_or_terminal_present"] is False
-        and rust["disposition"]
-        == "CHECKER_CANDIDATE_AND_PROSE_ONLY__NO_EXECUTED_PASS",
+            "science_closure": False,
+            "external_independence": False,
+            "novelty": False,
+            "production_authority": False,
+            "journal_authority": False,
+            "submission_authorized": False,
+        },
+        "R30 runs authority promoted",
+    )
+    require(
+        r30runs["audit_snapshot"]
+        == {
+            "verified_at": "2026-08-27T10:26:45Z",
+            "source": "GitHub Actions run metadata and failed-job step/log audit",
+            "authority": "FAILURE_CUSTODY_ONLY__NO_SCIENTIFIC_PROMOTION",
+        },
+        "R30 run audit snapshot drift",
+    )
+    require(33048978721 not in r30_rows, "R18 mixed into R30")
+
+    require(
+        set(r30)
+        == {
+            "schema",
+            "date",
+            "terminal",
+            "advertised_status_scope",
+            "live_repository_observations",
+            "r30_failure_runs_file",
+            "related_non_r30_custody_failure",
+            "failed_finalization_artifact",
+            "unmaterialized_cross_language_claim",
+            "source_tree_package_state",
+            "preserved_science",
+            "supersession",
+            "authority",
+        },
+        "R30 custody fields drift",
+    )
+    require(
+        r30["schema"] == "ORION.ORION0105.R30FailureCustody.v1"
+        and r30["date"] == "2026-08-27"
+        and r30["terminal"] == R30_TERMINAL
+        and r30["advertised_status_scope"]
+        == "STATUS_WRAPPER_AND_RELEASE_CLAIM_ONLY"
+        and r30["r30_failure_runs_file"] == "R30_FAILURE_RUNS_V1.json",
+        "R30 custody identity drift",
+    )
+    require(
+        r30["live_repository_observations"]
+        == {
+            "pr_1489": {
+                "state": "OPEN",
+                "draft": True,
+                "head": "64091190ff3386d08f8033885e37b0389b535f76",
+                "base_branch": "chatgpt/r18-c-relative-route-extension-20260826",
+                "actual_scope": "R19_FIBERGUARD_STORY_NOT_R30",
+            },
+            "pr_1492": {
+                "state": "OPEN",
+                "draft": True,
+                "head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+                "base_branch": "chatgpt/orion-02-r19-current-main-20260827",
+                "actual_scope": "STACKED_R18_R20_R30_GENERATOR_AND_WORKFLOWS",
+            },
+            "advertised_superseded_prs_still_open": [1471, 1485, 1488],
+            "intended_clean_branch": "chatgpt/five-paper-r30-current-main-20260827",
+            "intended_clean_branch_exists": False,
+            "final_outputs_present_on_current_main": False,
+            "final_outputs_present_on_pr_1492_tip": False,
+            "generator_present_but_successfully_executed": False,
+            "audit_snapshot": {
+                "verified_at": "2026-08-27T09:35:00Z",
+                "current_main_commit": (
+                    "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1"
+                ),
+                "note": (
+                    "Historical live-state snapshot before conditional supersession; "
+                    "later PR closure does not invalidate the failed-R30 finding."
+                ),
+            },
+        },
+        "R30 live repository snapshot drift",
+    )
+    require(
+        r30["related_non_r30_custody_failure"]
+        == {
+            "run": 33048978721,
+            "workflow": "orion-02-r18-recovery-null-custody",
+            "head_sha": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+            "conclusion": "failure",
+            "failed_step": "Materialize exact source-branch recovery bytes",
+            "cause": "STALE_R18_RESULT_SHA256",
+            "scientific_result_retracted": False,
+            "superseded_by_additive_custody": (
+                "papers/orion-02-fiberguard-finite-fibre/extensions/r18/"
+                "R18_RECOVERY_CUSTODY_V2.json"
+            ),
+        },
+        "R18 custody separation drift",
+    )
+
+    rust_claim = r30["unmaterialized_cross_language_claim"]
+    require(
+        rust_claim
+        == {
+            "workflow_id": 343511583,
+            "workflow_name": "orion-02-r20-cross-language-rust",
+            "verified_at": "2026-08-27T10:26:45Z",
+            "live_run_census": {
+                "total": 47,
+                "success": 0,
+                "failure": 37,
+                "action_required": 9,
+                "cancelled": 1,
+            },
+            "checker_source_and_prose_present_on_pr_1492": True,
+            "durable_result_or_terminal_present": False,
+            "blocking_cause": "STALE_R18_RESULT_SHA256_BEFORE_RUST_COMPILE_OR_REPLAY",
+            "disposition": "CHECKER_CANDIDATE_AND_PROSE_ONLY__NO_EXECUTED_PASS",
+            "snapshot_rule": (
+                "A later independently bound execution would be successor evidence; "
+                "it would not retroactively materialize the failed R30 release."
+            ),
+        },
         "R30 Rust checker execution promoted",
     )
-    package_state = r30["source_tree_package_state"]
     require(
-        package_state
+        r30["source_tree_package_state"]
         == {
             "head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
             "release_fileset_terminal": (
@@ -1365,19 +1530,80 @@ def validate_science(repo: Path, *, require_donor_objects: bool = False) -> None
         },
         "R30 source-tree package state promoted",
     )
+    require(
+        r30["preserved_science"]
+        == [
+            R18_TERMINAL,
+            "RETRACTED_UNSUPPORTED_R18_POSITIVE_INTERPRETATION",
+            R19_TERMINAL,
+            "CERTIFICATE_INVALID",
+            "VALID_WITHOUT_COVERAGE_OR_VALUE",
+        ],
+        "R30 preserved science drift",
+    )
+    require(
+        r30["supersession"]
+        == {
+            "supersedes": (
+                "R30 current-status, custody-completion, package-completion, "
+                "and coordination authority"
+            ),
+            "does_not_supersede": [
+                "raw theorem or experiment bytes",
+                "adverse/null results",
+                "retractions or quarantines",
+                "frozen subjects",
+                "protected Task-3 lanes",
+            ],
+        },
+        "R30 supersession boundary drift",
+    )
+    require(
+        r30["authority"]
+        == {
+            "science_closure": False,
+            "external_independence": False,
+            "novelty": False,
+            "production_authority": False,
+            "rights_complete": False,
+            "journal_authority": False,
+            "submission_authorized": False,
+        },
+        "R30 custody authority promoted",
+    )
+
     failed_artifact = r30["failed_finalization_artifact"]
     require(
-        failed_artifact["run"] == 33047609008
-        and failed_artifact["artifact_id"] == 9636339561
-        and failed_artifact["artifact_name"] == "five-paper-r30-final"
-        and failed_artifact["reported_size_bytes"] == 136
-        and failed_artifact["downloaded_zip_sha256"]
-        == "5b6188d5276dba7f081c7d2d3106cb2cef92588c577d15394848949ae7ffdba3"
-        and failed_artifact["disposition"]
-        == "EMPTY_CHECKSUM_MEMBER_ONLY__NO_R30_STATUS_PDF_OR_RELEASE_PACKET",
+        failed_artifact
+        == {
+            "run": 33047609008,
+            "artifact_id": 9636339561,
+            "artifact_name": "five-paper-r30-final",
+            "reported_size_bytes": 136,
+            "downloaded_zip_sha256": (
+                "5b6188d5276dba7f081c7d2d3106cb2cef92588c577d15394848949ae7ffdba3"
+            ),
+            "members": {
+                "SHA256SUMS": {
+                    "bytes": 0,
+                    "sha256": (
+                        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+                    ),
+                }
+            },
+            "disposition": (
+                "EMPTY_CHECKSUM_MEMBER_ONLY__NO_R30_STATUS_PDF_OR_RELEASE_PACKET"
+            ),
+            "archive_path": (
+                "research/orion-01-05-convergence-v1/"
+                "R30_FAILED_FINAL_ARTIFACT_9636339561.zip"
+            ),
+        },
         "R30 failed artifact identity drift",
     )
-    failed_archive = repo / failed_artifact["archive_path"]
+    failed_archive = repo_path(
+        repo, failed_artifact["archive_path"], "R30 failed artifact archive"
+    )
     require(
         failed_archive.is_file()
         and failed_archive.stat().st_size == failed_artifact["reported_size_bytes"]
@@ -1388,38 +1614,148 @@ def validate_science(repo: Path, *, require_donor_objects: bool = False) -> None
         require(bundle.namelist() == ["SHA256SUMS"], "R30 failed artifact member set")
         empty_checksum = bundle.read("SHA256SUMS")
     require(empty_checksum == b"", "R30 failed artifact member is not empty")
-    require(
-        failed_artifact["members"]
-        == {
-            "SHA256SUMS": {
-                "bytes": 0,
-                "sha256": (
-                    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-                ),
-            }
-        },
-        "R30 failed artifact member custody drift",
-    )
 
     supersession = load(
         repo / "research/orion-01-05-convergence-v1/SUPERSESSION_PLAN_V1.json"
     )
     require(
-        supersession["global_rule"]
+        set(supersession)
+        == {
+            "schema",
+            "date",
+            "global_rule",
+            "after_convergence_merge",
+            "keep_open_after_convergence",
+            "after_orion05_theorem_successor_merge",
+            "never_superseded",
+            "protected_task3_touched",
+        }
+        and supersession["schema"] == "ORION.ORION0105.SupersessionPlan.v1"
+        and supersession["date"] == "2026-08-27"
+        and supersession["global_rule"]
         == "CLOSE_ONLY_AFTER_SUCCESSOR_MERGE_AND_MERGED_MAIN_VERIFICATION",
         "premature supersession rule",
     )
     require(
-        set(supersession["after_convergence_merge"]["close_pull_requests"])
-        == {1471, 1475, 1485, 1488, 1489, 1492, 1503, 1506, 1534},
-        "unsupported pull-request supersession",
+        supersession["after_convergence_merge"]
+        == {
+            "conditions": [
+                "convergence pull request merged into current main",
+                "merged-main convergence workflow passes",
+                "copied donor hashes and exact adverse terminals remain bound",
+                (
+                    "R18 and BNSL GitHub Actions ZIPs pass offline "
+                    "archive/member verification"
+                ),
+                (
+                    "failed R30 finalizer artifact is vendored and verified as "
+                    "one empty SHA256SUMS member"
+                ),
+                (
+                    "STACK_ARTIFACT_DISPOSITIONS_V1.json covers every frozen "
+                    "source PR file"
+                ),
+                "canonical ORION-ID publication gate and venue ladder are present",
+                (
+                    "donor commit:path objects remain reachable through source "
+                    "branches or an archival ref/bundle"
+                ),
+                "protected Task-3/P9 diff remains empty",
+            ],
+            "close_pull_requests": [
+                1471,
+                1475,
+                1485,
+                1488,
+                1489,
+                1492,
+                1503,
+                1506,
+                1534,
+            ],
+            "close_issues": [1533],
+            "dispositions": {
+                "1471": "DONOR_MATERIALIZED__R18_NULL_AND_RETRACTION_PRESERVED",
+                "1475": "DONOR_MATERIALIZED__R19_EXACT_REPAIR_PRESERVED",
+                "1485": "SUPERSEDED_CURRENT_MAIN_REMATERIALIZATION_DRAFT",
+                "1488": "HISTORICAL_FINITE_THEORY_DRAFT__STATUS_SUPERSEDED",
+                "1534": (
+                    "DONOR_MATERIALIZED__RAW_POSITIVE_QUARANTINE_AND_NULL_PRESERVED"
+                ),
+                "1503": (
+                    "AUTHORIZATION_KEY_CONSUMED__JOB_3544056_FAILURE_PRESERVED__"
+                    "NEW_KEY_REQUIRED"
+                ),
+                "1533": "ROUND_1_COMPLETED_AT_PRESERVED_BNSL_NULL",
+                "1489": (
+                    "R19_STORY_AND_MANUSCRIPT_DRAFT_FILE_DISPOSED__"
+                    "SCIENCE_STATUS_SUPERSEDED__HISTORY_RETAINED"
+                ),
+                "1492": (
+                    "FAILED_R30_PACKAGE_STACK_FILE_DISPOSED__"
+                    "VALID_AUDIT_DONORS_MATERIALIZED__HISTORY_RETAINED"
+                ),
+                "1506": (
+                    "PUBLICATION_POLICY_GATE_AND_VENUE_LADDER_SEMANTICALLY_"
+                    "ABSORBED_UNDER_CANONICAL_ORION_IDS"
+                ),
+            },
+        },
+        "convergence supersession plan drift",
     )
     require(
-        "unabsorbed_manuscript_package_and_policy_pull_requests"
-        not in supersession["keep_open_after_convergence"],
-        "absorbed coordination PRs still marked unabsorbed",
+        supersession["keep_open_after_convergence"]
+        == {
+            "portfolio_issues": [1507, 1517],
+            "science_round_issues": [
+                1511,
+                1512,
+                1513,
+                1514,
+                1516,
+                1519,
+                1520,
+                1521,
+                1522,
+            ],
+            "active_science_pull_requests": [1449, 1466, 1469, 1472, 1524],
+            "separate_repair_items": [1531, 1532, 1538, 1540],
+            "reason": (
+                "These remain active science, execution, or repair lanes and have "
+                "no verified merged science successor. Coordination/manuscript/"
+                "package drafts listed for closure have complete file-level "
+                "dispositions; their commits and adverse evidence remain historical "
+                "provenance."
+            ),
+        },
+        "keep-open science plan drift",
     )
-    require(supersession["protected_task3_touched"] is False, "supersession touches Task-3")
+    require(
+        supersession["after_orion05_theorem_successor_merge"]
+        == {
+            "conditions": [
+                "clean successor merged",
+                "merged-main theorem verifier passes",
+                "adverse resource and support-one boundaries remain bound",
+            ],
+            "close_issues": [1518, 1523],
+            "close_pull_requests": [1524],
+            "keep_open_for_round_2": [1511],
+        },
+        "ORION-05 successor supersession plan drift",
+    )
+    require(
+        supersession["never_superseded"]
+        == [
+            "raw scientific result bytes",
+            "adverse, null, harmful, timeout, and CANNOT_CHECK outcomes",
+            "retractions, quarantines, and hostile controls",
+            "frozen subjects and source identities",
+            "protected Task-3/P9 evidence",
+        ]
+        and supersession["protected_task3_touched"] is False,
+        "supersession erases protected or adverse evidence",
+    )
 
 
 def diff_records(repo: Path, base: str) -> list[tuple[str, str]]:
@@ -1452,37 +1788,38 @@ def validate_changed_paths(records: list[tuple[str, str]], expected: set[str]) -
 def validate_diff(repo: Path, manifest: dict[str, Any]) -> None:
     base = manifest["baseline"]["commit"]
     expected = set(manifest["expected_changed_paths"])
+    for path in expected:
+        repo_path(repo, path, "diff allowlist path")
     validate_changed_paths(diff_records(repo, base), expected)
 
     forbidden_prefixes = tuple(manifest["protected_path_policy"]["forbidden_prefixes"])
     require(not any(path.startswith(forbidden_prefixes) for path in expected), "protected path in allowlist")
     for row in manifest["protected_blob_guards"]:
+        repo_path(repo, row.get("path"), "protected blob guard")
+        require_oid(row.get("blob"), f"protected blob {row.get('path')}")
         base_blob = str(git(repo, "rev-parse", f"{base}:{row['path']}")).strip()
         head_blob = str(git(repo, "rev-parse", f"HEAD:{row['path']}")).strip()
         require(base_blob == row["blob"] == head_blob, f"protected blob changed: {row['path']}")
 
 
 def validate_event_base(repo: Path, manifest: dict[str, Any], event_base: str) -> None:
-    require(event_base == manifest["baseline"]["commit"], "event base commit mismatch")
-    observed_tree = str(git(repo, "rev-parse", f"{event_base}^{{tree}}")).strip()
+    observed_commit = str(git(repo, "rev-parse", f"{event_base}^{{commit}}")).strip()
+    require(
+        observed_commit == manifest["baseline"]["commit"],
+        "event base commit mismatch",
+    )
+    observed_tree = str(git(repo, "rev-parse", f"{observed_commit}^{{tree}}")).strip()
     require(observed_tree == manifest["baseline"]["tree"], "event base tree mismatch")
 
 
-def verify(
-    repo: Path,
-    check_diff: bool,
-    event_base: str | None = None,
-    *,
-    require_donor_objects: bool = False,
-) -> None:
+def verify(repo: Path, check_diff: bool, event_base: str | None = None) -> None:
     manifest_path = repo / MANIFEST.relative_to(ROOT)
     raw_manifest = load(manifest_path)
-    if event_base is not None:
+    if check_diff:
+        require(event_base is not None, "event base is required for diff verification")
         validate_event_base(repo, raw_manifest, event_base)
-    manifest = validate_manifest(
-        repo, require_donor_objects=require_donor_objects
-    )
-    validate_science(repo, require_donor_objects=require_donor_objects)
+    manifest = validate_manifest(repo)
+    validate_science(repo)
     if check_diff:
         validate_diff(repo, manifest)
 
@@ -1492,14 +1829,8 @@ def main() -> int:
     parser.add_argument("--repo", type=Path, default=ROOT)
     parser.add_argument("--check-diff", action="store_true")
     parser.add_argument("--event-base")
-    parser.add_argument("--require-donor-objects", action="store_true")
     args = parser.parse_args()
-    verify(
-        args.repo.resolve(),
-        args.check_diff,
-        args.event_base,
-        require_donor_objects=args.require_donor_objects,
-    )
+    verify(args.repo.resolve(), args.check_diff, args.event_base)
     print(CONVERGENCE_TERMINAL)
     return 0
 
