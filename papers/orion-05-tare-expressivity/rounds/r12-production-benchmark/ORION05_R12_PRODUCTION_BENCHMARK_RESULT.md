@@ -1,7 +1,7 @@
 # ORION-05 Round 2 result: exact, but no measured production value
 
-Date: 2026-08-27  
-Science terminal: `ORION05_R12_EXACT_BUT_NO_PRODUCTION_VALUE`  
+Date: 2026-08-27
+Science terminal: `ORION05_R12_EXACT_BUT_NO_PRODUCTION_VALUE`
 Status: **NULL/ADVERSE ROUND CONSUMED; SCIENCE REMAINS OPEN**
 
 The prospectively frozen H4/N2 comparison completed on LUNARC job `3549607`.

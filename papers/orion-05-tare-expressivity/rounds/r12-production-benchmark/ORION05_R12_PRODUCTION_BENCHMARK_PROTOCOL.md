@@ -1,7 +1,7 @@
 # ORION-05 Round 2: production-faithful exact-search benchmark
 
-**Status:** `FROZEN_BEFORE_OUTCOME`  
-**Base:** `main@27ea5e1b04dbed853b7ddba60c8bf736ef087bf5`  
+**Status:** `FROZEN_BEFORE_OUTCOME`
+**Base:** `main@27ea5e1b04dbed853b7ddba60c8bf736ef087bf5`
 **Round:** 2 of at most 3
 
 ## Question
