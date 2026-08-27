@@ -11,7 +11,7 @@ def test_method_authority_extension_does_not_rewrite_current_p4_submission():
         encoding="utf-8"
     )
 
-    assert "ORION-P4 = PEER_REVIEW_READY" in readiness
+    assert "ORION-14 = PEER_REVIEW_READY" in readiness
     assert "P4_METHOD_AUTHORITY_SUPPORTED" not in manuscript
-    assert "citation-saturated peer-review-ready P4 manuscript/PDF" in extension
-    assert "does not rewrite the existing P4 headline result" in extension
+    assert "citation-saturated peer-review-ready ORION-14 manuscript/PDF" in extension
+    assert "does not rewrite the existing ORION-14 headline result" in extension

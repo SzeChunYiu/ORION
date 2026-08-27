@@ -89,7 +89,7 @@ def test_causal_repair_protocol_is_additive_and_does_not_rewrite_v1_or_v2() -> N
     assert "greedy_accept_if_replay_score_rises" in protocol["ablations"]
     assert "no_negative_history_recurrence_check" in protocol["ablations"]
     text = POLICY.read_text(encoding="utf-8")
-    assert "P5.causal-repair.v2" in text
+    assert "ORION-15.causal-repair.v2" in text
     assert "RECOMMEND_HOST_PROMOTION" in text
     assert "never self-merge" in text.lower() or "never self-merges" in text.lower()
 

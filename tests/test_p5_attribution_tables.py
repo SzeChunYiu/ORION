@@ -198,9 +198,9 @@ def test_claim_ledger_preserves_21_of_24_and_cannot_check_h1() -> None:
 
     md = (PAPER / "evidence" / "CLAIM_LEDGER_V1.md").read_text(encoding="utf-8")
     assert "21/24" in md
-    assert "P5-HC-002" in md
-    assert "P5-HC-012" in md
-    assert "P5-HC-018" in md
+    assert "ORION-15-HC-002" in md
+    assert "ORION-15-HC-012" in md
+    assert "ORION-15-HC-018" in md
     assert md.count("24/24") == 1
     assert "## NR-01 attribution-instrument V2 disposition" in md
     assert "treatment records 24/24" in md
