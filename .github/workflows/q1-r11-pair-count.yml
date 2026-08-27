@@ -1,0 +1,25 @@
+name: q1-r11-pair-count
+
+on:
+  push:
+    paths:
+      - 'development/q1-r11-anticommuting-pairs/**'
+      - '.github/workflows/q1-r11-pair-count.yml'
+  pull_request:
+    paths:
+      - 'development/q1-r11-anticommuting-pairs/**'
+      - '.github/workflows/q1-r11-pair-count.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  pair-count:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exhaustive small-n check
+        run: python development/q1-r11-anticommuting-pairs/verify_pair_count.py
