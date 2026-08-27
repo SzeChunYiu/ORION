@@ -1,0 +1,31 @@
+name: Q1 R11 n9 theorem candidate
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-05-tare-expressivity/Q1_R11_N9_RUNTIME_THEOREM_CANDIDATE.md'
+      - 'papers/orion-05-tare-expressivity/q1_r11_pair_count_independent.py'
+      - '.github/workflows/q1-r11-n9-theorem-candidate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  finite-independent-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run no-ORION-import finite checker
+        run: |
+          set -euo pipefail
+          python papers/orion-05-tare-expressivity/q1_r11_pair_count_independent.py | tee /tmp/q1-r11.out
+          grep -Fx 'Q1_R11_INDEPENDENT_FINITE_CHECK_PASS' /tmp/q1-r11.out
+      - name: Enforce candidate authority boundary
+        run: |
+          set -euo pipefail
+          grep -F 'Status: THEOREM CANDIDATE / NOT SCIENTIFIC AUTHORITY' papers/orion-05-tare-expressivity/Q1_R11_N9_RUNTIME_THEOREM_CANDIDATE.md
+          ! grep -F 'Status: PROVEN' papers/orion-05-tare-expressivity/Q1_R11_N9_RUNTIME_THEOREM_CANDIDATE.md
