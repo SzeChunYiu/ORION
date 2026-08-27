@@ -17,7 +17,7 @@ from typing import Any
 # framework before importing the shared feature helpers.
 ROOT = Path(__file__).resolve().parents[3]
 FRAMEWORK = ROOT / "papers" / "orion-learning-machine" / "framework"
-P10 = ROOT / "papers" / "paper-xx-content-bound-math-evaluation"
+P10 = ROOT / "papers" / "archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation"
 MANIFEST = P10 / "benchmark" / "MATHLIB_CORPUS_V2_MANIFEST.json"
 sys.path.insert(0, str(FRAMEWORK))
 

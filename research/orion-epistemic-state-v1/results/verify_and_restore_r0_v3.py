@@ -98,16 +98,44 @@ def git(*args: str, binary: bool = False):
     return out.stdout if binary else out.stdout.decode()
 
 
-def classify(rel: str) -> str:
+def classify(rel: str, tested_scripts: dict[str, str]) -> str:
     if rel in LIVING:
         return "LEAVE"
     if rel in DEFER:
         return "DEFER"
+    if rel in tested_scripts:
+        return "LEAVE"
     if rel.startswith(TERMINAL_PREFIXES) or rel.rsplit("/", 1)[-1] in TERMINAL_NAMES:
         return "RESTORE"
     if any(s in rel for s in TERMINAL_NAME_SUBSTR):
         return "RESTORE"
     return "DEFER"
+
+
+def find_tested_scripts(candidates: list[str]) -> dict[str, str]:
+    """Scripts (.py/.sh) referenced by name anywhere under tests/: they are
+    part of the live validation surface — imported or executed by tests
+    against the CURRENT tree — so they are living tooling, not frozen
+    evidence, however deep under a 'terminal' prefix they sit.
+
+    Guard added after PR #1540's static-contract run caught
+    research/extensions/p9-p10-structural-scaling/extract_p10_native_lsp_state_v1.py:
+    its restore reverted path strings to `papers/paper-xx-content-bound-
+    math-evaluation/...`, breaking
+    tests/unit/study/p10/test_p10_native_lsp_access_import.py (whose very
+    name — binds_the_frozen_manifest_after_paper_refactor — states the
+    contract: the extractor must track the post-refactor namespace)."""
+    out: dict[str, str] = {}
+    for rel in candidates:
+        if not rel.endswith((".py", ".sh")):
+            continue
+        base = rel.rsplit("/", 1)[-1]
+        r = subprocess.run(["grep", "-rl", "-F", base, "tests/"],
+                           capture_output=True, text=True, cwd=REPO)
+        refs = [l for l in r.stdout.splitlines() if l]
+        if refs:
+            out[rel] = f"live tooling — referenced by tests ({', '.join(sorted(refs))})"
+    return out
 
 
 def self_pin_report(data, own_hash: str, old_hash: str) -> list[str]:
@@ -135,6 +163,7 @@ def main() -> int:
     vocab_rewrite("", V)  # build cache once
 
     diff = git("diff", "--name-only", f"{R0}^..{R0}", "--", SCAN_ROOT).splitlines()
+    tested_scripts = find_tested_scripts(diff)
     rows, failures = {}, []
     for rel in diff:
         if any(rel.startswith(p) for p in EXCLUDE_PREFIXES):
@@ -142,11 +171,12 @@ def main() -> int:
         log = git("log", "--format=%h", "--", rel).split()
         if not log or log[0] != R0:
             continue  # not last-touched by R0
-        verdict = classify(rel)
+        verdict = classify(rel, tested_scripts)
         pre = next((c for c in log[1:] if c != R0), None)
         row = {"class": verdict, "pre_r0_commit": pre, "commits": len(log)}
         if verdict != "RESTORE":
-            row["reason"] = LIVING.get(rel) or DEFER.get(rel) or "no terminal rule matched"
+            row["reason"] = (LIVING.get(rel) or tested_scripts.get(rel)
+                             or DEFER.get(rel) or "no terminal rule matched")
             rows[rel] = row
             continue
         if pre is None:

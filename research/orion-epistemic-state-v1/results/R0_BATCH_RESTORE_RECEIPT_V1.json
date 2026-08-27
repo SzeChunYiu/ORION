@@ -1,9 +1,9 @@
 {
  "counts": {
-  "DEFER": 8,
-  "LEAVE": 17,
-  "RESTORE": 99,
-  "gate_passed_and_restored": 99
+  "DEFER": 7,
+  "LEAVE": 20,
+  "RESTORE": 97,
+  "gate_passed_and_restored": 97
  },
  "date": "2026-08-27",
  "failures": [],
@@ -29,13 +29,10 @@
    "self_pins": []
   },
   "research/assimilation/p1_donor_readiness.py": {
-   "bytes": 11119,
-   "class": "RESTORE",
+   "class": "LEAVE",
    "commits": 2,
-   "diffs": "text-byte-exact",
-   "gate": "PASS",
    "pre_r0_commit": "03549e8c",
-   "restored_sha256": "6e49ad73b1df81707362d55f97185d2e65c038d77f3ad244aca600312401ffbe"
+   "reason": "live tooling \u2014 referenced by tests (tests/unit/knowledge/test_p1_donor_readiness.py)"
   },
   "research/campaign-runs/FORMAL_AND_AUDIT_RUN_2026-08-22.md": {
    "bytes": 9790,
@@ -141,13 +138,10 @@
    "self_pins": []
   },
   "research/extensions/p9-p10-structural-scaling/extract_p10_native_lsp_state_v1.py": {
-   "bytes": 20745,
-   "class": "RESTORE",
+   "class": "LEAVE",
    "commits": 3,
-   "diffs": "text-byte-exact",
-   "gate": "PASS",
    "pre_r0_commit": "269ae98a",
-   "restored_sha256": "b515891fc9f0a34f52ad5690b342cd7b0468cfe01d1a752803dee0e3cf44bf90"
+   "reason": "live tooling \u2014 referenced by tests (tests/unit/study/p10/test_p10_native_lsp_access_import.py)"
   },
   "research/extensions/p9-structured-neural/P9_FINAL_SCOPE_PROTOCOL_V1.json": {
    "bytes": 3818,
@@ -4792,10 +4786,10 @@
    "restored_sha256": "267b505ff675aa463fbc8dc02a1ab763d43a4758f702dbaf2e6c4068e6e6c28b"
   },
   "research/self-orion-v3/run_confirmatory_preflight_v1.py": {
-   "class": "DEFER",
+   "class": "LEAVE",
    "commits": 3,
    "pre_r0_commit": "877d5060",
-   "reason": "no terminal rule matched"
+   "reason": "live tooling \u2014 referenced by tests (tests/unit/p5/test_confirmatory_preflight_command_defaults.py)"
   },
   "research/verification/audit.py": {
    "class": "LEAVE",
