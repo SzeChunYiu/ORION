@@ -35,7 +35,7 @@ build_scratch_pdf () {
   cp -R "$paper/manuscript/." "$work/"
   rm -f "$work/main.pdf" "$work/main.aux" "$work/main.bbl" "$work/main.blg" "$work/main.log" "$work/main.out" "$work/main.fls" "$work/main.fdb_latexmk"
   pushd "$work" >/dev/null
-  latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+  latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex >&2
   if grep -Eiq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references|There were undefined citations' main.log; then
     echo "$label undefined citation/reference" >&2
     exit 1
@@ -48,7 +48,7 @@ build_scratch_pdf () {
     exit 1
   fi
   popd >/dev/null
-  python scripts/audit_manuscript_clipping.py "$work/main.pdf" --root "$ROOT"
+  python scripts/audit_manuscript_clipping.py "$work/main.pdf" --root "$ROOT" >&2
   printf '%s\n' "$work"
 }
 
