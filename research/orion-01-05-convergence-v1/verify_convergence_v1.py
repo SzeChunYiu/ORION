@@ -30,6 +30,19 @@ NQ_FAILURE = (
     "D2_D3_AUTHORITY_CANNOT_CHECK"
 )
 
+ALLOWED_EXACT_PATHS = {
+    ".github/workflows/orion-01-05-convergence-v1.yml",
+    "papers/README.md",
+}
+ALLOWED_ADDITIVE_PREFIXES = (
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18/",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r19/",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r20/",
+    "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/"
+    "post-execution/job-3544056/",
+    "research/orion-01-05-convergence-v1/",
+)
+
 
 def load(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
@@ -257,6 +270,10 @@ def validate_changed_paths(records: list[tuple[str, str]], expected: set[str]) -
     for status, path in records:
         require(status in {"A", "M"}, f"destructive diff status: {status} {path}")
         require(path not in actual, f"duplicate changed path: {path}")
+        require(
+            path in ALLOWED_EXACT_PATHS or path.startswith(ALLOWED_ADDITIVE_PREFIXES),
+            f"path outside strict convergence allowlist: {path}",
+        )
         actual.add(path)
         if path == "papers/README.md":
             require(status == "M", "papers README must be the sole modified existing file")
