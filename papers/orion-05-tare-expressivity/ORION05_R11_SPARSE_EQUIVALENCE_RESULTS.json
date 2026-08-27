@@ -1,0 +1,1185 @@
+{
+  "adverse_results_preserved": [
+    "SUPPORT_ONE_REFUTED__SUPPORT_TWO_NEEDED_ON_REGISTERED_INSTANCE",
+    "ORIGINAL_TWO_TRADE_ALL_N_CHARACTERIZATION_REFUTED",
+    "PAIR_COUNT_RECEIVES_NO_GENERIC_NOVELTY_CREDIT",
+    "QG21_PRIMARY_THETA_FT_DONOR_EXACT_90_OF_90",
+    "QG21_S1_ONLY_18_OF_90_IMPROVED_BY_TWO_LOGICAL_TWO_QUBIT_CLIFFORDS",
+    "PARTIAL_RESOURCE_MAP__MEASURED_PRODUCTION_BENCHMARK_OPEN",
+    "PR1498_RAW_BUDGET_FRONTIER_PRESERVED__WRAPPER_DEFECTIVE__NO_SPARSE_SOLVER_REFUTATION"
+  ],
+  "authority": "THEOREM_GRADE_ON_FROZEN_GRAMMAR__NOT_PRODUCTION_RUNTIME_NOVELTY_RESOURCE_VENUE_OR_SUBMISSION_AUTHORITY",
+  "bindings": {
+    "base_commit": "63c36a20c8120fcd45469bbe5708b9e9aadfe923",
+    "base_tree": "25980098d01d69faf02feb8f03f1e6be27e6c32e",
+    "development_packet": "abc8ddbe8b9ee1dfad5bca384b489f88927916ad5f38b5025b6d3c08e013f156",
+    "frozen_r6m_dp": "7c6579db5f4afbc1738e8b3d96aa3730023bc3831d1fc4950ab34e071c0e3d90",
+    "frozen_r6m_protocol": "33465bd585f09a8d936aaa38d90beb4916943f826eb970bfeced102eeac93986",
+    "qg21_current_resource_adverse_receipt": "fb1dfea5ef16c91f17045f173d5f8522be7df35db2c15714ff0a56eecad97ea3",
+    "r6o_adverse_receipt": "e40e7a948061b9e4b647ba091c04a73b39cffa619ca829bbf4cef4beacdad352",
+    "r6p_support_two_receipt": "3eef07d16353b606a133d7fb977d5039ad1c639c7a531a47ae82be4be9051190",
+    "r6s_human_proof": "ad4f3704cfac4569b74725cb8608ed5f5ba88b847d2d8a2820b3e184d9d1dae6",
+    "r6s_receipt": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875",
+    "round1_status": "2f0200ab94913c5131ef70e2fcf722147238c9a058f7dcd84ed376dcb738296a",
+    "sparse_solver": "642cc67a280abb2ca06089ae01510040f1f598ec638d525ddcc29fae8c6b25d3",
+    "theorem_statement": "d780c893068f73754706bfc7faca54fbf8e846cc12743937dfec92ff1cf323e9",
+    "verifier": "c627942a21a95480246755ac95b194be3fbf20ce9b4a5b99c941f9abbe72ac07",
+    "workflow": "69156f08056d2dd21f29fc918ec23bff55397f938a141f41bf57d36d896004f7"
+  },
+  "canonical_status_delta": {
+    "external_independence": false,
+    "q1_xover_raw_coverage": {
+      "by_n": {
+        "1": {
+          "exact": 72,
+          "sampled": 72,
+          "timeouts": 0
+        },
+        "2": {
+          "exact": 96,
+          "sampled": 96,
+          "timeouts": 0
+        },
+        "3": {
+          "exact": 96,
+          "sampled": 96,
+          "timeouts": 0
+        },
+        "4": {
+          "exact": 72,
+          "sampled": 72,
+          "timeouts": 0
+        },
+        "5": {
+          "exact": 36,
+          "sampled": 36,
+          "timeouts": 0
+        },
+        "6": {
+          "exact": 0,
+          "sampled": 12,
+          "timeouts": 12
+        }
+      },
+      "exact_n_le_5": 372,
+      "sampled": 384,
+      "timeouts_n_6": 12
+    },
+    "q1_xover_source_commit": "272f2a1aa7b63d409fc460b35bb89e4aa8b5dcbb",
+    "round_2_open": true,
+    "same_owner_hostile_review_bound": true,
+    "science_transitions": 17,
+    "supersession_transitions": 4,
+    "terminal": "ORION05_R11_CANONICAL_DELTA_AND_PR1498_ADVERSE_CUSTODY_PASS",
+    "v1_sources_bound": [
+      "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+      "research/orion-01-05-convergence-v1/SUPERSESSION_PLAN_V1.json"
+    ]
+  },
+  "change_scope": {
+    "additive_only": true,
+    "base_commit": "63c36a20c8120fcd45469bbe5708b9e9aadfe923",
+    "base_tree": "25980098d01d69faf02feb8f03f1e6be27e6c32e",
+    "changed_paths": [
+      ".github/workflows/orion05-r11-sparse-theorem.yml",
+      "development/orion-05-r11-sparse-direct-solver-2026-08-27/DEVELOPMENT_PACKET.md",
+      "papers/orion-05-tare-expressivity/ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md",
+      "papers/orion-05-tare-expressivity/ORION05_R11_ROUND1_STATUS.json",
+      "papers/orion-05-tare-expressivity/ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json",
+      "papers/orion-05-tare-expressivity/orion05_r11_sparse_direct_solver.py",
+      "papers/orion-05-tare-expressivity/orion05_r11_sparse_equivalence_verify.py"
+    ],
+    "lineage": "EXACT_BASE_DESCENDANT",
+    "protected_unchanged": true
+  },
+  "claim_boundaries": {
+    "existing_production_dp_acceleration": false,
+    "generic_tare": false,
+    "hardware_or_physical_resource_advantage": false,
+    "journal_or_submission_authority": false,
+    "novelty": false,
+    "protected_task3_access": false
+  },
+  "complete_n1_equivalence": {
+    "all_pass": true,
+    "central_orientation_slices": 65536,
+    "exact_cost_matches": 65536,
+    "production_optimum_witnesses_separately_valid": 65536,
+    "production_phase_certificates_separately_valid": 65536,
+    "sparse_optimum_witnesses_separately_valid": 65536,
+    "sparse_phase_certificates_separately_valid": 65536,
+    "target_six_tuples": 4096,
+    "witness_equivalence_definition": "both feasible witnesses separately recompute the same exact optimum; serialized tie identity is not required"
+  },
+  "constructive_pair_checks": {
+    "n1_through_n6": [
+      {
+        "duplicate_free": true,
+        "formula": 6,
+        "n": 1,
+        "naive_set_equal": true,
+        "ordered_anticommuting_pairs": 6,
+        "pair_union_at_most_three": true,
+        "paulis_support_one_or_two": 3,
+        "per_first_degrees": {
+          "1": [
+            2
+          ]
+        }
+      },
+      {
+        "duplicate_free": true,
+        "formula": 120,
+        "n": 2,
+        "naive_set_equal": true,
+        "ordered_anticommuting_pairs": 120,
+        "pair_union_at_most_three": true,
+        "paulis_support_one_or_two": 15,
+        "per_first_degrees": {
+          "1": [
+            8
+          ],
+          "2": [
+            8
+          ]
+        }
+      },
+      {
+        "duplicate_free": true,
+        "formula": 666,
+        "n": 3,
+        "naive_set_equal": true,
+        "ordered_anticommuting_pairs": 666,
+        "pair_union_at_most_three": true,
+        "paulis_support_one_or_two": 36,
+        "per_first_degrees": {
+          "1": [
+            14
+          ],
+          "2": [
+            20
+          ]
+        }
+      },
+      {
+        "duplicate_free": true,
+        "formula": 1968,
+        "n": 4,
+        "naive_set_equal": true,
+        "ordered_anticommuting_pairs": 1968,
+        "pair_union_at_most_three": true,
+        "paulis_support_one_or_two": 66,
+        "per_first_degrees": {
+          "1": [
+            20
+          ],
+          "2": [
+            32
+          ]
+        }
+      },
+      {
+        "duplicate_free": true,
+        "formula": 4350,
+        "n": 5,
+        "naive_set_equal": true,
+        "ordered_anticommuting_pairs": 4350,
+        "pair_union_at_most_three": true,
+        "paulis_support_one_or_two": 105,
+        "per_first_degrees": {
+          "1": [
+            26
+          ],
+          "2": [
+            44
+          ]
+        }
+      },
+      {
+        "duplicate_free": true,
+        "formula": 8136,
+        "n": 6,
+        "naive_set_equal": true,
+        "ordered_anticommuting_pairs": 8136,
+        "pair_union_at_most_three": true,
+        "paulis_support_one_or_two": 153,
+        "per_first_degrees": {
+          "1": [
+            32
+          ],
+          "2": [
+            56
+          ]
+        }
+      }
+    ],
+    "pair_union_three_attained": true,
+    "three_pair_union_nine_attained": true
+  },
+  "gates": {
+    "baseline_plus_active_correction_exact": true,
+    "canonical_status_delta_and_pr1498_adverse_custody_bound": true,
+    "complete_n1_cost_and_witness_equivalence": true,
+    "constructive_pair_generator_exact_n1_n6": true,
+    "hostile_n2_cost_and_witness_equivalence": true,
+    "minimum_tag_confined_and_support_le_rank_le_six": true,
+    "no_protected_task3_path": true,
+    "pair_count_formula_exact_n1_n6": true,
+    "single_pair_union_le_three_and_three_pairs_union_le_nine": true,
+    "solver_standard_library_only_no_production_dp_symbols": true,
+    "support_one_adverse_boundary_preserved": true
+  },
+  "hostile_n2_equivalence": {
+    "all_pass": true,
+    "panels": [
+      {
+        "exact_cost_equal": true,
+        "panel": "registered_hostile_n2_a",
+        "production_512_state_dp_cost": 6,
+        "production_witness_separate_checks": {
+          "anticommuting_pairs": true,
+          "common_distinct_labels": true,
+          "cost_separately_recomputed": true,
+          "phase_certificate_separately_reconstructed": true,
+          "production_internal_checks": true
+        },
+        "sparse_phase_certificate": {
+          "branch_factors": [
+            {
+              "G": [],
+              "G_times_residual_phases": [
+                0,
+                0,
+                0
+              ],
+              "branch": 0,
+              "checks": {
+                "binary_and_phase_identities": true,
+                "support_matches_local_f3_rule": true
+              },
+              "original_restore_phases": [
+                0,
+                0,
+                0
+              ],
+              "residual_phases": [
+                0,
+                0,
+                0
+              ],
+              "residuals": [
+                [],
+                [
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                [
+                  [
+                    1,
+                    3
+                  ]
+                ]
+              ],
+              "support": 2
+            },
+            {
+              "G": [],
+              "G_times_residual_phases": [
+                0,
+                0,
+                0
+              ],
+              "branch": 1,
+              "checks": {
+                "binary_and_phase_identities": true,
+                "support_matches_local_f3_rule": true
+              },
+              "original_restore_phases": [
+                0,
+                0,
+                0
+              ],
+              "residual_phases": [
+                0,
+                0,
+                0
+              ],
+              "residuals": [
+                [],
+                [
+                  [
+                    1,
+                    3
+                  ]
+                ],
+                [
+                  [
+                    1,
+                    1
+                  ]
+                ]
+              ],
+              "support": 2
+            }
+          ],
+          "checks": {
+            "branch_factor_binary_phase_and_support_identities": true,
+            "factor_support_matches_witness": true,
+            "restore_binary_and_phase_identities": true,
+            "total_cost_matches_witness": true
+          },
+          "restores": [
+            {
+              "T": [],
+              "phase": 0
+            },
+            {
+              "T": [],
+              "phase": 0
+            },
+            {
+              "T": [
+                [
+                  1,
+                  1
+                ]
+              ],
+              "phase": 0
+            },
+            {
+              "T": [
+                [
+                  1,
+                  3
+                ]
+              ],
+              "phase": 0
+            },
+            {
+              "T": [
+                [
+                  1,
+                  3
+                ]
+              ],
+              "phase": 0
+            },
+            {
+              "T": [
+                [
+                  1,
+                  1
+                ]
+              ],
+              "phase": 0
+            }
+          ]
+        },
+        "sparse_support_one_cost": 6,
+        "sparse_support_one_witness": {
+          "active_union": [
+            0
+          ],
+          "centrals": [
+            0,
+            0,
+            0
+          ],
+          "cost": 6,
+          "frame_cost": 0,
+          "frames": [
+            [
+              [
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  3
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  3
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  3
+                ]
+              ]
+            ]
+          ],
+          "orientation": [
+            0,
+            1
+          ],
+          "relative_permutation_B": 0,
+          "relative_permutation_C": 0,
+          "restore_cost": 4,
+          "tag": [
+            [
+              0,
+              1
+            ]
+          ],
+          "tag_constraint_rank": 2,
+          "tag_cost": 2
+        },
+        "sparse_support_two_cost": 6,
+        "sparse_support_two_witness": {
+          "active_union": [
+            0
+          ],
+          "centrals": [
+            0,
+            0,
+            0
+          ],
+          "cost": 6,
+          "frame_cost": 0,
+          "frames": [
+            [
+              [
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  3
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  3
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  3
+                ]
+              ]
+            ]
+          ],
+          "orientation": [
+            0,
+            1
+          ],
+          "relative_permutation_B": 0,
+          "relative_permutation_C": 0,
+          "restore_cost": 4,
+          "tag": [
+            [
+              0,
+              1
+            ]
+          ],
+          "tag_constraint_rank": 2,
+          "tag_cost": 2
+        },
+        "sparse_witness_checks": {
+          "active_union_at_most_nine": true,
+          "common_distinct_labels": true,
+          "frame_cost_recomputed": true,
+          "restore_full_scan_matches_sparse": true,
+          "support_cap": true,
+          "tag_confined_to_active_union": true,
+          "tag_cost_recomputed": true,
+          "tag_is_minimum_weight": true,
+          "tag_support_at_most_rank_at_most_six": true,
+          "three_anticommuting_pairs": true,
+          "total_cost_recomputed": true
+        }
+      },
+      {
+        "exact_cost_equal": true,
+        "panel": "registered_hostile_n2_b",
+        "production_512_state_dp_cost": 8,
+        "production_witness_separate_checks": {
+          "anticommuting_pairs": true,
+          "common_distinct_labels": true,
+          "cost_separately_recomputed": true,
+          "phase_certificate_separately_reconstructed": true,
+          "production_internal_checks": true
+        },
+        "sparse_phase_certificate": {
+          "branch_factors": [
+            {
+              "G": [],
+              "G_times_residual_phases": [
+                0,
+                0,
+                0
+              ],
+              "branch": 0,
+              "checks": {
+                "binary_and_phase_identities": true,
+                "support_matches_local_f3_rule": true
+              },
+              "original_restore_phases": [
+                0,
+                0,
+                0
+              ],
+              "residual_phases": [
+                0,
+                0,
+                0
+              ],
+              "residuals": [
+                [
+                  [
+                    1,
+                    1
+                  ]
+                ],
+                [
+                  [
+                    0,
+                    3
+                  ]
+                ],
+                []
+              ],
+              "support": 2
+            },
+            {
+              "G": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "G_times_residual_phases": [
+                0,
+                0,
+                0
+              ],
+              "branch": 1,
+              "checks": {
+                "binary_and_phase_identities": true,
+                "support_matches_local_f3_rule": true
+              },
+              "original_restore_phases": [
+                1,
+                3,
+                0
+              ],
+              "residual_phases": [
+                1,
+                3,
+                0
+              ],
+              "residuals": [
+                [],
+                [],
+                []
+              ],
+              "support": 2
+            }
+          ],
+          "checks": {
+            "branch_factor_binary_phase_and_support_identities": true,
+            "factor_support_matches_witness": true,
+            "restore_binary_and_phase_identities": true,
+            "total_cost_matches_witness": true
+          },
+          "restores": [
+            {
+              "T": [
+                [
+                  1,
+                  1
+                ]
+              ],
+              "phase": 0
+            },
+            {
+              "T": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "phase": 1
+            },
+            {
+              "T": [
+                [
+                  0,
+                  3
+                ]
+              ],
+              "phase": 0
+            },
+            {
+              "T": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "phase": 3
+            },
+            {
+              "T": [],
+              "phase": 0
+            },
+            {
+              "T": [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "phase": 0
+            }
+          ]
+        },
+        "sparse_support_one_cost": 8,
+        "sparse_support_one_witness": {
+          "active_union": [
+            0,
+            1
+          ],
+          "centrals": [
+            0,
+            0,
+            0
+          ],
+          "cost": 8,
+          "frame_cost": 0,
+          "frames": [
+            [
+              [
+                [
+                  0,
+                  2
+                ]
+              ],
+              [
+                [
+                  0,
+                  3
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  1,
+                  2
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  1,
+                  2
+                ]
+              ],
+              [
+                [
+                  1,
+                  3
+                ]
+              ]
+            ]
+          ],
+          "orientation": [
+            0,
+            1
+          ],
+          "relative_permutation_B": 0,
+          "relative_permutation_C": 1,
+          "restore_cost": 4,
+          "tag": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "tag_constraint_rank": 4,
+          "tag_cost": 4
+        },
+        "sparse_support_two_cost": 8,
+        "sparse_support_two_witness": {
+          "active_union": [
+            0,
+            1
+          ],
+          "centrals": [
+            0,
+            0,
+            0
+          ],
+          "cost": 8,
+          "frame_cost": 0,
+          "frames": [
+            [
+              [
+                [
+                  0,
+                  2
+                ]
+              ],
+              [
+                [
+                  0,
+                  3
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  1,
+                  2
+                ]
+              ],
+              [
+                [
+                  1,
+                  1
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  1,
+                  2
+                ]
+              ],
+              [
+                [
+                  1,
+                  3
+                ]
+              ]
+            ]
+          ],
+          "orientation": [
+            0,
+            1
+          ],
+          "relative_permutation_B": 0,
+          "relative_permutation_C": 1,
+          "restore_cost": 4,
+          "tag": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "tag_constraint_rank": 4,
+          "tag_cost": 4
+        },
+        "sparse_witness_checks": {
+          "active_union_at_most_nine": true,
+          "common_distinct_labels": true,
+          "frame_cost_recomputed": true,
+          "restore_full_scan_matches_sparse": true,
+          "support_cap": true,
+          "tag_confined_to_active_union": true,
+          "tag_cost_recomputed": true,
+          "tag_is_minimum_weight": true,
+          "tag_support_at_most_rank_at_most_six": true,
+          "three_anticommuting_pairs": true,
+          "total_cost_recomputed": true
+        }
+      },
+      {
+        "exact_cost_equal": true,
+        "panel": "registered_support_one_sharpness_5_lt_6",
+        "production_512_state_dp_cost": 5,
+        "production_witness_separate_checks": {
+          "anticommuting_pairs": true,
+          "common_distinct_labels": true,
+          "cost_separately_recomputed": true,
+          "phase_certificate_separately_reconstructed": true,
+          "production_internal_checks": true
+        },
+        "sparse_phase_certificate": {
+          "branch_factors": [
+            {
+              "G": [
+                [
+                  0,
+                  3
+                ]
+              ],
+              "G_times_residual_phases": [
+                0,
+                0,
+                0
+              ],
+              "branch": 0,
+              "checks": {
+                "binary_and_phase_identities": true,
+                "support_matches_local_f3_rule": true
+              },
+              "original_restore_phases": [
+                1,
+                1,
+                0
+              ],
+              "residual_phases": [
+                1,
+                1,
+                0
+              ],
+              "residuals": [
+                [],
+                [],
+                []
+              ],
+              "support": 1
+            },
+            {
+              "G": [],
+              "G_times_residual_phases": [
+                0,
+                0,
+                0
+              ],
+              "branch": 1,
+              "checks": {
+                "binary_and_phase_identities": true,
+                "support_matches_local_f3_rule": true
+              },
+              "original_restore_phases": [
+                0,
+                0,
+                0
+              ],
+              "residual_phases": [
+                0,
+                0,
+                0
+              ],
+              "residuals": [
+                [],
+                [],
+                []
+              ],
+              "support": 0
+            }
+          ],
+          "checks": {
+            "branch_factor_binary_phase_and_support_identities": true,
+            "factor_support_matches_witness": true,
+            "restore_binary_and_phase_identities": true,
+            "total_cost_matches_witness": true
+          },
+          "restores": [
+            {
+              "T": [
+                [
+                  0,
+                  3
+                ]
+              ],
+              "phase": 1
+            },
+            {
+              "T": [],
+              "phase": 0
+            },
+            {
+              "T": [
+                [
+                  0,
+                  3
+                ]
+              ],
+              "phase": 1
+            },
+            {
+              "T": [],
+              "phase": 0
+            },
+            {
+              "T": [
+                [
+                  0,
+                  3
+                ]
+              ],
+              "phase": 0
+            },
+            {
+              "T": [],
+              "phase": 0
+            }
+          ]
+        },
+        "sparse_support_one_cost": 6,
+        "sparse_support_one_witness": {
+          "active_union": [
+            0
+          ],
+          "centrals": [
+            0,
+            0,
+            0
+          ],
+          "cost": 6,
+          "frame_cost": 0,
+          "frames": [
+            [
+              [
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  2
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  2
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  3
+                ]
+              ]
+            ]
+          ],
+          "orientation": [
+            0,
+            1
+          ],
+          "relative_permutation_B": 0,
+          "relative_permutation_C": 0,
+          "restore_cost": 4,
+          "tag": [
+            [
+              0,
+              1
+            ]
+          ],
+          "tag_constraint_rank": 2,
+          "tag_cost": 2
+        },
+        "sparse_support_two_cost": 5,
+        "sparse_support_two_witness": {
+          "active_union": [
+            0,
+            1
+          ],
+          "centrals": [
+            0,
+            0,
+            0
+          ],
+          "cost": 5,
+          "frame_cost": 2,
+          "frames": [
+            [
+              [
+                [
+                  0,
+                  2
+                ]
+              ],
+              [
+                [
+                  0,
+                  1
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  2
+                ]
+              ],
+              [
+                [
+                  0,
+                  1
+                ]
+              ]
+            ],
+            [
+              [
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  1
+                ]
+              ],
+              [
+                [
+                  1,
+                  2
+                ]
+              ]
+            ]
+          ],
+          "orientation": [
+            1,
+            0
+          ],
+          "relative_permutation_B": 0,
+          "relative_permutation_C": 0,
+          "restore_cost": 1,
+          "tag": [
+            [
+              0,
+              1
+            ]
+          ],
+          "tag_constraint_rank": 4,
+          "tag_cost": 2
+        },
+        "sparse_witness_checks": {
+          "active_union_at_most_nine": true,
+          "common_distinct_labels": true,
+          "frame_cost_recomputed": true,
+          "restore_full_scan_matches_sparse": true,
+          "support_cap": true,
+          "tag_confined_to_active_union": true,
+          "tag_cost_recomputed": true,
+          "tag_is_minimum_weight": true,
+          "tag_support_at_most_rank_at_most_six": true,
+          "three_anticommuting_pairs": true,
+          "total_cost_recomputed": true
+        }
+      }
+    ],
+    "support_one_sharpness_preserved": true,
+    "terminal": "SUPPORT_ONE_REFUTED__SUPPORT_TWO_NEEDED_ON_REGISTERED_INSTANCE"
+  },
+  "schema": "ORION.ORION05.R11.SparseDirectSolverEquivalence.v1",
+  "scope": "FROZEN_R6M_SIX_SLOT_GRAMMAR_AND_SUPPORT_COUNT_OBJECTIVE_ONLY",
+  "source_independence": {
+    "imports": [
+      "__future__",
+      "dataclasses",
+      "itertools",
+      "typing"
+    ],
+    "production_dp_symbols_absent": true,
+    "solver_source_sha256": "642cc67a280abb2ca06089ae01510040f1f598ec638d525ddcc29fae8c6b25d3",
+    "standard_library_only": true
+  },
+  "tag_and_preprocessing_checks": {
+    "baseline_plus_active_correction_cases": 961,
+    "feasible_tag_cases": 412,
+    "full_vs_active_tag_cases": 640,
+    "infeasible_tag_cases": 228,
+    "long_target_active_coordinates": 9,
+    "long_target_n": 257,
+    "maximum_observed_constraint_rank": 6,
+    "maximum_observed_minimum_tag_weight": 3,
+    "tag_confined_to_active_union_all_feasible": true,
+    "tag_support_le_rank_le_six_all_feasible": true
+  },
+  "terminal": "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM__FROZEN_R6M_ONLY"
+}
