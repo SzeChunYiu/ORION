@@ -1,0 +1,318 @@
+name: one-shot-finalize-orion-02-r20-internal-gate
+
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths: ['.github/workflows/one-shot-finalize-orion-02-r20-internal-gate.yml']
+  workflow_dispatch:
+
+permissions: {contents: write}
+
+jobs:
+  finalize:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: chatgpt/orion-02-r18-null-current-main-20260827}
+      - name: Install one strict non-self-referential internal release gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > .github/workflows/orion-02-r20-internal-release-gate.yml <<'YAML'
+          name: orion-02-r20-internal-release-gate
+
+          on:
+            push:
+              branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+              paths:
+                - 'papers/orion-02-fiberguard-finite-fibre/**'
+                - '.github/workflows/orion-02-r20-internal-release-gate.yml'
+            pull_request:
+              paths:
+                - 'papers/orion-02-fiberguard-finite-fibre/**'
+                - '.github/workflows/orion-02-r20-internal-release-gate.yml'
+            workflow_dispatch:
+
+          permissions:
+            contents: write
+
+          jobs:
+            strict-internal-release:
+              runs-on: ubuntu-24.04
+              timeout-minutes: 60
+              env:
+                R18_RESULT_SHA256: 8136ac6e614406a51270342d73786dfec43a9ecdac81f62e815cd14d1a739c45
+              steps:
+                - uses: actions/checkout@v4
+                  with: {fetch-depth: 0}
+                - uses: actions/setup-python@v5
+                  with: {python-version: '3.12'}
+
+                - name: Resolve immutable release subject
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    receipt='papers/orion-02-fiberguard-finite-fibre/INTERNAL_RELEASE_RECEIPT_R20.json'
+                    if [ -f "$receipt" ]; then
+                      subject="$(python -c 'import json,sys; print(json.load(open(sys.argv[1]))["executed_subject_commit"])' "$receipt")"
+                    else
+                      subject="$GITHUB_SHA"
+                    fi
+                    git cat-file -e "$subject^{commit}"
+                    git diff --exit-code "$subject" HEAD -- \
+                      papers/orion-02-fiberguard-finite-fibre \
+                      ':(exclude)papers/orion-02-fiberguard-finite-fibre/INTERNAL_RELEASE_RECEIPT_R20.json'
+                    printf '%s\n' "$subject" > "$RUNNER_TEMP/release-subject.txt"
+
+                - name: Install manuscript toolchain
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    sudo apt-get update -qq
+                    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+                      latexmk poppler-utils texlive-bibtex-extra texlive-fonts-recommended \
+                      texlive-latex-base texlive-latex-extra texlive-latex-recommended
+
+                - name: Run independent finite theorem audit twice
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    root='papers/orion-02-fiberguard-finite-fibre'
+                    python -m py_compile "$root/verify_r20_story.py"
+                    python "$root/verify_r20_story.py" --output "$RUNNER_TEMP/verify-a.json" | tee "$RUNNER_TEMP/verify-a.txt"
+                    python "$root/verify_r20_story.py" --output "$RUNNER_TEMP/verify-b.json" | tee "$RUNNER_TEMP/verify-b.txt"
+                    cmp "$RUNNER_TEMP/verify-a.json" "$RUNNER_TEMP/verify-b.json"
+                    cmp "$RUNNER_TEMP/verify-a.txt" "$RUNNER_TEMP/verify-b.txt"
+                    python - <<'PY'
+                    import json,os
+                    from pathlib import Path
+                    r=json.loads((Path(os.environ['RUNNER_TEMP'])/'verify-a.json').read_text())
+                    assert r['terminal']=='ORION02_R20_STORY_FINITE_CORROBORATION_PASS'
+                    assert r['deterministic_witnesses']['systems']==1000
+                    assert r['no_free_extension']=={'extensions':700,'maximum_forced_regret':20}
+                    assert r['joint_nonidentifiability']=={'full_deterministic':'0','diagonal_deterministic':'100','full_randomized':'0','diagonal_randomized':'50'}
+                    assert r['r18_custody']['candidate_denominator']==99
+                    assert r['authority']['external_independence'] is False
+                    assert r['authority']['novelty'] is False
+                    assert r['authority']['journal_authority'] is False
+                    print('R20_FINITE_THEOREM_AUDIT_PASS')
+                    PY
+
+                - name: Validate claims, retractions, prior-art ceiling, and journal gate
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    python - <<'PY'
+                    import json,re
+                    from pathlib import Path
+                    root=Path('papers/orion-02-fiberguard-finite-fibre')
+                    ledger=json.loads((root/'CLAIM_LEDGER_R20.json').read_text())
+                    manifest=json.loads((root/'EVIDENCE_MANIFEST_R20.json').read_text())
+                    journal=json.loads((root/'JOURNAL_GATE_R20.json').read_text())
+                    r18=json.loads((root/'extensions/r18/R18_RECOVERY_CUSTODY.json').read_text())
+                    r19=json.loads((root/'extensions/r19/JOINT_ROUTE_R19_RESULTS.json').read_text())
+                    story=(root/'CURRENT_STORY_R20.md').read_text()
+                    prior=(root/'PRIOR_ART_MATRIX_R20.md').read_text()
+                    assert ledger['schema']=='ORION.ORION02.ClaimLedger.R20.v1'
+                    assert len(ledger['claims'])==10 and len({row['claim_id'] for row in ledger['claims']})==10
+                    assert ledger['global_authority']=={'external_independence':'CANNOT_CHECK','journal_authority':False,'novelty':'CANNOT_CHECK','production_value':False,'submission_ready':False}
+                    assert manifest['schema']=='ORION.ORION02.EvidenceManifest.R20.v1'
+                    assert len(manifest['evidence'])==6
+                    assert r18['former_positive_terminal']=='RETRACTED'
+                    assert r18['current_terminal']=='FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE'
+                    assert r18['scientific_result']['development_feasible_candidates']==0
+                    assert all(value==0.0 for value in r18['scientific_result']['route_coverage'].values())
+                    assert r19['terminal']=='FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT_PASS'
+                    assert r19['invalid_R19_pairing_counterexample']['original_randomized_value']=='35'
+                    assert r19['invalid_R19_pairing_counterexample']['shortcut_randomized_value']=='70'
+                    assert r19['same_marginals_different_joint_system']['full_pair_randomized_value']=='0'
+                    assert r19['same_marginals_different_joint_system']['diagonal_pair_randomized_value']=='50'
+                    assert r19['authority']['paired_ASlib_experiment_executed'] is False
+                    assert r19['authority']['grants_journal_authority'] is False
+                    assert 'The negative outcomes are load-bearing results' in story
+                    assert 'NOVELTY_NOT_ESTABLISHED__RESIDUAL_CLAIM_FROZEN_FOR_EXTERNAL_REVIEW' in prior
+                    assert 'Absence of a located equivalent is not a novelty certificate' in prior
+                    assert journal['terminal']=='ORION02_R20_NOT_SUBMISSION_READY__INTERNAL_AND_EXTERNAL_GATES_EXPLICIT'
+                    assert journal['gates']['submission']['status']=='NOT_AUTHORIZED'
+                    assert journal['gates']['novelty']['status']=='CANNOT_CHECK_EXTERNAL'
+                    print('R20_EVIDENCE_AUTHORITY_ALIGNMENT_PASS')
+                    PY
+
+                - name: Bind exact R18 and neighborhood result subjects
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    git fetch --no-tags origin refs/heads/chatgpt/r18-c-paired-route-20260826
+                    git show FETCH_HEAD:papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json > "$RUNNER_TEMP/r18.json"
+                    test "$(sha256sum "$RUNNER_TEMP/r18.json" | cut -d' ' -f1)" = "$R18_RESULT_SHA256"
+                    python - <<'PY'
+                    import json,os
+                    from pathlib import Path
+                    r=json.loads((Path(os.environ['RUNNER_TEMP'])/'r18.json').read_text())
+                    assert r['terminal']=='FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE'
+                    assert r['development']['candidate_count']==99
+                    assert r['development']['feasible_candidate_count']==0
+                    assert all(r[key]['selected_route']['metrics']['route_change_coverage']==0.0 for key in ('development','validation','test'))
+                    assert r['authority']['recovery_status']=='OUTCOME_EXPOSED_CORROBORATION'
+                    assert r['authority']['grants_journal_authority'] is False
+                    print('R20_R18_NULL_SUBJECT_BOUND')
+                    PY
+                    git fetch --no-tags origin refs/heads/r1/c-nbr-20260827
+                    git show FETCH_HEAD:papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json > "$RUNNER_TEMP/cnbr.json"
+                    python - <<'PY'
+                    import json,os
+                    from pathlib import Path
+                    r=json.loads((Path(os.environ['RUNNER_TEMP'])/'cnbr.json').read_text())
+                    assert r['schema']=='ORION02.CNBR.Result.v1'
+                    assert r['overall_verdict']=='CERTIFICATE_INVALID'
+                    assert [row['verdict'] for row in r['splits']]==['CERTIFICATE_INVALID','CERTIFICATE_INVALID']
+                    official,family=r['splits']
+                    for representation in ('NBR_FULL','NBR_PCA10'):
+                      assert official['representations'][representation]['certificate_heldout_violation_rate']>0.10
+                      assert family['representations'][representation]['heldout_coverage']['epsilon_5000']==0.0
+                    print('R20_NEIGHBORHOOD_REFUTATION_BOUND')
+                    PY
+
+                - name: Compile and execute independent Rust checker
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    root='papers/orion-02-fiberguard-finite-fibre'
+                    source_blob="$(git rev-parse "$(cat "$RUNNER_TEMP/release-subject.txt"):$root/verify_r20_cross_language.rs")"
+                    rustc --edition=2021 -C opt-level=2 -C debuginfo=0 "$root/verify_r20_cross_language.rs" -o "$RUNNER_TEMP/rust-checker"
+                    "$RUNNER_TEMP/rust-checker" --r18 "$RUNNER_TEMP/r18.json" --r19 "$root/extensions/r19/JOINT_ROUTE_R19_RESULTS.json" --source-subject "$(cat "$RUNNER_TEMP/release-subject.txt")" --source-blob "$source_blob" --output "$RUNNER_TEMP/rust-a.json" | tee "$RUNNER_TEMP/rust-a.txt"
+                    "$RUNNER_TEMP/rust-checker" --r18 "$RUNNER_TEMP/r18.json" --r19 "$root/extensions/r19/JOINT_ROUTE_R19_RESULTS.json" --source-subject "$(cat "$RUNNER_TEMP/release-subject.txt")" --source-blob "$source_blob" --output "$RUNNER_TEMP/rust-b.json" | tee "$RUNNER_TEMP/rust-b.txt"
+                    cmp "$RUNNER_TEMP/rust-a.json" "$RUNNER_TEMP/rust-b.json"
+                    cmp "$RUNNER_TEMP/rust-a.txt" "$RUNNER_TEMP/rust-b.txt"
+                    python - <<'PY'
+                    import json,os
+                    from pathlib import Path
+                    r=json.loads((Path(os.environ['RUNNER_TEMP'])/'rust-a.json').read_text())
+                    assert r['terminal']=='ORION02_R20_RUST_CROSS_LANGUAGE_CHECKER_PASS'
+                    assert all(r['controls'].values())
+                    assert r['finite_checks']['deterministic_witness_systems']==1000
+                    assert r['finite_checks']['no_free_extension_cases']==700
+                    assert r['finite_checks']['fallback_alignment_cases']==33824
+                    assert r['r18']['terminal']=='FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE'
+                    assert r['r19']['original_randomized_value']=='35'
+                    assert r['r19']['shortcut_randomized_value']=='70'
+                    assert r['authority']['cross_language'] is True
+                    assert r['authority']['external_independence'] is False
+                    assert r['authority']['journal_authority'] is False
+                    print('R20_RUST_CROSS_LANGUAGE_CHECK_PASS')
+                    PY
+
+                - name: Audit theorem labels and bibliography
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    python - <<'PY'
+                    import re
+                    from pathlib import Path
+                    root=Path('papers/orion-02-fiberguard-finite-fibre')
+                    tex=(root/'MANUSCRIPT_R20.tex').read_text()
+                    bib=(root/'REFERENCES_R20.bib').read_text()
+                    labels=re.findall(r'\\label\{([^}]+)\}',tex)
+                    refs=re.findall(r'\\ref\{([^}]+)\}',tex)
+                    assert len(labels)==len(set(labels))
+                    assert set(refs)<=set(labels),sorted(set(refs)-set(labels))
+                    groups=re.findall(r'\\cite[pt]?\{([^}]+)\}',tex)
+                    cited={key.strip() for group in groups for key in group.split(',')}
+                    defined=set(re.findall(r'@[A-Za-z]+\{([^,]+),',bib))
+                    assert cited==defined,(sorted(cited-defined),sorted(defined-cited))
+                    for token in ('FIBERGUARD\\_R18\\_NO\\_PAIRED\\_ROUTE\\_VALUE','CERTIFICATE\\_INVALID','No-free extension','Marginal nonidentifiability','Lower-image criterion'):
+                      assert token in tex,token
+                    assert 'The manuscript does not claim' in tex
+                    print('R20_MANUSCRIPT_STATIC_AUDIT_PASS')
+                    PY
+
+                - name: Compile formal manuscript to convergence
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    root='papers/orion-02-fiberguard-finite-fibre'
+                    cd "$root"
+                    latexmk -pdf -interaction=nonstopmode -halt-on-error MANUSCRIPT_R20.tex
+                    test -s MANUSCRIPT_R20.pdf
+                    ! grep -Eq 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|I found no \\citation commands' MANUSCRIPT_R20.log
+                    pdfinfo MANUSCRIPT_R20.pdf | tee "$RUNNER_TEMP/pdfinfo.txt"
+                    pdftotext MANUSCRIPT_R20.pdf "$RUNNER_TEMP/manuscript.txt"
+                    grep -q 'Finite-Fibre Decision Certificates Do Not Extrapolate' "$RUNNER_TEMP/manuscript.txt"
+                    grep -q 'No-free extension' "$RUNNER_TEMP/manuscript.txt"
+                    grep -q 'Marginal nonidentifiability' "$RUNNER_TEMP/manuscript.txt"
+
+                - name: Check scope and diff hygiene
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    ! git diff --name-only "$(cat "$RUNNER_TEMP/release-subject.txt")" HEAD | grep -E '(^|/)(task[-_]?3|receipt_v3|process_receipt|evidence\.py)'
+                    git diff --check
+
+                - name: Stage internal release packet
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    root='papers/orion-02-fiberguard-finite-fibre'
+                    out="$RUNNER_TEMP/orion-02-r20-internal-release"
+                    mkdir -p "$out"
+                    cp "$root/MANUSCRIPT_R20.tex" "$root/REFERENCES_R20.bib" "$root/MANUSCRIPT_R20.pdf" "$out/"
+                    cp "$root/CURRENT_STORY_R20.md" "$root/CLAIM_LEDGER_R20.json" "$root/EVIDENCE_MANIFEST_R20.json" "$root/PRIOR_ART_MATRIX_R20.md" "$root/JOURNAL_GATE_R20.json" "$out/"
+                    cp "$root/extensions/r18/R18_RECOVERY_CUSTODY.json" "$root/extensions/r19/CURRENT_MAIN_CUSTODY_R19.json" "$root/extensions/r19/JOINT_ROUTE_R19_RESULTS.json" "$out/"
+                    cp "$RUNNER_TEMP/verify-a.json" "$out/R20_FINITE_VERIFIER_RESULT.json"
+                    cp "$RUNNER_TEMP/rust-a.json" "$out/R20_RUST_CROSS_LANGUAGE_RESULT.json"
+                    cp "$RUNNER_TEMP/r18.json" "$out/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json"
+                    cp "$RUNNER_TEMP/cnbr.json" "$out/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json"
+                    cp "$RUNNER_TEMP/pdfinfo.txt" "$out/"
+                    printf '%s\n' 'ORION02_R20_INTERNAL_RELEASE_GATE_PASS__EXTERNAL_REVIEW_NOVELTY_RIGHTS_AND_SUBMISSION_OPEN' > "$out/TERMINAL.txt"
+                    sha256sum "$out"/* > "$out/SHA256SUMS"
+
+                - uses: actions/upload-artifact@v4
+                  with:
+                    name: orion-02-r20-internal-release
+                    path: ${{ runner.temp }}/orion-02-r20-internal-release/
+                    if-no-files-found: error
+                    retention-days: 30
+
+                - name: Publish non-self-referential internal release receipt once
+                  if: github.event_name == 'push' && github.ref == 'refs/heads/chatgpt/orion-02-r18-null-current-main-20260827'
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    root='papers/orion-02-fiberguard-finite-fibre'
+                    receipt="$root/INTERNAL_RELEASE_RECEIPT_R20.json"
+                    if [ ! -e "$receipt" ]; then
+                      python - <<'PY'
+                    import hashlib,json,os
+                    from pathlib import Path
+                    root=Path('papers/orion-02-fiberguard-finite-fibre')
+                    files=['MANUSCRIPT_R20.tex','REFERENCES_R20.bib','CURRENT_STORY_R20.md','CLAIM_LEDGER_R20.json','EVIDENCE_MANIFEST_R20.json','PRIOR_ART_MATRIX_R20.md','JOURNAL_GATE_R20.json','verify_r20_story.py','verify_r20_cross_language.rs','extensions/r18/R18_RECOVERY_CUSTODY.json','extensions/r19/CURRENT_MAIN_CUSTODY_R19.json','extensions/r19/JOINT_ROUTE_R19_RESULTS.json']
+                    bindings={name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in files}
+                    result={'schema':'ORION.ORION02.InternalReleaseReceipt.R20.v1','executed_subject_commit':(Path(os.environ['RUNNER_TEMP'])/'release-subject.txt').read_text().strip(),'terminal':'ORION02_R20_INTERNAL_RELEASE_GATE_PASS__EXTERNAL_REVIEW_NOVELTY_RIGHTS_AND_SUBMISSION_OPEN','bindings':bindings,'evidence':{'R18_result_sha256':os.environ['R18_RESULT_SHA256'],'R18_terminal':'FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE','R19_terminal':'FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT_PASS','CNBR_terminal':'CERTIFICATE_INVALID','Rust_terminal':'ORION02_R20_RUST_CROSS_LANGUAGE_CHECKER_PASS'},'authority':{'analytic_internal_review':True,'finite_implementation_corroboration':True,'cross_language_same_owner_corroboration':True,'external_independence':False,'novelty':False,'data_rights_complete':False,'journal_authority':False,'submission_authorized':False}}
+                    (root/'INTERNAL_RELEASE_RECEIPT_R20.json').write_text(json.dumps(result,sort_keys=True,separators=(',',':'))+'\n')
+                    PY
+                      git config user.name 'github-actions[bot]'
+                      git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+                      git add "$receipt"
+                      git commit -m 'results(ORION-02): bind strict R20 internal release receipt'
+                      git push origin HEAD:refs/heads/chatgpt/orion-02-r18-null-current-main-20260827
+                    else
+                      echo 'strict internal release receipt already present'
+                    fi
+          YAML
+          for path in \
+            .github/workflows/orion-02-r20-story.yml \
+            .github/workflows/orion-02-r20-manuscript.yml \
+            .github/workflows/orion-02-r20-finite-verifier.yml \
+            .github/workflows/one-shot-fix-orion-02-r20-story.yml \
+            .github/workflows/one-shot-fix-orion-02-r20-manuscript.yml \
+            .github/workflows/one-shot-fix-orion-02-r20-finite-verifier.yml \
+            .github/workflows/one-shot-consolidate-orion-02-r20-gates.yml \
+            .github/workflows/one-shot-enable-orion-02-r20-release-receipt.yml \
+            .github/workflows/one-shot-finalize-orion-02-r20-internal-gate.yml; do
+            rm -f "$path"
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A .github/workflows
+          git commit -m 'ci(ORION-02): finalize strict R20 internal release gate'
+          git push origin HEAD:refs/heads/chatgpt/orion-02-r18-null-current-main-20260827
