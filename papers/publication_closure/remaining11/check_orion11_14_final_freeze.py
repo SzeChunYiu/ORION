@@ -9,7 +9,7 @@ OUTDIR=ROOT/'papers/publication_closure/receipts/remaining11'
 PAPERS={
  'ORION-11':{
   'title':'Recursive Epistemic Reconstruction','dir':'papers/orion-11-recursive-epistemic-reconstruction','readiness':'JOURNAL_READINESS.md',
-  'must':['bounded mechanical claim is `SUPPORTED`','NOT_SUBMISSION_READY','independent implementation recomputes both 40,348-row runs with zero mismatches'],
+  'must':['bounded mechanical claim is `SUPPORTED`','NOT_SUBMISSION_READY','independent implementation','40,348-row runs','zero mismatches'],
   'terminal':'ORION_11_BOUNDED_MECHANICAL_SCIENCE_AND_PAPER_CONTENT_FROZEN',
   'boundary':'Frozen generator/mechanism result with primary and disjoint-seed independent recomputation. Model-general, naturalistic and open-ended superiority and current submission-package readiness are not authorized.'},
  'ORION-12':{
