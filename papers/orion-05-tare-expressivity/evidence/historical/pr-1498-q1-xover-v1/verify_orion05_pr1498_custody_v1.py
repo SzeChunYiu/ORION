@@ -10,6 +10,7 @@ O(n^9) solver theorem.
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import subprocess
@@ -25,6 +26,10 @@ DONOR_HEAD = "272f2a1aa7b63d409fc460b35bb89e4aa8b5dcbb"
 DONOR_BASE = "25004a302b938344c3f47c00f7ad680de6aca9a0"
 ARCHIVE_TAG = "archive/orion-01-05/pr-1498-head-272f2a1aa7b6"
 ALLOWED_EFFECT = "HISTORICAL_OLD_DXX_BUDGET_FRONTIER_ONLY"
+LOCAL_ARCHIVE_TERMINAL = (
+    "ORION05_PR1498_LOCAL_ARCHIVE_PASS__DONOR_OBJECTS_NOT_CHECKED"
+)
+DONOR_OBJECT_VERIFICATION_PASS = "VERIFIED_TAG_COMMIT_LINEAGE_DIFF_AND_BLOBS"
 REQUIRED_FORBIDDEN_PROMOTIONS = {
     "GENERAL_POSITIVE_CROSSOVER",
     "SPARSE_O_N9_REFUTATION",
@@ -70,6 +75,43 @@ def _git_bytes(*args: str) -> bytes:
     )
 
 
+def _required_git(label: str, *args: str) -> str:
+    """Run one strict donor-object check and convert absence into custody failure."""
+
+    try:
+        return _git(*args)
+    except subprocess.CalledProcessError as error:
+        raise AssertionError(
+            {
+                label: {
+                    "git_args": list(args),
+                    "returncode": error.returncode,
+                    "output": str(error.output or "").strip(),
+                },
+            }
+        ) from None
+
+
+def _required_git_bytes(label: str, *args: str) -> bytes:
+    """Byte-returning strict donor check with the same fail-closed boundary."""
+
+    try:
+        return _git_bytes(*args)
+    except subprocess.CalledProcessError as error:
+        output = error.output or b""
+        if isinstance(output, bytes):
+            output = output.decode("utf-8", errors="replace")
+        raise AssertionError(
+            {
+                label: {
+                    "git_args": list(args),
+                    "returncode": error.returncode,
+                    "output": output.strip(),
+                },
+            }
+        ) from None
+
+
 def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -109,8 +151,11 @@ def require_scientific_disposition(
 
 
 def _verify_donor_and_file_bindings(
-    archive_root: Path, manifest: dict[str, Any]
-) -> int:
+    archive_root: Path,
+    manifest: dict[str, Any],
+    *,
+    require_donor_objects: bool,
+) -> tuple[int, str]:
     donor = manifest["donor"]
     expected_donor = {
         "pull_request": 1498,
@@ -124,25 +169,53 @@ def _verify_donor_and_file_bindings(
     }
     _require(donor == expected_donor, "donor_binding_drift", donor)
 
-    tag_ref = f"refs/tags/{ARCHIVE_TAG}"
-    _require(_git("cat-file", "-t", tag_ref) == "commit", "archive_tag_kind_drift", tag_ref)
-    _require(_git("rev-parse", tag_ref) == DONOR_HEAD, "archive_tag_target_drift", tag_ref)
-    _require(
-        _git("merge-base", DONOR_BASE, DONOR_HEAD) == DONOR_BASE,
-        "donor_lineage_drift",
-        {"base": DONOR_BASE, "head": DONOR_HEAD},
-    )
+    diff_rows: list[tuple[str, str]] | None = None
+    if require_donor_objects:
+        tag_ref = f"refs/tags/{ARCHIVE_TAG}"
+        tag_kind = _required_git("required_archive_tag_missing", "cat-file", "-t", tag_ref)
+        _require(tag_kind == "commit", "archive_tag_kind_drift", tag_ref)
+        tag_target = _required_git("required_archive_tag_unresolvable", "rev-parse", tag_ref)
+        _require(tag_target == DONOR_HEAD, "archive_tag_target_drift", tag_ref)
+        _require(
+            _required_git("required_donor_head_missing", "cat-file", "-t", DONOR_HEAD)
+            == "commit",
+            "donor_head_kind_drift",
+            DONOR_HEAD,
+        )
+        _require(
+            _required_git("required_donor_base_missing", "cat-file", "-t", DONOR_BASE)
+            == "commit",
+            "donor_base_kind_drift",
+            DONOR_BASE,
+        )
+        _require(
+            _required_git(
+                "required_donor_lineage_objects_missing",
+                "merge-base",
+                DONOR_BASE,
+                DONOR_HEAD,
+            )
+            == DONOR_BASE,
+            "donor_lineage_drift",
+            {"base": DONOR_BASE, "head": DONOR_HEAD},
+        )
 
-    diff_rows = []
-    for line in _git("diff", "--name-status", f"{DONOR_BASE}..{DONOR_HEAD}").splitlines():
-        fields = line.split("\t")
-        _require(len(fields) == 2, "donor_rename_or_copy_not_supported", line)
-        diff_rows.append((fields[0], fields[1]))
-    _require(
-        all(status == "A" for status, _ in diff_rows),
-        "donor_paths_not_additive",
-        diff_rows,
-    )
+        diff_rows = []
+        donor_diff = _required_git(
+            "required_donor_diff_objects_missing",
+            "diff",
+            "--name-status",
+            f"{DONOR_BASE}..{DONOR_HEAD}",
+        )
+        for line in donor_diff.splitlines():
+            fields = line.split("\t")
+            _require(len(fields) == 2, "donor_rename_or_copy_not_supported", line)
+            diff_rows.append((fields[0], fields[1]))
+        _require(
+            all(status == "A" for status, _ in diff_rows),
+            "donor_paths_not_additive",
+            diff_rows,
+        )
 
     records = manifest["files"]
     _require(len(records) == 14, "file_record_count_drift", len(records))
@@ -150,11 +223,12 @@ def _verify_donor_and_file_bindings(
     archived_paths = [row["archive_path"] for row in records]
     _require(len(set(original_paths)) == 14, "duplicate_original_path", original_paths)
     _require(len(set(archived_paths)) == 14, "duplicate_archive_path", archived_paths)
-    _require(
-        set(diff_rows) == {("A", path) for path in original_paths},
-        "donor_changed_path_set_drift",
-        {"donor": diff_rows, "manifest": original_paths},
-    )
+    if diff_rows is not None:
+        _require(
+            set(diff_rows) == {("A", path) for path in original_paths},
+            "donor_changed_path_set_drift",
+            {"donor": diff_rows, "manifest": original_paths},
+        )
 
     raw_root = (archive_root / "raw").resolve()
     actual_archived_paths = {
@@ -194,24 +268,52 @@ def _verify_donor_and_file_bindings(
         )
         data = path.read_bytes()
         observed = {
-            "git_mode": _git("ls-tree", DONOR_HEAD, "--", original).split()[0],
+            "git_mode": "100755" if path.stat().st_mode & 0o111 else "100644",
             "git_blob": _git_blob(data),
             "sha256": _sha256(data),
             "byte_count": len(data),
         }
         declared = {key: row[key] for key in observed}
         _require(observed == declared, "archived_file_binding_drift", {original: observed})
-        _require(
-            _git("rev-parse", f"{DONOR_HEAD}:{original}") == row["git_blob"],
-            "donor_blob_binding_drift",
-            original,
-        )
-        _require(
-            _git_bytes("cat-file", "blob", row["git_blob"]) == data,
-            "archived_bytes_differ_from_donor",
-            original,
-        )
-    return len(records)
+        if require_donor_objects:
+            tree_line = _required_git(
+                "required_donor_path_missing",
+                "ls-tree",
+                DONOR_HEAD,
+                "--",
+                original,
+            )
+            tree_fields = tree_line.split()
+            _require(
+                len(tree_fields) >= 3 and tree_fields[0] == row["git_mode"],
+                "donor_file_mode_drift",
+                {"path": original, "ls_tree": tree_line},
+            )
+            _require(
+                _required_git(
+                    "required_donor_path_missing",
+                    "rev-parse",
+                    f"{DONOR_HEAD}:{original}",
+                )
+                == row["git_blob"],
+                "donor_blob_binding_drift",
+                original,
+            )
+            _require(
+                _required_git_bytes(
+                    "required_donor_blob_missing",
+                    "cat-file",
+                    "blob",
+                    row["git_blob"],
+                )
+                == data,
+                "archived_bytes_differ_from_donor",
+                original,
+            )
+    donor_verification = (
+        DONOR_OBJECT_VERIFICATION_PASS if require_donor_objects else "NOT_REQUESTED"
+    )
+    return len(records), donor_verification
 
 
 def _verify_scientific_boundary(
@@ -428,7 +530,11 @@ def _verify_source_archive_and_logs(
     return observed
 
 
-def verify_archive(*, archive_root: Path | None = None) -> dict[str, Any]:
+def verify_archive(
+    *,
+    archive_root: Path | None = None,
+    require_donor_objects: bool = False,
+) -> dict[str, Any]:
     archive_root = Path(archive_root or HERE)
     manifest = _load_manifest(archive_root)
     _require(
@@ -438,11 +544,17 @@ def verify_archive(*, archive_root: Path | None = None) -> dict[str, Any]:
         "manifest_identity_drift",
         {key: manifest.get(key) for key in ("schema", "paper_id", "terminal")},
     )
-    files_verified = _verify_donor_and_file_bindings(archive_root, manifest)
+    files_verified, donor_object_verification = _verify_donor_and_file_bindings(
+        archive_root,
+        manifest,
+        require_donor_objects=require_donor_objects,
+    )
     science = _verify_scientific_boundary(archive_root, manifest)
     source_archive_binding = _verify_source_archive_and_logs(archive_root, manifest)
     return {
-        "terminal": manifest["terminal"],
+        "terminal": manifest["terminal"] if require_donor_objects else LOCAL_ARCHIVE_TERMINAL,
+        "manifest_terminal": manifest["terminal"],
+        "donor_object_verification": donor_object_verification,
         "paper_id": manifest["paper_id"],
         "donor_head": DONOR_HEAD,
         "archive_tag": ARCHIVE_TAG,
@@ -456,7 +568,29 @@ def verify_archive(*, archive_root: Path | None = None) -> dict[str, Any]:
 
 
 def main() -> None:
-    print(json.dumps(verify_archive(), indent=2, sort_keys=True))
+    parser = argparse.ArgumentParser()
+    donor_mode = parser.add_mutually_exclusive_group()
+    donor_mode.add_argument(
+        "--require-donor-objects",
+        dest="require_donor_objects",
+        action="store_true",
+        help="fail closed unless the archive tag and donor commit objects verify",
+    )
+    donor_mode.add_argument(
+        "--local-archive-only",
+        dest="require_donor_objects",
+        action="store_false",
+        help="verify archived bytes and authority only; report donor objects unchecked",
+    )
+    parser.set_defaults(require_donor_objects=True)
+    args = parser.parse_args()
+    print(
+        json.dumps(
+            verify_archive(require_donor_objects=args.require_donor_objects),
+            indent=2,
+            sort_keys=True,
+        )
+    )
 
 
 if __name__ == "__main__":

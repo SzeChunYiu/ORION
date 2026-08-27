@@ -36,5 +36,5 @@ jobs:
           python -m ruff check \
             "$archive/verify_orion05_pr1498_custody_v1.py" \
             tests/unit/publication/test_orion05_pr1498_custody.py
-          python "$archive/verify_orion05_pr1498_custody_v1.py"
+          python "$archive/verify_orion05_pr1498_custody_v1.py" --require-donor-objects
           python -m pytest -q tests/unit/publication/test_orion05_pr1498_custody.py

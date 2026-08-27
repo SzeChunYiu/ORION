@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import shutil
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -28,10 +29,23 @@ def _verifier():
     return module
 
 
-def test_pr1498_archive_verifies_exact_donor_and_adverse_result_custody() -> None:
-    report = _verifier().verify_archive()
+def test_pr1498_archive_verifies_local_bytes_and_adverse_result_without_donor_refs(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    verifier = _verifier()
 
-    assert report["terminal"] == "ORION05_PR1498_HISTORICAL_CUSTODY_PASS"
+    def unexpected_git_access(*args: str) -> str:
+        pytest.fail(f"local archive verification accessed donor Git objects: {args}")
+
+    monkeypatch.setattr(verifier, "_git", unexpected_git_access)
+    monkeypatch.setattr(verifier, "_git_bytes", unexpected_git_access)
+    report = verifier.verify_archive(require_donor_objects=False)
+
+    assert report["terminal"] == (
+        "ORION05_PR1498_LOCAL_ARCHIVE_PASS__DONOR_OBJECTS_NOT_CHECKED"
+    )
+    assert report["manifest_terminal"] == "ORION05_PR1498_HISTORICAL_CUSTODY_PASS"
+    assert report["donor_object_verification"] == "NOT_REQUESTED"
     assert report["paper_id"] == "ORION-05"
     assert report["donor_head"] == "272f2a1aa7b63d409fc460b35bb89e4aa8b5dcbb"
     assert report["archive_tag"] == "archive/orion-01-05/pr-1498-head-272f2a1aa7b6"
@@ -76,7 +90,59 @@ def test_pr1498_archive_rejects_raw_byte_mutation(tmp_path: Path) -> None:
     target.write_bytes(target.read_bytes() + b"\n")
 
     with pytest.raises(AssertionError, match="archived_file_binding_drift"):
-        _verifier().verify_archive(archive_root=copied)
+        _verifier().verify_archive(
+            archive_root=copied,
+            require_donor_objects=False,
+        )
+
+
+def test_pr1498_archive_strict_mode_fails_closed_when_archive_tag_is_missing(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    verifier = _verifier()
+
+    def missing_tag(*args: str) -> str:
+        raise subprocess.CalledProcessError(
+            128,
+            ["git", *args],
+            output="fatal: Not a valid object name",
+        )
+
+    monkeypatch.setattr(verifier, "_git", missing_tag)
+    with pytest.raises(AssertionError, match="required_archive_tag_missing") as caught:
+        verifier.verify_archive(require_donor_objects=True)
+    assert caught.value.__suppress_context__ is True
+
+
+def test_pr1498_archive_strict_mode_rejects_wrong_tag_target(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    verifier = _verifier()
+    tag_ref = f"refs/tags/{verifier.ARCHIVE_TAG}"
+
+    def wrong_target(*args: str) -> str:
+        if args == ("cat-file", "-t", tag_ref):
+            return "commit"
+        if args == ("rev-parse", tag_ref):
+            return "0" * 40
+        pytest.fail(f"unexpected Git call before tag-target rejection: {args}")
+
+    monkeypatch.setattr(verifier, "_git", wrong_target)
+    with pytest.raises(AssertionError, match="archive_tag_target_drift"):
+        verifier.verify_archive(require_donor_objects=True)
+
+
+def test_pr1498_dedicated_workflow_requires_fetched_donor_objects() -> None:
+    workflow = (ROOT / ".github/workflows/orion05-pr1498-historical-custody.yml").read_text(
+        encoding="utf-8"
+    )
+
+    assert "fetch-depth: 0" in workflow
+    assert "fetch-tags: true" in workflow
+    assert (
+        'python "$archive/verify_orion05_pr1498_custody_v1.py" '
+        "--require-donor-objects"
+    ) in workflow
 
 
 @pytest.mark.parametrize(
@@ -86,4 +152,3 @@ def test_pr1498_archive_rejects_raw_byte_mutation(tmp_path: Path) -> None:
 def test_pr1498_archive_rejects_forbidden_scientific_promotion(proposed: str) -> None:
     with pytest.raises(AssertionError, match="promotion_not_permitted"):
         _verifier().require_scientific_disposition(proposed)
-
