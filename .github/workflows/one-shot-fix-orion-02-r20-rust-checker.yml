@@ -1,0 +1,55 @@
+name: one-shot-fix-orion-02-r20-rust-checker
+
+on:
+  push:
+    branches:
+      - chatgpt/orion-02-r18-null-current-main-20260827
+    paths:
+      - '.github/workflows/one-shot-fix-orion-02-r20-rust-checker.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-parser-patterns:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion-02-r18-null-current-main-20260827
+      - name: Commit exact Rust parser correction
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          path=Path('papers/orion-02-fiberguard-finite-fibre/verify_r20_cross_language.rs')
+          text=path.read_text()
+          text=text.replace(
+              'match self.bytes.get(self.pos) {\n            Some(b\'0\')',
+              'match self.bytes.get(self.pos).copied() {\n            Some(b\'0\')',
+          )
+          text=text.replace(
+              'matches!(self.bytes.get(self.pos), Some(b\'0\'..=b\'9\'))',
+              'matches!(self.bytes.get(self.pos).copied(), Some(b\'0\'..=b\'9\'))',
+          )
+          text=text.replace(
+              'matches!(self.bytes.get(self.pos), Some(b\'e\') | Some(b\'E\'))',
+              'matches!(self.bytes.get(self.pos).copied(), Some(b\'e\') | Some(b\'E\'))',
+          )
+          text=text.replace(
+              'matches!(self.bytes.get(self.pos), Some(b\'+\') | Some(b\'-\'))',
+              'matches!(self.bytes.get(self.pos).copied(), Some(b\'+\') | Some(b\'-\'))',
+          )
+          path.write_text(text)
+          PY
+          rustc --edition=2021 -C opt-level=0 \
+            papers/orion-02-fiberguard-finite-fibre/verify_r20_cross_language.rs \
+            -o "$RUNNER_TEMP/verify-r20-rust"
+          rm .github/workflows/one-shot-fix-orion-02-r20-rust-checker.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/orion-02-fiberguard-finite-fibre/verify_r20_cross_language.rs .github/workflows/one-shot-fix-orion-02-r20-rust-checker.yml
+          git commit -m 'fix(ORION-02): make Rust JSON number parser compile'
+          git push origin HEAD:refs/heads/chatgpt/orion-02-r18-null-current-main-20260827
