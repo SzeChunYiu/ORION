@@ -2,11 +2,6 @@ name: orion-14-filing-preflight-publish
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - chatgpt/orion-publication-closure-wave-a-20260827
-    paths-ignore:
-      - 'papers/publication_closure/receipts/ORION-14/**'
 
 permissions:
   contents: write
@@ -17,7 +12,6 @@ concurrency:
 
 jobs:
   verify-and-publish:
-    if: ${{ !contains(github.event.head_commit.message, 'record ORION-14 repository filing preflight') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
