@@ -1,0 +1,384 @@
+{
+  "schema": "ORION.ORION05.R11.Round1CanonicalDelta.v1",
+  "date": "2026-08-27",
+  "paper_id": "ORION-05",
+  "title": "TARE Expressivity",
+  "record_kind": "ADDITIVE_CANONICAL_STATUS_AND_SUPERSESSION_DELTA",
+  "terminal": "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM__FROZEN_R6M_ONLY",
+  "canonical_delta": {
+    "base_commit": "63c36a20c8120fcd45469bbe5708b9e9aadfe923",
+    "immutable_sources": [
+      {
+        "path": "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+        "git_blob": "b8e65dfd421e2188ed41f1f3595f05c05b57c1cf",
+        "sha256": "ba51c854a5a0b2dd37da513aada1173399cc0b53139fce039ae8f805b2bcb8fb"
+      },
+      {
+        "path": "research/orion-01-05-convergence-v1/SUPERSESSION_PLAN_V1.json",
+        "git_blob": "7512cea3d6f1f069bc03f4a13f0073f62c4e2cd3",
+        "sha256": "8f6c6d1d42a2ff55470b876a4bd33755f6a014f3522851f1714abd48c683a26b"
+      }
+    ],
+    "precedence": {
+      "rule": "V1 remains immutable; this delta controls only the enumerated ORION-05 pointers after both authority conditions pass.",
+      "authority_effective_only_if": [
+        "this exact packet commit is reachable from main",
+        "the merged-main ORION-05 R11 sparse direct-solver theorem workflow passes"
+      ],
+      "before_conditions_pass": "CONVERGENCE_V1_CONTROLS",
+      "after_conditions_pass": "THIS_ORION05_DELTA_CONTROLS_ENUMERATED_POINTERS_ONLY",
+      "all_non_orion05_v1_fields": "UNCHANGED",
+      "science_status_remains_open": true,
+      "portfolio_submission_authorized": false
+    },
+    "science_status_transitions": [
+      {
+        "json_pointer": "/papers/ORION-05/rounds/consumed",
+        "old": 0,
+        "new": 1
+      },
+      {
+        "json_pointer": "/papers/ORION-05/rounds/current",
+        "old": "ROUND_1_THEOREM_CANDIDATE_UNDER_DISPOSITION",
+        "new": "ROUND_1_POSITIVE_THEOREM_ESTABLISHED__ROUND_2_PRODUCTION_VALUE_OPEN"
+      },
+      {
+        "json_pointer": "/papers/ORION-05/next_gate",
+        "old": "Complete the sparse-enumerator equivalence disposition before promoting the O(n^9) runtime theorem or opening production-faithful Round 2.",
+        "new": "Execute the prospectively frozen production-faithful support-two versus unrestricted-referee Round 2; do not infer production value from the Round-1 theorem."
+      },
+      {
+        "json_pointer": "/papers/ORION-05/authority/runtime_theorem_established",
+        "old": false,
+        "new": true
+      },
+      {
+        "json_pointer": "/papers/ORION-05/evidence_status/pending_candidates/0/emitted_terminal",
+        "old": null,
+        "new": "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM__FROZEN_R6M_ONLY"
+      },
+      {
+        "json_pointer": "/papers/ORION-05/evidence_status/pending_candidates/0/disposition",
+        "old": "UNDER_INDEPENDENT_THEOREM_DISPOSITION",
+        "new": "ESTABLISHED_AT_FROZEN_R6M_GRAMMAR_CEILING"
+      },
+      {
+        "json_pointer": "/papers/ORION-05/evidence_status/pending_candidates/0/current_main_authority",
+        "old": false,
+        "new": true
+      },
+      {
+        "json_pointer": "/papers/ORION-05/evidence_status/pending_candidates/0/merged_main_verification",
+        "old": false,
+        "new": true
+      },
+      {
+        "json_pointer": "/papers/ORION-05/evidence_status/pending_candidates/0/claim_boundary",
+        "old": "PAIR_COUNT_AND_O_N9_RUNTIME_REMAIN_CANDIDATE_ONLY__NO_PRODUCTION_RESOURCE_VALUE",
+        "new": "EXACT_O_N9_RUNTIME_ESTABLISHED_FOR_FROZEN_R6M_ONLY__NO_PRODUCTION_RESOURCE_VALUE"
+      },
+      {
+        "json_pointer": "/papers/ORION-05/evidence_status/convergence_summary/label",
+        "old": "ORION-05_ROUND_1_THEOREM_CANDIDATE_UNDER_DISPOSITION__MEASURED_RESOURCE_VALUE_OPEN",
+        "new": "ORION-05_ROUND_1_EXACT_O_N9_THEOREM_PASS__ROUND_2_PRODUCTION_VALUE_OPEN"
+      },
+      {
+        "json_pointer": "/papers/ORION-05/coordinator_issues",
+        "old": [1511, 1518, 1523],
+        "new": [1511]
+      },
+      {
+        "json_pointer": "/papers/ORION-05/active_science_pull_requests",
+        "old": [1524],
+        "new": []
+      },
+      {
+        "json_pointer": "/papers/ORION-05/candidate_scope",
+        "old": [
+          "separate Round-1 successor proposes a frozen-R6M sparse direct optimizer with O(n^9) word-RAM bound",
+          "successor remains non-authoritative until its clean PR merges and merged-main verification passes"
+        ],
+        "new": []
+      },
+      {
+        "json_pointer": "/papers/ORION-05/established_scope",
+        "old": [
+          "sharp frozen-R6M frame-support theorem kappa_R6M = 2 at its existing current-main ceiling",
+          "support-one adverse witness with exact cost 5 < 6 preserved"
+        ],
+        "new": [
+          "sharp frozen-R6M frame-support theorem kappa_R6M = 2 at its existing current-main ceiling",
+          "support-one adverse witness with exact cost 5 < 6 preserved",
+          "exact constructive ordered support-at-most-two anticommuting-pair count B(n)=54n^3-108n^2+60n",
+          "exact O(n^9) word-RAM direct optimizer for the frozen R6M six-slot grammar and support-count objective",
+          "active-union bound at most nine and minimum compatible Tag support at most rank at most six"
+        ]
+      },
+      {
+        "json_pointer": "/papers/ORION-05/open_science_gates",
+        "old": [
+          "independent hostile proof review",
+          "no-production-DP sparse enumerator audit",
+          "exact optimum and witness equivalence",
+          "hidden n-dependent call and preprocessing audit",
+          "production-faithful measured resource value",
+          "external quantum review and novelty adjudication"
+        ],
+        "new": [
+          "production-faithful measured resource value",
+          "external quantum review and novelty adjudication"
+        ]
+      },
+      {
+        "json_pointer": "/papers/ORION-05/evidence_status/pending_candidates",
+        "old": [
+          {
+            "id": "ORION05_R11_DIRECT_SOLVER",
+            "source_pr": 1524,
+            "source_head": "80226cc5b46bf3b5a0987e3b4d6bcf2366b8ecf7",
+            "source_pr_snapshot": {
+              "state": "OPEN",
+              "is_draft": true,
+              "base_ref": "main",
+              "base_sha": "6d2d1699be7b5dfc1dd8b2721829b908ff4fb3d8",
+              "head_ref": "chatgpt/q1-r11-n9-runtime-theorem-20260827",
+              "head_sha": "80226cc5b46bf3b5a0987e3b4d6bcf2366b8ecf7",
+              "verified_at": "2026-08-27T09:35:00Z"
+            },
+            "finite_check_issue": 1523,
+            "finite_check_token": "Q1_R11_INDEPENDENT_FINITE_CHECK_PASS",
+            "finite_check_authority": "FINITE_CONFORMANCE_ONLY",
+            "proposed_terminals": [
+              "Q1_R11_PAIR_COUNT_ONLY__RUNTIME_HIDDEN_DEPENDENCY",
+              "Q1_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM"
+            ],
+            "emitted_terminal": null,
+            "disposition": "UNDER_INDEPENDENT_THEOREM_DISPOSITION",
+            "current_main_authority": false,
+            "merged_main_verification": false,
+            "claim_boundary": "PAIR_COUNT_AND_O_N9_RUNTIME_REMAIN_CANDIDATE_ONLY__NO_PRODUCTION_RESOURCE_VALUE",
+            "successor_conditions": [
+              "clean current-main child with no protected Task-3/P9 diff",
+              "no-production-DP sparse enumerator and hidden-n-dependency audit",
+              "exact optimum and witness equivalence against the frozen R6M reference",
+              "independent hostile theorem review",
+              "merged-main verifier PASS before authority promotion"
+            ]
+          }
+        ],
+        "new": []
+      },
+      {
+        "json_pointer": "/papers/ORION-05/evidence_status/convergence_summary/derived_from",
+        "old": [
+          "ORION05_SOURCE_BINDING",
+          "ORION05_RESOURCE_MAP",
+          "ORION05_NOVELTY",
+          "ORION05_R20_RESOURCE_AUDIT"
+        ],
+        "new": [
+          "ORION05_SOURCE_BINDING",
+          "ORION05_RESOURCE_MAP",
+          "ORION05_NOVELTY",
+          "ORION05_R20_RESOURCE_AUDIT",
+          "ORION05_R11_DIRECT_SOLVER_ESTABLISHED"
+        ]
+      }
+    ],
+    "science_status_additions": [
+      {
+        "json_pointer": "/papers/ORION-05/evidence_status/established_records",
+        "old_state": "ABSENT",
+        "new": [
+          {
+            "id": "ORION05_R11_DIRECT_SOLVER_ESTABLISHED",
+            "value": "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM__FROZEN_R6M_ONLY",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "CURRENT_MAIN_ADDITIVE_PACKET_AFTER_MERGED_MAIN_PASS",
+              "theorem": "papers/orion-05-tare-expressivity/ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md",
+              "receipt": "papers/orion-05-tare-expressivity/ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json",
+              "status_delta": "papers/orion-05-tare-expressivity/ORION05_R11_ROUND1_STATUS.json",
+              "candidate_donors": [1430, 1524]
+            },
+            "authority_scope": "exact O(n^9) word-RAM optimizer for the frozen R6M six-slot grammar and support-count objective only",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE",
+            "authority": {
+              "production_runtime_value": false,
+              "external_independence": false,
+              "novelty": false,
+              "journal_authority": false,
+              "submission_authorized": false
+            }
+          }
+        ]
+      }
+    ],
+    "supersession_plan_transitions": [
+      {
+        "json_pointer": "/after_orion05_theorem_successor_merge/close_pull_requests",
+        "old": [1524],
+        "new": [1430, 1524]
+      },
+      {
+        "json_pointer": "/after_orion05_theorem_successor_merge/close_issues",
+        "old": [1518, 1523],
+        "new": [1518, 1523]
+      },
+      {
+        "json_pointer": "/after_orion05_theorem_successor_merge/keep_open_for_round_2",
+        "old": [1511],
+        "new": [1511]
+      },
+      {
+        "json_pointer": "/keep_open_after_convergence/active_science_pull_requests",
+        "old": [1449, 1466, 1469, 1472, 1524],
+        "new": [1449, 1466, 1469, 1472]
+      }
+    ]
+  },
+  "authority_effective_only_if": [
+    "this exact packet commit is reachable from main",
+    "the merged-main ORION-05 R11 sparse direct-solver theorem workflow passes"
+  ],
+  "supersedes_after_authority_effective": {
+    "candidate_pull_requests": [1430, 1524],
+    "candidate_issues": [1518, 1523],
+    "scope": "pair-count and frozen-R6M O(n^9) theorem-candidate status only",
+    "close_only_after_both_authority_conditions": true,
+    "retain_open": {
+      "round_2_programme_issue": [1511],
+      "resource_report_layer_pull_request": [1449],
+      "adverse_timeout_custody_pull_request": [1498]
+    }
+  },
+  "science_status": "OPEN",
+  "rounds": {
+    "consumed": 1,
+    "maximum": 3,
+    "current": "ROUND_1_POSITIVE_THEOREM_ESTABLISHED__ROUND_2_PRODUCTION_VALUE_OPEN"
+  },
+  "established_at_stated_ceiling": [
+    "sharp kappa_R6M=2 theorem for the frozen R6M grammar and support-count objective",
+    "exact constructive ordered support-at-most-two anticommuting-pair count B(n)=54n^3-108n^2+60n",
+    "exact O(n^9) word-RAM direct optimizer for that frozen six-slot grammar",
+    "exact optimum plus separately checkable phase-reconstructible witness",
+    "active-union bound at most nine and minimum compatible Tag support at most rank at most six"
+  ],
+  "same_owner_hostile_review": {
+    "verdict": "THEOREM_AND_SOLVER_PASS__GOVERNANCE_AND_EVIDENCE_LABEL_FIXES_BOUND_HERE",
+    "authority": "SAME_OWNER_SAME_SESSION_HOSTILE_PROOF_AND_CODE_REVIEW_ONLY",
+    "external_independence_established": false,
+    "reviewed_input_sha256": {
+      "theorem": "d780c893068f73754706bfc7faca54fbf8e846cc12743937dfec92ff1cf323e9",
+      "sparse_solver": "642cc67a280abb2ca06089ae01510040f1f598ec638d525ddcc29fae8c6b25d3",
+      "verifier": "c627942a21a95480246755ac95b194be3fbf20ce9b4a5b99c941f9abbe72ac07",
+      "r6s_human_proof": "ad4f3704cfac4569b74725cb8608ed5f5ba88b847d2d8a2820b3e184d9d1dae6",
+      "frozen_r6m_dp": "7c6579db5f4afbc1738e8b3d96aa3730023bc3831d1fc4950ab34e071c0e3d90"
+    },
+    "checked_obligations": [
+      "constructive pair count and generator completeness",
+      "R6S support-two reduction and absence of hidden growing frame choices",
+      "active-union and Tag confinement, rank and support bounds",
+      "Restore baseline plus active-coordinate correction",
+      "constant inner matching, permutation, orientation and central choices",
+      "word-RAM complexity, memory and final phase reconstruction",
+      "support-one adverse boundary and protected Task-3/P9 zero diff"
+    ],
+    "evidence_boundaries": [
+      "the frozen production DP is a separate exact optimum oracle",
+      "the finite verifier reuses sparse-solver Pauli, Restore and phase primitives and is not structurally independent",
+      "complete finite coverage is n=1 ordered slices plus registered n=2 panels, not an empirical all-n proof",
+      "external quantum review and novelty adjudication remain open"
+    ]
+  },
+  "mandatory_adverse_and_boundary_results_preserved": [
+    "SUPPORT_ONE_REFUTED__SUPPORT_TWO_NEEDED_ON_REGISTERED_INSTANCE",
+    "support-two optimum 5 is strictly below complete support-one optimum 6 on the registered n=2 witness",
+    "generic bounded-locality Pauli-pair counting receives no novelty credit",
+    "QG21 primary theta_FT result remains donor-exact on 90 of 90 rows",
+    "QG21 sensitivity S1 improves only 18 of 90 rows by two logical two-qubit Clifford gates",
+    "PARTIAL_RESOURCE_MAP__MEASURED_PRODUCTION_BENCHMARK_OPEN",
+    "PR1498_RAW_BUDGET_FRONTIER_PRESERVED__WRAPPER_DEFECTIVE__NO_SPARSE_SOLVER_REFUTATION"
+  ],
+  "pr1498_adverse_runtime_context": {
+    "disposition": "RAW_BUDGET_FRONTIER_PRESERVED__WRAPPER_AND_P6_AUTHORITY_DEFECTIVE",
+    "source": {
+      "pull_request": 1498,
+      "head_ref": "r1/q1-xover-20260827",
+      "head_commit": "272f2a1aa7b63d409fc460b35bb89e4aa8b5dcbb",
+      "custody": "DONOR_COMMIT_PATH_BOUND__KEEP_PR_OPEN_UNTIL_CANONICAL_RAW_COPY_OR_FINAL_DISPOSITION",
+      "bindings": [
+        {
+          "path": "research/extensions/orion-q/Q1_XOVER_RESULTS_V1.json",
+          "git_blob": "40a92fe215c0585310d87fcd027bd12069f42f45",
+          "sha256": "05eb59f6635ebccd8ebcebc79f3b9646aab6fce1d9852735c67d01f9cd3821f1"
+        },
+        {
+          "path": "research/extensions/orion-q/Q1_XOVER_TIMING_V1.json",
+          "git_blob": "ed2d51bb7ea78efbead015ce6eaa2aacfff65f43",
+          "sha256": "1949a1174c318a643cbe47740438f22f25ff4db96e69dac0e44ffbb4e66bd4b7"
+        },
+        {
+          "path": "research/extensions/orion-q/Q1_XOVER_PROTOCOL_V1.md",
+          "git_blob": "a9b723fa8e4ff485390412fe85f16d778a1d45ad",
+          "sha256": "6eded50cce8f546afbd59ace8bd3f054270779518df222b1fa3747eb91a197a1"
+        },
+        {
+          "path": "research/extensions/orion-q/q1_crossover_evaluation.py",
+          "git_blob": "819c4b19c204fc01b826a79eb6446e0fac9de4f5",
+          "sha256": "56ec39f8e95074a3ab44d012c1e33112881b75edbcb4a1563be70e0706021d88"
+        }
+      ]
+    },
+    "raw_observations": {
+      "receipt_verdict_preserved_verbatim": "RUN_INCOMPLETE",
+      "sampled_cells_total": 384,
+      "n_le_5_exact": 372,
+      "n_le_5_nonexact": 0,
+      "n_6_timeout": 12,
+      "n_6_sampled": 12,
+      "per_cell_budget_seconds": 600,
+      "old_direct_dxx_algorithm": "4^(2n)-table direct D++ implementation",
+      "new_sparse_o_n9_solver_executed_by_pr1498": false
+    },
+    "authority_correction": {
+      "registered_p6_did_not_predict_zero_timeouts": true,
+      "evaluator_added_unregistered_timeouts_equal_zero_clause": true,
+      "evaluator_structural_clause_did_not_test_the_named_n_gt_6_collections": true,
+      "p6_false_is_not_authority_for_general_prediction_refutation": true,
+      "honest_result": "On the frozen sampled panel and machine budget, 372/372 n<=5 old-D++ cells completed exactly and 12/12 n=6 cells timed out at 600 seconds.",
+      "forbidden_inferences": [
+        "the new sparse O(n^9) solver is refuted",
+        "a general feasibility crossover lies strictly between n=5 and n=6",
+        "production acceleration or resource value is established",
+        "the raw receipt or P6=false may be rewritten"
+      ]
+    },
+    "round_accounting": "ADVERSE_CONTEXT_ONLY__DOES_NOT_CONSUME_PROSPECTIVE_ROUND_2"
+  },
+  "round_2_gate": {
+    "status": "OPEN",
+    "requirement": "prospectively frozen production-faithful support-two versus unrestricted-referee comparison",
+    "measures": [
+      "search nodes or states",
+      "CPU and wall time",
+      "peak RSS",
+      "proof or witness verification cost",
+      "matched exactness and objective semantics"
+    ],
+    "forbidden_inference": "No production acceleration or resource value follows from the Round-1 theorem, finite equivalence receipt, or PR #1498's old-D++ timeout panel."
+  },
+  "authority": {
+    "runtime_theorem_on_frozen_grammar": true,
+    "production_runtime_value": false,
+    "generic_tare_complexity": false,
+    "physical_or_fault_tolerant_resource_value": false,
+    "external_independence": false,
+    "novelty": false,
+    "journal_authority": false,
+    "submission_authorized": false
+  },
+  "protected_task3_touched": false
+}
