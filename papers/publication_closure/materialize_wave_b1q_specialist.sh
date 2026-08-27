@@ -90,6 +90,7 @@ rm -rf "$out" "$work"
 mkdir -p "$out" "$work"
 python papers/orion-06-recursive-recovery/submission_aij/build_aij_source.py \
   --cited-master build/q_qg_cited/Q2/MANUSCRIPT_CITED.md \
+  --highlights papers/orion-06-recursive-recovery/submission_aij/HIGHLIGHTS.txt \
   --out "$work/prepared.md"
 cp build/q_qg_cited/Q2/references.bib "$work/references.bib"
 cp papers/orion-06-recursive-recovery/submission_aij/aij_pandoc_template.tex "$work/template.tex"
