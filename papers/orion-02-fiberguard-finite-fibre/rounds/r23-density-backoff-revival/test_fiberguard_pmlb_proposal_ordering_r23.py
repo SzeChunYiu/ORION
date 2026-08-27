@@ -161,6 +161,8 @@ class WrapperContractTests(unittest.TestCase):
         self.assertIn('run_one "run_b"', script)
         self.assertGreaterEqual(script.count("cmp -s"), 3)
         self.assertIn("verify_fiberguard_pmlb_proposal_ordering_r23.py", script)
+        self.assertIn("preserve_failure_artifacts", script)
+        self.assertIn("FAILED_EXECUTION_DIR", script)
 
 
 if __name__ == "__main__":

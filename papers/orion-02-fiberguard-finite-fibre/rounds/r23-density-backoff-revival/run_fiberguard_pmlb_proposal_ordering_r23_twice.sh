@@ -15,7 +15,22 @@ python3 -m unittest -v \
 python3 "$HERE/fiberguard_pmlb_proposal_ordering_r23.py" --self-test
 
 TMP=$(mktemp -d "${TMPDIR:-/tmp}/orion02-r23.XXXXXX")
-trap 'rm -rf "$TMP"' EXIT
+FAILED_EXECUTION_DIR="$HERE/failed-executions/${SLURM_JOB_ID:-manual-$$}"
+
+preserve_failure_artifacts() {
+  local rc=$?
+  trap - EXIT
+  if [ "$rc" -eq 0 ]; then
+    rm -rf "$TMP"
+  else
+    mkdir -p "$FAILED_EXECUTION_DIR"
+    cp -a "$TMP"/. "$FAILED_EXECUTION_DIR"/
+    printf '%s\n' "$rc" >"$FAILED_EXECUTION_DIR/WRAPPER_EXIT_CODE.txt"
+    echo "R23_WRAPPER_FAILURE_ARTIFACTS $FAILED_EXECUTION_DIR" >&2
+  fi
+  exit "$rc"
+}
+trap preserve_failure_artifacts EXIT
 
 run_one() {
   local label=$1
@@ -28,19 +43,24 @@ run_one() {
     >"$TMP/${label}.stdout.txt" 2>"$TMP/${label}.stderr.txt"
 }
 
+echo "RUN_A" >"$TMP/STAGE.txt"
 run_one "run_a"
+echo "RUN_B" >"$TMP/STAGE.txt"
 run_one "run_b"
 
+echo "BYTE_COMPARE" >"$TMP/STAGE.txt"
 cmp -s "$TMP/run_a.result.json" "$TMP/run_b.result.json"
 cmp -s "$TMP/run_a.parent.json" "$TMP/run_b.parent.json"
 cmp -s "$TMP/run_a.terminal.txt" "$TMP/run_b.terminal.txt"
 
+echo "INDEPENDENT_VERIFY" >"$TMP/STAGE.txt"
 python3 "$HERE/verify_fiberguard_pmlb_proposal_ordering_r23.py" \
   --result "$TMP/run_a.result.json" \
   --corrected-parent "$TMP/run_a.parent.json" \
   --terminal "$TMP/run_a.terminal.txt" \
   >"$TMP/verification.txt"
 
+echo "MATERIALIZE" >"$TMP/STAGE.txt"
 cp "$TMP/run_a.result.json" "$HERE/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_RESULTS.json"
 cp "$TMP/run_a.parent.json" "$HERE/FIBERGUARD_PMLB_R22_CORRECTED_EXACT_RECEIPT.json"
 cp "$TMP/run_a.terminal.txt" "$HERE/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_TERMINAL.txt"
