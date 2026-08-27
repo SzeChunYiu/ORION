@@ -1,0 +1,101 @@
+{
+  "authority": {
+    "content_binding_complete_for_q1_c_inputs": true,
+    "grants_journal_authority": false,
+    "grants_novelty_authority": false,
+    "grants_production_resource_authority": false,
+    "proves_theorem": false
+  },
+  "base_commit_role": "immutable parent selected for this Q1-C audit; additions in this lane do not alter the bound source bytes",
+  "base_commit_sha": "1e18787841d99d76a3c7661505838d2eca8780db",
+  "base_pull_request": 1428,
+  "repository": "SzeChunYiu/ORION",
+  "schema": "ORION.Q1C.SourceBindingR9.v1",
+  "selection": {
+    "claim_ledger": "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V3.md",
+    "manuscript": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md",
+    "objective_definition": "research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py",
+    "portfolio_authoritative_theorem_selected": false,
+    "reason": "The R9 audit packet reserves portfolio-wide authoritative theorem selection to Q1-A plus the portfolio owner. This lane binds exactly what it interpreted without claiming that missing authority.",
+    "selection_scope": "Q1-C resource-interpretation inputs only",
+    "theorem_definition": "papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md"
+  },
+  "source_objects": [
+    {
+      "bytes": 20138,
+      "git_blob_sha": "6c4c59452397024d96cf6d103f474b7b0a07e536",
+      "path": "papers/Q-paper-01-tare-expressivity/MANUSCRIPT_V3_REFINED.md",
+      "role": "manuscript",
+      "sha256": "8522ab344c105866798ca64019f2e5bdf75f4c4445c0c6a0525a573a0c2b5377"
+    },
+    {
+      "bytes": 2439,
+      "git_blob_sha": "67459ecca65f160b52af470fe6a2582f6af95ed3",
+      "path": "papers/Q-paper-01-tare-expressivity/CLAIM_LEDGER_V3.md",
+      "role": "claim_ledger",
+      "sha256": "f278639f2606404be4276f20dc9f17e49e5b7702f906f7a4cb4a4c46074c994a"
+    },
+    {
+      "bytes": 8175,
+      "git_blob_sha": "a22754e8afef0e9914b75b37f0aee673ccd2ca95",
+      "path": "papers/Q-paper-01-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md",
+      "role": "analytic_proof",
+      "sha256": "ad4f3704cfac4569b74725cb8608ed5f5ba88b847d2d8a2820b3e184d9d1dae6"
+    },
+    {
+      "bytes": 8194,
+      "git_blob_sha": "d08fd6c60e8f814f7849950760729b440daef899",
+      "path": "papers/Q-paper-01-tare-expressivity/TARE_FULLTEXT_DONOR_BOUNDARY_V3.md",
+      "role": "donor_boundary",
+      "sha256": "fc017f1d3d4604735ac5a1e3581cc0189465759393a1a537c2ccd6c47935425c"
+    },
+    {
+      "bytes": 48401,
+      "git_blob_sha": "ead51fc9d03e25acf3d65557cb0f08fd1eb98873",
+      "path": "research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py",
+      "role": "objective_definition",
+      "sha256": "7c6579db5f4afbc1738e8b3d96aa3730023bc3831d1fc4950ab34e071c0e3d90"
+    },
+    {
+      "bytes": 30225,
+      "git_blob_sha": "2d78fdc61a6d5e423b5f44307243bdf2831dbba3",
+      "path": "research/extensions/orion-q/max_r6s_all_n_composition.py",
+      "role": "registered_theorem_checker",
+      "sha256": "6fad2d4f8f97b0a1b76428bff4fdd83dda18f9e3a49cdab7732391d4bcf3d41d"
+    },
+    {
+      "bytes": 114737,
+      "git_blob_sha": "e7949b35e7010ae9b24d9f69a35f210fa7f55c13",
+      "path": "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json",
+      "role": "registered_theorem_receipt",
+      "sha256": "b6d72913c3bd42d9c822eace19563378c046e620d7b9641ec7d818fbcc6b9875"
+    },
+    {
+      "bytes": 16836,
+      "git_blob_sha": "934c01b001bbbeceed58806daaca155950a90126",
+      "path": "development/orion-qg-regime-geometry/QG21_FT_OBJECTIVE_PROTOCOL_V1.md",
+      "role": "production_accounting_protocol",
+      "sha256": "88c2e5fa9e22330b6f2de108a3fc35c01298deb34dc331ca7e72f7e307ca7fc9"
+    },
+    {
+      "bytes": 604570,
+      "git_blob_sha": "041045985496736f760a222507f8a4bd6b050b42",
+      "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+      "role": "production_accounting_receipt",
+      "sha256": "fb1dfea5ef16c91f17045f173d5f8522be7df35db2c15714ff0a56eecad97ea3"
+    }
+  ],
+  "terminal": "Q1_C_INPUTS_CONTENT_BOUND__PORTFOLIO_AUTHORITY_BINDING_STILL_REQUIRED",
+  "tree_objects": [
+    {
+      "git_tree_sha": "81c0d03d5f3da35c6f35dfdd6d523ac8f180847c",
+      "path": "research/extensions/orion-q",
+      "role": "registered_q1_implementation_tree"
+    },
+    {
+      "git_tree_sha": "8bede29fa6b9ab5c10cdf0a226ab9c8f21de288f",
+      "path": "research/extensions/orion-qg",
+      "role": "qg_resource_accounting_tree"
+    }
+  ]
+}

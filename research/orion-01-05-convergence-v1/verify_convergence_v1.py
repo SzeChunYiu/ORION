@@ -35,11 +35,21 @@ ALLOWED_EXACT_PATHS = {
     "papers/README.md",
 }
 ALLOWED_ADDITIVE_PREFIXES = (
+    "papers/orion-01-certificate-realization/evidence/convergence-v1/",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r11/",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r14/",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r15/",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r16/",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r17/",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r18/",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r19/",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r20/",
+    "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/",
+    "papers/orion-04-rooted-completion-certificates/evidence/convergence-v1/",
     "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/"
     "post-execution/job-3544056/",
+    "papers/orion-05-tare-expressivity/evidence/convergence-v1/",
     "research/orion-01-05-convergence-v1/",
 )
 
@@ -113,6 +123,17 @@ def validate_entry(repo: Path, entry: dict[str, Any]) -> None:
             )
     elif source["kind"] == "github_actions_artifact":
         require(source["run"] > 0 and source["artifact_id"] > 0, "artifact identity absent")
+        require(bool(source.get("artifact_name")), "artifact name absent")
+        require(
+            len(source.get("artifact_zip_sha256", "")) == 64,
+            "artifact ZIP SHA-256 absent",
+        )
+        require(
+            bool(source.get("member"))
+            and source.get("member_bytes") == entry["bytes"]
+            and source.get("member_sha256") == entry["sha256"],
+            "artifact member binding absent or inconsistent",
+        )
     elif source["kind"] == "convergence_generated":
         require(source["generator"] == "ORION-01-05 convergence V1", "bad generator")
     else:
@@ -128,6 +149,36 @@ def validate_manifest(repo: Path) -> dict[str, Any]:
     require(manifest["terminal"] == CONVERGENCE_TERMINAL, "manifest terminal")
     destinations = [row["destination"] for row in manifest["files"]]
     require(len(destinations) == len(set(destinations)), "duplicate manifest destinations")
+    manifest_path = MANIFEST.relative_to(ROOT).as_posix()
+    self_binding = manifest["manifest_self_binding"]
+    require(self_binding.get("path") == manifest_path, "manifest self-binding path")
+    require(
+        self_binding.get("excluded_from_own_hash_list") is True
+        and self_binding.get("reason") == "SELF_REFERENTIAL_HASH_IS_NOT_WELL_DEFINED",
+        "manifest self-binding rule",
+    )
+    require(manifest_path not in destinations, "manifest self listed as ordinary file")
+    expected_paths = set(manifest["expected_changed_paths"])
+    require(
+        set(destinations) | {manifest_path} == expected_paths,
+        "manifest destination coverage mismatch",
+    )
+    baseline = manifest["baseline"]
+    observed_baseline_tree = str(
+        git(repo, "rev-parse", f"{baseline['commit']}^{{tree}}")
+    ).strip()
+    require(observed_baseline_tree == baseline["tree"], "baseline tree mismatch")
+
+    artifact_member_mappings: set[tuple[int, int, str]] = set()
+    for row in manifest["files"]:
+        source = row["source"]
+        if source["kind"] == "github_actions_artifact":
+            mapping = (source["run"], source["artifact_id"], source["member"])
+            require(
+                mapping not in artifact_member_mappings,
+                "duplicate artifact member mapping",
+            )
+            artifact_member_mappings.add(mapping)
     for row in manifest["files"]:
         validate_entry(repo, row)
 
@@ -141,6 +192,109 @@ def validate_manifest(repo: Path) -> dict[str, Any]:
         head_blob = str(git(repo, "rev-parse", f"HEAD:{path}")).strip()
         require(base_blob == row["blob"] == head_blob, f"existing blob drift: {path}")
     return manifest
+
+
+def json_pointer(document: Any, pointer: str) -> Any:
+    """Resolve the small RFC 6901 subset used by exact-terminal bindings."""
+    require(pointer.startswith("/"), f"invalid JSON pointer: {pointer}")
+    current = document
+    for raw_token in pointer[1:].split("/"):
+        token = raw_token.replace("~1", "/").replace("~0", "~")
+        if isinstance(current, dict):
+            require(token in current, f"JSON pointer key absent: {pointer}")
+            current = current[token]
+        elif isinstance(current, list):
+            require(token.isdigit(), f"JSON pointer index invalid: {pointer}")
+            index = int(token)
+            require(index < len(current), f"JSON pointer index absent: {pointer}")
+            current = current[index]
+        else:
+            raise AssertionError(f"JSON pointer traverses scalar: {pointer}")
+    return current
+
+
+def validate_preserved_exact_terminals(repo: Path, status: dict[str, Any]) -> None:
+    allowed_kinds = {
+        "RAW_SCIENCE_TERMINAL",
+        "AUDIT_DISPOSITION",
+        "AUTHORITY_VERDICT",
+        "COMPOSITE_INTERPRETATION",
+    }
+    noncontrolling_dispositions = {
+        "PRESERVED_NONCONTROLLING_KNOWN_PREDICATE_DEFECT",
+        "RETRACTED_UNSUPPORTED_EXECUTION_IDENTITY",
+        "QUARANTINED_OVERLAPPING_MATERIAL_AND_NULL_PREDICATES_AT_ZERO",
+    }
+
+    for paper_id in (f"ORION-{index:02d}" for index in range(1, 6)):
+        evidence = status["papers"][paper_id].get("evidence_status", {})
+        summary = evidence.get("convergence_summary", {})
+        require(
+            summary.get("label", "").startswith(f"{paper_id}_")
+            and summary.get("kind") == "CONVERGENCE_GENERATED_SUMMARY"
+            and summary.get("is_exact_donor_terminal") is False,
+            f"{paper_id} convergence summary label",
+        )
+        records = evidence.get("preserved_records", [])
+        require(records, f"{paper_id} exact evidence records absent")
+        ids = [record["id"] for record in records]
+        require(len(ids) == len(set(ids)), f"{paper_id} duplicate evidence record IDs")
+        require(
+            set(summary.get("derived_from", [])) <= set(ids),
+            f"{paper_id} summary references unknown record",
+        )
+
+        for record in records:
+            require(record["record_kind"] in allowed_kinds, "evidence record kind")
+            source = record["source"]
+            canonical = repo / source["canonical_copy"]
+            require(canonical.is_file(), f"evidence canonical copy absent: {canonical}")
+            require(
+                json_pointer(load(canonical), source["json_pointer"])
+                == record["value"],
+                f"evidence record pointer mismatch: {record['id']}",
+            )
+
+            if source["kind"] == "git_donor_canonical_copy":
+                require(
+                    set(source) >= {"commit", "path", "blob"},
+                    f"evidence donor source incomplete: {record['id']}",
+                )
+                canonical_blob = str(
+                    git(repo, "hash-object", source["canonical_copy"])
+                ).strip()
+                require(
+                    canonical_blob == source["blob"],
+                    f"evidence canonical blob drift: {record['id']}",
+                )
+                source_spec = f"{source['commit']}:{source['path']}"
+                if git_object_exists(repo, source_spec):
+                    require(
+                        str(git(repo, "rev-parse", source_spec)).strip()
+                        == source["blob"],
+                        f"evidence donor source drift: {record['id']}",
+                    )
+                    require(
+                        git(repo, "show", source_spec, binary=True)
+                        == canonical.read_bytes(),
+                        f"evidence donor byte drift: {record['id']}",
+                    )
+            elif source["kind"] == "canonical_convergence_file":
+                require(
+                    sha256(canonical) == source["sha256"],
+                    f"evidence convergence SHA drift: {record['id']}",
+                )
+            else:
+                raise AssertionError(f"unknown evidence source kind: {source['kind']}")
+
+            if record["disposition"] in noncontrolling_dispositions:
+                require(
+                    record["controls_current_science_status"] is False,
+                    f"noncontrolling evidence promoted: {record['id']}",
+                )
+
+        for candidate in evidence.get("pending_candidates", []):
+            require(candidate.get("emitted_terminal") is None, "candidate terminal promoted")
 
 
 def validate_science(repo: Path) -> None:
@@ -157,6 +311,12 @@ def validate_science(repo: Path) -> None:
         "specialist readiness",
     )
     require(not any(status["global_authority"].values()), "global authority promoted")
+    validate_preserved_exact_terminals(repo, status)
+    require(
+        status["current_main_baseline"]["commit"]
+        == "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1",
+        "current-main baseline drift",
+    )
 
     aliases = (repo / "papers/PAPER_ALIASES.md").read_text(encoding="utf-8")
     for old, new in (
@@ -172,6 +332,34 @@ def validate_science(repo: Path) -> None:
     require("### ORION-05 theorem status" in paper_readme, "TARE heading identity")
     require("pre-review for ORION-05" in paper_readme, "TARE review identity")
     require("### ORION-01 theorem status" not in paper_readme, "stale TARE heading")
+
+    d = status["papers"]["ORION-03"]
+    d_records = {
+        record["value"]: record
+        for record in d["evidence_status"]["preserved_records"]
+    }
+    require(
+        "TYPED_AUTHORITY_FIRST_MIXING_R12_PASS" in d_records,
+        "ORION-03 raw theorem terminal erased",
+    )
+    require(
+        d_records["D_PR1466_THEOREM_AUTHORITY_NOT_ESTABLISHED"]["disposition"]
+        == "PRESERVED_NONCONTROLLING_KNOWN_PREDICATE_DEFECT",
+        "ORION-03 conflicting wrapper audit disposition",
+    )
+    require(
+        d["authority"]["bounded_internal_first_mixing_theorem"] is True
+        and d["authority"]["external_domain_validation_established"] is False,
+        "ORION-03 authority boundary drift",
+    )
+    audit_dispositions = load(
+        repo / "research/orion-01-05-convergence-v1/AUDIT_DISPOSITIONS_V1.json"
+    )
+    require(
+        audit_dispositions["known_conflicts"][0]["disposition"]
+        == "KNOWN_PREDICATE_FALSE_NEGATIVE",
+        "ORION-03 audit defect custody",
+    )
 
     croot = repo / "papers/orion-02-fiberguard-finite-fibre"
     r18root = croot / "extensions/r18"
@@ -254,6 +442,16 @@ def validate_science(repo: Path) -> None:
     require(r30["live_repository_observations"]["intended_clean_branch_exists"] is False, "R30 branch")
     require(r30["live_repository_observations"]["final_outputs_present_on_current_main"] is False, "R30 outputs")
 
+    supersession = load(
+        repo / "research/orion-01-05-convergence-v1/SUPERSESSION_PLAN_V1.json"
+    )
+    require(
+        supersession["global_rule"]
+        == "CLOSE_ONLY_AFTER_SUCCESSOR_MERGE_AND_MERGED_MAIN_VERIFICATION",
+        "premature supersession rule",
+    )
+    require(supersession["protected_task3_touched"] is False, "supersession touches Task-3")
+
 
 def diff_records(repo: Path, base: str) -> list[tuple[str, str]]:
     raw = str(git(repo, "diff", "--name-status", "-M", f"{base}..HEAD"))
@@ -295,7 +493,17 @@ def validate_diff(repo: Path, manifest: dict[str, Any]) -> None:
         require(base_blob == row["blob"] == head_blob, f"protected blob changed: {row['path']}")
 
 
-def verify(repo: Path, check_diff: bool) -> None:
+def validate_pr_base(repo: Path, manifest: dict[str, Any], pr_base: str) -> None:
+    observed_tree = str(git(repo, "rev-parse", f"{pr_base}^{{tree}}")).strip()
+    require(observed_tree == manifest["baseline"]["tree"], "PR base tree mismatch")
+
+
+def verify(repo: Path, check_diff: bool, pr_base: str | None = None) -> None:
+    manifest_path = repo / MANIFEST.relative_to(ROOT)
+    raw_manifest = load(manifest_path)
+    if check_diff:
+        require(pr_base is not None, "PR base is required for diff verification")
+        validate_pr_base(repo, raw_manifest, pr_base)
     manifest = validate_manifest(repo)
     validate_science(repo)
     if check_diff:
@@ -306,8 +514,9 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo", type=Path, default=ROOT)
     parser.add_argument("--check-diff", action="store_true")
+    parser.add_argument("--pr-base")
     args = parser.parse_args()
-    verify(args.repo.resolve(), args.check_diff)
+    verify(args.repo.resolve(), args.check_diff, args.pr_base)
     print(CONVERGENCE_TERMINAL)
     return 0
 

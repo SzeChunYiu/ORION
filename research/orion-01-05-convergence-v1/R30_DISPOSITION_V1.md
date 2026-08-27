@@ -32,6 +32,22 @@ hostile control, or `CANNOT_CHECK` boundary carried by its donor branches.
 7. The R20 disposition consumed by the generator itself leaves ORION-01
    production transfer, ORION-03 theorem/domain authority, ORION-04 full
    replay authority, and ORION-05 measured resource value open.
+8. The advertised programme terminal
+   `FIVE_PAPER_R30_INTERNAL_FINAL_STATUS_BOUND__ONLY_EXTERNAL_AUTHOR_LEGAL_PRODUCTION_AND_SUBMISSION_INPUTS_OPEN`
+   is not the terminal encoded by `finalize_r30.py`, which instead emits
+   `FIVE_PAPER_R30_INTERNAL_EXECUTABLE_WORK_COMPLETE__EXTERNAL_PRODUCTION_RIGHTS_AND_SUBMISSION_GATES_OPEN`.
+   The generator also contains two different ORION-02 release-terminal strings.
+   Therefore the pasted final label is not even a deterministic reconstruction
+   of the unexecuted generator.
+9. The advertised D wrapper terminal is not the committed R20 audit terminal.
+   The committed audit produced a false negative because it required a literal
+   scalar `68`; the raw byte-stable result records `12 + 56 = 68` hybrid atoms
+   and certificates and retains
+   `TYPED_AUTHORITY_FIRST_MIXING_R12_PASS`. This preserves a bounded internal
+   theorem, not an external real-domain result.
+10. The advertised NQ label concerns a proposed pre-execution subject audit.
+    It cannot override the later job-3544056 execution failure; D2/D3 numerical
+    authority remains `CANNOT_CHECK` and D4 remains open.
 
 ## Valid material retained from the stack
 
@@ -43,6 +59,8 @@ hostile control, or `CANNOT_CHECK` boundary carried by its donor branches.
 - hostile controls `35 -> 70` and `0 -> 50`;
 - C-NBR `CERTIFICATE_INVALID` and the later C-NBR2
   `VALID_WITHOUT_COVERAGE_OR_VALUE` boundary;
+- ORION-03 raw first-mixing theorem terminal
+  `TYPED_AUTHORITY_FIRST_MIXING_R12_PASS`, with external-domain authority open;
 - every valid proof/protocol/manuscript element, subject to its original
   authority ceiling and current-source reconciliation.
 

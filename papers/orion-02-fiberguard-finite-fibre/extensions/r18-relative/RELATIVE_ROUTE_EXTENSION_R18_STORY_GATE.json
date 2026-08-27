@@ -1,0 +1,24 @@
+{
+  "schema": "ORION.FiberGuard.RelativeRouteStoryGate.R18.v1",
+  "source_parent": "f34b61e0051289588eaf144a580dca7bc9b7e707",
+  "theory_story": {
+    "closed_world_exact_regret": "ESTABLISHED_IN_PARENT_STACK",
+    "state_dependent_acquisition": "ESTABLISHED_R12",
+    "randomized_expected_boundary": "ESTABLISHED_R13",
+    "inductive_exact_equality_failure": "ESTABLISHED_R14_ADVERSE",
+    "coverage_tax_and_extension_boundary": "ESTABLISHED_R15",
+    "marginal_certificate_without_selective_value": "ESTABLISHED_R16_ADVERSE",
+    "fallback_alignment": "ESTABLISHED_R17",
+    "timing_observability_and_transfer": "ESTABLISHED_R18",
+    "internal_story_terminal": "THEORY_STORY_COMPLETE_INTERNAL"
+  },
+  "evidence_story": {
+    "paired_pre_acquisition_application": "OPEN",
+    "untouched_non_SAT_or_production_portfolio": "OPEN",
+    "strongest_current_baselines": "OPEN",
+    "external_reproduction": "CANNOT_CHECK",
+    "specialist_novelty_adjudication": "CANNOT_CHECK",
+    "journal_terminal": "NOT_SUBMISSION_READY"
+  },
+  "promotion_rule": "No internal theory or harness terminal may overwrite an OPEN or CANNOT_CHECK evidence field."
+}

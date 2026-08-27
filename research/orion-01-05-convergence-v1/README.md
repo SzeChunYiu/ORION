@@ -46,10 +46,10 @@ checker or manifest proves only its declared bounded property.
 | Paper | Current status | Round accounting | Exact next gate |
 |---|---|---:|---|
 | ORION-01 | Complete production-move authority and realized production value are not established. | 0/3 consumed | Freeze one public finite rewrite subject, prove extensional move/guard completeness, independently enumerate all moves/interactions, and execute realization plus omitted-move controls. |
-| ORION-02 | Preserve R18 paired-route null/retraction, R19 exact joint-route repair, C-NBR/C-NBR2 boundaries, and BNSL free-static-representation null. | 1/3 consumed as NULL | Execute the already-declared scientifically distinct direct-relative/joint-route Round 2 on a different untouched subject; no BNSL retuning. |
-| ORION-03 | Formal first-mixing/provenance material exists, but no independently adjudicated real-domain result exists. | 0/3 consumed | Freeze a permission-bearing multi-record integration corpus, native verifier, hostile merges, and independent adjudication. |
+| ORION-02 | Preserve the R11 positive transductive result; R14/R16 transfer failures; R15 two-of-three multidomain result; R17 bounded alignment identities; R18 relative theory plus paired-route null/retraction; R19 exact joint-route repair; C-NBR/C-NBR2 boundaries; and the BNSL free-static-representation null. | 1/3 consumed as NULL | Execute the already-declared scientifically distinct direct-relative/joint-route Round 2 on a different untouched subject; no BNSL retuning. |
+| ORION-03 | Raw terminal `TYPED_AUTHORITY_FIRST_MIXING_R12_PASS` is reproducible at its bounded internal theorem ceiling; the R20 wrapper audit was a false negative because it looked for one literal `68` scalar rather than the recorded `12 + 56`. No independently adjudicated real-domain result exists. | 0/3 consumed | Freeze a permission-bearing multi-record integration corpus, native verifier, hostile merges, and independent adjudication. |
 | ORION-04 | Job 3544056 consumed its key but failed at float receipt serialization before durable D2/D3 authority. | prerequisite failed; 0/3 D4 | Preserve the failure, repair only the custody defect, obtain a new explicit one-shot authorization/key, and complete both denominators, witness checks, external DRUP checks, and durable custody. |
-| ORION-05 | Exact pair count and locality arguments are corroborated; sparse direct-solver equivalence remains under independent disposition in the current audit. | 0/3; Round 1 candidate under disposition | Complete no-DP sparse-versus-frozen-DP optimum/witness equivalence and hostile proof review before any runtime theorem promotion. |
+| ORION-05 | The existing sharp `kappa_R6M = 2` result remains established at its frozen-grammar ceiling. The new exact pair count is corroborated; the separate `O(n^9)` sparse direct-solver successor is not current-main authority until its clean PR merges and is reverified. | 0/3; Round 1 candidate under disposition | Complete and merge the no-DP sparse-versus-frozen-DP optimum/witness equivalence successor before production-faithful Round 2. |
 
 ## R30
 
@@ -61,6 +61,13 @@ R30_NOT_MATERIALIZED__CUSTODY_AND_FINAL_BINDING_FAILED
 ```
 
 See `R30_DISPOSITION_V1.md`. This does not retract any R18/R19 science.
+
+The report's exact final terminal also differs from the terminal encoded by
+its own `finalize_r30.py`, so the prose terminal cannot be reconstructed merely
+by rerunning that generator. The same report promoted intended D and NQ audit
+labels beyond the committed wrapper receipts. The hierarchy above resolves
+those conflicts from raw results and later executions rather than deleting
+either record.
 
 ## Readiness boundaries
 
@@ -79,6 +86,13 @@ The exact machine-readable hierarchy and next gates are in
 forecasts and do not collapse the top-tier significance gate into the
 specialist fallback gate.
 
+The canonical paper directories also contain byte-identical donor copies for
+the exact ORION-01; ORION-02 R11/R14/R15/R16/R17/R18/R19; ORION-03;
+ORION-04 pre-execution audit; and ORION-05 records used by that hierarchy.
+`DONOR_MANIFEST_V1.json` binds each copy to its source commit, path, Git blob,
+byte count, and SHA-256; summary labels are never used as substitutes for raw
+terminals or `CANNOT_CHECK` outcomes.
+
 Top-tier and specialist readiness are separate. Specialist fallback narrows
 claims and positioning only; it does not lower the evidence standard. See
 `PUBLICATION_POLICY_V1.md`.
@@ -90,3 +104,6 @@ status, and package authority of the selected R18–R30 draft stack. It does not
 supersede raw result bytes, adverse/null/retracted history, protected Task-3,
 or any frozen scientific subject. Old PRs may be closed with a link to the
 merged successor; their commits remain provenance.
+
+`SUPERSESSION_PLAN_V1.json` gives the exact conditional close/keep-open list.
+No PR or issue is superseded merely because this branch exists.

@@ -27,7 +27,12 @@
     "intended_clean_branch_exists": false,
     "final_outputs_present_on_current_main": false,
     "final_outputs_present_on_pr_1492_tip": false,
-    "generator_present_but_successfully_executed": false
+    "generator_present_but_successfully_executed": false,
+    "audit_snapshot": {
+      "verified_at": "2026-08-27T09:35:00Z",
+      "current_main_commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1",
+      "note": "Historical live-state snapshot before conditional supersession; later PR closure does not invalidate the failed-R30 finding."
+    }
   },
   "r30_failure_runs_file": "R30_FAILURE_RUNS_V1.json",
   "related_non_r30_custody_failure": {

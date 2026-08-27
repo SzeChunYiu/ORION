@@ -5,10 +5,25 @@ on:
     paths:
       - ".github/workflows/orion-01-05-convergence-v1.yml"
       - "papers/README.md"
+      - "papers/orion-01-certificate-realization/evidence/convergence-v1/**"
       - "papers/orion-02-fiberguard-finite-fibre/extensions/**"
+      - "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/**"
+      - "papers/orion-04-rooted-completion-certificates/evidence/convergence-v1/**"
       - "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/**"
+      - "papers/orion-05-tare-expressivity/evidence/convergence-v1/**"
       - "research/orion-01-05-convergence-v1/**"
-  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/orion-01-05-convergence-v1.yml"
+      - "papers/README.md"
+      - "papers/orion-01-certificate-realization/evidence/convergence-v1/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/**"
+      - "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/**"
+      - "papers/orion-04-rooted-completion-certificates/evidence/convergence-v1/**"
+      - "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/**"
+      - "papers/orion-05-tare-expressivity/evidence/convergence-v1/**"
+      - "research/orion-01-05-convergence-v1/**"
 
 permissions:
   contents: read
@@ -24,11 +39,35 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python -m pip install pytest==8.4.2
+      - run: >-
+          python -m pip install pytest==8.4.2
+          -r papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_REPLAY_REQUIREMENTS_LOCK.txt
+      - name: Verify R18 replay code prerequisites without claiming corpus replay
+        working-directory: papers/orion-02-fiberguard-finite-fibre/extensions/r18
+        run: |
+          python verify_r18_replay_prerequisites.py
+          python fiberguard_paired_route_r18.py --help >/dev/null
+      - name: Verify preserved FiberGuard R15, R17, and relative-R18 code
+        run: |
+          r15=papers/orion-02-fiberguard-finite-fibre/extensions/r15
+          python "$r15/fiberguard_multidomain_r15_schema_repair.py" --self-test > "$RUNNER_TEMP/r15-self-test.json"
+          python -m json.tool "$RUNNER_TEMP/r15-self-test.json" >/dev/null
+          r17=papers/orion-02-fiberguard-finite-fibre/extensions/r17
+          python "$r17/verify_fiberguard_fallback_alignment_r17.py" --output "$RUNNER_TEMP/r17-a.json"
+          python "$r17/verify_fiberguard_fallback_alignment_r17.py" --output "$RUNNER_TEMP/r17-b.json"
+          cmp "$RUNNER_TEMP/r17-a.json" "$RUNNER_TEMP/r17-b.json"
+          cmp "$RUNNER_TEMP/r17-a.json" "$r17/FALLBACK_ALIGNMENT_R17_RESULTS.json"
+          relative=papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative
+          python "$relative/verify_fiberguard_relative_route_extension_r18.py" --output "$RUNNER_TEMP/r18-relative-a.json"
+          python "$relative/verify_fiberguard_relative_route_extension_r18.py" --output "$RUNNER_TEMP/r18-relative-b.json"
+          cmp "$RUNNER_TEMP/r18-relative-a.json" "$RUNNER_TEMP/r18-relative-b.json"
+          cmp "$RUNNER_TEMP/r18-relative-a.json" "$relative/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json"
       - name: Verify complete evidence and fail-closed diff
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: >-
           python research/orion-01-05-convergence-v1/verify_convergence_v1.py
-          --repo . --check-diff
+          --repo . --check-diff --pr-base "$PR_BASE_SHA"
       - name: Run focused convergence and ORION-04 custody tests
         run: >-
           python -m pytest -q
@@ -36,8 +75,11 @@ jobs:
           papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/tests/test_job_3544056.py
       - name: Regenerate ORION-02 R19 result independently
         run: |
-          python papers/orion-02-fiberguard-finite-fibre/extensions/r19/verify_fiberguard_joint_route_r19.py --output "$RUNNER_TEMP/r19.json"
-          cmp "$RUNNER_TEMP/r19.json" papers/orion-02-fiberguard-finite-fibre/extensions/r19/JOINT_ROUTE_R19_RESULTS.json
+          r19=papers/orion-02-fiberguard-finite-fibre/extensions/r19
+          python "$r19/verify_fiberguard_joint_route_r19.py" --output "$RUNNER_TEMP/r19-a.json"
+          python "$r19/verify_fiberguard_joint_route_r19.py" --output "$RUNNER_TEMP/r19-b.json"
+          cmp "$RUNNER_TEMP/r19-a.json" "$RUNNER_TEMP/r19-b.json"
+          cmp "$RUNNER_TEMP/r19-a.json" "$r19/JOINT_ROUTE_R19_RESULTS.json"
       - name: Verify ORION-04 internal checksums
         working-directory: papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056
         run: sha256sum -c SHA256SUMS

@@ -1,0 +1,42 @@
+{
+  "schema": "ORION.FiberGuard.RelativeRouteHarness.R18.v1",
+  "source_parent_commit": "f34b61e0051289588eaf144a580dca7bc9b7e707",
+  "manuscript": "papers/five-paper-top-tier-r8/C/FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18.md",
+  "result": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json",
+  "verifier": "papers/five-paper-top-tier-r8/C/verify_fiberguard_relative_route_extension_r18.py",
+  "internal_theory_terminal": "FIBERGUARD_INTERNAL_FINITE_THEORY_ARCHITECTURE_CLOSED_R18",
+  "application_terminal": "PAIRED_PRE_ACQUISITION_ROUTE_EXPERIMENT_NOT_EXECUTED",
+  "publication_terminal": "NOT_SUBMISSION_READY",
+  "required_theorem_headings": [
+    "### Theorem C-R18.1 — common-oracle relative-loss invariance",
+    "### Theorem C-R18.2 — interval-separated relative routing",
+    "### Theorem C-R18.3 — unseen-state relative-sign impossibility",
+    "### Theorem C-R18.4 — exact Lipschitz relative extension",
+    "### Theorem C-R18.5 — anchor monotonicity and sign-margin coverage",
+    "### Theorem C-R18.6 — exact pre/post acquisition identity",
+    "### Theorem C-R18.7 — finite route measurability criterion",
+    "### Theorem C-R18.8 — unbounded acquisition-timing gap",
+    "### Theorem C-R18.9 — drift-aware route-certificate transfer"
+  ],
+  "required_explicit_boundaries": [
+    "paired_ASlib_experiment_executed=false",
+    "non_SAT_transfer_executed=false",
+    "journal authority remains false"
+  ],
+  "gates": {
+    "common_oracle_and_action_specific_costs_explicit": true,
+    "closed_world_structural_and_statistical_authority_separated": true,
+    "pre_and_post_acquisition_routing_separated": true,
+    "direct_relative_and_absolute_loss_certificates_separated": true,
+    "drift_margin_required_for_transfer": true,
+    "paired_ASlib_experiment_executed": false,
+    "pre_acquisition_route_experiment_executed": false,
+    "structural_metric_validated_on_ASlib": false,
+    "non_SAT_transfer_executed": false,
+    "strongest_algorithm_selection_baseline_complete": false,
+    "external_independence": false,
+    "specialist_novelty_adjudication": false,
+    "journal_authority": false
+  },
+  "authority_rule": "Internal theorem closure does not imply application, novelty, external, production, or journal closure."
+}

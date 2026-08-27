@@ -3,9 +3,9 @@
   "date": "2026-08-27",
   "terminal": "ORION_01_05_CONVERGENCE_V1_EVIDENCE_BOUND__SCIENCE_CLOSURE_OPEN__SUBMISSION_NOT_YET_AUTHORIZED",
   "baseline": {
-    "commit": "e28d2c072fae16abfe8651fce3143abe702afd20",
+    "commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1",
     "tree": "8306e5d1235bf0390a771bf3f0f600716cf72018",
-    "ref": "PR-1539_HEAD_PENDING_MAIN_MERGE"
+    "ref": "CURRENT_MAIN_AFTER_PR_1539_MERGE"
   },
   "canonical_ids": {
     "ORION-01": "Certificate Realization",
@@ -17,8 +17,8 @@
   "files": [
     {
       "destination": ".github/workflows/orion-01-05-convergence-v1.yml",
-      "bytes": 1779,
-      "sha256": "e026521c0a0e3dcda1f68586f68748f5b49b54dc0bd0046451f6755e80f42e43",
+      "bytes": 4696,
+      "sha256": "0c5f6af5f2bdc17c799190b6bd887299c7b07f057e1f50240c485cfaa0408155",
       "source": {
         "kind": "convergence_generated",
         "generator": "ORION-01-05 convergence V1"
@@ -36,6 +36,356 @@
       },
       "lane": "PORTFOLIO",
       "evidence": "CONVERGENCE_STATUS_OR_GUARD"
+    },
+    {
+      "destination": "papers/orion-01-certificate-realization/evidence/convergence-v1/AB_PR1469_PRODUCTION_REGISTRY_AUDIT.json",
+      "bytes": 1920,
+      "sha256": "997fddde900962a3a17e12c746936da6021665f8b56d21ffba7a6d71e201ffce",
+      "source": {
+        "kind": "git",
+        "commit": "b8385e3cec1b5d6f2f0d89c8cac41c76ea7cb6b2",
+        "path": "research/five-paper-top-tier-r20/results/AB_PR1469_PRODUCTION_REGISTRY_AUDIT.json",
+        "blob": "7eb1d17888ea76215aba25e7e77f9b3d30cce337",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-01",
+      "evidence": "EXACT_DONOR_RECORD"
+    },
+    {
+      "destination": "papers/orion-01-certificate-realization/evidence/convergence-v1/R6M_N2_PRODUCTION_REALIZATION_GATE_R9_RESULTS.json",
+      "bytes": 20736,
+      "sha256": "9d8c4cd8669a5f6234565b32e0c5a72fd5b9a156ace40923e372ceae0427a3c8",
+      "source": {
+        "kind": "git",
+        "commit": "a70a1abc9b645bf66dc14864cdff11cd6a06fd1f",
+        "path": "papers/five-paper-top-tier-r8/AB/R6M_N2_PRODUCTION_REALIZATION_GATE_R9_RESULTS.json",
+        "blob": "dec349e40ae13bf5be6200bd9ef4c641b321068b",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-01",
+      "evidence": "EXACT_DONOR_RECORD"
+    },
+    {
+      "destination": "papers/orion-01-certificate-realization/evidence/convergence-v1/REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json",
+      "bytes": 10337,
+      "sha256": "d4f14be666dceb2da71bfac01a25fd32c6fd7bc947734db1d0f945bc10487cf0",
+      "source": {
+        "kind": "git",
+        "commit": "b58f3a81d537ec3560f86a65d279d00c93cfb9e6",
+        "path": "papers/five-paper-top-tier-r8/AB/REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json",
+        "blob": "38e5b2b08b8780bc92e7c2fc9746c5f3198cd0bb",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-01",
+      "evidence": "EXACT_DONOR_RECORD"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r11/FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json",
+      "bytes": 4516,
+      "sha256": "8f944b219e4687b7629f5de93ce18c773d7d1ddb75cda938dd46b04eca6991a0",
+      "source": {
+        "kind": "git",
+        "commit": "6f0b9a354c0f71ca744596252c74e2bf8b4a6f5b",
+        "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json",
+        "blob": "52b8dd6d4a5ff204f3447da0f6c3b33c3a2cd9fc",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R11"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r14/FIBERGUARD_ASLIB_HELDOUT_R14_RESULTS_SUMMARY.json",
+      "bytes": 6187,
+      "sha256": "cba9a4c3f9fb6043e66972397826e825e1dc02b6fcaaa2620ff2040b38b50ee4",
+      "source": {
+        "kind": "git",
+        "commit": "29edf9936fe56cd3720d78e6be2542106f2671fd",
+        "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_ASLIB_HELDOUT_R14_RESULTS_SUMMARY.json",
+        "blob": "565714113232e9e0b70a1278e9b59e33d0cdd616",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R14"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r15/FIBERGUARD_MULTIDOMAIN_R15_PROTOCOL.md",
+      "bytes": 9773,
+      "sha256": "e0d308e545df064f10052d07864ba198dbd46147e69802f9613ca0c7dc1eaaa2",
+      "source": {
+        "kind": "git",
+        "commit": "4aac9b030c7e143b739caf42262718924b9a9005",
+        "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_PROTOCOL.md",
+        "blob": "a20077048519bc55a160db8d64a3296ec78b0219",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R15"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r15/FIBERGUARD_MULTIDOMAIN_R15_RESULT.md",
+      "bytes": 7781,
+      "sha256": "817b34c9b9c0eefa36b68974c25ea52f940f041b0b52af69c3748d68cc541476",
+      "source": {
+        "kind": "git",
+        "commit": "4aac9b030c7e143b739caf42262718924b9a9005",
+        "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_RESULT.md",
+        "blob": "96e100604767f6eaa75462eaf0ad720fc9ac188d",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R15"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r15/FIBERGUARD_MULTIDOMAIN_R15_RESULTS_SUMMARY.json",
+      "bytes": 5184,
+      "sha256": "ec0f24f43133d5dddcdb0fe92ab60d011721f281e9006d45299337ae015ed2a3",
+      "source": {
+        "kind": "git",
+        "commit": "4aac9b030c7e143b739caf42262718924b9a9005",
+        "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_RESULTS_SUMMARY.json",
+        "blob": "8cb8e3092dc008937e4a3b5eb572bdc9ec6b779b",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R15"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r15/FIBERGUARD_MULTIDOMAIN_R15_SCHEMA_REPAIR.md",
+      "bytes": 2168,
+      "sha256": "3b915338ff361ecaa65c87980257ed550e753ede1680167dbd1e7482a6e5c8cb",
+      "source": {
+        "kind": "git",
+        "commit": "4aac9b030c7e143b739caf42262718924b9a9005",
+        "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_SCHEMA_REPAIR.md",
+        "blob": "951130c24d88444845f0ee5756561688429e92f9",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R15"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r15/fiberguard_multidomain_r15.py",
+      "source": {
+        "kind": "git",
+        "commit": "4aac9b030c7e143b739caf42262718924b9a9005",
+        "path": "papers/five-paper-top-tier-r8/C/fiberguard_multidomain_r15.py",
+        "blob": "c2c3fbabab9517df627d48b790e507abaf77b641",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R15",
+      "bytes": 27070,
+      "sha256": "a6ab8ec8b7f248d907406fe646f08090644b8bc20cbe8cd7907564f51df401cc"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r15/fiberguard_multidomain_r15_schema_repair.py",
+      "bytes": 6692,
+      "sha256": "b4659c3b720f8df591fc7a4ca91f7d3732acf18139311b7e3aebed588fb4b2e7",
+      "source": {
+        "kind": "git",
+        "commit": "4aac9b030c7e143b739caf42262718924b9a9005",
+        "path": "papers/five-paper-top-tier-r8/C/fiberguard_multidomain_r15_schema_repair.py",
+        "blob": "648ac29ef8d54e858ae2161f4a3d0bf0ca03c168",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R15"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r16/FIBERGUARD_CROSS_SCENARIO_R16_RESULTS_SUMMARY.json",
+      "bytes": 7667,
+      "sha256": "064628624c76dbfd3bf86b42e5108ef5aa793a3b41ef5dc8e09faa89c2df6c3e",
+      "source": {
+        "kind": "git",
+        "commit": "6bc502966c6d8f2a7a97db234a4c20216e6feac9",
+        "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_CROSS_SCENARIO_R16_RESULTS_SUMMARY.json",
+        "blob": "907b24075e409cd4ffed9546c015d9a0732ddf8e",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R16"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r17/FALLBACK_ALIGNMENT_R17_RESULTS.json",
+      "bytes": 3032,
+      "sha256": "f4e8d00a8fe8f65b7fa2245d9f9ca60fa79d4b436731b8f170769d28fff7280f",
+      "source": {
+        "kind": "git",
+        "commit": "f34b61e0051289588eaf144a580dca7bc9b7e707",
+        "path": "papers/five-paper-top-tier-r8/C/FALLBACK_ALIGNMENT_R17_RESULTS.json",
+        "blob": "f273cd335cb99f43d9d397a1794c058a1fe2d296",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R17"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r17/FIBERGUARD_FALLBACK_ALIGNMENT_R17.md",
+      "bytes": 15331,
+      "sha256": "20ebeb16d5dc4d22395578ff7da322bdf02a94c8ec25616fc03de2854784df83",
+      "source": {
+        "kind": "git",
+        "commit": "f34b61e0051289588eaf144a580dca7bc9b7e707",
+        "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_FALLBACK_ALIGNMENT_R17.md",
+        "blob": "2995f2f465667d07e04579de0482495085c27bfb",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R17"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r17/verify_fiberguard_fallback_alignment_r17.py",
+      "bytes": 13268,
+      "sha256": "602ae2d64f3305055d43bd393e9cfee7d42170da6de117ce9cd83c58c194ee48",
+      "source": {
+        "kind": "git",
+        "commit": "f34b61e0051289588eaf144a580dca7bc9b7e707",
+        "path": "papers/five-paper-top-tier-r8/C/verify_fiberguard_fallback_alignment_r17.py",
+        "blob": "bdb5b3c8b28496caac0ff8351818bd31d3f093f9",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R17"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18.md",
+      "bytes": 12261,
+      "sha256": "e8e2f8d20bfb7f5790b56f2dac41bd82eed76f18469ef264b91afa807707972e",
+      "source": {
+        "kind": "git",
+        "commit": "4f957b1c308566300bd412605a63f29ca86a4399",
+        "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18.md",
+        "blob": "d0d28d69c5e8796429178965565aa4263b3c383c",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18_RELATIVE"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_CLAIM_LEDGER.md",
+      "bytes": 2212,
+      "sha256": "7d4e601d022f8b3e7c5e147352b907731ef5d7b80cd477cff5de60a8c2daede6",
+      "source": {
+        "kind": "git",
+        "commit": "4f957b1c308566300bd412605a63f29ca86a4399",
+        "path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_CLAIM_LEDGER.md",
+        "blob": "7600c7be14a07fbcfab445e8ddf37ee995b9ab7f",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18_RELATIVE"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_HARNESS.json",
+      "bytes": 2282,
+      "sha256": "846c836367f5f99a5746a63ef17e10b20ef1f9818db2696775397a24e68d7cf3",
+      "source": {
+        "kind": "git",
+        "commit": "4f957b1c308566300bd412605a63f29ca86a4399",
+        "path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_HARNESS.json",
+        "blob": "b1458cc01dd5e177755c8656a538e441782e7b6a",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18_RELATIVE"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_JOURNAL_GATE.md",
+      "bytes": 1766,
+      "sha256": "49c047cb173c52cdf3a3975ed50fc5f4736da0f613eadcfdaa38db51645e0e55",
+      "source": {
+        "kind": "git",
+        "commit": "4f957b1c308566300bd412605a63f29ca86a4399",
+        "path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_JOURNAL_GATE.md",
+        "blob": "0e68c1e604a21f6b5c079ccca94b23da9b1fc071",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18_RELATIVE"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_PRIOR_ART_BOUNDARY.md",
+      "bytes": 1903,
+      "sha256": "5b71deed0e10094e8032cf5166e1cb312e8014568c0730445d1117c4bbe2f12a",
+      "source": {
+        "kind": "git",
+        "commit": "4f957b1c308566300bd412605a63f29ca86a4399",
+        "path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_PRIOR_ART_BOUNDARY.md",
+        "blob": "a0afa2a7722bf4edb469a3c462dca6cde1dfefb7",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18_RELATIVE"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_PROTOCOL.md",
+      "bytes": 1521,
+      "sha256": "0a3a66707186b8b38a7a1129dc6d6a3dd63023fc51a32fc47e15762df84f7ecb",
+      "source": {
+        "kind": "git",
+        "commit": "4f957b1c308566300bd412605a63f29ca86a4399",
+        "path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_PROTOCOL.md",
+        "blob": "03e44d3348833a8f6740d3381a8fba7c7133aa55",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18_RELATIVE"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_README.md",
+      "bytes": 658,
+      "sha256": "fcc469806c42557686df47d9abe121f056e8af203ddb0e48cd4e60569ceaa9e6",
+      "source": {
+        "kind": "git",
+        "commit": "4f957b1c308566300bd412605a63f29ca86a4399",
+        "path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_README.md",
+        "blob": "8d7b1d60d853e7569cb514525ae1540c01a954c0",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18_RELATIVE"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json",
+      "bytes": 1706,
+      "sha256": "0092b67ba718daa5c977ad9fe248acd568fc94b558bb23ac42c6640a0ece8355",
+      "source": {
+        "kind": "git",
+        "commit": "4f957b1c308566300bd412605a63f29ca86a4399",
+        "path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json",
+        "blob": "aa5d74fd4c88bdc81ccde3c1f8bad53112222ba8",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18_RELATIVE"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_STORY_GATE.json",
+      "bytes": 1143,
+      "sha256": "41e0409a9eccf9343b5b30ae2c84a3d4569cc9eb24d233a932317fb9d3df247e",
+      "source": {
+        "kind": "git",
+        "commit": "4f957b1c308566300bd412605a63f29ca86a4399",
+        "path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_STORY_GATE.json",
+        "blob": "4b6234ee9e9e3cb995a0b692a5ea49afd60253b4",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18_RELATIVE"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/verify_fiberguard_relative_route_extension_r18.py",
+      "bytes": 11564,
+      "sha256": "6c71e3a30e3a72a43a5824b63a38cd0480c6ce1bd1bb6fe4e91a5faec3969708",
+      "source": {
+        "kind": "git",
+        "commit": "4f957b1c308566300bd412605a63f29ca86a4399",
+        "path": "papers/five-paper-top-tier-r8/C/verify_fiberguard_relative_route_extension_r18.py",
+        "blob": "3053d968ac795e8827db5dd9320e36811ccb8dc2",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18_RELATIVE"
     },
     {
       "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_PROTOCOL_R18.md",
@@ -130,6 +480,31 @@
       "evidence": "R18_ADDITIVE_CUSTODY"
     },
     {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_REPLAY_REQUIREMENTS_LOCK.txt",
+      "bytes": 47,
+      "sha256": "154ff88c453438f152539c5b2fe3cb7e1aa385298aa66aafbafcf27f51a1502e",
+      "source": {
+        "kind": "convergence_generated",
+        "generator": "ORION-01-05 convergence V1"
+      },
+      "lane": "ORION-02",
+      "evidence": "R18"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/fiberguard_aslib_sat12_all_r11.py",
+      "bytes": 22795,
+      "sha256": "f3059f65bf1df4bf21e3a125468328f033c4bb03c19f574eb528bf3c3099b307",
+      "source": {
+        "kind": "git",
+        "commit": "6f0b9a354c0f71ca744596252c74e2bf8b4a6f5b",
+        "path": "papers/five-paper-top-tier-r8/C/fiberguard_aslib_sat12_all_r11.py",
+        "blob": "19bf921b4ac2f43c6f7e55bcce606685b302f851",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18_REPLAY_DEPENDENCY"
+    },
+    {
       "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/fiberguard_paired_route_r18.py",
       "bytes": 18887,
       "sha256": "0d1d0953e98bd61aec0720d1164b8b56a535a8fefc4fdd01b53907f02e4fa0f7",
@@ -181,6 +556,17 @@
         "path": "papers/five-paper-top-tier-r8/C/fiberguard_paired_route_r18_sources.py",
         "blob": "8b48ffc0b224e72c9e291dece44eae5a8ed5ecc9",
         "object_required_in_checkout": false
+      },
+      "lane": "ORION-02",
+      "evidence": "R18"
+    },
+    {
+      "destination": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/verify_r18_replay_prerequisites.py",
+      "bytes": 1721,
+      "sha256": "57d56af05919b11405067d352bfc6951c1852ad0c7822e8208daf8d86259073f",
+      "source": {
+        "kind": "convergence_generated",
+        "generator": "ORION-01-05 convergence V1"
       },
       "lane": "ORION-02",
       "evidence": "R18"
@@ -289,7 +675,10 @@
         "run": 33049783681,
         "artifact_id": 9637176781,
         "artifact_name": "fiberguard-r20-bnsl-adaptive",
-        "artifact_zip_sha256": "c5f2d5b5e93596ab82c03a2bd75cd441c74e6ac08b0265b281c3be7a516ab186"
+        "artifact_zip_sha256": "c5f2d5b5e93596ab82c03a2bd75cd441c74e6ac08b0265b281c3be7a516ab186",
+        "member": "TERMINAL.txt",
+        "member_bytes": 130,
+        "member_sha256": "d98dfd9b0bd7938b811c733a616dd7b7c30eef6a3b07c98eac8c2588873ff5fe"
       },
       "lane": "ORION-02",
       "evidence": "BNSL_R20_RAW"
@@ -303,7 +692,10 @@
         "run": 33049783681,
         "artifact_id": 9637176781,
         "artifact_name": "fiberguard-r20-bnsl-adaptive",
-        "artifact_zip_sha256": "c5f2d5b5e93596ab82c03a2bd75cd441c74e6ac08b0265b281c3be7a516ab186"
+        "artifact_zip_sha256": "c5f2d5b5e93596ab82c03a2bd75cd441c74e6ac08b0265b281c3be7a516ab186",
+        "member": "FIBERGUARD_BNSL_ADAPTIVE_R20_RESULTS.json",
+        "member_bytes": 114803,
+        "member_sha256": "c843a0cb1c0a5a13863f27518e721cf8786334fba21a088f8ca4350ec947c49e"
       },
       "lane": "ORION-02",
       "evidence": "BNSL_R20_RAW"
@@ -323,6 +715,62 @@
       "evidence": "BNSL_R20"
     },
     {
+      "destination": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/AGENTGATEWAY_ORIGIN_WITNESS_SAFE_MERGE_R11_RESULTS_SUMMARY.json",
+      "bytes": 1816,
+      "sha256": "18f05100d6a982a6274e8fe15920ca708bc2ff40f070cd16a96445aa4b963a35",
+      "source": {
+        "kind": "git",
+        "commit": "f6b21c94b9cd372700d7a13ccc229e27637acef9",
+        "path": "papers/five-paper-top-tier-r8/D/AGENTGATEWAY_ORIGIN_WITNESS_SAFE_MERGE_R11_RESULTS_SUMMARY.json",
+        "blob": "c1325d6ed3ad3ca05b6aa4c98b7bae9d94432027",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-03",
+      "evidence": "EXACT_DONOR_RECORD"
+    },
+    {
+      "destination": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/D_PR1466_FIRST_MIXING_AUDIT.json",
+      "bytes": 1891,
+      "sha256": "3212e52793f5217f30c116ab5b120bf43090255afa2c49f5d4fda8d62e858639",
+      "source": {
+        "kind": "git",
+        "commit": "b8385e3cec1b5d6f2f0d89c8cac41c76ea7cb6b2",
+        "path": "research/five-paper-top-tier-r20/results/D_PR1466_FIRST_MIXING_AUDIT.json",
+        "blob": "4d8a843cd91b92fb7485d286ed511727678a0492",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-03",
+      "evidence": "EXACT_DONOR_RECORD"
+    },
+    {
+      "destination": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/FIRST_MIXING_R12_RESULTS.json",
+      "bytes": 1774,
+      "sha256": "df15ba9dce6fa471087819cd7b7f517d5125eef93adb8cfa150155dcca27e291",
+      "source": {
+        "kind": "git",
+        "commit": "cbbb02f86fe1301b7a41e7ae4e35fe2cb26124cf",
+        "path": "papers/five-paper-top-tier-r8/D/FIRST_MIXING_R12_RESULTS.json",
+        "blob": "c04584b97ef6b55eccaecc4085f50c9b7e2ea8cf",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-03",
+      "evidence": "EXACT_DONOR_RECORD"
+    },
+    {
+      "destination": "papers/orion-04-rooted-completion-certificates/evidence/convergence-v1/NQ_PR1472_EXACT_SUBJECT_AUDIT_V2.json",
+      "bytes": 59679,
+      "sha256": "c4773e4cb7ff58a505095f659b5397889cb27eb11067d1d00d9431e2a6db9c27",
+      "source": {
+        "kind": "git",
+        "commit": "b8385e3cec1b5d6f2f0d89c8cac41c76ea7cb6b2",
+        "path": "research/five-paper-top-tier-r20/results/NQ_PR1472_EXACT_SUBJECT_AUDIT_V2.json",
+        "blob": "3f6eff412f2bebcb284c580c5bb1c157bbeb0b8d",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-04",
+      "evidence": "EXACT_DONOR_RECORD"
+    },
+    {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/CRB_SUBMISSION_RECORD_REMOTE.json",
       "bytes": 432,
       "sha256": "fac76b406752a4e8b0a09d7116306f018751f09593506a1eeeb355f1b60b7f2a",
@@ -334,8 +782,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/CRB_SUBMISSION_REGISTRY_REMOTE.json",
@@ -349,8 +796,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/DEFECT_REPRODUCTION.txt",
@@ -364,8 +810,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/LOCAL_CONTROL_REPLAY.txt",
@@ -379,8 +824,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/POST_EXECUTION_FAILURE_RECEIPT.json",
@@ -394,8 +838,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/README.md",
@@ -409,8 +852,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/REMOTE_COLLECTION.txt",
@@ -424,8 +866,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/SACCT_RAW.txt",
@@ -439,8 +880,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/SHA256SUMS",
@@ -454,8 +894,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/SLURM_STDERR.txt",
@@ -469,8 +908,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/SLURM_STDOUT.txt",
@@ -484,8 +922,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/SOURCE_IDENTITY.json",
@@ -499,8 +936,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/TERMINAL.txt",
@@ -514,8 +950,7 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
     },
     {
       "destination": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/tests/test_job_3544056.py",
@@ -529,8 +964,74 @@
         "object_required_in_checkout": false
       },
       "lane": "ORION-04",
-      "evidence": "JOB_3544056_FAILURE",
-      "source_remote_available": false
+      "evidence": "JOB_3544056_FAILURE"
+    },
+    {
+      "destination": "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_C_CURRENT_LITERATURE_SUBTRACTION_R9.json",
+      "bytes": 25211,
+      "sha256": "d59fbee9f4e2011114321402c925881589a241cd6d4bef0790955f1eb6aacdf4",
+      "source": {
+        "kind": "git",
+        "commit": "e22f11ab9ed3d4bc9d90ab2369f9250d19b43170",
+        "path": "papers/five-paper-top-tier-r8/Q1/Q1_C_CURRENT_LITERATURE_SUBTRACTION_R9.json",
+        "blob": "261fafd44bc21c379fdf8594429fead3164014b7",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-05",
+      "evidence": "EXACT_DONOR_RECORD"
+    },
+    {
+      "destination": "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_C_PRODUCTION_RESOURCE_MAP_R9.json",
+      "bytes": 16039,
+      "sha256": "7aad000ea7d61f28f04a310c912dcbdecc0d6d4c992b033e2e7c1823cf736db5",
+      "source": {
+        "kind": "git",
+        "commit": "e22f11ab9ed3d4bc9d90ab2369f9250d19b43170",
+        "path": "papers/five-paper-top-tier-r8/Q1/Q1_C_PRODUCTION_RESOURCE_MAP_R9.json",
+        "blob": "278c86f8e7f39537d3a60056e0b00c0a0fefa462",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-05",
+      "evidence": "EXACT_DONOR_RECORD"
+    },
+    {
+      "destination": "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_C_SOURCE_BINDING_R9.json",
+      "bytes": 4468,
+      "sha256": "201c83aaaf6c000c70825a02b94f5c1ba964e9c9bdbd8bcfa6f393fdcdc1e19a",
+      "source": {
+        "kind": "git",
+        "commit": "e22f11ab9ed3d4bc9d90ab2369f9250d19b43170",
+        "path": "papers/five-paper-top-tier-r8/Q1/Q1_C_SOURCE_BINDING_R9.json",
+        "blob": "ae0526e07bd89f9bcd38fca1209f99d36649f03b",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-05",
+      "evidence": "EXACT_DONOR_RECORD"
+    },
+    {
+      "destination": "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_PR1449_RESOURCE_AUDIT.json",
+      "bytes": 2678,
+      "sha256": "3dc5642089011502326fb49d26ce5a3cc53665dfefbc9267494c466d1e9c39e5",
+      "source": {
+        "kind": "git",
+        "commit": "b8385e3cec1b5d6f2f0d89c8cac41c76ea7cb6b2",
+        "path": "research/five-paper-top-tier-r20/results/Q1_PR1449_RESOURCE_AUDIT.json",
+        "blob": "ef93bd3344ba61b391085b709b52cd09657d6e11",
+        "object_required_in_checkout": false
+      },
+      "lane": "ORION-05",
+      "evidence": "EXACT_DONOR_RECORD"
+    },
+    {
+      "destination": "research/orion-01-05-convergence-v1/AUDIT_DISPOSITIONS_V1.json",
+      "bytes": 2420,
+      "sha256": "6da12168ba10d49cc4706b5322c61f333b414d385bcfe39902bb064c7b87cc55",
+      "source": {
+        "kind": "convergence_generated",
+        "generator": "ORION-01-05 convergence V1"
+      },
+      "lane": "PORTFOLIO",
+      "evidence": "CONVERGENCE_STATUS_OR_GUARD"
     },
     {
       "destination": "research/orion-01-05-convergence-v1/PUBLICATION_POLICY_V1.md",
@@ -545,8 +1046,8 @@
     },
     {
       "destination": "research/orion-01-05-convergence-v1/R30_DISPOSITION_V1.md",
-      "bytes": 2809,
-      "sha256": "7f6a5c713dae58db42f401333d57313b6dd5f999eac814b29571bf2b75d7bc7c",
+      "bytes": 4067,
+      "sha256": "30164c1df091d9e2f3eef5d253b4d0c6b4e337b7d7df04bbd7dcf6dd23d7cdbb",
       "source": {
         "kind": "convergence_generated",
         "generator": "ORION-01-05 convergence V1"
@@ -556,8 +1057,8 @@
     },
     {
       "destination": "research/orion-01-05-convergence-v1/R30_FAILURE_CUSTODY_V1.json",
-      "bytes": 2502,
-      "sha256": "217eb73c6299b669631f1dd24f9242eb2750b7d37bd4e4b2b12b451783b46329",
+      "bytes": 2792,
+      "sha256": "832be611bf9c46cf781ca2013347217515310e1662bca571516b68c96652ee55",
       "source": {
         "kind": "convergence_generated",
         "generator": "ORION-01-05 convergence V1"
@@ -578,8 +1079,8 @@
     },
     {
       "destination": "research/orion-01-05-convergence-v1/README.md",
-      "bytes": 4707,
-      "sha256": "5c9dc5a8d4caecf5613b228401d9b99301f8fecf2b6d8f24d0f0f0033e87e72c",
+      "bytes": 6119,
+      "sha256": "c9a9b8c0108b39a5cf43a34ab92797cb9e2d4e4609875e3e327d214bbf09427d",
       "source": {
         "kind": "convergence_generated",
         "generator": "ORION-01-05 convergence V1"
@@ -589,8 +1090,19 @@
     },
     {
       "destination": "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
-      "bytes": 10004,
-      "sha256": "5d1da9ab6136068cc02e6796fef4c6b89bbd42878583248483485967f961b9dd",
+      "bytes": 37665,
+      "sha256": "17c529dd2c5792ee3f8fb6cff6902e3e026ac2e4f8c8a55b7f7ff733476cbe31",
+      "source": {
+        "kind": "convergence_generated",
+        "generator": "ORION-01-05 convergence V1"
+      },
+      "lane": "PORTFOLIO",
+      "evidence": "CONVERGENCE_STATUS_OR_GUARD"
+    },
+    {
+      "destination": "research/orion-01-05-convergence-v1/SUPERSESSION_PLAN_V1.json",
+      "bytes": 2576,
+      "sha256": "f617a45945d553f100c4ef79b945baea1ff4e5b5dcc33c7bd8191a9f4ba7307e",
       "source": {
         "kind": "convergence_generated",
         "generator": "ORION-01-05 convergence V1"
@@ -600,8 +1112,8 @@
     },
     {
       "destination": "research/orion-01-05-convergence-v1/test_convergence_v1.py",
-      "bytes": 1195,
-      "sha256": "db61da54d89cd0c11b0bd4ba84f897a79b9bbb80fddf54ebb38cc65cf39d8ee6",
+      "bytes": 12960,
+      "sha256": "f091f274a3f1015b3a2cf0bdb20a039015e19189ece5eeb4f65430cdf03d7df0",
       "source": {
         "kind": "convergence_generated",
         "generator": "ORION-01-05 convergence V1"
@@ -611,8 +1123,8 @@
     },
     {
       "destination": "research/orion-01-05-convergence-v1/verify_convergence_v1.py",
-      "bytes": 15061,
-      "sha256": "0cbdecf6c38181ee35af89b71a3bb685dd2989ce944f6c22583a52a3b6fef0dd",
+      "bytes": 24396,
+      "sha256": "e509f219af174d9f3dbb39fcb765d2b73eddbead7a34864010d6c4d923aaa7b6",
       "source": {
         "kind": "convergence_generated",
         "generator": "ORION-01-05 convergence V1"
@@ -632,54 +1144,79 @@
       "blob": "3f217b0ebaa3f8f2cd802e0acba68031a9596ee3",
       "bytes": 24703,
       "sha256": "c6a7fa151c53f3e0397fc8351b951967028c5cc4bd08af63435122ddb315f97e",
-      "baseline_commit": "e28d2c072fae16abfe8651fce3143abe702afd20"
+      "baseline_commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1"
     },
     {
       "path": "papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md",
       "blob": "9905c5185f6d20a3f58476d462f2551d9d7c18d7",
       "bytes": 2768,
       "sha256": "3caba0dd7ad154f32047dce4969c2a1fc8a4dc0922ca090118f5c36145032202",
-      "baseline_commit": "e28d2c072fae16abfe8651fce3143abe702afd20"
+      "baseline_commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1"
     },
     {
       "path": "papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json",
       "blob": "62452ef25f30d30b3e6ffffec09dc73c77310d10",
       "bytes": 17307,
       "sha256": "0f5fb813ac9baa25efbba795b18452af36eeb47a3878f7181b9f063ac08a5c21",
-      "baseline_commit": "e28d2c072fae16abfe8651fce3143abe702afd20"
+      "baseline_commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1"
     },
     {
       "path": "papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.md",
       "blob": "9ef852390a29831b99a449b8807e654c264cd78d",
       "bytes": 3345,
       "sha256": "02abef123d7395909d06e53518dacd192f5239d7cee74ef0d5f50e41d675d1d8",
-      "baseline_commit": "e28d2c072fae16abfe8651fce3143abe702afd20"
+      "baseline_commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1"
     },
     {
       "path": "papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_TERMINAL_V2.txt",
       "blob": "0b8d197434258b0b1b96795f0c7fb39aaacddbb9",
       "bytes": 449,
       "sha256": "c30f998100eec34e7fe4bc90a7d1714c17b558738b2427584fd182c1d8583635",
-      "baseline_commit": "e28d2c072fae16abfe8651fce3143abe702afd20"
+      "baseline_commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1"
     },
     {
       "path": "papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_INTERPRETATION_V2.md",
       "blob": "e115f5bc29ee6fe34186b21a007955b0697c52a8",
       "bytes": 3157,
       "sha256": "dac2c6e3a9906da1458e0548404dc6ab8680760ca405913cc12c75e9b389cd3c",
-      "baseline_commit": "e28d2c072fae16abfe8651fce3143abe702afd20"
+      "baseline_commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1"
     },
     {
       "path": "papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_CUSTODY_V2.json",
       "blob": "33dc46548d87657cee60969d75008e232e855ec9",
       "bytes": 1086,
       "sha256": "547558118c9f1c9d0bd674b5ccc8e45a9ffc02fc22abf79eb81c55735aa2df6c",
-      "baseline_commit": "e28d2c072fae16abfe8651fce3143abe702afd20"
+      "baseline_commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1"
     }
   ],
   "expected_changed_paths": [
     ".github/workflows/orion-01-05-convergence-v1.yml",
     "papers/README.md",
+    "papers/orion-01-certificate-realization/evidence/convergence-v1/AB_PR1469_PRODUCTION_REGISTRY_AUDIT.json",
+    "papers/orion-01-certificate-realization/evidence/convergence-v1/R6M_N2_PRODUCTION_REALIZATION_GATE_R9_RESULTS.json",
+    "papers/orion-01-certificate-realization/evidence/convergence-v1/REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r11/FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r14/FIBERGUARD_ASLIB_HELDOUT_R14_RESULTS_SUMMARY.json",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r15/FIBERGUARD_MULTIDOMAIN_R15_PROTOCOL.md",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r15/FIBERGUARD_MULTIDOMAIN_R15_RESULT.md",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r15/FIBERGUARD_MULTIDOMAIN_R15_RESULTS_SUMMARY.json",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r15/FIBERGUARD_MULTIDOMAIN_R15_SCHEMA_REPAIR.md",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r15/fiberguard_multidomain_r15.py",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r15/fiberguard_multidomain_r15_schema_repair.py",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r16/FIBERGUARD_CROSS_SCENARIO_R16_RESULTS_SUMMARY.json",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r17/FALLBACK_ALIGNMENT_R17_RESULTS.json",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r17/FIBERGUARD_FALLBACK_ALIGNMENT_R17.md",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r17/verify_fiberguard_fallback_alignment_r17.py",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18.md",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_CLAIM_LEDGER.md",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_HARNESS.json",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_JOURNAL_GATE.md",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_PRIOR_ART_BOUNDARY.md",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_PROTOCOL.md",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_README.md",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_STORY_GATE.json",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/verify_fiberguard_relative_route_extension_r18.py",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_PROTOCOL_R18.md",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_COMMENT.md",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json",
@@ -687,10 +1224,13 @@
     "papers/orion-02-fiberguard-finite-fibre/extensions/r18/PAIRED_ROUTE_PROTOCOL_R18.json",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_CUSTODY_V2.json",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_DISPOSITION_V2.md",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_REPLAY_REQUIREMENTS_LOCK.txt",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18/fiberguard_aslib_sat12_all_r11.py",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r18/fiberguard_paired_route_r18.py",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r18/fiberguard_paired_route_r18_data.py",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r18/fiberguard_paired_route_r18_policy.py",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r18/fiberguard_paired_route_r18_sources.py",
+    "papers/orion-02-fiberguard-finite-fibre/extensions/r18/verify_r18_replay_prerequisites.py",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r19/FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT.md",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r19/JOINT_ROUTE_R19_RESULTS.json",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r19/fiberguard_joint_route_r19_core.py",
@@ -701,6 +1241,10 @@
     "papers/orion-02-fiberguard-finite-fibre/extensions/r20/FIBERGUARD_BNSL_ADAPTIVE_R20_RAW_TERMINAL.txt",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r20/FIBERGUARD_BNSL_ADAPTIVE_R20_RESULTS.json",
     "papers/orion-02-fiberguard-finite-fibre/extensions/r20/fiberguard_bnsl_adaptive_r20.py",
+    "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/AGENTGATEWAY_ORIGIN_WITNESS_SAFE_MERGE_R11_RESULTS_SUMMARY.json",
+    "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/D_PR1466_FIRST_MIXING_AUDIT.json",
+    "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/FIRST_MIXING_R12_RESULTS.json",
+    "papers/orion-04-rooted-completion-certificates/evidence/convergence-v1/NQ_PR1472_EXACT_SUBJECT_AUDIT_V2.json",
     "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/CRB_SUBMISSION_RECORD_REMOTE.json",
     "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/CRB_SUBMISSION_REGISTRY_REMOTE.json",
     "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/DEFECT_REPRODUCTION.txt",
@@ -715,6 +1259,11 @@
     "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/SOURCE_IDENTITY.json",
     "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/TERMINAL.txt",
     "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/tests/test_job_3544056.py",
+    "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_C_CURRENT_LITERATURE_SUBTRACTION_R9.json",
+    "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_C_PRODUCTION_RESOURCE_MAP_R9.json",
+    "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_C_SOURCE_BINDING_R9.json",
+    "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_PR1449_RESOURCE_AUDIT.json",
+    "research/orion-01-05-convergence-v1/AUDIT_DISPOSITIONS_V1.json",
     "research/orion-01-05-convergence-v1/DONOR_MANIFEST_V1.json",
     "research/orion-01-05-convergence-v1/PUBLICATION_POLICY_V1.md",
     "research/orion-01-05-convergence-v1/R30_DISPOSITION_V1.md",
@@ -722,6 +1271,7 @@
     "research/orion-01-05-convergence-v1/R30_FAILURE_RUNS_V1.json",
     "research/orion-01-05-convergence-v1/README.md",
     "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+    "research/orion-01-05-convergence-v1/SUPERSESSION_PLAN_V1.json",
     "research/orion-01-05-convergence-v1/test_convergence_v1.py",
     "research/orion-01-05-convergence-v1/verify_convergence_v1.py"
   ],
