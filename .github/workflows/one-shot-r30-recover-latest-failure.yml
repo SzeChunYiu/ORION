@@ -1,0 +1,98 @@
+name: one-shot-r30-recover-latest-failure
+
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths: ['.github/workflows/one-shot-r30-recover-latest-failure.yml']
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  inspect-and-retry-once:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion-02-r18-null-current-main-20260827
+          fetch-depth: 0
+      - name: Inspect latest monolithic finalizer
+        id: inspect
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          run="$(gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs?branch=chatgpt/orion-02-r18-null-current-main-20260827&per_page=100" --jq '.workflow_runs | map(select(.name=="one-shot-r30-finalize-internal-programme")) | sort_by(.id) | reverse | .[0].id // empty')"
+          test -n "$run"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" > "$RUNNER_TEMP/run.json"
+          conclusion="$(jq -r .conclusion "$RUNNER_TEMP/run.json")"
+          echo "run=$run" >> "$GITHUB_OUTPUT"
+          echo "conclusion=$conclusion" >> "$GITHUB_OUTPUT"
+          if [ "$conclusion" != 'success' ]; then
+            gh run view "$run" --repo "$GITHUB_REPOSITORY" --log-failed > "$RUNNER_TEMP/failed.log" 2>&1 || true
+            gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run/jobs?per_page=100" > "$RUNNER_TEMP/jobs.json"
+          fi
+      - name: Record success without changing scientific source
+        if: steps.inspect.outputs.conclusion == 'success'
+        run: echo 'R30 monolithic finalizer already succeeded; no recovery required.'
+      - name: Diagnose, harden, and schedule one retry
+        if: steps.inspect.outputs.conclusion != 'success'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FAILED_RUN: ${{ steps.inspect.outputs.run }}
+        run: |
+          set -euo pipefail
+          branch='chatgpt/orion-02-r18-null-current-main-20260827'
+          git fetch --no-tags origin "$branch";git reset --hard FETCH_HEAD
+          mkdir -p research/five-paper-top-tier-r30
+          python - <<'PY'
+          import json,os,re
+          from pathlib import Path
+          temp=Path(os.environ['RUNNER_TEMP'])
+          run=json.loads((temp/'run.json').read_text())
+          jobs=json.loads((temp/'jobs.json').read_text())
+          failed=[]
+          for job in jobs.get('jobs',[]):
+            for step in job.get('steps',[]):
+              if step.get('conclusion')=='failure':failed.append({'job_id':job['id'],'job':job['name'],'step_number':step['number'],'step':step['name']})
+          log=(temp/'failed.log').read_text(errors='replace') if (temp/'failed.log').exists() else ''
+          errors=[line for line in log.splitlines() if '##[error]' in line or re.search(r'(AssertionError|Traceback|error:|FAILED|No such file|not found)',line,re.I)]
+          result={'schema':'ORION.FivePaper.R30FailureDiagnosis.v1','failed_run':run['id'],'head_sha':run['head_sha'],'conclusion':run['conclusion'],'failed_steps':failed,'error_excerpt':errors[:200],'authority':{'scientific_promotion':False,'journal_authority':False}}
+          Path('research/five-paper-top-tier-r30/R30_FAILURE_DIAGNOSIS.json').write_text(json.dumps(result,sort_keys=True,separators=(',',':'))+'\n')
+
+          root=Path('papers/orion-02-fiberguard-finite-fibre')
+          rust=root/'verify_r20_cross_language.rs'
+          if rust.exists():
+            text=rust.read_text()
+            text=text.replace("match self.bytes.get(self.pos) {\n            Some(b'0')", "match self.bytes.get(self.pos).copied() {\n            Some(b'0')")
+            text=text.replace("matches!(self.bytes.get(self.pos), Some(b'0'..=b'9'))", "matches!(self.bytes.get(self.pos).copied(), Some(b'0'..=b'9'))")
+            text=text.replace("matches!(self.bytes.get(self.pos), Some(b'e') | Some(b'E'))", "matches!(self.bytes.get(self.pos).copied(), Some(b'e') | Some(b'E'))")
+            text=text.replace("matches!(self.bytes.get(self.pos), Some(b'+') | Some(b'-'))", "matches!(self.bytes.get(self.pos).copied(), Some(b'+') | Some(b'-'))")
+            rust.write_text(text)
+          tex=root/'MANUSCRIPT_R20.tex'
+          if tex.exists():
+            text=tex.read_text()
+            primitives='\\pdfinfoomitdate=1\n\\pdftrailerid{}\n\\pdfsuppressptexinfo=15\n'
+            if '\\pdfinfoomitdate=1' not in text:
+              text=text.replace('\\documentclass[11pt]{article}\n','\\documentclass[11pt]{article}\n'+primitives,1)
+            tex.write_text(text)
+          PY
+          failed_head="$(jq -r .head_sha "$RUNNER_TEMP/run.json")"
+          git fetch --no-tags origin "$failed_head"
+          git show "$failed_head:.github/workflows/one-shot-r30-finalize-internal-programme.yml" > .github/workflows/one-shot-r30-finalize-internal-programme-retry.yml
+          python - <<'PY'
+          from pathlib import Path
+          path=Path('.github/workflows/one-shot-r30-finalize-internal-programme-retry.yml')
+          text=path.read_text().replace('name: one-shot-r30-finalize-internal-programme','name: one-shot-r30-finalize-internal-programme-retry',1).replace("paths: ['.github/workflows/one-shot-r30-finalize-internal-programme.yml']","paths: ['.github/workflows/one-shot-r30-finalize-internal-programme-retry.yml']",1)
+          path.write_text(text)
+          PY
+          rm .github/workflows/one-shot-r30-recover-latest-failure.yml
+          git config user.name 'github-actions[bot]';git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'fix(R30): harden and retry failed monolithic finalizer'
+          git push origin HEAD:refs/heads/$branch
