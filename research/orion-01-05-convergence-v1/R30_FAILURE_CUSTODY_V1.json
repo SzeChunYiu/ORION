@@ -1,0 +1,69 @@
+{
+  "schema": "ORION.ORION0105.R30FailureCustody.v1",
+  "date": "2026-08-27",
+  "terminal": "R30_NOT_MATERIALIZED__CUSTODY_AND_FINAL_BINDING_FAILED",
+  "advertised_status_scope": "STATUS_WRAPPER_AND_RELEASE_CLAIM_ONLY",
+  "live_repository_observations": {
+    "pr_1489": {
+      "state": "OPEN",
+      "draft": true,
+      "head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "base_branch": "chatgpt/r18-c-relative-route-extension-20260826",
+      "actual_scope": "R19_FIBERGUARD_STORY_NOT_R30"
+    },
+    "pr_1492": {
+      "state": "OPEN",
+      "draft": true,
+      "head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "base_branch": "chatgpt/orion-02-r19-current-main-20260827",
+      "actual_scope": "STACKED_R18_R20_R30_GENERATOR_AND_WORKFLOWS"
+    },
+    "advertised_superseded_prs_still_open": [
+      1471,
+      1485,
+      1488
+    ],
+    "intended_clean_branch": "chatgpt/five-paper-r30-current-main-20260827",
+    "intended_clean_branch_exists": false,
+    "final_outputs_present_on_current_main": false,
+    "final_outputs_present_on_pr_1492_tip": false,
+    "generator_present_but_successfully_executed": false
+  },
+  "r30_failure_runs_file": "R30_FAILURE_RUNS_V1.json",
+  "related_non_r30_custody_failure": {
+    "run": 33048978721,
+    "workflow": "orion-02-r18-recovery-null-custody",
+    "head_sha": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+    "conclusion": "failure",
+    "failed_step": "Materialize exact source-branch recovery bytes",
+    "cause": "STALE_R18_RESULT_SHA256",
+    "scientific_result_retracted": false,
+    "superseded_by_additive_custody": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_CUSTODY_V2.json"
+  },
+  "preserved_science": [
+    "FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE",
+    "RETRACTED_UNSUPPORTED_R18_POSITIVE_INTERPRETATION",
+    "FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT_PASS",
+    "CERTIFICATE_INVALID",
+    "VALID_WITHOUT_COVERAGE_OR_VALUE"
+  ],
+  "supersession": {
+    "supersedes": "R30 current-status, custody-completion, package-completion, and coordination authority",
+    "does_not_supersede": [
+      "raw theorem or experiment bytes",
+      "adverse/null results",
+      "retractions or quarantines",
+      "frozen subjects",
+      "protected Task-3 lanes"
+    ]
+  },
+  "authority": {
+    "science_closure": false,
+    "external_independence": false,
+    "novelty": false,
+    "production_authority": false,
+    "rights_complete": false,
+    "journal_authority": false,
+    "submission_authorized": false
+  }
+}

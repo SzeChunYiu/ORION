@@ -98,9 +98,9 @@ The machine-readable publication contract is `Q_SERIES_FINAL_SPEC_V1.json`; the 
 
 Each Q directory now carries a `REPRODUCE.md` and `SUBMISSION_PACKAGE.md` in addition to its canonical manuscript/ledger materials.
 
-The owner elected to skip a separate external quantum-expert pre-review for ORION-01. The final spec records `SKIPPED_BY_OWNER`; this is not encoded as a scientific PASS and does not create external novelty/quantum authority.
+The owner elected to skip a separate external quantum-expert pre-review for ORION-05. The final spec records `SKIPPED_BY_OWNER`; this is not encoded as a scientific PASS and does not create external novelty/quantum authority.
 
-### ORION-01 theorem status
+### ORION-05 theorem status
 
 For the frozen R6M shared-Tag TARE-M2 grammar/support-count objective:
 
