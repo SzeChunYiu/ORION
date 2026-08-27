@@ -1,0 +1,64 @@
+name: nq-pr1472-exact-subject-audit-r20
+
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths:
+      - 'research/five-paper-top-tier-r20/audit_nq_pr1472_v2.py'
+      - '.github/workflows/nq-pr1472-exact-subject-audit-r20-v2.yml'
+  workflow_dispatch:
+
+permissions: {contents: read, pull-requests: read}
+
+jobs:
+  exact-subject-audit-v2:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Fetch and audit exact PR 1472 twice
+        shell: bash
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          gh api "repos/$GITHUB_REPOSITORY/pulls/1472" > "$RUNNER_TEMP/pr.json"
+          base="$(jq -r .base.sha "$RUNNER_TEMP/pr.json")";head="$(jq -r .head.sha "$RUNNER_TEMP/pr.json")"
+          git fetch --no-tags origin "$base" "$head";git worktree add --detach "$RUNNER_TEMP/pr1472" "$head"
+          script='research/five-paper-top-tier-r20/audit_nq_pr1472_v2.py';python -m py_compile "$script"
+          for suffix in a b; do python "$script" --repo "$RUNNER_TEMP/pr1472" --base "$base" --head "$head" --output "$RUNNER_TEMP/audit-$suffix.json" | tee "$RUNNER_TEMP/terminal-$suffix.txt"; done
+          cmp "$RUNNER_TEMP/audit-a.json" "$RUNNER_TEMP/audit-b.json";cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+      - name: Preserve numerical and journal ceilings
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          r=json.loads((Path(os.environ['RUNNER_TEMP'])/'audit-a.json').read_text())
+          assert r['schema']=='ORION.NQ.PR1472ExactSubjectAudit.R20.v2'
+          assert r['authority']['D4_authority'] is False
+          assert r['authority']['external_independence'] is False
+          assert r['authority']['novelty'] is False
+          assert r['authority']['journal_authority'] is False
+          if r['terminal']=='NQ_PR1472_FULL_REPLAY_SUBJECT_PASS':
+            assert all(r['gates'].values()) and r['authority']['D2_D3_numerical_authority'] is True
+          else:
+            assert r['terminal']=='NQ_PR1472_NOT_FULL_REPLAY_AUTHORITY'
+            assert r['authority']['D2_D3_numerical_authority'] is False
+          print('NQ_PR1472_V2_AUTHORITY_CLASSIFIED',r['terminal'])
+          PY
+      - run: git diff --check
+      - name: Stage audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/nq-pr1472-v2";mkdir -p "$out";cp "$RUNNER_TEMP/pr.json" "$out/PR1472.json";cp "$RUNNER_TEMP/audit-a.json" "$out/NQ_PR1472_EXACT_SUBJECT_AUDIT_V2.json";cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt";sha256sum "$out"/* > "$out/SHA256SUMS"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nq-pr1472-exact-subject-audit-v2
+          path: ${{ runner.temp }}/nq-pr1472-v2/
+          if-no-files-found: error
+          retention-days: 30
