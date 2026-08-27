@@ -3,10 +3,10 @@
 
 This script never submits a paper and never invents author declarations. It
 requires one target-specific package per Wave-A paper, validates package hashes
-and PDF structure, and checks current content binding for the manuscript trees
-that were changed during this closure wave. The resulting terminal means only
-that repository-side scientific/reproduction/package work is closed for the
-bounded specialist claim; listed human filing attestations remain open.
+and PDF structure, and checks current content binding for manuscript trees that
+were changed during this closure wave. The terminal means only that repository-
+side scientific/reproduction/package work is closed for the bounded specialist
+claim; listed human filing attestations remain open.
 """
 
 from __future__ import annotations
@@ -27,12 +27,18 @@ QG_PROGRAMME_TERMINAL = (
     "ORION_QG_PROGRAMME_SCIENTIFICALLY_CLOSED__"
     "THEOREMS_REFUTATIONS_AND_BOUNDED_CANNOT_CHECKS_RECEIPTED__NOT_NOVELTY_AUTHORITY"
 )
+R11_TERMINAL = "Q1_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM"
+LIVE_R11_RESULT = ROOT / "papers/orion-05-tare-expressivity/Q1_R11_SPARSE_DIRECT_EXECUTABLE_RESULT_V1.json"
+LIVE_R11_PROTOCOL = ROOT / "papers/orion-05-tare-expressivity/Q1_R11_SPARSE_DIRECT_EXECUTABLE_PROTOCOL_V1.md"
+LIVE_R11_ADDENDUM = ROOT / "papers/publication_closure/tqe/ORION-05_R11_ADDENDUM.md"
 
 TQE_REQUIRED = [
     "main.pdf",
     "main.tex",
     "references.bib",
     "SCIENTIFIC_MASTER_CITED.md",
+    "SUBMISSION_PROJECTION.md",
+    "TQE_PROJECTION_REPORT.txt",
     "TQE_ABSTRACTS_V1.json",
     "QUANTUM_REPLAY_RECEIPT_V1.json",
     "quantum-replay-raw",
@@ -40,7 +46,15 @@ TQE_REQUIRED = [
     "SHA256SUMS",
 ]
 PACKAGE = {
-    "ORION-05": ("TQE", TQE_REQUIRED),
+    "ORION-05": (
+        "TQE",
+        TQE_REQUIRED
+        + [
+            "Q1_R11_SPARSE_DIRECT_EXECUTABLE_RESULT_V1.json",
+            "Q1_R11_SPARSE_DIRECT_EXECUTABLE_PROTOCOL_V1.md",
+            "ORION-05_R11_ADDENDUM.md",
+        ],
+    ),
     "ORION-09": ("TQE", TQE_REQUIRED),
     "ORION-10": ("TQE", TQE_REQUIRED),
     "ORION-14": ("TMLR", ["main.pdf", "source", "REPOSITORY_FILING_PREFLIGHT_V1.json", "SHA256SUMS"]),
@@ -120,7 +134,7 @@ def verify_quantum_replay(paper_id: str, base: Path) -> dict[str, Any]:
     raw = replay.get("raw_artifacts")
     if not isinstance(raw, dict):
         raise SystemExit(f"quantum replay raw artifact map missing for {paper_id}")
-    raw_keys = {"q1_stdout", "pytest_log", "qg9", "qg12", "qg_programme"}
+    raw_keys = {"q1_stdout", "r11_pair_checker_log", "pytest_log", "qg9", "qg12", "qg_programme"}
     if not raw_keys.issubset(raw):
         raise SystemExit(f"quantum replay raw artifact map incomplete for {paper_id}")
     raw_paths = {key: base / str(raw[key]) for key in raw_keys}
@@ -134,6 +148,11 @@ def verify_quantum_replay(paper_id: str, base: Path) -> dict[str, Any]:
     qg10 = replay.get("orion10", {})
     if sha256(raw_paths["q1_stdout"]) != q1.get("stdout_sha256"):
         raise SystemExit(f"ORION-05 raw proof-sanity digest mismatch in {paper_id} package")
+    r11 = q1.get("r11", {}) if isinstance(q1, dict) else {}
+    if not isinstance(r11, dict):
+        raise SystemExit(f"ORION-05 R11 replay row missing in {paper_id} package")
+    if sha256(raw_paths["r11_pair_checker_log"]) != r11.get("fresh_pair_replay_sha256"):
+        raise SystemExit(f"ORION-05 R11 fresh pair replay digest mismatch in {paper_id} package")
     if sha256(raw_paths["pytest_log"]) != qsync.get("log_sha256"):
         raise SystemExit(f"Q-series pytest digest mismatch in {paper_id} package")
     if sha256(raw_paths["qg9"]) != qg09.get("qg9_sha256"):
@@ -151,6 +170,12 @@ def verify_quantum_replay(paper_id: str, base: Path) -> dict[str, Any]:
             raise SystemExit("ORION-05 direct replay Restore bound drifted")
         if q1.get("support2_sharp_failure_patterns") != 4 or q1.get("support3_to_8_failures") != 0:
             raise SystemExit("ORION-05 direct replay sharpness/class boundary drifted")
+        if r11.get("terminal") != R11_TERMINAL or r11.get("algorithmic_theorem") is not True:
+            raise SystemExit("ORION-05 R11 algorithmic replay not green")
+        if r11.get("novelty_authority") is not False or r11.get("production_runtime_value") is not False:
+            raise SystemExit("ORION-05 R11 replay exceeded authority")
+        if r11.get("complete_n1_denominator") != 729 or r11.get("all_executable_gates") is not True:
+            raise SystemExit("ORION-05 R11 replay denominator/gates drifted")
     elif paper_id == "ORION-09":
         if qg09.get("qg9_all_gates") is not True or qg09.get("qg9_intrinsic_support_number") != 1:
             raise SystemExit("ORION-09 QG9 theorem replay not green")
@@ -165,6 +190,58 @@ def verify_quantum_replay(paper_id: str, base: Path) -> dict[str, Any]:
         if not isinstance(cannot, dict) or not {"qg7d", "qg11"}.issubset(cannot):
             raise SystemExit("ORION-10 replay lost bounded CANNOT_CHECK history")
     return replay
+
+
+def verify_orion05_r11_package(base: Path, replay: dict[str, Any]) -> dict[str, Any]:
+    packaged_result_path = base / "Q1_R11_SPARSE_DIRECT_EXECUTABLE_RESULT_V1.json"
+    packaged_protocol_path = base / "Q1_R11_SPARSE_DIRECT_EXECUTABLE_PROTOCOL_V1.md"
+    packaged_addendum_path = base / "ORION-05_R11_ADDENDUM.md"
+    projection_path = base / "SUBMISSION_PROJECTION.md"
+    projection_report_path = base / "TQE_PROJECTION_REPORT.txt"
+
+    if sha256(packaged_result_path) != sha256(LIVE_R11_RESULT):
+        raise SystemExit("ORION-05 packaged R11 result differs from live result")
+    if sha256(packaged_protocol_path) != sha256(LIVE_R11_PROTOCOL):
+        raise SystemExit("ORION-05 packaged R11 protocol differs from live protocol")
+    if sha256(packaged_addendum_path) != sha256(LIVE_R11_ADDENDUM):
+        raise SystemExit("ORION-05 packaged R11 addendum differs from live projection authority")
+
+    result = load_json(packaged_result_path)
+    if result.get("terminal") != R11_TERMINAL:
+        raise SystemExit("ORION-05 packaged R11 terminal not green")
+    authority = result.get("authority")
+    if not isinstance(authority, dict):
+        raise SystemExit("ORION-05 packaged R11 authority missing")
+    if authority.get("algorithmic_theorem") is not True:
+        raise SystemExit("ORION-05 packaged R11 lacks algorithmic theorem authority")
+    for key in ("novelty_authority", "physical_quantum_resource_authority", "production_runtime_value", "submission_authority"):
+        if authority.get(key) is not False:
+            raise SystemExit(f"ORION-05 packaged R11 exceeded authority: {key}")
+    if result.get("protocol_sha256") != sha256(packaged_protocol_path):
+        raise SystemExit("ORION-05 packaged R11 result/protocol binding drifted")
+
+    projection = projection_path.read_text(encoding="utf-8")
+    addendum = packaged_addendum_path.read_text(encoding="utf-8").strip()
+    if addendum not in projection:
+        raise SystemExit("ORION-05 R11 addendum is not embedded verbatim in submission projection")
+    if R11_TERMINAL not in projection or "O(n^9)" not in projection:
+        raise SystemExit("ORION-05 R11 load-bearing projection tokens missing")
+    report = projection_report_path.read_text(encoding="utf-8")
+    if "TQE_SUBMISSION_PROJECTION=PASS" not in report or "SCIENTIFIC_EXTENSION=R11_RESULT_BOUND_ALGORITHMIC_SECTION" not in report:
+        raise SystemExit("ORION-05 TQE result-bound projection report not green")
+    replay_r11 = replay.get("orion05", {}).get("r11", {})
+    if replay_r11.get("result_sha256") != sha256(packaged_result_path):
+        raise SystemExit("ORION-05 replay and packaged R11 result digest disagree")
+    return {
+        "terminal": result["terminal"],
+        "result_sha256": sha256(packaged_result_path),
+        "protocol_sha256": sha256(packaged_protocol_path),
+        "addendum_sha256": sha256(packaged_addendum_path),
+        "algorithmic_theorem": True,
+        "novelty_authority": False,
+        "production_runtime_value": False,
+        "scope": authority.get("scope"),
+    }
 
 
 def main() -> int:
@@ -236,11 +313,17 @@ def main() -> int:
             abstract_source = load_json(base / "TQE_ABSTRACTS_V1.json")
             if abstract_source.get("schema") != "ORION.TQEAbstractOverrides.v1":
                 raise SystemExit(f"bad TQE abstract source schema for {paper_id}")
+            report = (base / "TQE_PROJECTION_REPORT.txt").read_text(encoding="utf-8")
+            if "TQE_SUBMISSION_PROJECTION=PASS" not in report:
+                raise SystemExit(f"TQE projection report not green for {paper_id}")
             replay = verify_quantum_replay(paper_id, base)
             row["abstract_word_count"] = count
             row["abstract_source_sha256"] = sha256(base / "TQE_ABSTRACTS_V1.json")
+            row["submission_projection_sha256"] = sha256(base / "SUBMISSION_PROJECTION.md")
             row["quantum_replay_terminal"] = replay["terminal"]
             row["quantum_replay_sha256"] = sha256(base / "QUANTUM_REPLAY_RECEIPT_V1.json")
+            if paper_id == "ORION-05":
+                row["r11"] = verify_orion05_r11_package(base, replay)
         papers[paper_id] = row
 
     receipt = {
