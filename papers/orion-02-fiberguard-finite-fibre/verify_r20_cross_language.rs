@@ -182,11 +182,11 @@ impl<'a> Parser<'a> {
         if self.bytes.get(self.pos) == Some(&b'-') {
             self.pos += 1;
         }
-        match self.bytes.get(self.pos) {
+        match self.bytes.get(self.pos).copied() {
             Some(b'0') => self.pos += 1,
             Some(b'1'..=b'9') => {
                 self.pos += 1;
-                while matches!(self.bytes.get(self.pos), Some(b'0'..=b'9')) {
+                while matches!(self.bytes.get(self.pos).copied(), Some(b'0'..=b'9')) {
                     self.pos += 1;
                 }
             }
@@ -195,20 +195,20 @@ impl<'a> Parser<'a> {
         if self.bytes.get(self.pos) == Some(&b'.') {
             self.pos += 1;
             let fraction_start = self.pos;
-            while matches!(self.bytes.get(self.pos), Some(b'0'..=b'9')) {
+            while matches!(self.bytes.get(self.pos).copied(), Some(b'0'..=b'9')) {
                 self.pos += 1;
             }
             if self.pos == fraction_start {
                 return Err("empty fraction".to_string());
             }
         }
-        if matches!(self.bytes.get(self.pos), Some(b'e') | Some(b'E')) {
+        if matches!(self.bytes.get(self.pos).copied(), Some(b'e') | Some(b'E')) {
             self.pos += 1;
-            if matches!(self.bytes.get(self.pos), Some(b'+') | Some(b'-')) {
+            if matches!(self.bytes.get(self.pos).copied(), Some(b'+') | Some(b'-')) {
                 self.pos += 1;
             }
             let exponent_start = self.pos;
-            while matches!(self.bytes.get(self.pos), Some(b'0'..=b'9')) {
+            while matches!(self.bytes.get(self.pos).copied(), Some(b'0'..=b'9')) {
                 self.pos += 1;
             }
             if self.pos == exponent_start {
