@@ -1,0 +1,96 @@
+name: one-shot-r30-final-ensure
+
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths: ['.github/workflows/one-shot-r30-final-ensure.yml']
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  ensure-or-retry:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion-02-r18-null-current-main-20260827
+          fetch-depth: 0
+      - name: Detect durable R30 completion
+        id: status
+        shell: bash
+        run: |
+          set -euo pipefail
+          complete=false
+          if [ -f papers/orion-02-fiberguard-finite-fibre/INTERNAL_RELEASE_RECEIPT_R30.json ] \
+             && [ -f research/five-paper-top-tier-r30/PROGRAMME_INTERNAL_TERMINAL_R30.json ] \
+             && git ls-remote --exit-code --heads origin refs/heads/chatgpt/five-paper-r30-current-main-20260827 >/dev/null 2>&1; then
+            complete=true
+          fi
+          echo "complete=$complete" >> "$GITHUB_OUTPUT"
+          echo "R30 durable completion: $complete"
+      - name: Preserve completed state
+        if: steps.status.outputs.complete == 'true'
+        run: echo 'R30 durable receipts and clean current-main branch already exist.'
+      - name: Diagnose latest failed finalizer and schedule hardened retry
+        if: steps.status.outputs.complete != 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch='chatgpt/orion-02-r18-null-current-main-20260827'
+          git fetch --no-tags origin "$branch";git reset --hard FETCH_HEAD
+          run="$(gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs?branch=$branch&per_page=100" --jq '.workflow_runs | map(select(.name=="one-shot-r30-finalize-internal-programme" or .name=="one-shot-r30-finalize-internal-programme-retry")) | sort_by(.id) | reverse | .[0].id // empty')"
+          test -n "$run"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" > "$RUNNER_TEMP/run.json"
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run/jobs?per_page=100" > "$RUNNER_TEMP/jobs.json"
+          gh run view "$run" --repo "$GITHUB_REPOSITORY" --log-failed > "$RUNNER_TEMP/failed.log" 2>&1 || true
+          mkdir -p research/five-paper-top-tier-r30
+          python - <<'PY'
+          import json,os,re
+          from pathlib import Path
+          temp=Path(os.environ['RUNNER_TEMP'])
+          run=json.loads((temp/'run.json').read_text());jobs=json.loads((temp/'jobs.json').read_text());log=(temp/'failed.log').read_text(errors='replace') if (temp/'failed.log').exists() else ''
+          failed=[{'job_id':job['id'],'job':job['name'],'step':step['name'],'step_number':step['number']} for job in jobs.get('jobs',[]) for step in job.get('steps',[]) if step.get('conclusion')=='failure']
+          errors=[line for line in log.splitlines() if '##[error]' in line or re.search(r'(AssertionError|Traceback|error:|FAILED|No such file|not found|mismatch|drift)',line,re.I)]
+          result={'schema':'ORION.FivePaper.R30EnsureDiagnosis.v1','failed_run':run['id'],'head_sha':run['head_sha'],'conclusion':run['conclusion'],'failed_steps':failed,'error_excerpt':errors[:300],'authority':{'scientific_promotion':False,'journal_authority':False}}
+          Path('research/five-paper-top-tier-r30/R30_ENSURE_DIAGNOSIS.json').write_text(json.dumps(result,sort_keys=True,separators=(',',':'))+'\n')
+          root=Path('papers/orion-02-fiberguard-finite-fibre')
+          rust=root/'verify_r20_cross_language.rs'
+          if rust.exists():
+            text=rust.read_text().replace("match self.bytes.get(self.pos) {\n            Some(b'0')", "match self.bytes.get(self.pos).copied() {\n            Some(b'0')").replace("matches!(self.bytes.get(self.pos), Some(b'0'..=b'9'))", "matches!(self.bytes.get(self.pos).copied(), Some(b'0'..=b'9'))").replace("matches!(self.bytes.get(self.pos), Some(b'e') | Some(b'E'))", "matches!(self.bytes.get(self.pos).copied(), Some(b'e') | Some(b'E'))").replace("matches!(self.bytes.get(self.pos), Some(b'+') | Some(b'-'))", "matches!(self.bytes.get(self.pos).copied(), Some(b'+') | Some(b'-'))")
+            rust.write_text(text)
+          tex=root/'MANUSCRIPT_R20.tex'
+          if tex.exists():
+            text=tex.read_text();primitives='\\pdfinfoomitdate=1\n\\pdftrailerid{}\n\\pdfsuppressptexinfo=15\n'
+            if '\\pdfinfoomitdate=1' not in text:text=text.replace('\\documentclass[11pt]{article}\n','\\documentclass[11pt]{article}\n'+primitives,1)
+            tex.write_text(text)
+          PY
+          head="$(jq -r .head_sha "$RUNNER_TEMP/run.json")"
+          git fetch --no-tags origin "$head"
+          for candidate in .github/workflows/one-shot-r30-finalize-internal-programme.yml .github/workflows/one-shot-r30-finalize-internal-programme-retry.yml; do
+            if git cat-file -e "$head:$candidate" 2>/dev/null; then
+              git show "$head:$candidate" > .github/workflows/one-shot-r30-finalize-internal-programme-retry2.yml
+              break
+            fi
+          done
+          test -s .github/workflows/one-shot-r30-finalize-internal-programme-retry2.yml
+          python - <<'PY'
+          from pathlib import Path
+          path=Path('.github/workflows/one-shot-r30-finalize-internal-programme-retry2.yml')
+          text=path.read_text()
+          first=text.splitlines()[0]
+          text=text.replace(first,'name: one-shot-r30-finalize-internal-programme-retry2',1)
+          text=text.replace("paths: ['.github/workflows/one-shot-r30-finalize-internal-programme.yml']","paths: ['.github/workflows/one-shot-r30-finalize-internal-programme-retry2.yml']",1)
+          text=text.replace("paths: ['.github/workflows/one-shot-r30-finalize-internal-programme-retry.yml']","paths: ['.github/workflows/one-shot-r30-finalize-internal-programme-retry2.yml']",1)
+          path.write_text(text)
+          PY
+          rm .github/workflows/one-shot-r30-final-ensure.yml
+          git config user.name 'github-actions[bot]';git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'fix(R30): schedule hardened finalizer retry2'
+          git push origin HEAD:refs/heads/$branch
