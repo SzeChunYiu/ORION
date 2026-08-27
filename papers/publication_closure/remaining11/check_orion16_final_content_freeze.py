@@ -46,18 +46,30 @@ def main() -> int:
     contract = json.loads(CONTRACT.read_text(encoding="utf-8"))
     contract_rows = {row["path"]: row["sha256"] for row in contract["execution_inputs"] + contract["historical_predecessors"]}
     require(len(contract_rows) == len(contract["execution_inputs"]) + len(contract["historical_predecessors"]), "duplicate contract path")
-    for path, expected in contract_rows.items():
+    contract_drifts = []
+    for path, expected in sorted(contract_rows.items()):
         bound = ROOT / path
-        require(bound.is_file(), f"missing contract input: {path}")
-        require(sha256(bound) == expected, f"contract digest drift: {path}")
+        if not bound.is_file():
+            contract_drifts.append({"path": path, "expected": expected, "observed": None, "kind": "MISSING"})
+            continue
+        observed = sha256(bound)
+        if observed != expected:
+            contract_drifts.append({"path": path, "expected": expected, "observed": observed, "kind": "DIGEST"})
+    require(not contract_drifts, "contract drift set: " + json.dumps(contract_drifts, sort_keys=True))
 
     manifest_rows = {row["path"]: row["sha256"] for row in manifest["bound_files"]}
     contract_rel = str(CONTRACT.relative_to(ROOT))
     require(manifest_rows.get(contract_rel) == sha256(CONTRACT), "content manifest does not bind repaired V4 contract")
-    for path, expected in manifest_rows.items():
+    manifest_drifts = []
+    for path, expected in sorted(manifest_rows.items()):
         bound = ROOT / path
-        require(bound.is_file(), f"missing content-bound file: {path}")
-        require(sha256(bound) == expected, f"content manifest digest drift: {path}")
+        if not bound.is_file():
+            manifest_drifts.append({"path": path, "expected": expected, "observed": None, "kind": "MISSING"})
+            continue
+        observed = sha256(bound)
+        if observed != expected:
+            manifest_drifts.append({"path": path, "expected": expected, "observed": observed, "kind": "DIGEST"})
+    require(not manifest_drifts, "content manifest drift set: " + json.dumps(manifest_drifts, sort_keys=True))
 
     sum_lines = [line.strip() for line in CONTENT_SUMS.read_text(encoding="utf-8").splitlines() if line.strip()]
     require(sum_lines == [f"{sha256(CONTENT)}  {CONTENT.relative_to(ROOT)}"], "content-binding SHA256SUMS drift")
