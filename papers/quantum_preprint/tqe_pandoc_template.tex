@@ -1,4 +1,9 @@
-\documentclass[journal]{IEEEtran}
+\documentclass[journal,onecolumn]{IEEEtran}
+% One-column is the IEEEtran review/draft layout. The scientific masters contain
+% long tables that Pandoc renders with longtable, which cannot run in TeX's
+% two-column mode. Production two-column typesetting is a later publisher step;
+% this source keeps the TQE/IEEE class while remaining mechanically buildable for
+% peer review without rewriting scientific tables.
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs,longtable,array}
 \usepackage{graphicx}
