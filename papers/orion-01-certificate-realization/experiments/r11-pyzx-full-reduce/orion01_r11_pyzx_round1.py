@@ -609,7 +609,6 @@ def protocol_freeze_binding() -> dict[str, str]:
     freeze_commit = next(iter(commits))
     return {
         "freeze_commit": freeze_commit,
-        "head_at_execution": _git("rev-parse", "HEAD"),
         "runner_last_change_commit": _git(
             "log",
             "--format=%H",
