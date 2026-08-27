@@ -97,8 +97,11 @@ def test_frozen_domain_enumeration() -> None:
     assert words[-1] == ("CX10", "CX10", "CX10")
     probes = study.probe_words()
     assert len(probes) == 16
-    assert probes[0] == ("CX01",) * 6
-    assert probes[1] == ("CX01",) * 5 + ("CX10",)
+    # itertools.product follows the frozen GATE_ALPHABET order, whose
+    # first two tokens are H0 and H1.  These assertions bind the actual
+    # pre-outcome enumeration used by the committed receipt.
+    assert probes[0] == ("H0",) * 6
+    assert probes[1] == ("H0",) * 5 + ("H1",)
     registry = study.load_registry()
     payloads = study.word_payloads("pilot", registry)
     assert len(payloads) == 73

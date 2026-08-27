@@ -24,6 +24,7 @@ receipt terminal.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -31,6 +32,7 @@ import sys
 from typing import Any
 
 HERE = Path(__file__).resolve().parent
+REPO_ROOT = HERE.parents[1]
 MODULE_PATH = HERE / "orion01_round2_atomic_registry.py"
 
 
@@ -55,6 +57,52 @@ def load_receipt_no_floats(path: Path) -> dict[str, Any]:
     if not path.is_file():
         raise VerificationFailure(f"missing receipt: {path.name}")
     return json.loads(path.read_text(encoding="utf-8"), parse_float=_reject_float)
+
+
+def assert_package_integrity(results: dict[str, Any]) -> None:
+    manifest_path = HERE / "PACKAGE_MANIFEST_R2.json"
+    manifest = load_receipt_no_floats(manifest_path)
+    if manifest.get("schema") != "ORION.ORION01.Round2.PackageManifest.v1":
+        raise VerificationFailure("unexpected package manifest schema")
+    if manifest.get("paper_id") != "ORION-01":
+        raise VerificationFailure("package manifest paper identity mismatch")
+    entries = manifest.get("entries", [])
+    paths = [entry.get("path") for entry in entries]
+    if len(paths) != len(set(paths)) or manifest_path.relative_to(REPO_ROOT).as_posix() in paths:
+        raise VerificationFailure("manifest duplicate or self-hash entry")
+    for entry in entries:
+        path = REPO_ROOT / entry["path"]
+        if not path.is_file():
+            raise VerificationFailure(f"manifest file missing: {entry['path']}")
+        payload = path.read_bytes()
+        if len(payload) != entry["bytes"]:
+            raise VerificationFailure(f"manifest byte mismatch: {entry['path']}")
+        if hashlib.sha256(payload).hexdigest() != entry["sha256"]:
+            raise VerificationFailure(f"manifest digest mismatch: {entry['path']}")
+    ledger = load_receipt_no_floats(HERE / "ATTEMPT_LEDGER_R2.json")
+    if ledger.get("scientific_authority_delta") != "NONE":
+        raise VerificationFailure("attempt ledger authority delta is not NONE")
+    if ledger.get("overall_terminal") != "CANNOT_CHECK_MOVE_COMPLETENESS":
+        raise VerificationFailure("attempt ledger lost the fail-closed terminal")
+    if ledger.get("stop_condition") is not None:
+        raise VerificationFailure("active material negative carries a premature stop condition")
+    if ledger.get("material_negative_status") != "ACTIVE":
+        raise VerificationFailure("material fail-closed negative is not ACTIVE")
+    if ledger.get("final_freeze_claimed_by_this_successor") is not False:
+        raise VerificationFailure("successor improperly claims a final freeze")
+    if ledger.get("current_paper_freeze", {}).get("mutated_by_successor") is not False:
+        raise VerificationFailure("successor claims mutation of the frozen paper")
+    if ledger.get("raw_result", {}).get("sha256") != hashlib.sha256(
+        (HERE / "ORION01_ROUND2_ATOMIC_RESULTS.json").read_bytes()
+    ).hexdigest():
+        raise VerificationFailure("attempt ledger raw-result digest mismatch")
+    rows = results["rows"]
+    if sum(bool(row.get("cap_hit")) for row in rows) != 8:
+        raise VerificationFailure("attempt ledger package expected eight cap rows")
+    if sum(bool(row.get("strict_gap")) for row in rows) != 4:
+        raise VerificationFailure("attempt ledger package expected four strict gaps")
+    if sum(bool(row.get("strict_gap")) and not row.get("generic_match", True) for row in rows) != 2:
+        raise VerificationFailure("attempt ledger package expected two generic misses")
 
 
 def assert_failure_structure(results: dict[str, Any], study: Any) -> None:
@@ -245,6 +293,7 @@ def main(argv: list[str] | None = None) -> int:
             terminal = subset["outcome"]["terminal"]
         else:
             results = load_receipt_no_floats(study.RESULTS_PATH)
+            assert_package_integrity(results)
             assert_failure_structure(results, study)
             replayed = replay_results_rows(results, study)
             terminal = results["outcome"]["terminal"]
