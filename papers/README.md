@@ -36,7 +36,7 @@ The candidate paper packages live directly under `papers/`, **one directory per 
 Three further directories under `papers/` are **not paper identities**:
 
 - `orion-learning-machine/` — the shared ORION-19/ORION-20 lane: framework, experiments and committed results that the two vacated candidates below cite. Authority `LOCAL_REPRODUCIBLE_CORE_ONLY`. Recorded in `SHARED_LANES`.
-- `paper-xx-executable-research-core/` — was ORION-19; terminal `MERGED INTO ORION-18/PROGRAMME`, no standalone manuscript.
+- `paper-xx-executable-research-core/` — was ORION-19; terminal `MERGED INTO P8/PROGRAMME`, no standalone manuscript.
 - `archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/` — was ORION-20; terminal `TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME`.
 
 The `paper-xx-` prefix vacates the number while keeping the record that each was a paper candidate. Neither is deleted: both hold results that live tests and other papers cite. See `PAPER_ALIASES.md` and `VACATED_PAPER_NUMBERS` in `src/orion/programme/superiority_terminals.py`.
