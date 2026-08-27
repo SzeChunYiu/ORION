@@ -22,6 +22,11 @@ ROOT = Path(__file__).resolve().parents[2]
 TARGETS = ROOT / "papers/publication_closure/WAVE_A_SPECIALIST_TARGETS_V1.json"
 SUBMISSIONS = ROOT / "papers/publication_closure/submissions"
 TERMINAL = "GOOD_SPECIALIST_REPOSITORY_PACKAGE_READY__HUMAN_FILING_ATTESTATIONS_OPEN"
+QUANTUM_REPLAY_TERMINAL = "WAVE_A_QUANTUM_DIRECT_REPLAYS_PASS__BOUNDED_AUTHORITY_ONLY"
+QG_PROGRAMME_TERMINAL = (
+    "ORION_QG_PROGRAMME_SCIENTIFICALLY_CLOSED__"
+    "THEOREMS_REFUTATIONS_AND_BOUNDED_CANNOT_CHECKS_RECEIPTED__NOT_NOVELTY_AUTHORITY"
+)
 
 TQE_REQUIRED = [
     "main.pdf",
@@ -29,6 +34,7 @@ TQE_REQUIRED = [
     "references.bib",
     "SCIENTIFIC_MASTER_CITED.md",
     "TQE_ABSTRACTS_V1.json",
+    "QUANTUM_REPLAY_RECEIPT_V1.json",
     "ABSTRACT_WORD_COUNT.txt",
     "SHA256SUMS",
 ]
@@ -92,6 +98,44 @@ def verify_sha_manifest(base: Path) -> list[dict[str, Any]]:
 def pdf_ok(path: Path) -> bool:
     raw = path.read_bytes()
     return raw.startswith(b"%PDF-") and b"%%EOF" in raw[-8192:]
+
+
+def verify_quantum_replay(paper_id: str, base: Path) -> dict[str, Any]:
+    path = base / "QUANTUM_REPLAY_RECEIPT_V1.json"
+    replay = load_json(path)
+    if replay.get("schema") != "ORION.WaveAQuantumReplayReceipt.v1":
+        raise SystemExit(f"bad quantum replay schema for {paper_id}")
+    if replay.get("terminal") != QUANTUM_REPLAY_TERMINAL:
+        raise SystemExit(f"quantum replay terminal not green for {paper_id}")
+    if replay.get("scientific_authority_delta") != "NONE":
+        raise SystemExit(f"quantum replay acquired authority for {paper_id}")
+    if replay.get("novelty_authority") is not False:
+        raise SystemExit(f"quantum replay acquired novelty authority for {paper_id}")
+
+    if paper_id == "ORION-05":
+        q1 = replay.get("orion05", {})
+        if q1.get("independent_sanity_status") != "PASS":
+            raise SystemExit("ORION-05 direct replay sanity not PASS")
+        if q1.get("restore_max_delta_f3") != 2:
+            raise SystemExit("ORION-05 direct replay Restore bound drifted")
+        if q1.get("support2_sharp_failure_patterns") != 4 or q1.get("support3_to_8_failures") != 0:
+            raise SystemExit("ORION-05 direct replay sharpness/class boundary drifted")
+    elif paper_id == "ORION-09":
+        qg = replay.get("orion09", {})
+        if qg.get("qg9_all_gates") is not True or qg.get("qg9_intrinsic_support_number") != 1:
+            raise SystemExit("ORION-09 QG9 theorem replay not green")
+        if qg.get("qg12_all_gates") is not True or qg.get("qg12_n1") != 729 or qg.get("qg12_n2") != 38760:
+            raise SystemExit("ORION-09 SixLCU theorem replay not green")
+        if qg.get("programme_terminal") != QG_PROGRAMME_TERMINAL or qg.get("programme_all_gates") is not True:
+            raise SystemExit("ORION-09 QG programme closure replay not green")
+    elif paper_id == "ORION-10":
+        qg = replay.get("orion10", {})
+        if qg.get("programme_terminal") != QG_PROGRAMME_TERMINAL or qg.get("programme_all_gates") is not True:
+            raise SystemExit("ORION-10 QG programme closure replay not green")
+        cannot = qg.get("bounded_cannot_checks")
+        if not isinstance(cannot, dict) or not {"qg7d", "qg11"}.issubset(cannot):
+            raise SystemExit("ORION-10 replay lost bounded CANNOT_CHECK history")
+    return replay
 
 
 def main() -> int:
@@ -163,8 +207,11 @@ def main() -> int:
             abstract_source = load_json(base / "TQE_ABSTRACTS_V1.json")
             if abstract_source.get("schema") != "ORION.TQEAbstractOverrides.v1":
                 raise SystemExit(f"bad TQE abstract source schema for {paper_id}")
+            replay = verify_quantum_replay(paper_id, base)
             row["abstract_word_count"] = count
             row["abstract_source_sha256"] = sha256(base / "TQE_ABSTRACTS_V1.json")
+            row["quantum_replay_terminal"] = replay["terminal"]
+            row["quantum_replay_sha256"] = sha256(base / "QUANTUM_REPLAY_RECEIPT_V1.json")
         papers[paper_id] = row
 
     receipt = {
