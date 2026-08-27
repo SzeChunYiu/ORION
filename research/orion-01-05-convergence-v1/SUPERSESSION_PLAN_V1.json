@@ -1,0 +1,100 @@
+{
+  "schema": "ORION.ORION0105.SupersessionPlan.v1",
+  "date": "2026-08-27",
+  "global_rule": "CLOSE_ONLY_AFTER_SUCCESSOR_MERGE_AND_MERGED_MAIN_VERIFICATION",
+  "after_convergence_merge": {
+    "conditions": [
+      "convergence pull request merged into current main",
+      "merged-main convergence workflow passes",
+      "copied donor hashes and exact adverse terminals remain bound",
+      "R18 and BNSL GitHub Actions ZIPs pass offline archive/member verification",
+      "failed R30 finalizer artifact is vendored and verified as one empty SHA256SUMS member",
+      "STACK_ARTIFACT_DISPOSITIONS_V1.json covers every frozen source PR file",
+      "canonical ORION-ID publication gate and venue ladder are present",
+      "donor commit:path objects remain reachable through source branches or an archival ref/bundle",
+      "protected Task-3/P9 diff remains empty"
+    ],
+    "close_pull_requests": [
+      1471,
+      1475,
+      1485,
+      1488,
+      1489,
+      1492,
+      1503,
+      1506,
+      1534
+    ],
+    "close_issues": [
+      1533
+    ],
+    "dispositions": {
+      "1471": "DONOR_MATERIALIZED__R18_NULL_AND_RETRACTION_PRESERVED",
+      "1475": "DONOR_MATERIALIZED__R19_EXACT_REPAIR_PRESERVED",
+      "1485": "SUPERSEDED_CURRENT_MAIN_REMATERIALIZATION_DRAFT",
+      "1488": "HISTORICAL_FINITE_THEORY_DRAFT__STATUS_SUPERSEDED",
+      "1534": "DONOR_MATERIALIZED__RAW_POSITIVE_QUARANTINE_AND_NULL_PRESERVED",
+      "1503": "AUTHORIZATION_KEY_CONSUMED__JOB_3544056_FAILURE_PRESERVED__NEW_KEY_REQUIRED",
+      "1533": "ROUND_1_COMPLETED_AT_PRESERVED_BNSL_NULL",
+      "1489": "R19_STORY_AND_MANUSCRIPT_DRAFT_FILE_DISPOSED__SCIENCE_STATUS_SUPERSEDED__HISTORY_RETAINED",
+      "1492": "FAILED_R30_PACKAGE_STACK_FILE_DISPOSED__VALID_AUDIT_DONORS_MATERIALIZED__HISTORY_RETAINED",
+      "1506": "PUBLICATION_POLICY_GATE_AND_VENUE_LADDER_SEMANTICALLY_ABSORBED_UNDER_CANONICAL_ORION_IDS"
+    }
+  },
+  "keep_open_after_convergence": {
+    "portfolio_issues": [
+      1507,
+      1517
+    ],
+    "science_round_issues": [
+      1511,
+      1512,
+      1513,
+      1514,
+      1516,
+      1519,
+      1520,
+      1521,
+      1522
+    ],
+    "active_science_pull_requests": [
+      1449,
+      1466,
+      1469,
+      1472,
+      1524
+    ],
+    "separate_repair_items": [
+      1531,
+      1532,
+      1538,
+      1540
+    ],
+    "reason": "These remain active science, execution, or repair lanes and have no verified merged science successor. Coordination/manuscript/package drafts listed for closure have complete file-level dispositions; their commits and adverse evidence remain historical provenance."
+  },
+  "after_orion05_theorem_successor_merge": {
+    "conditions": [
+      "clean successor merged",
+      "merged-main theorem verifier passes",
+      "adverse resource and support-one boundaries remain bound"
+    ],
+    "close_issues": [
+      1518,
+      1523
+    ],
+    "close_pull_requests": [
+      1524
+    ],
+    "keep_open_for_round_2": [
+      1511
+    ]
+  },
+  "never_superseded": [
+    "raw scientific result bytes",
+    "adverse, null, harmful, timeout, and CANNOT_CHECK outcomes",
+    "retractions, quarantines, and hostile controls",
+    "frozen subjects and source identities",
+    "protected Task-3/P9 evidence"
+  ],
+  "protected_task3_touched": false
+}

@@ -1,0 +1,35 @@
+drat-trim.c: In function ‘read_lit’:
+drat-trim.c:986:10: warning: implicit declaration of function ‘getc_unlocked’ [-Wimplicit-function-declaration]
+  986 |     lc = getc_unlocked (S->proofFile);
+      |          ^~~~~~~~~~~~~
+Traceback (most recent call last):
+  File "/home/scyiu/orion-takeover/crb-full-census-51727c09/ORION/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/crb_census.py", line 985, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/scyiu/orion-takeover/crb-full-census-51727c09/ORION/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/crb_census.py", line 964, in main
+    receipt = build_generation_receipt(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/scyiu/orion-takeover/crb-full-census-51727c09/ORION/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/crb_census.py", line 891, in build_generation_receipt
+    receipt["generation_receipt_sha256"] = _digest_of(
+                                           ^^^^^^^^^^^
+  File "/home/scyiu/orion-takeover/crb-full-census-51727c09/ORION/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/crb_census.py", line 729, in _digest_of
+    return hashlib.sha256(eb.canonical_json_bytes(value)).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/scyiu/orion-takeover/crb-full-census-51727c09/ORION/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/engine_b.py", line 83, in canonical_json_bytes
+    _canonical(value),
+    ^^^^^^^^^^^^^^^^^
+  File "/home/scyiu/orion-takeover/crb-full-census-51727c09/ORION/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/engine_b.py", line 75, in _canonical
+    return {str(key): _canonical(item) for key, item in sorted(value.items())}
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/scyiu/orion-takeover/crb-full-census-51727c09/ORION/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/engine_b.py", line 75, in <dictcomp>
+    return {str(key): _canonical(item) for key, item in sorted(value.items())}
+                      ^^^^^^^^^^^^^^^^
+  File "/home/scyiu/orion-takeover/crb-full-census-51727c09/ORION/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/engine_b.py", line 75, in _canonical
+    return {str(key): _canonical(item) for key, item in sorted(value.items())}
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/scyiu/orion-takeover/crb-full-census-51727c09/ORION/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/engine_b.py", line 75, in <dictcomp>
+    return {str(key): _canonical(item) for key, item in sorted(value.items())}
+                      ^^^^^^^^^^^^^^^^
+  File "/home/scyiu/orion-takeover/crb-full-census-51727c09/ORION/papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/engine_b.py", line 78, in _canonical
+    raise TypeError(f"value is not canonical JSON: {type(value).__name__}")
+TypeError: value is not canonical JSON: float

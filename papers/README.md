@@ -2,9 +2,20 @@
 
 The paper tree is a first-class projection of the executable framework, not a historical publication archive.
 
+Canonical identities across the whole tree follow the single flat `ORION-NN`
+registry in `PAPER_ALIASES.md`. “Flagship” below is a programme role, not a
+separate numbering system. In particular, the former AB/C/D/NQ/Q1 studies are
+now **ORION-01–05** (Certificate Realization, FiberGuard Finite Fibre,
+Typed-Merge Falsification, Rooted Completion Certificates, and TARE
+Expressivity). Their current evidence hierarchy and science-first closure gates
+are controlled by `../research/orion-01-05-convergence-v1/README.md` and
+`../research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json`.
+
 ## Publication identity rule
 
-ORION has **exactly five numbered flagship papers**. A paper identity is determined by its canonical topic and directory below, not by a historical number that may appear in an old RAKL artifact.
+ORION has **exactly five flagship papers**, assigned ORION-11–15 in the flat
+registry. A paper identity is determined by its canonical topic and directory
+below, not by a historical number that may appear in an old RAKL artifact.
 
 | Canonical ID | Flagship paper | Canonical directory |
 |---|---|---|
@@ -85,22 +96,27 @@ Canonical synchronization files:
 
 ## ORION-Q publication wave — final internal spec 2026-08-22
 
-The closed ORION-Q programme has a separate four-paper publication wave. These packages are **not** part of the numbered ORION-11–ORION-25 identity system above.
+The historical ORION-Q programme has a separate four-paper publication wave.
+These packages are outside the five-paper **flagship** programme, but their
+canonical identities are ORION-05–08 in the same flat `ORION-NN` registry.
+“Closed” in the older wave record refers only to that bounded internal spec; it
+does not override the current ORION-05 science and authority gates linked
+above.
 
 The machine-readable publication contract is `Q_SERIES_FINAL_SPEC_V1.json`; the human readiness record is `Q_SERIES_FINAL_READINESS_2026-08-22.md`. Canonical publication bytes are protected by `Q_SERIES_CONTENT_BINDING_V1.json`, and the framework/harness checks are defined in `src/orion/programme/q_series_sync.py` and `packages/orion-research-harness/src/orion_research_harness/publication_contract.py`.
 
 | Q paper | Role | Canonical manuscript | Current bounded internal status |
 |---|---|---|---|
-| `orion-05-tare-expressivity/` | quantum-compilation mathematics | `MANUSCRIPT_SUBMISSION_DRAFT.md` | sharp `kappa_R6M=2` theorem package complete; journal formatting/upload work remains |
+| `orion-05-tare-expressivity/` | quantum-compilation mathematics | `MANUSCRIPT_SUBMISSION_DRAFT.md` | bounded `kappa_R6M=2` core/package complete; current science closure, runtime candidate, external-authority, and submission gates remain open under convergence V1 |
 | `orion-06-recursive-recovery/` | negative-result recovery methodology | `MANUSCRIPT_V2.md` | complete single-programme case study; cross-domain protocol is optional successor research |
 | `orion-07-dual-instrument/` | scientific decision instruments / deferred scoring | `MANUSCRIPT_V2.md` | complete systems/benchmark-definition paper with one V0 measurement; calibration study deferred |
 | `orion-08-typed-state/` | typed/scoped epistemic state under partial knowledge | `MANUSCRIPT_V2.md` | complete exact-synthetic mechanism/benchmark paper; real-domain study deferred |
 
 Each Q directory now carries a `REPRODUCE.md` and `SUBMISSION_PACKAGE.md` in addition to its canonical manuscript/ledger materials.
 
-The owner elected to skip a separate external quantum-expert pre-review for ORION-01. The final spec records `SKIPPED_BY_OWNER`; this is not encoded as a scientific PASS and does not create external novelty/quantum authority.
+The owner elected to skip a separate external quantum-expert pre-review for ORION-05. The final spec records `SKIPPED_BY_OWNER`; this is not encoded as a scientific PASS and does not create external novelty/quantum authority.
 
-### ORION-01 theorem status
+### ORION-05 theorem status
 
 For the frozen R6M shared-Tag TARE-M2 grammar/support-count objective:
 

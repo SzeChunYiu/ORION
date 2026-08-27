@@ -1,0 +1,156 @@
+{
+  "schema": "ORION.FiberGuard.PairedRoute.Protocol.R18.v1",
+  "parent_commit": "f34b61e0051289588eaf144a580dca7bc9b7e707",
+  "created_utc": "2026-08-26",
+  "question": "Can jointly calibrated learned/fallback loss certificates create paid routing value on new MaxSAT portfolios and an untouched QBF portfolio after one-sided deferral failed?",
+  "upstream": {
+    "repository": "https://github.com/coseal/aslib_data.git",
+    "commit": "551b22beef8df17de59286b4822ef720e0aa4d6f"
+  },
+  "scenarios": {
+    "development": {
+      "name": "MAXSAT12-PMS",
+      "acquisition_step": "group_basics",
+      "files": {
+        "description.txt": "7ae8668d58c03422de24c9adace51422b7f9c6ac",
+        "algorithm_runs.arff": "5ad1059dc7416852ef64813a0b3b482120462caf",
+        "feature_values.arff": "d3fe6579ffce39f52c2d06a8af3e4b57bf1d4af1",
+        "feature_costs.arff": "70219812f723075de123f165d9db44991a419301",
+        "feature_runstatus.arff": "29f38072d08b51e56e93e606e07e7c45c0d5a5cc",
+        "cv.arff": "b3d5a5da426b5f312549d23ae1581a53852d7c17"
+      }
+    },
+    "validation": {
+      "name": "MAXSAT19-UCMS",
+      "acquisition_step": "ALL",
+      "files": {
+        "description.txt": "64f6ced844a35a0705d11a7037cd1242fe0d8384",
+        "algorithm_runs.arff": "556677e94d91cd4ff18e2a2897abf4169c53b10d",
+        "feature_values.arff": "1c3dd13b892543cac4ba21fce471e4b547d9d838",
+        "feature_costs.arff": "0e1a925a03e805081b9c2924d5213477f3c81067",
+        "feature_runstatus.arff": "e3d20d6c37232f4ffe8a4fe36a0b3956acc6be7c",
+        "cv.arff": "2fc551865daa0f165e06cd201cebfea83dfdbc25"
+      }
+    },
+    "test": {
+      "name": "QBF-2016",
+      "acquisition_step": "base",
+      "files": {
+        "description.txt": "1ff7b24cd18b45eb3968023a8c296d894f00ae5a",
+        "algorithm_runs.arff": "a41a89e5d8fd8e3e141f1e453ebebef6f8359341",
+        "feature_values.arff": "e70717db49418f0e58bd318b003e967210c36931",
+        "feature_costs.arff": "3ec4a2b06cde37fa123a6cdbb811811d7556fd13",
+        "feature_runstatus.arff": "13a252c520394860a12b1dda615546a45077a50e",
+        "cv.arff": "db5a2ef4d46726382be17fbc2f70c2f89848e3ce"
+      }
+    }
+  },
+  "declared_measure_contract": {
+    "one_measure_only": true,
+    "maximize_must_be_false": true,
+    "runtime_measure": "median ok runtime; every non-ok status receives PAR10",
+    "PAR10_measure": "median declared PAR10 value, with every non-ok status checked against the PAR10 cutoff value",
+    "failure_metrics": "timeout and non-ok are reported separately"
+  },
+  "split": {
+    "official_cv_repetition": 1,
+    "expected_folds": 10,
+    "test_fold": "f",
+    "calibration_fold": "1 + (f mod 10)",
+    "proper_training_folds": "the other eight folds"
+  },
+  "representation": {
+    "scope": "all deterministic features provided by the scenario-specific paid acquisition step",
+    "scenario_specific": true,
+    "missingness": "proper-training median imputation plus explicit missingness indicators",
+    "scaling": "proper-training mean and standard deviation",
+    "runstatus": "one-hot ok,presolved,timeout,memout,crash,other"
+  },
+  "model_candidates": {
+    "knn": {"neighbors": [8, 16, 32], "weights": "distance"},
+    "extra_trees": {
+      "n_estimators": 128,
+      "min_samples_leaf": [1, 2, 4],
+      "max_features": [0.5, 1.0],
+      "random_state": 20260826,
+      "n_jobs": 1
+    },
+    "random_forest": {
+      "n_estimators": 128,
+      "min_samples_leaf": [1, 4],
+      "max_features": [0.5],
+      "random_state": 20260826,
+      "n_jobs": 1
+    }
+  },
+  "alpha": [0.05, 0.1, 0.2],
+  "route_modes": [
+    "paired_upper",
+    "interval_no_harm",
+    "direct_difference"
+  ],
+  "calibration": {
+    "paired_upper_score": "max(L-Lhat,F-Fhat)",
+    "interval_score": "max(abs(L-Lhat),abs(F-Fhat))",
+    "difference_score": "abs((F-L)-(Fhat-Lhat))",
+    "quantile_rank": "ceil((n_calibration+1)*(1-alpha)); infinity when rank exceeds denominator"
+  },
+  "routing": {
+    "learned_action": "argmin clipped predicted action regret",
+    "fallback_action": "proper-training action minimizing maximum observed regret",
+    "paired_upper": "choose action with smaller jointly calibrated upper loss",
+    "interval_no_harm": "switch from learned to fallback only if fallback upper <= learned lower",
+    "direct_difference": "switch from learned to fallback only if upper certificate on F-L <= 0",
+    "oracle_contextual_route": "report-only pointwise minimum of realized learned and fallback losses"
+  },
+  "development_selection": {
+    "scenario": "MAXSAT12-PMS",
+    "candidate_count": 99,
+    "feasible_constraints": {
+      "route_change_coverage_minimum": 0.05,
+      "route_mean_strictly_lower_than_full_learned": true,
+      "route_mean_strictly_lower_than_no_feature_fallback": true,
+      "route_catastrophic_rate_no_larger_than_full_learned": true,
+      "route_p95_no_larger_than_full_learned": true,
+      "empirical_certificate_failure_no_larger_than_alpha_plus": 0.02
+    },
+    "objective": "minimum route mean; then catastrophic rate, p95, negative route-change coverage, model specification, alpha, route mode",
+    "no_feasible_configuration": "retain global objective minimum and emit development failure"
+  },
+  "frozen_reference_baselines": {
+    "knn": {"family": "knn", "neighbors": 16, "weights": "distance"},
+    "extra_trees": {"family": "extra_trees", "n_estimators": 256, "min_samples_leaf": 2, "max_features": 1.0, "random_state": 20260826, "n_jobs": 1}
+  },
+  "panel_gate": {
+    "full_model_mean_strictly_lower_than_no_feature_fallback": true,
+    "route_mean_strictly_lower_than_full_model": true,
+    "route_catastrophic_rate_no_larger_than_full_model": true,
+    "route_p95_no_larger_than_full_model": true,
+    "route_change_coverage_minimum": 0.05,
+    "empirical_certificate_failure_no_larger_than_alpha_plus": 0.02
+  },
+  "terminals": [
+    "FIBERGUARD_R18_PAIRED_ROUTE_PASS_MAXSAT_VALIDATION_AND_QBF_TEST",
+    "FIBERGUARD_R18_MAXSAT_VALIDATION_PASS__QBF_TEST_FAIL",
+    "FIBERGUARD_R18_DEVELOPMENT_ONLY__MAXSAT19_FAIL",
+    "FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE",
+    "CANNOT_CHECK_DECLARED_MEASURE",
+    "CANNOT_CHECK_FEATURE_COST",
+    "CANNOT_CHECK_RESOURCE_BOUND"
+  ],
+  "authority": {
+    "result_must_be_absent_from_protocol_commit": true,
+    "R16_scenarios_may_not_select_R18_parameters": true,
+    "MAXSAT12_is_development_only": true,
+    "MAXSAT19_is_validation_only": true,
+    "QBF2016_is_untouched_test": true,
+    "solver_models_are_refit_within_scenario": true,
+    "model_route_alpha_tuple_transfers_without_retuning": true,
+    "paired_certificates_are_marginal_under_exchangeability": true,
+    "interval_no_harm_is_pointwise_only_on_joint_validity_event": true,
+    "strongest_algorithm_selection_baseline_complete": false,
+    "external_independence": false,
+    "production_value": false,
+    "journal_authority": false
+  }
+}

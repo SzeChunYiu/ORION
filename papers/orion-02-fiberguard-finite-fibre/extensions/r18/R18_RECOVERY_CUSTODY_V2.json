@@ -1,0 +1,66 @@
+{
+  "schema": "ORION.ORION02.R18RecoveryCustody.v2",
+  "date": "2026-08-27",
+  "terminal": "FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE",
+  "authority": {
+    "recovery_status": "OUTCOME_EXPOSED_RECOVERY_CORROBORATION",
+    "external_independence": false,
+    "production_value": false,
+    "novelty": false,
+    "journal_authority": false,
+    "submission_authorized": false
+  },
+  "former_positive_terminal": {
+    "value": "FIBERGUARD_R18_PAIRED_ROUTE_PASS_MAXSAT_VALIDATION_AND_QBF_TEST",
+    "disposition": "RETRACTED_UNSUPPORTED_EXECUTION_IDENTITY"
+  },
+  "execution": {
+    "subject_commit": "ac4a50f85a147f5933cd2055809c7ac30b29e3c1",
+    "workflow_run": 33023149716,
+    "job": 98358163251,
+    "conclusion": "success",
+    "executed_twice_byte_identically": true,
+    "upstream_aslib_commit": "551b22beef8df17de59286b4822ef720e0aa4d6f"
+  },
+  "artifact": {
+    "id": 9627389618,
+    "name": "fiberguard-paired-route-r18-recovery-ac4a50f85a147f5933cd2055809c7ac30b29e3c1",
+    "expired": false,
+    "zip_sha256": "a750d59572d28d17f63329bfb2ce2c633a081063f19d0d8c3c4bdbf45edb1fa1",
+    "files": {
+      "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json": {
+        "bytes": 255051,
+        "sha256": "e5a4bb3c913405ec10be0cd8db3e8091deb3a3f14a855f2a5402770071e336b9"
+      },
+      "RECOVERY_COMMENT.md": {
+        "bytes": 1157,
+        "sha256": "41a5de9b857db02bbde9465a3c1345fde19f30dc07719f878a96f3741a457680"
+      },
+      "TERMINAL.txt": {
+        "bytes": 158,
+        "sha256": "e213fa6f4084ea9ed6b6b38504188d664675e919c23bc7f6111424b5463401cf"
+      }
+    }
+  },
+  "durable_branch_verification": {
+    "commit": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+    "workflow_run": 33024187320,
+    "job": 98361528261,
+    "conclusion": "success",
+    "artifact_result_matches_committed_result": true
+  },
+  "scientific_result": {
+    "development_candidate_count": 99,
+    "development_feasible_candidate_count": 0,
+    "route_change_coverage": {
+      "MAXSAT12-PMS": 0.0,
+      "MAXSAT19-UCMS": 0.0,
+      "QBF-2016": 0.0
+    }
+  },
+  "supersedes_custody_only": {
+    "stale_result_sha256": "8136ac6e614406a51270342d73786dfec43a9ecdac81f62e815cd14d1a739c45",
+    "stale_zip_sha256": "4b9bf9de4bbf3f0db6d08a4f92f9bf297f9750dcfae8e0e50c1dfcf2b3efa36",
+    "scientific_result_rewritten": false
+  }
+}

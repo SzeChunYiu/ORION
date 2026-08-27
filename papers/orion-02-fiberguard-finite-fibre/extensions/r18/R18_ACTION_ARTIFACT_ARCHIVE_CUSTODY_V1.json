@@ -1,0 +1,63 @@
+{
+  "schema": "ORION.FiberGuard.ActionArtifactArchiveCustody.v1",
+  "date": "2026-08-27",
+  "terminal": "R18_ACTION_ARTIFACT_ARCHIVED__NULL_AND_RETRACTION_PRESERVED",
+  "api_snapshot": {
+    "repository": "SzeChunYiu/ORION",
+    "verified_at": "2026-08-27T10:27:38Z",
+    "run": 33023149716,
+    "workflow_id": 343322586,
+    "workflow": "five-paper-r18-c-paired-route-recovery",
+    "event": "push",
+    "head_branch": "chatgpt/r18-c-paired-route-20260826",
+    "head_sha": "ac4a50f85a147f5933cd2055809c7ac30b29e3c1",
+    "run_conclusion": "success",
+    "artifact_id": 9627389618,
+    "artifact_name": "fiberguard-paired-route-r18-recovery-ac4a50f85a147f5933cd2055809c7ac30b29e3c1",
+    "artifact_size_in_bytes": 22592,
+    "artifact_created_at": "2026-08-26T23:25:52Z",
+    "artifact_expires_at": "2026-09-25T23:25:51Z",
+    "artifact_expired_at_snapshot": false
+  },
+  "archive": {
+    "path": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_ACTION_ARTIFACT_9627389618.zip",
+    "bytes": 22592,
+    "sha256": "a750d59572d28d17f63329bfb2ce2c633a081063f19d0d8c3c4bdbf45edb1fa1"
+  },
+  "members": {
+    "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json": {
+      "bytes": 255051,
+      "sha256": "e5a4bb3c913405ec10be0cd8db3e8091deb3a3f14a855f2a5402770071e336b9",
+      "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json"
+    },
+    "SHA256SUMS": {
+      "bytes": 464,
+      "sha256": "dfbd5f433027ba4f527a85f7544f3c9c4ce78cf8279e6590617f820122020cf7",
+      "canonical_copy": null
+    },
+    "RECOVERY_COMMENT.md": {
+      "bytes": 1157,
+      "sha256": "41a5de9b857db02bbde9465a3c1345fde19f30dc07719f878a96f3741a457680",
+      "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_COMMENT.md"
+    },
+    "TERMINAL.txt": {
+      "bytes": 158,
+      "sha256": "e213fa6f4084ea9ed6b6b38504188d664675e919c23bc7f6111424b5463401cf",
+      "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_TERMINAL.txt"
+    }
+  },
+  "scientific_disposition": {
+    "terminal": "FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE",
+    "former_positive_terminal": "RETRACTED_UNSUPPORTED_EXECUTION_IDENTITY",
+    "outcome_exposed_recovery": true
+  },
+  "authority": {
+    "artifact_custody": true,
+    "same_owner_execution": true,
+    "external_independence": false,
+    "production_value": false,
+    "novelty_authority": false,
+    "journal_authority": false,
+    "submission_authorized": false
+  }
+}
