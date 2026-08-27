@@ -1,0 +1,106 @@
+{
+  "schema": "ORION.FiberGuard.ASlibSAT12ALL.R11.Summary.v1",
+  "terminal": "FIBERGUARD_ASLIB_SAT12_ALL_PASS",
+  "workflow_run_id": 33003294882,
+  "workflow_artifact_id": 9619575326,
+  "workflow_artifact_digest": "sha256:0ae8c1ee8399a8de1948b6030085b819ce664a84bb312a97cd4466ec96ab2ef8",
+  "full_result_sha256": "7c0778836101d5fe44b024e302c3fc0848faf5a994fc1e51b80831d82fd5e652",
+  "upstream": {
+    "repository": "coseal/aslib_data",
+    "commit": "551b22beef8df17de59286b4822ef720e0aa4d6f",
+    "scenario": "SAT12-ALL"
+  },
+  "corpus": {
+    "instances": 1614,
+    "algorithms": 31,
+    "features": 115,
+    "feature_steps": 10,
+    "dependency_closed_representations": 513,
+    "algorithm_measurements": 50034,
+    "ok_measurements": 23086,
+    "timeout_measurements": 26948,
+    "algorithm_cutoff_seconds": 1200.0,
+    "PAR10": 12000.0
+  },
+  "portfolio": {
+    "single_best_solver": "mphaseSATm",
+    "single_best_solver_mean_PAR10": 3079.8857496902106,
+    "virtual_best_solver_mean_PAR10": 241.317614622057,
+    "mean_oracle_gap_PAR10": 2838.5681350681534
+  },
+  "registered_baselines": {
+    "no_features": {
+      "steps": [],
+      "fibres": 1,
+      "maximum_fibre_size": 1614,
+      "robust_action_only_regret": 12000.0,
+      "robust_total_excess_cost": 12000.0,
+      "mean_total_excess_cost": 5448.314665427509,
+      "median_total_excess_cost": 582.71,
+      "p95_total_excess_cost": 11999.97,
+      "worst_fibre_witness_size": 7
+    },
+    "all_feature_steps": {
+      "steps": ["Basic", "CG", "DIAMETER", "KLB", "Pre", "cl", "lobjois", "ls_gsat", "ls_saps", "sp"],
+      "fibres": 1596,
+      "maximum_fibre_size": 17,
+      "mean_feature_cost": 180.4930421313507,
+      "maximum_feature_cost": 16906.55,
+      "robust_action_only_regret": 11.529999999999998,
+      "robust_total_excess_cost": 16906.55,
+      "mean_total_excess_cost": 180.7672800495663,
+      "median_total_excess_cost": 28.42500000000001,
+      "p95_total_excess_cost": 105.5,
+      "worst_fibre_witness_size": 1
+    }
+  },
+  "exact_best_static_representation": {
+    "steps": ["Pre", "lobjois"],
+    "fibres": 1595,
+    "maximum_fibre_size": 20,
+    "mean_feature_cost": 22.74003097893432,
+    "maximum_feature_cost": 1712.0,
+    "robust_action_only_regret": 11.529999999999998,
+    "robust_total_excess_cost": 1712.0,
+    "mean_total_excess_cost": 23.01433705080545,
+    "median_total_excess_cost": 2.08,
+    "p95_total_excess_cost": 16.450000000000045,
+    "worst_fibre_size": 20,
+    "worst_fibre_witness_size": 3,
+    "worst_fibre_witness_instances": [
+      "SAT-Race-2010-CNF/software-verification/post/zfcp-2.8-u2-nh.cnf",
+      "SAT_Competition2009/CRAFTED/Difficult/contest05/sabharwal/grid-pebbling-sat-grid-pbl-0300.sat05-1341.sat05-1341.reshuffled-07.cnf",
+      "SAT_Competition2011/SAT11/application/jarvisalo/smtqfbv-aigs/smtlib-qfbv-aigs-ext_con_032_008_0256-tseitin.cnf"
+    ]
+  },
+  "pareto_frontier": [
+    {"steps": [], "mean_feature_cost": 0.0, "robust_action_only_regret": 12000.0, "robust_total_excess_cost": 12000.0},
+    {"steps": ["Pre"], "mean_feature_cost": 6.332831474597274, "robust_action_only_regret": 11891.99, "robust_total_excess_cost": 11892.039999999999},
+    {"steps": ["Basic", "Pre"], "mean_feature_cost": 19.0196468401487, "robust_action_only_regret": 216.88, "robust_total_excess_cost": 2400.0},
+    {"steps": ["Pre", "lobjois"], "mean_feature_cost": 22.74003097893432, "robust_action_only_regret": 11.529999999999998, "robust_total_excess_cost": 1712.0}
+  ],
+  "primary_discriminator": {
+    "strictly_better_than_no_features": true,
+    "strictly_better_than_all_features": true,
+    "robust_total_excess_reduction_vs_no_features": 10288.0,
+    "robust_total_excess_ratio_vs_no_features": 0.14266666666666666,
+    "robust_total_excess_reduction_vs_all_features": 15194.55,
+    "mean_total_excess_reduction_vs_no_features": 5425.300328376703,
+    "mean_total_excess_reduction_vs_all_features": 157.75294299876085
+  },
+  "controls": {
+    "two_byte_identical_full_runs": true,
+    "all_dependency_closed_representations_evaluated": true,
+    "worst_fibre_witness_bound_le_action_count": true,
+    "best_static_is_global_minimum_on_registered_menu": true
+  },
+  "authority": {
+    "corpus_complete_for_pinned_scenario": true,
+    "uses_recorded_same_unit_feature_and_solver_costs": true,
+    "external_replay": false,
+    "unseen_instance_generalization": false,
+    "learned_selector_claim": false,
+    "production_deployment_claim": false,
+    "grants_journal_authority": false
+  }
+}

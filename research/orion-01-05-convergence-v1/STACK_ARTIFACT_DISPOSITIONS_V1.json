@@ -1,0 +1,1345 @@
+{
+  "schema": "ORION.ORION0105.StackArtifactDispositions.v1",
+  "date": "2026-08-27",
+  "terminal": "ORION_01_05_STACK_FILE_DISPOSITIONS_COMPLETE__HISTORY_PRESERVED__SCIENCE_AUTHORITY_UNCHANGED",
+  "rule": "Every file at each frozen PR head is disposed independently. Closing a PR never deletes its commits and never supersedes raw adverse/null/retracted/CANNOT_CHECK evidence.",
+  "source_pr_file_counts": {
+    "1471": 11,
+    "1475": 5,
+    "1485": 7,
+    "1488": 11,
+    "1489": 11,
+    "1492": 54,
+    "1503": 3,
+    "1506": 3,
+    "1534": 4
+  },
+  "source_pr_snapshots": {
+    "1471": {
+      "title": "[R18][C][NULL] Outcome-exposed recovery finds no paired-route value",
+      "state": "OPEN",
+      "isDraft": true,
+      "baseRefName": "chatgpt/r17-c-fallback-alignment-20260826",
+      "baseRefOid": "f34b61e0051289588eaf144a580dca7bc9b7e707",
+      "headRefName": "chatgpt/r18-c-paired-route-20260826",
+      "headRefOid": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "url": "https://github.com/SzeChunYiu/ORION/pull/1471",
+      "file_count": 11
+    },
+    "1475": {
+      "title": "[R19][C] Replace invalid paired-route shortcut with exact joint profile hulls",
+      "state": "OPEN",
+      "isDraft": true,
+      "baseRefName": "chatgpt/r17-c-fallback-alignment-20260826",
+      "baseRefOid": "f34b61e0051289588eaf144a580dca7bc9b7e707",
+      "headRefName": "chatgpt/r19-c-joint-route-replacement-20260827",
+      "headRefOid": "0879974cfdfb2cccb8d50d1c9ed5f44b165e171f",
+      "url": "https://github.com/SzeChunYiu/ORION/pull/1475",
+      "file_count": 5
+    },
+    "1485": {
+      "title": "[ORION-02][R19] Rematerialize exact joint-route repair on current main",
+      "state": "OPEN",
+      "isDraft": true,
+      "baseRefName": "main",
+      "baseRefOid": "3a1a831786324261ac18a7ad20620f105136b58e",
+      "headRefName": "chatgpt/orion-02-r19-current-main-20260827",
+      "headRefOid": "e4e504fc94b86511040b484bc56496c6c70b10c9",
+      "url": "https://github.com/SzeChunYiu/ORION/pull/1485",
+      "file_count": 7
+    },
+    "1488": {
+      "title": "[R18][C] Relative route certificates, acquisition timing, and transfer margins",
+      "state": "OPEN",
+      "isDraft": true,
+      "baseRefName": "chatgpt/r17-c-fallback-alignment-20260826",
+      "baseRefOid": "f34b61e0051289588eaf144a580dca7bc9b7e707",
+      "headRefName": "chatgpt/r18-c-relative-route-extension-20260826",
+      "headRefOid": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "url": "https://github.com/SzeChunYiu/ORION/pull/1488",
+      "file_count": 11
+    },
+    "1489": {
+      "title": "[R19][C] Synthesize complete FiberGuard theorem and evidence story",
+      "state": "OPEN",
+      "isDraft": true,
+      "baseRefName": "chatgpt/r18-c-relative-route-extension-20260826",
+      "baseRefOid": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "headRefName": "chatgpt/r19-c-fiberguard-story-synthesis-20260827",
+      "headRefOid": "64091190ff3386d08f8033885e37b0389b535f76",
+      "url": "https://github.com/SzeChunYiu/ORION/pull/1489",
+      "file_count": 11
+    },
+    "1492": {
+      "title": "[ORION-02][R18][NULL] Bind recovered paired-route null on current main",
+      "state": "OPEN",
+      "isDraft": true,
+      "baseRefName": "chatgpt/orion-02-r19-current-main-20260827",
+      "baseRefOid": "e4e504fc94b86511040b484bc56496c6c70b10c9",
+      "headRefName": "chatgpt/orion-02-r18-null-current-main-20260827",
+      "headRefOid": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "url": "https://github.com/SzeChunYiu/ORION/pull/1492",
+      "file_count": 54
+    },
+    "1503": {
+      "title": "[NQ][AUTH] Bind one-shot current-root CR-B full replay authorization",
+      "state": "OPEN",
+      "isDraft": true,
+      "baseRefName": "codex/crb-full-manifest-1383-20260826",
+      "baseRefOid": "63950633df0b6665f90981f922a9ca748c1b9b3d",
+      "headRefName": "chatgpt/nq-crb-full-replay-current-root-20260827",
+      "headRefOid": "d8d71370f547031862cbf4376e88fa8e6be519fb",
+      "url": "https://github.com/SzeChunYiu/ORION/pull/1503",
+      "file_count": 3
+    },
+    "1506": {
+      "title": "[PUBLICATION] Top-tier-first five-paper programme with specialist fallback",
+      "state": "OPEN",
+      "isDraft": true,
+      "baseRefName": "main",
+      "baseRefOid": "6d2d1699be7b5dfc1dd8b2721829b908ff4fb3d8",
+      "headRefName": "chatgpt/five-paper-top-tier-first-publication-20260827",
+      "headRefOid": "0caeb162b96cd965491f75012930de784cdfcbc8",
+      "url": "https://github.com/SzeChunYiu/ORION/pull/1506",
+      "file_count": 3
+    },
+    "1534": {
+      "title": "[R20][C][BNSL][NULL] Free static representation saturates VBS; positive terminal quarantined",
+      "state": "OPEN",
+      "isDraft": true,
+      "baseRefName": "main",
+      "baseRefOid": "405247aad9b8fdda285b13590f6a5d4e96247d7e",
+      "headRefName": "chatgpt/c-r20-bnsl-adaptive-20260827",
+      "headRefOid": "d31075ee07a0a870b5705e6b149b9fa75029c2f5",
+      "url": "https://github.com/SzeChunYiu/ORION/pull/1534",
+      "file_count": 4
+    }
+  },
+  "files": [
+    {
+      "source_pr": 1471,
+      "source_head": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "source_path": ".github/workflows/five-paper-r18-c-paired-route.yml",
+      "source_blob": "bf0f027d935be357793432ddc46a600b6f931f43",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1471,
+      "source_head": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "source_path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_PROTOCOL_R18.md",
+      "source_blob": "5e3e3e3e0fbbc02ad82b91ef5bb687ed139554f7",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_PROTOCOL_R18.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1471,
+      "source_head": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "source_path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_COMMENT.md",
+      "source_blob": "15c8f9d6e85f9e621e6b32c773942d9040c6d982",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_COMMENT.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1471,
+      "source_head": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "source_path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json",
+      "source_blob": "bfdf072c2c1a88b724f2571480bd44075ee28c01",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1471,
+      "source_head": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "source_path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_TERMINAL.txt",
+      "source_blob": "5adcbecb46cdadcc55f06eadaae8b7624e7731af",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_TERMINAL.txt"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1471,
+      "source_head": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "source_path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_R18_RESULT.md",
+      "source_blob": "ce25e4e1f9b0e8124caf3c33e252ec1ca7d3bda4",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_CUSTODY_V2.json",
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_DISPOSITION_V2.md"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1471,
+      "source_head": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "source_path": "papers/five-paper-top-tier-r8/C/PAIRED_ROUTE_PROTOCOL_R18.json",
+      "source_blob": "74053646031799b06aaa03d571f821dba9022785",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/PAIRED_ROUTE_PROTOCOL_R18.json"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1471,
+      "source_head": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "source_path": "papers/five-paper-top-tier-r8/C/fiberguard_paired_route_r18.py",
+      "source_blob": "b8d5d40f6b27499a11134f1d3f528ffc953ee692",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/fiberguard_paired_route_r18.py"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1471,
+      "source_head": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "source_path": "papers/five-paper-top-tier-r8/C/fiberguard_paired_route_r18_data.py",
+      "source_blob": "b6ef13bcb1195af77f518cbb2f23a35888d14df9",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/fiberguard_paired_route_r18_data.py"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1471,
+      "source_head": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "source_path": "papers/five-paper-top-tier-r8/C/fiberguard_paired_route_r18_policy.py",
+      "source_blob": "ede3d48141e28606c5d69b4335d2e74c46ef4bd2",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/fiberguard_paired_route_r18_policy.py"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1471,
+      "source_head": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+      "source_path": "papers/five-paper-top-tier-r8/C/fiberguard_paired_route_r18_sources.py",
+      "source_blob": "8b48ffc0b224e72c9e291dece44eae5a8ed5ecc9",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/fiberguard_paired_route_r18_sources.py"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1475,
+      "source_head": "0879974cfdfb2cccb8d50d1c9ed5f44b165e171f",
+      "source_path": ".github/workflows/five-paper-r19-c-joint-route.yml",
+      "source_blob": "2f8aeaf28b0208daebbdc6236be9eb2514852085",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1475,
+      "source_head": "0879974cfdfb2cccb8d50d1c9ed5f44b165e171f",
+      "source_path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT.md",
+      "source_blob": "5c2c0143eb29a1832afe77aedfdcdc8ab532f2dc",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r19/FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1475,
+      "source_head": "0879974cfdfb2cccb8d50d1c9ed5f44b165e171f",
+      "source_path": "papers/five-paper-top-tier-r8/C/JOINT_ROUTE_R19_RESULTS.json",
+      "source_blob": "e900c074d66ad43bf0276720bea0f3425529a808",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r19/JOINT_ROUTE_R19_RESULTS.json"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1475,
+      "source_head": "0879974cfdfb2cccb8d50d1c9ed5f44b165e171f",
+      "source_path": "papers/five-paper-top-tier-r8/C/fiberguard_joint_route_r19_core.py",
+      "source_blob": "51ae730f5de89d46b03a29492cdc1fbf29676b05",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r19/fiberguard_joint_route_r19_core.py"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1475,
+      "source_head": "0879974cfdfb2cccb8d50d1c9ed5f44b165e171f",
+      "source_path": "papers/five-paper-top-tier-r8/C/verify_fiberguard_joint_route_r19.py",
+      "source_blob": "2efee1247c1a90cb224da859af1fd43b930cf168",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r19/verify_fiberguard_joint_route_r19.py"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1485,
+      "source_head": "e4e504fc94b86511040b484bc56496c6c70b10c9",
+      "source_path": ".github/workflows/orion-02-r19-joint-route.yml",
+      "source_blob": "85be1dc9fe53c02743daebecede124d1e02677c3",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1485,
+      "source_head": "e4e504fc94b86511040b484bc56496c6c70b10c9",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/extensions/r19/CURRENT_MAIN_CUSTODY_R19.json",
+      "source_blob": "eae7345da14a0bcc5e704ffd26ac6c417a19dbec",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1485,
+      "source_head": "e4e504fc94b86511040b484bc56496c6c70b10c9",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/extensions/r19/FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT.md",
+      "source_blob": "5c2c0143eb29a1832afe77aedfdcdc8ab532f2dc",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r19/FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1485,
+      "source_head": "e4e504fc94b86511040b484bc56496c6c70b10c9",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/extensions/r19/JOINT_ROUTE_R19_RESULTS.json",
+      "source_blob": "e900c074d66ad43bf0276720bea0f3425529a808",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r19/JOINT_ROUTE_R19_RESULTS.json"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1485,
+      "source_head": "e4e504fc94b86511040b484bc56496c6c70b10c9",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/extensions/r19/R18_CUSTODY_CORRECTION.md",
+      "source_blob": "a2767a32f21151327845c0493f41ebeb5a565e18",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1485,
+      "source_head": "e4e504fc94b86511040b484bc56496c6c70b10c9",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/extensions/r19/fiberguard_joint_route_r19_core.py",
+      "source_blob": "51ae730f5de89d46b03a29492cdc1fbf29676b05",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r19/fiberguard_joint_route_r19_core.py"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1485,
+      "source_head": "e4e504fc94b86511040b484bc56496c6c70b10c9",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/extensions/r19/verify_fiberguard_joint_route_r19.py",
+      "source_blob": "2efee1247c1a90cb224da859af1fd43b930cf168",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r19/verify_fiberguard_joint_route_r19.py"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1488,
+      "source_head": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "source_path": ".github/workflows/five-paper-r18-c-relative-route-extension.yml",
+      "source_blob": "ca06c0cc477deab9ffb1bc7ee5cf47e8882a4f02",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1488,
+      "source_head": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "source_path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18.md",
+      "source_blob": "d0d28d69c5e8796429178965565aa4263b3c383c",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1488,
+      "source_head": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "source_path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_CLAIM_LEDGER.md",
+      "source_blob": "7600c7be14a07fbcfab445e8ddf37ee995b9ab7f",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_CLAIM_LEDGER.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1488,
+      "source_head": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "source_path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_HARNESS.json",
+      "source_blob": "b1458cc01dd5e177755c8656a538e441782e7b6a",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_HARNESS.json"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1488,
+      "source_head": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "source_path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_JOURNAL_GATE.md",
+      "source_blob": "0e68c1e604a21f6b5c079ccca94b23da9b1fc071",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_JOURNAL_GATE.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1488,
+      "source_head": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "source_path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_PRIOR_ART_BOUNDARY.md",
+      "source_blob": "a0afa2a7722bf4edb469a3c462dca6cde1dfefb7",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_PRIOR_ART_BOUNDARY.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1488,
+      "source_head": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "source_path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_PROTOCOL.md",
+      "source_blob": "03e44d3348833a8f6740d3381a8fba7c7133aa55",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_PROTOCOL.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1488,
+      "source_head": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "source_path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_README.md",
+      "source_blob": "8d7b1d60d853e7569cb514525ae1540c01a954c0",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_README.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1488,
+      "source_head": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "source_path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json",
+      "source_blob": "aa5d74fd4c88bdc81ccde3c1f8bad53112222ba8",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1488,
+      "source_head": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "source_path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_STORY_GATE.json",
+      "source_blob": "4b6234ee9e9e3cb995a0b692a5ea49afd60253b4",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_STORY_GATE.json"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1488,
+      "source_head": "4f957b1c308566300bd412605a63f29ca86a4399",
+      "source_path": "papers/five-paper-top-tier-r8/C/verify_fiberguard_relative_route_extension_r18.py",
+      "source_blob": "3053d968ac795e8827db5dd9320e36811ccb8dc2",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/verify_fiberguard_relative_route_extension_r18.py"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1489,
+      "source_head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "source_path": ".github/workflows/five-paper-r19-c-prior-art-subtraction.yml",
+      "source_blob": "b659f53917ddc3db29454a8728808e4d8ddb67f7",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1489,
+      "source_head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "source_path": ".github/workflows/five-paper-r19-c-story-synthesis.yml",
+      "source_blob": "6b844da4ed9518a9c7ac982f17888cd881cc41d2",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1489,
+      "source_head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "source_path": "papers/five-paper-top-tier-r8/C/CLAIM_LEDGER_C_R19.json",
+      "source_blob": "40fbb1517b0f54a320f0f34d5f872edcef591253",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1489,
+      "source_head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "source_path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_STORY_R19_RESULTS.json",
+      "source_blob": "016b170ba36c3fc6fa79f7c6672a075d25cc26ac",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1489,
+      "source_head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "source_path": "papers/five-paper-top-tier-r8/C/MANUSCRIPT_C_R19_FIBERGUARD_COMPLETE.md",
+      "source_blob": "39035adc29654fcbe69a55a7742a6953063ff471",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1489,
+      "source_head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "source_path": "papers/five-paper-top-tier-r8/C/PRIOR_ART_MATRIX_C_R19.md",
+      "source_blob": "2d2cc34d64b1e80899b3faef9337beb94edba03f",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1489,
+      "source_head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "source_path": "papers/five-paper-top-tier-r8/C/PRIOR_ART_MATRIX_C_R19_RESULTS.json",
+      "source_blob": "4e62d9584b132694a9d4222c286bd449cfbee8bf",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1489,
+      "source_head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "source_path": "papers/five-paper-top-tier-r8/C/THEOREM_EVIDENCE_DAG_C_R19.json",
+      "source_blob": "56589cc0f59cfbab07c75047eace8debf9cceb4d",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1489,
+      "source_head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "source_path": "papers/five-paper-top-tier-r8/C/check_fiberguard_prior_art_r19.py",
+      "source_blob": "1994b9211d028b7cd8bee0aeaf43f3ac7c9157ff",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1489,
+      "source_head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "source_path": "papers/five-paper-top-tier-r8/C/check_fiberguard_prior_art_r19_v2.py",
+      "source_blob": "0cfec399ac7a5daabb7912092de4c77c51f0c156",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1489,
+      "source_head": "64091190ff3386d08f8033885e37b0389b535f76",
+      "source_path": "papers/five-paper-top-tier-r8/C/check_fiberguard_story_r19.py",
+      "source_blob": "ddf1665d8e1ccb2094470aeb4c77c7d530e484e3",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": ".github/workflows/one-shot-r30-author-handoff.yml",
+      "source_blob": "369c09c1bc8efdedbc165a82b5ee7fa6dbf24e57",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/R30_FAILURE_RUNS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": ".github/workflows/one-shot-r30-bind-final-status.yml",
+      "source_blob": "0fc419cd327617afe300b6aa8dbb2da5e8b1708e",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/R30_FAILURE_RUNS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": ".github/workflows/one-shot-r30-clean-branch-recovery.yml",
+      "source_blob": "51851f263aa82a0861f5c8c8f090fa46341791d1",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/R30_FAILURE_RUNS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": ".github/workflows/one-shot-r30-final-ensure.yml",
+      "source_blob": "0b05a7f32aa9c2e0425215f4b72689195eed0d69",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/R30_FAILURE_RUNS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": ".github/workflows/one-shot-r30-recover-latest-failure.yml",
+      "source_blob": "35b609ee6171ce8c345c509bd75e15cf842651b4",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/R30_FAILURE_RUNS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": ".github/workflows/orion-02-aslib-rights-audit-r20.yml",
+      "source_blob": "08891d3768757e3cbd22ab95a8a987e8b5df763a",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": ".github/workflows/orion-02-r18-recovery-null-custody.yml",
+      "source_blob": "3536d6b39c5edb0c74d04b786208e1ccbcb83e02",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/ARCHIVE_AND_SUBMISSION_PROTOCOL_R20.md",
+      "source_blob": "4250d273fc45276ecedae5b3f98603d227bcb84d",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/AUTHOR_METADATA_TEMPLATE_R20.json",
+      "source_blob": "9bd3d99e8c3ab30f394069711c22632236d347ee",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER_R20.json",
+      "source_blob": "40e17911b37c5a4cc622740e7e0fe4ed2eb53ba5",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/CROSS_LANGUAGE_CORROBORATION_R28.md",
+      "source_blob": "0053349ca7a24d5d19cd65209b8650e5d854815b",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/CURRENT_STORY_R20.md",
+      "source_blob": "1fffc2e7d4325b3a8f494f3d955089f4a7610992",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/EVIDENCE_MANIFEST_R20.json",
+      "source_blob": "d66a401c2490deb59c8356b28c34bbcb8d656b31",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/EVIDENCE_SUPPLEMENT_R28.json",
+      "source_blob": "48ba923ffa89396202c905cfe1d45f8a6e34a01c",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/EXTERNAL_REVIEW_PROTOCOL_R20.md",
+      "source_blob": "b92c07080b271992ebdf3c48fe06417202a6f2c0",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/FIGURE_AUTHORITY_R20.tex",
+      "source_blob": "0c3eacbc6965d9e5ee21de2c1d36e619a277a0cf",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/FIGURE_JOINT_ROUTE_R20.tex",
+      "source_blob": "8871a1eac84bb4db4c2187a78e6b79b137a345cd",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/JOURNAL_GATE_R20.json",
+      "source_blob": "6664800616eb562e296eeac80c4267757129ea57",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_R20.tex",
+      "source_blob": "756ae83ba8dc2b8a6606bb28d27e51750a3d38e7",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/PRIOR_ART_MATRIX_R20.md",
+      "source_blob": "700d5e6c10b1c2c371eea12b85a84318b6759336",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/REFERENCES_R20.bib",
+      "source_blob": "7df97e30b0ef4921e1a7d548d137d246ef4ce543",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/RELEASE_FILESET_R20.json",
+      "source_blob": "f5dae10ef407393b5255ed8aaf31a47e5cd51b79",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/audit_aslib_rights_r20.py",
+      "source_blob": "60c81f9b1529c07eb8d876de45688f7be35453b3",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/audit_retractions_r20.py",
+      "source_blob": "5c56e6cd6f1bf5715d4591f9ecd726c765e62912",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_CUSTODY.json",
+      "source_blob": "49be9152a17563c16b05b3f9bc6cc248568b9a91",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_CUSTODY_V2.json",
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_DISPOSITION_V2.md"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_NULL.md",
+      "source_blob": "39810f8e0a84f9a94d8ff5b2ff39c6e4d123fdef",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_CUSTODY_V2.json",
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_DISPOSITION_V2.md"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/verify_r20_cross_language.rs",
+      "source_blob": "c29fb756186911ebd6f04b1da91a5d1f3f2d0fad",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/verify_r20_story.py",
+      "source_blob": "4e06da5e1302adc0197a1e058deccd8452b4321b",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/AB_PRODUCTION_REGISTRY_PROTOCOL_R20.md",
+      "source_blob": "d85c9c3336137cdeb99950aad6f10007a77e399b",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+        "research/orion-01-05-convergence-v1/PUBLICATION_GATE_V1.json"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/AB_REGISTRY_COMPLETENESS_THEOREM_R20.md",
+      "source_blob": "87d792cef40cf242b082cf75f4bd2e01ed74672d",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/D_EXTERNAL_INTEGRATION_PROTOCOL_R20.md",
+      "source_blob": "3419a6138c94d17a6be4aa51eb8f71a18abf60c9",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+        "research/orion-01-05-convergence-v1/PUBLICATION_GATE_V1.json"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/D_FIRST_MIXING_STORY_R20.md",
+      "source_blob": "90222c36465fc2e730d8a948ce3fb9e0eb7f2caa",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+        "research/orion-01-05-convergence-v1/PUBLICATION_GATE_V1.json"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/NQ_FULL_REPLAY_PROTOCOL_R20.md",
+      "source_blob": "c4adc7424049ab0c41978032e2af8eadcbb3e282",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+        "research/orion-01-05-convergence-v1/PUBLICATION_GATE_V1.json"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/NQ_REPLAY_AUTHORITY_STORY_R20.md",
+      "source_blob": "8236e00ac174618ebcc09bbb9dceb16a2b58302f",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+        "research/orion-01-05-convergence-v1/PUBLICATION_GATE_V1.json"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/PROGRAMME_STORY_R20.md",
+      "source_blob": "9605c1646ea9bb65655d6971a40d59486a38c45f",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+        "research/orion-01-05-convergence-v1/PUBLICATION_GATE_V1.json"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/Q1_MATCHED_RESOURCE_PROTOCOL_R20.md",
+      "source_blob": "d92c338f09111dbf0f6b3cb690c39822efb1dc2b",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+        "research/orion-01-05-convergence-v1/PUBLICATION_GATE_V1.json"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/Q1_SUPPORT_RESOURCE_STORY_R20.md",
+      "source_blob": "0baaf1d679b4ccebe7f554774ec17473516cb63e",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+        "research/orion-01-05-convergence-v1/PUBLICATION_GATE_V1.json"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/audit_ab_pr1469.py",
+      "source_blob": "2af5e571150c6578a06909e23df4f0329ab542dd",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/audit_blockers_r20.py",
+      "source_blob": "5e46ebf0898c3dc5dd332554b99a4273e8092230",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/audit_d_pr1466.py",
+      "source_blob": "4ce6807d66d4d3c325027f02f2a48d03a18e2e1b",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/audit_nq_pr1472_v2.py",
+      "source_blob": "d5160d3bbadf54f79d9b8b94f06bcefc07a7ea5d",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/audit_q1_pr1449.py",
+      "source_blob": "f7a97a5549c518d1d0021fe9492107daf48628be",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/results/AB_PR1469_PRODUCTION_REGISTRY_AUDIT.json",
+      "source_blob": "7eb1d17888ea76215aba25e7e77f9b3d30cce337",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-01-certificate-realization/evidence/convergence-v1/AB_PR1469_PRODUCTION_REGISTRY_AUDIT.json"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/results/D_PR1466_FIRST_MIXING_AUDIT.json",
+      "source_blob": "4d8a843cd91b92fb7485d286ed511727678a0492",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/D_PR1466_FIRST_MIXING_AUDIT.json"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/results/NQ_PR1472_EXACT_SUBJECT_AUDIT_V2.json",
+      "source_blob": "3f6eff412f2bebcb284c580c5bb1c157bbeb0b8d",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-04-rooted-completion-certificates/evidence/convergence-v1/NQ_PR1472_EXACT_SUBJECT_AUDIT_V2.json"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/results/PR1449.json",
+      "source_blob": "17dc4065dce5376ebec04900c4a6c0ec94448ad2",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/results/PR1466.json",
+      "source_blob": "79c0dac4b40f0b0eb0a1b4d05b458446e475099a",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/results/PR1469.json",
+      "source_blob": "6bd37a638416ebd7687cded0ff7360671581a010",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/results/PR1472.json",
+      "source_blob": "a82630459598cd6644cdca41e78e7d982e8e0d72",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/results/PROGRAMME_DISPOSITION_R20.json",
+      "source_blob": "a376c1d4fd457e9f8731a9df16522724b4e52a3c",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/results/PROGRAMME_DISPOSITION_R20.md",
+      "source_blob": "30738a7079341c427ef3a8edef5c16f2c3c47394",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/results/Q1_PR1449_RESOURCE_AUDIT.json",
+      "source_blob": "ef93bd3344ba61b391085b709b52cd09657d6e11",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_PR1449_RESOURCE_AUDIT.json"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r20/results/SHA256SUMS",
+      "source_blob": "9c94f9e5a055918f48c80aaef2251cb4871300f0",
+      "disposition": "HISTORICAL_ONLY_NOT_CANONICALIZED",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/STACK_ARTIFACT_DISPOSITIONS_V1.json"
+      ],
+      "reason": "The file remains available at the frozen PR head but is intentionally not promoted: it is stale manuscript/package, same-owner audit code, or a conflicting wrapper rather than current science authority."
+    },
+    {
+      "source_pr": 1492,
+      "source_head": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "source_path": "research/five-paper-top-tier-r30/finalize_r30.py",
+      "source_blob": "601157ff11661d53aa92f3b105d7d55adeb1b5a6",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/R30_FAILURE_RUNS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1503,
+      "source_head": "d8d71370f547031862cbf4376e88fa8e6be519fb",
+      "source_path": ".github/workflows/nq-crb-full-replay-current-root-authorization.yml",
+      "source_blob": "fbfac753f4e8d8dc619aeabc4ce62c4d41f466d8",
+      "disposition": "CONSUMED_AUTHORIZATION_WITH_FAILURE_CUSTODY_PRESERVED",
+      "canonical_paths": [
+        "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/POST_EXECUTION_FAILURE_RECEIPT.json"
+      ],
+      "reason": "The authorization/key was consumed by job 3544056; the failed execution and CANNOT_CHECK authority are preserved, and any retry requires a new explicit authorization/key."
+    },
+    {
+      "source_pr": 1503,
+      "source_head": "d8d71370f547031862cbf4376e88fa8e6be519fb",
+      "source_path": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/CURRENT_ROOT_FULL_REPLAY_AUTHORIZATION_RECEIPT.json",
+      "source_blob": "929b3fd6cdec7dfafb2e8f1bc2fceb6cd9d02b8c",
+      "disposition": "CONSUMED_AUTHORIZATION_WITH_FAILURE_CUSTODY_PRESERVED",
+      "canonical_paths": [
+        "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/POST_EXECUTION_FAILURE_RECEIPT.json"
+      ],
+      "reason": "The authorization/key was consumed by job 3544056; the failed execution and CANNOT_CHECK authority are preserved, and any retry requires a new explicit authorization/key."
+    },
+    {
+      "source_pr": 1503,
+      "source_head": "d8d71370f547031862cbf4376e88fa8e6be519fb",
+      "source_path": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/CURRENT_ROOT_FULL_REPLAY_REVIEW.json",
+      "source_blob": "b2af969d330d74f286e178e6f27b1f8d9e275511",
+      "disposition": "CONSUMED_AUTHORIZATION_WITH_FAILURE_CUSTODY_PRESERVED",
+      "canonical_paths": [
+        "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/POST_EXECUTION_FAILURE_RECEIPT.json"
+      ],
+      "reason": "The authorization/key was consumed by job 3544056; the failed execution and CANNOT_CHECK authority are preserved, and any retry requires a new explicit authorization/key."
+    },
+    {
+      "source_pr": 1506,
+      "source_head": "0caeb162b96cd965491f75012930de784cdfcbc8",
+      "source_path": "papers/FIVE_PAPER_PROVISIONAL_VENUE_LADDER_V1.md",
+      "source_blob": "bd5e5a1e91312e052913f2bc5b0a2642a04d772a",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/PROVISIONAL_VENUE_LADDER_V1.md"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1506,
+      "source_head": "0caeb162b96cd965491f75012930de784cdfcbc8",
+      "source_path": "papers/FIVE_PAPER_PUBLICATION_GATE_V1.json",
+      "source_blob": "abe318780deee7d487d48ea2ce464ef36b0e47e6",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/PUBLICATION_GATE_V1.json"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1506,
+      "source_head": "0caeb162b96cd965491f75012930de784cdfcbc8",
+      "source_path": "papers/FIVE_PAPER_TOP_TIER_FIRST_PUBLICATION_PROGRAM_V1.md",
+      "source_blob": "feafc52c2c890c595825c0a09564e388d781b28c",
+      "disposition": "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/PUBLICATION_POLICY_V1.md"
+      ],
+      "reason": "Its still-valid rule or boundary is represented in canonical ORION-ID governance/status; the source prose is not treated as an exact current terminal."
+    },
+    {
+      "source_pr": 1534,
+      "source_head": "d31075ee07a0a870b5705e6b149b9fa75029c2f5",
+      "source_path": ".github/workflows/fiberguard-r20-bnsl-adaptive.yml",
+      "source_blob": "98b14d72ca96fcec5a9587dffa2d04f7fb98368e",
+      "disposition": "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+      "canonical_paths": [
+        "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json"
+      ],
+      "reason": "Historical automation is retained in Git but is not current scientific or custody authority; its outcome is represented by the convergence failure/status records."
+    },
+    {
+      "source_pr": 1534,
+      "source_head": "d31075ee07a0a870b5705e6b149b9fa75029c2f5",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/FIBERGUARD_BNSL_ADAPTIVE_R20_AUTHORITY_CORRECTION.md",
+      "source_blob": "49ba006e1b15cff9c5aa278312a8902ab358a714",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r20/FIBERGUARD_BNSL_ADAPTIVE_R20_AUTHORITY_CORRECTION.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1534,
+      "source_head": "d31075ee07a0a870b5705e6b149b9fa75029c2f5",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/FIBERGUARD_BNSL_ADAPTIVE_R20_PROTOCOL.md",
+      "source_blob": "b38a149f7bbaf1e47927c9ecaaf24eae79775de1",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r20/FIBERGUARD_BNSL_ADAPTIVE_R20_PROTOCOL.md"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    },
+    {
+      "source_pr": 1534,
+      "source_head": "d31075ee07a0a870b5705e6b149b9fa75029c2f5",
+      "source_path": "papers/orion-02-fiberguard-finite-fibre/fiberguard_bnsl_adaptive_r20.py",
+      "source_blob": "93fa75fc72cb8d7dd7771003d83e3db327569caa",
+      "disposition": "BYTE_MATERIALIZED_CANONICAL_DONOR",
+      "canonical_paths": [
+        "papers/orion-02-fiberguard-finite-fibre/extensions/r20/fiberguard_bnsl_adaptive_r20.py"
+      ],
+      "reason": "The source blob is present byte-for-byte at the listed canonical ORION destination; its original authority ceiling is unchanged."
+    }
+  ],
+  "coverage": {
+    "expected_file_count": 109,
+    "observed_file_count": 109,
+    "unique_source_pr_path_pairs": 109,
+    "complete": true
+  },
+  "never_superseded": [
+    "raw scientific result bytes",
+    "adverse, null, harmful, timeout, and CANNOT_CHECK outcomes",
+    "retractions, quarantines, and hostile controls",
+    "frozen subjects and exact source identities",
+    "protected Task-3/P9 evidence"
+  ],
+  "protected_task3_touched": false,
+  "source_object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+}

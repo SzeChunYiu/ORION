@@ -1,0 +1,277 @@
+{
+  "audit_lane": "Q1-C",
+  "authority": {
+    "grants_conditional_logical_gate_count_authority": true,
+    "grants_fault_tolerant_resource_authority": false,
+    "grants_general_production_resource_authority": false,
+    "grants_hardware_authority": false,
+    "grants_journal_authority": false,
+    "template_only": false
+  },
+  "conversion_contract": {
+    "ancilla_model": "One logical branch-label control. Workspace, routing, factory, and error-correction ancillas are not counted.",
+    "angle_precision_model": "Unspecified. The family has nine arbitrary-angle rotations, but T synthesis requires angles, target error allocation, compiler, and protocol.",
+    "circuit_template": "For each TARE-M2 block use the donor three-exponential Uanti sandwich exp(i theta0 R_nc/2) exp(i theta1 R_c) exp(i theta0 R_nc/2). Compile a weight-w Pauli exponential by all-to-all compute-rotate-uncompute with 2(w-1) entanglers. Treat each single-control Pauli letter as one native logical two-qubit Clifford. Apply Tag and Tag-dagger and retain frozen F3 Restore factoring.",
+    "connectivity_model": "All-to-all logical connectivity; no SWAP, shuttling, lattice-surgery routing, or congestion.",
+    "error_correction_model": "Unspecified. Counts are logical operations, not physical qubits, code cycles, magic factories, failure probability, or spacetime.",
+    "measurement_and_feed_forward_model": "Unitary logical circuit. No measurement-assisted parity, teleportation, repeat-until-success, adaptive synthesis, or feed-forward is credited.",
+    "parallelism_model": "Sequential gate-count accounting. No commutation, cancellation, parity-network sharing, or scheduling beyond frozen F3.",
+    "status": "CONDITIONAL_EXACT_LOGICAL_CIRCUIT_ACCOUNTING"
+  },
+  "internal_crosscheck": {
+    "adverse_result_preserved": "At primary theta_FT all 90 mapped chemistry rows were donor-exact; defensible sensitivity S1 improved only 18/90 by two logical two-qubit Cliffords, negligible against the invariant rotations.",
+    "artifact": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+    "bound_in_source_record": true,
+    "what_it_does_not_support": "Independent external authority, hardware performance, physical resources, novelty, or journal readiness.",
+    "what_it_supports": "Within the frozen family and declared template, four objective coordinates tally variable logical two-qubit Clifford operations while the non-Clifford term is nine family-constant rotations."
+  },
+  "production_headline": {
+    "additional_premises": [
+      "standard compute-rotate-uncompute parity ladders",
+      "all-to-all logical connectivity",
+      "native single-control Pauli Cliffords",
+      "fixed three-block TARE-M2 family",
+      "no cancellation beyond F3"
+    ],
+    "counterexamples_checked": [
+      "QG-2 reweighting changes regimes and produces support-three optima outside the frozen objective",
+      "QG-21 T-dominant support reweighting is a non-defensible control",
+      "QG-21 primary chemistry rows are donor-tied rather than improved"
+    ],
+    "terminal": "PARTIAL_RESOURCE_MAP",
+    "text": "Under the declared all-to-all logical parity-ladder and single-control Clifford template, Q1 support units map to variable logical two-qubit Clifford count (4,2,2,1), while every candidate retains nine arbitrary-angle rotations. The support-two theorem transfers only to this conditional gate-count objective; it gives no T-count, depth, qubit, spacetime, hardware, or quantum-advantage result."
+  },
+  "resource_rows": [
+    {
+      "abstract_object": "One excess nonidentity coordinate of a noncentral frame Pauli beyond weight one.",
+      "additional_moves": [
+        "basis-change one-qubit Cliffords omitted",
+        "no routing"
+      ],
+      "ancilla_model": "Ancilla-free parity ladder at logical level.",
+      "authority_ceiling": "THEOREM under additional compilation premises",
+      "connectivity_model": "All-to-all logical connectivity; no routing.",
+      "conversion_theorem": "A standard weight-w Pauli exponential uses exactly 2(w-1) entanglers; R_nc occurs twice.",
+      "counting_map": "4*(w(R_nc)-1) for each noncentral frame.",
+      "error_correction_model": "No code or physical layout.",
+      "failure_cases": [
+        "native multi-Pauli rotations",
+        "ladder cancellation/sharing",
+        "restricted connectivity",
+        "measurement-assisted parity"
+      ],
+      "id": "Q1C-R1-FRAME-NONCENTRAL",
+      "map_direction": "equality",
+      "measured_benchmark": "None in Q1-C.",
+      "measurement_and_feed_forward_model": "Unitary; no measurement or feed-forward.",
+      "parallelism_model": "Gate count only; no depth statement.",
+      "production_object": "Four logical two-qubit Clifford parity entanglers: compute/uncompute in each of two outer-axis exponential occurrences.",
+      "resource_metric": "logical two-qubit Clifford gate count",
+      "uncertainty_or_interval": "Exact only under stated premises."
+    },
+    {
+      "abstract_object": "One excess nonidentity coordinate of a central frame Pauli beyond weight one.",
+      "additional_moves": [
+        "basis-change one-qubit Cliffords omitted"
+      ],
+      "ancilla_model": "Ancilla-free parity ladder at logical level.",
+      "authority_ceiling": "THEOREM under additional compilation premises",
+      "connectivity_model": "All-to-all logical connectivity; no routing.",
+      "conversion_theorem": "A standard weight-w Pauli exponential uses exactly 2(w-1) entanglers; R_c occurs once.",
+      "counting_map": "2*(w(R_c)-1) for each central frame.",
+      "error_correction_model": "No code or physical layout.",
+      "failure_cases": [
+        "native multi-Pauli rotations",
+        "routing",
+        "measurement-assisted parity"
+      ],
+      "id": "Q1C-R2-FRAME-CENTRAL",
+      "map_direction": "equality",
+      "measured_benchmark": "None in Q1-C.",
+      "measurement_and_feed_forward_model": "Unitary; no measurement or feed-forward.",
+      "parallelism_model": "Gate count only; no depth statement.",
+      "production_object": "Two logical two-qubit Clifford parity entanglers in the central exponential.",
+      "resource_metric": "logical two-qubit Clifford gate count",
+      "uncertainty_or_interval": "Exact only under stated premises."
+    },
+    {
+      "abstract_object": "One nonidentity coordinate of shared Tag S, charged twice.",
+      "additional_moves": [
+        "one-qubit phases/basis changes omitted"
+      ],
+      "ancilla_model": "One logical branch-label control; no routing workspace.",
+      "authority_ceiling": "ARCHITECTURE_SPECIFIC",
+      "connectivity_model": "Direct control-system connectivity.",
+      "conversion_theorem": "Tag is Clifford; under a native controlled-X/Y/Z model each supported letter costs one two-qubit Clifford and Tag is uncomputed once.",
+      "counting_map": "2*w(S) logical controlled-Pauli letters.",
+      "error_correction_model": "No code or physical layout.",
+      "failure_cases": [
+        "multi-controlled labels",
+        "non-native controlled-Y",
+        "routing",
+        "measurement-assisted Clifford",
+        "fanout limits"
+      ],
+      "id": "Q1C-R3-SHARED-TAG",
+      "map_direction": "equality",
+      "measured_benchmark": "None in Q1-C.",
+      "measurement_and_feed_forward_model": "Unitary controlled Pauli.",
+      "parallelism_model": "Gate count only; shared-control serialization does not imply depth.",
+      "production_object": "A controlled-Pauli letter in Tag and again in Tag-dagger.",
+      "resource_metric": "logical controlled-Pauli letters; conditionally logical two-qubit Clifford count",
+      "uncertainty_or_interval": "Exactly 2w(S) abstract controlled letters; physical cost is architecture dependent."
+    },
+    {
+      "abstract_object": "One surviving nonidentity Pauli letter in frozen F3 Restore factoring.",
+      "additional_moves": [
+        "single-qubit phases/basis changes omitted"
+      ],
+      "ancilla_model": "One logical branch-label control.",
+      "authority_ceiling": "ARCHITECTURE_SPECIFIC",
+      "connectivity_model": "Direct control-system connectivity.",
+      "conversion_theorem": "By frozen F3 construction the common letter is applied once rather than three times; every other surviving letter is applied once.",
+      "counting_map": "sum_q,k F3 counts one common letter when all three agree, otherwise every nonidentity local letter.",
+      "error_correction_model": "No code or physical layout.",
+      "failure_cases": [
+        "other factorization rules",
+        "multi-control synthesis",
+        "cancellation outside the triple",
+        "routing",
+        "hardware-native products"
+      ],
+      "id": "Q1C-R4-FACTORED-RESTORE",
+      "map_direction": "equality",
+      "measured_benchmark": "None in Q1-C.",
+      "measurement_and_feed_forward_model": "Unitary controlled Pauli.",
+      "parallelism_model": "Gate count only.",
+      "production_object": "One branch-controlled Pauli letter under the single-control native logical Clifford convention.",
+      "resource_metric": "logical controlled-Pauli letters; conditionally logical two-qubit Clifford count",
+      "uncertainty_or_interval": "Exact abstract letter count; physical conversion is not universal."
+    },
+    {
+      "abstract_object": "The three-block TARE-M2 Uanti choice, independent of frame support.",
+      "additional_moves": [
+        "angle synthesis deferred",
+        "special angles not assumed",
+        "error allocation not chosen"
+      ],
+      "ancilla_model": "Depends on later rotation synthesis.",
+      "authority_ceiling": "THEOREM under frozen grammar",
+      "connectivity_model": "Axis parity cost is in R1/R2.",
+      "conversion_theorem": "TARE Uanti has 2m-1 exponentials and m=2 for each of three blocks.",
+      "counting_map": "N_rot=3*(2*2-1)=9 for every family member; angles are fixed across members for a fixed target/coefficient batch.",
+      "error_correction_model": "No factory, code distance, or logical error budget.",
+      "failure_cases": [
+        "different block size",
+        "angle cancellation",
+        "exact Clifford angles",
+        "alternative Uanti synthesis"
+      ],
+      "id": "Q1C-R5-NONCLIFFORD-ROTATIONS",
+      "map_direction": "equality",
+      "measured_benchmark": "Donor TARE v4 benchmarks another compiled setup at epsilon=1e-10; its numbers are not transferred to Q1-C.",
+      "measurement_and_feed_forward_model": "Unspecified; no adaptive advantage is assumed.",
+      "parallelism_model": "Rotation count gives no T-depth or factory schedule.",
+      "production_object": "Nine arbitrary-angle Pauli rotations: three per block.",
+      "resource_metric": "arbitrary-angle rotation count",
+      "uncertainty_or_interval": "Exactly nine abstract rotations; T count and spacetime remain open."
+    },
+    {
+      "abstract_object": "Six independently chosen nonzero frame Paulis restricted to support at most two before feasibility constraints.",
+      "additional_moves": [
+        "candidate evaluation scans n coordinates",
+        "not a registered-DP runtime claim"
+      ],
+      "ancilla_model": "Not applicable.",
+      "authority_ceiling": "THEOREM",
+      "connectivity_model": "Not applicable.",
+      "conversion_theorem": "There are 3n weight-one and 9*binom(n,2) weight-two nonidentity Paulis per slot; raise to six.",
+      "counting_map": "At most (3n+9*binom(n,2))^6 = O(n^12), before feasibility and objective pruning.",
+      "error_correction_model": "Not applicable.",
+      "failure_cases": [
+        "constraints reduce count",
+        "DP or symmetry changes work",
+        "evaluator controls runtime"
+      ],
+      "id": "Q1C-R6-RAW-CANDIDATE-COUNT",
+      "map_direction": "upper bound",
+      "measured_benchmark": "No production enumeration benchmark.",
+      "measurement_and_feed_forward_model": "Not applicable.",
+      "parallelism_model": "No classical machine/time model is frozen.",
+      "production_object": "Raw representation candidates for a direct enumerator.",
+      "resource_metric": "classical raw candidate count",
+      "uncertainty_or_interval": "Combinatorial upper bound only."
+    }
+  ],
+  "review": {
+    "disagreements": [
+      "The raw objective is not a generic physical or T-cost metric; it is a conditional logical Clifford-count identity plus a constant rotation term."
+    ],
+    "independent_quantum_reviewer": "NOT_PRESENT",
+    "resource_specialist": "Independent Q1-C computational audit lane; not an external credentialed production reviewer.",
+    "unresolved_items": [
+      "architecture-specific compiled circuits",
+      "precision-bound rotation synthesis",
+      "fault-tolerant code/factory/layout",
+      "measured Q1 benchmarks",
+      "independent Q1-D review"
+    ]
+  },
+  "schema": "ORION.Q1.ProductionResourceMapR9.v1",
+  "source_binding": {
+    "base_commit_sha": "1e18787841d99d76a3c7661505838d2eca8780db",
+    "file": "papers/five-paper-top-tier-r8/Q1/Q1_C_SOURCE_BINDING_R9.json",
+    "sha256": "201c83aaaf6c000c70825a02b94f5c1ba964e9c9bdbd8bcfa6f393fdcdc1e19a"
+  },
+  "theorem_owned_claim": {
+    "excluded_scope": [
+      "arbitrary TARE variants",
+      "different objective weights",
+      "TARE-Mm for m not equal to 2",
+      "multiple Tag ranks",
+      "arbitrary block encodings",
+      "hardware-native routing",
+      "error correction",
+      "physical quantum advantage"
+    ],
+    "feasible_grammar": "Each frame pair anticommutes; the shared Tag has a common label orientation across blocks and opposite branch syndromes; Restore strings T_jk=P_j,pi(k) R_jk use the frozen all-three common-factor rule.",
+    "instance_family": "Frozen R6M three-block shared-one-bit-Tag TARE-M2 grammar: six target Pauli strings, three ordered two-term blocks, one ordered anticommuting frame pair per block, target permutations, one central branch per block, and one shared Tag Pauli.",
+    "lower_witness_statement": "A complete frozen two-qubit support-one search has optimum 6 while the unrestricted optimum is 5, so cap one is insufficient in this grammar/objective.",
+    "objective": "C=sum_jk m_jk(w(R_jk)-1)+2w(S)+sum_q,k F3(T_Ak[q],T_Bk[q],T_Ck[q]), with one m=2 central and one m=4 noncentral branch per block.",
+    "quantified_statement": "For every admitted instance and arbitrary n, an exact optimum exists with every one of the six auxiliary frame Paulis of support at most two.",
+    "semantic_invariant": "Frame anticommutation and shared-Tag symplectic syndromes are preserved by the support-deleting exchange.",
+    "support_functional": "w(P) is the number of system-register positions carrying a nonidentity Pauli letter; the theorem counts each auxiliary frame Pauli separately."
+  },
+  "unmapped_metrics": [
+    {
+      "metric": "T count / magic states",
+      "reason": "Support changes Clifford parity ladders; nine rotations are family-constant and need angles, precision, synthesis, and error allocation.",
+      "status": "NO_DIRECT_MAP"
+    },
+    {
+      "metric": "T depth / magic-state throughput",
+      "reason": "No schedule, commutation policy, factory count, measurement latency, or feed-forward contract.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "metric": "logical circuit depth",
+      "reason": "Connectivity, routing, shared-control serialization, and parity sharing are unspecified.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "metric": "logical and physical qubits",
+      "reason": "Workspace, routing, distillation, syndrome extraction, and layout are unspecified.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "metric": "fault-tolerant spacetime volume and failure probability",
+      "reason": "No code, distance, physical error, logical error target, factory, or decoder.",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "metric": "wall-clock compiler search time",
+      "reason": "O(n^12) bounds raw candidates, not registered-DP runtime; no machine implementation is frozen.",
+      "status": "NO_DIRECT_MAP"
+    }
+  ]
+}

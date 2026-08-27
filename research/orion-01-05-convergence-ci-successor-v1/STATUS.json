@@ -1,0 +1,20 @@
+{
+  "schema": "ORION.ORION0105.ConvergenceCISuccessor.v1",
+  "date": "2026-08-27",
+  "terminal": "ORION_01_05_CONVERGENCE_V1_CI_SUCCESSOR__IMMUTABLE_EVIDENCE_REVALIDATED__SUCCESSOR_DIFF_NOT_MISCLASSIFIED",
+  "root_cause": "The V1 creation-time exact event-base and changed-path gate was rerun unchanged on later per-paper successor pull requests, so valid additive science was rejected solely because its base was newer than the frozen V1 baseline.",
+  "repair": {
+    "frozen_v1_base": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1",
+    "frozen_v1_event_mode": "STRICT_EXACT_BASE_AND_CHANGED_PATH_VERIFICATION",
+    "successor_event_mode": "IMMUTABLE_V1_EVIDENCE_REVALIDATION_WITHOUT_REAPPLYING_CREATION_DIFF",
+    "scientific_status_changed": false,
+    "adverse_or_null_result_changed": false,
+    "protected_task3_or_p9_changed": false
+  },
+  "observed_false_failure": {
+    "pull_request": 1550,
+    "workflow_run": 33082103277,
+    "message": "event base commit mismatch"
+  },
+  "authority": "OPERATIONAL_CI_CORRECTION_ONLY__NO_SCIENCE_NOVELTY_JOURNAL_OR_SUBMISSION_AUTHORITY"
+}

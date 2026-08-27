@@ -1,0 +1,124 @@
+{
+  "attempt_1": {
+    "disposition": "ORION05_R12_ATTEMPT1_FAILED_POST_MEASUREMENT_ENVIRONMENT_RECEIPT__NO_ROUND_TERMINAL",
+    "exit_code": "1:0",
+    "files": {
+      "FAILURE_RECEIPT.json": {
+        "bytes": 2540,
+        "sha256": "21918467a67a29d7f5dbf87561b5f748fc4979ff3ccef919b1ed35b97064145c"
+      },
+      "RAW_ATTEMPTS.jsonl": {
+        "bytes": 101204,
+        "sha256": "1ed31f08eb21493b61e037794b324733bec9de8ca04ce72e291fc7b42bb8e4dc"
+      },
+      "SACCT_RAW.txt": {
+        "bytes": 411,
+        "sha256": "69d02728c18455daf6efcd4114110ff950a89048532998e266eff0571e58b90c"
+      },
+      "SLURM_STDERR.txt": {
+        "bytes": 1783,
+        "sha256": "d7ef007bb2305c5e6af1e635a0a5df8dace4e8dd5de4ab7cd1b72a4815af27b8"
+      },
+      "SLURM_STDOUT.txt": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "job_id": 3549585,
+    "run_root": "/projects/hep/fs10/scratch/scyiu/orion05-r12-production-benchmark-7fdea61-20260827T1610",
+    "scheduler_state": "FAILED"
+  },
+  "attempt_2": {
+    "elapsed": "00:03:51",
+    "exit_code": "0:0",
+    "files": {
+      "BENCHMARK_ENVIRONMENT.json": {
+        "bytes": 912,
+        "sha256": "d13a6a51580252a63de104419bf40c32d50abb95987419f9fef5886cc1c4772d"
+      },
+      "ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json": {
+        "bytes": 6269,
+        "sha256": "3514b160acdb506e94c18e043190f118511fb628ad6a3629b811bb5b4c7c5c2a"
+      },
+      "RAW_ATTEMPTS.jsonl": {
+        "bytes": 101203,
+        "sha256": "69294c9633c51d4ee32bdf869b1a7eed39f52f72ff51eb47126365fb50ead251"
+      },
+      "SACCT_RAW.txt": {
+        "bytes": 300,
+        "sha256": "38ee19ccdce971eaa0973f13f8e4983c121ba06135bd071dc10728d90cbff9be"
+      },
+      "SHA256SUMS": {
+        "bytes": 310,
+        "sha256": "830835a22679616d340752fb7ff2d06d6b34fd8997e03762471a8b0caadc5ac0"
+      },
+      "SLURM_STDERR.txt": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "SLURM_STDOUT.txt": {
+        "bytes": 42,
+        "sha256": "04e62bd63f074c5995b68e99ad6e23f1ff7edf4d49b1c8e891d80fc16a5e8ff7"
+      }
+    },
+    "job_id": 3549607,
+    "node": "cx04",
+    "run_root": "/projects/hep/fs10/scratch/scyiu/orion05-r12-production-benchmark-1078ff7-20260827T1427Z",
+    "scheduler_state": "COMPLETED",
+    "source_archive": {
+      "bytes": 177541261,
+      "sha256": "69084749069c33e84e0dc47f2242b65ffc2169fcc3aed420a192847c443d4e4f"
+    }
+  },
+  "authority": {
+    "attempt_1_is_round_terminal": false,
+    "external_independence": false,
+    "frozen_r6m_production_search_value": false,
+    "journal_authority": false,
+    "novelty": false,
+    "science_round_consumed": 2,
+    "science_round_maximum": 3,
+    "science_status": "OPEN",
+    "submission_authorized": false
+  },
+  "canonical_result": {
+    "byte_identical_to_attempt_2": true,
+    "files": {
+      "BENCHMARK_ENVIRONMENT.json": {
+        "bytes": 912,
+        "sha256": "d13a6a51580252a63de104419bf40c32d50abb95987419f9fef5886cc1c4772d"
+      },
+      "ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json": {
+        "bytes": 6269,
+        "sha256": "3514b160acdb506e94c18e043190f118511fb628ad6a3629b811bb5b4c7c5c2a"
+      },
+      "RAW_ATTEMPTS.jsonl": {
+        "bytes": 101203,
+        "sha256": "69294c9633c51d4ee32bdf869b1a7eed39f52f72ff51eb47126365fb50ead251"
+      },
+      "SHA256SUMS": {
+        "bytes": 310,
+        "sha256": "830835a22679616d340752fb7ff2d06d6b34fd8997e03762471a8b0caadc5ac0"
+      }
+    },
+    "path": "papers/orion-05-tare-expressivity/rounds/r12-production-benchmark/result"
+  },
+  "comparison": {
+    "bytes": 1772,
+    "path": "development/orion-05-r12-production-benchmark-2026-08-27/ATTEMPT1_ATTEMPT2_COMPARISON.json",
+    "sha256": "d6fa38fd934fe510a01d0658f42bfa214d69300970bac064ae2cd2888a2557aa"
+  },
+  "custody_terminal": "ORION05_R12_EXECUTION_CUSTODY_PASS__ROUND2_NULL_PRESERVED",
+  "date": "2026-08-27",
+  "frozen_chain": {
+    "base_main": "27ea5e1b04dbed853b7ddba60c8bf736ef087bf5",
+    "bundle_verifier_commit": "42c4e1c6d181a3e71c06c3c4ba3875dee552c1db",
+    "defect_only_repair_commit": "1078ff764fa128f9f5150898761a1528d1a300b7",
+    "protocol_commit": "ebe2f8f1fc1d1dbfa61bdf3c609f9991108247da",
+    "runner_commit": "7fdea61e44f62b3595c4f1863fefffdd7132b68a"
+  },
+  "paper_id": "ORION-05",
+  "protected_task3_touched": false,
+  "schema": "ORION.ORION05.R12.ExecutionCustody.v1",
+  "science_terminal": "ORION05_R12_EXACT_BUT_NO_PRODUCTION_VALUE"
+}

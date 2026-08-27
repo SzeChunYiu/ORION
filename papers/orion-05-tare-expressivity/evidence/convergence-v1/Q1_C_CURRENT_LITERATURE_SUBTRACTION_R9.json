@@ -1,0 +1,524 @@
+{
+  "audit_lane": "Q1-C literature subtraction; not a substitute for independent Q1-D review",
+  "authority": {
+    "grants_bounded_search_record_authority": true,
+    "grants_external_novelty_authority": false,
+    "grants_journal_authority": false,
+    "grants_primary_source_identity_authority": true,
+    "grants_production_resource_authority": false
+  },
+  "cannot_check": [
+    "complete citation neighborhood across all indexes",
+    "patents and operational software not described in papers",
+    "unpublished/private manuscripts",
+    "sources after cutoff",
+    "independent quantum-compilation reviewer judgment",
+    "venue novelty/significance threshold"
+  ],
+  "nearest_work_rows": [
+    {
+      "authors": [
+        "Niclas Schillo",
+        "Andreas Sturm",
+        "Rüdiger Quay"
+      ],
+      "category": "direct donor",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "251f0611272bb5fe15c24706adb384812c6fb6bfd72754b93c10733cbfc49708",
+        "arxiv_pdf_sha256": "8420d8bf8b678dcaa7523518cfc360f65981de1cf49958a6540a2c492b86020b",
+        "arxiv_version": "2601.05740v4",
+        "doi": null,
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "exact theorem remains only a bounded residual candidate",
+      "source_id": "TARE-v4",
+      "subtraction_from_q1": "Q1 does not own the primitive, frame freedom, Tag optimization, or resource tradeoffs. The inspected v4 does not state the frozen sharp all-n theorem.",
+      "title": "TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation",
+      "what_source_owns": "TARE, Tag/Restore, free anticommuting frames, control labels and Tag solutions; width/depth/gate tradeoffs."
+    },
+    {
+      "authors": [
+        "Jennifer Paykin",
+        "Albert T. Schmitz",
+        "Mohannad Ibrahim",
+        "Xin-Chuan Wu",
+        "A. Y. Matsuura"
+      ],
+      "category": "Pauli IR / compiler",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "e811c8f4481a06a68419517d6bd8bfe7b76abd89c55a2fc83270d9ee08f035cd",
+        "arxiv_pdf_sha256": "471c237c21a9e2cc5fbc165d80d64d0dafec1f0fd8548647f9a71b019fde28b1",
+        "arxiv_version": "2305.10966v3",
+        "doi": null,
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "grammar-specific sharp threshold only",
+      "source_id": "PCOAST-v3",
+      "subtraction_from_q1": "Subtract first Pauli-frame or first Pauli-support optimization. Its scope is not the frozen TARE-M2 optimum theorem.",
+      "title": "PCOAST: A Pauli-based Quantum Circuit Optimization Framework",
+      "what_source_owns": "Pauli-frame representation and optimization of Pauli circuits."
+    },
+    {
+      "authors": [
+        "Zhaohui Yang",
+        "Dawei Ding",
+        "Chenghong Zhu",
+        "Jianxin Chen",
+        "Yuan Xie"
+      ],
+      "category": "Pauli compiler optimization",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "9aaffe2c4f57f08ecf2140859f98dfbc91381ef7845eed7f781e42bf1345b6d6",
+        "arxiv_pdf_sha256": "a6c1154feb50626c92340ba56419813bf90eec8a488a50d3d4bdd535c4292fe0",
+        "arxiv_version": "2504.03529v5",
+        "doi": "10.1109/DAC63849.2025.11133028",
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "exact frozen-family theorem only",
+      "source_id": "PHOENIX-v5",
+      "subtraction_from_q1": "Subtract broad support/weight-reduction and compiler-mechanism novelty.",
+      "title": "PHOENIX: Pauli-Based High-Level Optimization Engine for Instruction Execution on NISQ Devices",
+      "what_source_owns": "High-level Pauli optimization targeting gate count/depth on NISQ devices."
+    },
+    {
+      "authors": [
+        "Zhaohui Yang",
+        "Yuwei Han",
+        "Ruiyun Zhang",
+        "Dawei Ding",
+        "Jianxin Chen",
+        "Yuan Feng",
+        "Yuan Xie"
+      ],
+      "category": "current binary-symplectic compiler",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "d30b22187a8f8d8e3001a24ef3717b94838745399f76d7679f994ceb77df96df",
+        "arxiv_pdf_sha256": "630eb896eb967fec67d061b25e23678e8a8c55d0e88b9893c8ca9e802a127563",
+        "arxiv_version": "2608.11579v2",
+        "doi": null,
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "narrow theorem delta; rerun search at submission",
+      "source_id": "SYMPHONY-v2",
+      "subtraction_from_q1": "Subtract first global symplectic simplification and generic support reduction. No inspected equivalent of Q1 was found.",
+      "title": "Efficient Compilation for Hamiltonian Simulation via Global Binary Symplectic Form Simplification",
+      "what_source_owns": "Global binary-symplectic simplification; v2 updated 2026-08-25."
+    },
+    {
+      "authors": [
+        "Artur F. Izmaylov",
+        "Tzu-Ching Yen",
+        "Robert A. Lang",
+        "Vladyslav Verteletskyi"
+      ],
+      "category": "anticommuting unitary partitioning",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "1d228bbdf41b365510502b5033855c29e820b3b9917380c19e920f795ba2f5c3",
+        "arxiv_pdf_sha256": "33959e7ff3d2e0470a4b37ecb6666640bc3ae25145984860bf81a42214c2f36b",
+        "arxiv_version": "1907.09040v2",
+        "doi": "10.1021/acs.jctc.9b00791",
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "sharp grammar/objective threshold only",
+      "source_id": "IZMAYLOV-v2",
+      "subtraction_from_q1": "Subtract anticommuting-unitary principle and grouping primitive.",
+      "title": "Unitary partitioning approach to the measurement problem in the Variational Quantum Eigensolver method",
+      "what_source_owns": "Mutually anticommuting Pauli sets and unitary partitioning."
+    },
+    {
+      "authors": [
+        "Ewout van den Berg",
+        "Kristan Temme"
+      ],
+      "category": "Pauli-cluster compilation",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "eaa6ac7f27af94fa9e9fe774030f8ae98201b098170923eb9bfa4b05bd09a92e",
+        "arxiv_pdf_sha256": "58186f8b8f5dcace5c82d7c3fa875b543cbb27330053448e460194c62fb5f846",
+        "arxiv_version": "2003.13599v2",
+        "doi": "10.22331/q-2020-09-12-322",
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "shared-Tag exact threshold only",
+      "source_id": "VANDENBERG-TEMME-v2",
+      "subtraction_from_q1": "Subtract general structured-Pauli circuit optimization.",
+      "title": "Circuit optimization of Hamiltonian simulation by simultaneous diagonalization of Pauli clusters",
+      "what_source_owns": "Circuit savings through simultaneous diagonalization of Pauli clusters."
+    },
+    {
+      "authors": [
+        "Alexander Cowtan",
+        "Silas Dilkes",
+        "Ross Duncan",
+        "Will Simmons",
+        "Seyon Sivarajah"
+      ],
+      "category": "phase-gadget / parity-network synthesis",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "f870afd990dd00a88c56847e732b877fdf9ef92f9fe818e3891841091a198040",
+        "arxiv_pdf_sha256": "6019083fcde59bb014a2e1c5e26243dddd39f87fd940f3b875fcc19fa1fb0676",
+        "arxiv_version": "1906.01734v2",
+        "doi": "10.4204/EPTCS.318.13",
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "conditional logical count, not depth",
+      "source_id": "COWTAN-v2",
+      "subtraction_from_q1": "Subtract new parity-network/depth claim; Q1 needs routing/scheduling contracts.",
+      "title": "Phase Gadget Synthesis for Shallow Circuits",
+      "what_source_owns": "Phase-gadget resynthesis for two-qubit count/depth; connectivity remains separate."
+    },
+    {
+      "authors": [
+        "Matthew Amy",
+        "Dmitri Maslov",
+        "Michele Mosca"
+      ],
+      "category": "matroid / T-depth synthesis",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "f1633d9efee57dc327ea8c51d271a06ee9182316084e204515956ff5ebe0228e",
+        "arxiv_pdf_sha256": "99d57e30d2678eb6d6a606a298c7ba60cf0f9c76d0ee04fccd4cff7cea04b1fb",
+        "arxiv_version": "1303.2042v2",
+        "doi": "10.1109/TCAD.2014.2341953",
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "grammar normal form with no T-depth claim",
+      "source_id": "AMY-MASLOV-MOSCA-v2",
+      "subtraction_from_q1": "Subtract first matroid formulation and general T-depth optimization. Q1 support is not T-depth.",
+      "title": "Polynomial-time T-depth Optimization of Clifford+T circuits via Matroid Partitioning",
+      "what_source_owns": "Matroid partitioning for T-depth optimization in Clifford+T circuits."
+    },
+    {
+      "authors": [
+        "Vadym Kliuchnikov",
+        "Dmitri Maslov",
+        "Michele Mosca"
+      ],
+      "category": "exact Clifford+T synthesis",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "5f447f37b0546c870d338d0e469f9bc584075906a2f52c70385794684ac1fd33",
+        "arxiv_pdf_sha256": "0946f767e7120ce6526b5e235b00a5cc8d5ded827920cdf5589422458c3d55c5",
+        "arxiv_version": "1206.5236v4",
+        "doi": null,
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "no T-count without angle data",
+      "source_id": "KMM-v4",
+      "subtraction_from_q1": "Subtract general exact synthesis. Q1 does not bind rotation angles as exactly representable.",
+      "title": "Fast and efficient exact synthesis of single qubit unitaries generated by Clifford and T gates",
+      "what_source_owns": "Exact single-qubit Clifford+T synthesis for exactly representable unitaries."
+    },
+    {
+      "authors": [
+        "Neil J. Ross",
+        "Peter Selinger"
+      ],
+      "category": "approximate Clifford+T synthesis",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "7803c797c830ee8eaec777c73106d6b5c8e08d06b4d4438ee84207de491056eb",
+        "arxiv_pdf_sha256": "4792f897a1326cb5e039e167d13620d5d7d8c0ef82a3de6ce891a9ab4ed74a70",
+        "arxiv_version": "1403.2975v3",
+        "doi": null,
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "nine rotations; T count CANNOT_CHECK",
+      "source_id": "ROSS-SELINGER-v3",
+      "subtraction_from_q1": "T count needs angles and precision; frame support alone cannot set it.",
+      "title": "Optimal ancilla-free Clifford+T approximation of z-rotations",
+      "what_source_owns": "Precision-dependent ancilla-free z-rotation approximation."
+    },
+    {
+      "authors": [
+        "Tongyang Li",
+        "Fengning Ou",
+        "Xinzhao Wang",
+        "Penghui Yao",
+        "Pei Yuan",
+        "Shengyu Zhang"
+      ],
+      "category": "fault-tolerant block-encoding T count",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "7a8e783f4a7914fcf8196d0c1980bdf31776fefedc2e7965adc7ea403ab1c213",
+        "arxiv_pdf_sha256": "f69d4ff70b8de224f8b71c1e079f40f6d85e775fce47b284b7fe10417b95b408",
+        "arxiv_version": "2607.28260v1",
+        "doi": null,
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "conditional Clifford-count normal form only",
+      "source_id": "LI-SPARSE-v1",
+      "subtraction_from_q1": "Subtract general block-encoding T-count or fault-tolerant complexity headline.",
+      "title": "Optimal T Counts under Sparsity: from QROM to State Preparation and Block Encoding",
+      "what_source_owns": "Asymptotically optimal sparse QROM/state-preparation/block-encoding T counts under explicit models."
+    },
+    {
+      "authors": [
+        "Yuxin Zhang",
+        "Changpeng Shao"
+      ],
+      "category": "low-ancilla block encoding",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "ccc3784df09c6483f36b75c78bceaa8d635a6578ff88a2e7c697a48df641e4d3",
+        "arxiv_pdf_sha256": "a2f337701c4bc301269752b5e65764fb4ad0d0bb25d65f64391a2da3962508ca",
+        "arxiv_version": "2607.01843v1",
+        "doi": null,
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "no ancilla advantage claim",
+      "source_id": "LOW-ANCILLA-v1",
+      "subtraction_from_q1": "Subtract broad low-ancilla/general block-encoding novelty.",
+      "title": "Low-ancilla block encodings via Hamiltonian simulation",
+      "what_source_owns": "Low-ancilla approximate block encodings via Hamiltonian simulation."
+    },
+    {
+      "authors": [
+        "Zhu Sun",
+        "Balint Koczor"
+      ],
+      "category": "surface-code rotation cost",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "07589c9ac362f28d02ff0963ec36008f2930513f7bc93f52fb05a7240d56e96d",
+        "arxiv_pdf_sha256": "5991bc2533c72675cc7715a97c82edbe99fcfb410620e5396bbb51e67ae6f2dd",
+        "arxiv_version": "2508.06236v1",
+        "doi": "10.1088/2058-9565/ae636b",
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "physical spacetime CANNOT_CHECK",
+      "source_id": "SUN-KOCZOR-v1",
+      "subtraction_from_q1": "Q1 cannot map support to spacetime without code, precision, factory, and schedule.",
+      "title": "Space and Time Cost of Continuous Rotations in Surface Codes",
+      "what_source_owns": "Space/time cost of continuous rotations in a concrete fault-tolerant setting."
+    },
+    {
+      "authors": [
+        "Jannik Pflieger",
+        "Aleksandra Świerkowska",
+        "Emmanouil Giortamis",
+        "Pramod Bhatotia"
+      ],
+      "category": "current fault-tolerant resource-aware compiler",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "94581e5006201f7bceb96db2f19f361d02837fcd0e2696a47915bf252f2ab944",
+        "arxiv_pdf_sha256": "b29e16f46ecad05fb5bf29af43e9c8e9261c9d0890b8cafd9995b836e8975196",
+        "arxiv_version": "2608.03315v1",
+        "doi": null,
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "no magic-state schedule authority",
+      "source_id": "HARVEST-v1",
+      "subtraction_from_q1": "Subtract broad first resource-aware fault-tolerant compiler claim.",
+      "title": "Harvest: Resource-Aware Quantum Compilation for Magic State Protocols",
+      "what_source_owns": "Resource-aware compilation for magic-state protocols and hardware constraints."
+    },
+    {
+      "authors": [
+        "Adrian Harkness",
+        "Shuwen Kan",
+        "Chenxu Liu",
+        "Meng Wang",
+        "John M. Martyn",
+        "Shifan Xu",
+        "Diana Chamaki",
+        "Ethan Decker",
+        "Ying Mao",
+        "Luis F. Zuluaga",
+        "Tamás Terlaky",
+        "Ang Li",
+        "Samuel Stein"
+      ],
+      "category": "fault-tolerant benchmark methodology",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "4db286449fca61f3a245c423b4c8507c9e0785f493ac34eb40650f90105bf21e",
+        "arxiv_pdf_sha256": "724076da26fdceecf84443c47655040d7604a0ee09aa74899f2f388e25a659cc",
+        "arxiv_version": "2601.03185v1",
+        "doi": null,
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "benchmark authority CANNOT_CHECK",
+      "source_id": "FTCIRCUITBENCH-v1",
+      "subtraction_from_q1": "Q1 structural receipts are not a fault-tolerant compiler benchmark.",
+      "title": "FTCircuitBench: A Benchmark Suite for Fault-Tolerant Quantum Compilation and Architecture",
+      "what_source_owns": "Current benchmark suite for fault-tolerant compilers and architectures."
+    },
+    {
+      "authors": [
+        "Nils Quetschlich",
+        "Lukas Burgholzer",
+        "Robert Wille"
+      ],
+      "category": "compiler benchmark methodology",
+      "direct_equivalent_of_frozen_kappa_r6m_two_located": false,
+      "external_novelty_authority": false,
+      "identity": {
+        "arxiv_metadata_sha256": "7e8e9218c2dfdd5b5d3b670a37931d213575aaf8c8bf0475c26a6edbf6412055",
+        "arxiv_pdf_sha256": "cdf01c8900fb37c71d9fe7d956a805241507cb940309c8b8fa0caf7109e6b5d4",
+        "arxiv_version": "2204.13719v3",
+        "doi": "10.22331/q-2023-07-20-1062",
+        "retrieved_from": "Public arXiv API and versioned PDF; no access-control bypass."
+      },
+      "inspection_status": "PRIMARY_FULL_TEXT_INSPECTED",
+      "residual_q1_claim_after_subtraction": "external benchmark comparison absent",
+      "source_id": "MQT-BENCH-v3",
+      "subtraction_from_q1": "Internal finite receipts are not already production compiler benchmarks.",
+      "title": "MQT Bench: Benchmarking Software and Design Automation Tools for Quantum Computing",
+      "what_source_owns": "Reproducible benchmarking across quantum-software abstraction levels."
+    }
+  ],
+  "review": {
+    "independent_q1_d_reviewer_present": false,
+    "review_terminal": "NOVELTY_NOT_ESTABLISHED",
+    "same_lane_review_only": true,
+    "submission_terminal": "Q1_NOVELTY_OPEN"
+  },
+  "schema": "ORION.Q1C.CurrentLiteratureSubtractionR9.v1",
+  "search_manifest": {
+    "arxiv_queries": [
+      {
+        "id": "exact_claim",
+        "query": "all:\"Tag-and-Restore\" AND all:\"support\"",
+        "response_sha256": "b2e7d968ba3c49de2a1d24fb76fb9a8914a28a29363122df440fd97c6ddd3e7c",
+        "returned": 0,
+        "total_results": 0
+      },
+      {
+        "id": "tare_frame",
+        "query": "all:TARE AND all:\"Pauli\" AND (all:\"frame\" OR all:\"support\")",
+        "response_sha256": "ca91445c96b5a162600a5848bfef97413f5801cf5461fbbdebfd730185c8a789",
+        "returned": 0,
+        "total_results": 0
+      },
+      {
+        "id": "pauli_compiler",
+        "query": "all:\"Pauli\" AND (all:\"binary symplectic\" OR all:\"phase gadget\") AND all:\"optimization\"",
+        "response_sha256": "68b98c0f32ccd53ad1d260f647e3d8945ec4a2b08f96eab4f465c7f3a4bc943d",
+        "returned": 3,
+        "total_results": 3
+      },
+      {
+        "id": "fault_tolerant",
+        "query": "all:\"Clifford+T\" AND (all:\"T-count\" OR all:\"T-depth\") AND all:\"synthesis\"",
+        "response_sha256": "c1f4931801700f12704443f57f6f94b230a45867bb72bb903e71d36fe71b42bd",
+        "returned": 25,
+        "total_results": 25
+      },
+      {
+        "id": "matroid",
+        "query": "all:\"matroid\" AND all:\"quantum\" AND (all:\"compilation\" OR all:\"circuit\")",
+        "response_sha256": "51b34f7835a29f1648bbfdbb8f320a16249b25dda6d44272d62522f4d94a3ead",
+        "returned": 8,
+        "total_results": 8
+      },
+      {
+        "id": "block_resource",
+        "query": "all:\"block encoding\" AND (all:\"T count\" OR all:\"resource estimation\" OR all:\"fault tolerant\")",
+        "response_sha256": "f95595bacff4952981fda086282e8e570c9e6f45793aaec7db66b20b45f6df78",
+        "returned": 25,
+        "total_results": 74
+      },
+      {
+        "id": "benchmark",
+        "query": "all:\"quantum compiler\" AND all:\"benchmark\"",
+        "response_sha256": "d985db8802da215af437545f224b452d4762d88535204aea216bb528c78593c8",
+        "returned": 25,
+        "total_results": 60
+      }
+    ],
+    "cutoff_utc": "2026-08-26T18:29:50Z",
+    "executed_utc": "2026-08-26T18:29:50Z",
+    "lawful_access": "Public arXiv Atom API/versioned PDFs, Crossref public metadata, and OpenAlex public metadata; no paywall or authentication bypass.",
+    "openalex_checks": [
+      {
+        "count": 4,
+        "query": "TARE exact-title search",
+        "response_sha256": "a436f07b330dcd025f6f805814561aa0232de88b089ebdbf3af7c77ba4c239ef"
+      },
+      {
+        "count": 0,
+        "query": "works citing TARE W7123371796",
+        "response_sha256": "d0c8f1ad3e0b2d97ab1b2e5abda02248f5645f70920681672c4625f9bc21d78"
+      },
+      {
+        "count": 0,
+        "query": "works citing TARE W7123287447",
+        "response_sha256": "46ce0daf6455e73e2739012ffcd85f71781615138ac861d86cbf4fd2396b9f5b"
+      }
+    ],
+    "search_limits": [
+      "Exact-phrase retrieval had false negatives: it returned zero even though direct TARE was known and inspected separately.",
+      "OpenAlex had duplicate TARE identities and zero indexed citations; zero is not proof of absence.",
+      "Only returned records and selected primary full texts were inspected.",
+      "Patents, private manuscripts, non-indexed proceedings/software, non-English sources, and post-cutoff sources are CANNOT_CHECK."
+    ]
+  },
+  "source_binding": {
+    "base_commit_sha": "1e18787841d99d76a3c7661505838d2eca8780db",
+    "file": "papers/five-paper-top-tier-r8/Q1/Q1_C_SOURCE_BINDING_R9.json",
+    "sha256": "201c83aaaf6c000c70825a02b94f5c1ba964e9c9bdbd8bcfa6f393fdcdc1e19a"
+  },
+  "subtraction_summary": {
+    "direct_equivalent_located_in_bounded_search": false,
+    "donor_owned": [
+      "TARE and Tag/Restore",
+      "free frame/ancilla/control/Tag choices",
+      "anticommuting-unitary partitioning",
+      "Pauli-frame and binary-symplectic optimization",
+      "phase-gadget/parity-network synthesis",
+      "exact/approximate Clifford+T synthesis",
+      "matroid T-depth optimization",
+      "general block-encoding T-count and ancilla theory",
+      "resource-aware and benchmark methodology"
+    ],
+    "novelty_established": false,
+    "reason_novelty_remains_open": "A bounded same-lane search cannot establish absence, priority, or independent novelty. Symphony v2 was updated one day before this audit; 2026 literature requires a submission-date rerun and independent review.",
+    "required_manuscript_narrowing": [
+      "Say bounded current searches did not locate a direct equivalent; never say first, unique, or proven novel.",
+      "Name the exact grammar/objective whenever support two is a headline.",
+      "Separate conditional logical Clifford count from T count, depth, physical qubits, and spacetime.",
+      "Cite Symphony v2, TARE v4, current block-encoding T-count work, and fault-tolerant benchmark/resource literature."
+    ],
+    "residual_candidate": "A sharp all-n optimum-support threshold kappa_R6M=2 for the exactly frozen three-block shared-one-bit-Tag TARE-M2 grammar and declared (4,2,2,1) logical support-count objective, with exact support-one lower witness and weight-two obstruction."
+  },
+  "terminal": "NOVELTY_NOT_ESTABLISHED"
+}

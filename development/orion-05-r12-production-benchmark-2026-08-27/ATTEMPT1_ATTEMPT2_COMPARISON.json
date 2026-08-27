@@ -1,0 +1,57 @@
+{
+  "attempt_1": {
+    "job_id": 3549585,
+    "raw_attempts": {
+      "bytes": 101204,
+      "sha256": "1ed31f08eb21493b61e037794b324733bec9de8ca04ce72e291fc7b42bb8e4dc"
+    },
+    "source_commit": "7fdea61e44f62b3595c4f1863fefffdd7132b68a",
+    "wrapper_terminal": "ORION05_R12_ATTEMPT1_FAILED_POST_MEASUREMENT_ENVIRONMENT_RECEIPT__NO_ROUND_TERMINAL"
+  },
+  "attempt_2": {
+    "job_id": 3549607,
+    "raw_attempts": {
+      "bytes": 101203,
+      "sha256": "69294c9633c51d4ee32bdf869b1a7eed39f52f72ff51eb47126365fb50ead251"
+    },
+    "science_terminal": "ORION05_R12_EXACT_BUT_NO_PRODUCTION_VALUE",
+    "source_commit": "1078ff764fa128f9f5150898761a1528d1a300b7"
+  },
+  "authority": {
+    "attempt_1_retroactively_promoted_to_round_terminal": false,
+    "attempt_2_controls_round_terminal": true,
+    "external_independence": false,
+    "production_value_established": false,
+    "submission_authorized": false
+  },
+  "comparison": {
+    "all_non_machine_specific_fields_identical": true,
+    "attempt_count_each": 120,
+    "attempt_id_sets_equal": true,
+    "cost_witness_and_timeout_dispositions_identical": true,
+    "machine_specific_fields_allowed_to_differ": [
+      "cpu_ns",
+      "peak_rss_kib",
+      "pid",
+      "verification_ns",
+      "wall_ns"
+    ],
+    "observed_different_field_counts": {
+      "cpu_ns": 120,
+      "peak_rss_kib": 119,
+      "pid": 120,
+      "verification_ns": 108,
+      "wall_ns": 120
+    },
+    "status_counts_each": {
+      "COMPLETED": 108,
+      "ERROR": 0,
+      "TIMEOUT": 12
+    }
+  },
+  "date": "2026-08-27",
+  "paper_id": "ORION-05",
+  "protected_task3_touched": false,
+  "schema": "ORION.ORION05.R12.AttemptComparison.v1",
+  "terminal": "ORION05_R12_ATTEMPT1_ATTEMPT2_SCIENTIFIC_OUTCOMES_MATCH__MACHINE_METRICS_DIFFER"
+}

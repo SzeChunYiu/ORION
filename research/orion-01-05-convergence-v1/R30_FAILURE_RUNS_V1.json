@@ -1,0 +1,79 @@
+{
+  "schema": "ORION.ORION0105.R30FailureRuns.v1",
+  "disposition": "R30_NOT_MATERIALIZED__CUSTODY_AND_FINAL_BINDING_FAILED",
+  "r30_runs": [
+    {
+      "run": 33047609008,
+      "workflow": "one-shot-r30-finalize-internal-programme",
+      "head_sha": "95592385f3d6dba64335d602a7d723212c8b21ad",
+      "conclusion": "failure",
+      "failed_step": "Materialize exact R18 result and R19 current subject",
+      "cause": "STALE_R18_RESULT_SHA256",
+      "url": "https://github.com/SzeChunYiu/ORION/actions/runs/33047609008"
+    },
+    {
+      "run": 33048246343,
+      "workflow": "one-shot-r30-recover-latest-failure",
+      "head_sha": "0670f3c7379c8e29ec449cde2f3772cb8355ce22",
+      "conclusion": "failure",
+      "failed_step": "Diagnose, harden, and schedule one retry",
+      "cause": "GITHUB_APP_WORKFLOW_UPDATE_REJECTED",
+      "url": "https://github.com/SzeChunYiu/ORION/actions/runs/33048246343"
+    },
+    {
+      "run": 33048471274,
+      "workflow": "one-shot-r30-final-ensure",
+      "head_sha": "155ac91341c3a6c00e621ae0eeb8207b1bfd3128",
+      "conclusion": "failure",
+      "failed_step": "Diagnose latest failed finalizer and schedule hardened retry",
+      "cause": "GITHUB_APP_WORKFLOW_UPDATE_REJECTED",
+      "url": "https://github.com/SzeChunYiu/ORION/actions/runs/33048471274"
+    },
+    {
+      "run": 33048664001,
+      "workflow": "one-shot-r30-clean-branch-recovery",
+      "head_sha": "4f5fec5197e179a7364fce3d7a753a718de49f78",
+      "conclusion": "failure",
+      "failed_step": "Inspect clean-branch custody",
+      "cause": "INTENDED_CLEAN_BRANCH_NOT_FOUND_HTTP_404",
+      "url": "https://github.com/SzeChunYiu/ORION/actions/runs/33048664001"
+    },
+    {
+      "run": 33048836610,
+      "workflow": "one-shot-r30-author-handoff",
+      "head_sha": "3b8da33ca691f7329b7d939e85940fa723f7dc5f",
+      "conclusion": "failure",
+      "failed_step": "Wait for green clean current-main custody",
+      "cause": "INTENDED_CLEAN_BRANCH_NOT_FOUND_HTTP_404",
+      "url": "https://github.com/SzeChunYiu/ORION/actions/runs/33048836610"
+    },
+    {
+      "run": 33048974820,
+      "workflow": "one-shot-r30-bind-final-status",
+      "head_sha": "3c7ea359065be2b72953ea5aed60ebfec787a6dc",
+      "conclusion": "failure",
+      "failed_step": "Wait for author handoff and green clean custody",
+      "cause": "INTENDED_CLEAN_BRANCH_NOT_FOUND_HTTP_404",
+      "url": "https://github.com/SzeChunYiu/ORION/actions/runs/33048974820"
+    }
+  ],
+  "r30_run_count": 6,
+  "related_r18_custody_run_recorded_separately": "R30_FAILURE_CUSTODY_V1.json",
+  "authoritative_successful_r30_finalizer": false,
+  "intended_clean_branch_exists": false,
+  "final_receipts_materialized": false,
+  "scientific_results_retracted": false,
+  "authority": {
+    "science_closure": false,
+    "external_independence": false,
+    "novelty": false,
+    "production_authority": false,
+    "journal_authority": false,
+    "submission_authorized": false
+  },
+  "audit_snapshot": {
+    "verified_at": "2026-08-27T10:26:45Z",
+    "source": "GitHub Actions run metadata and failed-job step/log audit",
+    "authority": "FAILURE_CUSTODY_ONLY__NO_SCIENTIFIC_PROMOTION"
+  }
+}
