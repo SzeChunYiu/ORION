@@ -1,0 +1,40 @@
+name: ORION-05 PR1498 historical custody
+
+on:
+  pull_request:
+    paths:
+      - "papers/orion-05-tare-expressivity/evidence/historical/pr-1498-q1-xover-v1/**"
+      - "tests/unit/publication/test_orion05_pr1498_custody.py"
+      - ".github/workflows/orion05-pr1498-historical-custody.yml"
+  push:
+    branches: [main]
+    paths:
+      - "papers/orion-05-tare-expressivity/evidence/historical/pr-1498-q1-xover-v1/**"
+      - "tests/unit/publication/test_orion05_pr1498_custody.py"
+      - ".github/workflows/orion05-pr1498-historical-custody.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-pr1498-custody:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install verifier dependencies
+        run: python -m pip install --disable-pip-version-check pytest==8.4.2 ruff==0.12.12
+      - name: Verify exact donor bytes and adverse authority boundary
+        run: |
+          archive=papers/orion-05-tare-expressivity/evidence/historical/pr-1498-q1-xover-v1
+          python -m ruff check \
+            "$archive/verify_orion05_pr1498_custody_v1.py" \
+            tests/unit/publication/test_orion05_pr1498_custody.py
+          python "$archive/verify_orion05_pr1498_custody_v1.py"
+          python -m pytest -q tests/unit/publication/test_orion05_pr1498_custody.py
