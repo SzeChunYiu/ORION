@@ -70,7 +70,7 @@ def render(audit: dict) -> str:
     lines: list[str] = []
     add = lines.append
 
-    add("# Table P2-1: benchmark / data / license / provider / freeze manifest")
+    add("# Table ORION-12-1: benchmark / data / license / provider / freeze manifest")
     add("")
     add("<!-- GENERATED FILE - DO NOT EDIT BY HAND.")
     add("     Regenerate with:")
@@ -78,7 +78,11 @@ def render(audit: dict) -> str:
     add("     Source of record: protocol/EXTERNAL_ACCESS_AUDIT_V1.json -->")
     add("")
     add(f"Audit performed `{audit['audit_timestamp_utc']}` - `{audit['audit_completed_utc']}`.")
-    add(f"Schema `{audit['schema_version']}` for protocol `{audit['protocol_id']}`.")
+    # Display label follows the 2026-08-26 ORION-NN namespace unification
+    # (papers/PAPER_RENAME_RECEIPT_V1.json); the canonical id in the audit
+    # JSON stays `P2.open-world-discovery.v1`.
+    display_protocol_id = audit["protocol_id"].replace("P2.", "ORION-12.", 1)
+    add(f"Schema `{audit['schema_version']}` for protocol `{display_protocol_id}`.")
     add("")
     add(
         "This table is outcome-blind: it records what can be obtained, under what licence, at what "

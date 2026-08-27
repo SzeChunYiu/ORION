@@ -51,7 +51,7 @@ Obtaining an artifact and being able to run its official scorer are different qu
 | `MetaSyn_dataset` | `OBTAINED` | HuggingFace (anonymous download) | n/a | none for obtaining; local encode of the corpus needs meaningful compute and disk | CANNOT_CHECK. Public and ungated with downloadable included-study lists; no contamination probe run. |
 | `SAGE_official_evaluator` | `NOT_OBTAINABLE` | n/a | n/a | No evaluator code exists at the pinned revision. README.md specifies Exact Match for short-form and 'Weighted Recall - recall across relevance tiers… | Not applicable. |
 | `SAGE_retrieval_corpus` | `NOT_OBTAINABLE` | n/a | n/a | The corpus is required to run the SAGE retrieval task family at all and was not found at any published location. Without it, task family sage_scienti… | Not applicable; artifact not obtained. Note that a closed corpus is exactly what would be needed to de-contaminate SAGE… |
-| `OpenScholar` | `CANNOT_CHECK` | n/a | n/a | No pinned revision and no PROTOCOL_V1.json task family or reference_revisions entry. OpenScholar is cited in papers/orion-12-open-world-scientific-discovery | Not assessed; artifact not pinned. |
+| `OpenScholar` | `CANNOT_CHECK` | n/a | n/a | No pinned revision and no PROTOCOL_V1.json task family or reference_revisions entry. OpenScholar is cited in papers/orion-12-open-world-scientific-di… | Not assessed; artifact not pinned. |
 | `ResearchArena` | `CANNOT_CHECK` | n/a | n/a | No canonical artifact identity. ResearchArena is referenced in papers/orion-12-open-world-scientific-discovery/README.md and evidence/FALSIFIER_V1.md… | Not assessed; artifact identity unresolved. |
 
 ## D. Locators and licence evidence
@@ -68,7 +68,7 @@ Obtaining an artifact and being able to run its official scorer are different qu
 | `SAGE_official_evaluator` | not published | No artifact located. |
 | `SAGE_retrieval_corpus` | unpublished; claimed in arXiv:2602.05975 as a 200,000 paper retrieval… | No artifact located, therefore no licence to inspect. |
 | `OpenScholar` | https://github.com/AkariAsai/OpenScholar (arXiv:2411.14199) | GET /repos/AkariAsai/OpenScholar -> HTTP 200, license field spdx_id Apache-2.0, 1577 stars, last pushed 2025-08-13T04:16:46Z. |
-| `ResearchArena` | arXiv:2406.10291; no canonical repository pinned by ORION-12 material | No canonical repository is identified in the ORION-12 material, so no single licence can be attributed. GitHub repository search for 'ResearchArena in:name' returned at least four candidates with… |
+| `ResearchArena` | arXiv:2406.10291; no canonical repository pinned by P2 material | No canonical repository is identified in the P2 material, so no single licence can be attributed. GitHub repository search for 'ResearchArena in:name' returned at least four candidates with… |
 
 ## E. Pinned-revision integrity
 
