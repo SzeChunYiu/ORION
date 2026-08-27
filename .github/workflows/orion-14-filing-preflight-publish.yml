@@ -30,8 +30,8 @@ jobs:
           set -euo pipefail
           out="$RUNNER_TEMP/orion-14-filing-preflight"
           mkdir -p "$out"
-          python -m py_compile papers/orion-14-verified-scientific-discovery/check_filing_preflight.py
-          python papers/orion-14-verified-scientific-discovery/check_filing_preflight.py \
+          python -m py_compile papers/publication_closure/check_orion14_filing_preflight.py
+          python papers/publication_closure/check_orion14_filing_preflight.py \
             --root "$GITHUB_WORKSPACE" \
             --as-of "$(date -u +%F)" \
             --write-json "$out/REPOSITORY_FILING_PREFLIGHT_V1.json" \
