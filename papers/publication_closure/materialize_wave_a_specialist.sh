@@ -35,6 +35,19 @@ make -C papers/orion-22-adaptive-state-reasoning/manuscript
 PYTHONPATH=src python papers/orion-23-responsibility-carrying-state/check_lifecycle_consolidation_binding_v1.py
 make -C papers/orion-23-responsibility-carrying-state/manuscript
 
+# Reader-visible citation syntax must be resolved in the actual PDFs, not merely
+# present in a sidecar bibliography file.
+for pdf in \
+  papers/orion-22-adaptive-state-reasoning/manuscript/main.pdf \
+  papers/orion-23-responsibility-carrying-state/manuscript/main.pdf; do
+  txt="${RUNNER_TEMP:-/tmp}/$(basename "$(dirname "$(dirname "$pdf")")")-citation-audit.txt"
+  pdftotext "$pdf" "$txt"
+  if grep -Fq '[@' "$txt"; then
+    echo "unresolved Markdown citation token in $pdf" >&2
+    exit 1
+  fi
+done
+
 # ---------------------------------------------------------------------------
 # 2. Commit deterministic current-paper render changes, then re-bind manifests
 #    to that exact clean subject. Coordination documents live outside paper
@@ -86,6 +99,7 @@ git diff --exit-code -- \
 # 3. Target-specific TQE packages for the three bounded quantum papers.
 # ---------------------------------------------------------------------------
 declare -A IDS=( [Q1]=ORION-05 [QG1]=ORION-09 [QG2]=ORION-10 )
+TQE_ABSTRACTS='papers/publication_closure/tqe/TQE_ABSTRACTS_V1.json'
 for p in Q1 QG1 QG2; do
   id="${IDS[$p]}"
   out="papers/publication_closure/submissions/${id}/TQE"
@@ -96,6 +110,7 @@ for p in Q1 QG1 QG2; do
   python papers/quantum_preprint/build_quantum_source.py \
     --paper "$p" \
     --cited-master "build/q_qg_cited/${p}/MANUSCRIPT_CITED.md" \
+    --abstract-overrides-json "$TQE_ABSTRACTS" \
     --out "$work/prepared.md"
   cp "build/q_qg_cited/${p}/references.bib" "$work/references.bib"
   cp papers/quantum_preprint/tqe_pandoc_template.tex "$work/template.tex"
@@ -140,7 +155,8 @@ PY
   cp "$work/references.bib" "$out/references.bib"
   cp "build/q_qg_cited/${p}/MANUSCRIPT_CITED.md" "$out/SCIENTIFIC_MASTER_CITED.md"
   cp "$work/ABSTRACT_WORD_COUNT.txt" "$out/ABSTRACT_WORD_COUNT.txt"
-  (cd "$out" && sha256sum main.pdf main.tex references.bib SCIENTIFIC_MASTER_CITED.md ABSTRACT_WORD_COUNT.txt > SHA256SUMS)
+  cp "$TQE_ABSTRACTS" "$out/TQE_ABSTRACTS_V1.json"
+  (cd "$out" && sha256sum main.pdf main.tex references.bib SCIENTIFIC_MASTER_CITED.md ABSTRACT_WORD_COUNT.txt TQE_ABSTRACTS_V1.json > SHA256SUMS)
 done
 
 # ---------------------------------------------------------------------------
