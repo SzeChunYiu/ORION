@@ -35,6 +35,7 @@ TQE_REQUIRED = [
     "SCIENTIFIC_MASTER_CITED.md",
     "TQE_ABSTRACTS_V1.json",
     "QUANTUM_REPLAY_RECEIPT_V1.json",
+    "quantum-replay-raw",
     "ABSTRACT_WORD_COUNT.txt",
     "SHA256SUMS",
 ]
@@ -78,11 +79,15 @@ def load_json(path: Path) -> dict[str, Any]:
 def verify_sha_manifest(base: Path) -> list[dict[str, Any]]:
     manifest = base / "SHA256SUMS"
     rows: list[dict[str, Any]] = []
+    seen: set[str] = set()
     for raw in manifest.read_text(encoding="utf-8").splitlines():
         if not raw.strip():
             continue
         expected, name = raw.split(None, 1)
         name = name.lstrip("* ")
+        if name in seen:
+            raise SystemExit(f"duplicate SHA256SUMS row: {base / name}")
+        seen.add(name)
         target = base / name
         if not target.is_file():
             raise SystemExit(f"missing SHA256SUMS target: {target}")
@@ -112,8 +117,34 @@ def verify_quantum_replay(paper_id: str, base: Path) -> dict[str, Any]:
     if replay.get("novelty_authority") is not False:
         raise SystemExit(f"quantum replay acquired novelty authority for {paper_id}")
 
+    raw = replay.get("raw_artifacts")
+    if not isinstance(raw, dict):
+        raise SystemExit(f"quantum replay raw artifact map missing for {paper_id}")
+    raw_keys = {"q1_stdout", "pytest_log", "qg9", "qg12", "qg_programme"}
+    if not raw_keys.issubset(raw):
+        raise SystemExit(f"quantum replay raw artifact map incomplete for {paper_id}")
+    raw_paths = {key: base / str(raw[key]) for key in raw_keys}
+    for key, raw_path in raw_paths.items():
+        if not raw_path.is_file():
+            raise SystemExit(f"packaged raw quantum replay missing for {paper_id}: {key}")
+
+    q1 = replay.get("orion05", {})
+    qsync = replay.get("q_series_publication_sync", {})
+    qg09 = replay.get("orion09", {})
+    qg10 = replay.get("orion10", {})
+    if sha256(raw_paths["q1_stdout"]) != q1.get("stdout_sha256"):
+        raise SystemExit(f"ORION-05 raw proof-sanity digest mismatch in {paper_id} package")
+    if sha256(raw_paths["pytest_log"]) != qsync.get("log_sha256"):
+        raise SystemExit(f"Q-series pytest digest mismatch in {paper_id} package")
+    if sha256(raw_paths["qg9"]) != qg09.get("qg9_sha256"):
+        raise SystemExit(f"QG9 replay digest mismatch in {paper_id} package")
+    if sha256(raw_paths["qg12"]) != qg09.get("qg12_sha256"):
+        raise SystemExit(f"QG12 replay digest mismatch in {paper_id} package")
+    programme_sha = sha256(raw_paths["qg_programme"])
+    if programme_sha != qg09.get("programme_sha256") or programme_sha != qg10.get("programme_sha256"):
+        raise SystemExit(f"QG programme replay digest mismatch in {paper_id} package")
+
     if paper_id == "ORION-05":
-        q1 = replay.get("orion05", {})
         if q1.get("independent_sanity_status") != "PASS":
             raise SystemExit("ORION-05 direct replay sanity not PASS")
         if q1.get("restore_max_delta_f3") != 2:
@@ -121,18 +152,16 @@ def verify_quantum_replay(paper_id: str, base: Path) -> dict[str, Any]:
         if q1.get("support2_sharp_failure_patterns") != 4 or q1.get("support3_to_8_failures") != 0:
             raise SystemExit("ORION-05 direct replay sharpness/class boundary drifted")
     elif paper_id == "ORION-09":
-        qg = replay.get("orion09", {})
-        if qg.get("qg9_all_gates") is not True or qg.get("qg9_intrinsic_support_number") != 1:
+        if qg09.get("qg9_all_gates") is not True or qg09.get("qg9_intrinsic_support_number") != 1:
             raise SystemExit("ORION-09 QG9 theorem replay not green")
-        if qg.get("qg12_all_gates") is not True or qg.get("qg12_n1") != 729 or qg.get("qg12_n2") != 38760:
+        if qg09.get("qg12_all_gates") is not True or qg09.get("qg12_n1") != 729 or qg09.get("qg12_n2") != 38760:
             raise SystemExit("ORION-09 SixLCU theorem replay not green")
-        if qg.get("programme_terminal") != QG_PROGRAMME_TERMINAL or qg.get("programme_all_gates") is not True:
+        if qg09.get("programme_terminal") != QG_PROGRAMME_TERMINAL or qg09.get("programme_all_gates") is not True:
             raise SystemExit("ORION-09 QG programme closure replay not green")
     elif paper_id == "ORION-10":
-        qg = replay.get("orion10", {})
-        if qg.get("programme_terminal") != QG_PROGRAMME_TERMINAL or qg.get("programme_all_gates") is not True:
+        if qg10.get("programme_terminal") != QG_PROGRAMME_TERMINAL or qg10.get("programme_all_gates") is not True:
             raise SystemExit("ORION-10 QG programme closure replay not green")
-        cannot = qg.get("bounded_cannot_checks")
+        cannot = qg10.get("bounded_cannot_checks")
         if not isinstance(cannot, dict) or not {"qg7d", "qg11"}.issubset(cannot):
             raise SystemExit("ORION-10 replay lost bounded CANNOT_CHECK history")
     return replay
