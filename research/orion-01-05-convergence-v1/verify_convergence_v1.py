@@ -54,6 +54,19 @@ def git(repo: Path, *args: str, binary: bool = False) -> str | bytes:
     )
 
 
+def git_object_exists(repo: Path, spec: str) -> bool:
+    return (
+        subprocess.run(
+            ["git", "cat-file", "-e", spec],
+            cwd=repo,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        ).returncode
+        == 0
+    )
+
+
 def validate_entry(repo: Path, entry: dict[str, Any]) -> None:
     destination = repo / entry["destination"]
     require(destination.is_file(), f"missing destination: {entry['destination']}")
@@ -74,17 +87,17 @@ def validate_entry(repo: Path, entry: dict[str, Any]) -> None:
             str(destination_blob).strip() == source["blob"],
             f"donor blob drift: {entry['destination']}",
         )
-        try:
+        source_spec = f"{source['commit']}:{source['path']}"
+        if git_object_exists(repo, source_spec):
             source_payload = git(
-                repo, "show", f"{source['commit']}:{source['path']}", binary=True
+                repo, "show", source_spec, binary=True
             )
-        except subprocess.CalledProcessError:
+            require(source_payload == payload, f"donor byte drift: {entry['destination']}")
+        else:
             require(
                 source.get("object_required_in_checkout") is False,
                 f"required donor object unavailable: {entry['destination']}",
             )
-        else:
-            require(source_payload == payload, f"donor byte drift: {entry['destination']}")
     elif source["kind"] == "github_actions_artifact":
         require(source["run"] > 0 and source["artifact_id"] > 0, "artifact identity absent")
     elif source["kind"] == "convergence_generated":
