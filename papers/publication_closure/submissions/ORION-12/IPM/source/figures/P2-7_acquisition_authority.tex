@@ -1,0 +1,31 @@
+\begin{tikzpicture}[>=Stealth,thick,scale=0.93, every node/.style={transform shape}]
+  \node[draw,rounded corners,align=center,text width=3.1cm] (lex) at (-5.0,2.1) {Lexical / metadata\\augmentation};
+  \node[draw,rounded corners,align=center,text width=3.1cm] (reason) at (-1.7,2.1) {Reasoning-aware /\\hybrid retrieval};
+  \node[draw,rounded corners,align=center,text width=3.1cm] (field) at (1.7,2.1) {Field-aware inspect /\\selective fetch};
+  \node[draw,rounded corners,align=center,text width=3.1cm] (graph) at (5.0,2.1) {Citation / bibliography\\expansion};
+
+  \node[draw,rounded corners,align=center,text width=4.2cm] (signals) at (-3.1,0.3) {Continuation signals\\utility, sufficiency, verification, coverage};
+  \node[draw,rounded corners,align=center,text width=4.2cm] (ledger) at (2.0,0.3) {Evidence $E_t$ + typed obligations $O_t$\\identity, censoring, route state, read state};
+
+  \node[draw,very thick,rounded corners,align=center,text width=5.2cm] (authority) at (0,-1.7) {ORION closure authority\\route stop $\neq$ task closure\\unresolved obligations cannot be erased};
+
+  \node[draw,rounded corners,align=center,text width=2.3cm,font=\tiny] (continue) at (-3.8,-3.5) {CONTINUE /\\REFORMULATE};
+  \node[draw,rounded corners,align=center,text width=2.3cm,font=\scriptsize] (open) at (-1.25,-3.5) {OPEN /\\CANNOT CHECK};
+  \node[draw,rounded corners,align=center,text width=2.3cm,font=\scriptsize] (rstop) at (1.25,-3.5) {ROUTE\\STOP};
+  \node[draw,rounded corners,align=center,text width=2.3cm,font=\scriptsize] (close) at (3.8,-3.5) {TASK\\CLOSE};
+
+  \draw[->] (lex) -- (ledger);
+  \draw[->] (reason) -- (ledger);
+  \draw[->] (field) -- (ledger);
+  \draw[->] (graph) -- (ledger);
+  \draw[->] (signals) -- (ledger);
+  \draw[->] (signals) -- (authority);
+  \draw[->] (ledger) -- (authority);
+
+  \draw[->] (authority) -- (continue);
+  \draw[->] (authority) -- (open);
+  \draw[->] (authority) -- (rstop);
+  \draw[->] (authority) -- (close);
+
+  \node[align=center,text width=11.0cm,font=\small] at (0,3.50) {\textbf{Donor-composable acquisition: stronger acquisition mechanisms may improve evidence, but local signals do not confer scientific-closure authority.}};
+\end{tikzpicture}

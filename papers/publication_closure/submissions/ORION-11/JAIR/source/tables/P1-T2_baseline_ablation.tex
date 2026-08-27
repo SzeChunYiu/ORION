@@ -1,0 +1,36 @@
+% Table P1-T2: Baseline and ablation comparison (condensed)
+% Generated from results/P1-T2_baseline_ablation_results.md
+% 2880 records, 12 systems, 48 cases, 5 stochastic repeats
+
+\begin{table}[t]
+  \centering
+  \caption{Baseline and ablation comparison: root success and unnecessary-reframe rates with 95\%~Wilson score intervals}
+  \label{tab:P1-T2}
+  \scriptsize
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{>{\raggedright\arraybackslash}p{3.05cm}lccc}
+    \toprule
+    System & Role & Root success, & Root success, & Unnecessary \\
+    & & all cases & hidden shift & reframe, controls \\
+    \midrule
+    Governed policy & Subject & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    Live provider & Baseline & 0.0000 [0.0000, 0.0741] & 0.0000 [0.0000, 0.1072] & 0.0000 [0.0000, 0.1936] \\
+    \addlinespace
+    \multicolumn{5}{l}{\textit{Baselines}} \\
+    Static tool workflow & Baseline & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    Tree-search research & Baseline & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.1875 [0.0659, 0.4301] \\
+    Recursive audit/follow-up & Baseline & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    Dependency-aware plan & Baseline & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    Revisable information state & Baseline & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    \addlinespace
+    \multicolumn{5}{l}{\textit{Ablations}} \\
+    No explicit $W$ & Ablation & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    No explicit $M$ & Ablation & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    Generic retry & Ablation & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.1875 [0.0659, 0.4301] \\
+    Full reset & Ablation & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.0000 [0.0000, 0.1936] \\
+    No mechanic self-audit & Ablation & 0.0208 [0.0037, 0.1090] & 0.0312 [0.0055, 0.1574] & 0.1875 [0.0659, 0.4301] \\
+    \bottomrule
+  \end{tabular}
+  \par\smallskip
+  \textit{Note:} $N=48$ cases per system, 5 stochastic repeats, 2,880 records total; no cell is left undetermined after the live-provider recovery. The recursive audit/follow-up arm is the highest-root-success baseline. All systems except the live-provider arm share one perception layer and are resource-matched. Paired percentile bootstrap (10k resamples) was used for comparisons; Holm correction was applied to secondary families. Full system identifiers, per-family results and mechanistic metrics are archived with the record named in Section~\ref{sec:availability}.
+\end{table}

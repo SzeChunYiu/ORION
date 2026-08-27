@@ -1,0 +1,156 @@
+\section{Related work}
+\label{sec:relatedwork}
+
+The neighbouring literature is strongest exactly where this paper does not
+compete. Almost every ingredient of the architecture described above has a
+better-developed parent somewhere in the recent record; what is left is a
+condition on when those ingredients may be composed into a formulation change.
+
+\subsection{Autonomous research architectures}
+
+End-to-end scientific-agent systems supply the setting rather than the contrast.
+AI Scientist-v2 runs a progressive agentic tree search with an experiment
+manager; AI Co-Scientist organizes generation, reflection, ranking, evolution,
+proximity and resource allocation into specialized roles; Kosmos coordinates
+long-horizon analysis through a structured world model shared across agents
+\cite{kosmos2025}; and Agent Laboratory stages research artifacts with human
+checkpoints and explicit cost accounting. AREX alternates research with
+constraint-wise audit and targeted follow-up, and compresses long-horizon
+interaction history into retained state \cite{arex2026}. SCION compiles
+scientific intent into staged objectives, dependencies, verification checkpoints,
+artifacts and fallback conditions, and its critic checkpoints trigger runtime
+rollback, branch termination or re-routing when an agent drifts
+\cite{scion2026}. Iris maintains an evolving information state of revisable
+claims carrying scope, status and evidence pointers, and uses epistemic actions
+to acquire decision-critical information without modifying the retained solution
+\cite{iris2026}. Arbor keeps a persistent hypothesis tree and prunes falsified
+subtrees without cascading invalidation \cite{arbor2026}. AgentRewind snapshots
+agent context together with a controlled environment and rewinds to a
+recoverable state \cite{agentrewind2026}, and ScienceFlow re-anchors a
+machine-learning research agent's executable state under an evidence-aware
+controller \cite{scienceflow2026}.
+
+Two of these bear directly on the target of this paper. SCION's rollback is
+gated on procedural anomalies---drift, hallucination, an unproductive
+branch---rather than on the epistemic type of a failure, and it does not reopen
+already-completed dependent stages conditional on that type. AgentRewind and
+ScienceFlow recover or rebuild \emph{executable} state; neither rewrites a
+formulation coordinate under a typed responsibility licence. The evaluation
+literature supplies the premise rather than the mechanism: SciAgentArena shows
+that stepwise-verified open-ended autonomy remains difficult
+\cite{sciagentarena2026}, and a complementary assessment shows that outcome
+success can coexist with weak evidence use and little refutation-driven belief
+revision \cite{scientificreasoning2026}. Bisht et al.\ independently recommend
+building an explicit model of shifting objectives as future work
+\cite{bisht2026}, which is evidence that the gap is real and simultaneously
+evidence that identifying it is not this paper's contribution.
+
+\subsection{Failure attribution, diagnosis and repair}
+
+Attributing a failure and acting on the attribution is a crowded and
+well-developed neighbourhood. ARTS diagnoses implementation faults against bad
+hypotheses and navigates rather than restructures a hypothesis space
+\cite{arts2026}. MAST classifies multi-agent failures into fourteen modes across
+system design, inter-agent misalignment and task verification \cite{mast2025};
+Who\&When and its successor annotate trajectories with the responsible agent and
+the decisive step \cite{whowhen2025,whowhenpro2026}; TRAIL contributes a formal
+error taxonomy for agentic workflow traces \cite{trail2025}; span-level and
+self-improving diagnosis frameworks localize error spans and responsible agents
+\cite{spanlevel2026,selfimproving2026}; REFLECT attributes silent failures to
+candidate error steps and validates them by controlled replay
+\cite{reflect2026}; and Auditable Agents names responsibility attribution as a
+surveyed auditability dimension \cite{auditable2026}. HarnessFix goes further
+than attribution, aligning failed trajectories with responsible harness
+artifacts and mapping the resulting flaw records to scoped repair operators
+under regression-aware validation \cite{harnessfix2026}. Model or Harness?
+formulates repair assignment as an interaction-centric problem in which the same
+visible failure may belong to the model, the harness, the environment or the
+grader \cite{modelorharness2026}, and Diagnosis Is Not Prescription shows that
+the component most causally responsible for a failure need not be the best
+intervention target \cite{diagnosisnotprescription2026}.
+
+Read together, this work establishes generic failure attribution, component
+localization, the diagnosis/intervention distinction, and diagnosis-conditioned
+scoped repair as prior art. What none of it makes an authority condition is the
+\emph{epistemic type} of the responsibility: a formulation or search-universe
+diagnosis licensing a high-level rewrite only after lower-level alternatives
+have been excluded, while an evidence-only or execution-only responsibility
+withholds that licence entirely. That is the distinction the falsifier described
+in Section~\ref{sec:hidden-formulation} caught being applied too loosely, and it
+is what the experiments in Sections~\ref{sec:necessity} and~\ref{sec:revision}
+isolate.
+
+\subsection{Dependency-directed reopening}
+
+Scoped invalidation is old and thoroughly parented. Doyle's justification-based
+truth maintenance invalidates every dependent of a retracted justification
+\cite{doyle1979}, and change impact analysis, regression test selection and
+incremental build systems have performed transitive-closure invalidation in
+engineering practice for decades; the NASA systems-engineering tradition treats
+an empty cell in a verification matrix as a defect that obliges new work
+\cite{nasa2016}. Recent agents implement the same discipline directly: EviGraph
+forms a repair group from a weak node and its downstream subordinates and
+regenerates dependents in order while holding problem and gap nodes immutable
+\cite{evigraph2026}; EA-Graph adds content-hash anchoring, staleness detection
+independent of evidence strength, and claim withdrawal under upstream drift
+\cite{eagraph2026}; and dependency-guided rollback builds a typed provenance
+graph, preserves state with independent trusted support, deactivates unsupported
+downstream state and selectively replays affected computation
+\cite{dependencyrollback2026}. No novelty is claimed here for scoped reopening,
+selective rollback, or preservation of unaffected state. The only residual is
+the \emph{trigger}: EviGraph reopens from an evidence-graph inconsistency, while
+the rule studied here reopens because an admitted formulation or search-universe
+coordinate changed---and that residual is inseparable from the responsibility
+gate above.
+
+\subsection{Belief revision, regime change and authorization}
+
+A parallel line governs what a system is allowed to change and on what evidence.
+Preregistered Belief Revision Contracts tie admissible belief change to
+preregistered evidence triggers, allowed operators, priorities, fallback and
+externally validated evidence witnesses \cite{pbrc2026}. Self-Revising Discovery
+Systems treat scientific discovery as a verified transition between
+representational regimes with typed artifacts, provenance, preservation and
+transport obligations \cite{selfrevisingdiscovery2026}. The Model Discovery
+Agent performs open-model hypothesis-class expansion after predictive inadequacy
+and selects informative experiments to identify the proposed mechanism
+\cite{modeldiscoveryagent2026}. Earned Authority under a Fixed Ceiling
+formalizes authorization continuity across agent mutation and permits
+evidence-gated authority changes below an immutable effect ceiling
+\cite{earnedauthority2026}. Reformulation itself has a long history in automated
+planning as solution-preserving re-representation for easier search
+\cite{reformulation2023}. Generic evidence-gated revision, regime transition,
+model-class expansion, mutation authorization and re-representation are
+therefore all donor territory. The condition that remains unparented is
+conjunctive and science-specific: that admission additionally requires
+registered lower-level alternatives to be excluded, the candidate to restore the
+same task, protected siblings and invariants to survive, and the observed
+dependency impact to match the proposed reopen scope.
+
+\subsection{Search universe and metareasoning}
+
+Because the mechanism keeps an explicit model of which domains and routes may be
+relevant, the literature on undiscovered public knowledge is directly relevant:
+Swanson's principle that connections may exist across domain boundaries that no
+single query would retrieve is the reason $W_t$ is first-class state rather than
+a prompt \cite{swanson1986}. Capture--mark--recapture estimation
+\cite{kastner2009} and open-world evaluation for diverse perspectives
+\cite{chenchoi2025} inform how coverage of that model can be assessed at all.
+Rational metareasoning supplies the cost discipline: value-of-computation
+formulations \cite{desabbata2024} and value-of-information halting for
+tool-using agents \cite{cognitivefriction2026} already justify additional
+computation by expected downstream value, so cost-aware stopping is absorbed
+rather than claimed.
+
+\subsection{Position}
+
+The contribution is therefore a control condition rather than a component, and
+the components it governs are other people's. The state representation is
+Iris's; generic diagnosis-to-scoped-repair is HarnessFix's; the reopening
+machinery is EviGraph's, EA-Graph's, Doyle's and change-impact analysis's;
+recursive audit is AREX's; the missing-cell obligation is the verification
+matrix's; attribution and replay are REFLECT's; repair assignment is Model or
+Harness?'s; and evidence-gated revision and mutation authorization belong to the
+contract and authority literature above. What this paper puts forward as its own
+is the rule about when their outputs may be composed into a change of scientific
+formulation, and the two experiments that test it.

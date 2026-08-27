@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+% figure/table infrastructure
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage[strings]{underscore}
+% Preserve literal underscores in the BibTeX database filename.  The
+% `strings` option otherwise expands them into formatting commands in the aux
+% file, causing BibTeX to skip the novelty-refresh database.
+\begingroup
+\catcode`\_=12
+\gdef\pOneBibDatabases{bibliography,novelty_refresh_2026}
+\endgroup
+\graphicspath{{figures/}{../results/figures/}}
+\captionsetup{font=small,labelfont=bf}
+\setlength{\emergencystretch}{2em}
+% Long snake_case identifiers, repository paths and content hashes appear only in
+% Data and code availability, and need legal breakpoints when they do.
+\urlstyle{tt}
+\newcommand{\idt}[1]{\path{#1}}
+
+\title{Typed Responsibility Licensing for Scientific Revision:\\
+Transition Envelopes and Exact Mechanism Evidence}
+\author{Working framework draft}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\input{generated/suite_facts}
+
+\begin{abstract}
+A successful diagnosis or repair does not determine which scientific layer the
+evidence authorizes changing. We formalize typed responsibility-to-authority
+licensing through epistemic transition envelopes, exact interface factorization,
+and legal-action deficiency. In prospectively frozen primary and disjoint
+generator runs of 2,882 mechanical worlds each, the licensed-transition policy
+attained hidden-shift success 1.0000 versus 0.4938 and 0.4833 for the strongest
+assimilated parents, with no unnecessary high-level changes on 2,402 controls
+per run. On 400 authored exact contracts, it made 400 correct decisions versus
+275 for a donor-complete interface lacking the licensing coupling; an
+information-equivalent product tied at 400/400. These results establish a finite
+mechanism boundary, not naturalistic or inherent-expressivity superiority. The
+historical 48-case precursor remains negative. In the naturalistic programme,
+117,649 source-to-target maps yield 116,929 rejections, 720 unresolved maps, and
+zero certifications. V13 makes external authority execution content-addressed
+but has received 0/7 signed outputs and closed 0/4 authority acts.
+\end{abstract}
+
+\noindent\textbf{Keywords:} epistemic transitions; scientific reformulation; information sufficiency; belief revision; autonomous science; research agents.
+
+\input{sections/01-foundations}
+\input{sections/02-recursive-engine}
+\input{sections/02a-minimal-escalation-theory}
+\input{sections/03-reframe-reopen}
+\input{sections/04-self-audit}
+\input{sections/05b-necessity-successor}
+\input{sections/05c-revision-responsibility-successor}
+\input{sections/05a-methods}
+\input{sections/05-evaluation}
+\input{sections/06-related-work-boundary}
+\input{sections/06b-successor-discovery-failure-interface}
+\input{sections/07-limitations}
+\input{sections/09-reproducibility}
+\input{sections/10-ethics-safety-resources}
+\input{sections/08-conclusion}
+
+\bibliographystyle{plain}
+\bibliography{\pOneBibDatabases}
+\end{document}
