@@ -71,6 +71,71 @@ def test_r2_manuscripts_are_self_contained_and_boundary_explicit():
     assert "D_4(C_5^3) remains 30/31" in n
 
 
+def test_r0_namespace_unification_keeps_math_ids_and_paper_ids_distinct():
+    fiberguard = MANUSCRIPTS["C"].read_text(encoding="utf-8")
+    assert fiberguard.count("`P4(m)`") == 2
+    assert fiberguard.count("`P4`") == 1
+    assert "`ORION-14(m)`" not in fiberguard
+    assert "violate `ORION-14`" not in fiberguard
+
+    regime_history = (
+        ROOT
+        / "papers/orion-05-tare-expressivity/CLAIM_LEDGER_ALL_N_REGIME_HISTORY_2026-08-23.md"
+    ).read_text(encoding="utf-8")
+    assert "Original R6Q predicate `P1(t)` classifies donor-exactness" in regime_history
+    assert "predicate `ORION-11(t)`" not in regime_history
+
+    geometry = (
+        ROOT / "papers/orion-09-compilation-regime-geometry/CLAIM_LEDGER.md"
+    ).read_text(encoding="utf-8")
+    for phrase in (
+        "baseline P1 commits 327 errors",
+        "predicate P1 transfers exactly",
+        "first false positive for the R6Q predicate P1",
+    ):
+        assert phrase in geometry
+    for false_alias in (
+        "baseline ORION-11 commits 327 errors",
+        "predicate ORION-11 transfers exactly",
+        "R6Q predicate ORION-11",
+    ):
+        assert false_alias not in geometry
+
+    forecasting = (
+        ROOT / "papers/orion-10-certified-static-forecasting/CLAIM_LEDGER.md"
+    ).read_text(encoding="utf-8")
+    for phrase in (
+        "checks, predicate P1)",
+        "predicate P1(t) :=",
+        "P1 <-> donor_exact",
+        "first P1 false positive",
+        "identity false; P1 false positive",
+        "R6Q predicate origin: P1 decides",
+        "P1's first false positive",
+        "baseline P1 commits 327 errors",
+    ):
+        assert phrase in forecasting
+
+    preservation = (
+        ROOT / "papers/candidates/CROSS_PAPER_PRESERVATION_THEORY_V1.md"
+    ).read_text(encoding="utf-8")
+    for property_id, count in {"P0": 1, "P1": 3, "P2": 4, "P3": 14, "P4": 3}.items():
+        assert preservation.count(f"`{property_id}`") == count
+    for false_alias in ("`ORION-11`", "`ORION-12`", "`ORION-13`", "`ORION-14`"):
+        assert false_alias not in preservation
+
+    # These are genuine paper references. A blanket ORION-to-P rewrite would
+    # make this half of the guard fail even if it repaired the properties above.
+    for paper_reference in (
+        "ORION-11 `REOPEN` supplies",
+        "ORION-12 route/task stop supplies",
+        "ORION-13 meaning projection supplies",
+        "ORION-14 hard gates/protected authority supply",
+        "ORION-15 fresh/protected readiness supplies",
+    ):
+        assert paper_reference in preservation
+
+
 def test_r2_claim_ledgers_forbid_overpromotion():
     a = (ROOT / "papers/orion-01-certificate-realization/theory-A-CLAIM_LEDGER_R2.md").read_text()
     b = (ROOT / "papers/orion-01-certificate-realization/theory-B-CLAIM_LEDGER_R2.md").read_text()
@@ -125,6 +190,10 @@ def test_r2_manifest_binds_every_declared_file():
     assert manifest["novelty_authority"] is False
     assert manifest["venue_authority"] is False
     assert manifest["external_replication"] is False
+    digest_payload = {key: value for key, value in manifest.items() if key != "manifest_digest"}
+    assert manifest["manifest_digest"] == hashlib.sha256(
+        json.dumps(digest_payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
     for item in manifest["files"]:
         payload = (ROOT / item["path"]).read_bytes()
         assert len(payload) == item["bytes"]
