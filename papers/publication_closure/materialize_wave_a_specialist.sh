@@ -8,6 +8,31 @@ export PYTHONPATH="${PYTHONPATH:-}:$ROOT/src"
 git config user.name 'github-actions[bot]'
 git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
+# Freeze the exact scientific/control subject before any repository-side
+# materialization occurs. The Q/QG publication checker uses this only as the
+# branch-owned-mutation denominator; its historical chronology checks remain
+# bound to their original cuts. A second guard below verifies that no protected
+# science root changed during materialization.
+SCIENCE_BASE_COMMIT="$(git rev-parse HEAD)"
+export ORION_PUBLICATION_SCOPE_BASE="$SCIENCE_BASE_COMMIT"
+SCIENCE_ROOTS=(
+  research/extensions/orion-q
+  research/extensions/orion-qg
+  development/orion-q-max-r0
+  development/orion-qg-regime-geometry
+  development/orion-q-nlane-closure
+)
+assert_science_unchanged () {
+  local changed
+  changed="$(git diff --name-only "$SCIENCE_BASE_COMMIT" -- "${SCIENCE_ROOTS[@]}")"
+  if [ -n "$changed" ]; then
+    echo 'WAVE_A_SCIENCE_IMMUTABILITY_FAIL' >&2
+    printf '%s\n' "$changed" >&2
+    exit 1
+  fi
+  echo "WAVE_A_SCIENCE_IMMUTABILITY_PASS base=$SCIENCE_BASE_COMMIT"
+}
+
 # ---------------------------------------------------------------------------
 # 1. Fail closed on the current scientific/control surfaces.
 # ---------------------------------------------------------------------------
@@ -53,6 +78,7 @@ for pdf in \
     exit 1
   fi
 done
+assert_science_unchanged
 
 # ---------------------------------------------------------------------------
 # 2. Commit deterministic current-paper render changes, then re-bind manifests
@@ -100,6 +126,7 @@ git diff --exit-code -- \
   papers/orion-19-structured-epistemic-learning \
   papers/orion-22-adaptive-state-reasoning \
   papers/orion-23-responsibility-carrying-state
+assert_science_unchanged
 
 # ---------------------------------------------------------------------------
 # 3. Target-specific TQE packages for the three bounded quantum papers.
@@ -185,6 +212,7 @@ PY
   fi
   find "$out" -type f ! -name SHA256SUMS -print0 | sort -z | while IFS= read -r -d '' f; do sha256sum "$f"; done | sed "s#  $out/#  #" > "$out/SHA256SUMS"
 done
+assert_science_unchanged
 
 # ---------------------------------------------------------------------------
 # 4. Existing AIJ/TMLR/JAAMAS specialist objects.
@@ -250,6 +278,7 @@ for out in \
   papers/publication_closure/submissions/ORION-23/JAAMAS; do
   find "$out" -type f ! -name SHA256SUMS -print0 | sort -z | while IFS= read -r -d '' f; do sha256sum "$f"; done | sed "s#  $out/#  #" > "$out/SHA256SUMS"
 done
+assert_science_unchanged
 
 # ---------------------------------------------------------------------------
 # 5. Commit exact packages, then make one final fail-closed closure receipt.
@@ -271,9 +300,11 @@ git diff --check --cached
 if ! git diff --cached --quiet; then
   git commit -m 'papers(publication): close Wave A specialist repository packages [wave-a-materialized]'
 fi
+assert_science_unchanged
 
 git push origin HEAD:chatgpt/orion-publication-closure-wave-a-20260827
 
+printf 'WAVE_A_SCIENCE_BASE_COMMIT=%s\n' "$SCIENCE_BASE_COMMIT"
 printf 'WAVE_A_RENDER_COMMIT=%s\n' "$RENDER_COMMIT"
 printf 'WAVE_A_SOURCE_COMMIT=%s\n' "$SOURCE_COMMIT"
 printf 'WAVE_A_PACKAGE_COMMIT=%s\n' "$PACKAGE_COMMIT"
