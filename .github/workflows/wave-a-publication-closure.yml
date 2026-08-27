@@ -9,7 +9,6 @@ on:
       - 'papers/WAVE_A_PUBLICATION_CLOSURE_MANIFEST_V1.json'
       - 'papers/Q_QG_VENUE_TARGET_MATRIX_V2.md'
       - 'papers/check_publication_dashboard.py'
-      - 'papers/check_q_qg_publication.py'
       - 'papers/check_wave_a_publication_closure.py'
       - 'papers/publication_closure/**'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
@@ -31,7 +30,6 @@ on:
       - 'papers/WAVE_A_PUBLICATION_CLOSURE_MANIFEST_V1.json'
       - 'papers/Q_QG_VENUE_TARGET_MATRIX_V2.md'
       - 'papers/check_publication_dashboard.py'
-      - 'papers/check_q_qg_publication.py'
       - 'papers/check_wave_a_publication_closure.py'
       - 'papers/publication_closure/**'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
@@ -68,8 +66,8 @@ jobs:
       - name: Compile closure control and projection tools
         run: |
           python -m py_compile papers/check_publication_dashboard.py
-          python -m py_compile papers/check_q_qg_publication.py
           python -m py_compile papers/check_wave_a_publication_closure.py
+          python -m py_compile papers/publication_closure/check_wave_a_quantum_authority.py
           python -m py_compile papers/publication_closure/build_wave_a_specialist_receipt.py
           python -m py_compile papers/publication_closure/run_wave_a_quantum_replays.py
           python -m py_compile papers/publication_closure/check_orion14_filing_preflight.py
@@ -80,13 +78,8 @@ jobs:
       - name: Validate publication dashboard
         run: python papers/check_publication_dashboard.py
 
-      - name: Validate Q/QG publication hygiene on Wave-A ancestry
-        shell: bash
-        run: |
-          env \
-            GITHUB_BASE_REF=main \
-            GITHUB_HEAD_REF=chatgpt/orion-publication-closure-wave-a-20260827 \
-            python papers/check_q_qg_publication.py
+      - name: Validate current Wave-A quantum authority
+        run: python papers/publication_closure/check_wave_a_quantum_authority.py
 
       - name: Validate frozen Wave-A structure
         run: python papers/check_wave_a_publication_closure.py --root "$GITHUB_WORKSPACE" --json
@@ -130,11 +123,7 @@ jobs:
 
       - name: Materialize all eight bounded specialist packages and publish receipt
         shell: bash
-        run: |
-          env \
-            GITHUB_BASE_REF=main \
-            GITHUB_HEAD_REF=chatgpt/orion-publication-closure-wave-a-20260827 \
-            bash papers/publication_closure/materialize_wave_a_specialist.sh
+        run: bash papers/publication_closure/materialize_wave_a_specialist.sh
 
       - name: Archive repository-side closure objects
         uses: actions/upload-artifact@v4
