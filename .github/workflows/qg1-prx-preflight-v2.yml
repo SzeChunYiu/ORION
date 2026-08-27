@@ -55,6 +55,11 @@ jobs:
           cp build/q_qg_cited/QG1/references.bib build/qg1_prx_v2/source/references.bib
           cp papers/orion-09-compilation-regime-geometry/submission_prx/prx_pandoc_template.tex \
             build/qg1_prx_v2/source/pandoc_template.tex
+          # Single-column review build: rewrite the tracked twocolumn template's
+          # documentclass options on the build copy only (tracked template stays
+          # the two-column publication form).
+          sed -i 's/\[aps,prx,twocolumn,/[aps,prx,preprint,/' \
+            build/qg1_prx_v2/source/pandoc_template.tex
           cp papers/orion-09-compilation-regime-geometry/submission_prx/POPULAR_SUMMARY.md \
             build/qg1_prx_v2/source/POPULAR_SUMMARY.md
           pandoc build/qg1_prx_v2/prepared.md \

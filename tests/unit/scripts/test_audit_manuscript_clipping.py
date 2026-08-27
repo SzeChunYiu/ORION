@@ -72,7 +72,7 @@ def test_material_margin_overflow_and_off_page_text_still_fail(monkeypatch, tmp_
 
 
 def test_discovery_excludes_explicitly_superseded_journal_package(tmp_path) -> None:
-    paper = tmp_path / "papers" / "paper-02-example"
+    paper = tmp_path / "papers" / "orion-02-example"
     working = paper / "manuscript" / "main.pdf"
     historical = paper / "journal_package" / "manuscript.pdf"
     working.parent.mkdir(parents=True)
