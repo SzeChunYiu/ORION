@@ -52,9 +52,12 @@ jobs:
           python - "$record" <<'PY'
           import json,sys
           x=json.load(open(sys.argv[1]))
-          assert x['verification_state']=='BOUNDED_VERIFIED'
+          assert x['verification_state']=='BOUNDED_VERIFIED_WITH_NONCONTROLLING_EXECUTABLE_RULE_DEFECT'
           assert x['recomputed_terminal']=='REVISION_LEVEL_DISCRIMINATION_SUPPORTED'
-          assert x['other_policies_satisfying_full_performance_content']==[]
+          assert x['declared_frozen_semantics']['other_arms_satisfying_content']==[]
+          assert x['executable_runner_semantics']['other_arms_satisfying_content']==[]
+          assert x['rule_implementation_defect']['detected'] is True
+          assert x['rule_implementation_defect']['controlling_for_observed_terminal'] is False
           assert x['subject_metrics']['accuracy']==1.0
           assert x['subject_metrics']['authority']==0.0
           assert x['subject_metrics']['preservation_refusal']==1.0
