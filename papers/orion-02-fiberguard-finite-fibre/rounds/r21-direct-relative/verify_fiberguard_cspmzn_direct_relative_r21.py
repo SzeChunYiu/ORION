@@ -11,6 +11,7 @@ from pathlib import Path
 import statistics
 import subprocess
 from typing import Any, Sequence
+import zipfile
 
 import numpy as np
 
@@ -21,6 +22,11 @@ SCENARIO = "CSP-MZN-2013"
 TOL = 1e-9
 BOOTSTRAP_REPLICATES = 20_000
 BOOTSTRAP_SEED_TEXT = "ORION02_R21_CSPMZN_DIRECT_RELATIVE_BOOTSTRAP_V1"
+CUSTODY_V1_SHA256 = "4937f137191e42b3ab0fd2f596e4298341e5cc15fb8298e9f98bf2a373e5b3df"
+ORIGINAL_EXECUTOR_SHA256 = "4386f6c9c34ab97878872fcf7ad7fb57b7bb7c23de412f6fc520a4a6c0d84a55"
+REPRODUCIBILITY_FAILURE_TERMINAL = (
+    "ORION02_R21_ADVERSE_PRESERVED__CROSS_RUN_REPRODUCIBILITY_CANNOT_CHECK"
+)
 
 EXPECTED_SOURCE_BLOBS = {
     "README.md": "bbae808cc2f718b15b379b30ef6a9909933fc3d5",
@@ -164,6 +170,125 @@ def verify_preserved_records(repo_root: Path) -> None:
         path = repo_root / relative
         assert path.is_file(), relative
         assert sha256_file(path) == expected, relative
+
+
+def scalar_differences(
+    left: Any, right: Any, path: tuple[Any, ...] = ()
+) -> list[tuple[tuple[Any, ...], Any, Any]]:
+    if type(left) is not type(right):
+        return [(path, left, right)]
+    if isinstance(left, dict):
+        differences: list[tuple[tuple[Any, ...], Any, Any]] = []
+        for key in sorted(set(left) | set(right)):
+            if key not in left or key not in right:
+                differences.append((path + (key,), left.get(key), right.get(key)))
+            else:
+                differences.extend(scalar_differences(left[key], right[key], path + (key,)))
+        return differences
+    if isinstance(left, list):
+        if len(left) != len(right):
+            return [(path + ("length",), len(left), len(right))]
+        differences = []
+        for index, (left_item, right_item) in enumerate(zip(left, right, strict=True)):
+            differences.extend(scalar_differences(left_item, right_item, path + (index,)))
+        return differences
+    return [] if left == right else [(path, left, right)]
+
+
+def verify_reproducibility_failure(
+    result_path: Path, committed_raw: bytes, executor_path: Path
+) -> None:
+    failure_path = result_path.with_name(
+        "FIBERGUARD_CSPMZN_R21_CROSS_RUN_REPRODUCIBILITY_FAILURE_V1.json"
+    )
+    failure = json.loads(failure_path.read_text(encoding="utf-8"))
+    assert failure["terminal"] == REPRODUCIBILITY_FAILURE_TERMINAL
+    assert failure["science"] == {
+        "round": 2,
+        "terminal": TERMINAL,
+        "terminal_changed": False,
+        "round_consumed_as": "ADVERSE",
+        "new_science_round": False,
+    }
+    assert failure["preserved_custody_v1"]["bytes_modified"] is False
+    assert failure["preserved_custody_v1"]["sha256"] == CUSTODY_V1_SHA256
+
+    replay_payloads: dict[str, bytes] = {}
+    expected_members = {
+        "run1/result.json",
+        "run1/terminal.txt",
+        "run1/execution.log",
+        "run2/result.json",
+        "run2/terminal.txt",
+        "run2/execution.log",
+    }
+    for replay_name in ("committed_match", "divergent"):
+        replay = failure["replays"][replay_name]
+        archive_path = result_path.with_name(replay["archive_path"])
+        assert archive_path.stat().st_size == replay["archive_bytes"]
+        assert sha256_file(archive_path) == replay["archive_sha256"]
+        with zipfile.ZipFile(archive_path) as archive:
+            assert archive.testzip() is None
+            assert set(archive.namelist()) == expected_members
+            run1 = archive.read("run1/result.json")
+            run2 = archive.read("run2/result.json")
+            assert run1 == run2
+            assert len(run1) == replay["result_bytes"]
+            assert sha256_bytes(run1) == replay["result_sha256"]
+            terminal1 = archive.read("run1/terminal.txt")
+            terminal2 = archive.read("run2/terminal.txt")
+            assert terminal1 == terminal2 == (TERMINAL + "\n").encode()
+            assert sha256_bytes(terminal1) == replay["terminal_sha256"]
+            log1 = archive.read("run1/execution.log")
+            log2 = archive.read("run2/execution.log")
+            assert log1 == log2
+            assert sha256_bytes(log1) == replay["execution_log_sha256"]
+        replay_payloads[replay_name] = run1
+
+    assert replay_payloads["committed_match"] == committed_raw
+    committed = json.loads(replay_payloads["committed_match"])
+    divergent = json.loads(replay_payloads["divergent"])
+    differences = scalar_differences(committed, divergent)
+    assert len(differences) == failure["exact_difference"]["scalar_difference_count"] == 53
+    observed_paths = {path for path, _, _ in differences}
+    expected_paths: set[tuple[Any, ...]] = {
+        ("folds", 0, "test_row_digest"),
+        ("out_of_fold", "row_digest"),
+    }
+    for row_index in range(439, 456):
+        for field in ("interval_lower", "interval_upper", "relative_prediction"):
+            expected_paths.add(("out_of_fold", "rows", row_index, field))
+    assert observed_paths == expected_paths
+
+    changed_rows = failure["exact_difference"]["out_of_fold_row_indices"]
+    assert changed_rows == {"first": 439, "last": 455, "count": 17}
+    for row_index in range(changed_rows["first"], changed_rows["last"] + 1):
+        for receipt_name, payload in (("committed", committed), ("divergent", divergent)):
+            row = payload["out_of_fold"]["rows"][row_index]
+            for field, expected in failure["exact_difference"]["values"][receipt_name].items():
+                assert row[field] == expected
+
+    assert failure["diagnosis"]["executor_sha256_at_both_recorded_runs"] == (
+        ORIGINAL_EXECUTOR_SHA256
+    )
+    repair = failure["defect_only_repair"]
+    assert repair["repaired_executor_sha256"] == sha256_file(executor_path)
+    hostile_test_path = result_path.with_name("test_fiberguard_cspmzn_direct_relative_r21.py")
+    assert repair["hostile_test_sha256"] == sha256_file(hostile_test_path)
+    assert repair["local_replay_result_sha256"] == sha256_bytes(committed_raw)
+    assert repair["local_replay_complete_runs"] == 2
+    assert repair["tolerance_added"] is False
+    assert repair["rounding_added"] is False
+    assert repair["scientific_parameter_changed"] is False
+    assert repair["separate_hosted_runner_comparison_required"] is True
+    assert repair["successor_custody_admitted"] is False
+    assert failure["authority"]["cross_run_byte_reproducibility"] == (
+        "CANNOT_CHECK_UNTIL_SEPARATE_RUNNERS_MATCH"
+    )
+    assert failure["authority"]["preserves_round_2_adverse_science"] is True
+    assert failure["authority"]["grants_positive_result"] is False
+    assert failure["authority"]["grants_new_round"] is False
+    assert failure["authority"]["submission_authorized"] is False
 
 
 def verify_result(result_path: Path, repo_root: Path, subject_repo: Path) -> None:
@@ -333,6 +458,7 @@ def verify_result(result_path: Path, repo_root: Path, subject_repo: Path) -> Non
     }
 
     custody_path = result_path.with_name("FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_CUSTODY.json")
+    assert sha256_file(custody_path) == CUSTODY_V1_SHA256
     custody = json.loads(custody_path.read_text(encoding="utf-8"))
     assert custody["terminal"] == TERMINAL
     assert custody["corrected_execution"]["result_sha256"] == sha256_bytes(raw)
@@ -340,7 +466,7 @@ def verify_result(result_path: Path, repo_root: Path, subject_repo: Path) -> Non
     assert custody["corrected_execution"]["byte_identical_complete_runs"] == 2
     executor_path = result_path.with_name("fiberguard_cspmzn_direct_relative_r21.py")
     protocol_path = result_path.with_name("FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_PROTOCOL.md")
-    assert custody["corrected_execution"]["executor_sha256"] == sha256_file(executor_path)
+    assert custody["corrected_execution"]["executor_sha256"] == ORIGINAL_EXECUTOR_SHA256
     assert custody["corrected_execution"]["protocol_sha256"] == sha256_file(protocol_path)
     assert custody["preserved_prerequisite"] == {
         "executor_emitted_terminal": False,
@@ -359,6 +485,8 @@ def verify_result(result_path: Path, repo_root: Path, subject_repo: Path) -> Non
     assert tsp_failure["execution"]["executor_emitted_terminal"] is False
     assert tsp_failure["authority"]["grants_round_2_scientific_adjudication"] is False
     assert tsp_failure["missing_cost_audit"]["affected_instance_step_cells"] == 21
+
+    verify_reproducibility_failure(result_path, raw, executor_path)
 
     authority = result["authority"]
     assert authority["production_value"] is False

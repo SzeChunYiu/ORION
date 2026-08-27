@@ -1,5 +1,13 @@
 # FiberGuard R21 CSP-MZN direct-relative joint-route result
 
+> **Reproducibility-custody correction (2026-08-27):** a later separate hosted
+> run preserved this adverse terminal and every decision/loss, but
+> exposed a cross-run exact-tie byte divergence.  The two raw receipts and the
+> defect-only repair boundary are preserved in
+> `FIBERGUARD_CSPMZN_R21_CROSS_RUN_REPRODUCIBILITY_AUTHORITY_CORRECTION.md`.
+> Cross-run custody remains `CANNOT_CHECK` until two separate repaired runners
+> match; the adverse Round-2 science below is not retracted or upgraded.
+
 ## Terminal
 
 ```text
@@ -93,4 +101,3 @@ may propose refinement/order choices only behind the exact certificate shield
 and may not change admissibility or conditional authority. If Round 3 is also
 null/adverse, trigger the specialist boundary-paper fallback without weakening
 evidence standards.
-

@@ -471,6 +471,9 @@ def neighbour_order(
 ) -> tuple[np.ndarray, np.ndarray]:
     if train.shape[0] < maximum_k:
         raise ValueError(f"only {train.shape[0]} training rows for k={maximum_k}")
+    exact_rows: dict[bytes, list[int]] = {}
+    for index, row in enumerate(train):
+        exact_rows.setdefault(row.tobytes(), []).append(index)
     order_chunks: list[np.ndarray] = []
     distance_chunks: list[np.ndarray] = []
     train_norm = np.sum(train * train, axis=1)
@@ -480,6 +483,10 @@ def neighbour_order(
             np.sum(query * query, axis=1)[:, None] + train_norm[None, :] - 2.0 * (query @ train.T)
         )
         np.maximum(distances, 0.0, out=distances)
+        for row_index, row in enumerate(query):
+            matches = exact_rows.get(row.tobytes())
+            if matches:
+                distances[row_index, matches] = 0.0
         order = np.argsort(distances, axis=1, kind="stable")[:, :maximum_k]
         ordered_distances = np.take_along_axis(distances, order, axis=1)
         order_chunks.append(order)
