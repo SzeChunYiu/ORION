@@ -12,7 +12,7 @@ The current Q1 authority already proves that every optimum of the frozen R6M six
 
 The frozen objective/feasibility implementation also makes the shared Tag contribution explicit: Tag affects the six frame-label symplectic constraints and contributes `2 wt(S)` to cost. Restore-factor cost depends on target/frame products, not directly on Tag.
 
-## 2. Exact count for one ordered anticommuting support-two pair
+## 2. Exact count and direct generator for one ordered anticommuting support-two pair
 
 Let `A_n` be the set of nonidentity phase-ignored n-qubit Pauli strings of support one or two. Its size is
 
@@ -40,6 +40,13 @@ There are `3n` weight-one first frames and `9 C(n,2)` weight-two first frames. T
 `     = 54 n^3 - 108 n^2 + 60 n`.
 
 This is `Theta(n^3)`, not the `Theta(n^4)` obtained by treating the two support-two frames as independent.
+
+The counting proof is constructive and gives an `O(B(n))=O(n^3)` generator rather than requiring an `O(M(n)^2)=O(n^4)` all-pairs scan:
+
+1. enumerate every weight-one first frame by its coordinate and one of three local nonidentity letters; emit its two same-coordinate anticommuting partners, then for each other coordinate emit the six weight-two partners obtained by choosing one of the two anticommuting letters on the shared coordinate and one of three nonidentity letters on the new coordinate;
+2. enumerate every weight-two first frame by its unordered coordinate pair and two nonidentity local letters; emit its four weight-one partners, its four same-support weight-two partners with exactly one local anticommutation, then for each outside coordinate emit the twelve weight-two partners formed by choosing which of the first frame's two coordinates is shared, one of two anticommuting local letters there, and one of three nonidentity letters on the outside coordinate.
+
+Every emitted partner anticommutes by construction. Conversely any support<=2 anticommuting partner must overlap the first frame and falls into exactly one listed support-overlap case, so the generator is complete and duplicate-free for a fixed first frame.
 
 The independent no-ORION-import checker on this branch reproduces `B(n)` for `n=1,...,6`, including the per-weight partner degrees.
 
@@ -98,7 +105,7 @@ The current historical D++ implementation does **not** realize this bound: it ma
 For one admitted frozen R6M six-slot instance of length `n`, under a word-RAM model in which a qubit index and a target local letter are `O(1)` objects:
 
 1. preprocess target-local baseline data in `O(n)` time;
-2. generate the `B(n)=Theta(n^3)` legal ordered support-two anticommuting frame pairs;
+2. directly generate the `B(n)=Theta(n^3)` legal ordered support-two anticommuting frame pairs in `O(n^3)` time using the support-overlap construction above;
 3. enumerate three such pairs, `B(n)^3=Theta(n^9)` frame triples;
 4. for each triple, evaluate the constant number of matching/permutation/central/label choices, solve the bounded Tag problem on `|U|<=9`, and compute the exact objective in `O(1)` time with respect to `n`.
 
@@ -108,7 +115,7 @@ This yields the candidate bound
 
 for exact direct optimization of the frozen R6M six-slot grammar.
 
-The pair list can be generated/stored in `O(n^3)` space; streaming variants may reduce auxiliary storage but are not needed for the time claim.
+The pair list can be generated/stored in `O(n^3)` space or streamed directly into the three nested loops. The time bound therefore does not rely on materializing an `O(n^4)` candidate cross-product.
 
 Under bit-complexity accounting, index manipulation adds at most polylogarithmic factors; no stronger bit bound is claimed here.
 
@@ -116,7 +123,7 @@ Under bit-complexity accounting, index manipulation adds at most polylogarithmic
 
 Independent review must either prove or break every item below:
 
-- the exact pair-count formula;
+- the exact pair-count formula and duplicate-free `O(n^3)` pair generator;
 - the claim that the six frame variables are exhausted by exactly three ordered anticommuting pairs;
 - the `|U|<=9` active-union bound;
 - the Tag-deletion argument outside `U`;
