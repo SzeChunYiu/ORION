@@ -1,0 +1,127 @@
+name: orion-02-r20-manuscript
+
+on:
+  push:
+    branches:
+      - chatgpt/orion-02-r18-null-current-main-20260827
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_R20.tex'
+      - 'papers/orion-02-fiberguard-finite-fibre/REFERENCES_R20.bib'
+      - 'papers/orion-02-fiberguard-finite-fibre/CURRENT_STORY_R20.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER_R20.json'
+      - '.github/workflows/orion-02-r20-manuscript.yml'
+  pull_request:
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_R20.tex'
+      - 'papers/orion-02-fiberguard-finite-fibre/REFERENCES_R20.bib'
+      - 'papers/orion-02-fiberguard-finite-fibre/CURRENT_STORY_R20.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER_R20.json'
+      - '.github/workflows/orion-02-r20-manuscript.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compile-and-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install frozen TeX toolchain surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            latexmk \
+            texlive-bibtex-extra \
+            texlive-fonts-recommended \
+            texlive-latex-base \
+            texlive-latex-extra \
+            texlive-latex-recommended
+          latexmk -v | head -n 2
+          pdflatex --version | head -n 1
+          bibtex --version | head -n 1
+
+      - name: Audit theorem labels, citations, and authority surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          root=Path('papers/orion-02-fiberguard-finite-fibre')
+          tex=(root/'MANUSCRIPT_R20.tex').read_text()
+          bib=(root/'REFERENCES_R20.bib').read_text()
+          ledger=json.loads((root/'CLAIM_LEDGER_R20.json').read_text())
+
+          labels=re.findall(r'\\label\{([^}]+)\}', tex)
+          refs=re.findall(r'\\ref\{([^}]+)\}', tex)
+          assert len(labels)==len(set(labels)), 'duplicate theorem labels'
+          assert set(refs) <= set(labels), sorted(set(refs)-set(labels))
+
+          cite_groups=re.findall(r'\\cite[pt]?\{([^}]+)\}', tex)
+          cited={key.strip() for group in cite_groups for key in group.split(',')}
+          defined=set(re.findall(r'@[A-Za-z]+\{([^,]+),', bib))
+          assert cited <= defined, sorted(cited-defined)
+          assert defined <= cited, sorted(defined-cited)
+
+          required=[
+              'FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE',
+              'CERTIFICATE_INVALID',
+              'conv(P)+\\Rplus^F',
+              'No-free extension',
+              'Marginal nonidentifiability',
+              'Lower-image criterion',
+          ]
+          for token in required:
+              assert token in tex, token
+          assert ledger['global_authority']['journal_authority'] is False
+          assert ledger['global_authority']['submission_ready'] is False
+          assert 'The manuscript does not claim' in tex
+          print('ORION_02_R20_MANUSCRIPT_STATIC_AUDIT_PASS')
+          PY
+
+      - name: Compile to convergence
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre'
+          cd "$root"
+          latexmk -pdf -interaction=nonstopmode -halt-on-error MANUSCRIPT_R20.tex
+          test -s MANUSCRIPT_R20.pdf
+          ! grep -Eq 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|I found no \\citation commands' MANUSCRIPT_R20.log
+          pdfinfo MANUSCRIPT_R20.pdf | tee "$RUNNER_TEMP/pdfinfo.txt"
+          pdftotext MANUSCRIPT_R20.pdf "$RUNNER_TEMP/manuscript.txt"
+          grep -q 'Exact closed-world certificates' "$RUNNER_TEMP/manuscript.txt"
+          grep -q 'FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE' "$RUNNER_TEMP/manuscript.txt"
+          grep -q 'CERTIFICATE_INVALID' "$RUNNER_TEMP/manuscript.txt"
+
+      - name: Check source diff hygiene
+        run: git diff --check
+
+      - name: Stage reviewer manuscript artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre'
+          out="$RUNNER_TEMP/orion-02-r20-manuscript"
+          mkdir -p "$out"
+          cp "$root/MANUSCRIPT_R20.tex" "$out/"
+          cp "$root/REFERENCES_R20.bib" "$out/"
+          cp "$root/MANUSCRIPT_R20.pdf" "$out/"
+          cp "$root/CURRENT_STORY_R20.md" "$out/"
+          cp "$root/CLAIM_LEDGER_R20.json" "$out/"
+          cp "$RUNNER_TEMP/pdfinfo.txt" "$out/"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-02-r20-manuscript
+          path: ${{ runner.temp }}/orion-02-r20-manuscript/
+          if-no-files-found: error
+          retention-days: 30
