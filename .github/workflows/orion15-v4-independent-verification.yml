@@ -1,0 +1,97 @@
+name: orion15-v4-independent-verification
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/orion15-v4-independent-verification-20260827
+    paths:
+      - 'research/self-orion-v4/verification/verify_v4_independent_v1.py'
+      - '.github/workflows/orion15-v4-independent-verification.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orion15-v4-independent-verification
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    if: ${{ !contains(github.event.head_commit.message, '[orion15-v4-verified]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PYTHONPATH: src
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion15-v4-independent-verification-20260827
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install declared project dependencies
+        run: python -m pip install --disable-pip-version-check -e .
+      - name: Compile independent verifier
+        run: python -m py_compile research/self-orion-v4/verification/verify_v4_independent_v1.py
+      - name: Re-execute frozen V4 runner and compare scientific payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          receipt='research/self-orion-v4/confirmatory/CONFIRMATORY_EXECUTION_RECEIPT_2026-08-27.json'
+          cp "$receipt" "$RUNNER_TEMP/committed-receipt.json"
+          python research/self-orion-v4/confirmatory/run_confirmatory_execution_v2.py > "$RUNNER_TEMP/runner.stdout"
+          cp "$receipt" "$RUNNER_TEMP/reexecuted-receipt.json"
+          python - "$RUNNER_TEMP/committed-receipt.json" "$RUNNER_TEMP/reexecuted-receipt.json" <<'PY'
+          import json,sys
+          old=json.load(open(sys.argv[1])); new=json.load(open(sys.argv[2]))
+          keys=(
+            'adaptivity_modes','bindings_verification','cross_check_independent_evaluators',
+            'custody_sha256','frozen_rules_terminal','h4_digest_determinism',
+            'issue_1541_three_arms','policies','subject','parent'
+          )
+          for k in keys:
+              assert old[k] == new[k], f'scientific replay drift: {k}'
+          assert old['frozen_rules_terminal']['terminal']=='REVISION_LEVEL_DISCRIMINATION_SUPPORTED'
+          print('ORION15_V4_FROZEN_RUNNER_SCIENCE_PAYLOAD_REPRODUCED')
+          PY
+          git checkout -- "$receipt"
+      - name: Require evaluated V4 science tree unchanged by audit
+        run: git diff --exit-code -- papers/orion-15-self-orion research/self-orion-v4 src/orion/study/p5/revision_level_v4_policies.py tests/unit/p5/test_revision_level_v4.py
+      - name: Run scorer-independent verification
+        run: python research/self-orion-v4/verification/verify_v4_independent_v1.py
+      - name: Validate and commit verification record
+        shell: bash
+        run: |
+          set -euo pipefail
+          record='research/self-orion-v4/verification/SCIENTIFIC_RESULT_VERIFICATION_V1.json'
+          test -s "$record"
+          python - "$record" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]))
+          assert x['verification_state']=='BOUNDED_VERIFIED'
+          assert x['recomputed_terminal']=='REVISION_LEVEL_DISCRIMINATION_SUPPORTED'
+          assert x['other_policies_satisfying_full_performance_content']==[]
+          assert x['subject_metrics']['accuracy']==1.0
+          assert x['subject_metrics']['authority']==0.0
+          assert x['subject_metrics']['preservation_refusal']==1.0
+          assert x['evidence_only_not_self_authorizing'] is True
+          print(x['terminal'])
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$record"
+          git diff --check --cached
+          git commit -m 'verify(ORION-15): record bounded independent V4 verification [orion15-v4-verified]'
+          git push origin HEAD:chatgpt/orion15-v4-independent-verification-20260827
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion15-v4-independent-verification-${{ github.sha }}
+          path: |
+            research/self-orion-v4/verification/SCIENTIFIC_RESULT_VERIFICATION_V1.json
+            ${{ runner.temp }}/committed-receipt.json
+            ${{ runner.temp }}/reexecuted-receipt.json
+            ${{ runner.temp }}/runner.stdout
+          if-no-files-found: error
+          retention-days: 30
