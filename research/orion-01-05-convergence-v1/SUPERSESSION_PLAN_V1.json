@@ -7,6 +7,9 @@
       "convergence pull request merged into current main",
       "merged-main convergence workflow passes",
       "copied donor hashes and exact adverse terminals remain bound",
+      "BNSL GitHub Actions ZIP passes offline archive/member verification",
+      "STACK_ARTIFACT_DISPOSITIONS_V1.json covers every frozen source PR file",
+      "canonical ORION-ID publication gate and venue ladder are present",
       "protected Task-3/P9 diff remains empty"
     ],
     "close_pull_requests": [
@@ -28,12 +31,12 @@
       "1475": "DONOR_MATERIALIZED__R19_EXACT_REPAIR_PRESERVED",
       "1485": "SUPERSEDED_CURRENT_MAIN_REMATERIALIZATION_DRAFT",
       "1488": "HISTORICAL_FINITE_THEORY_DRAFT__STATUS_SUPERSEDED",
-      "1489": "R19_STORY_DRAFT__FALSE_R30_IDENTITY_REJECTED",
-      "1492": "FAILED_R30_PACKAGE_AND_CUSTODY_STACK__HISTORICAL_ONLY",
-      "1506": "POLICY_SUPERSEDED_BY_CANONICAL_ORION_01_05_SCIENCE_FIRST_POLICY",
       "1534": "DONOR_MATERIALIZED__RAW_POSITIVE_QUARANTINE_AND_NULL_PRESERVED",
       "1503": "AUTHORIZATION_KEY_CONSUMED__JOB_3544056_FAILURE_PRESERVED__NEW_KEY_REQUIRED",
-      "1533": "ROUND_1_COMPLETED_AT_PRESERVED_BNSL_NULL"
+      "1533": "ROUND_1_COMPLETED_AT_PRESERVED_BNSL_NULL",
+      "1489": "R19_STORY_AND_MANUSCRIPT_DRAFT_FILE_DISPOSED__SCIENCE_STATUS_SUPERSEDED__HISTORY_RETAINED",
+      "1492": "FAILED_R30_PACKAGE_STACK_FILE_DISPOSED__VALID_AUDIT_DONORS_MATERIALIZED__HISTORY_RETAINED",
+      "1506": "PUBLICATION_POLICY_GATE_AND_VENUE_LADDER_SEMANTICALLY_ABSORBED_UNDER_CANONICAL_ORION_IDS"
     }
   },
   "keep_open_after_convergence": {
@@ -65,7 +68,7 @@
       1538,
       1540
     ],
-    "reason": "These remain active science, execution, or repair lanes and have no verified merged successor."
+    "reason": "These remain active science, execution, or repair lanes and have no verified merged science successor. Coordination/manuscript/package drafts listed for closure have complete file-level dispositions; their commits and adverse evidence remain historical provenance."
   },
   "after_orion05_theorem_successor_merge": {
     "conditions": [

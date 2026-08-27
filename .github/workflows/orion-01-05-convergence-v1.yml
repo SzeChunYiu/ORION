@@ -62,12 +62,27 @@ jobs:
           python "$relative/verify_fiberguard_relative_route_extension_r18.py" --output "$RUNNER_TEMP/r18-relative-b.json"
           cmp "$RUNNER_TEMP/r18-relative-a.json" "$RUNNER_TEMP/r18-relative-b.json"
           cmp "$RUNNER_TEMP/r18-relative-a.json" "$relative/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json"
+      - name: Regenerate bounded ORION-01 and ORION-03 theorem receipts
+        run: |
+          orion01=papers/orion-01-certificate-realization/evidence/convergence-v1
+          python "$orion01/verify_registry_nonidentifiability_r12.py" --output "$RUNNER_TEMP/orion01-a.json"
+          python "$orion01/verify_registry_nonidentifiability_r12.py" --output "$RUNNER_TEMP/orion01-b.json"
+          cmp "$RUNNER_TEMP/orion01-a.json" "$RUNNER_TEMP/orion01-b.json"
+          cmp "$RUNNER_TEMP/orion01-a.json" "$orion01/REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json"
+          orion03=papers/orion-03-typed-merge-falsification/evidence/convergence-v1
+          python "$orion03/verify_origin_witness_first_mixing_r12.py" --output "$RUNNER_TEMP/orion03-a.json"
+          python "$orion03/verify_origin_witness_first_mixing_r12.py" --output "$RUNNER_TEMP/orion03-b.json"
+          cmp "$RUNNER_TEMP/orion03-a.json" "$RUNNER_TEMP/orion03-b.json"
+          cmp "$RUNNER_TEMP/orion03-a.json" "$orion03/FIRST_MIXING_R12_RESULTS.json"
       - name: Verify complete evidence and fail-closed diff
         env:
-          PR_BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
-        run: >-
-          python research/orion-01-05-convergence-v1/verify_convergence_v1.py
-          --repo . --check-diff --pr-base "$PR_BASE_SHA"
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          args=(--repo . --check-diff)
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            args+=(--event-base "$PR_BASE_SHA" --require-donor-objects)
+          fi
+          python research/orion-01-05-convergence-v1/verify_convergence_v1.py "${args[@]}"
       - name: Run focused convergence and ORION-04 custody tests
         run: >-
           python -m pytest -q

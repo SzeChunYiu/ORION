@@ -43,3 +43,13 @@ SCIENTIFIC_CORE_NOT_CLEAR__DO_NOT_PREPARE_SUBMISSION
 
 None of these authorizes submission until the downstream manuscript, rights,
 external-review, venue, and exact-byte gates also pass.
+
+## Canonical controls
+
+- `PUBLICATION_GATE_V1.json` is the fail-closed ORION-ID gate for all five
+  studies; every science/readiness/submission value is currently open or false.
+- `PROVISIONAL_VENUE_LADDER_V1.md` records the top-tier-first and
+  strong-specialist fallback families. It is targeting guidance only, and
+  official venue criteria must be rechecked immediately before submission.
+- These files semantically absorb the valid policy content of draft #1506.
+  They do not inherit its stale paper labels or create readiness authority.

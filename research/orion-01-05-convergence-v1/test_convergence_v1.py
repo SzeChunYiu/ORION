@@ -78,10 +78,13 @@ def test_github_artifact_source_requires_exact_member_binding(tmp_path: Path) ->
         "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
         "source": {
             "kind": "github_actions_artifact",
-            "run": 1,
-            "artifact_id": 2,
-            "artifact_name": "evidence",
-            "artifact_zip_sha256": "0" * 64,
+            "run": 33049783681,
+            "artifact_id": 9637176781,
+            "artifact_name": "fiberguard-r20-bnsl-adaptive",
+            "artifact_zip_sha256": (
+                "c5f2d5b5e93596ab82c03a2bd75cd441c74e6ac08b0265b281c3be7a516ab186"
+            ),
+            "member": "TERMINAL.txt",
         },
     }
     with pytest.raises(AssertionError, match="artifact member binding absent"):
@@ -103,6 +106,129 @@ def test_github_artifact_member_mapping_must_be_unique(
     monkeypatch.setattr(convergence, "load", lambda _path: manifest)
     with pytest.raises(AssertionError, match="duplicate artifact member mapping"):
         validate_manifest(ROOT)
+
+
+def test_missing_optional_donor_is_explicitly_cannot_reverify(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    destination = tmp_path / "donor.txt"
+    destination.write_text("historical donor\n", encoding="utf-8")
+    blob = subprocess.check_output(
+        ["git", "hash-object", str(destination)], text=True
+    ).strip()
+    entry = {
+        "destination": "donor.txt",
+        "bytes": destination.stat().st_size,
+        "sha256": convergence.sha256(destination),
+        "source": {
+            "kind": "git",
+            "commit": "f" * 40,
+            "path": "historical/donor.txt",
+            "blob": blob,
+            "object_required_in_checkout": False,
+            "object_absence_disposition": (
+                "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            ),
+        },
+    }
+    monkeypatch.setattr(convergence, "git_object_exists", lambda *_args: False)
+
+    validate_entry(tmp_path, entry, require_donor_objects=False)
+    assert "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY" in capsys.readouterr().out
+
+    with pytest.raises(AssertionError, match="required donor commit/path unavailable"):
+        validate_entry(tmp_path, entry, require_donor_objects=True)
+
+
+def test_vendored_bnsl_actions_archive_is_verified_offline() -> None:
+    custody_path = (
+        ROOT
+        / "papers/orion-02-fiberguard-finite-fibre/extensions/r20/"
+        "BNSL_R20_ACTION_ARTIFACT_CUSTODY_V1.json"
+    )
+    assert custody_path.is_file(), "BNSL Actions artifact custody record absent"
+    custody = json.loads(custody_path.read_text(encoding="utf-8"))
+    convergence.validate_action_artifact_archive(ROOT, custody)
+
+
+def test_bnsl_actions_archive_rejects_fabricated_identity_and_tampering(
+    tmp_path: Path,
+) -> None:
+    custody_path = (
+        ROOT
+        / "papers/orion-02-fiberguard-finite-fibre/extensions/r20/"
+        "BNSL_R20_ACTION_ARTIFACT_CUSTODY_V1.json"
+    )
+    original = json.loads(custody_path.read_text(encoding="utf-8"))
+    fabricated = json.loads(json.dumps(original))
+    fabricated["github_actions"]["artifact_id"] += 1
+    with pytest.raises(AssertionError, match="artifact custody identity"):
+        convergence.validate_action_artifact_archive(ROOT, fabricated)
+
+    source = ROOT / original["archive"]["path"]
+    tampered_path = tmp_path / "tampered.zip"
+    payload = bytearray(source.read_bytes())
+    payload[-1] ^= 1
+    tampered_path.write_bytes(payload)
+    tampered = json.loads(json.dumps(original))
+    tampered["archive"]["path"] = str(tampered_path)
+    with pytest.raises(AssertionError, match="artifact archive SHA"):
+        convergence.validate_action_artifact_archive(ROOT, tampered)
+
+
+def test_publication_gate_and_venue_ladder_are_canonical_orion_id_artifacts() -> None:
+    gate_path = HERE / "PUBLICATION_GATE_V1.json"
+    ladder_path = HERE / "PROVISIONAL_VENUE_LADDER_V1.md"
+    assert gate_path.is_file()
+    assert ladder_path.is_file()
+    gate = json.loads(gate_path.read_text(encoding="utf-8"))
+    assert set(gate["papers"]) == {f"ORION-{i:02d}" for i in range(1, 6)}
+    for paper in gate["papers"].values():
+        assert paper["science_status"] == "OPEN"
+        assert paper["top_tier_submission_ready"] is False
+        assert paper["specialist_submission_ready"] is False
+        assert paper["submission_authorized"] is False
+    ladder = ladder_path.read_text(encoding="utf-8")
+    for paper_id in gate["papers"]:
+        assert paper_id in ladder
+    assert "Recheck official venue criteria" in ladder
+
+
+def test_stack_artifact_dispositions_cover_every_frozen_pr_file() -> None:
+    ledger = json.loads(
+        (HERE / "STACK_ARTIFACT_DISPOSITIONS_V1.json").read_text(encoding="utf-8")
+    )
+    expected_counts = {
+        1471: 11,
+        1475: 5,
+        1485: 7,
+        1488: 11,
+        1489: 11,
+        1492: 54,
+        1503: 3,
+        1506: 3,
+        1534: 4,
+    }
+    assert ledger["source_pr_file_counts"] == {
+        str(number): count for number, count in expected_counts.items()
+    }
+    rows = ledger["files"]
+    observed = {}
+    for row in rows:
+        key = (row["source_pr"], row["source_path"])
+        assert key not in observed
+        observed[key] = row
+        assert row["disposition"] in {
+            "BYTE_MATERIALIZED_CANONICAL_DONOR",
+            "SEMANTICALLY_REPLACED_BY_CANONICAL_STATUS_OR_POLICY",
+            "HISTORICAL_ONLY_NOT_CANONICALIZED",
+            "FAILED_OR_SUPERSEDED_WORKFLOW_HISTORICAL_ONLY",
+            "CONSUMED_AUTHORIZATION_WITH_FAILURE_CUSTODY_PRESERVED",
+        }
+    for number, count in expected_counts.items():
+        assert sum(row["source_pr"] == number for row in rows) == count
 
 
 def test_r18_runner_imports_under_declared_replay_environment() -> None:
@@ -156,7 +282,7 @@ def test_r18_replay_dependency_lock_and_data_free_preflight() -> None:
     )
 
 
-def test_cli_rejects_pr_base_whose_tree_differs_from_manifest_baseline() -> None:
+def test_cli_rejects_event_base_that_differs_from_manifest_baseline() -> None:
     verifier = HERE / "verify_convergence_v1.py"
     completed = subprocess.run(
         [
@@ -165,7 +291,7 @@ def test_cli_rejects_pr_base_whose_tree_differs_from_manifest_baseline() -> None
             "--repo",
             str(ROOT),
             "--check-diff",
-            "--pr-base",
+            "--event-base",
             "HEAD",
         ],
         text=True,
@@ -173,15 +299,19 @@ def test_cli_rejects_pr_base_whose_tree_differs_from_manifest_baseline() -> None
         check=False,
     )
     assert completed.returncode != 0
-    assert "PR base tree mismatch" in completed.stderr
+    assert "event base commit mismatch" in completed.stderr
 
 
-def test_workflow_supplies_the_actual_pull_request_base() -> None:
+def test_workflow_supplies_exact_pr_base_but_uses_manifest_baseline_on_push() -> None:
     workflow = (ROOT / ".github/workflows/orion-01-05-convergence-v1.yml").read_text(
         encoding="utf-8"
     )
     assert "github.event.pull_request.base.sha" in workflow
-    assert '--pr-base "$PR_BASE_SHA"' in workflow
+    assert "fetch-depth: 0" in workflow
+    assert 'if [ "$GITHUB_EVENT_NAME" = "pull_request" ]' in workflow
+    assert '--event-base "$PR_BASE_SHA"' in workflow
+    assert "--require-donor-objects" in workflow
+    assert "github.event.before" not in workflow
 
 
 def test_manifest_requires_every_expected_path_to_have_a_source_binding(
@@ -237,8 +367,11 @@ def test_supersession_is_conditional_and_never_erases_adverse_results() -> None:
         "CLOSE_ONLY_AFTER_SUCCESSOR_MERGE_AND_MERGED_MAIN_VERIFICATION"
     )
     closures = set(plan["after_convergence_merge"]["close_pull_requests"])
-    assert {1471, 1475, 1485, 1488, 1489, 1492, 1503, 1506, 1534} <= closures
+    assert closures == {1471, 1475, 1485, 1488, 1489, 1492, 1503, 1506, 1534}
     assert {1449, 1466, 1469, 1472, 1524}.isdisjoint(closures)
+    assert "unabsorbed_manuscript_package_and_policy_pull_requests" not in plan[
+        "keep_open_after_convergence"
+    ]
     assert "adverse, null, harmful, timeout, and CANNOT_CHECK outcomes" in plan[
         "never_superseded"
     ]
@@ -296,6 +429,26 @@ def test_known_d_audit_false_negative_is_preserved_but_not_controlling() -> None
     assert record["controls"]["total_hybrid_atoms"] == 68
 
 
+def test_orion04_keeps_proved_core_separate_from_failed_replay_authority() -> None:
+    status = json.loads((HERE / "SCIENCE_STATUS_V1.json").read_text(encoding="utf-8"))
+    nq = status["papers"]["ORION-04"]
+    assert any("width-one corridor" in claim for claim in nq["established_scope"])
+    assert any(
+        "support-through-22" in claim and "bounded computational evidence" in claim
+        for claim in nq["established_scope"]
+    )
+    assert any(
+        "exact D_4" in claim and "remain open" in claim
+        for claim in nq["established_scope"]
+    )
+    source = nq["established_scope_source"]
+    assert source["path"] == (
+        "papers/orion-04-rooted-completion-certificates/CLAIM_LEDGER_R2.md"
+    )
+    assert nq["authority"]["d2_d3_numerical_authority_established"] is False
+    assert nq["authority"]["independent_replay_authority_state"] == "CANNOT_CHECK"
+
+
 def test_authority_summary_does_not_erase_donor_cannot_check_states() -> None:
     status = json.loads((HERE / "SCIENCE_STATUS_V1.json").read_text(encoding="utf-8"))
     assert "external_independence" not in status["global_authority"]
@@ -332,4 +485,58 @@ def test_typed_evidence_pointer_value_is_fail_closed(
 
     monkeypatch.setattr(convergence, "load", load_with_corrupted_status)
     with pytest.raises(AssertionError, match="evidence record pointer mismatch"):
+        validate_science(ROOT)
+
+
+def test_science_status_and_candidate_authority_are_fail_closed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    original_load = convergence.load
+    status_path = HERE / "SCIENCE_STATUS_V1.json"
+    status = json.loads(status_path.read_text(encoding="utf-8"))
+    status["papers"]["ORION-01"]["science_status"] = "CLOSED"
+
+    def load_closed(path: Path):
+        if path.resolve() == status_path.resolve():
+            return status
+        return original_load(path)
+
+    monkeypatch.setattr(convergence, "load", load_closed)
+    with pytest.raises(AssertionError, match="ORION-01 science status"):
+        validate_science(ROOT)
+
+    status = json.loads(status_path.read_text(encoding="utf-8"))
+    candidate = status["papers"]["ORION-05"]["evidence_status"][
+        "pending_candidates"
+    ][0]
+    candidate["current_main_authority"] = True
+
+    def load_promoted_candidate(path: Path):
+        if path.resolve() == status_path.resolve():
+            return status
+        return original_load(path)
+
+    monkeypatch.setattr(convergence, "load", load_promoted_candidate)
+    with pytest.raises(AssertionError, match="ORION-05 candidate identity drift"):
+        validate_science(ROOT)
+
+
+def test_controlling_adverse_record_cannot_be_omitted_from_summary(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    original_load = convergence.load
+    status_path = HERE / "SCIENCE_STATUS_V1.json"
+    status = json.loads(status_path.read_text(encoding="utf-8"))
+    derived = status["papers"]["ORION-02"]["evidence_status"][
+        "convergence_summary"
+    ]["derived_from"]
+    derived.remove("ORION02_R18_RETRACTION")
+
+    def load_missing_adverse(path: Path):
+        if path.resolve() == status_path.resolve():
+            return status
+        return original_load(path)
+
+    monkeypatch.setattr(convergence, "load", load_missing_adverse)
+    with pytest.raises(AssertionError, match="summary omits or invents"):
         validate_science(ROOT)
