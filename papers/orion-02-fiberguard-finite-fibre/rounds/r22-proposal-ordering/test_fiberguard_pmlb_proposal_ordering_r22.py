@@ -65,6 +65,92 @@ class ShieldMechanicsTests(unittest.TestCase):
         self.assertEqual(syn.cell_of("queryB", state)[0], 1)
 
 
+class CorpusLoadingTests(unittest.TestCase):
+    """Label-column rule: FIRST 'target' header occurrence is the label.
+
+    Guards the post-freeze resource-schema correction: three frozen PMLB
+    datasets place the label first/mid-file, and 'schizo' carries a duplicate
+    trailing 'target' header that its metadata.yaml enumerates as the feature
+    'target.1'. Loading is positional, never by-name-dict or last-position.
+    """
+
+    @staticmethod
+    def _write_tsv(directory: Path, name: str, header: list[str], rows: list[list[str]]) -> Path:
+        import gzip
+
+        path = directory / f"{name}.tsv.gz"
+        with gzip.open(path, "wt", encoding="utf-8", newline="") as handle:
+            handle.write("\t".join(header) + "\n")
+            for row in rows:
+                handle.write("\t".join(row) + "\n")
+        return path
+
+    def test_label_is_first_target_and_position_independent(self) -> None:
+        import tempfile
+
+        module = load_executor()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            # Label first (auto_insurance_symboling layout).
+            first = self._write_tsv(
+                root,
+                "lab_first",
+                ["target", "f1", "f2"],
+                [["0", "1.0", "a"], ["1", "2.0", "b"], ["0", "3.0", "a"], ["1", "1.0", "b"]],
+            )
+            d = module.load_dataset(first)
+            self.assertEqual(d["n_features"], 2)
+            self.assertEqual(d["n_classes"], 2)
+            # Label mid-file (breast_cancer_wisconsin_diagnostic layout).
+            mid = self._write_tsv(
+                root,
+                "lab_mid",
+                ["f1", "target", "f2"],
+                [["1.0", "0", "a"], ["2.0", "1", "b"], ["3.0", "0", "a"], ["1.0", "1", "b"]],
+            )
+            d_mid = module.load_dataset(mid)
+            self.assertEqual(d_mid["n_features"], 2)
+            self.assertEqual(d_mid["n_classes"], 2)
+
+    def test_duplicate_target_header_first_occurrence_is_label(self) -> None:
+        import tempfile
+
+        module = load_executor()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            # schizo layout: trailing duplicate 'target' header = feature target.1.
+            dup = self._write_tsv(
+                root,
+                "dup_target",
+                ["ID", "target", "g1", "sex", "target"],
+                [
+                    ["7.0", "0", "10", "0", "1"],
+                    ["8.0", "1", "11", "1", "0"],
+                    ["9.0", "2", "12", "0", "1"],
+                    ["10.0", "1", "13", "1", "0"],
+                ],
+            )
+            d = module.load_dataset(dup)
+            self.assertEqual(d["n_features"], 4)  # ID, g1, sex, target.1
+            self.assertEqual(d["n_classes"], 3)  # first target column: {0,1,2}
+            self.assertEqual(d["n_instances"], 4)
+
+    def test_missing_target_column_fails_closed(self) -> None:
+        import tempfile
+
+        module = load_executor()
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bad = self._write_tsv(
+                root,
+                "no_target",
+                ["a", "b"],
+                [["1", "2"], ["3", "4"], ["5", "6"], ["7", "8"]],
+            )
+            with self.assertRaises(ValueError):
+                module.load_dataset(bad)
+
+
 class FoldCustodyTests(unittest.TestCase):
     def test_role_partition_disjoint_and_covering(self) -> None:
         module = load_executor()

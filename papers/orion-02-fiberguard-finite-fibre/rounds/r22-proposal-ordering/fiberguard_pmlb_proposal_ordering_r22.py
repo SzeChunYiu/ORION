@@ -134,12 +134,20 @@ def code_column(values: list[str]) -> np.ndarray:
 
 def load_dataset(path: Path) -> dict[str, Any]:
     header, rows = read_tsv_gz(path)
-    if header[-1] != "target":
-        raise ValueError(f"last column is not 'target': {path}")
-    columns = {name: [row[i] for row in rows] for i, name in enumerate(header)}
-    y = code_column(columns["target"]).astype(int)
-    feature_names = header[:-1]
-    x_cols = [code_column(columns[name]) for name in feature_names]
+    if header.count("target") < 1:
+        raise ValueError(f"no 'target' column: {path}")
+    # Label-column rule (grounded in the frozen PMLB tree's own metadata.yaml):
+    # the label is the FIRST column named 'target'. Features are all remaining
+    # columns in file order. Three frozen datasets place the label first or
+    # mid-file (not last), and 'schizo' carries a duplicate trailing 'target'
+    # header that its metadata enumerates as the feature 'target.1' — so the
+    # first occurrence is always the label and position-by-name must be used
+    # instead of last-position.
+    target_idx = header.index("target")
+    feature_idx = [i for i in range(len(header)) if i != target_idx]
+    feature_names = [header[i] for i in feature_idx]
+    y = code_column([row[target_idx] for row in rows]).astype(int)
+    x_cols = [code_column([row[i] for row in rows]) for i in feature_idx]
     n_features = len(feature_names)
     x = np.empty((len(rows), n_features), dtype=float)
     for j, col in enumerate(x_cols):
@@ -1071,7 +1079,7 @@ def run_self_test() -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--subject-repo", type=Path, required=True)
+    parser.add_argument("--subject-repo", type=Path, default=None)
     parser.add_argument("--freeze", type=Path, default=None)
     parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--terminal-output", type=Path, default=None)
@@ -1081,8 +1089,8 @@ def main() -> int:
     if args.self_test:
         run_self_test()
         return 0
-    if args.output is None or args.terminal_output is None:
-        parser.error("--output and --terminal-output are required without --self-test")
+    if args.output is None or args.terminal_output is None or args.subject_repo is None:
+        parser.error("--subject-repo, --output and --terminal-output are required without --self-test")
     import time
     t0 = time.time()
     freeze_path = args.freeze if args.freeze is not None else Path(__file__).resolve().parent / FREEZE_NAME
