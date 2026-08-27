@@ -1,4 +1,4 @@
-# ORION-ORION-14 protected custody policy V1
+# ORION-14 protected custody policy V1
 
 ## Roles
 

@@ -1,4 +1,4 @@
-# ORION-ORION-13 historical claim / PDF audit
+# ORION-13 historical claim / PDF audit
 
 Historical build subject: `6dd510c811deb20a10f722e40d915cb5bda13548`.  
 Retained PDF: `journal_package/manuscript.pdf`.  

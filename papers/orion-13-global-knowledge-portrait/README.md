@@ -1,6 +1,6 @@
 # Paper 03 — Global Knowledge Portrait
 
-**Stable ID:** ORION-ORION-13  
+**Stable ID:** ORION-13  
 **Status:** `PEER_REVIEW_READY` for the scoped scientific-identity-authority paper.
 
 ## Scoped contribution

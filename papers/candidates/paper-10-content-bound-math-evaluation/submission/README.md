@@ -1,6 +1,6 @@
-# ORION-ORION-21 peer-review package
+# ORION-21 peer-review package
 
-This directory retains the historical `paper-10-content-bound-math-evaluation` path because the original evidence was produced before programme renumbering. Issue #471 assigns that preserved evidence to **ORION-ORION-21 — Content-Bound Mathematical Evaluation**.
+This directory retains the historical `paper-10-content-bound-math-evaluation` path because the original evidence was produced before programme renumbering. Issue #471 assigns that preserved evidence to **ORION-21 — Content-Bound Mathematical Evaluation**.
 
 ## Submission paper
 

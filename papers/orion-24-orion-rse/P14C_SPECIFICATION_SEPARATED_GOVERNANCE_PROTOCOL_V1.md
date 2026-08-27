@@ -1,6 +1,6 @@
 # P14C Specification-Separated Governance Benchmark V1
 
-**Paper:** ORION-ORION-24 — ORION-RSE  
+**Paper:** ORION-24 — ORION-RSE  
 **Issue:** #669  
 **Protocol:** `ORION.P14C.SpecificationSeparatedGovernance.v1`  
 **Frozen:** 2026-08-21 before execution.

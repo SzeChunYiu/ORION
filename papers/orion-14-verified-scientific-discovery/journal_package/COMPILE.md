@@ -1,4 +1,4 @@
-# ORION-ORION-14 compile instructions
+# ORION-14 compile instructions
 
 TMLR template. `tmlr.sty` / `tmlr.bst` are vendored in `manuscript/` as tracked files, which is what the 2026-08-24 local render used. The CI audit workflow still pins upstream commit `7bf90efe3a0debbba703c05c43f3ff7e4d4a2992` for its clean-room compile; whether the vendored copies are byte-identical to that pin is CANNOT_CHECK without fetching upstream.
 

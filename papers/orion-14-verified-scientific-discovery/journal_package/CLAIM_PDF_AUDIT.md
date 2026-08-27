@@ -1,4 +1,4 @@
-# ORION-ORION-14 independent claim / PDF audit
+# ORION-14 independent claim / PDF audit
 
 Audit subject: `b7cfaecfb55d9ad6c12fb59374935769ed8d8787`. Not a #283 verification record.
 

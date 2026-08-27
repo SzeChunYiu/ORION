@@ -1,6 +1,6 @@
 # Typed and Scoped Partial-Knowledge State for Research Decisions
 
-**ORION-ORION-04 Manuscript V3 — donor-synchronized publication draft**  
+**ORION-04 Manuscript V3 — donor-synchronized publication draft**  
 Scientific cut: `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 Claim authority: `CLAIM_LEDGER.md`, `PUBLICATION_FOUNDATION_V2.md`  
 Parity/artifact contract: `INFORMATION_PARITY_AND_ARTIFACT_MAP_V2.md`

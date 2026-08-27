@@ -1,4 +1,4 @@
-# Reproduce ORION-ORION-12
+# Reproduce ORION-12
 
 Run from the repository root with Python 3.12.
 

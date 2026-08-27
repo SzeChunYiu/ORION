@@ -1,6 +1,6 @@
 # P11H Pooled Universal-Decoder Successor Protocol V1
 
-**Paper:** ORION-ORION-21 — State as Computation
+**Paper:** ORION-21 — State as Computation
 **Issues:** #471, #664, #667
 **Protocol:** `ORION.P11H.PooledSparsityLadderAttack.v1`
 **Executable:** `run_p11h_pooled_sparsity_ladder_v1.py`

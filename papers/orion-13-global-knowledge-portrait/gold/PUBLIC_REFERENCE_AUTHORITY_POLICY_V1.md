@@ -1,4 +1,4 @@
-# ORION-ORION-13 Public-Reference Gold Authority Policy V1
+# ORION-13 Public-Reference Gold Authority Policy V1
 
 **Status:** DESIGN_FROZEN, outcome-blind.  
 **Protocol:** `ORION-13.public-reference-mapping.v1`  

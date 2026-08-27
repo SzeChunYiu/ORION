@@ -1,6 +1,6 @@
 # ORION-01 publication foundation V2 — evidence-first closure
 
-**Paper:** ORION-ORION-01 — Shared-Tag TARE expressivity  
+**Paper:** ORION-01 — Shared-Tag TARE expressivity  
 **Publication cut:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 **Method:** `researchwrite` foundation → `nature-writing` reconstruction → `nature-reviewer` closure  
 **Status:** `FOUNDATION_REBUILT__MANUSCRIPT_REWRITE_REQUIRED`

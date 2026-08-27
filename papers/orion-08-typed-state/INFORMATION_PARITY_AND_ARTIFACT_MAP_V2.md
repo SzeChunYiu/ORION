@@ -71,11 +71,11 @@ Path ellipses in this reviewer guide are shorthand only; the final submission ma
 
 ORION-04 uses **downstream responsibility** as an organizing variable for mechanism-isolation experiments: probe, reopen, verify, transport, select experiment, remint/reuse.
 
-ORION-04 does **not** claim a general theory that a state certificate should name its supported downstream responsibility. The general responsibility-scoped sufficiency/authority theory and responsibility-carrying-state object are owned by ORION-ORION-23. ORION-04's contribution is bounded exact-synthetic evidence that different downstream decisions can require different typed/scope distinctions.
+ORION-04 does **not** claim a general theory that a state certificate should name its supported downstream responsibility. The general responsibility-scoped sufficiency/authority theory and responsibility-carrying-state object are owned by ORION-23. ORION-04's contribution is bounded exact-synthetic evidence that different downstream decisions can require different typed/scope distinctions.
 
 Recommended ORION-04 wording:
 
-> We use “responsibility” descriptively for the decision consuming state. General responsibility-carrying-state authority is developed separately in ORION-ORION-23 and is not claimed here.
+> We use “responsibility” descriptively for the decision consuming state. General responsibility-carrying-state authority is developed separately in ORION-23 and is not claimed here.
 
 ## 7. Required manuscript insertions before second review
 

@@ -1,4 +1,4 @@
-# ORION-ORION-12 measurement plan V1
+# ORION-12 measurement plan V1
 
 Frozen before any outcome exists. Machine-checkable companion: `STATISTICAL_PLAN_V1.json` (single source of truth for roles, directions, margins, oracles and bindings). This file carries the prose the JSON cannot: what each metric silently becomes when its denominator is invalid, how the four oracles are defined, and where this plan is stricter than the programme standard.
 

@@ -1,6 +1,6 @@
 # P11G Arm-Placement Adjudication V1
 
-**Paper:** ORION-ORION-21 — State as Computation
+**Paper:** ORION-21 — State as Computation
 **Issues:** #471, #664, #667
 **Schema:** `ORION.P11G.ArmPlacementAdjudication.v1`
 **Instrument:** `orion.study.p11.decoder_attack_reach`, audited by `python -m orion.study.p11.attack_audit`

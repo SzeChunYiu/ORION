@@ -1,4 +1,4 @@
-# ORION-ORION-13 compile instructions
+# ORION-13 compile instructions
 
 From `papers/orion-13-global-knowledge-portrait/manuscript/`:
 

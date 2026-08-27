@@ -1,6 +1,6 @@
 # Prospective Dual-Instrument Measurement of Scientific Frontier Decisions: A Three-Question Case Series
 
-**ORION-ORION-03 Manuscript V3 — scientific/content draft**  
+**ORION-03 Manuscript V3 — scientific/content draft**  
 Parent scientific base: `main@c5ba39fef4f25c46de5fb69bf07f50530f4693ca`  
 Replacement scientific-result cut: `codex/q-qg-nature-skills-publication-closure-20260821@ca561ada07301ee7e45fc10e195dce8f077ea50c`  
 Claim authority: `CLAIM_LEDGER_V2.md`  

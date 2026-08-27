@@ -1,4 +1,4 @@
-# ORION-ORION-13 journal readiness — scoped public-reference paper
+# ORION-13 journal readiness — scoped public-reference paper
 
 > **Annotated 2026-08-22 after the manuscript house-style rewrite.** This
 > checklist records a readiness audit of the manuscript as it stood when the
@@ -71,4 +71,4 @@
 - [x] confidential external referee review/editorial acceptance occurs after `PEER_REVIEW_READY`.
 
 ## Terminal
-`ORION-ORION-13 = PEER_REVIEW_READY` for the scoped ORION-13.C5/ORION-13.C9 paper when the exact subject has green repository CI and green `p3-manuscript-audit`. The broader expert/raw-text programme is future science, not an unfinished hidden prerequisite of this paper.
+`ORION-13 = PEER_REVIEW_READY` for the scoped ORION-13.C5/ORION-13.C9 paper when the exact subject has green repository CI and green `p3-manuscript-audit`. The broader expert/raw-text programme is future science, not an unfinished hidden prerequisite of this paper.

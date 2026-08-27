@@ -1,4 +1,4 @@
-# ORION-ORION-11 compile and visual-verification instructions
+# ORION-11 compile and visual-verification instructions
 
 From `papers/orion-11-recursive-epistemic-reconstruction/manuscript/`:
 

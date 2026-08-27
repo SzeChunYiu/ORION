@@ -1,4 +1,4 @@
-# ORION-ORION-12 offline complete-gold world V1
+# ORION-12 offline complete-gold world V1
 
 **Artifact:** `../evidence/offline_gold/` (`world-000.json`, `world-001.json`,
 `topics.json`, `tasks-000.json`, `tasks-001.json`, `MANIFEST.json`)

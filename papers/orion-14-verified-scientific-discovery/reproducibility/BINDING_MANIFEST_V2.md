@@ -1,4 +1,4 @@
-# ORION-ORION-14 Protected Campaign V2 Binding Manifest
+# ORION-14 Protected Campaign V2 Binding Manifest
 
 ## Status: `EXECUTED → REPRODUCED → ARCHIVED`
 

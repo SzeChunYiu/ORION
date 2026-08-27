@@ -1,4 +1,4 @@
-# ORION-ORION-13 prospective atlas protocol
+# ORION-13 prospective atlas protocol
 
 **Protocol:** `ORION-13.cross-domain-atlas.v1`  
 **Status:** `DESIGN_FROZEN`  

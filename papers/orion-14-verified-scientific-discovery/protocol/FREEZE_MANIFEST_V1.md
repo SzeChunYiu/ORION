@@ -1,4 +1,4 @@
-# Freeze Manifest — ORION-ORION-14 (V1)
+# Freeze Manifest — ORION-14 (V1)
 
 **Protocol:** ORION-14.protected-authority.v1  
 **Status:** DESIGN_FROZEN  

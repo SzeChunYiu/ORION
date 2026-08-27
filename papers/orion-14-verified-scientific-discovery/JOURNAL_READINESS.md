@@ -1,6 +1,6 @@
-# ORION-ORION-14 Journal Readiness — final protected V2
+# ORION-14 Journal Readiness — final protected V2
 
-**Terminal:** `ORION-ORION-14 = PEER_REVIEW_READY`  
+**Terminal:** `ORION-14 = PEER_REVIEW_READY`  
 **Canonical campaign:** `ORION-14.protected-authority.v2` over base protocol `ORION-14.protected-authority.v1`  
 **Publication-authorizing subject:** `f6e51b5c8f905382b8e2f5568d9035fc14241aa1`  
 **Protected campaign:** GitHub Actions run `31976589735`
@@ -104,4 +104,4 @@ This is an external submission action, not a scientific or reproducibility readi
 
 All scientific, custody, reproducibility, manuscript, PDF, literature-saturation, and permanent-archive gates required for peer review are satisfied. Security-by-total-refusal is ruled out by `60/60` clean promotions. The strongest supported statement is bounded to the protected mechanical-gold benchmark and frozen comparator mechanisms.
 
-**`ORION-ORION-14 = PEER_REVIEW_READY`.**
+**`ORION-14 = PEER_REVIEW_READY`.**

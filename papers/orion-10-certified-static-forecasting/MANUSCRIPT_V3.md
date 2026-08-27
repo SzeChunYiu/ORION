@@ -1,6 +1,6 @@
 # Certified Static Forecasting for Quantum Compilation: What Survives a Counterexample?
 
-**ORION-ORION-10 Manuscript V3 — donor-synchronized publication draft**  
+**ORION-10 Manuscript V3 — donor-synchronized publication draft**  
 Scientific cut: `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 Claim authority: `CLAIM_LEDGER.md`, `PUBLICATION_FOUNDATION_V2.md`  
 Certificate/reporting contract: `FORECAST_CERTIFICATE_AND_BENCHMARK_MAP_V2.md`

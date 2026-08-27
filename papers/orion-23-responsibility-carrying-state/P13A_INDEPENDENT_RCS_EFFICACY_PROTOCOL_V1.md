@@ -1,6 +1,6 @@
 # P13A Independent Responsibility-Sufficiency and RCS Efficacy Protocol V1
 
-**Paper:** ORION-ORION-23 — Responsibility-Carrying State  
+**Paper:** ORION-23 — Responsibility-Carrying State  
 **Issues:** #666 and #668  
 **Protocol:** `ORION.P13A.ResponsibilitySafeReuse.v1`  
 **Frozen:** 2026-08-21 after diagnosing, but without modifying, the historical P14A negative.

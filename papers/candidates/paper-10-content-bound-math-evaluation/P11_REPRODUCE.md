@@ -1,4 +1,4 @@
-# ORION-ORION-21 reproduction guide
+# ORION-21 reproduction guide
 
 This guide reproduces the evidence used by the bounded peer-review manuscript. It does not execute the prospective multi-revision V3 campaign.
 

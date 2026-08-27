@@ -1,6 +1,6 @@
 # ORION-24 Claim–Evidence Ledger
 
-**Stable ID:** ORION-ORION-24  
+**Stable ID:** ORION-24  
 **Issue:** #669  
 **Programme:** #670
 

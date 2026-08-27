@@ -1,6 +1,6 @@
 # ORION-22 Claim–Evidence Ledger
 
-**Stable ID:** ORION-ORION-22  
+**Stable ID:** ORION-22  
 **Issue:** #665  
 **Accounting owner:** #664
 

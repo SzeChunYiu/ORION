@@ -6,7 +6,7 @@ release candidate under Apache-2.0, not an external release or a new scientific
 result. Independent replay, public runtime evidence and site independence remain
 `CANNOT_CHECK`.
 
-**Stable ID:** ORION-ORION-25  
+**Stable ID:** ORION-25  
 **Paper issue:** #979  
 **Promotion programme:** #977  
 **Current lifecycle:** `BOUNDED_SCIENTIFIC_RESULT_EARNED`  

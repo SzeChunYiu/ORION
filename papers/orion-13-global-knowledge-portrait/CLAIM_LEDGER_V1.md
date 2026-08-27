@@ -1,4 +1,4 @@
-# ORION-ORION-13 Claim Ledger V1
+# ORION-13 Claim Ledger V1
 
 > **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
 > subsequently rewritten so that its claims are about the mapping rule rather

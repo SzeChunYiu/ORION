@@ -1,6 +1,6 @@
-# ORION-ORION-11 bounded peer-review-readiness attestation
+# ORION-11 bounded peer-review-readiness attestation
 
-**Terminal:** `ORION-ORION-11 = PEER_REVIEW_READY`
+**Terminal:** `ORION-11 = PEER_REVIEW_READY`
 
 This attestation covers only the credential-free mechanical mutation-necessity
 claim reported by the prospectively frozen

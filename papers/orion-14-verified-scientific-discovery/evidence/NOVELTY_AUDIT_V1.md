@@ -1,4 +1,4 @@
-# ORION-ORION-14 Novelty Audit V1
+# ORION-14 Novelty Audit V1
 
 **Date:** 2026-08-16  
 **Protocol:** ORION-14.protected-authority.v1  

@@ -1,7 +1,7 @@
 # ORION-13 scoped peer-review-ready attestation
 
 Date: 2026-08-18
-Paper: ORION-ORION-13 — Global Knowledge Portrait
+Paper: ORION-13 — Global Knowledge Portrait
 Scope: bounded ORION-13.C5/ORION-13.C9 already-structured public-reference mapping claim only.
 
 ## Evidence-backed terminal

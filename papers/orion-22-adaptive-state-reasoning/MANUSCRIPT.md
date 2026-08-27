@@ -5,7 +5,7 @@
 > adds only the stop/go campaign leaf; V4 and V3 are retained as historical
 > authorities). This snapshot preserves earlier review history and must not be used as the current submission source.
 
-**ORION-ORION-22 · issue #665 · resource-accounting owner #664**  
+**ORION-22 · issue #665 · resource-accounting owner #664**  
 **Evidence freeze:** 2026-08-21  
 **Submission status:** `P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED`; controlled equal-action world
 

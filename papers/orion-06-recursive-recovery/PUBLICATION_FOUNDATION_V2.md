@@ -1,6 +1,6 @@
 # ORION-02 publication foundation V2 — Recursive recovery of negative quantum results
 
-**Paper:** ORION-ORION-02  
+**Paper:** ORION-02  
 **Publication cut:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 **Mode:** methodology / longitudinal case-study paper  
 **Status:** `FOUNDATION_REBUILT__CLAIM_LEDGER_AND_MANUSCRIPT_SYNC_REQUIRED`

@@ -1,4 +1,4 @@
-# ORION-ORION-15 reproduction and protected-study handoff
+# ORION-15 reproduction and protected-study handoff
 
 ORION-15 remains `CANNOT_CHECK` for H1–H4. The only result-bearing archive in the public tree is the diagnostic glm-5.2 attribution JSONL (**21/24**, three residual errors retained). This file documents (a) how to regenerate publication tables from that archive and (b) the host-side transition for a future protected campaign.
 
