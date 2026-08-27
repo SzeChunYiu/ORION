@@ -1,6 +1,6 @@
 # P12A Matched-Budget Joint Allocation Protocol V1
 
-**Paper:** ORION-ORION-22 — Adaptive State–Reasoning Co-Design  
+**Paper:** ORION-22 — Adaptive State–Reasoning Co-Design  
 **Issue:** #665; resource owner #664  
 **Protocol:** `ORION.P12A.MatchedBudgetAllocation.v1`  
 **Frozen:** 2026-08-21 before protected execution.

@@ -1,4 +1,4 @@
-# Plot and Table Specification — ORION-ORION-14 (V1)
+# Plot and Table Specification — ORION-14 (V1)
 
 **Protocol:** ORION-14.protected-authority.v1  
 **Builder:** `publication_svg.py` (bar_chart, heatmap)  

@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import os
 import pathlib
+import re
 import subprocess
 import sys
 
@@ -179,6 +180,26 @@ def path_exists_at(ref: str, rel: str) -> bool:
     return proc.returncode == 0
 
 
+# R0 namespace-unification editorial collapse: "ORION-ORION-NN"/"ORION ORION-NN" -> "ORION-NN".
+# A branch whose only change to a science file is this mechanical collapse carries no
+# scientific delta, so the anti-smuggling gate below must not flag it.
+R0_DOUBLE_PREFIX = re.compile(rb"ORION[ -]ORION-(\d{2})")
+
+
+def blob_at(ref: str, rel: str) -> bytes | None:
+    proc = subprocess.run(["git", "show", f"{ref}:{rel}"], cwd=ROOT,
+                          stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    return proc.stdout if proc.returncode == 0 else None
+
+
+def is_r0_rebind_only(scope_base: str, target: str, rel: str) -> bool:
+    base = blob_at(scope_base, rel)
+    head = blob_at(target, rel)
+    if base is None or head is None:
+        return False
+    return R0_DOUBLE_PREFIX.sub(rb"ORION-\1", base) == head
+
+
 def science_change_errors(
     scope_base: str, target: str, changed: list[str]
 ) -> tuple[list[str], set[str]]:
@@ -198,6 +219,8 @@ def science_change_errors(
                 errors.append(f"Q3_AUTHORIZED_PATH_WAS_NOT_NEW:{rel}")
             elif rel not in authorized_q3_present:
                 errors.append(f"Q3_AUTHORIZED_NEW_PATH_MISSING_AT_HEAD:{rel}")
+            continue
+        if is_r0_rebind_only(scope_base, target, rel):
             continue
         errors.append(f"PREEXISTING_OR_UNAUTHORIZED_SCIENCE_MUTATED_BY_PUBLICATION_BRANCH:{rel}")
     return errors, authorized_q3_present
@@ -278,7 +301,7 @@ def main() -> int:
 
     # Q4: stale memory/context governance/P13 are distinct from bounded Q4 result.
     q4 = text("papers/orion-08-typed-state/MANUSCRIPT_V3.md").lower()
-    for token in ("stale", "contextnest", "scope invalidation", "p13", "matched visible information"):
+    for token in ("stale", "contextnest", "scope invalidation", "orion-23", "matched visible information"):
         if token not in q4:
             errors.append(f"Q4_V3_BOUNDARY_MISSING:{token}")
 

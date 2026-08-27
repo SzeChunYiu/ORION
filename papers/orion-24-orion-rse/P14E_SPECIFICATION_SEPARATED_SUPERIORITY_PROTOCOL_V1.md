@@ -1,6 +1,6 @@
 # P14E Specification-Separated Governance Superiority Benchmark V1
 
-**Paper:** ORION-ORION-24 — ORION-RSE
+**Paper:** ORION-24 — ORION-RSE
 **Protocol:** `ORION.P14E.SpecificationSeparatedSuperiority.v1`
 **Frozen:** 2026-08-24 before the first protected execution.
 **Predecessors (all retained verbatim, none edited):** P14A (gate-not-met negative), P14B (diagnostic/non-authoritative), P14C (conformance authority, 28 static cases), P14D (external acquisition, blocked).

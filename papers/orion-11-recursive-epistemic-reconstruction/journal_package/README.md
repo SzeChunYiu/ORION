@@ -1,4 +1,4 @@
-# ORION-ORION-11 journal package
+# ORION-11 journal package
 
 **Scientific status:** `PEER_REVIEW_READY` for the bounded credential-free
 mechanical mutation-necessity claim. **Package status:** `SUPERSEDED`.

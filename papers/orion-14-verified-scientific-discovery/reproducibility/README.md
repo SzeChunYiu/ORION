@@ -1,4 +1,4 @@
-# ORION-ORION-14 V2 Reproducibility
+# ORION-14 V2 Reproducibility
 
 ## Exact identities
 

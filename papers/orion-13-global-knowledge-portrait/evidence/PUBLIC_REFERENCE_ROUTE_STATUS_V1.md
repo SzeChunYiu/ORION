@@ -1,4 +1,4 @@
-# ORION-ORION-13 public-reference Step-3 rescue status V1
+# ORION-13 public-reference Step-3 rescue status V1
 
 **Date:** 2026-08-17  
 **Issue:** #100  

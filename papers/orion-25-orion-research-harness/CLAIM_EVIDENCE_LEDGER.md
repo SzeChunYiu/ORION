@@ -1,6 +1,6 @@
 # ORION-25 Claim–Evidence Ledger
 
-**Stable ID:** ORION-ORION-25
+**Stable ID:** ORION-25
 
 **Active authority:** `P15_ACTIVE_CLAIM_AUTHORITY_V3.json`
 

@@ -1,4 +1,4 @@
-# ORION-ORION-15 independent claim / PDF audit
+# ORION-15 independent claim / PDF audit
 
 Audit subject: historical ORION-15 Tectonic package on 2026-08-24. This is not a #283
 verification record and not an independent external review.

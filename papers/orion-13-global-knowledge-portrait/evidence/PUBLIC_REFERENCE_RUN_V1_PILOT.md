@@ -1,4 +1,4 @@
-# ORION-ORION-13 public-reference run V1 — development pilot record
+# ORION-13 public-reference run V1 — development pilot record
 
 **Authority:** `DEVELOPMENT_PILOT_ONLY`  
 **Protocol:** `ORION-13.public-reference-mapping.v1`  

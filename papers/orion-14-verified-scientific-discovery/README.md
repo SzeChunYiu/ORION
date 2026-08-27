@@ -1,6 +1,6 @@
 # Paper 04 — Verified Scientific Discovery
 
-**Stable ID:** ORION-ORION-14  
+**Stable ID:** ORION-14  
 **Current science:** `SCIENTIFIC_ASCENT_V4_THEORY_INTEGRATED`; external naturalistic execution remains open.  
 **Current science manuscript:** `manuscript/main.tex`.  
 **Historical specification:** `manuscript/FINAL_V3.md` and `CLAIM_LEDGER_V3.md` remain the preserved pre-ascent record.  

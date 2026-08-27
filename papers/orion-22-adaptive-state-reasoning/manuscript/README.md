@@ -1,6 +1,6 @@
 # ORION-22 publication source
 
-This directory is the editable publication source for ORION-ORION-22.
+This directory is the editable publication source for ORION-22.
 
 - Every chapter has one canonical human-editable Markdown file in `sections/`.
 - Every chapter has a matching `.tex` wrapper with the same stem.

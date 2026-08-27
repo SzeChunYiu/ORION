@@ -1,4 +1,4 @@
-# ORION-ORION-13 scoped code/data availability statement V1
+# ORION-13 scoped code/data availability statement V1
 
 **Status:** `CONTENT_READY / FINAL_ARCHIVE_URL_UNBOUND`
 

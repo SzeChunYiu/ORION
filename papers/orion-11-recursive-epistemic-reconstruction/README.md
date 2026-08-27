@@ -1,6 +1,6 @@
 # Paper 01 — Recursive Epistemic Reconstruction
 
-**Stable ID:** ORION-ORION-11  
+**Stable ID:** ORION-11  
 **Status:** historical bounded V2 `PEER_REVIEW_READY_FOR_FROZEN_MECHANICAL_SUBJECT`; current enlarged manuscript `NOT_SUBMISSION_READY`. The later owner-algebra and V11--V13 programme has 0 certified maps, 720 `CANNOT_CHECK` maps, 0/7 signed external outputs and 0/4 closed authority acts; it does not rewrite the bounded mechanical result.
 
 ## Current package authority

@@ -1,6 +1,6 @@
 # P11E Seeded Sparse-Decoder Replication Protocol V1
 
-**Paper:** ORION-ORION-21 — State as Computation  
+**Paper:** ORION-21 — State as Computation  
 **Issue:** #471  
 **Protocol:** `ORION.P11E.SeededSparseReplication.v1`  
 **Frozen:** 2026-08-21 before protected execution.

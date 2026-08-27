@@ -61,6 +61,67 @@ class UnpinnedCorpus(ValueError):
 #: requires checking the file out of the upstream repository at that commit and
 #: comparing digests; until someone does that, claiming the commit would be the
 #: same unverified stamp in a longer form.
+#:
+#: The MUSE expert-annotation corpus has now had that promotion check performed:
+#: every file under ``dataset/human_Expert_annotations`` was checked out of the
+#: upstream repository at ``f7a40317db46145d0c90b221311d8324db5da1b9`` with the
+#: tree oid compared against the checked-out blob (579/579), and the CI workflow
+#: re-asserts that commit before every build. Those per-file pins live in
+#: ``p3_public_reference_muse_pins.json`` beside this module and carry the
+#: commit as their identity --- a verified statement, not a stamp.
+#: Both verified-commit corpora (MUSE, SciSchema) share one manifest shape and
+#: one loader; only the file name, schema tag, dataset name and identity prefix
+#: differ. SciSchema got the same promotion check as MUSE: all 49 files under
+#: ``schemas/`` checked out of scischema/scischema at the commit above and
+#: digest-compared (49/49).
+PIN_MANIFESTS = {
+    "MUSE": (
+        "p3_public_reference_muse_pins.json",
+        "ORION.P3.MuseCorpusPins.v1",
+        "muse",
+    ),
+    "SciSchema": (
+        "p3_public_reference_scischema_pins.json",
+        "ORION.P3.SciSchemaCorpusPins.v1",
+        "scischema",
+    ),
+}
+
+
+def _load_committed_pins(dataset: str) -> tuple[CorpusPin, ...]:
+    manifest_name, schema, prefix = PIN_MANIFESTS[dataset]
+    manifest = Path(__file__).with_name(manifest_name)
+    raw = json.loads(manifest.read_text(encoding="utf-8"))
+    if raw.get("schema") != schema:
+        raise ValueError(f"unsupported {dataset} pin manifest schema: {raw.get('schema')!r}")
+    commit = str(raw.get("verified_commit", ""))
+    if len(commit) != 40:
+        raise ValueError(f"{dataset} pin manifest must name the verified upstream commit")
+    files = raw.get("files")
+    if not isinstance(files, list) or not files:
+        raise ValueError(f"{dataset} pin manifest requires at least one file")
+    pins: list[CorpusPin] = []
+    seen: set[str] = set()
+    for row in files:
+        rel = str(row.get("path", ""))
+        digest = str(row.get("sha256", ""))
+        source = str(row.get("source", ""))
+        if not rel or len(digest) != 64 or not source.startswith("https://"):
+            raise ValueError(f"malformed {dataset} pin row: {row!r}")
+        if rel in seen:
+            raise ValueError(f"duplicate {dataset} pin path: {rel}")
+        seen.add(rel)
+        pins.append(
+            CorpusPin(
+                dataset=dataset,
+                identity=f"{prefix}@{commit}",
+                sha256=digest,
+                source=source,
+            )
+        )
+    return tuple(pins)
+
+
 PINNED_CORPORA: tuple[CorpusPin, ...] = (
     CorpusPin(
         dataset="SciFact",
@@ -80,6 +141,8 @@ PINNED_CORPORA: tuple[CorpusPin, ...] = (
             "#data/claims_dev.jsonl"
         ),
     ),
+    *_load_committed_pins("MUSE"),
+    *_load_committed_pins("SciSchema"),
 )
 
 

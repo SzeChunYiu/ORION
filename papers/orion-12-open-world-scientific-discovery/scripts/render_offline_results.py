@@ -74,7 +74,7 @@ def render_table(payload: dict) -> str:
     n_tasks, authority, n_records = _scope(payload)
     systems = payload["systems"]
     lines = [
-        "# Table P2-3 — offline controlled-index failure taxonomy",
+        "# Table ORION-12-3 — offline controlled-index failure taxonomy",
         "",
         f"**Authority:** `{authority}`. These are terminal task classifications from the frozen {n_tasks}-task offline companion after the three deterministic repeats are collapsed within task. They are not external benchmark results; the achieved precision for this family is recorded in `RESULTS_SUMMARY_V1.json` under `achieved_precision`, and no primary is promoted here.",
         "",

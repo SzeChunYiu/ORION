@@ -1,4 +1,4 @@
-# ORION-ORION-13 cover letter draft — Semantic Web Journal
+# ORION-13 cover letter draft — Semantic Web Journal
 
 **Status:** `DRAFT_NEEDS_AUTHOR_ATTESTATION`  
 **Submission category:** Full research paper  

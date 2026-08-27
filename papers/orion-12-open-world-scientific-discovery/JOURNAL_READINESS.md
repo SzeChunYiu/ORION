@@ -1,6 +1,6 @@
-# ORION-ORION-12 journal readiness — narrowed publication track
+# ORION-12 journal readiness — narrowed publication track
 
-**Current terminal:** `ORION-ORION-12 = PEER_REVIEW_READY` on the bounded methods / critical system-design claim as of 2026-08-18.
+**Current terminal:** `ORION-12 = PEER_REVIEW_READY` on the bounded methods / critical system-design claim as of 2026-08-18.
 
 **Scope of that terminal (not machine-scored, and deliberately adjacent to it):** `P2_NARROWED` remains the scientific scope receipt. External ORION-vs-baseline superiority remains `CANNOT_CHECK` and is **not** part of the ready claim. Nothing about that exclusion has changed; it moved off the terminal line because the scoreboard reads that one line and cannot represent a scoped verdict.
 
@@ -149,4 +149,4 @@ Re-open the venue decision if a new external algorithmic superiority result or u
 
 ## Done definition
 
-`ORION-ORION-12 = PEER_REVIEW_READY` on the narrowed claim because the manuscript compiles cleanly, reference/figure and independent PDF/claim checks pass, the dated literature state is current for the readiness date, and every unavailable or invalid external authority remains visible as `CANNOT_CHECK`/future work rather than being promoted into support.
+`ORION-12 = PEER_REVIEW_READY` on the narrowed claim because the manuscript compiles cleanly, reference/figure and independent PDF/claim checks pass, the dated literature state is current for the readiness date, and every unavailable or invalid external authority remains visible as `CANNOT_CHECK`/future work rather than being promoted into support.

@@ -1,6 +1,6 @@
 # ORION-RSE: Recursive Scientific Governance as a Falsifiable Decision Contract
 
-**ORION-ORION-24 · issue #669 · programme #670**  
+**ORION-24 · issue #669 · programme #670**  
 **Evidence freeze:** 2026-08-21  
 **Submission status:** peer-review package; controlled governance-conformance superiority supported, external research-agent validation open
 

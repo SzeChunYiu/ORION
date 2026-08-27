@@ -1,4 +1,4 @@
-# ORION-ORION-12 journal package
+# ORION-12 journal package
 
 **Scientific status:** the bounded `ORION-12.NARROWED` terminal is retained.  
 **Package status:** `SUPERSEDED`.  

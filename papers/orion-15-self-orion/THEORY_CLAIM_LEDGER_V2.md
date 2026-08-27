@@ -1,4 +1,4 @@
-# ORION-ORION-15 theory claim ledger V2
+# ORION-15 theory claim ledger V2
 
 This additive ledger covers the 2026-08-23 scientific-ascent theory. It does
 not replace `evidence/CLAIM_LEDGER_V1.md`, alter the 21/24 diagnostic archive,

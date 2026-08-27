@@ -1,6 +1,6 @@
 # ORION-10 publication foundation V2 — Certified static forecasting with refutation/repair
 
-**Paper:** ORION-ORION-10  
+**Paper:** ORION-10  
 **Publication cut:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 **Status:** `FOUNDATION_REBUILT__MANUSCRIPT_MUST_CENTER_REFUTATION_AND_AUTHORITY_LAYERS`
 

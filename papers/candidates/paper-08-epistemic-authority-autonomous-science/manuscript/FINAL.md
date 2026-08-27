@@ -201,7 +201,7 @@ Construction: give the action a valid in-scope generic grant and no blockers; re
 
 This is not a criticism of access control. The two policies answer different questions. ORION-18's purpose is to make the interface explicit so success in one cannot silently masquerade as success in the other.
 
-## 11. ORION ORION-11–ORION-15 as embedded authority domains
+## 11. ORION-11–ORION-15 as embedded authority domains
 
 ### REFRAME — ORION-11
 

@@ -1,4 +1,4 @@
-# ORION-ORION-14 Execution Binding Manifest V1
+# ORION-14 Execution Binding Manifest V1
 
 ## Current status: `EXECUTION_FROZEN` — launch authorized
 

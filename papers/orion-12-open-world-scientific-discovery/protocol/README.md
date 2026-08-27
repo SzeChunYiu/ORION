@@ -1,4 +1,4 @@
-# ORION-ORION-12 prospective discovery protocol
+# ORION-12 prospective discovery protocol
 
 **Protocol:** `ORION-12.open-world-discovery.v1`  
 **Status:** `DESIGN_FROZEN`  
