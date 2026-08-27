@@ -1,0 +1,41 @@
+{
+  "authority": {
+    "external_independent_replay": false,
+    "grants_journal_authority": false,
+    "grants_production_value": false,
+    "round_2_consumed_as": "ADVERSE",
+    "submission_authorized": false
+  },
+  "corrected_execution": {
+    "byte_identical_complete_runs": 2,
+    "executor_commit": "a3100c5c9278c6d8ab862680c8aea315273b7b93",
+    "executor_sha256": "4386f6c9c34ab97878872fcf7ad7fb57b7bb7c23de412f6fc520a4a6c0d84a55",
+    "protocol_sha256": "8633e82528eb712e2b42dd54b3c457e99b09e6714d084f41359350a64ecad911",
+    "result_bytes": 7383718,
+    "result_sha256": "9606f30d1c0c503935c1612b1d352f8b7bef835aeda96478e2e1fdcdb489cbde",
+    "terminal_sha256": "17721b48c3832c2f670bdaae25f1c7b301d50a7ca443f46a6f8de8c661649523"
+  },
+  "first_complete_execution": {
+    "disposition": "SCIENTIFIC_VECTORS_AND_TERMINAL_PRESERVED__POST_CHOICE_REPORTING_ONLY_DEFECT",
+    "executor_commit": "ec5f757e8747449e40bbfe6fde6e1fa227656f49",
+    "result_sha256": "e9be34bd50b5f0a825c3c1b08ae05ed1d19a1b5937af791435283ffeb0e3736b",
+    "terminal": "C_R21_CSPMZN_DIRECT_RELATIVE_ADVERSE"
+  },
+  "preserved_prerequisite": {
+    "scenario": "TSP-LION2015",
+    "terminal": "CANNOT_CHECK_TSP_DIRECT_RELATIVE_SOURCE_OR_RESOURCE"
+  },
+  "prospective_freeze": {
+    "base_commit": "27ea5e1b04dbed853b7ddba60c8bf736ef087bf5",
+    "outcome_tables_unread_before_freeze": true,
+    "protocol_executor_commit": "ec5f757e8747449e40bbfe6fde6e1fa227656f49"
+  },
+  "schema": "ORION.FiberGuard.CSPMZNDirectRelative.R21.Custody.v1",
+  "terminal": "C_R21_CSPMZN_DIRECT_RELATIVE_ADVERSE",
+  "upstream": {
+    "commit": "551b22beef8df17de59286b4822ef720e0aa4d6f",
+    "license": "GPLv3",
+    "repository": "https://github.com/coseal/aslib_data.git",
+    "scenario": "CSP-MZN-2013"
+  }
+}
