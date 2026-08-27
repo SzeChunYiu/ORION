@@ -40,21 +40,14 @@ jobs:
           text = path.read_text()
           predictor_old = '    d1 = distances[:, 0]\n'
           predictor_new = '    d1 = distances[np.arange(len(phi_query)), neighbour_rows[:, 0]]\n'
-          receipt_old = '''        nearest = pairwise_distances(
-              representations[arm["representation"]][2],
-              representations[arm["representation"]][0],
-          )[:, 0]
-          '''
-          receipt_new = '''        nearest = pairwise_distances(
-              representations[arm["representation"]][2],
-              representations[arm["representation"]][0],
-          ).min(axis=1)
-          '''
+          receipt_old = ')[:, 0]\n        arm["receipt"]["covered_median_d1"]'
+          receipt_new = ').min(axis=1)\n        arm["receipt"]["covered_median_d1"]'
           assert text.count(predictor_old) == 1, text.count(predictor_old)
           assert text.count(receipt_old) == 1, text.count(receipt_old)
           text = text.replace(predictor_old, predictor_new)
           text = text.replace(receipt_old, receipt_new)
           assert 'd1 = distances[:, 0]' not in text
+          assert receipt_old not in text
           path.write_text(text)
           PY
           rm .github/workflows/one-shot-fix-orion-02-cnbr2-d1.yml
