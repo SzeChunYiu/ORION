@@ -23,10 +23,19 @@ TARGETS = ROOT / "papers/publication_closure/WAVE_A_SPECIALIST_TARGETS_V1.json"
 SUBMISSIONS = ROOT / "papers/publication_closure/submissions"
 TERMINAL = "GOOD_SPECIALIST_REPOSITORY_PACKAGE_READY__HUMAN_FILING_ATTESTATIONS_OPEN"
 
+TQE_REQUIRED = [
+    "main.pdf",
+    "main.tex",
+    "references.bib",
+    "SCIENTIFIC_MASTER_CITED.md",
+    "TQE_ABSTRACTS_V1.json",
+    "ABSTRACT_WORD_COUNT.txt",
+    "SHA256SUMS",
+]
 PACKAGE = {
-    "ORION-05": ("TQE", ["main.pdf", "main.tex", "references.bib", "SCIENTIFIC_MASTER_CITED.md", "SHA256SUMS", "ABSTRACT_WORD_COUNT.txt"]),
-    "ORION-09": ("TQE", ["main.pdf", "main.tex", "references.bib", "SCIENTIFIC_MASTER_CITED.md", "SHA256SUMS", "ABSTRACT_WORD_COUNT.txt"]),
-    "ORION-10": ("TQE", ["main.pdf", "main.tex", "references.bib", "SCIENTIFIC_MASTER_CITED.md", "SHA256SUMS", "ABSTRACT_WORD_COUNT.txt"]),
+    "ORION-05": ("TQE", TQE_REQUIRED),
+    "ORION-09": ("TQE", TQE_REQUIRED),
+    "ORION-10": ("TQE", TQE_REQUIRED),
     "ORION-14": ("TMLR", ["main.pdf", "source", "REPOSITORY_FILING_PREFLIGHT_V1.json", "SHA256SUMS"]),
     "ORION-17": ("AIJ", ["main.pdf", "AIJ_MANUSCRIPT.tex", "bibliography.bib", "CHECKS.txt", "SHA256SUMS"]),
     "ORION-19": ("TMLR", ["main.pdf", "main.tex", "references.bib", "sections", "CHECKS.txt", "SHA256SUMS"]),
@@ -151,7 +160,11 @@ def main() -> int:
                 raise SystemExit(f"bad abstract count for {paper_id}: {count_text}") from exc
             if not 150 <= count <= 250:
                 raise SystemExit(f"TQE abstract word count outside 150..250 for {paper_id}: {count}")
+            abstract_source = load_json(base / "TQE_ABSTRACTS_V1.json")
+            if abstract_source.get("schema") != "ORION.TQEAbstractOverrides.v1":
+                raise SystemExit(f"bad TQE abstract source schema for {paper_id}")
             row["abstract_word_count"] = count
+            row["abstract_source_sha256"] = sha256(base / "TQE_ABSTRACTS_V1.json")
         papers[paper_id] = row
 
     receipt = {
