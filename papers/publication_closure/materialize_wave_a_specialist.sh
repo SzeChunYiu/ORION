@@ -16,6 +16,12 @@ python papers/check_q_qg_publication.py
 python papers/check_q_qg_science_manifests.py
 python papers/build_q_qg_cited_masters.py --clean
 
+Q_REPLAY_DIR="${RUNNER_TEMP:-/tmp}/wave-a-quantum-replay"
+rm -rf "$Q_REPLAY_DIR"
+mkdir -p "$Q_REPLAY_DIR"
+Q_REPLAY_RECEIPT="$Q_REPLAY_DIR/QUANTUM_REPLAY_RECEIPT_V1.json"
+python papers/publication_closure/run_wave_a_quantum_replays.py --out "$Q_REPLAY_RECEIPT"
+
 python papers/orion-17-epistemic-navigation-open-worlds/formal/check_countermodels.py
 python papers/candidates/checkers/p7_finite_falsifiers_v1.py
 
@@ -156,7 +162,8 @@ PY
   cp "build/q_qg_cited/${p}/MANUSCRIPT_CITED.md" "$out/SCIENTIFIC_MASTER_CITED.md"
   cp "$work/ABSTRACT_WORD_COUNT.txt" "$out/ABSTRACT_WORD_COUNT.txt"
   cp "$TQE_ABSTRACTS" "$out/TQE_ABSTRACTS_V1.json"
-  (cd "$out" && sha256sum main.pdf main.tex references.bib SCIENTIFIC_MASTER_CITED.md ABSTRACT_WORD_COUNT.txt TQE_ABSTRACTS_V1.json > SHA256SUMS)
+  cp "$Q_REPLAY_RECEIPT" "$out/QUANTUM_REPLAY_RECEIPT_V1.json"
+  (cd "$out" && sha256sum main.pdf main.tex references.bib SCIENTIFIC_MASTER_CITED.md ABSTRACT_WORD_COUNT.txt TQE_ABSTRACTS_V1.json QUANTUM_REPLAY_RECEIPT_V1.json > SHA256SUMS)
 done
 
 # ---------------------------------------------------------------------------
