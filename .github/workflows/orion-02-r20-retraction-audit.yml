@@ -1,0 +1,56 @@
+name: orion-02-r20-retraction-audit
+
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/audit_retractions_r20.py'
+      - 'papers/orion-02-fiberguard-finite-fibre/**'
+      - '.github/workflows/orion-02-r20-retraction-audit.yml'
+  pull_request:
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/audit_retractions_r20.py'
+      - 'papers/orion-02-fiberguard-finite-fibre/**'
+      - '.github/workflows/orion-02-r20-retraction-audit.yml'
+  workflow_dispatch:
+
+permissions: {contents: read, issues: read, pull-requests: read}
+
+jobs:
+  retraction-authority-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Audit local and live withdrawal state twice
+        shell: bash
+        env: {GITHUB_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          script='papers/orion-02-fiberguard-finite-fibre/audit_retractions_r20.py';python -m py_compile "$script"
+          for suffix in a b; do python "$script" --root . --output "$RUNNER_TEMP/$suffix.json" | tee "$RUNNER_TEMP/$suffix.txt"; done
+          cmp "$RUNNER_TEMP/a.json" "$RUNNER_TEMP/b.json";cmp "$RUNNER_TEMP/a.txt" "$RUNNER_TEMP/b.txt"
+      - name: Verify exact authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          r=json.loads((Path(os.environ['RUNNER_TEMP'])/'a.json').read_text())
+          assert r['schema']=='ORION.ORION02.RetractionAudit.R20.v1'
+          assert r['terminal']=='ORION02_R20_RETRACTION_AUTHORITY_CLOSED'
+          assert not r['local_violations'] and not r['live_violations']
+          assert r['authority']=={'former_R18_positive_terminal':'RETRACTED','invalid_R19_diagonal_shortcut':'REVOKED','external_independence':False,'novelty':False,'journal_authority':False}
+          print('ORION_02_R20_RETRACTION_AUDIT_PASS')
+          PY
+      - run: git diff --check
+      - name: Stage retraction receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/orion-02-r20-retraction";mkdir -p "$out";cp "$RUNNER_TEMP/a.json" "$out/RETRACTION_AUDIT_R20.json";cp "$RUNNER_TEMP/a.txt" "$out/TERMINAL.txt";sha256sum "$out"/* > "$out/SHA256SUMS"
+      - uses: actions/upload-artifact@v4
+        with: {name: orion-02-r20-retraction-audit, path: '${{ runner.temp }}/orion-02-r20-retraction/', if-no-files-found: error, retention-days: 30}
