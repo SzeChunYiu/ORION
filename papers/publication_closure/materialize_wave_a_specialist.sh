@@ -113,11 +113,20 @@ for p in Q1 QG1 QG2; do
   rm -rf "$out" "$work"
   mkdir -p "$out" "$work"
 
+  # First perform the existing citation-only/scientific-master projection and
+  # venue abstract compression. Then apply the separate result-bound verifier;
+  # only Q1 may receive the R11 algorithmic section.
   python papers/quantum_preprint/build_quantum_source.py \
     --paper "$p" \
     --cited-master "build/q_qg_cited/${p}/MANUSCRIPT_CITED.md" \
     --abstract-overrides-json "$TQE_ABSTRACTS" \
-    --out "$work/prepared.md"
+    --out "$work/prepared_base.md"
+  python papers/publication_closure/apply_tqe_submission_projection.py \
+    --paper "$p" \
+    --prepared-in "$work/prepared_base.md" \
+    --out "$work/prepared.md" \
+    | tee "$work/TQE_PROJECTION_REPORT.txt"
+
   cp "build/q_qg_cited/${p}/references.bib" "$work/references.bib"
   cp papers/quantum_preprint/tqe_pandoc_template.tex "$work/template.tex"
 
@@ -160,10 +169,20 @@ PY
   cp "$work/main.tex" "$out/main.tex"
   cp "$work/references.bib" "$out/references.bib"
   cp "build/q_qg_cited/${p}/MANUSCRIPT_CITED.md" "$out/SCIENTIFIC_MASTER_CITED.md"
+  cp "$work/prepared.md" "$out/SUBMISSION_PROJECTION.md"
+  cp "$work/TQE_PROJECTION_REPORT.txt" "$out/TQE_PROJECTION_REPORT.txt"
   cp "$work/ABSTRACT_WORD_COUNT.txt" "$out/ABSTRACT_WORD_COUNT.txt"
   cp "$TQE_ABSTRACTS" "$out/TQE_ABSTRACTS_V1.json"
   cp "$Q_REPLAY_RECEIPT" "$out/QUANTUM_REPLAY_RECEIPT_V1.json"
   cp -R "$Q_REPLAY_DIR/quantum-replay-raw" "$out/quantum-replay-raw"
+  if [ "$p" = 'Q1' ]; then
+    cp papers/orion-05-tare-expressivity/Q1_R11_SPARSE_DIRECT_EXECUTABLE_RESULT_V1.json \
+      "$out/Q1_R11_SPARSE_DIRECT_EXECUTABLE_RESULT_V1.json"
+    cp papers/orion-05-tare-expressivity/Q1_R11_SPARSE_DIRECT_EXECUTABLE_PROTOCOL_V1.md \
+      "$out/Q1_R11_SPARSE_DIRECT_EXECUTABLE_PROTOCOL_V1.md"
+    cp papers/publication_closure/tqe/ORION-05_R11_ADDENDUM.md \
+      "$out/ORION-05_R11_ADDENDUM.md"
+  fi
   find "$out" -type f ! -name SHA256SUMS -print0 | sort -z | while IFS= read -r -d '' f; do sha256sum "$f"; done | sed "s#  $out/#  #" > "$out/SHA256SUMS"
 done
 
