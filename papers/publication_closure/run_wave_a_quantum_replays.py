@@ -26,6 +26,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 SCHEMA = "ORION.WaveAQuantumReplayReceipt.v1"
+RAW_DIR_NAME = "quantum-replay-raw"
 
 
 def sha256(path: Path) -> str:
@@ -121,12 +122,16 @@ def assert_qg_programme(value: dict[str, Any]) -> None:
         raise SystemExit("QG programme lost bounded CANNOT_CHECK history")
 
 
+def package_rel(path: Path) -> str:
+    return f"{RAW_DIR_NAME}/{path.name}"
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args(argv)
     out = args.out if args.out.is_absolute() else ROOT / args.out
-    raw = out.parent / "quantum-replay-raw"
+    raw = out.parent / RAW_DIR_NAME
     raw.mkdir(parents=True, exist_ok=True)
 
     q1_stdout = raw / "orion05-independent-proof-sanity.stdout.json"
@@ -235,11 +240,12 @@ def main(argv: list[str] | None = None) -> int:
             ),
         },
         "raw_artifacts": {
-            "q1_stdout": str(q1_stdout),
-            "pytest_log": str(pytest_log),
-            "qg9": str(qg9_path),
-            "qg12": str(qg12_path),
-            "qg_programme": str(qg_programme_path),
+            "q1_stdout": package_rel(q1_stdout),
+            "pytest_log": package_rel(pytest_log),
+            "qg9": package_rel(qg9_path),
+            "qg12": package_rel(qg12_path),
+            "qg_programme": package_rel(qg_programme_path),
+            "note": "The materializer copies this directory beside the receipt inside each TQE package.",
         },
         "terminal": "WAVE_A_QUANTUM_DIRECT_REPLAYS_PASS__BOUNDED_AUTHORITY_ONLY",
     }
