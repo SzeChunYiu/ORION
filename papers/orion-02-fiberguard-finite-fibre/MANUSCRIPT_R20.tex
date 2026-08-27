@@ -2,6 +2,8 @@
 \usepackage[a4paper,margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{booktabs,tabularx,microtype,hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
 \usepackage[numbers,sort&compress]{natbib}
 
 \newtheorem{theorem}{Theorem}
@@ -59,6 +61,8 @@ Our contributions are:
 \end{enumerate}
 
 Generic minimax duality, set cover, adaptive feature acquisition, reject-option prediction, conformal calibration, and algorithm selection are prior mechanisms and receive no novelty credit here.  The residual object is their exact complete-fibre/common-oracle composition together with the authority boundary exposed by the registered experiments.
+
+\input{FIGURE_AUTHORITY_R20.tex}
 
 \section{Finite-fibre decision model}
 
@@ -249,6 +253,8 @@ The identities follow by subtraction.  Holding $L$ fixed while varying $B$ chang
 \end{proof}
 
 Pre-acquisition routing has a different profile because the fallback may avoid feature cost.  Acquisition timing is therefore part of the policy language, not an accounting detail.
+
+\input{FIGURE_JOINT_ROUTE_R20.tex}
 
 \subsection{Legal joint profiles}
 
