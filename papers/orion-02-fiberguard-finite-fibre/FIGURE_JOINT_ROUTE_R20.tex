@@ -1,0 +1,25 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=7mm and 9mm,
+  every node/.style={font=\small,align=center},
+  box/.style={draw,rounded corners,inner sep=6pt,text width=0.22\linewidth},
+  smallbox/.style={draw,rounded corners,inner sep=5pt,text width=0.17\linewidth},
+  arrow/.style={-Latex,thick},
+  blocked/.style={-Latex,thick,dashed}
+]
+\node[smallbox] (learned) {Learned-arm\\marginal profiles};
+\node[smallbox,below=of learned] (fallback) {Fallback-arm\\marginal profiles};
+\node[box,right=of learned,yshift=-9mm] (legal) {Legal joint policy language\\compatibility, route observation, common oracle, acquisition timing};
+\node[box,right=of legal] (profiles) {Attainable deployed\\statewise route profiles};
+\node[box,right=of profiles] (certificate) {Deterministic frontier or\\randomized convex lower image};
+\draw[blocked] (learned) -- node[above,sloped]{insufficient alone} (profiles);
+\draw[blocked] (fallback) -- node[below,sloped]{insufficient alone} (profiles);
+\draw[arrow] (learned) -- (legal);
+\draw[arrow] (fallback) -- (legal);
+\draw[arrow] (legal) -- (profiles);
+\draw[arrow] (profiles) -- (certificate);
+\end{tikzpicture}
+\caption{The deployed route is a joint policy object.  Separate learned and fallback marginal certificates do not identify which pairs, observations or acquisition paths are legal.  Exact route authority begins with the attainable joint statewise profiles.}
+\label{fig:joint-route}
+\end{figure}
