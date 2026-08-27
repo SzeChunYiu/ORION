@@ -1,0 +1,35 @@
+{
+  "schema": "ORION.NQ.EngineB.CurrentRootFullReplayAuthorizationReceipt.v1",
+  "authorized_commit": "20365f254807015d8db46a370f006f8be462b3f8",
+  "reviewed_parent_commit": "63950633df0b6665f90981f922a9ca748c1b9b3d",
+  "review_path": "CURRENT_ROOT_FULL_REPLAY_REVIEW.json",
+  "review_git_blob": "PENDING_WORKFLOW_BINDING",
+  "submission_command": "NQ_CRB_AUTHORIZED_COMMIT=20365f254807015d8db46a370f006f8be462b3f8 papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/slurm/submit_crb_full_census.sh /absolute/path/to/ORION-checkout",
+  "checkout_requirement": "detached clean checkout at authorized_commit",
+  "nonduplication_key": "741454d7d6b513ccd80d2aa9a78d2a9f5076fe8075341d0ecc8e95566ecc28ea",
+  "attempt_budget": 1,
+  "result_requirements": [
+    "complete 98622-record D2 declared scope",
+    "complete 230983-record D3 declared scope",
+    "every UNSAT DRUP certificate externally checked against pinned drat-trim",
+    "positive witnesses independently evaluated",
+    "raw-byte SHA256SUMS ledger",
+    "first-disagreement or fail-closed resource terminal",
+    "no D3=25 conditional specialization used by the replay"
+  ],
+  "allowed_execution_terminals": [
+    "NQ_CR_B_FULL_CENSUS_GENERATED_INDEPENDENTLY",
+    "NQ_ENGINE_B_EXTERNAL_DRUP_ALL_UNSAT_CERTIFICATES_VERIFIED",
+    "CANNOT_CHECK_RESOURCE_BOUND",
+    "CANNOT_CHECK_ENVIRONMENT",
+    "NQ_ENGINE_B_FIRST_DISAGREEMENT"
+  ],
+  "authority_before_execution": {
+    "full_census_executed": false,
+    "D2_D3_numerical_authority": false,
+    "D4_authority": false,
+    "external_independence": false,
+    "journal_authority": false
+  },
+  "terminal": "NQ_CRB_FULL_REPLAY_AUTHORIZED_COMMIT_BOUND__EXECUTION_PENDING"
+}
