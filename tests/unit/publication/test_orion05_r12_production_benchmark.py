@@ -247,3 +247,12 @@ def test_attempt1_and_attempt2_have_identical_scientific_outcomes() -> None:
         "scientific_mismatch_attempt_ids": [],
         "status_counts": {"COMPLETED": 108, "TIMEOUT": 12},
     }
+
+
+def test_round2_status_changes_trigger_the_dedicated_workflow() -> None:
+    workflow = Path(".github/workflows/orion05-r12-production-benchmark.yml").read_text()
+    status_path = (
+        '"papers/orion-05-tare-expressivity/ORION05_R12_ROUND2_STATUS.json"'
+    )
+
+    assert workflow.count(status_path) == 2

@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "papers/orion_05_r12_production_benchmark.py"
+      - "papers/orion-05-tare-expressivity/ORION05_R12_ROUND2_STATUS.json"
       - "papers/orion-05-tare-expressivity/rounds/r12-production-benchmark/**"
       - "development/orion-05-r12-production-benchmark-2026-08-27/**"
       - "tests/unit/publication/test_orion05_r12_production_benchmark.py"
@@ -12,6 +13,7 @@ on:
     branches: [main]
     paths:
       - "papers/orion_05_r12_production_benchmark.py"
+      - "papers/orion-05-tare-expressivity/ORION05_R12_ROUND2_STATUS.json"
       - "papers/orion-05-tare-expressivity/rounds/r12-production-benchmark/**"
       - "development/orion-05-r12-production-benchmark-2026-08-27/**"
       - "tests/unit/publication/test_orion05_r12_production_benchmark.py"
