@@ -1,0 +1,94 @@
+name: remaining11-orion25-freeze
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/remaining11-orion25-freeze-20260827
+    paths:
+      - 'papers/publication_closure/remaining11/**'
+      - '.github/workflows/remaining11-orion25-freeze.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: remaining11-orion25-freeze
+  cancel-in-progress: true
+
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion25-science-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/remaining11-orion25-freeze-20260827
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen external dependencies
+        run: python -m pip install --disable-pip-version-check 'cryptography==46.0.3' 'prov==3.1.0'
+      - name: Compile freeze gate
+        run: python -m py_compile papers/publication_closure/remaining11/check_orion25_science_freeze.py
+      - name: Re-run bounded SEI fault checker
+        run: python papers/orion-25-orion-research-harness/top_tier/check_sei_fault_v1.py > "$RUNNER_TEMP/sei.json"
+      - name: Re-run provenance interoperability with independent implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/orion-25-orion-research-harness/top_tier/run_provenance_interop_v1.py > p15_provenance_interop_v1.json
+          python papers/orion-25-orion-research-harness/top_tier/run_provenance_interop_v1.py > p15_provenance_interop_v1_rerun.json
+          cmp p15_provenance_interop_v1.json p15_provenance_interop_v1_rerun.json
+          python papers/orion-25-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py > "$RUNNER_TEMP/provenance-independent.json"
+      - name: Re-run Ed25519 V2 composition with independent implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/orion-25-orion-research-harness/top_tier/run_attestation_composition_v2.py > p15_attestation_composition_v2.json
+          python papers/orion-25-orion-research-harness/top_tier/run_attestation_composition_v2.py > p15_attestation_composition_v2_rerun.json
+          cmp p15_attestation_composition_v2.json p15_attestation_composition_v2_rerun.json
+          python papers/orion-25-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py p15_attestation_composition_v2.json > "$RUNNER_TEMP/attestation-independent.json"
+          python - <<'PY'
+          import json
+          p=json.load(open('p15_attestation_composition_v2.json'))
+          q=json.load(open("${RUNNER_TEMP}/attestation-independent.json"))
+          assert p['terminal']=='P15_ATTESTATION_COMPOSITION_V2_SUPPORTED'
+          assert q['terminal']=='P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN'
+          assert p['case_count']==22 and p['chain_plus_sei_gold_agreement_count']==22
+          assert p['chain_layer_false_rejection_count']==0 and p['disposition_false_rejection_count']==0
+          c=p['arms']['A-COMPROMISE-FULL']
+          assert c['signature_layer_detections']==0
+          assert c['chain_as_science_false_promotions']==6
+          print('ORION25_ATTESTATION_BOUNDARY_REPLAY_GREEN')
+          PY
+      - name: Require replay to leave tracked science bytes unchanged
+        shell: bash
+        run: |
+          rm -f p15_provenance_interop_v1.json p15_provenance_interop_v1_rerun.json p15_attestation_composition_v2.json p15_attestation_composition_v2_rerun.json
+          git diff --exit-code -- papers/orion-25-orion-research-harness
+      - name: Verify authority and write bounded freeze receipt
+        run: python papers/publication_closure/remaining11/check_orion25_science_freeze.py
+      - name: Publish exact freeze receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          receipt='papers/publication_closure/receipts/remaining11/ORION-25_SCIENCE_FREEZE_V1.json'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$receipt"
+          git diff --check --cached
+          git commit -m 'papers(publication): freeze ORION-25 bounded science [orion25-science-frozen]'
+          git push origin HEAD:chatgpt/remaining11-orion25-freeze-20260827
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion25-bounded-science-freeze-${{ github.sha }}
+          path: |
+            papers/publication_closure/receipts/remaining11/ORION-25_SCIENCE_FREEZE_V1.json
+            ${{ runner.temp }}/sei.json
+            ${{ runner.temp }}/provenance-independent.json
+            ${{ runner.temp }}/attestation-independent.json
+          if-no-files-found: error
+          retention-days: 30
