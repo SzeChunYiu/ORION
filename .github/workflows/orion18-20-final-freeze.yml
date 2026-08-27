@@ -1,0 +1,53 @@
+name: orion18-20-final-freeze
+on:
+  workflow_dispatch:
+  push:
+    branches: [chatgpt/integrate-claude-orion18-20-freeze-20260827]
+    paths:
+      - 'papers/publication_closure/remaining11/check_orion18_20_final_freeze.py'
+      - '.github/workflows/orion18-20-final-freeze.yml'
+permissions: {contents: write}
+concurrency: {group: orion18-20-final-freeze, cancel-in-progress: true}
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion18-20-final-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env: {PYTHONPATH: src}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: chatgpt/integrate-claude-orion18-20-freeze-20260827, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install tests
+        run: python -m pip install --disable-pip-version-check -e . pytest
+      - name: P8 binding chain
+        run: python papers/orion-18-epistemic-authority-autonomous-science/formal/check_p8_native_protocol_binding_v1.py
+      - name: P8 paper checksums
+        run: sha256sum -c papers/orion-18-epistemic-authority-autonomous-science/SHA256SUMS
+      - name: P10 publication binding
+        run: python -m pytest -q tests/unit/study/p10/test_p10_publication_binding.py
+      - name: P10 local closure V2
+        run: bash papers/orion-learning-machine/VERIFY_LOCAL_CLOSURE_V2.sh
+      - name: Existing bounded science freeze gates
+        run: |
+          python papers/publication_closure/remaining11/check_orion16_18_science_freeze.py
+          git checkout -- papers/publication_closure/receipts/remaining11/ORION-18_SCIENCE_FREEZE_V1.json
+          python papers/publication_closure/remaining11/check_orion20_science_freeze.py
+          git checkout -- papers/publication_closure/receipts/remaining11/ORION-20_SCIENCE_FREEZE_V1.json
+      - name: Paper trees clean
+        run: git diff --exit-code -- papers/orion-18-epistemic-authority-autonomous-science papers/orion-20-structured-problem-solving
+      - name: Write whole-tree receipts
+        run: python papers/publication_closure/remaining11/check_orion18_20_final_freeze.py
+      - name: Commit receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          for n in 18 20; do f="papers/publication_closure/receipts/remaining11/ORION-${n}_SCIENCE_CONTENT_FREEZE_V1.json"; python - "$f" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]));assert x['science_frozen'] and x['paper_content_frozen'];assert x['claude_freeze_lane_repair_integrated'];assert not x['submission_authority'];print(x['terminal'])
+          PY
+          done
+          git config user.name 'github-actions[bot]';git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/publication_closure/receipts/remaining11/ORION-{18,20}_SCIENCE_CONTENT_FREEZE_V1.json
+          git diff --check --cached;git commit -m 'papers(publication): freeze ORION-18/20 science and content [orion18-20-final-frozen]';git push origin HEAD:chatgpt/integrate-claude-orion18-20-freeze-20260827
