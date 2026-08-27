@@ -119,7 +119,14 @@ def main() -> int:
     require(rules["created_before_outcome_access"] is True, "rules not prospective")
     require(receipt["outcome_accessed"] is True, "V4 outcome absent")
     require(receipt["grants_scientific_authority"] is False, "source receipt self-promoted")
-    require(v3["terminal"] == "NO_TERMINAL_UNDER_FROZEN_RULES", "V3 negative not retained")
+    require(
+        v3["frozen_rule_evaluation"]["terminal"] == "NO_TERMINAL_UNDER_FROZEN_RULES",
+        "V3 negative not retained",
+    )
+    require(
+        v3["frozen_rule_evaluation"]["no_frozen_terminal_fired"] is True,
+        "V3 negative no-terminal flag drift",
+    )
     require(
         receipt["cross_check_independent_evaluators"]["all_ok"] is True,
         "embedded evaluator disagreement",
