@@ -1,0 +1,42 @@
+\documentclass[journal]{IEEEtran}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{hyperref}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\DeclareUnicodeCharacter{2013}{\textendash}
+\DeclareUnicodeCharacter{2032}{\ensuremath{{}^{\prime}}}
+\DeclareUnicodeCharacter{2033}{\ensuremath{{}^{\prime\prime}}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+\DeclareUnicodeCharacter{2297}{\ensuremath{\otimes}}
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+\title{$title$}
+\author{AUTHOR METADATA REQUIRED BEFORE SUBMISSION}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+$abstract$
+\end{abstract}
+
+\begin{IEEEkeywords}
+quantum compilation, certification, exact methods, reproducibility
+\end{IEEEkeywords}
+
+$body$
+
+$if(dataavailability)$
+\section*{Data and Code Availability}
+$dataavailability$
+$endif$
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\end{document}
