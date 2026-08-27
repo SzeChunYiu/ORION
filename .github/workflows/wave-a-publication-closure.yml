@@ -12,6 +12,8 @@ on:
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
       - 'papers/build_q_qg_cited_masters.py'
       - 'papers/quantum_preprint/**'
+      - 'papers/orion-05-tare-expressivity/Q1_R11_*'
+      - 'papers/orion-05-tare-expressivity/q1_r11_*'
       - 'papers/orion-19-structured-epistemic-learning/manuscript/**'
       - 'papers/orion-22-adaptive-state-reasoning/manuscript/**'
       - 'papers/orion-23-responsibility-carrying-state/manuscript/**'
@@ -28,6 +30,8 @@ on:
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
       - 'papers/build_q_qg_cited_masters.py'
       - 'papers/quantum_preprint/**'
+      - 'papers/orion-05-tare-expressivity/Q1_R11_*'
+      - 'papers/orion-05-tare-expressivity/q1_r11_*'
       - 'papers/orion-19-structured-epistemic-learning/manuscript/**'
       - 'papers/orion-22-adaptive-state-reasoning/manuscript/**'
       - 'papers/orion-23-responsibility-carrying-state/manuscript/**'
@@ -53,12 +57,15 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Compile checker and closure receipt builder
+      - name: Compile closure control and projection tools
         run: |
           python -m py_compile papers/check_wave_a_publication_closure.py
           python -m py_compile papers/publication_closure/build_wave_a_specialist_receipt.py
           python -m py_compile papers/publication_closure/run_wave_a_quantum_replays.py
           python -m py_compile papers/publication_closure/check_orion14_filing_preflight.py
+          python -m py_compile papers/publication_closure/apply_tqe_submission_projection.py
+          python -m py_compile papers/quantum_preprint/build_quantum_source.py
+          bash -n papers/publication_closure/materialize_wave_a_specialist.sh
 
       - name: Validate frozen Wave-A structure
         run: python papers/check_wave_a_publication_closure.py --root "$GITHUB_WORKSPACE" --json
