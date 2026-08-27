@@ -1,0 +1,77 @@
+name: remaining11-orion01-04-freeze
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/remaining11-orion01-04-freeze-20260827
+    paths:
+      - 'papers/orion-01-certificate-realization/PUBLICATION_FREEZE_ADDENDUM_V1.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/PUBLICATION_FREEZE_ADDENDUM_V1.md'
+      - 'papers/orion-03-typed-merge-falsification/PUBLICATION_FREEZE_ADDENDUM_V1.md'
+      - 'papers/orion-04-rooted-completion-certificates/PUBLICATION_FREEZE_ADDENDUM_V1.md'
+      - 'papers/publication_closure/remaining11/check_orion01_04_science_content_freeze.py'
+      - '.github/workflows/remaining11-orion01-04-freeze.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: remaining11-orion01-04-freeze
+  cancel-in-progress: true
+
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion01-04-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/remaining11-orion01-04-freeze-20260827
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile freeze and convergence verifiers
+        run: |
+          python -m py_compile papers/publication_closure/remaining11/check_orion01_04_science_content_freeze.py
+          python -m py_compile research/orion-01-05-convergence-v1/verify_convergence_v1.py
+      - name: Re-verify the complete ORION-01--05 convergence evidence layer
+        run: python research/orion-01-05-convergence-v1/verify_convergence_v1.py
+      - name: Run convergence regression tests
+        run: python -m unittest research/orion-01-05-convergence-v1/test_convergence_v1.py
+      - name: Require paper content to be committed and clean before freeze receipt generation
+        run: git diff --exit-code -- papers/orion-01-certificate-realization papers/orion-02-fiberguard-finite-fibre papers/orion-03-typed-merge-falsification papers/orion-04-rooted-completion-certificates
+      - name: Write four bounded science/content freeze receipts
+        run: python papers/publication_closure/remaining11/check_orion01_04_science_content_freeze.py
+      - name: Verify receipt content and commit atomically
+        shell: bash
+        run: |
+          set -euo pipefail
+          for n in 01 02 03 04; do
+            f="papers/publication_closure/receipts/remaining11/ORION-${n}_SCIENCE_CONTENT_FREEZE_V1.json"
+            test -s "$f"
+            python - "$f" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]))
+          assert x['science_frozen'] is True
+          assert x['paper_content_frozen'] is True
+          assert x['programme_science_closed'] is False
+          assert x['submission_authority'] is False
+          assert x['successor_only_open_science_gates']
+          print(x['terminal'])
+          PY
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/publication_closure/receipts/remaining11/ORION-0{1,2,3,4}_SCIENCE_CONTENT_FREEZE_V1.json
+          git diff --check --cached
+          git commit -m 'papers(publication): freeze ORION-01--04 earned science and content [orion01-04-frozen]'
+          git push origin HEAD:chatgpt/remaining11-orion01-04-freeze-20260827
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion01-04-science-content-freeze-${{ github.sha }}
+          path: papers/publication_closure/receipts/remaining11/ORION-0*_SCIENCE_CONTENT_FREEZE_V1.json
+          if-no-files-found: error
+          retention-days: 30
