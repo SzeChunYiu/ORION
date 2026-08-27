@@ -1,0 +1,63 @@
+{
+  "schema": "ORION.All25PublicationClosureManifest.v1",
+  "date": "2026-08-27",
+  "objective": "Every canonical ORION-01..25 paper reaches either TOP_TIER_SUBMISSION_READY or BOUNDED_SPECIALIST_SUBMISSION_READY without promoting unearned science.",
+  "truth_policy": {
+    "science_before_packaging": true,
+    "negative_results_are_binding": true,
+    "cannot_check_is_not_pass": true,
+    "repository_ci_is_not_scientific_authority": true,
+    "text_only_promotion_forbidden": true,
+    "max_materially_distinct_science_rounds_before_specialist_fallback": 3,
+    "fallback_terminal": "BOUNDED_SPECIALIST_SUBMISSION_READY"
+  },
+  "waves": {
+    "A": {
+      "mode": "BOUNDED_PACKAGE_CLOSURE",
+      "papers": ["ORION-05", "ORION-09", "ORION-10", "ORION-14", "ORION-17", "ORION-19", "ORION-22", "ORION-23"],
+      "rule": "No new science in the materializer; replay, current-authority reconciliation, build, visual/content audit, exact package and closure receipt only."
+    },
+    "B1": {
+      "mode": "CURRENT_BOUNDED_SCIENCE_TO_SPECIALIST_PACKAGE",
+      "papers": ["ORION-06", "ORION-07", "ORION-08", "ORION-11", "ORION-12", "ORION-13", "ORION-16", "ORION-18", "ORION-20", "ORION-21", "ORION-25"],
+      "rule": "Use the strongest already-earned bounded result, reconcile stale readiness/authority records, integrate authoritative negatives, independently replay, then materialize a venue-specific package. Wider top-tier gates remain optional successor research."
+    },
+    "B2": {
+      "mode": "TOP_TIER_ROUNDS_THEN_THEORY_SPECIALIST_FALLBACK",
+      "papers": ["ORION-01", "ORION-03", "ORION-04"],
+      "rule": "Execute up to three materially distinct frozen theorem/realization rounds. Promote only on earned evidence; otherwise package the strongest existing theorem/structural result as a narrower specialist paper."
+    },
+    "C": {
+      "mode": "DEEP_SCIENCE_WITH_EXPLICIT_FALLBACK",
+      "papers": ["ORION-02", "ORION-15", "ORION-24"],
+      "rule": "Attempt the highest-value executable discriminator under public/mechanical authority. If unavailable or negative after the stop rule, freeze the strongest honest theory/method/interface paper rather than fabricating external authority."
+    }
+  },
+  "papers": {
+    "ORION-01": {"lane": "B2", "bounded_object": "abstract certificate / registry-nonidentifiability theory", "next_gate": "complete source-bound production registry realization on a public finite rewrite subject", "top_tier_optional_after_fallback": true},
+    "ORION-02": {"lane": "C", "bounded_object": "finite-fibre deterministic/randomized theory with preserved transfer nulls", "next_gate": "scientifically distinct untouched-subject direct-relative/joint-route test; no retuning of exposed BNSL outcome", "top_tier_optional_after_fallback": true},
+    "ORION-03": {"lane": "B2", "bounded_object": "typed merge/falsification authority theory", "next_gate": "external-domain / multi-policy discriminator without assuming the target label", "top_tier_optional_after_fallback": true},
+    "ORION-04": {"lane": "B2", "bounded_object": "rooted-completion structural certificates", "next_gate": "exact D4/C0(31) or a stronger global obstruction theorem; otherwise structural specialist fallback", "top_tier_optional_after_fallback": true},
+    "ORION-05": {"lane": "A", "bounded_object": "exact frozen-R6M TARE support theorem plus counterexamples and current runtime result", "next_gate": "package bounded theorem; preserve Round-2 production-value NULL", "top_tier_optional_after_fallback": true},
+    "ORION-06": {"lane": "B1", "bounded_object": "negative-result recovery methodology / receipt-governed transition graph", "next_gate": "authority/id sync, current literature refresh, independent replay, AIJ build", "top_tier_optional_after_fallback": true},
+    "ORION-07": {"lane": "B1", "bounded_object": "dual-instrument benchmark with completed three-question prospective case series", "next_gate": "retire stale one-V0 readiness blocker, rebind completion receipt, TMLR package", "top_tier_optional_after_fallback": true},
+    "ORION-08": {"lane": "B1", "bounded_object": "typed/scoped partial-knowledge exact-synthetic mechanism paper", "next_gate": "independent replay, current literature refresh, TMLR package", "top_tier_optional_after_fallback": true},
+    "ORION-09": {"lane": "A", "bounded_object": "compilation-regime geometry with proof/counterexample/feature-identifiability boundaries", "next_gate": "TQE specialist package", "top_tier_optional_after_fallback": true},
+    "ORION-10": {"lane": "A", "bounded_object": "certified static forecasting with exact counterexample and authority layers", "next_gate": "TQE specialist package", "top_tier_optional_after_fallback": true},
+    "ORION-11": {"lane": "B1", "bounded_object": "powered hidden-shift / epistemic-mutation necessity mechanism with independent recomputation", "next_gate": "rebuild current source, retire superseded package, bind current bounded claim", "top_tier_optional_after_fallback": true},
+    "ORION-12": {"lane": "B1", "bounded_object": "open-world discovery governance methods / critical system-design paper", "next_gate": "fresh filing-time literature check, current IP&M build, exact package", "top_tier_optional_after_fallback": true},
+    "ORION-13": {"lane": "B1", "bounded_object": "scoped structured-mapping / obstruction paper with disjoint confirmatory holdout", "next_gate": "green exact-head manuscript audit and Semantic Web Journal package", "top_tier_optional_after_fallback": true},
+    "ORION-14": {"lane": "A", "bounded_object": "verified scientific promotion under partial identification", "next_gate": "TMLR repository filing package", "top_tier_optional_after_fallback": true},
+    "ORION-15": {"lane": "C", "bounded_object": "failure-attribution / staged-governance diagnostics with immutable adverse history", "next_gate": "shared-candidate fresh-transfer governance discriminator with matched policies; if not executable, publish bounded diagnostic/method paper only", "top_tier_optional_after_fallback": true},
+    "ORION-16": {"lane": "B1", "bounded_object": "bounded ETS separation plus 16-case / 4-family real-transition audit", "next_gate": "reconcile stale readiness with current protected result and rebuild AIJ package", "top_tier_optional_after_fallback": true},
+    "ORION-17": {"lane": "A", "bounded_object": "three-class non-synthetic scientific regime transport", "next_gate": "AIJ specialist package", "top_tier_optional_after_fallback": true},
+    "ORION-18": {"lane": "B1", "bounded_object": "bounded scientific-authorization theory plus 20-case / 4-domain evidence discharge", "next_gate": "reconcile stale readiness with current result and rebuild JAAMAS package", "top_tier_optional_after_fallback": true},
+    "ORION-19": {"lane": "A", "bounded_object": "structured epistemic learning with corrected full resource accounting and causal diagnostic", "next_gate": "TMLR specialist package", "top_tier_optional_after_fallback": true},
+    "ORION-20": {"lane": "B1", "bounded_object": "exact formal + generated finite obstruction-certified method expansion, 6/6 held-out, two implementations", "next_gate": "freeze bounded OCME headline and package; native donor-complete bridge remains optional top-tier successor", "top_tier_optional_after_fallback": true},
+    "ORION-21": {"lane": "B1", "bounded_object": "query-rank/no-laundering/optionality theory plus authoritative ten-responsibility negative", "next_gate": "integrate negative into active ledger/manuscript, retire positive-assuming interpretation, package bounded result", "top_tier_optional_after_fallback": true},
+    "ORION-22": {"lane": "A", "bounded_object": "unchanged allocator across SAT/path/knapsack with exact certificate boundaries", "next_gate": "TMLR specialist package with R0 namespace-binding bridge", "top_tier_optional_after_fallback": true},
+    "ORION-23": {"lane": "A", "bounded_object": "responsibility-carrying state with donor-complete baseline and drift-bounded certificate transport", "next_gate": "JAAMAS specialist package", "top_tier_optional_after_fallback": true},
+    "ORION-24": {"lane": "C", "bounded_object": "governance conformance + protected 67-packet external evaluation interface", "next_gate": "attempt executable R1/R3 public/mechanical evaluation; blinded-human R2 remains CANNOT_CHECK; otherwise package evaluation-interface paper", "top_tier_optional_after_fallback": true},
+    "ORION-25": {"lane": "B1", "bounded_object": "18-case SEI + 22-case PROV/RO-Crate interoperability", "next_gate": "bind latest chained-attestation state if valid; otherwise keep it outside headline and package bounded SEI/interoperability paper", "top_tier_optional_after_fallback": true}
+  }
+}
