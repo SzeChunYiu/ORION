@@ -1,0 +1,212 @@
+name: ORION-02 R21 CSP-MZN direct-relative joint route
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-02-r21-cspmzn-direct-relative.yml"
+      - "papers/orion-02-fiberguard-finite-fibre/rounds/r21-direct-relative/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r11/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r14/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r15/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r16/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r17/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r18/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r19/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r20/**"
+      - "papers/orion-02-fiberguard-finite-fibre/experiments/results/**"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/orion-02-r21-cspmzn-direct-relative.yml"
+      - "papers/orion-02-fiberguard-finite-fibre/rounds/r21-direct-relative/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r11/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r14/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r15/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r16/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r17/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r18/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r19/**"
+      - "papers/orion-02-fiberguard-finite-fibre/extensions/r20/**"
+      - "papers/orion-02-fiberguard-finite-fibre/experiments/results/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orion-02-r21-cspmzn-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  direct-relative:
+    name: direct-relative-${{ matrix.replica }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        replica: [a, b]
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      NUMEXPR_NUM_THREADS: "1"
+      SUBJECT_COMMIT: 551b22beef8df17de59286b4822ef720e0aa4d6f
+      R21: papers/orion-02-fiberguard-finite-fibre/rounds/r21-direct-relative
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.14"
+
+      - name: Install frozen runtime
+        run: |
+          python -m pip install --disable-pip-version-check \
+            -r "$R21/requirements.txt" ruff==0.12.12
+
+      - name: Retrieve immutable GPLv3 subject
+        run: |
+          git clone --filter=blob:none --no-checkout \
+            https://github.com/coseal/aslib_data.git "$RUNNER_TEMP/aslib_data"
+          git -C "$RUNNER_TEMP/aslib_data" fetch --depth 1 origin "$SUBJECT_COMMIT"
+          git -C "$RUNNER_TEMP/aslib_data" checkout --detach "$SUBJECT_COMMIT"
+          test "$(git -C "$RUNNER_TEMP/aslib_data" rev-parse HEAD)" = "$SUBJECT_COMMIT"
+
+      - name: Record runner and numerical runtime
+        run: |
+          mkdir -p "$RUNNER_TEMP/environment"
+          python - <<'PY' > "$RUNNER_TEMP/environment/runtime.json"
+          import json
+          import os
+          import platform
+          import sys
+
+          import numpy
+          import yaml
+
+          print(json.dumps({
+              "github_run_id": os.environ["GITHUB_RUN_ID"],
+              "github_run_attempt": os.environ["GITHUB_RUN_ATTEMPT"],
+              "github_sha": os.environ["GITHUB_SHA"],
+              "replica": "${{ matrix.replica }}",
+              "python": sys.version,
+              "python_executable": sys.executable,
+              "numpy": numpy.__version__,
+              "pyyaml": yaml.__version__,
+              "platform": platform.platform(),
+              "machine": platform.machine(),
+          }, sort_keys=True, separators=(",", ":")))
+          PY
+          uname -a > "$RUNNER_TEMP/environment/uname.txt"
+          lscpu > "$RUNNER_TEMP/environment/lscpu.txt"
+          python -m pip freeze --all > "$RUNNER_TEMP/environment/pip-freeze.txt"
+
+      - name: Static and hygiene gates
+        run: |
+          test -L "$R21/../r19"
+          test "$(readlink "$R21/../r19")" = "../extensions/r19"
+          python "$R21/fiberguard_tsp_direct_relative_r21.py" --self-test
+          python "$R21/fiberguard_cspmzn_direct_relative_r21.py" --self-test
+          python -m unittest "$R21/test_fiberguard_cspmzn_direct_relative_r21.py"
+          python -m py_compile \
+            "$R21/fiberguard_tsp_direct_relative_r21.py" \
+            "$R21/fiberguard_cspmzn_direct_relative_r21.py" \
+            "$R21/verify_fiberguard_cspmzn_direct_relative_r21.py" \
+            "$R21/test_fiberguard_cspmzn_direct_relative_r21.py"
+          ruff check \
+            "$R21/fiberguard_tsp_direct_relative_r21.py" \
+            "$R21/fiberguard_cspmzn_direct_relative_r21.py" \
+            "$R21/verify_fiberguard_cspmzn_direct_relative_r21.py" \
+            "$R21/test_fiberguard_cspmzn_direct_relative_r21.py"
+          ruff format --check \
+            "$R21/fiberguard_tsp_direct_relative_r21.py" \
+            "$R21/fiberguard_cspmzn_direct_relative_r21.py" \
+            "$R21/verify_fiberguard_cspmzn_direct_relative_r21.py" \
+            "$R21/test_fiberguard_cspmzn_direct_relative_r21.py"
+
+      - name: Execute frozen round twice
+        run: |
+          mkdir -p "$RUNNER_TEMP/run1" "$RUNNER_TEMP/run2"
+          for run in 1 2; do
+            python "$R21/fiberguard_cspmzn_direct_relative_r21.py" \
+              --subject-repo "$RUNNER_TEMP/aslib_data" \
+              --output "$RUNNER_TEMP/run${run}/result.json" \
+              --terminal-output "$RUNNER_TEMP/run${run}/terminal.txt" \
+              | tee "$RUNNER_TEMP/run${run}/execution.log"
+          done
+          cmp "$RUNNER_TEMP/run1/result.json" "$RUNNER_TEMP/run2/result.json"
+          cmp "$RUNNER_TEMP/run1/terminal.txt" "$RUNNER_TEMP/run2/terminal.txt"
+          cmp "$RUNNER_TEMP/run1/result.json" \
+            "$R21/FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_RESULTS.json"
+          cmp "$RUNNER_TEMP/run1/terminal.txt" \
+            "$R21/FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_TERMINAL.txt"
+
+      - name: Independent result and preservation verification
+        run: |
+          python "$R21/verify_fiberguard_cspmzn_direct_relative_r21.py" \
+            --result "$R21/FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_RESULTS.json" \
+            --repo-root . \
+            --subject-repo "$RUNNER_TEMP/aslib_data"
+
+      - name: Upload bounded replay receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-02-r21-cspmzn-${{ github.run_id }}-${{ matrix.replica }}
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            ${{ runner.temp }}/environment/runtime.json
+            ${{ runner.temp }}/environment/uname.txt
+            ${{ runner.temp }}/environment/lscpu.txt
+            ${{ runner.temp }}/environment/pip-freeze.txt
+            ${{ runner.temp }}/run1/result.json
+            ${{ runner.temp }}/run1/terminal.txt
+            ${{ runner.temp }}/run1/execution.log
+            ${{ runner.temp }}/run2/result.json
+            ${{ runner.temp }}/run2/terminal.txt
+            ${{ runner.temp }}/run2/execution.log
+
+  cross-run-byte-identity:
+    needs: direct-relative
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Download both independent runner receipts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: orion-02-r21-cspmzn-${{ github.run_id }}-*
+          path: ${{ runner.temp }}/cross-run
+
+      - name: Require exact cross-run identity
+        run: |
+          A="$RUNNER_TEMP/cross-run/orion-02-r21-cspmzn-${GITHUB_RUN_ID}-a"
+          B="$RUNNER_TEMP/cross-run/orion-02-r21-cspmzn-${GITHUB_RUN_ID}-b"
+          test -f "$A/run1/result.json"
+          test -f "$B/run1/result.json"
+          cmp "$A/run1/result.json" "$B/run1/result.json"
+          cmp "$A/run2/result.json" "$B/run2/result.json"
+          cmp "$A/run1/terminal.txt" "$B/run1/terminal.txt"
+          cmp "$A/run2/terminal.txt" "$B/run2/terminal.txt"
+          cmp "$A/run1/execution.log" "$B/run1/execution.log"
+          cmp "$A/run2/execution.log" "$B/run2/execution.log"
+          sha256sum \
+            "$A/run1/result.json" "$A/run2/result.json" \
+            "$B/run1/result.json" "$B/run2/result.json" \
+            > "$RUNNER_TEMP/cross-run-sha256.txt"
+          test "${{ needs.direct-relative.result }}" = "success"
+
+      - name: Upload cross-run comparison receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-02-r21-cspmzn-${{ github.run_id }}-cross-run
+          if-no-files-found: error
+          retention-days: 30
+          path: ${{ runner.temp }}/cross-run-sha256.txt
