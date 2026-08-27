@@ -1,4 +1,4 @@
-# ORION-25 Scientific Execution Integrity bounded result receipt V1
+# P15 Scientific Execution Integrity bounded result receipt V1
 
 **Run:** GitHub Actions `32645458435`  
 **Artifact:** `p15-sei-fault-v1`, artifact ID `9494739942`  
@@ -48,6 +48,6 @@ SEI emitted exactly:
 
 ## Scientific disposition
 
-ORION-25 now has a bounded executable Scientific Execution Integrity result. The result establishes non-implications and a reference admission contract over the frozen fault model; it does **not** prove superiority over real W3C PROV/RO-Crate/workflow/attested-execution systems.
+P15 now has a bounded executable Scientific Execution Integrity result. The result establishes non-implications and a reference admission contract over the frozen fault model; it does **not** prove superiority over real W3C PROV/RO-Crate/workflow/attested-execution systems.
 
-The top-tier ORION-25 terminal remains open for real comparator interoperability, broad host fault injection, runtime/storage overhead, false rejection under non-toy workloads, an independent implementation/adjudicator, submission-day literature closure and a publication manuscript bound to external results.
+The top-tier P15 terminal remains open for real comparator interoperability, broad host fault injection, runtime/storage overhead, false rejection under non-toy workloads, an independent implementation/adjudicator, submission-day literature closure and a publication manuscript bound to external results.
