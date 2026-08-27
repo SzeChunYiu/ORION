@@ -1,24 +1,28 @@
 #!/usr/bin/env python3
-"""Prepare a cited Q1/QG1/QG2 master for a journal-neutral quantum source bundle.
+"""Prepare a cited Q1/QG1/QG2 master for a quantum source bundle.
 
-Formatting-only transformations:
+Default mode is formatting-only:
 - extract title/abstract;
 - discard internal publication-banner lines before the abstract;
 - strip manual numeric prefixes from Markdown headings so LaTeX owns numbering;
 - append a bounded data/code availability statement selected by paper id.
 
-This source is the common reproducible input to venue wrappers. It changes no
-scientific prose and grants no submission authority.
+For venues with a hard abstract-length limit, ``--abstract-overrides-json`` may
+replace only the abstract with a centrally reviewed claim-preserving compression.
+The canonical cited master remains unchanged. This wrapper grants no scientific
+or submission authority.
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 import pathlib
 import re
 import sys
 
 HEADING_RE = re.compile(r"^(#{2,6})\s+(?:\d+(?:\.\d+)*\.?\s+)(.*)$")
+WORD_RE = re.compile(r"\b[\w'-]+\b")
 
 DATA = {
     "Q1": (
@@ -53,11 +57,29 @@ REQUIRED = {
 }
 
 
+def load_abstract_override(path: pathlib.Path, paper: str) -> str:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"cannot load abstract override file: {exc}") from exc
+    if payload.get("schema") != "ORION.TQEAbstractOverrides.v1":
+        raise ValueError("wrong abstract-override schema")
+    abstracts = payload.get("abstracts")
+    if not isinstance(abstracts, dict) or not isinstance(abstracts.get(paper), str):
+        raise ValueError(f"missing abstract override for {paper}")
+    abstract = abstracts[paper].strip()
+    count = len(WORD_RE.findall(abstract))
+    if not 150 <= count <= 250:
+        raise ValueError(f"venue abstract word count {count} outside 150..250")
+    return abstract
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--paper", choices=sorted(DATA), required=True)
     ap.add_argument("--cited-master", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--abstract-overrides-json", default=None)
     args = ap.parse_args()
 
     src = pathlib.Path(args.cited_master)
@@ -77,14 +99,28 @@ def main() -> int:
         print("QUANTUM_SOURCE_PREP=FAIL\n- no body after abstract")
         return 1
 
-    abstract = "\n".join(lines[ai + 1 : ni]).strip()
+    canonical_abstract = "\n".join(lines[ai + 1 : ni]).strip()
+    abstract = canonical_abstract
+    abstract_mode = "CANONICAL"
+    if args.abstract_overrides_json:
+        try:
+            abstract = load_abstract_override(pathlib.Path(args.abstract_overrides_json), args.paper)
+        except ValueError as exc:
+            print(f"QUANTUM_SOURCE_PREP=FAIL\n- {exc}")
+            return 1
+        abstract_mode = "VENUE_COMPRESSION"
+
     body_lines: list[str] = []
     for line in lines[ni:]:
         m = HEADING_RE.match(line)
         body_lines.append(f"{m.group(1)} {m.group(2)}" if m else line)
     body = "\n".join(body_lines).strip() + "\n"
 
-    prepared_lower = (title + "\n" + abstract + "\n" + body).lower()
+    # Claim-bearing required tokens are checked against the canonical scientific
+    # master plus body, not against the compressed abstract alone. This prevents
+    # a venue word limit from forcing decorative keyword retention while still
+    # ensuring the load-bearing scientific surface is present.
+    prepared_lower = (title + "\n" + canonical_abstract + "\n" + body).lower()
     for token in REQUIRED[args.paper]:
         if token.lower() not in prepared_lower:
             print(f"QUANTUM_SOURCE_PREP=FAIL\n- required final token missing: {token}")
@@ -107,8 +143,10 @@ def main() -> int:
     print("QUANTUM_SOURCE_PREP=PASS")
     print(f"PAPER={args.paper}")
     print(f"TITLE={title}")
+    print(f"ABSTRACT_MODE={abstract_mode}")
+    print(f"ABSTRACT_WORDS={len(WORD_RE.findall(abstract))}")
     print("AUTHOR_METADATA=REQUIRED_BEFORE_SUBMISSION")
-    print("SCIENTIFIC_PROSE_REWRITE=0")
+    print("SCIENTIFIC_PROSE_REWRITE=0" if abstract_mode == "CANONICAL" else "SCIENTIFIC_PROSE_REWRITE=ABSTRACT_COMPRESSION_ONLY")
     return 0
 
 
