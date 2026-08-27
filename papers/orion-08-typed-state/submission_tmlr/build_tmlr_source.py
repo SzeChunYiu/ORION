@@ -84,7 +84,7 @@ def main() -> int:
         "Typed and Scoped Partial-Knowledge State",
         "scope invalidation",
         "ContextNest",
-        "P13",
+        "ORION-23",
         "exact-synthetic",
     ):
         if token.lower() not in prepared.lower():

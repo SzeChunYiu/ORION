@@ -2,6 +2,10 @@
 
 The V0 protocol, lane receipts, result JSON, and workspace archive are committed under \texttt{development/orion-q-max-r0/}. Lane A can be audited by recomputing request/result identities and tracing the final synthesis to its verified evidence items. Lane B can be replayed from the frozen manifest and receipt-transcribed observations; a manifest-digest mismatch must fail before a scientific decision is accepted.
 
-Deferred scoring is independently reconstructable from the committed R6P/R6Q result artifacts. Historical invalid-content recovery should be tested with \texttt{packages/orion-research-harness/tests/test_invalid_content_recovery.py}. The root \texttt{REPRODUCE.md} gives the intended verification order.
+Deferred scoring is independently reconstructable from the committed R6P/R6Q result artifacts. {\sloppy
+Historical invalid-content recovery should be tested with \texttt{packages/\allowbreak orion-research-harness/\allowbreak tests/\allowbreak test_invalid_content_recovery.py}.
+
+}
+The root \texttt{REPRODUCE.md} gives the intended verification order.
 
 The missing benchmark series is not a reproducibility failure. It is missing evidence and requires new pre-outcome protocols/executions.
