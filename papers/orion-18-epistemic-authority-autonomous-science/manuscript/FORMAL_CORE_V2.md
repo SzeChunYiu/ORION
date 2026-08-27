@@ -279,7 +279,7 @@ Give `e` a valid in-scope grant and no blockers. Let `O_h(e)` contain one scient
 
 This theorem states a separation of policy layers, not that security authorization systems are defective: the additional obligation exists because the scientific effect semantics demand it.
 
-## 12. ORION ORION-11–ORION-15 embeddings
+## 12. ORION-11–ORION-15 embeddings
 
 ORION-18 treats the five existing gates as protected special cases:
 

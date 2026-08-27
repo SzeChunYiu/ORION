@@ -259,4 +259,4 @@ The resulting theory distinguishes safe over-approximation from minimax minimali
 
 ## Reference families
 
-Canonical source identities are maintained in `../../CANONICAL_BIBLIOGRAPHY_V2.md`; donor ownership includes Doyle TMS, de Kleer ATMS, AGM/revision, Dynamic Epistemic Logic, adaptive/self-adjusting computation, ETAS, FAVA, AgentTether, dependency-guided rollback repair, provenance/authorization work and ORION ORION-11.
+Canonical source identities are maintained in `../../CANONICAL_BIBLIOGRAPHY_V2.md`; donor ownership includes Doyle TMS, de Kleer ATMS, AGM/revision, Dynamic Epistemic Logic, adaptive/self-adjusting computation, ETAS, FAVA, AgentTether, dependency-guided rollback repair, provenance/authorization work and ORION-11.

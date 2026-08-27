@@ -24,7 +24,7 @@
 
 ## Donor ownership that must remain visible
 
-ORION-17 treats as donor/pre-existing: graph/knowledge-graph navigation, exploratory search, POMDP and belief-space information gathering, planning abstraction/homomorphism and representation languages, schema evolution/lenses/ontology mappings, objective/goal evolution including SAGA, self-evolving world models, orientation/initial exploration, scientific-search breadth, and ORION ORION-12 route/task stopping.
+ORION-17 treats as donor/pre-existing: graph/knowledge-graph navigation, exploratory search, POMDP and belief-space information gathering, planning abstraction/homomorphism and representation languages, schema evolution/lenses/ontology mappings, objective/goal evolution including SAGA, self-evolving world models, orientation/initial exploration, scientific-search breadth, and ORION-12 route/task stopping.
 
 ## Allowed headline
 

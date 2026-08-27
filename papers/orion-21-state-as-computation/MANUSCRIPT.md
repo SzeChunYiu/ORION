@@ -1,6 +1,6 @@
 # State as Computation: Moving Structural Search between Representation Construction and Downstream Reasoning
 
-**ORION ORION-21 — peer-review manuscript**  
+**ORION-21 — peer-review manuscript**  
 **Issues:** #471, #664, #667  
 **Evidence cut:** 21 August 2026
 

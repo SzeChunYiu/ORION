@@ -133,7 +133,7 @@ jobs:
               claim_errors.append(f'{name}_missing_evidence_boundary')
           if 'has not been executed' not in limitations:
               claim_errors.append('limitations_do_not_mark_broad_study_unexecuted')
-          if 'P3.C7' not in scoped or 'P3.C8' not in scoped:
+          if 'ORION-13.C7' not in scoped or 'ORION-13.C8' not in scoped:
               claim_errors.append('scoped_track_missing_nonclaim_ids')
 
           forbidden_executed_broad_claims = {

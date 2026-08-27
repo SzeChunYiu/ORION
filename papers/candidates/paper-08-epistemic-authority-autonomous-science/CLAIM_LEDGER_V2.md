@@ -29,7 +29,7 @@
 
 ## Donor ownership that must remain visible
 
-ORION-18 treats as donor/pre-existing: deontic/action/input-output logics; authorization/trust-management languages and proof systems; delegation/revocation; UCON/ongoing authorization; typed effects and trace policies; FAVA evidence-backed authorization; multi-authority and authorization-propagation systems; stale/commit-time authorization control; agent abstention; provenance/source attribution/execution provenance; runtime shielding; ORION ORION-14 scientific-authority promotion and ORION-15 protected self-promotion boundary.
+ORION-18 treats as donor/pre-existing: deontic/action/input-output logics; authorization/trust-management languages and proof systems; delegation/revocation; UCON/ongoing authorization; typed effects and trace policies; FAVA evidence-backed authorization; multi-authority and authorization-propagation systems; stale/commit-time authorization control; agent abstention; provenance/source attribution/execution provenance; runtime shielding; ORION-14 scientific-authority promotion and ORION-15 protected self-promotion boundary.
 
 ## Allowed headline
 

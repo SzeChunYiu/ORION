@@ -35,7 +35,7 @@ Build the strongest integrated comparator from:
 - effect/permission constraints;
 - provenance and evidence binding;
 - generic authorization / policy enforcement;
-- existing ORION ORION-11/ORION-14/ORION-18 interfaces only as frozen upstream donors, without re-owning their claims.
+- existing ORION-11/ORION-14/ORION-18 interfaces only as frozen upstream donors, without re-owning their claims.
 
 The baseline must receive the same state, transition and evidence information as ORION-16.
 

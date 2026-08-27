@@ -131,7 +131,7 @@ Its question sits downstream:
 
 > **once trustworthy state is available, which distinctions in that state are required by the next responsibility?**
 
-The paper is also narrower than ORION ORION-23. ORION-23 develops a general theory/contract of **responsibility-scoped sufficiency and recovery**. ORION-04 supplies bounded exact-synthetic mechanism-isolation evidence for several decisions that motivate such a theory. ORION-04 therefore does not claim the general principle “sufficiency is responsibility-scoped” as its unique theoretical novelty; it provides controlled experimental support/examples for specific responsibility/state distinctions.
+The paper is also narrower than ORION-23. ORION-23 develops a general theory/contract of **responsibility-scoped sufficiency and recovery**. ORION-04 supplies bounded exact-synthetic mechanism-isolation evidence for several decisions that motivate such a theory. ORION-04 therefore does not claim the general principle “sufficiency is responsibility-scoped” as its unique theoretical novelty; it provides controlled experimental support/examples for specific responsibility/state distinctions.
 
 ## 11. Cross-study synthesis
 
