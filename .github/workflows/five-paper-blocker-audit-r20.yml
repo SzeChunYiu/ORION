@@ -1,0 +1,76 @@
+name: five-paper-blocker-audit-r20
+
+on:
+  push:
+    branches:
+      - chatgpt/orion-02-r18-null-current-main-20260827
+    paths:
+      - 'research/five-paper-top-tier-r20/audit_blockers_r20.py'
+      - '.github/workflows/five-paper-blocker-audit-r20.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+  actions: read
+
+jobs:
+  audit-live-programme:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run live fail-closed blocker audit twice
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          script='research/five-paper-top-tier-r20/audit_blockers_r20.py'
+          python -m py_compile "$script"
+          python "$script" --output "$RUNNER_TEMP/audit-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --output "$RUNNER_TEMP/audit-b.json" | tee "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/audit-a.json" "$RUNNER_TEMP/audit-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+      - name: Verify no authority laundering
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          result=json.loads((Path(os.environ['RUNNER_TEMP'])/'audit-a.json').read_text())
+          assert result['schema']=='ORION.FivePaper.BlockerAudit.R20.v1'
+          assert result['programme_branch']['name']=='codex/five-paper-top-tier-r8-20260826'
+          assert result['authority']=={
+              'scientific_promotion':False,
+              'external_independence':False,
+              'novelty':False,
+              'journal_authority':False,
+          }
+          assert set(result['classification'])=={'NQ','AB','D','Q1','C'}
+          for lane in result['classification'].values():
+              assert lane['external_gate']=='OPEN'
+          print('FIVE_PAPER_BLOCKER_AUTHORITY_FAIL_CLOSED')
+          PY
+      - name: Check diff hygiene
+        run: git diff --check
+      - name: Stage immutable audit artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/five-paper-blocker-audit-r20"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/audit-a.json" "$out/BLOCKER_AUDIT_R20.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: five-paper-blocker-audit-r20
+          path: ${{ runner.temp }}/five-paper-blocker-audit-r20/
+          if-no-files-found: error
+          retention-days: 30
