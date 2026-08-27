@@ -45,6 +45,10 @@ jobs:
           assert all(row["all_matching_target_maps_consistent"] for row in panels.values()), panels
           print("ORION05_R12_PROTOCOL_AND_HARNESS_PASS")
           PY
+          if test -f papers/orion-05-tare-expressivity/rounds/r12-production-benchmark/result/ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json; then
+            python papers/orion_05_r12_production_benchmark.py \
+              --verify-bundle papers/orion-05-tare-expressivity/rounds/r12-production-benchmark/result
+          fi
       - name: Enforce protected Task-3/P9 zero diff
         run: |
           python - <<'PY'

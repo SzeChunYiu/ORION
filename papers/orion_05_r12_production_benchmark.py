@@ -654,6 +654,75 @@ def run_benchmark(output_dir: Path, python: str, workers: int) -> dict[str, Any]
     return result
 
 
+def verify_result_bundle(
+    output_dir: Path, *, require_current_source_bindings: bool = True
+) -> dict[str, Any]:
+    """Recompute a retained bundle without rerunning machine-specific timing."""
+    protocol = load_protocol()
+    raw_path = output_dir / "RAW_ATTEMPTS.jsonl"
+    environment_path = output_dir / "BENCHMARK_ENVIRONMENT.json"
+    result_path = output_dir / "ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json"
+    if not all(path.is_file() for path in (raw_path, environment_path, result_path)):
+        raise AssertionError("R12 result bundle is incomplete")
+    rows = [json.loads(line) for line in raw_path.read_text().splitlines() if line]
+    ids = [row.get("attempt_id") for row in rows]
+    if None in ids or len(ids) != len(set(ids)):
+        raise AssertionError("R12 attempt IDs are missing or duplicated")
+
+    initial_specs = attempt_schedule(protocol)
+    initial_ids = {spec["attempt_id"] for spec in initial_specs}
+    by_id = {row["attempt_id"]: row for row in rows}
+    if not initial_ids.issubset(by_id):
+        raise AssertionError({"missing_initial_attempts": sorted(initial_ids - set(by_id))})
+    initial_rows = [by_id[spec["attempt_id"]] for spec in initial_specs]
+    dynamic_ids = {spec["attempt_id"] for spec in completed_scale_repeats(protocol, initial_rows)}
+    allowed = initial_ids | dynamic_ids
+    if set(by_id) != allowed:
+        raise AssertionError(
+            {
+                "unexpected_attempts": sorted(set(by_id) - allowed),
+                "missing_dynamic_attempts": sorted(allowed - set(by_id)),
+            }
+        )
+
+    bindings = verify_source_bindings(protocol)
+    if require_current_source_bindings and not bindings["all_match"]:
+        raise AssertionError(bindings)
+    committed = json.loads(result_path.read_text())
+    if committed.get("protocol_sha256") != sha256_file(PROTOCOL_PATH):
+        raise AssertionError("R12 protocol digest mismatch")
+    if committed.get("raw_attempts_sha256") != sha256_file(raw_path):
+        raise AssertionError("R12 raw-attempt digest mismatch")
+    if committed.get("environment_sha256") != sha256_file(environment_path):
+        raise AssertionError("R12 environment digest mismatch")
+
+    recomputed = adjudicate_rows(
+        protocol,
+        rows,
+        source_bindings_ok=bindings["all_match"] if require_current_source_bindings else True,
+    )
+    core = (
+        "schema",
+        "paper_id",
+        "round",
+        "terminal",
+        "preconditions",
+        "decision",
+        "full_subject",
+        "cost_comparisons",
+        "attempt_counts",
+        "rounds",
+        "authority",
+        "hard_errors",
+    )
+    drift = {key: {"committed": committed.get(key), "recomputed": recomputed.get(key)} for key in core if committed.get(key) != recomputed.get(key)}
+    if drift:
+        raise AssertionError({"R12_adjudication_drift": drift})
+    if committed["terminal"] not in set(protocol["decision_rule"]["terminals"].values()):
+        raise AssertionError("R12 terminal is not predeclared")
+    return committed
+
+
 def parse_projection(value: str) -> int | str:
     return FULL if value == FULL else int(value)
 
@@ -662,6 +731,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--child", action="store_true")
     parser.add_argument("--run", action="store_true")
+    parser.add_argument("--verify-bundle", type=Path)
     parser.add_argument("--subject", choices=("H4", "N2"))
     parser.add_argument("--matching-index", type=int)
     parser.add_argument("--projection")
@@ -691,7 +761,11 @@ def main(argv: Sequence[str] | None = None) -> int:
             parser.error("run mode requires --output-dir")
         run_benchmark(args.output_dir, args.python, args.workers)
         return 0
-    parser.error("choose --child or --run")
+    if args.verify_bundle is not None:
+        result = verify_result_bundle(args.verify_bundle)
+        print(result["terminal"])
+        return 0
+    parser.error("choose --child, --run or --verify-bundle")
     return 2
 
 

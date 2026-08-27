@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import copy
+import json
+from pathlib import Path
 
 import pytest
 
@@ -58,9 +60,18 @@ def test_schedule_has_three_completed_panel_repeats_and_one_scale_probe() -> Non
 
 
 def _success_row(subject: str, matching_index: int, projection, algorithm: str, repeat: int):
+    from papers.orion_05_r12_production_benchmark import _attempt_id
+
     metric = 100 if algorithm == "unrestricted_dp" else 70
+    spec = {
+        "subject": subject,
+        "matching_index": matching_index,
+        "projection": projection,
+        "algorithm": algorithm,
+        "repeat": repeat,
+    }
     return {
-        "attempt_id": f"{subject}-m{matching_index}-q{projection}-{algorithm}-r{repeat}",
+        "attempt_id": _attempt_id(spec),
         "subject": subject,
         "matching_index": matching_index,
         "projection": projection,
@@ -144,3 +155,45 @@ def test_adjudication_uses_cannot_check_for_cost_disagreement() -> None:
 def test_peak_rss_units_are_normalized_across_supported_hosts() -> None:
     assert rss_to_kib(1024, system="Linux") == 1024
     assert rss_to_kib(1024 * 1024, system="Darwin") == 1024
+
+
+def _write_bundle(tmp_path, protocol, rows):
+    from papers.orion_05_r12_production_benchmark import canonical_json, sha256_file
+
+    raw = tmp_path / "RAW_ATTEMPTS.jsonl"
+    raw.write_text("".join(canonical_json(row) + "\n" for row in sorted(rows, key=lambda row: row["attempt_id"])))
+    environment = tmp_path / "BENCHMARK_ENVIRONMENT.json"
+    environment.write_text('{"commit":"runner-test"}\n')
+    result = adjudicate_rows(protocol, rows, source_bindings_ok=True)
+    result.update(
+        {
+            "protocol_sha256": sha256_file(
+                Path("papers/orion-05-tare-expressivity/rounds/r12-production-benchmark/ORION05_R12_PRODUCTION_BENCHMARK_PROTOCOL.json")
+            ),
+            "raw_attempts_sha256": sha256_file(raw),
+            "environment_sha256": sha256_file(environment),
+        }
+    )
+    (tmp_path / "ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json").write_text(
+        json.dumps(result, indent=2, sort_keys=True) + "\n"
+    )
+
+
+def test_result_bundle_verifier_recomputes_the_frozen_decision(tmp_path) -> None:
+    from papers.orion_05_r12_production_benchmark import verify_result_bundle
+
+    protocol = load_protocol()
+    _write_bundle(tmp_path, protocol, _complete_rows(protocol))
+    verified = verify_result_bundle(tmp_path, require_current_source_bindings=False)
+    assert verified["terminal"] == "ORION05_R12_PRODUCTION_EXACT_SEARCH_VALUE_PASS"
+
+
+def test_result_bundle_verifier_rejects_raw_attempt_mutation(tmp_path) -> None:
+    from papers.orion_05_r12_production_benchmark import verify_result_bundle
+
+    protocol = load_protocol()
+    _write_bundle(tmp_path, protocol, _complete_rows(protocol))
+    with (tmp_path / "RAW_ATTEMPTS.jsonl").open("a") as handle:
+        handle.write('{"attempt_id":"tampered"}\n')
+    with pytest.raises(AssertionError):
+        verify_result_bundle(tmp_path, require_current_source_bindings=False)
