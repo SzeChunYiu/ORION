@@ -197,3 +197,13 @@ def test_result_bundle_verifier_rejects_raw_attempt_mutation(tmp_path) -> None:
         handle.write('{"attempt_id":"tampered"}\n')
     with pytest.raises(AssertionError):
         verify_result_bundle(tmp_path, require_current_source_bindings=False)
+
+
+def test_archive_deployment_resolves_exact_bound_source_commit(tmp_path) -> None:
+    from papers.orion_05_r12_production_benchmark import resolve_source_commit
+
+    commit = "7fdea61e44f62b3595c4f1863fefffdd7132b68a"
+    (tmp_path / "SOURCE_COMMIT.txt").write_text(commit + "\n")
+    assert resolve_source_commit(tmp_path, {"ORION05_R12_SOURCE_COMMIT": commit}) == commit
+    with pytest.raises(AssertionError):
+        resolve_source_commit(tmp_path, {"ORION05_R12_SOURCE_COMMIT": "0" * 40})

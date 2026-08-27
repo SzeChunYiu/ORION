@@ -60,6 +60,19 @@ def rss_to_kib(value: int, *, system: str | None = None) -> int:
     return int(value // 1024) if (system or platform.system()) == "Darwin" else int(value)
 
 
+def resolve_source_commit(root: Path = ROOT, environ: dict[str, str] | os._Environ[str] = os.environ) -> str:
+    """Resolve a checkout commit or validate an exact archive-deployment binding."""
+    bound = environ.get("ORION05_R12_SOURCE_COMMIT")
+    if bound is not None:
+        if len(bound) != 40 or any(char not in "0123456789abcdef" for char in bound):
+            raise AssertionError("invalid ORION05_R12_SOURCE_COMMIT")
+        source_file = root / "SOURCE_COMMIT.txt"
+        if not source_file.is_file() or source_file.read_text().strip() != bound:
+            raise AssertionError("archive source-commit binding mismatch")
+        return bound
+    return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
+
+
 def load_protocol(path: Path = PROTOCOL_PATH) -> dict[str, Any]:
     value = json.loads(path.read_text())
     if value["status"] != "FROZEN_BEFORE_OUTCOME" or value["round"] != 2:
@@ -596,7 +609,7 @@ def _run_specs(specs: Sequence[dict[str, Any]], python: str, timeout_seconds: in
 
 def environment_receipt(python: str, workers: int) -> dict[str, Any]:
     numpy_version = subprocess.check_output([python, "-c", "import numpy; print(numpy.__version__)"], text=True).strip()
-    commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    commit = resolve_source_commit()
     return {
         "schema": "ORION.ORION05.R12.BenchmarkEnvironment.v1",
         "commit": commit,
