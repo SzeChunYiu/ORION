@@ -1,0 +1,56 @@
+name: one-shot-enable-orion-02-r20-release-receipt
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths: ['.github/workflows/one-shot-enable-orion-02-r20-release-receipt.yml']
+  workflow_dispatch:
+permissions: {contents: write}
+jobs:
+  enable:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: chatgpt/orion-02-r18-null-current-main-20260827}
+      - shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/orion-02-r20-internal-release-gate.yml')
+          t=p.read_text().replace('permissions:\n  contents: read', 'permissions:\n  contents: write')
+          marker='''
+      - name: Publish non-self-referential internal release receipt
+        if: github.event_name == 'push' && github.ref == 'refs/heads/chatgpt/orion-02-r18-null-current-main-20260827'
+        shell: bash
+        run: |
+          set -euo pipefail
+          receipt='papers/orion-02-fiberguard-finite-fibre/INTERNAL_RELEASE_RECEIPT_R20.json'
+          if [ ! -e "$receipt" ]; then
+            python - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          root=Path('papers/orion-02-fiberguard-finite-fibre')
+          files=['MANUSCRIPT_R20.tex','REFERENCES_R20.bib','CURRENT_STORY_R20.md','CLAIM_LEDGER_R20.json','EVIDENCE_MANIFEST_R20.json','PRIOR_ART_MATRIX_R20.md','verify_r20_story.py','extensions/r18/R18_RECOVERY_CUSTODY.json','extensions/r19/CURRENT_MAIN_CUSTODY_R19.json','extensions/r19/JOINT_ROUTE_R19_RESULTS.json']
+          bindings={name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in files}
+          result={'schema':'ORION.ORION02.InternalReleaseReceipt.R20.v1','executed_subject_commit':os.environ['GITHUB_SHA'],'terminal':'ORION02_R20_INTERNAL_RELEASE_GATE_PASS__EXTERNAL_REVIEW_NOVELTY_RIGHTS_AND_SUBMISSION_OPEN','bindings':bindings,'evidence':{'R18_result_sha256':'8136ac6e614406a51270342d73786dfec43a9ecdac81f62e815cd14d1a739c45','R19_terminal':'FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT_PASS','CNBR_terminal':'CERTIFICATE_INVALID'},'authority':{'analytic_internal_review':True,'finite_implementation_corroboration':True,'external_independence':False,'novelty':False,'data_rights_complete':False,'journal_authority':False,'submission_authorized':False}}
+          Path('papers/orion-02-fiberguard-finite-fibre/INTERNAL_RELEASE_RECEIPT_R20.json').write_text(json.dumps(result,sort_keys=True,separators=(',',':'))+'\\n')
+          PY
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add "$receipt"
+            git commit -m 'results(ORION-02): bind R20 internal release receipt'
+            git push origin HEAD:refs/heads/chatgpt/orion-02-r18-null-current-main-20260827
+          else
+            echo 'internal release receipt already present'
+          fi
+'''
+          if 'Publish non-self-referential internal release receipt' not in t:
+              t=t+marker
+          p.write_text(t)
+          PY
+          rm .github/workflows/one-shot-enable-orion-02-r20-release-receipt.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/orion-02-r20-internal-release-gate.yml .github/workflows/one-shot-enable-orion-02-r20-release-receipt.yml
+          git commit -m 'ci(ORION-02): enable internal release receipt publication'
+          git push origin HEAD:refs/heads/chatgpt/orion-02-r18-null-current-main-20260827
