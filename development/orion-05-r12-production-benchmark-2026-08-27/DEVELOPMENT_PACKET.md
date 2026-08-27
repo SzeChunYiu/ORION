@@ -26,3 +26,19 @@ The runner may emit only one of the three predeclared R12 terminals. Timings are
 machine-specific. The exact-cost/witness gates control correctness. The result
 cannot establish generic TARE, physical-resource, novelty, external-review,
 venue, or submission authority.
+
+## Post-execution disposition
+
+Attempt 1 (job `3549585`) completed all 120 measurement children but failed in
+the post-measurement environment receipt because the exact source archive had
+no `.git` directory. Its raw bytes and scheduler failure are retained without
+a round terminal. A defect-only source-binding repair was committed before a
+new run root was created.
+
+Attempt 2 (job `3549607`) completed successfully and emitted
+`ORION05_R12_EXACT_BUT_NO_PRODUCTION_VALUE`. The unrestricted referee completed
+the six full-subject cells, while the support-two lane timed out on all six at
+the frozen 120-second limit. `EXECUTION_CUSTODY.json`, the two immutable attempt
+directories, and `ATTEMPT1_ATTEMPT2_COMPARISON.json` bind the failure, result,
+and the post-terminal comparison. Round 2 is consumed adversely; no threshold
+or exposed-subject retuning is permitted.

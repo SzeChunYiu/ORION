@@ -48,6 +48,7 @@ jobs:
           if test -f papers/orion-05-tare-expressivity/rounds/r12-production-benchmark/result/ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json; then
             python papers/orion_05_r12_production_benchmark.py \
               --verify-bundle papers/orion-05-tare-expressivity/rounds/r12-production-benchmark/result
+            python development/orion-05-r12-production-benchmark-2026-08-27/verify_execution_custody.py
           fi
       - name: Enforce protected Task-3/P9 zero diff
         run: |
