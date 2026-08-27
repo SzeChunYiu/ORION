@@ -1,0 +1,137 @@
+{
+  "authority": {
+    "d2_numerical_replay_authority": false,
+    "d3_numerical_replay_authority": false,
+    "d4": "OPEN",
+    "external_independence": false,
+    "full_census_executed": false,
+    "independent_replay_authority": "CANNOT_CHECK",
+    "journal_authority": false,
+    "paper_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "control_evidence": {
+    "authority_delta": "NONE",
+    "current_identical_core_source_test_result": "70 passed, 3 skipped in 45.21s",
+    "scope": "focused_and_hostile_engineering_controls_only"
+  },
+  "evidence": {
+    "CRB_SUBMISSION_RECORD_REMOTE.json": {
+      "path": "CRB_SUBMISSION_RECORD_REMOTE.json",
+      "sha256": "fac76b406752a4e8b0a09d7116306f018751f09593506a1eeeb355f1b60b7f2a"
+    },
+    "CRB_SUBMISSION_REGISTRY_REMOTE.json": {
+      "path": "CRB_SUBMISSION_REGISTRY_REMOTE.json",
+      "sha256": "d76a9257a6c9ecc6bff64492cbe540aac8f3bcb65844d96d05a86b120593e268"
+    },
+    "DEFECT_REPRODUCTION.txt": {
+      "path": "DEFECT_REPRODUCTION.txt",
+      "sha256": "d6b873c316d4ce32f2b8a1d98202669210e9524e09b84c79fb31002368db2343"
+    },
+    "LOCAL_CONTROL_REPLAY.txt": {
+      "path": "LOCAL_CONTROL_REPLAY.txt",
+      "sha256": "a42c81fce314c0be399abd48fe09128dc725c8eb0fa40659144ccb0e88043265"
+    },
+    "REMOTE_COLLECTION.txt": {
+      "path": "REMOTE_COLLECTION.txt",
+      "sha256": "81db2d66b42e9cd1bcdcb04c83a7be204aa53bd7c639d81de63e4752d0a5e880"
+    },
+    "SACCT_RAW.txt": {
+      "path": "SACCT_RAW.txt",
+      "sha256": "2f93d2a7b117f27877bb84f0bbe87edebaa3f54becd7382f00926748c36fb623"
+    },
+    "SLURM_STDERR.txt": {
+      "path": "SLURM_STDERR.txt",
+      "sha256": "c0c1926c7f5c7ff09b676feccce1e0627823d54399ddc60a42c51cb760c2ab2e"
+    },
+    "SLURM_STDOUT.txt": {
+      "path": "SLURM_STDOUT.txt",
+      "sha256": "db0aac735f51ff6eeb4141f05bd77dac631c054bc8c100189b66561ed211bb61"
+    },
+    "SOURCE_IDENTITY.json": {
+      "path": "SOURCE_IDENTITY.json",
+      "sha256": "3bf569429f3c43bdd846f707b9a1f43bac655fabcefce1787f0e87feefc3d9e7"
+    }
+  },
+  "execution": {
+    "account": "hep2023-1-3",
+    "allocated_cpus": 48,
+    "batch_max_rss": "3839376K",
+    "batch_total_cpu": "14-00:52:17",
+    "elapsed": "08:08:42",
+    "elapsed_seconds": 29322,
+    "ended_at_scheduler_local": "2026-08-27T10:00:11",
+    "exit_code": "1:0",
+    "job_id": 3544056,
+    "job_name": "orion-nq-r9-crb-full",
+    "node": "cx08",
+    "partition": "hep",
+    "requested_memory": "192G",
+    "started_at_scheduler_local": "2026-08-27T01:51:29",
+    "state": "FAILED",
+    "submitted_at_scheduler_local": "2026-08-27T01:51:28"
+  },
+  "failure": {
+    "first_disagreement": "NOT_OBSERVED",
+    "internal_generation_resource_terminal": "CANNOT_CHECK_MASKED_BY_RECEIPT_SERIALIZATION_FAILURE",
+    "job_environment_receipt": "CANNOT_CHECK_NOT_CAPTURED_BEFORE_NODE_LOCAL_CLEANUP",
+    "observed_exception": "TypeError: value is not canonical JSON: float",
+    "observed_location": "crb_census.py build_generation_receipt -> engine_b.py canonical_json_bytes",
+    "root_cause": "d2_wall_seconds and d3_wall_seconds are emitted as float by round(..., 3), while the frozen canonical JSON encoder rejects float values",
+    "scheduler_resource_terminal": "NOT_OBSERVED"
+  },
+  "legacy_lane": "NQ",
+  "paper_id": "ORION-04",
+  "phase_status": {
+    "d2_internal_control_flow_diagnostic": "D2_GENERATOR_RETURNED_FROZEN_COUNT_AND_STREAM_WRITE_RETURNED__RAW_BYTES_LOST__NOT_AUTHORITY",
+    "d2_raw_artifact_authority": "CANNOT_CHECK",
+    "d3_generation_outcome": "CANNOT_CHECK_MASKED_BY_RECEIPT_SERIALIZATION_FAILURE",
+    "durable_result_directory": "NOT_CREATED",
+    "node_local_output_after_allocation": "MISSING_EXPECTED_EPHEMERAL_CLEANUP",
+    "phase_0_pinned_external_checker": "BUILT",
+    "phase_1_census_generation": "FAILED_BEFORE_DURABLE_RECEIPT",
+    "phase_2_per_record_sat_execution": "NOT_RUN",
+    "phase_3_external_drup_verification": "NOT_RUN",
+    "phase_4_durable_copy": "NOT_RUN",
+    "positive_witness_independent_evaluation": "NOT_RUN"
+  },
+  "schema": "ORION.ORION-04.CRB.FullReplayFailureReceipt.v1",
+  "shortest_successor_gate": [
+    "preserve this failed attempt and consumed key as immutable history",
+    "change timing metrics to canonical integer units and add success plus post-D2 failure-path tests",
+    "durably checkpoint and hash phase-1 scope streams before phase 2",
+    "add an EXIT trap that copies first-failure, environment, and partial-phase receipts before node-local cleanup",
+    "move the nonduplication registry out of an untracked checkout-local file or prebind job 3544056 in the successor authorization",
+    "rebuild all affected manifests and obtain a new explicit one-attempt authorization; do not reuse key 741454d7...",
+    "execute the successor once; require both exact denominators, independent positive-witness checks, all UNSAT external DRUP checks, raw-byte ledgers, and a durable terminal"
+  ],
+  "submission_identity": {
+    "attempt_budget_consumed_for_nonduplication_key": true,
+    "checkout_commit": "2273e7a6936180bce50fb5caf446c4ae5d21b549",
+    "checkout_tree": "1891399ffaca8f103e65621b0b029f7e55ce267a",
+    "current_authorized_commit_executed": false,
+    "nonduplication_key": "741454d7d6b513ccd80d2aa9a78d2a9f5076fe8075341d0ecc8e95566ecc28ea",
+    "pr_1503_authorized_commit": "20365f254807015d8db46a370f006f8be462b3f8",
+    "pr_1503_head_commit": "d8d71370f547031862cbf4376e88fa8e6be519fb",
+    "same_core_scientific_engine_authorization_and_submission_blobs": true,
+    "same_replay_source_manifest": false,
+    "scientific_subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
+  },
+  "supersession": {
+    "d4_rounds_consumed": 0,
+    "does_not_supersede": [
+      "raw adverse or null results",
+      "frozen scientific subject",
+      "D4 open status",
+      "protected Task-3 lanes"
+    ],
+    "issue_1516_replay_prerequisite": "NOT_SATISFIED",
+    "issue_1522_gate": "REMAINS_CLOSED",
+    "supersedes_pr_1503_review_fields": [
+      "CURRENT_ROOT_FULL_REPLAY_REVIEW.json#/submission/current_key_seen_in_prior_attempt=false",
+      "CURRENT_ROOT_FULL_REPLAY_REVIEW.json#/submission/status=AUTHORIZED_NOT_SUBMITTED",
+      "CURRENT_ROOT_FULL_REPLAY_AUTHORIZATION_RECEIPT.json#/terminal=EXECUTION_PENDING"
+    ]
+  },
+  "terminal": "NQ_CRB_FULL_REPLAY_JOB_3544056_FAILED_CENSUS_RECEIPT_SERIALIZATION__D2_D3_AUTHORITY_CANNOT_CHECK"
+}

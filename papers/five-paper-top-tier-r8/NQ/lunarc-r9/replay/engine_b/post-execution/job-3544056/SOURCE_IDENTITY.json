@@ -1,0 +1,77 @@
+{
+  "file_identities": {
+    "crb_census": {
+      "byte_identical": true,
+      "current_authorized_commit_git_blob": "fedeb8d1158331cbd9752ed88d1b09dfe2f16315",
+      "current_authorized_commit_sha256": "1e5c25087171d23d91a25f7ea2d23b4ac47587ccd6d2b26478de8d3cbc1afc94",
+      "job_commit_git_blob": "fedeb8d1158331cbd9752ed88d1b09dfe2f16315",
+      "job_commit_sha256": "1e5c25087171d23d91a25f7ea2d23b4ac47587ccd6d2b26478de8d3cbc1afc94",
+      "path": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/crb_census.py"
+    },
+    "engine_b": {
+      "byte_identical": true,
+      "current_authorized_commit_git_blob": "b3640f473337dccb4642ecce7f97f2554233bfba",
+      "current_authorized_commit_sha256": "374733441ee28fa4dbde9897ad3a5c9550cba3ac6fae0a96522abadc7f3424b2",
+      "job_commit_git_blob": "b3640f473337dccb4642ecce7f97f2554233bfba",
+      "job_commit_sha256": "374733441ee28fa4dbde9897ad3a5c9550cba3ac6fae0a96522abadc7f3424b2",
+      "path": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/engine_b.py"
+    },
+    "full_replay_authorization": {
+      "byte_identical": true,
+      "current_authorized_commit_git_blob": "3fb8f81065de8794371373adf75d9d906bccbe3e",
+      "current_authorized_commit_sha256": "a9a53fc830f9a71bbaf96768d6c8b478d84fe44a9da02b6ea81932a72fa877e8",
+      "job_commit_git_blob": "3fb8f81065de8794371373adf75d9d906bccbe3e",
+      "job_commit_sha256": "a9a53fc830f9a71bbaf96768d6c8b478d84fe44a9da02b6ea81932a72fa877e8",
+      "path": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/FULL_REPLAY_AUTHORIZATION.json"
+    },
+    "job_script": {
+      "byte_identical": true,
+      "current_authorized_commit_git_blob": "e0e77542e7bfadb7c79e389253bfb8501758da8b",
+      "current_authorized_commit_sha256": "a1b5ae2d4a47969fc185a3d98c449a7fabf35a2f3a74800e3eeb2aadf4b8ca30",
+      "job_commit_git_blob": "e0e77542e7bfadb7c79e389253bfb8501758da8b",
+      "job_commit_sha256": "a1b5ae2d4a47969fc185a3d98c449a7fabf35a2f3a74800e3eeb2aadf4b8ca30",
+      "path": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/slurm/job_nq_r9_crb_full_census.slurm"
+    },
+    "replay_source_manifest": {
+      "byte_identical": false,
+      "current_authorized_commit_git_blob": "ccccaf59fef378a17360af6db5e1fc7fc854646e",
+      "current_authorized_commit_sha256": "90d2d47e9101eb0f8087aa4814e45a893cfd62972f30694f82ca2dbfecbb281e",
+      "job_commit_git_blob": "4a5cca55f407d32156155048bf2736ec6b5d6541",
+      "job_commit_sha256": "552dc354350061317b03d9d884009be944f6b570e7d02976b6804ed18aa37c0c",
+      "path": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/REPLAY_SOURCE_MANIFEST.json"
+    },
+    "source_manifest": {
+      "byte_identical": true,
+      "current_authorized_commit_git_blob": "095faaff230bd4ae0e1d4fc4b7c8b4b7bf2148b0",
+      "current_authorized_commit_sha256": "26474fc538d0b79c2f9fcf86b3b3d45b0def30cac601990b23743c0bf1f844fb",
+      "job_commit_git_blob": "095faaff230bd4ae0e1d4fc4b7c8b4b7bf2148b0",
+      "job_commit_sha256": "26474fc538d0b79c2f9fcf86b3b3d45b0def30cac601990b23743c0bf1f844fb",
+      "path": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/SOURCE_MANIFEST.json"
+    },
+    "submit_script": {
+      "byte_identical": true,
+      "current_authorized_commit_git_blob": "42e0d54d19bea77adeef6f5dafc2aa9b113f4ef7",
+      "current_authorized_commit_sha256": "4f14727e99aba5afb7aceb59cfc618f3651ca35fd847a037b3282552410a020b",
+      "job_commit_git_blob": "42e0d54d19bea77adeef6f5dafc2aa9b113f4ef7",
+      "job_commit_sha256": "4f14727e99aba5afb7aceb59cfc618f3651ca35fd847a037b3282552410a020b",
+      "path": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/slurm/submit_crb_full_census.sh"
+    }
+  },
+  "interpretation": {
+    "current_root_authorized_commit_executed": false,
+    "exact_current_root_replay_authority": "CANNOT_CHECK",
+    "same_core_scientific_engine_authorization_and_submission_blobs": true,
+    "same_nonduplication_subject_key": true,
+    "same_replay_source_manifest": false
+  },
+  "job_3544056_checkout_commit": "2273e7a6936180bce50fb5caf446c4ae5d21b549",
+  "job_3544056_checkout_tree": "1891399ffaca8f103e65621b0b029f7e55ce267a",
+  "job_commit_is_ancestor_of_current_authorized_commit": true,
+  "nonduplication_key": "741454d7d6b513ccd80d2aa9a78d2a9f5076fe8075341d0ecc8e95566ecc28ea",
+  "nonduplication_key_matches_packet": true,
+  "observed_live_main_commit": "405247aad9b8fdda285b13590f6a5d4e96247d7e",
+  "pr_1503_authorized_commit": "20365f254807015d8db46a370f006f8be462b3f8",
+  "pr_1503_head_commit": "d8d71370f547031862cbf4376e88fa8e6be519fb",
+  "schema": "ORION.ORION-04.CRB.JobIdentityBinding.v1",
+  "scientific_subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
+}
