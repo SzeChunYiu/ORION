@@ -11,6 +11,7 @@ base's scientific content or weaken the original-cut chronology checks.
 
 from __future__ import annotations
 
+import json
 import os
 import pathlib
 import re
@@ -200,6 +201,188 @@ def is_r0_rebind_only(scope_base: str, target: str, rel: str) -> bool:
     return R0_DOUBLE_PREFIX.sub(rb"ORION-\1", base) == head
 
 
+# QG-34 welded-identity dedupe, issue #1034, granted 2026-08-27.
+#
+# The #940/#1013 weld left duplicate top-level identity keys in the QG-34
+# committed result. Permissive last-key-wins parsing then selected a superseded
+# identity, which broke QG-36's frozen parent binding: on main
+# git_blob_sha1(Q34) != Q34_GIT_BLOB_SHA1, so aq is False and QG-36 cannot
+# qualify its parent. Refusing the repair preserves a broken state, not a frozen
+# one.
+#
+# This predicate is content-VERIFYING, in the shape of is_r0_rebind_only: each
+# arm either derives head from base by a fixed transform and demands byte
+# equality, or proves structural equivalence with every measurement field
+# byte-identical. Nothing is admitted on the strength of a path, branch, author,
+# or commit message. Any property it cannot prove is a refusal, and the whole
+# predicate is inert unless the committed result itself carries a verified
+# dedupe.
+QG34_COMMITTED_RESULT = "research/extensions/orion-qg/QG34_ADAPTIVE_PROBE_TREE_RESULTS.json"
+
+# These carry provenance, not measurement. Every other key must be byte-identical.
+QG34_IDENTITY_KEYS = frozenset({"schema", "terminal", "source_result_digest", "issue"})
+
+QG34_STRICT_LOADER_BLOCK = (
+    b'def no_dupes(pairs):\n'
+    b' d={}\n'
+    b' for k,v in pairs:\n'
+    b'  if k in d:raise ValueError("duplicate committed-result keys: "+k)\n'
+    b'  d[k]=v\n'
+    b' return d\n'
+    b'def load_committed_result(p):return json.loads(p.read_text(),object_pairs_hook=no_dupes)\n'
+)
+QG34_LOADER_ANCHOR = b"def main():\n"
+QG34_PERMISSIVE_LOAD = b"a=json.loads(Q34.read_text())"
+QG34_STRICT_LOAD = b"a=load_committed_result(Q34)"
+
+
+def _canon(value) -> str:
+    return json.dumps(value, sort_keys=True, separators=(",", ":"))
+
+
+def _top_level_pairs(raw: bytes):
+    """Parsed object plus the outermost object's raw pairs, duplicates intact."""
+    captured: list[list] = []
+
+    def hook(pairs):
+        captured.append(list(pairs))
+        return dict(pairs)
+
+    try:
+        obj = json.loads(raw.decode("utf-8"), object_pairs_hook=hook)
+    except Exception:
+        return None, None
+    if not isinstance(obj, dict) or not captured:
+        return None, None
+    return obj, captured[-1]
+
+
+def blob_hash_at(ref: str, rel: str) -> bytes | None:
+    proc = subprocess.run(["git", "rev-parse", f"{ref}:{rel}"], cwd=ROOT,
+                          stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    if proc.returncode != 0:
+        return None
+    return proc.stdout.strip().encode()
+
+
+def is_qg34_committed_result_dedupe(base: bytes, head: bytes) -> bool:
+    """True only for a pure de-duplication that invents nothing and drops no measurement."""
+    base_obj, base_pairs = _top_level_pairs(base)
+    head_obj, head_pairs = _top_level_pairs(head)
+    if base_obj is None or head_obj is None:
+        return False
+
+    head_keys = [k for k, _ in head_pairs]
+    if len(head_keys) != len(set(head_keys)):
+        return False  # head must be strictly duplicate-free
+
+    base_keys = [k for k, _ in base_pairs]
+    duplicated = {k for k in base_keys if base_keys.count(k) > 1}
+    if not duplicated or not duplicated <= QG34_IDENTITY_KEYS:
+        return False  # only an identity weld is in scope
+
+    if set(base_obj) - set(head_obj):
+        return False  # nothing may be dropped
+    if set(head_obj) - set(base_obj) - {"freeze_registry"}:
+        return False  # the demoted-identity register is the only admissible addition
+
+    register = head_obj.get("freeze_registry", {})
+    if not isinstance(register, dict) or not set(register) <= duplicated:
+        return False
+
+    # Measurement material must survive byte-identical.
+    for key in set(base_obj) - duplicated:
+        if _canon(base_obj[key]) != _canon(head_obj[key]):
+            return False
+
+    # No identity value may be invented, and none may be silently discarded.
+    for key in duplicated:
+        observed = [v for k, v in base_pairs if k == key]
+        retained = head_obj.get(key)
+        survivors = [retained] + ([register[key]] if key in register else [])
+        if not any(_canon(retained) == _canon(v) for v in observed):
+            return False
+        for value in observed:
+            if not any(_canon(value) == _canon(s) for s in survivors):
+                return False
+    return True
+
+
+# The binding these files carry was itself stale at the scope base: they pinned the
+# pre-weld blob while the committed result had already become the welded one. So the
+# token to rebind is whichever SHA the base file actually pins, and the only value it
+# may be rebound to is the true head blob of the committed result.
+QG34_SHA1_TOKEN = re.compile(rb"(?<![0-9a-f])[0-9a-f]{40}(?![0-9a-f])")
+
+
+def _qg34_rebind_candidates(base: bytes, new: bytes) -> list[bytes]:
+    return [t for t in set(QG34_SHA1_TOKEN.findall(base)) if t != new]
+
+
+def is_qg34_pin_rebind_only(base: bytes, head: bytes, new: bytes) -> bool:
+    """Only change is re-pointing one pinned SHA at the true new committed result."""
+    return any(base.replace(token, new) == head
+               for token in _qg34_rebind_candidates(base, new))
+
+
+def is_qg34_loader_rebind(base: bytes, head: bytes, new: bytes) -> bool:
+    """Pin rebind plus exactly the strict duplicate-key parser, and nothing else."""
+    for token in _qg34_rebind_candidates(base, new):
+        rebound = base.replace(token, new)
+        if rebound == base:
+            continue
+        if rebound.count(QG34_LOADER_ANCHOR) != 1 or rebound.count(QG34_PERMISSIVE_LOAD) != 1:
+            continue
+        hardened = rebound.replace(
+            QG34_LOADER_ANCHOR, QG34_STRICT_LOADER_BLOCK + QG34_LOADER_ANCHOR, 1
+        )
+        if hardened.replace(QG34_PERMISSIVE_LOAD, QG34_STRICT_LOAD, 1) == head:
+            return True
+    return False
+
+
+def is_qg34_inert_addition(scope_base: str, target: str, rel: str) -> bool:
+    """An added file nothing references cannot reach any result."""
+    if path_exists_at(scope_base, rel) or not path_exists_at(target, rel):
+        return False
+    proc = subprocess.run(
+        ["git", "grep", "-l", "--fixed-strings", pathlib.PurePosixPath(rel).name, target],
+        cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+    )
+    for line in proc.stdout.splitlines():
+        _, _, path = line.partition(":")
+        if path and path != rel:
+            return False
+    return True
+
+
+def is_qg34_identity_dedupe_only(scope_base: str, target: str, rel: str) -> bool:
+    old = blob_hash_at(scope_base, QG34_COMMITTED_RESULT)
+    new = blob_hash_at(target, QG34_COMMITTED_RESULT)
+    if old is None or new is None or old == new:
+        return False
+
+    # Inert unless the committed result itself carries a verified dedupe.
+    q34_base = blob_at(scope_base, QG34_COMMITTED_RESULT)
+    q34_head = blob_at(target, QG34_COMMITTED_RESULT)
+    if q34_base is None or q34_head is None:
+        return False
+    if not is_qg34_committed_result_dedupe(q34_base, q34_head):
+        return False
+
+    if rel == QG34_COMMITTED_RESULT:
+        return True
+
+    base = blob_at(scope_base, rel)
+    head = blob_at(target, rel)
+    if base is None:
+        return is_qg34_inert_addition(scope_base, target, rel)
+    if head is None:
+        return False
+    return (is_qg34_pin_rebind_only(base, head, new)
+            or is_qg34_loader_rebind(base, head, new))
+
+
 def science_change_errors(
     scope_base: str, target: str, changed: list[str]
 ) -> tuple[list[str], set[str]]:
@@ -221,6 +404,8 @@ def science_change_errors(
                 errors.append(f"Q3_AUTHORIZED_NEW_PATH_MISSING_AT_HEAD:{rel}")
             continue
         if is_r0_rebind_only(scope_base, target, rel):
+            continue
+        if is_qg34_identity_dedupe_only(scope_base, target, rel):
             continue
         errors.append(f"PREEXISTING_OR_UNAUTHORIZED_SCIENCE_MUTATED_BY_PUBLICATION_BRANCH:{rel}")
     return errors, authorized_q3_present
