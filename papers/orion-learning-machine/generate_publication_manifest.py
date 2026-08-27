@@ -68,6 +68,9 @@ def included_files() -> list[Path]:
             ROOT / "README.md",
             ROOT / "REPRODUCE.md",
             ROOT / "REPRODUCE_LOCAL_CLOSURE.sh",
+            # Lane-root programme doc landed 2026-08-26 (#1490 payload); a
+            # committed scope file with no enforced binding is a membership hole.
+            ROOT / "RESEARCH_PROGRAMME_V0.md",
             ROOT / "SCRIPT_MANIFEST_SHA256.txt",
             ROOT / "VERIFY_LOCAL_CLOSURE.sh",
             ROOT / "VERIFY_LOCAL_CLOSURE_V2.sh",
