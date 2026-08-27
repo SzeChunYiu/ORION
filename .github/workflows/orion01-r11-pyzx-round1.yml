@@ -1,0 +1,112 @@
+name: ORION-01 R11 pinned PyZX Round 1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/**'
+      - 'development/orion-01-r11-pyzx-full-reduce-2026-08-27/**'
+      - 'research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json'
+      - '.github/workflows/orion01-r11-pyzx-round1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/**'
+      - 'development/orion-01-r11-pyzx-full-reduce-2026-08-27/**'
+      - 'research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json'
+      - '.github/workflows/orion01-r11-pyzx-round1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-pyzx-registry-study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact frozen dependencies
+        run: |
+          python -m pip install --disable-pip-version-check \
+            -r papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/requirements-lock.txt
+      - name: Verify source registry and non-outcome unit controls
+        run: |
+          python -m ruff check \
+            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/orion01_r11_pyzx_round1.py \
+            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/test_orion01_r11_pyzx_round1.py
+          python -m pytest -q \
+            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/test_orion01_r11_pyzx_round1.py
+      - name: Replay exact bounded study and require committed bytes
+        run: |
+          set -euo pipefail
+          runner=papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/orion01_r11_pyzx_round1.py
+          python "$runner" --check | tee /tmp/orion01-r11.out
+          terminal=$(python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_RESULTS.json')
+          row = json.loads(p.read_text())
+          assert row['terminal'] != 'CANNOT_CHECK_MOVE_COMPLETENESS'
+          assert all(row['gates'].values())
+          print(row['terminal'])
+          PY
+          )
+          grep -Fx "$terminal" /tmp/orion01-r11.out
+          git diff --exit-code -- \
+            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_RESULTS.json
+      - name: Enforce narrow authority and ORION-01-only custody
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce')
+          result = json.loads((root / 'ORION01_R11_PYZX_RESULTS.json').read_text())
+          registry = json.loads((root / 'ORION01_R11_PYZX_SOURCE_REGISTRY.json').read_text())
+          assert result['paper_id'] == 'ORION-01'
+          assert result['round'] == 1
+          assert result['round_accounting']['consumed'] == 1
+          assert result['round_accounting']['science_status_after_this_round'] == 'OPEN'
+          assert result['search']['source_words_completed'] == 4681
+          assert result['registry_audit']['hostile_omissions_rejected'] == 12
+          assert result['critical_interactions']['ordered_pair_count'] == 144
+          assert not any([
+              result['authority']['all_pyzx_completeness'],
+              result['authority']['all_zx_calculus_completeness'],
+              result['authority']['generic_compiler_optimality'],
+              result['authority']['physical_or_hardware_advantage'],
+              result['authority']['external_independence'],
+              result['authority']['novelty'],
+              result['authority']['journal_authority'],
+              result['authority']['submission_authorized'],
+              result['authority']['protected_task3_or_p9'],
+          ])
+          assert registry['source']['commit'] == 'dade7d46f193635bbdaefd8fcde837f9449fddc5'
+          PY
+          if [ "$EVENT_NAME" = pull_request ]; then
+            base="$PR_BASE_SHA"
+          else
+            base="HEAD^"
+          fi
+          bad=0
+          while IFS= read -r path; do
+            case "$path" in
+              .github/workflows/orion01-r11-pyzx-round1.yml|\
+              development/orion-01-r11-pyzx-full-reduce-2026-08-27/*|\
+              papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/*)
+                ;;
+              *)
+                echo "ORION-01 lane scope violation: $path" >&2
+                bad=1
+                ;;
+            esac
+          done < <(git diff --name-only "$base"...HEAD)
+          test "$bad" -eq 0
