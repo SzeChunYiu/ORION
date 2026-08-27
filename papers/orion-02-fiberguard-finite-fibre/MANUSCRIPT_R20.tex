@@ -1,0 +1,389 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,tabularx,microtype,hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\X}{\mathcal X}
+\newcommand{\A}{\mathcal A}
+\newcommand{\F}{\mathcal F}
+\newcommand{\Pcal}{\mathcal P}
+\newcommand{\DeltaS}{\Delta}
+\newcommand{\Rplus}{\mathbb R_{+}}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\argmin}{\operatorname*{arg\,min}}
+
+\title{Finite-Fibre Decision Certificates Do Not Extrapolate:\\
+Exact Closed-World Guarantees, Prospective Deployment Failures, and Joint Route Repair}
+\author{Anonymous manuscript}
+\date{27 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A representation is operationally insufficient when states that it identifies require materially different actions.  For a finite state space and action portfolio, we give exact representation-fibre regret, certified safe action sets, randomized minimax value, compressed worst-fibre witnesses, minimum-cost static repair, and adaptive acquisition policies under state-dependent feature cost.  These are closed-world theorems: their authority is over the declared complete fibre.
+
+We test whether that authority survives algorithm-selection deployment.  On the complete SAT12-ALL corpus, exhaustive evaluation of 513 dependency-closed feature-step representations identifies a two-step representation with robust total excess 1712, versus 12000 for no features and 16906.55 for all features.  The same exact-equality object fails prospectively under official and family-held-out splits because continuous signatures rarely recur.  A calibrated learned-action certificate can worsen deployed cost when rejected states are sent to a harmful fallback.  A prospectively frozen paired marginal route then yields no feasible development candidate among 99 choices and changes zero routes on MAXSAT12, MAXSAT19, and QBF.  A separately frozen neighbourhood/Lipschitz escape is also invalid: held-out violations exceed ten percent under official folds and family-held-out coverage is zero at the registered tolerance.
+
+The failures are explained by an exact repair theorem.  A deployed route is determined not by separate learned and fallback marginals, but by its legal joint profile language, route observation, compatibility relation, acquisition timing, and one common statewise oracle.  Randomized route compression is exact precisely when it preserves the lower image of the convex hull of legal joint profiles.  Exact finite-fibre certificates therefore remain valid and useful, but no inductive certificate follows without an independently justified structural law.  The contribution is a theorem-to-deployment authority calculus and a prospectively preserved failure atlas, not a universal claim that feature acquisition or abstention improves solver selection.
+\end{abstract}
+
+\section{Introduction}
+
+Algorithm selection asks for an instance-dependent choice among competing solvers \citep{rice1976algorithm,xu2008satzilla,bischl2016aslib}.  Modern selectors use engineered or learned representations, and many systems may additionally acquire features, abstain, defer, or route to a fallback.  These mechanisms create two logically different questions.  First, is a declared representation sufficient for the decision on a complete finite subject?  Second, does a certificate computed from observed subjects remain valid for unseen states?  The first is an exact finite problem.  The second requires a transfer law, a statistical assumption, or both.
+
+This paper separates those questions.  The finite theory treats a representation fibre as the complete information state available to a decision policy.  It produces exact deterministic and randomized regret, small upper and lower witnesses, static repair certificates, and adaptive decision trees with state-dependent acquisition cost.  The deployment study then preserves four prospectively frozen failures.  Exact equality has negligible inductive coverage; one-sided calibration does not imply selective value; paired marginal calibration can yield no action; and a fitted neighbourhood law can fail its own held-out certificate test.
+
+The failures are not contradictions of the finite theory.  They reveal changes of subject: an observed fibre is not a complete unseen fibre, and marginal arm certificates are not a certificate of the deployed joint route.  We formalize both changes.  A no-free-extension theorem shows that no unseen-state upper bound follows from a finite observed fibre without structural assumptions.  A joint-route theorem shows that marginal learned and fallback profile sets do not determine route value.  These results turn adverse application outcomes into part of the theory rather than treating them as post hoc limitations.
+
+Our contributions are:
+\begin{enumerate}
+  \item an exact complete-fibre decision theory with deterministic and randomized regret, safe actions, compressed witnesses, and refinement monotonicity;
+  \item an exact reduction of minimum-cost static repair to action-conflict set cover;
+  \item an exact adaptive acquisition recursion using statewise loss profiles, with a necessary-and-sufficient criterion for scalar Bellman collapse;
+  \item an exact deployed-route theory based on legal joint profiles and convex lower images;
+  \item no-free-extension and structural-law-necessity results delimiting inductive authority;
+  \item a content-bound algorithm-selection study containing one complete-corpus positive result and four prospectively preserved deployment failures.
+\end{enumerate}
+
+Generic minimax duality, set cover, adaptive feature acquisition, reject-option prediction, conformal calibration, and algorithm selection are prior mechanisms and receive no novelty credit here.  The residual object is their exact complete-fibre/common-oracle composition together with the authority boundary exposed by the registered experiments.
+
+\section{Finite-fibre decision model}
+
+Let $\X$ be a finite state space, $\Phi:\X\to\mathcal Y$ a declared representation, and $\A$ a nonempty finite action set.  For an attained representation value $y$, its fibre is
+\[
+  F_y=\{x\in\X:\Phi(x)=y\}.
+\]
+Let $C(a,x)$ be a finite registered action cost.  Define the statewise oracle and regret
+\[
+  C^*(x)=\min_{b\in\A} C(b,x),\qquad
+  R(a,x)=C(a,x)-C^*(x)\ge 0.
+\]
+Every acquisition charge, defer leaf, and fallback cost used in one recursion must have the same unit and the same statewise baseline.  In particular, an absolute defer cost $D_{\rm abs}(x)$ enters as $D_{\rm abs}(x)-C^*(x)$.
+
+\subsection{Deterministic regret and safe actions}
+
+\begin{theorem}[Exact deterministic fibre regret]\label{thm:det}
+For a nonempty finite fibre $F$, the exact worst-case regret of the best deterministic policy receiving only the fibre identity is
+\[
+  \rho_{\rm det}(F)=\min_{a\in\A}\max_{x\in F}R(a,x).
+\]
+The global representation value is $\max_y\rho_{\rm det}(F_y)$.
+\end{theorem}
+\begin{proof}
+Every representation-only deterministic policy must choose one common action on $F$.  Its worst regret is therefore $\max_{x\in F}R(a,x)$; minimizing over the common action proves the fibre formula.  Distinct fibres can be optimized independently, so the global value is their maximum.
+\end{proof}
+
+For $\epsilon\ge0$, define
+\[
+  \operatorname{Safe}_{\epsilon}(F)
+  =\{a\in\A:\max_{x\in F}R(a,x)\le\epsilon\}.
+\]
+
+\begin{corollary}
+$\operatorname{Safe}_{\epsilon}(F)$ is nonempty if and only if $\rho_{\rm det}(F)\le\epsilon$.
+\end{corollary}
+
+\subsection{Randomized minimax value}
+
+A randomized policy chooses $p\in\DeltaS(\A)$ before the hidden state is selected.  Its expected regret at $x$ is $\sum_a p_aR(a,x)$.
+
+\begin{theorem}[Exact randomized fibre value]\label{thm:rand}
+The ex-ante worst-state expected regret is
+\[
+ \rho_{\rm rand}(F)
+ =\min_{p\in\DeltaS(\A)}\max_{x\in F}\sum_{a\in\A}p_aR(a,x).
+\]
+It is the finite linear program
+\begin{align*}
+ \min_{p,t}\quad &t\\
+ \text{s.t.}\quad &\sum_a p_a=1,\quad p_a\ge0,\\
+ &\sum_a p_aR(a,x)\le t\qquad(x\in F).
+\end{align*}
+There exists an optimal mixture supported on at most $|F|$ actions.  The dual is an adversarial distribution over states.
+\end{theorem}
+\begin{proof}
+The epigraph formulation is immediate.  A basic optimal solution has at most $|F|$ positive mixture variables because, besides normalization, at most $|F|$ state inequalities are needed to determine a basic solution.  Linear-programming duality gives a distribution over state constraints with the same value.
+\end{proof}
+
+The guarantee is expected loss after the adversary sees the distribution but before it sees the private draw.  It is not pathwise or tail safety.  Indeed, worst state and worst random seed reduce to the best deterministic profile.
+
+\subsection{Refinement and compressed witnesses}
+
+\begin{theorem}[Refinement monotonicity]
+If $\Psi$ refines $\Phi$, then both deterministic and randomized global regret are nonincreasing:
+\[
+ \rho_{\rm det}(\Psi)\le\rho_{\rm det}(\Phi),\qquad
+ \rho_{\rm rand}(\Psi)\le\rho_{\rm rand}(\Phi).
+\]
+\end{theorem}
+\begin{proof}
+A policy receiving $\Psi$ may ignore the extra information and reproduce any $\Phi$-policy.
+\end{proof}
+
+\begin{proposition}[Deterministic witness compression]\label{prop:witness}
+For $m=|\A|$, the value of a deterministic fibre is witnessed by at most $m$ states.
+\end{proposition}
+\begin{proof}
+For every action $a$, choose one state $x_a$ attaining $\max_{x\in F}R(a,x)$.  On the set $W=\{x_a:a\in\A\}$, each action has the same maximum it has on $F$.  Hence $\min_a\max_{x\in W}R(a,x)=\rho_{\rm det}(F)$ and $|W|\le m$.
+\end{proof}
+
+The randomized certificate consists of a small primal mixture and a dual state distribution with matching rational value.
+
+\section{Minimum-cost static repair}
+
+For each state $x$, let $S_x\subseteq\A$ be its $\epsilon$-safe actions.  A subset $H\subseteq F$ is an action conflict when $\bigcap_{x\in H}S_x=\varnothing$; it is minimal when every proper subset has nonempty intersection.
+
+\begin{lemma}[Conflict size]
+Every minimal conflict contains at most $|\A|$ states, and the bound is tight.
+\end{lemma}
+\begin{proof}
+For every $x\in H$, minimality provides an action $a_x$ that is safe on $H\setminus\{x\}$ but not on $x$.  If two distinct states shared the same witness action, that action would both be safe and unsafe on one of them.  Thus the witnesses are distinct and $|H|\le|\A|$.  Tightness follows from $|\A|$ states whose safe sets each omit a different action.
+\end{proof}
+
+Let $q$ be a candidate feature.  It separates $H$ when no refined fibre contains all of $H$.
+
+\begin{theorem}[Static repair as set cover]\label{thm:setcover}
+A feature set guarantees deterministic regret at most $\epsilon$ on every refined fibre if and only if it separates every minimal action conflict.  Consequently minimum-cost static repair is exactly weighted set cover over the minimal conflicts.
+\end{theorem}
+\begin{proof}
+If a refined fibre contains a conflict, its safe-action intersection is empty, so no common action meets the tolerance.  Conversely, if a refined fibre has empty safe-action intersection, finite minimality yields a minimal conflict contained in it.  Therefore safety is equivalent to separating all minimal conflicts, which is precisely set cover by the features' separated-conflict sets.
+\end{proof}
+
+The generic complexity and approximation theory of set cover is donor-owned \citep{karp1972reducibility,chvatal1979greedy}.
+
+\section{Adaptive acquisition with state-dependent cost}
+
+Let $Q$ be the remaining refinements.  Refinement $q$ returns observation $h_q(x)$ and incurs state-dependent charge $c_q(x)\ge0$.  A deterministic adaptive policy is a finite decision tree whose leaves choose terminal actions.
+
+For a policy $\pi$, its complete statewise excess profile is
+\[
+ L_\pi(x)=\sum_{q\text{ acquired on }x}c_q(x)+R(a_\pi(x),x).
+\]
+Let $\Pcal(F,Q)$ be the recursively achievable profiles: terminal action profiles are included, and a refinement concatenates one child profile per attained observation after adding $c_q(x)$ statewise.
+
+\begin{theorem}[Exact profile recursion]\label{thm:profile}
+The exact deterministic adaptive value is
+\[
+ V(F,Q)=\min_{p\in\Pcal(F,Q)}\max_{x\in F}p(x).
+\]
+Componentwise dominated profiles may be deleted at every recursive state without changing any ancestor optimum.
+\end{theorem}
+\begin{proof}
+Induct on $|Q|$.  With no remaining refinement, every policy is a terminal leaf.  Otherwise the root is either a leaf or one refinement; each observation child independently chooses a valid continuation on its child fibre.  This is exactly the recursive profile construction.  If $p\le p'$ componentwise, replacing $p'$ by $p$ cannot increase the current maximum.  Adding the same future statewise charges and combining with other children preserves dominance, so the replacement is valid at every ancestor.
+\end{proof}
+
+An equivalent Bellman equation carries the statewise sunk-cost offset $b\in\Rplus^F$:
+\[
+ W(F,Q;b)=\min\left\{
+   \min_a\max_{x\in F}[b(x)+R(a,x)],
+   \min_{q\in Q}\max_o W(F_o,Q\setminus\{q\};(b+c_q)|_{F_o})
+ \right\}.
+\]
+
+\begin{theorem}[Scalar-collapse boundary]\label{thm:scalar}
+For a nonempty child $G$ and charge vector $c\in\Rplus^G$, there exists a scalar $\kappa(c)$ satisfying
+\[
+ \max_{x\in G}[c(x)+\ell(x)]
+ =\kappa(c)+\max_{x\in G}\ell(x)
+\]
+for every nonnegative continuation profile $\ell$ if and only if $c$ is constant on $G$.
+\end{theorem}
+\begin{proof}
+Constancy is sufficient.  Conversely, setting $\ell=0$ forces $\kappa(c)=\max_xc(x)=M$.  If $c(y)<M$, choose $\ell$ supported on $y$ with value $t>M-c(y)$.  The left side is $c(y)+t$, while the right side is $M+t$, a contradiction.
+\end{proof}
+
+Thus a scalar Bellman state is exact when every reached observation cell has one shared charge.  Replacing a varying charge by its child maximum is a safe upper bound but can change the optimal root decision.
+
+\section{Inductive authority requires a structural law}
+
+The finite theorems above quantify over the declared complete fibre.  They do not turn an observed training subset into an unseen-state upper bound.
+
+\begin{theorem}[No-free extension]\label{thm:nofree}
+Let $S$ be any finite observed fibre, $|\A|\ge2$, and suppose no constraint is imposed on the costs of an unseen state $x_0$ with the same representation value.  For every $M>0$, there is an extension of the state space that agrees with all observed data on $S$ but whose extended fibre has deterministic regret at least $M$.
+\end{theorem}
+\begin{proof}
+Choose two actions $a,b$.  Keep every observed cost unchanged.  Add $x_0$ with $C(a,x_0)=M$ and $C(b,x_0)=0$.  If an observed state makes $a$ the only low-regret common action, then the extended fibre forces regret at least $M$ for $a$; if not, relabel the two actions or add two unseen states with opposite unique optima.  Since unseen costs are unconstrained, an extension with arbitrarily large common-action regret always exists while preserving the observations on $S$.
+\end{proof}
+
+\begin{corollary}[Structural-law necessity]
+Representation proximity alone gives no unseen-state regret certificate.  A bound of the form
+\[
+ |R(a,x)-R(a,x')|\le Ld(\Phi(x),\Phi(x'))
+\]
+requires an independently justified law and a valid constant $L$; it cannot be inferred merely by fitting observed ratios and calling the resulting neighbourhood an exact fibre.
+\end{corollary}
+
+The mechanism is a finite no-free-lunch boundary, not a claim of generic novelty.  Its role is to prevent a change from complete-fibre proof to empirical prediction from being hidden in notation.
+
+\section{Exact deployed-route theory}
+
+Suppose a full-feature learned policy has excess $L(x)$ and a fallback has excess $B(x)$.  Let $g(z)\in\{0,1\}$ route to fallback based on the observation $z$ available at route time.
+
+If feature cost is already sunk, deployed excess is
+\[
+ T_g(x)=L(x)+g(z(x))[B(x)-L(x)].
+\]
+Hence the change from always using the learned policy is exactly
+\[
+ T_g(x)-L(x)=g(z(x))\Delta(x),\qquad \Delta(x)=B(x)-L(x).
+\]
+
+\begin{proposition}[Fallback-alignment identities]\label{prop:alignment}
+A post-acquisition route improves mean excess exactly when $\mathbb E[g\Delta]<0$.  It is pointwise no-harm exactly when $\max_{x:g(z(x))=1}\Delta(x)\le0$.  A certificate for $L$ alone does not determine either property.
+\end{proposition}
+\begin{proof}
+The identities follow by subtraction.  Holding $L$ fixed while varying $B$ changes $\Delta$ arbitrarily, so no learned-arm-only certificate determines the route effect.
+\end{proof}
+
+Pre-acquisition routing has a different profile because the fallback may avoid feature cost.  Acquisition timing is therefore part of the policy language, not an accounting detail.
+
+\subsection{Legal joint profiles}
+
+A deterministic deployed policy induces a joint statewise profile containing the learned loss, fallback loss, route observation, compatibility relation, timing, and chosen route.  Let $P_{\rm joint}\subset\Rplus^F$ be the resulting legal deployed excess profiles after route evaluation.  Separate projections onto learned and fallback marginals do not determine $P_{\rm joint}$.
+
+\begin{theorem}[Marginal nonidentifiability]\label{thm:marginal}
+There exist two finite route systems with identical learned marginal profile set and identical fallback marginal profile set but different deterministic and randomized deployed values.
+\end{theorem}
+\begin{proof}
+Take two states and marginal profiles $u=(0,100)$ and $v=(100,0)$ for both arms.  In one system permit compatible cross-pairings that realize the coordinatewise lower profile $(0,0)$; in the other permit only diagonal pairings, whose legal deployed profiles retain a positive coordinate.  The marginal projections are identical, but the legal joint sets and their minimax values differ.
+\end{proof}
+
+This construction is instantiated by the registered finite control, whose full-pair randomized value is $0$ and diagonal-pair value is $50$.  A second hostile control shows that the withdrawn same-label diagonal shortcut changes randomized value from $35$ to $70$.
+
+\subsection{Exact randomized compression}
+
+For a finite profile set $P\subset\Rplus^F$, define its convex lower image
+\[
+ \mathcal L(P)=\conv(P)+\Rplus^F.
+\]
+
+\begin{theorem}[Lower-image criterion]\label{thm:lowerimage}
+For finite profile sets $P$ and $Q$, every coordinatewise nondecreasing convex route objective has the same optimal randomized value on $P$ and $Q$ if and only if
+\[
+ \mathcal L(P)=\mathcal L(Q).
+\]
+\end{theorem}
+\begin{proof}
+If the lower images agree, adding a nonnegative vector cannot improve a coordinatewise nondecreasing objective, so minimizing over either convex hull gives the same value.  Conversely, finite lower images are closed convex upper sets.  If they differ, strong separation yields a linear functional with nonnegative normal vector that has different minima on the two sets.  This functional is coordinatewise nondecreasing and convex, contradicting equality for every such objective.
+\end{proof}
+
+The criterion is exact and objective-uniform.  It does not claim that the legal joint profile language is small; finite verification may still be exponential.
+
+\section{Registered algorithm-selection evidence}
+
+All experiments use pinned public corpora, explicit solver portfolios, frozen timeout/PAR10 semantics, and one statewise virtual-best baseline within each scenario.  Negative, null, timeout, and coverage failures remain in the denominator.
+
+\subsection{Complete SAT12-ALL census}
+
+The complete corpus contains 1614 instances, 31 solvers, 115 raw features, ten feature steps, and 513 dependency-closed representations.  Exhaustive evaluation gives:
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Representation & Robust action regret & Robust total excess & Mean total excess\\
+\midrule
+No features & 12000 & 12000 & 5448.31\\
+All feature steps & 11.53 & 16906.55 & 180.77\\
+\{Pre, lobjois\} & 11.53 & 1712 & 23.0143\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The all-feature adverse control is essential: additional information nearly eliminates action ambiguity but loses operationally after acquisition cost.  The optimum two-step representation has 1595 fibres, maximum fibre size 20, and a three-instance exact worst-fibre witness.  This is complete-corpus transductive evidence only.
+
+\subsection{Held-out equality failure}
+
+Under official held-out folds, the training-selected exact-equality policy has 3.22\% exact-signature coverage, mean total excess 5380.23, and catastrophic wrong-action rate 44.55\%.  A same-information 16-nearest-neighbour arm obtains mean excess 1465.09 and catastrophic rate 11.96\%.
+
+Under zero-family-overlap shift, equality coverage is 5.08\%, mean excess 5341.59, and catastrophic rate 44.24\%; 16-nearest-neighbour obtains 1982.36 and 16.23\%.  The experiment refutes the inductive extension, not the complete-fibre theorem.
+
+\subsection{One-sided route reversal}
+
+A prospectively frozen certificate configuration controls marginal false-certificate frequency across SAT16, SAT18, and SAT20, yet routing worsens cost on SAT16 and SAT18 because the fallback is worse on rejected states.  This is the empirical instance of Proposition~\ref{prop:alignment}.
+
+\subsection{Paired marginal route null}
+
+The R18 protocol freezes MAXSAT12 development, MAXSAT19 no-retuning validation, QBF-2016 untouched testing, official nested folds, eleven models, three alpha values, and three route modes.  Zero of 99 development candidates is feasible.  The deterministic least-bad row changes zero routes.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+Panel & Routed mean & Full learned mean & Fallback mean & Route coverage\\
+\midrule
+MAXSAT12-PMS & 3292.7431 & 3292.7431 & 7652.9374 & 0\\
+MAXSAT19-UCMS & 10392.3040 & 10392.3040 & 12392.3775 & 0\\
+QBF-2016 & 1964.8780 & 1964.8780 & 4860.6993 & 0\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The terminal is \texttt{FIBERGUARD\_R18\_NO\_PAIRED\_ROUTE\_VALUE}.  It is an outcome-exposed recovery corroboration under a protocol frozen before unsupported positive prose was withdrawn.  The positive terminal remains retracted.
+
+\subsection{Neighbourhood certificate invalidation}
+
+A separately frozen SAT11-HAND-ALGO experiment fits a representation-space distance and a development-only Lipschitz envelope.  Under official folds, full-neighbourhood coverage is 0.2095 with held-out violation 0.1688, and PCA10 coverage is 0.3311 with violation 0.1818.  Under family-disjoint evaluation, coverage is zero for both representations at $\epsilon=5000$, while violations remain 0.1515 and 0.1682.  The terminal is \texttt{CERTIFICATE\_INVALID}.
+
+This refutes the proposed structural bridge on its frozen subject.  It does not refute empirical nearest-neighbour prediction; it prevents that predictor from being labelled an exact unseen-state certificate.
+
+\section{Authority calculus}
+
+We distinguish four evidence classes.
+
+\begin{definition}[Complete-fibre proof]
+The state denominator is complete and every cost, action, representation value, and acquisition charge is part of the declared finite subject.  Theorems in Sections 2--5 have this authority.
+\end{definition}
+
+\begin{definition}[Marginal statistical validity]
+A score or interval has a registered finite-sample marginal guarantee under exchangeability.  This does not imply validity conditional on being routed, family-shift validity, or deterministic fibre safety.
+\end{definition}
+
+\begin{definition}[Conditional route validity]
+The deployed joint policy, including observation, compatibility, acquisition timing, and fallback, is itself certified on the routed subset.  Neither a learned-arm certificate nor separate arm marginals imply this class.
+\end{definition}
+
+\begin{definition}[Empirical selector performance]
+A frozen estimator is evaluated on held-out data without being promoted into an exact certificate.  Nearest-neighbour and learned algorithm-selection baselines belong here unless a separate structural theorem applies.
+\end{definition}
+
+A result may be strong in one class and absent in another.  Complete-corpus exactness does not imply induction; marginal calibration does not imply decision value; empirical success does not imply deterministic safety.
+
+\section{Relation to prior work}
+
+The algorithm-selection problem and portfolio methodology are classical \citep{rice1976algorithm,xu2008satzilla,hutter2014runtime,bischl2016aslib}.  Static and adaptive feature acquisition, optimal decision trees, and budgeted prediction are established fields \citep{hyafil1976decision,janisch2019classification}.  Selective prediction and learning to defer study abstention and fallback decisions \citep{geifman2017selective,madras2018defer}.  Conformal methods provide finite-sample marginal coverage under exchangeability, while conditional coverage and shift require additional care \citep{vovk2005algorithmic,angelopoulos2024crc}.  Set cover and its approximation theory are classical \citep{karp1972reducibility,chvatal1979greedy}.
+
+We do not claim these mechanisms.  The paper-specific residual is the exact representation-fibre action-regret object, common-oracle state-dependent acquisition accounting, small fibre witnesses, exact legal joint-route profiles, and the theorem/evidence boundary demonstrated by prospectively frozen adverse studies.
+
+\section{Limitations and falsifiability}
+
+The finite theory assumes complete declared subjects and finite registered costs.  Timeouts and crashes require a prospectively fixed penalty or a separate resource-incomparable terminal.  The adaptive profile set can be exponentially large.  Randomized guarantees are expected-loss, not pathwise safety.  The empirical corpora do not establish production prevalence.  The neighbourhood result invalidates one frozen structural law, not every possible domain theorem.
+
+The story is falsifiable in two directions.  A valid external structural law could convert a representation neighbourhood into a genuine unseen-state bound.  A legal R19 joint-profile application could produce selective value where R18 marginals did not.  Either result must be frozen before target outcomes, preserve adverse denominators, and retain a comparator with the same information and cost.
+
+\section{Reproducibility and claim boundary}
+
+The repository binds protocols, source revisions, exact result digests, negative terminals, and authority ceilings.  The complete R18 recovery result is durably retained; the R19 replacement theorem has a byte-stable verifier; the neighbourhood refutation was executed prospectively on LUNARC and is undergoing cross-host replay.  Same-owner CI and finite re-execution are implementation corroboration, not external peer review.
+
+The strongest supported statement is:
+
+\begin{quote}
+Exact finite representation fibres support small, model-independent decision certificates under one common statewise oracle.  Those certificates are closed-world objects.  In prospectively frozen solver-selection studies, exact equality, one-sided rejection, paired marginal routing, and a naive neighbourhood transfer law fail to produce a valid inductive certificate.  The failures are explained by an exact joint-route theorem identifying the missing policy language, observation, compatibility, and acquisition-timing structure.
+\end{quote}
+
+The manuscript does not claim universal failure of learned algorithm selection, universal benefit from feature acquisition, deterministic unseen-state safety, production deployment value, external novelty adjudication, or journal acceptance.
+
+\bibliographystyle{plainnat}
+\bibliography{REFERENCES_R20}
+\end{document}
