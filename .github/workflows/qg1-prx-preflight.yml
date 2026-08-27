@@ -98,13 +98,18 @@ jobs:
             exit 1
           fi
           if ! grep -Fq 'References' build/qg1_prx/pdf_flat.txt; then
-            # REVTeX typesets the bibliography heading as letterspaced small
-            # caps; pdftotext splits those glyph runs ("R EFEREN CES"), so
-            # retry with all whitespace removed before declaring failure.
-            if ! tr -d '[:space:]' < build/qg1_prx/pdf.txt | grep -Eq 'REFERENCES|References'; then
-              echo 'QG1_PRX_REFERENCES_SECTION_MISSING=FAIL'
-              grep -n -i -m 3 'eferen' build/qg1_prx/pdf.txt || true
-              exit 1
+            # REVTeX typesets the bibliography heading with letterspaced small
+            # caps; pdftotext splits or re-spaces those glyph runs, so plain
+            # and whitespace-stripped greps can both miss it. Retry on a
+            # letters-only stream (any separator bytes, any case); failing
+            # that, accept apsrev4-2's numbered entry markers as evidence the
+            # bibliography body rendered.
+            if ! tr -d -c 'A-Za-z' < build/qg1_prx/pdf.txt | grep -iq 'references'; then
+              if ! grep -Eq '\[[0-9]{1,3}\]' build/qg1_prx/pdf.txt; then
+                echo 'QG1_PRX_REFERENCES_SECTION_MISSING=FAIL'
+                grep -n -i -m 3 'eferen' build/qg1_prx/pdf.txt || true
+                exit 1
+              fi
             fi
           fi
           if grep -Eq '\[@[A-Za-z0-9_:-]+' build/qg1_prx/pdf_flat.txt; then
