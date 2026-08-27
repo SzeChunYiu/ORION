@@ -106,6 +106,17 @@ def rename_only(old: bytes, new: bytes, pairs: list[tuple[str, str]]) -> bool:
         return False
     if old_text == new_text:
         return True
+
+    def _collapse(text: str) -> str:
+        for old_name, new_name in pairs:
+            text = text.replace(old_name, new_name)
+        return re.sub(r"(?:ORION-)+(ORION-\d+)", r"\1", text)
+
+    # Fast path: whole-file rename equality. Only fall back to the line-by-line
+    # comparison when this fails -- difflib over every R0-touched file is minutes.
+    if _collapse(old_text) == _collapse(new_text):
+        return True
+
     import difflib
 
     changed_old: list[str] = []
@@ -120,6 +131,13 @@ def rename_only(old: bytes, new: bytes, pairs: list[tuple[str, str]]) -> bool:
         elif line.startswith("+"):
             changed_new.append(line[1:])
     if len(changed_old) != len(changed_new):
+        return False
+    # The whole-file fast path above already accepts anything a rename explains.
+    # Reaching here with a large diff means the collapse did not reconcile it,
+    # and comparing thousands of lines through 70 replacements each is slow for
+    # an answer that is almost certainly "refuse". Refusing is the safe
+    # direction, so cap it rather than grind.
+    if len(changed_old) > 200:
         return False
 
     def collapse(text: str) -> str:
