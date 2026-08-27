@@ -73,7 +73,7 @@ def run(
 ) -> dict[str, Any]:
     v3_freeze = v4.load_and_validate_freeze(v3_freeze_path)
     parent = v3_freeze["parent_v2"]
-    if v4.git_blob_sha1(v2_freeze_path) != parent["git_blob_sha"]:
+    if not v4.parent_v2_blob_is_bound(parent, v4.git_blob_sha1(v2_freeze_path)):
         raise ValueError("V3 execution is not bound to the exact frozen V2 parent blob")
     receipt = _validate_v3_transport_bundle(
         transport_probe_path, transport_response_path, v3_freeze
