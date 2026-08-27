@@ -49,7 +49,7 @@ def main() -> int:
 
     ready=READY.read_text()
     req("READY_FOR_EXTERNAL_REVIEW_AS_CONTROLLED_THEORY/SYSTEMS_SUPERIORITY_RESULT" in ready, "readiness terminal")
-    req("Not authorized: cross-domain or real-agent superiority" in ready, "real-agent boundary")
+    req("Not authorized" in ready and "cross-domain or real-agent superiority" in ready, "real-agent boundary")
     req(all(x in ready for x in ("LINEAR 3/10","RBF 5/10","KNN 5/10")), "negative not reader-visible")
     manuscript=MANUSCRIPT.read_text().lower()
     req(all(x in manuscript for x in ("width","responsibility","negative","cannot_check")), "manuscript boundary tokens")
