@@ -1,0 +1,92 @@
+name: FiberGuard R20 BNSL adaptive
+
+on:
+  push:
+    branches:
+      - chatgpt/c-r20-bnsl-adaptive-20260827
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/FIBERGUARD_BNSL_ADAPTIVE_R20_PROTOCOL.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/fiberguard_bnsl_adaptive_r20.py'
+      - '.github/workflows/fiberguard-r20-bnsl-adaptive.yml'
+  pull_request:
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/FIBERGUARD_BNSL_ADAPTIVE_R20_PROTOCOL.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/fiberguard_bnsl_adaptive_r20.py'
+      - '.github/workflows/fiberguard-r20-bnsl-adaptive.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-bnsl-adaptive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen parser dependency
+        run: python -m pip install 'PyYAML==6.0.2'
+      - name: Materialize exact untouched BNSL subject
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="$RUNNER_TEMP/aslib_data"
+          git init "$root"
+          git -C "$root" remote add origin https://github.com/coseal/aslib_data.git
+          git -C "$root" config core.sparseCheckout true
+          printf '/BNSL-2016/\n' > "$root/.git/info/sparse-checkout"
+          git -C "$root" fetch --depth 1 origin 551b22beef8df17de59286b4822ef720e0aa4d6f
+          git -C "$root" checkout --detach FETCH_HEAD
+          test "$(git -C "$root" rev-parse HEAD)" = '551b22beef8df17de59286b4822ef720e0aa4d6f'
+      - name: Run frozen experiment twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          script='papers/orion-02-fiberguard-finite-fibre/fiberguard_bnsl_adaptive_r20.py'
+          root="$RUNNER_TEMP/aslib_data"
+          python "$script" --aslib-root "$root" --output "$RUNNER_TEMP/result-a.json" | tee "$RUNNER_TEMP/terminal-a.txt"
+          python "$script" --aslib-root "$root" --output "$RUNNER_TEMP/result-b.json" > "$RUNNER_TEMP/terminal-b.txt"
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+      - name: Verify controls and authority ceiling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          p = Path(os.environ['RUNNER_TEMP']) / 'result-a.json'
+          r = json.loads(p.read_text())
+          allowed = {
+              'C_R20_BNSL_ADAPTIVE_MATERIAL_VALUE',
+              'C_R20_BNSL_ADAPTIVE_STRICT_VALUE',
+              'C_R20_BNSL_ADAPTIVE_NULL',
+              'C_R20_BNSL_ADAPTIVE_ADVERSE',
+          }
+          assert r['schema'] == 'ORION.FiberGuard.BNSLAdaptive.R20.v1'
+          assert r['terminal'] in allowed
+          assert r['upstream']['commit'] == '551b22beef8df17de59286b4822ef720e0aa4d6f'
+          assert r['upstream']['scenario'] == 'BNSL-2016'
+          assert all(r['controls'].values())
+          assert r['authority']['prospectively_frozen_before_solver_outcome_access'] is True
+          assert r['authority']['unseen_instance_generalization'] is False
+          assert r['authority']['grants_journal_authority'] is False
+          print('FIBERGUARD_R20_BNSL_RESULT_VERIFIED', r['terminal'])
+          PY
+      - name: Stage immutable execution artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/fiberguard-r20-bnsl"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/FIBERGUARD_BNSL_ADAPTIVE_R20_RESULTS.json"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fiberguard-r20-bnsl-adaptive
+          path: ${{ runner.temp }}/fiberguard-r20-bnsl/
+          if-no-files-found: error
+          retention-days: 30
