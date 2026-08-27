@@ -66,12 +66,25 @@ def validate_entry(repo: Path, entry: dict[str, Any]) -> None:
 
     source = entry["source"]
     if source["kind"] == "git":
-        source_payload = git(
-            repo, "show", f"{source['commit']}:{source['path']}", binary=True
+        # The Git blob OID is a content hash, so it remains verifiable after a
+        # historical donor branch is closed and its commit is no longer fetched
+        # into a shallow/restricted checkout.
+        destination_blob = git(repo, "hash-object", entry["destination"])
+        require(
+            str(destination_blob).strip() == source["blob"],
+            f"donor blob drift: {entry['destination']}",
         )
-        require(source_payload == payload, f"donor byte drift: {entry['destination']}")
-        blob = git(repo, "rev-parse", f"{source['commit']}:{source['path']}")
-        require(str(blob).strip() == source["blob"], f"donor blob drift: {entry['destination']}")
+        try:
+            source_payload = git(
+                repo, "show", f"{source['commit']}:{source['path']}", binary=True
+            )
+        except subprocess.CalledProcessError:
+            require(
+                source.get("object_required_in_checkout") is False,
+                f"required donor object unavailable: {entry['destination']}",
+            )
+        else:
+            require(source_payload == payload, f"donor byte drift: {entry['destination']}")
     elif source["kind"] == "github_actions_artifact":
         require(source["run"] > 0 and source["artifact_id"] > 0, "artifact identity absent")
     elif source["kind"] == "convergence_generated":
