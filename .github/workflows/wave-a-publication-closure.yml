@@ -1,0 +1,56 @@
+name: wave-a-publication-closure
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'papers/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/WAVE_A_PUBLICATION_CLOSURE_MANIFEST_V1.json'
+      - 'papers/check_wave_a_publication_closure.py'
+      - 'papers/orion-05-tare-expressivity/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/orion-09-compilation-regime-geometry/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/orion-10-certified-static-forecasting/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/orion-14-verified-scientific-discovery/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/orion-17-epistemic-navigation-open-worlds/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/orion-19-structured-epistemic-learning/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/orion-22-adaptive-state-reasoning/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/orion-23-responsibility-carrying-state/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - '.github/workflows/wave-a-publication-closure.yml'
+  push:
+    branches:
+      - chatgpt/orion-publication-closure-wave-a-20260827
+    paths:
+      - 'papers/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/WAVE_A_PUBLICATION_CLOSURE_MANIFEST_V1.json'
+      - 'papers/check_wave_a_publication_closure.py'
+      - 'papers/orion-*/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - '.github/workflows/wave-a-publication-closure.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wave-a-publication-closure-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Compile checker
+        run: python -m py_compile papers/check_wave_a_publication_closure.py
+
+      - name: Validate frozen Wave-A structure
+        run: python papers/check_wave_a_publication_closure.py --root "$GITHUB_WORKSPACE" --json
+
+      - name: Verify patch hygiene
+        run: git diff --check
