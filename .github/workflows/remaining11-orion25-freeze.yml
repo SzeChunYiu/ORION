@@ -51,10 +51,10 @@ jobs:
           python papers/orion-25-orion-research-harness/top_tier/run_attestation_composition_v2.py > p15_attestation_composition_v2_rerun.json
           cmp p15_attestation_composition_v2.json p15_attestation_composition_v2_rerun.json
           python papers/orion-25-orion-research-harness/top_tier/check_attestation_composition_independent_v2.py p15_attestation_composition_v2.json > "$RUNNER_TEMP/attestation-independent.json"
-          python - <<'PY'
-          import json
+          python - "$RUNNER_TEMP/attestation-independent.json" <<'PY'
+          import json, sys
           p=json.load(open('p15_attestation_composition_v2.json'))
-          q=json.load(open("${RUNNER_TEMP}/attestation-independent.json"))
+          q=json.load(open(sys.argv[1]))
           assert p['terminal']=='P15_ATTESTATION_COMPOSITION_V2_SUPPORTED'
           assert q['terminal']=='P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN'
           assert p['case_count']==22 and p['chain_plus_sei_gold_agreement_count']==22
