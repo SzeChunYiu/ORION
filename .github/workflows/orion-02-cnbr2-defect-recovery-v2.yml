@@ -184,18 +184,20 @@ jobs:
             cmp "$RUNNER_TEMP/result-a.json" "$registered"
             cmp "$RUNNER_TEMP/result-a.md" "$registered_md"
             cmp "$RUNNER_TEMP/terminal-a.txt" "$terminal"
-            python - <<'PY'
-            import hashlib,json,os
-            from pathlib import Path
-            root=Path('papers/orion-02-fiberguard-finite-fibre/experiments/results')
-            custody=json.loads((root/'CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_CUSTODY_V2.json').read_text())
-            assert custody['recovery_subject']==os.environ['CNBR2_RECOVERY_SUBJECT']
-            observed=hashlib.sha256((root/'CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json').read_bytes()).hexdigest()
-            assert custody['recovery_result_sha256']==observed
-            assert custody['authority']['journal_authority'] is False
-            print('C_NBR2_DURABLE_RECOVERY_BYTES_VERIFIED')
-            PY
           fi
+          python - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          root=Path('papers/orion-02-fiberguard-finite-fibre/experiments/results')
+          custody_path=root/'CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_CUSTODY_V2.json'
+          if custody_path.exists():
+              custody=json.loads(custody_path.read_text())
+              assert custody['recovery_subject']==os.environ['CNBR2_RECOVERY_SUBJECT']
+              observed=hashlib.sha256((root/'CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json').read_bytes()).hexdigest()
+              assert custody['recovery_result_sha256']==observed
+              assert custody['authority']['journal_authority'] is False
+              print('C_NBR2_DURABLE_RECOVERY_BYTES_VERIFIED')
+          PY
 
       - name: Restore tracked provenance and check hygiene
         shell: bash
