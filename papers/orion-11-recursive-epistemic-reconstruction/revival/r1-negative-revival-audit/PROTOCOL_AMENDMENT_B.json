@@ -1,0 +1,22 @@
+{
+  "accessed_output_boundary": "FAIL_CLOSED_MANIFEST_ERROR_ONLY__V8_RIGHTS_REGISTRY_DIGEST_DRIFT__NO_NEW_SCIENTIFIC_RESULT",
+  "allowed_input_replacement": {
+    "authoritative_archived_source_commit": "6474c52149393230a91ecd655010305f4959c801",
+    "corrected_sha256": "c767767bfe2403573a6b52a7c3dc910e3bc1458a3fb4f8efda1e6bba4568121f",
+    "drift_introducing_commit": "3a1a831786324261ac18a7ad20620f105136b58e",
+    "manifest_expected_sha256": "c767767bfe2403573a6b52a7c3dc910e3bc1458a3fb4f8efda1e6bba4568121f",
+    "old_sha256": "3780f558d113cd69786249fea44ffb083c901f1e925c01b0b669422b0163bbe3",
+    "path": "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_RIGHTS_REGISTRY.json"
+  },
+  "amendment_id": "ORION-11.NEGATIVE-REVIVAL.R1.AMENDMENT-B",
+  "audit_output_accessed_before_amendment": true,
+  "base_protocol_sha256": "f9bec051606e761bdd2577c6e5bcea3f084fde715ba67f6041b17659fa01d08c",
+  "claim_boundary": "IDENTITY_REPAIR_ONLY__RESTORE_FROZEN_V8_RIGHTS_REGISTRY__NO_MAP_DISPOSITION_CHANGE__NO_SCIENTIFIC_PROMOTION__NO_FREEZE_AUTHORITY",
+  "frozen_at_utc": "2026-08-27T23:15:10.991535+00:00",
+  "outcome_files_changed": [],
+  "prior_amendment_sha256": "59c76714000c04558888ded8d2cf281b31abede7c25ebad64936d707ae54b387",
+  "reason": "The corrected audit stopped before adapter enumeration because namespace-unification commit 3a1a8317 rewrote paper paths inside the frozen V8 rights registry without regenerating its SHA256SUMS. The registry describes the pinned 390267 tree, where the original paths are the correct historical facts. Restore the exact manifest-bound bytes from the V8 integration commit; no adapter status, map, semantic field, outcome, or result changes.",
+  "schema_version": "orion.orion11.negative-revival-audit-protocol-amendment.v1",
+  "scientific_fields_changed": [],
+  "status": "FROZEN_BEFORE_SECOND_CORRECTED_AUDIT_REEXECUTION"
+}
