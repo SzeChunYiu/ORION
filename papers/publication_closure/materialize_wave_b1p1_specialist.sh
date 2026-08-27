@@ -98,7 +98,19 @@ assert all(c['required_concordance'].values())
 print('ORION11_POWERED_PRIMARY_REPLICATION=PASS')
 PY
 assert_text papers/orion-11-recursive-epistemic-reconstruction/JOURNAL_READINESS.md 'The bounded mechanical claim is `SUPPORTED`'
-assert_text papers/orion-11-recursive-epistemic-reconstruction/JOURNAL_READINESS.md 'one frozen generator'
+python - <<'PY'
+import pathlib, re
+p=pathlib.Path('papers/orion-11-recursive-epistemic-reconstruction/JOURNAL_READINESS.md')
+text=p.read_text(encoding='utf-8')
+required=(
+    r'runs\s+of\s+a\s+frozen\s+generator',
+    r'model-general,\s*naturalistic,\s*and\s*open-ended\s+superiority\s+are\s+not\s+claimed',
+    r'not\s+2,882\s+independent\s+observations\s+of\s+scientific\s+practice',
+)
+missing=[pattern for pattern in required if re.search(pattern,text,re.I|re.S) is None]
+assert not missing, missing
+print('ORION11_GENERATOR_SCOPE_BOUNDARY=PASS')
+PY
 work="$(build_scratch_pdf papers/orion-11-recursive-epistemic-reconstruction orion11)"
 out='papers/publication_closure/submissions/ORION-11/JAIR'
 rm -rf "$out" && mkdir -p "$out/source"
