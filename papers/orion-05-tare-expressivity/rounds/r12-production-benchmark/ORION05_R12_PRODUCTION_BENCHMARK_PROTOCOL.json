@@ -1,0 +1,149 @@
+{
+  "base_commit": "27ea5e1b04dbed853b7ddba60c8bf736ef087bf5",
+  "date": "2026-08-27",
+  "decision_rule": {
+    "cannot_check": "a source/subject binding fails, the unrestricted referee times out, an exact-objective mismatch remains after one frozen rerun, or a witness fails independent verification",
+    "null": "preconditions hold but the positive rule fails, including any support-two full-subject timeout",
+    "positive": "support-two completes every full-subject cell and has at least 25 percent improvement in median wall, CPU, or peak RSS over the unrestricted referee across the six full cells, while no other resource median is more than 10 percent worse and witness-verification median is no more than 10 percent worse",
+    "preconditions": [
+      "all source hashes match",
+      "all subject target reconstructions are consistent",
+      "unrestricted referee completes every full-subject cell",
+      "all cells completed by both algorithms have equal exact objective and valid witnesses"
+    ],
+    "terminals": {
+      "cannot_check": "ORION05_R12_CANNOT_CHECK_MATCHED_PRODUCTION_VALUE",
+      "null": "ORION05_R12_EXACT_BUT_NO_PRODUCTION_VALUE",
+      "positive": "ORION05_R12_PRODUCTION_EXACT_SEARCH_VALUE_PASS"
+    }
+  },
+  "execution": {
+    "parallelism": "algorithms/cells may run concurrently but every measured solver attempt is a fresh single-process child with one logical CPU",
+    "primary_site": "LUNARC hep CPU partition",
+    "receipt_rule": "raw per-attempt JSONL plus deterministic aggregate; never rewrite timeout or adverse rows",
+    "required_numpy": "record exact installed version in receipt",
+    "required_python": "3.11 or newer"
+  },
+  "forbidden_inferences": [
+    "generic TARE complexity",
+    "physical or fault-tolerant resource value",
+    "production compiler advantage outside frozen R6M",
+    "novelty",
+    "external independence",
+    "journal authority",
+    "submission readiness"
+  ],
+  "matched_semantics": {
+    "coefficients": "not used by either exact structural objective",
+    "matching_scope": "one predeclared matching per cell; no post-outcome matching selection",
+    "objective": "frozen C_R6M structural support objective including three frames, one common Tag, four relative target orders, eight central choices and Restore factoring",
+    "support_two_search": "complete ordered support-at-most-two anticommuting-pair cube",
+    "unrestricted_search": "complete arbitrary-frame/tag 512-state XOR DP"
+  },
+  "measures": [
+    "exact objective value",
+    "witness validity",
+    "planned exact search states/nodes",
+    "wall nanoseconds",
+    "CPU nanoseconds",
+    "peak RSS KiB",
+    "separate witness verification nanoseconds",
+    "completion or timeout"
+  ],
+  "panel": {
+    "completed_cell_repeats": 3,
+    "correctness_panel": [
+      1,
+      2
+    ],
+    "matching_indices": [
+      0,
+      7,
+      14
+    ],
+    "matching_order": "the canonical lexicographic perfect-matchings order already frozen by R6M",
+    "per_attempt_timeout_seconds": 120,
+    "projection_qubits": [
+      1,
+      2,
+      3,
+      "FULL_SUBJECT"
+    ],
+    "projection_rule": "retain least-significant q Pauli coordinates; FULL_SUBJECT retains all coordinates",
+    "scale_panel": [
+      3,
+      "FULL_SUBJECT"
+    ],
+    "timeout_cell_repeats": 1,
+    "warmup": "one import/local-table warmup outside measured child attempts; never reuse outcome-dependent state across algorithms"
+  },
+  "paper_id": "ORION-05",
+  "protected_task3_touched": false,
+  "question": "Does the established support-at-most-two exact solver provide measured production exact-search value against the frozen unrestricted 512-state R6M referee under identical objective and completeness?",
+  "round": 2,
+  "round_accounting": {
+    "after_any_valid_terminal": {
+      "consumed": 2,
+      "maximum": 3
+    },
+    "before": {
+      "consumed": 1,
+      "maximum": 3
+    }
+  },
+  "schema": "ORION.ORION05.R12.ProductionBenchmarkProtocol.v1",
+  "source_bindings": {
+    "production_subject_receipt": {
+      "bytes": 412620,
+      "path": "research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json",
+      "sha256": "5f182cd6fc66d3e1a748c1ee407b020011bb40dad045ab22b0d4f1db094fcb28"
+    },
+    "round1_equivalence_verifier": {
+      "bytes": 53484,
+      "path": "papers/orion-05-tare-expressivity/orion05_r11_sparse_equivalence_verify.py",
+      "sha256": "c627942a21a95480246755ac95b194be3fbf20ce9b4a5b99c941f9abbe72ac07"
+    },
+    "support_two_solver": {
+      "bytes": 30528,
+      "path": "papers/orion-05-tare-expressivity/orion05_r11_sparse_direct_solver.py",
+      "sha256": "642cc67a280abb2ca06089ae01510040f1f598ec638d525ddcc29fae8c6b25d3"
+    },
+    "unrestricted_protocol": {
+      "bytes": 7484,
+      "path": "development/orion-q-max-r0/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_PROTOCOL.md",
+      "sha256": "33465bd585f09a8d936aaa38d90beb4916943f826eb970bfeced102eeac93986"
+    },
+    "unrestricted_referee": {
+      "bytes": 48401,
+      "path": "research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py",
+      "sha256": "7c6579db5f4afbc1738e8b3d96aa3730023bc3831d1fc4950ab34e071c0e3d90"
+    }
+  },
+  "status": "FROZEN_BEFORE_OUTCOME",
+  "subjects": {
+    "H4": {
+      "n_qubits": 8,
+      "source_blob": "b98792b1055dbac0ebf2a7576f72412e3e4ac6c5",
+      "source_indices": [
+        12,
+        18,
+        22,
+        25,
+        27,
+        31
+      ]
+    },
+    "N2": {
+      "n_qubits": 12,
+      "source_blob": "15369e8e886efbb3d32f3b2dfe2cfbb96ddebeba",
+      "source_indices": [
+        0,
+        7,
+        11,
+        24,
+        31,
+        32
+      ]
+    }
+  }
+}
