@@ -519,7 +519,7 @@ def verify_and_load_corpus(subject_repo: Path, freeze: list[dict[str, Any]]) -> 
     for row in freeze:
         name = row["dataset"]
         tsv = datasets_dir / name / f"{name}.tsv.gz"
-        meta_path = datasets_dir / name / f"{name}.metadata.yaml"
+        meta_path = datasets_dir / name / "metadata.yaml"
         for p in (tsv, meta_path):
             if not p.is_file():
                 raise ValueError(f"missing frozen artifact: {p}")
