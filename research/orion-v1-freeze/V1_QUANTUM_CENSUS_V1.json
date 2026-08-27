@@ -1305,7 +1305,7 @@
     },
     {
       "issue": 937,
-      "title": "[ORION-QG] unbound outcome receipt (protected-run claim without artifact binding)",
+      "title": "[ORION-QG QG-37] One-corruption-resilient indexed probe identification",
       "lane": "ORION-QG protected-run bookkeeping",
       "scope_reason": "quantum protected-run receipt integrity; primary subject",
       "disposition": "ATOMIC_AUDIT_CONTENT_BOUND",
@@ -1343,7 +1343,7 @@
             }
           ],
           "in_tree_digest_pins": [
-            "development/orion-qg-regime-geometry/qg37c_replication_closure.py",
+            "research/extensions/orion-qg/qg37c_replication_closure.py",
             "development/orion-qg-regime-geometry/QG37C_REPLICATION_CLOSURE_PROTOCOL_V1.md"
           ],
           "delivery_prs": [
@@ -1780,8 +1780,8 @@
       "title": "[Q1] external resource/access blocker lane",
       "lane": "Q-paper/Q1",
       "scope_reason": "title [Q1]; Q1 receipt bound lane",
-      "disposition": "COORDINATION_CONTROL",
-      "issue_terminal": "EXTERNAL_AUTHORITY_OR_ACCESS_BLOCKER",
+      "disposition": "FROZEN_EXECUTION_SUCCESSOR",
+      "issue_terminal": "EXECUTION_PENDING_FRESH_FREEZE",
       "has_merged_material_result": false,
       "evidence": [
         {
@@ -1805,7 +1805,7 @@
         "transfer": "NONE",
         "novelty": "CANNOT_CHECK"
       },
-      "notes": "External blocker is the terminal state; nothing actionable inside the freeze."
+      "notes": "RECONCILED 2026-08-27 with the disposition ledger (FROZEN_EXECUTION_SUCCESSOR): the issue body mandates executable successor lanes (independent proof review, clean-room reconstruction, production-resource map; PRs #1446-#1449) rather than an external-access blocker; external validation itself remains CANNOT_CHECK at the freeze ceiling."
     },
     {
       "issue": 1409,
@@ -1920,8 +1920,8 @@
       "title": "[Q1] external validation blocker",
       "lane": "Q-paper/Q1 external validation",
       "scope_reason": "title [Q1]",
-      "disposition": "COORDINATION_CONTROL",
-      "issue_terminal": "EXTERNAL_AUTHORITY_OR_ACCESS_BLOCKER",
+      "disposition": "FROZEN_EXECUTION_SUCCESSOR",
+      "issue_terminal": "EXECUTION_PENDING_FRESH_FREEZE",
       "has_merged_material_result": false,
       "evidence": [
         {
@@ -1945,7 +1945,7 @@
         "transfer": "NONE",
         "novelty": "CANNOT_CHECK (external novelty validation = the blocked item itself)"
       },
-      "notes": "Aligned with the freeze ceiling: external authority is out of scope by contract."
+      "notes": "RECONCILED 2026-08-27 with the disposition ledger (FROZEN_EXECUTION_SUCCESSOR): the body defines in-repo execution lanes Q1-A..Q1-D (reconstruction, finite attack, resource map, independent reviewer); external authority stays CANNOT_CHECK by contract."
     },
     {
       "issue": 1359,
@@ -2079,8 +2079,8 @@
   "summary": {
     "scoped_issues": 56,
     "per_disposition": {
-      "COORDINATION_CONTROL": 43,
-      "FROZEN_EXECUTION_SUCCESSOR": 9,
+      "COORDINATION_CONTROL": 41,
+      "FROZEN_EXECUTION_SUCCESSOR": 11,
       "LOCAL_REPAIR": 3,
       "PENDING_ATOMIC_AUDIT": 0,
       "ATOMIC_AUDIT_CONTENT_BOUND": 1
@@ -2089,12 +2089,12 @@
       "COMPUTATIONALLY_GREEN_BOUNDED": 23,
       "VALID_NEGATIVE_OR_BOUNDARY_RESULT": 15,
       "COUNTEREXAMPLE": 1,
-      "EXECUTION_PENDING_FRESH_FREEZE": 8,
+      "EXECUTION_PENDING_FRESH_FREEZE": 10,
       "DUPLICATE_OR_SUBSUMED": 1,
       "ENGINEERING_CLOSED": 1,
       "CANNOT_CHECK": 0,
       "ISSUE_RESULT_IDENTITY_AMBIGUOUS": 2,
-      "EXTERNAL_AUTHORITY_OR_ACCESS_BLOCKER": 2,
+      "EXTERNAL_AUTHORITY_OR_ACCESS_BLOCKER": 0,
       "COORDINATION_BOUND": 2,
       "PAPER_CANDIDATE_BLOCKED": 1
     },
@@ -2130,7 +2130,7 @@
     },
     "authority_remaining_global": {
       "theorem": "machine-checked scoped positives for the QG ladder/router lanes and bounded negatives elsewhere; ALL bounded to frozen grammars (R6I/Q/QN); no all-family theorem, no minimality theorem",
-      "implementation": "ORION-QN protocols + dual-harness (generic/native) verification code merged on main; three QG result-file integrity items carry residual defects (#927 open, #1034 unrepaired, #937 unbound)",
+      "implementation": "ORION-QN protocols + dual-harness (generic/native) verification code merged on main; three QG result-file integrity items tracked to current state (#1034 unrepaired; #927 repaired-and-closed via #941; #937 content-bound)",
       "physical_quantum_validity": "CANNOT_CHECK everywhere (freeze ceiling); the literal QG-11 FT-hardware lift and QG-11D architecture-conditioned lane remain unexecuted by design",
       "resource": "partial: QG-21 certificate-margin map only, with TRUE_PHASE_BOUNDARY=false and the Q1-C PARTIAL_RESOURCE_MAP adverse cross-check (18/90) unmerged on draft PR #1449; QG-7f honest resource audit never executed; S1A/Q0-Q1 resource accounting absent",
       "transfer": "MAX-R4EA/B0/B1 + QG-40/41/42 cross-compiler transfer = computation-only, interpretation weakened to generic fact by the retraction; DISC-Q-TRANSFER-01 merged as a NEGATIVE (advantage does not survive transfer)",
@@ -2149,21 +2149,20 @@
         897,
         907,
         980,
+        1389,
         1409,
         1416,
-        1418
+        1418,
+        1427
       ],
-      "PENDING_ATOMIC_AUDIT": [
-        937
-      ]
+      "PENDING_ATOMIC_AUDIT": []
     },
     "identity_ambiguous": [
       1034,
-      1306,
       1418
     ],
     "identity_ambiguous_detail": [
-      "#1306: issue body names research/orion-discovery-v2/ORION_Q_STRUCTURAL_DONOR_AUDIT_V1.md + Q_STRUCTURAL_DONOR_MAP_V1.json as canonical; both absent from frozen base AND origin/main; the merged material result is PR #1327 (675fcde4fd5) delivering six different files under exec/DISC-Q-TRANSFER-01/",
+      "#1306: issue body names research/orion-discovery-v2/ORION_Q_STRUCTURAL_DONOR_AUDIT_V1.md + Q_STRUCTURAL_DONOR_MAP_V1.json as canonical; both absent from frozen base AND origin/main; the merged material result is PR #1327 (675fcde4fd5) delivering six different files under research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/ (RESOLVED 2026-08-27: that path holds exactly the six delivered files at origin/main, so the merged result identity is bound; removed from identity_ambiguous)",
       "#1418: papers/Q-paper-01-tare-expressivity/Q1_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md named in the lane is absent from both trees; evidence lives only on OPEN PRs #1446/#1448 and off-main branch chatgpt/r12-manuscript-science-audit-20260826-d",
       "#1034: committed QG result file carries two welded identities at both trees (unrepaired defect, not a naming divergence)"
     ],

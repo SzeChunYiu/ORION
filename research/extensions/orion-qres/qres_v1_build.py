@@ -650,8 +650,9 @@ DONOR_TABLE += [
         "QR-D20",
         "Unbound outcome receipt + committed-file identity defect",
         [937, 1034],
-        ("Protected-run outcome receipt without artifact (pending atomic "
-         "audit); dual-welded identity defect on a committed result file."),
+        ("Protected-run outcome receipt that stayed unbound until the "
+         "2026-08-26 amendment (ATOMIC_AUDIT_CONTENT_BOUND); dual-welded "
+         "identity defect on a committed result file."),
         ("Outcome receipts claimed to certify protected-run results without "
          "the underlying artifact or with a defective file identity."),
         ["verification", "recovery"],
@@ -659,11 +660,13 @@ DONOR_TABLE += [
          "be re-verified from the tree, and a dual-welded identity defeats "
          "content-hash binding."),
         "VERIFICATION_COST_UNBOUND",
-        ("Verification of the claimed outcomes is unbound: #937's receipt has "
-         "no artifact (pending atomic audit) and #1034's committed file "
-         "carries a dual identity defect (LOCAL_REPAIR lane open). Both are "
-         "first-class negatives: the verification resource required to "
-         "certify these claims exceeds what the receipts declare."),
+        ("Verification of the claimed outcomes was unbound: #937's receipt "
+         "had no located artifact until the 2026-08-26 amendment bound it "
+         "via CI artifacts and in-tree digest pins (ATOMIC_AUDIT_CONTENT_"
+         "BOUND) and #1034's committed file carries a dual identity defect "
+         "(LOCAL_REPAIR lane open). Both are first-class negatives: the "
+         "verification resource required to certify these claims exceeds "
+         "what the receipts declare."),
         [],
         True,
         defect="#937 evidence rows have null paths; #1034 evidence is "
@@ -1577,12 +1580,14 @@ def build_results_md(primary, ledger, controls, defects):
     a("")
     a("## Residual open lanes (why the tranche stays open)")
     a("")
-    a("The census FROZEN_EXECUTION_SUCCESSOR / LOCAL_REPAIR / "
-      "PENDING_ATOMIC_AUDIT lanes remain open: "
-      "734, 743, 881, 897, 907, 980, 1409, 1416, 1418 (successors), "
-      "927, 1034, 1306 (local repair), 937 (pending atomic audit). "
-      "This job supplies the resource accounting those successors will be "
-      "charged against; it does not execute them.")
+    a("Census follow-up lanes, reconciled 2026-08-27 to the live issue "
+      "states: successors 734, 743, 881, 897, 907, 980, 1389, 1409, 1416, "
+      "1418, 1427 remain open; of the local-repair lane only 1034 is still "
+      "open and unrepaired — 927 is repaired-and-closed via #941 and 1306 "
+      "is closed/redirected; 937 is content-bound "
+      "(ATOMIC_AUDIT_CONTENT_BOUND; no issue remains pending atomic "
+      "audit). This job supplies the resource accounting those successors "
+      "will be charged against; it does not execute them.")
     a("")
     a("## Authority ceiling")
     a("")
@@ -1814,9 +1819,9 @@ def main():
         "paper_authority_delta": "NONE",
         "residual_open_lanes": {
             "FROZEN_EXECUTION_SUCCESSOR": [734, 743, 881, 897, 907, 980,
-                                           1409, 1416, 1418],
+                                           1389, 1409, 1416, 1418, 1427],
             "LOCAL_REPAIR": [927, 1034, 1306],
-            "PENDING_ATOMIC_AUDIT": [937],
+            "PENDING_ATOMIC_AUDIT": [],
         },
         "next_job": None,
         "next_job_note": ("no successor job is scheduled by this lane; the "
