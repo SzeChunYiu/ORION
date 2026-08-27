@@ -54,8 +54,7 @@ git clean -fdX \
   papers/orion-19-structured-epistemic-learning \
   papers/orion-22-adaptive-state-reasoning \
   papers/orion-23-responsibility-carrying-state || true
-python scripts/regen_paper_manifests.py \
-  --papers orion-19-structured-epistemic-learning,orion-22-adaptive-state-reasoning,orion-23-responsibility-carrying-state
+python scripts/regen_paper_manifests.py --papers orion-19,orion-22,orion-23
 
 git add \
   papers/orion-19-structured-epistemic-learning/CONTENT_MANIFEST_V1.json \
