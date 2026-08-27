@@ -63,6 +63,26 @@ def load_alias_pairs() -> list[tuple[str, str]]:
     return pairs
 
 
+def load_id_pairs() -> list[tuple[str, str]]:
+    """Short identity aliases (``P12`` -> ``ORION-22``), kept apart on purpose.
+
+    These must never go through the whole-file collapse: substituting ``P12``
+    everywhere also rewrites ``P12_ACTIVE_CLAIM_AUTHORITY``, a filename R0
+    deliberately kept, so the collapse disagrees with itself and refuses files
+    whose only change is naming. They are safe for the line-remainder check,
+    which strips both spellings from both sides and compares what is left.
+    """
+    block = re.search(r"```yaml\n(.*?)```", REGISTRY.read_text(encoding="utf-8"), re.S)
+    if block is None:
+        return []
+    import yaml
+
+    registry = yaml.safe_load(block.group(1))
+    return [
+        (entry["old"], entry["new"]) for entry in registry.get("id_aliases") or ()
+    ]
+
+
 _RENAME_MAP: dict[str, str] | None = None
 
 
@@ -147,7 +167,31 @@ def rename_only(old: bytes, new: bytes, pairs: list[tuple[str, str]]) -> bool:
         # prefix a naive replace can create never counts as a difference.
         return re.sub(r"(?:ORION-)+(ORION-\d+)", r"\1", text)
 
-    return all(collapse(a) == collapse(b) for a, b in zip(changed_old, changed_new))
+    if all(collapse(a) == collapse(b) for a, b in zip(changed_old, changed_new)):
+        return True
+
+    # collapse() rewrites every occurrence of a retired name, including the ones
+    # R0 deliberately kept -- ``P12_ACTIVE_CLAIM_AUTHORITY`` stayed ``P12_`` while
+    # the prose around it became ``ORION-22``. That makes collapse() disagree with
+    # itself and refuse a file whose only change is naming.
+    #
+    # So compare what is left of each line once every alias name, old and new, is
+    # removed. If the remainders match, the difference is confined to names. A
+    # changed number, verdict or word lives outside a name and survives stripping,
+    # so this cannot pass a content edit.
+    spellings: set[str] = set()
+    for old_name, new_name in list(pairs) + load_id_pairs():
+        spellings.add(old_name)
+        spellings.add(new_name)
+    # Longest first so ``P10`` is consumed before ``P1`` can eat its prefix.
+    names = sorted(spellings, key=len, reverse=True)
+
+    def strip_names(text: str) -> str:
+        for name in names:
+            text = text.replace(name, "\x00")
+        return text
+
+    return all(strip_names(a) == strip_names(b) for a, b in zip(changed_old, changed_new))
 
 
 def iter_bindings(node, out: list):
