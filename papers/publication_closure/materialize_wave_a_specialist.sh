@@ -9,10 +9,9 @@ git config user.name 'github-actions[bot]'
 git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
 # Freeze the exact scientific/control subject before any repository-side
-# materialization occurs. The Q/QG publication checker uses this only as the
-# branch-owned-mutation denominator; its historical chronology checks remain
-# bound to their original cuts. A second guard below verifies that no protected
-# science root changed during materialization.
+# materialization occurs. Wave-A's current-authority checker validates the
+# bounded quantum objects at this subject; the guard below then proves that no
+# protected science root changes during publication materialization.
 SCIENCE_BASE_COMMIT="$(git rev-parse HEAD)"
 export ORION_PUBLICATION_SCOPE_BASE="$SCIENCE_BASE_COMMIT"
 SCIENCE_ROOTS=(
@@ -37,7 +36,7 @@ assert_science_unchanged () {
 # 1. Fail closed on the current scientific/control surfaces.
 # ---------------------------------------------------------------------------
 python papers/check_wave_a_publication_closure.py --json
-python papers/check_q_qg_publication.py
+python papers/publication_closure/check_wave_a_quantum_authority.py
 python papers/check_q_qg_science_manifests.py
 python papers/build_q_qg_cited_masters.py --clean
 
