@@ -1,54 +1,26 @@
-# ORION-01 Round 2 development packet — pinned PyZX atomic checker registry
+# ORION-01 Round 2 successor development packet — pinned PyZX atomic checker registry
 
 Date: 2026-08-27
-Lane: `papers/orion-01-certificate-realization/experiments/round2-pyzx-atomic-checker-registry/`
+Lane: `development/orion-01-round2-atomic-registry-2026-08-27/`
 Branch: `claude/science-orion01-20260827`
-Round accounting: consumes ORION-01 Round 2 of at most 3.
+Authority: successor evidence only; `scientific_authority_delta: NONE`
 
-## Purpose
+## Purpose and revival lever
 
-Execute the #1507 immediate order 5 gate: try to establish the AB
-production-registry completeness gate by binding ONE real independently
-maintained production system (pinned PyZX `dade7d46`) at the granularity its
-own source exposes for manual targeting — official site-guarded rewrite
-primitives — then test whether certificate realization (exhaustive bounded
-minimum over the registry) predicts and controls production transformations
-better than the native heuristic (`full_reduce`) and a seeded generic search.
-
-## Root-cause revival (not a relabeling of Round 1)
-
-Round 1's adverse terminal was attributed to ONE stage: whole-macro batch
-guards whose matchers mutate during matching. The Round-2 lever binds the
-same production system at site granularity, where the official pure
-`check_*` predicates exist. Round-1 custody (`r11-pyzx-full-reduce/`) is
-untouched.
+Round 1 attributed its adverse result to whole-macro batch guards whose matchers mutate during matching. Round 2 binds the same independently maintained production system, pinned PyZX commit `dade7d46`, at the official pure site-guarded primitive granularity. Round-1 custody and terminals remain unchanged.
 
 ## Custody sequence
 
-1. Freeze commit: protocol, source registry, runner, verifier, lane test,
-   CI workflow, `requirements-lock.txt`, and the pre-outcome infrastructure
-   pilot log — all introduced in ONE commit before any outcome access.
-2. Execution run 1 on LUNARC (`wtO01-venv`, python 3.11.5 / numpy 2.4.6):
-   `orion01_round2_atomic_registry.py execute`.
-3. Fresh full re-execution: `orion01_round2_atomic_registry.py check` —
-   byte-identical receipts required against the committed files.
-4. Outcome commit: full + subset receipts, run logs, claim addendum.
-5. CI (python 3.12 / numpy 2.5.2) replays the committed subset receipt
-   row-by-row and enforces lane scope + authority boundaries.
+1. Commit `05f31ac634459a102e602cbe503c35a9344fee30` introduced the protocol, source registry, runner, verifier, tests, dependency lock, and pre-outcome pilot in one commit before outcome access.
+2. Two fresh full LUNARC executions covered 585 primary words plus 16 probes and produced byte-identical raw receipt bytes.
+3. The full terminal is `CANNOT_CHECK_MOVE_COMPLETENESS`: eight primary words hit the frozen 20,000-state cap. No approximate result is used.
+4. Four completed strict-gap words survive the declared hostile extensions; generic search misses two. This is retained as a bounded positive, not a full-domain terminal; the material full-domain negative remains ACTIVE pending Round 3.
+5. After ORION-01 had independently been frozen on main, this lane was relocated additively from the historical paper subpath to `development/`; the raw receipt retains the original introduction paths and commit as historical custody facts. The frozen paper tree is unchanged.
 
-## Fail-closed rules
+## Verification and authority
 
-- Any primary-domain per-word state cap hit (20,000 states) →
-  `CANNOT_CHECK_MOVE_COMPLETENESS`, no approximate result.
-- Any legal atomic move that changes the dense map including scalar →
-  `AB_R2_ATOMIC_GUARD_UNSOUND` with full witness.
-- All realization gates (audits, exhaustion, native representation,
-  semantics, witness replay, 12x12 interaction matrix, freeze binding,
-  byte-identical rerun) must pass before any positive/null terminal.
+`verify_orion01_round2_atomic.py --check` replays all 601 committed rows, including cap rows, and validates the package manifest and attempt ledger. PyZX owns the implementation and rewrite primitives. No claim is made about all PyZX/ZX moves, compiler optimality, hardware, external novelty, journal readiness, or submission. The current ORION-01 paper remains frozen by its existing receipt; this successor makes no freeze act.
 
-## Authority boundary
+## Post-outcome evidence-maintenance correction
 
-PyZX owns the implementation and rewrite primitives. No claim is made about
-all of PyZX, the ZX calculus, compiler optimality, hardware, external
-novelty, journal readiness, or submission. Round-1 results are preserved,
-never relabeled.
+The pre-outcome unit test had two stale probe-order assertions (`CX01` first) that contradicted both the frozen `GATE_ALPHABET` (`H0`, `H1`, ...) and the committed receipt (`H0^6`, then `H0^5 H1`). Only those test expectations were corrected after the outcome; the frozen registry, runner, protocol, source lock, raw result, and terminal were not changed. The focused suite then passed 9/9.

@@ -3,13 +3,11 @@ name: ORION-01 Round 2 pinned PyZX atomic checker registry
 on:
   pull_request:
     paths:
-      - 'papers/orion-01-certificate-realization/experiments/round2-pyzx-atomic-checker-registry/**'
       - 'development/orion-01-round2-atomic-registry-2026-08-27/**'
       - '.github/workflows/orion01-round2-atomic-registry.yml'
   push:
     branches: [main]
     paths:
-      - 'papers/orion-01-certificate-realization/experiments/round2-pyzx-atomic-checker-registry/**'
       - 'development/orion-01-round2-atomic-registry-2026-08-27/**'
       - '.github/workflows/orion01-round2-atomic-registry.yml'
 
@@ -30,10 +28,10 @@ jobs:
       - name: Install exact frozen dependencies
         run: |
           python -m pip install --disable-pip-version-check \
-            -r papers/orion-01-certificate-realization/experiments/round2-pyzx-atomic-checker-registry/requirements-lock.txt
+            -r development/orion-01-round2-atomic-registry-2026-08-27/requirements-lock.txt
       - name: Lint and run non-outcome unit controls
         run: |
-          root=papers/orion-01-certificate-realization/experiments/round2-pyzx-atomic-checker-registry
+          root=development/orion-01-round2-atomic-registry-2026-08-27
           python -m pip install --disable-pip-version-check ruff
           python -m ruff check \
             "$root/orion01_round2_atomic_registry.py" \
@@ -43,7 +41,7 @@ jobs:
       - name: Replay committed receipt and require committed bytes
         run: |
           set -euo pipefail
-          root=papers/orion-01-certificate-realization/experiments/round2-pyzx-atomic-checker-registry
+          root=development/orion-01-round2-atomic-registry-2026-08-27
           python "$root/verify_orion01_round2_atomic.py" --check \
             | tee /tmp/orion01-round2.out
           tail -n 1 /tmp/orion01-round2.out | grep -xE \
@@ -64,7 +62,7 @@ jobs:
           import json
           from pathlib import Path
 
-          root = Path('papers/orion-01-certificate-realization/experiments/round2-pyzx-atomic-checker-registry')
+          root = Path('development/orion-01-round2-atomic-registry-2026-08-27')
           results = json.loads((root / 'ORION01_ROUND2_ATOMIC_RESULTS.json').read_text())
           registry = json.loads((root / 'ORION01_ROUND2_ATOMIC_SOURCE_REGISTRY.json').read_text())
           assert results['paper_id'] == 'ORION-01'
@@ -123,7 +121,7 @@ jobs:
             case "$path" in
               .github/workflows/orion01-round2-atomic-registry.yml|\
               development/orion-01-round2-atomic-registry-2026-08-27/*|\
-              papers/orion-01-certificate-realization/experiments/round2-pyzx-atomic-checker-registry/*)
+              development/orion-01-round2-atomic-registry-2026-08-27/*)
                 ;;
               *)
                 echo "ORION-01 Round-2 lane scope violation: $path" >&2
