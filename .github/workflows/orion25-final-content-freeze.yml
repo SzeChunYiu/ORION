@@ -5,6 +5,7 @@ on:
     branches: [chatgpt/orion25-final-content-freeze-20260827]
     paths:
       - 'papers/publication_closure/remaining11/check_orion25_final_content_freeze.py'
+      - 'papers/publication_closure/remaining11/repair_orion25_run2_r0_pin.py'
       - '.github/workflows/orion25-final-content-freeze.yml'
 permissions: {contents: write}
 concurrency: {group: orion25-final-content-freeze, cancel-in-progress: true}
@@ -13,15 +14,36 @@ jobs:
     if: ${{ !contains(github.event.head_commit.message, '[orion25-final-frozen]') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 25
+    env: {PYTHONPATH: src}
     steps:
       - uses: actions/checkout@v4
         with: {ref: chatgpt/orion25-final-content-freeze-20260827, fetch-depth: 0}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
       - name: Install independent-check dependencies
-        run: python -m pip install --disable-pip-version-check -e '.[independent-checks]' cryptography
-      - name: Compile freeze checker
-        run: python -m py_compile papers/publication_closure/remaining11/check_orion25_final_content_freeze.py
+        run: python -m pip install --disable-pip-version-check -e '.[independent-checks]' cryptography pytest
+      - name: Compile repair and freeze checkers
+        run: |
+          python -m py_compile papers/publication_closure/remaining11/repair_orion25_run2_r0_pin.py
+          python -m py_compile papers/publication_closure/remaining11/check_orion25_final_content_freeze.py
+      - name: Apply guarded run2 R0 pin repair
+        run: python papers/publication_closure/remaining11/repair_orion25_run2_r0_pin.py
+      - name: Rebuild typed V3 authority and verify candidate checksum file
+        run: |
+          python -m pytest -q tests/unit/study/p15/test_p15_active_claim_authority.py
+          (cd . && sha256sum -c papers/orion-25-orion-research-harness/SHA256SUMS)
+      - name: Commit custody repair before final tree binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            src/orion/study/p15/active_claim_authority.py \
+            papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V3.json \
+            papers/orion-25-orion-research-harness/SHA256SUMS \
+            papers/publication_closure/receipts/remaining11/ORION-25_RUN2_R0_REPIN_V1.json
+          git diff --check --cached
+          git commit -m 'fix(custody): re-pin ORION-25 deterministic run2 after R0 rename'
       - name: Re-run provenance independent checker
         run: python papers/orion-25-orion-research-harness/top_tier/check_provenance_interop_independent_v1.py > "$RUNNER_TEMP/provenance.json"
       - name: Re-run primary and independent attestation V2
@@ -35,20 +57,17 @@ jobs:
           p=json.load(open(sys.argv[1])); q=json.load(open(sys.argv[2]))
           assert p['terminal']=='P15_ATTESTATION_COMPOSITION_V2_SUPPORTED'
           assert q['terminal']=='P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN'
-          assert p['base_chain_verification_rate']==1.0
-          assert p['chain_plus_sei_gold_agreement_count']==22
-          assert p['scientific_field_leakage_count']==0
-          assert p['chain_layer_false_rejection_count']==0
-          assert p['disposition_false_rejection_count']==0
+          assert p['base_chain_verification_rate']==1.0 and p['chain_plus_sei_gold_agreement_count']==22
+          assert p['scientific_field_leakage_count']==0 and p['chain_layer_false_rejection_count']==0 and p['disposition_false_rejection_count']==0
           assert p['arms']['A-COMPROMISE-FULL']['signature_layer_detections']==0
           assert p['arms']['A-COMPROMISE-FULL']['chain_as_science_false_promotions']==6
           print('ORION25_ATTESTATION_PRIMARY_AND_SECOND_CHECKER_GREEN')
           PY
-      - name: Require independent checks to leave paper bytes unchanged
+      - name: Require science replays to leave paper bytes unchanged
         run: git diff --exit-code -- papers/orion-25-orion-research-harness
       - name: Write current-authority whole-tree receipt
         run: python papers/publication_closure/remaining11/check_orion25_final_content_freeze.py
-      - name: Validate and commit receipt
+      - name: Validate and commit receipt, then push both commits
         shell: bash
         run: |
           set -euo pipefail
@@ -57,7 +76,6 @@ jobs:
           import json,sys
           x=json.load(open(sys.argv[1])); assert x['science_frozen'] and x['paper_content_frozen']; assert not x['submission_authority']; assert x['bounded_findings']['full_key_compromise_false_promotions']==6; print(x['terminal'])
           PY
-          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add "$f"; git diff --check --cached
           git commit -m 'papers(publication): freeze ORION-25 science and content [orion25-final-frozen]'
           git push origin HEAD:chatgpt/orion25-final-content-freeze-20260827
@@ -65,6 +83,7 @@ jobs:
         with:
           name: orion25-final-freeze-${{ github.sha }}
           path: |
+            papers/publication_closure/receipts/remaining11/ORION-25_RUN2_R0_REPIN_V1.json
             papers/publication_closure/receipts/remaining11/ORION-25_SCIENCE_CONTENT_FREEZE_V1.json
             ${{ runner.temp }}/provenance.json
             ${{ runner.temp }}/attestation-primary.json
