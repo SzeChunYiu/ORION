@@ -2,7 +2,7 @@
 
 Exact ORION base: `27ea5e1b04dbed853b7ddba60c8bf736ef087bf5`  
 Protocol freeze: `e393958512d9f726f0f39fe02ae22520db647d08`  
-Corrected pre-execution runner: `097210a82`  
+Corrected pre-execution runner: `097210a821b4d4f7c76f296d66c2614b8a0dc93f`
 Round disposition: **NULL / adverse for the proposed real-domain residual**
 
 ## Terminal

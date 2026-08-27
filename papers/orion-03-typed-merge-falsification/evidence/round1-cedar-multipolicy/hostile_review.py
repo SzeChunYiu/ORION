@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -42,11 +43,14 @@ def copy_case(destination: Path) -> Path:
 
 
 def invoke(round_directory: Path) -> subprocess.CompletedProcess[str]:
+    env = os.environ.copy()
+    env["ORION03_GIT_REPOSITORY"] = str(REPO)
     return subprocess.run(
         [sys.executable, str(round_directory / "verify_round1.py"), "--check-final"],
         check=False,
         capture_output=True,
         text=True,
+        env=env,
     )
 
 
@@ -77,6 +81,13 @@ def mutate_lean_source(round_directory: Path) -> None:
     path.write_text(path.read_text() + "\n-- hostile byte\n")
 
 
+def mutate_lean_execution_commit(round_directory: Path) -> None:
+    path = round_directory / "LEAN_ADJUDICATION_V1.json"
+    value = json.loads(path.read_text())
+    value["execution_commit"] = "0" * 40
+    canonical_write(path, value)
+
+
 def mutate_terminal(round_directory: Path) -> None:
     path = round_directory / "ROUND1_RESULTS_V1.json"
     value = json.loads(path.read_text())
@@ -96,6 +107,7 @@ MUTATIONS: list[tuple[str, Callable[[Path], None]]] = [
     ("python_receipt_denominator_tamper", mutate_python_receipt),
     ("rust_control_status_tamper", mutate_rust_control),
     ("lean_source_binding_tamper", mutate_lean_source),
+    ("lean_execution_commit_tamper", mutate_lean_execution_commit),
     ("positive_terminal_promotion_tamper", mutate_terminal),
     ("safe_control_vulnerability_relabel_tamper", mutate_safe_control),
 ]

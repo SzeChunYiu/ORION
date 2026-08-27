@@ -11,12 +11,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
+import subprocess
 from pathlib import Path
 from typing import Any
 
 
 HERE = Path(__file__).resolve().parent
+GIT_REPOSITORY = Path(os.environ.get("ORION03_GIT_REPOSITORY", HERE))
 SNAPSHOT = HERE / "third_party" / "cedar-integration-tests"
 SOURCE_MANIFEST = HERE / "SOURCE_BINDING_V1.json"
 PYTHON_RECEIPT = HERE / "PYTHON_ADJUDICATION_V1.json"
@@ -33,6 +36,8 @@ AGENTGATEWAY = (
 UPSTREAM_COMMIT = "75989795c75d861270ce6cac38ef9d9e5b220a0c"
 UPSTREAM_TREE = "3aed7b26a11a3b85bd29a4b2156437be74c33333"
 CEDAR_COMMIT = "bcb8bd93a292b59ae8f1dcf53b9b4176a2d3405d"
+PROTOCOL_COMMIT = "e393958512d9f726f0f39fe02ae22520db647d08"
+EXECUTOR_COMMIT = "097210a821b4d4f7c76f296d66c2614b8a0dc93f"
 SOURCE_TERMINAL = "CONFIRMED_PUBLIC_OFFICIAL_PERMISSION_BEARING"
 ROUND_TERMINAL = "D_R11_POLICY_REQUIRES_RICHER_SEMANTICS"
 AGENTGATEWAY_TERMINAL = "AGENTGATEWAY_RULESETS_ORIGIN_WITNESS_SAFE"
@@ -370,6 +375,24 @@ def verify_final() -> None:
         fail("Lean receipt schema drift")
     if lean.get("terminal") != "LEAN_TYPED_AUTHORITY_CORE_PASS":
         fail("Lean terminal is not PASS")
+    if lean.get("execution_commit") != EXECUTOR_COMMIT:
+        fail("Lean execution commit identity drift")
+    commit_check = subprocess.run(
+        ["git", "rev-parse", "--verify", f"{EXECUTOR_COMMIT}^{{commit}}"],
+        cwd=GIT_REPOSITORY,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if commit_check.returncode != 0 or commit_check.stdout.strip() != EXECUTOR_COMMIT:
+        fail("Lean execution commit is not an exact reachable Git commit")
+    if subprocess.run(
+        ["git", "merge-base", "--is-ancestor", EXECUTOR_COMMIT, "HEAD"],
+        cwd=GIT_REPOSITORY,
+        capture_output=True,
+        check=False,
+    ).returncode:
+        fail("Lean execution commit is not an ancestor of the checked packet")
     lean_source = HERE / "lean" / "Orion03Round1.lean"
     toolchain = (HERE / "lean" / "lean-toolchain").read_text().strip()
     if lean.get("toolchain") != toolchain:
@@ -384,7 +407,7 @@ def verify_final() -> None:
         fail("hostile-review schema drift")
     if hostile.get("terminal") != "ORION03_R1_HOSTILE_MUTATION_REVIEW_PASS":
         fail("hostile-review terminal is not PASS")
-    if hostile.get("mutations_rejected") != 6 or hostile.get("mutations_total") != 6:
+    if hostile.get("mutations_rejected") != 7 or hostile.get("mutations_total") != 7:
         fail("hostile-review denominator drift")
     if any(
         row.get("status") != "REJECTED_AS_REQUIRED"
@@ -397,6 +420,17 @@ def verify_final() -> None:
         fail("final result schema drift")
     if result.get("terminal") != ROUND_TERMINAL:
         fail("final terminal violates frozen precedence")
+    if result.get("protocol_commit") != PROTOCOL_COMMIT:
+        fail("final result protocol commit identity drift")
+    if result.get("executor_commit") != EXECUTOR_COMMIT:
+        fail("final result executor commit identity drift")
+    correction = result.get("custody_correction", {})
+    if correction.get("kind") != "ADDITIVE_EXECUTOR_COMMIT_IDENTITY_REPAIR":
+        fail("missing additive executor-identity correction")
+    if correction.get("corrected_full_executor_commit") != EXECUTOR_COMMIT:
+        fail("custody correction does not bind the exact executor commit")
+    if correction.get("scientific_terminal_changed") is not False:
+        fail("custody correction improperly changes the science terminal")
     if result.get("round", {}).get("consumed") != 1 or result.get("round", {}).get(
         "maximum"
     ) != 3:
@@ -410,6 +444,8 @@ def verify_final() -> None:
     ):
         if receipt_hashes.get(label, {}).get("sha256") != sha256(path):
             fail(f"final result {label} receipt binding drift")
+        if receipt_hashes.get(label, {}).get("bytes") != path.stat().st_size:
+            fail(f"final result {label} receipt byte-count drift")
     if result.get("safe_control", {}).get("terminal") != AGENTGATEWAY_TERMINAL:
         fail("final result relabeled safe control")
     if result.get("authority", {}).get("real_domain_positive") is not False:

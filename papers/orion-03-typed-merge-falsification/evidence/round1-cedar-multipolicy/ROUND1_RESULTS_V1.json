@@ -1,7 +1,7 @@
 {
   "adjudication": {
     "blinded": false,
-    "hostile_mutations_rejected": "6/6",
+    "hostile_mutations_rejected": "7/7",
     "injected_controls_are_real_domain_positive": false,
     "injected_hostile_and_safe_controls": "8/8 PASS",
     "lean_core_theorems": "4/4 PASS",
@@ -22,6 +22,15 @@
     "top_tier_ready": false,
     "whole_system_security_certification": false
   },
+  "custody_correction": {
+    "corrected_full_executor_commit": "097210a821b4d4f7c76f296d66c2614b8a0dc93f",
+    "former_abbreviated_result_executor_commit": "097210a82",
+    "former_invalid_lean_execution_commit": "097210a82e",
+    "kind": "ADDITIVE_EXECUTOR_COMMIT_IDENTITY_REPAIR",
+    "lean_receipt_identity_field_corrected": true,
+    "scientific_measurements_or_theorems_changed": false,
+    "scientific_terminal_changed": false
+  },
   "disposition": {
     "finding": "The official corpus exercises real Cedar multi-policy decisions and exposes policy-level reason IDs, but it has no independently adjudicated upstream evidence origin, licence or retraction semantics. Typed retention therefore adds no decision on the official scope, while the injected splicing controls remain synthetic mechanism checks.",
     "next_gate": "Round 2 must switch to a different permission-bearing corpus with native provenance/retraction and independent pre-outcome adjudication; no Cedar mutation or retuning counts as a distinct round.",
@@ -29,7 +38,7 @@
     "why_not_positive": "No corpus-labelled upstream authority-promotion error exists; hostile provenance labels were added by ORION and cannot self-authorize a real-domain claim."
   },
   "event_base": "27ea5e1b04dbed853b7ddba60c8bf736ef087bf5",
-  "executor_commit": "097210a82",
+  "executor_commit": "097210a821b4d4f7c76f296d66c2614b8a0dc93f",
   "native_cedar": {
     "allow": 9,
     "decision_reason_error_and_validation_exact": true,
@@ -46,14 +55,14 @@
   "protocol_commit": "e393958512d9f726f0f39fe02ae22520db647d08",
   "receipts": {
     "hostile": {
-      "bytes": 991,
+      "bytes": 1093,
       "path": "HOSTILE_REVIEW_V1.json",
-      "sha256": "f80a4e4b7c275456745e4b28b30800cf2143f4b1233a3aaeb2dfcce3ed7d959f"
+      "sha256": "eb11c407add6ed8db5be67a0978d4df67ffc1cf6b88dc622259bddf2c953df2d"
     },
     "lean": {
-      "bytes": 780,
+      "bytes": 810,
       "path": "LEAN_ADJUDICATION_V1.json",
-      "sha256": "90afaf4aacb756978660305b3eab022d549fa75243cce35b4201f873fc70496e"
+      "sha256": "06343140765f99a3891d1389b9566a6f9b40f06f04a48e98c9c00b69510ece0c"
     },
     "python": {
       "bytes": 6944,

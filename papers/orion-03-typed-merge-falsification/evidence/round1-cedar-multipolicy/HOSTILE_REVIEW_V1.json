@@ -24,6 +24,10 @@
       "status": "REJECTED_AS_REQUIRED"
     },
     {
+      "mutation": "lean_execution_commit_tamper",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
       "mutation": "positive_terminal_promotion_tamper",
       "status": "REJECTED_AS_REQUIRED"
     },
@@ -32,8 +36,8 @@
       "status": "REJECTED_AS_REQUIRED"
     }
   ],
-  "mutations_rejected": 6,
-  "mutations_total": 6,
+  "mutations_rejected": 7,
+  "mutations_total": 7,
   "schema": "ORION.ORION03.CedarMultiPolicy.HostileReview.v1",
   "terminal": "ORION03_R1_HOSTILE_MUTATION_REVIEW_PASS"
 }
