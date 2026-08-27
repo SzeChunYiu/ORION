@@ -1,0 +1,802 @@
+{
+ "binding_checks": [
+  {
+   "key": "per_objective_summary.theta_FT.donor_exact_rows",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "per_objective_summary.theta_FT.rows",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "per_objective_summary.S1.donor_exact_rows",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "per_objective_summary.S1.strictly_improved_rows",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "per_objective_summary.S1.delta_max",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "per_objective_summary.S1.derivable_from_ft_accounting",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "per_objective_summary.O1_control.donor_exact_rows",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "per_objective_summary.O1_control.derivable_from_ft_accounting",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "physical_quantum_advantage_claim",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "q3_magnitude.family_constant_non_clifford_backdrop.implied_t_gate_backdrop_range",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "q3_magnitude.defensible_only_distribution.delta_max",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "qg2_binding.O0_census_match",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "qg2_binding.O1_census_match",
+   "path": "research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "baseline_control_O0.chemistry_summary.donor_exact_count",
+   "path": "research/extensions/orion-qg/QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "objectives.O1.chemistry_donor_exact_count",
+   "path": "research/extensions/orion-qg/QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "objectives.O1.membership_transitions.DONOR_EXACT->BORROW",
+   "path": "research/extensions/orion-qg/QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "objectives.O1.membership_transitions.SPLIT->BORROW",
+   "path": "research/extensions/orion-qg/QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "objectives.O1.panels.structured_n2.instances",
+   "path": "research/extensions/orion-qg/QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "objectives.O1.panels.structured_n2.donor_exact_count",
+   "path": "research/extensions/orion-qg/QG2_OBJECTIVE_ROBUSTNESS_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "results.adaptive_D_star",
+   "path": "research/extensions/orion-qg/QG32C_OBSERVATION_COST_HIERARCHY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "results.class_conditioned_F_star",
+   "path": "research/extensions/orion-qg/QG32C_OBSERVATION_COST_HIERARCHY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "results.universal_U_star",
+   "path": "research/extensions/orion-qg/QG32C_OBSERVATION_COST_HIERARCHY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "universal_minimum_is_exactly_5.four_probe_cover_exists",
+   "path": "research/extensions/orion-qg/QG32C_OBSERVATION_COST_HIERARCHY_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "both_accept",
+   "path": "research/extensions/orion-qg/QG7F_CHAIN_REPRESENTATION_AUDIT_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "results.classes_tested",
+   "path": "research/extensions/orion-qg/QG40_PRODUCTION_COMPILER_SEPARATION_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "results.classes_where_optimal_cost_differs",
+   "path": "research/extensions/orion-qg/QG40_PRODUCTION_COMPILER_SEPARATION_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "instance_level.failing_probe_pairs",
+   "path": "research/extensions/orion-qg/QG41_SIXLCU_BROAD_CLASS_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "instance_level.probes",
+   "path": "research/extensions/orion-qg/QG41_SIXLCU_BROAD_CLASS_RESULTS.json",
+   "status": "OK"
+  },
+  {
+   "key": "gate.passed",
+   "path": "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/MATCHED_RESOURCE_RECEIPT.json",
+   "status": "OK"
+  },
+  {
+   "key": "terminal",
+   "path": "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/MATCHED_RESOURCE_RECEIPT.json",
+   "status": "OK"
+  },
+  {
+   "key": "terminal_reading.disjuncts_fired",
+   "path": "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/MATCHED_RESOURCE_RECEIPT.json",
+   "status": "OK"
+  },
+  {
+   "key": "arms.D1_donor_total_enumeration.resource_vector",
+   "path": "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/MATCHED_RESOURCE_RECEIPT.json",
+   "status": "OK"
+  },
+  {
+   "key": "runtime_seconds",
+   "path": "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json",
+   "status": "OK_TYPE_float"
+  }
+ ],
+ "binding_checks_all_ok": true,
+ "controls": {
+  "c1": {
+   "all_objectives_consistent": true,
+   "control": "c1_qg21_donor_exactness",
+   "headline": {
+    "O1_control_control_not_defensible": "90/90 strictly improved under the control reweighting but 0/90 prediction-cost match: the control objective does not carry referee-matched predictions (CONTROL_NOT_DEFENSIBLE), exactly as committed",
+    "S1_improved_by_exactly_delta": "18/90 rows at delta 2",
+    "theta_FT_donor_exact": "90/90"
+   },
+   "per_objective": {
+    "O1_control": {
+     "committed_donor_exact_rows": 0,
+     "committed_prediction_cost_match_rows": 0,
+     "committed_rows": 90,
+     "committed_strictly_improved_rows": 90,
+     "delta_accounting_matches_committed": false,
+     "note": "prediction column NOT referee-matched under this objective (0/90); the witness list is authoritative and gives 90 strict improvements, donor_exact 0",
+     "recomputation_consistent": true,
+     "row_accounting": {
+      "delta_positive": 76,
+      "delta_zero": 14,
+      "rows": 90
+     },
+     "witness_accounting": {
+      "delta_max": 13,
+      "witness_improved": 90
+     },
+     "witness_count_matches_committed": true
+    },
+    "S1": {
+     "committed_donor_exact_rows": 72,
+     "committed_prediction_cost_match_rows": 90,
+     "committed_rows": 90,
+     "committed_strictly_improved_rows": 18,
+     "delta_accounting_matches_committed": true,
+     "note": null,
+     "recomputation_consistent": true,
+     "row_accounting": {
+      "delta_positive": 18,
+      "delta_zero": 72,
+      "rows": 90
+     },
+     "witness_accounting": {
+      "delta_max": 2,
+      "witness_improved": 18
+     },
+     "witness_count_matches_committed": true
+    },
+    "S2": {
+     "committed_donor_exact_rows": 90,
+     "committed_prediction_cost_match_rows": 90,
+     "committed_rows": 90,
+     "committed_strictly_improved_rows": 0,
+     "delta_accounting_matches_committed": true,
+     "note": null,
+     "recomputation_consistent": true,
+     "row_accounting": {
+      "delta_positive": 0,
+      "delta_zero": 90,
+      "rows": 90
+     },
+     "witness_accounting": {
+      "delta_max": 0,
+      "witness_improved": 0
+     },
+     "witness_count_matches_committed": true
+    },
+    "S3": {
+     "committed_donor_exact_rows": 90,
+     "committed_prediction_cost_match_rows": 90,
+     "committed_rows": 90,
+     "committed_strictly_improved_rows": 0,
+     "delta_accounting_matches_committed": true,
+     "note": null,
+     "recomputation_consistent": true,
+     "row_accounting": {
+      "delta_positive": 0,
+      "delta_zero": 90,
+      "rows": 90
+     },
+     "witness_accounting": {
+      "delta_max": 0,
+      "witness_improved": 0
+     },
+     "witness_count_matches_committed": true
+    },
+    "theta_FT": {
+     "committed_donor_exact_rows": 90,
+     "committed_prediction_cost_match_rows": 90,
+     "committed_rows": 90,
+     "committed_strictly_improved_rows": 0,
+     "delta_accounting_matches_committed": true,
+     "note": null,
+     "recomputation_consistent": true,
+     "row_accounting": {
+      "delta_positive": 0,
+      "delta_zero": 90,
+      "rows": 90
+     },
+     "witness_accounting": {
+      "delta_max": 0,
+      "witness_improved": 0
+     },
+     "witness_count_matches_committed": true
+    }
+   },
+   "recomputed_from": "rows.predictions and improvements of QG21_FT_CHEMISTRY_RESULTS.json"
+  },
+  "c2": {
+   "control": "c2_ft_dominance",
+   "defensible_improvements": 18,
+   "delta_max_two_qubit_cliffords": 2,
+   "delta_median_exact": "2/1",
+   "donor_cost_C_median_exact": "21/1",
+   "donor_cost_C_min": 20,
+   "max_fraction_of_own_clifford_cost_exact": "1/11",
+   "max_fraction_of_own_clifford_cost_pct_floor": 9,
+   "max_fraction_of_t_backdrop_exact": "1/135",
+   "max_fraction_of_t_backdrop_pct_floor": 0,
+   "rotations_per_compilation_family_constant": 9,
+   "statement": "The strongest defensible improvement inside the frozen family is 2 two-qubit Cliffords on 18/90 rows; that is at most 1/11 of the Clifford-side cost and, under the generous 1-Clifford-equals-1-T equivalence, at most 1/135 of the family-constant T backdrop of 270 gates; the entire non-Clifford term is the constant 9*kappa_T and cancels from every comparison.",
+   "t_backdrop_min": 270,
+   "t_backdrop_min_check": "9 x 30"
+  },
+  "c3": {
+   "O1_chemistry_donor_exact": "0/30",
+   "O1_membership_transition_total": 7752,
+   "O1_membership_transitions": {
+    "DONOR_EXACT->BORROW": 6014,
+    "SPLIT->BORROW": 1738
+   },
+   "O1_structured_donor_exact": 549,
+   "O1_structured_instances": 9261,
+   "O1_structured_regime_borrow": 8118,
+   "O1_transition_fraction_exact": "2584/3087",
+   "O1_transition_fraction_pct_floor": 83,
+   "baseline_O0_chemistry_donor_exact": "30/30",
+   "baseline_O0_structured_donor_exact": 6453,
+   "control": "c3_qg2_o1_inversion",
+   "verdict": "Under the programme's own declared T-count reweighting the support-tally conclusions invert: 7752/9261 structured instances (83%) change regime and chemistry donor-exactness falls from 30/30 to 0/30. Cross-bound to QG-21 via qg2_binding.O0/O1_census_match=true."
+  },
+  "c4": {
+   "brute_force_strategy_enumeration": {
+    "4": {
+     "all_ceilings_verified": true,
+     "rows": [
+      {
+       "K": 0,
+       "ceiling_formula": "1/4",
+       "max_equals_ceiling": true,
+       "max_success_exact": "1/4",
+       "min_success_exact": "1/4",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 4
+      },
+      {
+       "K": 1,
+       "ceiling_formula": "2/4",
+       "max_equals_ceiling": true,
+       "max_success_exact": "1/2",
+       "min_success_exact": "1/4",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 16
+      },
+      {
+       "K": 2,
+       "ceiling_formula": "3/4",
+       "max_equals_ceiling": true,
+       "max_success_exact": "3/4",
+       "min_success_exact": "1/2",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 24
+      },
+      {
+       "K": 3,
+       "ceiling_formula": "4/4",
+       "max_equals_ceiling": true,
+       "max_success_exact": "1/1",
+       "min_success_exact": "3/4",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 16
+      }
+     ]
+    },
+    "8": {
+     "all_ceilings_verified": true,
+     "rows": [
+      {
+       "K": 0,
+       "ceiling_formula": "1/8",
+       "max_equals_ceiling": true,
+       "max_success_exact": "1/8",
+       "min_success_exact": "1/8",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 8
+      },
+      {
+       "K": 1,
+       "ceiling_formula": "2/8",
+       "max_equals_ceiling": true,
+       "max_success_exact": "1/4",
+       "min_success_exact": "1/8",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 64
+      },
+      {
+       "K": 2,
+       "ceiling_formula": "3/8",
+       "max_equals_ceiling": true,
+       "max_success_exact": "3/8",
+       "min_success_exact": "1/4",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 224
+      },
+      {
+       "K": 3,
+       "ceiling_formula": "4/8",
+       "max_equals_ceiling": true,
+       "max_success_exact": "1/2",
+       "min_success_exact": "3/8",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 448
+      },
+      {
+       "K": 4,
+       "ceiling_formula": "5/8",
+       "max_equals_ceiling": true,
+       "max_success_exact": "5/8",
+       "min_success_exact": "1/2",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 560
+      },
+      {
+       "K": 5,
+       "ceiling_formula": "6/8",
+       "max_equals_ceiling": true,
+       "max_success_exact": "3/4",
+       "min_success_exact": "5/8",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 448
+      },
+      {
+       "K": 6,
+       "ceiling_formula": "7/8",
+       "max_equals_ceiling": true,
+       "max_success_exact": "7/8",
+       "min_success_exact": "3/4",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 224
+      },
+      {
+       "K": 7,
+       "ceiling_formula": "8/8",
+       "max_equals_ceiling": true,
+       "max_success_exact": "1/1",
+       "min_success_exact": "7/8",
+       "no_strategy_exceeds_ceiling": true,
+       "strategies_enumerated": 64
+      }
+     ]
+    }
+   },
+   "classical_free_final_guess_allowed": true,
+   "control": "c4_s1a_classical_query_ceiling",
+   "external_output_verification_is_separate_resource": true,
+   "formulas": {
+    "E_C": "K_match - K_match*(K_match-1)/(2N)",
+    "K_match": "max(0, ceil(p_q*N) - 1), capped at N-1",
+    "classical_ceiling": "p_c(K) = (K+1)/N (free final guess allowed)",
+    "grover_exact": "p_q = W_r((N-1)/N)^2 / N, W_{r+1}=(4u-2)W_r-W_{r-1}",
+    "integer_discipline": "all values exact rationals; no float constructed",
+    "r_definition": "smallest r with single-run success >= 1/2 (the efficient fixed query count of plain Grover; larger dense-oscillation r with marginally higher success are NOT used, since they are not the canonical query count)"
+   },
+   "ladder_n3_to_n10": [
+    {
+     "N": 8,
+     "classical_E_C_exact": "33/8",
+     "classical_K_match": 6,
+     "n": 3,
+     "p_at_that_r_exact": "25/32",
+     "query_ratio_r_half_over_K_match_exact": "1/6",
+     "smallest_r_with_p_at_least_half": 1
+    },
+    {
+     "N": 16,
+     "classical_E_C_exact": "133/16",
+     "classical_K_match": 14,
+     "n": 4,
+     "p_at_that_r_exact": "3721/4096",
+     "query_ratio_r_half_over_K_match_exact": "1/7",
+     "smallest_r_with_p_at_least_half": 2
+    },
+    {
+     "N": 32,
+     "classical_E_C_exact": "437/32",
+     "classical_K_match": 19,
+     "n": 5,
+     "p_at_that_r_exact": "78961/131072",
+     "query_ratio_r_half_over_K_match_exact": "2/19",
+     "smallest_r_with_p_at_least_half": 2
+    },
+    {
+     "N": 64,
+     "classical_E_C_exact": "851/32",
+     "classical_K_match": 37,
+     "n": 6,
+     "p_at_that_r_exact": "634989601/1073741824",
+     "query_ratio_r_half_over_K_match_exact": "3/37",
+     "smallest_r_with_p_at_least_half": 3
+    },
+    {
+     "N": 128,
+     "classical_E_C_exact": "195/4",
+     "classical_K_match": 65,
+     "n": 7,
+     "p_at_that_r_exact": "71935927065025/140737488355328",
+     "query_ratio_r_half_over_K_match_exact": "4/65",
+     "smallest_r_with_p_at_least_half": 4
+    },
+    {
+     "N": 256,
+     "classical_E_C_exact": "25515/256",
+     "classical_K_match": 135,
+     "n": 8,
+     "p_at_that_r_exact": "637850632983253801937281/1208925819614629174706176",
+     "query_ratio_r_half_over_K_match_exact": "2/45",
+     "smallest_r_with_p_at_least_half": 6
+    },
+    {
+     "N": 512,
+     "classical_E_C_exact": "104993/512",
+     "classical_K_match": 283,
+     "n": 9,
+     "p_at_that_r_exact": "24149985564286928329097801072787327429889/43556142965880123323311949751266331066368",
+     "query_ratio_r_half_over_K_match_exact": "9/283",
+     "smallest_r_with_p_at_least_half": 9
+    },
+    {
+     "N": 1024,
+     "classical_E_C_exact": "421969/1024",
+     "classical_K_match": 571,
+     "n": 10,
+     "p_at_that_r_exact": "235206967400085077105536716404843927895005700235207584803880749569/421249166674228746791672110734681729275580381602196445017243910144",
+     "query_ratio_r_half_over_K_match_exact": "13/571",
+     "smallest_r_with_p_at_least_half": 13
+    }
+   ],
+   "statement": "The corrected classical comparator dominates the prior K/N rule and is verified by exhaustive strategy enumeration at N=4 and N=8; against it, the Grover query counts retain a query gap on the ladder but no physical or end-to-end advantage is licensed (S1A amendment, frozen pre-outcome). The quantum-native arm remains unexecuted, so this product stands as the information-matched classical donor for the successor run."
+  },
+  "c5": {
+   "adaptive_D_star": 3,
+   "class_conditioned_F_star": 4,
+   "control": "c5_observation_hierarchy",
+   "four_probe_cover_exists": false,
+   "four_subsets_enumerated": 32018910,
+   "hierarchy_strict": true,
+   "histogram": {
+    "0": 7,
+    "1": 30,
+    "2": 33,
+    "3": 19,
+    "4": 3
+   },
+   "histogram_class_total": 92,
+   "statement": "The hierarchy 3 < 4 < 5 is real and machine-checked, but the adaptive 3-probe optimum is attained by a classical adaptive probing donor; no quantum-structural resource is used or claimed, so the observation-cost separation is a classical donor product (DONOR_EQUIVALENT for QR-D15).",
+   "universal_U_star": 5
+  },
+  "c6": {
+   "anti_laundering_note": "kappa is not available a priori in the target. It was produced by the same total enumeration the donor arm performs, so the transferred arm is charged oracle_subsets_enumerated = 524287. Reporting only the uncharged arm would be answer laundering through preprocessing (spec 8.2).",
+   "arithmetic": "integers only; no float constructed",
+   "control": "c6_oracle_charging_binding",
+   "disjuncts_fired": [
+    "RESOURCE_ADVANTAGE_DOES_NOT_SURVIVE_ORACLE_CHARGING",
+    "DONOR_SUBTRACTION_RESIDUAL_CAPABILITY_EMPTY"
+   ],
+   "donor_resource_vector": [
+    524287,
+    524287,
+    1536,
+    763,
+    0
+   ],
+   "gate_passed": false,
+   "job_id": "DISC-Q-TRANSFER-01",
+   "statement": "The executed control precedent: an apparent transfer advantage disappears under oracle charging with residual capability empty after donor subtraction. This is the binding template for every HIDDEN_ORACLE terminal assigned in this ledger.",
+   "terminal": "SURFACE_ANALOGY_OR_RESOURCE_ADVANTAGE_ONLY",
+   "verdict": "APPARENT_ADVANTAGE_DISAPPEARS_UNDER_ORACLE_CHARGING"
+  },
+  "c7": {
+   "census_issue_count": 56,
+   "control": "c7_census_coverage",
+   "coverage_complete": true,
+   "donor_rows_referencing_unknown_issues": [],
+   "issues_explicitly_out_of_scope": [
+    1359,
+    1362,
+    1368
+   ],
+   "issues_mapped_to_donor_rows": 53,
+   "out_of_scope_reasons": {
+    "1359": "shadow/orion-v1-quantum-issue-disposition packet handoff (governance lane; no claimed resource gain)",
+    "1362": "paper candidate blocked on quantum-freeze evidence (paper-authority blocker lane; resource accounting supplied by QR-D23/QR-D24; no independent resource claim)",
+    "1368": "denominator-complete open-issue census + tranche terminal vocabulary (governance parent of this job; no resource claim)"
+   },
+   "unmapped_issues": []
+  },
+  "c8": {
+   "all_missing_paths": [
+    {
+     "census_has_merged_material_result": true,
+     "issue": 862,
+     "path": "research/extensions/orion-qg/QG19_HOSTILE_NOVELTY_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 863,
+     "path": "research/extensions/orion-qg/QG20_RECOVERY_PLAN.md"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 864,
+     "path": "research/extensions/orion-qg/QG21_CERTIFICATE_MARGIN_MAP.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 868,
+     "path": "research/extensions/orion-qg/QG22_EXACT_FIVE_PREDICATE_STATE.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 872,
+     "path": "research/extensions/orion-qg/QG7E_V2_PARTIAL_POLYTOPE_PHASE_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 874,
+     "path": "research/extensions/orion-qg/QG24C_REDUCTION_BOUNDARY_COUNTEREXAMPLES.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 879,
+     "path": "research/extensions/orion-qg/QG26_WAVE3_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 880,
+     "path": "research/extensions/orion-qg/QG27_WAVE3_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": false,
+     "issue": 881,
+     "path": "research/extensions/orion-qg/QG7F_RESOURCE_LOWER_BOUND_ENGINEERING.md"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 884,
+     "path": "research/extensions/orion-qg/QG28_WAVE3_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 886,
+     "path": "research/extensions/orion-qg/QG29_WAVE3_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 888,
+     "path": "research/extensions/orion-qg/QG31_WAVE3_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 890,
+     "path": "research/extensions/orion-qg/QG33_WAVE3_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 893,
+     "path": "research/extensions/orion-qg/QG_ADVERSARIAL_REFEREE_REPORT.md"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 904,
+     "path": "research/extensions/orion-qg/QG36_POST_NULL_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 918,
+     "path": "research/extensions/orion-qg/QG32C_F_STAR_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 920,
+     "path": "research/extensions/orion-qg/QG37_WAVE3_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 924,
+     "path": "research/extensions/orion-qg/QG39_POST_NULL_RESIDUAL_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 928,
+     "path": "research/extensions/orion-qg/QG40_QISKET_TRANSFER_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 932,
+     "path": "research/extensions/orion-qg/QG41_PYTKET_TRANSFER_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 932,
+     "path": "research/extensions/orion-qg/QG42_TRANSFER_INTERPRETATION.md"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 933,
+     "path": "research/extensions/orion-qg/QG42_TRANSFER_INTERPRETATION.md"
+    },
+    {
+     "census_has_merged_material_result": false,
+     "issue": 734,
+     "path": "research/extensions/orion-qn/QN_S1A_PROTOCOL.md"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 738,
+     "path": "research/extensions/orion-qn/QN_S1_NEGATIVE_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": false,
+     "issue": 743,
+     "path": "development/orion-qn-q0-q1/QN_Q0_Q1_EXECUTION_PROTOCOL.md"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 903,
+     "path": "research/extensions/orion-q/Q3_PROTECTED_RUNG_CLOSURE.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 908,
+     "path": "research/extensions/orion-q/Q4_CLOSURE_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 914,
+     "path": "research/extensions/orion-q/Q5_RESULTS.json"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 921,
+     "path": "research/extensions/orion-q/Q_PUBLICATION_CLOSURE.md"
+    },
+    {
+     "census_has_merged_material_result": false,
+     "issue": 980,
+     "path": "research/extensions/orion-q/Q_CHARTER_V1.md"
+    },
+    {
+     "census_has_merged_material_result": true,
+     "issue": 1306,
+     "path": "research/orion-discovery-v2/ORION_Q_STRUCTURAL_DONOR_AUDIT_V1.md"
+    },
+    {
+     "census_has_merged_material_result": false,
+     "issue": 1389,
+     "path": "papers/Q-paper-01-tare-expressivity/"
+    },
+    {
+     "census_has_merged_material_result": false,
+     "issue": 1416,
+     "path": "research/extensions/orion-qg/QG21_CERTIFICATE_MARGIN_MAP.json"
+    },
+    {
+     "census_has_merged_material_result": false,
+     "issue": 1418,
+     "path": "papers/Q-paper-01-tare-expressivity/Q1_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md"
+    },
+    {
+     "census_has_merged_material_result": false,
+     "issue": 1359,
+     "path": "shadow/orion-v1-quantum-issue-disposition-20260826/EXECUTION_PACKET_V1.json"
+    }
+   ],
+   "control": "c8_census_binding_defects",
+   "issue_count_of_hard_defects": 23,
+   "issues_claiming_merged_result_with_zero_resolvable_artifacts": [
+    738,
+    862,
+    864,
+    868,
+    872,
+    874,
+    879,
+    880,
+    884,
+    886,
+    888,
+    890,
+    903,
+    904,
+    908,
+    914,
+    918,
+    920,
+    921,
+    924,
+    928,
+    932,
+    933
+   ],
+   "missing_path_count": 35,
+   "statement": "The census binds 35 evidence paths that do not exist in the tree this job executed on; 23 issues claim has_merged_material_result=true with ZERO resolvable artifact paths. This job's donor table re-binds every affected family to the artifacts actually present (recorded per row in census_binding_defect) and retains the defects as first-class data notes rather than silently trusting the census paths.",
+   "statistics": {
+    "evidence_rows": 76,
+    "missing": 35,
+    "placeholder": 8,
+    "resolved": 33
+   }
+  }
+ },
+ "generated_utc": "2026-08-26T23:07:11Z",
+ "job_id": "V1-Q-RESOURCE-01",
+ "no_alarm_checks": {
+  "c1_all_objectives_consistent": true,
+  "c4_bruteforce_all_verified": true,
+  "c5_hierarchy_strict": true,
+  "census_56_distinct": true,
+  "census_issue_count_is_56": true,
+  "coverage_complete": true
+ },
+ "schema": "ORION.V1.QuantumResource.NegativeControls.v1"
+}

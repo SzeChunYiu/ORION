@@ -1,4 +1,4 @@
-# ORION-ORION-13 reference metadata audit V1
+# ORION-13 reference metadata audit V1
 
 **Audit date:** 2026-08-18  
 **Scope:** references used by the scoped ORION-13 manuscript  

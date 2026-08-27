@@ -1,4 +1,4 @@
-# ORION-ORION-13: Annotation schema and handbook V1
+# ORION-13: Annotation schema and handbook V1
 
 **Status:** DESIGN_FROZEN (before gold annotation). Part of `ORION-13.cross-domain-atlas.v1`.
 

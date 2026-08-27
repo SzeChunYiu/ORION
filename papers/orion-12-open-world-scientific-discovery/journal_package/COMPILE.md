@@ -1,4 +1,4 @@
-# ORION-ORION-12 compile and audit instructions
+# ORION-12 compile and audit instructions
 
 From `papers/orion-12-open-world-scientific-discovery/manuscript/`:
 

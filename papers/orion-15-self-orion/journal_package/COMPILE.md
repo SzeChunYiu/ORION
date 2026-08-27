@@ -1,4 +1,4 @@
-# ORION-ORION-15 compile instructions
+# ORION-15 compile instructions
 
 From `papers/orion-15-self-orion/`, render the tracked SVG figure first:
 

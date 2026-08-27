@@ -1,4 +1,4 @@
-# ORION-ORION-11 prospective external protocol
+# ORION-11 prospective external protocol
 
 **Protocol:** `ORION-11.hidden-formulation.v1`  
 **Status:** `DESIGN_FROZEN`  

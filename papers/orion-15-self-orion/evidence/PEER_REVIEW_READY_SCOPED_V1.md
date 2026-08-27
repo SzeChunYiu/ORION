@@ -1,4 +1,4 @@
-# ORION-ORION-15 scoped peer-review-readiness attestation V1
+# ORION-15 scoped peer-review-readiness attestation V1
 
 **Claim scope:** `SCOPED_SELF_IMPROVEMENT_AUTHORITY_SEPARATION__NO_TRANSFERABLE_IMPROVEMENT_SUPERIORITY`  
 **Scientific terminal:** `SCOPED_NON_SELF_PROMOTION_SUPPORTED`  

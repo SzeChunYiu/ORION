@@ -1,4 +1,4 @@
-# ORION-ORION-14 Protected V2 Result Attestation
+# ORION-14 Protected V2 Result Attestation
 
 ## Publication-authorizing execution
 

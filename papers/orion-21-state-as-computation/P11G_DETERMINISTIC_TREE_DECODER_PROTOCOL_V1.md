@@ -1,6 +1,6 @@
 # P11G Deterministic Tree-Decoder Successor Protocol V1
 
-**Paper:** ORION-ORION-21 — State as Computation  
+**Paper:** ORION-21 — State as Computation  
 **Issue:** #471  
 **Protocol:** `ORION.P11G.DeterministicTreeDecoder.v1`  
 **Frozen:** 2026-08-21 before P11G protected execution.

@@ -1,4 +1,4 @@
-# Statistical Analysis Plan — ORION-ORION-14 (V1)
+# Statistical Analysis Plan — ORION-14 (V1)
 
 **Protocol:** ORION-14.protected-authority.v1  
 **Status:** DESIGN_FROZEN (pre-execution plan)  

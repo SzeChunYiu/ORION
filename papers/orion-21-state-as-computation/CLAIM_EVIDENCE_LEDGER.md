@@ -1,6 +1,6 @@
 # ORION-21 Claim–Evidence Ledger
 
-**Stable ID:** ORION-ORION-21  
+**Stable ID:** ORION-21  
 **Issues:** #471, #664, #667  
 **Evidence cut:** 2026-08-22
 

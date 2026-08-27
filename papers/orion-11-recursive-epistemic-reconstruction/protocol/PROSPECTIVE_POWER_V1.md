@@ -1,4 +1,4 @@
-# ORION-ORION-11 Prospective Power / Precision Analysis V1
+# ORION-11 Prospective Power / Precision Analysis V1
 
 **Provenance.** This document is bound to protocol `ORION-11.hidden-formulation.v1.1`
 (DESIGN_FROZEN, `outcome_accessed: false`). All case counts are derived from the

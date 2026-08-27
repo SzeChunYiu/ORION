@@ -1,6 +1,6 @@
 # ORION-22 — Adaptive State–Reasoning Co-Design
 
-**Stable ID:** ORION-ORION-22  
+**Stable ID:** ORION-22  
 **Paper issue:** #665  
 **Shared accounting:** #664  
 **Programme:** #670

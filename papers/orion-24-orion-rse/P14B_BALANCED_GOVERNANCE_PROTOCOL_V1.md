@@ -1,6 +1,6 @@
 # P14B Balanced Governance Discriminator Protocol V1
 
-**Paper:** ORION-ORION-24 — ORION-RSE  
+**Paper:** ORION-24 — ORION-RSE  
 **Issue:** #669  
 **Protocol:** `ORION.P14B.BalancedGovernanceDiscriminator.v1`  
 **Frozen:** 2026-08-21 after P14A was permanently recorded negative.

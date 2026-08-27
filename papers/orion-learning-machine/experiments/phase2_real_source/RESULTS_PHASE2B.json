@@ -1,0 +1,188 @@
+{
+  "authority": "REAL GOAL->TACTIC->GOALS-AFTER VIEWER SAMPLE; SMALL SMOKE TEST; NO KERNEL REPLAY",
+  "rows": 29,
+  "modules": 23,
+  "effect_counts": {
+    "branched": 2,
+    "closed": 16,
+    "one_goal": 11
+  },
+  "eligible_cross_module_mechanics": [
+    "Nat.cast_succ",
+    "exact",
+    "mul_add",
+    "simp",
+    "split_ifs"
+  ],
+  "contracts": [
+    {
+      "mechanic_id": "Nat.cast_succ",
+      "support": 3,
+      "modules": 3,
+      "effect_counts": {
+        "one_goal": 3
+      },
+      "modal_effect": "one_goal",
+      "effect_entropy_bits": -0.0,
+      "context_values": {
+        "target": [
+          "equality"
+        ]
+      }
+    },
+    {
+      "mechanic_id": "exact",
+      "support": 3,
+      "modules": 2,
+      "effect_counts": {
+        "closed": 3
+      },
+      "modal_effect": "closed",
+      "effect_entropy_bits": -0.0,
+      "context_values": {
+        "target": [
+          "false",
+          "proposition"
+        ]
+      }
+    },
+    {
+      "mechanic_id": "mul_add",
+      "support": 3,
+      "modules": 3,
+      "effect_counts": {
+        "one_goal": 3
+      },
+      "modal_effect": "one_goal",
+      "effect_entropy_bits": -0.0,
+      "context_values": {
+        "target": [
+          "equality"
+        ]
+      }
+    },
+    {
+      "mechanic_id": "simp",
+      "support": 2,
+      "modules": 2,
+      "effect_counts": {
+        "closed": 2
+      },
+      "modal_effect": "closed",
+      "effect_entropy_bits": -0.0,
+      "context_values": {
+        "target": [
+          "equality"
+        ]
+      }
+    },
+    {
+      "mechanic_id": "split_ifs",
+      "support": 4,
+      "modules": 4,
+      "effect_counts": {
+        "closed": 4
+      },
+      "modal_effect": "closed",
+      "effect_entropy_bits": -0.0,
+      "context_values": {
+        "target": [
+          "equality"
+        ]
+      }
+    }
+  ],
+  "leave_module_out": {
+    "eligible_rows_known": 15,
+    "unknown": 0,
+    "contract_accuracy": 1.0,
+    "global_effect_baseline_accuracy": 0.6,
+    "coverage_of_all_rows": 0.5172413793103449,
+    "per_module": [
+      {
+        "held_out_module": "Mathlib.Algebra.Group.Action.Pi",
+        "known": 1,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 1.0
+      },
+      {
+        "held_out_module": "Mathlib.Algebra.GroupWithZero.Action.Defs",
+        "known": 1,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 1.0
+      },
+      {
+        "held_out_module": "Mathlib.Algebra.Module.NatInt",
+        "known": 1,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 0.0
+      },
+      {
+        "held_out_module": "Mathlib.Algebra.Order.Ring.Unbundled.Basic",
+        "known": 1,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 0.0
+      },
+      {
+        "held_out_module": "Mathlib.Algebra.Ring.Defs",
+        "known": 2,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 0.0
+      },
+      {
+        "held_out_module": "Mathlib.Algebra.Ring.InjSurj",
+        "known": 1,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 0.0
+      },
+      {
+        "held_out_module": "Mathlib.Algebra.Ring.Parity",
+        "known": 1,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 0.0
+      },
+      {
+        "held_out_module": "Mathlib.Data.FunLike.Basic",
+        "known": 1,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 1.0
+      },
+      {
+        "held_out_module": "Mathlib.Data.Nat.Cast.Defs",
+        "known": 1,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 1.0
+      },
+      {
+        "held_out_module": "Mathlib.Logic.Equiv.Sum",
+        "known": 1,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 1.0
+      },
+      {
+        "held_out_module": "Mathlib.Order.RelIso.Basic",
+        "known": 3,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 1.0
+      },
+      {
+        "held_out_module": "Mathlib.Tactic.CongrExclamation",
+        "known": 1,
+        "unknown": 0,
+        "contract_accuracy": 1.0,
+        "global_baseline_accuracy": 1.0
+      }
+    ]
+  }
+}

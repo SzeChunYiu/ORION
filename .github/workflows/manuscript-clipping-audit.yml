@@ -85,14 +85,14 @@ jobs:
           done < /tmp/expected-render-packages.tsv
       - name: Test clipping-audit regression cases
         run: python -m pytest -q tests/unit/scripts/test_audit_manuscript_clipping.py
-      - name: Rebuild every current P1-P15 working manuscript
+      - name: Rebuild every current working manuscript
         shell: bash
         run: |
           set -euo pipefail
           shopt -s nullglob
           entries=(papers/orion-??-*/manuscript/main.tex)
-          test "${#entries[@]}" -eq 15 || {
-            echo "::error::expected 15 P1-P15 manuscript entry points, found ${#entries[@]}"
+          test "${#entries[@]}" -eq 21 || {
+            echo "::error::expected 21 manuscript entry points, found ${#entries[@]}"
             exit 1
           }
           for entry in "${entries[@]}"; do

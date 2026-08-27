@@ -1,4 +1,4 @@
-# ORION-ORION-13 journal package
+# ORION-13 journal package
 
 **Scientific status:** the scoped structured-integration results are retained.  
 **Package status:** `SUPERSEDED`.  

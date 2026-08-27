@@ -1,4 +1,4 @@
-# ORION-ORION-14 V2 Script Index
+# ORION-14 V2 Script Index
 
 | Purpose | Path |
 |---|---|

@@ -1,6 +1,6 @@
 # ORION-25 Failure Ledger (V1)
 
-**Stable ID:** ORION-ORION-25-FAILURE-LEDGER  
+**Stable ID:** ORION-25-FAILURE-LEDGER  
 **Created:** 2026-08-24 (issue #1086 ORION-23–ORION-25 lane)  
 **Scope:** retained record of blocked, adverse, null and harmful runs and
 boundaries for the ORION-25 research-harness instrument. Threat-model counterpart:

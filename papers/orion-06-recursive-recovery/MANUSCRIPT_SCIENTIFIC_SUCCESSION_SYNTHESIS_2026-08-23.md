@@ -1,6 +1,6 @@
 # Recursive Recovery of Negative Quantum Results: A Receipted Longitudinal Study of Scientific Succession
 
-**ORION-ORION-02 Manuscript V2 — publication-synthesis draft**  
+**ORION-02 Manuscript V2 — publication-synthesis draft**  
 Publication cut: `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 Foundation: `PUBLICATION_FOUNDATION_V2.md`
 

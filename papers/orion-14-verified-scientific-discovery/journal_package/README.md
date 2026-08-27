@@ -1,4 +1,4 @@
-# ORION-ORION-14 journal package
+# ORION-14 journal package
 
 **Package status:** `SCAFFOLDING` even though `JOURNAL_READINESS.md` declares `PEER_REVIEW_READY`.
 

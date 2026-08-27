@@ -1,4 +1,4 @@
-# ORION-ORION-15 claim ledger V1
+# ORION-15 claim ledger V1
 
 > **Record of the pre-rewrite manuscript, 2026-08-22.** The manuscript was
 > subsequently rewritten so that its claims are about the mechanism rather than

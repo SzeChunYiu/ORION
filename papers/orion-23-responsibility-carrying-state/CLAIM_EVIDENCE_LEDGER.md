@@ -1,6 +1,6 @@
 # ORION-23 Claim–Evidence Ledger
 
-**Stable ID:** ORION-ORION-23  
+**Stable ID:** ORION-23  
 **Issues:** #666, #668
 
 | Claim | Status | Evidence | Maximum authorized wording |

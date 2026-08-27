@@ -8,11 +8,11 @@ ORION has **exactly five numbered flagship papers**. A paper identity is determi
 
 | Canonical ID | Flagship paper | Canonical directory |
 |---|---|---|
-| ORION-ORION-11 | Recursive Epistemic Reconstruction | `orion-11-recursive-epistemic-reconstruction/` |
-| ORION-ORION-12 | Open-World Scientific Knowledge Discovery | `orion-12-open-world-scientific-discovery/` |
-| ORION-ORION-13 | Global Knowledge Portrait | `orion-13-global-knowledge-portrait/` |
-| ORION-ORION-14 | Verified Scientific Discovery | `orion-14-verified-scientific-discovery/` |
-| ORION-ORION-15 | Self-ORION | `orion-15-self-orion/` |
+| ORION-11 | Recursive Epistemic Reconstruction | `orion-11-recursive-epistemic-reconstruction/` |
+| ORION-12 | Open-World Scientific Knowledge Discovery | `orion-12-open-world-scientific-discovery/` |
+| ORION-13 | Global Knowledge Portrait | `orion-13-global-knowledge-portrait/` |
+| ORION-14 | Verified Scientific Discovery | `orion-14-verified-scientific-discovery/` |
+| ORION-15 | Self-ORION | `orion-15-self-orion/` |
 
 The active `papers/` tree contains those five flagship paper directories, publication synchronization/alias files, and the candidate paper packages listed below. Historical redirect directories and the former `shadow-mechanics-v1/` paper-like path have been removed. Their mappings are recorded in `PAPER_ALIASES.md` and remain recoverable from Git history.
 
@@ -22,16 +22,16 @@ The candidate paper packages live directly under `papers/`, **one directory per 
 
 | Identity | Directory | Issue |
 |---|---|---|
-| ORION-ORION-16 | `orion-16-formal-epistemic-structures-and-mechanics/` | #654 |
-| ORION-ORION-17 | `orion-17-epistemic-navigation-open-worlds/` | #655 |
-| ORION-ORION-18 | `orion-18-epistemic-authority-autonomous-science/` | #656 |
-| ORION-ORION-19 | `orion-19-structured-epistemic-learning/` | #662 |
-| ORION-ORION-20 | `orion-20-structured-problem-solving/` | #663 |
-| ORION-ORION-21 | `orion-21-state-as-computation/` | #471 |
-| ORION-ORION-22 | `orion-22-adaptive-state-reasoning/` | #665 |
-| ORION-ORION-23 | `orion-23-responsibility-carrying-state/` | #666 |
-| ORION-ORION-24 | `orion-24-orion-rse/` | #669 |
-| ORION-ORION-25 | `orion-25-orion-research-harness/` | none yet |
+| ORION-16 | `orion-16-formal-epistemic-structures-and-mechanics/` | #654 |
+| ORION-17 | `orion-17-epistemic-navigation-open-worlds/` | #655 |
+| ORION-18 | `orion-18-epistemic-authority-autonomous-science/` | #656 |
+| ORION-19 | `orion-19-structured-epistemic-learning/` | #662 |
+| ORION-20 | `orion-20-structured-problem-solving/` | #663 |
+| ORION-21 | `orion-21-state-as-computation/` | #471 |
+| ORION-22 | `orion-22-adaptive-state-reasoning/` | #665 |
+| ORION-23 | `orion-23-responsibility-carrying-state/` | #666 |
+| ORION-24 | `orion-24-orion-rse/` | #669 |
+| ORION-25 | `orion-25-orion-research-harness/` | none yet |
 
 Three further directories under `papers/` are **not paper identities**:
 

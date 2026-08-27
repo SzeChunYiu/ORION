@@ -1,4 +1,4 @@
-# ORION-ORION-15 journal-readiness plan — Self-ORION
+# ORION-15 journal-readiness plan — Self-ORION
 
 **Current terminal:** `NO_TERMINAL_UNDER_FROZEN_RULES` for the bounded 96-case revision-level panel; general governed self-improvement benefit remains `CANNOT_CHECK` / **not** peer-review ready.  
 **Audit date:** 2026-08-24 against the current shared worktree, the immutable V11--V13 C2 successor packets and the frozen V3 confirmatory receipt.  
@@ -201,4 +201,4 @@ Live rerun in this session: **`CANNOT_CHECK`** (credentials unset; #8 packet `co
 
 ## Done definition
 
-`ORION-ORION-15 = PEER_REVIEW_READY` only when full Self-ORION demonstrates transferable protected improvement against current self-improvement baselines, harmful transfer/integrity outcomes are reported, no self-promotion authority is claimed, and all programme readiness gates pass. The 21/24 diagnostic archive does **not** satisfy that terminal.
+`ORION-15 = PEER_REVIEW_READY` only when full Self-ORION demonstrates transferable protected improvement against current self-improvement baselines, harmful transfer/integrity outcomes are reported, no self-promotion authority is claimed, and all programme readiness gates pass. The 21/24 diagnostic archive does **not** satisfy that terminal.

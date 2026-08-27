@@ -1,6 +1,6 @@
 # Responsibility-Carrying State: Auditable Sufficiency, Reopen Contracts, and Safe State Reuse
 
-**ORION-ORION-23 · issue #666 · interface track #668**  
+**ORION-23 · issue #666 · interface track #668**  
 **Evidence freeze:** 2026-08-21  
 **Submission status:** `P13_CONTROLLED_AUTHENTICATED_CERTIFICATE_AUTHORITY_SUPPORTED`; external validation open
 

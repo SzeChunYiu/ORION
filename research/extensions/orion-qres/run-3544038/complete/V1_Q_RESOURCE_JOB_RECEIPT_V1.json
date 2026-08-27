@@ -1,0 +1,75 @@
+{
+ "binding_checks_all_ok": true,
+ "depends_on": [
+  "V1-Q-CENSUS-01"
+ ],
+ "executed_on": "cx04",
+ "execution_mode": "x",
+ "exit_code": 0,
+ "generated_utc": "2026-08-26T23:07:11Z",
+ "input_count": 29,
+ "input_manifest_sha256_combined": "f202211a622b0611a610d25ce778561ae8edbe844cf47c2871d1972d5091ed7c",
+ "job_id": "V1-Q-RESOURCE-01",
+ "ledger_class": "QUANTUM_RESOURCE_ACCOUNTING",
+ "mode_x_statement": "frozen inputs opened read-only; outputs additive and written outside the freeze package; integer/exact-rational arithmetic only; no float constructed into any emitted artifact (machine-enforced); every emitted file sha256-bound in RESULT_BINDING_PACKET_V1.json",
+ "negative_terminal_counts": {
+  "CANNOT_CHECK": 11,
+  "COMPILER_COST_UNBOUND": 7,
+  "DONOR_EQUIVALENT": 5,
+  "HIDDEN_ORACLE": 2,
+  "VERIFICATION_COST_UNBOUND": 3
+ },
+ "outputs": [
+  {
+   "bytes": 5992,
+   "path": "complete/FREEZE_MANIFEST_V1.json",
+   "sha256": "355702fcd246d01fc8abf72072cad5c1d11313e0e05712ab65ea153b895bff85"
+  },
+  {
+   "bytes": 12098,
+   "path": "complete/RAW_MANIFEST_V1.json",
+   "sha256": "c7844b891dad151c775be0d7564bba10cd86f5b440e677be69faabb9e5cbc8e9"
+  },
+  {
+   "bytes": 1235,
+   "path": "complete/PRIMARY_RESULT_V1.json",
+   "sha256": "98e1d4c0f95725e227ebfbae6de0a6f9d69424b1b7c3e674255dd7572312f42f"
+  },
+  {
+   "bytes": 40690,
+   "path": "complete/DONOR_RESULT_V1.json",
+   "sha256": "fb665152d38930812c9b100a143817de22eaccc6a208953fc074d454d47bcb1b"
+  },
+  {
+   "bytes": 26349,
+   "path": "complete/NEGATIVE_CONTROLS_V1.json",
+   "sha256": "fe2d62fd4d638216c5300b67d3486c56835c3269a3d66372edb5e2717a3c4678"
+  },
+  {
+   "bytes": 3856,
+   "path": "complete/RESOURCE_LEDGER_V1.json",
+   "sha256": "b68b899c0d6aec58d7751d3b12444b0ffab1b0f022c41509e8781918fda14692"
+  },
+  {
+   "bytes": 1036,
+   "path": "complete/TRANSFER_RESULT_V1.json",
+   "sha256": "652a63dd6228dcb76352b2418103652f19dd3ba5687129fd96bfd2d4c54a17d9"
+  },
+  {
+   "bytes": 1727,
+   "path": "complete/RESULT_BINDING_PACKET_V1.json",
+   "sha256": "5563a9543da48de0f3e69e11ca04c9c10301f9f024e3ae8ee57c6fa40df087d1"
+  },
+  {
+   "bytes": 10910,
+   "path": "RESULTS.md",
+   "sha256": "5c5d42550e2c2e75fa130790e0c1bd9628d2e7d01c867475e40d2d31333cd27a"
+  }
+ ],
+ "paper_authority_delta": "NONE",
+ "python": "3.11.5",
+ "schema": "ORION.V1.QuantumResource.JobReceipt.v1",
+ "slurm_job_id": "3544038",
+ "surviving_resource_advantage_count": 0,
+ "terminal": "V1_QUANTUM_RESOURCE_ACCOUNTING_COMPLETE"
+}

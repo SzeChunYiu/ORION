@@ -1,0 +1,255 @@
+name: orion-02-cnbr2-defect-recovery-v2
+
+on:
+  push:
+    branches:
+      - chatgpt/orion-02-cnbr2-defect-recovery-20260827
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/CERTIFIED_NEIGHBORHOOD_CONFORMAL_PROTOCOL_V1.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_PROTOCOL_V2.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/certified_neighborhood_conformal.py'
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/test_certified_neighborhood_conformal_d1_recovery.py'
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_*'
+      - '.github/workflows/orion-02-cnbr2-defect-recovery-v2.yml'
+  pull_request:
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/CERTIFIED_NEIGHBORHOOD_CONFORMAL_PROTOCOL_V1.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_PROTOCOL_V2.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/certified_neighborhood_conformal.py'
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/test_certified_neighborhood_conformal_d1_recovery.py'
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_*'
+      - '.github/workflows/orion-02-cnbr2-defect-recovery-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orion-02-cnbr2-defect-recovery-v2
+  cancel-in-progress: false
+
+env:
+  CNBR2_RECOVERY_SUBJECT: 240d9f455b22ea53e8c18173d123222d4276f36b
+  CNBR2_SOURCE_GIT_SHA: 240d9f455b22ea53e8c18173d123222d4276f36b
+  OMP_NUM_THREADS: '1'
+  OPENBLAS_NUM_THREADS: '1'
+  MKL_NUM_THREADS: '1'
+
+jobs:
+  defect-only-recovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify immutable repaired subject and unchanged V1 protocol
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/experiments'
+          git cat-file -e "$CNBR2_RECOVERY_SUBJECT^{commit}"
+          test "$(git rev-parse "$CNBR2_RECOVERY_SUBJECT:$root/certified_neighborhood_conformal.py")" = 'a0749aed0374ddb5e406920036a1699781595832'
+          test "$(git rev-parse "$CNBR2_RECOVERY_SUBJECT:$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_PROTOCOL_V1.md")" = 'de7c303c6a0f9374d07ff7259dcbfe5557e24c66'
+          git diff --exit-code "$CNBR2_RECOVERY_SUBJECT" HEAD -- \
+            "$root/certified_neighborhood_conformal.py" \
+            "$root/test_certified_neighborhood_conformal_d1_recovery.py" \
+            "$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_PROTOCOL_V1.md" \
+            "$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_PROTOCOL_V2.md"
+
+      - name: Install frozen scientific runtime
+        run: python -m pip install 'numpy==1.26.4' 'scikit-learn==1.5.2'
+
+      - name: Compile and run outcome-blind hostile controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/experiments'
+          python -m py_compile \
+            "$root/certified_neighborhood_conformal.py" \
+            "$root/test_certified_neighborhood_conformal_d1_recovery.py" \
+            'papers/paper-xx-executable-research-core/benchmark/run_aslib_v1.py'
+          python "$root/test_certified_neighborhood_conformal_d1_recovery.py" \
+            | tee "$RUNNER_TEMP/nearest-anchor-control.json"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          result=json.loads((Path(os.environ['RUNNER_TEMP'])/'nearest-anchor-control.json').read_text())
+          assert result['terminal']=='C_NBR2_NEAREST_ANCHOR_DEFECT_ONLY_REPAIR_PASS'
+          assert all(result['controls'].values())
+          assert result['authority']=={
+              'outcome_data_read':False,
+              'scientific_result':False,
+              'external_independence':False,
+              'journal_authority':False,
+          }
+          print('C_NBR2_NEAREST_ANCHOR_HOSTILE_CONTROLS_VERIFIED')
+          PY
+
+      - name: Execute corrected frozen protocol twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/experiments'
+          json="$root/results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V1.json"
+          md="$root/results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V1.md"
+          cp "$json" "$RUNNER_TEMP/defective-v1.json"
+          cp "$md" "$RUNNER_TEMP/defective-v1.md"
+          for suffix in a b; do
+            rm -f "$json" "$md"
+            python "$root/certified_neighborhood_conformal.py" \
+              | tee "$RUNNER_TEMP/terminal-$suffix.txt"
+            cp "$json" "$RUNNER_TEMP/result-$suffix.json"
+            cp "$md" "$RUNNER_TEMP/result-$suffix.md"
+          done
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/result-a.md" "$RUNNER_TEMP/result-b.md"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+          cp "$RUNNER_TEMP/defective-v1.json" "$json"
+          cp "$RUNNER_TEMP/defective-v1.md" "$md"
+
+      - name: Verify registered terminal surface and recovery authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          temp=Path(os.environ['RUNNER_TEMP'])
+          result=json.loads((temp/'result-a.json').read_text())
+          assert result['schema']=='ORION02.CNBR2.Result.v1'
+          assert result['disposition']=='EXECUTED__FROZEN_PROTOCOL_APPLIED'
+          assert result['protocol_sha256']=='79309ec0122bacf076a534fef633c94ef1c4a25b9c723a7cdeef5f95d82be932'
+          assert result['source']['commit']=='551b22beef8df17de59286b4822ef720e0aa4d6f'
+          assert result['source']['scenario']=='SAT11-HAND-ALGO'
+          assert result['source']['git_sha']==os.environ['CNBR2_RECOVERY_SUBJECT']
+          assert result['population']=={
+              'algorithms':15,
+              'features':115,
+              'instances':296,
+              'outer_folds':[1,2,3,4,5,6,7,8,9,10],
+          }
+          assert result['self_test']['status']=='GREEN'
+          allowed={
+              'CONFORMAL_INVALID',
+              'ADVERSE',
+              'CONFORMAL_NEIGHBORHOOD_REVIVED',
+              'VALID_WITHOUT_COVERAGE_OR_VALUE',
+          }
+          assert result['overall_verdict'] in allowed
+          assert [row['verdict'] for row in result['splits']]
+          receipt={
+              'schema':'ORION02.CNBR2.DefectRecoveryCustody.v2',
+              'recovery_subject':os.environ['CNBR2_RECOVERY_SUBJECT'],
+              'execution_run':int(os.environ['GITHUB_RUN_ID']),
+              'protocol_sha256':result['protocol_sha256'],
+              'repaired_executor_sha256':result['executor_sha256'],
+              'defective_result_sha256':hashlib.sha256((temp/'defective-v1.json').read_bytes()).hexdigest(),
+              'recovery_result_sha256':hashlib.sha256((temp/'result-a.json').read_bytes()).hexdigest(),
+              'recovery_markdown_sha256':hashlib.sha256((temp/'result-a.md').read_bytes()).hexdigest(),
+              'terminal_sha256':hashlib.sha256((temp/'terminal-a.txt').read_bytes()).hexdigest(),
+              'terminal':result['overall_verdict'],
+              'authority':{
+                  'former_V1_result':'QUARANTINED_IMPLEMENTATION_DEVIATION',
+                  'recovery':'OUTCOME_EXPOSED_DEFECT_ONLY_RECOVERY_CORROBORATION',
+                  'prospective_first_result':False,
+                  'conditional_routed_case_validity':False,
+                  'family_shift_validity':False,
+                  'deterministic_fibre_safety':False,
+                  'external_independence':False,
+                  'production_value':False,
+                  'journal_authority':False,
+              },
+          }
+          (temp/'custody.json').write_text(json.dumps(receipt,sort_keys=True,separators=(',',':'))+'\n')
+          print('C_NBR2_DEFECT_ONLY_RECOVERY_VERIFIED',result['overall_verdict'])
+          PY
+
+      - name: Require durable recovery bytes when already published
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/experiments/results'
+          registered="$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json"
+          registered_md="$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.md"
+          terminal="$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_TERMINAL_V2.txt"
+          custody="$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_CUSTODY_V2.json"
+          if [ -e "$registered" ] || [ -e "$registered_md" ] || [ -e "$terminal" ] || [ -e "$custody" ]; then
+            test -f "$registered" && test -f "$registered_md" && test -f "$terminal" && test -f "$custody"
+            cmp "$RUNNER_TEMP/result-a.json" "$registered"
+            cmp "$RUNNER_TEMP/result-a.md" "$registered_md"
+            cmp "$RUNNER_TEMP/terminal-a.txt" "$terminal"
+          fi
+          python - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          root=Path('papers/orion-02-fiberguard-finite-fibre/experiments/results')
+          custody_path=root/'CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_CUSTODY_V2.json'
+          if custody_path.exists():
+              custody=json.loads(custody_path.read_text())
+              assert custody['recovery_subject']==os.environ['CNBR2_RECOVERY_SUBJECT']
+              observed=hashlib.sha256((root/'CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json').read_bytes()).hexdigest()
+              assert custody['recovery_result_sha256']==observed
+              assert custody['authority']['journal_authority'] is False
+              print('C_NBR2_DURABLE_RECOVERY_BYTES_VERIFIED')
+          PY
+
+      - name: Restore tracked provenance and check hygiene
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/experiments/results'
+          git diff --check
+          git diff --exit-code -- \
+            "$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V1.json" \
+            "$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V1.md"
+
+      - name: Stage immutable recovery artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/orion-02-cnbr2-defect-recovery-v2"
+          mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json"
+          cp "$RUNNER_TEMP/result-a.md" "$out/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.md"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          cp "$RUNNER_TEMP/custody.json" "$out/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_CUSTODY_V2.json"
+          cp "$RUNNER_TEMP/nearest-anchor-control.json" "$out/NEAREST_ANCHOR_CONTROL.json"
+          cp "$RUNNER_TEMP/defective-v1.json" "$out/QUARANTINED_DEFECTIVE_V1_RESULT.json"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-02-cnbr2-defect-recovery-v2-${{ github.sha }}
+          path: ${{ runner.temp }}/orion-02-cnbr2-defect-recovery-v2/
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Publish durable recovery bytes once
+        if: github.event_name == 'push' && github.ref == 'refs/heads/chatgpt/orion-02-cnbr2-defect-recovery-20260827'
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/experiments/results'
+          registered="$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json"
+          registered_md="$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.md"
+          terminal="$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_TERMINAL_V2.txt"
+          custody="$root/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_CUSTODY_V2.json"
+          if [ ! -e "$registered" ] && [ ! -e "$registered_md" ] && [ ! -e "$terminal" ] && [ ! -e "$custody" ]; then
+            cp "$RUNNER_TEMP/result-a.json" "$registered"
+            cp "$RUNNER_TEMP/result-a.md" "$registered_md"
+            cp "$RUNNER_TEMP/terminal-a.txt" "$terminal"
+            cp "$RUNNER_TEMP/custody.json" "$custody"
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add "$registered" "$registered_md" "$terminal" "$custody"
+            git commit -m 'results(ORION-02): bind corrected C-NBR2 recovery terminal'
+            git push origin HEAD:refs/heads/chatgpt/orion-02-cnbr2-defect-recovery-20260827
+          else
+            echo 'durable recovery bytes already present'
+          fi

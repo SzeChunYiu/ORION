@@ -1,6 +1,6 @@
 # ORION-18 — Scientific Authority Without Authority Laundering
 
-**Stable ID:** ORION-ORION-18  
+**Stable ID:** ORION-18  
 **Current science manuscript:** `manuscript/FINAL_V3.md`  
 **Historical V2/V2.1 submission bytes:** preserved  
 **Current status:** bounded theory + bounded real evidence earned; external scientific adjudication still open.

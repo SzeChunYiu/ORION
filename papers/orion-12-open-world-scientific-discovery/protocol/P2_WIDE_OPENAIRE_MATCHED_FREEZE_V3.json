@@ -8,6 +8,9 @@
     "path": "papers/orion-12-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json",
     "git_blob_sha": "36c923a416389be831333e8a02f75736278c8b3f",
     "head_sha": "b96f1e70a65b73556c6bddb8189a5d6099937a48",
+    "path_at_head": "papers/paper-02-open-world-scientific-discovery/protocol/P2_WIDE_OPENAIRE_MATCHED_FREEZE_V2.json",
+    "post_rename_git_blob_sha": "7b0f0313377ac45ab22dec0affaa6d0fd85b4c70",
+    "post_rename_note": "R0 namespace unification (#1474) renamed this file and its internal self-references; commit 0deff0ad4 (#1494) then retargeted git_blob_sha onto that post-rename blob while head_sha stayed fixed, making the pair historically false. Custody repair (2026-08-27) restores the authenticated identity (head_sha + path_at_head + git_blob_sha, matching the run receipt and RESULT_V3) and records the post-rename blob separately; validators accept both so same-tree execution binding holds.",
     "retained_terminal": "P2_WIDE_EXTERNAL_V2_CANNOT_CHECK",
     "scientific_outcomes_reused": false
   },

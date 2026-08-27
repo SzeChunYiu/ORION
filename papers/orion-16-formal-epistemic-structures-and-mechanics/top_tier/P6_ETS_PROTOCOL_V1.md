@@ -1,7 +1,7 @@
 # ORION-16 ETS prospective protocol V1
 
 **Programme:** #977  
-**Paper:** ORION-ORION-16  
+**Paper:** ORION-16  
 **Protocol state:** `FROZEN_BEFORE_EXECUTION`  
 **Purpose:** test the top-tier Epistemic Transition Systems claim above the finished V2.1 theory without altering historical ORION-16 results.
 

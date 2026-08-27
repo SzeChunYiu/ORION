@@ -252,7 +252,7 @@ Prospectively mutate:
 - evaluator/verifier version;
 - other registered context coordinates.
 
-Gold labels distinguish preserve, transport, reopen, revoke and unresolved outcomes. RCS transport/revocation must compose with ORION ORION-16/ORION-17/ORION-18 semantics rather than creating a second authority system.
+Gold labels distinguish preserve, transport, reopen, revoke and unresolved outcomes. RCS transport/revocation must compose with ORION-16/ORION-17/ORION-18 semantics rather than creating a second authority system.
 
 A certificate is invalid if the compiler or evaluator silently certifies its own scientific authority, if the represented evidence is stale, or if a semantic change is treated as a cosmetic version change.
 
@@ -402,7 +402,7 @@ Minimum promotion requires: independently frozen successor debt result, RCS safe
 ## References and donor notes
 
 1. Classical statistical sufficiency and state-abstraction literatures — final paper requires task-specific canonical sources selected by the external literature pass.
-2. ORION ORION-16/ORION-17/ORION-18 canonical bibliography for dynamic change, authorization, provenance and non-amplification donors.
+2. ORION-16/ORION-17/ORION-18 canonical bibliography for dynamic change, authorization, provenance and non-amplification donors.
 3. Doyle, J. **A Truth Maintenance System.** *Artificial Intelligence* 12(3):231–272 (1979). DOI `10.1016/0004-3702(79)90008-0`.
 4. de Kleer, J. **An Assumption-Based TMS.** *Artificial Intelligence* 28(2):127–162 (1986). DOI `10.1016/0004-3702(86)90080-9`.
 5. Park, J. & Sandhu, R. **The UCONABC Usage Control Model.** *ACM TISSEC* 7(1):128–174 (2004). DOI `10.1145/984334.984339`.

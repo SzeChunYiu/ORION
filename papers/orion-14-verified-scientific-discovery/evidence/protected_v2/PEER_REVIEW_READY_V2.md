@@ -1,6 +1,6 @@
-# ORION-ORION-14 Peer-Review-Ready Attestation — protected V2
+# ORION-14 Peer-Review-Ready Attestation — protected V2
 
-**Terminal:** `ORION-ORION-14 = PEER_REVIEW_READY`
+**Terminal:** `ORION-14 = PEER_REVIEW_READY`
 
 This attestation closes the scientific/reproducibility readiness gate for Paper IV. It does not claim that a TMLR submission has already been filed.
 

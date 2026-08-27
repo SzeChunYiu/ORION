@@ -1,6 +1,6 @@
-# ORION-ORION-21 peer-review readiness
+# ORION-21 peer-review readiness
 
-**Programme identity:** ORION-ORION-21 — Content-Bound Mathematical Evaluation (#471)  
+**Programme identity:** ORION-21 — Content-Bound Mathematical Evaluation (#471)  
 **Submission title:** *Bytes, Builds, and Meaning: Content-Bound Evaluation for Evolving Lean Repositories*  
 **Target venue family:** Journal of Automated Reasoning / peer-reviewed automated-reasoning venue; final portal metadata remains author-controlled.  
 **Scientific terminal:** `P11_BOUNDED_EVALUATION_METHODS_PAPER`  

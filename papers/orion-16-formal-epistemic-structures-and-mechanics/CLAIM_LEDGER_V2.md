@@ -24,7 +24,7 @@
 
 ## Donor ownership that must remain visible
 
-ORION-16 explicitly treats as donor/pre-existing: TMS/JTMS/ATMS, self-adjusting and incremental computation, dynamic epistemic/action logics, belief revision, separation/process trace theory, typed/algebraic effects, authorization/delegation/revocation, provenance/audit, CoALA, ETAS, FAVA, AgentTether, dependency-guided rollback repair, and ORION ORION-11 mechanic/reopen ownership.
+ORION-16 explicitly treats as donor/pre-existing: TMS/JTMS/ATMS, self-adjusting and incremental computation, dynamic epistemic/action logics, belief revision, separation/process trace theory, typed/algebraic effects, authorization/delegation/revocation, provenance/audit, CoALA, ETAS, FAVA, AgentTether, dependency-guided rollback repair, and ORION-11 mechanic/reopen ownership.
 
 ## Allowed headline
 

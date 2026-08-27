@@ -372,7 +372,7 @@ The following are treated as donor or pre-existing mechanisms, not ORION-16 inve
 - typed/algebraic effects;
 - authorization, delegation and revocation logics;
 - provenance/audit systems;
-- ORION ORION-11 mechanic cells, recursive audit, responsibility-based reframing and dependency reopening;
+- ORION-11 mechanic cells, recursive audit, responsibility-based reframing and dependency reopening;
 - 2026 agent-specific effect/authorization/repair systems already named in the donor ledger.
 
 The completed ORION-16 theoretical object is therefore:

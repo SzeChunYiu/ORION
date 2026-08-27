@@ -1,6 +1,6 @@
 # ORION-24 — ORION-RSE
 
-**Stable ID:** ORION-ORION-24  
+**Stable ID:** ORION-24  
 **Paper issue:** #669  
 **Programme:** #670
 

@@ -1,4 +1,4 @@
-# ORION-ORION-21 claim ledger V1 — peer-review package
+# ORION-21 claim ledger V1 — peer-review package
 
 **Paper:** *Bytes, Builds, and Meaning: Content-Bound Evaluation for Evolving Lean Repositories*  
 **Historical evidence directory:** `papers/candidates/paper-10-content-bound-math-evaluation/`  

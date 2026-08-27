@@ -1,4 +1,4 @@
-# ORION-ORION-13 Reproducibility Package
+# ORION-13 Reproducibility Package
 
 **Status:** PREPARED (not yet finalized — gold study not yet executed)
 

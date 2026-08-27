@@ -1,4 +1,4 @@
-# ORION-ORION-14 target journal V1
+# ORION-14 target journal V1
 
 **Scientific freeze:** protected campaign `31968809206` accepted; H1/H2 passed, H3 not supported.  
 **Target:** **Nature Machine Intelligence**  

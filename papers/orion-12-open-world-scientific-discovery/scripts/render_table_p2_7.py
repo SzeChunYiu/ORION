@@ -42,7 +42,7 @@ def render(wide: dict, deep: dict) -> str:
     lines: list[str] = []
     add = lines.append
 
-    add("# Table P2-7: AutoResearchBench Wide vs Deep external performance comparison")
+    add("# Table ORION-12-7: AutoResearchBench Wide vs Deep external performance comparison")
     add("")
     add("<!-- GENERATED FILE - DO NOT EDIT BY HAND.")
     add("     Regenerate with:")

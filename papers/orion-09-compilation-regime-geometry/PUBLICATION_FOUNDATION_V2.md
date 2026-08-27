@@ -1,6 +1,6 @@
 # ORION-09 publication foundation V2 — Compilation regime geometry
 
-**Paper:** ORION-ORION-09  
+**Paper:** ORION-09  
 **Publication cut:** `main@ca7df1055a43f97eaf8d142a62011c4c261af368`  
 **Evidence waves included:** committed wave 1 + committed wave 2 only  
 **Excluded:** open/unmerged QG-9/QG-16/QG-17 successor branches unless the publication cut is explicitly advanced  

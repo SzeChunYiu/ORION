@@ -1,4 +1,4 @@
-# ORION-ORION-13 Step 1-2 Completion Audit
+# ORION-13 Step 1-2 Completion Audit
 
 > **Annotated 2026-08-22 after the manuscript house-style rewrite.** This is a
 > completed audit of the manuscript as it stood when the audit was run, and is
