@@ -1,0 +1,24 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=7mm and 10mm,
+  every node/.style={font=\small,align=center},
+  box/.style={draw,rounded corners,inner sep=6pt,text width=0.26\linewidth},
+  narrow/.style={draw,rounded corners,inner sep=5pt,text width=0.20\linewidth},
+  arrow/.style={-Latex,thick},
+  blocked/.style={-Latex,thick,dashed}
+]
+\node[box] (finite) {Complete finite fibre\\registered states, actions, oracle and costs};
+\node[box,right=of finite] (exact) {Exact closed-world certificate\\regret, safe actions, witnesses, repair, acquisition};
+\node[box,right=of exact] (deploy) {Unseen deployment state\\incomplete fibre or shifted route subject};
+\node[narrow,below=of exact] (law) {Independent structural law\\or registered statistical assumption};
+\node[narrow,below=of finite] (empirical) {Held-out empirical selector\\performance, not exact fibre proof};
+\draw[arrow] (finite) -- node[above]{finite theorem} (exact);
+\draw[blocked] (exact) -- node[above]{no free extension} (deploy);
+\draw[arrow] (law) -- node[right]{valid bridge} (deploy);
+\draw[arrow] (empirical) -- node[below right]{evaluation} (deploy);
+\draw[blocked] (exact) -- node[right]{not inherited} (empirical);
+\end{tikzpicture}
+\caption{Authority boundary.  Exact finite-fibre certificates quantify over a declared complete subject.  Applying them to unseen states requires an independently justified structural law or a separately registered statistical validity statement.  Held-out prediction performance is evidence of selector behaviour, not a deterministic completion of the fibre.}
+\label{fig:authority}
+\end{figure}
