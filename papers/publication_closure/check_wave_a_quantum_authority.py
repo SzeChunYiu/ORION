@@ -139,7 +139,9 @@ def main() -> int:
     require_any(qg1, "ORION09_DONOR", ("instance space analysis", "algorithm-selection problem"), errors)
 
     # ORION-10: preserve the four authority layers and the explicit subtraction
-    # of generic static quantum-cost/resource-estimation novelty.
+    # of generic static quantum-cost/resource-estimation novelty. The novelty
+    # boundary uses alternatives so ordinary Markdown emphasis cannot make a
+    # semantically unchanged sentence fail the gate.
     qg2 = QG2_MANUSCRIPT.read_text(encoding="utf-8")
     require_all(
         qg2,
@@ -150,7 +152,15 @@ def main() -> int:
             "finite/conjectural closed-form layer",
             "forecast-only layer",
             "qet",
-            "does not claim novelty for static quantum cost analysis",
+        ),
+        errors,
+    )
+    require_any(
+        qg2,
+        "ORION10_GENERIC_NOVELTY_SUBTRACTION",
+        (
+            "contribution here is not the generic idea",
+            "claim novelty for static quantum cost analysis",
         ),
         errors,
     )
