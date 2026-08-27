@@ -17,7 +17,10 @@ SUBJECT=/projects/hep/fs9/scratch/scyiu-orion-ci/pmlb-src
 cd "$W"
 
 test "$(git branch --show-current)" = claude/science-orion02-20260827
-test "$(git rev-parse HEAD)" = d15a1de9d25ab751613eee8b2a1fe296732118b3
+test "$(sha256sum "$D/fiberguard_pmlb_proposal_ordering_r23.py" | cut -d' ' -f1)" = 6bb4e377462249c3630ceacc56073ba385a82805c79eda58809c42b8ee1562aa
+test "$(sha256sum "$D/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_PROTOCOL.md" | cut -d' ' -f1)" = 54574ec9fa5364fb0ad8e5857678930dac3b4483f1b7a9da96829d8e6f0c447f
+test "$(sha256sum "$D/verify_fiberguard_pmlb_proposal_ordering_r23.py" | cut -d' ' -f1)" = fef1f621f5fe43942201d013a682355a5441379ee57ecbb2f607165e52d16997
+test "$(sha256sum "$D/run_fiberguard_pmlb_proposal_ordering_r23_twice.sh" | cut -d' ' -f1)" = f47fb411acda6735ca636160defcdd926c98e6ed5f57967051b683d4a4203f04
 unexpected=$(git status --porcelain | grep -Ev '^\?\? papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/ORION02_R23_(EXECUTION\.slurm|JOB_[0-9]+\.(out|err))$' || true)
 test -z "$unexpected"
 

@@ -164,6 +164,13 @@ class WrapperContractTests(unittest.TestCase):
         self.assertIn("preserve_failure_artifacts", script)
         self.assertIn("FAILED_EXECUTION_DIR", script)
 
+    def test_slurm_binds_frozen_science_without_self_referential_head(self) -> None:
+        script = Path(__file__).with_name("ORION02_R23_EXECUTION.slurm").read_text()
+        self.assertNotIn('test "$(git rev-parse HEAD)"', script)
+        self.assertIn("6bb4e377462249c3630ceacc56073ba385a82805c79eda58809c42b8ee1562aa", script)
+        self.assertIn("54574ec9fa5364fb0ad8e5857678930dac3b4483f1b7a9da96829d8e6f0c447f", script)
+        self.assertIn("fef1f621f5fe43942201d013a682355a5441379ee57ecbb2f607165e52d16997", script)
+
 
 if __name__ == "__main__":
     unittest.main()
