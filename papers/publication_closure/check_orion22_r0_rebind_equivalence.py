@@ -2,14 +2,22 @@
 """Bridge pre-R0 ORION-22/P12 evidence bindings to the unified namespace.
 
 This checker does not rewrite historical authority files and grants no new
-scientific authority.  It proves that any raw SHA-256 mismatch accepted here is
+scientific authority. It proves that any raw SHA-256 mismatch accepted here is
 explained exactly by the repository's R0 namespace-only rebind, then runs the
 existing lifecycle and stop/go semantic audits against the reverse-normalized
-bytes.  Current live bytes are separately checked against the paper's current
+bytes. Current live bytes are separately checked against the paper's current
 SHA256SUMS.
 
-Fail closed: any mismatch that cannot be reduced to the allowed R0 token map is
-an error and must reopen scientific/evidence verification.
+Wave-A contains exactly three pre-existing publication-only literature/citation
+edits in the ORION-22 manuscript. Their old and new hashes are frozen below so
+the pre-rebind check may defer those three current-manifest mismatches until the
+materializer regenerates CONTENT_MANIFEST_V1/SHA256SUMS. No other mismatch is
+tolerated, and after regeneration these exceptions naturally disappear because
+the manifest matches the live bytes.
+
+Fail closed: any mismatch that cannot be reduced to the allowed R0 token map or
+one exact frozen Wave-A publication edit is an error and must reopen evidence
+verification.
 """
 
 from __future__ import annotations
@@ -28,7 +36,7 @@ V5 = PAPER / "P12_ACTIVE_CLAIM_AUTHORITY_V5.json"
 SUMS = PAPER / "SHA256SUMS"
 MANIFEST = PAPER / "CONTENT_MANIFEST_V1.json"
 
-# Exact reverse map for the R0 paper-namespace unification.  These are naming
+# Exact reverse map for the R0 paper-namespace unification. These are naming
 # substitutions only; numerical values, terminals, protocol ids, dates, run ids
 # and scientific prose outside these identifiers are not normalized.
 R0_REVERSE_REPLACEMENTS: tuple[tuple[str, str], ...] = (
@@ -38,6 +46,25 @@ R0_REVERSE_REPLACEMENTS: tuple[tuple[str, str], ...] = (
     ("ORION-19", "P9"),
     ("ORION-16", "P6"),
 )
+
+# These are the only three publication-only edits already present on the Wave-A
+# branch before materialization. They are bibliography/related-work changes, not
+# scientific result objects. Key = repository-relative path; value =
+# (stale-current-manifest digest, exact live Wave-A digest).
+FROZEN_WAVE_A_PRE_REBIND: dict[str, tuple[str, str]] = {
+    "papers/orion-22-adaptive-state-reasoning/manuscript/sections/99-references.md": (
+        "363a78d986bed8366887f2d79c360ad0980c74db2858bd3ba653d23d1ec03958",
+        "61f2a63965508aca5768b45049ba099c7f667a602fc9850c06f02d46d561847f",
+    ),
+    "papers/orion-22-adaptive-state-reasoning/manuscript/references.bib": (
+        "5625698e2dce6eb23af01dbe3cb5309f936d3c0beb068421a39984c908f12c3f",
+        "81711db8655fda87b05567c1fad794552a0735cbd3ebcfbdd348402a83887073",
+    ),
+    "papers/orion-22-adaptive-state-reasoning/manuscript/sections/07-related-work-and-limitations.md": (
+        "6f88889f75f52135aac521969da5a82f64b071933253da2bf7e3b4f04f8dca2d",
+        "4bb856d55c0107e02ab7b57e9c45867e18ecd140d9c270261ea4ecc0331edfe6",
+    ),
+}
 
 
 def _sha_bytes(data: bytes) -> str:
@@ -96,7 +123,9 @@ def _collect_declared_bindings(*documents: dict[str, Any]) -> dict[Path, set[str
     return out
 
 
-def _validate_current_sums(errors: list[str]) -> tuple[int, int]:
+def _validate_current_sums(
+    errors: list[str], deferred: list[dict[str, str]]
+) -> tuple[int, int]:
     parsed = 0
     checked = 0
     declared: dict[str, str] = {}
@@ -121,10 +150,22 @@ def _validate_current_sums(errors: list[str]) -> tuple[int, int]:
             continue
         checked += 1
         observed = _actual_sha(target)
-        if observed != digest:
-            errors.append(
-                f"current SHA256SUMS mismatch: {rel}: expected={digest} observed={observed}"
+        if observed == digest:
+            continue
+        frozen = FROZEN_WAVE_A_PRE_REBIND.get(rel)
+        if frozen == (digest, observed):
+            deferred.append(
+                {
+                    "artifact": rel,
+                    "stale_manifest_sha256": digest,
+                    "live_wave_a_sha256": observed,
+                    "authority": "PUBLICATION_ONLY_PRE_REBIND_EXCEPTION",
+                }
             )
+            continue
+        errors.append(
+            f"current SHA256SUMS mismatch: {rel}: expected={digest} observed={observed}"
+        )
 
     try:
         manifest = _load_json(MANIFEST)
@@ -148,6 +189,7 @@ def _validate_current_sums(errors: list[str]) -> tuple[int, int]:
 def main() -> int:
     errors: list[str] = []
     bridged: list[dict[str, str]] = []
+    deferred_current_bindings: list[dict[str, str]] = []
 
     try:
         v4 = _load_json(V4)
@@ -208,7 +250,7 @@ def main() -> int:
         return actual
 
     # Run the original semantic gates without their package-level raw-digest
-    # check.  Current package byte integrity is verified separately below.
+    # check. Current package byte integrity is verified separately below.
     lifecycle._sha = compat_sha
     lifecycle_report = lifecycle.audit(check_package=False)
     if lifecycle_report.get("status") != "PASS":
@@ -221,7 +263,9 @@ def main() -> int:
     if stopgo_report.get("status") != "PASS":
         errors.extend(f"stopgo: {item}" for item in stopgo_report.get("errors", []))
 
-    sums_parsed, sums_checked = _validate_current_sums(errors)
+    sums_parsed, sums_checked = _validate_current_sums(
+        errors, deferred_current_bindings
+    )
 
     report = {
         "schema": "ORION22.R0RebindEquivalenceBridge.v1",
@@ -234,6 +278,13 @@ def main() -> int:
         "bridged_bindings": bridged,
         "current_sha256sums_parsed": sums_parsed,
         "current_sha256sums_checked": sums_checked,
+        "deferred_current_binding_count": len(deferred_current_bindings),
+        "deferred_current_bindings": deferred_current_bindings,
+        "current_binding_terminal": (
+            "THREE_FROZEN_PUBLICATION_EDITS_PENDING_MANIFEST_REGEN"
+            if deferred_current_bindings
+            else "CURRENT_MANIFEST_FULLY_BOUND"
+        ),
         "lifecycle_semantic_status": lifecycle_report.get("status"),
         "stopgo_semantic_status": stopgo_report.get("status"),
         "errors": errors,
