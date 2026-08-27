@@ -1,0 +1,60 @@
+{
+  "authority": {
+    "generic_tare": false,
+    "journal_authority": false,
+    "production_value": "CANNOT_CHECK_FROM_ATTEMPT1_WRAPPER",
+    "raw_attempts_status": "PRESERVED_UNADJUDICATED_UNTIL_DEFECT_ONLY_SUCCESSOR",
+    "round2_consumed_by_this_wrapper_failure": false,
+    "round2_scientific_terminal": "NOT_EMITTED",
+    "submission_authorized": false
+  },
+  "date": "2026-08-27",
+  "evidence": {
+    "RAW_ATTEMPTS.jsonl": {
+      "bytes": 101204,
+      "sha256": "1ed31f08eb21493b61e037794b324733bec9de8ca04ce72e291fc7b42bb8e4dc"
+    },
+    "SACCT_RAW.txt": {
+      "bytes": 411,
+      "sha256": "69d02728c18455daf6efcd4114110ff950a89048532998e266eff0571e58b90c"
+    },
+    "SLURM_STDERR.txt": {
+      "bytes": 1783,
+      "sha256": "d7ef007bb2305c5e6af1e635a0a5df8dace4e8dd5de4ab7cd1b72a4815af27b8"
+    },
+    "SLURM_STDOUT.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "failure": {
+    "aggregate_written": false,
+    "environment_receipt_written": false,
+    "exception": "subprocess.CalledProcessError: Command ['git','rev-parse','HEAD'] returned non-zero exit status 128",
+    "location": "environment_receipt -> git rev-parse HEAD",
+    "measurement_children_finished_before_failure": true,
+    "raw_attempt_count": 120,
+    "root_cause": "the exact Git archive deployment intentionally had no .git directory, but the post-measurement environment finalizer assumed a checkout instead of consuming the already bound SOURCE_COMMIT.txt and ORION05_R12_SOURCE_COMMIT",
+    "round_terminal_written": false
+  },
+  "job": {
+    "account": "hep2023-1-3",
+    "allocated_cpus": 16,
+    "elapsed": "00:03:55",
+    "exit_code": "1:0",
+    "id": 3549585,
+    "node": "cx04",
+    "partition": "hep",
+    "state": "FAILED"
+  },
+  "protected_task3_touched": false,
+  "schema": "ORION.ORION05.R12.ExecutionFailure.v1",
+  "source": {
+    "archive_bytes": 177544619,
+    "archive_sha256": "6f6a58d8b0349823ad34ee44a83f7629256ebd1db93dbfb56ce318c35ed22c01",
+    "commit": "7fdea61e44f62b3595c4f1863fefffdd7132b68a",
+    "run_root": "/projects/hep/fs10/scratch/scyiu/orion05-r12-production-benchmark-7fdea61-20260827T1610"
+  },
+  "successor_rule": "repair only archive source-commit resolution, retain this raw file unchanged, rerun the identical frozen panel from a new exact source commit, and compare raw outcomes only after the successor emits a valid terminal",
+  "terminal": "ORION05_R12_ATTEMPT1_FAILED_POST_MEASUREMENT_ENVIRONMENT_RECEIPT__NO_ROUND_TERMINAL"
+}

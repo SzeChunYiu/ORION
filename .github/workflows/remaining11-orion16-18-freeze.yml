@@ -1,0 +1,75 @@
+name: remaining11-orion16-18-freeze
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/remaining11-orion16-18-freeze-20260827
+    paths:
+      - 'papers/publication_closure/remaining11/**'
+      - '.github/workflows/remaining11-orion16-18-freeze.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: remaining11-orion16-18-freeze
+  cancel-in-progress: true
+
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion16-18-science-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/remaining11-orion16-18-freeze-20260827
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile freeze gate
+        run: python -m py_compile papers/publication_closure/remaining11/check_orion16_18_science_freeze.py
+      - name: Re-run ORION-16 formal and real-transition checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py > "$RUNNER_TEMP/orion16-formal.txt"
+          python papers/candidates/checkers/p6_finite_falsifiers_v1.py > "$RUNNER_TEMP/orion16-falsifiers.txt"
+          python papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py > "$RUNNER_TEMP/orion16-real.json"
+      - name: Re-run ORION-18 formal and real-evidence checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/orion-18-epistemic-authority-autonomous-science/formal/check_authority_calculus.py > "$RUNNER_TEMP/orion18-formal.txt"
+          python papers/candidates/checkers/p8_finite_falsifiers_v1.py > "$RUNNER_TEMP/orion18-falsifiers.txt"
+          python papers/orion-18-epistemic-authority-autonomous-science/top_tier/check_real_evidence_discharge_independent_v1.py > "$RUNNER_TEMP/orion18-real.json"
+      - name: Require replay to leave paper bytes unchanged
+        run: git diff --exit-code -- papers/orion-16-formal-epistemic-structures-and-mechanics papers/orion-18-epistemic-authority-autonomous-science
+      - name: Write bounded freeze receipts
+        run: python papers/publication_closure/remaining11/check_orion16_18_science_freeze.py
+      - name: Publish exact freeze receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/publication_closure/receipts/remaining11/ORION-16_SCIENCE_FREEZE_V1.json papers/publication_closure/receipts/remaining11/ORION-18_SCIENCE_FREEZE_V1.json
+          git diff --check --cached
+          git commit -m 'papers(publication): freeze ORION-16 and ORION-18 bounded science [orion16-18-science-frozen]'
+          git push origin HEAD:chatgpt/remaining11-orion16-18-freeze-20260827
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion16-18-bounded-science-freeze-${{ github.sha }}
+          path: |
+            papers/publication_closure/receipts/remaining11/ORION-16_SCIENCE_FREEZE_V1.json
+            papers/publication_closure/receipts/remaining11/ORION-18_SCIENCE_FREEZE_V1.json
+            ${{ runner.temp }}/orion16-formal.txt
+            ${{ runner.temp }}/orion16-falsifiers.txt
+            ${{ runner.temp }}/orion16-real.json
+            ${{ runner.temp }}/orion18-formal.txt
+            ${{ runner.temp }}/orion18-falsifiers.txt
+            ${{ runner.temp }}/orion18-real.json
+          if-no-files-found: error
+          retention-days: 30

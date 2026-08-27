@@ -1,0 +1,46 @@
+{
+  "schema": "ORION.D.AgentgatewayOriginWitnessMerge.R11.Summary.v1",
+  "terminal": "AGENTGATEWAY_RULESETS_ORIGIN_WITNESS_SAFE",
+  "workflow_run_id": 33004900956,
+  "workflow_artifact_id": 9620157911,
+  "workflow_artifact_digest": "sha256:452d8b5079f361118002cf831ad0713877022cf0c992fa831706ed68b840194f",
+  "full_result_sha256": "55c1390a0012cfb2947ca3afd30af4c3e8268e853c3a23debd1f0cd1e8910f6f",
+  "terminal_sha256": "517bd699cf8e727a383c24863626917e8a71ead1f2c0b15da05d8c05ab1bb2c3",
+  "upstream": {
+    "repository": "agentgateway/agentgateway",
+    "commit": "e136c7458b0fe0f51378dd31ffd60ab2b6939fc2"
+  },
+  "finite_corroboration": {
+    "abstract_origin_states": 5,
+    "max_origins": 8,
+    "exhaustive_cases": 488281,
+    "accepted_cases": 9339,
+    "origin_witness_checks": 9338,
+    "mandatory_constraint_checks": 18676,
+    "semantic_algebra_checks": 9794256,
+    "hostile_controls": {
+      "higher_allow_does_not_erase_base_deny": "PASS",
+      "higher_allow_does_not_launder_require_failure": "PASS",
+      "not_intersection_semantics": "PASS",
+      "pure_denylist_default_allow": "PASS"
+    }
+  },
+  "analytic_result": {
+    "mandatory_constraint_preservation": true,
+    "origin_witness_preservation": true,
+    "hybrid_splicing_witness_exists_for_same_field_rulesets_merge": false,
+    "intersection_semantics": false,
+    "semantic_associativity": true,
+    "semantic_commutativity": true,
+    "semantic_duplicate_idempotence": true,
+    "mcp_inherits_rulesets_result": true
+  },
+  "authority": {
+    "same_field_rulesets_merge_only": true,
+    "finite_enumeration_role": "implementation_corroboration_only",
+    "source_bound_real_system_safe_control": true,
+    "cross_field_bridge_safety": false,
+    "whole_project_security_certification": false,
+    "grants_journal_authority": false
+  }
+}

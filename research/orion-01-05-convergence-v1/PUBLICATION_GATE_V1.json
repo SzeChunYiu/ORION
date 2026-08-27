@@ -1,0 +1,123 @@
+{
+  "schema": "ORION.ORION0105.PublicationGate.v1",
+  "date": "2026-08-27",
+  "terminal": "ORION_01_05_PUBLICATION_GATE__ALL_SCIENCE_OPEN__NO_SUBMISSION_AUTHORITY",
+  "status_source": "SCIENCE_STATUS_V1.json",
+  "policy_source": "PUBLICATION_POLICY_V1.md",
+  "rules": {
+    "top_tier_first": true,
+    "maximum_distinct_frozen_rounds_before_fallback_disposition": 3,
+    "fallback": "STRONG_SPECIALIST_WITH_NARROWER_CLAIMS_ONLY",
+    "science_before_manuscript_packaging": true,
+    "adverse_null_retracted_and_cannot_check_results_must_remain_visible": true,
+    "venue_ladder_is_readiness_or_acceptance_authority": false
+  },
+  "papers": {
+    "ORION-01": {
+      "title": "Certificate Realization",
+      "science_status": "OPEN",
+      "rounds": {"consumed": 0, "maximum": 3},
+      "top_tier_science_gate": "OPEN_PRODUCTION_REALIZATION",
+      "mandatory_adverse_or_boundary_results": [
+        "FINITE_PRODUCTION_REALIZATION_CERTIFICATE_REJECTED",
+        "AB_PR1469_PRODUCTION_TRANSFER_NOT_ESTABLISHED"
+      ],
+      "forbidden_claims": [
+        "production lower-bound authority without an extensionally complete move/guard registry",
+        "production value from abstract finite-language certificates alone"
+      ],
+      "fallback_scientific_core": "abstract certificate complexity and registry non-identifiability at the stated finite-language ceilings",
+      "top_tier_submission_ready": false,
+      "specialist_submission_ready": false,
+      "submission_authorized": false
+    },
+    "ORION-02": {
+      "title": "FiberGuard Finite Fibre",
+      "science_status": "OPEN",
+      "rounds": {"consumed": 1, "maximum": 3},
+      "top_tier_science_gate": "OPEN_UNTOUCHED_SUBJECT_DIRECT_RELATIVE_OR_JOINT_ROUTE_VALUE",
+      "mandatory_adverse_or_boundary_results": [
+        "FIBERGUARD_ASLIB_HELDOUT_R14_PARTIAL_MEAN_ONLY",
+        "FIBERGUARD_R16_NO_PORTABLE_CERTIFICATE_VALUE",
+        "FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE",
+        "RETRACTED_UNSUPPORTED_R18_POSITIVE_INTERPRETATION",
+        "CERTIFICATE_INVALID",
+        "VALID_WITHOUT_COVERAGE_OR_VALUE",
+        "C_R20_BNSL_ADAPTIVE_NULL__FREE_STATIC_REPRESENTATION_ALREADY_VBS"
+      ],
+      "forbidden_claims": [
+        "inductive or production superiority from complete-corpus SAT12-ALL",
+        "paired routing value from the R18 null",
+        "adaptive superiority from the quarantined overlapping BNSL raw predicates"
+      ],
+      "fallback_scientific_core": "complete finite-fibre decision theory plus a preserved falsification chain and the exact R19 joint-profile repair",
+      "top_tier_submission_ready": false,
+      "specialist_submission_ready": false,
+      "submission_authorized": false
+    },
+    "ORION-03": {
+      "title": "Typed-Merge Falsification",
+      "science_status": "OPEN",
+      "rounds": {"consumed": 0, "maximum": 3},
+      "top_tier_science_gate": "OPEN_INDEPENDENT_REAL_DOMAIN_INTEGRATION_VALUE",
+      "mandatory_adverse_or_boundary_results": [
+        "AGENTGATEWAY_RULESETS_ORIGIN_WITNESS_SAFE",
+        "D_PR1466_R20_AUDIT_KNOWN_PREDICATE_FALSE_NEGATIVE"
+      ],
+      "forbidden_claims": [
+        "Agentgateway vulnerability",
+        "deployed or whole-system security authority from the bounded first-mixing theorem"
+      ],
+      "fallback_scientific_core": "typed least-fixed-point authority and bounded first-mixing localization with finite corroboration",
+      "top_tier_submission_ready": false,
+      "specialist_submission_ready": false,
+      "submission_authorized": false
+    },
+    "ORION-04": {
+      "title": "Rooted Completion Certificates",
+      "science_status": "OPEN",
+      "rounds": {"d4_consumed": 0, "maximum": 3},
+      "top_tier_science_gate": "FULL_D2_D3_REPLAY_PREREQUISITE_FAILED__EXACT_D4_OPEN",
+      "mandatory_adverse_or_boundary_results": [
+        "NQ_PR1472_NOT_FULL_REPLAY_AUTHORITY",
+        "NQ_CRB_FULL_REPLAY_JOB_3544056_FAILED_CENSUS_RECEIPT_SERIALIZATION__D2_D3_AUTHORITY_CANNOT_CHECK"
+      ],
+      "forbidden_claims": [
+        "D2 or D3 numerical replay authority from a subject audit",
+        "exact D4=30 or D4=31 before a valid full replay or proof",
+        "theorem authority from support-through-22 bounded computation"
+      ],
+      "fallback_scientific_core": "the proved corridor, conditional tail, saturation/multiplicity, support-at-least-11, rank-forcing, and overlap results at their ledgered ceilings",
+      "top_tier_submission_ready": false,
+      "specialist_submission_ready": false,
+      "submission_authorized": false
+    },
+    "ORION-05": {
+      "title": "TARE Expressivity",
+      "science_status": "OPEN",
+      "rounds": {"consumed": 0, "maximum": 3},
+      "top_tier_science_gate": "O_N9_THEOREM_SUCCESSOR_PENDING__MEASURED_RESOURCE_VALUE_OPEN",
+      "mandatory_adverse_or_boundary_results": [
+        "support-one exact adverse witness 5 < 6",
+        "PARTIAL_RESOURCE_MAP",
+        "NOVELTY_NOT_ESTABLISHED"
+      ],
+      "forbidden_claims": [
+        "current-main exact pair-count or O(n^9) solver authority before successor merge and merged-main verification",
+        "routed, T-count, depth, spacetime, hardware, or compiler advantage without a matched current-compiler benchmark"
+      ],
+      "fallback_scientific_core": "sharp kappa_R6M=2 expressivity theorem for the frozen grammar with the support-one adverse witness",
+      "top_tier_submission_ready": false,
+      "specialist_submission_ready": false,
+      "submission_authorized": false
+    }
+  },
+  "global_authority": {
+    "science_closed": false,
+    "external_independence_established": false,
+    "novelty_authority_established": false,
+    "rights_complete": false,
+    "journal_authority_established": false,
+    "submission_authorized": false
+  }
+}

@@ -1,0 +1,139 @@
+name: ORION-03 Round 1 Cedar multi-policy
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/**"
+      - ".github/workflows/orion-03-r1-cedar-multipolicy.yml"
+  push:
+    branches: [main]
+    paths:
+      - "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/**"
+      - ".github/workflows/orion-03-r1-cedar-multipolicy.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orion-03-r1-cedar-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  cedar-native-rust-lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      ROUND_DIR: papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy
+      SNAPSHOT_DIR: papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests
+      RUST_DIR: papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/rust-adjudicator
+      LEAN_DIR: papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/lean
+
+    steps:
+      - name: Check out exact event object
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+
+      - name: Enforce single-lane PR scope
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          git diff --name-only "$BASE_SHA" HEAD > "$RUNNER_TEMP/orion03-changed.txt"
+          if grep -Ev '^(papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/|\.github/workflows/orion-03-r1-cedar-multipolicy\.yml$)' "$RUNNER_TEMP/orion03-changed.txt" > "$RUNNER_TEMP/orion03-out-of-scope.txt"; then
+            cat "$RUNNER_TEMP/orion03-out-of-scope.txt"
+            echo "ORION-03 successor contains another lane" >&2
+            exit 1
+          fi
+          if grep -E '(^|/)(P9|p9|Task-3|task-3|orion-19)(/|$)' "$RUNNER_TEMP/orion03-changed.txt"; then
+            echo "protected Task-3 / ORION-19 path touched" >&2
+            exit 1
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.12"
+
+      - name: Reproduce source and Python adjudication
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/orion03-receipts"
+          python "$ROUND_DIR/verify_round1.py" \
+            --emit-python "$RUNNER_TEMP/orion03-receipts/PYTHON_ADJUDICATION_V1.json"
+          cmp "$RUNNER_TEMP/orion03-receipts/PYTHON_ADJUDICATION_V1.json" \
+            "$ROUND_DIR/PYTHON_ADJUDICATION_V1.json"
+
+      - name: Install pinned Rust
+        uses: dtolnay/rust-toolchain@6c977a6ca4077a0ceb28ffbe03f59d46e9ac8772
+        with:
+          toolchain: 1.89.0
+          components: rustfmt
+
+      - name: Reproduce native Cedar and independent Rust controls
+        run: |
+          set -euo pipefail
+          cargo fmt --manifest-path "$RUST_DIR/Cargo.toml" --check
+          cargo run --quiet --locked --manifest-path "$RUST_DIR/Cargo.toml" -- \
+            "$SNAPSHOT_DIR" \
+            > "$RUNNER_TEMP/orion03-receipts/RUST_ADJUDICATION_V1.json"
+          python -m json.tool \
+            "$RUNNER_TEMP/orion03-receipts/RUST_ADJUDICATION_V1.json" >/dev/null
+          cmp "$RUNNER_TEMP/orion03-receipts/RUST_ADJUDICATION_V1.json" \
+            "$ROUND_DIR/RUST_ADJUDICATION_V1.json"
+
+      - name: Reject Lean placeholders
+        run: |
+          set -euo pipefail
+          if grep -nE '\b(sorry|admit|axiom)\b' "$LEAN_DIR/Orion03Round1.lean"; then
+            echo "Lean source contains a forbidden placeholder or custom axiom" >&2
+            exit 1
+          fi
+
+      - name: Build pinned Lean adjudicator
+        uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596
+        with:
+          lake-package-directory: ${{ env.LEAN_DIR }}
+          auto-config: false
+          build: true
+          test: false
+          lint: false
+          use-mathlib-cache: false
+          use-github-cache: false
+
+      - name: Verify final cross-language result
+        run: |
+          set -euo pipefail
+          python "$ROUND_DIR/verify_round1.py" --check-final \
+            | tee "$RUNNER_TEMP/orion03-receipts/TERMINAL.txt"
+          cp "$ROUND_DIR/LEAN_ADJUDICATION_V1.json" \
+            "$RUNNER_TEMP/orion03-receipts/LEAN_ADJUDICATION_V1.json"
+          cp "$ROUND_DIR/ROUND1_RESULTS_V1.json" \
+            "$RUNNER_TEMP/orion03-receipts/ROUND1_RESULTS_V1.json"
+          find "$RUNNER_TEMP/orion03-receipts" -type f ! -name SHA256SUMS -print0 \
+            | sort -z \
+            | xargs -0 sha256sum \
+            > "$RUNNER_TEMP/orion03-receipts/SHA256SUMS"
+
+      - name: Replay hostile mutation review
+        run: |
+          set -euo pipefail
+          python "$ROUND_DIR/hostile_review.py" \
+            --emit "$RUNNER_TEMP/orion03-receipts/HOSTILE_REVIEW_V1.json"
+          cmp "$RUNNER_TEMP/orion03-receipts/HOSTILE_REVIEW_V1.json" \
+            "$ROUND_DIR/HOSTILE_REVIEW_V1.json"
+          find "$RUNNER_TEMP/orion03-receipts" -type f ! -name SHA256SUMS -print0 \
+            | sort -z \
+            | xargs -0 sha256sum \
+            > "$RUNNER_TEMP/orion03-receipts/SHA256SUMS"
+
+      - name: Upload exact adjudication receipts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: orion-03-r1-cedar-${{ github.sha }}
+          path: ${{ runner.temp }}/orion03-receipts
+          if-no-files-found: error
+          retention-days: 90

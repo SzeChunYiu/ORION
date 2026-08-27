@@ -1,0 +1,56 @@
+{
+  "schema": "ORION.ORION02.BNSLAdaptiveCustody.v1",
+  "date": "2026-08-27",
+  "execution": {
+    "scientific_head": "911ac9876c97b78e4c5e50654251a3f59dac9257",
+    "workflow_run": 33049783681,
+    "job": 98442186836,
+    "conclusion": "success",
+    "executed_twice_byte_identically": true
+  },
+  "subject": {
+    "repository": "https://github.com/coseal/aslib_data.git",
+    "commit": "551b22beef8df17de59286b4822ef720e0aa4d6f",
+    "scenario": "BNSL-2016"
+  },
+  "artifact": {
+    "id": 9637176781,
+    "name": "fiberguard-r20-bnsl-adaptive",
+    "expired": false,
+    "zip_sha256": "c5f2d5b5e93596ab82c03a2bd75cd441c74e6ac08b0265b281c3be7a516ab186",
+    "result_json": {
+      "bytes": 114803,
+      "sha256": "c843a0cb1c0a5a13863f27518e721cf8786334fba21a088f8ca4350ec947c49e"
+    },
+    "raw_terminal": {
+      "bytes": 130,
+      "sha256": "d98dfd9b0bd7938b811c733a616dd7b7c30eef6a3b07c98eac8c2588873ff5fe"
+    }
+  },
+  "raw_emitted_terminal": "C_R20_BNSL_ADAPTIVE_MATERIAL_VALUE",
+  "raw_terminal_disposition": "QUARANTINED_OVERLAPPING_MATERIAL_AND_NULL_PREDICATES_AT_ZERO",
+  "additive_interpretation": "C_R20_BNSL_ADAPTIVE_NULL__FREE_STATIC_REPRESENTATION_ALREADY_VBS",
+  "scientific_observation": {
+    "instances": 1179,
+    "algorithms": 8,
+    "feature_steps": 7,
+    "dependency_closed_static_representations": 128,
+    "best_static_steps": ["basic_extended"],
+    "best_static_fibre_count": 1179,
+    "best_static_maximum_fibre_size": 1,
+    "best_static_robust_total_excess": 0.0,
+    "adaptive_choice_counts": {"ACT": 1179},
+    "adaptive_robust_total_excess": 0.0,
+    "adaptive_minus_static_robust_difference": 0.0
+  },
+  "authority": {
+    "corpus_complete_for_pinned_scenario": true,
+    "unseen_instance_generalization": false,
+    "adaptive_superiority": false,
+    "external_independent_replay": false,
+    "production_value": false,
+    "novelty": false,
+    "journal_authority": false,
+    "submission_authorized": false
+  }
+}

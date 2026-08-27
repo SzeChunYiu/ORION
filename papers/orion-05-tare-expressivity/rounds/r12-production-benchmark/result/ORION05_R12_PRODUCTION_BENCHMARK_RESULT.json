@@ -1,0 +1,289 @@
+{
+  "attempt_counts": {
+    "completed": 108,
+    "errors": 0,
+    "timeouts": 12,
+    "total": 120
+  },
+  "authority": {
+    "external_independence": false,
+    "frozen_r6m_production_search_value": false,
+    "generic_tare_complexity": false,
+    "journal_authority": false,
+    "novelty": false,
+    "physical_or_fault_tolerant_resource_value": false,
+    "submission_authorized": false
+  },
+  "cost_comparisons": [
+    {
+      "cell": [
+        "H4",
+        0,
+        1
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    },
+    {
+      "cell": [
+        "H4",
+        0,
+        2
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    },
+    {
+      "cell": [
+        "H4",
+        7,
+        1
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    },
+    {
+      "cell": [
+        "H4",
+        7,
+        2
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    },
+    {
+      "cell": [
+        "H4",
+        14,
+        1
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    },
+    {
+      "cell": [
+        "H4",
+        14,
+        2
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    },
+    {
+      "cell": [
+        "N2",
+        0,
+        1
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    },
+    {
+      "cell": [
+        "N2",
+        0,
+        2
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    },
+    {
+      "cell": [
+        "N2",
+        7,
+        1
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    },
+    {
+      "cell": [
+        "N2",
+        7,
+        2
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    },
+    {
+      "cell": [
+        "N2",
+        14,
+        1
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    },
+    {
+      "cell": [
+        "N2",
+        14,
+        2
+      ],
+      "equal": true,
+      "support_two_costs": [
+        4
+      ],
+      "unrestricted_costs": [
+        4
+      ]
+    }
+  ],
+  "decision": {
+    "all_resource_medians_no_more_than_10_percent_worse": false,
+    "improvement_metrics_at_least_25_percent": [],
+    "positive_rule_satisfied": false
+  },
+  "environment_sha256": "d13a6a51580252a63de104419bf40c32d50abb95987419f9fef5886cc1c4772d",
+  "full_subject": {
+    "support_two_complete": false,
+    "support_two_medians": {
+      "cpu_ns": null,
+      "peak_rss_kib": null,
+      "verification_ns": null,
+      "wall_ns": null
+    },
+    "support_two_over_unrestricted_ratios": {
+      "cpu_ns": null,
+      "peak_rss_kib": null,
+      "verification_ns": null,
+      "wall_ns": null
+    },
+    "support_two_timeouts": 6,
+    "unrestricted_complete": true,
+    "unrestricted_medians": {
+      "cpu_ns": 228591597.0,
+      "peak_rss_kib": 46248.0,
+      "verification_ns": 647155.5,
+      "wall_ns": 263730846.0
+    },
+    "unrestricted_timeouts": 0
+  },
+  "hard_errors": [],
+  "paper_id": "ORION-05",
+  "preconditions": {
+    "all_completed_witnesses_valid": true,
+    "all_shared_completed_costs_equal": true,
+    "all_source_bindings_match": true,
+    "correctness_panel_complete_with_valid_witnesses": true,
+    "no_non_timeout_execution_errors": true,
+    "unrestricted_referee_completes_full_subject_panel": true
+  },
+  "protocol_sha256": "f7baa5c792c8c90e0045ceeee8c73797ed0193fbff79c4d35e699a224ab85131",
+  "raw_attempts_sha256": "69294c9633c51d4ee32bdf869b1a7eed39f52f72ff51eb47126365fb50ead251",
+  "round": 2,
+  "rounds": {
+    "consumed": 2,
+    "maximum": 3,
+    "science_status": "OPEN"
+  },
+  "schema": "ORION.ORION05.R12.ProductionBenchmarkResult.v1",
+  "source_binding_audit": {
+    "all_match": true,
+    "bindings": {
+      "production_subject_receipt": {
+        "bytes": 412620,
+        "exists": true,
+        "matches": true,
+        "path": "research/extensions/orion-q/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_RESULTS.json",
+        "sha256": "5f182cd6fc66d3e1a748c1ee407b020011bb40dad045ab22b0d4f1db094fcb28"
+      },
+      "round1_equivalence_verifier": {
+        "bytes": 53484,
+        "exists": true,
+        "matches": true,
+        "path": "papers/orion-05-tare-expressivity/orion05_r11_sparse_equivalence_verify.py",
+        "sha256": "c627942a21a95480246755ac95b194be3fbf20ce9b4a5b99c941f9abbe72ac07"
+      },
+      "support_two_solver": {
+        "bytes": 30528,
+        "exists": true,
+        "matches": true,
+        "path": "papers/orion-05-tare-expressivity/orion05_r11_sparse_direct_solver.py",
+        "sha256": "642cc67a280abb2ca06089ae01510040f1f598ec638d525ddcc29fae8c6b25d3"
+      },
+      "unrestricted_protocol": {
+        "bytes": 7484,
+        "exists": true,
+        "matches": true,
+        "path": "development/orion-q-max-r0/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_PROTOCOL.md",
+        "sha256": "33465bd585f09a8d936aaa38d90beb4916943f826eb970bfeced102eeac93986"
+      },
+      "unrestricted_referee": {
+        "bytes": 48401,
+        "exists": true,
+        "matches": true,
+        "path": "research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py",
+        "sha256": "7c6579db5f4afbc1738e8b3d96aa3730023bc3831d1fc4950ab34e071c0e3d90"
+      }
+    }
+  },
+  "subject_reconstruction": {
+    "H4": {
+      "all_matching_target_maps_consistent": true,
+      "n_qubits": 8,
+      "source_blob": "b98792b1055dbac0ebf2a7576f72412e3e4ac6c5"
+    },
+    "N2": {
+      "all_matching_target_maps_consistent": true,
+      "n_qubits": 12,
+      "source_blob": "15369e8e886efbb3d32f3b2dfe2cfbb96ddebeba"
+    }
+  },
+  "terminal": "ORION05_R12_EXACT_BUT_NO_PRODUCTION_VALUE"
+}

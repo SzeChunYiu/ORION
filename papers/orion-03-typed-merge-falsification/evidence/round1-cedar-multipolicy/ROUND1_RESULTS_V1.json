@@ -1,0 +1,119 @@
+{
+  "adjudication": {
+    "blinded": false,
+    "hostile_mutations_rejected": "7/7",
+    "injected_controls_are_real_domain_positive": false,
+    "injected_hostile_and_safe_controls": "8/8 PASS",
+    "lean_core_theorems": "4/4 PASS",
+    "official_policy_reason_ids_present": true,
+    "official_upstream_source_authority_fields": 0,
+    "policy_reason_ids_are_upstream_evidence_licences": false,
+    "public_labels_visible_to_executor": true
+  },
+  "authority": {
+    "deployed_vulnerability": false,
+    "external_independence": "CANNOT_CHECK",
+    "journal_authority": false,
+    "novelty": false,
+    "production_safety": false,
+    "real_domain_positive": false,
+    "specialist_ready": false,
+    "submission_authorized": false,
+    "top_tier_ready": false,
+    "whole_system_security_certification": false
+  },
+  "custody_correction": {
+    "corrected_full_executor_commit": "097210a821b4d4f7c76f296d66c2614b8a0dc93f",
+    "former_abbreviated_result_executor_commit": "097210a82",
+    "former_invalid_lean_execution_commit": "097210a82e",
+    "kind": "ADDITIVE_EXECUTOR_COMMIT_IDENTITY_REPAIR",
+    "lean_receipt_identity_field_corrected": true,
+    "scientific_measurements_or_theorems_changed": false,
+    "scientific_terminal_changed": false
+  },
+  "disposition": {
+    "finding": "The official corpus exercises real Cedar multi-policy decisions and exposes policy-level reason IDs, but it has no independently adjudicated upstream evidence origin, licence or retraction semantics. Typed retention therefore adds no decision on the official scope, while the injected splicing controls remain synthetic mechanism checks.",
+    "next_gate": "Round 2 must switch to a different permission-bearing corpus with native provenance/retraction and independent pre-outcome adjudication; no Cedar mutation or retuning counts as a distinct round.",
+    "why_not_native_subsumed": "Native Cedar reason IDs preserve policy-level contributors, but the tested corpus cannot decide whether native target semantics subsume a separate upstream evidence-authority layer that it does not represent.",
+    "why_not_positive": "No corpus-labelled upstream authority-promotion error exists; hostile provenance labels were added by ORION and cannot self-authorize a real-domain claim."
+  },
+  "event_base": "27ea5e1b04dbed853b7ddba60c8bf736ef087bf5",
+  "executor_commit": "097210a821b4d4f7c76f296d66c2614b8a0dc93f",
+  "native_cedar": {
+    "allow": 9,
+    "decision_reason_error_and_validation_exact": true,
+    "deny": 6,
+    "fixtures_passed": 5,
+    "fixtures_total": 5,
+    "requests_adjudicated": 15
+  },
+  "preexecution_failure": {
+    "preserved": true,
+    "requests_adjudicated": 0,
+    "terminal": "ORION03_R1_PREEXECUTION_PATH_BINDING_FAILURE__NO_NATIVE_REQUEST_ADJUDICATED"
+  },
+  "protocol_commit": "e393958512d9f726f0f39fe02ae22520db647d08",
+  "receipts": {
+    "hostile": {
+      "bytes": 1093,
+      "path": "HOSTILE_REVIEW_V1.json",
+      "sha256": "eb11c407add6ed8db5be67a0978d4df67ffc1cf6b88dc622259bddf2c953df2d"
+    },
+    "lean": {
+      "bytes": 810,
+      "path": "LEAN_ADJUDICATION_V1.json",
+      "sha256": "06343140765f99a3891d1389b9566a6f9b40f06f04a48e98c9c00b69510ece0c"
+    },
+    "python": {
+      "bytes": 6944,
+      "path": "PYTHON_ADJUDICATION_V1.json",
+      "sha256": "b4ba0a19f9daddd698d392f5c35ec73d430006a729bdd71af415229d6bd56d54"
+    },
+    "rust": {
+      "bytes": 1801,
+      "path": "RUST_ADJUDICATION_V1.json",
+      "sha256": "a8177a6db19f34e82e3d98c109a9ff1c5f3f27f77889f421c68ef130a1836ca2"
+    }
+  },
+  "round": {
+    "canonical_id": "ORION-03",
+    "consumed": 1,
+    "maximum": 3,
+    "outcome": "NULL_ADVERSE__CORPUS_SEMANTICS_INSUFFICIENT_FOR_UPSTREAM_RESIDUAL",
+    "remaining_distinct_rounds": 2
+  },
+  "safe_control": {
+    "relabeled_as_vulnerability": false,
+    "same_field_rulesets_merge_only": true,
+    "sha256": "18f05100d6a982a6274e8fe15920ca708bc2ff40f070cd16a96445aa4b963a35",
+    "terminal": "AGENTGATEWAY_RULESETS_ORIGIN_WITNESS_SAFE"
+  },
+  "schema": "ORION.ORION03.CedarMultiPolicy.Round1Result.v1",
+  "source": {
+    "cedar_commit": "bcb8bd93a292b59ae8f1dcf53b9b4176a2d3405d",
+    "commit": "75989795c75d861270ce6cac38ef9d9e5b220a0c",
+    "identity": "CONFIRMED_PUBLIC_OFFICIAL_PERMISSION_BEARING",
+    "license": "Apache-2.0",
+    "repository": "cedar-policy/cedar-integration-tests",
+    "source_binding_sha256": "398b6c32d73c48643845570758f7105afb46e206d89842c45d2a1389471932fd",
+    "tree": "3aed7b26a11a3b85bd29a4b2156437be74c33333"
+  },
+  "systems": {
+    "flat_projection": {
+      "request_decision_agreement": "15/15",
+      "role": "ORIGIN_ERASED_NATIVE_RESPONSE_PROJECTION_ONLY"
+    },
+    "native_cedar": {
+      "request_agreement": "15/15",
+      "role": "POLICY_SEMANTICS_AUTHORITY"
+    },
+    "typed_projection": {
+      "default_denies_not_promoted_to_policy_origin": "2/2",
+      "multi_reason_sets_retained": "2/2",
+      "nonempty_native_reason_sets_retained": "13/13",
+      "request_decision_agreement": "15/15",
+      "role": "NATIVE_POLICY_REASON_RETENTION_ONLY"
+    }
+  },
+  "terminal": "D_R11_POLICY_REQUIRES_RICHER_SEMANTICS"
+}

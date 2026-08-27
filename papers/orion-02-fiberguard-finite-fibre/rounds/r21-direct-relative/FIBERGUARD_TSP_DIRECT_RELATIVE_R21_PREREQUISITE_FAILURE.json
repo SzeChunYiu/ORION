@@ -1,0 +1,35 @@
+{
+  "authority": {
+    "BNSL_retuned": false,
+    "grants_round_2_scientific_adjudication": false,
+    "protected_Task_3_touched": false,
+    "requires_recovery_subject": true
+  },
+  "execution": {
+    "executor_emitted_terminal": false,
+    "first_failure": "missing/invalid cost for tsplib_eil51/eax_probing: None",
+    "first_failure_log_bytes": 1401,
+    "first_failure_log_sha256": "e7180d159737c35e01fe140fb35a32a2151f74ab57239abf3f41dce431fcba0b",
+    "frozen_executor_commit": "46c41a8820644ad79242fa9d12d6b5901f08c7f4",
+    "result_emitted": false
+  },
+  "missing_cost_audit": {
+    "affected_instance_step_cells": 21,
+    "affected_instances": 21,
+    "by_step": {
+      "eax_probing": 21
+    },
+    "by_step_and_status": {
+      "eax_probing::presolved": 21
+    },
+    "scenario_instances": 3106
+  },
+  "record_kind": "ADDITIVE_POST_FAILURE_DISPOSITION",
+  "schema": "ORION.FiberGuard.TSPDirectRelative.R21.PrerequisiteFailure.v1",
+  "terminal": "CANNOT_CHECK_TSP_DIRECT_RELATIVE_SOURCE_OR_RESOURCE",
+  "upstream": {
+    "commit": "551b22beef8df17de59286b4822ef720e0aa4d6f",
+    "repository": "https://github.com/coseal/aslib_data.git",
+    "scenario": "TSP-LION2015"
+  }
+}
