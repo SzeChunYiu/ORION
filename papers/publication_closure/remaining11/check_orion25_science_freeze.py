@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Freeze ORION-25 at its current bounded SEI/provenance/attestation result."""
+"""Freeze ORION-25 at its current bounded SEI/provenance/attestation result.
+
+Historical V3 authority binds pre-R0 `P15/P6/P9/P10` receipt blobs.  Current
+receipts were namespace-rebound to `ORION-25/16/19/20` without changing the
+scientific result.  We preserve the historical authority byte-for-byte and
+prove the live receipt reverse-maps exactly to the historical blob before
+accepting the current bytes.
+"""
 from __future__ import annotations
 import json, subprocess, sys
 from pathlib import Path
@@ -9,11 +16,24 @@ AUTH=P/'P15_ACTIVE_CLAIM_AUTHORITY_V3.json'
 README=P/'README.md'
 RECEIPT=ROOT/'papers/publication_closure/receipts/remaining11/ORION-25_SCIENCE_FREEZE_V1.json'
 TERMINAL='ORION_25_BOUNDED_SCIENCE_FROZEN__PRODUCTION_PROMOTION_PENDING'
+REVERSE_NAMESPACE=(('ORION-25','P15'),('ORION-20','P10'),('ORION-19','P9'),('ORION-16','P6'))
 
 def req(x,m):
     if not x: raise AssertionError(m)
 def git(*a): return subprocess.check_output(['git','-C',str(ROOT),*a],text=True).strip()
 def blob(path): return git('hash-object',str(path))
+def blob_from_bytes(raw: bytes) -> str:
+    return subprocess.check_output(['git','-C',str(ROOT),'hash-object','--stdin'],input=raw).decode().strip()
+def historical_equivalent(path: Path, historical_blob: str) -> dict:
+    current_blob=blob(path)
+    if current_blob==historical_blob:
+        return {'path':str(path.relative_to(ROOT)),'current_blob':current_blob,'historical_blob':historical_blob,'bridge':'IDENTICAL'}
+    text=path.read_text(encoding='utf-8')
+    for current,old in REVERSE_NAMESPACE:
+        text=text.replace(current,old)
+    normalized_blob=blob_from_bytes(text.encode())
+    req(normalized_blob==historical_blob,f'non-namespace authority drift {path}: current={current_blob} normalized={normalized_blob} historical={historical_blob}')
+    return {'path':str(path.relative_to(ROOT)),'current_blob':current_blob,'historical_blob':historical_blob,'normalized_blob':normalized_blob,'bridge':'R0_NAMESPACE_ONLY_EXACT'}
 
 def main():
     a=json.loads(AUTH.read_text())
@@ -22,10 +42,11 @@ def main():
     req(a['lifecycle_state']=='BOUNDED_SCIENTIFIC_RESULT_EARNED','lifecycle state')
     req(a['scientific_result_state']=='BOUNDED_EMPIRICAL_SUPPORTED','science state')
     req(a['promotion_allowed'] is False,'top-tier promotion must remain false')
+    bridges=[]
     for _,row in a['result_authority'].items():
-        p=ROOT/row['artifact']; req(p.is_file(),f'missing {p}'); req(blob(p)==row['git_blob_sha'],f'blob drift {p}')
+        p=ROOT/row['artifact']; req(p.is_file(),f'missing {p}'); bridges.append(historical_equivalent(p,row['git_blob_sha']))
         if 'deterministic_replay' in row:
-            r=row['deterministic_replay']; rp=ROOT/r['artifact']; req(rp.is_file(),f'missing {rp}'); req(blob(rp)==r['git_blob_sha'],f'blob drift {rp}')
+            r=row['deterministic_replay']; rp=ROOT/r['artifact']; req(rp.is_file(),f'missing {rp}'); bridges.append(historical_equivalent(rp,r['git_blob_sha']))
     b=a['bounded_findings']
     req(b['sei_false_authorized_science']==0,'SEI false promotion drift')
     req(b['provenance_round_trip_rate']==1.0 and b['provenance_scientific_field_leakage']==0,'provenance boundary drift')
@@ -39,10 +60,12 @@ def main():
     receipt={
       'schema':'ORION.Remaining11.ScienceFreeze.v1','paper_id':'ORION-25','title':'Scientific Execution Integrity','date':'2026-08-27',
       'subject_commit':git('rev-parse','HEAD'),'active_authority':str(AUTH.relative_to(ROOT)),'active_authority_git_blob':blob(AUTH),
+      'historical_authority_bridges':bridges,
       'terminal':TERMINAL,'science_frozen':True,'top_tier_ready':False,'journal_authority':False,'submission_authority':False,
       'bounded_findings':b,'full_key_compromise_boundary':a['full_key_compromise_boundary'],
       'remaining_top_tier_work':a['remaining_external_requirements'],
-      'boundary':'Freeze covers only the registered 18-case SEI plus 22-case provenance/attestation studies; signatures do not establish key custody, fact truth, scientific validity, or production-scale reliability.'}
+      'boundary':'Freeze covers only the registered 18-case SEI plus 22-case provenance/attestation studies; signatures do not establish key custody, fact truth, scientific validity, or production-scale reliability.'
+    }
     RECEIPT.parent.mkdir(parents=True,exist_ok=True); RECEIPT.write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
     print(TERMINAL); return 0
 if __name__=='__main__':
