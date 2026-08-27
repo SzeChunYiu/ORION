@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Prepare a cited Q1/QG2 master for a journal-neutral Quantum/arXiv source bundle.
+"""Prepare a cited Q1/QG1/QG2 master for a journal-neutral quantum source bundle.
 
 Formatting-only transformations:
 - extract title/abstract;
 - discard internal publication-banner lines before the abstract;
 - strip manual numeric prefixes from Markdown headings so LaTeX owns numbering;
 - append a bounded data/code availability statement selected by paper id.
+
+This source is the common reproducible input to venue wrappers. It changes no
+scientific prose and grants no submission authority.
 """
 
 from __future__ import annotations
@@ -26,6 +29,14 @@ DATA = {
         "identifier and explicit reuse licence for ORION-authored code/receipts will be "
         "inserted only after the corresponding release is actually deposited and authorized."
     ),
+    "QG1": (
+        "All load-bearing exact theorems, finite maps, counterexamples, proof-system bounds, "
+        "objective-certificate records and prospective refutations are bound to the publication "
+        "evidence cut in the public repository. Public donor compiler/software identities remain "
+        "at their upstream repositories and cited revisions. A permanent archive identifier and "
+        "explicit reuse licence for ORION-authored code/receipts will be inserted only after an "
+        "authorized release."
+    ),
     "QG2": (
         "All load-bearing forecast, exact-referee, theorem and repair receipts are bound to "
         "the publication evidence cut in the publicly inspectable repository. Forecast-only "
@@ -37,6 +48,7 @@ DATA = {
 
 REQUIRED = {
     "Q1": ["all-`n`", "donor-exposed", "TARE", "support at most two"],
+    "QG1": ["compilation regime geometry", "StabPrep", "SixLCU", "prospective", "refut"],
     "QG2": ["10", "11", "ForecastCertificate", "Qet", "Qualtran"],
 }
 
