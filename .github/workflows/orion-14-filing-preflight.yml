@@ -5,7 +5,6 @@ on:
   pull_request:
     paths:
       - 'papers/orion-14-verified-scientific-discovery/**'
-      - 'papers/orion-14-verified-scientific-discovery/check_filing_preflight.py'
       - '.github/workflows/orion-14-filing-preflight.yml'
   push:
     branches:
@@ -51,14 +50,10 @@ jobs:
             | tee "$out/stdout.json"
           sha256sum "$out"/* > "$out/SHA256SUMS"
 
-      - name: Check repository publication scoreboard when available
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [ -f research/publication/scoreboard.py ]; then
-            PYTHONPATH=src python research/publication/scoreboard.py --check
-          fi
-
+      # Deliberately paper-scoped: the repository-wide publication scoreboard
+      # belongs to generic CI and imports optional runtime dependencies unrelated
+      # to ORION-14. The native p4-tmlr-submission-audit workflow is the render /
+      # claim / package authority for this paper and runs independently on the PR.
       - name: Require no patch hygiene defects
         run: git diff --check
 
