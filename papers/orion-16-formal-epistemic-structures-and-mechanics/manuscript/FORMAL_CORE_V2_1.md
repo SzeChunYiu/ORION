@@ -131,7 +131,7 @@ Suppose `m` declares no read of mutable ambient variable `z` but secretly branch
 
 ### Theorem 7 — history-aware commutation under faithful full separation
 
-Stable contract: `ORION-16.COMMUTE.RW_NONINTERFERENCE.V1`.
+Stable contract: `P6.COMMUTE.RW_NONINTERFERENCE.V1`.
 
 Let deterministic admissible `m,n` be read/write-footprint faithful and fully scientifically separated, including authority, provenance, obligations, dependency state, resources and declared external inputs. Whenever both orders are defined,
 
@@ -182,10 +182,10 @@ The correction strengthens the paper because it distinguishes conservative depen
 
 ## 9. The exact Theorem 7 statement as a kernel proof (2026-08-24)
 
-The SMT contract `ORION-16.COMMUTE.RW_NONINTERFERENCE.V1` of the preceding section
+The SMT contract `P6.COMMUTE.RW_NONINTERFERENCE.V1` of the preceding section
 covers a simplified single-array statement. The manuscript's Theorem 7 says
 more, and it is now machine-checked directly under contract id
-`ORION-16.COMMUTE.EXACT_THEOREM7.V1`
+`P6.COMMUTE.EXACT_THEOREM7.V1`
 (`src/orion/study/p6/commutation_kernel.py`, record
 `formal/mechanized/P6_COMMUTATION_KERNEL_MECHANIZED_2026-08-24.json`):
 

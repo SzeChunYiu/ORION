@@ -116,7 +116,7 @@ disagrees on 72 states — not by the bounded checker.
 
 ## The general theorems
 
-**Local mechanics (`ORION-16.COMMUTE.RW_NONINTERFERENCE.V1`).** Let deterministic,
+**Local mechanics (`P6.COMMUTE.RW_NONINTERFERENCE.V1`).** Let deterministic,
 admissible mechanics act on a state over uninterpreted coordinate and value
 sorts. Each mechanic must be read-footprint faithful and write-footprint
 faithful. Their write coordinates are distinct, neither mechanic reads the
@@ -390,7 +390,7 @@ exchange is the point of the exercise.
 Theorem 7's full statement — multi-component environments, mechanics that are
 read-footprint faithful and write-footprint faithful over their declared
 footprints, fully scientifically separated — is now checked as a kernel proof
-under contract id `ORION-16.COMMUTE.EXACT_THEOREM7.V1`: 450 rule applications in an
+under contract id `P6.COMMUTE.EXACT_THEOREM7.V1`: 450 rule applications in an
 LCF-style kernel, the serialized log replayed from nothing in a fresh kernel
 (reproducing the exact conclusion, all residual hypotheses inside the theory),
 and a z3 cross-check of the same sentence alongside. The conclusion pairs
