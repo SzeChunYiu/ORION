@@ -8,89 +8,132 @@ This note records a new derivation to be independently attacked before any claim
 
 ## 1. Established inputs used
 
-The current Q1 authority already provides two ingredients for the frozen R6M six-slot grammar:
+The current Q1 authority already proves that every optimum of the frozen R6M six-slot grammar has an equally good representative in which each of the six frame Paulis has support at most two. The six frame slots form three ordered anticommuting pairs.
 
-1. every optimum has an equally good representative in which each of the six frame Paulis has support at most two;
-2. a minimum compatible shared Tag need not act outside the union of those six frame supports, hence outside at most 12 qubits.
-
-The frozen grammar groups the six frame slots into three ordered anticommuting frame pairs.
+The frozen objective/feasibility implementation also makes the shared Tag contribution explicit: Tag affects the six frame-label symplectic constraints and contributes `2 wt(S)` to cost. Restore-factor cost depends on target/frame products, not directly on Tag.
 
 ## 2. Exact count for one ordered anticommuting support-two pair
 
-Let A_n be the set of nonidentity phase-ignored n-qubit Pauli strings of support one or two. Its size is
+Let `A_n` be the set of nonidentity phase-ignored n-qubit Pauli strings of support one or two. Its size is
 
-M(n) = 3n + 9 C(n,2).
+`M(n) = 3n + 9 C(n,2)`.
 
-For a fixed first frame R of weight one, the number of support<=2 partners R' that anticommute with R is
+For a fixed first frame `R` of weight one, the number of support<=2 partners `R'` that anticommute with `R` is
 
 - 2 weight-one partners on the same coordinate;
-- 6(n-1) weight-two partners sharing that coordinate.
+- `6(n-1)` weight-two partners sharing that coordinate.
 
-Thus a weight-one R has 6n-4 partners.
+Thus a weight-one `R` has `6n-4` partners.
 
-For a fixed first frame R of weight two, the number of support<=2 anticommuting partners is
+For a fixed first frame `R` of weight two, the number of support<=2 anticommuting partners is
 
-- 4 weight-one partners supported on one of R's two coordinates;
+- 4 weight-one partners supported on one of `R`'s two coordinates;
 - 4 weight-two partners on the same two-coordinate support, with exactly one local anticommutation;
-- 12(n-2) weight-two partners overlapping R in exactly one coordinate.
+- `12(n-2)` weight-two partners overlapping `R` in exactly one coordinate.
 
-Thus a weight-two R has 12n-16 partners.
+Thus a weight-two `R` has `12n-16` partners.
 
-There are 3n weight-one first frames and 9 C(n,2) weight-two first frames. Therefore the exact number of ordered anticommuting pairs is
+There are `3n` weight-one first frames and `9 C(n,2)` weight-two first frames. Therefore the exact number of ordered anticommuting pairs is
 
-B(n) = 3n(6n-4) + 9 C(n,2)(12n-16)
-     = 54 n^3 - 108 n^2 + 60 n.
+`B(n) = 3n(6n-4) + 9 C(n,2)(12n-16)`
 
-This is Theta(n^3), not the Theta(n^4) obtained by treating the two support-two frames as independent.
+`     = 54 n^3 - 108 n^2 + 60 n`.
 
-## 3. Three frame branches
+This is `Theta(n^3)`, not the `Theta(n^4)` obtained by treating the two support-two frames as independent.
 
-Before cross-branch, Tag, target, matching, permutation and objective filtering, the three ordered frame pairs therefore have exactly
+The independent no-ORION-import checker on this branch reproduces `B(n)` for `n=1,...,6`, including the per-weight partner degrees.
 
-B(n)^3 = Theta(n^9)
+## 3. Three frame branches and the sharper active-union bound
 
-raw legal pair-local choices.
+Before cross-branch, Tag, target, matching, permutation and objective filtering, the three ordered frame pairs have exactly
 
-This strictly sharpens the current single-frame raw count [3n+9C(n,2)]^6 = Theta(n^12) by using the mandatory anticommutation structure.
+`B(n)^3 = Theta(n^9)`
 
-## 4. Candidate exact-runtime corollary
+pair-local choices.
 
-The following is a candidate theorem, not yet authorized.
+Moreover, an anticommuting Pauli pair must overlap on at least one coordinate. Since each member has support at most two, the union of one pair has size at most three. Therefore the union `U` of all six frame supports satisfies
 
-For a fixed admitted R6M target six-tuple of length n:
+`|U| <= 3 + 3 + 3 = 9`.
 
-1. preprocess the coordinatewise Restore contribution for identity frame/Tag letters for each constant grammar choice in O(n) time;
-2. enumerate the three ordered anticommuting support-two frame pairs, B(n)^3 possibilities;
-3. for each frame triple let U be the union of the six frame supports, so |U|<=12;
-4. enumerate the compatible Tag only on U; a crude upper bound is 4^12 assignments, independent of n;
-5. evaluate all candidate-dependent support, Tag, symplectic and Restore contributions only on U, replacing the precomputed baseline contribution on those <=12 coordinates.
+This sharpens the previous crude `<=12` union bound.
 
-If every other matching/permutation/central-choice factor of the frozen six-slot grammar is constant and no candidate evaluation invokes an n-dependent oracle or unrestricted DP, this gives deterministic exact direct optimization in
+## 4. Tag confinement and a support-six Tag bound
 
-O(n + B(n)^3) = O(n^9)
+Fix any support-two frame triple. Let `U` be the union of its six frame supports.
 
-time for the frozen grammar, with a large n-independent constant from Tag and grammar enumeration.
+If a feasible Tag `S` contains a nonidentity letter outside `U`, deleting that letter changes none of the six symplectic products `<S,R_jk>` because every frame is identity there. It also leaves every target/Restore term unchanged, while weakly decreasing the Tag cost `2 wt(S)`. Repeating gives an equally good or better feasible Tag supported entirely on `U`.
 
-## 5. Required hostile review before promotion
+Thus a minimum compatible Tag may be chosen with support inside at most nine qubits.
+
+There is also a rank bound. For a fixed frame triple and a fixed common-label orientation, Tag feasibility is a binary linear system with six symplectic equations in the `2|U| <=18` binary `(x,z)` variables. Let its rank be `r<=6`. In row-echelon form, setting free variables to zero yields a solution with at most `r` nonzero binary pivot variables whenever the system is feasible. A nonzero Pauli coordinate consumes at least one nonzero binary variable, so a compatible Tag exists with
+
+`wt(S) <= r <= 6`.
+
+This is a support upper bound, not a claim that every optimum needs six Tag coordinates.
+
+An exact minimum-weight Tag can therefore be found in constant time with respect to `n`, e.g. by a 64-state syndrome DP over at most nine active coordinates and four local Pauli letters per coordinate.
+
+## 5. Constant-size candidate scoring after O(n) preprocessing
+
+The frozen local objective is coordinate-separable before summation:
+
+- direct frame cost depends only on the six frame letters and the three central bits;
+- Tag contributes only local symplectic parity and `2 wt(S)`;
+- each of the two Restore branches uses the local three-way factor cost `F3` on the three target/frame products.
+
+For each constant matching/permutation choice, preprocess in `O(n)` the baseline Restore-factor sum obtained with identity frame letters on every coordinate.
+
+For a support-two frame candidate, every frame differs from identity only on `U`, with `|U|<=9`. Therefore its exact Restore-factor score is
+
+`baseline - baseline_contribution(U) + candidate_contribution(U)`,
+
+which requires only a bounded number of local `F3` evaluations. Direct frame cost and all pair anticommutation checks are also bounded-size. Tag feasibility/minimum weight is solved on `U` as above.
+
+Consequently candidate feasibility and candidate cost can be evaluated in `O(1)` arithmetic operations with respect to `n` after `O(n)` preprocessing. The constant is grammar-dependent but finite.
+
+The current historical D++ implementation does **not** realize this bound: it materializes a `4^(2n)` pattern table and sweeps all nonzero n-qubit Tags. Those are implementation choices, not requirements of the frozen grammar; the argument above is for a new direct exact algorithm.
+
+## 6. Candidate exact-runtime theorem
+
+For one admitted frozen R6M six-slot instance of length `n`, under a word-RAM model in which a qubit index and a target local letter are `O(1)` objects:
+
+1. preprocess target-local baseline data in `O(n)` time;
+2. generate the `B(n)=Theta(n^3)` legal ordered support-two anticommuting frame pairs;
+3. enumerate three such pairs, `B(n)^3=Theta(n^9)` frame triples;
+4. for each triple, evaluate the constant number of matching/permutation/central/label choices, solve the bounded Tag problem on `|U|<=9`, and compute the exact objective in `O(1)` time with respect to `n`.
+
+This yields the candidate bound
+
+`T(n) = O(n + B(n)^3) = O(n^9)`
+
+for exact direct optimization of the frozen R6M six-slot grammar.
+
+The pair list can be generated/stored in `O(n^3)` space; streaming variants may reduce auxiliary storage but are not needed for the time claim.
+
+Under bit-complexity accounting, index manipulation adds at most polylogarithmic factors; no stronger bit bound is claimed here.
+
+## 7. Required hostile review before promotion
 
 Independent review must either prove or break every item below:
 
 - the exact pair-count formula;
-- the claim that the six frames are exhausted by exactly three ordered anticommuting pairs;
-- the <=12-qubit Tag-union confinement under the identical frozen grammar/objective;
-- the baseline-minus-U preprocessing argument for every objective term;
-- O(1) candidate feasibility/cost evaluation after preprocessing;
-- constancy in n of matching, permutation and central-choice multiplicities;
-- absence of any hidden n-dependent solver, oracle, table materialization, or verification call.
+- the claim that the six frame variables are exhausted by exactly three ordered anticommuting pairs;
+- the `|U|<=9` active-union bound;
+- the Tag-deletion argument outside `U`;
+- the support-`<=6` linear-system Tag corollary;
+- the baseline-minus-`U` preprocessing identity for every objective term;
+- `O(1)` candidate feasibility/cost evaluation after preprocessing;
+- constancy in `n` of matching, permutation, central-choice and label multiplicities in the frozen six-slot grammar;
+- absence of any hidden n-dependent solver, oracle, table materialization, or verification call in the *new* direct algorithm.
 
-If only the pair count survives, the honest terminal is `Q1_R11_PAIR_COUNT_ONLY__RUNTIME_HIDDEN_DEPENDENCY`. If all obligations survive, the candidate terminal is `Q1_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM`.
+If only the counting corollary survives, the honest terminal is `Q1_R11_PAIR_COUNT_ONLY__RUNTIME_HIDDEN_DEPENDENCY`. If all obligations survive, the candidate terminal is `Q1_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM`.
 
-## 6. Authority boundary
+## 8. Authority boundary
 
-Even a proved O(n^9) result would be:
+Even a proved `O(n^9)` result would be:
 
 - an exact algorithm for the frozen R6M six-slot grammar and frozen objective only;
 - not a generic TARE/block-encoding complexity theorem;
-- not a statement about the runtime of the existing production DP;
+- not a statement about the runtime of the existing production DP or historical D++ implementation;
 - not a physical quantum-resource or hardware-advantage result;
 - not a novelty certificate without current primary-source subtraction.
