@@ -61,9 +61,9 @@ def test_plot_spec_exists():
     path = PROTOCOL_DIR / "PLOT_SPEC_V1.md"
     assert path.exists(), "PLOT_SPEC_V1.md must exist"
     text = path.read_text(encoding="utf-8")
-    for fig in ("P4-1", "P4-2", "P4-3", "P4-4", "P4-5", "P4-6"):
+    for fig in ("ORION-14-1", "ORION-14-2", "ORION-14-3", "ORION-14-4", "ORION-14-5", "ORION-14-6"):
         assert fig in text, f"Figure {fig} must be specified in PLOT_SPEC_V1.md"
-    for tbl in ("Table P4-1", "Table P4-2", "Table P4-3"):
+    for tbl in ("Table ORION-14-1", "Table ORION-14-2", "Table ORION-14-3"):
         assert tbl in text, f"Table {tbl} must be specified in PLOT_SPEC_V1.md"
 
 
