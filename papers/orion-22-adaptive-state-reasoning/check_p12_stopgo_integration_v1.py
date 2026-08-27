@@ -44,7 +44,7 @@ CANONICAL_SIGNALS = [
 ]
 PRIOR_BINDINGS = {
     "papers/orion-22-adaptive-state-reasoning/P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json": (
-        "c57c6274c752c8be2a495e44730a4c3741be5f7f9aafb6294f14e0846331617e",
+        "c500854137a3672ff12ff35ff3968a109c0597055ae02cb63d973a9f0a28ddbf",
         "P12A_SUPERIORITY_AUTHORITY_WITHHELD",
     ),
     "papers/orion-22-adaptive-state-reasoning/top_tier/P12_ROBUSTNESS_STRESS_RESULT_RECEIPT_V1.md": (

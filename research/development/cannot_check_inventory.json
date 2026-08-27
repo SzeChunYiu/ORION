@@ -10613,7 +10613,7 @@
       "file": "study/p3_public_reference_build.py",
       "has_reason": true,
       "kind": "ASSIGN",
-      "lineno": 456,
+      "lineno": 519,
       "method": "statement_literal",
       "missing_obligation": null,
       "reasons": [
@@ -13630,7 +13630,7 @@
     }
   ],
   "source_root": "src/orion",
-  "subject_commit": "3b98ea1db9bff30871bc3d59d3401719cfcb8056",
+  "subject_commit": "c32656225d50a0c82600c755336b2e1a84431ffe",
   "total_sites": 723,
   "unclassified_note": "UNCLASSIFIED is the residue after three reads, in precedence order: the site's own statement literals, literals accumulated one statement away (`missing.append(...)`) earlier in the same function, and a structurally nameable guard (`x is None`, `not x`). A site here either carries reason text that matches no category needle -- a vocabulary gap, resolvable only by adding a reviewed needle -- or carries no extractable evidence at all (see `unclassified_without_evidence`); those are the candidates for source-level obligation declarations, which this instrument will not invent. Driving the count down is the work; reclassifying it to OTHER is not.",
   "unclassified_without_evidence": 148,

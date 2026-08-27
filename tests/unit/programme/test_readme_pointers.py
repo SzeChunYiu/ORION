@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from orion.programme.readme_pointers import (
+    CANONICAL,
     EXIT_AMBIGUOUS,
     EXIT_CANNOT_CHECK,
     EXIT_MISSING,
@@ -15,8 +16,13 @@ from orion.programme.readme_pointers import (
 
 
 def _paper(tmp_path: Path, readme: str) -> Path:
-    for i in range(1, 16):
-        d = tmp_path / "papers" / f"paper-{i:02d}-fake"
+    # Derived from CANONICAL rather than spelled out. This used to build
+    # paper-01-fake .. paper-15-fake, which stopped matching the moment Wave R0
+    # renamed the series to orion-11 .. orion-25: the audit then found no
+    # directory for any prefix and every case returned EXIT_MISSING, so three
+    # tests failed without the checker itself being wrong.
+    for prefix in CANONICAL:
+        d = tmp_path / "papers" / f"{prefix}-fake"
         d.mkdir(parents=True)
         (d / "README.md").write_text(readme)
     return tmp_path

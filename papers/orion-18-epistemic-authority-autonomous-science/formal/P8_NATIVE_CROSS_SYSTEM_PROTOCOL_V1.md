@@ -1,6 +1,6 @@
 # ORION-18 native cross-system execution protocol V1
 
-**Contract:** `ORION-18.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`
+**Contract:** `P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`
 **Date frozen:** 2026-08-24
 **Issue #1086 ORION-18 box:** "Execute actual type-distinct native systems and ideal
 typed-product baseline. Cover every ordered cross-system pair with clean and
@@ -141,4 +141,4 @@ partial run (some pairs) as coverage of "every ordered cross-system pair".
 The machine-readable twin of this document is
 `formal/P8_NATIVE_CROSS_SYSTEM_PROTOCOL_2026-08-24.json`; the cross-artifact
 binding is enforced by `formal/check_p8_native_protocol_binding_v1.py`
-(contract `ORION-18.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`).
+(contract `P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`).
