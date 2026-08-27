@@ -39,13 +39,13 @@ EVALUATOR_PRINCIPAL = "EXTERNAL_INDEPENDENT_EVALUATOR (unassigned, not exercised
 ADOPTER_PRINCIPAL = "EXTERNAL_REPOSITORY_OWNER (unassigned, not exercised)"
 
 # Subject binder and the two bindings it carries.
-P15_V1 = "papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json"
+P15_V1 = "papers/paper-15-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V1.json"
 HARNESS_PKG = "packages/orion-research-harness/pyproject.toml"
 DUAL_PROTOCOL = (
     "development/orion-q-max-r0/DUAL_HARNESS_AGREEMENT_BENCHMARK_V0_PROTOCOL.md"
 )
 AUTHORITY_CODE = "src/orion/study/p15/active_claim_authority.py"
-P15_SHA256SUMS = "papers/orion-25-orion-research-harness/SHA256SUMS"
+P15_SHA256SUMS = "papers/paper-15-orion-research-harness/SHA256SUMS"
 
 IMPACT_GRAPH = EXEC / "DISC-IMPACT-01" / "CHANGE_IMPACT_GRAPH_V1.json"
 IMPACT_RECEIPT = EXEC / "DISC-IMPACT-01" / "CHANGE_IMPACT_RECEIPT_V1.json"
@@ -348,7 +348,7 @@ def _working_tree_untouched() -> dict[str, Any]:
 
     # polarity: this predicate must be able to fail, not merely to pass
     pos, _ = _classify_porcelain(
-        [" M papers/orion-25-orion-research-harness/SHA256SUMS"]
+        [" M papers/paper-15-orion-research-harness/SHA256SUMS"]
     )
     neg_untracked, neg_skipped = _classify_porcelain(
         ["?? research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01/"]
@@ -370,7 +370,7 @@ def _working_tree_untouched() -> dict[str, Any]:
         "exclusion visible",
         "polarity_test": {
             "positive_control_tracked_edit_outside_this_job": {
-                "input": " M papers/orion-25-orion-research-harness/SHA256SUMS",
+                "input": " M papers/paper-15-orion-research-harness/SHA256SUMS",
                 "expected": "violation",
                 "violations_returned": len(pos),
             },
@@ -742,7 +742,7 @@ def main() -> int:
                         "declared_intent_source": facts["declared_intent_source"],
                         "chain_head_confirms_v1_is_superseded":
                             "orion.programme.authority_staleness reports "
-                            "orion-25-orion-research-harness active="
+                            "paper-15-orion-research-harness active="
                             "P15_ACTIVE_CLAIM_AUTHORITY_V3.json superseded=2",
                         "commits_that_moved_the_artifact_after_the_freeze":
                             facts["artifact_history_since_freeze"],

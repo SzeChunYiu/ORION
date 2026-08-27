@@ -6,13 +6,13 @@ Machine twin: `CORRECTIONS_V1.json`.
 
 ## P4 protected V2 is already PEER_REVIEW_READY
 
-Evidence: `papers/orion-14-verified-scientific-discovery/evidence/protected_v2/PEER_REVIEW_READY_V2.md`.
+Evidence: `papers/paper-04-verified-scientific-discovery/evidence/protected_v2/PEER_REVIEW_READY_V2.md`.
 
 The executed protected V2 campaign, typed panel, H1/H2 positives, H3 null, and independent headline reproduction are paper-local history. Issue #281 is a **new** follow-up on which protected evidence to acquire next. It must not rewrite frozen P4 V2, and it must not catalogue the executed battery as unrun.
 
 ## P1 H1 and H2 power requirements are distinct
 
-Evidence: `papers/orion-11-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER_V1.md` and `src/orion/study/p1/precision_tier.py`.
+Evidence: `papers/paper-01-recursive-epistemic-reconstruction/evidence/CLAIM_LEDGER_V1.md` and `src/orion/study/p1/precision_tier.py`.
 
 | Hypothesis | Frozen margin | Required n (p=0.5 half-width) |
 |---|---|---|
@@ -27,6 +27,6 @@ A confirmatory revival may expand a predeclared sample or create a new immutable
 
 ## P5 attribution is 21/24
 
-Evidence: `papers/orion-15-self-orion/evidence/glm-5.2-attribution/report.json` (`correct_attributions`: 21, `incorrect_attributions`: 3, `total_cases`: 24).
+Evidence: `papers/paper-05-self-orion/evidence/glm-5.2-attribution/report.json` (`correct_attributions`: 21, `incorrect_attributions`: 3, `total_cases`: 24).
 
 Issue comments that treat the local attribution campaign as a perfect score are stale. The three errors are discriminator seeds for #282, not a completed transfer terminal.

@@ -212,7 +212,7 @@ variables, and no amount of further enumeration converts it into the theorem
 
 ### The same shape in the paper's own proof-support checkers
 
-`papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py`
+`papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py`
 prints `P6 finite-model checks: PASS` with 543 DAGs and 130,320 reopening cases.
 Its two assertions are
 

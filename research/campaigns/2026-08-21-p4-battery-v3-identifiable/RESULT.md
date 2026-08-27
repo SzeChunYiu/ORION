@@ -4,7 +4,7 @@ Protocol: `FREEZE.md` beside this file, written before the construction was
 repaired and before any panel outcome was observed. Artefacts:
 `IDENTIFIABILITY_V3.json` (written before the panel ran), `PANEL_V3.json`.
 
-Nothing under `papers/orion-14-verified-scientific-discovery/evidence/` was
+Nothing under `papers/paper-04-verified-scientific-discovery/evidence/` was
 edited. `PUBLICATION_METRICS_V2.json` stands as the record of what the cued
 battery produced.
 
@@ -266,7 +266,7 @@ Created:
 
 Modified:
 
-- `papers/orion-14-verified-scientific-discovery/host/generate_protected_cases.py`
+- `papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py`
   — `--construction {v1,v2,v3}`, default `v3`; the V3 base case, body template
   and family mutations; `case_construction` recorded in the run manifest and prep
   summary.
@@ -283,10 +283,10 @@ Modified:
 
 Not touched, deliberately:
 
-- `papers/orion-14-verified-scientific-discovery/evidence/protected_v2/` —
+- `papers/paper-04-verified-scientific-discovery/evidence/protected_v2/` —
   `PUBLICATION_METRICS_V2.json` and `RESULT_ATTESTATION_V2.md` stand as the
   record of what the cued battery produced.
-- `papers/orion-14-verified-scientific-discovery/protocol/PROTECTED_RUN_BINDINGS_V2.json`
+- `papers/paper-04-verified-scientific-discovery/protocol/PROTECTED_RUN_BINDINGS_V2.json`
   and the `p4_*_v2` workflows. These bind the generator by digest, through the
   composite `harness_sha256`
   `094f43cb320f8e8e3196049269b20ac22e7e94fa9890b80f27f38ef49f7c82ea`, which the
@@ -298,7 +298,7 @@ Not touched, deliberately:
   *recorded* value rather than recomputing it, and still passes. The generator
   appears in no `SHA256SUMS`; the journal package binds only the manuscript, the
   claim ledger and the two `protected_v2` result files.
-- `papers/orion-14-verified-scientific-discovery/manuscript/main.tex` and
+- `papers/paper-04-verified-scientific-discovery/manuscript/main.tex` and
   `tests/unit/p4/test_p4_metric_headroom.py`, which pin the manuscript's H3
   saturation language to the V2 metrics. Both remain true of V2 and are outside
   this repair's scope; a V3 campaign that reached publication would have to

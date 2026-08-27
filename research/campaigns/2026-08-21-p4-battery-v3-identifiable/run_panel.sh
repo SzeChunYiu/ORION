@@ -7,7 +7,7 @@
 set -euo pipefail
 
 ROOT=/home/user/ORION
-HOST="$ROOT/papers/orion-14-verified-scientific-discovery/host"
+HOST="$ROOT/papers/paper-04-verified-scientific-discovery/host"
 PY="$ROOT/.venv/bin/python"
 WORK="${1:?usage: run_panel.sh <workdir>}"
 SEED="${2:-p4-v3-panel-20260821}"
@@ -33,7 +33,7 @@ files = [
     'independent_reproduce.py', 'independent_reproduce_v2.py',
     'BASELINE_CONFIGS_V2.json',
 ]
-host = root / 'papers/orion-14-verified-scientific-discovery/host'
+host = root / 'papers/paper-04-verified-scientific-discovery/host'
 digest = hashlib.sha256()
 for name in files:
     digest.update(name.encode()); digest.update(b'\0')

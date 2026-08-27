@@ -54,7 +54,7 @@ Run at minimum:
 
 ```bash
 pytest -q tests/test_p4_method_authority_extension.py tests/test_p4_method_authority_lineage.py tests/test_p4_method_authority_bench.py tests/test_p4_method_authority_claim_boundary.py
-python papers/orion-14-verified-scientific-discovery/scripts/run_method_authority_bench.py --check
+python papers/paper-04-verified-scientific-discovery/scripts/run_method_authority_bench.py --check
 ```
 
 Then run repository CI on the PR head against the final integration base. No issue closes from prose or a local green alone.

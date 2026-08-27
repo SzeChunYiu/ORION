@@ -47,7 +47,7 @@ Run at minimum:
 
 ```bash
 pytest -q tests/test_p2_structure_extension.py tests/test_p2_structural_pilot.py tests/test_p2_structure_claim_boundary.py
-python papers/orion-12-open-world-scientific-discovery/scripts/run_structural_discovery_pilot.py --check
+python papers/paper-02-open-world-scientific-discovery/scripts/run_structural_discovery_pilot.py --check
 ```
 
 Then run repository CI on the PR head. No issue closes from prose or a local green alone.

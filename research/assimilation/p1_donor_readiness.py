@@ -29,7 +29,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 MATRIX_PATH = (
     REPO_ROOT
     / "papers"
-    / "orion-11-recursive-epistemic-reconstruction"
+    / "paper-01-recursive-epistemic-reconstruction"
     / "evidence"
     / "nearest_work_matrix_v2.json"
 )
@@ -39,7 +39,7 @@ SCHEMA_VERSION = "orion.p1-donor-readiness.v1"
 P2_VERDICTS_PATH = (
     REPO_ROOT
     / "papers"
-    / "orion-12-open-world-scientific-discovery"
+    / "paper-02-open-world-scientific-discovery"
     / "notes"
     / "nearest-work"
     / "mechanism-verdicts.md"

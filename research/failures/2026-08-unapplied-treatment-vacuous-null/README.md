@@ -6,7 +6,7 @@ that produced it reports the tightest null an experiment can print.
 
 ## Failure
 
-`papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1/ANALYSIS.json`
+`papers/paper-03-global-knowledge-portrait/evidence/public-reference-v1/ANALYSIS.json`
 records, for four of the six ablation arms:
 
 ```json

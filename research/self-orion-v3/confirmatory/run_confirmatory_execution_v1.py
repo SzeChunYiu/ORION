@@ -53,7 +53,7 @@ from orion.study.p5.revision_level_v3_score import score_revision_decisions
 
 ROOT = Path(__file__).resolve().parents[3]
 CONFIRMATORY = ROOT / "research" / "self-orion-v3" / "confirmatory"
-PROTOCOL_PATH = ROOT / "papers" / "orion-15-self-orion" / "protocol" / "SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json"
+PROTOCOL_PATH = ROOT / "papers" / "paper-05-self-orion" / "protocol" / "SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json"
 PREFLIGHT_SCRIPT = ROOT / "research" / "self-orion-v3" / "run_confirmatory_preflight_v1.py"
 SUITE_PATH = CONFIRMATORY / "PROTECTED_CONFIRMATORY_SUITE_V1.json"
 PACKET_PATH = CONFIRMATORY / "CANDIDATE_PACKET_V1.json"

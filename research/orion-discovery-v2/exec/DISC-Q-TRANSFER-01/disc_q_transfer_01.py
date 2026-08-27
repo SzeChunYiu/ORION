@@ -4,7 +4,7 @@ target-native validation and matched resources.
 Spec: research/orion-discovery-v2/KNOWLEDGE_WEB_NAVIGATION_PROOF_ECONOMY_AND_SELF_APPLICATION_V1.md
       sections 8.3/8.5 (branch codex/orion-discovery-v2-knowledge-web-20260825)
 Job:  research/orion-discovery-v2/EXECUTION_BACKLOG_V1.json :: DISC-Q-TRANSFER-01
-Donor source: papers/candidates/qg-paper-03-stub/MANUSCRIPT_V1.md
+Donor source: papers/QG-paper-03-intrinsic-support-numbers/MANUSCRIPT_V1.md
 Target input: research/orion-discovery-v2/exec/DISC-PROOF-ECONOMY-01/PROOF_OBLIGATION_REGISTER.json
 
 AUTHORITY. This module may license a TARGET-DOMAIN result only. The target
@@ -31,7 +31,7 @@ from pathlib import Path
 ROOT = Path("/Users/billy/ORION-claude")
 PE_DIR = ROOT / "research/orion-discovery-v2/exec/DISC-PROOF-ECONOMY-01"
 WEB_DIR = ROOT / "research/orion-discovery-v2/exec/DISC-WEB-01"
-DONOR = ROOT / "papers/candidates/qg-paper-03-stub/MANUSCRIPT_V1.md"
+DONOR = ROOT / "papers/QG-paper-03-intrinsic-support-numbers/MANUSCRIPT_V1.md"
 OUT = ROOT / "research/orion-discovery-v2/exec/DISC-Q-TRANSFER-01"
 
 # Declared total-enumeration bound. Exceeding it returns the cannot_check
@@ -861,7 +861,7 @@ def main() -> int:
         "schema": "orion.discovery-v2.q-transfer-contract.v1", **common,
         "source_domain": {
             "name": "ORION-Q compilation regime geometry",
-            "donor_artifact": "papers/candidates/qg-paper-03-stub/MANUSCRIPT_V1.md",
+            "donor_artifact": "papers/QG-paper-03-intrinsic-support-numbers/MANUSCRIPT_V1.md",
             "transferred_object": "intrinsic support number kappa(F, C) and the descent-ladder proof technique",
             "donor_definition_verbatim": (
                 "For a compilation family F under a fixed objective C, kappa(F, C) is the "
@@ -996,7 +996,7 @@ def main() -> int:
               "transferred; nothing below is a physical, hardware, or "
               "quantum-advantage claim.\n")
     md.append("## 1. The donor names its own donors\n")
-    md.append("QG-paper-03 (`papers/candidates/qg-paper-03-stub/"
+    md.append("QG-paper-03 (`papers/QG-paper-03-intrinsic-support-numbers/"
               "MANUSCRIPT_V1.md`, sha256 `%s`) states, in its own words, that it\n"
               % inputs["QG-paper-03 MANUSCRIPT_V1.md"])
     md.append("> claims no novelty for finite-field dependence, support "

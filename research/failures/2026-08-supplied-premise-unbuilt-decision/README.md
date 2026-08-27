@@ -12,7 +12,7 @@ P7's claims all have the same shape: **the system decides X, therefore terminal
 T.** Its checkers all verify: **given X, terminal T.** The mapping is enumerated
 completely. The decision is a keyword argument.
 
-`papers/orion-17-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py`
+`papers/paper-07-epistemic-navigation-open-worlds/formal/check_theory_closure_v2.py`
 is the authority `REPRODUCE_V2_1.md` names for "all 64 transport-coordinate
 combinations". It prints `P7 THEORY CLOSURE V2: PASS` and `support_transport: 64`
 from

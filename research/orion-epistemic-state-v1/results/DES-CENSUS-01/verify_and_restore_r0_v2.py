@@ -119,6 +119,35 @@ def vocab_rewrite(s: str, V: list[tuple[str, str]], _cache={}) -> str:
     return _cache["pat"].sub(lambda m: _cache["map"][m.group(0)], s)
 
 
+def vocab_rewrite_guarded(s: str, V: list[tuple[str, str]], _cache={}) -> str:
+    """Same single-pass longest-match rewrite, but mirroring R0's documented
+    pass-B guard verbatim (receipt `rebind.passes`): "bare dir basenames
+    (split-Path code), guarded against candidates/ and 2026-08-pre-unification/
+    contexts". Pass-A entries (absolute `papers/...` git move pairs and the
+    synthetic absolute dir-prefix forms) apply anywhere; every relative/bare
+    entry additionally requires that it is NOT preceded (as a path component)
+    by `candidates/` or `2026-08-pre-unification/`. Ground truth for the
+    guard: R0 renamed no `papers/candidates/*` subdir (verified
+    `git ls-tree` HEAD vs 3a1a8317^), so rewriting basename forms inside
+    candidates refs would fabricate paths that never existed."""
+    if "pat" not in _cache:
+        table: dict[str, str] = {}
+        guarded: set[str] = set()
+        for old, new in V:
+            if old in table and table[old] != new:
+                raise SystemExit(f"vocab conflict for {old!r}: {table[old]!r} vs {new!r}")
+            table[old] = new
+            if not old.startswith("papers/"):
+                guarded.add(old)
+        parts = []
+        for old, _ in sorted(V, key=lambda t: -len(t[0])):
+            parts.append((f"(?<!candidates/)(?<!2026-08-pre-unification/)" if old in guarded else "")
+                         + re.escape(old))
+        _cache["pat"] = re.compile("|".join(parts))
+        _cache["map"] = table
+    return _cache["pat"].sub(lambda m: _cache["map"][m.group(0)], s)
+
+
 def leaf_diffs(a, b, path="$", out=None):
     if out is None: out = []
     if isinstance(a, dict) and isinstance(b, dict):

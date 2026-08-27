@@ -1,6 +1,6 @@
 # A finite check whose assertions are tautologies
 
-**Found 2026-08-21**, in `papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py::check_reopening`.
+**Found 2026-08-21**, in `papers/paper-06-formal-epistemic-structures-and-mechanics/formal/check_finite_models.py::check_reopening`.
 
 ## What it looks like
 

@@ -9,9 +9,9 @@ observed policy output.
 
 Grounding: symptom blocks reuse the candidate-visible taxonomy of the committed
 24-case hidden-cause attribution suite
-(papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json)
+(papers/paper-05-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json)
 and the eight revision classes frozen in
-papers/orion-15-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json.
+papers/paper-05-self-orion/protocol/SELF_ORION_V3_REVISION_LEVEL_PROTOCOL_V1.json.
 
 Design (frozen):
 - 16 symptom blocks x 6 cause-confusable cases = 96 cases.  Block b carries the

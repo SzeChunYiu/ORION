@@ -99,7 +99,7 @@ closure-subject binding.
 ## 5. Why Phase 2 is not closed
 
 The frozen #8 live-trial packet
-(`papers/orion-15-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json`,
+(`papers/paper-05-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json`,
 fingerprint `53f99a2c7e6cfdd74cf5b10a62ba273bc911999b5719cf700eda64044f917e48`)
 still has `corpus_revision: "UNBOUND"` at the packet top level and in both
 task bindings. `outcome_accessed` is `false`. No merged live-execution

@@ -81,7 +81,7 @@ def main() -> int:
     if platform.python_version() != freeze["environment"]["python"]:
         raise SystemExit("python version drift")
 
-    base = repo / "papers/orion-18-epistemic-authority-autonomous-science"
+    base = repo / "papers/paper-08-epistemic-authority-autonomous-science"
     native = run_json(
         [
             sys.executable,

@@ -27,7 +27,7 @@ the lane the manifest protects, by `generate_publication_manifest.included_files
 ```python
 roots = [ROOT / "framework", ROOT / "results",
          PAPERS / "paper-xx-executable-research-core",
-         PAPERS / "archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation"]
+         PAPERS / "paper-xx-content-bound-math-evaluation"]
 suffixes = {".arff", ".bib", ".json", ".lean", ".md", ".py", ".sh", ".txt"}
 ```
 
@@ -144,12 +144,12 @@ and the toolchain pin stayed outside both.
 | vendored ASlib scenario | 7 | 1.3% |
 | authored by ORION | **79** | 14.4% |
 | — of which, in the lane itself | 33 | |
-| — of which, in `archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation` (retired P10) | 32 | |
+| — of which, in `paper-xx-content-bound-math-evaluation` (retired P10) | 32 | |
 | — of which, in `paper-xx-executable-research-core` (retired P9) | 12 | |
 | entries outside the lane directory | 514 | 94.0% |
 
 `PASS (547 files)` is mostly a Mathlib checkout. And of the 547, **zero** are at
-P10's registered active identity: `papers/orion-20-structured-problem-solving/`
+P10's registered active identity: `papers/paper-10-structured-problem-solving/`
 holds exactly one file, `successor/P10_U_MANUSCRIPT.tex`, and none of the three
 digest files names it. Everything under binding belongs to a shared lane or to
 two directories `VACATED_PAPER_NUMBERS` records as vacated paper numbers — and

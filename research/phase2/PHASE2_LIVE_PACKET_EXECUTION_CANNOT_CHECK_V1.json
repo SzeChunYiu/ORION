@@ -18,7 +18,7 @@
     "is_phase2_closure_subject": false
   },
   "frozen_packet": {
-    "path": "papers/orion-15-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json",
+    "path": "papers/paper-05-self-orion/protocol/LIVE_TRIAL_PACKET_V1.json",
     "schema": "orion.self-orion.live-research-packet.v1",
     "packet_id": "P5.shadow-live-research.v1",
     "packet_fingerprint": "53f99a2c7e6cfdd74cf5b10a62ba273bc911999b5719cf700eda64044f917e48",
@@ -37,7 +37,7 @@
   "why_cannot_check": [
     "corpus_revision is UNBOUND at packet top level and in both task bindings; live_packet.preflight refuses to construct providers against that value.",
     "No Phase-2 closure-run subject exists on origin/main, so there is no subject_revision_hash the packet could be bound to.",
-    "No result-bearing live-trial artifact is merged to main. papers/orion-15-self-orion/phase2/LIVE_EXECUTION_TRIGGER.txt is a trigger, not a result.",
+    "No result-bearing live-trial artifact is merged to main. papers/paper-05-self-orion/phase2/LIVE_EXECUTION_TRIGGER.txt is a trigger, not a result.",
     "Actions runs 32000698181, 32002199600, 32002591296 and 32003937947 executed from main and all failed or blocked before a bound closure-subject artifact could be admitted. Their logs are expiring GitHub Actions artifacts, not merged evidence, and they froze subjects other than a #76 closure subject (run 32002591296 froze 6c7d2afb, which is Phase-1-derived by ancestry but is not the closure-run subject, which does not exist).",
     "The merged workflow p5_phase2_live_execution.yml rebuilds a packet from phase2_preflight's in-source registry (phase2:wide:microglia-complement-cross-disease / phase2:deep:mos2-screening-exciton) rather than loading LIVE_TRIAL_PACKET_V1.json. That divergence is owned by sibling lanes (#8 / PR #275 discriminator, #277 / PR #289 fail-closed gate) and is cited here only as a reason execution of the frozen packet cannot be checked from merged main."
   ],

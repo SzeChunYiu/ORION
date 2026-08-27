@@ -28,7 +28,7 @@ run fails for a mechanical reason (missing input, crash, harness misinvocation)
 the fix is to the invocation, never to the construction.
 
 No committed V2 artefact is edited. `PUBLICATION_METRICS_V2.json` and everything
-else under `papers/orion-14-verified-scientific-discovery/evidence/protected_v2/`
+else under `papers/paper-04-verified-scientific-discovery/evidence/protected_v2/`
 stands as the record of what the cued battery produced. V3 is a new battery with
 its own identity and its own outputs.
 
@@ -37,7 +37,7 @@ its own identity and its own outputs.
 | field | value |
 | --- | --- |
 | construction id | `v3` |
-| generator | `papers/orion-14-verified-scientific-discovery/host/generate_protected_cases.py --construction v3` |
+| generator | `papers/paper-04-verified-scientific-discovery/host/generate_protected_cases.py --construction v3` |
 | shape | 420 cases, 13 families, gold terminals `{BLOCK: 330, PROMOTE: 60, CANNOT_CHECK: 30}` — unchanged from V1/V2 |
 | custody split | unchanged: FIT = 150 `PUBLIC_*`, EVAL = 270 `PROTECTED_*`, of which 20 are `CANNOT_CHECK` |
 | audit seed | `v3-audit-20260821` |

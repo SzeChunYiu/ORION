@@ -92,7 +92,7 @@ def committed_freeze_revision() -> str:
 def sab_case_ids() -> list[str]:
     masking = load_json(
         REPO_ROOT
-        / "papers/orion-11-recursive-epistemic-reconstruction/masking/P1_MASKING_FREEZE_V1.json"
+        / "papers/paper-01-recursive-epistemic-reconstruction/masking/P1_MASKING_FREEZE_V1.json"
     )
     ids = [str(row["instance_id"]) for row in masking["entries"]]
     if len(ids) != 102 or len(set(ids)) != 102:

@@ -27,7 +27,7 @@ def test_freeze_and_preflight_fail_closed() -> None:
 
 
 def test_case_rows_are_exact_and_complete() -> None:
-    rows = RUNNER.planned_case_rows(load("../../../../papers/orion-22-adaptive-state-reasoning/runtime/P12_CAMPAIGN_PLAN_V1.json"))
+    rows = RUNNER.planned_case_rows(load("../../../../papers/paper-12-adaptive-state-reasoning/runtime/P12_CAMPAIGN_PLAN_V1.json"))
     assert len(rows) == 96
     assert len({row["task_family"] for row in rows}) == 24
     assert {row["domain"] for row in rows} == {

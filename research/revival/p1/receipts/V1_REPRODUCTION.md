@@ -6,7 +6,7 @@
 
 Machine-readable twin: `receipts/V1_REPRODUCTION_RECEIPT.json`.
 
-Independently re-derived from `papers/orion-11-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl` using majority case reduction and the frozen paired bootstrap (10000, seed 20260815). V1 tables were read, not rewritten.
+Independently re-derived from `papers/paper-01-recursive-epistemic-reconstruction/results/raw/test_scored.jsonl` using majority case reduction and the frozen paired bootstrap (10000, seed 20260815). V1 tables were read, not rewritten.
 
 | fact | observed |
 |---|---|

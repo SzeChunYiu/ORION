@@ -138,7 +138,7 @@ def main() -> int:
     if platform.python_version() != env["python"] or numpy.__version__ != env["numpy"] or sklearn.__version__ != env["scikit_learn"]:
         raise SystemExit("frozen execution environment drift")
 
-    base = repo / "papers/orion-17-epistemic-navigation-open-worlds/top_tier"
+    base = repo / "papers/paper-07-epistemic-navigation-open-worlds/top_tier"
     regime_script = base / "run_real_regime_transport_v1.py"
     regime = run_json(regime_script)
     regime_module = load_module(regime_script, "p7_frozen_regime_transport")
