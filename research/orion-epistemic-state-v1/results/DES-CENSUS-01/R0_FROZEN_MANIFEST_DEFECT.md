@@ -89,7 +89,12 @@ pre-R0) found the damage extends well past this family:
 
 Batch repair of the 21 + 5 + DES-SATURATION + DES-NOVELTY set follows as a separate
 PR using the generalized verifier; each file is admitted only through the same
-forward-vocabulary byte-equality gate used here.
+forward-vocabulary byte-equality gate used here. **Shipped as PR #1540**
+(`verify_and_restore_r0_v3.py` + `R0_BATCH_RESTORE_RECEIPT_V1.json`): 99 frozen/
+terminal artifacts byte-restored, 17 living files left rebound, 8 deferred,
+0 gate failures. One file passed via a `guarded-passB` gate that mirrors R0's
+own pass-B guard (`candidates/` + `2026-08-pre-unification/` contexts; R0
+renamed no `papers/candidates/*` subdir, verified by `git ls-tree`).
 
 ## 6. Prevention
 
