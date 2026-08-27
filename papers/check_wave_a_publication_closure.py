@@ -2,9 +2,10 @@
 """Fail-closed structural checker for ORION Publication Closure Wave A.
 
 This checker validates coordination/protocol structure only. A PASS grants no
-scientific, novelty, journal, peer-review, or submission authority. Outcome
-promotion still requires the paper-specific frozen evidence and independent
-verification named by each protocol.
+scientific, novelty, journal, peer-review, or submission authority. Specialist
+closure is deliberately separate from optional top-tier promotion: a paper may
+finish at the strongest bounded reproducible claim even when its top-tier
+breadth discriminator remains open.
 """
 
 from __future__ import annotations
@@ -20,7 +21,7 @@ from typing import Any
 SCHEMA = "ORION.PublicationClosureWaveA.v1"
 MANIFEST = "WAVE_A_PUBLICATION_CLOSURE_MANIFEST_V1.json"
 TOP_LEVEL_PACKET = "PUBLICATION_CLOSURE_WAVE_A_V1.md"
-PAPER_PACKET = "PUBLICATION_CLOSURE_WAVE_A_V1.md"
+DEFAULT_PAPER_PACKET = "PUBLICATION_CLOSURE_WAVE_A_V1.md"
 
 FORBIDDEN_PROMOTION_PHRASES = (
     "WAVE_A_TOP_TIER_EARNED",
@@ -30,16 +31,16 @@ FORBIDDEN_PROMOTION_PHRASES = (
 )
 
 COMMON_TOKENS = (
+    "Maximum current claim",
+    "Good specialist finish",
     "Required artifacts",
     "independent",
     "public",
 )
 
 OUTCOME_TOKENS = (
-    "Maximum current claim",
     "Registered terminals",
     "protocol",
-    "before outcome",
     "baseline",
     "Hostile controls",
     "manuscript",
@@ -116,6 +117,11 @@ def check(root: Path) -> dict[str, Any]:
 
     require(manifest.get("schema") == SCHEMA, "wrong manifest schema", errors)
     require(manifest.get("authority_delta") == "NONE", "authority_delta must remain NONE", errors)
+    require(
+        manifest.get("closure_policy") == "GOOD_SPECIALIST_FIRST__TOP_TIER_OPTIONAL",
+        "closure_policy must keep specialist closure primary",
+        errors,
+    )
 
     rules = manifest.get("rules")
     require(isinstance(rules, dict), "rules must be an object", errors)
@@ -127,6 +133,7 @@ def check(root: Path) -> dict[str, Any]:
             "protocol_before_outcomes",
             "independent_verification_required",
             "final_submission_bytes_required",
+            "top_tier_discriminator_does_not_block_specialist_submission",
         ):
             require(rules.get(key) is True, f"rule must be true: {key}", errors)
 
@@ -150,12 +157,20 @@ def check(root: Path) -> dict[str, Any]:
         priority = item.get("priority")
         lane = item.get("lane")
         phases = item.get("required_phases")
+        specialist_gate = item.get("specialist_gate")
+        top_tier_gate = item.get("top_tier_gate")
 
         require(isinstance(paper_id, str) and paper_id.startswith("ORION-"), f"{prefix}: invalid paper_id", errors)
         require(isinstance(directory, str) and directory.startswith("papers/orion-"), f"{prefix}: invalid directory", errors)
         require(isinstance(priority, int) and priority > 0, f"{prefix}: invalid priority", errors)
-        require(isinstance(lane, str) and bool(lane), f"{prefix}: invalid lane", errors)
+        require(lane in {"PACKAGE_ONLY", "SPECIALIST_PACKAGE"}, f"{prefix}: invalid specialist-first lane", errors)
         require(isinstance(phases, list) and bool(phases), f"{prefix}: required_phases must be non-empty", errors)
+        require(isinstance(specialist_gate, str) and bool(specialist_gate), f"{prefix}: specialist_gate missing", errors)
+        require(
+            isinstance(top_tier_gate, str) and top_tier_gate.startswith("OPTIONAL"),
+            f"{prefix}: top_tier_gate must be explicitly optional",
+            errors,
+        )
 
         if isinstance(paper_id, str):
             require(paper_id not in seen_ids, f"duplicate paper_id: {paper_id}", errors)
@@ -170,7 +185,15 @@ def check(root: Path) -> dict[str, Any]:
             require(len(phases) == len(set(phases)), f"{prefix}: duplicate required phase", errors)
 
         paper_dir = root / directory if isinstance(directory, str) else root / "__invalid__"
-        packet = paper_dir / PAPER_PACKET
+        packet_value = item.get("control_packet")
+        if packet_value is None:
+            packet = paper_dir / DEFAULT_PAPER_PACKET
+        elif isinstance(packet_value, str):
+            packet = root / packet_value
+        else:
+            packet = root / "__invalid_control_packet__"
+            errors.append(f"{prefix}: control_packet must be a string when present")
+
         require(paper_dir.is_dir(), f"missing paper directory: {paper_dir}", errors)
         require(packet.is_file(), f"missing paper packet: {packet}", errors)
 
@@ -197,6 +220,8 @@ def check(root: Path) -> dict[str, Any]:
                 "priority": priority,
                 "protocol_path": str(packet.relative_to(root)) if packet.is_file() else None,
                 "protocol_sha256": sha256(packet) if packet.is_file() else None,
+                "specialist_gate": specialist_gate,
+                "top_tier_gate": top_tier_gate,
                 "required_phases": phases,
             }
         )
@@ -221,7 +246,7 @@ def check(root: Path) -> dict[str, Any]:
         "papers": sorted(records, key=lambda row: row.get("priority") or 10**9),
         "errors": errors,
         "authority_delta": "NONE",
-        "note": "Structural protocol PASS is not scientific or publication authority.",
+        "note": "Structural PASS only: specialist closure still requires paper-native scientific/reproduction/package gates on the same immutable head.",
     }
 
 
