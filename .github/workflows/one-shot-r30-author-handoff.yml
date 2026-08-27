@@ -1,0 +1,135 @@
+name: one-shot-r30-author-handoff
+
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths: ['.github/workflows/one-shot-r30-author-handoff.yml']
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  publish-author-handoff-after-clean-custody:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion-02-r18-null-current-main-20260827
+          fetch-depth: 0
+      - name: Wait for green clean current-main custody
+        id: wait
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch='chatgpt/five-paper-r30-current-main-20260827'
+          deadline=$((SECONDS+4800))
+          while :; do
+            sha="$(gh api "repos/$GITHUB_REPOSITORY/branches/$branch" --jq .commit.sha)"
+            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$sha&per_page=100" --jq '.workflow_runs | map(select(.name=="five-paper-r30-current-main-custody")) | sort_by(.id) | reverse | .[0].id // empty')"
+            if [ -n "$run" ]; then
+              status="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" --jq .status)"
+              conclusion="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" --jq .conclusion)"
+              if [ "$status" = completed ]; then
+                test "$conclusion" = success
+                echo "sha=$sha" >> "$GITHUB_OUTPUT"
+                echo "run=$run" >> "$GITHUB_OUTPUT"
+                break
+              fi
+            fi
+            test "$SECONDS" -lt "$deadline"
+            sleep 30
+          done
+      - name: Commit exact author/external handoff to clean branch
+        shell: bash
+        env:
+          CLEAN_SHA: ${{ steps.wait.outputs.sha }}
+          CLEAN_RUN: ${{ steps.wait.outputs.run }}
+        run: |
+          set -euo pipefail
+          branch='chatgpt/five-paper-r30-current-main-20260827'
+          git fetch --no-tags origin "$branch"
+          git checkout -B "$branch" FETCH_HEAD
+          root='papers/orion-02-fiberguard-finite-fibre'
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          root=Path('papers/orion-02-fiberguard-finite-fibre')
+          internal=json.loads((root/'INTERNAL_RELEASE_RECEIPT_R30.json').read_text())
+          programme=json.loads(Path('research/five-paper-top-tier-r30/PROGRAMME_INTERNAL_TERMINAL_R30.json').read_text())
+          custody=json.loads((root/'CURRENT_MAIN_CUSTODY_R30.json').read_text())
+          result={
+            'schema':'ORION.FivePaper.AuthorHandoff.R30.v1',
+            'clean_current_main_commit':os.environ['CLEAN_SHA'],
+            'clean_custody_run':int(os.environ['CLEAN_RUN']),
+            'internal_release_terminal':internal['terminal'],
+            'programme_terminal':programme['terminal'],
+            'current_main_terminal':custody['terminal'],
+            'remaining_decisions':{
+              'authors_and_institutions':['author order','affiliations','ORCID','corresponding author','funding','conflicts','CRediT contributions'],
+              'legal_and_archive':['ASlib/scenario data-rights interpretation','software/data licences','permanent DOI/archive'],
+              'external_science':['decision-theory review','algorithm-selection review','domain review for D','quantum resource review for Q1','structurally independent external reproduction','current-primary-source novelty adjudication'],
+              'production_inputs':['AB extensional production registry','D independently maintained multi-record case corpus','Q1 matched current-compiler resource benchmark'],
+              'submission':['venue and article type','exact upload bytes','portal preview approval','submission receipt'],
+            },
+            'authority':{
+              'internal_executable_work_complete':True,
+              'external_independence':False,
+              'novelty':False,
+              'rights_complete':False,
+              'production_authority_for_all_lanes':False,
+              'journal_authority':False,
+              'submission_authorized':False,
+            },
+            'terminal':'FIVE_PAPER_R30_AUTHOR_HANDOFF_READY__EXTERNAL_AND_AUTHOR_DECISIONS_OPEN',
+          }
+          (root/'AUTHOR_HANDOFF_R30.json').write_text(json.dumps(result,sort_keys=True,separators=(',',':'))+'\n')
+          lines=['# Five-paper R30 author handoff','',f"`{result['terminal']}`",'', 'The clean current-main package has passed its exact custody workflow. All remaining fields require author, legal, production-owner, external reviewer, independent reproducer, archive, or portal input; none is inferred from internal automation.','']
+          for section,items in result['remaining_decisions'].items():
+            lines.append(f'## {section.replace("_"," ").title()}');lines.append('');lines.extend(f'- {item}' for item in items);lines.append('')
+          lines.extend(['Journal authority and submission authorization remain false.',''])
+          (root/'AUTHOR_HANDOFF_R30.md').write_text('\n'.join(lines))
+          PY
+          git config user.name 'github-actions[bot]';git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$root/AUTHOR_HANDOFF_R30.json" "$root/AUTHOR_HANDOFF_R30.md"
+          if git diff --cached --quiet; then echo 'author handoff already current'; else git commit -m 'publication(R30): bind author and external handoff';git push origin HEAD:refs/heads/$branch; fi
+          git rev-parse HEAD > "$RUNNER_TEMP/handoff-sha.txt"
+      - name: Wait for handoff-head custody replay
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          sha="$(cat "$RUNNER_TEMP/handoff-sha.txt")"
+          deadline=$((SECONDS+3600))
+          while :; do
+            run="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$sha&per_page=100" --jq '.workflow_runs | map(select(.name=="five-paper-r30-current-main-custody")) | sort_by(.id) | reverse | .[0].id // empty')"
+            if [ -n "$run" ]; then
+              status="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" --jq .status)";conclusion="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" --jq .conclusion)"
+              if [ "$status" = completed ]; then test "$conclusion" = success;echo "$run" > "$RUNNER_TEMP/final-custody-run.txt";break;fi
+            fi
+            test "$SECONDS" -lt "$deadline";sleep 30
+          done
+      - name: Publish final internal handoff terminal idempotently
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch='chatgpt/five-paper-r30-current-main-20260827'
+          pr="$(gh pr list --head "$branch" --state all --json number --jq '.[0].number')"
+          marker='FIVE_PAPER_R30_AUTHOR_HANDOFF_READY__EXTERNAL_AND_AUTHOR_DECISIONS_OPEN'
+          body="Clean current-main PR #$pr passed custody on run $(cat "$RUNNER_TEMP/final-custody-run.txt").\n\n$marker\n\nAll internally executable work is complete at the frozen authority ceiling. External independence, novelty, rights, production inputs, journal authority and submission authorization remain open/false."
+          for issue in 1377 1386 1421; do
+            existing="$(gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$issue/comments" --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)"
+            if [ -z "$existing" ]; then gh api --method POST "repos/$GITHUB_REPOSITORY/issues/$issue/comments" -f body="$body" >/dev/null;fi
+          done
+          existing="$(gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$pr/comments" --jq ".[] | select(.body | contains(\"$marker\")) | .id" | head -n1)"
+          if [ -z "$existing" ]; then gh pr comment "$pr" --body "$body";fi
+          echo "$body"
