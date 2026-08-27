@@ -1,0 +1,68 @@
+name: orion01-final-freeze
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/orion01-final-freeze-20260827
+    paths:
+      - 'papers/publication_closure/remaining11/check_orion01_final_freeze.py'
+      - '.github/workflows/orion01-final-freeze.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orion01-final-freeze
+  cancel-in-progress: true
+
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion01-final-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion01-final-freeze-20260827
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile freeze and convergence verifiers
+        run: |
+          python -m py_compile papers/publication_closure/remaining11/check_orion01_final_freeze.py
+          python -m py_compile research/orion-01-05-convergence-v1/verify_convergence_v1.py
+      - name: Re-verify complete convergence evidence layer
+        run: python research/orion-01-05-convergence-v1/verify_convergence_v1.py
+      - name: Require canonical paper bytes unchanged
+        run: git diff --exit-code -- papers/orion-01-certificate-realization
+      - name: Write exact science/content freeze receipt
+        run: python papers/publication_closure/remaining11/check_orion01_final_freeze.py
+      - name: Commit exact freeze receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          receipt='papers/publication_closure/receipts/remaining11/ORION-01_SCIENCE_CONTENT_FREEZE_V1.json'
+          test -s "$receipt"
+          python - "$receipt" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]))
+          assert x['science_frozen'] is True and x['paper_content_frozen'] is True
+          assert x['successor_required_for_future_science'] is True
+          assert len(x['established_claim_ids'])==11
+          assert x['submission_authority'] is False
+          print(x['terminal'])
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$receipt"
+          git diff --check --cached
+          git commit -m 'papers(publication): freeze ORION-01 science and content [orion01-final-frozen]'
+          git push origin HEAD:chatgpt/orion01-final-freeze-20260827
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion01-final-freeze-${{ github.sha }}
+          path: papers/publication_closure/receipts/remaining11/ORION-01_SCIENCE_CONTENT_FREEZE_V1.json
+          if-no-files-found: error
+          retention-days: 30

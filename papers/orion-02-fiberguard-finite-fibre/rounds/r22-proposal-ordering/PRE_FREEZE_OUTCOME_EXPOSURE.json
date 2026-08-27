@@ -1,0 +1,40 @@
+{
+  "schema": "ORION.ORION02.PreFreezeOutcomeExposure.v1",
+  "date": "2026-08-27",
+  "paper": "ORION-02",
+  "candidate_round": 3,
+  "terminal": "PRE_FREEZE_OUTCOME_EXPOSURE__ROUND_NOT_CONSUMED",
+  "classification": "CUSTODY_INCIDENT_BEFORE_PROSPECTIVE_FREEZE",
+  "trigger": "A broad recursive source search unexpectedly traversed the cached ASlib checkout and displayed algorithm-run rows from PROTEUS-2014 before a Round-3 freeze existed.",
+  "conservative_exposure_boundary": {
+    "repository": "https://github.com/coseal/aslib_data.git",
+    "commit": "551b22beef8df17de59286b4822ef720e0aa4d6f",
+    "tree": "6fcc47431c955aaab5b1b7317e4930cf774e6bf8",
+    "scope": "ENTIRE_REPOSITORY_TREE",
+    "reason": "The recursive traversal boundary cannot support a narrower untouched-source claim.",
+    "disposition": "DISQUALIFIED_FOR_ORION02_ROUND3"
+  },
+  "specifically_observed_source_family": "PROTEUS-2014",
+  "scientific_interpretation": {
+    "outcome_interpretation_performed": false,
+    "model_fit_performed": false,
+    "metric_computed": false,
+    "science_terminal_generated": false
+  },
+  "round_budget": {
+    "consumes_round": false,
+    "consumed_before_incident": 2,
+    "consumed_after_incident": 2,
+    "maximum": 3,
+    "reason": "No prospectively frozen Round-3 mechanism was executed or adjudicated; this is a custody incident, not a positive, null, adverse, or CANNOT_CHECK mechanism terminal."
+  },
+  "prohibitions": [
+    "Do not use PROTEUS-2014 for ORION-02 Round 3.",
+    "Do not use any other scenario or file from the cached ASlib repository for ORION-02 Round 3.",
+    "Do not describe the ASlib tree as untouched for this round.",
+    "Do not reconstruct or falsify a pre-exposure freeze.",
+    "Do not reinterpret or modify the BNSL null, TSP prerequisite CANNOT_CHECK, or CSP-MZN adverse result."
+  ],
+  "permitted_next_step": "Select a genuinely independent source outside the exposed ASlib tree, freeze the complete mechanism and mutually exclusive terminals before retrieving source data or producing algorithm outcomes, then execute without retuning.",
+  "protected_task3_or_p9_touched": false
+}
