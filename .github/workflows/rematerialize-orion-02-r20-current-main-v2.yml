@@ -1,0 +1,192 @@
+name: rematerialize-orion-02-r20-current-main-v2
+
+on:
+  push:
+    branches: [chatgpt/orion-02-r18-null-current-main-20260827]
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/INTERNAL_WORKFLOW_META_R20.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  clean-live-main-child:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion-02-r18-null-current-main-20260827
+          fetch-depth: 0
+
+      - name: Verify strict internal receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('papers/orion-02-fiberguard-finite-fibre')
+          internal=json.loads((root/'INTERNAL_RELEASE_RECEIPT_R20.json').read_text())
+          meta=json.loads((root/'INTERNAL_WORKFLOW_META_R20.json').read_text())
+          assert internal['schema']=='ORION.ORION02.InternalReleaseReceipt.R20.v1'
+          assert internal['terminal']=='ORION02_R20_INTERNAL_RELEASE_GATE_PASS__EXTERNAL_REVIEW_NOVELTY_RIGHTS_AND_SUBMISSION_OPEN'
+          assert meta['schema']=='ORION.ORION02.InternalWorkflowMetaReceipt.R20.v1'
+          assert meta['all_required_internal_workflows_green'] is True
+          assert meta['terminal']=='ORION02_R20_INTERNAL_WORKFLOW_META_PASS__EXTERNAL_GATES_OPEN'
+          assert internal['authority']['external_independence'] is False
+          assert internal['authority']['novelty'] is False
+          assert internal['authority']['data_rights_complete'] is False
+          assert internal['authority']['journal_authority'] is False
+          assert internal['authority']['submission_authorized'] is False
+          assert meta['authority']['journal_authority'] is False
+          print('ORION_02_R20_STRICT_RECEIPTS_VALID')
+          PY
+
+      - name: Build clean child of current live main
+        shell: bash
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          target='chatgpt/orion-02-r20-current-main-20260827'
+          git fetch --no-tags origin main
+          git fetch --no-tags origin "$target" || true
+          live_main="$(git rev-parse origin/main)"
+          git checkout -B "$target" origin/main
+          git checkout "$SOURCE_SHA" -- papers/orion-02-fiberguard-finite-fibre
+          rm -f papers/orion-02-fiberguard-finite-fibre/R20_RELEASE_REQUEST_V1.txt
+          mkdir -p .github/workflows
+          cat > .github/workflows/orion-02-r20-current-main-custody.yml <<'YAML'
+          name: orion-02-r20-current-main-custody
+          on:
+            push:
+              branches: [chatgpt/orion-02-r20-current-main-20260827]
+              paths:
+                - 'papers/orion-02-fiberguard-finite-fibre/**'
+                - '.github/workflows/orion-02-r20-current-main-custody.yml'
+            pull_request:
+              paths:
+                - 'papers/orion-02-fiberguard-finite-fibre/**'
+                - '.github/workflows/orion-02-r20-current-main-custody.yml'
+            workflow_dispatch:
+          permissions: {contents: read}
+          jobs:
+            verify-clean-current-main-package:
+              runs-on: ubuntu-24.04
+              timeout-minutes: 45
+              steps:
+                - uses: actions/checkout@v4
+                  with: {fetch-depth: 0}
+                - uses: actions/setup-python@v5
+                  with: {python-version: '3.12'}
+                - name: Verify current-main custody and authority
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    python - <<'PY'
+                    import hashlib,json
+                    from pathlib import Path
+                    root=Path('papers/orion-02-fiberguard-finite-fibre')
+                    custody=json.loads((root/'CURRENT_MAIN_CUSTODY_R20.json').read_text())
+                    internal=json.loads((root/'INTERNAL_RELEASE_RECEIPT_R20.json').read_text())
+                    meta=json.loads((root/'INTERNAL_WORKFLOW_META_R20.json').read_text())
+                    assert custody['schema']=='ORION.ORION02.CurrentMainCustody.R20.v2'
+                    assert custody['terminal']=='ORION02_R20_REMATERIALIZED_ON_LIVE_MAIN__EXTERNAL_GATES_OPEN'
+                    assert internal['terminal']=='ORION02_R20_INTERNAL_RELEASE_GATE_PASS__EXTERNAL_REVIEW_NOVELTY_RIGHTS_AND_SUBMISSION_OPEN'
+                    assert meta['all_required_internal_workflows_green'] is True
+                    for name,expected in internal['bindings'].items():
+                      observed=hashlib.sha256((root/name).read_bytes()).hexdigest()
+                      assert observed==expected,(name,expected,observed)
+                    assert custody['authority']=={'scientific_claims_unchanged':True,'internal_workflows_green':True,'external_independence':False,'novelty':False,'rights_complete':False,'journal_authority':False,'submission_authorized':False}
+                    assert json.loads((root/'extensions/r18/R18_RECOVERY_CUSTODY.json').read_text())['current_terminal']=='FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE'
+                    assert json.loads((root/'extensions/r19/JOINT_ROUTE_R19_RESULTS.json').read_text())['terminal']=='FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT_PASS'
+                    print('ORION_02_R20_CURRENT_MAIN_CUSTODY_PASS')
+                    PY
+                - name: Re-run finite and Rust checkers
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    root='papers/orion-02-fiberguard-finite-fibre'
+                    python -m py_compile "$root/verify_r20_story.py"
+                    python "$root/verify_r20_story.py" --output "$RUNNER_TEMP/finite.json" | tee "$RUNNER_TEMP/finite.txt"
+                    grep -q '^ORION02_R20_STORY_FINITE_CORROBORATION_PASS ' "$RUNNER_TEMP/finite.txt"
+                    git fetch --no-tags origin refs/heads/chatgpt/r18-c-paired-route-20260826
+                    git show FETCH_HEAD:papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json > "$RUNNER_TEMP/r18.json"
+                    test "$(sha256sum "$RUNNER_TEMP/r18.json" | cut -d' ' -f1)" = '8136ac6e614406a51270342d73786dfec43a9ecdac81f62e815cd14d1a739c45'
+                    rustc --edition=2021 -C opt-level=2 "$root/verify_r20_cross_language.rs" -o "$RUNNER_TEMP/rust-checker"
+                    subject="$(python -c 'import json;print(json.load(open("papers/orion-02-fiberguard-finite-fibre/INTERNAL_RELEASE_RECEIPT_R20.json"))["executed_subject_commit"])')"
+                    blob="$(git rev-parse HEAD:$root/verify_r20_cross_language.rs)"
+                    "$RUNNER_TEMP/rust-checker" --r18 "$RUNNER_TEMP/r18.json" --r19 "$root/extensions/r19/JOINT_ROUTE_R19_RESULTS.json" --source-subject "$subject" --source-blob "$blob" --output "$RUNNER_TEMP/rust.json" | tee "$RUNNER_TEMP/rust.txt"
+                    grep -q '^ORION02_R20_RUST_CROSS_LANGUAGE_CHECKER_PASS$' "$RUNNER_TEMP/rust.txt"
+                - name: Compile manuscript and inspect all pages
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    sudo apt-get update -qq
+                    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends latexmk poppler-utils texlive-bibtex-extra texlive-fonts-recommended texlive-latex-base texlive-latex-extra texlive-latex-recommended
+                    root='papers/orion-02-fiberguard-finite-fibre';cd "$root"
+                    SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error MANUSCRIPT_R20.tex
+                    test -s MANUSCRIPT_R20.pdf
+                    ! grep -Eq 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references' MANUSCRIPT_R20.log
+                    mkdir -p "$RUNNER_TEMP/pages";pdftoppm -png -r 96 MANUSCRIPT_R20.pdf "$RUNNER_TEMP/pages/page" >/dev/null
+                    test "$(find "$RUNNER_TEMP/pages" -name 'page-*.png' | wc -l)" -gt 0
+                    pdfinfo MANUSCRIPT_R20.pdf > "$RUNNER_TEMP/pdfinfo.txt"
+                - name: Check protected scope and diff hygiene
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    ! git diff --name-only origin/main...HEAD | grep -E '(^|/)(task[-_]?3|receipt_v3|process_receipt|evidence\.py)'
+                    git diff --check
+                - name: Stage current-main reviewer packet
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    root='papers/orion-02-fiberguard-finite-fibre';out="$RUNNER_TEMP/orion-02-r20-current-main";mkdir -p "$out"
+                    cp "$root/MANUSCRIPT_R20.pdf" "$root/MANUSCRIPT_R20.tex" "$root/REFERENCES_R20.bib" "$out/"
+                    cp "$root/CURRENT_STORY_R20.md" "$root/CLAIM_LEDGER_R20.json" "$root/EVIDENCE_MANIFEST_R20.json" "$root/PRIOR_ART_MATRIX_R20.md" "$root/JOURNAL_GATE_R20.json" "$out/"
+                    cp "$root/CURRENT_MAIN_CUSTODY_R20.json" "$root/INTERNAL_RELEASE_RECEIPT_R20.json" "$root/INTERNAL_WORKFLOW_META_R20.json" "$out/"
+                    cp "$RUNNER_TEMP/finite.json" "$out/R20_FINITE_RESULT.json";cp "$RUNNER_TEMP/rust.json" "$out/R20_RUST_RESULT.json";cp "$RUNNER_TEMP/pdfinfo.txt" "$out/"
+                    sha256sum "$out"/* > "$out/SHA256SUMS"
+                - uses: actions/upload-artifact@v4
+                  with: {name: orion-02-r20-current-main, path: '${{ runner.temp }}/orion-02-r20-current-main/', if-no-files-found: error, retention-days: 30}
+          YAML
+          python - <<PY
+          import json
+          from pathlib import Path
+          root=Path('papers/orion-02-fiberguard-finite-fibre')
+          internal=json.loads((root/'INTERNAL_RELEASE_RECEIPT_R20.json').read_text())
+          meta=json.loads((root/'INTERNAL_WORKFLOW_META_R20.json').read_text())
+          result={'schema':'ORION.ORION02.CurrentMainCustody.R20.v2','live_main_base':'$live_main','source_branch':'chatgpt/orion-02-r18-null-current-main-20260827','source_commit':'$SOURCE_SHA','internal_release_subject':internal['executed_subject_commit'],'internal_release_terminal':internal['terminal'],'meta_terminal':meta['terminal'],'terminal':'ORION02_R20_REMATERIALIZED_ON_LIVE_MAIN__EXTERNAL_GATES_OPEN','authority':{'scientific_claims_unchanged':True,'internal_workflows_green':True,'external_independence':False,'novelty':False,'rights_complete':False,'journal_authority':False,'submission_authorized':False}}
+          (root/'CURRENT_MAIN_CUSTODY_R20.json').write_text(json.dumps(result,sort_keys=True,separators=(',',':'))+'\n')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/orion-02-fiberguard-finite-fibre .github/workflows/orion-02-r20-current-main-custody.yml
+          git commit -m 'research(ORION-02): rematerialize strict R20 package on live main'
+          git push --force-with-lease origin HEAD:refs/heads/$target
+          printf '%s\n' "$target" > "$RUNNER_TEMP/target.txt"
+
+      - name: Open or update clean draft PR and mark old stack superseded
+        shell: bash
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          target="$(cat "$RUNNER_TEMP/target.txt")"
+          number="$(gh pr list --head "$target" --state all --json number --jq '.[0].number // empty')"
+          body='Clean child of live main created only after strict ORION-02 R20 internal release and workflow-meta receipts. Includes exact finite-fibre theory, complete-corpus positive result, preserved R14/R16/R18/neighborhood adverse results, R19 joint-route repair, independent Rust corroboration, formal manuscript, prior-art and journal gates. External independence, novelty, ASlib rights interpretation, author metadata, permanent archive, and submission authority remain open.'
+          if [ -z "$number" ]; then
+            gh pr create --draft --base main --head "$target" --title '[ORION-02][R20] Exact finite-fibre theory and prospective deployment refutations' --body "$body" > "$RUNNER_TEMP/pr-url.txt"
+            number="$(gh pr view "$target" --json number --jq .number)"
+          else
+            gh pr edit "$number" --title '[ORION-02][R20] Exact finite-fibre theory and prospective deployment refutations' --body "$body"
+          fi
+          marker="Superseded by clean live-main R20 PR #$number after strict internal receipts. Historical branch remains for source custody; no scientific terminal is changed."
+          for old in 1485 1488; do
+            existing="$(gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$old/comments" --jq ".[] | select(.body | contains(\"clean live-main R20 PR #$number\")) | .id" | head -n1)"
+            if [ -z "$existing" ]; then gh pr comment "$old" --body "$marker"; fi
+          done
+          echo "clean PR #$number"
