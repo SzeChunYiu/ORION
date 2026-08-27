@@ -27,6 +27,24 @@ adverse = importlib.util.module_from_spec(VERIFY_SPEC)
 sys.modules[VERIFY_SPEC.name] = adverse
 VERIFY_SPEC.loader.exec_module(adverse)
 
+POST_REVIEW_PATH = HERE / "verify_orion01_r11_post_review_registry.py"
+POST_REVIEW_SPEC = importlib.util.spec_from_file_location(
+    "verify_orion01_r11_post_review_registry", POST_REVIEW_PATH
+)
+assert POST_REVIEW_SPEC is not None and POST_REVIEW_SPEC.loader is not None
+post_review = importlib.util.module_from_spec(POST_REVIEW_SPEC)
+sys.modules[POST_REVIEW_SPEC.name] = post_review
+POST_REVIEW_SPEC.loader.exec_module(post_review)
+
+ADVERSE_CORE_PATH = HERE / "verify_orion01_r11_adverse_core.py"
+ADVERSE_CORE_SPEC = importlib.util.spec_from_file_location(
+    "verify_orion01_r11_adverse_core", ADVERSE_CORE_PATH
+)
+assert ADVERSE_CORE_SPEC is not None and ADVERSE_CORE_SPEC.loader is not None
+adverse_core = importlib.util.module_from_spec(ADVERSE_CORE_SPEC)
+sys.modules[ADVERSE_CORE_SPEC.name] = adverse_core
+ADVERSE_CORE_SPEC.loader.exec_module(adverse_core)
+
 
 def test_frozen_registry_shape_and_authority_boundary() -> None:
     row = study.load_registry()
@@ -53,6 +71,38 @@ def test_installed_source_and_independent_ast_closure() -> None:
     assert audit["discovered_count"] == 12
     assert audit["hostile_omissions_rejected"] == 12
     assert all(item["rejected"] for item in audit["hostile_single_omissions"])
+
+
+def test_post_review_registry_controls_are_genuine_and_additive() -> None:
+    fresh = post_review.build_receipt()
+    committed = json.loads(post_review.RECEIPT_PATH.read_text())
+    assert post_review.render(fresh) == post_review.RECEIPT_PATH.read_text()
+    assert fresh == committed
+    assert committed["raw_science_terminal"] == study.FAIL_TERMINAL
+    assert committed["mutated_registry_omissions_rejected"] == 12
+    assert all(
+        item["disposition"] == "REJECTED"
+        for item in committed["mutated_registry_omissions"]
+    )
+    findings = committed["review_findings"]
+    assert findings["original_inline_omission_loop"]["disposition"].startswith(
+        "NON_IDENTIFYING_TAUTOLOGICAL_COMPARISON"
+    )
+    assert findings["original_whitelist_filtered_ast_comparison"]["disposition"] == (
+        "INSUFFICIENT_ALONE_TO_EXCLUDE_UNKNOWN_CALLS"
+    )
+    assert committed["scientific_disposition"]["bounded_counterexample_unchanged"] is True
+    assert committed["scientific_disposition"]["complete_contextual_registry_established"] is False
+
+
+def test_adverse_core_replays_without_the_disputed_registry_audit() -> None:
+    receipt = adverse_core.verify_adverse_core()
+    assert receipt["terminal"] == study.FAIL_TERMINAL
+    assert receipt["word"] == ["H0", "H0", "H0"]
+    assert receipt["equal_including_scalar"] is False
+    assert receipt["equal_up_to_nonzero_scalar"] is False
+    assert receipt["scheduled_full_reduce_semantics_preserved"] is True
+    assert receipt["disputed_ast_or_omission_audit_used"] is False
 
 
 def test_complete_word_enumerator_without_outcome_access() -> None:

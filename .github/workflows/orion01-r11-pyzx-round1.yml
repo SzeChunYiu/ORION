@@ -38,9 +38,18 @@ jobs:
           python -m ruff check \
             papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/orion01_r11_pyzx_round1.py \
             papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/test_orion01_r11_pyzx_round1.py \
-            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/verify_orion01_r11_pyzx_counterexample.py
+            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/verify_orion01_r11_pyzx_counterexample.py \
+            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/verify_orion01_r11_adverse_core.py \
+            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/verify_orion01_r11_post_review_registry.py
           python -m pytest -q \
             papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/test_orion01_r11_pyzx_round1.py
+          python \
+            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/verify_orion01_r11_post_review_registry.py \
+            --check
+          python \
+            papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/verify_orion01_r11_adverse_core.py \
+            | tee /tmp/orion01-r11-adverse-core.out
+          grep -Fx 'CANNOT_CHECK_MOVE_COMPLETENESS' /tmp/orion01-r11-adverse-core.out
       - name: Replay adverse contextual-guard counterexample and require committed bytes
         run: |
           set -euo pipefail
@@ -62,6 +71,7 @@ jobs:
 
           root = Path('papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce')
           result = json.loads((root / 'ORION01_R11_PYZX_RESULTS.json').read_text())
+          post_review = json.loads((root / 'ORION01_R11_POST_REVIEW_REGISTRY_AUDIT.json').read_text())
           registry = json.loads((root / 'ORION01_R11_PYZX_SOURCE_REGISTRY.json').read_text())
           status = json.loads((root / 'ORION01_R11_ROUND1_STATUS.json').read_text())
           failure_1 = json.loads((root / 'ORION01_R11_EXECUTION_FAILURE_01.json').read_text())
@@ -74,7 +84,13 @@ jobs:
           assert result['round_accounting']['science_status_after_this_round'] == 'OPEN'
           assert result['input_domain']['executed_before_fail_closed_terminal'] == 74
           assert not result['input_domain']['complete_domain_executed']
-          assert result['registry_audit']['hostile_omissions_rejected'] == 12
+          assert result['registry_audit']['hostile_omissions_rejected'] == 12  # frozen raw field
+          assert post_review['review_findings']['original_inline_omission_loop']['disposition'] == 'NON_IDENTIFYING_TAUTOLOGICAL_COMPARISON__NOT_AUTHORITY'
+          assert post_review['review_findings']['original_whitelist_filtered_ast_comparison']['disposition'] == 'INSUFFICIENT_ALONE_TO_EXCLUDE_UNKNOWN_CALLS'
+          assert post_review['mutated_registry_omissions_rejected'] == 12
+          assert post_review['raw_science_terminal'] == result['terminal']
+          assert post_review['scientific_disposition']['bounded_counterexample_unchanged']
+          assert not post_review['scientific_disposition']['complete_contextual_registry_established']
           witness = result['counterexample']
           assert witness['source_word'] == ['H0', 'H0', 'H0']
           assert witness['adverse_operation'] == 'pivot_boundary_simp'
