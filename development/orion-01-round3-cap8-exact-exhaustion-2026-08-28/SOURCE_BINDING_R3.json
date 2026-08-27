@@ -57,7 +57,7 @@
     {
       "bytes": 3772,
       "path": "development/orion-01-round2-atomic-registry-2026-08-27/PACKAGE_MANIFEST_R2.json",
-      "sha256": "8c1cb4d98280e3f1bdc3f8a3b6f0565525f1d7c4a4ce12c7f2a56e99661e06f5"
+      "sha256": "baf6ccad27e120226d9efb0db948e6b06ea90f4580a8b7e73619aaf9058bd55d"
     }
   ],
   "entry_count": 11,
@@ -66,6 +66,19 @@
   "mechanism_matched_lever": "EXACT_STATE_CAP_EXTENSION_FOR_EIGHT_R2_CAP_WORDS_ONLY",
   "outcome_files_present_at_binding_time": false,
   "paper_id": "ORION-01",
+  "pre_outcome_corrections": [
+    {
+      "affected_files": [
+        "development/orion-01-round2-atomic-registry-2026-08-27/ATTEMPT_LEDGER_R2.json",
+        "development/orion-01-round2-atomic-registry-2026-08-27/PACKAGE_MANIFEST_R2.json"
+      ],
+      "cancelled_slurm_job": "3550010",
+      "counts_as_scientific_attempt": false,
+      "reason": "Round-2 fast package verification found ATTEMPT_LEDGER_R2 missing its top-level raw_result binding",
+      "scientific_inputs_or_raw_results_changed": false,
+      "task_receipts_written_before_cancellation": false
+    }
+  ],
   "r3_frozen_paths": [
     "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/PROTOCOL_R3.md",
     "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/run_orion01_round3_cap8.py",
