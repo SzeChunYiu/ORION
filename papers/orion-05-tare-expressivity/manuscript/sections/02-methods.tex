@@ -1,7 +1,19 @@
 \section{Grammar and objective}
 
 \subsection{Pauli representation and block structure}
-Global phases are irrelevant to support counting. At each qubit a Pauli letter belongs to $\{I,X,Y,Z\}$, and the binary symplectic product determines commutation. The six targets are supplied as three block pairs. Each block selects an ordered anticommuting frame pair $(A_0,A_1)$, assigns its two targets to the two branches, and marks one branch as central. A shared Pauli $S$ must realize the same two nonzero symplectic labels against every block's ordered frame pair. If six unpaired targets are supplied instead, the 15 possible pairings can be searched as a constant-size outer family.
+Global phases are irrelevant to support counting. At each qubit a Pauli letter belongs to $\{I,X,Y,Z\}$, and the binary symplectic product $\langle\cdot,\cdot\rangle$ determines commutation. Fix blocks $b\in\{0,1,2\}$ and branches $j\in\{0,1\}$. The six input targets are nonidentity phase-ignored Paulis $P_{bj}$. Their indices specify both the block pairing and the assignment of a target to a branch. If six unpaired targets are supplied instead, the 15 possible pairings form a constant-size outer family.
+
+A feasible configuration chooses six nonidentity frame Paulis $A_{bj}$, a shared Pauli $S$, and one central branch $c_b$ per block. The frame pair in each block must anticommute,
+\[
+\langle A_{b0},A_{b1}\rangle=1,
+\]
+and the shared operator must give every ordered pair the same syndrome
+\[
+\bigl(\langle S,A_{b0}\rangle,\langle S,A_{b1}\rangle\bigr)
+=\lambda,
+\qquad \lambda\in\{(1,0),(0,1)\}.
+\]
+The nonzero syndrome bit makes $S$ nonidentity automatically. These conditions, together with the target pairing and branch assignment, define the admitted family; there are no additional feasibility constraints.
 
 For a target letter $p$ and assigned frame letter $f$, the local correction letter is the phase-ignored product $pf$. Corrections in corresponding branches of the three blocks are factored together. For local letters $a,b,c$, the factor cost is
 \[
@@ -10,9 +22,18 @@ F(a,b,c)=w(a)+w(b)+w(c)-2\,\mathbf 1[a=b=c\ne I],
 where $w(I)=0$ and $w(X)=w(Y)=w(Z)=1$. Thus three identical nonidentity correction letters receive a two-unit sharing discount.
 
 \subsection{Declared objective}
-The total cost is coordinate-separable. Removing one nonidentity coordinate from a central frame refunds two units; removing one from a noncentral frame refunds four. The shared operator costs two units per supported qubit. The remaining term is the sum of $F$ over both branches and all coordinates. Within-block target order, central choices, and the two common-label orientations form constant-size families because the grammar always contains three two-target blocks.
+Let $m_{bj}=2$ when $j=c_b$ and $m_{bj}=4$ otherwise. The normalized objective is
+\[
+C=\sum_{b=0}^{2}\sum_{j=0}^{1}m_{bj}\bigl(w(A_{bj})-1\bigr)
+  +2w(S)
+  +\sum_q\sum_{j=0}^{1}
+    F\!\left(P_{0j,q}A_{0j,q},P_{1j,q}A_{1j,q},P_{2j,q}A_{2j,q}\right).
+\]
+The subtraction of one support unit from each nonidentity frame removes the fixed raw-cost baseline $\sum_{b,j}m_{bj}=18$. It leaves every optimizer unchanged and fixes the absolute cost convention used below. Under this normalization, removing one supported coordinate from a central frame refunds two units, while removing one from a noncentral frame refunds four. The shared operator costs two units per supported qubit, and the last term factors the three corrections in corresponding branches.
 
-The unrestricted exact referee searches the complete admitted grammar. The support-$k$ family restricts every frame Pauli to support at most $k$ while retaining all other choices. Family containment immediately makes the support restriction an upper-bound candidate; equality requires proof or exact comparison.
+For a fixed pairing, three target-order bits would give eight within-block orders. Simultaneously swapping the two branches in all blocks, relabelling the central branches, and replacing $\lambda$ by its other orientation preserves feasibility and cost. We may therefore fix the order in block 0 and enumerate the four relative orders in blocks 1 and 2. For fixed frames, the correction and shared-operator terms do not depend on the central choices. Each block is minimized by assigning multiplier 2 to the heavier frame, with either choice allowed on a tie. Finally, no objective term other than $2w(S)$ depends on the compatible shared operator, so a minimum-weight compatible $S$ suffices.
 
-\subsection{Evidence boundary}
-The mathematical proof uses the objective above, a parity-preserving exchange, and a well-founded support-reduction argument. Finite enumeration checks the local lemmas but is not the logical basis of the all-size theorem. The exact counterexample is a lower witness for support two. Implementation comparisons establish conformance only on their stated domains. Runtime measurements address one implementation and panel, not the theorem's correctness.
+The unrestricted family contains every feasible configuration defined above. The support-$k$ family adds only the restrictions $w(A_{bj})\le k$ for all $b,j$. Family containment gives one inequality between their optima; the reverse inequality follows from the transformation theorem.
+
+\subsection{Analytic and finite evidence}
+The mathematical proof uses the objective above, a parity-preserving exchange, and a well-founded support-reduction argument. Finite enumeration checks the local lemmas but is not the logical basis of the all-size theorem. The exact counterexample is a lower witness for support two. The included sharpness enumeration establishes only its stated two-qubit minimum. Runtime measurements address one implementation and panel, not the theorem's correctness.

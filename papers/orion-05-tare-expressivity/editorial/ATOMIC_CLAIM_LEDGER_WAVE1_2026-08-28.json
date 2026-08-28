@@ -85,21 +85,21 @@
         "independent_human_proof_sanity.py",
         "INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json"
       ],
-      "boundary": "Finite corroboration, not logical all-size proof.",
-      "claim": "The standalone finite checker confirms the two local proof lemmas.",
+      "boundary": "Finite corroboration through the stated domains; not the all-size proof or external replication.",
+      "claim": "Standalone finite checks corroborate the two local proof lemmas and recompute the displayed sharpness instance.",
       "id": "C007",
       "status": "ESTABLISHED_EXECUTABLE_CHECK",
       "surface": "abstract"
     },
     {
       "artifacts": [
-        "ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json"
+        "manuscript/sections/02-methods.tex"
       ],
-      "boundary": "Finite-domain conformance only.",
-      "claim": "The direct implementation agrees with a separate exact referee on the complete one-qubit domain and specified two-qubit stress cases.",
+      "boundary": "Exact declared objective; no physical cost interpretation.",
+      "claim": "The normalized objective is the stated frame charge plus shared-operator charge and branchwise factor costs.",
       "id": "C008",
-      "status": "ESTABLISHED_EXACT_COMPARISON",
-      "surface": "abstract"
+      "status": "COHERENT_DEFINITION",
+      "surface": "methods"
     },
     {
       "artifacts": [
@@ -123,13 +123,14 @@
     },
     {
       "artifacts": [
-        "rounds/r12-production-benchmark/result/ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json"
+        "rounds/r12-production-benchmark/result/RAW_ATTEMPTS.jsonl",
+        "submission/build_anonymous_review_artifact.py"
       ],
-      "boundary": "Does not impute timed-out cells.",
-      "claim": "Both solvers agreed on every jointly completed cell.",
+      "boundary": "Jointly completed correctness cells only; no finite-domain referee claim.",
+      "claim": "Both exact solvers returned equal costs on every jointly completed runtime cell.",
       "id": "C011",
-      "status": "ESTABLISHED_EXACT_COMPARISON",
-      "surface": "abstract"
+      "status": "ESTABLISHED_ADVERSE_RESULT",
+      "surface": "results"
     },
     {
       "artifacts": [
@@ -165,8 +166,8 @@
       "artifacts": [
         "manuscript/sections/02-methods.tex"
       ],
-      "boundary": "Exactly three blocks.",
-      "claim": "Each block uses an ordered anticommuting frame pair and a common shared operator supplies identical nonzero labels.",
+      "boundary": "Binary syndrome and declared grammar only.",
+      "claim": "Each block uses a nonidentity ordered anticommuting frame pair and the shared operator supplies one common syndrome in {(1,0),(0,1)}.",
       "id": "C015",
       "status": "COHERENT_DEFINITION",
       "surface": "methods"
@@ -196,8 +197,8 @@
       "artifacts": [
         "manuscript/sections/02-methods.tex"
       ],
-      "boundary": "All other grammar choices retained.",
-      "claim": "The support-k family changes only frame-support caps.",
+      "boundary": "No omitted feasibility condition.",
+      "claim": "The support-k family changes only the six frame-support caps and retains all other feasibility choices.",
       "id": "C018",
       "status": "COHERENT_DEFINITION",
       "surface": "methods"
@@ -365,13 +366,14 @@
     },
     {
       "artifacts": [
-        "ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json"
+        "independent_human_proof_sanity.py",
+        "submission/build_anonymous_review_artifact.py"
       ],
-      "boundary": "No empirical extrapolation to all n.",
-      "claim": "Finite checks authorize conformance only on checked domains.",
+      "boundary": "Not proof of the all-size theorem or external replication.",
+      "claim": "Finite checks corroborate the two local lemmas and displayed sharpness instance only.",
       "id": "C035",
-      "status": "DISCLOSED_LIMITATION",
-      "surface": "results table"
+      "status": "ESTABLISHED_EXECUTABLE_CHECK",
+      "surface": "results"
     },
     {
       "artifacts": [
@@ -395,20 +397,21 @@
     },
     {
       "artifacts": [
-        "evidence/convergence-v1/Q1_C_CURRENT_LITERATURE_SUBTRACTION_R9.json"
+        "TARE_FULLTEXT_DONOR_BOUNDARY_V3.md",
+        "manuscript/bibliography.bib"
       ],
-      "boundary": "Full-text donor subtraction.",
-      "claim": "TARE owns the base primitive, frame freedom, shared label and resource tradeoffs.",
+      "boundary": "Source anchors: Section 4, Theorems 1-2 and Remarks 1-2; donor numerical comparison separately fixed a canonical frame family.",
+      "claim": "Version 4 of the Tag-and-Restore donor owns the primitive, selectable frames and controls, and nonunique optimizable label solutions.",
       "id": "C038",
       "status": "QUALIFIED_EXTERNAL_SOURCE",
       "surface": "related work"
     },
     {
       "artifacts": [
-        "PRIOR_ART_GATE_SUPPORT2_20260823.md"
+        "editorial/LITERATURE_ENTAILMENT_AND_NOVELTY_AUDIT_2026-08-28.md"
       ],
-      "boundary": "No first/novel claim remains.",
-      "claim": "Support-two components, parity sharing, two-qubit universality, stabilizer normal forms and Pauli optimization are established prior art.",
+      "boundary": "Structured subtraction only; no absence or priority inference.",
+      "claim": "Support-two components, parity sharing, anticommuting partitioning, Pauli compilers, two-qubit universality, stabilizer normal forms and Hamiltonian weight reduction are prior art with different scientific objects.",
       "id": "C039",
       "status": "QUALIFIED_EXTERNAL_SOURCE",
       "surface": "related work"
@@ -466,10 +469,10 @@
     },
     {
       "artifacts": [
-        "journal_package/orion05_anonymous_review_2026-08-28.zip"
+        "submission/build_anonymous_review_artifact.py"
       ],
-      "boundary": "Closed only after package hash binding.",
-      "claim": "The anonymous archive provides proof notes, checker, direct solver, exact summaries, witness and adverse aggregate.",
+      "boundary": "No author identity, project transport, internal codes, hashes or original unrestricted measurement stack.",
+      "claim": "The anonymous archive provides manuscript source, local-lemma checker, direct solver, sharpness enumeration, sanitized runtime specification, 120 rows, environment record and deterministic aggregator.",
       "id": "C045",
       "status": "AVAILABLE_IN_BOUND_PACKAGE",
       "surface": "availability"
@@ -488,11 +491,11 @@
       "artifacts": [
         "rounds/r12-production-benchmark/result/RAW_ATTEMPTS.jsonl"
       ],
-      "boundary": "Aggregate and review archive retain timeout count.",
-      "claim": "The twelve timeout rows are retained rather than excluded.",
+      "boundary": "One censored attempt per timed-out cell at 120 seconds.",
+      "claim": "All twelve timeout rows are retained: six at the three-qubit scale and six at full-subject scale.",
       "id": "C047",
       "status": "ESTABLISHED_ADVERSE_RESULT",
-      "surface": "availability"
+      "surface": "results"
     },
     {
       "artifacts": [
@@ -543,6 +546,96 @@
       "id": "C052",
       "status": "BOUNDED_INTERPRETATION",
       "surface": "conclusion"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "Absolute costs 5 and 6 use this convention.",
+      "claim": "The frame-charge normalization subtracts the fixed raw baseline 18 and therefore preserves every optimizer.",
+      "id": "C053",
+      "status": "COHERENT_DEFINITION",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "The shared syndrome orientation and central labels are relabelled together.",
+      "claim": "A simultaneous global branch swap reduces eight target-order assignments to four relative orders.",
+      "id": "C054",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "Other objective terms are central-choice independent.",
+      "claim": "For fixed frames, assigning multiplier 2 to the heavier member independently minimizes each block frame charge.",
+      "id": "C055",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "Feasibility syndrome held fixed.",
+      "claim": "A minimum-weight compatible shared operator suffices because only its support charge depends on its identity.",
+      "id": "C056",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/03-results.tex"
+      ],
+      "boundary": "Fixed target count; n is qubit count.",
+      "claim": "Six explicit n-qubit targets have Theta(n) Pauli-letter input representation.",
+      "id": "C057",
+      "status": "COHERENT_DEFINITION",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/03-results.tex"
+      ],
+      "boundary": "No comparator upper bound, lower bound or exponent optimality.",
+      "claim": "The O(n^9) result is a constructive polynomial exact-solvability bound and establishes no same-problem asymptotic improvement.",
+      "id": "C058",
+      "status": "DISCLOSED_LIMITATION",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "submission/build_anonymous_review_artifact.py"
+      ],
+      "boundary": "Audit of retained rows, not a new timing run.",
+      "claim": "The sanitized runtime rows deterministically regenerate 108 completions, 12 timeouts, null support-two full medians and a false positive-performance decision.",
+      "id": "C059",
+      "status": "ESTABLISHED_EXECUTABLE_CHECK",
+      "surface": "availability"
+    },
+    {
+      "artifacts": [
+        "submission/build_anonymous_review_artifact.py"
+      ],
+      "boundary": "Unsanitized source binding remains private audit evidence.",
+      "claim": "The anonymous archive omits the original unrestricted measurement stack and states that limitation.",
+      "id": "C060",
+      "status": "ESTABLISHED_PACKAGE_BOUNDARY",
+      "surface": "availability"
+    },
+    {
+      "artifacts": [
+        "evidence/convergence-v1/Q1_C_LITERATURE_SUBTRACTION_RERUN_20260828.json"
+      ],
+      "boundary": "No absence, priority or novelty inference.",
+      "claim": "The bounded literature search was refreshed through 28 August 2026 using stated donor, support-normal-form and compiler query families.",
+      "id": "C061",
+      "status": "ESTABLISHED_BOUNDED_SEARCH",
+      "surface": "related work"
     }
   ],
   "date": "2026-08-28",
@@ -550,7 +643,7 @@
   "schema": "orion05.atomic-claim-ledger.wave1.v1",
   "summary": {
     "blocked": 0,
-    "claims": 52,
+    "claims": 61,
     "contradicted": 0,
     "hidden_not_assessable": 0,
     "supported_internal_only": 0,

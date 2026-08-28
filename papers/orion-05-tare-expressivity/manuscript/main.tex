@@ -13,12 +13,17 @@
 \title{Support-Two Normal Forms for a Shared-Tag Pauli Compilation Grammar}
 \author{Anonymous authors}
 \date{}
+\hypersetup{
+  pdftitle={Support-Two Normal Forms for a Shared-Tag Pauli Compilation Grammar},
+  pdfauthor={Anonymous authors},
+  pdfsubject={Exact support reduction in a shared-tag Pauli compilation grammar}
+}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Tag-and-Restore compilation couples auxiliary anticommuting Pauli frames, a shared label operator, target assignments, and factored corrections. We analyze a fixed six-target, three-block grammar under a declared logical support-count objective. Every feasible solution can be transformed without increasing cost so that each auxiliary frame operator has support at most two. Support one is not uniformly sufficient: an exact two-qubit instance has unrestricted cost 5 and support-one cost 6. The sharp threshold yields a direct exact word-RAM algorithm with $O(n^9)$ time and $O(n^3)$ working memory for this fixed grammar. A standalone finite checker confirms the two local proof lemmas, while an implementation comparison agrees with a separate exact referee on the complete one-qubit domain and specified two-qubit stress cases. A pre-specified runtime comparison is adverse: the direct support-two implementation timed out on all six full-subject cells under a 120-second limit, although both solvers agreed on every jointly completed cell. The result is therefore a grammar-specific normal form and algorithmic upper bound, not evidence of faster compilation, hardware benefit, fault-tolerant resource advantage, or general block-encoding optimality.
+Tag-and-Restore compilation couples auxiliary anticommuting Pauli frames, a shared label operator, target assignments, and factored corrections. We analyze a fixed six-target, three-block grammar under an explicit logical support-count objective. Every feasible solution can be transformed without increasing cost so that each auxiliary frame operator has support at most two. Support one is not uniformly sufficient: an exact two-qubit instance has unrestricted cost 5 and support-one cost 6. The sharp threshold yields a direct exact word-RAM algorithm with $O(n^9)$ time and $O(n^3)$ working memory for this fixed grammar. Standalone finite checks corroborate the two local proof lemmas and recompute the displayed sharpness instance. A pre-specified runtime comparison is adverse: the direct support-two implementation timed out on all six full-subject cells under a 120-second limit, although both solvers agreed on every jointly completed cell. The result is therefore a grammar-specific normal form and algorithmic upper bound, not evidence of faster compilation, hardware benefit, fault-tolerant resource advantage, or general block-encoding optimality.
 \end{abstract}
 
 \noindent\textbf{Keywords:} quantum compilation; Pauli operators; block encoding; exact optimization; normal forms; support complexity.
@@ -33,6 +38,8 @@ Tag-and-Restore compilation couples auxiliary anticommuting Pauli frames, a shar
 \input{sections/08-reproducibility}
 \input{sections/09-ethics-safety-resources}
 
+{\footnotesize
 \bibliographystyle{unsrt}
 \bibliography{bibliography}
+}
 \end{document}

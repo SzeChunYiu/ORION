@@ -26,18 +26,20 @@ A zero class supplies a singleton. Otherwise, a repeated nonzero class supplies 
 \end{proof}
 
 \subsection{Exact support threshold}
-\begin{theorem}[Support-two normal form]
-For every admitted instance and every qubit count, the unrestricted optimum equals the support-two optimum.
+\begin{theorem}[Cost-nonincreasing support-two transformation]
+For every admitted instance and every feasible configuration, there is a feasible configuration of no greater cost in which every frame Pauli has support at most two. Consequently, for every qubit count the unrestricted optimum equals the support-two optimum.
 \end{theorem}
 \begin{proof}
-Start from an unrestricted optimum. If a frame has support at least three, choose $Q$ from the zero-sum lemma and replace its letters on $Q$ by identities. The first parity condition preserves anticommutation with the partner, and the second preserves the shared-label syndrome. Because $Q$ is proper, the modified frame remains nonidentity. At each removed coordinate the frame refund is at least two, while the correction-exchange lemma bounds the correction increase by two; the shared operator is unchanged. Cost therefore does not increase, and total frame support strictly decreases. Iteration terminates at an optimum in the support-two family. The reverse inequality follows from family containment.
+Start from any feasible configuration. If a frame has support at least three, choose $Q$ from the zero-sum lemma and replace its letters on $Q$ by identities. The first parity condition preserves anticommutation with the partner, and the second preserves the shared-label syndrome. Because $Q$ is proper, the modified frame remains nonidentity. At each removed coordinate the frame refund is at least two, while the correction-exchange lemma bounds the correction increase by two; the shared operator is unchanged. Cost therefore does not increase, and total frame support strictly decreases. Iteration terminates in the support-two family. Applying the transformation to an unrestricted optimum gives one optimum inequality, while family containment gives the other.
 \end{proof}
 
 The threshold is sharp. Write two-qubit Pauli strings with the qubit-0 letter first and take the three target pairs
 \[
 (XI,XI),\qquad (XI,XI),\qquad (IX,IY).
 \]
-A feasible support-two solution uses frame pairs $(YI,XI)$, $(YI,XI)$, and $(ZX,IY)$, marks the first branch central in each block, and takes $S=XI$ with common-label orientation $(1,0)$. Its frame, shared-operator, and correction costs are respectively $2$, $2$, and $1$, for total cost $5$. The support-one lower bound is exhaustive: on two qubits there are 12 ordered anticommuting support-one pairs per block, and the search covers their Cartesian cube, all four relative target orders, all eight central choices, both label orientations, and every compatible two-qubit shared operator. Its minimum is $6$. A separate exact referee also returns $5$, and independent reconstruction checks commutation, corrections, cost, and Pauli phases. Thus the uniform support threshold is exactly two.
+A feasible support-two solution uses frame pairs $(YI,XI)$, $(YI,XI)$, and $(ZX,IY)$, marks the first branch central in each block, and takes $S=XI$ with common syndrome $(1,0)$. The normalized frame charge is $2$, because only the central frame $ZX$ has weight above one. The shared-operator charge is $2$. On the first branch, all three corrections equal $ZI$, so their factor cost is $1$; every correction on the second branch is the identity. The total is therefore $2+2+1=5$.
+
+The support-one lower bound is exhaustive. On two qubits there are 12 ordered anticommuting support-one pairs per block. The enumerator covers their Cartesian cube, four relative target orders after the global branch-swap reduction, both syndrome orientations, and every minimum-weight compatible shared operator. Central assignments are optimized exactly by placing multiplier 2 on the heavier frame; with support-one frames all central choices tie. The resulting minimum is $6$. Thus the uniform support threshold is exactly two.
 
 \subsection{Constructive pair count and complexity}
 There are $3n+9\binom n2$ nonidentity phase-ignored Paulis of support one or two. For a weight-one first frame, the number of anticommuting support-two partners is $6n-4$. For a weight-two first frame, splitting partners into weight one on the active support, weight two on the same support, and weight two with one shared coordinate gives $12n-16$. The number of ordered anticommuting pairs is therefore
@@ -46,29 +48,29 @@ N_{\mathrm{pair}}(n)=3n(6n-4)+9\binom n2(12n-16)
      =54n^3-108n^2+60n.
 \]
 
-One block pair uses at most three coordinates, so three pairs use at most nine. A minimum-cost shared operator has no support outside this active union, since outside letters change no constraint and only add cost. Its six symplectic equations can therefore be solved by a constant-size 64-syndrome dynamic program. After one linear scan of target coordinates, correction costs for each candidate are updated on at most nine active coordinates. Enumerating three ordered frame pairs yields
+The input consists of six explicit $n$-qubit target strings, so its representation has $\Theta(n)$ Pauli letters. One block pair uses at most three coordinates, and three pairs therefore use at most nine. A minimum-cost shared operator has no support outside this active union, since outside letters change no constraint and only add cost. Its six symplectic equations can therefore be solved by a constant-size 64-syndrome dynamic program. After one linear scan of target coordinates, correction costs for each candidate are updated on at most nine active coordinates. Enumerating three ordered frame pairs yields
 \[
 T(n)=O\!\left(n+N_{\mathrm{pair}}(n)^3\right)=O(n^9)
 \]
-on a word RAM, with $O\!\left(n+N_{\mathrm{pair}}(n)\right)=O(n^3)$ working memory. Charging index and accumulated-cost bit operations adds polylogarithmic factors. This is an upper bound only; exponent optimality is not claimed.
+on a word RAM, with $O\!\left(n+N_{\mathrm{pair}}(n)\right)=O(n^3)$ working memory. A qubit index and local target letter occupy constant-size words in this model. Charging their bit operations and the accumulated cost explicitly adds polylogarithmic factors. The result is a constructive polynomial exact-solvability bound. No same-problem asymptotic improvement, lower bound, or exponent optimality is established.
 
 \subsection{Finite verification and adverse runtime result}
-A standalone implementation checks all 192 local correction cases and all odd-parity class tuples through support eight. It finds a maximum factor-cost increase of two, no subset-lemma failure above support two, and exactly four ordered support-two obstruction patterns. A separate implementation comparison verifies the constructive pair count through six qubits, the complete one-qubit target domain, specified two-qubit stress cases, active-union confinement of the shared operator, exact costs, witnesses, and phase reconstruction.
+A standalone implementation checks all 192 local correction cases and all odd-parity class tuples through support eight. It finds a maximum factor-cost increase of two, no subset-lemma failure above support two, and exactly four ordered support-two obstruction patterns. A second packaged check exhaustively obtains support-two minimum 5 and support-one minimum 6 for the displayed paired instance. These finite checks corroborate the analytic argument and sharpness instance; they do not prove the all-size theorem or provide external replication.
 
-The implementation-performance study is adverse. Of 120 attempts specified before measurement, 108 completed and 12 timed out. Both exact solvers agreed on every jointly completed correctness cell, and every completed witness verified. The unrestricted referee completed all six full-subject cells. The direct support-two implementation timed out on all six corresponding cells under the 120-second limit. Consequently no runtime or memory improvement is established.
+The implementation-performance study is adverse. Its two recorded subjects were evaluated on one-, two-, and three-qubit prefix projections and on their original eight- or twelve-qubit strings, called the full-subject cells. Of 120 attempts specified before measurement, 108 completed and 12 timed out. Both exact solvers agreed on every jointly completed correctness cell, and every completed witness verified. The direct support-two implementation timed out in all six three-qubit scale cells and all six full-subject cells under the 120-second limit. The unrestricted solver completed every corresponding cell. Consequently no runtime or memory improvement is established.
 
 \begin{table}[t]
 \centering
-\caption{Evidence layers and their authorized interpretation.}
-\begin{tabularx}{\textwidth}{@{}lX@{}}
+\caption{Evidence layers and the inferences they support.}
+\begin{tabularx}{\textwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
 \toprule
-Evidence & Authorized conclusion \\
+Evidence & Supported inference \\
 \midrule
 Analytic exchange proof & Exact support-two normal form for the declared grammar and objective \\
-Exact cost $5<6$ witness & Support one is not uniformly sufficient \\
+Exact paired minima $5<6$ & Support one is not uniformly sufficient \\
 Constructive count & Direct $O(n^9)$ word-RAM upper bound \\
-Finite implementation checks & Conformance on the checked domains \\
-120-attempt runtime study & No measured production value; twelve timeouts retained \\
+Finite checks & Corroboration of the local lemmas and displayed sharpness instance \\
+120-attempt runtime study & No measured practical benefit; twelve timeouts retained \\
 \bottomrule
 \end{tabularx}
 \end{table}

@@ -17,9 +17,21 @@ This audit reconciles the full-text primary-source subtraction record dated 2026
 | van den Berg and Temme; PCOAST; PHOENIX; Symphony | Pauli-cluster and Pauli-level compiler optimization, including symplectic simplification | first Pauli optimization, first support reduction or general compiler improvement | narrow exact normal form and direct upper bound |
 | Hastings; Kempe--Kitaev--Regev | Hamiltonian weight reduction and perturbative gadgets | broad weight-reduction novelty | different object: no added degrees of freedom and no approximate encoding |
 
+## Donor contribution crosswalk
+
+The final manuscript now makes the exact donor delta reader-visible:
+
+- **Inherited:** the Tag-and-Restore primitive in Section 4 of arXiv:2601.05740v4; the user-selectable anticommuting frames, ancilla count and controls in Theorem 1 / Remark 1; and nonunique optimizable label solutions in Theorem 2 / Remark 2.
+- **Donor numerical specialization:** the donor's Section 5 comparison fixes its canonical frame family and independently minimizes the label strings.
+- **Present specialization:** six target slots, three paired blocks, branchwise three-way factorization, one common binary syndrome, two/four frame multipliers and the normalized logical objective.
+- **Present analysis objects:** the normalized logical support objective, support-capped frame families, the cost-nonincreasing support-two transformation, the sharp two-qubit obstruction and constructive exact-solvability bound.
+- **Explicitly not claimed:** invention of selectable frames or label optimization, a universal donor objective, or a general compiler/resource improvement.
+
+The arXiv API was rechecked on 2026-08-28 and still identified version 4, updated 2026-05-13. The bibliography and manuscript now bind that version and the exact full-text anchors above.
+
 ## Exact-equivalent search result
 
-The bounded current searches did not locate a source stating the complete combination of:
+The bounded current searches, refreshed through 2026-08-28 with the query families listed in the manuscript, did not locate a source stating the complete combination of:
 
 - this three-block shared-label grammar;
 - this exact support-count objective;
