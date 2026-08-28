@@ -1,0 +1,262 @@
+{
+  "candidate_flow": {
+    "candidate_stream_complete_under_registered_protocol": true,
+    "cannot_check": 0,
+    "contaminated_before_freeze": 2,
+    "instrument_invalid": 0,
+    "registered_candidates": 5,
+    "valid_questions": 3
+  },
+  "instrument_contract": {
+    "shared_inputs": [
+      "unresolved question",
+      "admitted evidence summary",
+      "diagnosis vocabulary",
+      "experiment vocabulary"
+    ],
+    "shared_upstream_context": true,
+    "statistical_or_causal_independence_claimed": false,
+    "tool_capable_host": {
+      "decision_mechanism": "language-model-guided evidence reconstruction and scientific reasoning",
+      "outputs": [
+        "one primary diagnosis",
+        "one primary experiment",
+        "abstention or invalid disposition"
+      ]
+    },
+    "typed_controller": {
+      "decision_mechanism": "deterministic rules over typed observations transcribed from the shared evidence",
+      "language_model_in_decision_execution": false,
+      "outputs": [
+        "one primary diagnosis",
+        "one primary experiment",
+        "abstention or invalid disposition"
+      ]
+    }
+  },
+  "known_instrument_limitations": [
+    {
+      "if_triggered_after_freeze": "instrument-invalid or cannot-check; no in-place repair",
+      "name": "successful-envelope semantic malformation",
+      "repaired_between_valid_cases": false,
+      "triggered_in_valid_cases": false
+    },
+    {
+      "if_triggered_after_freeze": "instrument-invalid or cannot-check; original content retained",
+      "name": "immutable-success recovery obstruction",
+      "repaired_between_valid_cases": false,
+      "triggered_in_valid_cases": false
+    }
+  ],
+  "retired_candidates": [
+    {
+      "candidate": "information-closure candidate",
+      "included_in_valid_question_count": false,
+      "reason": "outcome-oriented surface visible before instrument freeze",
+      "result_surface_opened_for_scoring": false,
+      "retained": true
+    },
+    {
+      "candidate": "enlarged-vocabulary candidate",
+      "included_in_valid_question_count": false,
+      "reason": "outcome-oriented surface visible before instrument freeze",
+      "result_surface_opened_for_scoring": false,
+      "retained": true
+    }
+  ],
+  "schema": "prospective-dual-instrument-case-series",
+  "study_boundary": {
+    "calibration_claimed": false,
+    "generalization_claimed": false,
+    "population_sampling": false,
+    "reliability_claimed": false,
+    "retired_contaminated_candidate_count": 2,
+    "statistical_or_causal_instrument_independence_claimed": false,
+    "valid_question_count": 3
+  },
+  "valid_questions": [
+    {
+      "bounded_scientific_observation": {
+        "kind": "exact finite-domain characterization and complementary closure",
+        "larger_domain_claimed": false
+      },
+      "custody": {
+        "contamination_check_before_freeze": true,
+        "controller_outcome_access": false,
+        "decisions_frozen_before_scientific_outcome": true,
+        "host_outcome_access": false,
+        "outcome_analyzer_absent_at_freeze": true,
+        "scientific_outcome_generated_outside_both_instruments": true,
+        "scoring_map_frozen_before_scientific_outcome": true
+      },
+      "deferred_alignment": {
+        "controller_diagnosis": true,
+        "controller_experiment": true,
+        "host_diagnosis": true,
+        "host_experiment": true
+      },
+      "deferred_scoring_map": {
+        "exact finite-domain regime predicate plus complementary registered-domain closure": {
+          "expected_diagnosis": "representation regime remains uncharacterized",
+          "expected_experiment": "compute exact regime membership"
+        }
+      },
+      "frozen_decisions": {
+        "controller": {
+          "diagnosis": "representation regime remains uncharacterized",
+          "experiment": "compute exact regime membership"
+        },
+        "host": {
+          "diagnosis": "representation regime remains uncharacterized",
+          "experiment": "compute exact regime membership"
+        }
+      },
+      "frozen_question": "Which responsibility and next experiment follow a donor failure in a second coupling regime?",
+      "instrument_relations": {
+        "diagnosis": "agree",
+        "experiment": "agree"
+      },
+      "observed_branch": "exact finite-domain regime predicate plus complementary registered-domain closure",
+      "prospective_freeze_verified": true,
+      "public_name": "regime characterization",
+      "replay_scope": {
+        "full_domain_analyzers_in_blind_supplement": false,
+        "later_scientific_results_independently_checked": true,
+        "semantic_reconstruction_from_frozen_decisions": true
+      }
+    },
+    {
+      "bounded_scientific_observation": {
+        "exact_panel_rows": 53,
+        "larger_domain_claimed": false,
+        "theorem_sharpness_resolved": false,
+        "unrestricted_better_than_support_two_rows": 0
+      },
+      "custody": {
+        "contamination_check_before_freeze": true,
+        "controller_outcome_access": false,
+        "decisions_frozen_before_scientific_outcome": true,
+        "host_outcome_access": false,
+        "outcome_analyzer_absent_at_freeze": true,
+        "scientific_outcome_generated_outside_both_instruments": true,
+        "scoring_map_frozen_before_scientific_outcome": true
+      },
+      "deferred_alignment": {
+        "controller_diagnosis": true,
+        "controller_experiment": true,
+        "host_diagnosis": true,
+        "host_experiment": true
+      },
+      "deferred_scoring_map": {
+        "at least one unrestricted improvement": {
+          "expected_diagnosis": "support three likely near the boundary",
+          "expected_experiment": "exact near-boundary panel"
+        },
+        "evaluator mismatch": {
+          "expected_diagnosis": "evaluator defect",
+          "expected_experiment": "reaudit evaluator"
+        },
+        "invalid or unresolved analysis": {
+          "expected_diagnosis": null,
+          "expected_experiment": null
+        },
+        "zero unrestricted improvements on the frozen panel": {
+          "expected_diagnosis": "certificate silent and sharpness open",
+          "expected_experiment": "exact near-boundary panel"
+        }
+      },
+      "frozen_decisions": {
+        "controller": {
+          "diagnosis": "certificate silent and sharpness open",
+          "experiment": "exact near-boundary panel"
+        },
+        "host": {
+          "diagnosis": "certificate silent and sharpness open",
+          "experiment": "exact near-boundary panel"
+        }
+      },
+      "frozen_question": "Does a point just outside a proved support-two sufficient region expose a support-three need?",
+      "instrument_relations": {
+        "diagnosis": "agree",
+        "experiment": "agree"
+      },
+      "observed_branch": "zero unrestricted improvements on the frozen panel",
+      "prospective_freeze_verified": true,
+      "public_name": "support-threshold stress test",
+      "replay_scope": {
+        "all_53_rows_recomputed": true,
+        "byte_identical_complete_repetitions": 2,
+        "full_domain_analyzers_in_blind_supplement": false,
+        "hostile_one_object_rows_cross_checked_by_brute_force": 3
+      }
+    },
+    {
+      "bounded_scientific_observation": {
+        "larger_domain_claimed": false,
+        "one_object_positives": 0,
+        "ordered_one_object_cases": 729,
+        "predicate_label_mismatches": 0,
+        "reorder_quotiented_two_object_cases": 38760,
+        "total_cases": 39489,
+        "two_object_positives": 1
+      },
+      "custody": {
+        "contamination_check_before_freeze": true,
+        "controller_outcome_access": false,
+        "decisions_frozen_before_scientific_outcome": true,
+        "host_outcome_access": false,
+        "outcome_analyzer_absent_at_freeze": true,
+        "scientific_outcome_generated_outside_both_instruments": true,
+        "scoring_map_frozen_before_scientific_outcome": true
+      },
+      "deferred_alignment": {
+        "controller_diagnosis": false,
+        "controller_experiment": true,
+        "host_diagnosis": false,
+        "host_experiment": true
+      },
+      "deferred_scoring_map": {
+        "incumbent or evaluator correction": {
+          "expected_diagnosis": "comparison or evaluator defect",
+          "expected_experiment": "reaudit evaluator"
+        },
+        "invalid or unresolved analysis": {
+          "expected_diagnosis": null,
+          "expected_experiment": null
+        },
+        "one or more predicate-label mismatches": {
+          "expected_diagnosis": "boundary predicate is objective-scoped",
+          "expected_experiment": "complete low-order reweighted census"
+        },
+        "zero predicate-label mismatches on the frozen domain": {
+          "expected_diagnosis": "boundary predicate is invariant on the frozen domain",
+          "expected_experiment": "complete low-order reweighted census"
+        }
+      },
+      "frozen_decisions": {
+        "controller": {
+          "diagnosis": "boundary predicate is objective-scoped",
+          "experiment": "complete low-order reweighted census"
+        },
+        "host": {
+          "diagnosis": "boundary predicate is objective-scoped",
+          "experiment": "complete low-order reweighted census"
+        }
+      },
+      "frozen_question": "Does the original boundary predicate change when selection cost is doubled?",
+      "instrument_relations": {
+        "diagnosis": "agree",
+        "experiment": "agree"
+      },
+      "observed_branch": "zero predicate-label mismatches on the frozen domain",
+      "prospective_freeze_verified": true,
+      "public_name": "reweighted-objective census",
+      "replay_scope": {
+        "byte_identical_complete_repetitions": 2,
+        "complete_one_and_two_object_domain_recomputed": true,
+        "deterministic_second_path_cross_checks": 24,
+        "full_domain_analyzers_in_blind_supplement": false
+      }
+    }
+  ]
+}

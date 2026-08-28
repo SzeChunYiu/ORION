@@ -173,7 +173,16 @@ def test_all_five_canonical_manuscripts_are_structurally_complete():
         )
 
         protocol = json.loads((paper / "protocol" / "PROTOCOL_V1.json").read_text(encoding="utf-8"))
-        assert protocol["protocol_id"] in tex, f"{paper_id} manuscript must name its prospective protocol"
+        if paper_id == "P4":
+            # The double-blind reader-facing manuscript describes the prospective
+            # design without exposing its internal protocol code. Exact identity
+            # remains in the immutable protocol and review-artifact metadata.
+            assert protocol["protocol_id"] not in tex
+            assert "fixed before outcome-bearing evaluation" in tex
+        else:
+            assert protocol["protocol_id"] in tex, (
+                f"{paper_id} manuscript must name its prospective protocol"
+            )
         assert protocol["protocol_status"] in {"DESIGN_FROZEN", "EXECUTION_FROZEN"}
         assert protocol["outcome_accessed"] is False
         if protocol["protocol_status"] == "EXECUTION_FROZEN":

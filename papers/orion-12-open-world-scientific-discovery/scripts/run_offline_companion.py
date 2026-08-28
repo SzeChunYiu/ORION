@@ -13,7 +13,7 @@ Examples::
     python3 papers/orion-12-open-world-scientific-discovery/scripts/run_offline_companion.py --stdout
     python3 papers/orion-12-open-world-scientific-discovery/scripts/run_offline_companion.py --write-raw /tmp/p2-offline
 
-``--write-raw`` writes all 840 normalized result records and all rich per-run
+``--write-raw`` writes all 16,380 normalized result records and all rich per-run
 artifacts.  Those files are regenerable evidence; the committed summary carries
 cryptographic digests of both complete sets so a reproduction can be compared
 without committing hundreds of generated files.
@@ -210,7 +210,7 @@ def main(argv: list[str] | None = None) -> int:
         if projection != expected:
             print("offline publication summary drifted from the frozen run", file=sys.stderr)
             return 1
-        print("offline publication summary matches the frozen 840-run archive")
+        print("offline publication summary matches the frozen 16,380-record archive")
     return 0
 
 

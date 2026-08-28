@@ -8,7 +8,7 @@
 \foreach \y/\lab in {0/0,0.25/.25,0.5/.50,0.75/.75,1/1.0} \draw (0.10,\y) -- (-0.10,\y) node[left]{\lab};
 \draw[thick] plot coordinates {(0,0.000000) (1,0.333333) (2,0.444444) (3,0.555556) (4,0.648148) (5,0.651567) (6,0.689744) (7,0.757835) (8,0.819943) (9,0.898006) (10,0.922507) (11,0.952707) (12,0.979487)};
 \draw[thick,dashed] plot coordinates {(0,0.000000) (1,0.333333) (2,0.444444) (3,0.555556) (4,0.578348) (5,0.599715) (6,0.626781) (7,0.666667) (8,0.666667) (9,0.666667) (10,0.666667) (11,0.666667) (12,0.666667)};
-\node[anchor=west] at (8.3,0.94) {ORION full};
-\node[anchor=west] at (8.3,0.69) {Protocol SLR};
+\node[anchor=west,fill=white,inner sep=1pt] at (8.15,0.99) {Governed controller};
+\node[anchor=west,fill=white,inner sep=1pt] at (8.15,0.72) {Protocol-driven review};
 \node[anchor=west,font=\scriptsize] at (0,1.14) {390 frozen tasks; repeats collapsed; descriptive only};
 \end{tikzpicture}

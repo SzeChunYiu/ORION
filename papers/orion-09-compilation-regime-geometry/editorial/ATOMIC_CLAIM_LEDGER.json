@@ -1,0 +1,482 @@
+{
+  "allowed_scientific_statuses": [
+    "VERIFIED",
+    "COHERENT_DEFINITION",
+    "BOUNDED_INFERENCE"
+  ],
+  "paper_id": "ORION-09",
+  "rows": [
+    {
+      "id": "TTL-01",
+      "kind": "title",
+      "claim": "The paper separates expressivity, proof certificates, and feature transfer within exact quantum-compilation regime maps.",
+      "manuscript_surface": "title; abstract; conclusion",
+      "status": "BOUNDED_INFERENCE",
+      "warrant": "cross-model results and explicit model boundaries"
+    },
+    {
+      "id": "DEF-01",
+      "kind": "definition",
+      "claim": "The exact cost is the minimum frozen objective over the feasible compiler configurations for an instance.",
+      "manuscript_surface": "study design",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "manuscript mathematical definition"
+    },
+    {
+      "id": "DEF-02",
+      "kind": "definition",
+      "claim": "The reference-exact region contains instances where reference cost equals exact cost.",
+      "manuscript_surface": "study design",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "manuscript mathematical definition"
+    },
+    {
+      "id": "DEF-03",
+      "kind": "definition",
+      "claim": "The intrinsic support number is the smallest tight support ceiling containing an exact optimum for every admitted instance.",
+      "manuscript_surface": "study design",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "manuscript mathematical definition"
+    },
+    {
+      "id": "DEF-04",
+      "kind": "definition",
+      "claim": "A constructive mechanism requires a feasible witness, strict cost reduction, and a named structural edit.",
+      "manuscript_surface": "study design",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "method contract"
+    },
+    {
+      "id": "DEF-05",
+      "kind": "definition",
+      "claim": "A proof-validity region is the objective-weight set where one normalization proof remains valid.",
+      "manuscript_surface": "study design; results",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "objective-indexed proof contract"
+    },
+    {
+      "id": "DEF-06",
+      "kind": "definition",
+      "claim": "A mixed feature cell contains both reference-exact and reference-inexact labels.",
+      "manuscript_surface": "study design",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "finite cell-count definition"
+    },
+    {
+      "id": "DEF-07",
+      "kind": "formal",
+      "claim": "The irreducible deterministic lookup error on a finite feature representation is the sum of the minority-label count in each cell.",
+      "manuscript_surface": "study design",
+      "status": "VERIFIED",
+      "warrant": "direct finite partition argument"
+    },
+    {
+      "id": "DES-01",
+      "kind": "design",
+      "claim": "The shared-tag Pauli model has three paired anticommuting blocks, a shared binary tag relation, and a raw structural support objective.",
+      "manuscript_surface": "model register",
+      "status": "VERIFIED",
+      "warrant": "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json"
+    },
+    {
+      "id": "DES-02",
+      "kind": "design",
+      "claim": "The rank-two dependent-triple model has two blocks, a dependent third frame per block, and a shared two-bit tag.",
+      "manuscript_surface": "model register",
+      "status": "VERIFIED",
+      "warrant": "research/extensions/orion-qg/QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json"
+    },
+    {
+      "id": "DES-03",
+      "kind": "design",
+      "claim": "The six-term model uses a frozen selection, preparation, and width objective over admitted partition and factoring choices.",
+      "manuscript_surface": "model register",
+      "status": "VERIFIED",
+      "warrant": "research/extensions/orion-qg/QG12_SIXLCU_P0_THEOREM_RESULTS.json"
+    },
+    {
+      "id": "DES-04",
+      "kind": "design",
+      "claim": "Weighted Clifford state preparation uses H, S, S-dagger, and controlled-NOT costs 1,1,1,3 and exact shortest-path costs.",
+      "manuscript_surface": "model register",
+      "status": "VERIFIED",
+      "warrant": "research/extensions/orion-qg/QG15_THIRD_FAMILY_RESULTS.json"
+    },
+    {
+      "id": "DES-05",
+      "kind": "design",
+      "claim": "Complete stabilizer-state graph sizes are 6, 60, 1,080, and 36,720 for one through four qubits.",
+      "manuscript_surface": "model register; abstract",
+      "status": "VERIFIED",
+      "warrant": "exact state-space enumeration and independent verifier"
+    },
+    {
+      "id": "RES-01",
+      "kind": "theorem",
+      "claim": "Every admitted shared-tag Pauli instance has an exact optimum with frame support at most two under the unit raw-support objective.",
+      "manuscript_surface": "abstract; results; conclusion",
+      "status": "VERIFIED",
+      "warrant": "MAX_R6S_ALL_N_COMPOSITION_RESULTS.json; independent paper verifier"
+    },
+    {
+      "id": "RES-02",
+      "kind": "proof",
+      "claim": "The shared-tag proof uses a parity-class deletion that preserves partner and tag relations without tag repair for support at least three.",
+      "manuscript_surface": "results",
+      "status": "VERIFIED",
+      "warrant": "written parity proof and local obligation record"
+    },
+    {
+      "id": "RES-03",
+      "kind": "number",
+      "claim": "The shared-tag local exchange inequality covers 18,432 cases with zero violations.",
+      "manuscript_surface": "results; supplement",
+      "status": "VERIFIED",
+      "warrant": "MAX_R6S_ALL_N_COMPOSITION_RESULTS.json"
+    },
+    {
+      "id": "RES-04",
+      "kind": "number",
+      "claim": "The parity-class corroboration checks 43,688 odd-parity tuples and finds no support-three-through-eight failure.",
+      "manuscript_surface": "results; supplement",
+      "status": "VERIFIED",
+      "warrant": "MAX_R6S_ALL_N_COMPOSITION_RESULTS.json"
+    },
+    {
+      "id": "RES-05",
+      "kind": "boundary",
+      "claim": "The shared-tag support-two theorem does not close the smallest named support-two mechanism vocabulary.",
+      "manuscript_surface": "abstract; results; discussion",
+      "status": "VERIFIED",
+      "warrant": "retained split, borrow, off-support, and hybrid counterexamples"
+    },
+    {
+      "id": "RES-06",
+      "kind": "theorem",
+      "claim": "Every admitted rank-two dependent-triple instance has an exact support-one optimum under the unit objective.",
+      "manuscript_surface": "abstract; results; conclusion",
+      "status": "VERIFIED",
+      "warrant": "QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json; fresh replay"
+    },
+    {
+      "id": "RES-07",
+      "kind": "tightness",
+      "claim": "Support zero is infeasible in the rank-two model, so its intrinsic support number is exactly one.",
+      "manuscript_surface": "abstract; results",
+      "status": "VERIFIED",
+      "warrant": "QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json"
+    },
+    {
+      "id": "RES-08",
+      "kind": "number",
+      "claim": "The rank-two local proof domains contain 2,880 deletion, 6,912 alignment, 576 same-core rigidity, and 9,216 distinct-core tag rows.",
+      "manuscript_surface": "results; supplement",
+      "status": "VERIFIED",
+      "warrant": "QG9_V6_SUPPORT1_NORMALIZATION_RESULTS.json"
+    },
+    {
+      "id": "RES-09",
+      "kind": "comparison",
+      "claim": "A conserved-syndrome proof gives ceiling five for the rank-two model while its intrinsic support number is one.",
+      "manuscript_surface": "abstract; results; discussion",
+      "status": "VERIFIED",
+      "warrant": "QG6_SYNDROME_DIMENSION_RESULTS.json plus support-one theorem"
+    },
+    {
+      "id": "RES-10",
+      "kind": "conditional observation",
+      "claim": "Rank minus intrinsic support equals the measured exchange margin on two models but fails rewrite-alignment robustness.",
+      "manuscript_surface": "results; limitations; supplement",
+      "status": "VERIFIED",
+      "warrant": "QG20_RANK_KAPPA_SLACK_RESULTS.json"
+    },
+    {
+      "id": "RES-11",
+      "kind": "theorem",
+      "claim": "The support-one proof applies inside the four stated objective halfspaces.",
+      "manuscript_surface": "abstract; results",
+      "status": "VERIFIED",
+      "warrant": "QG16_R6I_SUPPORT1_PHASE_RESULTS.json; fresh replay"
+    },
+    {
+      "id": "RES-12",
+      "kind": "boundary",
+      "claim": "Outside the objective region the certificate is silent and does not establish support-two necessity.",
+      "manuscript_surface": "results; limitations",
+      "status": "VERIFIED",
+      "warrant": "explicit outside-region semantics in objective result record"
+    },
+    {
+      "id": "RES-13",
+      "kind": "negative",
+      "claim": "A corrected frozen-domain search finds zero strict support-two witnesses among 211,248 candidates under four objectives.",
+      "manuscript_surface": "results; supplement",
+      "status": "VERIFIED",
+      "warrant": "QG17R_CORRECTED_PHASE_SHARPNESS_RESULTS.json"
+    },
+    {
+      "id": "RES-14",
+      "kind": "theorem",
+      "claim": "The six-term reference construction is exact if and only if the proved pair-gain condition holds for every admitted batch and size.",
+      "manuscript_surface": "abstract; results",
+      "status": "VERIFIED",
+      "warrant": "QG12_SIXLCU_P0_THEOREM_RESULTS.json; byte-identical replay"
+    },
+    {
+      "id": "RES-15",
+      "kind": "number",
+      "claim": "The six-term proof covers 203 partitions and 11 shapes, with complete regressions of 729 and 38,760 instances.",
+      "manuscript_surface": "results",
+      "status": "VERIFIED",
+      "warrant": "QG12_SIXLCU_P0_THEOREM_RESULTS.json"
+    },
+    {
+      "id": "RES-16",
+      "kind": "finite result",
+      "claim": "Complete one-, two-, and three-qubit state domains contain 5, 28, and 189 reference-exact states out of 6, 60, and 1,080.",
+      "manuscript_surface": "results; supplement",
+      "status": "VERIFIED",
+      "warrant": "QG15_THIRD_FAMILY_RESULTS.json"
+    },
+    {
+      "id": "RES-17",
+      "kind": "mechanism",
+      "claim": "Exact state-preparation improvements include order, pivot, route, and global mechanisms.",
+      "manuscript_surface": "abstract; results",
+      "status": "VERIFIED",
+      "warrant": "serialized exact witnesses in QG15_THIRD_FAMILY_RESULTS.json"
+    },
+    {
+      "id": "RES-18",
+      "kind": "prospective negative",
+      "claim": "The frozen four-qubit forecast matches 100 of 120 regime labels and 67 of 120 exact costs and fails both exactness criteria.",
+      "manuscript_surface": "abstract; results; supplement",
+      "status": "VERIFIED",
+      "warrant": "QG15_THIRD_FAMILY_RESULTS.json"
+    },
+    {
+      "id": "RES-19",
+      "kind": "representation negative",
+      "claim": "The coarse 13-feature representation has 12 mixed cells and an irreducible 43/1,146 error floor.",
+      "manuscript_surface": "results",
+      "status": "VERIFIED",
+      "warrant": "QG15B_PREDICATE_LANGUAGE_RESULTS.json"
+    },
+    {
+      "id": "RES-20",
+      "kind": "finite conversion",
+      "claim": "The 127-feature sign-aware representation has zero mixed cells and zero irreducible errors on the complete 1,146-state small-size domain.",
+      "manuscript_surface": "abstract; results; supplement",
+      "status": "VERIFIED",
+      "warrant": "R2_N2_STABPREP_L3_VOCABULARY_RESULTS.json"
+    },
+    {
+      "id": "RES-21",
+      "kind": "number",
+      "claim": "The rich representation creates 1,109 cells and 1,072 singleton cells for 1,146 states, ratio 0.967714.",
+      "manuscript_surface": "abstract; results; supplement",
+      "status": "VERIFIED",
+      "warrant": "R2_N2_STABPREP_L3_VOCABULARY_RESULTS.json"
+    },
+    {
+      "id": "RES-22",
+      "kind": "transfer negative",
+      "claim": "Parity-split lookup on the frozen 120-state panel covers two states and makes 32 errors, all among uncovered states.",
+      "manuscript_surface": "abstract; results; table; supplement",
+      "status": "VERIFIED",
+      "warrant": "R2_N2_STABPREP_L3_VOCABULARY_RESULTS.json"
+    },
+    {
+      "id": "RES-23",
+      "kind": "null calibration",
+      "claim": "The shuffle-null mean is 32.41 errors and the empirical probability of errors no larger than observed is 0.51.",
+      "manuscript_surface": "abstract; results; table; supplement",
+      "status": "VERIFIED",
+      "warrant": "R2_N2_STABPREP_L3_VOCABULARY_RESULTS.json"
+    },
+    {
+      "id": "LIT-01",
+      "kind": "literature",
+      "claim": "Algorithm selection predates this work and is a parent problem.",
+      "manuscript_surface": "introduction; related work",
+      "status": "VERIFIED",
+      "warrant": "Rice 1976; Smith-Miles 2009"
+    },
+    {
+      "id": "LIT-02",
+      "kind": "literature",
+      "claim": "Instance-space analysis already maps features and algorithm performance.",
+      "manuscript_surface": "introduction; related work",
+      "status": "VERIFIED",
+      "warrant": "Smith-Miles and Muñoz 2023 abstract"
+    },
+    {
+      "id": "LIT-03",
+      "kind": "literature",
+      "claim": "Quantum optimization and compilation already use algorithm selection and compiler-option prediction.",
+      "manuscript_surface": "introduction; related work",
+      "status": "VERIFIED",
+      "warrant": "Katial 2025; Moussa 2020; Quetschlich 2023/2025"
+    },
+    {
+      "id": "LIT-04",
+      "kind": "literature",
+      "claim": "Verified optimization, exact pattern matching, and ZX simplification are established.",
+      "manuscript_surface": "related work",
+      "status": "VERIFIED",
+      "warrant": "Hietala 2021; Iten 2022; Duncan 2020 abstracts"
+    },
+    {
+      "id": "LIT-05",
+      "kind": "literature",
+      "claim": "Quantum compiler benchmarks and bounded optimal Clifford synthesis are established.",
+      "manuscript_surface": "related work",
+      "status": "VERIFIED",
+      "warrant": "MQT Bench; QASMBench; Bravyi 2022 abstracts"
+    },
+    {
+      "id": "LIT-06",
+      "kind": "literature",
+      "claim": "Pauli-based compilation and simultaneous Pauli-cluster diagonalization are established.",
+      "manuscript_surface": "related work",
+      "status": "VERIFIED",
+      "warrant": "Peres 2023; van den Berg 2020 abstracts"
+    },
+    {
+      "id": "LIT-07",
+      "kind": "literature",
+      "claim": "Connectivity overhead is an independent resource coordinate absent from the structural objectives studied here.",
+      "manuscript_surface": "related work; limitations",
+      "status": "VERIFIED",
+      "warrant": "Yuan and Zhang 2025 abstract plus model definitions"
+    },
+    {
+      "id": "BND-01",
+      "kind": "boundary",
+      "claim": "The four models are examples that separate logical coordinates, not a statistical sample of compilers.",
+      "manuscript_surface": "introduction; limitations",
+      "status": "BOUNDED_INFERENCE",
+      "warrant": "study design"
+    },
+    {
+      "id": "BND-02",
+      "kind": "boundary",
+      "claim": "No universal low-dimensional compiler phase diagram is claimed.",
+      "manuscript_surface": "abstract; introduction; conclusion",
+      "status": "VERIFIED",
+      "warrant": "state-preparation transfer failure"
+    },
+    {
+      "id": "BND-03",
+      "kind": "boundary",
+      "claim": "No physical-runtime, hardware-advantage, or production-transfer claim is supported.",
+      "manuscript_surface": "abstract; limitations; ethics",
+      "status": "VERIFIED",
+      "warrant": "frozen structural objectives and no hardware study"
+    },
+    {
+      "id": "BND-04",
+      "kind": "boundary",
+      "claim": "The rich feature result establishes finite-domain vocabulary existence, not compact structure or transfer.",
+      "manuscript_surface": "abstract; results; limitations",
+      "status": "VERIFIED",
+      "warrant": "cell counts and failed panel transfer"
+    },
+    {
+      "id": "BND-05",
+      "kind": "boundary",
+      "claim": "Same-project verification is not external replication or independent external proof review.",
+      "manuscript_surface": "methods; limitations",
+      "status": "VERIFIED",
+      "warrant": "verifier custody identity"
+    },
+    {
+      "id": "REP-01",
+      "kind": "reproducibility",
+      "claim": "Selected normalization and boundary analyzers reproduce their committed scientific digests.",
+      "manuscript_surface": "methods; data availability",
+      "status": "VERIFIED",
+      "warrant": "editorial/SELECTED_REPLAY_RECEIPT.json"
+    },
+    {
+      "id": "REP-02",
+      "kind": "reproducibility",
+      "claim": "A standard-library verifier checks input digests, selected fields, arithmetic, generated tables, and wording without generator imports.",
+      "manuscript_surface": "methods; data availability",
+      "status": "VERIFIED",
+      "warrant": "editorial/INDEPENDENT_PAPER_VERIFICATION.json"
+    },
+    {
+      "id": "REP-03",
+      "kind": "reproducibility",
+      "claim": "Every numerical table in the manuscript is generated from bound result records.",
+      "manuscript_surface": "tables; data availability",
+      "status": "VERIFIED",
+      "warrant": "editorial/generate_tables.py"
+    },
+    {
+      "id": "REP-04",
+      "kind": "availability",
+      "claim": "No permanent public archive identifier or reuse licence is currently asserted.",
+      "manuscript_surface": "data and code availability",
+      "status": "VERIFIED",
+      "warrant": "current package inventory"
+    },
+    {
+      "id": "CMP-01",
+      "kind": "compliance",
+      "claim": "The sole author must approve the final scientific claims, analyses, and manuscript wording.",
+      "manuscript_surface": "author statement",
+      "status": "OPEN_AUTHOR_INPUT",
+      "warrant": "human approval not yet supplied"
+    },
+    {
+      "id": "CMP-02",
+      "kind": "compliance",
+      "claim": "The final contribution and generative-AI disclosure must be verified by the author.",
+      "manuscript_surface": "author statement",
+      "status": "OPEN_AUTHOR_INPUT",
+      "warrant": "Quantum author requirement"
+    },
+    {
+      "id": "CMP-03",
+      "kind": "compliance",
+      "claim": "Affiliation and ORCID disposition remain to be supplied or confirmed.",
+      "manuscript_surface": "title metadata",
+      "status": "OPEN_AUTHOR_INPUT",
+      "warrant": "not supplied by author"
+    },
+    {
+      "id": "CMP-04",
+      "kind": "compliance",
+      "claim": "Funding, conflicts, acknowledgements, and final declarations remain to be supplied or confirmed.",
+      "manuscript_surface": "declarations",
+      "status": "OPEN_AUTHOR_INPUT",
+      "warrant": "not supplied by author"
+    },
+    {
+      "id": "CMP-05",
+      "kind": "compliance",
+      "claim": "A quant-ph arXiv record and selected licence are required before Quantum filing.",
+      "manuscript_surface": "submission package",
+      "status": "OPEN_AUTHOR_INPUT",
+      "warrant": "current Quantum author instructions"
+    },
+    {
+      "id": "CMP-06",
+      "kind": "compliance",
+      "claim": "A permanent public archive URL and explicit reuse licence remain to be bound.",
+      "manuscript_surface": "data and code availability",
+      "status": "OPEN_AUTHOR_INPUT",
+      "warrant": "no current deposition"
+    }
+  ],
+  "summary": {
+    "bounded_inference": 2,
+    "coherent_definition": 6,
+    "open_author_input": 6,
+    "scientific_fail_closed_rows": 0,
+    "verified": 44
+  },
+  "terminal": "SCIENTIFIC_ASSERTIONS_COVERED__EXPLICIT_AUTHOR_INPUTS_OPEN"
+}

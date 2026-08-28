@@ -1,123 +1,46 @@
-% Evaluation: the prospective confirmatory mapping protocol.
-The empirical claim in this paper is governed by an execution-frozen protocol
-that was created after the initial 32-case result but before any confirmatory
-system output was examined. The predecessor result was allowed to motivate
-replication; it was not allowed to change the second holdout, the evaluator,
-the margins, or the pass criteria. The broader raw-text and expert-gold design
-remains a separate, unexecuted study. Both freezes are identified in
-Section~\ref{sec:availability}.
+The confirmatory protocol was frozen after the initial 32-case result but
+before any output on the case-identifier-disjoint holdout was examined. The initial result
+could motivate replication but could not change the holdout, evaluator,
+margins or pass rule.
 
-\subsection{Primary confirmatory hypothesis}
+\subsection{Primary decision rule}
 
-The frozen replication hypothesis has two non-compensatory conditions:
+The hypothesis had two non-compensatory conditions. First, the
+coordinate-governed-minus-flat false-merge estimate had to be at most $-0.05$,
+with the upper bound of its paired 95\% bootstrap interval below zero. Second,
+the coordinate-governed-minus-exact-conservative false-split estimate had to be
+at most $+0.03$, with the interval upper bound no greater than $+0.03$. The
+holdout passed only if both conditions held.
 
-\begin{description}
-    \item[False-merge superiority:] the coordinate-governed-minus-flat
-        false-merge point estimate must be at most $-0.05$, and the upper
-        bound of the paired 95\% bootstrap interval must be below zero.
-    \item[False-split non-inferiority:] the
-        coordinate-governed-minus-exact-conservative false-split point
-        estimate must be at most $+0.03$, and the upper bound of its paired
-        95\% bootstrap interval must be at most $+0.03$.
-\end{description}
+\subsection{Comparators}
 
-The holdout passes only if both conditions hold. It contains 32 cases, has
-zero overlap with the initial 32-case set, and was bound by exact content
-digest before any confirmatory outcome was accessed.
+All three rules received the same structured cases. The coordinate-governed
+rule evaluated the required scientific coordinates and could retain a typed
+non-merge decision. Flat predicate canonicalization treated compatible
+predicates as sufficient merge evidence and was the predeclared false-merge
+comparator. The exact-coordinate conservative control required exact
+coordinate compatibility and could abstain; it was the predeclared
+false-split control. These are mapping-layer comparisons, not reproductions of
+complete external knowledge-graph or retrieval systems.
 
-\subsection{Compared mapping rules}
+\subsection{Metrics and inference}
 
-The confirmatory primary comparison uses three deterministic rules over the
-same already-structured mapping cases:
+The scientific unit is one frozen mapping case. Primary outcomes are the
+case-level false-merge and false-split rates. Individual rates use Wilson 95\%
+intervals. Paired differences use 10,000 percentile-bootstrap resamples with
+seed 20260817. The rules are deterministic, so one decision per case is used
+rather than artificial stochastic repetitions. The initial 32 cases are not
+pooled with the confirmatory holdout.
 
-\begin{enumerate}
-    \item \textbf{Typed mapping calculus}: evaluates the scientific
-        coordinates the case requires and can retain an obstruction rather
-        than force a merge.
-    \item \textbf{Flat predicate canonicalization}: treats compatible surface
-        predicates as sufficient merge evidence without the coordinate
-        distinctions. This is the predeclared false-merge comparator.
-    \item \textbf{Exact-coordinate conservative control}: requires exact
-        coordinate compatibility and can abstain where it lacks such a match.
-        This is the predeclared false-split and non-inferiority control.
-\end{enumerate}
+Secondary ablations force compatibility without the non-merge state or remove
+coordinate groups. Their paired intervals are descriptive. They cannot create
+new confirmatory claims, and a zero effect on this holdout is not interpreted as
+evidence that a coordinate is unnecessary.
 
-These are mapping-layer comparators, not attempts to reproduce a full external
-knowledge-graph, retrieval-augmented or schema-fusion system. Stronger
-schema-induction and provenance-contract baselines would be useful
-post-outcome construct-validity pressure, but they cannot rewrite a
-confirmatory status that was frozen beforehand.
+\subsection{Fail-closed replay}
 
-\subsection{Secondary ablations}
-
-The frozen mapping evaluator also reports descriptive paired ablations. The
-covered attacks are:
-
-\begin{itemize}
-    \item \textbf{force compatibility without obstruction}: removes the
-          explicit non-merge terminal and chooses a compatible mapping even
-          where the coordinates prohibit it;
-    \item \textbf{remove modality/polarity/attribution/discourse}: removes the
-          coordinate group carrying the main confirmatory discrimination;
-    \item \textbf{remove referent}, \textbf{construct},
-          \textbf{measurement}, and \textbf{temporal context}: retained as
-          zero-effect controls on this particular holdout.
-\end{itemize}
-
-The ablations are secondary and descriptive. The protocol explicitly forbids
-turning their intervals into new confirmatory significance claims, and forbids
-reading zero effect on an under-supported stratum as evidence that a
-coordinate is unnecessary.
-
-\subsection{Metrics and statistics}
-
-The confirmatory decision uses case-level false-merge and false-split rates.
-Wilson 95\% intervals describe individual rates. Paired differences use a
-10,000-resample percentile bootstrap with frozen seed 20260817. The mapping
-rules are deterministic, so the protocol uses one execution per case rather
-than artificial stochastic repeats. Results are reported pooled and
-descriptively by case family and source stratum. The initial 32 cases are
-never pooled into the confirmatory verdict.
-
-The primary decision rule is therefore fixed entirely by the two paired
-comparisons above. No post-outcome margin change, exclusion, reweighting, or
-replacement baseline can change whether the confirmatory run passed.
-
-\subsection{Custody and fail-closed rules}
-
-Before any confirmatory output was produced, the execution manifest bound the
-portable confirmatory gold digest, zero overlap with the predecessor gold, the
-exact MUSE, SciFact and SciSchema source revisions, the evaluator component
-identities, the bootstrap seed and pass margins, and a rule that any digest
-mismatch, source drift, evaluator drift or case overlap leaves the result
-undetermined rather than silently re-evaluating a different study.
-
-The gold is not an input to the evaluated mapping rule. The evaluator consumes
-the candidate mapping result and the protected expected decision only after
-the system output has been sealed.
-
-\subsection{Reproducibility}
-
-The result is reproduced by deterministic public-reference scripts over
-immutable archives: the confirmatory analysis, publication figures and tables,
-source registry, evaluator identities, and an independent replay receipt are
-all retained, and two make targets regenerate the headline analysis and the
-publication artifacts from committed inputs. Section~\ref{sec:availability}
-names each of them.
-
-This reproducibility claim does not extend to the unexecuted raw-text expert
-atlas, to full external retrieval or schema baselines, to generated-portrait
-recoverability, or to downstream answer quality. Each of those remains
-undetermined until its own prospective run exists.
-
+Any mismatch in the frozen gold digest, source revisions, evaluator identities
+or case overlap leaves the replication undetermined rather than silently
+changing the study. The expected decisions are withheld from the mapping rule
+and are opened by the evaluator only after candidate outputs have been sealed.
 \endinput
-
-Repository-level integrity is not scientific authority. The hashes, frozen
-digests, deterministic replays and receipt chains this paper relies on establish
-that a stated computation was the computation performed and can be performed
-again. They establish nothing about whether its conclusion is correct, whether
-the benchmark measures what it claims, or whether an independent party has
-reviewed either. A perfectly replayed run of a flawed protocol replays the flaw
-exactly. Where this paper's claims require external scientific adjudication,
-that adjudication has not occurred and the integrity record does not substitute
-for it.

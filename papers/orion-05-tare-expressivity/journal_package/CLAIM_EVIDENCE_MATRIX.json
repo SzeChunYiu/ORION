@@ -1,0 +1,166 @@
+{
+  "canonical_manuscript_commit": "606552180c577a235b0947bf80d225e45424c8ba",
+  "canonical_pdf_sha256": "75a893f32465a8eabba8161f2368839a880b3c046f1b0edf04cc6375d46a968b",
+  "canonical_review_archive_sha256": "8ff07f17b23f9ba96736ac67a88308c809e9837122c662e97bccf4679e5dc09c",
+  "claims": [
+    {
+      "boundary": "No other grammar, objective, routing model or physical resource model.",
+      "claim": "Every feasible configuration in the declared paired-target grammar/objective has a cost-nonincreasing representative with each frame supported on at most two qubits; the unrestricted and support-two optima are equal.",
+      "evidence": [
+        "analytic correction-exchange lemma",
+        "analytic zero-sum-subset lemma",
+        "well-founded support reduction"
+      ],
+      "id": "NORMAL_FORM",
+      "pdf": [
+        "abstract p1",
+        "Theorem 1 p4",
+        "conclusion p7"
+      ],
+      "status": "ESTABLISHED_FORMAL"
+    },
+    {
+      "boundary": "Paired-target instance; not a general circuit lower bound.",
+      "claim": "Support one is not uniformly sufficient: the displayed paired two-qubit instance has exact support-two/unrestricted cost 5 and exhaustive support-one cost 6.",
+      "evidence": [
+        "explicit target pairs and componentwise cost-5 witness",
+        "complete support-one enumeration",
+        "packaged sharpness check"
+      ],
+      "id": "SHARPNESS",
+      "pdf": [
+        "abstract p1",
+        "sharpness p4",
+        "Table 1 p5"
+      ],
+      "status": "ESTABLISHED_EXACT_ENUMERATION"
+    },
+    {
+      "boundary": "Phase-ignored nonidentity Paulis of support one or two.",
+      "claim": "The ordered anticommuting support-one-or-two pair count is 54n^3-108n^2+60n.",
+      "evidence": [
+        "duplicate-free combinatorial case count",
+        "generator equality through n=6"
+      ],
+      "id": "PAIR_COUNT",
+      "pdf": [
+        "Section 3.4 pp4-5"
+      ],
+      "status": "ESTABLISHED_COMBINATORIAL"
+    },
+    {
+      "boundary": "Upper bound only; no lower bound or exponent optimality.",
+      "claim": "A direct exact algorithm has O(n^9) word-RAM time as a constructive solvability upper bound, with no same-problem asymptotic improvement established.",
+      "evidence": [
+        "support-two theorem",
+        "ordered-pair count",
+        "three-pair enumeration",
+        "constant active-union scoring"
+      ],
+      "id": "TIME_BOUND",
+      "pdf": [
+        "abstract p1",
+        "Section 3.4 p5",
+        "conclusion p7"
+      ],
+      "status": "ESTABLISHED_FORMAL"
+    },
+    {
+      "boundary": "Word-RAM accounting; bit operations may add polylogarithmic factors.",
+      "claim": "The direct implementation can use O(n^3) working memory.",
+      "evidence": [
+        "stored O(n^3) ordered-pair universe plus linear target preprocessing"
+      ],
+      "id": "MEMORY_BOUND",
+      "pdf": [
+        "abstract p1",
+        "Section 3.4 p5"
+      ],
+      "status": "ESTABLISHED_FORMAL"
+    },
+    {
+      "boundary": "Finite corroboration is not the proof of the all-size theorem or external independence.",
+      "claim": "Finite checks corroborate the 192 local correction cases, odd-parity tuples through support eight, and the displayed sharpness minimum 5 versus 6.",
+      "evidence": [
+        "192 local correction cases",
+        "odd-parity tuples through support 8",
+        "complete displayed paired-instance support-two/support-one enumeration"
+      ],
+      "id": "FINITE_CONFORMANCE",
+      "pdf": [
+        "abstract p1",
+        "Section 3.5 p5",
+        "Table 1 p5"
+      ],
+      "status": "ESTABLISHED_EXECUTABLE_CHECK"
+    },
+    {
+      "boundary": "No runtime or memory improvement established.",
+      "claim": "The pre-specified 120-attempt comparison completed 108 attempts and timed out 12; the direct solver timed out on all six three-qubit and all six full-subject cells.",
+      "evidence": [
+        "pre-measurement specification",
+        "all 120 sanitized row records",
+        "recorded environment",
+        "deterministic aggregate check"
+      ],
+      "id": "ADVERSE_RUNTIME",
+      "pdf": [
+        "abstract p1",
+        "Section 3.5 p5",
+        "Table 1 p5",
+        "conclusion p7"
+      ],
+      "status": "ESTABLISHED_ADVERSE_RESULT"
+    },
+    {
+      "boundary": "No first, novelty, absence or priority claim.",
+      "claim": "Broad support-two, parity-sharing, stabilizer and Pauli-optimization ideas are prior art; only the narrow grammar-specific result is retained.",
+      "evidence": [
+        "primary-source subtraction",
+        "dated bounded search",
+        "nearest-object crosswalk"
+      ],
+      "id": "PRIOR_ART_BOUNDARY",
+      "pdf": [
+        "Section 5 p6",
+        "limitations p7"
+      ],
+      "status": "QUALIFIED_EXTERNAL_SOURCE"
+    },
+    {
+      "boundary": "No inferred practical or resource authority.",
+      "claim": "The paper establishes no physical, hardware, fault-tolerant, energy, depth or general compiler advantage.",
+      "evidence": [
+        "adverse runtime result",
+        "explicit objective definition",
+        "resource limitations"
+      ],
+      "id": "RESOURCE_NONCLAIM",
+      "pdf": [
+        "abstract p1",
+        "discussion pp5-6",
+        "limitations p7",
+        "conclusion p7",
+        "resource statement p8"
+      ],
+      "status": "DISCLOSED_LIMITATION"
+    }
+  ],
+  "date": "2026-08-28",
+  "external_novelty_authority": false,
+  "journal_acceptance_claimed": false,
+  "review_owner_recheck_pending": [
+    "O5-R1-MAJ-01",
+    "O5-R1-MAJ-02",
+    "O5-R1-MAJ-03",
+    "R3-OR5-001",
+    "R3-OR5-002",
+    "R3-OR5-003",
+    "R3-OR5-004",
+    "R3-OR5-005",
+    "R3-OR5-006"
+  ],
+  "schema": "support-two-paper.claim-evidence-matrix.v1",
+  "terminal": "scientifically_sound_but_target_mismatch",
+  "unresolved_claims": []
+}

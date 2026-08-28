@@ -2,6 +2,11 @@
 
 **Current terminal:** `ORION-12 = PEER_REVIEW_READY` on the bounded methods / critical system-design claim as of 2026-08-18.
 
+**Current recursive-pipeline terminal (2026-08-28):**
+`simulated_publication_ready_for_target`. The additive target package is under
+`journal_package/current_revision/`; this does not upgrade the adverse external
+recall/cost result or the top-tier/external-authority judgment.
+
 **Scope of that terminal (not machine-scored, and deliberately adjacent to it):** `P2_NARROWED` remains the scientific scope receipt. External ORION-vs-baseline superiority remains `CANNOT_CHECK` and is **not** part of the ready claim. Nothing about that exclusion has changed; it moved off the terminal line because the scoreboard reads that one line and cannot represent a scoped verdict.
 
 That exclusion is now evidenced rather than only asserted. The four-arm

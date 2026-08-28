@@ -1,8 +1,9 @@
 # ORION-12 journal package
 
 **Scientific status:** the bounded `ORION-12.NARROWED` terminal is retained.  
-**Package status:** `SUPERSEDED`.  
-**Current submission authority:** `false`.
+**Historical root-package status:** `SUPERSEDED`.  
+**Current package:** `current_revision/`.  
+**Recursive-pipeline terminal:** `simulated_publication_ready_for_target`.
 
 `journal_package/manuscript.pdf` is the independently inspected historical
 24-page PDF with SHA-256
@@ -12,8 +13,15 @@ The protected V3 renderer binds its complete tracked TeX input closure in
 current tree, records that 13 of 31 inputs moved and that the retained PDF is
 `SUPERSEDED`. It must not be relabelled or submitted as the current manuscript.
 
-`ORION-12.CURRENT_PACKAGE` is `OPEN`: the current manuscript lacks a fresh immutable
-PDF and a page-level visual and claim audit bound to its exact source bytes.
+The additive `current_revision/` directory contains the current CAS
+single-column review PDF, sanitized editable source, sanitized review-materials
+archive, cover letter and filing companions. `SUBMISSION_MANIFEST.json` records
+private file digests, byte counts and the exact PDF input closure; it is audit
+evidence and is not an upload object. The visual audit and contact sheet are
+retained under `private_evidence/render_audit/`. Two clean builds are
+byte-identical under the recorded source epoch. Earlier identifier-bearing
+archives are retained only under `private_evidence/unsanitized_archives/` and
+must not be distributed.
 
 External ORION-vs-baseline superiority remains `CANNOT_CHECK`; the
 provider-invalid OpenAIRE/Crossref campaign is retained rather than used as
@@ -21,11 +29,14 @@ support. Author metadata, the final venue wrapper, DOI minting, and a literature
 refresh after 2026-08-31 remain filing operations. Issue #283 continues to own
 `ScientificResultVerification.v1`.
 
-Verify the manifest-required current inventory from the paper directory:
+Verify the current inventory from the paper directory:
 
 ```bash
-sha256sum -c journal_package/SHA256SUMS
+cd journal_package/current_revision
+sha256sum -c SHA256SUMS
 ```
 
-That integrity check does not make the historical PDF current and grants no
-submission, novelty, superiority, or external-review authority.
+That integrity check establishes package identity only. It does not grant
+novelty, external retrieval superiority, acceptance or external-review
+authority. Human affiliation/declaration completion and filing remain outside
+the scientific terminal.

@@ -68,7 +68,27 @@ jobs:
           paper = Path('papers/orion-13-global-knowledge-portrait')
           root = paper / 'manuscript'
           main_text = (root / 'main.tex').read_text(encoding='utf-8')
-          tex_files = [root / 'main.tex', *sorted((root / 'sections').glob('*.tex'))]
+          tex_files = []
+          missing_inputs = []
+          seen_inputs = set()
+
+          def load_tex(path):
+              path = path.resolve()
+              if path in seen_inputs:
+                  return
+              seen_inputs.add(path)
+              if not path.is_file():
+                  missing_inputs.append(str(path))
+                  return
+              tex_files.append(path)
+              fragment = path.read_text(encoding='utf-8')
+              for target in re.findall(r'\\input\{([^}]+)\}', fragment):
+                  child = root / target
+                  if not child.suffix:
+                      child = child.with_suffix('.tex')
+                  load_tex(child)
+
+          load_tex(root / 'main.tex')
           text = '\n'.join(path.read_text(encoding='utf-8') for path in tex_files)
 
           bib_files = []
@@ -86,14 +106,6 @@ jobs:
               cite_keys.update(key.strip() for key in group.split(',') if key.strip())
           missing_cites = sorted(cite_keys - bib_keys)
 
-          missing_inputs = []
-          for target in re.findall(r'\\input\{([^}]+)\}', main_text):
-              path = root / target
-              if not path.suffix:
-                  path = path.with_suffix('.tex')
-              if not path.is_file():
-                  missing_inputs.append(str(path.relative_to(root)))
-
           labels = re.findall(r'\\label\{([^}]+)\}', text)
           duplicate_labels = sorted({label for label in labels if labels.count(label) > 1})
 
@@ -103,7 +115,10 @@ jobs:
           evaluation = (root / 'sections' / '50-evaluation.tex').read_text(encoding='utf-8')
           conclusion = (root / 'sections' / '08-conclusion.tex').read_text(encoding='utf-8')
           limitations = (root / 'sections' / '07-limitations.tex').read_text(encoding='utf-8')
+          results = (root / 'sections' / '06-results.tex').read_text(encoding='utf-8')
           scoped = (paper / 'SCOPED_PUBLICATION_TRACK_V1.md').read_text(encoding='utf-8')
+          dataset_flat = ' '.join(dataset.split()).lower()
+          results_flat = ' '.join(results.split()).lower()
 
           claim_errors = []
           for name, fragment in [('abstract', abstract), ('introduction', introduction), ('conclusion', conclusion)]:
@@ -133,6 +148,14 @@ jobs:
               claim_errors.append(f'{name}_missing_evidence_boundary')
           if 'has not been executed' not in limitations:
               claim_errors.append('limitations_do_not_mark_broad_study_unexecuted')
+          if 'case-identifier-disjoint' not in abstract:
+              claim_errors.append('abstract_does_not_bound_disjointness_to_case_identifiers')
+          if 'two source-locator--content-hash records recur' not in dataset_flat:
+              claim_errors.append('dataset_does_not_report_repeated_source_records')
+          if 'polarity contrasts' not in abstract or 'polarity contrasts' not in limitations:
+              claim_errors.append('headline_surfaces_do_not_localize_observed_effect_to_polarity')
+          if 'not an external or cross-host replication' not in results_flat:
+              claim_errors.append('results_overstate_same_custody_replay')
           if 'ORION-13.C7' not in scoped or 'ORION-13.C8' not in scoped:
               claim_errors.append('scoped_track_missing_nonclaim_ids')
 
@@ -196,7 +219,12 @@ jobs:
 
       - name: Verify tracked journal package checksums
         working-directory: papers/orion-13-global-knowledge-portrait
-        run: sha256sum -c journal_package/SHA256SUMS
+        run: |
+          sha256sum -c journal_package/SHA256SUMS
+          python manuscript/generate_tables.py
+          git diff --exit-code -- manuscript/tables
+          python scripts/verify_confirmatory_independent.py --check
+          python scripts/build_wave1_package.py --check
 
       - name: Compile canonical scoped PDF
         working-directory: papers/orion-13-global-knowledge-portrait/manuscript
@@ -210,7 +238,7 @@ jobs:
           fi
           pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
 
-      - name: Verify current rebuild and superseded historical package authority
+      - name: Verify current rebuild, blocked current package, and historical authority
         run: |
           set -euo pipefail
           rebuilt='papers/orion-13-global-knowledge-portrait/manuscript/main.pdf'
@@ -228,6 +256,7 @@ jobs:
           package = Path('papers/orion-13-global-knowledge-portrait/journal_package')
           manifest = json.loads((package / 'MANIFEST.json').read_text(encoding='utf-8'))
           state = json.loads((package / 'RENDER_CLOSURE_STATE.json').read_text(encoding='utf-8'))
+          current = json.loads((package / 'wave1_current' / 'SUBMISSION_MANIFEST.json').read_text(encoding='utf-8'))
           authority = manifest.get('package_authority') or {}
           binding = manifest.get('render_binding') or {}
           errors = []
@@ -264,13 +293,24 @@ jobs:
               or historical_claim.get('current_claim') is not False
           ):
               errors.append('P3.PDF must remain bounded historical immutable evidence')
-          current_claim = claims.get('P3.CURRENT_PACKAGE') or {}
-          if (
-              current_claim.get('status') != 'OPEN'
-              or current_claim.get('current_claim') is not True
-              or current_claim.get('artifacts') != []
-          ):
-              errors.append('P3.CURRENT_PACKAGE must remain an unsupported active OPEN claim')
+          if current.get('paper_id') != 'ORION-13':
+              errors.append('current Wave-1 manifest has wrong paper identity')
+          if current.get('scientific_terminal') != 'PASS_BOUNDED_STRUCTURED_MAPPING':
+              errors.append('current Wave-1 scientific terminal drifted')
+          if current.get('submission_terminal') != 'BLOCKED_BY_INTEGRITY_OR_COMPLIANCE':
+              errors.append('current package must remain fail-closed on filing blockers')
+          if current.get('submission_authorized') is not False:
+              errors.append('current package must not authorize submission')
+          if current.get('review_archive_url') is not None:
+              errors.append('review archive URL changed without a new exact-byte package review')
+          current_pdf = current.get('pdf') or {}
+          rebuilt_sha = hashlib.sha256(rebuilt.read_bytes()).hexdigest()
+          if current_pdf.get('sha256') != rebuilt_sha or current_pdf.get('source_pdf_exact_byte_match') is not True:
+              errors.append('current Wave-1 PDF is not bound to the exact canonical rebuild')
+          blocker_classes = {item.get('class') for item in current.get('blockers', []) if isinstance(item, dict)}
+          required_blockers = {'PUBLICATION_CRITERIA', 'OPEN_SCIENCE', 'TARGET_TEMPLATE', 'HUMAN_AUTHORSHIP_POLICY', 'HUMAN_METADATA'}
+          if not required_blockers.issubset(blocker_classes):
+              errors.append('current Wave-1 manifest dropped a required filing blocker')
 
           if errors:
               for error in errors:

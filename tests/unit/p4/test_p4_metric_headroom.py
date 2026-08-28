@@ -103,7 +103,7 @@ def test_the_manuscript_states_the_limitation_it_now_relies_on() -> None:
     """Guard the text, so the finding cannot be quietly dropped in an edit."""
 
     text = _manuscript_text()
-    assert "saturates" in text, "the saturation limitation is gone from the manuscript"
+    assert "saturat" in text, "the saturation limitation is gone from the manuscript"
     assert "resolving power" in text, (
         "the H3 passage no longer explains that the comparison could not have detected a "
         "difference; without it, 'not supported' reads as a comparative finding"

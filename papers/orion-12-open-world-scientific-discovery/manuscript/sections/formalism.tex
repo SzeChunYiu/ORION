@@ -1,171 +1,76 @@
-\section{Formal mechanics}
+\section{Formal control model}
 \label{sec:formalism}
 
-This section fixes the objects the evaluation measures. Every definition below is
-implemented in the system under test rather than assumed: work identity and read
-state, route independence and coverage, and route control each correspond to a
-module of the implementation, named in Section~\ref{sec:availability}. Where a
-definition is deliberately conservative we state the failure it is conservative
-against, because the direction of the bias is what makes the refusal a safety
-property rather than a preference.
+\subsection{Work, content, and read identity}
 
-\subsection{Work identity and content identity}
+Let $R$ be the raw identifiers emitted by retrieval routes. Canonicalization
+maps each identifier to a scheme-qualified work key and a rendition version.
+Alias-connected keys form a work. Each retrieved rendition also carries a
+content digest $c$. Deduplication and overlap are computed over content digests,
+not locators, because reminted identifiers must not make two captures appear
+independent.
 
-Let $R$ be the set of raw identifiers a route can emit (DOIs, arXiv ids,
-OpenAlex ids, local ids, URLs). Canonicalization is a map
-$\varphi: R \rightarrow \mathcal{S} \times V$ sending a raw identifier to a
-scheme-qualified key and a rendition version, so that
-$\varphi(\texttt{arXiv:2301.00001v1})$ and $\varphi(\texttt{arXiv:2301.00001v2})$
-share a key and differ only in $V$: a version is a rendition of one work, not a
-second work. A declared scheme is treated as a claim rather than a credential;
-an identifier that does not match the shape of the scheme it announces resolves
-to \textsc{unknown} instead of entering the graph as a key that can never be
-fetched.
-
-A \emph{work} is the alias-closure of canonical keys. Given identity records
-with alias sets $A_1,\dots,A_n$, works are the connected components of the graph
-on $\bigcup_i A_i$ that joins two keys sharing a record. Closure is computed as a
-projection over an append-only ledger rather than at write time, because an alias
-learned late can join two works recorded early; folding at write time would
-freeze the wrong partition.
-
-Separately from work identity, each retrieved rendition carries a content digest
-$c$. Route overlap, deduplication and coverage are computed over content digests,
-never over retrieval identifiers: a source that re-mints identifiers would
-otherwise make two routes appear disjoint when they retrieved the same paper,
-which inflates every coverage quantity built on their overlap.
-
-\subsection{Question-conditioned read state}
-
-A read receipt is a tuple $(w, c, \sigma, f)$: work, content digest, extraction
-schema version, and frame $f$ --- the scientific question the extraction was
-performed for. Given the receipt set $\mathcal{R}$, the read decision for a
-candidate $(w, c, \sigma, f)$ is
-\[
-\mathrm{read}(w,c,\sigma,f) =
-\begin{cases}
-\textsc{unseen} & \nexists\, r \in \mathcal{R}: w_r = w\\
-\textsc{content\_changed} & \exists\, r: w_r=w,\ \nexists\, r: (w_r,c_r)=(w,c)\\
-\textsc{new\_schema} & \exists\, r: (w_r,c_r)=(w,c),\ \nexists\, r: (w_r,c_r,\sigma_r)=(w,c,\sigma)\\
-\textsc{new\_frame} & \exists\, r: (w_r,c_r,\sigma_r)=(w,c,\sigma),\ \nexists\, r: r=(w,c,\sigma,f)\\
-\textsc{already\_read} & \exists\, r \in \mathcal{R}: r = (w,c,\sigma,f).
-\end{cases}
-\]
-\textsc{already\_read} therefore requires agreement on all four coordinates.
-This yields the distinction the evaluation depends on: a repeat extraction with
-all four coordinates equal is \emph{duplicate processing} and is waste, while a
-repeat extraction under a changed content digest, schema or frame is a
-\emph{legitimate reread} and is required work. Collapsing the two --- treating
-``this paper has been seen'' as ``this paper has been read for this question''
---- is how a system reports coverage of material it only skimmed for a different
-purpose.
+A read receipt is a tuple $(w,c,s,f)$ containing work, content digest,
+extraction-schema version, and scientific frame. A candidate is already read
+only when all four coordinates match an existing receipt. A changed content
+digest, schema, or frame creates a legitimate reread. This rule separates
+duplicate processing from processing that is newly required by the scientific
+question.
 
 \subsection{Earned route independence}
 
-A route capture is a tuple $\rho = (k, b, d, C)$: route kind, backend identity,
-query-derivation process, and the set $C$ of captured content digests. For two
-captures $\rho_i, \rho_j$ the independence predicate is
+\begin{definition}[Route capture]
+A route capture is $\rho=(k,b,q,C)$, where $k$ is route kind, $b$ is backend
+identity, $q$ is the query-derivation process, and $C$ is the captured set of
+content identities.
+\end{definition}
+
+For two route captures, the controller accepts an independence claim only if
+route kind, backend identity, and query derivation differ:
 \[
-\mathrm{ind}(\rho_i,\rho_j) \iff k_i \neq k_j \ \wedge\ b_i \neq b_j \ \wedge\ d_i \neq d_j ,
+ \operatorname{ind}(\rho_i,\rho_j)
+ \Longleftrightarrow k_i\ne k_j\wedge b_i\ne b_j\wedge q_i\ne q_j.
 \]
-and the verdict otherwise names the shared cause
-(\textsc{same\_route\_kind}, \textsc{shared\_backend},
-\textsc{shared\_query\_derivation}). Independence is thus \emph{earned} from the
-generation and capture process; a distinct route label carries no evidential
-weight.
+This predicate is a conservative design requirement, not a proof of statistical
+independence. Its purpose is to reject obvious shared-generation causes before
+overlap is interpreted. Zero observed overlap alone does not establish
+independence.
 
-\begin{proposition}[Direction of the conservatism]
-\label{prop:conservative}
-Positive dependence between capture occasions biases unseen-mass estimators
-downward. Admitting a dependent pair therefore produces false confidence that
-search is near exhaustion, whereas refusing an independent pair only forfeits a
-diagnostic. The predicate is accordingly biased toward refusal.
-\end{proposition}
+For an accepted pair with capture sizes $n_i,n_j$ and overlap $m_{ij}$, a
+two-source diagnostic may report $\widehat N=n_i n_j/m_{ij}$. The diagnostic is
+undefined when $m_{ij}=0$. In every case it remains advisory because adaptive
+search violates the interpretation of independent capture occasions unless a
+separate design establishes it.
 
-\subsection{Coverage diagnostics are never authority}
+\subsection{Route control and task closure}
 
-For an independent pair with captures of size $n_i, n_j$ and overlap $m_{ij}$,
-the two-source estimate is $\hat{N} = n_i n_j / m_{ij}$, undefined at
-$m_{ij}=0$. Zero overlap places no upper bound on the population, so the system
-returns a refusal with reason rather than a large number that would read as a
-measurement. When several independent pairs yield estimates, the reported value
-is $\max_{ij} \hat{N}_{ij}$: the largest population implies the most still
-unfound, which is the direction that fails safe. Every coverage estimate is
-marked diagnostic-only, and adaptive search is explicitly not a sequence of
-independent capture occasions --- following up on what was just found converts
-singletons into doubletons and deflates the estimator toward ``nearly done''.
-
-\subsection{Route control state machine}
-
-Let a route hold attempts $a_1,\dots,a_t$, each with retrieved digests
-$D_i$, novel digests $N_i \subseteq D_i$, cost, failure signatures and a
-backend-exhaustion flag. Marginal novelty of an attempt is $|N_t|/|D_t|$, and
-the flat streak $z$ is the number of trailing attempts that succeeded, reported
-no exhaustion and returned no novel digest. Under a frozen policy with
-thresholds $\theta_{\mathrm{ref}} \leq \theta_{\mathrm{sw}}$, the decision is
-taken in strict priority order:
-\[
-\delta =
-\begin{cases}
-\textsc{stop}\ (\text{budget}) & \text{remaining budget} \leq 0\\
-\textsc{stop}\ (\text{exhausted}) & a_t\ \text{reports backend exhaustion}\\
-\textsc{suspend} & a_t\ \text{carries execution-failure signatures}\\
-\textsc{switch} & z \geq \theta_{\mathrm{sw}}\ \wedge\ \text{alternatives exist}\\
-\textsc{reformulate} & z \geq \theta_{\mathrm{ref}}\\
-\textsc{continue} & \text{otherwise.}
-\end{cases}
-\]
-Two separations in this table are load-bearing. First, backend exhaustion and
-transport failure are distinct states: the former is a statement about the
-index, the latter about the channel, and a system that merges them converts an
-outage into evidence of absence. The latter yields \textsc{suspend}, a
-non-terminal state carrying an open obligation, not \textsc{stop}. Second, each
-terminal decision carries typed reopen triggers (budget increase, backend
-recovery or refresh, material frame change, material finding on an alternative
-route); a route reopens exactly when an observed trigger intersects that set.
+Each route records attempts, retrieved and novel content identities, resource
+use, failure signatures, and backend exhaustion. A priority-ordered policy may
+stop on budget, stop on reported exhaustion, suspend on transport failure,
+switch after a flat streak, reformulate, or continue. Backend exhaustion is a
+claim about the index. Transport failure is a claim about the channel. The
+latter suspends the route and preserves an open obligation.
 
 \begin{proposition}[Route-stop non-certification]
+No route decision certifies task completeness. Task closure is a separate
+decision over the ensemble of declared material obligations.
 \label{prop:failclosed}
-No individual route decision certifies task saturation. In the implementation
-every route decision, \textsc{stop} included, has only route-local authority and
-carries an explicit declaration that it does not certify task saturation.
-Consequently, a route stop cannot be used by itself as a task-completeness
-certificate. A composition of route outcomes may support task closure only
-through a separately specified ensemble predicate whose route universe,
-material-obligation registry, provider/observability/custody guards, resource
-state and reopen triggers were fixed before the outcome.
 \end{proposition}
 
-\begin{proof}
-The route decision alphabet contains no task-closure authority, so projection
-of any one route output cannot emit a valid task certificate. The controller's
-task decision is instead produced by the separately typed closure map over the
-full ensemble state. If that map's registered completeness and validity guards
-hold, a composition can certify closure; if they do not, composition of
-route-local stops alone supplies no missing authority.
-\end{proof}
+The proposition is an implementation invariant rather than an empirical law.
+Its consequence is testable: if a route-stop signal is promoted directly to
+task closure, the evaluator should observe premature closure whenever another
+route still contains reachable relevant material. Task closure is permitted
+only when all declared material routes are discharged or explicitly resolved
+by the task contract, no transport failure leaves a material obligation open,
+and no advisory coverage diagnostic supplies the authority.
 
-Task closure is therefore a separate judgement over the route ensemble. It
-requires that every route in the prospectively registered route universe is in
-a terminal or explicitly reopenable state, that
-no suspended or unavailable route leaves an unmet obligation, and --- by
-Proposition~\ref{prop:failclosed} --- that no coverage diagnostic has been used
-as its authority. It also requires the registered provider, observability,
-custody and resource-validity guards to pass as one conjunction. An unavailable
-route remains an open coverage obligation and
-is reported as such; it is never converted into evidence that nothing further
-exists.
+\subsection{Observable error families}
 
-\subsection{What the evaluation must therefore measure}
-
-The definitions above fix four measurable error families, each with a
-ground-truth condition that only a complete-gold world supplies: route-stop
-false positives (a route stopped while it could still reach unfound relevant
-items), route-stop false negatives (a route continued past its exhaustion
-point), premature task closure (task closed while a gold item was still
-reachable within remaining budget), and duplicate processing versus legitimate
-reread as separated by the four read coordinates. Route overlap, per-route
-marginal contribution and earned-independence status are computed over content
-digests. Metrics whose denominator is the gold set are reported only where that
-denominator is complete; the conditions are stated per metric in the frozen
-measurement plan.
+The model defines four evaluator-visible failures. A route-stop false positive
+occurs when a stopped route can still reach relevant material. A route-stop
+false negative occurs when search continues beyond route exhaustion. Premature
+task closure occurs when relevant material remains reachable within the task
+contract. Duplicate processing occurs when all four read coordinates repeat;
+changed content, schema, or frame instead defines a legitimate reread. Complete
+gold is required wherever these definitions depend on the full relevant set.
