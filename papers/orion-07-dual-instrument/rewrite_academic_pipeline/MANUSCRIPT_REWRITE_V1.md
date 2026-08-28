@@ -1,7 +1,5 @@
 # Deferred-Outcome Evaluation for Scientific Decision Instruments
 
-<!-- Draft integration note: TMLR-oriented reader-facing rewrite. The present evidence contains one valid prospective frontier item; the manuscript therefore defines an evaluation protocol rather than claiming calibrated predictive performance. -->
-
 ## Abstract
 
 Scientific decision systems often act before the evidence needed to judge their decisions exists. Conventional benchmarks assume that a correct answer is already available to the evaluator, while agreement among multiple systems can reflect shared evidence, shared training data or shared conceptual biases rather than correctness. We introduce a deferred-outcome benchmark for prospective scientific decisions. A benchmark item freezes an unresolved scientific question, the evidence available at decision time, the diagnosis and action coordinates to be scored, and the rule by which later evidence can resolve those coordinates. Each instrument records its decision before the outcome is known; agreement and disagreement remain descriptive pre-outcome observations; scoring occurs only after later scientific work produces admissible resolving evidence.
