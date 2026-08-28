@@ -1,0 +1,10 @@
+# Only the latexmk sidecars, and the repository already ignores those for
+# every paper. main.pdf is deliberately NOT here: the other thirteen papers
+# commit their built manuscript, and P1 ignoring its own left the rewritten
+# paper with no PDF anywhere in the tree once the journal package's render
+# went stale.
+main.aux
+main.bbl
+main.blg
+main.log
+main.out

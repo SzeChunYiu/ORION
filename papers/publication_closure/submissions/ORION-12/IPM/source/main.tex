@@ -1,0 +1,378 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{float}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{4em}
+% Long snake_case identifiers and content hashes need legal breakpoints in the
+% rendered review PDF. xurl extends url/path breaking without changing text.
+\urlstyle{tt}
+\newcommand{\idt}[1]{\path{#1}}
+
+\title{The Acquisition--Authority Envelope for Open-World Scientific Discovery}
+\author{Working framework draft}
+\date{August 2026}
+
+\input{generated/suite_facts}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Open-world scientific discovery combines acquisition, screening and closure,
+yet these stages are usually evaluated separately. We define an
+acquisition--authority envelope that compares controllers under matched access,
+budget and authority contracts, and prove acquisition-ceiling,
+closure-factorization and donor-saturation results. Archived experiments
+preserve rather than average heterogeneous authority. A \OfflineTaskCount{}-task controlled
+index is descriptive; external screening does not establish superiority. In
+V7, six locked gates fail and the full candidate loses to its frozen u4 donor.
+V8 admits no residual, and V10 fails four gates. V13 validates a provider-native
+fibre-separating coordinate, but only 4/7 reviews support it. V15 binds a signed
+coherent snapshot containing 61 dataset blobs, without index parsing, census or
+performance. Its template error was never executed, and V15B corrects it only
+for a successor. Independent custody remains 0/3. Thus the framework identifies
+when new state or acquisition is necessary, but open-world benefit remains
+unconfirmed.
+\end{abstract}
+
+\noindent\textbf{Keywords:} open-world scientific discovery; information retrieval; deep research agents; acquisition envelope; scientific closure; systematic review; stopping rules.
+
+\section{Introduction}
+Scientific discovery agents increasingly combine retrieval, query reformulation,
+reranking, graph expansion, selective reading, state compression, contradiction
+handling and learned stopping.  Treating any one component as ``the discovery
+system'' makes scientific comparison unstable: a new retriever can dominate the
+old acquisition layer without answering whether the assembled controller found
+the decision-relevant evidence, kept useful future routes alive, or closed the
+scientific task safely.  We therefore ask a larger question: \emph{what joint
+discovery frontier is attainable under a fixed source-access and resource
+contract, and what information is necessary for a point on that frontier to
+carry scientific-closure authority?}
+
+The paper makes five contributions.  First, it defines the
+\emph{acquisition--authority envelope}, a non-compensatory frontier over
+decision-relevant discovery, scientific utility, future-search optionality,
+false closure, valid closure yield and total charged cost.  This moves the unit
+of theory above individual retrievers and stopping rules.  Second, it proves an
+acquisition-ceiling theorem that attributes an adverse outcome to route
+generation whenever the required evidence never entered the candidate pool.
+Third, it gives a necessary-and-sufficient state-factorization criterion for
+scientific closure and an indistinguishable-world lower bound for any controller
+whose observations conflate closable and materially open worlds.  Fourth, it
+characterizes the maximally permissive robust completion and the
+necessary-and-sufficient completeness condition under which a registered
+obligation rule reaches it.  Fifth, it instantiates the theory
+with earned route independence and question-conditioned read state, then places
+all archived positive, adverse and undetermined experiments at their exact
+authority levels rather than averaging them into one apparent win.
+
+Let route $r$ be characterized by a backend identity $b_r$, query-derivation process $q_r$, and capture/content identity policy $c_r$. A distinct route label is insufficient for independence. Evidence for route independence must be derived from the actual generation and capture process rather than asserted as a boolean.
+
+\section{Question-conditioned cumulative read state}
+A paper being previously encountered is weaker than the statement that it has been processed for the current research question, extraction schema and content version. Content identity is therefore held separately from question-conditioned read state. A changed question or materially changed content can legitimately reopen a source for processing without pretending that it is newly discovered evidence.
+
+\section{Route stopping versus task stopping}
+Route outcomes such as continue, reformulate, switch, budget-stop, unavailable and locally flat are separated from task-level scientific closure. A route may stop because its marginal yield is low while another route is still untried, unavailable or censored. Coverage diagnostics therefore stay advisory; they cannot promote global completeness.
+
+This fail-closed rule is especially important for capture--recapture-style diagnostics. Adaptive search routes are not automatically independent capture occasions, and zero overlap cannot justify a confident bounded estimate of unseen literature.
+
+\input{sections/acquisition_authority}
+\input{sections/formalism}
+\input{sections/acquisition_authority-envelope}
+
+\begin{figure}[t]
+\centering
+\input{figures/P2-1_pipeline}
+\caption{\textbf{Figure P2-1.} The discovery pipeline, separating retrieval,
+screening, route stopping and task closure. Solid arrows are authority-bearing
+transitions; the dashed arrow marks the coverage diagnostic, which informs but
+never certifies closure; the crossed arrow marks the transition the design
+forbids, namely a route stop certifying task-level completeness
+(Proposition~\ref{prop:failclosed}). A route suspended by transport failure
+leaves an open obligation that closure must clear, so provider unavailability
+cannot become evidence of absence. The figure is generated from the same
+specification the tests read, so it cannot drift from the state machine it
+illustrates.}
+\label{fig:p2-1}
+\end{figure}
+
+\input{sections/methods}
+\input{sections/results}
+\input{sections/05a-public-screening-transport}
+\input{sections/p2x_unresolved_route_successor}
+\input{sections/structure-conditioned-discovery-interface}
+
+\section{Related work}
+AutoResearchBench establishes that both specific-target and open-ended
+scientific-literature discovery remain difficult for current agents
+\cite{autoresearchbench2026}.  The acquisition frontier is already strong and
+heterogeneous: SAGE shows that tuned lexical retrieval can outperform LLM
+retrievers inside deep-research workflows \cite{sage2026}; AgentIR uses the
+agent's reasoning trace as a retrieval signal \cite{agentir2026}; SIEVE combines
+fielded Boolean admission, structure-rich inspection and selective section
+fetching \cite{sieve2026}; and breadth-first bibliography expansion recovers
+material missed by API-only retrieval \cite{rethinkinglitsearch2026}.  Rather
+than reserve a weaker baseline,
+Definition~\ref{def:acquisition-authority-envelope} places all runnable instances and
+their outcome-blind functional analogues inside the donor-complete policy class.
+Their actions enlarge the acquisition envelope; a candidate contribution must
+survive that enlargement.
+
+Screening and stage attribution form a second neighbourhood. MetaSyn separates retrieval from eligibility screening and shows why a retrieval ceiling does not imply an inclusion-recall ceiling \cite{metasyn2026}, and AgentSLR shows that end-to-end systematic-review automation is an active baseline family in its own right \cite{agentslr2026}. This paper adopts their measurement discipline---stage attribution and denominator caution---and inherits their warning that one aggregate recall number hides where the evidence was actually lost.
+
+The stopping and obligation literature owns more than ``when to stop.''
+DeepControl and decision-theoretic screening optimize continuation against
+information value, cost and payoff \cite{deepcontrol2026,decisionstop2026}; HALT
+uses claim--evidence coverage and abstains when it cannot verify that coverage
+\cite{halt2026}; MiCP controls adaptive coverage \cite{micp2026}; and structured
+Search-R1 learns sufficiency and gap judgements \cite{multiragstop2026}.  Don't
+Stop Early couples coverage-driven objectives to evidence-aware completion
+\cite{donotstopearly2026}, while Confidence-Based Stopping targets decision
+sufficiency rather than recall alone \cite{confidencebasedstop2026}.  KnowPlan
+provides finite source-obligation certificates \cite{knowplan2026}; iCORE binds
+work and obligation transitions to evidence \cite{icore2026}; and Science of
+Intent explicitly studies closure gaps and misclosure \cite{scienceintent2026}.
+The present theory grants all of these mechanisms to the donor state.  Its
+residual is the factorization question in Theorem~\ref{thm:factorization}: after
+composition, does the retained state actually distinguish every closable world
+from every materially open world?  If yes, the product is sufficient and may
+tie.  If not, no new classifier over the same state can manufacture authority.
+
+Question-conditioned memory has its own line of work: MemChain constructs
+question-conditioned evidence plans and grounded memory traces
+\cite{memchain2026}.  The envelope treats memory as an optionality-bearing
+scientific state, not merely a token cache.  Content identity prevents duplicate
+rediscovery from inflating coverage, whereas question-conditioned processing
+state permits a changed extraction frame to reopen already encountered material.
+Whether that additional coordinate matters is decided by fibre separation and
+prospectively hidden future questions, not by claiming generic memory novelty.
+
+\section{Limitations and integrity}
+The completed controlled experiment is deliberately synthetic. Its complete denominator is what makes missed relevant material and premature closure observable, but the authored routes, public probe vocabulary and easy screening text make it a mechanism test rather than a realistic estimate of retrieval difficulty. The observed +0.31282 recall difference therefore cannot be transferred to the open web or to AutoResearchBench by analogy.
+
+The contribution is a comparison and composition theory rather than a claim to
+own its components.  Scientific retrieval-augmented generation, agentic
+literature search, automated systematic review, capture--recapture estimation,
+lexical, dense, reasoning-aware, field-aware and citation-expansion retrieval,
+learned or decision-theoretic stopping, conformal coverage, finite obligation
+ledgers and question-conditioned memory are prior art and enter the donor class.
+The claimed theoretical residual is the joint acquisition--authority envelope,
+its run-conditional acquisition ceiling, the closure-factorization criterion,
+the indistinguishable-world lower bound, the maximally permissive robust safe
+set, and the completeness condition for an explicit obligation rule.
+
+The suite carries \OfflineTaskCount{} tasks, which reaches the plan's committed precision tier at an achieved half-width of \OfflineAchievedHalfWidth{} for a standalone rate. The frozen statistics plan fixed those tiers before outcomes were inspected and assigns this campaign that committed authority; because the achieved half-width still exceeds the frozen superiority margin of $0.03$, the primary offline result carries the plan's underpowered label whatever the task count becomes. All \OfflineRunRecordCount{} system/task/repeat executions reproduce exactly, and the \OfflineRepeatCount{} deterministic repeat seeds demonstrate stable execution; repeats nest within task and never increase the statistical unit.
+
+The exact-contract battery broadens the \emph{contract families} tested, not the realism of retrieval. Its 400 cases span five acquisition settings and include seed-permuted route order plus non-material unavailable decoys, but route state, route materiality and question-processing state are explicitly supplied rather than inferred from noisy web behavior. The 1.000 exact-closure ceiling therefore supports the fail-closed authority rule only on the registered exact contracts. No independently implemented lexical/dense/reasoning retrievers or new live provider campaign were used to establish retrieval-engine generality, and the ideal-product arm shows that an ideal product given identical unresolved-route semantics is extensionally equivalent.
+
+Open-world completeness remains generally unprovable from finite search. External providers are mutable, rate limited and differently scoped, and public benchmark questions and gold identifiers create search-time contamination risk. The corrected MetaSyn run is external but narrow: it uses pinned BM25 retrieval plus a deterministic public-protocol screening rule and the official ID-only evaluator, not the complete route system. Its exact evaluator-side ledger contains 1,677 reference links, of which 598 are missed at retrieval and another 343 are lost after retrieval, leaving 941 final false negatives. These numbers characterize that probe and are not promoted to a general claim about the system.
+
+The Zenodo transport result is also deliberately narrower than the envelope
+claim.  Its labels are public, its first row was exposed before protocol freeze,
+and V2's eligible population was frozen only after V1 revealed two
+noncanonical class rows and three duplicate identities. The active estimator
+family, hyperparameters and batch-size rule were frozen before V2 scoring and
+outperformed the registered passive
+comparators after re-instantiation on the source-specific representation and
+identity adapter, but the
+analysis contains one physiotherapy pool, no independent label custody, no
+application-exact source-native screening reproduction, no open-world route
+action and no task closure. In the separate post-V2 active-comparator audit,
+cadence-matched pinned ELAS u4 reached recall 0.722444 versus 0.703409 and
+WSS@95 0.746781 versus 0.744744, failing the candidate's strict-margin and
+dominance gates. The evidence therefore supports a large conditional
+within-pool contrast against passive screening under a disclosed post-schema
+repair and label-informed warm start, not active-controller superiority,
+fitted-model, representation, initialization, cold-start, system-level,
+population-average, or cross-domain transport.
+
+The later SWIFT cross-review successor broadens the number of public screening
+decisions but remains development evidence.  V1 and V2 stopped before fitting
+either model because their population-identity mechanics did not bind the
+intended preflight population.  V3 corrected that audit before any
+candidate/comparator outcome but after class counts were opened.  Across five
+reviews and 96,241 canonical rows, the candidate-minus-u4 unweighted
+review-level means were $-0.021717971642$ for recall at 10\% screened and
+$-0.050396333672$ for WSS@95; u4 was better on both endpoints in all five
+reviews.  The primary-margin and relative-work-saving gates failed.  Harm and
+absolute work saving passed but are non-compensatory.  The reviews are distinct
+screening decisions, not proven independent samples (maximum pairwise shared
+content count 68), and the execution is not cold-start evidence, an exact
+ASReview application run, protected confirmation, independent custody,
+population transport, ASReview software inferiority, or ORION-specific
+superiority.  The V4 component factorization was frozen only after V3 outcomes
+and is diagnosis only; it cannot promote a controller on SWIFT.
+
+The theory does not remove that impossibility.  The maximality theorem is
+relative to a declared compatible-world class; it cannot prove that a finite
+open-web route registry contains every material route or that the registered
+obligation rule recognizes every robustly safe history.  The acquisition
+ceiling is conditional on the captured run and on a valid denominator, not an
+estimate of the best route that might be invented later.  The envelope itself
+depends on the task distribution, budget, access interface and donor class, so
+cross-domain superiority is an empirical hypothesis rather than a corollary of
+the formalism.
+
+The V12--V15 source-state sequence does not supply that missing empirical
+evidence.  V12's keyword difference is post-gate diagnosis because its content
+identity diverged from V10.  V13 establishes a genuine fibre-separating metadata
+coordinate, but only four of seven reviews support it, below the unchanged
+six-of-seven sign gates.  V14 localizes a frozen commit--path mismatch and stops
+before any census or performance operation.  V15 binds a coherent signed
+snapshot with 61 dataset blobs, but its exact root licence is MIT and must not
+be blended with current CC0 repository metadata.  Its frozen candidate template
+also omitted V14's \idt{/output/} path component; that template was never
+executed, and the V15B correction is authorized only for a successor.  Exact
+index attestation returned 404, all three independent custody roles remain
+open, and no population or performance conclusion is available.
+
+Several external authorities remain partially unavailable rather than negative. AutoResearchBench Deep official scoring has now executed through a local OpenAI-compatible adapter for the bounded keyless probe, with the judge control passing in full, but the matched multi-provider Deep comparison remains unexecuted. SAGE's paper-linked repository is data-only at the audited revision and supplies neither an official runner nor a licence; its published retrieval setting therefore remains unavailable as an arm. The separately archived OpenAIRE/Crossref Wide campaign failed its prospectively frozen provider-validity gate, so the matched external superiority claim remains undetermined; its observed zero paired effect is not a valid null or negative result. The exact-contract battery does not repair or supersede that external failure. Provider or credential unavailability is likewise kept undetermined, never converted into evidence of absence or a flattering zero-cost result.
+
+The comparator-binding audit does identify SIEVE/SkimSearchAgent as a credible
+Apache-2.0 external acquisition candidate at commit
+\idt{4a640296770c39b8274e7678c6de844daea9541c}. A one-instance keyless fixture
+completed with a stub policy and emitted the expected trace, rows and result
+artifacts. That is entrypoint conformance only: the zero fixture score is not a
+scientific result, and native answer/end/error/timeout trajectories do not
+authorize P2 closure. The outcome-blind adapter preflight forbids every such
+conversion and leaves the exact terminal
+\idt{P2_SIEVE_RUNNABLE_FIXTURE__NOT_A_FROZEN_ARM}. Archived task-world
+reproduction and equal provider, route, budget, model, terminal and scoring
+bindings remain mandatory before SIEVE becomes a comparator arm.
+
+The 768-cluster successor also remains entirely prospective.  Its arithmetic
+freeze establishes neither that the task worlds exist in compliant form nor
+that the planned effect is real.  Four source-disjoint arena snapshots,
+reproduced baseline worlds, a capability-matched external comparator, live
+response/cost receipts and independently separated evaluator/gold custody are
+still missing.  No part of that protocol is counted as external evidence in the
+present paper.
+
+The mechanism ablations themselves impose an interpretive limit. Removing the question coordinate from the read ledger changes legitimate reread behavior but does not change aggregate recall in this suite; removing the unavailable-route open state changes censoring/closure semantics while leaving aggregate recall numerically unchanged. These null-on-recall mechanism findings are retained rather than converted into a stronger claim.
+
+All result-bearing statements in the abstract, Results and conclusion are mapped to immutable archived artifacts through the claim ledger, the current non-promotion ledger, and the exact-contract result and verification receipts; the artifact names and paths are listed in Data and code availability. Rows without an archived supporting result stay undetermined; an access audit, implementation test, or credential preflight cannot substitute for a system outcome.
+
+\input{sections/availability}
+
+\section{Conclusion}
+Scientific discovery systems should be compared as joint
+acquisition--authority controllers, not as a ranker followed by an unexamined
+stop decision.  The envelope formalism makes that comparison donor-monotone and
+non-compensatory: stronger retrieval, reasoning, coverage, stopping, obligation
+and memory methods are absorbed into the comparator class, while false closure
+cannot be traded for report quality or lower cost. Its registered product-order
+rule requires guard passage, coordinatewise no-harm and a prefrozen strict
+margin against the complete donor frontier before claiming superiority. The acquisition-ceiling
+theorem attributes failures before proposing a repair; the factorization theorem
+states exactly when a product has enough state to implement scientific closure;
+the indistinguishable-world bound proves when new acquisition or new assumptions
+are unavoidable; and the robust safe-set rule is maximally permissive, while the
+registered obligation rule reaches it only under an explicit completeness
+condition.
+
+The evidence is deliberately heterogeneous rather than averaged into a single
+claim.  The controlled-index campaign supports mechanism behavior but remains
+underpowered for its frozen superiority margin.  The external 7/229 exposure
+result is an adverse candidate-generation diagnosis, and the provider-invalid
+matched campaign remains undetermined. A source-disjoint public screening pool
+does show a large conditional within-pool contrast after reuse of the same
+active update rule, hyperparameters and batch-size rule under a source-specific representation
+and label-informed warm start---0.703409
+recall at 10\% screened versus 0.335989 for the better-performing of two
+registered passive within-pool baselines. A post-V2 active audit found 0.722444
+for cadence-matched pinned ELAS u4, so the candidate did not beat the stronger
+active comparator.  A subsequent five-review SWIFT successor made the adverse
+boundary more general within public development: on 96,241 canonical rows,
+candidate-minus-u4 unweighted review-level mean recall@10\% and WSS@95 were
+$-0.021717971642$ and $-0.050396333672$, respectively, and u4 was better on
+both endpoints in every review.  The primary and relative-work-saving gates
+failed; harm and absolute work saving passed without compensation. Thus
+that one-pool post-schema-repair result is not a population transport
+estimate and belongs below the open-world acquisition
+and authority claims.  The exact-contract battery supports the
+predicted authority distinction---400/400 against 250/400 for a product that
+drops unresolved material routes---while the information-equivalent product's
+400/400 tie confirms that the residual is state sufficiency, not inherent
+centralized expressivity.  These are components of a wider theory, not evidence
+of deployed general superiority.
+
+The upward research target is now precise rather than merely narrower: exceed
+the guarded donor-complete envelope on source-disjoint naturalistic scientific
+worlds by inventing routes that lift the acquisition ceiling, preserving
+decision-relevant future options, and closing safely under independently held
+obligation custody.  The registered 768-cluster, four-arena target is designed
+to test that claim, but its worlds and comparator identities are not frozen for
+execution; it has not run and cannot change the current terminal.  The
+post-outcome SWIFT V4 representation-by-learner/balancer factorization selects
+the learner/balancer component as a stable within-panel diagnosis of the
+adverse V3 gap.  It promotes no arm on SWIFT; the selected mechanism requires a
+content-disjoint, outcome-unopened review family with unchanged gates.  The
+prospectively frozen SYNERGY V5 successor supplies that content-disjoint test
+over five review decisions and 101,044 canonical records, but the selected
+component fails its locked recall@10\% magnitude and sign gates: its mean
+effect is $+0.008834277869$, strictly positive in three of five decisions and
+exactly zero in two.  Positive recall@5\%, recall@20\%, and WSS@95 diagnostics
+do not replace the failed primary rule, while the full candidate-minus-u4 arm
+remains adverse at recall@10\% and WSS@95.  The next test must therefore use a
+new source family, retain recall@10\% as an adverse coprimary endpoint, and
+freeze a continuous recall--effort estimand before outcomes.  V6 now binds that
+source/protocol layer without opening a KIFMS label or executing a comparison:
+14 CC-BY-4.0 OSF review decisions yield 4,934 label-blind canonical rows after
+one raw V5 match and all within-family shared content are removed; final SWIFT
+and V5 content overlap is zero.  The normalized recall--effort area over the
+first 20\% screened is coprimary with the unchanged adverse recall@10\% rule,
+and u4 plus every harm/work-saving gate is retained.  All declared PMID values
+are empty, so only title--abstract content identities establish disjointness.
+Historical public ASReview artifact paths also mean that this is exact-V6
+outcome non-access, not a globally unstudied family.  Independent protected
+custody remains \textsc{cannot-check}. V7 nevertheless removes the execution
+wait under a new, explicitly nonconfirmatory identity: all 14 exact files and
+the 4,934-row population reproduce, every review has both classes and all four
+rankings complete. Mean learner/balancer effects are $+0.084472$ on CRE20,
+$+0.148820$ on recall@10\% and $+0.119813$ on WSS@95, but CRE20 and recall@10\%
+are strictly positive in only 11/14 and 9/14 reviews, and the worst-review
+recall@10\% effect is $-0.125$. The full candidate-minus-u4 means are
+$-0.201648$ at recall@10\% and $-0.119160$ on WSS@95. Thus six locked gates
+fail and no arm is promoted. The upward successor must envelop the strong u4
+donor and learn only a cross-fitted residual with a hard u4 fallback, then test
+once on a new source-disjoint family; the V5/V7 adverse results and current
+manuscript terminal remain unchanged. V8 performs that residual search only on
+now-open KIFMS development data. It reproduces exact u4 in 14/14 reviews, tests
+84 residual executions, falls back to u4 in 12/14 outer folds and observes
+cross-fitted deltas of $-0.002009$ CRE20, $-0.028274$ R@10 and $-0.000991$
+WSS95, with worst-review R@10 $-0.333333$. Both activated residuals harm their
+held-out review and zero of six full configurations jointly passes CRE20,
+WSS95 and harm support. The adjudicated terminal therefore admits no residual
+and preserves exact u4 fallback; title emphasis is retained only as one bounded
+diagnostic for a not-yet-bound source-disjoint family. V9 reaches that family
+but stops before fitting because one normalized content identity has conflicting
+labels. V10 freezes the provider-native nonduplicate disposition, retains both
+records, and executes once on 21,897 rows. Mean deltas versus exact u4 are
+$+0.000780$ CRE20, $-0.005383$ R@10 and $+0.001765$ WSS95; positive CRE20 and
+R@10 signs occur in 4/7 and 1/7 reviews. Four frozen gates fail, so title
+emphasis is discarded without tuning and exact u4 remains the fallback. V11
+then derives the wider positive boundary: a certificate-switched residual
+envelope embeds the donor, finite failures do not identify universal donor
+optimality, and strict same-contract separation from a saturated donor class
+requires fibre-separating information or state, new acquisition support, or
+proof that the class was incomplete.
+
+V12--V15 instantiate that boundary at the source layer.  Provider-native
+keywords can separate records that exact u4 model text cannot, and the coherent
+signed snapshot exposes 61 dataset blobs under an exact historical identity.
+These findings establish available state and a bound source frontier, not a
+screening benefit; population binding, matched outcomes and independent custody
+remain necessary for empirical ascent above \idt{P2_NARROWED}.
+
+\bibliographystyle{plain}
+\bibliography{bibliography,novelty_refresh_2026}
+\end{document}

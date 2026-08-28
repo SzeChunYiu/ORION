@@ -1,0 +1,21 @@
+% Table P1-T3: Failure taxonomy (roll-up by failure mode, all systems)
+% Projected from the archived failure-taxonomy record named in Data and code availability.
+\begin{table}[t]
+  \centering
+  \caption{Failure taxonomy: roll-up by failure mode across all 12 systems and 2,880 scored trials}
+  \label{tab:P1-T3}
+  \small
+  \begin{tabular}{lrrr}
+    \toprule
+    Failure mode & Trials & Systems & Share \\
+    \midrule
+    Abstention & 2345 & 11 & 0.8142 \\
+    Wrong responsibility & 265 & 4 & 0.0920 \\
+    Missed reframe & 215 & 12 & 0.0747 \\
+    Unnecessary reframe & 45 & 3 & 0.0156 \\
+    Incomplete reopen & 10 & 1 & 0.0035 \\
+    \bottomrule
+  \end{tabular}
+  \par\smallskip
+  \textit{Note:} One primary failure mode per trial by precedence (authority~$>$~invariant~$>$~trace integrity~$>$~abstention~$>$~control selectivity~$>$~diagnosis~$>$~targeting~$>$~reopening~$>$~terminal outcome). A lower-priority mechanism can therefore be masked by a higher-priority classification. Abstention dominates across all systems (81.4\%). Wrong-responsibility attributions (9.2\%) and missed reframes (7.5\%) are the next most common; unnecessary reframes occur only under generic retry, tree search, and no-self-audit variants. Per-case detail is in the archived record named in Section~\ref{sec:availability}; the raw suite is never published.
+\end{table}

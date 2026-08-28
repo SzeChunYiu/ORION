@@ -120,10 +120,24 @@ def test_false_positive_changes_f1_even_when_recall_stays_perfect() -> None:
     assert implementation["f1"] < implementation["recall"]
 
 
-def test_reproduction_receipt_and_table_are_content_addressed() -> None:
-    artifacts = write_reproduction_artifacts(ROOT)
-    receipt = json.loads(RECEIPT.read_text(encoding="utf-8"))
-    table = json.loads(TABLE.read_text(encoding="utf-8"))
+def test_reproduction_receipt_and_table_are_content_addressed(tmp_path: Path) -> None:
+    """Reproduction tests must never rewrite tracked, content-bound evidence."""
+
+    tracked_receipt_sha = hashlib.sha256(RECEIPT.read_bytes()).hexdigest()
+    tracked_table_sha = hashlib.sha256(TABLE.read_bytes()).hexdigest()
+
+    # Build a minimal temporary repository-shaped subject. The production helper
+    # may still write to its supplied repo_root for intentional regeneration,
+    # but pytest must never supply the real repository root as that destination.
+    temp_results = tmp_path / RESULTS_RELPATH
+    temp_results.parent.mkdir(parents=True, exist_ok=True)
+    temp_results.write_bytes(RESULTS.read_bytes())
+
+    artifacts = write_reproduction_artifacts(tmp_path)
+    temp_receipt = tmp_path / "papers/orion-15-self-orion/evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json"
+    temp_table = tmp_path / "papers/orion-15-self-orion/evidence/TABLE_P5_3_HIDDEN_CAUSE_ATTRIBUTION.json"
+    receipt = json.loads(temp_receipt.read_text(encoding="utf-8"))
+    table = json.loads(temp_table.read_text(encoding="utf-8"))
 
     assert artifacts["receipt_sha256"] == receipt["receipt_sha256"]
     assert receipt["metrics"]["correct_attributions"] == 21
@@ -162,3 +176,8 @@ def test_reproduction_receipt_and_table_are_content_addressed() -> None:
     }
     assert table["empirical_authority"] == "ATTRIBUTION_DIAGNOSIS_ONLY"
     assert "TRANSFER" not in table["empirical_authority"]
+
+    # Hostile side-effect check for #1510: the test itself must leave the
+    # committed receipt/table byte-identical.
+    assert hashlib.sha256(RECEIPT.read_bytes()).hexdigest() == tracked_receipt_sha
+    assert hashlib.sha256(TABLE.read_bytes()).hexdigest() == tracked_table_sha

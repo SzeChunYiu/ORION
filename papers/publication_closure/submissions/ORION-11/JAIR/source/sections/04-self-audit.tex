@@ -1,0 +1,66 @@
+\section{Recursive self-audit of the research process}
+
+A reconstruction system must also inspect the mechanics that produce its state. Otherwise $K_t$ and $W_t$ may be explicit while the process that mutates them remains opaque. The representation of a research mechanic is therefore part of the reconstruction architecture itself rather than a separate concern.
+
+\subsection{Mechanic cells as partial contracts}
+
+For atomic mechanic $i$, the architecture maintains a typed partial contract \(\mathcal C_i\) rather than treating implementation code or a prompt as the complete scientific specification of the step. The versioned mechanic-cell schema groups required coordinates across:
+
+\begin{itemize}
+  \item observability, handoff, workflow and resources;
+  \item state, transition semantics, mathematics and dependencies;
+  \item failure semantics, storage, provenance, verification and engineering;
+  \item optimization, objective, metrics, uncertainty and invariants;
+  \item parent discipline, search coverage and bounded saturation;
+  \item operator, identity, ordering, omission-recovery, answerability and sufficiency semantics.
+\end{itemize}
+
+The executable schema currently registers 27 required dimensions. Completeness is conjunctive: a strong optimizer or objective does not make a cell complete when verification, failure semantics, state, observability, uncertainty, provenance, or another required coordinate remains absent or provisional. An explicit waiver is itself a governed record rather than silent omission.
+
+Let \(D_i\) denote the dimensions required for the current mechanic schema and \(Z_i\subseteq D_i\) those supported by evidence-bound answers or explicit waivers. Structural specification closure requires
+\[
+Z_i=D_i,
+\]
+but this equality is only a contract-completeness statement. It does not imply that the chosen metric has construct validity, that a transition model is empirically correct, or that the mechanic improves scientific outcomes.
+
+\subsection{Missing coordinates become research obligations}
+
+A deterministic question generator maps absent or provisional coordinates to typed questions. The recursive path is therefore
+\[
+\begin{aligned}
+\text{research mechanic}&\rightarrow \text{inspectable cell}
+\rightarrow \text{missing/failed coordinate}\\
+&\rightarrow \text{typed question/work order}
+\rightarrow \text{research}\rightarrow \text{reconstruction}.
+\end{aligned}
+\]
+A language model may propose an answer, but the architecture does not depend on model memory to remember that observability, verification, uncertainty, failure, parent-domain or saturation questions should have been asked.
+
+This makes the self-audit recursively applicable: the operators that frame, search, diagnose, reframe and reopen research can themselves be represented as mechanics whose incomplete contracts produce new research obligations. Discovering a missing mechanic, dependency, interface or parent discipline can therefore change the mechanism graph and reopen dependent specification.
+
+\subsection{Mechanism-state reconstruction}
+
+A useful reconstruction snapshot must make at least four objects recoverable:
+
+\begin{enumerate}
+  \item the mechanism/dependency graph active for the current solve;
+  \item the invariants and authority boundaries those mechanisms are expected to preserve;
+  \item the decision, answer and reframe history needed to explain the present state;
+  \item the failure/residual record that remains unresolved or that caused closure to reopen.
+\end{enumerate}
+
+This is stronger than keeping a transcript. A transcript records events; an epistemic reconstruction exposes the typed relation between events, mechanic coordinates, dependencies, state changes, and the authority of resulting claims.
+
+\subsection{Method realizations as reconstructable transformation structures}
+
+A mechanic cell specifies one atomic operation. A problem-solving method is a coordinated transformation structure assembled from such operations. A method realization is therefore exposed as a provenance-bound reconstruction object. It binds an exact method/source identity to the target role, preconditions, assumptions/resources, input/output representations, mechanic graph and dependency order, protected invariants, progress measure, effect contract, terminal condition, reconstruction map, failure/dead-end semantics, lineage and an explicit authority boundary. Coordinates unsupported by evidence stay explicitly unfilled; they are not completed from model plausibility.
+
+The distinction matters because transcript identity is weaker than method identity. Consider two procedures whose visible steps are ``measure a midpoint'' and ``discard one half.'' Under a monotone, bracketed response this can implement bounded localization while preserving a target-bracketing invariant. Under a non-monotone response the same surface sequence can discard the true target. The transcript is nearly unchanged, but the precondition, invariant and failure contract differ, so the reconstructed method must differ as well. Conversely, a numerical bisection procedure and a monotone threshold-calibration procedure may use different operation names while preserving the same claim-relevant bracket/progress/reconstruction structure. Both concrete realizations are recorded; they are not thereby declared equivalent.
+
+The versioned object has a deterministic completeness checker, canonical serialization/content hash and round-trip reconstruction path. A bounded three-domain exact-ground-truth pilot additionally corrupts invariants, reconstruction, dependency order, preconditions, failure semantics, lineage, authority and an unfilled progress coordinate. The representation detects every frozen material corruption and preserves an explicit unresolved case. This is a representation non-vacuity result, not evidence that arbitrary papers can be annotated reliably or that the representation is sufficient for neural structural learning.
+
+Deciding claim-relative structural reduction between two reconstructed methods, aligning them across sources, or learning over the resulting versioned structures are all separate problems. None of them retroactively changes the evidence reported here or grants authority to a reconstructed method.
+
+\subsection{Deep-recursion stability}
+
+The core risk is late-depth drift: a system may preserve its contracts for the first few iterations but lose them as reconstructions accumulate. Recursion depth is therefore treated as an evaluation coordinate. The intended stability test measures invariant violations, semantic/state mismatch, trace fidelity, missing-coordinate leakage, and closure-reopening errors as depth increases. A mechanism that succeeds at shallow depth but loses the dependency, specification, or authority structure at later depth does not satisfy the hypothesis under test.

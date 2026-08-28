@@ -1,4 +1,4 @@
-# P4 protected battery V3 — result
+# ORION-14 protected battery V3 — result
 
 Protocol: `FREEZE.md` beside this file, written before the construction was
 repaired and before any panel outcome was observed. Artefacts:
@@ -238,7 +238,7 @@ of the method rather than excuses for this instance:
 3. **Fields the obligations are defined over are the case, and are not
    shortcuts.** A system that reads `checker.hostile_probe`, or compares
    `source_id` to `assigned_source_id`, is doing the task. That this battery is
-   mechanical gold — each family is one field state — is a property of P4's
+   mechanical gold — each family is one field state — is a property of ORION-14's
    design that no identifiability audit can or should condemn. What the audit can
    say is that the field states, not the packaging, are what a system has to
    read.

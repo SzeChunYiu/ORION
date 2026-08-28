@@ -1,0 +1,107 @@
+\section{Acquisition is not closure}
+\label{sec:acquisition-authority}
+
+The central design move in this paper is to separate two problems that are often
+collapsed into one policy.  An \emph{acquisition policy} decides what to search,
+retrieve, inspect, expand or reread next.  A \emph{closure authority} decides
+whether the evidence state is allowed to support route-local stopping or
+scientific task completion.  Better acquisition can improve recall and reduce
+cost, but it does not automatically acquire authority to declare completeness.
+This separation makes strong external retrieval and stopping mechanisms
+composable rather than adversarial to the contribution of this paper.
+
+Let $x_t$ denote the observable search state at step $t$.  We write an
+acquisition mechanism as
+\[
+  a_t \sim A(x_t),
+\]
+where $a_t$ may be a lexical query, a reasoning-aware query, a fielded Boolean
+filter, a graph-expansion action, a selective fetch, a reranking operation, or a
+request for another retrieval round.  No novelty is claimed here for the
+internal form of $A$.  Instead, acquired evidence updates both an evidence state
+$E_t$ and a typed obligation state $O_t$.  Closure is a distinct map
+\[
+  C(E_t,O_t) \in \{\textsc{continue},\textsc{route-stop},
+  \textsc{open},\textsc{cannot-check},\textsc{task-close}\}.
+\]
+A utility, relevance, confidence, sufficiency or coverage signal may influence
+$A$ and may recommend a local stop, but it cannot by itself delete an unresolved
+obligation in $O_t$.  This interface is where the residual contribution of this
+paper sits.
+
+\begin{figure}[t]
+\centering
+\input{figures/P2-7_acquisition_authority}
+\caption{\textbf{Figure P2-7.} Acquisition mechanisms are intentionally
+composable: lexical/metadata augmentation, reasoning-aware or hybrid retrieval,
+field-aware selective fetching, citation expansion and continuation signals may
+all improve what is acquired.  Their outputs update evidence and typed
+obligations, but a separate authority layer controls route stop, open and
+undetermined states and task closure.  The figure therefore locates the residual
+at the meaning of acquisition outcomes rather than at a claim to have invented
+the strongest retriever.}
+\label{fig:p2-7}
+\end{figure}
+
+\subsection{Absorbing strong acquisition mechanisms}
+
+The acquisition layer is intentionally donor-composable.  SAGE shows that
+keyword-oriented agent queries can make strong lexical retrieval difficult to
+beat and that corpus-side metadata/keyword augmentation can further improve
+retrieval \cite{sage2026}.  AgentIR shows that an agent's reasoning trace can be
+used jointly with its query as a retrieval signal \cite{agentir2026}.  SIEVE
+shows that fielded Boolean admission, structure-rich inspection and selective
+section fetching can improve the accuracy--context tradeoff
+\cite{sieve2026}.  Breadth-first bibliography expansion can recover literature
+missed by API-only retrieval, while also demonstrating why citation-list recall
+cannot be the only evaluation axis \cite{rethinkinglitsearch2026}.  Lexical,
+metadata-augmented, reasoning-aware, field-aware and citation-expansion
+retrieval are therefore treated as candidate strengths to compose, not as
+inventions of this work.
+
+The same rule applies to continuation and stopping signals.  DeepControl uses
+marginal information utility to regulate continued retrieval
+\cite{deepcontrol2026}; decision-theoretic policies optimize screening stops
+against explicit costs and payoffs \cite{decisionstop2026}; HALT uses
+claim--evidence coverage to verify whether expected evidence has been obtained
+\cite{halt2026}; MiCP applies conformal prediction to adaptive multi-turn
+reasoning to maintain a target coverage guarantee while permitting early stopping
+\cite{micp2026}; and structured Search-R1 stopping judgments explicitly encode
+sufficiency and remaining gaps \cite{multiragstop2026}.  These signals and
+guarantees can all be useful inputs to acquisition or route-local stopping.  The
+question asked here is narrower: what are those signals permitted to certify
+when routes are dependent, unavailable, censored or only locally exhausted?
+
+\subsection{The authority residual}
+
+This decomposition yields four residual design claims that are separable from
+the mechanics above.  First, route independence must be earned from backend,
+query-derivation and capture identity rather than from distinct tool names.
+Second, route-local stopping and task-global closure are different authority
+levels.  Third, an unavailable or censored route remains a typed open obligation
+rather than becoming an empty result.  Fourth, content identity and
+question-conditioned processing state must remain distinct so duplicate
+rediscovery does not inflate coverage while a genuinely changed scientific
+question can trigger justified rereading.
+
+The resulting design is deliberately asymmetric.  It is permissive about
+\emph{how} evidence is acquired: a stronger retriever, query generator,
+expansion rule or verification signal can replace a weaker one.  It is
+conservative about \emph{what acquisition outcomes are allowed to mean}: local
+flatness, high estimated coverage, high confidence, apparent sufficiency or a
+provider failure cannot silently become proof of global completeness.  This
+asymmetry is what permits the paper to absorb progress in retrieval without
+making its claimed authority boundary obsolete whenever a stronger retriever is
+published.
+
+\subsection{Empirical consequence}
+
+The decomposition also fixes the widening experiment.  Candidate-generation
+methods should first be compared and composed under matched query/candidate
+budgets.  Only after candidate recall is high enough to make stopping observable
+should the closure layer be challenged with direct ablations and strong stopping
+baselines.  A positive external result must therefore show both acquisition
+quality and the incremental effect of typed closure authority; a cheaper stop
+that hides reachable relevant evidence is not a positive result.  Conversely,
+a stronger donor retriever that improves acquisition while leaving the closure
+constraints intact strengthens the system rather than weakening the claim.

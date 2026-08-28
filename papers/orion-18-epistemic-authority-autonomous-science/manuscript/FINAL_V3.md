@@ -240,7 +240,7 @@ The strongest conclusion is therefore positive and architecture-independent: **c
 Issue #1086's ORION-18 box additionally asks to "execute actual type-distinct native
 systems and ideal typed-product baseline" and to "cover every ordered
 cross-system pair with clean and hostile cases." The full test design for that
-execution is now frozen as contract `ORION-18.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`
+execution is now frozen as contract `P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1`
 (`formal/P8_NATIVE_CROSS_SYSTEM_PROTOCOL_V1.md` and its machine-readable twin):
 four type-distinct native systems --- OPA/Rego, Cedar, in-toto/SLSA,
 Sigstore/cosign --- twelve ordered cross-system pairs, twenty-four case slots

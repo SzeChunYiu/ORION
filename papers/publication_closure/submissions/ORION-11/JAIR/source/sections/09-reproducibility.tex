@@ -1,0 +1,318 @@
+\section{Data availability}
+\label{sec:availability}
+
+Every artifact named anywhere in this paper is listed here with its path, so
+that no repository location has to be carried in the narrative.
+
+\subsection{Preregistration}
+The study was preregistered and frozen before any outcome was accessed, under the
+identifier \texttt{P1.hidden-formulation.v1}.  A reader checking whether a
+reported analysis was planned or chosen after the fact should compare against
+that freeze; it is the reason every number reported here can be traced to a
+decision made in advance of seeing it.
+
+The machine-readable freeze is \idt{protocol/PROTOCOL_V1.json} and the case
+requirements are \idt{protocol/HIDDEN_SHIFT_CASE_SCHEMA_V1.json}. The freeze
+records that no outcome had been accessed when it was cut. The amendment that
+replaced human adjudication with a blinded model panel is recorded as version
+1.1 of that freeze; it carries an adjudication tier that the record type refuses
+to report as human adjudication. The adjudication standard itself is
+\idt{protocol/ADJUDICATION_RUBRIC_V1.md}, the execution identities are in
+\idt{protocol/EXECUTION_MANIFEST_V1.md}, and the prospective power calculation
+is \idt{protocol/PROSPECTIVE_POWER_V1.md}.
+
+The frozen experiments reported in Sections~\ref{sec:necessity}
+and~\ref{sec:revision} have their own preregistrations:
+\idt{research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.4.json}
+for the mutation-necessity experiment, together with its superseded earlier
+versions in the same directory, and
+\idt{research/claim_expansion/p1/P1_X_PROTOCOL_V1.md} with
+\idt{research/claim_expansion/p1/v2/P1_X_V2_REPLICATION_PROTOCOL.md} for the
+revision-responsibility battery.
+
+\subsection{Frozen suite and generated quantities}
+The case suite is \idt{protocol/cases/}, split into a pilot and a test set and
+bound by content hash: the pilot fingerprint is
+\texttt{\PilotSuiteFingerprintShort} and the test fingerprint is
+\texttt{\TestSuiteFingerprintShort}. Case generation and validation are
+\idt{protocol/cases/generate_cases.py} and
+\idt{protocol/cases/validate_cases.py}. Every count, tier and margin quoted in
+the text is a macro generated into \idt{manuscript/generated/suite_facts.tex}
+by \idt{scripts/render_suite_facts.py}, so prose cannot drift from the frozen
+suite. The precision tier the frozen power record assigns to the achieved
+half-width is registered there under the label \texttt{\AchievedTier}, with
+\RequiredNForHOne{} cases required for the primary hypothesis and
+\RequiredNForHTwo{} for the restraint hypothesis. The tracked
+\idt{results/INTEGRITY_NOTE.md} preserves the failed historical attempt at
+commit \texttt{85d32db0}: 2,794 scored records and 86
+\textsc{Cannot-check} records, all in \texttt{orion\_live\_provider} (78
+authentication, four rate-limit and four internal-server errors), with 23 of
+48 provider cases lacking a scored repeat. That 86-record count describes a
+historical execution failure, not current missingness, and no per-cell rerun
+manifest is available in a clean checkout. The current tracked raw archive is
+authoritative and contains 2,880 of 2,880 \texttt{OK} run records and 2,880 of
+2,880 \texttt{SCORED} score records, with zero current
+\textsc{Cannot-check} records.
+
+\subsection{The hidden-formulation study}
+The scored archive is \idt{results/raw/test_scored.jsonl} with its run records
+in \idt{results/raw/test_runs.jsonl}. Table~\ref{tab:P1-T2} projects
+\idt{results/P1-T2_baseline_ablation_results.json} and its Markdown companion,
+which also carry the full system identifiers, per-family results and mechanistic
+metrics; Table~\ref{tab:P1-T3} projects
+\idt{results/P1-T3_failure_taxonomy.json} and its Markdown companion, which
+carry the per-case detail behind the failure-mode roll-up. The integrity note
+for these records is \idt{results/INTEGRITY_NOTE.md}.
+
+The mechanical attribution result and its rule-level limitations are
+\idt{evidence/MECHANICAL_ARM_LIMITATIONS_V1.md} with the case table
+\idt{evidence/MECHANICAL_ARM_CASE_TABLE_V1.json}. The blind solvability audit is
+\idt{evidence/MECHANICAL_SOLVABILITY_AUDIT_V1.md} with
+\idt{evidence/mechanical_solvability_audit_v1.json}. The falsifier record,
+including the subject commit \texttt{8a8a7feed588363f8e2cd820d3399a33b7af3074}
+and continuous-integration run \texttt{31933432314} at which the suite passed,
+is \idt{evidence/FALSIFIER_V1.md}. The bounded parent-domain replay is
+\idt{evidence/PARENT_DOMAIN_REPLAY_V1.md}, and the saturation record for the
+suite is \idt{evidence/FINAL_SATURATION_AUDIT.md}.
+
+\subsection{The mutation-necessity experiment}
+The primary and replication directories under
+\idt{research/revival/p1/confirmatory/v2.2/} each contain compressed public
+worlds, protected response matrices, raw results, the result record, an
+separate-implementation verification record, provenance, and a \idt{SHA256SUMS}
+manifest.
+The primary execution identity is \idt{PRIMARY_EXECUTION_FREEZE_V3.json};
+earlier receipts and both additive amendments are retained beside it. The
+replication directory binds its own disjoint world and execution receipts.
+\idt{PRIMARY_REPLICATION_CONCORDANCE.json} checks the predeclared cross-run
+conditions without pooling the runs. The separate verifier is
+\idt{research/revival/p1/verify_mutation_necessity_independent.py}; it uses only
+the standard library and imports neither the candidate policies, the production
+scorer and statistics, nor the subject's licensing code. This supplies code-path
+separation within the repository, not external scorer custody.
+
+The round-by-round donor dispositions that fixed the parent and ablation
+structure are \idt{research/revival/p1/P1_DONOR_ASSIMILATION_LEDGER_V1.json}
+with its later rounds in the same directory,
+\idt{research/revival/p1/P1_DONOR_ENGULFMENT_V1.json}, and the saturation record
+\idt{research/revival/p1/literature/SATURATION_LEDGER.md}.
+
+\subsection{The revision-responsibility battery}
+The protected freeze, protected results, and separate-implementation verification
+for both executions are under \idt{research/claim_expansion/p1/}: the first execution in
+\idt{results/P1_X_PROTECTED_RESULT_V1.json} with its outcome-access receipt, and
+the comparator-fair disjoint second execution in
+\idt{v2/P1_X_PROTECTED_RESULT_V2.json} with
+\idt{v2/P1_X_INDEPENDENT_VERIFICATION_V2.json}. The case schema is
+\idt{research/claim_expansion/p1/SCIENTIFIC_REVISION_RESPONSIBILITY_CASE_V1.schema.json}.
+
+\subsection{Bounded meta-discovery studies}
+The study calculus and the three decomposition pilots are under
+\idt{development/recursive-atom-calculus-closure-v1/} and
+\idt{development/jump-atom-pilot-closure-v1/}. The scoped failure-knowledge
+study is \idt{development/failure-epistemology-prospective-closure-v1/}, and the
+protected zero-error representation-transition study is
+\idt{research/extensions/orion-jump-recursive-atoms/zero_error_jump/}.
+
+\subsection{Claim ledgers and nearest work}
+The mapping from each result-bearing statement in this manuscript to the
+archived artifact that supports it is \idt{evidence/CLAIM_LEDGER.md}, with the
+immutable record of the earlier revision at \idt{evidence/CLAIM_LEDGER_V1.md}.
+The full nearest-work mechanism matrix, from which
+Section~\ref{sec:relatedwork} is drawn, is
+\idt{evidence/NEAREST_WORK_MATRIX_V2.md} with
+\idt{evidence/nearest_work_matrix_v2.json}. The bounded readiness attestation is
+\idt{evidence/PEER_REVIEW_READY_BOUNDED_V2.md}.
+
+\subsection{Naturalistic and comparator preflights}
+The outcome-blind metadata snapshot used to prepare the R7A successor is
+\idt{development/naturalistic-panel-harness-2026-08-23/SOURCE_METADATA_SNAPSHOT_V1.json},
+with canonical payload digest
+\idt{7dd283acd81e63e84887d82ee7761e89e62a47d31afceca8628e456b76f73e01}.
+Its protocol-binding status and exact non-promotion boundary are recorded in
+\idt{development/naturalistic-panel-harness-2026-08-23/PROTOCOL_BINDING_STATUS_V1.json}.
+These files contain repository/revision/licence metadata only and do not contain
+R7 cases, labels, pair assignments, scorer outputs or outcomes.
+The provider- and modality-diverse successor frame is
+\idt{development/provider-diverse-metadata-census-2026-08-23/SOURCE_CENSUS_V1.json},
+with its frozen rules in
+\idt{development/provider-diverse-metadata-census-2026-08-23/CENSUS_PROTOCOL_V1.json}
+and its live conformance receipt in
+\idt{development/provider-diverse-metadata-census-2026-08-23/VERIFICATION_RECEIPT_V1.json}.
+It likewise contains no case or
+outcome authority; historical-byte, content-rights and eligibility terminals
+remain explicit.
+
+A prospectively frozen public correction/retraction source-feasibility probe is
+under
+\idt{development/p1-naturalistic-transport-successor-2026-08-23/}. The
+protocol, count-only Europe PMC receipt, Crossref rights amendment, source
+audit, and checksum manifest are preserved there. The pinned Retraction Watch
+CSV itself is not redistributed in this repository; its receipt records 71,944
+rows and the byte digest
+\idt{ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb}.
+No Europe PMC result row, relation, case text, pair assignment, typed-action
+gold item, system output, or protected score was opened or created by that
+probe. The official CC0 binding applies to the database metadata only, not to
+linked article, notice, attachment, abstract, supplement, or blog content.
+
+The outcome-blind rights/relation successor is preserved under
+\idt{development/p1-rw-rights-relation-census-v2-2026-08-23/}. Its exact
+Retraction Watch relation census, bounded Europe PMC rights reducer,
+source-native aggregate strata, amendments, negative ledger, validation
+receipt, and 24-entry checksum manifest are retained there. The raw
+65,984,968-byte transport is not redistributed; its SHA-256 is
+\idt{ceaab201d728dfcf9929ec1e229acd2ad88c650c847ec922ba9ffe831e366abb}.
+The deterministic reducer reports 49,878 admitted relations in 42,924
+families, including 12,038 exact-both-endpoint-rights relations in 11,602
+families. It accessed no case text, scientific terminal, model output, or
+protected score. Missing provider matches remain \textsc{Cannot-check}; they
+are not incompatible-rights or source-absence findings.
+
+The structured-action semantics successor is
+\idt{development/p1-structured-action-semantics-v3-2026-08-23/}. Its frozen
+protocol and parser, immutable raw-interface failure, prospectively frozen
+normalization amendment, normalized provider census, twelve-group owner-field
+feasibility record, rights/provenance receipt, construct-validity failure atlas,
+negative ledger, result, validation receipt, and checksum manifest are retained
+there. The result digest is
+\idt{7178052320f85ea112e4b0b78da558fc5a68f7dc3b465a4f7afc9e1915860f2b}.
+The packet retains aggregate token frequencies only: no identifiers, raw
+provider responses, case text, scientific gold, model output, or protected
+score. Its 52 scientific-artifact assertions pass. The initial one-of-11,991
+raw interface match is retained as a serialization failure rather than
+overwritten; only the separately frozen display-token normalization supports
+the 11,988-of-11,991 relation-set agreement result.
+
+\subsection{Public-standard owner-algebra feasibility}
+The outcome-blind standards packet is
+\idt{development/p1-owner-algebra-construct-validity-v4-2026-08-23/}.
+Its protocol and parser-only amendment were frozen before the corresponding
+captures. The retained artifacts bind eight HTTP-200 documents from four
+institutional families and one fail-closed HTTP-404 route; raw source documents
+were deleted. The packet-native validator checks 85 scientific assertions
+without network access, repository CI, case text, outcomes, or protected
+scores. Its result records 9/12 structural analogues, 0/12 named-custodian or
+delegation groups, 0/12 sufficient groups, and zero scientific-action gold.
+The validator and 18-entry manifest establish bounded internal consistency and
+byte integrity, not independent semantic review or owner authority.
+
+\subsection{Outcome-blind source-native adapter audit}
+The full 47-entry semantic-interface handoff and its recorded independent
+checksum receipt remain in external custody and are not present in a clean
+repository checkout. The manuscript retains only the recorded handoff manifest
+digest,
+\idt{9f4503f693e155b12fb8c333f4777619cec1d66e387dcfc0e141fffa6933847d}.
+Because neither the manifest entries nor the independent receipt are
+repository-available, clean-checkout byte verification is
+\textsc{Cannot-check}; the historical zero-failure checksum statement is not a
+current repository integrity result. No private or large payload is
+redistributed here, and the unavailable handoff cannot serve as
+repository-available evidence or external semantic authority.
+
+The audit enumerates all 117,649 total maps: 0 are fully certified, 116,929 are
+rejected, and 720 remain not disproved but uncertified. The only currently
+certified partial map preserves \textsc{Unresolved}; the actionable mappings
+remain unbound because exhaustive target denotations and an owner-approved
+decision/action bridge are absent. The full-withdrawal counterexample is
+explicitly conditional on later owner-ratification of proposed closed-world
+target denotations. No case text, row-level outcome, protected gold or system
+outcome was accessed. These counts are bounded provenance statements recorded
+from the unavailable handoff, not independently checkable current-repository
+facts or external semantic authority. Licensing for the captured public
+taxonomies remains uncertain; no redistribution right or R7 transition is
+assumed.
+
+The external comparator identity and interface audit is
+\idt{development/comparator-binding-harness-2026-08-23/COMPARATOR_BINDING_LEDGER_V1.json},
+with its scientific interpretation in
+\idt{development/comparator-binding-harness-2026-08-23/SCIENTIFIC_REPORT.md}.
+Its cross-paper terminal is \idt{CANNOT_CHECK_FULL_COMPARATOR_FREEZE}; bounded
+installation or entrypoint probes in that harness grant no P1 performance or
+external-authority claim.
+
+\subsection{Owner/custody execution packets V11--V13}
+The historical-governance audit is preserved under
+\idt{development/p1-owner-custody-positive-successor-v11-2026-08-24/}.
+Its \idt{SHA256SUMS} manifest digest is
+\idt{8ebd874f0b0a7f3a3a7877c698dee1371352ebc4ce5dc3bb1a1bd2a2d0629721}.
+The public issue-chronology, delegation-field and exact-commit route audit is
+preserved under
+\idt{development/p1-owner-custody-positive-successor-v12-2026-08-24/}.
+Its manifest digest is
+\idt{7a136154d7fbc3c52d51ea2dade7829446842c21381f3c9c912189d47dc29407}.
+The content-addressed external-execution packet is preserved under
+\idt{development/p1-owner-custody-positive-successor-v13-2026-08-24/}.
+Its manifest digest is
+\idt{c2ff7a87356559bfce4ea4033aae807a6a5c4ce03b8b43c29782b58c29d33667}.
+These three manifests verify the retained packet bytes only; they do not supply
+external identity, delegation, signatures, rights, custody, review, map
+certification or scientific outcomes.
+\begin{center}
+\begin{minipage}{0.96\linewidth}
+\textbf{Exact V13 terminal:}\par
+\small\raggedright
+\idt{P1_V13_CONTENT_ADDRESSED_EXTERNAL_EXECUTION_PACKET_COMPLETE__ZERO_OF_SEVEN_EXTERNAL_SIGNED_OUTPUTS_RECEIVED__ZERO_OF_FOUR_AUTHORITY_ACTS_CLOSED__720_MAPS_UNCHANGED}
+\end{minipage}
+\end{center}
+
+\section{Code availability}
+
+\subsection{Current review source and historical package identity}
+The current review source is not yet bound to a public archive URL, archive
+DOI, immutable submission commit, or verified repository-level licence. Editors
+and reviewers must therefore receive the exact current snapshot before external
+review. The PDF under \idt{journal_package/} remains a content-bound record of
+an earlier inspected manuscript, not a rendering of this revision:
+\idt{journal_package/RENDER_CLOSURE_STATE.json} marks that package
+\texttt{SUPERSEDED}. It must not be relabelled or submitted as the current PDF;
+the current source requires a fresh immutable release, build, and visual audit.
+
+\subsection{Repository access and reproduction}
+The implementation repository holds the source code, protocol definitions, case
+suite, and repository-held evidence artifacts used by this revision. Persistent
+DOI assignment remains pending publication. Result-bearing artifacts are identified by their repository paths
+and content bindings rather than by an unverified archival claim.
+
+The exact decompression, independent-rescoring, byte-comparison, and
+figure-regeneration commands are given in \idt{REPRODUCE.md}. The command
+\begin{verbatim}
+make paper01-results
+\end{verbatim}
+regenerates the publication tables from archived raw records only. It does not
+execute systems under test or create missing external evidence. On a checkout
+without an admissible archived study run the underlying module reports the
+result as undetermined; malformed or unbound archives are refused rather than
+converted into publishable numbers.
+
+A fresh code and test environment requires Python 3.11 or later, an editable
+install with the development extras from the repository root, and
+model-provider access only for commands that actually execute a live-provider
+arm; dependencies are declared in \idt{pyproject.toml}.
+
+\subsection{Runtime and cost}
+The credential-free mutation-necessity campaign and its independent
+verification each complete in approximately one minute on the current CPU
+environment. They make no network call and incur no model-provider cost.
+Algorithmic effort is fixed at 2,882 worlds, nine runnable arms, five ablations,
+and 10,000 registered paired-bootstrap resamples. The provider cost of the
+earlier live-provider arm was not recorded under a bound environment and
+therefore remains undetermined; it is not imputed from the mechanical
+successor.
+
+\subsection{Licensing status}
+This revision does not contain a repository-level licence file or a project
+licence declaration in \idt{pyproject.toml}. Redistribution terms for code, case
+definitions, and protocol artifacts therefore remain undetermined from the
+repository state and must be resolved explicitly before archival or
+publication. Model-provider terms remain separately governed by the relevant
+providers.
+
+\subsection{Artifact fingerprinting}
+Result-bearing execution identities are bound through the protocol and archived
+records. Relevant coordinates include dataset and suite revisions and
+fingerprints; baseline configuration hashes; evaluator identity; frozen split
+hashes; and the exact subject revision and provider/model revisions for a live
+run. Reproduction of an empirical result requires the exact bound subject and
+admissible archived records; prose or a protocol declaration alone is not
+evidence that the run occurred.
