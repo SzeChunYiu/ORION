@@ -24,7 +24,7 @@ def _manuscript_text() -> str:
 
 def test_publication_metrics_match_reproduced_headline() -> None:
     data = json.loads(METRICS.read_text())
-    # Exact execution identity belongs in the immutable evidence package.  The
+    # Exact execution identity belongs in the immutable evidence package. The
     # double-blind manuscript may deliberately omit developer/run identifiers.
     assert data["campaign_run_id"] == "31976589735"
     assert data["subject_commit"] == "f6e51b5c8f905382b8e2f5568d9035fc14241aa1"
@@ -58,17 +58,33 @@ def test_manuscript_uses_v2_and_reports_null_h3() -> None:
     assert "protocol-matched reimplementations" in text
     assert "39-case live-model arm" in text
 
-    # Publication-facing prose must preserve the science while remaining
-    # double-blind and reader-facing. Exact run/repository identities stay in
-    # the evidence manifest rather than becoming a manuscript requirement.
-    assert "31976589735" not in text
-    assert "SzeChunYiu/ORION" not in text
-    assert "GitHub Actions run" not in text
-
-    banned = [
+    banned_stale_claims = [
         "execution bindings remain \\texttt{UNBOUND}",
         "No external results are reported",
         "awaiting external campaign",
         "remains externally \\texttt{CANNOT\\_CHECK}",
     ]
-    assert not any(term in text for term in banned)
+    assert not any(term in text for term in banned_stale_claims)
+
+
+def test_blind_manuscript_has_no_operational_repository_leakage() -> None:
+    text = _manuscript_text()
+
+    # Publication-facing prose must preserve the science while remaining
+    # double-blind and reader-facing. Exact run/repository identities stay in
+    # the evidence manifest and anonymous review artifact, not the manuscript.
+    banned_operational = [
+        "31976589735",
+        "SzeChunYiu/ORION",
+        "GitHub Actions",
+        "default branch",
+        "pull request",
+        "workflow run",
+        "run_id",
+        "papers/orion-14-verified-scientific-discovery/",
+        "development/p4-",
+        "evidence/protected_v",
+        "host/evaluate_campaign",
+        "host/independent_reproduce",
+    ]
+    assert not any(term in text for term in banned_operational)
