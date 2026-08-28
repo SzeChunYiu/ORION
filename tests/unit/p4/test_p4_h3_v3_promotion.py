@@ -288,6 +288,6 @@ def test_the_manuscript_never_reports_the_margin_without_the_other_one() -> None
         assert "$0.5$" in para, (
             "a paragraph states the 1.0 margin without the 0.5 margin against deepsciverify"
         )
-    assert "terminal expressiveness" in text, (
+    assert "outcome expressiveness" in text, (
         "the manuscript reports the number without the pre-registered reading of it"
     )

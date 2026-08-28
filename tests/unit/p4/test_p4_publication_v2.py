@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from orion.publication.manuscript_source import assemble
@@ -51,10 +52,10 @@ def test_publication_metrics_match_reproduced_headline() -> None:
         assert data["telemetry"][key] == 0
 
 
-def test_manuscript_uses_v2_and_reports_null_h3() -> None:
+def test_manuscript_reports_primary_battery_and_retained_null() -> None:
     text = _manuscript_text()
     assert "0/360" in text and "180/360" in text and "60/60" in text
-    assert "H3 was not supported" in text
+    assert "undetermined-outcome contrast was not supported" in text
     assert "protocol-matched reimplementations" in text
     assert "39-case live-model arm" in text
 
@@ -88,3 +89,23 @@ def test_blind_manuscript_has_no_operational_repository_leakage() -> None:
         "host/independent_reproduce",
     ]
     assert not any(term in text for term in banned_operational)
+
+    # The reader-facing paper must not expose internal experiment/product codes,
+    # literal decision strings, transport identifiers, or file-like names. The
+    # immutable evidence objects and audit ledgers retain those identities.
+    reader_text = re.sub(
+        r"\\(?:input|includegraphics)(?:\[[^\]]+\])?\{[^}]+\}", "", text
+    )
+    banned_reader_codes = re.compile(
+        r"(?<![A-Za-z0-9])(?:P4(?:-X)?|H[123]|V[23]|B[123]|R[0-9]+)"
+        r"(?![A-Za-z0-9])|R\s*[*]|SUBMISSION_READY|"
+        r"simulated_publication_ready_for_target|CANNOT_CHECK|NOT_SUPPORTED|"
+        r"PROMOTE|BLOCK|ORION|P4\.protected"
+    )
+    assert banned_reader_codes.search(reader_text) is None
+
+    banned_file_like = re.compile(
+        r"/Users/|/home/|papers/orion|development/|"
+        r"[A-Za-z0-9_.-]+\.(?:json|md|tex|py|pdf|zip)\b"
+    )
+    assert banned_file_like.search(reader_text) is None
