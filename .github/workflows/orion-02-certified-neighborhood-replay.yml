@@ -114,7 +114,7 @@ jobs:
               walk(observed, registered)
               raise AssertionError('scientific projection differs from registered result')
           assert observed_environment['numpy'] == registered_environment['numpy'] == '1.26.4'
-          assert observed_environment['sklearn'] == registered_environment['sklearn'] == '1.5.2'
+          assert observed_environment['scikit_learn'] == registered_environment['scikit_learn'] == '1.5.2'
           assert observed_environment['python'].split('.')[:2] == ['3', '11']
           assert registered_environment['python'] == '3.11.5'
           assert registered_environment['platform'].startswith('Linux-5.14.0-')
