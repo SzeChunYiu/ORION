@@ -1,0 +1,104 @@
+{
+  "attempt_id": "ORION02-REVIVAL-002-R24-ARM-CONDITIONAL-BOUNDARY-FIBRES",
+  "attempt_ordinal_consumed": false,
+  "authority": {
+    "freeze_authorized": false,
+    "r23_adverse_result_remains_immutable": true,
+    "scientific_authority_delta": "NONE",
+    "submission_authorized": false,
+    "top_tier_gate_pass": false
+  },
+  "counts_toward_100": false,
+  "date": "2026-08-28",
+  "execution": {
+    "pmlb_commit": "7c1f4bdc00136dc2e55c87fa6b8ba6e8af6d1a68",
+    "pmlb_tree": "ca5d36e9093c2f7360db57198c8c0586a3217a60",
+    "slurm": {
+      "account": "lu2026-2-51",
+      "allocated_cpus": 2,
+      "elapsed": "00:09:27",
+      "elapsed_seconds": 567,
+      "end": "2026-08-28T07:33:05+02:00",
+      "exit_code": "2:0",
+      "gpu_used": false,
+      "job_id": 3550259,
+      "job_name": "o02-r24-armfib",
+      "monetary_cost": "NOT_MEASURED",
+      "node": "cn063",
+      "partition": "lu48",
+      "requested_memory": "16G",
+      "start": "2026-08-28T07:23:38+02:00",
+      "state": "FAILED"
+    },
+    "source_commit": "dd3f40b8e98105a15d1a94d7a1bd61111244450b"
+  },
+  "failure": {
+    "failure_detail": "fresh R23 parent replay is not byte-identical to the frozen result",
+    "failure_stage": "ValueError",
+    "independent_verification_reached": false,
+    "job_id": 3550259,
+    "r24_scientific_payload_reached": false,
+    "stage": "RUN_A",
+    "terminal": "CANNOT_CHECK_R24_ARM_CONDITIONAL_SOURCE_RESOURCE_OR_BINDING",
+    "two_process_execution_reached": false,
+    "wrapper_exit_code": 2
+  },
+  "next_action": "diagnose exact fresh-R23 replay drift on allocated compute; repair only the infrastructure binding prospectively; rerun attempt 002 without changing the R24 mechanism or gates",
+  "preserved_artifacts": [
+    {
+      "bytes": 13,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/ORION02_R24_JOB_3550259.out",
+      "sha256": "db662b85ce74acfa13a88d3c69103c4141faa8a23d4f04088390a5251a9de36d"
+    },
+    {
+      "bytes": 6306,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/ORION02_R24_JOB_3550259.err",
+      "sha256": "2a26d6ec386e3423e10959f9cbcfc91f45e9569fbbb76b7f27e39d0745f6160e"
+    },
+    {
+      "bytes": 6,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/failed-executions/3550259/STAGE.txt",
+      "sha256": "8a7cc04b23e9ddac326fd5af4bec547a28dbb9d9e4eadd63c3d421a3d42ba988"
+    },
+    {
+      "bytes": 2,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/failed-executions/3550259/WRAPPER_EXIT_CODE.txt",
+      "sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3"
+    },
+    {
+      "bytes": 265,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/failed-executions/3550259/run_a.parent.json",
+      "sha256": "2007506677b07d8bfe94615d64f3fd3ad5fbc38dd62a88debf6aac2600416aac"
+    },
+    {
+      "bytes": 265,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/failed-executions/3550259/run_a.result.json",
+      "sha256": "2007506677b07d8bfe94615d64f3fd3ad5fbc38dd62a88debf6aac2600416aac"
+    },
+    {
+      "bytes": 0,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/failed-executions/3550259/run_a.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 142,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/failed-executions/3550259/run_a.stdout.txt",
+      "sha256": "5ce6c8993582142b71bc21064c03af46689430a09f42b2def1ba4b8960da59ab"
+    },
+    {
+      "bytes": 60,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/failed-executions/3550259/run_a.terminal.txt",
+      "sha256": "4de3a083bca9008b2a4c0bdd608d91ea63cbc7e3ed4a534b89df8b754b0295a6"
+    }
+  ],
+  "reason_not_counted": "wrapper failed during RUN_A before any R24 scientific payload or countable scientific terminal; fresh R23 parent replay was not byte-identical to the frozen R23 result",
+  "schema": "ORION.FiberGuard.PMLBArmConditionalBoundaryFibres.R24.InfrastructureFailure.v1",
+  "source_bindings": {
+    "FIBERGUARD_PMLB_ARM_CONDITIONAL_R24_PROTOCOL.md": "1262156aa83ea97384f962340433673c4b56b36922e6d3564594f28c506f84fb",
+    "ORION02_R24_EXECUTION.slurm": "06d908318b8b70631e223f224ddc0a67349e0edf7eed22dbd064f2ca0fddbdb6",
+    "R24_PRE_FREEZE_OUTCOME_EXPOSURE.json": "bc18e9dfd96c86c22f905a5e66bb440a45136bfbdb9f5f74be743dc45080409a",
+    "fiberguard_pmlb_arm_conditional_r24.py": "ae01d3cb71ba83811aa09130d08d8a458b2954bf369f41234dddc097e72999e2",
+    "run_fiberguard_pmlb_arm_conditional_r24_twice.sh": "bb58a26bb97ff3f6f9872be42c6a952e0b6bf5fe08daf82655b3315814228a81",
+    "verify_fiberguard_pmlb_arm_conditional_r24.py": "cdfbcd3006fdf527a9b981835c491a6ed322553647ec19f5c5f96bd3bcbf2bea"
+  }
+}
