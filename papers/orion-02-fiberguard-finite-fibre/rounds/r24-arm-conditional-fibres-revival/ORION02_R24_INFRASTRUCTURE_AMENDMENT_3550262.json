@@ -1,0 +1,46 @@
+{
+  "attempt_id": "ORION02-REVIVAL-002-R24-ARM-CONDITIONAL-BOUNDARY-FIBRES",
+  "authority": {
+    "paper_freeze_authorized": false,
+    "scientific_authority_delta": "NONE",
+    "submission_authorized": false,
+    "top_tier_gate_pass": false
+  },
+  "date": "2026-08-28",
+  "execution_script": "ORION02_R24_EXECUTION.slurm",
+  "forbidden_changes": [
+    "R24 policy mechanism",
+    "registered thresholds",
+    "parent/comparator definitions",
+    "terminal precedence",
+    "verifier semantics",
+    "PMLB subject commit or tree"
+  ],
+  "mechanistic_evidence": {
+    "cn063_forced_single_thread_sha256": "af2e686bd52ebcd5bf83d0b8ebfefe974eb2e3f629b9864fbb0dd795a99bf072",
+    "cn087_forced_single_thread_sha256": "af2e686bd52ebcd5bf83d0b8ebfefe974eb2e3f629b9864fbb0dd795a99bf072",
+    "cn087_original_profile_sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77",
+    "controlled_difference_count": 56,
+    "custody": "ORION02_R24_R23_PARENT_SAME_NODE_DIAGNOSTIC_3550262_CUSTODY.json",
+    "frozen_r23_sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77"
+  },
+  "outcome_boundary": {
+    "attempt_002_consumed": false,
+    "counts_toward_100": false,
+    "r24_policy_executed": false,
+    "r24_scientific_outcome_exposed": false
+  },
+  "permitted_changes": [
+    "pin the R24 SLURM execution to cn087, the node of the byte-identical frozen-parent replay",
+    "remove the forced PYTHONHASHSEED and BLAS/OpenMP single-thread profile before executor launch",
+    "add a regression test that rejects reintroduction of the drift-inducing execution profile"
+  ],
+  "schema": "ORION.FiberGuard.R24.InfrastructureAmendment.v1",
+  "status": "PRE_OUTCOME_INFRASTRUCTURE_AMENDMENT_READY_FOR_COMMIT_BINDING",
+  "trigger": {
+    "controlled_discriminator_array_job": 3550262,
+    "diagnostic_job": 3550260,
+    "failed_job": 3550259
+  },
+  "unchanged_scientific_protocol": "FIBERGUARD_PMLB_ARM_CONDITIONAL_R24_PROTOCOL.md"
+}

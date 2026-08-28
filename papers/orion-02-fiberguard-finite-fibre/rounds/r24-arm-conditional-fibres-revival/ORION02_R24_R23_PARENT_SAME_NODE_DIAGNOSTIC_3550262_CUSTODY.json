@@ -1,0 +1,125 @@
+{
+  "authority": {
+    "attempt_002_consumed": false,
+    "counts_toward_100": false,
+    "freeze_authorized": false,
+    "r24_policy_executed": false,
+    "r24_scientific_outcome_exposed": false,
+    "scientific_authority_delta": "NONE",
+    "submission_authorized": false,
+    "top_tier_gate_pass": false
+  },
+  "controlled_discriminator": {
+    "held_constant": [
+      "source commit",
+      "pmlb commit and tree",
+      "cn087 node",
+      "venv interpreter",
+      "allocated CPUs",
+      "requested memory",
+      "R23 executor"
+    ],
+    "varied": {
+      "task_0": "PYTHONHASHSEED, OPENBLAS_NUM_THREADS, OMP_NUM_THREADS, MKL_NUM_THREADS, and NUMEXPR_NUM_THREADS unset",
+      "task_1": "PYTHONHASHSEED=0 and all four thread variables=1"
+    }
+  },
+  "date": "2026-08-28",
+  "job": {
+    "account": "lu2026-2-51",
+    "allocated_cpus": 2,
+    "array_job_id": 3550262,
+    "node": "cn087",
+    "partition": "lu48",
+    "requested_memory": "16G",
+    "tasks": [
+      {
+        "array_task_id": 0,
+        "elapsed": "00:08:26",
+        "end": "2026-08-28T08:06:02+02:00",
+        "exit_code": "0:0",
+        "job_id_raw": 3550263,
+        "profile": "original_environment_variables_unset",
+        "start": "2026-08-28T07:57:36+02:00",
+        "state": "COMPLETED"
+      },
+      {
+        "array_task_id": 1,
+        "elapsed": "00:08:04",
+        "end": "2026-08-28T08:05:41+02:00",
+        "exit_code": "0:0",
+        "job_id_raw": 3550262,
+        "profile": "forced_single_thread",
+        "start": "2026-08-28T07:57:37+02:00",
+        "state": "COMPLETED"
+      }
+    ]
+  },
+  "mechanistic_conclusion": "The forced single-thread/hash profile is sufficient to induce the 56-field R23 replay drift. On the original cn087 node, removing that profile restores exact frozen-parent bytes. R24 execution must therefore use cn087 with those variables absent; this is an infrastructure-only amendment before any R24 policy outcome was exposed.",
+  "preserved_artifacts": [
+    {
+      "bytes": 495057,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/R23_PARENT_DIAGNOSTIC_JOB_3550262_0_original-env.fresh.json",
+      "sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77"
+    },
+    {
+      "bytes": 1828,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/R23_PARENT_DIAGNOSTIC_JOB_3550262_0_original-env.receipt.json",
+      "sha256": "687144748f3833d8cb6cf04591a1533baad8fe4995c9930b7fcd92612289b2a4"
+    },
+    {
+      "bytes": 495186,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/R23_PARENT_DIAGNOSTIC_JOB_3550262_1_single-thread.fresh.json",
+      "sha256": "af2e686bd52ebcd5bf83d0b8ebfefe974eb2e3f629b9864fbb0dd795a99bf072"
+    },
+    {
+      "bytes": 14299,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/R23_PARENT_DIAGNOSTIC_JOB_3550262_1_single-thread.receipt.json",
+      "sha256": "eed322b87e5400cc1f83b7e5e9d95ca452d8a14d164686efbd02a3a86302ef30"
+    },
+    {
+      "bytes": 1499,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/ORION02_R24_R23_PARENT_SAME_NODE_DIAGNOSTIC_3550262.slurm",
+      "sha256": "afd5cd1295bb375d8b87a9396bf4c9fc19f3fa31d54fe2d85d27a9e9a4710090"
+    },
+    {
+      "bytes": 234,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/ORION02_R24_R23_PARENT_SAME_NODE_JOB_3550262_0.out",
+      "sha256": "76066096f956f932f3dfc16eb316b720a9c6db8a993de5079cc93c1a5b1b8cad"
+    },
+    {
+      "bytes": 0,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/ORION02_R24_R23_PARENT_SAME_NODE_JOB_3550262_0.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 241,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/ORION02_R24_R23_PARENT_SAME_NODE_JOB_3550262_1.out",
+      "sha256": "4aed7970d0d7c31385d7e2f87dbf1b0af9375618fc5a2916ad0b2f8211fc34a4"
+    },
+    {
+      "bytes": 0,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/ORION02_R24_R23_PARENT_SAME_NODE_JOB_3550262_1.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "results": {
+    "cross_node_match": "task_1 forced-single-thread SHA equals job 3550260 on cn063",
+    "task_0": {
+      "byte_identical": true,
+      "difference_count": 0,
+      "fresh_sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77",
+      "frozen_sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77",
+      "terminal": "R23_PARENT_REPLAY_BYTE_IDENTICAL"
+    },
+    "task_1": {
+      "byte_identical": false,
+      "difference_count": 56,
+      "fresh_sha256": "af2e686bd52ebcd5bf83d0b8ebfefe974eb2e3f629b9864fbb0dd795a99bf072",
+      "frozen_sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77",
+      "terminal": "R23_PARENT_REPLAY_BYTE_DRIFT_DIAGNOSED"
+    }
+  },
+  "schema": "ORION.FiberGuard.R24.R23ParentReplaySameNodeDiagnosticCustody.v1",
+  "source_commit": "65e319b436cbb1d6fc98b2d462be5e89925a3caa"
+}

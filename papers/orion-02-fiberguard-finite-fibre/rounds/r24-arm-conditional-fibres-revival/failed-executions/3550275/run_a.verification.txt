@@ -1,0 +1,32 @@
+[PASS] result schema
+[PASS] R23 parent byte binding
+[PASS] terminal file
+[PASS] authority remains none
+[PASS] stored decisions R24_ARM_CONDITIONAL_BOUNDARY_FIBRES
+[PASS] full-state pool replay R24_ARM_CONDITIONAL_BOUNDARY_FIBRES
+[PASS] coverage replay R24_ARM_CONDITIONAL_BOUNDARY_FIBRES
+[PASS] stored decisions R24_LEXICAL_GOOD_BOUNDARY_NEGATIVE_CONTROL
+[PASS] full-state pool replay R24_LEXICAL_GOOD_BOUNDARY_NEGATIVE_CONTROL
+[PASS] coverage replay R24_LEXICAL_GOOD_BOUNDARY_NEGATIVE_CONTROL
+[PASS] arm summary R24_PRIMARY_LEARNED
+[PASS] arm summary R24_STATIC_ADAPTIVE
+[FAIL] arm summary R23_PARENT_PRIMARY_LEARNED
+[PASS] arm summary R24_LEXICAL_MATCHED_PRIMARY
+[PASS] comparison primary-v-r23-primary left_minus_right_by_dataset
+[PASS] comparison primary-v-r23-primary mean_diff
+[PASS] comparison primary-v-r23-primary ci_lower
+[PASS] comparison primary-v-r23-primary ci_upper
+[PASS] comparison primary-v-r23-primary bootstrap_replicates
+[PASS] comparison primary-v-lexical-matched left_minus_right_by_dataset
+[PASS] comparison primary-v-lexical-matched mean_diff
+[PASS] comparison primary-v-lexical-matched ci_lower
+[PASS] comparison primary-v-lexical-matched ci_upper
+[PASS] comparison primary-v-lexical-matched bootstrap_replicates
+[PASS] comparison primary-v-static left_minus_right_by_dataset
+[PASS] comparison primary-v-static mean_diff
+[PASS] comparison primary-v-static ci_lower
+[PASS] comparison primary-v-static ci_upper
+[PASS] comparison primary-v-static bootstrap_replicates
+[PASS] hostile controls
+[PASS] terminal independently derived
+VERIFY_FAILED failures=1
