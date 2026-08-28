@@ -1,0 +1,129 @@
+{
+  "candidate_id": "ORION02.SELECTIVE_FIBRE_RISK.v1",
+  "date": "2026-08-28",
+  "status": "PREREGISTRATION_ONLY__NOT_EXECUTED__NO_SCIENTIFIC_AUTHORITY",
+  "scientific_authority_delta": "NONE",
+  "protocol_freeze": false,
+  "compute_performed": "none",
+  "freeze_rule": "This protocol is frozen only when committed and hash-registered BEFORE any outcome access. Editing any field below after outcome access voids the study and must be recorded as a post-outcome tolerance change.",
+  "upstream": {
+    "issue": "1608",
+    "successor_theory": "refs/rev/pr1615:papers/publication_closure/wave2/WAVE2_SUCCESSOR_THEORY_CANDIDATES_2026-08-28.md#priority-2",
+    "adverse_parent": "refs/rev/pr1598:papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/",
+    "parent_terminal": "C_R24_ARM_CONDITIONAL_CERTIFICATE_INVALID"
+  },
+
+  "risk_functional": {
+    "name": "finite_sample_calibrated_selective_risk",
+    "explicitly_not": "raw_selected_maximum",
+    "why_not_raw_maximum": [
+      "tau ceiling: every R24 pool branch admits on excess <= tau + TOL, so bound <= tau identically; verified 0/1633 non-null bounds exceed tau=0.02, max 0.019561442517",
+      "exchangeability floor: P(L_new > max of K exchangeable losses) = 1/(K+1); POOL_K=2 gives 1/3 > 0.10"
+    ],
+    "estimator": "r_hat = L_(ceil((n+1)*(1-alpha))) over CALIBRATION-selected losses, ascending order statistics",
+    "n_definition": "count of CALIBRATION rows with s(x)=select",
+    "requires": "n >= ceil(1/alpha) - 1",
+    "alpha": 0.10,
+    "test_reporting": "violation rate with one-sided Clopper-Pearson 95% upper bound",
+    "escape_argument": "r_hat is an order statistic of the realised CALIBRATION loss distribution; no admission predicate caps it, so its range matches the target's range. The ceil((n+1)(1-alpha)) rank replaces the K=2 maximum, giving finite-sample validity at the declared alpha under exchangeability.",
+    "assumption_not_result": "Exchangeability between CALIBRATION and TEST is assumed, not proved. Validity is assessed WITHIN each domain and never pooled across domains."
+  },
+
+  "custody": {
+    "splits": ["TRAIN", "CALIBRATION", "TEST"],
+    "disjointness": "strict, pairwise empty intersection",
+    "invariant": "r_hat derived from CALIBRATION only; TEST never used for metric learning, arm selection, or threshold choice",
+    "verifiable_check": {
+      "manifest": "each split emits a sorted SHA-256 manifest of instance identifiers",
+      "assertion_1": "pairwise intersection of TRAIN/CALIBRATION/TEST manifests is empty",
+      "assertion_2": "recorded r_hat is bit-identical to the value recomputable from the CALIBRATION manifest alone",
+      "assertion_3": "no TEST identifier appears in any fitting or thresholding trace",
+      "on_failure": "hard executor failure, not a warning"
+    },
+    "split_assignment": "by SHA-256 of immutable instance identifier, fixed before outcome access, following extensions/r15 precedent",
+    "independent_verify": "two byte-identical process runs (run_a/run_b), matching the R24 custody standard where run_a.result.json and run_b.result.json resolved to one blob"
+  },
+
+  "arms": [
+    {"id": "EXACT_FIBRE",        "role": "primary_reference",  "description": "exact representation fibre; equality of phi"},
+    {"id": "R24_GEOMETRY",       "role": "primary_treatment",  "description": "R24 arm-conditional boundary geometry, recalibrated under the new functional"},
+    {"id": "LEXICAL_CONTROL",    "role": "matched_control",    "description": "no-geometry lexical rule, information- and budget-matched; the R24 control that already matched geometry at 44/44 with fewer violations (14 vs 20)"},
+    {"id": "LEARNED_METRIC",     "role": "strong_comparator",  "description": "metric learned on TRAIN only"},
+    {"id": "KNN_RF_SELECTOR",    "role": "strong_comparator",  "description": "kNN / random-forest selector; neighbour count is an acquisition parameter and never enters bound construction"},
+    {"id": "RANDOM_METRIC",      "role": "negative_control",   "description": "random metric at matched budget; isolates whether structure or budget drives any effect"},
+    {"id": "ABSTAIN_FLOOR",      "role": "floor_control",      "description": "abstain-always floor; establishes the trivial-validity baseline that coverage must beat"},
+    {"id": "IMPOSSIBILITY_WITNESS", "role": "theorem_negative_control", "description": "A_t/B_t fibre with D(z) >= 2t-1; must NOT be certifiable at radius < D(z)/2. Certifying it indicates an executor defect."}
+  ],
+
+  "abstention": {
+    "explicit": true,
+    "rule": "abstain when the calibrated selective bound cannot be issued at alpha for the instance's fibre",
+    "reported": "abstention rate is reported per domain per arm, never suppressed",
+    "a_max_registered": 0.40
+  },
+
+  "coverage": {
+    "role": "CO-PRIMARY",
+    "explicitly_not": "a substitute for validity",
+    "rationale": "R24 reached 44/44 coverage and still failed validity at 20/44 violations; coverage alone is not evidence of a working certificate",
+    "useful_coverage_gate": 0.60
+  },
+
+  "domains": {
+    "count_required": 4,
+    "disjointness": "domain-level; replaces R24 fold-role reuse of one 44-dataset corpus",
+    "candidates": [
+      {"name": "PMLB_TABULAR",           "source": "rounds/r22-proposal-ordering/FIBERGUARD_PMLB_R22_DATASET_FREEZE.json"},
+      {"name": "ASLIB_SAT12_ALL",        "source": "extensions/r11, extensions/r14"},
+      {"name": "ASP_POTASSCO",           "source": "extensions/r15/FIBERGUARD_MULTIDOMAIN_R15_PROTOCOL.md"},
+      {"name": "CSP_MINIZINC_TIME_2016", "source": "extensions/r15, rounds/r21-direct-relative"},
+      {"name": "GRAPHS_2015",            "source": "extensions/r15/FIBERGUARD_MULTIDOMAIN_R15_PROTOCOL.md"},
+      {"name": "BNSL",                   "source": "extensions/r20"}
+    ],
+    "excluded": [
+      {"name": "TSP", "reason": "prerequisite failure precedent: rounds/r21-direct-relative/FIBERGUARD_TSP_DIRECT_RELATIVE_R21_PREREQUISITE_FAILURE.md"}
+    ],
+    "availability_rule": "availability is a PREREQUISITE verified before freeze, not an assumption. A domain that cannot supply the pool floor is dropped before outcome access and recorded as a prerequisite failure; never back-filled after seeing results.",
+    "no_pooling": "metrics are compared within domain; values are not pooled across domains (extensions/r15 precedent)"
+  },
+
+  "sample_size": {
+    "selected_test_decisions_min_per_domain": 60,
+    "interpretation": "post-selection AND post-abstention floor on TEST",
+    "test_pool_min_per_domain": 100,
+    "derivation": "ceil(60 / (1 - a_max)) with a_max = 0.40",
+    "calibration": {"min_selected_per_domain": 200, "hard_minimum_from_alpha": 9}
+  },
+
+  "gates": [
+    {"id": "G1_VALIDITY",   "statement": "one-sided Clopper-Pearson 95% upper bound on TEST violation rate <= 0.10 in EVERY domain", "type": "hard"},
+    {"id": "G2_COVERAGE",   "statement": "useful coverage >= 0.60 per domain", "type": "hard"},
+    {"id": "G3_GEOMETRY",   "statement": "R24_GEOMETRY improves coverage by >= 10 points over LEXICAL_CONTROL at the same certified risk", "type": "hard"},
+    {"id": "G4_VALUE",      "statement": "realised decision value noninferior to the strongest learned comparator", "type": "hard"},
+    {"id": "G5_WITNESS",    "statement": "IMPOSSIBILITY_WITNESS is NOT certified at radius < D(z)/2", "type": "hard_negative"}
+  ],
+  "gate_execution": "hard gates are EXECUTED, not logged. A failed hard gate stops terminal precedence at the corresponding adverse terminal.",
+
+  "stop_rule": {
+    "source": "issue 1608",
+    "statement": "If the lexical or learned control matches geometry after valid calibration, STOP rehabilitating geometric transfer and publish the boundary result.",
+    "binding": true,
+    "note": "This is a legitimate publishable terminal, not a failure to be revived."
+  },
+
+  "pre_freeze_outcome_exposure": {
+    "declared": true,
+    "text": "The complete R24 result was inspected before this design. This protocol is prospective only with respect to NEW policy output. Known-outcome exposure is declared following the R23/R24 PRE_FREEZE_OUTCOME_EXPOSURE precedent.",
+    "known_from_r24": ["coverage 44/44", "violations_strict 20/44", "violations_tau 11/44", "lexical control 44/44 with 14 violations", "max bound 0.019561442517", "TAU 0.02", "POOL_K 2"]
+  },
+
+  "forbidden_actions": [
+    "increasing compute or budget in place of resolving the scientific claim",
+    "retuning any threshold after outcome access",
+    "selecting an arm after seeing TEST outcomes",
+    "changing the fallback after seeing TEST outcomes",
+    "substituting a domain after a prerequisite failure",
+    "asserting unconditional impossibility for any pool size, radius or metric",
+    "claiming the risk functional is novel"
+  ]
+}

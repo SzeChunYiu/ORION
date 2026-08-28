@@ -1,0 +1,112 @@
+{
+  "candidate_id": "ORION02.SELECTIVE_FIBRE_RISK.v1",
+  "date": "2026-08-28",
+  "status": "PREREGISTRATION_ONLY__NOT_EXECUTED__NO_SCIENTIFIC_AUTHORITY",
+  "scientific_authority_delta": "NONE",
+  "design_check": {
+    "requirement": "The design is wrong if every terminal is favourable.",
+    "favourable_terminals": 1,
+    "conditional_terminals": 1,
+    "unfavourable_terminals": 8,
+    "satisfied": true,
+    "note": "The single favourable terminal requires ALL FIVE hard gates to pass in EVERY domain. Each gate has a named, reachable failure terminal below.",
+    "total_terminals": 10,
+    "unfavourable_breakdown": {
+      "EXECUTOR_INTEGRITY": 2,
+      "THEORY_ADVERSE": 1,
+      "PREREQUISITE": 1,
+      "PRIMARY_ADVERSE": 3,
+      "BOUNDARY_RESULT": 1
+    }
+  },
+  "precedence_rule": "Terminals are evaluated in the listed order. The FIRST matching terminal is the study terminal. Executor-integrity terminals precede prerequisite terminals, which precede scientific terminals. A later favourable terminal can never override an earlier adverse one.",
+  "terminals": [
+    {
+      "order": 1,
+      "id": "C_SFR_EXECUTOR_DEFECT_WITNESS_CERTIFIED",
+      "class": "UNFAVOURABLE__EXECUTOR_INTEGRITY",
+      "trigger": "IMPOSSIBILITY_WITNESS is certified at radius < D(z)/2 (gate G5 fails).",
+      "meaning": "The executor certified something a proved theorem forbids. All other results from the same run are void.",
+      "action": "Halt. Do not report any scientific finding from this run. Diagnose the executor."
+    },
+    {
+      "order": 2,
+      "id": "C_SFR_CUSTODY_VIOLATION",
+      "class": "UNFAVOURABLE__EXECUTOR_INTEGRITY",
+      "trigger": "Any custody assertion fails: split manifests intersect, r_hat is not reproducible from CALIBRATION alone, or a TEST identifier appears in a fitting or thresholding trace.",
+      "meaning": "The disjointness invariant that makes the calibration argument valid did not hold.",
+      "action": "Halt. Void the run. No CANNOT_CHECK downgrade: a custody violation is an adverse finding, not an unknown."
+    },
+    {
+      "order": 3,
+      "id": "C_SFR_THEORY_CONTRADICTED_BELOW_DIAMETER_FLOOR",
+      "class": "UNFAVOURABLE__THEORY_ADVERSE",
+      "trigger": "Observed achievable risk on a fibre falls BELOW the D(z)/2 floor.",
+      "meaning": "Either the D(z)/2 lower bound is wrong, or the fibre was mis-identified so the measured object is not the fibre. Both are adverse for ORION02.FIBRE_AMBIGUITY_RISK.v1.",
+      "action": "Preserve undiluted. Do not reinterpret as a coverage success. Attribute to exactly one stage before any revival."
+    },
+    {
+      "order": 4,
+      "id": "C_SFR_PREREQUISITE_FAILURE_DOMAINS",
+      "class": "UNFAVOURABLE__PREREQUISITE",
+      "trigger": "Fewer than 4 domains supply the registered pre-selection TEST pool floor of 100.",
+      "meaning": "The study cannot be run as registered.",
+      "action": "Record as prerequisite failure following the R21 TSP precedent. Do NOT substitute a domain and do NOT lower the floor."
+    },
+    {
+      "order": 5,
+      "id": "C_SFR_CALIBRATED_RISK_INVALID",
+      "class": "UNFAVOURABLE__PRIMARY_ADVERSE",
+      "trigger": "Gate G1 fails: the one-sided Clopper-Pearson 95% upper bound on TEST violation rate exceeds 0.10 in at least one domain.",
+      "meaning": "The replacement functional does not deliver held-out validity either. The failure would then be neither the tau ceiling nor the K=2 exchangeability floor, since both are removed by construction, so a third mechanism exists and must be found.",
+      "action": "Preserve undiluted. This is the direct analogue of the R24 terminal and is a fully reachable outcome."
+    },
+    {
+      "order": 6,
+      "id": "C_SFR_ABSTENTION_EXCEEDS_COVERAGE_FLOOR",
+      "class": "UNFAVOURABLE__PRIMARY_ADVERSE",
+      "trigger": "Validity holds only by abstaining so often that useful coverage falls below 0.60 (gate G2 fails), or abstention exceeds the registered a_max = 0.40.",
+      "meaning": "Validity was purchased with abstention rather than earned. The ABSTAIN_FLOOR arm attains trivial validity at zero coverage; approaching it is not a result.",
+      "action": "Report validity and coverage together. Never report the validity number alone."
+    },
+    {
+      "order": 7,
+      "id": "C_SFR_GEOMETRY_NO_VALUE_OVER_LEXICAL",
+      "class": "UNFAVOURABLE__BOUNDARY_RESULT",
+      "trigger": "Gate G3 fails: R24_GEOMETRY does not improve coverage by >= 10 points over LEXICAL_CONTROL at the same certified risk.",
+      "meaning": "Geometry supplies no residual empirical role once calibration is valid. This reproduces the R24 finding under a corrected functional and strengthens it.",
+      "action": "Issue #1608 STOP RULE applies and is binding: stop rehabilitating geometric transfer and PUBLISH the boundary result. This is a legitimate publishable terminal, not a failure to be revived.",
+      "prior_expectation": "Materially likely. In R24 the lexical control matched geometry at 44/44 coverage with FEWER violations (14 vs 20), and the geometry-vs-lexical interval [0.0, 0.000969522145] did not establish geometric value."
+    },
+    {
+      "order": 8,
+      "id": "C_SFR_VALUE_INFERIOR_TO_LEARNED",
+      "class": "UNFAVOURABLE__PRIMARY_ADVERSE",
+      "trigger": "Gate G4 fails: realised decision value is inferior to the strongest learned comparator.",
+      "meaning": "The certificate is valid but not worth using.",
+      "action": "Preserve. Validity without value does not support promotion."
+    },
+    {
+      "order": 9,
+      "id": "C_SFR_PROMOTE_CONDITIONALLY",
+      "class": "INTERMEDIATE__NOT_TERMINAL",
+      "trigger": "All hard gates pass in some but not all domains.",
+      "meaning": "A regime-conditional positive. Under standing doctrine this is INTERMEDIATE, never a stopping point.",
+      "action": "Name the failing domain, attribute the failure to exactly ONE stage, and register the next lever before any promotion is considered. A conditional positive grants no authority.",
+      "explicitly_not": "a terminal success"
+    },
+    {
+      "order": 10,
+      "id": "C_SFR_CALIBRATED_SELECTIVE_RISK_VALID",
+      "class": "FAVOURABLE",
+      "trigger": "All five hard gates pass in EVERY domain, with no executor-integrity or prerequisite terminal triggered.",
+      "meaning": "The calibrated selective-risk functional delivers held-out validity at alpha = 0.10 with useful coverage, geometry adds coverage over lexical at matched risk, decision value is noninferior, and the impossibility witness is correctly refused.",
+      "action": "Even here, authority is NOT granted by this study. Promotion requires independent proof audit of T1 and T2, which are stated as obligations and are NOT proved in THEORY.md. Donor credit per THEORY.md section 4 is mandatory in any write-up."
+    }
+  ],
+  "explicitly_not_expected": [
+    "That any outcome of this study revises the frozen ORION-02 theory core (C-C1..C-C7). Those are proofs; this is an empirical study of a different object.",
+    "That a favourable terminal establishes novelty of the risk functional. It is donor-owned split-conformal / selective-risk machinery.",
+    "That marginal validity implies fibre-conditional validity. Only the Mondrian / group-conditional arm speaks to conditional validity, and it is secondary."
+  ]
+}
