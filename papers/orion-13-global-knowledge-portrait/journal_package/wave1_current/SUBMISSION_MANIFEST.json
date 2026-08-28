@@ -1,0 +1,381 @@
+{
+  "article_type": "full paper",
+  "artifacts": [
+    {
+      "bytes": 81132,
+      "path": "manuscript.pdf",
+      "sha256": "aff2be33f907a21549776ed888364f04351b0fb8e481087e3b7936516aef0a4b"
+    },
+    {
+      "bytes": 22102,
+      "path": "ORION13_SWJ_SOURCE.zip",
+      "sha256": "c0db657810e7ee90df36c2c3edd81f6c91a859f551f058c3fc1645007b689aff"
+    },
+    {
+      "bytes": 33172,
+      "path": "ORION13_SWJ_REVIEW_RESOURCES.zip",
+      "sha256": "e4061e3aa596e580219c01ef1300f2f1f89d5c409542ea343dddc54414b632f3"
+    },
+    {
+      "bytes": 2523,
+      "path": "COVER_LETTER.md",
+      "sha256": "1080670f7a029ce8ea4835cfb450dfe8a7fd5fd5c4a38542f5a8b6ce263a9f99"
+    },
+    {
+      "bytes": 1070,
+      "path": "AVAILABILITY_STATEMENT.md",
+      "sha256": "857ae8fc9b0a145e61f56c7a353a8eb03510ccbfed6d3e686d8e1221f8d14f4c"
+    },
+    {
+      "bytes": 1135,
+      "path": "HUMAN_INPUTS_REQUIRED.md",
+      "sha256": "345dbae834247cc70681f1e8a85400b4f5c5174d6728667e30e900d9fa4fab4e"
+    },
+    {
+      "bytes": 1275,
+      "path": "REVIEW_RESOURCES_README.md",
+      "sha256": "5c442b5f035aa8ae58e0dd31a4edfa81b3ff2b59ac1de890be04d524d5f6d658"
+    }
+  ],
+  "author": {
+    "email": "sze-chun.yiu@fysik.su.se",
+    "human_only_fields_open": [
+      "affiliation",
+      "ORCID",
+      "funding",
+      "conflicts",
+      "contributions",
+      "final acknowledgements"
+    ],
+    "name": "Sze Chun Yiu"
+  },
+  "blockers": [
+    {
+      "class": "PUBLICATION_CRITERIA",
+      "detail": "SWJ full-paper significance is not established by a 32-case polarity-localized comparison against a deliberately weak baseline.",
+      "id": "ORION13-B1",
+      "resolution": "fair same-universe current comparator, affirmative editor fit indication, or defensible retargeting"
+    },
+    {
+      "class": "OPEN_SCIENCE",
+      "detail": "No long-term stable immutable URL is bound to the exact review-resource ZIP.",
+      "id": "ORION13-B2",
+      "resolution": "deposit these exact bytes and record the stable URL without rebuilding the ZIP"
+    },
+    {
+      "class": "TARGET_TEMPLATE",
+      "detail": "The official linked Sage LaTeX template URL returns an HTML 404 artifact.",
+      "id": "ORION13-B3",
+      "resolution": "obtain a working current template or written editor guidance, then rebuild exact filing bytes"
+    },
+    {
+      "class": "HUMAN_AUTHORSHIP_POLICY",
+      "detail": "SWJ FAQ Q28 human-writing compliance cannot be attested by the editing system.",
+      "id": "ORION13-B4",
+      "resolution": "human rewrite/verification as needed plus exact assistance disclosure and author attestation"
+    },
+    {
+      "class": "HUMAN_METADATA",
+      "detail": "Affiliation and filing declarations are incomplete.",
+      "id": "ORION13-B5",
+      "resolution": "human author completes every field or explicitly marks it not applicable"
+    }
+  ],
+  "claim_boundary": "C5/C9 already-structured mapping only; all six observed comparator errors are polarity contrasts. No raw-text, expert-atlas, downstream, universal-coordinate, current-system superiority, external-replication, or cross-host claim.",
+  "fallback_venue": "Journal of Web Semantics",
+  "paper_id": "ORION-13",
+  "pdf": {
+    "bytes": 81132,
+    "pages": 8,
+    "path": "manuscript.pdf",
+    "sha256": "aff2be33f907a21549776ed888364f04351b0fb8e481087e3b7936516aef0a4b",
+    "source_pdf_exact_byte_match": true,
+    "source_pdf_sha256": "aff2be33f907a21549776ed888364f04351b0fb8e481087e3b7936516aef0a4b",
+    "template_blocker": "official linked Sage LaTeX ZIP resolves to an HTML 404 page",
+    "template_compliance": false
+  },
+  "primary_venue": "Semantic Web Journal",
+  "readiness_judgments": {
+    "strong_specialist_submission": "BLOCKED_BY_INTEGRITY_OR_COMPLIANCE",
+    "top_tier_or_external_authority": "NOT_ESTABLISHED"
+  },
+  "review_archive_url": null,
+  "review_resource_closure": [
+    {
+      "bytes": 1275,
+      "path": "journal_package/wave1_current/REVIEW_RESOURCES_README.md",
+      "sha256": "5c442b5f035aa8ae58e0dd31a4edfa81b3ff2b59ac1de890be04d524d5f6d658"
+    },
+    {
+      "bytes": 1365,
+      "path": "REPRODUCE.md",
+      "sha256": "164e20ec97e9570ded26a90af97afcec44d2164fc06f51e7232b9680c1046dca"
+    },
+    {
+      "bytes": 440,
+      "path": "journal_package/LICENSE.md",
+      "sha256": "ada777156d224b17459e2fd3bbc48769732f1ea7b391e9db82ce066fc6b90b77"
+    },
+    {
+      "bytes": 2499,
+      "path": "gold/PUBLIC_REFERENCE_SOURCE_REGISTRY_V1.json",
+      "sha256": "104c3f4fb7521a1a1c4ec2e6c96d3fec57f6b7e8645a28efb7d8b3553cc84edf"
+    },
+    {
+      "bytes": 760,
+      "path": "gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json",
+      "sha256": "48f78c3c5049c52cf41c381fbb7d627f5d96fbbb034012fffdac0f8e42173e6a"
+    },
+    {
+      "bytes": 54244,
+      "path": "gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "sha256": "35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8"
+    },
+    {
+      "bytes": 760,
+      "path": "gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_FREEZE_MANIFEST_V1.json",
+      "sha256": "6117da6a70176c604fdb72ff2dc13cc5dc332b9a8e34db729500f1c06b7573c7"
+    },
+    {
+      "bytes": 51901,
+      "path": "gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "sha256": "13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b"
+    },
+    {
+      "bytes": 4561,
+      "path": "protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json",
+      "sha256": "494616042d990a113533865092bf01a2ce2a314ba1ec660f798a6afc9a3530a9"
+    },
+    {
+      "bytes": 19125,
+      "path": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+      "sha256": "c15676f2c897e963441e042df7911e97fc86955f2dd73b9fd823cdb2948fa92d"
+    },
+    {
+      "bytes": 4561,
+      "path": "evidence/public-reference-v1.1-confirmatory/EXECUTION_MANIFEST.json",
+      "sha256": "494616042d990a113533865092bf01a2ce2a314ba1ec660f798a6afc9a3530a9"
+    },
+    {
+      "bytes": 1020,
+      "path": "evidence/public-reference-v1.1-confirmatory/SUMMARY.json",
+      "sha256": "d2499156c5a4ab8fb9ed592044d34d59af3eb08b07cf2cdb881634e13b601df9"
+    },
+    {
+      "bytes": 573,
+      "path": "evidence/public-reference-v1.1-confirmatory/SHA256SUMS",
+      "sha256": "17e847d5ade7468530703c2d8023d0f4f247c7315550fcd9b8ac3d1b9bf750fb"
+    },
+    {
+      "bytes": 2597,
+      "path": "evidence/coordinate-obstruction-v2/CONFIRMATORY_REPRODUCTION_RECEIPT.json",
+      "sha256": "16c198eae10e2f5e0e8f41d7e780ef7d4da3e53caa65ff271ef199dea5b82ee8"
+    },
+    {
+      "bytes": 2332,
+      "path": "evidence/coordinate-obstruction-v2/REPRODUCTION_RECEIPT_R0_REBIND_CORRECTION_2026-08-28.json",
+      "sha256": "794581cedc2b28be456d43109f9da731f11acd12b4a959295a9569d0d69d0fce"
+    },
+    {
+      "bytes": 233,
+      "path": "evidence/coordinate-obstruction-v2/SHA256SUMS",
+      "sha256": "f2330e23caece95ad8b38ca57df8a1ee27bbd3acedba0d739a49c00a0fb9975f"
+    },
+    {
+      "bytes": 15452,
+      "path": "scripts/verify_confirmatory_independent.py",
+      "sha256": "046ae398394a665e54429433d94a27ed2fa0b097acb8fc546d422db64d44c06b"
+    },
+    {
+      "bytes": 12432,
+      "path": "editorial/INDEPENDENT_CONFIRMATORY_REPLAY.json",
+      "sha256": "6b16e94b5a7aa2a1562460f173eab0025e1e33b93a9632b8c596a693d8f38d5f"
+    },
+    {
+      "bytes": 3646,
+      "path": "manuscript/generate_tables.py",
+      "sha256": "4b01c65d504e4020fa585c10cf1716062dd4835222b660f746fe999d7aad8f24"
+    },
+    {
+      "bytes": 470,
+      "path": "manuscript/tables/confirmatory_case_families.tex",
+      "sha256": "b22d5c7332a236ed24adb2a632566ace6304c8789294518f9f38a463c71c0893"
+    },
+    {
+      "bytes": 793,
+      "path": "manuscript/tables/confirmatory_primary_results.tex",
+      "sha256": "7a82c25e73fe6678ad27e609e1c58049678d5162ac277481e48f8fbf6de8b11a"
+    }
+  ],
+  "round1_review_pdf_sha256": "b843d9ef8cd399c3e186e3a05edca582a2bd9de08f3c22d192b7187b42ac4c19",
+  "schema_version": "orion.orion13.wave1-submission-manifest.v1",
+  "scientific_terminal": "PASS_BOUNDED_STRUCTURED_MAPPING",
+  "skills_applied": [
+    "nature-writing",
+    "nature-polishing",
+    "nature-figure",
+    "nature-citation",
+    "nature-academic-search",
+    "nature-literature-pipeline",
+    "nature-data",
+    "nature-reviewer"
+  ],
+  "source_closure": [
+    {
+      "bytes": 1990,
+      "path": "manuscript/main.tex",
+      "sha256": "c7861293961bce6d178626ab2109140a5af50f46e6ea2d592344d6f07fc6b739"
+    },
+    {
+      "bytes": 5771,
+      "path": "manuscript/bibliography.bib",
+      "sha256": "24dde025c1ee1d452fadb40df8efbeb6f80ca401db21579839eae3dd81459fe7"
+    },
+    {
+      "bytes": 3646,
+      "path": "manuscript/generate_tables.py",
+      "sha256": "4b01c65d504e4020fa585c10cf1716062dd4835222b660f746fe999d7aad8f24"
+    },
+    {
+      "bytes": 1285,
+      "path": "manuscript/sections/00-abstract.tex",
+      "sha256": "fc18889d9db3a0dbc720893bf8ee692f87974f812cd3d8ec6cd1e1020a8eca15"
+    },
+    {
+      "bytes": 2542,
+      "path": "manuscript/sections/06-results.tex",
+      "sha256": "a363c07525af37217b9f6b3afab0b435d865f9fcf4a439d3feea695d2ccd5aa5"
+    },
+    {
+      "bytes": 1743,
+      "path": "manuscript/sections/07-limitations.tex",
+      "sha256": "11fb546f2804caf27552a8d96b507e02957f800067abc76eefafd9c55de16b98"
+    },
+    {
+      "bytes": 904,
+      "path": "manuscript/sections/08-conclusion.tex",
+      "sha256": "9124dbeb6b976c59c719408e250783e9e3cab2e456a4f86a0fc625b81ff5ef5c"
+    },
+    {
+      "bytes": 2711,
+      "path": "manuscript/sections/10-introduction.tex",
+      "sha256": "19462b90152d3764efdd7c8bbb9296674162d3f3b2c03034b1e3e30e2d3861c7"
+    },
+    {
+      "bytes": 3324,
+      "path": "manuscript/sections/20-related-work.tex",
+      "sha256": "983494eaff764ff439e2b7eb154371f6093edc0033225c8909e573334aa1af29"
+    },
+    {
+      "bytes": 2507,
+      "path": "manuscript/sections/30-method.tex",
+      "sha256": "6f87ed45e203e7c6e544e97f96f57007b56ac126def9ef8b25074feadcd67ddf"
+    },
+    {
+      "bytes": 1846,
+      "path": "manuscript/sections/40-dataset.tex",
+      "sha256": "21a313773cc2f2a4c807b78c43a536ae26da38729577be3b124345191c167f86"
+    },
+    {
+      "bytes": 2406,
+      "path": "manuscript/sections/50-evaluation.tex",
+      "sha256": "132880cafcdb1c75ae32cc9ad2330ffdb352f416403d6c23d782eaf674fc8e80"
+    },
+    {
+      "bytes": 1161,
+      "path": "manuscript/sections/60-availability.tex",
+      "sha256": "089653b1422b855ffee7e662b4c7e4abd1502a0fe8269646dd3eeac81a2f4a2d"
+    },
+    {
+      "bytes": 470,
+      "path": "manuscript/tables/confirmatory_case_families.tex",
+      "sha256": "b22d5c7332a236ed24adb2a632566ace6304c8789294518f9f38a463c71c0893"
+    },
+    {
+      "bytes": 793,
+      "path": "manuscript/tables/confirmatory_primary_results.tex",
+      "sha256": "7a82c25e73fe6678ad27e609e1c58049678d5162ac277481e48f8fbf6de8b11a"
+    },
+    {
+      "bytes": 12533,
+      "path": "scripts/build_wave1_package.py",
+      "sha256": "4d59ddfe3b92912d39c135299d2238986187cb9585c9c968a0a83f8fd92a366a"
+    }
+  ],
+  "submission_authorized": false,
+  "submission_terminal": "BLOCKED_BY_INTEGRITY_OR_COMPLIANCE",
+  "tex_input_closure": [
+    {
+      "bytes": 1990,
+      "path": "manuscript/main.tex",
+      "sha256": "c7861293961bce6d178626ab2109140a5af50f46e6ea2d592344d6f07fc6b739"
+    },
+    {
+      "bytes": 5771,
+      "path": "manuscript/bibliography.bib",
+      "sha256": "24dde025c1ee1d452fadb40df8efbeb6f80ca401db21579839eae3dd81459fe7"
+    },
+    {
+      "bytes": 1285,
+      "path": "manuscript/sections/00-abstract.tex",
+      "sha256": "fc18889d9db3a0dbc720893bf8ee692f87974f812cd3d8ec6cd1e1020a8eca15"
+    },
+    {
+      "bytes": 2542,
+      "path": "manuscript/sections/06-results.tex",
+      "sha256": "a363c07525af37217b9f6b3afab0b435d865f9fcf4a439d3feea695d2ccd5aa5"
+    },
+    {
+      "bytes": 1743,
+      "path": "manuscript/sections/07-limitations.tex",
+      "sha256": "11fb546f2804caf27552a8d96b507e02957f800067abc76eefafd9c55de16b98"
+    },
+    {
+      "bytes": 904,
+      "path": "manuscript/sections/08-conclusion.tex",
+      "sha256": "9124dbeb6b976c59c719408e250783e9e3cab2e456a4f86a0fc625b81ff5ef5c"
+    },
+    {
+      "bytes": 2711,
+      "path": "manuscript/sections/10-introduction.tex",
+      "sha256": "19462b90152d3764efdd7c8bbb9296674162d3f3b2c03034b1e3e30e2d3861c7"
+    },
+    {
+      "bytes": 3324,
+      "path": "manuscript/sections/20-related-work.tex",
+      "sha256": "983494eaff764ff439e2b7eb154371f6093edc0033225c8909e573334aa1af29"
+    },
+    {
+      "bytes": 2507,
+      "path": "manuscript/sections/30-method.tex",
+      "sha256": "6f87ed45e203e7c6e544e97f96f57007b56ac126def9ef8b25074feadcd67ddf"
+    },
+    {
+      "bytes": 1846,
+      "path": "manuscript/sections/40-dataset.tex",
+      "sha256": "21a313773cc2f2a4c807b78c43a536ae26da38729577be3b124345191c167f86"
+    },
+    {
+      "bytes": 2406,
+      "path": "manuscript/sections/50-evaluation.tex",
+      "sha256": "132880cafcdb1c75ae32cc9ad2330ffdb352f416403d6c23d782eaf674fc8e80"
+    },
+    {
+      "bytes": 1161,
+      "path": "manuscript/sections/60-availability.tex",
+      "sha256": "089653b1422b855ffee7e662b4c7e4abd1502a0fe8269646dd3eeac81a2f4a2d"
+    },
+    {
+      "bytes": 470,
+      "path": "manuscript/tables/confirmatory_case_families.tex",
+      "sha256": "b22d5c7332a236ed24adb2a632566ace6304c8789294518f9f38a463c71c0893"
+    },
+    {
+      "bytes": 793,
+      "path": "manuscript/tables/confirmatory_primary_results.tex",
+      "sha256": "7a82c25e73fe6678ad27e609e1c58049678d5162ac277481e48f8fbf6de8b11a"
+    }
+  ],
+  "tex_input_closure_sha256": "30d155ac89cdba7c75437870f6cce80b030a24fddc6a4d2096ae8b8f4f45051e",
+  "title": "Coordinate-Governed Mapping of Source-Local Scientific Projections"
+}

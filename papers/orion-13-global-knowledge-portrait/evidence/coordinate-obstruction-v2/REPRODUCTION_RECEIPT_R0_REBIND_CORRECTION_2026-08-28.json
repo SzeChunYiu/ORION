@@ -1,0 +1,45 @@
+{
+  "authority_delta": "NONE",
+  "boundary": "This correction rebinds repository names and receipt identity only. It creates no new experimental outcome, external replication, cross-host authority, or broader claim.",
+  "correction_kind": "RENAME_ONLY_PATH_REBIND_AND_GENERATOR_IDENTITY_REPAIR",
+  "current_rebind": {
+    "canonical_paper_label": "ORION-13",
+    "confirmatory_gold_sha256": "13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b",
+    "initial_gold_sha256": "35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8",
+    "publication_regeneration_expected_after_shared_generator_fix": true,
+    "receipt_path": "evidence/coordinate-obstruction-v2/CONFIRMATORY_REPRODUCTION_RECEIPT.json",
+    "recomputed_payload_self_hash": "5abb3f4c32eab161fa415b13faee6cfbcb971f5be791c9f3932a61fc1e1c53b6",
+    "reproduction_verdict": "REPRODUCED"
+  },
+  "historical_pre_r0_receipt": {
+    "file_sha256": "c3faf1bad18f17bb38976292f84cd8021d9a8250c352d40bb66f4f312b9f94c7",
+    "payload_self_hash": "bc201359dc17e4309b2f31dd7122841d3172436063c3b36077604eadac877778",
+    "role": "HISTORICAL_VALID_PRE_RENAME_PAYLOAD",
+    "source_commit": "3a1a831786324261ac18a7ad20620f105136b58e^"
+  },
+  "paper_id": "ORION-13",
+  "post_r0_drifted_receipt": {
+    "file_sha256_before_correction": "05f86f489ab389de1d355ba8bdca8d6933882f7689d2b0279f3e34cacd05e672",
+    "role": "RENAME_PATHS_UPDATED_BUT_SELF_HASH_NOT_RECOMPUTED",
+    "stale_payload_self_hash": "bc201359dc17e4309b2f31dd7122841d3172436063c3b36077604eadac877778"
+  },
+  "reason": "The R0 namespace unification changed two repository-relative gold path strings from papers/paper-03-global-knowledge-portrait to papers/orion-13-global-knowledge-portrait but retained the predecessor payload self-hash. The publication-table generator also retained the historical display label ORION-P3 while the canonical artifact used ORION-13.",
+  "record_date": "2026-08-28",
+  "schema_version": "orion.orion13.r0-receipt-rebind-correction.v1",
+  "scientific_invariants": {
+    "false_merge_ci95": [
+      -0.34375,
+      -0.0625
+    ],
+    "false_merge_difference": -0.1875,
+    "false_split_ci95": [
+      0.0,
+      0.0
+    ],
+    "false_split_difference": 0.0,
+    "flat_false_merge": 0.1875,
+    "n": 32,
+    "orion_false_merge": 0.0,
+    "primary_verdict": "PASS"
+  }
+}

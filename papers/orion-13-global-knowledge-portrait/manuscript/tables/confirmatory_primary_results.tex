@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Rule} & \textbf{Accuracy} & \textbf{False merge} & \textbf{False split} & \textbf{Abstention} \\
+\midrule
+Coordinate-governed mapping & 1.0000 & 0.0000 & 0.0000 & 0.0000 \\
+Flat predicate canonicalization & 0.8125 & 0.1875 & 0.0000 & 0.0000 \\
+Exact-coordinate conservative & 0.8125 & 0.0000 & 0.0000 & 0.1875 \\
+\bottomrule
+\end{tabular}
+\caption{Confirmatory outcomes on 32 frozen mapping cases. Rates use one decision per case. The paired false-merge difference for coordinate-governed minus flat mapping was -0.1875 (95\% bootstrap interval [-0.3438, -0.0625]). The paired false-split difference relative to the exact-coordinate control was 0.0000 ([0.0000, 0.0000]).}
+\label{tab:confirmatory-primary}
+\end{table}
