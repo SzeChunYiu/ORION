@@ -1,7 +1,5 @@
 # Responsibility-Relative State Reuse and Three-Valued Certificate Transport
 
-<!-- Draft integration note: TMLR-oriented reader-facing rewrite from current main, including the latest three-valued transport theorem. The older external lifecycle corpus is not presented as prospective confirmation because its outcomes were previously accessed. -->
-
 ## Abstract
 
 A state representation that is sufficient for one scientific responsibility can be unsafe to reuse for another. Provenance and freshness do not resolve this problem: a record can be current and correctly sourced while omitting information required by the new responsibility. We study **responsibility-relative reuse** through formal transport rules and bounded real/verifier-backed experiments.
