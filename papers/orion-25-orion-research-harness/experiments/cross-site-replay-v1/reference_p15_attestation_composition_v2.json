@@ -1,0 +1,1873 @@
+{
+  "arms": {
+    "A-COMPROMISE-FULL": {
+      "attempts": 6,
+      "chain_as_science_false_promotions": 6,
+      "chain_plus_sei_false_promotions": 6,
+      "signature_layer_detections": 0
+    },
+    "A-REORDER": {
+      "attempts": 22,
+      "detections": 22
+    },
+    "A-REPLAY": {
+      "attempts": 22,
+      "detections": 22
+    },
+    "A-SPLICE": {
+      "attempts": 22,
+      "detections": 22
+    },
+    "A-STALE": {
+      "attempts": 22,
+      "detections": 22
+    },
+    "A-SUBSTITUTE": {
+      "attempts": 22,
+      "detections": 22
+    },
+    "A-TRUNCATE": {
+      "attempts": 66,
+      "detections": 66
+    }
+  },
+  "base_chain_verification_rate": 1.0,
+  "case_count": 22,
+  "chain_as_science_false_promotion_count_total": 12,
+  "chain_crypto_only_false_scientific_success_count": 0,
+  "chain_layer_false_rejection_count": 0,
+  "chain_length": 3,
+  "chain_plus_sei_gold_agreement_count": 22,
+  "compromise_case_rows": [
+    {
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "AUTHORIZED_SCIENCE",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "65006a39c5dee299613df0df65329d1575a564aa7cdfa4fcc2084a5fa5252721",
+      "id": "SEI-NONZERO-MISLEADING",
+      "signature_layer_detected": false
+    },
+    {
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "AUTHORIZED_SCIENCE",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "7ba54ecdd956b260d5e43ce74afad905d18c17f197833c82997e53acf28e9f8f",
+      "id": "SEI-TRUNCATED",
+      "signature_layer_detected": false
+    },
+    {
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "AUTHORIZED_SCIENCE",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "25dc7d3e7dc1637e403df5e0710c7a5e59797a504b98836eb600e5bbe78fdffa",
+      "id": "SEI-PRE-REAP-FINAL",
+      "signature_layer_detected": false
+    },
+    {
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "AUTHORIZED_SCIENCE",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "33478819800da2fe7a8fb6a7e7c67df741c9393ba68bcc4fc99ccb261295afc9",
+      "id": "SEI-CLEANUP-OMIT",
+      "signature_layer_detected": false
+    },
+    {
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "AUTHORIZED_SCIENCE",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "cdbe2b03ea61348fc292f4a52b615fd81587595ffc0446537b373788cc9b0296",
+      "id": "SEI-STALE-REPLAY",
+      "signature_layer_detected": false
+    },
+    {
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "AUTHORIZED_SCIENCE",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "0d71ff7566bcd2f0e48059ae309c01d176ab2b507a91c1e5740e8ee1d258f4f8",
+      "id": "SEI-DUP-OCCURRENCE",
+      "signature_layer_detected": false
+    }
+  ],
+  "compromise_full_boundary": "composed-signature validity is evidence about the key set, not about key custody or fact truth; chain_plus_sei inherits key custody as an unregistered premise",
+  "disposition_false_rejection_count": 0,
+  "observed_environment": {
+    "cryptography_version": "46.0.3",
+    "machine": "x86_64",
+    "python_version": "3.12.14"
+  },
+  "protocol_sha256": "6a7649be7e7f3a290d668de9ca31d798bfb11621d9db3e92558e8f52108e9bd7",
+  "real_false_promotion_count": 0,
+  "receipt_sha256": "8ea1008abea9794663489d20f75024539da2977a4a8d449524e821149ff1039a",
+  "rows": [
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-CLEAN-AUTH",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:6985130da34360ce77390fd9b5d4c63e3c120c8931a1dbaad71dbc6f717950bd",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-CLEAN-AUTH:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:eecf147d1e1d676f3444de00b127bbca8dacfb6b18fbb0ff8c3e99a1847f0cd7",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "aa61221b5d2bcf18b6e05e75ddf8ca9e8ae12df88551c2446fa7e49c37dcb78a",
+          "signature": "71a56a00fbc04f264b8114974c34084a3ef59a55e6c87f2274ba23ea07f6f1726b07da7145a4b731947642ace8a32d84db5cd15663758a00e687e72655c15204"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:6985130da34360ce77390fd9b5d4c63e3c120c8931a1dbaad71dbc6f717950bd",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:eecf147d1e1d676f3444de00b127bbca8dacfb6b18fbb0ff8c3e99a1847f0cd7",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "48a0a332c04e731db7cab6842fc21d071b9361a0e7141f711334b1b4e3f0db9b",
+            "role": "environment"
+          },
+          "public_key_hex": "7f0802efa38ecda418c434dde256e35579f025965d47e27f7a4807966a324dae",
+          "signature": "056b6f86c05069e064ffc9956721ff51d804ae022bf8d42109b06ca2f3e0d88a499008dc54797e0b625eff2a434a1cc70f1035cd7e9f1d296290cff05c518608"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-CLEAN-AUTH",
+              "claimed_execution_id": "fault:SEI-CLEAN-AUTH",
+              "claimed_occurrence_id": "fault:SEI-CLEAN-AUTH:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "5c13efe683dacf1117bef59cfc9b8bf91f2c4f41704798eb98a31c9eb796f252",
+            "role": "publication"
+          },
+          "public_key_hex": "9aa068f3a482e56ebec22c246a686feb22919a74432b6324a80f2cdf3cf93a65",
+          "signature": "e0e518f72d8be96d3efa7b0e726927f05ae6abf6192197d396359140a2a0fc662c83128dacbb9c7ef2e9fd9712c4b244efc9588e7e69c708b464ff51a6e85400"
+        }
+      ],
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "AUTHORIZED_SCIENCE",
+      "expected": "AUTHORIZED_SCIENCE",
+      "final_chain_digest": "3c94651b8cc1367217af1ba042f0e177684ba0fe9ad4728bdd44330e325471d8",
+      "group": "fault",
+      "id": "SEI-CLEAN-AUTH",
+      "native": "AUTHORIZED_SCIENCE"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-CLEAN-NOAUTH",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:f5dbb0bc62a7833d915a5239029d265ac38070f29817b310ffa43e53b869c206",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-CLEAN-NOAUTH:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:308f3114f9a33fd965f39924071483d87ad56b62258c14f8d0f271d27313eeee",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "a5426bef38e2a57ad2096663c658ef5b2ff1a1021424985c4b251caff731117f",
+          "signature": "005b797289e789f27d132bae07bd668c4d11b7100afd6b3dae5bade72720ca728969f64c41e1fa592afba73f85c0bdf56c01a43d087e592e4ba05d5f19f4e905"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:f5dbb0bc62a7833d915a5239029d265ac38070f29817b310ffa43e53b869c206",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:308f3114f9a33fd965f39924071483d87ad56b62258c14f8d0f271d27313eeee",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "f43062a2b62760e2398ed551c7ff679f21a0dfdb72c70e95a30a9628c8858b4e",
+            "role": "environment"
+          },
+          "public_key_hex": "543cc7c015d92106038b951af9d409727929720a5bb7d342ec55e445f59249ff",
+          "signature": "960258a6066642495f1b6f5d2297b9756799320a178128f2f7c18a0e773d4843129a14e1042295a9d41d2e1b12b1f9314750e63d03e2bbd229242a65637f8d04"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-CLEAN-NOAUTH",
+              "claimed_execution_id": "fault:SEI-CLEAN-NOAUTH",
+              "claimed_occurrence_id": "fault:SEI-CLEAN-NOAUTH:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "0bee95f75fe71d9ba9eca94ff94b17c6ae416533e44b7bdbecc060abf4b637d7",
+            "role": "publication"
+          },
+          "public_key_hex": "79d36625bb516c7a1fa2c82ce70c064e4a28647c2774cb4f7a6615e209470a73",
+          "signature": "681389fbf61639fe23fe7d1924ae69d786f94eef027d3b71c1b4feaa4402420a1b90877bc0239ef3410eab09aaea9c3840df166ffa36e7bafd2f4b3709df480a"
+        }
+      ],
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "VALID_BUT_NOT_AUTHORIZED",
+      "expected": "VALID_BUT_NOT_AUTHORIZED",
+      "final_chain_digest": "ffbe58d7b13778a3e37502269cf43cf0ee2e68348bedf63a4acb54820bbc251a",
+      "group": "fault",
+      "id": "SEI-CLEAN-NOAUTH",
+      "native": "VALID_BUT_NOT_AUTHORIZED"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": false,
+              "execution_id": "fault:SEI-SPAWN-FAIL",
+              "exit_zero": false,
+              "finalized_after_reap": false,
+              "fresh": true,
+              "host_ok": false,
+              "input_digest": "sha256:894a10c453ece4af3fc00c6108b843d549da0a311dee7f7134aa6a79f2a56a5e",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-SPAWN-FAIL:1",
+              "occurrence_unique": true,
+              "output_complete": false,
+              "output_digest": "sha256:0a47633ca79afcadc997bb31f2747aa70b978f9515f3f15248307ad1171ebe34",
+              "output_present": false,
+              "reaped": false,
+              "replay_match": false,
+              "result_digest_match": false,
+              "retry_accounting_valid": true,
+              "spawn_ok": false,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "0310d84f1ceff6e7ac8680779d2c9bb7f051407f1ab4a6b0db67ee3ad556a891",
+          "signature": "ee954f3015109045500f949fcd56ddb8578123e44ff8f9c451f6e63ef0d2518f27e5c917fcbf8107a34effa80b278ef3185066071475ea614aa26d0ca8448c0c"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:894a10c453ece4af3fc00c6108b843d549da0a311dee7f7134aa6a79f2a56a5e",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:0a47633ca79afcadc997bb31f2747aa70b978f9515f3f15248307ad1171ebe34",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "6fae54605a5e83252088378b44789641081e417e9671a32b15a6fb42b5ba044a",
+            "role": "environment"
+          },
+          "public_key_hex": "3847666bd6429b3f1eea95047a112aaa9c65b59129093747349d772e6b5d14ae",
+          "signature": "04d2c76393ce2b7f13ef8a7f21e8ac2da1956d8c49a3f3768eb5f02de479c7e2fdaa8ec938d44378952eae038b0bd4ddea61ddb93456ef60f2a3ae8a7265850e"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-SPAWN-FAIL",
+              "claimed_execution_id": "fault:SEI-SPAWN-FAIL",
+              "claimed_occurrence_id": "fault:SEI-SPAWN-FAIL:1",
+              "cleanup_complete": true,
+              "coverage_complete": false,
+              "finalized_after_reap": false,
+              "reaped": false,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "f577b6bcb62cd3eaa1dcf2b3dcb6a7adb5cca46a340c5ab99ea21d1f5ea3f474",
+            "role": "publication"
+          },
+          "public_key_hex": "af038dc7600645f9a0afdba494f8bfe3a68448162565a60dd2f53b89ae7b0367",
+          "signature": "c18a6fd569237b4681cfadaf330e78c9b00f51dad20803e41788ea667fac1e4094644b8295af7fd3f510131c6cf58df8063e2e25328a4f00cfd2ea7071e68809"
+        }
+      ],
+      "chain_as_science": "EXECUTION_INVALID",
+      "chain_crypto_only": "EXECUTION_INVALID",
+      "chain_plus_sei": "EXECUTION_INVALID",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "64eabd0f6776f12eb2c298b117bfc34a004477d3aba34c4008a8b319f6479e7a",
+      "group": "fault",
+      "id": "SEI-SPAWN-FAIL",
+      "native": "EXECUTION_INVALID"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-TIMEOUT",
+              "exit_zero": false,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:ddf339960e78a7562fc8306df558efc8bd1b9cd44d9879389bd2ba777c92b4f9",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-TIMEOUT:1",
+              "occurrence_unique": true,
+              "output_complete": false,
+              "output_digest": "sha256:2bcc3b902db75dc00ff25df4eba2eedc9397095a165f75a7159d86cb78773ee5",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": false,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": true,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "c0d677588e42414d0e88ed7c456f5d3b27832601dc54b17d3de53bf81ef2e187",
+          "signature": "8311fb83b36a8f689dd2cbdec17042a680a14d58347085557070142a5b7aca23f2738d3827f4102c75f765aa9e80a64b636f09abe5bf9f14e92215ac86394e08"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:ddf339960e78a7562fc8306df558efc8bd1b9cd44d9879389bd2ba777c92b4f9",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:2bcc3b902db75dc00ff25df4eba2eedc9397095a165f75a7159d86cb78773ee5",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "570024917a5e05273a9875115e5b54de592f93814f120399728cdf911bc873bd",
+            "role": "environment"
+          },
+          "public_key_hex": "9cb135bc84111aa0bd90b191f212c0f7824e253c3683f22230ce5b7795e7bcd1",
+          "signature": "62fcdd4dd7294dab19ee87bcd73d19e6ba97c12c3998504a8a0ed5fe43217242e101a8c42cb8020f7b405981b75de54d31ebfad0da1ebc463e765bd43b1e8f0d"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-TIMEOUT",
+              "claimed_execution_id": "fault:SEI-TIMEOUT",
+              "claimed_occurrence_id": "fault:SEI-TIMEOUT:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "9f0103830da39833e2641ccd2032ad1d3b89158d56dbf939b88142ecb1e5c04b",
+            "role": "publication"
+          },
+          "public_key_hex": "28e2de7954c4e151c7d38f1d88aa6644d85bfeff5ade1ebaeba824086303c958",
+          "signature": "0343a04de6f21efd9282b7e6002faaa1a503f1956bc6d3df3ef007f17953dd4725329dd2e366f5958e0957bd098b61c088c8f76563fa496b115da478f2f39705"
+        }
+      ],
+      "chain_as_science": "EXECUTION_INVALID",
+      "chain_crypto_only": "EXECUTION_INVALID",
+      "chain_plus_sei": "EXECUTION_INVALID",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "680a8edf8231278b05aa4141789d90a3f70f84af4d9afbd16a61668f0d9f3696",
+      "group": "fault",
+      "id": "SEI-TIMEOUT",
+      "native": "EXECUTION_INVALID"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-NONZERO-MISLEADING",
+              "exit_zero": false,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:3c22a88d2b8484e288fa42255ed2b6cbfd93e32141c9c5ae97a7e278935ddcc2",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-NONZERO-MISLEADING:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:72719f6c92a25005892f127f50a72840ddee3d54fc190ea47ea309c5d5798e3e",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "4e724b83dba25913322adb675e810bc228a00a8e57fe7b693944e0c0383b1116",
+          "signature": "d5ee10e4cd279b4cda4fb8192b569cebf23005d857b76fb9d2ee25269fd3bbf96087b85c50b4a4dbf30dfb63ef1e773bf9e45fa9232877fdea59ea33e83e880c"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:3c22a88d2b8484e288fa42255ed2b6cbfd93e32141c9c5ae97a7e278935ddcc2",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:72719f6c92a25005892f127f50a72840ddee3d54fc190ea47ea309c5d5798e3e",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "0c55b46a22cc14a2446a86091174614c32ee22d9cfa9fae9b0035e21c99e5461",
+            "role": "environment"
+          },
+          "public_key_hex": "98862dcd8f0b2d8d366b2b432e131543cfb3bf30ae06675f3317d0edb6e3fb98",
+          "signature": "5ba9800dc743cb7f8ecfd4f9f2b1b9bec05a84cfe2e4be66aea59062680bdfb2a86df273242200ade88793cc01f4b1c9379f4ec0ee0395c3000940c7d2f3d903"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-NONZERO-MISLEADING",
+              "claimed_execution_id": "fault:SEI-NONZERO-MISLEADING",
+              "claimed_occurrence_id": "fault:SEI-NONZERO-MISLEADING:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "5310755ff24df45e0484e80f035623a8fbb96aa1f7c62134e67fdf8e16279a9e",
+            "role": "publication"
+          },
+          "public_key_hex": "43f802e4e3c7f576a8585ed2d09836dfd6819f28cc3dc61fd5fac8565ed19a57",
+          "signature": "f6ce836724c2b5ff9d1204947d5eda9a4297c36870166c7b434f51c3bd4a587f309cdc2d340907b9e5f353e0fa408d75f3a1fafbab6950712e4813b7f8be6d07"
+        }
+      ],
+      "chain_as_science": "EXECUTION_INVALID",
+      "chain_crypto_only": "EXECUTION_INVALID",
+      "chain_plus_sei": "EXECUTION_INVALID",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "0352a3ecd59e86a0725bcd4c5b37c670d8098ea7754169562503a5ba1eedd4c8",
+      "group": "fault",
+      "id": "SEI-NONZERO-MISLEADING",
+      "native": "EXECUTION_INVALID"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-TRUNCATED",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:8e4c7a789a6dc9bd2d08c7923324ea4da01e63cbb42775fad502eb701cc6e8f1",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-TRUNCATED:1",
+              "occurrence_unique": true,
+              "output_complete": false,
+              "output_digest": "sha256:90cb687f883f2daa2a8fcbd10fc8a6f7d2a724ad0f8b71cee66cbc9a539fea43",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": false,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "fa11f1954cad13b2f7d786c43901025811189b9ed459529a8a9d077184e552be",
+          "signature": "4cb1f4804d1467db81fbc733cf50409d656da5c5217a7bfcc90b436bc917399225f3892a7bdb1adc5f44f68b2ee36c335735ee2d1fe7a18f9c967d69c6386506"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:8e4c7a789a6dc9bd2d08c7923324ea4da01e63cbb42775fad502eb701cc6e8f1",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:90cb687f883f2daa2a8fcbd10fc8a6f7d2a724ad0f8b71cee66cbc9a539fea43",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "830abad158ef8218a05888de67b41484bbea054dae048a4e5f1642f470e8278d",
+            "role": "environment"
+          },
+          "public_key_hex": "211c613f4b459fd10f4a21f465877a72c5e38779763350ef2c17d5a13bd9e3f1",
+          "signature": "0269248a3e07d48d09c8d66bd515d6989b233a1c6c99136868bbbddb46adaaca8c84eb35279d756a58cf7aeeed2dc301e25322a7f133aa04b0c667a88f08bc08"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-TRUNCATED",
+              "claimed_execution_id": "fault:SEI-TRUNCATED",
+              "claimed_occurrence_id": "fault:SEI-TRUNCATED:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "e1f173bcd570a011c4e693864f45ddbc2ce8b549e71289d361bb51b081a4359b",
+            "role": "publication"
+          },
+          "public_key_hex": "5970e7370cafaad3095239224429ac3d26b22fe63443dd26ee91905a020357f9",
+          "signature": "8bcd893d3d2aa17d2cb4463ece90e9c1a9335c660e6713993c97842e7b5733f0071671614d68a130248311774d3549a35644131985e0a7d323f75900c6e47d0f"
+        }
+      ],
+      "chain_as_science": "EXECUTION_INVALID",
+      "chain_crypto_only": "EXECUTION_INVALID",
+      "chain_plus_sei": "EXECUTION_INVALID",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "4c1be7912683cd106c70ec6335849a73c46f04f90bf4f3f31819327975a30d68",
+      "group": "fault",
+      "id": "SEI-TRUNCATED",
+      "native": "EXECUTION_INVALID"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": false,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-PRE-REAP-FINAL",
+              "exit_zero": true,
+              "finalized_after_reap": false,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:27798501550f2be5a5dfacf1cf62a1be550201a83f18dd74b36c467ef0cc8817",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-PRE-REAP-FINAL:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:36fffe4ae9ee6b0c725ae1f27bfb8fa4c84ad112614057deb552461bcaa7164e",
+              "output_present": true,
+              "reaped": false,
+              "replay_match": false,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "738b86db5b2b944f2c212e6223fd563227da9e9e4bccd4624e49c7858db67773",
+          "signature": "648e820b5d3e144c515e347d06b232341f3e9a7f98dd4f8ff1959a75f826997b43a3fab3da88cbc5154e3192f3326366c24292fd5200b07ffeec379a550e740e"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:27798501550f2be5a5dfacf1cf62a1be550201a83f18dd74b36c467ef0cc8817",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:36fffe4ae9ee6b0c725ae1f27bfb8fa4c84ad112614057deb552461bcaa7164e",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "d4d4c1ad78366ba8b84dcfdeb55963dcbd7179e88fe2105a4977ea1552ce3363",
+            "role": "environment"
+          },
+          "public_key_hex": "ef58c27a3a7a2ac3daea44165e578c8ddd07892e2abc25ac13812aa12251d71a",
+          "signature": "b8fb8e9683e5904798adc3a9055ec853c4c00da43e40bbb9d84c0d9e4e5b66527999920bf8cacc1609a84caa81bb2a391bcab3777589f920e8487e278f42d104"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-PRE-REAP-FINAL",
+              "claimed_execution_id": "fault:SEI-PRE-REAP-FINAL",
+              "claimed_occurrence_id": "fault:SEI-PRE-REAP-FINAL:1",
+              "cleanup_complete": false,
+              "coverage_complete": true,
+              "finalized_after_reap": false,
+              "reaped": false,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "92f4a6f40a90cfa424632defac4c9fc88b61be64b5ea5c37ade274ff09f5a0d6",
+            "role": "publication"
+          },
+          "public_key_hex": "760f8397d2d0410b56462bff163fd3d8076b7281ef4abb2ff64e71cc7949d2ac",
+          "signature": "49b6ac97992884c240b6fece1f14546c13fb7b223a12c03f8c0b7fab79da35c5892cda10dcaec9f155eec0fc245f66cc2b049ab4c9f67dfc3a2bfab71e81a209"
+        }
+      ],
+      "chain_as_science": "EXECUTION_INVALID",
+      "chain_crypto_only": "EXECUTION_INVALID",
+      "chain_plus_sei": "EXECUTION_INVALID",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "f540a6d0e5386a9da498c6a6577fc2d10c660e6e0eaf2f97c9d05918d041c6d7",
+      "group": "fault",
+      "id": "SEI-PRE-REAP-FINAL",
+      "native": "EXECUTION_INVALID"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": false,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-CLEANUP-OMIT",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:e80ded86427850e916fdb98e5c89452dc579676ae5b2ceb8918c541529e1d8cf",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-CLEANUP-OMIT:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:41997f3653c7c4f49bd655f600c55984f037eaa0ed9736316aeae514468f12b9",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "10c64a16db5be282b6c24353478f176cb5a79f83de534551395a5740ca886e0a",
+          "signature": "c15dee53fd140ba7fe12fd09635f66eefe87e2c63deddf29f2fbbaa0f06eeddc9866ffd9ce986884ebc96537bacd68569c9ae54ee9ecc42089ab834d3ab7cb00"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:e80ded86427850e916fdb98e5c89452dc579676ae5b2ceb8918c541529e1d8cf",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:41997f3653c7c4f49bd655f600c55984f037eaa0ed9736316aeae514468f12b9",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "fda356b157fac9e943190c3982873d46bdc71b8f4392566e4c5700726859bea4",
+            "role": "environment"
+          },
+          "public_key_hex": "6f454cd5765c66837190654cd77284b2efc24b4a8c5acbdcd08f2e52b782302b",
+          "signature": "cfdf85fa7575fd7e8239fa37320592d42a37014042753f34745600c2b7bf5ea5873bb636195387a21835ac2105144901de0f2bd28c886e8726982a04f7bf1b07"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-CLEANUP-OMIT",
+              "claimed_execution_id": "fault:SEI-CLEANUP-OMIT",
+              "claimed_occurrence_id": "fault:SEI-CLEANUP-OMIT:1",
+              "cleanup_complete": false,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "5fe037fc83677d672dd7e9116990fb4b768e0f66f253049084d6068c056b4a56",
+            "role": "publication"
+          },
+          "public_key_hex": "66aaae65fe220c736eb2d54e05f08373c3d2b9aec575595df58e0a1f8fb98936",
+          "signature": "70414810b6a7b926e3273797d6f13641d6284eb430253bf7015caab4fb71ebbace54832a8dac812e8c3855c93d5118520ffe86cf1a3329cf207e8d142d95eb0f"
+        }
+      ],
+      "chain_as_science": "EXECUTION_INVALID",
+      "chain_crypto_only": "EXECUTION_INVALID",
+      "chain_plus_sei": "EXECUTION_INVALID",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "766fb9ff566183413739d2ab8fede9c99e5ba02293d5e16d943cf2388b34ac6d",
+      "group": "fault",
+      "id": "SEI-CLEANUP-OMIT",
+      "native": "EXECUTION_INVALID"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-RETRY-CORRUPT",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:472b4e0f397ff23fb3011aa5c336d23a279283cc9a058ae2987a9bf241be436f",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-RETRY-CORRUPT:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:f876a9924bdb9172d9450bfc7193c191feeebd4f908eb91b73a7ff7e5419b0c5",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": false,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "9a0730fc49e383a03dc55aea34e3c1fd96280c58fe8932954f406aecc00cb942",
+          "signature": "5ab15f4a74b4a9ef82fc92fa9ff1988bfe3441cce71597d7facbc3c352d52365c20f4fa8b937407a9d49cde965d20b7644e0659cbb2468a58556db258416f201"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:472b4e0f397ff23fb3011aa5c336d23a279283cc9a058ae2987a9bf241be436f",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:f876a9924bdb9172d9450bfc7193c191feeebd4f908eb91b73a7ff7e5419b0c5",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "74af88921945c5022f91783f5d192897fdc6bec031f9923bac6de4d4e5ee1788",
+            "role": "environment"
+          },
+          "public_key_hex": "f35f9cd4bff95073716358506058f3c8a9e19d64ca370ce491c4b76019e5a565",
+          "signature": "8f431ea277465c07025e539008145ceda634c2c070e45da2afaf4bf2b09125e8778d8d0c6258b6232022188eaf7c4e06af679741d545b82036608a9e16fa4007"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-RETRY-CORRUPT",
+              "claimed_execution_id": "fault:SEI-RETRY-CORRUPT",
+              "claimed_occurrence_id": "fault:SEI-RETRY-CORRUPT:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": false
+            },
+            "previous_digest": "4e5d2eb2ad6d1edee94c49358068f2c9c8129ebbecd207917b20877e9f426337",
+            "role": "publication"
+          },
+          "public_key_hex": "902225c43b433dd338a2b70570d7f0e0f0f888ecaabc2a27170c8249680be55b",
+          "signature": "6543ede595813d205881598aa96bdd5d02f99ddacf106400dcd7567acde6f0631dbe620a62fdfc395ccf6ca194ea8c1ac37ceb9473de64ed97c7b6ca0bc15b01"
+        }
+      ],
+      "chain_as_science": "EXECUTION_INVALID",
+      "chain_crypto_only": "EXECUTION_INVALID",
+      "chain_plus_sei": "EXECUTION_INVALID",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "526af17c7cc20ac1dd6670572d9cdda74d905c0f60065bf012b7afa375a8a234",
+      "group": "fault",
+      "id": "SEI-RETRY-CORRUPT",
+      "native": "EXECUTION_INVALID"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-STALE-REPLAY",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": false,
+              "host_ok": true,
+              "input_digest": "sha256:3105d268e7c83e8354acf4e009656e3091605afbb2cfae8763340cfcfdb7d837",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-STALE-REPLAY:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:8debdae234626d1fda759bb353c445441c3de4faaca61b6d7016a674c5af8a80",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "3add16d06168603f8198d07b862cc5747bebc136f52b4db0f073e9face550b7d",
+          "signature": "715cef67707658a4a740024a2f48ed6fa391ae93fbc9dc9fc6a6d9cfd078c935f40fad4e5051b17c41914a8df2c8b1cad865b248f007587e46b289d4f55f9407"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:3105d268e7c83e8354acf4e009656e3091605afbb2cfae8763340cfcfdb7d837",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:8debdae234626d1fda759bb353c445441c3de4faaca61b6d7016a674c5af8a80",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "8a63fc4c66463dcd0f3d00297b0f74752a396f888b4bcfab619cd95dfca26639",
+            "role": "environment"
+          },
+          "public_key_hex": "d0941f4e65bb8c26232f2ea506acf2bf42d8fe5bb61f25b6528ee3b3332cdf1b",
+          "signature": "b69d7259a22fb97ba378290327a0617d7ba19e765f05aadea997d0fe9e90aad0054dd2f823edcae7129ff55c1dabe6fec57ed8b1c01842acf25b5c0de04c450f"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-STALE-REPLAY",
+              "claimed_execution_id": "fault:SEI-STALE-REPLAY",
+              "claimed_occurrence_id": "fault:SEI-STALE-REPLAY:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "3b520475c20c40a4660450db2c59a294c303f8a72e380f6cb00220a6fa9e6395",
+            "role": "publication"
+          },
+          "public_key_hex": "c23aafc9296a4f7853e009f60c9b0c0f2654d5e0f404296e969238bbd06d9c97",
+          "signature": "710f8f9644136d24459de9ffa501b54471dd2bf5f41011a796b3902f443486b97e2a34cd5a182efbcbba1291fe8739d0e2a4e0c98bcafb520925c2dfd8e51d0a"
+        }
+      ],
+      "chain_as_science": "EXECUTION_INVALID",
+      "chain_crypto_only": "EXECUTION_INVALID",
+      "chain_plus_sei": "EXECUTION_INVALID",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "bf1095a5ba9d23fb5a4b13f616cf8a57d77f931c105e60cb7883eb9cfe727d21",
+      "group": "fault",
+      "id": "SEI-STALE-REPLAY",
+      "native": "EXECUTION_INVALID"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-DUP-OCCURRENCE",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:25aa8d97249ce8dcbc0bdc1ee6534a4d1a41c2953e01a5487872b8159cc0db56",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-DUP-OCCURRENCE:1",
+              "occurrence_unique": false,
+              "output_complete": true,
+              "output_digest": "sha256:06cbb1f20ad25d53eac6a73731f2066c755eca6edfb15197670f2ec00fdd373c",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "5e8d4f6beeee8089a0378388686e0e4f55215874b25e27889686500c945f30f5",
+          "signature": "f8e1058c8831672ddcbe4a0695a3e939d1aa55512cc65bf4122d069a0a85f0932e00323abe0b8ef047a59549556ae2866efcaa87dd8af6069a4030ae4eb22f01"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:25aa8d97249ce8dcbc0bdc1ee6534a4d1a41c2953e01a5487872b8159cc0db56",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:06cbb1f20ad25d53eac6a73731f2066c755eca6edfb15197670f2ec00fdd373c",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "e41f4c97f3e35c7c5006591938f51b4723f961749aa79a2a418cd02c50dca73b",
+            "role": "environment"
+          },
+          "public_key_hex": "7283f58405cb976b82f7004e0f075c61b6e5d2d200807afc4edadc3fb90a84f2",
+          "signature": "0c3708d5db779c796a709e6e0cd5aa573319eb6ed413e6ba6004fe535d43ca770dc4d7477516580f817d1e48551b205a476913d954ac486df99d46c6db1dce03"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-DUP-OCCURRENCE",
+              "claimed_execution_id": "fault:SEI-DUP-OCCURRENCE",
+              "claimed_occurrence_id": "fault:SEI-DUP-OCCURRENCE:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "9ba5fb144aaf660d514dff0c355aac9d65624bc5e8126cea6c37737ab826088e",
+            "role": "publication"
+          },
+          "public_key_hex": "6846abb09a17c9d33838425fc8f16234e1aed2a66d0a7f299bd2b8b47938a7a8",
+          "signature": "eb76a01858a5eec758335245c1d955743867366a1575616a540aea4961ad87c2d29137099934f47a6afd2cfc1ed73ec928e799b1c7f878470446a1584d417c03"
+        }
+      ],
+      "chain_as_science": "EXECUTION_INVALID",
+      "chain_crypto_only": "EXECUTION_INVALID",
+      "chain_plus_sei": "EXECUTION_INVALID",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "a14bd029be2149a3dfe7e8738f455c6522d371bfa4c1d83205e18841a928889a",
+      "group": "fault",
+      "id": "SEI-DUP-OCCURRENCE",
+      "native": "EXECUTION_INVALID"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-DIGEST-FORGE",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:30807186c05ae4ea4565501a86f0b1ecb853a2862f2e115c92140112fd73057e",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-DIGEST-FORGE:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:2058a5386b8a311939a2a223e2125d10c188353b949f6f130440a99338cbb13d",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": false,
+              "result_digest_match": false,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "3112393112e311fc8a8a51d4ec46b696c21c29f3c9e482e43041bfdd6b3b537f",
+          "signature": "8f98eee0434a6cd7bfa494ceee8804067bc4be0e72c36b61d9dd5179fa0ddaa14b1d4fcb512c8c9270408c5cb3d039fa342bdab94dc3fd9b9c17f364b785a405"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:30807186c05ae4ea4565501a86f0b1ecb853a2862f2e115c92140112fd73057e",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:2058a5386b8a311939a2a223e2125d10c188353b949f6f130440a99338cbb13d",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "e3cdf8d6369c01970f56976111b7ff6074a7c9efe849d6494270766a3683e956",
+            "role": "environment"
+          },
+          "public_key_hex": "622737cbdc44b47c1244e5fc6421c475408b82e6c448c13253cdabca1bf494c5",
+          "signature": "1c08b22a956bd9e539fe0e6897881fc7a95855befc1d92e65ee59bc1e0c442ae2631e0dad795b4b936dfd0b572b87dd4a24bf79e82a788ec25d540605f952c04"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-DIGEST-FORGE",
+              "claimed_execution_id": "fault:SEI-DIGEST-FORGE",
+              "claimed_occurrence_id": "fault:SEI-DIGEST-FORGE:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "2e84518296f25e4ab57e18f3355e002f3a67dd159f1fb1c29b80f5af6d4399d9",
+            "role": "publication"
+          },
+          "public_key_hex": "8c342f9543e75e44f0d4784b4dd5af8d7ea7c5f14b7b8dd2bc2bdd79282f179d",
+          "signature": "7747e3e18ea044025e562dbd1d320a57e21cd01d057bfbae993e7cf33e89c0dbe876b274d065c61da4ff36583be6c0523bdbc3b25bb5bd8637f1f642bc391c0c"
+        }
+      ],
+      "chain_as_science": "EXECUTION_INVALID",
+      "chain_crypto_only": "EXECUTION_INVALID",
+      "chain_plus_sei": "EXECUTION_INVALID",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "af68b6ff14de9b4deb7e9427c610f3054baf5613559120077193973fc8b2e2b1",
+      "group": "fault",
+      "id": "SEI-DIGEST-FORGE",
+      "native": "EXECUTION_INVALID"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": false,
+              "execution_id": "fault:SEI-COVERAGE-OMIT",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:85c112933b7402f5b6f58c96160751558f7e6b25c45deeb4ca18ae59a41713f4",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-COVERAGE-OMIT:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:0fc819059adcad7d3571332edf034eba4abe01874e152caf1d4a7d80efab9974",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "564ad9599dbb811e005e92f123eb2a32185c91e4c36acfabbbae780ad13dab12",
+          "signature": "6cb106c85e34f7c087daa5182cfb043ebfea43ca8140fa63b9f2bf1c0f1d1736af5b2bda58ed96d64328d4ecb2d0cf8624486cc458ff694a18e86bbd064a510f"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:85c112933b7402f5b6f58c96160751558f7e6b25c45deeb4ca18ae59a41713f4",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:0fc819059adcad7d3571332edf034eba4abe01874e152caf1d4a7d80efab9974",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "91f83860790f754c3cb7c49a91dce758bfb7518adfc01f51d958d609ad4c4661",
+            "role": "environment"
+          },
+          "public_key_hex": "d96990ce683ed97ee700afa32595815e0c54e80258ba3f711ec66189fedc165a",
+          "signature": "6323fbe81fa482cf8e95f392b89a47b498941c62296e75351d4eedc80ff48f0f1efa94923d283798aa6feef05c5607bf3cd0feae1963e5f89ed1e103136d6a0d"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-COVERAGE-OMIT",
+              "claimed_execution_id": "fault:SEI-COVERAGE-OMIT",
+              "claimed_occurrence_id": "fault:SEI-COVERAGE-OMIT:1",
+              "cleanup_complete": true,
+              "coverage_complete": false,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "7f9e440bba6db8dab50dd0a414bfdea2d10c8a309e232a9666f99a461831db25",
+            "role": "publication"
+          },
+          "public_key_hex": "3baffeb1f3d22b260c7150de2453f0389592a2464adb4e8b53e15745b9522911",
+          "signature": "6d2af4c55b8e8e7df65a68c439108b2158bee394d36e9e6fc12b2097207226afbd5c38f94d7d88594bad922bdc86d53f150a8252d9884873bba828cfea781702"
+        }
+      ],
+      "chain_as_science": "EXECUTION_INVALID",
+      "chain_crypto_only": "EXECUTION_INVALID",
+      "chain_plus_sei": "EXECUTION_INVALID",
+      "expected": "EXECUTION_INVALID",
+      "final_chain_digest": "ef8082cb74731052018496b44fe484e172a15121a40d5e2fd8d39ebe37bce58b",
+      "group": "fault",
+      "id": "SEI-COVERAGE-OMIT",
+      "native": "EXECUTION_INVALID"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-COMPLETE-INVALID-SCIENCE",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:56547620c6fda5b017efb8ce46cd1ed353338778cd540c5d429c3a632dec6e0a",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-COMPLETE-INVALID-SCIENCE:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:ec5dcd198a088c7146d43f87c7f7b35176d00fc653c37b9e2d6d1477973023e7",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "a1e4a80f4a2bee2daaf2eb975ad5a12d634d6a822a93771fd5f3156ae69d74e2",
+          "signature": "3410bd13b289a454ac4a8abebd3b5a2767d84b2755ccc4b496f1c62303d573e4034767da8e8dc92f9af1963085d907e03f2db01af5fd13e21634977d7ee4e707"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:56547620c6fda5b017efb8ce46cd1ed353338778cd540c5d429c3a632dec6e0a",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:ec5dcd198a088c7146d43f87c7f7b35176d00fc653c37b9e2d6d1477973023e7",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "0edabddd7cca10be6226a2e751b8a6c0ba795f4b9424fd5c477e701b4c45d11d",
+            "role": "environment"
+          },
+          "public_key_hex": "391399db241a66e430867127c9c07c52786b3532d4eb20372daa51e4053f5ce5",
+          "signature": "29430fd35d4f9eaab6e90c04cf97124488f425d347c873d4971a8ee9cb0b93b2bbed50c398aab9192f81895072f38cd09f90e1400331f98181b73cc12f3d1102"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-COMPLETE-INVALID-SCIENCE",
+              "claimed_execution_id": "fault:SEI-COMPLETE-INVALID-SCIENCE",
+              "claimed_occurrence_id": "fault:SEI-COMPLETE-INVALID-SCIENCE:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "81e9a214d7ae45ce65a0534cff75b7c79cb8289eb08a63c2b83c1e2ef3c87038",
+            "role": "publication"
+          },
+          "public_key_hex": "a2e34e3afbf10c75f9c2345e575f6b7b2771b6e9de728d02eb1faec070ba60ea",
+          "signature": "908008c677511018a237d49ed91f589aeaf9a96db20d3c242b814719fa98d11ceca27a479c929a54b3fc78b3350a57ebbf8749c1b1a1c7a9c7df7f896354ec02"
+        }
+      ],
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "INVALID_SCIENCE",
+      "expected": "INVALID_SCIENCE",
+      "final_chain_digest": "f28494cb7106af737d93e655227789b561600a53037f24cfff49c11baadea1f0",
+      "group": "fault",
+      "id": "SEI-COMPLETE-INVALID-SCIENCE",
+      "native": "INVALID_SCIENCE"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-DUAL-AGREE-WRONG",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:c85e4155cee88dc65958fc0fa997b45373e0319d72194a0ada2d2035c0110c37",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": true,
+              "lane_applicable": true,
+              "occurrence_id": "fault:SEI-DUAL-AGREE-WRONG:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:ef37138c8460d85bb7420e2d1df414ffb714d817fe4ea8947397c9d0ddc58ef8",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "c8597eea0f72be51ad3353460788908737fe0b5376520b16da3169bf1330c329",
+          "signature": "5268d708f822d480500dc216f9195d30b28f7637523ffd01c2d3ccca021dc86b40a2f571647730291395205187c5e3145e46422bd683ad26160a65453367c904"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:c85e4155cee88dc65958fc0fa997b45373e0319d72194a0ada2d2035c0110c37",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:ef37138c8460d85bb7420e2d1df414ffb714d817fe4ea8947397c9d0ddc58ef8",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "b4a77fdf048b6e87b8430f8b66e40e4137ec7cba4ab673822cd9991cb4e4e3ea",
+            "role": "environment"
+          },
+          "public_key_hex": "8baf2768a1a3e08a44412edea687615ede0fe3cd31d4b006788ee23764c10b24",
+          "signature": "57fe09898685edc3f93508afaa61d2b6ab735e00662f36b4ca0727167c5412eed49c0a1042d543128f0512b2a7e9b4d65f9ca3d2567985d1c9d31c7184f8be0f"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-DUAL-AGREE-WRONG",
+              "claimed_execution_id": "fault:SEI-DUAL-AGREE-WRONG",
+              "claimed_occurrence_id": "fault:SEI-DUAL-AGREE-WRONG:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "e94308175c817a35a8ac431b8f85634dd5dc59f3b9433efc33a7fa80f9520686",
+            "role": "publication"
+          },
+          "public_key_hex": "19d57b0271a2836c5c751c7ea4adf8297cb97e4986d6fab7cadd174d828305f2",
+          "signature": "c53cfc59dff073ecd0bd7973261d45e4427a3dfbd1aa728ebc75d87f16f4bf6a2ea60eb416937659092057fb58fcd21ccaede6e0504fbe5b149753e9372b8d0b"
+        }
+      ],
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "INVALID_SCIENCE",
+      "expected": "INVALID_SCIENCE",
+      "final_chain_digest": "aa4f01563cd24538786c4b0d24ea6ab4db0516425f6612d9178af24fd188ee87",
+      "group": "fault",
+      "id": "SEI-DUAL-AGREE-WRONG",
+      "native": "INVALID_SCIENCE"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-DUAL-DISAGREE-UNKNOWN",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:f186aac0cb5f4822a2eca466412a39e1d737845d59e4cc1e0e444cb97b861464",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": false,
+              "lane_applicable": true,
+              "occurrence_id": "fault:SEI-DUAL-DISAGREE-UNKNOWN:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:400a1408568ef0da3079dcfd694c0f1f9dffe21e296f7dd715f648eb12f2af96",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "f4299be220e3f53a9fd7e025d9de70853d9747b69d54ef68b1f668fad835e5fd",
+          "signature": "24b8900d044b5efd6756b82afab9eb46adebedf6e66c42ce03c68a6bd6623ea76e007ce593daf27ca298c9f0aac5b6a60f1bbf2be4af5110aebd7e31922df202"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:f186aac0cb5f4822a2eca466412a39e1d737845d59e4cc1e0e444cb97b861464",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:400a1408568ef0da3079dcfd694c0f1f9dffe21e296f7dd715f648eb12f2af96",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "e5b3133fb3ae9d04386be7fdc0e3d55b7e5758f5ba0f2b34d14651165be28fe2",
+            "role": "environment"
+          },
+          "public_key_hex": "8e1221d83fc5cf82f7fb5821a58b0c201225e4d414d8c44167e7aa62f057686c",
+          "signature": "a46fcc6c75bfa3f94a188b808fed8e78a67a68895631fca5d832bd8cf2c6358e8a75f6696d98d106354f2408744dadc67f06836cd1da0d14750a1db5e3014c0f"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-DUAL-DISAGREE-UNKNOWN",
+              "claimed_execution_id": "fault:SEI-DUAL-DISAGREE-UNKNOWN",
+              "claimed_occurrence_id": "fault:SEI-DUAL-DISAGREE-UNKNOWN:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "b094a375e181f9abc8c990c5d640db16141a97e882408daa596fef8ac3180e57",
+            "role": "publication"
+          },
+          "public_key_hex": "6a3795d3692f85de6613197e8b8b86e806f2fcee68a001543ded7ce1216af025",
+          "signature": "ab2a33129a1d11b6eafdb602eea13d1024386ad4ad4f0a3a160a28c64e809cfe912fdfb6417a8f12b3ca7b450ab333c7cc2ef8a3063a59411913bd73ac87b807"
+        }
+      ],
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "CANNOT_CHECK",
+      "expected": "CANNOT_CHECK",
+      "final_chain_digest": "b002bc29835a399afc29a23ae99cb57a1038002f0f8ef5353aaa16a16a25b5d7",
+      "group": "fault",
+      "id": "SEI-DUAL-DISAGREE-UNKNOWN",
+      "native": "CANNOT_CHECK"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-DUAL-DISAGREE-VERIFIED",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:94f2f80c4becbedba215863262dfb1291e627f2a2566a3583aa41d9f9fafc8b5",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": false,
+              "lane_applicable": true,
+              "occurrence_id": "fault:SEI-DUAL-DISAGREE-VERIFIED:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:b4830a999886902c7cac79161d63c4fe215cc37c582e1827a6f6bd437b73952c",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "12e335ac6a3d97237ff71f5215642e796db34edbf6010169e1309520b4e7e83c",
+          "signature": "c9b7366eb6c7195d402cc55cb13fa8841c8ba9505b2beee34c50228f19d7d35db3409850bf242908f99d3f64a62aa1e9794f8f01dc3dbedf6c11706d31a4f30e"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:94f2f80c4becbedba215863262dfb1291e627f2a2566a3583aa41d9f9fafc8b5",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:b4830a999886902c7cac79161d63c4fe215cc37c582e1827a6f6bd437b73952c",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "2046276557ace8e930cbf71d042e731d695281614ec82acf7116ae1c9b9d7b1b",
+            "role": "environment"
+          },
+          "public_key_hex": "41ebd4c6f08b2d17c05cf297cc32bd865746ddb42ff273949d6f1cbf55f58048",
+          "signature": "8b65fd5813702e0f3596d40d7b5c8634f2bcbdf871120750ba7403816acf2f2303ac50ac36b10bd6a33f02997373c24a732b9c0eba339c52037f405ea5e88c02"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-DUAL-DISAGREE-VERIFIED",
+              "claimed_execution_id": "fault:SEI-DUAL-DISAGREE-VERIFIED",
+              "claimed_occurrence_id": "fault:SEI-DUAL-DISAGREE-VERIFIED:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "289b55c2bf30349efd170cb5a6b3703e2609b215ce84f77f78034cd45db70a93",
+            "role": "publication"
+          },
+          "public_key_hex": "930ed466b639ff25fa62761716fec3ef92c7b21873279ba1f4490c521d3c6e83",
+          "signature": "ea1b58b7b98e7c4c4d3a958a85eba5037c92e7b71848a182c0d750108322d777121809021147f00d677ae7275d8936913b781c19a835e5ada5c17cc18d4f140f"
+        }
+      ],
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "AUTHORIZED_SCIENCE",
+      "expected": "AUTHORIZED_SCIENCE",
+      "final_chain_digest": "8861bfb7b8e0b8b85e51c542a62aa6a20116f31592caa35b6208b58ce1d47370",
+      "group": "fault",
+      "id": "SEI-DUAL-DISAGREE-VERIFIED",
+      "native": "AUTHORIZED_SCIENCE"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "fault:SEI-AUTHORITY-UNKNOWN",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:edc24f3a907687126e7ad670eda2a7c47fb29f4087e7efe3c7e9aef682e293fc",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "fault:SEI-AUTHORITY-UNKNOWN:1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:8f73c840cf3331b557d99843211081e691e3840df97a4d3be42ad3a5f00670c1",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "660aa7f58b1b018b48ba07be31b953cf8043fcb49cfad21da5919748b21bf203",
+          "signature": "0c41bb6db3867fc471c77cb72825bffa315363935198f5abbc9ab46efcf1307cfb47207d56c94d78bbe63a1a0eb90800c0fa88be6452c8e34d2e1c0f06c30303"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:edc24f3a907687126e7ad670eda2a7c47fb29f4087e7efe3c7e9aef682e293fc",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:8f73c840cf3331b557d99843211081e691e3840df97a4d3be42ad3a5f00670c1",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "p15-sei-fault-fixture"
+            },
+            "previous_digest": "b217fb59511dac5e19c93f5c248309c00e58f22faad217b76059e5d6a06c48be",
+            "role": "environment"
+          },
+          "public_key_hex": "8d360c282c0a870913436936fa8d54ea99955f7beeda78231196fb2ef96268af",
+          "signature": "ccc27a709a32ff307527c800bdd11cee28a99de756d34ac45056bd010681d2449cb3a48816cb356960d401a17f42938ddda01ae57ad1a1163a80448344356a01"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:SEI-AUTHORITY-UNKNOWN",
+              "claimed_execution_id": "fault:SEI-AUTHORITY-UNKNOWN",
+              "claimed_occurrence_id": "fault:SEI-AUTHORITY-UNKNOWN:1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "74cd0efdb06b7f19b11fbe6e75873b04a415400a872e1437f7cc409490cf63fa",
+            "role": "publication"
+          },
+          "public_key_hex": "3954a81ad33735e2331af646d17bda615f18e84d725a6795bbf9a9dda5c2f156",
+          "signature": "5c8375e18df95ce7163ea180518d80b42bc8b45969ce9dd2f4e2a6ff6d23aa641ce3ebf4f9b84b2f6f4bc5bb3bfec3262335263786d9a8bf723ce87fb89d1708"
+        }
+      ],
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "CANNOT_CHECK",
+      "expected": "CANNOT_CHECK",
+      "final_chain_digest": "ece6bb080d2072d7644a914cd72018382aee17fc1f51f960c2e97a03e6347a11",
+      "group": "fault",
+      "id": "SEI-AUTHORITY-UNKNOWN",
+      "native": "CANNOT_CHECK"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "github-actions:32653576016",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:8868875a7d7e9db376543fe466409adf3b2f02bd03885c9fe3803d9c6b5d2ae2",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "p6-ets-v1:9496839720",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:fa6ec2504978d374e9a1573f92b27933820d8a484bb625375cb1d1dc2b2650d9",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "check_ets_top_tier_v1.py+check_ets_independent_v1.py"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "c2f4600c5137edcf09b3c26d58bfa3ee85820fa9186a056baec3b23e8dedc759",
+          "signature": "9db7d0a55a8e4ff67ba5e30b5e52d8891eb283beb89d4d3258df29e419bb95f7a9b45da0120467a5e3bd939969620d27c9ca88babe9455c69acd9d04145f8107"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:8868875a7d7e9db376543fe466409adf3b2f02bd03885c9fe3803d9c6b5d2ae2",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:fa6ec2504978d374e9a1573f92b27933820d8a484bb625375cb1d1dc2b2650d9",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "check_ets_top_tier_v1.py+check_ets_independent_v1.py"
+            },
+            "previous_digest": "11e17068ae1847647302f65163336a42c07e7356cd082ab832d64c6e8f95deaf",
+            "role": "environment"
+          },
+          "public_key_hex": "fa1a922217e9e4a944bf0f3103432f04dd216ac3f6fb7485da264d2d522a1857",
+          "signature": "be8cea14dd503f9a696f773db0c3d0164fc02c126474081169193209ab57337e5adc660fb5ea2600b506f7c08c6c2d830581220d9e2200bff5cd8119bb64350b"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:REAL-P6-ETS-TWO-CHECKER",
+              "claimed_execution_id": "github-actions:32653576016",
+              "claimed_occurrence_id": "p6-ets-v1:9496839720",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "99f51748cb8a866efd5d8b9daa2f32072182b9437b43162dd0433d66936448e5",
+            "role": "publication"
+          },
+          "public_key_hex": "ee3cf317d9786deb1c8bc17ebf59f3f28506abf26559edbb7570e8186de97ff7",
+          "signature": "b9f3c225b893c861eb6ff239dcba3b79e440b5fc21e94a153d7dd8905d7170ff531fd497bdfc297984a0b237b32484c1142e832ab915e14fad9fe317b724cf07"
+        }
+      ],
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "AUTHORIZED_SCIENCE",
+      "expected": "AUTHORIZED_SCIENCE",
+      "final_chain_digest": "b924f33af57a0cec8992a6dfee347c7ba61be86f54608177df77f2f54a447591",
+      "group": "real",
+      "id": "REAL-P6-ETS-TWO-CHECKER",
+      "native": "AUTHORIZED_SCIENCE"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "github-actions:p9-qwen-618-recovery-v1",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:2a1eb9fe399ea1b9080b45a11ff2196a14eb32d272820e3c41f88638e69710e5",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "p9-qwen-recovery:9495185874",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:79a1c8eac67128013b36a95cd2e51e8ab59fd7efd120d09ff550518c0781b940",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "analyze_qwen_618_recovery_v1.py"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "5f1478fa69e1ba49d480587e51eed77273de916f81008901e6fa22d054999f85",
+          "signature": "ee590e27030d0c538fd875ded08d0ccd995b4da67f4f0e490e7c7675f191de58b979917cc982ed3531340ad14ff1ca7bc5c900de8c528befbc00f7338f15500d"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:2a1eb9fe399ea1b9080b45a11ff2196a14eb32d272820e3c41f88638e69710e5",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:79a1c8eac67128013b36a95cd2e51e8ab59fd7efd120d09ff550518c0781b940",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "analyze_qwen_618_recovery_v1.py"
+            },
+            "previous_digest": "4f3448cdc55e9722095d0420d3dc8fffee930a8f935d95e29a680debb61a8883",
+            "role": "environment"
+          },
+          "public_key_hex": "90d511d24b9678a5525f06ea2bcad3eefd5bac28e1a1a06c528367a8a888993f",
+          "signature": "330ba446b1ce6e3ec92c3f28e53268527069a4bfc0ad54136aea86983eba0f8de5099e47af36ed78db19dc4de750b7fc18e77fce1366aaf44558c2124990be00"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:REAL-P9-QWEN-NEGATIVE",
+              "claimed_execution_id": "github-actions:p9-qwen-618-recovery-v1",
+              "claimed_occurrence_id": "p9-qwen-recovery:9495185874",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "bb4d949ae8f8678ff97990cb9844f71482efedffc165086c569c8de6ac754e59",
+            "role": "publication"
+          },
+          "public_key_hex": "2a2ad84e8e514b6b350f1097bf10f5e3d1accd8341fddd7b2e38464f521eb712",
+          "signature": "6634d77dd6305b8dff1c3513b3a8bb72ddfca4bc98d05729044b31976496134b43034e57641a19bd274db2b58738ded750279a13f8cb98d343b1c04240d7790a"
+        }
+      ],
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "AUTHORIZED_SCIENCE",
+      "expected": "AUTHORIZED_SCIENCE",
+      "final_chain_digest": "8236b472bcabcbf5235db8ecfd6585fc1d4f0a8057ed52fbb8dd7366fe095b29",
+      "group": "real",
+      "id": "REAL-P9-QWEN-NEGATIVE",
+      "native": "AUTHORIZED_SCIENCE"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "github-actions:32653800366",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "sha256:d7bcaa6e414847d5aa6aab9aec859f6cdd0106be7baeeb779a10809bf25d154c",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "p10-ocme-formal-v1:9496899438",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:8721d02a02b78c6b6f3ee7281f60f106070a462e0c84de821be34ab2dedd91fd",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "check_ocme_formal_nonvacuity_v1.py+check_ocme_formal_independent_v1.py"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "758fe76853ea0cecc878234ecb93eb44f1778f4a564874318ebf188efde09124",
+          "signature": "4c9631ab8bef59be3d453025ba286549587337927ae8393f6717359b9443dbbff83c60d71304b6aae01e35eb35efcf0467a5dd91952d6b88eac068fe70291a03"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "sha256:d7bcaa6e414847d5aa6aab9aec859f6cdd0106be7baeeb779a10809bf25d154c",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:8721d02a02b78c6b6f3ee7281f60f106070a462e0c84de821be34ab2dedd91fd",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "check_ocme_formal_nonvacuity_v1.py+check_ocme_formal_independent_v1.py"
+            },
+            "previous_digest": "19cea8e5d8ab896536b942b04714395ab8d8b99664ded1d73ee16a8e8f7c7a8f",
+            "role": "environment"
+          },
+          "public_key_hex": "d4c4e62a236aaaa8a67043be3a30610781307ebd37df5691513cb1ec9b991bd4",
+          "signature": "d7f5f120e3ae12c0311785a02e94c419a2e5fba00c6baead438d395b598f8f32294a08db4e08f2726c6ab4c97a34948d3746a0bb005920f8960f404b22b0e60f"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:REAL-P10-OCME-TWO-CHECKER",
+              "claimed_execution_id": "github-actions:32653800366",
+              "claimed_occurrence_id": "p10-ocme-formal-v1:9496899438",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "57806e698026f186e26f4159c37fe05761d533a77230cfbe47106210885d0b7a",
+            "role": "publication"
+          },
+          "public_key_hex": "9699cf2b01e2c3aa1ef4e63f77113cede080325d72a777a3dcbfee0cdaadfa28",
+          "signature": "1f578216390f546968fdc5aacec573401613f28e779f062ab9c2c5eac9ba330b88b1f2b807f8416fd300d96c600387f8f39ff58f1722b2f0cd2ea1c11327a60d"
+        }
+      ],
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "AUTHORIZED_SCIENCE",
+      "expected": "AUTHORIZED_SCIENCE",
+      "final_chain_digest": "5b176934b2ed38660a0600f45371ba34807780eaee82ce243faa61c7a8083385",
+      "group": "real",
+      "id": "REAL-P10-OCME-TWO-CHECKER",
+      "native": "AUTHORIZED_SCIENCE"
+    },
+    {
+      "chain": [
+        {
+          "payload": {
+            "facts": {
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "execution_id": "github-actions:32346652258",
+              "exit_zero": true,
+              "finalized_after_reap": true,
+              "fresh": true,
+              "host_ok": true,
+              "input_digest": "gitblob:2c50ea2e0989ef06fda71bedd0cad1efe8fbec80",
+              "input_digest_match": true,
+              "invocation_match": true,
+              "lane_agree": null,
+              "lane_applicable": false,
+              "occurrence_id": "p10-native-lean:coverage-v1",
+              "occurrence_unique": true,
+              "output_complete": true,
+              "output_digest": "sha256:3322e6ae8006a67bb6b45170897a2be327e61d601213f434f278b969df60bbdc",
+              "output_present": true,
+              "reaped": true,
+              "replay_match": true,
+              "result_digest_match": true,
+              "retry_accounting_valid": true,
+              "spawn_ok": true,
+              "timeout": false,
+              "tool_id": "native-lean-fit-analyze"
+            },
+            "previous_digest": "5e318383e00ca843e9b9f5c7e75ad8c2a82a837183a9c7977bfc43aa5c6db98a",
+            "role": "execution"
+          },
+          "public_key_hex": "058ea0a690b81675e8111e0265da3ab866526c0efdccfb4805efaa3dd2fb1f91",
+          "signature": "a301bb478cf848755afbf5a1b5e65029e93d3f1ef069e69dc732cd8250d63851f0ed7f5a88562edabd596ecee0a187b1bc7454c0f2e69fdc56f277891f2ad30f"
+        },
+        {
+          "payload": {
+            "facts": {
+              "input_digest": "gitblob:2c50ea2e0989ef06fda71bedd0cad1efe8fbec80",
+              "os_image": "ubuntu-24.04-x86_64",
+              "output_digest": "sha256:3322e6ae8006a67bb6b45170897a2be327e61d601213f434f278b969df60bbdc",
+              "python_version": "3.12",
+              "runner_class": "github-hosted-ubuntu-latest",
+              "tool_id": "native-lean-fit-analyze"
+            },
+            "previous_digest": "1f1ca24152390294f7a279daaf9f29cd2a8cbe2c4c576cfdc848204c56ae601e",
+            "role": "environment"
+          },
+          "public_key_hex": "7a8a27861ecfc83f30c26d96089f291e2abc5c0d9fbcb5227e84d8cab205b7b5",
+          "signature": "4fd037557b96d481bb7f20ca71507a4485197958493143eef4f48fdba2f5fc2294fbf9cdd45b2fdb68fb9a432bea38cfbb5fa2f3acd8c1580c72290efea4a406"
+        },
+        {
+          "payload": {
+            "facts": {
+              "artifact_uri": "orion-att-v2:REAL-P10-NATIVE-LEAN-CANNOT-CHECK",
+              "claimed_execution_id": "github-actions:32346652258",
+              "claimed_occurrence_id": "p10-native-lean:coverage-v1",
+              "cleanup_complete": true,
+              "coverage_complete": true,
+              "finalized_after_reap": true,
+              "reaped": true,
+              "retry_accounting_valid": true
+            },
+            "previous_digest": "a46a7d5a64a3b8bf0a908df6bd3628c1a2ef4168a431bffd5cb1bbc6ffa31226",
+            "role": "publication"
+          },
+          "public_key_hex": "899cbfd88c95bf85a9c0428758147a7ec82cba974ce68fb09c0b73bcba3452bf",
+          "signature": "01f144bf716ba21418608c3cae1726266912fe6a3e84349c1a5c295583be92246e0e71ece244175736ee30b328ff62abcc36d1f06054eaf9f96e2870aa12fe0a"
+        }
+      ],
+      "chain_as_science": "AUTHORIZED_SCIENCE",
+      "chain_crypto_only": "CANNOT_CHECK",
+      "chain_plus_sei": "CANNOT_CHECK",
+      "expected": "CANNOT_CHECK",
+      "final_chain_digest": "6baea4bc332e1d878c7f7cac8f96f78615f65159e8be275712a7d3fd82839e66",
+      "group": "real",
+      "id": "REAL-P10-NATIVE-LEAN-CANNOT-CHECK",
+      "native": "CANNOT_CHECK"
+    }
+  ],
+  "schema": "P15.AttestationCompositionChainResult.v2",
+  "scientific_field_leakage_count": 0,
+  "terminal": "P15_ATTESTATION_COMPOSITION_V2_SUPPORTED",
+  "valid_workload_case_count": 11
+}
