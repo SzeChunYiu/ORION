@@ -1,7 +1,5 @@
 # Closure-Carrying Scientific Navigation Across Regime Change
 
-<!-- Draft integration note: AIJ-oriented reader-facing rewrite from the current V4 claim authority. The manuscript distinguishes semantic obligation containment from the stricter opaque registry rule and keeps naturalistic multi-hop transfer as future evidence. -->
-
 ## Abstract
 
 Scientific workflows increasingly reuse planning, abstraction, representation migration and replanning mechanisms across changes in data representation, responsibility and objective. Local validity of each transformation does not guarantee that a previously closed scientific task remains closed after the transformation. We formalize **closure-carrying navigation**: each transformation preserves its native operation while carrying an explicit contract describing the scientific obligations required at its source and guaranteed at its target.
