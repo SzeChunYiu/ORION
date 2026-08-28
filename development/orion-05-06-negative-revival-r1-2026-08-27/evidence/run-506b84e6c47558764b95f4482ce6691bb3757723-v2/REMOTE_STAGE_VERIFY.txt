@@ -1,0 +1,14 @@
+schema=ORION.ORION0506.RemoteStageVerification.v1
+verified_utc=2026-08-28T04:29:22Z
+host=cosmos2.int.lunarc
+run=/projects/hep/fs9/users/scyiu/orion-revival-r1/run-506b84e6c47558764b95f4482ce6691bb3757723-v2
+stage=/projects/hep/fs9/users/scyiu/orion-revival-r1/stage-506b84e6c47558764b95f4482ce6691bb3757723-v2
+/projects/hep/fs9/users/scyiu/orion-revival-r1/run-506b84e6c47558764b95f4482ce6691bb3757723-v2/STAGE_SHA256SUMS: OK
+manifest_entries=257
+manifest_failures=0
+source_commit=506b84e6c47558764b95f4482ce6691bb3757723
+---sacct---
+JobIDRaw|JobName|Account|Partition|QOS|State|Elapsed|Timelimit|NCPUS|ReqMem|NodeList|ExitCode|Submit|Start|End
+3550007|o5-r13-confirm|hep2023-1-3|hep|normal|COMPLETED|00:00:15|00:15:00|1|16G|cx04|0:0|2026-08-28T00:09:21|2026-08-...
+3550008|o5-xover-1800|hep2023-1-3|hep|normal|COMPLETED|00:30:01|00:40:00|1|16G|cx04|0:0|2026-08-28T00:09:21|2026-08-2...
+3550009|o6-neg-coverage|hep2023-1-3|hep|normal|COMPLETED|00:00:00|00:05:00|1|4G|cx04|0:0|2026-08-28T00:09:21|2026-08-...

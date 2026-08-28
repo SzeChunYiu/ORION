@@ -1,0 +1,58 @@
+{
+  "authority": {
+    "external_independence": false,
+    "final_freeze": false,
+    "journal_or_submission": false,
+    "novelty": false
+  },
+  "bundle": {
+    "manifest_entries": 21,
+    "manifest_sha256": "c038cc4175cddf1a65df55c779652fe50d472d292caa7e6ae89937a0e05e92f2",
+    "path": "development/orion-05-06-negative-revival-r1-2026-08-27/evidence/run-506b84e6c47558764b95f4482ce6691bb3757723-v2",
+    "stage_manifest_sha256": "75ca8d944f70c451e1d485929ad126c48ab3c4a38eb83fc6e761e38af52da971"
+  },
+  "orion06_audit": {
+    "cross_domain": "CANNOT_CHECK",
+    "standalone_rows": 7,
+    "unfinished": 4
+  },
+  "r13": {
+    "all_witness_checks_pass": true,
+    "cells": 24,
+    "exposed_indices_seen": [],
+    "outcome": "IMPROVED",
+    "production_null_preserved": true,
+    "unique_cells": 24
+  },
+  "remote_stage": {
+    "host": "cosmos2.int.lunarc",
+    "manifest_entries": 257,
+    "manifest_failures": 0,
+    "verified_utc": "2026-08-28T04:29:22Z"
+  },
+  "schema": "ORION.ORION0506.RevivalBundleVerification.v1",
+  "scientific_authority_delta": "NONE",
+  "source_chronology": {
+    "bound_sources": {
+      "papers/orion-05-tare-expressivity/orion05_r13_parent_certificate_ordering.py": "72802ca8cdfe8303fd2971f2b6337bd02360bcc19c9d296864298ddd457b44ed",
+      "papers/orion-05-tare-expressivity/orion05_xover_budget_revival.py": "c6e92a74abbbbf86aeba883b926153501e937b45bad64a0accf6f375c26e7fa6",
+      "papers/orion-05-tare-expressivity/rounds/r13-parent-certificate-ordering/ORION05_R13_PROTOCOL.json": "41559a965472b14c331191afa157306df7b395513bbeb09b33083fbbc9e4fd19",
+      "papers/orion-05-tare-expressivity/rounds/xover-budget-revival-v1/ORION05_XOVER_BUDGET_REVIVAL_PROTOCOL.json": "cfad9913f718e5200f4d83fd1bacf57d3bf68d0d4358a53dad62fcff7c71e2a0",
+      "papers/orion-06-recursive-recovery/revival/ORION06_NEGATIVE_COVERAGE_PROTOCOL.json": "aaab45ffcc2b184bc02a72d663036e885df8649536a02614d6f65665e6aa02ee",
+      "papers/orion-06-recursive-recovery/revival/verify_orion06_negative_coverage.py": "623dcade688dc358155fec9de36f71f83b3bdcf501b3c2fed30956f58d12f0b3"
+    },
+    "current_branch_import_is_additive": true,
+    "execution_commit": "506b84e6c47558764b95f4482ce6691bb3757723",
+    "frozen_protocol_rewritten": false,
+    "pre_outcome_base_recorded_in_protocols": "0a56f4a5a28f31072c6fb3cc910804474dc2f2a6",
+    "protocol_commit": "9f7e66f26148387115354d4853f3f67b7bacc02d"
+  },
+  "terminal": "ORION0506_REVIVAL_BUNDLE_VERIFIED",
+  "unsolvable": [],
+  "xover": {
+    "legacy_status": "TIMEOUT",
+    "outcome": "RETAINED_NEGATIVE",
+    "parent_status": "COMPLETED",
+    "whole_panel_revival": false
+  }
+}
