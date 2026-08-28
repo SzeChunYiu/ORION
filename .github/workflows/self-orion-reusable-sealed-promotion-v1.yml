@@ -1,0 +1,66 @@
+name: Self-ORION reusable sealed promotion v1
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/self-orion-reusable-sealed-promotion-v1.yml"
+      - "research/self-orion/reusable-sealed-promotion-v1/**"
+      - "tests/research/test_reusable_sealed_promotion_v1.py"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/self-orion-reusable-sealed-promotion-v1.yml"
+      - "research/self-orion/reusable-sealed-promotion-v1/**"
+      - "tests/research/test_reusable_sealed_promotion_v1.py"
+
+permissions:
+  contents: read
+
+jobs:
+  formal-conformance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install pytest==8.4.2 ruff==0.15.10
+      - name: Run deterministic conformance campaign
+        run: |
+          packet=research/self-orion/reusable-sealed-promotion-v1
+          python "$packet/run_conformance_campaign.py" --output /tmp/reusable-sealed-conformance
+          python "$packet/independent_checker/verify_campaign.py" \
+            --campaign /tmp/reusable-sealed-conformance \
+            --output /tmp/reusable-sealed-verification.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          raw = json.loads(Path('/tmp/reusable-sealed-verification.json').read_text())
+          assert raw['decision'] == 'ACCEPT_SELF_ORION_REUSABLE_SEALED_FORMAL_CONFORMANCE'
+          assert all(raw['checks'].values())
+          assert raw['decision_counts'] == {'PROMOTE': 2, 'REJECT': 2, 'UNRESOLVED': 2}
+          assert raw['protected_longitudinal_transfer_authority'] is False
+          assert raw['fair_comparator_superiority_authority'] is False
+          assert raw['negative_history_causal_effect_authority'] is False
+          assert raw['frontier_agent_performance_authority'] is False
+          assert raw['external_independent_reproduction'] is False
+          assert raw['submission_authority'] is False
+          PY
+      - name: Run hostile controls
+        run: python -m pytest -q tests/research/test_reusable_sealed_promotion_v1.py
+      - name: Static and clean-tree checks
+        run: |
+          ruff check \
+            research/self-orion/reusable-sealed-promotion-v1/sealed_ledger.py \
+            research/self-orion/reusable-sealed-promotion-v1/run_conformance_campaign.py \
+            research/self-orion/reusable-sealed-promotion-v1/independent_checker/verify_campaign.py \
+            tests/research/test_reusable_sealed_promotion_v1.py
+          python -m compileall -q \
+            research/self-orion/reusable-sealed-promotion-v1 \
+            tests/research/test_reusable_sealed_promotion_v1.py
+          find research/self-orion/reusable-sealed-promotion-v1 tests/research \
+            -type d -name __pycache__ -prune -exec rm -rf {} +
+          git diff --check
+          git diff --exit-code
