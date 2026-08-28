@@ -1,54 +1,19 @@
 {
-  "schema": "ORION.P15.ActiveClaimAuthority.v3",
-  "paper_id": "P15",
-  "active_terminal": "P15_BOUNDED_SEI_PROVENANCE_ATTESTATION_EARNED",
-  "lifecycle_state": "BOUNDED_SCIENTIFIC_RESULT_EARNED",
-  "scientific_result_state": "BOUNDED_EMPIRICAL_SUPPORTED",
-  "active_hypothesis": "SCIENTIFIC_EXECUTION_INTEGRITY_SEPARATION",
   "active_empirical_claim": "Execution integrity, provenance representation, cryptographic attestation, scientific validity, and claim authority remain distinct layers on the registered bounded fault/interoperability/attestation studies.",
-  "promotion_allowed": false,
-  "historical_authority": {
-    "artifact": "papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V2.json",
-    "git_blob_sha": "f3aec42f1cfd3f33c2dbf63fc69921791fd29731"
-  },
-  "result_authority": {
-    "sei_fault_v1": {
-      "artifact": "papers/orion-25-orion-research-harness/top_tier/P15_SEI_RESULT_RECEIPT_V1.md",
-      "git_blob_sha": "39e58c3babfa1e6dcd8c52b2b297e266f2208c07",
-      "terminal": "P15_SEI_BOUNDED_FAULT_V1_GREEN"
-    },
-    "provenance_interop_v1": {
-      "artifact": "papers/orion-25-orion-research-harness/top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md",
-      "git_blob_sha": "0b86c992767d9da7bbdc3e5a5e175d1ab2ea1808",
-      "terminal": "P15_PROVENANCE_INTEROP_V1_SUPPORTED",
-      "independent_terminal": "P15_PROVENANCE_INTEROP_SECOND_INDEPENDENT_CHECKER_GREEN"
-    },
-    "attestation_composition_v2": {
-      "artifact": "papers/orion-25-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md",
-      "git_blob_sha": "25f83c837cf480f0ca9d085184cc313fd21599cf",
-      "terminal": "P15_ATTESTATION_COMPOSITION_V2_SUPPORTED",
-      "independent_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
-      "deterministic_replay": {
-        "artifact": "papers/orion-25-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2_RUN2.md",
-        "git_blob_sha": "61ca00bba4fefdc9213a7830d3eeaf16b6577f69",
-        "ci_run_id": 32665597624,
-        "note": "Independent second execution of the frozen protocol; artifact-member SHA-256 digests identical to the canonical run 32664075763."
-      }
-    }
-  },
+  "active_hypothesis": "SCIENTIFIC_EXECUTION_INTEGRITY_SEPARATION",
+  "active_terminal": "P15_BOUNDED_SEI_PROVENANCE_ATTESTATION_EARNED",
+  "authorized_claim": "At bounded scope, P15 separates execution/provenance/attestation evidence from scientific validity and claim authority: SEI blocks false scientific promotion in the frozen fault corpus, the separation survives W3C PROV and RO-Crate/Workflow-Run import, and a three-link Ed25519 chain detects the registered non-compromise tamper/replay attacks without observed false rejection while exposing full key compromise as outside signature authority.",
   "bounded_findings": {
-    "sei_false_authorized_science": 0,
-    "provenance_round_trip_rate": 1.0,
-    "provenance_scientific_field_leakage": 0,
     "attestation_base_chain_verification_rate": 1.0,
+    "attestation_chain_plus_sei_gold_agreement": "22/22",
     "attestation_non_compromise_attack_detection_complete": true,
     "attestation_valid_workload_false_rejections": 0,
-    "attestation_chain_plus_sei_gold_agreement": "22/22",
+    "full_key_compromise_false_promotions": 6,
     "full_key_compromise_signature_detections": 0,
-    "full_key_compromise_false_promotions": 6
+    "provenance_round_trip_rate": 1.0,
+    "provenance_scientific_field_leakage": 0,
+    "sei_false_authorized_science": 0
   },
-  "full_key_compromise_boundary": "Composed-signature validity is evidence about the key set, not about key custody or fact truth; chain-plus-SEI inherits key custody as an unregistered premise.",
-  "authorized_claim": "At bounded scope, P15 separates execution/provenance/attestation evidence from scientific validity and claim authority: SEI blocks false scientific promotion in the frozen fault corpus, the separation survives W3C PROV and RO-Crate/Workflow-Run import, and a three-link Ed25519 chain detects the registered non-compromise tamper/replay attacks without observed false rejection while exposing full key compromise as outside signature authority.",
   "forbidden_states": [
     "SIGNATURE_PROVES_SCIENTIFIC_TRUTH",
     "KEY_CUSTODY_VERIFIED",
@@ -58,11 +23,46 @@
     "EXTERNAL_VALIDATION_COMPLETE",
     "TOP_TIER_SUBMISSION_READY"
   ],
+  "full_key_compromise_boundary": "Composed-signature validity is evidence about the key set, not about key custody or fact truth; chain-plus-SEI inherits key custody as an unregistered premise.",
+  "historical_authority": {
+    "artifact": "papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V2.json",
+    "git_blob_sha": "f3aec42f1cfd3f33c2dbf63fc69921791fd29731"
+  },
+  "lifecycle_state": "BOUNDED_SCIENTIFIC_RESULT_EARNED",
+  "paper_id": "P15",
+  "promotion_allowed": false,
   "remaining_external_requirements": [
     "production_scale_host_and_process_fault_campaign",
     "runtime_storage_and_false_rejection_overhead_characterization",
     "clean_environment_independent_replay",
     "final_current_nearest_work_refresh",
     "final_manuscript_evidence_environment_pdf_binding"
-  ]
+  ],
+  "result_authority": {
+    "attestation_composition_v2": {
+      "artifact": "papers/orion-25-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md",
+      "deterministic_replay": {
+        "artifact": "papers/orion-25-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2_RUN2.md",
+        "ci_run_id": 32665597624,
+        "git_blob_sha": "fb2a3fbab8bdab7bb8bc5b627593d4848e8752dc",
+        "note": "Independent second execution of the frozen protocol; artifact-member SHA-256 digests identical to the canonical run 32664075763."
+      },
+      "git_blob_sha": "25f83c837cf480f0ca9d085184cc313fd21599cf",
+      "independent_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+      "terminal": "P15_ATTESTATION_COMPOSITION_V2_SUPPORTED"
+    },
+    "provenance_interop_v1": {
+      "artifact": "papers/orion-25-orion-research-harness/top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md",
+      "git_blob_sha": "0b86c992767d9da7bbdc3e5a5e175d1ab2ea1808",
+      "independent_terminal": "P15_PROVENANCE_INTEROP_SECOND_INDEPENDENT_CHECKER_GREEN",
+      "terminal": "P15_PROVENANCE_INTEROP_V1_SUPPORTED"
+    },
+    "sei_fault_v1": {
+      "artifact": "papers/orion-25-orion-research-harness/top_tier/P15_SEI_RESULT_RECEIPT_V1.md",
+      "git_blob_sha": "39e58c3babfa1e6dcd8c52b2b297e266f2208c07",
+      "terminal": "P15_SEI_BOUNDED_FAULT_V1_GREEN"
+    }
+  },
+  "schema": "ORION.P15.ActiveClaimAuthority.v3",
+  "scientific_result_state": "BOUNDED_EMPIRICAL_SUPPORTED"
 }
