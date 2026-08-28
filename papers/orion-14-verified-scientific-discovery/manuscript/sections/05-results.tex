@@ -1,9 +1,7 @@
 \section{Results}
 \label{sec:results}
 
-The typed authority panel passed with no blockers, and a separately written
-repository implementation reproduced the headline counts. This is a local
-reproduction, not external verification authority.
+The typed authority panel passed with no blockers, and a separately implemented local reproducer obtained the same headline counts from the safe publication bundle. This is code-path separation, not external verification authority.
 
 \subsection{False promotion and clean coverage}
 The governed pipeline produced 0/360 false promotions. The strongest frozen comparator mechanism, ProvenAI-style citation-fidelity/influence, produced 180/360 (50.0\%). The paired difference was $-0.50$ with 95\% CI $[-0.553,-0.447]$, so H1 passed the predeclared $-0.05$ practical margin. Figure~\ref{fig:p4_2} reports the full mechanism panel.
@@ -70,9 +68,9 @@ Deterministic gate evaluation is slower than the simple mechanism proxies in thi
 \label{fig:p4_6}
 \end{figure}
 
-Scored-process telemetry recorded zero protected-identifier hits and zero external-IP connections for both candidate and comparator jobs. Raw traces remain in protected custody. The separate repository reproducer obtained the same 0/360 versus 180/360 false-promotion counts and 60/60 versus 60/60 clean-promotion counts; this code-path separation does not supply external result-verifier custody.
+Scored-process telemetry recorded zero protected-identifier hits and zero external-IP connections for both candidate and comparator lanes. Raw traces remain in protected custody. The separate local reproducer obtained the same 0/360 versus 180/360 false-promotion counts and 60/60 versus 60/60 clean-promotion counts; this code-path separation does not supply external result-verifier custody.
 
 \subsection{Exclusion of exploratory evidence}
-We exclude the repository's earlier 39-case live-model arm from publication authorization. Post-run audit found internally inconsistent live labels/expected terminals, incorrect opportunity denominators in its summary path, and direct use of a candidate-hidden family label in the live execution path for the governed pipeline and its ablations. Those outputs remain useful diagnostics but are not combined with, substituted for, or used to tune the protected campaign.
+We exclude an earlier 39-case live-model arm from publication authorization. Post-run audit found internally inconsistent live labels/expected terminals, incorrect opportunity denominators in its summary path, and direct use of a candidate-hidden family label in the live execution path for the governed pipeline and its ablations. Those outputs remain useful diagnostics but are not combined with, substituted for, or used to tune the protected campaign.
 
 \FloatBarrier
