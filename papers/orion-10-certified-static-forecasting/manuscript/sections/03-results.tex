@@ -1,24 +1,96 @@
 \section{Results}
+\label{sec:results}
 
-\subsection{Prospective successes do not establish global exactness}
-QG-3 stages 102 predictions before exact evaluation and confirms all 102: 90 real-library matching rows are donor-exact, and 12 engineered boundary rows cover four predicted donor, four split, and four borrow configurations. This is strong prospective evidence that the original classifier can make correct positive regime predictions. It is still finite evidence.
+\subsection{Support at most two is exact under the unit objective}
+\label{sec:support-theorem}
 
-\subsection{QG-5 produces the required refutation}
-The frozen QG-5 benchmark compares $F_1$ with exact truth on 9,546 rows. It is exact on the 9,261 structured-$n=2$ rows and the committed chemistry rows, but one fresh seeded $n=3$ instance has $C_{DP}=10<11=F_1$. The witness uses a support-two frame whose effective borrow home lies outside that block's own target support. The error is serialized rather than removed from the panel.
+\begin{theorem}[Support reduction]
+For every qubit count, target six-tuple, matching, relative target assignment, and central-slot choice in the grammar of Sec.~\ref{sec:setting}, the unit-objective optimum is attained by a configuration in which every frame string has support at most two. Hence
+\[
+\cstar(t)=\ctwo(t).
+\]
+\end{theorem}
 
-This refutation localizes the weakness: the support-two theorem is not challenged, but the closed-form borrow family is too narrow. The result therefore distinguishes `forecast formula incomplete' from `support theorem false'.
+The proof is local but yields an all-size statement. For a frame $R$ with support $w\geq3$ and anticommuting partner $R'$, label each support coordinate by
+\[
+(\alpha_q,\beta_q)=
+(\langle R_q,R'_q\rangle,\langle S_q,R_q\rangle)\in\Ftwo^2.
+\]
+Anticommutation makes the total $\alpha$ parity odd. Any such multiset of size at least three contains a nonempty proper singleton or pair whose $\alpha$ and $\beta$ sums both vanish. Zeroing those letters therefore preserves the relevant anticommutation and tag syndrome without tag repair. A complete 18,432-case local enumeration verifies that the increase of the restoration term in Eq.~\eqref{eq:cost} never exceeds the refunded frame cost; there are zero violations. Repeating the exchange decreases total frame support without increasing cost. Lexicographic descent on cost and total frame support terminates at support at most two. Appendix~\ref{app:support-proof} gives the argument and its exact computational obligation.
 
-\subsection{QG-5b restores theorem-backed exact cost}
-QG-5b evaluates $F_2=C_{D^{++}}$. All integrity gates pass, including no unrestricted-DP call in the forecast path and independent witness referees. $F_2$ has zero cost error on 9,547 compared instances. On the QG-5 counterexample it returns 10, matching both the unrestricted referee and a reverified $D^{++}$ witness.
+Support two is a genuine boundary of this proof. At $w=2$, four odd-parity class patterns lack a nonempty proper zero-sum subset. Thus the theorem does not follow by simply repeating a support-one argument.
 
-The benchmark agreement is not used as the logical proof of exactness. R6S already proves $C_{DP}=C_{D^{++}}$ for all $n$ in the frozen grammar/objective. The 9,547 rows verify that the implemented evaluator and receipt bindings behave consistently with that theorem.
+\subsection{Finite evidence refutes the initial formula}
 
-\subsection{A repaired explanation is refuted without breaking the cost certificate}
-QG-5b also enlarges the borrow family to $B'$ by permitting out-of-support/union-support phantom homes. On the verified QG-5b panels, the repaired closed-form envelope matches exact cost and correctly reclassifies the old false-positive row.
+Table~\ref{tab:initial} separates the benchmark components. The initial formula matches the complete structured two-qubit slice and all application-derived rows. In the seeded panel it misses exactly one three-qubit input. Across the 9,546 distinct benchmark inputs, the outcome is therefore 9,545 matches and one mismatch.
 
-QG-7 then freezes a hostile search against exactly that family and finds 64 fourth-configuration witnesses among 740 evaluated instances. Each has $C_{D^{++}}<\min(C_{D^+},f_{B'})$, with gap $-1$, while $C_{DP}=C_{D^{++}}$ still holds. A representative mechanism combines a weight-two Tag with a phantom borrow. Thus $B'$ is refuted as an all-$n$ explanation but $F_2$ remains exact.
+\begin{table}[t]
+\centering
+\caption{Exact comparison of the initial explanatory formula. The seeded panel includes the retained refuting input.}
+\label{tab:initial}
+\begin{tabular}{lrrr}
+\toprule
+Panel & Distinct inputs & Matches & Mismatches\\
+\midrule
+Structured two-qubit slice & 9,261 & 9,261 & 0\\
+Fresh seeded two-/three-qubit panel & 240 & 239 & 1\\
+Application-derived subjects & 45 & 45 & 0\\
+\midrule
+Total & 9,546 & 9,545 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
 
-QG-7b adds a frozen hybrid family $B''$ and closes 10,481 verified rows with no fifth configuration on those panels. QG-7c closes the high-Tag-weight rung and most remaining shapes, leaving one pinned comm-$s2$ lemma sector open. The explanation certificate is therefore improving but not yet an all-$n$ theorem.
+The mismatch has $n=3$ and target pairs
+\[
+((XYZ,YYX),(YYX,XXZ),(ZZI,IYI)).
+\]
+Exact optimization gives $\cstar=10$, whereas all three terms in Eq.~\eqref{eq:simple} equal 11. Thus
+\begin{equation}
+\cstar=10<11=\csimple.
+\label{eq:counterexample}
+\end{equation}
+Its minimizing support-two frame uses a borrow home outside its block's own target support. The row refutes only the completeness of the three-family explanation. It does not refute feasibility of the formula, because $10\leq11$, or the support theorem, because $\cstar=\ctwo=10$.
 
-\subsection{Verification authority is row-specific}
-Library forecast rows with committed DP receipts can be labeled exact/verified under their bound. Rows emitted for eligible candidates without referee receipts retain verification authority `NONE`. The table is therefore simultaneously a prediction product and an honesty check: printing a number does not turn it into verified evidence.
+Before this mismatch was known, 102 predictions had been staged and then exactly evaluated: 90 public-library matchings and 12 engineered boundary rows, with four examples allocated to each of the three initial configurations. All 102 matched. These prospective successes provide calibration evidence, but Eq.~\eqref{eq:counterexample} shows why they cannot establish global equality.
+
+\subsection{The exact evaluator passes its implementation checks}
+
+The support-two evaluator returns the exact cost on all 9,547 comparison events, representing 9,546 distinct inputs. It also returns 10 on the refuting row. The unrestricted optimizer is absent from its forecast path. For higher-qubit application rows, exactness is sometimes certified by the containment pinch
+\[
+\cstar\leq\ctwo\leq C_{\mathrm{wa}}=\cstar,
+\]
+rather than by a direct support-two sweep. This distinction matters: zero finite error validates consistency of the code and witnesses, whereas the support-reduction proof is the source of the all-size claim.
+
+\subsection{Explanation repair, hostile refutation, and all-size closure}
+
+Allowing borrow homes outside a block's own target support repairs Eq.~\eqref{eq:counterexample}. That repair is still incomplete. A frozen hostile search evaluates 740 exact cases and finds 64 in which the enlarged-borrow explanation remains one unit above $\ctwo$. All 64 optima stay within support two, so the exact forecast is unaffected.
+
+Adding the hybrid family covers 10,481 verified finite inputs, including the 64 hostile witnesses, with no observed need for a fifth configuration. This finite zero-residual result is useful but is not the all-size proof. The final proof isolates the remaining commuting support-two blocks and admits independent permutations of each block's two targets, a degree of freedom already present in the feasible configuration space. The complete domain comprises 378 irreducible geometries and $16{,}777{,}216$ target-letter states per geometry. Every state has a non-increasing alternative with strictly fewer commuting support-two blocks; no residue remains. Induction on their number proves Eq.~\eqref{eq:classification} for all qubit counts under the unit objective.
+
+\begin{table}[t]
+\centering
+\caption{Certificate chronology. A finite check is not promoted into the proof column.}
+\label{tab:chronology}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{.23\textwidth}>{\raggedright\arraybackslash}p{.27\textwidth}>{\raggedright\arraybackslash}X}
+\toprule
+Layer & Exact evidence & Conclusion\\
+\midrule
+Initial explanation & 9,545/9,546 distinct inputs; 102/102 prospectively staged rows & Refuted by one exact row\\
+Exact forecast & Support-reduction theorem; 9,547 zero-error comparison events & Exact for all sizes in scope\\
+Enlarged borrow & 64 failures among 740 hostile cases & Explanation refuted; cost theorem intact\\
+Hybrid explanation & 10,481 finite inputs with no residual & Finite coverage only\\
+Final explanation & Complete domains for 378 geometries; no local residue & All-size classification under the unit objective\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Adverse boundary under a changed objective}
+\label{sec:adverse-objective}
+
+A pre-specified reweighted objective changes the local exchange economics. On one exact witness,
+\begin{equation}
+\cstar=11<\ctwo=13<C_{\mathrm{wa}}=23.
+\label{eq:reweighted}
+\end{equation}
+The corresponding panel contains 53 failures of support-two closure. Equation~\eqref{eq:reweighted} is not a perturbative degradation of the main theorem; it falsifies transfer of the theorem to that objective. Any new weighting requires a fresh exchange inequality or a different structural argument.
