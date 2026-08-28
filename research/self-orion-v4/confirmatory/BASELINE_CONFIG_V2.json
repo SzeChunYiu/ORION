@@ -1,0 +1,123 @@
+{
+  "baseline_structural_bindings": {
+    "note": "unchanged V3 structural binding records; every required comparator is MECHANISM_COMPARATOR_BOUND with a bound structural identity and official_reproduction=false",
+    "path": "research/self-orion-v3/BASELINE_STRUCTURAL_BINDINGS_V2.json",
+    "required_baseline_ids": [
+      "m_open_only",
+      "world_model_revision",
+      "representation_regime_revision"
+    ]
+  },
+  "config_id": "P5V4-CONFIRMATORY-BASELINE-CONFIG-2026-08-27",
+  "created_before_outcome_access": true,
+  "feedback_intervention_controls": [
+    "NORMAL",
+    "PERMUTED",
+    "NONE",
+    "CONTRADICTORY",
+    "RANDOM"
+  ],
+  "frozen_suite_and_split": {
+    "candidate_packet_path": "research/self-orion-v4/confirmatory/CANDIDATE_PACKET_V2.json",
+    "candidate_packet_sha256": "4170bf5715a7c7f68e11de73cd7ae1b843d9cfd2d83700965f3b6c685b2f0e20",
+    "decision_rules_path": "research/self-orion-v4/confirmatory/CONFIRMATORY_DECISION_RULES_V2.json",
+    "decision_rules_sha256": "d09b258e9fdbdca7a040dec1cedb8f8ed84f2aa79348f9b489c007b3ddd4be31",
+    "final_split_path": "research/self-orion-v4/confirmatory/CONFIRMATORY_FINAL_SPLIT_V2.json",
+    "final_split_sha256": "2e89a1aee8dd53ead9dfbb968ec7e9228f4f7843214f5f267a429f46130edb19",
+    "generator_path": "research/self-orion-v4/confirmatory/build_confirmatory_suite_v2.py",
+    "generator_sha256": "c23a8aaa30323d434fa510d466b9e2ef0e00714bdaf308b33371a3808d29d8fc",
+    "suite_path": "research/self-orion-v4/confirmatory/PROTECTED_CONFIRMATORY_SUITE_V2.json",
+    "suite_sha256": "e9c48999024d5022ce03b22b7eb4270df7459f2b4e18174e53ae22cfb2b73582"
+  },
+  "independent_evaluators": {
+    "decision_layer": {
+      "code_path": "stdlib-only, no orion imports; blind interface over committed JSON",
+      "path": "research/self-orion-v4/confirmatory/protected_evaluator_v2.py",
+      "sha256": "c91c5c08fab098d1a229ffcdfa86316dbe9cab460936f1c9255ab5e29479db0c"
+    },
+    "fresh_transfer_layer": {
+      "code_path": "stdlib-only, no orion imports; blind interface over committed JSON",
+      "path": "research/self-orion-v4/confirmatory/fresh_transfer_evaluator_v2.py",
+      "sha256": "65799fc3d653d21a0449d2faff6f8b3f5488ef08be58e20545d3857f42694c07"
+    }
+  },
+  "policy_families": [
+    {
+      "id": "no_revision",
+      "implementation": "NO_REVISION",
+      "issue_1541_arm": "a_no_edit",
+      "role": "fixed/no-revision control; issue #1541 arm (a) no-edit"
+    },
+    {
+      "id": "direct_self_edit",
+      "implementation": "DIRECT_SELF_EDIT",
+      "issue_1541_arm": "b_direct_self_edit",
+      "role": "broad self-edit control; issue #1541 arm (b) direct-self-edit"
+    },
+    {
+      "donor": "arxiv:2608.09696",
+      "id": "m_open_only",
+      "implementation": "M_OPEN_ONLY",
+      "official_reproduction": false,
+      "role": "M-open model-class-expansion mechanism comparator"
+    },
+    {
+      "donor": "arxiv:2606.30639",
+      "id": "world_model_revision",
+      "implementation": "WORLD_MODEL_REVISION",
+      "official_reproduction": false,
+      "role": "world-model update mechanism comparator"
+    },
+    {
+      "donor": "arxiv:2606.01444",
+      "id": "representation_regime_revision",
+      "implementation": "REPRESENTATION_REGIME_ONLY",
+      "official_reproduction": false,
+      "role": "representation-regime revision mechanism comparator"
+    },
+    {
+      "id": "generic_causal_diagnosis",
+      "implementation": "GENERIC_CAUSAL_DIAGNOSIS",
+      "role": "multi-hypothesis bounded diagnosis control"
+    },
+    {
+      "id": "full_t7",
+      "implementation": "FULL_T7",
+      "role": "V3 confirmatory subject re-measured unchanged as parent arm on the successor panel"
+    },
+    {
+      "id": "full_t7_v4",
+      "implementation": "FULL_T7_V4",
+      "role": "V4 preservation-wired subject (revival lever mechanism completion)"
+    },
+    {
+      "id": "random_diagnostic",
+      "implementation": "RANDOM_DIAGNOSTIC",
+      "role": "diagnostic-selection chance control"
+    },
+    {
+      "id": "always_unresolved",
+      "implementation": "ALWAYS_UNRESOLVED",
+      "role": "refusal floor"
+    },
+    {
+      "analysis_only": true,
+      "id": "oracle_ceiling",
+      "implementation": "ORACLE_CEILING",
+      "role": "protected-gold ceiling; analysis only"
+    }
+  ],
+  "protocol_id": "P5.self-orion-v4.revision-level.v1",
+  "schema_version": "orion.p5.revision-level-v3.baseline-config.v1",
+  "subject_bundle": {
+    "files": [
+      "src/orion/study/p5/revision_level_v3_freeze.py",
+      "src/orion/study/p5/revision_level_v3_policies.py",
+      "src/orion/study/p5/revision_level_v3_preflight.py",
+      "src/orion/study/p5/revision_level_v3_score.py",
+      "src/orion/study/p5/revision_level_v4_policies.py"
+    ],
+    "recipe": "sha1 over the concatenation, in sorted-path order, of sha256(file_bytes).digest() for each listed file",
+    "subject_revision_sha1": "cde12fda4c1a0a8d3f09fc207e6c8b5c6c3fd536"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "captured_at_utc": "2026-08-28T00:19:16.823427+00:00",
+  "claim_boundary": "CURRENT_CLEAN_SOURCE_DETERMINISTIC_REPRODUCIBILITY_ONLY__NO_RETROACTIVE_HISTORICAL_ORDER_AUTHORITY",
+  "cluster": "LUNARC_COSMOS",
+  "cluster_packet": {
+    "driver_exit_code": "0",
+    "large_reconstructed_worlds_and_results_committed": false,
+    "manifest": {
+      "all_entries_pass": true,
+      "bytes": 2418,
+      "entry_count": 24,
+      "path": "/projects/hep/fs9/scratch/scyiu-orion-ci/orion11-lunarc-replay-v1/results/3550083/SHA256SUMS",
+      "sha256": "45d2f78d1ad287e47120a833e6fa475b0bd7158d217e7591c7fee03886b92ab6"
+    },
+    "path": "/projects/hep/fs9/scratch/scyiu-orion-ci/orion11-lunarc-replay-v1/results/3550083",
+    "stderr": {
+      "bytes": 0,
+      "path": "/projects/hep/fs9/scratch/scyiu-orion-ci/orion11-lunarc-replay-v1/logs/o11-replay-v1-3550083.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "bytes": 823,
+      "path": "/projects/hep/fs9/scratch/scyiu-orion-ci/orion11-lunarc-replay-v1/logs/o11-replay-v1-3550083.out",
+      "sha256": "0998d069ea7f33133ea87e4f40aa77f312639781b04d2f67a06e3b0db1eb4470"
+    }
+  },
+  "discrepancies": [],
+  "environment_deviations_preserved": [
+    "PYTHON_MINOR_VERSION_DIFFERS_FROM_HISTORICAL_PROVENANCE",
+    "AMBIENT_CRYPTOGRAPHY_BELOW_CURRENT_REPOSITORY_DECLARED_MINIMUM"
+  ],
+  "freeze_authority": "NONE__DO_NOT_FREEZE_OR_MERGE",
+  "job_output": {
+    "bytes": 19806,
+    "path": "papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/LUNARC_REPLAY_JOB_OUTPUT_V1.json",
+    "sha256": "5cd24e6e9a64a9f6b8c4d8c9e89cd9be25cf330352b28b0859b614f40ff28087"
+  },
+  "lane_summaries": [
+    {
+      "analysis_mismatch_count": 0,
+      "comparisons": {
+        "independent_verification": {
+          "byte_equal": true,
+          "bytes": 7863,
+          "sha256": "d48a2193bb9ba3652b9dbf629fdbace5a44f939ebf06ded6a8d610f4e3a00c3a"
+        },
+        "raw_results": {
+          "byte_equal": true,
+          "bytes": 41035947,
+          "sha256": "a198e83d8714535e488ac795eeb6a4490409c3ed909442bf0912660800386a31"
+        },
+        "result": {
+          "byte_equal": true,
+          "bytes": 14087,
+          "sha256": "1eaab37f246ac3a03edddb7ef00f3c0b0387c1aa9474dfcfcaee6aa18fb853fd"
+        }
+      },
+      "independent_verdict": "PASS",
+      "lane": "primary",
+      "scientific_terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+      "score_mismatch_count": 0,
+      "terminal": "EXACT_ARCHIVE_REPLAY"
+    },
+    {
+      "analysis_mismatch_count": 0,
+      "comparisons": {
+        "independent_verification": {
+          "byte_equal": true,
+          "bytes": 7952,
+          "sha256": "f7d5001b8b4438d23f1af7a93d4dd015c52037c5af296fbbaf69d601670c0ddf"
+        },
+        "raw_results": {
+          "byte_equal": true,
+          "bytes": 41032311,
+          "sha256": "eff79ebc252f6e3dbbed246ef963e227373913c8cfcaaffbdd50d286fc336f73"
+        },
+        "result": {
+          "byte_equal": true,
+          "bytes": 14259,
+          "sha256": "cc739a6f506fa845c7f6bfaaf25364bed1684771e593055daa3aae7dc8970b1a"
+        }
+      },
+      "independent_verdict": "PASS",
+      "lane": "replication",
+      "scientific_terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+      "score_mismatch_count": 0,
+      "terminal": "EXACT_ARCHIVE_REPLAY"
+    }
+  ],
+  "preserved_findings": [
+    "HISTORICAL_BROAD_H1_NOT_SUPPORTED__SUBJECT_1_OF_48__BASELINE_1_OF_48__DIFFERENCE_0",
+    "CANNOT_CHECK_HISTORICAL_PROSPECTIVE_ORDER",
+    "LOCAL_DETERMINISTIC_REPLAY_IS_NOT_EXTERNAL_REVIEW",
+    "PYTHON_AND_DEPENDENCY_DEVIATIONS_RECORDED_NOT_ERASED"
+  ],
+  "receipt_id": "ORION-11.NEGATIVE-REVIVAL.R1.LUNARC-REPLAY-3550083",
+  "schema_version": "orion.orion11.lunarc-replay-receipt.v1",
+  "slurm": {
+    "account": "lu2026-2-51",
+    "allocated_cpus": "1",
+    "batch_max_rss": "1129752K",
+    "elapsed": "00:03:45",
+    "ended": "2026-08-28T02:10:37",
+    "exit_code": "0:0",
+    "job_id": "3550083",
+    "job_name": "o11-replay-v1",
+    "node": "cn063",
+    "partition": "lu48",
+    "qos": "normal",
+    "requested_memory": "4G",
+    "sacct_steps": [
+      {
+        "AllocCPUS": "1",
+        "Elapsed": "00:03:45",
+        "End": "2026-08-28T02:10:37",
+        "ExitCode": "0:0",
+        "JobIDRaw": "3550083",
+        "JobName": "o11-replay-v1",
+        "MaxRSS": "",
+        "NodeList": "cn063",
+        "Partition": "lu48",
+        "QOS": "normal",
+        "ReqMem": "4G",
+        "Start": "2026-08-28T02:06:52",
+        "State": "COMPLETED",
+        "Submit": "2026-08-28T02:06:52"
+      },
+      {
+        "AllocCPUS": "1",
+        "Elapsed": "00:03:45",
+        "End": "2026-08-28T02:10:37",
+        "ExitCode": "0:0",
+        "JobIDRaw": "3550083.batch",
+        "JobName": "batch",
+        "MaxRSS": "1129752K",
+        "NodeList": "cn063",
+        "Partition": "",
+        "QOS": "",
+        "ReqMem": "",
+        "Start": "2026-08-28T02:06:52",
+        "State": "COMPLETED",
+        "Submit": "2026-08-28T02:06:52"
+      },
+      {
+        "AllocCPUS": "1",
+        "Elapsed": "00:03:45",
+        "End": "2026-08-28T02:10:37",
+        "ExitCode": "0:0",
+        "JobIDRaw": "3550083.extern",
+        "JobName": "extern",
+        "MaxRSS": "208K",
+        "NodeList": "cn063",
+        "Partition": "",
+        "QOS": "",
+        "ReqMem": "",
+        "Start": "2026-08-28T02:06:52",
+        "State": "COMPLETED",
+        "Submit": "2026-08-28T02:06:52"
+      }
+    ],
+    "scheduler_timezone": "Europe/Stockholm",
+    "started": "2026-08-28T02:06:52",
+    "state": "COMPLETED",
+    "submitted": "2026-08-28T02:06:52"
+  },
+  "socket_check_before_submission": "CONNECTED",
+  "source_binding": {
+    "binding": {
+      "bytes": 2914,
+      "path": "papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/LUNARC_REPLAY_EXECUTION_BINDING_V1.json",
+      "sha256": "0ccac10a5db611534679b6d3117b7cdacff8cbcbac2f6b15344b9cd68a2204b5"
+    },
+    "binding_commit": "73d4b36ff11df444e83b67159f63dbeadc189651",
+    "clean_source_mode": "GIT_ARCHIVE_OF_EXACT_COMMIT__NO_WORKTREE_STATE",
+    "job_script_sha256": "1f7f471d97040e0f458ffbadf84470ef012d27e1e3542b0381ec9e96aee0f5e2",
+    "protocol_sha256": "3503b49a158da7d8ceb65ad6ac3c702ba9f87ca97a35ae94795ac2feaa36563d",
+    "source_archive_bytes": 181112593,
+    "source_archive_sha256": "e25b9b66091d5c8f98e962a5cae784d1668c5e316f326652736451fd856c2dd1",
+    "source_commit": "58192a3a05c4fc8e55b45e0082cbd1de2792c250"
+  },
+  "submission_authority": "NONE__NOT_EXTERNAL_OR_INDEPENDENT_REVIEW",
+  "terminal": "EXACT_PRIMARY_AND_REPLICATION_ARCHIVE_REPLAY"
+}

@@ -1,0 +1,55 @@
+{
+  "amendment_vehicle": "new files under evidence/ only; claim-ledger and manuscript bytes untouched (freeze pins verified intact)",
+  "authority": "NOT_R6; no journal/submission authority; no donor or novelty credit; no chemistry data; no network",
+  "claims_amended": [
+    {
+      "addendum": "evidence/R2_N2_STABPREP_L3_VOCABULARY_ADDENDUM.md",
+      "claim": "QG1V2-C7 (N2)",
+      "lever": "L3 sign-aware state-structural vocabulary (41-feature STATE block; protocol frozen pre-run)",
+      "new_verdict": "POSITIVE CONVERSION (floor 0 on complete 1146; near-injective disclosure recorded)",
+      "old": "43/1146 V1 floor; 1 mixed cell V2; 5-floor L2"
+    },
+    {
+      "addendum": "evidence/R2_N2_STABPREP_L3_VOCABULARY_ADDENDUM.md",
+      "claim": "QG1V2-C6 (N4 residual)",
+      "lever": "same L3 re-tested out-of-sample (pre-frozen H-B)",
+      "new_verdict": "NOT IMPROVED (CV 32/120, shuffle p 0.51) \u2014 negative stands",
+      "old": "QG-23 lattice predicate 3/120 on frozen n=4 panel"
+    },
+    {
+      "addendum": "evidence/R2_N3_QG17R_PHASE_SHARPNESS_ADDENDUM.md",
+      "claim": "QG-17 lane (N3)",
+      "lever": "corrected cap-1 statistic (QG17R)",
+      "new_verdict": "NEGATIVE STANDS \u2014 CORRECTED-STATISTIC CONFIRMED",
+      "old": "no support-2 witness, artifact-risk caveat"
+    },
+    {
+      "addendum": "evidence/R2_N5_QG20_SLACK_ADDENDUM.md",
+      "claim": "QG1V2-C8 (N5)",
+      "lever": "exact slack==mu measurement on both certified families (QG-20)",
+      "new_verdict": "IMPROVED-CONDITIONAL (identity on 2 families; rewrite-dependent; third family not derivable)",
+      "old": "rank 5 vs kappa 1 unexplained mismatch"
+    }
+  ],
+  "date": "2026-08-28",
+  "freeze_receipt": "papers/publication_closure/receipts/remaining11/ORION-09_SCIENCE_CONTENT_FREEZE_V1.json",
+  "freeze_receipt_sha256": "fac6d72f8390f4f0d6827bfd7afe6535cff3ca92cdec818ecbd86d551abd0b3d",
+  "frozen_files_modified": false,
+  "frozen_manuscript_sha256": "ade10cf06e7e7b64029a34632d8ab5096814df2c567759b7397a35d9900d11ce",
+  "frozen_paper_tree_oid": "260fb60ef4847163c0442e52d54a0a63109a7a2e",
+  "mandate": "Operator R2 negative-revival pass (2026-08-28): every recorded negative gets a genuine revival attempt before any freeze is final.",
+  "manuscript_sha256_now": "ade10cf06e7e7b64029a34632d8ab5096814df2c567759b7397a35d9900d11ce",
+  "new_evidence_files_sha256": {
+    "R2_N2_STABPREP_L3_VOCABULARY_ADDENDUM.md": "fd8a5d624b98ed20bc4d068a9d61cac8b2dc507c30c63be3b1c4c4e735bcf5b9",
+    "R2_N2_STABPREP_L3_VOCABULARY_PROTOCOL_V1.md": "c78b0e0b35663cdbe4c66dfe89aeb6e0154941e43380b0e0b203ad5fd3944135",
+    "R2_N2_STABPREP_L3_VOCABULARY_RESULTS.json": "2f52b5dde955d9c156a0b221a1518a66aa966ca7d1c572ed59a198caac217902",
+    "R2_N3_QG17R_PHASE_SHARPNESS_ADDENDUM.md": "b772e422f9e7dfcac7ebe3859d68fb3f82fedb5dcc5435cbf9f7722fc31f2ba6",
+    "R2_N5_QG20_SLACK_ADDENDUM.md": "021342ee1fba4c590c2372a8156d769db425d5f9a9f7f26061a5c2577decc1a9"
+  },
+  "paper_id": "ORION-09",
+  "paper_tree_oid_after_addenda_excluding_this_receipt": "f2710b76b60b5d46740a8f96054adea04095d7bc",
+  "reopen_rule_respected": true,
+  "result_digest": "636e0255a82c313561228f3586e67a7615d39276418ed2a50b4ec0c8c627c0bc",
+  "schema": "ORION.R2.REVIVAL_ADDENDUM_RECEIPT.v1",
+  "terminal": "R2_REVIVAL_ADDENDA_RECORDED__FREEZE_PINS_VERIFIED_INTACT"
+}

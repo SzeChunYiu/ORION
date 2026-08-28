@@ -1,0 +1,45 @@
+{
+  "schema": "ORION.FiberGuard.PMLBProposalOrdering.R23.InfrastructureFailure.v1",
+  "attempt_id": "ORION02-REVIVAL-001-R23-HAMMING-K2",
+  "counts_toward_100": false,
+  "scientific_terminal_reached": false,
+  "frozen_science_changed": false,
+  "freeze_commit": "d8b8771986ef8397925852961c6fd38f2b3ec95d",
+  "policy_commit": "d15a1de9d25ab751613eee8b2a1fe296732118b3",
+  "executor_sha256": "6bb4e377462249c3630ceacc56073ba385a82805c79eda58809c42b8ee1562aa",
+  "protocol_sha256": "54574ec9fa5364fb0ad8e5857678930dac3b4483f1b7a9da96829d8e6f0c447f",
+  "verifier_sha256": "fef1f621f5fe43942201d013a682355a5441379ee57ecbb2f607165e52d16997",
+  "jobs": [
+    {
+      "job_id": 3549893,
+      "state": "FAILED",
+      "elapsed": "00:00:01",
+      "exit_code": "1:0",
+      "node": "cn087",
+      "failure_class": "PREEXECUTION_STATUS_GUARD",
+      "root_cause": "the status guard allowed the execution script but not the SLURM-created stdout and stderr paths",
+      "scientific_process_started": false
+    },
+    {
+      "job_id": 3549894,
+      "state": "FAILED",
+      "elapsed": "00:17:20",
+      "exit_code": "1:0",
+      "node": "cn087",
+      "failure_class": "WRAPPER_FAILURE_WITH_UNCONDITIONAL_TEMP_CLEANUP",
+      "root_cause": "the wrapper deleted its temporary directory on every exit, so the post-self-test failure stage and any run-local files were not retained",
+      "scientific_process_started": true,
+      "scientific_terminal_reached": false,
+      "counting_reason": "no preserved result, terminal, byte-identity receipt, or independent verification exists"
+    }
+  ],
+  "old_wrapper_sha256": "6201e8326539b1ae9bcadd038e93f5fb34294fc80139840d81de65b93710640b",
+  "corrected_wrapper_sha256": "f47fb411acda6735ca636160defcdd926c98e6ed5f57967051b683d4a4203f04",
+  "corrective_action": "preserve the complete temporary directory, exit code, and last stage on failure; do not alter protocol, executor, verifier, corpus, lever, folds, arms, tau, k, or gates",
+  "authority": {
+    "scientific_authority_delta": "NONE",
+    "submission_authorized": false,
+    "top_tier_gate_pass": false,
+    "freeze_authorized": false
+  }
+}
