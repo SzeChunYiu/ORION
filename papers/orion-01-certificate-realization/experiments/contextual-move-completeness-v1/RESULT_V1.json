@@ -1,0 +1,81 @@
+{
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "claim_C_registry_still_unidentifiable": {
+    "distinct_signatures_over_quotient": 5,
+    "one_per_n_so_constant_within_each_n": true,
+    "reading": "the optimizer signature varies only with n, never with the registry, so the quotient does not make the registry identifiable"
+  },
+  "controls": {
+    "K1_cross_check_against_frozen_histogram": {
+      "passed": true
+    },
+    "K2_iff_both_directions": {
+      "checked_both": true,
+      "passed": true
+    },
+    "K3_non_source_complete_witness_exists": {
+      "n_without_witness": [],
+      "passed": true
+    },
+    "K4_signature_constancy_measured": {
+      "note": "collected over the quotient, not read off the constructor",
+      "passed": true
+    }
+  },
+  "panel": [
+    {
+      "closed_form": 1,
+      "frozen_r12_count_at_complexity_1": 1,
+      "n": 2,
+      "non_source_complete_with_complexity_gt_1": 1,
+      "registries_total": 2,
+      "source_complete_count": 1
+    },
+    {
+      "closed_form": 3,
+      "frozen_r12_count_at_complexity_1": 3,
+      "n": 3,
+      "non_source_complete_with_complexity_gt_1": 5,
+      "registries_total": 8,
+      "source_complete_count": 3
+    },
+    {
+      "closed_form": 21,
+      "frozen_r12_count_at_complexity_1": 21,
+      "n": 4,
+      "non_source_complete_with_complexity_gt_1": 43,
+      "registries_total": 64,
+      "source_complete_count": 21
+    },
+    {
+      "closed_form": 315,
+      "frozen_r12_count_at_complexity_1": 315,
+      "n": 5,
+      "non_source_complete_with_complexity_gt_1": 709,
+      "registries_total": 1024,
+      "source_complete_count": 315
+    },
+    {
+      "closed_form": 9765,
+      "frozen_r12_count_at_complexity_1": 9765,
+      "n": 6,
+      "non_source_complete_with_complexity_gt_1": 23003,
+      "registries_total": 32768,
+      "source_complete_count": 9765
+    }
+  ],
+  "protocol_identity": "ORION01.CONTEXTUAL_MOVE_COMPLETENESS.v1",
+  "schema": "ORION.ORION01.ContextualMoveCompleteness.Result.v1",
+  "scientific_authority_delta": "NONE",
+  "terminal": "T1_QUOTIENT_REPAIRS_COMPLETENESS_ONLY",
+  "theorem_A_iff": {
+    "both_directions_checked": true,
+    "holds": true,
+    "not_source_complete_but_complexity_1": 0,
+    "source_complete_but_complexity_not_1": 0
+  },
+  "theorem_B_closed_form": {
+    "matches_enumeration_and_frozen_r12": true,
+    "mismatches": []
+  }
+}
