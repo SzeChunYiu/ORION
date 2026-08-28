@@ -1,0 +1,42 @@
+{
+  "schema": "ORION.ORION06.NegativeCoverageProtocol.v1",
+  "date": "2026-08-27",
+  "status": "FROZEN_AUDIT_PROTOCOL",
+  "base_commit": "0a56f4a5a28f31072c6fb3cc910804474dc2f2a6",
+  "scientific_authority_delta": "NONE",
+  "sources": {
+    "transition_graph": {
+      "path": "papers/orion-06-recursive-recovery/Q2_TRANSITION_GRAPH_V2.json",
+      "sha256": "deb18866abd028141acc5cb94e3e4147835fbb684fb01cc5a0a9358b30acab0b"
+    },
+    "eligible_inventory": {
+      "path": "papers/orion-06-recursive-recovery/Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json",
+      "sha256": "4152805b973e6fc402e2dcf434f7ee3c136f16bd244e08654fa2feb409eddf55"
+    }
+  },
+  "required_partition": {"eligible": 51, "included_nodes": 23, "explicit_exclusions": 28, "asserted_edges": 13},
+  "required_standalone_set": [
+    "R2_KNOWN_OPERATOR_TRANSFER",
+    "R3B_JOINT_OBLIGATION_BINDING",
+    "R4C_H2_REGIME_LIMITED",
+    "R5B_PROOF_OUTER_REPLAY",
+    "R6I_EXACT_RANK2",
+    "R6K_EXACT_RESTORE_FACTOR",
+    "N1C_TYPED_FAILURE_STATE"
+  ],
+  "rules": [
+    "recompute hashes, denominator partition, node and edge counts, and exact standalone set",
+    "do not invent a successor edge from chronological adjacency",
+    "exact donor ties/absorption may be retained as mechanistically stopped only inside the same frozen claim",
+    "an explicit next attack without a frozen executed successor is UNFINISHED, never UNSOLVABLE",
+    "the unexecuted cross-domain B/C protocol remains CANNOT_CHECK for general-method effectiveness and does not block the bounded single-programme case-study record"
+  ],
+  "authority": {
+    "cross_domain_effectiveness": false,
+    "productivity_superiority": false,
+    "false_novelty_reduction_causal": false,
+    "external_independence": false,
+    "journal_or_submission": false,
+    "final_freeze": false
+  }
+}

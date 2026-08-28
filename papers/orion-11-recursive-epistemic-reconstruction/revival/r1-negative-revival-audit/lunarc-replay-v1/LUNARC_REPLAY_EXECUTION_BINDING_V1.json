@@ -1,0 +1,62 @@
+{
+  "authority": "DETERMINISTIC_REPLAY_ONLY__NO_EXTERNAL_REVIEW_MERGE_FREEZE_OR_SUBMISSION_AUTHORITY",
+  "binding_id": "ORION-11.NEGATIVE-REVIVAL.R1.LUNARC-REPLAY-BINDING.20260828",
+  "bound_at_utc": "2026-08-28T00:04:35.280958+00:00",
+  "historical_prospective_order_status": "CANNOT_CHECK_HISTORICAL_PROSPECTIVE_ORDER",
+  "interpreter": {
+    "ambient_cryptography_version": "41.0.5",
+    "bytes": 29480,
+    "deviations_preserved": [
+      "PYTHON_MINOR_VERSION_DIFFERS_FROM_HISTORICAL_PROVENANCE",
+      "AMBIENT_CRYPTOGRAPHY_BELOW_CURRENT_REPOSITORY_DECLARED_MINIMUM"
+    ],
+    "historical_provenance_version": "Python 3.12",
+    "repository_declared_cryptography_minimum": ">=45",
+    "resolved_path": "/lunarc/sw/easybuild_milan/software/Python/3.11.5-GCCcore-13.2.0/bin/python3.11",
+    "sha256": "34f2f9f9561850d15d8060a2565c3a81046425faaba575687d3b75e1212d0f77",
+    "submitted_path": "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO01-venv/bin/python",
+    "version": "Python 3.11.5"
+  },
+  "job_script": {
+    "bytes": 2667,
+    "path": "papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/run_orion11_lunarc_replay_v1.sbatch",
+    "sha256": "1f7f471d97040e0f458ffbadf84470ef012d27e1e3542b0381ec9e96aee0f5e2"
+  },
+  "negative_preservation_rule": "ANY_FAILURE_OR_BYTE_DRIFT_REMAINS_ADVERSE_EVIDENCE__NO_REPAIR_AFTER_OUTCOME",
+  "protocol": {
+    "bytes": 7909,
+    "path": "papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/LUNARC_REPLAY_PROTOCOL_V1.json",
+    "sha256": "3503b49a158da7d8ceb65ad6ac3c702ba9f87ca97a35ae94795ac2feaa36563d"
+  },
+  "required_outputs": [
+    "PRIMARY_RAW_RESULTS_BYTE_COMPARISON",
+    "PRIMARY_RESULT_BYTE_COMPARISON",
+    "PRIMARY_INDEPENDENT_VERIFICATION_BYTE_COMPARISON",
+    "REPLICATION_RAW_RESULTS_BYTE_COMPARISON",
+    "REPLICATION_RESULT_BYTE_COMPARISON",
+    "REPLICATION_INDEPENDENT_VERIFICATION_BYTE_COMPARISON",
+    "JOB_ID_AND_SACCT_CUSTODY"
+  ],
+  "scheduler": {
+    "account": "lu2026-2-51",
+    "cluster": "LUNARC_COSMOS",
+    "cpus_per_task": 1,
+    "memory": "4G",
+    "nodes": 1,
+    "ntasks": 1,
+    "partition": "lu48",
+    "qos": "normal",
+    "walltime": "00:15:00"
+  },
+  "schema_version": "orion.orion11.lunarc-replay-execution-binding.v1",
+  "source": {
+    "archive_bytes": 181112593,
+    "archive_path_on_lunarc": "/projects/hep/fs9/scratch/scyiu-orion-ci/orion11-lunarc-replay-v1/source/ORION-58192a3a05c4fc8e55b45e0082cbd1de2792c250.tar.gz",
+    "archive_sha256": "e25b9b66091d5c8f98e962a5cae784d1668c5e316f326652736451fd856c2dd1",
+    "base_origin_main": "2b912e72797a45756cbe90bdd379d5bf5efc974d",
+    "branch": "codex/revive-orion11-necessity-adapters-20260828",
+    "mode": "GIT_ARCHIVE_OF_EXACT_COMMIT__NO_WORKTREE_STATE",
+    "source_commit": "58192a3a05c4fc8e55b45e0082cbd1de2792c250"
+  },
+  "status": "FROZEN_BEFORE_SLURM_SUBMISSION"
+}

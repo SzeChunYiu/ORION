@@ -1,0 +1,166 @@
+{
+  "authority": "REPRODUCIBILITY_ONLY__NO_MERGE_FREEZE_SUBMISSION_NOVELTY_OR_EXTERNAL_REVIEW_AUTHORITY",
+  "campaign_script": {
+    "path": "research/revival/p1/run_mutation_necessity_campaign.py",
+    "sha256": "6e4a011d4cae6ce7cd93728367b79d27dd7783e49eb27e23da95a191ab63d8cf"
+  },
+  "execution_environment_boundary": {
+    "ambient_cryptography_version": "41.0.5",
+    "ambient_pythonpath_preserved_after_prepend_of_clean_source_src": true,
+    "dependency_deviation": "AMBIENT_CRYPTOGRAPHY_BELOW_DECLARED_REPOSITORY_MINIMUM__NO_UPGRADE_OR_ERASURE",
+    "deviation": "CURRENT_REPLAY_INTERPRETER_MINOR_VERSION_DIFFERS_FROM_HISTORICAL_PROVENANCE__RECORD_NOT_ERASE",
+    "handed_off_interpreter": "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO01-venv/bin/python",
+    "handed_off_interpreter_version": "Python 3.11.5",
+    "historical_provenance_interpreter": "Python 3.12",
+    "pythonhashseed": "0",
+    "repository_declared_cryptography_minimum": ">=45"
+  },
+  "failure_terminal": "REPLAY_DISCREPANCY__PRESERVE_NEGATIVE",
+  "historical_broad_h1_disposition": "NOT_SUPPORTED__MUST_REMAIN_SEPARATE",
+  "historical_prospective_order_disposition": "CANNOT_CHECK_HISTORICAL_PROSPECTIVE_ORDER",
+  "independent_verifier": {
+    "path": "research/revival/p1/verify_mutation_necessity_independent.py",
+    "sha256": "4e0499c81ca1b877cd868169ca2385edde4fe5c68039f543c53df8c360c2cd47"
+  },
+  "lanes": [
+    {
+      "execution_freeze": {
+        "path": "research/revival/p1/confirmatory/v2.2/PRIMARY_EXECUTION_FREEZE_V3.json",
+        "sha256": "da982bca3e7e37027b3bb9f14c33d77eeb81752dc5fd2da74f71abf46ea8122e"
+      },
+      "expected_outputs": {
+        "independent_verification": {
+          "path": "research/revival/p1/confirmatory/v2.2/primary/INDEPENDENT_VERIFICATION.json",
+          "sha256": "d48a2193bb9ba3652b9dbf629fdbace5a44f939ebf06ded6a8d610f4e3a00c3a"
+        },
+        "raw_results_gzip": {
+          "decompressed_sha256": "a198e83d8714535e488ac795eeb6a4490409c3ed909442bf0912660800386a31",
+          "path": "research/revival/p1/confirmatory/v2.2/primary/RAW_RESULTS.jsonl.gz",
+          "sha256": "4c55b70c60c8097ea5c7c96a79e1f52d109f845a1994a0286ab9a18efe949069"
+        },
+        "result": {
+          "path": "research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json",
+          "sha256": "1eaab37f246ac3a03edddb7ef00f3c0b0387c1aa9474dfcfcaee6aa18fb853fd"
+        }
+      },
+      "inputs": {
+        "protected_response_matrix_gzip": {
+          "decompressed_sha256": "31c9d3a39b60da7c0d0c337c461b7179d866957105144d228466f75f20757542",
+          "path": "research/revival/p1/confirmatory/v2.2/primary/PROTECTED_RESPONSE_MATRIX.jsonl.gz",
+          "sha256": "b17f4ea482992ae41af3a3a59a648a85ad991ed7c0fb86d2dac78213b655a5d1"
+        },
+        "world_freeze": {
+          "path": "research/revival/p1/confirmatory/v2.2/PRIMARY_WORLD_FREEZE.json",
+          "sha256": "212f5891af4945f66d31149b2e07f6f7593d40a2cb9d1cbe9e42701060a18d77"
+        },
+        "world_public_gzip": {
+          "decompressed_sha256": "9b77470167a7e22937bc3c498d2277639ea8f02f3e2cbe90e24fe998785bbdf6",
+          "path": "research/revival/p1/confirmatory/v2.2/primary/WORLD_PUBLIC.jsonl.gz",
+          "sha256": "5ab7b6671abf1565c16384eb100e190d5fd7faa9e176af2700ac51547b4d6d60"
+        }
+      },
+      "name": "primary"
+    },
+    {
+      "execution_freeze": {
+        "path": "research/revival/p1/confirmatory/v2.2/replication/REPLICATION_EXECUTION_FREEZE.json",
+        "sha256": "466ba4dcde25f61309e0cdcda874e27e6b686f05a580d058c7b90a3ff6b32f1e"
+      },
+      "expected_outputs": {
+        "independent_verification": {
+          "path": "research/revival/p1/confirmatory/v2.2/replication/INDEPENDENT_VERIFICATION.json",
+          "sha256": "f7d5001b8b4438d23f1af7a93d4dd015c52037c5af296fbbaf69d601670c0ddf"
+        },
+        "raw_results_gzip": {
+          "decompressed_sha256": "eff79ebc252f6e3dbbed246ef963e227373913c8cfcaaffbdd50d286fc336f73",
+          "path": "research/revival/p1/confirmatory/v2.2/replication/RAW_RESULTS.jsonl.gz",
+          "sha256": "44f8ed6732e41e334ef643b694543074f8bf106f289bbc18d1e7c9627270b0c1"
+        },
+        "result": {
+          "path": "research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json",
+          "sha256": "cc739a6f506fa845c7f6bfaaf25364bed1684771e593055daa3aae7dc8970b1a"
+        }
+      },
+      "inputs": {
+        "protected_response_matrix_gzip": {
+          "decompressed_sha256": "768b659a17f055b19dfefc720cee67030c40c6a5f8f55e38fa0c6158c4836d0e",
+          "path": "research/revival/p1/confirmatory/v2.2/replication/PROTECTED_RESPONSE_MATRIX.jsonl.gz",
+          "sha256": "0b2f02f66d9e633eb20d452580a3723ac3a437d48f0b0ebb63deb440439ce634"
+        },
+        "world_freeze": {
+          "path": "research/revival/p1/confirmatory/v2.2/replication/REPLICATION_WORLD_FREEZE.json",
+          "sha256": "47bdd8fdf67c31eec45ba3b2fe4b74c2bba57edc5e81e8f2de373365648ef142"
+        },
+        "world_public_gzip": {
+          "decompressed_sha256": "b4772f693db1e69460bcb531a86bb883afd562bcb219e2038c978e33f7f34afb",
+          "path": "research/revival/p1/confirmatory/v2.2/replication/WORLD_PUBLIC.jsonl.gz",
+          "sha256": "7150403243bff4b1f3f373c0aee42c1273478e2b187eb17778bda1951d1e96b8"
+        }
+      },
+      "name": "replication"
+    }
+  ],
+  "purpose": "EXACT_REPLAY_OF_ARCHIVED_V2_2_4_PRIMARY_AND_DISJOINT_REPLICATION",
+  "replay_id": "ORION-11.NEGATIVE-REVIVAL.R1.LUNARC-REPLAY.20260828",
+  "required_comparisons_per_lane": [
+    "RAW_RESULTS_JSONL_BYTE_IDENTITY",
+    "RESULT_JSON_BYTE_IDENTITY",
+    "INDEPENDENT_VERIFICATION_JSON_BYTE_IDENTITY"
+  ],
+  "scheduler_request": {
+    "account": "lu2026-2-51",
+    "cluster": "LUNARC_COSMOS",
+    "cpus_per_task": 1,
+    "memory": "4G",
+    "network_or_model_credentials_required": false,
+    "nodes": 1,
+    "ntasks": 1,
+    "partition": "lu48",
+    "qos": "normal",
+    "walltime": "00:15:00"
+  },
+  "schema_version": "orion.orion11.lunarc-replay-protocol.v1",
+  "source_files": [
+    {
+      "path": "papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/run_orion11_lunarc_replay_v1.py",
+      "sha256": "a884b462ef1957c81f53a776f11aa985fa40e91d6929ba5dbd72a6259393cb9c"
+    },
+    {
+      "path": "papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/run_orion11_lunarc_replay_v1.sbatch",
+      "sha256": "1f7f471d97040e0f458ffbadf84470ef012d27e1e3542b0381ec9e96aee0f5e2"
+    },
+    {
+      "path": "research/revival/p1/run_mutation_necessity_campaign.py",
+      "sha256": "6e4a011d4cae6ce7cd93728367b79d27dd7783e49eb27e23da95a191ab63d8cf"
+    },
+    {
+      "path": "research/revival/p1/verify_mutation_necessity_independent.py",
+      "sha256": "4e0499c81ca1b877cd868169ca2385edde4fe5c68039f543c53df8c360c2cd47"
+    },
+    {
+      "path": "src/orion/study/p1_causal/absorbed_mechanics.py",
+      "sha256": "2f15e587a7c3d682a67cda98a23fc4870b41dc72251e1efbf04cffac2ca85c46"
+    },
+    {
+      "path": "src/orion/study/p1_causal/necessity_engine.py",
+      "sha256": "db5d9fbeecd957fd85b62a6d04a3f04e97bde04f5921db05f12d660b98642969"
+    },
+    {
+      "path": "src/orion/study/p1_causal/necessity_policies.py",
+      "sha256": "5ec6bb802b2914133bcdb4a6876a20e6eab0b1f21cacc722a61a6ce2beb119be"
+    },
+    {
+      "path": "src/orion/study/p1_causal/necessity_policies_v3.py",
+      "sha256": "2f8bb68e84e70fb3fb6b1b4698347a9f5fa7af45ede302326efc22d5f2d85612"
+    },
+    {
+      "path": "src/orion/study/p1_causal/necessity_scoring.py",
+      "sha256": "848370224e2ab433ba9a754f0f2cfebb6328087c4bf347185323ad3d61ff9cd3"
+    },
+    {
+      "path": "src/orion/study/p1_causal/necessity_statistics.py",
+      "sha256": "e78a729f492564f883f9682084057ff3b98d49594643105796f8f8d76141315b"
+    }
+  ],
+  "success_terminal": "EXACT_PRIMARY_AND_REPLICATION_ARCHIVE_REPLAY"
+}
