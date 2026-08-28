@@ -14,20 +14,32 @@ The submission claim is the narrowed methods / critical system-design result:
 - the favorable nDCG@10 result is secondary and must not be used to rescue the failed registered gate;
 - future valid multi-provider superiority studies are successor science, not a hidden prerequisite of this narrowed manuscript.
 
-## Current package problem
+## Historical package problem — resolved additively
 
-`journal_package/MANIFEST.json` correctly marks the retained PDF as historical/superseded for the current manuscript and leaves `P2.CURRENT_PACKAGE` open. Wave 1 therefore requires a fresh exact-current render rather than reusing historical `PEER_REVIEW_READY` language.
+`journal_package/MANIFEST.json` correctly marks the retained PDF as
+historical/superseded. It remains unchanged as provenance. The new current
+authority is `journal_package/current_revision/SUBMISSION_MANIFEST.json`, which
+binds the target-adapted PDF, anonymous source and review archive.
 
 ## Closeout blockers
 
-- [ ] `p1-p2-exact-main-render` passes on this exact PR head and emits a byte-reproducible current ORION-12 PDF.
-- [ ] The exact render receipt and repository input-closure digest are retained for the current source.
-- [ ] A page-level visual and claim audit is performed on that exact PDF.
-- [ ] `journal_package/MANIFEST.json` is additively superseded/rebound to the current PDF only after the render+visual audit is complete; the historical PDF remains historical.
-- [ ] Current IP&M wrapper/title-page requirements are checked without inventing human author metadata.
-- [ ] Submission-date literature refresh is rerun only if the current freshness window has expired.
-- [ ] Exact final submission bytes are bound before upload.
+- [x] two clean target builds are byte-identical under the recorded source epoch;
+- [x] the exact source/input closure is retained for the current PDF;
+- [x] every page, figure, table, reference and final-page spill is visually audited;
+- [x] the current-revision package is additive; historical PDF/manifest bytes are not relabelled;
+- [x] the current CAS single-column adapter, title-page structure and companions are checked without inventing human metadata;
+- [x] a 2026-08-28 literature refresh is recorded; the broad search is not a saturation certificate;
+- [x] exact final review PDF, anonymous source and review-archive bytes are bound.
+
+The current claim authority is the 105-row
+`editorial/ATOMIC_CLAIM_LEDGER_2026-08-28.csv`, checked by
+`scripts/check_current_atomic_claim_ledger.py`. The older
+`protocol/CLAIM_LEDGER_V1.json` remains historical provenance for the discarded
+long-form manuscript and is not a sentence ledger for this revision.
 
 ## Close criterion
 
-`READY_TO_FILE_IPM` when the current narrowed manuscript—not a historical package—has a clean exact render, visual/claim audit and exact-byte submission manifest. No new exploratory science is required unless the current-source audit reveals a scientific contradiction.
+`simulated_publication_ready_for_target`
+
+Only human filing metadata, author approvals, upload and submission-ID capture
+remain. Any byte change reopens the affected render and claim checks.

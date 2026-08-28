@@ -1,4 +1,4 @@
-# Table ORION-12-2: Baselines and ablations with cost metrics
+# Table P2-2: Baselines and ablations with cost metrics
 
 <!-- GENERATED FILE - DO NOT EDIT BY HAND.
      Regenerate with:

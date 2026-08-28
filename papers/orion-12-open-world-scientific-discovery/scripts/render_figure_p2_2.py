@@ -82,7 +82,7 @@ def render_plt(trajectory_data: dict, plt, destination: Path | None = None) -> P
 
     # Plot ORION full (solid line)
     ax.plot(orion_queries, orion_recall, 'o-', linewidth=2, markersize=6,
-            label='ORION full', color='#1f77b4', alpha=0.8)
+            label='Governed controller', color='#1f77b4', alpha=0.8)
 
     # Plot protocol-driven systematic review (dashed line)
     ax.plot(protocol_queries, protocol_recall, 's--', linewidth=2, markersize=6,
@@ -149,8 +149,8 @@ def render_tex(trajectory_data: dict) -> str:
     add(f"\\draw[thick,dashed] plot coordinates {{{protocol_coords}}};")
 
     # Labels
-    add("\\node[anchor=west] at (8.3,0.94) {ORION full};")
-    add("\\node[anchor=west] at (8.3,0.69) {Protocol SLR};")
+    add("\\node[anchor=west,fill=white,inner sep=1pt] at (8.15,0.99) {Governed controller};")
+    add("\\node[anchor=west,fill=white,inner sep=1pt] at (8.15,0.72) {Protocol-driven review};")
     add(f"\\node[anchor=west,font=\\scriptsize] at (0,1.14) {{{n_tasks} frozen tasks; repeats collapsed; descriptive only}};")
 
     add("\\end{tikzpicture}")
