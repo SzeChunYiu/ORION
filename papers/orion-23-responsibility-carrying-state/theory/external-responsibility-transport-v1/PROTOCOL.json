@@ -1,0 +1,61 @@
+{
+  "schema": "ORION.ORION23.ExternalResponsibilityTransport.Protocol.v1",
+  "paper_id": "ORION-23",
+  "successor_id": "ORION23.EXTERNAL_RESPONSIBILITY_TRANSPORT.v1",
+  "governing_issue": 1649,
+  "status": "THEOREM_PROVED__EXPLAINS_FROZEN_EXTERNAL_CAMPAIGN",
+  "lane_type": "THEORY_OVER_PRE_EXISTING_FROZEN_EXTERNAL_EVIDENCE",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+
+  "freeze_discipline": {
+    "applicability": "NO_NEW_OUTCOMES_GENERATED",
+    "why": "The external campaign was executed and frozen on 2026-08-24, before this packet existed. This lane runs no campaign, derives no gold, makes no network request and re-evaluates no gate. It proves theorems and compares them against the frozen receipt.",
+    "commit_boundary_rule_not_applicable": "The protocol-before-results commit split exists to make a prospective freeze falsifiable. Here the results predate the packet entirely, so the split would prove nothing; the honest control is the disclosure below rather than a commit boundary.",
+    "prospectivity_disclosure": "The outcomes were readable before the theorems were written. This is explanatory adequacy, NOT prospective validation, and no prospectivity is claimed anywhere in the packet.",
+    "post_outcome_changes_forbidden": [
+      "re-running the campaign or re-deriving gold",
+      "re-evaluating any pass gate",
+      "selecting arms or metrics after seeing which flatter the thesis",
+      "converting any of the 32 CANNOT_CHECK facts"
+    ],
+    "arm_and_metric_selection": "All four arms and all metrics are taken verbatim from the frozen receipt. None was added, dropped or redefined by this packet.",
+    "frozen_paper_bytes_modified": "NONE"
+  },
+
+  "claims_under_test": [
+    "Theorem 1: reuse is sound iff every load-bearing premise is UNCHANGED; CONTRADICTED forces REVALIDATE; UNKNOWN forces CANNOT_CHECK.",
+    "Theorem 2: if the observable does not determine a load-bearing premise, no observable-measurable policy is both sound and non-vacuous on that class.",
+    "Theorem 3: a sound non-vacuous policy's cost is floored by cost(L); achievable reduction is bounded by the non-load-bearing remainder.",
+    "Explanatory: the theorems classify all four frozen arms, and every arm cheaper than the cheapest sound arm is unsound or vacuous."
+  ],
+
+  "information_matching": {
+    "requirement_1649": "strongest fair baselines must be information/action/budget matched",
+    "how_satisfied": "The comparison is not a tuned contest. always-raw is the exhaustive upper baseline and receives strictly MORE information than lifecycle-rcs; lifecycle-rcs matches its accept behaviour exactly on all 93 cases at 70% of its cost. provenance-only and confidence-only receive strictly LESS information, and the theorems predict in advance which horn each must take.",
+    "no_arm_advantaged_by_construction": "every arm decides the same 93 frozen cases derived under the same gold rule"
+  },
+
+  "explicitly_not_claimed": [
+    "prospective validation -- see the disclosure above",
+    "external adjudication; the blinded two-expert protocol remains unexecuted",
+    "any governance, quality or responsibility judgment; those remain CANNOT_CHECK",
+    "protected confirmation -- the gold rule's non-bypass boundary states that an AI session does not create it, and that applies to this packet",
+    "novelty over donor provenance / proof-carrying / incremental-verification machinery"
+  ],
+
+  "independent_checker_requirements": {
+    "independence_rule": "No ORION-23 module imported. Theorems verified on freshly enumerated finite transport structures. Campaign receipts read as data only, never executed.",
+    "must_recompute_not_restate": "the arm table must be recomputed from the receipt and the theorem classification derived, not transcribed",
+    "cannot_check_rule": "exit code 3, status CANNOT_CHECK, never reported as a pass"
+  },
+  "negative_controls": {
+    "controls": ["unknown_is_not_treated_as_unchanged", "contradicted_dominates_unknown",
+                 "every_arm_classified", "cost_floor_separates_sound_from_unsound_and_vacuous"],
+    "pass_condition": "4 of 4 fire"
+  },
+
+  "stop_rule_1649_verbatim": "If the external corpus does not support the broader transport claim, retain the bounded current paper and publish the external boundary.",
+  "stop_rule_evaluation": "The corpus DOES support the claim on the objective fact classes the gold rule admits. The remaining boundary -- governance and responsibility judgments, and external adjudication -- is published in THEORY.md section 5 rather than papered over.",
+  "promotion_budget_status": "SPENT -- this is ORION-23's one attempt under #1649. No further rescue cycle is authorized."
+}
