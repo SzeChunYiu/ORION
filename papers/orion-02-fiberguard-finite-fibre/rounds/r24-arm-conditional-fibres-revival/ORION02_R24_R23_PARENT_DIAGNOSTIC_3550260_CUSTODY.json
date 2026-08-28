@@ -1,0 +1,69 @@
+{
+  "authority": {
+    "attempt_002_consumed": false,
+    "freeze_authorized": false,
+    "scientific_authority_delta": "NONE",
+    "submission_authorized": false,
+    "top_tier_gate_pass": false
+  },
+  "counts_toward_100": false,
+  "date": "2026-08-28",
+  "diagnosis_boundary": "56 structured differences include changed RF300 selections, acquisition paths, pool members, bounds, and violation counts; this is substantive environment-sensitive replay drift, not the previously amended one-unit verifier serialization issue",
+  "job_id": 3550260,
+  "next_hypothesis": "R23 was executed with the LUNARC system python3; R24 used a separate venv interpreter. Test the system interpreter while holding PYTHONHASHSEED and thread limits fixed.",
+  "preserved_artifacts": [
+    {
+      "bytes": 241,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/ORION02_R24_R23_PARENT_DIAGNOSTIC_JOB_3550260.out",
+      "sha256": "4aed7970d0d7c31385d7e2f87dbf1b0af9375618fc5a2916ad0b2f8211fc34a4"
+    },
+    {
+      "bytes": 0,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/ORION02_R24_R23_PARENT_DIAGNOSTIC_JOB_3550260.err",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 495186,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/R23_PARENT_DIAGNOSTIC_JOB_3550260.fresh.json",
+      "sha256": "af2e686bd52ebcd5bf83d0b8ebfefe974eb2e3f629b9864fbb0dd795a99bf072"
+    },
+    {
+      "bytes": 14283,
+      "path": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/R23_PARENT_DIAGNOSTIC_JOB_3550260.receipt.json",
+      "sha256": "b80639ecdbb95af079aedca6f3e8e7c0f729a37715f81e976677b234c4249a1a"
+    }
+  ],
+  "profile": {
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONHASHSEED": "0",
+    "interpreter": "/projects/hep/fs9/scratch/scyiu-orion-ci/ORION/.venv/bin/python"
+  },
+  "r24_policy_executed": false,
+  "result": {
+    "byte_identical": false,
+    "difference_count": 56,
+    "first_byte_difference_offset": 4467,
+    "fresh_sha256": "af2e686bd52ebcd5bf83d0b8ebfefe974eb2e3f629b9864fbb0dd795a99bf072",
+    "frozen_sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77",
+    "max_abs_numeric_difference": 2.0,
+    "numeric_difference_count": 27,
+    "terminal": "R23_PARENT_REPLAY_BYTE_DRIFT_DIAGNOSED"
+  },
+  "schema": "ORION.FiberGuard.R24.R23ParentReplayDiagnosticCustody.v1",
+  "slurm": {
+    "account": "lu2026-2-51",
+    "allocated_cpus": 2,
+    "elapsed": "00:08:05",
+    "elapsed_seconds": 485,
+    "end": "2026-08-28T07:54:51+02:00",
+    "exit_code": "0:0",
+    "node": "cn063",
+    "partition": "lu48",
+    "requested_memory": "16G",
+    "start": "2026-08-28T07:46:46+02:00",
+    "state": "COMPLETED"
+  },
+  "source_commit": "65e319b436cbb1d6fc98b2d462be5e89925a3caa"
+}
