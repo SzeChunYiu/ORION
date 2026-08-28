@@ -1,0 +1,37 @@
+{
+  "schema": "ORION.ORION11.CostedOrdering.OrchestratorSpotCheck.v1",
+  "authority": "SPOT_CHECK_ONLY",
+  "scientific_authority_delta": "NONE",
+  "is_not": "the independent checker PROTOCOL.json requires. That checker refused with exit 3 and no terminal is filed on this evidence. This is a third-path arithmetic reproduction only, and it does not substitute for the required check.",
+  "method": "Read raw_traces.jsonl directly, pair by world_id, retain worlds where BOTH arms clear the identical success and safety gates (protected_root_task_success true and forbidden_high_level_mutation false), and take the ratio of mean total cost. Shares no code with the runner or the checker.",
+  "traces_sha256": "de084acacb9c884b4c2296106245a2af14ef68a9af77cfe850bdf510d0387ed3",
+  "rows_read": 19022,
+  "worlds": 2882,
+  "paired_cost_ratios": {
+    "orion_over_faithful_active_voi": {"paired_n": 1657, "orion": 2.1386, "comparator": 1.1761, "ratio": 1.8184,
+      "runner_reported": 1.8183686344305383, "runner_retained_n": 1657, "agrees": true},
+    "orion_over_gain_per_cost_greedy": {"paired_n": 1508, "orion": 2.2291, "comparator": 1.3389, "ratio": 1.6649,
+      "runner_reported": 1.6648972653755139, "agrees": true},
+    "orion_over_random_safe_ablation": {"paired_n": 2420, "orion": 1.9174, "comparator": 2.0388, "ratio": 0.9405}
+  },
+  "per_arm_all_rows": {
+    "orion_level_monotone":  {"n": 2882, "mean_cost": 2.1861, "forbidden_rate": 0.0000},
+    "faithful_active_voi":   {"n": 2882, "mean_cost": 1.1670, "forbidden_rate": 0.0000},
+    "random_safe_ablation":  {"n": 2882, "mean_cost": 2.2983, "forbidden_rate": 0.0000},
+    "gain_per_cost_greedy":  {"n": 2882, "mean_cost": 1.7834, "forbidden_rate": 0.3640},
+    "global_flat_voi":       {"n": 2882, "mean_cost": 1.9365, "forbidden_rate": 0.3622},
+    "cost_greedy_repair":    {"n": 2882, "mean_cost": 1.9666, "forbidden_rate": 0.4670},
+    "exact_dp_oracle":       {"n": 1730, "mean_cost": 1.8818, "forbidden_rate": 0.5399,
+      "note": "cost-optimality reference, not a competitor; it ignores safety by construction"}
+  },
+  "what_the_arithmetic_shows": [
+    "At equal success and safety, ORION costs 1.82x a faithful Active-VOI comparator and 1.66x a simple p/c baseline. The direction is the opposite of the G3 gate's < 0.80 requirement.",
+    "Zero forbidden high-level mutation is achieved by faithful_active_voi, random_safe_ablation AND orion_level_monotone alike, all at exactly 0.0000. The safety property tracks the constraint, not the responsibility filtration.",
+    "ORION is only about 6 percent cheaper than RANDOM safe ordering (ratio 0.9405 over 2420 paired worlds). That is the sharpest reading available: under the same safety constraint the level-monotone ordering buys very little over random."
+  ],
+  "what_this_does_not_do": [
+    "It does not recompute the bootstrap intervals, the Holm adjustment, or any gate other than by inspection of the point estimates.",
+    "It does not check the trace invariants the required checker refused on.",
+    "It does not license filing a terminal."
+  ]
+}
