@@ -1,0 +1,69 @@
+{
+  "schema": "ORION.ORION16.DependencyClosedRevalidation.Protocol.v1",
+  "paper_id": "ORION-16",
+  "successor_id": "ORION16.DEPENDENCY_CLOSED_REVALIDATION.v1",
+  "status": "THEORY_PROVED__EXHAUSTIVELY_CHECKED",
+  "lane_type": "THEORY",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+
+  "freeze_discipline": {
+    "applicability": "PARTIAL",
+    "why": "Deductive lane. The theorem is proved for all finite n; the enumeration over n <= 5 is a regression check of the proof, not its basis. No outcome is accessed and nothing is sampled.",
+    "substituted_guard": "Soundness is decided by explicit simulation over every adversary break-set, never by the shortcut 'R is sound iff R contains A(Delta)' -- that shortcut is the statement under test. Three negative controls must fire, and the generalization must reproduce the paper's published counts without reading them.",
+    "post_outcome_changes_forbidden": [
+      "weakening the necessity direction after a counterexample",
+      "narrowing the DAG enumeration to hide an instance",
+      "assuming the soundness shortcut to make the check pass"
+    ],
+    "frozen_paper_bytes_modified": "NONE"
+  },
+
+  "claims_under_test": [
+    "A(Delta) is sound for every finite DAG and every Delta.",
+    "Every proper subset of A(Delta) is unsound.",
+    "A(Delta) is therefore the unique minimal sound revalidation set.",
+    "The registered five-coordinate model is a special case, reproducing 155 and 1055."
+  ],
+  "assumptions_stated_explicitly": [
+    "donor-native certificates remain valid when native premises do not change",
+    "obligations outside A(Delta) are stable under the update",
+    "for each j in A(Delta) there is an admissible instance whose break-set is exactly {j} (the declared separation witness)"
+  ],
+  "explicitly_not_claimed": [
+    "that the registered five lift coordinates are the right coordinates",
+    "that the registered dependency graph is correct",
+    "universal minimality of the five lift coordinates",
+    "deployed-agent performance",
+    "novelty over donor-owned reachability / incremental-verification machinery",
+    "discharge of external_independent_validation, which remains CANNOT_CHECK"
+  ],
+
+  "independent_checker_requirements": {
+    "independence_rule": "No committed ORION-16 module may be imported. Closure, adversary model and soundness must be implemented from their definitions, and published counts reconstructed rather than read.",
+    "exhaustiveness": "all DAGs on n <= 5 under a fixed topological order, all Delta subsets",
+    "vacuity_rule": "soundness must be simulated over adversary break-sets; assuming the containment shortcut is forbidden",
+    "cannot_check_rule": "exit code 3, status CANNOT_CHECK, never reported as a pass"
+  },
+
+  "negative_controls": {
+    "controls": ["transitivity_is_load_bearing", "delta_alone_insufficient", "superset_sound_but_not_minimal"],
+    "pass_condition": "3 of 3 fire"
+  },
+
+  "what_a_favourable_outcome_would_and_would_not_license": {
+    "would_license": [
+      "restating V4.4 as a structural theorem about arbitrary finite dependency graphs rather than one registered model",
+      "citing dependency reachability, not adjacency, as the operative relation"
+    ],
+    "would_not_license": [
+      "any statement about which coordinates belong in the graph",
+      "universal minimality of the five lift coordinates",
+      "discharging external independent validation",
+      "novelty over donor theory"
+    ]
+  },
+
+  "stop_rule": "Complete. Generates no experiment and raises no blocker."
+}

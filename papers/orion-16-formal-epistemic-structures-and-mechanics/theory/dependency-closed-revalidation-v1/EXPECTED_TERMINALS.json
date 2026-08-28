@@ -1,0 +1,55 @@
+{
+  "schema": "ORION.ORION16.DependencyClosedRevalidation.ExpectedTerminals.v1",
+  "paper_id": "ORION-16",
+  "successor_id": "ORION16.DEPENDENCY_CLOSED_REVALIDATION.v1",
+  "authored_date": "2026-08-28",
+
+  "terminal_set": [
+    {"terminal": "THEORY_PROVED__EXHAUSTIVELY_CHECKED", "reached": true,
+     "observed": "sufficiency, necessity and closure correctness hold over 1,099 DAGs and 33,866 update instances for n <= 5; 3/3 negative controls fire"},
+    {"terminal": "SPECIAL_CASE_REPRODUCES_PUBLISHED_COUNTS", "reached": true,
+     "observed": "155 full-revalidation sufficiency witnesses and 1,055 strict-subset necessity countermodels reconstructed from the general construction without reading V4.6",
+     "note": "This is what shows the generalization actually contains the paper's registered model."},
+    {"terminal": "THEORY_REFUTED", "reached": false,
+     "condition": "a finite DAG and update where some proper subset of A(Delta) is sound, or A(Delta) is unsound",
+     "required_action": "record the counterexample verbatim and retract the corresponding direction; do not weaken the statement to fit"},
+    {"terminal": "CHECKER_VACUOUS", "reached": false,
+     "condition": "soundness decided by the containment shortcut rather than simulation, or fewer than 3/3 controls fire",
+     "required_action": "treat any PASS as void"},
+    {"terminal": "CANNOT_CHECK", "reached": false,
+     "condition": "the checker cannot execute (exit code 3)",
+     "required_action": "report as CANNOT_CHECK; never as a pass"}
+  ],
+
+  "preserved_adverse_and_null_evidence": [
+    {"item": "universal minimality of the five lift coordinates is NOT established",
+     "status": "PRESERVED_UNCHANGED",
+     "note": "CLAIM_LEDGER_V4.md scope ceiling. This packet is about WHICH obligations must be revalidated given a graph, not about whether those five coordinates are the right ones. The ceiling is untouched."},
+    {"item": "deployed-agent performance and population statistics not established",
+     "status": "PRESERVED_UNCHANGED"},
+    {"item": "novelty for donor-owned certificate mechanisms not established",
+     "status": "PRESERVED_UNCHANGED",
+     "note": "Reinforced: this packet explicitly claims no novelty for reachability closure or minimal-hitting-set arguments."},
+    {"item": "external_independent_validation = CANNOT_CHECK in the mechanized record",
+     "status": "PRESERVED_UNCHANGED",
+     "note": "This packet is same-programme work and does not discharge it. Stated so the check is not mistaken for external validation."},
+    {"item": "adverse_execution_history in P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_V2 (a run that did not establish a stable countermodel core)",
+     "status": "PRESERVED_UNCHANGED_AND_UNREAD_AS_INPUT"}
+  ],
+
+  "authority_updates": {
+    "V4_4": "scope strengthened from the registered lifting model to arbitrary finite dependency DAGs; verdict unchanged",
+    "V4_6_counts": "unchanged and independently reproduced",
+    "scope_ceiling": "unchanged verbatim",
+    "manuscript_or_ledger_edited": "NONE",
+    "formal_records_edited": "NONE",
+    "new_object_created": "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/dependency-closed-revalidation-v1/ (additive)",
+    "new_blocker_raised": "NONE"
+  },
+
+  "explicitly_out_of_scope": [
+    "choosing or validating the coordinates that populate the dependency graph",
+    "external independent validation",
+    "venue, packaging and filing decisions"
+  ]
+}
