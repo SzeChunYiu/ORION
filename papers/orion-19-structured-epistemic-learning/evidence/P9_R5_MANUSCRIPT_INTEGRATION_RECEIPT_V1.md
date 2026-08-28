@@ -75,3 +75,13 @@ The V3 runner was not re-executed and the orbit checker was not re-run; both are
 compute. See the ORION-19 `NEEDS_COMPUTE` entries in the accompanying worker report
 for exact commands. Every number quoted in the manuscript additions is copied from a
 committed artifact.
+
+## Skills-protocol compliance
+
+`skills-applied: NONE` for the `manuscript/sections/05-results.tex` additions recorded
+above. Under `papers/PAPER_WRITING_SKILLS_PROTOCOL_V1.md` §1 section edits are "writing a
+paper" and the `nature-*` package should have been loaded first; in this session it was
+loaded later, for the ORION-17 manuscript. Disclosed rather than back-filled. The
+additions are not re-derived: every quoted value is copied from a committed artifact, the
+registered V1 instrument and its 4/5 headline table are untouched, and every negative
+listed above is carried unsoftened.

@@ -53,3 +53,23 @@ session. See the ORION-09 `NEEDS_COMPUTE` entry in the accompanying worker repor
 exact commands. All numbers quoted above are copied from the committed checker outputs
 (`RESULT.json`, `ANALYSIS.json`, `MINIMALITY_VERIFICATION.json`, `REPLAY_REPORT.json`),
 none is hand-derived.
+
+## Skills-protocol compliance
+
+`skills-applied: NONE` for the manuscript edits recorded above. Under
+`papers/PAPER_WRITING_SKILLS_PROTOCOL_V1.md` §1 an abstract rewrite and section edits are
+"writing a paper" and the `nature-*` package should have been loaded first; in this
+session it was loaded later, for the ORION-17 manuscript. Disclosed rather than
+back-filled. The edits are not re-derived: every quoted value is copied from
+`RESULT.json`, `ANALYSIS.json`, `MINIMALITY_VERIFICATION.json` or `REPLAY_REPORT.json`,
+and both adverse findings are carried with the positive.
+
+## #1649 governance, preserved not spent
+
+`theory/size-transfer-derivation-v1/DERIVATION_NOTE.md` — recovered byte-exact in the
+same commit — carries ORION-09's #1649 Tier B record:
+`DERIVATION_ONLY__PROMOTION_BUDGET_NOT_SPENT`, stating that the one promotion attempt is
+unspent and that the note is deliberately not an attempt at it. Nothing here spends it.
+The abstract rescope is the correctness action the board classifies as "not new science",
+and this lane's own `PROTOCOL.json` stop rule reads: "This lane is complete. It generates
+no successor experiment. The one open item it creates is a manuscript rescope."
