@@ -160,6 +160,41 @@ class IntegratedShieldTests(unittest.TestCase):
         self.assertEqual(module.canonical_json(first), module.canonical_json(second))
         self.assertTrue(first["hostile_controls"]["arm_specific_pool_integrity"])
 
+    def test_nine_fold_phase_is_deterministic_and_custody_disjoint(self) -> None:
+        module = load_executor()
+        fold_of, meta, outcomes = module.synthetic_nine_fold_corpus()
+        first = module.policy_phase(
+            module.MODE_ARM_CONDITIONAL, fold_of, meta, outcomes
+        )
+        second = module.policy_phase(
+            module.MODE_ARM_CONDITIONAL, fold_of, meta, outcomes
+        )
+        self.assertEqual(module.canonical_json(first), module.canonical_json(second))
+        seen_test = []
+        for fold in range(module.N_FOLDS):
+            roles = first[fold]["roles"]
+            role_sets = [set(roles[name]) for name in (
+                "test", "proposer_train", "shield_table", "threshold_select"
+            )]
+            for i, left in enumerate(role_sets):
+                for right in role_sets[i + 1 :]:
+                    self.assertFalse(left & right)
+            seen_test.extend(roles["test"])
+            self.assertIn(first[fold]["primary"], module.LEARNED_ARMS)
+        self.assertEqual(sorted(seen_test), sorted(fold_of))
+
+    def test_full_state_receipt_keeps_arm_specific_member_maps(self) -> None:
+        module = load_executor()
+        fold_of, meta, outcomes = module.synthetic_nine_fold_corpus()
+        phase = module.policy_phase(module.MODE_ARM_CONDITIONAL, fold_of, meta, outcomes)
+        rows = module.full_state_rows(phase, meta, outcomes, module.MODE_ARM_CONDITIONAL)
+        self.assertEqual(sorted(rows), sorted(fold_of))
+        for row in rows.values():
+            self.assertEqual(sorted(row["arm_pools"]), sorted(module.PORTFOLIO))
+            for arm in row["admissible"]:
+                self.assertEqual(len(row["arm_pools"][arm]), module.POOL_K)
+                self.assertLessEqual(row["arm_bounds"][arm], module.TAU + module.TOL)
+
 
 class TerminalTests(unittest.TestCase):
     def test_coverage_then_strict_validity_precedence(self) -> None:
