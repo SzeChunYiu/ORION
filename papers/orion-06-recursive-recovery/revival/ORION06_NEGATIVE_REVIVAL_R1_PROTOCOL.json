@@ -1,0 +1,214 @@
+{
+  "schema": "ORION.ORION06.NegativeRevivalR1Protocol.v1",
+  "date": "2026-08-28",
+  "status": "FROZEN_BEFORE_NEW_RESOURCE_OUTCOMES",
+  "scientific_authority_delta": "NONE",
+  "scope": "four standalone unfinished ORION-06 mechanisms identified by the negative-coverage audit; donor-absorbed and CANNOT_CHECK rows remain separate",
+  "attempts": [
+    {
+      "source_negative_id": "R4C_H2_REGIME_LIMITED",
+      "source_negative": {
+        "path": "research/extensions/orion-q/MAX_R4C_FRESH_H2_HETEROGENEOUS_PAIR_RESULTS.json",
+        "sha256": "5f8accc9a01e9aae08a8ce77e1e5410fed60a970d508f50baddc4e059c8a63a3",
+        "terminal": "R4C_REGIME_LIMITED_H2_NEGATIVE"
+      },
+      "mechanism_stage": "EVALUATION_OBJECTIVE",
+      "strongest_parent": "the exact coefficient-minimum K=0 H2 pair matching under the same canonical pair representations and controlled outer wrapper",
+      "lever": "R4C_ACTUAL_RESTORE_OUTER_SELECT_PARETO_REPLAY",
+      "subject": {
+        "already_open": true,
+        "prospective_generalization": false,
+        "repository": "SNIPRS/hamiltonian",
+        "commit": "c628c05430e9409f3c637f2f65f05c40438d1c29",
+        "path": "simulation-H2.ipynb",
+        "notebook_sha256": "01873b49ab85b0814c3d926def44b230fd998157faafce64beb152d0bc853fbb",
+        "output_cell_index": 2,
+        "nonidentity_terms": 14,
+        "terms": [
+          {"source_index": 1, "coefficient": 0.13716572937099508, "pauli": "ZIII"},
+          {"source_index": 2, "coefficient": 0.13716572937099503, "pauli": "IZII"},
+          {"source_index": 3, "coefficient": -0.13036292057109106, "pauli": "IIZI"},
+          {"source_index": 4, "coefficient": -0.13036292057109106, "pauli": "IIIZ"},
+          {"source_index": 5, "coefficient": 0.04919764587136755, "pauli": "XYYX"},
+          {"source_index": 6, "coefficient": 0.04919764587136755, "pauli": "YXXY"},
+          {"source_index": 7, "coefficient": -0.04919764587136755, "pauli": "YYXX"},
+          {"source_index": 8, "coefficient": -0.04919764587136755, "pauli": "XXYY"},
+          {"source_index": 9, "coefficient": 0.16326768673564346, "pauli": "IIZZ"},
+          {"source_index": 10, "coefficient": 0.15660062488237947, "pauli": "ZZII"},
+          {"source_index": 11, "coefficient": 0.15542669077992832, "pauli": "ZIIZ"},
+          {"source_index": 12, "coefficient": 0.15542669077992832, "pauli": "IZZI"},
+          {"source_index": 13, "coefficient": 0.10622904490856075, "pauli": "IZIZ"},
+          {"source_index": 14, "coefficient": 0.10622904490856075, "pauli": "ZIZI"}
+        ]
+      },
+      "enumeration": {
+        "perfect_matchings": 135135,
+        "matching_rule": "enumerate all 13 double-factorial perfect matchings in deterministic recursive lexicographic order",
+        "pair_representation": "canonical exact internal-G TARE-M2 witness from the frozen R5B tie break; direct target representation when the target pair anticommutes; no controlled-cost retuning",
+        "coordinates": [
+          "Lambda_joint",
+          "parity_CNOT",
+          "controlled_Rz",
+          "controlled_H",
+          "controlled_Pauli_support",
+          "AND2_compute_uncompute_pairs",
+          "max_extra_conjunction_scratch"
+        ],
+        "common_outer_layer": "seven matched blocks; Prepare and selector routing are reported but cancel in pair-matching dominance"
+      },
+      "binding_gates": [
+        "recompute the original K=0 through K=4 exact minimum-Lambda frontier within 1e-12",
+        "verify every canonical pair witness algebraically",
+        "preserve the original failed 50-percent-direct-within-1-percent gate"
+      ],
+      "decision_rule": {
+        "improved": "within 1 percent of the exact K=0 Lambda, a matching weakly improves every frozen controlled primitive coordinate and strictly improves at least one",
+        "tradeoff_only": "the actual-resource frontier is nontrivial but no point dominates the strongest parent; this repairs the binary objective diagnosis without establishing superiority",
+        "retained_negative": "the strongest parent remains the only nondominated point within the declared budget",
+        "cannot_check": "source, frontier, witness, or enumeration binding fails"
+      },
+      "authority": {
+        "prospective_confirmation": false,
+        "end_to_end_qsvt_superiority": false,
+        "hardware_independence": false,
+        "novelty": false,
+        "final_freeze": false
+      }
+    },
+    {
+      "source_negative_id": "R5B_PROOF_OUTER_REPLAY",
+      "source_negative": {
+        "path": "research/extensions/orion-q/MAX_R5B_N2_PROOF_OUTER_REPLAY_RESULTS.json",
+        "sha256": "0ee8254e4c61c9a80b63f036ae91340dc2d5644138a67ce40e7745136f24e223",
+        "authority": "R5_PROOF_REPLAY_GREEN__OUTER_PROJECTION_MIXED__FULL_R5_NOT_SUPPORTED"
+      },
+      "mechanism_stage": "RESOURCE_PROJECTION",
+      "strongest_parent": "the exact same-subject Pareto envelope over all 15 H4 pair matchings using the frozen canonical internal-G representations",
+      "lever": "CONTROLLED_SELECT_AWARE_EXACT_REPRESENTATION_AND_REMATCHING",
+      "subject": {
+        "already_open": true,
+        "prospective_generalization": false,
+        "repository": "npbauman/DUCC-Hamiltonian-Library",
+        "commit": "be306f5830549304176365750d712093950bbdde",
+        "blob": "b98792b1055dbac0ebf2a7576f72412e3e4ac6c5",
+        "path": "H4/cc-pVDZ/2.0au/DUCC3/H4.cc-pvdz_files/restricted/ducc/H4.cc-pvdz.ducc.results.txt",
+        "n_qubits": 8,
+        "frozen_source_indices": [12, 18, 22, 25, 27, 31],
+        "selection": "unchanged first two R6B window champions; outcomes already open"
+      },
+      "enumeration": {
+        "perfect_matchings": 15,
+        "candidate_pair_representation": "exact multiobjective 8-state parity DP over both target orientations; retain the full nondominated additive tuple for Uanti parity support, twice-Tag support, both Restore branch supports, and branch-difference support before applying the fixed controlled wrapper",
+        "candidate_matching": "all perfect matchings, no post-outcome subset selection",
+        "normalization_budget": "Lambda <= 1.01 times the exact minimum-Lambda H4 matching",
+        "coordinates": [
+          "Lambda_joint",
+          "parity_CNOT",
+          "controlled_Rz",
+          "controlled_H",
+          "controlled_Pauli_support",
+          "AND2_compute_uncompute_pairs",
+          "max_extra_conjunction_scratch"
+        ]
+      },
+      "decision_rule": {
+        "improved": "a candidate point inside the frozen normalization budget is not dominated by any parent point and strictly Pareto-dominates at least one parent point of no smaller resource authority",
+        "tradeoff_only": "controlled-aware optimization expands the frontier without strict dominance",
+        "retained_negative": "the parent envelope contains or dominates every candidate point",
+        "cannot_check": "source blob, batch, exact DP, witness, or matching enumeration fails"
+      },
+      "residual_even_if_improved": "because H4 is already open, this is a genuine mechanism execution but not the new protected public-subject confirmation named by R5B",
+      "authority": {
+        "prospective_confirmation": false,
+        "new_subject_generalization": false,
+        "end_to_end_qsvt_superiority": false,
+        "hardware_independence": false,
+        "novelty": false,
+        "final_freeze": false
+      }
+    },
+    {
+      "source_negative_id": "R6I_EXACT_RANK2",
+      "source_negative": {
+        "path": "research/extensions/orion-q/MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_RESULTS.json",
+        "sha256": "7ed1181c851add9cff91692282c28419ae2967744cdced367090990daa570d05",
+        "authority": "MAX_R6I_EXACT_RANK2_SHARED_TAG_DP_NEGATIVE__NOT_R6"
+      },
+      "mechanism_stage": "METHOD_LANGUAGE",
+      "strongest_parent": "R6I registered FRAME_ONLY/R6B/R6H incumbent envelope on the same H4 and equilibrium-N2 batches",
+      "lever": "R6K_JOINT_RESTORE_FACTOR_EXACT_REPLAY",
+      "source_outcome_already_known": true,
+      "execution_character": "retrospective exact mechanism replay, not a prospectively protected experiment",
+      "bound_replay": {
+        "protocol_path": "development/orion-q-max-r0/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_PROTOCOL.md",
+        "protocol_sha256": "c314363a1680d387aa9242e4f00bd449f3b785706344b725da9e57b667ce57b0",
+        "runner_path": "research/extensions/orion-q/max_r6k_exact_rank2_shared_tag_restore_factor_dp.py",
+        "runner_sha256": "c6d12405e90f09e1a3fa6ee7b00352b254e4675d3087436b8ac19c555c964c79",
+        "known_receipt_path": "research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json",
+        "known_receipt_sha256": "520f87f8630ee96cbdfbca0d64377ffb28ca4bc7c50a316c77e03316a6366f3f"
+      },
+      "decision_rule": {
+        "improved": "fresh replay has at least one strict budget-matched point on both H4 and equilibrium N2",
+        "partial": "fresh replay has a strict point on exactly one subject",
+        "retained_negative": "fresh replay has zero strict points on both subjects while all integrity gates pass",
+        "cannot_check": "source, hostile, witness, incumbent, or exact-replay binding fails"
+      },
+      "authority": {
+        "prospective_confirmation": false,
+        "novelty": false,
+        "r6": false,
+        "final_freeze": false
+      }
+    },
+    {
+      "source_negative_id": "R6K_EXACT_RESTORE_FACTOR",
+      "source_negative": {
+        "path": "research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json",
+        "sha256": "520f87f8630ee96cbdfbca0d64377ffb28ca4bc7c50a316c77e03316a6366f3f",
+        "authority": "MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_NEGATIVE__NOT_R6"
+      },
+      "mechanism_stage": "METHOD_LANGUAGE",
+      "strongest_parent": "the R6J-inclusive registered incumbent envelope that R6K tied or lost to on the same six-term batches",
+      "lever": "R6L_THREE_TARE2_ARITY_SWAP_DONOR_REPLAY",
+      "source_outcome_already_known": true,
+      "execution_character": "retrospective donor subtraction replay, not a new novelty-bearing experiment",
+      "bound_replay": {
+        "protocol_path": "development/orion-q-max-r0/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_PROTOCOL.md",
+        "protocol_sha256": "1ad9a6d9d1628cbe25a27e83ee58feb07c8ba91ae208c5aa8285307db987e7a0",
+        "erratum_path": "development/orion-q-max-r0/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_ERRATUM_1.md",
+        "erratum_sha256": "daaedb2c2814af7540e7ce99e27a85512b562fff3c4287bfa92ece4a4fc67431",
+        "runner_path": "research/extensions/orion-q/max_r6l_three_tare2_shared_factor_donor.py",
+        "runner_sha256": "0a4580deef936c88fd34c178187536732b19b3a0296835abe95e0e1e5b438f99",
+        "known_receipt_path": "research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json",
+        "known_receipt_sha256": "29dbd12abf8c817dfb184eaa17550733bf572af9bfafefc8c14450c1721b1280"
+      },
+      "decision_rule": {
+        "correct_subtraction": "fresh R6L replay strictly beats the R6J-inclusive parent on both H4 and equilibrium N2 with nine rotations not worse than the two-TARE3 comparator",
+        "partial": "strict donor improvement occurs on exactly one subject",
+        "retained_negative": "no strict donor improvement occurs while all integrity gates pass",
+        "cannot_check": "source, hostile, witness, incumbent, or replay binding fails"
+      },
+      "authority": {
+        "prospective_confirmation": false,
+        "donor_novelty_credit": false,
+        "candidate_novelty_credit": false,
+        "r6": false,
+        "final_freeze": false
+      }
+    }
+  ],
+  "cross_domain_general_method": {
+    "status": "CANNOT_CHECK",
+    "reason": "no prospectively admitted matched non-quantum formal and computational or empirical Domain-B/C programmes with independent scoring exist under the frozen protocol",
+    "not_unsolvable": true
+  },
+  "unsolvable": [],
+  "authority": {
+    "cross_domain_effectiveness": false,
+    "productivity_superiority": false,
+    "external_independence": false,
+    "novelty": false,
+    "journal_or_submission": false,
+    "final_freeze": false
+  }
+}
