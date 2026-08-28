@@ -1,0 +1,51 @@
+{
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "c2_countermodels_found": 308,
+  "c2_smallest_countermodel": {
+    "epochs": [
+      2,
+      1
+    ],
+    "n": 2
+  },
+  "cases_enumerated": 4662,
+  "chain_lengths": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "controls": {
+    "U1_c2_countermodel_must_be_found": {
+      "found": 308,
+      "passed": true
+    },
+    "U2_closure_failure_is_detectable": {
+      "caught": 456,
+      "eligible": 456,
+      "passed": true
+    },
+    "U3_all_good_no_alarm": {
+      "clean": 52,
+      "eligible": 52,
+      "passed": true
+    },
+    "U4_independence_demonstrated": {
+      "passed": true
+    }
+  },
+  "failure_mode_separation": {
+    "only_inexactness_monotone_epochs": 456,
+    "only_ordering_all_bridges_exact": 308
+  },
+  "promotion_status": "CHAIN_THEOREM_ESTABLISHED__PROMOTION_NOT_EARNED__BOUNDED_PAPER_RETAINED",
+  "protocol_identity": "ORION17.CLOSURE_CHAIN_COMPOSITION.v1",
+  "retrospective_evidence": "NOT TESTED AGAINST \u2014 P7_CLOSURE_RETENTION_V1.json records outcome_accessed: true, and it measures PAIRWISE retention, not multi-hop chains",
+  "schema": "ORION.ORION17.ClosureChainComposition.Result.v1",
+  "scientific_authority_delta": "NONE",
+  "terminal": "T1_CHAIN_COMPOSITION_LAW_HOLDS",
+  "violations": {
+    "C1": 0,
+    "C3": 0
+  }
+}
