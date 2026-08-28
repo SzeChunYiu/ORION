@@ -1,0 +1,33 @@
+{
+  "architecture": {
+    "existing_nq_algorithm_read_or_imported": false,
+    "factorization_representation": "SAT prefix-sum automata with occurrence-to-bin variables",
+    "normalization_or_pruning": "NONE_IN_PREDICATE_ENGINE",
+    "rank_two_control_symmetry": "fixed span basis plus literal GL(r,5) matrix-action enumeration; no Engine-A canonicalizer import",
+    "primitive": "componentwise base-five C_5^3 addition",
+    "reference_control": "slow explicit occurrence partition enumerator"
+  },
+  "custody_parent": "6167aa27e9b7aebd4fcc766159cdc80bf3b3130a",
+  "blinded_independence": "NOT_CLAIMED",
+  "certificate_policy": {
+    "sat": "explicit disjoint occurrence-index bins, independently resummed",
+    "unsat": "deterministic DIMACS-CNF bytes plus CNF semantic digest and DRUP trace; each UNSAT remains CANNOT_CHECK until externally checked",
+    "external_checker": "source-pinned drat-trim protocol; materialized negative control is engineering-only and does not check a full census bundle"
+  },
+  "d4_policy": {
+    "default": "OPEN",
+    "full_closure_requirement": "every remaining mathematical stratum plus complete audited reduction",
+    "partial_stratum": "OPEN",
+    "resource_exhaustion": "CANNOT_CHECK_RESOURCE_BOUND"
+  },
+  "input_coverage_policy": "hash-bound declaration plus separate proof audit; CR-B must independently generate full matrix/candidate/orbit manifests and must not wrap Engine-A canonicalized candidates or forbidden sets; declaration alone is not completeness authority",
+  "maximum_sequence_length": 31,
+  "required_bins": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "schema": "ORION.NQ.EngineB.SourceProtocol.v1",
+  "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
+}

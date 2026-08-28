@@ -1,0 +1,31 @@
+{
+  "authority": {
+    "blinded_independence": "NOT_CLAIMED",
+    "d4_c5_cubed": "OPEN",
+    "paper_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "bindings": {
+    "input_manifest_sha256": "c744b7f9f0d361592cbc6f92ad120872cc1e1530b662b8c41e6d97be304fe1ea",
+    "source_manifest_sha256": "bb4c9ece122fc83cfe8e8b8327c4c4cf091fd58898465ad89799710656ad61a0"
+  },
+  "payload": {
+    "blinded_independence": "NOT_CLAIMED",
+    "certificate_stream": {
+      "bytes": 1177,
+      "path": "BATCH_CERTIFICATES.jsonl",
+      "sha256": "bd30bcf85b34678ccaea00b02174f51ba0228a0abc42f57c55e23c8afea281ef"
+    },
+    "coverage_audit": "HASH_BOUND_DECLARATION_NOT_EXTERNALLY_AUDITED",
+    "d4_c5_cubed": "OPEN",
+    "full_strata_closed": false,
+    "processed_records": 2,
+    "sat_witness_certificates": 1,
+    "terminal": "CANNOT_CHECK_ENVIRONMENT",
+    "total_records": 2,
+    "unsat_proofs_requiring_external_check": 1
+  },
+  "receipt_sha256": "a96dffb391f771add37f1e8538c8d0863c2d2444311f697e71456faa15df7ddc",
+  "schema": "ORION.NQ.EngineB.Receipt.v1",
+  "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
+}
