@@ -1,0 +1,33 @@
+{
+  "authority": {
+    "d4_c5_cubed": "OPEN",
+    "full_census_executed": false,
+    "independent_replay_authority": "CANNOT_CHECK",
+    "paper_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "schema": "ORION.NQ.EngineB.ExternalDRUPProtocol.v1",
+  "success_contract": {
+    "exit_code": 0,
+    "marker": "s VERIFIED",
+    "timeout_seconds": 300
+  },
+  "tool": {
+    "build_command": [
+      "make",
+      "drat-trim"
+    ],
+    "checker_relative_path": "drat-trim",
+    "commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "invocation": [
+      "drat-trim",
+      "INPUT.cnf",
+      "PROOF.drup"
+    ],
+    "license": "MIT",
+    "license_path": "LICENSE",
+    "name": "drat-trim",
+    "repository": "https://github.com/marijnheule/drat-trim.git",
+    "tree": "b4e75a5f8c89d664652727458369cb5e0b610e31"
+  }
+}
