@@ -17,13 +17,15 @@ the private evidence and package manifests where they serve integrity checks.
 
 - title: *Coordinate-Governed Mapping of Source-Local Scientific Projections*
 - pages: 8
-- PDF SHA-256: `80850e789d396dceaa0a28d85446dd1ff0ffe7666c4bc5d2f50f3dc563dcfadd`
+- PDF SHA-256: `393bec68d8b94fad8b0cb1f3693e11116a64a5c2dc78fd9ccffb3437bc86d0a0`
 - source-PDF byte match: exact
 
 The manuscript availability section now states the scientific access and
 licensing conditions without printing internal identifiers. The source-only
-private protocol comment was also removed. Filing-facing cover-letter and
-availability placeholders were replaced with plain author instructions.
+private protocol comment was also removed. The conclusion now restates the
+confirmatory effect and three-valued evidence boundary explicitly. Filing-facing
+cover-letter and availability placeholders were replaced with plain author
+instructions.
 
 ## Verification
 
@@ -40,8 +42,8 @@ availability placeholders were replaced with plain author instructions.
 
 ## Current package bindings
 
-- source archive SHA-256: `0ad10b8d6abcd1a72f56826e20b5a5c21f093edbc87597e7c217a1e28408e662`
+- source archive SHA-256: `72295a308f335c9077b03e6fba8e0227a9631dffadcc5d8c31bd170febf6b431`
 - review-resource archive SHA-256: `5c89e144e4a495c98d11afda6f9d73a01c5638974c61b6a90861273564f16460`
-- submission manifest SHA-256: `b0173782363fd90ae3022aa0223d17f993a60930f64d12c57f2bc590807c4b7f`
+- submission manifest SHA-256: `0a55e11c7d1e357074a2ce019952de52a721f291399790e732725aa9978820b5`
 
 These identifiers are audit-only and must not be copied into manuscript prose.
