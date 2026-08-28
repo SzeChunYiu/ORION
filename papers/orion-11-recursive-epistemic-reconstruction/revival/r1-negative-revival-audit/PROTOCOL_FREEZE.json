@@ -1,0 +1,59 @@
+{
+  "audit_id": "ORION-11.NEGATIVE-REVIVAL.R1.20260828",
+  "authority": "REPRODUCIBILITY_AND_NEGATIVE_DISPOSITION_AUDIT_ONLY",
+  "base_origin_main": "2b912e72797a45756cbe90bdd379d5bf5efc974d",
+  "claim_boundary": "ORION11_SPECIFIC_NEGATIVE_REVIVAL_AND_REPRODUCIBILITY_AUDIT__NO_NEW_SCIENTIFIC_SUPERIORITY__NO_FREEZE__NO_MERGE",
+  "expected_output": "AUDIT_RECEIPT.json",
+  "fail_closed_terminals": {
+    "adapter_owner_semantics_absent": "CANNOT_CHECK_EXTERNAL_OWNER_ALGEBRA",
+    "data_or_hash_drift": "AUDIT_FAILED",
+    "freeze_or_submission_authority": "NONE",
+    "missing_historical_execution_commit": "CANNOT_CHECK_HISTORICAL_PROSPECTIVE_ORDER",
+    "validated_mechanical_receipts": "REPRODUCIBLE_MECHANICAL_ONLY"
+  },
+  "forbidden_inferences": [
+    "do not pool broad H1 with the narrower successor",
+    "do not convert local replay, hashes, or same-repository checking into external authority",
+    "do not call any paper frozen, submission-ready, top-tier-ready, or merged",
+    "do not turn any CANNOT_CHECK map into impossibility",
+    "do not erase donor-subsumption or other adverse outcomes"
+  ],
+  "frozen_at_utc": "2026-08-27T23:08:06.881955+00:00",
+  "historical_receipts_already_accessed": true,
+  "inputs_sha256": {
+    "development/p1-owner-custody-positive-successor-v13-2026-08-24/AUTHORITY_EXECUTION_STATUS_V13.json": "d2a7573158ecd8a61fd565db3901332500125c5ed228ed78c0a22606056ddf60",
+    "development/p1-owner-custody-positive-successor-v13-2026-08-24/RESULT_V13.json": "bbe2c68688e38429dc81df9dcfe9d05bf8db4aeda0ec40bdf69cb5a82690225d",
+    "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_720_ADAPTER_REGISTRY.json": "f2507273c49a30cceddfd745476aeab373a5c11d14dc56108ab16493cbd4dd23",
+    "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_ADAPTER_ADJUDICATION_RESULT.json": "0364e95997323192594c1c7491e65ef26969a707fca47a7e5c021a531f2ad5ac",
+    "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_REQUIRED_OWNER_ALGEBRA_SCHEMA.json": "eedb25a2dc084aaac34377bc9942647c3eea80bffa7b6a099d3de10b6bb11f55",
+    "development/p1-source-native-target-semantics-v8-2026-08-23/P1_V8_TARGET_SEMANTIC_REGISTRY.json": "fc3ff7435d291e8581eeefaab30b16a119bb005fd99f720090ef147c6b2944ba",
+    "development/p1-source-native-target-semantics-v8-2026-08-23/SHA256SUMS": "116ea2585e00875aa7d1a3a12123eddc4d5ee94099c5afd901b67154bdab92ca",
+    "papers/orion-11-recursive-epistemic-reconstruction/FLOOR_EFFECT_DIAGNOSIS_20260823.md": "efa1eff47dc1e778dbb7ec75226cc3ee26d57e70e11f3457ddd83925c0ced887",
+    "papers/orion-11-recursive-epistemic-reconstruction/RSE_SUCCESSOR_BOUNDARY_V1.md": "168ad0c4fabb758a0c3e3c363324bd0efc69c2e8b5c4d5d8feccd35745b3808d",
+    "papers/orion-11-recursive-epistemic-reconstruction/results/P1-T2_baseline_ablation_results.json": "4f1fb7f6c551f9ce8e24fb00dfc56b5254c39cf796c858be7a1581b1d92b886b",
+    "research/extensions/meta-orion-recursive-scientific-evolution/INDEPENDENT_FORMAL_VERIFICATION_V1.json": "6fc8b5296a8040785e5a31e1e517cc2ad80daf02a66b82585ec0efe14b150947",
+    "research/paper-programme-v1/RSE_P1_P10_HANDOFF_2026-08-20.md": "12f068def393ce412393582e2e02001aca52b2e7bc76905833a20354439b7ab4",
+    "research/revival/p1/confirmatory/v2.2/PRIMARY_EXECUTION_FREEZE_V3.json": "da982bca3e7e37027b3bb9f14c33d77eeb81752dc5fd2da74f71abf46ea8122e",
+    "research/revival/p1/confirmatory/v2.2/PRIMARY_WORLD_FREEZE.json": "c5d6b995d455a6a88f437b2a4bc76ca7f40d3425b2da89152d921b5e7b80fad2",
+    "research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json": "1eaab37f246ac3a03edddb7ef00f3c0b0387c1aa9474dfcfcaee6aa18fb853fd",
+    "research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RUN_PROVENANCE.json": "2718062c737e4cfea1062013ec207a7ab7b30ef08d6578a2b607d2cad050f222",
+    "research/revival/p1/confirmatory/v2.2/primary/SHA256SUMS": "466e3c1c874bdac5e04740af92b3000f99944b2633fdd40d551117cdd8d57da5",
+    "research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json": "cc739a6f506fa845c7f6bfaaf25364bed1684771e593055daa3aae7dc8970b1a",
+    "research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RUN_PROVENANCE.json": "ec2119e6b6c97cb86b54fa0989cc59488897c5089eee84af318a15c052c53201",
+    "research/revival/p1/confirmatory/v2.2/replication/SHA256SUMS": "01adbf08f27e89f546a9a0f76cc5ef18a10e2745f2d7d00ac01d93f62b1c9b5a",
+    "research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.4.json": "abe9e19a5ee40a6fb2ec12ac518dc6c67f74622dcc009da3fdd61733a6c7cfdb"
+  },
+  "new_audit_outputs_accessed": false,
+  "paper_id": "ORION-11",
+  "protocol_status": "FROZEN_BEFORE_NEW_AUDIT_EXECUTION",
+  "required_checks": [
+    "preserve historical broad H1 as NOT_SUPPORTED with subject and strongest baseline each 1/48",
+    "verify every primary and disjoint-replication archive byte, source binding, row count, score recomputation receipt, and task-population disjointness",
+    "classify unreachable historical execution-source commits as CANNOT_CHECK rather than reconstructing prospective authority",
+    "independently enumerate all 7^6 = 117,649 adapter maps and compare the exact 720-map survivor registry",
+    "distinguish in-repo re-auditability from in-repo resolvability; owner-semantic certification cannot be self-issued",
+    "preserve the RSE generic-justification donor subtraction as an earned negative",
+    "run deterministic campaign replay and independent verification on LUNARC without modifying archived inputs"
+  ],
+  "schema_version": "orion.orion11.negative-revival-audit-protocol.v1"
+}

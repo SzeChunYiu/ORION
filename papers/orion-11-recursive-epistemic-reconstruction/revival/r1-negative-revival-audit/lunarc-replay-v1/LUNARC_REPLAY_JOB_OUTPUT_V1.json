@@ -1,0 +1,424 @@
+{
+  "all_independent_verifiers_pass": true,
+  "all_required_byte_comparisons_pass": true,
+  "authority": "LUNARC_DETERMINISTIC_REPLAY_ONLY__NO_EXTERNAL_REVIEW_OR_FREEZE_AUTHORITY",
+  "environment": {
+    "cpu_count": 48,
+    "hostname": "cn063",
+    "platform": "Linux-5.14.0-687.24.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "python_executable": "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO01-venv/bin/python",
+    "python_version": "3.11.5 (main, Aug 26 2024, 11:58:39) [GCC 13.2.0]",
+    "slurm": {
+      "SLURM_CPUS_PER_TASK": "1",
+      "SLURM_JOB_ID": "3550083",
+      "SLURM_JOB_NAME": "o11-replay-v1",
+      "SLURM_JOB_NODELIST": "cn063",
+      "SLURM_JOB_PARTITION": "lu48",
+      "SLURM_MEM_PER_NODE": "4096",
+      "SLURM_SUBMIT_DIR": "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO11"
+    }
+  },
+  "generated_at_utc": "2026-08-28T00:10:36.473253+00:00",
+  "historical_broad_h1_modified": false,
+  "historical_prospective_order_status": "CANNOT_CHECK_HISTORICAL_PROSPECTIVE_ORDER",
+  "lanes": [
+    {
+      "all_required_byte_comparisons_pass": true,
+      "analysis_mismatch_count": 0,
+      "campaign": {
+        "argv": [
+          "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO01-venv/bin/python",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/run_mutation_necessity_campaign.py",
+          "--world-dir",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/primary/world",
+          "--execution-freeze",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/confirmatory/v2.2/PRIMARY_EXECUTION_FREEZE_V3.json",
+          "--outdir",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/primary/run"
+        ],
+        "completed": true,
+        "returncode": 0,
+        "stderr": {
+          "bytes": 0,
+          "path": "campaign.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 11593,
+          "path": "campaign.stdout",
+          "sha256": "b884898e37a513ab2387eee81c409248594955ca405a3ce093527002af439a77"
+        }
+      },
+      "comparisons": {
+        "independent_verification": {
+          "actual_bytes": 7863,
+          "actual_exists": true,
+          "actual_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/primary/run/INDEPENDENT_VERIFICATION.json",
+          "actual_sha256": "d48a2193bb9ba3652b9dbf629fdbace5a44f939ebf06ded6a8d610f4e3a00c3a",
+          "byte_equal": true,
+          "expected_bytes": 7863,
+          "expected_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/confirmatory/v2.2/primary/INDEPENDENT_VERIFICATION.json",
+          "expected_sha256": "d48a2193bb9ba3652b9dbf629fdbace5a44f939ebf06ded6a8d610f4e3a00c3a",
+          "terminal": "BYTE_IDENTICAL"
+        },
+        "raw_results": {
+          "actual_bytes": 41035947,
+          "actual_exists": true,
+          "actual_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/primary/run/RAW_RESULTS.jsonl",
+          "actual_sha256": "a198e83d8714535e488ac795eeb6a4490409c3ed909442bf0912660800386a31",
+          "byte_equal": true,
+          "expected_bytes": 41035947,
+          "expected_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/primary/expected/RAW_RESULTS.jsonl",
+          "expected_sha256": "a198e83d8714535e488ac795eeb6a4490409c3ed909442bf0912660800386a31",
+          "terminal": "BYTE_IDENTICAL"
+        },
+        "result": {
+          "actual_bytes": 14087,
+          "actual_exists": true,
+          "actual_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/primary/run/RESULT.json",
+          "actual_sha256": "1eaab37f246ac3a03edddb7ef00f3c0b0387c1aa9474dfcfcaee6aa18fb853fd",
+          "byte_equal": true,
+          "expected_bytes": 14087,
+          "expected_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json",
+          "expected_sha256": "1eaab37f246ac3a03edddb7ef00f3c0b0387c1aa9474dfcfcaee6aa18fb853fd",
+          "terminal": "BYTE_IDENTICAL"
+        }
+      },
+      "execution_freeze": {
+        "binding_pass": true,
+        "bytes": 4655,
+        "path": "research/revival/p1/confirmatory/v2.2/PRIMARY_EXECUTION_FREEZE_V3.json",
+        "sha256": "da982bca3e7e37027b3bb9f14c33d77eeb81752dc5fd2da74f71abf46ea8122e"
+      },
+      "expected_bindings": {
+        "independent_verification": {
+          "binding_pass": true,
+          "bytes": 7863,
+          "path": "research/revival/p1/confirmatory/v2.2/primary/INDEPENDENT_VERIFICATION.json",
+          "sha256": "d48a2193bb9ba3652b9dbf629fdbace5a44f939ebf06ded6a8d610f4e3a00c3a"
+        },
+        "raw_results": {
+          "archive": {
+            "binding_pass": true,
+            "bytes": 1099724,
+            "path": "research/revival/p1/confirmatory/v2.2/primary/RAW_RESULTS.jsonl.gz",
+            "sha256": "4c55b70c60c8097ea5c7c96a79e1f52d109f845a1994a0286ab9a18efe949069"
+          },
+          "binding_pass": true,
+          "materialized_bytes": 41035947,
+          "materialized_path": "RAW_RESULTS.jsonl",
+          "materialized_sha256": "a198e83d8714535e488ac795eeb6a4490409c3ed909442bf0912660800386a31"
+        },
+        "result": {
+          "binding_pass": true,
+          "bytes": 14087,
+          "path": "research/revival/p1/confirmatory/v2.2/primary/PRIMARY_RESULT.json",
+          "sha256": "1eaab37f246ac3a03edddb7ef00f3c0b0387c1aa9474dfcfcaee6aa18fb853fd"
+        }
+      },
+      "independent_verdict": "PASS",
+      "independent_verifier": {
+        "argv": [
+          "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO01-venv/bin/python",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/verify_mutation_necessity_independent.py",
+          "--world-public",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/primary/world/WORLD_PUBLIC.jsonl",
+          "--protected",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/primary/world/PROTECTED_RESPONSE_MATRIX.jsonl",
+          "--raw-results",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/primary/run/RAW_RESULTS.jsonl",
+          "--execution-freeze",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/confirmatory/v2.2/PRIMARY_EXECUTION_FREEZE_V3.json",
+          "--result",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/primary/run/RESULT.json",
+          "--out",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/primary/run/INDEPENDENT_VERIFICATION.json"
+        ],
+        "completed": true,
+        "returncode": 0,
+        "stderr": {
+          "bytes": 0,
+          "path": "independent.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 6273,
+          "path": "independent.stdout",
+          "sha256": "0cafa7f40fd5dc2759c4de9844dd0b7c7630674e99256f88727f436fdf76084c"
+        }
+      },
+      "lane": "primary",
+      "scientific_terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+      "score_mismatch_count": 0,
+      "terminal": "EXACT_ARCHIVE_REPLAY",
+      "world_materialization": {
+        "all_input_bindings_pass": true,
+        "protected_response_matrix": {
+          "archive": {
+            "binding_pass": true,
+            "bytes": 302440,
+            "path": "research/revival/p1/confirmatory/v2.2/primary/PROTECTED_RESPONSE_MATRIX.jsonl.gz",
+            "sha256": "b17f4ea482992ae41af3a3a59a648a85ad991ed7c0fb86d2dac78213b655a5d1"
+          },
+          "binding_pass": true,
+          "materialized_bytes": 2670710,
+          "materialized_path": "PROTECTED_RESPONSE_MATRIX.jsonl",
+          "materialized_sha256": "31c9d3a39b60da7c0d0c337c461b7179d866957105144d228466f75f20757542"
+        },
+        "world_freeze": {
+          "binding_pass": true,
+          "bytes": 4336,
+          "path": "research/revival/p1/confirmatory/v2.2/PRIMARY_WORLD_FREEZE.json",
+          "sha256": "212f5891af4945f66d31149b2e07f6f7593d40a2cb9d1cbe9e42701060a18d77"
+        },
+        "world_public": {
+          "archive": {
+            "binding_pass": true,
+            "bytes": 467237,
+            "path": "research/revival/p1/confirmatory/v2.2/primary/WORLD_PUBLIC.jsonl.gz",
+            "sha256": "5ab7b6671abf1565c16384eb100e190d5fd7faa9e176af2700ac51547b4d6d60"
+          },
+          "binding_pass": true,
+          "materialized_bytes": 4627350,
+          "materialized_path": "WORLD_PUBLIC.jsonl",
+          "materialized_sha256": "9b77470167a7e22937bc3c498d2277639ea8f02f3e2cbe90e24fe998785bbdf6"
+        }
+      }
+    },
+    {
+      "all_required_byte_comparisons_pass": true,
+      "analysis_mismatch_count": 0,
+      "campaign": {
+        "argv": [
+          "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO01-venv/bin/python",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/run_mutation_necessity_campaign.py",
+          "--world-dir",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/replication/world",
+          "--execution-freeze",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/confirmatory/v2.2/replication/REPLICATION_EXECUTION_FREEZE.json",
+          "--outdir",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/replication/run"
+        ],
+        "completed": true,
+        "returncode": 0,
+        "stderr": {
+          "bytes": 0,
+          "path": "campaign.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 11765,
+          "path": "campaign.stdout",
+          "sha256": "a545f98606590b18441d097a037945eb8be8a97b78a0a309c5ff094cf73424c9"
+        }
+      },
+      "comparisons": {
+        "independent_verification": {
+          "actual_bytes": 7952,
+          "actual_exists": true,
+          "actual_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/replication/run/INDEPENDENT_VERIFICATION.json",
+          "actual_sha256": "f7d5001b8b4438d23f1af7a93d4dd015c52037c5af296fbbaf69d601670c0ddf",
+          "byte_equal": true,
+          "expected_bytes": 7952,
+          "expected_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/confirmatory/v2.2/replication/INDEPENDENT_VERIFICATION.json",
+          "expected_sha256": "f7d5001b8b4438d23f1af7a93d4dd015c52037c5af296fbbaf69d601670c0ddf",
+          "terminal": "BYTE_IDENTICAL"
+        },
+        "raw_results": {
+          "actual_bytes": 41032311,
+          "actual_exists": true,
+          "actual_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/replication/run/RAW_RESULTS.jsonl",
+          "actual_sha256": "eff79ebc252f6e3dbbed246ef963e227373913c8cfcaaffbdd50d286fc336f73",
+          "byte_equal": true,
+          "expected_bytes": 41032311,
+          "expected_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/replication/expected/RAW_RESULTS.jsonl",
+          "expected_sha256": "eff79ebc252f6e3dbbed246ef963e227373913c8cfcaaffbdd50d286fc336f73",
+          "terminal": "BYTE_IDENTICAL"
+        },
+        "result": {
+          "actual_bytes": 14259,
+          "actual_exists": true,
+          "actual_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/replication/run/RESULT.json",
+          "actual_sha256": "cc739a6f506fa845c7f6bfaaf25364bed1684771e593055daa3aae7dc8970b1a",
+          "byte_equal": true,
+          "expected_bytes": 14259,
+          "expected_path": "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json",
+          "expected_sha256": "cc739a6f506fa845c7f6bfaaf25364bed1684771e593055daa3aae7dc8970b1a",
+          "terminal": "BYTE_IDENTICAL"
+        }
+      },
+      "execution_freeze": {
+        "binding_pass": true,
+        "bytes": 4655,
+        "path": "research/revival/p1/confirmatory/v2.2/replication/REPLICATION_EXECUTION_FREEZE.json",
+        "sha256": "466ba4dcde25f61309e0cdcda874e27e6b686f05a580d058c7b90a3ff6b32f1e"
+      },
+      "expected_bindings": {
+        "independent_verification": {
+          "binding_pass": true,
+          "bytes": 7952,
+          "path": "research/revival/p1/confirmatory/v2.2/replication/INDEPENDENT_VERIFICATION.json",
+          "sha256": "f7d5001b8b4438d23f1af7a93d4dd015c52037c5af296fbbaf69d601670c0ddf"
+        },
+        "raw_results": {
+          "archive": {
+            "binding_pass": true,
+            "bytes": 1103627,
+            "path": "research/revival/p1/confirmatory/v2.2/replication/RAW_RESULTS.jsonl.gz",
+            "sha256": "44f8ed6732e41e334ef643b694543074f8bf106f289bbc18d1e7c9627270b0c1"
+          },
+          "binding_pass": true,
+          "materialized_bytes": 41032311,
+          "materialized_path": "RAW_RESULTS.jsonl",
+          "materialized_sha256": "eff79ebc252f6e3dbbed246ef963e227373913c8cfcaaffbdd50d286fc336f73"
+        },
+        "result": {
+          "binding_pass": true,
+          "bytes": 14259,
+          "path": "research/revival/p1/confirmatory/v2.2/replication/REPLICATION_RESULT.json",
+          "sha256": "cc739a6f506fa845c7f6bfaaf25364bed1684771e593055daa3aae7dc8970b1a"
+        }
+      },
+      "independent_verdict": "PASS",
+      "independent_verifier": {
+        "argv": [
+          "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO01-venv/bin/python",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/verify_mutation_necessity_independent.py",
+          "--world-public",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/replication/world/WORLD_PUBLIC.jsonl",
+          "--protected",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/replication/world/PROTECTED_RESPONSE_MATRIX.jsonl",
+          "--raw-results",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/replication/run/RAW_RESULTS.jsonl",
+          "--execution-freeze",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/source/research/revival/p1/confirmatory/v2.2/replication/REPLICATION_EXECUTION_FREEZE.json",
+          "--result",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/replication/run/RESULT.json",
+          "--out",
+          "/local/slurmtmp.3550083/scyiu/orion11-replay-3550083/output/replication/run/INDEPENDENT_VERIFICATION.json"
+        ],
+        "completed": true,
+        "returncode": 0,
+        "stderr": {
+          "bytes": 0,
+          "path": "independent.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 6362,
+          "path": "independent.stdout",
+          "sha256": "b928480aa6285ed5df7dbf3f0c86d6ffac98abc0c663f7450b2c367aea485923"
+        }
+      },
+      "lane": "replication",
+      "scientific_terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+      "score_mismatch_count": 0,
+      "terminal": "EXACT_ARCHIVE_REPLAY",
+      "world_materialization": {
+        "all_input_bindings_pass": true,
+        "protected_response_matrix": {
+          "archive": {
+            "binding_pass": true,
+            "bytes": 302551,
+            "path": "research/revival/p1/confirmatory/v2.2/replication/PROTECTED_RESPONSE_MATRIX.jsonl.gz",
+            "sha256": "0b2f02f66d9e633eb20d452580a3723ac3a437d48f0b0ebb63deb440439ce634"
+          },
+          "binding_pass": true,
+          "materialized_bytes": 2670710,
+          "materialized_path": "PROTECTED_RESPONSE_MATRIX.jsonl",
+          "materialized_sha256": "768b659a17f055b19dfefc720cee67030c40c6a5f8f55e38fa0c6158c4836d0e"
+        },
+        "world_freeze": {
+          "binding_pass": true,
+          "bytes": 4581,
+          "path": "research/revival/p1/confirmatory/v2.2/replication/REPLICATION_WORLD_FREEZE.json",
+          "sha256": "47bdd8fdf67c31eec45ba3b2fe4b74c2bba57edc5e81e8f2de373365648ef142"
+        },
+        "world_public": {
+          "archive": {
+            "binding_pass": true,
+            "bytes": 467029,
+            "path": "research/revival/p1/confirmatory/v2.2/replication/WORLD_PUBLIC.jsonl.gz",
+            "sha256": "7150403243bff4b1f3f373c0aee42c1273478e2b187eb17778bda1951d1e96b8"
+          },
+          "binding_pass": true,
+          "materialized_bytes": 4627443,
+          "materialized_path": "WORLD_PUBLIC.jsonl",
+          "materialized_sha256": "b4772f693db1e69460bcb531a86bb883afd562bcb219e2038c978e33f7f34afb"
+        }
+      }
+    }
+  ],
+  "replay_id": "ORION-11.NEGATIVE-REVIVAL.R1.LUNARC-REPLAY.20260828",
+  "schema_version": "orion.orion11.lunarc-replay-job-output.v1",
+  "source_binding": {
+    "clean_source_mode": "GIT_ARCHIVE_OF_EXACT_BOUND_COMMIT__NO_WORKTREE_STATE",
+    "protocol_path": "papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/LUNARC_REPLAY_PROTOCOL_V1.json",
+    "protocol_sha256": "3503b49a158da7d8ceb65ad6ac3c702ba9f87ca97a35ae94795ac2feaa36563d",
+    "source_archive_sha256": "e25b9b66091d5c8f98e962a5cae784d1668c5e316f326652736451fd856c2dd1",
+    "source_commit": "58192a3a05c4fc8e55b45e0082cbd1de2792c250"
+  },
+  "source_file_checks": [
+    {
+      "binding_pass": true,
+      "bytes": 18221,
+      "path": "papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/run_orion11_lunarc_replay_v1.py",
+      "sha256": "a884b462ef1957c81f53a776f11aa985fa40e91d6929ba5dbd72a6259393cb9c"
+    },
+    {
+      "binding_pass": true,
+      "bytes": 2667,
+      "path": "papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/run_orion11_lunarc_replay_v1.sbatch",
+      "sha256": "1f7f471d97040e0f458ffbadf84470ef012d27e1e3542b0381ec9e96aee0f5e2"
+    },
+    {
+      "binding_pass": true,
+      "bytes": 9818,
+      "path": "research/revival/p1/run_mutation_necessity_campaign.py",
+      "sha256": "6e4a011d4cae6ce7cd93728367b79d27dd7783e49eb27e23da95a191ab63d8cf"
+    },
+    {
+      "binding_pass": true,
+      "bytes": 22036,
+      "path": "research/revival/p1/verify_mutation_necessity_independent.py",
+      "sha256": "4e0499c81ca1b877cd868169ca2385edde4fe5c68039f543c53df8c360c2cd47"
+    },
+    {
+      "binding_pass": true,
+      "bytes": 12643,
+      "path": "src/orion/study/p1_causal/absorbed_mechanics.py",
+      "sha256": "2f15e587a7c3d682a67cda98a23fc4870b41dc72251e1efbf04cffac2ca85c46"
+    },
+    {
+      "binding_pass": true,
+      "bytes": 3224,
+      "path": "src/orion/study/p1_causal/necessity_engine.py",
+      "sha256": "db5d9fbeecd957fd85b62a6d04a3f04e97bde04f5921db05f12d660b98642969"
+    },
+    {
+      "binding_pass": true,
+      "bytes": 17058,
+      "path": "src/orion/study/p1_causal/necessity_policies.py",
+      "sha256": "5ec6bb802b2914133bcdb4a6876a20e6eab0b1f21cacc722a61a6ce2beb119be"
+    },
+    {
+      "binding_pass": true,
+      "bytes": 4660,
+      "path": "src/orion/study/p1_causal/necessity_policies_v3.py",
+      "sha256": "2f8bb68e84e70fb3fb6b1b4698347a9f5fa7af45ede302326efc22d5f2d85612"
+    },
+    {
+      "binding_pass": true,
+      "bytes": 6554,
+      "path": "src/orion/study/p1_causal/necessity_scoring.py",
+      "sha256": "848370224e2ab433ba9a754f0f2cfebb6328087c4bf347185323ad3d61ff9cd3"
+    },
+    {
+      "binding_pass": true,
+      "bytes": 11271,
+      "path": "src/orion/study/p1_causal/necessity_statistics.py",
+      "sha256": "e78a729f492564f883f9682084057ff3b98d49594643105796f8f8d76141315b"
+    }
+  ],
+  "terminal": "EXACT_PRIMARY_AND_REPLICATION_ARCHIVE_REPLAY"
+}
