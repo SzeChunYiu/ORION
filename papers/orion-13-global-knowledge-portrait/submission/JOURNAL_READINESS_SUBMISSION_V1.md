@@ -18,6 +18,33 @@ condition stated below that is verifiable but not verifiable *by me*.
 | House style | Closed | Four machine tokens replaced with prose; six raw digests moved from Results into a source-provenance list in the availability section, values preserved |
 | Venue, manifest, cover letter, availability | Closed | This directory |
 
+## CI result on the submitting branch
+
+The job did run, and the result is precise: **every ORION-13-specific step
+passed** and the job failed only at its final cross-paper step.
+
+| Step | Result |
+|---|---|
+| Audit scoped claim wiring and manuscript inputs | pass |
+| Verify tracked journal package checksums | pass |
+| Compile canonical scoped PDF | pass |
+| Verify current rebuild and superseded historical package authority | pass |
+| Verify package and publication scoreboard | **fail** |
+
+The failing step validates the P1--P5 package inventory across all five papers,
+and it fails on `hash mismatch for manuscript/main.tex` in P1, which is
+ORION-11. That paper is drifted on `origin/main` and is not in this lane.
+
+The failure is inherited, and the evidence is not just a local check. This
+workflow failed on eleven consecutive runs of another lane's branch earlier the
+same day, before this branch existed, and on those runs it failed at an
+*earlier* step, "Verify tracked journal package checksums", which now passes
+here. This branch moves the job strictly forward.
+
+Fixing ORION-11 by rewriting its checksums is exactly the unqualified hash-only
+rewrite that `CONTENT_BINDING_DRIFT_BASELINE_V1.json` forbids, so it was not
+done. Whoever owns ORION-11 must reconcile it through the sanctioned path.
+
 ## The one open condition
 
 The paper's scoped readiness record grants `PEER_REVIEW_READY` for the scoped

@@ -10,6 +10,12 @@ inspected and by what means, so a human reviewer can judge its weight.
 
 Engine: Tectonic (XeTeX), six passes to bibliography convergence.
 
+The repository also tracks a working PDF at `manuscript/main.pdf`, which is
+the pinned `latexmk` rebuild that `manuscript-clipping-audit` requires. It is
+a different engine on the same source and lands on the same 47 pages. That
+file was refreshed from the pinned rebuild in this pass; the audit below was
+performed on the Tectonic render archived beside this document.
+
 | Property | Value |
 |---|---|
 | Pages | 47 |
