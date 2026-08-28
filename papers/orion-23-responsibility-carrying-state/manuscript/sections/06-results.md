@@ -4,9 +4,9 @@ The historical runner printed its preregistered safety-cost terminal. The later
 outcome-entailment adjudication withholds that empirical claim authority. The
 current bounded authority comes from P13B's authenticated-certificate controlled
 finite-world result.
-Historical protected terminal: `P13A_RCS_SAFETY_COST_SUPERIORITY_SUPPORTED`.
-Current authority: `P13A_EMPIRICAL_SAFETY_COST_AUTHORITY_WITHHELD` under
-`P13A_OUTCOME_ENTAILMENT_ADJUDICATION_V1.json`.
+The historical protected run recorded safety--cost superiority as supported.
+That authority is now withheld: the outcome-entailment adjudication supersedes it,
+and empirical safety--cost superiority is no longer claimed.
 
 | arm | unsafe reuse | verified correctness | unnecessary reopen | mean cost |
 |---|---:|---:|---:|---:|

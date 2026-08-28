@@ -1,4 +1,4 @@
-# ResponsibilityCarryingState contract
+# Responsibility-Carrying State contract
 
 An RCS contains compact state plus a fail-closed contract binding raw/source evidence identity; compiler/transform identity and version; exact supported responsibility set; independent witness/certificate identity; intentionally omitted coordinates/information classes; required-same context coordinates; reopen-on-change coordinates; raw recovery/reconstruction availability and freshness; recovery/reopen cost; resource envelope; evaluator identity; authority owner; and an explicit declaration that the object grants no scientific/novelty self-authority.
 

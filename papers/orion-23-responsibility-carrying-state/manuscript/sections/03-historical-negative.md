@@ -4,7 +4,7 @@ The historical experiment constructed independent binary latent variables `(x,m,
 
 Exact enumeration produced the intended responsibility ladder: all representations were perfect for prediction/decision; `Z1` was exactly 0.5 on intervene/verify while `Z2/Z3` were 1.0; `Z2` was 0.5 on repair while `Z3` was 1.0. Exact upward debts were therefore +0.50.
 
-However, the frozen protocol also required the maximum deviation among 100 finite-sample sanity replicates of `n=1024` to be ≤0.05. The observed maximum was `0.0556640625` at replicate 92. The combined terminal remains permanently `P14_CONTROLLED_SUFFICIENCY_DEBT_GATE_NOT_MET`.
+However, the frozen protocol also required the maximum deviation among 100 finite-sample sanity replicates of `n=1024` to be ≤0.05. The observed maximum was `0.0556640625` at replicate 92. The controlled sufficiency-debt gate is therefore permanently not met.
 
 ## Root cause
 

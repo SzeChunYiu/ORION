@@ -11,8 +11,8 @@ was treated as input to the audit, not as a constraint on it.
 | paper | terminal | **venue** | fallback |
 |---|---|---|---|
 | ORION-14 | `READY_TO_SUBMIT_SECOND_TIER` | **TMLR** (fixed by operator routing) | — |
-| ORION-16 | `READY_TO_SUBMIT_SECOND_TIER` | **TMLR** | Empirical Software Engineering |
-| ORION-17 | `READY_TO_SUBMIT_TOP_TIER` | **Artificial Intelligence (AIJ)** | TMLR |
+| ORION-16 | evidence `SECOND_TIER`; filing **`BLOCKED__NO_VENUE_FORMAT_MANUSCRIPT`** | **TMLR** | Empirical Software Engineering |
+| ORION-17 | evidence `TOP_TIER`; filing **`BLOCKED__NO_VENUE_FORMAT_MANUSCRIPT`** | **Artificial Intelligence (AIJ)** | TMLR |
 | ORION-19 | `READY_TO_SUBMIT_SECOND_TIER` | **TMLR** | Machine Learning (Springer) |
 | ORION-23 | `READY_TO_SUBMIT_SECOND_TIER` | **Empirical Software Engineering** | Journal of Systems and Software |
 
@@ -81,3 +81,32 @@ Venue choice is recorded here; **submission itself is not automated**. Each pape
 submission manifest names the inputs only an author can supply — author identity
 and order, the venue account and submission id, and confirmation of the venue
 checklist.
+
+---
+
+## Packaging audit — what actually exists
+
+Venue choice is only half of a submission. Building each paper's PDF exposed a
+split the terminals above must reflect:
+
+| paper | manuscript artifact | PDF | filing state |
+|---|---|---|---|
+| ORION-14 | venue-format, TMLR style, anonymous | **built, 23 pp, inspected** | ready |
+| ORION-19 | venue-format, TMLR style, anonymous | **built, 10 pp** | ready |
+| ORION-23 | full paper structure in Markdown | **built, 6 pp, inspected** | ready |
+| ORION-16 | *working framework draft* only | builds, but is not a manuscript | **blocked** |
+| ORION-17 | *working framework draft* only | builds, but is not a manuscript | **blocked** |
+
+ORION-16 and ORION-17 have complete, independently verified science and no
+venue-format manuscript. Their PDFs render as internal working documents over
+historical base files, with no venue template, author block or anonymisation.
+Reporting them as ready to submit would have been wrong, so they are reported as
+blocked on manuscript preparation — writing work, not evidence work.
+
+ORION-23's build was repaired rather than declared blocked. Its `markdown`-package
+toolchain needs `texlua` and a matching cache version, and no reachable host has a
+TeX distribution at all. Left alone the build silently resolved every section to
+the same cached fragment and emitted a plausible but wrong six-page PDF whose
+every section read as the References list. The canonical Markdown is untouched;
+it is now converted ahead of the build and `\markdownInput` inputs that
+conversion, so the source of truth is unchanged and the dependency is gone.

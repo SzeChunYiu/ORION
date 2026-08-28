@@ -4,7 +4,8 @@
 **Successor id:** `ORION17.DENSITY_PROSPECTIVE.v1`
 **Predictions stamped:** commit `1db5eaa46`, `2026-08-28T19:22:36Z`
 **Status:** `PROSPECTIVE_PREDICTION_CONFIRMED__5_OF_5_INCLUDING_THE_DISAMBIGUATOR`
-**Terminal:** `READY_TO_SUBMIT_TOP_TIER`
+**Scientific terminal:** `READY_TO_SUBMIT_TOP_TIER` (evidence)
+**Filing terminal:** `BLOCKED__NO_VENUE_FORMAT_MANUSCRIPT` (see final section)
 **Scientific authority delta:** `NONE`
 
 ---
@@ -99,3 +100,27 @@ recorded density and campaign files, imports no ORION-17 module, and re-runs no
 campaign. Four checks and four negative controls, all firing, including that an
 inverted rule scores strictly worse and that a size-based rule mispredicts at
 least one case. `CANNOT_CHECK` exits 3 and is never reported as a pass.
+
+## 9. Packaging status — no venue-format manuscript exists
+
+The scientific package described above is complete and independently verified.
+**The submission package is not**, and the terminal above should be read as a
+statement about the evidence, not about readiness to file.
+
+The only manuscript artifact is `manuscript/main.pdf`, which renders as
+*"Working framework draft"* over historical base documents. It is an internal
+versioned working document: it carries no venue template, no author block, no
+abstract/introduction/related-work structure in submission form, and no
+anonymisation. `JOURNAL_READINESS_V2.md` records the same gap from the other
+side — its *"convert Markdown manuscript to venue template and perform
+copyedit/reference-format pass"* item is unchecked.
+
+Accordingly the operative terminal for filing is:
+
+**`BLOCKED__NO_VENUE_FORMAT_MANUSCRIPT`**
+
+This is a manuscript-preparation blocker, not a scientific one. Nothing in the
+evidence is missing or undetermined because of it, and no experiment is required
+to clear it. What is required is writing: converting the working framework into a
+venue manuscript under the `nature-*` skills protocol, then a copyedit and
+reference-format pass.
