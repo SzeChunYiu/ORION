@@ -84,11 +84,15 @@ def main() -> int:
                 for label in itertools.product((0, 1), repeat=n):
                     floor = sum(min(sum(1 for x in o if label[x] == 0),
                                     sum(1 for x in o if label[x] == 1)) for o in orb)
-                    best = 0
-                    for choice in itertools.product((0, 1), repeat=len(orb)):
-                        err = sum(1 for i, o in enumerate(orb)
-                                  for x in o if choice[i] != label[x])
-                        best = err if best == 0 and choice == tuple([0] * len(orb)) else min(best, err)
+                    # Plain minimum over every invariant rule. An earlier version
+                    # seeded `best = 0` and guarded the first iteration, which made
+                    # the comparison a tautology whenever the true minimum was 0 --
+                    # i.e. on exactly the pure-orbit cases that dominate the space.
+                    best = min(
+                        sum(1 for i, o in enumerate(orb)
+                            for x in o if choice[i] != label[x])
+                        for choice in itertools.product((0, 1), repeat=len(orb))
+                    )
                     if best != floor:
                         raise AssertionError(json.dumps({"check": "A3"}))
 
