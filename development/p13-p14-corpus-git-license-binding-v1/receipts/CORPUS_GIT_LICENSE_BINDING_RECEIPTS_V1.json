@@ -1,0 +1,3347 @@
+{
+ "boundaries": {
+  "gold_derived": false,
+  "policies_evaluated": false,
+  "scientific_authority_delta": "NONE",
+  "v1_adverse_terminal_untouched": true
+ },
+ "counts": {
+  "bindings_recorded": 40,
+  "differs_from_rest_hash": 40,
+  "entries": 45,
+  "equals_rest_hash": 0
+ },
+ "environment": {
+  "clone_filter": "--filter=blob:none",
+  "hostname": "billy-laptop-old",
+  "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+  "protocol_sha256": "78f76ceedd68b4c2e489ca9f6cacc59172eba770eca941a6b79505c01e2cb406",
+  "python": "3.14.4",
+  "runner_sha256": "2481210060b65b3d121d0120c5e959c48f26af788d7c04f33d6cb5ffb1891bf8",
+  "source_commit": "04a90468fe0c73aa9a0c6d14b18dcb2c7d8aaac0",
+  "utc": "2026-08-28T19:45:06Z"
+ },
+ "environment_receipts": [
+  {
+   "argv": [
+    "git",
+    "--version"
+   ],
+   "cwd": null,
+   "exit": 0,
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stdout_sha256": "97452bcde974ef512f9552791fc4f6a3219a724877671fba270baca1a6075b74",
+   "utc": "2026-08-28T19:45:06Z"
+  }
+ ],
+ "finished_utc": "2026-08-28T19:45:59Z",
+ "planted_controls": {
+  "control_a_fired": true,
+  "control_a_forged_pin_status": "CANNOT_CHECK__PINNED_OBJECT_UNRETRIEVABLE",
+  "control_b_fired": true,
+  "control_b_forged_path_status": "CANNOT_CHECK__LICENSE_PATH_UNRESOLVED_AT_PIN",
+  "raw_command_receipt_digest": "1dbca80406e028fccc022af367db57d31667c4d960667a2de72ff987cb1ffc11",
+  "status": "CONTROLS_FIRED",
+  "subject": "apache/kafka"
+ },
+ "records": [
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "blob_bytes": 11358,
+    "git_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "apache",
+   "pinned_sha": "808bbe535b1ca8e4c80e2e124db01184ef907858",
+   "raw_command_receipt_digest": "f808fd8449ab4130c1313db879ccbedbacbaf616d7d416cd37ced612478b6564",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/apache__kafka",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "76bb9161ed9e87345559edc6708a983bcc488b0d37caa3c65da7802337c0acad",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:06Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/apache__kafka",
+      "cat-file",
+      "-e",
+      "808bbe535b1ca8e4c80e2e124db01184ef907858^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:08Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/apache__kafka",
+      "rev-parse",
+      "808bbe535b1ca8e4c80e2e124db01184ef907858:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "9eedd8d1785f80471a6a816622bf632442f8d1eaa67d25a13bcc0acca18878f8",
+     "utc": "2026-08-28T19:45:08Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/apache__kafka",
+      "cat-file",
+      "blob",
+      "808bbe535b1ca8e4c80e2e124db01184ef907858:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+     "utc": "2026-08-28T19:45:08Z"
+    }
+   ],
+   "repo_id": "apache/kafka"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "blob_byte_sha256": "82f2f4427d6545ee5aaac4f0b80428da6cc8ba41c2cf5da3a03680ec327b9681",
+    "blob_bytes": 1088,
+    "git_blob_sha1": "2f71d999a9c8816b9ed595fbae9c9a7b6b7ad039",
+    "license_path": "COPYING",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "curl",
+   "pinned_sha": "c2676bf9e639e31e44b12a2cc82cf2046231b056",
+   "raw_command_receipt_digest": "f4b66e481341433e297e0347168c2bf0c2a8346d3cb9721b4daddb377e83e60f",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/curl__curl",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "6726522baae301012d2eaf03e08f79a38e50322b9d7d8d219d97279d7bf66d45",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:08Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/curl__curl",
+      "cat-file",
+      "-e",
+      "c2676bf9e639e31e44b12a2cc82cf2046231b056^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:09Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/curl__curl",
+      "rev-parse",
+      "c2676bf9e639e31e44b12a2cc82cf2046231b056:COPYING"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "a845c425261bdd12a52f731b7e2700e237a5fb0395868ebe083e12229e92ecaa",
+     "utc": "2026-08-28T19:45:09Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/curl__curl",
+      "cat-file",
+      "blob",
+      "c2676bf9e639e31e44b12a2cc82cf2046231b056:COPYING"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "82f2f4427d6545ee5aaac4f0b80428da6cc8ba41c2cf5da3a03680ec327b9681",
+     "utc": "2026-08-28T19:45:09Z"
+    }
+   ],
+   "repo_id": "curl/curl"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "0830355dc2c3c09e0ebb5f81de394b38e06b8e0b5e02341d450e6b7c39410760",
+    "blob_bytes": 1091,
+    "git_blob_sha1": "33d7a7ed739e297c438f685abad4d45ec4d07a34",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "emberjs",
+   "pinned_sha": "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb",
+   "raw_command_receipt_digest": "c893ce2fa2a941c5a34f060aad9fb4d2567a6130a140a54884aefbe5672bfb78",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/emberjs__ember.js",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "09e0afeb05b0534e798b62cc7a0147e880934598481cadf4a85947979519cbc4",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:09Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/emberjs__ember.js",
+      "cat-file",
+      "-e",
+      "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:10Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/emberjs__ember.js",
+      "rev-parse",
+      "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "c8712ede5f13bab3ebc0a97d1149748b6288aefa653075c6ae5a1e52552b11f0",
+     "utc": "2026-08-28T19:45:10Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/emberjs__ember.js",
+      "cat-file",
+      "blob",
+      "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "0830355dc2c3c09e0ebb5f81de394b38e06b8e0b5e02341d450e6b7c39410760",
+     "utc": "2026-08-28T19:45:10Z"
+    }
+   ],
+   "repo_id": "emberjs/ember.js"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0",
+    "blob_bytes": 10175,
+    "git_blob_sha1": "e454a52586f29b8ce8a6799163eac1f875e9ac01",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "erlang",
+   "pinned_sha": "4542a0b14fa904c235fa5d03787ad3a7b2ebd368",
+   "raw_command_receipt_digest": "02f5d98b87e21ae4e67a2fe857db6f3d692cb351af1b3e8654169080ff1053e6",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/erlang__otp",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "ae0eb4395b74a5157eb6211da0c5741f3f11a9dc9f3aaa299c64287cde675d65",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:10Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/erlang__otp",
+      "cat-file",
+      "-e",
+      "4542a0b14fa904c235fa5d03787ad3a7b2ebd368^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:12Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/erlang__otp",
+      "rev-parse",
+      "4542a0b14fa904c235fa5d03787ad3a7b2ebd368:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "7ad935afc8e02670f971a7e697f97744fe5fe734b4e000d92881d1b8cdd5638a",
+     "utc": "2026-08-28T19:45:12Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/erlang__otp",
+      "cat-file",
+      "blob",
+      "4542a0b14fa904c235fa5d03787ad3a7b2ebd368:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0",
+     "utc": "2026-08-28T19:45:12Z"
+    }
+   ],
+   "repo_id": "erlang/otp"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "blob_byte_sha256": "5b2198d1645f767585e8a88ac0499b04472164c0d2da22e75ecf97ef443ab32e",
+    "blob_bytes": 18765,
+    "git_blob_sha1": "536e55524db72bd2acf175208aef4f3dfc148d42",
+    "license_path": "COPYING",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "git",
+   "pinned_sha": "1a3e64c6c4a623626ff0687008732a8e007e2a1c",
+   "raw_command_receipt_digest": "664d9544aa74cf9e8bd27167581107a4f3fc9759e50f8eeaf47caf9ed4578930",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/git__git",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "de5086490e2f153e5cbaa8dd0a4b379e7b2d5ae249c63a3eddaa013dc0ce9198",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:12Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/git__git",
+      "cat-file",
+      "-e",
+      "1a3e64c6c4a623626ff0687008732a8e007e2a1c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:13Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/git__git",
+      "rev-parse",
+      "1a3e64c6c4a623626ff0687008732a8e007e2a1c:COPYING"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "55dec8a89c842456693c3c53d525338ca518f9f15cb121f5411283c6bc7b8c4b",
+     "utc": "2026-08-28T19:45:13Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/git__git",
+      "cat-file",
+      "blob",
+      "1a3e64c6c4a623626ff0687008732a8e007e2a1c:COPYING"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "5b2198d1645f767585e8a88ac0499b04472164c0d2da22e75ecf97ef443ab32e",
+     "utc": "2026-08-28T19:45:13Z"
+    }
+   ],
+   "repo_id": "git/git"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+    "blob_bytes": 1453,
+    "git_blob_sha1": "2a7cf70da6e498df9c11ab6a5eaa2ddd7af34da4",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "golang",
+   "pinned_sha": "71488c48c2dfecf900e52caa55f88ef4fef62d54",
+   "raw_command_receipt_digest": "3e7093f9a69f6ec102ac32fac8ba270e26d5f7cf2b82e201fd451d3c01607aed",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__crypto",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "af39f4b7492d11c823015daee6e900b4f9102b19d97480c6fe6442c8f13a35ad",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:13Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__crypto",
+      "cat-file",
+      "-e",
+      "71488c48c2dfecf900e52caa55f88ef4fef62d54^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:15Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__crypto",
+      "rev-parse",
+      "71488c48c2dfecf900e52caa55f88ef4fef62d54:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "ef95d28b307605e3bf4088abe8c44ca21851718d21e57080235c54154029fb6a",
+     "utc": "2026-08-28T19:45:15Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__crypto",
+      "cat-file",
+      "blob",
+      "71488c48c2dfecf900e52caa55f88ef4fef62d54:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+     "utc": "2026-08-28T19:45:15Z"
+    }
+   ],
+   "repo_id": "golang/crypto"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+    "blob_bytes": 1453,
+    "git_blob_sha1": "2a7cf70da6e498df9c11ab6a5eaa2ddd7af34da4",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "golang",
+   "pinned_sha": "a0044c2d09d47f2e2308538c70da4d7d359ed24a",
+   "raw_command_receipt_digest": "b9832f4ab43f30051f08df82be556606adce4842e26b6ddb6ba946ea0c045ac4",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__go",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "7ccbcb5c80a36d341dc8d7bba0274ddaac2d82ce1c903158d66ae901774cc07b",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:15Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__go",
+      "cat-file",
+      "-e",
+      "a0044c2d09d47f2e2308538c70da4d7d359ed24a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:16Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__go",
+      "rev-parse",
+      "a0044c2d09d47f2e2308538c70da4d7d359ed24a:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "ef95d28b307605e3bf4088abe8c44ca21851718d21e57080235c54154029fb6a",
+     "utc": "2026-08-28T19:45:16Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__go",
+      "cat-file",
+      "blob",
+      "a0044c2d09d47f2e2308538c70da4d7d359ed24a:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+     "utc": "2026-08-28T19:45:16Z"
+    }
+   ],
+   "repo_id": "golang/go"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+    "blob_bytes": 1453,
+    "git_blob_sha1": "2a7cf70da6e498df9c11ab6a5eaa2ddd7af34da4",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "golang",
+   "pinned_sha": "fc715e5c972bf4ec70ca609630538e6b71d6480c",
+   "raw_command_receipt_digest": "7da215636549aea4f70b96d8e9dff54f524c1b97d7e6b27441c177dc1fb14825",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__net",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "488623ca814cd68327164cd87f05135f85f0ee7bea3d7f184fc8010d48ee3090",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:16Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__net",
+      "cat-file",
+      "-e",
+      "fc715e5c972bf4ec70ca609630538e6b71d6480c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:17Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__net",
+      "rev-parse",
+      "fc715e5c972bf4ec70ca609630538e6b71d6480c:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "ef95d28b307605e3bf4088abe8c44ca21851718d21e57080235c54154029fb6a",
+     "utc": "2026-08-28T19:45:17Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__net",
+      "cat-file",
+      "blob",
+      "fc715e5c972bf4ec70ca609630538e6b71d6480c:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+     "utc": "2026-08-28T19:45:17Z"
+    }
+   ],
+   "repo_id": "golang/net"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+    "blob_bytes": 1453,
+    "git_blob_sha1": "2a7cf70da6e498df9c11ab6a5eaa2ddd7af34da4",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "golang",
+   "pinned_sha": "e8c1c3274309bd87f360205f5706e986ceccb317",
+   "raw_command_receipt_digest": "018177cc3d3ab4b58d31be0e295c38e573e8e5e70b49ab00abdc809c6f9080d2",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__sys",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e771cd737a2c29ed026e8aaba49e0a82c49b867c32e83b96a9ffbdfa29578d0d",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:17Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__sys",
+      "cat-file",
+      "-e",
+      "e8c1c3274309bd87f360205f5706e986ceccb317^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:17Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__sys",
+      "rev-parse",
+      "e8c1c3274309bd87f360205f5706e986ceccb317:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "ef95d28b307605e3bf4088abe8c44ca21851718d21e57080235c54154029fb6a",
+     "utc": "2026-08-28T19:45:17Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__sys",
+      "cat-file",
+      "blob",
+      "e8c1c3274309bd87f360205f5706e986ceccb317:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+     "utc": "2026-08-28T19:45:17Z"
+    }
+   ],
+   "repo_id": "golang/sys"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+    "blob_bytes": 1453,
+    "git_blob_sha1": "2a7cf70da6e498df9c11ab6a5eaa2ddd7af34da4",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "golang",
+   "pinned_sha": "dac6be3876335b7e1d2ea7d209d9bfb930306291",
+   "raw_command_receipt_digest": "20be57e36b618b1902d87bdff5daafe2f83783144123133ce9c80cd12c5b8029",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__text",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "882dcdc329cd78dc9cd60f331e88c774a615e7cb32238e140667924591997fb0",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:17Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__text",
+      "cat-file",
+      "-e",
+      "dac6be3876335b7e1d2ea7d209d9bfb930306291^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:18Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__text",
+      "rev-parse",
+      "dac6be3876335b7e1d2ea7d209d9bfb930306291:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "ef95d28b307605e3bf4088abe8c44ca21851718d21e57080235c54154029fb6a",
+     "utc": "2026-08-28T19:45:18Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__text",
+      "cat-file",
+      "blob",
+      "dac6be3876335b7e1d2ea7d209d9bfb930306291:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+     "utc": "2026-08-28T19:45:18Z"
+    }
+   ],
+   "repo_id": "golang/text"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+    "blob_bytes": 1453,
+    "git_blob_sha1": "2a7cf70da6e498df9c11ab6a5eaa2ddd7af34da4",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "golang",
+   "pinned_sha": "8f0f8c7bde0eea32e01e570a0e330c60a0cbaecc",
+   "raw_command_receipt_digest": "30b706ba6122f8bb7c782c68919a67df60e7af598dd232c9bb1bfcb661fcdb10",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__tools",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "c2b529279e057f900b7af9f57b379d5a351fb709e1699437541029e57dbd7b86",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:18Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__tools",
+      "cat-file",
+      "-e",
+      "8f0f8c7bde0eea32e01e570a0e330c60a0cbaecc^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:19Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__tools",
+      "rev-parse",
+      "8f0f8c7bde0eea32e01e570a0e330c60a0cbaecc:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "ef95d28b307605e3bf4088abe8c44ca21851718d21e57080235c54154029fb6a",
+     "utc": "2026-08-28T19:45:19Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__tools",
+      "cat-file",
+      "blob",
+      "8f0f8c7bde0eea32e01e570a0e330c60a0cbaecc:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+     "utc": "2026-08-28T19:45:19Z"
+    }
+   ],
+   "repo_id": "golang/tools"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "d4db9ebe6f29f5168eac45ad713f055623ac5d0dcd5ba92da23d650ae012020d",
+    "blob_bytes": 1097,
+    "git_blob_sha1": "f642c3f7a77a5833bc3dfee643ad8ca6387b23e7",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "jquery",
+   "pinned_sha": "71c0dd14927c41d1aab5ce5ef2687d7808a4186b",
+   "raw_command_receipt_digest": "2b33a57a6221e8bada3dd38fe2624f6e019043da8ece22c13019baa8a656c9a4",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__jquery",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "4a73c2ff25b576a045f501173c63b3960a97ab18efaed86596970decd9d978f9",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:19Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__jquery",
+      "cat-file",
+      "-e",
+      "71c0dd14927c41d1aab5ce5ef2687d7808a4186b^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:19Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__jquery",
+      "rev-parse",
+      "71c0dd14927c41d1aab5ce5ef2687d7808a4186b:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "b6c3b4bb265feec39074cabfd5dd6b6f01a4832b8f05040ab97b51c9bd576dbb",
+     "utc": "2026-08-28T19:45:19Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__jquery",
+      "cat-file",
+      "blob",
+      "71c0dd14927c41d1aab5ce5ef2687d7808a4186b:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "d4db9ebe6f29f5168eac45ad713f055623ac5d0dcd5ba92da23d650ae012020d",
+     "utc": "2026-08-28T19:45:19Z"
+    }
+   ],
+   "repo_id": "jquery/jquery"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "blob_byte_sha256": "f649025cf65c8dcd8588b0937883ba7a52bdb6d35129464a36a1602eb00250f1",
+    "blob_bytes": 1818,
+    "git_blob_sha1": "78108290c4097a583e30147feae4b53734b7f492",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "jquery",
+   "pinned_sha": "dcf10556bbcfdf3e10e3ea30966482e201191411",
+   "raw_command_receipt_digest": "0e7365949def7ef48ce3e43c82ac6c2ddb22349d2f25fe2fc5dd71ea214407cc",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__jquery-ui",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "ff9a737412da9deaf28b8d0e2d5822fedebdf8cc835d20e4b93d585f49b11e50",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:19Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__jquery-ui",
+      "cat-file",
+      "-e",
+      "dcf10556bbcfdf3e10e3ea30966482e201191411^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:20Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__jquery-ui",
+      "rev-parse",
+      "dcf10556bbcfdf3e10e3ea30966482e201191411:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "f5e253dc75de7b2ad6b369524c999749e9b0a296fbff900cca7e08051f296107",
+     "utc": "2026-08-28T19:45:20Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__jquery-ui",
+      "cat-file",
+      "blob",
+      "dcf10556bbcfdf3e10e3ea30966482e201191411:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "f649025cf65c8dcd8588b0937883ba7a52bdb6d35129464a36a1602eb00250f1",
+     "utc": "2026-08-28T19:45:20Z"
+    }
+   ],
+   "repo_id": "jquery/jquery-ui"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "d4db9ebe6f29f5168eac45ad713f055623ac5d0dcd5ba92da23d650ae012020d",
+    "blob_bytes": 1097,
+    "git_blob_sha1": "f642c3f7a77a5833bc3dfee643ad8ca6387b23e7",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "jquery",
+   "pinned_sha": "d304f6ee3cf7645a78e3f3882c901d0206990edc",
+   "raw_command_receipt_digest": "bd890a1d40172cff110b9ead077272412b4e4ce82e01d061ae9c6f104214e6ca",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__qunit",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "5b7813bee600ad017ad40c3787c68b9769569bd1b7d012ac1a56fa024a4ae99f",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:20Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__qunit",
+      "cat-file",
+      "-e",
+      "d304f6ee3cf7645a78e3f3882c901d0206990edc^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:20Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__qunit",
+      "rev-parse",
+      "d304f6ee3cf7645a78e3f3882c901d0206990edc:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "b6c3b4bb265feec39074cabfd5dd6b6f01a4832b8f05040ab97b51c9bd576dbb",
+     "utc": "2026-08-28T19:45:20Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__qunit",
+      "cat-file",
+      "blob",
+      "d304f6ee3cf7645a78e3f3882c901d0206990edc:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "d4db9ebe6f29f5168eac45ad713f055623ac5d0dcd5ba92da23d650ae012020d",
+     "utc": "2026-08-28T19:45:20Z"
+    }
+   ],
+   "repo_id": "jquery/qunit"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "blob_byte_sha256": "a078a8f80016416042c2e5f04dbb7f499f0f6deebb086511f3a3b72633a2d761",
+    "blob_bytes": 1605,
+    "git_blob_sha1": "88fcd178b2d37f872481d686d1ddcdd3b4929648",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "jquery",
+   "pinned_sha": "aec9caa8a4e545b28db63ea0e212b46e53a4cf89",
+   "raw_command_receipt_digest": "cbcd33b72868e895f26ac876dd4a9bf3f4c2dbbc2bd75577e20eeab1cc0f2544",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__sizzle",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "8283478d56afa429d9a6024637449206bbcc1a6f19810f2063e3c20e01f3f6de",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:20Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__sizzle",
+      "cat-file",
+      "-e",
+      "aec9caa8a4e545b28db63ea0e212b46e53a4cf89^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:21Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__sizzle",
+      "rev-parse",
+      "aec9caa8a4e545b28db63ea0e212b46e53a4cf89:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "60a799330a58e0daf55a2564b8412863a05aed99373ba2a78e7f3295dcf46590",
+     "utc": "2026-08-28T19:45:21Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__sizzle",
+      "cat-file",
+      "blob",
+      "aec9caa8a4e545b28db63ea0e212b46e53a4cf89:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "a078a8f80016416042c2e5f04dbb7f499f0f6deebb086511f3a3b72633a2d761",
+     "utc": "2026-08-28T19:45:21Z"
+    }
+   ],
+   "repo_id": "jquery/sizzle"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "status": "CANNOT_CHECK__NO_PARSEABLE_LICENSE_PATH"
+   },
+   "org_login": "lodash",
+   "pinned_sha": "a666ba591064c8011988275790ad7d625279f09c",
+   "raw_command_receipt_digest": "5cc7466cbd61293c72b6a62026c67e05fd926d07f75a12b31b78356de73e4e32",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/lodash__lodash",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "a695b398ba17e31a0f08a1193607204368adc266d443bbde8593f22fc8f393e4",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:21Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/lodash__lodash",
+      "cat-file",
+      "-e",
+      "a666ba591064c8011988275790ad7d625279f09c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:22Z"
+    }
+   ],
+   "repo_id": "lodash/lodash"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "git_blob_sha1": "fb3006c3a1a5e3d90f69ccd7e95dc9057c066863",
+    "license_path": "LICENSE",
+    "status": "CANNOT_CHECK__BLOB_UNREADABLE"
+   },
+   "org_login": "matplotlib",
+   "pinned_sha": "adecc563eabdfeb103ca338b50d5191b838ae8e9",
+   "raw_command_receipt_digest": "8730057f232da928cefecdca83b16d12e09ee6368d9bfbec50c05e5356950d9a",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/matplotlib__matplotlib",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "99d8ab6e62684b4a791e14642f1bd1d21447db8f433f9500188062f173db3eb5",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:22Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/matplotlib__matplotlib",
+      "cat-file",
+      "-e",
+      "adecc563eabdfeb103ca338b50d5191b838ae8e9^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:22Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/matplotlib__matplotlib",
+      "rev-parse",
+      "adecc563eabdfeb103ca338b50d5191b838ae8e9:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "ba26d6551444ff9506503169c0f48e850cc9b2bd29b0ee861f65e336f9d2c183",
+     "utc": "2026-08-28T19:45:22Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/matplotlib__matplotlib",
+      "cat-file",
+      "blob",
+      "adecc563eabdfeb103ca338b50d5191b838ae8e9:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 128,
+     "stderr_sha256": "a2c450dc9f02da276a4255f2f09c24c3ad421bd0a9f1aef92d7edba2f86b7268",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:22Z"
+    }
+   ],
+   "repo_id": "matplotlib/matplotlib"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "9480271317925265e806a9a196aaa33410a962fa9d4d1e248a4a5187bc8c9df9",
+    "blob_bytes": 1088,
+    "git_blob_sha1": "0ac28ee234d232ac0691f39cebf95bf6b2a763a5",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "microsoft",
+   "pinned_sha": "449d7cc584e1be7f58b3a7a6e2a8e9e3110390d6",
+   "raw_command_receipt_digest": "935baab891a20301bb9521e741502f51ca2e12d26d99ecc9464dc76ac6755a16",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "2c2aed20dc7ca2d4ce5095f4622e2f39dcdbe6badfe552815440a8c5d878f18d",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:22Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode",
+      "cat-file",
+      "-e",
+      "449d7cc584e1be7f58b3a7a6e2a8e9e3110390d6^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:23Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode",
+      "rev-parse",
+      "449d7cc584e1be7f58b3a7a6e2a8e9e3110390d6:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e37e459486f38df2555fc8819d3359647630ea4ec287d22833432c7000a35533",
+     "utc": "2026-08-28T19:45:23Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode",
+      "cat-file",
+      "blob",
+      "449d7cc584e1be7f58b3a7a6e2a8e9e3110390d6:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "9480271317925265e806a9a196aaa33410a962fa9d4d1e248a4a5187bc8c9df9",
+     "utc": "2026-08-28T19:45:23Z"
+    }
+   ],
+   "repo_id": "microsoft/vscode"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "status": "CANNOT_CHECK__NO_PARSEABLE_LICENSE_PATH"
+   },
+   "org_login": "networkx",
+   "pinned_sha": "cfc6b79fc53f583aa15a79b2187ae30bd4f480ed",
+   "raw_command_receipt_digest": "ee4877d6f21fc197c76b4fab031f3704ec3ba8e08a06abdcebe759080ff3f656",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/networkx__networkx",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "22d93c990a641b0b9fff16f246b22665808fef690de4f7610bfded7692530968",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:23Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/networkx__networkx",
+      "cat-file",
+      "-e",
+      "cfc6b79fc53f583aa15a79b2187ae30bd4f480ed^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:23Z"
+    }
+   ],
+   "repo_id": "networkx/networkx"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "status": "CANNOT_CHECK__NO_PARSEABLE_LICENSE_PATH"
+   },
+   "org_login": "nodejs",
+   "pinned_sha": "214cf0693bee80d31150d21d2ad21186d2d055cf",
+   "raw_command_receipt_digest": "01785a5507bc697fe8ee4f4f7f2c64337a2e6aee3229bb16bc0f9098156fb7f7",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/nodejs__node",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "a07087bb14d88d304400efd92eb3e44b640fba70a4b1a66d67673731aae6118b",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:23Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/nodejs__node",
+      "cat-file",
+      "-e",
+      "214cf0693bee80d31150d21d2ad21186d2d055cf^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:24Z"
+    }
+   ],
+   "repo_id": "nodejs/node"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "blob_byte_sha256": "1be1df33863f97a7bc1c4d67980bd6c69c9a6fef0a5ee76e6ad6cb91e56e8491",
+    "blob_bytes": 1543,
+    "git_blob_sha1": "f37a12cc4cccf83af4517809791777e71c1df2a9",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "numpy",
+   "pinned_sha": "71596b96a678b2d769f81e8b2fb84b2b43a99f68",
+   "raw_command_receipt_digest": "8d87a5fd124749d9923b472d116465386b938c8a3d9296395466c3b044e99dcb",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpy",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "a6963f81b254785c4bc4632992e755e10f305a84211e3505d0fb394d0f857740",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:24Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpy",
+      "cat-file",
+      "-e",
+      "71596b96a678b2d769f81e8b2fb84b2b43a99f68^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:24Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpy",
+      "rev-parse",
+      "71596b96a678b2d769f81e8b2fb84b2b43a99f68:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "ad681a34401b12f15ec43f8619031392f963ec0a1cfac70e3fcc9841083d1924",
+     "utc": "2026-08-28T19:45:24Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpy",
+      "cat-file",
+      "blob",
+      "71596b96a678b2d769f81e8b2fb84b2b43a99f68:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "1be1df33863f97a7bc1c4d67980bd6c69c9a6fef0a5ee76e6ad6cb91e56e8491",
+     "utc": "2026-08-28T19:45:24Z"
+    }
+   ],
+   "repo_id": "numpy/numpy"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "blob_byte_sha256": "0b78243e9446fe949093d69a7656b3d147d6b98bc48c975c9b4c290d8159033d",
+    "blob_bytes": 1298,
+    "git_blob_sha1": "d1c911593e4dd84b6274e30e730a343ac962a793",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "numpy",
+   "pinned_sha": "c127da1c69ec84f9be4f84656c6435b43f949b0d",
+   "raw_command_receipt_digest": "d22470c6325b936c232f02f7ebf024533fb8a166aab9d9703c637c993ce0bb23",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpydoc",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "83e638d52ef007abc162d290e8bec64d8f90451a23b14bb45b848cd4f334303b",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:24Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpydoc",
+      "cat-file",
+      "-e",
+      "c127da1c69ec84f9be4f84656c6435b43f949b0d^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:25Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpydoc",
+      "rev-parse",
+      "c127da1c69ec84f9be4f84656c6435b43f949b0d:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "c5eec8a8e989afbd804f6bfdac767e23d7904320f3b37f7036d630b0632920ea",
+     "utc": "2026-08-28T19:45:25Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpydoc",
+      "cat-file",
+      "blob",
+      "c127da1c69ec84f9be4f84656c6435b43f949b0d:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "0b78243e9446fe949093d69a7656b3d147d6b98bc48c975c9b4c290d8159033d",
+     "utc": "2026-08-28T19:45:25Z"
+    }
+   ],
+   "repo_id": "numpy/numpydoc"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+    "blob_bytes": 1475,
+    "git_blob_sha1": "9d227a0cc43c3268d15722b763bd94ad298645a1",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "pallets",
+   "pinned_sha": "d318b683471101618febed18996405ad26462110",
+   "raw_command_receipt_digest": "cd757ec05fee59c75acd44418184a41013cd712d26afec042d4df1742ad67151",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__flask",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "d0970ae002f5587f38eef961aff3aa31dfc9b1f2493da81ae354c564288afcc8",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:25Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__flask",
+      "cat-file",
+      "-e",
+      "d318b683471101618febed18996405ad26462110^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:26Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__flask",
+      "rev-parse",
+      "d318b683471101618febed18996405ad26462110:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e1e046522a40f429c6f5857e02980b4e684807873237c082134cdd380742dde0",
+     "utc": "2026-08-28T19:45:26Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__flask",
+      "cat-file",
+      "blob",
+      "d318b683471101618febed18996405ad26462110:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+     "utc": "2026-08-28T19:45:26Z"
+    }
+   ],
+   "repo_id": "pallets/flask"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b",
+    "blob_bytes": 1475,
+    "git_blob_sha1": "c37cae49ec77ad6ebb25568c1605f1fee5313cfb",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "pallets",
+   "pinned_sha": "5ef70112a1ff19c05324ff889dd30405b1002044",
+   "raw_command_receipt_digest": "22960dd06008d4e44551f2ef5c49c322a37cd09ff9a7d60dedd354084066e3c8",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__jinja",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "5cb7da663c3dc9d7aa3c3d2ffd799f9d1b1219ff1548749700fd797b982f058d",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:26Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__jinja",
+      "cat-file",
+      "-e",
+      "5ef70112a1ff19c05324ff889dd30405b1002044^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__jinja",
+      "rev-parse",
+      "5ef70112a1ff19c05324ff889dd30405b1002044:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "f1b9fba60384c9b3bd6bdafac1334ee470f672b4f7e0bde2e259c6e8088baf74",
+     "utc": "2026-08-28T19:45:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__jinja",
+      "cat-file",
+      "blob",
+      "5ef70112a1ff19c05324ff889dd30405b1002044:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b",
+     "utc": "2026-08-28T19:45:27Z"
+    }
+   ],
+   "repo_id": "pallets/jinja"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b",
+    "blob_bytes": 1475,
+    "git_blob_sha1": "c37cae49ec77ad6ebb25568c1605f1fee5313cfb",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "pallets",
+   "pinned_sha": "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455",
+   "raw_command_receipt_digest": "806fffc09a321733edff53572f6062a5fc67a291f3b4062126ca7cfe6e483296",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e9a33978083a43cf890ef5255647cfba1872abb3cc3053b8a6e3734cea0f1cc6",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug",
+      "cat-file",
+      "-e",
+      "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug",
+      "rev-parse",
+      "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "f1b9fba60384c9b3bd6bdafac1334ee470f672b4f7e0bde2e259c6e8088baf74",
+     "utc": "2026-08-28T19:45:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug",
+      "cat-file",
+      "blob",
+      "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b",
+     "utc": "2026-08-28T19:45:27Z"
+    }
+   ],
+   "repo_id": "pallets/werkzeug"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "9850f6b5bdef7346503065807b878deb8058b976c5c329f4c4d23bf4796ce9ae",
+    "blob_bytes": 1634,
+    "git_blob_sha1": "bd1cc2a30c626d0bbe43ab6ec1c4744c2e2df831",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "pandas-dev",
+   "pinned_sha": "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb",
+   "raw_command_receipt_digest": "c3f50afb1b7f57f065353ac97f4590fc05ba51d75399f09fa61a56230cdf2a70",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "6a25d7d32276791197591db668bb2ff0607c400c063c36f7881cf372bc77d4ce",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas",
+      "cat-file",
+      "-e",
+      "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:28Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas",
+      "rev-parse",
+      "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "c6811b64deca64e678114855215e9ad9cd67fbc3a99ca914056ecb452094f729",
+     "utc": "2026-08-28T19:45:28Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas",
+      "cat-file",
+      "blob",
+      "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "9850f6b5bdef7346503065807b878deb8058b976c5c329f4c4d23bf4796ce9ae",
+     "utc": "2026-08-28T19:45:28Z"
+    }
+   ],
+   "repo_id": "pandas-dev/pandas"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "437400c31ce5fd980ae8adf5262a98d222d6ba9216b85300fe459f5e71aa6bdf",
+    "blob_bytes": 1514,
+    "git_blob_sha1": "1a7e83ed950bec57fbcaf949814390852ead0eb2",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "pandas-dev",
+   "pinned_sha": "af30812c6901331be77e8ed76db8f099f20d00b8",
+   "raw_command_receipt_digest": "5116a48b84ca3ea7c4cd266485a635294e6de7cc6bf4ee7fd2f60464a57eb5b3",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas-stubs",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "04955aaf513717e05c0df98e5f2f03f77fdce59a431a1f56cd85f140b06fc33e",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:28Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas-stubs",
+      "cat-file",
+      "-e",
+      "af30812c6901331be77e8ed76db8f099f20d00b8^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:29Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas-stubs",
+      "rev-parse",
+      "af30812c6901331be77e8ed76db8f099f20d00b8:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "cf8fc59e95427bb9d662d23b08bb7bbc26223cd552a6ea1786353b536e404e96",
+     "utc": "2026-08-28T19:45:29Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas-stubs",
+      "cat-file",
+      "blob",
+      "af30812c6901331be77e8ed76db8f099f20d00b8:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "437400c31ce5fd980ae8adf5262a98d222d6ba9216b85300fe459f5e71aa6bdf",
+     "utc": "2026-08-28T19:45:29Z"
+    }
+   ],
+   "repo_id": "pandas-dev/pandas-stubs"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "9c0428f0c3b4779850cf5bd96e11aaa8afc72d4a86d4a36223d7aba2e58d6e00",
+    "blob_bytes": 1080,
+    "git_blob_sha1": "7a9b891f713e1d0a522f042a28f28ba0c5f390d4",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "psf",
+   "pinned_sha": "8947c48ef2077c3a301b03c1e814dc2e3f78436e",
+   "raw_command_receipt_digest": "11567c11f096801b1c91d9591d5bb21bd8b75bce27b4845e5037d3a5ef980244",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/psf__black",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "63c8e355d1be897cb40839a33b33ab8bd710a9b32a1278fcd124dd7c53d7ab0d",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:29Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/psf__black",
+      "cat-file",
+      "-e",
+      "8947c48ef2077c3a301b03c1e814dc2e3f78436e^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:30Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/psf__black",
+      "rev-parse",
+      "8947c48ef2077c3a301b03c1e814dc2e3f78436e:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e775322711f002c8335e3f38f59b04a89a7c7091af65e1258a6d68a6325f9641",
+     "utc": "2026-08-28T19:45:30Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/psf__black",
+      "cat-file",
+      "blob",
+      "8947c48ef2077c3a301b03c1e814dc2e3f78436e:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "9c0428f0c3b4779850cf5bd96e11aaa8afc72d4a86d4a36223d7aba2e58d6e00",
+     "utc": "2026-08-28T19:45:30Z"
+    }
+   ],
+   "repo_id": "psf/black"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "533d735a2bbc40eccebe20014c38a2bf6fb1afd488398d2c508006496099af17",
+    "blob_bytes": 10268,
+    "git_blob_sha1": "82fac1f1a63a9cba215d16d938090b6ecfce28bf",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "pydata",
+   "pinned_sha": "b1c1dc549b62bdfc8de0bdded24f56464cf0db1a",
+   "raw_command_receipt_digest": "865c956c73c1276f42e5d0e0e05a6ce9c08542fb44bcc555290a34a88e704fac",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pydata__xarray",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "dd4de66b77db84bda2b18e55faab7533a7690410e54d55f031d43bf4038265d9",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:30Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pydata__xarray",
+      "cat-file",
+      "-e",
+      "b1c1dc549b62bdfc8de0bdded24f56464cf0db1a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:31Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pydata__xarray",
+      "rev-parse",
+      "b1c1dc549b62bdfc8de0bdded24f56464cf0db1a:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "010dd397112d52ce759ba0cec6aa9263903ea625089940d8027ce3a129e7a0ff",
+     "utc": "2026-08-28T19:45:31Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pydata__xarray",
+      "cat-file",
+      "blob",
+      "b1c1dc549b62bdfc8de0bdded24f56464cf0db1a:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "533d735a2bbc40eccebe20014c38a2bf6fb1afd488398d2c508006496099af17",
+     "utc": "2026-08-28T19:45:31Z"
+    }
+   ],
+   "repo_id": "pydata/xarray"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "blob_byte_sha256": "b0e25a78cffb43f4d92de8b61ccfa1f1f98ecbc22330b54b5251e7b6ba010231",
+    "blob_bytes": 13804,
+    "git_blob_sha1": "20cf39097c68baa17cc566b64e76d34ebf034044",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "python",
+   "pinned_sha": "9cbd578e38a5ef59f9462b61d1e03338b208cba6",
+   "raw_command_receipt_digest": "dfd6f8b436ce3cb7221355af95d4f9b5fbab1063bde245ae31b7f84686c44b0d",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__cpython",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "ed80f0276d4382e15b622f68bab617d4ec9c8e29f7d445c5e4a2ffff64f25c0a",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:32Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__cpython",
+      "cat-file",
+      "-e",
+      "9cbd578e38a5ef59f9462b61d1e03338b208cba6^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:33Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__cpython",
+      "rev-parse",
+      "9cbd578e38a5ef59f9462b61d1e03338b208cba6:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "1eb2cc7366d8602c16413c80f3b02a992af3fdd370ce3785e0849ba96d99df5e",
+     "utc": "2026-08-28T19:45:33Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__cpython",
+      "cat-file",
+      "blob",
+      "9cbd578e38a5ef59f9462b61d1e03338b208cba6:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "b0e25a78cffb43f4d92de8b61ccfa1f1f98ecbc22330b54b5251e7b6ba010231",
+     "utc": "2026-08-28T19:45:33Z"
+    }
+   ],
+   "repo_id": "python/cpython"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "license_path": "LICENSE",
+    "status": "CANNOT_CHECK__LICENSE_PATH_UNRESOLVED_AT_PIN"
+   },
+   "org_login": "python",
+   "pinned_sha": "344e58976964e61bc206c38cc3e81742b599b5f4",
+   "raw_command_receipt_digest": "fe28e1037580deb8a2986215492cdc2361944a0f93e4ef2cbb98908ce4f1c263",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__peps",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "a7368cbb95741d820c56dc5d9f5890f800708475c5cfbd158c01083a9a36c2c1",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:34Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__peps",
+      "cat-file",
+      "-e",
+      "344e58976964e61bc206c38cc3e81742b599b5f4^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:35Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__peps",
+      "rev-parse",
+      "344e58976964e61bc206c38cc3e81742b599b5f4:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 128,
+     "stderr_sha256": "1c943d12c69c78f19c123c71efcc7ab7937f179f77185722141484d6ee035986",
+     "stdout_sha256": "012ede3d699f2139254a8d88b209d191623088656e5bd90e35c21b25f9415c05",
+     "utc": "2026-08-28T19:45:35Z"
+    }
+   ],
+   "repo_id": "python/peps"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "blob_byte_sha256": "295f8538c94ae5c3043301cf7cff1c852dab6a786a8ddee471e061b40d5ecabe",
+    "blob_bytes": 12657,
+    "git_blob_sha1": "13264487581f82433dadf18a99613a7d215fd448",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "python",
+   "pinned_sha": "28b0c4d114f3d4bc28b022385d096038b73fc436",
+   "raw_command_receipt_digest": "ab7230850d22c9c481e2abae2533b2a88593265b6f72de9c11072e3899ae1f87",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__typeshed",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "9985a697bc1d8d85e9c171dfad7008a9ddb895d36d16cf672604c0766bbce6bd",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:35Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__typeshed",
+      "cat-file",
+      "-e",
+      "28b0c4d114f3d4bc28b022385d096038b73fc436^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:36Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__typeshed",
+      "rev-parse",
+      "28b0c4d114f3d4bc28b022385d096038b73fc436:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "fc9efad82cbfa7db7eb68bca876a6db237057c1ce1809b365e6aecc82118a12a",
+     "utc": "2026-08-28T19:45:36Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__typeshed",
+      "cat-file",
+      "blob",
+      "28b0c4d114f3d4bc28b022385d096038b73fc436:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "295f8538c94ae5c3043301cf7cff1c852dab6a786a8ddee471e061b40d5ecabe",
+     "utc": "2026-08-28T19:45:36Z"
+    }
+   ],
+   "repo_id": "python/typeshed"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "bce18846018d0abb9b4c9a3751755d36ae87de2f23872b8124a83321a86ed58f",
+    "blob_bytes": 1074,
+    "git_blob_sha1": "15c4dd523aff73ec14b6d3f72d5874b16f232f58",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "redis",
+   "pinned_sha": "fdc5606a67c1b6f9567c6f738e541e18467c60e6",
+   "raw_command_receipt_digest": "42a8ffe6e0765a710e8938f79b0379287f0263fd2c42e8997ecd01e7a41b1c50",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__jedis",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "8dfc14bfafff826c6606984bb66b7ffd762337e2b04ca109e866f4ea4fd6ecb6",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:36Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__jedis",
+      "cat-file",
+      "-e",
+      "fdc5606a67c1b6f9567c6f738e541e18467c60e6^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:37Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__jedis",
+      "rev-parse",
+      "fdc5606a67c1b6f9567c6f738e541e18467c60e6:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "2b7223af7479dde7d9ed5ad7a673970a43d1e9cbf872b6b7e1bb27b136c0d991",
+     "utc": "2026-08-28T19:45:37Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__jedis",
+      "cat-file",
+      "blob",
+      "fdc5606a67c1b6f9567c6f738e541e18467c60e6:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "bce18846018d0abb9b4c9a3751755d36ae87de2f23872b8124a83321a86ed58f",
+     "utc": "2026-08-28T19:45:37Z"
+    }
+   ],
+   "repo_id": "redis/jedis"
+  },
+  {
+   "gold_eligible": false,
+   "observation": {
+    "blob_byte_sha256": "4a0e416b9537688f30dfe69ddaceb2ca64d96b7df02a0a6760d376890ddc4e40",
+    "blob_bytes": 72266,
+    "git_blob_sha1": "4657905cf699d1d5ac96a07d0969bc79e27c4eec",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "redis",
+   "pinned_sha": "86c0e60769812557ecf38bcdcd1c70010efebf20",
+   "raw_command_receipt_digest": "344c1fe121c4d764dbbfb0962e5f06f5440ee2a921489b1248105dc95661fbed",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__redis",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "0adb9290ce3d31340d55640ad3debfd50d098d6e5c676fcae11d9f5dfdfc0ba6",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:38Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__redis",
+      "cat-file",
+      "-e",
+      "86c0e60769812557ecf38bcdcd1c70010efebf20^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:38Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__redis",
+      "rev-parse",
+      "86c0e60769812557ecf38bcdcd1c70010efebf20:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "6d2c23314343c7317221a6e6a9a48b826c9e8b78a221bb776b6e4631bb395159",
+     "utc": "2026-08-28T19:45:38Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__redis",
+      "cat-file",
+      "blob",
+      "86c0e60769812557ecf38bcdcd1c70010efebf20:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "4a0e416b9537688f30dfe69ddaceb2ca64d96b7df02a0a6760d376890ddc4e40",
+     "utc": "2026-08-28T19:45:38Z"
+    }
+   ],
+   "repo_id": "redis/redis"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "a57b250a5bf03d7afe55b74063313f2adb7b00d546c0ab149a89398333fe3cc8",
+    "blob_bytes": 1074,
+    "git_blob_sha1": "8509ccd678eea721e68a9c75139554e5d3aec8cf",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "redis",
+   "pinned_sha": "afe6523ec5e07b49fe15e1748c049cc2ab2644a6",
+   "raw_command_receipt_digest": "a507737a31f1e0f5144708c88193fda3384ee4de9c2169759c0aca16d5583384",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__redis-py",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "f53151f4e71e8293e284bcc138d7331ee127c7e7358552036b35327cf41ef5ee",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:39Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__redis-py",
+      "cat-file",
+      "-e",
+      "afe6523ec5e07b49fe15e1748c049cc2ab2644a6^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:40Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__redis-py",
+      "rev-parse",
+      "afe6523ec5e07b49fe15e1748c049cc2ab2644a6:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "0f9dec9f938ba691dc8ecf7df9e34c1eeb6581ddf3563fa27144dba52eb2538c",
+     "utc": "2026-08-28T19:45:40Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__redis-py",
+      "cat-file",
+      "blob",
+      "afe6523ec5e07b49fe15e1748c049cc2ab2644a6:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "a57b250a5bf03d7afe55b74063313f2adb7b00d546c0ab149a89398333fe3cc8",
+     "utc": "2026-08-28T19:45:40Z"
+    }
+   ],
+   "repo_id": "redis/redis-py"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "8ada45cd9f843acf64e4722ae262c622a2b3b3007c7310ef36ac1061a30f6adb",
+    "blob_bytes": 10860,
+    "git_blob_sha1": "c98d27d4f32d56e56f13de73a08ab44b2947ccf5",
+    "license_path": "LICENSE-APACHE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "rust-lang",
+   "pinned_sha": "bb983ad0bd166bd151db189a066bba32039a223b",
+   "raw_command_receipt_digest": "5639a1d7e05fe1e8f833e2f71df67c90260d0888d9cacfb248b7ffd760cb5be0",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__cargo",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "183bb97544b365a611f96b004b93d8e4730a8cc1bf876dff45d43a3da5cb6314",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:40Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__cargo",
+      "cat-file",
+      "-e",
+      "bb983ad0bd166bd151db189a066bba32039a223b^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:41Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__cargo",
+      "rev-parse",
+      "bb983ad0bd166bd151db189a066bba32039a223b:LICENSE-APACHE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "008a89a52e5a9cf67fbb14b174416aabf4ade20db68ba07f825178d5db681863",
+     "utc": "2026-08-28T19:45:41Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__cargo",
+      "cat-file",
+      "blob",
+      "bb983ad0bd166bd151db189a066bba32039a223b:LICENSE-APACHE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "8ada45cd9f843acf64e4722ae262c622a2b3b3007c7310ef36ac1061a30f6adb",
+     "utc": "2026-08-28T19:45:41Z"
+    }
+   ],
+   "repo_id": "rust-lang/cargo"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+    "blob_bytes": 9723,
+    "git_blob_sha1": "1b5ec8b78e237b5c3b3d812a7c0a6589d0f7161d",
+    "license_path": "LICENSE-APACHE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "rust-lang",
+   "pinned_sha": "a854cde861f2142584e2d7ed49ca66827d4b749a",
+   "raw_command_receipt_digest": "9ea62c52f2c131f0f8896383cd665e14cd63b9d55f56f0a3f1bf752ea9cc9617",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__miri",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "3df1822c45969edbbf0376c2b94270deea23b25b97e8b27576ca2c23e16423e4",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:41Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__miri",
+      "cat-file",
+      "-e",
+      "a854cde861f2142584e2d7ed49ca66827d4b749a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:42Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__miri",
+      "rev-parse",
+      "a854cde861f2142584e2d7ed49ca66827d4b749a:LICENSE-APACHE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "94d7504bb20f3afb8a93310f192ed93e219eea3625a8a4d754834a482873a447",
+     "utc": "2026-08-28T19:45:42Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__miri",
+      "cat-file",
+      "blob",
+      "a854cde861f2142584e2d7ed49ca66827d4b749a:LICENSE-APACHE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+     "utc": "2026-08-28T19:45:42Z"
+    }
+   ],
+   "repo_id": "rust-lang/miri"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+    "blob_bytes": 9723,
+    "git_blob_sha1": "1b5ec8b78e237b5c3b3d812a7c0a6589d0f7161d",
+    "license_path": "LICENSE-APACHE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "rust-lang",
+   "pinned_sha": "347a1dbf428ab92f284e3afafacfa7eb46341a5d",
+   "raw_command_receipt_digest": "ae53100384ecc2483209770a38452a0bfbb97fe4f20baede990f8318adfd1c55",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__rust",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "9261a053dfbcd84d26181952f90c979e56b4e0dbd54ba4aab6e76b84e0ffb74c",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__rust",
+      "cat-file",
+      "-e",
+      "347a1dbf428ab92f284e3afafacfa7eb46341a5d^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__rust",
+      "rev-parse",
+      "347a1dbf428ab92f284e3afafacfa7eb46341a5d:LICENSE-APACHE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "94d7504bb20f3afb8a93310f192ed93e219eea3625a8a4d754834a482873a447",
+     "utc": "2026-08-28T19:45:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__rust",
+      "cat-file",
+      "blob",
+      "347a1dbf428ab92f284e3afafacfa7eb46341a5d:LICENSE-APACHE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a",
+     "utc": "2026-08-28T19:45:43Z"
+    }
+   ],
+   "repo_id": "rust-lang/rust"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "092c8e82c47fb859d7385253c1b04052dbd65a8bcf0bbd8b6f7dba58a9e8753d",
+    "blob_bytes": 10852,
+    "git_blob_sha1": "212ba1f3184810909ef2186137ec0d9a6aea4a6b",
+    "license_path": "LICENSE-APACHE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "rust-lang",
+   "pinned_sha": "bbfd1201f7b9c7eddb7fb7dec704fa3566b6863c",
+   "raw_command_receipt_digest": "392d9872789790f00421e7f9c24e54ddf535e294badf71b99fd7b507c017ad8c",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__rustfmt",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "1a84f0ce53068572cf8390c90e43ac45103398d4d10cfc20a97581353ae5bba0",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:44Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__rustfmt",
+      "cat-file",
+      "-e",
+      "bbfd1201f7b9c7eddb7fb7dec704fa3566b6863c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:45Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__rustfmt",
+      "rev-parse",
+      "bbfd1201f7b9c7eddb7fb7dec704fa3566b6863c:LICENSE-APACHE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "77c7c5f645ca0d483434c9eb494f1adaa09a1ef03e85970b8be0c0dfc53ae46b",
+     "utc": "2026-08-28T19:45:45Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__rustfmt",
+      "cat-file",
+      "blob",
+      "bbfd1201f7b9c7eddb7fb7dec704fa3566b6863c:LICENSE-APACHE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "092c8e82c47fb859d7385253c1b04052dbd65a8bcf0bbd8b6f7dba58a9e8753d",
+     "utc": "2026-08-28T19:45:45Z"
+    }
+   ],
+   "repo_id": "rust-lang/rustfmt"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "221e59f5e910fd7f94e44f0dac77436a11338c285c6346232e4a850a50da0e94",
+    "blob_bytes": 1531,
+    "git_blob_sha1": "1032aece8a8109d67f238de6865d8b08e750a8c0",
+    "license_path": "LICENSE.txt",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "scipy",
+   "pinned_sha": "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9",
+   "raw_command_receipt_digest": "824235b641c06ae6c43b9b568f84551a45616c46513006477089f84f79851328",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scipy__scipy",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "92a15012b4683d090b012c5d77607d08f37bee811d18b72b2d4dd978c31c61f1",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:45Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scipy__scipy",
+      "cat-file",
+      "-e",
+      "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:46Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scipy__scipy",
+      "rev-parse",
+      "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "a206debcf3eb9f038ffa6cf758a8f504e68cefe7a120a6c232554da203f16e50",
+     "utc": "2026-08-28T19:45:46Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scipy__scipy",
+      "cat-file",
+      "blob",
+      "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "221e59f5e910fd7f94e44f0dac77436a11338c285c6346232e4a850a50da0e94",
+     "utc": "2026-08-28T19:45:46Z"
+    }
+   ],
+   "repo_id": "scipy/scipy"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "91a2845c4db44e7497b514b98634a674c737986ad0db81599307cf733bf850b2",
+    "blob_bytes": 1100,
+    "git_blob_sha1": "0c77562bea0465ab994162cc740914ed609d700b",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "vuejs",
+   "pinned_sha": "5d6ac5b86491041aa83a663a9a31189c707aff08",
+   "raw_command_receipt_digest": "fe2454e7fa89306292a7cf2577b56a72be2d3e713da5a46583a96c8aaefc8318",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__pinia",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "afd831d1d57e0d86b6307c0759df1e26819a91ee0c5f7269550852e5b97b4da2",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:46Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__pinia",
+      "cat-file",
+      "-e",
+      "5d6ac5b86491041aa83a663a9a31189c707aff08^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:46Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__pinia",
+      "rev-parse",
+      "5d6ac5b86491041aa83a663a9a31189c707aff08:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "c7935cfa1f4b1a6ca96a2ca5622d41e13754f13cbdcaf5c65f4356f1027e862a",
+     "utc": "2026-08-28T19:45:46Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__pinia",
+      "cat-file",
+      "blob",
+      "5d6ac5b86491041aa83a663a9a31189c707aff08:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "91a2845c4db44e7497b514b98634a674c737986ad0db81599307cf733bf850b2",
+     "utc": "2026-08-28T19:45:46Z"
+    }
+   ],
+   "repo_id": "vuejs/pinia"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "692057af3d664cbb79ac38293eb50aa3c4987f8182e2a440136e59e08f1b4a54",
+    "blob_bytes": 1101,
+    "git_blob_sha1": "b7e97ecb6aa4dd70b3e3a637afa2ae16feb7cd12",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "vuejs",
+   "pinned_sha": "c32e784c95b51f7969cebc7522a5037f14fb6606",
+   "raw_command_receipt_digest": "ff12592a02da18aa2b8700afec09a34c9cd59ee4172f30f4e929d32a0742004a",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vite",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "2b1c743ba23708799ccb3be2520ffd7f86c9f22dc547709988f0507fe74aa36e",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vite",
+      "cat-file",
+      "-e",
+      "c32e784c95b51f7969cebc7522a5037f14fb6606^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:48Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vite",
+      "rev-parse",
+      "c32e784c95b51f7969cebc7522a5037f14fb6606:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "262094726845ec5e5d2333efb5d78a527a024e8f01e455f95b96e2fb9530c255",
+     "utc": "2026-08-28T19:45:48Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vite",
+      "cat-file",
+      "blob",
+      "c32e784c95b51f7969cebc7522a5037f14fb6606:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "692057af3d664cbb79ac38293eb50aa3c4987f8182e2a440136e59e08f1b4a54",
+     "utc": "2026-08-28T19:45:48Z"
+    }
+   ],
+   "repo_id": "vuejs/vite"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "17fb24bc303763f3fe1911ee24e5225c7ad59f0e3a5d8123e9b730c100a306a6",
+    "blob_bytes": 1091,
+    "git_blob_sha1": "b65dd9e62e21646625f259b5d750dc04ad9779ef",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "vuejs",
+   "pinned_sha": "9e88707940088cb1f4cd7dd210c9168a50dc347c",
+   "raw_command_receipt_digest": "03ffff65424610e67a42d4e9992b5f16e702bf30a64ab21db6359050966aa5ae",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vue",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "3390f208e099b6cc1a5f45a31dc16e9254fcc1c543762c3f1d8eeda7c12082ca",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:48Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vue",
+      "cat-file",
+      "-e",
+      "9e88707940088cb1f4cd7dd210c9168a50dc347c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:49Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vue",
+      "rev-parse",
+      "9e88707940088cb1f4cd7dd210c9168a50dc347c:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "19c6fd3b3915a462ad3d7344ea03ec8a9519563bf90842841fa6b8a1826e7cf9",
+     "utc": "2026-08-28T19:45:49Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vue",
+      "cat-file",
+      "blob",
+      "9e88707940088cb1f4cd7dd210c9168a50dc347c:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "17fb24bc303763f3fe1911ee24e5225c7ad59f0e3a5d8123e9b730c100a306a6",
+     "utc": "2026-08-28T19:45:49Z"
+    }
+   ],
+   "repo_id": "vuejs/vue"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "ad1385b0b7724167451aaa7c2b8e4af2e97a5daa07fb4b678cddd4da75259feb",
+    "blob_bytes": 1073,
+    "git_blob_sha1": "888e2ccdacd34c4491b7125a3e3fa5dc78638292",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "vuejs",
+   "pinned_sha": "680ccc68c506cca9be6207745043245d61fa715a",
+   "raw_command_receipt_digest": "420cb13ccc427ca10d78c100664cd673432d7960a9d167599e09c29220a9bc53",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vue-router",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "8328cd1a6e3fea75f7dcd42bc5ad63d7eb69bf5b33cb7f2f65b65fdd76960a92",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:50Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vue-router",
+      "cat-file",
+      "-e",
+      "680ccc68c506cca9be6207745043245d61fa715a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:50Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vue-router",
+      "rev-parse",
+      "680ccc68c506cca9be6207745043245d61fa715a:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "6ad54a78d434a078c29ecb7fee6e5c2686dbc55aeff920dd0d3ee1be7d8b7846",
+     "utc": "2026-08-28T19:45:50Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vue-router",
+      "cat-file",
+      "blob",
+      "680ccc68c506cca9be6207745043245d61fa715a:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "ad1385b0b7724167451aaa7c2b8e4af2e97a5daa07fb4b678cddd4da75259feb",
+     "utc": "2026-08-28T19:45:50Z"
+    }
+   ],
+   "repo_id": "vuejs/vue-router"
+  },
+  {
+   "gold_eligible": true,
+   "observation": {
+    "blob_byte_sha256": "1f5a4606eff61476af9503b4d1ea45a8459194c1f0c4b5f359de58af05b3bae1",
+    "blob_bytes": 1083,
+    "git_blob_sha1": "4ef6d01e36db242c967421fc946d6e7a5417bcd4",
+    "license_path": "LICENSE",
+    "rest_hash_context": "OBSERVED_DIFFERS_FROM_REST_HASH",
+    "status": "BINDING_RECORDED"
+   },
+   "org_login": "vuejs",
+   "pinned_sha": "bd907467b8392d6671bb115738285ff7f63d0cf6",
+   "raw_command_receipt_digest": "d5768a9f9b274371830c1003621c9062adc5915f2de1d73473aeb0119244c771",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vuex",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "b5b645414be9a57083e62183730fc7f56ba23ee3d024d4a25333fbc97f9a15b0",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:51Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vuex",
+      "cat-file",
+      "-e",
+      "bd907467b8392d6671bb115738285ff7f63d0cf6^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:45:51Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vuex",
+      "rev-parse",
+      "bd907467b8392d6671bb115738285ff7f63d0cf6:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "a772dcb2f85775fec4b97e451a4fd09b7e31fa811d744fec10034f2783fc782d",
+     "utc": "2026-08-28T19:45:51Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vuex",
+      "cat-file",
+      "blob",
+      "bd907467b8392d6671bb115738285ff7f63d0cf6:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_sha256": "1f5a4606eff61476af9503b4d1ea45a8459194c1f0c4b5f359de58af05b3bae1",
+     "utc": "2026-08-28T19:45:51Z"
+    }
+   ],
+   "repo_id": "vuejs/vuex"
+  }
+ ],
+ "run_terminal": "T2_PARTIAL_BINDINGS_RECORDED",
+ "schema": "ORION.P13P14.CorpusGitLicenseBinding.v1"
+}
