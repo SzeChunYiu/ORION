@@ -163,10 +163,10 @@ jobs:
           official, family = result['splits']
           assert official['split'] == 'SPLIT_OFFICIAL_FOLD'
           assert family['split'] == 'SPLIT_FAMILY_DISJOINT'
-          assert official['representations']['NBR_FULL']['certificate_heldout_violation_rate'] > 0.10
-          assert official['representations']['NBR_PCA10']['certificate_heldout_violation_rate'] > 0.10
-          assert family['representations']['NBR_FULL']['heldout_coverage']['epsilon_5000'] == 0.0
-          assert family['representations']['NBR_PCA10']['heldout_coverage']['epsilon_5000'] == 0.0
+          assert official['relations']['NBR_FULL']['certificate_heldout_violation_rate'] > 0.10
+          assert official['relations']['NBR_PCA10']['certificate_heldout_violation_rate'] > 0.10
+          assert family['relations']['NBR_FULL']['heldout_coverage']['epsilon_5000'] == 0.0
+          assert family['relations']['NBR_PCA10']['heldout_coverage']['epsilon_5000'] == 0.0
           print('ORION_02_CERTIFIED_NEIGHBORHOOD_REFUTATION_REPLAY_VERIFIED')
           PY
 
