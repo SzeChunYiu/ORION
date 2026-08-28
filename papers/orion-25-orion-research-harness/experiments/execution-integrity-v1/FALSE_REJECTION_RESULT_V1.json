@@ -1,0 +1,64 @@
+{
+  "arm": "ARM-K3-D1",
+  "authority": "MEASUREMENT_ONLY",
+  "baseline_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+  "box": "false-rejection endpoint",
+  "false_rejection_rate": 0.0,
+  "false_rejections": 0,
+  "results": [
+    {
+      "applied": true,
+      "bytes_differ_from_original": false,
+      "checker_rc": 0,
+      "checker_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+      "falsely_rejected": false,
+      "variant": "V1_REPEAT_IDENTICAL"
+    },
+    {
+      "applied": true,
+      "bytes_differ_from_original": true,
+      "checker_rc": 0,
+      "checker_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+      "falsely_rejected": false,
+      "variant": "V2_INDENT_2_TO_4"
+    },
+    {
+      "applied": true,
+      "bytes_differ_from_original": true,
+      "checker_rc": 0,
+      "checker_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+      "falsely_rejected": false,
+      "variant": "V3_COMPACT_SEPARATORS"
+    },
+    {
+      "applied": true,
+      "bytes_differ_from_original": false,
+      "checker_rc": 0,
+      "checker_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+      "falsely_rejected": false,
+      "variant": "V4_KEY_ORDER_SORTED"
+    },
+    {
+      "applied": true,
+      "bytes_differ_from_original": true,
+      "checker_rc": 0,
+      "checker_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+      "falsely_rejected": false,
+      "variant": "V5_KEY_ORDER_REVERSED"
+    },
+    {
+      "applied": true,
+      "bytes_differ_from_original": true,
+      "checker_rc": 0,
+      "checker_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+      "falsely_rejected": false,
+      "variant": "V6_TRAILING_NEWLINES"
+    }
+  ],
+  "schema": "orion.orion25.false-rejection.v1",
+  "scientific_authority_delta": "NONE",
+  "scope": "Semantics-preserving re-encodings of the committed result. Does NOT cover false rejection caused by transient host conditions (clock, filesystem, memory pressure), which needs the fault harness the protocol still lists as absent.",
+  "successor_id": "ORION25.EXECUTION_INTEGRITY.v1",
+  "terminal": "NO_FALSE_REJECTION_UNDER_SEMANTICS_PRESERVING_REENCODING",
+  "variants_applied": 6
+}

@@ -1,0 +1,132 @@
+{
+  "M1_predicts_no_d_dependence": false,
+  "M2_predicts_steps_with_d": true,
+  "authority": "MEASUREMENT_ONLY",
+  "false_promotion_rate_by_d": {
+    "1": 1.0,
+    "2": 0.0,
+    "3": 0.0
+  },
+  "hypothesis": "H2: does compromise resistance step with trust-domain count d, at fixed k?",
+  "k_fixed": 3,
+  "limits": "Domain independence is modelled by independent key generation, which is the cryptographic content of the property. Physical separation is one implementation; CROSS_SITE_REPLAY_RESULT_V1.json shows the composition runs unchanged across two hosts. Single-domain compromise only; n=4 real receipts; k held at 3.",
+  "per_d": {
+    "1": {
+      "cases": 4,
+      "detail": [
+        {
+          "case": "REAL-P6-ETS-TWO-CHECKER",
+          "domains_compromised": 1,
+          "forged_chain_accepted": true,
+          "of": 1,
+          "roles_attacker_could_sign": 3
+        },
+        {
+          "case": "REAL-P9-QWEN-NEGATIVE",
+          "domains_compromised": 1,
+          "forged_chain_accepted": true,
+          "of": 1,
+          "roles_attacker_could_sign": 3
+        },
+        {
+          "case": "REAL-P10-OCME-TWO-CHECKER",
+          "domains_compromised": 1,
+          "forged_chain_accepted": true,
+          "of": 1,
+          "roles_attacker_could_sign": 3
+        },
+        {
+          "case": "REAL-P10-NATIVE-LEAN-CANNOT-CHECK",
+          "domains_compromised": 1,
+          "forged_chain_accepted": true,
+          "of": 1,
+          "roles_attacker_could_sign": 3
+        }
+      ],
+      "false_promotion_rate": 1.0,
+      "false_promotions": 4
+    },
+    "2": {
+      "cases": 4,
+      "detail": [
+        {
+          "case": "REAL-P6-ETS-TWO-CHECKER",
+          "domains_compromised": 1,
+          "forged_chain_accepted": false,
+          "of": 2,
+          "roles_attacker_could_sign": 2
+        },
+        {
+          "case": "REAL-P9-QWEN-NEGATIVE",
+          "domains_compromised": 1,
+          "forged_chain_accepted": false,
+          "of": 2,
+          "roles_attacker_could_sign": 2
+        },
+        {
+          "case": "REAL-P10-OCME-TWO-CHECKER",
+          "domains_compromised": 1,
+          "forged_chain_accepted": false,
+          "of": 2,
+          "roles_attacker_could_sign": 2
+        },
+        {
+          "case": "REAL-P10-NATIVE-LEAN-CANNOT-CHECK",
+          "domains_compromised": 1,
+          "forged_chain_accepted": false,
+          "of": 2,
+          "roles_attacker_could_sign": 2
+        }
+      ],
+      "false_promotion_rate": 0.0,
+      "false_promotions": 0
+    },
+    "3": {
+      "cases": 4,
+      "detail": [
+        {
+          "case": "REAL-P6-ETS-TWO-CHECKER",
+          "domains_compromised": 1,
+          "forged_chain_accepted": false,
+          "of": 3,
+          "roles_attacker_could_sign": 1
+        },
+        {
+          "case": "REAL-P9-QWEN-NEGATIVE",
+          "domains_compromised": 1,
+          "forged_chain_accepted": false,
+          "of": 3,
+          "roles_attacker_could_sign": 1
+        },
+        {
+          "case": "REAL-P10-OCME-TWO-CHECKER",
+          "domains_compromised": 1,
+          "forged_chain_accepted": false,
+          "of": 3,
+          "roles_attacker_could_sign": 1
+        },
+        {
+          "case": "REAL-P10-NATIVE-LEAN-CANNOT-CHECK",
+          "domains_compromised": 1,
+          "forged_chain_accepted": false,
+          "of": 3,
+          "roles_attacker_could_sign": 1
+        }
+      ],
+      "false_promotion_rate": 0.0,
+      "false_promotions": 0
+    }
+  },
+  "roles": [
+    "execution",
+    "environment",
+    "publication"
+  ],
+  "schema": "orion.orion25.h2-trust-domains.v1",
+  "scientific_authority_delta": "NONE",
+  "successor_id": "ORION25.EXECUTION_INTEGRITY.v1",
+  "terminal": "H2_MEASURED_FOR_D_1_2_3_AT_K_3",
+  "threat_model": "attacker compromises 1 domain, learns its private keys, and rewrites the whole chain to a favourable claim; a case is a false promotion if the verifier still accepts it",
+  "trust_domain_definition": "d=1 reproduces the frozen shared-seed derivation, so one compromise yields every role key. d>1 gives each domain independently generated keys nobody else can derive.",
+  "verdict": "M2_SUPPORTED__RESISTANCE_STEPS_WITH_D"
+}

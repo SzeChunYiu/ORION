@@ -1,0 +1,32 @@
+{
+  "attested_seconds": {
+    "max": 0.0020908713340759277,
+    "median": 0.0014444803819060326,
+    "min": 0.0011981707066297531
+  },
+  "authority": "MEASUREMENT_ONLY",
+  "box": "measure overhead",
+  "bytes": {
+    "attested": 9650,
+    "expansion_multiple": 1.3933006064106266,
+    "no_attestation": 6926
+  },
+  "cases": 4,
+  "method": "ARM-NOATT reuses the frozen runner's facts_for/canonical, so the two arms differ only in Ed25519 key derivation and signing. Per-role FACTS equality is asserted per case before timing.",
+  "no_attestation_seconds": {
+    "max": 0.00021311640739440918,
+    "median": 0.00010470626875758171,
+    "min": 9.788200259208679e-05
+  },
+  "overhead_multiple": 13.79554824220053,
+  "overhead_seconds_median": 0.0013397741131484509,
+  "per_link_overhead_microseconds": 111.6478427623709,
+  "repeats": 40,
+  "roles_per_case": 3,
+  "schema": "orion.orion25.overhead.v1",
+  "scientific_authority_delta": "NONE",
+  "scope": "Composition-side cost only. Excludes verification, I/O and the orchestration around the runner.",
+  "structural_note": "Full payload equality is impossible by design: compose() sets running = link_digest(link), which hashes the signature and public key into the chain, so previous_digest differs from link 2 onward. There is no 'same chain without signatures'. The overhead below is therefore the cost of attesting the same facts, not of appending signatures to an otherwise identical structure.",
+  "successor_id": "ORION25.EXECUTION_INTEGRITY.v1",
+  "terminal": "OVERHEAD_MEASURED"
+}
