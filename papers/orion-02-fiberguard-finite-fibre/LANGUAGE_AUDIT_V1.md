@@ -218,3 +218,41 @@ in later listings.
 
 **Verified by counting, not by blank output.** Every check above is a numeric
 count or an explicit listing.
+
+---
+
+## Application status — CORRECTIONS IDENTIFIED, NOT APPLIED (2026-08-28)
+
+The three corrections above were applied to `MANUSCRIPT_V2.md` and then **reverted**,
+for a reason that belongs in the record rather than in a commit message.
+
+`papers/FIVE_THEORY_HARDENING_R2_RESULTS.json` binds this manuscript as theory **"C"**
+by **byte count and digest**, and `tests/unit/publication/test_five_theory_hardening_r2.py::test_r2_manifest_binds_every_declared_file`
+enforces it. The three corrections change the file from **14313** to **14355** bytes
+(+42 = 3 x `len("deterministic ")`), which fails that guard.
+
+Reconciling it would mean editing a **frozen five-theory hardening result record** to
+match new manuscript bytes. That is the one move the revival doctrine forbids outright:
+a result record is rewritten to match an outcome. The guard is correct to refuse it.
+
+**This is the same shape as the ORION-01 sibling-decoupling item.** The correction is
+right, verified, and ready; applying it requires reconciling a frozen record in
+lockstep, which is an operator decision, not a lane decision.
+
+### What an operator needs to decide
+
+Either:
+
+1. **Supersede** — issue a new hardening result under a new identity that binds the
+   corrected manuscript, leaving `FIVE_THEORY_HARDENING_R2_RESULTS.json` as history; or
+2. **Lockstep** — update the manuscript and the R2 record together in one change, with
+   the reason recorded, accepting that the R2 record's digests then describe post-audit
+   bytes; or
+3. **Decline** — leave the unjustified language in place and record the audit as the
+   standing correction.
+
+Option 3 is not recommended: the corrections remove language the theorems do not
+support, and the manuscript is a submission surface.
+
+The exact replacement text is in the table above. Nothing about the audit's findings
+changes with this deferral — only whether the bytes have moved yet.

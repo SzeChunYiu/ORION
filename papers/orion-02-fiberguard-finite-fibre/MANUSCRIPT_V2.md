@@ -12,11 +12,11 @@ Decision sufficiency does not imply value or witness sufficiency. For every `t>=
 
 `Delta_A=12t-2`, `Delta_B=10t-1`.
 
-Every deterministic estimator using only that pair representation must return the same value on both instances. Consequently its worst-case real additive error is at least `(2t-1)/2`, its worst-case integer error at least `t`, and its symmetric multiplicative factor at least
+Every estimator using only that pair representation must return the same value on both instances. Consequently its worst-case real additive error is at least `(2t-1)/2`, its worst-case integer error at least `t`, and its symmetric multiplicative factor at least
 
 `sqrt((12t-2)/(10t-1))`.
 
-No deterministic pair-information-only estimator can guarantee a uniform factor below `sqrt(6/5)`, while one-sided certified upper or lower estimates require asymptotic factor at least `6/5`. The same fiber forces incompatible optimizer structures: every optimum in one family contains a triple block, whereas every optimum in the other uses only pairs and singletons.
+No pair-information-only estimator can guarantee a uniform factor below `sqrt(6/5)`, while one-sided certified upper or lower estimates require asymptotic factor at least `6/5`. The same fiber forces incompatible optimizer structures: every optimum in one family contains a triple block, whereas every optimum in the other uses only pairs and singletons.
 
 We then raise the observed interaction order. For every `m>=5` and `L>=1`, two instances agree on every labeled common-factor count through order `m-2` yet have exact improvements separated by `[m(ceil(log2 m)+1)-1]L`. Boolean-lattice Möbius inversion proves that any nonzero integer trade preserving all proper labeled marginals is an integer multiple of the parity trade, touches every one of the `2^(m-1)` cells, and has at least `2^(m-2)` columns on each signed side. Primary Markov-basis and hierarchical-model literature owns the generic fiber and move mathematics. The residual contribution is the compiler-specific conjunction of exact constant-order decision, unbounded and multiplicative value impossibility, optimizer separation, and a sharp high-order witness.
 
@@ -129,7 +129,7 @@ The geometric mean `sqrt(Delta_A Delta_B)` attains equality. The factor increase
 
 `sqrt(6/5) approximately 1.095445`.
 
-Therefore no deterministic pair-information-only estimator has a uniform symmetric approximation factor strictly below `sqrt(6/5)` over the family.
+Therefore no pair-information-only estimator has a uniform symmetric approximation factor strictly below `sqrt(6/5)` over the family.
 
 ### 5.2 One-sided certificates
 
