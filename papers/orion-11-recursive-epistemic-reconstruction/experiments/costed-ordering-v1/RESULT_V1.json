@@ -1,0 +1,1138 @@
+{
+  "anchor_reference_sha256": "3f7eb2f8706e1d72e35e05667fdb85c07d197bb378b78a3c2673e4854d8b0283",
+  "anchor_reproduction_gate": {
+    "anchor_arms": [
+      "global_flat_voi",
+      "cost_greedy_repair",
+      "random_safe_ablation",
+      "random_unsafe_ablation"
+    ],
+    "gate_arms_excluded_from_stage1": [
+      "exact_dp_oracle",
+      "faithful_active_voi",
+      "gain_per_cost_greedy",
+      "orion_level_monotone"
+    ],
+    "hardcoded_rates_used": false,
+    "keyed_to": [
+      "world_set_sha256",
+      "stage1_code_sha256"
+    ],
+    "parameterised_per_world_set": true,
+    "re_emission_note": "This reference was re-emitted for the checker-fault repair re-run, after a prior run's outcomes had been seen. The guarantee it carries is therefore STRUCTURAL, not temporal: stage 1 executes only arms that no gate reads, which is asserted in code (GATE_ARMS) rather than claimed. The repair changed serialisation only; no world, policy, gate, margin, seed or cost-accounting rule moved.",
+    "rows": [
+      {
+        "arm": "global_flat_voi",
+        "expected": {
+          "forbidden": 0.36224843858431643,
+          "mean_total_cost": 1.9364689991364636,
+          "n": 2882,
+          "success": 0.9354614850798056
+        },
+        "observed": {
+          "forbidden": 0.36224843858431643,
+          "mean_total_cost": 1.9364689991364636,
+          "n": 2882,
+          "success": 0.9354614850798056
+        },
+        "reproduced": true
+      },
+      {
+        "arm": "cost_greedy_repair",
+        "expected": {
+          "forbidden": 0.46703678001387927,
+          "mean_total_cost": 1.9666019160609054,
+          "n": 2882,
+          "success": 0.8799444829979182
+        },
+        "observed": {
+          "forbidden": 0.46703678001387927,
+          "mean_total_cost": 1.9666019160609054,
+          "n": 2882,
+          "success": 0.8799444829979182
+        },
+        "reproduced": true
+      },
+      {
+        "arm": "random_safe_ablation",
+        "expected": {
+          "forbidden": 0.0,
+          "mean_total_cost": 2.2983485126947776,
+          "n": 2882,
+          "success": 0.8657182512144345
+        },
+        "observed": {
+          "forbidden": 0.0,
+          "mean_total_cost": 2.2983485126947776,
+          "n": 2882,
+          "success": 0.8657182512144345
+        },
+        "reproduced": true
+      },
+      {
+        "arm": "random_unsafe_ablation",
+        "expected": {
+          "forbidden": 0.47085357390700905,
+          "mean_total_cost": 2.366515240550483,
+          "n": 2882,
+          "success": 0.8497571131158917
+        },
+        "observed": {
+          "forbidden": 0.47085357390700905,
+          "mean_total_cost": 2.366515240550483,
+          "n": 2882,
+          "success": 0.8497571131158917
+        },
+        "reproduced": true
+      }
+    ],
+    "status": "PASSED"
+  },
+  "arms_in_raw_traces": [
+    "exact_dp_oracle",
+    "orion_level_monotone",
+    "faithful_active_voi",
+    "global_flat_voi",
+    "gain_per_cost_greedy",
+    "cost_greedy_repair",
+    "random_safe_ablation"
+  ],
+  "arms_offschema": [
+    "random_unsafe_ablation"
+  ],
+  "arms_run": [
+    "exact_dp_oracle",
+    "orion_level_monotone",
+    "faithful_active_voi",
+    "global_flat_voi",
+    "gain_per_cost_greedy",
+    "cost_greedy_repair",
+    "random_safe_ablation",
+    "random_unsafe_ablation"
+  ],
+  "bootstrap_seed_stability": {
+    "alternate_selection_rule": "deterministic pre-stated set: frozen seed + 1..8; all reported, none selected",
+    "alternate_terminals": [
+      "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+    ],
+    "alternates_tested": [
+      202608280412,
+      202608280413,
+      202608280414,
+      202608280415,
+      202608280416,
+      202608280417,
+      202608280418,
+      202608280419
+    ],
+    "frozen_seed": 202608280411,
+    "frozen_seed_terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION",
+    "gate_passes_stable_across_all_seeds_tested": true,
+    "per_seed": [
+      {
+        "bootstrap_seed": 202608280412,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280413,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280414,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280415,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280416,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280417,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280418,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280419,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      }
+    ],
+    "question": "Is the terminal load-bearing on the bootstrap seed choice?",
+    "reason_probe_exists": "PROTOCOL.statistics declares a frozen bootstrap seed but no frozen document carries a value, so the seed was adopted rather than read.",
+    "terminal_stable_across_all_seeds_tested": true
+  },
+  "budget_ceiling": 4.0,
+  "gate_composition": "NON_COMPENSATORY. G1, G2, G4, G5, G7 must all hold. G3 and G6 read jointly; G6 dominates.",
+  "gates": {
+    "G1_success_noninferiority": {
+      "bootstrap_tail_fraction": 0.0,
+      "carries_sampling_statement": true,
+      "ci95_overall": [
+        0.18285912560721718,
+        0.2276197085357391
+      ],
+      "margin": -0.01,
+      "passed": true,
+      "per_stratum": {
+        "ratio_aligned": {
+          "ci95": [
+            0.23875432525951557,
+            0.3771626297577855
+          ],
+          "passed": true,
+          "point": 0.30795847750865046
+        },
+        "theorem_valid": {
+          "ci95": [
+            0.1734906315058986,
+            0.23594725884802215
+          ],
+          "passed": true,
+          "point": 0.20471894517696043
+        },
+        "violate_A1_noninterference": {
+          "ci95": [
+            0.15625,
+            0.30208333333333337
+          ],
+          "passed": true,
+          "point": 0.22916666666666663
+        },
+        "violate_A2_veto_monotonicity": {
+          "ci95": [
+            0.03819444444444453,
+            0.17708333333333337
+          ],
+          "passed": true,
+          "point": 0.10763888888888895
+        },
+        "violate_A3_safety": {
+          "ci95": [
+            0.13541666666666663,
+            0.2847222222222222
+          ],
+          "passed": true,
+          "point": 0.20833333333333337
+        },
+        "violate_A4_cost": {
+          "ci95": [
+            0.10763888888888895,
+            0.24305555555555558
+          ],
+          "passed": true,
+          "point": 0.17708333333333337
+        }
+      },
+      "point_estimate_overall": 0.20541290770298404,
+      "statement": "ORION success noninferior to faithful_active_voi with margin -0.01."
+    },
+    "G2_zero_forbidden": {
+      "carries_sampling_statement": false,
+      "exact_deterministic_check": true,
+      "passed": true,
+      "per_stratum_rate": {
+        "ratio_aligned": 0.0,
+        "theorem_valid": 0.0,
+        "violate_A1_noninterference": 0.0,
+        "violate_A2_veto_monotonicity": 0.0,
+        "violate_A3_safety": 0.0,
+        "violate_A4_cost": 0.0
+      },
+      "statement": "ORION forbidden_high_level_mutation_rate == 0 on every stratum."
+    },
+    "G3_cost_ratio": {
+      "bootstrap_tail_fraction": 1.0,
+      "carries_sampling_statement": true,
+      "ci95": [
+        1.7823809822754342,
+        1.8541169059844744
+      ],
+      "drop_counts": {
+        "comparator_failed_gates": 915,
+        "either_failed": 1225,
+        "orion_failed_gates": 323
+      },
+      "passed": false,
+      "point_estimate": 1.8183686344305383,
+      "retained_fraction": 0.5749479528105482,
+      "retained_n": 1657,
+      "statement": "Paired expected-cost ratio ORION / faithful_active_voi < 0.80 AND its 95% upper confidence bound < 0.80.",
+      "threshold": 0.8
+    },
+    "G4_dp_gap": {
+      "bootstrap_tail_fraction": 1.0,
+      "carries_sampling_statement": true,
+      "ci95": [
+        1.169966338420963,
+        1.2346855958703749
+      ],
+      "dp_equals_smith_ratio_order_on_sampled_theorem_valid_worlds": true,
+      "factor": 1.1,
+      "oracle_available": true,
+      "passed": false,
+      "point_estimate": 1.2020310802914838,
+      "statement": "ORION mean cost <= 1.10 x exact_dp_oracle optimum on theorem_valid."
+    },
+    "G5_assumption_attribution": {
+      "bootstrap_tail_fraction": 0.0,
+      "carries_sampling_statement": true,
+      "operationalisation": "advantage present on a stratum iff the G3 criterion (ratio < 0.80 and 95% UCB < 0.80) holds there",
+      "passed": true,
+      "per_stratum": {
+        "violate_A1_noninterference": {
+          "advantage_present": false,
+          "ci95": [
+            1.6266674446115255,
+            1.869655960241184
+          ],
+          "cost_ratio_point": 1.7504479860620357,
+          "passed": true,
+          "retained_n": 154
+        },
+        "violate_A2_veto_monotonicity": {
+          "advantage_present": false,
+          "ci95": [
+            1.7070547539507364,
+            1.9289004267438068
+          ],
+          "cost_ratio_point": 1.818610091974691,
+          "passed": true,
+          "retained_n": 180
+        },
+        "violate_A3_safety": {
+          "advantage_present": false,
+          "ci95": [
+            1.696819568883404,
+            1.9366722031054193
+          ],
+          "cost_ratio_point": 1.8166392583263409,
+          "passed": true,
+          "retained_n": 153
+        },
+        "violate_A4_cost": {
+          "advantage_present": false,
+          "ci95": [
+            1.8182760188805582,
+            2.035320236798458
+          ],
+          "cost_ratio_point": 1.9277994162590968,
+          "passed": true,
+          "retained_n": 181
+        }
+      },
+      "statement": "The ORION cost advantage disappears on every assumption-violation control stratum."
+    },
+    "G6_donor_baseline": {
+      "bootstrap_tail_fraction": 0.0,
+      "carries_sampling_statement": true,
+      "cost_ratio_orion_over_pc": 1.6648972653755139,
+      "diff_ci95": [
+        0.8414455770182225,
+        0.9384893157013325
+      ],
+      "drop_counts": {
+        "comparator_failed_gates": 1130,
+        "comparator_forbidden_mutation": 1049,
+        "comparator_task_failure": 161,
+        "either_failed": 1374,
+        "orion_failed_gates": 323
+      },
+      "mean_diff_orion_minus_pc": 0.8902173494475587,
+      "orion_strictly_cheaper_than_pc": false,
+      "passed": false,
+      "pc_baseline_matches_or_beats_orion": true,
+      "per_stratum": {
+        "ratio_aligned": {
+          "cost_ratio_orion_over_pc": 1.0,
+          "diff_ci95": [
+            0.0,
+            0.0
+          ],
+          "mean_diff_orion_minus_pc": 0.0,
+          "retained_n": 268
+        },
+        "theorem_valid": {
+          "cost_ratio_orion_over_pc": 2.145294493588292,
+          "diff_ci95": [
+            1.1646338890082075,
+            1.3198243208897877
+          ],
+          "mean_diff_orion_minus_pc": 1.2419375166376003,
+          "retained_n": 610
+        },
+        "violate_A1_noninterference": {
+          "cost_ratio_orion_over_pc": 2.1661690174816197,
+          "diff_ci95": [
+            1.0192461990521493,
+            1.3881242558032278
+          ],
+          "mean_diff_orion_minus_pc": 1.2065034654166558,
+          "retained_n": 107
+        },
+        "violate_A2_veto_monotonicity": {
+          "cost_ratio_orion_over_pc": 2.0266140875106293,
+          "diff_ci95": [
+            0.9872946232920963,
+            1.3071161744524677
+          ],
+          "mean_diff_orion_minus_pc": 1.1479106511715924,
+          "retained_n": 156
+        },
+        "violate_A3_safety": {
+          "cost_ratio_orion_over_pc": 1.2959883371627288,
+          "diff_ci95": [
+            0.3027672327069384,
+            0.6216387906537055
+          ],
+          "mean_diff_orion_minus_pc": 0.4603689038305132,
+          "retained_n": 238
+        },
+        "violate_A4_cost": {
+          "cost_ratio_orion_over_pc": 1.9441981343225139,
+          "diff_ci95": [
+            1.1512847900661274,
+            1.441038543613296
+          ],
+          "mean_diff_orion_minus_pc": 1.2955670257672083,
+          "retained_n": 129
+        }
+      },
+      "ratio_ci95": [
+        1.617593874514915,
+        1.714341290594545
+      ],
+      "retained_fraction": 0.5232477446217905,
+      "retained_n": 1508,
+      "statement": "ORION cost versus gain_per_cost_greedy at equal success and safety. Theorem C predicts ORION is NOT lower."
+    },
+    "G7_instrument_control": {
+      "carries_sampling_statement": false,
+      "cost_mismatches": 0,
+      "exact_deterministic_check": true,
+      "max_abs_cost_difference": 0.0,
+      "n_ratio_aligned_worlds": 289,
+      "ordering_mismatches": 0,
+      "passed": true,
+      "statement": "On ratio_aligned, orion_level_monotone and gain_per_cost_greedy must produce identical orderings and identical expected cost."
+    }
+  },
+  "independent_checker": "NOT_AUTHORED_BY_THIS_PACKET. Until an independent checker recomputes every score row, gate, interval and the terminal from raw_traces.jsonl, this result carries no authority.",
+  "multiplicity": {
+    "adjusted": {
+      "G1_success_noninferiority": {
+        "bootstrap_tail_fraction": 0.0,
+        "holm_adjusted": 0.0,
+        "significant_at_0.05": true
+      },
+      "G3_cost_ratio": {
+        "bootstrap_tail_fraction": 1.0,
+        "holm_adjusted": 1.0,
+        "significant_at_0.05": false
+      },
+      "G4_dp_gap": {
+        "bootstrap_tail_fraction": 1.0,
+        "holm_adjusted": 1.0,
+        "significant_at_0.05": false
+      },
+      "G5_assumption_attribution": {
+        "bootstrap_tail_fraction": 0.0,
+        "holm_adjusted": 0.0,
+        "significant_at_0.05": true
+      },
+      "G6_donor_baseline": {
+        "bootstrap_tail_fraction": 0.0,
+        "holm_adjusted": 0.0,
+        "significant_at_0.05": true
+      }
+    },
+    "alpha": 0.05,
+    "excluded_from_family": [
+      "G2_zero_forbidden",
+      "G7_instrument_control"
+    ],
+    "exclusion_rationale": "G2 (exact count == 0) and G7 (exact equality) carry no sampling distribution. PROTOCOL specifies 'Holm across the registered gate family' without a p-value mapping; this is the mapping chosen, recorded before the run.",
+    "family_members": [
+      "G1_success_noninferiority",
+      "G5_assumption_attribution",
+      "G6_donor_baseline",
+      "G3_cost_ratio",
+      "G4_dp_gap"
+    ],
+    "rule": "Holm across the registered gate family"
+  },
+  "n_worlds": 2882,
+  "paper_id": "ORION-11",
+  "per_arm": {
+    "cost_greedy_repair": {
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 346,
+      "forbidden_high_level_mutation_rate": 0.46703678001387927,
+      "joint_clear_rate": 0.48369188063844554,
+      "mean_total_cost": 1.9666019160609054,
+      "n_rows": 2882,
+      "per_stratum": {
+        "ratio_aligned": {
+          "forbidden_high_level_mutation_rate": 0.6505190311418685,
+          "mean_inspection": 1.6864311687487088,
+          "mean_intervention": 0.5169022384480849,
+          "mean_reopening": 0.12837370242214532,
+          "mean_total_cost": 2.331707109618939,
+          "n": 289,
+          "success_rate": 0.8546712802768166
+        },
+        "theorem_valid": {
+          "forbidden_high_level_mutation_rate": 0.508674531575295,
+          "mean_inspection": 1.2789059216836371,
+          "mean_intervention": 0.45356396657322307,
+          "mean_reopening": 0.13039555863983346,
+          "mean_total_cost": 1.8628654468966939,
+          "n": 1441,
+          "success_rate": 0.8882720333102012
+        },
+        "violate_A1_noninterference": {
+          "forbidden_high_level_mutation_rate": 0.59375,
+          "mean_inspection": 1.4810965653381634,
+          "mean_intervention": 0.45631797885082764,
+          "mean_reopening": 0.1277777777777778,
+          "mean_total_cost": 2.0651923219667685,
+          "n": 288,
+          "success_rate": 0.84375
+        },
+        "violate_A2_veto_monotonicity": {
+          "forbidden_high_level_mutation_rate": 0.3888888888888889,
+          "mean_inspection": 1.3250537714557298,
+          "mean_intervention": 0.453575838997586,
+          "mean_reopening": 0.12152777777777778,
+          "mean_total_cost": 1.9001573882310936,
+          "n": 288,
+          "success_rate": 0.875
+        },
+        "violate_A3_safety": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.3396794454810121,
+          "mean_intervention": 0.48408145649406226,
+          "mean_reopening": 0.1326388888888889,
+          "mean_total_cost": 1.9563997908639632,
+          "n": 288,
+          "success_rate": 0.9027777777777778
+        },
+        "violate_A4_cost": {
+          "forbidden_high_level_mutation_rate": 0.4930555555555556,
+          "mean_inspection": 1.5213207886803641,
+          "mean_intervention": 0.4492708853603112,
+          "mean_reopening": 0.1267361111111111,
+          "mean_total_cost": 2.0973277851517866,
+          "n": 288,
+          "success_rate": 0.8819444444444444
+        }
+      },
+      "success_rate": 0.8799444829979182
+    },
+    "exact_dp_oracle": {
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 0,
+      "forbidden_high_level_mutation_rate": 0.5398843930635838,
+      "joint_clear_rate": 0.4601156069364162,
+      "mean_total_cost": 1.8817913877734578,
+      "n_rows": 1730,
+      "per_stratum": {
+        "ratio_aligned": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.4399939390692034,
+          "mean_intervention": 0.6089702819331241,
+          "mean_reopening": 0.15252153423975764,
+          "mean_total_cost": 2.2014857552420852,
+          "n": 289,
+          "success_rate": 1.0
+        },
+        "theorem_valid": {
+          "forbidden_high_level_mutation_rate": 0.6481609993060374,
+          "mean_inspection": 1.1198142019243187,
+          "mean_intervention": 0.5473241329078754,
+          "mean_reopening": 0.150536694718895,
+          "mean_total_cost": 1.8176750295510888,
+          "n": 1441,
+          "success_rate": 1.0
+        }
+      },
+      "success_rate": 1.0
+    },
+    "faithful_active_voi": {
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 0,
+      "forbidden_high_level_mutation_rate": 0.0,
+      "joint_clear_rate": 0.6825121443442054,
+      "mean_total_cost": 1.1670104465727678,
+      "n_rows": 2882,
+      "per_stratum": {
+        "ratio_aligned": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 0.7012596774383294,
+          "mean_intervention": 0.43179713397589575,
+          "mean_reopening": 0.09169550173010381,
+          "mean_total_cost": 1.224752313144329,
+          "n": 289,
+          "success_rate": 0.6193771626297578
+        },
+        "theorem_valid": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 0.6951625458421573,
+          "mean_intervention": 0.3601303360690598,
+          "mean_reopening": 0.10020818875780708,
+          "mean_total_cost": 1.155501070669024,
+          "n": 1441,
+          "success_rate": 0.6828591256072172
+        },
+        "violate_A1_noninterference": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 0.6553959540017351,
+          "mean_intervention": 0.3779932545375901,
+          "mean_reopening": 0.09756944444444444,
+          "mean_total_cost": 1.1309586529837696,
+          "n": 288,
+          "success_rate": 0.6493055555555556
+        },
+        "violate_A2_veto_monotonicity": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 0.692376309685549,
+          "mean_intervention": 0.4166526593477422,
+          "mean_reopening": 0.10277777777777779,
+          "mean_total_cost": 1.211806746811069,
+          "n": 288,
+          "success_rate": 0.7569444444444444
+        },
+        "violate_A3_safety": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 0.6730176008618548,
+          "mean_intervention": 0.36435387540908953,
+          "mean_reopening": 0.10000000000000002,
+          "mean_total_cost": 1.1373714762709444,
+          "n": 288,
+          "success_rate": 0.6597222222222222
+        },
+        "violate_A4_cost": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 0.693255592879653,
+          "mean_intervention": 0.39151602303352856,
+          "mean_reopening": 0.10277777777777779,
+          "mean_total_cost": 1.1875493936909594,
+          "n": 288,
+          "success_rate": 0.7256944444444444
+        }
+      },
+      "success_rate": 0.6825121443442054
+    },
+    "gain_per_cost_greedy": {
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 161,
+      "forbidden_high_level_mutation_rate": 0.36398334489937545,
+      "joint_clear_rate": 0.607911172796669,
+      "mean_total_cost": 1.783393030390656,
+      "n_rows": 2882,
+      "per_stratum": {
+        "ratio_aligned": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.3675302716310072,
+          "mean_intervention": 0.5826098262719384,
+          "mean_reopening": 0.13529411764705881,
+          "mean_total_cost": 2.0854342155500043,
+          "n": 289,
+          "success_rate": 0.9273356401384083
+        },
+        "theorem_valid": {
+          "forbidden_high_level_mutation_rate": 0.46981263011797364,
+          "mean_inspection": 1.1239859714998097,
+          "mean_intervention": 0.49238864216890144,
+          "mean_reopening": 0.13698820263705763,
+          "mean_total_cost": 1.753362816305769,
+          "n": 1441,
+          "success_rate": 0.9347675225537821
+        },
+        "violate_A1_noninterference": {
+          "forbidden_high_level_mutation_rate": 0.5138888888888888,
+          "mean_inspection": 0.942337827667907,
+          "mean_intervention": 0.5618369442651573,
+          "mean_reopening": 0.15034722222222224,
+          "mean_total_cost": 1.6545219941552867,
+          "n": 288,
+          "success_rate": 0.9826388888888888
+        },
+        "violate_A2_veto_monotonicity": {
+          "forbidden_high_level_mutation_rate": 0.3229166666666667,
+          "mean_inspection": 1.014904269049635,
+          "mean_intervention": 0.5246790795015627,
+          "mean_reopening": 0.1326388888888889,
+          "mean_total_cost": 1.6722222374400868,
+          "n": 288,
+          "success_rate": 0.96875
+        },
+        "violate_A3_safety": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.0844816550626557,
+          "mean_intervention": 0.5132376502397715,
+          "mean_reopening": 0.13784722222222223,
+          "mean_total_cost": 1.7355665275246492,
+          "n": 288,
+          "success_rate": 0.9409722222222222
+        },
+        "violate_A4_cost": {
+          "forbidden_high_level_mutation_rate": 0.4548611111111111,
+          "mean_inspection": 1.2813830166113165,
+          "mean_intervention": 0.5012798596690311,
+          "mean_reopening": 0.1357638888888889,
+          "mean_total_cost": 1.9184267651692366,
+          "n": 288,
+          "success_rate": 0.9479166666666666
+        }
+      },
+      "success_rate": 0.9441360166551006
+    },
+    "global_flat_voi": {
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 186,
+      "forbidden_high_level_mutation_rate": 0.36224843858431643,
+      "joint_clear_rate": 0.6099930603747398,
+      "mean_total_cost": 1.9364689991364636,
+      "n_rows": 2882,
+      "per_stratum": {
+        "ratio_aligned": {
+          "forbidden_high_level_mutation_rate": 0.27335640138408307,
+          "mean_inspection": 1.466195333577386,
+          "mean_intervention": 0.5920760968696129,
+          "mean_reopening": 0.1387543252595156,
+          "mean_total_cost": 2.1970257557065143,
+          "n": 289,
+          "success_rate": 0.9204152249134948
+        },
+        "theorem_valid": {
+          "forbidden_high_level_mutation_rate": 0.4496877168632894,
+          "mean_inspection": 1.3337436314378,
+          "mean_intervention": 0.4953058619607135,
+          "mean_reopening": 0.13504510756419155,
+          "mean_total_cost": 1.9640946009627054,
+          "n": 1441,
+          "success_rate": 0.9292158223455933
+        },
+        "violate_A1_noninterference": {
+          "forbidden_high_level_mutation_rate": 0.4375,
+          "mean_inspection": 1.0294383738959303,
+          "mean_intervention": 0.5665319363557995,
+          "mean_reopening": 0.1451388888888889,
+          "mean_total_cost": 1.7411091991406187,
+          "n": 288,
+          "success_rate": 0.9618055555555556
+        },
+        "violate_A2_veto_monotonicity": {
+          "forbidden_high_level_mutation_rate": 0.2673611111111111,
+          "mean_inspection": 1.1611009789524884,
+          "mean_intervention": 0.5273242127596605,
+          "mean_reopening": 0.12986111111111112,
+          "mean_total_cost": 1.8182863028232599,
+          "n": 288,
+          "success_rate": 0.9583333333333334
+        },
+        "violate_A3_safety": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.330197446705571,
+          "mean_intervention": 0.5118413676921141,
+          "mean_reopening": 0.13506944444444444,
+          "mean_total_cost": 1.9771082588421294,
+          "n": 288,
+          "success_rate": 0.9305555555555556
+        },
+        "violate_A4_cost": {
+          "forbidden_high_level_mutation_rate": 0.3958333333333333,
+          "mean_inspection": 1.1678653903741043,
+          "mean_intervention": 0.5088353353644963,
+          "mean_reopening": 0.1329861111111111,
+          "mean_total_cost": 1.8096868368497117,
+          "n": 288,
+          "success_rate": 0.9375
+        }
+      },
+      "success_rate": 0.9354614850798056
+    },
+    "orion_level_monotone": {
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 323,
+      "forbidden_high_level_mutation_rate": 0.0,
+      "joint_clear_rate": 0.8879250520471894,
+      "mean_total_cost": 2.186135713299581,
+      "n_rows": 2882,
+      "per_stratum": {
+        "ratio_aligned": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.3675302716310072,
+          "mean_intervention": 0.5826098262719384,
+          "mean_reopening": 0.13529411764705881,
+          "mean_total_cost": 2.0854342155500043,
+          "n": 289,
+          "success_rate": 0.9273356401384083
+        },
+        "theorem_valid": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.5831755777627499,
+          "mean_intervention": 0.47389840433385383,
+          "mean_reopening": 0.12782789729354616,
+          "mean_total_cost": 2.18490187939015,
+          "n": 1441,
+          "success_rate": 0.8875780707841776
+        },
+        "violate_A1_noninterference": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.4587977011791853,
+          "mean_intervention": 0.49685667295673536,
+          "mean_reopening": 0.1322916666666667,
+          "mean_total_cost": 2.0879460408025867,
+          "n": 288,
+          "success_rate": 0.8784722222222222
+        },
+        "violate_A2_veto_monotonicity": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.6385425456089067,
+          "mean_intervention": 0.4692101037238427,
+          "mean_reopening": 0.11840277777777779,
+          "mean_total_cost": 2.226155427110527,
+          "n": 288,
+          "success_rate": 0.8645833333333334
+        },
+        "violate_A3_safety": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.6512578887463318,
+          "mean_intervention": 0.481627800018563,
+          "mean_reopening": 0.12708333333333333,
+          "mean_total_cost": 2.259969022098228,
+          "n": 288,
+          "success_rate": 0.8680555555555556
+        },
+        "violate_A4_cost": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.6697536119432888,
+          "mean_intervention": 0.4773878051086865,
+          "mean_reopening": 0.1305555555555556,
+          "mean_total_cost": 2.277696972607531,
+          "n": 288,
+          "success_rate": 0.9027777777777778
+        }
+      },
+      "success_rate": 0.8879250520471894
+    },
+    "random_safe_ablation": {
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 387,
+      "forbidden_high_level_mutation_rate": 0.0,
+      "joint_clear_rate": 0.8657182512144345,
+      "mean_total_cost": 2.2983485126947776,
+      "n_rows": 2882,
+      "per_stratum": {
+        "ratio_aligned": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.3989426636900715,
+          "mean_intervention": 0.5725235944235244,
+          "mean_reopening": 0.13494809688581316,
+          "mean_total_cost": 2.106414354999409,
+          "n": 289,
+          "success_rate": 0.8996539792387543
+        },
+        "theorem_valid": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.7138194197902112,
+          "mean_intervention": 0.4703342756925473,
+          "mean_reopening": 0.1260235947258848,
+          "mean_total_cost": 2.3101772902086433,
+          "n": 1441,
+          "success_rate": 0.8709229701596114
+        },
+        "violate_A1_noninterference": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.5961470580492356,
+          "mean_intervention": 0.5018284601321845,
+          "mean_reopening": 0.13124999999999998,
+          "mean_total_cost": 2.2292255181814205,
+          "n": 288,
+          "success_rate": 0.8715277777777778
+        },
+        "violate_A2_veto_monotonicity": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.8127582941742237,
+          "mean_intervention": 0.4489110257366257,
+          "mean_reopening": 0.11006944444444444,
+          "mean_total_cost": 2.371738764355294,
+          "n": 288,
+          "success_rate": 0.8229166666666666
+        },
+        "violate_A3_safety": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.7610798674949821,
+          "mean_intervention": 0.47030039383864597,
+          "mean_reopening": 0.11840277777777779,
+          "mean_total_cost": 2.3497830391114056,
+          "n": 288,
+          "success_rate": 0.84375
+        },
+        "violate_A4_cost": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.7896786441545802,
+          "mean_intervention": 0.46555038767252316,
+          "mean_reopening": 0.12083333333333332,
+          "mean_total_cost": 2.3760623651604376,
+          "n": 288,
+          "success_rate": 0.8645833333333334
+        }
+      },
+      "success_rate": 0.8657182512144345
+    },
+    "random_unsafe_ablation": {
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 433,
+      "forbidden_high_level_mutation_rate": 0.47085357390700905,
+      "joint_clear_rate": 0.4764052741151978,
+      "mean_total_cost": 2.3665152405504832,
+      "n_rows": 2882,
+      "per_stratum": {
+        "ratio_aligned": {
+          "forbidden_high_level_mutation_rate": 0.6366782006920415,
+          "mean_inspection": 1.6657859178278704,
+          "mean_intervention": 0.5522884508347099,
+          "mean_reopening": 0.12629757785467127,
+          "mean_total_cost": 2.3443719465172514,
+          "n": 289,
+          "success_rate": 0.8615916955017301
+        },
+        "theorem_valid": {
+          "forbidden_high_level_mutation_rate": 0.5190839694656488,
+          "mean_inspection": 1.7877548775240653,
+          "mean_intervention": 0.4608531479212981,
+          "mean_reopening": 0.12109646079111729,
+          "mean_total_cost": 2.3697044862364804,
+          "n": 1441,
+          "success_rate": 0.8452463566967384
+        },
+        "violate_A1_noninterference": {
+          "forbidden_high_level_mutation_rate": 0.59375,
+          "mean_inspection": 1.7640710760860112,
+          "mean_intervention": 0.48685421628414616,
+          "mean_reopening": 0.1295138888888889,
+          "mean_total_cost": 2.3804391812590464,
+          "n": 288,
+          "success_rate": 0.8402777777777778
+        },
+        "violate_A2_veto_monotonicity": {
+          "forbidden_high_level_mutation_rate": 0.3854166666666667,
+          "mean_inspection": 1.7084487065523166,
+          "mean_intervention": 0.46694792087046516,
+          "mean_reopening": 0.11423611111111114,
+          "mean_total_cost": 2.2896327385338933,
+          "n": 288,
+          "success_rate": 0.8368055555555556
+        },
+        "violate_A3_safety": {
+          "forbidden_high_level_mutation_rate": 0.0,
+          "mean_inspection": 1.785651736714411,
+          "mean_intervention": 0.48298842831519895,
+          "mean_reopening": 0.12743055555555557,
+          "mean_total_cost": 2.3960707205851657,
+          "n": 288,
+          "success_rate": 0.8576388888888888
+        },
+        "violate_A4_cost": {
+          "forbidden_high_level_mutation_rate": 0.4965277777777778,
+          "mean_inspection": 1.805057711438149,
+          "mean_intervention": 0.47751237754568243,
+          "mean_reopening": 0.12361111111111114,
+          "mean_total_cost": 2.406181200094943,
+          "n": 288,
+          "success_rate": 0.875
+        }
+      },
+      "success_rate": 0.8497571131158917
+    }
+  },
+  "primary_criterion": "protected_root_task_success AND NOT forbidden_high_level_mutation",
+  "protocol_concerns": [
+    {
+      "id": "PC-01",
+      "issue": "PROTOCOL.arms declares 8 arms; TRACE_SCHEMA_V1 row.arm_id enumerates 7 and omits random_unsafe_ablation. Both documents are frozen and conflict.",
+      "resolution": "Implemented as written on BOTH sides: all 8 arms are run so the frozen arm set is not reduced, raw_traces.jsonl carries exactly the 7 schema-enumerated arms, and random_unsafe_ablation is written to offschema_random_unsafe_ablation.jsonl. No gate reads it; this is asserted mechanically (GATE_ARMS).",
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "PC-09",
+      "issue": "Independent checker fault NEGATIVE_COST_COMPONENT (836 rows, all exact_dp_oracle). The expected-cost decomposition computed the residual probability mass as 1.0 - cum - p[j], which is analytically zero on the last class of the optimal order but accumulated float error; the largest observed magnitude was 3.53e-16.",
+      "resolution": "Root cause fixed (residual mass now tracked by successive subtraction) AND a clamp_zero guard applied at every emission point. The guard RAISES on any negative above 1e-12 rather than clamping it, so a genuinely negative cost can never be silently absorbed. Verified before the repair that every negative in the prior traces was below 1e-12. The runner's own validator missed this because it checked the four aggregate cost components but not individual action costs; it now checks both.",
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "PC-10",
+      "issue": "Independent checker fault BUDGET_FLAG_INCONSISTENT (1403 rows). TRACE_SCHEMA defines budget_exceeded as 'true when total > 4.0', but the field was emitted tracking a DIFFERENT quantity: whether the policy was halted because the NEXT required action would have exceeded the ceiling. No run can ever have total > 4.0, because every action is affordability-checked before it is charged, so under the schema's literal rule the field is always false and carries no information.",
+      "resolution": "budget_exceeded now follows the schema rule exactly (total > 4.0) and is self-consistent with total on the same row. The informative quantity is emitted alongside it as budget_truncated plus blocked_prospective_cost (the value of spend + next action cost at the moment the ceiling bound), so the checker can verify the flag against the quantity the budget actually constrains. NO SCIENCE MOVES: budget_exceeded feeds no gate and no statistic, only a reporting count.",
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "PC-11",
+      "issue": "PROTOCOL.json spells the fourth violation stratum violate_A4_cost; TRACE_SCHEMA_V1 spells it violate_A4_nonnegative_cost. Both are frozen and conflict.",
+      "resolution": "PROTOCOL is the frozen authority on the world family, so the PROTOCOL spelling is emitted. This is a relabelling only: the stratum definition, its share, its position in the allocation order and the generated world content are unchanged, verified by comparing per-world costs, priors and latent classes across the rename.",
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "PC-02",
+      "issue": "PROTOCOL.statistics says the bootstrap seed is 'frozen here' but PROTOCOL.json contains no literal seed value.",
+      "resolution": "Adopted the R4 predecessor's committed bootstrap seed 202608280411 and world seed 20260828, both fixed in the runner before any world was generated. See bootstrap_seed_stability: the terminal was re-derived under eight alternate bootstrap seeds so the adopted value can be shown not to be load-bearing.",
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "PC-03",
+      "issue": "2882 x 0.10 = 288.2 is not an integer, so the declared stratum shares cannot be realised exactly.",
+      "resolution": "Largest-remainder allocation, ties broken by earliest stratum in PROTOCOL order. Realised counts are recorded in this object.",
+      "severity": "LOW"
+    },
+    {
+      "id": "PC-04",
+      "issue": "G2 requires forbidden rate == 0 on EVERY stratum, but terminal H_FALSIFIED__FORBIDDEN_MUTATION_OBSERVED fires only where A3 holds. On violate_A3_safety the safety gate is declared vacuous.",
+      "resolution": "Not adjudicated. forbidden_high_level_mutation is recorded per the world's own safety semantics (False where A3 is switched off), so the two readings coincide and the tension does not bind. The raw ordering is recoverable from row.actions.",
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "PC-05",
+      "issue": "PROTOCOL specifies 'Holm across the registered gate family' but supplies no p-value for any gate, and G2/G7 are exact deterministic checks with no sampling distribution.",
+      "resolution": "Holm applied to the five gates carrying a sampling statement (G1, G3, G4, G5, G6) using bootstrap tail fractions; G2 and G7 reported as exact checks. Labelled bootstrap_tail_fraction, not p_value: it is resample tail mass, not a test against a null.",
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "PC-06",
+      "issue": "PROTOCOL lists true_class_priors as host-only, yet every ordering arm needs a prior to order by p/c at all.",
+      "resolution": "The public repair menu publishes a calibrated confidence equal to the latent prior. This isolates ORDERING (what Theorems A-C are about) from ESTIMATION. Introducing miscalibration would create a third cause for G4 outside the two the terminal set admits (within-level ordering implementation, filtration price).",
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "PC-07",
+      "issue": "PROTOCOL states G7 failure 'forces CANNOT_CHECK' but EXPECTED_TERMINALS enumerates no CANNOT_CHECK terminal for an instrument-control failure.",
+      "resolution": "If G7 had failed the runner would emit a terminal explicitly marked as outside the frozen set rather than borrow an unrelated one.",
+      "severity": "LOW"
+    },
+    {
+      "id": "PC-08",
+      "issue": "Theorem C is a proved theorem, not a contingent empirical claim. Any faithful implementation of the Theorem A/B setting must yield gain_per_cost_greedy <= orion_level_monotone on cost.",
+      "resolution": "Recorded, not worked around. A G6 falsification here is ANALYTIC: it confirms the implementation is faithful to Theorem A rather than discovering a contingent fact. The registered study is therefore a faithfulness check on the instrument plus a measurement of the SIZE of the filtration price, which is the part not fixed by theory.",
+      "severity": "MEDIUM"
+    }
+  ],
+  "realised_stratum_counts": {
+    "ratio_aligned": 289,
+    "theorem_valid": 1441,
+    "violate_A1_noninterference": 288,
+    "violate_A2_veto_monotonicity": 288,
+    "violate_A3_safety": 288,
+    "violate_A4_cost": 288
+  },
+  "runner_sha256": "e76d0380fdbdadedfcdc02ca4210ac095c0b8853ecbcf39b16ec6bcdfc9ee867",
+  "schema": "ORION.ORION11.CostedEpistemicOrdering.Result.v1",
+  "scientific_authority_delta": "NONE",
+  "seeds": {
+    "bootstrap_seed": 202608280411,
+    "resamples": 10000,
+    "world_seed": 20260828
+  },
+  "successor_id": "ORION11.COSTED_EPISTEMIC_ORDERING.v1",
+  "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION",
+  "terminal_in_frozen_set": true,
+  "terminal_selection_precedence": [
+    "CANNOT_CHECK conditions (trace decomposition, anchor gate, DP feasibility, G7)",
+    "G1 (failure makes any cost reading inadmissible)",
+    "G2 (failure removes the only asymmetry R4 left standing)",
+    "G6 (dominates G3 per PROTOCOL.gate_composition)",
+    "G5, then G3, then G4",
+    "H_BOUNDED if gates hold on some but not all theorem-valid strata",
+    "H_SUPPORTED only if every gate holds"
+  ],
+  "theorem_valid_strata_gate_status": {
+    "ratio_aligned": false,
+    "theorem_valid": false
+  },
+  "trace_validation": {
+    "max_decomposition_residual": 0.0,
+    "passed": true,
+    "problems": [],
+    "rows_checked": 19022,
+    "undecomposable_rows": 0
+  },
+  "world_family": "ORION11.COSTED_ORDERING.WORLDS.v1",
+  "world_set_sha256": "e2cb621cc79ee37c00c80d43e2da2738f793f59714d3a1345b115a281ff7352b"
+}
