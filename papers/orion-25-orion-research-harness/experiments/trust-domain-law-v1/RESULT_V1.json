@@ -1,0 +1,47 @@
+{
+  "authority": "MEASUREMENT_ONLY",
+  "cases": 4,
+  "cells_matching_theorem_T": 1000,
+  "cells_total": 1000,
+  "controls": {
+    "C1_planted_full_compromise_must_forge": {
+      "eligible": 260,
+      "forged": 260,
+      "passed": true
+    },
+    "C2_honest_chain_always_accepted": {
+      "accepted": 1000,
+      "checked": 1000,
+      "passed": true
+    },
+    "C3_empty_compromise_never_forges": {
+      "clean": 144,
+      "eligible": 144,
+      "passed": true
+    },
+    "C4_collapse_case_present": {
+      "collapsing_assignments": 5,
+      "note": "d > 1 with d_eff == 1; without these T2 is untested",
+      "passed": true
+    }
+  },
+  "custody_limit": "Domain independence here is CRYPTOGRAPHIC only. Every domain remains under this programme's custody, so per #1649's stop rule general trust-domain resilience is NOT claimed.",
+  "domains_swept": [
+    1,
+    2,
+    3
+  ],
+  "failure_examples": [],
+  "necessity_failures": 0,
+  "promotion_status": "LAW_ESTABLISHED_UNDER_CRYPTOGRAPHIC_INDEPENDENCE__PROMOTION_NOT_EARNED",
+  "protocol_identity": "ORION25.INDEPENDENT_TRUST_DOMAIN_LAW.v1",
+  "roles": [
+    "execution",
+    "environment",
+    "publication"
+  ],
+  "schema": "ORION.ORION25.IndependentTrustDomainLaw.Result.v1",
+  "scientific_authority_delta": "NONE",
+  "sufficiency_failures": 0,
+  "terminal": "T1_LAW_HOLDS_EXACTLY"
+}
