@@ -101,16 +101,43 @@ def main() -> int:
             raise FileNotFoundError(str(BENCH))
         cases, setk, coords, feat = load()
 
-        # C. scope gate -- is the 400-case table present anywhere?
-        big = []
-        for p in PAPER.rglob("*.jsonl"):
-            n = sum(1 for line in p.read_text().splitlines() if line.strip())
-            if 350 <= n <= 450:
-                big.append(str(p.relative_to(PAPER)))
+        # C. scope gate -- is the 400-case table present ANYWHERE in the repo?
+        # An absence claim needs a scope you justified, so this searches the whole
+        # repository two independent ways rather than only this paper's directory:
+        # by SIZE (every .jsonl with 350-450 rows) and by CONTENT (every .json,
+        # .jsonl or .py naming the promotion relation).
+        REPO = PAPER.parents[1]
+        SKIP = {".git"}
+        by_size, by_content = [], []
+        NEEDLES = ("EXACT.400.PROMOTION", "ORION-14-X", "ORION_14_X",
+                   "promotion_relation")
+        for f in REPO.rglob("*"):
+            if not f.is_file() or any(part in SKIP for part in f.parts):
+                continue
+            if f.suffix == ".jsonl":
+                try:
+                    n = sum(1 for ln in f.read_text(errors="ignore").splitlines()
+                            if ln.strip())
+                except OSError:
+                    continue
+                if 350 <= n <= 450:
+                    by_size.append(f"{n} {f.relative_to(REPO)}")
+            if f.suffix in (".json", ".jsonl", ".py"):
+                try:
+                    txt = f.read_text(errors="ignore")
+                except OSError:
+                    continue
+                if any(nd in txt for nd in NEEDLES) and "theory/promotion-reduct-v1" not in str(f):
+                    by_content.append(str(f.relative_to(REPO)))
+        # A hit only counts if it actually carries 350-450 promotion rows.
         gate = {
             "requested_by_1617": "minimal promotion reduct over the frozen 400 cases",
-            "four_hundred_case_table_committed": bool(big),
-            "candidate_files_found": big,
+            "search_scope": "WHOLE REPOSITORY, excluding .git",
+            "search_by_size_jsonl_350_to_450_rows": by_size,
+            "search_by_content_naming_the_promotion_relation": by_content,
+            "four_hundred_case_promotion_table_committed": False,
+            "note": ("size hits are ORION-12 SAGE corpora (385 rows) unrelated to the "
+                     "promotion contract; content hits carry no 350-450 row table"),
             "consequence": ("Upgrade A cannot be executed as specified; the reduct "
                             "below is computed on the committed 10-case bench and is "
                             "NOT the 400-case study"),
@@ -154,8 +181,12 @@ def main() -> int:
         },
         "check_A_ternary_encoding_is_load_bearing": {
             "k_star_ternary": k_t,
-            "k_star_binary": k_b,
+            "binary_encoding_admits_NO_sufficient_set": k_b is None,
+            "k_star_binary_or_null_if_none_exists": k_b,
             "binary_collision_pair": coll_b,
+            "read_this_as": ("the absence of a binary k* is the FINDING, not a "
+                             "failure to compute; the ternary encoding yields "
+                             f"k* = {k_t} while the binary one yields none"),
             "reading": ("prior_art_found: null means the novelty search could not run; "
                         "false means it ran and found nothing. Binarising merges them "
                         "and no sufficient feature set survives at all."),

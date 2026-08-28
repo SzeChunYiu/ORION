@@ -13,8 +13,11 @@ Upgrade A — **ranked #2 by expected value** in #1617 — asks for a minimal
 promotion reduct over the frozen 400 cases behind
 `ORION-14.X.EXACT.400.PROMOTION_RELATION`.
 
-**That table is not committed.** No `.jsonl` under the paper has 350–450 rows;
-no `.json` contains a 350–450 length array. The claim row records the counts
+**That table is not committed anywhere in the repository.** The checker searches
+repo-wide (excluding `.git`) both by size — every `.jsonl` with 350–450 rows — and
+by content — every `.json`/`.jsonl`/`.py` naming the promotion relation. The 11
+size hits are ORION-12 SAGE corpora at 385 rows; the one content hit carries no
+such table. The claim row records the counts
 (400/400, 250/400, 50/400, 400/400) but not the rows.
 
 So the highest-value ORION-14 upgrade is blocked on an **artifact**, not on

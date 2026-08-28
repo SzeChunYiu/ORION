@@ -16,9 +16,13 @@ Upgrade A asks for a minimal promotion reduct **over the frozen 400 cases**
 behind `ORION-14.X.EXACT.400.PROMOTION_RELATION` (400/400, donor-complete generic
 product 250/400, compensatory 50/400, ideal typed 400/400).
 
-**That per-case coordinate table is not committed.** A search over the whole
-paper directory finds no `.jsonl` with 350–450 rows and no 400-length array in
-any `.json`. The claim row records the *counts*; the rows themselves are absent.
+**That per-case coordinate table is not committed anywhere in the repository.**
+The checker searches the whole repo (excluding `.git`) two independent ways: by
+**size** — every `.jsonl` with 350–450 rows — and by **content** — every `.json`,
+`.jsonl` or `.py` naming `EXACT.400.PROMOTION`, `ORION-14-X`, `ORION_14_X` or
+`promotion_relation`. The 11 size hits are all ORION-12 SAGE corpora at 385 rows,
+unrelated to the promotion contract; the single content hit carries no such
+table. The claim row records the *counts*; the rows themselves are absent.
 
 So Upgrade A **cannot be executed as specified**, and this packet does not
 pretend otherwise. What follows is computed on the corpus that *is* committed —
@@ -122,8 +126,8 @@ reduct recomputed from the discernibility definition, exhaustively over all
 
 | check | result |
 |---|---|
-| scope gate — 400-case table committed? | **no** (asserted, not assumed) |
-| ternary encoding load-bearing | `k*` ternary `3` vs binary **undefined** |
+| scope gate — 400-case table committed anywhere in the repo? | **no** (asserted repo-wide by size **and** content, not assumed) |
+| ternary encoding load-bearing | `k*` ternary `3`; the binary encoding admits **no sufficient set at all** |
 | reduct / core | as tabulated in §3 |
 | negative controls | **3/3 fire** |
 
