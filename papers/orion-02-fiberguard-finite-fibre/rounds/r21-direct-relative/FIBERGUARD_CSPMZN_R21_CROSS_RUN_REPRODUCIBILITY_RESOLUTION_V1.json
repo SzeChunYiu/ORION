@@ -1,0 +1,70 @@
+{
+  "schema": "ORION.FiberGuard.CSPMZNCrossRunReproducibilityResolution.v1",
+  "date": "2026-08-28",
+  "record_kind": "ADDITIVE_RESOLUTION__PREDECESSOR_RETAINED_BYTE_EXACT",
+  "authority": "MEASUREMENT_ONLY",
+  "scientific_authority_delta": "NONE",
+
+  "predecessor": {
+    "path": "FIBERGUARD_CSPMZN_R21_CROSS_RUN_REPRODUCIBILITY_FAILURE_V1.json",
+    "terminal": "ORION02_R21_ADVERSE_PRESERVED__CROSS_RUN_REPRODUCIBILITY_CANNOT_CHECK",
+    "bytes_modified": false,
+    "note": "Retained exactly. This record adds a resolution; it does not edit the failure."
+  },
+
+  "what_was_open": {
+    "field": "authority.cross_run_byte_reproducibility",
+    "value": "CANNOT_CHECK_UNTIL_SEPARATE_RUNNERS_MATCH",
+    "stated_resolution_condition": "defect_only_repair.separate_hosted_runner_comparison_required == true",
+    "defect": "cancellation-form BLAS distance can perturb exact duplicate-vector distances before stable sorting",
+    "mechanism": "17 query rows had bitwise-identical transformed static vectors, so their mathematical squared distance is 0; the cancellation form produced run-dependent non-zero values, breaking the pre-frozen rule that exact distance ties follow lexical instance order",
+    "blast_radius_when_it_fired": {
+      "scalar_difference_count": 53, "folds_affected": [1],
+      "choice_changes": 0, "loss_changes": 0, "aggregate_changes": 0,
+      "terminal_changes": 0, "authority_changes": 0
+    }
+  },
+
+  "repair_as_recorded": {
+    "hypothesis": "force distance zero only for bitwise-identical transformed rows before unchanged stable sorting",
+    "repaired_executor_sha256": "7d6c256051480fc83971b3d5e45f0031fffe7cd093fa1f8b3ecad8a21b1ff692",
+    "tolerance_added": false, "rounding_added": false, "scientific_parameter_changed": false
+  },
+
+  "resolution_evidence": {
+    "condition_met": true,
+    "how": "The R21 workflow runs replicas a and b as two separate ubuntu-24.04 hosted-runner jobs. Each replica executes the study twice and cmp's run1 against run2 and against the committed RESULTS.json. A third job, cross-run-byte-identity, then cmp's replica A's outputs against replica B's. A success therefore means two separate hosted runners produced byte-identical results and both matched the committed bytes.",
+    "committed_result_sha256": "9606f30d1c0c503935c1612b1d352f8b7bef835aeda96478e2e1fdcdb489cbde",
+    "successful_runs_with_repaired_executor": [
+      {"run": 33087917771, "date": "2026-08-27", "branch": "codex/orion-02-r2-direct-relative-20260827", "cross_run_byte_identity": "success"},
+      {"run": 33091615658, "date": "2026-08-27", "branch": "main", "cross_run_byte_identity": "success"},
+      {"run": 33143846176, "date": "2026-08-28", "branch": "claude/b1p1-packages-20260827", "cross_run_byte_identity": "success"},
+      {"run": 33147861905, "date": "2026-08-28", "branch": "claude/orion02-cnbr-adopt-20260828", "cross_run_byte_identity": "success"},
+      {"run": 33148069159, "date": "2026-08-28", "branch": "claude/orion02-cnbr-adopt-20260828", "cross_run_byte_identity": "success"},
+      {"run": 33148362895, "date": "2026-08-28", "branch": "claude/orion02-cnbr-adopt-20260828", "cross_run_byte_identity": "success"}
+    ],
+    "runs_count": 6,
+    "distinct_branches": 4,
+    "executor_at_every_listed_run": "7d6c256051480fc83971b3d5e45f0031fffe7cd093fa1f8b3ecad8a21b1ff692",
+    "executor_verified_by": "git cat-file blob <head_sha>:<executor path> | sha256, per run, not assumed from the branch name"
+  },
+
+  "authority_after": {
+    "cross_run_byte_reproducibility": "VERIFIED__SEPARATE_HOSTED_RUNNERS_MATCH",
+    "unchanged_and_still_adverse": {
+      "science_terminal": "C_R21_CSPMZN_DIRECT_RELATIVE_ADVERSE",
+      "round_2_consumed_as": "ADVERSE",
+      "submission_authorized": false,
+      "grants_journal_authority": false,
+      "grants_production_value": false,
+      "external_independent_replay": false
+    },
+    "explicitly_not_claimed": [
+      "external independence — every listed run is this repository's own CI, which is reproducibility, not independent replication",
+      "any change to the adverse scientific terminal",
+      "any submission or production authority"
+    ]
+  },
+
+  "provenance_note": "The committed result bytes 9606f30d were first produced by the DEFECTIVE executor 4386f6c9, as the custody record states. The repair does not change those bytes; it makes them reproducible. That is the whole claim: the science was already correct, the instrument was not deterministic."
+}
