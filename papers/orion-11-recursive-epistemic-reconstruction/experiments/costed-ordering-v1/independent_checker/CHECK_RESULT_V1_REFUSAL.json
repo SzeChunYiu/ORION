@@ -1,0 +1,253 @@
+{
+  "schema": "ORION.ORION11.CostedEpistemicOrdering.IndependentCheck.v1",
+  "successor_id": "ORION11.COSTED_EPISTEMIC_ORDERING.v1",
+  "scientific_authority_delta": "NONE",
+  "status": "CANNOT_CHECK",
+  "exit_code": 3,
+  "exit_code_semantics": {
+    "0": "CHECKED -- includes every unfavourable terminal; falsified is not an error",
+    "2": "CHECKED and DISAGREES with the supplied result",
+    "3": "COULD NOT CHECK -- never reported as checked and fine"
+  },
+  "traces": "/private/tmp/claude-501/-Users-billy/78a9ae83-637e-4fa7-b957-74a8b05739f7/scratchpad/wA/papers/orion-11-recursive-epistemic-reconstruction/experiments/costed-ordering-v1/raw_traces.jsonl",
+  "independence": {
+    "must_not_import": [
+      "faithful_comparator_policies",
+      "run_orion11",
+      "orion11_runner",
+      "production_scorer",
+      "scorer",
+      "policies",
+      "candidate_policies",
+      "statistics_module"
+    ],
+    "offending_modules": [],
+    "independent": true
+  },
+  "terminal": null,
+  "terminal_status": "NO_FROZEN_TERMINAL_MATCHES",
+  "terminal_class": null,
+  "decision": {
+    "terminal": null,
+    "terminal_status": "NO_FROZEN_TERMINAL_MATCHES",
+    "gate_states": {
+      "G1": "UNMEASURED",
+      "G2": "UNMEASURED",
+      "G3": "UNMEASURED",
+      "G4": "UNMEASURED",
+      "G5": "UNMEASURED",
+      "G6": "UNMEASURED",
+      "G7": "UNMEASURED"
+    },
+    "failing_gates": [],
+    "unmeasured_gates": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G7"
+    ],
+    "composition": "NON_COMPENSATORY; G6 dominates G3",
+    "selection_reasoning": [
+      "Refused on fault classes BUDGET_FLAG_INCONSISTENT, NEGATIVE_COST_COMPONENT. EXPECTED_TERMINALS.json enumerates no CANNOT_CHECK terminal for this fault set, so no terminal is selected."
+    ],
+    "frozen_terminal_set_size": 12
+  },
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 20260828,
+    "seed_source": "CHECKER_DEFAULT__PROTOCOL_DECLARED_SEED_ABSENT",
+    "method": "stratified percentile bootstrap, paired by world identity",
+    "seed_stability_probe": {
+      "probed": false,
+      "reason": "not reached",
+      "seed_sensitive": false
+    }
+  },
+  "coverage": {
+    "status": "NOT_EVALUATED",
+    "reason": "per-row invariants failed; coverage and pairing were not assessed, and their silence here is not a pass",
+    "blocking_fault_classes": [
+      "NEGATIVE_COST_COMPONENT",
+      "BUDGET_FLAG_INCONSISTENT"
+    ]
+  },
+  "analysis": {},
+  "comparison": null,
+  "protocol_defects": [
+    "PROTOCOL.json statistics.interval_method declares a frozen bootstrap seed but no seed value appears in any frozen document. The checker used 20260828 and probed terminal stability across other seeds.",
+    "A4-violation stratum serialised as 'violate_A4_nonnegative_cost' (TRACE_SCHEMA_V1.json spelling); PROTOCOL.json spells it 'violate_A4_cost'. Canonicalised to the PROTOCOL spelling."
+  ],
+  "faults": [
+    {
+      "fault_class": "NEGATIVE_COST_COMPONENT",
+      "detail": "negative action cost; cost accounting must stay non-negative even on the A4-violation stratum, where the violation is in the world's cost structure and not in the accounting",
+      "count": 836,
+      "examples": [
+        {
+          "line": 1,
+          "world_id": "W00000",
+          "arm_id": "exact_dp_oracle",
+          "cost": -1.047262386750217e-17
+        },
+        {
+          "line": 8,
+          "world_id": "W00001",
+          "arm_id": "exact_dp_oracle",
+          "cost": -6.333703042880334e-17
+        },
+        {
+          "line": 22,
+          "world_id": "W00003",
+          "arm_id": "exact_dp_oracle",
+          "cost": -5.18407414156497e-17
+        },
+        {
+          "line": 29,
+          "world_id": "W00004",
+          "arm_id": "exact_dp_oracle",
+          "cost": -7.75339684522067e-17
+        },
+        {
+          "line": 43,
+          "world_id": "W00006",
+          "arm_id": "exact_dp_oracle",
+          "cost": -4.227889632778045e-17
+        },
+        {
+          "line": 71,
+          "world_id": "W00010",
+          "arm_id": "exact_dp_oracle",
+          "cost": -4.309574138483288e-17
+        },
+        {
+          "line": 78,
+          "world_id": "W00011",
+          "arm_id": "exact_dp_oracle",
+          "cost": -5.047186843128646e-17
+        },
+        {
+          "line": 99,
+          "world_id": "W00014",
+          "arm_id": "exact_dp_oracle",
+          "cost": -1.2843702280559635e-16
+        },
+        {
+          "line": 106,
+          "world_id": "W00015",
+          "arm_id": "exact_dp_oracle",
+          "cost": -3.182620034895282e-17
+        },
+        {
+          "line": 113,
+          "world_id": "W00016",
+          "arm_id": "exact_dp_oracle",
+          "cost": -1.2910616659210737e-16
+        }
+      ]
+    },
+    {
+      "fault_class": "BUDGET_FLAG_INCONSISTENT",
+      "detail": "budget_exceeded disagrees with total vs ceiling 4.0",
+      "count": 1403,
+      "examples": [
+        {
+          "line": 23,
+          "world_id": "W00003",
+          "arm_id": "orion_level_monotone",
+          "stratum": "theorem_valid",
+          "total": 3.309258294786117,
+          "budget_exceeded": true
+        },
+        {
+          "line": 28,
+          "world_id": "W00003",
+          "arm_id": "random_safe_ablation",
+          "stratum": "theorem_valid",
+          "total": 3.3101407027582836,
+          "budget_exceeded": true
+        },
+        {
+          "line": 49,
+          "world_id": "W00006",
+          "arm_id": "random_safe_ablation",
+          "stratum": "theorem_valid",
+          "total": 3.903777636188875,
+          "budget_exceeded": true
+        },
+        {
+          "line": 51,
+          "world_id": "W00007",
+          "arm_id": "orion_level_monotone",
+          "stratum": "theorem_valid",
+          "total": 3.347300426439037,
+          "budget_exceeded": true
+        },
+        {
+          "line": 55,
+          "world_id": "W00007",
+          "arm_id": "cost_greedy_repair",
+          "stratum": "theorem_valid",
+          "total": 3.347300426439037,
+          "budget_exceeded": true
+        },
+        {
+          "line": 56,
+          "world_id": "W00007",
+          "arm_id": "random_safe_ablation",
+          "stratum": "theorem_valid",
+          "total": 3.347300426439037,
+          "budget_exceeded": true
+        },
+        {
+          "line": 62,
+          "world_id": "W00008",
+          "arm_id": "cost_greedy_repair",
+          "stratum": "theorem_valid",
+          "total": 3.6188435628402855,
+          "budget_exceeded": true
+        },
+        {
+          "line": 83,
+          "world_id": "W00011",
+          "arm_id": "cost_greedy_repair",
+          "stratum": "theorem_valid",
+          "total": 3.816061055232562,
+          "budget_exceeded": true
+        },
+        {
+          "line": 84,
+          "world_id": "W00011",
+          "arm_id": "random_safe_ablation",
+          "stratum": "theorem_valid",
+          "total": 3.816061055232562,
+          "budget_exceeded": true
+        },
+        {
+          "line": 109,
+          "world_id": "W00015",
+          "arm_id": "global_flat_voi",
+          "stratum": "theorem_valid",
+          "total": 3.3186160893368988,
+          "budget_exceeded": true
+        }
+      ]
+    },
+    {
+      "fault_class": "MALFORMED_TRACE",
+      "detail": "cannot compare: the independent recomputation did not complete",
+      "count": 1,
+      "examples": [
+        "/private/tmp/claude-501/-Users-billy/78a9ae83-637e-4fa7-b957-74a8b05739f7/scratchpad/wA/papers/orion-11-recursive-epistemic-reconstruction/experiments/costed-ordering-v1/RESULT_V1.json"
+      ]
+    }
+  ],
+  "warnings": [],
+  "refusal_classes": [
+    "NEGATIVE_COST_COMPONENT",
+    "BUDGET_FLAG_INCONSISTENT",
+    "MALFORMED_TRACE"
+  ]
+}
