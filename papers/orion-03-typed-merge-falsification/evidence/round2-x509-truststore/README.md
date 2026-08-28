@@ -38,5 +38,25 @@ boundary. Receipts: `ROUND2_RESULTS_V2.json`,
 `INDEPENDENT_REPRO_R2.json` (context-free re-implementation by an agent
 with no access to the evaluator). On 1962 tasks: 46 engine-adjudicated
 hybrid authorizations; M1 flat union authorizes all 46 (unsafe), the typed
-origin-witness layer blocks all 46 with zero needless rejections
-(precision/recall 1.0) at 2x flat merge engine cost.
+origin-witness layer blocks all 46 with zero needless rejections, at 2x flat
+merge engine cost.
+
+**Metric-status correction (2026-08-28).** The `precision = recall = 1.0`
+figure recorded in `ROUND2_RESULTS_V2.json` is an **analytic identity**, not a
+measurement. `invariants.m5_decision_equals_parent_authorization` is `true`, so
+with `parent := vA or vB` and `hybrid := vUnion and not parent`, M5 flags
+exactly the hybrid set by construction and its unsafe/needless counts are
+identically zero — for *any* corpus. It must not be reported as measured
+detector performance or compared against baselines as an experimental win.
+
+What this round *does* establish empirically is unchanged and stands: the
+obstruction occurs in real deployed material (46 of 1962 tasks, ~2.3%); the
+baselines pay measurably different prices (M1 4 unsafe merges, M2/M3 63
+needless rejections each, M4 14 in `PARITY_PARTITION`); and `c3_violations`,
+`c4_resurrections` and `c4_upstream_mirrors_ok` hold where they could have
+failed. See `../../ROUND2_METRIC_STATUS_FINDING.md`.
+
+The bound records — `ROUND2_RESULT_V2.md`, `PROTOCOL_V2.md` and the results
+JSONs — are digest-pinned by `SOURCE_BINDING_V2.json` and are deliberately
+left byte-unchanged. This correction is recorded on the navigation surface
+only.
