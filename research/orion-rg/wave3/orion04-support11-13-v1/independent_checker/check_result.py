@@ -106,9 +106,19 @@ def run(path: Path) -> dict[str, Any]:
     patterns = independent_patterns()
 
     source_hash_checks = []
+    expected_observed_sources = []
     for item in manifest.get("sources", []):
         actual = file_sha256(ROOT / item["path"])
         source_hash_checks.append(actual == item["sha256"])
+        expected_observed_sources.append(
+            {
+                "role": item["role"],
+                "path": item["path"],
+                "expected_sha256": item["sha256"],
+                "observed_sha256": actual,
+                "matches": actual == item["sha256"],
+            }
+        )
 
     exact_rank3 = set(rank3_by_pattern) == set(EXPECTED_RANK3) and all(
         rank3_by_pattern[pattern].get("branch") == "rank3"
@@ -133,6 +143,14 @@ def run(path: Path) -> dict[str, Any]:
         "source_digest": digest_valid(source),
         "source_terminal": source.get("terminal") == terminals.get("source_positive"),
         "protocol_schema": protocol.get("schema") == "ORION.ORION04.Wave3.M4.Support11To13Protocol.v1",
+        "packet_paths": source.get("protocol", {}).get("path") == str(PROTOCOL.relative_to(ROOT))
+        and source.get("source_manifest", {}).get("manifest_path")
+        == str(SOURCE_MANIFEST.relative_to(ROOT))
+        and source.get("expected_terminals", {}).get("path")
+        == str(EXPECTED_TERMINALS.relative_to(ROOT))
+        and source.get("theory", {}).get("path") == str(THEORY.relative_to(ROOT))
+        and source.get("claim_disposition", {}).get("path")
+        == str(CLAIM_DISPOSITION.relative_to(ROOT)),
         "protocol_hash": source.get("protocol", {}).get("sha256") == file_sha256(PROTOCOL),
         "manifest_hash": source.get("source_manifest", {}).get("manifest_sha256")
         == file_sha256(SOURCE_MANIFEST),
@@ -150,7 +168,9 @@ def run(path: Path) -> dict[str, Any]:
         "parent_terminal": source.get("parent_m3", {}).get("terminal") == EXPECTED_M3_TERMINAL,
         "parent_checks": source.get("parent_m3", {}).get("all_checks") is True,
         "source_hashes": all(source_hash_checks)
-        and source.get("source_manifest", {}).get("all_checks") is True,
+        and source.get("source_manifest", {}).get("all_checks") is True
+        and source.get("source_manifest", {}).get("observed_sources")
+        == expected_observed_sources,
         "patterns_independent": source_rows == patterns
         and protocol.get("multiplicity_grammar", {}).get("expected_patterns") == patterns,
         "nine_rank3_rows": exact_rank3,
