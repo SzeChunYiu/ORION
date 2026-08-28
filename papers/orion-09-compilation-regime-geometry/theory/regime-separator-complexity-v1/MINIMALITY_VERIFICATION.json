@@ -10,7 +10,7 @@
     "covering_subsets_of_size_2": [],
     "covering_subsets_of_size_3": [],
     "k_star_at_least_4_PROVED": true,
-    "seconds": 70.3
+    "seconds": 68.1
   },
   "route_2_witness": {
     "subset": [
@@ -26,6 +26,17 @@
     "attains_floor_zero": true,
     "compression_ratio": 0.45637,
     "compression_bound_on_this_map": "623/1146"
+  },
+  "route_2b_drop_one_guard": {
+    "purpose": "independent necessity check by direct cell counting; uses no discernibility machinery, so it would expose a constraint-dropping fault shared by routes 1 and 2",
+    "floor_of_each_3_subset_of_witness": {
+      "15,30,39": 47,
+      "15,30,42": 22,
+      "15,39,42": 17,
+      "30,39,42": 1
+    },
+    "all_strictly_positive": true,
+    "reading": "every coordinate of the witness is individually necessary, so the witness is minimal and not merely of minimum cardinality"
   },
   "route_3_block_attribution": {
     "blocks": {

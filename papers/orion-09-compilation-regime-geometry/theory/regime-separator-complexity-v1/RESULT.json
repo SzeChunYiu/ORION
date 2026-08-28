@@ -52,6 +52,14 @@
     "permutation_trials": 20000,
     "permutation_hits": 0
   },
+  "structure_free_null_witness_map": {
+    "cells": 523,
+    "compression_ratio": 0.45637,
+    "compression_bound": "623/1146",
+    "exact_probability": 1.4416996195477684e-120,
+    "exact_probability_sci": "1.442e-120",
+    "reading": "the witness map is far from injective, so attaining floor 0 with it is overwhelming evidence of genuine structure rather than memorization"
+  },
   "separator_complexity": {
     "k_star": 4,
     "k_star_proved_exact": true,
@@ -78,13 +86,19 @@
       "compression_ratio": 0.45637,
       "compression_bound_on_this_map": "623/1146"
     },
+    "drop_one_guard": {
+      "purpose": "independent necessity check by direct cell counting; uses no discernibility machinery, so it would expose a constraint-dropping fault shared by routes 1 and 2",
+      "floor_of_each_3_subset_of_witness": {
+        "15,30,39": 47,
+        "15,30,42": 22,
+        "15,39,42": 17,
+        "30,39,42": 1
+      },
+      "all_strictly_positive": true,
+      "reading": "every coordinate of the witness is individually necessary, so the witness is minimal and not merely of minimum cardinality"
+    },
     "opposite_label_pairs": 205128,
     "distinct_minimal_discernibility_sets": 43762
-  },
-  "structure_free_null_witness_map": {
-    "cells": 523,
-    "exact_probability_sci": "1.442e-120",
-    "source": "exact combinatorial computation over the witness cell structure"
   },
   "block_attribution": {
     "blocks": {
@@ -141,12 +155,13 @@
     {
       "id": "MECHANISM_ATTRIBUTION_NOT_SUPPORTED",
       "statement": "V2 + donor-path (86 features, no sign-aware STATE feature) attains floor 0; the minimal 4-feature witness contains zero STATE-block coordinates. The new block was not necessary for the conversion.",
-      "does_not_overturn": "floor(L3) == 0 and the H_A_N2 POSITIVE_CONVERSION verdict both stand."
+      "does_not_overturn": "floor(L3)==0 and the H_A_N2 POSITIVE_CONVERSION verdict both stand."
     },
     {
-      "id": "MANUSCRIPT_DEFECT_FOUND__SUBMISSION_BLOCKED",
-      "statement": "manuscript/main.tex abstract asserts an irreducible 43/1146 floor 'regardless of predicate budget' and concludes 'not a universal low-order boundary law'; it contains zero occurrences of R2, L3 or revival.",
-      "action": "rescope in a separate PR; ORION-09 must not be submitted until then."
+      "id": "MANUSCRIPT_INCOMPLETENESS__SUBMISSION_BLOCKED",
+      "statement": "manuscript/main.tex presents the V1-scoped 43/1146 result as the paper's StabPrep finding and contains zero occurrences of R2, L3 or revival, so the prospectively frozen revival committed in this paper's own evidence/ directory is absent from the manuscript.",
+      "severity_note": "The quoted abstract sentences are TRUE as scoped. The defect is material omission/currency, not falsity. The paper's 'not a universal low-order boundary law' conclusion is independently supported by the n=4 non-transfer recorded here.",
+      "action": "Rescope by addition in a separate PR; ORION-09 must not be submitted until then."
     }
   ],
   "preserved_negative": {

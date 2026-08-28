@@ -4,8 +4,8 @@
 **Successor id:** `ORION09.REGIME_SEPARATOR_COMPLEXITY.v1`
 **Candidate source:** PR #1617, Priority A, `ORION09.REGIME_INFORMATION_COMPLEXITY.v1`
 **Authored:** 2026-08-28
-**Status:** `THEORY_PROVED__COMPUTED_ON_FROZEN_DOMAIN__ONE_MANUSCRIPT_DEFECT_FOUND`
-**Scientific authority delta:** `NONE` for recorded terminals; **one submission blocker raised** (§8)
+**Status:** `THEORY_PROVED__COMPUTED_ON_FROZEN_DOMAIN__ONE_MANUSCRIPT_INCOMPLETENESS_FOUND`
+**Scientific authority delta:** `NONE` for recorded terminals; **one submission blocker raised** (§8, incompleteness not falsity)
 **Packet layout source:** issue #1608
 **Frozen paper bytes modified:** NONE
 
@@ -323,22 +323,34 @@ floor interpretation is wrong."* That falsifier has fired.
 The committed R2 evidence sitting in `evidence/` of this same paper is not
 integrated anywhere in the manuscript.
 
-Precisely what is and is not wrong:
+**The defect is omission, not falsity.** Every sentence quoted above is true as
+written:
 
-- **True and confirmed:** the V1 floor is `43/1146`, and within V1 it is
-  irreducible — reproduced exactly in §3.2.
-- **Not supported:** the concluding generalization *"not a universal low-order
-  boundary law."* Under an enlarged, prospectively frozen vocabulary there is a
-  four-feature law on this domain. The phrase *"regardless of predicate budget"*
-  reads as a universal quantifier and, taken outside V1, is false.
-- **What does survive:** the `n = 4` non-transfer (§3.7) supports a properly
-  scoped version of the same conclusion — the low-order law is domain-local, not
-  universal across `n`.
+- the V1 floor is `43/1146` and is irreducible within V1 — reproduced exactly in
+  §3.2;
+- *"regardless of predicate budget"* sits inside the scope set by *"in the frozen
+  natural feature vocabulary"*, and within V1 it is correct: by Theorem A no
+  predicate of any complexity over V1 features can beat the V1 fibre floor;
+- *"not a universal low-order boundary law"* is **also true**, and §3.7 of this
+  packet independently supports it — the four-feature law is domain-local and
+  fails at `n = 4`.
 
-This is a real scientific defect in the abstract, of the kind issue #1609 says
-warrants Wave-1 work, and #1609's ORION-09 checklist already requires
-*"integrate the R2 negative-revival outcomes without overstating the near-injective
-L3 vocabulary."*
+The defect is that the abstract presents a **superseded scoped result as the
+paper's StabPrep finding**, while evidence committed in this paper's own
+`evidence/` directory — a prospectively frozen revival that drove the floor to
+`0` — appears nowhere in the manuscript. A reader finishes the abstract believing
+the vocabulary question closed negatively. It is not: under an enlarged, frozen
+vocabulary the floor is `0`, and exactly four features suffice on `n <= 3`.
+
+That is material incompleteness rather than a false statement, and it is enough
+to block submission under #1609 §A (*headline quantitative statements are
+generated from immutable result artifacts*) and §D (*Abstract, Results and
+Conclusion map to a claim/evidence matrix*). #1609's ORION-09 checklist already
+requires *"integrate the R2 negative-revival outcomes without overstating the
+near-injective L3 vocabulary"*; that integration has not happened.
+
+The rescope is therefore an **addition and re-scoping**, not a retraction. The
+paper's negative conclusion survives in a sharper, better-supported form.
 
 **ORION-09 must not be submitted until the abstract is rescoped.** The rescope is
 a manuscript edit and therefore belongs in a separate PR with its own authority

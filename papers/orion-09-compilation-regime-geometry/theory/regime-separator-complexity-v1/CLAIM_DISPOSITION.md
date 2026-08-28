@@ -3,7 +3,7 @@
 **Date:** 2026-08-28
 **Terminal:** `THEORY_PROVED__COMPUTED_ON_FROZEN_DOMAIN`
 **Scientific authority delta for recorded ORION-09 terminals:** `NONE`
-**New blocker raised:** `MANUSCRIPT_DEFECT_FOUND__SUBMISSION_BLOCKED` (§6)
+**New blocker raised:** `MANUSCRIPT_INCOMPLETENESS__SUBMISSION_BLOCKED` (§6)
 
 ---
 
@@ -123,17 +123,30 @@ live successor question is separator complexity, and the answer is `4`.
 The manuscript contains **zero** occurrences of `R2`, `L3` or `revival`. Evidence
 committed in this paper's own `evidence/` directory is not integrated anywhere.
 
-Precisely:
+**The defect is omission, not falsity.** Every quoted sentence is true as written:
 
 | element | verdict |
 |---|---|
 | V1 floor is `43/1146`, irreducible within V1 | **true**, reproduced exactly |
-| "regardless of predicate budget" | **false** outside V1 — `k* = 4` under L3 |
-| "not a universal low-order boundary law" | **not supported** as stated |
+| "regardless of predicate budget" | **true as scoped** — by Theorem A no predicate over V1 beats the V1 floor |
+| "not a universal low-order boundary law" | **true** — and §4 of this packet independently supports it |
 | a low-order law is domain-local, not universal across `n` | **supported** by §4 |
 
-**ORION-09 must not be submitted until the abstract is rescoped.** Proposed
-replacement for the two sentences:
+What is wrong is that the abstract presents a **superseded scoped result as the
+paper's StabPrep finding** while the prospectively frozen revival sitting in this
+paper's own `evidence/` directory appears nowhere in the manuscript. A reader
+finishes the abstract believing the vocabulary question is closed negatively. It
+is not: under an enlarged frozen vocabulary the floor is `0` and four features
+suffice on `n <= 3`.
+
+That is material incompleteness, not a false claim, and it blocks submission
+under #1609 §A (headline statements generated from immutable result artifacts)
+and §D (abstract maps to a claim/evidence matrix).
+
+**ORION-09 must not be submitted until the abstract is rescoped.** The rescope is
+an **addition and re-scoping, not a retraction** — the paper's negative
+conclusion survives in a sharper form. Proposed replacement for the two
+sentences:
 
 > "A third-family StabPrep transfer preserves the trade-mapping programme and
 > sharpens the cross-family motif question. In the originally frozen natural

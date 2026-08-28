@@ -117,6 +117,17 @@ def main() -> int:
     cells_w, mixed_w, floor_w = floor_of(rows, labels, CLAIMED_WITNESS)
     witness_ok = (floor_w == 0 and mixed_w == 0)
 
+    # ---- Route 2b: drop-one guard, no discernibility machinery --------------
+    # Routes 1 and 2 both build discernibility sets. If that construction were
+    # dropping constraints, both would inherit the fault and k* would be
+    # UNDERSTATED. This guard re-derives necessity by direct cell counting only:
+    # every 3-subset of the witness must have a strictly positive floor.
+    drop_one = {}
+    for sub in itertools.combinations(CLAIMED_WITNESS, 3):
+        _, _, f = floor_of(rows, labels, list(sub))
+        drop_one[",".join(map(str, sub))] = f
+    drop_one_ok = all(f > 0 for f in drop_one.values())
+
     # ---- Route 3: block attribution ----------------------------------------
     table = {}
     for name, (lo, hi) in BLOCKS.items():
@@ -163,14 +174,24 @@ def main() -> int:
             "compression_ratio": round(cells_w / len(rows), 6),
             "compression_bound_on_this_map": f"{len(rows) - cells_w}/{len(rows)}",
         },
+        "route_2b_drop_one_guard": {
+            "purpose": ("independent necessity check by direct cell counting; "
+                        "uses no discernibility machinery, so it would expose a "
+                        "constraint-dropping fault shared by routes 1 and 2"),
+            "floor_of_each_3_subset_of_witness": drop_one,
+            "all_strictly_positive": drop_one_ok,
+            "reading": ("every coordinate of the witness is individually "
+                        "necessary, so the witness is minimal and not merely of "
+                        "minimum cardinality"),
+        },
         "route_3_block_attribution": {
             "blocks": table,
             "witness_block_composition": dict(witness_blocks),
             "state_block_features_in_witness":
                 witness_blocks.get("state_sign_aware_41", 0),
         },
-        "k_star": 4 if (k_star_lower_proved and witness_ok) else None,
-        "status": "PASS" if (k_star_lower_proved and witness_ok) else "FAIL",
+        "k_star": 4 if (k_star_lower_proved and witness_ok and drop_one_ok) else None,
+        "status": "PASS" if (k_star_lower_proved and witness_ok and drop_one_ok) else "FAIL",
     }
     (PACKET / "MINIMALITY_VERIFICATION.json").write_text(
         json.dumps(report, indent=2) + "\n")

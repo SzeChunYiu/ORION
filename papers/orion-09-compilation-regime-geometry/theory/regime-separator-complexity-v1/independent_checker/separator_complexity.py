@@ -246,10 +246,26 @@ def main() -> int:
             if got:
                 witness = sorted(got)
     verified = None
+    witness_null = None
     if witness:
         c2, s2, m2, f2 = cell_structure(rows, labels, feature_subset=witness)
         verified = {"subset": witness, "size": len(witness), "cells": c2,
                     "mixed_cells": m2, "floor": f2, "attains_floor_zero": f2 == 0}
+        # Structure-free null for the witness map itself. Computed here rather
+        # than by hand so that no value in RESULT.json is un-reproducible.
+        w_sizes = list(Counter(tuple(v[j] for j in witness) for v in rows).values())
+        w_fav, w_tot = exact_null_probability(w_sizes, n_pos, n_total)
+        w_p = w_fav / w_tot
+        witness_null = {
+            "cells": c2,
+            "compression_ratio": round(c2 / n_total, 6),
+            "compression_bound": f"{n_total - c2}/{n_total}",
+            "exact_probability": w_p,
+            "exact_probability_sci": f"{w_p:.3e}",
+            "reading": ("the witness map is far from injective, so attaining "
+                        "floor 0 with it is overwhelming evidence of genuine "
+                        "structure rather than memorization"),
+        }
 
     report = {
         "schema": "ORION.ORION09.RegimeSeparatorComplexity.Analysis.v1",
@@ -296,6 +312,7 @@ def main() -> int:
             "k_star": k_star,
             "k_star_proved_minimal": proved,
             "witness": verified,
+            "witness_structure_free_null": witness_null,
             "seconds": round(t_sep, 1),
             "reading": ("k* is the minimum number of frozen features whose "
                         "projection still attains floor 0. Small k* means a "
