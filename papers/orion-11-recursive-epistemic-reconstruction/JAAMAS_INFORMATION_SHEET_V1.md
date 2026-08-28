@@ -1,5 +1,13 @@
 # ORION-11 — JAAMAS submission information sheet (V1)
 
+> **Superseded 2026-08-28 — do not submit.** This historical V1 sheet predates
+> the R4 faithful-comparator challenge. On all 480 primary hidden-shift worlds,
+> an ordered-search Active-VOI comparator matches the governed policy on the
+> joint success and no-forbidden-mutation criterion. The comparative
+> mechanism-necessity reading below is withdrawn. The R4 replication remains
+> undetermined after its anchor gate failed, and the current manuscript is
+> `NOT_SUBMISSION_READY`. The original text is retained as provenance only.
+
 JAAMAS requires a 1–2 page sheet with every submission, and returns submissions
 whose sheet is incomplete or uninformative without review. It asks two questions
 and warns that "We are the first to have done X" is not an acceptable answer to

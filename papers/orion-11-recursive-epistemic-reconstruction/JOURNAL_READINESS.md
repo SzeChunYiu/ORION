@@ -8,13 +8,30 @@
 > `evidence/NEAREST_WORK_MATRIX_V2.md`. Historical package-readiness statements
 > below are read subject to the current two-axis terminal and blockers.
 
-**Current terminal:** `CANNOT_CHECK` for submission readiness. The bounded mechanical claim is `SUPPORTED`, and that is unchanged; what cannot be checked is the enlarged manuscript and journal package, which are `NOT_SUBMISSION_READY` (`journal_package/MANIFEST.json` status `SUPERSEDED`). The previous wording stated both facts but named neither scoreboard status, so `research/publication/scoreboard.py` read the line as unparseable and ORION-11 declared no scorable terminal at all. An unscorable paper is not a neutral state: it is absent from the one place the programme reads readiness from.
+**Current terminal:** `NOT_SUBMISSION_READY`. The archived V2 internal terminal is unchanged, but its comparative mechanism-necessity reading is withdrawn by R4. Specific external-authority questions and the R4 replication remain `CANNOT_CHECK`; they are blockers inside the submission judgment, not a substitute for that judgment. The current `journal_package/MANIFEST.json` is `SUPERSEDED`.
 **Already present:** scoped manuscript, explicit K/W/M formulation, mechanic-cell self-audit, hidden-shift local falsifier, negative controls, local failure/repair record.
 
 The bounded result and the package are different authorities. The primary and
 disjoint replication retain the registered mechanical result; the historical
 PDF does not render the current source and remains `SUPERSEDED`. Model-general,
 naturalistic, and open-ended superiority are not claimed.
+
+The 2026-08-28 negative-revival audit is local reproducibility evidence only.
+It preserves the historical broad H1 at 1/48 root successes for both subject
+and strongest baseline, with difference zero. It also records that three cited
+historical provenance commits are unreachable, so the original prospective
+order remains `CANNOT_CHECK`. LUNARC job 3550083 exactly replayed both narrower
+mechanical archives from committed source, but a current replay cannot repair
+historical chronology or create external review authority.
+
+The R4 faithful-comparator primary result is
+`H_R4_FALSIFIED__FAITHFUL_COMPARATOR_MATCHES_ORION`. Active-VOI with ordered
+candidate search matches the governed policy on the 480-world joint criterion.
+The earlier margin over non-iterating parents therefore cannot support
+comparative necessity. The R4 replication is
+`INSTRUMENT_FAULT__ANCHOR_REPRODUCTION_FAILED__NO_CLAIM_READ` and remains
+`CANNOT_CHECK`. The remaining primary evidence is bounded descriptive
+intervention-cost economy only.
 
 ## 1. Novelty closure — required before external experiment freeze
 
@@ -26,7 +43,7 @@ naturalistic, and open-ended superiority are not claimed.
 - [x] Rewrite the novelty sentence so it claims only the smallest surviving composition: explicit K/W/M separation + typed responsibility-targeted reframe + dependency-directed reopening + recursive mechanic audit.
 - [x] Decide whether each of ORION-11.D1–ORION-11.D4 survives as an independent delta or only as part of the composition.
 
-**Status:** Section 1 COMPLETE. The 36-row matrix plus donor-assimilation rounds A--H engulf active diagnosis, counterfactual minimal repair, diagnosis-to-recovery admission, dependency rollback, causal-context slicing and certificate enforcement. The tested residual is the science-specific protected necessity composition, not any donor-owned ingredient. See `manuscript/sections/06-related-work-boundary.tex` and `research/revival/p1/P1_DONOR_ENGULFMENT_V1.json`.
+**Status:** Section 1 COMPLETE for donor attribution. The 36-row matrix plus donor-assimilation rounds A--H engulf active diagnosis, counterfactual minimal repair, diagnosis-to-recovery admission, dependency rollback, causal-context slicing and certificate enforcement. R4 subsequently falsifies the comparative-necessity reading of their composition. See `manuscript/sections/06-related-work-boundary.tex`, `research/revival/p1/P1_DONOR_ENGULFMENT_V1.json`, and `experiments/r4-faithful-comparator-v1/AUTHORITY_DISPOSITION_V1.json`.
 
 **Open checks before submission:** (1) MAST's 14 individual mode names retrieved — none targets a formulation coordinate; ORION-11.D2 narrowing does not tighten further. (2) Surfaced-but-unfetched failure-attribution cluster (TRAIL, AEGIS, AgenTracer, ErrorProbe, REFLECT, AgentErrorBench, AgentRx, span-level/DRIFT) read in full — none attaches a permission to modify formulation/search universe; ORION-11.D2 verdict safe against this family. Both documented in §06 and the matrix. (3) SCION checkpoint-failure semantics unresolved — changes no verdict but must be closed before submission. (4) Fresh literature-closure pass required before submission.
 
@@ -43,7 +60,7 @@ naturalistic, and open-ended superiority are not claimed.
 - [x] Freeze one primary hypothesis (recommended H1) and treat H2–H4 as secondary/mechanistic.
 - [x] Predefine minimum practically meaningful effect/equivalence margins before running the final test.
 
-**Status:** COMPLETE. Historical `ORION-11.hidden-formulation.v1.1` remains frozen and underpowered. The powered successor `ORION-11.epistemic-mutation-necessity.v2.2.4` prospectively freezes three co-primary strong parents, a +0.10 hidden-shift margin against each, 480 hidden shifts, 2402 controls, all safety/non-regression/cost gates, primary seed `202608172211`, and disjoint replication seed `202608172212`.
+**Status:** COMPLETE as design history, with explicit chronology and comparator boundaries. Historical `ORION-11.hidden-formulation.v1.1` is complete but does not support broad H1: subject and strongest baseline each solve 1/48 cases. The powered successor `ORION-11.epistemic-mutation-necessity.v2.2.4` binds three original parents and its current bytes replay exactly, but the claimed original prospective order cannot be independently confirmed because three cited provenance commits are unreachable. R4 then shows that a minimally repaired ordered-search parent matches the governed policy on the primary joint criterion, so comparative mechanism necessity is not supported.
 
 ## 3. External benchmark construction
 
@@ -90,7 +107,7 @@ ORION ablations:
 - [x] no mechanic-cell self-audit;
 - [x] equalized search/LLM budget for every comparison.
 
-**Status:** COMPLETE. Historical V1 retains its 12 systems and negative history. The successor runs nine resource-matched arms, including active-VOI, DARC/R2Act plus dependency rollback, and CausalFlow/HERALD minimal-counterfactual parents, plus five direct mechanism ablations. The primary and replication each contain 40,348 raw arm/world rows.
+**Status:** COMPLETE with adverse comparator correction. Historical V1 retains its 12 systems and negative history. The successor runs nine resource-matched arms plus five direct ablations. R4 repairs the parents' shared non-iteration defect and finds that Active-VOI ordered search matches the governed policy on the primary joint criterion. The R4 replication remains `CANNOT_CHECK`.
 
 ## 5. Metrics
 
@@ -148,15 +165,16 @@ Freeze plotting code/spec before final outcome analysis.
 - [x] update limitations after observing actual failure modes without deleting predeclared limitations;
 - [x] final claim ledger must map every abstract/conclusion claim to a table/figure/theorem/evidence artifact.
 
-**Status:** COMPLETE. The abstract, successor methods/results, nearest-work boundary, limitations, conclusion, reproducibility contract, claim ledger, exact table, and generated figure now report the powered primary and disjoint replication without erasing historical V1 negative evidence.
+**Status:** COMPLETE at the current bounded ceiling. The abstract, results, limitations, conclusion, reproducibility contract, and claim ledger retain the historical negative and archived V2 bytes while withdrawing the comparative-necessity reading required by R4.
 
-**What those two runs are evidence about.** Both are runs of a frozen
-generator. `ORION-11.epistemic-mutation-necessity.v2.2.4` fixes the case generator
-before either seed is drawn, so the primary run at seed `202608172211` and the
-disjoint replication at `202608172212` differ in sampling and in nothing else.
-They are therefore mechanism evidence: they establish how the registered
-mechanism behaves on cases that generator produces, and the disjoint seed
-establishes that the behaviour is not an artefact of one draw.
+**What those two runs are evidence about.** Both archives bind the same
+generator identity. The archived protocol states that this identity was fixed
+before either seed was drawn, but three cited provenance commits are unreachable,
+so that original order cannot be independently verified. Within the bound
+artifacts, the primary run at seed `202608172211` and the disjoint replication
+at `202608172212` differ in sampling rather than generator identity. They are
+therefore generator-relative mechanism evidence; they do not repair the
+historical chronology.
 
 They are not evidence about anything the generator does not produce. The 480
 hidden shifts and 2,402 controls are not 2,882 independent observations of
@@ -176,29 +194,39 @@ explicitly not claimed above.
 - [x] `make paper01-results` or equivalent to regenerate all result figures/tables;
 - [x] clean-environment reproduction instructions and expected runtime/cost;
 - [ ] permanent archive snapshot/DOI for final artifact where possible;
-- [x] independent reproduction of headline result.
+- [x] separate-code-path reproduction of the bounded headline result;
+- [x] clean-source LUNARC replay of both archived campaigns, including byte
+  comparison of raw results, result records, and independent-verification records;
+- [x] in-repository re-audit of all 117,649 adapter maps and all 720 survivors;
 - [ ] fresh content-bound PDF and visual audit for the current manuscript;
 - [ ] repository-level redistribution licence;
-- [ ] clean-checkout access to the externally held 47-entry source-native
-  adapter handoff and its independent checksum receipt.
+- [ ] clean-checkout access to the externally held historical 47-entry adapter
+  handoff and its separate checksum receipt;
+- [ ] external owner/delegate algebra, target-corpus rights, host authority,
+  signed authorized delivery, and independent semantic review for the 720
+  surviving adapters.
 
 **Scientific status:** the tracked result package remains complete for the
 bounded mechanical claim. `REPRODUCE.md` documents SHA-256 verification, exact
 decompression, independent rescoring, terminal comparison, and deterministic
-figure regeneration. An independent implementation recomputes both 40,348-row
-runs with zero mismatches.
+figure regeneration. A separate implementation recomputes both 40,348-row runs
+with zero mismatches. LUNARC job 3550083 additionally reproduced both campaigns
+and their three archived output objects byte for byte. This is still
+repository-local deterministic authority, not external reproduction.
 
-**Submission-package status:** not complete. A clean checkout lacks the four
-unchecked authorities listed above. The historical PDF and its historical
-render audit do not close the current-render rows, and a recorded digest for an
-externally held handoff does not make its bytes repository-available.
+**Submission-package status:** not complete. The historical PDF and its
+historical render audit do not close the current-render rows. The in-repository
+adapter audit closes re-auditability, but it resolves none of the 720 surviving
+maps and supplies none of the required external authority. It also does not
+make the separately held historical 47-entry handoff or checksum receipt
+available in a clean checkout.
 
 ## Done definitions
 
-The **bounded scientific result** is retained when its frozen claim, negative
-history, independent recomputation, and scope ceiling remain intact. That
-condition is satisfied for `ORION-11.NECESSITY.V2.2.4` and does not authorize broader
-superiority.
+The **bounded scientific result** retains the archived V2 terminal, negative
+history, independent recomputation, and scope ceiling while adding the R4
+falsification. The current claim is finite implementation plus primary
+descriptive cost economy. Comparative mechanism necessity is withdrawn.
 
 The **current submission package** is ready only after the current source has a
 fresh immutable render and visual audit, an archive/DOI, repository-level
@@ -226,13 +254,20 @@ satisfied.
    its DOI.
 3. Establish repository-level redistribution terms; the package-local licence
    records the present uncertainty and does not grant missing rights.
-4. Acquire an admissible repository-available copy of the source-native
-   adapter handoff and independent checksum receipt, or remove any dependency
-   on those unavailable bytes. The recorded manifest digest alone leaves
-   clean-checkout verification `CANNOT_CHECK`.
+4. Acquire an admissible clean-checkout copy of the externally held historical
+   47-entry adapter handoff and its separate checksum receipt, or remove any
+   package dependency on those unavailable bytes. The current re-audit does not
+   close this custody gap.
+5. Obtain the missing external owner/delegate semantics, target-corpus rights,
+   host authority, signed algebra and authorized delivery, followed by
+   independent semantic review. All 720 surviving maps can now be re-audited
+   from the repository, but none can be resolved there; V13 remains at 0/7
+   signed outputs and 0/4 closed authority acts.
 
-**Bounded scientific checks remain complete and the primary plus disjoint
-replication remain supported and independently reproduced. The current
+**Bounded scientific checks remain complete. The archived primary and disjoint
+replication remain locally reproduced, while R4 removes their comparative
+necessity reading and leaves its own replication `CANNOT_CHECK`. The current
 submission package is nevertheless `NOT_SUBMISSION_READY`. Model-general and
-open-ended superiority remain outside the claim, and no unavailable handoff or
-licensing assumption is promoted into evidence.**
+open-ended superiority remain outside the claim, and no local replay,
+unreachable history, unresolved adapter, or licensing assumption is promoted
+into external evidence.**
