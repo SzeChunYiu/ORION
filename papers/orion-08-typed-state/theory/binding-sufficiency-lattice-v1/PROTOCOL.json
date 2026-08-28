@@ -1,0 +1,64 @@
+{
+  "schema": "ORION.ORION08.BindingSufficiencyLattice.Protocol.v1",
+  "paper_id": "ORION-08",
+  "successor_id": "ORION08.BINDING_SUFFICIENCY_LATTICE.v1",
+  "status": "THEORY_PROVED__INSTANTIATED_ON_FROZEN_RECEIPTS",
+  "lane_type": "THEORY_PLUS_FROZEN_RECEIPT_REANALYSIS",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+
+  "freeze_discipline": {
+    "applicability": "PARTIAL",
+    "why": "The theorems are deductive and verified exhaustively. The instantiation is arithmetic on already-frozen receipts: no episode is re-run, no seed is drawn, no gate is re-evaluated.",
+    "no_new_execution": true,
+    "post_outcome_changes_forbidden": [
+      "re-running any N4 family",
+      "re-evaluating or reinterpreting any gate",
+      "selecting a baseline after seeing which makes the binding look better"
+    ],
+    "baseline_choice_disclosure": "Gap fractions are reported against the STRONGEST non-oracle baseline in each family (NEVER_REOPEN for N4-B, RE_DERIVE_SCRATCH for N4-F3), and additionally against the naive baseline for N4-F3. Choosing the weakest baseline would have flattered the binding; the strongest is used.",
+    "frozen_paper_bytes_modified": "NONE"
+  },
+
+  "claims_under_test": [
+    "Theorem 1: a deterministic zero-regret policy reading only B exists iff every positive-mass B-fibre has a common optimal action.",
+    "Theorem 2: refinement never increases Bayes risk, and strictly decreases it exactly when it splits an action-incompatible positive-mass fibre.",
+    "Instantiation: the scoped binding closes 7.6% of the oracle gap in N4-B; the typed binding closes 98.4% (vs naive) / 81.9% (vs strongest baseline) in N4-F3."
+  ],
+  "explicitly_not_claimed": [
+    "any real-domain generalization -- both families are exact-synthetic",
+    "that more typed or scoped state always helps",
+    "any change to a family terminal or gate",
+    "novelty over donor decision-sufficiency / Blackwell theory",
+    "p10 or novelty authorization, both of which remain false in the N4-B record"
+  ],
+
+  "independent_checker_requirements": {
+    "independence_rule": "No ORION-08 or N-lane module may be imported. Theorems verified on freshly enumerated finite decision problems. Receipts read as data only.",
+    "exhaustiveness": "all loss tables over 3 values for the enumerated world/action configurations, and all bindings",
+    "arithmetic": "integer; uniform mass removes any need for division",
+    "cannot_check_rule": "exit code 3, status CANNOT_CHECK, never reported as a pass"
+  },
+
+  "negative_controls": {
+    "controls": ["mixed_fibre_has_strict_regret", "splitting_pure_fibre_adds_nothing"],
+    "pass_condition": "2 of 2 fire"
+  },
+
+  "what_a_favourable_outcome_would_and_would_not_license": {
+    "would_license": [
+      "stating when typed binding has decision value, as a criterion rather than an observation",
+      "reporting how much of the achievable value each binding captures",
+      "distinguishing a SUPPORTED terminal (direction) from magnitude"
+    ],
+    "would_not_license": [
+      "real-domain transfer claims",
+      "reopening or restating any family terminal",
+      "novelty over donor theory",
+      "touching submission_tmlr/ bytes bound under issue #1601"
+    ]
+  },
+
+  "stop_rule": "Complete. Real-domain transfer remains separate successor work and is NOT a submission blocker for ORION-08."
+}
