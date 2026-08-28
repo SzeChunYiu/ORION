@@ -165,7 +165,7 @@ def build_body(writer: OpbWriter, params: Parameters) -> dict[str, object]:
     nonzero_points = range(1, group_size)
     point_coords = [coordinates(code, params.prime, params.rank) for code in range(group_size)]
 
-    writer.comment(f"protocol ORION04.D4.GLOBAL_CERTIFIED_SEARCH.v1")
+    writer.comment("protocol ORION04.D4.GLOBAL_CERTIFIED_SEARCH.v1")
     writer.comment(
         "parameters "
         + json.dumps(
