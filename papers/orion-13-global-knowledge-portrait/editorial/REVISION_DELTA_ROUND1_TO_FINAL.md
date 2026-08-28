@@ -1,7 +1,7 @@
 # Revision delta — round 1 to current Wave-1 package
 
 - **Round-1 PDF:** `b843d9ef8cd399c3e186e3a05edca582a2bd9de08f3c22d192b7187b42ac4c19`
-- **Current PDF:** `393bec68d8b94fad8b0cb1f3693e11116a64a5c2dc78fd9ccffb3437bc86d0a0`
+- **Current PDF:** `7137a9a9d8c88c0b64f69550596d000db5f6bf9d267c4b0852e0e94b87ce6176`
 - **Current pages:** 8
 - **TeX input-closure digest:** `40dc935adc98e6000cde38b1e13cda89b747d1a4a4ed3aeea31c80ec8cc3b64d`
 

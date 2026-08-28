@@ -218,14 +218,14 @@ not the filing object. No V2, V3 or P4-X result artifact changed.
 
 | Field | Current value |
 |---|---|
-| Canonical reader-facing source revision | `1aaf76fba90e2f06f0715108e1e5be70eef9eefc` |
-| Clean-build workflow | `manuscript-clipping-audit`, run `33169108251` |
-| Source epoch | `1787918219` |
+| Canonical reader-facing source revision | `c66fd78440a1ff0e621ca6ada5bcde93604330d5` |
+| Clean-build workflow | `manuscript-clipping-audit`, run `33172818592` |
+| Source epoch | `1787919259` |
 | Engine | pdfTeX 1.40.25 / TeX Live 2023, Ubuntu latexmk 4.83 |
-| PDF SHA-256 | `9dbf69d396e0396f9b8ccaea313fa409d1325bd5f939ba4db224198c4747c87d` |
+| PDF SHA-256 | `7aca0deda6f7a086997a8cc796e50c7d2e89eaae6578e248ee9a87b862e39295` |
 | Pages | 19, US letter |
 | Package copy | `journal_package/manuscript.pdf`, byte-identical |
-| Reader-facing author gate | `p4-tmlr-submission-audit`, run `33169108291`, success |
+| Reader-facing author gate | `p4-tmlr-submission-audit`, run `33172493159`, success |
 
 The clipping run rebuilt the PDF and found no clipping before its equality stage
 reported the expected stale tracked-PDF mismatch. The exact uploaded rebuild was

@@ -17,7 +17,7 @@ the private evidence and package manifests where they serve integrity checks.
 
 - title: *Coordinate-Governed Mapping of Source-Local Scientific Projections*
 - pages: 8
-- PDF SHA-256: `393bec68d8b94fad8b0cb1f3693e11116a64a5c2dc78fd9ccffb3437bc86d0a0`
+- PDF SHA-256: `7137a9a9d8c88c0b64f69550596d000db5f6bf9d267c4b0852e0e94b87ce6176`
 - source-PDF byte match: exact
 
 The manuscript availability section now states the scientific access and
@@ -44,6 +44,6 @@ instructions.
 
 - source archive SHA-256: `72295a308f335c9077b03e6fba8e0227a9631dffadcc5d8c31bd170febf6b431`
 - review-resource archive SHA-256: `5c89e144e4a495c98d11afda6f9d73a01c5638974c61b6a90861273564f16460`
-- submission manifest SHA-256: `0a55e11c7d1e357074a2ce019952de52a721f291399790e732725aa9978820b5`
+- submission manifest SHA-256: `e691ec57a1fcfdf6116dc5ae4beba1fde68433eb5dbe1cb1850716e3b1dbf37b`
 
 These identifiers are audit-only and must not be copied into manuscript prose.

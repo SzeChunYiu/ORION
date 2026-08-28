@@ -2,12 +2,12 @@
 
 ## Canonical render
 
-The bound submission PDF was produced from source revision `1aaf76fba90e2f06f0715108e1e5be70eef9eefc` by GitHub Actions run `33169108251` using:
+The bound submission PDF was produced from source revision `c66fd78440a1ff0e621ca6ada5bcde93604330d5` by GitHub Actions run `33172818592` using:
 
 - Ubuntu runner;
 - latexmk 4.83;
 - pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian);
-- `SOURCE_DATE_EPOCH=1787918219`;
+- `SOURCE_DATE_EPOCH=1787919259`;
 - vendored official TMLR style files pinned to upstream commit `7bf90efe3a0debbba703c05c43f3ff7e4d4a2992`.
 
 Pinned style hashes:
@@ -17,12 +17,12 @@ Pinned style hashes:
 306fd454cf40771bee01293eeb98d2c1cd5f4e11ed0cd7296b335f354fc45206  manuscript/tmlr.bst
 ```
 
-The reader-facing author gate in `p4-tmlr-submission-audit` run `33169108291` also passed against this source revision. It found no rendered internal experiment/product codes, literal decision/status strings, repository transport terms, paths or filenames.
+The reader-facing author gate in `p4-tmlr-submission-audit` run `33172493159` also passed against this source revision. It found no rendered internal experiment/product codes, literal decision/status strings, repository transport terms, paths or filenames.
 
 The resulting PDF is 19 pages with SHA-256:
 
 ```text
-9dbf69d396e0396f9b8ccaea313fa409d1325bd5f939ba4db224198c4747c87d
+7aca0deda6f7a086997a8cc796e50c7d2e89eaae6578e248ee9a87b862e39295
 ```
 
 ## Build from the repository root
@@ -43,7 +43,7 @@ Compile with the pinned epoch:
 
 ```bash
 cd papers/orion-14-verified-scientific-discovery/manuscript
-export SOURCE_DATE_EPOCH=1787918219
+export SOURCE_DATE_EPOCH=1787919259
 latexmk -C main.tex
 latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex
 ```
