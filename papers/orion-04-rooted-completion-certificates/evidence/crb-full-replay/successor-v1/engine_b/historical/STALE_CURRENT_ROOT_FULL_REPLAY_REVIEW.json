@@ -1,0 +1,75 @@
+{
+  "schema": "ORION.NQ.EngineB.CurrentRootFullReplayReview.v1",
+  "reviewed_parent_commit": "63950633df0b6665f90981f922a9ca748c1b9b3d",
+  "branch": "codex/crb-full-manifest-1383-20260826",
+  "scientific_subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
+  "bindings": {
+    "full_replay_authorization_git_blob": "3fb8f81065de8794371373adf75d9d906bccbe3e",
+    "source_manifest_git_blob": "095faaff230bd4ae0e1d4fc4b7c8b4b7bf2148b0",
+    "source_manifest_sha256": "273743ce7a49294593aa80968b298ce21dce634a754cb6cef8b016bdc625a449",
+    "replay_source_manifest_git_blob": "ccccaf59fef378a17360af6db5e1fc7fc854646e",
+    "replay_source_manifest_sha256": "15191d204051557109957848b21db20241437beae8f75ddfcb8ac0088a41f564",
+    "submit_script_git_blob": "42e0d54d19bea77adeef6f5dafc2aa9b113f4ef7",
+    "submit_script_sha256": "4f14727e99aba5afb7aceb59cfc618f3651ca35fd847a037b3282552410a020b",
+    "job_script_git_blob": "e0e77542e7bfadb7c79e389253bfb8501758da8b",
+    "job_script_sha256": "a1b5ae2d4a47969fc185a3d98c449a7fabf35a2f3a74800e3eeb2aadf4b8ca30"
+  },
+  "control_gate": {
+    "workflow": "Five-paper R9 NQ CR-B control gate",
+    "run": 33043441292,
+    "job": 98421959850,
+    "conclusion": "SUCCESS",
+    "focused_and_hostile_tests": {
+      "passed": 70,
+      "skipped": 3
+    },
+    "external_drup_control": "VERIFIED",
+    "rank2_prefix_control": "NQ_CR_A_CR_B_RANK2_PREFIX_CONTROL_PASS"
+  },
+  "declared_denominators": {
+    "NQ_D2_NORMALIZED_LENGTH_19": 98622,
+    "NQ_D3_STRUCTURED_LENGTH_25": 230983
+  },
+  "submission": {
+    "nonduplication_key": "741454d7d6b513ccd80d2aa9a78d2a9f5076fe8075341d0ecc8e95566ecc28ea",
+    "prior_failed_attempt": {
+      "job_id": 3544050,
+      "nonduplication_key": "07e8b0389f37d2c890cdc050f0f3db2a13d94002dedd94cfcf8a1ce6c0128384",
+      "terminal": "SLURM_TMPDIR_UNSET_ON_LUNARC",
+      "compute_started": false
+    },
+    "current_key_seen_in_committed_registry": false,
+    "current_key_seen_in_prior_attempt": false,
+    "status": "AUTHORIZED_NOT_SUBMITTED",
+    "single_attempt_only": true
+  },
+  "resource_envelope": {
+    "account": "hep2023-1-3",
+    "partition": "hep",
+    "nodes": 1,
+    "cpus_per_task": 48,
+    "memory": "192G",
+    "walltime": "24:00:00"
+  },
+  "root_review": {
+    "complete_manifest_denominators_checked": true,
+    "control_receipts_current": true,
+    "external_checker_identity_pinned": true,
+    "submission_nonduplication_checked": true,
+    "node_local_fallback_present": true,
+    "no_numerical_outcome_read": true,
+    "authorization": "APPROVED_FOR_ONE_LUNARC_SUBMISSION"
+  },
+  "authority": {
+    "full_census_executed": false,
+    "D2_C5_cubed": "CANNOT_CHECK",
+    "D3_C5_cubed": "CANNOT_CHECK",
+    "D4_C5_cubed": "OPEN",
+    "blinded_independence": "NOT_CLAIMED_EXPECTED_OUTCOMES_EXPOSED",
+    "external_independence": false,
+    "paper_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE",
+    "journal_authority": false
+  },
+  "terminal": "NQ_CRB_FULL_REPLAY_CURRENT_ROOT_REVIEW_PASS__ONE_SUBMISSION_AUTHORIZED"
+}

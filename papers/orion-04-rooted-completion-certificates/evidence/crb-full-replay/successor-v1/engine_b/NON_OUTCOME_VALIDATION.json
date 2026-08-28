@@ -1,0 +1,65 @@
+{
+  "authority": {
+    "blinded_independence": "NOT_CLAIMED",
+    "d2": "CANNOT_CHECK",
+    "d3": "CANNOT_CHECK",
+    "d4": "OPEN",
+    "external_authority": false,
+    "journal_authority": false,
+    "paper_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "bindings": {
+    "preserved_failure_binding_sha256": "5c6d783e1f81c4cb5873f4eaeaf429618aae7b0e04622a5bf652207a560f7187",
+    "source_manifest_sha256": "eac4870770abf27988e2cbbf28c738b4826f506c657aa56baa506812304ffdfe"
+  },
+  "full_scientific_execution": "HISTORICAL_ATTEMPT_FAILED_BEFORE_VALID_D2_D3_OUTCOME",
+  "full_strata_closed": false,
+  "historical_job": {
+    "d2_authority": "CANNOT_CHECK",
+    "d3_authority": "CANNOT_CHECK",
+    "failure_terminal": "NQ_CRB_FULL_REPLAY_JOB_3544056_FAILED_CENSUS_RECEIPT_SERIALIZATION__D2_D3_AUTHORITY_CANNOT_CHECK",
+    "job_id": 3544056,
+    "scheduler_state": "FAILED",
+    "valid_d2_outcome": false,
+    "valid_d3_outcome": false
+  },
+  "local_fixture_lunarc_submission": "NOT_SUBMITTED_LOCAL_ONLY",
+  "local_fixture_receipt": {
+    "authority": {
+      "blinded_independence": "NOT_CLAIMED",
+      "d4_c5_cubed": "OPEN",
+      "paper_authority_delta": "NONE",
+      "scientific_authority_delta": "NONE"
+    },
+    "bindings": {
+      "source_manifest_sha256": "eac4870770abf27988e2cbbf28c738b4826f506c657aa56baa506812304ffdfe"
+    },
+    "payload": {
+      "blinded_independence": "NOT_CLAIMED",
+      "blinding_disclosure": "PUBLIC_PROGRAMME_EXPECTED_OUTCOMES_EXPOSED",
+      "checks": {
+        "all_125_elements_round_trip": true,
+        "negative_control_unsat": true,
+        "negative_matches_slow_reference": true,
+        "positive_control_sat": true,
+        "positive_matches_slow_reference": true,
+        "primitive_inverse_law": true
+      },
+      "d4_c5_cubed": "OPEN",
+      "full_scientific_execution": "NOT_RUN",
+      "full_strata_closed": false,
+      "lunarc_submission": "NOT_SUBMITTED",
+      "terminal": "NQ_ENGINE_B_NON_OUTCOME_FIXTURES_VALIDATED"
+    },
+    "receipt_sha256": "be07d75b056a012d0c8ef4cfe6c3b5bd2918961e8efaef0105ceb1e4243f9df2",
+    "schema": "ORION.NQ.EngineB.Receipt.v1",
+    "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
+  },
+  "lunarc_submission": "HISTORICAL_JOB_3544056_SUBMITTED_AND_FAILED",
+  "receipt_sha256": "875dd7c4cdfc78ef4b26e3062b79a5146bc645bec3b0c047c52e67eb2b1a01f7",
+  "schema": "ORION.ORION04.CRB.PostFailureLocalFixtureValidation.v1",
+  "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
+  "terminal": "ORION04_POST_FAILURE_LOCAL_FIXTURES_VALIDATED_NO_SCIENCE_DELTA",
+  "validation_context": "POST_FAILURE_LOCAL_FIXTURES_ONLY"
+}
