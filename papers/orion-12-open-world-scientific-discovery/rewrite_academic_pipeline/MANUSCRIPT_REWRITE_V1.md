@@ -1,7 +1,5 @@
 # Open-World Literature Discovery with Route-Aware Stopping and Fail-Closed Coverage Diagnostics
 
-<!-- Draft integration note: reader-facing rewrite from the current bounded claim and external TREC-COVID result. Final IP&M citations and Elsevier source formatting must be rebound during package integration. -->
-
 ## Abstract
 
 Literature-search systems are commonly evaluated as retrieval engines, yet scientific discovery has an additional difficulty: a search process rarely knows whether all material routes to relevant evidence have been explored. We study open-world scientific literature discovery as a governed retrieval problem in which route coverage, route independence and stopping are explicit rather than inferred from confidence alone. The method separates search from synthesis, records which evidence routes have earned independence, preserves unresolved routes as open coverage obligations, and refuses to convert unavailable or unobserved routes into evidence of absence.
