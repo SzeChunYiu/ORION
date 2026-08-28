@@ -1,0 +1,89 @@
+{
+  "schema": "ORION.ORION16.GraphQualityRevalidation.ExpectedTerminals.v1",
+  "paper_id": "ORION-16",
+  "successor_id": "ORION16.REAL_SYSTEM_MINIMAL_REVALIDATION.v1",
+  "governing_issue": 1649,
+  "authored_date": "2026-08-28",
+  "terminal_set": [
+    {
+      "terminal": "THEOREM_PROVED__TAXONOMY_MATCHES_FROZEN_REAL_GOLD",
+      "reached": true,
+      "observed": "Theorems 1-4 verified over 11,892 over-approximation triples and 54,172 under-approximation pairs with 0 cost-optimality violations; taxonomy matches 4/4 frozen gold terminals; 4/4 negative controls fire"
+    },
+    {
+      "terminal": "THEORY_OBJECTIVE_EARNED",
+      "reached": true,
+      "observed": "#1649 asks for a theorem distinguishing sound over-approximate, exact and learned/incomplete graphs with explicit bounds on extra work and failure risk; Theorems 1-4 supply exactly that as a two-sided exact accounting"
+    },
+    {
+      "terminal": "EMPIRICAL_DISCRIMINATOR_NOT_EARNED",
+      "reached": true,
+      "adverse_to_breadth": true,
+      "observed": "the ORION-16 discriminator -- 2-3 independently sourced systems compared against full / direct-neighbour / changed-set-only / dependency-closure / incremental-verification baselines -- has not been run",
+      "required_handling": "PRESERVE AND STATE. The frozen real-transition audit is a terminal-correctness audit over 16 cases on one system, not a cost benchmark. No deployed-system claim is made.",
+      "consequence": "per the #1649 stop rule the general theorem and bounded paper stand",
+      "correction": "an earlier draft claimed no such data exists in the repository; that was a repo-scoped absence claim from a paper-scoped search and is wrong. ORION-17's P7_CLOSURE_RETENTION_V1.json is adjacent real-system evidence that does not substitute but should be pointed at."
+    },
+    {
+      "terminal": "THEORY_REFUTED",
+      "reached": false,
+      "condition": "an over-approximate graph that strands an obligation, or a sound graph cheaper than exact, or a taxonomy row contradicted by the gold",
+      "required_action": "record the counterexample verbatim, retract the theorem, and return ORION-16 to the bounded submission lane with no further rescue cycle"
+    },
+    {
+      "terminal": "CANNOT_CHECK",
+      "reached": false,
+      "condition": "gold missing or the checker cannot execute",
+      "required_action": "report as CANNOT_CHECK; never as a pass"
+    }
+  ],
+  "preserved_adverse_and_null_evidence": [
+    {
+      "item": "RC-ALIAS-MISSING = CANNOT_CHECK in the frozen gold",
+      "status": "PRESERVED_AND_LOAD_BEARING",
+      "note": "This CANNOT_CHECK is the packet's central confirmation, not an inconvenience: an incomplete graph produces abstention rather than a confident wrong answer, exactly as Theorem 3's corollary prescribes."
+    },
+    {
+      "item": "RC-ALIAS-WRONG = REOPEN",
+      "status": "PRESERVED_UNCHANGED"
+    },
+    {
+      "item": "the twelve P9/P10 gold cases outside this theorem's scope",
+      "status": "NEITHER_USED_NOR_SUPPRESSED",
+      "note": "the full gold file is SHA-256 bound so the four-case selection is auditable"
+    },
+    {
+      "item": "CLAIM_LEDGER_V4.md scope ceiling: universal minimality of the five lift coordinates, deployed-agent performance and donor novelty NOT established",
+      "status": "PRESERVED_VERBATIM"
+    },
+    {
+      "item": "external_independent_validation = CANNOT_CHECK",
+      "status": "PRESERVED_UNCHANGED",
+      "note": "same-programme work; not discharged"
+    },
+    {
+      "item": "the #1649 empirical discriminator is unmet",
+      "status": "NEWLY_RECORDED_AND_STATED_PLAINLY",
+      "note": "recorded as a terminal rather than omitted, so the theory objective is not mistaken for the empirical one"
+    }
+  ],
+  "authority_updates": {
+    "V4_4_and_V4_6": "unchanged; PR #1638's result is extended, not altered",
+    "gold_terminals_rewritten": "NONE",
+    "cannot_check_converted": "NONE",
+    "manuscript_or_ledger_edited": "NONE",
+    "new_object_created": "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/ (additive)",
+    "paper_tree_oid_effect": {
+      "pinned": "e1c12856ca9d",
+      "ref_issue": 1625,
+      "note": "additive directory moves the pin; no existing byte modified"
+    },
+    "promotion_budget": "SPENT -- ORION-16's one attempt under #1649"
+  },
+  "explicitly_out_of_scope": [
+    "acquiring 2-3 independently sourced real dependency/change graphs",
+    "any cost benchmark against build systems or regression test selection",
+    "external independent validation",
+    "venue, packaging and filing decisions"
+  ]
+}
