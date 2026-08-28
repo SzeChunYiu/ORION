@@ -1,0 +1,150 @@
+{
+ "schema": "ORION.ORION16.RealSystemDiscriminator.Result.v1",
+ "seed": 20260828,
+ "fractions": [
+  0.01,
+  0.05,
+  0.1
+ ],
+ "systems": [
+  {
+   "system": "mathlib4",
+   "status": "OK",
+   "resolution_fidelity": 0.9999,
+   "nodes": 8409,
+   "edges": 26305,
+   "change_sets": 191,
+   "median_delta": 1,
+   "arms": {
+    "full": {
+     "median_cost": 8409,
+     "mean_cost": 8409,
+     "stranded_total": 0,
+     "median_cost_frac_of_full": 1.0
+    },
+    "changed-set-only": {
+     "median_cost": 1,
+     "mean_cost": 6.3,
+     "stranded_total": 609006,
+     "median_cost_frac_of_full": 0.0001
+    },
+    "direct-neighbours": {
+     "median_cost": 7,
+     "mean_cost": 24.85,
+     "stranded_total": 605463,
+     "median_cost_frac_of_full": 0.0008
+    },
+    "affected-closure": {
+     "median_cost": 345,
+     "mean_cost": 3194.81,
+     "stranded_total": 0,
+     "median_cost_frac_of_full": 0.041
+    }
+   },
+   "conservative_median_cost": {
+    "0.01": 8372.0,
+    "0.05": 8381.0,
+    "0.1": 8382.0
+   },
+   "incomplete_stranded_total": {
+    "0.01": 8801,
+    "0.05": 46098,
+    "0.1": 56005
+   },
+   "affected_closure_median_cost_on_subset": 667.5
+  },
+  {
+   "system": "nf-core-rnaseq",
+   "status": "OK",
+   "resolution_fidelity": 0.9579,
+   "nodes": 138,
+   "edges": 135,
+   "change_sets": 41,
+   "median_delta": 1,
+   "arms": {
+    "full": {
+     "median_cost": 138,
+     "mean_cost": 138,
+     "stranded_total": 0,
+     "median_cost_frac_of_full": 1.0
+    },
+    "changed-set-only": {
+     "median_cost": 1,
+     "mean_cost": 1.71,
+     "stranded_total": 16,
+     "median_cost_frac_of_full": 0.0072
+    },
+    "direct-neighbours": {
+     "median_cost": 2,
+     "mean_cost": 2.1,
+     "stranded_total": 0,
+     "median_cost_frac_of_full": 0.0145
+    },
+    "affected-closure": {
+     "median_cost": 2,
+     "mean_cost": 2.1,
+     "stranded_total": 0,
+     "median_cost_frac_of_full": 0.0145
+    }
+   },
+   "conservative_median_cost": {
+    "0.01": 2.0,
+    "0.05": 2.0,
+    "0.1": 2.0
+   },
+   "incomplete_stranded_total": {
+    "0.01": 0,
+    "0.05": 1,
+    "0.1": 1
+   },
+   "affected_closure_median_cost_on_subset": 2.0
+  },
+  {
+   "system": "gene-ontology",
+   "status": "OK",
+   "resolution_fidelity": null,
+   "nodes": 39907,
+   "edges": 68311,
+   "change_sets": 4,
+   "median_delta": 957.5,
+   "arms": {
+    "full": {
+     "median_cost": 39907.0,
+     "mean_cost": 39907,
+     "stranded_total": 0,
+     "median_cost_frac_of_full": 1.0
+    },
+    "changed-set-only": {
+     "median_cost": 957.5,
+     "mean_cost": 1167.75,
+     "stranded_total": 45272,
+     "median_cost_frac_of_full": 0.024
+    },
+    "direct-neighbours": {
+     "median_cost": 2633.5,
+     "mean_cost": 3311.5,
+     "stranded_total": 36697,
+     "median_cost_frac_of_full": 0.066
+    },
+    "affected-closure": {
+     "median_cost": 12171.5,
+     "mean_cost": 12485.75,
+     "stranded_total": 0,
+     "median_cost_frac_of_full": 0.305
+    }
+   },
+   "conservative_median_cost": {
+    "0.01": 14503.0,
+    "0.05": 23602.0,
+    "0.1": 30951.5
+   },
+   "incomplete_stranded_total": {
+    "0.01": 905,
+    "0.05": 3812,
+    "0.1": 7034
+   },
+   "affected_closure_median_cost_on_subset": 12171.5
+  }
+ ],
+ "systems_evaluable": 3
+}
