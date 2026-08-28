@@ -1,7 +1,5 @@
 # Compilation Regime Geometry: Exact Maps, Refutations and Transfer Across Quantum Compilation Families
 
-<!-- Draft integration note: Quantum-oriented rewrite. The failed size-transfer promotion is treated as a boundary, not reopened. Final arXiv/Quantum source should state the theorem assumptions and contribution summary in the opening pages and bind citations to the canonical bibliography. -->
-
 ## Abstract
 
 Exact quantum compilation is usually studied by optimizing a fixed objective over a chosen family of constructions. We study a complementary question: what structural regimes determine when a restricted construction is already optimal, when a larger family is necessary, and when a compact structural rule ceases to exist? We call this object **compilation regime geometry** and operationalize it through five components: a donor-optimal region, exact trade or counterexample families, a proved sufficiency or normal-form bound where available, a structural membership rule when the representation supports one, and prospective tests that can refute transfer.
