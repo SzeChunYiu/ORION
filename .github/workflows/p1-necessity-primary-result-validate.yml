@@ -15,6 +15,7 @@ on:
       - 'research/revival/p1/verify_mutation_necessity_independent.py'
       - 'research/revival/p1/run_mutation_necessity_campaign.py'
       - 'research/revival/p1/freeze_mutation_necessity_worlds.py'
+      - 'research/revival/p1/validate_mutation_necessity_amendment_chain.py'
       - 'src/orion/study/p1_causal/absorbed_mechanics.py'
       - 'src/orion/study/p1_causal/necessity_*.py'
 
@@ -54,16 +55,12 @@ jobs:
         run: |
           rm -rf /tmp/p1-worlds /tmp/p1-result
           python research/revival/p1/freeze_mutation_necessity_worlds.py --outdir /tmp/p1-worlds
-          python - <<'PY'
-          import json, shutil
-          from pathlib import Path
-          frozen=json.loads(Path('research/revival/p1/confirmatory/v2.2/PRIMARY_WORLD_FREEZE.json').read_text())
-          fresh=json.loads(Path('/tmp/p1-worlds/WORLD_FREEZE.json').read_text())
-          for key in ['protocol_version','confirmatory_seed','replication_seed','n','hidden_shift_n','negative_control_n','public_sha256','protected_response_matrix_sha256','candidate_view_leak_count','by_family','source_sha256']:
-              assert fresh[key]==frozen[key], (key,fresh[key],frozen[key])
-          assert fresh['protocol_chain']['chain_sha256']==frozen['protocol_chain']['chain_sha256']
-          shutil.copyfile('research/revival/p1/confirmatory/v2.2/PRIMARY_WORLD_FREEZE.json','/tmp/p1-worlds/WORLD_FREEZE.json')
-          PY
+          python research/revival/p1/validate_mutation_necessity_amendment_chain.py \
+            --repo-root . \
+            --fresh-world-freeze /tmp/p1-worlds/WORLD_FREEZE.json \
+            --out /tmp/p1-worlds/AMENDMENT_CHAIN_VALIDATION.json
+          cp research/revival/p1/confirmatory/v2.2/PRIMARY_WORLD_FREEZE.json \
+            /tmp/p1-worlds/WORLD_FREEZE.json
       - name: Execute frozen primary outcome read-only
         run: |
           python research/revival/p1/run_mutation_necessity_campaign.py \
