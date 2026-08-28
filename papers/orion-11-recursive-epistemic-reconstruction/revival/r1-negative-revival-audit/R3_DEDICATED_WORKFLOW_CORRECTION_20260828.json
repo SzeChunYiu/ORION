@@ -1,0 +1,60 @@
+{
+  "authority": {
+    "freeze_authorized": false,
+    "historical_prospective_order": "CANNOT_CHECK",
+    "scientific_authority_delta": "NONE",
+    "submission_authorized": false,
+    "top_tier_gate_pass": false
+  },
+  "claim_boundary": "CI_VALIDATOR_REPAIR_ONLY__NO_WORLD_ROW_PROTOCOL_MARGIN_RESULT_OR_NEGATIVE_DISPOSITION_CHANGE",
+  "correction": {
+    "new_validator": "research/revival/p1/validate_mutation_necessity_amendment_chain.py",
+    "preserves_original_world_receipt": true,
+    "workflow_paths": [
+      ".github/workflows/p1-necessity-execution-binding-amendment-validate.yml",
+      ".github/workflows/p1-necessity-primary-result-validate.yml"
+    ]
+  },
+  "date": "2026-08-28",
+  "failed_runs_preserved": [
+    33144032180,
+    33144032234
+  ],
+  "frozen_bindings": {
+    "execution_freeze_v2_sha256": "15c1c9cb7e0a329a3fb648ab3598f2db32ec0a630c161bd9f2ce357b0efbef8c",
+    "execution_freeze_v3_sha256": "da982bca3e7e37027b3bb9f14c33d77eeb81752dc5fd2da74f71abf46ea8122e",
+    "world_freeze_sha256": "212f5891af4945f66d31149b2e07f6f7593d40a2cb9d1cbe9e42701060a18d77"
+  },
+  "local_verification": {
+    "amendment_chain_receipt_bytes": 893,
+    "amendment_chain_receipt_sha256": "c4d942a60f8c8babf3b1848ac04469cfe3f6ab30a6753a1b6033605aa66106a2",
+    "amendment_chain_status": "AMENDMENT_CHAIN_VALID",
+    "fresh_primary_all_support_gates_pass": true,
+    "fresh_primary_result_bytes": 14087,
+    "fresh_primary_result_sha256": "1eaab37f246ac3a03edddb7ef00f3c0b0387c1aa9474dfcfcaee6aa18fb853fd",
+    "fresh_primary_terminal": "P1_MUTATION_NECESSITY_SUPPORTED",
+    "focused_tests": "13 passed",
+    "workflow_lint": "PASS"
+  },
+  "mechanistic_cause": "VALIDATOR_FLATTENED_PRE_OUTCOME_SOURCE_AMENDMENT_V2",
+  "mechanistic_detail": {
+    "documented_source_changes": [
+      "src/orion/study/p1_causal/absorbed_mechanics.py",
+      "src/orion/study/p1_causal/necessity_statistics.py"
+    ],
+    "failed_validator_behavior": "The two dedicated workflows required fresh current source hashes to equal the superseded source hashes retained in PRIMARY_WORLD_FREEZE.json.",
+    "repaired_validator_behavior": "Fresh world geometry must equal the frozen geometry; the two amended sources must follow EXECUTION_BINDING_AMENDMENT_V2 old-to-new identities and PRIMARY_EXECUTION_FREEZE_V3; every unamended source remains byte-equal.",
+    "world_rows_changed": false
+  },
+  "merged_context": {
+    "merge_commit": "ff0df7f2c935ffaade5899e36bb8687ee3bd68ab",
+    "pr": 1590,
+    "pr_head": "d8cd55e3dc625e7f9c99989a8a669357897cfbcb"
+  },
+  "preserved_limits": [
+    "The missing historical execution-source commits still prevent independent confirmation of prospective commit order.",
+    "The broad historical H1 negative remains NOT_SUPPORTED.",
+    "This mechanical replay does not establish model-general, external-owner, submission, or paper-freeze authority."
+  ],
+  "schema": "ORION.P1.R3DedicatedWorkflowCorrection.v1"
+}
