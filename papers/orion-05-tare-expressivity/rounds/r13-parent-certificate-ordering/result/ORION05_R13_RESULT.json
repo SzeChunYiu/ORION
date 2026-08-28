@@ -1,0 +1,33 @@
+{
+  "all_projection_valid": true,
+  "authority": {
+    "external_independence": false,
+    "final_freeze": false,
+    "generic_tare": false,
+    "journal_or_submission": false,
+    "novelty": false,
+    "physical_or_fault_tolerant_value": false,
+    "standalone_production_value": false
+  },
+  "cell_count": 24,
+  "date": "2026-08-27",
+  "hybrid_over_parent_wall_ratio_max": 1.003294984886169,
+  "hybrid_over_parent_wall_ratio_min": 1.0022846387616915,
+  "mechanism_disposition": "R12 timeouts are attributable to exhaustive candidate ordering on this held-out panel; parent-certificate ordering completes but requires and charges the parent, so standalone production value remains false.",
+  "protocol_sha256": "41559a965472b14c331191afa157306df7b395513bbeb09b33083fbbc9e4fd19",
+  "r12_null_preserved": true,
+  "raw_attempts_sha256": "216d67c400a500f2434f27c6f95ed564f6827e2c6bb459a44c184ff1f8e39b4a",
+  "revival_outcome": "IMPROVED",
+  "schema": "ORION.ORION05.R13.ParentCertificateOrderingResult.v1",
+  "scientific_authority_delta": "NONE",
+  "slurm": {
+    "SLURMD_NODENAME": "cn063",
+    "SLURM_CPUS_PER_TASK": "1",
+    "SLURM_JOB_ID": "3550256",
+    "SLURM_JOB_NAME": "o05-r13-r1",
+    "SLURM_JOB_PARTITION": "lu48",
+    "SLURM_MEM_PER_NODE": "8192"
+  },
+  "source_commit": "c0c120e82291445ef2f7160db066b0a2cb8cef0c",
+  "terminal": "ORION05_R13_PARENT_CERTIFICATE_ORDERING_COMPLETION_ONLY__R12_PRODUCTION_NULL_RETAINED"
+}

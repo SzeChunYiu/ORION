@@ -1,0 +1,60 @@
+{
+  "schema": "ORION.ORION05.R13.ParentCertificateOrderingProtocol.v1",
+  "date": "2026-08-27",
+  "status": "FROZEN_BEFORE_CONFIRMATORY_OUTCOME",
+  "base_commit": "0a56f4a5a28f31072c6fb3cc910804474dc2f2a6",
+  "scientific_authority_delta": "NONE",
+  "source_negative": {
+    "terminal": "ORION05_R12_EXACT_BUT_NO_PRODUCTION_VALUE",
+    "valid_terminal_job": 3549607,
+    "initial_wrapper_failure_job": 3549585,
+    "result_path": "papers/orion-05-tare-expressivity/rounds/r12-production-benchmark/result/ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json",
+    "result_sha256": "3514b160acdb506e94c18e043190f118511fb628ad6a3629b811bb5b4c7c5c2a",
+    "raw_sha256": "69294c9633c51d4ee32bdf869b1a7eed39f52f72ff51eb47126365fb50ead251",
+    "attempt1_failure_sha256": "21918467a67a29d7f5dbf87561b5f748fc4979ff3ccef919b1ed35b97064145c",
+    "execution_custody_sha256": "ed0d8d95709cf9acfa99959b5ad783ef17f6fd2120a8d94142b08a2300d55768"
+  },
+  "pilot_disclosure": {
+    "job": 3549887,
+    "authority": "EXPLORATORY_ONLY__NOT_A_ROUND_TERMINAL",
+    "matching_indices": [0, 7, 14],
+    "subjects": ["H4", "N2"],
+    "disposition": "The pilot was run before this freeze and may diagnose the mechanism only; its rows are excluded from the confirmatory terminal."
+  },
+  "mechanism_stage": "CANDIDATE_ENUMERATION_ORDER",
+  "strongest_parent": "unrestricted 512-state exact DP referee from the unchanged R12 runner",
+  "lever": "PARENT_CERTIFICATE_GUIDED_FIRST_CANDIDATE_ORDERING",
+  "lever_contract": [
+    "run the strongest parent on each cell and charge its CPU/wall/RSS cost",
+    "project its returned six frames and common Tag into the support-two sparse witness representation",
+    "evaluate that projected candidate first",
+    "accept exact completion only when the projected witness independently verifies and has the same cost as the unrestricted lower bound",
+    "do not call this standalone support-two acceleration because the parent was required"
+  ],
+  "confirmatory_panel": {
+    "subjects": ["H4", "N2"],
+    "matching_order": "canonical lexicographic perfect-matching order already frozen by R6M",
+    "excluded_exposed_indices": [0, 7, 14],
+    "included_heldout_indices": [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13],
+    "cell_count": 24,
+    "selection_rule": "all canonical matchings not exposed by R12; no outcome-based selection"
+  },
+  "cost_accounting": {
+    "charged_to_lever": ["parent_cpu_ns", "parent_wall_ns", "parent_peak_rss_kib", "projection_and_independent_verification_cpu_ns", "projection_and_independent_verification_wall_ns"],
+    "comparison": "hybrid total versus the same strongest parent; hybrid cannot win merely by reusing the parent"
+  },
+  "decision_rule": {
+    "improved": "all 24 held-out cells return a valid support-two witness at the parent exact cost; this repairs timeout/completion only",
+    "retained_negative": "any valid cell fails projection/equality, or the hybrid has no standalone resource value; preserve R12 null in either case",
+    "cannot_check": "a source binding, parent completion, environment or independent witness check fails"
+  },
+  "authority": {
+    "standalone_production_value": false,
+    "generic_tare": false,
+    "physical_or_fault_tolerant_value": false,
+    "external_independence": false,
+    "novelty": false,
+    "journal_or_submission": false,
+    "final_freeze": false
+  }
+}
