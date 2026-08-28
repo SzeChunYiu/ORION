@@ -1,0 +1,74 @@
+{
+  "schema": "ORION.ORION02.FibreDiameterFloor.Protocol.v1",
+  "protocol_identity": "ORION02.FIBRE_DIAMETER_FLOOR.v1",
+  "paper_id": "ORION-02",
+  "upstream_hypothesis": "#1615 Priority 2 (ORION02.FIBRE_AMBIGUITY_RISK.v1)",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "authored_date": "2026-08-28",
+
+  "question": "Is the D(z)/2 diameter floor a general property of accepted fibre certificates, or an artefact of the A_t/B_t construction?",
+
+  "why_this_is_not_already_answered": {
+    "already_frozen": "C-C3 gives 5t-term instances A_t,B_t sharing ordered weights and the complete labeled pair-gain matrix with value gap 2t-1. C2-C4 gives the real pair-only minimax additive radius (2t-1)/2 for deterministic estimators on that input.",
+    "gap": "Those are statements about one construction. The #1615 hypothesis is general: for ANY representation fibre F_z with target diameter D(z), any certificate accepted on the whole fibre incurs worst-case error at least D(z)/2, any accepted interval of radius < D(z)/2 misses a member, and a balanced two-point distribution on a diameter-attaining pair forces conditional miscoverage at least 1/2.",
+    "consequence_if_general": "The R24 terminal C_R24_ARM_CONDITIONAL_CERTIFICATE_INVALID stops being a tuning failure and becomes a structural impossibility, and 'raw coverage cannot substitute for conditional risk control' acquires a mechanism."
+  },
+
+  "what_this_protocol_does_NOT_do": [
+    "It does not re-derive or verify C-C3 or C2-C4. No executable A_t/B_t constructor exists in this repository; the family is a paper-level construction resting on B.3(c), a cross-gadget separability lemma the manuscript does not state.",
+    "Reimplementing A_t/B_t here and then 'verifying' it would test the reimplementation, not the frozen claim. A_t/B_t is therefore CITED as the instance that makes the floor unbounded, never re-proved.",
+    "It does not touch any frozen claim, terminal, or ledger entry."
+  ],
+
+  "method": {
+    "proof": "Elementary and stated in full in THEORY.md. The load-bearing step is that a certificate accepted on the whole fibre is a function of z alone, so it cannot separate two members of F_z.",
+    "machine_check": "Exhaustive enumeration over a finite family of fibre configurations. For each configuration compute D(z) and search ALL admissible deterministic certificates for one achieving worst-case absolute error strictly below D(z)/2 - tol. The search is for a COUNTEREXAMPLE; finding none over an exhaustive family is the evidence.",
+    "enumeration_family": "fibres of size k in 2..5 with target values drawn from a frozen finite grid; all configurations enumerated, none sampled",
+    "tolerance": 1e-09
+  },
+
+  "controls": [
+    {
+      "id": "C1_distinguishing_certificate_must_beat_the_floor",
+      "statement": "A certificate permitted to see the member index, not only z, MUST achieve worst-case error 0 and therefore beat the floor whenever D(z) > 0. If this control does not fire, the search cannot detect a floor violation and the instrument is invalid.",
+      "on_failure": "T4_CANNOT_CHECK_CONTROL_FAILED"
+    },
+    {
+      "id": "C2_degenerate_fibre_no_alarm",
+      "statement": "On a fibre whose members all share one target value, D(z)=0 and the floor is vacuous. The checker must report NO violation here. A checker that alarms on the degenerate case cries wolf and is invalid."
+    },
+    {
+      "id": "C3_optimum_is_the_midpoint",
+      "statement": "For the point-certificate case the achieved optimum must equal exactly D(z)/2, attained at the midpoint of a diameter-attaining pair. A search returning an optimum above D(z)/2 has not searched the admissible set."
+    }
+  ],
+
+  "terminals": [
+    {"id": "T1_FLOOR_HOLDS_EXHAUSTIVELY", "class": "FAVOURABLE",
+     "conditions": ["no configuration admits a certificate below D(z)/2 - tol", "C1 fires", "C2 stays silent", "C3 holds with equality"],
+     "licenses": "A bounded statement that the D(z)/2 floor is general for accepted fibre certificates on this enumerated family, with A_t/B_t cited as the instance making it unbounded.",
+     "does_not_license": ["any claim about achievable risk on real data", "revival of any retracted ORION-02 claim", "any change to C_R24_ARM_CONDITIONAL_CERTIFICATE_INVALID"]},
+    {"id": "T2_FLOOR_VIOLATED__THEOREM_FALSE", "class": "UNFAVOURABLE",
+     "conditions": ["some configuration admits an accepted certificate with worst-case error < D(z)/2 - tol"],
+     "reading": "The general theorem is false as stated, or the fibre is mis-identified. This is the registered falsifier named in THEORY.md 3.1."},
+    {"id": "T3_MISCOVERAGE_BOUND_VIOLATED", "class": "UNFAVOURABLE",
+     "conditions": ["a balanced two-point distribution on a diameter-attaining pair yields conditional miscoverage < 1/2 for an accepted interval of radius < D(z)/2"]},
+    {"id": "T4_CANNOT_CHECK_CONTROL_FAILED", "class": "CANNOT_CHECK",
+     "conditions": ["C1 does not fire, or C3 fails"],
+     "reading": "The search cannot detect violations. No claim is read either way."},
+    {"id": "T5_CANNOT_CHECK_ENUMERATION_INCOMPLETE", "class": "CANNOT_CHECK",
+     "conditions": ["the enumeration could not be completed"]}
+  ],
+
+  "falsifiability_self_check": {
+    "unfavourable_terminals": 2,
+    "cannot_check_terminals": 2,
+    "favourable_terminals": 1,
+    "note": "T2 is a real possibility only if the theorem is wrong; the design's value is that an exhaustive search either finds the counterexample or establishes there is none on this family."
+  },
+
+  "stop_rule": "Outcomes are read once. If T2 or T3 is reached, the general hypothesis is recorded as refuted and the lane stops; the frozen C-C3/C2-C4 results are unaffected either way."
+}
