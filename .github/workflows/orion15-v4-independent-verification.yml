@@ -7,6 +7,8 @@ on:
       - chatgpt/orion15-v4-independent-verification-20260827
     paths:
       - 'research/self-orion-v4/verification/verify_v4_independent_v1.py'
+      - 'research/self-orion-v4/verification/reconstruct_preoutcome_protocol_v1.py'
+      - 'research/self-orion-v4/verification/run_independent_with_reconstructed_protocol_v1.py'
       - '.github/workflows/orion15-v4-independent-verification.yml'
 
 permissions:
@@ -29,8 +31,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Compile independent verifier
-        run: python -m py_compile research/self-orion-v4/verification/verify_v4_independent_v1.py
+      - name: Compile custody and independent verification tools
+        run: |
+          python -m py_compile research/self-orion-v4/verification/reconstruct_preoutcome_protocol_v1.py
+          python -m py_compile research/self-orion-v4/verification/run_independent_with_reconstructed_protocol_v1.py
+          python -m py_compile research/self-orion-v4/verification/verify_v4_independent_v1.py
       - name: Require evaluated V4 science files unchanged by audit commits
         shell: bash
         run: |
@@ -41,17 +46,35 @@ jobs:
             research/self-orion-v4/confirmatory \
             src/orion/study/p5/revision_level_v4_policies.py \
             tests/unit/p5/test_revision_level_v4.py
-      - name: Run scorer-independent custody and terminal verification
-        run: python research/self-orion-v4/verification/verify_v4_independent_v1.py
-      - name: Validate and commit verification record
+      - name: Prove exact pre-outcome protocol reconstruction
+        run: python research/self-orion-v4/verification/reconstruct_preoutcome_protocol_v1.py
+      - name: Run scorer-independent audit against reconstructed frozen protocol
+        run: python research/self-orion-v4/verification/run_independent_with_reconstructed_protocol_v1.py
+      - name: Require audit restored evaluated V4 bytes exactly
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='7e8e347f560f10390e7e71507a7ea01e73c5d400'
+          git diff --exit-code "$base"..HEAD -- \
+            papers/orion-15-self-orion/protocol/SELF_ORION_V4_REVISION_LEVEL_PROTOCOL_V1.json \
+            research/self-orion-v4/confirmatory \
+            src/orion/study/p5/revision_level_v4_policies.py \
+            tests/unit/p5/test_revision_level_v4.py
+      - name: Validate and commit verification records
         shell: bash
         run: |
           set -euo pipefail
           record='research/self-orion-v4/verification/SCIENTIFIC_RESULT_VERIFICATION_V1.json'
+          reconstruction='research/self-orion-v4/verification/PREOUTCOME_PROTOCOL_RECONSTRUCTION_V1.json'
           test -s "$record"
-          python - "$record" <<'PY'
+          test -s "$reconstruction"
+          python - "$record" "$reconstruction" <<'PY'
           import json,sys
-          x=json.load(open(sys.argv[1]))
+          x=json.load(open(sys.argv[1])); r=json.load(open(sys.argv[2]))
+          assert r['status']=='PASS'
+          assert r['expected_preoutcome_protocol_sha256']==r['regenerated_preoutcome_protocol_sha256']=='250fb1d7669becd9fd247eaf8cfbbcd2a3fc6698f63cb5f8fb61f4c71c77b25b'
+          assert r['post_outcome_bytes_restored_exactly'] is True
+          assert r['scientific_execution_rerun'] is False
           assert x['verification_state']=='BOUNDED_VERIFIED_WITH_NONCONTROLLING_EXECUTABLE_RULE_DEFECT'
           assert x['recomputed_terminal']=='REVISION_LEVEL_DISCRIMINATION_SUPPORTED'
           assert x['declared_frozen_semantics']['other_arms_satisfying_content']==[]
@@ -63,17 +86,20 @@ jobs:
           assert x['subject_metrics']['preservation_refusal']==1.0
           assert x['source_execution_replay_evidence']['new_child_commit_execution_claimed'] is False
           assert x['evidence_only_not_self_authorizing'] is True
+          print(r['terminal'])
           print(x['terminal'])
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add "$record"
+          git add "$record" "$reconstruction"
           git diff --check --cached
-          git commit -m 'verify(ORION-15): record bounded independent V4 verification [orion15-v4-verified]'
+          git commit -m 'verify(ORION-15): bind reconstructed V4 protocol and bounded audit [orion15-v4-verified]'
           git push origin HEAD:chatgpt/orion15-v4-independent-verification-20260827
       - uses: actions/upload-artifact@v4
         with:
           name: orion15-v4-independent-verification-${{ github.sha }}
-          path: research/self-orion-v4/verification/SCIENTIFIC_RESULT_VERIFICATION_V1.json
+          path: |
+            research/self-orion-v4/verification/SCIENTIFIC_RESULT_VERIFICATION_V1.json
+            research/self-orion-v4/verification/PREOUTCOME_PROTOCOL_RECONSTRUCTION_V1.json
           if-no-files-found: error
           retention-days: 30
