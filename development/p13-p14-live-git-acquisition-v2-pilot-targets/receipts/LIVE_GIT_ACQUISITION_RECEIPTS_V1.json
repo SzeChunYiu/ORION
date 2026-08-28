@@ -1,0 +1,5488 @@
+{
+ "boundaries": {
+  "gold_derived": false,
+  "policies_evaluated": false,
+  "scientific_authority_delta": "NONE"
+ },
+ "counts": {
+  "cannot_check": 0,
+  "divergent": 0,
+  "subjects": 75,
+  "verified_all": 75
+ },
+ "environment": {
+  "clone_filter": "--filter=blob:none",
+  "hostname": "billy-laptop-old",
+  "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+  "protocol_sha256": "74a1558c604e3c7941af3766a931f1e81dbb9ba0c88c47d5ff10504b5f027ab7",
+  "python": "3.14.4",
+  "runner_sha256": "6e7000e26f8edb71ecca8ff1c53e99790f480d7145ada8ddc8150e2b93d4c769",
+  "source_commit": "e5ed317b3a83a6eaaa49a11f6775941ec4f23c56",
+  "utc": "2026-08-28T19:22:40Z"
+ },
+ "environment_receipts": [
+  {
+   "argv": [
+    "git",
+    "--version"
+   ],
+   "cwd": null,
+   "exit": 0,
+   "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "stdout_excerpt": "git version 2.53.0\n",
+   "stdout_sha256": "97452bcde974ef512f9552791fc4f6a3219a724877671fba270baca1a6075b74",
+   "utc": "2026-08-28T19:22:40Z"
+  }
+ ],
+ "finished_utc": "2026-08-28T19:42:39Z",
+ "planted_controls": {
+  "control_a_fired": true,
+  "control_a_forged_head_label": "CANNOT_CHECK__OBJECT_UNRETRIEVABLE",
+  "control_b_fired": true,
+  "control_b_forged_license_label": "MISMATCH",
+  "raw_command_receipt_digest": "14dc3a163ec84d86a6e5d0f714f395b79104843894736fb7937ff3075a08c10e",
+  "status": "CONTROLS_FIRED",
+  "subject": "psf/requests"
+ },
+ "records": [
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "6363bd1bc26e7442526ac98546a083fc40e2d362c62718bfeedbc00444a65be2",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/psf/requests",
+      "/home/billy/p13p14-acq/clones/psf__requests"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "9ed4c8e326dbe1633ef2499be78b27f68385373e23ba254c38c8681ed7601bea",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:40Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/psf__requests",
+      "cat-file",
+      "-e",
+      "8f8b212de8c2129d7954c6cd373762880375620a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:41Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/psf__requests",
+      "cat-file",
+      "-e",
+      "8068356288978c4f54661ae6f95afe0e0831885e^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:41Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/psf__requests",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "8f8b212de8c2129d7954c6cd373762880375620a"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "8f8b212de8c2129d7954c6cd373762880375620a 8068356288978c4f54661ae6f95afe0e0831885e\n",
+     "stdout_sha256": "508d8ce6a7b9eaf830b3fecb0a02dc81b46b97bfb10d763e8e76755d4b7991d6",
+     "utc": "2026-08-28T19:22:41Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/psf__requests",
+      "rev-parse",
+      "8f8b212de8c2129d7954c6cd373762880375620a:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "67db8588217f266eb561f75fae738656325deac9\n",
+     "stdout_sha256": "3870c812add9431ea6c1435a5438a8b290a9a4b54490f19f1d462ea4563e317f",
+     "utc": "2026-08-28T19:22:41Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/psf__requests",
+      "cat-file",
+      "blob",
+      "8f8b212de8c2129d7954c6cd373762880375620a:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "\n                                 Apache License\n                           Version 2.0, January 2004\n                  ",
+     "stdout_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+     "utc": "2026-08-28T19:22:41Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/psf/requests",
+   "repository": "psf/requests",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "575d19a9799d1c9b640bc823eea3fbdd2c503373da58ae3334f021aaf2f23a1a",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/pallets/flask",
+      "/home/billy/p13p14-acq/clones/pallets__flask"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "6f6b4c0e4a1b55ac37c836b6052ec73986a59a1c467528900ef20688033ea8a1",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:42Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__flask",
+      "cat-file",
+      "-e",
+      "d318b683471101618febed18996405ad26462110^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__flask",
+      "cat-file",
+      "-e",
+      "2a8a38b051fc248865730bf3511bf2e2ea325e81^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__flask",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "d318b683471101618febed18996405ad26462110"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "d318b683471101618febed18996405ad26462110 2a8a38b051fc248865730bf3511bf2e2ea325e81\n",
+     "stdout_sha256": "6cd5501127d1c100beac84d5171258a6da81e1cf06f343a8e4e7bbdea276aa58",
+     "utc": "2026-08-28T19:22:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__flask",
+      "rev-parse",
+      "d318b683471101618febed18996405ad26462110:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "9d227a0cc43c3268d15722b763bd94ad298645a1\n",
+     "stdout_sha256": "e1e046522a40f429c6f5857e02980b4e684807873237c082134cdd380742dde0",
+     "utc": "2026-08-28T19:22:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__flask",
+      "cat-file",
+      "blob",
+      "d318b683471101618febed18996405ad26462110:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright 2010 Pallets\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted p",
+     "stdout_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+     "utc": "2026-08-28T19:22:43Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pallets/flask",
+   "repository": "pallets/flask",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "87d41ff8744aaee67c1a56a8ac2b2ae25b402a2426080ebe4764f81dc971f35e",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/pallets/click",
+      "/home/billy/p13p14-acq/clones/pallets__click"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e1656db128b2299480168a0f478e4b7e15d41778a0ead65797d6b811abba58f8",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:44Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__click",
+      "cat-file",
+      "-e",
+      "2c8cd3ac958a7eb316d67f2d316c27086c4c0369^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:45Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__click",
+      "cat-file",
+      "-e",
+      "e1fd5946ab26aaf372009eaff1acf947140b40fb^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:45Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__click",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "2c8cd3ac958a7eb316d67f2d316c27086c4c0369"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "2c8cd3ac958a7eb316d67f2d316c27086c4c0369 e1fd5946ab26aaf372009eaff1acf947140b40fb 131c86aadddfa5cb6dca8339c9d6294c4eacb8",
+     "stdout_sha256": "74dd305636b53ff385356e2e90cc3f0887119842f873cf236988707611f9789b",
+     "utc": "2026-08-28T19:22:45Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__click",
+      "rev-parse",
+      "2c8cd3ac958a7eb316d67f2d316c27086c4c0369:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "d12a849186982399c537c5b9a8fd77bf2edd5eab\n",
+     "stdout_sha256": "c5abed892e06aad179b05290adf0e23980ddbbec3860209fdc0fb86f9f622b9c",
+     "utc": "2026-08-28T19:22:45Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__click",
+      "cat-file",
+      "blob",
+      "2c8cd3ac958a7eb316d67f2d316c27086c4c0369:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright 2014 Pallets\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted p",
+     "stdout_sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d",
+     "utc": "2026-08-28T19:22:45Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pallets/click",
+   "repository": "pallets/click",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "cf0cc6e5f8303a91020b0aef7143edcbb1bef32549089dfa92db12bbcce6c3f8",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/pallets/jinja",
+      "/home/billy/p13p14-acq/clones/pallets__jinja"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "c7594203ec9c998d334cedc8fcb5ec36b3abbbb7659c3ddbada7ed72d81d454f",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:45Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__jinja",
+      "cat-file",
+      "-e",
+      "5ef70112a1ff19c05324ff889dd30405b1002044^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__jinja",
+      "cat-file",
+      "-e",
+      "0514dce5097f8929f22edc247cad1576c64e8d48^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__jinja",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "5ef70112a1ff19c05324ff889dd30405b1002044"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "5ef70112a1ff19c05324ff889dd30405b1002044 0514dce5097f8929f22edc247cad1576c64e8d48 284501eb0f8dc8b7f1b4713d71f38477e3ac99",
+     "stdout_sha256": "0cd097a0e7578c15228087fd24c65002d2b0d6a82e3bc0ff38ee8980a4a1ca3b",
+     "utc": "2026-08-28T19:22:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__jinja",
+      "rev-parse",
+      "5ef70112a1ff19c05324ff889dd30405b1002044:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "c37cae49ec77ad6ebb25568c1605f1fee5313cfb\n",
+     "stdout_sha256": "f1b9fba60384c9b3bd6bdafac1334ee470f672b4f7e0bde2e259c6e8088baf74",
+     "utc": "2026-08-28T19:22:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__jinja",
+      "cat-file",
+      "blob",
+      "5ef70112a1ff19c05324ff889dd30405b1002044:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright 2007 Pallets\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted p",
+     "stdout_sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b",
+     "utc": "2026-08-28T19:22:47Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pallets/jinja",
+   "repository": "pallets/jinja",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "b9b8fa648e8437dab8bcdfdee831b781c63fc76f95c6217410bd052b4273a2ce",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/pallets/werkzeug",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "ab384945a3e078588f57313cdc6e08bbdfbd71a1b1a83368e9c4766135b6b84b",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug",
+      "cat-file",
+      "-e",
+      "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:49Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug",
+      "cat-file",
+      "-e",
+      "002fcc5450870362028d3ffb3d91f05a4f1fa559^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:49Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455 002fcc5450870362028d3ffb3d91f05a4f1fa559 6fba87c311e55b4afcef71393a1733498b1667",
+     "stdout_sha256": "a8ad3c09fdca26871d68a84d2198ce40ffaa3b66717889ce02a27f53e2a154bd",
+     "utc": "2026-08-28T19:22:49Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug",
+      "rev-parse",
+      "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "c37cae49ec77ad6ebb25568c1605f1fee5313cfb\n",
+     "stdout_sha256": "f1b9fba60384c9b3bd6bdafac1334ee470f672b4f7e0bde2e259c6e8088baf74",
+     "utc": "2026-08-28T19:22:49Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug",
+      "cat-file",
+      "blob",
+      "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright 2007 Pallets\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted p",
+     "stdout_sha256": "3b49dcee4105eb37bac10faf1be260408fe85d252b8e9df2e0979fc1e094437b",
+     "utc": "2026-08-28T19:22:49Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pallets/werkzeug",
+   "repository": "pallets/werkzeug",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "8a557ad92ffade3caba62def49de970e32ac46a4a4736bbdf66d01bd4580737a",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/numpy/numpy",
+      "/home/billy/p13p14-acq/clones/numpy__numpy"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "5b72bed7d76a6d37f2789b276c845b5f4a0289488d3740aa15727c3874fecc89",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:22:49Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpy",
+      "cat-file",
+      "-e",
+      "71596b96a678b2d769f81e8b2fb84b2b43a99f68^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:00Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpy",
+      "cat-file",
+      "-e",
+      "ffa72d99810dc54fa4222c3ffc623c4b268191b1^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:00Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpy",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "71596b96a678b2d769f81e8b2fb84b2b43a99f68"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "71596b96a678b2d769f81e8b2fb84b2b43a99f68 ffa72d99810dc54fa4222c3ffc623c4b268191b1 b2220835d67575d918faba30d7d86dbaad016c",
+     "stdout_sha256": "a3ab8bf6b8f1971e20bdef956ff05f19b665f479bedaf9106e73b15efd20753d",
+     "utc": "2026-08-28T19:23:00Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpy",
+      "rev-parse",
+      "71596b96a678b2d769f81e8b2fb84b2b43a99f68:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "f37a12cc4cccf83af4517809791777e71c1df2a9\n",
+     "stdout_sha256": "ad681a34401b12f15ec43f8619031392f963ec0a1cfac70e3fcc9841083d1924",
+     "utc": "2026-08-28T19:23:00Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpy",
+      "cat-file",
+      "blob",
+      "71596b96a678b2d769f81e8b2fb84b2b43a99f68:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright (c) 2005-2025, NumPy Developers.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with",
+     "stdout_sha256": "1be1df33863f97a7bc1c4d67980bd6c69c9a6fef0a5ee76e6ad6cb91e56e8491",
+     "utc": "2026-08-28T19:23:00Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/numpy/numpy",
+   "repository": "numpy/numpy",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "13ca1b411db2f597d6c6a07f8b575f083db59da94717e9f4df8f5ec32bcb8d99",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/scipy/scipy",
+      "/home/billy/p13p14-acq/clones/scipy__scipy"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "ff4cf0d4b0e9e7db15ee426414c7a180cca2b796c9b743091c98b6eb3869daf6",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:01Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scipy__scipy",
+      "cat-file",
+      "-e",
+      "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:09Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scipy__scipy",
+      "cat-file",
+      "-e",
+      "1339f61b5d9c8e5aaf1c3150a9917c6faa12252e^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:09Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scipy__scipy",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9 1339f61b5d9c8e5aaf1c3150a9917c6faa12252e\n",
+     "stdout_sha256": "c975269a6ee43019cd21b5050e9ad72cb43adbd2a81bc780966f018943d8d925",
+     "utc": "2026-08-28T19:23:09Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scipy__scipy",
+      "rev-parse",
+      "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "1032aece8a8109d67f238de6865d8b08e750a8c0\n",
+     "stdout_sha256": "a206debcf3eb9f038ffa6cf758a8f504e68cefe7a120a6c232554da203f16e50",
+     "utc": "2026-08-28T19:23:09Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scipy__scipy",
+      "cat-file",
+      "blob",
+      "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright (c) 2001-2002 Enthought, Inc. 2003, SciPy Developers.\nAll rights reserved.\n\nRedistribution and use in source a",
+     "stdout_sha256": "221e59f5e910fd7f94e44f0dac77436a11338c285c6346232e4a850a50da0e94",
+     "utc": "2026-08-28T19:23:09Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/scipy/scipy",
+   "repository": "scipy/scipy",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "07ae7c661ac9e64ab1feb428312aa30ffa4d997c60795df7abea1b3a1d1990be",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/pandas-dev/pandas",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "5e5ebc667c9060413f842357093994d48bb027bb8793d1fb27ce687ddc8ee1a6",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:09Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas",
+      "cat-file",
+      "-e",
+      "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:23Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas",
+      "cat-file",
+      "-e",
+      "b9e9608e5337c1c019b6b77c7c49d84584cea7ae^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:23Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb b9e9608e5337c1c019b6b77c7c49d84584cea7ae\n",
+     "stdout_sha256": "d6bdaf6d8040ccbc6c1f5f555a566f8ea80601cd65b4a25c7b82fb13d224275e",
+     "utc": "2026-08-28T19:23:23Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas",
+      "rev-parse",
+      "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "bd1cc2a30c626d0bbe43ab6ec1c4744c2e2df831\n",
+     "stdout_sha256": "c6811b64deca64e678114855215e9ad9cd67fbc3a99ca914056ecb452094f729",
+     "utc": "2026-08-28T19:23:23Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas",
+      "cat-file",
+      "blob",
+      "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "BSD 3-Clause License\n\nCopyright (c) 2008-2011, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development ",
+     "stdout_sha256": "9850f6b5bdef7346503065807b878deb8058b976c5c329f4c4d23bf4796ce9ae",
+     "utc": "2026-08-28T19:23:23Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pandas-dev/pandas",
+   "repository": "pandas-dev/pandas",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "2170aaac1dc2e2fa3a0b1c7c08abb8d022711bbc9c37f793e5decb7603c1e821",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/scikit-learn/scikit-learn",
+      "/home/billy/p13p14-acq/clones/scikit-learn__scikit-learn"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "6337e18001aa459afa542086414fa1cb3ad5a50b83e7103e8bc66031c538800c",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:23Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scikit-learn__scikit-learn",
+      "cat-file",
+      "-e",
+      "b589cc5ca4084b6a46725e8368d97c2b342f67f8^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:31Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scikit-learn__scikit-learn",
+      "cat-file",
+      "-e",
+      "3654de014e4bda0247eca1bf9344989103aefd00^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:31Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scikit-learn__scikit-learn",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "b589cc5ca4084b6a46725e8368d97c2b342f67f8"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "b589cc5ca4084b6a46725e8368d97c2b342f67f8 3654de014e4bda0247eca1bf9344989103aefd00\n",
+     "stdout_sha256": "3f59fb0f7c03d6cdfe1f8a358c1cb353d470c58a842c60cd8fb3d2aca93cd26d",
+     "utc": "2026-08-28T19:23:31Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scikit-learn__scikit-learn",
+      "rev-parse",
+      "b589cc5ca4084b6a46725e8368d97c2b342f67f8:COPYING"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "3d7ee432c15b685eaa654b6abe8f8e3ea8126a8d\n",
+     "stdout_sha256": "e05edad91dd20be7c0ad1a7bafdc53f10824463192e280b374dc0b127a59e8f4",
+     "utc": "2026-08-28T19:23:31Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scikit-learn__scikit-learn",
+      "cat-file",
+      "blob",
+      "b589cc5ca4084b6a46725e8368d97c2b342f67f8:COPYING"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "BSD 3-Clause License\n\nCopyright (c) 2007-2026 The scikit-learn developers.\nAll rights reserved.\n\nRedistribution and use ",
+     "stdout_sha256": "50d6a9d340f19ab355609917993114daf5f47e3161067bcf34955bbd05cd9cb0",
+     "utc": "2026-08-28T19:23:31Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/scikit-learn/scikit-learn",
+   "repository": "scikit-learn/scikit-learn",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "df7299b31515194e4dfb9ae83c479b8fa51000f1db07044e6007041bbc404a01",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/pytest-dev/pytest",
+      "/home/billy/p13p14-acq/clones/pytest-dev__pytest"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "b288f7c91e5a3a398e853feb54f4edad9922444ea3b03e64aeb815bf55e3f25f",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:32Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pytest-dev__pytest",
+      "cat-file",
+      "-e",
+      "c99f595a896eb84c1dda4f4b85a0929c52011e27^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:35Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pytest-dev__pytest",
+      "cat-file",
+      "-e",
+      "cfe321c4862cad89cd6745d75516a9680b078ff9^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:35Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pytest-dev__pytest",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "c99f595a896eb84c1dda4f4b85a0929c52011e27"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "c99f595a896eb84c1dda4f4b85a0929c52011e27 cfe321c4862cad89cd6745d75516a9680b078ff9\n",
+     "stdout_sha256": "a09086373090484d5560566b2a80bb44286e42d17b031f50ccbd975230a9f39e",
+     "utc": "2026-08-28T19:23:35Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pytest-dev__pytest",
+      "rev-parse",
+      "c99f595a896eb84c1dda4f4b85a0929c52011e27:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "c3f1657fce94589bd1ec7cead810639047f3d359\n",
+     "stdout_sha256": "532ac3913a9cade99372cc9a0cb58a635f02abdc80706346c4852b4dfd007eb5",
+     "utc": "2026-08-28T19:23:35Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pytest-dev__pytest",
+      "cat-file",
+      "blob",
+      "c99f595a896eb84c1dda4f4b85a0929c52011e27:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "The MIT License (MIT)\n\nCopyright (c) 2004 Holger Krekel and others\n\nPermission is hereby granted, free of charge, to any",
+     "stdout_sha256": "ca836a5f9ecca3b2f350230faa20a48fb8b145653b5568d784862df864706b9b",
+     "utc": "2026-08-28T19:23:35Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pytest-dev/pytest",
+   "repository": "pytest-dev/pytest",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "ad466f24e03b0389c5683313a127d566a16d23efcb3ce6ff2315dfe83281d88c",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/pydantic/pydantic",
+      "/home/billy/p13p14-acq/clones/pydantic__pydantic"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "0dc519faa22dee24a15704e934dd154c80de8e21a2b4fc6bbdcd016731fd50eb",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:36Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pydantic__pydantic",
+      "cat-file",
+      "-e",
+      "53bae790cacb9272a9b08ab87a962d286d51cf1b^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:39Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pydantic__pydantic",
+      "cat-file",
+      "-e",
+      "24b9b3370685390c7d0265613dc073e142ac6db6^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:39Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pydantic__pydantic",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "53bae790cacb9272a9b08ab87a962d286d51cf1b"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "53bae790cacb9272a9b08ab87a962d286d51cf1b 24b9b3370685390c7d0265613dc073e142ac6db6\n",
+     "stdout_sha256": "02f6fc07456f818b5d96a3cb3936a967c08abaee2d564936794afb3ef7862608",
+     "utc": "2026-08-28T19:23:39Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pydantic__pydantic",
+      "rev-parse",
+      "53bae790cacb9272a9b08ab87a962d286d51cf1b:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "488c6260c10f2e88fa1fae58a63fccec8d600cd1\n",
+     "stdout_sha256": "b572c6c55d2b12a6090fbcb887123bd54c27b89106c38874677fa617a7f3b493",
+     "utc": "2026-08-28T19:23:39Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pydantic__pydantic",
+      "cat-file",
+      "blob",
+      "53bae790cacb9272a9b08ab87a962d286d51cf1b:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "The MIT License (MIT)\n\nCopyright (c) 2017 to present Pydantic Services Inc. and individual contributors.\n\nPermission is ",
+     "stdout_sha256": "a9e186f3ca16b5eef84318e7a701721351a00cb7b8ae3a4394b67b49e3529ef3",
+     "utc": "2026-08-28T19:23:39Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pydantic/pydantic",
+   "repository": "pydantic/pydantic",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "da6df4f4dba6c2c9b11c58a7beca97d0b8816db32bbb52735766c9e66172b0cb",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/fastapi/fastapi",
+      "/home/billy/p13p14-acq/clones/fastapi__fastapi"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e95d9dd43d9f137a7cca7bff3f2ccbc2b5c9395e039e0d943e6a3ef79473c30d",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:39Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/fastapi__fastapi",
+      "cat-file",
+      "-e",
+      "c3f316b7e814667e8ee81e03a7330d00ee61e45c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:42Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/fastapi__fastapi",
+      "cat-file",
+      "-e",
+      "452e526877cccec949e96180916cbb55c40a6581^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:42Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/fastapi__fastapi",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "c3f316b7e814667e8ee81e03a7330d00ee61e45c"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "c3f316b7e814667e8ee81e03a7330d00ee61e45c 452e526877cccec949e96180916cbb55c40a6581\n",
+     "stdout_sha256": "a33ccd217a8ac758903e82b3d590c42f2cf46bdb79d6c0d95ede10a45042e7ba",
+     "utc": "2026-08-28T19:23:42Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/fastapi__fastapi",
+      "rev-parse",
+      "c3f316b7e814667e8ee81e03a7330d00ee61e45c:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "3e92463e6bd522a2a21e5f0a80d8089d6c4be20d\n",
+     "stdout_sha256": "1edfc77bc467bc785a42584207117134a66364493944cacbd52f6d94a313a638",
+     "utc": "2026-08-28T19:23:42Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/fastapi__fastapi",
+      "cat-file",
+      "blob",
+      "c3f316b7e814667e8ee81e03a7330d00ee61e45c:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "The MIT License (MIT)\n\nCopyright (c) 2018 Sebasti\u00e1n Ram\u00edrez\n\nPermission is hereby granted, free of charge, to any pers",
+     "stdout_sha256": "4ec89ffc81485b97fec584b2d4a961032eeffe834453894fd9c1274906cc744e",
+     "utc": "2026-08-28T19:23:42Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/fastapi/fastapi",
+   "repository": "fastapi/fastapi",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "baa1b300956d59b24b960777a8e964fb369996c8a1dcf1743f0af31cf1405df2",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/encode/httpx",
+      "/home/billy/p13p14-acq/clones/encode__httpx"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "a92f05cd72c6cfb42a9b2d391338d13c97a52ebb382585071de90691935bb02e",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:42Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/encode__httpx",
+      "cat-file",
+      "-e",
+      "b5addb64f0161ff6bfe94c124ef76f6a1fba5254^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/encode__httpx",
+      "cat-file",
+      "-e",
+      "ae1b9f66238f75ced3ced5e4485408435de10768^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/encode__httpx",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "b5addb64f0161ff6bfe94c124ef76f6a1fba5254"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "b5addb64f0161ff6bfe94c124ef76f6a1fba5254 ae1b9f66238f75ced3ced5e4485408435de10768\n",
+     "stdout_sha256": "7023608879a16f9eecf329b20c01216585009866f630a03ef4bbdf7384232f58",
+     "utc": "2026-08-28T19:23:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/encode__httpx",
+      "rev-parse",
+      "b5addb64f0161ff6bfe94c124ef76f6a1fba5254:LICENSE.md"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "ab79d16a3f4c6c894c028d1f7431811e8711b42b\n",
+     "stdout_sha256": "9669e603b56ea6fc6069a06a81eefe2efe685bd81954ca7d506845e3d6922a47",
+     "utc": "2026-08-28T19:23:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/encode__httpx",
+      "cat-file",
+      "blob",
+      "b5addb64f0161ff6bfe94c124ef76f6a1fba5254:LICENSE.md"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright \u00a9 2019, [Encode OSS Ltd](https://www.encode.io/).\nAll rights reserved.\n\nRedistribution and use in source and ",
+     "stdout_sha256": "4ec59d544f12b5f539a3a716fd321ac58ccd8030b465221f2c880200cdf28d8d",
+     "utc": "2026-08-28T19:23:43Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/encode/httpx",
+   "repository": "encode/httpx",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "1ede487dc8df4152c4af09590c8739f10c06c3fee76cb954072a547b3f63f601",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/django/django",
+      "/home/billy/p13p14-acq/clones/django__django"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "79f45962ea1ff8c6e0799a07b9e04103216429cb4fd24fba06527ff0e9060ad9",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:23:44Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/django__django",
+      "cat-file",
+      "-e",
+      "0b40210e4808937a7c0922e8b7502bff4752faa3^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:00Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/django__django",
+      "cat-file",
+      "-e",
+      "03988c5a5ba248c3b9b11ea96fd4fda5e98849aa^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:00Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/django__django",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "0b40210e4808937a7c0922e8b7502bff4752faa3"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "0b40210e4808937a7c0922e8b7502bff4752faa3 03988c5a5ba248c3b9b11ea96fd4fda5e98849aa\n",
+     "stdout_sha256": "5efe6765cbfb19afce6fc624ff113fd0a141816c0fb8ae547bf915b296f5032d",
+     "utc": "2026-08-28T19:24:00Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/django__django",
+      "rev-parse",
+      "0b40210e4808937a7c0922e8b7502bff4752faa3:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "5f4f225dd282aa7e4361ec3c2750bbbaaed8ab1f\n",
+     "stdout_sha256": "8b8370f2d9657deb77994ea8151113576301efa0dd1fc4dade782a9f498f1f12",
+     "utc": "2026-08-28T19:24:00Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/django__django",
+      "cat-file",
+      "blob",
+      "0b40210e4808937a7c0922e8b7502bff4752faa3:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright (c) Django Software Foundation and individual contributors.\nAll rights reserved.\n\nRedistribution and use in so",
+     "stdout_sha256": "b846415d1b514e9c1dff14a22deb906d794bc546ca6129f950a18cd091e2a669",
+     "utc": "2026-08-28T19:24:00Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/django/django",
+   "repository": "django/django",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "cd1a143e84c20a5ca74f8c54e5d503a4be36dbb64bb4e4d56296f3bc888b9077",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/apache/airflow",
+      "/home/billy/p13p14-acq/clones/apache__airflow"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "627ed4947e58536b7cd796606249a9313f948f39a6b8eec76f172053d46c957f",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:00Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/apache__airflow",
+      "cat-file",
+      "-e",
+      "98747f873f247f5bb378cb8012447103610a4fc3^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:29Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/apache__airflow",
+      "cat-file",
+      "-e",
+      "b03e48a875d991ad42b9d81efb7e75e001879404^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:29Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/apache__airflow",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "98747f873f247f5bb378cb8012447103610a4fc3"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "98747f873f247f5bb378cb8012447103610a4fc3 b03e48a875d991ad42b9d81efb7e75e001879404\n",
+     "stdout_sha256": "df3e2dbb104a0fb6fc6dc83fafad0cf84033871a643942d50d7e9fd74c89f53f",
+     "utc": "2026-08-28T19:24:29Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/apache__airflow",
+      "rev-parse",
+      "98747f873f247f5bb378cb8012447103610a4fc3:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "11069edd79019f7dafbe3138841cf289209270dd\n",
+     "stdout_sha256": "a4fd5ccede7e98e02f25c753c26727717a2b683712f027c8f8cbb4b0c6cfb28f",
+     "utc": "2026-08-28T19:24:29Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/apache__airflow",
+      "cat-file",
+      "blob",
+      "98747f873f247f5bb378cb8012447103610a4fc3:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "                              Apache License\n                        Version 2.0, January 2004\n                     http",
+     "stdout_sha256": "8173d5c29b4f956d532781d2b86e4e30f83e6b7878dce18c919451d6ba707c90",
+     "utc": "2026-08-28T19:24:29Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/apache/airflow",
+   "repository": "apache/airflow",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "9d849707b9109c07a573f6c2ccf4bf96ae0b9aabc1267584fe66443603c09363",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/eslint/eslint",
+      "/home/billy/p13p14-acq/clones/eslint__eslint"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "12979281975bd0813f0fe361079ec926934e1bf833fc7823dea611948060c06a",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:30Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/eslint__eslint",
+      "cat-file",
+      "-e",
+      "ad74a8dada2aaa17bfd0b8cc7b4119ff7a8ac04b^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:34Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/eslint__eslint",
+      "cat-file",
+      "-e",
+      "3c3ae53a43721162f0db76c69665ebd9d752ea52^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:34Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/eslint__eslint",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "ad74a8dada2aaa17bfd0b8cc7b4119ff7a8ac04b"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "ad74a8dada2aaa17bfd0b8cc7b4119ff7a8ac04b 3c3ae53a43721162f0db76c69665ebd9d752ea52\n",
+     "stdout_sha256": "c004f29e5ea17389ac1a751211f5c534f6ceec4115aa994401db2fe42f320a82",
+     "utc": "2026-08-28T19:24:34Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/eslint__eslint",
+      "rev-parse",
+      "ad74a8dada2aaa17bfd0b8cc7b4119ff7a8ac04b:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "b607bb36e96c33fd8ef50897db0336c585b6137a\n",
+     "stdout_sha256": "4cc5a2bc430854b192a92667d96cdd07b69c9fe48a5ef8df171fc8990a373b83",
+     "utc": "2026-08-28T19:24:34Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/eslint__eslint",
+      "cat-file",
+      "blob",
+      "ad74a8dada2aaa17bfd0b8cc7b4119ff7a8ac04b:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright OpenJS Foundation and other contributors, <www.openjsf.org>\n\nPermission is hereby granted, free of charge, to ",
+     "stdout_sha256": "3b6be04f862a077a4b97929dbf247299360824d9365f8603c263769303ace18c",
+     "utc": "2026-08-28T19:24:34Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/eslint/eslint",
+   "repository": "eslint/eslint",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "a8fc08a6d5ef8771a36050506fa9786347b605c8d09f3766025c8dd625a723bc",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/prettier/prettier",
+      "/home/billy/p13p14-acq/clones/prettier__prettier"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "ae71667c79ea4cc502170450b980465b2280e57e5dfb5fdf086e13fbb95590e6",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:35Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/prettier__prettier",
+      "cat-file",
+      "-e",
+      "d9969c57343d48a4d1fac12f3f5c4b2fd82d8da5^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:40Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/prettier__prettier",
+      "cat-file",
+      "-e",
+      "b38fc57487d172cc789e1a4dc60aadd45cde17ee^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:40Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/prettier__prettier",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "d9969c57343d48a4d1fac12f3f5c4b2fd82d8da5"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "d9969c57343d48a4d1fac12f3f5c4b2fd82d8da5 b38fc57487d172cc789e1a4dc60aadd45cde17ee\n",
+     "stdout_sha256": "86c31fa85a6363e4ed1808f6985c76bdaa5f3eb6dad8732ac9d59efa71d5f131",
+     "utc": "2026-08-28T19:24:40Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/prettier__prettier",
+      "rev-parse",
+      "d9969c57343d48a4d1fac12f3f5c4b2fd82d8da5:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "5767e34d30ab78796220f9492726dd2f677d4166\n",
+     "stdout_sha256": "68110915e932a5f68fb480377e3061a98e06771def71734dc88930b682ac688f",
+     "utc": "2026-08-28T19:24:40Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/prettier__prettier",
+      "cat-file",
+      "blob",
+      "d9969c57343d48a4d1fac12f3f5c4b2fd82d8da5:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright \u00a9 James Long and contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy o",
+     "stdout_sha256": "b0f2417199889f1c0d28ec4e0244eacf1a15de5819d61f641dd7d8f45153ac9c",
+     "utc": "2026-08-28T19:24:40Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/prettier/prettier",
+   "repository": "prettier/prettier",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "a217c35f9a8fd6fad52b0928dc2afef2f06e87f8401eef917d6e0ca54334fdf2",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/webpack/webpack",
+      "/home/billy/p13p14-acq/clones/webpack__webpack"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "1a32eee9c453b578b79db41d5ca00aa8792df3724cc394202a171b40075fd061",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:41Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/webpack__webpack",
+      "cat-file",
+      "-e",
+      "ce97d583e1cd8f3e47b70737de72e91b567a8497^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/webpack__webpack",
+      "cat-file",
+      "-e",
+      "578b86b63d75f62832eb24923e3b19cfc6077567^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/webpack__webpack",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "ce97d583e1cd8f3e47b70737de72e91b567a8497"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "ce97d583e1cd8f3e47b70737de72e91b567a8497 578b86b63d75f62832eb24923e3b19cfc6077567\n",
+     "stdout_sha256": "9f59f0721b044fc7c817d2066e1db9842c70f6e6c62e48ea344eabf9bf37341a",
+     "utc": "2026-08-28T19:24:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/webpack__webpack",
+      "rev-parse",
+      "ce97d583e1cd8f3e47b70737de72e91b567a8497:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "8c11fc7289b75463fe07534fcc8224e333feb7ff\n",
+     "stdout_sha256": "2c27f7e669d4cbd5e22ce218cb43d9ff491eb95102641283a06e9e4c1f88a07a",
+     "utc": "2026-08-28T19:24:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/webpack__webpack",
+      "cat-file",
+      "blob",
+      "ce97d583e1cd8f3e47b70737de72e91b567a8497:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright JS Foundation and other contributors\n\nPermission is hereby granted, free of charge, to any person obtaining\na ",
+     "stdout_sha256": "9068a8782d2fb4c6e432cfa25334efa56f722822180570802bf86e71b6003b1e",
+     "utc": "2026-08-28T19:24:47Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/webpack/webpack",
+   "repository": "webpack/webpack",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "ddeeb3402ba762e9c39becade36a1889f9d37807ac10afc804512f858191044f",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/vitejs/vite",
+      "/home/billy/p13p14-acq/clones/vitejs__vite"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "d7079ae08a3f30a150b73e4a534df614ee2feac500c6e5b30018e38e6a4a9e72",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vitejs__vite",
+      "cat-file",
+      "-e",
+      "c32e784c95b51f7969cebc7522a5037f14fb6606^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:52Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vitejs__vite",
+      "cat-file",
+      "-e",
+      "2e8355d67c19c68e867ee633121fc91e007c846c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:52Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vitejs__vite",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "c32e784c95b51f7969cebc7522a5037f14fb6606"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "c32e784c95b51f7969cebc7522a5037f14fb6606 2e8355d67c19c68e867ee633121fc91e007c846c\n",
+     "stdout_sha256": "ccde35b1b44776c2de86366a48f7b56a3c97d10579e96e6504dfc9d9652b5bc8",
+     "utc": "2026-08-28T19:24:52Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vitejs__vite",
+      "rev-parse",
+      "c32e784c95b51f7969cebc7522a5037f14fb6606:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "b7e97ecb6aa4dd70b3e3a637afa2ae16feb7cd12\n",
+     "stdout_sha256": "262094726845ec5e5d2333efb5d78a527a024e8f01e455f95b96e2fb9530c255",
+     "utc": "2026-08-28T19:24:52Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vitejs__vite",
+      "cat-file",
+      "blob",
+      "c32e784c95b51f7969cebc7522a5037f14fb6606:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "MIT License\n\nCopyright (c) 2019-present, VoidZero Inc. and Vite contributors\n\nPermission is hereby granted, free of char",
+     "stdout_sha256": "692057af3d664cbb79ac38293eb50aa3c4987f8182e2a440136e59e08f1b4a54",
+     "utc": "2026-08-28T19:24:52Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/vitejs/vite",
+   "repository": "vitejs/vite",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "1697834b66aa7f73e0d638957fc2bb10d51a307c25e0f277b78c8a512bbdc08d",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/vercel/next.js",
+      "/home/billy/p13p14-acq/clones/vercel__next.js"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "9bf71d19f094d48c92cd8e30dac5145027700b5cd476cbfea112f5811429e342",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:24:52Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vercel__next.js",
+      "cat-file",
+      "-e",
+      "88483bdedc83b5c32d3c3f2fb2a0972069cd29e8^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:25:28Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vercel__next.js",
+      "cat-file",
+      "-e",
+      "75c1f1f6e04cfb83895eceba911934205bff4916^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:25:28Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vercel__next.js",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "88483bdedc83b5c32d3c3f2fb2a0972069cd29e8"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "88483bdedc83b5c32d3c3f2fb2a0972069cd29e8 75c1f1f6e04cfb83895eceba911934205bff4916\n",
+     "stdout_sha256": "47644884e5c20cc376977b3422bcb33b55ab74de2af48aee43a3c842a07ffab7",
+     "utc": "2026-08-28T19:25:28Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vercel__next.js",
+      "rev-parse",
+      "88483bdedc83b5c32d3c3f2fb2a0972069cd29e8:license.md"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "5948ee9bd0de5064423688a2967ab3111c2658ed\n",
+     "stdout_sha256": "97a7174ad3bcc071fa79504f0ad4532e1c34a2594e6a8c29a606854aa27c4785",
+     "utc": "2026-08-28T19:25:28Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vercel__next.js",
+      "cat-file",
+      "blob",
+      "88483bdedc83b5c32d3c3f2fb2a0972069cd29e8:license.md"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "The MIT License (MIT)\n\nCopyright (c) 2025 Vercel, Inc.\n\nPermission is hereby granted, free of charge, to any person obta",
+     "stdout_sha256": "ee765244e2d59f5234d474f62e0766fa0c8b99af967fdd4c0cb8dcb0c76ea224",
+     "utc": "2026-08-28T19:25:28Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/vercel/next.js",
+   "repository": "vercel/next.js",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "f5cf6f4946568afb7e86758fdaacd048087415bafa64c18804003b028303734e",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/microsoft/vscode",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "7fe00a414e279a81673896b15eb7e0a513aad04764c6407031e06a437c07f330",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:25:29Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode",
+      "cat-file",
+      "-e",
+      "8d4b385871e77afd48f0917f8358379944924117^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:26:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode",
+      "cat-file",
+      "-e",
+      "ade09f53cb41afe69b773becc29612fda777da5f^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:26:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "8d4b385871e77afd48f0917f8358379944924117"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "8d4b385871e77afd48f0917f8358379944924117 ade09f53cb41afe69b773becc29612fda777da5f\n",
+     "stdout_sha256": "7895cb5621891c5643ad08f1aec39a1dd66a438afd6d328df8a731437e39aad4",
+     "utc": "2026-08-28T19:26:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode",
+      "rev-parse",
+      "8d4b385871e77afd48f0917f8358379944924117:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "0ac28ee234d232ac0691f39cebf95bf6b2a763a5\n",
+     "stdout_sha256": "e37e459486f38df2555fc8819d3359647630ea4ec287d22833432c7000a35533",
+     "utc": "2026-08-28T19:26:43Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode",
+      "cat-file",
+      "blob",
+      "8d4b385871e77afd48f0917f8358379944924117:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "MIT License\n\nCopyright (c) 2015 - present Microsoft Corporation\n\nPermission is hereby granted, free of charge, to any pe",
+     "stdout_sha256": "9480271317925265e806a9a196aaa33410a962fa9d4d1e248a4a5187bc8c9df9",
+     "utc": "2026-08-28T19:26:43Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/microsoft/vscode",
+   "repository": "microsoft/vscode",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "d78ad52d97af9df9e8cef6dbdbaf13b121d7e547e60d26ccd607f40c70f43d3a",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/microsoft/TypeScript",
+      "/home/billy/p13p14-acq/clones/microsoft__TypeScript"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "2b0f4296159a97656daff161fe38beaf79e8dc58a52be656885e0b13c68dda3d",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:26:44Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__TypeScript",
+      "cat-file",
+      "-e",
+      "e9e477458d7b975ed5e43117fb85f6bc87363a6a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:31:56Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__TypeScript",
+      "cat-file",
+      "-e",
+      "d6c4afddb2c55f4a9dea7b59293a99a8fdea1799^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:31:56Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__TypeScript",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "e9e477458d7b975ed5e43117fb85f6bc87363a6a"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "e9e477458d7b975ed5e43117fb85f6bc87363a6a d6c4afddb2c55f4a9dea7b59293a99a8fdea1799\n",
+     "stdout_sha256": "e070705a62e872a3ee77eab294082607749d73b23bbd6c5af2bce510be01bad2",
+     "utc": "2026-08-28T19:31:56Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__TypeScript",
+      "rev-parse",
+      "e9e477458d7b975ed5e43117fb85f6bc87363a6a:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "8746124b277914d0f0fd9cf4aef2ed3b587143d9\n",
+     "stdout_sha256": "365b6dcaff3289cbf6da82a24750025e91fa40f77702edddcbe88aca5d89c612",
+     "utc": "2026-08-28T19:31:56Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__TypeScript",
+      "cat-file",
+      "blob",
+      "e9e477458d7b975ed5e43117fb85f6bc87363a6a:LICENSE.txt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Apache License\r\n\r\nVersion 2.0, January 2004\r\n\r\nhttp://www.apache.org/licenses/ \r\n\r\nTERMS AND CONDITIONS FOR USE, REPRODU",
+     "stdout_sha256": "a7d00bfd54525bc694b6e32f64c7ebcf5e6b7ae3657be5cc12767bce74654a47",
+     "utc": "2026-08-28T19:31:56Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/microsoft/TypeScript",
+   "repository": "microsoft/TypeScript",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "f1ebe2e6fdea79eb0ae8b5df4cdc0a301b53acedd651d417c9257cff7cb49b8d",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/golang/go",
+      "/home/billy/p13p14-acq/clones/golang__go"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "efb55e9b62d43778b68c80279e16c2959303f2db10d8d7c74ebc43fc1b67a4cc",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:31:57Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__go",
+      "cat-file",
+      "-e",
+      "aafcf7a2b86634bf9f06c9d336c1a25478392975^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:32:24Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__go",
+      "cat-file",
+      "-e",
+      "a0044c2d09d47f2e2308538c70da4d7d359ed24a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:32:24Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__go",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "aafcf7a2b86634bf9f06c9d336c1a25478392975"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "aafcf7a2b86634bf9f06c9d336c1a25478392975 a0044c2d09d47f2e2308538c70da4d7d359ed24a\n",
+     "stdout_sha256": "92fd0a9dada12b98138ba7e8016eb007b38367d2c0f5c5f2e313887264a79fec",
+     "utc": "2026-08-28T19:32:24Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__go",
+      "rev-parse",
+      "aafcf7a2b86634bf9f06c9d336c1a25478392975:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "2a7cf70da6e498df9c11ab6a5eaa2ddd7af34da4\n",
+     "stdout_sha256": "ef95d28b307605e3bf4088abe8c44ca21851718d21e57080235c54154029fb6a",
+     "utc": "2026-08-28T19:32:24Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__go",
+      "cat-file",
+      "blob",
+      "aafcf7a2b86634bf9f06c9d336c1a25478392975:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright 2009 The Go Authors.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are per",
+     "stdout_sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+     "utc": "2026-08-28T19:32:24Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/golang/go",
+   "repository": "golang/go",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "50fd1f5dd1b35eeab7b5783749e3c3a0cdb8f1ee0ccceaabbc4172933e6e35d4",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/kubernetes/kubernetes",
+      "/home/billy/p13p14-acq/clones/kubernetes__kubernetes"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "9181d10dd7f644fd63f64afcc1d9ca05f4376edd6770c9d1eafbed1375fb7582",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:32:25Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/kubernetes__kubernetes",
+      "cat-file",
+      "-e",
+      "e81f39c0e03ce8ed8e2660c9147b391edd9e262b^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:33:21Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/kubernetes__kubernetes",
+      "cat-file",
+      "-e",
+      "96e8ae4bfae1e74e376dab201a0e42a92b885ecb^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:33:21Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/kubernetes__kubernetes",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "e81f39c0e03ce8ed8e2660c9147b391edd9e262b"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "e81f39c0e03ce8ed8e2660c9147b391edd9e262b 96e8ae4bfae1e74e376dab201a0e42a92b885ecb\n",
+     "stdout_sha256": "8ec3944ee4f0013d4b24302f26f7f8609cd0d21803190d5c14c37a45b3d78f96",
+     "utc": "2026-08-28T19:33:21Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/kubernetes__kubernetes",
+      "rev-parse",
+      "e81f39c0e03ce8ed8e2660c9147b391edd9e262b:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "d645695673349e3947e8e5ae42332d0ac3164cd7\n",
+     "stdout_sha256": "9eedd8d1785f80471a6a816622bf632442f8d1eaa67d25a13bcc0acca18878f8",
+     "utc": "2026-08-28T19:33:21Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/kubernetes__kubernetes",
+      "cat-file",
+      "blob",
+      "e81f39c0e03ce8ed8e2660c9147b391edd9e262b:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "\n                                 Apache License\n                           Version 2.0, January 2004\n                  ",
+     "stdout_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+     "utc": "2026-08-28T19:33:21Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/kubernetes/kubernetes",
+   "repository": "kubernetes/kubernetes",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "fb3646f10ad655a8f1db94792e1a9d466be9e22f242ab0463c3eba04663fe466",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/prometheus/prometheus",
+      "/home/billy/p13p14-acq/clones/prometheus__prometheus"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "09a0c59b3aa4cea84166dc035174b6735f2e5bef27c65a7f8a9ba77ae770c163",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:33:22Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/prometheus__prometheus",
+      "cat-file",
+      "-e",
+      "503180645ef0984bf3abdcf998ca16fe9aaeb21e^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:33:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/prometheus__prometheus",
+      "cat-file",
+      "-e",
+      "e4334de10cb91a6c8e05bc7f8e0afa1336e141a7^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:33:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/prometheus__prometheus",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "503180645ef0984bf3abdcf998ca16fe9aaeb21e"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "503180645ef0984bf3abdcf998ca16fe9aaeb21e e4334de10cb91a6c8e05bc7f8e0afa1336e141a7 0c6c2dff287fd66a6b60abcf597bd7b82fff41",
+     "stdout_sha256": "d48a2d86482c26f5df0d316629d78d036f6b1b75a7b141e72d7115421e256bfb",
+     "utc": "2026-08-28T19:33:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/prometheus__prometheus",
+      "rev-parse",
+      "503180645ef0984bf3abdcf998ca16fe9aaeb21e:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64\n",
+     "stdout_sha256": "449e7f481a63c13769b4383af0361581ced240bd22a03618c8a46fa5c7d85bfa",
+     "utc": "2026-08-28T19:33:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/prometheus__prometheus",
+      "cat-file",
+      "blob",
+      "503180645ef0984bf3abdcf998ca16fe9aaeb21e:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "                                 Apache License\n                           Version 2.0, January 2004\n                   ",
+     "stdout_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+     "utc": "2026-08-28T19:33:27Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/prometheus/prometheus",
+   "repository": "prometheus/prometheus",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "930f8dda5b991fdf8b0f914007a0ac4b92770db6a3a91db451f3a12f53f1405e",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/denoland/deno",
+      "/home/billy/p13p14-acq/clones/denoland__deno"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "fd2af3e5970fa4621bced490f216911ab1fdb9ac13a805edde8739013be5cb97",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:33:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/denoland__deno",
+      "cat-file",
+      "-e",
+      "02f52d6be370f12de8a79391bd2172f7c334e12d^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:33:37Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/denoland__deno",
+      "cat-file",
+      "-e",
+      "d01388751b1d6f89b83c86473560a20ba9b675d3^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:33:37Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/denoland__deno",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "02f52d6be370f12de8a79391bd2172f7c334e12d"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "02f52d6be370f12de8a79391bd2172f7c334e12d d01388751b1d6f89b83c86473560a20ba9b675d3\n",
+     "stdout_sha256": "ffcc782428b2832b484137449efe4adba6a32fb6c1c6f577c6acc32b526d0585",
+     "utc": "2026-08-28T19:33:37Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/denoland__deno",
+      "rev-parse",
+      "02f52d6be370f12de8a79391bd2172f7c334e12d:LICENSE.md"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "b641c75c0b04ccfddcb1145d2554ab49b6ca9411\n",
+     "stdout_sha256": "cf8f3713edc61aae25f8517c480dd17560fed30cb0432bb0297d80794eb78303",
+     "utc": "2026-08-28T19:33:37Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/denoland__deno",
+      "cat-file",
+      "blob",
+      "02f52d6be370f12de8a79391bd2172f7c334e12d:LICENSE.md"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "MIT License\n\nCopyright 2018-2026 the Deno authors\n\nPermission is hereby granted, free of charge, to any person obtaining",
+     "stdout_sha256": "f62497fffecc0852960c8d3e6934b9db86d16396e9b604072e923892cae3a588",
+     "utc": "2026-08-28T19:33:37Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/denoland/deno",
+   "repository": "denoland/deno",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "a11ae9a4faf3324eea134218cafff9bd34feb8760845eb8fe06f56526e0e3cf2",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/ansible/ansible",
+      "/home/billy/p13p14-acq/clones/ansible__ansible"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "0ff8565cf355b641982f41cff04243eef0350c7782080e391175a3ec3d924ac2",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:33:38Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/ansible__ansible",
+      "cat-file",
+      "-e",
+      "b85437b7f6e39476252b271778b8c7dcebbd931a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:34:02Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/ansible__ansible",
+      "cat-file",
+      "-e",
+      "9cf16a4aca7898481c257f1e17ad28d0b67b1f85^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:34:02Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/ansible__ansible",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "b85437b7f6e39476252b271778b8c7dcebbd931a"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "b85437b7f6e39476252b271778b8c7dcebbd931a 9cf16a4aca7898481c257f1e17ad28d0b67b1f85\n",
+     "stdout_sha256": "dec405b1abb47e13faaebd56d7f6e88c7515811cd83a1b1b06ba834738b60b04",
+     "utc": "2026-08-28T19:34:02Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/ansible__ansible",
+      "rev-parse",
+      "b85437b7f6e39476252b271778b8c7dcebbd931a:COPYING"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "f288702d2fa16d3cdf0035b15a9fcbc552cd88e7\n",
+     "stdout_sha256": "358dc9e522819406a5aee543244968243601b84598dc30ecb6a49c9b738528a6",
+     "utc": "2026-08-28T19:34:02Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/ansible__ansible",
+      "cat-file",
+      "blob",
+      "b85437b7f6e39476252b271778b8c7dcebbd931a:COPYING"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "                    GNU GENERAL PUBLIC LICENSE\n                       Version 3, 29 June 2007\n\n Copyright (C) 2007 Free ",
+     "stdout_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+     "utc": "2026-08-28T19:34:02Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/ansible/ansible",
+   "repository": "ansible/ansible",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "88e76a2d01c5924f9d11fc8cdda9f8b3e5541beabf7ec615b47d2b5bcd9fd9df",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/celery/celery",
+      "/home/billy/p13p14-acq/clones/celery__celery"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "45141dffe146c693019b36cb718bdead84e040e2c8dc7bb6261d319fc3aeddf7",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:34:02Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/celery__celery",
+      "cat-file",
+      "-e",
+      "8d2bccca0478cad48f31a75eaebc0ce389f65425^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:34:05Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/celery__celery",
+      "cat-file",
+      "-e",
+      "2de9b55eab6071098b45603f1876c6e8946dd086^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:34:05Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/celery__celery",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "8d2bccca0478cad48f31a75eaebc0ce389f65425"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "8d2bccca0478cad48f31a75eaebc0ce389f65425 2de9b55eab6071098b45603f1876c6e8946dd086\n",
+     "stdout_sha256": "316566b22a7d344e0e8d252417fc56a2c0272cbe1f2a8b2b98ab4d69a69850de",
+     "utc": "2026-08-28T19:34:05Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/celery__celery",
+      "rev-parse",
+      "8d2bccca0478cad48f31a75eaebc0ce389f65425:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "93411068ab7db9401ec4d5c9d52ca14f77e794fc\n",
+     "stdout_sha256": "2914e39e180594e49dbcb4fd8a5d7997ee3e73f01c8e18b0e786ebb431767bd7",
+     "utc": "2026-08-28T19:34:05Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/celery__celery",
+      "cat-file",
+      "blob",
+      "8d2bccca0478cad48f31a75eaebc0ce389f65425:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright (c) 2017-2026 Asif Saif Uddin, core team & contributors. All rights reserved.\nCopyright (c) 2015-2016 Ask Sole",
+     "stdout_sha256": "c358cdf77f28bbab50d4a754e123118339c15230349e82bf66489cece3ac093a",
+     "utc": "2026-08-28T19:34:05Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/celery/celery",
+   "repository": "celery/celery",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "134fddb87d1c7bac693812fd1c34fc4c549c8d4db52fcf7c4c99a5a026c20fb1",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/home-assistant/core",
+      "/home/billy/p13p14-acq/clones/home-assistant__core"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "a9ccdbb5118c968594e29f03418191ceb3c02e1e23b817b8071c701e6caf2cce",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:34:06Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/home-assistant__core",
+      "cat-file",
+      "-e",
+      "cbde7ecf465c1ea1375e1860e550c26a2f51d323^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:35:38Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/home-assistant__core",
+      "cat-file",
+      "-e",
+      "84e071d7951ec25b7acccd5a7b116fd486287176^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:35:38Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/home-assistant__core",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "cbde7ecf465c1ea1375e1860e550c26a2f51d323"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "cbde7ecf465c1ea1375e1860e550c26a2f51d323 84e071d7951ec25b7acccd5a7b116fd486287176\n",
+     "stdout_sha256": "8fa19dbf07314b61c47f5d8edb180bf366f9a700bd93d60fdeb31f97bb973f9a",
+     "utc": "2026-08-28T19:35:38Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/home-assistant__core",
+      "rev-parse",
+      "cbde7ecf465c1ea1375e1860e550c26a2f51d323:LICENSE.md"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64\n",
+     "stdout_sha256": "449e7f481a63c13769b4383af0361581ced240bd22a03618c8a46fa5c7d85bfa",
+     "utc": "2026-08-28T19:35:38Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/home-assistant__core",
+      "cat-file",
+      "blob",
+      "cbde7ecf465c1ea1375e1860e550c26a2f51d323:LICENSE.md"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "                                 Apache License\n                           Version 2.0, January 2004\n                   ",
+     "stdout_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+     "utc": "2026-08-28T19:35:38Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/home-assistant/core",
+   "repository": "home-assistant/core",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "head_object_exists": "EXISTS",
+    "license_blob_matches_git_object": "MATCH",
+    "license_sha256_matches_blob_bytes": "MATCH",
+    "parent_is_direct_parent": "TRUE",
+    "parent_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "b1123156a72e4b444fdb171aca4d3e42d955733c4d8aac396c3550baaac8eb18",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/sympy/sympy",
+      "/home/billy/p13p14-acq/clones/sympy__sympy"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "8424c7b0aef399496cfb172133f20f86388f0eb45deed009edf75421d755c260",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:35:39Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/sympy__sympy",
+      "cat-file",
+      "-e",
+      "46076fc5a6c7d1f174835bd3cf4c7cc708ed83c2^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:35:51Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/sympy__sympy",
+      "cat-file",
+      "-e",
+      "e950d313a932bc6cccbc95376b3821cd2f8b5af4^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:35:51Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/sympy__sympy",
+      "rev-list",
+      "--parents",
+      "-n",
+      "1",
+      "46076fc5a6c7d1f174835bd3cf4c7cc708ed83c2"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "46076fc5a6c7d1f174835bd3cf4c7cc708ed83c2 e950d313a932bc6cccbc95376b3821cd2f8b5af4 55d8ac894735a7d16740680f4b39d140c5ff69",
+     "stdout_sha256": "02f0dcf7f6ea702181bbc79e622d4cc2b07d37e0e4e3a316a5f5525fa92364c8",
+     "utc": "2026-08-28T19:35:51Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/sympy__sympy",
+      "rev-parse",
+      "46076fc5a6c7d1f174835bd3cf4c7cc708ed83c2:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "0744f229d697ca3ed1b1b257bfdb70e3eecf0b9e\n",
+     "stdout_sha256": "48389b62223a2e07c78291378f141f67c315a1c0084a60ec2258ced9cc491408",
+     "utc": "2026-08-28T19:35:51Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/sympy__sympy",
+      "cat-file",
+      "blob",
+      "46076fc5a6c7d1f174835bd3cf4c7cc708ed83c2:LICENSE"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "Copyright (c) 2006-2023 SymPy Development Team\n\nAll rights reserved.\n\nRedistribution and use in source and binary forms,",
+     "stdout_sha256": "07a5e9819f727b4986ad2829c7a29a6320d42575f720eb24d71b7fef573a0286",
+     "utc": "2026-08-28T19:35:51Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/sympy/sympy",
+   "repository": "sympy/sympy",
+   "role": "ACQUISITION_TARGET"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "e26aae0330189890eefb8575ad9e5b441140622380ea8bd2debdc0a523f5bf46",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/apache/kafka",
+      "/home/billy/p13p14-acq/clones/apache__kafka"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "2429b770d2631b1574a06dd90abd573b6a0731b3fffe17bffebccf458ebdc6a3",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:35:51Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/apache__kafka",
+      "cat-file",
+      "-e",
+      "808bbe535b1ca8e4c80e2e124db01184ef907858^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:36:07Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/apache/kafka",
+   "repository": "apache/kafka",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "076feb91dd78753bf382524d051c66d53d4ad4ad162bf63461e00115582ecf6d",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/curl/curl",
+      "/home/billy/p13p14-acq/clones/curl__curl"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "920d958221a69d67a67d7d17ddfc4a82aedd1448297c494b3fbb8c0c3ea5c47d",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:36:07Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/curl__curl",
+      "cat-file",
+      "-e",
+      "c2676bf9e639e31e44b12a2cc82cf2046231b056^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:36:16Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/curl/curl",
+   "repository": "curl/curl",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "d88029d6f6aab48bec3de7cc3c21e4cac09ec19afd057f352c4cbaff84d347a3",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/emberjs/ember.js",
+      "/home/billy/p13p14-acq/clones/emberjs__ember.js"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "2060c37317f7752cb6b29635c581709e5f550c928a34a33c045eab098231b15e",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:36:16Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/emberjs__ember.js",
+      "cat-file",
+      "-e",
+      "f4f8b5d8b2e4dc7e3d0f326fd58184be362893fb^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:36:24Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/emberjs/ember.js",
+   "repository": "emberjs/ember.js",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "0f3205803e7172f112065b45dcc7b1e807a584f2e4ebf9b11f0f910d0a0f6226",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/erlang/otp",
+      "/home/billy/p13p14-acq/clones/erlang__otp"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "cf9a59c426e3fdd2f0953a78f9456e2ca4178f56e0ffd80041b01279315e241b",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:36:24Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/erlang__otp",
+      "cat-file",
+      "-e",
+      "4542a0b14fa904c235fa5d03787ad3a7b2ebd368^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:36:42Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/erlang/otp",
+   "repository": "erlang/otp",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "a933b279ac84f67882b296beae3bd8a0c8a4a437d735c3edd50f908aeaab471d",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/git/git",
+      "/home/billy/p13p14-acq/clones/git__git"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "00d5b53c48b017199116c3b788ffe174d98417b49ad5dc2b72ef407c6c4c6155",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:36:42Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/git__git",
+      "cat-file",
+      "-e",
+      "1a3e64c6c4a623626ff0687008732a8e007e2a1c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:09Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/git/git",
+   "repository": "git/git",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "1f9b78adf05d504eb96551c63ebbbb2dc09fd5d179f44e4aa689784ff1d8bea1",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/golang/crypto",
+      "/home/billy/p13p14-acq/clones/golang__crypto"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "0a5c5bf33ccc3f9880ce53d9429f4200b28e4b551f1a2c8477b561b081e5c58f",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:09Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__crypto",
+      "cat-file",
+      "-e",
+      "71488c48c2dfecf900e52caa55f88ef4fef62d54^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:10Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/golang/crypto",
+   "repository": "golang/crypto",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "1113ec047402eba03fedf7370de275d3c5e726e09d98c94dd25ffad4e4c7b1ba",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__go",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "7ccbcb5c80a36d341dc8d7bba0274ddaac2d82ce1c903158d66ae901774cc07b",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:10Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__go",
+      "cat-file",
+      "-e",
+      "a0044c2d09d47f2e2308538c70da4d7d359ed24a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:11Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/golang/go",
+   "repository": "golang/go",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "643393ca9b7ab04b77ca4fe2a4e1dd844eb56f15323f4681de14b05c94ce2f47",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/golang/net",
+      "/home/billy/p13p14-acq/clones/golang__net"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "81447b55db76f7bfa10933f9ff28690a69198035de9ea4bc659affca5ae85379",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:11Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__net",
+      "cat-file",
+      "-e",
+      "fc715e5c972bf4ec70ca609630538e6b71d6480c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:12Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/golang/net",
+   "repository": "golang/net",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "4d341c41fb8016d0eeeba63463285ea3d07f3a0077b2205f1f7133a0ba983650",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/golang/sys",
+      "/home/billy/p13p14-acq/clones/golang__sys"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "2ad55eb6d59b12cd0ebf0fb1cf38e8fe5a7c37b2887f9f2b5a9856d83cb5e071",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:12Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__sys",
+      "cat-file",
+      "-e",
+      "e8c1c3274309bd87f360205f5706e986ceccb317^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:13Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/golang/sys",
+   "repository": "golang/sys",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "53298e180d14899055d92514a9ec8dd76339775e9e88c4b6b7c664ee4bc1a681",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/golang/text",
+      "/home/billy/p13p14-acq/clones/golang__text"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "fa8d82c1e86b8945ef016f3d025bd47f3bb7e6c82f44820ba7ea655cb634de4e",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:13Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__text",
+      "cat-file",
+      "-e",
+      "dac6be3876335b7e1d2ea7d209d9bfb930306291^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:14Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/golang/text",
+   "repository": "golang/text",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "faf97ab943832d4aaf871cd1023b54a0cfc8fe1840dfbce3a7826fc0746c099d",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/golang/tools",
+      "/home/billy/p13p14-acq/clones/golang__tools"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "c74dee702b3654246e570f94223008767bdc3a4bced2c157c7aa3bd5d2a0e71a",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:14Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/golang__tools",
+      "cat-file",
+      "-e",
+      "8f0f8c7bde0eea32e01e570a0e330c60a0cbaecc^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:17Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/golang/tools",
+   "repository": "golang/tools",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "b1b0488a146d6f6e62bf8cf1642d4aaa4533d4b5bbb1c3fdda4c13fa0f88ffea",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/jquery/jquery",
+      "/home/billy/p13p14-acq/clones/jquery__jquery"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "39b64f618ec139905111b40b4ca0766b37b854b155702bb06f4e6332f3903d32",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:17Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__jquery",
+      "cat-file",
+      "-e",
+      "71c0dd14927c41d1aab5ce5ef2687d7808a4186b^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:19Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/jquery/jquery",
+   "repository": "jquery/jquery",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "fbfef3e7a539d78d655e1b8ece596958494e79f2e1c9c8eb993ae3c35fbc57ce",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/jquery/jquery-ui",
+      "/home/billy/p13p14-acq/clones/jquery__jquery-ui"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e35548f42e5258e336c7da4aa881e6203df9a4eee31a833a756b67d871ced58c",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:19Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__jquery-ui",
+      "cat-file",
+      "-e",
+      "dcf10556bbcfdf3e10e3ea30966482e201191411^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:22Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/jquery/jquery-ui",
+   "repository": "jquery/jquery-ui",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "560e6b67c7ced5e31b251f68fdea68ebe21a2c6dd89d53946cbe154b6b423cb4",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/jquery/qunit",
+      "/home/billy/p13p14-acq/clones/jquery__qunit"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e2bea1c0ae70190ae2a55b30dffc453b714ac30deb239e3e3d425298edce7887",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:22Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__qunit",
+      "cat-file",
+      "-e",
+      "d304f6ee3cf7645a78e3f3882c901d0206990edc^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:23Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/jquery/qunit",
+   "repository": "jquery/qunit",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "ba5abbd7185cea0bdb527f0f9234138b3cb767df9851e629092acb10c1ad3a4f",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/jquery/sizzle",
+      "/home/billy/p13p14-acq/clones/jquery__sizzle"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "29c5fc4892edb34a71fb8ce802e21c9730e7e8fe189dcbfd332a1477551339fa",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:23Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/jquery__sizzle",
+      "cat-file",
+      "-e",
+      "aec9caa8a4e545b28db63ea0e212b46e53a4cf89^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:24Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/jquery/sizzle",
+   "repository": "jquery/sizzle",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "1544a53b0adfe56efb06eedeac870be8b3ace34a9e69ead1d05c7e7f251bdd68",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/lodash/lodash",
+      "/home/billy/p13p14-acq/clones/lodash__lodash"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "f1faddaf2f1443e712e6345e3cbffbe7ad6080eb0fa7bc2481bc311447496d95",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:24Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/lodash__lodash",
+      "cat-file",
+      "-e",
+      "a666ba591064c8011988275790ad7d625279f09c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:26Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/lodash/lodash",
+   "repository": "lodash/lodash",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "cc47ad56708f97057b6defbde03f3ebd26ded6b20773650b6021f2cef9fcea3d",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/matplotlib/matplotlib",
+      "/home/billy/p13p14-acq/clones/matplotlib__matplotlib"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "f48b4e57d20cf39d41e7cf531c5b6f5a9b07f88c8e51f5b7a925ce72e73dfba2",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:26Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/matplotlib__matplotlib",
+      "cat-file",
+      "-e",
+      "adecc563eabdfeb103ca338b50d5191b838ae8e9^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:39Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/matplotlib/matplotlib",
+   "repository": "matplotlib/matplotlib",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "1ae9f45f4f1fa946ee1304b4111419c65f1c4b7e7f53541566e54f6768048b91",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "2c2aed20dc7ca2d4ce5095f4622e2f39dcdbe6badfe552815440a8c5d878f18d",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:39Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/microsoft__vscode",
+      "cat-file",
+      "-e",
+      "449d7cc584e1be7f58b3a7a6e2a8e9e3110390d6^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:40Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/microsoft/vscode",
+   "repository": "microsoft/vscode",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "3c9bf5c8fd6b2b939cdf8122395ea254506b9970d53343c7384c2c26231345f1",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/networkx/networkx",
+      "/home/billy/p13p14-acq/clones/networkx__networkx"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "01622a30543d95a5e98a0fb225f6e02a1cfec92029638ecd0382bba9ecc5ed5b",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:40Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/networkx__networkx",
+      "cat-file",
+      "-e",
+      "cfc6b79fc53f583aa15a79b2187ae30bd4f480ed^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:42Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/networkx/networkx",
+   "repository": "networkx/networkx",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "1cbad979b84d946c7286fea9d0300d96b2eec6fbdb915b8dcd5e96a45e42f281",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/nodejs/node",
+      "/home/billy/p13p14-acq/clones/nodejs__node"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "9e25c1e47f3b307a92a95d4f81a0d5c33611ad213a358603bb77b39411fdc78f",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:37:42Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/nodejs__node",
+      "cat-file",
+      "-e",
+      "214cf0693bee80d31150d21d2ad21186d2d055cf^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:44Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/nodejs/node",
+   "repository": "nodejs/node",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "e7f0bf82af8e7479f7fde55584ab20a099db49d876e2c47a91e7cdd3e11dbd42",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpy",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "a6963f81b254785c4bc4632992e755e10f305a84211e3505d0fb394d0f857740",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:44Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpy",
+      "cat-file",
+      "-e",
+      "71596b96a678b2d769f81e8b2fb84b2b43a99f68^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:44Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/numpy/numpy",
+   "repository": "numpy/numpy",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "c322fb71c58072b939cda31a39b541d27f66ad2f64ec9b38ed3823afed2344f5",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/numpy/numpydoc",
+      "/home/billy/p13p14-acq/clones/numpy__numpydoc"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "6e5ec4eaa27ae8591f4deb9edca5b19f6bc8c5558415ae11233289e58f8306f3",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:44Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/numpy__numpydoc",
+      "cat-file",
+      "-e",
+      "c127da1c69ec84f9be4f84656c6435b43f949b0d^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:45Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/numpy/numpydoc",
+   "repository": "numpy/numpydoc",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "1e303fa743cbc65ede64c6a099634d13c45aa10c0c7c6cc566b01f95a07525d9",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__flask",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "d0970ae002f5587f38eef961aff3aa31dfc9b1f2493da81ae354c564288afcc8",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:45Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__flask",
+      "cat-file",
+      "-e",
+      "d318b683471101618febed18996405ad26462110^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:45Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pallets/flask",
+   "repository": "pallets/flask",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "23ad5c6c1ddbafaafdd101243bd7ca7afc76863c439a8b3aa788c53daafca94f",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__jinja",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "5cb7da663c3dc9d7aa3c3d2ffd799f9d1b1219ff1548749700fd797b982f058d",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:45Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__jinja",
+      "cat-file",
+      "-e",
+      "5ef70112a1ff19c05324ff889dd30405b1002044^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:46Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pallets/jinja",
+   "repository": "pallets/jinja",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "63a39bb4f6c62800f4e0c43e1608c6e26189fc55f2892e751fb8e3e362eb9d12",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e9a33978083a43cf890ef5255647cfba1872abb3cc3053b8a6e3734cea0f1cc6",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:46Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pallets__werkzeug",
+      "cat-file",
+      "-e",
+      "0005c79e09bae5f4cc2bd8ccd468d7dafe24a455^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:46Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pallets/werkzeug",
+   "repository": "pallets/werkzeug",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "96c77907a8aad8d06390f8c5146fa91728aedea338439d49e01c73687fad865d",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "6a25d7d32276791197591db668bb2ff0607c400c063c36f7881cf372bc77d4ce",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:46Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas",
+      "cat-file",
+      "-e",
+      "0c48f9eb6de21210dfb881fdaa5719fbde4c37cb^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:47Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pandas-dev/pandas",
+   "repository": "pandas-dev/pandas",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "def6997c880f27376d0391a2aa3f3f9731e444fea86eadfa59e29808f53f680b",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/pandas-dev/pandas-stubs",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas-stubs"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "aabf2cc44c5116d4509dd062ff7092b9f569721aaa059d283866db93c0e71d5d",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:47Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pandas-dev__pandas-stubs",
+      "cat-file",
+      "-e",
+      "af30812c6901331be77e8ed76db8f099f20d00b8^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:48Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pandas-dev/pandas-stubs",
+   "repository": "pandas-dev/pandas-stubs",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "ef2b3813e7f86c47ba94693f23fa3fed916846b96a9edcb11480170f548a708b",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/psf/black",
+      "/home/billy/p13p14-acq/clones/psf__black"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "39360027e756a9ad59f1e42e3dd51f37eca74a1a8667cbd95e20c3c62b163219",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:48Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/psf__black",
+      "cat-file",
+      "-e",
+      "8947c48ef2077c3a301b03c1e814dc2e3f78436e^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:49Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/psf/black",
+   "repository": "psf/black",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "173521d090a550cbf07f15e77b09c5c076eae91f2167d5194751d37c63c9dcb1",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/pydata/xarray",
+      "/home/billy/p13p14-acq/clones/pydata__xarray"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "75d45ea563607a31fbd80137ef6c7f306465299178a9b7fc74174bdd1cb4f911",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:49Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/pydata__xarray",
+      "cat-file",
+      "-e",
+      "b1c1dc549b62bdfc8de0bdded24f56464cf0db1a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:51Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/pydata/xarray",
+   "repository": "pydata/xarray",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "1a9562513d26702901ba60c402a89a2e7ababec3881d8d37dd9cbe1652bc1be9",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/python/cpython",
+      "/home/billy/p13p14-acq/clones/python__cpython"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "52f0e9f9fe0ad5ee97213bbb87d64aec360c15cbdc0363c10bd0f8227e1ae306",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:38:51Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__cpython",
+      "cat-file",
+      "-e",
+      "9cbd578e38a5ef59f9462b61d1e03338b208cba6^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:39:46Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/python/cpython",
+   "repository": "python/cpython",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "62e51420f93cf2f77f4bb4b519071d491d48855aa928bcb8f2685b6c74a1237e",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/python/peps",
+      "/home/billy/p13p14-acq/clones/python__peps"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "26036e98410fba10d4d6beebfd4e3b0bbc68e48751d85ca893c9cf39ede22bc9",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:39:46Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__peps",
+      "cat-file",
+      "-e",
+      "344e58976964e61bc206c38cc3e81742b599b5f4^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:39:48Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/python/peps",
+   "repository": "python/peps",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "18a5940207f0a3504188dbb5c6647499f164f7425ae03ac27a84826bcdfa5788",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/python/typeshed",
+      "/home/billy/p13p14-acq/clones/python__typeshed"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "51aac031c1cdc4fef9f07789beff78489aa76fd8557c3441fbb71ea501dde42f",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:39:48Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/python__typeshed",
+      "cat-file",
+      "-e",
+      "28b0c4d114f3d4bc28b022385d096038b73fc436^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:39:53Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/python/typeshed",
+   "repository": "python/typeshed",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "fe1a5de0044c9a610ef71224ec88426d11bda46fbd26f20b513effc10f1d5372",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/redis/jedis",
+      "/home/billy/p13p14-acq/clones/redis__jedis"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "15d30fbdf375685ccb0b15b1a6ecf89bba533fb57e5f8a18221a4124f2eff569",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:39:53Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__jedis",
+      "cat-file",
+      "-e",
+      "fdc5606a67c1b6f9567c6f738e541e18467c60e6^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:39:55Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/redis/jedis",
+   "repository": "redis/jedis",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "64b607ae8ede9d2239f5c36759e6c7e2f1af33f3e563835204035c89eb868731",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/redis/redis",
+      "/home/billy/p13p14-acq/clones/redis__redis"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "165328a9c17bbf445386f2e8dab421ef16cea1cce0c70eb8ed7099f49687e9ce",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:39:55Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__redis",
+      "cat-file",
+      "-e",
+      "86c0e60769812557ecf38bcdcd1c70010efebf20^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:40:00Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/redis/redis",
+   "repository": "redis/redis",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "9ba727dea50554e1506842f25fedac42fde89593ceeecb749f8c7b222166dc86",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/redis/redis-py",
+      "/home/billy/p13p14-acq/clones/redis__redis-py"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "afe97c5874518bca8b6309c98a0fd14c746fd724459eac731f21022af4c7a74b",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:40:00Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/redis__redis-py",
+      "cat-file",
+      "-e",
+      "afe6523ec5e07b49fe15e1748c049cc2ab2644a6^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:40:01Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/redis/redis-py",
+   "repository": "redis/redis-py",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "38f1ee493e73e958e26d372dc909f063210f457c25873853df0379ded489cd34",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/rust-lang/cargo",
+      "/home/billy/p13p14-acq/clones/rust-lang__cargo"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "3104ba4357843f65e31d74347c6608e519ed9a0c9b39f77c0300c78709766a72",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:40:01Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__cargo",
+      "cat-file",
+      "-e",
+      "bb983ad0bd166bd151db189a066bba32039a223b^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:40:12Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/rust-lang/cargo",
+   "repository": "rust-lang/cargo",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "94cc05e31a5f8ce31c0b719b5f3068f7d8671ef51dbc24241b2a59a0d8d879db",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/rust-lang/miri",
+      "/home/billy/p13p14-acq/clones/rust-lang__miri"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "9ad251aac7bdec6f9e0d38dd318841700c8e09539800057587bfb3cda3ad7d6d",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:40:12Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__miri",
+      "cat-file",
+      "-e",
+      "a854cde861f2142584e2d7ed49ca66827d4b749a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:40:17Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/rust-lang/miri",
+   "repository": "rust-lang/miri",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "c0e75d76afb6f030d45e8d46ea193d02ee4032ab3fdf68783413ac7e17b65ba0",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/rust-lang/rust",
+      "/home/billy/p13p14-acq/clones/rust-lang__rust"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "d5ccfaa13f25423d8ac5fb6d06e12451e53d640d31cfb358cb01093e1208620a",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:40:17Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__rust",
+      "cat-file",
+      "-e",
+      "347a1dbf428ab92f284e3afafacfa7eb46341a5d^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:23Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/rust-lang/rust",
+   "repository": "rust-lang/rust",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "a45d103f3bba323130b04f7373befcc52332b1b5d8626b0468dc61a887628fbc",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/rust-lang/rustfmt",
+      "/home/billy/p13p14-acq/clones/rust-lang__rustfmt"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "672a3f8f9bc786973e7ea4c9a98d049238aac53ed1e5936febaa51cd2cff032d",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:23Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/rust-lang__rustfmt",
+      "cat-file",
+      "-e",
+      "bbfd1201f7b9c7eddb7fb7dec704fa3566b6863c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:25Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/rust-lang/rustfmt",
+   "repository": "rust-lang/rustfmt",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "52cd4f944075c2a9798ebdbb14ba3cc79a69cfe6b9904f292c52dfc6f75bf37e",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scipy__scipy",
+      "fetch",
+      "origin",
+      "--prune"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "92a15012b4683d090b012c5d77607d08f37bee811d18b72b2d4dd978c31c61f1",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:25Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/scipy__scipy",
+      "cat-file",
+      "-e",
+      "6a1d12b8c2b767b79f977a0212bcabb6446bfbf9^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:26Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/scipy/scipy",
+   "repository": "scipy/scipy",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "d37f7be748f922fe6dddcfdadfe2b11f018a00cb10a06e4c95645a4ae47a0fb0",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/vuejs/pinia",
+      "/home/billy/p13p14-acq/clones/vuejs__pinia"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "c7b6580bde5dff74653f3fd04d339dbf0235b2683e4db361e753c0cf0eb74209",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:26Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__pinia",
+      "cat-file",
+      "-e",
+      "5d6ac5b86491041aa83a663a9a31189c707aff08^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:27Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/vuejs/pinia",
+   "repository": "vuejs/pinia",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "44283a542920c497b848e7ea8f5f4f380a60a5d8e52a7a5afc2e328ab64fe9a9",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/vuejs/vite",
+      "/home/billy/p13p14-acq/clones/vuejs__vite"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "da6cad7a48df72ac2382a34a16c84bbf6ce2f8b4dec3bb6e630420f9e7414e7e",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:27Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vite",
+      "cat-file",
+      "-e",
+      "c32e784c95b51f7969cebc7522a5037f14fb6606^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:32Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/vuejs/vite",
+   "repository": "vuejs/vite",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "716b06005cafb9976eaf7b52e4a06a17019df3901606aa040e35bf5d89854128",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/vuejs/vue",
+      "/home/billy/p13p14-acq/clones/vuejs__vue"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "c927977893a9977c84f7d55af641b233b8f1fabd96c7cc8c72a199aeb6e55cfc",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:32Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vue",
+      "cat-file",
+      "-e",
+      "9e88707940088cb1f4cd7dd210c9168a50dc347c^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:34Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/vuejs/vue",
+   "repository": "vuejs/vue",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "3d4b57543890041cfeece960ad7722e056f747b658a5d1c3d1f25dac8a50b3f4",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/vuejs/vue-router",
+      "/home/billy/p13p14-acq/clones/vuejs__vue-router"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "f03330587f4c9c5cb9241496d9292dda46b8f4a3ad12c474d22f561abb1cc213",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:34Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vue-router",
+      "cat-file",
+      "-e",
+      "680ccc68c506cca9be6207745043245d61fa715a^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:35Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/vuejs/vue-router",
+   "repository": "vuejs/vue-router",
+   "role": "CORPUS_PIN"
+  },
+  {
+   "observations": {
+    "pinned_object_exists": "EXISTS"
+   },
+   "raw_command_receipt_digest": "4dae3d90c216ef6dd5f22eb8bf0e852d63ea4a2cd210f8319398e34ee7fe8663",
+   "receipts": [
+    {
+     "argv": [
+      "git",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "--bare",
+      "https://github.com/vuejs/vuex",
+      "/home/billy/p13p14-acq/clones/vuejs__vuex"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "bcbe24daf31a2872c2e775ddf9545c467ecf255fccb7ef9a707ed1669a844c76",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:35Z"
+    },
+    {
+     "argv": [
+      "git",
+      "-C",
+      "/home/billy/p13p14-acq/clones/vuejs__vuex",
+      "cat-file",
+      "-e",
+      "bd907467b8392d6671bb115738285ff7f63d0cf6^{commit}"
+     ],
+     "cwd": null,
+     "exit": 0,
+     "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "stdout_excerpt": "",
+     "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "utc": "2026-08-28T19:42:36Z"
+    }
+   ],
+   "record_terminal": "VERIFIED_ALL",
+   "remote": "https://github.com/vuejs/vuex",
+   "repository": "vuejs/vuex",
+   "role": "CORPUS_PIN"
+  }
+ ],
+ "run_terminal": "T1_ALL_OBSERVATIONS_VERIFIED",
+ "schema": "ORION.P13P14.LiveGitAcquisitionReceipts.v1"
+}
