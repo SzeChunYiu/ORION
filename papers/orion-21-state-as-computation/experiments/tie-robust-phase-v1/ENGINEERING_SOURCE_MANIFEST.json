@@ -1,0 +1,34 @@
+{
+  "schema": "orion.orion21.tie-robust-phase.engineering-source-manifest.v1",
+  "protocol_identity": "ORION21.TIE_ROBUST_PHASE.v1",
+  "status": "ENGINEERING_ONLY__SCIENTIFIC_OUTCOMES_NOT_READ",
+  "base_commit": "456e7fbc4417c0d1d510dc65e9faf7a942570665",
+  "frozen_scientific_inputs": {
+    "PROTOCOL.json": "847b0027ce480478e4ed317e4ebb4f4b9fea73dd",
+    "EXPECTED_TERMINALS.json": "e48e100d1b6a16f146d802f1406e94d940fb0c47",
+    "THEORY.md": "b1f3af86e9f8061841e5aef981abb2aba2172a69",
+    "p11h_generator_semantics": {
+      "path": "papers/orion-21-state-as-computation/run_p11h_pooled_sparsity_ladder_v1.py",
+      "git_blob_sha": "73f842b4205705699dfc8eaac79ca0907b59cbb6"
+    },
+    "exact_anchor_reference_implementation": {
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-exact-anchor-v2/run_exact_anchor_v2.py",
+      "git_blob_sha": "c78ff18df819cc72d0f5c480d6a3ea5253a6d2c4"
+    },
+    "v1_registered_result": {
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/authoritative-job-3550337/NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1.json",
+      "git_blob_sha": "0d07556a9f6a9c09866d05a027e025ff7b6ad75d"
+    }
+  },
+  "new_engineering_blobs": {
+    "run_tie_robust_phase.py": "67c10352b9645efb7c325646377015feaed0afbb",
+    "independent_checker/check_tie_robust_phase.py": "cfceaa5bacf98310495db93e8f22026071f19e1c",
+    "run_tie_robust_phase.sbatch": "2a6a975d39e819e18756daadf3c32ee3a2955ed4"
+  },
+  "authority": {
+    "scientific_authority_delta": "NONE",
+    "submission_authority": false,
+    "result_committed": false,
+    "scientific_execution_performed_by_this_packet": false
+  }
+}
