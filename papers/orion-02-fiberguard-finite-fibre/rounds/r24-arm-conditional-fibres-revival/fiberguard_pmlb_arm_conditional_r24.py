@@ -50,6 +50,10 @@ r23 = _load_r23()
 PORTFOLIO = r23.PORTFOLIO
 GROUPS = r23.GROUPS
 TAU = r23.TAU
+LEARNED_ARMS = r23.LEARNED_ARMS
+STATIC_ARMS = r23.STATIC_ARMS
+TEST_ARMS = r23.TEST_ARMS
+N_FOLDS = r23.N_FOLDS
 
 
 def expected_ball_members(n_bits: int, shield_n: int, radius: int) -> float:
@@ -363,6 +367,144 @@ def synthetic_policy_receipt() -> dict[str, Any]:
         "rows": rows,
         "summary": arm_summary(rows),
         "hostile_controls": {"arm_specific_pool_integrity": bool(integrity)},
+    }
+
+
+def synthetic_nine_fold_corpus() -> tuple[
+    dict[str, int],
+    dict[str, dict[str, list[float]]],
+    dict[str, dict[str, float]],
+]:
+    names = [f"dataset_{i}" for i in range(N_FOLDS)]
+    fold_of = {name: i for i, name in enumerate(names)}
+    meta: dict[str, dict[str, list[float]]] = {}
+    outcomes: dict[str, dict[str, float]] = {}
+    for i, name in enumerate(names):
+        meta[name] = {
+            "G0": [float((i >> bit) & 1) for bit in range(4)],
+            "G1": [float(i % 3) / 2.0],
+            "G2": [float((i * 2) % 5) / 4.0],
+            "G3": [float((i * 3) % 7) / 6.0],
+        }
+        row = {
+            arm: r23.json_float(0.10 + 0.01 * ((j - i) % len(PORTFOLIO)))
+            for j, arm in enumerate(PORTFOLIO)
+        }
+        row["best"] = min(row.values())
+        outcomes[name] = row
+    return fold_of, meta, outcomes
+
+
+def select_primary(
+    rows_by_arm: Mapping[str, Mapping[str, Mapping[str, Any]]]
+) -> str:
+    summaries = {arm: arm_summary(rows) for arm, rows in rows_by_arm.items()}
+    return min(
+        LEARNED_ARMS,
+        key=lambda arm: (
+            summaries[arm]["mean_excess"],
+            summaries[arm]["p95_excess"],
+            summaries[arm]["max_excess"],
+            arm,
+        ),
+    )
+
+
+def policy_phase(
+    mode: str,
+    fold_of: dict[str, int],
+    meta: dict[str, dict[str, list[float]]],
+    outcomes: dict[str, dict[str, float]],
+) -> dict[int, dict[str, Any]]:
+    per_fold: dict[int, dict[str, Any]] = {}
+    for fold in range(N_FOLDS):
+        roles = r23.r22.role_names(fold, fold_of)
+        ctx = ArmConditionalContext(fold, roles, meta, outcomes, mode)
+        threshold = {
+            arm: evaluate_arm(ctx, roles["threshold_select"], arm, TAU)
+            for arm in LEARNED_ARMS
+        }
+        primary = select_primary(threshold)
+        tests = {
+            arm: evaluate_arm(ctx, roles["test"], arm, TAU)
+            for arm in TEST_ARMS
+        }
+        per_fold[fold] = {
+            "roles": roles,
+            "f_star_arm": ctx.f_star_arm,
+            "primary": primary,
+            "threshold_select": threshold,
+            "test": tests,
+        }
+    return per_fold
+
+
+def full_state_rows(
+    phase: dict[int, dict[str, Any]],
+    meta: dict[str, dict[str, list[float]]],
+    outcomes: dict[str, dict[str, float]],
+    mode: str,
+) -> dict[str, dict[str, Any]]:
+    rows: dict[str, dict[str, Any]] = {}
+    full = tuple(sorted(GROUPS))
+    for fold in range(N_FOLDS):
+        roles = phase[fold]["roles"]
+        ctx = ArmConditionalContext(fold, roles, meta, outcomes, mode)
+        for name in roles["test"]:
+            pools, wc, used = ctx.arm_pools(name, full, TAU)
+            admissible = sorted(
+                arm for arm in PORTFOLIO if pools[arm] and wc[arm] <= TAU + TOL
+            )
+            rows[name] = {
+                "fold": fold,
+                "arm_pools": pools,
+                "arm_bounds": {
+                    arm: (r23.json_float(wc[arm]) if math.isfinite(wc[arm]) else None)
+                    for arm in PORTFOLIO
+                },
+                "arm_used_backoff": used,
+                "admissible": admissible,
+                "best_arm": (
+                    min(admissible, key=lambda arm: (wc[arm], arm))
+                    if admissible
+                    else None
+                ),
+                "best_bound": (
+                    r23.json_float(min(wc[arm] for arm in admissible))
+                    if admissible
+                    else None
+                ),
+            }
+    return {name: rows[name] for name in sorted(rows)}
+
+
+def pooled_rows(
+    phase: Mapping[int, Mapping[str, Any]], arm: str
+) -> dict[str, dict[str, Any]]:
+    rows: dict[str, dict[str, Any]] = {}
+    for fold in range(N_FOLDS):
+        rows.update(phase[fold]["test"][arm])
+    return rows
+
+
+def pooled_primary(
+    phase: Mapping[int, Mapping[str, Any]]
+) -> dict[str, dict[str, Any]]:
+    rows: dict[str, dict[str, Any]] = {}
+    for fold in range(N_FOLDS):
+        rows.update(phase[fold]["test"][phase[fold]["primary"]])
+    return rows
+
+
+def full_state_summary(rows: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
+    covered = sum(bool(row["admissible"]) for row in rows.values())
+    return {
+        "n": len(rows),
+        "certified_n": covered,
+        "certified_coverage": r23.json_float(covered / len(rows)),
+        "mean_admissible_arms": r23.json_float(
+            float(np.mean([len(row["admissible"]) for row in rows.values()]))
+        ),
     }
 
 
