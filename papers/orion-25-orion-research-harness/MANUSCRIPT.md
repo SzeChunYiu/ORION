@@ -38,7 +38,10 @@ False rejection over the full valid workload is `0/11` at the chain layer and
 
 That negative is the paper's own argument against reading attestation as
 scientific validity: a correct signature over a compromised key set verifies
-exactly as well as one over an honest set. Active authority for all three:
+exactly as well as one over an honest set. Sections 3.2-3.3 measure that
+statement: detection is flat in chain length (`1.000` at `k = 1, 2, 3`) while forged
+chains accepted under one compromised domain fall `1.00` to `0.00` from `d = 1` to
+`d = 2`, so the `0/6` above is the `d = 1` row rather than an unexplained limit. Active authority for all three:
 `P15_ACTIVE_CLAIM_AUTHORITY_V3.json`.
 
 ## 1. Introduction
@@ -154,6 +157,59 @@ The V1 interface requires:
 - declared execution coverage.
 
 These are not proposed as a universal minimal set. They instantiate the failure classes present in the ORION harness programme and define the V1 benchmark boundary.
+
+### 3.2 What attestation attests: trust domains, not chain length
+
+Section 3.1 constrains a single execution. The composition study adds a chain of role
+attestations over it, and the abstract already records that study's negative: composed
+signature validity is evidence about the key set, not about key custody. That statement
+is qualitative. It can be measured, and the measurement locates the boundary precisely.
+
+Write `k` for the number of attestation roles in the chain and `d` for the number of
+**independent trust domains** holding their keys. The V2 composer derives every role key
+from a shared seed, `sha256(b"P15-ATTESTATION-COMPOSITION-V2-KEY-" + role + case_id)`.
+Anyone able to run the composer derives every role key, so **the composition operates at
+`d = 1` regardless of `k`.**
+
+Varying each axis separately (`experiments/execution-integrity-v1/`) separates two
+readings that the qualitative statement leaves entangled:
+
+| axis varied | measurement | outcome |
+|---|---|---|
+| chain length `k` at `d = 1` | detection over signature, key, chaining, order, splice and fact tampering | **flat**: 1.000 at `k = 1, 2, 3` |
+| trust domains `d` at `k = 3`, one domain compromised | forged chains accepted | **1.00 → 0.00 → 0.00** for `d = 1, 2, 3` |
+
+Detection does not improve with chain length. Every link is independently signed and
+chained, so a tamper anywhere is caught by that link's own signature check irrespective
+of how many links surround it. Resistance to compromise, by contrast, steps sharply on
+the first genuine separation of key custody.
+
+This gives the abstract's `0/6` full-compromise detection a mechanism rather than
+leaving it as an unexplained limit: it is the `d = 1` row. One compromise yields the
+entire key set, so the chain can be rewritten wholesale, and the effect disappears at
+`d = 2` where the attacker holds only part of it.
+
+We do not claim a general trust-domain theorem. The measurement is on `n = 4` real
+workflow receipts under single-domain compromise with `k` fixed at 3, and `d = 2` versus
+`d = 3` is flat only because a single compromise already fails to forge. `k = 5` is
+untested; the flat result in `k` makes it uninformative rather than merely unfinished.
+
+### 3.3 Content integrity is attested; liveness is not
+
+The independent checker verifies an **artifact**, not a **run**. It carries no binding to
+the process that produced the bytes. Killing the composer mid-execution while a previous
+valid artifact remains on disk leaves that artifact verifying green
+(`HOST_PROCESS_FAULT_RESULT_V1.json`, `SIGKILL` and `SIGTERM` cases).
+
+That is correct behaviour for an artifact verifier and it is not a defect in the
+attestation. It is a boundary a consumer must not cross: a pipeline treating a green
+checker as evidence that *this* execution succeeded obtains a false success signal from a
+correct verifier. Liveness must be established by the orchestrator that launched the run.
+
+The observation also bears on the previous subsection. No value of `k` establishes
+liveness, because chain length says nothing about whether the process ran; a witness in a
+different trust domain does. Content integrity and execution liveness are distinct
+properties, and only the first is attested here.
 
 ## 4. Five executable invariants
 
