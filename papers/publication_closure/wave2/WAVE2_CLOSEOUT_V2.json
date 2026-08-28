@@ -1,0 +1,146 @@
+{
+  "schema": "orion.publication.wave2.closeout.v2",
+  "date": "2026-08-28",
+  "portfolio": [
+    "ORION-01",
+    "ORION-02",
+    "ORION-03",
+    "ORION-11",
+    "ORION-20",
+    "ORION-21",
+    "ORION-22",
+    "ORION-25"
+  ],
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "portfolio_terminal": "WAVE2_MAXIMALLY_CLOSED__ONE_HPC_SCIENCE_BLOCKER__FILING_STEPS_OPEN",
+  "rules": {
+    "optional_successor_science_does_not_block_bounded_submission": true,
+    "adverse_null_cannot_check_preserved": true,
+    "no_post_outcome_rescue_tuning": true,
+    "repository_package_is_not_external_submission": true
+  },
+  "papers": {
+    "ORION-01": {
+      "science": "CLOSED_BOUNDED_TWO_THEORY_PAPERS",
+      "canonical_surface": "Paper A and Paper B frozen R3 theory manuscripts",
+      "repository_package": "SCAFFOLDS_MATERIALIZED",
+      "package_evidence": "main commit 0415c28cd14a14904d9689c21efdde42dab5780c",
+      "remaining_blockers": [
+        "RUN_PACKAGE_BUILD_FOR_A_AND_B",
+        "CONFIRM_FILING_LICENCE_CHOICE",
+        "AUTHOR_AFFILIATION_ORCID_FUNDING_CONFLICT_METADATA",
+        "EXTERNAL_ARCHIVE_AND_PORTAL_UPLOAD"
+      ],
+      "science_reopen_required": false
+    },
+    "ORION-02": {
+      "science": "CLOSED_BOUNDED_FIBRE_CERTIFIABILITY_V3",
+      "canonical_surface": "papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_V3.md",
+      "claim_ledger": "papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER_V3.md",
+      "canonicalization_commit": "ef02823e68f64965df27d056db8ac387246affeb",
+      "historical_v2": "PRESERVED_SUPERSEDED_FOR_SUBMISSION",
+      "repository_package": "OPEN",
+      "remaining_blockers": [
+        "TARGET_FORMAT_BUILD_AND_PDF",
+        "CURRENT_BYTE_BINDING",
+        "INDEPENDENT_EXTERNAL_PROOF_REVIEW",
+        "LICENCE_ARCHIVE_AND_HUMAN_FILING_METADATA"
+      ],
+      "optional_successor": "MULTI_DOMAIN_SELECTOR_OR_REFINEMENT_STUDY",
+      "science_reopen_required": false
+    },
+    "ORION-03": {
+      "science": "CLOSED_STOP_SCIENCE",
+      "canonical_surface": "papers/orion-03-typed-merge-falsification/MANUSCRIPT_V2.md",
+      "positioning": "JAR_PRIMARY_TOCL_FALLBACK",
+      "repository_package": "OPEN",
+      "remaining_blockers": [
+        "TARGET_FORMAT_PACKAGE_AND_FIGURES",
+        "SUBMISSION_MANIFEST_AND_COVER_LETTER",
+        "LICENCE_AND_ARCHIVE",
+        "HUMAN_FILING_METADATA_AND_PORTAL_UPLOAD"
+      ],
+      "science_reopen_required": false
+    },
+    "ORION-11": {
+      "science": "CLOSED_WITH_COMPARATIVE_NECESSITY_AND_ECONOMY_RETRACTED",
+      "canonical_surface": "papers/orion-11-recursive-epistemic-reconstruction/manuscript/main.tex",
+      "manuscript_pdf": "CURRENT",
+      "journal_package": "STALE_AFTER_TRUTH_CORRECTION",
+      "remaining_blockers": [
+        "REBUILD_WITH_PINNED_TOOLCHAIN",
+        "REPLACE_JOURNAL_PACKAGE_MANUSCRIPT_PDF",
+        "REFRESH_JOURNAL_PACKAGE_SHA256SUMS_AND_AUDIT",
+        "LICENCE_ARCHIVE_AND_HUMAN_FILING_METADATA"
+      ],
+      "science_reopen_required": false
+    },
+    "ORION-20": {
+      "science": "CLOSED_BOUNDED_FORMAL_OCME_LANE",
+      "canonical_surface": "papers/orion-20-structured-problem-solving/manuscript/main.tex",
+      "top_tier_promotion": "TERMINATED_PRIMITIVE_INDISPENSABILITY_FAILED",
+      "repository_package": "OPEN_CURRENT_TREE_BINDING_REQUIRED",
+      "remaining_blockers": [
+        "REBUILD_DERIVED_AUTHORITY_RECORDS_IF_NEEDED",
+        "FRESH_CURRENT_TREE_BINDING_AFTER_FINAL_SOURCE",
+        "PINNED_RENDER_AND_PACKAGE_AUDIT",
+        "FINAL_VENUE_COVER_LICENCE_ARCHIVE_AND_HUMAN_METADATA"
+      ],
+      "science_reopen_required": false
+    },
+    "ORION-21": {
+      "science": "ONE_FROZEN_EXECUTION_REMAINS",
+      "canonical_successor": "ORION21.TIE_ROBUST_PHASE.v1",
+      "execution_machinery": "READY_ON_MAIN_D138A05C",
+      "scientific_blocker": "SINGLE_FROZEN_LUNARC_EXECUTION",
+      "permitted_terminals": [
+        "T1_TIE_ROBUST",
+        "T2_TIE_AMBIGUOUS_VERDICT_INVARIANT",
+        "T3_TIE_AMBIGUOUS_VERDICT_CHANGING",
+        "T4_CANNOT_CHECK_GENERATOR_UNDERSPECIFIED"
+      ],
+      "forbidden_substitute": "NON_LUNARC_OR_POST_OUTCOME_RETUNED_EXECUTION",
+      "repository_package": "DEFER_UNTIL_TERMINAL",
+      "science_reopen_required": true
+    },
+    "ORION-22": {
+      "science": "CLOSED_BOUNDED",
+      "canonical_surface": "papers/orion-22-adaptive-state-reasoning/manuscript",
+      "current_pdf": "PINNED_REBUILD_AND_CLIPPING_AUDIT_GREEN",
+      "repository_package": "MATERIALIZED_ON_WAVE2_CLOSEOUT_BRANCH",
+      "package_path": "papers/publication_closure/wave2/packages/orion22-tmlr",
+      "remaining_blockers": [
+        "AUTHOR_AFFILIATION_ORCID_FUNDING_CONFLICT_METADATA",
+        "PERMANENT_EXTERNAL_ARCHIVE_OR_DOI_IF_REQUIRED",
+        "JOURNAL_PORTAL_UPLOAD_AND_EXTERNAL_SUBMISSION_RECORD"
+      ],
+      "science_reopen_required": false
+    },
+    "ORION-25": {
+      "science": "CLOSED_BOUNDED_EXECUTION_INTEGRITY_PROGRAMME",
+      "canonical_surface": "papers/orion-25-orion-research-harness/manuscript/main.tex_and_chapters",
+      "canonical_source_correction": "ON_WAVE2_CLOSEOUT_BRANCH",
+      "current_pdf": "STALE_UNTIL_PINNED_CI_REBUILD_IMPORTED",
+      "repository_package": "OPEN_AFTER_RENDER",
+      "remaining_blockers": [
+        "IMPORT_EXACT_PINNED_CI_REBUILD_PDF",
+        "FRESH_CONTENT_BINDING_AND_PACKAGE_AUDIT",
+        "LICENCE_ARCHIVE_AND_HUMAN_FILING_METADATA"
+      ],
+      "optional_successor": "EXTERNAL_INDEPENDENT_CUSTODY_OR_MULTI_CAMPAIGN_RELIABILITY",
+      "science_reopen_required": false
+    }
+  },
+  "filing_only_common": [
+    "AUTHOR_NAMES_AND_ORDER",
+    "AFFILIATIONS",
+    "CORRESPONDING_AUTHOR",
+    "ORCID",
+    "FUNDING",
+    "CONFLICTS",
+    "JOURNAL_PORTAL_METADATA",
+    "EXTERNAL_UPLOAD_SUBMISSION_IDENTIFIER"
+  ],
+  "close_when": "ORION21 has one frozen terminal; all other papers have current bounded source plus repository package/binding as far as the repository can supply; external human filing steps remain explicitly open."
+}
