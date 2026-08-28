@@ -1,7 +1,5 @@
 # Theorem-Backed Static Cost Forecasting with Fallible Regime Explanations
 
-<!-- Draft integration note: Quantum-oriented rewrite. Exact cost certification and compact regime explanation are intentionally separated throughout. -->
-
 ## Abstract
 
 Static forecasting in exact quantum compilation is attractive when an input can be assigned a certified optimum without rerunning a large unrestricted search. A central difficulty is that a forecast can be correct for different reasons: an all-size theorem may certify the cost, a compact structural rule may explain which regime realizes it, or a finite benchmark may merely show agreement with an exact referee on tested instances. We show that these forms of evidence can diverge and should be reported separately.
