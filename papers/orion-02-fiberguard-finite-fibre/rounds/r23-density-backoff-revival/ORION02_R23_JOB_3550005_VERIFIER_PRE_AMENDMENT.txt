@@ -1,0 +1,91 @@
+[PASS] result schema
+[PASS] parent schema
+[PASS] terminal file
+[PASS] R22 result byte binding
+[PASS] R22 terminal preserved
+[PASS] corrected parent digest
+[PASS] parent exact folds match main
+[PASS] parent outcome binding
+[PASS] parent meta binding
+[PASS] authority remains none
+[PASS] F* fold 0 R22C_EXACT_CELL
+[PASS] primary fold 0 R22C_EXACT_CELL
+[PASS] custody disjoint fold 0 R22C_EXACT_CELL
+[PASS] F* fold 1 R22C_EXACT_CELL
+[PASS] primary fold 1 R22C_EXACT_CELL
+[PASS] custody disjoint fold 1 R22C_EXACT_CELL
+[PASS] F* fold 2 R22C_EXACT_CELL
+[PASS] primary fold 2 R22C_EXACT_CELL
+[PASS] custody disjoint fold 2 R22C_EXACT_CELL
+[PASS] F* fold 3 R22C_EXACT_CELL
+[PASS] primary fold 3 R22C_EXACT_CELL
+[PASS] custody disjoint fold 3 R22C_EXACT_CELL
+[PASS] F* fold 4 R22C_EXACT_CELL
+[PASS] primary fold 4 R22C_EXACT_CELL
+[PASS] custody disjoint fold 4 R22C_EXACT_CELL
+[PASS] F* fold 5 R22C_EXACT_CELL
+[PASS] primary fold 5 R22C_EXACT_CELL
+[PASS] custody disjoint fold 5 R22C_EXACT_CELL
+[PASS] F* fold 6 R22C_EXACT_CELL
+[PASS] primary fold 6 R22C_EXACT_CELL
+[PASS] custody disjoint fold 6 R22C_EXACT_CELL
+[PASS] F* fold 7 R22C_EXACT_CELL
+[PASS] primary fold 7 R22C_EXACT_CELL
+[PASS] custody disjoint fold 7 R22C_EXACT_CELL
+[PASS] F* fold 8 R22C_EXACT_CELL
+[PASS] primary fold 8 R22C_EXACT_CELL
+[PASS] custody disjoint fold 8 R22C_EXACT_CELL
+[PASS] F* fold 0 R23_HAMMING_BACKOFF_K2
+[PASS] primary fold 0 R23_HAMMING_BACKOFF_K2
+[PASS] custody disjoint fold 0 R23_HAMMING_BACKOFF_K2
+[PASS] F* fold 1 R23_HAMMING_BACKOFF_K2
+[PASS] primary fold 1 R23_HAMMING_BACKOFF_K2
+[PASS] custody disjoint fold 1 R23_HAMMING_BACKOFF_K2
+[PASS] F* fold 2 R23_HAMMING_BACKOFF_K2
+[PASS] primary fold 2 R23_HAMMING_BACKOFF_K2
+[PASS] custody disjoint fold 2 R23_HAMMING_BACKOFF_K2
+[PASS] F* fold 3 R23_HAMMING_BACKOFF_K2
+[PASS] primary fold 3 R23_HAMMING_BACKOFF_K2
+[PASS] custody disjoint fold 3 R23_HAMMING_BACKOFF_K2
+[PASS] F* fold 4 R23_HAMMING_BACKOFF_K2
+[PASS] primary fold 4 R23_HAMMING_BACKOFF_K2
+[PASS] custody disjoint fold 4 R23_HAMMING_BACKOFF_K2
+[PASS] F* fold 5 R23_HAMMING_BACKOFF_K2
+[PASS] primary fold 5 R23_HAMMING_BACKOFF_K2
+[PASS] custody disjoint fold 5 R23_HAMMING_BACKOFF_K2
+[PASS] F* fold 6 R23_HAMMING_BACKOFF_K2
+[PASS] primary fold 6 R23_HAMMING_BACKOFF_K2
+[PASS] custody disjoint fold 6 R23_HAMMING_BACKOFF_K2
+[PASS] F* fold 7 R23_HAMMING_BACKOFF_K2
+[PASS] primary fold 7 R23_HAMMING_BACKOFF_K2
+[PASS] custody disjoint fold 7 R23_HAMMING_BACKOFF_K2
+[PASS] F* fold 8 R23_HAMMING_BACKOFF_K2
+[PASS] primary fold 8 R23_HAMMING_BACKOFF_K2
+[PASS] custody disjoint fold 8 R23_HAMMING_BACKOFF_K2
+[PASS] full-state pool replay R22C_EXACT_CELL
+[PASS] coverage replay R22C_EXACT_CELL
+[FAIL] full-state pool replay R23_HAMMING_BACKOFF_K2
+[PASS] coverage replay R23_HAMMING_BACKOFF_K2
+[FAIL] full-state pool replay R23_LEXICAL_BACKOFF_K2_NEGATIVE_CONTROL
+[PASS] coverage replay R23_LEXICAL_BACKOFF_K2_NEGATIVE_CONTROL
+[PASS] arm summary R22C_EXACT_STATIC_ADAPTIVE
+[PASS] nonnegative excess R22C_EXACT_STATIC_ADAPTIVE
+[PASS] arm summary R22C_EXACT_PRIMARY_LEARNED
+[PASS] nonnegative excess R22C_EXACT_PRIMARY_LEARNED
+[PASS] arm summary R23_BACKOFF_STATIC_ADAPTIVE
+[PASS] nonnegative excess R23_BACKOFF_STATIC_ADAPTIVE
+[PASS] arm summary R23_BACKOFF_PRIMARY_LEARNED
+[PASS] nonnegative excess R23_BACKOFF_PRIMARY_LEARNED
+[PASS] primary comparison left_minus_right_by_dataset
+[PASS] primary comparison mean_diff
+[PASS] primary comparison ci_lower
+[PASS] primary comparison ci_upper
+[PASS] primary comparison bootstrap_replicates
+[PASS] matched comparison left_minus_right_by_dataset
+[PASS] matched comparison mean_diff
+[PASS] matched comparison ci_lower
+[PASS] matched comparison ci_upper
+[PASS] matched comparison bootstrap_replicates
+[PASS] hostile controls
+[PASS] terminal independently derived
+VERIFY_FAILED failures=2
