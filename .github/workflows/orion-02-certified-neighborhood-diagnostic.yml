@@ -1,0 +1,87 @@
+name: orion-02-certified-neighborhood-diagnostic
+
+on:
+  push:
+    branches:
+      - r1/c-nbr-20260827
+    paths:
+      - '.github/workflows/orion-02-certified-neighborhood-diagnostic.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose-scientific-projection:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CNBR_SOURCE_GIT_SHA: 62e46900cf2f0e7dd412735384e090a04f8c8de6
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: >-
+          python -m pip install
+          'numpy==1.26.4'
+          'scikit-learn==1.5.2'
+      - name: Execute and retain exact comparison
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/experiments'
+          cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json" "$RUNNER_TEMP/registered.json"
+          cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md" "$RUNNER_TEMP/registered.md"
+          rm -f "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json" "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md"
+          python "$root/certified_neighborhood.py" | tee "$RUNNER_TEMP/terminal.txt"
+          cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json" "$RUNNER_TEMP/observed.json"
+          cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md" "$RUNNER_TEMP/observed.md"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          temp = Path(os.environ['RUNNER_TEMP'])
+          observed = json.loads((temp/'observed.json').read_text())
+          registered = json.loads((temp/'registered.json').read_text())
+          differences=[]
+          def walk(a,b,path=''):
+              if type(a) is not type(b):
+                  differences.append({'path':path,'kind':'type','observed':type(a).__name__,'registered':type(b).__name__}); return
+              if isinstance(a,dict):
+                  for k in sorted(set(a)|set(b)):
+                      p=f'{path}/{k}'
+                      if k not in a or k not in b:
+                          differences.append({'path':p,'kind':'key','observed_present':k in a,'registered_present':k in b})
+                      else: walk(a[k],b[k],p)
+              elif isinstance(a,list):
+                  if len(a)!=len(b): differences.append({'path':path,'kind':'length','observed':len(a),'registered':len(b)})
+                  for i,(x,y) in enumerate(zip(a,b)): walk(x,y,f'{path}/{i}')
+              elif a!=b:
+                  differences.append({'path':path,'kind':'value','observed':a,'registered':b})
+          walk(observed,registered)
+          projection_observed=dict(observed); projection_registered=dict(registered)
+          observed_environment=projection_observed.pop('environment',None)
+          registered_environment=projection_registered.pop('environment',None)
+          scientific_equal=projection_observed==projection_registered
+          payload={'schema':'ORION02.CNBR.Diagnostic.v1','scientific_projection_equal':scientific_equal,'all_differences':differences,'observed_environment':observed_environment,'registered_environment':registered_environment}
+          (temp/'COMPARISON.json').write_text(json.dumps(payload,sort_keys=True,separators=(',',':'))+'\n')
+          print('SCIENTIFIC_PROJECTION_EQUAL', scientific_equal)
+          print('DIFFERENCE_COUNT', len(differences))
+          for row in differences[:100]: print(json.dumps(row,sort_keys=True))
+          PY
+      - name: Upload diagnostic artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-02-certified-neighborhood-diagnostic
+          path: |
+            ${{ runner.temp }}/registered.json
+            ${{ runner.temp }}/observed.json
+            ${{ runner.temp }}/registered.md
+            ${{ runner.temp }}/observed.md
+            ${{ runner.temp }}/terminal.txt
+            ${{ runner.temp }}/COMPARISON.json
+          if-no-files-found: error
+          retention-days: 30

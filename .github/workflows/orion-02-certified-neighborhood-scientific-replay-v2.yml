@@ -1,0 +1,101 @@
+name: orion-02-certified-neighborhood-scientific-replay-v2
+
+on:
+  push:
+    branches: [r1/c-nbr-20260827]
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/check_certified_neighborhood_replay.py'
+      - '.github/workflows/orion-02-certified-neighborhood-scientific-replay-v2.yml'
+  workflow_dispatch:
+
+permissions: {contents: read}
+
+jobs:
+  cross-host-scientific-replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CNBR_SOURCE_GIT_SHA: 62e46900cf2f0e7dd412735384e090a04f8c8de6
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install 'numpy==1.26.4' 'scikit-learn==1.5.2'
+      - name: Compile and replay twice
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/experiments'
+          cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json" "$RUNNER_TEMP/registered.json"
+          cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md" "$RUNNER_TEMP/registered.md"
+          python -m py_compile "$root/certified_neighborhood.py" "$root/check_certified_neighborhood_replay.py" 'papers/paper-xx-executable-research-core/benchmark/run_aslib_v1.py'
+          for suffix in a b; do
+            rm -f "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json" "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md"
+            python "$root/certified_neighborhood.py" | tee "$RUNNER_TEMP/terminal-$suffix.txt"
+            cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json" "$RUNNER_TEMP/result-$suffix.json"
+            cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md" "$RUNNER_TEMP/result-$suffix.md"
+          done
+          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+          cmp "$RUNNER_TEMP/result-a.md" "$RUNNER_TEMP/result-b.md"
+          cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+      - name: Fail-closed scientific comparison
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/experiments'
+          python "$root/check_certified_neighborhood_replay.py" --observed "$RUNNER_TEMP/result-a.json" --registered "$RUNNER_TEMP/registered.json" --output "$RUNNER_TEMP/COMPARISON.json"
+      - name: Verify adverse terminal
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          result=json.loads((Path(os.environ['RUNNER_TEMP'])/'result-a.json').read_text())
+          comparison=json.loads((Path(os.environ['RUNNER_TEMP'])/'COMPARISON.json').read_text())
+          assert comparison['scientific_equivalent'] is True
+          assert comparison['authority']=={'cross_host_byte_identity':False,'scientific_projection_equivalence':True,'external_independence':False,'journal_authority':False}
+          assert result['schema']=='ORION02.CNBR.Result.v1'
+          assert result['overall_verdict']=='CERTIFICATE_INVALID'
+          assert result['source']['commit']=='551b22beef8df17de59286b4822ef720e0aa4d6f'
+          assert result['source']['scenario']=='SAT11-HAND-ALGO'
+          assert result['source']['git_sha']==os.environ['CNBR_SOURCE_GIT_SHA']
+          assert result['population']=={'algorithms':15,'features':115,'instances':296,'outer_folds':[1,2,3,4,5,6,7,8,9,10]}
+          assert [row['verdict'] for row in result['splits']]==['CERTIFICATE_INVALID','CERTIFICATE_INVALID']
+          official,family=result['splits']
+          assert official['representations']['NBR_FULL']['certificate_heldout_violation_rate']>0.10
+          assert official['representations']['NBR_PCA10']['certificate_heldout_violation_rate']>0.10
+          assert family['representations']['NBR_FULL']['heldout_coverage']['epsilon_5000']==0.0
+          assert family['representations']['NBR_PCA10']['heldout_coverage']['epsilon_5000']==0.0
+          print('ORION_02_CNBR_CROSS_HOST_REFUTATION_REPLAY_PASS')
+          PY
+      - name: Restore and check hygiene
+        shell: bash
+        run: |
+          set -euo pipefail
+          root='papers/orion-02-fiberguard-finite-fibre/experiments/results'
+          cp "$RUNNER_TEMP/registered.json" "$root/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json"
+          cp "$RUNNER_TEMP/registered.md" "$root/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md"
+          git diff --check
+          git diff --exit-code -- "$root/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json" "$root/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md"
+      - name: Stage replay receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/orion-02-cnbr-scientific-replay-v2";mkdir -p "$out"
+          cp "$RUNNER_TEMP/result-a.json" "$out/OBSERVED_RESULT.json"
+          cp "$RUNNER_TEMP/registered.json" "$out/REGISTERED_LUNARC_RESULT.json"
+          cp "$RUNNER_TEMP/result-a.md" "$out/OBSERVED_RESULT.md"
+          cp "$RUNNER_TEMP/registered.md" "$out/REGISTERED_LUNARC_RESULT.md"
+          cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          cp "$RUNNER_TEMP/COMPARISON.json" "$out/"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-02-cnbr-scientific-replay-v2
+          path: ${{ runner.temp }}/orion-02-cnbr-scientific-replay-v2/
+          if-no-files-found: error
+          retention-days: 30
