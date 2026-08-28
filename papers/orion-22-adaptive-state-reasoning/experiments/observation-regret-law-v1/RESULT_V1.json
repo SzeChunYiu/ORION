@@ -1,0 +1,404 @@
+{
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "classes": [
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T1_BENEFICIAL",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 2,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_v1.json"
+    },
+    {
+      "R_star_price_blind": 10,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T2_NONBENEFICIAL",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 2,
+      "gain_from_refinement": 10,
+      "pool": "p12_transfer_cases_v1.json"
+    },
+    {
+      "R_star_price_blind": 30,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T3_BUDGET_RACE",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 7,
+      "gain_from_refinement": 30,
+      "pool": "p12_transfer_cases_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T1_BENEFICIAL",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 2,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T2_NONBENEFICIAL",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 2,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_v1.json"
+    },
+    {
+      "R_star_price_blind": 286,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T3_BUDGET_RACE",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 4,
+      "gain_from_refinement": 286,
+      "pool": "p12_transfer_cases_v1.json"
+    },
+    {
+      "R_star_price_blind": 230,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T1_BENEFICIAL",
+      "domain": "KNAPSACK",
+      "feasible_actions": 2,
+      "gain_from_refinement": 230,
+      "pool": "p12_transfer_cases_v1.json"
+    },
+    {
+      "R_star_price_blind": 90,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T2_NONBENEFICIAL",
+      "domain": "KNAPSACK",
+      "feasible_actions": 2,
+      "gain_from_refinement": 90,
+      "pool": "p12_transfer_cases_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T3_BUDGET_RACE",
+      "domain": "KNAPSACK",
+      "feasible_actions": 2,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T1_BENEFICIAL",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 2,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 10,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T2_NONBENEFICIAL",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 2,
+      "gain_from_refinement": 10,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 30,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T3_BUDGET_RACE",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 7,
+      "gain_from_refinement": 30,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 17,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T4_TAU_EDGE",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 2,
+      "gain_from_refinement": 17,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 7,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T5_TAU_EXACT",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 2,
+      "gain_from_refinement": 7,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T6_TIE_RACE",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 7,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T7_OVER_BUDGET",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 1,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T8_MANY_SMALL",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 8,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 52,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "SAT_T9_MIXED",
+      "domain": "SAT_PROPAGATION",
+      "feasible_actions": 8,
+      "gain_from_refinement": 52,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T1_BENEFICIAL",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 2,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T2_NONBENEFICIAL",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 2,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 286,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T3_BUDGET_RACE",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 4,
+      "gain_from_refinement": 286,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 398,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T4_TAU_EDGE",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 2,
+      "gain_from_refinement": 398,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 247,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T5_TAU_EXACT",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 2,
+      "gain_from_refinement": 247,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 134,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T6_TIE_RACE",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 7,
+      "gain_from_refinement": 134,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T7_OVER_BUDGET",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 2,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 12,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T8_MANY_SMALL",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 4,
+      "gain_from_refinement": 12,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 587,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "PATH_T9_MIXED",
+      "domain": "PATH_PLANNING",
+      "feasible_actions": 4,
+      "gain_from_refinement": 587,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 230,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T1_BENEFICIAL",
+      "domain": "KNAPSACK",
+      "feasible_actions": 2,
+      "gain_from_refinement": 230,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 90,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T2_NONBENEFICIAL",
+      "domain": "KNAPSACK",
+      "feasible_actions": 2,
+      "gain_from_refinement": 90,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T3_BUDGET_RACE",
+      "domain": "KNAPSACK",
+      "feasible_actions": 2,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 700,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T4_TAU_EDGE",
+      "domain": "KNAPSACK",
+      "feasible_actions": 2,
+      "gain_from_refinement": 700,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 544,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T5_TAU_EXACT",
+      "domain": "KNAPSACK",
+      "feasible_actions": 2,
+      "gain_from_refinement": 544,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 295,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T6_TIE_RACE",
+      "domain": "KNAPSACK",
+      "feasible_actions": 3,
+      "gain_from_refinement": 295,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 0,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T7_OVER_BUDGET",
+      "domain": "KNAPSACK",
+      "feasible_actions": 1,
+      "gain_from_refinement": 0,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 259,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T8_MANY_SMALL",
+      "domain": "KNAPSACK",
+      "feasible_actions": 8,
+      "gain_from_refinement": 259,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    },
+    {
+      "R_star_price_blind": 548,
+      "R_star_price_refined": 0,
+      "actions_attaining_floor": 1,
+      "case_id": "KNAP_T9_MIXED",
+      "domain": "KNAPSACK",
+      "feasible_actions": 8,
+      "gain_from_refinement": 548,
+      "pool": "p12_transfer_cases_expanded_v1.json"
+    }
+  ],
+  "classes_total": 36,
+  "classes_with_positive_floor": 23,
+  "classes_with_zero_floor": 13,
+  "controls": {
+    "Y1_floor_violation_is_detectable": {
+      "caught": 36,
+      "eligible": 36,
+      "passed": true
+    },
+    "Y2_zero_set_cross_check_against_frozen_record": {
+      "committed_empty": 18,
+      "measured_positive_floor": 18,
+      "passed": true
+    },
+    "Y3_singleton_floor_is_zero": {
+      "eligible": 180,
+      "passed": true,
+      "zero": 180
+    },
+    "Y4_pool_integrity": {
+      "note": "pools resolved by content through the committed runner",
+      "passed": true
+    }
+  },
+  "max_floor": 700,
+  "predictions": {
+    "P1_floor_respected": true,
+    "P2_floor_is_tight": true,
+    "P3_zero_set_agreement": true,
+    "P4_refinement_gain_exact": true
+  },
+  "promotion_status": "SCOPED_QUANTITATIVE_LAW__PROMOTION_NOT_EARNED",
+  "protocol_identity": "ORION22.OBSERVATION_REGRET_LAW.v1",
+  "refinement_closes_everything": true,
+  "schema": "ORION.ORION22.ObservationRegretLaw.Result.v1",
+  "scientific_authority_delta": "NONE",
+  "scope": "frozen charging family only; no multi-domain transfer attempted or claimed (#1649 stop rule)",
+  "terminal": "T1_REGRET_LAW_HOLDS",
+  "total_regret_mass_forced": 5092
+}

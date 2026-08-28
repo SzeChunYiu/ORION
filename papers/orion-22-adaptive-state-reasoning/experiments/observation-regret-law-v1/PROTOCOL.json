@@ -1,0 +1,71 @@
+{
+  "schema": "ORION.ORION22.ObservationRegretLaw.Protocol.v1",
+  "protocol_identity": "ORION22.OBSERVATION_REGRET_LAW.v1",
+  "paper_id": "ORION-22",
+  "promotion_issue": "1649",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "authored_date": "2026-08-28",
+
+  "predecessor": {
+    "protocol": "ORION22.OBSERVATION_ALIASING_ROBUSTNESS.v1",
+    "terminal": "T2_SOME_PRICE_BLIND_CLASSES_EMPTY__PRICE_REFINEMENT_RESOLVES_ALL",
+    "frozen_finding": "23 of 36 price-blind observation classes have an empty common-optimum intersection",
+    "why_a_successor": "That is a qualitative boundary. #1649 asks how MUCH regret is forced and how much refinement buys."
+  },
+
+  "quantity": {
+    "name": "regret floor",
+    "definition": "R*(z) = min over actions a of max over environments e in the class of (cost_e(a) - opt_e)",
+    "computed_by": "exhaustive enumeration over budget-feasible allocations, reusing the committed runner's own priced objective and charge computation"
+  },
+
+  "predictions": [
+    {"id": "P1_floor_respected", "statement": "The frozen allocator's worst-case regret on each class is >= R*(z). A measurement strictly below the floor refutes Q1."},
+    {"id": "P2_floor_is_tight", "statement": "Some action attains R*(z) on every class; the floor is achieved, not merely approached."},
+    {"id": "P3_zero_set_agreement", "statement": "{z : R*(z) = 0} equals the 13 classes with nonempty common-optimum intersection and {z : R*(z) > 0} equals the 23 empty ones, reproducing the frozen result as a zero level set rather than assuming it."},
+    {"id": "P4_refinement_gain_exact", "statement": "Price refinement yields max over sub-classes of R* equal to 0, so the gain equals R*(z) exactly for every class."}
+  ],
+
+  "controls": [
+    {"id": "Y1_floor_violation_is_detectable",
+     "statement": "A planted action known to be sub-floor must be caught by the SAME comparison used for P1. Without this, 'no violation' is indistinguishable from a comparison that cannot fire.",
+     "on_failure": "T4_CANNOT_CHECK_CONTROL_FAILED"},
+    {"id": "Y2_zero_set_cross_check_against_frozen_record",
+     "statement": "The zero set must be compared against the ALREADY-COMMITTED aliasing result, not merely against an internally recomputed intersection. A mismatch means this packet has re-modelled the object rather than quantifying it.",
+     "on_failure": "T4_CANNOT_CHECK_CONTROL_FAILED"},
+    {"id": "Y3_singleton_floor_is_zero",
+     "statement": "Every singleton class must have R* = 0, since O(e) is nonempty. A nonzero singleton floor is an analyzer defect.",
+     "on_failure": "T4_CANNOT_CHECK_CONTROL_FAILED"},
+    {"id": "Y4_pool_integrity",
+     "statement": "The frozen pool hashes must resolve to files by CONTENT, not by guessed filename.",
+     "on_failure": "T4_CANNOT_CHECK_CONTROL_FAILED"}
+  ],
+
+  "terminals": [
+    {"id": "T1_REGRET_LAW_HOLDS", "class": "FAVOURABLE",
+     "conditions": ["P1 holds on every class", "P2 holds on every class", "P3 agrees exactly with the frozen aliasing record", "P4 holds", "all four controls pass"],
+     "licenses": "A bounded statement that on THIS frozen charging family the regret floor R*(z) is exact, the frozen qualitative boundary is its zero level set, and price refinement closes exactly R*(z).",
+     "does_not_license": ["transfer beyond the frozen charging family", "any change to the aliasing terminal or the BINDING_NEGATIVE_BOUNDARY leaf", "TOP_TIER_PROMOTION_EARNED"]},
+    {"id": "T2_FLOOR_VIOLATED", "class": "UNFAVOURABLE",
+     "conditions": ["some measured worst-case regret is strictly below R*(z)"],
+     "reading": "Q1 is false, or the floor is being computed over the wrong action set."},
+    {"id": "T3_ZERO_SET_DISAGREES", "class": "UNFAVOURABLE",
+     "conditions": ["the zero set of R* does not match the frozen aliasing record"],
+     "reading": "The quantitative and qualitative accounts disagree; one of them is wrong and neither may be reported until that is resolved."},
+    {"id": "T4_CANNOT_CHECK_CONTROL_FAILED", "class": "CANNOT_CHECK",
+     "conditions": ["Y1, Y2, Y3 or Y4 fails"]}
+  ],
+
+  "scope_fixed_in_advance": {
+    "family": "p12_transfer_cases_v1 and the expanded pool, as frozen",
+    "multi_domain_transfer": "NOT ATTEMPTED AND NOT CLAIMED",
+    "stop_rule_source": "#1649: if the law does not transfer beyond the frozen charging family, retain it as a scoped information-boundary result and stop broadening",
+    "consequence": "Even on T1 the promotion is not earned; the result is a scoped quantitative law."
+  },
+
+  "promotion_status_if_T1": "SCOPED_QUANTITATIVE_LAW__PROMOTION_NOT_EARNED",
+  "stop_rule": "Outcomes are read once. On T2 or T3 the law is refuted and the lane stops."
+}
