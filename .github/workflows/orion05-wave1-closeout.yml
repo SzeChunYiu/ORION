@@ -1,0 +1,75 @@
+name: ORION-05 Wave-1 manuscript and review-package gate
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-05-tare-expressivity/manuscript/**'
+      - 'papers/orion-05-tare-expressivity/editorial/**'
+      - 'papers/orion-05-tare-expressivity/journal_package/**'
+      - 'papers/orion-05-tare-expressivity/submission/**'
+      - 'tests/unit/publication/test_orion05_wave1_manuscript_surface.py'
+      - '.github/workflows/orion05-wave1-closeout.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-05-tare-expressivity/manuscript/**'
+      - 'papers/orion-05-tare-expressivity/editorial/**'
+      - 'papers/orion-05-tare-expressivity/journal_package/**'
+      - 'papers/orion-05-tare-expressivity/submission/**'
+      - 'tests/unit/publication/test_orion05_wave1_manuscript_surface.py'
+      - '.github/workflows/orion05-wave1-closeout.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  manuscript-package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.8.13'
+      - name: Install render and inspection tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            latexmk texlive-latex-base texlive-latex-extra \
+            texlive-fonts-recommended poppler-utils
+          uv sync --frozen --extra dev
+      - name: Compile the canonical source cleanly
+        run: |
+          rm -rf /tmp/orion05-manuscript
+          cp -R papers/orion-05-tare-expressivity/manuscript /tmp/orion05-manuscript
+          cd /tmp/orion05-manuscript
+          latexmk -C main.tex >/dev/null
+          SOURCE_DATE_EPOCH=1787918400 \
+            latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -Eiq 'undefined (citation|reference)|citation.*undefined' main.log
+      - name: Run proof, surface and adverse-result gates
+        env:
+          PYTHONPATH: .
+        run: |
+          uv run pytest -q \
+            tests/unit/publication/test_q1_proof_sanity_binding.py \
+            tests/unit/publication/test_orion05_r12_production_benchmark.py \
+            tests/unit/publication/test_orion05_wave1_manuscript_surface.py
+      - name: Audit tracked filing PDFs for clipping
+        run: |
+          uv run python scripts/audit_manuscript_clipping.py --root . \
+            papers/orion-05-tare-expressivity/manuscript/main.pdf \
+            papers/orion-05-tare-expressivity/journal_package/manuscript.pdf
+      - name: Require deterministic anonymous review archive
+        run: |
+          cp papers/orion-05-tare-expressivity/journal_package/support_two_normal_form_review_2026-08-28.zip /tmp/review-a.zip
+          uv run python papers/orion-05-tare-expressivity/submission/build_anonymous_review_artifact.py
+          cmp /tmp/review-a.zip papers/orion-05-tare-expressivity/journal_package/support_two_normal_form_review_2026-08-28.zip
+          rm -rf /tmp/review && mkdir /tmp/review
+          unzip -q papers/orion-05-tare-expressivity/journal_package/support_two_normal_form_review_2026-08-28.zip -d /tmp/review
+          python /tmp/review/proof_sanity.py >/tmp/proof.json
+          python /tmp/review/verify_sharpness.py >/tmp/sharpness.json
+          (cd /tmp/review && python aggregate_runtime.py --check runtime_summary.json)
+          (cd /tmp/review/manuscript_source && \
+            latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex && \
+            ! grep -Eiq 'undefined (citation|reference)|citation.*undefined' main.log)
