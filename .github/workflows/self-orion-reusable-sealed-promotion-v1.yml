@@ -7,12 +7,14 @@ on:
       - ".github/workflows/self-orion-reusable-sealed-promotion-v1.yml"
       - "research/self-orion/reusable-sealed-promotion-v1/**"
       - "tests/research/test_reusable_sealed_promotion_v1.py"
+      - "tests/research/test_reusable_sealed_control_plane_v1.py"
   push:
     branches: [main]
     paths:
       - ".github/workflows/self-orion-reusable-sealed-promotion-v1.yml"
       - "research/self-orion/reusable-sealed-promotion-v1/**"
       - "tests/research/test_reusable_sealed_promotion_v1.py"
+      - "tests/research/test_reusable_sealed_control_plane_v1.py"
 
 permissions:
   contents: read
@@ -27,6 +29,11 @@ jobs:
         with:
           python-version: "3.12"
       - run: python -m pip install pytest==8.4.2 ruff==0.15.10
+      - name: Verify current-tree control plane
+        run: |
+          packet=research/self-orion/reusable-sealed-promotion-v1
+          terminal="$(python "$packet/verify_control_plane.py" | tail -n 1)"
+          test "$terminal" = "CONTROL_PLANE_VERIFIED__EMPIRICAL_CAMPAIGN_NOT_RUN"
       - name: Run deterministic conformance campaign
         run: |
           packet=research/self-orion/reusable-sealed-promotion-v1
@@ -34,6 +41,9 @@ jobs:
           python "$packet/independent_checker/verify_campaign.py" \
             --campaign /tmp/reusable-sealed-conformance \
             --output /tmp/reusable-sealed-verification.json
+          terminal="$(python "$packet/verify_control_plane.py" \
+            --campaign /tmp/reusable-sealed-conformance | tail -n 1)"
+          test "$terminal" = "CONTROL_PLANE_VERIFIED__EMPIRICAL_CAMPAIGN_NOT_RUN"
           python - <<'PY'
           import json
           from pathlib import Path
@@ -49,17 +59,23 @@ jobs:
           assert raw['submission_authority'] is False
           PY
       - name: Run hostile controls
-        run: python -m pytest -q tests/research/test_reusable_sealed_promotion_v1.py
+        run: |
+          python -m pytest -q \
+            tests/research/test_reusable_sealed_promotion_v1.py \
+            tests/research/test_reusable_sealed_control_plane_v1.py
       - name: Static and clean-tree checks
         run: |
           ruff check \
             research/self-orion/reusable-sealed-promotion-v1/sealed_ledger.py \
             research/self-orion/reusable-sealed-promotion-v1/run_conformance_campaign.py \
             research/self-orion/reusable-sealed-promotion-v1/independent_checker/verify_campaign.py \
-            tests/research/test_reusable_sealed_promotion_v1.py
+            research/self-orion/reusable-sealed-promotion-v1/verify_control_plane.py \
+            tests/research/test_reusable_sealed_promotion_v1.py \
+            tests/research/test_reusable_sealed_control_plane_v1.py
           python -m compileall -q \
             research/self-orion/reusable-sealed-promotion-v1 \
-            tests/research/test_reusable_sealed_promotion_v1.py
+            tests/research/test_reusable_sealed_promotion_v1.py \
+            tests/research/test_reusable_sealed_control_plane_v1.py
           find research/self-orion/reusable-sealed-promotion-v1 tests/research \
             -type d -name __pycache__ -prune -exec rm -rf {} +
           git diff --check
