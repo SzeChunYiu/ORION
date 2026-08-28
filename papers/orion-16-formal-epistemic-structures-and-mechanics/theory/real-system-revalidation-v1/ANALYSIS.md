@@ -4,7 +4,7 @@
 **Successor id:** `ORION16.REAL_SYSTEM_DISCRIMINATOR.v1`
 **Protocol:** `PROTOCOL_AND_PREDICTIONS.md`, committed before any clone (`ab09991f5`)
 **Status:** `DISCRIMINATOR_EXECUTED__ALL_FIVE_STAMPED_PREDICTIONS_HOLD`
-**Terminal:** `READY_TO_SUBMIT_TOP_TIER`
+**Terminal:** `READY_TO_SUBMIT_SECOND_TIER`
 **Scientific authority delta:** `NONE` — this adds an empirical result; it retracts nothing
 
 ---
@@ -126,7 +126,33 @@ part of the record rather than a tidied-away detail:
 five negative controls, including a direct test that the 0.95 fidelity threshold
 rejects 0.94 and 0.243 and accepts 0.96.
 
-## 8. What this earns, and what it does not
+## 8. Terminal, and why it is second tier
+
+`READY_TO_SUBMIT_SECOND_TIER`.
+
+The discriminator #1649 asked for has been delivered in full: three
+independently sourced systems, authoritative declared graphs, registered arms and
+mutations, and a risky prediction (P5) that could have failed and did not.
+
+That is not the same as clearing the bar the paper's own ledger still holds open.
+Three things keep this below top tier, and each is visible in the sections above
+rather than argued around:
+
+1. `external_independent_validation` remains `CANNOT_CHECK`. This is
+   same-programme work and does not discharge it.
+2. Of the three systems, Gene Ontology rests on four change sets and is
+   corroborating rather than load-bearing, which leaves two systems carrying the
+   result.
+3. Of those two, nf-core/rnaseq produced a **null for the method** — the cheap
+   direct-neighbour policy is already sound there. So one load-bearing system
+   supports the cost claim and one bounds it.
+
+A single deep system plus a null and a thin corroboration is a strong, honest
+empirical package. It is not the multi-system external confirmation a top-tier
+methodology venue would expect, and claiming otherwise would be the kind of
+overreach this lane already retracted once on ORION-17.
+
+## 9. What this earns, and what it does not
 
 It earns #1649's ORION-16 **empirical discriminator** on three independently
 sourced real systems with authoritative declared graphs.

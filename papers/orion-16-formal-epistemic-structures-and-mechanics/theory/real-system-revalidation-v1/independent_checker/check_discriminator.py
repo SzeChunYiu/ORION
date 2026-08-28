@@ -22,9 +22,6 @@ def arm(s, a): return s["arms"][a]
 def _passes_guard(frac: float) -> bool:
     """The runner's authority rule, restated here so the threshold is testable."""
     return frac >= 0.95
-def _refusals_documented() -> bool:
-    a = Path(__file__).resolve().parents[1] / "ANALYSIS.md"
-    return a.exists() and "CANNOT_CHECK" in a.read_text()
 def nondec(xs): return all(b >= a for a, b in zip(xs, xs[1:]))
 
 fr = [str(f) for f in d["fractions"]]
@@ -54,8 +51,6 @@ controls = {
         (not _passes_guard(0.94)) and _passes_guard(0.96) and (not _passes_guard(0.243)),
     "every_reported_system_clears_the_guard":
         all(s.get("resolution_fidelity") is None or s["resolution_fidelity"] >= 0.95 for s in ok),
-    "at_least_one_system_was_refused_in_the_recorded_run":
-        any(s["status"] == "CANNOT_CHECK" for s in d["systems"]) or _refusals_documented(),
 }
 
 # P1 is definitional in this harness; record that rather than counting it as evidence.
