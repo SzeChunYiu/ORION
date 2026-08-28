@@ -1,0 +1,139 @@
+{
+  "schema": "ORION.ORION11.CostedEpistemicOrdering.ExpectedTerminals.v1",
+  "successor_id": "ORION11.COSTED_EPISTEMIC_ORDERING.v1",
+  "status": "PREREGISTRATION__DESIGN_ONLY__NOT_EXECUTED",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "frozen_before_outcome_access": true,
+
+  "falsifiability_self_check": {
+    "requirement": "At least one enumerated terminal must be unfavourable to the successor hypothesis. A terminal set in which every enumerated outcome is favourable is a design defect.",
+    "unfavourable_terminals_enumerated": 6,
+    "favourable_terminals_enumerated": 1,
+    "intermediate_terminals_enumerated": 1,
+    "cannot_check_terminals_enumerated": 4,
+    "theory_predicted_terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION",
+    "note": "Theorem C in THEORY.md predicts that the level filtration can never make ORION cheaper than unconstrained p/c ordering. The single most likely outcome of this study is therefore its own primary falsification. This is intentional."
+  },
+
+  "terminals": [
+    {
+      "id": "H_SUPPORTED__SAFETY_PRICED_LEVEL_ORDERING",
+      "class": "FAVOURABLE",
+      "conditions": [
+        "G1 success noninferiority holds (margin -0.01)",
+        "G2 forbidden rate == 0 on every stratum",
+        "G3 cost ratio vs faithful_active_voi < 0.80 with 95% UCB < 0.80",
+        "G4 cost <= 1.10x exact DP optimum on theorem_valid",
+        "G5 advantage disappears on every assumption-violation control",
+        "G6 read jointly: gain_per_cost_greedy does NOT achieve equal success and safety at equal or lower cost",
+        "G7 instrument control passes on ratio_aligned"
+      ],
+      "licenses": "A bounded statement on this world family only: level-monotone responsibility ordering purchases zero forbidden high-level mutation at a bounded, quantified cost premium over unconstrained ordering, and is cheaper than a faithful Active-VOI comparator.",
+      "does_not_license": [
+        "revival of the retracted comparative mechanism-necessity reading",
+        "superiority of any kind",
+        "transfer beyond this world family"
+      ]
+    },
+
+    {
+      "id": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION",
+      "class": "UNFAVOURABLE__PRIMARY_PREDICTED",
+      "conditions": [
+        "gain_per_cost_greedy achieves success and safety equal to ORION at cost <= ORION cost (paired, 95% CI excluding an ORION advantage)"
+      ],
+      "reading": "The surviving R4 cost residual is a property of unconstrained p/c ordering, which is donor-owned prior mathematics (Theorem A), not of the ORION responsibility filtration. The empirical mechanism-economy claim dies here even if G3 passes against faithful_active_voi.",
+      "action": "Apply the #1608 stop rule. Retire empirical mechanism-economy claims for ORION-11. Retain only Theorems A-C as a methodological/theoretical result with donor attribution. Per the global-recovery doctrine this is a lead, not an end: attribute the failure to one stage and open a revival iteration before filing."
+    },
+
+    {
+      "id": "H_FALSIFIED__COST_RATIO_GATE_MISSED",
+      "class": "UNFAVOURABLE",
+      "conditions": [
+        "paired cost ratio ORION/faithful_active_voi >= 0.80, OR its 95% upper bound >= 0.80"
+      ],
+      "reading": "The R4 cost gap (0.6876 on one world family) does not survive on an independently generated family. Nothing of the economy residual stands.",
+      "action": "Stop rule. Retire the economy residual entirely."
+    },
+
+    {
+      "id": "H_FALSIFIED__DP_OPTIMALITY_GAP_EXCEEDED",
+      "class": "UNFAVOURABLE",
+      "conditions": ["ORION mean cost > 1.10x exact_dp_oracle optimum on the theorem_valid stratum"],
+      "reading": "ORION's ordering is materially suboptimal even where its own theorem holds; a cost story cannot rest on it.",
+      "action": "Attribute to the within-level ordering implementation or to the filtration price (Theorem C), then revive or retire."
+    },
+
+    {
+      "id": "H_FALSIFIED__SUCCESS_NONINFERIORITY_FAILED",
+      "class": "UNFAVOURABLE",
+      "conditions": ["ORION success below faithful_active_voi by more than the -0.01 margin on any stratum"],
+      "reading": "Cost comparison becomes inadmissible: the conditional-on-equal-gates premise fails.",
+      "action": "Report as failure of the primary criterion. No cost reading may be extracted."
+    },
+
+    {
+      "id": "H_FALSIFIED__FORBIDDEN_MUTATION_OBSERVED",
+      "class": "UNFAVOURABLE",
+      "conditions": ["ORION forbidden_high_level_mutation_rate > 0 on any stratum where A3 holds"],
+      "reading": "The safety property that is the entire point of the filtration does not hold. This removes the only asymmetry R4 left standing.",
+      "action": "Terminal failure of the safety-pricing hypothesis. Diagnose before any further cost work."
+    },
+
+    {
+      "id": "H_FALSIFIED__ADVANTAGE_PERSISTS_ON_ASSUMPTION_VIOLATION_CONTROLS",
+      "class": "UNFAVOURABLE",
+      "conditions": ["ORION cost advantage over faithful_active_voi persists on strata where A1, A2, A3 or A4 is violated"],
+      "reading": "The theorem is not the explanation of the observed effect. A favourable headline with this attribution failure is a false mechanism story and must not be reported as support.",
+      "action": "Reject the mechanism claim regardless of G1-G4. Re-derive what the effect actually tracks."
+    },
+
+    {
+      "id": "H_BOUNDED__ECONOMY_ON_A_SUBFAMILY_ONLY",
+      "class": "INTERMEDIATE__NOT_TERMINAL",
+      "conditions": ["all gates hold on some but not all theorem-valid strata"],
+      "reading": "A regime-conditional positive. Under the global-recovery doctrine this is NOT a result that may be filed or reported as a bounded success.",
+      "action": "Mandatory revival iteration: attribute the failing regime to one stage, apply the matching lever, re-test against the strongest parent with all costs charged. Never tune the outcome positive; never terminate here."
+    },
+
+    {
+      "id": "CANNOT_CHECK__ANCHOR_REPRODUCTION_FAILED",
+      "class": "CANNOT_CHECK",
+      "conditions": ["the per-world-set parameterised anchor gate fails to reproduce committed rates for its own world set"],
+      "reading": "Neither pass nor failure. Direct precedent: R4's replication arm was lost exactly this way (INSTRUMENT_FAULT__ANCHOR_REPRODUCTION_FAILED__NO_CLAIM_READ) because the runner hardcoded the primary set's rates.",
+      "action": "Fix the instrument, re-run. Do not narrate as a pass or a failure. Do not read any arm."
+    },
+
+    {
+      "id": "CANNOT_CHECK__DP_ORACLE_INFEASIBLE",
+      "class": "CANNOT_CHECK",
+      "conditions": ["the exact dynamic-programming oracle does not terminate within the frozen resource envelope on the theorem_valid stratum"],
+      "reading": "G4 has no denominator. The optimality gap is unmeasured, not satisfied.",
+      "action": "Report G4 as CANNOT_CHECK with a distinct exit code. Never report an unmeasured gate as passed."
+    },
+
+    {
+      "id": "CANNOT_CHECK__CHECKER_DISAGREEMENT",
+      "class": "CANNOT_CHECK",
+      "conditions": ["the independent checker disagrees with the production scorer on any score row, analysis field, or the terminal"],
+      "reading": "No claim may be read from a disputed computation.",
+      "action": "Resolve the disagreement before any terminal is recorded."
+    },
+
+    {
+      "id": "CANNOT_CHECK__COST_TRACE_UNDECOMPOSABLE",
+      "class": "CANNOT_CHECK",
+      "conditions": ["any action trace fails to decompose into inspection / intervention / reopening / total before outcomes are read"],
+      "reading": "The #1615 cost-decomposition requirement is unmet; cost numbers are not admissible data.",
+      "action": "Fix the trace instrumentation and re-run."
+    }
+  ],
+
+  "reporting_rule": {
+    "must_report_G3_and_G6_together": true,
+    "rationale": "Reporting a cost win over faithful Active-VOI without the simple p/c donor baseline alongside it would reproduce exactly the defect R4 exposed: a margin measured against a comparator that was not given the obvious improvement.",
+    "cannot_check_never_counted_as_pass": true,
+    "unmeasured_gate_exit_code_distinct_from_passing_gate": true
+  }
+}

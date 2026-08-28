@@ -1,0 +1,160 @@
+{
+  "schema": "ORION.ORION11.CostedEpistemicOrdering.Protocol.v1",
+  "paper_id": "ORION-11",
+  "successor_id": "ORION11.COSTED_EPISTEMIC_ORDERING.v1",
+  "candidate_id_ledger_1615": "ORION11.COSTED_RESPONSIBILITY_ORDERING.v1",
+  "candidate_authority_in_1615": "HYPOTHESIS_ONLY__NO_SCIENTIFIC_AUTHORITY",
+  "status": "PREREGISTRATION__DESIGN_ONLY__NOT_EXECUTED",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+  "predecessor_evidence": {
+    "path": "papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1/",
+    "pr": 1603,
+    "verdict": "H_R4_FALSIFIED__FAITHFUL_COMPARATOR_MATCHES_ORION",
+    "retained_terminal": "ORION-11.NECESSITY.V2.2.4",
+    "retracted_reading": "COMPARATIVE_MECHANISM_NECESSITY_VS_REGISTERED_PARENTS",
+    "replication_arm": "CANNOT_CHECK__INSTRUMENT_FAULT__ANCHOR_REPRODUCTION_FAILED__NO_CLAIM_READ"
+  },
+
+  "freeze_discipline": {
+    "outcome_access_before_freeze": false,
+    "post_outcome_changes_permitted": [],
+    "post_outcome_changes_forbidden": [
+      "margins", "gates", "arm set", "world family", "seeds",
+      "cost accounting", "stratum definitions", "terminal set", "multiplicity rule"
+    ],
+    "frozen_paper_bytes_modified": "NONE",
+    "note": "A protected result with unavailable mandatory evidence is CANNOT_CHECK, never a win and never a loss."
+  },
+
+  "world_family": {
+    "identity": "ORION11.COSTED_ORDERING.WORLDS.v1",
+    "independent_of_r4_worlds": true,
+    "rationale": "Reusing R4 worlds would test the successor on the family that generated the hypothesis.",
+    "n_worlds_target": 2882,
+    "strata": [
+      {
+        "id": "theorem_valid",
+        "share": 0.50,
+        "description": "All of A1-A4 hold. Exact small-world DP oracle computable.",
+        "assumptions_held": ["A1_noninterference", "A2_veto_monotonicity", "A3_safety", "A4_nonnegative_cost"]
+      },
+      {
+        "id": "ratio_aligned",
+        "share": 0.10,
+        "description": "Theorem-valid AND filtration is ratio-aligned (Theorem C equality case). Level-monotone and flat p/c must coincide exactly; any measured cost difference here is an instrument fault.",
+        "assumptions_held": ["A1_noninterference", "A2_veto_monotonicity", "A3_safety", "A4_nonnegative_cost"],
+        "role": "INSTRUMENT_CONTROL"
+      },
+      {
+        "id": "violate_A1_noninterference",
+        "share": 0.10,
+        "description": "Checking a low-level class shifts the posterior over higher levels beyond simple exclusion.",
+        "assumptions_violated": ["A1_noninterference"],
+        "role": "ASSUMPTION_VIOLATION_CONTROL"
+      },
+      {
+        "id": "violate_A2_veto_monotonicity",
+        "share": 0.10,
+        "description": "A high-level repair is legitimately admissible without exhausting the level below.",
+        "assumptions_violated": ["A2_veto_monotonicity"],
+        "role": "ASSUMPTION_VIOLATION_CONTROL"
+      },
+      {
+        "id": "violate_A3_safety",
+        "share": 0.10,
+        "description": "High-level mutation carries no protected penalty; safety gate is vacuous.",
+        "assumptions_violated": ["A3_safety"],
+        "role": "ASSUMPTION_VIOLATION_CONTROL"
+      },
+      {
+        "id": "violate_A4_cost",
+        "share": 0.10,
+        "description": "Zero-cost or negative-cost checks admitted.",
+        "assumptions_violated": ["A4_nonnegative_cost"],
+        "role": "ASSUMPTION_VIOLATION_CONTROL"
+      }
+    ],
+    "host_only_fields": [
+      "latent_correct_repair_class", "true_class_priors", "protected_response_matrix",
+      "gold_minimal_repair", "protected_siblings", "dependency_impact_set", "stratum_label"
+    ],
+    "candidate_visible_fields": [
+      "public_repair_menu", "public_diagnostic_menu", "per_check_cost", "level_assignment",
+      "intervention_budget_units", "observed_failure_signature"
+    ]
+  },
+
+  "arms": [
+    { "id": "exact_dp_oracle", "role": "OPTIMALITY_REFERENCE", "description": "Exact small-world dynamic-programming minimum expected cost. Not a competitor; defines the denominator for H2. Runs on theorem_valid and ratio_aligned strata only.", "sees_host_only_fields": true },
+    { "id": "orion_level_monotone", "role": "SUBJECT", "description": "ORION governed policy: responsibility filtration, level-monotone ordering, p/c within level, protected-sibling and dependency-impact gates." },
+    { "id": "faithful_active_voi", "role": "PRIMARY_COMPARATOR", "description": "Active value-of-information with ordered search admitted, faithful to the R4 activevoi_search_admitted_parent repair." },
+    { "id": "global_flat_voi", "role": "COMPARATOR", "description": "Value-of-information over all levels at once, no filtration." },
+    { "id": "gain_per_cost_greedy", "role": "MANDATORY_DONOR_BASELINE", "description": "Simple unconstrained p/c ordering (Theorem A). Required by ledger #1615: the successor must be compared against a simple p/c baseline, not only against the old uncosted parents. Theorem C predicts this arm matches or beats ORION on cost.", "theory_prediction": "cost <= orion_level_monotone" },
+    { "id": "cost_greedy_repair", "role": "COMPARATOR", "description": "Cheapest-check-first, ignoring priors." },
+    { "id": "random_safe_ablation", "role": "ABLATION", "description": "Random admissible (topological) ordering; respects the filtration." },
+    { "id": "random_unsafe_ablation", "role": "ABLATION", "description": "Random unconstrained ordering; may violate the filtration." }
+  ],
+
+  "cost_accounting": {
+    "requirement_source": "ledger #1615 Priority 4 minimal successor",
+    "decomposition_bound_before_outcomes": true,
+    "components": ["inspection", "intervention", "reopening", "total"],
+    "unit": "intervention_budget_units",
+    "budget_ceiling": 4.0,
+    "note": "Every action trace must decompose into these four components before any outcome is read. A run whose trace does not decompose is CANNOT_CHECK, not a datum."
+  },
+
+  "primary_criterion": {
+    "definition": "protected_root_task_success AND NOT forbidden_high_level_mutation",
+    "cost_comparison_conditional_on": "both systems satisfying identical success and safety gates",
+    "rationale": "Cost is uninterpretable unconditionally: a policy can always be cheap by failing. R4 primary shows darc_r2act_dependency_parent at mean cost 1.7585, cheaper than ORION's 1.8341, while clearing neither gate."
+  },
+
+  "gates": [
+    { "id": "G1_success_noninferiority", "source": "issue #1608", "statement": "ORION success noninferior to faithful_active_voi with margin -0.01." },
+    { "id": "G2_zero_forbidden", "source": "issue #1608", "statement": "ORION forbidden_high_level_mutation_rate == 0 on every stratum." },
+    { "id": "G3_cost_ratio", "source": "issue #1608", "statement": "Paired expected-cost ratio orion_level_monotone / faithful_active_voi < 0.80 AND its 95% upper confidence bound < 0.80." },
+    { "id": "G4_dp_gap", "source": "issue #1608", "statement": "ORION mean cost <= 1.10 x exact_dp_oracle optimum on the theorem_valid stratum." },
+    { "id": "G5_assumption_attribution", "source": "issue #1608", "statement": "The ORION cost advantage disappears on every assumption-violation control stratum." },
+    { "id": "G6_donor_baseline", "source": "ledger #1615", "statement": "Reported jointly with G3: ORION cost versus gain_per_cost_greedy at equal success and safety. Theorem C predicts ORION is NOT lower. G3 passing while G6 shows gain_per_cost_greedy at or below ORION is a FALSIFICATION of the mechanism claim, not a partial success." },
+    { "id": "G7_instrument_control", "source": "this protocol", "statement": "On the ratio_aligned stratum, orion_level_monotone and gain_per_cost_greedy must produce identical orderings and identical expected cost. Any difference is an instrument fault and forces CANNOT_CHECK." }
+  ],
+  "gate_composition": "NON_COMPENSATORY. All of G1, G2, G4, G5, G7 must hold. G3 and G6 are read jointly and G6 dominates: a cost advantage over Active-VOI that a simple p/c baseline also achieves is not an ORION property.",
+
+  "statistics": {
+    "pairing": "paired by world identity across arms",
+    "interval_method": "stratified percentile bootstrap, 10000 resamples, seed frozen here",
+    "multiplicity": "Holm across the registered gate family",
+    "anchor_reproduction_gate": {
+      "required": true,
+      "parameterised_per_world_set": true,
+      "rationale": "R4's replication arm was lost to a runner that hardcoded the PRIMARY committed rates while the replication set had its own. That defect is fixed on a separate branch and must not recur here.",
+      "on_failure": "CANNOT_CHECK__ANCHOR_REPRODUCTION_FAILED__NO_CLAIM_READ"
+    }
+  },
+
+  "independent_checker_requirements": {
+    "produced_by_this_packet": false,
+    "note": "Deliberately not authored here. Must be written separately, must not import the candidate policies, the production scorer, or the statistics module, and must recompute every score row, the analysis object and the terminal from the raw traces.",
+    "disagreement_terminal": "CANNOT_CHECK__CHECKER_DISAGREEMENT"
+  },
+
+  "stop_rule": {
+    "source": "issue #1608",
+    "statement": "If cost is not lower against faithful comparators, retire empirical mechanism-superiority claims and keep only the bounded methodological/theoretical result.",
+    "extension_from_theorem_C": "If cost is lower against faithful_active_voi but not against gain_per_cost_greedy, the same retirement applies: the advantage belongs to p/c ordering, which is donor-owned prior mathematics, not to the responsibility filtration."
+  },
+
+  "what_a_favourable_outcome_would_and_would_not_license": {
+    "would_license": "A bounded statement that, on this world family, level-monotone responsibility ordering purchases zero forbidden high-level mutation at a quantified and bounded cost premium over unconstrained p/c ordering.",
+    "would_not_license": [
+      "revival of the retracted comparative mechanism-necessity reading",
+      "any superiority claim",
+      "generalization beyond this world family",
+      "promotion of the R4 replication CANNOT_CHECK arm",
+      "any change to ORION-11.NECESSITY.V2.2.4"
+    ]
+  }
+}

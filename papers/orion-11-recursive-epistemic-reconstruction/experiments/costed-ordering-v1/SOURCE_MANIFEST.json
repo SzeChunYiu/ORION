@@ -1,0 +1,128 @@
+{
+  "schema": "ORION.ORION11.CostedEpistemicOrdering.SourceManifest.v1",
+  "successor_id": "ORION11.COSTED_EPISTEMIC_ORDERING.v1",
+  "status": "PREREGISTRATION__DESIGN_ONLY__NOT_EXECUTED",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "packet_completeness": {
+    "required_by_issue_1608": [
+      "THEORY.md",
+      "PROTOCOL.json",
+      "SOURCE_MANIFEST.json",
+      "EXPECTED_TERMINALS.json",
+      "independent_checker/",
+      "RESULT.json",
+      "CLAIM_DISPOSITION.md"
+    ],
+    "present_pre_outcome": [
+      "THEORY.md",
+      "PROTOCOL.json",
+      "SOURCE_MANIFEST.json",
+      "EXPECTED_TERMINALS.json"
+    ],
+    "deliberately_absent_post_outcome": [
+      "independent_checker/",
+      "RESULT.json",
+      "CLAIM_DISPOSITION.md"
+    ],
+    "absence_reason": "This packet is design only. Producing a checker, a result or a disposition here would either be empty or would pre-empt an unexecuted study. The independent checker must additionally be authored by a different party and must not import the candidate policies, the production scorer or the statistics module."
+  },
+  "upstream_evidence": {
+    "branch": "claude/orion11-r4-faithful-comparator-20260828",
+    "pr": 1603,
+    "commit": "df9880e59115a5a917b630a1d154954528bc3b4a",
+    "lunarc_job": "3550342",
+    "files": [
+      {
+        "path": "papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1/ORION11_R4_FAITHFUL_COMPARATOR_PROTOCOL.json",
+        "git_blob": "e795b1818d1b0117981d420bb8505153e837a708"
+      },
+      {
+        "path": "papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1/RESULT_NOTE.md",
+        "git_blob": "3219f5072a5bde1e680cf0cd2600bdc1b3ecf671"
+      },
+      {
+        "path": "papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1/faithful_comparator_policies.py",
+        "git_blob": "4fc5166adcd027b4a401a46bce44ab07f427ee47"
+      },
+      {
+        "path": "papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1/run_orion11_r4_faithful_comparator.py",
+        "git_blob": "84574e3153a0b34ec33a2dc004a16e0707f6080e"
+      },
+      {
+        "path": "papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1/run_orion11_r4_lunarc.sbatch",
+        "git_blob": "da79741a7d44919ed0ef914a9e5319478012ac48"
+      },
+      {
+        "path": "papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1/result/primary/ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json",
+        "git_blob": "ebccc9457b857154d41499145e30373cc54d7dae",
+        "role": "PRIMARY_RESULT__READ"
+      },
+      {
+        "path": "papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1/result/replication/ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json",
+        "git_blob": "7caa365d336826becf33a6d982139e2db6f03716",
+        "role": "REPLICATION_RESULT__CANNOT_CHECK__NOT_READ"
+      }
+    ],
+    "result_internal_hashes_as_recorded_in_r4_primary_result_json": {
+      "policies_sha256": "ce1494f4f5d03af3b9bd62ec7994aaa36da6cb4e0c7edc32989a7974835b76cb",
+      "protocol_sha256": "79784ec55153c3232039bdb4b908c87071b90eb4e87671dfb69f189bb04c6e70",
+      "protected_matrix_sha256": "31c9d3a39b60da7c0d0c337c461b7179d866957105144d228466f75f20757542",
+      "world_public_sha256": "9b77470167a7e22937bc3c498d2277639ea8f02f3e2cbe90e24fe998785bbdf6"
+    },
+    "working_tree_state_2026_08_28": {
+      "tracked_at_wave2_integration_HEAD": true,
+      "content_identical_to_pr1603": true,
+      "verification": "git diff refs/rev/pr1603 HEAD -- <r4 dir> returned 0 lines",
+      "present_on_disk": false,
+      "detail": "All seven R4 files show as unstaged deletions in the wave2/integration working tree; only a stale __pycache__/ directory remains on disk. The deletion predates this packet and was not made by it.",
+      "warning": "A blanket 'git add -A' or 'git commit -a' from this working tree would COMMIT THE DELETION of the R4 falsification evidence package. Stage the retraction paths explicitly."
+    }
+  },
+  "figures_carried_forward_from_r4_primary": {
+    "source": "experiments/r4-faithful-comparator-v1/result/primary/ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json",
+    "n_worlds": 2882,
+    "n_hidden_shift": 480,
+    "negative_control_n": 2402,
+    "intervention_budget_units": 4.0,
+    "verdict": "H_R4_FALSIFIED__FAITHFUL_COMPARATOR_MATCHES_ORION",
+    "falsified_by": [
+      "activevoi_search_admitted_parent"
+    ],
+    "falsification_margin": {
+      "success_floor": 0.99,
+      "forbidden_ceiling": 0.01
+    },
+    "mean_spent_budget": {
+      "orion_mutation_necessity": 1.8341429562803608,
+      "activevoi_search_admitted_parent": 2.6675919500346983,
+      "darc_search_admitted_parent": 1.9514226231783485,
+      "causalflow_sibling_admitted_parent": 4.0,
+      "active_voi_repair_parent": 2.5832755031228314,
+      "darc_r2act_dependency_parent": 1.7585010409437891,
+      "causalflow_minimal_counterfactual_parent": 4.0
+    },
+    "forbidden_high_level_mutation_rate": {
+      "orion_mutation_necessity": 0.0,
+      "activevoi_search_admitted_parent": 0.0,
+      "darc_search_admitted_parent": 0.2376821651630812,
+      "causalflow_sibling_admitted_parent": 0.4108258154059681
+    },
+    "gate_matched_cost_ratio_orion_over_activevoi": 0.6875650364203953,
+    "authority_note": "These figures are context for design only. The R4 record itself carries scientific_authority_delta NONE_UNTIL_MERGED, and this packet adds none."
+  },
+  "governing_documents": {
+    "successor_programme_issue": 1608,
+    "candidate_ledger": {
+      "pr": 1615,
+      "path": "papers/publication_closure/wave2/WAVE2_SUCCESSOR_THEORY_CANDIDATES_2026-08-28.md",
+      "priority": 4,
+      "candidate_id": "ORION11.COSTED_RESPONSIBILITY_ORDERING.v1",
+      "authority": "HYPOTHESIS_ONLY__NO_SCIENTIFIC_AUTHORITY"
+    },
+    "retraction_ledger": "papers/orion-11-recursive-epistemic-reconstruction/CLAIM_RETRACTION_LEDGER_V1.md",
+    "reframed_contribution": "papers/orion-11-recursive-epistemic-reconstruction/REFRAMED_CONTRIBUTION_V1.md"
+  },
+  "frozen_bytes_touched": "NONE",
+  "frozen_bytes_rule": "issue #1608: no current frozen paper byte may be modified merely to run successor science."
+}

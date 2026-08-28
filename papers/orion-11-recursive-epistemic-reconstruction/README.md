@@ -8,9 +8,18 @@
 The current status is deliberately split along two axes:
 
 - **Scientific result:** `ORION-11.NECESSITY.V2.2.4` remains supported only on the
-  frozen credential-free mechanical world family. The historical broad H1
-  remains `NOT_SUPPORTED`; neither result authorizes model-general,
-  naturalistic, or open-ended superiority.
+  frozen credential-free mechanical world family, as an **internal** necessity
+  result. The historical broad H1 remains `NOT_SUPPORTED`; neither result
+  authorizes model-general, naturalistic, or open-ended superiority.
+- **Comparative reading: RETRACTED 2026-08-28.** The frozen +0.50625 hidden-shift
+  margin over the three named parents is fully recovered by ordered search alone
+  (R4 faithful-comparator study (PR #1603, LUNARC job 3550342, verdict `H_R4_FALSIFIED__FAITHFUL_COMPARATOR_MATCHES_ORION`)); `activevoi_search_admitted_parent`
+  matches ORION on both registered components. The v2.2.4 terminal is **not**
+  retracted --- R4's anchor gate reproduced all four unchanged arms at the
+  committed rates --- but no mechanism-necessity claim relative to those parents
+  is made. Surviving bounded contribution and exact figures:
+  `REFRAMED_CONTRIBUTION_V1.md`; full occurrence audit:
+  `CLAIM_RETRACTION_LEDGER_V1.md`.
 - **Submission package:** `NOT_SUBMISSION_READY`. The current
   `journal_package/MANIFEST.json` is `SUPERSEDED`, and
   `journal_package/RENDER_CLOSURE_STATE.json` is the authority for render
