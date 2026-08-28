@@ -10,6 +10,9 @@ import unittest
 
 DIAGNOSTIC = Path(__file__).with_name("diagnose_r23_parent_replay_r24.py")
 SLURM = Path(__file__).with_name("ORION02_R24_R23_PARENT_DIAGNOSTIC.slurm")
+SYSTEM_PINNED_SLURM = Path(__file__).with_name(
+    "ORION02_R24_R23_PARENT_DIAGNOSTIC_SYSTEM_PINNED.slurm"
+)
 
 
 def load_diagnostic():
@@ -57,6 +60,24 @@ class DiagnosticIsolationTests(unittest.TestCase):
         self.assertIn("EXPECTED_SOURCE_COMMIT", source)
         self.assertIn("diagnose_r23_parent_replay_r24.py", source)
         self.assertNotIn("fiberguard_pmlb_arm_conditional_r24.py --subject-repo", source)
+
+    def test_system_pinned_profile_changes_only_the_interpreter(self) -> None:
+        baseline = SLURM.read_text() if SLURM.exists() else ""
+        profile = SYSTEM_PINNED_SLURM.read_text() if SYSTEM_PINNED_SLURM.exists() else ""
+        self.assertIn(
+            "PYTHON=/sw/easybuild_milan/software/Python/3.11.5-GCCcore-13.2.0/bin/python3",
+            profile,
+        )
+        for line in (
+            "export PYTHONHASHSEED=0",
+            "export OPENBLAS_NUM_THREADS=1",
+            "export OMP_NUM_THREADS=1",
+            "export MKL_NUM_THREADS=1",
+            'test "$(git rev-parse HEAD)" = "$EXPECTED_SOURCE_COMMIT"',
+        ):
+            self.assertIn(line, baseline)
+            self.assertIn(line, profile)
+        self.assertIn("diagnose_r23_parent_replay_r24.py", profile)
 
 
 if __name__ == "__main__":
