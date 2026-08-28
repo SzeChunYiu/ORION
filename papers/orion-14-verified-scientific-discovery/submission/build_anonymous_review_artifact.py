@@ -90,7 +90,7 @@ The three empirical layers are separate experiments and must not be pooled.
 
 Protected per-case gold, raw protected execution traces, secret seeds,
 credentials, candidate-hidden fields, author identity, public repository URLs,
-and development/workflow history are not included.  Their absence is part of
+and operational history are not included.  Their absence is part of
 blind review and protected-evaluation custody; it is not presented as full
 external reproduction.
 

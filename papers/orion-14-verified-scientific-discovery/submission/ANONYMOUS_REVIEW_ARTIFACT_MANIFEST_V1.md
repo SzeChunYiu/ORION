@@ -1,54 +1,46 @@
 # ORION-14 anonymous review-artifact manifest V1
 
 Tracking: #1609 / PR #1610  
-Purpose: define the material to upload with the double-blind TMLR submission without exposing repository ownership, author identity, issue/branch history, or protected per-case gold.
+Purpose: bind the exact supplementary archive for double-blind TMLR review without exposing author identity, public-repository ownership, operational history, or protected per-case material.
 
-This is an **internal packaging map**. Do not upload this file itself if its source paths or project labels would undermine anonymity. The blind package should use the neutral output names below.
+This is an **internal packaging record** and is not itself part of the blind archive.
 
-## Blind-package contents
+## Materialized archive
 
-| Internal source | Blind output name | Purpose |
+- Tracked filing object: `journal_package/orion14_anonymous_review_2026-08-28.zip`
+- SHA-256: `ec842a56dc49b7363de847e7c015fa2730c810a04652c5e440d9a72af4b665a3`
+- Member count: 10
+- Uncompressed member bytes: 100,955
+- ZIP timestamps: fixed to 1980-01-01 00:00:00
+- Build determinism: two clean builds were byte-identical and had the same SHA-256
+- ZIP integrity: all members passed `unzip -t`
+- Headline verifier terminal: `ANONYMOUS_REVIEW_HEADLINES_VERIFIED`
+
+## Exact blind-package contents
+
+| Blind member | Canonical input or role | Purpose |
 |---|---|---|
-| `protocol/PROTOCOL_V1.json` | `protocol.json` | prospective study definition |
-| `protocol/STATISTICAL_ANALYSIS_PLAN_V1.md` | `statistical_analysis_plan.md` | registered endpoints, margins and uncertainty rules |
-| `protocol/METRICS_REGISTRY_V1.json` | `metrics_registry.json` | metric definitions |
-| `protocol/THREAT_MODEL_V1.md` | `threat_model.md` | frozen attack/evaluation scope |
-| `protocol/EXECUTION_FREEZE_CHECKLIST_V2.md` | `execution_freeze.md` | outcome-blind execution conditions |
-| `protocol/PROTECTED_RUN_BINDINGS_V2.json` | `execution_binding.json` | subject/split/harness/evaluator binding |
-| `host/BASELINE_CONFIGS_V2.json` | `comparator_definitions.json` | protocol-matched comparator and ablation definitions |
-| `evidence/protected_v2/PUBLICATION_METRICS_V2.json` | `v2_publication_metrics.json` | V2 headline safe aggregates |
-| `evidence/protected_v2/FAMILY_CONTRAST_V2.json` | `v2_family_contrasts.json` | V2 per-family public contrasts |
-| `evidence/protected_v2/RESULT_ATTESTATION_V2.md` | `v2_result_attestation.md` | V2 result/custody statement |
-| `evidence/protected_v2/LIVE_ARM_STATUS.md` | `excluded_live_arm_status.md` | adverse exploratory-arm disclosure |
-| `evidence/protected_v3/FREEZE.md` | `v3_freeze.md` | V3 prospective construction/evaluation freeze |
-| `evidence/protected_v3/IDENTIFIABILITY_V3.json` | `v3_identifiability.json` | registered nuisance-probe outputs |
-| `evidence/protected_v3/PANEL_V3.json` | `v3_panel.json` | exact-axis panel result |
-| `evidence/protected_v3/RESULT.md` | `v3_result.md` | bounded V3 interpretation and retained residuals |
-| `reproducibility/BINDING_MANIFEST_V2.md` | `reproduction_binding.md` | binding of public reproduction inputs |
-| `host/independent_reproduce_v2.py` | `reproduce_v2.py` | separate code path for V2 aggregate reproduction |
-| `figures/generate_figures.py` | `generate_figures.py` | regenerate V2 paper displays from safe aggregates |
-| `CLAIM_LEDGER_V4.md` | `claim_boundary_ledger.md` | theory/V2/V3/P4-X claim boundaries |
-| `research/claim_expansion/p4/P4_X_FINAL_SCIENTIFIC_TERMINAL_V1.md` | `p4x_bounded_result.md` | P4-X bounded exact result and non-authorized claims |
+| `README.md` | generated neutral documentation | states V2/V3/P4-X separation and withheld-material boundary |
+| `MANIFEST.json` | generated package manifest | binds neutral member hashes to canonical-source hashes without source paths |
+| `SHA256SUMS` | generated member digest list | verifies all other member bytes |
+| `verify_headlines.py` | generated standalone checker | checks headline counts, statuses, P4-X tie and independent-implementation boundary |
+| `v2_publication_metrics.json` | V2 safe publication metrics | H1/H2 counts, V2 H3 retained negative, comparator and ablation aggregates |
+| `v2_family_contrasts.json` | V2 safe family contrasts | per-family public false-promotion aggregates |
+| `v3_identifiability.json` | V3 identifiability register | registered exact-axis nuisance-probe outputs |
+| `v3_panel.json` | V3 panel result | 30/30 versus 0/30 and 15/30 interface-terminal result |
+| `p4x_exact_result.json` | P4-X protected exact-result object | 400/400 versus 250/400, 50/400 and typed 400/400 tie |
+| `p4x_independent_verification.json` | P4-X separate implementation receipt | canonical-row and count agreement without importing the execution module |
 
-## Identity scrub before upload
+## Deliberate minimization
 
-- [ ] remove repository owner/name and author-linked URLs;
-- [ ] remove issue, PR, branch, workflow-run and developer-history references unless scientifically indispensable;
-- [ ] remove local paths and usernames;
-- [ ] retain hashes only when they bind scientific/reproducibility objects;
-- [ ] ensure filenames are neutral and match the blind names above;
-- [ ] scan file metadata and archive member metadata for author identity;
-- [ ] verify no protected per-case gold, raw protected traces, secret seed, credentials or candidate-hidden fields enter the package;
-- [ ] run a final text search for author names, account handles, email addresses and public repository URLs;
-- [ ] generate `SHA256SUMS` for the exact blind package;
-- [ ] record the final archive hash in the submission manifest.
+An earlier planning inventory proposed copying extensive protocol, custody and development records into the review supplement. The materialized archive instead follows a minimum-sufficient blind-review design: neutral safe aggregates, canonical-source digests, explicit boundaries, and a standalone verifier. This avoids exporting operational identity/history or protected gold while making the manuscript's released finite counts and negative/boundary statements directly checkable. The manuscript describes the scientifically relevant design and custody conditions; the archive does not claim to rerun protected scoring.
+
+## Identity and protection audit
+
+The exact ten-member tree and ZIP were scanned for the author name and email, account handles, public-repository URLs, API/workflow/PR terminology, local user paths, and manuscript-tree paths. No match was found. The archive contains no protected per-case gold, raw traces, secret seeds, credentials, or candidate-hidden fields. File names are neutral, member timestamps are fixed, and the generated manifest records `author_identity_exported: false`.
 
 ## Scientific boundary
 
-The anonymous review artifact is sufficient to audit the **released bounded claims** only. It does not turn local code-path separation into external replication; it does not expose protected per-case gold; and it does not supply naturalistic/external-comparator evidence that the manuscript explicitly withholds.
+The archive supports the released **bounded V2, V3 and P4-X aggregate claims**. It does not turn local code-path separation into external replication, disclose hidden gold, establish naturalistic transfer, execute cited authors' external software, or license general scientific-judgement superiority. V2 H3 remains `NOT_SUPPORTED`; V3 remains a distinct terminal/interface-attainability result.
 
-## Filing blocker
-
-`ANONYMOUS_REVIEW_ARCHIVE_NOT_YET_MATERIALIZED`
-
-Close only when the exact blind archive has been generated, identity-scanned, checksum-bound and attached through the target's review channel.
+Terminal: `ANONYMOUS_REVIEW_ARCHIVE_MATERIALIZED__DETERMINISTIC__IDENTITY_SCAN_PASS__BOUNDED_AGGREGATE_AUDIT_ONLY`.
