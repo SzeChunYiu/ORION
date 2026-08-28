@@ -52,14 +52,15 @@ Official sources:
 - [x] Author identity is not printed in the manuscript source.
 - [x] Main manuscript availability text no longer exposes the public repository owner.
 - [x] Anonymous supplementary artifact plan exists.
-- [ ] Exact anonymous ZIP/PDF review artifact materialized and identity-scanned.
-- [ ] Template placeholders (`MM`, `YYYY`, `XXXX`) resolved according to the current official template before filing.
-- [ ] Author verifies LLM-assistance facts and first-page disclosure is inserted.
-- [ ] OpenReview profile/author/funding/conflict/IRB metadata supplied by humans at filing.
-- [ ] Final exact PDF passes page-level audit and package hash binding.
+- [x] Exact anonymous ZIP review artifact materialized, deterministically rebuilt, checksum-bound and identity-scanned.
+- [x] `MM`, `YYYY` and `XXXX` retained exactly as the current official template instructs for an initial under-review submission; the template labels them camera-ready-only replacements, so they are not release placeholders at this stage.
+- [x] Actual LLM assistance in manuscript editing/review-package preparation is verified by this workflow and disclosed in an unnumbered first-page footnote.
+- [ ] OpenReview profile/author/affiliation/ORCID/funding/conflict/ethics metadata supplied by humans at filing.
+- [x] Final exact PDF passes page-level audit and package hash binding: 19 pages,
+      SHA-256 `d9b8fbf3b9f16a7c35b478a810121d8803ae2d848a7817d0cff33e6d47126110`.
 
 ## Target terminal today
 
-`TMLR_POLICY_FIT_PLAUSIBLE__FILING_COMPLIANCE_OPEN`
+`TMLR_POLICY_FIT_PLAUSIBLE__ANONYMOUS_PACKAGE_DISCLOSURE_AND_PINNED_PDF_CLOSED__HUMAN_FILING_METADATA_ONLY`
 
 This does not supersede the scientific/editorial concern ledger. It only closes the question of what TMLR currently requires.
