@@ -1,7 +1,5 @@
 # Diagnosing Information, Representation and Computation Failures by Intervention
 
-<!-- Draft integration note: TMLR-oriented reader-facing rewrite. The historical format-fragile serialized-representation margin is explicitly retired and is not used as headline evidence. -->
-
 ## Abstract
 
 When a learning or reasoning system fails, increasing model size or inference compute is a common default response. That response is scientifically ambiguous because the same poor outcome can result from missing semantic information, an inaccessible representation of available information, or insufficient downstream computation. We study failure diagnosis as an intervention problem rather than inferring cause from final accuracy alone.
