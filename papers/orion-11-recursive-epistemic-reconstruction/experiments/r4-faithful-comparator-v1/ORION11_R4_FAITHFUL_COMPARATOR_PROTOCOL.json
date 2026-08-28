@@ -1,0 +1,83 @@
+{
+  "schema": "ORION.ORION11.R4.FaithfulComparatorProtocol.v1",
+  "paper_id": "ORION-11",
+  "round": "R4",
+  "date": "2026-08-28",
+  "frozen_before_outcomes": true,
+  "arms_executed": false,
+  "outcome_accessed": false,
+
+  "motivation": {
+    "observed_defect": "In the frozen v2.2.4 primary result, all six external comparator arms land on the SAME hidden-shift protected_root_task_success rate of 0.49375 (active_voi_repair_parent, causalflow_minimal_counterfactual_parent, darc_r2act_dependency_parent, cost_greedy_repair, immediate_outcome_flip_repair) or 0.4895833 (reflect_like_replay). A cost-greedy picker scores identically to a causal-flow counterfactual parent. 0.49375 is therefore a property of the frozen world set, not a discriminating property of any comparator method.",
+    "mechanism_of_the_defect": "Every named parent selects among high-level repairs via `_by_confidence(_high_repairs(session))[0]` — the single top-confidence candidate — and never iterates to an alternative when the first candidate fails admission. In hidden-shift worlds the top-confidence high-level proposal is by construction a decoy, so a non-iterating parent cannot succeed. Source: src/orion/study/p1_causal/necessity_policies.py:321-373 (darc_r2act_dependency_parent), :234-320 (active_voi_repair_parent). The causalflow parent's own docstring states protected-sibling validity is 'observed in the host response but not a selection criterion here'.",
+    "why_this_matters": "ORION-11's own ablation arm `orion_without_lower_level_exclusion` — which DOES iterate high-level candidates and admits on target_success AND protected_sibling_ok — reaches hidden-shift success 1.0, identical to full ORION. The entire +0.50625 headline margin over the named parents is therefore recoverable by alternative search alone, which is not ORION's claimed novel mechanic. ORION's measured residual over that searching baseline is confined to forbidden_high_level_mutation_rate (0.0 vs 0.4170714781401804)."
+  },
+
+  "hypothesis_under_test": {
+    "H_R4": "ORION's mutation-necessity mechanics are necessary for JOINT success — attaining hidden-shift protected_root_task_success while emitting zero forbidden high-level mutations — and this necessity is NOT an artefact of the named parents failing to iterate over alternative high-level candidates.",
+    "direction": "This experiment is constructed to FALSIFY H_R4, not to confirm it."
+  },
+
+  "design": {
+    "worlds": "The EXACT frozen v2.2.4 primary world set. No world is generated, regenerated, filtered, or re-seeded. WORLD_PUBLIC.jsonl and PROTECTED_RESPONSE_MATRIX.jsonl are consumed under their committed sha256 and the run aborts on any drift.",
+    "n_worlds_total": 2882,
+    "n_hidden_shift": 480,
+    "n_negative_control": 2402,
+    "budget": "Unchanged four-unit NecessityInteractor budget for every arm, including new arms. No arm receives a budget the frozen parents did not have.",
+    "scorer": "Unchanged aggregate_necessity_scores / score_necessity_world. No scoring field is added, reweighted, or reinterpreted.",
+    "new_arms_frozen_here": [
+      {
+        "arm_id": "darc_search_admitted_parent",
+        "derivation": "darc_r2act_dependency_parent with its single `[0]` top-confidence high-level pick replaced by iteration over high-level candidates in confidence order under the same admission test it already applies (target_success AND protected_sibling_ok). Nothing else changes.",
+        "rationale": "The minimal competent implementation of diagnosis-to-action admission."
+      },
+      {
+        "arm_id": "activevoi_search_admitted_parent",
+        "derivation": "active_voi_repair_parent with the same probe ladder (source then execution) retained, but the terminal high-level step iterates candidates in confidence order instead of testing only the top one.",
+        "rationale": "The minimal competent implementation of active-VOI repair."
+      },
+      {
+        "arm_id": "causalflow_sibling_admitted_parent",
+        "derivation": "causalflow_minimal_counterfactual_parent restricted to inclusion-minimal candidates whose observed response already carried protected_sibling_ok=True. The parent already observes this field; this arm lets it use it.",
+        "rationale": "Removes the deliberate handicap the parent's own docstring records."
+      }
+    ],
+    "anchor_arms_rerun_unchanged": [
+      "orion_mutation_necessity",
+      "active_voi_repair_parent",
+      "darc_r2act_dependency_parent",
+      "causalflow_minimal_counterfactual_parent"
+    ],
+    "anchor_reproduction_gate": "The four anchor arms MUST reproduce their committed v2.2.4 rates exactly (orion 1.0/0.0; the three parents 0.49375 success). Any deviation aborts the run as an instrument fault and NO comparative claim is read from it."
+  },
+
+  "primary_criterion": {
+    "name": "JOINT_CONSTRAINT_RESPECTING_SUCCESS",
+    "definition": "per-world boolean: protected_root_task_success AND NOT forbidden_high_level_mutation, restricted to hidden_shift worlds (n=480)",
+    "test": "paired McNemar, ORION vs each new arm, plus 10000-resample paired bootstrap 95% CI on the rate difference",
+    "seed": 202608280411
+  },
+
+  "falsification_criterion": {
+    "H_R4_FAILS_IF": "ANY of the three new arms attains hidden-shift JOINT_CONSTRAINT_RESPECTING_SUCCESS rate >= 0.99 AND forbidden_high_level_mutation_rate <= 0.01, i.e. matches ORION on the joint criterion within a 1-point pre-registered margin.",
+    "consequence_if_failed": "ORION-11's mechanism-necessity residual is NOT SUPPORTED as a comparative claim. The permitted claim must be narrowed to level-ordering economy (intervention cost) only, and the +0.50625 margin over named parents must be reported as an artefact of non-iterating comparators. The v2.2.4 terminal is NOT retracted — it remains a valid internal-necessity result — but the comparative reading of it is withdrawn.",
+    "H_R4_SURVIVES_IF": "All three new arms remain strictly below ORION on the joint criterion with McNemar p < 0.001 and a bootstrap CI excluding zero.",
+    "AMBIGUOUS_IF": "A new arm lands between 0.01 and 0.99 on the joint criterion — reported as PARTIAL, no promotion, and a further round is required."
+  },
+
+  "forbidden_actions": [
+    "regenerating, reseeding, filtering or re-freezing any world",
+    "altering the four-unit budget for any arm",
+    "adding, removing or reweighting any scoring field",
+    "tuning any new arm's selection rule after observing its outcome",
+    "retracting or relabelling the committed v2.2.4 terminal",
+    "reading any comparative claim from a run whose anchor reproduction gate failed"
+  ],
+
+  "authority": {
+    "external_independence": false,
+    "novelty": false,
+    "journal_or_submission": false,
+    "scientific_authority_delta": "NONE_UNTIL_EXECUTED_AND_MERGED"
+  }
+}
