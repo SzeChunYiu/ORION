@@ -187,8 +187,26 @@ for N4-B and N4-F3 and the order-of-magnitude contrast between them.
 - `submission_tmlr/` is **not read, written or depended upon**, so the byte
   bindings asserted by `papers/publication_closure/PACKAGE_ADOPTION_V2.json`
   under issue #1601 are unaffected.
-- Verified: the ORION-08 content-freeze checker passes with this additive
-  directory present.
+### Content-freeze pin — disclosed, not glossed
+
+`check_orion05_10_final_freeze.py` reports `FROZEN` with this directory present,
+but **that is not evidence of unchanged content**: the script *writes*
+`paper_tree_oid` and rewrites `subject_commit` to the current `HEAD`, then
+reports. It re-pins rather than verifies. Running it mutates the freeze receipt;
+that mutation was reverted and is not part of this PR.
+
+The honest statement is therefore:
+
+| | |
+|---|---|
+| pinned `paper_tree_oid` | `5f923e9a9d1e` |
+| live tree oid with this additive directory | `e353f6691507` |
+
+Adding any file under `papers/orion-08-typed-state/` changes that paper's tree
+oid. ORION-08's pin is one of the eight currently matching on `main` per issue
+**#1625**, so this PR will move it into the mismatching set. **No existing byte
+is modified** — the change is purely additive — but the pin change is real and is
+flagged here rather than hidden behind a checker that cannot fail.
 
 **ORION-08 is not blocked by this lane.** Real-domain transfer remains successor
 work, exactly as #1609 requires.

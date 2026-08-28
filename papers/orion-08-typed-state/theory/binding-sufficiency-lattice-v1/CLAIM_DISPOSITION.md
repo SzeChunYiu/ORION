@@ -10,8 +10,14 @@
 ## 1. What changed
 
 One additive directory under `papers/orion-08-typed-state/theory/`. No
-manuscript, ledger, receipt or `submission_tmlr/` byte was modified. The ORION-08
-content-freeze checker passes with the directory present.
+manuscript, ledger, receipt or `submission_tmlr/` byte was modified.
+
+The ORION-08 content-freeze script reports `FROZEN` with the directory present,
+but **that script re-pins rather than verifies** — it writes `paper_tree_oid` and
+rewrites `subject_commit` to the current `HEAD`. Its PASS is therefore not
+evidence of unchanged content. What is true is that the change is purely
+additive, and that it moves ORION-08's `paper_tree_oid` from the pinned
+`5f923e9a9d1e` to `e353f6691507`. Disclosed rather than hidden; see issue #1625.
 
 ## 2. What was established
 
