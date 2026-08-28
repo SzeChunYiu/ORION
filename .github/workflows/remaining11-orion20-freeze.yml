@@ -1,0 +1,73 @@
+name: remaining11-orion20-freeze
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/remaining11-orion20-freeze-20260827
+    paths:
+      - 'papers/publication_closure/remaining11/**'
+      - '.github/workflows/remaining11-orion20-freeze.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: remaining11-orion20-freeze
+  cancel-in-progress: true
+
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion20-science-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/remaining11-orion20-freeze-20260827
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile freeze gate
+        run: python -m py_compile papers/publication_closure/remaining11/check_orion20_science_freeze.py
+      - name: Re-run formal OCME independent implementations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/orion-20-structured-problem-solving/top_tier/check_ocme_formal_nonvacuity_v1.py > "$RUNNER_TEMP/formal-primary.json"
+          python papers/orion-20-structured-problem-solving/top_tier/check_ocme_formal_independent_v1.py > "$RUNNER_TEMP/formal-independent.json"
+      - name: Re-run generated OCME and independent implementation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/orion-20-structured-problem-solving/top_tier/run_generated_ocme_v1.py > "$RUNNER_TEMP/generated-primary.json"
+          python papers/orion-20-structured-problem-solving/top_tier/run_generated_ocme_v1.py > "$RUNNER_TEMP/generated-primary-rerun.json"
+          cmp "$RUNNER_TEMP/generated-primary.json" "$RUNNER_TEMP/generated-primary-rerun.json"
+          python papers/orion-20-structured-problem-solving/top_tier/check_generated_ocme_independent_v1.py > "$RUNNER_TEMP/generated-independent.json"
+      - name: Require replay to leave paper bytes unchanged
+        run: git diff --exit-code -- papers/orion-20-structured-problem-solving
+      - name: Write bounded freeze receipt
+        run: python papers/publication_closure/remaining11/check_orion20_science_freeze.py
+      - name: Publish exact freeze receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          receipt='papers/publication_closure/receipts/remaining11/ORION-20_SCIENCE_FREEZE_V1.json'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$receipt"
+          git diff --check --cached
+          git commit -m 'papers(publication): freeze ORION-20 bounded science [orion20-science-frozen]'
+          git push origin HEAD:chatgpt/remaining11-orion20-freeze-20260827
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion20-bounded-science-freeze-${{ github.sha }}
+          path: |
+            papers/publication_closure/receipts/remaining11/ORION-20_SCIENCE_FREEZE_V1.json
+            ${{ runner.temp }}/formal-primary.json
+            ${{ runner.temp }}/formal-independent.json
+            ${{ runner.temp }}/generated-primary.json
+            ${{ runner.temp }}/generated-independent.json
+          if-no-files-found: error
+          retention-days: 30
