@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Build the deterministic anonymous IP&M Wave-1 review package."""
+"""Build and verify the current IP&M review package.
+
+The editable source and review-material archives are deliberately reader-facing
+objects.  They are prepared with generic scientific names and are scanned here
+before the private byte-binding manifest is refreshed.  Earlier archives made
+directly from repository paths are private audit evidence and must never be
+reintroduced by this builder.
+"""
 
 from __future__ import annotations
 
@@ -7,6 +14,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -38,39 +46,6 @@ SOURCE_FILES = (
     "manuscript/figures/P2-6_stopping_failures.tex",
 )
 
-REVIEW_EXTRA_FILES = (
-    "journal_package/current_revision/ANONYMOUS_REVIEW_README.md",
-    "journal_package/current_revision/LICENSE_AND_THIRD_PARTY_TERMS.md",
-    "protocol/OFFLINE_RUN_MANIFEST_V1.json",
-    "protocol/OFFLINE_RUN_MANIFEST_V1.sha256",
-    "protocol/STATISTICAL_PLAN_V1.json",
-    "evidence/offline_gold_preserved_smallworld/README.md",
-    "evidence/offline_gold_preserved_smallworld/tasks.json",
-    "evidence/offline_gold_preserved_smallworld/world.json",
-    "evidence/offline_results/RESULTS_SUMMARY_V1.json",
-    "evidence/offline_results/OFFLINE_MECHANISMS_V1.json",
-    "evidence/offline_results/ROUTE_STOP_ORACLE_V1.json",
-    "evidence/external_results/OFFLINE_390_REPRODUCTION_RECEIPT_V1.json",
-    "evidence/p2x/P2_X_PROTECTED_RESULT_V1.json",
-    "evidence/p2x/P2_X_CLAIM_VALUES_V1.json",
-    "evidence/p2x/P2_X_INDEPENDENT_VERIFICATION_V1.json",
-    "external/P2_TREC_COVID_ARMS_V1.json",
-    "external/P2_TREC_COVID_ROUTE_FREEZE_V4.json",
-    "evidence/external_results/METASYN_ID_ONLY_PROBE_V1.json",
-    "evidence/external_results/METASYN_SCREENING_FN_LEDGER_V1.json",
-    "evidence/external_results/DEEP_OFFICIAL_ARCHIVE_V1.json",
-    "evidence/external_results/DEEP_JUDGE_CONTROL_2026-08-17.json",
-    "evidence/external_results/DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json",
-    "evidence/external_results/P2_WIDE_OPENAIRE_MATCHED_RESULT_V1.json",
-    "evidence/external_results/P2_V2_WIDE_BOUNDED_MATCHED_RESULT_2026-08-18.json",
-    "scripts/run_offline_companion.py",
-    "scripts/render_suite_facts.py",
-    "scripts/render_figure_p2_2.py",
-    "scripts/render_offline_mechanisms.py",
-    "scripts/render_route_stop_oracle.py",
-    "scripts/build_ipm_submission.py",
-)
-
 COMPANION_FILES = (
     "TITLE_PAGE.md",
     "COVER_LETTER.md",
@@ -81,8 +56,6 @@ COMPANION_FILES = (
     "CREDIT_TEMPLATE.md",
     "LICENSE_AND_THIRD_PARTY_TERMS.md",
     "ANONYMOUS_REVIEW_README.md",
-    "RENDER_VISUAL_AUDIT.md",
-    "VISUAL_CONTACT_SHEET.jpg",
 )
 
 IDENTITY_MARKERS = (
@@ -91,6 +64,17 @@ IDENTITY_MARKERS = (
     b"sze-chun.yiu@",
     b"/Users/",
     b"\\Users\\",
+)
+
+FORBIDDEN_READER_PATTERNS = (
+    re.compile(rb"\bORION[-_ ]?\d+(?:[-_.][A-Za-z0-9]+)*\b", re.I),
+    re.compile(rb"\bP\d+(?:[-_.][A-Za-z0-9]+)+\b", re.I),
+    re.compile(rb"(?<![A-Za-z0-9_-])R\d{1,2}(?:[-_.][A-Za-z0-9]+)*\b"),
+    re.compile(rb"\b(?:CANNOT_CHECK|PEER_REVIEW_READY|TIER_[A-Z0-9_]+)\b"),
+    re.compile(rb"\b(?:github|gitlab)\b|\.git(?:hub)?/|/Users/|\\Users\\", re.I),
+    re.compile(rb"\b(?:commit|branch|pull request|merge request|CI run|issue #)\b", re.I),
+    re.compile(rb"\b[0-9a-f]{40,64}\b", re.I),
+    re.compile(rb"\b(?:sha-?256|checksum)\b", re.I),
 )
 
 
@@ -126,24 +110,30 @@ def identity_scan(paths: list[Path]) -> None:
                 raise ValueError(f"identity/private-path marker in anonymous file {path}: {marker!r}")
 
 
-def deterministic_zip(output: Path, paths: list[Path], prefix: str) -> list[dict[str, object]]:
-    manifest = []
-    with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
-        for path in sorted(paths, key=lambda p: p.relative_to(PAPER).as_posix()):
-            rel = path.relative_to(PAPER).as_posix()
-            arc = f"{prefix}/{rel}"
-            info = zipfile.ZipInfo(arc, FIXED_ZIP_TIME)
-            info.compress_type = zipfile.ZIP_DEFLATED
-            info.external_attr = 0o100644 << 16
-            data = path.read_bytes()
-            zf.writestr(info, data)
-            manifest.append({"path": arc, "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()})
-        payload = (json.dumps({"files": manifest}, sort_keys=True, indent=2) + "\n").encode()
-        info = zipfile.ZipInfo(f"{prefix}/FILE_MANIFEST.json", FIXED_ZIP_TIME)
-        info.compress_type = zipfile.ZIP_DEFLATED
-        info.external_attr = 0o100644 << 16
-        zf.writestr(info, payload)
-    return manifest
+def archive_members(path: Path) -> list[dict[str, object]]:
+    members: list[dict[str, object]] = []
+    with zipfile.ZipFile(path) as zf:
+        for info in zf.infolist():
+            if info.is_dir():
+                continue
+            name = info.filename.encode()
+            data = zf.read(info)
+            for pattern in FORBIDDEN_READER_PATTERNS:
+                if pattern.search(name) or pattern.search(data):
+                    raise ValueError(
+                        f"private project marker in reader-facing archive {path.name}:{info.filename}: "
+                        f"{pattern.pattern!r}"
+                    )
+            members.append(
+                {
+                    "path": info.filename,
+                    "bytes": len(data),
+                    "sha256": hashlib.sha256(data).hexdigest(),
+                }
+            )
+    if not members:
+        raise ValueError(f"empty reader-facing archive: {path}")
+    return members
 
 
 def build_pdf() -> tuple[Path, list[dict[str, object]]]:
@@ -181,19 +171,21 @@ def build_pdf() -> tuple[Path, list[dict[str, object]]]:
 def build() -> dict[str, object]:
     OUT.mkdir(parents=True, exist_ok=True)
     source_paths = check_files(SOURCE_FILES)
-    review_paths = source_paths + check_files(REVIEW_EXTRA_FILES)
-    identity_scan(review_paths)
+    identity_scan(source_paths)
 
     pdf, closure = build_pdf()
-    source_zip = OUT / "ORION12_IPM_ANONYMOUS_SOURCE.zip"
-    review_zip = OUT / "ORION12_ANONYMOUS_REVIEW_ARCHIVE.zip"
-    source_members = deterministic_zip(source_zip, source_paths, "anonymous_source")
-    review_members = deterministic_zip(review_zip, review_paths, "anonymous_review")
+    source_zip = OUT / "source.zip"
+    review_zip = OUT / "review_materials.zip"
+    if not source_zip.is_file() or not review_zip.is_file():
+        raise FileNotFoundError("sanitized source.zip and review_materials.zip are required")
+    source_members = archive_members(source_zip)
+    review_members = archive_members(review_zip)
 
     objects = [pdf, source_zip, review_zip] + [OUT / p for p in COMPANION_FILES]
     artifacts = [entry(p, OUT) for p in objects]
     manifest = {
-        "schema": "orion12.ipm.wave1.submission-manifest.v1",
+        "schema": "orion12.ipm.wave1.private-byte-binding.v2",
+        "distribution": "private audit evidence; do not upload",
         "date": "2026-08-28",
         "paper_id": "ORION-12",
         "title": "Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery",
@@ -208,6 +200,12 @@ def build() -> dict[str, object]:
         "registered_external_decision": "TREC-COVID recall and cost gate failed; favorable nDCG is secondary only",
         "declared_paper_terminal": "simulated_publication_ready_for_target",
         "artifacts": artifacts,
+        "reader_facing_uploads": [
+            "manuscript.pdf",
+            "source.zip",
+            "review_materials.zip",
+            "COVER_LETTER.md",
+        ],
         "pdf_source_closure": closure,
         "source_zip_members": source_members,
         "review_zip_members": review_members,
@@ -226,7 +224,7 @@ def build() -> dict[str, object]:
             "name": "Sze Chun Yiu",
             "email": "sze-chun.yiu@fysik.su.se",
         },
-        "historical_package_rule": "Existing journal_package root objects are historical and are not overwritten or relabelled by current_revision.",
+        "historical_package_rule": "Earlier archives and root-package objects are private audit evidence and must not be distributed.",
     }
     (OUT / "SUBMISSION_MANIFEST.json").write_text(
         json.dumps(manifest, sort_keys=True, indent=2) + "\n", encoding="utf-8"
@@ -242,7 +240,7 @@ def check() -> dict[str, object]:
     before = {p.name: sha256(p) for p in OUT.iterdir() if p.is_file()}
     manifest = build()
     after = {p.name: sha256(p) for p in OUT.iterdir() if p.is_file()}
-    for name in ("manuscript.pdf", "ORION12_IPM_ANONYMOUS_SOURCE.zip", "ORION12_ANONYMOUS_REVIEW_ARCHIVE.zip"):
+    for name in ("manuscript.pdf", "source.zip", "review_materials.zip"):
         if before and before.get(name) != after.get(name):
             raise ValueError(f"deterministic package drift for {name}")
     return manifest

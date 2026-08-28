@@ -14,11 +14,14 @@ current tree, records that 13 of 31 inputs moved and that the retained PDF is
 `SUPERSEDED`. It must not be relabelled or submitted as the current manuscript.
 
 The additive `current_revision/` directory contains the current CAS
-single-column review PDF, anonymous editable source, anonymous review archive,
-cover letter and filing companions. `SUBMISSION_MANIFEST.json` records file
-digests, byte counts and the exact PDF input closure. `RENDER_VISUAL_AUDIT.md`
-and `VISUAL_CONTACT_SHEET.jpg` record the every-page inspection. Two clean
-builds are byte-identical under the recorded source epoch.
+single-column review PDF, sanitized editable source, sanitized review-materials
+archive, cover letter and filing companions. `SUBMISSION_MANIFEST.json` records
+private file digests, byte counts and the exact PDF input closure; it is audit
+evidence and is not an upload object. The visual audit and contact sheet are
+retained under `private_evidence/render_audit/`. Two clean builds are
+byte-identical under the recorded source epoch. Earlier identifier-bearing
+archives are retained only under `private_evidence/unsanitized_archives/` and
+must not be distributed.
 
 External ORION-vs-baseline superiority remains `CANNOT_CHECK`; the
 provider-invalid OpenAIRE/Crossref campaign is retained rather than used as
