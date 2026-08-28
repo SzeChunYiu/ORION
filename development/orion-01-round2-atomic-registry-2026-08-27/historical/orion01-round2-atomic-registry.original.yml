@@ -25,24 +25,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install pinned post-outcome verifier runtime
+      - name: Install exact frozen dependencies
         run: |
-          root=development/orion-01-round2-atomic-registry-2026-08-27
           python -m pip install --disable-pip-version-check \
-            -r "$root/requirements-ci.txt"
-          python -m pip install --disable-pip-version-check --no-deps \
-            'pyzx @ git+https://github.com/zxcalc/pyzx.git@dade7d46f193635bbdaefd8fcde837f9449fddc5'
+            -r development/orion-01-round2-atomic-registry-2026-08-27/requirements-lock.txt
       - name: Lint and run non-outcome unit controls
         run: |
           root=development/orion-01-round2-atomic-registry-2026-08-27
+          python -m pip install --disable-pip-version-check ruff
           python -m ruff check \
             "$root/orion01_round2_atomic_registry.py" \
             "$root/verify_orion01_round2_atomic.py" \
-            "$root/test_orion01_round2_atomic.py" \
-            "$root/test_workflow_runtime_correction.py"
-          python -m pytest -q \
-            "$root/test_orion01_round2_atomic.py" \
-            "$root/test_workflow_runtime_correction.py"
+            "$root/test_orion01_round2_atomic.py"
+          python -m pytest -q "$root/test_orion01_round2_atomic.py"
       - name: Replay committed receipt and require committed bytes
         run: |
           set -euo pipefail

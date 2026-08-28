@@ -1,0 +1,37 @@
+{
+  "active_workflow": {
+    "bytes": 6532,
+    "path": ".github/workflows/orion01-round2-atomic-registry.yml",
+    "sha256": "ab8f0960a208d303945f0d497c971e78d0d4071ed4bc1f054ebadd87d40cb1a2"
+  },
+  "ci_requirements": {
+    "bytes": 268,
+    "path": "development/orion-01-round2-atomic-registry-2026-08-27/requirements-ci.txt",
+    "sha256": "92b9c1d6e0e763f671445853f17e8f9c98e78dc9869f20284c5c8b0ba817bfdb"
+  },
+  "correction_class": "POST_OUTCOME_CI_RUNTIME_REPAIR_ONLY",
+  "date": "2026-08-28",
+  "failure": {
+    "package": "blist==1.3.6",
+    "reason": "The full historical environment capture included obsolete unrelated packages and failed during dependency installation before any study test or outcome replay ran.",
+    "stage": "INSTALL_FULL_HISTORICAL_REQUIREMENTS_LOCK"
+  },
+  "failed_ci_run_id": 33154940099,
+  "original_outcome_terminal": "CANNOT_CHECK_MOVE_COMPLETENESS",
+  "original_result": {
+    "bytes": 13914625,
+    "path": "development/orion-01-round2-atomic-registry-2026-08-27/ORION01_ROUND2_ATOMIC_RESULTS.json",
+    "sha256": "db1253e52a44741613abb9217eb4a865d190c3948abdab9f8fbd344ada035efd"
+  },
+  "original_workflow": {
+    "bytes": 6262,
+    "path": "development/orion-01-round2-atomic-registry-2026-08-27/historical/orion01-round2-atomic-registry.original.yml",
+    "sha256": "a88ad02bafa4f382dc398cce418e35ac38df11a241e760133cbc189449cf4c19"
+  },
+  "paper_freeze_authority": false,
+  "paper_id": "ORION-01",
+  "schema": "ORION.ORION01.Round2.WorkflowRuntimeCorrection.v1",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "top_tier_authority": false
+}
