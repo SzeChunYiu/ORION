@@ -1,0 +1,145 @@
+{
+  "authority_scope": "BOUNDED_C5CUBED_SUPPORT_LE13_EXCLUSION_ONLY",
+  "bounded_support_le13_theorem_authority": true,
+  "c0_31_authority": false,
+  "checks": {
+    "all_gates": true,
+    "all_replay_checks": true,
+    "base_revision_bound": true,
+    "bounded_authority": true,
+    "claim_disposition_hash": true,
+    "manifest_hash": true,
+    "nine_rank3_rows": true,
+    "no_c0_or_exact_d4": true,
+    "no_external_or_prospective": true,
+    "no_novelty_venue_quantum_ci": true,
+    "no_support14_or_23": true,
+    "packet_paths": true,
+    "parent_checks": true,
+    "parent_digest": true,
+    "parent_terminal": true,
+    "patterns_independent": true,
+    "protocol_hash": true,
+    "protocol_schema": true,
+    "rank2_branch": true,
+    "source_digest": true,
+    "source_hashes": true,
+    "source_schema": true,
+    "source_terminal": true,
+    "terminal_hash": true,
+    "theory_hash": true
+  },
+  "decision": "ACCEPT_ORION04_SUPPORT_LE13_EXCLUSION",
+  "exact_d4_authority": false,
+  "independent_external_replay_complete": false,
+  "independent_patterns": [
+    {
+      "branches": [
+        "rank3"
+      ],
+      "pattern": [
+        1,
+        5,
+        5
+      ],
+      "support": 11
+    },
+    {
+      "branches": [
+        "rank3"
+      ],
+      "pattern": [
+        3,
+        2,
+        6
+      ],
+      "support": 11
+    },
+    {
+      "branches": [
+        "rank3"
+      ],
+      "pattern": [
+        1,
+        7,
+        4
+      ],
+      "support": 12
+    },
+    {
+      "branches": [
+        "rank3"
+      ],
+      "pattern": [
+        3,
+        4,
+        5
+      ],
+      "support": 12
+    },
+    {
+      "branches": [
+        "rank3"
+      ],
+      "pattern": [
+        5,
+        1,
+        6
+      ],
+      "support": 12
+    },
+    {
+      "branches": [
+        "rank3",
+        "rank2"
+      ],
+      "pattern": [
+        1,
+        9,
+        3
+      ],
+      "support": 13
+    },
+    {
+      "branches": [
+        "rank3"
+      ],
+      "pattern": [
+        3,
+        6,
+        4
+      ],
+      "support": 13
+    },
+    {
+      "branches": [
+        "rank3"
+      ],
+      "pattern": [
+        5,
+        3,
+        5
+      ],
+      "support": 13
+    },
+    {
+      "branches": [
+        "rank3"
+      ],
+      "pattern": [
+        7,
+        0,
+        6
+      ],
+      "support": 13
+    }
+  ],
+  "novelty_authority": false,
+  "prospective_validation_authority": false,
+  "schema": "ORION.ORION04.Wave3.M4.GenericVerification.v1",
+  "source_result_digest": "6e25fbf0a483817bb5edb4908640e0b0b83be47d2cc4b2da6192feb9fecbc004",
+  "support_14_plus_theorem_authority": false,
+  "support_23_theorem_authority": false,
+  "venue_authority": false,
+  "verification_digest": "7932e6671043d3904e26d63310cfdb43f6642cb7aa3ea2dab78060c2162a4e62"
+}
