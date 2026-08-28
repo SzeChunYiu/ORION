@@ -1,0 +1,237 @@
+{
+  "schema": "ORION.ORION25.ExecutionIntegrityTrustDomain.Protocol.v1",
+  "successor_id": "ORION25.TRUST_DOMAIN_FRONTIER.v1",
+  "status": "PREREGISTERED_NOT_EXECUTED",
+  "scientific_authority_delta": "NONE",
+  "promotion_allowed": false,
+  "parent_authority": "papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V3.json",
+  "freeze_note": "Committed before any runner, checker, host allocation or outcome. No frozen ORION-25 byte is modified by this programme. Tracker boxes addressed: 2 (false rejection / false promotion), 3 (production-like host and process fault injection), 5 (overhead). Box 4 (cross-site replay) is specified in cross_site_replay below.",
+  "discriminator": {
+    "varied_independently": [
+      "chain_length_k",
+      "trust_domain_count_d"
+    ],
+    "M1_chain_length_predicts": "detection improves with k at fixed d",
+    "M2_trust_domain_law_predicts": "detection flat in k at fixed d; steps with d at fixed k",
+    "note": "No outcome is consistent with both mechanisms. This is what makes the design decisive rather than merely additive."
+  },
+  "corpus": {
+    "reuse": "frozen 22-case corpus, unmodified",
+    "composition": "18 SEI fault cases + 4 real ORION workflow receipts",
+    "fault_cases_sha256": "a9a29f9e457e0be3b42acf806c3fdeb3d83ef252c3a66e81316a42a12245af2c",
+    "gold_sha256": "142d14d089afbad0f49fd4243b5dda252c96017456d392d9c7a3e63e2e5fd45a",
+    "real_receipts_sha256": "87812194ad77f3cb2be19cd9dbeacb43b662bc35eb6df3b700f4521620f6d200",
+    "constants_source": "MANIFEST_NOT_PROSE",
+    "constants_note": "The runner and checker must read GENESIS and key-derivation domain-separation constants from SOURCE_MANIFEST.json, never from protocol prose. Rationale: VERIFICATION_NOTES.md records that the namespace-unification pass desynchronized the V2 protocol prose from the V2 code constants. Reading constants from prose reproduces that defect class."
+  },
+  "arms": [
+    {
+      "id": "ARM-K1-D1",
+      "k": 1,
+      "d": 1,
+      "purpose": "chain-length floor; H1 reference point",
+      "executable_with_frozen_code_unmodified": false
+    },
+    {
+      "id": "ARM-K3-D1",
+      "k": 3,
+      "d": 1,
+      "purpose": "replication of the bound V2 configuration; comparability anchor",
+      "executable_with_frozen_code_unmodified": true
+    },
+    {
+      "id": "ARM-K5-D1",
+      "k": 5,
+      "d": 1,
+      "purpose": "H1 test: does detection improve with k at fixed d?",
+      "executable_with_frozen_code_unmodified": false
+    },
+    {
+      "id": "ARM-K3-D2",
+      "k": 3,
+      "d": 2,
+      "purpose": "H2 step test at partial separation",
+      "executable_with_frozen_code_unmodified": false
+    },
+    {
+      "id": "ARM-K3-D3",
+      "k": 3,
+      "d": 3,
+      "purpose": "H2 full separation; one role key generated locally per host",
+      "executable_with_frozen_code_unmodified": false
+    },
+    {
+      "id": "ARM-K3-D3-COMMONMODE",
+      "k": 3,
+      "d": 3,
+      "purpose": "declared shared-path control: three hosts, one shared deploy credential. Tests whether nominal separation without custody separation buys anything.",
+      "executable_with_frozen_code_unmodified": false
+    },
+    {
+      "id": "ARM-NOATT",
+      "k": 0,
+      "d": 0,
+      "purpose": "no-attestation overhead baseline (C1 execution-integrity path, signing disabled)",
+      "executable_with_frozen_code_unmodified": false
+    }
+  ],
+  "adversary_matrix": {
+    "denominator_rule": "attacks_attempted per arm; n=60 per arm per attack family",
+    "compromise_attacks": [
+      {
+        "id": "X-COMP-1",
+        "domains_compromised": 1,
+        "expose": "whether d>1 raises the threshold above 1"
+      },
+      {
+        "id": "X-COMP-DMINUS1",
+        "domains_compromised": "d-1",
+        "expose": "AND-rule behaviour just below threshold; must not promote"
+      },
+      {
+        "id": "X-COMP-ALL",
+        "domains_compromised": "d",
+        "expose": "frozen honest negative: at c=d, signature-layer detection is 0 at every d. Recorded, not repaired."
+      },
+      {
+        "id": "X-COMMON-MODE",
+        "domains_compromised": "1 shared path yielding all d",
+        "expose": "whether declared independence is real; the A1 assumption under test"
+      }
+    ],
+    "non_compromise_attacks_inherited": [
+      "A-TRUNCATE",
+      "A-SUBSTITUTE",
+      "A-SPLICE",
+      "A-REORDER",
+      "A-REPLAY",
+      "A-STALE"
+    ],
+    "inherited_expectation": "100% detection, unchanged from the bound V2 study. These are re-run only as regression controls; they carry no new authority."
+  },
+  "host_process_fault_injection": {
+    "box": 3,
+    "why_new": "The bound 18-case corpus encodes faults as declared boolean fact vectors (spawn_ok, host_ok, timeout, reaped, ...). No process is spawned, killed or starved. This matrix produces those facts from real faults on a real host, which is what 'production-like' means and what the bound study explicitly does not cover.",
+    "faults": [
+      {
+        "id": "F-KILL-MID",
+        "fault": "SIGKILL the signing process between link i and link i+1",
+        "exposes": "partial-chain persistence; whether a truncated chain is rejected rather than treated as a shorter valid chain"
+      },
+      {
+        "id": "F-CLOCK-SKEW",
+        "fault": "step host clock backward and forward by a bounded offset during attestation",
+        "exposes": "whether freshness/staleness logic depends on wall clock; whether replay defence survives non-monotonic time"
+      },
+      {
+        "id": "F-TRUNC-WRITE",
+        "fault": "cap the write so the receipt file is cut mid-record",
+        "exposes": "whether a partially written receipt is rejected or silently parsed as complete"
+      },
+      {
+        "id": "F-DISK-FULL",
+        "fault": "exhaust the filesystem during receipt emission (bounded loopback mount, not the real volume)",
+        "exposes": "fail-open vs fail-closed on ENOSPC; whether a missing receipt is read as absence-of-fault"
+      },
+      {
+        "id": "F-REORDER-MSG",
+        "fault": "deliver inter-domain link messages out of order",
+        "exposes": "whether ordering is enforced by digest chaining or by arrival order"
+      },
+      {
+        "id": "F-DUP-RECEIPT",
+        "fault": "deliver the same receipt twice",
+        "exposes": "occurrence-uniqueness enforcement under real duplication rather than declared duplication"
+      },
+      {
+        "id": "F-STALE-CACHE",
+        "fault": "serve a previously valid cached public key or verification result after rotation",
+        "exposes": "whether verification binds the key in force at signing time or the key currently cached"
+      }
+    ],
+    "endpoint_per_fault": "classified into DETECTED_AND_REJECTED, DETECTED_AND_DEGRADED, UNDETECTED_FAIL_OPEN, or CANNOT_CHECK. UNDETECTED_FAIL_OPEN on any fault is an adverse finding and is reported verbatim.",
+    "safety": "All faults are confined to a scratch working directory and a bounded loopback filesystem. No fault targets a shared volume, the runners' _work directories, or any real ORION artifact."
+  },
+  "endpoints": {
+    "false_promotion": {
+      "box": 2,
+      "operational_definition": "A record that the acceptance rule admits as AUTHORIZED_SCIENCE (or, for CHAIN_CRYPTO_ONLY, as any scientific success) whose frozen independent gold disposition is not AUTHORIZED_SCIENCE.",
+      "counted_as": "count of admitted-but-gold-negative records / attacks_attempted, per arm, per attack family",
+      "attribution_required": "each false promotion attributed to exactly one of: key compromise, chain-structure failure, host/process fault, or admission-layer error"
+    },
+    "false_rejection": {
+      "box": 2,
+      "operational_definition": "A record whose frozen gold disposition is not EXECUTION_INVALID, and which the acceptance rule nonetheless rejects at the chain layer; or a record whose gold is AUTHORIZED_SCIENCE which the rule demotes.",
+      "counted_as": "chain-layer: rejected / 11 valid-workload cases (7 fault + 4 real). disposition-level: demoted / 5 gold-AUTHORIZED_SCIENCE cases.",
+      "denominator_provenance": "inherited verbatim from P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md so the new numbers remain comparable to the bound 0/11 and 0/5.",
+      "guard": "An arm may not achieve low false promotion by rejecting broadly. False rejection is a co-primary endpoint, never a footnote."
+    },
+    "overhead": {
+      "box": 5,
+      "baseline": "ARM-NOATT: the identical corpus and host with signing and chain verification disabled, executed in the same run. Ratios are to this baseline, measured per host, never across hosts.",
+      "measures": [
+        {
+          "metric": "wall_clock_seconds",
+          "how": "monotonic clock around sign and around verify, reported separately"
+        },
+        {
+          "metric": "cpu_seconds",
+          "how": "getrusage ru_utime + ru_stime delta, sign and verify separately"
+        },
+        {
+          "metric": "bytes",
+          "how": "serialized attestation bytes on the wire and at rest"
+        }
+      ],
+      "granularity": "per link AND per domain",
+      "granularity_rationale": "Per-link cost isolates scaling in k; per-domain cost isolates scaling in d. Reporting only a total cannot separate them, and the asymmetry between cost scaling and detection scaling is the substantive result.",
+      "reported_as": "median and interquartile range over n=60; not mean alone, because process-fault arms are expected to be skewed."
+    }
+  },
+  "cross_site_replay": {
+    "box": 4,
+    "availability": "AVAILABLE",
+    "verified_2026_08_28": "ssh reachability, platform, python and cryptography version confirmed on both non-CI sites; see VERIFICATION_NOTES.md",
+    "sites": [
+      "D-CI github actions runner",
+      "D-OLD billy-old / billy-laptop-old",
+      "D-HPC lunarc / cosmos2.int.lunarc"
+    ],
+    "protocol": [
+      "1. Canonical execution on D-CI produces the arm receipts and a member-wise SHA-256 manifest.",
+      "2. Each of D-OLD and D-HPC independently re-executes the frozen runner from the same commit and emits its own manifest.",
+      "3. Agreement endpoint: member-wise SHA-256 equality of every artifact member across the three sites.",
+      "4. Divergence is recorded verbatim with the diverging member, not reconciled after the fact.",
+      "5. Any site that cannot execute yields CANNOT_CHECK_HOST_UNAVAILABLE for that site with its own exit code; the campaign does not silently proceed as if two sites were three."
+    ],
+    "strengthened_by": "The three sites carry different cryptography builds (46.0.5 / 41.0.5 / CI image). Byte-identical agreement across library versions is a stronger determinism claim than repeated execution on one image.",
+    "constraint_lunarc": "No outbound connection to any external commercial platform from LUNARC. This programme requires none: the runner is pure local computation over committed fixtures.",
+    "constraint_mac": "No execution on the Mac. The Mac is used only for git and gh metadata in this programme.",
+    "residual": "D-CI and the two interactive sites share a human operator and a GitHub identity. This is a declared common-mode residual, is not eliminated by this design, and is exactly what ARM-K3-D3-COMMONMODE measures."
+  },
+  "execution_authorized": false,
+  "execution_note": "This protocol is preregistered only. No arm has been run. No host has been allocated. Any RESULT.json appearing in this directory without a corresponding independent checker run is invalid by construction.",
+  "implementation_requirements": {
+    "summary": "Only ARM-K3-D1 is executable with the frozen code unmodified. Every other arm requires new code that does not exist in this repository. Preregistering work that needs new code is intended; leaving a reader to discover it is not.",
+    "frozen_composer_is_fixed_at_k3": {
+      "evidence": "run_attestation_composition_v2.py:27 defines ROLES = ('execution','environment','publication') as a fixed 3-tuple; :101 iterates it; :120 and :124 pin role order and the expected per-role public key against ROLES[i].",
+      "consequence": "There is no k parameter. k=1 and k=5 (ARM-K1-D1, ARM-K5-D1) cannot be produced by the frozen composer.",
+      "required_work": "A role-generalized composer and verifier. Note this is not merely a loop bound: facts_for() at :80-83 builds role-specific payloads, so k=5 additionally requires defining two new attestation roles with real semantics. Inventing filler roles to pad k would not test H1 and is forbidden.",
+      "blocks": "H1, the invariance-in-k test. Without it the design loses the arm that makes it decisive rather than additive."
+    },
+    "frozen_runner_has_no_cross_host_key_generation": {
+      "evidence": "role_key() at :71-73 is a pure local derivation from a committed constant; no key material is generated on, or fetched from, a remote host.",
+      "consequence": "d>1 (ARM-K3-D2, ARM-K3-D3, ARM-K3-D3-COMMONMODE) cannot be produced by the frozen runner.",
+      "required_work": "Per-domain local key generation on each host with private bytes never transmitted, plus transport of public keys and signatures only, plus evidence that generation was local and is auditable per CHECKER_CONTRACT C6."
+    },
+    "no_overhead_instrumentation_exists": {
+      "evidence": "No wall-clock, getrusage or byte accounting anywhere in run_attestation_composition_v2.py.",
+      "required_work": "ARM-NOATT signing-disabled path and per-link/per-domain timing, CPU and byte instrumentation."
+    },
+    "no_real_fault_injection_exists": {
+      "evidence": "sei_fault_cases_v1.jsonl encodes faults as declared boolean fact vectors; no process is spawned or killed.",
+      "required_work": "A real host/process fault harness implementing the seven faults in host_process_fault_injection, confined to scratch and a bounded loopback filesystem."
+    },
+    "frozen_artifacts_untouched": "None of this work modifies a frozen ORION-25 byte. New code lives under this experiments/ directory or a successor package, per issue #1608."
+  }
+}
