@@ -1,4 +1,4 @@
-# ORION05.GLOBAL_OBSTRUCTION_BASIS.v1 — theory draft (DESIGN, NOT FROZEN, NOT EXECUTED)
+# ORION05.GLOBAL_OBSTRUCTION_BASIS.v1 — frozen theory
 
 Date: 2026-08-28. Status: FROZEN_BEFORE_ANY_CENSUS_OUTPUT (frozen 2026-08-28, commit 1404c56cd freezes the protocol). scientific_authority_delta: NONE.
 Promotion target: issue #1649 (five-paper review gate for ORION-05).
@@ -226,3 +226,40 @@ value (R12 terminal `ORION05_R12_EXACT_BUT_NO_PRODUCTION_VALUE` and R13
 completion-only stand; the compiler/search-consequence lane of #1649 is a
 separately frozen successor protocol under information-matched baselines,
 not this campaign). No novelty, venue, or submission authority.
+
+## Prospective clarifications (pre-outcome, 2026-08-28, before any census row was read)
+
+Recorded while the census executes and strictly before any outcome access;
+each answers an ambiguity the independent checker flagged (CHECKER_NOTES.md
+A0-A9). Nothing below changes a predicate; each fixes a previously
+under-specified reading, chosen now so no post-outcome arbitration can occur.
+
+- **A0 (reduction order).** Order-independence of the membership verdict is
+  NOT assumed. The runner's deletion order (pair, then member, then
+  coordinate, with restart) is normative for the RECORDED reduced witness.
+  The checker verifies membership of the recorded reduced witness with its
+  own predicates AND independently re-reduces in its own order; if its
+  verdict differs, the row is CANNOT_CHECK__CHECKER_DISAGREEMENT — a
+  genuine finding about order sensitivity, never arbitrated post hoc.
+- **A2 (header).** The former draft header wording is superseded by the
+  status line; this file is frozen as of commit 1404c56cd.
+- **A4 (occ domain).** The occupancy count ranges over
+  union(supp f0, supp f1), matching the frozen runner and checker.
+- **A5 (T2 replay).** "Replay-verified" for a GAP_NOT_IN_BASIS row means: a
+  separate verification job re-solves THAT instance once with the same
+  frozen solver and recomputes membership through BOTH the runner's and the
+  checker's predicate implementations; T2 requires gap > 0 and NOT_IN_BASIS
+  to reproduce under both. Rows failing replay are CANNOT_CHECK rows, not T2
+  evidence.
+- **A6 (requeue provenance).** The requeue pass writes
+  REQUEUE_MANIFEST_V1.json listing retried instance ids; only rows still
+  TIMEOUT/ERROR after appearing there ground CANNOT_CHECK_INCOMPLETE_CENSUS.
+- **A8 (aggregate schema).** The aggregation job writes RESULT_V1.json with
+  exactly: schema, counts per per-instance outcome, gap_count, terminal (via
+  the frozen decision order), control block verbatim, requeue manifest sha,
+  solver/protocol/checker shas, and environment. No other authority fields.
+- **A9 (adverse rows).** TIMEOUT/ERROR rows must not carry an outcome
+  field; additional diagnostic fields are permitted and non-authoritative.
+- **A1 (base binding).** The design-base is bound by branch history: freeze
+  commit 1404c56cd; the PROTOCOL.json placeholder is superseded by this
+  note rather than rewritten.
