@@ -1,0 +1,78 @@
+{
+  "schema": "ORION.ORION01.ContextualMoveCompleteness.Protocol.v1",
+  "protocol_identity": "ORION01.CONTEXTUAL_MOVE_COMPLETENESS.v1",
+  "paper_id": "ORION-01",
+  "upstream_hypothesis": "#1615 Priority 6",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "authored_date": "2026-08-28",
+
+  "adverse_parent": {
+    "record": "evidence/convergence-v1/REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json",
+    "authority_fields": {"r6m_registry_completeness": false, "production_transfer": false,
+                         "external_independence": "CANNOT_CHECK", "novelty": "CANNOT_CHECK",
+                         "finite_verification": "IMPLEMENTATION_CORROBORATION_ONLY"},
+    "finding": "Over all 2^(n(n-1)/2) registries the direct optimizer signature is constant while terminal complexity spans 1..n, so completeness proved on a freely chosen registry does not transfer."
+  },
+
+  "question": "Does restricting to the source-complete quotient make production completeness identifiable, and if so does it also make the registry identifiable?",
+
+  "model_as_frozen": {
+    "states": "1..n",
+    "candidate_moves": "all (source, target) with source > target — strictly resource-decreasing",
+    "registry": "any subset of candidate moves",
+    "terminal_complexity": "max{ s : s has no outgoing edge in the registry }",
+    "direct_optimizer_signature": "{feasible_state_count: n, optimum_value: 1, optimum_witness: 1} — constant by construction",
+    "source_complete": "every state in 2..n has at least one outgoing edge in the registry"
+  },
+
+  "claims_to_test": [
+    {"id": "A", "statement": "terminal_complexity(n, R) == 1 if and only if R is source-complete.",
+     "kind": "exact characterisation, proved and exhaustively checked"},
+    {"id": "B", "statement": "The number of source-complete registries on n states is the product over s in 2..n of (2^(s-1) - 1), and this equals the frozen R12 histogram's count at terminal complexity 1 for every n in 2..6.",
+     "kind": "closed form cross-checked against already-frozen evidence"},
+    {"id": "C", "statement": "The direct optimizer signature remains constant across the source-complete quotient, so the quotient does NOT make the registry identifiable.",
+     "kind": "limit — expected to remain adverse"}
+  ],
+
+  "why_C_matters": "R12 conflated two failures: completeness was not identifiable, and the registry was not identifiable. If A and B hold while C also holds, the quotient repairs the first and leaves the second standing. Reporting only A and B would overstate the repair.",
+
+  "controls": [
+    {"id": "K1_cross_check_against_frozen_histogram",
+     "statement": "The recomputed count at terminal complexity 1 must equal the value already frozen in REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json for every n in 2..6. A mismatch means this packet has re-modelled the object rather than quotienting it, and is CANNOT_CHECK.",
+     "on_failure": "T4_CANNOT_CHECK_MODEL_MISMATCH"},
+    {"id": "K2_iff_both_directions",
+     "statement": "Claim A must be checked in BOTH directions over every registry: no source-complete registry with complexity != 1, and no non-source-complete registry with complexity == 1. Checking one direction would not distinguish an iff from an implication."},
+    {"id": "K3_non_source_complete_witness_exists",
+     "statement": "For every n >= 2 at least one registry must be non-source-complete with complexity > 1, otherwise the quotient is vacuous and separates nothing.",
+     "on_failure": "T4_CANNOT_CHECK_MODEL_MISMATCH"},
+    {"id": "K4_signature_constancy_is_measured_not_assumed",
+     "statement": "Claim C must be measured by collecting the signature over the source-complete subfamily and counting distinct values, not asserted from the constructor."}
+  ],
+
+  "terminals": [
+    {"id": "T1_QUOTIENT_REPAIRS_COMPLETENESS_ONLY", "class": "MIXED__EXPECTED",
+     "conditions": ["A holds in both directions", "B matches the frozen histogram at every n", "C holds: signature stays constant on the quotient"],
+     "licenses": "A bounded statement that completeness is identifiable and equal to 1 on the source-complete quotient, while registry identifiability is not repaired.",
+     "does_not_license": ["lifting production_transfer: false", "any change to the R12 record", "any claim about registries outside this frozen finite model"]},
+    {"id": "T2_QUOTIENT_REPAIRS_BOTH", "class": "FAVOURABLE",
+     "conditions": ["A and B hold", "C fails: the signature varies across the source-complete quotient"],
+     "reading": "Stronger than expected — the quotient would make the registry identifiable too."},
+    {"id": "T3_QUOTIENT_DOES_NOT_REPAIR_COMPLETENESS", "class": "UNFAVOURABLE",
+     "conditions": ["A fails in either direction, or B does not match the frozen histogram"],
+     "reading": "Source-completeness is not the right quotient. Priority 6 is refuted as stated."},
+    {"id": "T4_CANNOT_CHECK_MODEL_MISMATCH", "class": "CANNOT_CHECK",
+     "conditions": ["K1 or K3 fails"],
+     "reading": "This packet is not measuring the frozen object. No claim is read either way."}
+  ],
+
+  "falsifiability_self_check": {
+    "favourable": 1, "mixed": 1, "unfavourable": 1, "cannot_check": 1,
+    "predicted_terminal": "T1_QUOTIENT_REPAIRS_COMPLETENESS_ONLY",
+    "note": "The predicted outcome is deliberately the mixed one: it repairs the completeness half of the R12 negative and explicitly leaves the transfer half adverse."
+  },
+
+  "stop_rule": "Outcomes are read once. Whatever terminal is reached, the R12 record and its authority fields are not edited by this packet."
+}
