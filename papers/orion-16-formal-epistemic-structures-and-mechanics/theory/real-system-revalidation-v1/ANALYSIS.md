@@ -5,7 +5,7 @@
 **Protocol:** `PROTOCOL_AND_PREDICTIONS.md`, committed before any clone (`ab09991f5`)
 **Status:** `DISCRIMINATOR_EXECUTED__ALL_FIVE_STAMPED_PREDICTIONS_HOLD`
 **Scientific terminal:** `READY_TO_SUBMIT_SECOND_TIER` (evidence)
-**Filing terminal:** `BLOCKED__NO_VENUE_FORMAT_MANUSCRIPT` (see final section)
+**Filing terminal:** `BLOCKED__NO_STANDALONE_MANUSCRIPT` (see final section)
 **Scientific authority delta:** `NONE` — this adds an empirical result; it retracts nothing
 
 ---
@@ -180,7 +180,13 @@ copyedit/reference-format pass"* item is unchecked.
 
 Accordingly the operative terminal for filing is:
 
-**`BLOCKED__NO_VENUE_FORMAT_MANUSCRIPT`**
+**`BLOCKED__NO_STANDALONE_MANUSCRIPT`**
+
+The distinction from a paper that merely needs re-typesetting is evidential:
+this `main.tex` leads with `sections/01-replacement-abstract`, contains no
+`\begin{abstract}` environment, and has no introduction or related-work section.
+A complete manuscript in the wrong template needs mechanical work; this needs
+authorial work.
 
 This is a manuscript-preparation blocker, not a scientific one. Nothing in the
 evidence is missing or undetermined because of it, and no experiment is required

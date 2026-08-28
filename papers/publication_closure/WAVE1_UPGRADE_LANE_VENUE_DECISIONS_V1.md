@@ -110,3 +110,52 @@ the same cached fragment and emitted a plausible but wrong six-page PDF whose
 every section read as the References list. The canonical Markdown is untouched;
 it is now converted ahead of the build and `\markdownInput` inputs that
 conversion, so the source of truth is unchanged and the dependency is gone.
+
+---
+
+## The filing bar, stated once for all of Wave 1
+
+Both lanes were using different words for what looked like the same fact — no
+venue template, no author block, no anonymisation decision. That is one
+condition, so it needs one bar. The bar distinguishes on **what work remains**,
+not on how the artifact was described.
+
+**`READY_PENDING_TEMPLATE`** — a complete standalone manuscript exists: an
+abstract environment, an introduction, related work, methods/results, discussion,
+limitations, conclusion and availability; bibliography resolved; zero undefined
+references. It is not in the venue's class file and carries no author block. What
+remains is **mechanical**: obtain the class, re-typeset, fill the author block.
+
+**`BLOCKED__NO_STANDALONE_MANUSCRIPT`** — no such manuscript exists. The artifact
+is a replacement or overlay document over historical versions. What remains is
+**authorial**: the paper has to be written.
+
+### Applying it, on evidence rather than description
+
+The eight papers of the submission lane were checked against this test directly:
+`orion-05`, `orion-08` and `orion-12` each carry `\begin{abstract}` and a full
+introduction / methods / results / discussion / related-work / limitations /
+conclusion / reproducibility sequence. They are complete manuscripts in the wrong
+template — `READY_PENDING_TEMPLATE`.
+
+ORION-16 and ORION-17 fail the same test. Both `main.tex` files lead with
+`sections/01-replacement-abstract`, neither contains a `\begin{abstract}`
+environment, neither has an introduction or a related-work section, and ORION-17
+has no conclusion. Their front matter names historical base documents and
+declares itself an overlay. A reader arriving fresh cannot read either as a
+paper — `BLOCKED__NO_STANDALONE_MANUSCRIPT`.
+
+### The lane's five under the bar
+
+| paper | state | why |
+|---|---|---|
+| ORION-14 | **ready** | already in the TMLR class, anonymous, inspected |
+| ORION-19 | **ready** | already in the TMLR class, anonymous |
+| ORION-23 | `READY_PENDING_TEMPLATE` | complete standalone paper; needs the Springer/EMSE class |
+| ORION-16 | `BLOCKED__NO_STANDALONE_MANUSCRIPT` | overlay, no abstract/introduction/related work |
+| ORION-17 | `BLOCKED__NO_STANDALONE_MANUSCRIPT` | overlay, no abstract/introduction/related work/conclusion |
+
+Neither venue class is obtainable from this toolchain — `tmlr.sty` ships from the
+TMLR site rather than CTAN, and the same holds for `quantumarticle` here — so
+template conversion is correctly left as a filing input in both lanes rather than
+half-done.
