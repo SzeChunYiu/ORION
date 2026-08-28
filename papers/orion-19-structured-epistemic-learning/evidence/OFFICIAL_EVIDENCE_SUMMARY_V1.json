@@ -334,7 +334,8 @@
     }
   },
   "derived_source_paths": {
-    "d1_paired": "papers/orion-19-structured-epistemic-learning/evidence/D1_PAIRED_EFFECTS_V1.json"
+    "d1_paired": "papers/orion-19-structured-epistemic-learning/evidence/D1_PAIRED_EFFECTS_V1.json",
+    "unified_resource_ledger_v2": "papers/orion-19-structured-epistemic-learning/evidence/P9_UNIFIED_RESOURCE_LEDGER_V2.json"
   },
   "independent_expectations_are_results": false,
   "independent_verification": {
@@ -426,11 +427,109 @@
       }
     }
   },
-  "schema": "P9.OfficialEvidenceSummary.v1.1",
+  "schema": "P9.OfficialEvidenceSummary.v1.2",
   "source_paths": {
     "a2_a4": "research/extensions/p9-structured-neural/A2_A4_D0_EXPLICIT_RESULT_V1.json",
     "a5": "research/extensions/p9-structured-neural/A5_D0_EXPLICIT_RESULT_V1.json",
     "d1": "research/extensions/p9-structured-neural/execution/D1_EXECUTION_RESULT_V1_2.json",
     "m1": "research/extensions/p9-structured-neural/execution/M1_EXECUTION_RESULT_V1_5.json"
+  },
+  "top_tier_outcomes": {
+    "causal_diagnostic": {
+      "authority": {
+        "path": "papers/orion-19-structured-epistemic-learning/top_tier/P9_CAUSAL_DIAGNOSTIC_RESULT_RECEIPT_V1.md",
+        "required_tokens": [
+          "diagnostic accuracy: `0.8`",
+          "generic `UNCERTAINTY_ESCALATE_COMPUTE` accuracy: `0.2`",
+          "protected causal gold is therefore `CANNOT_CHECK`"
+        ]
+      },
+      "d_a_protected_cell": "CANNOT_CHECK",
+      "diagnostic_accuracy": 0.8,
+      "generic_compute_escalation_accuracy": 0.2
+    },
+    "claim_boundary": "Bounded P9 outcomes only. Matched full resource accounting does not establish a universal resource exchange rate, does not repair the D-A CANNOT_CHECK cell, and does not touch the Qwen scaling negative.",
+    "qwen_scaling": {
+      "authority": {
+        "path": "papers/candidates/TOP_TIER_EXECUTION_LEDGER_2026-08-23.md",
+        "required_tokens": [
+          "P9_REAL_ACCESSIBILITY_SCALING_V1_SUPPORTED",
+          "wine: preregistered accessibility gap did not appear",
+          "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED"
+        ]
+      },
+      "disposition": "NEGATIVE_PRESERVED_NOT_REPAIRED_NOT_RERUN",
+      "terminal": "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED"
+    },
+    "r5_revival_2026_08_28": {
+      "authority": {
+        "path": "papers/orion-19-structured-epistemic-learning/evidence/R5_REVIVAL_LEDGER_V1.json",
+        "required_tokens": [
+          "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V3_SUPPORTED",
+          "EXECUTED AND REPRODUCED",
+          "UNSOLVABLE within the frozen family",
+          "CANNOT_CHECK-BLOCKED"
+        ]
+      },
+      "cannot_check_blocked_lanes": 2,
+      "causal_diagnostic_transport_v3_terminal": "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V3_SUPPORTED",
+      "protected_cell_execution": "EXECUTED_AND_REPRODUCED_NOT_BLOCKED",
+      "qwen_scaling_recovery": "NEGATIVE_CONFIRMED_AUTHORITATIVE_UNSOLVABLE_IN_FROZEN_FAMILY"
+    },
+    "real_accessibility": {
+      "authority": {
+        "path": "papers/candidates/TOP_TIER_EXECUTION_LEDGER_2026-08-23.md",
+        "required_tokens": [
+          "P9_REAL_ACCESSIBILITY_SCALING_V1_SUPPORTED",
+          "wine: preregistered accessibility gap did not appear",
+          "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED"
+        ]
+      },
+      "terminal": "P9_REAL_ACCESSIBILITY_SCALING_V1_SUPPORTED",
+      "wine_cell": "NULL_GAP_DID_NOT_APPEAR_NO_UNIVERSAL_DATASET_CLAIM"
+    },
+    "schema": "P9.TopTierOutcomes.v1",
+    "unified_resource_ledger": {
+      "audit_corrections": {
+        "b_c_accessibility_transform_now_counted": true,
+        "exact_domain_readout_touches_now_counted": true,
+        "scaler_state_now_counted": true,
+        "v1_hardcoded_decisions_replaced_by_reexecution": true
+      },
+      "authority": {
+        "path": "papers/orion-19-structured-epistemic-learning/top_tier/P9_UNIFIED_RESOURCE_LEDGER_RESULT_RECEIPT_V2.md",
+        "required_tokens": [
+          "P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN",
+          "364b84665f00888527202723164778048c84e1c94f5413f8348dbb87e4668b0a"
+        ]
+      },
+      "dominance_contradiction_count": 0,
+      "per_cell": {
+        "B-A": {
+          "probe_prediction": "ACCESSIBILITY",
+          "protected_gold": "ACCESSIBILITY"
+        },
+        "B-C": {
+          "probe_prediction": "COMPUTATION",
+          "protected_gold": "COMPUTATION"
+        },
+        "B-I": {
+          "probe_prediction": "INFORMATION",
+          "protected_gold": "INFORMATION"
+        },
+        "D-A": {
+          "probe_prediction": "ACCESSIBILITY",
+          "protected_gold": "CANNOT_CHECK"
+        },
+        "D-I": {
+          "probe_prediction": "INFORMATION",
+          "protected_gold": "INFORMATION"
+        }
+      },
+      "receipt_sha256": "364b84665f00888527202723164778048c84e1c94f5413f8348dbb87e4668b0a",
+      "schema": "P9.UnifiedResourceLedger.v2",
+      "survival_verdict": "SURVIVES_FULL_ACCOUNTING",
+      "terminal": "P9_UNIFIED_RESOURCE_LEDGER_V2_GREEN"
+    }
   }
 }
