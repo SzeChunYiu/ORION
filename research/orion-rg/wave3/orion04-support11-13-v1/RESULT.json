@@ -1,0 +1,674 @@
+{
+  "base_revision": "c8d8a725a9618239fd8d9808e6bb39e1c549ab14",
+  "bounded_support_le13_theorem_authority": true,
+  "c0_31_authority": false,
+  "ci_authority": false,
+  "claim_disposition": {
+    "path": "research/orion-rg/wave3/orion04-support11-13-v1/CLAIM_DISPOSITION.md",
+    "sha256": "c8cb987514e00f62700d7b5b5689116671440a3bbfe11fc9aff14163951af1d4"
+  },
+  "exact_d4_authority": false,
+  "expected_terminals": {
+    "path": "research/orion-rg/wave3/orion04-support11-13-v1/EXPECTED_TERMINALS.json",
+    "sha256": "4d041a7eadbf287592991dc2e7287a73e9057a133ae2d79963765dec344e77cd"
+  },
+  "gates": {
+    "authority_fail_closed": true,
+    "base_revision_bound": true,
+    "dual_exact_replay": true,
+    "m3_parent_bound": true,
+    "pattern_grammar_complete": true,
+    "prospective_support23_ledger_not_consumed": true,
+    "protocol_and_packet_present": true,
+    "source_hashes_bound": true
+  },
+  "independent_external_replay_complete": false,
+  "novelty_authority": false,
+  "parent_m3": {
+    "all_checks": true,
+    "checks": {
+      "bounded_support_le10_authority": true,
+      "no_c0_or_exact_d4": true,
+      "result_digest": true,
+      "schema": true,
+      "support11_plus_not_preclaimed": true,
+      "terminal": true
+    },
+    "path": "research/orion-rg/NONQUANTUM_M3_SUPPORT10_REPLAY_RESULTS_2026-08-24.json",
+    "result_digest": "bc1a727fe936a3cd3ddf033bb0ac9c6ebad6d6969a9e10c45c8d53fd2732e044",
+    "schema": "ORION.NonQuantumMath.M3.Support10Replay.v1",
+    "terminal": "NONQUANTUM_M3_C5CUBED_SUPPORT10_BOTH_DEFICIT_PATTERNS_EXCLUDED__OBSTRUCTION_SUPPORT_AT_LEAST11"
+  },
+  "pattern_ledger": {
+    "all_checks": true,
+    "checks": {
+      "all_c4_ge4_rows_rank3_forced": true,
+      "complete_equation_solutions": true,
+      "rank2_seed_coefficients_complete": true,
+      "sole_rank_split_is_1_9_3": true
+    },
+    "rows": [
+      {
+        "branches": [
+          "rank3"
+        ],
+        "pattern": [
+          1,
+          5,
+          5
+        ],
+        "support": 11
+      },
+      {
+        "branches": [
+          "rank3"
+        ],
+        "pattern": [
+          3,
+          2,
+          6
+        ],
+        "support": 11
+      },
+      {
+        "branches": [
+          "rank3"
+        ],
+        "pattern": [
+          1,
+          7,
+          4
+        ],
+        "support": 12
+      },
+      {
+        "branches": [
+          "rank3"
+        ],
+        "pattern": [
+          3,
+          4,
+          5
+        ],
+        "support": 12
+      },
+      {
+        "branches": [
+          "rank3"
+        ],
+        "pattern": [
+          5,
+          1,
+          6
+        ],
+        "support": 12
+      },
+      {
+        "branches": [
+          "rank3",
+          "rank2"
+        ],
+        "pattern": [
+          1,
+          9,
+          3
+        ],
+        "support": 13
+      },
+      {
+        "branches": [
+          "rank3"
+        ],
+        "pattern": [
+          3,
+          6,
+          4
+        ],
+        "support": 13
+      },
+      {
+        "branches": [
+          "rank3"
+        ],
+        "pattern": [
+          5,
+          3,
+          5
+        ],
+        "support": 13
+      },
+      {
+        "branches": [
+          "rank3"
+        ],
+        "pattern": [
+          7,
+          0,
+          6
+        ],
+        "support": 13
+      }
+    ]
+  },
+  "prospective_validation_authority": false,
+  "protocol": {
+    "path": "research/orion-rg/wave3/orion04-support11-13-v1/PROTOCOL.json",
+    "schema": "ORION.ORION04.Wave3.M4.Support11To13Protocol.v1",
+    "sha256": "99a3bd79d40db5ce928366a6b945c0325fac9394065516a0938f5e2398eb04fc"
+  },
+  "quantum_claim": false,
+  "replay_ledger": {
+    "all_checks": true,
+    "build_mode": "gnu11 O3 Wall Wextra Werror",
+    "builds": {
+      "rank2_bytes": {
+        "compile_command": [
+          "gcc",
+          "-std=gnu11",
+          "-O3",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "research/orion-rg/x1k_c0_support13_rank2_bytes.c",
+          "-o",
+          "<temporary-executable>"
+        ],
+        "compile_returncode": 0,
+        "compile_stderr": "",
+        "compile_stdout": "",
+        "source_path": "research/orion-rg/x1k_c0_support13_rank2_bytes.c",
+        "source_sha256": "e1c9522dbf504fa82424b3ee96c3630de2aceb476858365619f014fa06defaa2"
+      },
+      "rank2_u128": {
+        "compile_command": [
+          "gcc",
+          "-std=gnu11",
+          "-O3",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "research/orion-rg/x1k_c0_support13_rank2_u128.c",
+          "-o",
+          "<temporary-executable>"
+        ],
+        "compile_returncode": 0,
+        "compile_stderr": "",
+        "compile_stdout": "",
+        "source_path": "research/orion-rg/x1k_c0_support13_rank2_u128.c",
+        "source_sha256": "bac9a2026206ac6be63810fe8598a6a4f8ccd846aabf45dc2a7ea4650fce1127"
+      },
+      "rank3_bytes": {
+        "compile_command": [
+          "gcc",
+          "-std=gnu11",
+          "-O3",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "research/orion-rg/x1k_c0_support10_13_rank3_bytes.c",
+          "-o",
+          "<temporary-executable>"
+        ],
+        "compile_returncode": 0,
+        "compile_stderr": "",
+        "compile_stdout": "",
+        "source_path": "research/orion-rg/x1k_c0_support10_13_rank3_bytes.c",
+        "source_sha256": "03d5f54a7a63ddb05d2c75fbb608e8ebaa4e2dc5da1809f09f9a72c3d8d12dd3"
+      },
+      "rank3_u128": {
+        "compile_command": [
+          "gcc",
+          "-std=gnu11",
+          "-O3",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "research/orion-rg/x1k_c0_support10_13_rank3_u128.c",
+          "-o",
+          "<temporary-executable>"
+        ],
+        "compile_returncode": 0,
+        "compile_stderr": "",
+        "compile_stdout": "",
+        "source_path": "research/orion-rg/x1k_c0_support10_13_rank3_u128.c",
+        "source_sha256": "a3cd33e09dfa972c62ce2844a8ec2caeda218ca7870ce14c28b3ad3a427f055a"
+      }
+    },
+    "checks": {
+      "all_branches_unsat": true,
+      "four_sources_compiled_cleanly": true,
+      "nine_rank3_rows": true,
+      "rank2_dual_exact_registered_agreement": true,
+      "rank2_stdout_byte_exact": true,
+      "rank3_dual_exact_registered_agreement": true,
+      "temporary_executables_deleted": true
+    },
+    "compiler": "gcc",
+    "rank2_branch": {
+      "branch": "rank2",
+      "bytes": {
+        "normalized_seed_candidates": 16,
+        "seed_rows": [
+          {
+            "leaves": 0,
+            "nodes": 135751,
+            "solutions": 0,
+            "third": 30
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 35
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 40
+          },
+          {
+            "leaves": 0,
+            "nodes": 135751,
+            "solutions": 0,
+            "third": 45
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 55
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 65
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 80
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 85
+          },
+          {
+            "leaves": 0,
+            "nodes": 135751,
+            "solutions": 0,
+            "third": 105
+          }
+        ],
+        "seed_rows_executed": 9,
+        "seed_rows_rejected_before_dfs": 7,
+        "stdout_sha256": "aec6c6e45a6f9c9378abd0b31a4de5b576b9baffdc17f89463f410dea71a770b",
+        "total": {
+          "leaves": 0,
+          "nodes": 1005159,
+          "solutions": 0
+        }
+      },
+      "pattern": [
+        1,
+        9,
+        3
+      ],
+      "u128": {
+        "normalized_seed_candidates": 16,
+        "seed_rows": [
+          {
+            "leaves": 0,
+            "nodes": 135751,
+            "solutions": 0,
+            "third": 30
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 35
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 40
+          },
+          {
+            "leaves": 0,
+            "nodes": 135751,
+            "solutions": 0,
+            "third": 45
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 55
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 65
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 80
+          },
+          {
+            "leaves": 0,
+            "nodes": 99651,
+            "solutions": 0,
+            "third": 85
+          },
+          {
+            "leaves": 0,
+            "nodes": 135751,
+            "solutions": 0,
+            "third": 105
+          }
+        ],
+        "seed_rows_executed": 9,
+        "seed_rows_rejected_before_dfs": 7,
+        "stdout_sha256": "aec6c6e45a6f9c9378abd0b31a4de5b576b9baffdc17f89463f410dea71a770b",
+        "total": {
+          "leaves": 0,
+          "nodes": 1005159,
+          "solutions": 0
+        }
+      }
+    },
+    "rank3_rows": [
+      {
+        "branch": "rank3",
+        "bytes": {
+          "a1": 1,
+          "b2": 5,
+          "c4": 5,
+          "leaves": 0,
+          "nodes": 406521,
+          "solutions": 0,
+          "support": 11
+        },
+        "pattern": [
+          1,
+          5,
+          5
+        ],
+        "u128": {
+          "a1": 1,
+          "b2": 5,
+          "c4": 5,
+          "leaves": 0,
+          "nodes": 406521,
+          "solutions": 0,
+          "support": 11
+        }
+      },
+      {
+        "branch": "rank3",
+        "bytes": {
+          "a1": 3,
+          "b2": 2,
+          "c4": 6,
+          "leaves": 0,
+          "nodes": 278515,
+          "solutions": 0,
+          "support": 11
+        },
+        "pattern": [
+          3,
+          2,
+          6
+        ],
+        "u128": {
+          "a1": 3,
+          "b2": 2,
+          "c4": 6,
+          "leaves": 0,
+          "nodes": 278515,
+          "solutions": 0,
+          "support": 11
+        }
+      },
+      {
+        "branch": "rank3",
+        "bytes": {
+          "a1": 1,
+          "b2": 7,
+          "c4": 4,
+          "leaves": 0,
+          "nodes": 294085,
+          "solutions": 0,
+          "support": 12
+        },
+        "pattern": [
+          1,
+          7,
+          4
+        ],
+        "u128": {
+          "a1": 1,
+          "b2": 7,
+          "c4": 4,
+          "leaves": 0,
+          "nodes": 294085,
+          "solutions": 0,
+          "support": 12
+        }
+      },
+      {
+        "branch": "rank3",
+        "bytes": {
+          "a1": 3,
+          "b2": 4,
+          "c4": 5,
+          "leaves": 0,
+          "nodes": 406521,
+          "solutions": 0,
+          "support": 12
+        },
+        "pattern": [
+          3,
+          4,
+          5
+        ],
+        "u128": {
+          "a1": 3,
+          "b2": 4,
+          "c4": 5,
+          "leaves": 0,
+          "nodes": 406521,
+          "solutions": 0,
+          "support": 12
+        }
+      },
+      {
+        "branch": "rank3",
+        "bytes": {
+          "a1": 5,
+          "b2": 1,
+          "c4": 6,
+          "leaves": 0,
+          "nodes": 826347,
+          "solutions": 0,
+          "support": 12
+        },
+        "pattern": [
+          5,
+          1,
+          6
+        ],
+        "u128": {
+          "a1": 5,
+          "b2": 1,
+          "c4": 6,
+          "leaves": 0,
+          "nodes": 826347,
+          "solutions": 0,
+          "support": 12
+        }
+      },
+      {
+        "branch": "rank3",
+        "bytes": {
+          "a1": 1,
+          "b2": 9,
+          "c4": 3,
+          "leaves": 0,
+          "nodes": 80203,
+          "solutions": 0,
+          "support": 13
+        },
+        "pattern": [
+          1,
+          9,
+          3
+        ],
+        "u128": {
+          "a1": 1,
+          "b2": 9,
+          "c4": 3,
+          "leaves": 0,
+          "nodes": 80203,
+          "solutions": 0,
+          "support": 13
+        }
+      },
+      {
+        "branch": "rank3",
+        "bytes": {
+          "a1": 3,
+          "b2": 6,
+          "c4": 4,
+          "leaves": 0,
+          "nodes": 294085,
+          "solutions": 0,
+          "support": 13
+        },
+        "pattern": [
+          3,
+          6,
+          4
+        ],
+        "u128": {
+          "a1": 3,
+          "b2": 6,
+          "c4": 4,
+          "leaves": 0,
+          "nodes": 294085,
+          "solutions": 0,
+          "support": 13
+        }
+      },
+      {
+        "branch": "rank3",
+        "bytes": {
+          "a1": 5,
+          "b2": 3,
+          "c4": 5,
+          "leaves": 0,
+          "nodes": 414477,
+          "solutions": 0,
+          "support": 13
+        },
+        "pattern": [
+          5,
+          3,
+          5
+        ],
+        "u128": {
+          "a1": 5,
+          "b2": 3,
+          "c4": 5,
+          "leaves": 0,
+          "nodes": 414477,
+          "solutions": 0,
+          "support": 13
+        }
+      },
+      {
+        "branch": "rank3",
+        "bytes": {
+          "a1": 7,
+          "b2": 0,
+          "c4": 6,
+          "leaves": 0,
+          "nodes": 904555,
+          "solutions": 0,
+          "support": 13
+        },
+        "pattern": [
+          7,
+          0,
+          6
+        ],
+        "u128": {
+          "a1": 7,
+          "b2": 0,
+          "c4": 6,
+          "leaves": 0,
+          "nodes": 904555,
+          "solutions": 0,
+          "support": 13
+        }
+      }
+    ]
+  },
+  "result_digest": "6e25fbf0a483817bb5edb4908640e0b0b83be47d2cc4b2da6192feb9fecbc004",
+  "result_owner": "NON_QUANTUM_MATH",
+  "schema": "ORION.ORION04.Wave3.M4.Support11To13Replay.v1",
+  "scientific_authority": "BOUNDED_C5CUBED_SUPPORT_LE13_EXCLUSION_ONLY",
+  "source_manifest": {
+    "all_checks": true,
+    "manifest_path": "research/orion-rg/wave3/orion04-support11-13-v1/SOURCE_MANIFEST.json",
+    "manifest_sha256": "c0de955d379fea77108a3abcb284875daed4c7e0c5b280ecd9bac201dd07fd1a",
+    "observed_sources": [
+      {
+        "expected_sha256": "a3cd33e09dfa972c62ce2844a8ec2caeda218ca7870ce14c28b3ad3a427f055a",
+        "matches": true,
+        "observed_sha256": "a3cd33e09dfa972c62ce2844a8ec2caeda218ca7870ce14c28b3ad3a427f055a",
+        "path": "research/orion-rg/x1k_c0_support10_13_rank3_u128.c",
+        "role": "rank3_primary_u128"
+      },
+      {
+        "expected_sha256": "03d5f54a7a63ddb05d2c75fbb608e8ebaa4e2dc5da1809f09f9a72c3d8d12dd3",
+        "matches": true,
+        "observed_sha256": "03d5f54a7a63ddb05d2c75fbb608e8ebaa4e2dc5da1809f09f9a72c3d8d12dd3",
+        "path": "research/orion-rg/x1k_c0_support10_13_rank3_bytes.c",
+        "role": "rank3_independent_bytes"
+      },
+      {
+        "expected_sha256": "bac9a2026206ac6be63810fe8598a6a4f8ccd846aabf45dc2a7ea4650fce1127",
+        "matches": true,
+        "observed_sha256": "bac9a2026206ac6be63810fe8598a6a4f8ccd846aabf45dc2a7ea4650fce1127",
+        "path": "research/orion-rg/x1k_c0_support13_rank2_u128.c",
+        "role": "rank2_primary_u128"
+      },
+      {
+        "expected_sha256": "e1c9522dbf504fa82424b3ee96c3630de2aceb476858365619f014fa06defaa2",
+        "matches": true,
+        "observed_sha256": "e1c9522dbf504fa82424b3ee96c3630de2aceb476858365619f014fa06defaa2",
+        "path": "research/orion-rg/x1k_c0_support13_rank2_bytes.c",
+        "role": "rank2_independent_bytes"
+      }
+    ]
+  },
+  "support_14_plus_theorem_authority": false,
+  "support_23_theorem_authority": false,
+  "terminal": "ORION04_M4_C5CUBED_SUPPORT11_13_ALL_BRANCHES_EXCLUDED__OBSTRUCTION_SUPPORT_AT_LEAST14",
+  "theorem": "a length-31 total-zero sequence over C_5^3 with no nonempty zero-sum subsequence of length at most five, if one exists, has support at least 14",
+  "theory": {
+    "path": "research/orion-rg/wave3/orion04-support11-13-v1/THEORY.md",
+    "sha256": "09899c59c9491d043866b7e32138eee9e143f9a1899da9591263f1e37a43552b"
+  },
+  "venue_authority": false
+}
