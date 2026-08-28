@@ -208,3 +208,22 @@ ff54dbd02346d8369a4fa11e71ba179cb74fedfcad8280c97dd47e3dc29e5aff):
   FIPS-provider SKIP block and carry the perl runtime token `@prov`; they are
   not statically executable and are honestly counted as disagreements
   (anchor rate 186/191 = 97.38% >= 95% gate with them included).
+- Second diagnostic pass (same pre-results window; lands with the results
+  commit): the first-mixing LOCALIZATION (an M5 reason payload, not a frozen
+  §5 measurement) initially selected chains by lexicographic path enumeration
+  through the corpus root family (~35 same-subject/same-key root variants form
+  a fully interconnected clique, so naive enumeration explodes and picks
+  degenerate long chains). The evaluator now (a) terminates enumeration at
+  self-signed roots (the engine never builds past one), (b) caps depth at 8
+  defensively (corpus chains are <= 4 deep), and (c) filters candidate chains
+  to engine-attestable ones for the SAME option list (depth-0 zero-length
+  chains only under `-partial_chain` or a self-signed trusted leaf;
+  positive-length chains must terminate at a SELF-SIGNED trusted anchor,
+  matching the empirically established default-anchoring semantics). No
+  frozen §5 measurement changed: every decision verdict, the 46-hybrid set,
+  unsafe/needless counts, and all C1-C6 outcomes are identical before and
+  after; `run_round2.py` and this protocol's digests in SOURCE_BINDING_V2.json
+  are updated together in the results commit. Cost receipts gained explicit
+  counters (`engine_verify_invocations_requested`,
+  `per_method_required_invocations`, `ground_truth_basis_invocations_per_task`);
+  the measured unique-invocation count was already cache-backed and unchanged.

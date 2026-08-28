@@ -65,6 +65,7 @@ class Engine:
             )
         self.cache = {}
         self.invocations = 0
+        self.requested = 0
         self.wall = 0.0
         out = self._run_no_count([self.binary, "version"])
         self.version_line = out.strip().splitlines()[0]
@@ -97,6 +98,7 @@ class Engine:
             },
             sort_keys=True,
         )
+        self.requested += 1
         if key in self.cache:
             return self.cache[key]
         cmd = [self.binary, "verify", "-auth_level", "1"]
@@ -262,6 +264,40 @@ def _spki_digest(pubkey_output):
     return hashlib.sha256(der).hexdigest()
 
 
+def engine_attestable(chains, opts, leaf, graph_info):
+    """Filter structural chains to ones the engine could attest for these opts.
+
+    The depth-0 zero-length chain is engine-attestable only under
+    -partial_chain (last-resort direct leaf match: a trusted certificate with
+    the same subject and public key as the leaf) or when the leaf itself is
+    self-signed and trusted (a trusted self-signed leaf anchors at depth 0
+    under default semantics). A trusted NON-self-signed copy of the leaf does
+    NOT anchor (it fails with "unable to get local issuer certificate"), and
+    without -partial_chain a positive-length chain must terminate at a
+    SELF-SIGNED trusted anchor (trusted intermediates do not anchor).
+    C3 keeps the unfiltered (more permissive) set.
+    """
+    if "-partial_chain" in [str(o) for o in opts]:
+        return chains
+    info = graph_info.get(leaf + ".pem") or {}
+    self_signed = info.get("subject") is not None and info.get("subject") == info.get("issuer")
+
+    def attestable(c):
+        if len(c) == 1:
+            return c[0] == leaf and self_signed
+        t = graph_info.get(c[-1] + ".pem") or {}
+        return (
+            t.get("subject") is not None
+            and t.get("subject") == t.get("issuer")
+        )
+
+    # Fail closed: if the structural graph offers no engine-attestable chain,
+    # do not silently fall back to an unattestable structural path.  The
+    # earlier fallback could only affect the explanatory localization payload,
+    # not vA/vB/vU/vI, but it made a missing localization look successful.
+    return [c for c in chains if attestable(c)]
+
+
 def structural_chains(graph_info, edges, leaf_name, held, anchors):
     """All structural chains leaf -> anchor with intermediates in held.
 
@@ -294,9 +330,25 @@ def structural_chains(graph_info, edges, leaf_name, held, anchors):
             chains.append([leaf])
 
     def dfs(node, path):
-        if node in anchors:
-            yield list(path) + [node]
+        if len(path) >= 8:
+            # Defensive depth cap; corpus chains are <= 4 deep.
             return
+        node_info = graph_info.get(node + ".pem") or {}
+        self_signed = (
+            node_info.get("subject") is not None
+            and node_info.get("subject") == node_info.get("issuer")
+        )
+        if node in anchors:
+            # Yield the chain ending at this trusted cert; CONTINUE through
+            # it only when it is not self-signed (without -partial_chain the
+            # engine anchors at self-signed roots and never builds past
+            # them; pass-through chains through trusted intermediates are
+            # needed for the attestable filter). Stopping at self-signed
+            # anchors also prevents path explosion through the same-key
+            # root-variant clique.
+            yield list(path) + [node]
+            if self_signed:
+                return
         for nxt in sorted(edges.get(node, [])):
             if nxt in path:
                 continue
@@ -362,19 +414,22 @@ def evaluate_task(engine, graph_info, edges, task):
     anchors_a = {base(x) for x in ta}
     held_b = {base(x) for x in origin_holds(sb)}
     anchors_b = {base(x) for x in tb}
-    chains_a = structural_chains(graph_info, edges, leaf, held_a, anchors_a)
-    chains_b = structural_chains(graph_info, edges, leaf, held_b, anchors_b)
-    chains_u = structural_chains(
+    raw_a = structural_chains(graph_info, edges, leaf, held_a, anchors_a)
+    raw_b = structural_chains(graph_info, edges, leaf, held_b, anchors_b)
+    raw_u = structural_chains(
         graph_info, edges, leaf,
         {base(x) for x in set(tu) | set(uu)}, {base(x) for x in set(tu)},
     )
+    chains_a = engine_attestable(raw_a, opts, leaf, graph_info)
+    chains_b = engine_attestable(raw_b, opts, leaf, graph_info)
+    chains_u = engine_attestable(raw_u, opts, leaf, graph_info)
     rec["c3"] = {
-        "structural_a": bool(chains_a),
-        "structural_b": bool(chains_b),
-        "structural_union": bool(chains_u),
+        "structural_a": bool(raw_a),
+        "structural_b": bool(raw_b),
+        "structural_union": bool(raw_u),
         "violation": bool(
-            (v_a and not chains_a) or (v_b and not chains_b)
-            or (v_u and not chains_u)
+            (v_a and not raw_a) or (v_b and not raw_b)
+            or (v_u and not raw_u)
         ),
     }
     if hybrid and rec["first_mixing"]:
@@ -403,6 +458,7 @@ def localize_first_mixing(engine, graph_info, edges, task, opts, v_a, v_b):
         graph_info, edges, leaf,
         {base(x) for x in set(tu) | set(uu)}, {base(x) for x in set(tu)},
     )
+    chains = engine_attestable(chains, opts, leaf, graph_info)
     if not chains:
         return {"error": "NO_UNION_CHAIN_WHITEBOX"}
     chain = min(chains, key=lambda c: (len(c), c))
@@ -647,7 +703,9 @@ def main():
     ap.add_argument("--engine-lib", default=os.environ.get("OPENSSL_LIB"))
     ap.add_argument("--results", default=str(here / "ROUND2_RESULTS_V2.json"))
     ap.add_argument("--check-final", action="store_true")
-    ap.add_argument("--cost-out", default=None)
+    ap.add_argument(
+        "--cost-out", default=str(here / "COST_ROUND2_V2.json")
+    )
     args = ap.parse_args()
 
     engine = Engine(args.engine, args.engine_lib, certs_dir)
@@ -676,6 +734,12 @@ def main():
         if r["vU"] and r["parent_authorized"] and r["hybrid"]
     ]
     c3_violations = sum(1 for r in task_records if r["c3"]["violation"])
+    hybrid_localizations_complete = all(
+        isinstance(r.get("first_mixing"), dict)
+        and "error" not in r["first_mixing"]
+        and r["first_mixing"].get("first_mixing_link")
+        for r in domain_hybrids
+    )
     m5_decision_ok = all(
         r["decisions"]["M5_TYPED_WITNESS"] == r["parent_authorized"]
         for r in task_records
@@ -685,6 +749,9 @@ def main():
     if c3_violations:
         terminal = "CANNOT_CHECK_INDEPENDENT_DOMAIN_ADJUDICATION"
         terminal_reason = "white-box witness graph disagreed with engine"
+    elif not hybrid_localizations_complete:
+        terminal = "CANNOT_CHECK_INDEPENDENT_DOMAIN_ADJUDICATION"
+        terminal_reason = "one or more hybrid authorizations lack a fail-closed first-mixing localization"
     elif not anchor_rate_ok:
         terminal = "CANNOT_CHECK_INDEPENDENT_DOMAIN_ADJUDICATION"
         terminal_reason = "upstream label anchoring below 95 percent"
@@ -700,8 +767,25 @@ def main():
         terminal = "D_R2_TYPED_UNTYPED_EQUIVALENT"
         terminal_reason = "no hybrid authorization arose on real materials"
 
+    costs = {
+        "engine_verify_invocations": engine.invocations,
+        "engine_verify_invocations_requested": engine.requested,
+        "per_method_required_invocations": {
+            "M1_FLAT_UNION": len(task_records),
+            "M2_INTERSECTION": len(task_records),
+            "M3_REJECT_ALL": 0,
+            "M4_OURS_B": len(task_records),
+            "M5_TYPED_WITNESS": 2 * len(task_records),
+        },
+        "ground_truth_basis_invocations_per_task": 4,
+        "graph_probe_invocations": graph_calls,
+    }
     results = {
         "protocol": PROTOCOL,
+        # This executed result changes the bounded empirical claim receipt; it
+        # does not itself grant external scientific, journal, or submission
+        # authority.  Those decisions remain outside this evaluator.
+        "scientific_authority_delta": "NONE",
         "engine": {
             "tag": ENGINE_TAG,
             "commit": ENGINE_COMMIT,
@@ -750,20 +834,22 @@ def main():
         },
         "invariants": {
             "c3_violations": c3_violations,
+            "hybrid_localizations_complete": hybrid_localizations_complete,
             "m5_decision_equals_parent_authorization": m5_decision_ok,
             "c6_detected": hostile["detected_and_localized"],
             "c4_resurrections": retraction["resurrections"],
             "c4_upstream_mirrors_ok": retraction["upstream_mirrors_ok"],
             "c4_parent_preconditions_ok": retraction["parent_preconditions_ok"],
         },
-        "costs": {
-            "engine_verify_invocations": engine.invocations,
-            "graph_probe_invocations": graph_calls,
-        },
+        "costs": costs,
         "terminal": terminal,
         "terminal_reason": terminal_reason,
     }
-    for inv in ("m5_decision_equals_parent_authorization", "c6_detected"):
+    for inv in (
+        "m5_decision_equals_parent_authorization",
+        "hybrid_localizations_complete",
+        "c6_detected",
+    ):
         if not results["invariants"][inv]:
             fail(f"invariant violated: {inv}")
     if results["invariants"]["c4_resurrections"]:
@@ -773,30 +859,27 @@ def main():
             fail(f"invariant violated: {inv}")
 
     blob = json.dumps(results, sort_keys=True, indent=1, ensure_ascii=False) + "\n"
+    cost_blob = json.dumps(costs, sort_keys=True, indent=1) + "\n"
     if args.check_final:
         committed = Path(args.results).read_text()
         if committed != blob:
             print("CHECK-FAILED: regenerated receipt differs", file=sys.stderr)
             sys.exit(1)
-        print("CHECK-FINAL OK: byte-identical receipt")
+        committed_cost = Path(args.cost_out).read_text()
+        if committed_cost != cost_blob:
+            print(
+                "CHECK-FAILED: regenerated cost receipt differs",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        print("CHECK-FINAL OK: byte-identical result and cost receipts")
         return
     Path(args.results).write_text(blob, encoding="utf-8")
+    Path(args.cost_out).write_text(cost_blob, encoding="utf-8")
     print(f"results written: {args.results}")
+    print(f"costs written: {args.cost_out}")
     print(f"terminal: {terminal}")
-    if args.cost_out:
-        Path(args.cost_out).write_text(
-            json.dumps(
-                {
-                    "engine_verify_invocations": engine.invocations,
-                    "graph_probe_invocations": graph_calls,
-                    "engine_wall_seconds": round(engine.wall, 3),
-                },
-                sort_keys=True,
-                indent=1,
-            )
-            + "\n",
-            encoding="utf-8",
-        )
+    print(f"observed engine wall seconds (non-receipt): {engine.wall:.3f}")
 
 
 if __name__ == "__main__":

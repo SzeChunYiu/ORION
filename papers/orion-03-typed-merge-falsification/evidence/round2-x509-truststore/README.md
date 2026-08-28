@@ -28,3 +28,15 @@ attribution in THIRD_PARTY_SOURCE.md.
 
 Results and their interpretation are added by the results commit; this
 freeze commit contains no outcome data.
+
+## Results (results commit)
+
+Terminal `D_R2_REAL_AUTHORITY_PROMOTION_ERROR_PREVENTED`. See
+`ROUND2_RESULT_V2.md` for the full table, controls, and the binding claim
+boundary. Receipts: `ROUND2_RESULTS_V2.json`,
+`COST_ROUND2_V2.json` (byte-identical across two runs, C2);
+`INDEPENDENT_REPRO_R2.json` (context-free re-implementation by an agent
+with no access to the evaluator). On 1962 tasks: 46 engine-adjudicated
+hybrid authorizations; M1 flat union authorizes all 46 (unsafe), the typed
+origin-witness layer blocks all 46 with zero needless rejections
+(precision/recall 1.0) at 2x flat merge engine cost.
