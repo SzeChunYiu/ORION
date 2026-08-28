@@ -2,7 +2,7 @@
   "claim": "For every admitted size and target, an exact optimum exists with frame support at most two under the stated structural objective.",
   "expected_pair_count_check": {
     "key": 4,
-    "module": "max_r6p_weight2_frame_donor_closure",
+    "module": "support_two_pair_normalization_checker",
     "value": 1968
   },
   "local_exchange_check": {
@@ -62,7 +62,7 @@
     },
     "total_odd_alpha_tuples_checked": 43688,
     "w2_boundary_exact": true,
-    "w2_boundary_note": "Class code = 2*alpha + beta. The failing w=2 patterns are exactly the odd-alpha tuples whose alpha=0 qubit has beta=1: zeroing the locally-commuting qubit must flip the Tag syndrome -- the R6O weight-2 trade. At w >= 3 the pattern is unrealizable (Lemma B).",
+    "w2_boundary_note": "Class code = 2*alpha + beta. The failing w=2 patterns are exactly the odd-alpha tuples whose alpha=0 qubit has beta=1: zeroing the locally-commuting qubit must flip the Tag syndrome -- the weight-two local trade weight-2 trade. At w >= 3 the pattern is unrealizable (Lemma B).",
     "w2_failing_tuples_observed": [
       [
         1,

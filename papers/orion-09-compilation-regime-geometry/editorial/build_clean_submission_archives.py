@@ -83,6 +83,8 @@ def plain_text(value: str) -> str:
         "R6I": "rank-two dependent-triple model",
         "R6M_TARE": "shared-tag paired-block model",
         "R6M": "shared-tag paired-block model",
+        "R6O": "weight-two local trade",
+        "max_r6p_weight2_frame_donor_closure": "support_two_pair_normalization_checker",
     }
     for old, new in replacements.items():
         value = value.replace(old, new)
@@ -629,7 +631,7 @@ def build_submission_documents() -> None:
 
 
 FORBIDDEN = {
-    "internal paper identifier": re.compile(r"(?i)\b(?:orion(?:[-_ ]?\d+)?|qg[-_ ]?\d+[a-z]*|p\d+[-_][a-z0-9_-]+)\b"),
+    "internal paper identifier": re.compile(r"(?i)\b(?:orion(?:[-_ ]?\d+)?|qg[-_ ]?\d+[a-z]*|p\d+[-_][a-z0-9_-]+|r\d+[a-z])\b"),
     "internal terminal": re.compile(r"(?i)(?:blocked_on_author_evidence|cannot_check|submission[_ -]?ready|machine[_ -]?checked|same[_ -]?project[_ -]?custody)"),
     "internal path": re.compile(r"(?i)(?:/Users/|research/extensions/|papers/orion|editorial/|\.git(?:/|\\b))"),
     "workflow history": re.compile(r"(?i)(?:pull request|\bpr\s*#\s*\d+|issue\s*#\s*\d+|git commit|github\.com/SzeChunYiu/ORION)"),
