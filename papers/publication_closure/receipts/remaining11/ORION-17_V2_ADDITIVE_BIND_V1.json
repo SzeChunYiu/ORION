@@ -1,0 +1,24 @@
+{
+  "added_count": 6,
+  "added_paths": [
+    "papers/orion-17-epistemic-navigation-open-worlds/theory/density-prospective-v1/HELD_OUT_DENSITY.json",
+    "papers/orion-17-epistemic-navigation-open-worlds/theory/density-prospective-v1/HELD_OUT_RESULT.json",
+    "papers/orion-17-epistemic-navigation-open-worlds/theory/density-prospective-v1/RESULT.md",
+    "papers/orion-17-epistemic-navigation-open-worlds/theory/density-prospective-v1/STAMPED_PREDICTIONS.md",
+    "papers/orion-17-epistemic-navigation-open-worlds/theory/density-prospective-v1/independent_checker/check_density_prediction.py",
+    "papers/orion-17-epistemic-navigation-open-worlds/theory/density-prospective-v1/o17_density.py"
+  ],
+  "binds": "BYTES ONLY",
+  "candidate_id": "ORION-17",
+  "closes_no_gate": true,
+  "grants_authority": "NONE",
+  "licenses_no_archive": true,
+  "operation": "bind additive successor-theory files into CONTENT_MANIFEST_V2",
+  "ordering_rule": "binding written AFTER every content edit it covers",
+  "paper": "papers/orion-17-epistemic-navigation-open-worlds",
+  "schema": "orion.candidate.v2-additive-bind.v1",
+  "subject_commit": "9841b15c4396def6eeeeea7f9083e3f69ab051be",
+  "subject_tree": "7e86f7f8d3e3976cfad74a8bc13721b45ff8f3b2",
+  "v1_manifest_modified": false,
+  "why": "check_content_binding_v1.py refuses to regenerate V1 for additive files and directs them to V2; an unmanifested addition turns the checker red by design"
+}
