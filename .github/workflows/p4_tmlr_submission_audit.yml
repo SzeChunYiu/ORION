@@ -5,12 +5,16 @@ on:
     branches: [main]
     paths:
       - 'papers/orion-14-verified-scientific-discovery/**'
+      - 'research/claim_expansion/p4/P4_X_PROTECTED_RESULT_V1.json'
+      - 'research/claim_expansion/p4/P4_X_INDEPENDENT_VERIFICATION_V1.json'
       - 'tests/unit/p4/test_p4_publication_v2.py'
       - '.github/workflows/p4_tmlr_submission_audit.yml'
   push:
     branches: [main]
     paths:
       - 'papers/orion-14-verified-scientific-discovery/**'
+      - 'research/claim_expansion/p4/P4_X_PROTECTED_RESULT_V1.json'
+      - 'research/claim_expansion/p4/P4_X_INDEPENDENT_VERIFICATION_V1.json'
       - 'tests/unit/p4/test_p4_publication_v2.py'
       - '.github/workflows/p4_tmlr_submission_audit.yml'
 
@@ -72,25 +76,36 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
+      - name: Build fail-closed anonymous review artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$RUNNER_TEMP/p4_anonymous"
+          python papers/orion-14-verified-scientific-discovery/submission/build_anonymous_review_artifact.py --out-dir "$OUT" | tee "$RUNNER_TEMP/anonymous_build.txt"
+          test -s "$OUT/orion14_anonymous_review.zip"
+          unzip -t "$OUT/orion14_anonymous_review.zip"
+          unzip -l "$OUT/orion14_anonymous_review.zip"
+          sha256sum "$OUT/orion14_anonymous_review.zip" | tee "$RUNNER_TEMP/orion14_anonymous_review.zip.sha256"
+
+      - name: Retain anonymous double-blind review artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: p4-tmlr-anonymous-review-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/p4_anonymous/orion14_anonymous_review.zip
+            ${{ runner.temp }}/orion14_anonymous_review.zip.sha256
+            ${{ runner.temp }}/anonymous_build.txt
+          if-no-files-found: error
+          retention-days: 90
+
       - name: Install TeX/PDF/rendering tools
         shell: bash
-        # Its own budget, so a hang here is reported as this step timing out
-        # rather than as the whole audit being cancelled with no attribution.
         timeout-minutes: 25
         run: |
           set -euo pipefail
           sudo apt-get update -qq
-          # One retry. Both observed hangs were in this install, and a transient
-          # mirror stall should not consume a submission gate.
-          # --no-install-recommends is the actual fix. p2-manuscript.yml installs a
-          # comparable TeX set with it and finishes in about a minute; this job
-          # installed the recommends too and twice blew a 20-minute budget. Every
-          # package the compile needs is named explicitly, and latexmk runs with
-          # -halt-on-error, so anything genuinely missing fails loudly here rather
-          # than silently degrading the PDF.
           PKGS="latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended"
           PKGS="$PKGS lmodern poppler-utils librsvg2-bin"
-          # One retry: a transient mirror stall should not consume a submission gate.
           sudo apt-get install -y -qq --no-install-recommends $PKGS \
             || { sleep 15; sudo apt-get update -qq; sudo apt-get install -y -qq --no-install-recommends $PKGS; }
 
@@ -120,7 +135,7 @@ jobs:
           test -s main.pdf
           if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence' main.log; then exit 1; fi
 
-      - name: Independent PDF/stale-claim audit
+      - name: Independent PDF/stale-claim/blindness audit
         shell: bash
         run: |
           set -euo pipefail
@@ -131,6 +146,7 @@ jobs:
           grep -q '0/360' "$TXT"; grep -q '180/360' "$TXT"; grep -q '60/60' "$TXT"
           grep -qi 'not supported' "$TXT"
           if grep -Eiq 'execution bindings remain.*UNBOUND|awaiting external campaign|No external results are reported|remains externally.*CANNOT_CHECK' "$TXT"; then exit 1; fi
+          if grep -Eiq 'SzeChunYiu|github\.com/|GitHub Actions|workflow run|pull request|papers/orion-14-verified-scientific-discovery/|development/' "$TXT"; then exit 1; fi
           pdfinfo "$PDF" | tee "$RUNNER_TEMP/pdfinfo.txt"
           sha256sum "$PDF" | tee "$RUNNER_TEMP/main.pdf.sha256"
 
