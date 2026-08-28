@@ -1,0 +1,255 @@
+{
+  "schema": "ORION.ORION01.ExpectedTerminals.v1",
+  "protocol_identity": "orion-01-production-completeness-v1-2026-08-29",
+  "terminal_set_frozen_before_execution": true,
+  "terminals": [
+    {
+      "terminal": "PROTOCOL_FROZEN__NO_OUTCOME",
+      "phase": 0,
+      "class": "NEUTRAL_PREEXECUTION",
+      "meaning": "Protocol and decision rules are frozen; no source-instance outcome has been produced.",
+      "required_artifacts": []
+    },
+    {
+      "terminal": "SOURCE_RESOLVED",
+      "phase": 0,
+      "class": "INTERMEDIATE_SUCCESS",
+      "meaning": "The declared prefix resolved to exactly one 40-character commit object before semantic testing.",
+      "required_artifacts": [
+        "SOURCE_RESOLUTION_RECEIPT.json",
+        "SOURCE_FILE_MANIFEST.jsonl",
+        "ENVIRONMENT_RECEIPT.json"
+      ]
+    },
+    {
+      "terminal": "SOURCE_PREFIX_UNRESOLVED",
+      "phase": 0,
+      "class": "ADVERSE",
+      "meaning": "No fetched reachable commit begins with the frozen prefix.",
+      "required_artifacts": [
+        "SOURCE_RESOLUTION_RECEIPT.json"
+      ]
+    },
+    {
+      "terminal": "SOURCE_PREFIX_AMBIGUOUS",
+      "phase": 0,
+      "class": "ADVERSE",
+      "meaning": "More than one fetched reachable commit begins with the frozen prefix.",
+      "required_artifacts": [
+        "SOURCE_RESOLUTION_RECEIPT.json"
+      ]
+    },
+    {
+      "terminal": "SOURCE_OBJECT_NOT_COMMIT",
+      "phase": 0,
+      "class": "ADVERSE",
+      "meaning": "The uniquely matched object is not a commit object.",
+      "required_artifacts": [
+        "SOURCE_RESOLUTION_RECEIPT.json"
+      ]
+    },
+    {
+      "terminal": "CANNOT_RESOLVE_SOURCE",
+      "phase": 0,
+      "class": "CANNOT_CHECK",
+      "meaning": "The declared remote/ref advertisement could not be acquired or authenticated sufficiently to apply the resolution rule.",
+      "required_artifacts": [
+        "SOURCE_RESOLUTION_RECEIPT.json"
+      ]
+    },
+    {
+      "terminal": "SOURCE_BOUNDARY_COMPLETE",
+      "phase": 1,
+      "class": "INTERMEDIATE_SUCCESS",
+      "meaning": "All frozen production roots, call edges, dynamic targets, mutation sinks, and mutation roots are covered.",
+      "required_artifacts": [
+        "SOURCE_BOUNDARY_RECEIPT.json",
+        "MUTATION_ROOTS.json",
+        "CALL_GRAPH_CLOSURE.json",
+        "UNRESOLVED_DYNAMIC_EDGES.json"
+      ]
+    },
+    {
+      "terminal": "SOURCE_BOUNDARY_COUNTEREXAMPLE",
+      "phase": 1,
+      "class": "ADVERSE",
+      "meaning": "A reachable source edge, mutation sink, or mutation root lies outside the proposed finite boundary.",
+      "required_artifacts": [
+        "REGISTRY_COUNTEREXAMPLE.json"
+      ]
+    },
+    {
+      "terminal": "CANNOT_CHECK_SOURCE_BOUNDARY",
+      "phase": 1,
+      "class": "CANNOT_CHECK",
+      "meaning": "The frozen analysis cannot resolve a production-reachable boundary obligation and no replayable counterexample is available.",
+      "required_artifacts": [
+        "SOURCE_BOUNDARY_RECEIPT.json"
+      ]
+    },
+    {
+      "terminal": "EXTENSIONAL_REGISTRY_CONSTRUCTED",
+      "phase": 2,
+      "class": "INTERMEDIATE_SUCCESS",
+      "meaning": "All currently admitted move instances are mapped into canonical effect classes and the separating-basis receipt is present; completeness is not yet granted.",
+      "required_artifacts": [
+        "MOVE_INSTANCES.jsonl",
+        "CANONICAL_EFFECT_CLASSES.jsonl",
+        "DISTINGUISHING_BASIS_RECEIPT.json"
+      ]
+    },
+    {
+      "terminal": "UNBOUNDED_PARAMETER_DOMAIN",
+      "phase": 2,
+      "class": "ADVERSE",
+      "meaning": "At least one reachable parameter, receiver, match, or side-condition dimension lacks a proved finite exact partition.",
+      "required_artifacts": [
+        "REGISTRY_COUNTEREXAMPLE.json"
+      ]
+    },
+    {
+      "terminal": "NONDETERMINISTIC_EFFECT",
+      "phase": 2,
+      "class": "ADVERSE",
+      "meaning": "Byte-identical canonical inputs under the frozen environment yield distinct normalized effects.",
+      "required_artifacts": [
+        "REGISTRY_COUNTEREXAMPLE.json"
+      ]
+    },
+    {
+      "terminal": "DISTINGUISHING_BASIS_INSUFFICIENT",
+      "phase": 2,
+      "class": "ADVERSE",
+      "meaning": "The finite basis does not separate every nonequivalent normalized-effect function over the admitted domain.",
+      "required_artifacts": [
+        "REGISTRY_COUNTEREXAMPLE.json"
+      ]
+    },
+    {
+      "terminal": "REGISTRY_COMPLETE",
+      "phase": 3,
+      "class": "PRIMARY_SUCCESS",
+      "meaning": "O1-O6 and the total single-valued quotient ledger are discharged relative to the frozen source and environment.",
+      "required_artifacts": [
+        "REGISTRY_COMPLETENESS_RECEIPT.json",
+        "SOURCE_BOUNDARY_RECEIPT.json",
+        "MOVE_INSTANCE_COVERAGE.json",
+        "EQUIVALENCE_COVERAGE.json",
+        "DISTINGUISHING_BASIS_RECEIPT.json"
+      ]
+    },
+    {
+      "terminal": "REGISTRY_INCOMPLETE_COUNTEREXAMPLE",
+      "phase": 3,
+      "class": "PRIMARY_ADVERSE",
+      "meaning": "A replayable production mutation, domain member, encoding observation, or false class merge refutes registry completeness.",
+      "required_artifacts": [
+        "REGISTRY_COUNTEREXAMPLE.json"
+      ]
+    },
+    {
+      "terminal": "CANNOT_CHECK_REGISTRY_COMPLETENESS",
+      "phase": 3,
+      "class": "CANNOT_CHECK",
+      "meaning": "At least one O1-O6 obligation remains unresolved without a replayable counterexample.",
+      "required_artifacts": [
+        "REGISTRY_COMPLETENESS_RECEIPT.json"
+      ]
+    },
+    {
+      "terminal": "EXACT_COMPUTE_PROTOCOL_FROZEN",
+      "phase": 4,
+      "class": "INTERMEDIATE_SUCCESS",
+      "meaning": "After REGISTRY_COMPLETE, a fresh outcome-blind material-consequence experiment has a new identity and frozen budget.",
+      "required_artifacts": [
+        "EXACT_COMPUTE_PROTOCOL_V1.json"
+      ]
+    },
+    {
+      "terminal": "MATERIAL_EXACT_COMPUTE_CONSEQUENCE",
+      "phase": 5,
+      "class": "PRIMARY_SUCCESS",
+      "meaning": "The fresh exact-compute experiment establishes its prospectively named material compiler consequence.",
+      "required_artifacts": [
+        "EXACT_COMPUTE_RESULT.json"
+      ]
+    },
+    {
+      "terminal": "NO_MATERIAL_CONSEQUENCE_WITHIN_FROZEN_DOMAIN",
+      "phase": 5,
+      "class": "PRIMARY_NULL",
+      "meaning": "The fresh exact-compute experiment completes and the prospectively named material effect is absent within its frozen domain.",
+      "required_artifacts": [
+        "EXACT_COMPUTE_RESULT.json"
+      ]
+    },
+    {
+      "terminal": "CANNOT_CHECK_MATERIAL_CONSEQUENCE",
+      "phase": 5,
+      "class": "CANNOT_CHECK",
+      "meaning": "The fresh exact-compute experiment cannot resolve its predicate under the prospectively frozen resource boundary.",
+      "required_artifacts": [
+        "EXACT_COMPUTE_RESULT.json"
+      ]
+    }
+  ],
+  "transition_rules": [
+    {
+      "from": "PROTOCOL_FROZEN__NO_OUTCOME",
+      "to_any_of": [
+        "SOURCE_RESOLVED",
+        "SOURCE_PREFIX_UNRESOLVED",
+        "SOURCE_PREFIX_AMBIGUOUS",
+        "SOURCE_OBJECT_NOT_COMMIT",
+        "CANNOT_RESOLVE_SOURCE"
+      ]
+    },
+    {
+      "from": "SOURCE_RESOLVED",
+      "to_any_of": [
+        "SOURCE_BOUNDARY_COMPLETE",
+        "SOURCE_BOUNDARY_COUNTEREXAMPLE",
+        "CANNOT_CHECK_SOURCE_BOUNDARY"
+      ]
+    },
+    {
+      "from": "SOURCE_BOUNDARY_COMPLETE",
+      "to_any_of": [
+        "EXTENSIONAL_REGISTRY_CONSTRUCTED",
+        "UNBOUNDED_PARAMETER_DOMAIN",
+        "NONDETERMINISTIC_EFFECT",
+        "DISTINGUISHING_BASIS_INSUFFICIENT"
+      ]
+    },
+    {
+      "from": "EXTENSIONAL_REGISTRY_CONSTRUCTED",
+      "to_any_of": [
+        "REGISTRY_COMPLETE",
+        "REGISTRY_INCOMPLETE_COUNTEREXAMPLE",
+        "CANNOT_CHECK_REGISTRY_COMPLETENESS"
+      ]
+    },
+    {
+      "from": "REGISTRY_COMPLETE",
+      "to_any_of": [
+        "EXACT_COMPUTE_PROTOCOL_FROZEN"
+      ]
+    },
+    {
+      "from": "EXACT_COMPUTE_PROTOCOL_FROZEN",
+      "to_any_of": [
+        "MATERIAL_EXACT_COMPUTE_CONSEQUENCE",
+        "NO_MATERIAL_CONSEQUENCE_WITHIN_FROZEN_DOMAIN",
+        "CANNOT_CHECK_MATERIAL_CONSEQUENCE"
+      ]
+    }
+  ],
+  "forbidden_as_successor_terminal": [
+    "CANNOT_CHECK_MOVE_COMPLETENESS",
+    "MOVE_COMPLETE",
+    "NO_MISSING_MOVES",
+    "CAP_REACHED",
+    "LARGER_ENUMERATION_COMPLETED"
+  ],
+  "current_terminal": "PROTOCOL_FROZEN__NO_OUTCOME"
+}
