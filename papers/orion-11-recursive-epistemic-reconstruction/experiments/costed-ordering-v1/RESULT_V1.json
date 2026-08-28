@@ -1,5 +1,5 @@
 {
-  "anchor_reference_sha256": "5b92d2a48a69205221d1f060af3b006ed62406bacf9c179c545b20d090a64f91",
+  "anchor_reference_sha256": "3f7eb2f8706e1d72e35e05667fdb85c07d197bb378b78a3c2673e4854d8b0283",
   "anchor_reproduction_gate": {
     "anchor_arms": [
       "global_flat_voi",
@@ -19,6 +19,7 @@
       "stage1_code_sha256"
     ],
     "parameterised_per_world_set": true,
+    "re_emission_note": "This reference was re-emitted for the checker-fault repair re-run, after a prior run's outcomes had been seen. The guarantee it carries is therefore STRUCTURAL, not temporal: stage 1 executes only arms that no gate reads, which is asserted in code (GATE_ARMS) rather than claimed. The repair changed serialisation only; no world, policy, gate, margin, seed or cost-accounting rule moved.",
     "rows": [
       {
         "arm": "global_flat_voi",
@@ -109,6 +110,134 @@
     "random_safe_ablation",
     "random_unsafe_ablation"
   ],
+  "bootstrap_seed_stability": {
+    "alternate_selection_rule": "deterministic pre-stated set: frozen seed + 1..8; all reported, none selected",
+    "alternate_terminals": [
+      "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+    ],
+    "alternates_tested": [
+      202608280412,
+      202608280413,
+      202608280414,
+      202608280415,
+      202608280416,
+      202608280417,
+      202608280418,
+      202608280419
+    ],
+    "frozen_seed": 202608280411,
+    "frozen_seed_terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION",
+    "gate_passes_stable_across_all_seeds_tested": true,
+    "per_seed": [
+      {
+        "bootstrap_seed": 202608280412,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280413,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280414,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280415,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280416,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280417,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280418,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      },
+      {
+        "bootstrap_seed": 202608280419,
+        "gate_passes": {
+          "G1_success_noninferiority": true,
+          "G2_zero_forbidden": true,
+          "G3_cost_ratio": false,
+          "G4_dp_gap": false,
+          "G5_assumption_attribution": true,
+          "G6_donor_baseline": false,
+          "G7_instrument_control": true
+        },
+        "terminal": "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+      }
+    ],
+    "question": "Is the terminal load-bearing on the bootstrap seed choice?",
+    "reason_probe_exists": "PROTOCOL.statistics declares a frozen bootstrap seed but no frozen document carries a value, so the seed was adopted rather than read.",
+    "terminal_stable_across_all_seeds_tested": true
+  },
   "budget_ceiling": 4.0,
   "gate_composition": "NON_COMPENSATORY. G1, G2, G4, G5, G7 must all hold. G3 and G6 read jointly; G6 dominates.",
   "gates": {
@@ -162,7 +291,7 @@
           "passed": true,
           "point": 0.20833333333333337
         },
-        "violate_A4_nonnegative_cost": {
+        "violate_A4_cost": {
           "ci95": [
             0.10763888888888895,
             0.24305555555555558
@@ -184,7 +313,7 @@
         "violate_A1_noninterference": 0.0,
         "violate_A2_veto_monotonicity": 0.0,
         "violate_A3_safety": 0.0,
-        "violate_A4_nonnegative_cost": 0.0
+        "violate_A4_cost": 0.0
       },
       "statement": "ORION forbidden_high_level_mutation_rate == 0 on every stratum."
     },
@@ -257,7 +386,7 @@
           "passed": true,
           "retained_n": 153
         },
-        "violate_A4_nonnegative_cost": {
+        "violate_A4_cost": {
           "advantage_present": false,
           "ci95": [
             1.8182760188805582,
@@ -335,7 +464,7 @@
           "mean_diff_orion_minus_pc": 0.4603689038305132,
           "retained_n": 238
         },
-        "violate_A4_nonnegative_cost": {
+        "violate_A4_cost": {
           "cost_ratio_orion_over_pc": 1.9441981343225139,
           "diff_ci95": [
             1.1512847900661274,
@@ -412,7 +541,8 @@
   "paper_id": "ORION-11",
   "per_arm": {
     "cost_greedy_repair": {
-      "budget_exceeded_rows": 346,
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 346,
       "forbidden_high_level_mutation_rate": 0.46703678001387927,
       "joint_clear_rate": 0.48369188063844554,
       "mean_total_cost": 1.9666019160609054,
@@ -463,7 +593,7 @@
           "n": 288,
           "success_rate": 0.9027777777777778
         },
-        "violate_A4_nonnegative_cost": {
+        "violate_A4_cost": {
           "forbidden_high_level_mutation_rate": 0.4930555555555556,
           "mean_inspection": 1.5213207886803641,
           "mean_intervention": 0.4492708853603112,
@@ -477,6 +607,7 @@
     },
     "exact_dp_oracle": {
       "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 0,
       "forbidden_high_level_mutation_rate": 0.5398843930635838,
       "joint_clear_rate": 0.4601156069364162,
       "mean_total_cost": 1.8817913877734578,
@@ -505,6 +636,7 @@
     },
     "faithful_active_voi": {
       "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 0,
       "forbidden_high_level_mutation_rate": 0.0,
       "joint_clear_rate": 0.6825121443442054,
       "mean_total_cost": 1.1670104465727678,
@@ -555,7 +687,7 @@
           "n": 288,
           "success_rate": 0.6597222222222222
         },
-        "violate_A4_nonnegative_cost": {
+        "violate_A4_cost": {
           "forbidden_high_level_mutation_rate": 0.0,
           "mean_inspection": 0.693255592879653,
           "mean_intervention": 0.39151602303352856,
@@ -568,7 +700,8 @@
       "success_rate": 0.6825121443442054
     },
     "gain_per_cost_greedy": {
-      "budget_exceeded_rows": 161,
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 161,
       "forbidden_high_level_mutation_rate": 0.36398334489937545,
       "joint_clear_rate": 0.607911172796669,
       "mean_total_cost": 1.783393030390656,
@@ -619,7 +752,7 @@
           "n": 288,
           "success_rate": 0.9409722222222222
         },
-        "violate_A4_nonnegative_cost": {
+        "violate_A4_cost": {
           "forbidden_high_level_mutation_rate": 0.4548611111111111,
           "mean_inspection": 1.2813830166113165,
           "mean_intervention": 0.5012798596690311,
@@ -632,7 +765,8 @@
       "success_rate": 0.9441360166551006
     },
     "global_flat_voi": {
-      "budget_exceeded_rows": 186,
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 186,
       "forbidden_high_level_mutation_rate": 0.36224843858431643,
       "joint_clear_rate": 0.6099930603747398,
       "mean_total_cost": 1.9364689991364636,
@@ -683,7 +817,7 @@
           "n": 288,
           "success_rate": 0.9305555555555556
         },
-        "violate_A4_nonnegative_cost": {
+        "violate_A4_cost": {
           "forbidden_high_level_mutation_rate": 0.3958333333333333,
           "mean_inspection": 1.1678653903741043,
           "mean_intervention": 0.5088353353644963,
@@ -696,7 +830,8 @@
       "success_rate": 0.9354614850798056
     },
     "orion_level_monotone": {
-      "budget_exceeded_rows": 323,
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 323,
       "forbidden_high_level_mutation_rate": 0.0,
       "joint_clear_rate": 0.8879250520471894,
       "mean_total_cost": 2.186135713299581,
@@ -747,7 +882,7 @@
           "n": 288,
           "success_rate": 0.8680555555555556
         },
-        "violate_A4_nonnegative_cost": {
+        "violate_A4_cost": {
           "forbidden_high_level_mutation_rate": 0.0,
           "mean_inspection": 1.6697536119432888,
           "mean_intervention": 0.4773878051086865,
@@ -760,7 +895,8 @@
       "success_rate": 0.8879250520471894
     },
     "random_safe_ablation": {
-      "budget_exceeded_rows": 387,
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 387,
       "forbidden_high_level_mutation_rate": 0.0,
       "joint_clear_rate": 0.8657182512144345,
       "mean_total_cost": 2.2983485126947776,
@@ -811,7 +947,7 @@
           "n": 288,
           "success_rate": 0.84375
         },
-        "violate_A4_nonnegative_cost": {
+        "violate_A4_cost": {
           "forbidden_high_level_mutation_rate": 0.0,
           "mean_inspection": 1.7896786441545802,
           "mean_intervention": 0.46555038767252316,
@@ -824,7 +960,8 @@
       "success_rate": 0.8657182512144345
     },
     "random_unsafe_ablation": {
-      "budget_exceeded_rows": 433,
+      "budget_exceeded_rows": 0,
+      "budget_truncated_rows": 433,
       "forbidden_high_level_mutation_rate": 0.47085357390700905,
       "joint_clear_rate": 0.4764052741151978,
       "mean_total_cost": 2.3665152405504832,
@@ -875,7 +1012,7 @@
           "n": 288,
           "success_rate": 0.8576388888888888
         },
-        "violate_A4_nonnegative_cost": {
+        "violate_A4_cost": {
           "forbidden_high_level_mutation_rate": 0.4965277777777778,
           "mean_inspection": 1.805057711438149,
           "mean_intervention": 0.47751237754568243,
@@ -897,9 +1034,27 @@
       "severity": "MEDIUM"
     },
     {
+      "id": "PC-09",
+      "issue": "Independent checker fault NEGATIVE_COST_COMPONENT (836 rows, all exact_dp_oracle). The expected-cost decomposition computed the residual probability mass as 1.0 - cum - p[j], which is analytically zero on the last class of the optimal order but accumulated float error; the largest observed magnitude was 3.53e-16.",
+      "resolution": "Root cause fixed (residual mass now tracked by successive subtraction) AND a clamp_zero guard applied at every emission point. The guard RAISES on any negative above 1e-12 rather than clamping it, so a genuinely negative cost can never be silently absorbed. Verified before the repair that every negative in the prior traces was below 1e-12. The runner's own validator missed this because it checked the four aggregate cost components but not individual action costs; it now checks both.",
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "PC-10",
+      "issue": "Independent checker fault BUDGET_FLAG_INCONSISTENT (1403 rows). TRACE_SCHEMA defines budget_exceeded as 'true when total > 4.0', but the field was emitted tracking a DIFFERENT quantity: whether the policy was halted because the NEXT required action would have exceeded the ceiling. No run can ever have total > 4.0, because every action is affordability-checked before it is charged, so under the schema's literal rule the field is always false and carries no information.",
+      "resolution": "budget_exceeded now follows the schema rule exactly (total > 4.0) and is self-consistent with total on the same row. The informative quantity is emitted alongside it as budget_truncated plus blocked_prospective_cost (the value of spend + next action cost at the moment the ceiling bound), so the checker can verify the flag against the quantity the budget actually constrains. NO SCIENCE MOVES: budget_exceeded feeds no gate and no statistic, only a reporting count.",
+      "severity": "MEDIUM"
+    },
+    {
+      "id": "PC-11",
+      "issue": "PROTOCOL.json spells the fourth violation stratum violate_A4_cost; TRACE_SCHEMA_V1 spells it violate_A4_nonnegative_cost. Both are frozen and conflict.",
+      "resolution": "PROTOCOL is the frozen authority on the world family, so the PROTOCOL spelling is emitted. This is a relabelling only: the stratum definition, its share, its position in the allocation order and the generated world content are unchanged, verified by comparing per-world costs, priors and latent classes across the rename.",
+      "severity": "MEDIUM"
+    },
+    {
       "id": "PC-02",
       "issue": "PROTOCOL.statistics says the bootstrap seed is 'frozen here' but PROTOCOL.json contains no literal seed value.",
-      "resolution": "Adopted the R4 predecessor's committed bootstrap seed 202608280411 and world seed 20260828, both fixed in the runner before any world was generated.",
+      "resolution": "Adopted the R4 predecessor's committed bootstrap seed 202608280411 and world seed 20260828, both fixed in the runner before any world was generated. See bootstrap_seed_stability: the terminal was re-derived under eight alternate bootstrap seeds so the adopted value can be shown not to be load-bearing.",
       "severity": "MEDIUM"
     },
     {
@@ -945,9 +1100,9 @@
     "violate_A1_noninterference": 288,
     "violate_A2_veto_monotonicity": 288,
     "violate_A3_safety": 288,
-    "violate_A4_nonnegative_cost": 288
+    "violate_A4_cost": 288
   },
-  "runner_sha256": "9ebbeffd207920abd49fc7d5d83ad4477d5060e1791cdc8875ccd798d4acf8b7",
+  "runner_sha256": "e76d0380fdbdadedfcdc02ca4210ac095c0b8853ecbcf39b16ec6bcdfc9ee867",
   "schema": "ORION.ORION11.CostedEpistemicOrdering.Result.v1",
   "scientific_authority_delta": "NONE",
   "seeds": {
@@ -979,5 +1134,5 @@
     "undecomposable_rows": 0
   },
   "world_family": "ORION11.COSTED_ORDERING.WORLDS.v1",
-  "world_set_sha256": "e055027879456515e0fa17aa07cfba348ed3b354b74405a1eec24d13b7d51a59"
+  "world_set_sha256": "e2cb621cc79ee37c00c80d43e2da2738f793f59714d3a1345b115a281ff7352b"
 }

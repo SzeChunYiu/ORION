@@ -51,6 +51,7 @@ N_WORLDS = 2882
 BUDGET_CEILING = 4.0
 RESAMPLES = 10000
 DECOMP_TOL = 1e-9
+NEG_NOISE_EPS = 1e-12      # below this a negative cost is float noise, not a value
 G1_MARGIN = -0.01
 G3_RATIO_THRESHOLD = 0.80
 G4_DP_FACTOR = 1.10
@@ -65,7 +66,7 @@ STRATA = (
     ("violate_A1_noninterference", 0.10),
     ("violate_A2_veto_monotonicity", 0.10),
     ("violate_A3_safety", 0.10),
-    ("violate_A4_nonnegative_cost", 0.10),
+    ("violate_A4_cost", 0.10),
 )
 
 # TRACE_SCHEMA_V1 arm_id enum (7 arms).  PROTOCOL.arms declares 8; see
@@ -97,6 +98,23 @@ LEVEL_NAMES = {0: "K_evidence", 1: "W_execution", 2: "M_mutation"}
 # ==========================================================================
 # World family
 # ==========================================================================
+def clamp_zero(x: float) -> float:
+    """Clamp float-noise negatives to exact 0.0; REFUSE anything genuinely negative.
+
+    Defect-only repair (checker fault NEGATIVE_COST_COMPONENT). The exact DP
+    oracle's expected-cost decomposition computes a final residual that is
+    analytically zero but accumulates ~1e-16 of float error. No scientific
+    quantity gets a tolerance: a negative larger than NEG_NOISE_EPS raises
+    rather than being silently clamped.
+    """
+    if x < 0.0:
+        if -x > NEG_NOISE_EPS:
+            raise ValueError(f"genuinely negative cost {x!r} exceeds NEG_NOISE_EPS; "
+                             "this is a real value and must be reported, not clamped")
+        return 0.0
+    return float(x)
+
+
 def stratum_counts() -> list[tuple[str, int]]:
     """Largest-remainder allocation of N_WORLDS across the declared shares.
 
@@ -149,7 +167,7 @@ def make_world(index: int, stratum: str) -> dict[str, Any]:
     actual_costs = costs.copy()                  # host-side true expenditure, >= 0
     visible_costs = costs.copy()                 # candidate-visible per_check_cost
 
-    if stratum == "violate_A4_nonnegative_cost":
+    if stratum == "violate_A4_cost":
         # The VIOLATION is in the world's cost structure (the published signal),
         # not in the accounting.  TRACE_SCHEMA hard invariant requires recorded
         # components to stay non-negative, so actual_costs are untouched.
@@ -283,14 +301,20 @@ class Session:
         self.selected: int | None = None
         self.terminated_reason = "not_started"
         self.budget_exceeded = False
+        self.blocked_prospective_cost: float | None = None
         self._step = 0
 
     # -- internals ---------------------------------------------------------
     def _afford(self, cost: float) -> bool:
-        return self.spent + cost <= BUDGET_CEILING + DECOMP_TOL
+        ok = self.spent + cost <= BUDGET_CEILING + DECOMP_TOL
+        if not ok and self.blocked_prospective_cost is None:
+            # the quantity the budget actually constrains, at the moment it bound
+            self.blocked_prospective_cost = float(self.spent + cost)
+        return ok
 
     def _log(self, kind: str, level: int | None, target: str, component: str, cost: float):
         self._step += 1
+        cost = clamp_zero(cost)
         self.actions.append(
             {
                 "step": self._step,
@@ -334,7 +358,7 @@ class Session:
             self.intervention += cost
         else:
             self.inspection += cost
-        self._log("test_repair", self.levels[cid], f"R{cid:02d}", component, cost)
+        self._log("test_repair", self.levels[cid], f"R{cid:02d}", component, clamp_zero(cost))
         obs = None
         if not admissible:
             pstar = float(self.interference[cid][self.w["i_star"]])
@@ -620,11 +644,11 @@ def dp_oracle(world: dict[str, Any]) -> dict[str, Any]:
     # exact decomposition along the optimal order
     exp_inspection = 0.0
     exp_intervention = 0.0
-    cum = 0.0
+    rem = 1.0
     for j in order:
         exp_intervention += c[j] * p[j]
-        exp_inspection += c[j] * (1.0 - cum - p[j])
-        cum += p[j]
+        rem = rem - p[j]                 # residual mass strictly after j
+        exp_inspection += c[j] * max(rem, 0.0)
     exp_reopen = float((p * np.asarray(world["reopen"], dtype=float)).sum())
     return {
         "order": order,
@@ -665,12 +689,12 @@ def run_arm(world: dict[str, Any], arm_id: str) -> dict[str, Any]:
             actions.append({"step": step, "kind": "expected_test_rejected",
                             "level": world["levels"][j], "target": f"R{j:02d}",
                             "cost_component": "inspection",
-                            "cost": float(c[j] * (1.0 - cum - p[j]))})
+                            "cost": clamp_zero(c[j] * (1.0 - cum - p[j]))})
             step += 1
             actions.append({"step": step, "kind": "expected_test_selected",
                             "level": world["levels"][j], "target": f"R{j:02d}",
                             "cost_component": "intervention",
-                            "cost": float(c[j] * p[j])})
+                            "cost": clamp_zero(c[j] * p[j])})
             cum += p[j]
         step += 1
         actions.append({"step": step, "kind": "expected_reopen", "level": None,
@@ -681,9 +705,13 @@ def run_arm(world: dict[str, Any], arm_id: str) -> dict[str, Any]:
             "arm_id": arm_id, "seed": world["seed"],
             "protected_root_task_success": True,
             "forbidden_high_level_mutation": filtration_violated(world, d["order"]),
-            "cost": {"inspection": d["inspection"], "intervention": d["intervention"],
-                     "reopening": d["reopening"], "total": d["total"]},
-            "budget_exceeded": bool(d["total"] > BUDGET_CEILING),
+            "cost": {"inspection": clamp_zero(d["inspection"]),
+                     "intervention": clamp_zero(d["intervention"]),
+                     "reopening": clamp_zero(d["reopening"]),
+                     "total": clamp_zero(d["total"])},
+                "budget_exceeded": bool(d["total"] > BUDGET_CEILING),
+            "budget_truncated": False,
+            "blocked_prospective_cost": None,
             "actions": actions,
             "terminated_reason": "exact_dp_optimum",
         }
@@ -698,9 +726,12 @@ def run_arm(world: dict[str, Any], arm_id: str) -> dict[str, Any]:
         "arm_id": arm_id, "seed": world["seed"],
         "protected_root_task_success": bool(success),
         "forbidden_high_level_mutation": filtration_violated(world, sess.tested),
-        "cost": {"inspection": float(sess.inspection), "intervention": float(sess.intervention),
-                 "reopening": float(sess.reopening), "total": float(total)},
-        "budget_exceeded": bool(sess.budget_exceeded or total > BUDGET_CEILING + DECOMP_TOL),
+        "cost": {"inspection": clamp_zero(sess.inspection),
+                 "intervention": clamp_zero(sess.intervention),
+                 "reopening": clamp_zero(sess.reopening), "total": clamp_zero(total)},
+        "budget_exceeded": bool(total > BUDGET_CEILING),
+        "budget_truncated": bool(sess.budget_exceeded),
+        "blocked_prospective_cost": sess.blocked_prospective_cost,
         "actions": sess.actions,
         "terminated_reason": sess.terminated_reason,
     }
@@ -722,8 +753,22 @@ def validate_rows(rows: list[dict[str, Any]], arms: tuple[str, ...],
         if d > DECOMP_TOL:
             undecomposable += 1
         for k in ("inspection", "intervention", "reopening", "total"):
-            if c[k] < -DECOMP_TOL:
+            if c[k] < 0.0:
                 problems.append(f"negative cost component {k} on {r['world_id']}/{r['arm_id']}")
+        for a in r["actions"]:
+            if a["cost"] < 0.0:
+                problems.append(f"negative action cost step {a['step']} on "
+                                f"{r['world_id']}/{r['arm_id']}")
+        if bool(r["budget_exceeded"]) != bool(c["total"] > BUDGET_CEILING):
+            problems.append(f"budget_exceeded inconsistent with total on "
+                            f"{r['world_id']}/{r['arm_id']}")
+        if r["budget_truncated"] != (r["blocked_prospective_cost"] is not None):
+            problems.append(f"budget_truncated inconsistent with blocked_prospective_cost "
+                            f"on {r['world_id']}/{r['arm_id']}")
+        if r["blocked_prospective_cost"] is not None and \
+                r["blocked_prospective_cost"] <= BUDGET_CEILING:
+            problems.append(f"blocked_prospective_cost does not exceed the ceiling on "
+                            f"{r['world_id']}/{r['arm_id']}")
         s = sum(a["cost"] for a in r["actions"])
         if abs(s - c["total"]) > 1e-8:
             problems.append(f"actions do not sum to total on {r['world_id']}/{r['arm_id']}")
@@ -963,232 +1008,257 @@ def main() -> int:
     ALL = np.arange(nW)
 
     # ---- bootstrap --------------------------------------------------------
-    brng = np.random.default_rng(FROZEN_BOOTSTRAP_SEED)
-    boot: dict[str, list[float]] = {k: [] for k in
-                                    ["g1_all", "g3_all", "g4_tv", "g6_diff_all", "g6_ratio_all"]}
-    for sid, _ in STRATA:
-        boot[f"g1_{sid}"] = []
-        boot[f"g3_{sid}"] = []
-        boot[f"g6_diff_{sid}"] = []
-    for _ in range(RESAMPLES):
-        pick = stratified_resample_indices(strata_index, brng)
-        boot["g1_all"].append(succ_diff(pick))
-        boot["g3_all"].append(cond_ratio(pick, FAV)[0])
-        boot["g6_diff_all"].append(cond_diff(pick, PCG)[0])
-        boot["g6_ratio_all"].append(cond_ratio(pick, PCG)[0])
-        tvp = pick[strat_arr[pick] == "theorem_valid"]
-        boot["g4_tv"].append(dp_gap(tvp))
-        for sid, _s in STRATA:
-            sub = pick[strat_arr[pick] == sid]
-            boot[f"g1_{sid}"].append(succ_diff(sub))
-            boot[f"g3_{sid}"].append(cond_ratio(sub, FAV)[0])
-            boot[f"g6_diff_{sid}"].append(cond_diff(sub, PCG)[0])
+    def run_bootstrap(bseed: int) -> dict[str, list[float]]:
+        brng = np.random.default_rng(bseed)
+        boot: dict[str, list[float]] = {k: [] for k in
+                                        ["g1_all", "g3_all", "g4_tv", "g6_diff_all", "g6_ratio_all"]}
+        for sid, _ in STRATA:
+            boot[f"g1_{sid}"] = []
+            boot[f"g3_{sid}"] = []
+            boot[f"g6_diff_{sid}"] = []
+        for _ in range(RESAMPLES):
+            pick = stratified_resample_indices(strata_index, brng)
+            boot["g1_all"].append(succ_diff(pick))
+            boot["g3_all"].append(cond_ratio(pick, FAV)[0])
+            boot["g6_diff_all"].append(cond_diff(pick, PCG)[0])
+            boot["g6_ratio_all"].append(cond_ratio(pick, PCG)[0])
+            tvp = pick[strat_arr[pick] == "theorem_valid"]
+            boot["g4_tv"].append(dp_gap(tvp))
+            for sid, _s in STRATA:
+                sub = pick[strat_arr[pick] == sid]
+                boot[f"g1_{sid}"].append(succ_diff(sub))
+                boot[f"g3_{sid}"].append(cond_ratio(sub, FAV)[0])
+                boot[f"g6_diff_{sid}"].append(cond_diff(sub, PCG)[0])
 
-    def clean(key: str) -> list[float]:
-        return [v for v in boot[key] if not math.isnan(v)]
+        def clean(key: str) -> list[float]:
+            return [v for v in boot[key] if not math.isnan(v)]
 
-    def tail(key: str, fails: Callable[[float], bool]) -> float:
-        v = clean(key)
-        return float("nan") if not v else sum(1 for x in v if fails(x)) / len(v)
-    # ---- gates ------------------------------------------------------------
-    gates: dict[str, Any] = {}
+        def tail(key: str, fails: Callable[[float], bool]) -> float:
+            v = clean(key)
+            return float("nan") if not v else sum(1 for x in v if fails(x)) / len(v)
+        return boot
 
-    # G1 success noninferiority, overall and per stratum
-    g1_lo, g1_hi = percentile_ci(clean("g1_all"))
-    g1_point = succ_diff(ALL)
-    g1_per = {}
-    g1_pass = g1_point >= G1_MARGIN and g1_lo >= G1_MARGIN
-    for sid, _ in STRATA:
-        idx = strata_index[sid]
-        pt = succ_diff(idx)
-        lo, hi = percentile_ci(clean(f"g1_{sid}"))
-        ok = pt >= G1_MARGIN and lo >= G1_MARGIN
-        g1_per[sid] = {"point": pt, "ci95": [lo, hi], "passed": bool(ok)}
-        g1_pass = g1_pass and ok
-    gates["G1_success_noninferiority"] = {
-        "statement": "ORION success noninferior to faithful_active_voi with margin -0.01.",
-        "margin": G1_MARGIN, "point_estimate_overall": g1_point,
-        "ci95_overall": [g1_lo, g1_hi], "per_stratum": g1_per,
-        "carries_sampling_statement": True,
-        "bootstrap_tail_fraction": tail("g1_all", lambda x: x < G1_MARGIN),
-        "passed": bool(g1_pass),
-    }
+    def derive(boot: dict[str, list[float]]) -> tuple:
+        def clean(key: str) -> list[float]:
+            return [v for v in boot[key] if not math.isnan(v)]
 
-    # G2 zero forbidden on every stratum (deterministic)
-    g2_per = {sid: float(forb[ORI][strata_index[sid]].mean()) for sid, _ in STRATA}
-    g2_pass = all(v == 0.0 for v in g2_per.values())
-    gates["G2_zero_forbidden"] = {
-        "statement": "ORION forbidden_high_level_mutation_rate == 0 on every stratum.",
-        "per_stratum_rate": g2_per, "carries_sampling_statement": False,
-        "exact_deterministic_check": True, "passed": bool(g2_pass),
-    }
+        def tail(key: str, fails: Callable[[float], bool]) -> float:
+            v = clean(key)
+            return float('nan') if not v else sum(1 for x in v if fails(x)) / len(v)
 
-    # G3 cost ratio vs faithful_active_voi
-    g3_point, g3_n = cond_ratio(ALL, FAV)
-    g3_lo, g3_hi = percentile_ci(clean("g3_all"))
-    g3_pass = (not math.isnan(g3_point)) and g3_point < G3_RATIO_THRESHOLD and g3_hi < G3_RATIO_THRESHOLD
-    drop_fav = {
-        "orion_failed_gates": int((~clear[ORI]).sum()),
-        "comparator_failed_gates": int((~clear[FAV]).sum()),
-        "either_failed": int((~(clear[ORI] & clear[FAV])).sum()),
-    }
-    gates["G3_cost_ratio"] = {
-        "statement": "Paired expected-cost ratio ORION / faithful_active_voi < 0.80 "
-                     "AND its 95% upper confidence bound < 0.80.",
-        "threshold": G3_RATIO_THRESHOLD, "point_estimate": g3_point,
-        "ci95": [g3_lo, g3_hi], "retained_n": g3_n, "retained_fraction": g3_n / nW,
-        "drop_counts": drop_fav, "carries_sampling_statement": True,
-        "bootstrap_tail_fraction": tail("g3_all", lambda x: not x < G3_RATIO_THRESHOLD),
-        "passed": bool(g3_pass),
-    }
+        # ---- gates ------------------------------------------------------------
+        gates: dict[str, Any] = {}
 
-    # G4 DP optimality gap on theorem_valid
-    g4_point = dp_gap(tv)
-    g4_lo, g4_hi = percentile_ci(clean("g4_tv"))
-    g4_pass = dp_available and (not math.isnan(g4_point)) and g4_point <= G4_DP_FACTOR
-    gates["G4_dp_gap"] = {
-        "statement": "ORION mean cost <= 1.10 x exact_dp_oracle optimum on theorem_valid.",
-        "factor": G4_DP_FACTOR, "point_estimate": g4_point, "ci95": [g4_lo, g4_hi],
-        "oracle_available": dp_available,
-        "dp_equals_smith_ratio_order_on_sampled_theorem_valid_worlds": bool(smith_ok),
-        "carries_sampling_statement": True,
-        "bootstrap_tail_fraction": tail("g4_tv", lambda x: x > G4_DP_FACTOR),
-        "passed": bool(g4_pass),
-    }
+        # G1 success noninferiority, overall and per stratum
+        g1_lo, g1_hi = percentile_ci(clean("g1_all"))
+        g1_point = succ_diff(ALL)
+        g1_per = {}
+        g1_pass = g1_point >= G1_MARGIN and g1_lo >= G1_MARGIN
+        for sid, _ in STRATA:
+            idx = strata_index[sid]
+            pt = succ_diff(idx)
+            lo, hi = percentile_ci(clean(f"g1_{sid}"))
+            ok = pt >= G1_MARGIN and lo >= G1_MARGIN
+            g1_per[sid] = {"point": pt, "ci95": [lo, hi], "passed": bool(ok)}
+            g1_pass = g1_pass and ok
+        gates["G1_success_noninferiority"] = {
+            "statement": "ORION success noninferior to faithful_active_voi with margin -0.01.",
+            "margin": G1_MARGIN, "point_estimate_overall": g1_point,
+            "ci95_overall": [g1_lo, g1_hi], "per_stratum": g1_per,
+            "carries_sampling_statement": True,
+            "bootstrap_tail_fraction": tail("g1_all", lambda x: x < G1_MARGIN),
+            "passed": bool(g1_pass),
+        }
 
-    # G5 attribution: the ORION advantage must DISAPPEAR on every violation stratum
-    viol = [sid for sid, _ in STRATA if sid.startswith("violate_")]
-    g5_per = {}
-    g5_pass = True
-    for sid in viol:
-        idx = strata_index[sid]
-        pt, k = cond_ratio(idx, FAV)
-        lo, hi = percentile_ci(clean(f"g3_{sid}"))
-        advantage = (not math.isnan(pt)) and pt < G3_RATIO_THRESHOLD and hi < G3_RATIO_THRESHOLD
-        g5_per[sid] = {"cost_ratio_point": pt, "ci95": [lo, hi], "retained_n": k,
-                       "advantage_present": bool(advantage),
-                       "passed": bool(not advantage)}
-        g5_pass = g5_pass and not advantage
-    gates["G5_assumption_attribution"] = {
-        "statement": "The ORION cost advantage disappears on every assumption-violation "
-                     "control stratum.",
-        "operationalisation": "advantage present on a stratum iff the G3 criterion "
-                              "(ratio < 0.80 and 95% UCB < 0.80) holds there",
-        "per_stratum": g5_per, "carries_sampling_statement": True,
-        "bootstrap_tail_fraction": max(
-            [tail(f"g3_{sid}", lambda x: x < G3_RATIO_THRESHOLD) for sid in viol]),
-        "passed": bool(g5_pass),
-    }
+        # G2 zero forbidden on every stratum (deterministic)
+        g2_per = {sid: float(forb[ORI][strata_index[sid]].mean()) for sid, _ in STRATA}
+        g2_pass = all(v == 0.0 for v in g2_per.values())
+        gates["G2_zero_forbidden"] = {
+            "statement": "ORION forbidden_high_level_mutation_rate == 0 on every stratum.",
+            "per_stratum_rate": g2_per, "carries_sampling_statement": False,
+            "exact_deterministic_check": True, "passed": bool(g2_pass),
+        }
 
-    # G6 donor baseline (dominant)
-    g6_ratio, g6_n = cond_ratio(ALL, PCG)
-    g6_diff, _ = cond_diff(ALL, PCG)
-    g6_dlo, g6_dhi = percentile_ci(clean("g6_diff_all"))
-    g6_rlo, g6_rhi = percentile_ci(clean("g6_ratio_all"))
-    # Falsification: p/c is at or below ORION on cost, with the 95% CI of
-    # (ORION - p/c) excluding an ORION advantage (i.e. lower bound >= 0).
-    g6_falsifies = (not math.isnan(g6_diff)) and g6_diff >= 0.0 and g6_dlo >= 0.0
-    g6_orion_strictly_cheaper = (not math.isnan(g6_diff)) and g6_diff < 0.0 and g6_dhi < 0.0
-    drop_pcg = {
-        "orion_failed_gates": int((~clear[ORI]).sum()),
-        "comparator_failed_gates": int((~clear[PCG]).sum()),
-        "either_failed": int((~(clear[ORI] & clear[PCG])).sum()),
-        "comparator_forbidden_mutation": int(forb[PCG].sum()),
-        "comparator_task_failure": int((~succ[PCG]).sum()),
-    }
-    g6_per = {}
-    for sid, _ in STRATA:
-        idx = strata_index[sid]
-        pt, k = cond_ratio(idx, PCG)
-        dpt, _ = cond_diff(idx, PCG)
-        lo, hi = percentile_ci(clean(f"g6_diff_{sid}"))
-        g6_per[sid] = {"cost_ratio_orion_over_pc": pt, "mean_diff_orion_minus_pc": dpt,
-                       "diff_ci95": [lo, hi], "retained_n": k}
-    gates["G6_donor_baseline"] = {
-        "statement": "ORION cost versus gain_per_cost_greedy at equal success and safety. "
-                     "Theorem C predicts ORION is NOT lower.",
-        "cost_ratio_orion_over_pc": g6_ratio, "ratio_ci95": [g6_rlo, g6_rhi],
-        "mean_diff_orion_minus_pc": g6_diff, "diff_ci95": [g6_dlo, g6_dhi],
-        "retained_n": g6_n, "retained_fraction": g6_n / nW, "drop_counts": drop_pcg,
-        "per_stratum": g6_per,
-        "pc_baseline_matches_or_beats_orion": bool(g6_falsifies),
-        "orion_strictly_cheaper_than_pc": bool(g6_orion_strictly_cheaper),
-        "carries_sampling_statement": True,
-        "bootstrap_tail_fraction": tail("g6_diff_all", lambda x: x < 0.0),
-        "passed": bool(not g6_falsifies),
-    }
+        # G3 cost ratio vs faithful_active_voi
+        g3_point, g3_n = cond_ratio(ALL, FAV)
+        g3_lo, g3_hi = percentile_ci(clean("g3_all"))
+        g3_pass = (not math.isnan(g3_point)) and g3_point < G3_RATIO_THRESHOLD and g3_hi < G3_RATIO_THRESHOLD
+        drop_fav = {
+            "orion_failed_gates": int((~clear[ORI]).sum()),
+            "comparator_failed_gates": int((~clear[FAV]).sum()),
+            "either_failed": int((~(clear[ORI] & clear[FAV])).sum()),
+        }
+        gates["G3_cost_ratio"] = {
+            "statement": "Paired expected-cost ratio ORION / faithful_active_voi < 0.80 "
+                         "AND its 95% upper confidence bound < 0.80.",
+            "threshold": G3_RATIO_THRESHOLD, "point_estimate": g3_point,
+            "ci95": [g3_lo, g3_hi], "retained_n": g3_n, "retained_fraction": g3_n / nW,
+            "drop_counts": drop_fav, "carries_sampling_statement": True,
+            "bootstrap_tail_fraction": tail("g3_all", lambda x: not x < G3_RATIO_THRESHOLD),
+            "passed": bool(g3_pass),
+        }
 
-    # G7 instrument control (deterministic)
-    gates["G7_instrument_control"] = {
-        "statement": "On ratio_aligned, orion_level_monotone and gain_per_cost_greedy must "
-                     "produce identical orderings and identical expected cost.",
-        "n_ratio_aligned_worlds": int(ra.size),
-        "ordering_mismatches": g7_order_mismatch, "cost_mismatches": g7_cost_mismatch,
-        "max_abs_cost_difference": g7_worst,
-        "carries_sampling_statement": False, "exact_deterministic_check": True,
-        "passed": bool(g7_pass),
-    }
+        # G4 DP optimality gap on theorem_valid
+        g4_point = dp_gap(tv)
+        g4_lo, g4_hi = percentile_ci(clean("g4_tv"))
+        g4_pass = dp_available and (not math.isnan(g4_point)) and g4_point <= G4_DP_FACTOR
+        gates["G4_dp_gap"] = {
+            "statement": "ORION mean cost <= 1.10 x exact_dp_oracle optimum on theorem_valid.",
+            "factor": G4_DP_FACTOR, "point_estimate": g4_point, "ci95": [g4_lo, g4_hi],
+            "oracle_available": dp_available,
+            "dp_equals_smith_ratio_order_on_sampled_theorem_valid_worlds": bool(smith_ok),
+            "carries_sampling_statement": True,
+            "bootstrap_tail_fraction": tail("g4_tv", lambda x: x > G4_DP_FACTOR),
+            "passed": bool(g4_pass),
+        }
 
-    # ---- Holm across the gates carrying a sampling statement --------------
-    fam = [(k, v["bootstrap_tail_fraction"]) for k, v in gates.items()
-           if v.get("carries_sampling_statement")]
-    fam_sorted = sorted(fam, key=lambda t: (float("inf") if math.isnan(t[1]) else t[1]))
-    m = len(fam_sorted)
-    holm = {}
-    running = 0.0
-    for i, (k, praw) in enumerate(fam_sorted):
-        adj = min(1.0, max(running, (m - i) * praw)) if not math.isnan(praw) else float("nan")
-        running = adj if not math.isnan(adj) else running
-        holm[k] = {"bootstrap_tail_fraction": praw, "holm_adjusted": adj,
-                   "significant_at_0.05": bool((not math.isnan(adj)) and adj < HOLM_ALPHA)}
-    multiplicity = {
-        "rule": "Holm across the registered gate family",
-        "family_members": [k for k, _ in fam_sorted],
-        "excluded_from_family": [k for k, v in gates.items()
-                                 if not v.get("carries_sampling_statement")],
-        "exclusion_rationale": ("G2 (exact count == 0) and G7 (exact equality) carry no "
-                                "sampling distribution. PROTOCOL specifies 'Holm across "
-                                "the registered gate family' without a p-value mapping; "
-                                "this is the mapping chosen, recorded before the run."),
-        "alpha": HOLM_ALPHA, "adjusted": holm,
-    }
+        # G5 attribution: the ORION advantage must DISAPPEAR on every violation stratum
+        viol = [sid for sid, _ in STRATA if sid.startswith("violate_")]
+        g5_per = {}
+        g5_pass = True
+        for sid in viol:
+            idx = strata_index[sid]
+            pt, k = cond_ratio(idx, FAV)
+            lo, hi = percentile_ci(clean(f"g3_{sid}"))
+            advantage = (not math.isnan(pt)) and pt < G3_RATIO_THRESHOLD and hi < G3_RATIO_THRESHOLD
+            g5_per[sid] = {"cost_ratio_point": pt, "ci95": [lo, hi], "retained_n": k,
+                           "advantage_present": bool(advantage),
+                           "passed": bool(not advantage)}
+            g5_pass = g5_pass and not advantage
+        gates["G5_assumption_attribution"] = {
+            "statement": "The ORION cost advantage disappears on every assumption-violation "
+                         "control stratum.",
+            "operationalisation": "advantage present on a stratum iff the G3 criterion "
+                                  "(ratio < 0.80 and 95% UCB < 0.80) holds there",
+            "per_stratum": g5_per, "carries_sampling_statement": True,
+            "bootstrap_tail_fraction": max(
+                [tail(f"g3_{sid}", lambda x: x < G3_RATIO_THRESHOLD) for sid in viol]),
+            "passed": bool(g5_pass),
+        }
 
-    # ---- terminal selection ----------------------------------------------
-    cannot_check = None
-    if not validation["passed"]:
-        cannot_check = "CANNOT_CHECK__COST_TRACE_UNDECOMPOSABLE"
-    elif anchor_status != "PASSED":
-        cannot_check = "CANNOT_CHECK__ANCHOR_REPRODUCTION_FAILED"
-    elif not dp_available:
-        cannot_check = "CANNOT_CHECK__DP_ORACLE_INFEASIBLE"
-    elif not g7_pass:
-        cannot_check = "CANNOT_CHECK__INSTRUMENT_FAULT__G7_NOT_IN_FROZEN_TERMINAL_SET"
+        # G6 donor baseline (dominant)
+        g6_ratio, g6_n = cond_ratio(ALL, PCG)
+        g6_diff, _ = cond_diff(ALL, PCG)
+        g6_dlo, g6_dhi = percentile_ci(clean("g6_diff_all"))
+        g6_rlo, g6_rhi = percentile_ci(clean("g6_ratio_all"))
+        # Falsification: p/c is at or below ORION on cost, with the 95% CI of
+        # (ORION - p/c) excluding an ORION advantage (i.e. lower bound >= 0).
+        g6_falsifies = (not math.isnan(g6_diff)) and g6_diff >= 0.0 and g6_dlo >= 0.0
+        g6_orion_strictly_cheaper = (not math.isnan(g6_diff)) and g6_diff < 0.0 and g6_dhi < 0.0
+        drop_pcg = {
+            "orion_failed_gates": int((~clear[ORI]).sum()),
+            "comparator_failed_gates": int((~clear[PCG]).sum()),
+            "either_failed": int((~(clear[ORI] & clear[PCG])).sum()),
+            "comparator_forbidden_mutation": int(forb[PCG].sum()),
+            "comparator_task_failure": int((~succ[PCG]).sum()),
+        }
+        g6_per = {}
+        for sid, _ in STRATA:
+            idx = strata_index[sid]
+            pt, k = cond_ratio(idx, PCG)
+            dpt, _ = cond_diff(idx, PCG)
+            lo, hi = percentile_ci(clean(f"g6_diff_{sid}"))
+            g6_per[sid] = {"cost_ratio_orion_over_pc": pt, "mean_diff_orion_minus_pc": dpt,
+                           "diff_ci95": [lo, hi], "retained_n": k}
+        gates["G6_donor_baseline"] = {
+            "statement": "ORION cost versus gain_per_cost_greedy at equal success and safety. "
+                         "Theorem C predicts ORION is NOT lower.",
+            "cost_ratio_orion_over_pc": g6_ratio, "ratio_ci95": [g6_rlo, g6_rhi],
+            "mean_diff_orion_minus_pc": g6_diff, "diff_ci95": [g6_dlo, g6_dhi],
+            "retained_n": g6_n, "retained_fraction": g6_n / nW, "drop_counts": drop_pcg,
+            "per_stratum": g6_per,
+            "pc_baseline_matches_or_beats_orion": bool(g6_falsifies),
+            "orion_strictly_cheaper_than_pc": bool(g6_orion_strictly_cheaper),
+            "carries_sampling_statement": True,
+            "bootstrap_tail_fraction": tail("g6_diff_all", lambda x: x < 0.0),
+            "passed": bool(not g6_falsifies),
+        }
 
-    theorem_valid_strata = ["theorem_valid", "ratio_aligned"]
-    tv_gate_ok = {sid: bool(g1_per[sid]["passed"] and g2_per[sid] == 0.0
-                            and (lambda t: (not math.isnan(t[0])) and t[0] < G3_RATIO_THRESHOLD)(
-                                cond_ratio(strata_index[sid], FAV)))
-                  for sid in theorem_valid_strata}
-    bounded = any(tv_gate_ok.values()) and not all(tv_gate_ok.values())
+        # G7 instrument control (deterministic)
+        gates["G7_instrument_control"] = {
+            "statement": "On ratio_aligned, orion_level_monotone and gain_per_cost_greedy must "
+                         "produce identical orderings and identical expected cost.",
+            "n_ratio_aligned_worlds": int(ra.size),
+            "ordering_mismatches": g7_order_mismatch, "cost_mismatches": g7_cost_mismatch,
+            "max_abs_cost_difference": g7_worst,
+            "carries_sampling_statement": False, "exact_deterministic_check": True,
+            "passed": bool(g7_pass),
+        }
 
-    if cannot_check:
-        terminal = cannot_check
-    elif not gates["G1_success_noninferiority"]["passed"]:
-        terminal = "H_FALSIFIED__SUCCESS_NONINFERIORITY_FAILED"
-    elif not gates["G2_zero_forbidden"]["passed"]:
-        terminal = "H_FALSIFIED__FORBIDDEN_MUTATION_OBSERVED"
-    elif g6_falsifies:
-        terminal = "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
-    elif not gates["G5_assumption_attribution"]["passed"]:
-        terminal = "H_FALSIFIED__ADVANTAGE_PERSISTS_ON_ASSUMPTION_VIOLATION_CONTROLS"
-    elif not gates["G3_cost_ratio"]["passed"]:
-        terminal = "H_FALSIFIED__COST_RATIO_GATE_MISSED"
-    elif not gates["G4_dp_gap"]["passed"]:
-        terminal = "H_FALSIFIED__DP_OPTIMALITY_GAP_EXCEEDED"
-    elif bounded:
-        terminal = "H_BOUNDED__ECONOMY_ON_A_SUBFAMILY_ONLY"
-    else:
-        terminal = "H_SUPPORTED__SAFETY_PRICED_LEVEL_ORDERING"
+        # ---- Holm across the gates carrying a sampling statement --------------
+        fam = [(k, v["bootstrap_tail_fraction"]) for k, v in gates.items()
+               if v.get("carries_sampling_statement")]
+        fam_sorted = sorted(fam, key=lambda t: (float("inf") if math.isnan(t[1]) else t[1]))
+        m = len(fam_sorted)
+        holm = {}
+        running = 0.0
+        for i, (k, praw) in enumerate(fam_sorted):
+            adj = min(1.0, max(running, (m - i) * praw)) if not math.isnan(praw) else float("nan")
+            running = adj if not math.isnan(adj) else running
+            holm[k] = {"bootstrap_tail_fraction": praw, "holm_adjusted": adj,
+                       "significant_at_0.05": bool((not math.isnan(adj)) and adj < HOLM_ALPHA)}
+        multiplicity = {
+            "rule": "Holm across the registered gate family",
+            "family_members": [k for k, _ in fam_sorted],
+            "excluded_from_family": [k for k, v in gates.items()
+                                     if not v.get("carries_sampling_statement")],
+            "exclusion_rationale": ("G2 (exact count == 0) and G7 (exact equality) carry no "
+                                    "sampling distribution. PROTOCOL specifies 'Holm across "
+                                    "the registered gate family' without a p-value mapping; "
+                                    "this is the mapping chosen, recorded before the run."),
+            "alpha": HOLM_ALPHA, "adjusted": holm,
+        }
+
+        # ---- terminal selection ----------------------------------------------
+        cannot_check = None
+        if not validation["passed"]:
+            cannot_check = "CANNOT_CHECK__COST_TRACE_UNDECOMPOSABLE"
+        elif anchor_status != "PASSED":
+            cannot_check = "CANNOT_CHECK__ANCHOR_REPRODUCTION_FAILED"
+        elif not dp_available:
+            cannot_check = "CANNOT_CHECK__DP_ORACLE_INFEASIBLE"
+        elif not g7_pass:
+            cannot_check = "CANNOT_CHECK__INSTRUMENT_FAULT__G7_NOT_IN_FROZEN_TERMINAL_SET"
+
+        theorem_valid_strata = ["theorem_valid", "ratio_aligned"]
+        tv_gate_ok = {sid: bool(g1_per[sid]["passed"] and g2_per[sid] == 0.0
+                                and (lambda t: (not math.isnan(t[0])) and t[0] < G3_RATIO_THRESHOLD)(
+                                    cond_ratio(strata_index[sid], FAV)))
+                      for sid in theorem_valid_strata}
+        bounded = any(tv_gate_ok.values()) and not all(tv_gate_ok.values())
+
+        if cannot_check:
+            terminal = cannot_check
+        elif not gates["G1_success_noninferiority"]["passed"]:
+            terminal = "H_FALSIFIED__SUCCESS_NONINFERIORITY_FAILED"
+        elif not gates["G2_zero_forbidden"]["passed"]:
+            terminal = "H_FALSIFIED__FORBIDDEN_MUTATION_OBSERVED"
+        elif g6_falsifies:
+            terminal = "H_FALSIFIED__PC_BASELINE_MATCHES_OR_BEATS_ORION"
+        elif not gates["G5_assumption_attribution"]["passed"]:
+            terminal = "H_FALSIFIED__ADVANTAGE_PERSISTS_ON_ASSUMPTION_VIOLATION_CONTROLS"
+        elif not gates["G3_cost_ratio"]["passed"]:
+            terminal = "H_FALSIFIED__COST_RATIO_GATE_MISSED"
+        elif not gates["G4_dp_gap"]["passed"]:
+            terminal = "H_FALSIFIED__DP_OPTIMALITY_GAP_EXCEEDED"
+        elif bounded:
+            terminal = "H_BOUNDED__ECONOMY_ON_A_SUBFAMILY_ONLY"
+        else:
+            terminal = "H_SUPPORTED__SAFETY_PRICED_LEVEL_ORDERING"
+        return gates, terminal, multiplicity, tv_gate_ok, bounded
+
+    boot_frozen = run_bootstrap(FROZEN_BOOTSTRAP_SEED)
+    gates, terminal, multiplicity, tv_gate_ok, bounded = derive(boot_frozen)
+
+    # ---- bootstrap-seed stability probe -------------------------------
+    # PROTOCOL.statistics declares a frozen seed but no frozen document
+    # carries a value. The alternates are a deterministic pre-stated set
+    # (frozen seed + 1..8); ALL are reported, none is selected.
+    seed_probe = []
+    for alt in [FROZEN_BOOTSTRAP_SEED + k for k in range(1, 9)]:
+        g_alt, t_alt, _m, _t, _b = derive(run_bootstrap(alt))
+        seed_probe.append({'bootstrap_seed': alt, 'terminal': t_alt,
+                           'gate_passes': {k: bool(v['passed']) for k, v in g_alt.items()}})
 
     # ---- per-arm / per-stratum aggregates ---------------------------------
     per_arm = {}
@@ -1202,6 +1272,8 @@ def main() -> int:
             "joint_clear_rate": float(clear[a][mask].mean()),
             "budget_exceeded_rows": int(sum(
                 1 for r in rows if r["arm_id"] == a and r["budget_exceeded"])),
+            "budget_truncated_rows": int(sum(
+                1 for r in rows if r["arm_id"] == a and r["budget_truncated"])),
             "per_stratum": {},
         }
         for sid, _ in STRATA:
@@ -1234,12 +1306,55 @@ def main() -> int:
                        "7 schema-enumerated arms, and random_unsafe_ablation is written to "
                        "offschema_random_unsafe_ablation.jsonl. No gate reads it; this is "
                        "asserted mechanically (GATE_ARMS)."},
+        {"id": "PC-09", "severity": "MEDIUM",
+         "issue": "Independent checker fault NEGATIVE_COST_COMPONENT (836 rows, all "
+                  "exact_dp_oracle). The expected-cost decomposition computed the residual "
+                  "probability mass as 1.0 - cum - p[j], which is analytically zero on the "
+                  "last class of the optimal order but accumulated float error; the largest "
+                  "observed magnitude was 3.53e-16.",
+         "resolution": "Root cause fixed (residual mass now tracked by successive "
+                       "subtraction) AND a clamp_zero guard applied at every emission "
+                       "point. The guard RAISES on any negative above 1e-12 rather than "
+                       "clamping it, so a genuinely negative cost can never be silently "
+                       "absorbed. Verified before the repair that every negative in the "
+                       "prior traces was below 1e-12. The runner's own validator missed "
+                       "this because it checked the four aggregate cost components but not "
+                       "individual action costs; it now checks both."},
+        {"id": "PC-10", "severity": "MEDIUM",
+         "issue": "Independent checker fault BUDGET_FLAG_INCONSISTENT (1403 rows). "
+                  "TRACE_SCHEMA defines budget_exceeded as 'true when total > 4.0', but the "
+                  "field was emitted tracking a DIFFERENT quantity: whether the policy was "
+                  "halted because the NEXT required action would have exceeded the ceiling. "
+                  "No run can ever have total > 4.0, because every action is affordability-"
+                  "checked before it is charged, so under the schema's literal rule the "
+                  "field is always false and carries no information.",
+         "resolution": "budget_exceeded now follows the schema rule exactly (total > 4.0) "
+                       "and is self-consistent with total on the same row. The informative "
+                       "quantity is emitted alongside it as budget_truncated plus "
+                       "blocked_prospective_cost (the value of spend + next action cost at "
+                       "the moment the ceiling bound), so the checker can verify the flag "
+                       "against the quantity the budget actually constrains. NO SCIENCE "
+                       "MOVES: budget_exceeded feeds no gate and no statistic, only a "
+                       "reporting count."},
+        {"id": "PC-11", "severity": "MEDIUM",
+         "issue": "PROTOCOL.json spells the fourth violation stratum violate_A4_cost; "
+                  "TRACE_SCHEMA_V1 spells it violate_A4_nonnegative_cost. Both are frozen "
+                  "and conflict.",
+         "resolution": "PROTOCOL is the frozen authority on the world family, so the "
+                       "PROTOCOL spelling is emitted. This is a relabelling only: the "
+                       "stratum definition, its share, its position in the allocation order "
+                       "and the generated world content are unchanged, verified by "
+                       "comparing per-world costs, priors and latent classes across the "
+                       "rename."},
         {"id": "PC-02", "severity": "MEDIUM",
          "issue": "PROTOCOL.statistics says the bootstrap seed is 'frozen here' but "
                   "PROTOCOL.json contains no literal seed value.",
          "resolution": f"Adopted the R4 predecessor's committed bootstrap seed "
                        f"{FROZEN_BOOTSTRAP_SEED} and world seed {FROZEN_WORLD_SEED}, both "
-                       "fixed in the runner before any world was generated."},
+                       "fixed in the runner before any world was generated. See "
+                       "bootstrap_seed_stability: the terminal was re-derived under eight "
+                       "alternate bootstrap seeds so the adopted value can be shown not to "
+                       "be load-bearing."},
         {"id": "PC-03", "severity": "LOW",
          "issue": "2882 x 0.10 = 288.2 is not an integer, so the declared stratum shares "
                   "cannot be realised exactly.",
@@ -1295,6 +1410,24 @@ def main() -> int:
             args.anchor_reference.read_bytes()).hexdigest(),
         "seeds": {"world_seed": FROZEN_WORLD_SEED,
                   "bootstrap_seed": FROZEN_BOOTSTRAP_SEED, "resamples": RESAMPLES},
+        "bootstrap_seed_stability": {
+            "question": "Is the terminal load-bearing on the bootstrap seed choice?",
+            "reason_probe_exists": "PROTOCOL.statistics declares a frozen bootstrap seed "
+                                   "but no frozen document carries a value, so the seed "
+                                   "was adopted rather than read.",
+            "frozen_seed": FROZEN_BOOTSTRAP_SEED,
+            "frozen_seed_terminal": terminal,
+            "alternates_tested": [x["bootstrap_seed"] for x in seed_probe],
+            "alternate_selection_rule": "deterministic pre-stated set: frozen seed + 1..8; "
+                                        "all reported, none selected",
+            "alternate_terminals": sorted({x["terminal"] for x in seed_probe}),
+            "terminal_stable_across_all_seeds_tested": bool(
+                all(x["terminal"] == terminal for x in seed_probe)),
+            "gate_passes_stable_across_all_seeds_tested": bool(all(
+                x["gate_passes"] == {k: bool(v["passed"]) for k, v in gates.items()}
+                for x in seed_probe)),
+            "per_seed": seed_probe,
+        },
         "n_worlds": nW,
         "realised_stratum_counts": {sid: int(strata_index[sid].size) for sid, _ in STRATA},
         "arms_run": list(all_arms),
@@ -1311,6 +1444,13 @@ def main() -> int:
             "anchor_arms": list(ANCHOR_ARMS),
             "gate_arms_excluded_from_stage1": sorted(GATE_ARMS),
             "rows": anchor_rows_out,
+            "re_emission_note": "This reference was re-emitted for the checker-fault repair "
+                                "re-run, after a prior run's outcomes had been seen. The "
+                                "guarantee it carries is therefore STRUCTURAL, not temporal: "
+                                "stage 1 executes only arms that no gate reads, which is "
+                                "asserted in code (GATE_ARMS) rather than claimed. The "
+                                "repair changed serialisation only; no world, policy, gate, "
+                                "margin, seed or cost-accounting rule moved.",
         },
         "per_arm": per_arm,
         "gates": gates,
@@ -1352,8 +1492,11 @@ def main() -> int:
         json.dumps(result, indent=2, sort_keys=True, default=float) + "\n")
     print(json.dumps({"terminal": terminal, "anchor": anchor_status,
                       "validation_passed": validation["passed"],
-                      "G3_ratio": g3_point, "G6_diff": g6_diff,
-                      "G7_passed": g7_pass}, default=float))
+                      "G3_ratio": gates["G3_cost_ratio"]["point_estimate"],
+                      "G6_diff": gates["G6_donor_baseline"]["mean_diff_orion_minus_pc"],
+                      "G7_passed": gates["G7_instrument_control"]["passed"],
+                      "seed_stable": result["bootstrap_seed_stability"][
+                          "terminal_stable_across_all_seeds_tested"]}, default=float))
     return 0
 
 
