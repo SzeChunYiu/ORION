@@ -11,6 +11,8 @@ import numpy as np
 
 
 EXECUTOR = Path(__file__).with_name("fiberguard_pmlb_arm_conditional_r24.py")
+WRAPPER = Path(__file__).with_name("run_fiberguard_pmlb_arm_conditional_r24_twice.sh")
+SLURM = Path(__file__).with_name("ORION02_R24_EXECUTION.slurm")
 
 
 def load_executor():
@@ -234,6 +236,26 @@ class TerminalTests(unittest.TestCase):
             module.decide_terminal(payload),
             "C_R24_ARM_CONDITIONAL_VALUE",
         )
+
+
+class ExecutionBindingTests(unittest.TestCase):
+    def test_wrapper_requires_two_runs_byte_identity_and_two_verifier_passes(self) -> None:
+        text = WRAPPER.read_text()
+        self.assertIn('run_one "run_a"', text)
+        self.assertIn('run_one "run_b"', text)
+        self.assertIn('cmp -s "$TMP/run_a.result.json" "$TMP/run_b.result.json"', text)
+        self.assertIn('cmp -s "$TMP/run_a.parent.json" "$TMP/run_b.parent.json"', text)
+        self.assertIn('cmp -s "$TMP/run_a.terminal.txt" "$TMP/run_b.terminal.txt"', text)
+        self.assertIn('verify_one "run_a"', text)
+        self.assertIn('verify_one "run_b"', text)
+        self.assertIn("failed-executions", text)
+
+    def test_slurm_binds_exact_source_commit_and_clean_tree(self) -> None:
+        text = SLURM.read_text()
+        self.assertIn('EXPECTED_SOURCE_COMMIT', text)
+        self.assertIn('git rev-parse HEAD', text)
+        self.assertIn('git status --porcelain', text)
+        self.assertIn('run_fiberguard_pmlb_arm_conditional_r24_twice.sh', text)
 
 
 if __name__ == "__main__":
