@@ -1,0 +1,22 @@
+name: wave2-publication-control-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/publication_closure/wave2/**'
+      - '.github/workflows/wave2-publication-control-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-wave2-publication-control:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify exact bindings and publication decisions
+        run: python papers/publication_closure/wave2/check_wave2_disposition_v1.py

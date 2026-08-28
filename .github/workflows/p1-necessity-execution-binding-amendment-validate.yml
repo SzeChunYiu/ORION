@@ -11,6 +11,7 @@ on:
       - 'research/revival/p1/confirmatory/v2.2/PRIMARY_*_FREEZE*.json'
       - 'research/revival/p1/confirmatory/v2.2/EXECUTION_BINDING_AMENDMENT*.json'
       - 'research/revival/p1/freeze_mutation_necessity_*.py'
+      - 'research/revival/p1/validate_mutation_necessity_amendment_chain.py'
       - 'src/orion/study/p1_causal/absorbed_mechanics.py'
       - 'src/orion/study/p1_causal/necessity_*.py'
 
@@ -29,70 +30,15 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -e '.[dev]'
-      - name: Generate corrected binding and prove sole difference
+      - name: Validate the complete pre-outcome amendment chain
         run: |
           rm -rf /tmp/p1-worlds /tmp/p1-amendment
           mkdir -p /tmp/p1-amendment
           python research/revival/p1/freeze_mutation_necessity_worlds.py --outdir /tmp/p1-worlds
-          python - <<'PY'
-          import hashlib, json, shutil
-          from pathlib import Path
-          root=Path('research/revival/p1/confirmatory/v2.2')
-          frozen=json.loads((root/'PRIMARY_WORLD_FREEZE.json').read_text())
-          fresh=json.loads(Path('/tmp/p1-worlds/WORLD_FREEZE.json').read_text())
-          for key in ['protocol_version','confirmatory_seed','replication_seed','n','hidden_shift_n','negative_control_n','public_sha256','protected_response_matrix_sha256','candidate_view_leak_count','by_family','source_sha256']:
-              assert fresh[key]==frozen[key], (key,fresh[key],frozen[key])
-          assert fresh['protocol_chain']['chain_sha256']==frozen['protocol_chain']['chain_sha256']
-          shutil.copyfile(root/'PRIMARY_WORLD_FREEZE.json','/tmp/p1-worlds/WORLD_FREEZE.json')
-          PY
-          python research/revival/p1/freeze_mutation_necessity_execution.py \
-            --world-dir /tmp/p1-worlds \
-            --out /tmp/p1-amendment/PRIMARY_EXECUTION_FREEZE_V2.json
-          python - <<'PY'
-          import hashlib, json
-          from pathlib import Path
-          root=Path('research/revival/p1/confirmatory/v2.2')
-          old=json.loads((root/'PRIMARY_EXECUTION_FREEZE.json').read_text())
-          new_path=Path('/tmp/p1-amendment/PRIMARY_EXECUTION_FREEZE_V2.json')
-          new=json.loads(new_path.read_text())
-          old_without=dict(old); new_without=dict(new)
-          old_world=old_without.pop('world_freeze_sha256')
-          new_world=new_without.pop('world_freeze_sha256')
-          assert old_world != new_world
-          assert old_without==new_without
-          committed_world_sha=hashlib.sha256((root/'PRIMARY_WORLD_FREEZE.json').read_bytes()).hexdigest()
-          assert new_world==committed_world_sha
-          amendment={
-              'schema_version':'P1.epistemic-mutation-necessity-execution-binding-amendment.v1',
-              'date':'2026-08-18',
-              'protocol_version':'P1.epistemic-mutation-necessity.v2.2.4',
-              'reason':'The first observable primary attempt aborted before any arm execution because the original execution receipt bound a branch-local regenerated WORLD_FREEZE envelope rather than the earlier committed PRIMARY_WORLD_FREEZE receipt. Public/protected rows, protocol chain, source hashes, N, parents, scorer and statistics were identical.',
-              'failed_primary_run_id':32082350567,
-              'failed_primary_job_id':95547656300,
-              'debug_run_id':32082698013,
-              'debug_job_id':95548624691,
-              'old_execution_receipt_sha256':hashlib.sha256((root/'PRIMARY_EXECUTION_FREEZE.json').read_bytes()).hexdigest(),
-              'new_execution_receipt_sha256':hashlib.sha256(new_path.read_bytes()).hexdigest(),
-              'old_world_freeze_sha256':old_world,
-              'new_world_freeze_sha256':new_world,
-              'committed_world_receipt_sha256':committed_world_sha,
-              'scientific_fields_changed':[],
-              'source_hashes_changed':[],
-              'arms_executed_before_correction':False,
-              'scientific_terminal_observed_before_correction':False,
-              'confirmatory_worlds_changed':False,
-              'protocol_or_margin_changed':False,
-              'claim_boundary':'POST_ACCESS_INSTRUMENT_BINDING_CORRECTION_ONLY__NO_SCIENTIFIC_RULE_OR_OUTCOME_CHANGE',
-          }
-          Path('/tmp/p1-amendment/EXECUTION_BINDING_AMENDMENT_V1.json').write_text(json.dumps(amendment, indent=2, sort_keys=True)+'\n')
-          print(json.dumps(amendment, sort_keys=True))
-          PY
-      - name: Compare regenerated amendment with committed receipts
-        run: |
-          cmp /tmp/p1-amendment/PRIMARY_EXECUTION_FREEZE_V2.json \
-            research/revival/p1/confirmatory/v2.2/PRIMARY_EXECUTION_FREEZE_V2.json
-          cmp /tmp/p1-amendment/EXECUTION_BINDING_AMENDMENT_V1.json \
-            research/revival/p1/confirmatory/v2.2/EXECUTION_BINDING_AMENDMENT_V1.json
+          python research/revival/p1/validate_mutation_necessity_amendment_chain.py \
+            --repo-root . \
+            --fresh-world-freeze /tmp/p1-worlds/WORLD_FREEZE.json \
+            --out /tmp/p1-amendment/AMENDMENT_CHAIN_VALIDATION.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: p1-v2-2-4-execution-binding-amendment-validated

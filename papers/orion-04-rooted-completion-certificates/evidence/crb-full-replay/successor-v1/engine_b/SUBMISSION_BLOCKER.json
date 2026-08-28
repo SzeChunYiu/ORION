@@ -1,0 +1,50 @@
+{
+  "authority": {
+    "d2": "CANNOT_CHECK",
+    "d3": "CANNOT_CHECK",
+    "d4": "OPEN",
+    "d4_rounds_consumed": 0,
+    "external_authority": false,
+    "journal_authority": false,
+    "scientific_authority_delta": "NONE"
+  },
+  "authorization_semantics": {
+    "machine_established_externality": false,
+    "machine_established_identity": false,
+    "operational_permission_only": true,
+    "operator_attestation": "USER_SUPPLIED_UNVERIFIED_BY_MACHINE",
+    "scientific_authority_delta": "NONE"
+  },
+  "delivered_successor_repairs": {
+    "canonical_lane": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b",
+    "environment_and_failure_custody": "durable environment, write-once first-failure, and EXIT receipts with shell fallbacks",
+    "global_nonduplication": "flock-guarded shared registry with all three historical keys prebound and checkout-local authority removed",
+    "integer_timing": "generation timing is emitted only as canonical integer milliseconds",
+    "phase1_checkpoint": "every phase-1 file is copied, hashed, verified, and atomically published before structural execution",
+    "positive_witness_gate": "standard-library-only independent re-summation of every SAT witness",
+    "unsat_gate": "every UNSAT certificate remains subject to the pinned external drat-trim batch gate"
+  },
+  "historical_attempts": [
+    {
+      "job_id": 3544050,
+      "nonduplication_key": "07e8b0389f37d2c890cdc050f0f3db2a13d94002dedd94cfcf8a1ce6c0128384",
+      "status": "TERMINAL_EARLIER_ATTEMPT_FORBIDDEN"
+    },
+    {
+      "failure_terminal": "NQ_CRB_FULL_REPLAY_JOB_3544056_FAILED_CENSUS_RECEIPT_SERIALIZATION__D2_D3_AUTHORITY_CANNOT_CHECK",
+      "job_id": 3544056,
+      "nonduplication_key": "741454d7d6b513ccd80d2aa9a78d2a9f5076fe8075341d0ecc8e95566ecc28ea",
+      "status": "TERMINAL_FAILED_KEY_CONSUMED"
+    }
+  ],
+  "live_authorization": "ABSENT",
+  "required_before_submission": [
+    "freeze the exact reviewed successor commit",
+    "place a writable shared global registry root outside the checkout",
+    "choose a fresh durable job root outside the checkout",
+    "obtain a new operator-supplied one-shot execution request binding the exact successor commit, SOURCE_MANIFEST digest, new key, durable root, and registry root",
+    "run only slurm/submit_orion04_crb_full_replay.sh; never reuse a historical key"
+  ],
+  "schema": "ORION.ORION04.CRB.SubmissionBlocker.v1",
+  "status": "AWAITING_NEW_ONE_SHOT_AUTHORIZATION"
+}
