@@ -1,7 +1,5 @@
 # Scientific Authorization Beyond Action Authorization
 
-<!-- Draft integration note: AIJ-oriented reader-facing rewrite. Historical donor-pair multiplicity is not used as breadth evidence; same-programme gold remains labeled as internal conformance evidence. -->
-
 ## Abstract
 
 AI systems can be authorized to execute an action without possessing the evidence needed to justify the scientific conclusion that motivates that action. We formalize this distinction through a typed scientific-authorization calculus that composes local permission, provenance and evidence records without allowing them to amplify into unsupported scientific authority. The calculus enforces domain, scope and epoch confinement; preserves unresolved hard obligations; supports explicit protected coercions; and models revocation through alternative support families rather than treating one revoked source as automatic global falsification.
