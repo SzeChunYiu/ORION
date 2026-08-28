@@ -1,0 +1,51 @@
+{
+  "schema_version": "orion.p4.exact-edge.residual-reprobe.v13.result.v1",
+  "lane_id": "P4_M6_JOSS_EXACT_EDGE_RESIDUAL_REPROBE_V13",
+  "run_date": "2026-08-28",
+  "public_development_evidence_only": true,
+  "outcomes_accessed": false,
+  "edges_closed": 0,
+  "edges_targeted": 4,
+  "cumulative_exact_bridge": "76/80 (unchanged)",
+  "per_edge": {
+    "36": {
+      "repository": "jaxionproject/jaxion",
+      "prior_verdict": "EXACT_ARCHIVE_VERSION_DOI_RELATION_AND_ARCHIVE_ROOT_TO_TAG_COMMIT_IDENTITY_CONTRADICTED (V11)",
+      "new_estimator": "Zenodo concept-version enumeration via records/21221062/versions",
+      "observation": "Concept chain total=1 (the frozen child 21221062 itself); version None in Zenodo and DataCite; concept body byte-identical to child body; archive jaxion.zip md5 825cae8912147ba8a5415c6a73d95818 / 85369480 bytes unchanged. Search-field probes conceptrecid/conceptdoi rejected HTTP 400 (superseded by the versions endpoint).",
+      "verdict": "PROVIDER_STATE_UNCHANGED__CONCEPT_CHAIN_SINGLE_CHILD__UNSOLVABLE_AT_CURRENT_PROVIDER_STATE",
+      "mechanism": "Only a corrected/replacement child version of concept 10.5281/zenodo.21221061 can bind an exact 0.0.3 archive rooted at commit 069ab4f...; the chain is enumerated and contains no such child."
+    },
+    "91": {
+      "repository": "nutritionallungimmunity/PAI",
+      "prior_verdict": "TRACKED_JAR_PROJECTION_106_OF_106_EXACT__FRESH_COMPILE_CANNOT_CHECK (V12; environmental OCI failure)",
+      "new_estimator": "Same pinned compiler identity (Eclipse Temurin jdk-17.0.14+7, javac 17.0.14) via native Adoptium channel, distributor checksum a3af83983fb94dd7d11b13ba2dba0fb6819dc2caaf87e6937afd22ad4680ae9a verified; V12 frozen compile command verbatim on codeload checkout of aa021231cdafb6d74ce9ab5f55f824a3032058a4 (tarball sha256 d43c827568d1acef62cea08990580a95ea5869f9eef4106fb3da8b941377e5af).",
+      "observation": "compile rc=0, 106 input files; projection vs V12 checksum-bound manifest: 106/106 byte-exact, 0 mismatch, 0 missing, 0 extra (COMPILE_PROJECTION_V13.json).",
+      "verdict": "FRESH_COMPILE_EXACT_106_OF_106__SIGNED_BUILD_AND_MODE_AUTHORITY_RESIDUAL_PROVIDER_STATE",
+      "mechanism": "Mode is not a function of content: a compile that proves byte-exact content identity is structurally incapable of adjudicating file-mode authority, and the two authentic mode authorities (signed git tree 100644 vs checksum-bound archive 0755 for cpp/PAIpp.exe and run.sh) contradict. Provider-native signed build attestation endpoints returned 404 (V12)."
+    },
+    "133": {
+      "repository": "artefactory/woodtapper",
+      "prior_verdict": "PYPI_EXACT_FILE_OBJECT_HAS_NO_PARSED_SIGNED_ARTIFACT_TO_FULL_COMMIT_BINDING (V11)",
+      "new_estimator": "PyPI /_attestations/ endpoint, PyPI JSON API per-file attestations key, whole-project provenance census",
+      "observation": "provenance null (Simple API); /_attestations/ 404; JSON API attestations key absent; frozen sha256 b509f6469b9ff8888195751c811d689559f45e24aeb35bb173b9680c99c8dbf3 verified byte-identical live; census 0/7 project files have provenance including newest release.",
+      "verdict": "PUBLISHER_NEVER_ATTESTS__ABSENT_ON_ALL_QUERYABLE_SURFACES__UNSOLVABLE_AT_CURRENT_PUBLISHER_STATE",
+      "mechanism": "Upload-time-only minting + immutable file objects (same-filename re-upload rejected, digest unchanged since V11) + never-attesting publisher (0/7) => no signed binding can attach to the frozen digest without a platform retroactive-minting program for never-attesting publishers (none exists) or a new release (different file identity)."
+    },
+    "185": {
+      "repository": "mit-psfc/disruption-py",
+      "prior_verdict": "PYPI_EXACT_FILE_OBJECT_HAS_NO_PARSED_SIGNED_ARTIFACT_TO_FULL_COMMIT_BINDING (V11)",
+      "new_estimator": "Identical to index 133.",
+      "observation": "provenance null (Simple API); /_attestations/ 404; JSON API attestations key absent; frozen sha256 775f92dbcbd6d1523db241494998e4b0867d51a84236feb7accc86b63b033a19 verified byte-identical live; census 0/14 project files have provenance including newest release.",
+      "verdict": "PUBLISHER_NEVER_ATTESTS__ABSENT_ON_ALL_QUERYABLE_SURFACES__UNSOLVABLE_AT_CURRENT_PUBLISHER_STATE",
+      "mechanism": "Identical to index 133."
+    }
+  },
+  "estimator_validation": {
+    "quarantined": "Sigstore Rekor digest-shaped retrieval",
+    "evidence": "REKOR_ESTIMATOR_VALIDATION_V13.json",
+    "verdict": "STRUCTURALLY_BLIND",
+    "mechanism": "Positive control packaging-26.3.tar.gz (provenance present, transparency entry logIndex 2341131906 provably in the log via direct lookup) returns [] under both digest retrieval shapes; digest retrieval cannot see PyPI dsse-type transparency entries. The probe's [] for edges 133/185 is a false-negative artifact and is not cited."
+  },
+  "scientific_boundary": "Development transport/reproducibility evidence only. No natural pair, lineage adjudication, source-disjoint replication, custody, comparator execution, outcome or performance authority. Programme terminal P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK unmodified."
+}
