@@ -1,0 +1,29 @@
+{
+  "schema": "ORION.ORION07.AgreementNonidentifiability.NegativeControls.v1",
+  "true_statement_accepted": true,
+  "controls": {
+    "tighten_sum_lower_bound": {
+      "checker_rejected_perturbation": true,
+      "pass": true
+    },
+    "tighten_spread_bound": {
+      "checker_rejected_perturbation": true,
+      "pass": true
+    },
+    "loosen_to_unit_square": {
+      "checker_rejected_perturbation": true,
+      "pass": true
+    },
+    "false_vertex_one_one": {
+      "checker_rejected_perturbation": true,
+      "pass": true
+    },
+    "swap_a_and_one_minus_a": {
+      "checker_rejected_perturbation": true,
+      "pass": true
+    }
+  },
+  "controls_total": 5,
+  "controls_fired": 5,
+  "status": "PASS"
+}

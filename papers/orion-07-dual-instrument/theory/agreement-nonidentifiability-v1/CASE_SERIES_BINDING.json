@@ -1,0 +1,50 @@
+{
+  "schema": "ORION.ORION07.AgreementNonidentifiability.CaseSeriesBinding.v1",
+  "axis": "responsibility alignment against the frozen deferred map",
+  "generated_from": "immutable scored artifacts; no value transcribed by hand",
+  "units": [
+    {
+      "unit": "V0",
+      "source": "papers/orion-07-dual-instrument/CLAIM_LEDGER_PROSPECTIVE_CASE_SERIES_2026-08-23.md",
+      "sha256": "36cf899d5aa67c8fe371a14d22195c02dd1ee885c0e9ad7bf0ff1f206f1f88a8",
+      "agree": true,
+      "x_aligned": true,
+      "y_aligned": true
+    },
+    {
+      "unit": "Q3-R1 / QG-19",
+      "source": "papers/orion-07-dual-instrument/instances/Q3-R1-QG19/FINAL_SCORE.json",
+      "sha256": "7529c0f46c43cf166ade9eb33cf7cb5e6c8043edf52d8b7ec142d321b0e94644",
+      "agree": true,
+      "x_aligned": true,
+      "y_aligned": true,
+      "aggregate_reliability_claim_authorized": false
+    },
+    {
+      "unit": "Q3-R2 / QG-20",
+      "source": "papers/orion-07-dual-instrument/instances/Q3-R2-QG20/FINAL_SCORE.json",
+      "sha256": "475a6b0f0843cb5a89c2095be4e51969b74d12a02c3211c0252aa4b2a0902604",
+      "agree": true,
+      "x_aligned": false,
+      "y_aligned": false,
+      "aggregate_reliability_claim_authorized": false
+    }
+  ],
+  "n_valid": 3,
+  "a_hat": "1",
+  "c_hat": "2/3",
+  "pX_hat": "2/3",
+  "pY_hat": "2/3",
+  "q_hat": "2/3",
+  "theorem_1_residual": "0",
+  "theorem_1_holds": true,
+  "theorem_2_interval_at_a_hat": [
+    "0",
+    "1"
+  ],
+  "corollary_2_1_applies": true,
+  "interpretation": "Observed agreement constrains mean accuracy to the stated interval. At a_hat = 1 that interval is [0,1], so the agreement carries no information about accuracy; q_hat is carried entirely by the deferred outcomes.",
+  "aggregate_reliability_claim_authorized_anywhere": false,
+  "authority": "descriptive re-reading of frozen artifacts; no rescoring, no new unit, no reliability claim",
+  "status": "PASS"
+}

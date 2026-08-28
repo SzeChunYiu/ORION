@@ -1,0 +1,78 @@
+{
+  "schema": "ORION.ORION07.AgreementNonidentifiability.ExpectedTerminals.v1",
+  "paper_id": "ORION-07",
+  "successor_id": "ORION07.AGREEMENT_NONIDENTIFIABILITY.v1",
+  "authored_date": "2026-08-28",
+  "lane_type": "THEORY",
+
+  "terminal_set": [
+    {
+      "terminal": "THEORY_PROVED__INDEPENDENTLY_CHECKED",
+      "condition": "Route A passes on all enumerated finite samples, Route B passes soundness and completeness on the whole agreement grid, and 5 of 5 negative controls fire.",
+      "licenses": "Citing the theorems in support of the existing bounded ORION-07 claim that agreement is not validation.",
+      "reached": true
+    },
+    {
+      "terminal": "THEORY_REFUTED",
+      "condition": "The checker exhibits any realizable sample or any achievable population point outside the claimed region, or a claimed vertex that no law attains.",
+      "required_action": "Record the counterexample verbatim in RESULT.json, retract the claimed region in THEORY.md, and leave the manuscript's existing counterexample-level justification in place. Weakening the statement to fit the counterexample after the fact is forbidden.",
+      "reached": false
+    },
+    {
+      "terminal": "CHECKER_VACUOUS",
+      "condition": "Fewer than 5 of 5 negative controls fire, i.e. the checker cannot distinguish the true statement from a false one.",
+      "required_action": "Treat any PASS as void, repair the checker, and re-run. A PASS from a vacuous checker carries no authority.",
+      "reached": false
+    },
+    {
+      "terminal": "CANNOT_CHECK",
+      "condition": "The checker cannot execute (exit code 3).",
+      "required_action": "Report as CANNOT_CHECK. Never report as a pass and never substitute the author's own proof for the independent check.",
+      "reached": false
+    }
+  ],
+
+  "preserved_adverse_and_null_evidence": [
+    {
+      "item": "Q3-R2 / QG-20 both lanes responsibility_alignment = false",
+      "status": "PRESERVED_AND_LOAD_BEARING",
+      "note": "This is an adverse result for the instruments and it is the empirical witness that agreement can coexist with joint error. It is strengthened, not softened, by this lane."
+    },
+    {
+      "item": "n_valid = 3 does not authorize a reliability estimate, kappa, calibration claim or population generalization",
+      "status": "PRESERVED_UNCHANGED",
+      "note": "This lane supplies no sample and therefore cannot relieve the sample-size limit."
+    },
+    {
+      "item": "aggregate_accuracy_computed = false; aggregate_reliability_claim_authorized = false",
+      "status": "PRESERVED_UNCHANGED"
+    },
+    {
+      "item": "Two originally proposed successor questions retained as contaminated rather than retrospectively scored",
+      "status": "PRESERVED_UNCHANGED",
+      "note": "Out of scope for this lane; untouched."
+    },
+    {
+      "item": "QG19 sharpness remains open (QG19_ZERO_GAP_ON_FROZEN_PANEL__SHARPNESS_REMAINS_OPEN)",
+      "status": "PRESERVED_UNCHANGED"
+    }
+  ],
+
+  "authority_updates": {
+    "manuscript_claims_changed": "NONE",
+    "terminals_changed": "NONE",
+    "scores_or_digests_changed": "NONE",
+    "receipts_changed": "NONE",
+    "ledger_rows_changed": "NONE",
+    "new_object_created": "papers/orion-07-dual-instrument/theory/agreement-nonidentifiability-v1/ (additive)",
+    "submission_package_bytes_touched": "NONE",
+    "package_adoption_v2_binding_affected": false
+  },
+
+  "explicitly_out_of_scope": [
+    "the prospective reliability case series described in the candidate note",
+    "any multi-class or k-ary generalization",
+    "any latent-class identification under added assumptions",
+    "venue, packaging, rendering and filing decisions for ORION-07"
+  ]
+}
