@@ -35,6 +35,10 @@ class Orion0506NegativeRevivalR1Test(unittest.TestCase):
             "orion0506_revival_bundle",
             ROOT / "development/orion-05-06-negative-revival-r1-2026-08-27/verify_revival_bundle.py",
         )
+        cls.revival = load(
+            "orion06_negative_revival_r1",
+            ROOT / "papers/orion-06-recursive-recovery/revival/orion06_negative_revival_r1.py",
+        )
 
     def test_r13_protocol_excludes_pilot_and_freezes_all_heldout_matchings(self):
         protocol = json.loads(
@@ -157,6 +161,47 @@ class Orion0506NegativeRevivalR1Test(unittest.TestCase):
         self.assertTrue(attempts["R6K_EXACT_RESTORE_FACTOR"]["source_outcome_already_known"])
         self.assertEqual(protocol["unsolvable"], [])
         self.assertFalse(protocol["authority"]["final_freeze"])
+
+    def test_orion06_matching_enumerator_is_complete_and_canonical_for_six(self):
+        rows = list(self.revival.perfect_matchings(tuple(range(6))))
+        self.assertEqual(len(rows), 15)
+        self.assertEqual(len(set(rows)), 15)
+        for matching in rows:
+            self.assertEqual(sorted(value for pair in matching for value in pair), list(range(6)))
+
+    def test_controlled_aware_pair_frontier_is_exactly_verified(self):
+        # Two commuting two-qubit targets force the TARE-M2 branch.
+        x0 = (1, 0)
+        x1 = (2, 0)
+        frontier = self.revival.controlled_pair_frontier(x0, x1, 2)
+        self.assertTrue(frontier)
+        self.assertTrue(all(row["type"] == "TARE_M2" for row in frontier))
+        self.assertTrue(all(all(row["checks"].values()) for row in frontier))
+        vectors = [
+            (row["parity_CNOT"], row["controlled_Pauli_support"])
+            for row in frontier
+        ]
+        for i, left in enumerate(vectors):
+            for j, right in enumerate(vectors):
+                if i != j:
+                    self.assertFalse(
+                        right[0] <= left[0]
+                        and right[1] <= left[1]
+                        and right != left
+                    )
+
+    def test_known_method_language_replays_adjudicate_without_promotion(self):
+        report = self.revival.adjudicate_known_replays(
+            ROOT / "research/extensions/orion-q/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_RESULTS.json",
+            ROOT / "research/extensions/orion-q/MAX_R6L_THREE_TARE2_SHARED_FACTOR_DONOR_RESULTS.json",
+        )
+        self.assertEqual(report["R6I_EXACT_RANK2"]["revival_outcome"], "RETAINED_NEGATIVE")
+        self.assertEqual(
+            report["R6K_EXACT_RESTORE_FACTOR"]["revival_outcome"],
+            "CORRECT_SUBTRACTION",
+        )
+        self.assertFalse(report["R6K_EXACT_RESTORE_FACTOR"]["authority"]["novelty"])
+        self.assertEqual(report["unsolvable"], [])
 
 
 if __name__ == "__main__":
