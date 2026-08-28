@@ -1,0 +1,25 @@
+{
+  "baselines": [
+    {
+      "description": "SHA-256 subject digest with no authenticated signer or freshness policy.",
+      "id": "B0-DIGEST-ONLY",
+      "purpose": "Separates corruption detection from attribution and governance."
+    },
+    {
+      "description": "One signing identity or one 1-of-1 repository key.",
+      "id": "B1-SINGLE-DOMAIN-SIGNATURE",
+      "purpose": "Measures the bounded d=1 compromise failure mode."
+    },
+    {
+      "description": "Native cryptographic/repository verification without occurrence consumption or scientific-admission policy.",
+      "id": "B2-NATIVE-VERIFIER-ONLY",
+      "purpose": "Exposes stale/replay and liveness gaps."
+    },
+    {
+      "description": "Native verification plus threshold, occurrence, expiry/revocation, and separate scientific-admission checks.",
+      "id": "B3-FULL-FROZEN-ADMISSION",
+      "purpose": "Primary comparator."
+    }
+  ],
+  "schema": "ORION.ORION25.ExternalTrustDomain.Baselines.v1"
+}

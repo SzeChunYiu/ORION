@@ -1,0 +1,141 @@
+{
+  "execution_gate": [
+    "IDENTITY_BINDING.json status is BOUND",
+    "all keys, identities, repositories, workflow refs, roles, thresholds, and custody evidence are concrete",
+    "all tool commits match SOFTWARE_LOCK.json",
+    "no outcome file predates the identity-binding commit",
+    "the frozen checker prints ORION25_EXTERNAL_PROTOCOL_READY_FOR_EXECUTION"
+  ],
+  "independent_implementations": {
+    "minimum": 2,
+    "requirement": "One runner drives official CLIs/APIs; a structurally separate checker reconstructs the decision from emitted native records without importing runner code."
+  },
+  "issue": 1701,
+  "outcome_status": "NO_OUTCOMES_COMMITTED",
+  "primary_endpoints": [
+    "false_promotions_by_system_arm_and_compromise_depth",
+    "false_rejections_by_system_and_benign_variant",
+    "native_verifier_acceptance",
+    "full_admission_acceptance",
+    "stale_or_replayed_occurrence_acceptance",
+    "post_revocation_acceptance",
+    "current_run_liveness_disposition"
+  ],
+  "protocol_id": "ORION25.EXTERNAL_TRUST_DOMAIN_NATIVE_V1",
+  "question": "Do native production verification stacks with independently custodied threshold approvals prevent false promotion under one-domain compromise without false rejection on registered benign re-encodings, and where do they fail?",
+  "registered_arms": [
+    {
+      "expected_policy": "accept",
+      "family": "clean_control",
+      "id": "A0-CLEAN",
+      "variants_per_subject": 1
+    },
+    {
+      "expected_policy": "reject",
+      "family": "corruption",
+      "id": "A1-CORRUPTION",
+      "variants": [
+        "truncate_subject",
+        "flip_subject_byte",
+        "substitute_subject",
+        "drop_signature_or_metadata",
+        "terminal_relabel",
+        "count_inflation"
+      ]
+    },
+    {
+      "expected_policy": "accept_after_registered_canonicalization",
+      "family": "benign_reencoding",
+      "id": "A2-BENIGN-REENCODING",
+      "variants": [
+        "indent_2",
+        "indent_4",
+        "compact",
+        "sorted_keys",
+        "reversed_input_key_order",
+        "trailing_newlines"
+      ]
+    },
+    {
+      "expected_policy": "reject_when_compromise_is_below_frozen_threshold",
+      "family": "single_domain_compromise",
+      "id": "A3-SINGLE-DOMAIN-COMPROMISE",
+      "variants": [
+        "each_load_bearing_domain_compromised_in_turn"
+      ]
+    },
+    {
+      "expected_policy": "measure_and_preserve_false_promotion_boundary",
+      "family": "multi_domain_compromise",
+      "id": "A4-MULTI-DOMAIN-COMPROMISE",
+      "variants": [
+        "minimum_threshold_compromised",
+        "all_load_bearing_domains_compromised"
+      ]
+    },
+    {
+      "expected_policy": "full_admission_reject; native_signature_only_may_accept_and_must_be_reported",
+      "family": "stale_replay",
+      "id": "A5-STALE-REPLAY",
+      "variants": [
+        "cross_occurrence_replay",
+        "consumed_occurrence_replay",
+        "expired_tuf_timestamp",
+        "old_snapshot_representation"
+      ]
+    },
+    {
+      "expected_policy": "post_rotation_policy_rejects_old_authority",
+      "family": "revocation_rotation",
+      "id": "A6-REVOCATION-ROTATION",
+      "variants": [
+        "remove_sigstore_identity_from_policy",
+        "rotate_tuf_root",
+        "revoke_targets_key",
+        "replace_in_toto_layout_key"
+      ]
+    },
+    {
+      "expected_policy": "artifact_verification_and_current_run_liveness_reported_separately",
+      "family": "process_liveness",
+      "id": "A7-PROCESS-LIVENESS",
+      "variants": [
+        "sigkill_with_stale_artifact",
+        "sigterm_with_stale_artifact",
+        "unwritable_output",
+        "missing_output_directory"
+      ]
+    }
+  ],
+  "schema": "ORION.ORION25.ExternalTrustDomain.Protocol.v1",
+  "scientific_authority_delta": "NONE",
+  "status": "ACQUISITION_PROTOCOL_FROZEN__IDENTITY_BINDING_REQUIRED",
+  "systems": [
+    {
+      "id": "SYS-COSIGN-DUAL-IDENTITY",
+      "infrastructure_domain_note": "Fulcio/Rekor availability and root trust are reported separately and are not counted as a second semantic approval.",
+      "load_bearing_domains": [
+        "SIGSTORE_A",
+        "SIGSTORE_B"
+      ],
+      "native_path": [
+        "cosign verify-blob --bundle <bundle-A> --certificate-identity <identity-A> --certificate-oidc-issuer <issuer-A> <subject>",
+        "cosign verify-blob --bundle <bundle-B> --certificate-identity <identity-B> --certificate-oidc-issuer <issuer-B> <subject>"
+      ],
+      "structure": "Two independently custodied keyless Sigstore identities; policy requires both valid cosign bundles for the same subject digest and occurrence identifier."
+    },
+    {
+      "id": "SYS-TUF-IN-TOTO-THRESHOLD",
+      "load_bearing_domains": [
+        "TUF_ROOT_THRESHOLD",
+        "TUF_TARGETS_THRESHOLD",
+        "IN_TOTO_LAYOUT_THRESHOLD"
+      ],
+      "native_path": [
+        "tuf.ngclient.Updater(..., bootstrap=<frozen-root>).refresh(); download_target(...)",
+        "in-toto-verify --layout <layout> --layout-keys <bound-layout-keys>"
+      ],
+      "structure": "A 2-of-3 TUF root and targets role combined with a separately 2-of-3 signed in-toto layout; target retrieval and layout verification use native libraries."
+    }
+  ]
+}
