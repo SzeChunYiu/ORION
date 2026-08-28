@@ -1,0 +1,184 @@
+{
+  "schema": "ORION.Issue1701.MiddlePaperRecovery.v1",
+  "issue": 1701,
+  "date": "2026-08-29",
+  "base_commit": "b8fd5d2ca8eb1f6547592893591ba3aa93bf96c8",
+  "scope": {
+    "definition": "middle papers",
+    "paper_ids": [
+      "ORION-09",
+      "ORION-10",
+      "ORION-11",
+      "ORION-12",
+      "ORION-13",
+      "ORION-14",
+      "ORION-15",
+      "ORION-16",
+      "ORION-17"
+    ]
+  },
+  "review_team": [
+    {
+      "role": "repository_archaeologist",
+      "responsibility": "compare current main against named source branches and recover only absent paper-owned trees"
+    },
+    {
+      "role": "evidence_auditor",
+      "responsibility": "preserve adverse, null, and CANNOT_CHECK outcomes without terminal promotion"
+    },
+    {
+      "role": "verification_engineer",
+      "responsibility": "bind exact checker outputs and add repository-level regression assertions"
+    },
+    {
+      "role": "publication_reviewer",
+      "responsibility": "repair the ORION-09 headline omission without broadening the scientific claim"
+    }
+  ],
+  "recoveries": [
+    {
+      "paper_id": "ORION-09",
+      "status": "RECOVERED_AND_MANUSCRIPT_RESCOPE",
+      "source_trees": [
+        {
+          "branch": "claude/orion09-regime-information-complexity-20260828",
+          "path": "papers/orion-09-compilation-regime-geometry/theory/regime-separator-complexity-v1",
+          "tree_sha": "2a1b6534312ce5d5937be44e76b91905b16d201f"
+        },
+        {
+          "branch": "claude/orion09-size-transfer-20260828",
+          "path": "papers/orion-09-compilation-regime-geometry/theory/size-transfer-derivation-v1",
+          "tree_sha": "45b6c9b47cde0d7d8eb1be3f2a24f90cb317ab85"
+        }
+      ],
+      "headline": {
+        "frozen_domain_instances": 1146,
+        "feature_count": 127,
+        "minimum_exact_separator_size": 4,
+        "separator_exact_on_n_le_3": true
+      },
+      "preserved_adverse": [
+        "MECHANISM_ATTRIBUTION_NOT_SUPPORTED",
+        "H_B_N4_residual=NOT_IMPROVED",
+        "n4_cv_errors=32/120",
+        "n4_shuffle_null_p=0.51",
+        "promotion budget remains unspent; size-transfer material is derivation-only"
+      ],
+      "manuscript_files_rescoped": [
+        "papers/orion-09-compilation-regime-geometry/manuscript/main.tex",
+        "papers/orion-09-compilation-regime-geometry/manuscript/sections/03-results.tex"
+      ]
+    },
+    {
+      "paper_id": "ORION-10",
+      "status": "RECOVERED",
+      "source_trees": [
+        {
+          "branch": "claude/orion10-explanation-gap-20260828",
+          "path": "papers/orion-10-certified-static-forecasting/theory/certificate-explanation-gap-v1",
+          "tree_sha": "c91b80300b875f35963365801832661b6024e7a8"
+        }
+      ],
+      "headline": {
+        "structures_checked": 21501,
+        "exact_cost_explanation_iff_fibre_constancy": true,
+        "expression_size_cannot_repair_a_mixed_fibre": true
+      },
+      "preserved_adverse": [
+        "all_n_theorem_authority=false",
+        "all_n_identity remains UNPROVED_CANNOT_CHECK_FROM_CURRENT_PARENT_QUOTIENT",
+        "novelty_authority=false",
+        "physical_quantum_advantage_claim=false"
+      ]
+    },
+    {
+      "paper_id": "ORION-13",
+      "status": "RECOVERED",
+      "source_trees": [
+        {
+          "branch": "claude/orion13-minimal-semantic-separator-20260828",
+          "path": "papers/orion-13-global-knowledge-portrait/theory/minimal-semantic-separator-v1",
+          "tree_sha": "7fd5b562bcfb05976a1f1646b05798dd018cd1ac"
+        }
+      ],
+      "headline": {
+        "minimum_sufficient_coordinate_count": 1,
+        "unique_reduct": [
+          "polarity"
+        ],
+        "confirmatory_cases": 32,
+        "confirmatory_collisions": 0
+      },
+      "preserved_adverse": [
+        "gold verdict is perfectly confounded with polarity agreement",
+        "full coordinate necessity remains undetermined",
+        "raw-text recoverability and downstream utility remain undetermined"
+      ]
+    },
+    {
+      "paper_id": "ORION-15",
+      "status": "INDEPENDENT_VERIFICATION_RECOVERED",
+      "source_trees": [
+        {
+          "branch": "chatgpt/orion15-v4-independent-verification-20260827",
+          "path": "research/self-orion-v4/verification",
+          "tree_sha": "6b5eeb31cba6c35f0145b1652a0012ebfd08cd9d"
+        }
+      ],
+      "headline": {
+        "revision_accuracy": 1.0,
+        "false_broad_rate": 0.0,
+        "harm_rate": 0.0,
+        "authority_violation_rate": 0.0,
+        "preservation_refusal": 1.0,
+        "fresh_transfer": 0.8888888888888888
+      },
+      "preserved_adverse": [
+        "noncontrolling executable false-broad rule defect retained",
+        "V3 negative retained as NO_TERMINAL_UNDER_FROZEN_RULES",
+        "no live-provider or general self-improvement claim",
+        "no child-commit source execution claimed"
+      ]
+    }
+  ],
+  "already_present_on_main": [
+    {
+      "paper_id": "ORION-11",
+      "finding": "faithful ordered Active-VOI comparator and anchor-gate repair are already integrated; comparative necessity reading remains withdrawn"
+    },
+    {
+      "paper_id": "ORION-15",
+      "finding": "V4 confirmatory science and GLM-5.3 attribution packet are already integrated"
+    }
+  ],
+  "intentionally_not_duplicated": [
+    {
+      "paper_id": "ORION-12",
+      "reason": "no absent named hidden packet was identified; historical TREC-COVID adverse evidence remains authoritative"
+    },
+    {
+      "paper_id": "ORION-14",
+      "reason": "submission-package lane is already represented in open PR #1692; no duplicate writer"
+    },
+    {
+      "paper_id": "ORION-16",
+      "reason": "active campaign is owned by issue/PR #1695"
+    },
+    {
+      "paper_id": "ORION-17",
+      "reason": "density-prospective packet is owned by open PR #1692",
+      "pr": 1692,
+      "head_commit": "d2484d59c1ec5561a7920049158668be0eacf86e",
+      "density_tree_sha": "2180731e6a340b25f41b65ef4d245327f679c164",
+      "verified_status": "5/5 predictions including Tornado disambiguator; filing remains blocked by no standalone manuscript"
+    }
+  ],
+  "authority": {
+    "paper_authority_delta": "NONE_EXCEPT_ORION09_MANUSCRIPT_CURRENCY_REPAIR",
+    "new_empirical_outcomes_generated": false,
+    "post_outcome_tuning": false,
+    "adverse_or_null_result_deleted": false,
+    "cannot_check_promoted_to_pass": false,
+    "stale_branch_wholesale_merge": false
+  }
+}
