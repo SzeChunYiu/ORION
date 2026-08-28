@@ -8,13 +8,13 @@ the systems being compared, and capable of varying over the comparison panel.
 These are different requirements.  We formalize them before interpreting the
 protected results.
 
-Let $Y_a\in\mathcal{T}$ be the correct terminal on verification axis $a$ for a
+Let $Y_a\in\mathcal{T}$ be the correct outcome on verification axis $a$ for a
 random benchmark unit, let $D$ be the representation available to a decision
-rule, and let finite nonempty $\mathcal{A}\subseteq\mathcal{T}$ be the terminals
+rule, and let finite nonempty $\mathcal{A}\subseteq\mathcal{T}$ be the outcomes
 that the rule is allowed to emit.  For a finite benchmark distribution, the
-smallest attainable exact-terminal error is
+smallest attainable exact-outcome error is
 \begin{equation}
-  R_a^*(D,\mathcal{A})
+  \mathcal{E}_a^{\min}(D,\mathcal{A})
   = 1-\mathbb{E}_{D}\!\left[
       \max_{t\in\mathcal{A}}\Pr(Y_a=t\mid D)
     \right].
@@ -24,28 +24,28 @@ This quantity separates a poor implementation from a task that its information
 or interface makes impossible.
 
 \paragraph{Proposition 1 (exact axis attainability).}
-There exists a decision rule $g(D)\in\mathcal{A}$ with zero exact-terminal error
+There exists a decision rule $g(D)\in\mathcal{A}$ with zero exact-outcome error
 if and only if every positive-probability fibre of $D$ contains one target
-terminal and that terminal belongs to $\mathcal{A}$.  Equivalently,
+outcome and that outcome belongs to $\mathcal{A}$.  Equivalently,
 $Y_a=g(D)$ almost surely for some $g$ with codomain $\mathcal{A}$.  This is an
 almost-sure benchmark statement: it says nothing pointwise about worlds on null
 fibres.
 
-\emph{Proof.}  On a fibre $D=d$, any rule must emit one terminal.  It is correct
+\emph{Proof.}  On a fibre $D=d$, any rule must emit one outcome.  It is correct
 on the whole fibre exactly when the conditional support of $Y_a$ is the
-singleton containing that terminal.  Summing the best fibrewise choices gives
+singleton containing that outcome.  Summing the best fibrewise choices gives
 Equation~\ref{eq:bayes-axis-risk}, and zero risk gives the stated condition.
 \hfill$\square$
 
 \paragraph{Corollary 1 (donor-product factorization at two authorities).}
 Let $D$ collect the states exposed by a product of provenance, verification,
 custody, freshness, and generic-authorization donors, and let $Y_{\rm promote}$
-be the target scientific-promotion terminal. Pointwise extensional equivalence
-on a declared world class holds if and only if the target terminal is constant
+be the target scientific-promotion outcome. Pointwise extensional equivalence
+on a declared world class holds if and only if the target outcome is constant
 on every donor-state fibre in that class and belongs to the output alphabet.
 Zero error under a benchmark distribution requires only the corresponding
 condition on positive-probability fibres; null fibres cannot be certified by a
-distributional score. If a positive-probability fibre mixes target terminals,
+distributional score. If a positive-probability fibre mixes target outcomes,
 every donor-only rule has error at least
 \begin{equation}
   \sum_d \Pr(D=d)
@@ -71,10 +71,10 @@ prospectively declared measurable map $h:\mathcal X\to\mathcal A$; it is not a
 post-hoc relabelling rule.  Its exact-terminal
 risk is bounded below by
 \[
-  R_a^*(X,\mathcal A)=1-\mathbb E_X\!\left[
+  \mathcal{E}_a^{\min}(X,\mathcal A)=1-\mathbb E_X\!\left[
     \max_{t\in\mathcal A}\Pr(Y_a=t\mid X)
   \right]
-  \ \ge\ R_a^*(V,\mathcal A).
+  \ \ge\ \mathcal{E}_a^{\min}(V,\mathcal A).
 \]
 The first bound is attained by a measurable fixed-order Bayes adapter, and the
 second inequality is the data-processing consequence of $Y_a-V-X$.  Thus a
@@ -84,10 +84,10 @@ target-pure and their targets belong to $\mathcal A$.  For a deterministic
 native-output map, pointwise admissibility on a declared world class requires
 the same purity on every native-output fibre, including benchmark-null fibres.
 In particular, a binary native
-alphabet cannot attain an endpoint on which all three target terminals have
-positive probability, and a native \textsc{Block}, ``not attributable,'' parse
-failure, or free-text insufficiency response cannot be renamed
-\textsc{CannotCheck} unless the predeclared semantics-preserving map satisfies
+alphabet cannot attain an endpoint on which all three target outcomes have
+positive probability, and a native blocked, ``not attributable,'' parse
+failure, or free-text insufficiency response cannot be recoded as
+undetermined unless the predeclared semantics-preserving map satisfies
 this fibre condition.  When it does not, the mixed-fibre risk is an
 interface-attainability result and must not be reported as comparator
 inferiority.
@@ -119,23 +119,23 @@ Hahn decomposition of $P_1-P_0$ attains the supremum, while randomized
 acceptance probabilities cannot improve on it because their risks are mixtures
 of deterministic risks. \hfill$\square$
 
-This second bound concerns interpretation rather than terminal prediction.  A
+This second bound concerns interpretation rather than outcome prediction.  A
 score can separate output interfaces while leaving two explanations of that
 score observationally equivalent. For example, one rule may recognize an
 epistemic insufficiency, whereas another may be forced into the only available
-non-promoting terminal.  A broader competence headline remains
+non-promoting outcome.  A broader competence headline remains
 unidentified until a discriminator changes the observable law of those worlds.
 
 \paragraph{Nuisance identifiability.}
 Let $N$ contain construction-only quantities such as list length, missingness,
-template, key order, path name, or label-bearing metadata.  The nuisance-only
+template, key order, record-layout marker, or label-bearing metadata.  The nuisance-only
 Bayes advantage is
 \begin{equation}
   I_a(N)=\mathbb{E}_{N}\!\left[\max_t\Pr(Y_a=t\mid N)\right]
   -\max_t\Pr(Y_a=t).
 \end{equation}
 A scientific interpretation requires the intended semantic representation to
-make the terminal attainable while nuisance information contributes no material
+make the outcome attainable while nuisance information contributes no material
 advantage.  A finite shortcut register cannot certify $I_a(N)=0$ for every
 possible decoder.  It certifies only that the frozen probe class found no such
 advantage, which is why claim-axis authorization must name the probe class and
@@ -150,7 +150,7 @@ as
 \]
 When $\rho_a=0$, the experiment supplies no comparative ordering on that axis;
 it does not establish equality of the underlying competences.  When
-$\rho_a>0$ but some comparators lack a target terminal in their output alphabet,
+$\rho_a>0$ but some comparators lack a target outcome in their output alphabet,
 the contrast establishes interface expressiveness before it establishes the
 finer judgement of when that terminal is scientifically appropriate.  A broad
 verification-axis claim is therefore licensed only inside the intersection of
@@ -160,23 +160,24 @@ research programmes rather than one generic null: repair the construction,
 enlarge the interface, expose a target-sufficient representation, or improve
 the decision rule.
 
-\paragraph{Application to the three P4 evidence layers.}
-The historical V2 H3 axis had $\rho_a=0$: an empty evidence list exposed the
-gold family and every panel member scored 30/30.  That result remains
-\textsc{NotSupported}.  The later V3 construction removes the registered
-shortcuts and obtains nonzero resolution, but nine of ten comparator mechanisms
-cannot emit \textsc{CannotCheck}; its exact claim is therefore terminal
-expressiveness under the frozen gate lattice, not general epistemic judgement.
+\paragraph{Application to the three empirical layers.}
+The primary safety battery's undetermined-outcome axis had $\rho_a=0$: an
+empty evidence list exposed the gold family and every panel member scored 30/30.
+That comparison remains not supported.  The later shortcut-resistant
+construction removes the registered cues and obtains nonzero resolution, but
+nine of ten comparator mechanisms cannot emit an undetermined outcome; its exact
+claim is therefore outcome expressiveness under the frozen gate lattice, not
+general epistemic judgement.
 
-Stated as an estimand: where a comparator interface cannot emit
-\textsc{CannotCheck}, the quantity this comparison estimates is \emph{terminal
-attainability} on the axis, and nothing else. A system that cannot express the
-correct terminal cannot be observed to reach it, so a gap measured against such
+Stated as an estimand: where a comparator interface cannot emit an undetermined
+outcome, the quantity this comparison estimates is \emph{outcome attainability}
+on the axis, and nothing else. A system that cannot express the correct outcome
+cannot be observed to reach it, so a gap measured against such
 an interface is a fact about what the interface can say, not about what the
 system knows. Reading it as epistemic competence would attribute to judgement
 what belongs to expressiveness.
-The P4-X exact-contract successor tests the donor-factorization boundary more
-directly.  Its ideal typed donor product receives the target-sufficient
-coordinates and predicate and ties exactly at 400/400, while the registered
-generic-authorization and compensatory products do not.  These layers diagnose
-different limits and are not pooled.
+The exact-contract extension tests the donor-factorization boundary more
+directly.  Its information-equivalent typed donor product receives the
+target-sufficient coordinates and predicate and ties exactly at 400/400, while
+the donor-complete generic and compensatory products do not.  These layers
+diagnose different limits and are not pooled.

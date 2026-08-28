@@ -147,6 +147,10 @@ jobs:
           grep -qi 'not supported' "$TXT"
           if grep -Eiq 'execution bindings remain.*UNBOUND|awaiting external campaign|No external results are reported|remains externally.*CANNOT_CHECK' "$TXT"; then exit 1; fi
           if grep -Eiq 'SzeChunYiu|github\.com/|GitHub Actions|workflow run|pull request|papers/orion-14-verified-scientific-discovery/|development/' "$TXT"; then exit 1; fi
+          # Author gate: rendered prose must use reader-facing scientific names,
+          # not internal experiment/product codes or repository transport terms.
+          if grep -En '(^|[^[:alnum:]])(P4(-X)?|H[123]|V[23]|B[123]|R[0-9]+)($|[^[:alnum:]])|R[[:space:]]*[*]|SUBMISSION_READY|simulated_publication_ready_for_target|CANNOT_CHECK|NOT_SUPPORTED|PROMOTE|BLOCK|ORION|P4\.protected' "$TXT"; then exit 1; fi
+          if grep -En 'SHA(-256)?|GitHub|pull request|workflow run|continuous-integration|/Users/|/home/|papers/orion|development/|[[:alnum:]_.-]+\.(json|md|tex|py|pdf|zip)($|[^[:alnum:]_])' "$TXT"; then exit 1; fi
           pdfinfo "$PDF" | tee "$RUNNER_TEMP/pdfinfo.txt"
           sha256sum "$PDF" | tee "$RUNNER_TEMP/main.pdf.sha256"
 

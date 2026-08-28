@@ -1,10 +1,10 @@
 \begin{table}[t]
 \centering\scriptsize
-\caption{Protected V2 results. Comparator names denote protocol-matched mechanism reimplementations, not original external software. FP is over 360 hostile opportunities; clean is over 60 clean positives.}\label{tab:p4_t2}
+\caption{Protected safety-battery results. Comparator names denote protocol-matched mechanism reimplementations, not original external software. FP is over 360 hostile opportunities; clean is over 60 clean positives.}\label{tab:p4_t2}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrr}\toprule
 System / variant & FP & Clean & Clean FN & Latency (ms) & Resource \\ \midrule
-ORION & 0.000 & 1.000 & 0 & 2.9736 & 9.0 \\
+Governed pipeline & 0.000 & 1.000 & 0 & 2.9736 & 9.0 \\
 ProvenanceGuard-style & 0.583 & 1.000 & 0 & 0.0037 & 5.0 \\
 AttributionBench-style & 0.667 & 1.000 & 0 & 0.0058 & 3.0 \\
 FIRE-style & 0.833 & 1.000 & 0 & 0.0069 & 6.0 \\
@@ -15,13 +15,13 @@ DeepSciVerify-style & 0.583 & 1.000 & 0 & 0.0074 & 6.5 \\
 Citation presence & 0.917 & 1.000 & 0 & 0.0009 & 1.0 \\
 Pooled support & 0.917 & 1.000 & 0 & 0.0049 & 2.0 \\
 Auditability/provenance & 0.667 & 1.000 & 0 & 0.0033 & 5.0 \\
-ORION - exact content & 0.083 & 1.000 & 0 & 2.7131 & 9.0 \\
-ORION - source/provenance & 0.167 & 1.000 & 0 & 2.7077 & 9.0 \\
-ORION - checker lineage & 0.083 & 1.000 & 0 & 2.7078 & 9.0 \\
-ORION - hostile checker & 0.083 & 1.000 & 0 & 2.7043 & 9.0 \\
-ORION - influence & 0.083 & 1.000 & 0 & 2.7045 & 9.0 \\
-ORION - evaluator protection & 0.250 & 1.000 & 0 & 2.7116 & 9.0 \\
-ORION soft confidence & 0.917 & 1.000 & 0 & 2.4570 & 9.0 \\
-ORION - search block & 0.083 & 1.000 & 0 & 2.7087 & 9.0 \\
+Without exact content & 0.083 & 1.000 & 0 & 2.7131 & 9.0 \\
+Without source/provenance & 0.167 & 1.000 & 0 & 2.7077 & 9.0 \\
+Without checker lineage & 0.083 & 1.000 & 0 & 2.7078 & 9.0 \\
+Without hostile checker & 0.083 & 1.000 & 0 & 2.7043 & 9.0 \\
+Without influence & 0.083 & 1.000 & 0 & 2.7045 & 9.0 \\
+Without evaluator protection & 0.250 & 1.000 & 0 & 2.7116 & 9.0 \\
+Soft-confidence rule & 0.917 & 1.000 & 0 & 2.4570 & 9.0 \\
+Without search block & 0.083 & 1.000 & 0 & 2.7087 & 9.0 \\
 \bottomrule\end{tabular}}
 \end{table}
