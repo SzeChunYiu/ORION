@@ -1,0 +1,58 @@
+{
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "cases_enumerated": 750,
+  "controls": {
+    "V1_unsound_reuse_is_detectable": {
+      "optimistic_collapse_unsound_cases": 212,
+      "passed": true
+    },
+    "V2_pessimistic_collapse_sound_but_wasteful": {
+      "over_revocations": 84,
+      "passed": true,
+      "unsound_cases": 0
+    },
+    "V3_all_clear_no_alarm": {
+      "clean": 2,
+      "eligible": 2,
+      "passed": true
+    },
+    "V4_unknown_cases_present": {
+      "cases": 84,
+      "passed": true
+    }
+  },
+  "external_corpus": "NOT TESTED AGAINST -- P13_P14_OBJECTIVE_GOLD_RESULTS_V1.json records outcome_accessed: true",
+  "hidden_value_model": "UNKNOWN premises carry a hidden actual value the decider cannot see. Required by P3's own wording: 'unnecessary revocation' is only meaningful if the premise might in fact have been satisfied.",
+  "premise_set_sizes": [
+    3,
+    4
+  ],
+  "promotion_status": "TRANSPORT_LAW_ESTABLISHED__PROMOTION_NOT_EARNED__BOUNDED_PAPER_RETAINED",
+  "protocol_identity": "ORION23.EXTERNAL_RESPONSIBILITY_TRANSPORT.v1",
+  "rule_comparison": {
+    "three_valued": {
+      "abstain": 296,
+      "over_revoke": 0,
+      "unsound": 0
+    },
+    "unknown_as_contradicted": {
+      "abstain": 0,
+      "over_revoke": 84,
+      "unsound": 0
+    },
+    "unknown_as_unchanged": {
+      "abstain": 0,
+      "over_revoke": 0,
+      "unsound": 212
+    }
+  },
+  "schema": "ORION.ORION23.TransportLaw.Result.v1",
+  "scientific_authority_delta": "NONE",
+  "terminal": "T1_TRANSPORT_LAW_HOLDS",
+  "violations": {
+    "P1": 0,
+    "P2": 0,
+    "P3": 0,
+    "P5": 0
+  }
+}
