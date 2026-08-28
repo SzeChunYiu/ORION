@@ -1,0 +1,37 @@
+{
+  "combined_expected_terminal": "NR07_EXACT_ANCHOR_ARGSORT_BOUNDARY_TIE_LOCALIZED__NR07_LUNARC_EXECUTABLE_BYTES_ABSENT__SCIENCE_REMAINS_CANNOT_CHECK_INSTRUMENT_DRIFT",
+  "controlling_scientific_terminal": "CANNOT_CHECK_INSTRUMENT_DRIFT",
+  "expected_frozen_input_terminal": "NR07_EXACT_ANCHOR_ARGSORT_BOUNDARY_TIE_LOCALIZED",
+  "forbidden_terminals": [
+    "C1_LAW_CONFIRMED_REGIME_EXTENDED",
+    "P11_WIDTH_CONDITIONED_AUTHORITY_SUPPORTED_FROM_V2",
+    "NR07_EXACT_REPLAY_PASS",
+    "SUBMISSION_READY",
+    "TOP_TIER_READY"
+  ],
+  "protocol_identity": "ORION21.NR07.EXACT_ANCHOR.v2",
+  "schema": "ORION.ORION21.NR07.ExactAnchorExpectedTerminals.v2",
+  "source_custody_terminal": "NR07_LUNARC_EXECUTABLE_BYTES_ABSENT",
+  "terminal_precedence": [
+    {
+      "authority": "NONE",
+      "condition": "Any required blob differs or a required-absent executable is present.",
+      "terminal": "SOURCE_BINDING_RED"
+    },
+    {
+      "authority": "FORENSIC_CANNOT_CHECK",
+      "condition": "Either recorded numerator maps to zero or multiple enumerated support worlds.",
+      "terminal": "NR07_EXACT_ANCHOR_NONUNIQUE_ORIGIN_CANNOT_CHECK"
+    },
+    {
+      "authority": "FORENSIC_LOCALIZATION_ONLY",
+      "condition": "Each recorded numerator maps uniquely to a different support in one equality-boundary tie, and the raw transcript closes the integer delta.",
+      "terminal": "NR07_EXACT_ANCHOR_ARGSORT_BOUNDARY_TIE_LOCALIZED"
+    },
+    {
+      "authority": "FORENSIC_NEGATIVE",
+      "condition": "The unique source-level tie explanation is not reproduced.",
+      "terminal": "NR07_EXACT_ANCHOR_DISCREPANCY_NOT_LOCALIZED"
+    }
+  ]
+}
