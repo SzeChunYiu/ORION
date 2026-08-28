@@ -1,0 +1,135 @@
+{
+  "M1_chain_length_predicts_improvement": false,
+  "M2_trust_domain_predicts_flat": true,
+  "authority": "MEASUREMENT_ONLY",
+  "d_trust_domains": 1,
+  "detection_rates": {
+    "1": 1.0,
+    "2": 1.0,
+    "3": 1.0
+  },
+  "hypothesis": "H1: does chain-layer detection improve with k at fixed d?",
+  "k_5_out_of_scope": "would require two NEW attestation roles with real semantics; PROTOCOL.json forbids padding k with filler roles",
+  "k_values_tested": [
+    1,
+    2,
+    3
+  ],
+  "per_k": {
+    "1": {
+      "attacks": 20,
+      "by_attack": {
+        "A_FACT_TAMPER": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_KEY_SUBSTITUTION": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_LINK_DROP": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_SIGNATURE_FLIP": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_SPLICE_FOREIGN_LINK": {
+          "detected": 4,
+          "n": 4
+        }
+      },
+      "clean_chains_total": 4,
+      "clean_chains_verified": 4,
+      "detected": 20,
+      "detection_rate": 1.0
+    },
+    "2": {
+      "attacks": 24,
+      "by_attack": {
+        "A_FACT_TAMPER": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_KEY_SUBSTITUTION": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_LINK_DROP": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_REORDER": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_SIGNATURE_FLIP": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_SPLICE_FOREIGN_LINK": {
+          "detected": 4,
+          "n": 4
+        }
+      },
+      "clean_chains_total": 4,
+      "clean_chains_verified": 4,
+      "detected": 24,
+      "detection_rate": 1.0
+    },
+    "3": {
+      "attacks": 24,
+      "by_attack": {
+        "A_FACT_TAMPER": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_KEY_SUBSTITUTION": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_LINK_DROP": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_REORDER": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_SIGNATURE_FLIP": {
+          "detected": 4,
+          "n": 4
+        },
+        "A_SPLICE_FOREIGN_LINK": {
+          "detected": 4,
+          "n": 4
+        }
+      },
+      "clean_chains_total": 4,
+      "clean_chains_verified": 4,
+      "detected": 24,
+      "detection_rate": 1.0
+    }
+  },
+  "roles_used": {
+    "1": [
+      "execution"
+    ],
+    "2": [
+      "execution",
+      "environment"
+    ],
+    "3": [
+      "execution",
+      "environment",
+      "publication"
+    ]
+  },
+  "schema": "orion.orion25.h1-chain-length.v1",
+  "scientific_authority_delta": "NONE",
+  "scope": "Chain-layer detection only: length, role order, chaining, expected key, signature. The frozen verify_chain is hardcoded to len(ROLES) and indexes chain[2], so it cannot serve a k-varying test; its k=3-only publication cross-check is excluded and not counted in either direction. Does not address the full-compromise regime, where the committed receipt already records 6 chain_as_science false promotions.",
+  "successor_id": "ORION25.EXECUTION_INTEGRITY.v1",
+  "terminal": "H1_MEASURED_FOR_K_1_2_3_AT_D_1",
+  "verdict": "M2_SUPPORTED__DETECTION_FLAT_IN_K"
+}
