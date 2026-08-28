@@ -9,8 +9,12 @@
   "base_commit": "d138a05c83754cc76c304205c401fdda03f41e6e",
   "build": {
     "command": "./build.sh",
-    "pdf_committed": false,
-    "review_pdf_output": "main.pdf"
+    "pdf_committed": true,
+    "pdf_engine_actual": "tectonic 0.15.0",
+    "pdf_engine_declared": "pdflatex",
+    "pdf_engine_substitution_note": "build.sh declares --pdf-engine=pdflatex; pdflatex/latexmk are unavailable on the build host, so the committed review render was produced by the equivalent pandoc invocation with --pdf-engine=tectonic. Frozen canonical source bytes are unchanged and verify_package.py remains GREEN. filing_time_open item 'run build in clean environment and retain resulting PDF/hash' is NOT discharged by this render.",
+    "review_pdf_output": "main.pdf",
+    "review_pdf_sha256": "7d84ce47e28cc3f6af0a54ed25dd0a366fe5250355372fe9ca3d0c5d5a8511bd"
   },
   "canonical_claim_ledger": {
     "path": "papers/orion-01-certificate-realization/theory-A-CLAIM_LEDGER_R2.md",
