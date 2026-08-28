@@ -1,0 +1,27 @@
+{
+  "anchor_reference_rates": {
+    "active_voi_repair_parent": {
+      "forbidden": 0.0,
+      "success": 0.48333333333333334
+    },
+    "causalflow_minimal_counterfactual_parent": {
+      "forbidden": 0.8119361554476058,
+      "success": 0.48333333333333334
+    },
+    "darc_r2act_dependency_parent": {
+      "forbidden": 0.2501734906315059,
+      "success": 0.48333333333333334
+    },
+    "orion_mutation_necessity": {
+      "forbidden": 0.0,
+      "success": 1.0
+    }
+  },
+  "derivation": "Observed rates of the UNCHANGED (frozen v2.2.4) anchor arms on this world set. These arms are not modified by R4, so their rates are a property of the frozen code and this world set. No new-arm outcome was computed or read in this stage.",
+  "frozen_before_new_arm_outcomes_read": true,
+  "protected_matrix_sha256": "768b659a17f055b19dfefc720cee67030c40c6a5f8f55e38fa0c6158c4836d0e",
+  "schema": "orion.orion11.r4.anchor-reference.v1",
+  "source_commit": "dcc3b5e2d36bc79121bc6abf06aebe560be4230c",
+  "world_public_sha256": "b4772f693db1e69460bcb531a86bb883afd562bcb219e2038c978e33f7f34afb",
+  "world_set": "/projects/hep/fs9/scratch/scyiu-orion-ci/wtR4/research/revival/p1/confirmatory/v2.2/replication"
+}
