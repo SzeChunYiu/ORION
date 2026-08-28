@@ -2,7 +2,7 @@
 
 Tracking issue: #1609  
 Target: TMLR  
-Canonical source subject: `b1c0d26096a822e8294b8b60dbbbec3c4e73bc5d`
+Canonical source subject: `1aaf76fba90e2f06f0715108e1e5be70eef9eefc`
 
 ## Scientific closure
 
@@ -26,12 +26,13 @@ Canonical source subject: `b1c0d26096a822e8294b8b60dbbbec3c4e73bc5d`
 - [x] Every one of 19 pages has been inspected; clipping, fonts, metadata, figures, tables and references pass.
 - [x] Exact required-file manifest and SHA-256 list are current.
 - [x] Three targeted re-reviews close all Round-1 must-address concerns.
+- [x] Reader-facing PDF gate passed in `p4-tmlr-submission-audit` run `33169108291` with zero unresolved internal-code, transport, path or filename hits.
 
 ## Exact filing bytes
 
 | Object | SHA-256 |
 |---|---|
-| `journal_package/manuscript.pdf` | `d9b8fbf3b9f16a7c35b478a810121d8803ae2d848a7817d0cff33e6d47126110` |
+| `journal_package/manuscript.pdf` | `9dbf69d396e0396f9b8ccaea313fa409d1325bd5f939ba4db224198c4747c87d` |
 | `journal_package/orion14_anonymous_review_2026-08-28.zip` | `ec842a56dc49b7363de847e7c015fa2730c810a04652c5e440d9a72af4b665a3` |
 
 ## Human-only filing actions

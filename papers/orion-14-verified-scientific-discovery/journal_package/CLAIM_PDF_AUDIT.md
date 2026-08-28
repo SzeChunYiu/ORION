@@ -205,3 +205,52 @@ superiority. Human OpenReview metadata, upload and submission ID remain filing
 actions rather than scientific/package evidence gaps.
 
 Final pipeline terminal: `simulated_publication_ready_for_target`.
+
+
+## Superseding reader-facing addendum, 2026-08-28 — exact filing PDF
+
+This addendum supersedes only the current production binding recorded in the
+preceding final addendum. The earlier `d9b8fbf3b9f1…` PDF and run
+`33167703059` remain historical provenance for the pre-scrub manuscript and are
+not the filing object. No V2, V3 or P4-X result artifact changed.
+
+### Superseding exact binding
+
+| Field | Current value |
+|---|---|
+| Canonical reader-facing source revision | `1aaf76fba90e2f06f0715108e1e5be70eef9eefc` |
+| Clean-build workflow | `manuscript-clipping-audit`, run `33169108251` |
+| Source epoch | `1787918219` |
+| Engine | pdfTeX 1.40.25 / TeX Live 2023, Ubuntu latexmk 4.83 |
+| PDF SHA-256 | `9dbf69d396e0396f9b8ccaea313fa409d1325bd5f939ba4db224198c4747c87d` |
+| Pages | 19, US letter |
+| Package copy | `journal_package/manuscript.pdf`, byte-identical |
+| Reader-facing author gate | `p4-tmlr-submission-audit`, run `33169108291`, success |
+
+The clipping run rebuilt the PDF and found no clipping before its equality stage
+reported the expected stale tracked-PDF mismatch. The exact uploaded rebuild was
+then copied byte-identically to `manuscript/main.pdf` and
+`journal_package/manuscript.pdf`; the new package hashes bind those copies. This
+was a source-preserving artifact replacement, not a waiver of the equality gate.
+The subsequent package commit is required to make a fresh equality run green.
+
+### Reader-facing surface decision
+
+The PDF-text author gate and an independent local extraction scan report zero
+unresolved hits in each of these classes:
+
+- internal paper, hypothesis, experiment, comparator and round codes;
+- literal decision or package-status strings;
+- repository, CI and transport chronology;
+- repository paths and filenames.
+
+The remaining `P0` and `P1` tokens are defined probability-distribution notation
+in a formal proposition, not project identifiers. They are retained on scientific
+meaning rather than exempted as internal codes. The scientific carriers remain
+0/360 versus 180/360, 60/60 versus 60/60, the retained saturated null, 30/30
+versus 0/30 and 15/30 under the interface-attainability boundary, and 400/400
+versus 250/400 and 50/400 with the typed 400/400 tie.
+
+`P4.PDF` therefore remains **SUPPORTED** for this exact reader-facing file. This
+status is production conformance and simulated pre-submission closure, not
+external peer review, journal acceptance or any broader scientific authority.

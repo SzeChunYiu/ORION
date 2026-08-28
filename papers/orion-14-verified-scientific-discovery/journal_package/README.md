@@ -4,10 +4,11 @@
 
 ## Canonical objects
 
-- Source subject: `b1c0d26096a822e8294b8b60dbbbec3c4e73bc5d`
+- Source subject: `1aaf76fba90e2f06f0715108e1e5be70eef9eefc`
+- Reader-facing PDF audit: `p4-tmlr-submission-audit` run `33169108291` passed
 - Canonical source: `manuscript/main.tex` and the exact inputs listed in `MANIFEST.json`
 - Canonical PDF copies: `manuscript/main.pdf` and `journal_package/manuscript.pdf`
-- PDF SHA-256: `d9b8fbf3b9f16a7c35b478a810121d8803ae2d848a7817d0cff33e6d47126110`
+- PDF SHA-256: `9dbf69d396e0396f9b8ccaea313fa409d1325bd5f939ba4db224198c4747c87d`
 - PDF: 19 letter-size pages, anonymous metadata, all fonts embedded
 - Anonymous supplement: `journal_package/orion14_anonymous_review_2026-08-28.zip`
 - Supplement SHA-256: `ec842a56dc49b7363de847e7c015fa2730c810a04652c5e440d9a72af4b665a3`
