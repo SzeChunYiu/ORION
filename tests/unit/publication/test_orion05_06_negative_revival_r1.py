@@ -39,6 +39,16 @@ class Orion0506NegativeRevivalR1Test(unittest.TestCase):
             "orion06_negative_revival_r1",
             ROOT / "papers/orion-06-recursive-recovery/revival/orion06_negative_revival_r1.py",
         )
+        cls.revival_bundle = load(
+            "orion06_revival_bundle",
+            ROOT
+            / "development/orion-05-06-negative-revival-r1-2026-08-27/verify_orion06_revival_r1_bundle.py",
+        )
+        cls.ledger = load(
+            "orion0506_negative_revival_ledger",
+            ROOT
+            / "development/orion-05-06-negative-revival-r1-2026-08-27/build_negative_revival_ledger.py",
+        )
 
     def test_r13_protocol_excludes_pilot_and_freezes_all_heldout_matchings(self):
         protocol = json.loads(
@@ -202,6 +212,61 @@ class Orion0506NegativeRevivalR1Test(unittest.TestCase):
         )
         self.assertFalse(report["R6K_EXACT_RESTORE_FACTOR"]["authority"]["novelty"])
         self.assertEqual(report["unsolvable"], [])
+
+    def test_orion06_revival_bundle_is_exactly_bound_and_adverse_results_remain_visible(self):
+        report = self.revival_bundle.verify(ROOT)
+        committed = json.loads(
+            (
+                ROOT
+                / "development/orion-05-06-negative-revival-r1-2026-08-27/ORION06_REVIVAL_BUNDLE_VERIFICATION_V1.json"
+            ).read_text()
+        )
+        self.assertEqual(committed, report)
+        self.assertEqual(report["terminal"], "ORION06_NEGATIVE_REVIVAL_BUNDLE_VERIFIED")
+        self.assertEqual(report["bundle"]["stage"]["regular_files"], 12836)
+        self.assertEqual(report["bundle"]["stage"]["symlinks"], 1)
+        self.assertTrue(report["scheduler"]["all_completed_exit_zero"])
+        self.assertTrue(report["scheduler"]["stderr_empty"])
+        self.assertEqual(report["attempts"]["R4C_H2_REGIME_LIMITED"]["outcome"], "IMPROVED")
+        self.assertEqual(report["attempts"]["R5B_PROOF_OUTER_REPLAY"]["outcome"], "IMPROVED")
+        self.assertEqual(
+            report["attempts"]["R6I_EXACT_RANK2"]["outcome"],
+            "RETAINED_NEGATIVE",
+        )
+        self.assertEqual(
+            report["attempts"]["R6K_EXACT_RESTORE_FACTOR"]["outcome"],
+            "CORRECT_SUBTRACTION",
+        )
+        self.assertEqual(report["unsolvable"], [])
+        self.assertFalse(report["authority"]["final_freeze"])
+
+    def test_combined_ledger_has_no_unattempted_negative_or_unsolvable_claim(self):
+        ledger = self.ledger.build(ROOT)
+        committed = json.loads(
+            (
+                ROOT
+                / "development/orion-05-06-negative-revival-r1-2026-08-27/ORION05_06_NEGATIVE_REVIVAL_LEDGER_V1.json"
+            ).read_text()
+        )
+        self.assertEqual(committed, ledger)
+        self.assertEqual(ledger["summary"]["recorded_negative_rows"], 9)
+        self.assertEqual(ledger["summary"]["cannot_check_gates"], 1)
+        self.assertEqual(
+            ledger["summary"]["outcomes"],
+            {
+                "CORRECT_SUBTRACTION": 1,
+                "IMPROVED": 2,
+                "IMPROVED_COMPLETION_ONLY": 1,
+                "RETAINED_NEGATIVE": 5,
+            },
+        )
+        self.assertTrue(all(row["original_negative_preserved"] for row in ledger["rows"]))
+        self.assertEqual(ledger["unsolvable"], [])
+        self.assertEqual(
+            ledger["paper_freeze_status"],
+            "WITHHELD_PENDING_PORTFOLIO_WIDE_INTEGRATION",
+        )
+        self.assertFalse(ledger["authority"]["final_freeze"])
 
 
 if __name__ == "__main__":

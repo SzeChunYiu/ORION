@@ -1,0 +1,6015 @@
+{
+  "authority": "MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_NEGATIVE__NOT_R6",
+  "concurrent_r6f_r6g_stronger_positive_artifact_present": false,
+  "development_supported": false,
+  "donor_novelty_credit": false,
+  "fresh_r6_subject_coefficients_accessed": false,
+  "gates": {
+    "all_strict_witnesses_independently_verified": true,
+    "exactly_ten_partitions": true,
+    "fresh_stretched_n2_unread": true,
+    "frozen_sixterm_batches_complete": true,
+    "full_donor_incumbent_replay_pass": true,
+    "hostile_distinct_relative_permutations_exercised": true,
+    "hostile_dp_vs_brute_exact": true,
+    "hostile_per_configuration_dp_vs_brute_exact": true,
+    "inherited_exact_tare3_hostile_pass": true,
+    "inherited_r6j_factor_phase_hostile_pass": true,
+    "source_blobs_observed_match": true,
+    "strict_budget_matched_eq_n2": false,
+    "strict_budget_matched_h4": false
+  },
+  "hostile": {
+    "all_pass": true,
+    "brute_solver": "global Pauli-string enumeration over (RA0,RA1,RB0,RB1,S0,S1) with label grouping, central minimization and permutation scan; additionally restricted per fixed (permutation, central A, central B)",
+    "gates": {
+      "distinct_relative_permutations_exercised": true,
+      "dp_vs_brute_exact": true,
+      "inherited_exact_tare3_hostile_pass": true,
+      "inherited_r6j_factor_phase_hostile_pass": true,
+      "per_configuration_dp_vs_brute_exact": true
+    },
+    "inherited_exact_tare3": {
+      "n2_a": {
+        "brute_cost": 7,
+        "dp_cost": 7,
+        "n": 2,
+        "pass": true
+      },
+      "n2_b": {
+        "brute_cost": 7,
+        "dp_cost": 7,
+        "n": 2,
+        "pass": true
+      },
+      "n3_a": {
+        "brute_cost": 11,
+        "dp_cost": 11,
+        "n": 3,
+        "pass": true
+      },
+      "n3_b": {
+        "brute_cost": 10,
+        "dp_cost": 10,
+        "n": 3,
+        "pass": true
+      }
+    },
+    "inherited_r6j_gates": {
+      "different_nonidentity_saves_zero": true,
+      "exact_phase_reconstruction_different": true,
+      "exact_phase_reconstruction_same": true,
+      "identical_nonidentity_saves_one": true,
+      "r6b_phase_hostile_pass": true,
+      "r6h_partial_tag_hostile_pass": true
+    },
+    "observed_optimal_permutations": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        1,
+        2,
+        0
+      ],
+      [
+        2,
+        0,
+        1
+      ],
+      [
+        2,
+        1,
+        0
+      ]
+    ],
+    "panels": {
+      "n1_a": {
+        "brute_cost": 4,
+        "central_A": 0,
+        "central_B": 0,
+        "dp_cost": 4,
+        "independent_verification_pass": true,
+        "n": 1,
+        "pass": true,
+        "per_configuration_equality": {
+          "configurations": 54,
+          "mismatches": 0
+        },
+        "relative_B_target_permutation": [
+          1,
+          2,
+          0
+        ],
+        "witness_checks_pass": true
+      },
+      "n1_b": {
+        "brute_cost": 6,
+        "central_A": 0,
+        "central_B": 0,
+        "dp_cost": 6,
+        "independent_verification_pass": true,
+        "n": 1,
+        "pass": true,
+        "per_configuration_equality": {
+          "configurations": 54,
+          "mismatches": 0
+        },
+        "relative_B_target_permutation": [
+          0,
+          1,
+          2
+        ],
+        "witness_checks_pass": true
+      },
+      "n1_c": {
+        "brute_cost": 6,
+        "central_A": 0,
+        "central_B": 0,
+        "dp_cost": 6,
+        "independent_verification_pass": true,
+        "n": 1,
+        "pass": true,
+        "per_configuration_equality": null,
+        "relative_B_target_permutation": [
+          0,
+          1,
+          2
+        ],
+        "witness_checks_pass": true
+      },
+      "n2_a": {
+        "brute_cost": 9,
+        "central_A": 0,
+        "central_B": 0,
+        "dp_cost": 9,
+        "independent_verification_pass": true,
+        "n": 2,
+        "pass": true,
+        "per_configuration_equality": {
+          "configurations": 54,
+          "mismatches": 0
+        },
+        "relative_B_target_permutation": [
+          2,
+          1,
+          0
+        ],
+        "witness_checks_pass": true
+      },
+      "n2_b": {
+        "brute_cost": 9,
+        "central_A": 0,
+        "central_B": 0,
+        "dp_cost": 9,
+        "independent_verification_pass": true,
+        "n": 2,
+        "pass": true,
+        "per_configuration_equality": null,
+        "relative_B_target_permutation": [
+          2,
+          1,
+          0
+        ],
+        "witness_checks_pass": true
+      },
+      "n2_c": {
+        "brute_cost": 7,
+        "central_A": 0,
+        "central_B": 0,
+        "dp_cost": 7,
+        "independent_verification_pass": true,
+        "n": 2,
+        "pass": true,
+        "per_configuration_equality": null,
+        "relative_B_target_permutation": [
+          0,
+          1,
+          2
+        ],
+        "witness_checks_pass": true
+      },
+      "n2_d": {
+        "brute_cost": 9,
+        "central_A": 0,
+        "central_B": 0,
+        "dp_cost": 9,
+        "independent_verification_pass": true,
+        "n": 2,
+        "pass": true,
+        "per_configuration_equality": {
+          "configurations": 54,
+          "mismatches": 0
+        },
+        "relative_B_target_permutation": [
+          2,
+          0,
+          1
+        ],
+        "witness_checks_pass": true
+      }
+    },
+    "per_configuration_panels": [
+      "n1_a",
+      "n1_b",
+      "n2_a",
+      "n2_d"
+    ]
+  },
+  "incumbent_stack": [
+    "FRAME_ONLY",
+    "R6B_REUSE",
+    "R6H_PARTIAL_TAG",
+    "R6J_RESTORE_FACTOR"
+  ],
+  "novelty_credit": false,
+  "protocol": "development/orion-q-max-r0/MAX_R6K_EXACT_RANK2_SHARED_TAG_RESTORE_FACTOR_DP_PROTOCOL.md",
+  "r6_authority": false,
+  "reserved_stretched_n2_accessed": false,
+  "responsibility": "RESP:METHOD_LANGUAGE_INADEQUATE_AFTER_JOINT_TAG_RESTORE_FACTOR_CLOSURE",
+  "runtime_seconds": 208.306,
+  "schema": "ORIONQ.MAXR6K.ExactRank2SharedTagRestoreFactorDP.v1",
+  "scope": "OPEN_H4_EQ_N2_R6B_SIXTERM_RANK2_SHARED_TAG_RESTORE_FACTOR__NOT_R6",
+  "subjects": {
+    "H4": {
+      "all_witnesses_independently_verified": true,
+      "batch_complete": true,
+      "best_strict": null,
+      "eligible_partition_count": 10,
+      "frozen_source_indices": [
+        12,
+        18,
+        22,
+        25,
+        27,
+        31
+      ],
+      "incumbent_replay_pass": true,
+      "incumbent_rows": [
+        {
+          "C_R6H": 16,
+          "C_R6J": 14,
+          "C_frame_only": 16,
+          "C_incumbent": 14,
+          "C_reuse": 34,
+          "Lambda_batch": 0.4155982751983884,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              12,
+              18,
+              22
+            ],
+            [
+              25,
+              27,
+              31
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 15,
+          "C_R6J": 12,
+          "C_frame_only": 18,
+          "C_incumbent": 12,
+          "C_reuse": 21,
+          "Lambda_batch": 0.41581747322653073,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              12,
+              18,
+              25
+            ],
+            [
+              22,
+              27,
+              31
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 15,
+          "C_R6J": 13,
+          "C_frame_only": 18,
+          "C_incumbent": 13,
+          "C_reuse": 27,
+          "Lambda_batch": 0.4158647328290657,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              12,
+              18,
+              27
+            ],
+            [
+              22,
+              25,
+              31
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 15,
+          "C_R6J": 12,
+          "C_frame_only": 18,
+          "C_incumbent": 12,
+          "C_reuse": 22,
+          "Lambda_batch": 0.41600316484504013,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              12,
+              18,
+              31
+            ],
+            [
+              22,
+              25,
+              27
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 15,
+          "C_R6J": 13,
+          "C_frame_only": 18,
+          "C_incumbent": 13,
+          "C_reuse": 28,
+          "Lambda_batch": 0.4161464173724754,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              12,
+              22,
+              25
+            ],
+            [
+              18,
+              27,
+              31
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 15,
+          "C_R6J": 13,
+          "C_frame_only": 18,
+          "C_incumbent": 13,
+          "C_reuse": 28,
+          "Lambda_batch": 0.4161767469527802,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              12,
+              22,
+              27
+            ],
+            [
+              18,
+              25,
+              31
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 15,
+          "C_R6J": 13,
+          "C_frame_only": 18,
+          "C_incumbent": 13,
+          "C_reuse": 27,
+          "Lambda_batch": 0.4162607154970074,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              12,
+              22,
+              31
+            ],
+            [
+              18,
+              25,
+              27
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 15,
+          "C_R6J": 12,
+          "C_frame_only": 18,
+          "C_incumbent": 12,
+          "C_reuse": 21,
+          "Lambda_batch": 0.41628123430734865,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              12,
+              25,
+              27
+            ],
+            [
+              18,
+              22,
+              31
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 15,
+          "C_R6J": 13,
+          "C_frame_only": 18,
+          "C_incumbent": 13,
+          "C_reuse": 28,
+          "Lambda_batch": 0.4163379167522089,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              12,
+              25,
+              31
+            ],
+            [
+              18,
+              22,
+              27
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 15,
+          "C_R6J": 12,
+          "C_frame_only": 18,
+          "C_incumbent": 12,
+          "C_reuse": 22,
+          "Lambda_batch": 0.4163512080270061,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              12,
+              27,
+              31
+            ],
+            [
+              18,
+              22,
+              25
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        }
+      ],
+      "max_imag": 6.938893903907228e-18,
+      "n_qubits": 8,
+      "partition_count": 10,
+      "partitions": [
+        {
+          "C_R6K": 14,
+          "C_incumbent_envelope": 14,
+          "Lambda_batch": 0.4155982751983884,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 16,
+            "C_R6J": 14,
+            "C_frame_only": 16,
+            "C_incumbent": 14,
+            "C_reuse": 34,
+            "Lambda_batch": 0.4155982751983884,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                12,
+                18,
+                22
+              ],
+              [
+                25,
+                27,
+                31
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              12,
+              18,
+              22
+            ],
+            [
+              25,
+              27,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 14,
+            "R_A": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                16,
+                16
+              ]
+            ],
+            "R_B": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                16,
+                16
+              ]
+            ],
+            "S": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  16,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  68
+                ],
+                "U_B": [
+                  0,
+                  136
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 5
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  64
+                ],
+                "U_B": [
+                  0,
+                  128
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 2
+              },
+              {
+                "G": [
+                  16,
+                  16
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  64
+                ],
+                "U_B": [
+                  0,
+                  128
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 10,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              1,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  16,
+                  68
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  64
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  80
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  16,
+                  136
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  144
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 0.41581747322653073,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              12,
+              18,
+              25
+            ],
+            [
+              22,
+              27,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                16,
+                16
+              ]
+            ],
+            "R_B": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                16,
+                16
+              ]
+            ],
+            "S": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  16,
+                  64
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  4
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  64
+                ],
+                "U_B": [
+                  0,
+                  128
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 2
+              },
+              {
+                "G": [
+                  16,
+                  144
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  8
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              1,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  16,
+                  68
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  64
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  152
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  16,
+                  64
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  144
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 13,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 0.4158647328290657,
+          "delta_vs_incumbent": -1,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              12,
+              18,
+              27
+            ],
+            [
+              22,
+              25,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 13,
+            "R_A": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "R_B": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  64,
+                  64
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  4
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 2
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  16
+                ],
+                "U_B": [
+                  0,
+                  200
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 4
+              },
+              {
+                "G": [
+                  64,
+                  192
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  16
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 9,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              1,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  64,
+                  68
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  208
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  64,
+                  64
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  200
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 0.41600316484504013,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              12,
+              18,
+              31
+            ],
+            [
+              22,
+              25,
+              27
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                16,
+                16
+              ]
+            ],
+            "R_B": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                16,
+                16
+              ]
+            ],
+            "S": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  16,
+                  64
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  4
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  64
+                ],
+                "U_B": [
+                  0,
+                  128
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 2
+              },
+              {
+                "G": [
+                  16,
+                  144
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  8
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              2,
+              1
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  16,
+                  68
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  64
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  144
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  16,
+                  64
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  152
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 13,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 0.4161464173724754,
+          "delta_vs_incumbent": -1,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              12,
+              22,
+              25
+            ],
+            [
+              18,
+              27,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 13,
+            "R_A": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "R_B": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  64,
+                  64
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  4
+                ],
+                "U_B": [
+                  0,
+                  16
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 3
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  208
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  64,
+                  192
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  8
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 9,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              1,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  64,
+                  68
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  200
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  64,
+                  80
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  208
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 13,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 0.4161767469527802,
+          "delta_vs_incumbent": -1,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              12,
+              22,
+              27
+            ],
+            [
+              18,
+              25,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 13,
+            "R_A": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "R_B": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  64,
+                  64
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  4
+                ],
+                "U_B": [
+                  0,
+                  16
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 3
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  200
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  64,
+                  192
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  16
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 9,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              1,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  64,
+                  68
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  208
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  64,
+                  80
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  200
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 13,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 0.4162607154970074,
+          "delta_vs_incumbent": -1,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              12,
+              22,
+              31
+            ],
+            [
+              18,
+              25,
+              27
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 13,
+            "R_A": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "R_B": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  64,
+                  64
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  4
+                ],
+                "U_B": [
+                  0,
+                  16
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 3
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  200
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  64,
+                  192
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  16
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 9,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              1,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  64,
+                  68
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  64,
+                  80
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  200
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  208
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 0.41628123430734865,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              12,
+              25,
+              27
+            ],
+            [
+              18,
+              22,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                16,
+                0
+              ],
+              [
+                16,
+                16
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "R_B": [
+              [
+                16,
+                0
+              ],
+              [
+                16,
+                16
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "S": [
+              [
+                16,
+                0
+              ],
+              [
+                16,
+                16
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  16,
+                  64
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  4
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  16,
+                  144
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  8
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  128
+                ],
+                "U_B": [
+                  0,
+                  64
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 2
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              1,
+              2,
+              0
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  16,
+                  68
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  152
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  16,
+                  64
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  144
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  64
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 13,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 0.4163379167522089,
+          "delta_vs_incumbent": -1,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              12,
+              25,
+              31
+            ],
+            [
+              18,
+              22,
+              27
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 13,
+            "R_A": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "R_B": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ],
+              [
+                64,
+                64
+              ]
+            ],
+            "S": [
+              [
+                64,
+                0
+              ],
+              [
+                0,
+                64
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  64,
+                  64
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  4
+                ],
+                "U_B": [
+                  0,
+                  16
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 3
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  200
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  64,
+                  192
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  16
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 9,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              1,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  64,
+                  68
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  200
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  192
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  64,
+                  80
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  0
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  64,
+                  208
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 0.4163512080270061,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 21,
+            "Lambda_batch": 0.41581747322653073,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                12,
+                18,
+                25
+              ],
+              [
+                22,
+                27,
+                31
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              12,
+              27,
+              31
+            ],
+            [
+              18,
+              22,
+              25
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                16,
+                16
+              ]
+            ],
+            "R_B": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ],
+              [
+                16,
+                16
+              ]
+            ],
+            "S": [
+              [
+                16,
+                0
+              ],
+              [
+                0,
+                16
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  16,
+                  64
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  4
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  128
+                ],
+                "U_B": [
+                  0,
+                  64
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 2
+              },
+              {
+                "G": [
+                  16,
+                  144
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  8
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              1,
+              0,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  16,
+                  68
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  144
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  16,
+                  64
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  64
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  16,
+                  152
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        }
+      ],
+      "r6b_window_champions_available": 2,
+      "source_blob_expected": "b98792b1055dbac0ebf2a7576f72412e3e4ac6c5",
+      "source_blob_observed": "b98792b1055dbac0ebf2a7576f72412e3e4ac6c5",
+      "source_blob_verified": true,
+      "strict_budget_matched_improvement_exists": false,
+      "strict_count": 0,
+      "subject": "H4"
+    },
+    "N2": {
+      "all_witnesses_independently_verified": true,
+      "batch_complete": true,
+      "best_strict": null,
+      "eligible_partition_count": 10,
+      "frozen_source_indices": [
+        0,
+        7,
+        11,
+        24,
+        31,
+        32
+      ],
+      "incumbent_replay_pass": true,
+      "incumbent_rows": [
+        {
+          "C_R6H": 15,
+          "C_R6J": 13,
+          "C_frame_only": 16,
+          "C_incumbent": 13,
+          "C_reuse": 31,
+          "Lambda_batch": 1.1214349234652108,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              0,
+              7,
+              11
+            ],
+            [
+              24,
+              31,
+              32
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 14,
+          "C_R6J": 12,
+          "C_frame_only": 18,
+          "C_incumbent": 12,
+          "C_reuse": 23,
+          "Lambda_batch": 1.1284595217109359,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              0,
+              7,
+              24
+            ],
+            [
+              11,
+              31,
+              32
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 14,
+          "C_R6J": 12,
+          "C_frame_only": 18,
+          "C_incumbent": 12,
+          "C_reuse": 23,
+          "Lambda_batch": 1.1289894301061176,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              0,
+              7,
+              31
+            ],
+            [
+              11,
+              24,
+              32
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 14,
+          "C_R6J": 12,
+          "C_frame_only": 17,
+          "C_incumbent": 12,
+          "C_reuse": 25,
+          "Lambda_batch": 1.1289894301061176,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              0,
+              7,
+              32
+            ],
+            [
+              11,
+              24,
+              31
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 14,
+          "C_R6J": 12,
+          "C_frame_only": 18,
+          "C_incumbent": 12,
+          "C_reuse": 23,
+          "Lambda_batch": 1.1338081290651303,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              0,
+              11,
+              24
+            ],
+            [
+              7,
+              31,
+              32
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 14,
+          "C_R6J": 12,
+          "C_frame_only": 17,
+          "C_incumbent": 12,
+          "C_reuse": 23,
+          "Lambda_batch": 1.1343057131727972,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              0,
+              11,
+              31
+            ],
+            [
+              7,
+              24,
+              32
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 14,
+          "C_R6J": 13,
+          "C_frame_only": 17,
+          "C_incumbent": 13,
+          "C_reuse": 31,
+          "Lambda_batch": 1.1343057131727972,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              0,
+              11,
+              32
+            ],
+            [
+              7,
+              24,
+              31
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 14,
+          "C_R6J": 12,
+          "C_frame_only": 17,
+          "C_incumbent": 12,
+          "C_reuse": 25,
+          "Lambda_batch": 1.140374783289043,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              0,
+              24,
+              31
+            ],
+            [
+              7,
+              11,
+              32
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 14,
+          "C_R6J": 12,
+          "C_frame_only": 18,
+          "C_incumbent": 12,
+          "C_reuse": 23,
+          "Lambda_batch": 1.140374783289043,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              0,
+              24,
+              32
+            ],
+            [
+              7,
+              11,
+              31
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        },
+        {
+          "C_R6H": 14,
+          "C_R6J": 12,
+          "C_frame_only": 18,
+          "C_incumbent": 12,
+          "C_reuse": 22,
+          "Lambda_batch": 1.1408330196115304,
+          "incumbent_source": "R6J_RESTORE_FACTOR",
+          "partition": [
+            [
+              0,
+              31,
+              32
+            ],
+            [
+              7,
+              11,
+              24
+            ]
+          ],
+          "r6j_witness_checks_pass": true
+        }
+      ],
+      "max_imag": 9.75781955236954e-19,
+      "n_qubits": 12,
+      "partition_count": 10,
+      "partitions": [
+        {
+          "C_R6K": 13,
+          "C_incumbent_envelope": 13,
+          "Lambda_batch": 1.1214349234652108,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 15,
+            "C_R6J": 13,
+            "C_frame_only": 16,
+            "C_incumbent": 13,
+            "C_reuse": 31,
+            "Lambda_batch": 1.1214349234652108,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                0,
+                7,
+                11
+              ],
+              [
+                24,
+                31,
+                32
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              0,
+              7,
+              11
+            ],
+            [
+              24,
+              31,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 13,
+            "R_A": [
+              [
+                256,
+                0
+              ],
+              [
+                0,
+                256
+              ],
+              [
+                256,
+                256
+              ]
+            ],
+            "R_B": [
+              [
+                256,
+                0
+              ],
+              [
+                0,
+                256
+              ],
+              [
+                256,
+                256
+              ]
+            ],
+            "S": [
+              [
+                256,
+                0
+              ],
+              [
+                0,
+                256
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  256,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  4
+                ],
+                "U_B": [
+                  0,
+                  16
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  4
+                ],
+                "U_B": [
+                  0,
+                  16
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 2
+              },
+              {
+                "G": [
+                  256,
+                  256
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  132
+                ],
+                "U_B": [
+                  0,
+                  1024
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 4
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 9,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              1,
+              0,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  256,
+                  4
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  4
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  256,
+                  388
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  256,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  16
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  256,
+                  1280
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 1.1284595217109359,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              0,
+              7,
+              24
+            ],
+            [
+              11,
+              31,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "R_B": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  128
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 2
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  256
+                ],
+                "U_B": [
+                  0,
+                  1028
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  4,
+                  20
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  256
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              2,
+              1
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  4,
+                  4
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  256
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  276
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  4,
+                  132
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  1028
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 1.1289894301061176,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              0,
+              7,
+              31
+            ],
+            [
+              11,
+              24,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "R_B": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  128
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 2
+              },
+              {
+                "G": [
+                  0,
+                  256
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  20
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  16
+                ],
+                "U_B": [
+                  0,
+                  1024
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              1,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  4,
+                  4
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  256
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  4,
+                  132
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  276
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 1.1289894301061176,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              0,
+              7,
+              32
+            ],
+            [
+              11,
+              24,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "R_B": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  128
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 2
+              },
+              {
+                "G": [
+                  0,
+                  256
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  20
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  1024
+                ],
+                "U_B": [
+                  0,
+                  16
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              1,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  4,
+                  4
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  256
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  4,
+                  132
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  276
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 1.1338081290651303,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              0,
+              11,
+              24
+            ],
+            [
+              7,
+              31,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "R_B": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  256
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 2
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  128
+                ],
+                "U_B": [
+                  0,
+                  1028
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  4,
+                  20
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  256
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              2,
+              1
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  4,
+                  4
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  276
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  4,
+                  260
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  1028
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 1.1343057131727972,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              0,
+              11,
+              31
+            ],
+            [
+              7,
+              24,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "R_B": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  256
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 2
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  128
+                ],
+                "U_B": [
+                  0,
+                  1028
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  4,
+                  20
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  256
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              2,
+              1
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  4,
+                  4
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  4,
+                  260
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  1028
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  276
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 13,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 1.1343057131727972,
+          "delta_vs_incumbent": -1,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              0,
+              11,
+              32
+            ],
+            [
+              7,
+              24,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 13,
+            "R_A": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "R_B": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  256
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 2
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  128
+                ],
+                "U_B": [
+                  0,
+                  276
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 4
+              },
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  1024
+                ],
+                "U_B": [
+                  0,
+                  16
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 9,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              1,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  4,
+                  4
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  4,
+                  260
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  276
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 1.140374783289043,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              0,
+              24,
+              31
+            ],
+            [
+              7,
+              11,
+              32
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "R_B": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "S": [
+              [
+                4,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  128
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 2
+              },
+              {
+                "G": [
+                  0,
+                  256
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  20
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  16
+                ],
+                "U_B": [
+                  0,
+                  1024
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              1,
+              0,
+              2
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  4,
+                  4
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  276
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  4,
+                  132
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  0,
+                  256
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  4,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 1.140374783289043,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              0,
+              24,
+              32
+            ],
+            [
+              7,
+              11,
+              31
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "R_B": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "S": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  256
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 2
+              },
+              {
+                "G": [
+                  4,
+                  20
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  256
+                ],
+                "U_B": [
+                  0,
+                  0
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  1028
+                ],
+                "U_B": [
+                  0,
+                  128
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              2,
+              1
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  4,
+                  4
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  276
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  4,
+                  260
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        },
+        {
+          "C_R6K": 12,
+          "C_incumbent_envelope": 12,
+          "Lambda_batch": 1.1408330196115304,
+          "delta_vs_incumbent": 0,
+          "incumbent_envelope_witness": {
+            "C_R6H": 14,
+            "C_R6J": 12,
+            "C_frame_only": 18,
+            "C_incumbent": 12,
+            "C_reuse": 23,
+            "Lambda_batch": 1.1284595217109359,
+            "incumbent_source": "R6J_RESTORE_FACTOR",
+            "partition": [
+              [
+                0,
+                7,
+                24
+              ],
+              [
+                11,
+                31,
+                32
+              ]
+            ],
+            "r6j_witness_checks_pass": true
+          },
+          "independent_verification": {
+            "basis_anticommutation": true,
+            "cost_recomputed": true,
+            "factored_recomputed": true,
+            "label_distinct_nonzero": true,
+            "label_equality": true,
+            "pairwise_anticommutation": true,
+            "permutation_valid": true,
+            "r6j_common_factor_rule": true,
+            "r6j_factor_support": true,
+            "r6j_residual_phase_identity": true,
+            "rank2_dependency": true,
+            "restore_phase_identity": true,
+            "tag_recomputed": true,
+            "target_identity": true,
+            "uanti_recomputed": true
+          },
+          "independently_verified": true,
+          "partition": [
+            [
+              0,
+              31,
+              32
+            ],
+            [
+              7,
+              11,
+              24
+            ]
+          ],
+          "strict_budget_matched_improvement": false,
+          "witness": {
+            "C_R6K": 12,
+            "R_A": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "R_B": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ],
+              [
+                0,
+                4
+              ]
+            ],
+            "S": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "branches": [
+              {
+                "G": [
+                  4,
+                  4
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  256
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 1,
+                "original_phase_A": 1,
+                "original_phase_B": 1,
+                "residual_phase_A": 1,
+                "residual_phase_B": 1,
+                "support": 2
+              },
+              {
+                "G": [
+                  4,
+                  20
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  0
+                ],
+                "U_B": [
+                  0,
+                  256
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 2,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              },
+              {
+                "G": [
+                  0,
+                  0
+                ],
+                "G_times_U_phase_A": 0,
+                "G_times_U_phase_B": 0,
+                "U_A": [
+                  0,
+                  1028
+                ],
+                "U_B": [
+                  0,
+                  128
+                ],
+                "checks": {
+                  "binary_identity_A": true,
+                  "binary_identity_B": true,
+                  "phase_identity_A": true,
+                  "phase_identity_B": true,
+                  "support_formula": true
+                },
+                "matching_nonidentity_local_letters": 0,
+                "original_phase_A": 0,
+                "original_phase_B": 0,
+                "residual_phase_A": 0,
+                "residual_phase_B": 0,
+                "support": 3
+              }
+            ],
+            "central_A": 0,
+            "central_B": 0,
+            "checks": {
+              "branch_factor_checks": true,
+              "cost_recomputed": true,
+              "labels_equal_blocks": true,
+              "labels_hit_all_nonzero": true,
+              "pairwise_anti_A": true,
+              "pairwise_anti_B": true,
+              "rank2_A": true,
+              "rank2_B": true,
+              "target_identity_A": true,
+              "target_identity_B": true
+            },
+            "factored_restore_support": 8,
+            "final_parity_state": 387,
+            "labels": [
+              1,
+              2,
+              3
+            ],
+            "relative_B_target_permutation": [
+              0,
+              2,
+              1
+            ],
+            "signed_T_A": [
+              {
+                "T": [
+                  4,
+                  4
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  20
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  1028
+                ],
+                "phase": 0
+              }
+            ],
+            "signed_T_B": [
+              {
+                "T": [
+                  4,
+                  260
+                ],
+                "phase": 1
+              },
+              {
+                "T": [
+                  4,
+                  276
+                ],
+                "phase": 0
+              },
+              {
+                "T": [
+                  0,
+                  128
+                ],
+                "phase": 0
+              }
+            ],
+            "tag_support_twice_shared": 4,
+            "uanti_support_A": 0,
+            "uanti_support_B": 0
+          }
+        }
+      ],
+      "r6b_window_champions_available": 2,
+      "source_blob_expected": "15369e8e886efbb3d32f3b2dfe2cfbb96ddebeba",
+      "source_blob_observed": "15369e8e886efbb3d32f3b2dfe2cfbb96ddebeba",
+      "source_blob_verified": true,
+      "strict_budget_matched_improvement_exists": false,
+      "strict_count": 0,
+      "subject": "N2"
+    }
+  }
+}

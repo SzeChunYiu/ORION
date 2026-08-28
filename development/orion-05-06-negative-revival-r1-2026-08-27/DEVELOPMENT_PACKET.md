@@ -1,7 +1,7 @@
 # ORION-05/06 recorded-negative revival R1 development packet
 
 Date: 2026-08-27
-Branch: `codex/revive-orion05-06-20260827`
+Branch: `codex/revive-orion05-06-r1-20260828`
 Base: `0a56f4a5a28f31072c6fb3cc910804474dc2f2a6`
 Authority ceiling: `scientific_authority_delta: NONE`
 
@@ -35,3 +35,9 @@ Audit actual scientific adverse/null/CANNOT_CHECK artifacts for canonical ORION-
 ## Verification and stop rule
 
 Run targeted unit tests, the ORION-05 R11/R12/custody validators, the ORION-06 transition-graph checker, and the additive revival checker. LUNARC executions must bind source commit, Slurm job/account/node/limits, raw rows, environment and SHA-256. Stop with an explicit residual blocker if a precondition is absent; do not manufacture a positive or final freeze.
+
+## Completion addendum, 2026-08-28
+
+The four ORION-06 rows classified above as unfinished received frozen mechanism-matched attempts. R4C and R5B improved on already-open subjects without prospective or novelty authority. The fresh R6K replay retained the R6I negative, while the fresh R6L replay classified the R6K successor as a donor-owned correct subtraction. The combined ledger records nine negative rows, one cross-domain `CANNOT_CHECK` gate, and `unsolvable: []`.
+
+The exact execution and custody record is in `evidence/run-e9d4ee1df73ff22fb5742ff2cd9c200b0a5f29f9-v1/`. The bounded scientific interpretation is in `NEGATIVE_REVIVAL_CLOSEOUT.md`. Final paper freeze remains outside this lane and is explicitly withheld.

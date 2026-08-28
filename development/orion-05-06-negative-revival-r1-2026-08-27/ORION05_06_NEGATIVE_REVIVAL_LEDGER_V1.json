@@ -1,0 +1,327 @@
+{
+  "authority": {
+    "external_independence": false,
+    "final_freeze": false,
+    "journal_or_submission": false,
+    "novelty": false,
+    "prospective_confirmation": false
+  },
+  "cannot_check": [
+    {
+      "authority": {
+        "external_independence": false,
+        "final_freeze": false,
+        "journal_or_submission": false,
+        "novelty": false,
+        "prospective_confirmation": false
+      },
+      "classification": "CANNOT_CHECK",
+      "gate_id": "CROSS_DOMAIN_GENERAL_METHOD",
+      "mechanism_stage": "EXTERNAL_COMPARATIVE_EVALUATION",
+      "named_blocker": "no prospectively admitted non-quantum formal programme and computational/empirical programme with matched workflow budgets and independent scoring exists under the frozen protocol",
+      "next_executable_condition": "admit matched prospective non-quantum formal and computational or empirical Domain-B/C programmes with independent scoring",
+      "not_unsolvable": true,
+      "paper": "ORION-06",
+      "strongest_parent": "matched NAIVE_ITERATION and DONOR_STOP workflows across prospective Domains B/C"
+    }
+  ],
+  "date": "2026-08-28",
+  "paper_freeze_status": "WITHHELD_PENDING_PORTFOLIO_WIDE_INTEGRATION",
+  "rows": [
+    {
+      "attempt_kind": "PROSPECTIVELY_FROZEN_HELDOUT_RETEST",
+      "authority": {
+        "external_independence": false,
+        "final_freeze": false,
+        "journal_or_submission": false,
+        "novelty": false,
+        "prospective_confirmation": false
+      },
+      "classification": "SAVE_WORTHY_NEGATIVE_REPAIRED_WITHOUT_AUTHORITY_PROMOTION",
+      "evidence": {
+        "path": "development/orion-05-06-negative-revival-r1-2026-08-27/evidence/run-506b84e6c47558764b95f4482ce6691bb3757723-v2/r13/result/ORION05_R13_RESULT.json",
+        "sha256": "e3696799be0caa7c88bd627979a28f55049298bcac3efa9c9af280ef28ef30b2"
+      },
+      "job_ids": [
+        "3550007"
+      ],
+      "lever": "parent-certificate-guided first-candidate ordering with parent cost charged",
+      "mechanism_stage": "CANDIDATE_ENUMERATION_ORDER",
+      "mechanistic_result": "24/24 held-out H4/N2 cells completed at the exact parent cost; the parent is required and its runtime is charged",
+      "negative_id": "R12_EXACT_BUT_NO_PRODUCTION_VALUE",
+      "original_negative_preserved": true,
+      "paper": "ORION-05",
+      "residual_boundary": "standalone production value remains false; this is completion repair, not acceleration or external value",
+      "revival_outcome": "IMPROVED_COMPLETION_ONLY",
+      "strongest_parent": "unrestricted 512-state exact DP referee"
+    },
+    {
+      "attempt_kind": "FROZEN_MATCHED_BUDGET_RETEST",
+      "authority": {
+        "external_independence": false,
+        "final_freeze": false,
+        "journal_or_submission": false,
+        "novelty": false,
+        "prospective_confirmation": false
+      },
+      "classification": "RETAINED_NEGATIVE",
+      "evidence": {
+        "path": "development/orion-05-06-negative-revival-r1-2026-08-27/evidence/run-506b84e6c47558764b95f4482ce6691bb3757723-v2/xover/result/ORION05_XOVER_BUDGET_REVIVAL_RESULT.json",
+        "sha256": "cc734c8b815b520f4b9edd44361355671b205db04033315b1c0f5e73f45bec5c"
+      },
+      "job_ids": [
+        "3550008"
+      ],
+      "lever": "unchanged legacy direct D++ with a matched 3x wall budget",
+      "mechanism_stage": "EXHAUSTIVE_SEARCH_COMPUTE_BUDGET",
+      "mechanistic_result": "the exact parent returned cost 19, while legacy direct D++ timed out again after 1800 seconds",
+      "negative_id": "PR1498_XOVER_N6_TIMEOUT_FRONTIER",
+      "original_negative_preserved": true,
+      "paper": "ORION-05",
+      "residual_boundary": "one frozen n=6 cell is budget evidence only; it is not a universal infeasibility proof or a whole-panel crossover",
+      "revival_outcome": "RETAINED_NEGATIVE",
+      "strongest_parent": "unrestricted exact DP referee on the identical target cell"
+    },
+    {
+      "attempt_kind": "ALREADY_EXECUTED_EXACT_PARENT_OR_DONOR_SUBTRACTION",
+      "authority": {
+        "external_independence": false,
+        "final_freeze": false,
+        "journal_or_submission": false,
+        "novelty": false,
+        "prospective_confirmation": false
+      },
+      "classification": "CORRECT_SUBTRACTION_OR_PARENT_SUFFICIENT",
+      "evidence": {
+        "path": "research/extensions/orion-q/MAX_R2_KNOWN_OPERATOR_TRANSFER_RESULTS.json",
+        "sha256": "edab9cd35a8d45bae3b4b5bb802d79ff1c0091cd645dffcb52471b6fe38b4cd6"
+      },
+      "job_ids": [],
+      "lever": "the recorded exact strongest-parent comparison itself",
+      "mechanism_stage": "METHOD_SELECTION",
+      "mechanistic_result": "exact 1.0 tie in all four folds with held-out support fully seen; the ORION-specific policy is donor-absorbed in this frozen known-operator claim",
+      "negative_id": "R2_KNOWN_OPERATOR_TRANSFER",
+      "original_negative_preserved": true,
+      "paper": "ORION-06",
+      "residual_boundary": "no additional same-claim lever remains after exact parent/donor equivalence; a new experiment would require a different claim",
+      "revival_outcome": "RETAINED_NEGATIVE",
+      "strongest_parent": "generic V4 table learner"
+    },
+    {
+      "attempt_kind": "ALREADY_EXECUTED_EXACT_PARENT_OR_DONOR_SUBTRACTION",
+      "authority": {
+        "external_independence": false,
+        "final_freeze": false,
+        "journal_or_submission": false,
+        "novelty": false,
+        "prospective_confirmation": false
+      },
+      "classification": "CORRECT_SUBTRACTION_OR_PARENT_SUFFICIENT",
+      "evidence": {
+        "path": "research/extensions/orion-q/MAX_R3B_JOINT_OBLIGATION_BINDING_RESULTS.json",
+        "sha256": "5cdb12f2e6eb2d8ea0bd1cf85f89266fcaaae9967d392214a737a2931cdaebbc"
+      },
+      "job_ids": [],
+      "lever": "the recorded exact strongest-parent comparison itself",
+      "mechanism_stage": "OBLIGATION_REPRESENTATION",
+      "mechanistic_result": "joint binding attains 1.0 on 4,800 exact-synthetic cases while the local-view candidate ceiling is 0.5",
+      "negative_id": "R3B_JOINT_OBLIGATION_BINDING",
+      "original_negative_preserved": true,
+      "paper": "ORION-06",
+      "residual_boundary": "no additional same-claim lever remains after exact parent/donor equivalence; a new experiment would require a different claim",
+      "revival_outcome": "RETAINED_NEGATIVE",
+      "strongest_parent": "P7/P4 joint-bound obligation donor"
+    },
+    {
+      "attempt_kind": "ALREADY_EXECUTED_EXACT_PARENT_OR_DONOR_SUBTRACTION",
+      "authority": {
+        "external_independence": false,
+        "final_freeze": false,
+        "journal_or_submission": false,
+        "novelty": false,
+        "prospective_confirmation": false
+      },
+      "classification": "CORRECT_SUBTRACTION_OR_PARENT_SUFFICIENT",
+      "evidence": {
+        "path": "research/extensions/orion-q/nlanes/N1_C_COSTLY_VERIFICATION_RESULTS.json",
+        "sha256": "f9579b01fa97bc0c550ebb2ae108db19c91bffbcf6f3cd0c46cf1edab138b613"
+      },
+      "job_ids": [],
+      "lever": "the recorded exact strongest-parent comparison itself",
+      "mechanism_stage": "POLICY_SELECTION",
+      "mechanistic_result": "typed scoped learner ties the ideal VOI parent exactly (paired solve delta 0.0), so policy novelty is donor-absorbed while state value remains bounded",
+      "negative_id": "N1C_TYPED_FAILURE_STATE",
+      "original_negative_preserved": true,
+      "paper": "ORION-06",
+      "residual_boundary": "no additional same-claim lever remains after exact parent/donor equivalence; a new experiment would require a different claim",
+      "revival_outcome": "RETAINED_NEGATIVE",
+      "strongest_parent": "ideal value-of-information parent"
+    },
+    {
+      "attempt_kind": "FROZEN_EXACT_OPEN_SUBJECT_MECHANISM_RETEST",
+      "authority": {
+        "end_to_end_qsvt_superiority": false,
+        "final_freeze": false,
+        "hardware_independence": false,
+        "novelty": false,
+        "prospective_confirmation": false
+      },
+      "classification": "SAVE_WORTHY_NEGATIVE_REPAIRED_WITHOUT_AUTHORITY_PROMOTION",
+      "evidence": {
+        "path": "development/orion-05-06-negative-revival-r1-2026-08-27/evidence/run-e9d4ee1df73ff22fb5742ff2cd9c200b0a5f29f9-v1/results/ORION06_NEW_RESOURCE_REVIVAL.json",
+        "sha256": "017900a65dc7cac0bb5f2e99e2b13982cc9c2fee435becc97c26da786d1dea25"
+      },
+      "job_ids": [
+        "3550252"
+      ],
+      "lever": "R4C_ACTUAL_RESTORE_OUTER_SELECT_PARETO_REPLAY",
+      "mechanism_stage": "EVALUATION_OBJECTIVE",
+      "mechanistic_result": "ORION06_R4C_ACTUAL_RESOURCE_PARENT_DOMINATED__OPEN_SUBJECT_ONLY",
+      "negative_id": "R4C_H2_REGIME_LIMITED",
+      "original_negative_preserved": true,
+      "paper": "ORION-06",
+      "residual_boundary": "the H2 subject was already open; no prospective authority follows",
+      "revival_outcome": "IMPROVED",
+      "source_negative": {
+        "path": "research/extensions/orion-q/MAX_R4C_FRESH_H2_HETEROGENEOUS_PAIR_RESULTS.json",
+        "sha256": "5f8accc9a01e9aae08a8ce77e1e5410fed60a970d508f50baddc4e059c8a63a3"
+      },
+      "strongest_parent": "the exact coefficient-minimum K=0 H2 pair matching under the same canonical pair representations and controlled outer wrapper"
+    },
+    {
+      "attempt_kind": "FROZEN_EXACT_OPEN_SUBJECT_MECHANISM_RETEST",
+      "authority": {
+        "end_to_end_qsvt_superiority": false,
+        "final_freeze": false,
+        "hardware_independence": false,
+        "new_subject_generalization": false,
+        "novelty": false,
+        "prospective_confirmation": false
+      },
+      "classification": "SAVE_WORTHY_NEGATIVE_REPAIRED_WITHOUT_AUTHORITY_PROMOTION",
+      "evidence": {
+        "path": "development/orion-05-06-negative-revival-r1-2026-08-27/evidence/run-e9d4ee1df73ff22fb5742ff2cd9c200b0a5f29f9-v1/results/ORION06_NEW_RESOURCE_REVIVAL.json",
+        "sha256": "017900a65dc7cac0bb5f2e99e2b13982cc9c2fee435becc97c26da786d1dea25"
+      },
+      "job_ids": [
+        "3550252"
+      ],
+      "lever": "CONTROLLED_SELECT_AWARE_EXACT_REPRESENTATION_AND_REMATCHING",
+      "mechanism_stage": "RESOURCE_PROJECTION",
+      "mechanistic_result": "ORION06_R5B_CONTROLLED_AWARE_PARENT_POINT_DOMINATED__OPEN_H4_ONLY",
+      "negative_id": "R5B_PROOF_OUTER_REPLAY",
+      "original_negative_preserved": true,
+      "paper": "ORION-06",
+      "residual_boundary": "H4 was already open; protected new-subject confirmation remains unearned",
+      "revival_outcome": "IMPROVED",
+      "source_negative": {
+        "path": "research/extensions/orion-q/MAX_R5B_N2_PROOF_OUTER_REPLAY_RESULTS.json",
+        "sha256": "0ee8254e4c61c9a80b63f036ae91340dc2d5644138a67ce40e7745136f24e223"
+      },
+      "strongest_parent": "the exact same-subject Pareto envelope over all 15 H4 pair matchings using the frozen canonical internal-G representations"
+    },
+    {
+      "adjudication": {
+        "path": "development/orion-05-06-negative-revival-r1-2026-08-27/evidence/run-e9d4ee1df73ff22fb5742ff2cd9c200b0a5f29f9-v1/results/ORION06_METHOD_LANGUAGE_REPLAYS.json",
+        "sha256": "e2c2f534b39afcbdfc988e831932b0a2bdcef47ac95e16fa6c45c9c681630438"
+      },
+      "attempt_kind": "RETROSPECTIVE_EXACT_REPLAY_OUTCOME_ALREADY_PUBLIC",
+      "authority": {
+        "final_freeze": false,
+        "novelty": false,
+        "prospective_confirmation": false,
+        "r6": false
+      },
+      "classification": "RETAINED_NEGATIVE",
+      "evidence": {
+        "path": "development/orion-05-06-negative-revival-r1-2026-08-27/evidence/run-e9d4ee1df73ff22fb5742ff2cd9c200b0a5f29f9-v1/results/R6K_FRESH_RESULTS.json",
+        "sha256": "24b2e40ac031f16870c72eaf138e32957d68cb252c62e8a4844abf1ef487f594"
+      },
+      "job_ids": [
+        "3550253",
+        "3550255"
+      ],
+      "lever": "fresh exact replay of joint Restore factoring",
+      "mechanism_stage": "METHOD_LANGUAGE",
+      "mechanistic_result": {
+        "scientifically_equal_to_known_receipt": true,
+        "strict_by_subject": {
+          "H4": false,
+          "N2": false
+        }
+      },
+      "negative_id": "R6I_EXACT_RANK2",
+      "original_negative_preserved": true,
+      "paper": "ORION-06",
+      "residual_boundary": "retrospective same-subject evidence; no prospective confirmation, R6 authority, or novelty follows",
+      "revival_outcome": "RETAINED_NEGATIVE",
+      "strongest_parent": "registered incumbent envelope"
+    },
+    {
+      "adjudication": {
+        "path": "development/orion-05-06-negative-revival-r1-2026-08-27/evidence/run-e9d4ee1df73ff22fb5742ff2cd9c200b0a5f29f9-v1/results/ORION06_METHOD_LANGUAGE_REPLAYS.json",
+        "sha256": "e2c2f534b39afcbdfc988e831932b0a2bdcef47ac95e16fa6c45c9c681630438"
+      },
+      "attempt_kind": "RETROSPECTIVE_EXACT_REPLAY_OUTCOME_ALREADY_PUBLIC",
+      "authority": {
+        "donor_novelty_credit": false,
+        "final_freeze": false,
+        "novelty": false,
+        "prospective_confirmation": false,
+        "r6": false
+      },
+      "classification": "CORRECT_SUBTRACTION",
+      "evidence": {
+        "path": "development/orion-05-06-negative-revival-r1-2026-08-27/evidence/run-e9d4ee1df73ff22fb5742ff2cd9c200b0a5f29f9-v1/results/R6L_FRESH_RESULTS.json",
+        "sha256": "29dbd12abf8c817dfb184eaa17550733bf572af9bfafefc8c14450c1721b1280"
+      },
+      "job_ids": [
+        "3550254",
+        "3550255"
+      ],
+      "lever": "fresh exact replay of the three-TARE2 arity-swap donor",
+      "mechanism_stage": "METHOD_LANGUAGE",
+      "mechanistic_result": {
+        "scientifically_equal_to_known_receipt": true,
+        "strict_by_subject": {
+          "H4": true,
+          "N2": true
+        }
+      },
+      "negative_id": "R6K_EXACT_RESTORE_FACTOR",
+      "original_negative_preserved": true,
+      "paper": "ORION-06",
+      "residual_boundary": "retrospective same-subject evidence; no prospective confirmation, R6 authority, or novelty follows",
+      "revival_outcome": "CORRECT_SUBTRACTION",
+      "strongest_parent": "R6J/registered incumbent envelope"
+    }
+  ],
+  "schema": "ORION.ORION0506.RecordedNegativeRevivalLedger.v1",
+  "scientific_authority_delta": "NONE",
+  "scope": [
+    "ORION-05",
+    "ORION-06"
+  ],
+  "source_verifiers": [
+    {
+      "path": "development/orion-05-06-negative-revival-r1-2026-08-27/BUNDLE_VERIFICATION_V1.json",
+      "sha256": "654d4e83e9fc32f518755d8eb07a0971f94bd745075c0fb44d6d64db47ee5b0f"
+    },
+    {
+      "path": "development/orion-05-06-negative-revival-r1-2026-08-27/ORION06_REVIVAL_BUNDLE_VERIFICATION_V1.json",
+      "sha256": "f044d554a0bf250055be7a698bc361a3e504e1a0c6ebbc34a7aab4f9b3c1edfa"
+    }
+  ],
+  "summary": {
+    "cannot_check_gates": 1,
+    "outcomes": {
+      "CORRECT_SUBTRACTION": 1,
+      "IMPROVED": 2,
+      "IMPROVED_COMPLETION_ONLY": 1,
+      "RETAINED_NEGATIVE": 5
+    },
+    "recorded_negative_rows": 9,
+    "unsolvable_count": 0
+  },
+  "unsolvable": []
+}
