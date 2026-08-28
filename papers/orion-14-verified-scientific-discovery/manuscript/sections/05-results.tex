@@ -9,7 +9,7 @@ The governed pipeline produced 0/360 false promotions. The strongest frozen comp
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../figures/p4_2_false_promotion.png}
-\caption{False authority-promotion rate in the protected campaign. Whiskers are Wilson 95\% intervals. Comparator labels denote protocol-matched mechanism reimplementations.}
+\caption{False authority-promotion rate over 360 hostile opportunities in the protected V2 campaign. Whiskers are Wilson 95\% intervals for each rate. Comparator labels denote protocol-matched mechanism reimplementations, not the original external systems.}
 \label{fig:p4_2}
 \end{figure}
 
@@ -18,7 +18,7 @@ Both the governed pipeline and the strongest comparator promoted 60/60 clean pos
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../figures/p4_3_coverage_frontier.png}
-\caption{Safety--coverage result. Every primary mechanism promoted 60/60 clean controls, while hostile false-promotion rates differ substantially.}
+\caption{Safety--coverage result in protected V2. Each point combines false-promotion rate over 360 hostile opportunities (horizontal axis) with promotion coverage over the same 60 clean controls (vertical axis). Every primary mechanism promoted 60/60 clean controls; H2 therefore has zero paired coverage difference and a degenerate 95\% interval at zero, while hostile false-promotion rates differ.}
 \label{fig:p4_3}
 \end{figure}
 
@@ -41,7 +41,7 @@ The governed pipeline made no false promotion in any hostile family. The stronge
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../figures/p4_4_detection_by_attack.png}
-\caption{False-promotion rate by hostile family for the governed pipeline and the strongest frozen mechanism proxy.}
+\caption{False-promotion rate by hostile family in protected V2 for the governed pipeline and the strongest frozen mechanism proxy. Each row contains 30 cases; the governed pipeline false-promoted none, whereas the proxy false-promoted all cases in six governance/checker families.}
 \label{fig:p4_4}
 \end{figure}
 
@@ -55,7 +55,7 @@ Several mechanisms achieve perfect source-attribution accuracy while still false
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../figures/p4_5_attribution_vs_support.png}
-\caption{Source-attribution accuracy and support/contradiction F1 for the primary mechanism panel. High values on these coordinates do not guarantee a safe authority terminal.}
+\caption{Source-attribution accuracy and support/contradiction F1 for the primary mechanism panel on the protected 420-case V2 battery. Source attribution tests assignment to the correct evidence owner; support/contradiction F1 tests the semantic evidence label. High values on either coordinate do not guarantee a safe authority terminal.}
 \label{fig:p4_5}
 \end{figure}
 
@@ -64,7 +64,7 @@ Deterministic gate evaluation is slower than the simple mechanism proxies in thi
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{../figures/p4_6_cost_false_promotion.png}
-\caption{Mean deterministic evaluation latency versus false authority-promotion rate; the latency axis is logarithmic.}
+\caption{Mean deterministic evaluation latency across five repeat runs versus false authority-promotion rate over 360 hostile opportunities in protected V2; the latency axis is logarithmic. Timing covers mechanism-level gate evaluation only and excludes model inference, network transport, and end-to-end serving overhead.}
 \label{fig:p4_6}
 \end{figure}
 
