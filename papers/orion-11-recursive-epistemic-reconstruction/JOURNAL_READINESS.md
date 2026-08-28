@@ -45,6 +45,8 @@ naturalistic, and open-ended superiority are not claimed.
 
 **Status:** COMPLETE. Historical `ORION-11.hidden-formulation.v1.1` remains frozen and underpowered. The powered successor `ORION-11.epistemic-mutation-necessity.v2.2.4` prospectively freezes three co-primary strong parents, a +0.10 hidden-shift margin against each, 480 hidden shifts, 2402 controls, all safety/non-regression/cost gates, primary seed `202608172211`, and disjoint replication seed `202608172212`.
 
+> **[R4 2026-08-28 — comparative reading withdrawn]** This gate records what was *prospectively registered*, and that registration is unchanged and still COMPLETE. The comparative *reading* of the resulting +0.50625/+0.5167 margin is retracted: PR #1603 (`H_R4_FALSIFIED__FAITHFUL_COMPARATOR_MATCHES_ORION`) recovers the whole margin by granting each parent ordered search alone. The internal `ORION-11.NECESSITY.V2.2.4` terminal is retained. See `CLAIM_RETRACTION_LEDGER_V1.md`.
+
 ## 3. External benchmark construction
 
 Create a frozen hidden-shift suite with labels unavailable to the evaluated agent.
@@ -135,6 +137,8 @@ Freeze plotting code/spec before final outcome analysis.
 - [x] **Table ORION-11-3:** failure taxonomy with representative blinded cases. (`results/ORION-11-T3_failure_taxonomy.md`, 5.0K)
 
 **Status:** 11/11 done. The historical six figures and three tables remain. Figure ORION-11-7 and Table ORION-11-4 add the powered primary/replication rates, strongest-parent paired intervals, and mechanism ablations; both are generated or transcribed from hash-bound result JSON and integrated with labels/references.
+
+> **[R4 2026-08-28]** Figure ORION-11-7 and Table ORION-11-4 remain generated from hash-bound result JSON and are unchanged as records. Table ORION-11-4's caption now states that the comparative reading of its strongest-parent paired intervals is withdrawn. The mechanism-ablation panel is unaffected: those are internal removals, not parent comparisons.
 
 ## 7. Manuscript work still missing
 
