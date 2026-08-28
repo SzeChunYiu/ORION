@@ -22,9 +22,9 @@ DEFAULT_PATHS = (
     ROOT / "papers" / "orion-13-global-knowledge-portrait" / "manuscript",
     ROOT / "papers" / "orion-14-verified-scientific-discovery" / "manuscript",
     ROOT / "papers" / "orion-15-self-orion" / "manuscript",
-    ROOT / "papers" / "candidates" / "orion-16-formal-epistemic-structures-and-mechanics" / "submission",
-    ROOT / "papers" / "candidates" / "orion-17-epistemic-navigation-open-worlds" / "submission",
-    ROOT / "papers" / "candidates" / "orion-18-epistemic-authority-autonomous-science" / "submission",
+    ROOT / "papers" / "orion-16-formal-epistemic-structures-and-mechanics" / "submission",
+    ROOT / "papers" / "orion-17-epistemic-navigation-open-worlds" / "submission",
+    ROOT / "papers" / "orion-18-epistemic-authority-autonomous-science" / "submission",
 )
 
 _DIRECTION_RE = re.compile(
