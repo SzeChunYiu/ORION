@@ -1,0 +1,140 @@
+{
+  "campaign_id": "p5-glm-5.3-attribution-v2-harvest",
+  "lane": "NR-01",
+  "protocol_path": "papers/orion-15-self-orion/protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json",
+  "protocol_sha256": "5d4d0fa3f457e4e1db9934068e5541743844fc5b0862a144701cf6a66f41268b",
+  "suite_path": "papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json",
+  "suite_sha256": "1c3650a62b4432eba60ec17a44dd3e47beedeb266e64e3e96ae593fbbc4e2747",
+  "v1_prompt_sha256": "4ff4591f68a95a9fc1e98de048ed628e62f0af9b9bf60f1acdc14bdbc8e1bea8",
+  "requested_model": "GLM-5.3 (claude-cn harness, glm-5.3)",
+  "temperature": "harness-default (frozen protocol value 0.0 not settable in subagent path; recorded deviation)",
+  "timestamp": 1787899226.1276648,
+  "arms": {
+    "control": {
+      "n": 24,
+      "scored": 24,
+      "correct": 22,
+      "accuracy": 0.9166666666666666,
+      "accuracy_over_scored": 0.9166666666666666,
+      "standard_macro_f1": 0.9142857142857144,
+      "cannot_distinguish": [],
+      "runtime_or_parse_errors": [],
+      "errors_detail": [
+        {
+          "case_id": "P5-HC-012",
+          "gold": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+          "attributed": "IMPLEMENTATION_BUG"
+        },
+        {
+          "case_id": "P5-HC-014",
+          "gold": "EVALUATOR_METRIC_BUG",
+          "attributed": "MEASUREMENT_SPECIFICATION_GAP"
+        }
+      ],
+      "served_models": [
+        "glm-5.3"
+      ],
+      "per_family_metrics": {
+        "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE": {
+          "recall": 0.6666666666666666,
+          "f1": 0.6666666666666666,
+          "cases": [
+            "P5-HC-010",
+            "P5-HC-011",
+            "P5-HC-012"
+          ]
+        },
+        "EVALUATOR_METRIC_BUG": {
+          "recall": 0.6666666666666666,
+          "f1": 0.6666666666666666,
+          "cases": [
+            "P5-HC-013",
+            "P5-HC-014",
+            "P5-HC-015"
+          ]
+        },
+        "IMPLEMENTATION_BUG": {
+          "recall": 1.0,
+          "f1": 1.0,
+          "cases": [
+            "P5-HC-007",
+            "P5-HC-008",
+            "P5-HC-009"
+          ]
+        },
+        "MEASUREMENT_SPECIFICATION_GAP": {
+          "recall": 1.0,
+          "f1": 1.0,
+          "cases": [
+            "P5-HC-019",
+            "P5-HC-020",
+            "P5-HC-021"
+          ]
+        },
+        "METHOD_BASIS_GAP": {
+          "recall": 1.0,
+          "f1": 1.0,
+          "cases": [
+            "P5-HC-022",
+            "P5-HC-023",
+            "P5-HC-024"
+          ]
+        },
+        "REPRESENTATION_GAP": {
+          "recall": 1.0,
+          "f1": 1.0,
+          "cases": [
+            "P5-HC-016",
+            "P5-HC-017",
+            "P5-HC-018"
+          ]
+        },
+        "RETRIEVAL_MISS": {
+          "recall": 1.0,
+          "f1": 1.0,
+          "cases": [
+            "P5-HC-001",
+            "P5-HC-002",
+            "P5-HC-003"
+          ]
+        },
+        "ROUTING_PLANNING_MISS": {
+          "recall": 1.0,
+          "f1": 1.0,
+          "cases": [
+            "P5-HC-004",
+            "P5-HC-005",
+            "P5-HC-006"
+          ]
+        }
+      },
+      "confidence_distribution": {
+        "HIGH": 16,
+        "MEDIUM": 8
+      },
+      "false_method_change_rate": 0.09090909090909091,
+      "chance_baseline": 0.125
+    },
+    "treatment": {
+      "n": 24,
+      "scored": 24,
+      "correct": 23,
+      "accuracy": 0.9583333333333334,
+      "accuracy_over_scored": 0.9583333333333334,
+      "standard_macro_f1": 0.9571428571428572,
+      "cannot_distinguish": [],
+      "runtime_or_parse_errors": [],
+      "errors_detail": [
+        {
+          "case_id": "P5-HC-020",
+          "gold": "MEASUREMENT_SPECIFICATION_GAP",
+          "attributed": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE"
+        }
+      ],
+      "served_models": [
+        "glm-5.3"
+      ],
+      "chance_baseline": 0.125
+    }
+  }
+}
