@@ -138,6 +138,28 @@ class IntegratedShieldTests(unittest.TestCase):
         with self.assertRaises(AssertionError):
             ctx.arm_pools("query", ("G1",), module.TAU)
 
+    def test_evaluation_record_binds_committed_arm_pool_and_exact_bound(self) -> None:
+        module = load_executor()
+        ctx, _ = module.synthetic_fixture(mode=module.MODE_ARM_CONDITIONAL)
+        rows = module.evaluate_arm(ctx, ["query"], "STATIC_ADAPTIVE", module.TAU)
+        row = rows["query"]
+        self.assertIn(row["committed"], module.PORTFOLIO)
+        if row["certified"]:
+            self.assertEqual(len(row["pool_members"]), module.POOL_K)
+            exact = max(
+                ctx.excess_member(name, row["committed"])
+                for name in row["pool_members"]
+            )
+            self.assertAlmostEqual(row["bound"], exact)
+            self.assertEqual(row["violation_strict"], row["excess"] > exact + module.TOL)
+
+    def test_synthetic_policy_replay_is_byte_deterministic(self) -> None:
+        module = load_executor()
+        first = module.synthetic_policy_receipt()
+        second = module.synthetic_policy_receipt()
+        self.assertEqual(module.canonical_json(first), module.canonical_json(second))
+        self.assertTrue(first["hostile_controls"]["arm_specific_pool_integrity"])
+
 
 class TerminalTests(unittest.TestCase):
     def test_coverage_then_strict_validity_precedence(self) -> None:
@@ -156,6 +178,26 @@ class TerminalTests(unittest.TestCase):
         self.assertEqual(
             module.decide_terminal(payload),
             "C_R24_ARM_CONDITIONAL_CERTIFICATE_INVALID",
+        )
+
+    def test_gate_pass_still_requires_value_adjudication(self) -> None:
+        module = load_executor()
+        payload = {
+            "hostile_controls": {"fixture": True},
+            "coverage": {"r23_parent": 0.73, "r24_primary": 0.96, "target": 0.95},
+            "primary": {"certified_n": 40, "violations_strict": 4},
+            "matched_parent_test": {"mean_diff": -0.001, "ci_upper": 0.003},
+            "negative_control_test": {"mean_diff": 0.002, "ci_upper": 0.010},
+        }
+        self.assertEqual(
+            module.decide_terminal(payload),
+            "C_R24_ARM_CONDITIONAL_COVERAGE_VALIDITY_PASS_VALUE_NOT_MATERIAL",
+        )
+        payload["matched_parent_test"]["ci_upper"] = -0.0001
+        payload["negative_control_test"] = {"mean_diff": -0.002, "ci_upper": -0.0001}
+        self.assertEqual(
+            module.decide_terminal(payload),
+            "C_R24_ARM_CONDITIONAL_VALUE",
         )
 
 
