@@ -76,6 +76,8 @@ def initialize_campaign(
     archivist_identity: str,
 ) -> dict[str, Any]:
     root.mkdir(parents=True, exist_ok=False)
+    if not 0 < alpha_total <= 1:
+        raise LedgerError("alpha_total must lie in (0, 1]")
     if candidate_generator_identity == promotion_authority_identity:
         raise LedgerError("candidate generator and promotion authority must be distinct")
     config = {
@@ -140,13 +142,15 @@ def normalize_payload(payload: dict[str, Any]) -> dict[str, Any]:
         raise LedgerError("epoch_id is required")
     if not is_hex(normalized["protected_dataset_commitment"], (64,)):
         raise LedgerError("protected_dataset_commitment must be lowercase SHA-256")
-    rational(normalized["raw_alpha"])
+    raw_alpha = rational(normalized["raw_alpha"])
     inflation = rational(normalized["leakage_inflation"])
     beta = rational(normalized["leakage_beta"])
+    if not 0 <= raw_alpha <= 1:
+        raise LedgerError("raw alpha must lie in [0, 1]")
     if inflation < 1:
         raise LedgerError("leakage inflation must be at least one")
-    if beta < 0:
-        raise LedgerError("leakage beta must be nonnegative")
+    if not 0 <= beta <= 1:
+        raise LedgerError("leakage beta must lie in [0, 1]")
 
     components = normalized["component_gates"]
     deterministic = normalized["deterministic_gates"]
@@ -219,17 +223,17 @@ def append_payload(root: Path, payload: dict[str, Any]) -> dict[str, Any]:
 
     components_pass = all(normalized["component_gates"].values())
     deterministic_pass = all(normalized["deterministic_gates"].values())
-    if (
-        components_pass
-        and deterministic_pass
+    prerequisites_pass = (
+        deterministic_pass
         and within_budget
         and identity_match
         and independent_authority
         and subject_match
-    ):
+    )
+    if components_pass and prerequisites_pass:
         decision = "PROMOTE"
         disposition = "ALL_NONCOMPENSATORY_GATES_PASS"
-    elif not components_pass and identity_match and independent_authority and subject_match:
+    elif not components_pass and prerequisites_pass:
         decision = "REJECT"
         disposition = "STATISTICAL_COMPONENT_GATE_FAILED"
     else:
