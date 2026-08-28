@@ -41,9 +41,7 @@ class IndependentMechanicsTests(unittest.TestCase):
         }
         excess = {"a": 0.004, "b": 0.019, "c": 0.018}
         self.assertEqual(
-            verifier.independent_arm_pool(
-                query, cells, excess, tau=0.02, radius=2, k=2
-            ),
+            verifier.independent_arm_pool(query, cells, excess, tau=0.02, radius=2, k=2),
             ["b", "a"],
         )
 
@@ -77,6 +75,41 @@ class IndependentMechanicsTests(unittest.TestCase):
         self.assertEqual(
             verifier.derive_terminal(payload),
             "C_R24_ARM_CONDITIONAL_CERTIFICATE_INVALID",
+        )
+
+    def test_r23_parent_summary_preserves_legacy_operational_fractions(self) -> None:
+        verifier = load_verifier()
+        rows = {
+            "a": {
+                "excess": 0.01,
+                "certified": True,
+                "groups_acquired": 2,
+                "violation_strict": False,
+                "violation_tau": False,
+                "bound": 0.02,
+                "fallback": False,
+                "used_backoff": True,
+            },
+            "b": {
+                "excess": 0.03,
+                "certified": False,
+                "groups_acquired": 0,
+                "violation_strict": False,
+                "violation_tau": False,
+                "bound": None,
+                "fallback": True,
+                "used_backoff": False,
+            },
+        }
+        common = verifier.independent_arm_summary(rows)
+        parent = verifier.independent_r23_parent_arm_summary(rows)
+        self.assertNotIn("fallback_fraction", common)
+        self.assertNotIn("backoff_fraction", common)
+        self.assertEqual(parent["fallback_fraction"], 0.5)
+        self.assertEqual(parent["backoff_fraction"], 0.5)
+        self.assertEqual(
+            {key: parent[key] for key in common},
+            common,
         )
 
 

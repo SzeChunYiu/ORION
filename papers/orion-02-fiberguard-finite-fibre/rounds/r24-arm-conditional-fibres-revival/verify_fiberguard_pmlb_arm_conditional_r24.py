@@ -90,8 +90,7 @@ def independent_arm_pool(
     candidates = sorted(
         (-float(member_excess[name]), _hamming(query_cell, cell), name)
         for name, cell in member_cells.items()
-        if float(member_excess[name]) <= tau + TOL
-        and _hamming(query_cell, cell) <= radius
+        if float(member_excess[name]) <= tau + TOL and _hamming(query_cell, cell) <= radius
     )
     return [name for _, _, name in candidates[:k]] if len(candidates) >= k else []
 
@@ -109,10 +108,7 @@ def independent_lexical_pool(
 
 def _selected_vector(row: Mapping[str, list[float]], acquired: set[str]) -> tuple[float, ...]:
     return tuple(
-        value
-        for group in GROUPS
-        if group == "G0" or group in acquired
-        for value in row[group]
+        value for group in GROUPS if group == "G0" or group in acquired for value in row[group]
     )
 
 
@@ -147,10 +143,7 @@ def independent_arm_pools(
     bounds: dict[str, float | None] = {}
     used: dict[str, bool] = {}
     for arm in PORTFOLIO:
-        excess = {
-            member: outcomes[member][arm] - outcomes[member]["best"]
-            for member in shield
-        }
+        excess = {member: outcomes[member][arm] - outcomes[member]["best"] for member in shield}
         if len(exact) >= POOL_K and max(excess[member] for member in exact) <= TAU + TOL:
             members = exact
             used_backoff = False
@@ -206,9 +199,7 @@ def independent_full_state_record(
 def _bounded_equal(left: Any, right: Any) -> bool:
     if left is None or right is None:
         return left is right
-    return math.isclose(
-        float(left), float(right), rel_tol=0.0, abs_tol=SERIALIZED_BOUND_ABS_TOL
-    )
+    return math.isclose(float(left), float(right), rel_tol=0.0, abs_tol=SERIALIZED_BOUND_ABS_TOL)
 
 
 def full_state_records_match(
@@ -250,11 +241,32 @@ def independent_arm_summary(rows: Mapping[str, Mapping[str, Any]]) -> dict[str, 
         "violations_strict": sum(bool(row["violation_strict"]) for row in certified),
         "violations_tau": sum(bool(row["violation_tau"]) for row in certified),
         "mean_bound": (
-            json_float(float(np.mean([row["bound"] for row in certified])))
-            if certified
-            else None
+            json_float(float(np.mean([row["bound"] for row in certified]))) if certified else None
         ),
     }
+
+
+def independent_r23_parent_arm_summary(
+    rows: Mapping[str, Mapping[str, Any]],
+) -> dict[str, Any]:
+    """Rebuild the legacy R23 summary schema without importing its executor.
+
+    R23 reports two operational fractions in addition to the common scientific
+    summary fields.  R24 deliberately omitted those redundant fields from its
+    own summaries.  Keeping the schema distinction explicit prevents an
+    exact-dictionary comparison from rejecting a scientifically identical R23
+    parent merely because the independent verifier rebuilt only the common
+    subset.
+    """
+
+    summary = independent_arm_summary(rows)
+    summary["fallback_fraction"] = json_float(
+        float(np.mean([bool(row["fallback"]) for row in rows.values()]))
+    )
+    summary["backoff_fraction"] = json_float(
+        float(np.mean([bool(row["used_backoff"]) for row in rows.values()]))
+    )
+    return summary
 
 
 def pooled_rows(phase: Mapping[str, Any], arm: str) -> dict[str, dict[str, Any]]:
@@ -273,8 +285,7 @@ def pooled_primary(phase: Mapping[str, Any]) -> dict[str, dict[str, Any]]:
 
 def independent_primary(fold_row: Mapping[str, Any]) -> str:
     summaries = {
-        arm: independent_arm_summary(fold_row["threshold_select"][arm])
-        for arm in LEARNED_ARMS
+        arm: independent_arm_summary(fold_row["threshold_select"][arm]) for arm in LEARNED_ARMS
     }
     return min(
         LEARNED_ARMS,
@@ -296,16 +307,12 @@ def independent_comparison(
     if names != sorted(right):
         raise ValueError("comparison identity mismatch")
     diffs = np.asarray([left[name]["excess"] - right[name]["excess"] for name in names])
-    rng = np.random.default_rng(
-        derive_seed(BOOTSTRAP_SEED_TEXT, "R24_" + label)
-    )
+    rng = np.random.default_rng(derive_seed(BOOTSTRAP_SEED_TEXT, "R24_" + label))
     indices = rng.integers(0, diffs.size, size=(BOOTSTRAP_REPLICATES, diffs.size))
     means = diffs[indices].mean(axis=1)
     lo, hi = (float(value) for value in np.percentile(means, [2.5, 97.5]))
     return {
-        "left_minus_right_by_dataset": {
-            name: json_float(diffs[i]) for i, name in enumerate(names)
-        },
+        "left_minus_right_by_dataset": {name: json_float(diffs[i]) for i, name in enumerate(names)},
         "mean_diff": json_float(float(diffs.mean())),
         "ci_lower": json_float(lo),
         "ci_upper": json_float(hi),
@@ -379,7 +386,11 @@ def _decision_rows_valid(
                     if row["excess"] != expected_excess:
                         return False
                     if row["fallback"]:
-                        if row["certified"] or row["committed"] != fstar or row["bound"] is not None:
+                        if (
+                            row["certified"]
+                            or row["committed"] != fstar
+                            or row["bound"] is not None
+                        ):
                             return False
                         continue
                     pools, bounds, _ = independent_arm_pools(
@@ -414,7 +425,9 @@ def main() -> int:
     parent = json.loads(args.r23_parent.read_text())
     failures = 0
     failures += check("result schema", payload.get("schema") == SCHEMA)
-    failures += check("R23 parent byte binding", sha256_bytes(args.r23_parent.read_bytes()) == R23_RESULT_SHA256)
+    failures += check(
+        "R23 parent byte binding", sha256_bytes(args.r23_parent.read_bytes()) == R23_RESULT_SHA256
+    )
     failures += check("terminal file", args.terminal.read_text().strip() == payload.get("terminal"))
     failures += check(
         "authority remains none",
@@ -444,7 +457,9 @@ def main() -> int:
             "full-state pool replay " + mode,
             full_state_records_match(rebuilt, stored),
         )
-        coverage = json_float(sum(bool(row["admissible"]) for row in rebuilt.values()) / len(rebuilt))
+        coverage = json_float(
+            sum(bool(row["admissible"]) for row in rebuilt.values()) / len(rebuilt)
+        )
         key = "r24_primary" if mode == MODE_ARM_CONDITIONAL else "r24_negative_control"
         failures += check("coverage replay " + mode, coverage == payload["coverage"][key])
 
@@ -463,9 +478,14 @@ def main() -> int:
         ("R23_PARENT_PRIMARY_LEARNED", parent_primary),
         ("R24_LEXICAL_MATCHED_PRIMARY", negative_primary),
     ):
+        rebuilt_summary = (
+            independent_r23_parent_arm_summary(rows)
+            if label == "R23_PARENT_PRIMARY_LEARNED"
+            else independent_arm_summary(rows)
+        )
         failures += check(
             "arm summary " + label,
-            independent_arm_summary(rows) == payload["arms_summary"][label],
+            rebuilt_summary == payload["arms_summary"][label],
         )
 
     for label, left, right, stored_key in (
