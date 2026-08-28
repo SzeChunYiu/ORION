@@ -90,6 +90,55 @@ class ArmConditionalPoolTests(unittest.TestCase):
         self.assertEqual(members, ["d", "b"])
 
 
+class IntegratedShieldTests(unittest.TestCase):
+    def test_each_arm_receives_its_own_exact_tau_good_fibre(self) -> None:
+        module = load_executor()
+        ctx, info = module.synthetic_fixture(mode=module.MODE_ARM_CONDITIONAL)
+        pools, wc, used = ctx.arm_pools("query", ("G1",), module.TAU)
+        self.assertNotIn("query", ctx.roles["shield_table"])
+        for arm in module.PORTFOLIO:
+            members = pools[arm]
+            self.assertIn(len(members), (0, module.POOL_K))
+            if members:
+                self.assertLessEqual(wc[arm], module.TAU + module.TOL)
+                self.assertAlmostEqual(
+                    wc[arm], max(ctx.excess_member(name, arm) for name in members)
+                )
+                self.assertTrue(all(name in info["shield"] for name in members))
+                self.assertTrue(used[arm] or len(members) >= module.POOL_K)
+
+    def test_nontrivial_exact_arm_cell_is_preserved(self) -> None:
+        module = load_executor()
+        ctx, _ = module.synthetic_fixture(mode=module.MODE_ARM_CONDITIONAL)
+        pools, _, used = ctx.arm_pools("query_dense", (), module.TAU)
+        self.assertEqual(pools["dct"], ["shield_a", "shield_c"])
+        self.assertFalse(used["dct"])
+
+    def test_hostile_scorer_cannot_commit_an_uncertified_arm(self) -> None:
+        module = load_executor()
+        ctx, _ = module.synthetic_fixture(mode=module.MODE_ARM_CONDITIONAL)
+
+        def hostile(c, arm, name, acquired):
+            pools, wc, _ = c.arm_pools(name, acquired, module.TAU)
+            forbidden = next(a for a in module.PORTFOLIO if not pools[a])
+            return {a: (0.0 if a == forbidden else 1.0) for a in module.PORTFOLIO}
+
+        decision = module.walk_with_scorer(
+            ctx, "query", "STATIC_ADAPTIVE", module.TAU, hostile
+        )
+        pools, _, _ = ctx.arm_pools(
+            "query", tuple(decision["acquired"]), module.TAU
+        )
+        self.assertTrue(decision["fallback"] or bool(pools[decision["committed"]]))
+
+    def test_query_inside_shield_table_fails_closed(self) -> None:
+        module = load_executor()
+        ctx, _ = module.synthetic_fixture(mode=module.MODE_ARM_CONDITIONAL)
+        ctx.roles["shield_table"].append("query")
+        with self.assertRaises(AssertionError):
+            ctx.arm_pools("query", ("G1",), module.TAU)
+
+
 class TerminalTests(unittest.TestCase):
     def test_coverage_then_strict_validity_precedence(self) -> None:
         module = load_executor()
