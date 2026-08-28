@@ -1,44 +1,32 @@
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amsmath, amssymb}
 \usepackage[margin=1in]{geometry}
 \usepackage{booktabs}
 \usepackage{xurl}
-\usepackage{xspace}
 \usepackage[hidelinks]{hyperref}
 \emergencystretch=1em
 
-% Custom commands for manuscript conventions
-\newcommand{\conststatus}{\texttt{CANNOT\_CHECK}\xspace}
-\newcommand{\glue}{\textsc{glue}\xspace}
-\newcommand{\obstruction}{\textsc{obstruction}\xspace}
-\newcommand{\pluralview}{\textsc{plural\_view}\xspace}
-\newcommand{\unresolved}{\textsc{unresolved}\xspace}
-\newtheorem{theorem}{Theorem}
-\newtheorem{proposition}{Proposition}
-\newtheorem{corollary}{Corollary}
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}
+\hypersetup{
+  pdftitle={Coordinate-Governed Mapping of Source-Local Scientific Projections},
+  pdfauthor={Sze Chun Yiu},
+  pdfsubject={Scientific semantic integration under bounded public-reference evidence},
+  pdfkeywords={scientific knowledge integration, semantic interoperability, provenance, ontology mapping}
+}
 
-\title{Scientific Identity Authority for Recoverable Cross-Domain Knowledge Integration}
-% Content digests and repository paths need legal breakpoints in the rendered
-% PDF. xurl extends path breaking without changing the text, and \idt marks the
-% spans that are identifiers rather than prose.
-\urlstyle{tt}
-\newcommand{\idt}[1]{\path{#1}}
-
-\title{Representational Compatibility Is Not Scientific Identity:\\
-Coordinate-Governed Mapping of Source-Local Scientific Projections}
-\author{Working framework draft}
-\date{August 2026}
+\title{Coordinate-Governed Mapping of Source-Local Scientific Projections}
+\author{Sze Chun Yiu\thanks{Corresponding author: \href{mailto:sze-chun.yiu@fysik.su.se}{sze-chun.yiu@fysik.su.se}}}
+\date{}
 
 \begin{document}
+% Structural integrity binding only, not a manuscript claim:
+% P3.cross-domain-atlas.v1 remains an unexecuted broader protocol.
 \maketitle
 
 \begin{abstract}
 \input{sections/00-abstract}
 \end{abstract}
 
-\noindent\textbf{Keywords:} scientific knowledge integration; scientific identity; provenance; schema alignment; measurement harmonization; scientific pluralism; knowledge representation.
+\noindent\textbf{Keywords:} scientific knowledge integration; semantic interoperability; provenance; ontology mapping; measurement harmonization.
 
 \section{Introduction}
 \label{sec:introduction}
@@ -48,14 +36,9 @@ Coordinate-Governed Mapping of Source-Local Scientific Projections}
 \label{sec:related}
 \input{sections/20-related-work}
 
-\section{Method}
+\section{Coordinate-governed mapping}
 \label{sec:method}
 \input{sections/30-method}
-\input{sections/35-method-structure}
-
-\section{Epistemic portrait envelope theory}
-\label{sec:envelope}
-\input{sections/36-partial-identification-theory}
 
 \section{Public-reference mapping datasets}
 \label{sec:dataset}
@@ -64,18 +47,18 @@ Coordinate-Governed Mapping of Source-Local Scientific Projections}
 \section{Evaluation}
 \label{sec:eval}
 \input{sections/50-evaluation}
-\input{sections/55-method-structure-evaluation}
 
-% These four fragments own their own \section/\label declarations.
-\input{sections/56-p3x-successor}
-\input{sections/57-successor-correspondence-interface}
-
-% These three fragments own their own \section/\label declarations.
 \input{sections/06-results}
 \input{sections/07-limitations}
 \input{sections/08-conclusion}
 \input{sections/60-availability}
 
+\section*{Acknowledgements}
+Generative AI tools were used for language and structural editing. The author
+retains responsibility for the scientific content, source verification and
+final wording. The exact scope of assistance must be confirmed by the author
+before submission under the journal's current policy.
+
 \bibliographystyle{plain}
-\bibliography{bibliography,novelty_refresh_2026}
+\bibliography{bibliography}
 \end{document}

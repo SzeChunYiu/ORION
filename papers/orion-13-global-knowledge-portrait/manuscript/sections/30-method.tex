@@ -1,143 +1,50 @@
-% Method: the mapping objects the evaluated decision rule is defined over.
-This section defines the scientific mapping objects the public-reference
-evaluation is defined over. The definitions are data-level: they do not depend
-on a particular language model or retrieval backend.
+The implementation evaluated in this study is the ORION knowledge-integration
+layer. It is named here only to identify the artifact under test; the scientific
+object is the mapping rule defined below.
 
-The implementation evaluated here is the ORION knowledge-integration layer; it
-is the artifact under test, and the rest of the paper describes the mapping
-rule rather than the product, so that each claim reads as a claim about the
-rule. Its source, protocols and evidence archives are listed in
-Section~\ref{sec:availability}.
+\subsection{Three-valued decisions}
 
-\subsection{Three-valued outcomes}
+A mapping can be determined admissible, determined inadmissible, or left
+\emph{undetermined}. The third value is used when a required coordinate or
+source authority is absent. It is not counted as a negative decision and is
+retained separately in every aggregate.
 
-Every mapping decision measured in this paper is three-valued rather than
-binary. A proposed mapping may be determined admissible, determined
-inadmissible, or left \emph{unresolved}; a coordinate relation may be
-determined compatible, determined incompatible, or left unresolved. An outcome
-that could not be determined is recorded and counted separately from an
-outcome determined to be false, and the two are never merged. The distinction
-is load-bearing rather than decorative: missing source authority, an absent
-coordinate or an unsupported relation produces an unresolved outcome, and an
-unresolved outcome is not evidence that the mapping is wrong. Throughout the
-paper, an outcome described as undetermined is this third value, carried in
-the evidence record and in every downstream count, never silently resolved to
-a negative.
+\subsection{Source-local projections}
 
-\subsection{Source and source-local projection}
-
-Let a source record $s$ bind an external document or structured source item to
-an exact identity, version or revision, locator, and content commitment. The
-relevant scientific meaning is represented as a source-local projection
+Let a source record $s$ bind a document or structured source item to an exact
+identity, revision, locator and content commitment. Its scientific meaning is
+represented by
 \begin{equation}
-    P_s = \langle R_s, C_s, M_s, X_s, \rho_s, \mu_s, a_s, \delta_s, \Pi_s \rangle,
+P_s=\langle R_s, C_s, M_s, X_s, \rho_s, \mu_s, a_s, \delta_s, \Pi_s\rangle,
 \end{equation}
-with coordinates for referent $R_s$, construct $C_s$,
-measurement/operationalization $M_s$, context $X_s$, polarity $\rho_s$,
-modality $\mu_s$, attribution $a_s$, discourse relation $\delta_s$, and
-assumptions/unresolved information $\Pi_s$.
+where $R_s$ denotes the referent, $C_s$ the construct, $M_s$ the measurement or
+operationalization, $X_s$ the context, $\rho_s$ polarity, $\mu_s$ modality,
+$a_s$ attribution, $\delta_s$ discourse relation, and $\Pi_s$ assumptions and
+undetermined information. Unsupported coordinates remain absent; the study
+does not infer missing values from raw papers.
 
-Each coordinate is a typed hypothesis supported by the source authority
-available for that case, not a value filled merely to complete a schema. In
-the public-reference datasets, unsupported coordinates remain absent or
-unresolved; the study does not ask a model to infer missing gold coordinates
-from raw papers.
+\subsection{Coordinate-governed mapping}
 
-\subsection{Coordinate-wise comparison}
+For two projections, the rule evaluates a vector of typed coordinate relations
+rather than a scalar similarity score. A candidate mapping records the proposed
+relation, the coordinates it claims to preserve, the conditions required for
+use, and any information it does not preserve. A mapping is admissible only if
+the relations required by the claim are compatible and the preservation
+conditions hold. A required incompatibility produces a typed non-merge record
+naming the failed coordinate; insufficient evidence leaves the mapping
+undetermined.
 
-A comparison between projections $P_a$ and $P_b$ is a vector of typed
-coordinate relations rather than a scalar similarity score:
-\begin{equation}
-\begin{split}
-    q(P_a,P_b) = \langle &\mathrm{ref}(R_a,R_b),
-    \mathrm{const}(C_a,C_b),
-    \mathrm{meas}(M_a,M_b),
-    \mathrm{ctx}(X_a,X_b),\\
-    &\mathrm{pol}(\rho_a,\rho_b),
-    \mathrm{mod}(\mu_a,\mu_b),
-    \mathrm{attr}(a_a,a_b),
-    \mathrm{disc}(\delta_a,\delta_b) \rangle .
-\end{split}
-\end{equation}
-Relations can express compatibility, incompatibility, conditional
-transformability, or unresolved evidence according to the frozen semantic
-taxonomies. A proposed relation does not acquire authority merely from lexical
-or embedding similarity.
+The confirmatory experiment tests this decision semantics. Its observed
+discrimination occurs in six polarity contrasts, where the flat comparator
+merges predicates without the additional condition. The experiment does not
+identify the independent necessity or value of the other coordinates.
 
-\subsection{Typed mapping and preservation conditions}
+\subsection{Recoverable provenance}
 
-A typed mapping $m$ states which coordinate relations it licenses and under
-what preservation conditions. Its record contains:
-
-\begin{itemize}
-    \item the proposed relation (for example identity, equivalence,
-          conditional transform, subsumption, association-only,
-          no-licensed-mapping, or unresolved);
-    \item the coordinates the mapping claims to preserve;
-    \item conditions that must hold for the mapping to be used; and
-    \item coordinates or information that are not preserved and therefore may
-          not be silently transferred into a global statement.
-\end{itemize}
-
-This representation is deliberately stricter than a successful match score: a
-mapping can be structurally plausible and still be inadmissible for the
-scientific claim if a load-bearing condition is absent.
-
-\subsection{Gluing, obstruction, and unresolved mapping}
-
-Two or more projections may be \emph{glued} into one global statement only
-when the coordinate relations the mapping requires are compatible and its
-preservation conditions are satisfied. If a required relation is incompatible,
-the correct output is a typed \emph{obstruction} naming the failing coordinate
-or condition. If the available evidence is insufficient, the relation stays
-unresolved rather than being forced to merge or split. Multiple locally valid
-but mutually incompatible views may remain a \emph{plural view}.
-
-The confirmatory experiment tests this decision semantics directly. Its
-strongest discrimination is on polarity, modality, attribution and context
-cases, where flat predicate canonicalization merges claims that the typed rule
-keeps separate. It does not identify the necessity of every coordinate;
-coordinate necessity requires targeted cases that the current datasets do not
-contain.
-
-\subsection{Provenance and recoverable records}
-
-Every case retains the external source identity and the frozen record used to
-derive the expected mapping decision. A mapping result retains the source
-records and the coordinate conditions supporting its terminal. That provenance
-is what makes the reported result independently replayable.
-
-The wider design goes further and defines a global portrait
-\begin{equation}
-    \mathcal{G} = \langle \{P_i\}, \mathcal{M}, \sigma \rangle,
-\end{equation}
-where $\mathcal{M}$ stores accepted and rejected mappings and $\sigma$ maps a
-global statement back to source projections and conditions. Whether a reader
-can in practice recover a generated portrait this way is a separate empirical
-question and is not answered by the current mapping study.
-
-\subsection{Search-universe feedback is outside the evaluated claim}
-
-The wider design also allows newly absorbed representations to change the
-search universe $W$ and reopen future acquisition routes. That feedback is not
-manipulated or measured in the public-reference mapping experiment. No result
-in this paper is attributed to a ``$W$ effect,'' and no expansion of $W$ is
-used as an ablation supporting the reported mapping result.
-
-\subsection{What is and is not claimed}
-
-Nothing here claims the first scientific knowledge graph, cross-domain
-retrieval-augmented system, schema matcher, provenance graph, entity resolver
-or literature-discovery method. The supported empirical object is narrower:
-over the frozen public-reference mapping cases, explicit scientific-coordinate
-conditions plus an obstruction state reduce false merges relative to flat
-predicate canonicalization while satisfying a conservative false-split guard.
-
-Local exact worlds continue to falsify implementation semantics in controlled
-cases, in the manner established for source-local reconstruction and for typed
-contradiction detection~\cite{orion2025paper1,orion2025paper2}. They do not
-establish external raw-text extraction quality, recoverability, downstream
-utility, or broad cross-domain generality; those remain separate prospective
-questions.
-
+Each case retains the external source identity and the frozen derivation of its
+expected mapping decision. Each output retains the source records and
+coordinate conditions that support the decision. This design permits a
+structurally separate implementation to reconstruct the comparison from the frozen records
+without treating a digest or repository receipt as scientific evidence by
+itself.
 \endinput
