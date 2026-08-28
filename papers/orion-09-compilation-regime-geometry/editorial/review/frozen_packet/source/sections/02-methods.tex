@@ -1,0 +1,49 @@
+\section{Regime-map definitions and study design}
+
+\subsection{Exactness and support}
+
+Let $x\in\mathcal{X}$ be an instance, let $\theta$ specify objective weights, and let $\mathcal{C}(x)$ be the feasible compiler configurations.  The exact cost is
+\begin{equation}
+ C^\star(x;\theta)=\min_{c\in\mathcal{C}(x)} C(c;x,\theta).
+\end{equation}
+A deterministic reference compiler returns cost $C_D(x;\theta)$.  Its exact region is
+\begin{equation}
+ \mathcal{R}_D(\theta)=\{x:C_D(x;\theta)=C^\star(x;\theta)\}.
+\end{equation}
+Equality is always indexed by the model, domain and objective.  A finite census, an all-size theorem and a frozen panel are reported as different evidence classes.
+
+For models with a support coordinate $s(c)$, define the intrinsic support number by
+\begin{equation}
+ \kappa(\theta)=\min\{k:\forall x\;\exists c^\star\text{ with }s(c^\star)\leq k\}.
+\end{equation}
+A proof of sufficiency gives an upper bound on $\kappa$.  Calling the bound intrinsic also requires tightness, such as infeasibility below it.
+
+\subsection{Constructive mechanisms and proof-validity regions}
+
+When the reference is inexact, a mechanism consists of a feasible witness, a strict cost reduction, and the structural edit that produces it.  We use mechanism names only after these three parts are checked.  A growing mechanism vocabulary does not weaken a separate theorem about the full feasible family.
+
+A normalization proof may depend on $\theta$.  Its \emph{proof-validity region} is the set of objective weights for which every local replacement is non-increasing and the analytic composition remains valid.  Outside that set, the certificate is silent.  A counterexample or a necessity theorem must be established separately.
+
+\subsection{Feature determination}
+
+Let $\phi(x)$ be a frozen feature vector and $y(x)=1[x\in\mathcal{R}_D]$.  A feature cell is the set of instances sharing one vector.  A cell is mixed if it contains both labels.  The minimum error attainable by any deterministic classifier using only $\phi$ on a finite domain is
+\begin{equation}
+ E_{\min}(\phi)=\sum_v \min\{n_0(v),n_1(v)\},
+\end{equation}
+where $n_b(v)$ counts label $b$ in cell $v$.  Thus, $E_{\min}>0$ is a representation-level impossibility result.  Conversely, $E_{\min}=0$ only proves determination on the registered domain.  Cell count and singleton count reveal whether that determination is compressive or nearly memorizing.
+
+\subsection{Model register}
+
+The shared-tag Pauli model contains three paired blocks.  Each block uses anticommuting Pauli frames and all blocks share one binary tag relation.  The objective charges raw frame support, tag support and restoration support, with central frame letters cheaper than noncentral letters.  The support coordinate is the maximum frame-Pauli weight.
+
+The rank-two dependent-triple model contains two blocks.  Two anticommuting generators determine a third frame in each block, and the blocks share a two-bit tag.  Its unit objective charges commuting and noncommuting frame resources, tag support and restoration support.  The support coordinate is the maximum support of an independent generator.
+
+The six-term linear-combination model compares a reference factoring construction with an unrestricted family under a frozen structural cost combining selection, preparation and width terms.  Its proof reduces all admitted partition shapes to inequalities in pair-derived gains.
+
+The state-preparation model uses $H$, $S$, $S^\dagger$ and controlled-NOT gates with costs $1,1,1,3$.  The reference is a deterministic Gaussian-elimination-style stabilizer synthesis.  Exact costs are shortest-path distances from $|0\cdots0\rangle$ in the complete stabilizer-state graph.  Complete graph sizes are 6, 60, 1,080 and 36,720 for $n=1,2,3,4$, respectively.  Complete analyses use $n\leq3$; the $n=4$ study uses a frozen 120-state panel.
+
+\subsection{Verification and prospective discipline}
+
+All-size results combine written compositions with complete finite checks of the local obligations.  Complete finite-domain results enumerate every admitted state or instance.  Selected generators were rerun from a clean working directory, and a separate standard-library verifier checked immutable input digests, stated fields, arithmetic and manuscript bindings without importing the generators.  These checks remain within one project and one custody chain.  They are not external replication.
+
+For the state-preparation transfer test, the rule and panel keys were fixed before exact $n=4$ labels were opened.  Both confirmations and failures were retained.  The later 127-feature study fixed its feature construction and in-domain criterion before the $n=4$ evaluation, then evaluated transfer without changing the criterion.

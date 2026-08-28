@@ -1,0 +1,72 @@
+{
+  "controls": {
+    "noncentral_weight_outside": {
+      "inside": false,
+      "minimum_margin": "-2",
+      "vector": [
+        "3/2",
+        "3/2",
+        1,
+        1
+      ]
+    },
+    "restoration_weight_outside": {
+      "inside": false,
+      "minimum_margin": "-1/2",
+      "vector": [
+        2,
+        4,
+        2,
+        "5/4"
+      ]
+    },
+    "strict_interior": {
+      "inside": true,
+      "minimum_margin": "2",
+      "strict_interior": true,
+      "vector": [
+        3,
+        5,
+        2,
+        1
+      ]
+    },
+    "tag_weight_outside": {
+      "inside": false,
+      "minimum_margin": "-1",
+      "vector": [
+        2,
+        4,
+        "5/2",
+        1
+      ]
+    },
+    "unit_boundary": {
+      "inside": true,
+      "minimum_margin": "0",
+      "on_boundary": true,
+      "vector": [
+        2,
+        4,
+        2,
+        1
+      ]
+    }
+  },
+  "coordinate_order": [
+    "central",
+    "noncentral",
+    "tag",
+    "restoration"
+  ],
+  "intrinsic_support_inside_region": 1,
+  "record_type": "rank_two_objective_region",
+  "scope_note": "The inequalities certify this proof only. Their complement is not a necessity region.",
+  "sufficient_inequalities": [
+    "2*noncentral >= 5*restoration",
+    "central + noncentral >= 5*restoration",
+    "2*noncentral >= 2*restoration + 2*tag",
+    "central + noncentral >= 2*restoration + 2*tag"
+  ],
+  "support_ceiling_inside_region": 1
+}

@@ -1,0 +1,37 @@
+{
+  "aligned_rewrite": [
+    {
+      "exchange_margin": 4,
+      "intrinsic_support": 1,
+      "model": "rank-two dependent-triple block encoding",
+      "rank": 5,
+      "relation_holds": true
+    },
+    {
+      "exchange_margin": 0,
+      "intrinsic_support": 2,
+      "model": "shared-tag paired-block encoding",
+      "rank": 3,
+      "relation_holds": false
+    }
+  ],
+  "certified_rewrite": [
+    {
+      "exchange_margin": 4,
+      "intrinsic_support": 1,
+      "model": "rank-two dependent-triple block encoding",
+      "rank": 5,
+      "rank_minus_support": 4
+    },
+    {
+      "exchange_margin": 0,
+      "intrinsic_support": 2,
+      "model": "shared-tag paired-block encoding",
+      "rank": 2,
+      "rank_minus_support": 0
+    }
+  ],
+  "interpretation": "The two-point equality is rewrite-dependent and has no residual degrees of freedom.",
+  "record_type": "rank_support_diagnostic",
+  "status": "diagnostic observation, not a theorem or law"
+}
