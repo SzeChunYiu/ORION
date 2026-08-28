@@ -1,0 +1,39 @@
+name: orion02-final-freeze
+on:
+  workflow_dispatch:
+  push:
+    branches: [chatgpt/integrate-claude-orion02-r22-freeze-20260827]
+    paths:
+      - 'papers/publication_closure/remaining11/check_orion02_final_freeze.py'
+      - '.github/workflows/orion02-final-freeze.yml'
+permissions: {contents: write}
+concurrency: {group: orion02-final-freeze, cancel-in-progress: true}
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion02-final-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: chatgpt/integrate-claude-orion02-r22-freeze-20260827, fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Compile checker
+        run: python -m py_compile papers/publication_closure/remaining11/check_orion02_final_freeze.py
+      - name: Require Claude R22 verification record green
+        run: grep -Fx 'VERIFY_OK' papers/orion-02-fiberguard-finite-fibre/rounds/r22-proposal-ordering/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R22_VERIFICATION.txt
+      - name: Require paper bytes clean
+        run: git diff --exit-code -- papers/orion-02-fiberguard-finite-fibre
+      - name: Write receipt
+        run: python papers/publication_closure/remaining11/check_orion02_final_freeze.py
+      - name: Commit receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          f='papers/publication_closure/receipts/remaining11/ORION-02_SCIENCE_CONTENT_FREEZE_V1.json'
+          python - "$f" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]));assert x['science_frozen'] and x['paper_content_frozen'];assert x['r22_terminal']=='C_R22_PMLB_PROPOSAL_ORDERING_NO_CERTIFIED_COVERAGE';assert not x['submission_authority'];print(x['terminal'])
+          PY
+          git config user.name 'github-actions[bot]';git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$f";git diff --check --cached;git commit -m 'papers(publication): freeze ORION-02 science and content [orion02-final-frozen]';git push origin HEAD:chatgpt/integrate-claude-orion02-r22-freeze-20260827
