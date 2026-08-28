@@ -163,3 +163,38 @@ def test_run_command_preserves_nonzero_exit_as_a_receipt(tmp_path: Path) -> None
     assert receipt["completed"] is False
     assert receipt["returncode"] == 7
     assert stderr.read_text().strip() == "adverse"
+
+
+def test_committed_lunarc_receipt_preserves_exact_replay_and_authority_boundary() -> None:
+    replay_dir = DRIVER.parent
+    receipt_path = replay_dir / "LUNARC_REPLAY_RECEIPT_V1.json"
+    job_output_path = replay_dir / "LUNARC_REPLAY_JOB_OUTPUT_V1.json"
+    assert receipt_path.is_file(), "bounded scheduler-custody receipt must be committed"
+    assert job_output_path.is_file(), "job-emitted replay receipt must be committed"
+    receipt = json.loads(receipt_path.read_text())
+    job_output = json.loads(job_output_path.read_text())
+
+    assert receipt["slurm"]["job_id"] == "3550083"
+    assert receipt["slurm"]["state"] == "COMPLETED"
+    assert receipt["slurm"]["exit_code"] == "0:0"
+    assert receipt["job_output"]["sha256"] == _sha256(job_output_path.read_bytes())
+    assert receipt["discrepancies"] == []
+    assert receipt["freeze_authority"] == "NONE__DO_NOT_FREEZE_OR_MERGE"
+    assert receipt["submission_authority"] == "NONE__NOT_EXTERNAL_OR_INDEPENDENT_REVIEW"
+
+    assert job_output["terminal"] == "EXACT_PRIMARY_AND_REPLICATION_ARCHIVE_REPLAY"
+    assert job_output["all_required_byte_comparisons_pass"] is True
+    assert job_output["all_independent_verifiers_pass"] is True
+    assert job_output["historical_broad_h1_modified"] is False
+    assert (
+        job_output["historical_prospective_order_status"]
+        == "CANNOT_CHECK_HISTORICAL_PROSPECTIVE_ORDER"
+    )
+    assert len(job_output["lanes"]) == 2
+    for lane in job_output["lanes"]:
+        assert lane["terminal"] == "EXACT_ARCHIVE_REPLAY"
+        assert lane["scientific_terminal"] == "P1_MUTATION_NECESSITY_SUPPORTED"
+        assert lane["independent_verdict"] == "PASS"
+        assert lane["score_mismatch_count"] == 0
+        assert lane["analysis_mismatch_count"] == 0
+        assert all(item["byte_equal"] is True for item in lane["comparisons"].values())
