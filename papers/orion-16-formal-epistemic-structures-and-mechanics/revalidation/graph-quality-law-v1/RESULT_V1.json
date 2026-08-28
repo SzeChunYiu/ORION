@@ -1,0 +1,47 @@
+{
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "controls": {
+    "W1_unsoundness_is_detectable": {
+      "caught": 310002,
+      "eligible": 310002,
+      "passed": true
+    },
+    "W2_n3_set_equality_not_containment": {
+      "comparisons": 559233,
+      "passed": true
+    },
+    "W3_zero_weighting_no_alarm": {
+      "clean": 32760,
+      "eligible": 32760,
+      "passed": true
+    },
+    "W4_nontrivial_cases_present": {
+      "passed": true,
+      "strict_over_with_positive_extra": 119038,
+      "strict_under_with_nonempty_failure": 310002
+    }
+  },
+  "promotion_status": "GENERAL_THEOREM_ESTABLISHED__PROMOTION_NOT_EARNED__BOUNDED_PAPER_RETAINED",
+  "protocol_identity": "ORION16.REAL_SYSTEM_MINIMAL_REVALIDATION.v1",
+  "real_system_evidence": "NOT TESTED AGAINST \u2014 P6_REVALIDATION_COMPARISON_V1.json records outcome_accessed: true",
+  "schema": "ORION.ORION16.GraphQualityLaw.Result.v1",
+  "scientific_authority_delta": "NONE",
+  "sizes": [
+    3,
+    4,
+    5
+  ],
+  "terminal": "T1_GRAPH_QUALITY_LAW_HOLDS",
+  "violation_examples": {
+    "N1": [],
+    "N2": [],
+    "N3": [],
+    "N4": []
+  },
+  "violations": {
+    "N1": 0,
+    "N2": 0,
+    "N3": 0,
+    "N4": 0
+  }
+}
