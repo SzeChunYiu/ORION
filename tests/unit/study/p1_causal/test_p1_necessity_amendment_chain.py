@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
+from typing import Callable
 
 import pytest
 
@@ -49,6 +52,50 @@ def _fresh_world_freeze(tmp_path: Path) -> Path:
     return outdir / "WORLD_FREEZE.json"
 
 
+def _isolated_root(tmp_path: Path) -> Path:
+    root = tmp_path / "repo"
+    base_relative = Path("research/revival/p1/confirmatory/v2.2")
+    shutil.copytree(ROOT / base_relative, root / base_relative)
+
+    source_paths: set[str] = set()
+    for filename in (
+        "PRIMARY_WORLD_FREEZE.json",
+        "PRIMARY_EXECUTION_FREEZE.json",
+        "PRIMARY_EXECUTION_FREEZE_V2.json",
+        "PRIMARY_EXECUTION_FREEZE_V3.json",
+    ):
+        receipt = json.loads((ROOT / base_relative / filename).read_text())
+        source_paths.update(receipt["source_sha256"])
+    for relative in source_paths:
+        target = root / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / relative, target)
+    return root
+
+
+def _mutate_v1_and_rebind(
+    tmp_path: Path,
+    mutate: Callable[[dict], None],
+) -> Path:
+    root = _isolated_root(tmp_path)
+    base = root / "research/revival/p1/confirmatory/v2.2"
+    v1_path = base / "PRIMARY_EXECUTION_FREEZE.json"
+    amendment_v1_path = base / "EXECUTION_BINDING_AMENDMENT_V1.json"
+
+    v1 = json.loads(v1_path.read_text())
+    mutate(v1)
+    v1_path.write_text(json.dumps(v1, indent=2, sort_keys=True) + "\n")
+
+    amendment_v1 = json.loads(amendment_v1_path.read_text())
+    amendment_v1["old_execution_receipt_sha256"] = hashlib.sha256(
+        v1_path.read_bytes()
+    ).hexdigest()
+    amendment_v1_path.write_text(
+        json.dumps(amendment_v1, indent=2, sort_keys=True) + "\n"
+    )
+    return root
+
+
 def test_current_pre_outcome_source_amendment_chain_is_explicit(tmp_path: Path) -> None:
     validator = _load_validator()
     receipt = validator.validate_amendment_chain(ROOT, _fresh_world_freeze(tmp_path))
@@ -86,6 +133,43 @@ def test_fresh_world_geometry_drift_is_rejected(tmp_path: Path) -> None:
         match="fresh world identity drift: by_family",
     ):
         validator.validate_amendment_chain(ROOT, fresh_path)
+
+
+@pytest.mark.parametrize(
+    ("label", "mutate"),
+    [
+        ("parent", lambda receipt: receipt.__setitem__("control_parent", "hostile_parent")),
+        (
+            "statistics",
+            lambda receipt: receipt["statistics"].__setitem__(
+                "H1_superiority_margin_each_parent", 0.9
+            ),
+        ),
+        (
+            "protocol",
+            lambda receipt: receipt.__setitem__("protocol_id", "P1.hostile-unrecorded-protocol"),
+        ),
+        (
+            "source-map",
+            lambda receipt: receipt["source_sha256"].__setitem__(
+                "src/orion/study/p1_causal/necessity_engine.py", "0" * 64
+            ),
+        ),
+    ],
+)
+def test_v1_v2_may_differ_only_in_world_freeze_binding(
+    tmp_path: Path,
+    label: str,
+    mutate: Callable[[dict], None],
+) -> None:
+    validator = _load_validator()
+    root = _mutate_v1_and_rebind(tmp_path, mutate)
+
+    with pytest.raises(
+        validator.AmendmentValidationError,
+        match="execution V1/V2 differ outside the world-freeze amendment",
+    ):
+        validator.validate_amendment_chain(root, _fresh_world_freeze(tmp_path / label))
 
 
 def test_workflow_correction_preserves_failed_runs_and_authority_boundary() -> None:

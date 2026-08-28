@@ -141,6 +141,16 @@ def validate_amendment_chain(root: Path, fresh_world_freeze: Path) -> dict[str, 
         amendment_v2.get("committed_world_receipt_sha256") == world_sha,
         "execution-binding amendment V2 world receipt hash drift",
     )
+
+    v1_without_world_binding = dict(execution_v1)
+    v2_without_world_binding = dict(execution_v2)
+    v1_without_world_binding.pop("world_freeze_sha256", None)
+    v2_without_world_binding.pop("world_freeze_sha256", None)
+    _require(
+        v1_without_world_binding == v2_without_world_binding,
+        "execution V1/V2 differ outside the world-freeze amendment",
+    )
+
     _require(
         execution_v2.get("world_freeze_sha256")
         == execution_v3.get("world_freeze_sha256")
