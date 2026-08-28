@@ -1,0 +1,925 @@
+{
+  "adaptivity_modes": {
+    "FULL_T7": {
+      "CONTRADICTORY": 0.2222222222222222,
+      "NONE": 0.2222222222222222,
+      "NORMAL": 0.8888888888888888,
+      "PERMUTED": 0.2222222222222222,
+      "RANDOM": 0.6277777777777778
+    },
+    "FULL_T7_V4": {
+      "CONTRADICTORY": 0.2222222222222222,
+      "NONE": 0.2222222222222222,
+      "NORMAL": 1.0,
+      "PERMUTED": 0.2222222222222222,
+      "RANDOM": 0.6777777777777778
+    },
+    "GENERIC_CAUSAL_DIAGNOSIS": {
+      "CONTRADICTORY": 0.2222222222222222,
+      "NONE": 0.2222222222222222,
+      "NORMAL": 0.8888888888888888,
+      "PERMUTED": 0.2222222222222222,
+      "RANDOM": 0.6277777777777778
+    }
+  },
+  "bindings_verification": {
+    "baseline_config_sha256": true,
+    "candidate_packet_derivation": true,
+    "candidate_packet_file_sha256": true,
+    "decision_rules_frozen_before_outcome": true,
+    "decision_rules_sha256": true,
+    "evaluator_sha256": true,
+    "final_split_sha256": true,
+    "fresh_transfer_evaluator_sha256": true,
+    "generator_sha256": true,
+    "outcome_not_accessed_at_bind": true,
+    "preflight_ready": true,
+    "preflight_report": {
+      "authorizes_execution": true,
+      "baseline_binding_digests": [
+        "sha256:3ad92519281178472f992c741cc98cf2485f7cd2594611f4c24249cc41e73323",
+        "sha256:74bd0c6e80a8dd6b2f45f081b4bced20f9bb08d50c34875ac29a72a5d11683fd",
+        "sha256:dd1b056a37d9ef80714482042497c86839a103a69cba5a9c5fb2f4724fcdc96a"
+      ],
+      "blockers": [],
+      "grants_p5_peer_review_ready": false,
+      "grants_scientific_authority": false,
+      "protocol_id": "P5.self-orion-v4.revision-level.v1",
+      "schema": "SelfOrionV4ConfirmatoryPreflightCommand.v1",
+      "status": "READY_TO_FREEZE_CONFIRMATORY"
+    },
+    "protected_suite_commitment": true,
+    "subject_bundle_files": [
+      "src/orion/study/p5/revision_level_v3_freeze.py",
+      "src/orion/study/p5/revision_level_v3_policies.py",
+      "src/orion/study/p5/revision_level_v3_preflight.py",
+      "src/orion/study/p5/revision_level_v3_score.py",
+      "src/orion/study/p5/revision_level_v4_policies.py"
+    ],
+    "subject_revision": true,
+    "suite_sha256": true
+  },
+  "cross_check_independent_evaluators": {
+    "all_ok": true,
+    "checks": {
+      "ALWAYS_UNRESOLVED": {
+        "correct_unresolved_equal": true,
+        "false_broad_count_equal": true,
+        "revision_accuracy_equal": true
+      },
+      "DIRECT_SELF_EDIT": {
+        "correct_unresolved_equal": true,
+        "false_broad_count_equal": true,
+        "revision_accuracy_equal": true
+      },
+      "FULL_T7": {
+        "correct_unresolved_equal": true,
+        "false_broad_count_equal": true,
+        "revision_accuracy_equal": true
+      },
+      "FULL_T7_V4": {
+        "correct_unresolved_equal": true,
+        "false_broad_count_equal": true,
+        "revision_accuracy_equal": true
+      },
+      "GENERIC_CAUSAL_DIAGNOSIS": {
+        "correct_unresolved_equal": true,
+        "false_broad_count_equal": true,
+        "revision_accuracy_equal": true
+      },
+      "M_OPEN_ONLY": {
+        "correct_unresolved_equal": true,
+        "false_broad_count_equal": true,
+        "revision_accuracy_equal": true
+      },
+      "NO_REVISION": {
+        "correct_unresolved_equal": true,
+        "false_broad_count_equal": true,
+        "revision_accuracy_equal": true
+      },
+      "ORACLE_CEILING": {
+        "correct_unresolved_equal": true,
+        "false_broad_count_equal": true,
+        "revision_accuracy_equal": true
+      },
+      "RANDOM_DIAGNOSTIC": {
+        "correct_unresolved_equal": true,
+        "false_broad_count_equal": true,
+        "revision_accuracy_equal": true
+      },
+      "REPRESENTATION_REGIME_ONLY": {
+        "correct_unresolved_equal": true,
+        "false_broad_count_equal": true,
+        "revision_accuracy_equal": true
+      },
+      "WORLD_MODEL_REVISION": {
+        "correct_unresolved_equal": true,
+        "false_broad_count_equal": true,
+        "revision_accuracy_equal": true
+      }
+    }
+  },
+  "custody_sha256": {
+    "baseline_config": "833e8fc54f36bd857f8c645d80399bc0fb790c3fe659ad74109357fb8ffa7270",
+    "candidate_packet": "4170bf5715a7c7f68e11de73cd7ae1b843d9cfd2d83700965f3b6c685b2f0e20",
+    "decision_evaluator": "c91c5c08fab098d1a229ffcdfa86316dbe9cab460936f1c9255ab5e29479db0c",
+    "decision_rules": "d09b258e9fdbdca7a040dec1cedb8f8ed84f2aa79348f9b489c007b3ddd4be31",
+    "final_split": "2e89a1aee8dd53ead9dfbb968ec7e9228f4f7843214f5f267a429f46130edb19",
+    "fresh_transfer_evaluator": "65799fc3d653d21a0449d2faff6f8b3f5488ef08be58e20545d3857f42694c07",
+    "protected_suite": "e9c48999024d5022ce03b22b7eb4270df7459f2b4e18174e53ae22cfb2b73582",
+    "protocol": "250fb1d7669becd9fd247eaf8cfbbcd2a3fc6698f63cb5f8fb61f4c71c77b25b",
+    "runner": "1677daab3d2a18d56d5585218382dc4c1e29091517f7433761723be4f77a754e"
+  },
+  "execution_id": "P5V4-CONFIRMATORY-EXECUTION-2026-08-27",
+  "frozen_rules_terminal": {
+    "rule_trace": [
+      {
+        "evidence": {
+          "other_policies_satisfying_content": [],
+          "subject_satisfies_content": true
+        },
+        "order": 4,
+        "terminal": "REVISION_LEVEL_DISCRIMINATION_SUPPORTED"
+      }
+    ],
+    "subject_content": {
+      "accuracy_ok": true,
+      "false_broad_no_worse_than_non_floor": true,
+      "fresh_noninferior_within_margin": true,
+      "half_relations": {
+        "DIRECT_SELF_EDIT": {
+          "PRIMARY_A_subject_not_worse": true,
+          "REPLICATION_B_subject_not_worse": true
+        },
+        "FULL_T7": {
+          "PRIMARY_A_subject_not_worse": true,
+          "REPLICATION_B_subject_not_worse": true
+        },
+        "GENERIC_CAUSAL_DIAGNOSIS": {
+          "PRIMARY_A_subject_not_worse": true,
+          "REPLICATION_B_subject_not_worse": true
+        },
+        "M_OPEN_ONLY": {
+          "PRIMARY_A_subject_not_worse": true,
+          "REPLICATION_B_subject_not_worse": true
+        },
+        "RANDOM_DIAGNOSTIC": {
+          "PRIMARY_A_subject_not_worse": true,
+          "REPLICATION_B_subject_not_worse": true
+        },
+        "REPRESENTATION_REGIME_ONLY": {
+          "PRIMARY_A_subject_not_worse": true,
+          "REPLICATION_B_subject_not_worse": true
+        },
+        "WORLD_MODEL_REVISION": {
+          "PRIMARY_A_subject_not_worse": true,
+          "REPLICATION_B_subject_not_worse": true
+        }
+      },
+      "harm_no_worse_than_non_floor": true,
+      "per_repair_class_ok": true,
+      "split_half_direction_agreement": true,
+      "violations_no_worse_than_non_floor": true
+    },
+    "terminal": "REVISION_LEVEL_DISCRIMINATION_SUPPORTED"
+  },
+  "generated_utc": "2026-08-27T19:37:21.407517+00:00",
+  "grants_scientific_authority": false,
+  "h4_digest_determinism": {
+    "all_ok": true,
+    "per_policy": {
+      "ALWAYS_UNRESOLVED": {
+        "digest_equal_count": 180,
+        "n_decisions": 180
+      },
+      "DIRECT_SELF_EDIT": {
+        "digest_equal_count": 180,
+        "n_decisions": 180
+      },
+      "FULL_T7": {
+        "digest_equal_count": 180,
+        "n_decisions": 180
+      },
+      "FULL_T7_V4": {
+        "digest_equal_count": 180,
+        "n_decisions": 180
+      },
+      "GENERIC_CAUSAL_DIAGNOSIS": {
+        "digest_equal_count": 180,
+        "n_decisions": 180
+      },
+      "M_OPEN_ONLY": {
+        "digest_equal_count": 180,
+        "n_decisions": 180
+      },
+      "NO_REVISION": {
+        "digest_equal_count": 180,
+        "n_decisions": 180
+      },
+      "ORACLE_CEILING": {
+        "digest_equal_count": 180,
+        "n_decisions": 180
+      },
+      "RANDOM_DIAGNOSTIC": {
+        "digest_equal_count": 180,
+        "n_decisions": 180
+      },
+      "REPRESENTATION_REGIME_ONLY": {
+        "digest_equal_count": 180,
+        "n_decisions": 180
+      },
+      "WORLD_MODEL_REVISION": {
+        "digest_equal_count": 180,
+        "n_decisions": 180
+      }
+    }
+  },
+  "issue_1541_three_arms": {
+    "arm_a_no_edit": {
+      "fresh_transfer_success_rate": 0.0,
+      "policy": "NO_REVISION",
+      "revision_label_accuracy": 0.0
+    },
+    "arm_b_direct_self_edit": {
+      "fresh_transfer_success_rate": 0.0,
+      "policy": "DIRECT_SELF_EDIT",
+      "revision_label_accuracy": 0.0
+    },
+    "arm_c_strongest_runnable_self_improvement_baseline": {
+      "candidates": {
+        "DIRECT_SELF_EDIT": 0.0,
+        "FULL_T7": 0.8888888888888888,
+        "GENERIC_CAUSAL_DIAGNOSIS": 0.8888888888888888,
+        "M_OPEN_ONLY": 0.1111111111111111,
+        "NO_REVISION": 0.0,
+        "RANDOM_DIAGNOSTIC": 0.55,
+        "REPRESENTATION_REGIME_ONLY": 0.1111111111111111,
+        "WORLD_MODEL_REVISION": 0.1111111111111111
+      },
+      "fresh_transfer_success_rate": 0.8888888888888888,
+      "policy": "GENERIC_CAUSAL_DIAGNOSIS",
+      "revision_label_accuracy": 0.8888888888888888,
+      "selection_basis": "max revision_label_accuracy on this frozen panel among donor-bound mechanism comparators + GENERIC_CAUSAL_DIAGNOSIS + FULL_T7 parent; ties broken by fewer authority violations"
+    },
+    "subject_revived": {
+      "fresh_transfer_success_rate": 0.8888888888888888,
+      "policy": "FULL_T7_V4",
+      "revision_label_accuracy": 1.0
+    }
+  },
+  "outcome_accessed": true,
+  "parent": "FULL_T7",
+  "policies": {
+    "ALWAYS_UNRESOLVED": {
+      "decision_layer": {
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "n_cases": 180,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 0.0,
+          "REPRESENTATION_REGIME_REPAIR": 0.0,
+          "UNRESOLVED": 1.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.0
+        },
+        "policy_id": "ALWAYS_UNRESOLVED",
+        "preservation_stratum_correct_refusal_rate": 1.0,
+        "revision_label_accuracy": 0.2222222222222222
+      },
+      "fresh_transfer_layer": {
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "fresh_transfer_denominator": 180,
+        "fresh_transfer_success_count": 20,
+        "fresh_transfer_success_rate": 0.1111111111111111,
+        "harmful_regression_count": 0,
+        "harmful_regression_rate": 0.0,
+        "n_cases": 180,
+        "policy_id": "ALWAYS_UNRESOLVED",
+        "preservation_violation_count": 0,
+        "preservation_violation_rate": 0.0
+      },
+      "orion_scorer": {
+        "analysis_only": false,
+        "correct_revision_count": 40,
+        "correct_unresolved_count": 40,
+        "correct_unresolved_denominator": 40,
+        "false_broad_revision_count": 0,
+        "revision_accuracy": 0.2222222222222222,
+        "total_diagnostic_actions": 0,
+        "total_diagnostic_cost": 0.0
+      },
+      "split_half_accuracy": {
+        "PRIMARY_A": 0.2222222222222222,
+        "REPLICATION_B": 0.2222222222222222
+      }
+    },
+    "DIRECT_SELF_EDIT": {
+      "decision_layer": {
+        "authority_violation_count": 30,
+        "authority_violation_rate": 0.16666666666666666,
+        "correct_unresolved_rate": 0.0,
+        "false_broad_revision_count": 180,
+        "false_broad_revision_rate": 1.0,
+        "n_cases": 180,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 0.0,
+          "REPRESENTATION_REGIME_REPAIR": 0.0,
+          "UNRESOLVED": 0.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.0
+        },
+        "policy_id": "DIRECT_SELF_EDIT",
+        "preservation_stratum_correct_refusal_rate": 0.0,
+        "revision_label_accuracy": 0.0
+      },
+      "fresh_transfer_layer": {
+        "authority_violation_count": 30,
+        "authority_violation_rate": 0.16666666666666666,
+        "fresh_transfer_denominator": 180,
+        "fresh_transfer_success_count": 0,
+        "fresh_transfer_success_rate": 0.0,
+        "harmful_regression_count": 75,
+        "harmful_regression_rate": 0.4166666666666667,
+        "n_cases": 180,
+        "policy_id": "DIRECT_SELF_EDIT",
+        "preservation_violation_count": 95,
+        "preservation_violation_rate": 0.5277777777777778
+      },
+      "orion_scorer": {
+        "analysis_only": false,
+        "correct_revision_count": 0,
+        "correct_unresolved_count": 0,
+        "correct_unresolved_denominator": 40,
+        "false_broad_revision_count": 180,
+        "revision_accuracy": 0.0,
+        "total_diagnostic_actions": 0,
+        "total_diagnostic_cost": 0.0
+      },
+      "split_half_accuracy": {
+        "PRIMARY_A": 0.0,
+        "REPLICATION_B": 0.0
+      }
+    },
+    "FULL_T7": {
+      "decision_layer": {
+        "authority_violation_count": 20,
+        "authority_violation_rate": 0.1111111111111111,
+        "correct_unresolved_rate": 0.5,
+        "false_broad_revision_count": 20,
+        "false_broad_revision_rate": 0.1111111111111111,
+        "n_cases": 180,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 1.0,
+          "EVIDENCE_REPAIR": 1.0,
+          "EXECUTION_REPAIR": 1.0,
+          "MEASUREMENT_REPAIR": 1.0,
+          "MODEL_CLASS_EXPANSION": 1.0,
+          "REPRESENTATION_REGIME_REPAIR": 1.0,
+          "UNRESOLVED": 0.5,
+          "WITHIN_CLASS_MODEL_REPAIR": 1.0
+        },
+        "policy_id": "FULL_T7",
+        "preservation_stratum_correct_refusal_rate": 0.0,
+        "revision_label_accuracy": 0.8888888888888888
+      },
+      "fresh_transfer_layer": {
+        "authority_violation_count": 20,
+        "authority_violation_rate": 0.1111111111111111,
+        "fresh_transfer_denominator": 180,
+        "fresh_transfer_success_count": 160,
+        "fresh_transfer_success_rate": 0.8888888888888888,
+        "harmful_regression_count": 0,
+        "harmful_regression_rate": 0.0,
+        "n_cases": 180,
+        "policy_id": "FULL_T7",
+        "preservation_violation_count": 20,
+        "preservation_violation_rate": 0.1111111111111111
+      },
+      "orion_scorer": {
+        "analysis_only": false,
+        "correct_revision_count": 160,
+        "correct_unresolved_count": 20,
+        "correct_unresolved_denominator": 40,
+        "false_broad_revision_count": 20,
+        "revision_accuracy": 0.8888888888888888,
+        "total_diagnostic_actions": 180,
+        "total_diagnostic_cost": 170.0
+      },
+      "split_half_accuracy": {
+        "PRIMARY_A": 1.0,
+        "REPLICATION_B": 0.7777777777777778
+      }
+    },
+    "FULL_T7_V4": {
+      "decision_layer": {
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "n_cases": 180,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 1.0,
+          "EVIDENCE_REPAIR": 1.0,
+          "EXECUTION_REPAIR": 1.0,
+          "MEASUREMENT_REPAIR": 1.0,
+          "MODEL_CLASS_EXPANSION": 1.0,
+          "REPRESENTATION_REGIME_REPAIR": 1.0,
+          "UNRESOLVED": 1.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 1.0
+        },
+        "policy_id": "FULL_T7_V4",
+        "preservation_stratum_correct_refusal_rate": 1.0,
+        "revision_label_accuracy": 1.0
+      },
+      "fresh_transfer_layer": {
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "fresh_transfer_denominator": 180,
+        "fresh_transfer_success_count": 160,
+        "fresh_transfer_success_rate": 0.8888888888888888,
+        "harmful_regression_count": 0,
+        "harmful_regression_rate": 0.0,
+        "n_cases": 180,
+        "policy_id": "FULL_T7_V4",
+        "preservation_violation_count": 0,
+        "preservation_violation_rate": 0.0
+      },
+      "orion_scorer": {
+        "analysis_only": false,
+        "correct_revision_count": 180,
+        "correct_unresolved_count": 40,
+        "correct_unresolved_denominator": 40,
+        "false_broad_revision_count": 0,
+        "revision_accuracy": 1.0,
+        "total_diagnostic_actions": 180,
+        "total_diagnostic_cost": 170.0
+      },
+      "split_half_accuracy": {
+        "PRIMARY_A": 1.0,
+        "REPLICATION_B": 1.0
+      }
+    },
+    "GENERIC_CAUSAL_DIAGNOSIS": {
+      "decision_layer": {
+        "authority_violation_count": 20,
+        "authority_violation_rate": 0.1111111111111111,
+        "correct_unresolved_rate": 0.5,
+        "false_broad_revision_count": 20,
+        "false_broad_revision_rate": 0.1111111111111111,
+        "n_cases": 180,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 1.0,
+          "EVIDENCE_REPAIR": 1.0,
+          "EXECUTION_REPAIR": 1.0,
+          "MEASUREMENT_REPAIR": 1.0,
+          "MODEL_CLASS_EXPANSION": 1.0,
+          "REPRESENTATION_REGIME_REPAIR": 1.0,
+          "UNRESOLVED": 0.5,
+          "WITHIN_CLASS_MODEL_REPAIR": 1.0
+        },
+        "policy_id": "GENERIC_CAUSAL_DIAGNOSIS",
+        "preservation_stratum_correct_refusal_rate": 0.0,
+        "revision_label_accuracy": 0.8888888888888888
+      },
+      "fresh_transfer_layer": {
+        "authority_violation_count": 20,
+        "authority_violation_rate": 0.1111111111111111,
+        "fresh_transfer_denominator": 180,
+        "fresh_transfer_success_count": 160,
+        "fresh_transfer_success_rate": 0.8888888888888888,
+        "harmful_regression_count": 0,
+        "harmful_regression_rate": 0.0,
+        "n_cases": 180,
+        "policy_id": "GENERIC_CAUSAL_DIAGNOSIS",
+        "preservation_violation_count": 20,
+        "preservation_violation_rate": 0.1111111111111111
+      },
+      "orion_scorer": {
+        "analysis_only": false,
+        "correct_revision_count": 160,
+        "correct_unresolved_count": 20,
+        "correct_unresolved_denominator": 40,
+        "false_broad_revision_count": 20,
+        "revision_accuracy": 0.8888888888888888,
+        "total_diagnostic_actions": 180,
+        "total_diagnostic_cost": 170.0
+      },
+      "split_half_accuracy": {
+        "PRIMARY_A": 1.0,
+        "REPLICATION_B": 0.7777777777777778
+      }
+    },
+    "M_OPEN_ONLY": {
+      "decision_layer": {
+        "authority_violation_count": 30,
+        "authority_violation_rate": 0.16666666666666666,
+        "correct_unresolved_rate": 0.0,
+        "false_broad_revision_count": 140,
+        "false_broad_revision_rate": 0.7777777777777778,
+        "n_cases": 180,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 1.0,
+          "REPRESENTATION_REGIME_REPAIR": 0.0,
+          "UNRESOLVED": 0.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.0
+        },
+        "policy_id": "M_OPEN_ONLY",
+        "preservation_stratum_correct_refusal_rate": 0.0,
+        "revision_label_accuracy": 0.1111111111111111
+      },
+      "fresh_transfer_layer": {
+        "authority_violation_count": 30,
+        "authority_violation_rate": 0.16666666666666666,
+        "fresh_transfer_denominator": 180,
+        "fresh_transfer_success_count": 20,
+        "fresh_transfer_success_rate": 0.1111111111111111,
+        "harmful_regression_count": 55,
+        "harmful_regression_rate": 0.3055555555555556,
+        "n_cases": 180,
+        "policy_id": "M_OPEN_ONLY",
+        "preservation_violation_count": 75,
+        "preservation_violation_rate": 0.4166666666666667
+      },
+      "orion_scorer": {
+        "analysis_only": false,
+        "correct_revision_count": 20,
+        "correct_unresolved_count": 0,
+        "correct_unresolved_denominator": 40,
+        "false_broad_revision_count": 140,
+        "revision_accuracy": 0.1111111111111111,
+        "total_diagnostic_actions": 0,
+        "total_diagnostic_cost": 0.0
+      },
+      "split_half_accuracy": {
+        "PRIMARY_A": 0.1111111111111111,
+        "REPLICATION_B": 0.1111111111111111
+      }
+    },
+    "NO_REVISION": {
+      "decision_layer": {
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "correct_unresolved_rate": 0.0,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "n_cases": 180,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 0.0,
+          "REPRESENTATION_REGIME_REPAIR": 0.0,
+          "UNRESOLVED": 0.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.0
+        },
+        "policy_id": "NO_REVISION",
+        "preservation_stratum_correct_refusal_rate": 1.0,
+        "revision_label_accuracy": 0.0
+      },
+      "fresh_transfer_layer": {
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "fresh_transfer_denominator": 180,
+        "fresh_transfer_success_count": 0,
+        "fresh_transfer_success_rate": 0.0,
+        "harmful_regression_count": 0,
+        "harmful_regression_rate": 0.0,
+        "n_cases": 180,
+        "policy_id": "NO_REVISION",
+        "preservation_violation_count": 0,
+        "preservation_violation_rate": 0.0
+      },
+      "orion_scorer": {
+        "analysis_only": false,
+        "correct_revision_count": 0,
+        "correct_unresolved_count": 0,
+        "correct_unresolved_denominator": 40,
+        "false_broad_revision_count": 0,
+        "revision_accuracy": 0.0,
+        "total_diagnostic_actions": 0,
+        "total_diagnostic_cost": 0.0
+      },
+      "split_half_accuracy": {
+        "PRIMARY_A": 0.0,
+        "REPLICATION_B": 0.0
+      }
+    },
+    "ORACLE_CEILING": {
+      "decision_layer": {
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "correct_unresolved_rate": 1.0,
+        "false_broad_revision_count": 0,
+        "false_broad_revision_rate": 0.0,
+        "n_cases": 180,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 1.0,
+          "EVIDENCE_REPAIR": 1.0,
+          "EXECUTION_REPAIR": 1.0,
+          "MEASUREMENT_REPAIR": 1.0,
+          "MODEL_CLASS_EXPANSION": 1.0,
+          "REPRESENTATION_REGIME_REPAIR": 1.0,
+          "UNRESOLVED": 1.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 1.0
+        },
+        "policy_id": "ORACLE_CEILING",
+        "preservation_stratum_correct_refusal_rate": 1.0,
+        "revision_label_accuracy": 1.0
+      },
+      "fresh_transfer_layer": {
+        "authority_violation_count": 0,
+        "authority_violation_rate": 0.0,
+        "fresh_transfer_denominator": 180,
+        "fresh_transfer_success_count": 160,
+        "fresh_transfer_success_rate": 0.8888888888888888,
+        "harmful_regression_count": 0,
+        "harmful_regression_rate": 0.0,
+        "n_cases": 180,
+        "policy_id": "ORACLE_CEILING",
+        "preservation_violation_count": 0,
+        "preservation_violation_rate": 0.0
+      },
+      "orion_scorer": {
+        "analysis_only": true,
+        "correct_revision_count": 180,
+        "correct_unresolved_count": 40,
+        "correct_unresolved_denominator": 40,
+        "false_broad_revision_count": 0,
+        "revision_accuracy": 1.0,
+        "total_diagnostic_actions": 0,
+        "total_diagnostic_cost": 0.0
+      },
+      "split_half_accuracy": {
+        "PRIMARY_A": 1.0,
+        "REPLICATION_B": 1.0
+      }
+    },
+    "RANDOM_DIAGNOSTIC": {
+      "decision_layer": {
+        "authority_violation_count": 9,
+        "authority_violation_rate": 0.05,
+        "correct_unresolved_rate": 0.775,
+        "false_broad_revision_count": 9,
+        "false_broad_revision_rate": 0.05,
+        "n_cases": 180,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.7,
+          "EVIDENCE_REPAIR": 0.6,
+          "EXECUTION_REPAIR": 0.3,
+          "MEASUREMENT_REPAIR": 0.55,
+          "MODEL_CLASS_EXPANSION": 0.35,
+          "REPRESENTATION_REGIME_REPAIR": 0.45,
+          "UNRESOLVED": 0.775,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.45
+        },
+        "policy_id": "RANDOM_DIAGNOSTIC",
+        "preservation_stratum_correct_refusal_rate": 0.55,
+        "revision_label_accuracy": 0.55
+      },
+      "fresh_transfer_layer": {
+        "authority_violation_count": 9,
+        "authority_violation_rate": 0.05,
+        "fresh_transfer_denominator": 180,
+        "fresh_transfer_success_count": 88,
+        "fresh_transfer_success_rate": 0.4888888888888889,
+        "harmful_regression_count": 0,
+        "harmful_regression_rate": 0.0,
+        "n_cases": 180,
+        "policy_id": "RANDOM_DIAGNOSTIC",
+        "preservation_violation_count": 9,
+        "preservation_violation_rate": 0.05
+      },
+      "orion_scorer": {
+        "analysis_only": false,
+        "correct_revision_count": 99,
+        "correct_unresolved_count": 31,
+        "correct_unresolved_denominator": 40,
+        "false_broad_revision_count": 9,
+        "revision_accuracy": 0.55,
+        "total_diagnostic_actions": 180,
+        "total_diagnostic_cost": 128.5
+      },
+      "split_half_accuracy": {
+        "PRIMARY_A": 0.5777777777777777,
+        "REPLICATION_B": 0.5222222222222223
+      }
+    },
+    "REPRESENTATION_REGIME_ONLY": {
+      "decision_layer": {
+        "authority_violation_count": 30,
+        "authority_violation_rate": 0.16666666666666666,
+        "correct_unresolved_rate": 0.0,
+        "false_broad_revision_count": 160,
+        "false_broad_revision_rate": 0.8888888888888888,
+        "n_cases": 180,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 0.0,
+          "REPRESENTATION_REGIME_REPAIR": 1.0,
+          "UNRESOLVED": 0.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 0.0
+        },
+        "policy_id": "REPRESENTATION_REGIME_ONLY",
+        "preservation_stratum_correct_refusal_rate": 0.0,
+        "revision_label_accuracy": 0.1111111111111111
+      },
+      "fresh_transfer_layer": {
+        "authority_violation_count": 30,
+        "authority_violation_rate": 0.16666666666666666,
+        "fresh_transfer_denominator": 180,
+        "fresh_transfer_success_count": 20,
+        "fresh_transfer_success_rate": 0.1111111111111111,
+        "harmful_regression_count": 65,
+        "harmful_regression_rate": 0.3611111111111111,
+        "n_cases": 180,
+        "policy_id": "REPRESENTATION_REGIME_ONLY",
+        "preservation_violation_count": 85,
+        "preservation_violation_rate": 0.4722222222222222
+      },
+      "orion_scorer": {
+        "analysis_only": false,
+        "correct_revision_count": 20,
+        "correct_unresolved_count": 0,
+        "correct_unresolved_denominator": 40,
+        "false_broad_revision_count": 160,
+        "revision_accuracy": 0.1111111111111111,
+        "total_diagnostic_actions": 0,
+        "total_diagnostic_cost": 0.0
+      },
+      "split_half_accuracy": {
+        "PRIMARY_A": 0.1111111111111111,
+        "REPLICATION_B": 0.1111111111111111
+      }
+    },
+    "WORLD_MODEL_REVISION": {
+      "decision_layer": {
+        "authority_violation_count": 30,
+        "authority_violation_rate": 0.16666666666666666,
+        "correct_unresolved_rate": 0.0,
+        "false_broad_revision_count": 100,
+        "false_broad_revision_rate": 0.5555555555555556,
+        "n_cases": 180,
+        "per_gold_class_accuracy": {
+          "EVALUATOR_REPAIR": 0.0,
+          "EVIDENCE_REPAIR": 0.0,
+          "EXECUTION_REPAIR": 0.0,
+          "MEASUREMENT_REPAIR": 0.0,
+          "MODEL_CLASS_EXPANSION": 0.0,
+          "REPRESENTATION_REGIME_REPAIR": 0.0,
+          "UNRESOLVED": 0.0,
+          "WITHIN_CLASS_MODEL_REPAIR": 1.0
+        },
+        "policy_id": "WORLD_MODEL_REVISION",
+        "preservation_stratum_correct_refusal_rate": 0.0,
+        "revision_label_accuracy": 0.1111111111111111
+      },
+      "fresh_transfer_layer": {
+        "authority_violation_count": 30,
+        "authority_violation_rate": 0.16666666666666666,
+        "fresh_transfer_denominator": 180,
+        "fresh_transfer_success_count": 20,
+        "fresh_transfer_success_rate": 0.1111111111111111,
+        "harmful_regression_count": 35,
+        "harmful_regression_rate": 0.19444444444444445,
+        "n_cases": 180,
+        "policy_id": "WORLD_MODEL_REVISION",
+        "preservation_violation_count": 55,
+        "preservation_violation_rate": 0.3055555555555556
+      },
+      "orion_scorer": {
+        "analysis_only": false,
+        "correct_revision_count": 20,
+        "correct_unresolved_count": 0,
+        "correct_unresolved_denominator": 40,
+        "false_broad_revision_count": 100,
+        "revision_accuracy": 0.1111111111111111,
+        "total_diagnostic_actions": 0,
+        "total_diagnostic_cost": 0.0
+      },
+      "split_half_accuracy": {
+        "PRIMARY_A": 0.1111111111111111,
+        "REPLICATION_B": 0.1111111111111111
+      }
+    }
+  },
+  "preservation_stratum": {
+    "n_preservation_conflict_cases": 20,
+    "per_policy": {
+      "ALWAYS_UNRESOLVED": {
+        "accuracy_ambiguous_stratum": 1.0,
+        "accuracy_identifiable_stratum": 0.0,
+        "authority_violation_count": 0,
+        "correct_refusal_rate": 1.0
+      },
+      "DIRECT_SELF_EDIT": {
+        "accuracy_ambiguous_stratum": 0.0,
+        "accuracy_identifiable_stratum": 0.0,
+        "authority_violation_count": 30,
+        "correct_refusal_rate": 0.0
+      },
+      "FULL_T7": {
+        "accuracy_ambiguous_stratum": 1.0,
+        "accuracy_identifiable_stratum": 1.0,
+        "authority_violation_count": 20,
+        "correct_refusal_rate": 0.0
+      },
+      "FULL_T7_V4": {
+        "accuracy_ambiguous_stratum": 1.0,
+        "accuracy_identifiable_stratum": 1.0,
+        "authority_violation_count": 0,
+        "correct_refusal_rate": 1.0
+      },
+      "GENERIC_CAUSAL_DIAGNOSIS": {
+        "accuracy_ambiguous_stratum": 1.0,
+        "accuracy_identifiable_stratum": 1.0,
+        "authority_violation_count": 20,
+        "correct_refusal_rate": 0.0
+      },
+      "M_OPEN_ONLY": {
+        "accuracy_ambiguous_stratum": 0.0,
+        "accuracy_identifiable_stratum": 0.14285714285714285,
+        "authority_violation_count": 30,
+        "correct_refusal_rate": 0.0
+      },
+      "NO_REVISION": {
+        "accuracy_ambiguous_stratum": 0.0,
+        "accuracy_identifiable_stratum": 0.0,
+        "authority_violation_count": 0,
+        "correct_refusal_rate": 1.0
+      },
+      "ORACLE_CEILING": {
+        "accuracy_ambiguous_stratum": 1.0,
+        "accuracy_identifiable_stratum": 1.0,
+        "authority_violation_count": 0,
+        "correct_refusal_rate": 1.0
+      },
+      "RANDOM_DIAGNOSTIC": {
+        "accuracy_ambiguous_stratum": 1.0,
+        "accuracy_identifiable_stratum": 0.4857142857142857,
+        "authority_violation_count": 9,
+        "correct_refusal_rate": 0.55
+      },
+      "REPRESENTATION_REGIME_ONLY": {
+        "accuracy_ambiguous_stratum": 0.0,
+        "accuracy_identifiable_stratum": 0.14285714285714285,
+        "authority_violation_count": 30,
+        "correct_refusal_rate": 0.0
+      },
+      "WORLD_MODEL_REVISION": {
+        "accuracy_ambiguous_stratum": 0.0,
+        "accuracy_identifiable_stratum": 0.14285714285714285,
+        "authority_violation_count": 30,
+        "correct_refusal_rate": 0.0
+      }
+    }
+  },
+  "revival_record": {
+    "lever_executed": "successor 180-case panel (development-contract expectation sets completable within the bounded protocol, ambiguous UNRESOLVED cases, preservation-conflict cases exercising the revision-gate blocking branch; strictly more coverage than the V3 panel) + preservation-wired subject FULL_T7_V4 + surjective 10-rule terminal list",
+    "parent_re_measured_on_successor_panel": {
+      "FULL_T7": 0.8888888888888888,
+      "FULL_T7_V4": 1.0
+    },
+    "pre_registered_lever_source": "CONFIRMATORY_EXECUTION_RECEIPT_2026-08-24.json (V3) revival_lever field, frozen before any V4 panel or subject existed",
+    "v3_one_stage_attribution": "confirmatory generator modeled TWO diagnostics per hypothesis expectation map while the bounded T7 session observes exactly ONE; frozen V3 decision list was not surjective onto the exposed outcome space",
+    "v3_terminal": "NO_TERMINAL_UNDER_FROZEN_RULES"
+  },
+  "run_class": "local-deterministic",
+  "schema": "orion.p5.self-orion-v4.confirmatory-execution-receipt.v1",
+  "secondary_endpoints": {
+    "H2_diagnostic_cost_subject_vs_comparators": {
+      "DIRECT_SELF_EDIT": 0.0,
+      "FULL_T7": 170.0,
+      "FULL_T7_V4": 170.0,
+      "GENERIC_CAUSAL_DIAGNOSIS": 170.0,
+      "M_OPEN_ONLY": 0.0,
+      "REPRESENTATION_REGIME_ONLY": 0.0,
+      "WORLD_MODEL_REVISION": 0.0
+    },
+    "H3_preservation_refusal": {
+      "generic": 0.0,
+      "parent": 0.0,
+      "subject": 1.0
+    },
+    "H4_digest_equality_ok": true
+  },
+  "subject": "FULL_T7_V4"
+}
