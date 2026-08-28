@@ -1,0 +1,2802 @@
+{
+ "excluded_rows": [
+  {
+   "missing": [
+    "pc6-cert"
+   ],
+   "name": "failed proxy cert where last CN was added as a multivalue RDN component",
+   "reason": "setup.sh-generated material absent from the tag snapshot"
+  }
+ ],
+ "exit_checker_rows_flipped": [
+  "Name constraints bad othername name constraint"
+ ],
+ "upstream_rows": [
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept compat trust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail trusted non-ca root",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-nonca"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail server trust non-ca root",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "nroot+serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wildcard trust non-ca root",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "nroot+anyEKU"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wrong root key",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert2"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wrong root DN",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-name2"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-noncrit-unknown-ext",
+   "name": "accept non-critical unknown extension",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-crit-unknown-ext",
+   "name": "reject critical unknown extension",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ocsp-nocheck",
+   "name": "accept critical OCSP No Check",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "sroot-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "croot-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept server trust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root+serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept server trust with server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "sroot+serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept server trust with client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "croot+serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept wildcard trust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root+anyEKU"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept wildcard trust with server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "sroot+anyEKU"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept wildcard trust with client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "croot+anyEKU"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept client mistrust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-clientAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept client mistrust with server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "sroot-clientAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client mistrust with client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "croot-clientAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client trust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root+clientAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client trust with server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "sroot+clientAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client trust with client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "croot+clientAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail rejected EKU",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail server mistrust with server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "sroot-serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail server mistrust with client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "croot-serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wildcard mistrust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-anyEKU"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wildcard mistrust with server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "sroot-anyEKU"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wildcard mistrust with client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "croot-anyEKU"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept trusted-first path",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-root2",
+    "root-cert2",
+    "root-serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept trusted-first path with server trust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-root2",
+    "root-cert",
+    "root2+serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail trusted-first path with server mistrust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-root2",
+    "root-cert",
+    "root2-serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail trusted-first path with client trust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-root2",
+    "root-cert",
+    "root2+clientAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail non-CA untrusted intermediate",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-nonca"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail non-CA untrusted intermediate",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-nonbc"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail non-CA trust-store intermediate",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-nonca",
+    "root-cert"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail non-CA trust-store intermediate",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-nonbc",
+    "root-cert"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail non-CA server trust intermediate",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "nca+serverAuth",
+    "root-cert"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail non-CA wildcard trust intermediate",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "nca+anyEKU",
+    "root-cert"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wrong intermediate CA key",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert2"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wrong intermediate CA DN",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-name2"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wrong intermediate CA issuer",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-root2"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail untrusted partial chain",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept trusted partial chain",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-cert"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "reject expired trusted partial chain",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-expired"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "reject expired trusted root",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-expired"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept partial chain with server purpose",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "sca-cert"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail partial chain with client purpose",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "cca-cert"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept server trust partial chain",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca+serverAuth"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept server trust client purpose partial chain",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "cca+serverAuth"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept client mistrust partial chain",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-clientAuth"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept wildcard trust partial chain",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca+anyEKU"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail untrusted partial issuer with ignored server trust",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [],
+   "untrusted": [
+    "ca+serverAuth"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail server mistrust partial chain",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-serverAuth"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client trust partial chain",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca+clientAuth"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wildcard mistrust partial chain",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-anyEKU"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept server trust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca+serverAuth",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept wildcard trust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca+anyEKU",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert",
+    "sca-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept server trust and purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert",
+    "sca+serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept wildcard trust and server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert",
+    "sca+anyEKU"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept client mistrust and server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert",
+    "sca-clientAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept server trust and client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "cca+serverAuth",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept wildcard trust and client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "cca+anyEKU",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client purpose intermediate trusted",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "cca-cert",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wildcard mistrust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-anyEKU",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail server mistrust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca-serverAuth",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client trust",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "ca+clientAuth",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client trust and server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert",
+    "sca+clientAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client trust and client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "cca+clientAuth",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail server mistrust and client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "cca-serverAuth",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client mistrust and client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "cca-clientAuth",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail server mistrust and server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert",
+    "sca-serverAuth"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wildcard mistrust and server purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert",
+    "sca-anyEKU"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail wildcard mistrust and client purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "cca-anyEKU",
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-client",
+   "name": "accept client chain",
+   "opts": [],
+   "purpose": "sslclient",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-client",
+   "name": "fail server leaf purpose",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail client leaf purpose",
+   "opts": [],
+   "purpose": "sslclient",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert2",
+   "name": "fail wrong intermediate CA key",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-name2",
+   "name": "fail wrong intermediate CA DN",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-expired",
+   "name": "fail expired leaf",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept last-resort direct leaf match",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ee-cert"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-client",
+   "name": "accept last-resort direct leaf match",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslclient",
+   "trusted": [
+    "ee-client"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail last-resort direct leaf non-match",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ee-client"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept direct match with server trust",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ee+serverAuth"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail direct match with server mistrust",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "ee-serverAuth"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-client",
+   "name": "accept direct match with client trust",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslclient",
+   "trusted": [
+    "ee+clientAuth"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-client",
+   "name": "reject direct match with client mistrust",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "sslclient",
+   "trusted": [
+    "ee-clientAuth"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-pathlen",
+   "name": "accept non-ca with pathlen:0 by default",
+   "opts": [],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-pathlen",
+   "name": "reject non-ca with pathlen:0 with strict flag",
+   "opts": [
+    "-x509_strict"
+   ],
+   "purpose": "sslserver",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-timestampsign-CABforum",
+   "name": "accept timestampsign according to CAB forum",
+   "opts": [],
+   "purpose": "timestampsign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-timestampsign-CABforum-noncritxku",
+   "name": "fail timestampsign according to CAB forum with extendedKeyUsage not critical",
+   "opts": [],
+   "purpose": "timestampsign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-timestampsign-CABforum-serverauth",
+   "name": "fail timestampsign according to CAB forum with serverAuth",
+   "opts": [],
+   "purpose": "timestampsign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-timestampsign-CABforum-anyextkeyusage",
+   "name": "fail timestampsign according to CAB forum with anyExtendedKeyUsage",
+   "opts": [],
+   "purpose": "timestampsign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-timestampsign-CABforum-crlsign",
+   "name": "fail timestampsign according to CAB forum with cRLSign",
+   "opts": [],
+   "purpose": "timestampsign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-timestampsign-CABforum-keycertsign",
+   "name": "fail timestampsign according to CAB forum with keyCertSign",
+   "opts": [],
+   "purpose": "timestampsign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-timestampsign-rfc3161",
+   "name": "accept timestampsign according to RFC 3161",
+   "opts": [],
+   "purpose": "timestampsign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-timestampsign-rfc3161-noncritxku",
+   "name": "fail timestampsign according to RFC 3161 with extendedKeyUsage not critical",
+   "opts": [],
+   "purpose": "timestampsign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-timestampsign-rfc3161-digsig",
+   "name": "accept timestampsign according to RFC 3161 with digitalSignature",
+   "opts": [],
+   "purpose": "timestampsign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-codesign",
+   "name": "accept codesign",
+   "opts": [],
+   "purpose": "codesign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-codesign-serverauth",
+   "name": "fail codesign with additional serverAuth",
+   "opts": [],
+   "purpose": "codesign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-codesign-anyextkeyusage",
+   "name": "fail codesign with additional anyExtendedKeyUsage",
+   "opts": [],
+   "purpose": "codesign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-codesign-crlsign",
+   "name": "fail codesign with additional cRLSign",
+   "opts": [],
+   "purpose": "codesign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-codesign-keycertsign",
+   "name": "fail codesign with additional keyCertSign",
+   "opts": [],
+   "purpose": "codesign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-codesign-noncritical",
+   "name": "fail codesign without critical KU",
+   "opts": [],
+   "purpose": "codesign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "fail sslserver as code sign",
+   "opts": [],
+   "purpose": "codesign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-client",
+   "name": "fail sslclient as codesign",
+   "opts": [],
+   "purpose": "codesign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-timestampsign-CABforum",
+   "name": "fail timestampsign according to CAB forum as codesign",
+   "opts": [],
+   "purpose": "codesign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-timestampsign-rfc3161",
+   "name": "fail timestampsign according to RFC 3161 as codesign",
+   "opts": [],
+   "purpose": "codesign",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "pc1-cert",
+   "name": "fail to accept proxy cert without -allow_proxy_certs",
+   "opts": [],
+   "purpose": "sslclient",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert",
+    "ee-client"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "pc1-cert",
+   "name": "accept proxy cert 1",
+   "opts": [
+    "-allow_proxy_certs"
+   ],
+   "purpose": "sslclient",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert",
+    "ee-client"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "pc2-cert",
+   "name": "accept proxy cert 2",
+   "opts": [
+    "-allow_proxy_certs"
+   ],
+   "purpose": "sslclient",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert",
+    "ee-client",
+    "pc1-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "bad-pc3-cert",
+   "name": "fail proxy cert with incorrect subject",
+   "opts": [
+    "-allow_proxy_certs"
+   ],
+   "purpose": "sslclient",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert",
+    "ee-client",
+    "pc1-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "bad-pc4-cert",
+   "name": "fail proxy cert with incorrect pathlen",
+   "opts": [
+    "-allow_proxy_certs"
+   ],
+   "purpose": "sslclient",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert",
+    "ee-client",
+    "pc1-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "pc5-cert",
+   "name": "accept proxy cert missing proxy policy",
+   "opts": [
+    "-allow_proxy_certs"
+   ],
+   "purpose": "sslclient",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert",
+    "ee-client",
+    "pc1-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept RSA 2048 chain at auth level 2",
+   "opts": [
+    "-auth_level",
+    "2"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "reject RSA 2048 root at auth level 3",
+   "opts": [
+    "-auth_level",
+    "3"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept RSA 768 root at auth level 0",
+   "opts": [
+    "-auth_level",
+    "0"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert-768"
+   ],
+   "untrusted": [
+    "ca-cert-768i"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "reject RSA 768 root at auth level 1",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert-768"
+   ],
+   "untrusted": [
+    "ca-cert-768i"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-768i",
+   "name": "accept RSA 768 intermediate at auth level 0",
+   "opts": [
+    "-auth_level",
+    "0"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-768"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-768i",
+   "name": "reject RSA 768 intermediate at auth level 1",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-768"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-768",
+   "name": "accept RSA 768 leaf at auth level 0",
+   "opts": [
+    "-auth_level",
+    "0"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-768",
+   "name": "reject RSA 768 leaf at auth level 1",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept md5 self-signed TA at auth level 2",
+   "opts": [
+    "-auth_level",
+    "2"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert-md5"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept md5 intermediate TA at auth level 2",
+   "opts": [
+    "-auth_level",
+    "2"
+   ],
+   "purpose": "",
+   "trusted": [
+    "ca-cert-md5-any"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept md5 intermediate at auth level 0",
+   "opts": [
+    "-auth_level",
+    "0"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-md5"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "reject md5 intermediate at auth level 1",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-md5"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-md5",
+   "name": "accept md5 leaf at auth level 0",
+   "opts": [
+    "-auth_level",
+    "0"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-md5",
+   "name": "reject md5 leaf at auth level 1",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-explicit",
+   "name": "reject explicit curve leaf with named curve intermediate",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-named-explicit",
+   "name": "reject named curve leaf with explicit curve intermediate",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-explicit"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-named-named",
+   "name": "accept named curve leaf with named curve intermediate",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-sha3-224",
+   "name": "accept cert generated with EC and SHA3-224",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-sha3-256",
+   "name": "accept cert generated with EC and SHA3-256",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-sha3-384",
+   "name": "accept cert generated with EC and SHA3-384",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-sha3-512",
+   "name": "accept cert generated with EC and SHA3-512",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-sha3-224",
+   "name": "accept cert generated with EC and SHA3-224 w/fips",
+   "opts": [
+    "@prov"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-sha3-256",
+   "name": "accept cert generated with EC and SHA3-256 w/fips",
+   "opts": [
+    "@prov"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-sha3-384",
+   "name": "accept cert generated with EC and SHA3-384 w/fips",
+   "opts": [
+    "@prov"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-sha3-512",
+   "name": "accept cert generated with EC and SHA3-512 w/fips",
+   "opts": [
+    "@prov"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-explicit",
+   "name": "reject explicit curve leaf with named curve intermediate w/fips",
+   "opts": [
+    "@prov"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-named-explicit",
+   "name": "reject named curve leaf with explicit curve intermediate w/fips",
+   "opts": [
+    "@prov"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-explicit"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-ec-named-named",
+   "name": "accept named curve leaf with named curve intermediate w/fips",
+   "opts": [
+    "@prov"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert-ec-named"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept chain with verify_depth 2",
+   "opts": [
+    "-verify_depth",
+    "2"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept chain with verify_depth 1",
+   "opts": [
+    "-verify_depth",
+    "1"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "reject chain with verify_depth 0",
+   "opts": [
+    "-verify_depth",
+    "0"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert",
+   "name": "accept md5 intermediate TA with verify_depth 0",
+   "opts": [
+    "-verify_depth",
+    "0"
+   ],
+   "purpose": "",
+   "trusted": [
+    "ca-cert-md5-any"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "alt1-cert",
+   "name": "Name Constraints everything permitted",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "alt2-cert",
+   "name": "Name Constraints nothing excluded",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca2-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "alt3-cert",
+   "name": "Name Constraints nested test all permitted",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert",
+    "ncca3-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "goodcn1-cert",
+   "name": "Name Constraints CNs permitted",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "goodcn2-cert",
+   "name": "Name Constraints CNs permitted - no SAN extension",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "badcn1-cert",
+   "name": "Name Constraints CNs not permitted",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "badalt1-cert",
+   "name": "Name Constraints hostname not permitted",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "badalt2-cert",
+   "name": "Name Constraints hostname excluded",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca2-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "badalt3-cert",
+   "name": "Name Constraints email address not permitted",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "badalt4-cert",
+   "name": "Name Constraints subject email address not permitted",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "badalt5-cert",
+   "name": "Name Constraints IP address not permitted",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "badalt6-cert",
+   "name": "Name Constraints CN hostname not permitted",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "badalt7-cert",
+   "name": "Name Constraints CN BMPSTRING hostname not permitted",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "badalt8-cert",
+   "name": "Name constraints nested DNS name not permitted 1",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert",
+    "ncca3-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "badalt9-cert",
+   "name": "Name constraints nested DNS name not permitted 2",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert",
+    "ncca3-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "badalt10-cert",
+   "name": "Name constraints nested DNS name excluded",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca1-cert",
+    "ncca3-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "bad-othername-cert",
+   "name": "CVE-2022-4203 type confusion test",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "nccaothername-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "nc-uri-cert",
+   "name": "Name constraints URI with userinfo",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ncca4-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": true,
+   "leaf": "bad-othername-namec",
+   "name": "Name constraints bad othername name constraint",
+   "opts": [
+    "-partial_chain",
+    "-attime",
+    "1623060000"
+   ],
+   "purpose": "",
+   "trusted": [
+    "bad-othername-namec-inter"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-pss-sha1-cert",
+   "name": "Accept PSS signature using SHA1 at auth level 0",
+   "opts": [
+    "-auth_level",
+    "0"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-pss-sha256-cert",
+   "name": "CA with PSS signature using SHA256",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-pss-sha1-cert",
+   "name": "Reject PSS signature using SHA1 and auth level 1",
+   "opts": [
+    "-auth_level",
+    "1"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-pss-sha256-cert",
+   "name": "PSS signature using SHA256 and auth level 2",
+   "opts": [
+    "-auth_level",
+    "2"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-pss-cert",
+   "name": "CA PSS signature",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-pss-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-pss-wrong1.5-cert",
+   "name": "CA producing regular PKCS#1 v1.5 signature with PSA-PSS key",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-pss-cert"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "many-names1",
+   "name": "Too many names and constraints to check (1)",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "many-constraints"
+   ],
+   "untrusted": [
+    "many-constraints"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "many-names2",
+   "name": "Too many names and constraints to check (2)",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "many-constraints"
+   ],
+   "untrusted": [
+    "many-constraints"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "many-names3",
+   "name": "Too many names and constraints to check (3)",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "many-constraints"
+   ],
+   "untrusted": [
+    "many-constraints"
+   ],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "some-names1",
+   "name": "Not too many names and constraints to check (1)",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "many-constraints"
+   ],
+   "untrusted": [
+    "many-constraints"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "some-names2",
+   "name": "Not too many names and constraints to check (2)",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "many-constraints"
+   ],
+   "untrusted": [
+    "many-constraints"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "some-names2",
+   "name": "Not too many names and constraints to check (3)",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "many-constraints"
+   ],
+   "untrusted": [
+    "many-constraints"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "root-cert-rsa2",
+   "name": "Public Key Algorithm rsa instead of rsaEncryption",
+   "opts": [
+    "-check_ss_sig"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert-rsa2"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-self-signed",
+   "name": "accept trusted self-signed EE cert excluding key usage keyCertSign",
+   "opts": [
+    "-attime",
+    "1593565200"
+   ],
+   "purpose": "",
+   "trusted": [
+    "ee-self-signed"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-ss-with-keyCertSign",
+   "name": "accept trusted self-signed EE cert with key usage keyCertSign also when strict",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "ee-ss-with-keyCertSign"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-ed25519",
+   "name": "accept X25519 EE cert issued by trusted Ed25519 self-signed CA cert",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-ed25519"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-ed25519",
+   "name": "reject X25519 EE cert in strict mode since AKID is missing",
+   "opts": [
+    "-x509_strict"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-ed25519"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "root-ed25519",
+   "name": "fail Ed25519 CA and EE certs swapped",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "ee-ed25519"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "root-ed25519",
+   "name": "accept trusted Ed25519 self-signed CA cert",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "root-ed25519"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-ed25519",
+   "name": "fail trusted Ed25519-signed self-issued X25519 cert",
+   "opts": [],
+   "purpose": "",
+   "trusted": [
+    "ee-ed25519"
+   ],
+   "untrusted": [],
+   "upstream_expected": "INVALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-ed25519",
+   "name": "accept last-resort direct leaf match Ed25519-signed self-issued cert",
+   "opts": [
+    "-partial_chain"
+   ],
+   "purpose": "",
+   "trusted": [
+    "ee-ed25519"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "sm2",
+   "name": "SM2 ID test",
+   "opts": [
+    "-vfyopt",
+    "distid:1234567812345678"
+   ],
+   "purpose": "",
+   "trusted": [
+    "sm2-ca-cert"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "sm2",
+   "name": "SM2 hex ID test",
+   "opts": [
+    "-vfyopt",
+    "hexdistid:31323334353637383132333435363738"
+   ],
+   "purpose": "",
+   "trusted": [
+    "sm2-ca-cert"
+   ],
+   "untrusted": [],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-policies",
+   "name": "Certificate policy",
+   "opts": [
+    "-policy_check",
+    "-policy",
+    "1.3.6.1.4.1.16604.998855.1",
+    "-explicit_policy"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-pol-cert"
+   ],
+   "upstream_expected": "VALID"
+  },
+  {
+   "exit_checker_flipped": false,
+   "leaf": "ee-cert-policies-bad",
+   "name": "Bad certificate policy",
+   "opts": [
+    "-policy_check",
+    "-policy",
+    "1.3.6.1.4.1.16604.998855.1",
+    "-explicit_policy"
+   ],
+   "purpose": "",
+   "trusted": [
+    "root-cert"
+   ],
+   "untrusted": [
+    "ca-pol-cert"
+   ],
+   "upstream_expected": "INVALID"
+  }
+ ]
+}

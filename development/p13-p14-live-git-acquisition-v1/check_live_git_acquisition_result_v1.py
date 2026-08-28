@@ -17,14 +17,14 @@ PROTOCOL = BASE / "LIVE_GIT_ACQUISITION_PROTOCOL_V1.json"
 RUNNER = BASE / "run_live_git_acquisition_v1.py"
 CORPUS = ROOT / "papers/orion-23-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json"
 CONTRACT = ROOT / "papers/orion-23-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json"
-EXPECTED_RESULT_SHA256 = "63bf92b65f0bc78e1b2585f36cf59d0fcb129c2d9601a54d70832d7310693c0f"
+EXPECTED_RESULT_SHA256 = "b6e2498ea32b32c2212b88bd1b7c1a6a380bd39e02846759c3e32cccea7c0f9c"
 EXPECTED_SOURCE_COMMIT = "3d8c01662e64434c736e0179c58fb30469bf42f4"
 EXPECTED_TERMINAL = "P13_P14_LIVE_GIT_ACQUISITION_MINIMUM_NOT_MET__CAMPAIGN_BLOCKED"
 EXPECTED_ARTIFACT_SHA256 = {
-    "development/p13-p14-live-git-acquisition-v1/LIVE_GIT_ACQUISITION_PROTOCOL_V1.json": "5b15c29e233912ffa2ef4f722351594e0398b0a1de3461892a21b35f2046babe",
-    "development/p13-p14-live-git-acquisition-v1/run_live_git_acquisition_v1.py": "328fe1c9b78e6844ce45c605708c8c81ddb451d3ddca7f65bb3995268e57d056",
-    "papers/orion-23-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json": "368cbfabefb69257d7cbce0de6b82c06c62ce3a7e9bc83a792d01df79e473b9c",
-    "papers/orion-23-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json": "43af90733fb1a1f7fadd261d1a9ff41fcb20c1ec2e394626be2850ed8f65aed0",
+    "development/p13-p14-live-git-acquisition-v1/LIVE_GIT_ACQUISITION_PROTOCOL_V1.json": "1f9342f1191851f166afaa565eb5d087d58e66246cb5a731faa749c79c9d6e75",
+    "development/p13-p14-live-git-acquisition-v1/run_live_git_acquisition_v1.py": "1e3e3395b608144d828fc078272b4fa4617c16842da324f4053bcea911e1bfcb",
+    "papers/orion-23-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json": "70f8f07b5df0261f805523bd902b5324a97ef44e7730ac38b61227761371a942",
+    "papers/orion-23-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_DERIVATION_CONTRACT_V1.json": "758bf931cdb7ff17b54a3aee3b6b83658bcc0aef8d8afe7951fd65383228489b",
 }
 HEX40 = re.compile(r"[0-9a-f]{40}\Z")
 HEX64 = re.compile(r"[0-9a-f]{64}\Z")

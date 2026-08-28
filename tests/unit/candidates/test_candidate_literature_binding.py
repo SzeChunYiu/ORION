@@ -27,6 +27,13 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[3]
 CANDIDATES = ROOT / "papers" / "candidates"
+#: Wave R0 moved the active packages to the root of papers/ and renamed them to
+#: the orion-NN series, keeping a preserved snapshot under candidates/ under the
+#: original paper-NN name. R0's rebind renamed the slug in these paths but left
+#: the candidates/ root, producing papers/candidates/orion-17-... -- a directory
+#: that exists nowhere, so every record lookup returned empty. Point at the
+#: active packages; the snapshots are byte-identical but are not authoritative.
+ACTIVE = ROOT / "papers"
 
 #: Papers that keep retrieval records, and whose citations must be backed.
 #:
@@ -36,8 +43,8 @@ CANDIDATES = ROOT / "papers" / "candidates"
 #: and no records, so a reader cannot tell which of several same-author papers
 #: is meant. The binding rule is identical for both, so it lives in one place.
 PAPERS = {
-    "P6": CANDIDATES / "orion-16-formal-epistemic-structures-and-mechanics",
-    "P7": CANDIDATES / "orion-17-epistemic-navigation-open-worlds",
+    "P6": ACTIVE / "orion-16-formal-epistemic-structures-and-mechanics",
+    "P7": ACTIVE / "orion-17-epistemic-navigation-open-worlds",
 }
 P7 = PAPERS["P7"]
 LITERATURE = P7 / "evidence" / "literature"

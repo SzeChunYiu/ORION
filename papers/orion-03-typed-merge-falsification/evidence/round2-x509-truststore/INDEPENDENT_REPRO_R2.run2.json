@@ -1,0 +1,173 @@
+{
+ "authorization_totals": {
+  "parent_authorized": 1143,
+  "union_authorized": 810
+ },
+ "bindings": {
+  "engine": {
+   "source_commit": "d3c1b1169b3569ff3069e5b399f47b2b28e03d79",
+   "source_tag": "openssl-3.6.4",
+   "tarball_sha256": "9bffaa1ad1e07b354c21bd3324ec02fa15579f45a7d0494b3e74bc449b7333ef",
+   "version_line": "OpenSSL 3.6.4 25 Aug 2026 (Library: OpenSSL 3.6.4 25 Aug 2026)"
+  },
+  "input": {
+   "source_commit": "d3c1b1169b3569ff3069e5b399f47b2b28e03d79",
+   "source_tag": "openssl-3.6.4",
+   "task_manifest_sha256": "ff54dbd02346d8369a4fa11e71ba179cb74fedfcad8280c97dd47e3dc29e5aff"
+  },
+  "protocol": {
+   "identity": "ORION-03-Round2-TrustStoreMerge-V2",
+   "sha256": "1a4aad3592533e67b7fdc4350905f6ca356a4a0edcb1c63ba0d6d8a3e72f1ae0"
+  },
+  "reproducer_sha256": "02247ad1759799ba02b89af2517ffce81656f1d7841ca1e46ed98a7c778c94dc"
+ },
+ "external_peer_review_claimed": false,
+ "hybrid_tasks": {
+  "count": 46,
+  "task_ids": [
+   "FP-0067",
+   "FP-0068",
+   "FP-0071",
+   "FP-0072",
+   "FU-0379",
+   "FU-0480",
+   "FU-1569",
+   "FU-1571",
+   "FU-1572",
+   "FU-1573",
+   "FU-1574",
+   "FU-1576",
+   "FU-1578",
+   "FU-1581",
+   "FU-1585",
+   "FU-1587",
+   "FU-1588",
+   "FU-1589",
+   "FU-1590",
+   "FU-1592",
+   "FU-1594",
+   "FU-1597",
+   "FU-1600",
+   "FU-1602",
+   "FU-1603",
+   "FU-1604",
+   "FU-1605",
+   "FU-1607",
+   "FU-1609",
+   "FU-1612",
+   "FU-1614",
+   "FU-1616",
+   "FU-1617",
+   "FU-1618",
+   "FU-1619",
+   "FU-1621",
+   "FU-1623",
+   "FU-1626",
+   "FU-1627",
+   "FU-1629",
+   "FU-1630",
+   "FU-1631",
+   "FU-1632",
+   "FU-1634",
+   "FU-1636",
+   "FU-1639"
+  ]
+ },
+ "journal_authority": false,
+ "label": "independent_model_based_reimplementation",
+ "methods": {
+  "PARITY_PARTITION": {
+   "M1_flat_union": {
+    "allows": 67,
+    "needless_rejections": 0,
+    "unsafe_merges": 4
+   },
+   "M2_intersection": {
+    "allows": 0,
+    "needless_rejections": 63,
+    "unsafe_merges": 0
+   },
+   "M3_reject_all": {
+    "allows": 0,
+    "needless_rejections": 63,
+    "unsafe_merges": 0
+   },
+   "M4_ours_preference_B": {
+    "allows": 49,
+    "needless_rejections": 14,
+    "unsafe_merges": 0
+   },
+   "M5_typed_origin_witness": {
+    "allows": 63,
+    "needless_rejections": 0,
+    "unsafe_merges": 0
+   }
+  },
+  "UPSTREAM_PAIR": {
+   "M1_flat_union": {
+    "allows": 743,
+    "needless_rejections": 379,
+    "unsafe_merges": 42
+   },
+   "M2_intersection": {
+    "allows": 250,
+    "needless_rejections": 907,
+    "unsafe_merges": 0
+   },
+   "M3_reject_all": {
+    "allows": 0,
+    "needless_rejections": 1080,
+    "unsafe_merges": 0
+   },
+   "M4_ours_preference_B": {
+    "allows": 650,
+    "needless_rejections": 430,
+    "unsafe_merges": 0
+   },
+   "M5_typed_origin_witness": {
+    "allows": 1080,
+    "needless_rejections": 0,
+    "unsafe_merges": 0
+   }
+  },
+  "overall": {
+   "M1_flat_union": {
+    "allows": 810,
+    "needless_rejections": 379,
+    "unsafe_merges": 46
+   },
+   "M2_intersection": {
+    "allows": 250,
+    "needless_rejections": 970,
+    "unsafe_merges": 0
+   },
+   "M3_reject_all": {
+    "allows": 0,
+    "needless_rejections": 1143,
+    "unsafe_merges": 0
+   },
+   "M4_ours_preference_B": {
+    "allows": 699,
+    "needless_rejections": 444,
+    "unsafe_merges": 0
+   },
+   "M5_typed_origin_witness": {
+    "allows": 1143,
+    "needless_rejections": 0,
+    "unsafe_merges": 0
+   }
+  }
+ },
+ "schema": "orion03_independent_reproduction_r2_v1",
+ "scientific_authority_delta": "NONE",
+ "scope": "Frozen task decisions and headline aggregates only; excludes C1-C6 and structural localization.",
+ "submission_authority": false,
+ "task_counts": {
+  "families": {
+   "PARITY_PARTITION": 104,
+   "UPSTREAM_PAIR": 1858
+  },
+  "total": 1962
+ },
+ "task_decisions_sha256": "5d0224170bfd69cc6e1af144dcabc5aea2beadd8d92d0baeb3d0628296c13161"
+}

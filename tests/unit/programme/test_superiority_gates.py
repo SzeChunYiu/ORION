@@ -1339,10 +1339,16 @@ def test_future_identities_are_registered_under_both_layouts() -> None:
         assert directory in REGISTERED_PAPER_DIRECTORIES
         legacy = directory.replace("papers/", "papers/candidates/", 1)
         assert legacy in REGISTERED_PAPER_DIRECTORIES
+        # The retired entry used to be asserted as the candidates/ spelling of
+        # the active name. Wave R0 renamed the active packages to the orion-NN
+        # series while the snapshots kept their original paper-NN names, so that
+        # derivation now names a directory that does not exist. Assert the
+        # stronger, rename-proof property instead: each recorded snapshot is a
+        # real directory under papers/candidates/.
         if paper_id in FUTURE_RETIRED_PAPER_DIRECTORIES:
-            assert legacy in {
-                path for path, _ in FUTURE_RETIRED_PAPER_DIRECTORIES[paper_id]
-            }
+            for path, _ in FUTURE_RETIRED_PAPER_DIRECTORIES[paper_id]:
+                assert path.startswith("papers/candidates/")
+                assert (REPO_ROOT / path).is_dir(), f"{paper_id} snapshot missing: {path}"
 
 
 # --- P11-P14 folders, shared lanes, split identity ----------------------------
