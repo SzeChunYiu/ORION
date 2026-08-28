@@ -84,7 +84,11 @@ def expected_evaluation(
         beta = Fraction(0)
         rational_ok = False
     else:
-        rational_ok = raw_alpha >= 0 and inflation >= 1 and beta >= 0
+        rational_ok = (
+            0 <= raw_alpha <= 1
+            and inflation >= 1
+            and 0 <= beta <= 1
+        )
 
     effective = inflation * raw_alpha + beta if rational_ok else Fraction(0)
     cumulative = prior_cumulative + effective
@@ -109,24 +113,18 @@ def expected_evaluation(
     components_pass = components_well_formed and all(components.values())
     deterministic_pass = deterministic_well_formed and all(deterministic.values())
     within_budget = rational_ok and cumulative <= alpha_total
-
-    if (
-        components_pass
-        and deterministic_pass
+    prerequisites_pass = (
+        deterministic_pass
         and within_budget
         and identity_match
         and independent_authority
         and subject_match
-    ):
+    )
+
+    if components_pass and prerequisites_pass:
         decision = "PROMOTE"
         disposition = "ALL_NONCOMPENSATORY_GATES_PASS"
-    elif (
-        components_well_formed
-        and not components_pass
-        and identity_match
-        and independent_authority
-        and subject_match
-    ):
+    elif components_well_formed and not components_pass and prerequisites_pass:
         decision = "REJECT"
         disposition = "STATISTICAL_COMPONENT_GATE_FAILED"
     else:
