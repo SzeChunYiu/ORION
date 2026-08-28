@@ -684,13 +684,26 @@ FUTURE_PAPER_DIRECTORIES: dict[str, str] = {
 #: Pre-refactor manuscript snapshots retained after the root-level P11-P14
 #: packages became canonical. Recording these as historical locations resolves
 #: the otherwise ambiguous same-slug split without deleting provenance.
+#: Written out rather than derived. This used to read the active directory and
+#: splice ``candidates/`` into it, which worked only while the two names matched
+#: (``papers/paper-11-...`` -> ``papers/candidates/paper-11-...``). Wave R0
+#: renamed the active packages to the flat ``orion-NN`` series but deliberately
+#: retained the candidate snapshots under their original names, so the
+#: derivation began producing ``papers/candidates/orion-21-...`` -- a path that
+#: does not exist -- while the four real snapshots went unregistered and
+#: ``HC-SUP-STALE-PAPER-IDENTITY`` failed closed. The names are no longer
+#: related, so relating them in code cannot be correct.
 FUTURE_RETIRED_PAPER_DIRECTORIES: dict[str, tuple[tuple[str, str], ...]] = {
     paper_id: ((
-        directory.replace("papers/", "papers/candidates/", 1),
+        directory,
         "preserved pre-refactor manuscript snapshot; the root-level package is active",
     ),)
-    for paper_id, directory in FUTURE_PAPER_DIRECTORIES.items()
-    if paper_id in {"P11", "P12", "P13", "P14"}
+    for paper_id, directory in {
+        "P11": "papers/candidates/paper-11-state-as-computation",
+        "P12": "papers/candidates/paper-12-adaptive-state-reasoning",
+        "P13": "papers/candidates/paper-13-responsibility-carrying-state",
+        "P14": "papers/candidates/paper-14-orion-rse",
+    }.items()
 }
 
 #: Directories under ``papers/`` that are **not** paper identities.
