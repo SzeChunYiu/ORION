@@ -78,7 +78,7 @@ def generate(analysis: Mapping[str, object], out_dir: Path) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     md = [
-        "# ORION-P3 public-reference confirmatory publication tables V1",
+        "# ORION-13 public-reference confirmatory publication tables V1",
         "",
         "Generated deterministically from `CONFIRMATORY_ANALYSIS.json`. Scope: already-structured public-reference mapping only.",
         "",
