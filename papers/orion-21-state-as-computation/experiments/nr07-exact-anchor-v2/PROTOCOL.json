@@ -1,0 +1,48 @@
+{
+  "anchor": {
+    "cell": [
+      14,
+      3,
+      3
+    ],
+    "denominator": 20480,
+    "historical_expected_accuracy": 0.94912109375,
+    "historical_expected_numerator": 19438,
+    "lunarc_observed_accuracy": 0.949169921875,
+    "lunarc_observed_numerator": 19439,
+    "n_queries": 5,
+    "n_test": 4096,
+    "seed": 2026082201,
+    "train_size": 64
+  },
+  "authority": {
+    "controlling_scientific_terminal": "CANNOT_CHECK_INSTRUMENT_DRIFT",
+    "expected_forensic_terminal": "NR07_EXACT_ANCHOR_ARGSORT_BOUNDARY_TIE_LOCALIZED",
+    "forbidden_promotions": [
+      "C1_LAW_CONFIRMED_REGIME_EXTENDED",
+      "WIDTH_LAW_SUPPORTED_FROM_V2",
+      "POST_OUTCOME_TOLERANCE_AS_VALID_REPLAY",
+      "BYTE_IDENTICAL_LUNARC_RUNNER",
+      "SCIENTIFIC_OR_SUBMISSION_AUTHORITY"
+    ],
+    "maximum_authorized_wording": "The two recorded NR07 anchor numerators are uniquely explained by different members of one three-way feature tie at the source decoder's top-r boundary. The committed source supplied no secondary tie key. The exact LUNARC executable bytes are absent, so this localizes the numerical discrepancy but does not re-adjudicate the registered study or prove the runtime mechanism.",
+    "source_custody_terminal": "NR07_LUNARC_EXECUTABLE_BYTES_ABSENT"
+  },
+  "date": "2026-08-28",
+  "method": {
+    "bank": "all s-subset parity columns in itertools.combinations order",
+    "data_stream": "np.random.default_rng([seed,0,d,s,r]) using committed P11H semantics",
+    "raw_custody": "bit-pack labels and every candidate prediction with little-endian numpy.packbits; ordered query and test-row IDs are fixed by generator order, and derived row sets are hash-bound",
+    "score": "integer correct-count over ordered query_id then test_row_id",
+    "tie_audit": "enumerate every support admitted by equality at the top-r absolute-correlation boundary; no runtime sort order is used for adjudication"
+  },
+  "protocol_identity": "ORION21.NR07.EXACT_ANCHOR.v2",
+  "schema": "ORION.ORION21.NR07.ExactAnchorProtocol.v2",
+  "study_class": "POST_OUTCOME_FORENSIC_LOCALIZATION_NOT_HYPOTHESIS_TEST",
+  "terminal_precedence": [
+    "SOURCE_BINDING_RED",
+    "NR07_EXACT_ANCHOR_NONUNIQUE_ORIGIN_CANNOT_CHECK",
+    "NR07_EXACT_ANCHOR_ARGSORT_BOUNDARY_TIE_LOCALIZED",
+    "NR07_EXACT_ANCHOR_DISCREPANCY_NOT_LOCALIZED"
+  ]
+}
