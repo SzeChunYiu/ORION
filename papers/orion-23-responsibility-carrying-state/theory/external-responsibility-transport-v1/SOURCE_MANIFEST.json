@@ -1,0 +1,57 @@
+{
+  "schema": "ORION.ORION23.ExternalResponsibilityTransport.SourceManifest.v1",
+  "paper_id": "ORION-23",
+  "successor_id": "ORION23.EXTERNAL_RESPONSIBILITY_TRANSPORT.v1",
+  "governing_issue": 1649,
+  "tier": "A",
+  "authorized_by": "papers/publication_closure/wave1/WAVE1_TOP_TIER_PROMOTION_TRIAGE_2026-08-28.md",
+  "promotion_budget": "this is ORION-23's ONE attempt under #1649",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+  "repository_base": {"branch_base": "origin/main", "commit": "3a6da292e"},
+
+  "bound_artifacts": [
+    {"path": "papers/orion-23-responsibility-carrying-state/P13_P14_POLICY_COMPARISON_V1.json",
+     "sha256": "411397a488cc4eea6027faf00cd34ceb78c65d778781cfd5cb04153f6bd72fd1",
+     "role": "frozen four-arm external campaign result; read as DATA and recomputed, never re-run",
+     "mutated_by_this_packet": false},
+    {"path": "papers/orion-23-responsibility-carrying-state/P13_P14_OBJECTIVE_GOLD_RESULTS_V1.json",
+     "sha256": "3b2bf01c977c81f75a3fd5a14f8dff20ef6bd9b44bc16d4e33d8eb0eb943fbf1",
+     "role": "objective gold over 31 repositories; source of the 123 decided / 32 CANNOT_CHECK counts preserved here",
+     "mutated_by_this_packet": false},
+    {"path": "papers/orion-23-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json",
+     "sha256": "fc90d18d97561509f6e10de6f37229ee24f8c7475b474c99145b78ee858d9e53",
+     "role": "45-repository / 22-organization pinned corpus; its own campaign_executed=false refers to the PIN artifact, not the campaign",
+     "mutated_by_this_packet": false},
+    {"path": "papers/orion-23-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md",
+     "sha256": "3656565539ea89742dd0f876347ba0b7ec918dfe605d95ab691c5323b77f8ce9",
+     "role": "binding gold rule and non-bypass boundaries, including the boundary that an AI session creates no protected confirmation",
+     "mutated_by_this_packet": false}
+  ],
+
+  "premise_corrections_to_1649": [
+    {"premise": "execute the already-frozen external lifecycle campaign",
+     "status": "SUPERSEDED",
+     "finding": "the campaign is already executed: campaign_executed=true, results_exist=true, outcome_accessed=true, 31 repositories, 93 cases, all four pass gates met. What was missing was the theorem, not the run."},
+    {"premise": "corpus artifact flags indicate an unexecuted campaign",
+     "status": "MISREAD_AND_CORRECTED",
+     "finding": "P13_P14_PINNED_REPOSITORY_CORPUS_V1.json carries campaign_executed=false correctly, because that artifact pins repositories and contains no results. It is not the campaign's status. I made this misread on first pass."}
+  ],
+
+  "prospectivity_disclosure": {
+    "campaign_frozen_utc": "2026-08-24",
+    "outcomes_readable_before_theorems_were_written": true,
+    "claim": "EXPLANATORY_ADEQUACY_ON_PRE_EXISTING_FROZEN_EVIDENCE",
+    "not_claimed": "PROSPECTIVE_VALIDATION",
+    "why_it_still_counts": "the theorems are deductive and independently checkable, and they classify all four arms and predict the cost floor from the transport semantics alone; but the outcomes were accessible, so no prospectivity is asserted",
+    "prospective_test_specified_in": "THEORY.md section 6"
+  },
+
+  "not_imported": ["compare_p13_p14_policies_v1.py", "derive_p13_p14_objective_gold_v1.py",
+                   "check_p13_p14_pinned_corpus_v1.py", "any ORION-23 module"],
+  "no_new_execution": {
+    "campaign_re_run": false, "gold_re_derived": false, "network_access": false,
+    "note": "the arm table is recomputed arithmetically from the frozen receipt and compared; nothing is regenerated"
+  },
+  "frozen_paper_bytes_modified": "NONE"
+}

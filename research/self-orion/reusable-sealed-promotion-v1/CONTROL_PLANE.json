@@ -1,0 +1,80 @@
+{
+  "adoption": {
+    "head_sha": "173b1b0c5818b9d9ecd7aa3b46058e28aa473920",
+    "method": "path-by-path blob adoption; no branch-history merge",
+    "pull_request": 1698
+  },
+  "campaign": {
+    "alpha_total": {
+      "denominator": 20,
+      "numerator": 1
+    },
+    "authority_fields": [
+      "protected_longitudinal_transfer_authority",
+      "fair_comparator_superiority_authority",
+      "negative_history_causal_effect_authority",
+      "frontier_agent_performance_authority",
+      "external_independent_reproduction",
+      "submission_authority"
+    ],
+    "campaign_id": "SELF-ORION-RSP-CONFORMANCE-V1",
+    "event_count": 6,
+    "event_decisions": [
+      "PROMOTE",
+      "REJECT",
+      "UNRESOLVED",
+      "UNRESOLVED",
+      "PROMOTE",
+      "REJECT"
+    ],
+    "event_dispositions": [
+      "ALL_NONCOMPENSATORY_GATES_PASS",
+      "STATISTICAL_COMPONENT_GATE_FAILED",
+      "FAIL_CLOSED_CONTROL_OR_AUTHORITY_GATE",
+      "FAIL_CLOSED_CONTROL_OR_AUTHORITY_GATE",
+      "ALL_NONCOMPENSATORY_GATES_PASS",
+      "STATISTICAL_COMPONENT_GATE_FAILED"
+    ],
+    "formal_conformance_only": true,
+    "formal_terminal": "SELF_ORION_REUSABLE_SEALED_FORMAL_CONFORMANCE_ONLY",
+    "identities": {
+      "archivist": "append-only-archivist-v1",
+      "candidate_generator": "candidate-generator-v1",
+      "promotion_authority": "promotion-authority-v1",
+      "protected_evaluator": "protected-evaluator-v1"
+    },
+    "initial_chain_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "receipt_ids": [
+      "RSP-CONFORMANCE-01",
+      "RSP-CONFORMANCE-02",
+      "RSP-CONFORMANCE-03",
+      "RSP-CONFORMANCE-04",
+      "RSP-CONFORMANCE-05",
+      "RSP-CONFORMANCE-06"
+    ],
+    "schema": "ORION.SelfOrion.ReusableSealedCampaign.v1",
+    "subject_revision": "ef02823e68f64965df27d056db8ac387246affeb"
+  },
+  "canonical_terminal": "CONTROL_PLANE_VERIFIED__EMPIRICAL_CAMPAIGN_NOT_RUN",
+  "forbidden_source_outputs": [
+    "CAMPAIGN.json",
+    "CONFORMANCE_SUMMARY.json",
+    "FINAL_RECEIPT.json",
+    "INDEPENDENT_VERIFICATION.json",
+    "events.jsonl"
+  ],
+  "protocol_id": "SELF_ORION.REUSABLE_SEALED_LONGITUDINAL.v1",
+  "required_protocol_authority_false": [
+    "formal_theorem_authority",
+    "software_conformance_authority",
+    "protected_longitudinal_transfer",
+    "fair_comparator_superiority",
+    "negative_history_causal_effect",
+    "frontier_agent_performance",
+    "external_independent_reproduction",
+    "submission_authority",
+    "top_tier_authority"
+  ],
+  "schema": "ORION.SelfOrion.ReusableSealedControlPlane.v1",
+  "scientific_authority_delta": "NONE"
+}
