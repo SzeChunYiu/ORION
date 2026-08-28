@@ -1,0 +1,99 @@
+{
+  "claims": [
+    "anchor:root-cert",
+    "chain:ca-cert",
+    "chain:ee-cert"
+  ],
+  "expect": {
+    "first_mixing": {
+      "chain:ee-cert": false
+    },
+    "flat_authorized": {
+      "chain:ee-cert": true
+    },
+    "retraction": {
+      "pairs": [
+        [
+          "chain:ca-cert",
+          "A"
+        ],
+        [
+          "chain:ca-cert",
+          "B"
+        ],
+        [
+          "chain:ee-cert",
+          "A"
+        ],
+        [
+          "chain:ee-cert",
+          "B"
+        ]
+      ],
+      "refute": [
+        "chain:ca-cert"
+      ]
+    },
+    "typed_authorized": {
+      "anchor:root-cert": true,
+      "chain:ee-cert": true
+    },
+    "typed_licenses": {
+      "chain:ee-cert": [
+        "A",
+        "B"
+      ]
+    }
+  },
+  "id": "x509-truststore/C4-retraction-non-resurrection",
+  "licenses": [
+    "A",
+    "B"
+  ],
+  "provenance": {
+    "committed_control": {
+      "resurrections": 0,
+      "source": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/ROUND2_RESULTS_V2.json retraction_control_C4",
+      "upstream_mirrors_ok": true
+    },
+    "domain": "X.509 trust-store merge",
+    "encoded_from": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/ROUND2_RESULTS_V2.json and papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/TASK_MANIFEST_V2.json",
+    "note": "Exercises the retraction operator A_pre \\ A_post. Faithful to the committed C4 outcome, in which no method resurrects the revoked chain (resurrections: 0, upstream_mirrors_ok: true).",
+    "upstream_material": "openssl/openssl @ openssl-3.6.4 test/certs (Apache-2.0)"
+  },
+  "refuted": [],
+  "rules": [
+    {
+      "body": [
+        "anchor:root-cert"
+      ],
+      "cap": [
+        "A",
+        "B"
+      ],
+      "head": "chain:ca-cert",
+      "id": "root-issues-ca"
+    },
+    {
+      "body": [
+        "chain:ca-cert"
+      ],
+      "cap": "ALL",
+      "head": "chain:ee-cert",
+      "id": "ca-issues-ee"
+    }
+  ],
+  "schema": "ORION.TypedMerge.Instance.v1",
+  "seeds": {
+    "anchor:root-cert": [
+      "A",
+      "B"
+    ]
+  },
+  "targets": [
+    "anchor:root-cert",
+    "chain:ca-cert",
+    "chain:ee-cert"
+  ],
+  "title": "Round 2 retraction control: revoked intermediate withdraws exactly its dependents"
+}

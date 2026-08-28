@@ -1,0 +1,99 @@
+{
+  "claims": [
+    "davenport-corridor-lemma",
+    "saturation-defect-lemma",
+    "support-frontier-scan",
+    "support-at-least-23",
+    "exact-D4",
+    "31-in-C0"
+  ],
+  "expect": {
+    "first_mixing": {
+      "31-in-C0": true,
+      "exact-D4": true,
+      "support-at-least-23": false
+    },
+    "flat_authorized": {
+      "31-in-C0": true,
+      "exact-D4": true,
+      "support-at-least-23": true
+    },
+    "typed_authorized": {
+      "31-in-C0": false,
+      "exact-D4": false,
+      "support-at-least-23": true
+    },
+    "typed_licenses": {
+      "31-in-C0": [],
+      "exact-D4": [],
+      "support-at-least-23": [
+        "BOUNDED_COMPUTATION",
+        "EXTERNAL_REPLAY"
+      ]
+    }
+  },
+  "id": "manuscript-cases/case3-d4-bounded-computation",
+  "licenses": [
+    "THEOREM",
+    "BOUNDED_COMPUTATION",
+    "EXTERNAL_REPLAY"
+  ],
+  "provenance": {
+    "domain": "scientific evidence classes (non-quantum C_5^3 programme)",
+    "encoded_from": "papers/orion-03-typed-merge-falsification/MANUSCRIPT_V2.md section 9",
+    "encoding": "Licenses are evidence classes. The analytic lemmas are seeded THEOREM. The internal support-frontier scan is seeded {BOUNDED_COMPUTATION, EXTERNAL_REPLAY} because its own metadata denies theorem authority and requires external replay. The rule from the frontier to 'support at least 23' is capped by the same set, exactly as the manuscript states.",
+    "expected_reading": "exact-D4 and 31-in-C0 come out with EMPTY labels, not merely without THEOREM: their two premises share no license, so no single evidence class carries the derivation end to end. The license-erased reading still derives them, so both are reported as first-mixing -- the untyped record would call them supported.",
+    "ledger_row": "D2-C7 (PROVEN IN REGISTERED TYPING)"
+  },
+  "refuted": [],
+  "rules": [
+    {
+      "body": [
+        "support-frontier-scan"
+      ],
+      "cap": [
+        "BOUNDED_COMPUTATION",
+        "EXTERNAL_REPLAY"
+      ],
+      "head": "support-at-least-23",
+      "id": "frontier-to-support23"
+    },
+    {
+      "body": [
+        "support-at-least-23",
+        "davenport-corridor-lemma"
+      ],
+      "cap": "ALL",
+      "head": "exact-D4",
+      "id": "support23-to-exact-D4"
+    },
+    {
+      "body": [
+        "support-at-least-23",
+        "saturation-defect-lemma"
+      ],
+      "cap": "ALL",
+      "head": "31-in-C0",
+      "id": "support23-to-31-in-C0"
+    }
+  ],
+  "schema": "ORION.TypedMerge.Instance.v1",
+  "seeds": {
+    "davenport-corridor-lemma": [
+      "THEOREM"
+    ],
+    "saturation-defect-lemma": [
+      "THEOREM"
+    ],
+    "support-frontier-scan": [
+      "BOUNDED_COMPUTATION",
+      "EXTERNAL_REPLAY"
+    ]
+  },
+  "targets": [
+    "support-at-least-23",
+    "exact-D4",
+    "31-in-C0"
+  ],
+  "title": "Case III: bounded computation cannot decide exact D_4(C_5^3)"
+}

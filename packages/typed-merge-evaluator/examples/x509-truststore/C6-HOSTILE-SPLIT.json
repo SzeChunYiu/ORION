@@ -1,0 +1,64 @@
+{
+  "claims": [
+    "anchor:root-cert",
+    "chain:ca-cert",
+    "chain:ee-cert"
+  ],
+  "expect": {
+    "first_mixing": {
+      "chain:ee-cert": true
+    },
+    "flat_authorized": {
+      "chain:ee-cert": true
+    },
+    "typed_authorized": {
+      "chain:ee-cert": false
+    },
+    "typed_licenses": {
+      "chain:ee-cert": []
+    }
+  },
+  "id": "x509-truststore/C6-HOSTILE-SPLIT",
+  "licenses": [
+    "A",
+    "B"
+  ],
+  "provenance": {
+    "cap_rationale": "root-issues-ca is capped to [B] because only store B holds ca-cert; ca-issues-ee is capped ALL because the leaf is supplied to the engine as the file argument rather than drawn from a store.",
+    "domain": "X.509 trust-store merge",
+    "encoded_from": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/ROUND2_RESULTS_V2.json and papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/TASK_MANIFEST_V2.json",
+    "note": "Derived structurally from the committed chain and holdings; reproduces the committed M1/M5 decisions without invoking any engine.",
+    "upstream_material": "openssl/openssl @ openssl-3.6.4 test/certs (Apache-2.0)"
+  },
+  "refuted": [],
+  "rules": [
+    {
+      "body": [
+        "anchor:root-cert"
+      ],
+      "cap": [
+        "B"
+      ],
+      "head": "chain:ca-cert",
+      "id": "root-issues-ca"
+    },
+    {
+      "body": [
+        "chain:ca-cert"
+      ],
+      "cap": "ALL",
+      "head": "chain:ee-cert",
+      "id": "ca-issues-ee"
+    }
+  ],
+  "schema": "ORION.TypedMerge.Instance.v1",
+  "seeds": {
+    "anchor:root-cert": [
+      "A"
+    ]
+  },
+  "targets": [
+    "chain:ee-cert"
+  ],
+  "title": "Round 2 hostile control: structural first mixing across two trust stores"
+}
