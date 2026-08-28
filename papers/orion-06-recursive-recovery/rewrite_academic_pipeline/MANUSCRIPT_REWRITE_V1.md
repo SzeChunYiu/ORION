@@ -1,7 +1,5 @@
 # Negative Results as Research State: A Recovery Protocol for AI-Assisted Science
 
-<!-- Draft integration note: standalone reader-facing rewrite. The quantum-compilation theorem used as the worked case remains owned by its scientific source paper; this manuscript claims only the recovery protocol and observed programme trace. -->
-
 ## Abstract
 
 AI-assisted research systems are increasingly able to propose hypotheses, run analyses and revise their own plans. A less studied problem is what should happen after a candidate is refuted, absorbed by a stronger existing method, limited to a narrow regime or left unresolved by the available evidence. Treating every adverse result as a prompt to try again encourages post-outcome claim mutation; treating every adverse result as a terminal failure discards information that can determine a better successor question.
