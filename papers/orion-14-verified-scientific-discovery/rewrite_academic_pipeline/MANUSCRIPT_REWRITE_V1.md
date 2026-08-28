@@ -1,7 +1,5 @@
 # Target-Sufficient Verification for Scientific Claim Promotion
 
-<!-- Draft integration note: reader-facing rewrite produced from the current claim ledger and bound result records. Citation commands and final TMLR source formatting must be rebound to the canonical bibliography/package during integration. -->
-
 ## Abstract
 
 Verification is often treated as if stronger provenance, more checks, or higher confidence must monotonically strengthen a scientific conclusion. That inference is unsafe when the decision to promote a claim depends on obligations that are not represented by the verification record itself. We study scientific claim promotion as a target-specific decision problem. For a finite decision space, we show that exact promotion is attainable from a representation only when the correct terminal is constant on every representation fibre with positive mass and is expressible by the available output alphabet. Mixed fibres impose an irreducible Bayes-error floor, so optimization downstream of an information-losing interface cannot recover a distinction that the interface has erased.
