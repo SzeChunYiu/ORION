@@ -140,3 +140,64 @@ tested and failed.
 | Four capabilities ORION does **not** have | `sections/13-framework-consistency.tex:6-9` | untouched |
 | External novelty: 75/75 atoms `CANNOT_CHECK`, `INACCESSIBLE_WORK_MAY_ABSORB_CLAIM` | `research/orion-epistemic-state-v1/results/DES-NOVELTY-01/` | untouched |
 | Both OCME receipts' explicit denial of autonomous invention and of native superiority | `P10_OCME_FORMAL_RESULT_RECEIPT_V1.md:53`, `P10_GENERATED_OCME_RESULT_RECEIPT_V1.md:55-57` | untouched |
+
+---
+
+## Application status — CORRECTIONS IDENTIFIED, NOT APPLIED (2026-08-28)
+
+The claim-narrowing edits were applied and then **reverted**. The reason belongs in the
+record.
+
+All four manuscript files the audit touches are **digest-bound** in
+`papers/orion-20-structured-problem-solving/SHA256SUMS`:
+
+| file | bound |
+|---|---|
+| `manuscript/main.tex` | yes |
+| `manuscript/sections/02-nearest-work-pressure.tex` | yes |
+| `manuscript/sections/11-primary-hypotheses.tex` | yes |
+| `manuscript/sections/16-claim-ladder-and-status.tex` | yes |
+
+Editing them makes the paper's `SHA256SUMS` stop describing its own files, which
+`tests/unit/programme/test_content_binding_drift_ratchet.py` catches with:
+
+> these papers' SHA256SUMS no longer describe their files, and they were clean at the
+> baseline. **Reconcile the paper — do not regenerate its digests to match the new
+> bytes**, and do not add it to the baseline.
+
+Unlike ORION-11's journal package, ORION-20 is **not** in the journal-package registry,
+so there is no sanctioned regeneration path (`check_journal_package.py --write-hashes`
+does not cover it). Updating the digest list by hand is precisely the move the guard
+forbids.
+
+The proposed new section `manuscript/sections/00-scope-and-status.tex` is itself
+unbound, but it can only take effect through an `\input` in the bound `main.tex`, so it
+was removed rather than left orphaned.
+
+### This does not weaken the audit
+
+Every finding stands and is unchanged, including the two that matter most:
+
+1. **"Exhaustive-search dominance" is not an information-matched comparison.** The
+   searches quantified over are definitionally denied the candidate grammar the
+   generator was handed, and the generator *is* that enumerator. The phrase also names
+   two opposite propositions in the corpus.
+2. **Three of five headline theorems have no proof anywhere** — T1's decidability (the
+   proof establishes unreachability), T2's dominance, T5's donor-conservativity — with
+   T4 stating minimality under an undefined preorder.
+
+These are reasons the manuscript should change. They are not authority to rewrite a
+bound digest list without a decision.
+
+### What an operator needs to decide
+
+1. **Supersede** — issue a new content binding under a new identity that describes the
+   corrected manuscript, leaving the current `SHA256SUMS` as history; or
+2. **Lockstep** — update the manuscript and its `SHA256SUMS` together in one recorded
+   change; or
+3. **Decline** — leave the claims as written and keep this audit as the standing
+   correction.
+
+Option 3 is not recommended. #1611 selected ORION-20's formal object as the **current
+submission paper**, and three of its five headline theorems are unproved. That is a
+submission blocker whichever route is taken.
