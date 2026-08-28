@@ -1,7 +1,5 @@
 # Epistemic Bindings in Scientific Decision-Making: Six Matched-Information Mechanism Tests
 
-<!-- Draft integration note: TMLR-oriented rewrite. The six experiments were separately frozen and are synthesized post hoc; they are not represented as one preregistered six-part experiment or as real-agent evidence. -->
-
 ## Abstract
 
 Scientific decision systems can retain the same factual information while differing in how that information is bound to type, applicability, uncertainty, transformation history or downstream decisions. We test whether such **epistemic bindings** change decisions when the visible factual world is otherwise matched. Six separately frozen exact-synthetic studies isolate type-conditioned priors, applicability scope, decision-relevant uncertainty, transformation lineage, decision-coupled acquisition and remint obligations. The studies are synthesized after completion as a benchmark taxonomy; they are not pooled into one universal effect.
