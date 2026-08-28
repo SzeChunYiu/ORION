@@ -42,8 +42,8 @@ instructions.
 
 ## Current package bindings
 
-- source archive SHA-256: `72295a308f335c9077b03e6fba8e0227a9631dffadcc5d8c31bd170febf6b431`
-- review-resource archive SHA-256: `5c89e144e4a495c98d11afda6f9d73a01c5638974c61b6a90861273564f16460`
-- submission manifest SHA-256: `e691ec57a1fcfdf6116dc5ae4beba1fde68433eb5dbe1cb1850716e3b1dbf37b`
+- source archive SHA-256: `e81720d03d1b05b92d45c6c4bbb3111b1566ff4845fb1aa2c3b1c51a45e21c99`
+- review-resource archive SHA-256: `02aad4b045c04a66da61778e3429f7fc4dc74a97b741024640dff801c065c983`
+- submission manifest SHA-256: `9cc8b2657551ecd38d3f7b68549175e65b9222aa8d3644eb96894334027b3918`
 
-These identifiers are audit-only and must not be copied into manuscript prose.
+The generic archives pass content and entry-name scans for project codes, transport metadata, hashes and machine release strings. The earlier unsanitized archives are retained only as private audit evidence. These identifiers are audit-only and must not be copied into manuscript prose.
