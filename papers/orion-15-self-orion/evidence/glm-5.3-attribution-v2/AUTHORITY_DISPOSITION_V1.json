@@ -1,0 +1,71 @@
+{
+  "admissible_claim": "Within the frozen 24-case panel and the recorded GLM-5.3 blind-subagent harness, treatment remained descriptively above control (23/24 versus 22/24).",
+  "artifacts": [
+    {
+      "bytes": 16444,
+      "path": "papers/orion-15-self-orion/evidence/glm-5.3-attribution-v2/PREPARATION_RECEIPT.json",
+      "sha256": "68bf84a15d679a1554cd4818a4341063233673f8450f61da17d9cec75f115f54"
+    },
+    {
+      "bytes": 74008,
+      "path": "papers/orion-15-self-orion/evidence/glm-5.3-attribution-v2/JUDGE_TRANSCRIPT.jsonl",
+      "sha256": "2864347ded499b0abd49285c27c38e9ba26ff821481ad26b70ac57c79e4edd45"
+    },
+    {
+      "bytes": 3878,
+      "path": "papers/orion-15-self-orion/evidence/glm-5.3-attribution-v2/report.json",
+      "sha256": "e6c14b02b2c142a6986e655067e0fd9a5e2a1898c6a66b218c1694c21ee066c4"
+    },
+    {
+      "bytes": 61129,
+      "path": "papers/orion-15-self-orion/evidence/glm-5.3-attribution-v2/results_control_v1replay.jsonl",
+      "sha256": "80705c4f6d4ea701ed1b70809b9c3050509960fc406dffa008bf361d335cba85"
+    },
+    {
+      "bytes": 48540,
+      "path": "papers/orion-15-self-orion/evidence/glm-5.3-attribution-v2/results_treatment_v2.jsonl",
+      "sha256": "1392aca44faef21ed824877ca64e35da9279a613f200044e73bf9a09001ce565"
+    },
+    {
+      "bytes": 7727,
+      "path": "papers/orion-15-self-orion/evidence/glm-5.3-attribution-v2/RESULT.md",
+      "sha256": "fa481964957654b6325453274a890e014717c4c167d3895090eaee9166e123d7"
+    }
+  ],
+  "authority_class": "BOUNDED_FROZEN_24_CASE_HARNESS_REPLICATION_WITH_RECORDED_DEVIATIONS",
+  "campaign_id": "p5-glm-5.3-attribution-v2-harvest",
+  "date": "2026-08-28",
+  "forbidden_promotions": [
+    "generation-invariant perfect attribution",
+    "broad or production attribution superiority",
+    "external independence",
+    "novelty",
+    "journal, submission, or peer-review authority"
+  ],
+  "measurements": {
+    "control_accuracy": 0.9166666666666666,
+    "control_correct": 22,
+    "control_n": 24,
+    "descriptive_difference": 0.04166666666666674,
+    "treatment_accuracy": 0.9583333333333334,
+    "treatment_correct": 23,
+    "treatment_n": 24
+  },
+  "paper_id": "ORION-15",
+  "preserved_adverse_results": [
+    "The earlier 24/24 treatment ceiling did not reproduce; current treatment is 23/24.",
+    "Control errors: P5-HC-012 and P5-HC-014.",
+    "Treatment error: P5-HC-020."
+  ],
+  "protocol_deviation_boundary": [
+    "requested frozen serving parameters could not be set per call",
+    "confinement was instructional rather than a technical sandbox",
+    "the earlier v2 run already served GLM-5.3 under an alias, so this is not a clean model-generation contrast",
+    "paste normalization was not byte-identical",
+    "no independent external custody",
+    "no paired inferential superiority test was pre-registered or reported"
+  ],
+  "schema": "ORION.ORION15.GLM53AttributionHarvest.AuthorityDisposition.v1",
+  "scientific_authority_delta": "BOUNDED_DESCRIPTIVE_DIRECTION_ONLY",
+  "terminal": "O15_GLM53_BLIND_HARVEST_DIRECTIONALLY_SUPPORTS_TREATMENT__PERFECT_CEILING_NOT_REPRODUCED__EXTERNAL_AUTHORITY_NOT_GRANTED"
+}
