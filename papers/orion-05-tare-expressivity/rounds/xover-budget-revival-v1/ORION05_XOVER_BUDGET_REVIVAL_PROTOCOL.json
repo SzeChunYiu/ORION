@@ -1,0 +1,50 @@
+{
+  "schema": "ORION.ORION05.XoverBudgetRevivalProtocol.v1",
+  "date": "2026-08-27",
+  "status": "FROZEN_BEFORE_REVIVAL_OUTCOME",
+  "base_commit": "0a56f4a5a28f31072c6fb3cc910804474dc2f2a6",
+  "scientific_authority_delta": "NONE",
+  "source_negative": {
+    "verdict": "RUN_INCOMPLETE",
+    "path": "papers/orion-05-tare-expressivity/evidence/historical/pr-1498-q1-xover-v1/raw/research/extensions/orion-q/Q1_XOVER_RESULTS_V1.json",
+    "sha256": "05eb59f6635ebccd8ebcebc79f3b9646aab6fce1d9852735c67d01f9cd3821f1",
+    "observation": "372/372 n<=5 legacy direct-D++ cells exact; 12/12 n=6 cells timed out at 600 seconds",
+    "precondition_gap": "the archived second run repaired determinism only; no budget revival was executed"
+  },
+  "mechanism_stage": "EXHAUSTIVE_SEARCH_COMPUTE_BUDGET",
+  "strongest_parent": "unrestricted exact DP referee on the identical target cell",
+  "selector": {
+    "family": "uniform",
+    "n": 6,
+    "instance_index": 0,
+    "rule": "lexicographically first cell in the frozen XOVER family/n/instance order; not selected by cost or runtime"
+  },
+  "lever": {
+    "kind": "MATCHED_BUDGET_EXTENSION",
+    "legacy_direct_dxx_unchanged": true,
+    "old_timeout_seconds": 600,
+    "revival_timeout_seconds": 1800,
+    "cpu_threads": 1,
+    "memory_limit_gib": 16,
+    "target_and_objective_unchanged": true
+  },
+  "decision_rule": {
+    "improved": "legacy direct D++ completes within 1800 seconds, independently verifies, and equals the parent exact cost",
+    "retained_negative": "legacy direct D++ again times out; this is one-cell budget evidence, not a universal infeasibility proof",
+    "cannot_check": "binding, execution or independent verification error"
+  },
+  "preservation": [
+    "the original whole-panel RUN_INCOMPLETE verdict and P6=false field remain immutable",
+    "one revived cell cannot establish the n=6 panel crossover or production acceleration",
+    "PR1498 source-archive custody limitation remains visible"
+  ],
+  "authority": {
+    "whole_panel_revival": false,
+    "standalone_production_value": false,
+    "generic_tare": false,
+    "external_independence": false,
+    "novelty": false,
+    "journal_or_submission": false,
+    "final_freeze": false
+  }
+}
