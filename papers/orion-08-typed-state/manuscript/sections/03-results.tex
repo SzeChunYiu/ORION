@@ -1,7 +1,7 @@
 \section{Results}
 
 \subsection{Typed priors for unknown feasibility}
-In N4-A, type-conditioned priors are the only difference between `ORION_TYPED_VOI` and the uniform-prior VOI ablation. Over 300 paired episodes, the typed arm has mean utility 3.291 versus 2.180 for uniform VOI and 4.612 for the full oracle, recovering about 71\% of oracle utility. Blind optimistic commitment is driven to $-13.619$ mean utility and succeeds in only 19\% of episodes, satisfying the hostile-world validity gate.
+In N4-A, type-conditioned priors are the only difference between the typed value-of-information arm and its uniform-prior ablation. Over 300 paired episodes, the typed arm has mean utility 3.291 versus 2.180 for uniform VOI and 4.612 for the full oracle, recovering about 71\% of oracle utility. Blind optimistic commitment is driven to $-13.619$ mean utility and succeeds in only 19\% of episodes, satisfying the hostile-world validity gate.
 
 \subsection{Scope-bound failure-receipt reopening}
 N4-B separates changes that invalidate a failure receipt from irrelevant context churn. Pooled mean utility is 3.199 for scoped reopening, 2.782 for never reopening, $-7.813$ for unscoped-change reopening, and $-9.225$ for always reopening. In the deliberately wasteful regime, always reopening collapses to about $-13.406$ while never reopening remains positive; the scoped mechanism retains the no-giveback property required by the protocol.
