@@ -1,0 +1,349 @@
+{
+  "allowed_terminals": [
+    "AB_R2_ATOMIC_CHECKER_REGISTRY_REALIZED_GAP",
+    "AB_R2_ATOMIC_CHECKER_REGISTRY_NO_STRICT_GAP",
+    "AB_R2_GAP_MATCHED_BY_GENERIC_SEARCH",
+    "AB_R2_CROSS_MOVE_COLLAPSES_GAP",
+    "AB_R2_ATOMIC_GUARD_UNSOUND",
+    "AB_R2_DONOR_EQUIVALENT",
+    "CANNOT_CHECK_MOVE_COMPLETENESS"
+  ],
+  "authority_boundaries": {
+    "all_pyzx_completeness": false,
+    "all_zx_completeness": false,
+    "external_novelty": false,
+    "generic_compiler_optimality": false,
+    "journal_authority": false,
+    "physical_or_hardware_advantage": false,
+    "protected_task3_or_p9": false,
+    "round1_macro_language_relabeling": false,
+    "submission_authorized": false
+  },
+  "completeness_ceiling": {
+    "complete_for": "SITE_GUARDED_OFFICIAL_REWRITE_PRIMITIVES_REACHED_BY_PINNED_FULL_REDUCE_CLOSURE",
+    "not_complete_for": [
+      "ALL_PUBLIC_PYZX_REWRITES",
+      "RAW_UNGUARDED_GRAPH_MUTATIONS_INSIDE_BATCH_SCHEDULERS",
+      "ZX_CALCULUS",
+      "ALL_SEMANTICS_PRESERVING_CIRCUIT_TRANSFORMATIONS"
+    ],
+    "not_inferred_from_traces": true,
+    "audit_kind": "STATIC_AST_AUDITS__STRUCTURAL_NOT_OUTCOME_BASED",
+    "audits": [
+      "PRIMITIVE_CLOSURE_EQUALITY: the set of official site-guarded rewrite primitives reached by the transitive AST call closure of full_reduce equals the registered official-object set; every single-schema omission breaks that equality",
+      "MUTATOR_METHOD_SURFACE_INCLUSION: every mutating graph/scalar method name invoked anywhere in the full_reduce call closure is invoked by at least one registered atomic route closure",
+      "GUARD_PURITY: each registered pure check_* guard and its pinned-module call closure contain no mutating method invocation",
+      "RUNTIME_BINDING: the runtime objects' is_match/applier/simp_override attributes are identical to the audited source functions, so the audited source is the executed source"
+    ]
+  },
+  "guard_purity_symbols": [
+    "check_fuse",
+    "check_self_loop",
+    "check_remove_id",
+    "check_pivot",
+    "check_lcomp",
+    "check_pivot_boundary",
+    "check_pivot_gadget",
+    "check_copy"
+  ],
+  "date": "2026-08-27",
+  "diagnostic_structural_measure": {
+    "lexicographic": [
+      "vertices",
+      "x_vertices",
+      "edges"
+    ],
+    "required_strict_descent_for_every_actual_move": false,
+    "use_for_pruning": false
+  },
+  "exact_search_completion_rule": "BREADTH_FIRST_QUEUE_EXHAUSTION_BEFORE_FAIL_CLOSED_STATE_CAP",
+  "excluded_public_pyzx_operations": [
+    "bialg_simp",
+    "bialg_op_simp",
+    "color_change_rewrite",
+    "hopf_simp",
+    "add_identity_rewrite",
+    "z_to_z_box_simp",
+    "gadget_phasepoly_simp",
+    "push_pauli_rewrite",
+    "euler_expansion_rewrite",
+    "pi_commute_rewrite",
+    "phase_free_simp",
+    "basic_simp",
+    "reduce_scalar",
+    "teleport_reduce",
+    "to_rg",
+    "gadgetize"
+  ],
+  "frozen_before_scientific_outcome_access": true,
+  "generic_search_baseline": {
+    "budget_move_applications": "MAX_OF_100_AND_100_TIMES_WITNESS_PATH_LENGTH",
+    "epsilon_random_move_probability": 0.25,
+    "restarts": 4,
+    "rng": "NUMPY_PCG64_SEED_1000003_TIMES_WORD_INDEX_PLUS_7",
+    "selection": "GREEDY_MIN_REGISTERED_RESOURCE_TUPLE_WITH_RANDOM_TIE_BREAK_ELSE_EPSILON_UNIFORM",
+    "uses_registry_moves": true,
+    "uses_completeness_or_certificate_knowledge": false
+  },
+  "guard_semantics": "OFFICIAL_GUARD_EVALUATED_AT_APPLICATION_TIME_ON_CURRENT_GRAPH__ONE_SITE_PER_MOVE__LEGAL_EXACTLY_WHEN_OFFICIAL_ROUTE_RETURNS_TRUE_AND_LOSSLESS_CANONICAL_JSON_STATE_DIFFERS_FROM_INPUT__VERTEX_IDENTITIES_PRESERVED",
+  "hostile_extension_symbols": [
+    "bialg_simp",
+    "hopf_simp",
+    "gadget_phasepoly_simp"
+  ],
+  "input_domain": {
+    "boundary_probe_length6_word_count": 16,
+    "gate_alphabet": [
+      "H0",
+      "H1",
+      "S0",
+      "S1",
+      "T0",
+      "T1",
+      "CX01",
+      "CX10"
+    ],
+    "max_primary_word_length": 3,
+    "min_word_length": 0,
+    "primary_word_count": 585,
+    "qubits": 2,
+    "role_of_length6_probe": "REALIZATION_BOUNDARY_PROBE_ONLY__CAP_HIT_THERE_IS_EVIDENCE_NOT_A_TERMINAL_TRIGGER",
+    "sampling": false
+  },
+  "max_states_per_input_fail_closed": 20000,
+  "move_semantics": "ONE_APPLICATION_OF_AN_OFFICIAL_SITE_GUARDED_REWRITE_PRIMITIVE_AT_ONE_SITE",
+  "objective": {
+    "lexicographic": [
+      "non_clifford_vertices",
+      "non_boundary_vertices",
+      "edges"
+    ]
+  },
+  "paper_id": "ORION-01",
+  "precondition": {
+    "reject_vertex_types": [
+      "H_BOX"
+    ],
+    "width_qubits": 2
+  },
+  "registered_schemas": [
+    {
+      "guard_kind": "PURE_DOUBLE_VERTEX_ORDERED",
+      "guard_symbol": "fuse_simp.is_match = check_fuse",
+      "id": "PYZX.R2.01",
+      "kind": "single_site_fusion",
+      "official_object": "pyzx.simplify.fuse_simp",
+      "site_enumerator": "ORDERED_PAIRS_OVER_UNDIRECTED_EDGES",
+      "source_applier": "fuse_simp.applier = unsafe_fuse with rmv_isolated=True",
+      "source_file": "pyzx/rewrite_rules/fuse_rule.py + pyzx/simplify.py"
+    },
+    {
+      "guard_kind": "PURE_SINGLE_VERTEX",
+      "guard_symbol": "remove_self_loop_simp.is_match = check_self_loop",
+      "id": "PYZX.R2.02",
+      "kind": "single_site_self_loop_removal",
+      "official_object": "pyzx.simplify.remove_self_loop_simp",
+      "site_enumerator": "ALL_VERTICES",
+      "source_applier": "remove_self_loop_simp.applier = unsafe_remove_self_loop",
+      "source_file": "pyzx/rewrite_rules/self_loops_rule.py + pyzx/simplify.py"
+    },
+    {
+      "guard_kind": "GRAPH_LEVEL",
+      "guard_symbol": "callable to_gh",
+      "id": "PYZX.R2.03",
+      "kind": "whole_graph_normalization",
+      "official_object": "pyzx.simplify.to_gh",
+      "site_enumerator": "WHOLE_GRAPH",
+      "source_applier": "to_gh body",
+      "source_file": "pyzx/simplify.py"
+    },
+    {
+      "guard_kind": "PURE_SINGLE_VERTEX",
+      "guard_symbol": "id_simp.is_match = check_remove_id",
+      "id": "PYZX.R2.04",
+      "kind": "single_site_identity_removal",
+      "official_object": "pyzx.simplify.id_simp",
+      "site_enumerator": "ALL_VERTICES",
+      "source_applier": "id_simp.applier = unsafe_remove_id with rmv_isolated=True",
+      "source_file": "pyzx/rewrite_rules/remove_id_rule.py + pyzx/simplify.py"
+    },
+    {
+      "guard_kind": "PURE_DOUBLE_VERTEX_ORDERED",
+      "guard_symbol": "pivot_simp.is_match = check_pivot",
+      "id": "PYZX.R2.05",
+      "kind": "single_site_pivot",
+      "official_object": "pyzx.simplify.pivot_simp",
+      "site_enumerator": "ORDERED_PAIRS_OVER_UNDIRECTED_EDGES",
+      "source_applier": "pivot_simp.applier = unsafe_pivot",
+      "source_file": "pyzx/rewrite_rules/pivot_rule.py + pyzx/simplify.py"
+    },
+    {
+      "guard_kind": "PURE_SINGLE_VERTEX",
+      "guard_symbol": "lcomp_simp.is_match = check_lcomp",
+      "id": "PYZX.R2.06",
+      "kind": "single_site_local_complementation",
+      "official_object": "pyzx.simplify.lcomp_simp",
+      "site_enumerator": "ALL_VERTICES",
+      "source_applier": "lcomp_simp.applier = unsafe_lcomp",
+      "source_file": "pyzx/rewrite_rules/lcomp_rule.py + pyzx/simplify.py"
+    },
+    {
+      "guard_kind": "PURE_DOUBLE_VERTEX_ORDERED",
+      "guard_symbol": "pivot_boundary_simp.is_match = check_pivot_boundary",
+      "id": "PYZX.R2.07",
+      "kind": "single_site_boundary_pivot",
+      "official_object": "pyzx.simplify.pivot_boundary_simp",
+      "site_enumerator": "ORDERED_PAIRS_OVER_UNDIRECTED_EDGES",
+      "source_applier": "pivot_boundary_simp.applier = unsafe_pivot_boundary",
+      "source_file": "pyzx/rewrite_rules/pivot_rule.py + pyzx/simplify.py"
+    },
+    {
+      "guard_kind": "PURE_DOUBLE_VERTEX_ORDERED",
+      "guard_symbol": "pivot_gadget_simp.is_match = check_pivot_gadget",
+      "id": "PYZX.R2.08",
+      "kind": "single_site_gadget_pivot",
+      "official_object": "pyzx.simplify.pivot_gadget_simp",
+      "site_enumerator": "ORDERED_PAIRS_OVER_UNDIRECTED_EDGES",
+      "source_applier": "pivot_gadget_simp.applier = unsafe_pivot_gadget",
+      "source_file": "pyzx/rewrite_rules/pivot_rule.py + pyzx/simplify.py"
+    },
+    {
+      "guard_kind": "TARGETED_VERTEX_LIST",
+      "guard_symbol": "gadget_simp.apply = merge_phase_gadgets_for_apply restricted to leaf pair",
+      "id": "PYZX.R2.09",
+      "kind": "single_site_gadget_merge",
+      "official_object": "pyzx.simplify.gadget_simp",
+      "site_enumerator": "ORDERED_PAIRS_OF_DEGREE_ONE_NON_CLIFFORD_LEAVES_GROUPED_BY_EQUAL_GADGET_TARGET_SET",
+      "source_applier": "merge_phase_gadgets_for_apply then merge_phase_gadgets",
+      "source_file": "pyzx/rewrite_rules/merge_phase_gadget_rule.py + pyzx/simplify.py"
+    },
+    {
+      "guard_kind": "PURE_SINGLE_VERTEX",
+      "guard_symbol": "copy_simp.is_match = check_copy",
+      "id": "PYZX.R2.10",
+      "kind": "single_site_copy",
+      "official_object": "pyzx.simplify.copy_simp",
+      "site_enumerator": "ALL_VERTICES",
+      "source_applier": "copy_simp.applier = unsafe_copy",
+      "source_file": "pyzx/rewrite_rules/copy_rule.py + pyzx/simplify.py"
+    },
+    {
+      "guard_kind": "TARGETED_VERTEX_LIST",
+      "guard_symbol": "supplementarity_simp.apply = safe_apply_supplementarity restricted to vertex pair",
+      "id": "PYZX.R2.11",
+      "kind": "single_site_supplementarity",
+      "official_object": "pyzx.simplify.supplementarity_simp",
+      "site_enumerator": "ORDERED_NON_CLIFFORD_PAIRS_WITH_EQUAL_NEIGHBOURHOOD_OR_SYMMETRIC_DIFFERENCE_TWO",
+      "source_applier": "safe_apply_supplementarity then unsafe_apply_supplementarity",
+      "source_file": "pyzx/rewrite_rules/supplementarity_rule.py + pyzx/simplify.py"
+    },
+    {
+      "guard_kind": "GRAPH_LEVEL",
+      "guard_symbol": "callable BaseGraph.remove_isolated_vertices",
+      "id": "PYZX.R2.12",
+      "kind": "whole_graph_scalar_accounted_cleanup",
+      "official_object": "BaseGraph.remove_isolated_vertices",
+      "site_enumerator": "WHOLE_GRAPH",
+      "source_applier": "BaseGraph.remove_isolated_vertices body",
+      "source_file": "pyzx/graph/base.py"
+    }
+  ],
+  "registered_symbol_order": [
+    "PYZX.R2.01",
+    "PYZX.R2.02",
+    "PYZX.R2.03",
+    "PYZX.R2.04",
+    "PYZX.R2.05",
+    "PYZX.R2.06",
+    "PYZX.R2.07",
+    "PYZX.R2.08",
+    "PYZX.R2.09",
+    "PYZX.R2.10",
+    "PYZX.R2.11",
+    "PYZX.R2.12"
+  ],
+  "round": 2,
+  "round1_preservation": {
+    "macro_language_registry": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_SOURCE_REGISTRY.json",
+    "macro_language_terminal": "CANNOT_CHECK_MOVE_COMPLETENESS",
+    "requirement": "ROUND_1_COUNTEREXAMPLE_AND_REGISTRY_REMAIN_UNTOUCHED__NO_RELABELING_NO_RETROFIT_OF_PYZX.FR.07"
+  },
+  "schema": "ORION.ORION01.Round2.PyZXAtomicCheckerSourceRegistry.v1",
+  "source": {
+    "commit": "dade7d46f193635bbdaefd8fcde837f9449fddc5",
+    "commit_date": "2026-08-24T08:20:29Z",
+    "direct_url_required": true,
+    "entrypoint": "pyzx.simplify.full_reduce",
+    "license": "Apache-2.0",
+    "package": "pyzx",
+    "repository": "https://github.com/zxcalc/pyzx",
+    "source_files": [
+      {
+        "path": "pyzx/simplify.py",
+        "sha256": "55265ae4da26bec9e72b71639e0ace77dd8d5d48a7b5bda913fbec4c6e182fa3"
+      },
+      {
+        "path": "pyzx/rewrite.py",
+        "sha256": "61fc02d1c20157542dc2083872998bb164cfcac7b7c0a862a83d75587680ba1e"
+      },
+      {
+        "path": "pyzx/rewrite_rules/fuse_rule.py",
+        "sha256": "4864093dfcd82e90d6b2f925610737e642b5c2538c5a8876e84e16465deecb7a"
+      },
+      {
+        "path": "pyzx/rewrite_rules/self_loops_rule.py",
+        "sha256": "471e0aa1d84096a6da0a98f6ca489180875c8b1929e6e8974b0f4e9a83228da5"
+      },
+      {
+        "path": "pyzx/rewrite_rules/remove_id_rule.py",
+        "sha256": "a70136e5d6cb22e39e20efcc938e72f85cfc8d1ce961ada6cc16faed4f2effa1"
+      },
+      {
+        "path": "pyzx/rewrite_rules/pivot_rule.py",
+        "sha256": "7bef83f61f4b05d458e5937db28c24e05a3305761ff83c54e663cb7411263de1"
+      },
+      {
+        "path": "pyzx/rewrite_rules/lcomp_rule.py",
+        "sha256": "10b9299e5594ebcd9e08c585a2745e6b96e8b26f3ba69f6ca8d79282f3f9b951"
+      },
+      {
+        "path": "pyzx/rewrite_rules/merge_phase_gadget_rule.py",
+        "sha256": "ba6e86e4cdd17358fa9df588259eb6904c73d05f0f618c29f714e745ec31abfd"
+      },
+      {
+        "path": "pyzx/rewrite_rules/copy_rule.py",
+        "sha256": "55b8cdfdda98034a54a37a2789c8c430190d1445210b9c6c793e282e993d1d2c"
+      },
+      {
+        "path": "pyzx/rewrite_rules/supplementarity_rule.py",
+        "sha256": "4ee760a37e4a0bf3193163a3faf0b4e92335c2953a00771d326a35200da842d4"
+      },
+      {
+        "path": "pyzx/graph/base.py",
+        "sha256": "42eb3c1ec671274841664a26f06cb260a4e7efcac78778b34af74aee285d6582"
+      },
+      {
+        "path": "pyzx/graph/jsonparser.py",
+        "sha256": "11a15eba0cf08c9dce434b8f6811e06421c0c70e2d0a5be44d6f1e3ca34f7785"
+      },
+      {
+        "path": "pyzx/tensor.py",
+        "sha256": "5e5f28b0285a2f0f258846a519f50b4cd5555b4e9f091debf2633526e39b77dc"
+      },
+      {
+        "path": "pyzx/circuit/__init__.py",
+        "sha256": "3e34eb36b9b33d67a05f62506c65463773096d200690b3711f65902affb17500"
+      },
+      {
+        "path": "pyzx/circuit/graphparser.py",
+        "sha256": "af67499dfd5918e1a7385bf8686428aaffe05cf670b0ebb570116297659fee26"
+      },
+      {
+        "path": "pyzx/circuit/gates.py",
+        "sha256": "26cf6f555ab3f643d8a53168b1ae9b0ed3973d0d1105ee2e7424b3d5da08ab43"
+      }
+    ],
+    "tree": "3885a1acc34fbfdaf95ff9cb01c75abea9c36721",
+    "version": "0.10.5"
+  }
+}

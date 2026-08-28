@@ -1,0 +1,47 @@
+{
+  "schema_version": "orion.p4.exact-edge.residual-reprobe.v13.negative-result-ledger",
+  "rows": [
+    {
+      "index": 36,
+      "issue": "zenodo_concept_version_chain_correction_absent",
+      "observation": "The canonical versions endpoint enumerates the concept chain of 10.5281/zenodo.21221061 as exactly one record (the frozen child 21221062, version None); archive checksum and byte size are unchanged from V10/V11; DataCite concept and child both version None.",
+      "verdict": "UNSOLVABLE_AT_CURRENT_PROVIDER_STATE",
+      "next_discriminator": "Publisher-side only: a corrected or replacement child version of the concept binding an exact 0.0.3 archive rooted at commit 069ab4f56d100d765d46c594ac1b06add7e49f9e. Re-probing has no closure value until the version chain grows."
+    },
+    {
+      "index": 91,
+      "issue": "fresh_source_compilation_exactness",
+      "observation": "Pinned Temurin jdk-17.0.14+7 obtained via native Adoptium channel with distributor checksum verification; V12's frozen compile command executed verbatim on the immutable codeload checkout of aa021231...; rc=0; all 106 archive-only class files reproduced byte-exact (0 mismatch/missing/extra).",
+      "verdict": "EXACT__RESOLVED_FROM_CANNOT_CHECK",
+      "next_discriminator": "None available locally: remaining gates are provider-native signed build provenance and authority for the two 0755 mode bits, both provider-state."
+    },
+    {
+      "index": 91,
+      "issue": "mode_authority_for_two_executable_bits",
+      "observation": "Mode is not a function of content; byte-exact compilation is structurally incapable of adjudicating it. The validly signed revision tree (100644) and the checksum-bound archive (0755) contradict; no signed release predicate binds either value.",
+      "verdict": "UNSOLVABLE_AT_CURRENT_PROVIDER_STATE",
+      "next_discriminator": "Publisher signs a release predicate binding the deliberate 0755 modes (AUTHOR_PROVIDER_SIGNING_CONTRACT_V12) or provider-corrects the archive."
+    },
+    {
+      "index": 133,
+      "issue": "pypi_signed_artifact_to_commit_binding",
+      "observation": "Absent on all five queryable surfaces (PEP 691 provenance null; /_attestations/ 404; JSON API attestations key absent; Integrity URL absent; GitHub attestations 404). Frozen digest verified byte-identical live. Whole-project census: 0/7 files with provenance, including the newest release.",
+      "verdict": "UNSOLVABLE_AT_CURRENT_PUBLISHER_STATE",
+      "next_discriminator": "Publisher-side only: an attested re-release (necessarily a different file identity) or a platform retroactive-minting program for never-attesting publishers. Neither binds the frozen digest today."
+    },
+    {
+      "index": 185,
+      "issue": "pypi_signed_artifact_to_commit_binding",
+      "observation": "Identical surface set; frozen digest verified byte-identical live; census 0/14 files with provenance, including the newest release.",
+      "verdict": "UNSOLVABLE_AT_CURRENT_PUBLISHER_STATE",
+      "next_discriminator": "Identical to index 133."
+    },
+    {
+      "index": 0,
+      "issue": "rekor_digest_retrieval_estimator",
+      "observation": "Positive control (packaging-26.3.tar.gz, provenance present, transparency entry at logIndex 2341131906 confirmed by direct lookup) returns [] under both digest retrieval shapes; digest retrieval is structurally blind to PyPI dsse transparency entries.",
+      "verdict": "ESTIMATOR_QUARANTINED_STRUCTURALLY_BLIND",
+      "next_discriminator": "Any future Rekor claim must retrieve entries via logIndex/UUID obtained from a provenance bundle, never by artifact digest."
+    }
+  ]
+}

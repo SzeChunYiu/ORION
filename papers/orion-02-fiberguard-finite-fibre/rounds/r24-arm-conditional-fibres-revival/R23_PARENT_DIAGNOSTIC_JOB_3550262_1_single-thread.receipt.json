@@ -1,0 +1,409 @@
+{
+  "attempt_id": "ORION02-REVIVAL-002-R24-ARM-CONDITIONAL-BOUNDARY-FIBRES",
+  "authority": {
+    "freeze_authorized": false,
+    "scientific_authority_delta": "NONE",
+    "submission_authorized": false,
+    "top_tier_gate_pass": false
+  },
+  "byte_identical": false,
+  "counts_toward_100": false,
+  "environment": {
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONHASHSEED": "0",
+    "machine": "x86_64",
+    "python": "3.11.5"
+  },
+  "first_byte_difference_offset": 4467,
+  "fresh_parent": {
+    "bytes": 495186,
+    "path": "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO02R24/papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/R23_PARENT_DIAGNOSTIC_JOB_3550262_1_single-thread.fresh.json",
+    "sha256": "af2e686bd52ebcd5bf83d0b8ebfefe974eb2e3f629b9864fbb0dd795a99bf072"
+  },
+  "frozen_parent": {
+    "bytes": 495057,
+    "path": "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO02R24/papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_RESULTS.json",
+    "sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77"
+  },
+  "pmlb_commit": "7c1f4bdc00136dc2e55c87fa6b8ba6e8af6d1a68",
+  "pmlb_tree": "ca5d36e9093c2f7360db57198c8c0586a3217a60",
+  "purpose": "post-job-3550259 infrastructure diagnosis only",
+  "r23_executor_sha256": "6bb4e377462249c3630ceacc56073ba385a82805c79eda58809c42b8ee1562aa",
+  "r24_policy_executed": false,
+  "r24_scientific_outcome_exposed": false,
+  "schema": "ORION.FiberGuard.R24.R23ParentReplayDiagnostic.v1",
+  "structured_diff": {
+    "difference_count": 56,
+    "max_abs_numeric_difference": 2.0,
+    "numeric_difference_count": 27,
+    "samples": [
+      {
+        "abs_numeric_difference": 0.0002960632760000007,
+        "frozen": 0.006574168919,
+        "kind": "value",
+        "path": "$.arms_summary.R23_BACKOFF_LEARNED_RF300.mean_bound",
+        "replay": 0.006278105643
+      },
+      {
+        "abs_numeric_difference": 0.00013201730999999953,
+        "frozen": 0.020171189605,
+        "kind": "value",
+        "path": "$.arms_summary.R23_BACKOFF_LEARNED_RF300.mean_excess",
+        "replay": 0.020303206915
+      },
+      {
+        "abs_numeric_difference": 0.06818181818199998,
+        "frozen": 1.409090909091,
+        "kind": "value",
+        "path": "$.arms_summary.R23_BACKOFF_LEARNED_RF300.mean_groups_acquired",
+        "replay": 1.477272727273
+      },
+      {
+        "abs_numeric_difference": 1.0,
+        "frozen": 23,
+        "kind": "value",
+        "path": "$.arms_summary.R23_BACKOFF_LEARNED_RF300.violations_strict",
+        "replay": 24
+      },
+      {
+        "abs_numeric_difference": 0.00013940720799999855,
+        "frozen": 0.008334508694,
+        "kind": "value",
+        "path": "$.arms_summary.R23_BACKOFF_PRIMARY_LEARNED.mean_bound",
+        "replay": 0.008473915902
+      },
+      {
+        "abs_numeric_difference": 0.04545454545499994,
+        "frozen": 1.113636363636,
+        "kind": "value",
+        "path": "$.arms_summary.R23_BACKOFF_PRIMARY_LEARNED.mean_groups_acquired",
+        "replay": 1.159090909091
+      },
+      {
+        "frozen": "4e618f09befc932921299e92f86c59647ba3a7131981f3fd32e669354925badb",
+        "kind": "value",
+        "path": "$.corrected_parent_receipt_sha256",
+        "replay": "e4e558792f10421625d4ca37d59b50a3b1c2c75f66472f7d69675972bffba8cf"
+      },
+      {
+        "abs_numeric_difference": 0.0011210688759999993,
+        "frozen": 0.006679364871,
+        "kind": "value",
+        "path": "$.folds.R22C_EXACT_CELL.4.threshold_select.LEARNED_RF300.parity5+5.bound",
+        "replay": 0.005558295995
+      },
+      {
+        "frozen": "rf300",
+        "kind": "value",
+        "path": "$.folds.R22C_EXACT_CELL.4.threshold_select.LEARNED_RF300.parity5+5.committed",
+        "replay": "hgb"
+      },
+      {
+        "abs_numeric_difference": 0.22992873063,
+        "frozen": 0.22992873063,
+        "kind": "value",
+        "path": "$.folds.R22C_EXACT_CELL.4.threshold_select.LEARNED_RF300.parity5+5.excess",
+        "replay": 0.0
+      },
+      {
+        "frozen": true,
+        "kind": "value",
+        "path": "$.folds.R22C_EXACT_CELL.4.threshold_select.LEARNED_RF300.parity5+5.violation_strict",
+        "replay": false
+      },
+      {
+        "frozen": true,
+        "kind": "value",
+        "path": "$.folds.R22C_EXACT_CELL.4.threshold_select.LEARNED_RF300.parity5+5.violation_tau",
+        "replay": false
+      },
+      {
+        "frozen": "G1",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.0.threshold_select.SHUFFLED_LEARNED_RF300.mofn_3_7_10.acquired[0]",
+        "replay": "G3"
+      },
+      {
+        "frozen": "G2",
+        "kind": "missing",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.0.threshold_select.SHUFFLED_LEARNED_RF300.mofn_3_7_10.acquired[1]",
+        "replay": "<MISSING>"
+      },
+      {
+        "frozen": "G3",
+        "kind": "missing",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.0.threshold_select.SHUFFLED_LEARNED_RF300.mofn_3_7_10.acquired[2]",
+        "replay": "<MISSING>"
+      },
+      {
+        "abs_numeric_difference": 2.0,
+        "frozen": 3,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.0.threshold_select.SHUFFLED_LEARNED_RF300.mofn_3_7_10.groups_acquired",
+        "replay": 1
+      },
+      {
+        "frozen": "monk3",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.0.threshold_select.SHUFFLED_LEARNED_RF300.mofn_3_7_10.pool_members[0]",
+        "replay": "breast_cancer_wisconsin_diagnostic"
+      },
+      {
+        "frozen": "G2",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.2.threshold_select.SHUFFLED_LEARNED_RF300.monk2.acquired[1]",
+        "replay": "G3"
+      },
+      {
+        "frozen": "G3",
+        "kind": "missing",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.2.threshold_select.SHUFFLED_LEARNED_RF300.monk2.acquired[2]",
+        "replay": "<MISSING>"
+      },
+      {
+        "abs_numeric_difference": 1.0,
+        "frozen": 3,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.2.threshold_select.SHUFFLED_LEARNED_RF300.monk2.groups_acquired",
+        "replay": 2
+      },
+      {
+        "frozen": "G3",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.3.test.LEARNED_RF300.breast_cancer_wisconsin_original.acquired[1]",
+        "replay": "G2"
+      },
+      {
+        "frozen": "<MISSING>",
+        "kind": "missing",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.3.test.LEARNED_RF300.breast_cancer_wisconsin_original.acquired[2]",
+        "replay": "G3"
+      },
+      {
+        "abs_numeric_difference": 0.018289760349,
+        "frozen": 0.018289760349,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.3.test.LEARNED_RF300.breast_cancer_wisconsin_original.bound",
+        "replay": 0.0
+      },
+      {
+        "frozen": "rf300",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.3.test.LEARNED_RF300.breast_cancer_wisconsin_original.committed",
+        "replay": "hgb"
+      },
+      {
+        "abs_numeric_difference": 0.005808761632,
+        "frozen": 0.0,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.3.test.LEARNED_RF300.breast_cancer_wisconsin_original.excess",
+        "replay": 0.005808761632
+      },
+      {
+        "abs_numeric_difference": 1.0,
+        "frozen": 2,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.3.test.LEARNED_RF300.breast_cancer_wisconsin_original.groups_acquired",
+        "replay": 3
+      },
+      {
+        "frozen": "haberman",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.3.test.LEARNED_RF300.breast_cancer_wisconsin_original.pool_members[1]",
+        "replay": "vehicle"
+      },
+      {
+        "frozen": false,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.3.test.LEARNED_RF300.breast_cancer_wisconsin_original.violation_strict",
+        "replay": true
+      },
+      {
+        "frozen": "G3",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.3.threshold_select.LEARNED_RF300.ecoli.acquired[1]",
+        "replay": "G2"
+      },
+      {
+        "frozen": "<MISSING>",
+        "kind": "missing",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.3.threshold_select.LEARNED_RF300.ecoli.acquired[2]",
+        "replay": "G3"
+      },
+      {
+        "abs_numeric_difference": 1.0,
+        "frozen": 2,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.3.threshold_select.LEARNED_RF300.ecoli.groups_acquired",
+        "replay": 3
+      },
+      {
+        "abs_numeric_difference": 0.0011210688759999993,
+        "frozen": 0.006679364871,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.4.threshold_select.LEARNED_RF300.parity5+5.bound",
+        "replay": 0.005558295995
+      },
+      {
+        "frozen": "rf300",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.4.threshold_select.LEARNED_RF300.parity5+5.committed",
+        "replay": "hgb"
+      },
+      {
+        "abs_numeric_difference": 0.22992873063,
+        "frozen": 0.22992873063,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.4.threshold_select.LEARNED_RF300.parity5+5.excess",
+        "replay": 0.0
+      },
+      {
+        "frozen": true,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.4.threshold_select.LEARNED_RF300.parity5+5.violation_strict",
+        "replay": false
+      },
+      {
+        "frozen": true,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.4.threshold_select.LEARNED_RF300.parity5+5.violation_tau",
+        "replay": false
+      },
+      {
+        "frozen": "<MISSING>",
+        "kind": "missing",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.5.test.LEARNED_RF300.horse_colic_outcome.acquired[0]",
+        "replay": "G1"
+      },
+      {
+        "frozen": "<MISSING>",
+        "kind": "missing",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.5.test.LEARNED_RF300.horse_colic_outcome.acquired[1]",
+        "replay": "G2"
+      },
+      {
+        "abs_numeric_difference": 0.005855102752,
+        "frozen": 0.0,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.5.test.LEARNED_RF300.horse_colic_outcome.bound",
+        "replay": 0.005855102752
+      },
+      {
+        "abs_numeric_difference": 2.0,
+        "frozen": 0,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.5.test.LEARNED_RF300.horse_colic_outcome.groups_acquired",
+        "replay": 2
+      },
+      {
+        "frozen": "ecoli",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.5.test.LEARNED_RF300.horse_colic_outcome.pool_members[0]",
+        "replay": "congressional_voting_records"
+      },
+      {
+        "frozen": "biomed",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.5.test.LEARNED_RF300.horse_colic_outcome.pool_members[1]",
+        "replay": "heart_disease_va_long_beach"
+      },
+      {
+        "frozen": "G2",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.6.threshold_select.LEARNED_RF300.horse_colic_outcome.acquired[0]",
+        "replay": "G1"
+      },
+      {
+        "frozen": "<MISSING>",
+        "kind": "missing",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.6.threshold_select.LEARNED_RF300.horse_colic_outcome.acquired[1]",
+        "replay": "G2"
+      },
+      {
+        "abs_numeric_difference": 1.0,
+        "frozen": 1,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.6.threshold_select.LEARNED_RF300.horse_colic_outcome.groups_acquired",
+        "replay": 2
+      },
+      {
+        "frozen": "ecoli",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.6.threshold_select.LEARNED_RF300.horse_colic_outcome.pool_members[1]",
+        "replay": "congressional_voting_records"
+      },
+      {
+        "frozen": "<MISSING>",
+        "kind": "missing",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.8.threshold_select.LEARNED_RF300.saheart.acquired[1]",
+        "replay": "G2"
+      },
+      {
+        "abs_numeric_difference": 1.0,
+        "frozen": 1,
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.8.threshold_select.LEARNED_RF300.saheart.groups_acquired",
+        "replay": 2
+      },
+      {
+        "frozen": "irish",
+        "kind": "value",
+        "path": "$.folds.R23_HAMMING_BACKOFF_K2.8.threshold_select.LEARNED_RF300.saheart.pool_members[1]",
+        "replay": "breast_cancer_wisconsin_diagnostic"
+      },
+      {
+        "abs_numeric_difference": 0.0009113060429999931,
+        "frozen": 0.444153136108,
+        "kind": "value",
+        "path": "$.outcomes.calendarDOW.knn5",
+        "replay": 0.443241830065
+      },
+      {
+        "abs_numeric_difference": 0.0015976761079999902,
+        "frozen": 0.086422493526,
+        "kind": "value",
+        "path": "$.outcomes.congressional_voting_records.knn5",
+        "replay": 0.084824817418
+      },
+      {
+        "abs_numeric_difference": 0.00018518518499999193,
+        "frozen": 0.175758372063,
+        "kind": "value",
+        "path": "$.outcomes.dermatology.knn5",
+        "replay": 0.175573186878
+      },
+      {
+        "abs_numeric_difference": 0.0013666666670000271,
+        "frozen": 0.741076068376,
+        "kind": "value",
+        "path": "$.outcomes.horse_colic_lesion_type.knn5",
+        "replay": 0.739709401709
+      },
+      {
+        "abs_numeric_difference": 0.0007092198579999875,
+        "frozen": 0.38968568035,
+        "kind": "value",
+        "path": "$.outcomes.horse_colic_surgery.knn5",
+        "replay": 0.388976460492
+      },
+      {
+        "abs_numeric_difference": 0.0003875968989999756,
+        "frozen": 0.3621177111,
+        "kind": "value",
+        "path": "$.outcomes.vehicle.knn5",
+        "replay": 0.362505307999
+      },
+      {
+        "abs_numeric_difference": 0.04545454545499994,
+        "frozen": 1.113636363636,
+        "kind": "value",
+        "path": "$.primary_test.mean_groups_acquired_primary",
+        "replay": 1.159090909091
+      }
+    ],
+    "samples_truncated": false
+  },
+  "terminal": "R23_PARENT_REPLAY_BYTE_DRIFT_DIAGNOSED"
+}

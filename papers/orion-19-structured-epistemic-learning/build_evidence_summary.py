@@ -151,6 +151,13 @@ def top_tier_outcomes(ledger: dict[str, Any]) -> dict[str, Any]:
         "wine: preregistered accessibility gap did not appear",
         "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED",
     )
+    r5_authority = require_file_tokens(
+        HERE / "evidence" / "R5_REVIVAL_LEDGER_V1.json",
+        "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V3_SUPPORTED",
+        "EXECUTED AND REPRODUCED",
+        "UNSOLVABLE within the frozen family",
+        "CANNOT_CHECK-BLOCKED",
+    )
     return {
         "schema": "P9.TopTierOutcomes.v1",
         "real_accessibility": {
@@ -168,6 +175,15 @@ def top_tier_outcomes(ledger: dict[str, Any]) -> dict[str, Any]:
             "generic_compute_escalation_accuracy": 0.2,
             "d_a_protected_cell": "CANNOT_CHECK",
             "authority": causal,
+        },
+        "r5_revival_2026_08_28": {
+            "protected_cell_execution": "EXECUTED_AND_REPRODUCED_NOT_BLOCKED",
+            "causal_diagnostic_transport_v3_terminal":
+                "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V3_SUPPORTED",
+            "qwen_scaling_recovery":
+                "NEGATIVE_CONFIRMED_AUTHORITATIVE_UNSOLVABLE_IN_FROZEN_FAMILY",
+            "cannot_check_blocked_lanes": 2,
+            "authority": r5_authority,
         },
         "unified_resource_ledger": ledger,
         "claim_boundary": (

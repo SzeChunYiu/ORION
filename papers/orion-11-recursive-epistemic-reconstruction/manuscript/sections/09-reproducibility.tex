@@ -21,14 +21,17 @@ to report as human adjudication. The adjudication standard itself is
 \idt{protocol/EXECUTION_MANIFEST_V1.md}, and the prospective power calculation
 is \idt{protocol/PROSPECTIVE_POWER_V1.md}.
 
-The frozen experiments reported in Sections~\ref{sec:necessity}
-and~\ref{sec:revision} have their own preregistrations:
+The archives for Sections~\ref{sec:necessity} and~\ref{sec:revision} label the
+following records as their preregistrations:
 \idt{research/revival/p1/protocol/P1.epistemic-mutation-necessity.v2.2.4.json}
 for the mutation-necessity experiment, together with its superseded earlier
 versions in the same directory, and
 \idt{research/claim_expansion/p1/P1_X_PROTOCOL_V1.md} with
 \idt{research/claim_expansion/p1/v2/P1_X_V2_REPLICATION_PROTOCOL.md} for the
 revision-responsibility battery.
+These labels and bound bytes identify the registered designs. They do not, by
+themselves, independently confirm the original order of protocol and outcome
+access.
 
 \subsection{Frozen suite and generated quantities}
 The case suite is \idt{protocol/cases/}, split into a pilot and a test set and
@@ -81,15 +84,45 @@ The primary and replication directories under
 worlds, protected response matrices, raw results, the result record, an
 separate-implementation verification record, provenance, and a \idt{SHA256SUMS}
 manifest.
-The primary execution identity is \idt{PRIMARY_EXECUTION_FREEZE_V3.json};
+The archived primary execution identity is \idt{PRIMARY_EXECUTION_FREEZE_V3.json};
 earlier receipts and both additive amendments are retained beside it. The
 replication directory binds its own disjoint world and execution receipts.
-\idt{PRIMARY_REPLICATION_CONCORDANCE.json} checks the predeclared cross-run
-conditions without pooling the runs. The separate verifier is
+\idt{PRIMARY_REPLICATION_CONCORDANCE.json} checks the cross-run conditions
+described as predeclared within the archive without pooling the runs. Because
+three cited provenance commits are unreachable, the current audit cannot
+independently establish that those records preceded outcome access. The separate verifier is
 \idt{research/revival/p1/verify_mutation_necessity_independent.py}; it uses only
 the standard library and imports neither the candidate policies, the production
 scorer and statistics, nor the subject's licensing code. This supplies code-path
 separation within the repository, not external scorer custody.
+
+The current negative-disposition audit is
+\idt{revival/r1-negative-revival-audit/AUDIT_RECEIPT.json}, with SHA-256
+\idt{e03f3c5b545aa82586539f1d794197bef3674250f42eea5868d8f1c79adbc4ab}.
+It confirms 2,882 worlds and 40,348 score rows in each run, zero score or
+analysis mismatches, matching supported terminals, and zero task-ID overlap.
+It also preserves the broad historical result: subject and strongest baseline
+each solve 1 of 48 root tasks, for difference zero.
+
+The clean-source cluster replay is recorded in
+\idt{revival/r1-negative-revival-audit/lunarc-replay-v1/LUNARC_REPLAY_RECEIPT_V1.json},
+with SHA-256
+\idt{f049d2c19c508940188f806315d9b467ccb3139da0ecb2b22e96d17921161acc}.
+Job 3550083 ran on node \texttt{cn063} and completed with exit \texttt{0:0} in
+\texttt{00:03:45}. The compact job output has SHA-256
+\idt{5cd24e6e9a64a9f6b8c4d8c9e89cd9be25cf330352b28b0859b614f40ff28087}.
+For both runs, the raw results, result record, and independent-verification
+record are byte-identical to the archive. The replay used a Git archive of
+source commit \texttt{58192a3a05c4fc8e55b45e0082cbd1de2792c250}; reconstructed
+large outputs are not committed.
+
+The same receipts preserve a chronology limitation. Historical execution
+records cite commits
+\texttt{8c4ac19bb30b93cbb81c90b3fa76cf14b3905418},
+\texttt{a7f68bf0fdbfd769d80e4475f526feb23df365c8}, and
+\texttt{d3c407b7bc007dabf9c99b1455156e861dfa9a92}, none of which is reachable.
+Current deterministic replay therefore does not establish the original
+prospective order or external authority.
 
 The round-by-round donor dispositions that fixed the parent and ablation
 structure are \idt{research/revival/p1/P1_DONOR_ASSIMILATION_LEDGER_V1.json}
@@ -113,6 +146,10 @@ The study calculus and the three decomposition pilots are under
 study is \idt{development/failure-epistemology-prospective-closure-v1/}, and the
 protected zero-error representation-transition study is
 \idt{research/extensions/orion-jump-recursive-atoms/zero_error_jump/}.
+The recursive-scientific-evolution donor subtraction is bound by
+\idt{RSE_SUCCESSOR_BOUNDARY_V1.md} and records that a generic justification
+language is sufficient on the four registered state-schema discriminator pairs.
+This is scope narrowing, not superiority evidence.
 
 \subsection{Claim ledgers and nearest work}
 The mapping from each result-bearing statement in this manuscript to the
@@ -198,30 +235,23 @@ The validator and 18-entry manifest establish bounded internal consistency and
 byte integrity, not independent semantic review or owner authority.
 
 \subsection{Outcome-blind source-native adapter audit}
-The full 47-entry semantic-interface handoff and its recorded independent
-checksum receipt remain in external custody and are not present in a clean
-repository checkout. The manuscript retains only the recorded handoff manifest
-digest,
-\idt{9f4503f693e155b12fb8c333f4777619cec1d66e387dcfc0e141fffa6933847d}.
-Because neither the manifest entries nor the independent receipt are
-repository-available, clean-checkout byte verification is
-\textsc{Cannot-check}; the historical zero-failure checksum statement is not a
-current repository integrity result. No private or large payload is
-redistributed here, and the unavailable handoff cannot serve as
-repository-available evidence or external semantic authority.
+The current verifier and its tracked audit receipt are under
+\idt{revival/r1-negative-revival-audit/}. They enumerate all 117,649 maps from
+repository-held sources, reject 116,929, and reproduce the exact 720-row
+survivor registry. Zero maps are fully certified. All 720 survivors are
+re-auditable in-repository, but 0/720 are resolvable there. The historical
+47-entry external handoff and its checksum receipt remain unavailable in a
+clean checkout; they are not required for the current enumeration and provide
+no current independent custody.
 
-The audit enumerates all 117,649 total maps: 0 are fully certified, 116,929 are
-rejected, and 720 remain not disproved but uncertified. The only currently
-certified partial map preserves \textsc{Unresolved}; the actionable mappings
-remain unbound because exhaustive target denotations and an owner-approved
-decision/action bridge are absent. The full-withdrawal counterexample is
-explicitly conditional on later owner-ratification of proposed closed-world
-target denotations. No case text, row-level outcome, protected gold or system
-outcome was accessed. These counts are bounded provenance statements recorded
-from the unavailable handoff, not independently checkable current-repository
-facts or external semantic authority. Licensing for the captured public
-taxonomies remains uncertain; no redistribution right or R7 transition is
-assumed.
+Every survivor remains blocked on external owner or formally delegated
+custodian semantics, target-corpus rights, host authority, a complete signed
+seven-target algebra, authorized delivery, and independent semantic review.
+V13 remains at 0/7 signed outputs and 0/4 closed authority acts. Zero certified
+maps does not mean zero possible maps. The full-withdrawal counterexample is
+conditional on later owner-ratification of proposed closed-world target
+denotations. This is an external-authority uncertainty, not a setup failure or
+an impossibility result.
 
 The external comparator identity and interface audit is
 \idt{development/comparator-binding-harness-2026-08-23/COMPARATOR_BINDING_LEDGER_V1.json},
