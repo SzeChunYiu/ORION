@@ -1,0 +1,53 @@
+{
+  "authority": {
+    "external_independent_proof_review": false,
+    "external_replication": false,
+    "scientific_authority_delta": "NONE",
+    "submission_authority": false,
+    "top_tier_authority": false
+  },
+  "base_commit": "d138a05c83754cc76c304205c401fdda03f41e6e",
+  "build": {
+    "command": "./build.sh",
+    "pdf_committed": false,
+    "review_pdf_output": "main.pdf"
+  },
+  "canonical_claim_ledger": {
+    "path": "papers/orion-01-certificate-realization/theory-B-CLAIM_LEDGER_R2.md",
+    "sha256": "d0a9539d27321dceb22df2717c795cede7358040537f2ded023fa5aa41446ea3"
+  },
+  "canonical_source": {
+    "path": "papers/orion-01-certificate-realization/theory-B-MANUSCRIPT_V2.md",
+    "sha256": "ca2bd5d9d905c86461e49d1bef1905e136f4d0d56203d9e2dd99101ad545d517"
+  },
+  "date": "2026-08-28",
+  "filing_time_open": [
+    "run build in clean environment and retain resulting PDF/hash",
+    "final journal template conversion if required",
+    "immutable archive/DOI",
+    "licence application confirmation",
+    "corresponding author, affiliations, ORCID, funding, conflicts and declarations",
+    "author confirmation of no concurrent submission and approval",
+    "external independent proof/novelty review"
+  ],
+  "package_claim_ledger_copy": {
+    "path": "CLAIM_LEDGER.md",
+    "sha256": "d0a9539d27321dceb22df2717c795cede7358040537f2ded023fa5aa41446ea3"
+  },
+  "package_files": {
+    "COMPILE.md": {"sha256": "4ef13e33c7e9133b8b38498a858c6320b3be300ba7d25ac539fc59b1f1b5937f"},
+    "COVER_LETTER_DRAFT.md": {"sha256": "210289ef2fd0cf6c365ba6adc9d0e3152154351d409e24ac8a308e242730b549"},
+    "DATA_CODE_AVAILABILITY.md": {"sha256": "b1e587378e39e245ed4d77566d79c2e7a3b12f90d08b363d0f322442085f68fd"},
+    "LICENSE_STATUS.md": {"sha256": "58fb379f4aaf83629d01de4e08f04209ffd7bb1de0c87628d5b6e701c9f2330b"},
+    "README.md": {"sha256": "c65707e845fbb334306599ecc57e1b380803984adc7a7d9133c88995a3934292"},
+    "build.sh": {"sha256": "4be681b1adc04b0f7aee2d9e8090cac5ed4da6a69da5aadfae8a496bf6177638"},
+    "verify_package.py": {"sha256": "83fd3a876055b36b1cf5a44633e265d2ee2afbb5209ca23b794ac4629777bafa"}
+  },
+  "package_source_copy": {
+    "path": "SOURCE.md",
+    "sha256": "ca2bd5d9d905c86461e49d1bef1905e136f4d0d56203d9e2dd99101ad545d517"
+  },
+  "paper": "B",
+  "schema": "ORION.ORION01.JournalPackageManifest.v1",
+  "title": "Exact Certificate Complexity versus Intrinsic Support in Quantum Compilation"
+}
