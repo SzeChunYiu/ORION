@@ -257,6 +257,17 @@ class ExecutionBindingTests(unittest.TestCase):
         self.assertIn('git status --porcelain', text)
         self.assertIn('run_fiberguard_pmlb_arm_conditional_r24_twice.sh', text)
 
+    def test_slurm_reproduces_the_verified_r23_parent_environment(self) -> None:
+        """Job 3550262 task 0 identified the only byte-identical R23 profile."""
+        text = SLURM.read_text()
+        self.assertIn('#SBATCH --nodelist=cn087', text)
+        self.assertIn(
+            'unset PYTHONHASHSEED OPENBLAS_NUM_THREADS OMP_NUM_THREADS '
+            'MKL_NUM_THREADS NUMEXPR_NUM_THREADS',
+            text,
+        )
+        self.assertNotIn('export OPENBLAS_NUM_THREADS=1', text)
+
 
 if __name__ == "__main__":
     unittest.main()

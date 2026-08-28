@@ -2,6 +2,7 @@
 #SBATCH --job-name=o02-r24-armfib
 #SBATCH --partition=lu48
 #SBATCH --account=lu2026-2-51
+#SBATCH --nodelist=cn087
 #SBATCH --time=02:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -25,11 +26,11 @@ test "$(git -C "$SUBJECT" rev-parse HEAD)" = 7c1f4bdc00136dc2e55c87fa6b8ba6e8af6
 test "$(git -C "$SUBJECT" rev-parse 'HEAD^{tree}')" = ca5d36e9093c2f7360db57198c8c0586a3217a60
 
 export PYTHONUNBUFFERED=1
-export PYTHONHASHSEED=0
-export OPENBLAS_NUM_THREADS=1
-export OMP_NUM_THREADS=1
-export MKL_NUM_THREADS=1
-export NUMEXPR_NUM_THREADS=1
+# Job 3550262 task 0 reproduced the frozen R23 parent byte-for-byte only
+# under the original cn087 environment.  The single-thread profile produced
+# the same 56-field drift on cn087 as on cn063, so these variables must be
+# absent rather than "deterministically" forced to one thread.
+unset PYTHONHASHSEED OPENBLAS_NUM_THREADS OMP_NUM_THREADS MKL_NUM_THREADS NUMEXPR_NUM_THREADS || true
 export PYTHON
 
 bash "$D/run_fiberguard_pmlb_arm_conditional_r24_twice.sh" "$SUBJECT"
