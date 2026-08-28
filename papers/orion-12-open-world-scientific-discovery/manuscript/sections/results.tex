@@ -88,13 +88,9 @@ are keyword-capable, however, so no keyword-only residual can meet the unchanged
 six-of-seven sign gates and no performance run was authorized.
 
 V14 sought a source-disjoint keyword-capable family but stopped at the source
-identity gate.  Frozen commit
-\idt{38b35218e4d0f99621cec5a8a25a0147bb88c654} resolves to tree
-\idt{49f437c367cc45a90867418fcef77c9ff3614456} and index blob
-\idt{f4f5007156cb71e7d54e99057037fb75d44f87c4}, not the frozen expected
-blob \idt{ada2668adfbb33d61e11a6bec02b10637e419bde}; those expected bytes
-belong to later commit \idt{dc2dadfdbb98eb1b4259604789abd640aa3b693e},
-which was not substituted.  V15 repaired the source-state binding without
+identity gate.  The frozen commit resolves to a tree and index blob that are not the frozen
+expected blob; those expected bytes belong to a later commit, which was not
+substituted.  All five identities are listed in the availability statement.  V15 repaired the source-state binding without
 crossing into population or outcome access.  The provider-valid signed commit,
 tag and recursive tree coherently expose the exact 22,135-byte index entry and
 61 same-snapshot dataset CSV blobs.  This is source-state availability, not an

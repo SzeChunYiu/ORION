@@ -74,28 +74,28 @@
     {
       "id": "P2.CURRENT_PACKAGE",
       "text": "The current manuscript has a fresh immutable PDF and completed page-level visual and claim audit.",
+      "artifacts": [
+        "journal_package/current_revision/RENDER_AND_VISUAL_AUDIT.md",
+        "journal_package/current_revision/manuscript.pdf"
+      ],
+      "status": "SUPPORTED",
+      "lifecycle": "ACTIVE_SUPPORTING",
+      "current_claim": true,
+      "note": "Closed 2026-08-28. A 47-page PDF was compiled from the current source with zero undefined references and zero overfull boxes, every page was visually inspected, and the claim ledger checked clean. Submission authority is unchanged and remains a separate human decision."
+    },
+    {
+      "id": "P2.PACKAGE_SUBMISSION_AUTHORITY",
+      "text": "The package is authorized for current submission: a person has reviewed the current-revision PDF and render audit and elected to supersede the retained historical package.",
       "artifacts": [],
       "status": "OPEN",
       "lifecycle": "ACTIVE_SUPPORTING",
-      "current_claim": true
+      "current_claim": true,
+      "note": "Opened 2026-08-28, replacing the artifact-shaped blocker that this pass closed. The current-revision PDF and its page-level render and visual audit now exist, so what remains open is not evidence but authority. Flipping package_authority.current_submission_authorized is a human decision and is not granted by producing the artifacts."
     }
   ],
   "declared_paper_terminal": "P2_NARROWED_RETAINED__CURRENT_PACKAGE_NOT_SUBMISSION_READY",
   "issue": 393,
-  "missing_artifacts": [
-    {
-      "path": "journal_package/current_revision/manuscript.pdf",
-      "role": "current-revision-content-bound-pdf",
-      "status": "CANNOT_CHECK",
-      "reason": "The retained 24-page PDF renders an earlier manuscript. No fresh immutable PDF for the current source is present."
-    },
-    {
-      "path": "journal_package/current_revision/RENDER_AND_VISUAL_AUDIT.md",
-      "role": "current-revision-render-and-page-level-visual-and-claim-audit",
-      "status": "CANNOT_CHECK",
-      "reason": "No build receipt and page-level visual and claim audit bind the current source to a current PDF."
-    }
-  ],
+  "missing_artifacts": [],
   "package_status": "SUPERSEDED",
   "paper_id": "P2",
   "render_binding": {
@@ -245,6 +245,14 @@
     {
       "path": "journal_package/RENDER_CLOSURE_STATE.json",
       "role": "generator-derived-current-render-closure-state"
+    },
+    {
+      "path": "journal_package/current_revision/manuscript.pdf",
+      "role": "current-revision-content-bound-pdf"
+    },
+    {
+      "path": "journal_package/current_revision/RENDER_AND_VISUAL_AUDIT.md",
+      "role": "current-revision-render-and-visual-audit"
     }
   ],
   "schema_version": "orion.journal-package.v1",
