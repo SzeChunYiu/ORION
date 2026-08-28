@@ -1,0 +1,32 @@
+{
+  "baseline_cost_measured_from_frozen_receipt": {
+    "always-raw": 10,
+    "cheapest_sound_non_vacuous": 7,
+    "confidence-only": 3,
+    "lifecycle-rcs": 7,
+    "note": "cost is reported per repository because the frozen receipt's git_ops divide exactly by the 31 repositories",
+    "provenance-only": 5,
+    "unit": "git operations per repository"
+  },
+  "compute": {
+    "arithmetic": "exact integer and rational; no sampling, no floating-point thresholds",
+    "checker_wall_seconds_order": "< 5",
+    "cost_configurations_enumerated": 28,
+    "state_vectors_enumerated": 120,
+    "witness_pairs_enumerated": 22
+  },
+  "evidence_reused_not_regenerated": {
+    "cases": 93,
+    "objective_gold_facts_cannot_check": 32,
+    "objective_gold_facts_decided": 123,
+    "organizations": 14,
+    "repositories": 31
+  },
+  "external_repositories_contacted": 0,
+  "fair_baseline_statement": "always-raw receives strictly MORE information than lifecycle-rcs and is the exhaustive upper baseline; provenance-only and confidence-only receive strictly less. All four decide the same 93 frozen cases under the same gold rule.",
+  "lane": "ORION23.EXTERNAL_RESPONSIBILITY_TRANSPORT.v1",
+  "network_requests": 0,
+  "new_experiments_executed": 0,
+  "note": "The external campaign was executed and frozen on 2026-08-24, before this lane. This lane re-runs nothing and contacts nothing; it proves theorems and recomputes the arm table arithmetically from the frozen receipt.",
+  "schema": "orion.successor.resource-accounting.v1"
+}
