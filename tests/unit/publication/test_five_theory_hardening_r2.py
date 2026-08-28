@@ -182,11 +182,29 @@ def test_recursive_skill_figure_and_availability_contracts():
     assert "withholds theorem authority" in availability
 
 
+CURRENT_MANIFEST = "development/five-paper-hardening-r3-2026-08-28/R3_FILE_MANIFEST.json"
+SUPERSEDED_MANIFEST = "development/five-paper-hardening-r2-2026-08-25/R2_FILE_MANIFEST.json"
+
+
+def test_the_superseded_r2_manifest_is_retained():
+    """R2 recorded what was hardened before the audited corrections. It stays."""
+    r2 = json.loads((ROOT / SUPERSEDED_MANIFEST).read_text())
+    assert r2["schema"] == "ORION.FivePaperHardeningR2.Manifest.v1"
+    assert len(r2["files"]) == 20
+    r3 = json.loads((ROOT / CURRENT_MANIFEST).read_text())
+    assert r3["supersedes"] == SUPERSEDED_MANIFEST
+    assert r3["mathematics_unchanged"] is True
+    # a supersession narrows or corrects; it never restores authority
+    for key in ("novelty_authority", "venue_authority", "external_replication"):
+        assert r3[key] is False
+    # every path R2 bound is still bound; a supersession may not drop coverage
+    assert {f["path"] for f in r3["files"]} == {f["path"] for f in r2["files"]}
+
+
 def test_r2_manifest_binds_every_declared_file():
+    """The CURRENT manifest must describe the current files, byte for byte."""
     import hashlib
-    manifest = json.loads(
-        (ROOT / "development/five-paper-hardening-r2-2026-08-25/R2_FILE_MANIFEST.json").read_text()
-    )
+    manifest = json.loads((ROOT / CURRENT_MANIFEST).read_text())
     assert manifest["novelty_authority"] is False
     assert manifest["venue_authority"] is False
     assert manifest["external_replication"] is False
