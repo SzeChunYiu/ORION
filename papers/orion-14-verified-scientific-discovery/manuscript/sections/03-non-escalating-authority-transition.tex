@@ -1,15 +1,14 @@
 \section{Non-escalating authority transition}
 Let a proposal contain claim $c$ and evidence references $E=\{e_1,\ldots,e_n\}$. Promotion is a conjunction of hard prerequisites rather than a weighted score:
 \begin{align}
-G_{\mathrm{content}} &: \text{resolved bytes equal the registered evidence digest},\\
+G_{\mathrm{content}} &: \text{resolved evidence exactly matches the registered content},\\
 G_{\mathrm{owner}} &: \text{the assigned source owns the cited content},\\
 G_{\mathrm{support}} &: \text{the assigned evidence supports }c,\\
 G_{\mathrm{indep}} &: \text{checker lineage is admissibly independent},\\
 G_{\mathrm{disc}} &: \text{checker rejects the frozen hostile battery},\\
-G_{\mathrm{influence}} &: \text{cited evidence participated in the answer path},\\
-G_{\mathrm{eval}} &: \text{evaluator identity/chronology is intact},\\
+G_{\mathrm{influence}} &: \text{cited evidence participated in answer generation},\\
+G_{\mathrm{eval}} &: \text{evaluator identity and evaluation order are intact},\\
 G_{\mathrm{access}} &: \text{protected-label access telemetry is clear},\\
 G_{\mathrm{search}} &: \text{search-time contamination is clear}.
 \end{align}
 The claim is promoted only when every required gate passes and the evidence supports it. A resolved negative prerequisite blocks promotion; an unresolved evidential prerequisite leaves the claim undetermined. No failed coordinate can be averaged away by confidence elsewhere. Eight ablations remove one coordinate at a time, including a soft-confidence variant that promotes when at least six of nine gates pass.
-

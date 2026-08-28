@@ -34,7 +34,7 @@ ALL = PRIMARY + [
     "claim-level-auditability-provenance",
 ]
 SHORT = {
-    "ORION": "ORION",
+    "ORION": "Governed",
     "provenanceguard-style-source-routing": "ProvGuard",
     "attributionbench-multisource-attribution": "AttribBench",
     "fire-iterative-retrieve-or-verify": "FIRE",
@@ -54,14 +54,14 @@ HOSTILE = [
     "INSUFFICIENT_EVIDENCE",
 ]
 ABL = {
-    "ablation-no-exact-content-binding": "ORION - exact content",
-    "ablation-no-content-provenance-distinction": "ORION - source/provenance",
-    "ablation-no-checker-lineage-independence": "ORION - checker lineage",
-    "ablation-no-hostile-checker-battery": "ORION - hostile checker",
-    "ablation-no-behavioral-influence": "ORION - influence",
-    "ablation-no-evaluator-protection-telemetry": "ORION - evaluator protection",
-    "ablation-soft-confidence": "ORION soft confidence",
-    "ablation-no-search-contamination-block": "ORION - search block",
+    "ablation-no-exact-content-binding": "Without exact content",
+    "ablation-no-content-provenance-distinction": "Without source/provenance",
+    "ablation-no-checker-lineage-independence": "Without checker lineage",
+    "ablation-no-hostile-checker-battery": "Without hostile checker",
+    "ablation-no-behavioral-influence": "Without influence",
+    "ablation-no-evaluator-protection-telemetry": "Without evaluator protection",
+    "ablation-soft-confidence": "Soft-confidence rule",
+    "ablation-no-search-contamination-block": "Without search block",
 }
 W, H = 960, 600
 
@@ -92,7 +92,7 @@ def axes(lines: list[str], y_min: float, y_max: float, label: str) -> tuple[int,
 
 
 def p4_2() -> str:
-    lines=start("False authority-promotion rate — protected V2")
+    lines=start("False authority-promotion rate — safety battery")
     x0,x1,y0,y1=axes(lines,0,1,"False promotion rate")
     slot=(x1-x0)/len(ALL); bw=slot*.62
     for i,sid in enumerate(ALL):
@@ -120,7 +120,7 @@ def p4_3() -> str:
         v=METRICS["systems"][sid]["false_promotion_rate"]; x=x0+(x1-x0)*v; y=100
         fill="#2f5597" if sid=="ORION" else "#777"
         lines += [f'<circle cx="{x:.1f}" cy="{y}" r="6" fill="{fill}"/>', f'<text x="{max(5,x+8):.1f}" y="{y+dy}" font-family="sans-serif" font-size="10">{SHORT[sid]}</text>']
-    lines += ['<text x="480" y="585" text-anchor="middle" font-family="sans-serif" font-size="10">All primary mechanisms promoted 60/60 clean positives; H2 passes with zero coverage difference.</text>', '</svg>']
+    lines += ['<text x="480" y="585" text-anchor="middle" font-family="sans-serif" font-size="10">All primary mechanisms promoted 60/60 clean positives; paired coverage difference is zero.</text>', '</svg>']
     return "\n".join(lines)
 
 
@@ -136,7 +136,7 @@ def p4_4() -> str:
             v=FAMILY["families"][name][sid]["false_promotion_rate"]; x=x0+c*cw
             fill="#d9e2f3" if v==0 and sid=="ORION" else ("#555" if v==1 else "#ddd")
             lines += [f'<rect x="{x}" y="{y}" width="{cw}" height="{ch}" fill="{fill}" stroke="white"/>', f'<text x="{x+cw/2}" y="{y+24}" text-anchor="middle" font-family="sans-serif" font-size="11">{v:.0%}</text>']
-    lines += ['<text x="480" y="585" text-anchor="middle" font-family="sans-serif" font-size="10">ProvenAI-style false-promotes all 30 cases in six governance/checker families; ORION false-promotes none.</text>', '</svg>']
+    lines += ['<text x="480" y="585" text-anchor="middle" font-family="sans-serif" font-size="10">ProvenAI-style false-promotes all 30 cases in six governance/checker families; governed pipeline false-promotes none.</text>', '</svg>']
     return "\n".join(lines)
 
 
@@ -160,7 +160,7 @@ def p4_6() -> str:
     # Fixed direct-label layout.  Two comparator points are almost coincident;
     # name them together rather than jittering data or drawing leader arrows.
     label_layout = {
-        "ORION": (8, -8, "start"),
+        "ORION": (-8, -8, "end"),
         "provenanceguard-style-source-routing": (-8, -12, "end"),
         "attributionbench-multisource-attribution": (8, -12, "start"),
         "fire-iterative-retrieve-or-verify": (8, -12, "start"),
@@ -188,7 +188,7 @@ def tables() -> None:
     TABLES.mkdir(parents=True,exist_ok=True)
     (TABLES/"p4_t1_attack_custody.tex").write_text(r'''\begin{table}[t]
 \centering\scriptsize
-\caption{Protected V2 battery and custody. Hidden labels remained host-only until scored jobs completed.}\label{tab:p4_t1}
+\caption{Protected safety battery and custody. Hidden labels remained evaluator-only until all mechanisms were scored.}\label{tab:p4_t1}
 \begin{tabular}{lrrrr}\toprule
 Slice & Cases & Clean & Hostile & Candidate labels \\\midrule
 Post-run public slice & 150 & 30 & 120 & hidden during execution \\
@@ -199,13 +199,13 @@ Total & 420 & 60 & 360 & hidden \\\bottomrule
 ''')
     rows=[]
     for sid in ALL:
-        r=METRICS["systems"][sid]; rows.append(f"{r['display_name']} & {r['false_promotion_rate']:.3f} & {r['clean_coverage']:.3f} & {r['clean_false_negative_count']} & {1000*r['mean_latency_seconds']:.4f} & {r['resource_units']:.1f} \\\\")
+        r=METRICS["systems"][sid]; display="Governed pipeline" if sid=="ORION" else r["display_name"]; rows.append(f"{display} & {r['false_promotion_rate']:.3f} & {r['clean_coverage']:.3f} & {r['clean_false_negative_count']} & {1000*r['mean_latency_seconds']:.4f} & {r['resource_units']:.1f} \\\\")
     for sid,label in ABL.items():
         r=METRICS["ablations"][sid]; rows.append(f"{label} & {r['false_promotion_rate']:.3f} & {r['clean_coverage']:.3f} & {r['clean_false_negative_count']} & {1000*r['mean_latency_seconds']:.4f} & 9.0 \\\\")
-    (TABLES/"p4_t2_baseline_ablation_results.tex").write_text("\\begin{table}[t]\n\\centering\\scriptsize\n\\caption{Protected V2 results. Comparator names denote protocol-matched mechanism reimplementations, not original external software. FP is over 360 hostile opportunities; clean is over 60 clean positives.}\\label{tab:p4_t2}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{lrrrrr}\\toprule\nSystem / variant & FP & Clean & Clean FN & Latency (ms) & Resource \\\\ \\midrule\n"+"\n".join(rows)+"\n\\bottomrule\\end{tabular}}\n\\end{table}\n")
+    (TABLES/"p4_t2_baseline_ablation_results.tex").write_text("\\begin{table}[t]\n\\centering\\scriptsize\n\\caption{Protected safety-battery results. Comparator names denote protocol-matched mechanism reimplementations, not original external software. FP is over 360 hostile opportunities; clean is over 60 clean positives.}\\label{tab:p4_t2}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{lrrrrr}\\toprule\nSystem / variant & FP & Clean & Clean FN & Latency (ms) & Resource \\\\ \\midrule\n"+"\n".join(rows)+"\n\\bottomrule\\end{tabular}}\n\\end{table}\n")
     strongest=METRICS["strongest_frozen_comparator"]
-    lines=["ORION & 30/30 & 0/360 & 0/60 \\\\", f"ProvenAI-style & 30/30 & {METRICS['reproduction']['comparator_false_promotions']}/360 & 0/60 \\\\"]
-    (TABLES/"p4_t3_cannot_check_errors.tex").write_text("\\begin{table}[t]\n\\centering\\small\n\\caption{Fail-closed outcomes and false-negative cost in protected V2. The only gold family whose correct terminal is `undetermined' contains 30 insufficient-evidence cases.}\\label{tab:p4_t3}\n\\begin{tabular}{lrrr}\\toprule\nSystem & Correctly undetermined & False promotions & Clean FN \\\\ \\midrule\n"+"\n".join(lines)+"\n\\bottomrule\\end{tabular}\\end{table}\n")
+    lines=["Governed pipeline & 30/30 & 0/360 & 0/60 \\\\", f"ProvenAI-style & 30/30 & {METRICS['reproduction']['comparator_false_promotions']}/360 & 0/60 \\\\"]
+    (TABLES/"p4_t3_cannot_check_errors.tex").write_text("\\begin{table}[t]\n\\centering\\small\n\\caption{Fail-closed outcomes and false-negative cost in the protected safety battery. The only gold family whose correct outcome is `undetermined' contains 30 insufficient-evidence cases.}\\label{tab:p4_t3}\n\\begin{tabular}{lrrr}\\toprule\nSystem & Correctly undetermined & False promotions & Clean FN \\\\ \\midrule\n"+"\n".join(lines)+"\n\\bottomrule\\end{tabular}\\end{table}\n")
 
 
 def main() -> None:

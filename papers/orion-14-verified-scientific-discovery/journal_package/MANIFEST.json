@@ -1,27 +1,200 @@
 {
   "schema_version": "orion.journal-package.v1",
   "paper_id": "P4",
-  "package_status": "SCAFFOLDING",
-  "declared_paper_terminal": "PEER_REVIEW_READY",
-  "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
-  "audit_date": "2026-08-17",
-  "issue": 160,
+  "package_status": "SUBMISSION_READY",
+  "declared_paper_terminal": "simulated_publication_ready_for_target",
+  "audit_subject_revision": "1aaf76fba90e2f06f0715108e1e5be70eef9eefc",
+  "audit_date": "2026-08-28",
+  "issue": 1609,
+  "target": {
+    "venue": "Transactions on Machine Learning Research",
+    "article_type": "standard double-blind research article",
+    "fallback": "strong ML methodology venue if external editor finds target mismatch"
+  },
+  "package_authority": {
+    "current_submission_authorized": true,
+    "human_filing_completed": false,
+    "journal_acceptance_claimed": false
+  },
   "required_files": [
     {
-      "path": "manuscript/main.tex",
-      "role": "manuscript-source"
+      "path": "manuscript/main.pdf",
+      "role": "canonical-compiled-pdf",
+      "binding": "pdf_render_binding"
     },
     {
-      "path": "evidence/CLAIM_LEDGER_V1.md",
-      "role": "claim-ledger"
+      "path": "journal_package/manuscript.pdf",
+      "role": "submission-pdf",
+      "binding": "pdf_render_binding"
+    },
+    {
+      "path": "journal_package/orion14_anonymous_review_2026-08-28.zip",
+      "role": "anonymous-review-supplement",
+      "binding": "anonymous_review_binding"
+    },
+    {
+      "path": "journal_package/CLAIM_EVIDENCE_MATRIX.json",
+      "role": "canonical-claim-evidence-map"
+    },
+    {
+      "path": "manuscript/main.tex",
+      "role": "canonical-manuscript-source"
+    },
+    {
+      "path": "manuscript/sections/01-introduction.tex",
+      "role": "manuscript-section-source"
+    },
+    {
+      "path": "manuscript/sections/02-related-work.tex",
+      "role": "manuscript-section-source"
+    },
+    {
+      "path": "manuscript/sections/02a-verification-axis-identifiability.tex",
+      "role": "manuscript-section-source"
+    },
+    {
+      "path": "manuscript/sections/03-non-escalating-authority-transition.tex",
+      "role": "manuscript-section-source"
+    },
+    {
+      "path": "manuscript/sections/04-methods.tex",
+      "role": "manuscript-section-source"
+    },
+    {
+      "path": "manuscript/sections/05-results.tex",
+      "role": "manuscript-section-source"
+    },
+    {
+      "path": "manuscript/sections/06-threat-model-limitations-and-interpretation.tex",
+      "role": "manuscript-section-source"
+    },
+    {
+      "path": "manuscript/sections/07-broader-impact-and-governance.tex",
+      "role": "manuscript-section-source"
+    },
+    {
+      "path": "manuscript/sections/08-data-and-code-availability.tex",
+      "role": "manuscript-section-source"
+    },
+    {
+      "path": "manuscript/sections/09-conclusion.tex",
+      "role": "manuscript-section-source"
+    },
+    {
+      "path": "submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex",
+      "role": "manuscript-section-source"
+    },
+    {
+      "path": "manuscript/bibliography.bib",
+      "role": "bibliography-source"
+    },
+    {
+      "path": "manuscript/tmlr.sty",
+      "role": "pinned-official-target-style"
+    },
+    {
+      "path": "manuscript/tmlr.bst",
+      "role": "pinned-official-target-bibliography-style"
+    },
+    {
+      "path": "figures/p4_2_false_promotion.png",
+      "role": "rendered-manuscript-figure"
+    },
+    {
+      "path": "figures/p4_2_false_promotion.svg",
+      "role": "regenerable-figure-source"
+    },
+    {
+      "path": "figures/p4_3_coverage_frontier.png",
+      "role": "rendered-manuscript-figure"
+    },
+    {
+      "path": "figures/p4_3_coverage_frontier.svg",
+      "role": "regenerable-figure-source"
+    },
+    {
+      "path": "figures/p4_4_detection_by_attack.png",
+      "role": "rendered-manuscript-figure"
+    },
+    {
+      "path": "figures/p4_4_detection_by_attack.svg",
+      "role": "regenerable-figure-source"
+    },
+    {
+      "path": "figures/p4_5_attribution_vs_support.png",
+      "role": "rendered-manuscript-figure"
+    },
+    {
+      "path": "figures/p4_5_attribution_vs_support.svg",
+      "role": "regenerable-figure-source"
+    },
+    {
+      "path": "figures/p4_6_cost_false_promotion.png",
+      "role": "rendered-manuscript-figure"
+    },
+    {
+      "path": "figures/p4_6_cost_false_promotion.svg",
+      "role": "regenerable-figure-source"
+    },
+    {
+      "path": "figures/generate_figures.py",
+      "role": "figure-table-generator"
+    },
+    {
+      "path": "tables/p4_t1_attack_custody.tex",
+      "role": "manuscript-table-source"
+    },
+    {
+      "path": "tables/p4_t2_baseline_ablation_results.tex",
+      "role": "manuscript-table-source"
+    },
+    {
+      "path": "tables/p4_t3_cannot_check_errors.tex",
+      "role": "manuscript-table-source"
+    },
+    {
+      "path": "CLAIM_LEDGER_V4.md",
+      "role": "scientific-claim-ledger"
+    },
+    {
+      "path": "JOURNAL_READINESS.md",
+      "role": "immutable-v2-readiness-record"
     },
     {
       "path": "evidence/protected_v2/PUBLICATION_METRICS_V2.json",
-      "role": "headline-metrics"
+      "role": "v2-headline-metrics"
     },
     {
       "path": "evidence/protected_v2/RESULT_ATTESTATION_V2.md",
-      "role": "result-attestation"
+      "role": "v2-result-attestation"
+    },
+    {
+      "path": "evidence/protected_v2/FAMILY_CONTRAST_V2.json",
+      "role": "v2-family-contrast"
+    },
+    {
+      "path": "evidence/protected_v2/LIVE_ARM_STATUS.md",
+      "role": "retained-adverse-live-arm-record"
+    },
+    {
+      "path": "evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
+      "role": "v2-saturation-audit"
+    },
+    {
+      "path": "protocol/PROTECTED_RUN_BINDINGS_V2.json",
+      "role": "v2-execution-bindings"
+    },
+    {
+      "path": "host/BASELINE_CONFIGS_V2.json",
+      "role": "v2-comparator-configurations"
+    },
+    {
+      "path": "host/independent_reproduce_v2.py",
+      "role": "v2-independent-code-path"
+    },
+    {
+      "path": "reproducibility/BINDING_MANIFEST_V2.md",
+      "role": "v2-reproducibility-binding"
     },
     {
       "path": "evidence/protected_v3/FREEZE.md",
@@ -41,134 +214,165 @@
     },
     {
       "path": "evidence/protected_v3/README.md",
-      "role": "v3-promotion-provenance"
-    },
-    {
-      "path": "evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
-      "role": "panel-resolution-audit"
+      "role": "v3-evidence-identity"
     },
     {
       "path": "evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json",
       "role": "v3-claim-axis-adjudication"
     },
     {
-      "path": "reproducibility/BINDING_MANIFEST_V2.md",
-      "role": "reproducibility-bindings"
+      "path": "../../research/claim_expansion/p4/P4_X_PROTECTED_RESULT_V1.json",
+      "role": "p4x-protected-result"
+    },
+    {
+      "path": "../../research/claim_expansion/p4/P4_X_INDEPENDENT_VERIFICATION_V1.json",
+      "role": "p4x-independent-verification"
+    },
+    {
+      "path": "../../research/verification/records/P4.H1.false-authority-promotion.json",
+      "role": "scientific-result-verification"
+    },
+    {
+      "path": "../../research/verification/records/P4.H2.clean-authority-coverage.json",
+      "role": "scientific-result-verification"
+    },
+    {
+      "path": "editorial/ATOMIC_CLAIM_LEDGER_WAVE1_2026-08-28.md",
+      "role": "author-atomic-ledger"
+    },
+    {
+      "path": "editorial/INDEPENDENT_ATOMIC_COVERAGE_2026-08-28.md",
+      "role": "independent-atomic-coverage"
+    },
+    {
+      "path": "editorial/ATOMIC_LEDGER_RECONCILIATION_WAVE1_2026-08-28.md",
+      "role": "independent-coverage-addendum"
+    },
+    {
+      "path": "editorial/CANONICAL_RELEASE_STATUS_RECONCILIATION_2026-08-28.md",
+      "role": "canonical-release-status"
+    },
+    {
+      "path": "editorial/FORMAL_PROOF_AUDIT_2026-08-28.md",
+      "role": "formal-proof-audit"
+    },
+    {
+      "path": "editorial/LITERATURE_ENTAILMENT_AND_NOVELTY_AUDIT_2026-08-28.md",
+      "role": "current-literature-novelty-audit"
+    },
+    {
+      "path": "editorial/TARGET_POLICY_AUDIT_TMLR_2026-08-28.md",
+      "role": "target-policy-audit"
+    },
+    {
+      "path": "editorial/ROUND1_REVIEWER_1_VALIDITY_2026-08-28.md",
+      "role": "frozen-round1-review"
+    },
+    {
+      "path": "editorial/ROUND1_REVIEWER_2_POSITIONING_2026-08-28.md",
+      "role": "frozen-round1-review"
+    },
+    {
+      "path": "editorial/ROUND1_REVIEWER_3_REPRODUCIBILITY_2026-08-28.md",
+      "role": "frozen-round1-review"
+    },
+    {
+      "path": "editorial/ROUND1_EDITOR_SYNTHESIS_2026-08-28.md",
+      "role": "round1-editor-synthesis"
+    },
+    {
+      "path": "editorial/REVISION_DELTA_WAVE1_FINAL_2026-08-28.md",
+      "role": "final-revision-delta"
+    },
+    {
+      "path": "editorial/ROUND2_REVIEWER_1_TARGETED_VALIDITY_2026-08-28.md",
+      "role": "targeted-rereview"
+    },
+    {
+      "path": "editorial/ROUND2_REVIEWER_2_TARGETED_POSITIONING_2026-08-28.md",
+      "role": "targeted-rereview"
+    },
+    {
+      "path": "editorial/ROUND2_REVIEWER_3_TARGETED_REPRODUCIBILITY_2026-08-28.md",
+      "role": "targeted-rereview"
+    },
+    {
+      "path": "editorial/ROUND2_EDITOR_CLOSURE_2026-08-28.md",
+      "role": "final-editor-closure"
     },
     {
       "path": "submission/COVER_NOTE_TMLR.md",
-      "role": "cover-note"
+      "role": "blind-cover-note"
     },
     {
       "path": "submission/TMLR_SCOPE_AND_CHECKLIST.md",
-      "role": "journal-scope"
+      "role": "target-scope-checklist"
     },
     {
-      "path": "JOURNAL_READINESS.md",
-      "role": "gate-checklist"
+      "path": "submission/ANONYMOUS_REVIEW_ARTIFACT_MANIFEST_V1.md",
+      "role": "anonymous-artifact-record"
     },
     {
-      "path": "CLAIM_LEDGER_V4.md",
-      "role": "claim-ledger-v4"
+      "path": "submission/build_anonymous_review_artifact.py",
+      "role": "anonymous-artifact-builder"
     },
     {
-      "path": "manuscript/sections/01-introduction.tex",
-      "role": "section-source"
+      "path": "submission/TMLR_EDITOR_NOTE_2026-08-28.md",
+      "role": "editor-facing-corresponding-author-note"
     },
     {
-      "path": "manuscript/sections/02-related-work.tex",
-      "role": "section-source"
+      "path": "submission/WAVE1_CLOSEOUT_2026-08-28.md",
+      "role": "wave1-closeout-record"
     },
     {
-      "path": "manuscript/sections/02a-verification-axis-identifiability.tex",
-      "role": "section-source"
+      "path": "journal_package/history/MANIFEST_2026-08-24.json",
+      "role": "historical-package-manifest"
     },
     {
-      "path": "manuscript/sections/03-non-escalating-authority-transition.tex",
-      "role": "section-source"
+      "path": "journal_package/history/SHA256SUMS_2026-08-24.txt",
+      "role": "historical-package-hashes"
     },
     {
-      "path": "manuscript/sections/04-methods.tex",
-      "role": "section-source"
-    },
-    {
-      "path": "manuscript/sections/05-results.tex",
-      "role": "section-source"
-    },
-    {
-      "path": "manuscript/sections/06-threat-model-limitations-and-interpretation.tex",
-      "role": "section-source"
-    },
-    {
-      "path": "manuscript/sections/07-broader-impact-and-governance.tex",
-      "role": "section-source"
-    },
-    {
-      "path": "manuscript/sections/08-data-and-code-availability.tex",
-      "role": "section-source"
-    },
-    {
-      "path": "manuscript/sections/09-conclusion.tex",
-      "role": "section-source"
-    },
-    {
-      "path": "manuscript/sections/10-freeze-and-custody-identifiers.tex",
-      "role": "section-source"
-    },
-    {
-      "path": "manuscript/sections/11-ablation-interpretation.tex",
-      "role": "section-source"
-    },
-    {
-      "path": "submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex",
-      "role": "p4x-promotion-authority-section"
-    },
-    {
-      "path": "manuscript/main.pdf",
-      "role": "compiled-pdf-in-tree",
-      "binding": "pdf_render_binding"
-    },
-    {
-      "path": "protocol/SCIFACT_LABEL_STATE_MAP_V1.json",
-      "role": "scifact-label-state-map-frozen"
-    },
-    {
-      "path": "protocol/SCIFACT_LABEL_STATE_MAP_V1.md",
-      "role": "scifact-label-state-map-prose"
-    },
-    {
-      "path": "protocol/check_scifact_label_state_map_v1.py",
-      "role": "scifact-label-state-map-checker"
+      "path": "journal_package/history/manuscript_2026-08-24.pdf",
+      "role": "historical-working-pdf"
     }
   ],
   "pdf_render_binding": {
-    "note": "Local tectonic (XeTeX/xdvipdfmx) render, not the CI clean-room artifact; see CLAIM_PDF_AUDIT.md addenda 2026-08-24 (original render and abstract-carrier restoration re-render).",
-    "source_revision": "abfc846a61a1596309a7ebc0ac38e579aa0f333f",
-    "rendered_utc_date": "2026-08-24",
-    "engine": "tectonic (XeTeX, xdvipdfmx producer)",
-    "sha256": "2d3841da6c0a70b169dcaf162fb126fc0e1b0c9c54d0a15fd897744239644f71",
-    "pages": 26
+    "source_revision": "1aaf76fba90e2f06f0715108e1e5be70eef9eefc",
+    "workflow": "manuscript-clipping-audit",
+    "workflow_run_id": 33169108251,
+    "source_date_epoch": 1787918219,
+    "engine": "pdfTeX 1.40.25 / TeX Live 2023 on Ubuntu via latexmk 4.83",
+    "sha256": "9dbf69d396e0396f9b8ccaea313fa409d1325bd5f939ba4db224198c4747c87d",
+    "pages": 19,
+    "copies": [
+      "manuscript/main.pdf",
+      "journal_package/manuscript.pdf"
+    ],
+    "copies_byte_identical": true,
+    "clipping_findings": 0,
+    "all_pages_visually_audited": true,
+    "reader_facing_audit_workflow": "p4-tmlr-submission-audit",
+    "reader_facing_audit_run_id": 33169108291,
+    "reader_facing_internal_code_hits": 0,
+    "reader_facing_transport_or_path_hits": 0
   },
-  "missing_artifacts": [
-    {
-      "path": "journal_package/manuscript.pdf",
-      "role": "compiled-pdf-copied-into-package",
-      "status": "CANNOT_CHECK",
-      "reason": "Intentionally not copied: COMPILE.md forbids copying a PDF into journal_package/. An in-tree compiled PDF exists and is hash-bound as manuscript/main.pdf (pdf_render_binding; local tectonic render 2026-08-24). The audited 12-page release PDF remains in GitHub Release orion-p4-v2-peer-review-ready-saturated-2026-08-17 (SHA-256 f2ede371e254e37cf57c309565a5ede09ab3d61f9feba75b67eccca2a4893ccf)."
-    },
-    {
-      "path": "journal_package/DOI.txt",
-      "role": "permanent-archive-doi",
-      "status": "CANNOT_CHECK",
-      "reason": "GitHub Release tag is not a DOI. No DataCite/Zenodo DOI is recorded."
-    },
-    {
-      "path": "journal_package/openreview_submission_id.txt",
-      "role": "openreview-id",
-      "status": "CANNOT_CHECK",
-      "reason": "TMLR OpenReview ID is inserted only after an actual submission."
-    }
-  ],
+  "anonymous_review_binding": {
+    "path": "journal_package/orion14_anonymous_review_2026-08-28.zip",
+    "sha256": "ec842a56dc49b7363de847e7c015fa2730c810a04652c5e440d9a72af4b665a3",
+    "members": 10,
+    "uncompressed_bytes": 100955,
+    "deterministic_rebuilds": 2,
+    "identity_scan": "PASS",
+    "zip_integrity": "PASS",
+    "headline_verifier": "ANONYMOUS_REVIEW_HEADLINES_VERIFIED"
+  },
+  "historical_custody": {
+    "directory": "journal_package/history",
+    "authority": "HISTORICAL_ONLY__NOT_CURRENT_SUBMISSION",
+    "date": "2026-08-24"
+  },
+  "missing_artifacts": [],
   "claims": [
     {
       "id": "P4.H1",
@@ -208,20 +412,43 @@
       "status": "NOT_SUPPORTED"
     },
     {
-      "id": "P4.PDF",
-      "text": "An independent final proofread of the current in-tree manuscript PDF remains to be completed.",
-      "artifacts": [],
-      "status": "OPEN"
+      "id": "P4.X",
+      "text": "Across 400 protected exact contracts, P4-X scores 400/400 versus 250/400 for donor-complete generic B1 and 50/400 for compensatory B2; information-equivalent typed B3 ties at 400/400, so no inherent centralization or unique-expressivity advantage is authorized.",
+      "artifacts": [
+        "../../research/claim_expansion/p4/P4_X_PROTECTED_RESULT_V1.json",
+        "../../research/claim_expansion/p4/P4_X_INDEPENDENT_VERIFICATION_V1.json"
+      ],
+      "status": "SUPPORTED"
     },
     {
-      "id": "P4.LOCAL_RENDER",
-      "text": "The 26-page in-tree working PDF passed a same-session programmatic render and content audit; this is local conformance, not an independent proofread or submission package.",
+      "id": "P4.PDF",
+      "text": "The exact 19-page anonymous PDF is a pinned Ubuntu latexmk/pdfTeX clean build of the canonical source and passed every-page visual, surface, metadata, font and clipping audit.",
       "artifacts": [
         "manuscript/main.pdf",
-        "journal_package/CLAIM_PDF_AUDIT.md"
+        "journal_package/manuscript.pdf",
+        "journal_package/CLAIM_PDF_AUDIT.md",
+        "editorial/ROUND2_REVIEWER_3_TARGETED_REPRODUCIBILITY_2026-08-28.md"
       ],
-      "status": "BOUNDED",
-      "boundary": "Local render conformance only; journal_package remains SCAFFOLDING and independent proofread/submission authority remain OPEN."
+      "status": "SUPPORTED"
+    },
+    {
+      "id": "P4.ANONYMOUS_REVIEW_ARTIFACT",
+      "text": "The deterministic ten-member anonymous ZIP is checksum-bound, identity-scanned and sufficient to check the released safe aggregates and interpretation guards without exporting protected gold.",
+      "artifacts": [
+        "journal_package/orion14_anonymous_review_2026-08-28.zip",
+        "submission/ANONYMOUS_REVIEW_ARTIFACT_MANIFEST_V1.md"
+      ],
+      "status": "SUPPORTED"
+    },
+    {
+      "id": "P4.SCOPE",
+      "text": "The current package supports only the finite/formal V2, V3 and P4-X claims; naturalistic, deployed-system, native external-software, external-replication, general scientific-judgement and centralization superiority remain outside authority.",
+      "artifacts": [
+        "journal_package/CLAIM_EVIDENCE_MATRIX.json",
+        "editorial/CANONICAL_RELEASE_STATUS_RECONCILIATION_2026-08-28.md",
+        "manuscript/sections/06-threat-model-limitations-and-interpretation.tex"
+      ],
+      "status": "BOUNDED"
     }
   ],
   "scientific_result_verification": {
@@ -231,5 +458,15 @@
       "research/verification/records/P4.H1.false-authority-promotion.json",
       "research/verification/records/P4.H2.clean-authority-coverage.json"
     ]
-  }
+  },
+  "human_filing_inputs": [
+    "OpenReview profile",
+    "complete author names and affiliations",
+    "ORCIDs",
+    "funding",
+    "conflicts",
+    "ethics or IRB declaration as applicable",
+    "actual upload",
+    "submission ID"
+  ]
 }

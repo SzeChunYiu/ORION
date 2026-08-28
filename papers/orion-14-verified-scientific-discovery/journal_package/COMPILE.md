@@ -1,43 +1,72 @@
-# ORION-14 compile instructions
+# ORION-14 exact compile and verification instructions
 
-TMLR template. `tmlr.sty` / `tmlr.bst` are vendored in `manuscript/` as tracked files, which is what the 2026-08-24 local render used. The CI audit workflow still pins upstream commit `7bf90efe3a0debbba703c05c43f3ff7e4d4a2992` for its clean-room compile; whether the vendored copies are byte-identical to that pin is CANNOT_CHECK without fetching upstream.
+## Canonical render
 
-Clean-room compile is performed by `.github/workflows/p4_tmlr_submission_audit.yml`. Locally, either the pdflatex sequence:
+The bound submission PDF was produced from source revision `1aaf76fba90e2f06f0715108e1e5be70eef9eefc` by GitHub Actions run `33169108251` using:
 
-```bash
-cd papers/orion-14-verified-scientific-discovery/manuscript
-pdflatex main.tex
-bibtex main
-pdflatex main.tex
-pdflatex main.tex
+- Ubuntu runner;
+- latexmk 4.83;
+- pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian);
+- `SOURCE_DATE_EPOCH=1787918219`;
+- vendored official TMLR style files pinned to upstream commit `7bf90efe3a0debbba703c05c43f3ff7e4d4a2992`.
+
+Pinned style hashes:
+
+```text
+816214ff5919aa457b6b443bee52b15d9561421417b7f8a50cc84651519f0002  manuscript/tmlr.sty
+306fd454cf40771bee01293eeb98d2c1cd5f4e11ed0cd7296b335f354fc45206  manuscript/tmlr.bst
 ```
 
-or a single-file tectonic render (XeTeX; what produced the tracked 2026-08-24 `manuscript/main.pdf`, 26 pages):
+The reader-facing author gate in `p4-tmlr-submission-audit` run `33169108291` also passed against this source revision. It found no rendered internal experiment/product codes, literal decision/status strings, repository transport terms, paths or filenames.
 
-```bash
-cd papers/orion-14-verified-scientific-discovery/manuscript
-tectonic main.tex
+The resulting PDF is 19 pages with SHA-256:
+
+```text
+9dbf69d396e0396f9b8ccaea313fa409d1325bd5f939ba4db224198c4747c87d
 ```
 
-Figures regenerate from immutable public V2 aggregates:
+## Build from the repository root
+
+Install latexmk, TeX Live with recommended fonts/LaTeX packages, librsvg and Poppler. Regenerate the safe figures and tables before compiling:
 
 ```bash
 python papers/orion-14-verified-scientific-discovery/figures/generate_figures.py
-```
-
-The generator emits SVG; `main.tex` includes PNG. Rasterise before compiling, or
-every `\includegraphics` fails on a file that does not exist:
-
-```bash
 F=papers/orion-14-verified-scientific-discovery/figures
-for stem in p4_2_false_promotion p4_3_coverage_frontier p4_4_detection_by_attack \
-            p4_5_attribution_vs_support p4_6_cost_false_promotion; do
+for stem in p4_2_false_promotion p4_3_coverage_frontier \
+            p4_4_detection_by_attack p4_5_attribution_vs_support \
+            p4_6_cost_false_promotion; do
   rsvg-convert -w 1440 -o "$F/$stem.png" "$F/$stem.svg"
 done
 ```
 
-This is the same step `.github/workflows/p4_tmlr_submission_audit.yml` performs,
-which is why the clean-room compile passes there while the sequence documented
-here previously did not run locally.
+Compile with the pinned epoch:
 
-Do not copy a PDF into `journal_package/`. The compiled PDF lives in-tree at `manuscript/main.pdf`, hash-bound via `MANIFEST.json` `pdf_render_binding` and `SHA256SUMS`; the audited release PDF identity is recorded with its GitHub Release SHA in `MANIFEST.json`.
+```bash
+cd papers/orion-14-verified-scientific-discovery/manuscript
+export SOURCE_DATE_EPOCH=1787918219
+latexmk -C main.tex
+latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex
+```
+
+The exact byte hash requires the pinned Ubuntu/TeX toolchain above. A successful build on another platform is a useful compile check but is not authority to replace the bound PDF.
+
+## Required verification
+
+From the repository root:
+
+```bash
+python papers/orion-14-verified-scientific-discovery/submission/build_anonymous_review_artifact.py --out-dir /tmp/orion14-anonymous
+pytest -q tests/unit/p4/test_p4_publication_v2.py \
+          tests/unit/p4/test_p4_v2_execution_freeze.py \
+          tests/unit/p4/test_p4_h3_v3_promotion.py
+python research/paper-programme-v1/journal_package/check_journal_package.py --paper P4
+python scripts/audit_manuscript_clipping.py --root . \
+  papers/orion-14-verified-scientific-discovery/manuscript/main.pdf \
+  papers/orion-14-verified-scientific-discovery/journal_package/manuscript.pdf
+```
+
+Also run the package-currency and manuscript-integrity/surface tests named in the final editor record. `SHA256SUMS` must remain unchanged and all required files must verify.
+
+## Filing objects
+
+Upload only the exact bound `journal_package/manuscript.pdf` and `journal_package/orion14_anonymous_review_2026-08-28.zip`, after completing the human-only OpenReview metadata. Do not upload `submission/TMLR_EDITOR_NOTE_2026-08-28.md` as anonymous supplementary material; it contains the corresponding-author identity for the editor-facing form.

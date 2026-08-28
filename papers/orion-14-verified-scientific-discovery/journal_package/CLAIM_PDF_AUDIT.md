@@ -125,3 +125,132 @@ render, same-session mechanical audit, `ORION-14.PDF` stays OPEN pending an
 independent proofread of this exact file (by hash).
 
 The local 26-page render and same-session mechanical audit are recorded separately as `ORION-14.LOCAL_RENDER` = **BOUNDED**. They do not satisfy `ORION-14.PDF` or create a submission package.
+
+## Final addendum, 2026-08-28 — exact clean PDF and recursive review closure
+
+This addendum supersedes the production status, but not the scientific history,
+of the earlier addenda. The canonical manuscript source was finalized at
+`b1c0d26096a822e8294b8b60dbbbec3c4e73bc5d`; no V2, V3 or P4-X result object was
+edited by the closeout.
+
+### Exact render binding
+
+| Field | Final value |
+|---|---|
+| Canonical source revision | `b1c0d26096a822e8294b8b60dbbbec3c4e73bc5d` |
+| Clean-build workflow | `manuscript-clipping-audit`, run `33167703059` |
+| Source epoch | `1787916820` |
+| Engine | pdfTeX 1.40.25 / TeX Live 2023, Ubuntu latexmk 4.83 |
+| PDF SHA-256 | `d9b8fbf3b9f16a7c35b478a810121d8803ae2d848a7817d0cff33e6d47126110` |
+| Pages | 19, US letter |
+| Package copy | `journal_package/manuscript.pdf`, byte-identical |
+
+The workflow's rebuild and clipping stages succeeded and its artifact upload
+retained this PDF. Its equality step failed because the branch still contained
+the older local Tectonic render at that instant; this was the expected signal
+that triggered replacement, not a waived failure. The uploaded clean PDF is now
+both the tracked working PDF and the package PDF. A PDF-only/package commit does
+not alter the source-history-derived epoch.
+
+### Page-level proofread and render QA
+
+All 19 pages were inspected as a complete contact sheet, then the title/abstract,
+proof pages, every figure and table, the adverse-evidence page, Availability,
+Conclusion and reference pages were inspected at page scale.
+
+- The clipping auditor reports 0 findings on both identical PDF copies.
+- All fonts are embedded; page geometry is 612 x 792 points.
+- Metadata contains `Anonymous authors` and the correct title, subject and
+  keywords; the PDF contains no JavaScript, forms or encryption.
+- Five 1440 x 900 figures render cleanly at approximately 222 ppi. Axes, legends,
+  uncertainty marks and captions are readable. Captions state 360 hostile
+  opportunities, 60 clean cases, 30 cases per hostile family, the 420-case
+  attribution/support scope, and the five-repeat latency boundary.
+- All three tables, displayed equations and 19 pages of references/text show no
+  clipping, overlap, missing glyph or unresolved citation.
+- Text extraction confirms the 0/360, 180/360, 60/60, 30/30, 15/30, 400/400,
+  250/400 and 50/400 carriers. The V2 H3 `not supported` discussion and the
+  excluded 39-case live arm remain visible.
+- The rendered surface contains no author name/email/account handle, public
+  repository ownership, local path, issue/branch/run chronology, or unresolved
+  release placeholder. The TMLR `MM`, `YYYY` and `XXXX` tokens remain only
+  because the official template reserves their replacement for camera-ready.
+
+### Recursive claim closure
+
+`editorial/CANONICAL_RELEASE_STATUS_RECONCILIATION_2026-08-28.md` reconciles all
+175 atomic/reconciliation rows: 121 `VERIFIED`, 39 `BOUNDED_INFERENCE`, 13
+`COHERENT_DEFINITION`, and 2 `NOT_APPLICABLE`. The two not-applicable rows are
+initial-review template fields and human filing-portal metadata. No in-scope
+blocked, contradicted, unresolved, internally supported-only or hidden
+not-assessable assertion survives.
+
+Three targeted re-reviews close the Round-1 validity, positioning, anonymity,
+reproducibility and exact-render concerns. These records are simulated
+pre-submission review, not external peer review or journal acceptance.
+
+### Final claim/PDF decision
+
+- `P4.H1`: **SUPPORTED**, finite V2 battery.
+- `P4.H2`: **SUPPORTED**, easy clean-control non-inferiority guard.
+- `P4.H3.V2`: **NOT_SUPPORTED**, retained saturated instrument.
+- `P4.H3`: **SUPPORTED** only as distinct V3 terminal/interface attainability.
+- `P4.X`: **SUPPORTED** on exact contracts, with the typed 400/400 tie retaining
+  the anti-centralization boundary.
+- `P4.PDF`: **SUPPORTED** for exact build, anonymity and page-level conformance.
+
+The package does not authorize naturalistic, deployed-system, native
+external-software, external-replication or general scientific-judgement
+superiority. Human OpenReview metadata, upload and submission ID remain filing
+actions rather than scientific/package evidence gaps.
+
+Final pipeline terminal: `simulated_publication_ready_for_target`.
+
+
+## Superseding reader-facing addendum, 2026-08-28 — exact filing PDF
+
+This addendum supersedes only the current production binding recorded in the
+preceding final addendum. The earlier `d9b8fbf3b9f1…` PDF and run
+`33167703059` remain historical provenance for the pre-scrub manuscript and are
+not the filing object. No V2, V3 or P4-X result artifact changed.
+
+### Superseding exact binding
+
+| Field | Current value |
+|---|---|
+| Canonical reader-facing source revision | `1aaf76fba90e2f06f0715108e1e5be70eef9eefc` |
+| Clean-build workflow | `manuscript-clipping-audit`, run `33169108251` |
+| Source epoch | `1787918219` |
+| Engine | pdfTeX 1.40.25 / TeX Live 2023, Ubuntu latexmk 4.83 |
+| PDF SHA-256 | `9dbf69d396e0396f9b8ccaea313fa409d1325bd5f939ba4db224198c4747c87d` |
+| Pages | 19, US letter |
+| Package copy | `journal_package/manuscript.pdf`, byte-identical |
+| Reader-facing author gate | `p4-tmlr-submission-audit`, run `33169108291`, success |
+
+The clipping run rebuilt the PDF and found no clipping before its equality stage
+reported the expected stale tracked-PDF mismatch. The exact uploaded rebuild was
+then copied byte-identically to `manuscript/main.pdf` and
+`journal_package/manuscript.pdf`; the new package hashes bind those copies. This
+was a source-preserving artifact replacement, not a waiver of the equality gate.
+The subsequent package commit is required to make a fresh equality run green.
+
+### Reader-facing surface decision
+
+The PDF-text author gate and an independent local extraction scan report zero
+unresolved hits in each of these classes:
+
+- internal paper, hypothesis, experiment, comparator and round codes;
+- literal decision or package-status strings;
+- repository, CI and transport chronology;
+- repository paths and filenames.
+
+The remaining `P0` and `P1` tokens are defined probability-distribution notation
+in a formal proposition, not project identifiers. They are retained on scientific
+meaning rather than exempted as internal codes. The scientific carriers remain
+0/360 versus 180/360, 60/60 versus 60/60, the retained saturated null, 30/30
+versus 0/30 and 15/30 under the interface-attainability boundary, and 400/400
+versus 250/400 and 50/400 with the typed 400/400 tie.
+
+`P4.PDF` therefore remains **SUPPORTED** for this exact reader-facing file. This
+status is production conformance and simulated pre-submission closure, not
+external peer review, journal acceptance or any broader scientific authority.
