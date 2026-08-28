@@ -1,0 +1,31 @@
+{
+  "audit_passed": true,
+  "authority": {
+    "freeze": false,
+    "scientific_delta": "NONE",
+    "submission": false
+  },
+  "date": "2026-08-28",
+  "input_hash_stability": "all 21 PROTOCOL_FREEZE input sha256 bindings re-verified against the merged tree; zero drift",
+  "merged_from": [
+    "origin/main 3cf53d6e (PR #1544 merge)",
+    "origin/codex/revive-orion11-necessity-adapters-20260828 4c307c52"
+  ],
+  "preserved": {
+    "adapter_terminal": "CANNOT_CHECK_EXTERNAL_OWNER_ALGEBRA",
+    "freeze_authority": "NONE__DO_NOT_FREEZE_OR_MERGE",
+    "historical_broad_h1": {
+      "baseline_root_success": "1/48",
+      "comparator_system_id": "arex_like_recursive_audit_followup",
+      "difference": 0.0,
+      "subject_root_success": "1/48",
+      "terminal": "NOT_SUPPORTED"
+    }
+  },
+  "r3_merge_commit": "43d53c66ca69f8ff102c82f63ab00fccfd243cbe",
+  "recomputed_terminal": "ORION11_NEGATIVE_REVIVAL_AUDIT_PASS_WITH_PRESERVED_CANNOT_CHECK",
+  "record_kind": "ADDITIVE_REVERIFICATION_AT_R3_MERGE__DOES_NOT_MODIFY_AUDIT_RECEIPT",
+  "schema": "orion.orion11.negative-revival-reverification.v1",
+  "verifier": "papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/verify_orion11_negative_revival_v1.py",
+  "verifier_exit_code": 0
+}
