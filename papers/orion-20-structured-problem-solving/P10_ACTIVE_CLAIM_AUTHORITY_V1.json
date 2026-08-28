@@ -4,15 +4,15 @@
   "evidence_bindings": {
     "claim_ladder_status": {
       "artifact": "papers/orion-20-structured-problem-solving/manuscript/sections/16-claim-ladder-and-status.tex",
-      "sha256": "cc949f4c38c8a9037b97d1b0b4e6caee2f255681c6d4ddd94f6240644ba36f82"
+      "sha256": "628ac86faa30a738c1f3638ff14758d90cc84c4f7f738eed1c601b163fd2c6b6"
     },
     "hypotheses": {
       "artifact": "papers/orion-20-structured-problem-solving/manuscript/sections/11-primary-hypotheses.tex",
-      "sha256": "e2a0c8948338332ca3598ed72efec7f1c006041552da55278dc76460896fa270"
+      "sha256": "9c4ae3c07ba5e06f94e7a39b5734d956b41d7f8fcba1fa7c87dfa45ea02a0803"
     },
     "manuscript": {
       "artifact": "papers/orion-20-structured-problem-solving/manuscript/main.tex",
-      "sha256": "1e69f0c282a34299c91ce7e7ee7bedb8d068a15d5a8ed569f787b2a9a1af4fd8"
+      "sha256": "52c778c9fa53e1acfd298aedd2acf2af1c723c54044eec0172987dc0823b8f01"
     },
     "prospective_protocol": {
       "artifact": "papers/orion-20-structured-problem-solving/protocol/P10_H1_H6_PROTOCOL_FREEZE_V1.json",
@@ -23,6 +23,8 @@
       "sha256": "15eb07d78a8f3c0b75ff9ea4e440cd773d042d254765bfc805c59d6a51162da6"
     }
   },
+  "execution_authorized": false,
+  "execution_blocker": "P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT",
   "forbidden_states": [
     "CANNOT_CHECK_AS_HYPOTHESIS_OUTCOME",
     "FAIL_AS_HYPOTHESIS_OUTCOME",
@@ -37,8 +39,6 @@
     "H5": "PROSPECTIVE_NOT_EXECUTED",
     "H6": "PROSPECTIVE_NOT_EXECUTED"
   },
-  "execution_authorized": false,
-  "execution_blocker": "P10_FULL_FROZEN_DONOR_EVALUATOR_INPUTS_ABSENT",
   "lifecycle_state": "PROSPECTIVE_PROTOCOL_FROZEN_INPUTS_ABSENT",
   "paper_id": "P10",
   "predecessor_boundary": {
