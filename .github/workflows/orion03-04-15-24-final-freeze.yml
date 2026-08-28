@@ -25,8 +25,20 @@ jobs:
         run: python research/orion-01-05-convergence-v1/verify_convergence_v1.py
       - name: Re-run Self-ORION non-self-promotion controls
         run: python -m pytest -q tests/unit/self_orion/test_revision_gate.py tests/unit/self_orion/test_epistemic_control.py
-      - name: Re-run ORION-24 authoritative P14C replay adjudication
-        run: python papers/orion-24-orion-rse/verify_p14c_protocol_adjudication_v2.py > "$RUNNER_TEMP/p14c.json"
+      - name: Re-run ORION-24 authoritative P14C replay adjudication without tracked-byte mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          tracked='papers/orion-24-orion-rse/P14C_PROTOCOL_ADJUDICATION_V2.json'
+          cp "$tracked" "$RUNNER_TEMP/p14c-before.json"
+          python papers/orion-24-orion-rse/verify_p14c_protocol_adjudication_v2.py > "$RUNNER_TEMP/p14c.json"
+          python - "$RUNNER_TEMP/p14c-before.json" "$tracked" <<'PY'
+          import json,sys
+          before=json.load(open(sys.argv[1])); after=json.load(open(sys.argv[2]))
+          assert before == after, 'P14C replay changed scientific JSON payload'
+          print('ORION24_P14C_REPLAY_PAYLOAD_STABLE')
+          PY
+          git checkout -- "$tracked"
       - name: Require current paper trees clean
         run: git diff --exit-code -- papers/orion-03-typed-merge-falsification papers/orion-04-rooted-completion-certificates papers/orion-15-self-orion papers/orion-24-orion-rse
       - name: Write four whole-tree receipts
