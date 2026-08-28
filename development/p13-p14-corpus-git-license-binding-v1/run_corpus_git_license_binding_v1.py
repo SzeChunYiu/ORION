@@ -101,7 +101,7 @@ def observe_entry(rc: Receipts, clone: Path, entry: dict[str, Any]) -> dict[str,
     if not object_exists(rc, clone, sha):
         obs["status"] = "CANNOT_CHECK__PINNED_OBJECT_UNRETRIEVABLE"
         return obs
-    m = BLOB_URL.match(entry["license"].get("evidence_url", ""))
+    m = BLOB_URL.match(entry["license"].get("evidence_url") or "")
     if not m:
         obs["status"] = "CANNOT_CHECK__NO_PARSEABLE_LICENSE_PATH"
         return obs
