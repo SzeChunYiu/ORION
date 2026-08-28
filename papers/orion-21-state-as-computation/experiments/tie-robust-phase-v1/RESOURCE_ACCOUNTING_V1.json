@@ -1,0 +1,56 @@
+{
+  "schema": "orion.orion21.resource-accounting.v1",
+  "protocol_identity": "ORION21.TIE_ROBUST_PHASE.v1",
+  "authority": "ACCOUNTING_ONLY",
+  "scientific_authority_delta": "NONE",
+  "purpose": "End-to-end resource accounting for the ORION-21 NR07 lane, closing the RESOURCE_ACCOUNTING item of the Wave-2 disposition. Figures are taken from SLURM accounting (sacct) and from the committed result artifacts, not estimated.",
+  "jobs": [
+    {
+      "role": "authoritative width-law run (registered study; terminated CANNOT_CHECK_INSTRUMENT_DRIFT)",
+      "slurm_job_id": "3550337",
+      "state": "COMPLETED",
+      "elapsed_wall_clock": "00:00:33",
+      "total_cpu": "00:29.378",
+      "max_rss_kbytes": 91824,
+      "alloc_cpus": 4,
+      "node": "cn135",
+      "source": "sacct",
+      "result_sha256": "8ef964ecb3c02ab5988ea13ed56678a424e7d5487f64d31c2e66a149e44d9e22"
+    }
+  ],
+  "in_run_accounting": {
+    "source": "readings[].elapsed_seconds in the authoritative result",
+    "ladder_readings": 70,
+    "total_reading_elapsed_seconds": 27.54,
+    "max_single_reading_elapsed_seconds": 2.167,
+    "note": "The 70 per-(cell,seed) readings account for 27.54 s of the 33 s wall clock; the remainder is process start-up, world generation and serialisation."
+  },
+  "environment": {
+    "hostname": "cn135",
+    "platform": "Linux-5.14.0-687.24.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "python": "3.11.5",
+    "numpy": "2.4.6",
+    "source_commit": "86202ab577b6c3efb331fc3a2f9185911911fe98"
+  },
+  "diagnostic_analysis": {
+    "role": "ladder tie-exposure analysis over the committed authoritative bytes",
+    "host": "billy-laptop-old",
+    "python": "3.14.4",
+    "compute": "negligible; single-pass over a 92 KiB JSON",
+    "network_egress": "none",
+    "note": "Reads committed bytes only; performs no regeneration."
+  },
+  "cost_of_the_defect": {
+    "statement": "The registered study cost 33 s of wall clock and 29.4 CPU-seconds and returned no readable ladder cell, because the instrument precondition failed at one point out of 20480 decisions.",
+    "root_cause": "under-specified tie semantics in the frozen scoring rule; no deterministic secondary key",
+    "implication": "The cost of the failure is not compute. It is that a cheap run produced an unusable result, and the tempting repair (widening the replay tolerance from 1e-12 to 1e-3) would have concealed the defect at zero additional compute cost while leaving the primary quantity ambiguous."
+  },
+  "successor_cost_estimate": {
+    "protocol": "ORION21.TIE_ROBUST_PHASE.v1",
+    "configurations": 1050,
+    "basis": "10 cells x 7 seeds x 15 train sizes",
+    "status": "NOT_YET_EXECUTED",
+    "honest_bound": "Not estimated from the authoritative run, because that run and the successor use different generation paths and the successor additionally enumerates equality classes. Any figure quoted before execution would be invented.",
+    "dominant_cost_driver": "feature bank width p = C(d,s), which ranges from 91 to 42504 across the ladder cells"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "authority": "DIAGNOSTIC_ONLY",
+  "cells_tie_exposed_at_crossing": 10,
+  "cells_total": 10,
+  "input": {
+    "path": "nr07_auth.json",
+    "sha256": "8ef964ecb3c02ab5988ea13ed56678a424e7d5487f64d31c2e66a149e44d9e22",
+    "sha256_matches_authoritative": true
+  },
+  "interpretation_bound": "Establishes tie EXPOSURE of the n_cross crossing. Does NOT establish that n_cross is set-valued: the ladder readings record only the realised support selection, so the admissible range is not recoverable from these bytes. The anchor replay instrument (instrument_precondition_p0) and the ladder sweep (readings) are DIFFERENT instruments and their magnitudes must not be transferred: at cell (14,3,3), n=64, seed 2026082201 the anchor replay reads 0.949169921875 while the ladder reads 0.8029296875.",
+  "per_cell": [
+    {
+      "cell": [
+        14,
+        2,
+        3
+      ],
+      "margin_above_tau": 0.0010811941964287142,
+      "mean_at_n_cross": 0.9510811941964287,
+      "n_cross": 64,
+      "n_seeds": 7,
+      "previous_size": 56,
+      "tie_exposed_at_crossing": true,
+      "tied_seeds_at_n_cross": 5,
+      "tied_seeds_at_previous_size": 4
+    },
+    {
+      "cell": [
+        14,
+        3,
+        3
+      ],
+      "margin_above_tau": 0.00028599330357137465,
+      "mean_at_n_cross": 0.9502859933035713,
+      "n_cross": 80,
+      "n_seeds": 7,
+      "previous_size": 72,
+      "tie_exposed_at_crossing": true,
+      "tied_seeds_at_n_cross": 5,
+      "tied_seeds_at_previous_size": 5
+    },
+    {
+      "cell": [
+        17,
+        4,
+        3
+      ],
+      "margin_above_tau": 0.0006835937500000444,
+      "mean_at_n_cross": 0.95068359375,
+      "n_cross": 96,
+      "n_seeds": 7,
+      "previous_size": 88,
+      "tie_exposed_at_crossing": true,
+      "tied_seeds_at_n_cross": 3,
+      "tied_seeds_at_previous_size": 4
+    },
+    {
+      "cell": [
+        18,
+        4,
+        3
+      ],
+      "margin_above_tau": 0.007449776785714346,
+      "mean_at_n_cross": 0.9574497767857143,
+      "n_cross": 96,
+      "n_seeds": 7,
+      "previous_size": 88,
+      "tie_exposed_at_crossing": true,
+      "tied_seeds_at_n_cross": 4,
+      "tied_seeds_at_previous_size": 5
+    },
+    {
+      "cell": [
+        19,
+        3,
+        3
+      ],
+      "margin_above_tau": 0.01326729910714286,
+      "mean_at_n_cross": 0.9632672991071428,
+      "n_cross": 88,
+      "n_seeds": 7,
+      "previous_size": 80,
+      "tie_exposed_at_crossing": true,
+      "tied_seeds_at_n_cross": 3,
+      "tied_seeds_at_previous_size": 4
+    },
+    {
+      "cell": [
+        20,
+        4,
+        3
+      ],
+      "margin_above_tau": 0.0071498325892858094,
+      "mean_at_n_cross": 0.9571498325892858,
+      "n_cross": 104,
+      "n_seeds": 7,
+      "previous_size": 96,
+      "tie_exposed_at_crossing": true,
+      "tied_seeds_at_n_cross": 2,
+      "tied_seeds_at_previous_size": 6
+    },
+    {
+      "cell": [
+        20,
+        5,
+        3
+      ],
+      "margin_above_tau": 0.007282366071428625,
+      "mean_at_n_cross": 0.9572823660714286,
+      "n_cross": 120,
+      "n_seeds": 7,
+      "previous_size": 112,
+      "tie_exposed_at_crossing": true,
+      "tied_seeds_at_n_cross": 3,
+      "tied_seeds_at_previous_size": 5
+    },
+    {
+      "cell": [
+        22,
+        4,
+        3
+      ],
+      "margin_above_tau": 0.007700892857142927,
+      "mean_at_n_cross": 0.9577008928571429,
+      "n_cross": 120,
+      "n_seeds": 7,
+      "previous_size": 112,
+      "tie_exposed_at_crossing": true,
+      "tied_seeds_at_n_cross": 1,
+      "tied_seeds_at_previous_size": 4
+    },
+    {
+      "cell": [
+        24,
+        4,
+        3
+      ],
+      "margin_above_tau": 0.02179129464285723,
+      "mean_at_n_cross": 0.9717912946428572,
+      "n_cross": 112,
+      "n_seeds": 7,
+      "previous_size": 104,
+      "tie_exposed_at_crossing": true,
+      "tied_seeds_at_n_cross": 2,
+      "tied_seeds_at_previous_size": 4
+    },
+    {
+      "cell": [
+        24,
+        5,
+        3
+      ],
+      "margin_above_tau": 0.014767020089285765,
+      "mean_at_n_cross": 0.9647670200892857,
+      "n_cross": 128,
+      "n_seeds": 7,
+      "previous_size": 120,
+      "tie_exposed_at_crossing": true,
+      "tied_seeds_at_n_cross": 2,
+      "tied_seeds_at_previous_size": 4
+    }
+  ],
+  "protocol_identity": "ORION21.TIE_ROBUST_PHASE.v1",
+  "registered_primary_quantity": "n_cross(p) = smallest ladder train size whose 7-seed mean screening accuracy reaches 0.95",
+  "registered_tau": 0.95,
+  "schema": "orion.orion21.ladder-tie-exposure.v1",
+  "scientific_authority_delta": "NONE",
+  "tie_prevalence": {
+    "fraction": 0.4561904761904762,
+    "non_separable_rank_gap_points": 479,
+    "total_points": 1050
+  }
+}
