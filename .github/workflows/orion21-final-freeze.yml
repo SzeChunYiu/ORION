@@ -1,0 +1,118 @@
+name: orion21-final-freeze
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/orion21-final-freeze-20260827
+    paths:
+      - 'papers/publication_closure/remaining11/check_orion21_final_freeze.py'
+      - '.github/workflows/orion21-final-freeze.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orion21-final-freeze
+  cancel-in-progress: true
+
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion21-final-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion21-final-freeze-20260827
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install frozen replay dependencies
+        run: python -m pip install --disable-pip-version-check 'numpy==1.26.4' 'scikit-learn==1.5.2'
+      - name: Compile final freeze gate
+        run: python -m py_compile papers/publication_closure/remaining11/check_orion21_final_freeze.py
+      - name: Verify Claude R0 binding-chain repair
+        run: python papers/orion-21-state-as-computation/check_p11_adverse_integration_v2.py
+      - name: Re-run decoder and donor studies plus independent implementations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/orion-21-state-as-computation/top_tier/run_decoder_attacks_v1.py > p11_decoder_attack_v1.json
+          python papers/orion-21-state-as-computation/top_tier/check_decoder_attacks_independent_v1.py > "$RUNNER_TEMP/decoder.json"
+          python papers/orion-21-state-as-computation/top_tier/run_donor_compiler_comparator_v1.py > p11_donor_comparator_v1.json
+          python papers/orion-21-state-as-computation/top_tier/check_donor_comparator_independent_v1.py > "$RUNNER_TEMP/donor.json"
+      - name: Re-run selective-placement independent implementation without mutating tracked evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          tracked='papers/orion-21-state-as-computation/top_tier/p11_selective_placement_independent_v1.json'
+          cp "$tracked" "$RUNNER_TEMP/selective-before.json"
+          python papers/orion-21-state-as-computation/top_tier/check_selective_placement_independent_v1.py > "$RUNNER_TEMP/selective.json"
+          cp "$tracked" "$RUNNER_TEMP/selective-live.json"
+          python - "$RUNNER_TEMP/selective-before.json" "$RUNNER_TEMP/selective-live.json" <<'PY'
+          import json,sys
+          old=json.load(open(sys.argv[1])); new=json.load(open(sys.argv[2]))
+          assert new['terminal']=='P11_SELECTIVE_PLACEMENT_SECOND_INDEPENDENT_CHECKER_GREEN'
+          for x in (old,new):
+              x.pop('protocol_sha256',None); x.pop('receipt_sha256',None)
+          assert old==new
+          print('ORION21_SELECTIVE_PLACEMENT_SCIENCE_PAYLOAD_STABLE')
+          PY
+          git checkout -- "$tracked"
+      - name: Reproduce registered ten-responsibility negative
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          python papers/orion-21-state-as-computation/top_tier/run_query_family_phase_v1.py > "$RUNNER_TEMP/query-negative.out" 2>&1
+          rc=$?
+          set -e
+          test "$rc" -ne 0
+          python - "$RUNNER_TEMP/query-negative.out" <<'PY'
+          import json,pathlib,sys
+          text=pathlib.Path(sys.argv[1]).read_text(); start=text.find('{'); assert start>=0
+          obj,_=json.JSONDecoder().raw_decode(text[start:])
+          assert obj['terminal']=='P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET'
+          assert obj['support_counts']=={'LINEAR':3,'RBF':5,'KNN':5}
+          print('ORION21_QUERY_FAMILY_NEGATIVE_REPRODUCED')
+          PY
+      - name: Require replays to leave canonical paper bytes unchanged
+        shell: bash
+        run: |
+          rm -f p11_decoder_attack_v1.json p11_donor_comparator_v1.json
+          git diff --exit-code -- papers/orion-21-state-as-computation
+      - name: Write exact science/content freeze receipt
+        run: python papers/publication_closure/remaining11/check_orion21_final_freeze.py
+      - name: Commit exact freeze receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          receipt='papers/publication_closure/receipts/remaining11/ORION-21_SCIENCE_CONTENT_FREEZE_V1.json'
+          test -s "$receipt"
+          python - "$receipt" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]))
+          assert x['science_frozen'] is True and x['paper_content_frozen'] is True
+          assert x['successor_required_for_future_science'] is True
+          assert x['submission_authority'] is False
+          print(x['terminal'])
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$receipt"
+          git diff --check --cached
+          git commit -m 'papers(publication): freeze ORION-21 science and content [orion21-final-frozen]'
+          git push origin HEAD:chatgpt/orion21-final-freeze-20260827
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion21-final-freeze-${{ github.sha }}
+          path: |
+            papers/publication_closure/receipts/remaining11/ORION-21_SCIENCE_CONTENT_FREEZE_V1.json
+            ${{ runner.temp }}/decoder.json
+            ${{ runner.temp }}/donor.json
+            ${{ runner.temp }}/selective.json
+            ${{ runner.temp }}/query-negative.out
+          if-no-files-found: error
+          retention-days: 30
