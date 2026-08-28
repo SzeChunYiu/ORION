@@ -1,0 +1,1198 @@
+{
+  "authority": "MEASUREMENT_ONLY",
+  "classes": [
+    {
+      "case_id": "SAT_T1_BENEFICIAL",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 32,
+        "CMP4X": 52,
+        "FLAT": 22,
+        "MEM2X": 34,
+        "MEM4X": 58
+      },
+      "pool": "p12_transfer_cases_v1.json",
+      "structures": [
+        "S1"
+      ]
+    },
+    {
+      "case_id": "SAT_T2_NONBENEFICIAL",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 10,
+        "CMP4X": 14,
+        "FLAT": 6,
+        "MEM2X": 6,
+        "MEM4X": 6
+      },
+      "pool": "p12_transfer_cases_v1.json",
+      "structures": [
+        "S2"
+      ]
+    },
+    {
+      "case_id": "SAT_T3_BUDGET_RACE",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 618,
+        "CMP4X": 1160,
+        "FLAT": 332,
+        "MEM2X": 378,
+        "MEM4X": 470
+      },
+      "pool": "p12_transfer_cases_v1.json",
+      "structures": [
+        "S3A",
+        "S3B",
+        "S3C"
+      ]
+    },
+    {
+      "case_id": "PATH_T1_BENEFICIAL",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 487,
+        "CMP4X": 749,
+        "FLAT": 356,
+        "MEM2X": 581,
+        "MEM4X": 1031
+      },
+      "pool": "p12_transfer_cases_v1.json",
+      "structures": [
+        "P1"
+      ]
+    },
+    {
+      "case_id": "PATH_T2_NONBENEFICIAL",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 4,
+        "CMP4X": 8,
+        "FLAT": 2,
+        "MEM2X": 2,
+        "MEM4X": 2
+      },
+      "pool": "p12_transfer_cases_v1.json",
+      "structures": [
+        "P2"
+      ]
+    },
+    {
+      "case_id": "PATH_T3_BUDGET_RACE",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 1072,
+        "CMP4X": 1694,
+        "FLAT": 761,
+        "MEM2X": 1211,
+        "MEM4X": 1825
+      },
+      "pool": "p12_transfer_cases_v1.json",
+      "structures": [
+        "P3A",
+        "P3B"
+      ]
+    },
+    {
+      "case_id": "KNAP_T1_BENEFICIAL",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 260,
+        "CMP4X": 272,
+        "FLAT": 254,
+        "MEM2X": 502,
+        "MEM4X": 768
+      },
+      "pool": "p12_transfer_cases_v1.json",
+      "structures": [
+        "K1"
+      ]
+    },
+    {
+      "case_id": "KNAP_T2_NONBENEFICIAL",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 252,
+        "CMP4X": 414,
+        "FLAT": 126,
+        "MEM2X": 126,
+        "MEM4X": 126
+      },
+      "pool": "p12_transfer_cases_v1.json",
+      "structures": [
+        "K2"
+      ]
+    },
+    {
+      "case_id": "KNAP_T3_BUDGET_RACE",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 5366,
+        "CMP4X": 10422,
+        "FLAT": 2838,
+        "MEM2X": 3148,
+        "MEM4X": 3768
+      },
+      "pool": "p12_transfer_cases_v1.json",
+      "structures": [
+        "K3A",
+        "K3B"
+      ]
+    },
+    {
+      "case_id": "SAT_T1_BENEFICIAL",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 32,
+        "CMP4X": 52,
+        "FLAT": 22,
+        "MEM2X": 34,
+        "MEM4X": 58
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "S1"
+      ]
+    },
+    {
+      "case_id": "SAT_T2_NONBENEFICIAL",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 10,
+        "CMP4X": 14,
+        "FLAT": 6,
+        "MEM2X": 6,
+        "MEM4X": 6
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "S2"
+      ]
+    },
+    {
+      "case_id": "SAT_T3_BUDGET_RACE",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 618,
+        "CMP4X": 1160,
+        "FLAT": 332,
+        "MEM2X": 378,
+        "MEM4X": 470
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "S3A",
+        "S3B",
+        "S3C"
+      ]
+    },
+    {
+      "case_id": "SAT_T4_TAU_EDGE",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 24,
+        "CMP4X": 38,
+        "FLAT": 17,
+        "MEM2X": 27,
+        "MEM4X": 30
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "S4"
+      ]
+    },
+    {
+      "case_id": "SAT_T5_TAU_EXACT",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 24,
+        "CMP4X": 38,
+        "FLAT": 17,
+        "MEM2X": 27,
+        "MEM4X": 40
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "S5"
+      ]
+    },
+    {
+      "case_id": "SAT_T6_TIE_RACE",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 2
+      },
+      "per_regime_optimum": {
+        "CMP2X": 2666,
+        "CMP4X": 4982,
+        "FLAT": 1508,
+        "MEM2X": 1858,
+        "MEM4X": 2558
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "S6A",
+        "S6B",
+        "S6C"
+      ]
+    },
+    {
+      "case_id": "SAT_T7_OVER_BUDGET",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 9360,
+        "CMP4X": 18720,
+        "FLAT": 4680,
+        "MEM2X": 4680,
+        "MEM4X": 4680
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "S7"
+      ]
+    },
+    {
+      "case_id": "SAT_T8_MANY_SMALL",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 1284,
+        "CMP4X": 2158,
+        "FLAT": 847,
+        "MEM2X": 1257,
+        "MEM4X": 2077
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "S8A",
+        "S8B",
+        "S8C"
+      ]
+    },
+    {
+      "case_id": "SAT_T9_MIXED",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "SAT_PROPAGATION",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 1522,
+        "CMP4X": 2564,
+        "FLAT": 1001,
+        "MEM2X": 1481,
+        "MEM4X": 2389
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "S9A",
+        "S9B",
+        "S9C"
+      ]
+    },
+    {
+      "case_id": "PATH_T1_BENEFICIAL",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 487,
+        "CMP4X": 749,
+        "FLAT": 356,
+        "MEM2X": 581,
+        "MEM4X": 1031
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "P1"
+      ]
+    },
+    {
+      "case_id": "PATH_T2_NONBENEFICIAL",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 4,
+        "CMP4X": 8,
+        "FLAT": 2,
+        "MEM2X": 2,
+        "MEM4X": 2
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "P2"
+      ]
+    },
+    {
+      "case_id": "PATH_T3_BUDGET_RACE",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 1072,
+        "CMP4X": 1694,
+        "FLAT": 761,
+        "MEM2X": 1211,
+        "MEM4X": 1825
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "P3A",
+        "P3B"
+      ]
+    },
+    {
+      "case_id": "PATH_T4_TAU_EDGE",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 331,
+        "CMP4X": 437,
+        "FLAT": 278,
+        "MEM2X": 503,
+        "MEM4X": 555
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "P4"
+      ]
+    },
+    {
+      "case_id": "PATH_T5_TAU_EXACT",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 359,
+        "CMP4X": 493,
+        "FLAT": 292,
+        "MEM2X": 517,
+        "MEM4X": 720
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "P5"
+      ]
+    },
+    {
+      "case_id": "PATH_T6_TIE_RACE",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 2160,
+        "CMP4X": 3870,
+        "FLAT": 1305,
+        "MEM2X": 1755,
+        "MEM4X": 2521
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "P6A",
+        "P6B",
+        "P6C"
+      ]
+    },
+    {
+      "case_id": "PATH_T7_OVER_BUDGET",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 485,
+        "CMP4X": 745,
+        "FLAT": 355,
+        "MEM2X": 580,
+        "MEM4X": 1030
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "P7"
+      ]
+    },
+    {
+      "case_id": "PATH_T8_MANY_SMALL",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 942,
+        "CMP4X": 1434,
+        "FLAT": 696,
+        "MEM2X": 1146,
+        "MEM4X": 2034
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "P8A",
+        "P8B"
+      ]
+    },
+    {
+      "case_id": "PATH_T9_MIXED",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "PATH_PLANNING",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 902,
+        "CMP4X": 1354,
+        "FLAT": 676,
+        "MEM2X": 989,
+        "MEM4X": 1439
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "P9A",
+        "P9B"
+      ]
+    },
+    {
+      "case_id": "KNAP_T1_BENEFICIAL",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 260,
+        "CMP4X": 272,
+        "FLAT": 254,
+        "MEM2X": 502,
+        "MEM4X": 768
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "K1"
+      ]
+    },
+    {
+      "case_id": "KNAP_T2_NONBENEFICIAL",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 252,
+        "CMP4X": 414,
+        "FLAT": 126,
+        "MEM2X": 126,
+        "MEM4X": 126
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "K2"
+      ]
+    },
+    {
+      "case_id": "KNAP_T3_BUDGET_RACE",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 5366,
+        "CMP4X": 10422,
+        "FLAT": 2838,
+        "MEM2X": 3148,
+        "MEM4X": 3768
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "K3A",
+        "K3B"
+      ]
+    },
+    {
+      "case_id": "KNAP_T4_TAU_EDGE",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 254,
+        "CMP4X": 260,
+        "FLAT": 240,
+        "MEM2X": 240,
+        "MEM4X": 240
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "K4"
+      ]
+    },
+    {
+      "case_id": "KNAP_T5_TAU_EXACT",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 254,
+        "CMP4X": 262,
+        "FLAT": 250,
+        "MEM2X": 444,
+        "MEM4X": 444
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "K5"
+      ]
+    },
+    {
+      "case_id": "KNAP_T6_TIE_RACE",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 2048,
+        "CMP4X": 3786,
+        "FLAT": 1179,
+        "MEM2X": 1489,
+        "MEM4X": 1814
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "K6A",
+        "K6B"
+      ]
+    },
+    {
+      "case_id": "KNAP_T7_OVER_BUDGET",
+      "common_optimum_nonempty": true,
+      "common_optimum_size": 1,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 4680,
+        "CMP4X": 9360,
+        "FLAT": 2340,
+        "MEM2X": 2340,
+        "MEM4X": 2340
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "K7"
+      ]
+    },
+    {
+      "case_id": "KNAP_T8_MANY_SMALL",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 526,
+        "CMP4X": 562,
+        "FLAT": 508,
+        "MEM2X": 998,
+        "MEM4X": 1719
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "K8A",
+        "K8B",
+        "K8C"
+      ]
+    },
+    {
+      "case_id": "KNAP_T9_MIXED",
+      "common_optimum_nonempty": false,
+      "common_optimum_size": 0,
+      "domain": "KNAPSACK",
+      "environments_in_class": 5,
+      "optimal_action_counts": {
+        "CMP2X": 1,
+        "CMP4X": 1,
+        "FLAT": 1,
+        "MEM2X": 1,
+        "MEM4X": 1
+      },
+      "per_regime_optimum": {
+        "CMP2X": 525,
+        "CMP4X": 555,
+        "FLAT": 510,
+        "MEM2X": 967,
+        "MEM4X": 1378
+      },
+      "pool": "p12_transfer_cases_expanded_v1.json",
+      "structures": [
+        "K9A",
+        "K9B",
+        "K9C"
+      ]
+    }
+  ],
+  "classes_total": 36,
+  "classes_with_empty_common_optimum": 23,
+  "empty_classes": [
+    {
+      "case_id": "SAT_T2_NONBENEFICIAL",
+      "domain": "SAT_PROPAGATION",
+      "per_regime_optimum": {
+        "CMP2X": 10,
+        "CMP4X": 14,
+        "FLAT": 6,
+        "MEM2X": 6,
+        "MEM4X": 6
+      }
+    },
+    {
+      "case_id": "SAT_T3_BUDGET_RACE",
+      "domain": "SAT_PROPAGATION",
+      "per_regime_optimum": {
+        "CMP2X": 618,
+        "CMP4X": 1160,
+        "FLAT": 332,
+        "MEM2X": 378,
+        "MEM4X": 470
+      }
+    },
+    {
+      "case_id": "PATH_T3_BUDGET_RACE",
+      "domain": "PATH_PLANNING",
+      "per_regime_optimum": {
+        "CMP2X": 1072,
+        "CMP4X": 1694,
+        "FLAT": 761,
+        "MEM2X": 1211,
+        "MEM4X": 1825
+      }
+    },
+    {
+      "case_id": "KNAP_T1_BENEFICIAL",
+      "domain": "KNAPSACK",
+      "per_regime_optimum": {
+        "CMP2X": 260,
+        "CMP4X": 272,
+        "FLAT": 254,
+        "MEM2X": 502,
+        "MEM4X": 768
+      }
+    },
+    {
+      "case_id": "KNAP_T2_NONBENEFICIAL",
+      "domain": "KNAPSACK",
+      "per_regime_optimum": {
+        "CMP2X": 252,
+        "CMP4X": 414,
+        "FLAT": 126,
+        "MEM2X": 126,
+        "MEM4X": 126
+      }
+    },
+    {
+      "case_id": "SAT_T2_NONBENEFICIAL",
+      "domain": "SAT_PROPAGATION",
+      "per_regime_optimum": {
+        "CMP2X": 10,
+        "CMP4X": 14,
+        "FLAT": 6,
+        "MEM2X": 6,
+        "MEM4X": 6
+      }
+    },
+    {
+      "case_id": "SAT_T3_BUDGET_RACE",
+      "domain": "SAT_PROPAGATION",
+      "per_regime_optimum": {
+        "CMP2X": 618,
+        "CMP4X": 1160,
+        "FLAT": 332,
+        "MEM2X": 378,
+        "MEM4X": 470
+      }
+    },
+    {
+      "case_id": "SAT_T4_TAU_EDGE",
+      "domain": "SAT_PROPAGATION",
+      "per_regime_optimum": {
+        "CMP2X": 24,
+        "CMP4X": 38,
+        "FLAT": 17,
+        "MEM2X": 27,
+        "MEM4X": 30
+      }
+    },
+    {
+      "case_id": "SAT_T5_TAU_EXACT",
+      "domain": "SAT_PROPAGATION",
+      "per_regime_optimum": {
+        "CMP2X": 24,
+        "CMP4X": 38,
+        "FLAT": 17,
+        "MEM2X": 27,
+        "MEM4X": 40
+      }
+    },
+    {
+      "case_id": "SAT_T9_MIXED",
+      "domain": "SAT_PROPAGATION",
+      "per_regime_optimum": {
+        "CMP2X": 1522,
+        "CMP4X": 2564,
+        "FLAT": 1001,
+        "MEM2X": 1481,
+        "MEM4X": 2389
+      }
+    },
+    {
+      "case_id": "PATH_T3_BUDGET_RACE",
+      "domain": "PATH_PLANNING",
+      "per_regime_optimum": {
+        "CMP2X": 1072,
+        "CMP4X": 1694,
+        "FLAT": 761,
+        "MEM2X": 1211,
+        "MEM4X": 1825
+      }
+    },
+    {
+      "case_id": "PATH_T4_TAU_EDGE",
+      "domain": "PATH_PLANNING",
+      "per_regime_optimum": {
+        "CMP2X": 331,
+        "CMP4X": 437,
+        "FLAT": 278,
+        "MEM2X": 503,
+        "MEM4X": 555
+      }
+    },
+    {
+      "case_id": "PATH_T5_TAU_EXACT",
+      "domain": "PATH_PLANNING",
+      "per_regime_optimum": {
+        "CMP2X": 359,
+        "CMP4X": 493,
+        "FLAT": 292,
+        "MEM2X": 517,
+        "MEM4X": 720
+      }
+    },
+    {
+      "case_id": "PATH_T6_TIE_RACE",
+      "domain": "PATH_PLANNING",
+      "per_regime_optimum": {
+        "CMP2X": 2160,
+        "CMP4X": 3870,
+        "FLAT": 1305,
+        "MEM2X": 1755,
+        "MEM4X": 2521
+      }
+    },
+    {
+      "case_id": "PATH_T8_MANY_SMALL",
+      "domain": "PATH_PLANNING",
+      "per_regime_optimum": {
+        "CMP2X": 942,
+        "CMP4X": 1434,
+        "FLAT": 696,
+        "MEM2X": 1146,
+        "MEM4X": 2034
+      }
+    },
+    {
+      "case_id": "PATH_T9_MIXED",
+      "domain": "PATH_PLANNING",
+      "per_regime_optimum": {
+        "CMP2X": 902,
+        "CMP4X": 1354,
+        "FLAT": 676,
+        "MEM2X": 989,
+        "MEM4X": 1439
+      }
+    },
+    {
+      "case_id": "KNAP_T1_BENEFICIAL",
+      "domain": "KNAPSACK",
+      "per_regime_optimum": {
+        "CMP2X": 260,
+        "CMP4X": 272,
+        "FLAT": 254,
+        "MEM2X": 502,
+        "MEM4X": 768
+      }
+    },
+    {
+      "case_id": "KNAP_T2_NONBENEFICIAL",
+      "domain": "KNAPSACK",
+      "per_regime_optimum": {
+        "CMP2X": 252,
+        "CMP4X": 414,
+        "FLAT": 126,
+        "MEM2X": 126,
+        "MEM4X": 126
+      }
+    },
+    {
+      "case_id": "KNAP_T4_TAU_EDGE",
+      "domain": "KNAPSACK",
+      "per_regime_optimum": {
+        "CMP2X": 254,
+        "CMP4X": 260,
+        "FLAT": 240,
+        "MEM2X": 240,
+        "MEM4X": 240
+      }
+    },
+    {
+      "case_id": "KNAP_T5_TAU_EXACT",
+      "domain": "KNAPSACK",
+      "per_regime_optimum": {
+        "CMP2X": 254,
+        "CMP4X": 262,
+        "FLAT": 250,
+        "MEM2X": 444,
+        "MEM4X": 444
+      }
+    },
+    {
+      "case_id": "KNAP_T6_TIE_RACE",
+      "domain": "KNAPSACK",
+      "per_regime_optimum": {
+        "CMP2X": 2048,
+        "CMP4X": 3786,
+        "FLAT": 1179,
+        "MEM2X": 1489,
+        "MEM4X": 1814
+      }
+    },
+    {
+      "case_id": "KNAP_T8_MANY_SMALL",
+      "domain": "KNAPSACK",
+      "per_regime_optimum": {
+        "CMP2X": 526,
+        "CMP4X": 562,
+        "FLAT": 508,
+        "MEM2X": 998,
+        "MEM4X": 1719
+      }
+    },
+    {
+      "case_id": "KNAP_T9_MIXED",
+      "domain": "KNAPSACK",
+      "per_regime_optimum": {
+        "CMP2X": 525,
+        "CMP4X": 555,
+        "FLAT": 510,
+        "MEM2X": 967,
+        "MEM4X": 1378
+      }
+    }
+  ],
+  "price_aware_surface_note": "Under the price-aware surface each (case, regime) is its own class because the price vector is readable, so every class is a singleton and its intersection equals O(e), which is nonempty by construction. Price refinement therefore resolves every empty class by splitting it.",
+  "protocol_identity": "ORION22.OBSERVATION_ALIASING_ROBUSTNESS.v1",
+  "regimes": [
+    "FLAT",
+    "MEM2X",
+    "CMP2X",
+    "MEM4X",
+    "CMP4X"
+  ],
+  "schema": "orion.orion22.observation-aliasing-robustness.result.v1",
+  "scientific_authority_delta": "NONE",
+  "surface": "price_blind",
+  "terminal": "T2_SOME_PRICE_BLIND_CLASSES_EMPTY__PRICE_REFINEMENT_RESOLVES_ALL"
+}
