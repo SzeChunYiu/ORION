@@ -1,0 +1,94 @@
+{
+  "all_reader_facing_claims_resolved": true,
+  "claims": [
+    {
+      "boundary": "Lower bound and recurrence are donor-owned.",
+      "claim": "For k>=4, 5k+10 <= D_k(C_5^3) <= 5k+11.",
+      "evidence": "MANUSCRIPT.md Theorem 1",
+      "id": "C1",
+      "status": "PROVED"
+    },
+    {
+      "boundary": "No upper-line propagation theorem is claimed.",
+      "claim": "If D_4(C_5^3)=30, then D_k(C_5^3)=5k+10 for every k>=2.",
+      "evidence": "MANUSCRIPT.md Theorem 2",
+      "id": "C2",
+      "status": "PROVED_CONDITIONAL"
+    },
+    {
+      "boundary": "Applies under the stated saturation hypothesis.",
+      "claim": "A saturated odd-prime p-short-free sequence has the stated saturation-defect certificate.",
+      "evidence": "MANUSCRIPT.md Theorem 3",
+      "id": "C3",
+      "status": "PROVED"
+    },
+    {
+      "boundary": "Conditional on the obstruction/saturation reduction.",
+      "claim": "Multiplicity three is absent in the C_5^3 obstruction.",
+      "evidence": "MANUSCRIPT.md Corollary 4",
+      "id": "C4",
+      "status": "PROVED"
+    },
+    {
+      "boundary": "Arithmetic parameterization only.",
+      "claim": "The multiplicity grammar is c2=31-s-3c4 and c1=2s-31+2c4.",
+      "evidence": "MANUSCRIPT.md Section 4",
+      "id": "C5",
+      "status": "PROVED"
+    },
+    {
+      "boundary": "No authority for support 14+ exclusion or external independent replay.",
+      "claim": "Any length-31 total-zero 5-short-free obstruction over C_5^3 has support at least 14.",
+      "evidence": "research/orion-rg/wave3/orion04-support11-13-v1/ plus M2/M3 parent",
+      "id": "C6",
+      "status": "PROVED_BOUNDED_COMPUTER_ASSISTED"
+    },
+    {
+      "boundary": "Outside the region the theorem is silent.",
+      "claim": "The high-multiplicity stratum spans rank three when s+c4<=24.",
+      "evidence": "MANUSCRIPT.md Theorem 6",
+      "id": "C7",
+      "status": "PROVED"
+    },
+    {
+      "boundary": "It is a compression identity, not a contradiction.",
+      "claim": "The atom repetition/overlap identity holds for occurrence-disjoint factorizations.",
+      "evidence": "MANUSCRIPT.md Theorem 7",
+      "id": "C8",
+      "status": "PROVED"
+    },
+    {
+      "boundary": "theorem_authority=false; external_replay_required=true.",
+      "claim": "The internal support-through-22 ledger reports no survivors.",
+      "evidence": "research/orion-rg/X1K_C0_SUPPORT_BOUND_RESULTS_V1.json",
+      "id": "C9",
+      "status": "DESCRIPTIVE_INTERNAL_ONLY"
+    },
+    {
+      "boundary": "Not claimed.",
+      "claim": "31 belongs to C_0(C_5^3).",
+      "evidence": null,
+      "id": "C10",
+      "status": "OPEN"
+    },
+    {
+      "boundary": "Not claimed.",
+      "claim": "D_4(C_5^3)=30.",
+      "evidence": null,
+      "id": "C11",
+      "status": "OPEN"
+    },
+    {
+      "boundary": "No explicit extremal is admitted.",
+      "claim": "D_4(C_5^3)=31.",
+      "evidence": null,
+      "id": "C12",
+      "status": "OPEN"
+    }
+  ],
+  "paper_id": "ORION-04",
+  "schema": "ORION.ORION04.Wave3BoundedPaper.AtomicClaimLedger.v1",
+  "subject_main_sha": "e5dd6f1685eabd78e2f427c7a8665f619b4416b4",
+  "terminal": "ORION04_EXACT_D4_NOT_ESTABLISHED__PAPER_REFRAMED_TO_BOUNDED_STRUCTURAL_RESULT",
+  "unresolved_claims_are_explicitly_labelled_open": true
+}
