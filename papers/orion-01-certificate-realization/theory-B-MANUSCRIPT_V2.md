@@ -138,7 +138,7 @@ The residual contribution is the exact production realization in quantum compila
 
 ## 8. Reproducibility
 
-The production R6I alphabets, basis witnesses, source/generic/native agreement, and intrinsic support-one parent are commit-bound in the B1 package. R6M's sharp control is independently bound through Paper A. The R2 verifier checks alphabet invariants on small nonbinary and binary groups, basis obstructions through dimension four, and the exact product formulas.
+The production R6I alphabets, basis witnesses, source/generic/native agreement, and intrinsic support-one parent are commit-bound in the B1 package. The R6M all-size upper theorem and its exact support-one obstruction witness are commit-bound in the A1 parent package at `research/extensions/orion-qg/paper_a_a1_multitag_tare.py` and `research/extensions/orion-qg/PAPER_A_A1_MULTITAG_TARE_RESULTS_2026-08-24.json`; that package records `multitag_sharpness_authority: false`, so it binds the `kappa_M = 2` boundary corollary and does not carry general multitag-sharpness authority. The R2 verifier checks alphabet invariants on small nonbinary and binary groups, basis obstructions through dimension four, and the exact product formulas.
 
 All-size authority comes from Theorems 1 and 3. Internal independent implementations remain distinct from external replication.
 

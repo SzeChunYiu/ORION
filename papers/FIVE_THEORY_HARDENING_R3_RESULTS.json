@@ -1,0 +1,979 @@
+{
+  "all_checks": true,
+  "nonquantum": {
+    "all_checks": true,
+    "atom_identity_checks": 1000,
+    "atom_identity_failures": 0,
+    "atom_overlap_budget": "sum_i(|U_i|-|supp U_i|)+sum_g(r_g-1)=31-|supp S|",
+    "c0_31_authority": false,
+    "exact_d4_authority": false,
+    "phase_statement": "high-multiplicity stratum is forced rank three iff support+c4<=24 by eta(C_5^2)=13",
+    "rows": [
+      {
+        "patterns": [],
+        "rank3_forced_c4": [],
+        "support": 8
+      },
+      {
+        "patterns": [
+          [
+            1,
+            1,
+            7
+          ]
+        ],
+        "rank3_forced_c4": [
+          7
+        ],
+        "support": 9
+      },
+      {
+        "patterns": [
+          [
+            1,
+            3,
+            6
+          ],
+          [
+            3,
+            0,
+            7
+          ]
+        ],
+        "rank3_forced_c4": [
+          6,
+          7
+        ],
+        "support": 10
+      },
+      {
+        "patterns": [
+          [
+            1,
+            5,
+            5
+          ],
+          [
+            3,
+            2,
+            6
+          ]
+        ],
+        "rank3_forced_c4": [
+          5,
+          6
+        ],
+        "support": 11
+      },
+      {
+        "patterns": [
+          [
+            1,
+            7,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ],
+          [
+            5,
+            1,
+            6
+          ]
+        ],
+        "rank3_forced_c4": [
+          4,
+          5,
+          6
+        ],
+        "support": 12
+      },
+      {
+        "patterns": [
+          [
+            1,
+            9,
+            3
+          ],
+          [
+            3,
+            6,
+            4
+          ],
+          [
+            5,
+            3,
+            5
+          ],
+          [
+            7,
+            0,
+            6
+          ]
+        ],
+        "rank3_forced_c4": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "support": 13
+      },
+      {
+        "patterns": [
+          [
+            1,
+            11,
+            2
+          ],
+          [
+            3,
+            8,
+            3
+          ],
+          [
+            5,
+            5,
+            4
+          ],
+          [
+            7,
+            2,
+            5
+          ]
+        ],
+        "rank3_forced_c4": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "support": 14
+      },
+      {
+        "patterns": [
+          [
+            1,
+            13,
+            1
+          ],
+          [
+            3,
+            10,
+            2
+          ],
+          [
+            5,
+            7,
+            3
+          ],
+          [
+            7,
+            4,
+            4
+          ],
+          [
+            9,
+            1,
+            5
+          ]
+        ],
+        "rank3_forced_c4": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "support": 15
+      },
+      {
+        "patterns": [
+          [
+            1,
+            15,
+            0
+          ],
+          [
+            3,
+            12,
+            1
+          ],
+          [
+            5,
+            9,
+            2
+          ],
+          [
+            7,
+            6,
+            3
+          ],
+          [
+            9,
+            3,
+            4
+          ],
+          [
+            11,
+            0,
+            5
+          ]
+        ],
+        "rank3_forced_c4": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "support": 16
+      },
+      {
+        "patterns": [
+          [
+            3,
+            14,
+            0
+          ],
+          [
+            5,
+            11,
+            1
+          ],
+          [
+            7,
+            8,
+            2
+          ],
+          [
+            9,
+            5,
+            3
+          ],
+          [
+            11,
+            2,
+            4
+          ]
+        ],
+        "rank3_forced_c4": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "support": 17
+      },
+      {
+        "patterns": [
+          [
+            5,
+            13,
+            0
+          ],
+          [
+            7,
+            10,
+            1
+          ],
+          [
+            9,
+            7,
+            2
+          ],
+          [
+            11,
+            4,
+            3
+          ],
+          [
+            13,
+            1,
+            4
+          ]
+        ],
+        "rank3_forced_c4": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "support": 18
+      },
+      {
+        "patterns": [
+          [
+            7,
+            12,
+            0
+          ],
+          [
+            9,
+            9,
+            1
+          ],
+          [
+            11,
+            6,
+            2
+          ],
+          [
+            13,
+            3,
+            3
+          ],
+          [
+            15,
+            0,
+            4
+          ]
+        ],
+        "rank3_forced_c4": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "support": 19
+      },
+      {
+        "patterns": [
+          [
+            9,
+            11,
+            0
+          ],
+          [
+            11,
+            8,
+            1
+          ],
+          [
+            13,
+            5,
+            2
+          ],
+          [
+            15,
+            2,
+            3
+          ]
+        ],
+        "rank3_forced_c4": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "support": 20
+      },
+      {
+        "patterns": [
+          [
+            11,
+            10,
+            0
+          ],
+          [
+            13,
+            7,
+            1
+          ],
+          [
+            15,
+            4,
+            2
+          ],
+          [
+            17,
+            1,
+            3
+          ]
+        ],
+        "rank3_forced_c4": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "support": 21
+      },
+      {
+        "patterns": [
+          [
+            13,
+            9,
+            0
+          ],
+          [
+            15,
+            6,
+            1
+          ],
+          [
+            17,
+            3,
+            2
+          ],
+          [
+            19,
+            0,
+            3
+          ]
+        ],
+        "rank3_forced_c4": [
+          0,
+          1,
+          2
+        ],
+        "support": 22
+      },
+      {
+        "patterns": [
+          [
+            15,
+            8,
+            0
+          ],
+          [
+            17,
+            5,
+            1
+          ],
+          [
+            19,
+            2,
+            2
+          ]
+        ],
+        "rank3_forced_c4": [
+          0,
+          1
+        ],
+        "support": 23
+      },
+      {
+        "patterns": [
+          [
+            17,
+            7,
+            0
+          ],
+          [
+            19,
+            4,
+            1
+          ],
+          [
+            21,
+            1,
+            2
+          ]
+        ],
+        "rank3_forced_c4": [
+          0
+        ],
+        "support": 24
+      },
+      {
+        "patterns": [
+          [
+            19,
+            6,
+            0
+          ],
+          [
+            21,
+            3,
+            1
+          ],
+          [
+            23,
+            0,
+            2
+          ]
+        ],
+        "rank3_forced_c4": [],
+        "support": 25
+      },
+      {
+        "patterns": [
+          [
+            21,
+            5,
+            0
+          ],
+          [
+            23,
+            2,
+            1
+          ]
+        ],
+        "rank3_forced_c4": [],
+        "support": 26
+      },
+      {
+        "patterns": [
+          [
+            23,
+            4,
+            0
+          ],
+          [
+            25,
+            1,
+            1
+          ]
+        ],
+        "rank3_forced_c4": [],
+        "support": 27
+      },
+      {
+        "patterns": [
+          [
+            25,
+            3,
+            0
+          ],
+          [
+            27,
+            0,
+            1
+          ]
+        ],
+        "rank3_forced_c4": [],
+        "support": 28
+      },
+      {
+        "patterns": [
+          [
+            27,
+            2,
+            0
+          ]
+        ],
+        "rank3_forced_c4": [],
+        "support": 29
+      },
+      {
+        "patterns": [
+          [
+            29,
+            1,
+            0
+          ]
+        ],
+        "rank3_forced_c4": [],
+        "support": 30
+      },
+      {
+        "patterns": [
+          [
+            31,
+            0,
+            0
+          ]
+        ],
+        "rank3_forced_c4": [],
+        "support": 31
+      }
+    ],
+    "support23_patterns": [
+      [
+        15,
+        8,
+        0
+      ],
+      [
+        17,
+        5,
+        1
+      ],
+      [
+        19,
+        2,
+        2
+      ]
+    ],
+    "support23_theorem_authority": false,
+    "support24_patterns": [
+      [
+        17,
+        7,
+        0
+      ],
+      [
+        19,
+        4,
+        1
+      ],
+      [
+        21,
+        1,
+        2
+      ]
+    ]
+  },
+  "paper_a_b": {
+    "all_checks": true,
+    "binary_rows": [
+      {
+        "all_reducible": true,
+        "basis_zero_sum_free": true,
+        "d_plus_one_words_checked": 1,
+        "dimension": 1
+      },
+      {
+        "all_reducible": true,
+        "basis_zero_sum_free": true,
+        "d_plus_one_words_checked": 27,
+        "dimension": 2
+      },
+      {
+        "all_reducible": true,
+        "basis_zero_sum_free": true,
+        "d_plus_one_words_checked": 2401,
+        "dimension": 3
+      },
+      {
+        "all_reducible": true,
+        "basis_zero_sum_free": true,
+        "d_plus_one_words_checked": 11628,
+        "dimension": 4
+      }
+    ],
+    "controls": [
+      {
+        "alphabet_size": 1,
+        "expected_zsf": 2,
+        "group": "3",
+        "matches": true,
+        "observed_zsf": 2
+      },
+      {
+        "alphabet_size": 3,
+        "expected_zsf": 3,
+        "group": "4",
+        "matches": true,
+        "observed_zsf": 3
+      },
+      {
+        "alphabet_size": 3,
+        "expected_zsf": 2,
+        "group": "2x2",
+        "matches": true,
+        "observed_zsf": 2
+      },
+      {
+        "alphabet_size": 7,
+        "expected_zsf": 3,
+        "group": "2x2x2",
+        "matches": true,
+        "observed_zsf": 3
+      }
+    ],
+    "theorem": "support <= zsf(H;A); for F_2^d with a basis, zsf=d"
+  },
+  "paper_c": {
+    "all_checks": true,
+    "rows": [
+      {
+        "A": 10,
+        "B": 9,
+        "gap": 1,
+        "geometric_attains": true,
+        "integer_minimax_radius": 1,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1111111111111112,
+        "real_minimax_radius": 0.5,
+        "symmetric_factor": 1.0540925533894598,
+        "t": 1
+      },
+      {
+        "A": 22,
+        "B": 19,
+        "gap": 3,
+        "geometric_attains": true,
+        "integer_minimax_radius": 2,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1578947368421053,
+        "real_minimax_radius": 1.5,
+        "symmetric_factor": 1.0760551736979407,
+        "t": 2
+      },
+      {
+        "A": 34,
+        "B": 29,
+        "gap": 5,
+        "geometric_attains": true,
+        "integer_minimax_radius": 3,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1724137931034482,
+        "real_minimax_radius": 2.5,
+        "symmetric_factor": 1.0827805840074194,
+        "t": 3
+      },
+      {
+        "A": 46,
+        "B": 39,
+        "gap": 7,
+        "geometric_attains": true,
+        "integer_minimax_radius": 4,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1794871794871795,
+        "real_minimax_radius": 3.5,
+        "symmetric_factor": 1.086041978694737,
+        "t": 4
+      },
+      {
+        "A": 58,
+        "B": 49,
+        "gap": 9,
+        "geometric_attains": true,
+        "integer_minimax_radius": 5,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.183673469387755,
+        "real_minimax_radius": 4.5,
+        "symmetric_factor": 1.0879675865519869,
+        "t": 5
+      },
+      {
+        "A": 70,
+        "B": 59,
+        "gap": 11,
+        "geometric_attains": true,
+        "integer_minimax_radius": 6,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1864406779661016,
+        "real_minimax_radius": 5.5,
+        "symmetric_factor": 1.089238577156585,
+        "t": 6
+      },
+      {
+        "A": 82,
+        "B": 69,
+        "gap": 13,
+        "geometric_attains": true,
+        "integer_minimax_radius": 7,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1884057971014492,
+        "real_minimax_radius": 6.5,
+        "symmetric_factor": 1.0901402648748688,
+        "t": 7
+      },
+      {
+        "A": 94,
+        "B": 79,
+        "gap": 15,
+        "geometric_attains": true,
+        "integer_minimax_radius": 8,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1898734177215189,
+        "real_minimax_radius": 7.5,
+        "symmetric_factor": 1.090813191028381,
+        "t": 8
+      },
+      {
+        "A": 106,
+        "B": 89,
+        "gap": 17,
+        "geometric_attains": true,
+        "integer_minimax_radius": 9,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1910112359550562,
+        "real_minimax_radius": 8.5,
+        "symmetric_factor": 1.0913346122775802,
+        "t": 9
+      },
+      {
+        "A": 118,
+        "B": 99,
+        "gap": 19,
+        "geometric_attains": true,
+        "integer_minimax_radius": 10,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1919191919191918,
+        "real_minimax_radius": 9.5,
+        "symmetric_factor": 1.0917505172516255,
+        "t": 10
+      },
+      {
+        "A": 130,
+        "B": 109,
+        "gap": 21,
+        "geometric_attains": true,
+        "integer_minimax_radius": 11,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1926605504587156,
+        "real_minimax_radius": 10.5,
+        "symmetric_factor": 1.0920899919231544,
+        "t": 11
+      },
+      {
+        "A": 142,
+        "B": 119,
+        "gap": 23,
+        "geometric_attains": true,
+        "integer_minimax_radius": 12,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1932773109243697,
+        "real_minimax_radius": 11.5,
+        "symmetric_factor": 1.0923723316362282,
+        "t": 12
+      },
+      {
+        "A": 154,
+        "B": 129,
+        "gap": 25,
+        "geometric_attains": true,
+        "integer_minimax_radius": 13,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.193798449612403,
+        "real_minimax_radius": 12.5,
+        "symmetric_factor": 1.0926108408817858,
+        "t": 13
+      },
+      {
+        "A": 166,
+        "B": 139,
+        "gap": 27,
+        "geometric_attains": true,
+        "integer_minimax_radius": 14,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1942446043165467,
+        "real_minimax_radius": 13.5,
+        "symmetric_factor": 1.092814990891206,
+        "t": 14
+      },
+      {
+        "A": 178,
+        "B": 149,
+        "gap": 29,
+        "geometric_attains": true,
+        "integer_minimax_radius": 15,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1946308724832215,
+        "real_minimax_radius": 14.5,
+        "symmetric_factor": 1.0929917074174083,
+        "t": 15
+      },
+      {
+        "A": 190,
+        "B": 159,
+        "gap": 31,
+        "geometric_attains": true,
+        "integer_minimax_radius": 16,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1949685534591195,
+        "real_minimax_radius": 15.5,
+        "symmetric_factor": 1.0931461720461355,
+        "t": 16
+      },
+      {
+        "A": 202,
+        "B": 169,
+        "gap": 33,
+        "geometric_attains": true,
+        "integer_minimax_radius": 17,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1952662721893492,
+        "real_minimax_radius": 16.5,
+        "symmetric_factor": 1.0932823387347612,
+        "t": 17
+      },
+      {
+        "A": 214,
+        "B": 179,
+        "gap": 35,
+        "geometric_attains": true,
+        "integer_minimax_radius": 18,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1955307262569832,
+        "real_minimax_radius": 17.5,
+        "symmetric_factor": 1.093403277046938,
+        "t": 18
+      },
+      {
+        "A": 226,
+        "B": 189,
+        "gap": 37,
+        "geometric_attains": true,
+        "integer_minimax_radius": 19,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1957671957671958,
+        "real_minimax_radius": 18.5,
+        "symmetric_factor": 1.0935114063269737,
+        "t": 19
+      },
+      {
+        "A": 238,
+        "B": 199,
+        "gap": 39,
+        "geometric_attains": true,
+        "integer_minimax_radius": 20,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1959798994974875,
+        "real_minimax_radius": 19.5,
+        "symmetric_factor": 1.0936086592092655,
+        "t": 20
+      },
+      {
+        "A": 1198,
+        "B": 999,
+        "gap": 199,
+        "geometric_attains": true,
+        "integer_minimax_radius": 100,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1991991991991993,
+        "real_minimax_radius": 99.5,
+        "symmetric_factor": 1.0950795401244602,
+        "t": 100
+      },
+      {
+        "A": 11998,
+        "B": 9999,
+        "gap": 1999,
+        "geometric_attains": true,
+        "integer_minimax_radius": 1000,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1999199919991999,
+        "real_minimax_radius": 999.5,
+        "symmetric_factor": 1.0954085959125937,
+        "t": 1000
+      },
+      {
+        "A": 119998,
+        "B": 99999,
+        "gap": 19999,
+        "geometric_attains": true,
+        "integer_minimax_radius": 10000,
+        "midpoint_attains": true,
+        "one_sided_factor": 1.1999919999199993,
+        "real_minimax_radius": 9999.5,
+        "symmetric_factor": 1.0954414634840144,
+        "t": 10000
+      }
+    ],
+    "uniform_one_sided_lower_bound_limit": 1.2,
+    "uniform_symmetric_lower_bound_limit": 1.0954451150103321
+  },
+  "paper_d": {
+    "all_checks": true,
+    "controls": {
+      "bounded_frontier_cannot_promote_theorem": true,
+      "post_outcome_cap_blocks_prospective": true,
+      "seeded_cycle_propagates": true,
+      "unsupported_cycle_bottom": true
+    },
+    "least_fixed_point_disagreements": 0,
+    "random_systems_checked": 300,
+    "refutation_monotonicity_failures": 0
+  }
+}
