@@ -1,0 +1,36 @@
+{
+ "cells": {
+  "dev": 18,
+  "protected": 7,
+  "protected_cap_train": 0,
+  "train": 18
+ },
+ "checks": {
+  "A_ceiling_is_112_of_128": true,
+  "B_model_scores_96_of_128": true,
+  "B_predictions_constant_within_every_orbit_cell": true,
+  "C_dev_fully_in_orbit": true,
+  "C_protected_fully_out_of_orbit": true,
+  "D_coarsening_never_lowers_floor": true,
+  "D_refinement_never_raises_floor_or_coverage": true
+ },
+ "independence": "no ORION-19 scoring path imported; partition recomputed from the frozen colouring; recorded result read as data",
+ "irreducible_floor_cases": 16,
+ "model_accuracy": 0.75,
+ "model_correct": 96,
+ "negative_controls": {
+  "a_mixed_cell_exists_so_floor_is_not_trivially_zero": true,
+  "model_score_differs_from_ceiling": true,
+  "shuffled_labels_break_the_ceiling": true,
+  "train_cells_are_nonempty_so_coverage_is_testable": true
+ },
+ "orbit_cells_protected": 7,
+ "orbit_coverage_dev": 1.0,
+ "orbit_coverage_protected": 0.0,
+ "orbit_majority_ceiling": 0.875,
+ "protected_cases": 128,
+ "recoverable_gap_cases": 16,
+ "schema": "ORION.ORION19.OrbitCoverageGate.CheckerReport.v1",
+ "status": "PASS",
+ "successor_id": "ORION19.INVARIANT_ORBIT_COVERAGE_GATE.v1"
+}
