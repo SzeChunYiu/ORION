@@ -4,6 +4,14 @@
 **Status:** `RUNNER_AND_INDEPENDENT_CHECKER_READY__SCIENTIFIC_EXECUTION_NOT_RUN`  
 **scientific_authority_delta:** `NONE`
 
+> **Superseded 2026-08-29 — the run has since happened.** This document records the
+> readiness state as it stood *before* execution, and is left unedited for that reason: the
+> status line above describes that prior state, not the current one. The frozen command was
+> executed once on LUNARC (job `3552796`, `ORION_SOURCE_COMMIT b8fd5d2c`) and returned
+> terminal `T3_TIE_AMBIGUOUS_VERDICT_CHANGING`, with the independent checker in agreement
+> (`status: PASS`). See `CLAIM_DISPOSITION.md` § "Executed outcome (2026-08-29)" and the raw
+> outputs under `result/run-3552796/`.
+
 ## What this packet adds
 
 The scientific protocol, theory, ladder, thresholds, seeds, and admissible terminals were already frozen before this engineering work. This packet adds only the missing execution machinery:
