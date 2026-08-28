@@ -1,0 +1,26 @@
+{
+  "$id": "ORION.NQ.EngineB.CertificateSchemas.v2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "authority": {
+    "sat_witness": "replayable finite predicate evidence",
+    "unsat_hash_only": "not logical verification",
+    "unsat_required": "byte-bound DIMACS CNF plus DRUP trace and external DRUP verification",
+    "external_control_scope": "one engineering control; no census or paper authority",
+    "d4_c5_cubed": "OPEN"
+  },
+  "certificate_types": [
+    "ORION.NQ.EngineB.SATCertificate.v1",
+    "ORION.NQ.EngineB.UNSATCertificate.v2"
+  ],
+  "required_bindings": [
+    "subject_commit",
+    "record_id",
+    "sequence_sha256",
+    "required_bins",
+    "cnf_sha256",
+    "cnf",
+    "proof",
+    "solver_identity",
+    "certificate_sha256"
+  ]
+}

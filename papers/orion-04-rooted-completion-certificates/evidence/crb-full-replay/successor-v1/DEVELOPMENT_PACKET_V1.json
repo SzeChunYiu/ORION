@@ -1,0 +1,43 @@
+{
+  "atomic_development_questions": [
+    "Can every generation receipt remain canonical JSON after D2 succeeds and D3 fails or completes?",
+    "Can every phase-1 byte survive node-local cleanup before any structural execution starts?",
+    "Can the first failure, environment, and process exit survive every ordinary shell failure path?",
+    "Can duplicate submission be refused across checkouts and concurrent sessions rather than only within one untracked working tree?",
+    "Can submission remain impossible until an operator-supplied request binds the exact successor commit, source manifest, new key, durable root, and shared registry?"
+  ],
+  "challenge_to_saturation_basis": [
+    "Unit fixtures that never serialize real timing metrics cannot establish receipt safety.",
+    "A checkout-local registry is not a global nonduplication control.",
+    "A final copy phase cannot preserve evidence from a failure before that phase.",
+    "A submitted job can start before its registry record is committed unless held-then-bound submission is used.",
+    "A Python-only trap is insufficient without a minimal shell fallback."
+  ],
+  "date": "2026-08-27",
+  "frozen_implementation_hypothesis": "Integer-millisecond timing plus an atomically published all-file phase-1 checkpoint, write-once durable traps, a flock-guarded shared registry prebound with every historical key, held-then-bound Slurm submission, and an operator-supplied one-shot execution request whose identity and externality remain unverified by the machine will repair custody without changing the frozen census predicates, denominators, adverse evidence, or authority ceiling.",
+  "knowledge_saturation": {
+    "failure_evidence": "job-3544056 exact exception, scheduler record, consumed key, missing durable output, and CANNOT_CHECK authority are all preserved on current main",
+    "local_donors": "historical engine commit 20365f254807015d8db46a370f006f8be462b3f8 and current-main failure custody",
+    "operating_primitives": "canonical integer JSON, SHA-256, atomic rename, fsync, O_EXCL, POSIX flock, Slurm hold/release, and explicit environment export",
+    "science_reopened": false,
+    "scope_saturated": true
+  },
+  "prior_miss_hypotheses": [
+    "The receipt tests exercised integer controls but not the float emitted by round(..., 3).",
+    "Phase-1 streams were treated as intermediate rather than irreplaceable evidence after eight hours of compute.",
+    "The nonduplication registry lived beside the checkout and was neither tracked nor shared.",
+    "The job installed its durable copy logic only at the final phase, so early exceptions erased node-local evidence.",
+    "The former submit flow recorded the job only after sbatch returned, leaving a start-before-binding race."
+  ],
+  "protected_lanes_touched": false,
+  "reopen_triggers": [
+    "Any timing value reaching a receipt is not an integer.",
+    "Checkpoint verification misses a changed, missing, extra, or symlinked file.",
+    "A second process can reserve the same key or reserve while another attempt is active.",
+    "A missing, placeholder, old-key, wrong-commit, wrong-manifest, or wrong-root operator request is accepted.",
+    "A post-D2 failure does not leave durable first-failure and exit custody.",
+    "The successor changes 98622, 230983, the external DRUP gate, the positive-witness gate, or D4 round accounting."
+  ],
+  "schema": "ORION.DevelopmentPacket.v1",
+  "task": "ORION-04 CR-B replay prerequisite repair only"
+}
