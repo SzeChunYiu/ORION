@@ -1,7 +1,5 @@
 # Conservative Certificate Lifting and Selective Revalidation under Scientific Change
 
-<!-- Draft integration note: AIJ-oriented reader-facing rewrite from current main authority. Open successor PRs on arbitrary dependency graphs/graph-quality laws are not treated as established manuscript claims until merged and rebound. -->
-
 ## Abstract
 
 AI and scientific workflow systems increasingly rely on execution certificates, provenance records, typed effects, authorization receipts and reproducible workflow traces. These objects can remain locally valid even after the scientific question, measurement semantics or inferential obligation changes. Recomputing every lower-level certificate after each change is wasteful, but reusing them without a scientific bridge can preserve evidence whose original conclusion is no longer licensed.
