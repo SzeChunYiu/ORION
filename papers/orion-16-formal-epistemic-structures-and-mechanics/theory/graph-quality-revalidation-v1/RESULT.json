@@ -1,0 +1,81 @@
+{
+  "schema": "ORION.ORION16.GraphQualityRevalidation.CheckerReport.v1",
+  "successor_id": "ORION16.REAL_SYSTEM_MINIMAL_REVALIDATION.v1",
+  "extends": "ORION16.DEPENDENCY_CLOSED_REVALIDATION.v1 (PR #1638)",
+  "independence": "no ORION-16 module imported; theorems verified on freshly enumerated DAG pairs; gold read as data only",
+  "check_A_over_approximation_sound": {
+    "pairs_checked": 11892,
+    "holds": true
+  },
+  "check_B_extra_work_equals_surplus_closure": {
+    "checked": 11892,
+    "holds": true
+  },
+  "check_C_missing_edges_unsound": {
+    "pairs_checked": 54172,
+    "witness": {
+      "n": 2,
+      "delta": [
+        0
+      ],
+      "stranded_obligations": [
+        1
+      ],
+      "reading": "these lie in the true affected closure but not in the used one, so revalidating A_G leaves them unchecked"
+    }
+  },
+  "check_D_exactness_cost_optimal_among_sound": {
+    "violations": 0,
+    "holds": true
+  },
+  "check_E_frozen_real_transition_gold": {
+    "taxonomy": {
+      "exact_graph": {
+        "case": "RC-ALIAS-COMPLETE",
+        "predicted": "ADMISSIBLE",
+        "observed": "ADMISSIBLE",
+        "match": true,
+        "reason": "exact closure, sound and cost-optimal"
+      },
+      "unchanged": {
+        "case": "RC-UNCHANGED",
+        "predicted": "ADMISSIBLE",
+        "observed": "ADMISSIBLE",
+        "match": true,
+        "reason": "empty affected closure"
+      },
+      "missing_edges": {
+        "case": "RC-ALIAS-MISSING",
+        "predicted": "CANNOT_CHECK",
+        "observed": "CANNOT_CHECK",
+        "match": true,
+        "reason": "an incomplete graph cannot certify; the sound response to detected incompleteness is abstention, not acceptance"
+      },
+      "wrong_edges": {
+        "case": "RC-ALIAS-WRONG",
+        "predicted": "REOPEN",
+        "observed": "REOPEN",
+        "match": true,
+        "reason": "the used closure is not a superset of the true one"
+      }
+    },
+    "all_match": true,
+    "gold_cases_total": 16
+  },
+  "check_F_negative_controls": {
+    "missing_edge_strands_an_obligation": {
+      "pass": true
+    },
+    "over_approximation_never_strands": {
+      "pass": true,
+      "note": "asserted exhaustively in check A; a violation would have raised"
+    },
+    "gold_taxonomy_matches_theorem": {
+      "pass": true
+    },
+    "abstention_is_the_sound_response_to_incompleteness": {
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}
