@@ -1,0 +1,30 @@
+\section{Permanent negative history}\label{permanent-negative-history}
+
+The historical experiment constructed independent binary latent
+variables \texttt{(x,m,r)} and responsibilities \texttt{PREDICT=x},
+\texttt{DECIDE=x}, \texttt{INTERVENE=x*m}, \texttt{VERIFY=x*m}, and
+\texttt{REPAIR=r}. Representations were \texttt{Z1=(x)},
+\texttt{Z2=(x,m)} and \texttt{Z3=(x,m,r)}.
+
+Exact enumeration produced the intended responsibility ladder: all
+representations were perfect for prediction/decision; \texttt{Z1} was
+exactly 0.5 on intervene/verify while \texttt{Z2/Z3} were 1.0;
+\texttt{Z2} was 0.5 on repair while \texttt{Z3} was 1.0. Exact upward
+debts were therefore +0.50.
+
+However, the frozen protocol also required the maximum deviation among
+100 finite-sample sanity replicates of \texttt{n=1024} to be ≤0.05. The
+observed maximum was \texttt{0.0556640625} at replicate 92. The
+controlled sufficiency-debt gate is therefore permanently not met.
+
+\subsection{Root cause}\label{root-cause}
+
+The harness grouped a finite sample by compact state, selected the
+majority target value from that same sample and credited that majority
+on the same observations, then maximized deviation over 100 replicates.
+The statistic combines within-sample majority optimism with an
+extreme-value operation. The correct response is not to change
+\texttt{0.05} after observing \texttt{0.0556640625}. The old terminal
+stays negative. The successor changes the estimand: exact support is
+evaluated by exhaustive equivalence classes, while efficacy is evaluated
+on a fresh safety--cost benchmark.

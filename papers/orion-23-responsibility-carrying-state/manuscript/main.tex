@@ -1,27 +1,39 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,booktabs}
+\usepackage{longtable,array,calc}
 \usepackage[hidelinks]{hyperref}
-\usepackage[pipeTables]{markdown}
 \usepackage{seqsplit}
 % Preserve exact receipt/terminal strings while permitting typographic line
 % breaks inside their monospace rendering.
-\renewcommand{\markdownRendererCodeSpan}[1]{\texttt{\seqsplit{#1}}}
+% The markdown package needs texlua and a matching cache version, neither of
+% which exists in this build environment; without them it silently resolved every
+% section to the same cached fragment and produced a plausible but wrong PDF.
+% The canonical prose still lives in the .md files. They are converted ahead of
+% the build and \markdownInput now inputs that conversion, so the source of truth
+% is unchanged and the toolchain dependency is gone.
+\newcommand{\markdownInput}[1]{\input{#1.tex}}
+\newcommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setlength{\emergencystretch}{1.5em}
 % pdflatex cannot typeset these code points unaided, and the canonical prose is
 % Markdown, where an author writes them naturally. Without this the P11 build
 % died on its first "≥" with "Unicode character ≥ (U+2265) not set up for use
 % with LaTeX" and produced no PDF at all, while the committed main.pdf stayed on
 % disk from an earlier source -- a stale artifact beside a red build.
-\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
-\DeclareUnicodeCharacter{2013}{--}
-\DeclareUnicodeCharacter{2014}{---}
-\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
-\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
-\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
-\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
-\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
-\DeclareUnicodeCharacter{2260}{\ensuremath{\neq}}
+% Engine guard: \DeclareUnicodeCharacter exists only under pdflatex's inputenc.
+% Under XeTeX/LuaTeX it is undefined and halted the build, so the same mappings
+% are declared conditionally and newunicodechar carries them on every engine.
+\ifdefined\DeclareUnicodeCharacter
+  \DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+  \DeclareUnicodeCharacter{2013}{--}
+  \DeclareUnicodeCharacter{2014}{---}
+  \DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+  \DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+  \DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+  \DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
+  \DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+  \DeclareUnicodeCharacter{2260}{\ensuremath{\neq}}
+\fi
 % The chapter Markdown uses mathematical Unicode that pdflatex has no default
 % mapping for, so the build stopped on the first one. Declared rather than
 % edited out of the text: the characters are the authors' and belong in the
@@ -35,9 +47,12 @@
 \newunicodechar{→}{\ensuremath{\rightarrow}}
 \newunicodechar{≈}{\ensuremath{\approx}}
 \newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{–}{--}
+\newunicodechar{—}{---}
+\newunicodechar{∈}{\ensuremath{\in}}
 \title{Responsibility-Carrying State: Auditable Sufficiency, Reopen Contracts, and Safe State Reuse}
-\author{ORION-P13}
-\date{21 August 2026}
+\author{Anonymous authors}
+\date{}
 \begin{document}
 \maketitle
 \input{sections/00-abstract.tex}

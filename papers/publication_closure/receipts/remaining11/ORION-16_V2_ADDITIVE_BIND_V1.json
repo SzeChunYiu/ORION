@@ -1,0 +1,23 @@
+{
+  "added_count": 5,
+  "added_paths": [
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/real-system-revalidation-v1/ANALYSIS.md",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/real-system-revalidation-v1/PROTOCOL_AND_PREDICTIONS.md",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/real-system-revalidation-v1/RESULT.json",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/real-system-revalidation-v1/independent_checker/check_discriminator.py",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/real-system-revalidation-v1/run_real_system_discriminator.py"
+  ],
+  "binds": "BYTES ONLY",
+  "candidate_id": "ORION-16",
+  "closes_no_gate": true,
+  "grants_authority": "NONE",
+  "licenses_no_archive": true,
+  "operation": "bind additive successor-theory files into CONTENT_MANIFEST_V2",
+  "ordering_rule": "binding written AFTER every content edit it covers",
+  "paper": "papers/orion-16-formal-epistemic-structures-and-mechanics",
+  "schema": "orion.candidate.v2-additive-bind.v1",
+  "subject_commit": "9841b15c4396def6eeeeea7f9083e3f69ab051be",
+  "subject_tree": "beba3e29be635321ee0dd447595983f6f531ab79",
+  "v1_manifest_modified": false,
+  "why": "check_content_binding_v1.py refuses to regenerate V1 for additive files and directs them to V2; an unmanifested addition turns the checker red by design"
+}
