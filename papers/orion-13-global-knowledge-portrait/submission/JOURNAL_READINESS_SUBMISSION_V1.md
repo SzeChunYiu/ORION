@@ -73,6 +73,18 @@ The two claim identifiers held as not claimed on the scoped track remain not
 claimed, and the limitations still state that the broad study has not been
 executed.
 
+## Venue-format conversion — named explicitly
+
+The manuscript is `\documentclass[11pt]{article}` with `\author{Working framework
+draft}`. It is a complete, sectioned, bibliography-resolved manuscript that
+compiles cleanly, but it is **not** in Semantic Web Journal's submission format: no venue
+class or style file, no author block, and no anonymisation decision recorded.
+
+Converting it requires the IOS Press SWJ template, which is not obtainable from the toolchain used in
+this pass, so this is left as an input rather than attempted and half-done.
+Treat it as mechanical filing work, not evidence work: the science, the claim
+ceiling, and the checks are complete and independent of the template.
+
 ## Remaining inputs — human only
 
 1. **Author list** in final order, **affiliations**, **ORCID** identifiers.
@@ -88,3 +100,5 @@ executed.
    with the DOI substituted into the availability statements.
 8. **Licence election** for deposited artifacts, consistent with the existing
    OAEI track licence manifest.
+
+Also required before filing: **convert to Semantic Web Journal's submission template** (the IOS Press SWJ template) and record the anonymisation decision.

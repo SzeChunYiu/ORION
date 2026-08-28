@@ -1,7 +1,7 @@
 # Submission manifest — orion-13-global-knowledge-portrait
 
 Target venue: **Semantic Web Journal**  
-Compiled manuscript: `submission/manuscript.pdf`, the pinned-toolchain rebuild (45 pages)  
+Compiled manuscript: `submission/manuscript.pdf` (45 pages)  
 Manifest generated: 2026-08-28
 
 Every file below is a byte-exact input to, or output of, the compiled

@@ -29,6 +29,18 @@ declined on scope (see `VENUE_DECISION.md`).
 No claim was widened. The manuscript's central claim remains descriptive and
 one-programme, and the undetermined cross-domain verdict is untouched.
 
+## Venue-format conversion — named explicitly
+
+The manuscript is `\documentclass[11pt]{article}` with `\author{Working framework
+draft}`. It is a complete, sectioned, bibliography-resolved manuscript that
+compiles cleanly, but it is **not** in TMLR's submission format: no venue
+class or style file, no author block, and no anonymisation decision recorded.
+
+Converting it requires tmlr.sty, which is not obtainable from the toolchain used in
+this pass, so this is left as an input rather than attempted and half-done.
+Treat it as mechanical filing work, not evidence work: the science, the claim
+ceiling, and the checks are complete and independent of the template.
+
 ## Remaining inputs — human only
 
 1. **Author list** in final order; the title page reads "Working framework draft".
@@ -43,3 +55,5 @@ one-programme, and the undetermined cross-domain verdict is untouched.
 9. **Regenerate `RECEIPT_INDEX.md`** against the final manuscript, as the
    Reproducibility section itself requires, once the author list is fixed and
    no further text changes are expected.
+
+Also required before filing: **convert to TMLR's submission template** (tmlr.sty) and record the anonymisation decision.

@@ -32,6 +32,18 @@ technical results" and referred to the paper by an internal identifier; both wer
 replaced with plain prose that cites the underlying results as ordinary
 references. No claim was affected.
 
+## Venue-format conversion — named explicitly
+
+The manuscript is `\documentclass[11pt]{article}` with `\author{Working framework
+draft}`. It is a complete, sectioned, bibliography-resolved manuscript that
+compiles cleanly, but it is **not** in Quantum's submission format: no venue
+class or style file, no author block, and no anonymisation decision recorded.
+
+Converting it requires quantumarticle, which is not obtainable from the toolchain used in
+this pass, so this is left as an input rather than attempted and half-done.
+Treat it as mechanical filing work, not evidence work: the science, the claim
+ceiling, and the checks are complete and independent of the template.
+
 ## Remaining inputs — human only
 
 1. **Author list** in final order; the title page reads "Working framework draft".
@@ -45,3 +57,5 @@ references. No claim was affected.
 7. **Licence election** for deposited artifacts.
 8. **Optional:** add a content manifest for this paper so the binding gate can
    close.
+
+Also required before filing: **convert to Quantum's submission template** (quantumarticle) and record the anonymisation decision.

@@ -40,6 +40,18 @@ repository paths in narrative, internal identifiers, and sibling cross-reference
 The pass added the submission package and recorded the canonical-source and
 venue decisions.
 
+## Venue-format conversion — named explicitly
+
+The manuscript is `\documentclass[11pt]{article}` with `\author{Working framework
+draft}`. It is a complete, sectioned, bibliography-resolved manuscript that
+compiles cleanly, but it is **not** in Quantum's submission format: no venue
+class or style file, no author block, and no anonymisation decision recorded.
+
+Converting it requires quantumarticle, which is not obtainable from the toolchain used in
+this pass, so this is left as an input rather than attempted and half-done.
+Treat it as mechanical filing work, not evidence work: the science, the claim
+ceiling, and the checks are complete and independent of the template.
+
 ## Remaining inputs — human only
 
 These cannot be supplied from the repository and are the only things standing
@@ -62,3 +74,5 @@ between this package and a filed submission:
 10. **Licence election** for the deposited artifacts.
 
 Once 1–10 are supplied, the package is filable as it stands.
+
+Also required before filing: **convert to Quantum's submission template** (quantumarticle) and record the anonymisation decision.

@@ -64,6 +64,18 @@ explicit counterexample to the reading that agreement implies correctness.
 | Cover letter | Closed | `COVER_LETTER.md` |
 | Data/code availability | Closed | `DATA_AND_CODE_AVAILABILITY.md` |
 
+## Venue-format conversion — named explicitly
+
+The manuscript is `\documentclass[11pt]{article}` with `\author{Working framework
+draft}`. It is a complete, sectioned, bibliography-resolved manuscript that
+compiles cleanly, but it is **not** in TMLR's submission format: no venue
+class or style file, no author block, and no anonymisation decision recorded.
+
+Converting it requires tmlr.sty, which is not obtainable from the toolchain used in
+this pass, so this is left as an input rather than attempted and half-done.
+Treat it as mechanical filing work, not evidence work: the science, the claim
+ceiling, and the checks are complete and independent of the template.
+
 ## Remaining inputs — human only
 
 1. **Author list** in final order. The title page currently reads "Working
@@ -77,3 +89,5 @@ explicit counterexample to the reading that agreement implies correctness.
 7. **Public archival deposit** of the instance directories, with the DOI
    substituted into the availability statement.
 8. **Licence election** for the deposited artifacts.
+
+Also required before filing: **convert to TMLR's submission template** (tmlr.sty) and record the anonymisation decision.

@@ -46,6 +46,18 @@ digest binding retains its two SHA-256 values inline in Results, because the
 claim ledger's declared support artifacts require the bound digests to appear in
 the sentence they bind. For that claim the digest is the claim.
 
+## Venue-format conversion — named explicitly
+
+The manuscript is `\documentclass[11pt]{article}` with `\author{Working framework
+draft}`. It is a complete, sectioned, bibliography-resolved manuscript that
+compiles cleanly, but it is **not** in Information Processing & Management's submission format: no venue
+class or style file, no author block, and no anonymisation decision recorded.
+
+Converting it requires the Elsevier elsarticle class, which is not obtainable from the toolchain used in
+this pass, so this is left as an input rather than attempted and half-done.
+Treat it as mechanical filing work, not evidence work: the science, the claim
+ceiling, and the checks are complete and independent of the template.
+
 ## Remaining inputs — human only
 
 1. **Author list** in final order; the title page reads "Working framework draft".
@@ -62,3 +74,5 @@ the sentence they bind. For that claim the digest is the claim.
    with the DOI substituted into the availability statements.
 7. **Licence election** for deposited artifacts, noting the MIT/CC0 distinction
    the manuscript records for one external snapshot.
+
+Also required before filing: **convert to Information Processing & Management's submission template** (the Elsevier elsarticle class) and record the anonymisation decision.

@@ -1,7 +1,7 @@
 # Submission manifest — orion-12-open-world-scientific-discovery
 
 Target venue: **Information Processing & Management**  
-Compiled manuscript: `submission/manuscript.pdf`, the pinned-toolchain rebuild (47 pages)  
+Compiled manuscript: `submission/manuscript.pdf` (47 pages)  
 Manifest generated: 2026-08-28
 
 Every file below is a byte-exact input to, or output of, the compiled
