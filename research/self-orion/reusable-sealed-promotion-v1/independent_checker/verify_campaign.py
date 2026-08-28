@@ -245,17 +245,21 @@ def verify(campaign: Path, protocol: Path) -> dict[str, Any]:
         "UNRESOLVED": 2,
     }
     checks["no_duplicate_conflict_in_conformance"] = duplicate_conflicts == 0
-    checks["final_schema"] = final.get("schema")
-    == "ORION.SelfOrion.ReusableSealedFinalReceipt.v1"
+    checks["final_schema"] = (
+        final.get("schema") == "ORION.SelfOrion.ReusableSealedFinalReceipt.v1"
+    )
     checks["final_event_count"] = final.get("event_count") == len(events)
     checks["final_chain_digest"] = final.get("final_chain_digest") == prior_digest
-    checks["final_cumulative"] = final.get("cumulative_effective_debit")
-    == rational_json(cumulative)
+    checks["final_cumulative"] = (
+        final.get("cumulative_effective_debit") == rational_json(cumulative)
+    )
     checks["final_alpha_total"] = final.get("alpha_total") == config.get("alpha_total")
     checks["final_decision_counts"] = final.get("decision_counts") == decisions
     checks["final_conflicts"] = final.get("duplicate_conflict_count") == duplicate_conflicts
-    checks["final_formal_terminal"] = final.get("formal_terminal")
-    == "SELF_ORION_REUSABLE_SEALED_FORMAL_CONFORMANCE_ONLY"
+    checks["final_formal_terminal"] = (
+        final.get("formal_terminal")
+        == "SELF_ORION_REUSABLE_SEALED_FORMAL_CONFORMANCE_ONLY"
+    )
     checks["final_authority_fail_closed"] = all(
         final.get(field) is False
         for field in (
@@ -270,15 +274,19 @@ def verify(campaign: Path, protocol: Path) -> dict[str, Any]:
     unsigned_final = dict(final)
     final_digest = unsigned_final.pop("receipt_digest", None)
     checks["final_receipt_digest"] = final_digest == digest(unsigned_final)
-    checks["summary_terminal"] = summary.get("formal_terminal")
-    == "SELF_ORION_REUSABLE_SEALED_FORMAL_CONFORMANCE_ONLY"
-    checks["summary_no_empirical_authority"] = summary.get("empirical_authority_delta")
-    == "NONE"
+    checks["summary_terminal"] = (
+        summary.get("formal_terminal")
+        == "SELF_ORION_REUSABLE_SEALED_FORMAL_CONFORMANCE_ONLY"
+    )
+    checks["summary_no_empirical_authority"] = (
+        summary.get("empirical_authority_delta") == "NONE"
+    )
     checks["summary_decisions"] = summary.get("event_decisions") == [
         event.get("decision") for event in events
     ]
-    checks["summary_final_digest"] = summary.get("final_receipt_digest")
-    == final.get("receipt_digest")
+    checks["summary_final_digest"] = (
+        summary.get("final_receipt_digest") == final.get("receipt_digest")
+    )
 
     positive = all(checks.values())
     report: dict[str, Any] = {
