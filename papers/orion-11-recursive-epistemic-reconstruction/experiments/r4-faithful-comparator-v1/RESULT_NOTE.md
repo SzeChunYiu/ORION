@@ -33,9 +33,12 @@ n_worlds 2882, hidden_shift 480, intervention budget 4.0 — all unchanged.
    pre-registered joint criterion. The pre-registered falsification fires.
 3. Constraint-compliance is nevertheless **not free**: the darc and causalflow
    repairs recover task success but retain their parents' forbidden-mutation
-   rates (0.238, 0.411). Two of three arms did not falsify. The staged
-   lower-level probe ladder, not the mutation-necessity certificate, is what
-   delivers zero forbidden mutations.
+   rates (0.238, 0.411). Two of three arms did not falsify. **Which component
+   supplies activevoi's 0.000 is NOT isolated by this run** — note that
+   `active_voi_repair_parent` already had forbidden 0.000 before the repair, so
+   the zero may be inherited from its admission structure rather than from its
+   probe ladder. Separating those requires an ablation this experiment did not
+   run.
 
 ## Consequence (per protocol)
 
