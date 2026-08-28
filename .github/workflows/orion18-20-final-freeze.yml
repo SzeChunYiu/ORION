@@ -19,8 +19,8 @@ jobs:
         with: {ref: chatgpt/integrate-claude-orion18-20-freeze-20260827, fetch-depth: 0}
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - name: Install tests
-        run: python -m pip install --disable-pip-version-check -e . pytest
+      - name: Install tests and ORION-20 framework dependency
+        run: python -m pip install --disable-pip-version-check -e . pytest numpy
       - name: P8 binding chain
         run: python papers/orion-18-epistemic-authority-autonomous-science/formal/check_p8_native_protocol_binding_v1.py
       - name: P8 paper checksums
