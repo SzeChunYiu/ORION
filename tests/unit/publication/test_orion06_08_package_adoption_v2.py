@@ -13,15 +13,17 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def test_registry_names_the_manuscripts_used_by_the_recovered_packages() -> None:
-    registry = (ROOT / "papers/README.md").read_text()
-    for paper_dir in (
-        "orion-06-recursive-recovery",
-        "orion-07-dual-instrument",
-        "orion-08-typed-state",
-    ):
-        row = next(line for line in registry.splitlines() if f"`{paper_dir}/`" in line)
-        assert "`MANUSCRIPT_V3.md`" in row
+def test_adoption_names_the_manuscripts_used_by_the_recovered_packages() -> None:
+    adoption = json.loads(ADOPTION.read_text())
+    expected_sources = {
+        "ORION-06": "papers/orion-06-recursive-recovery/MANUSCRIPT_V3.md",
+        "ORION-07": "papers/orion-07-dual-instrument/MANUSCRIPT_V3.md",
+        "ORION-08": "papers/orion-08-typed-state/MANUSCRIPT_V3.md",
+    }
+
+    for item in adoption["papers"]:
+        bound_paths = {binding["path"] for binding in item["bindings"]}
+        assert expected_sources[item["paper_id"]] in bound_paths
 
 
 def test_package_adoption_is_additive_and_grants_no_submission_authority() -> None:
