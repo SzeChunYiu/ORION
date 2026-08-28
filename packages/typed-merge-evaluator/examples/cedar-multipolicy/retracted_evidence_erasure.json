@@ -1,0 +1,54 @@
+{
+  "claims": [
+    "subject=alice",
+    "scope=admin",
+    "__target__"
+  ],
+  "expect": {
+    "first_mixing": {
+      "__target__": true
+    },
+    "flat_authorized": {
+      "__target__": true
+    },
+    "typed_authorized": {
+      "__target__": false
+    }
+  },
+  "flat_seeded_claims": [
+    "subject=alice",
+    "scope=admin"
+  ],
+  "id": "cedar-multipolicy/retracted_evidence_erasure",
+  "licenses": [
+    "A"
+  ],
+  "provenance": {
+    "domain": "authorization records with origin attribution",
+    "encoding": "One license per non-retracted origin record. Each required atom is seeded with the origins whose record carries it, so the capped rule transfer (intersection of body labels) yields exactly the origins carrying every required atom -- the typed predicate. The license-erased pass yields the flat predicate.",
+    "expectations_from": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/RUST_ADJUDICATION_V1.json",
+    "retraction_note": "The single record is retracted, so it contributes no typed license. main.rs calls flat_constructs with erase_retraction=true for this control only: the flat merge has lost the retraction marker and still sees the atoms. flat_seeded_claims encodes exactly that divergence.",
+    "transcribed_from": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/rust-adjudicator/src/main.rs"
+  },
+  "refuted": [],
+  "rules": [
+    {
+      "body": [
+        "subject=alice",
+        "scope=admin"
+      ],
+      "cap": "ALL",
+      "head": "__target__",
+      "id": "compose"
+    }
+  ],
+  "schema": "ORION.TypedMerge.Instance.v1",
+  "seeds": {
+    "scope=admin": [],
+    "subject=alice": []
+  },
+  "targets": [
+    "__target__"
+  ],
+  "title": "Round 1 origin-witness control: retracted_evidence_erasure"
+}
