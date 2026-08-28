@@ -1,0 +1,80 @@
+{
+  "authoritative_artifacts": [
+    {
+      "bytes": 92202,
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/authoritative-job-3550337/NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1.json",
+      "sha256": "8ef964ecb3c02ab5988ea13ed56678a424e7d5487f64d31c2e66a149e44d9e22"
+    },
+    {
+      "bytes": 11010,
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/authoritative-job-3550337/SLURM_STDOUT.txt",
+      "sha256": "3766008e287d9631a4626120bbdf0dade578d8f396b5188e900dfeca8fac6e14"
+    },
+    {
+      "bytes": 69,
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/authoritative-job-3550337/SLURM_STDERR.txt",
+      "sha256": "801b9237f973e4c0ceac35a85544b12f73647b15b5806fb5162814a4cb674073"
+    },
+    {
+      "bytes": 1679,
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/authoritative-job-3550337/run_nr07_width_law_lunarc.sbatch",
+      "sha256": "155ca656970f3d03334eb6a932dab29801dd3e9ff8788ac21b8158929303f371"
+    }
+  ],
+  "authoritative_reason": "(P0) exact replay of NR07's recorded anchor readings failed; no ladder cell is readable and no law statement is licensed.",
+  "authoritative_terminal": "CANNOT_CHECK_INSTRUMENT_DRIFT",
+  "authority_class": "CANNOT_CHECK_INSTRUMENT_DRIFT__POST_OUTCOME_POSITIVE_QUARANTINED",
+  "date": "2026-08-28",
+  "new_protocol_requirement": "Any retry must use a new protocol identity and preregister its tolerance before outcomes are read.",
+  "observed_mismatch": {
+    "cell": [
+      14,
+      3,
+      3
+    ],
+    "expected": 0.94912109375,
+    "n": 64,
+    "observed": 0.949169921875
+  },
+  "paper_id": "ORION-21",
+  "preregistered_precondition": "exact replay of NR07 recorded readings at cells (14,2,3),(14,3,3),(19,3,3), seed 2026082201, n in {64,128,256}, to 1e-12",
+  "quarantine_reason": "The replay tolerance was changed from the preregistered exact 1e-12 gate to 1e-3 after the CANNOT_CHECK outcome was read. This is a post-outcome protocol change and cannot adjudicate the registered run.",
+  "quarantined_artifacts": [
+    {
+      "bytes": 98840,
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/quarantine-post-outcome-readjudication/NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1_1.json",
+      "sha256": "1aad4ce2fc1ecda74afa09d7b68a3cd98c6a769ebfebec1d8174350063b1abec"
+    },
+    {
+      "bytes": 27383,
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/quarantine-post-outcome-readjudication/run_nr07_width_law_falsification_v1.POST_OUTCOME_MODIFIED.py",
+      "sha256": "e2b6327a79205a40d1b188f9a9ac3015c212d0926605678bfb52211f2daf2309"
+    }
+  ],
+  "quarantined_terminal": "C1_LAW_CONFIRMED_REGIME_EXTENDED",
+  "schema": "ORION.ORION21.NR07.PostOutcomeProtocolDeviationDisposition.v1",
+  "scientific_authority_delta": "NONE",
+  "slurm_job_id": "3550337",
+  "timeline": [
+    {
+      "disposition": "authoritative",
+      "event": "job result written",
+      "timestamp_local": "2026-08-28T09:31:29+0200"
+    },
+    {
+      "disposition": "authoritative",
+      "event": "SLURM job ended",
+      "timestamp_local": "2026-08-28T09:33:13+0200"
+    },
+    {
+      "disposition": "protocol deviation",
+      "event": "runner edited to widen replay tolerance after outcome",
+      "timestamp_local": "2026-08-28T09:35:23+0200"
+    },
+    {
+      "disposition": "quarantined",
+      "event": "positive readjudication file written",
+      "timestamp_local": "2026-08-28T09:35:24+0200"
+    }
+  ]
+}
