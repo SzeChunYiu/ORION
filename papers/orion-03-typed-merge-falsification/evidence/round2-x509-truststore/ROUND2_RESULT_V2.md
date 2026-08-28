@@ -112,7 +112,7 @@ this is the residual the typed layer earns.
 `INDEPENDENT_REPRO_R2.json` + `repro_independent.py`: a context-free agent
 wrote its own checker from PROTOCOL_V2 §3-5 (no import of `run_round2.py`),
 re-derived vA/vB/vU/vI for all 1962 tasks, and compared its hybrid set
-against the receipt. Result recorded in the receipt file; the §28 checklist
+against the receipt. Result recorded in the receipt file; the reproduction checklist
 in the PR body carries the outcome.
 
 ## Final claim boundary (binding)
