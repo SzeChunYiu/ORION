@@ -1,7 +1,5 @@
-\section{Reproducibility}
+\section{Data and code availability}
 
-Every quantitative statement is bound to committed protocols, result JSON, and generating code. The primary chain is R6N--R6S under \texttt{research/\allowbreak extensions/\allowbreak orion-q/} and \texttt{development/\allowbreak orion-q-max-r0/}; the current classification stress tests are QG-5b and QG-7/QG-7b/QG-7c under \texttt{research/\allowbreak extensions/\allowbreak orion-qg/} and \texttt{development/\allowbreak orion-qg-regime-geometry/}. The applied grounding uses the R4B and R4D receipts.
+The proof notes, standalone finite checker, direct solver, exact-comparison summary, sharpness witness, runtime specification, aggregate observations, and adverse result are available in the accompanying anonymous review archive. The archive includes integrity and verification instructions while excluding author-linked development history from the manuscript-facing surface. Protected data are not required for any claim in this paper.
 
-Reproduction should verify receipt digests before recomputation, run the committed analyzers without changing frozen families or gates, and compare canonical outputs byte-for-byte where the receipt contract declares deterministic replay. A counterexample must remain serialized even after a later enlarged family covers it. High-$n$ chemistry equalities derived by an exact containment pinch must be reported as such.
-
-A concise verification order and integrity rules are given in the paper-level \texttt{REPRODUCE.md}. The protected stretched-N2 subject is not required for any claim in this manuscript.
+Reproduction should proceed in three layers: rerun the standalone local-lemma checker; verify the exact-comparison summary and sharpness witness; then inspect the pre-specified runtime aggregate without changing its time limit, panel, or success rule. The twelve timeout rows are part of the result and must not be discarded.

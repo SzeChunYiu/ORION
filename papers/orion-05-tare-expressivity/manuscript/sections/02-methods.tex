@@ -1,16 +1,18 @@
-\section{Methods and evidentiary contract}
+\section{Grammar and objective}
 
-\subsection{Frozen grammar and objective}
-An instance consists of six non-identity Pauli targets grouped into three ordered two-target blocks. Each block chooses an anticommuting frame pair, a target permutation, and a central branch. A shared Tag must realize the same two branch labels across all three blocks. Restore strings repair each target from its assigned frame representative. The frozen R6M cost is the sum of block Uanti support cost, twice the shared-Tag support, and the donor-owned three-way Restore-factor cost. The exact serialization and arithmetic are those used by the committed R6M/R6N--R6S analyzers; this manuscript does not redefine them post outcome.
+\subsection{Pauli representation and block structure}
+Global phases are irrelevant to support counting. At each qubit a Pauli letter belongs to $\{I,X,Y,Z\}$, and the binary symplectic product determines commutation. The six targets are supplied as three block pairs. Each block selects an ordered anticommuting frame pair $(A_0,A_1)$, assigns its two targets to the two branches, and marks one branch as central. A shared Pauli $S$ must realize the same two nonzero symplectic labels against every block's ordered frame pair. If six unpaired targets are supplied instead, the 15 possible pairings can be searched as a constant-size outer family.
 
-\subsection{Referee and restricted families}
-$C_{\mathrm{DP}}$ denotes the unrestricted proof-carrying exact dynamic-programming optimum. The principal restricted families are the original common-anchor weight-one donor family, the split-anchor $D^+$ family, and $D^{++}$, which allows frame Paulis of global support at most two. Later closed-form borrow families are explanatory subfamilies of the same frozen grammar. Family containment supplies one-sided inequalities, while equality against the exact referee is established only where a theorem or stated finite comparison authorizes it.
+For a target letter $p$ and assigned frame letter $f$, the local correction letter is the phase-ignored product $pf$. Corrections in corresponding branches of the three blocks are factored together. For local letters $a,b,c$, the factor cost is
+\[
+F(a,b,c)=w(a)+w(b)+w(c)-2\,\mathbf 1[a=b=c\ne I],
+\]
+where $w(I)=0$ and $w(X)=w(Y)=w(Z)=1$. Thus three identical nonidentity correction letters receive a two-unit sharing discount.
 
-\subsection{Prospective refutation discipline}
-Every family-closure claim used in the discovery ladder was frozen before its outcome. A strict referee gap is therefore a result, not an invalid run. Violating instances are serialized and replayed through independent witness checks. This distinction prevents a counterexample from being hidden by silently enlarging a family after inspection.
+\subsection{Declared objective}
+The total cost is coordinate-separable. Removing one nonidentity coordinate from a central frame refunds two units; removing one from a noncentral frame refunds four. The shared operator costs two units per supported qubit. The remaining term is the sum of $F$ over both branches and all coordinates. Within-block target order, central choices, and the two common-label orientations form constant-size families because the grammar always contains three two-target blocks.
 
-\subsection{Status vocabulary}
-We use four evidence labels. An \emph{exact counterexample} proves that its specific closure statement is false. A \emph{complete-domain machine check} exhausts a finite local domain. A \emph{machine-evidenced panel result} applies only to the enumerated instances. An \emph{all-$n$ machine-checked theorem} is promoted only when the finite lemmas are coupled to the stated symbolic/combinatorial composition argument. These labels are not interchangeable.
+The unrestricted exact referee searches the complete admitted grammar. The support-$k$ family restricts every frame Pauli to support at most $k$ while retaining all other choices. Family containment immediately makes the support restriction an upper-bound candidate; equality requires proof or exact comparison.
 
-\subsection{Chemistry and prospective subjects}
-H4 and equilibrium N2 contribute frozen six-term DUCC batches and all 15 perfect matchings per batch. Benzene was selected by a rule frozen before its result, and its predicted costs/regime were digest-stamped before the exact referee ran. High-$n$ $D^{++}$ chemistry values are used only when justified by an exact containment pinch; they are not described as a direct exhaustive sweep.
+\subsection{Evidence boundary}
+The mathematical proof uses the objective above, a parity-preserving exchange, and a well-founded support-reduction argument. Finite enumeration checks the local lemmas but is not the logical basis of the all-size theorem. The exact counterexample is a lower witness for support two. Implementation comparisons establish conformance only on their stated domains. Runtime measurements address one implementation and panel, not the theorem's correctness.
