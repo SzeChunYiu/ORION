@@ -29,7 +29,7 @@ tests and other papers cite their results:
 
 | Retired directory | Its own terminal | Why it is kept |
 |---|---|---|
-| `paper-xx-executable-research-core/` | `MERGED INTO ORION-18/PROGRAMME`, no standalone manuscript | cited by `tests/unit/candidates/test_p9_p10_learning_machine.py`, by ORION-18's benchmark companion, and by the `orion-learning-machine/` lane |
+| `paper-xx-executable-research-core/` | `MERGED INTO P8/PROGRAMME`, no standalone manuscript | cited by `tests/unit/candidates/test_p9_p10_learning_machine.py`, by ORION-18's benchmark companion, and by the `orion-learning-machine/` lane |
 | `archive/2026-08-pre-unification/paper-xx-content-bound-math-evaluation/` | `TECHNICAL_NOTE_MERGED_INTO_P4_P8_PROGRAMME`, deliberately not a standalone paper | ORION-20's predecessor evidence in the superiority ledger; cited by a live test and by the RSE wave-closure manifest |
 
 This differs from the ORION-11–ORION-15 retirements in `../PAPER_ALIASES.md`, which were deleted

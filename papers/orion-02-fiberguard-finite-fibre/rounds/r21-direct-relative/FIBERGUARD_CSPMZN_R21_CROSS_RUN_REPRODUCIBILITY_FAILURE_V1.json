@@ -1,0 +1,131 @@
+{
+  "schema": "ORION.FiberGuard.CSPMZNCrossRunReproducibilityFailure.v1",
+  "date": "2026-08-27",
+  "terminal": "ORION02_R21_ADVERSE_PRESERVED__CROSS_RUN_REPRODUCIBILITY_CANNOT_CHECK",
+  "science": {
+    "round": 2,
+    "terminal": "C_R21_CSPMZN_DIRECT_RELATIVE_ADVERSE",
+    "terminal_changed": false,
+    "round_consumed_as": "ADVERSE",
+    "new_science_round": false
+  },
+  "preserved_custody_v1": {
+    "path": "FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_CUSTODY.json",
+    "bytes_modified": false,
+    "sha256": "4937f137191e42b3ab0fd2f596e4298341e5cc15fb8298e9f98bf2a373e5b3df"
+  },
+  "replays": {
+    "committed_match": {
+      "run": 33082103451,
+      "run_url": "https://github.com/SzeChunYiu/ORION/actions/runs/33082103451",
+      "run_conclusion": "success",
+      "head": "d1ea1ce04ca915fad9b35288b40eef77eec7dd15",
+      "artifact_id": 9650559083,
+      "artifact_name": "orion-02-r21-cspmzn-33082103451",
+      "artifact_created_at": "2026-08-27T14:26:46Z",
+      "artifact_expires_at": "2026-09-26T14:26:44Z",
+      "archive_path": "R21_ACTION_ARTIFACT_9650559083.zip",
+      "archive_bytes": 1114886,
+      "archive_sha256": "acc2a32724bc763c227d30b2bd5c3e3c8ff5ce9d35abf1c58037156af2514049",
+      "run1_run2_byte_identical": true,
+      "result_bytes": 7383718,
+      "result_sha256": "9606f30d1c0c503935c1612b1d352f8b7bef835aeda96478e2e1fdcdb489cbde",
+      "terminal_sha256": "17721b48c3832c2f670bdaae25f1c7b301d50a7ca443f46a6f8de8c661649523",
+      "execution_log_sha256": "2cddbd51a69469152e38f00799080a97f8f31d866d9aceef692ab77d91e854b1"
+    },
+    "divergent": {
+      "run": 33084807980,
+      "run_url": "https://github.com/SzeChunYiu/ORION/actions/runs/33084807980",
+      "run_conclusion": "failure",
+      "failure_step": "committed result byte comparison",
+      "head": "800ba6f611d580b37ec583caba802157410f5abb",
+      "artifact_id": 9651706165,
+      "artifact_name": "orion-02-r21-cspmzn-33084807980",
+      "artifact_created_at": "2026-08-27T14:55:31Z",
+      "artifact_expires_at": "2026-09-26T14:55:31Z",
+      "archive_path": "R21_ACTION_ARTIFACT_9651706165.zip",
+      "archive_bytes": 1114936,
+      "archive_sha256": "20a453de1ee5dfdb0d1a0ea42c15b5dd8af7a0b9297c7ea36f1dbc76b8a79a7c",
+      "run1_run2_byte_identical": true,
+      "result_bytes": 7383854,
+      "result_sha256": "00d67a629b4967ed0518e242016d458ca197a53f378560b45bb71742500ca558",
+      "terminal_sha256": "17721b48c3832c2f670bdaae25f1c7b301d50a7ca443f46a6f8de8c661649523",
+      "execution_log_sha256": "bd55006dc9b4360bf6ad4fdd9677ab6008ed87daead4281c28d3ee4fef6387e6"
+    }
+  },
+  "exact_difference": {
+    "scalar_difference_count": 53,
+    "folds_affected": [
+      1
+    ],
+    "out_of_fold_row_indices": {
+      "first": 439,
+      "last": 455,
+      "count": 17
+    },
+    "changed_row_fields": [
+      "relative_prediction",
+      "interval_lower",
+      "interval_upper"
+    ],
+    "values": {
+      "committed": {
+        "relative_prediction": 17997.472222222223,
+        "interval_lower": 4380.0844444444465,
+        "interval_upper": 31614.86
+      },
+      "divergent": {
+        "relative_prediction": 17997.48888888889,
+        "interval_lower": 4380.101111111113,
+        "interval_upper": 31614.876666666663
+      }
+    },
+    "derived_digest_fields_changed": [
+      "folds[0].test_row_digest",
+      "out_of_fold.row_digest"
+    ],
+    "choice_changes": 0,
+    "loss_changes": 0,
+    "timeout_changes": 0,
+    "acquisition_changes": 0,
+    "selected_pair_changes": 0,
+    "aggregate_changes": 0,
+    "terminal_changes": 0,
+    "authority_changes": 0
+  },
+  "diagnosis": {
+    "affected_query_rows_with_bitwise_identical_transformed_static_vector": 17,
+    "competing_route_fit_rows_with_bitwise_identical_transformed_static_vector": 30,
+    "route_k": 9,
+    "mathematical_squared_distance": 0,
+    "defect": "cancellation-form BLAS distance can perturb exact duplicate-vector distances before stable sorting",
+    "pre_frozen_rule": "exact distance ties follow lexical instance order",
+    "relocation_caused_defect": false,
+    "executor_sha256_at_both_recorded_runs": "4386f6c9c34ab97878872fcf7ad7fb57b7bb7c23de412f6fc520a4a6c0d84a55"
+  },
+  "defect_only_repair": {
+    "hypothesis": "force distance zero only for bitwise-identical transformed rows before unchanged stable sorting",
+    "repaired_executor_sha256": "7d6c256051480fc83971b3d5e45f0031fffe7cd093fa1f8b3ecad8a21b1ff692",
+    "hostile_test_sha256": "d3fac4f6ff55dbab4fa74bae46c9b0d1e564ef5c01b2ea8c7329e6089e051a21",
+    "local_replay_result_sha256": "9606f30d1c0c503935c1612b1d352f8b7bef835aeda96478e2e1fdcdb489cbde",
+    "local_replay_complete_runs": 2,
+    "tolerance_added": false,
+    "rounding_added": false,
+    "scientific_parameter_changed": false,
+    "separate_hosted_runner_comparison_required": true,
+    "successor_custody_admitted": false
+  },
+  "authority": {
+    "cross_run_byte_reproducibility": "CANNOT_CHECK_UNTIL_SEPARATE_RUNNERS_MATCH",
+    "preserves_round_2_adverse_science": true,
+    "supersedes_scientific_terminal": false,
+    "grants_positive_result": false,
+    "grants_new_round": false,
+    "production_value": false,
+    "external_independence": false,
+    "novelty_authority": false,
+    "journal_authority": false,
+    "submission_authorized": false,
+    "protected_task_3_or_p9_modified": false
+  }
+}

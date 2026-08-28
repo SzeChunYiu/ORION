@@ -1,0 +1,41 @@
+{
+  "authority": {
+    "external_independent_replay": false,
+    "freeze_authorized": false,
+    "original_negative_must_remain_visible": true,
+    "scientific_authority_delta": "NONE",
+    "submission_authorized": false,
+    "top_tier_gate_pass": false
+  },
+  "execution": {
+    "byte_identical_complete_runs": 2,
+    "dataset_freeze_sha256": "d29c9f098c34032097ed364021923db24370aa7d7e7d041c8ed67ca0d8116a77",
+    "executor_sha256": "b445555cbbb37fcfa16f7bf528fb68dd4030a8e87465a9cb585548c37f272fe8",
+    "protocol_sha256": "11e0eccb72c3d5da05ada4289f6529bf2ae36112dbf4d9d0f9549fa153b9bb40",
+    "result_bytes": 225673,
+    "result_sha256": "39f47c7806ba77b94a495851f5d51fa111e551db983aa7a31607d5b4bc4f2623",
+    "run_a_rc": 0,
+    "run_b_rc": 0,
+    "terminal": "C_R22_PMLB_PROPOSAL_ORDERING_NO_CERTIFIED_COVERAGE",
+    "terminal_sha256": "427ce78d17bdd8693856d8bf7a3668159a0f1031653fbab8a4b2d1aff24f8192",
+    "verification_log_sha256": "c373b5ca3c3d1ef8a99cb7226db77f850b047c926c7edf66077a224efe835bb3",
+    "verifier_sha256": "7a651d05db1a952de78d8827f6c9df2d4aad0b121f22a87f0e0aacb0458e48dc"
+  },
+  "measured_boundary": {
+    "ladder_mean": 0.019886363636,
+    "n_evaluations": 44,
+    "primary_certified_fraction": 0.090909090909,
+    "primary_tau_full_state": 0.0,
+    "strongest_parent": "STATIC_ADAPTIVE",
+    "terminal_disposition": "NEGATIVE__NO_CERTIFIED_COVERAGE"
+  },
+  "prospective_freeze": {
+    "outcomes_unread_before_freeze": true,
+    "pre_outcome_resource_fix_commits": [
+      "b3e01826",
+      "16b2f5c0"
+    ],
+    "protocol_executor_dataset_freeze_commit": "273ff7f0"
+  },
+  "schema": "ORION.FiberGuard.PMLBProposalOrdering.R22.Custody.v1"
+}

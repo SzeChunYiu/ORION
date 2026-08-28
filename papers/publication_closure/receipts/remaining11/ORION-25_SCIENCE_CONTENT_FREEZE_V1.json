@@ -1,0 +1,58 @@
+{
+  "active_authority": "papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V3.json",
+  "active_authority_git_blob": "fa2c467d90d6a7f28ec5a709fd0fab75a9b0432f",
+  "active_authority_sha256": "5cc7c8d55e0f3ac331466a0a54e3ae86c4e0d6bc5039cf82fe75e450b8e24ccb",
+  "boundary": "Composed-signature validity is evidence about the key set, not about key custody or fact truth; chain-plus-SEI inherits key custody as an unregistered premise. At bounded scope, P15 separates execution/provenance/attestation evidence from scientific validity and claim authority: SEI blocks false scientific promotion in the frozen fault corpus, the separation survives W3C PROV and RO-Crate/Workflow-Run import, and a three-link Ed25519 chain detects the registered non-compromise tamper/replay attacks without observed false rejection while exposing full key compromise as outside signature authority.",
+  "bounded_findings": {
+    "attestation_base_chain_verification_rate": 1.0,
+    "attestation_chain_plus_sei_gold_agreement": "22/22",
+    "attestation_non_compromise_attack_detection_complete": true,
+    "attestation_valid_workload_false_rejections": 0,
+    "full_key_compromise_false_promotions": 6,
+    "full_key_compromise_signature_detections": 0,
+    "provenance_round_trip_rate": 1.0,
+    "provenance_scientific_field_leakage": 0,
+    "sei_false_authorized_science": 0
+  },
+  "date": "2026-08-27",
+  "external_peer_review_claimed": false,
+  "journal_authority": false,
+  "paper_content_frozen": true,
+  "paper_directory": "papers/orion-25-orion-research-harness",
+  "paper_id": "ORION-25",
+  "paper_tree_oid": "a2de25cd5c9e3ca51a324caf47aa61deece4932e",
+  "result_authority": [
+    {
+      "artifact": "papers/orion-25-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md",
+      "git_blob_sha": "25f83c837cf480f0ca9d085184cc313fd21599cf",
+      "name": "attestation_composition_v2"
+    },
+    {
+      "artifact": "papers/orion-25-orion-research-harness/top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md",
+      "git_blob_sha": "0b86c992767d9da7bbdc3e5a5e175d1ab2ea1808",
+      "name": "provenance_interop_v1"
+    },
+    {
+      "artifact": "papers/orion-25-orion-research-harness/top_tier/P15_SEI_RESULT_RECEIPT_V1.md",
+      "git_blob_sha": "39e58c3babfa1e6dcd8c52b2b297e266f2208c07",
+      "name": "sei_fault_v1"
+    }
+  ],
+  "schema": "ORION.PaperScienceContentFreeze.v1",
+  "science_frozen": true,
+  "subject_commit": "208b052d9a4bb336f1c08b8bde1ac08a90fee244",
+  "submission_authority": false,
+  "successor_only_work": [
+    "production_scale_host_and_process_fault_campaign",
+    "runtime_storage_and_false_rejection_overhead_characterization",
+    "clean_environment_independent_replay",
+    "final_current_nearest_work_refresh",
+    "final_manuscript_evidence_environment_pdf_binding"
+  ],
+  "successor_required_for_future_science": true,
+  "supersedes_stale_science_receipt": "papers/publication_closure/receipts/remaining11/ORION-25_SCIENCE_FREEZE_V1.json",
+  "supersession_reason": "Merged R0 pin-layer repair changed living authority bytes without changing the scientific terminal; this receipt binds the current V3 authority and whole canonical paper tree.",
+  "terminal": "ORION_25_BOUNDED_SCIENCE_AND_PAPER_CONTENT_FROZEN",
+  "title": "Scientific Execution Integrity",
+  "top_tier_ready": false
+}
