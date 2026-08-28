@@ -1,13 +1,8 @@
 {
-  "added_count": 7,
+  "added_count": 2,
   "added_paths": [
-    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/CLAIM_DISPOSITION.md",
-    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/EXPECTED_TERMINALS.json",
-    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/PROTOCOL.json",
-    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/RESULT.json",
-    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/SOURCE_MANIFEST.json",
-    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/THEORY.md",
-    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/independent_checker/check_graph_quality.py"
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/NEGATIVE_HISTORY.jsonl",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/RESOURCE_ACCOUNTING.json"
   ],
   "binds": "BYTES ONLY",
   "candidate_id": "P6",
@@ -18,8 +13,8 @@
   "ordering_rule": "binding written AFTER every content edit it covers",
   "paper": "papers/orion-16-formal-epistemic-structures-and-mechanics",
   "schema": "orion.candidate.v2-additive-bind.v1",
-  "subject_commit": "e97ec9219fe406c0758718d949ed825a383eed3a",
-  "subject_tree": "0fe915efca68374629f80143483684f921306a27",
+  "subject_commit": "69af50628c969be8cc9fd0be25a888bcd1058388",
+  "subject_tree": "c448bdb8028cbcb5c51749dce55c837009c9d559",
   "v1_manifest_modified": false,
   "why": "check_content_binding_v1.py refuses to regenerate V1 for additive files and directs them to V2; an unmanifested addition turns the checker red by design"
 }
