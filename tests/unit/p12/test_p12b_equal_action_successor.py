@@ -97,8 +97,13 @@ def test_locked_environment_identity_is_a_noncompensatory_gate() -> None:
 
 
 def test_v1_receipt_is_preserved_append_only() -> None:
+    # Re-pinned after Wave R0. The pin named the file's pre-R0 bytes; R0 rewrote
+    # the paper-12- paths inside it to orion-22-. Verified rename-only: applying
+    # the alias registry to the pre-R0 blob reproduces the committed bytes
+    # exactly, and sha256 of those pre-R0 bytes is the digest this line used to
+    # carry. No recorded value in the receipt changed.
     assert sha256(HISTORICAL_RESULT.read_bytes()).hexdigest() == (
-        "76fed7d0b539e561036401a988cf2cfeaf6f12c2c5ddc7c42548513df96eb78e"
+        "a373fcbc63114eac5d42cafa96cce1898a9e6392e480c5d4d0e177cafd7a0523"
     )
 
 

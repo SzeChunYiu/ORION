@@ -1,0 +1,66 @@
+name: orion17-19-22-23-final-freeze
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chatgpt/orion17-19-22-23-final-freeze-20260827
+    paths:
+      - 'papers/publication_closure/remaining11/check_orion17_19_22_23_final_freeze.py'
+      - '.github/workflows/orion17-19-22-23-final-freeze.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orion17-19-22-23-final-freeze
+  cancel-in-progress: true
+
+jobs:
+  freeze:
+    if: ${{ !contains(github.event.head_commit.message, '[orion17-19-22-23-final-frozen]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion17-19-22-23-final-freeze-20260827
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile final freeze gate
+        run: python -m py_compile papers/publication_closure/remaining11/check_orion17_19_22_23_final_freeze.py
+      - name: Require canonical paper bytes unchanged
+        run: git diff --exit-code -- papers/orion-17-epistemic-navigation-open-worlds papers/orion-19-structured-epistemic-learning papers/orion-22-adaptive-state-reasoning papers/orion-23-responsibility-carrying-state
+      - name: Write exact science/content freeze receipts
+        run: python papers/publication_closure/remaining11/check_orion17_19_22_23_final_freeze.py
+      - name: Validate and commit receipts atomically
+        shell: bash
+        run: |
+          set -euo pipefail
+          for n in 17 19 22 23; do
+            f="papers/publication_closure/receipts/remaining11/ORION-${n}_SCIENCE_CONTENT_FREEZE_V1.json"
+            test -s "$f"
+            python - "$f" <<'PY'
+          import json,sys
+          x=json.load(open(sys.argv[1]))
+          assert x['science_frozen'] is True and x['paper_content_frozen'] is True
+          assert x['successor_required_for_future_science'] is True
+          assert x['top_tier_ready'] is False and x['submission_authority'] is False
+          assert len(x['paper_tree_oid'])==40
+          print(x['terminal'])
+          PY
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/publication_closure/receipts/remaining11/ORION-{17,19,22,23}_SCIENCE_CONTENT_FREEZE_V1.json
+          git diff --check --cached
+          git commit -m 'papers(publication): freeze ORION-17/19/22/23 science and content [orion17-19-22-23-final-frozen]'
+          git push origin HEAD:chatgpt/orion17-19-22-23-final-freeze-20260827
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion17-19-22-23-final-freeze-${{ github.sha }}
+          path: papers/publication_closure/receipts/remaining11/ORION-*_SCIENCE_CONTENT_FREEZE_V1.json
+          if-no-files-found: error
+          retention-days: 30
