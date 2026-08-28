@@ -1,0 +1,56 @@
+{
+  "bindings": {
+    "authoritative_job_result": {
+      "git_blob_sha": "0d07556a9f6a9c09866d05a027e025ff7b6ad75d",
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/authoritative-job-3550337/NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1.json",
+      "revision": "HEAD"
+    },
+    "authoritative_sbatch": {
+      "git_blob_sha": "039eb126981a3ea8682ad026f0216423babc074c",
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/authoritative-job-3550337/run_nr07_width_law_lunarc.sbatch",
+      "revision": "HEAD"
+    },
+    "controlling_disposition": {
+      "git_blob_sha": "0597afea47fe8d4970a7c7c79f1dca5aedcdc65e",
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/POST_OUTCOME_PROTOCOL_DEVIATION_DISPOSITION_V1.json",
+      "revision": "HEAD"
+    },
+    "nr07_result_at_historical_commit": {
+      "git_blob_sha": "80ffa155874928aa823f04c31b96ef97f593497f",
+      "path": "papers/orion-21-state-as-computation/NR07_LOW_WIDTH_CAPACITY_BOUND_RESULT_V1.json",
+      "revision": "86202ab577b6c3efb331fc3a2f9185911911fe98"
+    },
+    "nr07_runner_at_historical_commit": {
+      "git_blob_sha": "6f05699435ac0c674cd79fcc3d87e944ef298f87",
+      "path": "papers/orion-21-state-as-computation/run_nr07_low_width_capacity_bound_v1.py",
+      "revision": "86202ab577b6c3efb331fc3a2f9185911911fe98"
+    },
+    "p11h_runner_at_historical_commit": {
+      "git_blob_sha": "73f842b4205705699dfc8eaac79ca0907b59cbb6",
+      "path": "papers/orion-21-state-as-computation/run_p11h_pooled_sparsity_ladder_v1.py",
+      "revision": "86202ab577b6c3efb331fc3a2f9185911911fe98"
+    },
+    "quarantined_modified_runner": {
+      "git_blob_sha": "8f5c8f8b620ebca9cefcc33971879bb9abedbe1c",
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/quarantine-post-outcome-readjudication/run_nr07_width_law_falsification_v1.POST_OUTCOME_MODIFIED.py",
+      "revision": "HEAD"
+    }
+  },
+  "custody_disposition": "The committed P11H and NR07 parent bytes are available. The exact LUNARC experiment runner bytes are absent. V2 therefore has forensic numerical-localization authority only.",
+  "historical_source_commit": "86202ab577b6c3efb331fc3a2f9185911911fe98",
+  "required_absences": [
+    {
+      "meaning": "The exact executable invoked by the later sbatch was not committed at the recorded source commit.",
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/run_nr07_width_law_falsification_v1.py",
+      "revision": "86202ab577b6c3efb331fc3a2f9185911911fe98"
+    },
+    {
+      "meaning": "PR #1604 preserves outputs and a quarantined modified copy, not the original executable bytes.",
+      "path": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/run_nr07_width_law_falsification_v1.py",
+      "revision": "HEAD"
+    }
+  ],
+  "schema": "ORION.ORION21.NR07.ExactAnchorSourceManifest.v2",
+  "stack_base_head": "ef76af97e52ace234106d203a559ef8127f7061c",
+  "stack_base_pr": 1604
+}
