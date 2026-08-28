@@ -1,0 +1,60 @@
+{
+  "schema": "orion.orion21.tie-robust-phase.protocol.v1",
+  "protocol_identity": "ORION21.TIE_ROBUST_PHASE.v1",
+  "date": "2026-08-28",
+  "paper": "orion-21-state-as-computation",
+  "lane": "successor",
+  "frozen_before_outcomes": true,
+  "relation_to_v1": {
+    "is_replay": false,
+    "reason": "The NR07 ladder executable bytes are absent (NR07_LUNARC_EXECUTABLE_BYTES_ABSENT), so a faithful replay is impossible. This is a NEW prospective measurement under a NEW protocol identity. The V1 lane remains history and is not reopened or re-adjudicated.",
+    "v1_controlling_terminal": "CANNOT_CHECK_INSTRUMENT_DRIFT"
+  },
+  "measurement_object": {
+    "generator": "np.random.default_rng([seed, 0, d, s, r]) under committed P11H semantics",
+    "feature_bank": "all s-subset parity columns in itertools.combinations order; bank width p = C(d, s)",
+    "support_rule": "keep the top-r features by ABSOLUTE INTEGER correlation with the label stream",
+    "tie_semantics": "SET-VALUED. At the top-r boundary, enumerate every feature whose absolute integer correlation equals the r-th value. S(x) is the set of all supports consistent with the ordering under every admissible resolution of that equality.",
+    "deterministic_secondary_key": "ascending feature index within itertools.combinations order. This key is bound HERE, prospectively, and is part of the registered scientific object. It is used ONLY to name a canonical member of S(x); it never replaces reporting the admissible range.",
+    "scorer": "exact integer count of correct decisions over the ordered (query, test-row) stream; accuracy reported as an exact rational numerator/denominator, never a float aggregate",
+    "raw_custody": "bit-packed labels and per-candidate predictions retained (little-endian numpy.packbits), with ordered query and test-row ids hash-bound"
+  },
+  "ladder": {
+    "cells": [[14,2,3],[14,3,3],[17,4,3],[18,4,3],[19,3,3],[20,4,3],[20,5,3],[22,4,3],[24,4,3],[24,5,3]],
+    "seeds": [2026082201, 2026082202, 2026082203, 2026082210, 2026082241, 2026082242, 2026082243],
+    "train_sizes": [48,56,64,72,80,88,96,104,112,120,128,144,160,192,256],
+    "n_test": 4096,
+    "n_queries": 5,
+    "rationale": "Cells, seeds and size grid are taken unchanged from the authoritative job-3550337 readings so that the reconstruction is comparable. They are frozen here and may not be altered after outcomes are read."
+  },
+  "primary_quantities": {
+    "tau": 0.95,
+    "definition": "n_cross(cell) = smallest train size whose 7-seed mean screening accuracy reaches tau",
+    "set_valued_form": {
+      "n_cross_lo": "smallest n such that the MAXIMUM over admissible selections of the 7-seed mean is >= tau",
+      "n_cross_hi": "smallest n such that the MINIMUM over admissible selections of the 7-seed mean is >= tau",
+      "identified": "n_cross_lo == n_cross_hi"
+    },
+    "bounds_are_exact": "The per-seed min and max over S(x) are attained independently, so the 7-seed mean bounds are exact, not conservative relaxations."
+  },
+  "verdict_evaluation": {
+    "criteria_source": "prereg_criterion of NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1 (C1/C2/C3/C4), reproduced verbatim and NOT modified",
+    "rule": "Evaluate C1/C2/C3/C4 at n_cross_lo and at n_cross_hi. If they agree for every admissible selection the verdict is invariant; if any two selections disagree the verdict is not identified."
+  },
+  "integrity_controls": {
+    "separable_gap_control": "At every reconstructed point whose top-r rank gap IS separable, S(x) must be a singleton. This is a positive control on the enumerator: a separable gap that yields |S| > 1 is an enumerator defect, not a finding.",
+    "no_alarm_control": "On a synthetic instance constructed with strictly distinct correlations, the enumerator must report zero ties. Asserted before the ladder is run.",
+    "checker_independence": "The independent checker recomputes n_cross_lo/n_cross_hi and the verdict from the emitted raw transcripts alone. It must not import the runner or any generating logic.",
+    "cannot_check_is_distinct": "Failure to reconstruct exits with a distinct code and terminal T4; it is never reported as a pass."
+  },
+  "execution": {
+    "host_class": "LUNARC compute node (no network egress required; generator is deterministic and local)",
+    "no_network": true,
+    "resource_accounting": "wall-clock seconds, CPU-seconds and peak RSS recorded per cell and in aggregate"
+  },
+  "authority": {
+    "scientific_authority_delta": "NONE",
+    "submission_authority": false,
+    "maximum_authorized_wording": "Under a new prospective protocol that binds set-valued support semantics and an exact integer scorer, the registered primary quantity n_cross is (or is not) point-identified on the reconstructed ladder. This does not re-adjudicate the V1 registered study, does not establish the width law, and does not license any pooled-attack, compiled-defence or P11-gate statement."
+  }
+}
