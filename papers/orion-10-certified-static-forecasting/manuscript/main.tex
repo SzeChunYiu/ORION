@@ -1,22 +1,41 @@
 \documentclass[11pt]{article}
-\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{booktabs,tabularx,array}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit}
 \usepackage{hyperref}
-\usepackage{booktabs,tabularx}
-\usepackage[strings]{underscore}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black}
 \setlength{\emergencystretch}{2em}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newcommand{\Ftwo}{\mathbb F_2}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\cstar}{C_{\star}}
+\newcommand{\ctwo}{C_{\leq 2}}
+\newcommand{\csimple}{F_{\mathrm{simple}}}
+\newcommand{\cexact}{F_{\mathrm{exact}}}
 
-\title{Theorem-Backed Static Cost Forecasting with Refutable Explanations for Quantum Compilation}
-\author{Working framework draft}
-\date{August 2026}
+\title{Layered Certificates for Static Cost Forecasting in Pauli Compilation}
+\author{Sze Chun Yiu\\
+\small Department of Physics, Stockholm University, SE-106 91 Stockholm, Sweden\\
+\small \href{mailto:sze-chun.yiu@fysik.su.se}{sze-chun.yiu@fysik.su.se}}
+\date{28 August 2026}
 
 \begin{document}
 \maketitle
+
 \begin{abstract}
-A compilation-cost predictor can be numerically correct for three very different reasons: it may be exact by theorem, empirically accurate on a benchmark, or correct only because a compact regime classifier happened to cover the observed inputs. We separate these certificate layers for a frozen shared-Tag TARE grammar. The initial closed-form forecaster $F_1(t)=\min(C_{R6L},C_{D^+},f_B)$ is inexpensive and interpretable, and prospectively staged tests confirm 102/102 predicted rows, but a later frozen $n=3$ instance exactly refutes it: $C_{DP}=10$ while $F_1=11$. The repair is theorem-guided rather than post-hoc curve fitting. An existing all-$n$ support theorem proves $C_{DP}=C_{D^{++}}$ under the unit support-count objective, so we define $F_2(t)=C_{D^{++}}(t)$ using an independent support-$\le2$ evaluator with no unrestricted-DP call. $F_2$ has zero error on 9,547 compared instances, including the refuting row; its exactness comes from the theorem, while the benchmark checks the implementation. A compact enlarged-borrow explanation $B'$ also repairs the observed row, but a later hostile QG-7 search finds 64 exact hybrid configurations outside $B'$. Crucially, those explanation failures remain inside $D^{++}$ and therefore do not affect $F_2$ cost exactness. A further hybrid family closes 10,481 verified explanation rows, while one all-$n$ classification lemma remains open. The resulting design principle is certificate separation: exact cost, regime explanation, prospective validation, and verification status should be reported independently. The result is scoped to the frozen grammar/objective and does not imply full-circuit or hardware resource optimality.
+Static cost formulas are useful only if their authority is stated precisely: benchmark agreement, theorem-backed exactness, and a compact structural explanation are different claims. We make that separation explicit for a three-block shared-tag Pauli compilation grammar with a unit structural support-count objective. An interpretable three-family formula matched 9,545 of 9,546 distinct benchmark instances and all 102 predictions staged before exact evaluation, yet one three-qubit instance refuted its equality claim, with exact cost 10 and formula value 11. We retain that adverse row and replace the formula with an exact support-at-most-two evaluator. A support-reduction theorem proves that this evaluator equals the unrestricted optimum for every qubit count in scope; zero error over 9,547 comparison events then checks the implementation rather than serving as the proof. A first enlargement of the explanation family repaired the original row but failed on 64 of 740 hostile cases. A hybrid family covered 10,481 verified finite instances, and a complete local-domain argument subsequently closed the explanation classification for all sizes under the unit objective. Two failed proof routes are retained because they mark genuine limits of simpler arguments. Under a pre-specified reweighted objective the support theorem does not transfer: an exact witness has costs $11<13<23$ for the unrestricted, support-two, and weight-one families. The resulting certificate reports feasible bounds, theorem-backed cost, explanation, and row-level validation separately; it makes no claim about full-circuit, fault-tolerant, or hardware resource optimality.
 \end{abstract}
 
-\noindent\textbf{Keywords:} quantum resource estimation; certified forecasting; exact compilation; proof-carrying computation; regime classification.
+\noindent\textbf{Keywords:} quantum compilation; Pauli operators; static resource analysis; exact optimization; machine-checked proof; falsification.
 
 \input{sections/01-introduction}
 \input{sections/02-methods}
@@ -27,6 +46,9 @@ A compilation-cost predictor can be numerically correct for three very different
 \input{sections/07-conclusion}
 \input{sections/08-reproducibility}
 \input{sections/09-ethics-safety-resources}
+\appendix
+\input{sections/10-support-proof}
+\input{sections/11-explanation-audit}
 
 \bibliographystyle{unsrt}
 \bibliography{bibliography}

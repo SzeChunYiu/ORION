@@ -1,9 +1,44 @@
 \section{Introduction}
 
-Resource estimation often sits between a fast analytical formula and an expensive optimizer. A formula is attractive because it can be evaluated before compilation, but its authority is easy to overstate. Zero error on a benchmark is not a theorem. Conversely, a theorem about a broad exact family does not automatically provide a compact explanation of which structural regime produced a cost.
+Reliable quantum resource analysis spans several levels. Full-stack estimators translate algorithms and error-correction assumptions into physical resource budgets \cite{vandam2023azure}; language-level analyses derive costs or width from program structure \cite{avanzini2022qet,colledan2025flexible,colledan2025width}; and verified optimizers establish semantic preservation for circuit rewrites \cite{hietala2021voqc,tao2022giallar}. Between these levels lies a narrower but common compiler question: can a structural cost be predicted before running an unrestricted optimizer, and what exactly certifies the prediction?
 
-The TARE regime programme offers a useful separation. An initial three-family expression had a clear semantic interpretation: donor-exact, split-anchor, or central borrow. It matched exhaustive and held-out panels and was used for prospective staging. QG-5 then did what a useful certification system should allow: it found one exact fresh counterexample and recorded the forecast as wrong rather than weakening the gate.
+A low error rate is not an exactness theorem. A theorem about an exact evaluator does not, by itself, provide a compact explanation of why a particular input is cheap. A feasible construction provides an upper bound, but not equality. Conflating these statements is especially risky when a forecast is used downstream as if it were a measured resource. We therefore treat a static forecast as a stack of independently testable certificates.
 
-The later support-two theorem makes a stronger repair possible. Instead of adding a case to the old formula and calling the fit complete, we evaluate the exact support-$\le2$ family whose equality with unrestricted DP is already proved for all $n$ under the frozen objective. This produces a theorem-backed exact cost forecaster $F_2$. Compact regime explanations can then be developed and refuted independently on top of that cost layer.
+We study a three-block shared-tag grammar for compiling six Pauli targets. The objective counts structural supports with fixed slot multipliers and a local restoration charge. Our scope is deliberately narrow: the target grammar is fixed, Pauli phases are quotiented out, and the main theorems concern only the unit support-count objective defined in Sec.~\ref{sec:setting}. They do not estimate logical error, physical qubits, wall-clock execution, or fault-tolerant overhead.
 
-This paper argues for that layered view of a certified forecast. We distinguish the cost theorem, the implementation check against DP, the human-readable regime model, prospective prediction evidence, and row-level verification authority. The QG-7 refutation of the first repaired explanation is valuable precisely because the layered contract prevents it from being mistaken for a failure of the exact cost certificate.
+The main results are:
+\begin{enumerate}
+  \item \textbf{A retained exact refutation.} An interpretable three-family formula survives an exhaustive two-qubit slice and a prospectively staged panel, but one frozen three-qubit row gives exact cost $10$ and formula value $11$. The tuple of target pairs is
+  \[
+  ((XYZ,YYX),(YYX,XXZ),(ZZI,IYI)).
+  \]
+  The adverse row is part of the result, not an outlier removed during model repair.
+  \item \textbf{All-size exactness of a support-two evaluator.} A support-reduction argument proves that every unrestricted optimum has a representative whose frame strings have support at most two. The resulting evaluator is exact for every qubit count within the fixed grammar and objective. Agreement over 9,547 comparison events checks the implementation; it is not substituted for the proof.
+  \item \textbf{A separately falsifiable explanation layer.} The first repaired explanation is refuted by 64 hostile cases. A hybrid family covers 10,481 verified finite instances, after which a complete local-domain domination argument closes the explanation classification for all sizes. The cost certificate remains valid throughout this sequence.
+  \item \textbf{Explicit non-transfer.} A pre-specified reweighting admits an unrestricted cost of 11 while the support-two and weight-one restrictions cost 13 and 23. The unit-objective theorem therefore cannot be exported by analogy.
+\end{enumerate}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  node distance=6mm,
+  box/.style={draw,rounded corners,align=center,text width=.76\linewidth,minimum height=9mm,fill=blue!4},
+  arr/.style={-{Latex[length=2mm]},thick,blue!55!black}
+]
+\node[box] (scope) {\textbf{Scope certificate}\\fixed grammar, objective, and assumptions};
+\node[box,below=of scope] (bound) {\textbf{Feasibility certificate}\\a construction gives an upper bound};
+\node[box,below=of bound] (exact) {\textbf{Exactness certificate}\\support reduction equates the restricted and unrestricted optima};
+\node[box,below=of exact] (explain) {\textbf{Explanation certificate}\\named structural families classify an optimum};
+\node[box,below=of explain] (row) {\textbf{Row certificate}\\a particular value is independently checked on a frozen input};
+\draw[arr] (scope)--(bound);
+\draw[arr] (bound)--(exact);
+\draw[arr] (exact)--(explain);
+\draw[arr] (explain)--(row);
+\end{tikzpicture}
+\caption{The certificate layers answer different questions. A failure below one layer does not automatically falsify a stronger statement above it; for example, an incomplete explanation family need not invalidate a theorem-backed exact evaluator.}
+\label{fig:layers}
+\end{figure}
+
+This separation changes how negative evidence is interpreted. The initial formula failure localizes a missing explanation family. The later failure of an enlarged family shows that explanation still lagged exact prediction. Neither failure contradicts support reduction. Conversely, support reduction cannot rescue a changed objective for which its local exchange inequality is false.
+
+Section~\ref{sec:setting} defines the grammar and objective. Section~\ref{sec:certificate} describes the certificate and evidence design. Section~\ref{sec:results} presents the theorem, counterexamples, and explanation closure. We then position the result among static resource analysis, verified compilation, and Pauli-aware optimization, before stating limitations and reproducibility requirements.

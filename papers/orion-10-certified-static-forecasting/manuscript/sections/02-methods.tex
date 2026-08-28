@@ -1,24 +1,81 @@
-\section{Methods}
+\section{Compilation setting and certificate design}
+\label{sec:setting}
 
-\subsection{Forecast target and truth referee}
-The target is the exact frozen R6M structural support-count cost $C_{DP}(t)$. Unrestricted dynamic programming is used as a finite referee where executed, but it is not called in the forecast path. All statements are indexed to the unit objective and frozen grammar.
+\subsection{Pauli representation and feasible configurations}
 
-\subsection{Certificate layers}
-We report four layers separately. \textbf{Cost certificate}: a theorem or exact containment argument that the predicted cost equals $C_{DP}$. \textbf{Explanation certificate}: a structural family/predicate assigning a donor/trade regime. \textbf{Empirical validation}: comparison on frozen referee rows. \textbf{Verification authority}: whether a particular library row has a committed exact-referee receipt. Failure of a weaker layer does not automatically invalidate a stronger one.
+We work with $n$-qubit Pauli strings modulo global phase. A string is represented by a binary symplectic key $(x,z)\in\Ftwo^{2n}$; its support is the set of qubits on which $(x_q,z_q)\neq(0,0)$, and $\wt(\cdot)$ denotes support size. Two strings anticommute when their binary symplectic inner product is one.
 
-\subsection{Initial closed form}
-The QG-5 forecaster uses the frozen envelope
-\[
-F_1(t)=\min\{C_{R6L}(t),C_{D^+}(t),f_B(t)\}.
-\]
-Each term is computable without unrestricted DP and corresponds to a named structural configuration. Its completeness was machine-evidenced on earlier panels, not proved all-$n$.
+An input $t$ contains three blocks indexed by $j\in\{0,1,2\}$, each with two Pauli targets $P_{j,0}$ and $P_{j,1}$. A feasible compilation configuration $u$ selects:
+\begin{itemize}
+  \item frame strings $R_{j,0}$ and $R_{j,1}$ that anticommute within every block;
+  \item one shared tag string $S$;
+  \item a matching, a relative assignment of the two targets to the two frames in each block, and one central-slot choice per block.
+\end{itemize}
+The restoration strings are $T_{j,k}=P_{j,k}R_{j,k}$, with Pauli multiplication taken modulo phase.
 
-\subsection{Theorem-backed support-two forecaster}
-R6S proves $C_{DP}=C_{D^{++}}$ for every $n$ under the unit objective. QG-5b therefore defines
-\[
-F_2(t)=C_{D^{++}}(t),
-\]
-computed by a frozen independent support-$\le2$ enumerator. The implementation is checked against committed DP truth and proof-carrying witnesses. For high-$n$ chemistry rows, equality may be certified by the same exact containment pinch used in the underlying receipts rather than a direct D++ sweep.
+For three single-qubit Pauli letters, define
+\begin{equation}
+\phi(a,b,c)=
+\begin{cases}
+1, & a=b=c\neq I,\\
+\one[a\neq I]+\one[b\neq I]+\one[c\neq I], & \text{otherwise}.
+\end{cases}
+\label{eq:phi}
+\end{equation}
+The unit structural support-count cost is
+\begin{equation}
+ c(u;t)=\sum_{j=0}^{2}\sum_{k=0}^{1}m_{j,k}\wt(R_{j,k})
+ +2\wt(S)-18
+ +\sum_{k=0}^{1}\sum_{q=1}^{n}\phi(T_{0,k,q},T_{1,k,q},T_{2,k,q}),
+\label{eq:cost}
+\end{equation}
+where $m_{j,k}=2$ for a central slot and $m_{j,k}=4$ otherwise. The constant fixes the same zero point for all feasible choices and has no effect on the minimizer.
 
-\subsection{Prospective and hostile evaluation}
-QG-3 freezes predicted rows before referee access. QG-5 freezes a new random panel and permits forecast refutation. QG-7 later freezes adversarial witness shapes against the enlarged-borrow explanation $B'$ without changing its definition after outcome inspection. This sequence tests calibration under both supportive and hostile data.
+The unrestricted exact optimum and the support-at-most-two optimum are
+\begin{align}
+\cstar(t)&=\min_{u\in\mathcal U(t)}c(u;t),\\
+\ctwo(t)&=\min_{u\in\mathcal U(t):\,\max_{j,k}\wt(R_{j,k})\leq2}c(u;t).
+\end{align}
+The equality $\cstar=\ctwo$ is a theorem only for Eq.~\eqref{eq:cost}; Sec.~\ref{sec:adverse-objective} gives a counterexample to transfer under reweighting.
+
+\subsection{Forecast and explanation families}
+\label{sec:certificate}
+
+We use descriptive names for restricted feasible families. The \emph{common-anchor} family shares a simple anchor pattern across blocks. The \emph{weight-one arbitrary-anchor} family permits independent single-support anchors. The \emph{restricted-borrow} family permits a central block to borrow a restoration location subject to its original support rule. Their initial explanatory forecast is
+\begin{equation}
+\csimple(t)=\min\{C_{\mathrm{ca}}(t),C_{\mathrm{wa}}(t),C_{\mathrm b}(t)\}.
+\label{eq:simple}
+\end{equation}
+Every term is a feasible-family minimum, so $\cstar\leq\csimple$; equality was initially an empirical hypothesis, not a theorem.
+
+The exact forecast is instead
+\begin{equation}
+\cexact(t)=\ctwo(t).
+\label{eq:exact}
+\end{equation}
+It is evaluated by an enumerator restricted to full frame support at most two. The forecast path does not call the unrestricted dynamic program. Exactness follows from the support-reduction theorem in Sec.~\ref{sec:support-theorem}; finite comparisons check that the implementation respects the theorem.
+
+For interpretation, we also study an \emph{enlarged-borrow} family, which allows a borrow home outside the borrowing block's own target support, and a \emph{hybrid} family combining two tag anchors with a phantom borrow. Their costs are denoted $C_{\mathrm{b+}}$ and $C_{\mathrm h}$. The final explanation theorem is
+\begin{equation}
+\cstar=\ctwo=\min\{C_{\mathrm{wa}},C_{\mathrm{b+}},C_{\mathrm h}\}
+\quad\text{for the unit objective.}
+\label{eq:classification}
+\end{equation}
+These family labels explain a minimizing structure; they are not separate physical resource models.
+
+\subsection{Chronological evidence design}
+
+The evaluation was staged so that refutations could not be silently absorbed into later definitions:
+\begin{enumerate}
+  \item establish exact truth for a structured two-qubit slice and fixed application-derived rows;
+  \item freeze predictions for a public-library panel and engineered boundary cases before exact evaluation;
+  \item freeze a fresh seeded panel, retain the first mismatch, and bind its exact witness;
+  \item introduce the theorem-backed support-two evaluator without changing the adverse row;
+  \item freeze hostile shapes against the first repaired explanation;
+  \item assess the hybrid family on the accumulated and adversarial finite domains;
+  \item close the remaining all-size explanation sector on a complete local state domain.
+\end{enumerate}
+
+We distinguish \emph{distinct inputs} from \emph{comparison events}. The exact evaluator was compared 9,547 times on 9,546 distinct inputs because the refuting row was present in the seeded panel and was also rechecked under a separately bound audit. We report both numbers rather than treating the repeat as an independent instance.
+
+No runtime comparison is retained. Runtime depends on the final implementation and execution environment; it is not part of the exactness claim.
