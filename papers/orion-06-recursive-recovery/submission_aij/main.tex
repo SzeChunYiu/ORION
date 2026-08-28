@@ -1,0 +1,523 @@
+\documentclass[preprint,12pt]{elsarticle}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array,calc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{url}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\DeclareUnicodeCharacter{2032}{\ensuremath{{}^{\prime}}}
+\DeclareUnicodeCharacter{2033}{\ensuremath{{}^{\prime\prime}}}
+\journal{Artificial Intelligence}
+\begin{document}
+\begin{frontmatter}
+\title{Recursive Recovery of Negative Quantum Results: An Auditable
+Successor Protocol for Research Programmes}
+\author{AUTHOR METADATA REQUIRED BEFORE SUBMISSION}
+\address{AUTHOR AFFILIATION REQUIRED BEFORE SUBMISSION}
+\begin{abstract}
+Scientific-agent systems increasingly preserve code, evidence chains and
+execution traces, but provenance alone does not determine what a
+research programme should do after a prospectively frozen hypothesis is
+refuted, absorbed by prior work or left \texttt{CANNOT\_CHECK}. We
+present a bounded longitudinal case study of an executable
+\textbf{negative-result successor discipline} used in the ORION-Q
+quantum-compilation programme. Each research node retains its frozen
+claim, result receipt and disposition. A successor edge is admitted only
+when the predecessor outcome localizes a scientifically relevant
+responsibility, the strongest located donor receives first right of
+refusal, and a new protocol is frozen before its outcome. Later success
+never rewrites the predecessor. For publication, we define a 51-receipt
+frozen denominator: the 40 receipts in the original ORION-02 receipt
+index plus 11 pre-cut receipts needed to complete the later R6O--R6S/QG
+lineage. Twenty-three receipts are included as graph nodes and 28 are
+explicitly excluded with category-level reasons. The graph contains 13
+asserted successor edges; seven negative/absorbed nodes are deliberately
+retained without an invented successor. A fail-closed validator checks
+the 51-receipt partition, binds every receipt to the publication cut,
+rejects graph drift or invented edges, and preserves negative-result
+visibility. Representative chains show restricted-family refutation to
+targeted family repair, second refutation to stronger support family,
+finite positive to all-\texttt{n} theorem, bounded prospective
+confirmation followed by later closed-form refutation, and candidate
+residual to donor absorption. We subtract direct prior art:
+ScienceAgentBench \citep{chen2025scienceagentbench}, AstaBench
+\citep{bragg2025astabench} and SciAgentArena
+\citep{liu2026sciagentarena} own substantial territory in rigorous
+scientific-agent evaluation; ScientistOne \citep{meng2026scientistone}
+owns broad claim-to-evidence traceability and integrity auditing. Our
+narrower object is the \textbf{authorized transition from a retained
+scientific disposition to the next frozen question}. The evidence
+demonstrates feasibility and auditability in one exact-heavy programme;
+it does not establish improved scientific productivity, autonomous
+governance or cross-domain superiority.
+\end{abstract}
+\end{frontmatter}
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+Scientific agents can search literature, write code, execute analyses
+and draft papers. Evaluation and verification have matured accordingly.
+\textbf{ScienceAgentBench} evaluates executable data-driven scientific
+tasks sourced from peer-reviewed work. \textbf{AstaBench} and
+\textbf{SciAgentArena} broaden controlled scientific-agent evaluation
+with standardized tools, costs, environments and task families.
+\textbf{ScientistOne} develops a Chain-of-Evidence framework in which
+claims, scores, references and method descriptions are explicitly
+audited against source evidence and implementation. These are direct
+donors. ORION-02 does not claim novelty for scientific-agent
+benchmarking, provenance, reproducibility, evidence chains or executable
+outcome scoring.
+
+A different question begins after those controls return an unfavorable
+scientific outcome.
+
+Suppose a hypothesis was frozen before execution and is then refuted.
+The programme may discard the run, reinterpret the claim, repeat the
+same mechanism with a new name, or preserve the negative but fail to use
+it. None of those choices says which new question is scientifically
+licensed by the observed failure.
+
+ORION-02 studies a bounded alternative:
+
+\texttt{frozen\ question\ -\textgreater{}\ result\ -\textgreater{}\ typed\ disposition\ -\textgreater{}\ responsibility/donor\ analysis\ -\textgreater{}\ frozen\ successor\ or\ stop}.
+
+The successor is a new research object, not a repair of the predecessor.
+A later theorem can strengthen authority for a new claim without turning
+a finite predecessor into a theorem. A later counterexample can refute a
+broad extrapolation without invalidating an earlier bounded prospective
+success. A donor can absorb a candidate mechanism and terminate that
+novelty route without making the experiment scientifically useless.
+
+ORION-Q is a useful case because many claims have exact referees or
+sharply frozen finite domains. That makes invalid succession easier to
+detect than in noisy empirical science. We therefore treat the programme
+as a \textbf{mechanism case study}, not as evidence that the discipline
+improves research productivity generally.
+
+\hypertarget{donor-boundary}{%
+\subsection{Donor boundary}\label{donor-boundary}}
+
+\hypertarget{scientific-agent-benchmarks}{%
+\subsubsection{Scientific-agent
+benchmarks}\label{scientific-agent-benchmarks}}
+
+ScienceAgentBench (ICLR 2025) evaluates 102 real data-driven research
+tasks from 44 peer-reviewed publications with expert validation and
+executable program-level scoring. AstaBench and SciAgentArena provide
+additional controlled scientific-research benchmarks and environments.
+ORION-02 gives these lines full credit for rigorous task construction,
+tool/cost control, executable evaluation and benchmark methodology.
+
+\hypertarget{evidence-chains}{%
+\subsubsection{Evidence chains}\label{evidence-chains}}
+
+ScientistOne directly owns broad claim-to-evidence traceability,
+score/reference verification and method-code consistency checking.
+ORION-02 assumes scientific states can be bound to evidence; its
+candidate residual starts only \textbf{after} that evidence has produced
+a disposition.
+
+\hypertarget{preregistrationprovenancenegative-results}{%
+\subsubsection{Preregistration/provenance/negative
+results}\label{preregistrationprovenancenegative-results}}
+
+Prospective freezing, provenance and publication of negative results are
+established scientific practices. ORION-02's candidate residual is their
+composition with two explicit transition constraints:
+responsibility-conditioned successor selection and donor first right of
+refusal. We make no ``first'' claim.
+
+\hypertarget{research-state-and-successor-model}{%
+\subsection{Research-state and successor
+model}\label{research-state-and-successor-model}}
+
+A research node contains:
+
+\begin{itemize}
+\tightlist
+\item
+  claim/hypothesis and exact scope;
+\item
+  protocol/outcome space fixed before result access;
+\item
+  immutable result artifact;
+\item
+  typed disposition such as \texttt{SUPPORTED}, \texttt{NEGATIVE},
+  \texttt{REFUTED}, \texttt{DONOR\_ABSORBED}, \texttt{CANNOT\_CHECK},
+  \texttt{MIXED} or \texttt{OPEN};
+\item
+  supported responsibility interpretation;
+\item
+  donor/prior-work disposition;
+\item
+  optional successor pointer.
+\end{itemize}
+
+A receipt proves identity/replay properties, not scientific truth or
+novelty.
+
+An asserted successor edge requires:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  predecessor disposition exists;
+\item
+  the predecessor identifies a residual/failure layer relevant to the
+  successor;
+\item
+  donor/prior alternatives are considered before candidate novelty is
+  granted;
+\item
+  successor protocol is frozen after predecessor result and before
+  successor outcome;
+\item
+  predecessor artifact/claim boundary remains unchanged;
+\item
+  successor may fail, be donor-absorbed or remain \texttt{CANNOT\_CHECK}
+  without retroactively changing the old result.
+\end{enumerate}
+
+Chronological adjacency is not sufficient to create an edge.
+
+\hypertarget{frozen-denominator-and-machine-readable-graph}{%
+\subsection{Frozen denominator and machine-readable
+graph}\label{frozen-denominator-and-machine-readable-graph}}
+
+A case-study narrative can cherry-pick clean recovery chains unless the
+selection universe is declared. ORION-02 therefore freezes a publication
+denominator in \texttt{Q2\_ELIGIBLE\_RECEIPT\_INVENTORY\_V1.json}.
+
+\hypertarget{declared-51-receipt-universe}{%
+\subsubsection{Declared 51-receipt
+universe}\label{declared-51-receipt-universe}}
+
+The universe contains:
+
+\begin{itemize}
+\tightlist
+\item
+  40 receipts from the original \texttt{RECEIPT\_INDEX.md} at the
+  publication cut;
+\item
+  11 additional \textbf{pre-cut} receipts needed to complete the later
+  R6O--R6S and QG5/QG7 lineage plus the N2-F5B donor-first-refusal
+  result.
+\end{itemize}
+
+The inventory partitions these 51 artifacts exactly into:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{23 included graph nodes};
+\item
+  \textbf{28 explicit exclusions}, grouped as pre-ladder/orthogonal
+  programme results, R6 instrument/control states, or N-lane results not
+  needed for the selected donor-first-refusal examples.
+\end{itemize}
+
+Exclusion means ``not a ORION-02 publication transition node,'' not
+``scientifically unimportant.'' The inventory does not claim that all 51
+receipts should have a successor.
+
+\hypertarget{graph-denominator}{%
+\subsubsection{Graph denominator}\label{graph-denominator}}
+
+\texttt{Q2\_TRANSITION\_GRAPH\_V2.json} contains:
+
+\begin{itemize}
+\tightlist
+\item
+  23 result nodes;
+\item
+  13 asserted successor edges;
+\item
+  the main R6M/TARE recovery chain;
+\item
+  donor-absorption/robustness examples;
+\item
+  seven named negative/absorbed nodes deliberately retained without an
+  asserted successor edge.
+\end{itemize}
+
+The paper therefore reports a \textbf{declared bounded graph}, not an
+unbounded history of every possible research transition.
+
+\hypertarget{fail-closed-validator}{%
+\subsubsection{Fail-closed validator}\label{fail-closed-validator}}
+
+\texttt{check\_transition\_graph.py} runs in publication CI and checks:
+
+\begin{itemize}
+\tightlist
+\item
+  the 51-receipt universe is exactly partitioned 23/28;
+\item
+  every denominator receipt exists at the publication cut and remains
+  byte-identical;
+\item
+  the graph's 23 artifact paths equal the included set exactly;
+\item
+  node/edge IDs are unique and endpoints exist;
+\item
+  required central-chain edges remain present;
+\item
+  an edge carries both relation and reason;
+\item
+  standalone negatives cannot silently acquire successor edges;
+\item
+  negative/partial-result visibility cannot regress.
+\end{itemize}
+
+The validator does \textbf{not} establish scientific causality. It
+establishes that the paper's declared causal graph and denominator are
+reproducible, frozen and non-cherry-picked relative to the stated
+publication universe.
+
+\hypertarget{recovery-chain-i-common-anchor-closure-to-split-counterexample}{%
+\subsection{Recovery chain I: common-anchor closure to split
+counterexample}\label{recovery-chain-i-common-anchor-closure-to-split-counterexample}}
+
+A restricted shared-Tag TARE family appears plausible on early
+exact/chemistry checks. A support-dominance analysis explicitly retains
+one unresolved coupling: changing a frame can change the Tag
+requirement.
+
+A frozen hostile instance returns an exact counterexample: split anchors
+with a spread Tag cost 8 while the common-anchor family costs 9.
+
+The result remains:
+
+\texttt{REFUTED:\ common-anchor\ closure}.
+
+The exact witness localizes the residual to Tag/anchor coupling. Only
+after that result does the programme freeze D+, admitting arbitrary
+anchors with exact compatible Tag minimization.
+
+This is the simplest successor pattern:
+
+\textbf{exact refutation -\textgreater{} localized missing family
+coordinate -\textgreater{} prospectively frozen repair}.
+
+\hypertarget{recovery-chain-ii-the-repair-is-also-refuted}{%
+\subsection{Recovery chain II: the repair is also
+refuted}\label{recovery-chain-ii-the-repair-is-also-refuted}}
+
+D+ is attacked on a registered structured domain and fails by exact
+frame-for-Tag borrowing. The minimal witness has cost 5 while D+ costs
+6.
+
+The failure is not relabeled as another split-anchor case. Its witness
+identifies a different residual: support two can be profitable on a
+cheap central branch because it buys a cheaper Tag. That observation
+licenses a D++ support-two family.
+
+Again the original D+ refutation remains visible.
+
+\hypertarget{finite-positive-to-all-n-theorem}{%
+\subsection{\texorpdfstring{Finite positive to all-\texttt{n}
+theorem}{Finite positive to all-n theorem}}\label{finite-positive-to-all-n-theorem}}
+
+D++ matches the unrestricted optimum on all then-registered finite
+domains. The programme records this as a bounded positive, \textbf{not}
+a universal theorem.
+
+The unresolved responsibility becomes proof-level: can support three or
+larger ever be necessary outside the checked domains? A separate theorem
+protocol attacks that question. R6S later proves all-\texttt{n}
+support-two sufficiency for the frozen grammar/objective.
+
+The evidence hierarchy remains explicit:
+
+\begin{itemize}
+\tightlist
+\item
+  R6P: finite family closure;
+\item
+  R6S: later all-\texttt{n} theorem with stronger authority.
+\end{itemize}
+
+The theorem does not retroactively change what the finite experiment
+established at the time.
+
+\hypertarget{prospective-confirmation-followed-by-later-refutation}{%
+\subsection{Prospective confirmation followed by later
+refutation}\label{prospective-confirmation-followed-by-later-refutation}}
+
+A compact donor/split/borrow predictor is derived on frozen panels. A
+previously unread public Benzene subject is selected by a precommitted
+rule; its predictions are digest-stamped before exact truth is opened.
+All 15 matchings agree.
+
+That result remains a valid \textbf{bounded prospective confirmation}.
+
+Later QG5 produces a different exact \texttt{n=3} row where the simple
+closed form predicts 11 and exact truth is 10. The correct update is:
+
+\begin{itemize}
+\tightlist
+\item
+  earlier subject-level prediction remains correct in its scope;
+\item
+  universal extrapolation is refuted;
+\item
+  exact witness localizes a missing borrow shape;
+\item
+  separately frozen B′ tests that localization.
+\end{itemize}
+
+Later QG7 refutes B′ with another support-two configuration; B″ is then
+frozen and closes its registered finite panels while the all-\texttt{n}
+smallest-family classification remains partially open.
+
+A positive forecast and a later negative therefore coexist without
+contradiction because their scopes/authority differ.
+
+\hypertarget{donor-absorption-as-a-successful-research-terminal}{%
+\subsection{Donor absorption as a successful research
+terminal}\label{donor-absorption-as-a-successful-research-terminal}}
+
+Other ORION-Q lanes show a distinct succession pattern. A candidate can
+be matched by a stronger donor/model-selection baseline. The correct
+disposition is \texttt{DONOR\_ABSORBED}, not a renamed candidate win.
+
+The graph deliberately includes donor-absorbed/negative nodes even when
+no successor edge is asserted. Their role is to constrain future work:
+repeating the same mechanism under new branding is not an admissible
+novelty route.
+
+\hypertarget{what-orion-02-demonstrates}{%
+\subsection{What ORION-02
+demonstrates}\label{what-orion-02-demonstrates}}
+
+The case study establishes three bounded properties.
+
+\textbf{Executable representation.} Dispositions and successor edges can
+be represented in a machine-readable graph and validated against
+immutable artifacts.
+
+\textbf{Authority separation.} Exact refutation, bounded positive,
+theorem, donor absorption and open state remain distinct rather than
+collapsing into one progress score.
+
+\textbf{Negative persistence.} A later repair cannot make a predecessor
+disappear from the declared denominator/graph.
+
+ORION-02 does \textbf{not} demonstrate faster discovery, better research
+quality, autonomous governance, general responsibility diagnosis in
+noisy empirical science, or universal novelty of the transition
+protocol.
+
+Those would require new controlled/cross-domain evidence and are
+intentionally outside the current claim.
+
+\hypertarget{reproducibility-and-availability}{%
+\subsection{Reproducibility and
+availability}\label{reproducibility-and-availability}}
+
+The publication bundle should include:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Q2\_ELIGIBLE\_RECEIPT\_INVENTORY\_V1.json};
+\item
+  \texttt{Q2\_TRANSITION\_GRAPH\_V2.json};
+\item
+  canonical validator stdout;
+\item
+  reviewer-facing table mapping each main-text edge to
+  predecessor/successor protocols/receipts;
+\item
+  publication-cut git identity;
+\item
+  permanent archive identifier once actually deposited;
+\item
+  explicit reuse licence before any ``open source'' wording is used.
+\end{itemize}
+
+The repository is publicly inspectable, but public visibility is not a
+reuse licence.
+
+\hypertarget{limitations}{%
+\subsection{Limitations}\label{limitations}}
+
+\textbf{One programme.} Feasibility/auditability is demonstrated in
+ORION-Q, not cross-domain effectiveness.
+
+\textbf{Exact-heavy setting.} Exact referees make responsibility easier
+to localize than in noisy sciences.
+
+\textbf{Declared publication universe.} The 51-receipt denominator is a
+bounded ORION-Q publication selection universe, not every scientific
+event in ORION or a sample of research generally.
+
+\textbf{Selection rule is methodological.} Inclusion/exclusion reasons
+are explicit, but ORION-02 does not claim every excluded result could
+never inform a different successor analysis.
+
+\textbf{No productivity outcome.} There is no controlled comparison of
+discovery time, paper quality or scientific yield against another
+governance policy.
+
+\textbf{Human/AI composition.} Humans and multiple AI systems may
+participate; ORION-02 is not an autonomous-agent superiority result.
+
+\textbf{External novelty remains empirical.} Internal donor
+searches/receipts cannot self-certify publication novelty.
+
+\hypertarget{discussion}{%
+\subsection{Discussion}\label{discussion}}
+
+The successor discipline changes the meaning of ``progress.'' An exact
+counterexample can open the right family extension. A donor absorption
+can close an unproductive novelty route. A finite positive can justify a
+theorem attempt without being restated as a theorem. A prospectively
+confirmed case can remain valid after a different instance refutes the
+broad extrapolation.
+
+This differs from evidence-chain work in locus, not opposition. Evidence
+chains answer \textbf{what supports this claim?} ORION-02 asks
+\textbf{given the supported disposition, what research transition is now
+authorized?} Scientific-agent benchmarks ask whether systems solve tasks
+under controlled conditions. ORION-02 instead tracks how the research
+question itself changes after evidence arrives.
+
+The 51-receipt denominator and fail-closed graph validator make that
+case study inspectable rather than anecdotal. They still do not prove
+that the policy is optimal. That stronger question---whether one
+successor discipline improves science relative to another---is successor
+research rather than a hidden assumption of this paper.
+
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
+
+Negative results can be represented as more than failed outputs. In the
+ORION-Q case study, a frozen result becomes a typed persistent state
+that can authorize, block or redirect later research while preserving
+its original claim boundary. A 51-receipt declared universe is
+partitioned into 23 publication graph nodes and 28 explicit exclusions;
+the graph carries 13 asserted successor edges and retains negative/donor
+nodes without invented links.
+
+The candidate contribution is deliberately narrower than provenance or
+scientific-agent benchmarking: \textbf{an auditable successor relation
+from retained scientific disposition to a newly frozen question, with
+donor first right of refusal and append-only negative history.}
+
+\section*{Data and Code Availability}
+The declared Q2 publication universe contains 51 version-controlled result receipts,
+partitioned into 23 publication graph nodes and 28 explicit exclusions. A fail-closed
+validator binds the denominator and graph to the frozen publication cut. The source
+repository is publicly inspectable. A permanent archive identifier and explicit reuse
+licence will be inserted only after the corresponding release is deposited and authorized.
+
+\bibliographystyle{elsarticle-num}
+\bibliography{references}
+\end{document}

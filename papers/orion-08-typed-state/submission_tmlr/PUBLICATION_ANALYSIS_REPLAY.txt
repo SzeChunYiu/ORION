@@ -1,0 +1,226 @@
+{
+  "N4_D_note": "N4-D is a frozen exact constructed-chain census (200 laundering / 200 honest) rather than a sampled episode utility comparison; report counts directly.",
+  "authority": "secondary deterministic publication analysis over the original frozen seeds; does not alter primary terminals and grants no real-agent or novelty authority",
+  "method": "paired episode-level mean differences; 95% percentile bootstrap intervals with 5000 deterministic resamples",
+  "schema": "ORION.Q4.PublicationPairedAnalysis.v1",
+  "studies": {
+    "N4_A": {
+      "typed_vs_known_graph_utility": {
+        "bootstrap_95pct_ci": [
+          2.5558123629093017,
+          3.3005424257229135
+        ],
+        "bootstrap_draws": 5000,
+        "bootstrap_seed": "20260822:A-typed-vs-known",
+        "comparator": "GREEDY_KNOWN_GRAPH",
+        "direction": "positive_favors_treatment",
+        "mean_difference": 2.9329084198659494,
+        "metric": "utility",
+        "n_pairs": 300,
+        "paired_loss_fraction": 0.15333333333333332,
+        "paired_tie_fraction": 0.3,
+        "paired_win_fraction": 0.5466666666666666,
+        "treatment": "ORION_TYPED_VOI"
+      },
+      "typed_vs_uniform_voi_utility": {
+        "bootstrap_95pct_ci": [
+          0.8328152938823588,
+          1.4001045810491757
+        ],
+        "bootstrap_draws": 5000,
+        "bootstrap_seed": "20260822:A-typed-vs-uniform",
+        "comparator": "PURE_VOI_UNIFORM",
+        "direction": "positive_favors_treatment",
+        "mean_difference": 1.1113791988322004,
+        "metric": "utility",
+        "n_pairs": 300,
+        "paired_loss_fraction": 0.13333333333333333,
+        "paired_tie_fraction": 0.5766666666666667,
+        "paired_win_fraction": 0.29,
+        "treatment": "ORION_TYPED_VOI"
+      }
+    },
+    "N4_B": {
+      "REOPEN_WASTEFUL": {
+        "scoped_vs_never_mean_round_utility": {
+          "bootstrap_95pct_ci": [
+            -0.5400418976933429,
+            0.634040596136692
+          ],
+          "bootstrap_draws": 5000,
+          "bootstrap_seed": "20260822:B-REOPEN_WASTEFUL-never",
+          "comparator": "NEVER_REOPEN",
+          "direction": "positive_favors_treatment",
+          "mean_difference": 0.05969255566942049,
+          "metric": "mean_round_utility",
+          "n_pairs": 200,
+          "paired_loss_fraction": 0.04,
+          "paired_tie_fraction": 0.79,
+          "paired_win_fraction": 0.17,
+          "treatment": "ORION_SCOPED_REOPEN"
+        },
+        "scoped_vs_unscoped_mean_round_utility": {
+          "bootstrap_95pct_ci": [
+            13.623881041203967,
+            16.451489412477226
+          ],
+          "bootstrap_draws": 5000,
+          "bootstrap_seed": "20260822:B-REOPEN_WASTEFUL-unscoped",
+          "comparator": "UNSCOPED_CHANGE_REOPEN",
+          "direction": "positive_favors_treatment",
+          "mean_difference": 15.049828805128543,
+          "metric": "mean_round_utility",
+          "n_pairs": 200,
+          "paired_loss_fraction": 0.11,
+          "paired_tie_fraction": 0.11,
+          "paired_win_fraction": 0.78,
+          "treatment": "ORION_SCOPED_REOPEN"
+        }
+      },
+      "STALE_MATTERS": {
+        "scoped_vs_never_mean_round_utility": {
+          "bootstrap_95pct_ci": [
+            -0.6634607653541005,
+            2.2538191338593823
+          ],
+          "bootstrap_draws": 5000,
+          "bootstrap_seed": "20260822:B-STALE_MATTERS-never",
+          "comparator": "NEVER_REOPEN",
+          "direction": "positive_favors_treatment",
+          "mean_difference": 0.7737983093837747,
+          "metric": "mean_round_utility",
+          "n_pairs": 200,
+          "paired_loss_fraction": 0.21,
+          "paired_tie_fraction": 0.2,
+          "paired_win_fraction": 0.59,
+          "treatment": "ORION_SCOPED_REOPEN"
+        },
+        "scoped_vs_unscoped_mean_round_utility": {
+          "bootstrap_95pct_ci": [
+            5.740208464360749,
+            8.254966391861394
+          ],
+          "bootstrap_draws": 5000,
+          "bootstrap_seed": "20260822:B-STALE_MATTERS-unscoped",
+          "comparator": "UNSCOPED_CHANGE_REOPEN",
+          "direction": "positive_favors_treatment",
+          "mean_difference": 6.972958867088621,
+          "metric": "mean_round_utility",
+          "n_pairs": 200,
+          "paired_loss_fraction": 0.13,
+          "paired_tie_fraction": 0.355,
+          "paired_win_fraction": 0.515,
+          "treatment": "ORION_SCOPED_REOPEN"
+        }
+      }
+    },
+    "N4_C": {
+      "orion_vs_random_verification_regret_reduction": {
+        "bootstrap_95pct_ci": [
+          0.09962629523255676,
+          0.1871206525259203
+        ],
+        "bootstrap_draws": 5000,
+        "bootstrap_seed": "20260822:C-orion-vs-random",
+        "comparator": "RANDOM_VERIFY_MIDPOINT",
+        "direction": "positive_favors_treatment",
+        "mean_difference": 0.14222245428424607,
+        "metric": "regret",
+        "n_pairs": 400,
+        "paired_loss_fraction": 0.0675,
+        "paired_tie_fraction": 0.6725,
+        "paired_win_fraction": 0.26,
+        "treatment": "ORION_INTERVAL_PARETO"
+      }
+    },
+    "N4_E": {
+      "decision_voi_vs_infogain_utility": {
+        "bootstrap_95pct_ci": [
+          1.9760107001323697,
+          2.2988240403412896
+        ],
+        "bootstrap_draws": 5000,
+        "bootstrap_seed": "20260822:E-voi-vs-infogain",
+        "comparator": "INFOGAIN",
+        "direction": "positive_favors_treatment",
+        "mean_difference": 2.145505301683211,
+        "metric": "utility",
+        "n_pairs": 400,
+        "paired_loss_fraction": 0.0225,
+        "paired_tie_fraction": 0.03,
+        "paired_win_fraction": 0.9475,
+        "treatment": "ORION_DECISION_VOI"
+      },
+      "decision_voi_vs_llm_proxy_utility": {
+        "bootstrap_95pct_ci": [
+          0.11867885134741064,
+          0.4119273798071411
+        ],
+        "bootstrap_draws": 5000,
+        "bootstrap_seed": "20260822:E-voi-vs-proxy",
+        "comparator": "LLM_PROXY_HEURISTIC",
+        "direction": "positive_favors_treatment",
+        "mean_difference": 0.27696597535950657,
+        "metric": "utility",
+        "n_pairs": 400,
+        "paired_loss_fraction": 0.1425,
+        "paired_tie_fraction": 0.44,
+        "paired_win_fraction": 0.4525,
+        "treatment": "ORION_DECISION_VOI"
+      }
+    },
+    "N4_F3": {
+      "mixed_typed_vs_naive_utility": {
+        "bootstrap_95pct_ci": [
+          15.576634274242755,
+          18.835652546857915
+        ],
+        "bootstrap_draws": 5000,
+        "bootstrap_seed": "20260822:F3-mixed-naive",
+        "comparator": "NAIVE_CARRY_FORWARD",
+        "direction": "positive_favors_treatment",
+        "mean_difference": 17.241995624644236,
+        "metric": "utility",
+        "n_pairs": 200,
+        "paired_loss_fraction": 0.0,
+        "paired_tie_fraction": 0.305,
+        "paired_win_fraction": 0.695,
+        "treatment": "ORION_TYPED_TRANSPORT"
+      },
+      "mixed_typed_vs_rederive_utility": {
+        "bootstrap_95pct_ci": [
+          1.7165800917434746,
+          2.825482432382608
+        ],
+        "bootstrap_draws": 5000,
+        "bootstrap_seed": "20260822:F3-mixed-rederive",
+        "comparator": "RE_DERIVE_SCRATCH",
+        "direction": "positive_favors_treatment",
+        "mean_difference": 2.2641702753942416,
+        "metric": "utility",
+        "n_pairs": 200,
+        "paired_loss_fraction": 0.0,
+        "paired_tie_fraction": 0.685,
+        "paired_win_fraction": 0.315,
+        "treatment": "ORION_TYPED_TRANSPORT"
+      },
+      "unnecessary_typed_vs_rederive_utility": {
+        "bootstrap_95pct_ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_draws": 5000,
+        "bootstrap_seed": "20260822:F3-unnecessary-rederive",
+        "comparator": "RE_DERIVE_SCRATCH",
+        "direction": "positive_favors_treatment",
+        "mean_difference": 0.0,
+        "metric": "utility",
+        "n_pairs": 200,
+        "paired_loss_fraction": 0.0,
+        "paired_tie_fraction": 1.0,
+        "paired_win_fraction": 0.0,
+        "treatment": "ORION_TYPED_TRANSPORT"
+      }
+    }
+  }
+}
