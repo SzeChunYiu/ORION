@@ -1,0 +1,12 @@
+Act as an isolated pre-submission reviewer for Transactions on Machine Learning Research. Read only MANUSCRIPT.tex, REFERENCES.bib and CASE_SERIES.json in the current directory. Do not read repository files, editorial records, prompts or another review. Your emphasis is prior work, contribution boundary, originality without “first” claims, TMLR audience interest and article positioning. Check whether the paper appropriately cedes broad scientific-agent benchmarking, delayed-outcome agreement gating, automated-judge validation and agreement-metric methodology, and whether the surviving contribution is understandable and useful despite a three-question single-programme scope. Use current TMLR claims/evidence criteria, but do not predict the real editor's decision.
+
+Return a self-contained Markdown report with:
+1. Assessment boundary
+2. Summary of contribution
+3. Major Concerns (or “None identified from the supplied material”)
+4. Minor Comments (or “None identified from the supplied material”)
+5. Literature and positioning assessment
+6. Minimum-sufficient repair tests
+7. Risk / unsupported claims
+
+For every substantive concern include a stable ID, severity, Blocking Yes/No, target criterion, claim pointer, evidence pointer, concern, why it matters and resolution test. Do not invent sources, evidence or author identities. Do not read or anticipate other reviewers.
