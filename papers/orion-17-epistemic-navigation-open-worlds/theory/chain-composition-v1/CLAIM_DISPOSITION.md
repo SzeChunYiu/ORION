@@ -2,86 +2,85 @@
 
 **Date:** 2026-08-28
 **Governing issue:** #1649 Tier A — **ORION-17's one promotion attempt, now spent**
-**Terminal:** `THEOREM_PROVED__CLASSIFIES_FROZEN_THREE_DOMAIN_CAMPAIGN`
+**Terminal:** `RE_VERIFICATION_PLUS_ONE_LEMMA__TIER_A_EVIDENCE_NOT_EARNED`
+**Outcome:** **returned to the bounded submission lane**
 **Scientific authority delta:** `NONE`
 
 ---
 
-## 1. The question, and the answer
+## 1. Retraction, stated first
 
-Does **pairwise** closure success compose along an arbitrary chain?
+An earlier draft of this packet framed Theorems 1–2 as a **new arbitrary-chain
+theorem**. That was wrong.
 
-**No.** Theorem 2 exhibits a chain in which every pairwise step succeeds in
-isolation and global closure still fails, because a property required downstream
-is never established upstream. Theorem 1 gives the missing condition — consecutive
-bridge entailment — under which composition does hold for chains of any finite
-length. Theorem 3 shows order is load-bearing: the same transforms reordered can
-break a bridge that held.
+`CLAIM_LEDGER_V4.md` row `ORION-17.V4.5` already states, as a **mechanized
+theorem** (Z3 over uninterpreted sorts):
 
-Both negative results are **exhibited witnesses**, not assertions.
+> *"Heterogeneous closure-carrying transforms compose scientifically only under
+> exact intermediate closure-contract binding or a registered equivalence bridge —
+> for chains of any length, over any number of transformations, contracts, closure
+> coordinates and obligations, and for every donor-native validity predicate."*
 
-## 2. The theorems classify a real three-domain campaign
+That subsumes both directions I had written up as new — sufficiency, and necessity
+via *"only under"*. The Wave-1 closure blueprint (§4.10) flags exactly this, and
+it is correct.
 
-Three independently sourced Python packages, real import graphs, real commit
-histories, 604,542 certificate decisions in total.
+## 2. What actually survives
 
-| policy | numpy | scipy | flask |
-|---|---|---|---|
-| `always-reopen` | sound, conservative | sound, conservative | sound, conservative |
-| `donor-coarse` | **UNSOUND** (27,348 false retentions) | **UNSOUND** (50,282) | sound, conservative |
-| `exact-containment` | **sound and exact** | **sound and exact** | **sound and exact** |
+1. **Independent re-verification by a different method.** The ledger's proof is Z3
+   over uninterpreted sorts; this one is explicit finite enumeration over concrete
+   chains (775 bridging chains to length 5, with exhibited witnesses). A shared
+   solver-encoding error could not produce both. That has real value — as
+   corroboration, not as a new result.
+2. **Classification of the frozen three-domain campaign.** `exact-containment` is
+   sound and exact in all three real packages; `donor-coarse` is unsound on numpy
+   and scipy (27,348 and 50,282 false retentions) and merely conservative on
+   flask, where 19 import edges are too few to separate the coarse test from the
+   exact one. The adverse regime appears exactly where dependency structure is
+   rich enough to separate them.
+3. **One lemma the ledger does not contain.** Searching `CLAIM_LEDGER_V4.md` for
+   `affected`, `revalidat`, `slice` and `ancestral` returns **zero** matches. The
+   affected-obligation slice lemma — obligations reachable from `Delta` *and*
+   ancestral to the closure root `r` form the unique minimal sound revalidation
+   set — is new to this paper. Per blueprint §4.11 it is recorded as a
+   **revalidation lemma, not a headline**, because it is structurally shared with
+   ORION-16.
 
-`exact-containment` achieves `0` false retentions **and** `0` unnecessary
-reopenings in all three domains — it retains closure exactly when the chain
-composes.
-
-`donor-coarse` approximates the containment test. By Theorem 2 an inexact bridge
-test cannot distinguish a genuine bridge from a broken one, so it must
-over-reopen or falsely retain. **It falsely retains** — and the theorem predicts
-that failure mode from inexactness alone.
-
-**Flask is the informative control.** With only 19 import edges the coarse test
-coincides with the exact one, so `donor-coarse` is merely conservative there. The
-adverse regime appears exactly where the dependency structure is rich enough to
-separate the tests. That is a prediction a benchmark alone would not yield, and
-the domain is reported rather than dropped for being unfavourable.
-
-## 3. Prospectivity — not claimed
-
-The campaign was executed and frozen before this packet existed; its outcomes
-were readable before the theorems were written. §2 is **explanatory
-classification of pre-existing frozen evidence**.
-
-A genuinely prospective test is specified in `THEORY.md` §6: freeze a fourth
-package and predict from its import-graph density, *before* running, whether
-`donor-coarse` will be unsound there. **Not executed here.**
-
-## 4. Adverse evidence — preserved
-
-`donor-coarse`'s 77,630 combined false retentions and `always-reopen`'s up to
-382,044 unnecessary reopenings are both reported in full. The existing nonclosure
-countermodels and pairwise bridge-binding results are unchanged and extended, not
-replaced. No `CANNOT_CHECK` is converted.
-
-## 5. Donor boundary
-
-**No novelty claimed.** Assume-guarantee reasoning and contract-based
-compositional verification own generic compositional verification — #1617's note
-says so explicitly — and induction over chains is elementary.
-
-The ORION residual is the **bridge-separation witness** showing pairwise success
-does not compose without entailment, plus the demonstration that exact-versus-
-coarse containment is what separates sound from unsound behaviour on real
-dependency graphs.
-
-## 6. Stop rule and budget
+## 3. The stop rule fires
 
 **#1649, verbatim:** *"If arbitrary-chain behaviour adds no new consequence beyond
 pairwise theory, keep the bounded paper and do not inflate the contribution."*
 
-It **does** add a new consequence, so the stop rule does not fire. The
-contribution is stated at exactly its size — a composition condition and its
-necessity — and **not** as a claim that the chain theory is a new verification
-paradigm.
+On the corrected reading it adds none: V4.5 already owns it.
 
-**ORION-17's promotion budget is spent.** No further rescue cycle authorized.
+Per blueprint §4.12, ORION-17's real Tier-A blocker is a **decisive naturalistic
+multi-hop study** — one genuine chain of three distinct operations
+(representation/schema migration, responsibility relabel, objective change), all
+facts externally sourced, predictions stamped **before** global closure labels are
+opened, against five registered baselines.
+
+**That study is not done here.** The Tier-A evidence breakthrough is therefore
+**not earned**, and ORION-17 **returns to its bounded submission lane**.
+
+## 4. What the bounded paper keeps
+
+Everything. The bounded paper is unaffected and is explicitly **not inflated**.
+V4.5, the pairwise theory, the nonclosure countermodels and the campaign results
+are all unchanged. `donor-coarse`'s 77,630 combined false retentions and
+`always-reopen`'s up to 382,044 unnecessary reopenings remain reported in full. No
+`CANNOT_CHECK` is converted.
+
+## 5. Donor boundary
+
+**No novelty claimed.** Assume-guarantee and contract-based compositional
+verification own generic compositional verification; induction over chains is
+elementary; and — the point of §1 — the arbitrary-chain result is owned by this
+paper's own prior ledger row, not by this packet.
+
+## 6. Budget
+
+**ORION-17's promotion budget is spent**, terminating in a return to the bounded
+lane rather than a promotion. No further rescue cycle is authorized under #1649.
+
+This is the correct outcome, not a shortfall: #1649 exists precisely to make one
+honest attempt and stop.

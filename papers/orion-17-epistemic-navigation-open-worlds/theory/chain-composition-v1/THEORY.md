@@ -5,25 +5,43 @@
 **Governing issue:** #1649 Tier A (execution order 6)
 **Authorized by:** `WAVE1_TOP_TIER_PROMOTION_TRIAGE_2026-08-28.md` — ORION-17's **one** promotion attempt
 **Authored:** 2026-08-28
-**Status:** `THEOREM_PROVED__CLASSIFIES_FROZEN_THREE_DOMAIN_CAMPAIGN`
+**Status:** `RE_VERIFICATION_PLUS_ONE_LEMMA__TIER_A_EVIDENCE_NOT_EARNED`
 **Scientific authority delta:** `NONE`
 **Frozen paper bytes modified:** NONE
 
 ---
 
-## 1. What #1649 asks for
+## 1. Correction: the arbitrary-chain theorem already exists
 
-> *"For an arbitrary finite chain of heterogeneous transforms, prove final closure
-> preservation under exact intermediate contracts/bridges, affected-obligation
-> revalidation and epoch/order assumptions. Prove necessity by bridge-separation
-> witnesses where possible."*
+**An earlier draft of this packet framed Theorems 1–2 as a new arbitrary-chain
+result. That framing was wrong and is retracted here.**
 
-The existing pairwise composition theory is strong. The open question is whether
-**pairwise success composes** — and if not, exactly what extra condition makes it
-compose.
+`CLAIM_LEDGER_V4.md` row `ORION-17.V4.5` already states, as a **mechanized
+theorem** (Z3 over uninterpreted sorts,
+`formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json`):
 
-The answer is that it does **not** compose on its own, and the missing condition
-is bridge entailment. Both directions are proved below.
+> *"Heterogeneous closure-carrying transforms compose scientifically only under
+> exact intermediate closure-contract binding or a registered equivalence bridge —
+> **for chains of any length**, over any number of transformations, contracts,
+> closure coordinates and obligations, and for every donor-native validity
+> predicate."*
+
+That subsumes both directions I had written up as new: the sufficiency of bridge
+entailment and, via *"only under"*, its necessity. The Wave-1 closure blueprint
+(2026-08-28, §4.10) flags exactly this, and it is right.
+
+**What this packet actually contributes**, restated honestly:
+
+1. an **independent, methodologically different re-verification** of V4.5 — the
+   ledger's proof is Z3 over uninterpreted sorts; this one is explicit finite
+   enumeration over concrete chains, so a shared solver-encoding error could not
+   produce both;
+2. a **classification of the frozen three-domain campaign** by that theorem,
+   including the flask density observation (§4);
+3. one **scoped lemma the ledger does not contain** (§3.4), framed as a
+   revalidation lemma rather than a headline.
+
+None of these is a new arbitrary-chain theorem.
 
 ---
 
@@ -42,7 +60,7 @@ contract after step `t`, over a finite set of closure properties.
 
 ## 3. The theorems
 
-### Theorem 1 (chain composition — sufficiency)
+### Theorem 1 (chain composition — sufficiency) — *re-verification of V4.5, not new*
 
 If every step preserves closure and every consecutive pair bridges, then final
 closure holds, **for chains of arbitrary finite length**.
@@ -51,7 +69,7 @@ closure holds, **for chains of arbitrary finite length**.
 the bridge guarantees the input contract of `T_{k+1}` is entailed by what the
 first `k` steps established, and preservation carries it across `T_{k+1}`. ∎
 
-### Theorem 2 (necessity — pairwise success does not compose)
+### Theorem 2 (necessity) — *re-verification of V4.5's "only under", not new*
 
 Bridging is not decorative. **If one bridge link is broken, there is a chain in
 which every pairwise step succeeds in isolation and global closure nonetheless
@@ -62,9 +80,9 @@ mechanism: a property that step `1` does not establish is *required* by step `2`
 input contract; each step is individually satisfiable, but nothing in the chain
 ever establishes the property, so it is absent at the end.
 
-This is the **bridge-separation witness** #1649 asks for, and it is the whole
-content of the promotion: *arbitrary-chain behaviour is not a corollary of
-pairwise behaviour.*
+This is the **bridge-separation witness** #1649 asks for. It is a concrete
+witness for a necessity direction V4.5 already asserts — useful as independent
+corroboration, **not** as a new result.
 
 ### Theorem 3 (order sensitivity)
 
@@ -72,12 +90,27 @@ Reordering the same transforms can break a bridge that held. An exhibited witnes
 shows a contract sequence that bridges in one order and fails in another, so
 **epoch/order is a real assumption** and not bookkeeping.
 
-### Corollary (what to revalidate when a bridge fails)
+### 3.4 Lemma (affected-obligation slice) — the one part the ledger lacks
 
-When a bridge fails at step `t`, the obligations needing revalidation are the
-affected closure of the broken properties — `ORION16.DEPENDENCY_CLOSED_REVALIDATION.v1`'s
-`A(Delta)` applied to the contract graph. The two results compose: Theorem 2 says
-*whether* the chain is broken, `A(Delta)` says *what to reopen*.
+Searching `CLAIM_LEDGER_V4.md` for `affected`, `revalidat`, `slice` and
+`ancestral` returns **zero** matches, so this is not a restatement.
+
+**Lemma.** For a chain represented by an obligation-dependency DAG with final
+closure root `r`, and a changed leg/interface set `Delta`, the obligations that
+are both **reachable from `Delta`** and **ancestral to `r`** form the unique
+minimal sound revalidation set under separation witnesses.
+
+**Proof.** Soundness: anything not reachable from `Delta` has unchanged premises;
+anything not ancestral to `r` cannot affect the final closure, so neither needs
+revalidation. Minimality: for any obligation in the slice there is, by the
+separation witness, an instance in which omitting it leaves `r` wrongly closed —
+this is `ORION16.DEPENDENCY_CLOSED_REVALIDATION.v1`'s necessity argument
+restricted to the ancestor cone of `r`. ∎
+
+**This is deliberately a lemma, not a headline.** It is structurally shared with
+ORION-16 and adds an ancestry restriction to the closure that ORION-16 does not
+need, because ORION-16 has no distinguished root. Per the blueprint's §4.11 it
+should be recorded as a revalidation lemma and nothing more.
 
 ---
 
@@ -192,11 +225,19 @@ sound from unsound behaviour on real dependency graphs.
 consequence beyond pairwise theory, keep the bounded paper and do not inflate the
 contribution."*
 
-Arbitrary-chain behaviour **does** add a new consequence: Theorem 2 shows pairwise
-success does not compose, with an exhibited witness, and Theorem 3 shows order is
-load-bearing. Neither follows from the pairwise theory. The contribution is
-therefore real and is stated at exactly that size — a composition condition and
-its necessity, **not** a claim that the chain theory is a new verification
-paradigm.
+**The stop rule fires, on the corrected reading.** V4.5 already owns the
+arbitrary-chain theorem, so this packet adds no new arbitrary-chain consequence.
+What it adds is an independent re-verification by a different method, a
+classification of the frozen campaign, and one scoped revalidation lemma.
 
-**ORION-17's promotion budget is now spent.**
+Per the Wave-1 closure blueprint §4.12, ORION-17's actual Tier-A blocker is a
+**decisive naturalistic multi-hop study** — a real chain of three distinct
+operations (representation migration, responsibility relabel, objective change)
+with externally sourced facts, predictions stamped before global closure labels
+are opened, and five registered baselines.
+
+**That study is not done here, so the Tier-A evidence breakthrough is NOT
+earned.** ORION-17 returns to its bounded submission lane. The bounded paper is
+unaffected and is not inflated.
+
+**ORION-17's promotion budget is spent.** No further rescue cycle is authorized.
