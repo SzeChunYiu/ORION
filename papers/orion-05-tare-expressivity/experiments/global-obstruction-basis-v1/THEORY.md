@@ -1,6 +1,6 @@
 # ORION05.GLOBAL_OBSTRUCTION_BASIS.v1 — theory draft (DESIGN, NOT FROZEN, NOT EXECUTED)
 
-Date: 2026-08-28. Status: DRAFT_FOR_FREEZE. scientific_authority_delta: NONE.
+Date: 2026-08-28. Status: FROZEN_BEFORE_ANY_CENSUS_OUTPUT (frozen 2026-08-28, commit 1404c56cd freezes the protocol). scientific_authority_delta: NONE.
 Promotion target: issue #1649 (five-paper review gate for ORION-05).
 All definitions below are the repo's own formalism (R6M / R6S / R6O / QG-7c);
 nothing is redefined post outcome.
