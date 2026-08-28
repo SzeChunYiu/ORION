@@ -69,6 +69,10 @@
       "role": null
     },
     {
+      "path": "papers/orion-18-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json",
+      "role": null
+    },
+    {
       "path": "papers/orion-18-epistemic-authority-autonomous-science/JOURNAL_READINESS.md",
       "role": null
     },
@@ -295,114 +299,6 @@
     {
       "path": "tests/unit/candidates/test_p8_formal_core_primitives.py",
       "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/CLAIM_LEDGER_ADDENDUM_V3.md",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V2.json",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/JAAMAS_INFORMATION_SHEET_V1.md",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/Makefile",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/P8_ACTIVE_CLAIM_AUTHORITY_V1.json",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/REPRODUCE_V3.md",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/TOP_TIER_DYNAMIC_EPISTEMIC_MANUSCRIPT_V1.md",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/TOP_TIER_PROMOTION_V1.md",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/TOP_TIER_THEORY_V1.md",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/benchmark/authority_cases_v2.schema.json",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/benchmark/generate_authority_cases_v2.py",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/evidence/R5_REVIVAL_REVERIFICATION_2026-08-28.json",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/evidence/history/NEGATIVE_NULL_HISTORY_V1.jsonl",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/evidence/local/P8_LOCAL_REPLAY_CONTRACT_V3.json",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/evidence/local/cross_capability_attack_replay_result_v2.json",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/formal/P8_NATIVE_CROSS_SYSTEM_PROTOCOL_2026-08-24.json",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/formal/P8_NATIVE_CROSS_SYSTEM_PROTOCOL_V1.md",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/formal/P8_NATIVE_CROSS_SYSTEM_RESULTS.json",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/formal/P8_NATIVE_TOOLING_BINDING_V1.json",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/formal/check_p8_native_protocol_binding_v1.py",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/formal/run_p8_native_cross_system_v1.py",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/top_tier/P8_REAL_EVIDENCE_DISCHARGE_PROTOCOL_V1.md",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/top_tier/P8_REAL_EVIDENCE_DISCHARGE_RESULT_RECEIPT_V1.md",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/top_tier/check_real_evidence_discharge_independent_v1.py",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/top_tier/p8_real_evidence_discharge_cases_v1.json",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/top_tier/p8_real_evidence_discharge_gold_v1.json",
-      "role": null
-    },
-    {
-      "path": "papers/orion-18-epistemic-authority-autonomous-science/top_tier/run_real_evidence_discharge_v1.py",
-      "role": null
     }
   ],
   "candidate_id": "P8",
@@ -454,8 +350,11 @@
     }
   },
   "schema_version": "orion.candidate-content-binding.v1",
-  "subject_commit": "d53cd778fb4770fdb5cf663b83e1917499fc98c6",
-  "subject_commit_blocker": null,
-  "subject_commit_status": "BOUND",
-  "subject_commit_unbound_paths": []
+  "subject_commit": "622969a2df66cab86c8d96dfebb78533edd337ab",
+  "subject_commit_blocker": "bound files differ from the recorded commit; the commit does not describe these bytes",
+  "subject_commit_status": "CANNOT_CHECK",
+  "subject_commit_unbound_paths": [
+    "papers/paper-08-epistemic-authority-autonomous-science/manuscript/main.pdf",
+    "papers/paper-08-epistemic-authority-autonomous-science/manuscript/main.tex"
+  ]
 }
