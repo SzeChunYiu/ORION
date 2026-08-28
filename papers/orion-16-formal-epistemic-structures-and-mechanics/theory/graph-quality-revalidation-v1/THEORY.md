@@ -155,10 +155,29 @@ real dependency/change graphs"* compared against full revalidation,
 direct-neighbour, changed-set-only, dependency-closure and a strongest incremental
 verification/build/test-selection baseline.
 
-**That comparison does not exist and is not manufactured here.** The frozen
+**That comparison is not made here and is not manufactured.** The frozen
 real-transition audit is a *terminal-correctness* audit over 16 transition cases,
 not a *cost* comparison against build-system baselines, and it covers one system,
 not two or three.
+
+**Correction, and a pointer a reviewer should have.** An earlier draft of this
+section asserted that no such comparison exists *in the repository*. That was a
+repository-scoped absence claim made from a search of this paper's directory
+only — the same scope error twice over. It is wrong.
+
+`papers/orion-17-epistemic-navigation-open-worlds/transitions/P7_CLOSURE_RETENTION_V1.json`
+records an executed campaign over **three independently sourced real Python
+packages** — numpy (426 modules, 1076 import edges), scipy (813, 2156), flask
+(24, 19) — with real commit histories and a three-policy comparison including an
+`always-reopen` baseline.
+
+That is the closest thing in the repository to #1649's ORION-16 discriminator, and
+it is genuinely close: real dependency graphs, real changes, an exhaustive
+baseline. It still does **not** substitute, because it measures *closure retention
+under transforms*, not *revalidation-set cost*, and its baselines are containment
+policies rather than build-system or test-selection tools. But the honest statement
+is "the ORION-16 discriminator has not been run", **not** "no such data exists" —
+and anyone assessing this claim should look at that campaign first.
 
 So this packet earns the **theory objective** of #1649's ORION-16 entry and
 explicitly does not earn the empirical discriminator. Per the stop rule, the

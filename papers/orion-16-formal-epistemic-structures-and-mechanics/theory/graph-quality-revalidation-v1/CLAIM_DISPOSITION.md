@@ -48,9 +48,17 @@ real dependency/change graphs, compared against full revalidation,
 direct-neighbour, changed-set-only, dependency-closure and a strongest
 incremental-verification baseline.
 
-**That comparison does not exist and is not manufactured.** The frozen audit is a
-*terminal-correctness* audit over 16 cases on **one** system, not a *cost*
+**That comparison has not been run, and is not manufactured.** The frozen audit is
+a *terminal-correctness* audit over 16 cases on **one** system, not a *cost*
 comparison. The cost bounds of Theorems 2 and 3 are **proved, not measured**.
+
+**Correction.** An earlier draft said no such comparison *exists in the
+repository*. That was a repo-scoped absence claim made from a paper-scoped
+search, and it is wrong: ORION-17's `P7_CLOSURE_RETENTION_V1.json` is an executed
+campaign over three independently sourced real Python packages with real import
+graphs and an exhaustive baseline. It does not substitute — it measures closure
+retention, not revalidation-set cost — but a reviewer assessing this claim should
+see it.
 
 So this earns the **theory objective** and explicitly not the empirical one. Per
 the stop rule, the general theorem and bounded paper stand and no deployed-system
