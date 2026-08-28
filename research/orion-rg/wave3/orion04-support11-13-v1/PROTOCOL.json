@@ -1,0 +1,62 @@
+{
+  "schema": "ORION.ORION04.Wave3.M4.Support11To13Protocol.v1",
+  "protocol_id": "ORION04.D4.SATURATION_ATOM.M4.SUPPORT11_13_REPLAY.v1",
+  "wave": 3,
+  "issue": 1609,
+  "base_revision": "c8d8a725a9618239fd8d9808e6bb39e1c549ab14",
+  "target": {
+    "group": "C_5^3",
+    "sequence_length": 31,
+    "total_sum": 0,
+    "forbidden_zero_sum_lengths": [1, 2, 3, 4, 5],
+    "support_sizes": [11, 12, 13]
+  },
+  "parent": {
+    "path": "research/orion-rg/NONQUANTUM_M3_SUPPORT10_REPLAY_RESULTS_2026-08-24.json",
+    "schema": "ORION.NonQuantumMath.M3.Support10Replay.v1",
+    "result_digest": "bc1a727fe936a3cd3ddf033bb0ac9c6ebad6d6969a9e10c45c8d53fd2732e044",
+    "theorem": "any obstruction has support at least 11"
+  },
+  "multiplicity_grammar": {
+    "allowed_multiplicities": [1, 2, 4],
+    "variables": ["a1", "b2", "c4"],
+    "equations": [
+      "a1 + b2 + c4 = support",
+      "a1 + 2*b2 + 4*c4 = 31"
+    ],
+    "expected_patterns": [
+      {"support": 11, "pattern": [1, 5, 5], "branches": ["rank3"]},
+      {"support": 11, "pattern": [3, 2, 6], "branches": ["rank3"]},
+      {"support": 12, "pattern": [1, 7, 4], "branches": ["rank3"]},
+      {"support": 12, "pattern": [3, 4, 5], "branches": ["rank3"]},
+      {"support": 12, "pattern": [5, 1, 6], "branches": ["rank3"]},
+      {"support": 13, "pattern": [1, 9, 3], "branches": ["rank3", "rank2"]},
+      {"support": 13, "pattern": [3, 6, 4], "branches": ["rank3"]},
+      {"support": 13, "pattern": [5, 3, 5], "branches": ["rank3"]},
+      {"support": 13, "pattern": [7, 0, 6], "branches": ["rank3"]}
+    ]
+  },
+  "normalization": {
+    "rank3": "three multiplicity-4 points spanning rank three are sent to e1,e2,e3 by GL(3,5)",
+    "rank3_forced_when_c4_at_least_4": "four multiplicity-4 points contribute 16 terms, exceeding eta(C_5^2)=13 in rank at most two",
+    "rank2_exception": "for pattern [1,9,3], normalize two independent multiplicity-4 points to e1,e2 and enumerate the third as a*e1+b*e2 with a,b nonzero"
+  },
+  "exact_state": {
+    "primary": "u128 exact-weight subset-sum masks for weights 0 through 5",
+    "independent_replay": "byte-array reach[weight][group_element] for weights 0 through 5",
+    "compile": ["gcc", "-std=gnu11", "-O3", "-Wall", "-Wextra", "-Werror"],
+    "acceptance": "every registered branch returns zero solutions and both state representations agree exactly"
+  },
+  "expected_terminal_file": "research/orion-rg/wave3/orion04-support11-13-v1/EXPECTED_TERMINALS.json",
+  "independent_checker": "research/orion-rg/wave3/orion04-support11-13-v1/independent_checker/check_result.py",
+  "authority": {
+    "bounded_support_le13_theorem_authority": true,
+    "support_14_plus_theorem_authority": false,
+    "support_23_theorem_authority": false,
+    "independent_external_replay_complete": false,
+    "c0_31_authority": false,
+    "exact_d4_authority": false,
+    "novelty_authority": false,
+    "venue_authority": false
+  }
+}
