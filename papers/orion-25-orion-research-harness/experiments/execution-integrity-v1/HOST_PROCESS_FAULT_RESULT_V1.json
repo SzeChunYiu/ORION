@@ -1,0 +1,44 @@
+{
+  "authority": "MEASUREMENT_ONLY",
+  "box": "production-like host/process fault injection (in-runner class)",
+  "checker_accepted_stale_artifact_count": 2,
+  "faults": 4,
+  "finding": "The checker verifies an ARTIFACT, not a RUN. It carries no binding to the process that produced it, so after a mid-run kill it re-certifies a previous good artifact as green. That is correct behaviour for an artifact verifier and a real gap for a pipeline that treats a green checker as evidence that THIS run succeeded. Liveness must be established by the orchestrator, not inferred from the checker.",
+  "results": [
+    {
+      "artifact_unchanged": true,
+      "checker_accepts_stale": true,
+      "checker_rc": 0,
+      "checker_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+      "fault": "G1_RUNNER_SIGKILL_WITH_STALE_ARTIFACT_PRESENT",
+      "runner_exit": -9,
+      "tests": "runner killed mid-execution while a previous good artifact sits on disk; does the checker distinguish 'this run succeeded' from 'an older run succeeded'?"
+    },
+    {
+      "failed_loudly": true,
+      "fault": "G2_OUTPUT_PATH_READ_ONLY",
+      "runner_exit": -1,
+      "silently_produced_output": false,
+      "tests": "read-only destination; does the runner fail loudly or silently produce nothing?"
+    },
+    {
+      "failed_loudly": true,
+      "fault": "G3_OUTPUT_DIRECTORY_ABSENT",
+      "runner_exit": -1,
+      "tests": "destination directory does not exist"
+    },
+    {
+      "artifact_unchanged": true,
+      "checker_accepts_stale": true,
+      "checker_rc": 0,
+      "checker_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+      "fault": "G4_RUNNER_SIGTERM_WITH_STALE_ARTIFACT_PRESENT",
+      "runner_exit": -15,
+      "tests": "graceful termination mid-execution with a stale artifact present"
+    }
+  ],
+  "schema": "orion.orion25.host-process-faults.v1",
+  "scientific_authority_delta": "NONE",
+  "successor_id": "ORION25.EXECUTION_INTEGRITY.v1",
+  "terminal": "STALE_ARTIFACT_ACCEPTED__LIVENESS_NOT_ATTESTED"
+}
