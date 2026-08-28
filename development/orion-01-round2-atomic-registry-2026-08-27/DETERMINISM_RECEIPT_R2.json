@@ -1,0 +1,38 @@
+{
+  "bounded_gap_diagnosis": {
+    "byte_identical": true,
+    "generic_control_misses": 2,
+    "hostile_extension_collapses": 0,
+    "run_1": {
+      "bytes": 2114,
+      "sha256": "8b2ca5abb067ab0ff56219978416601246e717a11cb187518970d43b7bce48ef"
+    },
+    "run_2": {
+      "bytes": 2114,
+      "sha256": "8b2ca5abb067ab0ff56219978416601246e717a11cb187518970d43b7bce48ef"
+    },
+    "scope": "FOUR_COMPLETED_STRICT_GAP_WORDS"
+  },
+  "date": "2026-08-27",
+  "full_execution": {
+    "byte_identical": true,
+    "run_1": {
+      "bytes": 13914625,
+      "sha256": "db1253e52a44741613abb9217eb4a865d190c3948abdab9f8fbd344ada035efd",
+      "source": "LUNARC /tmp/r2_run1.json (ephemeral execution copy; compared fresh before packaging)"
+    },
+    "run_2": {
+      "bytes": 13914625,
+      "sha256": "db1253e52a44741613abb9217eb4a865d190c3948abdab9f8fbd344ada035efd",
+      "source": "committed ORION01_ROUND2_ATOMIC_RESULTS.json"
+    },
+    "scope": "FULL_FROZEN_585_PRIMARY_PLUS_16_PROBE_DOMAIN",
+    "terminal": "CANNOT_CHECK_MOVE_COMPLETENESS"
+  },
+  "paper_id": "ORION-01",
+  "replication_kind": "FRESH_DETERMINISTIC_REEXECUTION__NOT_INDEPENDENT_IMPLEMENTATION",
+  "round": 2,
+  "schema": "ORION.ORION01.Round2.DeterminismReceipt.v1",
+  "scientific_authority_delta": "NONE",
+  "wall_time_is_evidence": false
+}

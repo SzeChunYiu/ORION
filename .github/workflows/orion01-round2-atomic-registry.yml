@@ -1,0 +1,142 @@
+name: ORION-01 Paper 1 evidence and bounded-package checks
+
+on:
+  pull_request:
+    paths:
+      - 'development/orion-01-round2-atomic-registry-2026-08-27/**'
+      - 'development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/**'
+      - 'development/orion-01-production-completeness-successor-2026-08-29/**'
+      - 'papers/orion-01-certificate-realization/**'
+      - '.github/workflows/orion01-round2-atomic-registry.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'development/orion-01-round2-atomic-registry-2026-08-27/**'
+      - 'development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/**'
+      - 'development/orion-01-production-completeness-successor-2026-08-29/**'
+      - 'papers/orion-01-certificate-realization/**'
+      - '.github/workflows/orion01-round2-atomic-registry.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-atomic-registry-study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned post-outcome verifier runtime
+        run: |
+          root=development/orion-01-round2-atomic-registry-2026-08-27
+          python -m pip install --disable-pip-version-check \
+            -r "$root/requirements-ci.txt"
+          python -m pip install --disable-pip-version-check --no-deps \
+            'pyzx @ git+https://github.com/zxcalc/pyzx.git@dade7d46f193635bbdaefd8fcde837f9449fddc5'
+      - name: Lint and run non-outcome unit controls
+        run: |
+          root=development/orion-01-round2-atomic-registry-2026-08-27
+          python -m ruff check \
+            "$root/orion01_round2_atomic_registry.py" \
+            "$root/verify_orion01_round2_atomic.py" \
+            "$root/test_orion01_round2_atomic.py" \
+            "$root/test_workflow_runtime_correction.py"
+          python -m pytest -q \
+            "$root/test_orion01_round2_atomic.py" \
+            "$root/test_workflow_runtime_correction.py"
+      - name: Replay committed receipt and require committed bytes
+        run: |
+          set -euo pipefail
+          root=development/orion-01-round2-atomic-registry-2026-08-27
+          python "$root/verify_orion01_round2_atomic.py" --check \
+            | tee /tmp/orion01-round2.out
+          tail -n 1 /tmp/orion01-round2.out | grep -xE \
+            'AB_R2_ATOMIC_CHECKER_REGISTRY_REALIZED_GAP|AB_R2_ATOMIC_CHECKER_REGISTRY_NO_STRICT_GAP|AB_R2_GAP_MATCHED_BY_GENERIC_SEARCH|AB_R2_CROSS_MOVE_COLLAPSES_GAP|AB_R2_ATOMIC_GUARD_UNSOUND|CANNOT_CHECK_MOVE_COMPLETENESS'
+          git diff --exit-code -- \
+            "$root/ORION01_ROUND2_ATOMIC_RESULTS.json"
+          if [ -f "$root/ORION01_ROUND2_ATOMIC_RESULTS_SUBSET.json" ]; then
+            git diff --exit-code -- \
+              "$root/ORION01_ROUND2_ATOMIC_RESULTS_SUBSET.json"
+          fi
+      - name: Enforce narrow authority and ORION-01-only custody
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path('development/orion-01-round2-atomic-registry-2026-08-27')
+          results = json.loads((root / 'ORION01_ROUND2_ATOMIC_RESULTS.json').read_text())
+          registry = json.loads((root / 'ORION01_ROUND2_ATOMIC_SOURCE_REGISTRY.json').read_text())
+          assert results['paper_id'] == 'ORION-01'
+          assert results['round'] == 2
+          assert results['outcome']['terminal'] in registry['allowed_terminals']
+          assert registry['source']['commit'] == 'dade7d46f193635bbdaefd8fcde837f9449fddc5'
+          assert registry['round1_preservation']['macro_language_terminal'] == 'CANNOT_CHECK_MOVE_COMPLETENESS'
+          assert registry['authority_boundaries']['round1_macro_language_relabeling'] is False
+          assert not any([
+              registry['authority_boundaries']['all_pyzx_completeness'],
+              registry['authority_boundaries']['all_zx_completeness'],
+              registry['authority_boundaries']['generic_compiler_optimality'],
+              registry['authority_boundaries']['physical_or_hardware_advantage'],
+              registry['authority_boundaries']['external_novelty'],
+              registry['authority_boundaries']['journal_authority'],
+              registry['authority_boundaries']['submission_authorized'],
+          ])
+          assert results['audits']['primitive_closure_exact'] is True
+          assert results['audits']['hostile_omissions_rejected'] == 12
+          assert results['audits']['mutator_method_surface_covered'] is True
+          assert results['audits']['guard_purity_all_pure'] is True
+          assert len(results['rows']) == 585 + 16
+          terminal = results['outcome']['terminal']
+          assert terminal == terminal.upper()
+          if terminal == 'CANNOT_CHECK_MOVE_COMPLETENESS':
+              assert results['outcome']['failure_kind']
+              for row in results['rows']:
+                  if row.get('cap_hit'):
+                      assert row['domain'] == 'primary'
+                      assert 'native_resource' not in row
+                  else:
+                      if row['domain'] == 'primary':
+                          assert row['native_state_represented'] is True
+                      assert row['witness_replay_ok'] is True
+          else:
+              assert results['gates_all_passed'] is True
+              assert results['domain_counts']['primary'] == 585
+              assert results['domain_counts']['probe'] == 16
+              assert results['critical_interactions']['pair_count'] == 144
+              for row in results['rows']:
+                  if row['domain'] == 'primary':
+                      assert row['cap_hit'] is False
+                      assert row['native_state_represented'] is True
+                      assert row['witness_replay_ok'] is True
+          PY
+          if [ "$EVENT_NAME" = pull_request ]; then
+            base="$PR_BASE_SHA"
+          else
+            base="HEAD^"
+          fi
+          bad=0
+          while IFS= read -r path; do
+            case "$path" in
+              .github/workflows/orion01-round2-atomic-registry.yml|\
+              development/orion-01-round2-atomic-registry-2026-08-27/*|\
+              development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/*|\
+              development/orion-01-production-completeness-successor-2026-08-29/*|\
+              papers/orion-01-certificate-realization/*)
+                ;;
+              *)
+                echo "ORION-01 Paper-1 lane scope violation: $path" >&2
+                bad=1
+                ;;
+            esac
+          done < <(git diff --name-only "$base"...HEAD)
+          test "$bad" -eq 0
