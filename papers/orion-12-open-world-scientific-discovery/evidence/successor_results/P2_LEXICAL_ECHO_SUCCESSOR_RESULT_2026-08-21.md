@@ -4,7 +4,7 @@
 - **Date**: 2026-08-21
 - **Freeze it answers**: `../../protocol/P2_LEXICAL_ECHO_SUCCESSOR_FREEZE_2026-08-21.md`
   (twin `…_FREEZE_2026-08-21.json`, `parameters_sha256`
-  `032ae39cf5aae787d6dcb8c75732333e6f6c27782c041c63152e9545830f22e3`)
+  `1a93ebbfcc0ea671aff098a466b995d29e7c2b881200febc03b49cab2291dd9f`)
 - **Machine-readable result**: `P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json`
 - **World content hash**: `3711a6f7b3997d7a6f24b292ec65fd2b6f56e13cd2161a45c4ca8bf28ed3f534`
 - **Verdict**: `VALIDATED_ON_CONSTRUCTED_REPRODUCTION`
