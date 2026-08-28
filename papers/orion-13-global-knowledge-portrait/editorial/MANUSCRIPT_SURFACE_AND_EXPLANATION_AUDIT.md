@@ -8,9 +8,12 @@ Review-only terms were dispositioned contextually:
 
 - MUSE, SCOPE, SCION, LLMATCH, I-ADOPT, and DEC are cited system/framework names rather than unexplained internal run identifiers.
 - ORION appears once in Methods solely to identify the implementation under test, as required by house style.
-- SHA-256 identifies the standard digest algorithm in Data Availability.
 - CC BY identifies the manuscript licence; the final wording uses the corresponding public licence name.
-- `P3.cross-domain-atlas.v1` appears only in a non-rendered source comment needed by the structural integrity test; the comment explicitly says it is an unexecuted broader protocol and not a manuscript claim.
+
+The earlier audit incorrectly permitted printed archive digests and a
+source-only private protocol comment. Both were removed under the stricter
+author rule. See `READER_SURFACE_CORRECTION_2026-08-28.md` for the additive
+correction and current PDF binding.
 
 ## Explanation sufficiency
 
@@ -29,4 +32,6 @@ Review-only terms were dispositioned contextually:
 
 ## Artifact-leakage audit
 
-No issue number, pull-request number, branch, workflow run, local path, internal claim ID, machine terminal, or repository filename appears in reader-facing scientific prose. Exact digests remain in Data Availability, where they identify review materials rather than establish scientific truth.
+No issue number, pull-request number, branch, workflow run, local path,
+internal claim ID, machine terminal, repository filename, archive digest or
+other internal content identifier appears in reader-facing scientific prose.

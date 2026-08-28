@@ -12,7 +12,7 @@ A prospectively frozen 32-case, case-identifier-disjoint public-reference holdou
 
 The contribution is deliberately limited to structured mapping decisions. The manuscript does not claim raw-text extraction performance, expert-atlas validity, downstream utility, superiority over current integration systems, or necessity of every coordinate. Two source-locator--content-hash records recur across the initial and confirmatory sets and are disclosed. The flat comparator is intentionally weak, and the cover letter makes no broader system-superiority claim.
 
-The exact review resources are organized as one immutable-byte archive. **A long-term stable review URL must be inserted here before filing:** `[IMMUTABLE_REVIEW_URL_REQUIRED]`. The archive digest and byte count are recorded in the accompanying submission manifest.
+The exact review resources are organized as one immutable-byte archive. **A long-term stable review URL must be added here before filing.** Integrity and size information are recorded in the accompanying submission manifest.
 
 The author understands that SWJ uses open review and that the submitted manuscript will become publicly available. The following filing declarations remain to be completed by the human author:
 
@@ -28,4 +28,4 @@ Sincerely,
 
 Sze Chun Yiu  
 sze-chun.yiu@fysik.su.se  
-`[AFFILIATION_REQUIRED]`
+Affiliation to be supplied by the author before filing.

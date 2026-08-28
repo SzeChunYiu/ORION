@@ -14,7 +14,7 @@ The repository cannot truthfully supply or infer the following fields. The human
 - [ ] Human verification of every source and scientific statement
 - [ ] Exact generative-AI assistance disclosure
 - [ ] Explicit confirmation that the submitted intellectual prose complies with SWJ FAQ Q28 and was not written extensively by generative AI
-- [ ] Final human proofread of the exact PDF bytes named in `SUBMISSION_MANIFEST.json`
+- [ ] Final human proofread of the exact filing PDF
 
 Supplied identity:
 

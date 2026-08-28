@@ -1,9 +1,9 @@
 # Revision delta — round 1 to current Wave-1 package
 
 - **Round-1 PDF:** `b843d9ef8cd399c3e186e3a05edca582a2bd9de08f3c22d192b7187b42ac4c19`
-- **Current PDF:** `aff2be33f907a21549776ed888364f04351b0fb8e481087e3b7936516aef0a4b`
+- **Current PDF:** `80850e789d396dceaa0a28d85446dd1ff0ffe7666c4bc5d2f50f3dc563dcfadd`
 - **Current pages:** 8
-- **TeX input-closure digest:** `30d155ac89cdba7c75437870f6cce80b030a24fddc6a4d2096ae8b8f4f45051e`
+- **TeX input-closure digest:** `d50bc21413ce11adb87d796430640f106e6c871d437113f53e75f15a4ab7289a`
 
 ## Minimum-sufficient scientific repairs
 
@@ -19,9 +19,10 @@
 
 - Added `INDEPENDENT_CONFIRMATORY_REPLAY.json` and a fail-closed `--check` route.
 - Preserved the historical R0 receipt self-hash and added a rename-only correction record. The current receipt self-hash is rebound to `5abb3f4c32eab161fa415b13faee6cfbcb971f5be791c9f3932a61fc1e1c53b6`; no scientific value changed.
-- Built two clean copies from the deterministic source ZIP with fixed `SOURCE_DATE_EPOCH=1787857200`; both exactly matched the tracked current PDF hash.
+- Rebuilt the current PDF from the canonical source, copied the exact bytes into the package, and passed the deterministic package check.
 - Inspected every PDF page and metadata. There is no clipping, overlap, unreadable table, overfull box, or sparse spill. The PDF is untagged; target-template compliance remains blocked by the broken official template link.
 - Materialized exact source and review-resource ZIPs plus a byte-level `SUBMISSION_MANIFEST.json`. The historical 20-page package remains untouched and explicitly superseded.
+- Removed printed archive digests and a source-only private protocol comment from the manuscript-facing package; no scientific claim or value changed.
 
 ## Deliberately unresolved
 

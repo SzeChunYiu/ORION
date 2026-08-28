@@ -1,4 +1,4 @@
-# ORION-13 SWJ review resources
+# Review resources for Coordinate-Governed Mapping of Source-Local Scientific Projections
 
 This archive supports the bounded structured-mapping claim in *Coordinate-Governed Mapping of Source-Local Scientific Projections*.
 
