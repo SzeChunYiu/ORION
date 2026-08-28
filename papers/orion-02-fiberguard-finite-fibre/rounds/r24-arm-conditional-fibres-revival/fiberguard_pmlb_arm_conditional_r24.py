@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import importlib.util
+import json
 import math
 from math import comb
 from pathlib import Path
@@ -28,6 +29,10 @@ R23_EXECUTOR_SHA256 = "6bb4e377462249c3630ceacc56073ba385a82805c79eda58809c42b8e
 
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def canonical_json(value: Any) -> str:
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False)
 
 
 def _load_r23():
@@ -292,6 +297,75 @@ def synthetic_fixture(
     return ArmConditionalContext.from_base(base, mode), info
 
 
+def evaluate_arm(
+    ctx: ArmConditionalContext, names: list[str], arm: str, tau: float
+) -> dict[str, dict[str, Any]]:
+    rows: dict[str, dict[str, Any]] = {}
+    for name in names:
+        decision = walk(ctx, name, arm, tau)
+        excess = r23.json_float(ctx.excess_member(name, decision["committed"]))
+        bound = decision["bound"]
+        rows[name] = {
+            "committed": decision["committed"],
+            "acquired": decision["acquired"],
+            "groups_acquired": len(decision["acquired"]),
+            "certified": decision["certified"],
+            "fallback": decision["fallback"],
+            "bound": bound,
+            "excess": excess,
+            "pool_members": decision["members"],
+            "used_backoff": decision["used_backoff"],
+            "violation_strict": bool(
+                decision["certified"] and excess > float(bound) + TOL
+            ),
+            "violation_tau": bool(decision["certified"] and excess > tau + TOL),
+        }
+    return rows
+
+
+def arm_summary(rows: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
+    excesses = np.asarray([float(row["excess"]) for row in rows.values()])
+    certified = [row for row in rows.values() if row["certified"]]
+    return {
+        "n": len(rows),
+        "certified_n": len(certified),
+        "certified_fraction": r23.json_float(len(certified) / len(rows)),
+        "mean_excess": r23.json_float(float(excesses.mean())),
+        "p95_excess": r23.json_float(float(np.percentile(excesses, 95.0))),
+        "max_excess": r23.json_float(float(excesses.max())),
+        "mean_groups_acquired": r23.json_float(
+            float(np.mean([row["groups_acquired"] for row in rows.values()]))
+        ),
+        "violations_strict": sum(bool(row["violation_strict"]) for row in certified),
+        "violations_tau": sum(bool(row["violation_tau"]) for row in certified),
+        "mean_bound": (
+            r23.json_float(float(np.mean([row["bound"] for row in certified])))
+            if certified
+            else None
+        ),
+    }
+
+
+def synthetic_policy_receipt() -> dict[str, Any]:
+    ctx, _ = synthetic_fixture(MODE_ARM_CONDITIONAL)
+    rows = evaluate_arm(ctx, ["query", "query_dense"], "STATIC_ADAPTIVE", TAU)
+    integrity = True
+    for name, row in rows.items():
+        if not row["certified"]:
+            continue
+        expected = max(
+            ctx.excess_member(member, row["committed"])
+            for member in row["pool_members"]
+        )
+        integrity = integrity and abs(expected - row["bound"]) <= TOL
+        integrity = integrity and name not in row["pool_members"]
+    return {
+        "rows": rows,
+        "summary": arm_summary(rows),
+        "hostile_controls": {"arm_specific_pool_integrity": bool(integrity)},
+    }
+
+
 def decide_terminal(payload: dict) -> str:
     if not all(payload["hostile_controls"].values()):
         return "C_R24_ARM_CONDITIONAL_HOSTILE_CONTROL_FAILED"
@@ -307,4 +381,15 @@ def decide_terminal(payload: dict) -> str:
     rate = violations / certified_n if certified_n else float("inf")
     if rate > VALIDITY_TARGET + TOL:
         return "C_R24_ARM_CONDITIONAL_CERTIFICATE_INVALID"
-    return "C_R24_ARM_CONDITIONAL_COVERAGE_AND_VALIDITY_GATE_PASS"
+    parent = payload.get("matched_parent_test")
+    negative = payload.get("negative_control_test")
+    if (
+        parent
+        and negative
+        and float(parent["mean_diff"]) < -TOL
+        and float(parent["ci_upper"]) < 0.0
+        and float(negative["mean_diff"]) < -TOL
+        and float(negative["ci_upper"]) < 0.0
+    ):
+        return "C_R24_ARM_CONDITIONAL_VALUE"
+    return "C_R24_ARM_CONDITIONAL_COVERAGE_VALIDITY_PASS_VALUE_NOT_MATERIAL"
