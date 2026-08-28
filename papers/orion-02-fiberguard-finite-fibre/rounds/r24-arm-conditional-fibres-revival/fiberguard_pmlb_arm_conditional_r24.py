@@ -3,12 +3,15 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import importlib.util
 import json
 import math
 from math import comb
+import platform
 from pathlib import Path
+import time
 from typing import Any, Callable
 from typing import Mapping
 
@@ -25,6 +28,10 @@ MODE_LEXICAL_CONTROL = "R24_LEXICAL_GOOD_BOUNDARY_NEGATIVE_CONTROL"
 HERE = Path(__file__).resolve().parent
 R23_EXECUTOR = HERE.parent / "r23-density-backoff-revival" / "fiberguard_pmlb_proposal_ordering_r23.py"
 R23_EXECUTOR_SHA256 = "6bb4e377462249c3630ceacc56073ba385a82805c79eda58809c42b8ee1562aa"
+R23_RESULT = HERE.parent / "r23-density-backoff-revival" / "FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_RESULTS.json"
+R23_RESULT_SHA256 = "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77"
+SCHEMA = "ORION.FiberGuard.PMLBArmConditionalBoundaryFibres.R24.Result.v1"
+BOOTSTRAP_REPLICATES = 20_000
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -508,6 +515,270 @@ def full_state_summary(rows: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
     }
 
 
+def _stored_parent_primary(payload: Mapping[str, Any]) -> dict[str, dict[str, Any]]:
+    rows: dict[str, dict[str, Any]] = {}
+    folds = payload["folds"][r23.MODE_BACKOFF]
+    for fold in range(N_FOLDS):
+        record = folds[str(fold)]
+        rows.update(record["test"][record["primary"]])
+    return rows
+
+
+def _matched_negative_primary(
+    negative: Mapping[int, Mapping[str, Any]],
+    geometry: Mapping[int, Mapping[str, Any]],
+) -> dict[str, dict[str, Any]]:
+    rows: dict[str, dict[str, Any]] = {}
+    for fold in range(N_FOLDS):
+        rows.update(negative[fold]["test"][geometry[fold]["primary"]])
+    return rows
+
+
+def comparison(
+    left: dict[str, dict[str, Any]],
+    right: dict[str, dict[str, Any]],
+    label: str,
+) -> dict[str, Any]:
+    # R23's independent, deterministic paired bootstrap accepts an arbitrary
+    # label; an R24-specific label therefore produces a distinct frozen stream.
+    return r23.comparison(left, right, "R24_" + label)
+
+
+def _pool_integrity(
+    rows: Mapping[str, Mapping[str, Any]],
+    outcomes: Mapping[str, Mapping[str, float]],
+) -> bool:
+    for query, row in rows.items():
+        if query in {member for pool in row["arm_pools"].values() for member in pool}:
+            return False
+        rebuilt_admissible: list[str] = []
+        for arm in PORTFOLIO:
+            members = row["arm_pools"][arm]
+            stored = row["arm_bounds"][arm]
+            if not members:
+                if stored is not None:
+                    return False
+                continue
+            if len(members) < POOL_K:
+                return False
+            exact = max(outcomes[member][arm] - outcomes[member]["best"] for member in members)
+            if stored is None or abs(float(stored) - exact) > 1.1e-12:
+                return False
+            if exact <= TAU + TOL:
+                rebuilt_admissible.append(arm)
+        if sorted(rebuilt_admissible) != sorted(row["admissible"]):
+            return False
+    return True
+
+
+def execute(
+    subject_repo: Path,
+    freeze_path: Path,
+    r22_result_path: Path,
+    r23_result_path: Path,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    if sha256_bytes(r23_result_path.read_bytes()) != R23_RESULT_SHA256:
+        raise ValueError("frozen R23 result binding drift")
+    stored_r23 = json.loads(r23_result_path.read_bytes())
+    parent, corrected_r22 = r23.execute(subject_repo, freeze_path, r22_result_path)
+    if canonical_json(parent) + "\n" != r23_result_path.read_text():
+        raise ValueError("fresh R23 parent replay is not byte-identical to the frozen result")
+
+    fold_of = {name: int(fold) for name, fold in parent["corpus"]["fold_assignment"].items()}
+    meta = parent["meta_features"]
+    outcomes = parent["outcomes"]
+    geometry = policy_phase(MODE_ARM_CONDITIONAL, fold_of, meta, outcomes)
+    geometry_repeat = policy_phase(MODE_ARM_CONDITIONAL, fold_of, meta, outcomes)
+    negative = policy_phase(MODE_LEXICAL_CONTROL, fold_of, meta, outcomes)
+
+    geometry_full = full_state_rows(geometry, meta, outcomes, MODE_ARM_CONDITIONAL)
+    geometry_full_repeat = full_state_rows(
+        geometry_repeat, meta, outcomes, MODE_ARM_CONDITIONAL
+    )
+    negative_full = full_state_rows(negative, meta, outcomes, MODE_LEXICAL_CONTROL)
+    geometry_summary = full_state_summary(geometry_full)
+    negative_summary = full_state_summary(negative_full)
+
+    primary = pooled_primary(geometry)
+    parent_primary = _stored_parent_primary(parent)
+    negative_primary = _matched_negative_primary(negative, geometry)
+    static = pooled_rows(geometry, "STATIC_ADAPTIVE")
+    summaries = {
+        "R24_PRIMARY_LEARNED": arm_summary(primary),
+        "R24_STATIC_ADAPTIVE": arm_summary(static),
+        "R23_PARENT_PRIMARY_LEARNED": r23.arm_summary(parent_primary),
+        "R24_LEXICAL_MATCHED_PRIMARY": arm_summary(negative_primary),
+    }
+    for arm in TEST_ARMS:
+        summaries[f"R24_{arm}"] = arm_summary(pooled_rows(geometry, arm))
+
+    matched_parent = comparison(primary, parent_primary, "primary-v-r23-primary")
+    matched_parent.update({"left": "R24_PRIMARY_LEARNED", "right": "R23_PARENT_PRIMARY_LEARNED"})
+    negative_test = comparison(primary, negative_primary, "primary-v-lexical-matched")
+    negative_test.update({"left": "R24_PRIMARY_LEARNED", "right": "R24_LEXICAL_MATCHED_PRIMARY"})
+    learned_static = comparison(primary, static, "primary-v-static")
+    learned_static.update({"left": "R24_PRIMARY_LEARNED", "right": "R24_STATIC_ADAPTIVE"})
+
+    controls = {
+        "r23_executor_binding": sha256_bytes(R23_EXECUTOR.read_bytes()) == R23_EXECUTOR_SHA256,
+        "r23_result_binding": sha256_bytes(r23_result_path.read_bytes()) == R23_RESULT_SHA256,
+        "fresh_r23_parent_byte_identity": canonical_json(parent) == canonical_json(stored_r23),
+        "geometry_policy_deterministic": canonical_json(geometry) == canonical_json(geometry_repeat),
+        "geometry_full_state_deterministic": canonical_json(geometry_full) == canonical_json(geometry_full_repeat),
+        "geometry_pool_integrity": _pool_integrity(geometry_full, outcomes),
+        "negative_control_pool_integrity": _pool_integrity(negative_full, outcomes),
+        "negative_control_present": bool(negative_full),
+        "test_query_custody_disjoint": all(
+            not (set(geometry[fold]["roles"]["test"]) & set(geometry[fold]["roles"]["shield_table"]))
+            for fold in range(N_FOLDS)
+        ),
+        "r23_adverse_terminal_preserved": parent["terminal"]
+        == "C_R23_PMLB_BACKOFF_COVERAGE_IMPROVED_BELOW_GATE",
+    }
+
+    payload: dict[str, Any] = {
+        "schema": SCHEMA,
+        "upstream": parent["upstream"],
+        "corpus": parent["corpus"],
+        "outcomes": outcomes,
+        "meta_features": meta,
+        "r23_parent": {
+            "result_sha256": R23_RESULT_SHA256,
+            "terminal": parent["terminal"],
+            "full_state_coverage": parent["coverage"]["r23_backoff_full_state"],
+            "preserved_unchanged": True,
+        },
+        "r24_mechanism": {
+            "name": MODE_ARM_CONDITIONAL,
+            "pool_k": POOL_K,
+            "tau": TAU,
+            "radius_rule": "smallest Hamming radius whose uniform-cell occupancy expects at least two shield members",
+            "arm_condition": "member excess for the candidate arm is at most tau",
+            "boundary_rule": "within the radius, select the two largest arm excesses; distance then dataset name break ties",
+            "exact_preservation": "retain a nontrivial exact cell for an arm only when every member is tau-good for that arm",
+            "known_outcome_exposure": "the complete R23 result was inspected before R24 design; R24 is prospective only for its new policy output",
+        },
+        "negative_control": {
+            "name": MODE_LEXICAL_CONTROL,
+            "geometry": False,
+            "same_arm_good_filter_and_boundary_rule": True,
+        },
+        "folds": {
+            MODE_ARM_CONDITIONAL: {str(fold): geometry[fold] for fold in range(N_FOLDS)},
+            MODE_LEXICAL_CONTROL: {str(fold): negative[fold] for fold in range(N_FOLDS)},
+        },
+        "coverage_records": {
+            MODE_ARM_CONDITIONAL: geometry_full,
+            MODE_LEXICAL_CONTROL: negative_full,
+        },
+        "coverage": {
+            "r23_parent": parent["coverage"]["r23_backoff_full_state"],
+            "r24_primary": geometry_summary["certified_coverage"],
+            "r24_negative_control": negative_summary["certified_coverage"],
+            "target": COVERAGE_TARGET,
+            "geometry_summary": geometry_summary,
+            "negative_control_summary": negative_summary,
+        },
+        "arms_summary": summaries,
+        "primary": summaries["R24_PRIMARY_LEARNED"],
+        "matched_parent_test": matched_parent,
+        "negative_control_test": negative_test,
+        "learned_static_test": learned_static,
+        "hostile_controls": controls,
+        "environment": parent["environment"],
+        "authority": {
+            "scientific_authority_delta": "NONE",
+            "submission_authorized": False,
+            "top_tier_gate_pass": False,
+            "freeze_authorized": False,
+            "external_independence": False,
+            "scope": "same pinned PMLB corpus/folds/outcomes as outcome-exposed R23",
+        },
+    }
+    payload["terminal"] = decide_terminal(payload)
+    return payload, corrected_r22
+
+
+def run_self_test() -> None:
+    receipt = synthetic_policy_receipt()
+    assert all(receipt["hostile_controls"].values())
+    fold_of, meta, outcomes = synthetic_nine_fold_corpus()
+    first = policy_phase(MODE_ARM_CONDITIONAL, fold_of, meta, outcomes)
+    second = policy_phase(MODE_ARM_CONDITIONAL, fold_of, meta, outcomes)
+    assert canonical_json(first) == canonical_json(second)
+    rows = full_state_rows(first, meta, outcomes, MODE_ARM_CONDITIONAL)
+    assert _pool_integrity(rows, outcomes)
+    print("SELF_TEST_OK")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--subject-repo", type=Path)
+    parser.add_argument("--freeze", type=Path, default=r23.R22_FREEZE)
+    parser.add_argument("--r22-result", type=Path, default=r23.R22_RESULT)
+    parser.add_argument("--r23-result", type=Path, default=R23_RESULT)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--r23-parent-output", type=Path)
+    parser.add_argument("--terminal-output", type=Path)
+    parser.add_argument("--timings-output", type=Path)
+    parser.add_argument("--self-test", action="store_true")
+    args = parser.parse_args()
+    if args.self_test:
+        run_self_test()
+        return 0
+    required = (
+        args.subject_repo,
+        args.output,
+        args.r23_parent_output,
+        args.terminal_output,
+    )
+    if any(value is None for value in required):
+        parser.error(
+            "--subject-repo, --output, --r23-parent-output, and --terminal-output are required"
+        )
+    started = time.time()
+    try:
+        payload, _ = execute(
+            args.subject_repo.resolve(),
+            args.freeze.resolve(),
+            args.r22_result.resolve(),
+            args.r23_result.resolve(),
+        )
+        parent_bytes = args.r23_result.read_bytes()
+    except (ValueError, OSError, KeyError, MemoryError, RuntimeError, AssertionError) as exc:
+        failure = {
+            "schema": SCHEMA,
+            "terminal": "CANNOT_CHECK_R24_ARM_CONDITIONAL_SOURCE_RESOURCE_OR_BINDING",
+            "failure_stage": type(exc).__name__,
+            "failure_detail": str(exc)[:2000],
+        }
+        args.output.write_text(canonical_json(failure) + "\n")
+        args.r23_parent_output.write_text(canonical_json(failure) + "\n")
+        args.terminal_output.write_text(failure["terminal"] + "\n")
+        print(failure["terminal"])
+        print("FAILURE_DETAIL " + failure["failure_detail"][:200])
+        return 2
+    args.output.write_text(canonical_json(payload) + "\n")
+    args.r23_parent_output.write_bytes(parent_bytes)
+    args.terminal_output.write_text(payload["terminal"] + "\n")
+    if args.timings_output is not None:
+        args.timings_output.write_text(
+            canonical_json(
+                {
+                    "schema": "ORION.FiberGuard.PMLBArmConditionalBoundaryFibres.R24.Timings.v1",
+                    "wall_seconds_total": round(time.time() - started, 3),
+                    "python": platform.python_version(),
+                    "machine": platform.machine(),
+                }
+            )
+            + "\n"
+        )
+    print(payload["terminal"])
+    print("RESULT_SHA256 " + sha256_bytes(args.output.read_bytes()))
+    print("R23_PARENT_SHA256 " + sha256_bytes(args.r23_parent_output.read_bytes()))
+    return 0
+
+
 def decide_terminal(payload: dict) -> str:
     if not all(payload["hostile_controls"].values()):
         return "C_R24_ARM_CONDITIONAL_HOSTILE_CONTROL_FAILED"
@@ -535,3 +806,7 @@ def decide_terminal(payload: dict) -> str:
     ):
         return "C_R24_ARM_CONDITIONAL_VALUE"
     return "C_R24_ARM_CONDITIONAL_COVERAGE_VALIDITY_PASS_VALUE_NOT_MATERIAL"
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
