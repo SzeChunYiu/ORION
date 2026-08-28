@@ -1,0 +1,94 @@
+{
+  "schema": "ORION.ORION25.ExecutionIntegrityTrustDomain.ExpectedTerminals.v1",
+  "successor_id": "ORION25.TRUST_DOMAIN_FRONTIER.v1",
+  "status": "PRE_OUTCOME_ONLY",
+  "scientific_authority_delta": "NONE",
+  "freeze_note": "Enumerated before execution. Favourable and unfavourable terminals are frozen together. No terminal may be added, removed or reworded after outcome access. A design in which every enumerated terminal is favourable is not an experiment; the unfavourable set below is load-bearing.",
+  "favourable_terminals": [
+    {
+      "id": "ORION25_TRUST_DOMAIN_SEPARATION_SUPPORTED",
+      "conditions": [
+        "H1 holds: false promotion under full key compromise does not decrease from k=1 to k=5 at d=1",
+        "H2 holds: at k=3, an adversary limited to c<d domains achieves zero false promotion at d=2 and d=3",
+        "false rejection stays at the inherited bound: 0/11 chain-layer and 0/5 disposition-level in every arm",
+        "every host/process fault classifies as DETECTED_AND_REJECTED or DETECTED_AND_DEGRADED; no UNDETECTED_FAIL_OPEN",
+        "overhead reported per link and per domain against ARM-NOATT on all executed sites",
+        "cross-site member-wise SHA-256 agreement across all executed sites",
+        "independent checker agrees on every endpoint"
+      ],
+      "authorized_wording": "At bounded scope, key-compromise false promotion is governed by independent trust-domain count and not by attestation chain length, with the measured false-rejection and overhead cost of separation reported.",
+      "forbidden_wording": ["KEY_CUSTODY_VERIFIED", "PRODUCTION_SCALE_VALIDATED", "SIGNATURE_PROVES_SCIENTIFIC_TRUTH", "SITE_INDEPENDENCE_ESTABLISHED"]
+    },
+    {
+      "id": "ORION25_TRUST_DOMAIN_SEPARATION_SUPPORTED_WITH_COST",
+      "conditions": ["all separation conditions hold", "but overhead or false rejection exceeds the stated budget"],
+      "authorized_wording": "Separation raises the compromise threshold at a measured cost that exceeds the preregistered budget; the frontier position is reported, not the gain alone."
+    }
+  ],
+  "unfavourable_terminals": [
+    {
+      "id": "SEPARATION_NO_FALSE_PROMOTION_IMPROVEMENT",
+      "trigger": "The 95% CI on false promotion for ARM-K3-D3 overlaps the point estimate for ARM-K3-D1 under matched attack.",
+      "meaning": "H2 fails. Domain separation did not raise the compromise threshold in this deployment class.",
+      "disposition": "Publish as a boundary result. Retire the design claim that multi-root attestation raises the threshold here. Do not re-tune d, k, or the attack model after seeing this."
+    },
+    {
+      "id": "COMMON_MODE_COLLAPSE",
+      "trigger": "The independence audit finds a shared compromise path across the nominally separated domains, or ARM-K3-D3-COMMONMODE matches ARM-K3-D3.",
+      "meaning": "Assumption A1 fails in the realized deployment. Threshold remains 1 despite d=3.",
+      "disposition": "Report the specific shared path verbatim. This is the most informative negative available and must not be softened into 'partial separation'."
+    },
+    {
+      "id": "SEPARATION_GAIN_OFFSET_BY_FALSE_REJECTION",
+      "trigger": "False promotion falls with d, but chain-layer false rejection rises above 0/11 or disposition-level above 0/5.",
+      "meaning": "The frontier is real and the operating point chosen by separation is not obviously better.",
+      "disposition": "Report both endpoints. Do not present the false-promotion gain without the availability cost."
+    },
+    {
+      "id": "OVERHEAD_DOMINATES",
+      "trigger": "Per-domain wall-clock, CPU-seconds or bytes exceed the preregistered ratio to ARM-NOATT.",
+      "meaning": "Separation is not deployable at this cost even if it is sound.",
+      "disposition": "Report the measured ratio. Do not relax the budget post hoc."
+    },
+    {
+      "id": "CHAIN_LENGTH_ACTUALLY_HELPS",
+      "trigger": "False promotion under full key compromise decreases measurably from k=1 to k=5 at fixed d=1.",
+      "meaning": "H1 fails; the invariance clause of the candidate law is false as stated.",
+      "disposition": "Withdraw or amend the trust-domain law. This falsifies the reframe's central claim and must be reported as such."
+    },
+    {
+      "id": "HOST_FAULT_FAIL_OPEN",
+      "trigger": "Any host/process fault classifies as UNDETECTED_FAIL_OPEN.",
+      "meaning": "The execution-integrity contract fails under a realistic fault that the declared-fact-vector corpus could not surface.",
+      "disposition": "Adverse finding against the instrument. Record the specific fault verbatim in the failure ledger. This is the outcome the bound corpus was structurally unable to produce, and it is a live possibility."
+    },
+    {
+      "id": "ADMISSION_LAYER_PURCHASED_BY_SEPARATION",
+      "trigger": "H4 fails: CHAIN_AS_SCIENCE stops false-promoting invalid scientific content at d=3.",
+      "meaning": "Almost certainly an instrumentation error, not a discovery. Signature validity cannot become scientific validity by adding domains.",
+      "disposition": "Halt. Treat as a defect in the harness and diagnose before reporting any other endpoint."
+    }
+  ],
+  "cannot_check_terminals": [
+    {
+      "id": "CANNOT_CHECK_HOST_UNAVAILABLE",
+      "exit_code": 3,
+      "trigger": "Any of D-CI, D-OLD, D-HPC cannot execute the frozen runner: ssh failure, queue unavailability, missing cryptography, or insufficient scratch space.",
+      "rule": "Distinct from both PASS and FAIL. The campaign must not silently report a two-site result as a three-site result. Records which site, the mechanism, and the timestamp.",
+      "note": "With three sites across a multi-run campaign this terminal is expected to fire at least once. It is designed in, not an exception."
+    },
+    {
+      "id": "CANNOT_CHECK_INDEPENDENCE_UNAUDITABLE",
+      "exit_code": 4,
+      "trigger": "The independence of a nominal domain cannot be established or refuted from available evidence.",
+      "rule": "Never resolved toward 'independent'. An unauditable domain counts as not-separated for endpoint purposes, and the ambiguity is reported."
+    }
+  ],
+  "exit_code_map": {"0": "favourable terminal reached", "1": "unfavourable terminal reached", "2": "protocol violation or harness defect", "3": "CANNOT_CHECK_HOST_UNAVAILABLE", "4": "CANNOT_CHECK_INDEPENDENCE_UNAUDITABLE"},
+  "post_outcome_rules": [
+    "No threshold, denominator, arm or terminal may be changed after outcome access.",
+    "A CANNOT_CHECK may never be reported as a pass.",
+    "An unfavourable terminal may never be relabelled as 'preliminary' or 'partial'.",
+    "Reaching any terminal here promotes nothing: P15_ACTIVE_CLAIM_AUTHORITY_V3.json retains promotion_allowed=false."
+  ]
+}

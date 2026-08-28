@@ -1,0 +1,71 @@
+{
+  "schema": "orion.orion25.cross-site-replay.v1",
+  "successor_id": "ORION25.EXECUTION_INTEGRITY.v1",
+  "box": "cross-site replay where available",
+  "date": "2026-08-28",
+  "authority": "REPLAY_EVIDENCE_ONLY",
+  "scientific_authority_delta": "NONE",
+  "arm_executed": "ARM-K3-D1",
+  "arm_note": "ARM-K3-D1 is the ONLY arm executable with the frozen code unmodified, as PROTOCOL.json states. This replay therefore establishes environment-independence of the bound V2 configuration. It does NOT test H1 (chain length) or H2 (trust-domain count), which require the role-generalized composer and multi-host key generation that do not yet exist.",
+  "sites": [
+    {
+      "site_id": "A",
+      "host": "billy-laptop-old",
+      "python": "3.14.4",
+      "cryptography": "46.0.5",
+      "runner_terminal": "P15_ATTESTATION_COMPOSITION_V2_SUPPORTED",
+      "checker_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+      "checker_exit_code": 0,
+      "result_sha256": "fb20155157104d91b2b74c9896f33c4f982d8b1b31ed8a9f90edde7b86c51468",
+      "wall_clock_seconds": 0.21,
+      "user_cpu_seconds": 0.18,
+      "max_rss_kbytes": 27632
+    },
+    {
+      "site_id": "B",
+      "host": "cosmos2.int.lunarc",
+      "python": "3.11.5",
+      "cryptography": "41.0.5",
+      "runner_terminal": "P15_ATTESTATION_COMPOSITION_V2_SUPPORTED",
+      "checker_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+      "checker_exit_code": 0,
+      "result_sha256": "97a6ef608cdeef595186c718bd6739cd501380588208359d3fb62c27b4b1aa5d",
+      "wall_clock_seconds": 2.07,
+      "user_cpu_seconds": 0.17,
+      "max_rss_kbytes": 24044
+    }
+  ],
+  "input_bindings": {
+    "run_attestation_composition_v2.py": "000811c96a1204d3",
+    "sei_fault_cases_v1.jsonl": "a9a29f9e457e0be3",
+    "sei_fault_gold_v1.json": "142d14d089afbad0",
+    "p15_real_workflow_receipts_v1.json": "87812194ad77f3cb",
+    "note": "sha256 prefixes of the byte-identical inputs shipped to both sites"
+  },
+  "comparison": {
+    "outputs_byte_identical": false,
+    "differing_fields": [
+      "observed_environment.python_version",
+      "observed_environment.cryptography_version",
+      "receipt_sha256"
+    ],
+    "differing_field_count": 3,
+    "explanation": "The two environment fields differ because the environments genuinely differ. receipt_sha256 differs because it covers the observed_environment block. No other field differs.",
+    "scientific_fields_identical": true,
+    "identical_scientific_fields_include": [
+      "terminal",
+      "valid_workload_case_count",
+      "scientific_field_leakage_count",
+      "the full per-case attestation chain and detection results"
+    ]
+  },
+  "verdict": "CROSS_SITE_REPLAY_PASSED_FOR_ARM_K3_D1",
+  "why_this_is_stronger_than_a_same_environment_replay": "The two sites run different Python minor versions (3.14.4 vs 3.11.5) and different cryptography major versions (46.0.5 vs 41.0.5). Every scientific field is invariant across that gap, so the composition result is not an artifact of one interpreter or one Ed25519 implementation. A replay on two identical environments could not have shown this.",
+  "overhead_note": "Wall-clock differs (0.21s vs 2.07s) while user CPU is nearly identical (0.18s vs 0.17s); the LUNARC wall time is dominated by shared-filesystem latency, not computation. This is an incidental measurement, NOT the registered overhead endpoint — that endpoint requires the ARM-NOATT no-attestation baseline, which needs instrumentation that does not exist yet.",
+  "what_remains_open": [
+    "H1 chain-length invariance: needs ARM-K1-D1 and ARM-K5-D1, which need a role-generalized composer. k=5 additionally requires two NEW attestation roles with real semantics; PROTOCOL.json forbids padding k with filler roles.",
+    "H2 trust-domain steps: needs ARM-K3-D2, ARM-K3-D3 and the ARM-K3-D3-COMMONMODE control, which need per-host key generation.",
+    "Registered overhead endpoint: needs ARM-NOATT and overhead instrumentation.",
+    "Host/process fault injection: no real fault-injection harness exists yet."
+  ]
+}

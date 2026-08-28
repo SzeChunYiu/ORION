@@ -1,0 +1,155 @@
+{
+  "schema": "ORION.ORION25.ExecutionIntegrityTrustDomain.SourceManifest.v1",
+  "successor_id": "ORION25.TRUST_DOMAIN_FRONTIER.v1",
+  "scientific_authority_delta": "NONE",
+  "purpose": "Pins every artifact this programme reads. Digests recorded 2026-08-28 on branch wave2/integration. Runner and checker must read cryptographic domain-separation constants from this file, never from protocol prose.",
+  "authority_inputs": {
+    "active_claim_authority_v3": {
+      "path": "papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V3.json",
+      "role": "parent authority, unchanged, promotion_allowed=false"
+    },
+    "internal_panel_binding_v1": {
+      "path": "papers/orion-25-orion-research-harness/P15_INTERNAL_PANEL_EVIDENCE_BINDING_V1.json",
+      "role": "evidence class ceiling: INTERNAL_UNIT_TEST_EVIDENCE, population_inference=false"
+    },
+    "failure_ledger_v1": {
+      "path": "papers/orion-25-orion-research-harness/P15_FAILURE_LEDGER_V1.md",
+      "role": "retained adverse record; new adverse findings append here"
+    },
+    "threat_model": {
+      "path": "papers/orion-25-orion-research-harness/manuscript/chapters/02-threat-model.tex",
+      "role": "declares a fully compromised trust root out of scope; this programme makes the root COUNT the variable"
+    },
+    "reframe": {
+      "path": "papers/orion-25-orion-research-harness/TRUST_DOMAIN_REFRAME_V1.md",
+      "role": "candidate law, HYPOTHESIS_ONLY"
+    }
+  },
+  "frozen_fixtures": {
+    "sei_fault_cases_v1.jsonl": {
+      "sha256": "a9a29f9e457e0be3b42acf806c3fdeb3d83ef252c3a66e81316a42a12245af2c",
+      "git_blob": "8eae743da4055460b6b98a3d17e6e21c49e3b357",
+      "matches_receipt_v2": true,
+      "records": 18
+    },
+    "sei_fault_gold_v1.json": {
+      "sha256": "142d14d089afbad0f49fd4243b5dda252c96017456d392d9c7a3e63e2e5fd45a",
+      "git_blob": "98957246373c26374fb159eff5ce022a788a4e29",
+      "matches_receipt_v2": true
+    },
+    "p15_real_workflow_receipts_v1.json": {
+      "sha256": "87812194ad77f3cb2be19cd9dbeacb43b662bc35eb6df3b700f4521620f6d200",
+      "git_blob": "21ac14397904709afc7d1f1ad320a7211b4150a4",
+      "matches_receipt_v2": true,
+      "records": 4
+    }
+  },
+  "reference_implementations": {
+    "run_attestation_composition_v2.py": {
+      "sha256": "000811c96a1204d3a2e8ffb35ca1accc8a02627135b62175683d22d36691a701",
+      "git_blob": "9cb80b95720586f78e48abe2436260f6adfec692",
+      "role": "canonical composer under audit; source of the d=1 finding at lines 71-73"
+    },
+    "check_attestation_composition_independent_v2.py": {
+      "sha256": "dfd07719e23bdff508629bdb8308ae7c88fcdeb362049922438a11da95d9a6d0",
+      "git_blob": "3fe9e2739df5f2da98bcd0596aafb66c9b9a99b8",
+      "role": "independent verifier of the bound V2 result"
+    },
+    "check_sei_fault_v1.py": {
+      "sha256": "2c2425363602f662b9af542722f012734e35b2770e5fd0f2d445bc4aaa001c04",
+      "git_blob": "76200592ee36e7a3ad35b204c651a746b62d147a",
+      "role": "SEI admission-layer checker"
+    }
+  },
+  "protocol_of_record": {
+    "path_current": "papers/orion-25-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_PROTOCOL_V2.md",
+    "sha256_current": "fe04e31e9883549c64ce0e6bd578d201a8e9a2d726b87fdfed9bcf90dbaa5505",
+    "sha256_declared_in_receipt_v2": "6a7649be7e7f3a290d668de9ca31d798bfb11621d9db3e92558e8f52108e9bd7",
+    "digest_mismatch": true,
+    "mismatch_resolved": true,
+    "frozen_form_locator": {
+      "commit": "7f7f91931",
+      "path": "papers/paper-15-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_PROTOCOL_V2.md",
+      "sha256_verified": "6a7649be7e7f3a290d668de9ca31d798bfb11621d9db3e92558e8f52108e9bd7"
+    },
+    "cause": "Commit 3a1a83178 (ORION-01..25 namespace unification, PR #1474) renamed and rewrote the file at R091 similarity. The frozen digest is verifiable only at the pre-rename path and commit.",
+    "consequence": "A verifier following P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md to the current path gets a digest mismatch. See VERIFICATION_NOTES.md."
+  },
+  "cryptographic_constants_of_record": {
+    "authority": "CODE_NOT_PROSE",
+    "genesis_preimage": "P15-ATTESTATION-COMPOSITION-V2-GENESIS",
+    "key_seed_prefix": "P15-ATTESTATION-COMPOSITION-V2-KEY-",
+    "key_seed_rule": "sha256(prefix + role + '-' + case_id) used as Ed25519 private bytes",
+    "source_of_truth": [
+      "run_attestation_composition_v2.py:28,72",
+      "check_attestation_composition_independent_v2.py:83,92"
+    ],
+    "prose_disagrees": true,
+    "prose_values": {
+      "genesis_preimage": "ORION-25-ATTESTATION-COMPOSITION-V2-GENESIS",
+      "key_seed_prefix": "ORION-25-ATTESTATION-COMPOSITION-V2-KEY-"
+    },
+    "note": "Runner and independent checker agree with each other, so the bound V2 result is internally consistent and is NOT invalidated. Only the prose specification drifted. A third party implementing from current prose would derive different keys and fail to reproduce."
+  },
+  "bound_result_artifacts": {
+    "attestation_composition_v2": {
+      "path": "papers/orion-25-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md",
+      "git_blob_sha": "25f83c837cf480f0ca9d085184cc313fd21599cf",
+      "terminal": "P15_ATTESTATION_COMPOSITION_V2_SUPPORTED",
+      "ci_run_id": 32664075763
+    },
+    "attestation_composition_v2_run2": {
+      "path": "papers/orion-25-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2_RUN2.md",
+      "git_blob_sha": "fb2a3fbab8bdab7bb8bc5b627593d4848e8752dc",
+      "ci_run_id": 32665597624,
+      "role": "deterministic replay, same CI environment; NOT cross-site"
+    },
+    "provenance_interop_v1": {
+      "path": "papers/orion-25-orion-research-harness/top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md",
+      "git_blob_sha": "0b86c992767d9da7bbdc3e5a5e175d1ab2ea1808",
+      "terminal": "P15_PROVENANCE_INTEROP_V1_SUPPORTED"
+    },
+    "sei_fault_v1": {
+      "path": "papers/orion-25-orion-research-harness/top_tier/P15_SEI_RESULT_RECEIPT_V1.md",
+      "git_blob_sha": "39e58c3babfa1e6dcd8c52b2b297e266f2208c07",
+      "terminal": "P15_SEI_BOUNDED_FAULT_V1_GREEN"
+    },
+    "artifact_zip_sha256": "fccf3b28f3f33af8b07a87eab6764742c7882de88018d65be16e2dba1dee3bff"
+  },
+  "bound_numbers_reused_as_denominators": {
+    "valid_workload_cases": 11,
+    "valid_workload_composition": "7 fault cases with gold != EXECUTION_INVALID + 4 real receipts",
+    "gold_authorized_science_cases": 5,
+    "total_corpus_cases": 22,
+    "bound_chain_layer_false_rejections": "0/11",
+    "bound_disposition_false_rejections": "0/5",
+    "bound_full_key_compromise_detections": "0/6",
+    "bound_full_key_compromise_false_promotions": 6,
+    "source": "P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md and P15_ACTIVE_CLAIM_AUTHORITY_V3.json",
+    "real_receipt_cases": 4,
+    "bound_real_receipt_false_promotions": "0/4"
+  },
+  "execution_sites_verified_2026_08_28": {
+    "D-OLD": {
+      "host": "billy-old",
+      "hostname": "billy-laptop-old",
+      "platform": "Linux x86_64",
+      "python": "3.14.4",
+      "cryptography": "46.0.5",
+      "reachable": true
+    },
+    "D-HPC": {
+      "host": "lunarc",
+      "hostname": "cosmos2.int.lunarc",
+      "platform": "Linux x86_64",
+      "python": "3.11.5",
+      "cryptography": "41.0.5",
+      "reachable": true
+    },
+    "D-CI": {
+      "host": "github actions runner",
+      "reachable": "per workflow",
+      "evidence": "ci_run_id 32664075763 and 32665597624"
+    }
+  }
+}
