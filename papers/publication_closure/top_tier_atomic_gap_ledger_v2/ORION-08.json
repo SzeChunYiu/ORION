@@ -1,0 +1,124 @@
+{
+  "schema_version": "ORION.TOP_TIER_ATOMIC_GAP_LEDGER.V2",
+  "subject_main_sha": "87e2bcb330d243b7062ddba1ca26e426632edeab",
+  "scientific_authority_delta": "NONE",
+  "paper_range": [
+    "ORION-08",
+    "ORION-08"
+  ],
+  "papers": [
+    {
+      "paper_id": "ORION-08",
+      "slug": "typed-state",
+      "title": "Typed State",
+      "publication_disposition": "BOUNDED_PAPER_READY_TO_FILE",
+      "route_class": "EXTERNAL_TRANSFER",
+      "evidence_mode": "EMPIRICAL",
+      "protocol_state": "DRAFT_PRE_FREEZE",
+      "scientific_authority_delta": "NONE",
+      "current_ceiling": "The exact synthetic mechanism-isolation claim is supported; external decision value is intentionally unclaimed.",
+      "post_matrix_updates": [
+        "Canonical PDF production has improved after #1731; the real scientific gap remains two-family transfer."
+      ],
+      "pending_prs": [
+        1734
+      ],
+      "load_bearing_adverse": [
+        "The E3/E2 successor has not run.",
+        "Synthetic exactness does not establish value in real decisions.",
+        "The legacy readiness heading says ORION-04 and requires an additive alias note rather than a frozen-byte rewrite."
+      ],
+      "strongest_remaining_gap": "The typed/scoped state composition must predict both value and no-value regimes under matched information in real decision families.",
+      "decisive_question": "Across Defects4J and OpenML-CC18, does typed scoped state improve downstream decisions only in prospectively predicted value strata while matching simpler states in predicted no-value strata?",
+      "maximum_claim_if_supported": "Typed state is a causal mechanism for decision value, not merely a richer representation: its benefit follows responsibility and binding structure and vanishes in declared no-value regimes.",
+      "hypothesis_or_theorem": "The interaction between state type and predicted stratum should be positive under matched semantic information, with no unsafe-action increase and no forced advantage in no-value strata.",
+      "population_or_universe": "Prospectively selected E3 repair decisions and paper-disjoint E2 tabular decisions with frozen actions, utilities and state-construction access.",
+      "unit_of_analysis": "Decision episode × state arm.",
+      "external_sources": [
+        "E3",
+        "E2"
+      ],
+      "historical_only_inputs": [
+        "All synthetic mechanism-isolation cases"
+      ],
+      "design": [
+        "Define responsibilities, admissible actions and utility before constructing states.",
+        "Create matched-information typed, flattened and raw-state arms.",
+        "Predict value/no-value strata from design variables without held-out outcomes.",
+        "Hold out projects and OpenML task families.",
+        "Measure decision utility, safety and state/resource cost."
+      ],
+      "baselines": [
+        "Untyped flattened state with identical facts.",
+        "Full raw state.",
+        "Minimal task-specific donor state.",
+        "No-state/default action."
+      ],
+      "primary_endpoints": [
+        "Decision regret or utility.",
+        "Unsafe/invalid action rate.",
+        "Typed-state × predicted-stratum interaction.",
+        "State size, construction cost and inference cost."
+      ],
+      "negative_controls": [
+        "Type labels permuted while values remain fixed.",
+        "Extra irrelevant typed fields.",
+        "Predicted no-value stratum.",
+        "Hidden information added to only one arm, which must fail matching checks."
+      ],
+      "analysis_plan": [
+        "Primary estimand is the preregistered interaction, not an overall mean.",
+        "Cluster by project/task and report domain-specific effects.",
+        "Noncompensatory safety analysis precedes utility.",
+        "No post hoc redefinition of value strata."
+      ],
+      "power_or_exhaustion_rule": "Power the interaction on project/task clusters using design-only variance estimates; include at least one frozen value and one no-value stratum in each domain.",
+      "success_gate": "Safe utility improvement in predicted value strata, equivalence/non-superiority in no-value strata and a positive frozen interaction in both domains.",
+      "refutation_gate": "No interaction, benefit caused by unmatched information or any safety degradation restricts the result to the synthetic mechanism paper.",
+      "cannot_check_gate": "CANNOT_CHECK if utilities, action sets, matching or strata are changed after held-out outcomes or if either domain lacks both strata.",
+      "authority_required": "Native tests/verifiers for E3, held-out labels for E2 and an independent matching auditor.",
+      "resource_accounting": [
+        "State construction",
+        "memory",
+        "model compute",
+        "inference",
+        "verifier calls",
+        "latency",
+        "cache/reuse"
+      ],
+      "freeze_before_outcome": [
+        "Domains/tasks",
+        "responsibilities",
+        "actions/utilities",
+        "state arms",
+        "strata",
+        "interaction estimand",
+        "safety gate"
+      ],
+      "active_lane": {
+        "status": "CLEAR_TO_DESIGN",
+        "reference": "#1701 / #1729",
+        "collision_rule": "Use paper-disjoint E2 tasks from ORION-02/22 and do not disturb the bounded synthetic receipts."
+      },
+      "immediate_safe_actions": [
+        "Write the responsibility/action/utility mapping for both domains.",
+        "Create a semantic-information matching audit.",
+        "Add the legacy ORION-04→ORION-08 alias note."
+      ],
+      "forbidden_actions": [
+        "Do not equate richer state with more information.",
+        "Do not infer external validity from synthetic exactness.",
+        "Do not choose strata after seeing outcomes."
+      ],
+      "next_artifact": "papers/orion-08-typed-state/top_tier/real-decision-stratified-transfer-v1/QUESTION.md",
+      "journal_bar": "A top-tier causal representation paper needs matched information, predeclared value/no-value regimes, real decisions, safety endpoints and mechanism interactions.",
+      "sibling_boundary": "Owns typed-state value; computation placement belongs to ORION-21 and reuse responsibility to ORION-23.",
+      "lead_roles": [
+        "X2",
+        "X3",
+        "X4",
+        "X5"
+      ]
+    }
+  ]
+}
