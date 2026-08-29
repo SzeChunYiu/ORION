@@ -1,3 +1,35 @@
+> **Superseded in part — read before using the ORION-11 row.**
+>
+> This assessment was written at `2026-08-27 09:32`. Everything below reflects the
+> repository as it stood then, and it is retained unaltered as a record of that
+> assessment. It is **not** current for ORION-11.
+>
+> Since it was written, `main` gained the entire ORION-11 falsification-and-retraction
+> sequence:
+>
+> | commit | date | what |
+> |---|---|---|
+> | `8484c9e06` | 2026-08-28 09:38 | R4 result — `H_R4_FALSIFIED__FAITHFUL_COMPARATOR_MATCHES_ORION` |
+> | `59628c7b0` | 2026-08-28 09:40 | R4 note — withdraw unsupported component attribution |
+> | `616c8207e` | 2026-08-28 15:25 | **retract the comparative necessity claim** |
+> | `3a6da292e` | 2026-08-28 18:28 | resync the tracked PDF, which still rendered the retracted claim |
+>
+> `main` now carries `CLAIM_RETRACTION_LEDGER_V1.md`, and
+> `papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/05b-necessity-successor.tex`
+> reads *"That comparative reading is withdrawn."*
+>
+> This document mentions none of it — verified: zero occurrences of `R4`, `retract`,
+> `withdraw` or `CLAIM_RETRACTION` (the 10 hits for "falsif" are generic methodology
+> language, not the R4 event). Its cross-cutting synthesis therefore cites ORION-11's
+> falsifier as a *strength*, not knowing that the same falsifier subsequently killed the
+> comparative claim, and its ORION-11 verdict of `GAPS_FILLABLE` predates the retraction
+> that closed that gap by withdrawal rather than by filling it.
+>
+> **The ORION-11 row is superseded.** For ORION-11's current terminal see
+> `papers/PUBLICATION_DISPOSITION_MATRIX_V1.md`. The ORION-12 to ORION-15 rows, the
+> reviewer framing and the gap taxonomy are unaffected and remain useful — which is why
+> this lands with a header rather than being dropped.
+
 # Top-Tier Gap Assessment — orion-11 … orion-15
 
 **Date:** 2026-08-27
