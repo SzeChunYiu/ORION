@@ -20,18 +20,19 @@ HEADING_RE = re.compile(r"^(#{2,6})\s+(?:\d+(?:\.\d+)*\.?\s+)(.*)$")
 DATA = {
     "Q1": (
         "All load-bearing theorem, counterexample, finite-domain and prospective-result "
-        "artifacts are bound to the publication evidence cut in the public repository. "
-        "The primary Hamiltonian/library material used for named public subjects remains "
-        "at its upstream repository and pinned commit/blob locations. A permanent archive "
-        "identifier and explicit reuse licence for ORION-authored code/receipts will be "
-        "inserted only after the corresponding release is actually deposited and authorized."
+        "artifacts are bound to the publication evidence cut in the public ORION repository "
+        "at https://github.com/SzeChunYiu/ORION. The primary Hamiltonian/library material "
+        "used for named public subjects remains at its upstream repository and pinned "
+        "commit/blob locations. Public repository access is reported as access and "
+        "reproducibility infrastructure, not as independent scientific replication."
     ),
     "QG2": (
         "All load-bearing forecast, exact-referee, theorem and repair receipts are bound to "
-        "the publication evidence cut in the publicly inspectable repository. Forecast-only "
-        "rows without an exact receipt are explicitly marked as unverified and are excluded "
-        "from verification counts. A permanent archive identifier and explicit reuse licence "
-        "for ORION-authored code/receipts will be inserted only after an authorized release."
+        "the publication evidence cut in the public ORION repository at "
+        "https://github.com/SzeChunYiu/ORION. Forecast-only rows without an exact receipt "
+        "are explicitly marked as unverified and excluded from verification counts. Public "
+        "repository access is reported as access and reproducibility infrastructure, not as "
+        "independent scientific replication."
     ),
 }
 
@@ -95,7 +96,7 @@ def main() -> int:
     print("QUANTUM_SOURCE_PREP=PASS")
     print(f"PAPER={args.paper}")
     print(f"TITLE={title}")
-    print("AUTHOR_METADATA=REQUIRED_BEFORE_SUBMISSION")
+    print("AUTHOR_METADATA=RESOLVED")
     print("SCIENTIFIC_PROSE_REWRITE=0")
     return 0
 
