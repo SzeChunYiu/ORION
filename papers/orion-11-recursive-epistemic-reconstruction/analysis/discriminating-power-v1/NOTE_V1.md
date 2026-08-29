@@ -78,8 +78,41 @@ defect from the ablation concern. Fixing it means renaming or regenerating resou
 so no surface feature is diagnostic of the family — and then re-running the probe to
 confirm the shortcut is gone.
 
+## Scope of this result
+
+Everything above is measured on **`costed-ordering-v1` only**, which is the one ORION-11
+experiment that emits per-run traces.
+
+ORION-11's other comparison packet, `r4-faithful-comparator-v1`, ships three
+`ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json` variants (primary, replication,
+replication-gate-parameterised) but **no per-run trace file**. The behavioural-identity
+and paired-McNemar tests here cannot be run against it, so its discriminating power is
+`CANNOT_CHECK_NO_PER_RUN_TRACES` rather than established either way.
+
+### On the independent checker's refusal
+
+`independent_checker/CHECK_RESULT_V1_REFUSAL.json` returns `CANNOT_CHECK` (exit 3) with
+every gate `UNMEASURED` and refusal classes `NEGATIVE_COST_COMPONENT`,
+`BUDGET_FLAG_INCONSISTENT`, `MALFORMED_TRACE`. None of those three is reproducible against
+the committed data:
+
+| refusal class | `raw_traces.jsonl.gz` (19,022) | `offschema_…jsonl` (2,882) |
+|---|---:|---:|
+| negative cost component | 0 | 0 |
+| budget flag inconsistent | 0 | 0 |
+| malformed trace | 0 | 0 |
+
+So the refusal refers to an input not present in the tree in that state, and **what it
+refused on cannot be reconstructed** — recorded here as `CANNOT_CHECK_REFUSAL_INPUT_ABSENT`
+rather than dismissed. It does not affect the measurement above: the joint criterion reads
+only `protected_root_task_success` and `forbidden_high_level_mutation`, both present and
+well-formed on every one of the 19,022 rows, and the per-arm rates reproduce the
+experiment's own recorded values exactly.
+
 ## Disposition
 
-- The ablation design is **not** the problem; do not redesign it on that basis.
-- The cost falsification stands and is preserved.
+- **For `costed-ordering-v1`:** the ablation design is not the problem, and it should not
+  be redesigned on that basis. Six of six comparisons discriminate on the frozen criterion.
+- **For `r4-faithful-comparator-v1`:** not established — no per-run traces to test.
+- The cost falsification stands and is preserved unchanged.
 - The leakage in the case corpus is the real corpus-level defect.
