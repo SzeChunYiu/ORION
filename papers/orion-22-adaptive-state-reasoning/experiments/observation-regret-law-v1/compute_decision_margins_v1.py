@@ -9,12 +9,12 @@ from __future__ import annotations
 import hashlib
 import importlib.util
 import json
-import math
 import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 TOP = HERE.parent.parent / "top_tier"
+REPO_ROOT = HERE.parents[3]
 
 
 def load(name: str, path: Path):
@@ -161,7 +161,7 @@ def main() -> int:
             "best action. Singleton-feasible-action classes are invariant within the fixed feasible set."
         ),
         "source_bindings_sha256": {
-            str(path.relative_to(HERE.parents[4])): sha256(path) for path in key_sources
+            str(path.relative_to(REPO_ROOT)): sha256(path) for path in key_sources
         },
         "classes": classes,
         "terminal": "EXACT_FROZEN_DECISION_MARGINS_RECONSTRUCTED",
