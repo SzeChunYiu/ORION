@@ -1,0 +1,35 @@
+{
+  "case_id": "p1-c113",
+  "task_family": "hidden_decomposition_or_interface",
+  "public_prompt": "When a user closes the browser mid-request, the work it started keeps running for up to 20 minutes and the cluster stays saturated for everyone else. The course settled on: the cluster is undersized, so double the worker pool. Identify the defect and state the correction.",
+  "observable_resources": [
+    "api/handler.go — on client disconnect the handler returns; the three downstream calls it started are never told",
+    "cluster/metrics.csv — 38% of worker seconds at peak are spent on requests whose client had already gone",
+    "cluster/worker-review.md — doubling the workers raised the abandoned share from 38% to 41% and did not shorten waiting for live requests",
+    "api/client-library.md — the downstream client takes a per-call handle that aborts the call when closed; the code passes a handle that is never closed",
+    "closure:cluster-scale-plan — closed; doubles the worker pool",
+    "closure:cloud-spend-forecast — closed; derived from closure:cluster-scale-plan, raises the spend forecast",
+    "closure:api-rate-plan — closed; sets the published allowances per plan; rests on the commercial terms, not on what happens when a client goes away"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "INTERFACE",
+    "target_coordinates": [
+      "W.INTERFACE",
+      "interface:lifetime_propagation"
+    ],
+    "dependencies_to_reopen": [
+      "closure:cluster-scale-plan",
+      "closure:cloud-spend-forecast"
+    ],
+    "root_success_rubric": "PASS iff the specified fix threads the request's lifetime through every downstream call so a client disconnect aborts the work already in flight, and the answer states that adding workers cannot shrink a wasted share that scales with load — the trial having raised it from 38% to 41%. FAIL if the fix is more workers, a shorter server timeout alone, a queue priority change, or asking clients to send an explicit cancel message.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the sizing framing doubles the pool; the trial shows the wasted share grows rather than shrinks, because nothing stops abandoned work."
+}

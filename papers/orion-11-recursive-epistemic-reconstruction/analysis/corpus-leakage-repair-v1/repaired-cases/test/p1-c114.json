@@ -1,0 +1,34 @@
+{
+  "case_id": "p1-c114",
+  "task_family": "hidden_decomposition_or_interface",
+  "public_prompt": "About one order in four thousand exists in the database with no matching 'order placed' message on the bus. The current line is: publish what is missing later, so add a sweeper that scans for orders with no message and publishes them. Find the defect and describe the remedy.",
+  "observable_resources": [
+    "orders/handler.py — commits the order row, then publishes to the bus; a crash between the two loses the message",
+    "orders/gap-audit.csv — over 90 days, 214 orders have a row and no message, and 3 have a message and no row",
+    "orders/bus-docs.md — the bus delivers at least once and cannot join the database commit",
+    "orders/sweeper-note.md — scans every 60 s for rows with no message and publishes them; it cannot tell 'not yet published' apart from 'published but not yet visible'",
+    "closure:order-reconciliation-runbook — closed; instructs support to create missing messages by hand",
+    "closure:order-data-retention — closed; keeps order records for 6 years; rests on the statutory requirement, not on how the message is published",
+    "closure:bus-capacity-reservation — closed; reserves throughput on the bus for this stream; rests on the capacity forecast, not on the publishing scheme"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "INTERFACE",
+    "target_coordinates": [
+      "W.INTERFACE",
+      "interface:committed_intent_relay"
+    ],
+    "dependencies_to_reopen": [
+      "closure:order-reconciliation-runbook"
+    ],
+    "root_success_rubric": "PASS iff the specified fix records the intent to publish inside the same database commit as the order row and has a separate relay publish from that record, with a consumer-side duplicate guard for the at-least-once delivery, and the answer explains why a sweeper alone cannot close the window — citing the 3 message-without-row cases. FAIL if the fix is the sweeper, a retry loop around the publish, a two-phase commit spanning the database and the bus, or publishing before committing.",
+    "dependency_depth": 1
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the sweeper framing ships a scanner that both misses the crash window and creates the reverse defect the audit already records 3 times."
+}

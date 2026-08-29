@@ -1,0 +1,29 @@
+{
+  "case_id": "p1-c003",
+  "task_family": "evidence_only_negative_control",
+  "public_prompt": "Roughly one row in fifty thousand is written corrupt. Every such row is already identified; attribution to the writing service is what is wanted, and the audit trail is the agreed route. Carry out that match and name the service.",
+  "observable_resources": [
+    "db/corrupt-rows.csv — 118 affected rows, all written between 2026-01-11 and 2026-02-02, each carrying its exact write timestamp",
+    "db/audit-trail.csv — rows covering that window exist; the writer_id column is NULL for every row from 2026-01-09 onward",
+    "db/migrations/0142_drop_trigger.sql — removes the trigger that populated writer_id; applied 2026-01-09",
+    "closure:writer-service-register — closed; registers the 6 writing services, all still deployed and writing to the same tables; rests on the platform register, not on which one is at fault",
+    "db/reproduction.md — corruption has continued at the same rate since 2026-02-02, at roughly 2 rows per day",
+    "closure:corruption-severity-rating — closed; rates the defect P1 from the 118 rows already found, whichever service turns out to have written them",
+    "closure:customer-notification-feb — closed; notifies the accounts holding affected rows, a set fixed by the rows themselves rather than by who wrote them"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EVIDENCE",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the NULL writer_id column as the absent record, restores the trigger or an equivalent attribution field, and waits for fresh corrupt rows — the corruption being ongoing at an unchanged rate — before naming a service, keeping the stated route. FAIL if the answer names a service from what is on hand, proposes recasting the question around checksums or a redesigned write path, or declares the question unanswerable.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Absent record: writer attribution, dropped by migration 0142. The plan is sound and the phenomenon is ongoing, so restoring attribution and waiting resolves it with the plan intact. Reframing is the wrong move; the severity rating does not go stale."
+}

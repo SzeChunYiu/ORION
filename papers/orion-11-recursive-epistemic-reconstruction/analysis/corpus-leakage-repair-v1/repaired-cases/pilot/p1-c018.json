@@ -1,0 +1,36 @@
+{
+  "case_id": "p1-c018",
+  "task_family": "hidden_decomposition_or_interface",
+  "public_prompt": "Reporting queries time out during the nightly ingest. The course settled on: the database is short of capacity, so buy three more replicas. Identify the defect and state the correction.",
+  "observable_resources": [
+    "store/pool.md — one connection pool of 60, shared by the ingest job and the reporting service",
+    "store/query-log.csv — during ingest, reporting p99 rises from 0.4 s to 34 s; waiting for a pooled connection accounts for 31 s of that",
+    "store/routing.md — every reporting query carries a strong-consistency flag, which sends it to the primary no matter how many replicas exist",
+    "store/replica-review.md — a trial with two extra replicas left reporting p99 at 33 s",
+    "store/requirements.md — reporting tolerates figures up to 15 minutes old; ingest requires immediate visibility of its own commits",
+    "closure:replica-purchase-q2 — closed; orders three more replicas",
+    "closure:infra-budget-h2 — closed; derived from closure:replica-purchase-q2, books the spend",
+    "closure:database-encryption-standard — closed; requires encryption at rest for every store; rests on the security standard, not on how the two loads are arranged"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "DECOMPOSITION",
+    "target_coordinates": [
+      "W.DECOMPOSITION",
+      "decomposition:workload_isolation"
+    ],
+    "dependencies_to_reopen": [
+      "closure:replica-purchase-q2",
+      "closure:infra-budget-h2"
+    ],
+    "root_success_rubric": "PASS iff the specified fix gives the reporting path and the ingest path their own stores or their own pools with different freshness requirements — reporting served from a lagging copy within its stated 15-minute tolerance — and the answer states that replicas cannot help while the strong-consistency flag sends every reporting query to the primary. FAIL if the fix is more replicas, a larger pool, query tuning, or moving the ingest to a different hour.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the capacity framing buys replicas; the trial already shows two extra replicas changed p99 by 1 s, because the flag pins the queries anyway."
+}

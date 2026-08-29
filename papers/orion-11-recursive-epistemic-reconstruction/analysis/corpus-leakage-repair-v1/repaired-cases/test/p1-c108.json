@@ -1,0 +1,29 @@
+{
+  "case_id": "p1-c108",
+  "task_family": "evidence_only_negative_control",
+  "public_prompt": "Memory in a long-running service grows from 240 MB to 1.9 GB over 6 hours. Snapshot diffing is the right measure for telling a genuine leak from cache growth. The working position: take heap snapshots an hour apart and diff the retained sets. Report which it is.",
+  "observable_resources": [
+    "heap/snapshots/ — 6 snapshots taken an hour apart; sizes rise from 240 MB to 1.9 GB",
+    "heap/snapshot-format.md — every snapshot's retaining-path field is empty",
+    "build/config.toml — the allocation-metadata flag that populates retaining paths is off in the build the service runs",
+    "closure:rolling-restart-standard — closed; permits redeploying a different build at any time, a rolling restart taking 8 minutes and losing nothing",
+    "staging/repro.md — the growth reproduces on staging within 4 hours at one tenth of production traffic",
+    "closure:growth-severity-triage — closed; rates the growth P2 from the observed size series, whichever cause it turns out to have",
+    "closure:heap-snapshot-retention — closed; keeps snapshots 30 days; rests on the records policy, not on what they turn out to show"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EVIDENCE",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the empty retaining-path metadata as the absent record, redeploys a build with allocation metadata enabled and reproduces the growth on staging, then completes the snapshot diff as planned. FAIL if the answer decides between leak and cache from the size series alone, proposes rewriting the cache, or recommends a periodic restart as the answer.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Absent record: retaining-path metadata, absent because a build flag is off. The snapshot-diff plan is correct and the phenomenon reproduces on demand. Reframing is the wrong move."
+}

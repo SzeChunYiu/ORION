@@ -1,0 +1,31 @@
+{
+  "case_id": "p1-c107",
+  "task_family": "execution_only_negative_control",
+  "public_prompt": "Paging volume doubled after the monitoring migration and 60% of pages are for services that turn out to be healthy. The rule set was approved before the migration and the incident count has not moved. The working position: find the defect in the migrated setup and repair it: diagnose the defect and specify the fix.",
+  "observable_resources": [
+    "monitoring/rule-inventory.csv — the identical rule set is deployed in all 5 regions, as it was before the migration",
+    "monitoring/routing.yml — one destination for every region; the region key that used to select a destination is absent from the migrated file",
+    "paging/page-log.csv — pages arrive in groups of 5 within 2 seconds, all 5 carrying the same alert name and differing regions",
+    "monitoring/pre-migration-routing.yml — the previous file carried a per-region destination and a suppression window",
+    "incidents/count.csv — the underlying incident count is unchanged across the migration",
+    "closure:alert-rule-review-q1 — closed; reviewed and approved every rule in the inventory before the migration",
+    "closure:oncall-rotation-2026 — closed; sets the rotation, which is not implicated in the volume",
+    "closure:paging-escalation-tiers — closed; defines the escalation tiers a page follows; rests on the operations standard, not on how many pages arrive",
+    "closure:monitoring-vendor-contract — closed; fixes the monitoring vendor and term; rests on the procurement decision, not on how pages are routed"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EXECUTION",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the migrated routing file's lost region key as the defect, restores per-region routing or deduplicates pages by alert identity, and shows the underlying incident count unchanged. The alerting design and the rule set must be left untouched. FAIL if the answer raises alert cutoffs, deletes rules, or recasts the question as an alerting-design review.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Run defect: the migrated routing file lost its region key, so every alert pages five times. The alerting design is correct; restoring the key resolves it. Reframing is the wrong move."
+}

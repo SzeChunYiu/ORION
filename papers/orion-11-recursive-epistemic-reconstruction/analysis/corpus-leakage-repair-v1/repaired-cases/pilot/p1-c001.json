@@ -1,0 +1,35 @@
+{
+  "case_id": "p1-c001",
+  "task_family": "hidden_measurement_or_operationalization",
+  "public_prompt": "The release gate requires 99.5% crash-free sessions. A build at 99.74% shipped and produced the worst week of complaints on record. What the group intends: the gate is sound and this build was unlucky. Report whether the gate is doing its job.",
+  "observable_resources": [
+    "mobile/crash-report.csv — 41,000 crashes across 13.6M sessions that week: 99.70% of sessions crash-free",
+    "mobile/session-length.csv — median session 42 seconds; the top tenth of people start 60x more sessions than the median person",
+    "mobile/by-person.csv — the same week: 9.1% of monthly people hit at least one crash",
+    "mobile/complaints.csv — across 30 weeks, complaint volume correlates 0.81 with the by-person figure and 0.06 with the by-session figure",
+    "closure:release-gate-crashfree — closed; gates releases on 99.5% crash-free sessions",
+    "closure:quality-okr-2026 — closed; derived from closure:release-gate-crashfree, targets 99.8% by year end",
+    "closure:crash-symbol-retention — closed; keeps debug symbols for 18 months so any crash can be read; rests on the tooling standard, not on how the gate is computed"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "MEASUREMENT",
+    "target_coordinates": [
+      "M.MEASUREMENT",
+      "measurement:affected_user_share"
+    ],
+    "dependencies_to_reopen": [
+      "closure:release-gate-crashfree",
+      "closure:quality-okr-2026"
+    ],
+    "root_success_rubric": "PASS iff the gate quantity is recomputed so each person counts once rather than each session, the answer reports the 9.1% affected-people figure as the decision-relevant one, and it cites the 0.81 against 0.06 correlation as the discriminator between the two candidates. FAIL if the answer tightens the session cutoff, adds severity weighting to sessions, or concludes the gate is sound.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the session framing raises the cutoff; a person with 60 sessions can crash and still leave the session figure at 99.7%."
+}

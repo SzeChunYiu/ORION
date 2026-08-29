@@ -1,0 +1,38 @@
+{
+  "case_id": "p1-c005",
+  "task_family": "hidden_decomposition_or_interface",
+  "public_prompt": "One billing test fails on the first day of every month and passes on every other day. The approach on the table: the test is flaky on that boundary, so guard it to return early on the first. Name the defect and give the repair.",
+  "observable_resources": [
+    "billing/period.py — three call sites read today's date straight from the runtime while computing the billing window",
+    "billing/tests/test_period.py — builds its inputs but has no way to set today's date; the assertion's outcome depends on which day the suite happens to run",
+    "billing/ci-history.csv — the test failed on 2025-11-01, 2025-12-01, 2026-01-01 and 2026-02-01, and passed on 118 other days",
+    "billing/skip-diff.diff — adds a guard returning early when today is the first of the month",
+    "billing/invoice-diffs.md — invoices issued on the first of the month in those four months each carried one day of the previous period",
+    "closure:release-gate-policy — closed; treats a green suite as sufficient to release",
+    "closure:monthly-invoice-signoff — closed; derived from closure:release-gate-policy",
+    "closure:audit-attestation-2026 — closed; derived from closure:monthly-invoice-signoff",
+    "closure:tax-rate-table-2026 — closed; records the rates the billing module applies; rests on the published rates, not on how the module learns today's date"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "DECOMPOSITION",
+    "target_coordinates": [
+      "W.DECOMPOSITION",
+      "decomposition:injected_time_source"
+    ],
+    "dependencies_to_reopen": [
+      "closure:release-gate-policy",
+      "closure:monthly-invoice-signoff",
+      "closure:audit-attestation-2026"
+    ],
+    "root_success_rubric": "PASS iff the specified fix makes today's date an explicit input of the billing module at all three call sites, so any date can be pinned from outside, and the answer states that the four failures track a real invoice defect rather than a flaky assertion — the invoice diffs. FAIL if the fix skips, reruns, or date-pins the test without changing where the module obtains the date, or if the answer treats the failure as flakiness.",
+    "dependency_depth": 3
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the flaky-test framing lands the skip guard; the invoice diffs show the assertion was reporting a genuine defect that the guard would silence."
+}

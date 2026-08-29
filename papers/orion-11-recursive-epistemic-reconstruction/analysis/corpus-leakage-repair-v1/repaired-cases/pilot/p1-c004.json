@@ -1,0 +1,34 @@
+{
+  "case_id": "p1-c004",
+  "task_family": "hidden_decomposition_or_interface",
+  "public_prompt": "Customers are occasionally charged twice. The reading so far: the client waits too long before giving up, so shorten the timeout from 30 s to 10 s and fewer requests will be re-sent. Diagnose the defect and specify the fix.",
+  "observable_resources": [
+    "payments/api.md — POST /charge accepts {amount, account} and returns a freshly generated charge reference; no request field lets a caller say that this attempt repeats an earlier one",
+    "payments/incidents.csv — 41 duplicate charges in 90 days; in all 41 the client saw a socket timeout and re-sent",
+    "payments/timeout-note.md — a two-week trial at a 10 s timeout produced 63 duplicate charges, not fewer",
+    "payments/gateway-docs.md — the downstream gateway accepts a caller-supplied reference and refuses a repeat of the same reference within 24 hours",
+    "closure:refund-automation-v2 — closed; refunds detected duplicates automatically after the fact",
+    "closure:card-scheme-compliance — closed; certifies the integration against the scheme rules on data handling; rests on the scheme audit, not on how duplicates arise",
+    "closure:payment-currency-support — closed; fixes which currencies may be taken; rests on the commercial decision, not on how a repeat attempt is recognised"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "INTERFACE",
+    "target_coordinates": [
+      "W.INTERFACE",
+      "interface:idempotency_token"
+    ],
+    "dependencies_to_reopen": [
+      "closure:refund-automation-v2"
+    ],
+    "root_success_rubric": "PASS iff the specified fix adds a caller-generated attempt reference to the /charge request, obliges the service to return the original outcome for a repeat of that reference, and the answer states that timeout tuning changes the rate of duplicates and not their possibility — the 10 s trial having produced more. FAIL if the fix is a different timeout, a client-side retry cap, after-the-fact refunds, or duplicate detection by amount and account.",
+    "dependency_depth": 1
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the timeout framing proposes 10 s, which the trial already shows makes the problem worse; nothing in the request lets the service recognise a repeat."
+}

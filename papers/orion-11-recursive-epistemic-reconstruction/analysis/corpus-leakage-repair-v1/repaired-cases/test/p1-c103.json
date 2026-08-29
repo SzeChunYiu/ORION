@@ -1,0 +1,39 @@
+{
+  "case_id": "p1-c103",
+  "task_family": "hidden_decomposition_or_interface",
+  "public_prompt": "One customer's bulk import makes the service slow for every other customer on the platform. The approach on the table: the service is being asked for too much at once, so cap the whole service at 200 requests per second per route. Find the defect and describe the remedy.",
+  "observable_resources": [
+    "app/pool.md — one worker pool and one first-in-first-out queue serve all 2,300 customers",
+    "app/incident-log.csv — in 9 of 11 slowdowns a single customer accounted for over 80% of queued work",
+    "app/global-cap-note.md — a 200/s service-wide cap during the trial cut the largest customer's impact and refused 6% of every other customer's requests",
+    "app/usage.csv — customer request rates span four orders of magnitude; the largest customer runs 6,000x the median",
+    "closure:fair-use-policy-v1 — closed; publishes the service-wide cap as the fairness guarantee",
+    "closure:enterprise-contract-addendum — closed; derived from closure:fair-use-policy-v1",
+    "closure:support-escalation-matrix — closed; derived from closure:enterprise-contract-addendum",
+    "app/queue-depth.csv — queued work per customer sampled each minute through the 11 slowdowns, 2,300 customers wide",
+    "closure:data-residency-commitment — closed; commits each customer's records to a named region; rests on the residency agreement, not on how work is queued",
+    "closure:import-file-format — closed; fixes the format a bulk import must arrive in; rests on the integration standard, not on how imports are scheduled against each other"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "DECOMPOSITION",
+    "target_coordinates": [
+      "W.DECOMPOSITION",
+      "decomposition:tenant_scoped_queueing"
+    ],
+    "dependencies_to_reopen": [
+      "closure:fair-use-policy-v1",
+      "closure:enterprise-contract-addendum",
+      "closure:support-escalation-matrix"
+    ],
+    "root_success_rubric": "PASS iff the specified design gives each customer its own share of the queue and the worker pool — per-customer queueing under a fair scheduler, or dedicated capacity — so one customer's burst cannot consume another's share, and the answer states that a service-wide cap refuses innocent traffic, citing the trial's 6%. FAIL if the fix is a service-wide cap, a per-route cap, more workers, or a negotiated limit with the largest customer.",
+    "dependency_depth": 3
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the capping framing publishes the 200/s rule, which the trial shows punishes the 2,299 customers who caused nothing."
+}

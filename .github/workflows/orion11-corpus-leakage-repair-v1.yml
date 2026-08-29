@@ -1,0 +1,90 @@
+name: ORION-11 corpus leakage repair v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-11-recursive-epistemic-reconstruction/analysis/corpus-leakage-repair-v1/**'
+      - 'papers/orion-11-recursive-epistemic-reconstruction/protocol/cases/**'
+      - '.github/workflows/orion11-corpus-leakage-repair-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-11-recursive-epistemic-reconstruction/analysis/corpus-leakage-repair-v1/**'
+      - 'papers/orion-11-recursive-epistemic-reconstruction/protocol/cases/**'
+      - '.github/workflows/orion11-corpus-leakage-repair-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  repaired-corpus:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify frozen repair-package digests
+        run: |
+          sha256sum -c papers/orion-11-recursive-epistemic-reconstruction/analysis/corpus-leakage-repair-v1/SHA256SUMS
+
+      - name: Verify repair changes public prompts only
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          paper = Path('papers/orion-11-recursive-epistemic-reconstruction')
+          original_root = paper / 'protocol' / 'cases'
+          repaired_root = paper / 'analysis' / 'corpus-leakage-repair-v1' / 'repaired-cases'
+
+          def load(root: Path):
+              rows = {}
+              for split in ('pilot', 'test'):
+                  for path in sorted((root / split).glob('*.json')):
+                      rows[f'{split}/{path.name}'] = json.loads(path.read_text(encoding='utf-8'))
+              return rows
+
+          original = load(original_root)
+          repaired = load(repaired_root)
+          assert len(original) == 66, f'expected 66 live cases, found {len(original)}'
+          assert len(repaired) == 66, f'expected 66 repaired cases, found {len(repaired)}'
+          assert original.keys() == repaired.keys(), 'case identity set changed'
+
+          changed_prompts = 0
+          for key in original:
+              before = dict(original[key])
+              after = dict(repaired[key])
+              before_prompt = before.pop('public_prompt')
+              after_prompt = after.pop('public_prompt')
+              assert before == after, f'non-public_prompt field changed in {key}'
+              changed_prompts += int(before_prompt != after_prompt)
+
+          assert changed_prompts == 22, (
+              f'expected exactly 22 prompt-only repairs, found {changed_prompts}'
+          )
+          print(f'ORION11_REPAIR_INTEGRITY_GREEN cases=66 prompt_changes={changed_prompts} non_prompt_changes=0')
+          PY
+
+      - name: Re-mine repaired PublicView under the frozen leakage gate
+        run: |
+          python papers/orion-11-recursive-epistemic-reconstruction/analysis/corpus-leakage-repair-v1/probe_corpus_leakage_v1.py \
+            --cases-root papers/orion-11-recursive-epistemic-reconstruction/analysis/corpus-leakage-repair-v1/repaired-cases \
+            --label CI_REPAIRED \
+            --out /tmp/orion11-repaired-leakage.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          report = json.loads(Path('/tmp/orion11-repaired-leakage.json').read_text(encoding='utf-8'))
+          assert report['verdict'] == 'WITHIN_NULL', report
+          print(
+              'ORION11_LEAKAGE_GATE_GREEN '
+              f"verdict={report['verdict']} "
+              f"single={report['single_features_clearing_floors']} "
+              f"disjunction={report['disjunction_rules_clearing_floors']}"
+          )
+          PY
