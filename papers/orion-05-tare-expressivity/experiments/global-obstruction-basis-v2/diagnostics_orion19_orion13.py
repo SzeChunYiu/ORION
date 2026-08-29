@@ -143,6 +143,33 @@ def orion13() -> dict:
         out["total_cases"] = sum(v for v in ncases.values() if v)
         out["arms"] = arms
         out["baseline_arm"] = "A0_orion_current"
+        out["overall_outcome"] = part.get("overall_outcome")
+        out["verdicts"] = part.get("verdicts")
+
+        # PROBE vs INTACT split. The caveats state that probe gold is UNRESOLVED on
+        # all probe cases and that A1/A2/A3 abstain unconditionally there, so the
+        # probe corpora cannot separate the arms. Measure what the baseline does
+        # on each side, since "always-merge" may hold on one and not the other.
+        split = {}
+        for grp in ("PROBE", "INTACT"):
+            agg2 = Counter()
+            n = 0
+            for cname, c in part["corpora"].items():
+                if cname.startswith(grp):
+                    n += c.get("n_cases") or 0
+                    for k, v in c["by_arm"]["A0_orion_current"]["decision_kinds"].items():
+                        agg2[k] += v
+            t = sum(agg2.values()) or 1
+            m = sum(agg2[k] for k in MERGE_KINDS)
+            split[grp] = {
+                "n_cases": n, "decisions": t,
+                "merge": m, "merge_share": round(m / t, 4),
+                "merged_where_gold_unresolved": agg2["MERGED_WHERE_GOLD_UNRESOLVED"],
+                "false_merge": agg2["FALSE_MERGE"], "false_split": agg2["FALSE_SPLIT"],
+            }
+        out["baseline_probe_vs_intact"] = split
+        out["probe_share_of_all_cases"] = round(
+            split["PROBE"]["n_cases"] / max(1, out["total_cases"]), 4)
 
     atl, err = _load(ATLAS)
     if err:

@@ -99,6 +99,26 @@
       }
     },
     "baseline_arm": "A0_orion_current",
+    "baseline_probe_vs_intact": {
+      "INTACT": {
+        "decisions": 189,
+        "false_merge": 8,
+        "false_split": 1,
+        "merge": 124,
+        "merge_share": 0.6561,
+        "merged_where_gold_unresolved": 8,
+        "n_cases": 189
+      },
+      "PROBE": {
+        "decisions": 48,
+        "false_merge": 0,
+        "false_split": 0,
+        "merge": 48,
+        "merge_share": 1.0,
+        "merged_where_gold_unresolved": 48,
+        "n_cases": 48
+      }
+    },
     "cases_per_corpus": {
       "INTACT_DERIVATION": 32,
       "INTACT_HARM_SYNTHETIC": 33,
@@ -217,7 +237,14 @@
       "projections": 64
     },
     "n_corpora": 8,
-    "total_cases": 237
+    "overall_outcome": "FAIL",
+    "probe_share_of_all_cases": 0.2025,
+    "total_cases": 237,
+    "verdicts": {
+      "channel": "CHANNEL_OPENED_FAILURE_DEMONSTRATED",
+      "heldout": "FAILURE_CARRIES_TO_HELDOUT_STRATA",
+      "t5": "T5_NOT_DISCHARGED__CANDIDATE_IS_NOT_A_NEW_IDENTITY_AXIS"
+    }
   },
   "orion19": {
     "arms": {
