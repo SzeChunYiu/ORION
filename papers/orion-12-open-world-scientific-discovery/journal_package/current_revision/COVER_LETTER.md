@@ -1,4 +1,4 @@
-28 August 2026
+29 August 2026
 
 Editor-in-Chief  
 Information Processing & Management
@@ -13,9 +13,10 @@ The evidence is deliberately bounded. A 390-task complete-gold study tests mecha
 
 We believe this combination of critical system design, explicit authority semantics, controlled mechanism evidence and retained external falsification is relevant to IP&M readers working on retrieval, scientific-discovery systems and evidence synthesis. The manuscript makes no claim of external retrieval superiority or open-world completeness.
 
-The submission includes an anonymized CAS single-column manuscript, editable source, a blinded review archive, glossary, figure captions, availability and AI-assistance declarations, and exact file manifests. The manuscript is not under consideration elsewhere. Author-specific declarations and metadata will be completed by the corresponding author before filing.
+The submission package contains an anonymized CAS single-column manuscript, editable blinded source, blinded review materials, a separate title page, glossary, figure captions, declarations, and exact file manifests. The intended publication sequence is arXiv first, followed by one journal submission at a time; the author will make the submission portal's originality and non-concurrent-submission attestations at filing.
 
 Sincerely,
 
-Sze Chun Yiu  
+SzeChunYiu  
+Stockholm University, Stockholm, Sweden  
 sze-chun.yiu@fysik.su.se
