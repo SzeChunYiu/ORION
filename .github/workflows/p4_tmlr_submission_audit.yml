@@ -24,10 +24,6 @@ concurrency:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    # Kept wide as defence in depth. The install is the real fix (see below), but
-    # GitHub reports a job timeout as `cancelled`, which reads as a failed gate in
-    # `gh pr checks` while telling nobody the gate never ran -- so the budget
-    # should not be the thing that decides whether this audit has an opinion.
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
@@ -74,23 +70,12 @@ jobs:
 
       - name: Install TeX/PDF/rendering tools
         shell: bash
-        # Its own budget, so a hang here is reported as this step timing out
-        # rather than as the whole audit being cancelled with no attribution.
         timeout-minutes: 25
         run: |
           set -euo pipefail
           sudo apt-get update -qq
-          # One retry. Both observed hangs were in this install, and a transient
-          # mirror stall should not consume a submission gate.
-          # --no-install-recommends is the actual fix. p2-manuscript.yml installs a
-          # comparable TeX set with it and finishes in about a minute; this job
-          # installed the recommends too and twice blew a 20-minute budget. Every
-          # package the compile needs is named explicitly, and latexmk runs with
-          # -halt-on-error, so anything genuinely missing fails loudly here rather
-          # than silently degrading the PDF.
-          PKGS="latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended"
+          PKGS="latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra"
           PKGS="$PKGS lmodern poppler-utils librsvg2-bin"
-          # One retry: a transient mirror stall should not consume a submission gate.
           sudo apt-get install -y -qq --no-install-recommends $PKGS \
             || { sleep 15; sudo apt-get update -qq; sudo apt-get install -y -qq --no-install-recommends $PKGS; }
 
@@ -120,26 +105,58 @@ jobs:
           test -s main.pdf
           if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence' main.log; then exit 1; fi
 
-      - name: Independent PDF/stale-claim audit
+      - name: Compile named arXiv PDF
         shell: bash
         run: |
           set -euo pipefail
-          PDF=papers/orion-14-verified-scientific-discovery/manuscript/main.pdf
-          TXT="$RUNNER_TEMP/p4.txt"
-          pdftotext "$PDF" "$TXT"
-          grep -q 'Under review as submission to TMLR' "$TXT"
-          grep -q '0/360' "$TXT"; grep -q '180/360' "$TXT"; grep -q '60/60' "$TXT"
-          grep -qi 'not supported' "$TXT"
-          if grep -Eiq 'execution bindings remain.*UNBOUND|awaiting external campaign|No external results are reported|remains externally.*CANNOT_CHECK' "$TXT"; then exit 1; fi
-          pdfinfo "$PDF" | tee "$RUNNER_TEMP/pdfinfo.txt"
-          sha256sum "$PDF" | tee "$RUNNER_TEMP/main.pdf.sha256"
+          cd papers/orion-14-verified-scientific-discovery/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error arxiv.tex
+          test -s arxiv.pdf
+          if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence' arxiv.log; then exit 1; fi
+
+      - name: Audit anonymous review and named arXiv surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          M=papers/orion-14-verified-scientific-discovery/manuscript
+          TMLR_TXT="$RUNNER_TEMP/p4-tmlr.txt"
+          ARXIV_TXT="$RUNNER_TEMP/p4-arxiv.txt"
+          pdftotext "$M/main.pdf" "$TMLR_TXT"
+          pdftotext "$M/arxiv.pdf" "$ARXIV_TXT"
+          grep -q 'Under review as submission to TMLR' "$TMLR_TXT"
+          grep -q '0/360' "$TMLR_TXT"; grep -q '180/360' "$TMLR_TXT"; grep -q '60/60' "$TMLR_TXT"
+          grep -qi 'not supported' "$TMLR_TXT"
+          if grep -Eiq 'execution bindings remain.*UNBOUND|awaiting external campaign|No external results are reported|remains externally.*CANNOT_CHECK' "$TMLR_TXT"; then exit 1; fi
+          if grep -Eiq 'SzeChunYiu|Sze[[:space:]-]*Chun|sze-chun.yiu@fysik.su.se' "$TMLR_TXT"; then
+            echo 'P4_TMLR_ANONYMITY=FAIL'; exit 1
+          fi
+          grep -Fq 'SzeChunYiu' "$ARXIV_TXT"
+          grep -Fq 'Stockholm University' "$ARXIV_TXT"
+          grep -Fq 'sze-chun.yiu@fysik.su.se' "$ARXIV_TXT"
+          grep -Fq 'The author received no specific funding for this work.' "$ARXIV_TXT"
+          grep -Fq 'The author declares no competing interests.' "$ARXIV_TXT"
+          pdfinfo "$M/main.pdf" | tee "$RUNNER_TEMP/tmlr-pdfinfo.txt"
+          pdfinfo "$M/arxiv.pdf" | tee "$RUNNER_TEMP/arxiv-pdfinfo.txt"
+          sha256sum "$M/main.pdf" | tee "$RUNNER_TEMP/main.pdf.sha256"
+          sha256sum "$M/arxiv.pdf" | tee "$RUNNER_TEMP/arxiv.pdf.sha256"
+          printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' > "$RUNNER_TEMP/ARXIV_LICENSE.txt"
+          printf '%s\n' 'cs.AI' > "$RUNNER_TEMP/ARXIV_PRIMARY_CATEGORY.txt"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: p4-tmlr-audited-pdf-${{ github.run_id }}
+          name: orion-14-tmlr-and-arxiv-packages-${{ github.run_id }}
           path: |
             papers/orion-14-verified-scientific-discovery/manuscript/main.pdf
+            papers/orion-14-verified-scientific-discovery/manuscript/arxiv.pdf
+            papers/orion-14-verified-scientific-discovery/manuscript/arxiv.tex
+            papers/orion-14-verified-scientific-discovery/manuscript/bibliography.bib
+            papers/orion-14-verified-scientific-discovery/manuscript/sections
+            papers/orion-14-verified-scientific-discovery/manuscript/figures
             ${{ runner.temp }}/main.pdf.sha256
-            ${{ runner.temp }}/pdfinfo.txt
+            ${{ runner.temp }}/arxiv.pdf.sha256
+            ${{ runner.temp }}/tmlr-pdfinfo.txt
+            ${{ runner.temp }}/arxiv-pdfinfo.txt
+            ${{ runner.temp }}/ARXIV_LICENSE.txt
+            ${{ runner.temp }}/ARXIV_PRIMARY_CATEGORY.txt
           if-no-files-found: error
           retention-days: 90
