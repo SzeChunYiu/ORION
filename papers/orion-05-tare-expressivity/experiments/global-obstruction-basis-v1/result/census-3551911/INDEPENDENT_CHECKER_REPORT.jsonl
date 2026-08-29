@@ -1,0 +1,16 @@
+{"note": "no aggregate to compare", "recomputed_terminal": "CANNOT_CHECK_CONTROL_FAILURE"}
+{"recomputed_terminal": "CANNOT_CHECK_CONTROL_FAILURE", "disagreements": 13, "cannot_check": 0}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_16", "field": "c_d2", "checker": 5, "runner": 4}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_16", "field": "c_d1", "checker": 6, "runner": 4}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_16", "field": "gap_positive", "checker": true, "runner": 0}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_16", "field": "membership", "checker": "IN_BASIS", "runner": "NO_GAP"}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_16", "field": "corrupted_basis_fired", "checker": true, "runner": false}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_17", "field": "c_d1", "checker": 6, "runner": 5}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_17", "field": "gap_positive", "checker": true, "runner": 0}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_17", "field": "membership", "checker": "IN_BASIS", "runner": "NO_GAP"}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_17", "field": "corrupted_basis_fired", "checker": true, "runner": false}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_19", "field": "c_d2", "checker": 5, "runner": 6}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_19", "field": "gap_positive", "checker": true, "runner": 0}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_19", "field": "membership", "checker": "IN_BASIS", "runner": "NO_GAP"}}
+{"DISAGREEMENT": {"where": "control:C_POS_R6O_19", "field": "corrupted_basis_fired", "checker": true, "runner": false}}
+{"verdict": "DISAGREEMENT", "campaign_terminal_for_this_state": "CANNOT_CHECK__CHECKER_DISAGREEMENT"}

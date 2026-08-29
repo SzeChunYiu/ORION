@@ -1,0 +1,121 @@
+{
+ "blocker_halves": {
+  "open_weight_checkpoint_present": true,
+  "outbound_provider_access": "hub reachable from this venue",
+  "still_missing": "a cell executor: instance generation per (k,B), the seven representation renderers, majority-vote aggregation over C, and verified-answer scoring. Declared but not built."
+ },
+ "checkpoints": [
+  {
+   "bytes": 999586347,
+   "family": "QWEN2_5",
+   "local_path": "/projects/hep/fs9/scratch/scyiu-orion-ci/ut3-checkpoints/hf/hub/models--Qwen--Qwen2.5-0.5B-Instruct/snapshots/7ae557604adf67be50417f59c2c2f167def9a775",
+   "n_files": 7,
+   "repo_id": "Qwen/Qwen2.5-0.5B-Instruct",
+   "scale": "0.5B",
+   "seconds": 0.2,
+   "status": "IN_CUSTODY"
+  },
+  {
+   "bytes": 3098955668,
+   "family": "QWEN2_5",
+   "local_path": "/projects/hep/fs9/scratch/scyiu-orion-ci/ut3-checkpoints/hf/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+   "n_files": 7,
+   "repo_id": "Qwen/Qwen2.5-1.5B-Instruct",
+   "scale": "1.5B",
+   "seconds": 0.1,
+   "status": "IN_CUSTODY"
+  },
+  {
+   "bytes": 6183451098,
+   "family": "QWEN2_5",
+   "local_path": "/projects/hep/fs9/scratch/scyiu-orion-ci/ut3-checkpoints/hf/hub/models--Qwen--Qwen2.5-3B-Instruct/snapshots/aa8e72537993ba99e69dfaafa59ed015b17504d1",
+   "n_files": 9,
+   "repo_id": "Qwen/Qwen2.5-3B-Instruct",
+   "scale": "3B",
+   "seconds": 0.1,
+   "status": "IN_CUSTODY"
+  },
+  {
+   "bytes": 15242788168,
+   "family": "QWEN2_5",
+   "local_path": "/projects/hep/fs9/scratch/scyiu-orion-ci/ut3-checkpoints/hf/hub/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28",
+   "n_files": 11,
+   "repo_id": "Qwen/Qwen2.5-7B-Instruct",
+   "scale": "7B",
+   "seconds": 0.1,
+   "status": "IN_CUSTODY"
+  },
+  {
+   "family": "LLAMA3_2",
+   "note": "not obtained; this is CANNOT_CHECK for this ladder point, not evidence that the point is unnecessary or that the grid is fine",
+   "reason": "GatedRepoError: 401 Client Error. (Request ID: Root=1-6a913b29-575a3b761229951478b5c6bb;3e3512e2-8784-4695-96e9-f46e63bee1fd)\n\nCannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct/resolve/9213176726f574b556790deb65791e0c5aa438b6/generation_config.json.\nAccess to model meta-llama/Llama-3.2-1B-Instruct is restricted. You must have access to it and be authenticated",
+   "repo_id": "meta-llama/Llama-3.2-1B-Instruct",
+   "scale": "1B",
+   "seconds": 0.4,
+   "status": "CANNOT_CHECK"
+  },
+  {
+   "family": "LLAMA3_2",
+   "note": "not obtained; this is CANNOT_CHECK for this ladder point, not evidence that the point is unnecessary or that the grid is fine",
+   "reason": "GatedRepoError: 401 Client Error. (Request ID: Root=1-6a913b29-0d305e930a45f10f6605462f;84d3f35f-8cdd-4520-be1d-eaf30df64295)\n\nCannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/resolve/0cb88a4f764b7a12671c53f0838cd831a0843b95/model-00002-of-00002.safetensors.\nAccess to model meta-llama/Llama-3.2-3B-Instruct is restricted. You must have access to it and be aut",
+   "repo_id": "meta-llama/Llama-3.2-3B-Instruct",
+   "scale": "3B",
+   "seconds": 0.5,
+   "status": "CANNOT_CHECK"
+  }
+ ],
+ "claim_authority": "NONE. This is an environment and custody receipt. It executes no grid cell, scores no quality, and licenses no statement about S*, C*, or any crossing. P9-U-T3 remains BLOCKED until cells carry outcomes.",
+ "environment": {
+  "cuda_available": true,
+  "gpu": "NVIDIA A40",
+  "hostname": "cg03",
+  "python": "3.11.5",
+  "slurm_job_id": "3550343",
+  "torch": "2.13.0+cu126"
+ },
+ "gate_served": "P9-U-T3",
+ "gpu_smoke": {
+  "attempted": true,
+  "decode_seconds": 2.857,
+  "output_token_count": 13,
+  "repo_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "status": "GPU_DECODE_OK"
+ },
+ "ladder_declared": [
+  {
+   "family": "QWEN2_5",
+   "repo_id": "Qwen/Qwen2.5-0.5B-Instruct",
+   "scale": "0.5B"
+  },
+  {
+   "family": "QWEN2_5",
+   "repo_id": "Qwen/Qwen2.5-1.5B-Instruct",
+   "scale": "1.5B"
+  },
+  {
+   "family": "QWEN2_5",
+   "repo_id": "Qwen/Qwen2.5-3B-Instruct",
+   "scale": "3B"
+  },
+  {
+   "family": "QWEN2_5",
+   "repo_id": "Qwen/Qwen2.5-7B-Instruct",
+   "scale": "7B"
+  },
+  {
+   "family": "LLAMA3_2",
+   "repo_id": "meta-llama/Llama-3.2-1B-Instruct",
+   "scale": "1B"
+  },
+  {
+   "family": "LLAMA3_2",
+   "repo_id": "meta-llama/Llama-3.2-3B-Instruct",
+   "scale": "3B"
+  }
+ ],
+ "ladder_points_declared": 6,
+ "ladder_points_in_custody": 4,
+ "paper": "orion-19-structured-epistemic-learning",
+ "produces_scientific_result": false,
+ "schema": "orion.p9.ut3-checkpoint-custody-receipt.v1"
+}
