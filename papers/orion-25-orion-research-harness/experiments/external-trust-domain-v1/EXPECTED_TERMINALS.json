@@ -1,0 +1,27 @@
+{
+  "allowed_future_result_terminals": [
+    "E15_NO_FALSE_PROMOTION_SINGLE_DOMAIN",
+    "E15_FALSE_PROMOTION_SINGLE_DOMAIN",
+    "E15_FALSE_REJECTION_BENIGN_REENCODING",
+    "E15_STALE_REPLAY_GAP_OBSERVED",
+    "E15_REVOCATION_GAP_OBSERVED",
+    "E15_MULTI_DOMAIN_COMPROMISE_BOUNDARY_OBSERVED",
+    "E15_NATIVE_SYSTEM_DISAGREEMENT",
+    "E15_CANNOT_CHECK_EXTERNAL_CUSTODY"
+  ],
+  "current_checker_terminal": "ORION25_EXTERNAL_ACQUISITION_PROTOCOL_GREEN__IDENTITY_BINDING_REQUIRED",
+  "forbidden_claims_before_execution": [
+    "external trust-domain law established",
+    "production superiority established",
+    "organizational independence verified",
+    "top-tier submission ready"
+  ],
+  "forbidden_current_files": [
+    "RESULT.json",
+    "RESULT_V1.json",
+    "OUTCOMES.json",
+    "SUMMARY.csv"
+  ],
+  "future_ready_terminal": "ORION25_EXTERNAL_PROTOCOL_READY_FOR_EXECUTION",
+  "schema": "ORION.ORION25.ExternalTrustDomain.ExpectedTerminals.v1"
+}

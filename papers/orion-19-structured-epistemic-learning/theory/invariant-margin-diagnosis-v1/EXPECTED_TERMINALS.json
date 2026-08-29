@@ -1,0 +1,52 @@
+{
+  "schema": "ORION.ORION19.InvariantMarginDiagnosis.ExpectedTerminals.v1",
+  "paper_id": "ORION-19",
+  "successor_id": "ORION19.INVARIANT_MARGIN_DIAGNOSIS.v1",
+  "authored_date": "2026-08-28",
+
+  "terminal_set": [
+    {"terminal": "THEORY_PROVED__EXHAUSTIVELY_CHECKED", "reached": true,
+     "observed": "Part A over 1,054,472 configurations, Part B over 196 interval/threshold configurations, 3/3 controls fire, both frozen dispositions confirmed unchanged"},
+    {"terminal": "SUCCESSOR_CEILING_MADE_COMPUTABLE_IN_ADVANCE", "reached": true,
+     "observed": "Theorem A3 gives the orbit minority-mass floor E*_G, an upper bound on what ANY invariant repair can achieve",
+     "consequence": "the invariant-profile successor should compute E*_G on the registered transformation family BEFORE running, so the ceiling is known rather than discovered"},
+    {"terminal": "THEORY_REFUTED", "reached": false,
+     "condition": "an invariant representation with a non-invariant decision, or an emitted decision unsound under a containing interval",
+     "required_action": "record the counterexample verbatim and retract the corresponding theorem"},
+    {"terminal": "CANNOT_CHECK", "reached": false,
+     "condition": "evidence missing or the checker cannot execute",
+     "required_action": "report as CANNOT_CHECK; never as a pass"}
+  ],
+
+  "preserved_adverse_and_null_evidence": [
+    {"item": "T4_ATTACK_SUCCEEDED - semantics-preserving reminting broke the historical serialized-representation margin",
+     "status": "PRESERVED_AUTHORITATIVE_AND_BOUNDED",
+     "note": "The frozen defeat stands. Theorem A2 explains why it is a refutation rather than noise, and A3 bounds what the invariant-profile successor can recover. Nothing is reversed."},
+    {"item": "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_GATE_NOT_MET",
+     "status": "PRESERVED_UNCHANGED"},
+    {"item": "CANNOT_CHECK half-draw decision terminals (5 present in the transport run)",
+     "status": "PRESERVED_AS_CANNOT_CHECK",
+     "note": "None converted. Theorem B3 is precisely the statement that converting one by post-outcome adjustment would void its guarantee."},
+    {"item": "halves_agree_with_full = false for the affected diagnoses",
+     "status": "PRESERVED_UNCHANGED"},
+    {"item": "no deployed LLM/agent generalization",
+     "status": "PRESERVED_UNCHANGED",
+     "note": "#1609 keeps ORION-19's bounded causal-diagnosis scope; nothing here widens it."}
+  ],
+
+  "authority_updates": {
+    "thresholds_or_intervals_adjusted": "NONE - and B3 names such adjustment as forbidden",
+    "terminals_converted": "NONE",
+    "manuscript_or_protocol_edited": "NONE",
+    "new_object_created": "papers/orion-19-structured-epistemic-learning/theory/invariant-margin-diagnosis-v1/ (additive)",
+    "paper_tree_oid_effect": {"pinned": "32d3f2597645", "already_mismatching_on_main": true, "ref_issue": 1625},
+    "new_blocker_raised": "NONE"
+  },
+
+  "explicitly_out_of_scope": [
+    "building the common protocol described in #1617 (optional successor science)",
+    "running the invariant-profile successor",
+    "any UT3 / model-scale work, which #1608 explicitly separates from the bounded paper",
+    "venue, packaging and filing decisions"
+  ]
+}

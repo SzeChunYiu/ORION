@@ -1,0 +1,57 @@
+{
+  "schema": "ORION.ORION05.LocalObstruction.ExpectedTerminals.v1",
+  "paper_id": "ORION-05",
+  "successor_id": "ORION05.LOCAL_SUPPORT_ONE_OBSTRUCTION.v1",
+  "authored_date": "2026-08-28",
+
+  "terminal_set": [
+    {"terminal": "THEORY_PROVED__INDEPENDENTLY_CHECKED", "reached": true,
+     "condition": "checks A-D pass and 4/4 negative controls fire",
+     "observed": "support-two irreducible set derived by brute force equals the four claimed ordered pairs; 0 irreducible for w=3..8; 43,688 and 4 both reproduce the manuscript"},
+    {"terminal": "THEORY_REFUTED", "reached": false,
+     "condition": "an odd-alpha support-two pair outside the four with no descent, or one of the four with a descent",
+     "required_action": "record the counterexample verbatim, retract the classification, and leave the manuscript's existing count in place"},
+    {"terminal": "TRANSCRIPTION_ERROR", "reached": false,
+     "condition": "the recomputed 43,688 or the support-two failure count disagrees with the manuscript",
+     "required_action": "treat the Lemma B transcription as unvalidated and halt; a classification built on a mis-transcribed definition is worthless",
+     "note": "This is why check C exists. Both figures matched."},
+    {"terminal": "CHECKER_VACUOUS", "reached": false,
+     "condition": "fewer than 4 of 4 negative controls fire",
+     "required_action": "treat any PASS as void, repair, re-run"},
+    {"terminal": "CANNOT_CHECK", "reached": false,
+     "condition": "the checker cannot execute (exit code 3)",
+     "required_action": "report as CANNOT_CHECK; never as a pass"}
+  ],
+
+  "preserved_adverse_and_null_evidence": [
+    {"item": "support one is globally insufficient on the exact two-qubit witness (5 < 6)",
+     "status": "PRESERVED_UNCHANGED",
+     "note": "This negative is what makes kappa_R6M = 2 sharp. Untouched; this packet explains the obstruction's shape, not its global force."},
+    {"item": "local irreducibility does NOT imply global support-two optimality",
+     "status": "PRESERVED_AND_MADE_EXPLICIT",
+     "note": "Stated as a scope limit in THEORY.md section 3, as required by #1617."},
+    {"item": "no physical quantum-advantage claim",
+     "status": "PRESERVED_UNCHANGED"},
+    {"item": "O(n^12) representation-count statement is not a runtime theorem",
+     "status": "PRESERVED_UNCHANGED",
+     "note": "#1617 Upgrade C's premise is unproved; no promotion attempted."},
+    {"item": "a negative control failed on first run",
+     "status": "PRESERVED_AND_REPORTED",
+     "note": "The control was wrong, not the theorem. Recorded in PROTOCOL.json freeze_discipline and THEORY.md section 4 rather than quietly replaced."}
+  ],
+
+  "authority_updates": {
+    "kappa_R6M": "2 - unchanged",
+    "manuscript_edited": "NONE",
+    "receipts_or_rounds_edited": "NONE",
+    "new_object_created": "papers/orion-05-tare-expressivity/theory/local-obstruction-v1/ (additive)",
+    "new_blocker_raised": "NONE"
+  },
+
+  "explicitly_out_of_scope": [
+    "Upgrade B: the finite global obstruction-basis conjecture (separate programme, must not block submission)",
+    "Upgrade C: promoting the representation count to an exact-complexity runtime corollary",
+    "any MultiTag / objective-cone / QG sequel material, which has separate ownership",
+    "venue selection (PRX Quantum vs Quantum), packaging and filing"
+  ]
+}

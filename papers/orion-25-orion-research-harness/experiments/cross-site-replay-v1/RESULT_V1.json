@@ -1,0 +1,43 @@
+{
+ "attestation_v2": {
+  "diverging_keys": [
+   "protocol_sha256"
+  ],
+  "projection_equal": false,
+  "reference_environment": {
+   "cryptography_version": "46.0.3",
+   "machine": "x86_64",
+   "python_version": "3.12.14"
+  },
+  "replay_environment_keys": {
+   "cryptography": "46.0.5",
+   "machine": "x86_64",
+   "python": "3.14.4"
+  },
+  "replay_terminal_field": "P15_ATTESTATION_COMPOSITION_V2_SUPPORTED"
+ },
+ "custody_boundary": "Second site under the same programme custody: portability evidence only; not independent replication, not a second custodian; scientific_authority_delta NONE.",
+ "environment": {
+  "cryptography": "46.0.5",
+  "driver_sha256": "3a67737ccf1fd21596639f951c0285d3b0c607d9801fd7420d6dc4854d44f11b",
+  "hostname": "billy-laptop-old",
+  "machine": "x86_64",
+  "platform": "Linux-7.0.0-27-generic-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "source_commit": "303de248b2252f1fcc81a8600c5419453ca08211",
+  "utc": "2026-08-28T19:34:41Z"
+ },
+ "finished_utc": "2026-08-28T19:34:43Z",
+ "planted_control": {
+  "fired": true,
+  "status": "FIRED_VIA_RUNNER_FAILURE: run_attestation_composition_v2.py exit 1: b'x=_w(s, 0).end())\\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\\n  "
+ },
+ "run_terminal": "T2_ENDPOINT_DIVERGENCE",
+ "schema": "ORION.ORION25.CrossSiteReplay.Result.v1",
+ "trust_domain_law": {
+  "diverging_keys": [],
+  "object_equal": true,
+  "reference_sha256": "d42151defe568917cff35bd03ee2492168547d8e015c12073afbd50f2904f8bb",
+  "replay_terminal_field": "T1_LAW_HOLDS_EXACTLY"
+ }
+}
