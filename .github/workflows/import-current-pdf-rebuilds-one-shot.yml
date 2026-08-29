@@ -1,0 +1,61 @@
+name: import-current-pdf-rebuilds-one-shot
+
+on:
+  push:
+    branches:
+      - chatgpt/all25-top-tier-readiness-20260829
+    paths:
+      - '.github/workflows/import-current-pdf-rebuilds-one-shot.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: chatgpt/all25-top-tier-readiness-20260829
+          fetch-depth: 0
+      - name: Download verified rebuild artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: current-manuscript-clipping-audit-f9fd0c95f73a07143a1914e6e870374f760aa408
+          path: /tmp/rebuilt
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          run-id: 33266067671
+      - name: Import only manuscripts changed by this publication pass
+        shell: bash
+        run: |
+          set -euo pipefail
+          declare -A expected=(
+            [orion-06-recursive-recovery]=51717e1142b55026a81eb97951fdca4b553577e5
+            [orion-07-dual-instrument]=8e75de50cb20fd685f823bdfb78ea4e9de8054ac
+            [orion-10-certified-static-forecasting]=3ed0048e3f3558b1f6b3fdc255ff102e2c1695c6
+            [orion-14-verified-scientific-discovery]=d76a231ba2cd04fd1054838f39ce770aea2fe748
+          )
+          for paper in "${!expected[@]}"; do
+            src="/tmp/rebuilt/${paper}/manuscript/main.pdf"
+            dst="papers/${paper}/manuscript/main.pdf"
+            test -f "$src"
+            actual="$(git hash-object "$src")"
+            test "$actual" = "${expected[$paper]}" || {
+              echo "artifact blob mismatch for $paper: expected ${expected[$paper]}, got $actual" >&2
+              exit 1
+            }
+            cp "$src" "$dst"
+          done
+          git add \
+            papers/orion-06-recursive-recovery/manuscript/main.pdf \
+            papers/orion-07-dual-instrument/manuscript/main.pdf \
+            papers/orion-10-certified-static-forecasting/manuscript/main.pdf \
+            papers/orion-14-verified-scientific-discovery/manuscript/main.pdf
+          git diff --cached --stat
+          git diff --cached --quiet && exit 0
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'build(papers): import verified current manuscript PDFs'
+          git push origin HEAD:chatgpt/all25-top-tier-readiness-20260829
