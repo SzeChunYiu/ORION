@@ -1,0 +1,39 @@
+{
+  "arms": {
+    "KNN": {
+      "ci95_lower": 0.18708602844739852,
+      "ci95_upper": 0.8129139715526014,
+      "excludes_80pct_power_region": true,
+      "observed": "5/10"
+    },
+    "LINEAR": {
+      "ci95_lower": 0.06673951117773447,
+      "ci95_upper": 0.6524528500599972,
+      "excludes_80pct_power_region": true,
+      "observed": "3/10"
+    },
+    "RBF": {
+      "ci95_lower": 0.18708602844739852,
+      "ci95_upper": 0.8129139715526014,
+      "excludes_80pct_power_region": true,
+      "observed": "5/10"
+    }
+  },
+  "capability_for_50pct_power": 0.7414252767150368,
+  "capability_for_80pct_power": 0.8423653410922232,
+  "false_pass_rate_at_p_0_5": 0.0546875,
+  "gate": ">=8/10",
+  "power_curve": {
+    "0.50": 0.0546875,
+    "0.60": 0.16728975359999995,
+    "0.70": 0.38278278639999985,
+    "0.75": 0.5255928039550781,
+    "0.80": 0.6777995264000002,
+    "0.85": 0.8201964803675781,
+    "0.90": 0.9298091736,
+    "0.95": 0.9884964426207031
+  },
+  "reading": "Every arm's exact interval lies below the capability the gate is powered to detect, so the miss is not an artefact of n=10: capability at the preregistered level is excluded. Capability in the 0.6-0.8 band is not excluded, and there the gate's power is 17-68%, so the NEGATIVE bounds family-scale capability below the registered bar rather than establishing that capability is absent.",
+  "schema": "ORION21.QUERY_FAMILY_GATE_DESIGN_POWER.v1",
+  "terminal_unchanged": "P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET"
+}
