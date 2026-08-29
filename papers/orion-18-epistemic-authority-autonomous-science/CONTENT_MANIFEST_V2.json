@@ -354,8 +354,11 @@
   "grants_authority": "NONE",
   "schema_version": "orion.candidate-content-binding.v2",
   "subject_commit": "d6a1e08f49b7de5bccbbd52432f25a2eb7f631f0",
-  "subject_commit_blocker": null,
-  "subject_commit_status": "BOUND",
-  "subject_commit_unbound_paths": [],
+  "subject_commit_blocker": "bound files differ from the recorded commit; the commit does not describe these bytes",
+  "subject_commit_status": "CANNOT_CHECK",
+  "subject_commit_unbound_paths": [
+    "papers/orion-18-epistemic-authority-autonomous-science/evidence/local/P8_LOCAL_REPLAY_CONTRACT_V3.json",
+    "papers/orion-18-epistemic-authority-autonomous-science/rewrite_academic_pipeline/MANUSCRIPT_REWRITE_V1.md"
+  ],
   "subject_tree": "54609427bf44e72826e863f2905f0a0263d6266c"
 }
