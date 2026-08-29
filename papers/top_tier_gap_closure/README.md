@@ -36,11 +36,13 @@ No paper is upgraded unless all four roles agree that the stronger claim is prov
 - `operational_gap_audits_v1/` — exact small-sample and comparator-adequacy audits.
 - `matrix/ORION-01-05.md` through `matrix/ORION-21-25.md` — detailed theorem/experiment/statistics/reproducibility plans.
 - `check_gap_closure_v2.py` — package-level structural validator.
+- `check_current_head_readiness_v1.py` — fail-closed structural checker for the additive current-head readiness/patchset layer.
 
 ## Validation
 
 ```bash
 python papers/top_tier_gap_closure/check_gap_closure_v2.py
+python papers/top_tier_gap_closure/check_current_head_readiness_v1.py
 python papers/top_tier_gap_closure/operational_gap_audits_v1/check_operational_gap_audits.py \
   --check-result papers/top_tier_gap_closure/operational_gap_audits_v1/RESULT.json
 python papers/top_tier_gap_closure/finite_information_interface_v1/check_theory.py \
@@ -51,6 +53,7 @@ Expected terminals:
 
 ```text
 ORION_ALL25_TOP_TIER_GAP_CLOSURE_V2_GREEN papers=25 promotions=0 operational_audits=10
+ORION_ALL25_CURRENT_HEAD_READINESS_V1_GREEN papers=25 head=645ed920b65877af05f9cd9321b4de5af6171bb4 promotions=0
 ORION_OPERATIONAL_GAP_AUDITS_V1_GREEN audits=10 promotions=0 mcnemar24=0.125
 FINITE_INFORMATION_INTERFACE_V1_THEOREMS_REPRODUCED ...
 ```
