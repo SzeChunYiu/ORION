@@ -1,36 +1,38 @@
 # ORION-07 journal-readiness record
 
-**Current terminal:** `MANUSCRIPT_REVIEW_PASS / EVIDENCE_GATE_BLOCKED`.
+**Current terminal:** `BOUNDED_THREE_CASE_MANUSCRIPT_COMPLETE / SUBMISSION_MECHANICS_OPEN`.
 
-The manuscript has been repaired through the writing/reviewer loop, but the frozen publication plan contains a scientific evidence gate that cannot be cleared by editing.
+The bounded benchmark paper no longer has a missing-science gate. Current main contains three prospectively valid frontier questions (V0 plus the two replacement questions), and the final series includes an explicit case in which the two instruments agree on the responsibility diagnosis while both diagnoses are later scored false and both selected moves remain aligned. This is the paper's central methodological boundary: agreement is an observation, not validation.
 
-## Review cycle 1 — blockers found
+## Historical review findings
 
-- **ORION-03-R1, blocking:** V1 mixed the benchmark claim with a broad systems-harness claim now overlapping ORION-25.
-- **ORION-03-R2, blocking:** V1 still listed defects D2/D3 as open even though current harness regression tests repair both failure reporting and audit-preserving invalid-content recovery.
-- **ORION-03-R3, blocking evidence:** only Benchmark V0 exists, while `PUBLICATION_PLAN.md` requires at least 2–3 further question instances before standalone submission.
-- **ORION-03-R4, major:** benchmark protocol and result were interleaved with architecture details, obscuring the measured construct and independence assumptions.
-- **ORION-03-R5, major:** the related-work paragraph made a broad contrast with agent benchmarks without a fresh submission-date literature closure.
+- **ORION-03-R1:** V1 mixed the benchmark claim with a broad systems-harness claim now delegated to the execution-integrity paper.
+- **ORION-03-R2:** V1 listed defects D2/D3 as open after current harness regression tests had repaired failure reporting and audit-preserving invalid-content recovery.
+- **ORION-03-R3:** the old manuscript had only Benchmark V0 and therefore required further cases before standalone submission.
+- **ORION-03-R4:** benchmark protocol and result were interleaved with architecture details.
+- **ORION-03-R5:** related-work positioning required current literature closure.
 
-## Repairs completed
+The `ORION-03-R*` strings are historical pre-canonical finding identifiers and are retained as provenance; the paper identity is ORION-07.
 
-- Repositioned ORION-03 as a benchmark-definition paper; delegated general harness guarantees to ORION-25.
-- Updated D2/D3 from open defects to repaired historical defects, grounded by `packages/orion-research-harness/tests/test_invalid_content_recovery.py`.
-- Separated benchmark Methods, V0 Results, Discussion, Related Work, Limitations, Conclusion, Reproducibility, and Ethics/Resources.
-- Narrowed all reliability/predictive-validity language to a single-instance first measurement.
-- Kept the extra-instance gate explicit rather than weakening it post outcome.
+## Current science closure
 
-## Review cycle 2
+The old R3 blocker is superseded by the prospective three-case series:
 
-**Scientific clarity:** PASS.  
-**Claim–warrant alignment:** PASS for benchmark definition + one measurement.  
-**Cross-paper scope:** PASS against ORION-25 after systems-claim contraction.  
-**Current implementation consistency:** PASS for D2/D3 status.  
-**Standalone evidence sufficiency:** **BLOCKED** by ORION-03-R3.  
-**Target-journal compliance:** UNRESOLVED.
+- inferential unit: one prospectively frozen frontier question;
+- valid scored units: `n_valid = 3`;
+- two earlier contaminated candidates remain visible but excluded from the valid denominator;
+- all three primary moves are later aligned under their frozen scoring maps;
+- the objective-rescaling case is an explicit prospective counterexample to `agreement = correctness`;
+- no reliability estimate, kappa, calibration, binomial success probability, or population generalization is authorized.
 
-## Resolution test for the remaining blocker
+The canonical LaTeX manuscript has been updated to this bounded series. The larger `>=20` multi-programme study remains a separately named successor for predictive-validity/generalization claims; it is not a prerequisite for filing the bounded benchmark-definition paper.
 
-Run at least 2–3 additional prospectively frozen frontier-question instances using the same benchmark contract, preserving divergence as an admissible outcome. Report the series without treating agreement as success by definition. Until then, ORION-03 must not be labeled `PEER_REVIEW_READY` or presented as an evaluation of instrument reliability.
+## Remaining submission mechanics
 
-Fresh literature closure, final replay, rendering, and archive deposition remain ordinary submission gates after the evidence blocker closes.
+- run a submission-date literature/nearest-work refresh and bind any changed positioning;
+- complete anonymous TMLR formatting and source-package QA;
+- replay/bind the final cited benchmark artifacts against the submission commit;
+- rebuild and visually inspect the final PDF;
+- create the arXiv source/PDF package and permanent archive/data-code identifier as applicable.
+
+**Target route:** TMLR for the bounded benchmark/evaluation-methodology paper; arXiv first. No remaining submission mechanic licenses a reliability or external-validity claim.
