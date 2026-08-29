@@ -1,0 +1,43 @@
+{
+  "schema": "ORION.ORION17.ChainComposition.SourceManifest.v1",
+  "paper_id": "ORION-17",
+  "successor_id": "ORION17.CLOSURE_CHAIN_COMPOSITION.v1",
+  "governing_issue": 1649, "tier": "A",
+  "authorized_by": "papers/publication_closure/wave1/WAVE1_TOP_TIER_PROMOTION_TRIAGE_2026-08-28.md",
+  "promotion_budget": "this is ORION-17's ONE attempt under #1649",
+  "authored_date": "2026-08-28",
+  "repository_base": {"branch_base": "origin/main", "commit": "3a6da292e"},
+  "bound_artifacts": [
+    {"path": "papers/orion-17-epistemic-navigation-open-worlds/transitions/P7_CLOSURE_RETENTION_V1.json",
+     "sha256": "ad39dc378689fe029e8c9119bef407ce8c29d6e22a007244e1caa6a1b5f9665d",
+     "role": "executed three-domain campaign over numpy/scipy/flask; read as DATA and classified, never re-run",
+     "mutated_by_this_packet": false},
+    {"path": "papers/orion-17-epistemic-navigation-open-worlds/formal/mechanized/P7_COMPOSITION_CALCULUS_MECHANIZED_2026-08-21.json",
+     "sha256": "3db379d23daf43dff7e41576f7ee233dc9b4d5168dd0f3688e51ba736d7d31e4",
+     "role": "existing pairwise composition calculus that this lane extends; context only, NOT imported",
+     "mutated_by_this_packet": false}
+  ],
+  "real_system_evidence": {
+    "domains": 3, "independently_sourced": true,
+    "detail": [
+      {"domain": "numpy", "modules": 426, "import_edges": 1076, "transitions": 347, "certificate_decisions": 147822},
+      {"domain": "scipy", "modules": 813, "import_edges": 2156, "transitions": 552, "certificate_decisions": 448776},
+      {"domain": "flask", "modules": 24, "import_edges": 19, "transitions": 331, "certificate_decisions": 7944}
+    ],
+    "note": "real Python packages with real import dependency graphs and real commit histories"
+  },
+  "prospectivity_disclosure": {
+    "campaign_executed_before_this_packet": true,
+    "outcomes_readable_before_theorems_written": true,
+    "claim": "EXPLANATORY_CLASSIFICATION_OF_PRE_EXISTING_FROZEN_EVIDENCE",
+    "not_claimed": "PROSPECTIVE_PREDICTION",
+    "prospective_test_specified_in": "THEORY.md section 6"
+  },
+  "cross_reference_note": {
+    "relevant_to": "ORION-16's #1649 empirical discriminator",
+    "statement": "This campaign is the closest thing in the repository to '2-3 independently sourced systems with real dependency/change graphs'. It measures CLOSURE RETENTION under transforms, not revalidation-set cost, so it does not directly substitute for ORION-16's discriminator -- but a reviewer assessing that claim should be pointed here. See the correction recorded on the ORION-16 lane."
+  },
+  "not_imported": ["measure_p7_closure_retention_v1.py", "check_theory_closure_v2.py", "any ORION-17 module"],
+  "no_new_execution": {"campaign_re_run": false, "network_access": false},
+  "frozen_paper_bytes_modified": "NONE"
+}

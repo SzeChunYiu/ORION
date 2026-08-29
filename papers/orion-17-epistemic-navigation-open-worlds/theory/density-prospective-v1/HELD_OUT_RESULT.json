@@ -1,0 +1,253 @@
+{
+ "schema_version": "orion.p7.closure-retention-transitions.v1",
+ "campaign_executed": true,
+ "results_exist": true,
+ "outcome_accessed": true,
+ "domains": [
+  {
+   "domain": "repos/requests",
+   "package": "src/requests",
+   "usable": true,
+   "modules": 19,
+   "import_edges": 16,
+   "commits_examined": 83,
+   "changes_used": 79,
+   "certificate_decisions": 1501,
+   "policies": {
+    "always-reopen": {
+     "preserve": 0,
+     "reopen": 1501,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 1303,
+     "preserve_rate": 0.0,
+     "both_outcomes_occur": false
+    },
+    "donor-coarse": {
+     "preserve": 0,
+     "reopen": 1501,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 1303,
+     "preserve_rate": 0.0,
+     "both_outcomes_occur": false
+    },
+    "exact-containment": {
+     "preserve": 1303,
+     "reopen": 198,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 0,
+     "preserve_rate": 0.8681,
+     "both_outcomes_occur": true
+    }
+   }
+  },
+  {
+   "domain": "repos/networkx",
+   "package": "networkx",
+   "usable": true,
+   "modules": 583,
+   "import_edges": 1245,
+   "commits_examined": 597,
+   "changes_used": 596,
+   "certificate_decisions": 347468,
+   "policies": {
+    "always-reopen": {
+     "preserve": 0,
+     "reopen": 347468,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 191344,
+     "preserve_rate": 0.0,
+     "both_outcomes_occur": false
+    },
+    "donor-coarse": {
+     "preserve": 197879,
+     "reopen": 149589,
+     "false_closure_retention": 91507,
+     "unnecessary_reopenings": 84972,
+     "preserve_rate": 0.5695,
+     "both_outcomes_occur": true
+    },
+    "exact-containment": {
+     "preserve": 191344,
+     "reopen": 156124,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 0,
+     "preserve_rate": 0.5507,
+     "both_outcomes_occur": true
+    }
+   }
+  },
+  {
+   "domain": "repos/django",
+   "package": "django",
+   "usable": true,
+   "modules": 906,
+   "import_edges": 3336,
+   "commits_examined": 408,
+   "changes_used": 369,
+   "certificate_decisions": 334314,
+   "policies": {
+    "always-reopen": {
+     "preserve": 0,
+     "reopen": 334314,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 254607,
+     "preserve_rate": 0.0,
+     "both_outcomes_occur": false
+    },
+    "donor-coarse": {
+     "preserve": 266929,
+     "reopen": 67385,
+     "false_closure_retention": 63398,
+     "unnecessary_reopenings": 51076,
+     "preserve_rate": 0.7984,
+     "both_outcomes_occur": true
+    },
+    "exact-containment": {
+     "preserve": 254607,
+     "reopen": 79707,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 0,
+     "preserve_rate": 0.7616,
+     "both_outcomes_occur": true
+    }
+   }
+  },
+  {
+   "domain": "repos/tornado",
+   "package": "tornado",
+   "usable": true,
+   "modules": 74,
+   "import_edges": 412,
+   "commits_examined": 700,
+   "changes_used": 619,
+   "certificate_decisions": 45806,
+   "policies": {
+    "always-reopen": {
+     "preserve": 0,
+     "reopen": 45806,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 26057,
+     "preserve_rate": 0.0,
+     "both_outcomes_occur": false
+    },
+    "donor-coarse": {
+     "preserve": 32285,
+     "reopen": 13521,
+     "false_closure_retention": 12773,
+     "unnecessary_reopenings": 6545,
+     "preserve_rate": 0.7048,
+     "both_outcomes_occur": true
+    },
+    "exact-containment": {
+     "preserve": 26057,
+     "reopen": 19749,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 0,
+     "preserve_rate": 0.5689,
+     "both_outcomes_occur": true
+    }
+   }
+  },
+  {
+   "domain": "repos/sympy",
+   "package": "sympy",
+   "usable": true,
+   "modules": 1566,
+   "import_edges": 13622,
+   "commits_examined": 700,
+   "changes_used": 602,
+   "certificate_decisions": 942732,
+   "policies": {
+    "always-reopen": {
+     "preserve": 0,
+     "reopen": 942732,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 579115,
+     "preserve_rate": 0.0,
+     "both_outcomes_occur": false
+    },
+    "donor-coarse": {
+     "preserve": 888239,
+     "reopen": 54493,
+     "false_closure_retention": 344352,
+     "unnecessary_reopenings": 35228,
+     "preserve_rate": 0.9422,
+     "both_outcomes_occur": true
+    },
+    "exact-containment": {
+     "preserve": 579115,
+     "reopen": 363617,
+     "false_closure_retention": 0,
+     "unnecessary_reopenings": 0,
+     "preserve_rate": 0.6143,
+     "both_outcomes_occur": true
+    }
+   }
+  }
+ ],
+ "summary": {
+  "domains_usable": 5,
+  "transitions_per_domain": {
+   "repos/requests": 79,
+   "repos/networkx": 596,
+   "repos/django": 369,
+   "repos/tornado": 619,
+   "repos/sympy": 602
+  },
+  "zero_false_closure_retention": {
+   "repos/requests": true,
+   "repos/networkx": true,
+   "repos/django": true,
+   "repos/tornado": true,
+   "repos/sympy": true
+  },
+  "donor_false_closure_retention": {
+   "repos/requests": 0,
+   "repos/networkx": 91507,
+   "repos/django": 63398,
+   "repos/tornado": 12773,
+   "repos/sympy": 344352
+  },
+  "both_outcomes_occur": {
+   "repos/requests": true,
+   "repos/networkx": true,
+   "repos/django": true,
+   "repos/tornado": true,
+   "repos/sympy": true
+  },
+  "unnecessary_reopenings": {
+   "repos/requests": {
+    "always-reopen": 1303,
+    "donor-coarse": 1303,
+    "exact-containment": 0
+   },
+   "repos/networkx": {
+    "always-reopen": 191344,
+    "donor-coarse": 84972,
+    "exact-containment": 0
+   },
+   "repos/django": {
+    "always-reopen": 254607,
+    "donor-coarse": 51076,
+    "exact-containment": 0
+   },
+   "repos/tornado": {
+    "always-reopen": 26057,
+    "donor-coarse": 6545,
+    "exact-containment": 0
+   },
+   "repos/sympy": {
+    "always-reopen": 579115,
+    "donor-coarse": 35228,
+    "exact-containment": 0
+   }
+  },
+  "fewer_unnecessary_reopenings_than_donor": {
+   "repos/requests": true,
+   "repos/networkx": true,
+   "repos/django": true,
+   "repos/tornado": true,
+   "repos/sympy": true
+  }
+ }
+}
