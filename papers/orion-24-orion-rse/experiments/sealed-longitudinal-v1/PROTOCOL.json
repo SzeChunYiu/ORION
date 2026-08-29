@@ -1,0 +1,21 @@
+{
+  "schema": "ORION.ORION24.SealedExternalLongitudinal.v1",
+  "protocol_id": "ORION24.SEALED_EXTERNAL_LONGITUDINAL.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "TEMPORAL_PROTOCOL_FROZEN__AWAITING_FUTURE_EVENTS",
+  "event_sources": [
+    {"repository": "sigstore/cosign", "cutoff_release": "v3.1.3", "cutoff_commit": "11926fa5bbbbde47e88fc006b625a17769b743b2"},
+    {"repository": "theupdateframework/python-tuf", "cutoff_release": "v7.0.0", "cutoff_commit": "353bdb767db56fd4667c9bcf56b710d50fdc2ac0"},
+    {"repository": "in-toto/in-toto", "cutoff_release": "v3.1.0", "cutoff_commit": "c82fe5d21aaa61c7f1a213db20a46f10bb3f411a"}
+  ],
+  "event_rule": "Take, in public release-time order, the first 12 non-draft non-prerelease releases after the three cutoffs, with no repository contributing more than 6 events. If fewer than 12 exist at study close, analyze every eligible event without lowering eligibility.",
+  "pre_outcome_information": ["release tag/commit", "release metadata", "repository diff and declared metadata", "previous sealed ledger state"],
+  "forbidden_pre_outcome_information": ["native validation result for the new release", "post-event protected score", "later release information"],
+  "decision": ["KEEP", "REVALIDATE", "CANNOT_CHECK"],
+  "arms": ["reusable_sealed_policy_from_1698", "naive_per_event_budget_reset", "always_revalidate", "no_update"],
+  "primary_endpoints": ["familywise_false_promotion", "useful_valid_update_acceptance", "revalidation_count", "cannot_check_rate"],
+  "success_gate": "zero false promotions by the reusable sealed policy on decidable events, strictly fewer revalidations than always-revalidate on at least one nontrivial stratum, and no post-hoc alpha/budget reset",
+  "stop_rule": "A false promotion, custody failure, event-order ambiguity, or insufficient machine-authoritative gold closes the lane without rescue under this identity.",
+  "authority_ceiling": "external-objective temporal evidence; not external-investigator authority"
+}

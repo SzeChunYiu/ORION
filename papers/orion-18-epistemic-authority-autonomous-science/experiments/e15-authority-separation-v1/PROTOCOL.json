@@ -1,0 +1,19 @@
+{
+  "schema": "ORION.ORION18.E15AuthoritySeparation.v1",
+  "protocol_id": "ORION18.E15_AUTHORITY_SEPARATION.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "ANALYSIS_PROTOCOL_FROZEN__AWAITING_SHARED_ORION25_EXTERNAL_RECORDS",
+  "shared_source_protocol": "ORION25.EXTERNAL_TRUST_DOMAIN_NATIVE_V1",
+  "no_duplicate_execution": true,
+  "axes": {
+    "action_authorized": "native policy/threshold/identity rules authorize this occurrence under the frozen trust configuration",
+    "technical_validity": "the subject and bound native verification facts satisfy the registered technical object contract independently of whether authorization threshold is met"
+  },
+  "required_quadrants": ["authorized_and_valid", "unauthorized_but_valid", "authorized_but_invalid", "unauthorized_and_invalid"],
+  "registered_sources": ["cosign dual-identity cases", "TUF threshold/rotation cases", "in-toto layout threshold/revocation cases"],
+  "baselines": ["authorization_only_infers_validity", "validity_only_infers_authorization", "typed_two_axis_rule", "native_fact_aware_ceiling"],
+  "primary_endpoints": ["false_validity_from_authorization", "false_authorization_from_validity", "quadrant_coverage", "CANNOT_CHECK_rate"],
+  "success_gate": "At least one machine-authoritative discordant case in each direction (unauthorized-valid and authorized-invalid), with the typed two-axis rule making zero cross-axis inference errors on decidable cases.",
+  "authority_ceiling": "external-objective machine conformance only; broader scientific discharge still requires genuinely external human/institutional authority where judgment is not machine-readable"
+}

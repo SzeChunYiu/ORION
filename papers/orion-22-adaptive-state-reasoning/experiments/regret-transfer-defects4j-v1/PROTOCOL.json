@@ -1,0 +1,18 @@
+{
+  "schema": "ORION.ORION22.Defects4JRegretTransfer.v1",
+  "protocol_id": "ORION22.DEFECTS4J_REGRET_TRANSFER.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "DESIGN_FROZEN__CORPUS_MANIFEST_AND_RUNNER_REQUIRED",
+  "source": {"repository": "rjust/defects4j", "commit": "8c16da8230843cdc918eaf4ddb449637f02b83c6"},
+  "episode_rule": "Enumerate every active project:bug identifier exposed by the pinned Defects4J checkout. Sort by identifier. Assign DEVELOPMENT when the low bit of SHA256(identifier) is 0 and PROTECTED_EVALUATION otherwise. Do not inspect triggering-test outcomes before this split is committed.",
+  "coarse_observation": ["changed_source_file_count bucket {1,2-3,4+}", "changed_package_count bucket {1,2+}", "test_source_present boolean"],
+  "refinement": "add the normalized set of changed Java package prefixes; no triggering-test or failing-test information is admitted",
+  "actions": ["FULL_SUITE", "PACKAGE_LOCAL_TESTS", "NAME_MATCHED_TESTS", "PACKAGE_PLUS_STATIC_NEIGHBOUR_TESTS"],
+  "episode_loss": "number_of_test_methods_executed + miss_penalty; miss_penalty equals full_suite_test_count + 1 for that episode",
+  "oracle": "minimum-loss action among the four registered actions, computed only by the evaluator from native Defects4J outcomes",
+  "development_use": "Use DEVELOPMENT outcomes only to compute the theorem-predicted regret floor of each frozen coarse/refined alias class. Freeze those numeric predictions before opening PROTECTED_EVALUATION outcomes.",
+  "required_design_power": "At least one predicted zero-regret class and one predicted positive-regret class must exist before protected outcomes. Otherwise terminate CANNOT_CHECK_DESIGN_POWER.",
+  "primary_endpoints": ["predicted_vs_observed_regret_floor", "refinement_regret_reduction", "miss_rate", "test_execution_cost"],
+  "stop_rule": "No observation coordinate, action, split, miss penalty, or class boundary may change after protected outcomes are opened."
+}

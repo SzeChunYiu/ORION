@@ -1,0 +1,19 @@
+{
+  "schema": "ORION.ORION19.SMTCausalDiagnostic.v1",
+  "protocol_id": "ORION19.SMT_CAUSAL_DIAGNOSTIC.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "DESIGN_FROZEN__CORPUS_MANIFEST_AND_EXECUTOR_REQUIRED",
+  "corpus_source": {"repository": "SMT-LIB/benchmark-submission-2025", "commit": "37c6cd5d98edb46057f30cef35ba7c7250fe0161"},
+  "native_solver": {"repository": "Z3Prover/z3", "release": "z3-5.1.0", "commit": "0b6cdcdbc65da25ef0f73ac9da210574d0f66cf8"},
+  "selection_rule": "Parse set-logic without solving. Take up to 100 formulas from each of the first two lexicographically ordered logics having >=100 eligible formulas, ordered by SHA256(relative_path). Freeze paths before any diagnostic run.",
+  "interventions": {
+    "information": "For solver-certified UNSAT source cases, remove one assertion selected deterministically from a native unsat core; retain only constructed cases whose changed satisfiability/derivability status is certified by the native evaluator.",
+    "accessibility": "Apply deterministic alpha-renaming plus assertion reordering; require semantic equivalence to be independently solver-checked before inclusion.",
+    "computation": "Keep formula and information fixed; impose a frozen low resource limit and then a frozen relaxed limit; include only cases where native custody distinguishes resource exhaustion from semantic failure."
+  },
+  "split": "SHA256(source_path || intervention_type) low bit: DEVELOPMENT=0, PROTECTED_EVALUATION=1",
+  "arms": ["intervention_diagnostic", "always_escalate_compute", "random_matched_cost_intervention", "oracle_cause_ceiling"],
+  "primary_endpoints": ["cause_diagnosis_accuracy", "false_compute_escalation", "intervention_resource_vector", "abstention_CANNOT_CHECK"],
+  "stop_rule": "No threshold, intervention construction, budget, source logic, or corpus membership changes after protected outcomes. Native UNKNOWN/timeout that cannot establish construction gold remains CANNOT_CHECK."
+}

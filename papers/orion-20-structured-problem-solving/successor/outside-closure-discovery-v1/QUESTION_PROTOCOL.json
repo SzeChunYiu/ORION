@@ -1,0 +1,11 @@
+{
+  "schema": "ORION.ORION20.OutsideClosureDiscoveryQuestion.v1",
+  "identity": "ORION20.OUTSIDE_CLOSURE_DISCOVERY.v1",
+  "outcome_accessed": false,
+  "status": "QUESTION_FROZEN__DOMAIN_AND_GRAMMAR_BINDING_REQUIRED",
+  "definition": "y is an outside-closure discovery iff native_verifier(y)=ACCEPT, y notin Cl_G(x,B), and candidate and donor closure receive the same registered information x and budget B",
+  "non_rescue_constraints": ["old AND/OR ordering is not revisited", "no post-outcome grammar extension", "no larger donor budget assigned only after candidate success", "no subjective verifier"],
+  "next_freeze_requirements": ["choose >=3 domains with objective native verifiers", "freeze donor grammar per domain", "freeze complete closure checker or explicit CANNOT_CHECK condition", "freeze matched resource vector", "freeze strongest donor-complete baseline"],
+  "success_shape": "verified nonempty outside-closure set in at least two materially different domains, with hostile controls showing the closure checker catches in-closure and budget-cheating candidates",
+  "failure_shape": "no verified outside-closure discoveries under matched conditions; publish closure boundary rather than invent a new primitive after outcomes"
+}

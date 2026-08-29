@@ -1,0 +1,16 @@
+{
+  "schema": "ORION.ORION21.SetValuedRankingIdentifiability.v1",
+  "identity": "ORION21.SET_VALUED_RANKING_IDENTIFIABILITY.v1",
+  "outcome_accessed": false,
+  "status": "THEOREM_TARGET_FROZEN",
+  "definitions": ["exact top-r support family under a boundary tie", "downstream functional F on supports", "identified iff F is constant on the admissible family"],
+  "theorem_targets": [
+    "T1: admissible supports are exactly fixed-above elements union a k-subset of the boundary tie block",
+    "T2: F is identified iff min F over admissible supports equals max F",
+    "T3: if F is not constant, there exists a witness pair of admissible supports differing by one exchange in the tie block on which F differs",
+    "T4: that adjacent witness pair is a sufficient exact certificate of non-identifiability"
+  ],
+  "proof_plan": "Use connectivity of the Johnson graph on k-subsets for T3; verify finite controls with a checker written from the theorem statement rather than the ORION-21 runner.",
+  "old_data_rule": "Existing tie-robust transcripts may be used only after the theorem is fixed as labelled examples/counterexample search; they cannot promote the old phase law.",
+  "terminal_set": ["THEOREM_PROVED", "THEOREM_REFUTED_BY_COUNTEREXAMPLE", "CANNOT_CHECK_PROOF_OR_ENCODING"]
+}
