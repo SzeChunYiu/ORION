@@ -1,0 +1,115 @@
+{
+  "cannot_check": 0,
+  "canonicalisation": "json.dumps(sort_keys=True, separators=(',',':'), ensure_ascii=False)",
+  "claim_scope": "Records whether each cited receipt's generator reproduces its committed artifact. Not a readiness verdict and not scientific authority; a replayed receipt is attributable, not thereby valid.",
+  "committed_artifacts_mutated_by_replay": [],
+  "differed": 0,
+  "grants_authority": "NONE",
+  "matched": 2,
+  "non_reproducible_keys_policy": [
+    "commit",
+    "cpu_seconds",
+    "created_at",
+    "date",
+    "duration_s",
+    "elapsed_s",
+    "generated_at",
+    "generated_on",
+    "git_commit",
+    "head_commit",
+    "host",
+    "hostname",
+    "interpreter",
+    "output_path",
+    "platform",
+    "python_version",
+    "revision",
+    "root",
+    "run_at",
+    "runtime_s",
+    "subject_commit",
+    "timestamp",
+    "tmpdir",
+    "user",
+    "username",
+    "wall_clock_s"
+  ],
+  "paper": "orion-06",
+  "receipt_index_integrity": {
+    "claim_set_correspondence": "CANNOT_CHECK",
+    "claim_set_reason": "no committed mapping from index entries to manuscript claims; index integrity does not establish it",
+    "digest_matches": 40,
+    "digest_mismatches": [],
+    "entries_parsed": 40,
+    "index": "papers/orion-06-recursive-recovery/RECEIPT_INDEX.md",
+    "missing_receipts": [],
+    "outcome": "MATCH",
+    "receipt_root": "research/extensions/orion-q"
+  },
+  "results": [
+    {
+      "argv": "/Users/billy/Desktop/projects/ORION/papers/orion-06-recursive-recovery/revival/verify_orion06_negative_coverage.py --root /Users/billy/Desktop/projects/ORION --output /var/folders/0n/mhnk9g6936bb4xts606y27fm0000gn/T/tmp1yujm0yd/replay.json",
+      "capture": "output_flag",
+      "committed_artifact": "papers/orion-06-recursive-recovery/revival/ORION06_NEGATIVE_COVERAGE_RESULT.json",
+      "committed_only_keys": [],
+      "committed_sha256": "f6b12b271f7e09ef0bff859c173e8f38686b42bc7b04b36a65f69453b4f629ec",
+      "compared_keys": [
+        "authority",
+        "cross_domain_general_method",
+        "denominator",
+        "schema",
+        "scientific_authority_delta",
+        "source_hashes",
+        "standalone_rows",
+        "terminal"
+      ],
+      "excluded_keys_that_actually_differed": [],
+      "excluded_keys_that_agreed_anyway": [
+        "date"
+      ],
+      "generator": "papers/orion-06-recursive-recovery/revival/verify_orion06_negative_coverage.py",
+      "generator_exit_code": 0,
+      "match_depends_on_exclusion": false,
+      "outcome": "MATCH",
+      "provenance_keys_excluded": [
+        "date"
+      ],
+      "receipt_id": "negative_coverage_result",
+      "replay_only_keys": []
+    },
+    {
+      "argv": "/Users/billy/Desktop/projects/ORION/papers/orion-06-recursive-recovery/revival/verify_orion06_negative_revival_successor.py --root /Users/billy/Desktop/projects/ORION",
+      "capture": "stdout",
+      "committed_artifact": "papers/orion-06-recursive-recovery/revival/ORION06_NEGATIVE_REVIVAL_R1_SUCCESSOR.json",
+      "committed_only_keys": [],
+      "committed_sha256": "8c382876d68daa9dd91e2615913689320e9f07a990882cd232008b68358d39f3",
+      "compared_keys": [
+        "authority",
+        "cannot_check",
+        "coverage",
+        "paper_freeze",
+        "rows",
+        "schema",
+        "scientific_authority_delta",
+        "source_receipts",
+        "terminal",
+        "unsolvable"
+      ],
+      "excluded_keys_that_actually_differed": [],
+      "excluded_keys_that_agreed_anyway": [
+        "date"
+      ],
+      "generator": "papers/orion-06-recursive-recovery/revival/verify_orion06_negative_revival_successor.py",
+      "generator_exit_code": 0,
+      "match_depends_on_exclusion": false,
+      "outcome": "MATCH",
+      "provenance_keys_excluded": [
+        "date"
+      ],
+      "receipt_id": "negative_revival_r1_successor",
+      "replay_only_keys": []
+    }
+  ],
+  "schema_version": "orion.independent-replay-receipt.v1",
+  "targets": 2
+}
