@@ -1,13 +1,19 @@
 # ORION-11 — reproducing the headline results
 
-Scope: how to verify the powered ORION-11 v2.2.4 primary and disjoint replication,
-regenerate their publication figure, and retain the historical V1 table path.
+Scope: how to verify the archived ORION-11 v2.2.4 primary and disjoint
+replication, the R4 faithful-comparator falsification, and the historical V1
+negative.
 
-**Current state:** the credential-free mechanical successor is
-`P1_MUTATION_NECESSITY_SUPPORTED` in both the prospectively frozen primary and
-disjoint replication, with independent verification `PASS`. The historical
-66-case V1 provider-oriented claim remains underpowered and is not pooled with
-the successor.
+**Current state:** the archived credential-free mechanical successor retains
+`P1_MUTATION_NECESSITY_SUPPORTED` in both registered runs, with independent
+verification `PASS`. R4 withdraws its comparative mechanism-necessity reading:
+Active-VOI with ordered candidate search matches the governed policy on the
+primary joint criterion. The R4 replication remains `CANNOT_CHECK`. The historical
+66-case V1 broad H1 remains `NOT_SUPPORTED`: the subject and strongest
+registered baseline each achieve 1/48 root successes, for a difference of zero.
+It is not pooled with the successor. Current bytes are reproducible, but three
+cited historical provenance commits are unreachable, so the claimed original
+prospective order remains `CANNOT_CHECK`.
 
 ## Powered v2.2.4 successor
 
@@ -56,6 +62,85 @@ The replication uses the analogous files under `replication/` and its
 arm/world result rows. On the current CPU environment the deterministic campaign
 and independent verification each take roughly one minute; no network or model
 credential is used.
+
+## Clean-source LUNARC replay receipt
+
+LUNARC job 3550083 replayed both campaigns from a Git archive of exact source
+commit `58192a3a05c4fc8e55b45e0082cbd1de2792c250`. The job ran on `cn063`,
+completed with exit `0:0` in `00:03:45`, and preserved its Python and dependency
+deviations rather than normalizing them away. For both the primary and
+replication, `RAW_RESULTS.jsonl`, the result record, and the
+independent-verification record were byte-identical to the archived objects.
+Both scientific terminals remained `P1_MUTATION_NECESSITY_SUPPORTED`, with zero
+score and analysis mismatches.
+
+The repository retains compact receipts rather than the reconstructed
+world/result directories:
+
+- `papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/LUNARC_REPLAY_RECEIPT_V1.json`
+  (SHA-256 `f049d2c19c508940188f806315d9b467ccb3139da0ecb2b22e96d17921161acc`);
+- `papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/LUNARC_REPLAY_JOB_OUTPUT_V1.json`
+  (SHA-256 `5cd24e6e9a64a9f6b8c4d8c9e89cd9be25cf330352b28b0859b614f40ff28087`);
+- `papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1/LUNARC_REPLAY_EXECUTION_BINDING_V1.json`
+  (SHA-256 `0ccac10a5db611534679b6d3117b7cdacff8cbcbac2f6b15344b9cd68a2204b5`).
+
+Verify the compact receipts without rerunning the cluster job:
+
+```bash
+base=papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/lunarc-replay-v1
+printf '%s  %s\n' \
+  f049d2c19c508940188f806315d9b467ccb3139da0ecb2b22e96d17921161acc \
+  "$base/LUNARC_REPLAY_RECEIPT_V1.json" | sha256sum -c -
+printf '%s  %s\n' \
+  5cd24e6e9a64a9f6b8c4d8c9e89cd9be25cf330352b28b0859b614f40ff28087 \
+  "$base/LUNARC_REPLAY_JOB_OUTPUT_V1.json" | sha256sum -c -
+jq -e '
+  .slurm.job_id == "3550083" and
+  .slurm.state == "COMPLETED" and
+  .slurm.exit_code == "0:0" and
+  (.lane_summaries | length == 2) and
+  all(.lane_summaries[];
+    .terminal == "EXACT_ARCHIVE_REPLAY" and
+    .scientific_terminal == "P1_MUTATION_NECESSITY_SUPPORTED" and
+    .score_mismatch_count == 0 and
+    .analysis_mismatch_count == 0 and
+    all(.comparisons[]; .byte_equal == true)) and
+  .discrepancies == []
+' "$base/LUNARC_REPLAY_RECEIPT_V1.json"
+```
+
+This receipt establishes deterministic replay from current committed source.
+It does not establish the original commit order, external scorer custody,
+independent review, submission readiness, or paper-freeze authority.
+
+## R4 faithful-comparator falsification
+
+Verify the immutable R4 packet and the authority disposition:
+
+```bash
+base=papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1
+(cd "$base" && sha256sum -c SHA256SUMS)
+jq -e '
+  .verdict == "H_R4_FALSIFIED__FAITHFUL_COMPARATOR_MATCHES_ORION" and
+  .anchor_reproduction_gate.passed == true and
+  .falsified_by == ["activevoi_search_admitted_parent"]
+' "$base/result/primary/ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json"
+jq -e '
+  .verdict == "INSTRUMENT_FAULT__ANCHOR_REPRODUCTION_FAILED__NO_CLAIM_READ" and
+  .anchor_reproduction_gate.passed == false
+' "$base/result/replication/ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json"
+jq -e '
+  .scientific_authority_delta ==
+    "WITHDRAW_COMPARATIVE_NECESSITY_READING__PRESERVE_INTERNAL_TERMINAL"
+' "$base/AUTHORITY_DISPOSITION_V1.json"
+```
+
+The primary comparison contains 480/480 joint successes for both the governed
+policy and the ordered-search Active-VOI comparator, zero forbidden mutations,
+and zero discordant pairs. Mean intervention cost is 1.834 versus 2.668 units.
+The packet therefore supports bounded descriptive economy only. It does not
+support comparative mechanism necessity, component attribution, external
+independence, or a claim from the failed replication gate.
 
 ## Public rights/relation census (outcome-blind development evidence)
 
@@ -135,51 +220,52 @@ repository root because its frozen predecessor paths are repository-relative.
 
 ## Source-native-to-R7 adapter audit (bounded development evidence)
 
-The adapter handoff is outside the repository checkout at
-`../lane-handoffs/p1-source-native-action-adapter-v2/`. It contains no case
-text, row-level outcomes, protected gold, or system outcomes. Verify its
-47-entry manifest independently from the repository root:
+The current audit is re-executable from repository-held sources. Run it into a
+temporary output so the tracked receipt remains immutable:
 
 ```bash
-python3 - <<'PY'
-from pathlib import Path
-import hashlib, json
-
-base = Path("../lane-handoffs/p1-source-native-action-adapter-v2")
-manifest = base / "SHA256SUMS"
-assert hashlib.sha256(manifest.read_bytes()).hexdigest() == \
-    "9f4503f693e155b12fb8c333f4777619cec1d66e387dcfc0e141fffa6933847d"
-
-entries = 0
-for line in manifest.read_text().splitlines():
-    if not line.strip():
-        continue
-    expected, rel = line.split(None, 1)
-    rel = rel.strip().removeprefix("*")
-    assert hashlib.sha256((base / rel).read_bytes()).hexdigest() == expected
-    entries += 1
-assert entries == 47
-
-receipt = json.loads(Path(
-    "../lane-handoffs/p1-source-native-action-adapter-integration-v3/"
-    "INDEPENDENT_SHA256_VERIFICATION_V1.json"
-).read_text())
-assert receipt["passed"] is True
-assert receipt["entry_count"] == 47
-assert receipt["failures"] == []
-print("ORION-11 adapter manifest: 47/47 PASS")
-PY
+out=$(mktemp /tmp/orion11-negative-revival-audit.XXXXXX.json)
+python3 \
+  papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/verify_orion11_negative_revival_v1.py \
+  --repo-root . \
+  --out "$out"
+jq -e '
+  .audit_passed == true and
+  .historical_broad_h1.terminal == "NOT_SUPPORTED" and
+  .historical_broad_h1.subject_root_success == "1/48" and
+  .historical_broad_h1.baseline_root_success == "1/48" and
+  .historical_broad_h1.difference == 0 and
+  .adapter_maps.enumeration == {
+    "fully_certified": 0,
+    "known_rejected": 116929,
+    "not_disproved_but_uncertified": 720,
+    "total": 117649
+  } and
+  .adapter_maps.registry_exact_match == true and
+  .adapter_maps.in_repo_reauditable == 720 and
+  .adapter_maps.in_repo_resolvable == 0 and
+  .rse_donor_subtraction.terminal == "GENERIC_JUSTIFICATION_DONOR_SUFFICIENT" and
+  .freeze_authority == "NONE__DO_NOT_FREEZE_OR_MERGE"
+' "$out"
 ```
 
-The bounded terminal is
-`P1_SOURCE_NATIVE_R7_ADAPTER_CANNOT_CHECK_TARGET_SEMANTICS`. All 117,649 total
-maps were enumerated: 0 are fully certified, 116,929 are rejected, and 720
-injective maps remain not disproved but uncertified. The only currently
-certified authority-safe partial map is `UNRESOLVED -> UNRESOLVED`. Zero
-certified maps must not be restated as zero possible maps. The full-artifact
-withdrawal witness is conditional on later owner-ratification of the proposed
-closed-world target denotations; the current target decision denotations and
-decision/action bridge remain unbound.
+The tracked receipt is
+`papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/AUDIT_RECEIPT.json`
+with SHA-256
+`e03f3c5b545aa82586539f1d794197bef3674250f42eea5868d8f1c79adbc4ab`.
+All 117,649 maps are enumerable: 116,929 are rejected, 720 are not disproved
+but uncertified, and zero are fully certified. The complete survivor registry
+matches the enumeration, so all 720 are re-auditable in-repository. None is
+resolvable there. Each requires external owner or delegate semantics, target
+rights, host authority, a signed algebra, authorized delivery, and independent
+semantic review. V13 remains at 0/7 signed external outputs and 0/4 closed
+authority acts.
+
+The historical 47-entry external handoff and its separate checksum receipt are
+not required to rerun this current enumeration. They remain unavailable in a
+clean checkout and therefore cannot provide current independent custody. Zero
+certified maps must not be restated as zero possible maps. This is an external
+authority `CANNOT_CHECK`, not a setup failure or an impossibility result.
 
 ## Historical V1 command
 
@@ -382,4 +468,6 @@ hand-worked Holm adjustments), not to this implementation's own output.
 Not satisfied by this pipeline and still open: frozen baseline prompts/configs,
 exact model/provider/tool versions, raw traces alongside the scored records,
 licences, a permanent archive/DOI, and an independent session reproducing the
-headline result from the raw artifact.
+headline result from the raw artifact under external custody. The clean-source
+LUNARC replay closes current deterministic reproducibility only; it does not
+close that external-authority item or the historical prospective-order gap.
