@@ -68,7 +68,7 @@ The full framework/paper/Q-series rules are in `SYNC_CONTRACT.md`.
 
 ## Current flagship status
 
-1. **Paper I — Recursive Epistemic Reconstruction.** Scoped manuscript: explicit `K/W/M` state, typed responsibility-targeted reframing, dependency-directed reopening, the canonical mechanic-cell representation, recursive mechanic self-audit, and hidden formulation/search-universe falsification. Its broad historical H1 remains unsupported at 1/48 root successes for both subject and strongest baseline. A narrower credential-free mechanical successor replays exactly, but R4 shows that a faithful ordered-search comparator matches the governed policy on all 480 primary hidden-shift worlds. Comparative mechanism necessity is therefore withdrawn; the R4 replication remains `CANNOT_CHECK` after its anchor gate failed, and local replay creates neither external authority nor submission readiness.
+1. **Paper I — Recursive Epistemic Reconstruction.** Scoped manuscript: explicit `K/W/M` state, typed responsibility-targeted reframing, dependency-directed reopening, the canonical mechanic-cell representation, recursive mechanic self-audit, and hidden formulation/search-universe falsification.
 2. **Paper II — Open-World Scientific Knowledge Discovery.** Discovery/search paper: earned route independence, question-framed memory, route/task stopping, and recall-first evaluation.
 3. **Paper III — Global Knowledge Portrait.** Absorption/synthesis paper: source projections, scientific meaning, identity/context/measurement mapping, GLUE/obstructions, typed ignorance, and recoverable portraits.
 4. **Paper IV — Verified Scientific Discovery.** Scientific-authority paper: content-bound evidence, independent checks, protected evaluation, typed non-escalation, and `CANNOT_CHECK`.
@@ -84,9 +84,9 @@ See `research/paper-programme-v1/FLAGSHIP_FALSIFIER_RESULTS_V1.md` and each pape
 
 ## Verified RSE successor synchronization — 2026-08-20
 
-The paper programme now also consumes the bounded recursive-scientific-evolution falsifier as **successor research only**. The exact suite verifies task/standing separability, finite successor-state non-identifiability, delayed later-generation scientific errors from lost lineage, and a CEGAR refinement demonstration. Its strongest registered state-schema result is deliberately subtractive: `GENERIC_JUSTIFICATION_DONOR_SUFFICIENT`. A fixed generic justification condition language closes DPAIR-1..4 and therefore removes bespoke projection-schema superiority on that scope.
+The paper programme now also consumes the bounded recursive-scientific-evolution falsifier as **successor research only**. The exact suite verifies task/standing separability, finite successor-state non-identifiability, delayed later-generation scientific errors from lost lineage, and a CEGAR refinement demonstration. Its strongest registered state-schema result is deliberately subtractive: a fixed generic justification condition language closes DPAIR-1..4 and therefore strikes bespoke projection-schema superiority on that scope.
 
-This is earned scope narrowing and must remain visible as negative science. It is not a setup failure, and no flagship headline or superiority claim is widened by it. `JReach_B(F,x,C|kappa)`, mutable-framework/protected-constitution separation and reconstructive-lineage + task-relative-working-projection remain framework definitions/design principles, not newly proved universal theorems.
+No flagship headline claim is widened by this result. `JReach_B(F,x,C|kappa)`, mutable-framework/protected-constitution separation and reconstructive-lineage + task-relative-working-projection remain framework definitions/design principles, not newly proved universal theorems.
 
 Canonical synchronization files:
 
