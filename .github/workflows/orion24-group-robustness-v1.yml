@@ -1,0 +1,74 @@
+name: ORION-24 group robustness v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/**'
+      - 'papers/orion-24-orion-rse/top_tier/external_v1/protected/p14_external_gold_v1.jsonl'
+      - 'papers/orion-24-orion-rse/top_tier/external_v1/pilot/decisions/p14_external_decisions_SYSTEMB_v1.jsonl'
+      - '.github/workflows/orion24-group-robustness-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/**'
+      - 'papers/orion-24-orion-rse/top_tier/external_v1/protected/p14_external_gold_v1.jsonl'
+      - 'papers/orion-24-orion-rse/top_tier/external_v1/pilot/decisions/p14_external_decisions_SYSTEMB_v1.jsonl'
+      - '.github/workflows/orion24-group-robustness-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  group-robustness:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify frozen packet digests
+        run: sha256sum -c papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/SHA256SUMS
+      - name: Run leave-one-group analysis
+        run: |
+          python papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/leave_one_group_robustness_v1.py --json-out /tmp/ORION24_GROUP_ROBUSTNESS_V1.json
+      - name: Independently verify frozen compact result
+        run: python papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/check_group_robustness_v1.py
+      - name: Byte-compare regenerated compact result
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          frozen = json.loads(Path('papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/GROUP_ROBUSTNESS_V1.json').read_text())
+          regenerated = json.loads(Path('/tmp/ORION24_GROUP_ROBUSTNESS_V1.json').read_text())
+          # The verbose analysis intentionally contains more descriptive fields than the
+          # compact frozen binding. Compare every compact field against its regenerated source.
+          assert frozen['status'] == regenerated['status']
+          assert frozen['scientific_authority_delta'] == regenerated['scientific_authority_delta']
+          assert frozen['claim_scope'] == regenerated['claim_scope']
+          assert frozen['full']['n'] == regenerated['full']['n']
+          assert frozen['full']['systemb_score'] == regenerated['full']['systemb_score']
+          assert frozen['full']['stratified_score'] == regenerated['full']['stratified_score']
+          assert frozen['full']['system_only_correct'] == regenerated['full']['vs_stratified']['system_only_correct']
+          assert frozen['full']['null_only_correct'] == regenerated['full']['vs_stratified']['null_only_correct']
+          for group, row in frozen['leave_one_family_out'].items():
+              src = regenerated['leave_one_family_out'][group]
+              assert row == {
+                  'n': src['n'],
+                  'systemb_score': src['systemb_score'],
+                  'stratified_score': src['stratified_score'],
+                  'system_only_correct': src['vs_stratified']['system_only_correct'],
+                  'null_only_correct': src['vs_stratified']['null_only_correct'],
+              }
+          for group, row in frozen['leave_one_domain_out'].items():
+              src = regenerated['leave_one_domain_out'][group]
+              assert row == {
+                  'n': src['n'],
+                  'systemb_score': src['systemb_score'],
+                  'stratified_score': src['stratified_score'],
+                  'system_only_correct': src['vs_stratified']['system_only_correct'],
+                  'null_only_correct': src['vs_stratified']['null_only_correct'],
+              }
+          for family, margin in frozen['family_local_margin_vs_full_stratified'].items():
+              assert margin == regenerated['family_local_contribution_vs_full_stratified'][family]['margin']
+          print('compact frozen result matches regenerated analysis')
+          PY
