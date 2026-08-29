@@ -1,0 +1,58 @@
+{
+  "existing_observation": {
+    "density_rule": "unsound iff edges/modules >= 1.5",
+    "held_out_correct": "5/5",
+    "rival_separators": [
+      "module_count",
+      "edge_count"
+    ],
+    "safe_terminal": "PROSPECTIVE_RULE_SUPPORTED__UNIQUE_MECHANISM_NOT_IDENTIFIED"
+  },
+  "forbidden": [
+    "new threshold after outcome access",
+    "count within-project certificate decisions as replications",
+    "claim unique causal mechanism from scalar prediction",
+    "reuse development/evaluation repositories"
+  ],
+  "frozen_rivals": {
+    "derivation": "integer cutpoints strictly between max observed sound and min observed unsound counts across the 8 calibration+evaluation projects; fixed before successor selection",
+    "edge_rule": "unsound iff edges >= 216",
+    "module_rule": "unsound iff modules >= 49"
+  },
+  "identity": "ORION17.RULE_DISAGREEMENT.v1",
+  "primary_gate": {
+    "density_wins_each_stratum_min": 7,
+    "density_wins_total_min": 15,
+    "null_joint_probability": 0.01580810546875,
+    "power_if_independent_density_win_probability_0_8": 0.7323303354067167
+  },
+  "reviewed_main": "e19a3b7cd0140d1f413e802a1188a2948726df6f",
+  "schema": "ORION.ORION17.RULE_DISAGREEMENT.Protocol.v1.design",
+  "selection": {
+    "external_custody": true,
+    "n_total": 20,
+    "outcome_blind": "project inclusion based only on import-graph counts and identity/custody rules; donor-coarse policy outcomes unavailable to selector",
+    "strata": [
+      {
+        "criteria": "density>=1.5 AND modules<49 AND edges<216",
+        "n": 10,
+        "name": "small_fewedge_dense",
+        "prediction": "density unsound; both absolute-size rivals sound"
+      },
+      {
+        "criteria": "density<1.5 AND modules>=49 AND edges>=216",
+        "n": 10,
+        "name": "large_manyedge_sparse",
+        "prediction": "density sound; both absolute-size rivals unsound"
+      }
+    ]
+  },
+  "status": "DESIGN_ONLY__NO_OUTCOME_AUTHORITY",
+  "symmetric_rival_rule": "score density and each rival on exactly the same projects. If a rival meets the same gate against density, density mechanism is not established.",
+  "terminals": [
+    "DENSITY_OUTPERFORMS_PRESPECIFIED_ABSOLUTE_SIZE_RIVALS",
+    "ABSOLUTE_SIZE_OUTPERFORMS_DENSITY",
+    "NO_DISCRIMINATION",
+    "CANNOT_CHECK_CUSTODY_OR_USABLE_COUNT"
+  ]
+}
