@@ -1,0 +1,23 @@
+name: orion03-native-typed-merge-transfer-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-03-typed-merge-falsification/external/native-typed-merge-transfer-v1/**'
+      - '.github/workflows/orion03-native-typed-merge-transfer-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  protocol-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify native typed-merge transfer protocol
+        run: python papers/orion-03-typed-merge-falsification/external/native-typed-merge-transfer-v1/check_protocol_v1.py
