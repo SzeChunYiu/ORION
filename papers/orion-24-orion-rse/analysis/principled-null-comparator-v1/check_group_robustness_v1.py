@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[4]
+ROOT = HERE.parents[3]
 BASE = ROOT / "papers/orion-24-orion-rse/top_tier/external_v1"
 GOLD = BASE / "protected/p14_external_gold_v1.jsonl"
 SYSTEMB = BASE / "pilot/decisions/p14_external_decisions_SYSTEMB_v1.jsonl"
