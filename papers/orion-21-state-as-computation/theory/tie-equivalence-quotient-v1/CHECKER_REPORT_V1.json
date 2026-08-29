@@ -1,0 +1,58 @@
+{
+  "schema": "orion.orion21.tie-equivalence-quotient.checker.v1",
+  "protocol_identity": "ORION21.TIE_EQUIVALENCE_QUOTIENT.v1",
+  "independence": "no runner import; admissible set obtained ONLY by subset-predicate filtering; all 13 invariants re-derived from their definitions; terminal re-derived from this checker's own verdicts; result file read as data",
+  "recomputed": {
+    "states_enumerated": 18550,
+    "realized_outcomes_enumerated": 36824,
+    "singleton_classes": 9620,
+    "nonsingleton_classes": 8930,
+    "decision_binding_classes": 7760,
+    "decision_benign_classes": 1170,
+    "benign_boundary_levels": [
+      0
+    ],
+    "binding_boundary_levels": [
+      1,
+      2
+    ],
+    "classes_refuted": {
+      "support_size": 0,
+      "abs_correlation_multiset": 0,
+      "abs_correlation_sum": 0,
+      "min_abs_correlation_in_support": 0,
+      "max_abs_correlation_in_support": 0,
+      "boundary_level": 0,
+      "admissible_class_size": 0,
+      "canonical_support": 0,
+      "support_identity": 8930,
+      "signed_correlation_sum": 5392,
+      "positive_sign_count": 5392,
+      "prediction_stream": 7760,
+      "accuracy_numerator": 7760
+    },
+    "surviving_invariants": [
+      "abs_correlation_multiset",
+      "abs_correlation_sum",
+      "admissible_class_size",
+      "boundary_level",
+      "canonical_support",
+      "max_abs_correlation_in_support",
+      "min_abs_correlation_in_support",
+      "support_size"
+    ],
+    "refuted_invariants": [
+      "accuracy_numerator",
+      "positive_sign_count",
+      "prediction_stream",
+      "signed_correlation_sum",
+      "support_identity"
+    ],
+    "terminal": "T1_IMPOSSIBILITY_CERTIFIED",
+    "exit_code": 0,
+    "certified": true
+  },
+  "recorded_terminal": "T1_IMPOSSIBILITY_CERTIFIED",
+  "mismatches": {},
+  "status": "PASS"
+}
