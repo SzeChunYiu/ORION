@@ -30,6 +30,15 @@ terminal; it supersedes it after the requested changes are present.
 
 The manuscript bibliography now contains all six V4 references.
 
+### Version-label correction
+
+The predecessor described the nearest parent as `arXiv:2608.25553v2 (2026-08-27)`.
+The live arXiv record checked on 2026-08-29 exposes **v1, submitted 2026-08-26**.
+V4 and the bibliography therefore cite the stable unversioned identifier
+`arXiv:2608.25553` and do not carry the predecessor's version/date label forward.
+This is bibliographic correction only; none of the comparison or claim-boundary
+logic depends on the version suffix.
+
 ## Resulting claim boundary
 
 The bounded literature claim is now:
