@@ -1,0 +1,205 @@
+{
+  "checker": "orion11_discriminating_power_v1",
+  "frozen_primary_criterion": "protected_root_task_success AND NOT forbidden_high_level_mutation",
+  "rows": 19022,
+  "arms": 7,
+  "paired_cases": 2882,
+  "arm_profile": {
+    "cost_greedy_repair": {
+      "n": 2882,
+      "raw_success_rate": 0.8799444829979182,
+      "forbidden_rate": 0.46703678001387927,
+      "joint_clear_rate": 0.48369188063844554
+    },
+    "exact_dp_oracle": {
+      "n": 1730,
+      "raw_success_rate": 1.0,
+      "forbidden_rate": 0.5398843930635838,
+      "joint_clear_rate": 0.4601156069364162
+    },
+    "faithful_active_voi": {
+      "n": 2882,
+      "raw_success_rate": 0.6825121443442054,
+      "forbidden_rate": 0.0,
+      "joint_clear_rate": 0.6825121443442054
+    },
+    "gain_per_cost_greedy": {
+      "n": 2882,
+      "raw_success_rate": 0.9441360166551006,
+      "forbidden_rate": 0.36398334489937545,
+      "joint_clear_rate": 0.607911172796669
+    },
+    "global_flat_voi": {
+      "n": 2882,
+      "raw_success_rate": 0.9354614850798056,
+      "forbidden_rate": 0.36224843858431643,
+      "joint_clear_rate": 0.6099930603747398
+    },
+    "orion_level_monotone": {
+      "n": 2882,
+      "raw_success_rate": 0.8879250520471894,
+      "forbidden_rate": 0.0,
+      "joint_clear_rate": 0.8879250520471894
+    },
+    "random_safe_ablation": {
+      "n": 2882,
+      "raw_success_rate": 0.8657182512144345,
+      "forbidden_rate": 0.0,
+      "joint_clear_rate": 0.8657182512144345
+    }
+  },
+  "comparisons": [
+    {
+      "comparator": "cost_greedy_repair",
+      "paired_cases": 2882,
+      "identical_action_trace_rate": 0.047883414295628035,
+      "behaviourally_inert": false,
+      "outcomes": {
+        "raw_success": {
+          "discordant": 467,
+          "orion_better": 245,
+          "comparator_better": 222,
+          "log10_p": -0.510524274102437,
+          "discriminates": false,
+          "favours": null
+        },
+        "frozen_primary": {
+          "discordant": 1601,
+          "orion_better": 1383,
+          "comparator_better": 218,
+          "log10_p": -206.42040733031826,
+          "discriminates": true,
+          "favours": "ORION"
+        }
+      }
+    },
+    {
+      "comparator": "exact_dp_oracle",
+      "paired_cases": 1730,
+      "identical_action_trace_rate": 0.0,
+      "behaviourally_inert": false,
+      "outcomes": {
+        "raw_success": {
+          "discordant": 183,
+          "orion_better": 0,
+          "comparator_better": 183,
+          "log10_p": -54.78745921084458,
+          "discriminates": true,
+          "favours": "COMPARATOR"
+        },
+        "frozen_primary": {
+          "discordant": 1099,
+          "orion_better": 925,
+          "comparator_better": 174,
+          "log10_p": -123.40305872083411,
+          "discriminates": true,
+          "favours": "ORION"
+        }
+      }
+    },
+    {
+      "comparator": "faithful_active_voi",
+      "paired_cases": 2882,
+      "identical_action_trace_rate": 0.0,
+      "behaviourally_inert": false,
+      "outcomes": {
+        "raw_success": {
+          "discordant": 1212,
+          "orion_better": 902,
+          "comparator_better": 310,
+          "log10_p": -66.65919751282951,
+          "discriminates": true,
+          "favours": "ORION"
+        },
+        "frozen_primary": {
+          "discordant": 1212,
+          "orion_better": 902,
+          "comparator_better": 310,
+          "log10_p": -66.65919751282951,
+          "discriminates": true,
+          "favours": "ORION"
+        }
+      }
+    },
+    {
+      "comparator": "gain_per_cost_greedy",
+      "paired_cases": 2882,
+      "identical_action_trace_rate": 0.17730742539902844,
+      "behaviourally_inert": false,
+      "outcomes": {
+        "raw_success": {
+          "discordant": 336,
+          "orion_better": 87,
+          "comparator_better": 249,
+          "log10_p": -18.507196681075058,
+          "discriminates": true,
+          "favours": "COMPARATOR"
+        },
+        "frozen_primary": {
+          "discordant": 1295,
+          "orion_better": 1051,
+          "comparator_better": 244,
+          "log10_p": -118.80423704057245,
+          "discriminates": true,
+          "favours": "ORION"
+        }
+      }
+    },
+    {
+      "comparator": "global_flat_voi",
+      "paired_cases": 2882,
+      "identical_action_trace_rate": 0.07078417765440666,
+      "behaviourally_inert": false,
+      "outcomes": {
+        "raw_success": {
+          "discordant": 399,
+          "orion_better": 131,
+          "comparator_better": 268,
+          "log10_p": -11.210379435446072,
+          "discriminates": true,
+          "favours": "COMPARATOR"
+        },
+        "frozen_primary": {
+          "discordant": 1329,
+          "orion_better": 1065,
+          "comparator_better": 264,
+          "log10_p": -113.47248984514277,
+          "discriminates": true,
+          "favours": "ORION"
+        }
+      }
+    },
+    {
+      "comparator": "random_safe_ablation",
+      "paired_cases": 2882,
+      "identical_action_trace_rate": 0.18077723802914641,
+      "behaviourally_inert": false,
+      "outcomes": {
+        "raw_success": {
+          "discordant": 214,
+          "orion_better": 139,
+          "comparator_better": 75,
+          "log10_p": -4.840273781346561,
+          "discriminates": true,
+          "favours": "ORION"
+        },
+        "frozen_primary": {
+          "discordant": 214,
+          "orion_better": 139,
+          "comparator_better": 75,
+          "log10_p": -4.840273781346561,
+          "discriminates": true,
+          "favours": "ORION"
+        }
+      }
+    }
+  ],
+  "summary": {
+    "behaviourally_inert_arms": [],
+    "discriminating_on_raw_success": 5,
+    "discriminating_on_frozen_primary": 6,
+    "frozen_primary_favouring_orion": 6,
+    "total_comparisons": 6
+  },
+  "status": "MEASURED"
+}
