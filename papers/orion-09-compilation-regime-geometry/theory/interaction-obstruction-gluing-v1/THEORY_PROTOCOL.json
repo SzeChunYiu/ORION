@@ -1,0 +1,16 @@
+{
+  "schema": "ORION.ORION09.InteractionObstructionGluing.v1",
+  "identity": "ORION09.INTERACTION_OBSTRUCTION_GLUING.v1",
+  "outcome_accessed": false,
+  "status": "DERIVATION_RULES_FROZEN__OBSTRUCTION_BASIS_AND_N5_MANIFEST_REQUIRED_BEFORE_N5_LABELS",
+  "derivation_data": "all already-accessed exact n<=4 structures only",
+  "canonicalization": "hypergraph labels must be invariant under the registered structure symmetries; equivalent relabellings canonicalize to one signature before minimality is assessed",
+  "theorem_targets": [
+    "T1 local witness: every n<=4 mixed regime contains a minimal connected obstruction signature from O",
+    "T2 disjoint-union stability: if components are obstruction-free and objective coupling is absent under the frozen grammar, their disjoint union is obstruction-free",
+    "T3 gluing sufficiency: every regime-changing mixed fibre created by admissible gluing contains one of the prospectively frozen boundary obstruction signatures",
+    "T4 prediction: obstruction presence/absence defines a deterministic n=5 regime forecast without evaluating the exact n=5 referee"
+  ],
+  "prospective_gate": "Commit O, its canonicalization/checker, and every n=5 challenge instance/prediction before computing any n=5 exact label. A post-label edit to O is a new identity, never a repair.",
+  "terminal_set": ["OBSTRUCTION_GLUING_THEOREM_SUPPORTED_AND_N5_PREDICTION_HOLDS", "THEOREM_SUPPORTED__N5_TRANSFER_FAILS", "LOCAL_OR_GLUING_THEOREM_REFUTED", "CANNOT_CHECK"]
+}

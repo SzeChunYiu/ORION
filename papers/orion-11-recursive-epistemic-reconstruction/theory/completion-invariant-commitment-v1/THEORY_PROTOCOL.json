@@ -1,0 +1,22 @@
+{
+  "schema": "ORION.ORION11.CompletionInvariantCommitment.v1",
+  "identity": "ORION11.COMPLETION_INVARIANT_COMMITMENT.v1",
+  "outcome_accessed": false,
+  "status": "THEOREM_TARGET_FROZEN",
+  "objects": {
+    "partial_state": "a finite set of coordinate constraints with explicit unknowns",
+    "completion_set": "all total registered states satisfying the partial constraints",
+    "disposition": "a finite-valued function D on total states",
+    "certificate": "a subset of resolved facts/constraints whose logical closure makes D constant over every compatible completion"
+  },
+  "theorem_targets": [
+    "T1 (exact licensing): commitment to d is sound and complete over a partial state p iff D(c)=d for every c in Comp(p)",
+    "T2 (non-identifiability): if two completions of p have different D values, no deterministic rule measurable only from p can be correct on both",
+    "T3 (monotonicity): once D is completion-invariant, adding truthful constraints cannot destroy that invariance unless the refined completion set is empty",
+    "T4 (finite minimal certificate): on a finite registered state family, every completion-invariant nonempty p has at least one inclusion-minimal certificate; each certificate intersects the coordinate-difference set of every opposite-disposition completion pair compatible with the un-certified base state",
+    "T5 (hitting-set dual): under coordinate-independent consistency, inclusion-minimal commitment certificates are exactly inclusion-minimal hitting sets of the registered opposite-disposition pair-difference hypergraph"
+  ],
+  "hostile_controls": ["mixed completion fibre must block commitment", "irrelevant resolved fact must not be required in a minimal certificate", "contradictory/empty completion set must fail closed rather than prove any disposition"],
+  "old_evidence_rule": "R4 Active-VOI and costed-ordering outcomes are boundary/derivation evidence only. They are not theorem tests and cannot be reinterpreted as support.",
+  "terminal_set": ["THEOREM_PROVED_WITH_REGISTERED_ASSUMPTIONS", "THEOREM_PARTIALLY_PROVED__DUALITY_REFUTED_OR_NEEDS_STRONGER_ASSUMPTIONS", "THEOREM_REFUTED", "CANNOT_CHECK"]
+}

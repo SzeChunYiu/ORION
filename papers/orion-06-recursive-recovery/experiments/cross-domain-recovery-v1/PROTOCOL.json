@@ -1,0 +1,18 @@
+{
+  "schema": "ORION.ORION06.CrossDomainRecovery.v1",
+  "protocol_id": "ORION06.CROSS_DOMAIN_RECOVERY.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "DESIGN_FROZEN__TASK_MANIFEST_AND_BUDGETS_REQUIRED",
+  "domains": [
+    {"id": "lean_mathlib", "repository": "leanprover-community/mathlib4", "commit": "bbcd1968ee6950abe88b85dba6995da346c4b2a8", "verifier": "native Lean elaboration/kernel"},
+    {"id": "defects4j", "repository": "rjust/defects4j", "commit": "8c16da8230843cdc918eaf4ddb449637f02b83c6", "verifier": "native compile/test and triggering tests"},
+    {"id": "orion_exact", "source": "frozen ORION exact quantum/combinatorial task family", "verifier": "existing exact solver/checker", "external": false}
+  ],
+  "task_eligibility": "A task must have a pre-existing failure/negative artifact before selection and an objective verifier that can accept or reject a proposed recovery. Freeze all task IDs and parent negative artifacts before any arm operates.",
+  "arms": ["preserve_negative_no_revival", "naive_retry", "donor_or_domain_repair", "orion_recovery", "oracle_diagnostic_ceiling"],
+  "budget_matching": "Each non-oracle arm receives identical visible task state, negative history, verifier access limit, wall-independent step budget, and maximum verifier-call count per task. Exact numeric budgets must be frozen in the task manifest before execution.",
+  "primary_endpoints": ["verified_recovery", "false_revival", "parent_claim_mutation_or_drift", "stop_correctness", "verifier_calls"],
+  "reporting": "Preserve donor wins, failed recoveries, unresolved tasks and CANNOT_CHECK; report per-domain as well as pooled outcomes.",
+  "stop_rule": "No replacing failed tasks, expanding budgets, or changing what counts as recovery after protected outcomes."
+}

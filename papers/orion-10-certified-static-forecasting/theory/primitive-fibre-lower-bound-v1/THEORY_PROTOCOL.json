@@ -1,0 +1,17 @@
+{
+  "schema": "ORION.ORION10.PrimitiveFibreLowerBound.v1",
+  "identity": "ORION10.PRIMITIVE_FIBRE_LOWER_BOUND.v1",
+  "outcome_accessed": false,
+  "status": "VOCABULARY_AND_THEOREM_TARGET_FROZEN__FRESH_SECTOR_MANIFEST_REQUIRED",
+  "frozen_vocabulary": ["support_size", "support_intersection_profile", "signed_overlap_profile", "borrow_or_carry_profile", "objective_index"],
+  "target": "the exact R6M unit-objective static cost C, with objective_index retained explicitly so QG-2/QG-8 scope is not erased",
+  "theorem_targets": [
+    "T1: an exact predictor measurable only with respect to Psi exists iff C is constant on every Psi fibre",
+    "T2: on a finite mixed fibre, every point prediction constant on the fibre has worst-case absolute error at least half the cost range; midpoint achieves that minimax bound when unrestricted real outputs are allowed",
+    "T3: no increase in expression size, search depth, or formula grammar over unchanged Psi can repair a mixed-cost fibre",
+    "T4: adding a primitive q can repair exactness only by separating every opposite-cost pair that was Psi-indistinguishable"
+  ],
+  "fresh_test_requirement": "Before reading exact costs in a fresh size/family sector, freeze its instance IDs and either (a) predict that the existing Psi has a mixed fibre and name a witness-search criterion, or (b) freeze one mechanism-derived new primitive q and its predicted separating pairs. No primitive may be added after fresh costs are opened under this identity.",
+  "optional_practical_bridge": "Only after theorem terminal is fixed: compare certificate/search effort against pinned Qiskit/tket resource-estimation or compiler baselines; native heuristic output is not theorem gold.",
+  "terminal_set": ["PERMANENT_PSI_LOWER_BOUND_PROVED", "NEW_PRIMITIVE_PROSPECTIVELY_REPAIRS_REGISTERED_FIBRES", "NEW_PRIMITIVE_NOT_SUPPORTED", "CANNOT_CHECK"]
+}

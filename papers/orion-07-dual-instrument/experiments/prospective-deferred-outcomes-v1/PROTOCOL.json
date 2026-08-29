@@ -1,0 +1,15 @@
+{
+  "schema": "ORION.ORION07.ProspectiveDeferredOutcomes.v1",
+  "protocol_id": "ORION07.PROSPECTIVE_DEFERRED_OUTCOMES.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "TEMPORAL_PROTOCOL_FROZEN__ITEM_MANIFEST_REQUIRED",
+  "minimum_items": 20,
+  "eligible_item_types": ["open implementation/PR decision with objective merge-or-close terminal", "formal conjecture/proof challenge with later native proof or counterexample", "public benchmark/standard decision with a pre-existing objective resolution mechanism"],
+  "eligibility": "At freeze time the final outcome must not yet exist; the item must have a public immutable identifier, evidence snapshot, and a resolution rule not controlled by the ORION evaluation.",
+  "freeze_fields": ["item IDs", "eligibility evidence", "both instrument outputs", "instrument confidence/abstention", "score rule", "resolution rule", "study close rule"],
+  "study_close_rule": "Score when at least 20 eligible items have objectively resolved or 180 days after the item-manifest commit, whichever comes later; at close, unresolved eligible items remain unresolved rather than being removed.",
+  "endpoints": ["accuracy", "calibration", "instrument agreement", "jointly_wrong_rate", "abstention", "unresolved_rate"],
+  "authority_ceiling": "genuine temporal prospective evidence over the frozen public item population; not a universal reliability claim",
+  "no_backfill": true
+}

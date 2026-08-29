@@ -1,0 +1,19 @@
+{
+  "schema": "ORION.ORION08.RealBindingValueTransfer.v1",
+  "protocol_id": "ORION08.REAL_BINDING_VALUE_TRANSFER.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "DESIGN_FROZEN__EXACT_TASK_IDS_AND_SPLITS_REQUIRED",
+  "sources": [
+    {"family": "defects4j", "repository": "rjust/defects4j", "commit": "8c16da8230843cdc918eaf4ddb449637f02b83c6"},
+    {"family": "openml_cc18", "suite": "OpenML-CC18", "task_ids": null},
+    {"family": "ro_crate_optional", "repository": "ResearchObject/ro-crate-py", "commit": "05effe591443934e48e3fe59c53d7bc01a3334e0", "enabled": false}
+  ],
+  "freeze_before_outcomes": ["exact OpenML task IDs and official splits", "Defects4J episode IDs", "coarse observation", "one typed/refined binding", "action and utility definition", "development/protected split", "predicted value and no-value strata"],
+  "theorem_prediction": "binding has value on a positive-mass coarse fibre iff the fibre contains incompatible optimal-action sets; if all states in the fibre share an optimal action, the binding cannot improve optimal expected utility under the registered information surface",
+  "arms": ["coarse_binding", "strongest_deterministic_proxy", "generic_information_acquisition", "typed_binding", "oracle"],
+  "required_strata": ["at least one prospectively predicted no-value/tie stratum", "at least one prospectively predicted positive-value stratum"],
+  "primary_endpoints": ["decision_utility", "fraction_of_oracle_gap_captured", "acquisition_or_execution_cost", "prediction_of_value_vs_no_value"],
+  "information_matching": "All non-oracle arms receive identical raw facts; only the registered binding relation differs where that is the experimental factor.",
+  "stop_rule": "No task replacement, utility change, binding-coordinate change, or stratum relabel after protected outcomes."
+}
