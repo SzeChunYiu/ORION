@@ -145,6 +145,41 @@ def _require_markers(
             errors.append(f"{paper_id}: missing load-bearing marker {marker!r}")
 
 
+def load_ledger(path: Path) -> dict[str, Any]:
+    """Load a monolithic ledger or assemble the audited manifest and paper shards."""
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(raw, dict):
+        raise ValueError("ledger root must be a JSON object")
+    if "papers" in raw:
+        return raw
+
+    paper_files = raw.get("paper_files")
+    if not isinstance(paper_files, list) or not paper_files:
+        raise ValueError("manifest must name non-empty paper_files")
+    papers: list[dict[str, Any]] = []
+    for relative in paper_files:
+        if not isinstance(relative, str) or not relative:
+            raise ValueError("paper_files entries must be non-empty strings")
+        part_path = path.parent / relative
+        part = json.loads(part_path.read_text(encoding="utf-8"))
+        if not isinstance(part, dict):
+            raise ValueError(f"{relative}: shard root must be an object")
+        if part.get("schema_version") != raw.get("schema_version"):
+            raise ValueError(f"{relative}: schema_version differs from manifest")
+        if part.get("subject_main_sha") != raw.get("subject_main_sha"):
+            raise ValueError(f"{relative}: subject_main_sha differs from manifest")
+        if part.get("scientific_authority_delta") != "NONE":
+            raise ValueError(f"{relative}: scientific_authority_delta must remain NONE")
+        rows = part.get("papers")
+        if not isinstance(rows, list) or not rows:
+            raise ValueError(f"{relative}: shard papers must be a non-empty list")
+        papers.extend(rows)
+
+    assembled = dict(raw)
+    assembled["papers"] = papers
+    return assembled
+
+
 def validate_ledger(data: Any) -> list[str]:
     """Return every structural/semantic ledger defect; an empty list is PASS."""
     errors: list[str] = []
@@ -185,9 +220,7 @@ def validate_ledger(data: Any) -> list[str]:
     ]
     if paper_ids != EXPECTED_IDS:
         errors.append("papers must be ordered ORION-01 through ORION-25 exactly once")
-    slugs = [
-        record.get("slug") for record in papers if isinstance(record, dict)
-    ]
+    slugs = [record.get("slug") for record in papers if isinstance(record, dict)]
     if len(slugs) != len(set(slugs)):
         errors.append("paper slugs must be unique")
 
@@ -287,9 +320,7 @@ def validate_ledger(data: Any) -> list[str]:
         artifact = str(record.get("next_artifact", ""))
         expected_prefix = f"papers/orion-{paper_id[-2:]}-"
         if artifact and not artifact.startswith(expected_prefix):
-            errors.append(
-                f"{paper_id}: next_artifact must live under its paper directory"
-            )
+            errors.append(f"{paper_id}: next_artifact must live under its paper directory")
         forbidden_artifact_terms = ("RESULT", "CLAIM_DISPOSITION", "AUTHORITY_DISPOSITION")
         if any(term in artifact.upper() for term in forbidden_artifact_terms):
             errors.append(
@@ -338,8 +369,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--ledger", type=Path, default=_default_ledger())
     args = parser.parse_args(argv)
     try:
-        data = json.loads(args.ledger.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+        data = load_ledger(args.ledger)
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
         print(f"TOP_TIER_ATOMIC_GAP_LEDGER_V2: FAIL: {exc}")
         return EXIT_FAIL
 
