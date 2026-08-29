@@ -8,7 +8,7 @@
 
 | Requirement | Status | Evidence |
 |---|---|---|
-| Preserve PR #1602 terminal and eight cap hits | **Bound, raw transplant still open** | `PR1602_ADOPTION_RECEIPT.json` binds the source commit, Round-2 hash, Round-3 aggregate hash, eight task indices, repeatability, cap hits, and adverse terminal. The stale branch is not wholesale-merged. |
+| Preserve PR #1602 terminal and eight cap hits | **Complete on issue branch** | `PR1602_ADOPTION_RECEIPT.json` binds the source commit, Round-2 hash, Round-3 aggregate hash, eight task indices, repeatability, cap hits, and adverse terminal. The strict path transplant is recorded in `development/orion-01-pr1602-evidence-transplant-2026-08-29/TRANSPLANT_MANIFEST.json`; the stale branch is not wholesale-merged. |
 | Repair theorem/proof manuscripts | **Implemented in new V3 identity** | `theory-A-MANUSCRIPT_V3.md`, `theory-B-MANUSCRIPT_V3.md`, and `PROOF_REPAIR_DISPOSITION_V3.md`. Frozen V2 is not edited. |
 | Implementation-independent checker | **Implemented** | `proof_checker_v3.py`, tests, and the finite-scope result schema. The checker imports no ORION or PyZX production code. |
 | Current primary-source novelty subtraction | **Implemented, bounded authority** | `NOVELTY_AUDIT_V2.md`; standard restricted zero-sum theory, binary dependence, generic descent, and product arithmetic are subtracted. |
@@ -27,10 +27,9 @@
 
 ## Deliberately open items
 
-1. **Raw path-by-path evidence transplant.** PR #1602's immutable commit and content hashes are bound, but the full Round-2/Round-3 directory transplant into current main is not claimed complete.
-2. **Generated package artifacts.** PDFs, final manifest hashes, and the protocol-check receipt depend on successful GitHub Actions execution; visual PDF inspection remains a human release gate.
-3. **Pinned-source execution.** The prefix `dade7d46` has not been claimed resolved under this identity, and O1–O6 have not been discharged for the source instance.
-4. **External authority.** No external proof review, novelty opinion, replication, submission, or acceptance is claimed.
+1. **Generated package artifacts.** PDFs, final manifest hashes, and the protocol-check receipt depend on successful GitHub Actions execution; visual PDF inspection remains a human release gate.
+2. **Pinned-source execution.** The prefix `dade7d46` has not been claimed resolved under this identity, and O1–O6 have not been discharged for the source instance.
+3. **External authority.** No external proof review, novelty opinion, replication, submission, or acceptance is claimed.
 
 ## Current bounded dispositions
 
