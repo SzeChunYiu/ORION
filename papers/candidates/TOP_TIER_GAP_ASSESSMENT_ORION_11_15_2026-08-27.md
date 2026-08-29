@@ -25,6 +25,15 @@
 > comparative claim, and its ORION-11 verdict of `GAPS_FILLABLE` predates the retraction
 > that closed that gap by withdrawal rather than by filling it.
 >
+> **The ORION-15 row is also superseded, in the opposite direction.** At
+> `2026-08-27 21:50:09` — twelve hours after this assessment — `7e8e347f5` landed the
+> Self-ORION V4 confirmatory execution with terminal
+> `REVISION_LEVEL_DISCRIMINATION_SUPPORTED`. This document mentions revision-level
+> discrimination zero times, so its ORION-15 gaps were assessed against a paper that has
+> since gained a *positive* terminal. Staleness cuts both ways: the ORION-11 row is
+> optimistic about a claim later retracted, and the ORION-15 row is pessimistic about
+> evidence later supplied.
+>
 > **The ORION-11 row is superseded.** For ORION-11's current terminal see
 > `papers/PUBLICATION_DISPOSITION_MATRIX_V1.md`. The ORION-12 to ORION-15 rows, the
 > reviewer framing and the gap taxonomy are unaffected and remain useful — which is why
