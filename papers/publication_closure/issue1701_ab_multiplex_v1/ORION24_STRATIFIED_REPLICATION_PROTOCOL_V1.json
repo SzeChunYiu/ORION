@@ -1,0 +1,48 @@
+{
+  "current_bounded_result": {
+    "adverse_discordances": 0,
+    "discordance_concentration": "all four in RETAIN_NEGATIVE controls",
+    "favourable_discordances": 4,
+    "one_sided_exact_p": 0.0625,
+    "two_sided_exact_p": 0.125
+  },
+  "forbidden": [
+    "self-author all external cases",
+    "pool cases within one construct family as independent",
+    "claim broad evaluator superiority from P14C",
+    "count P14E designed conformance symmetry as population superiority"
+  ],
+  "identity": "ORION24.STRATIFIED_CONSTRUCT_REPLICATION.v1",
+  "primary_claim_if_passed": "generalizes beyond planted negative-retention controls across the two prespecified construct strata; does not by itself establish frontier-agent performance",
+  "primary_gate": {
+    "null_joint_probability": 0.01580810546875,
+    "power_if_independent_win_probability_0_8": 0.7323303354067167,
+    "wins_each_stratum_min": 7,
+    "wins_total_min": 15
+  },
+  "reviewed_main": "e19a3b7cd0140d1f413e802a1188a2948726df6f",
+  "sampling": {
+    "external_authorship_and_adjudication": true,
+    "family_is_inference_unit": true,
+    "n_construct_families": 20,
+    "strata": [
+      {
+        "n": 10,
+        "name": "negative_retention"
+      },
+      {
+        "n": 10,
+        "name": "ordinary_positive_or_mixed"
+      }
+    ]
+  },
+  "schema": "ORION.ORION24.STRATIFIED_CONSTRUCT_REPLICATION.Protocol.v1.design",
+  "separate_frontier_gate": "Reusable-sealed frontier-agent campaign remains a separate experiment identity; control-plane conformance cannot count as performance evidence.",
+  "status": "DESIGN_ONLY__NO_OUTCOME_AUTHORITY",
+  "terminals": [
+    "STRATIFIED_CONSTRUCT_ADVANTAGE_SUPPORTED",
+    "CONTROL_SPECIFIC_ADVANTAGE",
+    "NO_DISCRIMINATION",
+    "CANNOT_CHECK_EXTERNAL_CUSTODY_OR_USABLE_COUNT"
+  ]
+}
