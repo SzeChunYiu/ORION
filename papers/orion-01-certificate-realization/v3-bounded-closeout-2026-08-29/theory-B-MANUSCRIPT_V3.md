@@ -161,7 +161,7 @@ Under those assumptions,
 
 and
 
-`beta_{P1 x P2}(F1 x F2;C) = beta_P1(F1;C1)+beta_P2(F2;C2)`.
+`beta_{P1 x P2}(F1 x F2;C) = beta_{P1}(F1;C1)+beta_{P2}(F2;C2)`.
 
 ### Proof
 
