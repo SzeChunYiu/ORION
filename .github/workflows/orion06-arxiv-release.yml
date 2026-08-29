@@ -1,0 +1,117 @@
+name: orion06-arxiv-release
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-06-recursive-recovery/**'
+      - 'papers/arxiv_preprint/**'
+      - 'papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/build_q_qg_cited_masters.py'
+      - 'papers/check_q_qg_publication.py'
+      - '.github/workflows/orion06-arxiv-release.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-06-recursive-recovery/**'
+      - 'papers/arxiv_preprint/**'
+      - 'papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/build_q_qg_cited_masters.py'
+      - 'papers/check_q_qg_publication.py'
+      - '.github/workflows/orion06-arxiv-release.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build-orion06-arxiv:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install document toolchain
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            pandoc texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended \
+            poppler-utils zip
+      - name: Re-run publication integrity and Q2 denominator gates
+        run: |
+          python papers/check_q_qg_publication.py
+          python papers/orion-06-recursive-recovery/check_transition_graph.py
+      - name: Generate cited scientific master
+        run: python papers/build_q_qg_cited_masters.py --clean
+      - name: Prepare named arXiv source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/orion06_arxiv/source build/orion06_arxiv/rendered
+          python papers/orion-06-recursive-recovery/submission_aij/build_aij_source.py \
+            --cited-master build/q_qg_cited/Q2/MANUSCRIPT_CITED.md \
+            --highlights papers/orion-06-recursive-recovery/submission_aij/HIGHLIGHTS.txt \
+            --out build/orion06_arxiv/prepared.md
+          cp build/q_qg_cited/Q2/references.bib build/orion06_arxiv/source/references.bib
+          cp papers/arxiv_preprint/wave1_pandoc_template.tex build/orion06_arxiv/source/pandoc_template.tex
+          pandoc build/orion06_arxiv/prepared.md \
+            --from=markdown+citations --to=latex --natbib \
+            --template=build/orion06_arxiv/source/pandoc_template.tex \
+            -o build/orion06_arxiv/source/main.tex
+          grep -Fq '\author{SzeChunYiu' build/orion06_arxiv/source/main.tex
+          grep -Fq 'Stockholm University, Stockholm, Sweden' build/orion06_arxiv/source/main.tex
+          grep -Fq 'sze-chun.yiu@fysik.su.se' build/orion06_arxiv/source/main.tex
+          grep -Fq 'AI assistance disclosure' build/orion06_arxiv/source/main.tex
+          grep -Eq '\\cite[pt]?\{' build/orion06_arxiv/source/main.tex
+      - name: Build and audit named arXiv PDF
+        shell: bash
+        working-directory: build/orion06_arxiv/source
+        run: |
+          set -euo pipefail
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          bibtex main
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          test -s main.pdf
+          if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence' main.log; then exit 1; fi
+      - name: Audit release surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          pdfinfo build/orion06_arxiv/source/main.pdf > build/orion06_arxiv/pdfinfo.txt
+          pdffonts build/orion06_arxiv/source/main.pdf > build/orion06_arxiv/pdffonts.txt
+          pdftotext build/orion06_arxiv/source/main.pdf build/orion06_arxiv/pdf.txt
+          grep -Fq 'SzeChunYiu' build/orion06_arxiv/pdf.txt
+          grep -Fq 'Stockholm University' build/orion06_arxiv/pdf.txt
+          grep -Fq 'sze-chun.yiu@fysik.su.se' build/orion06_arxiv/pdf.txt
+          grep -Fq 'The author received no specific funding for this work.' build/orion06_arxiv/pdf.txt
+          grep -Fq 'The author declares no competing interests.' build/orion06_arxiv/pdf.txt
+          grep -Fq 'References' build/orion06_arxiv/pdf.txt
+          grep -Fq '51-receipt' build/orion06_arxiv/pdf.txt
+          if grep -Eq '\[@[A-Za-z0-9_:-]+' build/orion06_arxiv/pdf.txt; then
+            echo 'ORION06_ARXIV_UNRESOLVED_CITATION_TOKEN=FAIL'
+            exit 1
+          fi
+          pdftoppm -png -r 144 build/orion06_arxiv/source/main.pdf build/orion06_arxiv/rendered/page
+          sha256sum build/orion06_arxiv/source/main.pdf > build/orion06_arxiv/pdf_sha256.txt
+          printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' > build/orion06_arxiv/ARXIV_LICENSE.txt
+          printf '%s\n' 'cs.AI' > build/orion06_arxiv/ARXIV_PRIMARY_CATEGORY.txt
+      - name: Build arXiv source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp build/orion06_arxiv/prepared.md build/orion06_arxiv/source/SCIENTIFIC_MASTER_CITED.md
+          (cd build/orion06_arxiv && zip -qr orion-06-arxiv-source.zip source)
+          sha256sum build/orion06_arxiv/orion-06-arxiv-source.zip > build/orion06_arxiv/source_zip_sha256.txt
+      - name: Archive ORION-06 arXiv package
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-06-arxiv-package
+          path: build/orion06_arxiv
+          if-no-files-found: error
+          retention-days: 90
