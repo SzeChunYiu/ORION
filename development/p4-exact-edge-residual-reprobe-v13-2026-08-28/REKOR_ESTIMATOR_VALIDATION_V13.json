@@ -1,0 +1,40 @@
+{
+  "control": {
+    "filename": "packaging-26.3.tar.gz",
+    "provenance": "https://pypi.org/integrity/packaging/26.3/packaging-26.3.tar.gz/provenance",
+    "sha256": "94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79"
+  },
+  "control_attestation_bundle": {
+    "attestation_count": 0,
+    "tlog_log_indexes": [
+      2341131906
+    ]
+  },
+  "control_selection": {
+    "chosen": "packaging-26.3.tar.gz",
+    "file_count": 108,
+    "files_with_provenance": 14,
+    "project": "packaging"
+  },
+  "edge_results_shapeB": [],
+  "estimator_verdict": "STRUCTURALLY_BLIND: the log provably holds the control's attestation (shape C) while digest-shaped retrieval cannot see it (shapes A/B empty); Rekor digest retrieval is structurally blind to PyPI dsse attestations and NO rekor result may be cited for or against the edges. Absence rests on the PyPI/GitHub surfaces only.",
+  "finished_at": "2026-08-28T05:24:53.389871+00:00",
+  "outcomes_accessed": false,
+  "public_development_evidence_only": true,
+  "schema_version": "orion.p4.exact-edge.rekor-estimator-validation.v13.v1",
+  "shape_results_control": {
+    "A_hashes_list": {
+      "entries": 0,
+      "status": 200
+    },
+    "B_entryQuerys": {
+      "entries": 0,
+      "status": 200
+    },
+    "C_logIndex_direct": {
+      "entries": 1,
+      "status": 200
+    }
+  },
+  "started_at": "2026-08-28T05:24:52.706828+00:00"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "orion.p4.exact-edge.residual-reprobe.v13.v1",
+  "paper_id": "P4",
+  "lane_id": "P4_M6_JOSS_EXACT_EDGE_RESIDUAL_REPROBE_V13",
+  "revival_of": [
+    {
+      "identity": "ORION-14.NAT.M6.JOSS_EXACT_EDGE_LINEAGE_AUTHORITY.V11",
+      "recorded_verdict": "TARGETED_SAME_IDENTITY_REPAIR_0_OF_4__FINAL_EXACT_76_OF_80__PROVIDER_STATE_CHANGE_REQUIRED",
+      "residual_indices": [36, 91, 133, 185]
+    },
+    {
+      "identity": "ORION-14.NAT.M6.JOSS_INDEX91_BUILD_PROVENANCE.V12",
+      "recorded_verdict": "TRACKED_JAR_PROJECTION_106_OF_106_EXACT__FRESH_COMPILE_CANNOT_CHECK__SIGNED_BUILD_AND_MODE_AUTHORITY_FAIL"
+    }
+  ],
+  "frozen_before_run": true,
+  "order_of_operations": [
+    "1. This protocol document, then a freeze receipt hashing every input below.",
+    "2. probe_v13.py once: edges 36, 133, 185 metadata-only provider-state probes.",
+    "3. compile_probe_91_v13.py once: pinned-build fresh-compile discriminator for edge 91.",
+    "4. Adjudicate from captured bodies; record RESULT_V13.* whatever the outcome.",
+    "5. Repin SHA256SUMS rows only for legitimately new or changed artifacts."
+  ],
+  "per_edge_freeze": {
+    "index_36": {
+      "repository": "jaxionproject/jaxion",
+      "residual": "EXACT_ARCHIVE_VERSION_DOI_RELATION_AND_ARCHIVE_ROOT_TO_TAG_COMMIT_IDENTITY_CONTRADICTED",
+      "accepted_commit": "069ab4f56d100d765d46c594ac1b06add7e49f9e",
+      "v11_discriminator": "A provider replacement/correction must bind an exact 0.0.3 archive checksum whose root is commit 069ab4f...",
+      "v13_lever": "Zenodo concept version-chain enumeration (conceptrecid and conceptdoi searches) — a provider-corrected or replacement deposit would appear as a new child version of concept 10.5281/zenodo.21221061. V10/V11 checked only the frozen child and DataCite registrations.",
+      "closure_condition": "A new or corrected provider record binds an exact 0.0.3 archive whose content root is commit 069ab4f56d100d765d46c594ac1b06add7e49f9e."
+    },
+    "index_91": {
+      "repository": "nutritionallungimmunity/pai",
+      "residual": "EMBEDDED_HEAD_TREE_AUTHENTICATED_BUT_ARCHIVE_PAYLOAD_HAS_UNTRACKED_GENERATED_FILES_AND_MODE_DRIFT",
+      "authenticated_revision": "aa021231cdafb6d74ce9ab5f55f824a3032058a4",
+      "tree": "d5620f3acf4e5a163cfdfdefc2432ebd5709008a",
+      "v12_discriminator": "Pinned-image fresh compile; terminal PINNED_COMPILER_RUNTIME_UNAVAILABLE_NO_BUILD_EXECUTED (environmental: no OCI daemon, disposable VM ENOSPC).",
+      "v13_lever": "The SAME pinned compiler identity — Eclipse Temurin OpenJDK 17.0.14+7, javac 17.0.14 — obtained through its native Adoptium distribution channel with distributor-checksum verification, executing V12's frozen compile command verbatim against the immutable codeload checkout of the authenticated revision. This is a delivery-mechanism repair, not a substitute compiler. Comparison target: the V12 checksum-bound archive manifest (JAR_PROJECTION_V12.json observed_manifest).",
+      "closure_condition": "NONE available to a local compile: the named terminal requires a corrected checksum-bound archive exactly equal to an immutable revision, or provider-native signed build attestation. The compile discriminator can only upgrade FRESH_COMPILE_CANNOT_CHECK to an exact/failed build-reproducibility verdict; the signed-build and mode-authority residuals are addressed separately by mechanistic argument."
+    },
+    "index_133": {
+      "repository": "artefactory/woodtapper",
+      "residual": "PYPI_EXACT_FILE_OBJECT_HAS_NO_PARSED_SIGNED_ARTIFACT_TO_FULL_COMMIT_BINDING",
+      "file_sha256": "b509f6469b9ff8888195751c811d689559f45e24aeb35bb173b9680c99c8dbf3",
+      "accepted_commit": "7ac6d23d504404c4004faad663f6b889427109e6",
+      "v11_discriminator": "PyPI must expose exact-file signed provenance binding the frozen SHA-256 to the accepted commit.",
+      "v13_lever": "Two provider/ledger surfaces V10/V11 did not query: (1) the dedicated PyPI attestations surface /_attestations/<project>/<version>/ that pip consumes, and (2) the independent Sigstore Rekor transparency-log retrieval by artifact digest. A Rekor entry created at upload time would be a signed artifact-to-source binding even if the aggregate PEP 691 provenance field fails to surface it; a verified absence in both the aggregate surface and the transparency log is positive evidence that no signed attestation exists, upgrading the verdict from 'not exposed' to 'does not exist'.",
+      "closure_condition": "A signed attestation (PyPI surface or Rekor entry) whose subject digest is b509f646... and whose source identity binds commit 7ac6d23d...."
+    },
+    "index_185": {
+      "repository": "mit-psfc/disruption-py",
+      "residual": "PYPI_EXACT_FILE_OBJECT_HAS_NO_PARSED_SIGNED_ARTIFACT_TO_FULL_COMMIT_BINDING",
+      "file_sha256": "775f92dbcbd6d1523db241494998e4b0867d51a84236feb7accc86b63b033a19",
+      "accepted_commit": "dec5c58a3e3970bc6817f33efb615fea11057fce",
+      "v13_lever": "Identical to index_133.",
+      "closure_condition": "A signed attestation (PyPI surface or Rekor entry) whose subject digest is 775f92db... and whose source identity binds commit dec5c58a...."
+    }
+  },
+  "claim_boundary": "Development transport/reproducibility evidence only. No natural pair, lineage adjudication, source-disjoint replication, custody transfer, comparator execution, outcome or performance authority is created. The programme terminal P4_NATURAL_PAIR_SOURCE_TRANSPORT_CANNOT_CHECK is not modified by this lane."
+}
