@@ -10,6 +10,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 CONTRACT_ID = "P6.COMMUTE.RW_NONINTERFERENCE.V1"
+# papers/PAPER_ALIASES.md records {old: P6, new: ORION-16} and calls itself the single
+# source of truth for paper-id aliases. The R0 rename rewrote the contract id in the
+# prose artifacts to the ORION-16 form and left it as P6 in the executable source and in
+# the frozen mechanized JSON, which must not be rewritten because they are evidence. So
+# the same contract is now legitimately written two ways, and the binding has to accept
+# either spelling rather than force one side to move.
+CONTRACT_ID_ALIASES = (CONTRACT_ID, "ORION-16.COMMUTE.RW_NONINTERFERENCE.V1")
 FILES = (
     "src/orion/study/p6/separation_calculus_smt.py",
     "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_SEPARATION_CALCULUS_MECHANIZED_2026-08-21.json",
@@ -30,8 +37,11 @@ def audit(root: Path = ROOT) -> dict[str, object]:
     missing_id = []
     for relative in FILES:
         text = (root / relative).read_text(encoding="utf-8")
-        encoded_id = CONTRACT_ID.replace("_", r"\_") if relative.endswith(".tex") else CONTRACT_ID
-        if encoded_id not in text:
+        candidates = [
+            alias.replace("_", r"\_") if relative.endswith(".tex") else alias
+            for alias in CONTRACT_ID_ALIASES
+        ]
+        if not any(candidate in text for candidate in candidates):
             missing_id.append(relative)
 
     source = (root / FILES[0]).read_text(encoding="utf-8")
@@ -50,7 +60,7 @@ def audit(root: Path = ROOT) -> dict[str, object]:
     necessity = theorem_by_name.get("SEPARATION_IS_NECESSARY", {})
     if machine.get("all_discharged") is not True:
         errors.append("mechanized artifact is not all_discharged")
-    if not str(commutation.get("statement", "")).startswith(f"{CONTRACT_ID}:"):
+    if not any(str(commutation.get("statement", "")).startswith(f"{alias}:") for alias in CONTRACT_ID_ALIASES):
         errors.append("mechanized commutation theorem is not bound to the contract id")
     if necessity.get("detail") != (
         "disagreeing models exist for both cross-read directions with disjoint "

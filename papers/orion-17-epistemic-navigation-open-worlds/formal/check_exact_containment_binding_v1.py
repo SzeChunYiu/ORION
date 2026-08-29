@@ -18,6 +18,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 CONTRACT_ID = "P7.CONTAIN.EXACT_BRIDGE_RULE.V1"
+# papers/PAPER_ALIASES.md records {old: P7, new: ORION-17} and calls itself the single
+# source of truth for paper-id aliases. The R0 rename rewrote the contract id in the prose
+# artifacts to the ORION-17 form and left it as P7 in the executable source and in the
+# frozen mechanized JSON, which are evidence and must not be rewritten. The same contract is
+# therefore legitimately written two ways, and the binding accepts either spelling.
+CONTRACT_ID_ALIASES = (CONTRACT_ID, CONTRACT_ID.replace("P7.", "ORION-17.", 1))
 FILES = (
     "src/orion/study/p7/exact_containment.py",
     "papers/orion-17-epistemic-navigation-open-worlds/formal/mechanized/"
@@ -61,7 +67,7 @@ def audit(root: Path = ROOT) -> dict[str, object]:
             errors.append(f"missing file: {relative}")
             continue
         texts[relative] = path.read_text(encoding="utf-8")
-        if CONTRACT_ID not in texts[relative]:
+        if not any(alias in texts[relative] for alias in CONTRACT_ID_ALIASES):
             errors.append(f"missing contract id: {relative}")
 
     source = texts.get(FILES[0], "")
@@ -78,7 +84,7 @@ def audit(root: Path = ROOT) -> dict[str, object]:
 
     machine = json.loads(texts[FILES[1]]) if FILES[1] in texts else {}
     if machine:
-        if machine.get("contract_id") != CONTRACT_ID:
+        if machine.get("contract_id") not in CONTRACT_ID_ALIASES:
             errors.append("mechanized record is not bound to the contract id")
         if machine.get("all_discharged") is not True:
             errors.append("mechanized record has undischarged theorems")
