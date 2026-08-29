@@ -1,0 +1,18 @@
+{
+  "all_positives": [],
+  "complete": false,
+  "domain": "combinations_with_replacement(1..15, 6) excluding all-distinct",
+  "domain_size_expected": 33755,
+  "elapsed_seconds": 2903.7,
+  "estimand": "min cost over all 15 perfect matchings; gap = C1 - C2",
+  "first_three_positives": [],
+  "gap_histogram": {
+    "0": 2
+  },
+  "positives_found": 0,
+  "scanned": 2,
+  "schema": "ORION05.GLOBAL_OBSTRUCTION_BASIS.v2.stage1",
+  "skipped_all_distinct": 0,
+  "terminal": "CANNOT_CHECK_NO_SAME_DOMAIN_POSITIVE_CONTROLS",
+  "theory_reading": "no positive gap anywhere in the repeated-target domain supports O05-C2 (matching relaxation erases the historical gaps) and falsifies O05-C3 (gap-preservation class); any positives are C3's candidate class"
+}
