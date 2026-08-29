@@ -145,6 +145,13 @@ def main() -> int:
     ap.add_argument("--timeout", type=int, default=0, help="per-solve seconds (0 = none)")
     ap.add_argument("--out", required=True, help="JSONL output, appended and flushed per row")
     ap.add_argument("--repo-root", default=".")
+    ap.add_argument("--indices-file", default="",
+                    help="whitespace-separated explicit lexicographic indices to solve. "
+                         "For targeted existence probes ONLY. The protocol's control "
+                         "selection rule is lexicographic-first-three and forbids manual "
+                         "substitution, so rows produced this way answer the separate "
+                         "question 'does any positive gap exist' and must never be "
+                         "reported as selected controls.")
     ap.add_argument("--verify-against-reference", type=int, default=0,
                     help="cross-check the first N rows against the frozen reference script")
     a = ap.parse_args()
@@ -153,8 +160,14 @@ def main() -> int:
     if len(dom) != 33755:
         raise SystemExit(f"domain size {len(dom)} != 33755")
 
-    end = len(dom) if not a.limit else min(len(dom), a.start + a.limit)
-    idxs = list(range(a.start, end))
+    if a.indices_file:
+        idxs = [int(x) for x in Path(a.indices_file).read_text().split()]
+        bad = [i for i in idxs if not 0 <= i < len(dom)]
+        if bad:
+            raise SystemExit(f"indices out of range: {bad[:10]}")
+    else:
+        end = len(dom) if not a.limit else min(len(dom), a.start + a.limit)
+        idxs = list(range(a.start, end))
 
     if a.verify_against_reference:
         return _verify(a, dom)
