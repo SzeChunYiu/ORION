@@ -1,0 +1,71 @@
+{
+  "schema": "ORION.ORION13.MinimalSemanticSeparator.Analysis.v1",
+  "coordinates": [
+    "construct_ids",
+    "measurement_ids",
+    "modality",
+    "polarity",
+    "predicate",
+    "referent_ids",
+    "temporal_context_ids"
+  ],
+  "derivation_set": {
+    "path": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+    "cases": 32,
+    "verdicts": {
+      "COMPATIBLE": 28,
+      "CONTRADICTORY": 4
+    },
+    "families": {
+      "different_name_same_referent": 11,
+      "polarity_modality_attribution_context": 11,
+      "valid_invalid_representation_mapping": 10
+    }
+  },
+  "challenge_set": {
+    "path": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+    "cases": 32,
+    "verdicts": {
+      "COMPATIBLE": 26,
+      "CONTRADICTORY": 6
+    },
+    "shared_case_ids_with_derivation_set": 0
+  },
+  "full_coordinate_set_sufficient_on_derivation": true,
+  "k_star_on_derivation": 1,
+  "minimal_sufficient_subsets_reducts": [
+    [
+      "polarity"
+    ]
+  ],
+  "reduct_count": 1,
+  "core_coordinates_in_every_reduct": [
+    "polarity"
+  ],
+  "coordinates_in_no_reduct": [
+    "construct_ids",
+    "measurement_ids",
+    "modality",
+    "predicate",
+    "referent_ids",
+    "temporal_context_ids"
+  ],
+  "held_out_validation": [
+    {
+      "subset": [
+        "polarity"
+      ],
+      "size": 1,
+      "sufficient_on_challenge_set": true,
+      "collisions_on_challenge_set": []
+    }
+  ],
+  "structure_free_null": {
+    "question": "how often does a random relabelling of the derivation set admit ANY sufficient subset of size 1?",
+    "trials": 20000,
+    "hits": 0,
+    "rate": 0.0,
+    "reading": "a high rate means a separator of this size is easy to find by chance at this sample size and carries little evidence; a low rate means it is informative"
+  },
+  "status": "PASS"
+}

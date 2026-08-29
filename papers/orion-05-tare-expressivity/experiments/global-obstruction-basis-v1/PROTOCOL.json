@@ -1,0 +1,338 @@
+{
+ "EXPECTED_TERMINALS": {
+  "CANNOT_CHECK_CONTROL_FAILURE": "any control deviates from its expected block",
+  "CANNOT_CHECK_INCOMPLETE_CENSUS": "any instance still TIMEOUT/ERROR after the frozen long-timeout requeue pass; a partial census never grades T1/T4",
+  "CANNOT_CHECK_SOURCE_BINDING": "any source_bindings sha256 mismatch on the execution host",
+  "T1_BASIS_COMPLETE": "gap_count >= 1 AND every gap instance is GAP_IN_BASIS on the reduced canonical witness AND all controls passed; report pinned/unpinned split and raw-form (T-strong) census separately",
+  "T2_NEW_OBSTRUCTION_CLASS_FOUND": "at least one gap instance is GAP_NOT_IN_BASIS with a replay-verified, named failure signature; verbatim witness rows preserved; per stop rule, next step is the separately frozen compiler/search-consequence check, and if no practical consequence follows: stop and submit the current bounded Quantum-level paper",
+  "T3_BASIS_INCOMPLETE_NO_PATTERN": "membership failures exist but the frozen failure-taxonomy pass yields no coherent single class (e.g. only GAP_NEEDS_L1_REDUCTION rows or mixed unreconcilable signatures); bounded adverse terminal; no basis enlargement permitted post hoc",
+  "T4_NO_GAPS_IN_CENSUS": "gap_count == 0 across all 5005; the theorem is vacuous on the census family; only the registered repeated-target control panel carries the statement; explicitly NOT promotable as T1"
+ },
+ "authority": {
+  "external_independence": false,
+  "final_freeze": false,
+  "generic_tare": false,
+  "journal_or_submission": false,
+  "novelty": false,
+  "physical_or_fault_tolerant_value": false,
+  "standalone_production_value": false
+ },
+ "base_commit": "TO_BE_FILLED_AT_FREEZE_COMMIT",
+ "consequence_lane_note": "The #1649 'material compiler/search consequence under information-matched baselines' is a SEPARATE successor protocol frozen only after this campaign's terminal. Constraints already binding: R12 terminal ORION05_R12_EXACT_BUT_NO_PRODUCTION_VALUE stands and may not be retuned; R13 shows completion-only value with parent charged; any consequence claim must charge all information costs (R13 cost-accounting discipline) and beat an information-matched baseline, e.g. basis-membership-guided pruning versus the unrestricted referee with the membership-computation cost charged.",
+ "controls": {
+  "C_NEG_CORRUPT": {
+   "expected": "NOT_IN_BASIS must be returned (the control must FIRE); a corrupted-basis control that cannot fire invalidates the whole membership check",
+   "rule": "for each passing C_POS, re-evaluate the SAME membership function with the found shape class removed from the basis mask"
+  },
+  "C_POS_R6O_16": {
+   "expected": {
+    "gap_positive": true,
+    "membership": "IN_BASIS",
+    "recorded_costs": {
+     "C_Dplus": 6,
+     "C_unrestricted_dp": 5
+    }
+   },
+   "source": "r6o_gap_receipt discovery.instances_with_dp_strictly_below_dplus instance_index 16 (blocks flattened in block order)",
+   "targets_dense": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     2
+    ]
+   ]
+  },
+  "C_POS_R6O_17": {
+   "expected": {
+    "gap_positive": true,
+    "membership": "IN_BASIS",
+    "recorded_costs": {
+     "C_Dplus": 6,
+     "C_unrestricted_dp": 5
+    }
+   },
+   "targets_dense": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     0,
+     2
+    ]
+   ]
+  },
+  "C_POS_R6O_19": {
+   "expected": {
+    "gap_positive": true,
+    "membership": "IN_BASIS",
+    "recorded_costs": {
+     "C_Dplus": 6,
+     "C_unrestricted_dp": 5
+    }
+   },
+   "targets_dense": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     0,
+     2
+    ]
+   ]
+  },
+  "C_SYNTH_A_reduction_path": {
+   "expected": {
+    "failures": [],
+    "lemma_e_deletes": 1,
+    "post_reduction_shape": "anchored"
+   },
+   "f0": [
+    [
+     0,
+     1
+    ]
+   ],
+   "f1": [
+    [
+     0,
+     2
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "mode": "PREDICATE_ONLY",
+   "tag": [
+    [
+     0,
+     1
+    ]
+   ]
+  },
+  "C_SYNTH_B_planted_violation": {
+   "expected": {
+    "lemma_e_deletable": 0,
+    "membership": "NOT_IN_BASIS",
+    "must_fire_failures": [
+     "phantom_tagged_home_or_l1",
+     "phantom_home_commute"
+    ],
+    "shape_candidate": "phantom"
+   },
+   "f0": [
+    [
+     0,
+     1
+    ]
+   ],
+   "f1": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ]
+   ],
+   "mode": "PREDICATE_ONLY (no solver; block-local triple routed through the production classify_block)",
+   "tag": [
+    [
+     0,
+     3
+    ],
+    [
+     1,
+     1
+    ]
+   ]
+  },
+  "gate": "CONTROL_GATE: all controls run and pass on the execution host BEFORE any census instance is scored; any control failure => campaign terminal CANNOT_CHECK_CONTROL_FAILURE",
+  "no_gap_plumbing_rule": "an instance with gap == 0 must emit outcome NO_GAP and be excluded from the theorem denominator; it must never reach the membership verdict"
+ },
+ "date_designed": "2026-08-28",
+ "decision_rule_order": "CANNOT_CHECK_* takes precedence; then T4 if gap_count==0; then T2 if any verified GAP_NOT_IN_BASIS; then T3 if unresolved failure rows remain; else T1",
+ "execution": {
+  "environment": "python >= 3.11, stdlib-only solver; PYTHONHASHSEED=0; OMP/OPENBLAS/MKL/NUMEXPR threads=1; single logical CPU per instance",
+  "per_instance_timeout_seconds_primary": 1800,
+  "per_instance_timeout_seconds_requeue": 21600,
+  "primary_site": "LUNARC (design assumption; heavy compute never on the Mac)",
+  "receipt_rule": "raw per-instance JSON plus deterministic aggregate with sha256; never rewrite timeout or adverse rows",
+  "resume": "per-instance JSON output files; a valid existing file is never recomputed"
+ },
+ "forbidden_inferences": [
+  "all-n obstruction-basis theorem (census is n=2-complete only)",
+  "generic TARE or block-encoding claims",
+  "production compiler or search value (R12 null retained)",
+  "physical or fault-tolerant resource value",
+  "novelty or external independence",
+  "journal or submission authority"
+ ],
+ "frozen_basis": {
+  "B": [
+   "O_ANCHORED",
+   "O_PHANTOM",
+   "O_COMM_S2"
+  ],
+  "B_gap": [
+   "O_PHANTOM",
+   "O_COMM_S2"
+  ],
+  "O_ANCHORED": "w(f0)=1, w(f1)=1, shared coordinate q; S_q = f0_q != I; <S_q, f1_q> = 1; occ=1",
+  "O_COMM_S2": "w(f0)=2, w(f1)=1; anchor a = supp(f1) subset supp(f0); b = other coord of f0; S_b != I and <S_b, f0_b> = 1; S_a != I and <S_a, f0_a> = 1; f1_a not in {I, S_a, f0_a}; occ=2",
+  "O_PHANTOM": "w(f0)=1, w(f1)=2; home h = supp(f0) subset supp(f1); borrow b = other coord of f1; S_h = I; S_b != I and <S_b, f1_b> = 1; f0_h != f1_h; occ=1",
+  "failure_classes": [
+   "phantom_home_off_anti",
+   "phantom_tagged_home",
+   "l1_phantom_at_home",
+   "phantom_untagged_borrow",
+   "phantom_home_commute",
+   "comm_s2_partner_off",
+   "comm_s2_structure",
+   "anchored_structure",
+   "occupancy",
+   "NEEDS_L1_REDUCTION",
+   "UNCLASSIFIED"
+  ],
+  "pinned_comm_s2_handling": "structurally inside B; reported with pinned=true; a T1 terminal must state the pinned/unpinned split explicitly because the pinned sector is the lemma-open sector",
+  "predicates_verbatim_source": "research/extensions/orion-qg/qg7c_classification.py :: m1_inventory (transcribed to witness geometry in RUNNER_DRAFT.py classify_block)",
+  "symmetry_closure": "predicates use only local symplectic products, common-relabeling letter equalities, nonidentity tests and supports; closed under per-qubit S3 letter relabelings, qubit permutations, block permutations; orientation involution maps O_PHANTOM <-> O_COMM_S2 (both in B)"
+ },
+ "frozen_utc": "2026-08-28T20:35:00Z",
+ "identity": "ORION05.GLOBAL_OBSTRUCTION_BASIS.v1",
+ "instance_family": {
+  "count": 5005,
+  "enumeration": "itertools.combinations(range(1,16), 6) in lexicographic order; instance_id i in 0..5004; targets = [divmod(c,4) for c in combo]",
+  "first_instance_codes": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "input_hash": "sha256 of canonical compact JSON of the dense target list [[a0,a1]x6] in code order",
+  "last_instance_codes": [
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "letter_convention": "I=0,X=1,Y=2,Z=3 (production), dense target = [a0,a1] per qubit",
+  "n_qubits": 2,
+  "name": "N2_DISTINCT_SIX_TARGET_CENSUS",
+  "note": "admitted R6M instances in general allow repeated targets; this census is the frozen distinct-target sub-family; registered repeated-target gap witnesses run only as controls",
+  "pauli_code": "c = 4*a0 + a1, nonidentity codes 1..15"
+ },
+ "issue": 1649,
+ "per_instance_outcomes": [
+  "NO_GAP",
+  "GAP_IN_BASIS",
+  "GAP_NOT_IN_BASIS",
+  "GAP_NEEDS_L1_REDUCTION"
+ ],
+ "per_instance_procedure": [
+  "1. c2 = solve_six_targets(targets, max_support=2) -> (matching2, witness2); verify_witness must pass all checks",
+  "2. c1 = solve_six_targets(targets, max_support=1) -> (matching1, witness1); verify_witness must pass all checks",
+  "3. gap = c1.cost - c2.cost; gap < 0 is impossible (family containment) and is a CANNOT_CHECK-grade defect",
+  "4. classify RAW: per pair, assign roles f0/f1 by Tag labels (f0 label 0, f1 label 1), compute per-coordinate classes (alpha,beta), block shape per frozen predicates",
+  "5. RED: repeatedly delete class-(0,0) coordinates of weight-two frames; after each deletion assert pair anticommutation, Tag labels equal orientation, and exact recomputed cost equality via the solver's own cost functions",
+  "6. classify REDUCED witness; membership = at least one weight-two-containing block cleanly O_PHANTOM or O_COMM_S2",
+  "7. record pinned flag per obstruction block: some other block's frame member has a nonidentity letter with local symplectic 1 against the borrow-side Tag letter",
+  "8. emit one JSON result file; deterministic; no RNG"
+ ],
+ "per_instance_terminals": [
+  "OK",
+  "TIMEOUT",
+  "ERROR"
+ ],
+ "question": "For every admitted support-one gap in the complete distinct-target n=2 census C(15,6)=5005, does the (reduced) canonical optimal support-two representative contain a block obstruction from the frozen basis B = {O_ANCHORED, O_PHANTOM, O_COMM_S2} restricted to B_gap = {O_PHANTOM, O_COMM_S2}?",
+ "round_accounting_note": "This campaign is the #1649 promotion programme, distinct from the #1511 three-round ledger (R12 consumed round 2 adversely; R13 was the authorized revival). It neither consumes nor grants #1511 rounds.",
+ "schema": "ORION.ORION05.GLOBAL_OBSTRUCTION_BASIS.Protocol.v1",
+ "scientific_authority_delta": "NONE",
+ "source_bindings": {
+  "qg7_fourth_regime_receipt": {
+   "path": "research/extensions/orion-qg/QG7_BPRIME_COMPLETENESS_RESULTS.json",
+   "role": "precedent that new support-two regimes exist (64 fourth-configuration witnesses); PREDICATE_ONLY reference material; NOTE its witnesses use (xmask,zmask) Pauli encoding, decode to be verified at freeze before any use",
+   "sha256": "7341f9630c2ca32b8a6cc601e9c1201db68f21212e04eb3b2e36bca63f214159"
+  },
+  "qg7c_shape_inventory": {
+   "path": "research/extensions/orion-qg/QG7C_CLASSIFICATION_RESULTS.json",
+   "role": "M1 complete local block-shape inventory {anchored:288, phantom:864, comm_s2:864}, holds=true; source of the frozen shape predicates (qg7c_classification.py m1_inventory)",
+   "sha256": "398d9592023ccf0edeb3e1ea260f9e4cdf1df8132a94110f0e6eda722b914ea9"
+  },
+  "r6o_gap_receipt": {
+   "path": "research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json",
+   "role": "D+ definition; registered planted-positive control instances 16/17/19 (repeated-target n=2, C_DP=5<6=C_D+)",
+   "sha256": "e40e7a948061b9e4b647ba091c04a73b39cffa619ca829bbf4cef4beacdad352"
+  },
+  "r6s_human_proof": {
+   "path": "papers/orion-05-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md",
+   "role": "class formalism (alpha,beta), Lemma E deletion license, T-weak skeleton",
+   "sha256": "ad4f3704cfac4569b74725cb8608ed5f5ba88b847d2d8a2820b3e184d9d1dae6"
+  },
+  "support_two_solver": {
+   "path": "papers/orion-05-tare-expressivity/orion05_r11_sparse_direct_solver.py",
+   "role": "sole optimizer for max_support in {1,2}; witness verifier; identical to the R12 frozen binding",
+   "sha256": "642cc67a280abb2ca06089ae01510040f1f598ec638d525ddcc29fae8c6b25d3"
+  }
+ },
+ "status": "FROZEN_BEFORE_ANY_CENSUS_OUTPUT",
+ "stop_rule_verbatim": "Attempt to prove every admitted support-one gap has, in its optimal support-two representative, an obstruction from a prospectively frozen finite symmetry-closed basis. Then connect the theorem to a material compiler/search consequence under information-matched baselines. If a new obstruction class appears and no practical consequence follows, stop and submit the current bounded Quantum-level paper."
+}

@@ -1,0 +1,157 @@
+{
+  "schema": "ORION.ORION05.LocalObstruction.CheckerReport.v1",
+  "successor_id": "ORION05.LOCAL_SUPPORT_ONE_OBSTRUCTION.v1",
+  "independence": "no R6S implementation or generating proof imported; only the Lemma B definitions are transcribed",
+  "check_A_support_two_classification": {
+    "derived_irreducible_ordered": [
+      [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "claimed": [
+      [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "match": true,
+    "count": 4,
+    "unordered_types_up_to_swap": 2
+  },
+  "check_B_descent_exists_support_3_to_8": {
+    "per_support": {
+      "2": {
+        "odd_alpha_tuples": 8,
+        "irreducible": 4
+      },
+      "3": {
+        "odd_alpha_tuples": 32,
+        "irreducible": 0
+      },
+      "4": {
+        "odd_alpha_tuples": 128,
+        "irreducible": 0
+      },
+      "5": {
+        "odd_alpha_tuples": 512,
+        "irreducible": 0
+      },
+      "6": {
+        "odd_alpha_tuples": 2048,
+        "irreducible": 0
+      },
+      "7": {
+        "odd_alpha_tuples": 8192,
+        "irreducible": 0
+      },
+      "8": {
+        "odd_alpha_tuples": 32768,
+        "irreducible": 0
+      }
+    },
+    "all_zero_irreducible_for_w_ge_3": true
+  },
+  "check_C_manuscript_corroboration": {
+    "odd_alpha_tuples_support_2_to_8_recomputed": 43688,
+    "manuscript_records": 43688,
+    "match": true,
+    "support_two_failures_recomputed": 4,
+    "manuscript_records_failures": 4,
+    "match_failures": true
+  },
+  "check_D_negative_controls": {
+    "odd_alpha_constraint_is_load_bearing": {
+      "irreducible_without_parity_constraint": 9,
+      "differs_from_4": true,
+      "pass": true
+    },
+    "wrong_classification_rejected": {
+      "pass": true
+    },
+    "descent_target_is_load_bearing": {
+      "irreducible_if_target_were_0_1": 4,
+      "pass": true
+    },
+    "no_irreducible_pair_contains_zero_class": {
+      "pass": true
+    }
+  },
+  "observation_properness_vacuous_at_support_two": {
+    "irreducible_set_unchanged_if_subset_may_be_improper": true,
+    "why": "odd alpha-parity forces alpha_1 + alpha_2 = 1, so the full support can never sum to (0,0); properness is therefore vacuous at support two, though it is essential for w >= 3"
+  },
+  "status": "PASS"
+}

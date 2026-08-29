@@ -1,0 +1,92 @@
+{
+  "blocked_systems": {
+    "DEEPSEEK_STACK": "no local settings/credentials file present on this host at freeze time; not runnable within existing credentials",
+    "GLM_52_OPENROUTER_STACK": "no local settings/credentials file present on this host at freeze time; not runnable within existing credentials"
+  },
+  "frozen_before_execution": true,
+  "missing_run_policy": "a packet with no schema-valid decision after 3 attempts is logged as failed and the run is DEGRADED; no imputation, no substitution; counts and packet ids reported in harvest summary and analytics",
+  "no_promotion_authority": "this execution records model-only external rounds; R2 independent blinded human adjudication is not available in this lane, so the co-primary promotion condition is CANNOT_CHECK, no promotion claim is made, and the paper state does not change",
+  "prompt_template": {
+    "footer_text": "=== END OF RECORD ===\n\nReturn the JSON object now. Keep the whole response within the record's output-token budget.",
+    "header_sha256": "563d994683ee82a1508a2415dc1b6ddff992fa5ed7bb2deb3befdc3c317b54b4",
+    "header_text": "You are an independent external reviewer of a frozen research\nrecord. You see one record: a bounded research question, its claim-language\nconstraints, its preregistered decision points, the allowed tools, the resource\nbudget, a digest binding a hidden adjudication record, and the complete\nread-only evidence inventory for the record. Evidence access for this task is\nread-only and limited to the records reproduced below; no external data source,\ntool execution, or prior history is available or permitted.\n\nDecide the strongest defensible action for this record and return it as a single\nJSON object. Respond with the JSON object only - no prose before or after, no\ncode fences.\n\nDispositions (choose exactly one):\n- PROMOTE: the bounded claim advances as stated\n- SUBSUMED: the apparent advance is already entailed by an existing retained result\n- INTERACTION_ONLY: the effect exists only as an interaction; no standalone claim is supported\n- NEGATIVE: the evidence refutes the bounded claim\n- NULL_LIVE: the evidence neither supports nor refutes; the question stays open\n- NON_IDENTIFIABLE: the question cannot be answered with the available instruments\n- CANNOT_CHECK: the decision obligations cannot be evaluated from the provided record\n- REOPEN: an earlier record must be amended or reopened under changed conditions\n- STOP: further work on this question has negative expected value\n\nAuthority status (choose exactly one):\n- NOT_AUTHORITY: this review does not by itself authorize any claim\n- CANNOT_CHECK: authority cannot be determined from the provided record\n- EXTERNALLY_AUTHORIZED: the record itself carries external authorization\n\nRequired JSON fields (all required; use an empty array where the type is array\nand nothing applies):\n- \"final_claim\": string, the strongest claim this record supports, stated boundedly\n- \"claim_scope\": string, the exact scope within which final_claim holds\n- \"donor_ownership\": array of objects {\"source_id\": string, \"owned_mechanism\":\n  string, \"disposition\": one of \"ADOPT\"|\"ADAPT\"|\"COMPOSE\"|\"DEFER\"|\"REJECT\"} - one\n  entry per donor or prior source the record relies on; empty array if none\n- \"retained_evidence\": array of objects {\"artifact_id\": string, \"polarity\": one of\n  \"POSITIVE\"|\"NULL\"|\"NEGATIVE\"|\"SUBSUMED\"|\"NON_IDENTIFIABLE\", \"material\": boolean}\n  - the evidence records you retain for the decision and their polarity\n- \"protocol_deviations\": array of strings naming any preregistered obligation of\n  this record that is not met\n- \"disposition\": exactly one disposition from the list above\n- \"confidence\": number in [0, 1]\n- \"authority_status\": exactly one authority status from the list above\n- \"requested_followups\": array of strings, the follow-up actions you would request\n\nInclude no other fields. The harness itself records schema version, packet\nidentity, system identity, and resource usage; any such fields you emit are\nignored. Stay within the record's claim-language constraints and resource budget.\n",
+    "instruction_header_note": "the header necessarily enumerates the decision-schema enums with neutral glosses; it is byte-identical across systems and arms and contains no packet-specific content; the fail-closed leakage scan applies to the record block",
+    "record_block_rule": "packet fields (packet_id, domain, question, claim_language, preregistered_decision_points, allowed_tools, resource_budget, gold_record_digest) as canonical JSON, then every visible evidence record ([artifact_id] role=... sha256=... followed by the verbatim content); identical rendering across systems and arms"
+  },
+  "protocol_binding": "top_tier/external_v1/P14_EXTERNAL_PILOT_PROTOCOL_V1.md section 6 (R1, R3); section 4 metrics reused verbatim; section 7 hostile checks implemented in the driver verify phase; section 9 receipt binding.",
+  "retry_policy": {
+    "attempt_timeout_s": 600,
+    "inter_attempt_delay_s": 0,
+    "max_attempts_per_packet": 3,
+    "sequencing": "sequential within a system; the two systems' harvests are independent processes"
+  },
+  "rounds": {
+    "R1": {
+      "arms": {
+        "present": "committed partitions, unmodified"
+      },
+      "output": "rounds/r1/out_r1/",
+      "scope": "all 67 packets, both systems, single-shot per packet, sequential within a system"
+    },
+    "R3": {
+      "output": "rounds/r1/out_r3/",
+      "present_arm": "R1 rows restricted to the 6 round-pair packets (identical input, same session window)",
+      "round2_packet_ids": [
+        "PKT-EM-0024",
+        "PKT-FC-0023",
+        "PKT-RI-0020"
+      ],
+      "round_pair_packet_ids": [
+        "PKT-EM-0023",
+        "PKT-EM-0024",
+        "PKT-FC-0022",
+        "PKT-FC-0023",
+        "PKT-RI-0019",
+        "PKT-RI-0020"
+      ],
+      "scoring": "reopen accuracy and negative loss under the frozen metric definitions (system_metrics verbatim), computed on the 6-packet subset and on the 3 round-2 packets alone",
+      "withheld_arm": "fresh calls on the 3 round-2 packets with the withhold set removed; round-1 rows taken from R1",
+      "withhold_rule": "in each round-2 packet, the single non-protocol, non-current-round record that carries the retained earlier-round history (the record whose content amends or retains the round-1 record/certificate/scope): EV-FC-00096 ('Round 1 certificate remains valid for its scope'), EV-EM-00182 ('record must be amended with both rounds'), EV-RI-00251 (\"round-1 'unarchivable' record is amended ... earlier scope retained\"). Round-1 packets are unablatable: their round-1 result is the subject of the packet, not retained history.",
+      "withhold_set": {
+        "PKT-EM-0024": [
+          "EV-EM-00182"
+        ],
+        "PKT-FC-0023": [
+          "EV-FC-00096"
+        ],
+        "PKT-RI-0020": [
+          "EV-RI-00251"
+        ]
+      }
+    }
+  },
+  "schema_version": "P14_EXTERNAL_R1R3_EXECUTION_PLAN_V1",
+  "scoring_contract": "run_p14_external_pilot_v1.system_metrics imported and reused verbatim; no metric definition lives in the round driver",
+  "suite_binding": {
+    "domains": 3,
+    "evidence_sha256": "dd48018ee00594fc4e9b6fbbc3147251e87aa4eab5ff29e7849beb28af2c426b",
+    "families": 8,
+    "gold_sha256": "4b1acff51a333c44433e6c6cfae367c1513f3a0b2aa2e33a5120a32cdc5f8b1e",
+    "packet_count": 67,
+    "packets_path": "top_tier/external_v1/packets/p14_external_packets_v1.jsonl",
+    "packets_sha256": "0fe9293cb376d5f3b670b380d5adea1de92efe60682999ffa8fe414a51ab3856",
+    "round_pairs": 3
+  },
+  "systems": {
+    "CLAUDE_GLM53": {
+      "ambient_config_note": "the /Users/billy/.claude-cn config dir contains no CLAUDE.md and the scratch cwd carries no project memory; environment variable values recorded are host endpoints only",
+      "credential_provenance": "operator-local claude CLI with CLAUDE_CONFIG_DIR=/Users/billy/.claude-cn; ANTHROPIC_BASE_URL=https://api.z.ai/api/anthropic; ANTHROPIC_MODEL=glm-5.3; no key material enters any artifact",
+      "invocation": "claude -p <prompt-as-single-arg> --output-format json; stdin /dev/null; cwd /tmp/p14r1_exec",
+      "kind": "external_frontier_agent_non_orion",
+      "model": "glm-5.3 (recorded per call from CLI output metadata)"
+    },
+    "CODEX_GPT56": {
+      "ambient_config_note": "codex global instructions on this host contain operator/LUNARC ops text; they contain no science or programme content and are not modified for this run",
+      "credential_provenance": "operator-local codex CLI login (auth.json); no token material enters any artifact",
+      "invocation": "codex exec --skip-git-repo-check <prompt-as-single-arg>; stdin /dev/null; cwd /tmp/p14r1_exec (empty scratch, no instruction files)",
+      "kind": "external_frontier_agent_non_orion",
+      "model": "recorded per call from codex exec output metadata"
+    }
+  },
+  "verify_contract": "suite digest binding, decision-schema conformance of every row, driver-field enforcement, measured resource_usage presence, evidence budget enforcement, prompt re-render byte-compare against archive, leakage re-scan of every record block, programme-name scan of prompts and raw outputs (warning level)"
+}
