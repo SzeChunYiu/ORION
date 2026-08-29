@@ -1,0 +1,79 @@
+{
+  "checker": "cluster_respecting_reanalysis_v1",
+  "campaign": "31968809206",
+  "strongest_frozen_comparator": "provenai-citation-fidelity-influence",
+  "repeat_count": 5,
+  "case_count": 420,
+  "reproduction": {
+    "analysis_families": 12,
+    "excluded_families": [
+      "CLEAN_POSITIVE"
+    ],
+    "analysis_cases": 360,
+    "base_cases": 72,
+    "orion_rate": 0.0,
+    "comparator_rate": 0.5,
+    "reproduced_h1": -0.5,
+    "published_h1": -0.5,
+    "exact_match": true
+  },
+  "constancy": {
+    "labelled_cases": 150,
+    "total_cases": 420,
+    "unlabelled_cases": 270,
+    "cells_measured": 130,
+    "rows_measured": 1500,
+    "cells_nonconstant": 0,
+    "nonconstant_examples": [],
+    "verified_scope": "labelled subset only",
+    "unlabelled_disposition": "CANNOT_CHECK_DIRECT_CONSTANCY"
+  },
+  "cluster_test": {
+    "independent_clusters": 12,
+    "discordant_clusters": 6,
+    "favouring_orion": 6,
+    "favouring_comparator": 0,
+    "tied": 6,
+    "exact_two_sided_p": 0.03125,
+    "null": "ORION's advantage is unrelated to which attack family it faces",
+    "per_family_difference": {
+      "CITED_NON_INFLUENTIAL": 0.0,
+      "CONTENT_SUBSTITUTION": 0.0,
+      "EVALUATOR_TAMPER": -1.0,
+      "HOLDOUT_ACCESS": -1.0,
+      "INSUFFICIENT_EVIDENCE": 0.0,
+      "POOLED_SUPPORT_WRONG_OWNER": 0.0,
+      "POSTHOC_CHECKER_EVALUATOR": -1.0,
+      "SAME_LANE_CHECKER": -1.0,
+      "SEARCH_TIME_CONTAMINATION": -1.0,
+      "SOURCE_CONFLATION": 0.0,
+      "WEAK_CHECKER": -1.0,
+      "WRONG_SOURCE": 0.0
+    }
+  },
+  "intervals": {
+    "published_ci95": [
+      -0.5527777777777778,
+      -0.44722222222222224
+    ],
+    "published_half_width": 0.052777777777777785,
+    "case_level_normal_half_width": 0.05165053511608353,
+    "cluster_level_normal_half_width": 0.2829016319029166,
+    "width_ratio_cluster_over_case": 5.477225575051661,
+    "cluster_bootstrap_ci95": [
+      -0.75,
+      -0.25
+    ],
+    "bootstrap_reps": 20000,
+    "bootstrap_unit": "family",
+    "seed": 20260829
+  },
+  "context": {
+    "retained_error_case_count": 2370,
+    "mechanical_gold_cases": 420,
+    "human_rubric_triggered_cases": 0,
+    "note": "human_rubric_triggered_cases=0 means no case in this campaign received human adjudication; every terminal is mechanical."
+  },
+  "status": "PASS",
+  "conclusion": "H1 retains sign and direction at the clustering unit"
+}
