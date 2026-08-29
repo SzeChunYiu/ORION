@@ -1,0 +1,28 @@
+name: ORION-10 universal vocabulary theorem v2
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-10-certified-static-forecasting/theory/universal-vocabulary-minimality-v2/**'
+      - '.github/workflows/orion10-universal-vocabulary-v2.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-10-certified-static-forecasting/theory/universal-vocabulary-minimality-v2/**'
+      - '.github/workflows/orion10-universal-vocabulary-v2.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify theorem packet digests
+        run: sha256sum -c papers/orion-10-certified-static-forecasting/theory/universal-vocabulary-minimality-v2/SHA256SUMS
+      - name: Run independent finite regression
+        run: python papers/orion-10-certified-static-forecasting/theory/universal-vocabulary-minimality-v2/check_universal_vocabulary_minimality_v2.py
