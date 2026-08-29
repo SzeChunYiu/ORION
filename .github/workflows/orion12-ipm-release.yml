@@ -1,0 +1,109 @@
+name: orion12-ipm-release
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'papers/orion-12-open-world-scientific-discovery/**'
+      - 'papers/top_tier_gap_closure/release_builders/orion12/**'
+      - '.github/workflows/orion12-ipm-release.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate current target source
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/orion-12-open-world-scientific-discovery/scripts/build_ipm_submission.py --check
+          grep -Fq 'recall@100 is lower' papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.tex
+          grep -Fq 'favorable nDCG' papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.tex
+      - name: Generate named arXiv source
+        run: python papers/top_tier_gap_closure/release_builders/orion12/build_arxiv_from_ipm.py
+      - name: Install TeX and PDF tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends latexmk texlive-latex-base texlive-latex-extra texlive-publishers texlive-fonts-recommended lmodern poppler-utils zip
+      - name: Build anonymous IPM review PDF
+        shell: bash
+        working-directory: papers/orion-12-open-world-scientific-discovery/manuscript
+        run: |
+          set -euo pipefail
+          latexmk -pdf -interaction=nonstopmode -halt-on-error ipm_submission.tex
+          test -s ipm_submission.pdf
+          if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence|Overfull \\hbox' ipm_submission.log; then exit 1; fi
+      - name: Build named arXiv PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp build/orion12_release/arxiv.tex papers/orion-12-open-world-scientific-discovery/manuscript/arxiv_release.tex
+          cd papers/orion-12-open-world-scientific-discovery/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error arxiv_release.tex
+          test -s arxiv_release.pdf
+          if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence|Overfull \\hbox' arxiv_release.log; then exit 1; fi
+      - name: Audit blind and named surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          M=papers/orion-12-open-world-scientific-discovery/manuscript
+          pdftotext "$M/ipm_submission.pdf" "$RUNNER_TEMP/ipm.txt"
+          pdftotext "$M/arxiv_release.pdf" "$RUNNER_TEMP/arxiv.txt"
+          if grep -Eiq 'SzeChunYiu|Sze[[:space:]-]*Chun|sze-chun.yiu@fysik.su.se' "$RUNNER_TEMP/ipm.txt"; then echo 'IPM_ANONYMITY=FAIL'; exit 1; fi
+          grep -Fq 'SzeChunYiu' "$RUNNER_TEMP/arxiv.txt"
+          grep -Fq 'Stockholm University' "$RUNNER_TEMP/arxiv.txt"
+          grep -Fq 'sze-chun.yiu@fysik.su.se' "$RUNNER_TEMP/arxiv.txt"
+          grep -Fq 'The author received no specific funding for this work.' "$RUNNER_TEMP/arxiv.txt"
+          grep -Fq 'The author declares no competing interests.' "$RUNNER_TEMP/arxiv.txt"
+          grep -Fq 'recall@100 is lower' "$RUNNER_TEMP/arxiv.txt"
+          grep -Fq 'nDCG' "$RUNNER_TEMP/arxiv.txt"
+          pdfinfo "$M/ipm_submission.pdf" > "$RUNNER_TEMP/ipm-pdfinfo.txt"
+          pdfinfo "$M/arxiv_release.pdf" > "$RUNNER_TEMP/arxiv-pdfinfo.txt"
+          sha256sum "$M/ipm_submission.pdf" > "$RUNNER_TEMP/ipm.pdf.sha256"
+          sha256sum "$M/arxiv_release.pdf" > "$RUNNER_TEMP/arxiv.pdf.sha256"
+          printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' > "$RUNNER_TEMP/ARXIV_LICENSE.txt"
+          printf '%s\n' 'cs.IR' > "$RUNNER_TEMP/ARXIV_PRIMARY_CATEGORY.txt"
+      - name: Build source bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          P=papers/orion-12-open-world-scientific-discovery
+          mkdir -p "$RUNNER_TEMP/ipm-source" "$RUNNER_TEMP/arxiv-source"
+          cp -R "$P/manuscript"/* "$RUNNER_TEMP/ipm-source/"
+          rm -f "$RUNNER_TEMP/ipm-source"/*.pdf "$RUNNER_TEMP/ipm-source"/*.log "$RUNNER_TEMP/ipm-source"/*.aux "$RUNNER_TEMP/ipm-source"/*.fdb_latexmk "$RUNNER_TEMP/ipm-source"/*.fls
+          cp -R "$RUNNER_TEMP/ipm-source"/* "$RUNNER_TEMP/arxiv-source/"
+          cp "$P/manuscript/arxiv_release.tex" "$RUNNER_TEMP/arxiv-source/arxiv_release.tex"
+          (cd "$RUNNER_TEMP/ipm-source" && zip -qr "$RUNNER_TEMP/orion-12-ipm-source.zip" .)
+          (cd "$RUNNER_TEMP/arxiv-source" && zip -qr "$RUNNER_TEMP/orion-12-arxiv-source.zip" .)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-12-ipm-and-arxiv-packages
+          path: |
+            papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.pdf
+            papers/orion-12-open-world-scientific-discovery/manuscript/arxiv_release.pdf
+            papers/orion-12-open-world-scientific-discovery/journal_package/current_revision/TITLE_PAGE.md
+            papers/orion-12-open-world-scientific-discovery/journal_package/current_revision/COVER_LETTER.md
+            papers/orion-12-open-world-scientific-discovery/journal_package/current_revision/AI_ASSISTANCE_DECLARATION.md
+            papers/orion-12-open-world-scientific-discovery/journal_package/current_revision/CREDIT_TEMPLATE.md
+            ${{ runner.temp }}/orion-12-ipm-source.zip
+            ${{ runner.temp }}/orion-12-arxiv-source.zip
+            ${{ runner.temp }}/ipm.pdf.sha256
+            ${{ runner.temp }}/arxiv.pdf.sha256
+            ${{ runner.temp }}/ipm-pdfinfo.txt
+            ${{ runner.temp }}/arxiv-pdfinfo.txt
+            ${{ runner.temp }}/ARXIV_LICENSE.txt
+            ${{ runner.temp }}/ARXIV_PRIMARY_CATEGORY.txt
+          if-no-files-found: error
+          retention-days: 90
