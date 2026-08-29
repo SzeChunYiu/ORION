@@ -52,22 +52,6 @@ jobs:
           done
           git diff --exit-code -- papers/orion-14-verified-scientific-discovery/tables
 
-      - name: Retain regenerated safe publication sources
-        uses: actions/upload-artifact@v4
-        with:
-          name: p4-v2-generated-sources-${{ github.run_id }}
-          path: |
-            papers/orion-14-verified-scientific-discovery/figures/p4_2_false_promotion.svg
-            papers/orion-14-verified-scientific-discovery/figures/p4_3_coverage_frontier.svg
-            papers/orion-14-verified-scientific-discovery/figures/p4_4_detection_by_attack.svg
-            papers/orion-14-verified-scientific-discovery/figures/p4_5_attribution_vs_support.svg
-            papers/orion-14-verified-scientific-discovery/figures/p4_6_cost_false_promotion.svg
-            papers/orion-14-verified-scientific-discovery/tables/p4_t1_attack_custody.tex
-            papers/orion-14-verified-scientific-discovery/tables/p4_t2_baseline_ablation_results.tex
-            papers/orion-14-verified-scientific-discovery/tables/p4_t3_cannot_check_errors.tex
-          if-no-files-found: error
-          retention-days: 7
-
       - name: Install TeX/PDF/rendering tools
         shell: bash
         timeout-minutes: 25
@@ -75,7 +59,7 @@ jobs:
           set -euo pipefail
           sudo apt-get update -qq
           PKGS="latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra"
-          PKGS="$PKGS lmodern poppler-utils librsvg2-bin"
+          PKGS="$PKGS lmodern poppler-utils librsvg2-bin zip"
           sudo apt-get install -y -qq --no-install-recommends $PKGS \
             || { sleep 15; sudo apt-get update -qq; sudo apt-get install -y -qq --no-install-recommends $PKGS; }
 
@@ -127,20 +111,42 @@ jobs:
           grep -q '0/360' "$TMLR_TXT"; grep -q '180/360' "$TMLR_TXT"; grep -q '60/60' "$TMLR_TXT"
           grep -qi 'not supported' "$TMLR_TXT"
           if grep -Eiq 'execution bindings remain.*UNBOUND|awaiting external campaign|No external results are reported|remains externally.*CANNOT_CHECK' "$TMLR_TXT"; then exit 1; fi
-          if grep -Eiq 'SzeChunYiu|Sze[[:space:]-]*Chun|sze-chun.yiu@fysik.su.se' "$TMLR_TXT"; then
-            echo 'P4_TMLR_ANONYMITY=FAIL'; exit 1
-          fi
+          if grep -Eiq 'SzeChunYiu|Sze[[:space:]-]*Chun|sze-chun.yiu@fysik.su.se' "$TMLR_TXT"; then echo 'P4_TMLR_ANONYMITY=FAIL'; exit 1; fi
           grep -Fq 'SzeChunYiu' "$ARXIV_TXT"
           grep -Fq 'Stockholm University' "$ARXIV_TXT"
           grep -Fq 'sze-chun.yiu@fysik.su.se' "$ARXIV_TXT"
           grep -Fq 'The author received no specific funding for this work.' "$ARXIV_TXT"
           grep -Fq 'The author declares no competing interests.' "$ARXIV_TXT"
-          pdfinfo "$M/main.pdf" | tee "$RUNNER_TEMP/tmlr-pdfinfo.txt"
-          pdfinfo "$M/arxiv.pdf" | tee "$RUNNER_TEMP/arxiv-pdfinfo.txt"
-          sha256sum "$M/main.pdf" | tee "$RUNNER_TEMP/main.pdf.sha256"
-          sha256sum "$M/arxiv.pdf" | tee "$RUNNER_TEMP/arxiv.pdf.sha256"
+          pdfinfo "$M/main.pdf" > "$RUNNER_TEMP/tmlr-pdfinfo.txt"
+          pdfinfo "$M/arxiv.pdf" > "$RUNNER_TEMP/arxiv-pdfinfo.txt"
+          sha256sum "$M/main.pdf" > "$RUNNER_TEMP/main.pdf.sha256"
+          sha256sum "$M/arxiv.pdf" > "$RUNNER_TEMP/arxiv.pdf.sha256"
           printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' > "$RUNNER_TEMP/ARXIV_LICENSE.txt"
           printf '%s\n' 'cs.AI' > "$RUNNER_TEMP/ARXIV_PRIMARY_CATEGORY.txt"
+
+      - name: Build complete source archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          P=papers/orion-14-verified-scientific-discovery
+          for flavor in tmlr arxiv; do
+            R="$RUNNER_TEMP/orion14-$flavor"
+            mkdir -p "$R/manuscript" "$R/tables" "$R/figures" "$R/submission"
+            cp "$P/manuscript/bibliography.bib" "$R/manuscript/"
+            cp "$P/manuscript/tmlr.bst" "$R/manuscript/"
+            cp -R "$P/manuscript/sections" "$R/manuscript/"
+            cp -R "$P/manuscript/figures" "$R/manuscript/"
+            cp "$P/tables"/*.tex "$R/tables/"
+            cp "$P/figures"/*.png "$R/figures/"
+            cp "$P/submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex" "$R/submission/"
+          done
+          cp "$P/manuscript/main.tex" "$RUNNER_TEMP/orion14-tmlr/manuscript/main.tex"
+          cp "$P/manuscript/tmlr.sty" "$RUNNER_TEMP/orion14-tmlr/manuscript/"
+          cp "$P/manuscript/arxiv.tex" "$RUNNER_TEMP/orion14-arxiv/manuscript/main.tex"
+          (cd "$RUNNER_TEMP/orion14-tmlr" && zip -qr "$RUNNER_TEMP/orion-14-tmlr-source.zip" .)
+          (cd "$RUNNER_TEMP/orion14-arxiv" && zip -qr "$RUNNER_TEMP/orion-14-arxiv-source.zip" .)
+          sha256sum "$RUNNER_TEMP/orion-14-tmlr-source.zip" > "$RUNNER_TEMP/tmlr-source.sha256"
+          sha256sum "$RUNNER_TEMP/orion-14-arxiv-source.zip" > "$RUNNER_TEMP/arxiv-source.sha256"
 
       - uses: actions/upload-artifact@v4
         with:
@@ -148,12 +154,12 @@ jobs:
           path: |
             papers/orion-14-verified-scientific-discovery/manuscript/main.pdf
             papers/orion-14-verified-scientific-discovery/manuscript/arxiv.pdf
-            papers/orion-14-verified-scientific-discovery/manuscript/arxiv.tex
-            papers/orion-14-verified-scientific-discovery/manuscript/bibliography.bib
-            papers/orion-14-verified-scientific-discovery/manuscript/sections
-            papers/orion-14-verified-scientific-discovery/manuscript/figures
+            ${{ runner.temp }}/orion-14-tmlr-source.zip
+            ${{ runner.temp }}/orion-14-arxiv-source.zip
             ${{ runner.temp }}/main.pdf.sha256
             ${{ runner.temp }}/arxiv.pdf.sha256
+            ${{ runner.temp }}/tmlr-source.sha256
+            ${{ runner.temp }}/arxiv-source.sha256
             ${{ runner.temp }}/tmlr-pdfinfo.txt
             ${{ runner.temp }}/arxiv-pdfinfo.txt
             ${{ runner.temp }}/ARXIV_LICENSE.txt
