@@ -29,3 +29,12 @@ jobs:
       - name: Run leave-one-group analysis
         run: |
           python papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/leave_one_group_robustness_v1.py --json-out /tmp/ORION24_GROUP_ROBUSTNESS_V1.json
+      - name: Independently verify frozen compact result
+        run: python papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/check_group_robustness_v1.py
+      - name: Emit additive artifact digests
+        run: |
+          sha256sum \
+            papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/GROUP_ROBUSTNESS_V1.json \
+            papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/GROUP_ROBUSTNESS_NOTE_V1.md \
+            papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/leave_one_group_robustness_v1.py \
+            papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/check_group_robustness_v1.py
