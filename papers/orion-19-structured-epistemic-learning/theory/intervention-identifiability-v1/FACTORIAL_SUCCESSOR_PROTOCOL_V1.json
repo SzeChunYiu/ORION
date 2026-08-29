@@ -40,9 +40,11 @@
     {"id": "J_AC", "factors": ["access_or_representation", "search_or_inference_compute"]},
     {"id": "J_IAC", "factors": ["task_relevant_information", "access_or_representation", "search_or_inference_compute"]}
   ],
-  "minimum_structurally_identifying_core": ["J_I", "J_A", "J_C"],
-  "minimum_core_size": 3,
-  "full_factorial_role": "estimate interactions and audit intervention purity; not required by the deterministic four-hypothesis separation theorem",
+  "minimum_identifying_set_over_full_factorial_library": ["J_IA", "J_IC"],
+  "minimum_identifying_set_size": 2,
+  "minimum_single_factor_purity_core": ["J_I", "J_A", "J_C"],
+  "minimum_single_factor_purity_core_size": 3,
+  "core_interpretation": "Two mixed interventions can separate the four toy response signatures algebraically, but the three pure single-factor interventions are the minimum core that attributes a repair without deliberately crossing factors. The full factorial remains valuable for interactions and purity diagnostics.",
   "response": {
     "alphabet": ["REPAIR", "NO_REPAIR", "CANNOT_CHECK"],
     "repair_threshold_must_be_frozen_before_outcomes": true,
