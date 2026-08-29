@@ -1,0 +1,279 @@
+name: ORION-17 additive V2 rebind staging
+
+on:
+  push:
+    branches:
+      - shadow/orion17-density-v2-recovery-20260829
+
+permissions:
+  contents: read
+
+jobs:
+  build-binding-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the exact staging commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch and verify the durable P7 provenance ref
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive_branch="shadow/orion17-p7-v2-subject-20260829"
+          git fetch --no-tags origin \
+            "refs/heads/${archive_branch}:refs/remotes/origin/${archive_branch}"
+          test "$(git rev-parse "refs/remotes/origin/${archive_branch}")" = \
+            "$(git rev-parse HEAD)"
+
+      - name: Extend the P7 V2 binding without mutating V1
+        shell: bash
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          root = Path.cwd()
+          paper_rel = Path("papers/orion-17-epistemic-navigation-open-worlds")
+          paper = root / paper_rel
+          manifest = paper / "CONTENT_MANIFEST_V2.json"
+          outer = paper / "content_binding_v2" / "SHA256SUMS"
+
+          roots = {
+              paper / "theory" / "chain-composition-v1": 9,
+              paper / "theory" / "density-prospective-v1": 9,
+              paper / "submission" / "density_prospective": 1,
+          }
+          additive = {
+              (paper_rel / "CLAIM_LEDGER_ADDENDUM_V4_12.md").as_posix(),
+              (
+                  paper_rel
+                  / "content_binding_v2"
+                  / "check_p7_content_binding_v2.py"
+              ).as_posix(),
+          }
+          observed_counts: dict[str, int] = {}
+          for directory, expected_count in roots.items():
+              files = sorted(path for path in directory.rglob("*") if path.is_file())
+              observed_counts[directory.relative_to(root).as_posix()] = len(files)
+              if len(files) != expected_count:
+                  raise SystemExit(
+                      f"unexpected file count for {directory.relative_to(root)}: "
+                      f"{len(files)} != {expected_count}"
+                  )
+              additive.update(path.relative_to(root).as_posix() for path in files)
+
+          if len(additive) != 21:
+              raise SystemExit(f"expected 21 additive files, found {len(additive)}")
+
+          def sha256(path: Path) -> str:
+              digest = hashlib.sha256()
+              with path.open("rb") as handle:
+                  for chunk in iter(lambda: handle.read(1 << 20), b""):
+                      digest.update(chunk)
+              return digest.hexdigest()
+
+          head = subprocess.check_output(
+              ["git", "rev-parse", "HEAD"], text=True
+          ).strip()
+          tree = subprocess.check_output(
+              ["git", "rev-parse", "HEAD^{tree}"], text=True
+          ).strip()
+          base_main = subprocess.check_output(
+              ["git", "rev-parse", "HEAD^"], text=True
+          ).strip()
+          frozen_v1 = [
+              (paper_rel / "CONTENT_MANIFEST_V1.json").as_posix(),
+              (paper_rel / "SHA256SUMS").as_posix(),
+              (paper_rel / "CLAIM_LEDGER_V4.md").as_posix(),
+          ]
+          v1_drift = subprocess.check_output(
+              ["git", "diff", "--name-only", base_main, "HEAD", "--", *frozen_v1],
+              text=True,
+          ).splitlines()
+          if v1_drift:
+              raise SystemExit(
+                  "frozen P7 V1 surface was modified: " + ", ".join(v1_drift)
+              )
+
+          payload = json.loads(manifest.read_text(encoding="utf-8"))
+          if payload.get("schema_version") != "orion.candidate-content-binding.v2":
+              raise SystemExit("unexpected P7 V2 schema")
+          if payload.get("candidate_id") != "P7":
+              raise SystemExit("unexpected candidate identity")
+
+          rows = {
+              str(row["path"]): dict(row)
+              for row in payload.get("bound_files", [])
+              if isinstance(row, dict) and isinstance(row.get("path"), str)
+          }
+          already_present = sorted(additive & set(rows))
+          if already_present:
+              raise SystemExit(
+                  "additive paths unexpectedly already bound: " + ", ".join(already_present)
+              )
+          for relative in sorted(additive):
+              target = root / relative
+              if not target.is_file():
+                  raise SystemExit(f"missing additive path: {relative}")
+              rows[relative] = {"path": relative, "sha256": sha256(target)}
+
+          payload["bound_files"] = [rows[path] for path in sorted(rows)]
+          payload["subject_commit"] = head
+          payload["subject_commit_status"] = "BOUND"
+          payload["subject_commit_blocker"] = None
+          payload["subject_commit_unbound_paths"] = []
+          payload["subject_tree"] = tree
+          manifest.write_text(
+              json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+              encoding="utf-8",
+          )
+          outer.write_text(
+              f"{sha256(manifest)}  {manifest.relative_to(root).as_posix()}\n",
+              encoding="utf-8",
+          )
+
+          report = {
+              "schema": "ORION.P7AdditiveV2Rebind.v2",
+              "candidate_id": "P7",
+              "workflow_run_id": os.environ.get("GITHUB_RUN_ID"),
+              "staging_commit": head,
+              "staging_tree": tree,
+              "base_main_commit": base_main,
+              "additive_file_count": len(additive),
+              "additive_paths": sorted(additive),
+              "bound_file_count_after": len(rows),
+              "root_counts": observed_counts,
+              "manifest_sha256_after": sha256(manifest),
+              "outer_checksum_sha256": sha256(outer),
+              "frozen_v1_guard_paths": frozen_v1,
+              "v1_files_modified": v1_drift,
+              "scientific_authority_delta": "NONE__CUSTODY_ONLY",
+              "terminal": "P7_ADDITIVE_V2_REBIND_ARTIFACT_GENERATED",
+          }
+          Path("p7_v2_rebind_report.json").write_text(
+              json.dumps(report, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          print(report["terminal"])
+          PY
+
+      - name: Verify P7 science, V1 history, and V2 binding
+        shell: bash
+        run: |
+          set -u
+          overall=0
+
+          run_check() {
+            label="$1"
+            output="$2"
+            shift 2
+            echo "== ${label} =="
+            set +e
+            "$@" 2>&1 | tee "$output"
+            rc=${PIPESTATUS[0]}
+            set -e
+            echo "${label}_exit=${rc}" | tee -a "$output"
+            if [ "$rc" -ne 0 ]; then
+              overall=1
+            fi
+          }
+
+          run_check \
+            density_prospective \
+            p7_density_verification.txt \
+            python papers/orion-17-epistemic-navigation-open-worlds/theory/density-prospective-v1/independent_checker/check_density_prediction.py
+
+          run_check \
+            chain_composition \
+            p7_chain_verification.txt \
+            python papers/orion-17-epistemic-navigation-open-worlds/theory/chain-composition-v1/independent_checker/check_chain.py
+
+          cat > /tmp/check_p7_v1.py <<'PY'
+          import importlib.util
+          import json
+          import sys
+          from pathlib import Path
+
+          root = Path.cwd()
+          checker = root / "papers/candidates/checkers/check_content_binding_v1.py"
+          spec = importlib.util.spec_from_file_location("candidate_binding_v1", checker)
+          if spec is None or spec.loader is None:
+              raise SystemExit("cannot load V1 checker")
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          report = module.check_binding(root, "P7")
+          print(json.dumps(report.as_dict(), indent=2, sort_keys=True))
+          raise SystemExit(0 if report.ok else 1)
+          PY
+          run_check \
+            p7_historical_v1_binding \
+            p7_v1_binding_verification.txt \
+            env PYTHONPATH=src python /tmp/check_p7_v1.py
+
+          run_check \
+            p7_additive_v2_binding \
+            p7_v2_binding_verification.txt \
+            python papers/orion-17-epistemic-navigation-open-worlds/content_binding_v2/check_p7_content_binding_v2.py
+
+          # Record the portfolio-wide gate independently. Its current P6 failure
+          # is a real, pre-existing blocker and must not be laundered into either
+          # a P7 failure or a portfolio pass.
+          echo "== portfolio_p6_p8_content_binding =="
+          set +e
+          PYTHONPATH=src python papers/candidates/checkers/check_content_binding_v1.py --check \
+            2>&1 | tee portfolio_content_binding_verification.txt
+          portfolio_rc=${PIPESTATUS[0]}
+          set -e
+          echo "portfolio_content_binding_exit=${portfolio_rc}" \
+            | tee -a portfolio_content_binding_verification.txt
+          PORTFOLIO_RC="$portfolio_rc" python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          rc = int(os.environ["PORTFOLIO_RC"])
+          report = {
+              "schema": "ORION.PortfolioCandidateBindingObservation.v1",
+              "portfolio_gate_passed": rc == 0,
+              "exit_code": rc,
+              "p7_local_gate_is_separate": True,
+              "scientific_authority_delta": "NONE",
+              "terminal": (
+                  "PORTFOLIO_P6_P8_BINDING_PASS"
+                  if rc == 0
+                  else "PORTFOLIO_P6_P8_BINDING_REMAINS_RED"
+              ),
+          }
+          Path("portfolio_content_binding_status.json").write_text(
+              json.dumps(report, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+          echo "p7_local_verification_exit=${overall}"
+          exit "$overall"
+
+      - name: Upload generated binding and verification record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p7-v2-rebind-${{ github.sha }}
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            papers/orion-17-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json
+            papers/orion-17-epistemic-navigation-open-worlds/content_binding_v2/SHA256SUMS
+            p7_v2_rebind_report.json
+            p7_density_verification.txt
+            p7_chain_verification.txt
+            p7_v1_binding_verification.txt
+            p7_v2_binding_verification.txt
+            portfolio_content_binding_verification.txt
+            portfolio_content_binding_status.json

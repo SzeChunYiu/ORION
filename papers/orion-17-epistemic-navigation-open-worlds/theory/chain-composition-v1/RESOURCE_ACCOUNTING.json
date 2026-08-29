@@ -1,0 +1,47 @@
+{
+  "baseline_cost_measured_from_frozen_receipt": {
+    "always-reopen": {
+      "flask": 7096,
+      "numpy": 112482,
+      "scipy": 382044
+    },
+    "donor-coarse": {
+      "flask": 7096,
+      "numpy": 22298,
+      "scipy": 32186
+    },
+    "exact-containment": {
+      "flask": 0,
+      "numpy": 0,
+      "scipy": 0
+    },
+    "false_closure_retention": {
+      "always-reopen": 0,
+      "donor-coarse": 77630,
+      "exact-containment": 0
+    },
+    "unit": "unnecessary reopenings"
+  },
+  "compute": {
+    "arithmetic": "exact; explicit witnesses rather than search heuristics",
+    "bridging_chains_enumerated": 775,
+    "checker_wall_seconds_order": "< 30",
+    "max_chain_length": 5
+  },
+  "evidence_reused_not_regenerated": {
+    "certificate_decisions_total": 604542,
+    "domains": 3,
+    "per_domain": {
+      "flask": 7944,
+      "numpy": 147822,
+      "scipy": 448776
+    }
+  },
+  "fair_baseline_statement": "always-reopen receives strictly MORE budget and is the safety upper bound. donor-coarse and exact-containment decide the SAME frozen transitions on the SAME dependency graphs, differing only in the exactness of the containment test, so the comparison isolates test exactness rather than information.",
+  "lane": "ORION17.CLOSURE_CHAIN_COMPOSITION.v1",
+  "network_requests": 0,
+  "new_experiments_executed": 0,
+  "note": "The three-domain closure-retention campaign was executed and frozen before this lane. This lane re-runs nothing; it re-verifies a ledger theorem by a different method and classifies the frozen policies.",
+  "schema": "orion.successor.resource-accounting.v1",
+  "tier_a_evidence_status": "NOT_EARNED -- the naturalistic multi-hop study required by blueprint section 4.12 is not done; lane returns to the bounded submission lane"
+}
