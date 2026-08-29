@@ -7,7 +7,7 @@ Applies first to **ORION-06, 07, 08, 10, 12, 14, 16**. These facts are human-con
 - **Author list/order:** `SzeChunYiu` (sole author).
 - **Institutional affiliation:** none supplied; omit affiliation rather than inventing an institution or “Independent Researcher”.
 - **Corresponding author:** none designated by the author. Do not add a corresponding-author mark to the manuscript. If an external submission portal requires one, use the sole-author/submitter role only as a portal requirement and do not infer a separate manuscript designation.
-- **Correspondence email:** not supplied. Never infer an email from GitHub, commit metadata, or account identity. A portal/account email may still be required externally.
+- **Correspondence/contact email:** `sze-chun.yiu@fysik.su.se`.
 - **ORCID:** not supplied; omit.
 - **Funding:** `The author received no specific funding for this work.`
 - **Competing interests / conflicts of interest:** `The author declares no competing interests.`
@@ -62,14 +62,9 @@ After arXiv deposition, insert the exact identifier/version into the journal-fac
 ## Journal-specific filing notes
 
 - **TMLR (07/08/14):** keep the review PDF and supplement anonymous. Author identity, funding, competing-interest information and OpenReview profile details are supplied to the submission system, not exposed in the review PDF. TMLR itself licenses submissions/publications CC BY 4.0; this does not require changing the separately deposited arXiv version away from the arXiv non-exclusive license.
-- **Quantum (10):** supply the `quant-ph` arXiv reference and the author-contribution/AI-use statement above. No corresponding-author mark is to be invented.
-- **Elsevier AIJ/IP&M (06/12/16):** use the funding, competing-interest and generative-AI declarations above. If the submission system mandates a corresponding author or contact email, that is an external portal requirement still needing the author’s actual account/contact value; do not infer it.
+- **Quantum (10):** supply the `quant-ph` arXiv reference and the author-contribution/AI-use statement above. No corresponding-author mark is to be invented; use `sze-chun.yiu@fysik.su.se` wherever a contact email is required.
+- **Elsevier AIJ/IP&M (06/12/16):** use the funding, competing-interest and generative-AI declarations above. If the submission system mandates a corresponding-author field, use the sole-author/submitter role only to satisfy the portal; the supplied contact email is `sze-chun.yiu@fysik.su.se`.
 
 ## Remaining human-only omissions
 
-The following are intentionally unresolved because the author did not supply them:
-
-1. a correspondence/contact email if a journal portal requires one;
-2. an ORCID, if the author later chooses to provide one.
-
-Neither omission is a scientific-data blocker or a reason to delay the arXiv deposits if arXiv accepts the account metadata already held by the submitting author.
+The only intentionally unresolved identity field is an **ORCID**, if the author later chooses to provide one. No scientific-data blocker remains from author metadata for the seven first-wave papers.
