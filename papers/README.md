@@ -11,6 +11,43 @@ Expressivity). Their current evidence hierarchy and science-first closure gates
 are controlled by `../research/orion-01-05-convergence-v1/README.md` and
 `../research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json`.
 
+## Publication status checklist
+
+**Last updated:** 2026-08-29 21:34 CEST (Europe/Stockholm)  
+**Update rule:** change this timestamp whenever any row changes.  
+**Checkbox rule:** replace `☐` with `☑` only when the corresponding event has actually happened and is supported by repository evidence (merge commit, arXiv identifier/URL, or journal submission receipt/ID).  
+**Git rule:** the Git box is ticked only when the **latest publication state** for that paper is on `main`; a paper directory merely existing on `main` is not enough.
+
+| No. | Paper title | Status on Git | Submitted to arXiv | Submitted to journal |
+|---:|---|---|---|---|
+| 01 | [ORION-01 — Certificate Realization](orion-01-certificate-realization/) | ☑ `main` | ☐ | ☐ |
+| 02 | [ORION-02 — FiberGuard Finite Fibre](orion-02-fiberguard-finite-fibre/) | ☑ `main` | ☐ | ☐ |
+| 03 | [ORION-03 — Typed-Merge Falsification](orion-03-typed-merge-falsification/) | ☑ `main` | ☐ | ☐ |
+| 04 | [ORION-04 — Rooted Completion Certificates](orion-04-rooted-completion-certificates/) | ☑ `main` | ☐ | ☐ |
+| 05 | [ORION-05 — TARE Expressivity](orion-05-tare-expressivity/) | ☑ `main` | ☐ | ☐ |
+| 06 | [ORION-06 — Recursive Recovery](orion-06-recursive-recovery/) | ☐ PR #1798 — release package **GREEN** | ☐ | ☐ |
+| 07 | [ORION-07 — Dual Instrument](orion-07-dual-instrument/) | ☐ PR #1798 — release package **GREEN** | ☐ | ☐ |
+| 08 | [ORION-08 — Typed State](orion-08-typed-state/) | ☐ PR #1798 — release package **GREEN** | ☐ | ☐ |
+| 09 | [ORION-09 — Compilation Regime Geometry](orion-09-compilation-regime-geometry/) | ☑ `main` | ☐ | ☐ |
+| 10 | [ORION-10 — Certified Static Forecasting](orion-10-certified-static-forecasting/) | ☐ PR #1798 — release package **GREEN** | ☐ | ☐ |
+| 11 | [ORION-11 — Recursive Epistemic Reconstruction](orion-11-recursive-epistemic-reconstruction/) | ☑ `main` | ☐ | ☐ |
+| 12 | [ORION-12 — Open-World Scientific Knowledge Discovery](orion-12-open-world-scientific-discovery/) | ☐ PR #1798 — release package check **RED (mechanical)** | ☐ | ☐ |
+| 13 | [ORION-13 — Global Knowledge Portrait](orion-13-global-knowledge-portrait/) | ☑ `main` | ☐ | ☐ |
+| 14 | [ORION-14 — Verified Scientific Discovery](orion-14-verified-scientific-discovery/) | ☐ PR #1798 — release package check **RED (mechanical)** | ☐ | ☐ |
+| 15 | [ORION-15 — Self-ORION](orion-15-self-orion/) | ☑ `main` | ☐ | ☐ |
+| 16 | [ORION-16 — Formal Epistemic Structures and Mechanics](orion-16-formal-epistemic-structures-and-mechanics/) | ☐ PR #1798 — release package **GREEN** | ☐ | ☐ |
+| 17 | [ORION-17 — Epistemic Navigation in Open Worlds](orion-17-epistemic-navigation-open-worlds/) | ☑ `main` | ☐ | ☐ |
+| 18 | [ORION-18 — Epistemic Authority in Autonomous Science](orion-18-epistemic-authority-autonomous-science/) | ☑ `main` | ☐ | ☐ |
+| 19 | [ORION-19 — Structured Epistemic Learning](orion-19-structured-epistemic-learning/) | ☑ `main` | ☐ | ☐ |
+| 20 | [ORION-20 — Structured Problem Solving](orion-20-structured-problem-solving/) | ☑ `main` | ☐ | ☐ |
+| 21 | [ORION-21 — State as Computation](orion-21-state-as-computation/) | ☑ `main` | ☐ | ☐ |
+| 22 | [ORION-22 — Adaptive State Reasoning](orion-22-adaptive-state-reasoning/) | ☑ `main` | ☐ | ☐ |
+| 23 | [ORION-23 — Responsibility-Carrying State](orion-23-responsibility-carrying-state/) | ☑ `main` | ☐ | ☐ |
+| 24 | [ORION-24 — ORION-RSE](orion-24-orion-rse/) | ☑ `main` | ☐ | ☐ |
+| 25 | [ORION-25 — ORION Research Harness](orion-25-orion-research-harness/) | ☑ `main` | ☐ | ☐ |
+
+For an external submission, keep the checkbox and append the durable identifier in the same cell, for example `☑ arXiv:2608.xxxxx` or `☑ TMLR / OpenReview submission <id>`. Do not tick a submission box for a generated package, an intended venue, or a locally completed manuscript.
+
 ## Publication identity rule
 
 ORION has **exactly five flagship papers**, assigned ORION-11–15 in the flat
