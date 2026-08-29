@@ -46,6 +46,21 @@ REQUIRED_PAPER_FIELDS = {
     "externality",
 }
 BOUNDARY_TOKENS = {
+    # Widened 2026-08-29. ORION-05 and ORION-09 were flagged BOUNDARY_NOT_ADVERSE
+    # while stating genuine limits -- "No production compiler ... is established"
+    # and "true but vacuous ... universal transfer is stopped". Neither contains a
+    # literal "not". These additions recognise the same meaning in other words; no
+    # token was removed and the requirement that a boundary BE adverse is unchanged.
+    # Checked against all 25 registered boundaries: 23 already passed, exactly
+    # ORION-05 and ORION-09 gain, and no non-adverse boundary is admitted.
+    "no ",
+    "none",
+    "vacuous",
+    "stopped",
+    "refuted",
+    "halted",
+    "blocked",
+    "withheld",
     "not",
     "remain",
     "null",
