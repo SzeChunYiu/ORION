@@ -106,17 +106,22 @@ terms the confirmatory holdout has $b=6$ cases where flat false-merges and the
 governed mapping does not, $c=0$ in the reverse direction, and 26 concordant
 cases; the exact two-sided test gives $p=0.031$. On the initial holdout the
 counts are $b=4$, $c=0$, giving $p=0.125$, which does not reach conventional
-significance on its own. Pooling the two disjoint holdouts gives $b=10$, $c=0$
-and $p=0.002$. We report all three rather than the pooled figure alone, because
-the initial set taken by itself does not support the claim. The exact test is
-the honest summary here: the effect is a perfect but small directional record,
-not a broad margin.
+significance on its own. We deliberately do not compute a pooled exact test over
+the combined 64 cases: this paper's confirmatory protocol declines to pool the
+initial set with the confirmatory one for sample-size purposes, and a pooled
+$p$-value would do precisely that. What we do record is a replication
+observation about direction --- all ten discordant pairs across the two disjoint
+frozen holdouts fall the same way, none in reverse. That is consistency, not
+confirmatory sample size. The exact per-set tests remain the significance
+evidence, and the honest summary is that the effect is a perfect but small
+directional record, not a broad margin.
 
 \paragraph{The holdouts exercise one coordinate.} Table~\ref{tab:coordinate-branch-census}
 counts, for each branch of the comparison cascade, how many cases it actually
-decides. Nine of the ten coordinates decide no case in either holdout. Every
-discriminating case is decided at the polarity branch, and the 26 and 28
-remaining cases reach the compatible fall-through without any coordinate firing.
+decides. Nine of the ten coordinates never differ between the two projections in either
+holdout, and so decide no case. Every discriminating case is decided at the
+polarity branch, and the 26 and 28 remaining cases reach the compatible
+fall-through with no coordinate differing at all.
 A reduced rule consulting only predicate, modality and polarity reproduces the
 full mechanism's output on all 64 cases in both holdouts, at accuracy 1.000.
 This sharpens rather than contradicts the ablation results above: those show

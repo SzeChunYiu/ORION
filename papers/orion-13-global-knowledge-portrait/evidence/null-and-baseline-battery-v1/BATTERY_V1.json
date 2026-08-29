@@ -1,11 +1,13 @@
 {
-  "pooled_discordance": {
-    "b_flat_only_false_merge": 10,
-    "c_orion_only_false_merge": 0,
+  "directional_consistency_across_holdouts": {
+    "all_discordant_pairs_same_direction": true,
+    "discordant_pairs_total": 10,
     "disjoint": true,
     "disjointness_source": "evidence/coordinate-obstruction-v2/PHASE_A_VERIFICATION.json (case_id_overlap_count: 0)",
-    "exact_mcnemar_two_sided_p": 0.001953125,
-    "note": "Pooling is reported in addition to, not in place of, the per-set tests. The initial set alone gives p=0.125 and does not reach conventional significance; only the confirmatory set does.",
+    "favouring_coordinate_governed": 10,
+    "favouring_flat": 0,
+    "note": "Per-set exact tests are the significance evidence: confirmatory p=0.031, initial p=0.125 (not significant alone). This block reports only that the discordant pairs agree in direction across two disjoint frozen holdouts. It is not a confirmatory sample-size claim and must not be read as one.",
+    "pooled_significance_test": "NOT_COMPUTED_BY_PROTOCOL",
     "sets": [
       "confirmatory",
       "initial"
@@ -28,18 +30,6 @@
         "predicate_equal_cases": 32,
         "predicate_equal_fraction": 1.0
       },
-      "branches_that_never_fire": [
-        "unresolved_ambiguities",
-        "predicate",
-        "referent_ids",
-        "construct_ids",
-        "measurement_ids",
-        "temporal_context_ids",
-        "attribution_id",
-        "discourse_relation",
-        "assumption_ids",
-        "modality"
-      ],
       "cascade_branch_census": {
         "assumption_ids": 0,
         "attribution_id": 0,
@@ -55,6 +45,18 @@
         "unresolved_ambiguities": 0
       },
       "case_count": 32,
+      "coordinates_that_never_differ": [
+        "unresolved_ambiguities",
+        "predicate",
+        "referent_ids",
+        "construct_ids",
+        "measurement_ids",
+        "temporal_context_ids",
+        "attribution_id",
+        "discourse_relation",
+        "assumption_ids",
+        "modality"
+      ],
       "discordance_orion_vs_flat_false_merge": {
         "b_flat_only_false_merge": 6,
         "c_orion_only_false_merge": 0,
@@ -101,18 +103,6 @@
         "predicate_equal_cases": 32,
         "predicate_equal_fraction": 1.0
       },
-      "branches_that_never_fire": [
-        "unresolved_ambiguities",
-        "predicate",
-        "referent_ids",
-        "construct_ids",
-        "measurement_ids",
-        "temporal_context_ids",
-        "attribution_id",
-        "discourse_relation",
-        "assumption_ids",
-        "modality"
-      ],
       "cascade_branch_census": {
         "assumption_ids": 0,
         "attribution_id": 0,
@@ -128,6 +118,18 @@
         "unresolved_ambiguities": 0
       },
       "case_count": 32,
+      "coordinates_that_never_differ": [
+        "unresolved_ambiguities",
+        "predicate",
+        "referent_ids",
+        "construct_ids",
+        "measurement_ids",
+        "temporal_context_ids",
+        "attribution_id",
+        "discourse_relation",
+        "assumption_ids",
+        "modality"
+      ],
       "discordance_orion_vs_flat_false_merge": {
         "b_flat_only_false_merge": 4,
         "c_orion_only_false_merge": 0,

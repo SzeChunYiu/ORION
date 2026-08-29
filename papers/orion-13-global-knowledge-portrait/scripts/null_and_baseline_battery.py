@@ -44,12 +44,16 @@ Writes ``evidence/null-and-baseline-battery-v1/BATTERY_V1.json``.
 from __future__ import annotations
 
 import json
+import os
 import sys
 from math import comb
 from pathlib import Path
 
-PAPER = Path(__file__).resolve().parents[1]
+PAPER = Path(os.environ.get("ORION13_PAPER_DIR", Path(__file__).resolve().parents[1]))
 REPO = PAPER.parents[1]
+# Output root, overridable so the battery can be regenerated without writing into a
+# checkout shared with other processes. Defaults to the paper directory.
+OUT = Path(os.environ.get("ORION13_OUT_DIR", PAPER))
 sys.path.insert(0, str(REPO / "src"))
 
 from orion.knowledge.semantics import (  # noqa: E402
@@ -204,7 +208,7 @@ def exact_mcnemar_two_sided(b: int, c: int) -> float:
     return min(1.0, 2.0 * tail)
 
 
-TABLE_TARGET = PAPER / "manuscript" / "tables" / "coordinate_branch_census.tex"
+TABLE_TARGET = OUT / "manuscript" / "tables" / "coordinate_branch_census.tex"
 
 # Human-readable coordinate names, short enough for a plain booktabs tabular
 # (this manuscript does not load tabularx).
@@ -237,7 +241,8 @@ def emit_table(out: dict) -> None:
         "  \\caption{Which comparison coordinates the two public-reference holdouts actually "
         "exercise. Each cell counts the cases decided by that branch of the "
         "\\texttt{compare\\_meaning} cascade, in the mechanism's own order of consultation. "
-        "Nine of the ten coordinates decide no case in either holdout. This is a statement "
+        "Nine of the ten coordinates never differ between the two projections in either "
+        "holdout, so they decide no case. This is a statement "
         "about the coverage of these corpora, not evidence that the coordinates are "
         "dispensable in general.}",
         "  \\label{tab:coordinate-branch-census}",
@@ -325,7 +330,7 @@ def analyze(name: str, cases: list[dict]) -> dict:
             "exact_mcnemar_two_sided_p": exact_mcnemar_two_sided(b, c_),
         },
         "cascade_branch_census": census,
-        "branches_that_never_fire": never_fires,
+        "coordinates_that_never_differ": never_fires,
         "minimal_rule_matches_full_mechanism": minimal == orion,
     }
 
@@ -345,28 +350,42 @@ def main() -> int:
     for name, path in GOLD_SETS.items():
         out["sets"][name] = analyze(name, load(path))  # type: ignore[index]
 
-    # Pooled exact test over the two disjoint holdouts. Reported alongside, never
-    # instead of, the per-set results: the initial set alone does not reach
-    # conventional significance and that must stay visible.
-    pooled_b = sum(
-        out["sets"][s]["discordance_orion_vs_flat_false_merge"]["b_flat_only_false_merge"]  # type: ignore[index]
-        for s in GOLD_SETS
+    # Directional consistency across the two disjoint holdouts.
+    #
+    # NO POOLED SIGNIFICANCE FIGURE IS COMPUTED HERE, deliberately. The paper's own
+    # confirmatory protocol states that the strata are "reported descriptively and
+    # not pooled with the initial 32 cases to inflate the confirmatory sample size"
+    # (manuscript/sections/06-results.tex). Computing a pooled exact test over the
+    # 64 cases would do exactly what that sentence declines to do, whichever figure
+    # were reported first. What is recorded instead is a replication observation:
+    # whether every discordant pair across both frozen holdouts falls the same way.
+    # That is a statement about direction, not about sample size, and needs no
+    # p-value to stand.
+    total_b = sum(
+        out["sets"][s_]["discordance_orion_vs_flat_false_merge"]["b_flat_only_false_merge"]  # type: ignore[index]
+        for s_ in GOLD_SETS
     )
-    pooled_c = sum(
-        out["sets"][s]["discordance_orion_vs_flat_false_merge"]["c_orion_only_false_merge"]  # type: ignore[index]
-        for s in GOLD_SETS
+    total_c = sum(
+        out["sets"][s_]["discordance_orion_vs_flat_false_merge"]["c_orion_only_false_merge"]  # type: ignore[index]
+        for s_ in GOLD_SETS
     )
-    out["pooled_discordance"] = {
+    out["directional_consistency_across_holdouts"] = {
         "sets": sorted(GOLD_SETS),
         "disjoint": True,
-        "disjointness_source": "evidence/coordinate-obstruction-v2/PHASE_A_VERIFICATION.json (case_id_overlap_count: 0)",
-        "b_flat_only_false_merge": pooled_b,
-        "c_orion_only_false_merge": pooled_c,
-        "exact_mcnemar_two_sided_p": exact_mcnemar_two_sided(pooled_b, pooled_c),
+        "disjointness_source": (
+            "evidence/coordinate-obstruction-v2/PHASE_A_VERIFICATION.json "
+            "(case_id_overlap_count: 0)"
+        ),
+        "discordant_pairs_total": total_b + total_c,
+        "favouring_coordinate_governed": total_b,
+        "favouring_flat": total_c,
+        "all_discordant_pairs_same_direction": total_c == 0,
+        "pooled_significance_test": "NOT_COMPUTED_BY_PROTOCOL",
         "note": (
-            "Pooling is reported in addition to, not in place of, the per-set tests. "
-            "The initial set alone gives p=0.125 and does not reach conventional "
-            "significance; only the confirmatory set does."
+            "Per-set exact tests are the significance evidence: confirmatory p=0.031, "
+            "initial p=0.125 (not significant alone). This block reports only that the "
+            "discordant pairs agree in direction across two disjoint frozen holdouts. "
+            "It is not a confirmatory sample-size claim and must not be read as one."
         ),
     }
 
@@ -389,7 +408,7 @@ def main() -> int:
             print("  " + line, file=sys.stderr)
         return 1
 
-    target_dir = PAPER / "evidence" / "null-and-baseline-battery-v1"
+    target_dir = OUT / "evidence" / "null-and-baseline-battery-v1"
     target_dir.mkdir(parents=True, exist_ok=True)
     target = target_dir / "BATTERY_V1.json"
     target.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -399,7 +418,11 @@ def main() -> int:
     conf_set = out["sets"]["confirmatory"]  # type: ignore[index]
     deg = conf_set["baseline_degeneracy"]
     dis = conf_set["discordance_orion_vs_flat_false_merge"]
-    print(f"wrote {target.relative_to(REPO)}")
+    try:
+        shown = target.relative_to(REPO)
+    except ValueError:
+        shown = target
+    print(f"wrote {shown}")
     print(f"B1 reproduction: {out['reproduction_check']['status']}")
     print(
         f"B2 predicate-equal {deg['predicate_equal_cases']}/{conf_set['case_count']}; "
@@ -410,11 +433,13 @@ def main() -> int:
         f"B3 discordance b={dis['b_flat_only_false_merge']} c={dis['c_orion_only_false_merge']} "
         f"concordant={dis['concordant']} exact two-sided p={dis['exact_mcnemar_two_sided_p']:.5f}"
     )
-    print(f"B4 branches that never fire: {conf_set['branches_that_never_fire']}")
-    pd = out["pooled_discordance"]
+    print(f"B4 coordinates that never differ: {conf_set['coordinates_that_never_differ']}")
+    dc = out["directional_consistency_across_holdouts"]
     print(
-        f"POOLED (disjoint sets) b={pd['b_flat_only_false_merge']} "
-        f"c={pd['c_orion_only_false_merge']} exact two-sided p={pd['exact_mcnemar_two_sided_p']:.5f}"
+        f"DIRECTION across disjoint holdouts: {dc['favouring_coordinate_governed']}"
+        f"/{dc['discordant_pairs_total']} discordant pairs favour coordinate-governed; "
+        f"same direction = {dc['all_discordant_pairs_same_direction']}; "
+        f"pooled significance = {dc['pooled_significance_test']}"
     )
     print(
         f"B4 minimal rule accuracy: "
