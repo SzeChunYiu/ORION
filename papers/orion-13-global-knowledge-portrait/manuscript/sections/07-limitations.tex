@@ -3,6 +3,25 @@
 
 \subsection{Limitations}
 
+\paragraph{What the confirmatory comparison exercises.}
+The strongest empirical claim in this paper is a comparison against a baseline
+that is degenerate on the corpus it was measured on. Every case in both
+public-reference holdouts is predicate-equal, so flat predicate canonicalization
+returns \textsc{compatible} on all of them and its false-merge rate is
+identically the base rate of non-mergeable cases; any always-merge rule would
+have produced the same $-0.1875$ difference. The comparison shows that
+coordinate-governed mapping does not merge indiscriminately, and nothing
+stronger. Six discordant cases carry the confirmatory result (exact $p=0.031$);
+the initial holdout's four do not reach conventional significance alone
+($p=0.125$). Nine of the ten comparison coordinates decide no case in either
+holdout, and a rule consulting only predicate, modality and polarity reproduces
+the full mechanism exactly on all 64 cases. These corpora therefore do not
+exercise coordinate governance beyond polarity discrimination. Establishing the
+broader claim requires a holdout containing predicate-disagreeing pairs and
+cases that turn on referent, construct, measurement or temporal context, which
+neither frozen set contains. Supporting artifact:
+\path{evidence/null-and-baseline-battery-v1/BATTERY_V1.json}.
+
 \paragraph{Theory--evidence separation.}
 The fibre, information-refinement, positive-reference non-identification and
 robust-decision results are mathematical statements under their declared
