@@ -73,3 +73,51 @@ unspent and that the note is deliberately not an attempt at it. Nothing here spe
 The abstract rescope is the correctness action the board classifies as "not new science",
 and this lane's own `PROTOCOL.json` stop rule reads: "This lane is complete. It generates
 no successor experiment. The one open item it creates is a manuscript rescope."
+
+## Deferral to PR #1702 — READ THIS BEFORE FILING ORION-09
+
+**Amendment, 2026-08-29 (after the edits recorded above).**
+
+A parallel lane, `shadow/issue1701-middle-papers-recovery-20260829` (PR **#1702**), was
+found to have made the same abstract and results-section rescope independently. Its
+version was audited here and is **correct**: it retains the 43/1,146 floor, states floor
+0 and the four-feature minimum separator, and preserves **both** adverse findings — the
+`n=4` non-transfer with its shuffle null `p=0.51`, and the unsupported state-sign
+mechanism attribution ("requires no hypothesized state-sign feature, so transfer and
+mechanism attribution remain unsupported"). No negative and no `CANNOT_CHECK` was
+softened by it.
+
+`git merge-tree` showed my versions of two files conflicting with #1702's:
+
+```
+CONFLICT (content): manuscript/main.tex
+CONFLICT (content): manuscript/sections/03-results.tex
+```
+
+Both files have therefore been **reverted to `origin/main`** on this branch, so #1702's
+wording applies cleanly. The recovered theory packets are byte-identical between the two
+branches (`git diff --quiet` exit 0 for `size-transfer-derivation-v1`; the only delta in
+`regime-separator-complexity-v1` is this receipt), so the recovery halves merge without
+conflict.
+
+### Consequence — a live dependency, not a closed item
+
+**ORION-09's abstract and results-section correctness now depends on PR #1702 merging.**
+If #1702 is closed unmerged, `manuscript/main.tex` and
+`manuscript/sections/03-results.tex` revert to carrying the stale claim, and the blocker
+`MANUSCRIPT_INCOMPLETENESS__SUBMISSION_BLOCKED` is **not** discharged. The rescope must
+then be re-applied — the wording proposed in `CLAIM_DISPOSITION.md` §6 is still the
+reference text.
+
+### What this branch still contributes to ORION-09, which #1702 does not
+
+#1702 edits only `main.tex` and `03-results.tex`. Three stale surfaces are left untouched
+by it and are corrected here:
+
+| file | stale text #1702 leaves in place |
+|---|---|
+| `manuscript/sections/06-limitations.tex` | "richer path/schedule-aware features **may** recover exact determination" — they demonstrably did, on `n<=3` |
+| `MANUSCRIPT_V3.md` | abstract carries the superseded scoped claim, and §9.3 ends "Enlarging the representation remains an **open successor question**" |
+| `rewrite_academic_pipeline/MANUSCRIPT_REWRITE_V1.md` | the newest wave-1 rewrite abstract, still carrying the unscoped refutation |
+
+Both lanes are needed for the paper to be internally consistent.

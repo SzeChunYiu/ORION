@@ -85,3 +85,43 @@ loaded later, for the ORION-17 manuscript. Disclosed rather than back-filled. Th
 additions are not re-derived: every quoted value is copied from a committed artifact, the
 registered V1 instrument and its 4/5 headline table are untouched, and every negative
 listed above is carried unsoftened.
+
+## Cross-lane note — the UT3 packet path is shared with the orchestration branch
+
+**Amendment, 2026-08-29.** `work/issue1701-orchestration` independently recovered part of
+`experiments/ut3-checkpoint-custody-v1/`. Compared here:
+
+- `run_ut3_checkpoint_custody_lunarc.sbatch` is **byte-identical** on both branches
+  (sha256 `076cc3fd7b44e5da09cb1f166adcab07111d21defd5a4b60846b1021df91644a`, 7,424 bytes),
+  so it merges without conflict.
+- `P9_UT3_CHECKPOINT_CUSTODY_RECEIPT_V1.json` is also byte-identical (sha256
+  `d1334f0edd16ab64e113a11be016511a6cf422339dc18fb0684bc5aa0d0d5d70`) but sits at a
+  **different path**: `ut3-checkpoint-custody-v1/` on that branch, `job-3550343/` here.
+  A merge lands **two copies**. The `job-3550343/` path is the one the packet's own
+  `SHA256SUMS` attests — that manifest was recovered byte-exact from
+  `codex/all25-bounded-freeze-v2-20260828` and lists
+  `job-3550343/P9_UT3_CHECKPOINT_CUSTODY_RECEIPT_V1.json`. The top-level copy is not
+  covered by it. Recommended resolution: drop the top-level duplicate and keep the
+  manifest-attested path.
+
+This branch carries the complete eight-file packet (manifest, README, authority
+disposition, both jobs' stdout/stderr, both job dirs); the orchestration branch carries
+two of those files. Nothing here was edited in transit.
+
+## UT3 carries no scientific authority in the manuscript — verified
+
+The manuscript states UT3 as custody-only. `manuscript/sections/05-results.tex` §"U-T3
+frontier grid: custody only, no scientific result" is its only appearance anywhere in the
+manuscript (grep for `u-t3|ut3|u_t3` returns three lines, all inside that subsection). It
+reads, in full:
+
+> The U-T3 frontier evaluation grid remains blocked and is reported as such. A custody run
+> placed 4 of 6 declared ladder points in local custody (Qwen2.5 at 0.5B, 1.5B, 3B and
+> 7B); the two Llama-3.2 points are gated and recorded as CANNOT-CHECK for those ladder
+> points --- which is not evidence that they are unnecessary or that the grid is sound.
+> **Zero grid cells were executed.** The receipt carries
+> `produces_scientific_result: false` and licenses no statement about any crossing; the
+> missing component is a cell executor, which is declared but not built. U-T3 stays
+> blocked until cells carry outcomes.
+
+No scientific claim is stated or implied. No correction was required.
