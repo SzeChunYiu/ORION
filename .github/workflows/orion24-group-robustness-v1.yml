@@ -1,0 +1,31 @@
+name: ORION-24 group robustness v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/**'
+      - 'papers/orion-24-orion-rse/top_tier/external_v1/protected/p14_external_gold_v1.jsonl'
+      - 'papers/orion-24-orion-rse/top_tier/external_v1/pilot/decisions/p14_external_decisions_SYSTEMB_v1.jsonl'
+      - '.github/workflows/orion24-group-robustness-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/**'
+      - 'papers/orion-24-orion-rse/top_tier/external_v1/protected/p14_external_gold_v1.jsonl'
+      - 'papers/orion-24-orion-rse/top_tier/external_v1/pilot/decisions/p14_external_decisions_SYSTEMB_v1.jsonl'
+      - '.github/workflows/orion24-group-robustness-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  group-robustness:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run leave-one-group analysis
+        run: |
+          python papers/orion-24-orion-rse/analysis/principled-null-comparator-v1/leave_one_group_robustness_v1.py --json-out /tmp/ORION24_GROUP_ROBUSTNESS_V1.json
