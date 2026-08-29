@@ -1,0 +1,77 @@
+{
+  "defect_repaired": "V1 planted positives expected fixed-matching 6/5 while V1 runner optimized over all 15 perfect matchings, where the same controls are 4/4, 5/5, 6/6.",
+  "estimand": {
+    "gap": "C1-C2",
+    "matching_domain": "all 15 perfect matchings of six target slots",
+    "support_one": "minimum cost over all matchings with max_support=1",
+    "support_two": "minimum cost over all matchings with max_support=2"
+  },
+  "forbidden": [
+    "retrospectively relabel V1 5,005 rows as confirmatory",
+    "change control expectations after confirmatory outcomes",
+    "claim all-n theorem from n=2 census",
+    "claim production/compiler value without separate information-matched consequence study"
+  ],
+  "identity": "ORION05.GLOBAL_OBSTRUCTION_BASIS.v2",
+  "independent_optimum_requirement": "For every row used in a universal basis claim, a second implementation must independently establish the all-matchings optimum. Reusing the production solve_six_targets call is not independent.",
+  "parallel_theory_candidates": [
+    "O05-C1",
+    "O05-C2",
+    "O05-C3"
+  ],
+  "reviewed_main": "e19a3b7cd0140d1f413e802a1188a2948726df6f",
+  "schema": "ORION.ORION05.GLOBAL_OBSTRUCTION_BASIS.Protocol.v2.design",
+  "stage_0_domain_sensitivity_controls": [
+    {
+      "expected_all_matchings": [4, 4],
+      "id": "r6o-16",
+      "role": "must demonstrate historical fixed-matching gap is erased"
+    },
+    {
+      "expected_all_matchings": [5, 5],
+      "id": "r6o-17",
+      "role": "must demonstrate historical fixed-matching gap is erased"
+    },
+    {
+      "expected_all_matchings": [6, 6],
+      "id": "r6o-19",
+      "role": "must demonstrate historical fixed-matching gap is erased"
+    }
+  ],
+  "stage_1_positive_control_discovery": {
+    "domain": "lexicographic combinations_with_replacement of six codes from 1..15, excluding the 5,005 all-distinct sets",
+    "domain_size": 33755,
+    "failure": "if fewer than 3 qualifying controls exist, terminal CANNOT_CHECK_NO_SAME_DOMAIN_POSITIVE_CONTROLS and do not run confirmation",
+    "optimizer": "same all-matchings estimand as confirmatory census",
+    "selection_rule": "scan in lexicographic order; freeze the first 3 instances with C1>C2, valid witnesses, and frozen-basis membership; no manual substitution",
+    "separation_from_confirmation": "control discovery domain contains repeated targets; confirmatory domain contains only six distinct targets"
+  },
+  "stage_2_freeze": {
+    "before": "any confirmatory 5,005-row outcome",
+    "required": [
+      "three control target multisets",
+      "canonical hashes",
+      "optimizer/checker hashes",
+      "expected C1/C2",
+      "basis membership",
+      "independent recomputation receipt"
+    ]
+  },
+  "stage_3_confirmation": {
+    "count": 5005,
+    "domain": "itertools.combinations(range(1,16),6)",
+    "rule": "run only after stages 0-2 pass",
+    "terminal_precedence": [
+      "CANNOT_CHECK_SOURCE_BINDING",
+      "CANNOT_CHECK_CONTROL_FAILURE",
+      "CANNOT_CHECK_INDEPENDENT_OPTIMUM",
+      "CANNOT_CHECK_INCOMPLETE_CENSUS",
+      "NO_GAPS",
+      "NEW_OBSTRUCTION",
+      "BASIS_INCOMPLETE",
+      "BASIS_COMPLETE_SCOPED"
+    ]
+  },
+  "status": "DESIGN_ONLY__NO_OUTCOME_AUTHORITY",
+  "supersedes_for_future_execution": "science/o05-obstruction-basis-v1 protocol only; historical V1 remains immutable"
+}

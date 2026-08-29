@@ -1,0 +1,21 @@
+name: issue1701-ab-multiplex-v1
+
+on:
+  pull_request:
+    paths:
+      - "papers/publication_closure/issue1701_ab_multiplex_v1/**"
+      - ".github/workflows/issue1701-ab-multiplex-v1.yml"
+  push:
+    paths:
+      - "papers/publication_closure/issue1701_ab_multiplex_v1/**"
+      - ".github/workflows/issue1701-ab-multiplex-v1.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python papers/publication_closure/issue1701_ab_multiplex_v1/check_ab_multiplex_v1.py
