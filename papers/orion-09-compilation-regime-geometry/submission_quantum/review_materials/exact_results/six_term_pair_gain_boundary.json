@@ -1,0 +1,439 @@
+{
+  "claim": "The six-singleton reference is exact exactly when every pair gain is nonpositive, every two-disjoint-pair gain plus one is nonpositive, and every perfect-matching gain plus two is nonpositive.",
+  "complete_regression": {
+    "mismatches": [],
+    "size_one_instances": 729,
+    "size_one_reference_exact": 0,
+    "size_two_instances": 38760,
+    "size_two_reference_exact": 1,
+    "zero_mismatches": true
+  },
+  "interaction_arity": 2,
+  "model": "six-term linear-combination compilation",
+  "packing_clauses": [
+    "one pair",
+    "two disjoint pairs",
+    "three disjoint pairs forming a perfect matching"
+  ],
+  "pair_gain_definition": "gain(e) = 4*common_nonidentity_positions(e) - sum_of_weights(e)",
+  "production_decomposition": {
+    "all_coefficients_exact": true,
+    "all_shape_constants_exact": true,
+    "block_coefficients": {
+      "1": [
+        [
+          0,
+          0
+        ]
+      ],
+      "2": [
+        [
+          4,
+          -1
+        ]
+      ],
+      "3": [
+        [
+          10,
+          -2
+        ]
+      ],
+      "4": [
+        [
+          14,
+          -2
+        ]
+      ],
+      "5": [
+        [
+          23,
+          -3
+        ]
+      ]
+    },
+    "coefficient_checks": {
+      "1": true,
+      "2": true,
+      "3": true,
+      "4": true,
+      "5": true
+    },
+    "constant_checks": {
+      "1+1+1+1+1+1": true,
+      "2+1+1+1+1": true,
+      "2+2+1+1": true,
+      "2+2+2": true,
+      "3+1+1+1": true,
+      "3+2+1": true,
+      "3+3": true,
+      "4+1+1": true,
+      "4+2": true,
+      "5+1": true
+    },
+    "expected_block_coefficients": {
+      "1": [
+        0,
+        0
+      ],
+      "2": [
+        4,
+        -1
+      ],
+      "3": [
+        10,
+        -2
+      ],
+      "4": [
+        14,
+        -2
+      ],
+      "5": [
+        23,
+        -3
+      ]
+    },
+    "partition_count": 203,
+    "shape_count": 11,
+    "shapes": {
+      "1+1+1+1+1+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ]
+        ],
+        "constant_values": [
+          0
+        ],
+        "partition_count": 1
+      },
+      "2+1+1+1+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              4,
+              -1
+            ]
+          ]
+        ],
+        "constant_values": [
+          0
+        ],
+        "partition_count": 15
+      },
+      "2+2+1+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              4,
+              -1
+            ],
+            [
+              2,
+              4,
+              -1
+            ]
+          ]
+        ],
+        "constant_values": [
+          1
+        ],
+        "partition_count": 45
+      },
+      "2+2+2": {
+        "block_coefficient_patterns": [
+          [
+            [
+              2,
+              4,
+              -1
+            ],
+            [
+              2,
+              4,
+              -1
+            ],
+            [
+              2,
+              4,
+              -1
+            ]
+          ]
+        ],
+        "constant_values": [
+          2
+        ],
+        "partition_count": 15
+      },
+      "3+1+1+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              3,
+              10,
+              -2
+            ]
+          ]
+        ],
+        "constant_values": [
+          -1
+        ],
+        "partition_count": 20
+      },
+      "3+2+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              2,
+              4,
+              -1
+            ],
+            [
+              3,
+              10,
+              -2
+            ]
+          ]
+        ],
+        "constant_values": [
+          0
+        ],
+        "partition_count": 60
+      },
+      "3+3": {
+        "block_coefficient_patterns": [
+          [
+            [
+              3,
+              10,
+              -2
+            ],
+            [
+              3,
+              10,
+              -2
+            ]
+          ]
+        ],
+        "constant_values": [
+          0
+        ],
+        "partition_count": 10
+      },
+      "4+1+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              4,
+              14,
+              -2
+            ]
+          ]
+        ],
+        "constant_values": [
+          -1
+        ],
+        "partition_count": 15
+      },
+      "4+2": {
+        "block_coefficient_patterns": [
+          [
+            [
+              2,
+              4,
+              -1
+            ],
+            [
+              4,
+              14,
+              -2
+            ]
+          ]
+        ],
+        "constant_values": [
+          0
+        ],
+        "partition_count": 15
+      },
+      "5+1": {
+        "block_coefficient_patterns": [
+          [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              5,
+              23,
+              -3
+            ]
+          ]
+        ],
+        "constant_values": [
+          -3
+        ],
+        "partition_count": 6
+      },
+      "6": {
+        "partition_count": 1,
+        "prepw_values": [
+          14
+        ],
+        "special": "g6 = 23*wF - 2*W + 1"
+      }
+    }
+  },
+  "proof_obligations": {
+    "all_11_shapes_covered": true,
+    "all_block_inequalities_integer_valid": true,
+    "block_bounds": {
+      "m2": {
+        "coefficient_check": true,
+        "production_term": "T2=4*wF-sw=g2",
+        "source": "pair-gain condition pair clause",
+        "upper_bound": "0"
+      },
+      "m3": {
+        "derived": "sw>=6*wF",
+        "max_coefficient": -2,
+        "production_term": "T3=10*wF-2*sw",
+        "source": "sum all 3 pair clauses",
+        "upper_nonpositive": true
+      },
+      "m4": {
+        "derived": "sw>=8*wF",
+        "max_coefficient": -2,
+        "production_term": "T4=14*wF-2*sw",
+        "source": "any perfect matching of 2 pairs",
+        "upper_nonpositive": true
+      },
+      "m5": {
+        "derived": "sw>=10*wF",
+        "max_coefficient": -7,
+        "production_term": "T5=23*wF-3*sw",
+        "source": "sum a 5-cycle of pair clauses",
+        "upper_nonpositive": true
+      },
+      "m6": {
+        "bound": "g6<=-wF-3<0",
+        "coefficient_check": true,
+        "constant_check": true,
+        "derived": "W>=12*wF+2",
+        "production_term": "g6=23*wF-2*W+1",
+        "source": "pair-gain condition 3-disjoint-pair bonus clause"
+      }
+    },
+    "converse": {
+      "pair_clause_failure": "shape 2+1+1+1+1 has gain g2>0",
+      "three_pair_clause_failure": "shape 2+2+2 has gain g2(a)+g2(b)+g2(c)+2>0",
+      "two_pair_clause_failure": "shape 2+2+1+1 has gain g2(a)+g2(b)+1>0"
+    },
+    "converse_explicit_partition_witnesses": true,
+    "shape_rules": {
+      "1+1+1+1+1+1": "gain=0",
+      "2+1+1+1+1": "T2<=0",
+      "2+2+1+1": "exactly pair-gain condition two-disjoint-pair gain <=0",
+      "2+2+2": "exactly pair-gain condition three-disjoint-pair gain <=0",
+      "3+1+1+1": "T3-1<=0",
+      "3+2+1": "T3+T2<=0",
+      "3+3": "T3+T3<=0",
+      "4+1+1": "T4-1<=0",
+      "4+2": "T4+T2<=0",
+      "5+1": "T5-3<=0",
+      "6": "g6<0"
+    },
+    "theorem": "C_F == C_U iff pair-gain condition for every admitted frozen six-term model instance and every n"
+  },
+  "record_type": "six_term_pair_gain_boundary"
+}

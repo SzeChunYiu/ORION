@@ -1,0 +1,47 @@
+\documentclass[a4paper,twocolumn,11pt,unpublished]{quantumarticle}
+\pdfoutput=1
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,tabularx,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{balance}
+\setlength{\emergencystretch}{2em}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\begin{document}
+
+\title{Regime maps for exact quantum compilation separate expressivity, certificates and feature transfer}
+\author{Sze Chun Yiu}
+\email{sze-chun.yiu@fysik.su.se}
+\maketitle
+
+\begin{abstract}
+Quantum compilation is instance dependent, but a performance footprint alone does not distinguish an intrinsic compiler property from a proof limitation or a failed representation.  We prove three model-specific results and organize them with a typed exact-regime record: a shared-tag Pauli block-encoding model has an all-size support-two ceiling; a rank-two dependent-triple model has intrinsic support number one and an explicit objective region where the proof applies; and a six-term linear-combination model has an exact pair-gain boundary.  Weighted Clifford state preparation supplies an adverse transfer test.  Its complete $n\leq3$ domain contains 1,146 states, and a sign-aware 127-feature representation separates all labels into 1,109 cells.  The representation is nearly injective rather than compact and does not transfer: parity-split lookup makes 32 errors on a frozen 120-state $n=4$ panel and covers only two states.  It shows no improvement under the specified 200-permutation shuffle null on this panel (mean 32.41 errors; empirical $p=0.51$).  An earlier prospective forecast also failed, matching 100 of 120 regime labels and 67 of 120 exact costs.  The combined record rules out three otherwise tempting inferences: a proof ceiling need not be intrinsic support, certificate silence need not be necessity, and finite feature determination need not imply transfer.  No universal compiler law or physical advantage is claimed.
+\end{abstract}
+
+\noindent\textbf{Keywords:} quantum compilation; exact optimization; stabilizer circuits; block encoding; algorithm selection; instance-space analysis.
+
+\input{sections/introduction}
+\input{generated_results_tables}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/related_work}
+\input{sections/limitations}
+\input{sections/conclusion}
+\input{sections/data_and_code_availability}
+\input{sections/ethics_and_author_statement}
+
+\balance
+\bibliographystyle{unsrtnat}
+\bibliography{bibliography}
+
+\end{document}

@@ -1,0 +1,235 @@
+{
+  "schema_version": "orion.journal-package.v1",
+  "paper_id": "P4",
+  "package_status": "SCAFFOLDING",
+  "declared_paper_terminal": "PEER_REVIEW_READY",
+  "audit_subject_revision": "b7cfaecfb55d9ad6c12fb59374935769ed8d8787",
+  "audit_date": "2026-08-17",
+  "issue": 160,
+  "required_files": [
+    {
+      "path": "manuscript/main.tex",
+      "role": "manuscript-source"
+    },
+    {
+      "path": "evidence/CLAIM_LEDGER_V1.md",
+      "role": "claim-ledger"
+    },
+    {
+      "path": "evidence/protected_v2/PUBLICATION_METRICS_V2.json",
+      "role": "headline-metrics"
+    },
+    {
+      "path": "evidence/protected_v2/RESULT_ATTESTATION_V2.md",
+      "role": "result-attestation"
+    },
+    {
+      "path": "evidence/protected_v3/FREEZE.md",
+      "role": "v3-prospective-freeze"
+    },
+    {
+      "path": "evidence/protected_v3/IDENTIFIABILITY_V3.json",
+      "role": "v3-identifiability-register"
+    },
+    {
+      "path": "evidence/protected_v3/PANEL_V3.json",
+      "role": "v3-panel-metrics"
+    },
+    {
+      "path": "evidence/protected_v3/RESULT.md",
+      "role": "v3-result-report"
+    },
+    {
+      "path": "evidence/protected_v3/README.md",
+      "role": "v3-promotion-provenance"
+    },
+    {
+      "path": "evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json",
+      "role": "panel-resolution-audit"
+    },
+    {
+      "path": "evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json",
+      "role": "v3-claim-axis-adjudication"
+    },
+    {
+      "path": "reproducibility/BINDING_MANIFEST_V2.md",
+      "role": "reproducibility-bindings"
+    },
+    {
+      "path": "submission/COVER_NOTE_TMLR.md",
+      "role": "cover-note"
+    },
+    {
+      "path": "submission/TMLR_SCOPE_AND_CHECKLIST.md",
+      "role": "journal-scope"
+    },
+    {
+      "path": "JOURNAL_READINESS.md",
+      "role": "gate-checklist"
+    },
+    {
+      "path": "CLAIM_LEDGER_V4.md",
+      "role": "claim-ledger-v4"
+    },
+    {
+      "path": "manuscript/sections/01-introduction.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/02-related-work.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/02a-verification-axis-identifiability.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/03-non-escalating-authority-transition.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/04-methods.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/05-results.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/06-threat-model-limitations-and-interpretation.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/07-broader-impact-and-governance.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/08-data-and-code-availability.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/09-conclusion.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/10-freeze-and-custody-identifiers.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "manuscript/sections/11-ablation-interpretation.tex",
+      "role": "section-source"
+    },
+    {
+      "path": "submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex",
+      "role": "p4x-promotion-authority-section"
+    },
+    {
+      "path": "manuscript/main.pdf",
+      "role": "compiled-pdf-in-tree",
+      "binding": "pdf_render_binding"
+    },
+    {
+      "path": "protocol/SCIFACT_LABEL_STATE_MAP_V1.json",
+      "role": "scifact-label-state-map-frozen"
+    },
+    {
+      "path": "protocol/SCIFACT_LABEL_STATE_MAP_V1.md",
+      "role": "scifact-label-state-map-prose"
+    },
+    {
+      "path": "protocol/check_scifact_label_state_map_v1.py",
+      "role": "scifact-label-state-map-checker"
+    }
+  ],
+  "pdf_render_binding": {
+    "note": "Local tectonic (XeTeX/xdvipdfmx) render, not the CI clean-room artifact; see CLAIM_PDF_AUDIT.md addenda 2026-08-24 (original render and abstract-carrier restoration re-render).",
+    "source_revision": "abfc846a61a1596309a7ebc0ac38e579aa0f333f",
+    "rendered_utc_date": "2026-08-24",
+    "engine": "tectonic (XeTeX, xdvipdfmx producer)",
+    "sha256": "2d3841da6c0a70b169dcaf162fb126fc0e1b0c9c54d0a15fd897744239644f71",
+    "pages": 26
+  },
+  "missing_artifacts": [
+    {
+      "path": "journal_package/manuscript.pdf",
+      "role": "compiled-pdf-copied-into-package",
+      "status": "CANNOT_CHECK",
+      "reason": "Intentionally not copied: COMPILE.md forbids copying a PDF into journal_package/. An in-tree compiled PDF exists and is hash-bound as manuscript/main.pdf (pdf_render_binding; local tectonic render 2026-08-24). The audited 12-page release PDF remains in GitHub Release orion-p4-v2-peer-review-ready-saturated-2026-08-17 (SHA-256 f2ede371e254e37cf57c309565a5ede09ab3d61f9feba75b67eccca2a4893ccf)."
+    },
+    {
+      "path": "journal_package/DOI.txt",
+      "role": "permanent-archive-doi",
+      "status": "CANNOT_CHECK",
+      "reason": "GitHub Release tag is not a DOI. No DataCite/Zenodo DOI is recorded."
+    },
+    {
+      "path": "journal_package/openreview_submission_id.txt",
+      "role": "openreview-id",
+      "status": "CANNOT_CHECK",
+      "reason": "TMLR OpenReview ID is inserted only after an actual submission."
+    }
+  ],
+  "claims": [
+    {
+      "id": "P4.H1",
+      "text": "ORION 0/360 false promotions vs strongest frozen comparator 180/360; effect -0.50, paired 95% CI [-0.553,-0.447].",
+      "artifacts": [
+        "evidence/protected_v2/PUBLICATION_METRICS_V2.json"
+      ],
+      "status": "SUPPORTED"
+    },
+    {
+      "id": "P4.H2",
+      "text": "Both systems promote 60/60 clean positives.",
+      "artifacts": [
+        "evidence/protected_v2/PUBLICATION_METRICS_V2.json"
+      ],
+      "status": "SUPPORTED"
+    },
+    {
+      "id": "P4.H3",
+      "text": "On the prospectively frozen V3 battery, ORION selects the correct CANNOT_CHECK terminal on 30/30 gold cases with 0/360 false promotions, against 0/30 for the H1-selected comparator provenai-citation-fidelity-influence: effect 1.0, paired 95% CI [1.0, 1.0], pre-registered threshold ci95_low > 0.0. Against deepsciverify-abstract-to-full-escalation, which scores 15/30, the margin is 0.5, not 1.0; both numbers belong in any sentence about H3. Pre-registered reading, fixed in FREEZE.md section 5 before the panel ran: this measures terminal expressiveness under a non-compensatory gate lattice -- the ability to report an inability -- and not a finer-grained scientific judgement, because nine of the ten comparators score 0 for the reason that they cannot emit CANNOT_CHECK at all. Quotable only because the identifiability register clears at informedness 0.0 against a declared ceiling of 0.0 on the CANNOT_CHECK axis -- the axis this hypothesis is computed over -- across all 14 probes and all 13 seeds; the same register recovers the CANNOT_CHECK label at 1.0 on both the V1 and V2 constructions, which is why their H3 could not be a measurement. The register does not clear everywhere: on 3 of the 13 seeds the digest-prefix probe, declared in FREEZE.md section 3 as a noise control, recovers BLOCK or PROMOTE at 0.012 to 0.083. Those residuals are on axes H3 does not read, and a 0.0 ceiling cannot separate a small leak from sampling noise -- reported rather than tuned away.",
+      "artifacts": [
+        "evidence/protected_v3/PANEL_V3.json",
+        "evidence/protected_v3/IDENTIFIABILITY_V3.json",
+        "evidence/protected_v3/FREEZE.md",
+        "evidence/protected_v3/RESULT.md",
+        "evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json"
+      ],
+      "status": "SUPPORTED"
+    },
+    {
+      "id": "P4.H3.V2",
+      "text": "Retained historical entry, superseded rather than corrected. On the V1-construction battery the V2 campaign ran, H3 was declared NOT_SUPPORTED on correct_cannot_check_rate, which all eleven panel systems scored 1.0: declared CI95 [0.0, 0.0], metric_resolution SATURATED, verdict_could_have_differed false. The verdict records the benchmark, not the systems, so it is an instrument with no resolving power and not a comparative finding. The V2 artifacts are unedited and this row does not restate their number.",
+      "artifacts": [
+        "evidence/protected_v2/PUBLICATION_METRICS_V2.json",
+        "evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json"
+      ],
+      "status": "NOT_SUPPORTED"
+    },
+    {
+      "id": "P4.PDF",
+      "text": "An independent final proofread of the current in-tree manuscript PDF remains to be completed.",
+      "artifacts": [],
+      "status": "OPEN"
+    },
+    {
+      "id": "P4.LOCAL_RENDER",
+      "text": "The 26-page in-tree working PDF passed a same-session programmatic render and content audit; this is local conformance, not an independent proofread or submission package.",
+      "artifacts": [
+        "manuscript/main.pdf",
+        "journal_package/CLAIM_PDF_AUDIT.md"
+      ],
+      "status": "BOUNDED",
+      "boundary": "Local render conformance only; journal_package remains SCAFFOLDING and independent proofread/submission authority remain OPEN."
+    }
+  ],
+  "scientific_result_verification": {
+    "owner_issue": 283,
+    "schema_name": "ScientificResultVerification.v1",
+    "records_present": [
+      "research/verification/records/P4.H1.false-authority-promotion.json",
+      "research/verification/records/P4.H2.clean-authority-coverage.json"
+    ]
+  }
+}
