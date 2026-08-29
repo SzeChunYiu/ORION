@@ -1,0 +1,122 @@
+{
+  "schema_version": "orion11.objective-task-transfer.v1",
+  "identity": "ORION11.OBJECTIVE_TASK_TRANSFER.v1",
+  "status": "DESIGN_ONLY__NO_PROTECTED_OUTCOME_AUTHORITY",
+  "scientific_authority_delta": "NONE",
+  "historical_evidence_policy": {
+    "old_2880_records": "instrument_validation_only",
+    "faithful_comparator_negative_history_retained": true,
+    "historical_records_count_toward_confirmatory_n": false
+  },
+  "domains": [
+    {
+      "id": "DEFECTS4J",
+      "families": 10,
+      "family_unit": "independently maintained Java project lineage",
+      "oracle": "pre-existing executable test oracle"
+    },
+    {
+      "id": "LEAN",
+      "families": 10,
+      "family_unit": "independent proof/module/project lineage",
+      "oracle": "Lean kernel under pinned toolchain"
+    },
+    {
+      "id": "REPRO_WORKFLOW",
+      "families": 10,
+      "family_unit": "independently maintained public reproducible workflow lineage",
+      "oracle": "pre-existing executable regression or reproduction oracle"
+    }
+  ],
+  "minimum_total_families": 30,
+  "candidate_freeze": {
+    "before_arm_execution": true,
+    "post_outcome_replacement": false,
+    "organization_duplicates_count_as_independent_families": false
+  },
+  "required_transition_fields": [
+    "pre_change_state",
+    "real_exogenous_change",
+    "externally_checkable_post_change_target",
+    "declared_impact_relation_available_to_all_arms",
+    "protected_invariant"
+  ],
+  "arms": [
+    {
+      "id": "A0_STALE_STATE",
+      "role": "negative_mechanism_control"
+    },
+    {
+      "id": "A1_MATCHED_RANDOM_MUTATION",
+      "role": "generic_mutation_budget_control",
+      "must_match_A2_mutation_count_and_type": true,
+      "must_ignore_dependency_impact": true
+    },
+    {
+      "id": "A2_TARGETED_MUTATION",
+      "role": "registered_mechanism_arm"
+    },
+    {
+      "id": "A3_GLOBAL_RESET",
+      "role": "strong_correctness_comparator"
+    }
+  ],
+  "information_parity": {
+    "same_task_bytes": true,
+    "same_change_bytes": true,
+    "same_declared_dependency_information": true,
+    "same_verifier_interface_description": true,
+    "same_resource_ceiling": true,
+    "gold_dependency_labels_for_A2": false,
+    "gold_leak_terminal": "CANNOT_CHECK_INFORMATION_PARITY"
+  },
+  "primary_endpoints": [
+    "objective_recovery_correctness",
+    "protected_invariant_violation",
+    "unsafe_acceptance",
+    "realized_work",
+    "mutation_footprint"
+  ],
+  "inference_unit": "family",
+  "within_family_transitions_are_independent_replicates": false,
+  "A2_vs_A1_lexicographic_order": [
+    "fewer_unsafe_acceptances",
+    "more_objectively_correct_recoveries_if_tied",
+    "fewer_protected_invariant_violations_if_tied",
+    "otherwise_tie"
+  ],
+  "cost_breaks_primary_A2_vs_A1_tie": false,
+  "A2_vs_A3": {
+    "requires_correctness_noninferiority": true,
+    "requires_strictly_less_median_realized_work": true,
+    "noninferiority_margin_frozen_per_domain_before_outcomes": true,
+    "work_metric_frozen_per_domain_before_outcomes": true
+  },
+  "promotion_gate": {
+    "overall_family_wins_min": 21,
+    "overall_families": 30,
+    "per_domain_wins_min": 6,
+    "per_domain_families": 10,
+    "domains": 3,
+    "known_negative_controls_must_fire": true,
+    "A2_vs_A3_gate_must_pass_every_domain": true,
+    "unresolved_information_or_oracle_custody_blocker_allowed": false,
+    "fair_coin_joint_null_probability": 0.01615840569138527,
+    "power_at_independent_family_win_probability_0_8": 0.8817023923578055
+  },
+  "adverse_outcomes_retained": [
+    "A1_matches_or_beats_A2",
+    "A3_materially_more_correct_than_A2",
+    "A2_succeeds_only_in_one_domain",
+    "advantage_disappears_after_organization_duplicate_collapse",
+    "A2_requires_gold_dependency_leakage"
+  ],
+  "terminals": [
+    "OBJECTIVE_MULTI_FAMILY_TARGETING_SUPPORT",
+    "NO_TARGETING_ADVANTAGE",
+    "CANNOT_CHECK_INSUFFICIENT_INDEPENDENT_FAMILIES",
+    "CANNOT_CHECK_INFORMATION_PARITY",
+    "CANNOT_CHECK_EXTERNAL_ORACLE",
+    "ADVERSE_GLOBAL_RESET_CORRECTNESS_SUPERIOR"
+  ]
+}
