@@ -1,0 +1,151 @@
+{
+  "all_pass": true,
+  "controls": [
+    {
+      "agrees_with_v1": true,
+      "control": "control:r6o-16",
+      "gap": 0,
+      "matches_required": true,
+      "measured_c1_c2": [
+        4,
+        4
+      ],
+      "required_c1_c2": [
+        4,
+        4
+      ],
+      "t_solve1_s": 0.45,
+      "t_solve2_s": 494.313,
+      "targets": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "v1_recorded_c1_c2": [
+        4,
+        4
+      ]
+    },
+    {
+      "agrees_with_v1": true,
+      "control": "control:r6o-17",
+      "gap": 0,
+      "matches_required": true,
+      "measured_c1_c2": [
+        5,
+        5
+      ],
+      "required_c1_c2": [
+        5,
+        5
+      ],
+      "t_solve1_s": 0.441,
+      "t_solve2_s": 488.39,
+      "targets": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "v1_recorded_c1_c2": [
+        5,
+        5
+      ]
+    },
+    {
+      "agrees_with_v1": true,
+      "control": "control:r6o-19",
+      "gap": 0,
+      "matches_required": true,
+      "measured_c1_c2": [
+        6,
+        6
+      ],
+      "required_c1_c2": [
+        6,
+        6
+      ],
+      "t_solve1_s": 0.445,
+      "t_solve2_s": 490.896,
+      "targets": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "v1_recorded_c1_c2": [
+        6,
+        6
+      ]
+    }
+  ],
+  "criterion": "r6o-16/17/19 must return 4/4, 5/5, 6/6 (gap erased)",
+  "estimand": "min cost over all 15 perfect matchings; gap = C1 - C2",
+  "gates": "Stage 1 carries no authority unless terminal is STAGE0_CONTROLS_PASS",
+  "schema": "ORION05.GLOBAL_OBSTRUCTION_BASIS.v2.stage0",
+  "solver_matches_v1_census": true,
+  "solver_sha256": "642cc67a280abb2ca06089ae01510040f1f598ec638d525ddcc29fae8c6b25d3",
+  "terminal": "STAGE0_CONTROLS_PASS",
+  "v1_note": "the v1 census recorded these same three cost pairs but reports control_gate_passed=false, because the v1 checker expected a gap; the v2 criterion requires its absence"
+}
