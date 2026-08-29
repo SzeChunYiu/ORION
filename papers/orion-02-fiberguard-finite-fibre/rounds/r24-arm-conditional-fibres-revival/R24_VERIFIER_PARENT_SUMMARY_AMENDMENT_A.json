@@ -1,0 +1,47 @@
+{
+  "schema": "ORION.FiberGuard.R24.VerifierParentSummaryAmendment.v1",
+  "date": "2026-08-28",
+  "trigger": {
+    "job_id": 3550275,
+    "wrapper_stage": "INDEPENDENT_VERIFY_A",
+    "wrapper_exit_code": 1,
+    "failed_check": "arm summary R23_PARENT_PRIMARY_LEARNED"
+  },
+  "outcome_exposure": {
+    "r24_scientific_payload_executed_twice": true,
+    "result_sha256": "b21f54b9aad939b60e9600fc11ba856e8942bc81c73f84b3e28161667a20df54",
+    "terminal": "C_R24_ARM_CONDITIONAL_CERTIFICATE_INVALID",
+    "r23_parent_sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77",
+    "result_bytes_may_not_be_changed": true,
+    "terminal_may_not_be_changed": true
+  },
+  "mechanistic_diagnosis": {
+    "cause": "the R24 independent summary helper correctly rebuilt the common R24 fields but the frozen R23 parent schema additionally contains fallback_fraction and backoff_fraction; exact dictionary equality therefore rejected two extra, independently reconstructible legacy fields",
+    "observed_only_difference": {
+      "backoff_fraction": 0.909090909091,
+      "fallback_fraction": 0.045454545455
+    },
+    "all_common_summary_fields_equal": true,
+    "scientific_result_defect": false,
+    "verifier_schema_adapter_defect": true
+  },
+  "permitted_change": "add an independent R23-parent summary adapter that reconstructs the two legacy operational fractions and use it only for the R23_PARENT_PRIMARY_LEARNED equality check",
+  "forbidden_changes": [
+    "R24 protocol, executor, pool mechanism, gates, comparators, or terminal precedence",
+    "job-3550275 run_a or run_b result, parent, terminal, stdout, stderr, or timing bytes",
+    "R23 frozen parent bytes",
+    "any tolerance, metric, comparison, or authority field"
+  ],
+  "attempt_accounting": {
+    "job_3550275_is_preserved_as_wrapper_failure": true,
+    "new_scientific_attempt_authorized": false,
+    "verification_only_recovery_allowed": true,
+    "attempt_002_counts_only_if_both_preserved_results_pass_the_amended_independent_verifier_and_all_byte_identity_checks": true
+  },
+  "authority": {
+    "scientific_authority_delta": "NONE",
+    "paper_freeze_authorized": false,
+    "submission_authorized": false,
+    "top_tier_gate_pass": false
+  }
+}

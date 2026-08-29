@@ -1,0 +1,60 @@
+{
+  "authorization_semantics": {
+    "external_independence": "CANNOT_CHECK",
+    "machine_established_externality": false,
+    "machine_established_identity": false,
+    "operational_permission_only": true,
+    "operator_label": "USER_SUPPLIED_UNVERIFIED_BY_MACHINE",
+    "scientific_authority_delta": "NONE"
+  },
+  "authorization_template": {
+    "attempt_limit": 1,
+    "authorization": {
+      "authorized_at_utc": "REPLACE_WITH_CANONICAL_UTC_TIME",
+      "authorized_by": "REPLACE_WITH_OPERATOR_LABEL_UNVERIFIED_BY_MACHINE"
+    },
+    "declared_scopes": [
+      {
+        "expected_record_count": 98622,
+        "scope": "NQ_D2_NORMALIZED_LENGTH_19"
+      },
+      {
+        "expected_record_count": 230983,
+        "scope": "NQ_D3_STRUCTURED_LENGTH_25"
+      }
+    ],
+    "durable_root": "REPLACE_WITH_ABSOLUTE_DURABLE_JOB_ROOT",
+    "global_registry_root": "REPLACE_WITH_ABSOLUTE_SHARED_REGISTRY_ROOT",
+    "nonduplication_key": "DERIVE_AFTER_ALL_OTHER_FIELDS_ARE_FROZEN",
+    "paper_id": "ORION-04",
+    "schema": "ORION.ORION04.CRB.OneShotAuthorization.v1",
+    "source_manifest": {
+      "path": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/SOURCE_MANIFEST.json",
+      "sha256": "BIND_EXACT_SUCCESSOR_SOURCE_MANIFEST_SHA256"
+    },
+    "status": "AUTHORIZED_ONE_SHOT",
+    "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088",
+    "successor_commit": "BIND_EXACT_SUCCESSOR_COMMIT"
+  },
+  "execution_performed": false,
+  "forbidden_keys": [
+    "5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f62307",
+    "07e8b0389f37d2c890cdc050f0f3db2a13d94002dedd94cfcf8a1ce6c0128384",
+    "741454d7d6b513ccd80d2aa9a78d2a9f5076fe8075341d0ecc8e95566ecc28ea"
+  ],
+  "live_authorization_file_present": false,
+  "paper_id": "ORION-04",
+  "required_operator_action": "Supply one new one-shot execution request outside this source packet after reviewing the exact successor commit and source manifest. The machine validates bindings only; it does not establish the operator identity, externality, or independence. No agent may self-authorize or reuse a prior key.",
+  "schema": "ORION.ORION04.CRB.SuccessorAwaitingAuthorization.v1",
+  "science_authority": {
+    "d2": "CANNOT_CHECK",
+    "d3": "CANNOT_CHECK",
+    "d4": "OPEN",
+    "d4_rounds_consumed": 0,
+    "external_authority": false,
+    "journal_authority": false,
+    "paper_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE"
+  },
+  "terminal": "AWAITING_NEW_ONE_SHOT_AUTHORIZATION"
+}

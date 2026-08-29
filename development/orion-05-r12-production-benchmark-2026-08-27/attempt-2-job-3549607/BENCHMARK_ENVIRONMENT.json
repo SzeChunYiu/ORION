@@ -1,0 +1,42 @@
+{
+  "affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "commit": "1078ff764fa128f9f5150898761a1528d1a300b7",
+  "logical_cpu_count": 48,
+  "machine": "x86_64",
+  "numpy_version": "2.4.6",
+  "platform": "Linux-5.14.0-687.24.1.el9_8.x86_64-x86_64-with-glibc2.34",
+  "processor": "x86_64",
+  "python_executable": "/sw/easybuild_milan/software/Python/3.11.5-GCCcore-13.2.0/bin/python3",
+  "python_version": "3.11.5 (main, Aug 26 2024, 11:58:39) [GCC 13.2.0]",
+  "schema": "ORION.ORION05.R12.BenchmarkEnvironment.v1",
+  "slurm": {
+    "SLURM_CPUS_PER_TASK": "16",
+    "SLURM_JOB_ID": "3549607",
+    "SLURM_JOB_NODELIST": "cx04",
+    "SLURM_JOB_PARTITION": "hep"
+  },
+  "thread_limits": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "workers": 16
+}

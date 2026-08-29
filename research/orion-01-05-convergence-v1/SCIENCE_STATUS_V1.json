@@ -1,0 +1,1053 @@
+{
+  "schema": "ORION.ORION0105.ScienceStatus.v1",
+  "date": "2026-08-27",
+  "terminal": "ORION_01_05_CONVERGENCE_V1_EVIDENCE_BOUND__SCIENCE_CLOSURE_OPEN__SUBMISSION_NOT_YET_AUTHORIZED",
+  "canonical_identity_source": "papers/PAPER_ALIASES.md",
+  "portfolio_control": {
+    "publication_issue": 1507,
+    "breakthrough_issue": 1517,
+    "maximum_distinct_rounds_before_fallback_disposition": 3,
+    "science_before_manuscript_packaging": true,
+    "top_tier_first": true,
+    "fallback": "STRONG_SPECIALIST_WITH_NARROWER_CLAIMS_ONLY"
+  },
+  "authority_order": [
+    "immutable_subject_and_canonical_identity",
+    "raw_scientific_evidence",
+    "additive_custody_or_interpretation_correction",
+    "current_convergence_status",
+    "per_paper_science_disposition",
+    "manuscript_and_package_closure",
+    "external_review_rights_venue_and_exact_submission_bytes"
+  ],
+  "cross_paper_claim_ownership": {
+    "ABSTRACT_CERTIFICATE_AND_PRODUCTION_REALIZATION": {
+      "primary": "ORION-01",
+      "supporting": [],
+      "rule": "ORION-01 owns the generic certificate language, terminal-complexity, registry-completeness, and production-realization authority boundary."
+    },
+    "R6M_TARE_SUPPORT_EXPRESSIVITY": {
+      "primary": "ORION-05",
+      "supporting": [
+        "ORION-01:A2-C5",
+        "ORION-01:B2-C3"
+      ],
+      "rule": "ORION-01 ledgers remain provenance for the abstract certificate instantiation; ORION-05 owns the frozen-R6M TARE expressivity theorem and may not double-count novelty."
+    },
+    "TYPED_AUTHORITY_OVER_D4_EVIDENCE": {
+      "primary": "ORION-03",
+      "supporting": [
+        "ORION-04:N2-C8",
+        "ORION-03:D2-C7"
+      ],
+      "rule": "ORION-03 owns the typed nonpromotion statement; it does not own the additive-combinatorics theorem or exact D4 value."
+    },
+    "ROOTED_COMPLETION_AND_EXACT_D4": {
+      "primary": "ORION-04",
+      "supporting": [
+        "ORION-03:D2-C7"
+      ],
+      "rule": "ORION-04 owns the C_5^3 corridor, obstruction, replay, and exact-D4 mathematical subject; exact D4 remains open."
+    }
+  },
+  "papers": {
+    "ORION-01": {
+      "title": "Certificate Realization",
+      "legacy_aliases": [
+        "theory-A",
+        "theory-B",
+        "AB"
+      ],
+      "coordinator_issues": [
+        1513,
+        1520
+      ],
+      "science_status": "OPEN",
+      "rounds": {
+        "consumed": 0,
+        "maximum": 3,
+        "current": "ROUND_1_DESIGNED_NOT_EXECUTED"
+      },
+      "claim_ledgers": [
+        {
+          "path": "papers/orion-01-certificate-realization/theory-A-CLAIM_LEDGER_R2.md",
+          "baseline_blob": "c69b3ea30e3ffe440d75b258183ac9f80bdc4a12",
+          "sha256": "3c2a7771774856e2de2d18cf38f2b62c0e069301925a40624105349dd46d03db",
+          "claim_dispositions": {
+            "established_at_stated_ceiling": [
+              "A2-C1",
+              "A2-C2",
+              "A2-C3",
+              "A2-C4",
+              "A2-C5"
+            ],
+            "open_not_claimed": [
+              "A2-C6",
+              "A2-C7"
+            ],
+            "forbidden": [
+              "A2-C8"
+            ],
+            "donor_owned": [
+              "A2-C9"
+            ]
+          }
+        },
+        {
+          "path": "papers/orion-01-certificate-realization/theory-B-CLAIM_LEDGER_R2.md",
+          "baseline_blob": "1d162bf1785aedd9f895f5030d2aa2a7b8257b27",
+          "sha256": "d0a9539d27321dceb22df2717c795cede7358040537f2ded023fa5aa41446ea3",
+          "claim_dispositions": {
+            "established_at_stated_ceiling": [
+              "B2-C1",
+              "B2-C2",
+              "B2-C3",
+              "B2-C4",
+              "B2-C5",
+              "B2-C6"
+            ],
+            "open_not_claimed": [
+              "B2-C7"
+            ],
+            "forbidden": [
+              "B2-C8",
+              "B2-C9"
+            ],
+            "donor_owned": []
+          }
+        }
+      ],
+      "established_scope": [
+        "abstract certificate and registry-nonidentifiability results at their stated finite-language ceilings"
+      ],
+      "open_science_gates": [
+        "complete source-bound production move and guard registry",
+        "extensional or schema completeness proof",
+        "semantic preservation and weak-move lifting",
+        "critical-interaction and omitted-move hostile controls",
+        "realized production value or exact-search reduction"
+      ],
+      "next_gate": "Execute one prospectively frozen complete-registry realization study on a public finite rewrite subject.",
+      "authority": {
+        "production_authority_established": false,
+        "external_independence_established": false,
+        "novelty_authority_established": false,
+        "journal_authority_established": false,
+        "submission_authorized": false
+      },
+      "evidence_status": {
+        "preserved_records": [
+          {
+            "id": "ORION01_AB_R12_REGISTRY",
+            "value": "AB_REGISTRY_NONIDENTIFIABILITY_R12_PASS",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "b58f3a81d537ec3560f86a65d279d00c93cfb9e6",
+              "path": "papers/five-paper-top-tier-r8/AB/REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json",
+              "blob": "38e5b2b08b8780bc92e7c2fc9746c5f3198cd0bb",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-01-certificate-realization/evidence/convergence-v1/REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "bounded analytic registry-nonidentifiability theorem; finite checker is implementation corroboration only",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE",
+            "donor_authority": {
+              "external_independence": "CANNOT_CHECK",
+              "novelty": "CANNOT_CHECK",
+              "production_transfer": false,
+              "journal_authority": false
+            }
+          },
+          {
+            "id": "ORION01_AB_R9_REJECTION",
+            "value": "FINITE_PRODUCTION_REALIZATION_CERTIFICATE_REJECTED",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "a70a1abc9b645bf66dc14864cdff11cd6a06fd1f",
+              "path": "papers/five-paper-top-tier-r8/AB/R6M_N2_PRODUCTION_REALIZATION_GATE_R9_RESULTS.json",
+              "blob": "dec349e40ae13bf5be6200bd9ef4c641b321068b",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-01-certificate-realization/evidence/convergence-v1/R6M_N2_PRODUCTION_REALIZATION_GATE_R9_RESULTS.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "adverse production-realization gate; issue type PRODUCTION_REGISTRY_NOT_DECLARED_COMPLETE",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION01_AB_R20_AUDIT",
+            "value": "AB_PR1469_PRODUCTION_TRANSFER_NOT_ESTABLISHED",
+            "record_kind": "AUDIT_DISPOSITION",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "b8385e3cec1b5d6f2f0d89c8cac41c76ea7cb6b2",
+              "path": "research/five-paper-top-tier-r20/results/AB_PR1469_PRODUCTION_REGISTRY_AUDIT.json",
+              "blob": "7eb1d17888ea76215aba25e7e77f9b3d30cce337",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-01-certificate-realization/evidence/convergence-v1/AB_PR1469_PRODUCTION_REGISTRY_AUDIT.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "exact R20 audit disposition; wrapper does not replace raw positive or adverse terminals",
+            "controls_current_science_status": false,
+            "disposition": "ACTIVE"
+          }
+        ],
+        "pending_candidates": [],
+        "convergence_summary": {
+          "label": "ORION-01_PRODUCTION_TRANSFER_NOT_ESTABLISHED__SCIENCE_OPEN",
+          "kind": "CONVERGENCE_GENERATED_SUMMARY",
+          "is_exact_donor_terminal": false,
+          "derived_from": [
+            "ORION01_AB_R12_REGISTRY",
+            "ORION01_AB_R9_REJECTION",
+            "ORION01_AB_R20_AUDIT"
+          ]
+        }
+      }
+    },
+    "ORION-02": {
+      "title": "FiberGuard Finite Fibre",
+      "legacy_aliases": [
+        "theory-C",
+        "C",
+        "FiberGuard"
+      ],
+      "coordinator_issues": [
+        1512,
+        1519
+      ],
+      "completed_round_issues": [
+        1533
+      ],
+      "absorbed_science_pull_requests": [
+        1534
+      ],
+      "science_status": "OPEN",
+      "rounds": {
+        "consumed": 1,
+        "maximum": 3,
+        "current": "ROUND_1_CONSUMED_AS_NULL"
+      },
+      "claim_ledgers": [
+        {
+          "path": "papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER_R2.md",
+          "baseline_blob": "1be657586a176ad38adb6aa9c71154536e19df94",
+          "sha256": "ed3401efb252526756451f5564154d4dce0fd991799d762631f01c95223558ab",
+          "claim_dispositions": {
+            "established_at_stated_ceiling": [
+              "C2-C1",
+              "C2-C2",
+              "C2-C3",
+              "C2-C4",
+              "C2-C5",
+              "C2-C6",
+              "C2-C7",
+              "C2-C8",
+              "C2-C9"
+            ],
+            "open_not_claimed": [
+              "C2-C10"
+            ],
+            "forbidden": [
+              "C2-C12"
+            ],
+            "donor_owned": [
+              "C2-C11"
+            ]
+          }
+        }
+      ],
+      "established_scope": [
+        "complete finite-fibre deterministic/randomized theory at its declared closed-world ceiling",
+        "R11 positive complete-corpus/transductive SAT12-ALL result",
+        "R14 exact-equality held-out partial-mean-only result and inductive-transfer refutation",
+        "R15 prospectively frozen multi-domain catastrophe/tail value on two of three subjects, with the failed subject retained",
+        "R16 no-portable-selective-value result",
+        "R17 fallback-alignment theory and bounded controls",
+        "R18 relative-route analytic extension at its unexecuted application ceiling",
+        "R18 paired-route null and permanent positive retraction",
+        "R19 exact joint-profile repair and hostile controls",
+        "C-NBR invalid certificate and C-NBR2 valid-without-coverage-or-value boundary",
+        "BNSL free-static singleton-fibre saturation null"
+      ],
+      "open_science_gates": [
+        "scientifically distinct untouched-subject Round 2 direct-relative/joint-route test",
+        "strongest information-matched baselines",
+        "unseen-instance or production value",
+        "external reproduction"
+      ],
+      "next_gate": "Execute the already-declared Round 2 mechanism on a different untouched subject; do not retune BNSL after outcome exposure.",
+      "authority": {
+        "production_authority_established": false,
+        "external_independence_established": false,
+        "novelty_authority_established": false,
+        "journal_authority_established": false,
+        "submission_authorized": false
+      },
+      "evidence_status": {
+        "preserved_records": [
+          {
+            "id": "ORION02_R11",
+            "value": "FIBERGUARD_ASLIB_SAT12_ALL_PASS",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "6f0b9a354c0f71ca744596252c74e2bf8b4a6f5b",
+              "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json",
+              "blob": "52b8dd6d4a5ff204f3447da0f6c3b33c3a2cd9fc",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r11/FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "complete-corpus/transductive SAT12-ALL finite result; no inductive superiority or journal authority",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION02_R14",
+            "value": "FIBERGUARD_ASLIB_HELDOUT_R14_PARTIAL_MEAN_ONLY",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "29edf9936fe56cd3720d78e6be2542106f2671fd",
+              "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_ASLIB_HELDOUT_R14_RESULTS_SUMMARY.json",
+              "blob": "565714113232e9e0b70a1278e9b59e33d0cdd616",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r14/FIBERGUARD_ASLIB_HELDOUT_R14_RESULTS_SUMMARY.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "held-out exact-equality transfer refutation/partial mean-only result",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION02_R15",
+            "value": "C_MULTIDOMAIN_CATASTROPHE_TAIL_VALUE_TWO_OF_THREE",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "4aac9b030c7e143b739caf42262718924b9a9005",
+              "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_MULTIDOMAIN_R15_RESULTS_SUMMARY.json",
+              "blob": "8cb8e3092dc008937e4a3b5eb572bdc9ec6b779b",
+              "json_pointer": "/portfolio/scientific_terminal",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r15/FIBERGUARD_MULTIDOMAIN_R15_RESULTS_SUMMARY.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "prospectively frozen three-domain catastrophe/tail value on two of three; failed domain retained",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION02_R16",
+            "value": "FIBERGUARD_R16_NO_PORTABLE_CERTIFICATE_VALUE",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "6bc502966c6d8f2a7a97db234a4c20216e6feac9",
+              "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_CROSS_SCENARIO_R16_RESULTS_SUMMARY.json",
+              "blob": "907b24075e409cd4ffed9546c015d9a0732ddf8e",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r16/FIBERGUARD_CROSS_SCENARIO_R16_RESULTS_SUMMARY.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "cross-scenario marginal calibration without portable selective value",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION02_R17",
+            "value": "FIBERGUARD_FALLBACK_ALIGNMENT_R17_PASS",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "f34b61e0051289588eaf144a580dca7bc9b7e707",
+              "path": "papers/five-paper-top-tier-r8/C/FALLBACK_ALIGNMENT_R17_RESULTS.json",
+              "blob": "f273cd335cb99f43d9d397a1794c058a1fe2d296",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r17/FALLBACK_ALIGNMENT_R17_RESULTS.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "exact fallback-alignment identities and bounded finite corroboration; no paired ASlib execution",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION02_R18_RELATIVE",
+            "value": "FIBERGUARD_RELATIVE_ROUTE_EXTENSION_R18_PASS",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "4f957b1c308566300bd412605a63f29ca86a4399",
+              "path": "papers/five-paper-top-tier-r8/C/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json",
+              "blob": "aa5d74fd4c88bdc81ccde3c1f8bad53112222ba8",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative/RELATIVE_ROUTE_EXTENSION_R18_RESULTS.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "analytic relative-route extension; named application/transfer gates remain unexecuted",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION02_R18_NULL",
+            "value": "FIBERGUARD_R18_NO_PAIRED_ROUTE_VALUE",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "375ce7bde60ab49abb46fa09f96cfc49b363dba8",
+              "path": "papers/five-paper-top-tier-r8/C/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json",
+              "blob": "bfdf072c2c1a88b724f2571480bd44075ee28c01",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "outcome-exposed recovery null: 99 frozen development candidates, zero feasible route coverage",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION02_R18_RETRACTION",
+            "value": "FIBERGUARD_R18_PAIRED_ROUTE_PASS_MAXSAT_VALIDATION_AND_QBF_TEST",
+            "record_kind": "AUTHORITY_VERDICT",
+            "source": {
+              "kind": "canonical_convergence_file",
+              "path": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_CUSTODY_V2.json",
+              "sha256": "9b30cbd81991deba0b16f57b633409e7213f6f15c1c0ff87f980da8bc7660188",
+              "json_pointer": "/former_positive_terminal/value",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r18/R18_RECOVERY_CUSTODY_V2.json"
+            },
+            "authority_scope": "former positive terminal permanently retracted for unsupported execution identity",
+            "controls_current_science_status": false,
+            "disposition": "RETRACTED_UNSUPPORTED_EXECUTION_IDENTITY"
+          },
+          {
+            "id": "ORION02_R19",
+            "value": "FIBERGUARD_JOINT_ROUTE_R19_REPLACEMENT_PASS",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "0879974cfdfb2cccb8d50d1c9ed5f44b165e171f",
+              "path": "papers/five-paper-top-tier-r8/C/JOINT_ROUTE_R19_RESULTS.json",
+              "blob": "e900c074d66ad43bf0276720bea0f3425529a808",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r19/JOINT_ROUTE_R19_RESULTS.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "exact joint-profile repair and hostile controls 35 to 70 and 0 to 50",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION02_CNBR",
+            "value": "CERTIFICATE_INVALID",
+            "record_kind": "AUTHORITY_VERDICT",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1",
+              "path": "papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json",
+              "blob": "3f217b0ebaa3f8f2cd802e0acba68031a9596ee3",
+              "json_pointer": "/overall_verdict",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "certified-neighborhood V1 invalid certificate",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION02_CNBR2",
+            "value": "VALID_WITHOUT_COVERAGE_OR_VALUE",
+            "record_kind": "AUTHORITY_VERDICT",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1",
+              "path": "papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json",
+              "blob": "62452ef25f30d30b3e6ffffec09dc73c77310d10",
+              "json_pointer": "/overall_verdict",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "conformal recovery validity only; coverage and value remain absent",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION02_BNSL_RAW",
+            "value": "C_R20_BNSL_ADAPTIVE_MATERIAL_VALUE",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "canonical_convergence_file",
+              "path": "papers/orion-02-fiberguard-finite-fibre/extensions/r20/FIBERGUARD_BNSL_ADAPTIVE_R20_RESULTS.json",
+              "sha256": "c843a0cb1c0a5a13863f27518e721cf8786334fba21a088f8ca4350ec947c49e",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r20/FIBERGUARD_BNSL_ADAPTIVE_R20_RESULTS.json"
+            },
+            "authority_scope": "raw terminal preserved but positive interpretation is quarantined",
+            "controls_current_science_status": false,
+            "disposition": "QUARANTINED_OVERLAPPING_MATERIAL_AND_NULL_PREDICATES_AT_ZERO"
+          },
+          {
+            "id": "ORION02_BNSL_NULL",
+            "value": "C_R20_BNSL_ADAPTIVE_NULL__FREE_STATIC_REPRESENTATION_ALREADY_VBS",
+            "record_kind": "COMPOSITE_INTERPRETATION",
+            "source": {
+              "kind": "canonical_convergence_file",
+              "path": "papers/orion-02-fiberguard-finite-fibre/extensions/r20/BNSL_R20_CUSTODY_V1.json",
+              "sha256": "c06e707dfb7b5a79935cd2ed716dadd38eca1609bab9706ff2358ed4005d6738",
+              "json_pointer": "/additive_interpretation",
+              "canonical_copy": "papers/orion-02-fiberguard-finite-fibre/extensions/r20/BNSL_R20_CUSTODY_V1.json"
+            },
+            "authority_scope": "additive null: free basic_extended creates singleton fibres and static/adaptive/VBS excess all equal zero",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          }
+        ],
+        "pending_candidates": [],
+        "convergence_summary": {
+          "label": "ORION-02_THEORY_PLUS_FALSIFICATION_BOUND__ROUND_2_OPEN",
+          "kind": "CONVERGENCE_GENERATED_SUMMARY",
+          "is_exact_donor_terminal": false,
+          "derived_from": [
+            "ORION02_R11",
+            "ORION02_R14",
+            "ORION02_R15",
+            "ORION02_R16",
+            "ORION02_R17",
+            "ORION02_R18_RELATIVE",
+            "ORION02_R18_NULL",
+            "ORION02_R18_RETRACTION",
+            "ORION02_R19",
+            "ORION02_CNBR",
+            "ORION02_CNBR2",
+            "ORION02_BNSL_RAW",
+            "ORION02_BNSL_NULL"
+          ]
+        }
+      }
+    },
+    "ORION-03": {
+      "title": "Typed-Merge Falsification",
+      "legacy_aliases": [
+        "theory-D",
+        "D"
+      ],
+      "coordinator_issues": [
+        1514,
+        1521
+      ],
+      "science_status": "OPEN",
+      "rounds": {
+        "consumed": 0,
+        "maximum": 3,
+        "current": "ROUND_1_DESIGNED_NOT_EXECUTED"
+      },
+      "claim_ledgers": [
+        {
+          "path": "papers/orion-03-typed-merge-falsification/CLAIM_LEDGER_R2.md",
+          "baseline_blob": "d74eaab6b503e8c5dc4397431811ddb03f8a287c",
+          "sha256": "cf0beac7ee9d9eb8003b0dbbe4922043a7e1ec78579820e8bdb21f722d84c339",
+          "claim_dispositions": {
+            "established_at_stated_ceiling": [
+              "D2-C1",
+              "D2-C2",
+              "D2-C3",
+              "D2-C4",
+              "D2-C5",
+              "D2-C6",
+              "D2-C7"
+            ],
+            "open_not_claimed": [
+              "D2-C9"
+            ],
+            "forbidden": [
+              "D2-C10"
+            ],
+            "donor_owned": [
+              "D2-C8"
+            ]
+          }
+        }
+      ],
+      "established_scope": [
+        "typed least-fixed-point and first-mixing/provenance formal material at bounded internal authority",
+        "Agentgateway same-field safe control is not vulnerability evidence"
+      ],
+      "open_science_gates": [
+        "permission-bearing independently maintained multi-record domain corpus",
+        "native verifier comparison and hostile merge cases",
+        "independent domain adjudication",
+        "operational value beyond a formal information-loss lemma"
+      ],
+      "next_gate": "Freeze and execute one public real-domain integration study with independent adjudication; emit CANNOT_CHECK if custody cannot be obtained.",
+      "authority": {
+        "production_authority_established": false,
+        "external_domain_validation_established": false,
+        "external_independence_established": false,
+        "novelty_authority_established": false,
+        "journal_authority_established": false,
+        "submission_authorized": false,
+        "bounded_internal_first_mixing_theorem": true
+      },
+      "evidence_status": {
+        "preserved_records": [
+          {
+            "id": "ORION03_AGENTGATEWAY_SAFE",
+            "value": "AGENTGATEWAY_RULESETS_ORIGIN_WITNESS_SAFE",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "f6b21c94b9cd372700d7a13ccc229e27637acef9",
+              "path": "papers/five-paper-top-tier-r8/D/AGENTGATEWAY_ORIGIN_WITNESS_SAFE_MERGE_R11_RESULTS_SUMMARY.json",
+              "blob": "c1325d6ed3ad3ca05b6aa4c98b7bae9d94432027",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/AGENTGATEWAY_ORIGIN_WITNESS_SAFE_MERGE_R11_RESULTS_SUMMARY.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "same-field Agentgateway ruleset safe control; not vulnerability or whole-system security evidence",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION03_FIRST_MIXING",
+            "value": "TYPED_AUTHORITY_FIRST_MIXING_R12_PASS",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "cbbb02f86fe1301b7a41e7ae4e35fe2cb26124cf",
+              "path": "papers/five-paper-top-tier-r8/D/FIRST_MIXING_R12_RESULTS.json",
+              "blob": "c04584b97ef6b55eccaecc4085f50c9b7e2ea8cf",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/FIRST_MIXING_R12_RESULTS.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "bounded analytic first-mixing theorem and finite corroboration; no deployed vulnerability or external real-domain authority",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE",
+            "donor_authority": {
+              "external_independence": "CANNOT_CHECK",
+              "novelty": "CANNOT_CHECK",
+              "journal_authority": false
+            }
+          },
+          {
+            "id": "ORION03_R20_FALSE_NEGATIVE",
+            "value": "D_PR1466_THEOREM_AUTHORITY_NOT_ESTABLISHED",
+            "record_kind": "AUDIT_DISPOSITION",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "b8385e3cec1b5d6f2f0d89c8cac41c76ea7cb6b2",
+              "path": "research/five-paper-top-tier-r20/results/D_PR1466_FIRST_MIXING_AUDIT.json",
+              "blob": "4d8a843cd91b92fb7485d286ed511727678a0492",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/D_PR1466_FIRST_MIXING_AUDIT.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "preserved noncontrolling R20 false negative; exact defect is bound in AUDIT_DISPOSITIONS_V1.json",
+            "controls_current_science_status": false,
+            "disposition": "PRESERVED_NONCONTROLLING_KNOWN_PREDICATE_DEFECT"
+          }
+        ],
+        "pending_candidates": [],
+        "convergence_summary": {
+          "label": "ORION-03_BOUNDED_FIRST_MIXING_THEOREM_PASS__EXTERNAL_DOMAIN_SCIENCE_OPEN",
+          "kind": "CONVERGENCE_GENERATED_SUMMARY",
+          "is_exact_donor_terminal": false,
+          "derived_from": [
+            "ORION03_AGENTGATEWAY_SAFE",
+            "ORION03_FIRST_MIXING",
+            "ORION03_R20_FALSE_NEGATIVE"
+          ]
+        }
+      }
+    },
+    "ORION-04": {
+      "title": "Rooted Completion Certificates",
+      "legacy_aliases": [
+        "NQ"
+      ],
+      "coordinator_issues": [
+        1516,
+        1522
+      ],
+      "science_status": "OPEN",
+      "rounds": {
+        "d4_consumed": 0,
+        "maximum": 3,
+        "current": "FULL_REPLAY_PREREQUISITE_FAILED"
+      },
+      "established_scope": [
+        "width-one corridor 5k+10 <= D_k(C_5^3) <= 5k+11 for k >= 4 and the conditional lower-line tail if D_4=30",
+        "odd-prime saturation-defect certificate and exclusion of multiplicity p-2 at the stated saturated short-free ceiling",
+        "theorem-grade support-at-least-11 parent result for any registered length-31 obstruction",
+        "exact multiplicity parameterization, one-way rank-forcing phase s+c4<=24, and atom repetition/overlap identity",
+        "support-through-22 remains bounded computational evidence only; exact D_4 and 31 in C_0(C_5^3) remain open"
+      ],
+      "claim_ledgers": [
+        {
+          "path": "papers/orion-04-rooted-completion-certificates/CLAIM_LEDGER_R2.md",
+          "baseline_blob": "4d92a18faa2087222f50e51dd874ce04b5e2fcc2",
+          "sha256": "8b8998a517c1562033d7516ed2858287640e673e14c25a10c358e3d3c3932f41",
+          "claim_dispositions": {
+            "established_at_stated_ceiling": [
+              "N2-C1",
+              "N2-C2",
+              "N2-C3",
+              "N2-C4",
+              "N2-C5",
+              "N2-C6",
+              "N2-C7"
+            ],
+            "bounded_computational_only": [
+              "N2-C8"
+            ],
+            "open_top_tier_blocker": [
+              "N2-C9",
+              "N2-C10",
+              "N2-C11"
+            ],
+            "forbidden": [
+              "N2-C12",
+              "N2-C13"
+            ]
+          }
+        }
+      ],
+      "execution": {
+        "job": 3544056,
+        "nonduplication_key": "741454d7d6b513ccd80d2aa9a78d2a9f5076fe8075341d0ecc8e95566ecc28ea",
+        "elapsed": "08:08:42",
+        "failure": "TypeError: value is not canonical JSON: float"
+      },
+      "open_science_gates": [
+        "new one-shot authorization and key after defect-only repair",
+        "durable D2 and D3 exact denominators",
+        "independent positive witness evaluation",
+        "external verification of every UNSAT DRUP proof",
+        "durable raw-byte custody",
+        "D4 round only after replay PASS",
+        "exact D4=30/31 or a new proved compression invariant on the registered residual strata"
+      ],
+      "next_gate": "Preserve job 3544056, repair integer timing serialization and durable Phase-1/failure checkpoints, rebuild manifests, obtain a new authorization/key, and execute once.",
+      "authority": {
+        "d2_d3_numerical_authority_established": false,
+        "d4_authority_established": false,
+        "independent_replay_authority_established": false,
+        "independent_replay_authority_state": "CANNOT_CHECK",
+        "production_authority_established": false,
+        "external_independence_established": false,
+        "novelty_authority_established": false,
+        "journal_authority_established": false,
+        "submission_authorized": false
+      },
+      "evidence_status": {
+        "preserved_records": [
+          {
+            "id": "ORION04_R20_SUBJECT_AUDIT",
+            "value": "NQ_PR1472_NOT_FULL_REPLAY_AUTHORITY",
+            "record_kind": "AUDIT_DISPOSITION",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "b8385e3cec1b5d6f2f0d89c8cac41c76ea7cb6b2",
+              "path": "research/five-paper-top-tier-r20/results/NQ_PR1472_EXACT_SUBJECT_AUDIT_V2.json",
+              "blob": "3f6eff412f2bebcb284c580c5bb1c157bbeb0b8d",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-04-rooted-completion-certificates/evidence/convergence-v1/NQ_PR1472_EXACT_SUBJECT_AUDIT_V2.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "exact R20 V2 pre-execution audit; contradicts the pasted positive R30 subject label",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION04_JOB3544056_FAILURE",
+            "value": "NQ_CRB_FULL_REPLAY_JOB_3544056_FAILED_CENSUS_RECEIPT_SERIALIZATION__D2_D3_AUTHORITY_CANNOT_CHECK",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "canonical_convergence_file",
+              "path": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/POST_EXECUTION_FAILURE_RECEIPT.json",
+              "sha256": "b97792973aab40c36b8ee1ad594daf9662e9ac3a493d55de002c174c0ba6285c",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/POST_EXECUTION_FAILURE_RECEIPT.json"
+            },
+            "authority_scope": "consumed one-shot execution failed before SAT, witnesses, DRUP verification, or durable copy; D2/D3 CANNOT_CHECK and D4 0/3",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          }
+        ],
+        "pending_candidates": [],
+        "convergence_summary": {
+          "label": "ORION-04_FULL_REPLAY_PREREQUISITE_FAILED__D2_D3_CANNOT_CHECK__D4_0_OF_3",
+          "kind": "CONVERGENCE_GENERATED_SUMMARY",
+          "is_exact_donor_terminal": false,
+          "derived_from": [
+            "ORION04_R20_SUBJECT_AUDIT",
+            "ORION04_JOB3544056_FAILURE"
+          ]
+        }
+      },
+      "established_scope_source": {
+        "path": "papers/orion-04-rooted-completion-certificates/CLAIM_LEDGER_R2.md",
+        "baseline_blob": "4d92a18faa2087222f50e51dd874ce04b5e2fcc2",
+        "sha256": "8b8998a517c1562033d7516ed2858287640e673e14c25a10c358e3d3c3932f41"
+      }
+    },
+    "ORION-05": {
+      "title": "TARE Expressivity",
+      "legacy_aliases": [
+        "Q1"
+      ],
+      "coordinator_issues": [
+        1511,
+        1518,
+        1523
+      ],
+      "active_science_pull_requests": [
+        1524
+      ],
+      "science_status": "OPEN",
+      "rounds": {
+        "consumed": 0,
+        "maximum": 3,
+        "current": "ROUND_1_THEOREM_CANDIDATE_UNDER_DISPOSITION"
+      },
+      "claim_ledgers": [
+        {
+          "path": "papers/orion-05-tare-expressivity/CLAIM_LEDGER_V3.md",
+          "baseline_blob": "527478f89f801ecd0e123fa44d3ef370bdfb5d28",
+          "sha256": "c651a1c9fe49a4b3535b00e16353a16249a9e890de60dcd801e5c2b2db714aa7",
+          "historical_header_disposition": "Q1 maps to ORION-05; the stale ORION-01 heading is not canonical identity",
+          "claim_dispositions": {
+            "established_at_stated_ceiling": [
+              "Q1V3-1",
+              "Q1V3-2",
+              "Q1V3-3"
+            ],
+            "bounded_count_corollary_only": [
+              "Q1V3-4"
+            ],
+            "supporting_evidence_only": [
+              "Q1V3-5"
+            ],
+            "novelty_not_established": [
+              "Q1V3-6"
+            ],
+            "targeting_only": [
+              "Q1V3-7"
+            ]
+          }
+        }
+      ],
+      "candidate_scope": [
+        "separate Round-1 successor proposes a frozen-R6M sparse direct optimizer with O(n^9) word-RAM bound",
+        "successor remains non-authoritative until its clean PR merges and merged-main verification passes"
+      ],
+      "open_science_gates": [
+        "independent hostile proof review",
+        "no-production-DP sparse enumerator audit",
+        "exact optimum and witness equivalence",
+        "hidden n-dependent call and preprocessing audit",
+        "production-faithful measured resource value",
+        "external quantum review and novelty adjudication"
+      ],
+      "next_gate": "Complete the sparse-enumerator equivalence disposition before promoting the O(n^9) runtime theorem or opening production-faithful Round 2.",
+      "authority": {
+        "runtime_theorem_established": false,
+        "production_resource_value_established": false,
+        "physical_resource_value_established": false,
+        "production_authority_established": false,
+        "external_independence_established": false,
+        "novelty_authority_established": false,
+        "journal_authority_established": false,
+        "submission_authorized": false
+      },
+      "established_scope": [
+        "sharp frozen-R6M frame-support theorem kappa_R6M = 2 at its existing current-main ceiling",
+        "support-one adverse witness with exact cost 5 < 6 preserved"
+      ],
+      "evidence_status": {
+        "preserved_records": [
+          {
+            "id": "ORION05_SOURCE_BINDING",
+            "value": "Q1_C_INPUTS_CONTENT_BOUND__PORTFOLIO_AUTHORITY_BINDING_STILL_REQUIRED",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "e22f11ab9ed3d4bc9d90ab2369f9250d19b43170",
+              "path": "papers/five-paper-top-tier-r8/Q1/Q1_C_SOURCE_BINDING_R9.json",
+              "blob": "ae0526e07bd89f9bcd38fca1209f99d36649f03b",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_C_SOURCE_BINDING_R9.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "Q1-C input bytes bound; no theorem, production-resource, novelty, or journal authority",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION05_RESOURCE_MAP",
+            "value": "PARTIAL_RESOURCE_MAP",
+            "record_kind": "RAW_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "e22f11ab9ed3d4bc9d90ab2369f9250d19b43170",
+              "path": "papers/five-paper-top-tier-r8/Q1/Q1_C_PRODUCTION_RESOURCE_MAP_R9.json",
+              "blob": "278c86f8e7f39537d3a60056e0b00c0a0fefa462",
+              "json_pointer": "/production_headline/terminal",
+              "canonical_copy": "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_C_PRODUCTION_RESOURCE_MAP_R9.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "conditional logical template map; no general production, physical, hardware, or fault-tolerant resource authority",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION05_NOVELTY",
+            "value": "NOVELTY_NOT_ESTABLISHED",
+            "record_kind": "AUTHORITY_VERDICT",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "e22f11ab9ed3d4bc9d90ab2369f9250d19b43170",
+              "path": "papers/five-paper-top-tier-r8/Q1/Q1_C_CURRENT_LITERATURE_SUBTRACTION_R9.json",
+              "blob": "261fafd44bc21c379fdf8594429fead3164014b7",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_C_CURRENT_LITERATURE_SUBTRACTION_R9.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "same-lane literature subtraction only; current specialist novelty authority open",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE"
+          },
+          {
+            "id": "ORION05_R20_RESOURCE_AUDIT",
+            "value": "Q1_PR1449_PARTIAL_RESOURCE_MAP_AUDITED__MEASURED_BENCHMARK_OPEN",
+            "record_kind": "AUDIT_DISPOSITION",
+            "source": {
+              "kind": "git_donor_canonical_copy",
+              "commit": "b8385e3cec1b5d6f2f0d89c8cac41c76ea7cb6b2",
+              "path": "research/five-paper-top-tier-r20/results/Q1_PR1449_RESOURCE_AUDIT.json",
+              "blob": "ef93bd3344ba61b391085b709b52cd09657d6e11",
+              "json_pointer": "/terminal",
+              "canonical_copy": "papers/orion-05-tare-expressivity/evidence/convergence-v1/Q1_PR1449_RESOURCE_AUDIT.json",
+              "object_absence_disposition": "CANNOT_REVERIFY_COMMIT_PATH__DESTINATION_BLOB_ONLY"
+            },
+            "authority_scope": "exact R20 resource-audit wrapper; measured compiler/resource benchmark remains open",
+            "controls_current_science_status": false,
+            "disposition": "ACTIVE"
+          }
+        ],
+        "pending_candidates": [
+          {
+            "id": "ORION05_R11_DIRECT_SOLVER",
+            "source_pr": 1524,
+            "source_head": "80226cc5b46bf3b5a0987e3b4d6bcf2366b8ecf7",
+            "source_pr_snapshot": {
+              "state": "OPEN",
+              "is_draft": true,
+              "base_ref": "main",
+              "base_sha": "6d2d1699be7b5dfc1dd8b2721829b908ff4fb3d8",
+              "head_ref": "chatgpt/q1-r11-n9-runtime-theorem-20260827",
+              "head_sha": "80226cc5b46bf3b5a0987e3b4d6bcf2366b8ecf7",
+              "verified_at": "2026-08-27T09:35:00Z"
+            },
+            "finite_check_issue": 1523,
+            "finite_check_token": "Q1_R11_INDEPENDENT_FINITE_CHECK_PASS",
+            "finite_check_authority": "FINITE_CONFORMANCE_ONLY",
+            "proposed_terminals": [
+              "Q1_R11_PAIR_COUNT_ONLY__RUNTIME_HIDDEN_DEPENDENCY",
+              "Q1_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM"
+            ],
+            "emitted_terminal": null,
+            "disposition": "UNDER_INDEPENDENT_THEOREM_DISPOSITION",
+            "current_main_authority": false,
+            "merged_main_verification": false,
+            "claim_boundary": "PAIR_COUNT_AND_O_N9_RUNTIME_REMAIN_CANDIDATE_ONLY__NO_PRODUCTION_RESOURCE_VALUE",
+            "successor_conditions": [
+              "clean current-main child with no protected Task-3/P9 diff",
+              "no-production-DP sparse enumerator and hidden-n-dependency audit",
+              "exact optimum and witness equivalence against the frozen R6M reference",
+              "independent hostile theorem review",
+              "merged-main verifier PASS before authority promotion"
+            ]
+          }
+        ],
+        "convergence_summary": {
+          "label": "ORION-05_ROUND_1_THEOREM_CANDIDATE_UNDER_DISPOSITION__MEASURED_RESOURCE_VALUE_OPEN",
+          "kind": "CONVERGENCE_GENERATED_SUMMARY",
+          "is_exact_donor_terminal": false,
+          "derived_from": [
+            "ORION05_SOURCE_BINDING",
+            "ORION05_RESOURCE_MAP",
+            "ORION05_NOVELTY",
+            "ORION05_R20_RESOURCE_AUDIT"
+          ]
+        }
+      }
+    }
+  },
+  "readiness": {
+    "ORION-01": {
+      "science_closed": false,
+      "top_tier_submission_ready": false,
+      "specialist_submission_ready": false,
+      "submission_authorized": false
+    },
+    "ORION-02": {
+      "science_closed": false,
+      "top_tier_submission_ready": false,
+      "specialist_submission_ready": false,
+      "submission_authorized": false
+    },
+    "ORION-03": {
+      "science_closed": false,
+      "top_tier_submission_ready": false,
+      "specialist_submission_ready": false,
+      "submission_authorized": false
+    },
+    "ORION-04": {
+      "science_closed": false,
+      "top_tier_submission_ready": false,
+      "specialist_submission_ready": false,
+      "submission_authorized": false
+    },
+    "ORION-05": {
+      "science_closed": false,
+      "top_tier_submission_ready": false,
+      "specialist_submission_ready": false,
+      "submission_authorized": false
+    }
+  },
+  "permitted_future_dispositions": [
+    "TOP_TIER_SCIENCE_GATE_PASS__PROCEED_TO_TOP_TIER_PREPARATION__SUBMISSION_NOT_YET_AUTHORIZED",
+    "TOP_TIER_SIGNIFICANCE_GATE_NOT_MET__SCIENTIFIC_CORE_CLEAR__PROCEED_TO_SPECIALIST_PREPARATION__SUBMISSION_NOT_YET_AUTHORIZED",
+    "SCIENTIFIC_CORE_NOT_CLEAR__DO_NOT_PREPARE_SUBMISSION"
+  ],
+  "global_authority": {
+    "science_closure_established": false,
+    "production_authority_established": false,
+    "external_independence_established": false,
+    "novelty_authority_established": false,
+    "rights_complete": false,
+    "journal_authority_established": false,
+    "submission_authorized": false
+  },
+  "current_main_baseline": {
+    "commit": "b1e65d4445a9b2ef5aa44f7adc2838f968f84ff1",
+    "source": "origin/main after PR #1539 merge",
+    "r0_mathematical_identifier_repair_merged": true
+  },
+  "claim_reconciliation": {
+    "r30_wrapper": "R30_NOT_MATERIALIZED__CUSTODY_AND_FINAL_BINDING_FAILED",
+    "r30_science_donors_retracted": false,
+    "historical_labels_are_aliases_only": true,
+    "manuscript_or_package_claim_cannot_close_open_science": true,
+    "protected_task3_touched": false
+  },
+  "global_unresolved_authority_states": {
+    "external_independence": "FALSE_OR_CANNOT_CHECK_BY_RECORD",
+    "novelty": "NOT_ESTABLISHED_OR_CANNOT_CHECK_BY_RECORD",
+    "journal_authority": "FALSE"
+  }
+}

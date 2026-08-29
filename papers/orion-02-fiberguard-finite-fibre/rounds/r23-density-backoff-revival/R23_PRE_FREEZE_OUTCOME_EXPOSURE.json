@@ -1,0 +1,19 @@
+{
+  "schema": "ORION.FiberGuard.PMLBProposalOrdering.R23.PreFreezeExposure.v1",
+  "date": "2026-08-27",
+  "r23_outcome_generated_before_freeze": false,
+  "r22_outcome_read_before_freeze": true,
+  "r22_result_sha256": "39f47c7806ba77b94a495851f5d51fa111e551db983aa7a31607d5b4bc4f2623",
+  "r22_terminal_seen": "C_R22_PMLB_PROPOSAL_ORDERING_NO_CERTIFIED_COVERAGE",
+  "r22_full_state_coverage_seen": 0.0,
+  "r22_primary_mean_excess_seen": -0.042873510907,
+  "r22_static_mean_excess_seen": -0.041911473366,
+  "r22_performance_values_authoritative": false,
+  "r22_performance_defect_seen": "F* was a scalar grand mean rather than an executable portfolio arm, so fallback excess could be negative",
+  "mechanism_diagnosis_seen": "exact median-split cells were too sparse for the approximately 15-member shield tables",
+  "frozen_evaluator_repair": "single best shield-mean portfolio arm with lexical arm tie, applied identically to corrected parent and R23",
+  "frozen_scientific_lever": "when exact cell size is below 2, select k=2 Hamming-nearest shield members with lexical dataset-name ties",
+  "frozen_negative_control": "lexical first-two shield members when exact cell is sparse",
+  "post_freeze_tuning_permitted": false,
+  "authority_note": "prospective to R23 outputs, not blinded to R22; scientific_authority_delta remains NONE"
+}

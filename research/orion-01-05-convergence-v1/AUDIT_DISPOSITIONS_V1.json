@@ -1,0 +1,50 @@
+{
+  "schema": "ORION.ORION0105.AuditDispositions.v1",
+  "date": "2026-08-27",
+  "terminal": "D_PR1466_R20_AUDIT_KNOWN_PREDICATE_FALSE_NEGATIVE__RAW_R12_TERMINAL_PRESERVED",
+  "authority": "ADDITIVE_INTERPRETATION_CORRECTION_ONLY",
+  "known_conflicts": [
+    {
+      "paper": "ORION-03",
+      "audit_terminal": "D_PR1466_THEOREM_AUTHORITY_NOT_ESTABLISHED",
+      "disposition": "KNOWN_PREDICATE_FALSE_NEGATIVE",
+      "raw_science_terminal": "TYPED_AUTHORITY_FIRST_MIXING_R12_PASS",
+      "defect": {
+        "predicate": "68 in collected_scalar_values AND ('68/68' in text OR text.count('68') >= 2)",
+        "why_false": "The exact result stores 12 exhaustive and 56 random hybrid atoms as separate scalar values. Their total is 68 and the result prose states 68/68, but no literal scalar 68 is present, so the first conjunct is false.",
+        "scope": "The defect invalidates the R20 audit's theorem-not-established interpretation. It does not create external-domain, novelty, journal, deployed-vulnerability, or whole-system-security authority."
+      },
+      "controls": {
+        "exhaustive_systems": 8192,
+        "random_systems": 2000,
+        "total_systems": 10192,
+        "exhaustive_hybrid_atoms": 12,
+        "random_hybrid_atoms": 56,
+        "total_hybrid_atoms": 68,
+        "first_mixing_certificates": 68,
+        "origin_preserving_control_systems": 2000,
+        "origin_preserving_control_hybrid_atoms": 0
+      },
+      "audit_receipt_source": {
+        "commit": "b8385e3cec1b5d6f2f0d89c8cac41c76ea7cb6b2",
+        "path": "research/five-paper-top-tier-r20/results/D_PR1466_FIRST_MIXING_AUDIT.json",
+        "blob": "4d8a843cd91b92fb7485d286ed511727678a0492"
+      },
+      "audit_code_source": {
+        "commit": "b8385e3cec1b5d6f2f0d89c8cac41c76ea7cb6b2",
+        "path": "research/five-paper-top-tier-r20/audit_d_pr1466.py",
+        "blob": "4ce6807d66d4d3c325027f02f2a48d03a18e2e1b"
+      },
+      "raw_result_source": {
+        "commit": "5e849425669ff9b2f3d28befb268c0ca10a5fcbb",
+        "path": "papers/five-paper-top-tier-r8/D/FIRST_MIXING_R12_RESULTS.json",
+        "blob": "c04584b97ef6b55eccaecc4085f50c9b7e2ea8cf"
+      },
+      "raw_result_prose_source": {
+        "commit": "5e849425669ff9b2f3d28befb268c0ca10a5fcbb",
+        "path": "papers/five-paper-top-tier-r8/D/FIRST_MIXING_R12_RESULT.md",
+        "blob": "6d5b76586b270f3340de6305dbb25fd342ad8208"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+You are a precise evidence extractor. You do NOT diagnose. You extract, as verbatim quotes, only what the case text itself states.
+
+SYSTEM LOCUS CATEGORIES (each restates one published root-cause family definition; pick by which system the quoted span asserts a defect, failure or infeasibility IN):
+- SEARCH_RETRIEVAL_LOOKUP: a search, retrieval or lookup system failing to find content that exists
+- PLANNING_ROUTING: a planning or routing mechanism chose the wrong route/plan/sequence
+- CODE_LOGIC_IMPLEMENTATION: the code's logic/implementation itself is defective (wrong logic, incorrect assumption, bad accumulation, inefficient implementation)
+- EXTERNAL_DEPENDENCY_ENVIRONMENT_TOOL: an external dependency, environment property, or tool compatibility is what the failure is due to
+- EVALUATOR_MEASUREMENT_SYSTEM: the measurement/evaluation/benchmarking machinery is flawed or produces wrong/inconsistent numbers
+- REPRESENTATION_ENCODING_FORMAT: the algorithm/data is correct but the representation, encoding, format or data-structure CHOICE is wrong
+- PROTOCOL_SPECIFICATION_MEASUREMENT_DESIGN: the evaluation protocol / metric specification does not capture the intended outcome, or is infeasible to implement as specified
+- FOUNDATIONAL_METHOD: the foundational method or approach cannot handle a required generalization/scaling
+- NONE: no licensed statement supports any category
+
+HARD RULES:
+- Use ONLY what the symptom and context state. No outside knowledge, no inferred mechanisms, no world model about how such systems usually fail.
+- Every non-absent field must carry a verbatim quote from the symptom or context.
+- Never name a root-cause family. Never diagnose. Extract only.
+
+Extract these four fields:
+
+1. failing_subject: the system/component the failure sentence asserts is failing (quote + locus category).
+2. stated_cause: an explicit causal clause in the text ("because X", "due to X", "since X", or an appositive naming the defect), classified by the locus category of the system whose failure or defect the clause asserts. absent=true if the text contains no explicit causal clause.
+3. working_failing_delta: present only if the SAME system/code is described as working in one regime and failing in another. differs_by="ENVIRONMENT_OR_DATA_PROPERTY" only when the property that differs between the regimes belongs to the environment or the input data (a code change or two different measurements disagreeing is NOT such a delta). absent=true otherwise.
+4. stated_code_defect: value="YES" only if the text itself asserts the code's logic/implementation is defective. A wrong choice of representation/format/data-structure with the algorithm otherwise correct is NOT a code defect (that is a REPRESENTATION_ENCODING_FORMAT locus). value="NO" otherwise; quote only when YES.
+
+Respond in JSON format only:
+{
+  "failing_subject": {"quote": "...", "locus": "CATEGORY or NONE"},
+  "stated_cause": {"absent": false, "quote": "...", "locus": "CATEGORY or NONE"},
+  "working_failing_delta": {"absent": true, "quote": "", "differs_by": "NONE"},
+  "stated_code_defect": {"value": "NO", "quote": ""},
+  "notes": "one sentence, extraction remarks only"
+}
+
+---
+
+Case PKT-T-24:
+
+VISIBLE SYMPTOM:
+System works for current problem class but cannot be extended because the foundational assumption limits applicability.
+
+CONTEXT:
+{
+  "system": "problem-solving framework",
+  "current_problem_class": "well-supported",
+  "extension_requirements": "incompatible with foundation"
+}
+
+Extract the licensed evidence:

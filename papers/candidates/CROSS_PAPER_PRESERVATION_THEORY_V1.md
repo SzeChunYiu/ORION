@@ -108,27 +108,27 @@ Some applications may impose additional premises that create valid implications.
 ## 4. Constructive counterexamples
 
 ### C1 — identity does not imply semantic applicability
-An immutable evidence artifact is unchanged (`P0`) but a schema/measurement interpretation changes so the artifact no longer measures the same construct. `ORION-12` fails.
+An immutable evidence artifact is unchanged (`P0`) but a schema/measurement interpretation changes so the artifact no longer measures the same construct. `P2` fails.
 
 **Owners/parents:** ORION-13 scientific meaning; schema/ontology evolution.
 
 ### C2 — computational reuse does not imply epistemic closure
-A dependency graph correctly marks a computed result as unaffected and reusable (`ORION-11`), but a newly introduced hard independent-check obligation remains unresolved. `ORION-13` fails despite successful incremental reuse.
+A dependency graph correctly marks a computed result as unaffected and reusable (`P1`), but a newly introduced hard independent-check obligation remains unresolved. `P3` fails despite successful incremental reuse.
 
 **ORION-16 discriminator:** change propagation is correct; epistemic obligation remains open.
 
 ### C3 — evidence truth does not imply new-objective closure
-A content-bound observation remains semantically valid after an objective reframe (`ORION-12`), but the new objective requires independent replication not covered by the old certificate. `ORION-13` fails.
+A content-bound observation remains semantically valid after an objective reframe (`P2`), but the new objective requires independent replication not covered by the old certificate. `P3` fails.
 
 **ORION-17 discriminator:** retain evidence, reopen closure.
 
 ### C4 — local obligation discharge does not imply foreign-domain discharge
-A route's local exhaustion obligation is genuinely satisfied (`ORION-13` in route domain), but global scientific coverage is a different obligation and has no proved coercion. Target-domain `ORION-13` fails.
+A route's local exhaustion obligation is genuinely satisfied (`P3` in route domain), but global scientific coverage is a different obligation and has no proved coercion. Target-domain `P3` fails.
 
 **ORION-17/ORION-18 discriminator:** source-domain correctness is preserved; target-domain closure is not licensed.
 
 ### C5 — obligation discharge does not imply current commit authority
-All scientific evidence obligations for an action are satisfied (`ORION-13`), but the authorization certificate is stale after an epoch/policy-state change or the grant scope does not cover the target. `ORION-14` fails.
+All scientific evidence obligations for an action are satisfied (`P3`), but the authorization certificate is stale after an epoch/policy-state change or the grant scope does not cover the target. `P4` fails.
 
 **ORION-18 discriminator:** commit-time authority must be re-established.
 
@@ -174,24 +174,24 @@ This rule is a research scaffold. It must be pressure-tested against lens laws, 
 ## 7. Paper projections
 
 ### ORION-16 projection
-ORION-16 studies transitions where `ORION-11` support/computational reuse interacts with hard residual obligations, certification state, provenance and history. It should show that correct incremental propagation can coexist with an unresolved `ORION-13` obligation.
+ORION-16 studies transitions where `P1` support/computational reuse interacts with hard residual obligations, certification state, provenance and history. It should show that correct incremental propagation can coexist with an unresolved `P3` obligation.
 
 ### ORION-17 projection
-ORION-17 studies transformations where `P0/ORION-12` evidence may survive chart/objective change while `ORION-13` closure does not. Its strongest benchmark should make this separation observable under a faithful schema/lens/planning-transform baseline.
+ORION-17 studies transformations where `P0/P2` evidence may survive chart/objective change while `P3` closure does not. Its strongest benchmark should make this separation observable under a faithful schema/lens/planning-transform baseline.
 
 ### ORION-18 projection
-ORION-18 studies cases where a valid source-domain `ORION-13` or evidence judgment does not imply target-domain `ORION-13/ORION-14`; explicit target-obligation-preserving coercion plus commit-time authority is required.
+ORION-18 studies cases where a valid source-domain `P3` or evidence judgment does not imply target-domain `P3/P4`; explicit target-obligation-preserving coercion plus commit-time authority is required.
 
 ## 8. Internal ORION embedding
 
 The ladder is compatible with existing ORION invariants without relabeling them:
 
 - ORION-11 `REOPEN` supplies domain-specific invalidation after changed coordinates;
-- ORION-12 route/task stop supplies a concrete `ORION-13` non-implication;
-- ORION-13 meaning projection supplies `ORION-12` semantic-preservation checks;
-- ORION-14 hard gates/protected authority supply `ORION-13/ORION-14` requirements;
-- ORION-15 fresh/protected readiness supplies strong `ORION-14` epoch/custody requirements;
-- runtime provenance/history/dependency objects supply candidate `P0/ORION-11` infrastructure.
+- ORION-12 route/task stop supplies a concrete `P3` non-implication;
+- ORION-13 meaning projection supplies `P2` semantic-preservation checks;
+- ORION-14 hard gates/protected authority supply `P3/P4` requirements;
+- ORION-15 fresh/protected readiness supplies strong `P4` epoch/custody requirements;
+- runtime provenance/history/dependency objects supply candidate `P0/P1` infrastructure.
 
 The common ladder is only useful if it preserves these native verdicts exactly.
 
@@ -215,10 +215,10 @@ If one mature formalism already represents all required preservation levels and 
 
 Freeze matched cases in which:
 
-1. `ORION-11` true, `ORION-13` false — computation reusable, hard scientific obligation unresolved;
-2. `ORION-12` true, `ORION-13` false — evidence semantically valid, new task closure invalid;
-3. source-domain `ORION-13` true, target-domain `ORION-13` false — local gate valid, foreign discharge invalid;
-4. `ORION-13` true, `ORION-14` false — evidence complete but authority stale/out of scope;
+1. `P1` true, `P3` false — computation reusable, hard scientific obligation unresolved;
+2. `P2` true, `P3` false — evidence semantically valid, new task closure invalid;
+3. source-domain `P3` true, target-domain `P3` false — local gate valid, foreign discharge invalid;
+4. `P3` true, `P4` false — evidence complete but authority stale/out of scope;
 5. all required levels true — transport must succeed, preventing fail-closed total refusal.
 
 A system that cannot distinguish these pairs does not implement the preservation semantics claimed by the candidate programme.

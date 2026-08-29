@@ -1,0 +1,42 @@
+name: ORION-04 global certified SAT decoder v1
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-04-global-certified-decoder-v1.yml"
+      - "research/orion-rg/promotion/orion04-global-certified-search-v1/independent_checker/decode_kissat_model.py"
+      - "research/orion-rg/promotion/orion04-global-certified-search-v1/independent_checker/check_witness.py"
+      - "tests/research/test_orion04_sat_decoder_v1.py"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/orion-04-global-certified-decoder-v1.yml"
+      - "research/orion-rg/promotion/orion04-global-certified-search-v1/independent_checker/decode_kissat_model.py"
+      - "research/orion-rg/promotion/orion04-global-certified-search-v1/independent_checker/check_witness.py"
+      - "tests/research/test_orion04_sat_decoder_v1.py"
+
+permissions:
+  contents: read
+
+jobs:
+  decoder-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install pytest==8.4.2 ruff==0.15.10
+      - run: python -m pytest -q tests/research/test_orion04_sat_decoder_v1.py
+      - run: |
+          ruff check \
+            research/orion-rg/promotion/orion04-global-certified-search-v1/independent_checker/decode_kissat_model.py \
+            tests/research/test_orion04_sat_decoder_v1.py
+          python -m compileall -q \
+            research/orion-rg/promotion/orion04-global-certified-search-v1/independent_checker/decode_kissat_model.py \
+            tests/research/test_orion04_sat_decoder_v1.py
+          find research/orion-rg/promotion/orion04-global-certified-search-v1 tests/research \
+            -type d -name __pycache__ -prune -exec rm -rf {} +
+          git diff --check
+          git diff --exit-code

@@ -1,0 +1,64 @@
+{
+  "active_authority": "papers/orion-25-orion-research-harness/P15_ACTIVE_CLAIM_AUTHORITY_V3.json",
+  "active_authority_git_blob": "b58b8a93877a9036993486c7c7609fb7d7fae7f0",
+  "boundary": "Freeze covers only the registered 18-case SEI plus 22-case provenance/attestation studies; signatures do not establish key custody, fact truth, scientific validity, or production-scale reliability.",
+  "bounded_findings": {
+    "attestation_base_chain_verification_rate": 1.0,
+    "attestation_chain_plus_sei_gold_agreement": "22/22",
+    "attestation_non_compromise_attack_detection_complete": true,
+    "attestation_valid_workload_false_rejections": 0,
+    "full_key_compromise_false_promotions": 6,
+    "full_key_compromise_signature_detections": 0,
+    "provenance_round_trip_rate": 1.0,
+    "provenance_scientific_field_leakage": 0,
+    "sei_false_authorized_science": 0
+  },
+  "date": "2026-08-27",
+  "full_key_compromise_boundary": "Composed-signature validity is evidence about the key set, not about key custody or fact truth; chain-plus-SEI inherits key custody as an unregistered premise.",
+  "historical_authority_bridges": [
+    {
+      "bridge": "R0_NAMESPACE_ONLY_EXACT",
+      "current_blob": "39e58c3babfa1e6dcd8c52b2b297e266f2208c07",
+      "historical_blob": "2bfd3b1975394f9b45df2576ff27887df46b6693",
+      "normalized_blob": "2bfd3b1975394f9b45df2576ff27887df46b6693",
+      "path": "papers/orion-25-orion-research-harness/top_tier/P15_SEI_RESULT_RECEIPT_V1.md"
+    },
+    {
+      "bridge": "R0_NAMESPACE_ONLY_EXACT",
+      "current_blob": "0b86c992767d9da7bbdc3e5a5e175d1ab2ea1808",
+      "historical_blob": "fdbde57959d5952d2230fe7a0d048c4d891f2977",
+      "normalized_blob": "fdbde57959d5952d2230fe7a0d048c4d891f2977",
+      "path": "papers/orion-25-orion-research-harness/top_tier/P15_PROVENANCE_INTEROP_RESULT_RECEIPT_V1.md"
+    },
+    {
+      "bridge": "R0_NAMESPACE_ONLY_EXACT",
+      "current_blob": "25f83c837cf480f0ca9d085184cc313fd21599cf",
+      "historical_blob": "e348eda1aef4ed479cfa327814721533d8c07dab",
+      "normalized_blob": "e348eda1aef4ed479cfa327814721533d8c07dab",
+      "path": "papers/orion-25-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2.md"
+    },
+    {
+      "bridge": "R0_NAMESPACE_ONLY_EXACT",
+      "current_blob": "fb2a3fbab8bdab7bb8bc5b627593d4848e8752dc",
+      "historical_blob": "61ca00bba4fefdc9213a7830d3eeaf16b6577f69",
+      "normalized_blob": "61ca00bba4fefdc9213a7830d3eeaf16b6577f69",
+      "path": "papers/orion-25-orion-research-harness/top_tier/P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2_RUN2.md"
+    }
+  ],
+  "journal_authority": false,
+  "paper_id": "ORION-25",
+  "remaining_top_tier_work": [
+    "production_scale_host_and_process_fault_campaign",
+    "runtime_storage_and_false_rejection_overhead_characterization",
+    "clean_environment_independent_replay",
+    "final_current_nearest_work_refresh",
+    "final_manuscript_evidence_environment_pdf_binding"
+  ],
+  "schema": "ORION.Remaining11.ScienceFreeze.v1",
+  "science_frozen": true,
+  "subject_commit": "88902be10500bb67a7be448350188415634e2049",
+  "submission_authority": false,
+  "terminal": "ORION_25_BOUNDED_SCIENCE_FROZEN__PRODUCTION_PROMOTION_PENDING",
+  "title": "Scientific Execution Integrity",
+  "top_tier_ready": false
+}

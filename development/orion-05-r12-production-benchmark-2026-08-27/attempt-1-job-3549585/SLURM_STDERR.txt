@@ -1,0 +1,20 @@
+fatal: not a git repository (or any parent up to mount point /projects/hep)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Traceback (most recent call last):
+  File "/projects/hep/fs10/scratch/scyiu/orion05-r12-production-benchmark-7fdea61-20260827T1610/papers/orion_05_r12_production_benchmark.py", line 699, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/projects/hep/fs10/scratch/scyiu/orion05-r12-production-benchmark-7fdea61-20260827T1610/papers/orion_05_r12_production_benchmark.py", line 692, in main
+    run_benchmark(args.output_dir, args.python, args.workers)
+  File "/projects/hep/fs10/scratch/scyiu/orion05-r12-production-benchmark-7fdea61-20260827T1610/papers/orion_05_r12_production_benchmark.py", line 631, in run_benchmark
+    env = environment_receipt(python, workers)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/projects/hep/fs10/scratch/scyiu/orion05-r12-production-benchmark-7fdea61-20260827T1610/papers/orion_05_r12_production_benchmark.py", line 599, in environment_receipt
+    commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/easybuild_milan/software/Python/3.11.5-GCCcore-13.2.0/lib/python3.11/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sw/easybuild_milan/software/Python/3.11.5-GCCcore-13.2.0/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'rev-parse', 'HEAD']' returned non-zero exit status 128.

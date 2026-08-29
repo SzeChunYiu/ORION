@@ -50,3 +50,17 @@ pytest tests/unit/publication/test_framework_snapshot.py \
 ```
 
 A green run confirms that the final ORION-02 paper still points to the final closure/evidence set. It does not demonstrate cross-domain superiority; that stronger question remains the separately frozen successor protocol.
+
+## Verify the 2026-08-28 recorded-negative revival successor
+
+From the repository root:
+
+```bash
+python papers/orion-06-recursive-recovery/revival/verify_orion06_negative_revival_successor.py --root .
+python -m pytest -q tests/unit/publication/test_orion06_negative_revival_successor.py
+```
+
+The verifier preserves the historical pre-execution audit, verifies the exact
+LUNARC bundle, and joins them additively.  A pass establishes custody and the
+bounded seven-row adjudication only; it is not a novelty, cross-domain,
+submission, or paper-freeze terminal.

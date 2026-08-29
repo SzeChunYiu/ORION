@@ -1,0 +1,424 @@
+{
+  "schema_version": "orion.p5.glm-5.3-attribution-harvest.preparation.v1",
+  "campaign_id": "p5-glm-5.3-attribution-v2-harvest",
+  "prepared_at_unix": 1787897669.1319268,
+  "prepared_at_utc": "2026-08-28T06:14:29Z",
+  "judge_model": "GLM-5.3 (claude-cn harness, glm-5.3)",
+  "judge_mechanics": "One fresh blind subagent per packet (general-purpose agent, no inherited context), spawned from the Mac-side claude-cn harness; judge receives ONLY the packet text.",
+  "protocol_path": "papers/orion-15-self-orion/protocol/P5_ATTRIBUTION_INSTRUMENT_V2_PROTOCOL.json",
+  "protocol_sha256": "5d4d0fa3f457e4e1db9934068e5541743844fc5b0862a144701cf6a66f41268b",
+  "suite_path": "papers/orion-15-self-orion/evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json",
+  "suite_sha256": "1c3650a62b4432eba60ec17a44dd3e47beedeb266e64e3e96ae593fbbc4e2747",
+  "v1_prompt_sha256": "4ff4591f68a95a9fc1e98de048ed628e62f0af9b9bf60f1acdc14bdbc8e1bea8",
+  "extraction_prompt_sha256": "cc4aede175c76f80c892af541e5dbef23fe0910050ec0eaf7960c054e9a1f710",
+  "source_tree": "origin/main @ ff0df7f2 (worktree wtG53, branch claude/glm53-attribution-harvest-20260828)",
+  "packet_construction_rules": [
+    "Population: all 24 cases of the frozen PROTECTED_SUITE_V1.json (unchanged on current main).",
+    "Judge-visible fields per case: visible_symptom (verbatim) + candidate_visible_context (json.dumps indent=2), exactly as the frozen drivers format them.",
+    "Control packet = verbatim V1 ATTRIBUTION_PROMPT (scripts/run_p5_glm_attribution.py) with placeholders substituted.",
+    "Treatment packet = verbatim v2 EXTRACTION_PROMPT (scripts/run_p5_glm_attribution_v2.py) with placeholders substituted; Stage B mapping is deterministic code executed by the scorer, never by the judge.",
+    "Packet order = suite order; packet ids PKT-C-01..24 (control) and PKT-T-01..24 (treatment)."
+  ],
+  "sanitization_rules_applied": [
+    "Case ids P5-HC-NNN replaced by neutral PKT-{-C|-T}-NN ids so no paper/case identity is judge-visible.",
+    "No file paths, no commit metadata, no authorship strings, no timestamps, no provenance headers in any packet (guarded: P5-HC, protected, competing, nonce all asserted absent).",
+    "Protected suite fields (protected_root_cause, root_cause_nonce, competing_cause_set, motivating/replay/fresh tasks, change surfaces, rubrics) never enter packet construction; only visible_symptom and candidate_visible_context are read.",
+    "Source map (packet_id -> case_id -> gold) exists ONLY in this receipt, written after packet construction and never shown to any judge."
+  ],
+  "protocol_deviations": [
+    "Judge substitution (the point of this harvest): frozen protocol requested_model glm-5.2 via z.ai endpoint; this harvest judges with GLM-5.3 (claude-cn harness, glm-5.3) via blind subagents. Note the frozen v2 run itself already recorded served_model glm-5.3 under the glm-5.2 alias, so the judge MODEL is unchanged; what changes is the judge HARNESS (subagent vs API call) and the enforced blindness.",
+    "Case-id neutralization: frozen prompts embed {CASE_ID} = P5-HC-NNN; this harvest substitutes PKT-NNN to remove paper identity from judge-visible text (blinding hardening requested for this harvest).",
+    "Serving parameters: temperature 0.0 and max_tokens are harness-managed in the subagent path and not settable per call; the frozen protocol values (0.0 / 4096 / 2048) cannot be enforced byte-exactly. Recorded, not hidden.",
+    "Blindness enforcement is by prompt confinement: the subagent is instructed to answer only from the packet text and not to use tools; subagent tool access is not technically sandboxed. This is stronger than the frozen run (judge then could not be isolated from the colocated gold at all) but not a cryptographic guarantee."
+  ],
+  "sanitization_guard_hits": [],
+  "exact_family_token_in_judge_visible_fields": [],
+  "packet_count": 48,
+  "packets": [
+    {
+      "packet_id": "PKT-C-01",
+      "arm": "control",
+      "source_case_id": "P5-HC-001",
+      "gold_root_cause": "RETRIEVAL_MISS",
+      "sha256": "8e8cebbfbe211950a19d5457c965462d70cd8b4fbad6a7e73b0d94dfb03394f3",
+      "chars": 2105
+    },
+    {
+      "packet_id": "PKT-T-01",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-001",
+      "gold_root_cause": "RETRIEVAL_MISS",
+      "sha256": "00d80bf5855864a4d91dbab5e7086033465fa9ed7d465a2629d5e472f429af0e",
+      "chars": 3553
+    },
+    {
+      "packet_id": "PKT-C-02",
+      "arm": "control",
+      "source_case_id": "P5-HC-002",
+      "gold_root_cause": "RETRIEVAL_MISS",
+      "sha256": "ff28aed382972cf00dcfc42987948ad411a60fab30ffcb0238704c8a56a7e916",
+      "chars": 2065
+    },
+    {
+      "packet_id": "PKT-T-02",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-002",
+      "gold_root_cause": "RETRIEVAL_MISS",
+      "sha256": "3684bf406446772dfdd1466279b5ebb4bdfa5cf47b9faa921c4cc2febe3b75a3",
+      "chars": 3513
+    },
+    {
+      "packet_id": "PKT-C-03",
+      "arm": "control",
+      "source_case_id": "P5-HC-003",
+      "gold_root_cause": "RETRIEVAL_MISS",
+      "sha256": "dd3d5d6d587729ad4598f6ea54ea663b9dd7ba3740c28fdea9966facb81de1fd",
+      "chars": 2009
+    },
+    {
+      "packet_id": "PKT-T-03",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-003",
+      "gold_root_cause": "RETRIEVAL_MISS",
+      "sha256": "57e0a942c1e9454272585fee1be7e24a99cf00d61fd81c8b67a17e59a2862a92",
+      "chars": 3457
+    },
+    {
+      "packet_id": "PKT-C-04",
+      "arm": "control",
+      "source_case_id": "P5-HC-004",
+      "gold_root_cause": "ROUTING_PLANNING_MISS",
+      "sha256": "0b119dcba0e395f87be3dbddce6499404ebf954413fe33d50aefa84a3510a2c4",
+      "chars": 2100
+    },
+    {
+      "packet_id": "PKT-T-04",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-004",
+      "gold_root_cause": "ROUTING_PLANNING_MISS",
+      "sha256": "584a67c89c57818237e7457b126ffc7185d803079f6b0453c40e57801d75d6c7",
+      "chars": 3548
+    },
+    {
+      "packet_id": "PKT-C-05",
+      "arm": "control",
+      "source_case_id": "P5-HC-005",
+      "gold_root_cause": "ROUTING_PLANNING_MISS",
+      "sha256": "279b9ed346e98c572d93e037370d799b2aca14340e08743eb2a927d6a1ce9803",
+      "chars": 2043
+    },
+    {
+      "packet_id": "PKT-T-05",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-005",
+      "gold_root_cause": "ROUTING_PLANNING_MISS",
+      "sha256": "2dba16fbc803042025881a2c284dda8b01bb65e9ff6263431cc538d6e94afe15",
+      "chars": 3491
+    },
+    {
+      "packet_id": "PKT-C-06",
+      "arm": "control",
+      "source_case_id": "P5-HC-006",
+      "gold_root_cause": "ROUTING_PLANNING_MISS",
+      "sha256": "06307c87a07fb0d647098894dd3e2bd2605163c8c80917030ef9cbe973490988",
+      "chars": 2061
+    },
+    {
+      "packet_id": "PKT-T-06",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-006",
+      "gold_root_cause": "ROUTING_PLANNING_MISS",
+      "sha256": "e1fda1d4d326d4c21920be7d288a109692b78245550d2131a1641851638cc8db",
+      "chars": 3509
+    },
+    {
+      "packet_id": "PKT-C-07",
+      "arm": "control",
+      "source_case_id": "P5-HC-007",
+      "gold_root_cause": "IMPLEMENTATION_BUG",
+      "sha256": "4fe33f8511ca57a4a1143f8bb1756e6bc52bea38dd23a4228277d90fd63fcb98",
+      "chars": 2038
+    },
+    {
+      "packet_id": "PKT-T-07",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-007",
+      "gold_root_cause": "IMPLEMENTATION_BUG",
+      "sha256": "2ab851b9d123ca152ebaa662d4932846c13f7207f3638cbdc80d39e229417161",
+      "chars": 3486
+    },
+    {
+      "packet_id": "PKT-C-08",
+      "arm": "control",
+      "source_case_id": "P5-HC-008",
+      "gold_root_cause": "IMPLEMENTATION_BUG",
+      "sha256": "fc432d84acb609086da6e2ccef9e82c1a62294f30022868cf10777c4d89126ac",
+      "chars": 2057
+    },
+    {
+      "packet_id": "PKT-T-08",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-008",
+      "gold_root_cause": "IMPLEMENTATION_BUG",
+      "sha256": "c26daf046babd2cdc9edd80a8b3384cdfde0eedcb0149f7568ae5f3700481b45",
+      "chars": 3505
+    },
+    {
+      "packet_id": "PKT-C-09",
+      "arm": "control",
+      "source_case_id": "P5-HC-009",
+      "gold_root_cause": "IMPLEMENTATION_BUG",
+      "sha256": "4d87f41d6669c7e0695baea92edbdd8b6a22e28e7a2cba053cad4a05bc078b23",
+      "chars": 2074
+    },
+    {
+      "packet_id": "PKT-T-09",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-009",
+      "gold_root_cause": "IMPLEMENTATION_BUG",
+      "sha256": "5168499ba0569a20e6f71590213d5fdb7b5f44f8a419c8753c17199109954f9b",
+      "chars": 3522
+    },
+    {
+      "packet_id": "PKT-C-10",
+      "arm": "control",
+      "source_case_id": "P5-HC-010",
+      "gold_root_cause": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "sha256": "362977c1de85c22b3d002174d40f28575954d327af420d9b525fbfc9f2b19016",
+      "chars": 2022
+    },
+    {
+      "packet_id": "PKT-T-10",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-010",
+      "gold_root_cause": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "sha256": "7d1ae2d269bfa009052d2e8d072eecc0007ede35cfb5d98113ea5fda4211c0cc",
+      "chars": 3470
+    },
+    {
+      "packet_id": "PKT-C-11",
+      "arm": "control",
+      "source_case_id": "P5-HC-011",
+      "gold_root_cause": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "sha256": "3a27fb5f32b721104b4a306f7a020837e67be598555e08df24305df736c4f1d4",
+      "chars": 2014
+    },
+    {
+      "packet_id": "PKT-T-11",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-011",
+      "gold_root_cause": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "sha256": "d8025549767be669ebeb55222f65be05ccb09f2dd6fce2b5254a6fd43313ce4e",
+      "chars": 3462
+    },
+    {
+      "packet_id": "PKT-C-12",
+      "arm": "control",
+      "source_case_id": "P5-HC-012",
+      "gold_root_cause": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "sha256": "9d90bf153dcab4ab42b638ecba2067a78d24b5ae299cd9ac9a16ac60813a8153",
+      "chars": 2046
+    },
+    {
+      "packet_id": "PKT-T-12",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-012",
+      "gold_root_cause": "ENVIRONMENT_DEPENDENCY_TOOL_FAILURE",
+      "sha256": "d5389a444c023332cbc385ff7a5cd80987bcfd736973088c5f70359a9ce152a9",
+      "chars": 3494
+    },
+    {
+      "packet_id": "PKT-C-13",
+      "arm": "control",
+      "source_case_id": "P5-HC-013",
+      "gold_root_cause": "EVALUATOR_METRIC_BUG",
+      "sha256": "3f3a9fc57e2e58cad4a4fe719926c5eb4243edba0452dd8e687da1354f67878e",
+      "chars": 2049
+    },
+    {
+      "packet_id": "PKT-T-13",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-013",
+      "gold_root_cause": "EVALUATOR_METRIC_BUG",
+      "sha256": "d4fb761fda6f82f8478febdab39ff045c4145db3b169266c5b54d17c68e5e588",
+      "chars": 3497
+    },
+    {
+      "packet_id": "PKT-C-14",
+      "arm": "control",
+      "source_case_id": "P5-HC-014",
+      "gold_root_cause": "EVALUATOR_METRIC_BUG",
+      "sha256": "37cc2f6b7c04eca758cae8ce6703490eaf553ea3bdb69c41344df420d7a76017",
+      "chars": 2021
+    },
+    {
+      "packet_id": "PKT-T-14",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-014",
+      "gold_root_cause": "EVALUATOR_METRIC_BUG",
+      "sha256": "e82bef19fa85d83980bb62a8c825c5efff8ac7a554c4cbaaedcb8be8c15b2815",
+      "chars": 3469
+    },
+    {
+      "packet_id": "PKT-C-15",
+      "arm": "control",
+      "source_case_id": "P5-HC-015",
+      "gold_root_cause": "EVALUATOR_METRIC_BUG",
+      "sha256": "200b4713d59dda083ce19cfe8d478f3b87f7576e147c2778b9c9e4b8674bd6b4",
+      "chars": 1995
+    },
+    {
+      "packet_id": "PKT-T-15",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-015",
+      "gold_root_cause": "EVALUATOR_METRIC_BUG",
+      "sha256": "5ba97377fef9f95b577578536decd91ceaea6a73a1e21d057710e3eb27ace497",
+      "chars": 3443
+    },
+    {
+      "packet_id": "PKT-C-16",
+      "arm": "control",
+      "source_case_id": "P5-HC-016",
+      "gold_root_cause": "REPRESENTATION_GAP",
+      "sha256": "d7b99f69b73458786f9be141d60ecc1add50fdb998077f97504e4e46cf076434",
+      "chars": 2032
+    },
+    {
+      "packet_id": "PKT-T-16",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-016",
+      "gold_root_cause": "REPRESENTATION_GAP",
+      "sha256": "9b7c1d56717c9de02bf4c2460e97d3c391bce193118eef7953b4c543cf877cf8",
+      "chars": 3480
+    },
+    {
+      "packet_id": "PKT-C-17",
+      "arm": "control",
+      "source_case_id": "P5-HC-017",
+      "gold_root_cause": "REPRESENTATION_GAP",
+      "sha256": "a0108d5f4a5bf8d72d83a7327a057d6ead06c35eab1c946ef960af9e3f6cd4ae",
+      "chars": 2052
+    },
+    {
+      "packet_id": "PKT-T-17",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-017",
+      "gold_root_cause": "REPRESENTATION_GAP",
+      "sha256": "f43d9c731d66dceff89e0f94d0105e999069ddc8420de855e0d57023f5352bfb",
+      "chars": 3500
+    },
+    {
+      "packet_id": "PKT-C-18",
+      "arm": "control",
+      "source_case_id": "P5-HC-018",
+      "gold_root_cause": "REPRESENTATION_GAP",
+      "sha256": "88b9344280005693e76598499a45d73f06f6568718afb13b9c7bb7576b0b7a7e",
+      "chars": 2063
+    },
+    {
+      "packet_id": "PKT-T-18",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-018",
+      "gold_root_cause": "REPRESENTATION_GAP",
+      "sha256": "dad1e5d2760929075e0988687e674817d518e8c971efe898e05f0a1c7b68e192",
+      "chars": 3511
+    },
+    {
+      "packet_id": "PKT-C-19",
+      "arm": "control",
+      "source_case_id": "P5-HC-019",
+      "gold_root_cause": "MEASUREMENT_SPECIFICATION_GAP",
+      "sha256": "286ae7680b69c97eab4c563985b0e038920b6e0f4cd9effeb2812d84dd07430f",
+      "chars": 2038
+    },
+    {
+      "packet_id": "PKT-T-19",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-019",
+      "gold_root_cause": "MEASUREMENT_SPECIFICATION_GAP",
+      "sha256": "5e4a06654f4fd1a384989e352faf57a6e50ce47a9a259889b3b11652d9bef4b9",
+      "chars": 3486
+    },
+    {
+      "packet_id": "PKT-C-20",
+      "arm": "control",
+      "source_case_id": "P5-HC-020",
+      "gold_root_cause": "MEASUREMENT_SPECIFICATION_GAP",
+      "sha256": "20e2ab0d48488dcf42fa0ea84b67a4188f88c99466a1532af7be26bdd1789b77",
+      "chars": 2034
+    },
+    {
+      "packet_id": "PKT-T-20",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-020",
+      "gold_root_cause": "MEASUREMENT_SPECIFICATION_GAP",
+      "sha256": "e6204d64930bdc69bd24e85d87a7abc3a356dad900a6cc770677557a5d007489",
+      "chars": 3482
+    },
+    {
+      "packet_id": "PKT-C-21",
+      "arm": "control",
+      "source_case_id": "P5-HC-021",
+      "gold_root_cause": "MEASUREMENT_SPECIFICATION_GAP",
+      "sha256": "71532b2bbaa2d919d8c5f08270cf0e06c5fad58b12b70324181c37d2a1729e62",
+      "chars": 2018
+    },
+    {
+      "packet_id": "PKT-T-21",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-021",
+      "gold_root_cause": "MEASUREMENT_SPECIFICATION_GAP",
+      "sha256": "6b5fbe093ce471199d2e2982f9013a83a56f94c82bb8ce171e54f63928d824bd",
+      "chars": 3466
+    },
+    {
+      "packet_id": "PKT-C-22",
+      "arm": "control",
+      "source_case_id": "P5-HC-022",
+      "gold_root_cause": "METHOD_BASIS_GAP",
+      "sha256": "047ff0874aca74ea47a4b2f96e8379652fc93ef63ff0ec14af88893ae0839abf",
+      "chars": 2033
+    },
+    {
+      "packet_id": "PKT-T-22",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-022",
+      "gold_root_cause": "METHOD_BASIS_GAP",
+      "sha256": "61766dedf6108816fd328141ba00242c81b9a5dc29e31fd4a1bfbeca4c0309a7",
+      "chars": 3481
+    },
+    {
+      "packet_id": "PKT-C-23",
+      "arm": "control",
+      "source_case_id": "P5-HC-023",
+      "gold_root_cause": "METHOD_BASIS_GAP",
+      "sha256": "0b36a5149ee527f4c9916935ded6f7d0bb083ccdde27980eae46316c3716e414",
+      "chars": 2051
+    },
+    {
+      "packet_id": "PKT-T-23",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-023",
+      "gold_root_cause": "METHOD_BASIS_GAP",
+      "sha256": "7126d3078aa3f7dd7ff29aa414bab8acdbbbf4b633b1c60d64f7310c02134e5e",
+      "chars": 3499
+    },
+    {
+      "packet_id": "PKT-C-24",
+      "arm": "control",
+      "source_case_id": "P5-HC-024",
+      "gold_root_cause": "METHOD_BASIS_GAP",
+      "sha256": "e21241b64046c42844d4b7786b85039b5b101ab199f00da50480a28c968ecdcd",
+      "chars": 2071
+    },
+    {
+      "packet_id": "PKT-T-24",
+      "arm": "treatment",
+      "source_case_id": "P5-HC-024",
+      "gold_root_cause": "METHOD_BASIS_GAP",
+      "sha256": "c0878f3b53a4114f10ace03376737eb5e54a8958303c24f150180df96fcd241f",
+      "chars": 3519
+    }
+  ],
+  "source_map_withheld_from_judge": true
+}

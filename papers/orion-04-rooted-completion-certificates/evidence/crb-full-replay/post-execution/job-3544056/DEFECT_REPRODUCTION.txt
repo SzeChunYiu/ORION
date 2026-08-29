@@ -1,0 +1,9 @@
+crb_census_sha256=1e5c25087171d23d91a25f7ea2d23b4ac47587ccd6d2b26478de8d3cbc1afc94
+engine_b_sha256=374733441ee28fa4dbde9897ad3a5c9550cba3ac6fae0a96522abadc7f3424b2
+d2_wall_metric_source=round(time.monotonic() - started, 3)
+d3_wall_metric_source=round(time.monotonic() - started, 3)
+canonical_allowed_types=str,int,bool,None,list,tuple,dict
+input_metric_type=float
+observed_exception=TypeError: value is not canonical JSON: float
+integer_control_type=int
+integer_control_receipt_digest=74165a84bf38b202e20872fef6e6f03b0a482dce71c11481bfe28d10689d3b3d

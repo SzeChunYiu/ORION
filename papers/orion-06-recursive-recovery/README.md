@@ -15,6 +15,16 @@ Current bounded publication claim:
 Current targeting state:
 
 - **Nature Computational Science general-method claim:** `EVIDENCE_BLOCKED` pending the frozen cross-domain comparative study.
+
+## Recorded-negative revival successor (2026-08-28)
+
+The seven standalone recorded negatives now have complete mechanism-level
+revival coverage in `revival/ORION06_NEGATIVE_REVIVAL_R1_SUCCESSOR.json`.
+The bounded outcomes are two `IMPROVED`, one donor-owned
+`CORRECT_SUBTRACTION`, and four `RETAINED_NEGATIVE`; the cross-domain study
+remains `CANNOT_CHECK`, and `unsolvable` is empty.  This closes revival
+coverage only.  Paper freeze and submission remain withheld under the exact
+gates recorded in the successor receipt.
 - **npj Artificial Intelligence / comparable AI-for-science methods venue:** internally ready for the narrower methodology/case-study claim with positioning risk.
 
 ORION-01 owns the quantum-compilation theorem itself. ORION-02 owns the recovery methodology and programme trace.

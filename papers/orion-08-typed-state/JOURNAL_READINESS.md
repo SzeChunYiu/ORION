@@ -1,4 +1,4 @@
-# ORION-04 journal-readiness record
+# ORION-08 journal-readiness record
 
 **Current terminal:** `INTERNAL_REVIEW_PASS__EXACT_SYNTHETIC_MECHANISM_CLAIM / SUBMISSION_GATES_OPEN`.
 

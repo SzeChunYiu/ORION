@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orion.invalid/schemas/typed-merge/instance/v1",
+  "title": "Typed merge problem instance (SCHEMA_V1)",
+  "description": "A finite positive conjunctive authority system: claims, a finite license universe, seed labels, capped rules, and directly refuted claims. Encode your own domain in this schema to evaluate it with typed_merge_evaluator; no evaluator code needs to change. The operator evaluated is F_R(x)_q = {} if q in R, else sigma(q) union the union over rules with head q of (cap_r intersect the intersection of the body labels); Auth(R) is its least fixed point.",
+  "type": "object",
+  "required": ["schema", "id", "licenses", "claims"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "ORION.TypedMerge.Instance.v1",
+      "description": "Schema identity tag. Must be exactly this string."
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable identifier for this instance, unique within a corpus."
+    },
+    "title": {"type": "string", "description": "Human-readable name."},
+    "provenance": {
+      "type": "object",
+      "description": "Free-form record of where this encoding came from. Carries no semantics for the evaluator, but a third party should be able to trace every claim and license back to a source artifact.",
+      "additionalProperties": true
+    },
+    "licenses": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1},
+      "description": "The finite license universe Lambda. A license is whatever independent authority must carry a derivation end to end: an evidence class (THEOREM, FINITE_EXACT, PROSPECTIVE, ...), an origin store, a signing record, a source repository. The calculus is indifferent to which; it only requires that the set be finite and declared."
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1},
+      "description": "The finite claim set Q."
+    },
+    "seeds": {
+      "type": "object",
+      "description": "sigma: the independent seed label of each claim. Omitted claims have the empty seed label. Every license named here must appear in `licenses`.",
+      "additionalProperties": {
+        "type": "array",
+        "uniqueItems": true,
+        "items": {"type": "string", "minLength": 1}
+      }
+    },
+    "rules": {
+      "type": "array",
+      "description": "Positive conjunctive rules. Bodies must be non-empty: a zero-antecedent rule is a seed and must be written as one.",
+      "items": {
+        "type": "object",
+        "required": ["body", "head"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "minLength": 1, "description": "Unique rule identifier; defaults to rule<index>."},
+          "body": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 1},
+            "description": "Antecedent claims A. All must hold for the rule to transfer anything."
+          },
+          "head": {"type": "string", "minLength": 1, "description": "Consequent claim h."},
+          "cap": {
+            "description": "The rule cap K_r: the licenses this rule is permitted to transmit. The string \"ALL\" expands to the declared license universe. A cap is how nonpromotion is stated: a rule that must not confer PROSPECTIVE simply omits it from the cap, and then no proof tree through that rule can carry it.",
+            "oneOf": [
+              {"const": "ALL"},
+              {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+            ],
+            "default": "ALL"
+          }
+        }
+      }
+    },
+    "refuted": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1},
+      "description": "R, the directly refuted claims. Their label is forced to the empty set regardless of any derivation."
+    },
+    "flat_seeded_claims": {
+      "type": ["array", "null"],
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1},
+      "default": null,
+      "description": "Optional override of the seed set used by the license-erased (flat) evaluation. Null, the default, means the flat pass seeds exactly the claims with a non-empty typed seed, so typed and flat differ only by license erasure. Supply an explicit list only when the modelled flat merge is additionally less faithful than license erasure alone -- for example a textual concatenation that also drops the retraction material the typed view honours. Any such divergence must be justified in `provenance`. This field overrides SEEDS ONLY: claims listed in `refuted` are refuted in both the typed and the flat reading, and no value here can change that."
+    },
+    "targets": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1},
+      "description": "Claims to report on. Defaults to every claim. Each must appear in `claims`."
+    },
+    "expect": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional declared expectations. The evaluator compares its output against these and reports every mismatch; this is what makes an instance a regression test rather than a demonstration.",
+      "properties": {
+        "typed_authorized": {"type": "object", "additionalProperties": {"type": "boolean"}},
+        "flat_authorized": {"type": "object", "additionalProperties": {"type": "boolean"}},
+        "first_mixing": {"type": "object", "additionalProperties": {"type": "boolean"}},
+        "typed_licenses": {
+          "type": "object",
+          "additionalProperties": {"type": "array", "items": {"type": "string"}}
+        },
+        "retraction": {
+          "type": "object",
+          "required": ["refute", "pairs"],
+          "additionalProperties": false,
+          "properties": {
+            "refute": {"type": "array", "items": {"type": "string"}},
+            "pairs": {
+              "type": "array",
+              "description": "The exact claim-license pairs of A_pre \\ A_post.",
+              "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "string"}}
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schema": "ORION.ORION08.BindingSufficiencyLattice.ExpectedTerminals.v1",
+  "paper_id": "ORION-08",
+  "successor_id": "ORION08.BINDING_SUFFICIENCY_LATTICE.v1",
+  "authored_date": "2026-08-28",
+  "terminal_set": [
+    {
+      "terminal": "THEORY_PROVED__INSTANTIATED",
+      "reached": true,
+      "observed": "Theorems 1 and 2 verified over 2,233,980 world/action/binding configurations; 2/2 negative controls fire; gap fractions recomputed from frozen receipts"
+    },
+    {
+      "terminal": "MAGNITUDE_CONTRAST_ESTABLISHED",
+      "reached": true,
+      "observed": "two exact-synthetic families with SUPPORTED terminals differ by more than an order of magnitude in captured decision value: 7.6% (N4-B) vs 98.4% (N4-F3)",
+      "consequence": "a SUPPORTED terminal certifies direction, not magnitude"
+    },
+    {
+      "terminal": "THEORY_REFUTED",
+      "reached": false,
+      "condition": "a binding with an action-incompatible fibre admitting a zero-regret policy, or a refinement increasing Bayes risk",
+      "required_action": "record the counterexample verbatim and retract the corresponding theorem"
+    },
+    {
+      "terminal": "CANNOT_CHECK",
+      "reached": false,
+      "condition": "receipts missing or the checker cannot execute",
+      "required_action": "report as CANNOT_CHECK; never as a pass"
+    }
+  ],
+  "preserved_adverse_and_null_evidence": [
+    {
+      "item": "the six exact-synthetic studies contain both value and NO-VALUE regimes",
+      "status": "PRESERVED_AND_QUANTIFIED",
+      "note": "This packet gives the no-value regime an exact number rather than leaving it qualitative: 1.7% of the achievable gap in REOPEN_WASTEFUL."
+    },
+    {
+      "item": "N4-B leaves 92.4% of the achievable decision value uncaptured pooled",
+      "status": "NEWLY_RECORDED_ADVERSE_QUANTITY",
+      "note": "Not a refutation: the terminal and all four gates stand. It bounds how much the SUPPORTED verdict may be read to mean."
+    },
+    {
+      "item": "N4-B recorded scope limit: initial receipts only, no intra-episode receipt accrual",
+      "status": "PRESERVED_UNCHANGED"
+    },
+    {
+      "item": "novelty_authorized = false and p10_authorized = false in the N4-B interpretation record",
+      "status": "PRESERVED_UNCHANGED"
+    },
+    {
+      "item": "exact-synthetic scope; no real-domain generalization",
+      "status": "PRESERVED_AND_REINFORCED",
+      "note": "#1609 requires this explicitly for ORION-08. Both families analysed here are exact-synthetic and nothing is extrapolated."
+    },
+    {
+      "item": "N4-B claim boundary: the scoped advantage is over the registered controls on this construction, not a general interface-graph theorem",
+      "status": "PRESERVED_UNCHANGED"
+    }
+  ],
+  "authority_updates": {
+    "family_terminals": "unchanged - N4_B_SCOPED_REOPENING_SUPPORTED and N4_F3_TYPED_REMINT_TRANSPORT_SUPPORTED both stand",
+    "gates": "not re-evaluated",
+    "manuscript_or_ledger_edited": "NONE",
+    "receipts_edited": "NONE",
+    "submission_tmlr_bytes_touched": "NONE",
+    "package_adoption_v2_binding_affected": false,
+    "content_freeze_checker_with_this_directory": "reports FROZEN, but that script RE-PINS rather than verifies (it writes paper_tree_oid and rewrites subject_commit), so its PASS is not evidence of unchanged content -- see THEORY.md section 7",
+    "new_object_created": "papers/orion-08-typed-state/theory/binding-sufficiency-lattice-v1/ (additive)",
+    "new_blocker_raised": "NONE",
+    "paper_tree_oid_effect": {
+      "pinned": "5f923e9a9d1e",
+      "live_with_this_directory": "e353f6691507",
+      "changed": true,
+      "note": "purely additive; no existing byte modified; disclosed per issue #1625"
+    }
+  },
+  "explicitly_out_of_scope": [
+    "real-domain transfer, which remains successor work per #1609",
+    "the four N4 families without an oracle arm in their pooled block",
+    "ORION-22's information boundary, which shares the donor theorem and is owned separately",
+    "venue, packaging and filing decisions"
+  ]
+}

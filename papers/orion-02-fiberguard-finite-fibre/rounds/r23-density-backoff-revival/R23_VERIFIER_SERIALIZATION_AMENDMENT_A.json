@@ -1,0 +1,67 @@
+{
+  "amendment": {
+    "allowed_difference": {
+      "absolute_tolerance": 1.1e-12,
+      "field": "best_bound",
+      "rationale": "The executor subtracts full-precision primitive outcomes and rounds the derived bound to 12 decimal places, while the independent verifier reconstructs from primitive outcomes already serialized at 12 decimal places. The two orders can differ by one final serialized decimal unit.",
+      "structural_fields_exact": [
+        "dataset_identity",
+        "record_schema",
+        "fold",
+        "members",
+        "used_backoff",
+        "admissible"
+      ]
+    },
+    "new_verifier_sha256": "4c8d57f8398d4575097eba16ac7fcd21e467745ad00cfa31df928358e59c6bed",
+    "old_verifier_sha256": "fef1f621f5fe43942201d013a682355a5441379ee57ecbb2f607165e52d16997",
+    "post_amendment_verifier_status": "NOT_YET_RUN",
+    "scope": "independent verifier comparison and its unit/SLURM hash bindings only"
+  },
+  "authority": {
+    "external_independence": false,
+    "freeze_authorized": false,
+    "scientific_authority_delta": "NONE",
+    "submission_authorized": false,
+    "top_tier_gate_pass": false
+  },
+  "date": "2026-08-28",
+  "job": {
+    "exit_code": "1:0",
+    "failed_stage": "INDEPENDENT_VERIFY",
+    "job_id": 3550005,
+    "scientific_terminal_reached": true,
+    "slurm_state": "FAILED",
+    "wrapper_failure_class": "POST_OUTCOME_VERIFIER_SERIALIZATION_COMPARISON"
+  },
+  "observed_failure": {
+    "coverage_replay_passed": true,
+    "hamming_backoff_records_differing_only_in_best_bound_last_unit": 6,
+    "lexical_control_records_differing_only_in_best_bound_last_unit": 10,
+    "maximum_absolute_difference": 1e-12,
+    "membership_or_admissibility_differences": 0,
+    "original_verification_log_bytes": 3810,
+    "original_verification_log_sha256": "cb9d50c02b2499a66b6ec13be9add3724caa3d69c363416d6045afec21e8519f",
+    "terminal_independently_rederived_before_amendment": true
+  },
+  "preserved_outputs": {
+    "corrected_parent": {
+      "bytes_each": 214851,
+      "run_a_equals_run_b": true,
+      "sha256": "7711739fa1854e9c69d4cf02a61ba7175934baabb66a89f2012845320d4cc32a"
+    },
+    "result": {
+      "bytes_each": 495057,
+      "run_a_equals_run_b": true,
+      "sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77"
+    },
+    "terminal": {
+      "bytes_each": 48,
+      "run_a_equals_run_b": true,
+      "sha256": "326f481871077a039d425bca8a0f914ec418a3129c43dd76603531c0c6ae2c32",
+      "value": "C_R23_PMLB_BACKOFF_COVERAGE_IMPROVED_BELOW_GATE"
+    }
+  },
+  "scientific_bytes_changed_by_amendment": false,
+  "schema": "ORION.FiberGuard.PMLBProposalOrdering.R23.VerifierSerializationAmendmentA.v1"
+}

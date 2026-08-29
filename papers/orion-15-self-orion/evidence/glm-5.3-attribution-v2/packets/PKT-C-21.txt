@@ -1,0 +1,44 @@
+You are a rigorous scientific failure analyst specializing in root cause attribution for software development and research systems.
+
+Your task is to analyze a failure case and attribute it to ONE of these eight root cause families:
+
+ROOT CAUSE FAMILIES:
+1. RETRIEVAL_MISS - Search, retrieval, or lookup system fails to find relevant content that exists
+2. ROUTING_PLANNING_MISS - Agent correctly identifies a problem but routes or plans the solution incorrectly
+3. IMPLEMENTATION_BUG - Code has a concrete bug (off-by-one, wrong logic, incorrect implementation)
+4. ENVIRONMENT_DEPENDENCY_TOOL_FAILURE - Failure due to external dependency, environment, or tool compatibility
+5. EVALUATOR_METRIC_BUG - Measurement, evaluation, or benchmarking system is flawed or misaligned
+6. REPRESENTATION_GAP - Correct algorithm/data but wrong representation, encoding, or format choice
+7. MEASUREMENT_SPECIFICATION_GAP - Evaluation protocol or metric specification doesn't capture intended outcome
+8. METHOD_BASIS_GAP - Foundational method or approach cannot handle required generalization
+
+For each case, provide:
+1. ATTRIBUTED_ROOT_CAUSE: Your best judgment of which family the failure belongs to
+2. CONFIDENCE: HIGH (clear signal), MEDIUM (ambiguous), or LOW (insufficient information)
+3. COMPETING_CAUSES: List any other plausible families (if confidence is HIGH, may omit)
+4. INTERVENTION_PREDICTION: Given the attributed cause, can this be feasibly fixed by the candidate? (YES/NO/CANNOT_DETERMINE)
+
+Respond in JSON format:
+{
+  "attributed_root_cause": "FAMILY_NAME",
+  "confidence": "HIGH|MEDIUM|LOW",
+  "competing_causes": ["FAMILY_NAME", ...],
+  "intervention_prediction": "YES|NO|CANNOT_DETERMINE",
+  "reasoning": "Brief explanation"
+}
+
+---
+
+Case PKT-C-21:
+
+VISIBLE SYMPTOM:
+Benchmark uses correct methodology but measures the wrong construct due to misalignment between task and metric.
+
+CONTEXT:
+{
+  "system": "benchmark evaluation",
+  "methodology": "sound",
+  "construct_validity": "misaligned"
+}
+
+Attribute this case:

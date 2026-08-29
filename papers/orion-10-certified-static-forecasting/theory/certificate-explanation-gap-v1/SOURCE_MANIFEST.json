@@ -1,0 +1,36 @@
+{
+  "schema": "ORION.ORION10.CertificateExplanationGap.SourceManifest.v1",
+  "paper_id": "ORION-10",
+  "successor_id": "ORION10.CERTIFICATE_EXPLANATION_GAP.v1",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+  "candidate_source": {"pull_request": 1617, "section": "Priority A - ORION-10 Certificate complexity versus explanation complexity"},
+  "repository_base": {"branch_base": "origin/main", "commit": "882b88e3a"},
+  "bound_artifacts": [
+    {"path": "research/extensions/orion-qg/QG7B_HYBRID_FAMILY_RESULTS.json",
+     "sha256": "70cee5a5f80482d84e89a92365286e1043cf3e5cf9f847a204fa84d3abcab530",
+     "role": "frozen receipt; read as DATA to reproduce the manuscript counts, never executed",
+     "mutated_by_this_packet": false},
+    {"path": "research/extensions/orion-qg/QG7D_INFORMATION_CLOSURE_RESULTS.json",
+     "sha256": "19f0182245f1a581881e289ff6cce7feccaad88202de74bd1715a821acfa8d93",
+     "role": "records btripleprime UNFOUND and the all-n CANNOT_CHECK disposition preserved by this packet",
+     "mutated_by_this_packet": false},
+    {"path": "papers/orion-10-certified-static-forecasting/manuscript/sections/03-results.tex",
+     "sha256": "0ebd8c160e2dff6d32ee409900c026898f075e59f8f54104877e661318943c35",
+     "role": "carries the 64/740, 10481 and no-fifth-configuration statements reproduced here; NOT edited",
+     "mutated_by_this_packet": false}
+  ],
+  "reproduced_manuscript_counts": [
+    {"quantity": "fourth-configuration witnesses", "manuscript": 64, "receipt": 64, "match": true},
+    {"quantity": "instances evaluated in the hostile panel", "manuscript": 740, "receipt": 740, "match": true},
+    {"quantity": "verified rows closed by the hybrid family", "manuscript": 10481, "receipt": 10481, "match": true},
+    {"quantity": "fifth configurations confirmed", "manuscript": 0, "receipt": 0, "match": true}
+  ],
+  "not_imported": ["any ORION-10 module", "any QG executor or protocol script"],
+  "content_freeze_note": {
+    "pinned_paper_tree_oid": "63529ebe91cc",
+    "already_mismatching_on_main_per_issue_1625": true,
+    "note": "This additive directory changes the tree oid, but that pin is already among the mismatching set, so nothing newly breaks. The freeze scripts re-pin rather than verify, so their PASS is not evidence either way."
+  },
+  "frozen_paper_bytes_modified": "NONE"
+}

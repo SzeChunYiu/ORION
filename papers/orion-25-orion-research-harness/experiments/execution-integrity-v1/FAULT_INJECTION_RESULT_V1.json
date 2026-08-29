@@ -1,0 +1,66 @@
+{
+  "arm": "ARM-K3-D1",
+  "authority": "MEASUREMENT_ONLY",
+  "baseline_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_GREEN",
+  "box": "production-like host/process fault injection; false-promotion endpoint",
+  "false_promotion_rate": 0.0,
+  "false_promotions": 0,
+  "faults_applied": 6,
+  "faults_attempted": 6,
+  "faults_not_applicable": 0,
+  "results": [
+    {
+      "applied": true,
+      "checker_rc": 1,
+      "checker_terminal": "(none)",
+      "detected": true,
+      "fault": "F1_TRUNCATED_WRITE",
+      "tests": "process killed mid-write leaves a half-written result"
+    },
+    {
+      "applied": true,
+      "checker_rc": 1,
+      "checker_terminal": "(none)",
+      "detected": true,
+      "fault": "F2_SIGNATURE_BYTE_FLIP",
+      "tests": "one flipped hex digit in a link signature"
+    },
+    {
+      "applied": true,
+      "checker_rc": 1,
+      "checker_terminal": "(none)",
+      "detected": true,
+      "fault": "F3_CHAIN_LINK_DROPPED",
+      "tests": "an attestation link removed from the chain"
+    },
+    {
+      "applied": true,
+      "checker_rc": 1,
+      "checker_terminal": "(none)",
+      "detected": true,
+      "fault": "F4_PUBLIC_KEY_SUBSTITUTION",
+      "tests": "a link's public key replaced"
+    },
+    {
+      "applied": true,
+      "checker_rc": 1,
+      "checker_terminal": "P15_ATTESTATION_COMPOSITION_V2_SECOND_CHECKER_RED",
+      "detected": true,
+      "fault": "F5_TERMINAL_RELABEL",
+      "tests": "result relabelled favourable without redoing work"
+    },
+    {
+      "applied": true,
+      "checker_rc": 1,
+      "checker_terminal": "(none)",
+      "detected": true,
+      "fault": "F6_COUNT_INFLATION",
+      "tests": "a reported count incremented by one"
+    }
+  ],
+  "schema": "orion.orion25.fault-injection.v1",
+  "scientific_authority_delta": "NONE",
+  "scope": "Corruption of the committed result artifact, applied externally. Does NOT cover faults inside the runner's own execution (mid-signing kill, clock skew, reordered messages), which need instrumentation that does not exist.",
+  "successor_id": "ORION25.EXECUTION_INTEGRITY.v1",
+  "terminal": "NO_FALSE_PROMOTION_UNDER_APPLIED_FAULTS"
+}

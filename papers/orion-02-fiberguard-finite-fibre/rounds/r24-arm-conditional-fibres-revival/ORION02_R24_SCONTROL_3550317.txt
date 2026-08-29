@@ -1,0 +1,31 @@
+JobId=3550317 JobName=o02-r24-verify
+   UserId=scyiu(6350) GroupId=hep(6300) MCS_label=N/A
+   Priority=66487 Nice=0 Account=lu2026-2-51 QOS=normal
+   JobState=COMPLETED Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   DerivedExitCode=0:0
+   RunTime=00:00:04 TimeLimit=00:20:00 TimeMin=N/A
+   SubmitTime=2026-08-28T09:13:06 EligibleTime=2026-08-28T09:13:06
+   AccrueTime=2026-08-28T09:13:06
+   StartTime=2026-08-28T09:13:06 EndTime=2026-08-28T09:13:10 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-08-28T09:13:06 Scheduler=Main
+   Partition=lu48 AllocNode:Sid=cosmos2:293316
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=cn063
+   BatchHost=cn063
+   NumNodes=1 NumCPUs=1 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=1,mem=4G,node=1,billing=1
+   AllocTRES=cpu=1,mem=4G,node=1,billing=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   JOB_GRES=(null)
+     Nodes=cn063 CPU_IDs=14 Mem=4096 GRES=
+   MinCPUsNode=1 MinMemoryNode=4G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/projects/hep/fs9/scratch/scyiu-orion-ci/wtO02R24/papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-c...
+   WorkDir=/projects/hep/fs9/scratch/scyiu-orion-ci/wtO02R24
+   StdErr=/projects/hep/fs9/scratch/scyiu-orion-ci/wtO02R24/papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-co...
+   StdIn=/dev/null
+   StdOut=/projects/hep/fs9/scratch/scyiu-orion-ci/wtO02R24/papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-co...
+   Power=
+   TresPerTask=cpu:1

@@ -1,0 +1,87 @@
+{
+  "schema": "ORION.ORION02.RefinementToCertifiability.Protocol.v1",
+  "protocol_identity": "ORION02.REFINEMENT_TO_CERTIFIABILITY.v1",
+  "paper_id": "ORION-02",
+  "promotion_issue": "1649",
+  "tier": "A",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "authored_date": "2026-08-28",
+
+  "predecessor": {
+    "protocol": "ORION02.FIBRE_DIAMETER_FLOOR.v1",
+    "terminal": "T1_FLOOR_HOLDS_EXHAUSTIVELY",
+    "what_it_established": "any certificate accepted on a fibre incurs worst-case error at least D(z)/2; the R24 negative is structural",
+    "why_a_successor_is_warranted": "#1649 requires a constructive theorem that CROSSES a previously proved impossibility boundary. The floor alone is a bounded negative."
+  },
+
+  "claims_to_test": [
+    {"id": "R1", "statement": "If every fibre has diameter <= 2*eps, the midpoint certificate is eps-valid on every fibre.", "kind": "constructive sufficiency"},
+    {"id": "R2", "statement": "eps-validity on a fibre holds if and only if D(z) <= 2*eps.", "kind": "exact characterisation, combining R1 with the frozen floor"},
+    {"id": "R3", "statement": "The minimum number of parts in any partition of a fibre into parts of diameter <= 2*eps equals the left-to-right greedy sweep count.", "kind": "exact optimality"},
+    {"id": "R4", "statement": "Under a separator family S, the minimum number of S-measurable parts is at least the unconstrained minimum, and is unattainable exactly when some S-indistinguishable pair differs by more than 2*eps.", "kind": "realisability characterisation"},
+    {"id": "R5", "statement": "Coverage without refinement equals the mass of fibres with D <= 2*eps.", "kind": "frontier identity"}
+  ],
+
+  "method": {
+    "search_direction": "COUNTEREXAMPLE. Every check looks for a violation; finding none over an exhaustive family is the evidence.",
+    "enumeration_family": "all value multisets of size k in 2..6 over a frozen integer grid 0..6, crossed with eps on a frozen grid",
+    "eps_grid": [0.0, 0.5, 1.0, 1.5, 2.0, 3.0],
+    "R3_optimality_check": "the greedy count is compared against the TRUE minimum obtained by exhaustive search over all set partitions of the fibre, not against another heuristic",
+    "separator_families": "all subsets of a frozen predicate pool, so S ranges from powerless to fully separating",
+    "tolerance": 1e-09
+  },
+
+  "controls": [
+    {"id": "X1_planted_subfloor_certificate_is_caught",
+     "statement": "A certificate permitted to see the member index must be detected as beating the floor, through the SAME comparison the real search uses. Without this, 'no violation found' is indistinguishable from 'the search cannot see one'.",
+     "on_failure": "T5_CANNOT_CHECK_CONTROL_FAILED"},
+    {"id": "X2_greedy_vs_true_minimum_is_exhaustive",
+     "statement": "R3 is checked against the exact minimum over ALL set partitions, computed independently of the greedy routine. A greedy-versus-greedy comparison would be circular.",
+     "on_failure": "T5_CANNOT_CHECK_CONTROL_FAILED"},
+    {"id": "X3_degenerate_no_alarm",
+     "statement": "On a zero-diameter fibre, and at eps large enough that one part suffices, the checker must report NO violation and exactly one part. A checker that alarms here cries wolf."},
+    {"id": "X4_unrealisable_case_must_be_detected",
+     "statement": "With a separator family that cannot distinguish two instances whose values differ by more than 2*eps, R4 must report the fibre unrealisable. If it instead reports a finite cost, the realisability test is not testing anything.",
+     "on_failure": "T5_CANNOT_CHECK_CONTROL_FAILED"},
+    {"id": "X5_eps_zero_recovers_the_barrier",
+     "statement": "At eps = 0 the construction must require one part per distinct value, recovering the original impossibility as the limiting case rather than evading it."}
+  ],
+
+  "terminals": [
+    {"id": "T1_REFINEMENT_CROSSES_THE_BOUNDARY_CONSTRUCTIVELY", "class": "FAVOURABLE",
+     "conditions": ["R1 holds with no counterexample", "R2 holds in both directions", "R3 matches the exhaustive true minimum everywhere", "R4 characterisation holds", "R5 identity holds", "all five controls pass"],
+     "licenses": "A bounded statement that the D(z)/2 barrier is an exact dial: refine until diameter reaches 2*eps and the midpoint certificate is eps-valid, at an exactly computable minimum part count, with unrealisability characterised by S-indistinguishable pairs.",
+     "does_not_license": ["any claim of achievable risk on real data", "any revival of a retracted ORION-02 claim", "TOP_TIER_PROMOTION_EARNED, which additionally requires the empirical discriminator and venue conditions of #1649"]},
+    {"id": "T2_GREEDY_IS_NOT_OPTIMAL", "class": "UNFAVOURABLE",
+     "conditions": ["some fibre admits a partition with fewer parts than the greedy count"],
+     "reading": "R3 is false; the refinement cost is not the greedy count and the cost theory must be rebuilt."},
+    {"id": "T3_SUFFICIENCY_FAILS", "class": "UNFAVOURABLE",
+     "conditions": ["some fibre of diameter <= 2*eps admits no eps-valid constant certificate"],
+     "reading": "R1 is false. The barrier is not a dial and the promotion fails at its first step."},
+    {"id": "T4_REALISABILITY_CHARACTERISATION_FAILS", "class": "UNFAVOURABLE",
+     "conditions": ["R4's if-and-only-if fails in either direction"],
+     "reading": "Separator power is not the right currency; the cost account is wrong."},
+    {"id": "T5_CANNOT_CHECK_CONTROL_FAILED", "class": "CANNOT_CHECK",
+     "conditions": ["X1, X2 or X4 fails"],
+     "reading": "The search cannot detect the violations it claims to exclude. No claim is read either way."}
+  ],
+
+  "falsifiability_self_check": {
+    "favourable": 1, "unfavourable": 3, "cannot_check": 1,
+    "note": "R3 is the most likely to fail: greedy optimality arguments are easy to state and easy to get wrong, and it is checked against exhaustive true minima rather than against itself."
+  },
+
+  "empirical_discriminator": {
+    "status": "NOT_EXECUTED_IN_THIS_PACKAGE",
+    "why": "#1649 requires at least 4 disjoint real or externally sourced decision domains with matched baselines. This package establishes the theory and its exhaustive verification only. Reporting a theory result as if it discharged the empirical requirement would be the overstatement #1649 exists to prevent.",
+    "what_it_would_have_to_show": "theorem-guided refinement crossing the predicted diameter/risk boundary with calibrated test-only risk control at useful coverage, with the measured transition agreeing with R5",
+    "matched_baselines_required": ["current fibre representation", "lexical control", "learned selector", "strongest generic representation learner", "oracle refinement"]
+  },
+
+  "promotion_status_if_T1": "THEORY_STEP_COMPLETE__PROMOTION_NOT_YET_EARNED",
+
+  "stop_rule": "Outcomes are read once. If T2, T3 or T4 is reached, the constructive promotion fails, the paper returns to the bounded information-boundary lane per #1649, and no second rescue cycle is started."
+}

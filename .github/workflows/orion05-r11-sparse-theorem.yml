@@ -1,0 +1,127 @@
+name: ORION-05 R11 sparse direct-solver theorem
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-05-tare-expressivity/ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md'
+      - 'papers/orion-05-tare-expressivity/ORION05_R11_ROUND1_STATUS.json'
+      - 'papers/orion-05-tare-expressivity/ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json'
+      - 'papers/orion-05-tare-expressivity/orion05_r11_sparse_direct_solver.py'
+      - 'papers/orion-05-tare-expressivity/orion05_r11_sparse_equivalence_verify.py'
+      - 'papers/orion-05-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md'
+      - 'research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py'
+      - 'research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json'
+      - 'research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json'
+      - 'research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json'
+      - 'research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json'
+      - 'development/orion-q-max-r0/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_PROTOCOL.md'
+      - 'research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json'
+      - 'research/orion-01-05-convergence-v1/SUPERSESSION_PLAN_V1.json'
+      - 'development/orion-05-r11-sparse-direct-solver-2026-08-27/**'
+      - '.github/workflows/orion05-r11-sparse-theorem.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-05-tare-expressivity/ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md'
+      - 'papers/orion-05-tare-expressivity/ORION05_R11_ROUND1_STATUS.json'
+      - 'papers/orion-05-tare-expressivity/ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json'
+      - 'papers/orion-05-tare-expressivity/orion05_r11_sparse_direct_solver.py'
+      - 'papers/orion-05-tare-expressivity/orion05_r11_sparse_equivalence_verify.py'
+      - 'papers/orion-05-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md'
+      - 'research/extensions/orion-q/max_r6m_exact_three_tare2_shared_factor_dp.py'
+      - 'research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json'
+      - 'research/extensions/orion-q/MAX_R6O_ENLARGED_TAG_DONOR_RESULTS.json'
+      - 'research/extensions/orion-q/MAX_R6P_WEIGHT2_FRAME_DONOR_CLOSURE_RESULTS.json'
+      - 'research/extensions/orion-qg/QG21_FT_CHEMISTRY_RESULTS.json'
+      - 'development/orion-q-max-r0/MAX_R6M_EXACT_THREE_TARE2_SHARED_FACTOR_DP_PROTOCOL.md'
+      - 'research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json'
+      - 'research/orion-01-05-convergence-v1/SUPERSESSION_PLAN_V1.json'
+      - 'development/orion-05-r11-sparse-direct-solver-2026-08-27/**'
+      - '.github/workflows/orion05-r11-sparse-theorem.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  sparse-equivalence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch exact PR 1498 adverse donor commit
+        run: |
+          git fetch --no-tags origin \
+            refs/heads/r1/q1-xover-20260827:refs/remotes/origin/r1/q1-xover-20260827
+          test "$(git rev-parse refs/remotes/origin/r1/q1-xover-20260827)" = \
+            '272f2a1aa7b63d409fc460b35bb89e4aa8b5dcbb'
+      - name: Install the frozen referee's only non-stdlib dependency
+        run: python -m pip install 'numpy==2.4.6'
+      - name: Run pair, Tag, preprocessing, exact-equivalence and phase gates
+        run: |
+          set -euo pipefail
+          python papers/orion-05-tare-expressivity/orion05_r11_sparse_equivalence_verify.py \
+            | tee /tmp/orion05-r11-sparse.out
+          grep -Fx \
+            'ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM__FROZEN_R6M_ONLY' \
+            /tmp/orion05-r11-sparse.out
+      - name: Require byte-stable committed receipt
+        run: |
+          git diff --exit-code -- \
+            papers/orion-05-tare-expressivity/ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json
+      - name: Enforce narrow authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('papers/orion-05-tare-expressivity/ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json')
+          row = json.loads(path.read_text())
+          assert all(row['gates'].values())
+          assert not any(row['claim_boundaries'].values())
+          assert row['scope'] == 'FROZEN_R6M_SIX_SLOT_GRAMMAR_AND_SUPPORT_COUNT_OBJECTIVE_ONLY'
+          assert row['hostile_n2_equivalence']['support_one_sharpness_preserved'] is True
+          status = json.loads(Path(
+              'papers/orion-05-tare-expressivity/ORION05_R11_ROUND1_STATUS.json'
+          ).read_text())
+          assert status['schema'] == 'ORION.ORION05.R11.Round1CanonicalDelta.v1'
+          assert status['record_kind'] == 'ADDITIVE_CANONICAL_STATUS_AND_SUPERSESSION_DELTA'
+          assert status['paper_id'] == 'ORION-05'
+          assert status['rounds']['consumed'] == 1
+          assert status['science_status'] == 'OPEN'
+          assert status['canonical_delta']['precedence']['all_non_orion05_v1_fields'] == 'UNCHANGED'
+          assert status['canonical_delta']['precedence']['science_status_remains_open'] is True
+          assert len(status['canonical_delta']['science_status_transitions']) == 17
+          assert len(status['canonical_delta']['science_status_additions']) == 1
+          assert len(status['canonical_delta']['supersession_plan_transitions']) == 4
+          transition = {
+              row['json_pointer']: row['new']
+              for row in status['canonical_delta']['science_status_transitions']
+          }
+          assert transition['/papers/ORION-05/coordinator_issues'] == [1511]
+          assert transition['/papers/ORION-05/active_science_pull_requests'] == []
+          assert transition['/papers/ORION-05/candidate_scope'] == []
+          assert transition['/papers/ORION-05/evidence_status/pending_candidates'] == []
+          assert transition['/papers/ORION-05/open_science_gates'] == [
+              'production-faithful measured resource value',
+              'external quantum review and novelty adjudication',
+          ]
+          established = status['canonical_delta']['science_status_additions'][0]['new']
+          assert established[0]['id'] == 'ORION05_R11_DIRECT_SOLVER_ESTABLISHED'
+          assert status['same_owner_hostile_review']['external_independence_established'] is False
+          assert status['pr1498_adverse_runtime_context']['raw_observations']['n_le_5_exact'] == 372
+          assert status['pr1498_adverse_runtime_context']['raw_observations']['n_6_timeout'] == 12
+          assert status['pr1498_adverse_runtime_context']['round_accounting'] == \
+              'ADVERSE_CONTEXT_ONLY__DOES_NOT_CONSUME_PROSPECTIVE_ROUND_2'
+          assert status['authority']['runtime_theorem_on_frozen_grammar'] is True
+          assert not status['authority']['production_runtime_value']
+          assert not status['authority']['generic_tare_complexity']
+          assert not status['authority']['physical_or_fault_tolerant_resource_value']
+          assert not status['authority']['novelty']
+          assert not status['authority']['journal_authority']
+          assert not status['authority']['submission_authorized']
+          PY

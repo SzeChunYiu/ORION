@@ -1,0 +1,45 @@
+{
+  "attempt_id": "ORION02-REVIVAL-002-R24-ARM-CONDITIONAL-BOUNDARY-FIBRES",
+  "authority": {
+    "freeze_authorized": false,
+    "scientific_authority_delta": "NONE",
+    "submission_authorized": false,
+    "top_tier_gate_pass": false
+  },
+  "byte_identical": true,
+  "counts_toward_100": false,
+  "environment": {
+    "MKL_NUM_THREADS": null,
+    "OMP_NUM_THREADS": null,
+    "OPENBLAS_NUM_THREADS": null,
+    "PYTHONHASHSEED": null,
+    "machine": "x86_64",
+    "python": "3.11.5"
+  },
+  "first_byte_difference_offset": null,
+  "fresh_parent": {
+    "bytes": 495057,
+    "path": "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO02R24/papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/R23_PARENT_DIAGNOSTIC_JOB_3550262_0_original-env.fresh.json",
+    "sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77"
+  },
+  "frozen_parent": {
+    "bytes": 495057,
+    "path": "/projects/hep/fs9/scratch/scyiu-orion-ci/wtO02R24/papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_RESULTS.json",
+    "sha256": "cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77"
+  },
+  "pmlb_commit": "7c1f4bdc00136dc2e55c87fa6b8ba6e8af6d1a68",
+  "pmlb_tree": "ca5d36e9093c2f7360db57198c8c0586a3217a60",
+  "purpose": "post-job-3550259 infrastructure diagnosis only",
+  "r23_executor_sha256": "6bb4e377462249c3630ceacc56073ba385a82805c79eda58809c42b8ee1562aa",
+  "r24_policy_executed": false,
+  "r24_scientific_outcome_exposed": false,
+  "schema": "ORION.FiberGuard.R24.R23ParentReplayDiagnostic.v1",
+  "structured_diff": {
+    "difference_count": 0,
+    "max_abs_numeric_difference": 0.0,
+    "numeric_difference_count": 0,
+    "samples": [],
+    "samples_truncated": false
+  },
+  "terminal": "R23_PARENT_REPLAY_BYTE_IDENTICAL"
+}

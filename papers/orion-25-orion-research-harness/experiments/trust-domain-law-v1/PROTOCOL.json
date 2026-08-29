@@ -1,0 +1,84 @@
+{
+  "schema": "ORION.ORION25.IndependentTrustDomainLaw.Protocol.v1",
+  "protocol_identity": "ORION25.INDEPENDENT_TRUST_DOMAIN_LAW.v1",
+  "paper_id": "ORION-25",
+  "promotion_issue": "1649",
+  "tier": "A",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "authority": "MEASUREMENT_ONLY",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "authored_date": "2026-08-28",
+
+  "predecessor": {
+    "protocol": "ORION25.EXECUTION_INTEGRITY.v1",
+    "frozen_findings": {
+      "H1_chain_length": "false promotion flat at 1.000 across chain lengths at fixed trust domain",
+      "H2_trust_domains": "at k=3 with ONE compromised domain, false promotion 1.00 -> 0.00 -> 0.00 for d = 1,2,3",
+      "false_promotion_under_artifact_faults": 0,
+      "false_rejection": "0/6"
+    },
+    "why_a_successor": "H1 and H2 are two one-dimensional slices. #1649 asks for the law: resilience controlled by trust-domain count as predicted, with false-promotion, false-rejection and overhead tradeoffs measured."
+  },
+
+  "theorem_under_test": {
+    "id": "T",
+    "statement": "An adversary compromising exactly the domains in C can forge an accepted chain if and only if supp(alpha) is a subset of C, where alpha maps each role to the domain holding its key and supp(alpha) is the set of domains holding at least one role.",
+    "corollaries": {
+      "T1": "the minimum number of domains that must be compromised is exactly d_eff = |supp(alpha)|, independent of k and of chain length",
+      "T2": "domain count buys nothing unless roles are spread; if all roles sit in one domain then d_eff = 1 however many domains exist",
+      "T3": "an uncompromised chain is never forged and the honest chain always verifies, so resistance costs no false rejection"
+    }
+  },
+
+  "experiment": {
+    "roles": ["execution", "environment", "publication"],
+    "no_new_roles_invented": true,
+    "domains_swept": [1, 2, 3],
+    "alpha_space": "EVERY function from the 3 frozen roles to the d domains, so both surjective and collapsing assignments are covered — T2 is only testable if collapsing assignments are included",
+    "compromise_space": "EVERY subset C of the d domains, including the empty set and the full set, so both directions of the iff are exercised",
+    "measured_per_cell": ["forged_chain_accepted", "honest_chain_accepted"],
+    "exhaustive": true
+  },
+
+  "controls": [
+    {"id": "C1_planted_full_compromise_must_forge",
+     "statement": "When C contains supp(alpha) the forgery MUST be accepted. If it is not, the attack is not actually exercising the verifier and every negative cell is meaningless.",
+     "on_failure": "T4_CANNOT_CHECK_ATTACK_INERT"},
+    {"id": "C2_honest_chain_always_accepted",
+     "statement": "In every cell the unmodified chain must verify. A verifier that rejects honest chains would produce false 'resistance' for the wrong reason.",
+     "on_failure": "T4_CANNOT_CHECK_ATTACK_INERT"},
+    {"id": "C3_empty_compromise_never_forges",
+     "statement": "With C empty no forgery may be accepted."},
+    {"id": "C4_collapse_case_present",
+     "statement": "At least one alpha with d > 1 but d_eff = 1 must appear, or T2 is untested and the sweep is vacuous for the corollary that matters most operationally.",
+     "on_failure": "T4_CANNOT_CHECK_ATTACK_INERT"}
+  ],
+
+  "terminals": [
+    {"id": "T1_LAW_HOLDS_EXACTLY", "class": "FAVOURABLE",
+     "conditions": ["every cell with supp(alpha) subset-of C forges", "no cell with supp(alpha) not-subset-of C forges", "all four controls pass"],
+     "licenses": "A bounded statement that, under CRYPTOGRAPHIC domain independence and the frozen three roles, forgeability is exactly the condition supp(alpha) subset-of C, so the security parameter is d_eff and not chain length.",
+     "does_not_license": ["general trust-domain resilience", "any claim of organisational or custodial independence", "TOP_TIER_PROMOTION_EARNED"]},
+    {"id": "T2_LAW_FAILS_SUFFICIENCY", "class": "UNFAVOURABLE",
+     "conditions": ["some cell with supp(alpha) subset-of C does NOT forge"],
+     "reading": "Theorem T's (<=) direction is false."},
+    {"id": "T3_LAW_FAILS_NECESSITY", "class": "UNFAVOURABLE",
+     "conditions": ["some cell with supp(alpha) not-subset-of C DOES forge"],
+     "reading": "Theorem T's (=>) direction is false — a partial compromise suffices, which would be a security-relevant negative and must be reported as such."},
+    {"id": "T4_CANNOT_CHECK_ATTACK_INERT", "class": "CANNOT_CHECK",
+     "conditions": ["C1, C2 or C4 fails"],
+     "reading": "The attack or the verifier is not being exercised. No claim is read either way."}
+  ],
+
+  "custody_limit_fixed_in_advance": {
+    "independence_operationalised_as": "CRYPTOGRAPHIC — keys from independent randomness, so no domain derives another's secret",
+    "independence_NOT_operationalised_as": "ORGANISATIONAL — every domain remains under this programme's custody, and no second custodian exists here",
+    "consequence": "Per #1649's stop rule, general trust-domain resilience is NOT claimed on any outcome of this experiment, and the paper remains in the bounded integrity lane.",
+    "recorded_before_outcomes": true
+  },
+
+  "promotion_status_if_T1": "LAW_ESTABLISHED_UNDER_CRYPTOGRAPHIC_INDEPENDENCE__PROMOTION_NOT_EARNED",
+
+  "stop_rule": "Outcomes are read once. If T2 or T3 is reached the law is refuted and the lane stops. If T1 is reached the law stands only under cryptographic independence; because independence cannot be operationalised beyond same-programme custody here, #1649's stop rule applies and the bounded integrity paper is retained rather than promoted."
+}

@@ -1,0 +1,9 @@
+[package]
+name = "orion03-cedar-round1-adjudicator"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+cedar-testing = { git = "https://github.com/cedar-policy/cedar", rev = "bcb8bd93a292b59ae8f1dcf53b9b4176a2d3405d", features = ["integration-testing"] }
+serde_json = "1.0"

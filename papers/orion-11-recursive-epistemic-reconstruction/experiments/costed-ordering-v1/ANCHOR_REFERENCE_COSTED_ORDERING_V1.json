@@ -1,0 +1,48 @@
+{
+  "anchor_arms": [
+    "global_flat_voi",
+    "cost_greedy_repair",
+    "random_safe_ablation",
+    "random_unsafe_ablation"
+  ],
+  "anchor_reference_rates": {
+    "cost_greedy_repair": {
+      "forbidden": 0.46703678001387927,
+      "mean_total_cost": 1.9666019160609054,
+      "n": 2882,
+      "success": 0.8799444829979182
+    },
+    "global_flat_voi": {
+      "forbidden": 0.36224843858431643,
+      "mean_total_cost": 1.9364689991364636,
+      "n": 2882,
+      "success": 0.9354614850798056
+    },
+    "random_safe_ablation": {
+      "forbidden": 0.0,
+      "mean_total_cost": 2.2983485126947776,
+      "n": 2882,
+      "success": 0.8657182512144345
+    },
+    "random_unsafe_ablation": {
+      "forbidden": 0.47085357390700905,
+      "mean_total_cost": 2.366515240550483,
+      "n": 2882,
+      "success": 0.8497571131158917
+    }
+  },
+  "derivation": "Observed rates of the arms that are read by NO registered gate (G1-G7), on THIS world set. Parameterised per world set: keyed to world_set_sha256, never hardcoded.",
+  "frozen_before_new_arm_outcomes_read": true,
+  "gate_arms_excluded": [
+    "exact_dp_oracle",
+    "faithful_active_voi",
+    "gain_per_cost_greedy",
+    "orion_level_monotone"
+  ],
+  "n_worlds": 2882,
+  "schema": "orion.orion11.costed-ordering.anchor-reference.v1",
+  "stage1_code_sha256": "e76d0380fdbdadedfcdc02ca4210ac095c0b8853ecbcf39b16ec6bcdfc9ee867",
+  "world_family": "ORION11.COSTED_ORDERING.WORLDS.v1",
+  "world_seed": 20260828,
+  "world_set_sha256": "e2cb621cc79ee37c00c80d43e2da2738f793f59714d3a1345b115a281ff7352b"
+}

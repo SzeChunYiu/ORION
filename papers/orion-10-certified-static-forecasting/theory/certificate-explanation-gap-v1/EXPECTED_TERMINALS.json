@@ -1,0 +1,56 @@
+{
+  "schema": "ORION.ORION10.CertificateExplanationGap.ExpectedTerminals.v1",
+  "paper_id": "ORION-10",
+  "successor_id": "ORION10.CERTIFICATE_EXPLANATION_GAP.v1",
+  "authored_date": "2026-08-28",
+
+  "terminal_set": [
+    {"terminal": "THEORY_PROVED__COUNTS_REPRODUCED", "reached": true,
+     "observed": "Theorems 1-3 verified over 21,501 structures; 3/3 controls fire; all four manuscript counts (64, 740, 10481, 0) reproduced from the frozen QG-7b receipt"},
+    {"terminal": "GRAMMAR_FREEZE_SCOPE_NARROWED", "reached": true,
+     "observed": "Theorem 2 shows expression-size budget, operator set and interaction order cannot change any exactness verdict; only the primitive predicates can",
+     "consequence": "the grammar freeze proposed in #1617 should pin primitives, not a size budget"},
+    {"terminal": "THEORY_REFUTED", "reached": false,
+     "condition": "a cost-mixed Psi-fibre for which some Psi-measurable function is exact",
+     "required_action": "record the counterexample verbatim and retract Theorem 2"},
+    {"terminal": "CANNOT_CHECK", "reached": false,
+     "condition": "receipt missing or checker cannot execute",
+     "required_action": "report as CANNOT_CHECK; never as a pass"}
+  ],
+
+  "preserved_adverse_and_null_evidence": [
+    {"item": "QG7D all_n_theorem_authority = false", "status": "PRESERVED_UNCHANGED",
+     "note": "This packet proves no all-n identity and does not move that flag."},
+    {"item": "all_n_identity = UNPROVED_CANNOT_CHECK_FROM_CURRENT_PARENT_QUOTIENT",
+     "status": "PRESERVED_UNCHANGED",
+     "note": "A CANNOT_CHECK is preserved as a CANNOT_CHECK, not converted."},
+    {"item": "btripleprime = UNFOUND_IN_FROZEN_PADDING_ABLATION", "status": "PRESERVED_UNCHANGED",
+     "note": "A further explanation family was NOT found. This packet does not supply one and does not imply one exists."},
+    {"item": "one pinned comm-s2 lemma sector remains open", "status": "PRESERVED_UNCHANGED"},
+    {"item": "64 fourth-configuration witnesses refuting f_B'", "status": "PRESERVED_AND_REINTERPRETED_UPWARD",
+     "note": "Reread as a proof of VOCABULARY insufficiency rather than of formula inadequacy. This strengthens what they establish; it does not soften the refutation."},
+    {"item": "novelty_authority = false; physical_quantum_advantage_claim = false",
+     "status": "PRESERVED_UNCHANGED"}
+  ],
+
+  "authority_updates": {
+    "terminals_or_gates_changed": "NONE",
+    "counts_changed": "NONE - all four reproduced identically",
+    "manuscript_edited": "NONE",
+    "receipts_edited": "NONE",
+    "new_object_created": "papers/orion-10-certified-static-forecasting/theory/certificate-explanation-gap-v1/ (additive)",
+    "paper_tree_oid_effect": {
+      "pinned": "63529ebe91cc",
+      "already_mismatching_on_main": true,
+      "note": "per issue #1625; nothing newly breaks, and the freeze scripts re-pin rather than verify"
+    },
+    "new_blocker_raised": "NONE"
+  },
+
+  "explicitly_out_of_scope": [
+    "constructing the vocabulary-level lower bound (optional successor science)",
+    "closing the comm-s2 sector",
+    "any all-n theorem",
+    "venue, packaging and filing decisions"
+  ]
+}

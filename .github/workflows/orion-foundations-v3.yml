@@ -6,6 +6,8 @@ on:
       - "research/orion-foundations-v3/**"
       - ".github/workflows/orion-foundations-v3.yml"
   push:
+    branches-ignore:
+      - "archive/**"
     paths:
       - "research/orion-foundations-v3/**"
       - ".github/workflows/orion-foundations-v3.yml"
@@ -36,7 +38,9 @@ jobs:
             base="$PUSH_BEFORE_SHA"
             head="$EVENT_SHA"
             if [[ -z "$base" || "$base" == "0000000000000000000000000000000000000000" ]]; then
-              base="$head^"
+              echo "New-branch push: auditing authored diff vs default branch (merge-base with origin/main)"
+              git fetch origin main
+              base="$(git merge-base origin/main "$head")"
             fi
             git cat-file -e "$base^{commit}" 2>/dev/null || git fetch origin "$base"
             git cat-file -e "$head^{commit}" 2>/dev/null || git fetch origin "$head"
@@ -45,7 +49,7 @@ jobs:
           echo "Auditing authored diff: $base..$head"
           git diff --name-only "$base" "$head" | tee /tmp/foundations-v3-paths.txt
 
-          unexpected="$(grep -Ev '^(research/orion-foundations-v3/.*|\.github/workflows/orion-foundations-v3\.yml)$' /tmp/foundations-v3-paths.txt || true)"
+          unexpected="$(grep -Ev '^(research/orion-foundations-v3/.*|\.github/workflows/orion-foundations-v3\.yml|tests/unit/programme/test_foundations_v3_workflow_triggers\.py)$' /tmp/foundations-v3-paths.txt || true)"
           if [[ -n "$unexpected" ]]; then
             echo "Unexpected non-theory paths:" >&2
             echo "$unexpected" >&2

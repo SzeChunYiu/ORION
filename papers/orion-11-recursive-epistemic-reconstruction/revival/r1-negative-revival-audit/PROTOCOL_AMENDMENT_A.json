@@ -1,0 +1,22 @@
+{
+  "accessed_output_boundary": "FAIL_CLOSED_IDENTITY_ERROR_ONLY__PRIMARY_WORLD_FREEZE_IDENTITY_DRIFT__NO_NEW_SCIENTIFIC_RESULT",
+  "allowed_input_replacement": {
+    "authoritative_archived_source_commit": "2f70103664aa3f194f9b9607ddb1a005cae96fd5",
+    "corrected_sha256": "212f5891af4945f66d31149b2e07f6f7593d40a2cb9d1cbe9e42701060a18d77",
+    "drift_introducing_commit": "31b701c5d633a0a1fe820f8479b7e15bcd972bef",
+    "execution_freeze_expected_sha256": "212f5891af4945f66d31149b2e07f6f7593d40a2cb9d1cbe9e42701060a18d77",
+    "old_sha256": "c5d6b995d455a6a88f437b2a4bc76ca7f40d3425b2da89152d921b5e7b80fad2",
+    "path": "research/revival/p1/confirmatory/v2.2/PRIMARY_WORLD_FREEZE.json"
+  },
+  "amendment_id": "ORION-11.NEGATIVE-REVIVAL.R1.AMENDMENT-A",
+  "audit_output_accessed_before_amendment": true,
+  "base_protocol_path": "papers/orion-11-recursive-epistemic-reconstruction/revival/r1-negative-revival-audit/PROTOCOL_FREEZE.json",
+  "base_protocol_sha256": "f9bec051606e761bdd2577c6e5bcea3f084fde715ba67f6041b17659fa01d08c",
+  "claim_boundary": "IDENTITY_REPAIR_ONLY__RESTORE_ORIGINAL_PREOUTCOME_WORLD_FREEZE_RECEIPT__NO_SCIENTIFIC_PROMOTION__NO_FREEZE_AUTHORITY",
+  "frozen_at_utc": "2026-08-27T23:12:59.552055+00:00",
+  "outcome_files_changed": [],
+  "reason": "The first audit execution failed before result classification because commit 31b701c5 post-hoc rewrote three provenance fields in PRIMARY_WORLD_FREEZE.json. That rewrite breaks PRIMARY_EXECUTION_FREEZE_V3.json and both execution-binding amendments, which all bind the original 212f... receipt. Restore the exact Git object already archived at 2f701036; no public worlds, protected matrix, arm outputs, hypothesis, margin, scorer, or result changes.",
+  "schema_version": "orion.orion11.negative-revival-audit-protocol-amendment.v1",
+  "scientific_fields_changed": [],
+  "status": "FROZEN_BEFORE_CORRECTED_AUDIT_REEXECUTION"
+}

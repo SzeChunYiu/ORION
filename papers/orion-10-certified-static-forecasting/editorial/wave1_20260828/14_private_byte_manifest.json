@@ -1,0 +1,51 @@
+{
+  "evidence_audit": "PASS",
+  "files": [
+    {
+      "bytes": 98220,
+      "path": "journal_package/wave1_current/certified-static-forecasting.pdf",
+      "sha256": "1fb18687581523bee596210bf96c9c88206b33b39fb6b378681e8b319dd56e68"
+    },
+    {
+      "bytes": 116019,
+      "path": "journal_package/wave1_current/certified-static-forecasting-source.zip",
+      "sha256": "adf29547c4ee326161f02df68a31832f9f1b781038930bc1bb40d0c2a7e3443a"
+    },
+    {
+      "bytes": 98587,
+      "path": "journal_package/wave1_current/certified-static-forecasting-review-materials.zip",
+      "sha256": "96e03ef007c2a143c73c1dece122b657735fc92b0397d26d05d546302995f868"
+    },
+    {
+      "bytes": 1484,
+      "path": "journal_package/wave1_current/cover-letter.md",
+      "sha256": "8ae6a9f5cfe3d86d8ea66f96ee904725add4f32bd141a7a8706f4795a2a434ff"
+    },
+    {
+      "bytes": 625,
+      "path": "journal_package/wave1_current/submission-manifest.json",
+      "sha256": "32a9dee195a96a23e41161e12af5a076a74a24a2d618c376853dfc48f1bb0f08"
+    },
+    {
+      "bytes": 685,
+      "path": "journal_package/wave1_current/human-inputs-required.md",
+      "sha256": "bce9e6940c7cb8a3ea25cb0279a427eebb735e098802e89fcf5407a55c5a871e"
+    },
+    {
+      "bytes": 1181,
+      "path": "journal_package/wave1_current/visual-audit.md",
+      "sha256": "6ab688225ecb9c1e3cc1006669c434b24997038d67857fd97c08d4f03af4cb16"
+    }
+  ],
+  "neutral_review_checker": "PASS",
+  "not_for_submission": true,
+  "pdf": {
+    "byte_identical_to_package": true,
+    "clean_source_rebuild_sha256": "1fb18687581523bee596210bf96c9c88206b33b39fb6b378681e8b319dd56e68",
+    "forbidden_surface_hits": 0,
+    "pages": 12,
+    "visual_audit": "PASS"
+  },
+  "schema": "private-exact-byte-binding-v1",
+  "terminal": "blocked_on_author_evidence"
+}

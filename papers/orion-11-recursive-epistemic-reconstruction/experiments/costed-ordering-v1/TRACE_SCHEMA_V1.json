@@ -1,0 +1,49 @@
+{
+  "schema": "ORION.ORION11.CostedEpistemicOrdering.TraceSchema.v1",
+  "successor_id": "ORION11.COSTED_EPISTEMIC_ORDERING.v1",
+  "status": "FROZEN_BEFORE_EXECUTION",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "why_this_exists": [
+    "PROTOCOL.json requires an independent checker that recomputes every score row, the analysis object and the terminal FROM THE RAW TRACES, without importing the candidate policies, the production scorer or the statistics module.",
+    "That is only operable if the trace format is fixed before either party writes code. Otherwise the checker must read the runner's implementation to know what it is reading, which is the dependence the requirement forbids.",
+    "This file is therefore authored before any execution and before any outcome is read."
+  ],
+  "not_a_protocol_amendment": {
+    "statement": "This fixes a serialisation format only. It does not touch any item on the forbidden post-outcome change list.",
+    "forbidden_list_untouched": ["margins", "gates", "arm set", "world family", "seeds", "cost accounting", "stratum definitions", "terminal set", "multiplicity rule"]
+  },
+  "files": {
+    "traces": "raw_traces.jsonl",
+    "note": "One JSON object per line. One line per (world_id, arm_id). No aggregation, no derived statistics, no gate outcomes. Aggregation is the checker's job to redo."
+  },
+  "row": {
+    "world_id": "string, stable identity used for cross-arm pairing",
+    "stratum": "one of: theorem_valid | ratio_aligned | violate_A1_noninterference | violate_A2_veto_monotonicity | violate_A3_safety | violate_A4_nonnegative_cost",
+    "arm_id": "one of: exact_dp_oracle | orion_level_monotone | faithful_active_voi | global_flat_voi | gain_per_cost_greedy | cost_greedy_repair | random_safe_ablation",
+    "seed": "integer, frozen per world",
+    "protected_root_task_success": "boolean",
+    "forbidden_high_level_mutation": "boolean",
+    "cost": {
+      "inspection": "float >= 0",
+      "intervention": "float >= 0",
+      "reopening": "float >= 0",
+      "total": "float >= 0, MUST equal inspection + intervention + reopening exactly under the stated tolerance"
+    },
+    "budget_exceeded": "boolean, true when total > 4.0 budget_ceiling",
+    "actions": "ordered list of {step, kind, level, target, cost_component, cost} — the audit trail the cost decomposition is derived from",
+    "terminated_reason": "string"
+  },
+  "hard_invariants_the_checker_must_verify_itself": [
+    "Every row decomposes: |total - (inspection + intervention + reopening)| <= 1e-9. A row that does not decompose is CANNOT_CHECK, not a datum (PROTOCOL cost_accounting).",
+    "Arm coverage: exact_dp_oracle appears ONLY on theorem_valid and ratio_aligned; all other arms appear on every stratum.",
+    "Pairing completeness: for each arm, the set of world_ids is identical, so paired comparison is well defined.",
+    "No row carries a gate outcome, a bootstrap interval or a terminal. If one does, the trace is contaminated and the checker must refuse it.",
+    "Cost components are non-negative even on the violate_A4_nonnegative_cost stratum, where the VIOLATION is in the world's cost structure, not in the accounting."
+  ],
+  "checker_independence": {
+    "must_not_import": ["the candidate policies", "the production scorer", "the statistics module", "any runner module"],
+    "must_recompute": ["every score row", "every gate G1-G7", "the bootstrap intervals", "the Holm adjustment", "the terminal"],
+    "disagreement_terminal": "CANNOT_CHECK__CHECKER_DISAGREEMENT"
+  }
+}

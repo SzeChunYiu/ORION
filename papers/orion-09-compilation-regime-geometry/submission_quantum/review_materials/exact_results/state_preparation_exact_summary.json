@@ -1,0 +1,77 @@
+{
+  "coarse_feature_negative": {
+    "feature_cells": 243,
+    "feature_count": 13,
+    "irreducible_error_floor": 43,
+    "mixed_cells": 12,
+    "negative_labels": 924,
+    "positive_labels": 222,
+    "states": 1146
+  },
+  "complete_domain": {
+    "compression_ratio_cells_over_instances": 0.967714,
+    "domain": {
+      "1": {
+        "donor_exact": 5,
+        "expected": 6,
+        "instances": 6
+      },
+      "2": {
+        "donor_exact": 28,
+        "expected": 60,
+        "instances": 60
+      },
+      "3": {
+        "donor_exact": 189,
+        "expected": 1080,
+        "instances": 1080
+      }
+    },
+    "feature_count": 127,
+    "feature_determined_complete_nle3": true,
+    "instances": 1146,
+    "irreducible_error_floor": 0,
+    "mixed_cell_count": 0,
+    "mixed_cells_verbatim": [],
+    "singleton_cells": 1072,
+    "unique_feature_cells": 1109
+  },
+  "earlier_prospective_forecast": {
+    "exact_costs_matched": 67,
+    "interpretation": "Both exactness criteria failed; later feature work does not revise this forecast.",
+    "panel_states": 120,
+    "reference_exact_labels_matched": 100
+  },
+  "frozen_panel": {
+    "cv_parity_split_lookup": {
+      "covered": 2,
+      "errors": 32,
+      "errors_among_covered": 0,
+      "errors_among_uncovered": 32
+    },
+    "in_panel_floor": 0,
+    "in_panel_mixed_cell_count": 0,
+    "in_panel_singleton_cells": 118,
+    "panel_donor_exact": 32,
+    "panel_instances": 120,
+    "parent_baselines": {
+      "cell_lookup_errors_120": 32,
+      "note": "constant-negative error count equals panel positives",
+      "v2_lattice_errors_120": 3
+    },
+    "shuffle_null_200": {
+      "empirical_p_errors_le_observed": 0.51,
+      "max": 33,
+      "mean": 32.41,
+      "min": 30
+    }
+  },
+  "gate_costs": {
+    "CNOT": 3,
+    "H": 1,
+    "S": 1,
+    "SDG": 1
+  },
+  "model": "weighted Clifford stabilizer-state preparation",
+  "record_type": "state_preparation_exact_summary"
+}

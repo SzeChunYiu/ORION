@@ -1,0 +1,29 @@
+{
+  "schema": "ORION.ORION04.CRB.GlobalSubmissionRegistry.v1",
+  "submissions": [
+    {
+      "authorized_commit": "CANNOT_CHECK_HISTORICAL_ENGINE_A_PILOT",
+      "job_id": 3542994,
+      "nonduplication_key": "5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f62307",
+      "paper_id": "ORION-04",
+      "source": "CONSUMED_ENGINE_A_PILOT_BOUND_IN_HISTORICAL_AUTHORIZATION",
+      "status": "TERMINAL_PILOT_FORBIDDEN"
+    },
+    {
+      "authorized_commit": "bc5555313445eb2a8476913c31f59503ca5e1ff7",
+      "job_id": 3544050,
+      "nonduplication_key": "07e8b0389f37d2c890cdc050f0f3db2a13d94002dedd94cfcf8a1ce6c0128384",
+      "paper_id": "ORION-04",
+      "source": "CRB_SUBMISSION_REGISTRY_REMOTE.json",
+      "status": "TERMINAL_EARLIER_ATTEMPT_FORBIDDEN"
+    },
+    {
+      "authorized_commit": "2273e7a6936180bce50fb5caf446c4ae5d21b549",
+      "job_id": 3544056,
+      "nonduplication_key": "741454d7d6b513ccd80d2aa9a78d2a9f5076fe8075341d0ecc8e95566ecc28ea",
+      "paper_id": "ORION-04",
+      "source": "post-execution/job-3544056/CRB_SUBMISSION_REGISTRY_REMOTE.json",
+      "status": "TERMINAL_FAILED_KEY_CONSUMED"
+    }
+  ]
+}

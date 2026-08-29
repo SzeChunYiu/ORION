@@ -1,0 +1,89 @@
+name: ORION-04 global certified CNF v1
+
+on:
+  workflow_dispatch:
+    inputs:
+      generate_full_cnf:
+        description: Generate the complete registered DIMACS object
+        required: false
+        type: boolean
+        default: false
+  pull_request:
+    paths:
+      - ".github/workflows/orion-04-global-certified-cnf-v1.yml"
+      - "research/orion-rg/promotion/orion04-global-certified-search-v1/generate_cnf.py"
+      - "research/orion-rg/promotion/orion04-global-certified-search-v1/generate_opb.py"
+      - "tests/research/test_orion04_global_cnf_v1.py"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/orion-04-global-certified-cnf-v1.yml"
+      - "research/orion-rg/promotion/orion04-global-certified-search-v1/generate_cnf.py"
+      - "research/orion-rg/promotion/orion04-global-certified-search-v1/generate_opb.py"
+      - "tests/research/test_orion04_global_cnf_v1.py"
+
+permissions:
+  contents: read
+
+jobs:
+  independent-encoding-crosscheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install pytest==8.4.2 ruff==0.15.10
+      - run: python -m pytest -q tests/research/test_orion04_global_cnf_v1.py
+      - run: |
+          ruff check \
+            research/orion-rg/promotion/orion04-global-certified-search-v1/generate_cnf.py \
+            tests/research/test_orion04_global_cnf_v1.py
+          python -m compileall -q \
+            research/orion-rg/promotion/orion04-global-certified-search-v1/generate_cnf.py \
+            tests/research/test_orion04_global_cnf_v1.py
+          find research/orion-rg/promotion/orion04-global-certified-search-v1 tests/research \
+            -type d -name __pycache__ -prune -exec rm -rf {} +
+          git diff --check
+          git diff --exit-code
+
+  full-cnf-generation:
+    if: github.event_name == 'workflow_dispatch' && inputs.generate_full_cnf
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate complete DIMACS instance
+        run: |
+          python research/orion-rg/promotion/orion04-global-certified-search-v1/generate_cnf.py \
+            --output /tmp/orion04-c5r3-l31.cnf \
+            --manifest /tmp/orion04-c5r3-l31-cnf.manifest.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          raw = json.loads(Path('/tmp/orion04-c5r3-l31-cnf.manifest.json').read_text())
+          assert raw['parameters'] == {
+              'prime': 5,
+              'rank': 3,
+              'length': 31,
+              'support_lower_bound': 14,
+              'max_short_length': 5,
+              'positive_multiplicities': [1, 2, 4],
+          }
+          assert raw['solver_outcome_accessed'] is False
+          assert raw['c0_31_authority'] is False
+          assert raw['exact_d4_authority'] is False
+          print(json.dumps(raw, indent=2, sort_keys=True))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion04-global-certified-cnf-v1
+          path: |
+            /tmp/orion04-c5r3-l31.cnf
+            /tmp/orion04-c5r3-l31-cnf.manifest.json
+          compression-level: 9
+          retention-days: 30

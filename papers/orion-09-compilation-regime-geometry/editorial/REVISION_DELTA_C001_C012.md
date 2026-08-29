@@ -1,0 +1,28 @@
+# Revision delta for C-001 through C-012
+
+Date: 2026-08-28
+
+This is a private editorial closure record.  “Closed” means that the present submission object passes the stated resolution test within the same research team.  It is not external proof review, replication, a novelty certificate or a prediction of an editorial decision.
+
+| Concern | Revision supplied | Closure test | Result |
+|---|---|---|---|
+| C-001 | The article defines exact cost, reference exactness, support and the typed evidence classes.  Supplementary Sections 1--3 now give the complete feasible families, objectives and support coordinates for the shared-tag and rank-two models, the support-two composition, the support-one reconstruction and support-zero infeasibility. | A reader can reconstruct the admitted domains, objectives, theorem hypotheses and all-size proof chain without undisclosed project objects. | Closed for the submitted object. |
+| C-002 | Results Section 3.4 states the admitted six-term model and the three pair-gain clauses.  Supplementary Sections 1.4 and 4 give the complete cost, all 11 partition shapes, the forward reduction and converse witnesses. | The condition is independently applicable; 203 partitions and 11 shapes are exposed, and the complete size-one and size-two regressions retain zero mismatches. | Closed. |
+| C-003 | Results Section 3.3 and Supplementary Section 3 state the coordinate order, unit vector `(2,4,2,1)`, interior vector `(3,5,2,1)`, all four inequalities and direct margins `(3,1,2,0)` and `(5,3,4,2)`. | Direct substitution establishes boundary membership and strict interior membership without treating the complement as necessary. | Closed. |
+| C-004 | The Supplement gives each finite obligation, case domain, checked predicate and role in the analytic composition.  The clean review artifact exposes the exact scientific records and a separate verifier. | The current verifier checks the local domains, theorem fields and table bindings; the review verifier checks 31 scientific invariants. | Closed within same-team verification authority. |
+| C-005 | Methods Section 2.6 and Supplementary Sections 5--6 specify the deterministic compiler, all 127 feature coordinates, panel seed and construction, parity folds, lookup/default rules, coverage, success criteria and freeze order.  The review artifact exposes all 120 states, features, costs, labels and predictions. | The clean per-state record recovers 119 cells, 32 errors, coverage 2, and the earlier 100-label/67-cost adverse forecast without changing the rule. | Closed. |
+| C-006 | Supplementary Section 6 states the shuffled unit, preserved objects, seed, 200 permutations, tail and empirical formula; the full distribution is in the review record. | Regeneration recovers mean 32.41 and empirical probability 0.51. | Closed. |
+| C-007 | “Indistinguishable” was removed.  The article now says the rule “shows no improvement under this null on this panel” and explicitly says this is not an equivalence test. | No equivalence or broader absence-of-signal inference remains. | Closed by claim narrowing. |
+| C-008 | A deterministic clean review archive now contains plain-named scientific records, the complete panel, reproduction instructions, a standard-library verifier and table-generation code.  A separate clean source archive contains both bibliography outputs. | In an isolated extraction the review verifier passes 31/31 and regenerates the included tables; the source archive builds both PDFs with no overfull boxes, undefined references or stuck floats. | Closed for scientific auditability; permanent public deposition and licence remain author inputs. |
+| C-009 | Related Work now compares every primary advance with its closest framework by object, assumptions, guarantee and consequence.  Supplementary Table 4 gives the claim-by-claim subtraction and says it is not a priority certificate. | The three exact results and adverse transfer study are primary; the typed map is explicitly an organizing/comparison schema. | Submission-object closure achieved; originality remains for external editorial assessment. |
+| C-010 | The abstract, Introduction and Discussion give one concrete comparison consequence: numerical fields may be compared only after model, objective, domain and evidence class align; ceilings, certificate silence and finite determination cannot borrow stronger meanings. | The consequence changes which conclusions can be drawn from common exact-compilation outputs without claiming a universal performance law. | Submission-object closure achieved; target-level significance remains an external editorial judgment. |
+| C-011 | The table generator now enforces `118*1 + 1*2 = 120`, giving 119 feature cells, 118 singleton cells and one pure doubleton.  Every table and prose occurrence was regenerated. | The per-state record and both verifiers agree on the partition. | Closed by correction. |
+| C-012 | Methods Section 2.4 defines the typed tuple and the semantics of value, unknown and not applicable, plus the rule for permissible cross-model comparison. | Missing coordinates are never silently inherited and numerical comparisons require aligned type, model, objective and domain. | Closed. |
+
+## Residual boundaries
+
+- Same-team verification remains distinct from external replication and independent proof review.
+- The nearest-work table is not a priority or novelty certificate.
+- *Quantum*-level originality and significance remain decisions for external editors and reviewers.
+- Filing remains blocked on author-controlled metadata, declarations, public identifiers, licences and final approval.
+

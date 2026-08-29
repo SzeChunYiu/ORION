@@ -1,0 +1,36 @@
+{
+  "amended_disposition": "CANNOT_CHECK_HISTORICAL_PROSPECTIVE_ORDER__CLOSED_AS_EVIDENCE_ABSENT__NOT_IMPOSSIBILITY",
+  "authority": {
+    "freeze": false,
+    "scientific_delta": "NONE",
+    "submission": false
+  },
+  "date": "2026-08-28",
+  "mechanistic_conclusion": "The claimed historical execution-source commits were never pushed and exist in no reachable object store. The commit-order custody check cannot be executed from preserved evidence; this is evidence non-preservation, NOT a proof that the original order was wrong. Archived bytes and current bound sources remain reproducible per the LUNARC replay receipt.",
+  "missing_commits": {
+    "8c4ac19bb30b93cbb81c90b3fa76cf14b3905418": "PRIMARY execution_source_head",
+    "a7f68bf0fdbfd769d80e4475f526feb23df365c8": "PRIMARY archival_head_before_result_commit",
+    "d3c407b7bc007dabf9c99b1455156e861dfa9a92": "REPLICATION execution_source_head / REPLICATION_WORLD_FREEZE subject_git_sha"
+  },
+  "probes": [
+    {
+      "channel": "shared git object store at /projects/hep/fs9/scratch/scyiu-orion-ci/ORION/.git",
+      "method": "git cat-file -t <sha> per commit",
+      "result": "ABSENT for all three"
+    },
+    {
+      "channel": "all 41 sibling worktree checkouts under scyiu-orion-ci (wt, wt1-wt9, wt3b, wt6-wt9, wtA*, wtbase, wtB*, wtC*, wtq1, wtO*, wtR*)",
+      "method": "classify .git file(worktree, shared store) vs dir(independent clone); probe every independent clone for the three objects",
+      "result": "zero independent clones exist; every worktree shares the single ORION/.git store already probed ABSENT"
+    },
+    {
+      "channel": "GitHub remote SzeChunYiu/ORION",
+      "method": "REST GET /repos/SzeChunYiu/ORION/commits/<sha> per commit (authenticated)",
+      "result": "HTTP 422 \"No commit found for SHA\" for all three: never pushed to any reachable ref, or garbage-collected server-side"
+    }
+  ],
+  "record_kind": "ADDITIVE_MECHANISTIC_ABSENCE_PROOF__RETAINS_CANNOT_CHECK",
+  "revival_lever_exhausted": "larger-sample/conditioned levers are inapplicable: no copy of the objects exists to condition on",
+  "schema": "orion.orion11.historical-commit-absence-probe.v1",
+  "target_verdict": "CANNOT_CHECK_HISTORICAL_PROSPECTIVE_ORDER"
+}

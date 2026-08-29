@@ -1,0 +1,69 @@
+{
+  "schema": "ORION.ORION09.RegimeSeparatorComplexity.Protocol.v1",
+  "paper_id": "ORION-09",
+  "successor_id": "ORION09.REGIME_SEPARATOR_COMPLEXITY.v1",
+  "status": "THEORY_PROVED__COMPUTED_ON_FROZEN_DOMAIN",
+  "lane_type": "THEORY_PLUS_INDEPENDENT_REPLAY",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+
+  "freeze_discipline": {
+    "applicability": "PARTIAL",
+    "why": "Deductive plus exhaustive computation over a closed frozen domain. There is no sampling and no held-out outcome to access, so the empirical freeze machinery does not apply. Every quantity is either a theorem or an exhaustive enumeration whose answer is determined by data committed before this packet existed.",
+    "no_new_data_generated": true,
+    "domain_is_closed_and_frozen": "complete n<=3 StabPrep domain, 1146 instances, committed before this packet",
+    "post_outcome_changes_forbidden": [
+      "enlarging the feature library after seeing k*",
+      "restricting the enumeration to hide a covering subset",
+      "reporting k* from branch and bound without the exhaustive refutation",
+      "softening the block-attribution finding because it is unflattering"
+    ],
+    "frozen_paper_bytes_modified": "NONE",
+    "disclosure": "k* = 4 was found by branch and bound first, then re-established independently by exhaustive refutation of all 333375 subsets of size <= 3. The block-attribution table was computed after k* and was not anticipated; it is reported because it is adverse to the recorded mechanism story, not despite it."
+  },
+
+  "claims_under_test": [
+    "Theorem A: E*(phi) is exactly the minimum error of any phi-measurable classifier.",
+    "Theorem B: E*(phi) <= (N-c)/N for c cells on N instances.",
+    "Theorem C: E*(phi_S) = 0 iff S hits every opposite-label discernibility set; hence k* is a minimum hitting set.",
+    "Computed: the receipt's stage-1 statistics reproduce exactly from regenerated data.",
+    "Computed: k*(L3) = 4 on the frozen n<=3 domain.",
+    "Computed: V2 + donor-path attains floor 0 without any sign-aware STATE feature."
+  ],
+
+  "independent_checker_requirements": {
+    "independence_rule": "Statistics must be recomputed from a regenerated feature matrix. The receipt may be compared but never used as an input. Module SHA-256 must be verified against the receipt before import; drift aborts with CANNOT_CHECK.",
+    "route_replay": "extract_frozen_matrix.py - regenerate matrix, recompute all stage-1 statistics, diff against receipt",
+    "route_analysis": "separator_complexity.py - Theorem B bound, exact structure-free null with permutation cross-check, k* by branch and bound",
+    "route_exhaustive": "verify_minimality.py - exhaustive refutation of all subsets of size <= 3 by bitset covering, direct witness re-projection, block attribution. Shares no search logic with the branch and bound.",
+    "k_star_rule": "k* may be reported as exact ONLY when both an exhaustive refutation of all smaller subsets and a directly verified witness are present. A branch-and-bound result alone must be reported as a bracket.",
+    "cannot_check_rule": "Exit code 3 with status CANNOT_CHECK; never reported as a pass."
+  },
+
+  "pipeline_validation_requirement": {
+    "rule": "Before any new number is believed, the extraction pipeline must reproduce at least three quantities recorded independently in the frozen receipt.",
+    "validated_against": ["N2_V1_floor = 43", "N2_V2_floor = 1", "N2_L2_floor = 5 with 3 mixed cells"],
+    "all_matched": true,
+    "rationale": "A separator-complexity number from an unvalidated extraction would be worthless. This is the checker-validation discipline applied to the checker itself."
+  },
+
+  "what_a_favourable_outcome_would_and_would_not_license": {
+    "would_license": [
+      "stating that donor-exactness on the frozen n<=3 domain is determined by a four-feature projection",
+      "replacing the qualitative memorization disclosure with the exact structure-free null and the compression bound",
+      "correcting the mechanism attribution for the R2 conversion",
+      "rescoping the manuscript abstract, in a separate PR"
+    ],
+    "would_not_license": [
+      "any claim that the four-feature law transfers beyond n<=3",
+      "any softening of the n=4 NOT_IMPROVED verdict or its shuffle-null p = 0.51",
+      "promotion of the NOT_R6 authority ceiling",
+      "any physical quantum-advantage claim",
+      "novelty over donor rough-set / information-sufficiency theory",
+      "editing any frozen receipt, protocol, addendum or submission_prx byte"
+    ]
+  },
+
+  "stop_rule": "This lane is complete. It generates no successor experiment. The one open item it creates is a manuscript rescope, which is a separate PR and is recorded as a blocker rather than executed here."
+}

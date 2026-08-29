@@ -1,0 +1,44 @@
+{
+  "schema": "ORION.ORION04.Wave3.M4.SourceManifest.v1",
+  "base_revision": "c8d8a725a9618239fd8d9808e6bb39e1c549ab14",
+  "parent": {
+    "path": "research/orion-rg/NONQUANTUM_M3_SUPPORT10_REPLAY_RESULTS_2026-08-24.json",
+    "result_digest": "bc1a727fe936a3cd3ddf033bb0ac9c6ebad6d6969a9e10c45c8d53fd2732e044"
+  },
+  "sources": [
+    {
+      "role": "rank3_primary_u128",
+      "path": "research/orion-rg/x1k_c0_support10_13_rank3_u128.c",
+      "sha256": "a3cd33e09dfa972c62ce2844a8ec2caeda218ca7870ce14c28b3ad3a427f055a"
+    },
+    {
+      "role": "rank3_independent_bytes",
+      "path": "research/orion-rg/x1k_c0_support10_13_rank3_bytes.c",
+      "sha256": "03d5f54a7a63ddb05d2c75fbb608e8ebaa4e2dc5da1809f09f9a72c3d8d12dd3"
+    },
+    {
+      "role": "rank2_primary_u128",
+      "path": "research/orion-rg/x1k_c0_support13_rank2_u128.c",
+      "sha256": "bac9a2026206ac6be63810fe8598a6a4f8ccd846aabf45dc2a7ea4650fce1127"
+    },
+    {
+      "role": "rank2_independent_bytes",
+      "path": "research/orion-rg/x1k_c0_support13_rank2_bytes.c",
+      "sha256": "e1c9522dbf504fa82424b3ee96c3630de2aceb476858365619f014fa06defaa2"
+    }
+  ],
+  "packet_inputs": [
+    "research/orion-rg/wave3/orion04-support11-13-v1/THEORY.md",
+    "research/orion-rg/wave3/orion04-support11-13-v1/PROTOCOL.json",
+    "research/orion-rg/wave3/orion04-support11-13-v1/SOURCE_MANIFEST.json",
+    "research/orion-rg/wave3/orion04-support11-13-v1/EXPECTED_TERMINALS.json",
+    "research/orion-rg/wave3/orion04-support11-13-v1/CLAIM_DISPOSITION.md",
+    "research/orion-rg/wave3/orion04-support11-13-v1/run_replay.py",
+    "research/orion-rg/wave3/orion04-support11-13-v1/independent_checker/check_result.py"
+  ],
+  "prohibited_authority_inputs": [
+    "research/orion-rg/X1K_C0_SUPPORT_BOUND_RESULTS_V1.json",
+    "any exploratory support-23 outcome",
+    "any novelty or venue judgment"
+  ]
+}

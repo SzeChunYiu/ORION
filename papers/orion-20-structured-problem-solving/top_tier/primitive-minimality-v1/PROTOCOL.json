@@ -1,0 +1,77 @@
+{
+  "schema": "ORION.ORION20.PrimitiveSufficiencyMinimality.Protocol.v1",
+  "protocol_identity": "ORION20.PRIMITIVE_SUFFICIENCY_MINIMALITY.v1",
+  "paper_id": "ORION-20",
+  "promotion_issue": "1649",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "authored_date": "2026-08-28",
+
+  "setting": {
+    "source": "top_tier/run_generated_ocme_v1.py, as committed",
+    "primitives": "binary Boolean truth-table codes 0..15",
+    "frozen_basis": "the 8 affine binary codes",
+    "template": "T_p(xi,xj,xk) = p(xi,xj) XOR p(xi,xk) XOR p(xj,xk)",
+    "target": "majority3",
+    "registered_complexity_order": "popcount of the truth-table code",
+    "no_vocabulary_enlargement": "The 16-code vocabulary is NOT enlarged. #1649 forbids enlarging formula size or operators over an unchanged vocabulary as a route to promotion."
+  },
+
+  "computations": [
+    {"id": "D1", "what": "decide affineness for all 16 codes by ANF degree, and check the count is exactly 8"},
+    {"id": "D2", "what": "exhaustively determine every sufficient primitive set, over ALL subsets of the 16 codes"},
+    {"id": "D3", "what": "reduce to minimal bases by inclusion"},
+    {"id": "D4", "what": "compute indispensable primitives as the intersection of all minimal bases"},
+    {"id": "D5", "what": "compute the minimum under the registered complexity order and whether it is UNIQUE or a tie"}
+  ],
+
+  "gates": [
+    {"id": "G_DONOR", "decisive": true,
+     "statement": "After granting Post's lattice and standard ANF decidability, does the minimal-basis and indispensability result state anything the donor does not already supply?",
+     "operationalisation": "The result survives donor subtraction ONLY IF it yields a certification a clone-theoretic reader lacks — specifically a UNIQUE minimum under the registered complexity order together with a nonempty indispensable set, so that the expansion is provably THE minimal admissible one rather than merely A sufficient one. Sufficiency alone is donor-owned and does not count.",
+     "failure_is_expected_and_acceptable": true},
+    {"id": "G_UNIQUE", "statement": "The minimum under the registered order is unique."},
+    {"id": "G_INDISPENSABLE", "statement": "At least one indispensable primitive exists."},
+    {"id": "G_MATCHED_INFORMATION", "statement": "Any comparison is made under identical information; no arm receives held-out tasks the other lacks. The committed selector already states that selection receives no held-out tasks."}
+  ],
+
+  "controls": [
+    {"id": "Z1_affine_count_is_eight",
+     "statement": "The ANF test must return exactly 8 affine codes of 16. A different count means the decision procedure is wrong and nothing downstream may be read.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "Z2_target_is_outside_the_frozen_basis",
+     "statement": "majority3 must NOT be realisable using only affine primitives under the template; otherwise the whole expansion premise is vacuous.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "Z3_sufficiency_search_can_fail",
+     "statement": "A planted primitive known NOT to realise the target must be reported insufficient by the SAME test used for real primitives.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "Z4_committed_selector_agreement",
+     "statement": "The recomputed admissible set must agree with the committed runner's own selection logic on the frozen origin. Disagreement means this packet has re-modelled the object.",
+     "on_failure": "T4_CANNOT_CHECK"}
+  ],
+
+  "terminals": [
+    {"id": "T1_MINIMALITY_CERTIFIED_AND_NOT_DONOR_ENTAILED", "class": "FAVOURABLE",
+     "conditions": ["G_DONOR survives", "G_UNIQUE holds", "G_INDISPENSABLE holds", "all controls pass"],
+     "licenses": "A bounded statement that the frozen expansion is certifiably THE minimal admissible one under the registered complexity order, which clone theory alone does not supply."},
+    {"id": "T2_PROMOTION_FAILS__ENTAILED_BY_DONOR", "class": "UNFAVOURABLE__EXPECTED_POSSIBLE",
+     "conditions": ["the result reduces to sufficiency facts already supplied by Post's lattice and ANF decidability"],
+     "action": "Stop promotion. Return ORION-20 to the bounded formal lane per #1649. Do NOT start another rescue cycle and do NOT enlarge the vocabulary."},
+    {"id": "T3_PROMOTION_FAILS__NO_UNIQUE_MINIMUM", "class": "UNFAVOURABLE",
+     "conditions": ["the minimum under the registered order is a tie, or no indispensable primitive exists"],
+     "reading": "A tie is acceptable as a RESULT per #1649 but it defeats the certification claim, because the expansion is then only A minimal choice, not THE minimal one."},
+    {"id": "T4_CANNOT_CHECK", "class": "CANNOT_CHECK",
+     "conditions": ["any control fails"]}
+  ],
+
+  "falsifiability_self_check": {
+    "favourable": 1, "unfavourable": 2, "cannot_check": 1,
+    "predicted": "T2_PROMOTION_FAILS__ENTAILED_BY_DONOR",
+    "why_predicted": "The setting is 16 codes with a fixed template and a classical target. Sufficiency is plainly donor-owned. Only certified minimality under the registered order is a candidate delta, and it is a narrow one.",
+    "note": "The most likely outcome of this package is that it stops its own promotion. That is what #1649's stop rule is for, and predicting it in advance is what keeps the donor gate honest."
+  },
+
+  "stop_rule": "Outcomes are read once. On T2 or T3 the promotion stops and ORION-20 returns to the bounded submission lane without another rescue attempt."
+}

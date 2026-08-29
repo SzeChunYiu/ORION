@@ -1,6 +1,6 @@
 # ORION-19 candidate — Executable Research Core
 
-**Status:** MERGED INTO ORION-18/PROGRAMME / PUBLIC DISCRIMINATOR PASSED / NO STANDALONE MANUSCRIPT
+**Status:** MERGED INTO P8/PROGRAMME (orion-18-epistemic-authority-autonomous-science) / PUBLIC DISCRIMINATOR PASSED / NO STANDALONE MANUSCRIPT
 **Shared lane:** `../orion-learning-machine/`
 
 ## Research question

@@ -1,0 +1,73 @@
+{
+  "attempts": {
+    "R4C_H2_REGIME_LIMITED": {
+      "matching_count": 135135,
+      "outcome": "IMPROVED",
+      "residual": "open-subject mechanism evidence only",
+      "strict_points": 1
+    },
+    "R5B_PROOF_OUTER_REPLAY": {
+      "matching_count": 15,
+      "outcome": "IMPROVED",
+      "residual": "H4 was already open; protected new-subject confirmation remains unearned",
+      "strict_points": 2
+    },
+    "R6I_EXACT_RANK2": {
+      "outcome": "RETAINED_NEGATIVE",
+      "strict_by_subject": {
+        "H4": false,
+        "N2": false
+      }
+    },
+    "R6K_EXACT_RESTORE_FACTOR": {
+      "donor_novelty_credit": false,
+      "outcome": "CORRECT_SUBTRACTION",
+      "strict_by_subject": {
+        "H4": true,
+        "N2": true
+      }
+    }
+  },
+  "authority": {
+    "external_independence": false,
+    "final_freeze": false,
+    "journal_or_submission": false,
+    "novelty": false,
+    "prospective_confirmation": false
+  },
+  "bundle": {
+    "path": "development/orion-05-06-negative-revival-r1-2026-08-27/evidence/run-e9d4ee1df73ff22fb5742ff2cd9c200b0a5f29f9-v1",
+    "run_manifest_entries": 35,
+    "run_manifest_sha256": "723be0b268c294a08aff2b31d6f89b507431b4b5cd6d77ea34dd122b8642b991",
+    "stage": {
+      "archive_sha256": "19dc73f450e71ce3b84f152d32fa535b2db05961316bfb9b2c391af39a9c85fd",
+      "manifest_sha256": "2164cca8a3926a3af71554484b68cb85fbd832d2719bd127b48756b77be5a5fa",
+      "regular_files": 12836,
+      "symlinks": 1
+    }
+  },
+  "scheduler": {
+    "all_completed_exit_zero": true,
+    "jobs": {
+      "3550252": "o6-revival-new",
+      "3550253": "o6-r6k-replay",
+      "3550254": "o6-r6l-replay",
+      "3550255": "o6-revival-adj"
+    },
+    "stderr_empty": true
+  },
+  "schema": "ORION.ORION06.NegativeRevivalBundleVerification.v1",
+  "scientific_authority_delta": "NONE",
+  "source_chronology": {
+    "execution_commit": "e9d4ee1df73ff22fb5742ff2cd9c200b0a5f29f9",
+    "execution_sources": {
+      "papers/orion-06-recursive-recovery/revival/orion06_negative_revival_r1.py": "332d00e44e0c692c69f82a13a602fe3c5133c96139ce02d655b0addf002b90ac",
+      "research/extensions/orion-q/max_r6k_exact_rank2_shared_tag_restore_factor_dp.py": "c6d12405e90f09e1a3fa6ee7b00352b254e4675d3087436b8ac19c555c964c79",
+      "research/extensions/orion-q/max_r6l_three_tare2_shared_factor_donor.py": "0a4580deef936c88fd34c178187536732b19b3a0296835abe95e0e1e5b438f99"
+    },
+    "pre_outcome_protocol_commit": "7483a04dae9d1bdc9a3e6faeb6383592dff91754",
+    "protocol_rewritten": false
+  },
+  "terminal": "ORION06_NEGATIVE_REVIVAL_BUNDLE_VERIFIED",
+  "unsolvable": []
+}

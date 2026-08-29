@@ -1,0 +1,94 @@
+{
+  "all_gates": true,
+  "chemistry_sources_read": false,
+  "gates": {
+    "G1_protocol_frozen_before_run": true,
+    "G2_committed_modules_sha256_recorded": true,
+    "G3_stage1_digest_before_n4_referee": true,
+    "G4_two_sided_reporting": true,
+    "G5_timing_excluded_from_digest": true,
+    "G6_no_post_outcome_criterion_change": true,
+    "G7_authority_ceiling_NOT_R6": true
+  },
+  "lane": "R2-N2/N4 L3 state-structural vocabulary",
+  "modules_sha256": {
+    "qg15_third_family": "a17e027fc934eeffc3e598f6016a1f258bc89ad5958ff1f3370a674855874c70",
+    "qg15c_enlarged_vocab": "25dd397f6117fe4f792189ce772f92a5221f159e22bbb9f6095f40abbb606a1f",
+    "qg15c_vocabulary": "962b1d844b184d43d70acbcecdcd97b753af2d2e3f07d7113b1bf680a62af55a"
+  },
+  "network_access": false,
+  "novelty_authority": false,
+  "parents": {
+    "N2_L2_floor": 5,
+    "N2_V1_floor": 43,
+    "N2_V2_floor": 1,
+    "N4_panel_cost_matches": 67,
+    "N4_panel_regime_matches": 100
+  },
+  "physical_quantum_advantage_claim": false,
+  "programme": "ORION-QG R2 negative-revival pass (operator mandate 2026-08-28)",
+  "protected_subject_read": false,
+  "protocol": "papers/orion-09-compilation-regime-geometry/evidence/R2_N2_STABPREP_L3_VOCABULARY_PROTOCOL_V1.md",
+  "protocol_sha256": "c78b0e0b35663cdbe4c66dfe89aeb6e0154941e43380b0e0b203ad5fd3944135",
+  "r6_authority": false,
+  "result_digest": "0042e934fff27274b809d4ef200e97a7210b1530b0317d54449e25e35e574f41",
+  "schema": "ORION.R2.N2L3.v1",
+  "stage1": {
+    "compression_ratio_cells_over_instances": 0.967714,
+    "domain": {
+      "1": {
+        "donor_exact": 5,
+        "expected": 6,
+        "instances": 6
+      },
+      "2": {
+        "donor_exact": 28,
+        "expected": 60,
+        "instances": 60
+      },
+      "3": {
+        "donor_exact": 189,
+        "expected": 1080,
+        "instances": 1080
+      }
+    },
+    "feature_count": 127,
+    "feature_determined_complete_nle3": true,
+    "instances": 1146,
+    "irreducible_error_floor": 0,
+    "mixed_cell_count": 0,
+    "mixed_cells_verbatim": [],
+    "singleton_cells": 1072,
+    "unique_feature_cells": 1109
+  },
+  "stage1_digest": "a885d49d519682f9412ef31b8d6918b52e713d7fa7e70740070df7758494eb6a",
+  "stage2": {
+    "cv_parity_split_lookup": {
+      "covered": 2,
+      "errors": 32,
+      "errors_among_covered": 0,
+      "errors_among_uncovered": 32
+    },
+    "in_panel_floor": 0,
+    "in_panel_mixed_cell_count": 0,
+    "in_panel_singleton_cells": 118,
+    "panel_donor_exact": 32,
+    "panel_instances": 120,
+    "panel_keys_sha256": "e38212d0d652801ee2e0363e158fe7b9a7238ee998750d0574b5e3afbaaa0414",
+    "parent_baselines": {
+      "note": "from committed QG-15/QG-23 receipts; constant-negative error count equals panel positives",
+      "qg15_cell_lookup_errors_120": 32,
+      "qg23_v2_lattice_errors_120": 3
+    },
+    "shuffle_null_200": {
+      "empirical_p_errors_le_observed": 0.51,
+      "max": 33,
+      "mean": 32.41,
+      "min": 30
+    }
+  },
+  "verdicts": {
+    "H_A_N2": "POSITIVE_CONVERSION",
+    "H_B_N4_residual": "NOT_IMPROVED"
+  }
+}

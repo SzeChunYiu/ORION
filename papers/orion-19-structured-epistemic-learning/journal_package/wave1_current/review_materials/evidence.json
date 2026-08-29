@@ -1,0 +1,347 @@
+{
+  "study": "Failure-location diagnostic before compute escalation",
+  "primary_families": [
+    {
+      "name": "Digits with a cubic interface",
+      "quality_target": 0.965,
+      "probe_prediction": "accessibility",
+      "probe_quality_of_prediction": 0.9721448467966574,
+      "protected_disposition": "indeterminate",
+      "protected_quality_of_prediction": 0.9555555555555556,
+      "generic_prediction": "computation",
+      "registered_cost_regret": null,
+      "diagnostic_correct": false,
+      "generic_correct": false,
+      "diagnostic_false_compute_escalation": false,
+      "generic_false_compute_escalation": true
+    },
+    {
+      "name": "Digits with missing pixels",
+      "quality_target": 0.95,
+      "probe_prediction": "information",
+      "probe_quality_of_prediction": 0.9721448467966574,
+      "protected_disposition": "information",
+      "protected_quality_of_prediction": 0.9555555555555556,
+      "generic_prediction": "computation",
+      "registered_cost_regret": 0.0,
+      "diagnostic_correct": true,
+      "generic_correct": false,
+      "diagnostic_false_compute_escalation": false,
+      "generic_false_compute_escalation": true
+    },
+    {
+      "name": "Hidden-bit parity",
+      "quality_target": 1.0,
+      "probe_prediction": "information",
+      "probe_quality_of_prediction": 1.0,
+      "protected_disposition": "information",
+      "protected_quality_of_prediction": 1.0,
+      "generic_prediction": "computation",
+      "registered_cost_regret": 0.0,
+      "diagnostic_correct": true,
+      "generic_correct": false,
+      "diagnostic_false_compute_escalation": false,
+      "generic_false_compute_escalation": true
+    },
+    {
+      "name": "Reversibly encoded Boolean state",
+      "quality_target": 1.0,
+      "probe_prediction": "accessibility",
+      "probe_quality_of_prediction": 1.0,
+      "protected_disposition": "accessibility",
+      "protected_quality_of_prediction": 1.0,
+      "generic_prediction": "computation",
+      "registered_cost_regret": 0.0,
+      "diagnostic_correct": true,
+      "generic_correct": false,
+      "diagnostic_false_compute_escalation": false,
+      "generic_false_compute_escalation": true
+    },
+    {
+      "name": "Affine-map composition",
+      "quality_target": 1.0,
+      "probe_prediction": "computation",
+      "probe_quality_of_prediction": 1.0,
+      "protected_disposition": "computation",
+      "protected_quality_of_prediction": 1.0,
+      "generic_prediction": "computation",
+      "registered_cost_regret": 0.0,
+      "diagnostic_correct": true,
+      "generic_correct": true,
+      "diagnostic_false_compute_escalation": false,
+      "generic_false_compute_escalation": false
+    }
+  ],
+  "reported_primary_aggregates": {
+    "family_count": 5,
+    "diagnostic_correct": 4,
+    "generic_correct": 1,
+    "diagnostic_false_compute_escalations": 0,
+    "generic_false_compute_escalations": 4,
+    "actionable_predictions_reaching_target": 4,
+    "indeterminate_protected_families": 1
+  },
+  "independent_decision_implementations": 2,
+  "study_design": {
+    "digits": {
+      "labels": 10,
+      "training_examples": 1078,
+      "probe_examples": 359,
+      "protected_examples": 360
+    },
+    "exact_executable_families": {
+      "family_count": 3,
+      "development_seeds_per_family": 100,
+      "protected_seeds_per_family": 100
+    },
+    "real_accessibility_folds_per_dataset": 5
+  },
+  "resource_coordinates": [
+    "semantic_input_dimension",
+    "exposed_dimension",
+    "transformation_work",
+    "fitted_state",
+    "fitting_work",
+    "inference_work",
+    "explicit_operations"
+  ],
+  "matched_resource_vectors": [
+    {
+      "family": "Digits with a cubic interface",
+      "policy": "diagnostic",
+      "selected_intervention": "accessibility",
+      "vector": [64, 64, 64, 778, 68992, 64, 0],
+      "registered_selection_cost": 2
+    },
+    {
+      "family": "Digits with a cubic interface",
+      "policy": "generic",
+      "selected_intervention": "computation",
+      "vector": [64, 64, 0, 68928, 68992, 68800, 0],
+      "registered_selection_cost": 12
+    },
+    {
+      "family": "Digits with missing pixels",
+      "policy": "diagnostic",
+      "selected_intervention": "information",
+      "vector": [64, 64, 0, 778, 68992, 64, 0],
+      "registered_selection_cost": 8
+    },
+    {
+      "family": "Digits with missing pixels",
+      "policy": "generic",
+      "selected_intervention": "computation",
+      "vector": [1, 1, 0, 1077, 1078, 1075, 0],
+      "registered_selection_cost": 12
+    },
+    {
+      "family": "Hidden-bit parity",
+      "policy": "diagnostic",
+      "selected_intervention": "information",
+      "vector": [4, 4, 0, 0, 0, 1, 4],
+      "registered_selection_cost": 8
+    },
+    {
+      "family": "Hidden-bit parity",
+      "policy": "generic",
+      "selected_intervention": "computation",
+      "vector": [3, 3, 0, 0, 0, 1, 8],
+      "registered_selection_cost": 12
+    },
+    {
+      "family": "Reversibly encoded Boolean state",
+      "policy": "diagnostic",
+      "selected_intervention": "accessibility",
+      "vector": [2, 2, 1, 0, 0, 1, 0],
+      "registered_selection_cost": 2
+    },
+    {
+      "family": "Reversibly encoded Boolean state",
+      "policy": "generic",
+      "selected_intervention": "computation",
+      "vector": [2, 2, 0, 0, 0, 1, 1],
+      "registered_selection_cost": 12
+    },
+    {
+      "family": "Affine-map composition",
+      "policy": "diagnostic",
+      "selected_intervention": "computation",
+      "vector": [7, 7, 0, 0, 0, 1, 7],
+      "registered_selection_cost": 12
+    },
+    {
+      "family": "Affine-map composition",
+      "policy": "generic",
+      "selected_intervention": "computation",
+      "vector": [7, 7, 0, 0, 0, 1, 7],
+      "registered_selection_cost": 12
+    }
+  ],
+  "all_resource_arms": [
+    {
+      "family": "Digits with a cubic interface",
+      "intervention": "information",
+      "vector": [64, 64, 0, 778, 68992, 64, 0],
+      "probe_reaches_target": false,
+      "protected_reaches_target": false
+    },
+    {
+      "family": "Digits with a cubic interface",
+      "intervention": "accessibility",
+      "vector": [64, 64, 64, 778, 68992, 64, 0],
+      "probe_reaches_target": true,
+      "protected_reaches_target": false
+    },
+    {
+      "family": "Digits with a cubic interface",
+      "intervention": "computation",
+      "vector": [64, 64, 0, 68928, 68992, 68800, 0],
+      "probe_reaches_target": false,
+      "protected_reaches_target": false
+    },
+    {
+      "family": "Digits with missing pixels",
+      "intervention": "information",
+      "vector": [64, 64, 0, 778, 68992, 64, 0],
+      "probe_reaches_target": true,
+      "protected_reaches_target": true
+    },
+    {
+      "family": "Digits with missing pixels",
+      "intervention": "accessibility",
+      "vector": [1, 1, 1, 22, 1078, 1, 0],
+      "probe_reaches_target": false,
+      "protected_reaches_target": false
+    },
+    {
+      "family": "Digits with missing pixels",
+      "intervention": "computation",
+      "vector": [1, 1, 0, 1077, 1078, 1075, 0],
+      "probe_reaches_target": false,
+      "protected_reaches_target": false
+    },
+    {
+      "family": "Hidden-bit parity",
+      "intervention": "information",
+      "vector": [4, 4, 0, 0, 0, 1, 4],
+      "probe_reaches_target": true,
+      "protected_reaches_target": true
+    },
+    {
+      "family": "Hidden-bit parity",
+      "intervention": "accessibility",
+      "vector": [3, 3, 3, 0, 0, 1, 3],
+      "probe_reaches_target": false,
+      "protected_reaches_target": false
+    },
+    {
+      "family": "Hidden-bit parity",
+      "intervention": "computation",
+      "vector": [3, 3, 0, 0, 0, 1, 8],
+      "probe_reaches_target": false,
+      "protected_reaches_target": false
+    },
+    {
+      "family": "Reversibly encoded Boolean state",
+      "intervention": "information",
+      "vector": [2, 2, 0, 0, 0, 1, 0],
+      "probe_reaches_target": false,
+      "protected_reaches_target": false
+    },
+    {
+      "family": "Reversibly encoded Boolean state",
+      "intervention": "accessibility",
+      "vector": [2, 2, 1, 0, 0, 1, 0],
+      "probe_reaches_target": true,
+      "protected_reaches_target": true
+    },
+    {
+      "family": "Reversibly encoded Boolean state",
+      "intervention": "computation",
+      "vector": [2, 2, 0, 0, 0, 1, 1],
+      "probe_reaches_target": true,
+      "protected_reaches_target": true
+    },
+    {
+      "family": "Affine-map composition",
+      "intervention": "information",
+      "vector": [7, 7, 0, 0, 0, 1, 0],
+      "probe_reaches_target": false,
+      "protected_reaches_target": false
+    },
+    {
+      "family": "Affine-map composition",
+      "intervention": "accessibility",
+      "vector": [7, 7, 7, 0, 0, 1, 0],
+      "probe_reaches_target": false,
+      "protected_reaches_target": false
+    },
+    {
+      "family": "Affine-map composition",
+      "intervention": "computation",
+      "vector": [7, 7, 0, 0, 0, 1, 7],
+      "probe_reaches_target": true,
+      "protected_reaches_target": true
+    }
+  ],
+  "secondary_outcomes": {
+    "real_accessibility": [
+      {
+        "dataset": "Breast cancer",
+        "native_linear_mean_accuracy": 0.9806862288,
+        "cubic_linear_mean_accuracy": 0.9455053563,
+        "inverse_repaired_linear_mean_accuracy": 0.9806862288,
+        "native_minus_cubic_gap": 0.0351808725,
+        "disposition": "positive"
+      },
+      {
+        "dataset": "Digits",
+        "native_linear_mean_accuracy": 0.9699489322,
+        "cubic_linear_mean_accuracy": 0.9460213556,
+        "inverse_repaired_linear_mean_accuracy": 0.9699489322,
+        "native_minus_cubic_gap": 0.0239275766,
+        "disposition": "positive"
+      },
+      {
+        "dataset": "Wine",
+        "native_minus_cubic_gap": -0.0001587302,
+        "disposition": "null"
+      }
+    ],
+    "real_accessibility_maximum_reconstruction_error": 7.11e-15,
+    "model_size_ladder": [
+      {
+        "model": "Qwen2.5 0.5B",
+        "typed_minus_same_information": -0.140625
+      },
+      {
+        "model": "Qwen2.5 1.5B",
+        "typed_minus_same_information": 0.0
+      },
+      {
+        "model": "Qwen2.5 3B",
+        "typed_minus_same_information": 0.0
+      }
+    ],
+    "symbol_reminting": {
+      "semantic_atoms": 220,
+      "all_labels_preserved": true,
+      "protected_cases": 128,
+      "changed_predictions": 32,
+      "serialized_accuracy_before": 0.75,
+      "serialized_accuracy_after": 0.5,
+      "disposition": "earlier serialization contrast withdrawn"
+    },
+    "redraw_followup": {
+      "stratified_redraws": 24,
+      "full_sample_decisions_agree": true,
+      "half_sample_stability": false,
+      "cubic_interface_disposition": "indeterminate",
+      "cubic_interface_probe_mean_level": 0.9635561745589601,
+      "cubic_interface_protected_mean_level": 0.9643518518518519,
+      "cubic_interface_target": 0.965,
+      "protected_half_levels": [0.9625, 0.9662037037037038],
+      "disposition": "follow-up positive criterion not met"
+    }
+  }
+}

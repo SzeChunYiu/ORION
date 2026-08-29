@@ -1,0 +1,70 @@
+name: ORION-04 CR-B replay successor V1
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-04-crb-replay-successor-v1.yml"
+      - "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/**"
+      - "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/**"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/orion-04-crb-replay-successor-v1.yml"
+      - "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/**"
+      - "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/**"
+
+permissions:
+  contents: read
+
+jobs:
+  prerequisite-repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install frozen replay test runtime
+        run: |
+          python -m pip install pytest==8.4.2 ruff==0.12.11
+          python -m pip install --no-deps \
+            -r papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/requirements.txt
+      - name: Refuse a live or misplaced operator request object
+        run: |
+          successor=papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1
+          test -z "$(find "$successor" -name ONE_SHOT_AUTHORIZATION.json -print -quit)"
+          ! grep -R "papers/five-paper-top-tier-r8/NQ" "$successor/engine_b/slurm"
+      - name: Verify source, evidence, and replay manifests
+        working-directory: papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b
+        run: |
+          python build_manifest.py --verify --root . --output SOURCE_MANIFEST.json
+          python build_evidence_manifest.py --verify --root . --output EVIDENCE_MANIFEST.json
+          python build_replay_manifest.py --verify --root .. --output ../REPLAY_SOURCE_MANIFEST_V1.json
+      - name: Run focused and hostile successor tests
+        working-directory: papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b
+        run: python -m pytest -q tests
+      - name: Recheck immutable job-3544056 adverse custody
+        run: |
+          python -m pytest -q \
+            papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056/tests/test_job_3544056.py
+          cd papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/post-execution/job-3544056
+          sha256sum -c SHA256SUMS
+      - name: Static, format, and compilation checks
+        working-directory: papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b
+        run: |
+          bash -n slurm/job_orion04_crb_full_replay.slurm
+          bash -n slurm/submit_orion04_crb_full_replay.sh
+          python -m compileall -q .
+          find . -type d -name __pycache__ -prune -exec rm -rf {} +
+          test -z "$(find . -type f \( -name '*.pyc' -o -name '*.pyo' \) -print -quit)"
+          ruff check \
+            build_evidence_manifest.py build_manifest.py build_replay_manifest.py \
+            crb_census.py replay_custody.py submission_gate.py \
+            verify_positive_witnesses.py tests
+          ruff format --check \
+            build_evidence_manifest.py build_manifest.py build_replay_manifest.py \
+            crb_census.py replay_custody.py submission_gate.py \
+            verify_positive_witnesses.py tests

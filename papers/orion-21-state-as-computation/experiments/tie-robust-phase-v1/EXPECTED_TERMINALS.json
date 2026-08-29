@@ -1,0 +1,54 @@
+{
+  "schema": "orion.orion21.tie-robust-phase.expected-terminals.v1",
+  "protocol_identity": "ORION21.TIE_ROBUST_PHASE.v1",
+  "frozen_before_outcomes": true,
+  "registered_tau": 0.95,
+  "authority": {
+    "scientific_authority_delta": "NONE",
+    "submission_authority": false,
+    "controlling_terminal_of_v1_lane": "CANNOT_CHECK_INSTRUMENT_DRIFT",
+    "controlling_terminal_is_unchanged_by_this_experiment": true,
+    "forbidden_promotions": [
+      "C1_LAW_CONFIRMED_REGIME_EXTENDED",
+      "WIDTH_LAW_SUPPORTED_FROM_TIE_ROBUST_V1",
+      "POST_OUTCOME_TOLERANCE_AS_VALID_REPLAY",
+      "REPLAY_OF_THE_V1_LADDER",
+      "SCIENTIFIC_OR_SUBMISSION_AUTHORITY"
+    ]
+  },
+  "admissible_terminals": [
+    {
+      "id": "T1_TIE_ROBUST",
+      "condition": "n_cross_lo == n_cross_hi at every reconstructed ladder cell",
+      "supports": "H_LOCAL",
+      "consequence": "The crossing is tie-robust. Tie exposure is incidental and the C1/C2/C3 verdict is well defined on the reconstructed ladder. This would be a favourable outcome for the registered study and must not be reported as confirmation of the width law itself."
+    },
+    {
+      "id": "T2_TIE_AMBIGUOUS_VERDICT_INVARIANT",
+      "condition": "n_cross_lo < n_cross_hi at one or more cells, AND the C1/C2/C3 verdict is identical for every selection in the admissible set",
+      "supports": "H_SYSTEMIC",
+      "consequence": "n_cross is partially identified, but the registered verdict survives. Report n_cross as an interval everywhere it appears."
+    },
+    {
+      "id": "T3_TIE_AMBIGUOUS_VERDICT_CHANGING",
+      "condition": "there exist two selections in the admissible set yielding different C1/C2/C3 verdicts",
+      "supports": "H_SYSTEMIC",
+      "consequence": "The registered study cannot adjudicate its own hypothesis under its frozen protocol. Any point width-law claim must be withdrawn and replaced by an ambiguity result."
+    },
+    {
+      "id": "T4_CANNOT_CHECK_GENERATOR_UNDERSPECIFIED",
+      "condition": "the ladder stream cannot be reconstructed from the committed P11H generator semantics, or the reconstruction disagrees with a committed reading beyond exact integer equality at a cell where the rank gap IS separable",
+      "supports": "neither",
+      "consequence": "A separable-gap cell must reconstruct exactly; failure there means the generator semantics are themselves under-specified. Terminate CANNOT_CHECK with the mechanism named. Do NOT widen any tolerance to convert this into a pass."
+    }
+  ],
+  "falsifiability_note": "T1 and T3 make opposite claims about the same measured quantity and are both reachable by this design. The experiment can rescue the registered study (T1) or remove its point claim (T3). No terminal is favoured, and no threshold, tolerance or budget is adjustable after outcomes are read.",
+  "stop_rule": "Outcomes are read once. If the reconstruction produces T4, the lane terminates CANNOT_CHECK; it does not retry with relaxed equality.",
+  "prohibited_after_outcome_access": [
+    "changing tau",
+    "changing the ladder cell set, size grid, or seed set",
+    "changing the definition of the equality class S(x)",
+    "changing the exact integer scorer",
+    "introducing a tolerance on the reconstruction comparison"
+  ]
+}
