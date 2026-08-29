@@ -148,13 +148,25 @@ resolve. It is rejected from the cohort and the next qualifying candidate in ran
 order takes its place. Every rejection and its measurements are recorded under
 `artifact_screen` in `COHORT_V1.json`.
 
-I first hypothesised something stronger and different — that the artifact confounded
-the original result, since in the campaign's 8 projects both *sound* packages
-(flask, requests) are `src`-layout while all six *unsound* ones are flat. **I tested
-it and it is refuted.** Measuring flask and requests from the repo root and from the
-`src` root gives identical counts (19/16 and 24/19), because both use *relative*
-imports, which resolve regardless of prefix. The artifact does not touch the 8
-calibration/evaluation projects, so **the frozen thresholds are unaffected.**
+I first hypothesised something stronger — that a layout confound reached the
+original result, since in the campaign's 8 projects both *sound* packages (flask,
+requests) are `src`-layout while all six *unsound* ones are flat. I tested it
+**against the graph builder** and that mechanism is refuted: measuring flask and
+requests from the repo root and from the `src` root gives identical counts (19/16
+and 24/19), because both use *relative* imports, which resolve regardless of prefix.
+
+**CORRECTED 2026-08-29 — the confound is real; it just lives one level down.**
+The earlier sentences "I tested it and it is refuted" and "the frozen thresholds are
+unaffected" were wrong, and are withdrawn. Reading the outcome code
+(`measure_p7_closure_retention_v1.py`) shows `donor-coarse` buckets a module by
+`m.split(".")[1]`. For a `src/` layout every module of package P is named
+`src.P.x`, so that component is `P` for *all* of them: the bucket set collapses to
+`{P}` and the policy reopens everything. It has degenerated to always-reopen, which
+cannot falsely retain, so such a package is "sound" for a reason unrelated to
+density, module count or edge count. Verified: `requests` preserve=0 (reproducing
+the campaign's own held-out row), `flask` preserve=0, and the flat control
+`tornado` preserve=32,285. Both of the campaign's "sound" packages are therefore
+degenerate. See `STUDY_NOTE_V1.md` for what this does to the threshold's support.
 
 The builder is deliberately **not** "fixed": the thresholds were derived under its
 convention, so changing it would make these numbers incommensurable. This is a
