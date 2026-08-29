@@ -159,6 +159,50 @@ Table~\ref{tab:P1-T2}), but they do not authorize external superiority. The
 successor experiment is reported separately and is never pooled with these
 records.
 
+\paragraph{Arm discrimination, reported.}
+Section~\ref{sec:methods} states that arm discrimination is checked and reported
+rather than assumed. We report it here, and the result bounds Table~\ref{tab:P1-T2}
+more tightly than the intervals in it do. The bound is in fact legible in the table
+itself before any check is run: eleven of the twelve systems print the same root
+success on both reported metrics, $0.0208$ over all cases and $0.0312$ on the hidden
+shift, with identical intervals, and only the live-provider arm differs. A reader who
+notices that a governed policy, a static tool workflow, a full-reset ablation and a
+no-self-audit ablation all report the same two numbers has already found what the
+check below states formally. The check is implemented in two forms.
+The form wired into the campaign is global: it returns \textsc{did\_not\_discriminate}
+only when \emph{every} system shares one outcome vector. With twelve systems, several
+of which behave differently, it returns \textsc{discriminated} regardless of what any
+individual comparison does, and it does so here. The pairwise form, whose own
+documentation gives the reason it exists --- a hypothesis verdict rests on one pair,
+so the pair is what must be checked --- is not called by the campaign. Running it over
+the same committed records gives a different picture. On the primary outcome,
+\textbf{ten of the eleven comparisons against the governed policy return
+\textsc{did\_not\_discriminate}}; only the live-provider arm discriminates. Three of
+them --- the two explicit-coordinate ablations and the full-reset ablation --- are
+identical to the governed policy on every field of all 240 records, not merely on the
+primary outcome. For those comparisons a paired bootstrap resamples a difference
+vector that is identically zero, so the reported interval is a property of the
+construction and not a measurement. Two further arms differ on only 5 of 240 records;
+that is near-identity rather than identity, and we report it separately for that
+reason. The five stochastic repeats carry almost no information: 1 of 576
+system--case pairs varies across seeds. The Wilson intervals in
+Table~\ref{tab:P1-T2} are nonetheless computed on $n=48$ per system rather than
+inflated to 240, so the repeats are not double-counted.
+
+The consequence is not that the figures in Table~\ref{tab:P1-T2} are miscomputed.
+They are correctly computed from records that cannot separate most of the systems
+they are attributed to. Under this paper's own admissibility condition the honest
+verdict for those ten comparisons is undetermined rather than null, and we record it
+as such. This is consistent with the instrument diagnosis already on file, which
+retired these 2,880 records to instrument-validation and negative-control status and
+concluded that they can support no claim about the primary hypothesis in either
+direction; that disposition stands unchanged. The audit is archived at
+\path{evidence/arm-discrimination-audit-v1/ARM_DISCRIMINATION_AUDIT_V1.json}; it
+re-scores nothing and adds no metric, passing the committed outcome vectors to the
+repository's own discrimination functions. We note for clarity that the phrase ``no
+cell is left undetermined'' in the note to Table~\ref{tab:P1-T2} refers to data
+coverage after the live-provider recovery, not to this admissibility verdict.
+
 \input{tables/P1-T2_baseline_ablation}
 
 \subsubsection{Failure modes}

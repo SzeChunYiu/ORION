@@ -1,0 +1,196 @@
+{
+  "cells_per_system": 240,
+  "global_check_as_wired": {
+    "distinct_behaviour_groups_primary": 2,
+    "distinct_behaviour_groups_whole_record": 8,
+    "function": "assess_arm_discrimination (run_trial.py:128)",
+    "note": "Returns DISCRIMINATED whenever at least two systems differ, so it cannot detect an individual undetermined pair.",
+    "primary_outcome_verdict": "DISCRIMINATED",
+    "whole_record_verdict": "DISCRIMINATED"
+  },
+  "pairwise_check_not_wired": {
+    "function": "assess_pair_discrimination (defined, exported, unit-tested, called from no production path)",
+    "pairs": [
+      {
+        "cells": 240,
+        "comparator": "arex_like_recursive_audit_followup",
+        "differing_cells_whole_record": 5,
+        "primary_outcome_verdict": "DID_NOT_DISCRIMINATE",
+        "role": "BASELINE",
+        "whole_record_verdict": "DISCRIMINATED"
+      },
+      {
+        "cells": 240,
+        "comparator": "full_reset_instead_of_dependency_reopen",
+        "differing_cells_whole_record": 0,
+        "primary_outcome_verdict": "DID_NOT_DISCRIMINATE",
+        "role": "ABLATION",
+        "whole_record_verdict": "DID_NOT_DISCRIMINATE"
+      },
+      {
+        "cells": 240,
+        "comparator": "generic_retry_instead_of_typed_reframe",
+        "differing_cells_whole_record": 80,
+        "primary_outcome_verdict": "DID_NOT_DISCRIMINATE",
+        "role": "ABLATION",
+        "whole_record_verdict": "DISCRIMINATED"
+      },
+      {
+        "cells": 240,
+        "comparator": "iris_like_information_state_revision",
+        "differing_cells_whole_record": 240,
+        "primary_outcome_verdict": "DID_NOT_DISCRIMINATE",
+        "role": "BASELINE",
+        "whole_record_verdict": "DISCRIMINATED"
+      },
+      {
+        "cells": 240,
+        "comparator": "orion_live_provider",
+        "differing_cells_whole_record": 240,
+        "primary_outcome_verdict": "DISCRIMINATED",
+        "role": "BASELINE",
+        "whole_record_verdict": "DISCRIMINATED"
+      },
+      {
+        "cells": 240,
+        "comparator": "orion_without_explicit_M",
+        "differing_cells_whole_record": 0,
+        "primary_outcome_verdict": "DID_NOT_DISCRIMINATE",
+        "role": "ABLATION",
+        "whole_record_verdict": "DID_NOT_DISCRIMINATE"
+      },
+      {
+        "cells": 240,
+        "comparator": "orion_without_explicit_W",
+        "differing_cells_whole_record": 0,
+        "primary_outcome_verdict": "DID_NOT_DISCRIMINATE",
+        "role": "ABLATION",
+        "whole_record_verdict": "DID_NOT_DISCRIMINATE"
+      },
+      {
+        "cells": 240,
+        "comparator": "orion_without_mechanic_self_audit",
+        "differing_cells_whole_record": 80,
+        "primary_outcome_verdict": "DID_NOT_DISCRIMINATE",
+        "role": "ABLATION",
+        "whole_record_verdict": "DISCRIMINATED"
+      },
+      {
+        "cells": 240,
+        "comparator": "scion_like_dependency_execution_plan",
+        "differing_cells_whole_record": 5,
+        "primary_outcome_verdict": "DID_NOT_DISCRIMINATE",
+        "role": "BASELINE",
+        "whole_record_verdict": "DISCRIMINATED"
+      },
+      {
+        "cells": 240,
+        "comparator": "static_react_tool_workflow",
+        "differing_cells_whole_record": 240,
+        "primary_outcome_verdict": "DID_NOT_DISCRIMINATE",
+        "role": "BASELINE",
+        "whole_record_verdict": "DISCRIMINATED"
+      },
+      {
+        "cells": 240,
+        "comparator": "tree_search_iterative_research",
+        "differing_cells_whole_record": 240,
+        "primary_outcome_verdict": "DID_NOT_DISCRIMINATE",
+        "role": "BASELINE",
+        "whole_record_verdict": "DISCRIMINATED"
+      }
+    ],
+    "undetermined_on_primary_outcome": [
+      "arex_like_recursive_audit_followup",
+      "full_reset_instead_of_dependency_reopen",
+      "generic_retry_instead_of_typed_reframe",
+      "iris_like_information_state_revision",
+      "orion_without_explicit_M",
+      "orion_without_explicit_W",
+      "orion_without_mechanic_self_audit",
+      "scion_like_dependency_execution_plan",
+      "static_react_tool_workflow",
+      "tree_search_iterative_research"
+    ],
+    "undetermined_on_whole_record": [
+      "full_reset_instead_of_dependency_reopen",
+      "orion_without_explicit_M",
+      "orion_without_explicit_W"
+    ]
+  },
+  "purpose": "Runs the repository's own assess_pair_discrimination over the committed P1 records. Adds no metric and re-scores nothing.",
+  "records": 2880,
+  "repeat_information": {
+    "note": "Wilson intervals in Table P1-T2 correctly use n=48 per system rather than inflating to 240; the repeats are not double-counted. The point is only that the five repeats carry almost no information.",
+    "pairs_varying_across_seeds": 1,
+    "system_case_pairs": 576
+  },
+  "reproduction_check": {
+    "mismatches": [],
+    "note": "Eleven of the twelve systems share identical published rates on both metrics; only the live-provider arm differs.",
+    "published_source": "manuscript/tables/P1-T2_baseline_ablation.tex",
+    "recomputed_root_success_rates": {
+      "arex_like_recursive_audit_followup": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "full_reset_instead_of_dependency_reopen": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "generic_retry_instead_of_typed_reframe": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "iris_like_information_state_revision": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "orion_full": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "orion_live_provider": {
+        "root_success_all_cases": 0.0,
+        "root_success_hidden_shift": 0.0
+      },
+      "orion_without_explicit_M": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "orion_without_explicit_W": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "orion_without_mechanic_self_audit": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "scion_like_dependency_execution_plan": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "static_react_tool_workflow": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "tree_search_iterative_research": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      }
+    },
+    "status": "REPRODUCED"
+  },
+  "schema": "ORION.P1.ArmDiscriminationAudit.v1",
+  "scientific_authority_delta": "NONE",
+  "subject": "orion_full",
+  "success_census": {
+    "distinct_cases": [
+      "p1-c111"
+    ],
+    "note": "Every successful record is responsibility-incorrect. This is a census of the diagnosis already recorded in FLOOR_EFFECT_DIAGNOSIS_20260823.md, not a new finding.",
+    "records_with_correct_responsibility": 0,
+    "successful_records": 55
+  },
+  "systems": 12
+}
