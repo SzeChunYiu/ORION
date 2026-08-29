@@ -58,8 +58,8 @@ jobs:
           cp papers/orion-06-recursive-recovery/submission_aij/aij_pandoc_template.tex \
             build/q2_aij/source/pandoc_template.tex
           cp papers/orion-06-recursive-recovery/submission_aij/HIGHLIGHTS.txt build/q2_aij/source/HIGHLIGHTS.txt
-          cp papers/orion-06-recursive-recovery/submission_aij/COVER_LETTER_DRAFT.md build/q2_aij/source/COVER_LETTER_DRAFT.md
-          cp papers/orion-06-recursive-recovery/submission_aij/STATEMENTS_DRAFT.md build/q2_aij/source/STATEMENTS_DRAFT.md
+          cp papers/orion-06-recursive-recovery/submission_aij/COVER_LETTER_DRAFT.md build/q2_aij/source/COVER_LETTER.md
+          cp papers/orion-06-recursive-recovery/submission_aij/STATEMENTS_DRAFT.md build/q2_aij/source/STATEMENTS.md
       - name: Generate elsarticle source
         shell: bash
         run: |
@@ -71,9 +71,12 @@ jobs:
             --template=build/q2_aij/source/pandoc_template.tex \
             -o build/q2_aij/source/main.tex
           grep -Fq '\documentclass[preprint,12pt]{elsarticle}' build/q2_aij/source/main.tex
-          grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' build/q2_aij/source/main.tex
+          grep -Fq '\author{SzeChunYiu}' build/q2_aij/source/main.tex
+          grep -Fq 'Stockholm University, Stockholm, Sweden' build/q2_aij/source/main.tex
+          grep -Fq 'sze-chun.yiu@fysik.su.se' build/q2_aij/source/main.tex
+          grep -Fq 'Declaration of generative AI' build/q2_aij/source/main.tex
           grep -Eq '\\cite[pt]?\{' build/q2_aij/source/main.tex
-      - name: Build AIJ preflight PDF
+      - name: Build AIJ submission PDF
         shell: bash
         working-directory: build/q2_aij/source
         run: |
@@ -83,21 +86,31 @@ jobs:
           pdflatex -interaction=nonstopmode -halt-on-error main.tex
           pdflatex -interaction=nonstopmode -halt-on-error main.tex
           test -s main.pdf
-      - name: Audit PDF, references, and placeholder authority
+      - name: Audit PDF, references, metadata, and claim boundary
         shell: bash
         run: |
           set -euo pipefail
           pdfinfo build/q2_aij/source/main.pdf > build/q2_aij/pdfinfo.txt
           pdftotext build/q2_aij/source/main.pdf build/q2_aij/pdf.txt
-          grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' build/q2_aij/pdf.txt
+          grep -Fq 'SzeChunYiu' build/q2_aij/pdf.txt
+          grep -Fq 'Stockholm University' build/q2_aij/pdf.txt
+          grep -Fq 'sze-chun.yiu@fysik.su.se' build/q2_aij/pdf.txt
+          grep -Fq 'The author received no specific funding for this work.' build/q2_aij/pdf.txt
+          grep -Fq 'The author declares no competing interests.' build/q2_aij/pdf.txt
+          grep -Fq 'Declaration of generative AI' build/q2_aij/pdf.txt
           grep -Fq 'References' build/q2_aij/pdf.txt
           if grep -Eq '\[@[A-Za-z0-9_:-]+' build/q2_aij/pdf.txt; then
             echo 'Q2_AIJ_UNRESOLVED_CITATION_TOKEN=FAIL'
             exit 1
           fi
           if grep -Eiq 'improves scientific productivity|autonomous superiority|better science' \
-              build/q2_aij/source/COVER_LETTER_DRAFT.md; then
+              build/q2_aij/source/COVER_LETTER.md; then
             echo 'Q2_AIJ_COVER_LETTER_OVERCLAIM=FAIL'
+            exit 1
+          fi
+          if grep -Eiq 'AUTHOR (INPUT|METADATA).*REQUIRED|CORRESPONDING AUTHOR INPUT REQUIRED' \
+              build/q2_aij/source/main.tex build/q2_aij/source/COVER_LETTER.md build/q2_aij/source/STATEMENTS.md; then
+            echo 'Q2_AIJ_RELEASE_PLACEHOLDER=FAIL'
             exit 1
           fi
           pdftoppm -png -r 144 build/q2_aij/source/main.pdf build/q2_aij/rendered/page
@@ -108,18 +121,18 @@ jobs:
         run: |
           set -euo pipefail
           cp prepared.md source/SCIENTIFIC_MASTER_CITED.md
-          zip -qr q2-aij-preflight-source.zip source
-          sha256sum q2-aij-preflight-source.zip > source_zip_sha256.txt
-      - name: Archive Q2 AIJ preflight package
+          zip -qr q2-aij-submission-source.zip source
+          sha256sum q2-aij-submission-source.zip > source_zip_sha256.txt
+      - name: Archive Q2 AIJ submission package
         uses: actions/upload-artifact@v4
         with:
-          name: q2-aij-preflight-package
+          name: q2-aij-submission-package
           path: |
             build/q2_aij/source/main.pdf
-            build/q2_aij/q2-aij-preflight-source.zip
+            build/q2_aij/q2-aij-submission-source.zip
             build/q2_aij/source/HIGHLIGHTS.txt
-            build/q2_aij/source/COVER_LETTER_DRAFT.md
-            build/q2_aij/source/STATEMENTS_DRAFT.md
+            build/q2_aij/source/COVER_LETTER.md
+            build/q2_aij/source/STATEMENTS.md
             build/q2_aij/pdfinfo.txt
             build/q2_aij/pdf_sha256.txt
             build/q2_aij/source_zip_sha256.txt
