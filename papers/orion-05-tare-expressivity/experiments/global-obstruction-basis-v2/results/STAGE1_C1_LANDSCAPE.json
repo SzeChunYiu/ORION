@@ -1,0 +1,28 @@
+{
+  "c1_histogram": {
+    "2": 18,
+    "3": 290,
+    "4": 2007,
+    "5": 7686,
+    "6": 15180,
+    "7": 8181,
+    "8": 393
+  },
+  "complete": true,
+  "contiguous_verified_prefix": 33755,
+  "domain": "combinations_with_replacement(1..15, 6) excluding all-distinct",
+  "domain_size_expected": 33755,
+  "estimand": "min cost over all 15 perfect matchings; gap = C1 - C2",
+  "first_three_positives": [],
+  "gap_histogram": {},
+  "mode": "c1",
+  "n_retained_failures": 0,
+  "positives_beyond_prefix_unconfirmed": [],
+  "positives_in_verified_prefix": 0,
+  "prefix_fraction_of_domain": 1.0,
+  "retained_failure_rows": [],
+  "rows_emitted": 33755,
+  "schema": "ORION05.GLOBAL_OBSTRUCTION_BASIS.v2.stage1.sharded",
+  "terminal": "C1_LANDSCAPE_COMPLETE",
+  "terminal_semantics": "CANNOT_CHECK_NO_SAME_DOMAIN_POSITIVE_CONTROLS is emitted only when the verified prefix covers the whole 33,755-row domain. PARTIAL_SCAN_INCOMPLETE means the scan ran out of budget and is NOT evidence for O05-C2 or against O05-C3; it asserts nothing about the unscanned tail."
+}
