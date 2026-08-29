@@ -25,6 +25,18 @@ because #1701's global gate demands "all exact PDFs visually audited" and that g
 **executed and graded adverse or null**. It is never used for a successor that was merely
 never attempted.
 
+**One string, two meanings — read the row before reading the terminal.** Of the five
+papers carrying it, only **ORION-02** had a successor come out against it: two counted
+revival attempts, R23 and R24, both graded adverse on contested comparisons against a
+no-geometry lexical control. The other four — **21, 22, 23, 25** — *declined promotion
+on their own favourable terminals*, under stop rules frozen before the outcome was seen.
+ORION-25 states it outright: "That rule applies, and it applies on the favourable
+outcome." For those four the terminal means **scope deliberately not broadened**, not
+**experiment came out adverse**, and their controls are stronger than ORION-02's rather
+than weaker — ORION-23's control V2 caught a tautology in its own ground truth before it
+could ship (`papers/POSITIVE_DEMONSTRATION_CONTROL_V1.md`). Treating the five as one
+class reads a discipline as a defeat.
+
 `NEW_SUCCESSOR_QUESTION_REQUIRED__NO_RESCUE` is used where #1701's own paper section states
 that any successor must carry a new frozen identity and cannot rescue the old claim.
 
@@ -174,7 +186,7 @@ On `main` today, 23 of 25 rows are checkable and 2 are not.
 | `BOUNDED_PAPER_READY_TO_FILE` | **8** | 03, 06, 08, 10, 12, 13, 14, 16 |
 | `BOUNDED_PAPER_FILED` | **0** | none — no filing receipt exists anywhere in `papers/` |
 | `TOP_TIER_SUCCESSOR_EARNED` | **0** | none — every executed successor graded adverse, null, or ungradable |
-| `TOP_TIER_SUCCESSOR_NOT_SUPPORTED__BOUNDED_RETAINED` | **5** | 02, 21, 22, 23, 25 |
+| `TOP_TIER_SUCCESSOR_NOT_SUPPORTED__BOUNDED_RETAINED` | **5** | 02 (successor graded adverse); 21, 22, 23, 25 (scope not broadened, on favourable terminals under pre-frozen stop rules) |
 | `CANNOT_CHECK_EXTERNAL_AUTHORITY__BOUNDED_RETAINED` | **5** | 04, 05, 15, 18, 24 |
 | `TEMPORAL_PROSPECTIVE_STUDY_FROZEN` | **1** | 07 |
 | `NEW_SUCCESSOR_QUESTION_REQUIRED__NO_RESCUE` | **4** | 01, 09, 11, 20 |
