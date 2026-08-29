@@ -14,7 +14,10 @@ from orion.programme.publication_score_gate import (
 
 
 def _paper(tmp_path: Path, doc: str, gate: str | None = None) -> Path:
-    d = tmp_path / "papers" / "paper-01-fake"
+    # Must be one of publication_score_gate.GATED_PAPERS. With a name outside
+    # that set the checker skips the directory, scans nothing and returns PASS,
+    # so every expectation in this file would hold vacuously.
+    d = tmp_path / "papers" / "orion-11-fake"
     d.mkdir(parents=True, exist_ok=True)
     (d / "READINESS.md").write_text(doc)
     if gate:
