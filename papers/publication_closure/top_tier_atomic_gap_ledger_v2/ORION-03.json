@@ -1,0 +1,119 @@
+{
+  "schema_version": "ORION.TOP_TIER_ATOMIC_GAP_LEDGER.V2",
+  "subject_main_sha": "87e2bcb330d243b7062ddba1ca26e426632edeab",
+  "scientific_authority_delta": "NONE",
+  "paper_range": [
+    "ORION-03",
+    "ORION-03"
+  ],
+  "papers": [
+    {
+      "paper_id": "ORION-03",
+      "slug": "typed-merge-falsification",
+      "title": "Typed Merge Falsification",
+      "publication_disposition": "BOUNDED_PAPER_READY_TO_FILE",
+      "route_class": "EXTERNAL_TRANSFER",
+      "evidence_mode": "HYBRID",
+      "protocol_state": "DRAFT_PRE_FREEZE",
+      "scientific_authority_delta": "NONE",
+      "current_ceiling": "The bounded algebra and falsification calculus are fileable; broad methods significance is withheld.",
+      "post_matrix_updates": [],
+      "pending_prs": [],
+      "load_bearing_adverse": [
+        "C8 is donor-owned, C9 is open and C10 is forbidden in the R2 ledger.",
+        "The reported 1,962 trust-store tasks and 46 hybrid obstructions still require submission-commit re-verification.",
+        "The E15 cross-trust-system successor has not been attempted."
+      ],
+      "strongest_remaining_gap": "The calculus has not shown that its typed obstructions transfer to independent trust-policy ecosystems with native verifier gold and nontrivial hybrid failures.",
+      "decisive_question": "Across organization- and implementation-disjoint cosign, TUF and in-toto policy transitions, does the typed merge calculus detect unsafe hybrid merges that donor-complete native checks miss without rejecting valid merges?",
+      "maximum_claim_if_supported": "Typed merge obstructions form a reusable cross-ecosystem safety calculus for policy and trust-state composition.",
+      "hypothesis_or_theorem": "For each ecosystem, the calculus should be sound relative to native verification, expose at least one obstruction class not represented by any single donor checker and preserve valid-merge coverage.",
+      "population_or_universe": "Version-pinned policy/configuration transitions in at least two E15 ecosystems, sampled by a predeclared rule and held out by repository or organization.",
+      "unit_of_analysis": "One proposed merge between two typed trust/policy states.",
+      "external_sources": [
+        "E15"
+      ],
+      "historical_only_inputs": [
+        "The existing 1,962-task/46-obstruction corpus until its binding is independently reverified"
+      ],
+      "design": [
+        "Reverify the current bounded corpus and hashes before designing the successor.",
+        "Create native adapters that emit verifier-derived gold without importing ORION classifications.",
+        "Hold out repositories or organizations, not merely files.",
+        "Include real historical and planted hybrid-policy failures with provenance-separated labels.",
+        "Measure soundness, completeness, minimal certificates and operator cost."
+      ],
+      "baselines": [
+        "Native verifier/checker composition.",
+        "Untyped structural merge.",
+        "Reject-on-conflict fail-closed policy.",
+        "Strongest donor product found across software-supply-chain policy literature."
+      ],
+      "primary_endpoints": [
+        "Unsafe accepted merges, with zero as a noncompensatory endpoint.",
+        "Valid-merge acceptance and false-rejection rate.",
+        "Obstruction recall by native failure class.",
+        "Certificate minimality and verification time."
+      ],
+      "negative_controls": [
+        "Type labels permuted while syntax is preserved.",
+        "Hybrid obstruction removed but surface conflict retained.",
+        "Known-valid cross-signing transition.",
+        "Verifier unavailable or ambiguous, which must yield CANNOT_CHECK."
+      ],
+      "analysis_plan": [
+        "Paired merge-level comparison against identical native gold.",
+        "Cluster uncertainty by repository/organization.",
+        "Report each ecosystem separately before any pooled claim.",
+        "No cross-ecosystem headline unless the same frozen rule succeeds in at least two ecosystems."
+      ],
+      "power_or_exhaustion_rule": "Census all transitions meeting the frozen eligibility rule where feasible; otherwise power on organization-level clusters and freeze the minimum number before labels are opened.",
+      "success_gate": "Zero unsafe acceptances, materially lower false rejection than fail-closed baselines, and reproducible added obstruction coverage in at least two independent ecosystems.",
+      "refutation_gate": "Any unsafe acceptance refutes the safety headline; parity with the donor product limits the result to the bounded algebra.",
+      "cannot_check_gate": "CANNOT_CHECK if native verifier gold, organization-disjoint holdout or the 1,962/46 bounded binding cannot be independently reproduced.",
+      "authority_required": "Native verifiers plus an independent adapter/checker implementation; security-domain review is required for gold cases not mechanically decidable.",
+      "resource_accounting": [
+        "Adapter development",
+        "verifier calls",
+        "merge search",
+        "latency",
+        "memory",
+        "human adjudication"
+      ],
+      "freeze_before_outcome": [
+        "Ecosystem versions",
+        "repositories",
+        "gold-generation commands",
+        "arms",
+        "zero-unsafe gate",
+        "cluster analysis",
+        "missing verifier policy"
+      ],
+      "active_lane": {
+        "status": "CLEAR_AFTER_BOUNDED_REVERIFY",
+        "reference": "#1701 / #1729",
+        "collision_rule": "No active E15 successor lane was found; do not alter the R2 bounded terminal while designing it."
+      },
+      "immediate_safe_actions": [
+        "Re-run the 1,962-task/46-obstruction binding on an immutable submission candidate.",
+        "Build a donor-disposition table for cosign, TUF and in-toto.",
+        "Specify organization-disjoint holdout and native-verifier adapters."
+      ],
+      "forbidden_actions": [
+        "Do not describe donor-owned C8 as novel.",
+        "Do not use self-scored merge labels.",
+        "Do not pool ecosystems that use different success semantics without a registered mapping."
+      ],
+      "next_artifact": "papers/orion-03-typed-merge-falsification/top_tier/e15-cross-trust-transfer-v1/QUESTION.md",
+      "journal_bar": "A top-tier security/formal-methods paper needs native-verifier soundness, independent ecosystems, minimal counterexamples and a donor-complete baseline.",
+      "sibling_boundary": "Owns typed merge falsification; responsibility-scoped reuse belongs to ORION-23 and trust custody to ORION-25.",
+      "lead_roles": [
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5"
+      ]
+    }
+  ]
+}
