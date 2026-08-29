@@ -1,0 +1,56 @@
+{
+  "schema": "ORION.ORION14.PromotionReduct.SourceManifest.v1",
+  "paper_id": "ORION-14",
+  "successor_id": "ORION14.MINIMAL_PROMOTION_REDUCT.v1",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+  "candidate_source": {
+    "pull_request": 1617,
+    "section": "ORION-14 Upgrade A",
+    "cross_paper_rank": 2
+  },
+  "repository_base": {
+    "branch_base": "origin/main",
+    "commit": "882b88e3a"
+  },
+  "scope_gate": {
+    "requested": "minimal promotion reduct over the frozen 400 cases behind ORION-14.X.EXACT.400.PROMOTION_RELATION",
+    "four_hundred_case_table_committed": false,
+    "search_performed": "WHOLE REPOSITORY (excluding .git), two independent ways: by SIZE (every .jsonl with 350-450 rows) and by CONTENT (every .json/.jsonl/.py naming EXACT.400.PROMOTION, ORION-14-X, ORION_14_X or promotion_relation)",
+    "found": "11 size hits, all ORION-12 SAGE corpora at 385 rows and unrelated to the promotion contract; 1 content hit carrying no 350-450 row table",
+    "consequence": "Upgrade A cannot be executed as specified; the reduct here is on the committed 10-case bench and is a DIFFERENT, SMALLER object",
+    "remedy": "commit the 400-row coordinate table; no new science is required",
+    "absence_claim_scope": "repository-wide, justified by the two searches above"
+  },
+  "bound_artifacts": [
+    {
+      "path": "papers/orion-14-verified-scientific-discovery/method_authority_extension/METHOD_AUTHORITY_BENCH_V1.json",
+      "sha256": "1732eaf0b6939a2c15da7851a32abbee86bc81655c41b616e70c9ca3a6173f6b",
+      "role": "the corpus actually analysed: 10 cases, 3 promotable; read as DATA, never executed",
+      "mutated_by_this_packet": false
+    },
+    {
+      "path": "papers/orion-14-verified-scientific-discovery/CLAIM_LEDGER_V4.md",
+      "sha256": "dfd4e81654ca1e0bc5b6d3b668188855b8a117a70f7f28a6e32f913d6be93366",
+      "role": "records ORION-14.X.EXACT.400.PROMOTION_RELATION whose backing table is absent; NOT edited",
+      "mutated_by_this_packet": false
+    }
+  ],
+  "not_imported": [
+    "scripts/run_method_authority_bench.py",
+    "orion.transfer.v2.p4_method_authority",
+    "any ORION-14 module"
+  ],
+  "encoding_disclosure": {
+    "settings": "TERNARY - true / false / third value for null or absent",
+    "why": "null means the novelty search could not run; false means it ran and found nothing. Merging them destroys the reduct entirely.",
+    "fixed_before_any_subset_was_evaluated": true,
+    "first_pass_error_disclosed": "the author's first encoding binarised null to false and produced no sufficient set; the ternary encoding is the correction, and a negative control now enforces it"
+  },
+  "content_freeze_note": {
+    "pinned_paper_tree_oid": "aea0d2d1f38a",
+    "currently_matching_on_main_per_issue_1625": true,
+    "effect": "this additive directory moves the pin into the mismatching set; no existing byte modified; freeze scripts re-pin rather than verify"
+  },
+  "frozen_paper_bytes_modified": "NONE"
+}
