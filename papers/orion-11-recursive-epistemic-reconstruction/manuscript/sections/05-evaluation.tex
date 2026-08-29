@@ -162,7 +162,13 @@ records.
 \paragraph{Arm discrimination, reported.}
 Section~\ref{sec:methods} states that arm discrimination is checked and reported
 rather than assumed. We report it here, and the result bounds Table~\ref{tab:P1-T2}
-more tightly than the intervals in it do. The check is implemented in two forms.
+more tightly than the intervals in it do. The bound is in fact legible in the table
+itself before any check is run: eleven of the twelve systems print the same root
+success on both reported metrics, $0.0208$ over all cases and $0.0312$ on the hidden
+shift, with identical intervals, and only the live-provider arm differs. A reader who
+notices that a governed policy, a static tool workflow, a full-reset ablation and a
+no-self-audit ablation all report the same two numbers has already found what the
+check below states formally. The check is implemented in two forms.
 The form wired into the campaign is global: it returns \textsc{did\_not\_discriminate}
 only when \emph{every} system shares one outcome vector. With twelve systems, several
 of which behave differently, it returns \textsc{discriminated} regardless of what any
