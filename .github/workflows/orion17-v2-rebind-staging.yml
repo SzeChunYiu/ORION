@@ -1,0 +1,157 @@
+name: ORION-17 additive V2 rebind staging
+
+on:
+  push:
+    branches:
+      - shadow/orion-top-tier-science-gap-closure-20260829
+
+permissions:
+  contents: read
+
+jobs:
+  build-binding-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the exact staging commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extend the P7 V2 binding without mutating V1
+        shell: bash
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          import json
+          import subprocess
+          from pathlib import Path
+
+          root = Path.cwd()
+          paper_rel = Path("papers/orion-17-epistemic-navigation-open-worlds")
+          paper = root / paper_rel
+          manifest = paper / "CONTENT_MANIFEST_V2.json"
+          outer = paper / "content_binding_v2" / "SHA256SUMS"
+
+          roots = {
+              paper / "theory" / "chain-composition-v1": 9,
+              paper / "theory" / "density-prospective-v1": 9,
+              paper / "submission" / "density_prospective": 1,
+          }
+          additive = {
+              (paper_rel / "CLAIM_LEDGER_ADDENDUM_V4_12.md").as_posix()
+          }
+          observed_counts: dict[str, int] = {}
+          for directory, expected_count in roots.items():
+              files = sorted(path for path in directory.rglob("*") if path.is_file())
+              observed_counts[directory.relative_to(root).as_posix()] = len(files)
+              if len(files) != expected_count:
+                  raise SystemExit(
+                      f"unexpected file count for {directory.relative_to(root)}: "
+                      f"{len(files)} != {expected_count}"
+                  )
+              additive.update(path.relative_to(root).as_posix() for path in files)
+
+          if len(additive) != 20:
+              raise SystemExit(f"expected 20 additive files, found {len(additive)}")
+
+          def sha256(path: Path) -> str:
+              digest = hashlib.sha256()
+              with path.open("rb") as handle:
+                  for chunk in iter(lambda: handle.read(1 << 20), b""):
+                      digest.update(chunk)
+              return digest.hexdigest()
+
+          payload = json.loads(manifest.read_text(encoding="utf-8"))
+          if payload.get("schema_version") != "orion.candidate-content-binding.v2":
+              raise SystemExit("unexpected P7 V2 schema")
+          if payload.get("candidate_id") != "P7":
+              raise SystemExit("unexpected candidate identity")
+
+          rows = {
+              str(row["path"]): dict(row)
+              for row in payload.get("bound_files", [])
+              if isinstance(row, dict) and isinstance(row.get("path"), str)
+          }
+          already_present = sorted(additive & set(rows))
+          if already_present:
+              raise SystemExit(
+                  "additive paths unexpectedly already bound: " + ", ".join(already_present)
+              )
+          for relative in sorted(additive):
+              target = root / relative
+              if not target.is_file():
+                  raise SystemExit(f"missing additive path: {relative}")
+              rows[relative] = {"path": relative, "sha256": sha256(target)}
+
+          head = subprocess.check_output(
+              ["git", "rev-parse", "HEAD"], text=True
+          ).strip()
+          tree = subprocess.check_output(
+              ["git", "rev-parse", "HEAD^{tree}"], text=True
+          ).strip()
+          payload["bound_files"] = [rows[path] for path in sorted(rows)]
+          payload["subject_commit"] = head
+          payload["subject_commit_status"] = "BOUND"
+          payload["subject_commit_blocker"] = None
+          payload["subject_commit_unbound_paths"] = []
+          payload["subject_tree"] = tree
+          manifest.write_text(
+              json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+              encoding="utf-8",
+          )
+          outer.write_text(
+              f"{sha256(manifest)}  {manifest.relative_to(root).as_posix()}\n",
+              encoding="utf-8",
+          )
+
+          report = {
+              "schema": "ORION.P7AdditiveV2Rebind.v1",
+              "candidate_id": "P7",
+              "source_commit": head,
+              "source_tree": tree,
+              "additive_file_count": len(additive),
+              "additive_paths": sorted(additive),
+              "root_counts": observed_counts,
+              "manifest_sha256_after": sha256(manifest),
+              "outer_checksum_sha256": sha256(outer),
+              "v1_files_modified": [],
+              "scientific_authority_delta": "NONE__CUSTODY_ONLY",
+              "terminal": "P7_ADDITIVE_V2_REBIND_ARTIFACT_GENERATED",
+          }
+          Path("p7_v2_rebind_report.json").write_text(
+              json.dumps(report, indent=2, sort_keys=True) + "\n",
+              encoding="utf-8",
+          )
+          print(report["terminal"])
+          PY
+
+      - name: Verify recovered scientific packets and candidate binding
+        shell: bash
+        run: |
+          set -o pipefail
+          status=0
+          {
+            echo "== density prospective checker =="
+            python papers/orion-17-epistemic-navigation-open-worlds/theory/density-prospective-v1/independent_checker/check_density_prediction.py || status=$?
+            echo "== chain-composition checker =="
+            python papers/orion-17-epistemic-navigation-open-worlds/theory/chain-composition-v1/independent_checker/check_chain.py || status=$?
+            echo "== P6-P8 candidate content binding =="
+            PYTHONPATH=src python papers/candidates/checkers/check_content_binding_v1.py --check || status=$?
+            echo "verification_exit=$status"
+          } 2>&1 | tee p7_v2_rebind_verification.txt
+          exit "$status"
+
+      - name: Upload generated binding and verification record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p7-v2-rebind-${{ github.sha }}
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            papers/orion-17-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json
+            papers/orion-17-epistemic-navigation-open-worlds/content_binding_v2/SHA256SUMS
+            p7_v2_rebind_report.json
+            p7_v2_rebind_verification.txt
