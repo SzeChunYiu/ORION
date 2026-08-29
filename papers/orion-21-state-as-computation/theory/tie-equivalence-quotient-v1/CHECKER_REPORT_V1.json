@@ -1,0 +1,29 @@
+{
+  "schema": "orion.orion21.tie-equivalence-quotient.checker.v1",
+  "protocol_identity": "ORION21.TIE_EQUIVALENCE_QUOTIENT.v1",
+  "independence": "no runner import; admissible set obtained ONLY by subset-predicate filtering; result file read as data",
+  "recomputed": {
+    "states_enumerated": 18550,
+    "singleton_classes": 9620,
+    "nonsingleton_classes": 8930,
+    "decision_binding_classes": 7760,
+    "decision_benign_classes": 1170,
+    "benign_boundary_levels": [
+      0
+    ],
+    "binding_boundary_levels": [
+      1,
+      2
+    ],
+    "classes_refuted": {
+      "support_identity": 8930,
+      "signed_correlation_sum": 5392,
+      "positive_sign_count": 5392,
+      "prediction_stream": 7760,
+      "accuracy_numerator": 7760
+    }
+  },
+  "recorded_terminal": "T1_IMPOSSIBILITY_CERTIFIED",
+  "mismatches": {},
+  "status": "PASS"
+}
