@@ -42,11 +42,28 @@ would defeat the purpose of the gate. Each such row names exactly what would ear
 2. **`TOP_TIER_SUCCESSOR_EARNED` is earned by zero papers.** Every executed successor on
    `main` graded adverse, null, or ungradable. The programme's one genuine candidate
    (ORION-17's prospective density result) is **not on `main`**.
-3. **Nine papers have no PDF anywhere under `papers/`**: ORION-02, 04, 05, 06, 07, 08, 09,
-   10, 19. Verified by a per-paper `find -name '*.pdf'` count excluding `figures/` dirs; all
-   nine return 0 while the other sixteen return 1--3, so the pattern demonstrably matches.
-   ORION-15 has `journal_package/manuscript.pdf` but no `manuscript/main.pdf`.
-   Build recipe: `papers/PDF_CANONICAL_BUILD_RECIPE.md`.
+3. **Two papers have no PDF anywhere under `papers/`**: ORION-02 and ORION-04.
+   This finding previously read *nine* — ORION-02, 04, 05, 06, 07, 08, 09, 10, 19 — and
+   was correct when written on 2026-08-29 at 07:33. It is superseded twice over.
+   #1719 gave ORION-07 and ORION-09 submission-package and frozen-packet PDFs 39 minutes
+   later, and #1731 then imported a canonical `manuscript/main.pdf` for all seven papers
+   that had a `manuscript/main.tex` entry point but no committed render.
+   **Every paper with a manuscript entry point now has a byte-pinned PDF**: 21 `main.tex`
+   against 22 `manuscript/main.pdf`, the extra being ORION-03's, which is built by pandoc
+   rather than latexmk. Confirmed by `manuscript-clipping-audit` passing on `main` at
+   `87e2bcb33`, which rebuilds every manuscript under the pinned toolchain and requires
+   byte equality — so the renders are verified, not merely present.
+   The two remaining papers are not a build failure. Neither carries a
+   `manuscript/main.tex`; both are Markdown manuscripts (`MANUSCRIPT_V3.md` and
+   equivalent), so the latexmk rebuild never sees them and the byte-identity gate does not
+   cover them. ORION-03 shows the path — a pandoc/tectonic build, committed and audited
+   for clipping — but that route is outside the epoch-pinned regime the other 21 sit in,
+   which is an asymmetry a referee could notice and is worth closing deliberately rather
+   than by accident.
+   Build recipe: `papers/PDF_CANONICAL_BUILD_RECIPE.md`. The canonical bytes come from the
+   audit's own `Archive rebuilt PDFs and logs` artifact, so the builder that produces a
+   render and the gate that asserts its bytes are the same builder.
+
 4. **Defect — stale paper IDs inside four readiness records.**
    `papers/orion-05-*/JOURNAL_READINESS.md` is headed "ORION-01 journal-readiness record";
    orion-06's is headed "ORION-02"; orion-07's "ORION-03"; orion-08's "ORION-04". The
@@ -173,7 +190,7 @@ Total: 8 + 0 + 0 + 5 + 5 + 1 + 4 + 2 = **25**.
 | no stale branch wholesale merged | **CANNOT_CHECK** | Not checked. This pass adopted nothing, but that is a property of *this pass*, not of the repository's merge history, which needs a `main` merge-commit audit. |
 | all manuscripts reflect strongest **admissible** evidence including negatives | **NOT MET** | ORION-09 carries `MANUSCRIPT_INCOMPLETENESS__SUBMISSION_BLOCKED`; ORION-21 must fold the ten-responsibility negative into the live ledger; ORION-11's package is `SUPERSEDED`. |
 | all top-tier claims carry donor/literature subtraction | **PARTIAL** | Ledgers do carry explicit `DONOR-OWNED` / `FORBIDDEN` rows (01, 02, 03). Submission-date literature closure is open on essentially every row. |
-| all exact PDFs visually audited | **NOT MET, and worse than a page count suggests** | Nine papers have no PDF at all (02, 04, 05, 06, 07, 08, 09, 10, 19). Of the six that have a journal package, **not one is render-current**: ORION-11, 12, 13 and 15 are committed `SUPERSEDED`, ORION-14 has no committed state and returns `SUPERSEDED` when the generator is run, and ORION-01's two packages are outside the generator's glob entirely. Every `SUPERSEDED` package needs a re-render **and** a re-run claim-to-PDF audit. |
+| all exact PDFs visually audited | **NOT MET, and worse than a page count suggests** | Two papers have no PDF at all (02 and 04, both Markdown manuscripts with no `main.tex` entry point); the other 23 do, and the 21 with a `main.tex` are byte-pinned against the audit's own rebuild. Of the six that have a journal package, **not one is render-current**: ORION-11, 12, 13 and 15 are committed `SUPERSEDED`, ORION-14 has no committed state and returns `SUPERSEDED` when the generator is run, and ORION-01's two packages are outside the generator's glob entirely. Every `SUPERSEDED` package needs a re-render **and** a re-run claim-to-PDF audit. |
 | same-researcher clean-room replays labelled precisely | **CANNOT_CHECK** | Held in every artifact inspected — ORION-16's V4.7 explicitly forbids the upgrade "externally reproduced by an outside party", and ORION-18 and ORION-24 are equally explicit — but that is a ~30-file sample, not a repo-wide property. No row in this matrix credits an AI replay as external verification. |
 
 ### The two rows that block issue closure
@@ -186,7 +203,7 @@ Issue #1701 **cannot close today**, on two rows and one global gate:
 - **ORION-19** — the manuscript directory is empty on `main`; the paper exists only on its
   review branch. Merging that branch converts this row to `BOUNDED_PAPER_READY_TO_FILE`
   immediately, because its evidence gates are already closed.
-- Plus the PDF gate, which nine papers fail, and the two `CANNOT_CHECK` global gates above.
+- Plus the PDF gate. The *render* half is now met for every paper with a manuscript entry point; what remains unmet is the *visual audit* half, and the six journal packages, none of which is render-current.
 
 Both blocking rows are fixable by **binding work, not new science**. Everything else has a
 defensible box today.
@@ -207,7 +224,7 @@ work to a submittable artifact**, not by scientific maturity:
 | 3 | **ORION-14** | Still the strongest *evidence* in the portfolio, and its PDF is at `manuscript/main.pdf`. But its package needs a re-render across a nine-page gap plus a re-run claim-to-PDF audit before the byte manifest. Strong science, non-trivial production. |
 | 4 | **ORION-13** | Science is ready; the package renders 20pp of a 45pp manuscript. Re-render, re-run the claim-to-PDF audit, then satisfy the conditional CI terminal. |
 | 5 | **ORION-12** | Science is ready and the failed TREC-COVID gate is correctly excluded; 18 of 31 pinned inputs have drifted. Re-render, then citations and manifest. |
-| — | 06, 08, 10 | Science-closed but no PDF has ever been built. Production only, and no package to be stale. |
+| — | 06, 08, 10 | Science-closed. Canonical `manuscript/main.pdf` built and byte-pinned by #1731; production only, and no package to be stale. |
 
 Ranks 1 and 2 are close, and neither can be finished from this Mac. The tiebreak is that
 ORION-16's remaining item is *observing* a gate whose other conjunct already passes, while
