@@ -1,5 +1,5 @@
-# Declaration of generative AI and AI-assisted technologies
+# Declaration of generative AI and AI-assisted technologies in the manuscript preparation process
 
-During preparation of this work, the authors used OpenAI ChatGPT to support literature searching, source checking, reproducibility review, manuscript editing, and submission-package preparation. The tool was not treated as an author and did not replace scientific judgment. Result-bearing statements and citations were checked against the archived evidence and primary-source records. The authors remain responsible for the article’s content.
+During the preparation of this work, the author used OpenAI ChatGPT and related language-model tooling to support literature triage, source checking, code and manuscript auditing, organization, language refinement, and submission-package preparation. The author reviewed and edited all AI-assisted output, independently checked the scientific claims and cited sources against the underlying evidence, and takes full responsibility for the content of the article.
 
-The corresponding author must verify and approve this wording before filing.
+AI-assisted tooling was also used to execute and audit parts of the repository-based research workflow under frozen protocols. Scientific claims were accepted only when supported by the bound code, data, results, or proofs; AI-generated text or judgments were not treated as scientific evidence or independent verification.
