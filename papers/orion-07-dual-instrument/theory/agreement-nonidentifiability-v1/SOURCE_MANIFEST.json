@@ -1,0 +1,77 @@
+{
+  "schema": "ORION.ORION07.AgreementNonidentifiability.SourceManifest.v1",
+  "paper_id": "ORION-07",
+  "successor_id": "ORION07.AGREEMENT_NONIDENTIFIABILITY.v1",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+  "candidate_source": {
+    "pull_request": 1617,
+    "document": "papers/publication_closure/wave1/WAVE1_SUCCESSOR_THEORY_CANDIDATES_2026-08-28.md",
+    "section": "Priority A - ORION-07 Agreement non-identifiability",
+    "note": "The candidate note states the mean-accuracy interval. This packet proves that statement, adds the exact attainable region for the accuracy pair (Theorem 3), the perfect-disagreement corollary (2.2) and the individual-accuracy corollary (3.2), and supplies an independent checker."
+  },
+  "repository_base": {
+    "branch_base": "origin/main",
+    "commit": "92835b8f9",
+    "note": "Commit is the merge base of this lane branch. Bound artifacts are read-only inputs."
+  },
+  "bound_artifacts": [
+    {
+      "path": "papers/orion-07-dual-instrument/instances/Q3-R1-QG19/PREOUTCOME_AGREEMENT.json",
+      "sha256": "09d0402fbca5e028add00af37e7f38c0a155a276ca6e3a8c9ed627b9b9829698",
+      "role": "pre-outcome instrument relation for unit Q3-R1",
+      "mutated_by_this_packet": false
+    },
+    {
+      "path": "papers/orion-07-dual-instrument/instances/Q3-R1-QG19/FINAL_SCORE.json",
+      "sha256": "7529c0f46c43cf166ade9eb33cf7cb5e6c8043edf52d8b7ec142d321b0e94644",
+      "role": "deferred-map scored outcome for unit Q3-R1; both lanes responsibility_alignment=true",
+      "mutated_by_this_packet": false
+    },
+    {
+      "path": "papers/orion-07-dual-instrument/instances/Q3-R2-QG20/PREOUTCOME_AGREEMENT.json",
+      "sha256": "44466e427e2a40975ff6bcb9193fb5c37df68bb31575d29fa40371caf92c2bac",
+      "role": "pre-outcome instrument relation for unit Q3-R2; aggregate_accuracy_computed=false",
+      "mutated_by_this_packet": false
+    },
+    {
+      "path": "papers/orion-07-dual-instrument/instances/Q3-R2-QG20/FINAL_SCORE.json",
+      "sha256": "475a6b0f0843cb5a89c2095be4e51969b74d12a02c3211c0252aa4b2a0902604",
+      "role": "deferred-map scored outcome for unit Q3-R2; both lanes responsibility_alignment=false - the agreement-without-correctness witness",
+      "mutated_by_this_packet": false
+    },
+    {
+      "path": "papers/orion-07-dual-instrument/CLAIM_LEDGER_PROSPECTIVE_CASE_SERIES_2026-08-23.md",
+      "sha256": "36cf899d5aa67c8fe371a14d22195c02dd1ee885c0e9ad7bf0ff1f206f1f88a8",
+      "role": "source of n_valid=3 and of the V0 AGREE + DEFERRED_ALIGNED disposition",
+      "mutated_by_this_packet": false
+    },
+    {
+      "path": "papers/orion-07-dual-instrument/MANUSCRIPT_V3.md",
+      "sha256": "ee0427ef390328bf78ae41c163ba83640c85b5aa80ebc14365072e7d45b08869",
+      "role": "carries the bounded claim this theorem formalizes; NOT edited by this packet",
+      "mutated_by_this_packet": false
+    }
+  ],
+  "derived_case_series_counts": {
+    "axis": "responsibility alignment against the frozen deferred map",
+    "n_valid": 3,
+    "units": [
+      {"unit": "V0", "relation": "AGREE", "x_aligned": true, "y_aligned": true},
+      {"unit": "Q3-R1 / QG-19", "relation": "AGREE", "x_aligned": true, "y_aligned": true},
+      {"unit": "Q3-R2 / QG-20", "relation": "AGREE", "x_aligned": false, "y_aligned": false}
+    ],
+    "a_hat": "1",
+    "c_hat": "2/3",
+    "pX_hat": "2/3",
+    "pY_hat": "2/3",
+    "q_hat": "2/3",
+    "theorem_1_residual": "0",
+    "interpretation": "Corollary 2.1 applies: observed agreement 3/3 constrains mean accuracy to [0,1]. The value 2/3 is carried entirely by the deferred outcomes.",
+    "authority": "descriptive re-reading of already-frozen scored artifacts; no rescoring, no new unit, no reliability claim"
+  },
+  "excluded_paths": {
+    "papers/orion-07-dual-instrument/submission_tmlr/": "byte-bound under papers/publication_closure/PACKAGE_ADOPTION_V2.json (issue #1601); not read, not written, not referenced as a dependency by this packet"
+  },
+  "frozen_paper_bytes_modified": "NONE"
+}
