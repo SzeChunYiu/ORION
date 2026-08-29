@@ -1,0 +1,32 @@
+{
+  "checker": "orion04_authorization_schema_audit_v1",
+  "gate": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/submission_gate.py",
+  "record": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/AWAITING_NEW_ONE_SHOT_AUTHORIZATION.json",
+  "guards_present": {
+    "exact_field_set": true,
+    "consumed_key_refusal": true,
+    "schema_pin": true,
+    "one_shot_status": true,
+    "subject_binding": true,
+    "key_derivation": true,
+    "malformed_key": true,
+    "scope_pin": true
+  },
+  "guards_absent": [],
+  "replay_lists": {
+    "gate_consumed_keys": 3,
+    "record_forbidden_keys": 3,
+    "only_in_record": [],
+    "only_in_gate": [],
+    "agree": true
+  },
+  "record_state": {
+    "live_authorization_file_present": false,
+    "execution_performed": false,
+    "d4_rounds_consumed": 0,
+    "terminal": "AWAITING_NEW_ONE_SHOT_AUTHORIZATION"
+  },
+  "claim_scope": "Audits whether the one-shot authorization is machine-verifiable and whether the gate's replay list matches the published record. Does not authorize anything, does not evaluate the D4 claim, and grants no authority.",
+  "grants_authority": "NONE",
+  "status": "AUDIT_PASS"
+}
