@@ -4,25 +4,28 @@
 
 **Workflow:** `SzeChunYiu/academic-paper-skills` / `academic-paper-pipeline` v1.6.0: evidence freeze → atomic claims → target resolution → writing/figures/statistics → independent review → editor synthesis → minimum-sufficient revision → surface QA.
 
+**First-wave author defaults resolved 2026-08-29:** sole author `SzeChunYiu`; no institutional affiliation supplied; no manuscript corresponding-author designation; no specific funding; no competing interests; no ORCID supplied; public arXiv-first release and subsequent journal submission approved; no patent/IP timing conflict. Use **arXiv.org perpetual, non-exclusive license 1.0** for all seven first-wave deposits. Do not infer a contact email from repository/account metadata. Exact venue-specific AI declarations are pinned in `ARXIV_AUTHOR_INPUT_GATE_2026-08-29.md`.
+
 ## A. No new data: finish and release first
 
 These seven have a complete bounded scientific case. Remaining work is manuscript/package/venue production, not new scientific outcome collection.
 
 | Paper | Bounded journal route | arXiv route | Remaining before release |
 |---|---|---|---|
-| ORION-06 | **Artificial Intelligence (AIJ)**; fallback **TMLR** if AIJ breadth triage is unfavorable | `cs.AI` (cross-list `quant-ph` only if the final manuscript materially centers the quantum case) | Integrate claim-preserving recovery theorem; final claim↔receipt map; submission-date literature refresh; final compile/archive; remove legacy/internal identifiers. |
-| ORION-07 | **TMLR** | `cs.AI` / `cs.LG` as appropriate to final abstract | Final bounded three-case manuscript; foreground agreement-with-wrong-diagnosis; no reliability/generalization statistic; anonymity/render package. |
-| ORION-08 | **TMLR** | `cs.AI` / `cs.LG` | Integrate current nearest-parent positioning and 3/3 replay; rebuild byte-pinned PDF; final figures and anonymous package. |
-| ORION-10 | **Quantum** | **`quant-ph`** | Integrate all-cardinality explanation lower-bound theorem and selected-sample `CANNOT_CHECK`; use Quantum-facing contribution/assumption summary; add author-contribution/AI-use disclosure required by Quantum; final reproducibility/DOI link pass. |
-| ORION-12 | **Information Processing & Management** | `cs.IR` | Rebuild superseded package; keep failed recall/cost superiority gate load-bearing; align comparator terminal/action interfaces; final Elsevier declarations and references. |
-| ORION-14 | **TMLR** | `cs.AI` / `cs.LG` | Integrate cluster-respecting uncertainty; preserve H3 null and absent reduct as `CANNOT_CHECK`; rebuild TMLR PDF and claim-to-PDF audit. |
-| ORION-16 | **Artificial Intelligence (AIJ)** | `cs.AI` | Record one immutable green CI head; harden unresolved-pin fail-closed text; distinguish dependency over-approximation from semantic dependency; final AIJ package. |
+| ORION-06 | **Artificial Intelligence (AIJ)**; fallback **TMLR** if AIJ breadth triage is unfavorable | `cs.AI` (cross-list `quant-ph` only if the final manuscript materially centers the quantum case) | Final claim↔receipt/package audit; submission-date literature refresh; final compile/archive; remove legacy/internal identifiers. Author/funding/COI/AI-declaration defaults are resolved. |
+| ORION-07 | **TMLR** | `cs.AI` by default; `cs.LG` only if final framing materially shifts to ML/agent evaluation | Bounded three-case science is integrated; finalize anonymous TMLR/render package and review-surface QA. Author/funding/COI defaults are resolved outside the anonymous PDF. |
+| ORION-08 | **TMLR** | `cs.AI` by default; optional `cs.LG` cross-list if justified | Synchronize the actual routed Q4 Markdown publication master with the current nearest-parent/replay positioning; then rebuild and audit the anonymous package. No new experiment is required. |
+| ORION-10 | **Quantum** | **`quant-ph`** | The theorem and selected-sample `CANNOT_CHECK` are integrated; finalize Quantum-facing contribution/assumption summary, use the pinned sole-author/AI contribution statement, and run final reproducibility/arXiv-reference QA. |
+| ORION-12 | **Information Processing & Management** | `cs.IR` | Rebuild superseded package; keep failed recall/cost superiority gate load-bearing; align comparator terminal/action interfaces; insert the pinned Elsevier declarations and refresh references. |
+| ORION-14 | **TMLR** | `cs.AI` by default; optional `cs.LG` cross-list if justified | Cluster-respecting uncertainty is integrated; preserve H3 null and absent reduct as `CANNOT_CHECK`; rebuild/anonymity audit the TMLR PDF. |
+| ORION-16 | **Artificial Intelligence (AIJ)** | `cs.AI` | Record one immutable green CI head; harden unresolved-pin fail-closed text; distinguish dependency over-approximation from semantic dependency; finalize the AIJ package with pinned declarations. |
 
 ### Venue-policy notes
 
-- TMLR allows arXiv/preprint posting at any time, while the TMLR submission itself remains anonymous.
-- Quantum submission is arXiv-first by design: the journal asks for the arXiv reference and requires the work to be posted/cross-listed in `quant-ph`.
-- Elsevier permits author preprints to be shared at any time; final AIJ/IP&M mechanics must still be checked against each journal's current Guide for Authors at submission.
+- **arXiv:** the first-wave deposit license is pinned to the arXiv.org perpetual, non-exclusive license 1.0. The choice is conservative because the arXiv license is irrevocable for a deposited version and grants arXiv limited distribution rights while leaving copyright with the author.
+- **TMLR:** arXiv/preprint posting is allowed at any time, while the TMLR review submission itself remains anonymous. TMLR submissions/publications are licensed CC BY 4.0 under TMLR’s own venue terms; the arXiv version can remain under its separately chosen arXiv license.
+- **Quantum:** submission is arXiv-first by design; use the `quant-ph` arXiv record and include AI-tool scope in the author-contribution statement.
+- **Elsevier AIJ/IP&M:** author preprints are compatible with the route. The final manuscript must include the venue-required generative-AI declaration when substantive AI assistance was used; AI use in the research workflow is described in Methods where applicable.
 
 ## B. No new data for a bounded paper, but existing-evidence/manuscript integration still required
 
