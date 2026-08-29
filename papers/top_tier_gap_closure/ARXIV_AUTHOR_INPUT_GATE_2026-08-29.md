@@ -1,36 +1,75 @@
 # ArXiv-first author-input gate — release-first ORION papers
 
-Applies first to **ORION-06, 07, 08, 10, 12, 14, 16**. These facts are human-controlled filing metadata, not scientific evidence, and automation must not infer them from Git history or account identity.
+Applies first to **ORION-06, 07, 08, 10, 12, 14, 16**. These facts are human-controlled filing metadata, not scientific evidence. This record resolves the fields supplied by the author on 2026-08-29 and leaves only fields that were not supplied as explicit omissions rather than inferred values.
 
-## Supply once where shared
+## Resolved shared filing metadata
 
-- final author list and order;
-- affiliations and correspondence details;
-- ORCIDs if desired;
-- funding statement (or explicit author-approved no-funding statement, if true);
-- competing-interest statement;
-- author-approved description of generative-AI assistance;
-- confirmation that all authors approve public arXiv release and subsequent journal submission;
-- any patent/IP timing instruction that should delay public disclosure.
+- **Author list/order:** `SzeChunYiu` (sole author).
+- **Institutional affiliation:** none supplied; omit affiliation rather than inventing an institution or “Independent Researcher”.
+- **Corresponding author:** none designated by the author. Do not add a corresponding-author mark to the manuscript. If an external submission portal requires one, use the sole-author/submitter role only as a portal requirement and do not infer a separate manuscript designation.
+- **Correspondence email:** not supplied. Never infer an email from GitHub, commit metadata, or account identity. A portal/account email may still be required externally.
+- **ORCID:** not supplied; omit.
+- **Funding:** `The author received no specific funding for this work.`
+- **Competing interests / conflicts of interest:** `The author declares no competing interests.`
+- **Public-release approval:** approved for the requested arXiv-first publication workflow and subsequent journal submission.
+- **Patent/IP timing:** author confirms that public posting does not conflict with patent or other IP timing.
+- **arXiv license:** **arXiv.org perpetual, non-exclusive license 1.0** for all seven first-wave deposits. This is intentionally the conservative repository-only license: copyright remains with the author and the license grants arXiv limited distribution rights. Do not switch to CC0 or a Creative Commons license without a new author instruction because arXiv licenses are irrevocable for a deposited version.
 
-## ArXiv choices per paper
+## AI-assistance disclosure contract
 
-Confirm the primary/cross-list category and license at upload time. Recommended starting categories, subject to the final manuscript:
+The scientific rule is the same for every venue: AI output is not evidence, novelty authority, authorship, or external verification. Claims must remain grounded in bound code/data/results/proofs and checked citations. The sole human author is responsible for the submitted work.
 
-- ORION-06: `cs.AI`; optional `quant-ph` cross-list only if the quantum case remains scientifically central.
-- ORION-07: `cs.AI` (or `cs.LG` if the final framing is primarily evaluation of learning/research agents).
-- ORION-08: `cs.AI` / `cs.LG` according to final framing.
-- ORION-10: `quant-ph` (also required by the planned Quantum journal route).
-- ORION-12: `cs.IR`.
-- ORION-14: `cs.AI` / `cs.LG` according to final framing.
-- ORION-16: `cs.AI`.
+### Elsevier route — AIJ / Information Processing & Management
 
-Do not invent an arXiv identifier before upload succeeds. After arXiv deposition, insert the exact identifier/version into the journal-facing availability/front-matter where the target requests it.
+Use a separate section immediately before the references, titled **Declaration of generative AI and AI-assisted technologies in the manuscript preparation process**:
 
-## Journal-only filing metadata
+> During the preparation of this work, the author used OpenAI ChatGPT and related language-model tooling to support literature triage, code and manuscript auditing, organization, and language refinement. The author reviewed and edited all AI-assisted output, independently checked the scientific claims and cited sources against the underlying evidence, and takes full responsibility for the content of the article.
 
-- TMLR (07/08/14): maintain anonymous review PDF even if the arXiv version is named; complete OpenReview author profiles/COI/funding metadata separately.
-- Quantum (10): final author-contribution statement and author-approved generative-AI disclosure; provide the arXiv `quant-ph` reference.
-- Elsevier AIJ/IP&M (06/12/16): final author metadata, declarations, funding/COI, data/code availability and originality/concurrent-submission confirmation under the current journal Guide for Authors.
+Where AI-assisted tooling materially participated in the research workflow rather than only manuscript preparation, add the following bounded Methods disclosure:
 
-When the source/PDF checks are green and the fields above are supplied, the only remaining action is the external upload/submission itself.
+> AI-assisted tooling was used to execute and audit parts of the repository-based research workflow under frozen protocols. Scientific claims were accepted only when supported by the bound code, data, results, or proofs; AI-generated text or judgments were not treated as scientific evidence or independent verification.
+
+### Quantum route — ORION-10
+
+Quantum requires the scope of AI use inside the author-contribution statement. Use:
+
+> **Author contributions.** SzeChunYiu conceived and directed the study, curated the evidence, verified the analyses and claims, and wrote and revised the manuscript. OpenAI ChatGPT and related language-model tooling were used for literature triage, code and manuscript auditing, organization, language refinement, and portions of code/text production under author review. The author checked the resulting claims, calculations, citations, and final manuscript and takes full responsibility for the work.
+
+Do not list any AI system as an author.
+
+### TMLR route — ORION-07 / ORION-08 / ORION-14
+
+TMLR permits general-purpose LLM assistance but holds the human author fully responsible. The review PDF must remain anonymous even though a named arXiv preprint may exist. If an explicit disclosure is included in the anonymous review manuscript, use non-identifying wording:
+
+> **AI assistance disclosure.** General-purpose language-model tools, including OpenAI ChatGPT, were used for literature triage, code and manuscript auditing, organization, and language refinement. All scientific claims, citations, analyses, and final text were reviewed against the underlying evidence by the human author, who retains full responsibility. The language-model tools are not authors and are not treated as scientific authority.
+
+After acceptance, the named final version may replace “the human author” with `SzeChunYiu` if desired.
+
+## arXiv choices per paper
+
+Use the shared arXiv perpetual non-exclusive license above. Do not invent an arXiv identifier before upload succeeds.
+
+- **ORION-06:** primary `cs.AI`; optional `quant-ph` cross-list only if the final manuscript materially centers the quantum case.
+- **ORION-07:** `cs.AI` by default; use `cs.LG` only if the final abstract is primarily an ML/agent-evaluation paper.
+- **ORION-08:** `cs.AI` by default; optional `cs.LG` cross-list if the final framing materially targets learning/agent evaluation.
+- **ORION-10:** primary **`quant-ph`**.
+- **ORION-12:** primary **`cs.IR`**.
+- **ORION-14:** `cs.AI` by default; optional `cs.LG` cross-list if justified by the final framing.
+- **ORION-16:** primary `cs.AI`.
+
+After arXiv deposition, insert the exact identifier/version into the journal-facing availability/front matter only where the target requests it.
+
+## Journal-specific filing notes
+
+- **TMLR (07/08/14):** keep the review PDF and supplement anonymous. Author identity, funding, competing-interest information and OpenReview profile details are supplied to the submission system, not exposed in the review PDF. TMLR itself licenses submissions/publications CC BY 4.0; this does not require changing the separately deposited arXiv version away from the arXiv non-exclusive license.
+- **Quantum (10):** supply the `quant-ph` arXiv reference and the author-contribution/AI-use statement above. No corresponding-author mark is to be invented.
+- **Elsevier AIJ/IP&M (06/12/16):** use the funding, competing-interest and generative-AI declarations above. If the submission system mandates a corresponding author or contact email, that is an external portal requirement still needing the author’s actual account/contact value; do not infer it.
+
+## Remaining human-only omissions
+
+The following are intentionally unresolved because the author did not supply them:
+
+1. a correspondence/contact email if a journal portal requires one;
+2. an ORCID, if the author later chooses to provide one.
+
+Neither omission is a scientific-data blocker or a reason to delay the arXiv deposits if arXiv accepts the account metadata already held by the submitting author.
