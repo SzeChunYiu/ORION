@@ -140,6 +140,38 @@ def main() -> int:
     if survivor_broken:
         mism["survivor_constancy_violated"] = survivor_broken[:3]
 
+    # The headline terminal and the two top-level invariant lists were previously
+    # echoed into the report but never compared, so a falsified terminal or a doctored
+    # list passed the independent check. They are the scientific claim, so they are
+    # gated here.
+    derived_refuted = sorted(n for n, c in refuted.items() if c)
+    derived_surviving = sorted(n for n, c in refuted.items() if not c)
+    if sorted(rec.get("refuted_invariants") or []) != derived_refuted:
+        mism["refuted_invariants"] = {
+            "recorded": sorted(rec.get("refuted_invariants") or []),
+            "recomputed": derived_refuted,
+        }
+    # surviving_invariants may legitimately name invariants outside the refutation
+    # panel, so only the panel members are compared - a recorded survivor that this
+    # checker recomputed as refuted is the failure worth catching.
+    recorded_surviving = set(rec.get("surviving_invariants") or [])
+    wrongly_surviving = sorted(recorded_surviving.intersection(derived_refuted))
+    if wrongly_surviving:
+        mism["surviving_invariants_recomputed_as_refuted"] = wrongly_surviving
+
+    # T1 is certified only when every panel invariant that is decision-determining was
+    # refuted and no surviving invariant broke class-constancy.
+    derived_terminal = (
+        "T1_IMPOSSIBILITY_CERTIFIED"
+        if derived_refuted and not survivor_broken
+        else "T0_NOT_CERTIFIED"
+    )
+    if rec.get("terminal") != derived_terminal:
+        mism["terminal"] = {
+            "recorded": rec.get("terminal"),
+            "recomputed": derived_terminal,
+        }
+
     benign_zero = benign_boundaries == {0} if benign_boundaries else True
     if enum.get("benign_ties_all_at_zero_boundary") != benign_zero:
         mism["benign_ties_all_at_zero_boundary"] = {
