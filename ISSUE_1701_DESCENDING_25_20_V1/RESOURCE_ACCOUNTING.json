@@ -1,0 +1,29 @@
+{
+  "orion21_future_run": {
+    "budget_state": "NOT_SPENT",
+    "required_environment": "LUNARC compute node",
+    "retry_with_relaxed_semantics": false
+  },
+  "orion25_future_run": {
+    "budget_state": "NOT_SPENT",
+    "cost_metrics": [
+      "wall_seconds",
+      "peak_rss_bytes",
+      "artifact_bytes",
+      "operator_count"
+    ],
+    "minimum_systems": 2,
+    "registered_systems": 3,
+    "required_replays_per_case": 1,
+    "unknown_or_unavailable_cost_handling": "CANNOT_CHECK"
+  },
+  "schema": "ORION.Issue1701.DescendingClosure.ResourceAccounting.v1",
+  "this_packet": {
+    "checker_language": "Python standard library",
+    "external_provider_calls": 0,
+    "manuscripts_changed": 0,
+    "new_top_level_packet_directories": 1,
+    "production_runtime_files_changed": 0,
+    "scientific_runs": 0
+  }
+}
