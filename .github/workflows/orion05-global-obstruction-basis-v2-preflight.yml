@@ -1,0 +1,30 @@
+name: ORION-05 global obstruction basis v2 preflight
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-05-tare-expressivity/experiments/global-obstruction-basis-v2/**'
+      - '.github/workflows/orion05-global-obstruction-basis-v2-preflight.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-05-tare-expressivity/experiments/global-obstruction-basis-v2/**'
+      - '.github/workflows/orion05-global-obstruction-basis-v2-preflight.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  solver-free-preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify frozen preflight digests
+        run: sha256sum -c papers/orion-05-tare-expressivity/experiments/global-obstruction-basis-v2/SHA256SUMS
+      - name: Compile Stage-1 runner
+        run: python -m py_compile papers/orion-05-tare-expressivity/experiments/global-obstruction-basis-v2/run_stage1_control_discovery_v2.py
+      - name: Run solver-free domain and resume smoke checks
+        run: python papers/orion-05-tare-expressivity/experiments/global-obstruction-basis-v2/run_stage1_control_discovery_v2.py --smoke

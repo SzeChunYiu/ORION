@@ -1,0 +1,32 @@
+name: ORION-03 Round-2 current-main revalidation v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-03-typed-merge-falsification/evidence/current-main-revalidation-v1/**'
+      - 'papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/**'
+      - 'papers/orion-03-typed-merge-falsification/PUBLICATION_FREEZE_ADDENDUM_V1.md'
+      - 'papers/orion-03-typed-merge-falsification/MANUSCRIPT_V2.md'
+      - '.github/workflows/orion03-round2-current-main-revalidation-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-03-typed-merge-falsification/evidence/current-main-revalidation-v1/**'
+      - 'papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/**'
+      - 'papers/orion-03-typed-merge-falsification/PUBLICATION_FREEZE_ADDENDUM_V1.md'
+      - 'papers/orion-03-typed-merge-falsification/MANUSCRIPT_V2.md'
+      - '.github/workflows/orion03-round2-current-main-revalidation-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  committed-evidence-revalidation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Revalidate current bound Round-2 evidence
+        run: python papers/orion-03-typed-merge-falsification/evidence/current-main-revalidation-v1/check_orion03_round2_binding_v1.py

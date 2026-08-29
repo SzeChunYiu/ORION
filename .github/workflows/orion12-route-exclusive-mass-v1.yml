@@ -1,0 +1,34 @@
+name: ORION-12 route-exclusive mass frontier v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-12-open-world-scientific-discovery/theory/route-exclusive-mass-frontier-v1/**'
+      - 'papers/orion-12-open-world-scientific-discovery/external/P2_TREC_COVID_ARMS_V1.json'
+      - '.github/workflows/orion12-route-exclusive-mass-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-12-open-world-scientific-discovery/theory/route-exclusive-mass-frontier-v1/**'
+      - 'papers/orion-12-open-world-scientific-discovery/external/P2_TREC_COVID_ARMS_V1.json'
+      - '.github/workflows/orion12-route-exclusive-mass-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run finite-set theorem regression
+        run: python papers/orion-12-open-world-scientific-discovery/theory/route-exclusive-mass-frontier-v1/check_route_exclusive_mass_frontier_v1.py
+      - name: Emit theorem packet digests
+        run: |
+          sha256sum \
+            papers/orion-12-open-world-scientific-discovery/theory/route-exclusive-mass-frontier-v1/THEORY.md \
+            papers/orion-12-open-world-scientific-discovery/theory/route-exclusive-mass-frontier-v1/CLAIM_DISPOSITION.md \
+            papers/orion-12-open-world-scientific-discovery/theory/route-exclusive-mass-frontier-v1/check_route_exclusive_mass_frontier_v1.py

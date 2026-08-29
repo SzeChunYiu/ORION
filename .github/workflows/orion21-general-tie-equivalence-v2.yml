@@ -1,0 +1,28 @@
+name: ORION-21 general tie-equivalence theorem v2
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-21-state-as-computation/theory/tie-equivalence-general-v2/**'
+      - '.github/workflows/orion21-general-tie-equivalence-v2.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-21-state-as-computation/theory/tie-equivalence-general-v2/**'
+      - '.github/workflows/orion21-general-tie-equivalence-v2.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify theorem packet digests
+        run: sha256sum -c papers/orion-21-state-as-computation/theory/tie-equivalence-general-v2/SHA256SUMS
+      - name: Run independent theorem regression
+        run: python papers/orion-21-state-as-computation/theory/tie-equivalence-general-v2/check_general_tie_equivalence_theorem_v2.py
