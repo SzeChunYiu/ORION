@@ -29,7 +29,8 @@
       "discharges": "gold/OAEI_TRACK_LICENSE_MANIFEST_V1.json required a SHA-256 computed locally at download time and recorded before any scoring run, because the Zenodo record publishes MD5 only. That SHA-256 is recorded here. The manifest's download_status for this source was NOT_DOWNLOADED_IN_THIS_MANIFEST; it is now downloaded and verified.",
       "structure_observed": {
         "ontology_files": 60,
-        "reference_alignment_files_present_but_unopened": 52,
+        "reference_alignment_files_present_but_unopened": 56,
+        "reference_alignment_files_note": "56 = 52 refalign.rdf plus 4 refalign-utf8.rdf. None was opened.",
         "seed_ontology_inspected": "benchmarks/104/onto.rdf",
         "seed_classes": 33,
         "seed_object_properties": 24,

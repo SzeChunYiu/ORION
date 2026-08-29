@@ -35,7 +35,7 @@ That SHA-256 discharges a standing requirement: the manifest noted the Zenodo
 record publishes MD5 only, and required a locally computed SHA-256 recorded
 before any scoring run.
 
-Structure observed: 60 ontology files, 52 reference alignments **left unopened**,
+Structure observed: 60 ontology files, 56 reference alignments **left unopened**,
 seed ontology `benchmarks/104/onto.rdf` with 33 classes, 24 object properties and
 39 datatype properties. This confirms the manifest's recorded limitation — the
 archive is systematic alteration of **one** seed ontology in one domain, so it
