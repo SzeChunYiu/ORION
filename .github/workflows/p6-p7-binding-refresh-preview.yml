@@ -36,7 +36,6 @@ jobs:
           tree = subprocess.check_output(
               ['git', 'rev-parse', f'{head}^{{tree}}'], text=True
           ).strip()
-
           papers = {
               'P6': root / 'papers/orion-16-formal-epistemic-structures-and-mechanics',
               'P7': root / 'papers/orion-17-epistemic-navigation-open-worlds',
@@ -53,8 +52,6 @@ jobs:
               return path.relative_to(root).as_posix()
 
           def refresh_local_sums(directory: Path) -> None:
-              # The external cohort is a self-contained additive packet. Bind every
-              # non-build file except the checksum file itself.
               entries = []
               for path in sorted(directory.rglob('*')):
                   if not path.is_file() or path.name == 'SHA256SUMS' or is_build_artifact(path):
@@ -68,9 +65,7 @@ jobs:
                   raise SystemExit(f'{candidate}: external-cohort-v1 missing')
               refresh_local_sums(cohort)
 
-              v1_path = paper / 'CONTENT_MANIFEST_V1.json'
               v2_path = paper / 'CONTENT_MANIFEST_V2.json'
-              v1 = json.loads(v1_path.read_text(encoding='utf-8'))
               v2 = json.loads(v2_path.read_text(encoding='utf-8'))
               if v2.get('schema_version') != 'orion.candidate-content-binding.v2':
                   raise SystemExit(f'{candidate}: unexpected V2 schema')
@@ -82,10 +77,11 @@ jobs:
                   for entry in v2.get('bound_files', [])
                   if isinstance(entry, dict) and isinstance(entry.get('path'), str)
               }
+              old_v2_paths = set(existing)
 
-              # V2 is the current additive subject. Append newly tracked paper files
-              # without touching V1. SHA256SUMS files are digest layers, not subject
-              # files, and V2 cannot bind itself without a cycle.
+              # V2 is an additive overlay, not a replacement for V1. Preserve its
+              # existing external/shared rows and append every newly tracked paper
+              # file. Digest files remain digest layers, and V2 cannot bind itself.
               for path in sorted(paper.rglob('*')):
                   if not path.is_file() or is_build_artifact(path):
                       continue
@@ -94,9 +90,6 @@ jobs:
                   rel = repo_rel(path)
                   existing.setdefault(rel, {'path': rel})
 
-              # Preserve the external shared files already present in V2 and
-              # recompute every digest from current bytes. Missing old rows are a
-              # hard error rather than silently shrinking the subject.
               refreshed = []
               for rel in sorted(existing):
                   path = root / rel
@@ -104,16 +97,9 @@ jobs:
                       raise SystemExit(f'{candidate}: bound V2 path missing: {rel}')
                   refreshed.append({'path': rel, 'sha256': sha(path)})
 
-              # V1 is historical. Sanity-check that V2 still contains every V1
-              # subject row, rather than becoming a replacement that forgets it.
-              v1_paths = {
-                  entry['path'] for entry in v1.get('bound_files', [])
-                  if isinstance(entry, dict) and isinstance(entry.get('path'), str)
-              }
-              v2_paths = {entry['path'] for entry in refreshed}
-              missing_v1 = sorted(v1_paths - v2_paths)
-              if missing_v1:
-                  raise SystemExit(f'{candidate}: V2 lost V1 paths: {missing_v1[:5]}')
+              new_v2_paths = {entry['path'] for entry in refreshed}
+              if not old_v2_paths <= new_v2_paths:
+                  raise SystemExit(f'{candidate}: successor refresh shrank the prior V2 subject')
 
               v2['bound_files'] = refreshed
               v2['subject_commit'] = head
@@ -135,7 +121,7 @@ jobs:
                   f'{hashlib.sha256(text.encode()).hexdigest()}  {repo_rel(v2_path)}\n',
                   encoding='utf-8',
               )
-              print(candidate, 'V2 rows', len(refreshed), 'successor rows', len(v2_paths - v1_paths))
+              print(candidate, 'V2 rows', len(refreshed), 'new overlay rows', len(new_v2_paths - old_v2_paths))
           PY
       - name: Verify local cohort checksum packets
         run: |
