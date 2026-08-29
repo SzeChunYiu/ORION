@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'papers/orion-16-formal-epistemic-structures-and-mechanics/**'
+      - 'papers/top_tier_gap_closure/release_builders/orion16/**'
       - 'research/claim_expansion/p6/**'
       - '.github/workflows/orion16-aij-release.yml'
 
@@ -22,101 +23,73 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Re-run normative V2.1 theorem checks
+      - name: Re-run normative theorem checks
         shell: bash
         run: |
           set -euo pipefail
           PYTHONPATH=src python papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2_1.py
           PYTHONPATH=src python papers/orion-16-formal-epistemic-structures-and-mechanics/formal/check_theory_closure_v2.py
           PYTHONPATH=src python papers/orion-16-formal-epistemic-structures-and-mechanics/formal/refutation_audit.py
-
-      - name: Verify V3 frozen finite-model and independent-audit receipts
+      - name: Verify V3 frozen receipts
         shell: bash
         run: |
           set -euo pipefail
           python - <<'PY'
           import json
           from pathlib import Path
-          root = Path('research/claim_expansion/p6')
-          primary = json.loads((root/'P6_X_FINITE_MODEL_RESULT_V1.json').read_text())
-          independent = json.loads((root/'P6_X_INDEPENDENT_VERIFICATION_V1.json').read_text())
-          blob = json.dumps(primary, sort_keys=True)
-          iblob = json.dumps(independent, sort_keys=True)
-          for token in ('1536', '96'):
-              assert token in blob, (token, primary)
-              assert token in iblob, (token, independent)
-          assert '0' in blob and '0' in iblob
+          r=Path('research/claim_expansion/p6')
+          p=json.dumps(json.loads((r/'P6_X_FINITE_MODEL_RESULT_V1.json').read_text()),sort_keys=True)
+          i=json.dumps(json.loads((r/'P6_X_INDEPENDENT_VERIFICATION_V1.json').read_text()),sort_keys=True)
+          for token in ('1536','96'):
+              assert token in p and token in i
           print('ORION16_V3_RECEIPTS=PASS')
           PY
-
-      - name: Generate current manuscript
-        run: python papers/orion-16-formal-epistemic-structures-and-mechanics/submission/build_current_aij.py
-
+      - name: Generate current submission manuscript
+        run: python papers/top_tier_gap_closure/release_builders/orion16/build_current_aij.py
       - name: Install TeX and PDF tools
         shell: bash
         run: |
           set -euo pipefail
           sudo apt-get update -qq
-          sudo apt-get install -y -qq --no-install-recommends \
-            latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended \
-            lmodern poppler-utils zip
-
-      - name: Compile current AIJ/arXiv manuscript
+          sudo apt-get install -y -qq --no-install-recommends latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended lmodern poppler-utils zip
+      - name: Compile current manuscript
         shell: bash
-        working-directory: papers/orion-16-formal-epistemic-structures-and-mechanics/submission
+        working-directory: build/orion16_release
         run: |
           set -euo pipefail
           latexmk -pdf -interaction=nonstopmode -halt-on-error AIJ_MANUSCRIPT_CURRENT.tex
           test -s AIJ_MANUSCRIPT_CURRENT.pdf
-          if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence|Overfull \\hbox' AIJ_MANUSCRIPT_CURRENT.log; then
-            echo 'ORION16_LATEX_AUDIT=FAIL'
-            exit 1
-          fi
-
+          if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence|Overfull \\hbox' AIJ_MANUSCRIPT_CURRENT.log; then exit 1; fi
       - name: Audit release surface
         shell: bash
         run: |
           set -euo pipefail
-          D=papers/orion-16-formal-epistemic-structures-and-mechanics/submission
+          D=build/orion16_release
+          C=papers/top_tier_gap_closure/release_builders/orion16/COVER_LETTER.md
           pdftotext "$D/AIJ_MANUSCRIPT_CURRENT.pdf" "$RUNNER_TEMP/orion16.txt"
           pdfinfo "$D/AIJ_MANUSCRIPT_CURRENT.pdf" > "$RUNNER_TEMP/orion16-pdfinfo.txt"
-          grep -Fq 'SzeChunYiu' "$RUNNER_TEMP/orion16.txt"
-          grep -Fq 'Stockholm University' "$RUNNER_TEMP/orion16.txt"
-          grep -Fq 'sze-chun.yiu@fysik.su.se' "$RUNNER_TEMP/orion16.txt"
-          grep -Fq '1,536 states' "$RUNNER_TEMP/orion16.txt"
-          grep -Fq '96 typed-erasure separation witnesses' "$RUNNER_TEMP/orion16.txt"
-          grep -Fq 'ideal donor product' "$RUNNER_TEMP/orion16.txt"
-          grep -Fq 'The author received no specific funding for this work.' "$RUNNER_TEMP/orion16.txt"
-          grep -Fq 'The author declares no competing interests.' "$RUNNER_TEMP/orion16.txt"
-          grep -Fq 'Declaration of generative AI' "$RUNNER_TEMP/orion16.txt"
-          if grep -Eiq 'AUTHOR INPUT REQUIRED|CORRESPONDING AUTHOR INPUT REQUIRED|supplied through the journal submission interface after author confirmation' "$RUNNER_TEMP/orion16.txt" "$D/AIJ_MANUSCRIPT_CURRENT.tex" "$D/COVER_LETTER.md"; then
-            echo 'ORION16_RELEASE_PLACEHOLDER=FAIL'
-            exit 1
-          fi
+          for token in 'SzeChunYiu' 'Stockholm University' 'sze-chun.yiu@fysik.su.se' '1,536 states' '96 typed-erasure separation witnesses' 'ideal donor product' 'The author received no specific funding for this work.' 'The author declares no competing interests.' 'Declaration of generative AI'; do grep -Fq "$token" "$RUNNER_TEMP/orion16.txt"; done
+          if grep -Eiq 'AUTHOR INPUT REQUIRED|CORRESPONDING AUTHOR INPUT REQUIRED|supplied through the journal submission interface after author confirmation' "$RUNNER_TEMP/orion16.txt" "$D/AIJ_MANUSCRIPT_CURRENT.tex" "$C"; then exit 1; fi
           sha256sum "$D/AIJ_MANUSCRIPT_CURRENT.pdf" > "$RUNNER_TEMP/orion16.pdf.sha256"
           printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' > "$RUNNER_TEMP/ARXIV_LICENSE.txt"
           printf '%s\n' 'cs.AI' > "$RUNNER_TEMP/ARXIV_PRIMARY_CATEGORY.txt"
-
       - name: Build source archive
         shell: bash
         run: |
           set -euo pipefail
-          D=papers/orion-16-formal-epistemic-structures-and-mechanics/submission
           mkdir -p "$RUNNER_TEMP/orion16-source"
-          cp "$D/AIJ_MANUSCRIPT_CURRENT.tex" "$RUNNER_TEMP/orion16-source/main.tex"
-          cp "$D/V3_SCIENCE_UPDATE.tex" "$RUNNER_TEMP/orion16-source/V3_SCIENCE_UPDATE.tex"
-          cp "$D/COVER_LETTER.md" "$RUNNER_TEMP/orion16-source/COVER_LETTER.md"
+          cp build/orion16_release/AIJ_MANUSCRIPT_CURRENT.tex "$RUNNER_TEMP/orion16-source/main.tex"
+          cp papers/top_tier_gap_closure/release_builders/orion16/V3_SCIENCE_UPDATE.tex "$RUNNER_TEMP/orion16-source/V3_SCIENCE_UPDATE.tex"
+          cp papers/top_tier_gap_closure/release_builders/orion16/COVER_LETTER.md "$RUNNER_TEMP/orion16-source/COVER_LETTER.md"
           (cd "$RUNNER_TEMP/orion16-source" && zip -qr "$RUNNER_TEMP/orion-16-source.zip" .)
           sha256sum "$RUNNER_TEMP/orion-16-source.zip" > "$RUNNER_TEMP/orion16-source.sha256"
-
       - uses: actions/upload-artifact@v4
         with:
           name: orion-16-aij-and-arxiv-package
           path: |
-            papers/orion-16-formal-epistemic-structures-and-mechanics/submission/AIJ_MANUSCRIPT_CURRENT.pdf
-            papers/orion-16-formal-epistemic-structures-and-mechanics/submission/AIJ_MANUSCRIPT_CURRENT.tex
-            papers/orion-16-formal-epistemic-structures-and-mechanics/submission/COVER_LETTER.md
+            build/orion16_release/AIJ_MANUSCRIPT_CURRENT.pdf
+            build/orion16_release/AIJ_MANUSCRIPT_CURRENT.tex
+            papers/top_tier_gap_closure/release_builders/orion16/COVER_LETTER.md
             ${{ runner.temp }}/orion-16-source.zip
             ${{ runner.temp }}/orion16.pdf.sha256
             ${{ runner.temp }}/orion16-source.sha256
