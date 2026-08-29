@@ -1,0 +1,62 @@
+{
+  "schema": "ORION.ORION16.ExternalSourcingCustody.v1",
+  "identity": "ORION16.EXTERNAL_SOURCING_CUSTODY.v1",
+  "terminal": "SOURCING_INPUT_ONLY__DEFERRED_TO_ACTIVE_LANE_1695",
+  "grants_scientific_authority": false,
+  "defines_protocol": false,
+  "defines_arms_or_gates": false,
+  "outcomes_accessed": false,
+  "acquired_utc": "2026-08-29",
+  "acquired_on": "Mac (billy) - network fetch only; no build, no test execution, no CI",
+  "why_no_protocol": "Issue #1701 forbids creating a competing ORION-16 protocol while issue #1695 (campaign ORION16.REAL_SYSTEM_MINIMAL_REVALIDATION.v1) is active. #1695 is OPEN on branch science/o16-real-system-design-v1 (verified 2026-08-29 via gh pr list). This record therefore contributes custody/availability data to that lane and defines nothing else.",
+  "lane_reference": {
+    "issue": "https://github.com/SzeChunYiu/ORION/issues/1695",
+    "state_observed": "OPEN",
+    "branch": "science/o16-real-system-design-v1",
+    "candidates_doc": "papers/orion-16-formal-epistemic-structures-and-mechanics/revalidation/real-system-minimal-revalidation-v1/CANDIDATES.md",
+    "protocol_sketch": "papers/orion-16-formal-epistemic-structures-and-mechanics/revalidation/real-system-minimal-revalidation-v1/PROTOCOL_SKETCH.md",
+    "gap_this_record_fills": "CANDIDATES.md names candidate repositories but pins none of them: a search for 40-hex commit identifiers over that file returns zero matches. Without pinned commits the lane's S1/S3 graph extraction is not reproducible. This record pins each named repository at an observed HEAD."
+  },
+  "repository_pins": {
+    "method": "git ls-remote https://github.com/<slug> HEAD, 2026-08-29. No clone, no checkout, no build: zero bytes of repository content were fetched to this machine.",
+    "note": "These are observed HEADs at pin time, offered as reproducible anchors. They are not a selection: CANDIDATES.md chose the repositories, not this record.",
+    "C1_bazel": [
+      {"slug": "envoyproxy/envoy", "head_sha": "a02111b95305cd3b6ea08bcd90bf867744c0a268", "reachable": true},
+      {"slug": "abseil/abseil-cpp", "head_sha": "2c004366e983c5be8334ac1ea3d4420e8fbcbea7", "reachable": true},
+      {"slug": "grpc/grpc", "head_sha": "85b660f942194349dedabb5659256f40c84e671a", "reachable": true}
+    ],
+    "C3_cargo": [
+      {"slug": "paritytech/polkadot-sdk", "head_sha": "90c177d163860c7836bdd118306f0459de9e7f28", "reachable": true},
+      {"slug": "rust-lang/cargo", "head_sha": "e7167a4bac50fd878ce18530e901624d83be218e", "reachable": true},
+      {"slug": "servo/servo", "head_sha": "cb42ac01c8afcf84d918ee138bcf3f35d9e3209d", "reachable": true}
+    ],
+    "C4_defects4j": [
+      {"slug": "rjust/defects4j", "head_sha": "8c16da8230843cdc918eaf4ddb449637f02b83c6", "reachable": true},
+      {"slug": "TestingResearchIllinois/starts", "head_sha": "a01412c4aae5dd472101fd00cf7aad2fc584f4ed", "reachable": true}
+    ]
+  },
+  "C2_rtptorrent": {
+    "selection_status": "METADATA_VERIFIED__PAYLOAD_DELIBERATELY_NOT_DOWNLOADED_HERE",
+    "zenodo_record_id": 4046180,
+    "doi": "10.5281/zenodo.4046180",
+    "title": "RTPTorrent: An Open-source Dataset for Evaluating Regression Test Prioritization",
+    "record_created_utc": "2020-09-23T14:01:23.969854+00:00",
+    "license": "cc-by-4.0",
+    "license_evidence_url": "https://zenodo.org/api/records/4046180",
+    "license_evidence_field": "metadata.license.id",
+    "file": {
+      "key": "rtp-torrent-v11.zip",
+      "size_bytes": 5016963482,
+      "md5_published": "1f7fa822b0cf155bd007a94d1a24a336",
+      "sha256_published": null
+    },
+    "integrity_note": "The record publishes MD5 only. Whoever completes the download must compute a SHA-256 locally and record it before any arm output is read; MD5 is transport sanity, not tamper evidence. This mirrors the same rule the ORION-13 OAEI licence manifest applies to bench23.",
+    "why_not_downloaded_here": "Issue #1695 records this 5.0 GB payload as already downloading on billy-old with md5 verification. Downloading it again here would duplicate in-flight work, and this machine has a prior ENOSPC incident that halted a session. The published MD5 above is supplied precisely so the in-flight billy-old download can be verified against an authoritative source.",
+    "size_cross_check": "5016963482 bytes = 5.0 GB, consistent with the size stated in issue #1695."
+  },
+  "not_claimed": [
+    "No graph was extracted, no build was run, no test was executed, no arm was scored.",
+    "No judgement is offered on whether these repositories satisfy the T1/T2/T3 authoritativeness tiers defined in CANDIDATES.md; that adjudication belongs to lane #1695.",
+    "Reachability at pin time is not a claim that historical commits are buildable. CANDIDATES.md records historical-commit bit-rot as a kill risk, and that risk is untested here."
+  ]
+}
