@@ -66,8 +66,10 @@ jobs:
               --natbib \
               --template="build/quantum_preprint/${p}/source/pandoc_template.tex" \
               -o "build/quantum_preprint/${p}/source/main.tex"
-            grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' \
-              "build/quantum_preprint/${p}/source/main.tex"
+            grep -Fq '\author{SzeChunYiu' "build/quantum_preprint/${p}/source/main.tex"
+            grep -Fq 'Stockholm University, Stockholm, Sweden' "build/quantum_preprint/${p}/source/main.tex"
+            grep -Fq 'sze-chun.yiu@fysik.su.se' "build/quantum_preprint/${p}/source/main.tex"
+            grep -Fq '\section*{Author contributions}' "build/quantum_preprint/${p}/source/main.tex"
             grep -Eq '\\cite[pt]?\{' "build/quantum_preprint/${p}/source/main.tex"
           done
       - name: Build PDFs and audit references
@@ -85,16 +87,31 @@ jobs:
             test -s "${pdf}"
             pdfinfo "${pdf}" > "build/quantum_preprint/${p}/pdfinfo.txt"
             pdftotext "${pdf}" "build/quantum_preprint/${p}/pdf.txt"
-            grep -Fq 'AUTHOR METADATA REQUIRED BEFORE SUBMISSION' \
-              "build/quantum_preprint/${p}/pdf.txt"
+            grep -Fq 'SzeChunYiu' "build/quantum_preprint/${p}/pdf.txt"
+            grep -Fq 'Stockholm University' "build/quantum_preprint/${p}/pdf.txt"
+            grep -Fq 'Author contributions' "build/quantum_preprint/${p}/pdf.txt"
             grep -Fq 'References' "build/quantum_preprint/${p}/pdf.txt"
             if grep -Eq '\[@[A-Za-z0-9_:-]+' "build/quantum_preprint/${p}/pdf.txt"; then
               echo "${p}_UNRESOLVED_CITATION_TOKEN=FAIL"
               exit 1
             fi
+            if grep -Eiq 'AUTHOR (INPUT|METADATA).*REQUIRED' \
+                "build/quantum_preprint/${p}/source/main.tex" "build/quantum_preprint/${p}/pdf.txt"; then
+              echo "${p}_RELEASE_PLACEHOLDER=FAIL"
+              exit 1
+            fi
             pdftoppm -png -r 144 "${pdf}" "build/quantum_preprint/${p}/rendered/page"
             sha256sum "${pdf}" > "build/quantum_preprint/${p}/pdf_sha256.txt"
           done
+      - name: Record arXiv licence contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' \
+            > build/quantum_preprint/Q1/ARXIV_LICENSE.txt
+          printf '%s\n' 'Creative Commons Attribution 4.0 International (CC BY 4.0)' \
+            > build/quantum_preprint/QG2/ARXIV_LICENSE.txt
+          printf '%s\n' 'quant-ph' > build/quantum_preprint/QG2/ARXIV_PRIMARY_CATEGORY.txt
       - name: Build source archives
         shell: bash
         run: |
@@ -107,7 +124,7 @@ jobs:
             sha256sum "${p}-quantum-preprint-source.zip" > source_zip_sha256.txt
             popd
           done
-      - name: Archive Q1/QG2 Quantum preflight packages
+      - name: Archive Q1/QG2 Quantum submission packages
         uses: actions/upload-artifact@v4
         with:
           name: q1-qg2-quantum-preprint-packages
