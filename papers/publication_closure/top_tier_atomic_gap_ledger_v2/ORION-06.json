@@ -1,0 +1,124 @@
+{
+  "schema_version": "ORION.TOP_TIER_ATOMIC_GAP_LEDGER.V2",
+  "subject_main_sha": "87e2bcb330d243b7062ddba1ca26e426632edeab",
+  "scientific_authority_delta": "NONE",
+  "paper_range": [
+    "ORION-06",
+    "ORION-06"
+  ],
+  "papers": [
+    {
+      "paper_id": "ORION-06",
+      "slug": "recursive-recovery",
+      "title": "Recursive Recovery",
+      "publication_disposition": "BOUNDED_PAPER_READY_TO_FILE",
+      "route_class": "EXTERNAL_TRANSFER",
+      "evidence_mode": "EMPIRICAL",
+      "protocol_state": "DRAFT_PRE_FREEZE",
+      "scientific_authority_delta": "NONE",
+      "current_ceiling": "A bounded methods/provenance claim about executable negative recovery is supported; general methodology effectiveness is not.",
+      "post_matrix_updates": [
+        "Canonical PDF production has improved after #1731, but that is publication infrastructure rather than new science."
+      ],
+      "pending_prs": [
+        1734
+      ],
+      "load_bearing_adverse": [
+        "No existing gate licenses a broad effectiveness claim.",
+        "The proposed at-least-three-domain objective-verifier successor has never run.",
+        "Readiness and internal identifiers contain legacy ORION-02 aliasing that must be documented without rewriting frozen bytes."
+      ],
+      "strongest_remaining_gap": "The method has not been tested for correct recovery, false recovery and resource savings across independent objective-verifier domains.",
+      "decisive_question": "Does recursive negative recovery reduce verified recovery cost without increasing false recovery across theorem proving, software repair and the current native domain?",
+      "maximum_claim_if_supported": "Recursive recovery is a domain-general, verifier-safe strategy for recovering from failed research or computational actions under bounded evidence.",
+      "hypothesis_or_theorem": "Against resource-matched retry and domain-native recovery baselines, the frozen recursive policy should preserve verifier correctness and lower expected recovery cost in at least three qualitatively distinct domains.",
+      "population_or_universe": "Eligible failed episodes from E12 Lean/mathlib4, E3 Defects4J and one prospectively pinned native ORION recovery family, disjoint by theorem/project/task family.",
+      "unit_of_analysis": "One failed episode with its admissible recovery actions and objective verifier.",
+      "external_sources": [
+        "E12",
+        "E3"
+      ],
+      "historical_only_inputs": [
+        "All episodes used to design the existing bounded method"
+      ],
+      "design": [
+        "Extract failures and fixes without exposing held-out resolutions to the policy.",
+        "Map each domain to a common action/receipt schema while preserving native verifier semantics.",
+        "Compare exactly the same failure episodes and resource caps across policies.",
+        "Keep unrecoverable and misleading-success cases visible.",
+        "Bind every recovered state to the verifier output and causal action sequence."
+      ],
+      "baselines": [
+        "Full restart/full recomputation.",
+        "Blind retry with the same action.",
+        "Domain-native strongest repair/recovery heuristic.",
+        "Oracle lower bound that knows the successful action only for analysis."
+      ],
+      "primary_endpoints": [
+        "Verifier-confirmed recovery success.",
+        "False recovery or verifier laundering, with zero as a noncompensatory gate.",
+        "Time/tool-call/compute cost to recovery.",
+        "Evidence-chain completeness and replay success."
+      ],
+      "negative_controls": [
+        "Injected verifier false-positive signal that the policy must not trust.",
+        "Irrecoverable episode.",
+        "Recovery action that improves a proxy while failing the native verifier.",
+        "Receipt with a missing causal step."
+      ],
+      "analysis_plan": [
+        "Hierarchical paired analysis by episode and domain.",
+        "Competing-risk treatment of timeout versus incorrect recovery.",
+        "Predeclare cost weights or report the full resource vector without scalarization.",
+        "A cross-domain claim requires the same policy and terminal semantics in every domain."
+      ],
+      "power_or_exhaustion_rule": "Use all eligible frozen episodes up to a prospectively fixed resource budget; establish the minimum domain-level episode count by simulation on design-only episodes.",
+      "success_gate": "Zero false recoveries, noninferior verified success and lower recovery resources than every feasible donor baseline in all three domains or under a preregistered hierarchical criterion.",
+      "refutation_gate": "Any false recovery defeats the safety headline; domain-specific parity limits the claim to the bounded provenance object.",
+      "cannot_check_gate": "CANNOT_CHECK if fixes leak into inputs, native verifier results cannot be reproduced or domain mappings change after outcomes.",
+      "authority_required": "Native objective verifiers plus an independently implemented replay/checker; domain experts audit the mapping, not the outcomes.",
+      "resource_accounting": [
+        "Preprocessing",
+        "state/memory",
+        "model/solver compute",
+        "tool/verifier calls",
+        "latency",
+        "cache/reuse",
+        "reconstruction"
+      ],
+      "freeze_before_outcome": [
+        "Episode corpus",
+        "domain mappings",
+        "policy",
+        "comparators",
+        "resource caps",
+        "failure/success terminals",
+        "missing-run policy"
+      ],
+      "active_lane": {
+        "status": "CLEAR_TO_DESIGN",
+        "reference": "#1701 / #1729",
+        "collision_rule": "No active external successor was identified; keep the bounded readiness package immutable."
+      },
+      "immediate_safe_actions": [
+        "Regenerate the receipt index against the final bounded claim set.",
+        "Define the common recovery schema and native-verifier adapters.",
+        "Resolve the legacy ORION-02 alias through an additive mapping note."
+      ],
+      "forbidden_actions": [
+        "Do not claim broad recovery effectiveness from provenance correctness.",
+        "Do not substitute proxy success for native verifier success.",
+        "Do not rewrite frozen legacy identifiers in place."
+      ],
+      "next_artifact": "papers/orion-06-recursive-recovery/top_tier/three-domain-objective-recovery-v1/QUESTION.md",
+      "journal_bar": "A top-tier systems/methods paper needs objective correctness, domain diversity, strong native baselines, full resource accounting and a noncompensatory false-recovery gate.",
+      "sibling_boundary": "Owns recovery after failure; epistemic state reconstruction belongs to ORION-11.",
+      "lead_roles": [
+        "X2",
+        "X3",
+        "X4",
+        "X5"
+      ]
+    }
+  ]
+}

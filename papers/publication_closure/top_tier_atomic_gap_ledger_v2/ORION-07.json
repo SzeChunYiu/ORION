@@ -1,0 +1,109 @@
+{
+  "schema_version": "ORION.TOP_TIER_ATOMIC_GAP_LEDGER.V2",
+  "subject_main_sha": "87e2bcb330d243b7062ddba1ca26e426632edeab",
+  "scientific_authority_delta": "NONE",
+  "paper_range": [
+    "ORION-07",
+    "ORION-07"
+  ],
+  "papers": [
+    {
+      "paper_id": "ORION-07",
+      "slug": "dual-instrument",
+      "title": "Dual-Instrument Agreement",
+      "publication_disposition": "TEMPORAL_PROSPECTIVE_STUDY_FROZEN",
+      "route_class": "TEMPORAL_FROZEN",
+      "evidence_mode": "TEMPORAL",
+      "protocol_state": "FROZEN_DO_NOT_TOUCH",
+      "scientific_authority_delta": "NONE",
+      "current_ceiling": "The agreement-nonidentifiability theorem is proved; a two-instance replacement case series is prospectively frozen and has no outcomes.",
+      "post_matrix_updates": [
+        "Submission-package/PDF work may proceed additively, but it does not mature the temporal evidence."
+      ],
+      "pending_prs": [
+        1734
+      ],
+      "load_bearing_adverse": [
+        "The frozen instances directory is empty; QG-19 and QG-20 have no scientific outcomes.",
+        "n_valid=3 including Benchmark V0 does not authorize reliability, calibration, kappa or generalization.",
+        "Agreement alone is formally non-identifying and cannot establish instrument correctness."
+      ],
+      "strongest_remaining_gap": "The current two-instance case series is too small for a reliability claim, while its prospectivity would be destroyed by peeking, denominator reduction or retrospective replacement.",
+      "decisive_question": "When the already frozen QG-19 and QG-20 outcomes mature, what relation do the two instruments exhibit under the predeclared AGREE/PARTIAL/DISAGREE/CANNOT_CHECK semantics?",
+      "maximum_claim_if_supported": "Only a bounded prospective case-series statement about the two named instances, interpreted through the nonidentifiability theorem.",
+      "hypothesis_or_theorem": "No reliability theorem is targeted by the current study; the valid result is the exact predeclared relation on each matured instance, with CANNOT_CHECK retained.",
+      "population_or_universe": "Exactly the two frozen replacement instances under Q3_REPLACEMENT_PROSPECTIVE_PROTOCOL_V2; a separate future registry of at least 20 items requires a new identity.",
+      "unit_of_analysis": "One frozen instance and the pair of independently generated instrument outputs.",
+      "external_sources": [],
+      "historical_only_inputs": [
+        "Benchmark V0 and all accessed development cases"
+      ],
+      "design": [
+        "Preserve the current frozen protocol and wait for naturally available outcomes.",
+        "Run each instrument using only the allowed base and protocol inputs.",
+        "Apply the frozen relation function with no denominator change.",
+        "For a later study, register at least 20 externally sourced cases before any outcomes and separate calibration from agreement."
+      ],
+      "baselines": [
+        "Instrument 1 alone.",
+        "Instrument 2 alone.",
+        "Random-agreement reference for a later registry only."
+      ],
+      "primary_endpoints": [
+        "Per-instance relation: AGREE, PARTIAL, DISAGREE or CANNOT_CHECK.",
+        "Input-availability and independence checks.",
+        "For the future registry only: accuracy against external gold, calibration and disagreement resolution."
+      ],
+      "negative_controls": [
+        "One instrument silently reading the other output.",
+        "Missing outcome/gold, which must remain CANNOT_CHECK.",
+        "Instance replacement after outcome availability."
+      ],
+      "analysis_plan": [
+        "Current study is descriptive/exact for two named cases; no inferential reliability statistic.",
+        "A later registry must freeze sample size, gold authority and interval method before outcomes.",
+        "Agreement is never interpreted as correctness without external gold."
+      ],
+      "power_or_exhaustion_rule": "Current identity has exactly two prospectively frozen cases and must not be enlarged or reduced. A later reliability study requires a separate at-least-20-case power plan.",
+      "success_gate": "The two outcomes mature naturally, both instruments execute under custody, and the exact frozen relation is reported without a reliability generalization.",
+      "refutation_gate": "DISAGREE, PARTIAL or CANNOT_CHECK are valid terminals and do not trigger replacement or rescue.",
+      "cannot_check_gate": "CANNOT_CHECK if an outcome does not exist, independence is violated or either instrument cannot execute exactly as frozen.",
+      "authority_required": "Current relation can be mechanically checked; any future correctness/reliability claim requires external gold or independent domain adjudication.",
+      "resource_accounting": [
+        "Instrument runtime",
+        "tool calls",
+        "missingness",
+        "outcome-availability dates"
+      ],
+      "freeze_before_outcome": [
+        "Nothing new for the current identity; its protocol is already frozen",
+        "For a future registry: cases, gold, instruments, relation, power, stopping rule",
+        "Outcome-availability and independence checks remain exactly as already frozen"
+      ],
+      "active_lane": {
+        "status": "FROZEN",
+        "reference": "Q3_REPLACEMENT_PROSPECTIVE_PROTOCOL_V2.md / #1701",
+        "collision_rule": "No parallel work may inspect, replace, accelerate or re-freeze QG-19/QG-20."
+      },
+      "immediate_safe_actions": [
+        "Add an aliasing note explaining the legacy ORION-03 identifiers without editing frozen files.",
+        "Prepare publication prose that states the two-case ceiling and the nonidentifiability theorem.",
+        "Design a separate future registry only from outcomes-disjoint cases."
+      ],
+      "forbidden_actions": [
+        "Do not peek or accelerate outcomes.",
+        "Do not replace missing cases or reduce the denominator.",
+        "Do not report kappa, reliability or calibration from n_valid=3."
+      ],
+      "next_artifact": "papers/orion-07-dual-instrument/PROSPECTIVE_CUSTODY_STATUS_V3.md",
+      "journal_bar": "A top-tier temporal-measurement paper ultimately needs a larger prospectively registered corpus, external gold and calibration; the present frozen study must remain narrow and untouched.",
+      "sibling_boundary": "Owns instrument agreement/nonidentifiability, not general authority (ORION-18) or research governance (ORION-24).",
+      "lead_roles": [
+        "X1",
+        "X2",
+        "X3",
+        "X5"
+      ]
+    }
+  ]
+}
