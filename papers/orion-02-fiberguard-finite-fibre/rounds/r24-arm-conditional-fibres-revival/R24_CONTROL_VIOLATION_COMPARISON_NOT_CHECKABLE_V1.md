@@ -54,9 +54,37 @@ sentence should therefore be read as a descriptive count, not an established
 comparison — the same correction applied to R23, where the analogous gap *was* closable
 and the difference turned out **not** to be significant (`p = 0.0923`).
 
+## The emitter already computes it and then discards it
+
+This is an emission gap, not a measurement gap, and the round's own committed emitter
+shows it. In `fiberguard_pmlb_arm_conditional_r24.py` the per-dataset flag is built for
+every row:
+
+```python
+"violation_strict": bool(
+    decision["certified"] and excess > float(bound) + TOL
+),
+```
+
+and is then consumed only in aggregate:
+
+```python
+"violations_strict": sum(bool(row["violation_strict"]) for row in certified),
+```
+
+The per-row `rows` mapping that carries `excess`, `bound` and `violation_strict` for
+each dataset is never serialised; only `arm_summary`'s totals reach the artifact. So the
+quantity a paired test needs existed at run time and was dropped at write time.
+
+It is not recoverable from what was published. `negative_control_test` retains
+per-dataset excess *differences* between the two policy arms, but a violation is a
+threshold on each arm's *absolute* excess against its own bound, and neither absolute
+excesses nor per-arm bounds are emitted per dataset.
+
 ## To close this
 
-Publish per-dataset `violations_strict` flags for the policy arms alongside the existing
-`coverage_records`. That is an instrumentation change to the round's emitter, not a
-re-run of the science, and it would make both the R24 control comparison and its
-violation rate independently checkable.
+Serialise the existing per-row `violation_strict`, `excess` and `bound` for the policy
+arms alongside `coverage_records`. No science changes: the values are already computed
+on the path above, and the change is to write them out. That would make both the R24
+control comparison and the round's violation rate independently checkable, and would let
+the R23 paired test be repeated here.
