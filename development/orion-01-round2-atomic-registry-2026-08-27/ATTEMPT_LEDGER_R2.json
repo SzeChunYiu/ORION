@@ -1,0 +1,100 @@
+{
+  "attempts": [
+    {
+      "attempt_id": "R1_RETAINED",
+      "counts_as_new_round_here": false,
+      "disposition": "ADVERSE_MACRO_LANGUAGE_RESULT_RETAINED_UNCHANGED",
+      "mechanism": "whole-macro batch guards mutate during matching",
+      "retained": true,
+      "terminal": "CANNOT_CHECK_MOVE_COMPLETENESS"
+    },
+    {
+      "attempt_id": "R2_PILOT",
+      "counts_as_science": false,
+      "disposition": "CAP_CALIBRATION_ONLY__NOT_A_REVIVAL_OUTCOME",
+      "retained": true,
+      "terminal": "INFRASTRUCTURE_ONLY_NO_OUTCOME_ACCESS"
+    },
+    {
+      "approximate_result_promoted": false,
+      "attempt_id": "R2_FULL_RUN_1",
+      "counts_as_science": true,
+      "mechanism": "eight primary words hit the frozen 20000-state fail-closed cap",
+      "raw_result_sha256": "db1253e52a44741613abb9217eb4a865d190c3948abdab9f8fbd344ada035efd",
+      "retained": true,
+      "terminal": "CANNOT_CHECK_MOVE_COMPLETENESS"
+    },
+    {
+      "attempt_id": "R2_FULL_RUN_2",
+      "counts_as_materially_distinct_science": false,
+      "purpose": "fresh deterministic replication of the full frozen run",
+      "raw_result_sha256": "db1253e52a44741613abb9217eb4a865d190c3948abdab9f8fbd344ada035efd",
+      "retained": true,
+      "terminal": "CANNOT_CHECK_MOVE_COMPLETENESS"
+    },
+    {
+      "attempt_id": "R2_GAP_HOSTILE_DIAGNOSIS",
+      "counts_as_materially_distinct_science": false,
+      "generic_control_misses": 2,
+      "hostile_extension_collapses": 0,
+      "receipt_sha256": "8b2ca5abb067ab0ff56219978416601246e717a11cb187518970d43b7bce48ef",
+      "retained": true,
+      "scope": "four completed strict-gap words only",
+      "terminal": "BOUNDED_POSITIVE_DIAGNOSTIC"
+    }
+  ],
+  "bounded_positive": {
+    "does_not_establish_full_domain_completeness": true,
+    "full_run_receipts_byte_identical": true,
+    "generic_control_misses": 2,
+    "hostile_survivors": 4,
+    "independent_implementation": false,
+    "strict_gap_words": 4,
+    "valid_scope": "four completed strict-gap words under the pinned site-guarded atomic PyZX registry"
+  },
+  "current_paper_freeze": {
+    "mutated_by_successor": false,
+    "paper_tree_oid": "9b1b0e32c7212ff8227907f0e84a6f2cc2f32732",
+    "receipt_path": "papers/publication_closure/receipts/remaining11/ORION-01_SCIENCE_CONTENT_FREEZE_V1.json",
+    "receipt_sha256": "65147264458837189f75ab1bf720ee02724a4a6755a5c7ee777663baa9e3d5d6",
+    "subject_commit": "d6643cd8297c021470626c4bbd1ed3c98f2f68af",
+    "successor_required_for_future_science": true,
+    "terminal": "ORION_01_EARNED_CERTIFICATE_REGISTRY_SCIENCE_AND_CONTENT_FROZEN"
+  },
+  "date": "2026-08-27",
+  "external_novelty_authority": false,
+  "final_freeze_claimed_by_this_successor": false,
+  "material_negative_status": "ACTIVE",
+  "next_attempt": {
+    "attempt_id": "R3_CAP8_EXACT_EXHAUSTION",
+    "mechanism_match": "extend exact search budget only for the eight state-space cap words under a separately frozen successor protocol",
+    "pre_outcome_required": true
+  },
+  "overall_terminal": "CANNOT_CHECK_MOVE_COMPLETENESS",
+  "paper_id": "ORION-01",
+  "policy": {
+    "preserve_null_adverse_and_cannot_check": true,
+    "setup_failures_count_as_science": false,
+    "unsolvable_requires_mechanistic_proof": true,
+    "valid_stop_conditions": [
+      "REPLICATED_VALID_POSITIVE",
+      "EXACT_SCOPED_IMPOSSIBILITY",
+      "NAMED_EXTERNAL_BLOCK"
+    ]
+  },
+  "raw_result": {
+    "bytes": 13914625,
+    "path": "development/orion-01-round2-atomic-registry-2026-08-27/ORION01_ROUND2_ATOMIC_RESULTS.json",
+    "sha256": "db1253e52a44741613abb9217eb4a865d190c3948abdab9f8fbd344ada035efd"
+  },
+  "round": 2,
+  "schema": "ORION.ORION01.Round2.AttemptLedger.v1",
+  "scientific_authority_delta": "NONE",
+  "stop_condition": null,
+  "submission_authority": false,
+  "top_tier_promotion": false,
+  "unresolved_but_not_unsolvable": [
+    "exact exhaustion for eight frozen-cap primary words"
+  ],
+  "unsolvable_list_entries": []
+}
