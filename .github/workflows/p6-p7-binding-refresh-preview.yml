@@ -1,0 +1,53 @@
+name: P6-P7 binding refresh preview
+
+on:
+  push:
+    branches:
+      - external/cohorts-v1
+
+permissions:
+  contents: read
+
+jobs:
+  regenerate-bindings:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install repository
+        run: python -m pip install -e '.[dev]'
+      - name: Regenerate only P6 and P7 candidate bindings
+        run: |
+          python - <<'PY'
+          import importlib.util
+          from pathlib import Path
+          path = Path('papers/candidates/checkers/check_content_binding_v1.py')
+          spec = importlib.util.spec_from_file_location('candidate_binding', path)
+          mod = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(mod)
+          root = Path('.').resolve()
+          for candidate in ('P6', 'P7'):
+              manifest, sums = mod.write_binding(root, candidate)
+              print(candidate, manifest, sums)
+          PY
+      - name: Verify all candidate bindings after regeneration
+        run: python papers/candidates/checkers/check_content_binding_v1.py --check
+      - name: Show concise generated delta
+        run: |
+          git diff --stat -- \
+            papers/orion-16-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json \
+            papers/orion-16-formal-epistemic-structures-and-mechanics/SHA256SUMS \
+            papers/orion-17-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json \
+            papers/orion-17-epistemic-navigation-open-worlds/SHA256SUMS
+      - name: Package generated bindings
+        uses: actions/upload-artifact@v4
+        with:
+          name: p6-p7-binding-refresh
+          if-no-files-found: error
+          path: |
+            papers/orion-16-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json
+            papers/orion-16-formal-epistemic-structures-and-mechanics/SHA256SUMS
+            papers/orion-17-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json
+            papers/orion-17-epistemic-navigation-open-worlds/SHA256SUMS
