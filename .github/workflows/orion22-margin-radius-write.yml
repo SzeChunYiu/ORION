@@ -1,0 +1,76 @@
+name: ORION-22 exact decision-margin writeback
+
+on:
+  push:
+    branches:
+      - chatgpt/orion22-margin-radius-20260829
+
+permissions:
+  contents: write
+
+jobs:
+  compute-and-bind:
+    if: ${{ !contains(github.event.head_commit.message, '[margin-writeback]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion22-margin-radius-20260829
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reconstruct exact margins from committed frozen inputs
+        run: |
+          OUT='papers/orion-22-adaptive-state-reasoning/experiments/observation-regret-law-v1/DECISION_MARGINS_V1.json'
+          python papers/orion-22-adaptive-state-reasoning/experiments/observation-regret-law-v1/compute_decision_margins_v1.py > "$OUT"
+          python -m json.tool "$OUT" >/dev/null
+      - name: Require byte-identical independent rerun
+        run: |
+          OUT='papers/orion-22-adaptive-state-reasoning/experiments/observation-regret-law-v1/DECISION_MARGINS_V1.json'
+          TMP="$(mktemp)"
+          python papers/orion-22-adaptive-state-reasoning/experiments/observation-regret-law-v1/compute_decision_margins_v1.py > "$TMP"
+          cmp "$OUT" "$TMP"
+      - name: Verify exact terminal and invariants
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('papers/orion-22-adaptive-state-reasoning/experiments/observation-regret-law-v1/DECISION_MARGINS_V1.json')
+          d = json.loads(p.read_text())
+          assert d['terminal'] == 'EXACT_FROZEN_DECISION_MARGINS_RECONSTRUCTED'
+          assert d['scientific_authority_delta'] == 'NONE'
+          assert d['classes_total'] == 36
+          assert d['finite_margin_classes'] + d['singleton_feasible_action_classes'] == 36
+          assert d['minimum_finite_decision_margin'] > 0
+          assert d['global_uniform_loss_perturbation_radius_open'] == d['minimum_finite_decision_margin'] / 2
+          finite = [c for c in d['classes'] if c['decision_margin'] is not None]
+          singleton = [c for c in d['classes'] if c['decision_margin'] is None]
+          assert len(finite) == d['finite_margin_classes']
+          assert len(singleton) == d['singleton_feasible_action_classes']
+          assert all(c['decision_margin'] > 0 for c in finite)
+          assert all(c['feasible_actions'] == 1 for c in singleton)
+          print('minimum_margin', d['minimum_finite_decision_margin'])
+          print('global_open_radius', d['global_uniform_loss_perturbation_radius_open'])
+          print('finite_classes', len(finite), 'singleton_classes', len(singleton))
+          PY
+      - name: Refuse unexpected generated paths
+        run: |
+          python - <<'PY'
+          import subprocess
+          allowed = {'papers/orion-22-adaptive-state-reasoning/experiments/observation-regret-law-v1/DECISION_MARGINS_V1.json'}
+          changed = set(subprocess.check_output(['git', 'status', '--porcelain'], text=True).splitlines())
+          paths = {line[3:] for line in changed}
+          unexpected = paths - allowed
+          if unexpected:
+              raise SystemExit(f'unexpected generated paths: {sorted(unexpected)}')
+          if paths != allowed:
+              raise SystemExit(f'expected exactly {sorted(allowed)}, got {sorted(paths)}')
+          PY
+      - name: Commit exact margin receipt
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add papers/orion-22-adaptive-state-reasoning/experiments/observation-regret-law-v1/DECISION_MARGINS_V1.json
+          git commit -m 'research(orion-22): bind exact frozen decision margins [margin-writeback]'
+          git push
