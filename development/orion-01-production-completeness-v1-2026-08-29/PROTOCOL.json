@@ -1,0 +1,164 @@
+{
+  "schema": "ORION.ORION01.ProductionCompletenessProtocol.v1",
+  "protocol_identity": "orion-01-production-completeness-v1-2026-08-29",
+  "paper_id": "ORION-01",
+  "issue": 1701,
+  "frozen_at": "2026-08-29T00:00:00Z",
+  "routing": "TOP_TIER_PROMOTION_ACTIVE__THEORY_OR_EXACT_COMPUTE",
+  "current_terminal": "PROTOCOL_FROZEN__NO_OUTCOME",
+  "scientific_question": "Can the uniquely resolved pinned PyZX source boundary be represented by a finite source-complete extensional production move registry, or can a reachable omitted mutation be exhibited?",
+  "old_execution": {
+    "pull_request": 1602,
+    "source_commit": "9e9b870b795b6ae0b3726031ced0b9ebef004897",
+    "terminal": "CANNOT_CHECK_MOVE_COMPLETENESS",
+    "all_eight_tasks_hit_cap": true,
+    "role": "DERIVATION_AND_ADVERSE_EVIDENCE_ONLY",
+    "may_be_reinterpreted_as_positive": false,
+    "may_be_extended_under_same_identity": false
+  },
+  "source_resolution": {
+    "repository": "Quantomatic/pyzx",
+    "commit_prefix": "dade7d46",
+    "required_match_count": 1,
+    "required_object_type": "commit",
+    "required_full_object_name_length": 40,
+    "floating_ref_permitted": false,
+    "semantic_testing_before_resolution_permitted": false,
+    "required_receipt": "SOURCE_RESOLUTION_RECEIPT.json"
+  },
+  "source_boundary": {
+    "manifest": "CORPUS_MANIFEST.json",
+    "grammar": "SOURCE_COMPLETE_MOVE_GRAMMAR.json",
+    "include_reachable_mutation_roots": true,
+    "include_indirect_aliases_and_wrappers": true,
+    "include_parameter_and_side_condition_domains": true,
+    "include_runtime_registration_paths": true,
+    "dead_or_unreachable_code_in_scope": false,
+    "manual_name_list_sufficient": false
+  },
+  "extensional_equivalence": {
+    "canonical_graph_encoding_required": true,
+    "complete_separating_basis_required": true,
+    "random_testing_sufficient": false,
+    "small_example_agreement_sufficient": false,
+    "name_similarity_sufficient": false,
+    "equivalence_relation": "Same normalized before/after graph effect for every admissible basis element and parameter/side-condition assignment in the frozen domain."
+  },
+  "ordered_phases": [
+    {
+      "phase": 0,
+      "name": "resolve_source",
+      "entry": "PROTOCOL_FROZEN__NO_OUTCOME",
+      "required_output": "SOURCE_RESOLUTION_RECEIPT.json",
+      "success_terminal": "SOURCE_RESOLVED",
+      "failure_terminals": [
+        "SOURCE_PREFIX_UNRESOLVED",
+        "SOURCE_PREFIX_AMBIGUOUS",
+        "SOURCE_OBJECT_NOT_COMMIT"
+      ]
+    },
+    {
+      "phase": 1,
+      "name": "prove_source_boundary",
+      "requires": [
+        "SOURCE_RESOLVED"
+      ],
+      "required_outputs": [
+        "SOURCE_BOUNDARY_RECEIPT.json",
+        "MUTATION_ROOTS.json",
+        "CALL_GRAPH_CLOSURE.json"
+      ],
+      "success_terminal": "SOURCE_BOUNDARY_COMPLETE",
+      "failure_terminal": "SOURCE_BOUNDARY_COUNTEREXAMPLE"
+    },
+    {
+      "phase": 2,
+      "name": "construct_extensional_registry",
+      "requires": [
+        "SOURCE_BOUNDARY_COMPLETE"
+      ],
+      "required_outputs": [
+        "MOVE_INSTANCES.jsonl",
+        "CANONICAL_EFFECT_CLASSES.jsonl",
+        "DISTINGUISHING_BASIS_RECEIPT.json"
+      ],
+      "success_terminal": "EXTENSIONAL_REGISTRY_CONSTRUCTED",
+      "failure_terminals": [
+        "UNBOUNDED_PARAMETER_DOMAIN",
+        "NONDETERMINISTIC_EFFECT",
+        "DISTINGUISHING_BASIS_INSUFFICIENT"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "discharge_registry_completeness",
+      "requires": [
+        "EXTENSIONAL_REGISTRY_CONSTRUCTED"
+      ],
+      "conditional_theorem": "REGISTRY_COMPLETENESS_THEOREM.md",
+      "success_output": "REGISTRY_COMPLETENESS_RECEIPT.json",
+      "counterexample_output": "REGISTRY_COUNTEREXAMPLE.json",
+      "success_terminal": "REGISTRY_COMPLETE",
+      "failure_terminal": "REGISTRY_INCOMPLETE_COUNTEREXAMPLE"
+    },
+    {
+      "phase": 4,
+      "name": "freeze_material_consequence_experiment",
+      "requires": [
+        "REGISTRY_COMPLETE"
+      ],
+      "required_output": "EXACT_COMPUTE_PROTOCOL_V1.json",
+      "fresh_identity_required": true,
+      "fresh_budget_required": true,
+      "outcome_blind_freeze_required": true,
+      "success_terminal": "EXACT_COMPUTE_PROTOCOL_FROZEN"
+    },
+    {
+      "phase": 5,
+      "name": "execute_material_consequence_experiment",
+      "requires": [
+        "EXACT_COMPUTE_PROTOCOL_FROZEN"
+      ],
+      "permitted_positive_terminal": "MATERIAL_EXACT_COMPUTE_CONSEQUENCE",
+      "permitted_null_terminal": "NO_MATERIAL_CONSEQUENCE_WITHIN_FROZEN_DOMAIN",
+      "permitted_adverse_terminal": "CANNOT_CHECK_MATERIAL_CONSEQUENCE"
+    }
+  ],
+  "pre_result_gate": {
+    "forbidden_before_source_resolution": [
+      "MOVE_INSTANCES.jsonl",
+      "CANONICAL_EFFECT_CLASSES.jsonl",
+      "REGISTRY_COMPLETENESS_RECEIPT.json",
+      "REGISTRY_COUNTEREXAMPLE.json",
+      "EXACT_COMPUTE_PROTOCOL_V1.json",
+      "EXACT_COMPUTE_RESULT.json"
+    ],
+    "forbidden_before_registry_terminal": [
+      "EXACT_COMPUTE_PROTOCOL_V1.json",
+      "EXACT_COMPUTE_RESULT.json"
+    ],
+    "old_round3_artifacts_may_satisfy_gate": false
+  },
+  "outcome_freeze": {
+    "source_prefix_selected_before_resolution": true,
+    "source_boundary_selected_before_scanning": true,
+    "equivalence_definition_selected_before_effect_testing": true,
+    "terminal_set_selected_before_execution": true,
+    "cap_or_budget_selected_only_in_fresh_phase4_identity": true
+  },
+  "prohibited_shortcuts": [
+    "raise_old_cap",
+    "rename_old_run",
+    "treat_completed_rows_as_move_completeness",
+    "equate_source_names_with_effect_classes",
+    "infer completeness from random tests",
+    "claim all_PyZX_rewrites_when_only_frozen_boundary_was_checked",
+    "claim physical_advantage_from_registry_completeness"
+  ],
+  "authority": {
+    "external_peer_review": false,
+    "external_replication": false,
+    "submission_authority": false,
+    "scientific_authority_delta_at_freeze": "NONE"
+  }
+}

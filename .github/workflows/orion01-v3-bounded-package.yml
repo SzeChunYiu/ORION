@@ -1,0 +1,120 @@
+name: ORION-01 bounded V3 package
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "papers/orion-01-certificate-realization/v3-bounded-closeout-2026-08-29/**"
+      - ".github/workflows/orion01-v3-bounded-package.yml"
+  pull_request:
+    paths:
+      - "papers/orion-01-certificate-realization/v3-bounded-closeout-2026-08-29/**"
+      - ".github/workflows/orion01-v3-bounded-package.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orion01-v3-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify-build-package:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PACKAGE: papers/orion-01-certificate-realization/v3-bounded-closeout-2026-08-29
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PDF toolchain
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+            pandoc texlive-xetex texlive-latex-extra texlive-fonts-recommended \
+            poppler-utils
+
+      - name: Run implementation-independent proof checker
+        working-directory: ${{ env.PACKAGE }}
+        run: |
+          python proof_checker_v3.py --output PROOF_CHECK_RESULT_V3.json
+          python -m unittest -v test_proof_checker_v3.py
+
+      - name: Build manuscript PDFs
+        working-directory: ${{ env.PACKAGE }}
+        run: |
+          pandoc theory-A-MANUSCRIPT_V3.md \
+            --from=gfm --standalone --pdf-engine=xelatex \
+            -V geometry:margin=1in -V colorlinks=true \
+            -o theory-A-MANUSCRIPT_V3.pdf
+          pandoc theory-B-MANUSCRIPT_V3.md \
+            --from=gfm --standalone --pdf-engine=xelatex \
+            -V geometry:margin=1in -V colorlinks=true \
+            -o theory-B-MANUSCRIPT_V3.pdf
+
+      - name: Check and render PDFs
+        working-directory: ${{ env.PACKAGE }}
+        run: |
+          mkdir -p rendered-pages/A rendered-pages/B
+          pdfinfo theory-A-MANUSCRIPT_V3.pdf
+          pdfinfo theory-B-MANUSCRIPT_V3.pdf
+          pdftotext theory-A-MANUSCRIPT_V3.pdf - | grep -F 'BOUNDED_PAPER_RETAINED'
+          pdftotext theory-B-MANUSCRIPT_V3.pdf - | grep -F 'BOUNDED_PAPER_RETAINED'
+          pdftoppm -png -r 110 theory-A-MANUSCRIPT_V3.pdf rendered-pages/A/page
+          pdftoppm -png -r 110 theory-B-MANUSCRIPT_V3.pdf rendered-pages/B/page
+          test -n "$(find rendered-pages/A -name '*.png' -print -quit)"
+          test -n "$(find rendered-pages/B -name '*.png' -print -quit)"
+
+      - name: Build deterministic manifest and checksum ledger
+        working-directory: ${{ env.PACKAGE }}
+        run: |
+          python build_manifest_v3.py
+          sha256sum \
+            README.md PR1602_ADOPTION_RECEIPT.json \
+            theory-A-MANUSCRIPT_V3.md theory-A-MANUSCRIPT_V3.pdf \
+            theory-B-MANUSCRIPT_V3.md theory-B-MANUSCRIPT_V3.pdf \
+            PROOF_REPAIR_DISPOSITION_V3.md NOVELTY_AUDIT_V2.md \
+            proof_checker_v3.py test_proof_checker_v3.py PROOF_CHECK_RESULT_V3.json \
+            DATA_CODE_AVAILABILITY.md LICENSE.md COVER_LETTER_A.md COVER_LETTER_B.md \
+            COMPILE.md build_manifest_v3.py SUBMISSION_MANIFEST_V3.json \
+            > SHA256SUMS
+          python build_manifest_v3.py --verify
+
+      - name: Upload package and rendered pages
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion01-bounded-v3-${{ github.sha }}
+          if-no-files-found: error
+          path: |
+            ${{ env.PACKAGE }}/theory-A-MANUSCRIPT_V3.pdf
+            ${{ env.PACKAGE }}/theory-B-MANUSCRIPT_V3.pdf
+            ${{ env.PACKAGE }}/SUBMISSION_MANIFEST_V3.json
+            ${{ env.PACKAGE }}/SHA256SUMS
+            ${{ env.PACKAGE }}/PROOF_CHECK_RESULT_V3.json
+            ${{ env.PACKAGE }}/rendered-pages/**
+
+      - name: Commit generated package artifacts
+        if: github.event_name == 'push'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            "$PACKAGE/theory-A-MANUSCRIPT_V3.pdf" \
+            "$PACKAGE/theory-B-MANUSCRIPT_V3.pdf" \
+            "$PACKAGE/PROOF_CHECK_RESULT_V3.json" \
+            "$PACKAGE/SUBMISSION_MANIFEST_V3.json" \
+            "$PACKAGE/SHA256SUMS"
+          if git diff --cached --quiet; then
+            echo 'Generated package already matches the committed artifacts.'
+            exit 0
+          fi
+          git commit -m 'build(orion-01): materialize V3 PDFs and manifest [skip ci]'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
