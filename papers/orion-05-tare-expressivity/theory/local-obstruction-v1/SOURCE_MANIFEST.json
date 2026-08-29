@@ -1,0 +1,44 @@
+{
+  "schema": "ORION.ORION05.LocalObstruction.SourceManifest.v1",
+  "paper_id": "ORION-05",
+  "successor_id": "ORION05.LOCAL_SUPPORT_ONE_OBSTRUCTION.v1",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+  "candidate_source": {
+    "pull_request": 1617,
+    "document": "papers/publication_closure/wave1/WAVE1_DEEP_UPGRADES_ORION05_14_17_23_2026-08-28.md",
+    "section": "2. ORION-05 Upgrade A",
+    "cross_paper_rank": 1,
+    "note": "Ranked #1 by expected scientific value: almost entirely analytic from the existing proof, clarifies exactly why the sharp bound is two."
+  },
+  "repository_base": {"branch_base": "origin/main", "commit": "882b88e3a"},
+  "bound_artifacts": [
+    {"path": "papers/orion-05-tare-expressivity/HUMAN_PROOF_R6S_2026-08-22.md",
+     "sha256": "ad4f3704cfac4569b74725cb8608ed5f5ba88b847d2d8a2820b3e184d9d1dae6",
+     "role": "source of the Lemma B definitions (class map, odd-alpha constraint, descent rule) transcribed by the checker",
+     "mutated_by_this_packet": false},
+    {"path": "papers/orion-05-tare-expressivity/MANUSCRIPT_V3_REFINED.md",
+     "sha256": "5b49f7219bf38f07155e056a69f2ad0ce32a28cde6cb3554f380d9c385bc0a25",
+     "role": "records the 'exactly four failing ordered class pairs at support two' count and the 43,688-tuple corroboration that this packet independently reproduces; NOT edited",
+     "mutated_by_this_packet": false}
+  ],
+  "independently_reproduced_manuscript_figures": [
+    {"figure": "odd-alpha class tuples through support eight", "manuscript_value": 43688,
+     "recomputed": 43688, "match": true,
+     "derivation": "(4^2 + 4^3 + ... + 4^8)/2 = 87376/2"},
+    {"figure": "failing ordered class pairs at support two", "manuscript_value": 4,
+     "recomputed": 4, "match": true},
+    {"figure": "failures for support 3 through 8", "manuscript_value": 0,
+     "recomputed": 0, "match": true}
+  ],
+  "not_imported": [
+    "the R6S enumeration implementation",
+    "orion05_r11_sparse_direct_solver.py and the R11/R12/R13 round scripts",
+    "independent_human_proof_sanity.py",
+    "any generating proof step beyond the three Lemma B definitions"
+  ],
+  "excluded_paths": {
+    "papers/orion-05-tare-expressivity/rounds/": "not read, not written, not depended upon"
+  },
+  "frozen_paper_bytes_modified": "NONE"
+}
