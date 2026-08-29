@@ -1,0 +1,32 @@
+{
+  "case_id": "p1-c135",
+  "task_family": "execution_only_negative_control",
+  "public_prompt": "The data-quality checker reports 100% pass on a table that visibly holds thousands of empty entries in a guarded column. The guard is the right one for this column. The step already agreed: find the defect in the checker and repair it: diagnose the defect and specify the fix.",
+  "observable_resources": [
+    "dq/generated.sql — the emitted predicate for the guard is `WHERE col != NULL`",
+    "dq/manual-count.txt — `SELECT count(*) FROM t WHERE col IS NULL` returns 4,102",
+    "dq/fixtures/ — the generator's own fixtures hold no empty entries, so its tests pass",
+    "dq/framework-docs.md — the framework's worked example emits `IS NOT NULL` for this guard",
+    "dq/affected-checks.csv — 14 other guards come from the same generator path and emit the same predicate",
+    "closure:quality-rule-catalogue — closed; fixes which columns are guarded and by which rule; the catalogue is correct",
+    "closure:dq-signoff-march — closed; certifies the table on the checker's own 100% pass figure",
+    "closure:dq-report-distribution — closed; fixes who receives the nightly quality report; rests on the governance standard, not on what the guards emit",
+    "closure:dq-run-schedule — closed; runs every guard nightly at 02:00; rests on the operations calendar, not on how a guard is emitted",
+    "closure:table-ownership-register — closed; names the owning team for every guarded table; rests on the ownership standard, not on how a guard is emitted"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EXECUTION",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the comparison against NULL that can never hold as the defect, repairs the generator, and re-runs all 14 affected guards. The quality framework's design must be left untouched. FAIL if the answer concludes the table is clean, replaces the framework, or repairs the one guard without the generator.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Run defect: a generated predicate compares against NULL with an equality operator. The quality framework is correct; repairing the generator resolves it. The March sign-off rests on the checker's output and is re-established by the same re-run, not by a formulation change. Reframing is the wrong move."
+}

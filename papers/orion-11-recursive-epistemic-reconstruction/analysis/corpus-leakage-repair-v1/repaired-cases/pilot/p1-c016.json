@@ -1,0 +1,37 @@
+{
+  "case_id": "p1-c016",
+  "task_family": "hidden_parent_domain",
+  "public_prompt": "Rank 40 engineers by code-review quality. What the group intends: average the 1-5 ratings each engineer received and sort. Produce the ranking and state how much of it you would trust.",
+  "observable_resources": [
+    "reviews/ratings.csv — 900 rows of pr_id, author_id, reviewer_id, rating in 1..5",
+    "reviews/reviewer-marginals.csv — per-reviewer mean rating ranges from 2.4 to 4.6; each reviewer rated between 12 and 60 pull requests",
+    "reviews/assignment.csv — reviewers are drawn by component ownership, never at random; 7 authors received over 70% of their reviews from a single reviewer",
+    "reviews/overlap.csv — 11% of pull requests were rated by two or more reviewers; on those, ratings differ by a mean of 1.3 points with a consistent sign for each reviewer pair",
+    "closure:promotion-shortlist-q1 — closed; ranks authors by raw mean received rating",
+    "closure:mentoring-assignments-q2 — closed; derived from closure:promotion-shortlist-q1, pairs the bottom quartile with mentors",
+    "closure:review-load-rebalance — closed; derived from closure:mentoring-assignments-q2, moves review load away from the bottom quartile",
+    "closure:review-tooling-migration — closed; moves code review to the new platform on cost and integration grounds; rests on the tooling comparison, not on any rating figure"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "SEARCH",
+    "target_coordinates": [
+      "W.ACTIVE_DOMAINS",
+      "parent_domain:psychometrics"
+    ],
+    "dependencies_to_reopen": [
+      "closure:promotion-shortlist-q1",
+      "closure:mentoring-assignments-q2",
+      "closure:review-load-rebalance"
+    ],
+    "root_success_rubric": "PASS iff author quality is estimated with rater severity modelled explicitly (reviewer effects or an equivalent rater-facet model fitted on the overlap), and the answer reports that the raw ranking is confounded because reviewer assignment follows component ownership. FAIL if authors are ranked by raw means, by means rescaled with any fixed weights, or if the answer only recommends collecting more ratings.",
+    "dependency_depth": 3
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the framing returns a ranking that largely reproduces which reviewer a given author draws, since reviewer means span 2.4 to 4.6 against a rating range of 4."
+}

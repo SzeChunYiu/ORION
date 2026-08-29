@@ -1,0 +1,31 @@
+{
+  "case_id": "p1-c012",
+  "task_family": "execution_only_negative_control",
+  "public_prompt": "A Monte Carlo risk model gives a 99th percentile that moves 40% between runs though the seed is pinned. The estimator and the path count were justified separately. Find the defect in the run: identify the defect and state the correction.",
+  "observable_resources": [
+    "risk/run.py — calls set_seed(20260301) in the parent process, then starts 16 worker processes with the spawn method",
+    "risk/worker-seeds.log — each worker logs its first draw; the 16 values differ between runs",
+    "risk/single-worker.log — a run forced to one worker reproduces bit for bit across 5 runs",
+    "risk/path-count.md — the reported 99th percentile comes from 200,000 paths, 12,500 per worker",
+    "risk/platform-note.md — workers were started with fork before the 2026-02 platform upgrade and with spawn after it",
+    "closure:model-validation-2025 — closed; validates the path model and the estimator against an analytic benchmark",
+    "closure:path-count-justification — closed; fixes 200,000 paths as sufficient for the precision the desk requires",
+    "closure:reproducibility-requirement — closed; requires bit-identical figures from a pinned seed",
+    "closure:desk-risk-limits — closed; sets the position limits the figure feeds into; rests on the risk mandate, not on how the run is seeded"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EXECUTION",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the workers seeding themselves independently of the parent under spawn as the defect, repairs it by deriving each worker's seed from the run seed and the worker index, and shows the run reproducing across repeats. The risk formulation, the path count and the estimator must be left untouched. FAIL if the answer raises the path count to shrink the spread, averages several runs, or attributes the movement to genuine sampling uncertainty.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Run defect: worker processes under spawn do not inherit the parent's seeding. The risk formulation is correct; deterministic per-worker seeding resolves it. All three closures hold. Reframing is the wrong move."
+}

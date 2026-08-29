@@ -1,0 +1,29 @@
+{
+  "case_id": "p1-c101",
+  "task_family": "execution_only_negative_control",
+  "public_prompt": "9 test modules fail on the build agent with 'module not found' and pass on every one of the 42 developer machines. The 9 modules are unremarkable and their code is identical to what passes locally. The current line is: find the defect and repair it. Find the defect and describe the remedy.",
+  "observable_resources": [
+    "src/ — the files on disk are named Utils.py, Helpers.py and seven others in the same style",
+    "tests/imports.txt — the failing modules import them as utils, helpers and the other seven, all lower case",
+    "ci/agent-image.md — the build agent's filesystem distinguishes upper and lower case; the developer machines' filesystems do not",
+    "ci/failure-list.txt — the 9 failing modules are exactly the 9 whose file name case differs from the import",
+    "closure:module-naming-audit — closed; records that the 140 modules whose file name matches the import case pass everywhere",
+    "closure:python-version-policy — closed; pins the interpreter version across developer machines and build agents; rests on the platform standard, not on file naming",
+    "closure:module-ownership-map — closed; assigns each module to a team; rests on the ownership register, not on how files are named"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EXECUTION",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the mismatch between file name case and import case as the defect and repairs it by making the two agree for all 9 modules, leaving the test suite's structure untouched. FAIL if the answer adds a per-module compatibility shim, marks the tests as platform-specific, or changes the build agent's filesystem.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Run defect: nine imports disagree with their files in case, which only a case-sensitive filesystem notices. The suite is correct; renaming resolves it. Reframing is the wrong move."
+}

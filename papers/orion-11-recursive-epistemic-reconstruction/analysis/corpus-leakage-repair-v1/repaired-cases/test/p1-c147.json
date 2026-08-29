@@ -1,0 +1,35 @@
+{
+  "case_id": "p1-c147",
+  "task_family": "hidden_decomposition_or_interface",
+  "public_prompt": "Every new customer tier needs a code change in the rate limiter and a redeploy; the limiter is now an 800-line branch tree. What the group intends: the branches are ugly, so replace them with a lookup table in the same module. Identify the defect and state the correction.",
+  "observable_resources": [
+    "limiter/limiter.py — 800 lines; token-bucket arithmetic interleaved with per-tier branches",
+    "limiter/change-log.csv — 34 of the last 40 changes altered only per-tier numbers, and all 34 required a redeploy",
+    "limiter/table-method.diff — replaces the branches with a literal table in the same file; adding a tier still requires a redeploy",
+    "limiter/ops-request.md — support needs to add a tier without a release, and to try a tier's numbers against yesterday's traffic before it goes live",
+    "closure:release-cadence-commitment — closed; promises weekly releases as the way to ship tier changes",
+    "closure:support-tiering-sla — closed; derived from closure:release-cadence-commitment, promises tier changes within a week",
+    "closure:limiter-fleet-sizing — closed; sizes the limiter fleet from peak traffic; rests on the traffic forecast, not on where the tier numbers live"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "DECOMPOSITION",
+    "target_coordinates": [
+      "W.DECOMPOSITION",
+      "decomposition:externalised_rules"
+    ],
+    "dependencies_to_reopen": [
+      "closure:release-cadence-commitment",
+      "closure:support-tiering-sla"
+    ],
+    "root_success_rubric": "PASS iff the specified design moves the per-tier numbers out of the deployed artefact into data that is loaded and validated at runtime, leaves a single enforcement engine that never changes per tier, and supports trying a tier's numbers before activation — and the answer states that an in-module table still requires a redeploy. FAIL if the fix is the table refactor, one feature flag per tier, or a faster release train.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the tidy-the-branches framing ships the table; the change log shows 34 of 40 changes were data, and the table leaves every one of them a redeploy."
+}

@@ -1,0 +1,34 @@
+{
+  "case_id": "p1-c121",
+  "task_family": "hidden_measurement_or_operationalization",
+  "public_prompt": "A risk scorer reports 94% accuracy on the fraud holdout. The working position: 94% is high, so the number it emits can be multiplied by the transaction amount to give expected loss. Report whether the emitted number can be used that way, and what would be required first.",
+  "observable_resources": [
+    "risk/holdout.csv — 200,000 rows carrying the emitted number and the outcome; the fraud base rate is 1.9%",
+    "risk/accuracy.md — 94% of rows are classified correctly at a 0.5 cutoff; a rule that always answers 'not fraud' is right on 98.1%",
+    "risk/buckets.csv — of rows scoring 0.30-0.35, 7.8% were fraud; of rows scoring 0.60-0.65, 11.2% were fraud; of rows scoring 0.90-0.95, 19.4% were fraud",
+    "risk/loss-model.md — the current formula multiplies the emitted number by the transaction amount and books the product as expected loss",
+    "closure:fraud-loss-forecast-2026 — closed; forecasts losses from that product",
+    "closure:fraud-case-handling-window — closed; requires a flagged transaction to be reviewed within 24 hours; rests on the operations commitment, not on what the emitted number means",
+    "closure:transaction-data-minimisation — closed; limits which fields the scorer may read; rests on the privacy assessment, not on how its output is used"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "MEASUREMENT",
+    "target_coordinates": [
+      "M.MEASUREMENT",
+      "measurement:reliability_diagram"
+    ],
+    "dependencies_to_reopen": [
+      "closure:fraud-loss-forecast-2026"
+    ],
+    "root_success_rubric": "PASS iff the answer reports that the emitted number is not a probability — the bucketed outcome rates run 8-19% against emitted values of 0.3-0.95 — that the 94% figure is uninformative against the 98.1% always-'not fraud' rule, and that the emitted number must first be mapped to observed outcome rates before entering the loss formula. FAIL if the answer accepts 94% as support, proposes only a different cutoff, or reports the model as unusable without proposing the mapping.",
+    "dependency_depth": 1
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the accuracy framing books expected loss from a number that over-states the outcome rate by a factor of five in the top bucket."
+}

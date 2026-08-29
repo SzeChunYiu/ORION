@@ -1,0 +1,35 @@
+{
+  "case_id": "p1-c143",
+  "task_family": "hidden_parent_domain",
+  "public_prompt": "A monitor wakes at uniformly random wall times and records the total length of the batch job then running. Across 5,000 probes the mean is 47.0 minutes, matching the published 'mean job length 47 minutes'. The working position: the probe is a fair sample. Report the mean job length and reconcile the two figures.",
+  "observable_resources": [
+    "jobs/table.csv — 21,400 completed jobs; the length column spans 1 to 600 minutes and is heavy on the right",
+    "monitor/probes.csv — 5,000 probes at uniformly random wall times; each row holds the total length of the job then running; mean 47.0, median 31",
+    "jobs/length-summary.csv — computed from the job table itself: mean 18.6, median 9, standard deviation 23.0",
+    "closure:sla-commitment-v2 — closed; promises customers that 'a typical job finishes in about 47 minutes', citing the probe figure",
+    "closure:worker-pool-sizing-note — closed; derived from closure:sla-commitment-v2, sizes the worker pool on a 47-minute mean",
+    "monitor/probe-schedule.md — probe instants are drawn uniformly over the 24-hour day, independently of what the scheduler is doing",
+    "closure:monitor-retention-window — closed; keeps probe records for 400 days; rests on the records policy, not on any job-length figure"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "SEARCH",
+    "target_coordinates": [
+      "W.ACTIVE_DOMAINS",
+      "parent_domain:renewal_theory"
+    ],
+    "dependencies_to_reopen": [
+      "closure:sla-commitment-v2",
+      "closure:worker-pool-sizing-note"
+    ],
+    "root_success_rubric": "PASS iff the answer reports 18.6 minutes as the mean job length, explains the 47.0 figure as the consequence of probing at random moments, which meets a job in proportion to how long it lasts, and states the relation E[probed length] = E[L^2]/E[L] (with mean 18.6 and standard deviation 23.0 this gives 47.0, reproducing the probe figure exactly). FAIL if the answer accepts 47.0, blames a sampling defect in the monitor, or averages the two figures.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the fair-sample framing either confirms 47.0 or declares the job table wrong; both fail, since the two figures are simultaneously correct under different sampling schemes."
+}

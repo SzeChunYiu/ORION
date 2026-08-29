@@ -1,0 +1,29 @@
+{
+  "case_id": "p1-c128",
+  "task_family": "evidence_only_negative_control",
+  "public_prompt": "Has the model's French performance dropped 4 points since November? The held-back comparison is the right test and the scoring protocol is settled. The course settled on: score the current checkpoint on the held-back French set and compare against the recorded baseline. Report the comparison.",
+  "observable_resources": [
+    "eval/french.jsonl — the file on disk; its checksum differs from the one the baseline run manifest records",
+    "runs/manifest-2025-11.json — records the checksum of the French file the baseline figure was measured on",
+    "backups/retention.md — nightly snapshots are kept 90 days; the 2025-12-02 snapshot holds a French file matching the manifest checksum",
+    "eval/contamination-scan.csv — 31% of the documents in the current file also appear in the training corpus; the archived one scans at 0%",
+    "closure:english-baseline-carryover — closed; carries the English baseline forward unchanged, its checksum still matching the manifest entry",
+    "closure:eval-protocol-v3 — closed; fixes scoring, decoding parameters and the held-back-set rule, none of which is in question here",
+    "closure:model-release-record — closed; records which checkpoint shipped and when; rests on the release register, not on any French figure"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EVIDENCE",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the overwritten French file as the absent record, restores the version whose checksum matches the run manifest from the 2025-12-02 snapshot, and then scores the checkpoint against it as planned. FAIL if the answer scores against the current file, reports the comparison as contaminated but unfixable, or proposes building a fresh French benchmark instead of restoring the recorded one.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Absent record: the version of the French set the baseline was measured on, restorable from a retained snapshot by checksum. The comparison plan is correct. Reframing is the wrong move."
+}

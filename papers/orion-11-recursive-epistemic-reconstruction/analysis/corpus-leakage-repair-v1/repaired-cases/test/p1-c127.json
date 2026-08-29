@@ -1,0 +1,36 @@
+{
+  "case_id": "p1-c127",
+  "task_family": "hidden_parent_domain",
+  "public_prompt": "Internal compute is handed out in proportion to what each team states it needs. Stated need now runs at 3.8x the fleet while measured use is flat. The approach on the table: the figures are inaccurate, so review them and scale every request down. Propose the allocation rule to adopt and say why it works.",
+  "observable_resources": [
+    "allocation/requests-2025.csv — total stated need grew from 1.4x to 3.8x the fleet across four quarters while measured use stayed flat",
+    "allocation/usage.csv — the median team uses 31% of what it was handed; the three largest requesters use 22%",
+    "allocation/rules.md — grants are proportional to stated need; an unused grant costs the holder nothing and is never reclaimed",
+    "allocation/interviews.md — three leads state they ask for roughly triple what they expect to use because they assume everyone else does",
+    "closure:fleet-purchase-2026 — closed; sizes next year's hardware purchase from total stated need",
+    "closure:capital-request-fy26 — closed; derived from closure:fleet-purchase-2026, submits the capital ask",
+    "closure:datacentre-power-contract — closed; fixes the power agreement for the hall; rests on the site agreement, not on how compute is handed out",
+    "closure:compute-chargeback-account — closed; names the cost centre each team's usage is booked against; rests on the finance structure, not on how compute is handed out"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "SEARCH",
+    "target_coordinates": [
+      "W.ACTIVE_DOMAINS",
+      "parent_domain:incentive_compatibility"
+    ],
+    "dependencies_to_reopen": [
+      "closure:fleet-purchase-2026",
+      "closure:capital-request-fy26"
+    ],
+    "root_success_rubric": "PASS iff the proposed rule makes an honest statement the best move for a team acting in its own interest — over-stating must cost the requester something, through a priority budget, a reclaim with penalty, or an equivalent scheme — and the answer argues explicitly that honesty is a team's dominant or equilibrium strategy under the new rule. FAIL if the proposal is a review step, an administrative cap, a uniform scale-down factor, or better forecasting guidance.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the framing proposes review plus a scale-down factor; teams then inflate further to survive the factor, which the four-quarter record already shows."
+}

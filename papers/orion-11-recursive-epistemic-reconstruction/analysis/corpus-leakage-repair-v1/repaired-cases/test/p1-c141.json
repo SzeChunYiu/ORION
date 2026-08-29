@@ -1,0 +1,30 @@
+{
+  "case_id": "p1-c141",
+  "task_family": "execution_only_negative_control",
+  "public_prompt": "One region's monthly financial report has been 3% low for fourteen months. The reporting model is agreed and every other region reconciles to the last unit. What the group intends: find the defect in the reporting run and repair it: identify the defect and state the correction.",
+  "observable_resources": [
+    "report/Dockerfile — copies rates.json into the image at build time",
+    "report/image-history.txt — the running image was built 14 months ago; images are rebuilt on code change and there has been none",
+    "report/convert.py — returns early with the file-backed rate whenever rates.json is present, so the configured live rates endpoint is never called",
+    "fx/history.csv — that region's currency has moved 3.1% against the reporting currency over the 14 months; every other reported currency has moved under 0.2%",
+    "report/reconciliation.md — the region's own books agree with the bank and disagree with the report by the same 3%",
+    "closure:fx-policy-2025 — closed; fixes which rate source and which fixing time the report must use",
+    "closure:regional-chart-of-accounts — closed; fixes the account structure every region reports against; rests on the finance standard, not on any rate",
+    "closure:report-distribution-list — closed; fixes who receives the monthly report; rests on the governance standard, not on any figure in it"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EXECUTION",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the rate file baked into the image together with the early return that prevents any refresh as the defect, repairs the refresh, and restates the affected months. The reporting model must be left untouched. FAIL if the answer applies a manual 3% correction, rebuilds the image as the whole repair, or recasts the question as a currency-modelling problem.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Run defect: a stale rate file baked into the image, plus an early return that never refreshes it. The reporting model is correct and the rate policy still holds; fixing the refresh resolves it. Reframing is the wrong move."
+}

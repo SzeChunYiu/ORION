@@ -1,0 +1,34 @@
+{
+  "case_id": "p1-c134",
+  "task_family": "hidden_parent_domain",
+  "public_prompt": "Forty vendors present in a fixed random order, one per day. Each must be accepted or declined that day, and a declined vendor cannot be revisited. The course settled on: accept the first scoring above 8.5. Give the procedure that maximises the chance of ending with the best vendor, and state that chance.",
+  "observable_resources": [
+    "procurement/process.md — 40 vendors, fixed random order, accept or decline on the day, no revisiting a declined vendor",
+    "procurement/scoring.md — a vendor can be ranked against every vendor already seen, but absolute figures are not comparable across days because the criteria weights are re-normalised each day",
+    "procurement/history-2025.csv — last year the team declined the eventual best vendor in 3 of 4 categories by holding out for a figure that never arrived",
+    "closure:procurement-playbook-v1 — closed; instructs buyers to wait for an absolute figure above 8.5",
+    "procurement/criteria-weights.csv — the 9 written criteria and the weights applied to them, re-normalised each morning",
+    "procurement/day-log.csv — for each of the 4 categories run last year, the day index on which the eventual best vendor presented",
+    "closure:vendor-security-baseline — closed; sets the requirements a vendor must meet to present at all; rests on the security standard, not on the choosing procedure"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "SEARCH",
+    "target_coordinates": [
+      "W.ACTIVE_DOMAINS",
+      "parent_domain:optimal_stopping"
+    ],
+    "dependencies_to_reopen": [
+      "closure:procurement-playbook-v1"
+    ],
+    "root_success_rubric": "PASS iff the answer gives a threshold-on-observation rule — observe and decline the first k of 40, then accept the first vendor better than every one seen so far — with k near 40/e (about 15) and a success chance near 1/e (about 0.37), and states that absolute cutoffs cannot be used because the day-to-day figures are not comparable. FAIL if the answer proposes any absolute cutoff, proposes ranking all 40 before choosing, or gives a rule without stating its success chance.",
+    "dependency_depth": 1
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the framing tunes the 8.5 cutoff; no cutoff on non-comparable figures can be justified, and the question asks for a success probability the framing cannot produce."
+}

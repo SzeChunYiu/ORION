@@ -1,0 +1,36 @@
+{
+  "case_id": "p1-c118",
+  "task_family": "hidden_measurement_or_operationalization",
+  "public_prompt": "A dashboard adds up the daily distinct-device counts across a month and publishes 41.2M as 'people reached this month'. The step already agreed: each day's count is correct, so adding the days gives the month. Report the month's reach and the procedure that produces it.",
+  "observable_resources": [
+    "analytics/daily-distinct.csv — 30 rows of distinct device identifiers per day, adding to 41.2M",
+    "analytics/month-reconciliation.md — a sampled reconciliation across the whole month finds 6.9M distinct device identifiers in total",
+    "analytics/devices-per-person.csv — a panel of 12,000 people carries a mean of 1.9 devices each, and 2.4 in the 25-34 band",
+    "analytics/method-note.md — the dashboard adds the daily figures; nothing merges a device across two days",
+    "closure:reach-guarantee-q2 — closed; sells advertisers 41.2M monthly reach",
+    "closure:rate-card-2026 — closed; derived from closure:reach-guarantee-q2, prices inventory on that figure",
+    "analytics/panel-method.md — the 12,000-person panel is recruited independently of the 41.2M figure and carries a device roster per person",
+    "closure:advertiser-billing-cycle — closed; bills monthly in arrears; rests on the commercial terms, not on any figure for how many were served"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "MEASUREMENT",
+    "target_coordinates": [
+      "M.MEASUREMENT",
+      "measurement:unduplicated_audience"
+    ],
+    "dependencies_to_reopen": [
+      "closure:reach-guarantee-q2",
+      "closure:rate-card-2026"
+    ],
+    "root_success_rubric": "PASS iff reach is recomputed over entities distinct across the whole month rather than summed across days — about 6.9M devices, and about 3.6M people once the 1.9 devices per person is applied — and the answer states that adding daily distinct counts counts a returning device once for every day it returns. FAIL if the answer reports 41.2M, divides by 30, or applies any correction factor not taken from the month reconciliation.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the additive framing sells 41.2M against a true reach of roughly 3.6M people, a factor of eleven."
+}

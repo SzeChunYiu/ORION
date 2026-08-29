@@ -1,0 +1,30 @@
+{
+  "case_id": "p1-c130",
+  "task_family": "evidence_only_negative_control",
+  "public_prompt": "Cloud spend jumped 4.1x on 2026-04-09. Resource tagging is complete for the window and no change outside the three landed that day, so lining spend up against change timestamps is the right gauge. The approach on the table: attribute the jump that way. Name the change.",
+  "observable_resources": [
+    "finops/cost-export.csv — the provider's cost export at one row per service per day; 2026-04-09 is 4.1x the prior day",
+    "changes/log.csv — three changes landed on 2026-04-09, at 02:10, 11:40 and 19:05, each with a full diff",
+    "provider/billing-docs.md — an hourly-granularity cost export can be requested for any window inside the last 60 days",
+    "finops/tagging.md — every resource carries a change-request tag, and the tags are complete for the window",
+    "changes/rollback-note.md — none of the three changes has been rolled back, and all three remain live",
+    "closure:cost-anomaly-threshold — closed; fixes the 2x day-on-day rule that raised this investigation",
+    "closure:finops-ownership-matrix — closed; assigns each tagged resource to an owning team",
+    "closure:tag-enforcement-rule — closed; refuses an untagged resource at creation; rests on the platform standard, not on this jump"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EVIDENCE",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the daily granularity of the cost export as the blocker, requests the hourly export for 2026-04-09, and completes the timestamp attribution as planned. FAIL if the answer attributes the jump by inspecting the three diffs alone, proposes rolling back all three to find out, or reports the attribution as impossible.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Absent record: hourly cost granularity, obtainable from the provider for the window. The timestamp-attribution plan is correct. Reframing is the wrong move."
+}

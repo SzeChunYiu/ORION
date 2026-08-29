@@ -1,0 +1,36 @@
+{
+  "case_id": "p1-c138",
+  "task_family": "hidden_decomposition_or_interface",
+  "public_prompt": "A producer changed what the `amount` field means, from minor units to major units, with no change to the message shape. Four consumers computed totals a hundred times too small for six days and nothing raised an error. The route being taken: the change was announced too quietly, so widen the list. Name the defect and give the repair.",
+  "observable_resources": [
+    "bus/history.md — `amount` changed meaning on 2026-01-14; the field name, type and shape were untouched",
+    "bus/consumer-incidents.csv — 4 consumers were wrong for 6 days; none raised an error, and the drift was found by a human reading a report",
+    "bus/announcement.eml — a change note went out 3 days ahead; 2 of the 4 affected teams were not on the list",
+    "bus/ci-config.yml — producer CI checks that the message still parses against the declared shape; it holds no record of what any consumer expects",
+    "bus/consumer-registry.md — all 11 consumers are registered with the platform, with an owner and a contact, but no machine-readable expectation",
+    "closure:change-notification-process — closed; requires an email 3 days before a change",
+    "closure:data-quality-okr — closed; derived from closure:change-notification-process, targets zero silent breakages",
+    "closure:bus-topic-naming-standard — closed; fixes the naming convention for topics; rests on the platform standard, not on how a change is announced or gated"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "INTERFACE",
+    "target_coordinates": [
+      "W.INTERFACE",
+      "interface:semantic_version_marker"
+    ],
+    "dependencies_to_reopen": [
+      "closure:change-notification-process",
+      "closure:data-quality-okr"
+    ],
+    "root_success_rubric": "PASS iff the specified fix makes each message carry an explicit compatibility marker that a meaning change must advance, and gates the producer's release on a machine check against registered consumer expectations, and the answer states that a meaning change with an unchanged shape is invisible to shape validation and therefore to any notice-period remedy. FAIL if the fix is a longer notice period, a wider distribution list, a consumer-side range check, or renaming the field this once.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the notification framing widens the list; the two teams that were on the list still broke, because nothing they run could detect the change."
+}

@@ -1,0 +1,30 @@
+{
+  "case_id": "p1-c145",
+  "task_family": "evidence_only_negative_control",
+  "public_prompt": "Did the February outage cause customers to leave? Churn outcomes are complete for every account and the definition is settled, so comparing affected against unaffected accounts is the right check. The reading so far: make that comparison. Report the result.",
+  "observable_resources": [
+    "billing/churn.csv — churn outcomes for all 8,400 accounts through May",
+    "incident/timeline.md — the outage ran 04:10 to 07:55 on 2026-02-11 and hit three of nine regions",
+    "incident/affected-accounts.md — the list of accounts that saw failed calls was never written down; nothing persisted it at the time",
+    "lb/access-logs.md — load balancer access logs for the window sit in cold storage behind a documented 6-hour restore, and carry the account identifier on every request",
+    "support/tickets-feb11.csv — 40 accounts opened tickets during the window; these are the accounts that chose to complain",
+    "closure:churn-definition-2026 — closed; fixes churn as non-renewal within 90 days of the renewal date",
+    "closure:renewal-desk-staffing — closed; sets the renewals team headcount for the year; rests on the budget plan, not on why any account left",
+    "closure:outage-postmortem-feb — closed; establishes the technical cause and the three regions; it says nothing about which accounts saw failures"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EVIDENCE",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the absent affected-account list as the blocker, restores the cold-storage access logs to reconstruct it, refuses the 40-ticket list as a self-selected stand-in, and then runs the planned comparison. FAIL if the answer reports a churn effect using the 40-ticket list as the affected group, or declares the question unanswerable without naming the restore route.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Absent record: the affected-account list, reconstructible from cold-storage access logs. The affected-versus-unaffected plan is correct and the churn definition does not go stale. Reframing is the wrong move."
+}

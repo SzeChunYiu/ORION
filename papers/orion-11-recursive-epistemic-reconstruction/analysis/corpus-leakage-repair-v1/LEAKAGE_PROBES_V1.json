@@ -1,0 +1,974 @@
+{
+  "claim_scope": "Measures whether family membership is recoverable from surface features a blind responder can read. Says nothing about whether any case's science, gold label or family assignment is correct, and grants no authority.",
+  "corpora": {
+    "CURRENT_main": "papers/orion-11-recursive-epistemic-reconstruction/protocol/cases at this commit",
+    "PRE_REPAIR_audit_snapshot": "resource_lines recorded inside evidence/mechanical_solvability_audit_v1.json; prompts were not frozen by the audit",
+    "REPAIRED": "analysis/corpus-leakage-repair-v1/repaired-cases"
+  },
+  "floors": {
+    "min_precision": 0.9,
+    "min_recall": 0.5
+  },
+  "generated_for": "revival of the ORION-11 benchmark-leakage negative",
+  "grants_authority": "NONE",
+  "mining": {
+    "CURRENT_main::paths_and_prompts": {
+      "cases": 66,
+      "disjunction_rules": [
+        {
+          "false_negatives": 0,
+          "false_positives": 0,
+          "family": "DECOMP",
+          "members": [
+            "prompt_word:diagnose"
+          ],
+          "p_value": 9.31026922462496e-13,
+          "precision": 1.0,
+          "recall": 1.0,
+          "rule": "prompt_word:diagnose",
+          "true_positives": 11
+        },
+        {
+          "false_negatives": 0,
+          "false_positives": 0,
+          "family": "MEAS",
+          "members": [
+            "path_token:decision",
+            "last_path_token:data",
+            "path_token:by",
+            "path_token:latency",
+            "path_token:mobile",
+            "path_token:person",
+            "path_token:status",
+            "prompt_word:scores"
+          ],
+          "p_value": 9.31026922462496e-13,
+          "precision": 1.0,
+          "recall": 1.0,
+          "rule": "path_token:decision OR last_path_token:data OR path_token:by OR path_token:latency OR path_token:mobile OR path_token:person OR path_token:status OR prompt_word:scores",
+          "true_positives": 11
+        },
+        {
+          "false_negatives": 0,
+          "false_positives": 0,
+          "family": "REPR",
+          "members": [
+            "prompt_word:numbers",
+            "last_path_token:ledger",
+            "path_token:certification",
+            "path_token:pairs",
+            "path_token:tool",
+            "prompt_word:averages",
+            "prompt_word:concludes"
+          ],
+          "p_value": 9.31026922462496e-13,
+          "precision": 1.0,
+          "recall": 1.0,
+          "rule": "prompt_word:numbers OR last_path_token:ledger OR path_token:certification OR path_token:pairs OR path_token:tool OR prompt_word:averages OR prompt_word:concludes",
+          "true_positives": 11
+        },
+        {
+          "false_negatives": 0,
+          "false_positives": 1,
+          "family": "EXEC",
+          "members": [
+            "prompt_word:find"
+          ],
+          "p_value": 1.1172323069549952e-11,
+          "precision": 0.9167,
+          "recall": 1.0,
+          "rule": "prompt_word:find",
+          "true_positives": 11
+        },
+        {
+          "false_negatives": 1,
+          "false_positives": 0,
+          "family": "EVID",
+          "members": [
+            "prompt_word:instrument",
+            "prompt_word:did",
+            "first_path_token:db",
+            "path_token:runs"
+          ],
+          "p_value": 5.2137507657899776e-11,
+          "precision": 1.0,
+          "recall": 0.9091,
+          "rule": "prompt_word:instrument OR prompt_word:did OR first_path_token:db OR path_token:runs",
+          "true_positives": 10
+        },
+        {
+          "false_negatives": 1,
+          "false_positives": 0,
+          "family": "PARENT",
+          "members": [
+            "prompt_word:state",
+            "path_token:histogram",
+            "path_token:overlap",
+            "prompt_word:figures",
+            "prompt_word:present",
+            "prompt_word:reasoning"
+          ],
+          "p_value": 5.2137507657899776e-11,
+          "precision": 1.0,
+          "recall": 0.9091,
+          "rule": "prompt_word:state OR path_token:histogram OR path_token:overlap OR prompt_word:figures OR prompt_word:present OR prompt_word:reasoning",
+          "true_positives": 10
+        }
+      ],
+      "disjunction_rules_clearing_floors": 6,
+      "feature_space_size": 1929,
+      "observed_max_disjunction_recall": 1.0,
+      "shuffle_null_max_disjunction_recall": {
+        "max": 1.0,
+        "mean": 0.9191,
+        "p95": 1.0,
+        "trials": 200
+      },
+      "shuffle_null_rule_counts": {
+        "disjunction": {
+          "max": 6,
+          "mean": 5.54,
+          "p95": 6
+        },
+        "seed": 20260829,
+        "single": {
+          "max": 0,
+          "mean": 0.0,
+          "p95": 0
+        },
+        "trials": 100
+      },
+      "single_features": [
+        {
+          "cases": [
+            "p1-c004",
+            "p1-c005",
+            "p1-c018",
+            "p1-c103",
+            "p1-c104",
+            "p1-c111",
+            "p1-c113",
+            "p1-c114",
+            "p1-c133",
+            "p1-c138",
+            "p1-c147"
+          ],
+          "false_negatives": 0,
+          "false_positives": 0,
+          "family": "DECOMP",
+          "feature": "prompt_word:diagnose",
+          "p_value": 9.31026922462496e-13,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positives": 11
+        },
+        {
+          "cases": [
+            "p1-c004",
+            "p1-c005",
+            "p1-c018",
+            "p1-c103",
+            "p1-c104",
+            "p1-c111",
+            "p1-c113",
+            "p1-c114",
+            "p1-c133",
+            "p1-c138",
+            "p1-c147"
+          ],
+          "false_negatives": 0,
+          "false_positives": 0,
+          "family": "DECOMP",
+          "feature": "prompt_word:specify",
+          "p_value": 9.31026922462496e-13,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positives": 11
+        },
+        {
+          "cases": [
+            "p1-c006",
+            "p1-c011",
+            "p1-c012",
+            "p1-c101",
+            "p1-c107",
+            "p1-c116",
+            "p1-c129",
+            "p1-c132",
+            "p1-c135",
+            "p1-c136",
+            "p1-c141"
+          ],
+          "false_negatives": 0,
+          "false_positives": 1,
+          "family": "EXEC",
+          "feature": "prompt_word:find",
+          "p_value": 1.1172323069549952e-11,
+          "precision": 0.9167,
+          "recall": 1.0,
+          "true_positives": 11
+        },
+        {
+          "cases": [
+            "p1-c004",
+            "p1-c005",
+            "p1-c018",
+            "p1-c103",
+            "p1-c104",
+            "p1-c111",
+            "p1-c113",
+            "p1-c114",
+            "p1-c133",
+            "p1-c138",
+            "p1-c147"
+          ],
+          "false_negatives": 0,
+          "false_positives": 1,
+          "family": "DECOMP",
+          "feature": "prompt_word:fix",
+          "p_value": 1.1172323069549952e-11,
+          "precision": 0.9167,
+          "recall": 1.0,
+          "true_positives": 11
+        },
+        {
+          "cases": [
+            "p1-c006",
+            "p1-c011",
+            "p1-c012",
+            "p1-c101",
+            "p1-c107",
+            "p1-c116",
+            "p1-c129",
+            "p1-c132",
+            "p1-c135",
+            "p1-c136",
+            "p1-c141"
+          ],
+          "false_negatives": 0,
+          "false_positives": 1,
+          "family": "EXEC",
+          "feature": "prompt_word:repair",
+          "p_value": 1.1172323069549952e-11,
+          "precision": 0.9167,
+          "recall": 1.0,
+          "true_positives": 11
+        },
+        {
+          "cases": [
+            "p1-c015",
+            "p1-c108",
+            "p1-c112",
+            "p1-c128",
+            "p1-c130",
+            "p1-c145"
+          ],
+          "false_negatives": 5,
+          "false_positives": 0,
+          "family": "EVID",
+          "feature": "prompt_word:instrument",
+          "p_value": 5.084814709351991e-06,
+          "precision": 1.0,
+          "recall": 0.5455,
+          "true_positives": 6
+        }
+      ],
+      "single_features_clearing_floors": 6,
+      "verdict": "LEAKING"
+    },
+    "CURRENT_main::paths_only": {
+      "cases": 66,
+      "disjunction_rules": [
+        {
+          "false_negatives": 1,
+          "false_positives": 0,
+          "family": "MEAS",
+          "members": [
+            "path_token:decision",
+            "last_path_token:data",
+            "path_token:by",
+            "path_token:latency",
+            "path_token:mobile",
+            "path_token:person",
+            "path_token:status"
+          ],
+          "p_value": 5.2137507657899776e-11,
+          "precision": 1.0,
+          "recall": 0.9091,
+          "rule": "path_token:decision OR last_path_token:data OR path_token:by OR path_token:latency OR path_token:mobile OR path_token:person OR path_token:status",
+          "true_positives": 10
+        },
+        {
+          "false_negatives": 2,
+          "false_positives": 0,
+          "family": "DECOMP",
+          "members": [
+            "first_path_token:api",
+            "first_path_token:pool",
+            "last_path_token:bus",
+            "last_path_token:rate",
+            "path_token:change",
+            "path_token:consumer"
+          ],
+          "p_value": 1.4859189682501436e-09,
+          "precision": 1.0,
+          "recall": 0.8182,
+          "rule": "first_path_token:api OR first_path_token:pool OR last_path_token:bus OR last_path_token:rate OR path_token:change OR path_token:consumer",
+          "true_positives": 9
+        },
+        {
+          "false_negatives": 3,
+          "false_positives": 0,
+          "family": "EVID",
+          "members": [
+            "first_path_token:db",
+            "last_path_token:feb",
+            "last_path_token:release",
+            "path_token:runs",
+            "path_token:scope",
+            "path_token:snapshot"
+          ],
+          "p_value": 2.8727766719502776e-08,
+          "precision": 1.0,
+          "recall": 0.7273,
+          "rule": "first_path_token:db OR last_path_token:feb OR last_path_token:release OR path_token:runs OR path_token:scope OR path_token:snapshot",
+          "true_positives": 8
+        },
+        {
+          "false_negatives": 4,
+          "false_positives": 0,
+          "family": "EXEC",
+          "members": [
+            "path_token:count",
+            "first_path_token:diff",
+            "last_path_token:ownership",
+            "path_token:distribution"
+          ],
+          "p_value": 4.2373455911266593e-07,
+          "precision": 1.0,
+          "recall": 0.6364,
+          "rule": "path_token:count OR first_path_token:diff OR last_path_token:ownership OR path_token:distribution",
+          "true_positives": 7
+        },
+        {
+          "false_negatives": 4,
+          "false_positives": 0,
+          "family": "REPR",
+          "members": [
+            "last_path_token:ledger",
+            "path_token:certification",
+            "path_token:pairs",
+            "path_token:tool"
+          ],
+          "p_value": 4.2373455911266593e-07,
+          "precision": 1.0,
+          "recall": 0.6364,
+          "rule": "last_path_token:ledger OR path_token:certification OR path_token:pairs OR path_token:tool",
+          "true_positives": 7
+        }
+      ],
+      "disjunction_rules_clearing_floors": 5,
+      "feature_space_size": 999,
+      "observed_max_disjunction_recall": 0.9091,
+      "shuffle_null_max_disjunction_recall": {
+        "max": 1.0,
+        "mean": 0.7387,
+        "p95": 0.9091,
+        "trials": 200
+      },
+      "shuffle_null_rule_counts": {
+        "disjunction": {
+          "max": 5,
+          "mean": 2.9,
+          "p95": 5
+        },
+        "seed": 20260829,
+        "single": {
+          "max": 0,
+          "mean": 0.0,
+          "p95": 0
+        },
+        "trials": 100
+      },
+      "single_features": [],
+      "single_features_clearing_floors": 0,
+      "verdict": "WITHIN_NULL"
+    },
+    "PRE_REPAIR_audit_snapshot::paths_only": {
+      "cases": 66,
+      "disjunction_rules": [
+        {
+          "false_negatives": 0,
+          "false_positives": 0,
+          "family": "DECOMP",
+          "members": [
+            "path_token:proposal",
+            "path_token:trial",
+            "path_token:bus"
+          ],
+          "p_value": 9.31026922462496e-13,
+          "precision": 1.0,
+          "recall": 1.0,
+          "rule": "path_token:proposal OR path_token:trial OR path_token:bus",
+          "true_positives": 11
+        },
+        {
+          "false_negatives": 2,
+          "false_positives": 0,
+          "family": "EXEC",
+          "members": [
+            "first_path_token:diff",
+            "first_path_token:deploy",
+            "last_path_token:run",
+            "path_token:count",
+            "path_token:image"
+          ],
+          "p_value": 1.4859189682501436e-09,
+          "precision": 1.0,
+          "recall": 0.8182,
+          "rule": "first_path_token:diff OR first_path_token:deploy OR last_path_token:run OR path_token:count OR path_token:image",
+          "true_positives": 9
+        },
+        {
+          "false_negatives": 4,
+          "false_positives": 0,
+          "family": "EVID",
+          "members": [
+            "first_path_token:db",
+            "first_path_token:snapshot",
+            "path_token:retention",
+            "path_token:runs"
+          ],
+          "p_value": 4.2373455911266593e-07,
+          "precision": 1.0,
+          "recall": 0.6364,
+          "rule": "first_path_token:db OR first_path_token:snapshot OR path_token:retention OR path_token:runs",
+          "true_positives": 7
+        },
+        {
+          "false_negatives": 5,
+          "false_positives": 0,
+          "family": "MEAS",
+          "members": [
+            "path_token:method",
+            "last_path_token:bench",
+            "path_token:by"
+          ],
+          "p_value": 5.084814709351991e-06,
+          "precision": 1.0,
+          "recall": 0.5455,
+          "rule": "path_token:method OR last_path_token:bench OR path_token:by",
+          "true_positives": 6
+        }
+      ],
+      "disjunction_rules_clearing_floors": 4,
+      "feature_space_size": 722,
+      "observed_max_disjunction_recall": 1.0,
+      "shuffle_null_max_disjunction_recall": {
+        "max": 0.8182,
+        "mean": 0.5177,
+        "p95": 0.7273,
+        "trials": 200
+      },
+      "shuffle_null_rule_counts": {
+        "disjunction": {
+          "max": 3,
+          "mean": 0.5,
+          "p95": 2
+        },
+        "seed": 20260829,
+        "single": {
+          "max": 0,
+          "mean": 0.0,
+          "p95": 0
+        },
+        "trials": 100
+      },
+      "single_features": [],
+      "single_features_clearing_floors": 0,
+      "verdict": "WITHIN_NULL"
+    },
+    "REPAIRED::paths_and_prompts": {
+      "cases": 66,
+      "disjunction_rules": [
+        {
+          "false_negatives": 0,
+          "false_positives": 0,
+          "family": "MEAS",
+          "members": [
+            "path_token:decision",
+            "last_path_token:data",
+            "path_token:by",
+            "path_token:latency",
+            "path_token:mobile",
+            "path_token:person",
+            "path_token:status",
+            "prompt_word:scores"
+          ],
+          "p_value": 9.31026922462496e-13,
+          "precision": 1.0,
+          "recall": 1.0,
+          "rule": "path_token:decision OR last_path_token:data OR path_token:by OR path_token:latency OR path_token:mobile OR path_token:person OR path_token:status OR prompt_word:scores",
+          "true_positives": 11
+        },
+        {
+          "false_negatives": 0,
+          "false_positives": 0,
+          "family": "REPR",
+          "members": [
+            "prompt_word:numbers",
+            "last_path_token:ledger",
+            "path_token:certification",
+            "path_token:pairs",
+            "path_token:tool",
+            "prompt_word:averages",
+            "prompt_word:concludes"
+          ],
+          "p_value": 9.31026922462496e-13,
+          "precision": 1.0,
+          "recall": 1.0,
+          "rule": "prompt_word:numbers OR last_path_token:ledger OR path_token:certification OR path_token:pairs OR path_token:tool OR prompt_word:averages OR prompt_word:concludes",
+          "true_positives": 11
+        },
+        {
+          "false_negatives": 1,
+          "false_positives": 0,
+          "family": "DECOMP",
+          "members": [
+            "prompt_word:too",
+            "first_path_token:api",
+            "first_path_token:pool",
+            "last_path_token:bus",
+            "last_path_token:rate",
+            "path_token:change",
+            "path_token:consumer"
+          ],
+          "p_value": 5.2137507657899776e-11,
+          "precision": 1.0,
+          "recall": 0.9091,
+          "rule": "prompt_word:too OR first_path_token:api OR first_path_token:pool OR last_path_token:bus OR last_path_token:rate OR path_token:change OR path_token:consumer",
+          "true_positives": 10
+        },
+        {
+          "false_negatives": 1,
+          "false_positives": 0,
+          "family": "EVID",
+          "members": [
+            "prompt_word:did",
+            "first_path_token:db",
+            "last_path_token:release",
+            "path_token:runs",
+            "path_token:scope",
+            "path_token:snapshot",
+            "prompt_word:complete"
+          ],
+          "p_value": 5.2137507657899776e-11,
+          "precision": 1.0,
+          "recall": 0.9091,
+          "rule": "prompt_word:did OR first_path_token:db OR last_path_token:release OR path_token:runs OR path_token:scope OR path_token:snapshot OR prompt_word:complete",
+          "true_positives": 10
+        },
+        {
+          "false_negatives": 1,
+          "false_positives": 0,
+          "family": "PARENT",
+          "members": [
+            "path_token:histogram",
+            "path_token:overlap",
+            "prompt_word:engineers",
+            "prompt_word:figures",
+            "prompt_word:must",
+            "prompt_word:present",
+            "prompt_word:reasoning"
+          ],
+          "p_value": 5.2137507657899776e-11,
+          "precision": 1.0,
+          "recall": 0.9091,
+          "rule": "path_token:histogram OR path_token:overlap OR prompt_word:engineers OR prompt_word:figures OR prompt_word:must OR prompt_word:present OR prompt_word:reasoning",
+          "true_positives": 10
+        },
+        {
+          "false_negatives": 2,
+          "false_positives": 0,
+          "family": "EXEC",
+          "members": [
+            "path_token:count",
+            "prompt_word:not",
+            "first_path_token:diff",
+            "path_token:distribution",
+            "prompt_word:logic"
+          ],
+          "p_value": 1.4859189682501436e-09,
+          "precision": 1.0,
+          "recall": 0.8182,
+          "rule": "path_token:count OR prompt_word:not OR first_path_token:diff OR path_token:distribution OR prompt_word:logic",
+          "true_positives": 9
+        }
+      ],
+      "disjunction_rules_clearing_floors": 6,
+      "feature_space_size": 1936,
+      "observed_max_disjunction_recall": 1.0,
+      "shuffle_null_max_disjunction_recall": {
+        "max": 1.0,
+        "mean": 0.9186,
+        "p95": 1.0,
+        "trials": 200
+      },
+      "shuffle_null_rule_counts": {
+        "disjunction": {
+          "max": 6,
+          "mean": 5.53,
+          "p95": 6
+        },
+        "seed": 20260829,
+        "single": {
+          "max": 0,
+          "mean": 0.0,
+          "p95": 0
+        },
+        "trials": 100
+      },
+      "single_features": [],
+      "single_features_clearing_floors": 0,
+      "verdict": "WITHIN_NULL"
+    },
+    "REPAIRED::paths_only": {
+      "cases": 66,
+      "disjunction_rules": [
+        {
+          "false_negatives": 1,
+          "false_positives": 0,
+          "family": "MEAS",
+          "members": [
+            "path_token:decision",
+            "last_path_token:data",
+            "path_token:by",
+            "path_token:latency",
+            "path_token:mobile",
+            "path_token:person",
+            "path_token:status"
+          ],
+          "p_value": 5.2137507657899776e-11,
+          "precision": 1.0,
+          "recall": 0.9091,
+          "rule": "path_token:decision OR last_path_token:data OR path_token:by OR path_token:latency OR path_token:mobile OR path_token:person OR path_token:status",
+          "true_positives": 10
+        },
+        {
+          "false_negatives": 2,
+          "false_positives": 0,
+          "family": "DECOMP",
+          "members": [
+            "first_path_token:api",
+            "first_path_token:pool",
+            "last_path_token:bus",
+            "last_path_token:rate",
+            "path_token:change",
+            "path_token:consumer"
+          ],
+          "p_value": 1.4859189682501436e-09,
+          "precision": 1.0,
+          "recall": 0.8182,
+          "rule": "first_path_token:api OR first_path_token:pool OR last_path_token:bus OR last_path_token:rate OR path_token:change OR path_token:consumer",
+          "true_positives": 9
+        },
+        {
+          "false_negatives": 3,
+          "false_positives": 0,
+          "family": "EVID",
+          "members": [
+            "first_path_token:db",
+            "last_path_token:feb",
+            "last_path_token:release",
+            "path_token:runs",
+            "path_token:scope",
+            "path_token:snapshot"
+          ],
+          "p_value": 2.8727766719502776e-08,
+          "precision": 1.0,
+          "recall": 0.7273,
+          "rule": "first_path_token:db OR last_path_token:feb OR last_path_token:release OR path_token:runs OR path_token:scope OR path_token:snapshot",
+          "true_positives": 8
+        },
+        {
+          "false_negatives": 4,
+          "false_positives": 0,
+          "family": "EXEC",
+          "members": [
+            "path_token:count",
+            "first_path_token:diff",
+            "last_path_token:ownership",
+            "path_token:distribution"
+          ],
+          "p_value": 4.2373455911266593e-07,
+          "precision": 1.0,
+          "recall": 0.6364,
+          "rule": "path_token:count OR first_path_token:diff OR last_path_token:ownership OR path_token:distribution",
+          "true_positives": 7
+        },
+        {
+          "false_negatives": 4,
+          "false_positives": 0,
+          "family": "REPR",
+          "members": [
+            "last_path_token:ledger",
+            "path_token:certification",
+            "path_token:pairs",
+            "path_token:tool"
+          ],
+          "p_value": 4.2373455911266593e-07,
+          "precision": 1.0,
+          "recall": 0.6364,
+          "rule": "last_path_token:ledger OR path_token:certification OR path_token:pairs OR path_token:tool",
+          "true_positives": 7
+        }
+      ],
+      "disjunction_rules_clearing_floors": 5,
+      "feature_space_size": 999,
+      "observed_max_disjunction_recall": 0.9091,
+      "shuffle_null_max_disjunction_recall": {
+        "max": 1.0,
+        "mean": 0.7387,
+        "p95": 0.9091,
+        "trials": 200
+      },
+      "shuffle_null_rule_counts": {
+        "disjunction": {
+          "max": 5,
+          "mean": 2.9,
+          "p95": 5
+        },
+        "seed": 20260829,
+        "single": {
+          "max": 0,
+          "mean": 0.0,
+          "p95": 0
+        },
+        "trials": 100
+      },
+      "single_features": [],
+      "single_features_clearing_floors": 0,
+      "verdict": "WITHIN_NULL"
+    }
+  },
+  "named_probes": {
+    "audit_probe_2_proposal_or_trial_path_stem": {
+      "by_corpus": {
+        "CURRENT_main": {
+          "false_negatives": 11,
+          "false_positives": 0,
+          "precision": null,
+          "recall": 0.0,
+          "true_positives": 0
+        },
+        "PRE_REPAIR_audit_snapshot": {
+          "false_negatives": 1,
+          "false_positives": 0,
+          "precision": 1.0,
+          "recall": 0.9091,
+          "true_positives": 10
+        },
+        "REPAIRED": {
+          "false_negatives": 11,
+          "false_positives": 0,
+          "precision": null,
+          "recall": 0.0,
+          "true_positives": 0
+        }
+      },
+      "note": "the rule MECHANICAL_SOLVABILITY_AUDIT_V1.md reports as 10/11 at precision 1.00",
+      "target_family": "DECOMP"
+    },
+    "mined_extension_proposal_trial_bus_path_stem": {
+      "by_corpus": {
+        "CURRENT_main": {
+          "false_negatives": 9,
+          "false_positives": 0,
+          "precision": 1.0,
+          "recall": 0.1818,
+          "true_positives": 2
+        },
+        "PRE_REPAIR_audit_snapshot": {
+          "false_negatives": 0,
+          "false_positives": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positives": 11
+        },
+        "REPAIRED": {
+          "false_negatives": 9,
+          "false_positives": 0,
+          "precision": 1.0,
+          "recall": 0.1818,
+          "true_positives": 2
+        }
+      },
+      "note": "the same rule extended by the token that covers p1-c138, the case the audit's rule missed",
+      "target_family": "DECOMP"
+    },
+    "prompt_word_diagnose": {
+      "by_corpus": {
+        "CURRENT_main": {
+          "false_negatives": 0,
+          "false_positives": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positives": 11
+        },
+        "PRE_REPAIR_audit_snapshot": {
+          "false_negatives": 11,
+          "false_positives": 0,
+          "precision": null,
+          "recall": 0.0,
+          "true_positives": 0
+        },
+        "REPAIRED": {
+          "false_negatives": 8,
+          "false_positives": 3,
+          "precision": 0.5,
+          "recall": 0.2727,
+          "true_positives": 3
+        }
+      },
+      "note": "closing-instruction verb",
+      "target_family": "DECOMP"
+    },
+    "prompt_word_find": {
+      "by_corpus": {
+        "CURRENT_main": {
+          "false_negatives": 0,
+          "false_positives": 1,
+          "precision": 0.9167,
+          "recall": 1.0,
+          "true_positives": 11
+        },
+        "PRE_REPAIR_audit_snapshot": {
+          "false_negatives": 11,
+          "false_positives": 0,
+          "precision": null,
+          "recall": 0.0,
+          "true_positives": 0
+        },
+        "REPAIRED": {
+          "false_negatives": 0,
+          "false_positives": 3,
+          "precision": 0.7857,
+          "recall": 1.0,
+          "true_positives": 11
+        }
+      },
+      "note": "closing-instruction verb",
+      "target_family": "EXEC"
+    },
+    "prompt_word_fix": {
+      "by_corpus": {
+        "CURRENT_main": {
+          "false_negatives": 0,
+          "false_positives": 1,
+          "precision": 0.9167,
+          "recall": 1.0,
+          "true_positives": 11
+        },
+        "PRE_REPAIR_audit_snapshot": {
+          "false_negatives": 11,
+          "false_positives": 0,
+          "precision": null,
+          "recall": 0.0,
+          "true_positives": 0
+        },
+        "REPAIRED": {
+          "false_negatives": 8,
+          "false_positives": 4,
+          "precision": 0.4286,
+          "recall": 0.2727,
+          "true_positives": 3
+        }
+      },
+      "note": "closing-instruction noun",
+      "target_family": "DECOMP"
+    },
+    "prompt_word_instrument": {
+      "by_corpus": {
+        "CURRENT_main": {
+          "false_negatives": 5,
+          "false_positives": 0,
+          "precision": 1.0,
+          "recall": 0.5455,
+          "true_positives": 6
+        },
+        "PRE_REPAIR_audit_snapshot": {
+          "false_negatives": 11,
+          "false_positives": 0,
+          "precision": null,
+          "recall": 0.0,
+          "true_positives": 0
+        },
+        "REPAIRED": {
+          "false_negatives": 10,
+          "false_positives": 0,
+          "precision": 1.0,
+          "recall": 0.0909,
+          "true_positives": 1
+        }
+      },
+      "note": "mid-prompt instrument endorsement",
+      "target_family": "EVID"
+    },
+    "prompt_word_repair": {
+      "by_corpus": {
+        "CURRENT_main": {
+          "false_negatives": 0,
+          "false_positives": 1,
+          "precision": 0.9167,
+          "recall": 1.0,
+          "true_positives": 11
+        },
+        "PRE_REPAIR_audit_snapshot": {
+          "false_negatives": 11,
+          "false_positives": 0,
+          "precision": null,
+          "recall": 0.0,
+          "true_positives": 0
+        },
+        "REPAIRED": {
+          "false_negatives": 2,
+          "false_positives": 4,
+          "precision": 0.6923,
+          "recall": 0.8182,
+          "true_positives": 9
+        }
+      },
+      "note": "closing-instruction noun",
+      "target_family": "EXEC"
+    },
+    "prompt_word_specify": {
+      "by_corpus": {
+        "CURRENT_main": {
+          "false_negatives": 0,
+          "false_positives": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positives": 11
+        },
+        "PRE_REPAIR_audit_snapshot": {
+          "false_negatives": 11,
+          "false_positives": 0,
+          "precision": null,
+          "recall": 0.0,
+          "true_positives": 0
+        },
+        "REPAIRED": {
+          "false_negatives": 8,
+          "false_positives": 3,
+          "precision": 0.5,
+          "recall": 0.2727,
+          "true_positives": 3
+        }
+      },
+      "note": "closing-instruction verb",
+      "target_family": "DECOMP"
+    }
+  },
+  "schema_version": "orion11.corpus-leakage-probes.v1",
+  "threat_model": "PublicView only: case_id, public_prompt, observable_resources, budget_class. Resource descriptions after the em dash are content, not surface, and are never read."
+}

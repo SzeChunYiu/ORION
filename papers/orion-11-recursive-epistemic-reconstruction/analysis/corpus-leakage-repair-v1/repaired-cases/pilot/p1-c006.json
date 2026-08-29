@@ -1,0 +1,29 @@
+{
+  "case_id": "p1-c006",
+  "task_family": "execution_only_negative_control",
+  "public_prompt": "The nightly aggregation has reported zero rows for every partner since 2026-02-19 while the source tables keep filling, and its logic is unchanged since the last known-good night. Find the defect in the job: diagnose the defect and specify the fix.",
+  "observable_resources": [
+    "jobs/aggregate.py — reads from whichever table $PARTNER_TABLE names, unchanged in 8 months",
+    "deploy/env-diff.txt — on 2026-02-19 PARTNER_TABLE moved from prod.partner_events to stg.partner_events",
+    "warehouse/tables.md — stg.partner_events has the same shape and 0 rows; prod.partner_events holds 4.1B rows and is current",
+    "jobs/run-log.txt — every run since 2026-02-19 finishes successfully after reading 0 rows, raising nothing",
+    "closure:aggregation-test-acceptance — closed; accepts the job's tests, which point PARTNER_TABLE at a fixture table and pass",
+    "closure:partner-reporting-commitment — closed; commits to a daily partner figure by 06:00; rests on the customer agreement, not on which table the job reads",
+    "closure:warehouse-naming-standard — closed; fixes the prod and stg prefixes; rests on the platform standard, not on which one this job was pointed at"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EXECUTION",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the environment variable pointing at the empty staging table as the defect, repoints it and re-runs the affected nights, and adds a guard that fails loudly on a zero-row read. It must leave the aggregation's formulation untouched. FAIL if the answer concludes the partner data is genuinely absent, redesigns the aggregation, or recasts the question as a data-quality modelling problem.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Run defect: PARTNER_TABLE repointed to an empty staging table on 2026-02-19. The aggregation is correct; repointing and re-running resolves it. Reframing is the wrong move."
+}

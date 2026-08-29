@@ -1,0 +1,28 @@
+{
+  "case_id": "p1-c129",
+  "task_family": "execution_only_negative_control",
+  "public_prompt": "The experiment analysis script reports the treatment arm 3.1% ahead, then 2.2%, then 3.4% on re-runs over the same window. The comparison is pre-registered. The course settled on: find the defect in the run and repair it: identify the defect and state the correction.",
+  "observable_resources": [
+    "analysis/load.py — reads every file matching data/events-*.parquet",
+    "pipeline/writer.md — the upstream writer appends to data/events-live.parquet continuously and renames a completed file from its .tmp name",
+    "analysis/run-sizes.log — the byte count of events-live.parquet differs at each of the three reads",
+    "analysis/frozen-run.md — a run against a frozen snapshot directory gives 2.8% on all 5 repeats",
+    "closure:comparison-preregistration — closed; fixes the two-arm difference and the outcome in advance, leaving no discretion anywhere in it",
+    "closure:experiment-preregistration — closed; fixes the arms, the outcome and the window before the run; none of it is in question here"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EXECUTION",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the still-being-written file matched by the glob as the defect, restricts the input to completed files or a frozen snapshot, and shows the result stable across repeats. The comparison must be left untouched. FAIL if the answer averages repeated runs, adds a random seed, widens the confidence interval to cover the spread, or revisits the outcome.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Run defect: an input glob picks up a file the upstream writer is still appending to. The comparison is correct; freezing the input resolves it. Reframing is the wrong move."
+}

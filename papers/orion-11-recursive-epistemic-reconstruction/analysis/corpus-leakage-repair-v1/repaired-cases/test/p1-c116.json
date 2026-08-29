@@ -1,0 +1,30 @@
+{
+  "case_id": "p1-c116",
+  "task_family": "execution_only_negative_control",
+  "public_prompt": "An offline replay that used to take 40 minutes now takes 40 hours after a routine code review landed. The replay covers the same window and the same model as before the review. The route being taken: find the defect and repair it. Name the defect and give the repair.",
+  "observable_resources": [
+    "recsys/diff-4471.patch — the review added one debug log line whose message is built by string interpolation of the whole feature frame",
+    "recsys/profile.txt — 96% of wall time is spent formatting that one message",
+    "config/logging.yml — the level in every environment is INFO, so the debug message is built and then discarded",
+    "recsys/ablation.md — the same replay with that single line removed finishes in 38 minutes",
+    "recsys/logging-docs.md — the library supports deferred formatting, where the message is built only if the level admits it",
+    "closure:replay-window-agreement — closed; fixes the replay window and the traffic sample, both unchanged across the two runs",
+    "closure:replay-cadence — closed; schedules the offline replay weekly; rests on the evaluation calendar, not on how long one run takes",
+    "closure:recommender-fairness-review — closed; certifies the ranking against the fairness standard; rests on that review, not on how long a replay takes"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EXECUTION",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the eagerly built debug message as the defect and repairs it with deferred formatting or a level guard, then confirms the runtime. The replay's scope, window and model must be left untouched. FAIL if the answer enlarges the machine, parallelises the replay, shortens the replay window, or turns logging off wholesale.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Run defect: a debug message built on every iteration regardless of level. The replay is correct; deferred formatting resolves it. Reframing is the wrong move."
+}

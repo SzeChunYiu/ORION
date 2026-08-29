@@ -1,0 +1,29 @@
+{
+  "case_id": "p1-c132",
+  "task_family": "execution_only_negative_control",
+  "public_prompt": "The nightly export lands 4 hours late about twice a week, always on nights when an unrelated marketing job also runs. The export's own work takes 5 minutes and its logic has not changed in a year. The approach on the table: find the defect and repair it. Find the defect and describe the remedy.",
+  "observable_resources": [
+    "etl/export.yml — takes the lock file /var/run/etl.lock before starting",
+    "marketing/segment-job.yml — takes the lock file /var/run/etl.lock before starting",
+    "etl/export.log — on late nights the job spends 3h55m waiting on the lock and 5 minutes working",
+    "closure:lock-library-selection — closed; adopts the advisory lock library, intended to stop a single job from overlapping itself",
+    "etl/clean-nights.csv — on the 30 nights the marketing job did not run, the export finished on time 30 times out of 30",
+    "closure:export-delivery-sla — closed; commits the export to land by 05:00; rests on the customer agreement, not on how the job takes its lock",
+    "closure:marketing-segment-definition — closed; fixes what the marketing job computes; rests on the campaign agreement, not on when it runs"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EXECUTION",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the lock file path shared by two unrelated jobs as the defect and gives each job its own lock, leaving both schedules and both jobs' logic untouched. FAIL if the primary repair is rescheduling the jobs apart, adding runner capacity, raising the lock timeout, or removing the lock.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Run defect: two unrelated jobs share one advisory lock path. Both jobs are correct; separate lock paths resolve it. Reframing is the wrong move."
+}

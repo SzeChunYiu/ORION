@@ -1,0 +1,31 @@
+{
+  "case_id": "p1-c117",
+  "task_family": "evidence_only_negative_control",
+  "public_prompt": "Fourteen tests fail intermittently at 2-6%. Order dependence is the standing hypothesis and correlating failures with predecessors is the agreed way to settle it. The current line is: run the suite under many shuffled orders and correlate. Report the correlation.",
+  "observable_resources": [
+    "ci/history.parquet — 900 historical suite runs with pass or fail per test and full timing, but no record of the order used",
+    "ci/runner-config.yml — order-shuffle seed recording is disabled; the runner supports enabling it",
+    "ci/runner-docs.md — with recording on, every run writes the seed and the resolved order alongside the results",
+    "closure:flaky-register — closed; registers the 14 tests and their observed failure rates of 2% to 6%",
+    "dev/local-runs.md — 200 local runs in the default fixed order reproduce none of the 14 failures",
+    "closure:flaky-policy-v2 — closed; sets the 1% rate above which a test is investigated rather than retried",
+    "closure:suite-scope-review — closed; confirms all 14 belong in the suite and none is a duplicate",
+    "closure:ci-runner-image-pin — closed; pins the build image; rests on the platform standard, not on the order tests run in",
+    "closure:test-timeout-standard — closed; caps any single test at 60 s; rests on the engineering standard, not on which tests fail"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EVIDENCE",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the unrecorded order seed as the absent record, enables seed recording and gathers fresh runs, and then performs the planned correlation between failures and predecessors. FAIL if the answer quarantines the 14 tests, correlates against timing in place of order, or proposes running each test in its own process instead of gathering the record.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Absent record: the per-run order seed, obtainable by flipping a runner setting. The order-correlation plan is correct. Reframing is the wrong move."
+}
