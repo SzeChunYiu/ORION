@@ -1,0 +1,90 @@
+{
+  "schema_version": "orion03.native-typed-merge-transfer.v1",
+  "identity": "ORION03.NATIVE_TYPED_MERGE_TRANSFER.v1",
+  "status": "DESIGN_ONLY__NO_NATIVE_OUTCOME_AUTHORITY",
+  "scientific_authority_delta": "NONE",
+  "typed_parent_witness_is_empirical_detector": false,
+  "systems": [
+    {"id": "SIGSTORE_COSIGN", "families": 10, "verifier": "pinned_native_cosign"},
+    {"id": "TUF_PYTHON_TUF", "families": 10, "verifier": "pinned_native_python_tuf"},
+    {"id": "IN_TOTO", "families": 10, "verifier": "pinned_native_in_toto"}
+  ],
+  "confirmatory_family_total": 30,
+  "synthetic_controls_count_toward_confirmatory_n": false,
+  "common_decisions": {
+    "V_A": "native_accept_under_parent_A",
+    "V_B": "native_accept_under_parent_B",
+    "V_U": "native_accept_under_registered_flat_union",
+    "V_T": "V_A_or_V_B",
+    "hybrid": "V_U_and_not_V_A_and_not_V_B"
+  },
+  "flat_union": {
+    "frozen_before_protected_verification": true,
+    "only_native_consumed_typed_components": true,
+    "may_weaken_threshold_without_registered_native_union_semantics": false,
+    "may_delete_rules_without_registered_native_union_semantics": false,
+    "required_receipts": [
+      "parent_component_inventory",
+      "component_provenance",
+      "merged_native_configuration_bytes",
+      "native_verifier_version_and_invocation",
+      "structural_component_diff"
+    ],
+    "no_semantic_union_terminal": "CANNOT_CHECK_NO_NATIVE_FLAT_UNION"
+  },
+  "candidate_freeze": {
+    "minimum_candidates_per_family": 20,
+    "target_candidates_per_system_min": 200,
+    "target_candidates_overall_min": 600,
+    "generator_frozen_before_native_parent_or_union_outcomes": true,
+    "post_outcome_candidate_replacement": false,
+    "required_candidate_kinds": [
+      "parent_A_valid_positive_control",
+      "parent_B_valid_positive_control",
+      "cross_parent_structural_composite",
+      "known_malformed_negative_control"
+    ]
+  },
+  "hybrid_localization": {
+    "requires_load_bearing_contribution_from_A": true,
+    "requires_load_bearing_contribution_from_B": true,
+    "ablate_each_claimed_contribution_with_native_reverification": true,
+    "failed_localization_terminal": "CANNOT_CHECK_LOCALIZATION"
+  },
+  "inference_unit": "family",
+  "candidate_tasks_are_independent_replicates": false,
+  "primary_endpoints": [
+    "native_flat_union_hybrid_count",
+    "localized_hybrid_count",
+    "families_with_at_least_one_hybrid",
+    "strict_baseline_needless_rejections_of_parent_authorized_objects",
+    "native_verifier_failures_and_timeouts"
+  ],
+  "cross_system_support_gate": {
+    "hybrid_families_min_per_system": 3,
+    "families_per_system": 10,
+    "all_three_systems_required": true,
+    "localized_hybrid_min_per_system": 1,
+    "source_binding_and_verifier_drift_allowed": false,
+    "malformed_controls_must_reject": true,
+    "post_outcome_family_or_candidate_deletion": false,
+    "three_of_ten_is_significance_test": false
+  },
+  "strict_baseline_utility_gate": {
+    "needless_rejection_families_min_per_supporting_system": 3,
+    "requires_parent_authorized_objects": true,
+    "cost_can_substitute_for_native_authorization_loss": false
+  },
+  "terminals": [
+    "NATIVE_CROSS_SYSTEM_HYBRID_NONVACUITY_SUPPORTED",
+    "BOUNDED_SYSTEM_SPECIFIC_HYBRID_SUPPORT",
+    "NO_NATIVE_HYBRID_OBSERVED",
+    "HYBRID_ONLY_IN_ONE_SYSTEM",
+    "CANNOT_CHECK_NO_NATIVE_FLAT_UNION",
+    "CANNOT_CHECK_INSUFFICIENT_NATIVE_FAMILIES",
+    "CANNOT_CHECK_LOCALIZATION",
+    "CANNOT_CHECK_NATIVE_VERIFIER_REPRODUCTION",
+    "ADVERSE_PARENT_CONTEXT_INVALID",
+    "ADVERSE_CONTROL_FAILURE"
+  ]
+}
