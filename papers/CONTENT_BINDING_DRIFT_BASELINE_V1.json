@@ -4,10 +4,6 @@
   "how_this_was_found": "content_binding_coverage exits 1 on the live tree, but every test of it used synthetic fixtures, so nothing ran it against the repository. The digest gate was reporting a failure no CI job read.",
   "not_to_be_regenerated": "Refreshing a manifest to match drifted content while retaining current-package authority deletes the evidence that content moved. Entries leave only after a real rebuild or an explicit SUPERSEDED reconciliation that retains the historical render closure and denies current submission authority; never by an unqualified hash-only rewrite.",
   "papers": {
-    "papers/orion-11-recursive-epistemic-reconstruction": {
-      "drifted": 1,
-      "note": "one bound file's bytes differ from its digest: experiments/r4-faithful-comparator-v1/run_orion11_r4_faithful_comparator.py"
-    },
     "papers/orion-12-open-world-scientific-discovery": {
       "drifted": 0,
       "note": "no bytes drifted; journal_package/current_revision/SHA256SUMS pins a manuscript.pdf that is absent, and whose digest does not match the parent package's manuscript.pdf, so it names an earlier render not present on main"
@@ -21,7 +17,14 @@
       "note": "six bound files differ from their digests: P10_ACTIVE_CLAIM_AUTHORITY_V1.json, manuscript/main.tex, manuscript/main.pdf and sections 02, 11 and 16"
     }
   },
-  "total_papers_drifted": 4,
+  "total_papers_drifted": 3,
   "recorded": "2026-08-29",
-  "why_this_was_empty": "The ratchet shipped with an empty papers map while the tree carried drift, so every drifted paper read as new and the test could never pass. Populating it with the drift that predates the check is what the record is for; no digest was regenerated and no drifted byte was touched."
+  "why_this_was_empty": "The ratchet shipped with an empty papers map while the tree carried drift, so every drifted paper read as new and the test could never pass. Populating it with the drift that predates the check is what the record is for; no digest was regenerated and no drifted byte was touched.",
+  "reconciled": {
+    "papers/orion-11-recursive-epistemic-reconstruction": {
+      "date": "2026-08-29",
+      "was": 1,
+      "how": "experiments/r4-faithful-comparator-v1/SHA256SUMS recorded the digest the script had before d3e2e8f39, which added 115 lines to parameterise the R4 anchor gate and touched no SHA256SUMS. The digest was re-pinned to the bytes that commit produced; all 8 entries in that directory now match. No file content was changed to fit a digest."
+    }
+  }
 }
