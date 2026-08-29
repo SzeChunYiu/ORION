@@ -1,0 +1,89 @@
+{
+  "schema_version": "orion19.mechanism-factorial-successor.v1",
+  "identity": "ORION19.MECHANISM_INTERVENTION_MULTIPLEX.v1",
+  "status": "DESIGN_ONLY__NO_OUTCOME_AUTHORITY",
+  "scientific_authority_delta": "NONE",
+  "purpose": "Discriminate four frozen single/mixed bottleneck theories with orthogonalized information, access/representation and compute interventions.",
+  "factors": [
+    "task_relevant_information",
+    "access_or_representation",
+    "search_or_inference_compute"
+  ],
+  "candidate_hypotheses": [
+    {
+      "id": "H_INFO",
+      "meaning": "missing task-relevant information is the decisive bottleneck",
+      "predicted_repair_rule": "repair iff intervention contains task_relevant_information"
+    },
+    {
+      "id": "H_ACCESS",
+      "meaning": "information is present but access/representation is the decisive bottleneck",
+      "predicted_repair_rule": "repair iff intervention contains access_or_representation"
+    },
+    {
+      "id": "H_COMPUTE",
+      "meaning": "information and access are adequate but search/inference compute is the decisive bottleneck",
+      "predicted_repair_rule": "repair iff intervention contains search_or_inference_compute"
+    },
+    {
+      "id": "H_CONJUNCTIVE",
+      "meaning": "all three factors are jointly necessary; no proper subset repairs the bottleneck",
+      "predicted_repair_rule": "repair iff intervention contains all three factors"
+    }
+  ],
+  "factorial_interventions": [
+    {"id": "J_I", "factors": ["task_relevant_information"]},
+    {"id": "J_A", "factors": ["access_or_representation"]},
+    {"id": "J_C", "factors": ["search_or_inference_compute"]},
+    {"id": "J_IA", "factors": ["task_relevant_information", "access_or_representation"]},
+    {"id": "J_IC", "factors": ["task_relevant_information", "search_or_inference_compute"]},
+    {"id": "J_AC", "factors": ["access_or_representation", "search_or_inference_compute"]},
+    {"id": "J_IAC", "factors": ["task_relevant_information", "access_or_representation", "search_or_inference_compute"]}
+  ],
+  "minimum_structurally_identifying_core": ["J_I", "J_A", "J_C"],
+  "minimum_core_size": 3,
+  "full_factorial_role": "estimate interactions and audit intervention purity; not required by the deterministic four-hypothesis separation theorem",
+  "response": {
+    "alphabet": ["REPAIR", "NO_REPAIR", "CANNOT_CHECK"],
+    "repair_threshold_must_be_frozen_before_outcomes": true,
+    "cannot_check_is_not_a_repair": true,
+    "stochastic_outcomes_require_pre_frozen_statistical_model_and_power_analysis": true
+  },
+  "purity_requirements": {
+    "J_I": "hold representation/access implementation and compute budget fixed; record exact added information bytes/tokens/features",
+    "J_A": "preserve task information and compute budget while changing only the information interface/representation as far as operationally possible",
+    "J_C": "preserve information and representation while changing only search/inference budget as far as operationally possible",
+    "factorial_cells": "record all factor deltas; any unavoidable cross-factor change becomes a named protocol deviation"
+  },
+  "matched_resource_requirements": [
+    "same task instances within a family",
+    "same scoring rule",
+    "same stopping and failure semantics",
+    "pre-frozen budget accounting",
+    "family is the primary inference unit",
+    "retain null, adverse and CANNOT_CHECK families"
+  ],
+  "anti_leakage": [
+    "freeze hypothesis response signatures before evaluation outcomes",
+    "freeze intervention implementations before evaluation outcomes",
+    "no domain deletion after outcome access",
+    "no threshold retuning after outcome access",
+    "no relabeling a failed mechanism as a new successful one under the same identity"
+  ],
+  "required_controls": [
+    "information-placebo control",
+    "representation-placebo control",
+    "compute-placebo or no-op budget control",
+    "known-positive repair control",
+    "known-negative nonrepair control"
+  ],
+  "terminals": [
+    "MECHANISM_DISCRIMINATED",
+    "NO_MECHANISM_DISCRIMINATION",
+    "CANNOT_CHECK_INTERVENTION_PURITY",
+    "CANNOT_CHECK_HYPOTHESES_OBSERVATIONALLY_EQUIVALENT_UNDER_FROZEN_LIBRARY",
+    "CANNOT_CHECK_INSUFFICIENT_POWER_OR_FAMILY_COUNT",
+    "ADVERSE_UNMODELLED_RESPONSE_SIGNATURE"
+  ],
+  "historical_evidence_policy": "Historical favorable, null, scaling-negative and CANNOT_CHECK results may motivate the hypothesis family but cannot count as prospective outcomes for this successor identity."
+}
