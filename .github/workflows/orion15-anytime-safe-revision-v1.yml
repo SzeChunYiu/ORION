@@ -1,0 +1,28 @@
+name: ORION-15 anytime-safe revision v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-15-self-orion/theory/anytime-safe-revision-v1/**'
+      - '.github/workflows/orion15-anytime-safe-revision-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-15-self-orion/theory/anytime-safe-revision-v1/**'
+      - '.github/workflows/orion15-anytime-safe-revision-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify theorem packet digests
+        run: sha256sum -c papers/orion-15-self-orion/theory/anytime-safe-revision-v1/SHA256SUMS
+      - name: Run exact arbitrary-dependence regression
+        run: python papers/orion-15-self-orion/theory/anytime-safe-revision-v1/check_anytime_safe_revision_v1.py
