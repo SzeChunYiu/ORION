@@ -1,0 +1,65 @@
+{
+  "schema": "ORION.ORION17.ClosureChainComposition.Protocol.v1",
+  "protocol_identity": "ORION17.CLOSURE_CHAIN_COMPOSITION.v1",
+  "paper_id": "ORION-17",
+  "promotion_issue": "1649",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "authored_date": "2026-08-28",
+
+  "claims": [
+    {"id": "C1", "statement": "All bridges exact AND epoch-monotone implies closure preserved across the chain."},
+    {"id": "C2", "statement": "Pairwise exactness alone does NOT suffice: there exists a chain of exact bridges that loses closure under an ordering inversion."},
+    {"id": "C3", "statement": "On failure, the revalidation set is exactly the downstream affected closure."},
+    {"id": "C4", "statement": "Exactness and monotonicity are independent; each failure has a distinct location."}
+  ],
+
+  "enumeration": {
+    "chain_lengths": [2, 3, 4, 5],
+    "bridge_patterns": "every subset of adjacent bridges marked exact",
+    "epoch_orderings": "every assignment of epochs from a small ordered set to the transforms, so monotone and non-monotone chains both occur",
+    "exhaustive": true
+  },
+
+  "controls": [
+    {"id": "U1_c2_countermodel_must_be_found",
+     "statement": "C2 asserts a countermodel EXISTS. The sweep must actually exhibit at least one all-exact non-monotone chain that loses closure. If none is found, C2 is unsupported and must be reported as such rather than quietly passing.",
+     "on_failure": "T3_C2_UNSUPPORTED"},
+    {"id": "U2_closure_failure_is_detectable",
+     "statement": "A planted chain with a non-exact bridge must be reported as losing closure by the SAME predicate used for real cases.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "U3_all_good_no_alarm",
+     "statement": "Every all-exact epoch-monotone chain must preserve closure and none may be flagged. A checker that alarms on the good case cries wolf.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "U4_independence_demonstrated",
+     "statement": "C4 requires BOTH failure modes to occur separately: at least one chain failing only from inexactness with monotone epochs, and at least one failing only from ordering with all bridges exact.",
+     "on_failure": "T3_C2_UNSUPPORTED"}
+  ],
+
+  "terminals": [
+    {"id": "T1_CHAIN_COMPOSITION_LAW_HOLDS", "class": "FAVOURABLE",
+     "conditions": ["C1 holds with no counterexample", "C2's countermodel is exhibited", "C3 holds", "C4's two failure modes both occur", "all controls pass"],
+     "licenses": "A bounded statement that exactness and epoch-monotonicity are jointly sufficient and separately necessary for closure preservation over arbitrary finite chains.",
+     "does_not_license": ["any multi-hop deployment claim", "TOP_TIER_PROMOTION_EARNED"]},
+    {"id": "T2_C1_FAILS", "class": "UNFAVOURABLE",
+     "conditions": ["some all-exact epoch-monotone chain loses closure"],
+     "reading": "The induction is wrong; chains need a stronger hypothesis than pairwise exactness plus ordering."},
+    {"id": "T3_C2_UNSUPPORTED", "class": "UNFAVOURABLE",
+     "conditions": ["no all-exact non-monotone chain loses closure, or the two failure modes do not separate"],
+     "reading": "Epoch-monotonicity would then be decorative and the promotion's central content would evaporate — pairwise results would already give chains."},
+    {"id": "T4_CANNOT_CHECK", "class": "CANNOT_CHECK", "conditions": ["U2 or U3 fails"]}
+  ],
+
+  "retrospective_evidence": {
+    "file": "transitions/P7_CLOSURE_RETENTION_V1.json",
+    "outcome_accessed": true,
+    "consequence": "NO FROZEN TEST IS RUN AGAINST IT.",
+    "and_it_is_the_wrong_shape_anyway": "that campaign measures PAIRWISE single-transition closure retention, not multi-hop chains, so it cannot supply the multi-hop evidence a chain promotion would require",
+    "stop_rule_applies": true
+  },
+
+  "promotion_status_if_T1": "CHAIN_THEOREM_ESTABLISHED__PROMOTION_NOT_EARNED__BOUNDED_PAPER_RETAINED",
+  "stop_rule": "Outcomes are read once. On T2 or T3 the lane stops. On T1 the theorem stands but no multi-hop real evidence exists, so ORION-17 remains bounded."
+}
