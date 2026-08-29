@@ -26,9 +26,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python papers/orion-12-open-world-scientific-discovery/scripts/build_ipm_submission.py --check
-          grep -Fq 'recall@100 is lower' papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.tex
-          grep -Fq 'favorable nDCG' papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.tex
+          T=papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.tex
+          test -s "$T"
+          grep -Fq '\author[1]{Anonymous authors}' "$T"
+          grep -Fq 'recall@100 is lower' "$T"
+          grep -Fq 'favorable nDCG' "$T"
+          grep -Fq 'does not replace' "$T"
+          if grep -Eiq 'SzeChunYiu|Sze[[:space:]-]*Chun|sze-chun.yiu@fysik.su.se' "$T"; then
+            echo 'IPM_SOURCE_ANONYMITY=FAIL'
+            exit 1
+          fi
       - name: Generate named arXiv source
         run: python papers/top_tier_gap_closure/release_builders/orion12/build_arxiv_from_ipm.py
       - name: Install TeX and PDF tools
