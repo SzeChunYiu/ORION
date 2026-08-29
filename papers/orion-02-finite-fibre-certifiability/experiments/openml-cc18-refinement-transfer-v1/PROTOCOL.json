@@ -1,0 +1,17 @@
+{
+  "schema": "ORION.ORION02.OpenMLCC18RefinementTransfer.v1",
+  "protocol_id": "ORION02.OPENML_CC18_REFINEMENT_TRANSFER.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "SUITE_AND_TASKS_FROZEN__RUNNER_AND_METADATA_STRATA_RECEIPT_REQUIRED",
+  "corpus_manifest": "CORPUS_MANIFEST.json",
+  "metadata_strata_rule": "Before protected labels/predictions, derive strata solely from OpenML task metadata: binary vs multiclass, n_instances <5000 vs >=5000, n_features <50 vs >=50, and presence/absence of missing values. Publish every occupied intersection and its task IDs; do not merge or drop strata because of outcomes.",
+  "arms": ["coarse_representation", "theorem_minimal_refinement", "lexical_or_distance_proxy", "learned_representation", "oracle_refinement"],
+  "custody": "Representation/refinement learning and arm selection use official-train DEVELOPMENT only; final risk calibration uses disjoint CALIBRATION only; official OpenML test folds are protected until every task-level refinement and threshold is frozen.",
+  "primary": "valid certifiability/coverage under the theorem-predicted bound on protected folds",
+  "secondary": ["predictive_loss", "acquisition_or_refinement_cost", "abstention", "bound_violation_rate"],
+  "required_discriminator": "Before protected outcomes, at least one occupied metadata/geometry stratum must be predicted as tie/no-value and at least one as positive-value from DEVELOPMENT+CALIBRATION only; otherwise terminate CANNOT_CHECK_DESIGN_POWER without looking at protected results.",
+  "validity_gate": "The prospectively selected statistical bound/checker must meet its predeclared protected violation-rate gate in every claimed stratum; failure is terminal and cannot be replaced by coverage alone.",
+  "promotion_gate": "Across >=4 materially distinct occupied strata, theorem-guided refinement must cross the predicted certifiability boundary with useful protected coverage, obey the bound gate, and not be absorbed by the strongest information-matched learned/proxy comparator.",
+  "stop_rule": "No task, fold, stratum definition, comparator, refinement coordinate, risk gate or success threshold may change after protected outcomes."
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "ORION.ORION03.NativeTrustMergeTransfer.v1",
+  "protocol_id": "ORION03.NATIVE_TRUST_MERGE_TRANSFER.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "SOFTWARE_AND_QUESTION_FROZEN__NATIVE_CASE_MANIFEST_REQUIRED",
+  "systems": [
+    {"id": "cosign", "repository": "sigstore/cosign", "release": "v3.1.3", "commit": "11926fa5bbbbde47e88fc006b625a17769b743b2", "native_gold": "cosign verify / verify-blob under exact identity/issuer/policy"},
+    {"id": "python_tuf", "repository": "theupdateframework/python-tuf", "release": "v7.0.0", "commit": "353bdb767db56fd4667c9bcf56b710d50fdc2ac0", "native_gold": "TUF ngclient metadata/threshold/expiry/delegation verification from frozen root"},
+    {"id": "in_toto", "repository": "in-toto/in-toto", "release": "v3.1.0", "commit": "c82fe5d21aaa61c7f1a213db20a46f10bb3f411a", "native_gold": "in-toto layout/link signature and rule verification"}
+  ],
+  "case_families": ["valid_merge_or_reuse", "stale_or_expired", "revoked_or_rotated_authority", "conflicting_authority_or_role", "unresolved_or_missing_native_fact"],
+  "typed_rule": "Preserve each native object's role/type/policy scope/epoch and permit merge/reuse only when every system-specific load-bearing premise remains established under that system's native semantics. Unknown native premises remain UNKNOWN/CANNOT_CHECK.",
+  "arms": ["typed_merge", "flat_key_value_or_provenance_merge", "native_policy_without_cross_object_typed_rule", "ideal_native_fact_aware_control"],
+  "information_matching": "No baseline is denied native metadata required by its natural interface. The typed arm may use only the prospectively registered type/scope/epoch bindings, not hidden outcomes.",
+  "primary_endpoints": ["unsafe_merge_or_reuse", "needless_rejection", "CANNOT_CHECK_rate", "native_verifier_calls"],
+  "promotion_gate": "At least two systems must contain discriminating machine-authoritative cases where typed versus flat/native-only handling differ; typed rule must have zero unsafe approvals on decidable cases.",
+  "stop_rule": "A native system whose semantics do not instantiate the shared question is reported non-discriminating; it is not recoded after outcomes to manufacture a difference."
+}

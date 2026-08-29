@@ -1,0 +1,25 @@
+{
+  "schema": "ORION.ORION05.ProofCarryingObstructionCensus.v2",
+  "protocol_id": "ORION05.PROOF_CARRYING_OBSTRUCTION_CENSUS.v2",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "INSTRUMENT_IDENTITY_FROZEN__CERTIFICATE_FORMAT_AND_RUNNERS_REQUIRED",
+  "v1_history": {
+    "terminal": "CANNOT_CHECK__CHECKER_DISAGREEMENT",
+    "census_rows": 5005,
+    "planted_control_disagreements": 3,
+    "rule": "V1 rows may be used only as derivation/debug history; V2 terminal is computed from V2 proof objects, not by regrading V1 JSON rows."
+  },
+  "basis_rule": "The obstruction basis itself is copied byte-for-byte from the pre-outcome V1 freeze. No basis element may be added, removed or weakened because of V1 rows or V2 outcomes.",
+  "certificate_contract": {
+    "positive_gap": "explicit exact source object plus independently checkable target gap witness",
+    "basis_membership": "canonical symmetry transform and explicit basis element mapping, independently verified",
+    "negative_or_universal_row": "complete residual enumeration certificate or proof-producing exact solver certificate bound to the row input",
+    "campaign_terminal": "computed solely from independently verified certificates and the frozen terminal logic"
+  },
+  "independence": ["generator/solver may not be imported by checker A", "checker B must independently validate certificate syntax, input binding, symmetry mapping and terminal aggregation", "at least one checker should use a structurally different implementation or proof checker where practical"],
+  "mandatory_controls": ["known positive gap + in-basis witness", "known no-gap control", "corrupted basis mapping", "certificate/input digest mismatch", "truncated universal certificate"],
+  "gate_before_census": "All mandatory controls must be accepted/rejected as registered by both independent checkers before any V2 full census result is read.",
+  "terminal_set": ["GLOBAL_OBSTRUCTION_BASIS_PROOF_CARRIED", "COUNTEREXAMPLE_OBSTRUCTION_OUTSIDE_FROZEN_BASIS", "CANNOT_CHECK_CERTIFICATE_DISAGREEMENT", "CANNOT_CHECK_RESOURCE_EXHAUSTION"],
+  "practical_consequence_rule": "Only if GLOBAL_OBSTRUCTION_BASIS_PROOF_CARRIED is fixed may a separate outcome-free protocol freeze exhaustive-solver versus obstruction-guided work (states / exact solver calls primary) before measuring it."
+}
