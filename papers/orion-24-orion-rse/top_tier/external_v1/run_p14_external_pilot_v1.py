@@ -315,7 +315,7 @@ def run(base, out):
         json.dump(analytics, f, indent=2, sort_keys=True)
         f.write("\n")
 
-    md = ["# P14 external pilot analytics (v1)", "",
+    md = ["# ORION-24 external pilot analytics (v1)", "",
           "Wiring check only. All systems NOT_AUTHORITY; co-primary condition PENDING_EXTERNAL.", "",
           "| metric | System-A (blind) | System-B (governance) |", "|---|---|---|"]
     keys = ["false_novelty_rate", "subsumption_detection_rate", "cannot_check_precision", "cannot_check_recall",
