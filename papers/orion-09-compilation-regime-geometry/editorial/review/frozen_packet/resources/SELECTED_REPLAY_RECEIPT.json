@@ -1,0 +1,36 @@
+{
+  "date": "2026-08-28",
+  "external_replication": false,
+  "replay_class": "same_repository_generators_rerun_to_fresh_temporary_outputs",
+  "rows": [
+    {
+      "command": "python research/extensions/orion-qg/qg9_v6_support1_normalization.py --output <temporary-output>",
+      "committed_field": "source_result_digest",
+      "committed_value": "587b4b803cfafa1b08a949b28ba8a626bd7bc405ca03a30ccd09e99651d31a4f",
+      "fresh_output_sha256": "b5e0253ecee458828bb180f696dede36407a4ca691ca132a9ac8e803e2adf555",
+      "fresh_result_digest": "587b4b803cfafa1b08a949b28ba8a626bd7bc405ca03a30ccd09e99651d31a4f",
+      "match": true,
+      "terminal": "QG9_RANK2_ALL_N_SUPPORT1_SUFFICIENCY_MACHINE_CHECKED"
+    },
+    {
+      "command": "python research/extensions/orion-qg/qg12_sixlcu_p0_theorem.py --output <temporary-output>",
+      "committed_field": "full_file_sha256_and_result_digest",
+      "committed_value": "6b829cf0fa19629522df3c5907fa3c14ac4e49f6c32b4ed1227e486b202a9329",
+      "fresh_output_sha256": "6b829cf0fa19629522df3c5907fa3c14ac4e49f6c32b4ed1227e486b202a9329",
+      "fresh_result_digest": "3e6fe23ab095f89c60d96226d13baac4c4c6120dd1da782f871a35245303eef9",
+      "match": true,
+      "terminal": "QG12_SIXLCU_P0_ALL_INSTANCE_THEOREM_MACHINE_CHECKED"
+    },
+    {
+      "command": "python research/extensions/orion-qg/qg16_r6i_support1_phase.py --output <temporary-output>",
+      "committed_field": "source_result_digest",
+      "committed_value": "415e5e45cfc85c5b2073bfe8220b7e4f832703b7d9072daa5e80c79ad5771f31",
+      "fresh_output_sha256": "d679b350d6eb4c4a3e98be34499c700b0f285dd6adff3cd73616005ee0ba9f44",
+      "fresh_result_digest": "415e5e45cfc85c5b2073bfe8220b7e4f832703b7d9072daa5e80c79ad5771f31",
+      "match": true,
+      "terminal": "QG16_R6I_OBJECTIVE_INDEXED_SUPPORT1_CONE_ALL_N_MACHINE_CHECKED"
+    }
+  ],
+  "same_project_custody": true,
+  "terminal": "SELECTED_REPLAYS_MATCH_COMMITTED_SCIENTIFIC_DIGESTS"
+}

@@ -1,0 +1,242 @@
+% Generated target adapter from main.tex; do not edit by hand.
+\documentclass[a4paper,fleqn]{cas-sc}
+\usepackage{natbib}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{xurl}
+\hypersetup{pdftitle={Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery},pdfauthor={Anonymous authors}}
+\setlength{\emergencystretch}{4em}
+\urlstyle{same}
+
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\title[mode=title]{Acquisition Is Not Closure: Fail-Closed Control for Open-World
+Scientific-Literature Discovery}
+\author[1]{Anonymous authors}
+\date{}
+
+\input{generated/suite_facts}
+
+\begin{document}
+\shorttitle{Acquisition Is Not Closure}
+\shortauthors{Anonymous authors}
+\maketitle
+\hypersetup{pdfauthor={Anonymous authors},pdftitle={Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery}}
+
+\begin{abstract}
+Scientific-literature discovery combines evidence acquisition with decisions
+about when a search may stop. These functions are often evaluated as one
+policy, although a locally exhausted or unavailable retrieval route does not
+establish that the scientific task is complete. We introduce a fail-closed
+control layer that separates route stopping from task closure, derives route
+independence from backend and query provenance, distinguishes content identity
+from question-conditioned processing state, and retains unresolved material
+routes as open obligations. A \OfflineTaskCount{}-task complete-gold controlled index shows the
+intended mechanism behavior: the governed controller reaches mean recall
+0.979487 with no premature task closure, but the preregistered comparison is
+underpowered and does not establish superiority. An exact-contract battery
+isolates the unresolved-route rule on 400 protected cases. The fail-closed
+controller is correct on 400 cases, compared with 250 for a donor-complete
+product that excludes unavailable material routes; an information-equivalent
+product ties the controller. The registered external Text REtrieval Conference COVID-19 (TREC-COVID)
+gate fails. Against a BM25 lexical baseline, recall@100 is lower by 0.01769 with a 95\% bootstrap interval of
+$[-0.02729,-0.00906]$, and the controller reads 175.7\% more candidates.
+Although normalized discounted cumulative gain at rank 10 (nDCG@10) is
+higher by 0.1488, that secondary result cannot replace the
+registered recall-and-cost criteria. The contribution is therefore a bounded
+control method for representing acquisition authority, not evidence of
+external retrieval superiority or open-world completeness.
+\end{abstract}
+
+\noindent\textbf{Keywords:} scientific literature discovery; information
+retrieval; systematic review; stopping rules; coverage; open-world search;
+fail-closed control.
+
+\section{Introduction}
+
+Scientific-literature discovery systems increasingly combine lexical and
+semantic retrieval, query reformulation, citation expansion, selective reading,
+screening, and learned stopping. Better acquisition can recover more useful
+material, but it cannot answer a different question by itself: what does the
+observed search state authorize a system to claim about completeness? A route
+may be locally exhausted while another route remains untried. A provider may be
+unavailable rather than empty. Two differently named routes may share the same
+backend and query derivation. A document may have been encountered before but
+not processed for the current scientific question. Treating these cases as
+ordinary negative evidence creates false closure.
+
+This paper studies that control boundary rather than proposing a new general
+retriever. The method separates an acquisition policy, which selects the next
+search or reading action, from a closure authority, which decides whether the
+current evidence state permits route stopping or task closure. Four design
+elements implement the separation. First, route independence is supported by
+backend, query-derivation, and capture provenance rather than route labels.
+Second, route-local stopping never certifies task-global completeness. Third,
+unavailable, censored, or provider-invalid material routes remain explicit open
+obligations. Fourth, content identity is recorded separately from
+question-conditioned read state, preventing duplicate discovery from inflating
+coverage without suppressing legitimate rereading.
+
+The empirical question is deliberately narrow: do these control elements
+behave in their intended directions under complete denominators and protected
+exact contracts, and do they support an external superiority claim? We use a
+complete-gold controlled index to expose premature closure and mechanism
+failures, then an exact-contract battery to isolate unresolved-route authority.
+The external decision is supplied by a preregistered TREC-COVID comparison. Its
+recall and cost gates both fail. We retain the favorable nDCG result as a
+secondary observation, but do not use it to rescue the registered decision.
+
+The resulting contribution is a methods and critical system-design claim. It
+does not claim that finite open-world search proves completeness, that the
+controller outperforms established retrieval systems, or that existing
+retrieval, screening, stopping, and memory components are novel. Instead, it
+provides a composable representation of what acquisition outcomes are allowed
+to certify, together with controlled evidence and an adverse external test that
+fix the present boundary.
+
+\input{sections/acquisition_authority}
+\input{sections/formalism}
+
+\begin{figure}[t]
+\centering
+\input{figures/P2-1_pipeline}
+\caption{The discovery pipeline separates retrieval, screening, route stopping,
+and task closure. Solid arrows carry state updates. The dashed coverage
+diagnostic informs search but does not certify closure, and the crossed arrow is
+the forbidden promotion from a route stop to task completeness. Transport
+failure leaves an open obligation rather than evidence of absence.}
+\label{fig:p2-1}
+\end{figure}
+
+\input{sections/methods}
+\input{sections/results}
+
+\section{Related work}
+
+Scientific-discovery benchmarks show that both targeted and open-ended
+literature search remain difficult for current agents
+\cite{autoresearchbench2026,researcharena2024}. Acquisition methods are already
+heterogeneous. Strong lexical retrieval can outperform large-model retrievers
+inside deep-research workflows \cite{sage2026}; reasoning traces can become
+retrieval signals \cite{agentir2026}; fielded admission and selective section
+fetching can improve the accuracy--context trade-off \cite{sieve2026}; and
+bibliography expansion can recover studies missed by API-only search
+\cite{rethinkinglitsearch2026}. These methods enlarge the acquisition layer.
+They do not, without an additional argument, establish task completeness.
+
+Automated evidence synthesis provides a second neighboring literature.
+MetaSyn separates retrieval from eligibility screening, making stage-specific
+false negatives visible \cite{metasyn2026}. AgentSLR evaluates an end-to-end
+systematic-review workflow over expert-annotated review tasks
+\cite{agentslr2026}. Technology-assisted review has long studied active
+screening protocols, autonomy, recall targets, and workload reduction
+\cite{cormack2014tarprotocols,cormack2015autonomycal,vandeschoot2021asreview}.
+The present work adopts stage attribution and fair-budget comparison, while
+focusing on the authority transition between a local acquisition outcome and a
+global closure claim.
+
+Stopping research includes statistical stopping for systematic review
+\cite{callaghan2020stopping,li2020whentostop,yang2021heuristicstopping},
+decision-theoretic continuation \cite{decisionstop2026,deepcontrol2026},
+verification-aware completion \cite{halt2026,donotstopearly2026}, conformal
+coverage for adaptive reasoning \cite{micp2026}, and structured sufficiency or
+gap judgments \cite{confidencebasedstop2026,multiragstop2026}. Finite
+obligation certificates and evidence-bound workflow transitions offer still
+stronger donor mechanisms \cite{knowplan2026,icore2026}. We grant these
+mechanisms to the acquisition policy and ask a residual question: when a
+material route is unavailable, censored, or provider-invalid, may it disappear
+from the task-closure denominator? The exact-contract comparison is designed to
+change only that aggregation rule.
+
+Capture--recapture methods and information foraging motivate, but do not settle,
+the same boundary. Capture--recapture estimates require defensible capture
+occasions and can be misleading under dependence
+\cite{kastner2009capturerecapture,rucker2011boosting}. Information foraging
+describes the value of continuing or leaving a local information patch
+\cite{pirolli1995foragingchi,pirolli1999foraging}. In adaptive retrieval,
+however, a low-yield patch or a dependent route cannot be promoted into proof
+that the global literature has been exhausted. Question-conditioned memory
+likewise helps organize evidence \cite{memchain2026}, but the method here claims
+only the bookkeeping distinction between content identity and the question for
+which that content was processed.
+
+\section{Discussion and limitations}
+
+The controlled studies support a control-layer interpretation, not a retrieval
+leaderboard claim. In the complete-gold index, the governed controller maintains
+open obligations where the evaluator knows relevant material remains reachable.
+The ablations show that forbidden authority transitions are observable, while
+the exact-contract battery isolates the aggregation error made when unavailable
+material routes are excluded. These results demonstrate implementation behavior
+under authored contracts. They do not estimate real-web difficulty or prove
+that the declared route registry contains every material route.
+
+The TREC-COVID result is the strongest external discriminator in the present
+paper because it tests the registered comparative claim on a public collection
+\cite{voorhees2020treccovid}. It is adverse. The recall noninferiority interval
+crosses the registered margin, and resource use moves in the wrong direction.
+The higher nDCG@10 is scientifically informative because it indicates better
+top-ranked relevance on many topics, but it answers a different question. A
+post-outcome substitution of nDCG for recall and cost would change the study
+rather than pass it. The paper therefore makes no external superiority claim.
+
+Several additional probes remain bounded or undetermined. A public MetaSyn
+probe quantifies retrieval and screening loss, but it does not exercise the
+complete controller. An AutoResearchBench Deep probe returns no official title
+matches after a successful judge control, which is a bounded negative
+diagnostic rather than a matched comparison. OpenAIRE/Crossref campaigns fail
+their provider-validity criterion; their zero paired differences cannot be read
+as equivalence. Public screening studies sometimes favor the frozen donor over
+the candidate. Table~\ref{tab:p2-external-boundaries} keeps these results visible
+without averaging incompatible authority levels.
+
+The formal control rules also have limits. Route independence is conservative
+and provenance-based; it does not prove statistical independence. The closure
+decision is relative to declared material routes and reopen conditions. A
+previously unknown source family can therefore reopen a task. Content hashes
+support deduplication but do not decide scientific relevance. Finally, the
+controlled index supplies complete denominators by construction. Open-web
+completeness generally does not.
+
+These limits shape the intended use. The control layer can sit beneath stronger
+retrievers, screening models, and stopping policies, because it constrains what
+their outputs mean rather than how they are produced. Its practical value is to
+prevent provider failure, local flatness, high estimated coverage, or apparent
+sufficiency from becoming an unsupported global claim. Whether this
+conservatism improves real scientific decisions at acceptable cost requires a
+new prospectively frozen external study.
+
+\input{sections/availability}
+
+\section{Conclusion}
+
+Open-world scientific-literature discovery needs separate control of evidence
+acquisition and closure authority. The method developed here derives route
+identity from provenance, distinguishes content identity from
+question-conditioned processing, keeps route stopping local, and retains
+unresolved material routes as open obligations. Controlled and exact-contract
+tests show that these rules behave as designed. The registered TREC-COVID
+recall-and-cost gate nevertheless fails, and favorable nDCG does not replace
+that decision. The present contribution is therefore a bounded, reproducible
+control method for representing acquisition authority. External retrieval
+benefit and open-world completeness remain unestablished.
+
+\section*{Declaration of generative AI and AI-assisted technologies}
+
+During preparation of this work, the authors used OpenAI ChatGPT to support
+literature searching, source checking, reproducibility review, manuscript
+editing, and submission-package preparation. The tool was not treated as an
+author and did not replace scientific judgment. Result-bearing statements and
+citations were checked against the archived evidence and primary-source
+records. The authors remain responsible for the article's content.
+
+\bibliographystyle{plain}
+\bibliography{bibliography,novelty_refresh_2026}
+
+\end{document}
