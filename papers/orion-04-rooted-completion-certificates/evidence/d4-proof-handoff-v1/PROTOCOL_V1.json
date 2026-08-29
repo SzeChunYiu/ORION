@@ -1,0 +1,101 @@
+{
+  "schema_version": "orion04.d4-proof-handoff.v1",
+  "identity": "ORION04.D4_EXACT_PROOF_HANDOFF.v1",
+  "status": "DESIGN_ONLY__NO_D4_OUTCOME_AUTHORITY",
+  "scientific_authority_delta": "NONE",
+  "target_statement": "D_4(C_5^3)=30",
+  "current_authority_state": {
+    "live_authorization": "ABSENT",
+    "d4_rounds_consumed": 0,
+    "execution_authorized_by_this_file": false
+  },
+  "proof_halves": {
+    "upper_bound": {
+      "target": "D_4(C_5^3)<=30",
+      "required": [
+        "machine_readable_size_30_construction",
+        "primitive_semantics_standalone_verifier",
+        "deterministic_predicate_transcript",
+        "source_environment_and_artifact_digests"
+      ]
+    },
+    "lower_bound": {
+      "target": "D_4(C_5^3)>=30",
+      "routes": [
+        {
+          "id": "L-A",
+          "kind": "declarative_encoding_plus_checkable_certificate",
+          "forbidden_as_terminal_evidence": ["solver_exit_code_only", "producer_log_only"]
+        },
+        {
+          "id": "L-B",
+          "kind": "independently_derived_primitive_semantics_route",
+          "must_not_consume_from_L_A": [
+            "normalized_candidate_stream",
+            "learned_clauses",
+            "orbit_table",
+            "decision_trace"
+          ]
+        }
+      ]
+    }
+  },
+  "independence": {
+    "minimum_lower_bound_routes": 2,
+    "allowed_shared_core": ["primitive_semantic_specification", "cryptographic_hash_utility"],
+    "disallowed_claims_of_independence": [
+      "same_encoder_different_seed",
+      "same_generated_cnf_different_solver",
+      "shared_candidate_normalizer_or_orbit_module",
+      "checker_replays_producer_accept_bits",
+      "same_implementation_on_different_host"
+    ]
+  },
+  "symmetry_if_load_bearing": {
+    "required": [
+      "group_generators",
+      "predicate_preservation_checker",
+      "canonicalization_rule",
+      "representatives_and_orbit_mass",
+      "independent_total_mass_equality_check"
+    ]
+  },
+  "small_instance_calibration": {
+    "freeze_before_d4_outcome": true,
+    "required_control_kinds": [
+      "known_constructible",
+      "known_impossible",
+      "symmetry_rich",
+      "malformed_proof_object"
+    ]
+  },
+  "hostile_mutations": [
+    "alter_size_30_construction_element",
+    "change_primitive_semantic_predicate",
+    "corrupt_lower_bound_certificate_step",
+    "perturb_symmetry_generator_or_multiplicity",
+    "mismatch_source_or_environment_digest",
+    "reuse_consumed_nonduplication_key_or_omit_authorization",
+    "force_route_disagreement_on_small_control"
+  ],
+  "terminals": [
+    "EXACT_D4_30_PROVED",
+    "CONSTRUCTION_ONLY__LOWER_BOUND_OPEN",
+    "LOWER_BOUND_ONLY__CONSTRUCTION_OPEN",
+    "CANNOT_CHECK_CERTIFICATE_REPLAY",
+    "CANNOT_CHECK_INDEPENDENCE",
+    "CANNOT_CHECK_SYMMETRY_COVERAGE",
+    "CANNOT_CHECK_CUSTODY_OR_AUTHORIZATION",
+    "ADVERSE_ROUTE_DISAGREEMENT"
+  ],
+  "promotion_gate": {
+    "requires_upper_bound": true,
+    "requires_L_A": true,
+    "requires_L_B": true,
+    "requires_all_hostile_mutations_rejected": true,
+    "requires_small_instance_calibration": true,
+    "requires_separate_repository_one_shot_authorization": true,
+    "requires_external_or_journal_authority_if_claimed": true,
+    "route_disagreement_policy": "retain_adverse_no_majority_vote"
+  }
+}
