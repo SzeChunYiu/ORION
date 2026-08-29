@@ -5,12 +5,14 @@ on:
     branches: [main]
     paths:
       - 'papers/orion-14-verified-scientific-discovery/**'
+      - 'papers/top_tier_gap_closure/release_builders/orion14/**'
       - 'tests/unit/p4/test_p4_publication_v2.py'
       - '.github/workflows/p4_tmlr_submission_audit.yml'
   push:
     branches: [main]
     paths:
       - 'papers/orion-14-verified-scientific-discovery/**'
+      - 'papers/top_tier_gap_closure/release_builders/orion14/**'
       - 'tests/unit/p4/test_p4_publication_v2.py'
       - '.github/workflows/p4_tmlr_submission_audit.yml'
 
@@ -80,14 +82,32 @@ jobs:
           curl -fsSL "$BASE/tmlr.sty" -o papers/orion-14-verified-scientific-discovery/manuscript/tmlr.sty
           curl -fsSL "$BASE/tmlr.bst" -o papers/orion-14-verified-scientific-discovery/manuscript/tmlr.bst
 
+      - name: Stage anonymous TMLR review source outside frozen manuscript
+        shell: bash
+        run: |
+          set -euo pipefail
+          P=papers/orion-14-verified-scientific-discovery
+          B=papers/top_tier_gap_closure/release_builders/orion14
+          R="$RUNNER_TEMP/orion14-tmlr-build"
+          mkdir -p "$R/manuscript" "$R/submission" "$R/tables" "$R/figures"
+          cp -R "$P/manuscript/." "$R/manuscript/"
+          cp -R "$P/submission/." "$R/submission/"
+          cp -R "$P/tables/." "$R/tables/"
+          cp -R "$P/figures/." "$R/figures/"
+          cp "$B/08-data-and-code-availability-anonymous.tex" "$R/manuscript/sections/08-data-and-code-availability.tex"
+          cp "$B/10-freeze-and-custody-identifiers-anonymous.tex" "$R/manuscript/sections/10-freeze-and-custody-identifiers.tex"
+          rm -f "$R/manuscript"/*.pdf "$R/manuscript"/*.aux "$R/manuscript"/*.log "$R/manuscript"/*.out \
+                "$R/manuscript"/*.bbl "$R/manuscript"/*.blg "$R/manuscript"/*.fls "$R/manuscript"/*.fdb_latexmk
+
       - name: Compile anonymous TMLR PDF
         shell: bash
         run: |
           set -euo pipefail
-          cd papers/orion-14-verified-scientific-discovery/manuscript
+          cd "$RUNNER_TEMP/orion14-tmlr-build/manuscript"
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           test -s main.pdf
           if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence' main.log; then exit 1; fi
+          cp main.pdf "$RUNNER_TEMP/orion-14-tmlr.pdf"
 
       - name: Compile named arXiv PDF
         shell: bash
@@ -103,23 +123,24 @@ jobs:
         run: |
           set -euo pipefail
           M=papers/orion-14-verified-scientific-discovery/manuscript
+          TMLR_PDF="$RUNNER_TEMP/orion-14-tmlr.pdf"
           TMLR_TXT="$RUNNER_TEMP/p4-tmlr.txt"
           ARXIV_TXT="$RUNNER_TEMP/p4-arxiv.txt"
-          pdftotext "$M/main.pdf" "$TMLR_TXT"
+          pdftotext "$TMLR_PDF" "$TMLR_TXT"
           pdftotext "$M/arxiv.pdf" "$ARXIV_TXT"
           grep -q 'Under review as submission to TMLR' "$TMLR_TXT"
           grep -q '0/360' "$TMLR_TXT"; grep -q '180/360' "$TMLR_TXT"; grep -q '60/60' "$TMLR_TXT"
           grep -qi 'not supported' "$TMLR_TXT"
           if grep -Eiq 'execution bindings remain.*UNBOUND|awaiting external campaign|No external results are reported|remains externally.*CANNOT_CHECK' "$TMLR_TXT"; then exit 1; fi
-          if grep -Eiq 'SzeChunYiu|Sze[[:space:]-]*Chun|sze-chun.yiu@fysik.su.se' "$TMLR_TXT"; then echo 'P4_TMLR_ANONYMITY=FAIL'; exit 1; fi
+          if grep -Eiq 'SzeChunYiu|Sze[[:space:]-]*Chun|sze-chun.yiu@fysik.su.se|github\.com/SzeChunYiu' "$TMLR_TXT"; then echo 'P4_TMLR_ANONYMITY=FAIL'; exit 1; fi
           grep -Fq 'SzeChunYiu' "$ARXIV_TXT"
           grep -Fq 'Stockholm University' "$ARXIV_TXT"
           grep -Fq 'sze-chun.yiu@fysik.su.se' "$ARXIV_TXT"
           grep -Fq 'The author received no specific funding for this work.' "$ARXIV_TXT"
           grep -Fq 'The author declares no competing interests.' "$ARXIV_TXT"
-          pdfinfo "$M/main.pdf" > "$RUNNER_TEMP/tmlr-pdfinfo.txt"
+          pdfinfo "$TMLR_PDF" > "$RUNNER_TEMP/tmlr-pdfinfo.txt"
           pdfinfo "$M/arxiv.pdf" > "$RUNNER_TEMP/arxiv-pdfinfo.txt"
-          sha256sum "$M/main.pdf" > "$RUNNER_TEMP/main.pdf.sha256"
+          sha256sum "$TMLR_PDF" > "$RUNNER_TEMP/main.pdf.sha256"
           sha256sum "$M/arxiv.pdf" > "$RUNNER_TEMP/arxiv.pdf.sha256"
           printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' > "$RUNNER_TEMP/ARXIV_LICENSE.txt"
           printf '%s\n' 'cs.AI' > "$RUNNER_TEMP/ARXIV_PRIMARY_CATEGORY.txt"
@@ -129,22 +150,21 @@ jobs:
         run: |
           set -euo pipefail
           P=papers/orion-14-verified-scientific-discovery
-          for flavor in tmlr arxiv; do
-            R="$RUNNER_TEMP/orion14-$flavor"
-            mkdir -p "$R/manuscript" "$R/tables" "$R/figures" "$R/submission"
-            cp "$P/manuscript/bibliography.bib" "$R/manuscript/"
-            cp "$P/manuscript/tmlr.bst" "$R/manuscript/"
-            cp -R "$P/manuscript/sections" "$R/manuscript/"
-            cp -R "$P/manuscript/figures" "$R/manuscript/"
-            cp "$P/tables"/*.tex "$R/tables/"
-            cp "$P/figures"/*.png "$R/figures/"
-            cp "$P/submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex" "$R/submission/"
-          done
-          cp "$P/manuscript/main.tex" "$RUNNER_TEMP/orion14-tmlr/manuscript/main.tex"
-          cp "$P/manuscript/tmlr.sty" "$RUNNER_TEMP/orion14-tmlr/manuscript/"
-          cp "$P/manuscript/arxiv.tex" "$RUNNER_TEMP/orion14-arxiv/manuscript/main.tex"
-          (cd "$RUNNER_TEMP/orion14-tmlr" && zip -qr "$RUNNER_TEMP/orion-14-tmlr-source.zip" .)
-          (cd "$RUNNER_TEMP/orion14-arxiv" && zip -qr "$RUNNER_TEMP/orion-14-arxiv-source.zip" .)
+          T="$RUNNER_TEMP/orion14-tmlr-build"
+          A="$RUNNER_TEMP/orion14-arxiv"
+          rm -f "$T/manuscript"/*.pdf "$T/manuscript"/*.aux "$T/manuscript"/*.log "$T/manuscript"/*.out \
+                "$T/manuscript"/*.bbl "$T/manuscript"/*.blg "$T/manuscript"/*.fls "$T/manuscript"/*.fdb_latexmk
+          mkdir -p "$A/manuscript" "$A/tables" "$A/figures" "$A/submission"
+          cp "$P/manuscript/bibliography.bib" "$A/manuscript/"
+          cp "$P/manuscript/tmlr.bst" "$A/manuscript/"
+          cp -R "$P/manuscript/sections" "$A/manuscript/"
+          cp -R "$P/manuscript/figures" "$A/manuscript/"
+          cp "$P/tables"/*.tex "$A/tables/"
+          cp "$P/figures"/*.png "$A/figures/"
+          cp "$P/submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex" "$A/submission/"
+          cp "$P/manuscript/arxiv.tex" "$A/manuscript/main.tex"
+          (cd "$T" && zip -qr "$RUNNER_TEMP/orion-14-tmlr-source.zip" .)
+          (cd "$A" && zip -qr "$RUNNER_TEMP/orion-14-arxiv-source.zip" .)
           sha256sum "$RUNNER_TEMP/orion-14-tmlr-source.zip" > "$RUNNER_TEMP/tmlr-source.sha256"
           sha256sum "$RUNNER_TEMP/orion-14-arxiv-source.zip" > "$RUNNER_TEMP/arxiv-source.sha256"
 
@@ -152,7 +172,7 @@ jobs:
         with:
           name: orion-14-tmlr-and-arxiv-packages-${{ github.run_id }}
           path: |
-            papers/orion-14-verified-scientific-discovery/manuscript/main.pdf
+            ${{ runner.temp }}/orion-14-tmlr.pdf
             papers/orion-14-verified-scientific-discovery/manuscript/arxiv.pdf
             ${{ runner.temp }}/orion-14-tmlr-source.zip
             ${{ runner.temp }}/orion-14-arxiv-source.zip
