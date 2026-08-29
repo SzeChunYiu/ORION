@@ -1,0 +1,549 @@
+{
+  "cost_alphabet": 3,
+  "criterion_source": "theory/certificate-explanation-gap-v1/THEORY.md Theorem 2",
+  "crosscheck_passed": true,
+  "finding": "For every n examined, the only vocabulary exact for every cost function is the discrete partition; every coarsening admits an exhibited witness pair - two worlds sharing a fibre with different cost. The smallest sufficient complexity is therefore n, and no scoped enlargement short of full separation can close the gap universally.",
+  "independent_crosscheck": "constructed witnesses agree with brute-force enumeration over every cost function",
+  "per_n": [
+    {
+      "bell_number_check": 2,
+      "constructed_and_bruteforce_agree": true,
+      "cost_values": 3,
+      "example_refutations": [
+        {
+          "blocks": 1,
+          "partition": [
+            [
+              0,
+              1
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              1
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              0,
+              1
+            ],
+            "world_a": 0,
+            "world_b": 1
+          }
+        }
+      ],
+      "minimum_sufficient_complexity": 2,
+      "n_worlds": 2,
+      "only_universal_is_discrete": true,
+      "partitions_enumerated": 2,
+      "refuted_count": 1,
+      "universally_exact_count": 1,
+      "universally_exact_vocabularies": [
+        [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      ]
+    },
+    {
+      "bell_number_check": 5,
+      "constructed_and_bruteforce_agree": true,
+      "cost_values": 3,
+      "example_refutations": [
+        {
+          "blocks": 1,
+          "partition": [
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              1,
+              0
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              0,
+              1,
+              2
+            ],
+            "world_a": 0,
+            "world_b": 1
+          }
+        },
+        {
+          "blocks": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              0,
+              1
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              1,
+              2
+            ],
+            "world_a": 1,
+            "world_b": 2
+          }
+        },
+        {
+          "blocks": 2,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              1,
+              0
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              0,
+              1
+            ],
+            "world_a": 0,
+            "world_b": 1
+          }
+        }
+      ],
+      "minimum_sufficient_complexity": 3,
+      "n_worlds": 3,
+      "only_universal_is_discrete": true,
+      "partitions_enumerated": 5,
+      "refuted_count": 4,
+      "universally_exact_count": 1,
+      "universally_exact_vocabularies": [
+        [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      ]
+    },
+    {
+      "bell_number_check": 15,
+      "constructed_and_bruteforce_agree": true,
+      "cost_values": 3,
+      "example_refutations": [
+        {
+          "blocks": 1,
+          "partition": [
+            [
+              0,
+              1,
+              2,
+              3
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "world_a": 0,
+            "world_b": 1
+          }
+        },
+        {
+          "blocks": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              1,
+              2,
+              3
+            ],
+            "world_a": 1,
+            "world_b": 2
+          }
+        },
+        {
+          "blocks": 2,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              0,
+              1
+            ],
+            "world_a": 0,
+            "world_b": 1
+          }
+        }
+      ],
+      "minimum_sufficient_complexity": 4,
+      "n_worlds": 4,
+      "only_universal_is_discrete": true,
+      "partitions_enumerated": 15,
+      "refuted_count": 14,
+      "universally_exact_count": 1,
+      "universally_exact_vocabularies": [
+        [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      ]
+    },
+    {
+      "bell_number_check": 52,
+      "constructed_and_bruteforce_agree": true,
+      "cost_values": 3,
+      "example_refutations": [
+        {
+          "blocks": 1,
+          "partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ],
+            "world_a": 0,
+            "world_b": 1
+          }
+        },
+        {
+          "blocks": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              3,
+              4
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "world_a": 1,
+            "world_b": 2
+          }
+        },
+        {
+          "blocks": 2,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3,
+              4
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              0,
+              1
+            ],
+            "world_a": 0,
+            "world_b": 1
+          }
+        }
+      ],
+      "minimum_sufficient_complexity": 5,
+      "n_worlds": 5,
+      "only_universal_is_discrete": true,
+      "partitions_enumerated": 52,
+      "refuted_count": 51,
+      "universally_exact_count": 1,
+      "universally_exact_vocabularies": [
+        [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ]
+      ]
+    },
+    {
+      "bell_number_check": 203,
+      "constructed_and_bruteforce_agree": true,
+      "cost_values": 3,
+      "example_refutations": [
+        {
+          "blocks": 1,
+          "partition": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "world_a": 0,
+            "world_b": 1
+          }
+        },
+        {
+          "blocks": 2,
+          "partition": [
+            [
+              0
+            ],
+            [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "world_a": 1,
+            "world_b": 2
+          }
+        },
+        {
+          "blocks": 2,
+          "partition": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              3,
+              4,
+              5
+            ]
+          ],
+          "witness": {
+            "cost": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            "cost_a": 0,
+            "cost_b": 1,
+            "fibre": [
+              0,
+              1
+            ],
+            "world_a": 0,
+            "world_b": 1
+          }
+        }
+      ],
+      "minimum_sufficient_complexity": 6,
+      "n_worlds": 6,
+      "only_universal_is_discrete": true,
+      "partitions_enumerated": 203,
+      "refuted_count": 202,
+      "universally_exact_count": 1,
+      "universally_exact_vocabularies": [
+        [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ]
+        ]
+      ]
+    }
+  ],
+  "question": "smallest explanation vocabulary that separates every exact-cost fibre, over all cost functions on the space",
+  "schema": "ORION.ORION10.VocabularyMinimality.v1",
+  "terminal": "VOCABULARY_MINIMALITY_IS_DISCRETE",
+  "what_this_does_not_claim": "Nothing about any particular ORION-10 vocabulary such as B' or B''. This is the universal statement over the frozen abstract space; a named vocabulary still requires its own witness exhibition on the real instance space. It also does not claim the per-cost question is hard - cost level sets are always sufficient for a single fixed cost function."
+}
