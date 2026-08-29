@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Verify frozen candidate byte binding
-        run: python papers/candidates/checkers/check_content_binding_v1.py --check
+        run: PYTHONPATH=src python papers/candidates/checkers/check_content_binding_v1.py --check
       - name: Re-run normative theorem checks
         shell: bash
         run: |
