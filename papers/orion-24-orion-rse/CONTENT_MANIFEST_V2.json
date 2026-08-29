@@ -1,0 +1,29 @@
+{
+  "bound_files": [
+    {
+      "path": "papers/orion-24-orion-rse/P14_PAIRED_EVIDENCE_INTERPRETATION_V1.json",
+      "sha256": "8b20e6a3570701a8a85ec8520dd1fe3323414cbce4880bd18a19466129575086"
+    },
+    {
+      "path": "papers/orion-24-orion-rse/P14_PAIRED_EVIDENCE_INTERPRETATION_V1.md",
+      "sha256": "a8e1aa6f3163a83789803d0489b0391606d873108bfd5a846bef074da89d1ab1"
+    },
+    {
+      "path": "papers/orion-24-orion-rse/analyze_p14_paired_evidence_v1.py",
+      "sha256": "130fae121f53fef77edc2c4313c2a9f3cad5ffe2bb2ce52b9fce1a61f90a181d"
+    }
+  ],
+  "candidate_id": "P14",
+  "claim_scope": "Append-only paired interpretation of the frozen P14C and P14E specification-conformance evidence. It authorizes no population-level superiority, external scientific validity, real-agent superiority, cross-domain generalization, independent external adjudication, or top-tier promotion.",
+  "environment_lock": {
+    "path": "uv.lock",
+    "sha256": "f48cdb16ee305d2b5f4a3cedf9064bf3e000ac727ca060355f380e27bb34b01c"
+  },
+  "grants_authority": "NONE",
+  "schema_version": "orion.candidate-content-binding.v2",
+  "subject_commit": "aeb537f53601b38b10af1a694cacdbc65aed2906",
+  "subject_commit_blocker": "The exact science commit is branch-only. A squash merge can orphan that identity, so this successor must be re-pinned to the permanent main integration commit before commit-addressed binding is claimed.",
+  "subject_commit_status": "CANNOT_CHECK",
+  "subject_commit_unbound_paths": [],
+  "subject_tree": "698b699e4426039b8dfc6d47b339c894da093f6f"
+}
