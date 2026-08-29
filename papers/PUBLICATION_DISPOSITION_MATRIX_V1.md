@@ -76,6 +76,28 @@ would defeat the purpose of the gate. Each such row names exactly what would ear
    audit's own `Archive rebuilt PDFs and logs` artifact, so the builder that produces a
    render and the gate that asserts its bytes are the same builder.
 
+4. **Defect — two submission bundles declare a manuscript PDF they do not ship.**
+   ORION-12's `journal_package/current_revision/` and ORION-13's
+   `journal_package/wave1_current/` are journal submission bundles — cover letter, anonymous
+   review archive, source zips, `SUBMISSION_MANIFEST.json`. Both manifests declare
+   `manuscript.pdf` as an artifact (ORION-13's declares it twice) and **neither ships it**.
+   Their `SHA256SUMS` pin a digest for it that does **not** match the parent package's
+   `manuscript.pdf`, so it names an earlier render present nowhere on `main`.
+   This is a filing blocker, not bookkeeping: the bundle a journal would receive is missing
+   the manuscript it declares. It cannot be closed by copying the parent PDF in — that would
+   substitute different bytes for the ones the manifest names — so it needs the bundle
+   rebuilt by its owner. Recorded in `CONTENT_BINDING_DRIFT_BASELINE_V1.json` as
+   `kind: SUBMISSION_BUNDLE_INCOMPLETE`; zero bytes have drifted in either paper.
+   **ORION-05 has the same defect by a different route.** Its `journal_package/SHA256SUMS`
+   declares `.github/workflows/orion05-wave1-closeout.yml`,
+   `journal_package/manuscript.pdf` and
+   `tests/unit/publication/test_orion05_wave1_manuscript_surface.py` — all three exist only on
+   branches that never merged, and no commit on `main` ever removed them, so the package
+   declares artifacts the repository has never contained. It also writes repo-root-relative
+   paths where every other package writes paper-root-relative ones, which is why the currency
+   survey reports 40 of 40 missing rather than the true 25 matching / 12 drifted / 3 absent.
+   Recorded as `kind: PACKAGE_DECLARES_ABSENT_ARTIFACTS`.
+
 4. **Defect — stale paper IDs inside four readiness records.**
    `papers/orion-05-*/JOURNAL_READINESS.md` is headed "ORION-01 journal-readiness record";
    orion-06's is headed "ORION-02"; orion-07's "ORION-03"; orion-08's "ORION-04". The
