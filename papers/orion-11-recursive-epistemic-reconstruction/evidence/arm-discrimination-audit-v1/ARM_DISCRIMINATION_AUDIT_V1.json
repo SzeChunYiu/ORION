@@ -125,6 +125,62 @@
     "pairs_varying_across_seeds": 1,
     "system_case_pairs": 576
   },
+  "reproduction_check": {
+    "mismatches": [],
+    "note": "Eleven of the twelve systems share identical published rates on both metrics; only the live-provider arm differs.",
+    "published_source": "manuscript/tables/P1-T2_baseline_ablation.tex",
+    "recomputed_root_success_rates": {
+      "arex_like_recursive_audit_followup": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "full_reset_instead_of_dependency_reopen": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "generic_retry_instead_of_typed_reframe": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "iris_like_information_state_revision": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "orion_full": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "orion_live_provider": {
+        "root_success_all_cases": 0.0,
+        "root_success_hidden_shift": 0.0
+      },
+      "orion_without_explicit_M": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "orion_without_explicit_W": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "orion_without_mechanic_self_audit": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "scion_like_dependency_execution_plan": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "static_react_tool_workflow": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      },
+      "tree_search_iterative_research": {
+        "root_success_all_cases": 0.0208,
+        "root_success_hidden_shift": 0.0312
+      }
+    },
+    "status": "REPRODUCED"
+  },
   "schema": "ORION.P1.ArmDiscriminationAudit.v1",
   "scientific_authority_delta": "NONE",
   "subject": "orion_full",

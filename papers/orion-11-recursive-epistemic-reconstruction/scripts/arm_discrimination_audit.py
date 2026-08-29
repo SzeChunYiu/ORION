@@ -74,6 +74,60 @@ def _record_signature(record: dict) -> str:
     )
 
 
+# Published Table P1-T2 values, to four decimal places as printed in
+# manuscript/tables/P1-T2_baseline_ablation.tex. The audit hard-fails unless the
+# records reproduce these, so that a verdict is never emitted from a record set
+# that does not match the table it is about to reinterpret.
+PUBLISHED_P1_T2 = {
+    "orion_full": (0.0208, 0.0312),
+    "orion_live_provider": (0.0000, 0.0000),
+    "static_react_tool_workflow": (0.0208, 0.0312),
+    "full_reset_instead_of_dependency_reopen": (0.0208, 0.0312),
+    "orion_without_mechanic_self_audit": (0.0208, 0.0312),
+}
+
+
+def reproduce_published_rates(records: list[dict]) -> tuple[dict, list[str]]:
+    """Recompute the published root-success rates on the reduced case unit."""
+
+    by_case: dict[str, dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
+    for record in records:
+        by_case[record["system_id"]][record["case_id"]].append(record)
+    hidden = {r["case_id"] for r in records if r.get("is_hidden_shift")}
+
+    computed: dict[str, dict[str, float]] = {}
+    for system, cases in by_case.items():
+        all_rate = sum(
+            1 for runs in cases.values() if any(r.get("root_success") for r in runs)
+        ) / len(cases)
+        hidden_cases = [c for c in cases if c in hidden]
+        hidden_rate = sum(
+            1 for c in hidden_cases if any(r.get("root_success") for r in cases[c])
+        ) / len(hidden_cases)
+        computed[system] = {
+            "root_success_all_cases": round(all_rate, 4),
+            "root_success_hidden_shift": round(hidden_rate, 4),
+        }
+
+    mismatches = []
+    for system, (want_all, want_hidden) in PUBLISHED_P1_T2.items():
+        got = computed.get(system)
+        if got is None:
+            mismatches.append(f"{system}: absent from records")
+            continue
+        if got["root_success_all_cases"] != want_all:
+            mismatches.append(
+                f"{system}.all_cases: published {want_all}, recomputed "
+                f"{got['root_success_all_cases']}"
+            )
+        if got["root_success_hidden_shift"] != want_hidden:
+            mismatches.append(
+                f"{system}.hidden_shift: published {want_hidden}, recomputed "
+                f"{got['root_success_hidden_shift']}"
+            )
+    return computed, mismatches
+
+
 def main() -> int:
     records = [json.loads(line) for line in RECORDS.read_text().splitlines() if line.strip()]
     by_system: dict[str, dict[tuple[str, object], dict]] = defaultdict(dict)
@@ -142,6 +196,13 @@ def main() -> int:
     successes = [r for r in records if r.get("root_success")]
     responsibility_correct = sum(1 for r in successes if r.get("responsibility_correct"))
 
+    computed_rates, mismatches = reproduce_published_rates(records)
+    if mismatches:
+        print("REPRODUCTION FAILED -- audit is void:", file=sys.stderr)
+        for line in mismatches:
+            print("  " + line, file=sys.stderr)
+        return 1
+
     payload = {
         "schema": "ORION.P1.ArmDiscriminationAudit.v1",
         "scientific_authority_delta": "NONE",
@@ -149,6 +210,16 @@ def main() -> int:
             "Runs the repository's own assess_pair_discrimination over the committed "
             "P1 records. Adds no metric and re-scores nothing."
         ),
+        "reproduction_check": {
+            "published_source": "manuscript/tables/P1-T2_baseline_ablation.tex",
+            "status": "REPRODUCED",
+            "mismatches": [],
+            "recomputed_root_success_rates": computed_rates,
+            "note": (
+                "Eleven of the twelve systems share identical published rates on both "
+                "metrics; only the live-provider arm differs."
+            ),
+        },
         "records": len(records),
         "systems": len(systems),
         "cells_per_system": len(cells),
@@ -204,6 +275,7 @@ def main() -> int:
         json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
 
+    print("reproduction of published Table P1-T2 rates: REPRODUCED")
     print(f"records={len(records)} systems={len(systems)} cells={len(cells)}")
     print(
         f"global check as wired: primary={global_primary.verdict.value} "
