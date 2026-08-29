@@ -1,0 +1,53 @@
+{
+  "schema": "ORION.ORION14.PromotionReduct.Protocol.v1",
+  "paper_id": "ORION-14",
+  "successor_id": "ORION14.MINIMAL_PROMOTION_REDUCT.v1",
+  "status": "PARTIAL__SCOPE_GATED__COMPUTED_ON_THE_COMMITTED_CORPUS",
+  "lane_type": "THEORY_PLUS_FROZEN_CORPUS_ANALYSIS",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+
+  "scope_discipline": {
+    "rule": "A lane whose specified input is absent must say so and must not silently substitute a different corpus as if it were the same object.",
+    "applied": "The 400-case table is absent; the 10-case bench is analysed instead and is labelled as a different, smaller object everywhere it appears."
+  },
+
+  "freeze_discipline": {
+    "applicability": "REAL_FOR_THE_ENCODING",
+    "encoding_fixed_before_evaluation": true,
+    "post_outcome_changes_forbidden": [
+      "changing the ternary encoding after seeing which reduct it produces",
+      "dropping a coordinate from the feature set after seeing the reduct",
+      "presenting the 10-case result as the 400-case study"
+    ],
+    "frozen_paper_bytes_modified": "NONE"
+  },
+
+  "claims_under_test": [
+    "Target-sufficiency holds iff the coordinate set hits every opposite-target discernibility set.",
+    "On the committed 10-case bench, k* = 3 with core {known_composition, prior_art_found}.",
+    "Binarising prior_art_found (merging null into false) destroys sufficiency entirely."
+  ],
+  "explicitly_not_claimed": [
+    "anything about the 400-case corpus, whose data is absent",
+    "that the validity/applicability/transfer/utility coordinates are unnecessary - the bench does not test them",
+    "any change to ORION-14.X.EXACT.400.PROMOTION_RELATION",
+    "novelty over donor rough-set / discernibility theory"
+  ],
+
+  "independent_checker_requirements": {
+    "independence_rule": "No ORION-14 module imported. Bench read as data; reduct recomputed from the discernibility definition.",
+    "exhaustiveness": "all 2^17 feature subsets",
+    "scope_gate_rule": "the absence of the 400-case table must be ASSERTED by search, never assumed",
+    "cannot_check_rule": "exit code 3, status CANNOT_CHECK, never reported as a pass"
+  },
+  "negative_controls": {
+    "controls": ["binarising_cannot_check_destroys_the_reduct",
+                 "full_feature_set_is_sufficient_under_ternary",
+                 "empty_set_is_not_sufficient"],
+    "pass_condition": "3 of 3 fire"
+  },
+
+  "stop_rule": "Complete for the committed corpus. Executing Upgrade A as specified requires committing the 400-row table; that is an artifact task, not a science task, and it is NOT a submission blocker for ORION-14."
+}
