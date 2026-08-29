@@ -6,11 +6,13 @@
   "papers": {
     "papers/orion-12-open-world-scientific-discovery": {
       "drifted": 0,
-      "note": "no bytes drifted; journal_package/current_revision/SHA256SUMS pins a manuscript.pdf that is absent, and whose digest does not match the parent package's manuscript.pdf, so it names an earlier render not present on main"
+      "note": "Not digest drift and not closable by re-pinning. journal_package/current_revision is a journal submission bundle - cover letter, anonymous review archive, source zips, SUBMISSION_MANIFEST.json - and that manifest declares manuscript.pdf as an artifact. The file is absent, and the digest recorded for it does not match the parent package's manuscript.pdf, so it names an earlier render that is not on main at any path. This is a SUBMISSION-READINESS defect, not bookkeeping: the bundle a journal would receive is missing the manuscript it declares. Closing it means rebuilding the bundle, which is the package owner's action; copying the parent PDF in would substitute different bytes for the ones the manifest names.",
+      "kind": "SUBMISSION_BUNDLE_INCOMPLETE"
     },
     "papers/orion-13-global-knowledge-portrait": {
       "drifted": 0,
-      "note": "no bytes drifted; journal_package/wave1_current/SHA256SUMS pins a manuscript.pdf that is absent, and whose digest does not match the parent package's manuscript.pdf, so it names an earlier render not present on main"
+      "note": "Same shape at journal_package/wave1_current, whose SUBMISSION_MANIFEST.json declares manuscript.pdf twice and does not ship it. Zero bytes have drifted; the package is incomplete rather than altered. Closing it means rebuilding the submission bundle.",
+      "kind": "SUBMISSION_BUNDLE_INCOMPLETE"
     }
   },
   "total_papers_drifted": 2,
