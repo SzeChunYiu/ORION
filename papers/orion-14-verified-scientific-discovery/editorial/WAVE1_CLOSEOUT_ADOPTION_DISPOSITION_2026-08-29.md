@@ -47,6 +47,26 @@ part of the evidence supporting the present performance claims*.
 audited neighbour natively separates `ResolvedTrue` / `ResolvedFalse` / `CannotCheck`,
 and named both terminals as current. The branch drops the naming.
 
+### The scale of the rewrite
+
+The two dropped identifiers are not isolated line edits. Measured against `main`, the
+branch compresses three sections substantially:
+
+| section | words on `main` | words on branch | removed |
+|---|---:|---:|---:|
+| `06-threat-model-limitations-and-interpretation.tex` | 2,288 | 758 | **67%** |
+| `08-data-and-code-availability.tex` | 1,288 | 253 | **80%** |
+| `09-conclusion.tex` | 766 | 295 | **61%** |
+
+These are real cuts, not reflow — byte counts fall in the same proportion (17,325→5,812;
+13,820→1,870; 6,001→2,311). All three are classified branch-ahead, meaning `main` still
+sits at the merge-base for them: the branch shortened this text, `main` did not lengthen it.
+
+A compression pass may well be wanted for a page limit. The objection is not its
+existence but what it takes with it: the limitation section loses 3 of its 3
+negative-evidence lines and the conclusion loses its 1, which is how the two terminals
+disappeared.
+
 Both edits convert a **recorded authority limit** into a **scope disclaimer**. Nothing in
 the branch supplies a receipt resolving either limit — the limits are not answered, they
 stop being stated. For a submission, a dropped authority limit is a non-disclosure a
