@@ -1,0 +1,203 @@
+{
+  "alpha": 0.05,
+  "ci_excluding_zero": 9,
+  "comparisons": [
+    {
+      "bootstrap_95pct_ci": [
+        1.9760107001323697,
+        2.2988240403412896
+      ],
+      "ci_excludes_zero": true,
+      "comparison": "N4_E/decision_voi_vs_infogain_utility",
+      "holm_threshold": 0.004166666666666667,
+      "losses": 9,
+      "mean_difference": 2.145505301683211,
+      "n_pairs": 400,
+      "sign_test_p": 1.6251825966116756e-99,
+      "survives_holm": true,
+      "ties": 12,
+      "wins": 379
+    },
+    {
+      "bootstrap_95pct_ci": [
+        15.576634274242755,
+        18.835652546857915
+      ],
+      "ci_excludes_zero": true,
+      "comparison": "N4_F3/mixed_typed_vs_naive_utility",
+      "holm_threshold": 0.004545454545454546,
+      "losses": 0,
+      "mean_difference": 17.241995624644236,
+      "n_pairs": 200,
+      "sign_test_p": 2.8698592549372254e-42,
+      "survives_holm": true,
+      "ties": 61,
+      "wins": 139
+    },
+    {
+      "bootstrap_95pct_ci": [
+        13.62388104120397,
+        16.451489412477226
+      ],
+      "ci_excludes_zero": true,
+      "comparison": "N4_B/REOPEN_WASTEFUL/scoped_vs_unscoped_mean_round_utility",
+      "holm_threshold": 0.005,
+      "losses": 22,
+      "mean_difference": 15.049828805128543,
+      "n_pairs": 200,
+      "sign_test_p": 4.5016560533262954e-26,
+      "survives_holm": true,
+      "ties": 22,
+      "wins": 156
+    },
+    {
+      "bootstrap_95pct_ci": [
+        1.7165800917434746,
+        2.825482432382608
+      ],
+      "ci_excludes_zero": true,
+      "comparison": "N4_F3/mixed_typed_vs_rederive_utility",
+      "holm_threshold": 0.005555555555555556,
+      "losses": 0,
+      "mean_difference": 2.264170275394242,
+      "n_pairs": 200,
+      "sign_test_p": 2.168404344971009e-19,
+      "survives_holm": true,
+      "ties": 137,
+      "wins": 63
+    },
+    {
+      "bootstrap_95pct_ci": [
+        2.5558123629093017,
+        3.3005424257229135
+      ],
+      "ci_excludes_zero": true,
+      "comparison": "N4_A/typed_vs_known_graph_utility",
+      "holm_threshold": 0.00625,
+      "losses": 46,
+      "mean_difference": 2.9329084198659494,
+      "n_pairs": 300,
+      "sign_test_p": 9.820195428574488e-17,
+      "survives_holm": true,
+      "ties": 90,
+      "wins": 164
+    },
+    {
+      "bootstrap_95pct_ci": [
+        0.11867885134741064,
+        0.4119273798071411
+      ],
+      "ci_excludes_zero": true,
+      "comparison": "N4_E/decision_voi_vs_llm_proxy_utility",
+      "holm_threshold": 0.0071428571428571435,
+      "losses": 57,
+      "mean_difference": 0.27696597535950657,
+      "n_pairs": 400,
+      "sign_test_p": 3.158074532777102e-16,
+      "survives_holm": true,
+      "ties": 176,
+      "wins": 181
+    },
+    {
+      "bootstrap_95pct_ci": [
+        5.740208464360748,
+        8.254966391861394
+      ],
+      "ci_excludes_zero": true,
+      "comparison": "N4_B/STALE_MATTERS/scoped_vs_unscoped_mean_round_utility",
+      "holm_threshold": 0.008333333333333333,
+      "losses": 26,
+      "mean_difference": 6.972958867088621,
+      "n_pairs": 200,
+      "sign_test_p": 4.855987785091932e-12,
+      "survives_holm": true,
+      "ties": 71,
+      "wins": 103
+    },
+    {
+      "bootstrap_95pct_ci": [
+        0.09962629523255677,
+        0.18712065252592033
+      ],
+      "ci_excludes_zero": true,
+      "comparison": "N4_C/orion_vs_random_verification_regret_reduction",
+      "holm_threshold": 0.01,
+      "losses": 27,
+      "mean_difference": 0.14222245428424604,
+      "n_pairs": 400,
+      "sign_test_p": 7.43182695970135e-12,
+      "survives_holm": true,
+      "ties": 269,
+      "wins": 104
+    },
+    {
+      "bootstrap_95pct_ci": [
+        -0.6634607653541003,
+        2.2538191338593823
+      ],
+      "ci_excludes_zero": false,
+      "comparison": "N4_B/STALE_MATTERS/scoped_vs_never_mean_round_utility",
+      "holm_threshold": 0.0125,
+      "losses": 42,
+      "mean_difference": 0.7737983093837747,
+      "n_pairs": 200,
+      "sign_test_p": 1.5014845969660218e-09,
+      "survives_holm": true,
+      "ties": 40,
+      "wins": 118
+    },
+    {
+      "bootstrap_95pct_ci": [
+        0.8328152938823588,
+        1.4001045810491757
+      ],
+      "ci_excludes_zero": true,
+      "comparison": "N4_A/typed_vs_uniform_voi_utility",
+      "holm_threshold": 0.016666666666666666,
+      "losses": 40,
+      "mean_difference": 1.1113791988322004,
+      "n_pairs": 300,
+      "sign_test_p": 3.692611090309835e-05,
+      "survives_holm": true,
+      "ties": 173,
+      "wins": 87
+    },
+    {
+      "bootstrap_95pct_ci": [
+        -0.540041897693343,
+        0.634040596136692
+      ],
+      "ci_excludes_zero": false,
+      "comparison": "N4_B/REOPEN_WASTEFUL/scoped_vs_never_mean_round_utility",
+      "holm_threshold": 0.025,
+      "losses": 8,
+      "mean_difference": 0.059692555669420465,
+      "n_pairs": 200,
+      "sign_test_p": 6.877111491121468e-05,
+      "survives_holm": true,
+      "ties": 158,
+      "wins": 34
+    },
+    {
+      "bootstrap_95pct_ci": [
+        0.0,
+        0.0
+      ],
+      "ci_excludes_zero": false,
+      "comparison": "N4_F3/unnecessary_typed_vs_rederive_utility",
+      "holm_threshold": 0.05,
+      "losses": 0,
+      "mean_difference": 0.0,
+      "n_pairs": 200,
+      "sign_test_p": 1.0,
+      "survives_holm": false,
+      "ties": 200,
+      "wins": 0
+    }
+  ],
+  "every_ci_positive_row_survives_holm": true,
+  "family_size": 12,
+  "method": "exact two-sided sign test per comparison; Holm-Bonferroni over the family",
+  "schema": "ORION08.FAMILYWISE_MULTIPLICITY.v1",
+  "survive_holm": 11
+}
