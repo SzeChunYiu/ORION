@@ -1,0 +1,17 @@
+{
+  "schema": "ORION.ORION12.BEIRRouteAwareStopping.v1",
+  "protocol_id": "ORION12.BEIR_ROUTE_AWARE_STOPPING.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "DATASET_IDENTITIES_FROZEN__ROUTE_SOFTWARE_LOCK_AND_CORPUS_HASHES_REQUIRED",
+  "source": {"repository": "beir-cellar/beir", "commit": "ef83d29307061c65d04b035b4f4e7c18bd8374af"},
+  "datasets": ["SciFact", "NFCorpus", "ArguAna"],
+  "explicit_exclusion": ["TREC-COVID as fresh evidence"],
+  "pre_outcome_requirements": ["record exact downloaded corpus and qrels SHA256 for all three datasets", "freeze route software/model revisions", "freeze route order and per-route document/read budgets", "freeze query split before scoring any candidate policy"],
+  "arms": ["strongest_single_route", "fixed_fusion", "generic_active_retrieval", "route_aware_stopping", "exhaustive_reachable_route_oracle"],
+  "primary_endpoints": ["recall_at_fixed_read_cost", "false_complete_stop_rate", "reads_or_documents_examined"],
+  "secondary_endpoints": ["nDCG", "per-dataset variance", "unavailable_route_rate"],
+  "safety_gate": "route-aware stopping may not earn success by lowering recall below the prospectively frozen non-inferiority margin; the exact margin must be frozen with the corpus/route manifest before outcomes",
+  "denominator_rule": "Unavailable registered routes remain in the denominator as unavailable/CANNOT_CHECK; they are not silently removed after outcomes.",
+  "stop_rule": "No new provider/route, changed depth, changed primary metric, or altered dataset membership after protected retrieval outcomes."
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "ORION.ORION13.OntologyAntiConfounding.v1",
+  "protocol_id": "ORION13.ONTOLOGY_ANTI_CONFOUNDING.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "SOURCE_RELEASES_FROZEN__PAIR_MANIFEST_REQUIRED",
+  "sources": [
+    {"ontology": "GO", "repository": "geneontology/go-ontology", "commit": "8aa5dad8ed66cc23b43f9576c0dd85b1a1ed89f1"},
+    {"ontology": "Uberon", "repository": "obophenotype/uberon", "commit": "f060b3eb54179f67926acf0949070a576a23f827"},
+    {"ontology": "EFO", "repository": "EBISPOT/efo", "commit": "435fbaa40c899b0a85d730165eff030a466ba99c"}
+  ],
+  "gold_sources": ["stable identifier equality", "alt_id", "is_obsolete", "replaced_by", "consider", "declared equivalence/subclass relations where machine-readable"],
+  "pair_construction": "Build deterministic matched-surface/matched-polarity groups containing opposite registered verdicts. Include same-referent aliases/replacements, obsolete-with-replacement versus obsolete-with-consider-only, lexical/synonym collisions between distinct identifiers, and declared relation cases. If metadata does not determine the semantic verdict, label CANNOT_CHECK rather than author-labeling it.",
+  "split": "Hash the canonical pair key; low bit DEVELOPMENT, high bit PROTECTED_EVALUATION. Freeze every pair and its machine relation provenance before running candidate mappers.",
+  "arms": ["polarity_only", "entity_or_string_match", "embedding_or_schema_matcher", "coordinate_governed_mapping", "ideal_metadata_control"],
+  "primary_endpoints": ["protected_accuracy", "false_merge", "false_separation", "CANNOT_CHECK_rate", "minimal_coordinate_reduct_on_protected_set"],
+  "success_gate": "polarity-only must be non-sufficient by construction and the richer registered coordinate rule must improve protected correctness on at least two ontology families without increasing false merges",
+  "stop_rule": "No semantic label may be inferred from author judgement when the pinned ontology does not encode it; such rows remain CANNOT_CHECK."
+}

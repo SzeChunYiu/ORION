@@ -1,0 +1,23 @@
+{
+  "schema": "ORION.ORION14.CrossDomainTargetSufficiency.v1",
+  "protocol_id": "ORION14.CROSS_DOMAIN_TARGET_SUFFICIENCY.v1",
+  "issue": 1729,
+  "outcome_accessed": false,
+  "status": "DESIGN_FROZEN__CORPUS_MANIFEST_AND_RUNNERS_REQUIRED",
+  "sources": [
+    {"domain": "defects4j", "repository": "rjust/defects4j", "commit": "8c16da8230843cdc918eaf4ddb449637f02b83c6"},
+    {"domain": "lean_mathlib", "repository": "leanprover-community/mathlib4", "commit": "bbcd1968ee6950abe88b85dba6995da346c4b2a8"},
+    {"domain": "ro_crate", "repository": "ResearchObject/ro-crate-py", "commit": "05effe591443934e48e3fe59c53d7bc01a3334e0"}
+  ],
+  "target_contracts": {
+    "defects4j": "claim that a candidate state discharges the registered triggering/regression test target under the pinned project revision",
+    "lean_mathlib": "claim that a theorem/proof object type-checks under its exact imported environment and target statement",
+    "ro_crate": "claim that a crate/artifact satisfies the frozen profile/metadata/file-binding target checked by the native/reference tooling"
+  },
+  "arms": ["target_aware_verifier", "strongest_generic_product", "compensatory_proxy", "information_equivalent_ideal_control"],
+  "information_rule": "All non-oracle arms receive the same raw facts. The target-aware arm differs only by the prospectively declared binding between facts and target obligations; the generic product may not be starved of facts.",
+  "case_classes": ["clean_sufficient", "hostile_invalid", "insufficient_or_missing_target_fact"],
+  "primary_endpoints": ["false_scientific_promotion", "clean_case_coverage", "CANNOT_CHECK_rate", "native_verifier_calls"],
+  "success_gate": "zero false promotion for the target-aware arm in all three domains, nontrivial clean coverage in all three, and a discriminating gap versus the information-matched generic product in at least two domains",
+  "stop_rule": "If native gold cannot decide the registered target, record CANNOT_CHECK. No manual relabeling, corpus substitution, or target-coordinate change after outcomes."
+}
