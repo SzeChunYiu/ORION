@@ -1,0 +1,37 @@
+\section{Scientific-certificate semantics as a conservative enrichment}
+\label{sec:v3-certificate-semantics}
+
+The preceding contract separates computational validity from scientific admissibility at the mechanic level. A prospectively frozen successor asks whether the same distinction survives after maximally crediting mature donor semantics. The result is deliberately conditional and conservative: it does not claim that dependency maintenance, effect systems, authorization, provenance, or execution certificates are new, and it grants an ideal donor product every scientific coordinate used by the enrichment.
+
+\subsection{Bounded donor embeddings}
+We use three bounded embeddings representing mature donor families: (i) dependency maintenance, where donor validity requires computational validity and supported dependency state; (ii) effectful computation, where donor validity additionally requires a valid declared effect; and (iii) continuing authorization plus execution provenance, where donor validity requires current action authorization and valid execution provenance. The scientific enrichment adds four certificate coordinates: current evidence version, authorized scientific source, supported claim scope, and current verification epoch.
+
+For embedding $D$, let $U_D$ erase the four scientific certificate coordinates while preserving the complete donor-visible state. By construction, $U_D$ preserves the donor-native validity predicate. This is a compatibility condition rather than a claimed advantage: the enrichment is not allowed to manufacture a difference by changing donor semantics.
+
+\begin{theorem}[Scientific non-reflection under non-inert erasure]
+Suppose at least one scientific certificate coordinate is non-inert: there exist two states identical on donor-visible coordinates and all other scientific coordinates for which changing that coordinate changes scientific admissibility. Then $U_D$ need not reflect scientific admissibility. In particular, there exist states $s,t$ with $U_D(s)=U_D(t)$ and equal donor-native validity but different scientific-admissibility judgments.
+\end{theorem}
+
+The theorem is conditional. A donor already carrying the same scientific coordinate and rule lies on the information-equivalent side of the result.
+
+\begin{theorem}[Conservative reduction]
+If every scientific certificate obligation is discharged, scientific admissibility reduces exactly to donor-native validity under the embedding.
+\end{theorem}
+
+\begin{theorem}[Ideal-product equivalence]
+An ideal donor product enriched with the exact scientific coordinates and the same admissibility predicate is extensionally equivalent to the ORION-16 enrichment.
+\end{theorem}
+
+This negative boundary is headline-level: there is no inherent expressivity advantage over an equally informed product.
+
+\begin{theorem}[Certificate continuity after change]
+A donor-valid transition preserves an existing scientific certificate only when every scientific certificate coordinate changed by the transition is either preserved under the exact change or explicitly revalidated. If a non-inert scientific coordinate becomes false while donor-native validity remains true, the old certificate cannot remain scientifically admissible solely because computation, support, effect execution, or tool authorization succeeded.
+\end{theorem}
+
+\subsection{Exhaustive finite model and independent audit}
+The frozen checker enumerates all Boolean states of the donor-visible and four scientific coordinates for each embedding: 512 states per embedding and 1,536 evaluations total. It records zero donor-preservation violations, 96 typed-erasure separation witnesses spanning all four scientific coordinates, 96 conservative-reduction cases with zero violations, zero ideal-product mismatches over all 1,536 states, 96 certificate-revocation countermodels, and 24 donor-valid no-alarm cases. A second implementation independently reproduces the 1,536 evaluations and every headline count.
+
+These checks are bounded mathematical support, not a deployment experiment. They establish compatibility, separation, conservative reduction, and the information-equivalent-donor boundary on the frozen finite semantics. They do not establish real-system efficacy, unique necessity of the four coordinates, or novelty for generic certificates, provenance, effects, authorization, or dependency maintenance.
+
+\subsection{Interpretation}
+The combined theory now has a sharper reading. V2.1 identifies the contract conditions under which repair, composition, obligations, and authority remain scientifically admissible. The certificate-semantics successor shows that the distinction survives donor-native preservation exactly when a non-inert scientific coordinate is hidden by the donor-visible view, disappears when all scientific obligations are discharged, and vanishes entirely against an ideal product carrying the same information. The contribution is therefore the explicit scientific-admissibility interface and its conservative-extension/separation theorem family, not centralization or information advantage.
