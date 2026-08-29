@@ -1,0 +1,195 @@
+# Verbatim LUNARC checker transcript
+# Run 2026-08-29 by the orchestration lane, fresh checkout of wk/p0-evidence-20260829
+# at commit 787b6274, LUNARC venv, Python 3.11.5. Not run on the author's workstation.
+# Authority: IMPLEMENTATION_INDEPENDENT. Same programme, same researcher --
+# NOT external verification, NOT independent-investigator replication.
+# Copied verbatim; not edited, not reformatted.
+
+########## ORION-09 ##########
+--- independent_checker/extract_frozen_matrix.py ---
+[replay] n=1 done  0.0s
+[replay] n=2 done  0.0s
+[replay] n=3 done  3.4s
+{
+  "status": "PASS",
+  "recomputed_stage1": {
+    "instances": 1146,
+    "feature_count": 127,
+    "unique_feature_cells": 1109,
+    "singleton_cells": 1072,
+    "mixed_cell_count": 0,
+    "irreducible_error_floor": 0,
+    "compression_ratio_cells_over_instances": 0.967714,
+    "domain": {
+      "1": {
+        "instances": 6,
+        "donor_exact": 5,
+        "expected": 6
+      },
+      "2": {
+        "instances": 60,
+        "donor_exact": 28,
+        "expected": 60
+      },
+      "3": {
+        "instances": 1080,
+        "donor_exact": 189,
+        "expected": 1080
+      }
+    }
+  },
+  "mismatches": {},
+  "protocol_sha256_matches_receipt": true
+}
+EXIT=0
+--- independent_checker/separator_complexity.py ---
+{
+  "status": "PASS",
+  "result_1_compression_bound": {
+    "statement": "E*(phi) <= (N - c)/N for any feature map with c cells on N instances",
+    "N_minus_c": 37,
+    "bound": "37/1146",
+    "bound_decimal": 0.032286,
+    "reading": "The realized cell structure confined the floor to [0, 37/1146] before any label was read. Floor 0 is therefore at most this far from the value the cell structure alone would force."
+  },
+  "result_2_structure_free_null": {
+    "question": "Given the exact realized cells and class balance, how often does a random relabelling also attain floor 0?",
+    "exact_favourable": "948964869729464154690988823463900442586770640543207264433455043671493352056585719393963026193418789565705565399842714760508508029327720989109623692114751023942187693347076371210440403747444632905173525756515174248595909939505682052280512",
+    "exact_total": "1344712249583385928120327708823564685964450192996548692197772822804024798474696940041420206819260245825212811504182070860684240886544606606970476705666690382961748442284773525775075017482094560471081053313625707819968142258459719079201354968000",
+    "exact_probability": 7.057010672903955e-07,
+    "exact_probability_sci": "7.057e-07",
+    "permutation_trials": 20000,
+    "permutation_hits": 0,
+    "permutation_rate": 0.0,
+    "reading": "Low probability means floor 0 is NOT explained by cell sizes alone and the labels really are aligned with the feature partition. High probability would mean the conversion is an artifact of near-injectivity."
+  },
+  "result_3_separator_complexity": {
+    "opposite_label_pairs": 205128,
+    "distinct_minimal_discernibility_sets": 43762,
+    "core_features_forced": [],
+    "lower_bound_disjoint_packing": 2,
+    "greedy_upper_bound": 5,
+    "k_star": 4,
+    "k_star_proved_minimal": true,
+    "witness": {
+      "subset": [
+        15,
+        30,
+        39,
+        42
+      ],
+      "size": 4,
+      "cells": 523,
+      "mixed_cells": 0,
+      "floor": 0,
+      "attains_floor_zero": true
+    },
+    "witness_structure_free_null": {
+      "cells": 523,
+      "compression_ratio": 0.45637,
+      "compression_bound": "623/1146",
+      "exact_probability": 1.4416996195477684e-120,
+      "exact_probability_sci": "1.442e-120",
+      "reading": "the witness map is far from injective, so attaining floor 0 with it is overwhelming evidence of genuine structure rather than memorization"
+    },
+    "seconds": 106.8,
+    "reading": "k* is the minimum number of frozen features whose projection still attains floor 0. Small k* means a genuine low-order sufficient vocabulary exists; k* close to the full 127 would quantify the memorization concern."
+  }
+}
+EXIT=0
+--- independent_checker/verify_minimality.py ---
+{
+  "schema": "ORION.ORION09.RegimeSeparatorComplexity.MinimalityVerification.v1",
+  "independence": "exhaustive enumeration over subsets; shares no search logic with the branch-and-bound in separator_complexity.py",
+  "minimal_discernibility_sets": 43762,
+  "route_1_exhaustive_refutation": {
+    "subsets_of_size_1_tested": 127,
+    "subsets_of_size_2_tested": 8001,
+    "subsets_of_size_3_tested": 333375,
+    "covering_subsets_of_size_1": [],
+    "covering_subsets_of_size_2": [],
+    "covering_subsets_of_size_3": [],
+    "k_star_at_least_4_PROVED": true,
+    "seconds": 108.1
+  },
+  "route_2_witness": {
+    "subset": [
+      15,
+      30,
+      39,
+      42
+    ],
+    "size": 4,
+    "cells": 523,
+    "mixed_cells": 0,
+    "floor": 0,
+    "attains_floor_zero": true,
+    "compression_ratio": 0.45637,
+    "compression_bound_on_this_map": "623/1146"
+  },
+  "route_2b_drop_one_guard": {
+    "purpose": "independent necessity check by direct cell counting; uses no discernibility machinery, so it would expose a constraint-dropping fault shared by routes 1 and 2",
+    "floor_of_each_3_subset_of_witness": {
+      "15,30,39": 47,
+      "15,30,42": 22,
+      "15,39,42": 17,
+      "30,39,42": 1
+    },
+    "all_strictly_positive": true,
+    "reading": "every coordinate of the witness is individually necessary, so the witness is minimal and not merely of minimum cardinality"
+  },
+  "route_3_block_attribution": {
+    "blocks": {
+      "V2_33": {
+        "features": 33,
+        "cells": 1043,
+        "mixed_cells": 1,
+        "floor": 1
+      },
+      "donor_path_53": {
+        "features": 53,
+        "cells": 654,
+        "mixed_cells": 3,
+        "floor": 5
+      },
+      "state_sign_aware_41": {
+        "features": 41,
+        "cells": 461,
+        "mixed_cells": 29,
+        "floor": 43
+      },
+      "V2_plus_donor_path": {
+        "features": 86,
+        "cells": 1106,
+        "mixed_cells": 0,
+        "floor": 0
+      },
+      "V2_plus_state": {
+        "features": 74,
+        "cells": 1088,
+        "mixed_cells": 0,
+        "floor": 0
+      },
+      "donor_path_plus_state": {
+        "features": 94,
+        "cells": 888,
+        "mixed_cells": 0,
+        "floor": 0
+      },
+      "all_127": {
+        "features": 127,
+        "cells": 1109,
+        "mixed_cells": 0,
+        "floor": 0
+      }
+    },
+    "witness_block_composition": {
+      "V2_33": 2,
+      "donor_path_53": 2
+    },
+    "state_block_features_in_witness": 0
+  },
+  "k_star": 4,
+  "status": "PASS"
+}
+EXIT=0
