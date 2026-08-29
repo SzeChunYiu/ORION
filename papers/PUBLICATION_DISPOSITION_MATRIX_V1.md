@@ -88,6 +88,15 @@ would defeat the purpose of the gate. Each such row names exactly what would ear
    substitute different bytes for the ones the manifest names — so it needs the bundle
    rebuilt by its owner. Recorded in `CONTENT_BINDING_DRIFT_BASELINE_V1.json` as
    `kind: SUBMISSION_BUNDLE_INCOMPLETE`; zero bytes have drifted in either paper.
+   **ORION-05 has the same defect by a different route.** Its `journal_package/SHA256SUMS`
+   declares `.github/workflows/orion05-wave1-closeout.yml`,
+   `journal_package/manuscript.pdf` and
+   `tests/unit/publication/test_orion05_wave1_manuscript_surface.py` — all three exist only on
+   branches that never merged, and no commit on `main` ever removed them, so the package
+   declares artifacts the repository has never contained. It also writes repo-root-relative
+   paths where every other package writes paper-root-relative ones, which is why the currency
+   survey reports 40 of 40 missing rather than the true 25 matching / 12 drifted / 3 absent.
+   Recorded as `kind: PACKAGE_DECLARES_ABSENT_ARTIFACTS`.
 
 4. **Defect — stale paper IDs inside four readiness records.**
    `papers/orion-05-*/JOURNAL_READINESS.md` is headed "ORION-01 journal-readiness record";
