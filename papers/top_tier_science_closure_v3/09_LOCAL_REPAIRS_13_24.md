@@ -60,15 +60,17 @@ A live successor must archive raw completions, parsed traces, parse failures, re
 
 > The offline premature-closure contrast demonstrates the consequence of the registered open-state mechanism under asymmetric action support. It is not a symmetric system-superiority comparison: the baseline interfaces cannot express the `CANNOT_CHECK` or continue decision available to ORION. External superiority requires a matched-action comparator in which every arm can continue, abstain and return `CANNOT_CHECK` under the same resource and stopping contract.
 
-## 19. ORION-13 — pending baseline-degeneracy and coordinate-coverage correction
+## 19. ORION-13 — merged baseline-degeneracy and coordinate-coverage correction
 
-**Problem.** Open PR #1739 reports that both 32-case holdouts are predicate-equal, making the flat comparator an always-merge rule; six confirmatory and four initial discordances carry the result, and polarity is the only deciding coordinate. The PR is not current-main authority.
+**Current finding.** PR #1739 is now merged on main. `BATTERY_V1.json` reproduces the published aggregates, records the flat predicate comparator as constant always-merge on both 32-case holdouts, and shows that polarity alone decides all ten separating cases while ten listed coordinates never differ.
 
-**Required adoption procedure and conditional text:**
+**Required current-main text:**
 
-> After independent reproduction from current-main code and gold, report the flat comparator as constant always-merge on these corpora, give the confirmatory (`b=6,c=0`, exact p = 0.031) and initial (`b=4,c=0`, exact p = 0.125) results separately, and state that only polarity decides any of the 64 cases. Record `pooled_significance_test = NOT_COMPUTED_BY_PROTOCOL`; the confirmatory protocol forbids pooling the holdouts to inflate n. Treat coordinate sparsity as a coverage limit, not evidence that other coordinates are dispensable. Until #1739 is reproduced, merged, rebound and rendered, this analysis is pending.
+> The confirmatory holdout has `b=6,c=0` discordances (exact two-sided McNemar `p=0.03125`); the disjoint initial holdout has `b=4,c=0` (`p=0.125`) and is not significant alone. All ten discordant pairs favour the governed mapping, but the confirmatory protocol forbids pooling the holdouts for significance, so the result artifact records `pooled_significance_test = NOT_COMPUTED_BY_PROTOCOL`. On these corpora the flat comparator is a constant always-merge rule, and every separating case is polarity-driven. The result supports polarity-sensitive obstruction detection on structured projections; it does not exercise a broad ten-coordinate governance claim.
 
-A decisive successor needs predicate-disagreeing pairs and cases turning on every claimed coordinate, against a baseline that attempts the same structured decision.
+**Remaining package repair.** The built manuscript is 47 pages while the packaged journal PDF is 20 pages and `RENDER_CLOSURE_STATE.json` remains `SUPERSEDED`. Re-render, rerun the claim-to-PDF audit, and causally reconcile the journal-package drift before filing.
+
+A decisive successor needs predicate-disagreeing pairs, positive-demonstration cases for every claimed coordinate, and a baseline that attempts the same structured decision.
 
 ## 20. ORION-19 — exact small-n diagnostic interpretation
 
