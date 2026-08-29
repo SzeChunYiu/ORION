@@ -45,6 +45,33 @@ against brute-force enumeration of *every* cost function over the same partition
 at every n. A construction that had only ever been checked against itself would not be
 evidence.
 
+## The scoped half, now attempted — and it returns CANNOT_CHECK
+
+The disclaimer below said a named vocabulary still needs its own witness exhibition on the
+real instance space. `check_bprime_fibre_criterion_v1.py` attempts exactly that against
+`research/extensions/orion-qg/QG7_BPRIME_COMPLETENESS_RESULTS.json`, read as data only.
+
+**Terminal: `CANNOT_CHECK_FIBRE_CONSTANCY_ON_SELECTED_WITNESSES`**, and the reason is worth
+more than a pass would have been.
+
+Keyed on the scalar `f_B'`, the 64 serialised witnesses show **zero cost-mixed fibres**. The
+relationship is exact and uniform: `C_Dxx = f_B' − 1` in all 64, `C_D+ − C_Dxx = 1` in all 64,
+`C_DP = C_Dxx` in all 64, across 8 panels, all replay-confirmed.
+
+Read naively that says the vocabulary determines the cost — which would sit oddly beside
+`THEORY.md`'s reading of these same 64 as proof that `B'` is *insufficient*.
+
+**The naive reading is wrong, and selection is why.** The 64 are selected precisely on
+`C_D++ < min(C_D+, f_B')`. Cost constancy within an `f_B'` fibre, on a subset chosen for
+having a gap, is what the selection produces — not evidence about the space. Of 740 instances
+evaluated, **676 are not serialised**, and those are the ones that would test the criterion.
+
+This is the same failure shape as testing a gate against a degraded baseline: a
+selection-conditioned sample cannot support a universal claim, in either direction.
+
+**What would settle it:** serialise `f_B'` and `C_D++` for all 740 evaluated instances, not
+only the 64 candidates, and re-run the fibre grouping over the unselected majority.
+
 ## What this does not claim
 
 - **Nothing about `B'` or `B''`.** This is the universal statement over the frozen abstract
