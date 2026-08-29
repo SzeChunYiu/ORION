@@ -1,0 +1,326 @@
+{
+  "orion13": {
+    "arms": {
+      "A0_orion_current": {
+        "abstain": 6,
+        "abstain_share": 0.0253,
+        "decision_kinds": {
+          "ABSTAINED_AS_GOLD_REQUIRES": 6,
+          "ABSTAINED_ON_MERGEABLE": 0,
+          "ABSTAINED_ON_SEPARABLE": 0,
+          "FALSE_MERGE": 8,
+          "FALSE_SPLIT": 1,
+          "MERGED_CORRECTLY": 108,
+          "MERGED_WHERE_GOLD_UNRESOLVED": 56,
+          "SEPARATED_CORRECTLY": 57,
+          "SEPARATED_WHERE_GOLD_UNRESOLVED": 1
+        },
+        "discretionary_abstentions": 0,
+        "false_merge": 8,
+        "false_split": 1,
+        "merge": 172,
+        "merge_share": 0.7257,
+        "merged_where_gold_unresolved": 56,
+        "separate": 59,
+        "separate_share": 0.2489,
+        "total_decisions": 237
+      },
+      "A1_observedness_asymmetric": {
+        "abstain": 101,
+        "abstain_share": 0.4262,
+        "decision_kinds": {
+          "ABSTAINED_AS_GOLD_REQUIRES": 63,
+          "ABSTAINED_ON_MERGEABLE": 9,
+          "ABSTAINED_ON_SEPARABLE": 29,
+          "FALSE_MERGE": 0,
+          "FALSE_SPLIT": 0,
+          "MERGED_CORRECTLY": 100,
+          "MERGED_WHERE_GOLD_UNRESOLVED": 0,
+          "SEPARATED_CORRECTLY": 36,
+          "SEPARATED_WHERE_GOLD_UNRESOLVED": 0
+        },
+        "discretionary_abstentions": 38,
+        "false_merge": 0,
+        "false_split": 0,
+        "merge": 100,
+        "merge_share": 0.4219,
+        "merged_where_gold_unresolved": 0,
+        "separate": 36,
+        "separate_share": 0.1519,
+        "total_decisions": 237
+      },
+      "A2_observedness_strict": {
+        "abstain": 221,
+        "abstain_share": 0.9325,
+        "decision_kinds": {
+          "ABSTAINED_AS_GOLD_REQUIRES": 63,
+          "ABSTAINED_ON_MERGEABLE": 105,
+          "ABSTAINED_ON_SEPARABLE": 53,
+          "FALSE_MERGE": 0,
+          "FALSE_SPLIT": 0,
+          "MERGED_CORRECTLY": 4,
+          "MERGED_WHERE_GOLD_UNRESOLVED": 0,
+          "SEPARATED_CORRECTLY": 12,
+          "SEPARATED_WHERE_GOLD_UNRESOLVED": 0
+        },
+        "discretionary_abstentions": 158,
+        "false_merge": 0,
+        "false_split": 0,
+        "merge": 4,
+        "merge_share": 0.0169,
+        "merged_where_gold_unresolved": 0,
+        "separate": 12,
+        "separate_share": 0.0506,
+        "total_decisions": 237
+      },
+      "A3_decisive_absence_only": {
+        "abstain": 81,
+        "abstain_share": 0.3418,
+        "decision_kinds": {
+          "ABSTAINED_AS_GOLD_REQUIRES": 63,
+          "ABSTAINED_ON_MERGEABLE": 9,
+          "ABSTAINED_ON_SEPARABLE": 9,
+          "FALSE_MERGE": 0,
+          "FALSE_SPLIT": 0,
+          "MERGED_CORRECTLY": 100,
+          "MERGED_WHERE_GOLD_UNRESOLVED": 0,
+          "SEPARATED_CORRECTLY": 56,
+          "SEPARATED_WHERE_GOLD_UNRESOLVED": 0
+        },
+        "discretionary_abstentions": 18,
+        "false_merge": 0,
+        "false_split": 0,
+        "merge": 100,
+        "merge_share": 0.4219,
+        "merged_where_gold_unresolved": 0,
+        "separate": 56,
+        "separate_share": 0.2363,
+        "total_decisions": 237
+      }
+    },
+    "baseline_arm": "A0_orion_current",
+    "cases_per_corpus": {
+      "INTACT_DERIVATION": 32,
+      "INTACT_HARM_SYNTHETIC": 33,
+      "INTACT_HELDOUT_REAL": 32,
+      "INTACT_HELDOUT_SYNTHETIC": 56,
+      "INTACT_RECORD_GOLD": 36,
+      "PROBE_DERIVATION": 12,
+      "PROBE_HELDOUT_REAL": 8,
+      "PROBE_HELDOUT_SYNTHETIC": 28
+    },
+    "claim": "baseline is effectively always-merge; most claimed coordinates never exercised",
+    "coordinates": {
+      "cases": 32,
+      "n_coordinates": 10,
+      "never_exercised": [
+        "construct_ids",
+        "measurement_ids",
+        "modality",
+        "predicate",
+        "referent_ids",
+        "temporal_context_ids"
+      ],
+      "never_exercised_count": 6,
+      "per_coordinate": {
+        "construct_ids": {
+          "cannot_contrast": true,
+          "carries_no_content": false,
+          "cases_where_the_two_sides_differ": 0,
+          "distinct_values": 12,
+          "never_exercised": true,
+          "present_in_projections": 64,
+          "within_case_contrast_fraction": 0.0
+        },
+        "measurement_ids": {
+          "cannot_contrast": true,
+          "carries_no_content": true,
+          "cases_where_the_two_sides_differ": 0,
+          "distinct_values": 1,
+          "never_exercised": true,
+          "present_in_projections": 64,
+          "within_case_contrast_fraction": 0.0
+        },
+        "modality": {
+          "cannot_contrast": true,
+          "carries_no_content": false,
+          "cases_where_the_two_sides_differ": 0,
+          "distinct_values": 2,
+          "never_exercised": true,
+          "present_in_projections": 64,
+          "within_case_contrast_fraction": 0.0
+        },
+        "polarity": {
+          "cannot_contrast": false,
+          "carries_no_content": false,
+          "cases_where_the_two_sides_differ": 6,
+          "distinct_values": 3,
+          "never_exercised": false,
+          "present_in_projections": 64,
+          "within_case_contrast_fraction": 0.1875
+        },
+        "predicate": {
+          "cannot_contrast": true,
+          "carries_no_content": false,
+          "cases_where_the_two_sides_differ": 0,
+          "distinct_values": 3,
+          "never_exercised": true,
+          "present_in_projections": 64,
+          "within_case_contrast_fraction": 0.0
+        },
+        "projection_id": {
+          "cannot_contrast": false,
+          "carries_no_content": false,
+          "cases_where_the_two_sides_differ": 32,
+          "distinct_values": 51,
+          "never_exercised": false,
+          "present_in_projections": 64,
+          "within_case_contrast_fraction": 1.0
+        },
+        "referent_ids": {
+          "cannot_contrast": true,
+          "carries_no_content": false,
+          "cases_where_the_two_sides_differ": 0,
+          "distinct_values": 24,
+          "never_exercised": true,
+          "present_in_projections": 64,
+          "within_case_contrast_fraction": 0.0
+        },
+        "source_id": {
+          "cannot_contrast": false,
+          "carries_no_content": false,
+          "cases_where_the_two_sides_differ": 13,
+          "distinct_values": 27,
+          "never_exercised": false,
+          "present_in_projections": 64,
+          "within_case_contrast_fraction": 0.40625
+        },
+        "source_span": {
+          "cannot_contrast": false,
+          "carries_no_content": false,
+          "cases_where_the_two_sides_differ": 26,
+          "distinct_values": 50,
+          "never_exercised": false,
+          "present_in_projections": 64,
+          "within_case_contrast_fraction": 0.8125
+        },
+        "temporal_context_ids": {
+          "cannot_contrast": true,
+          "carries_no_content": true,
+          "cases_where_the_two_sides_differ": 0,
+          "distinct_values": 1,
+          "never_exercised": true,
+          "present_in_projections": 64,
+          "within_case_contrast_fraction": 0.0
+        }
+      },
+      "projections": 64
+    },
+    "n_corpora": 8,
+    "total_cases": 237
+  },
+  "orion19": {
+    "arms": {
+      "TRANSCRIPT_BAG": {
+        "accuracy": 0.25,
+        "accuracy_equals_modal_base_rate": true,
+        "distinct_predictions": 1,
+        "distribution": {
+          "ALIGNED": 128
+        },
+        "is_constant_predictor": true,
+        "modal_label": "ALIGNED",
+        "modal_share": 1.0,
+        "n": 128
+      },
+      "TYPED_RELATIONAL": {
+        "accuracy": 1.0,
+        "accuracy_equals_modal_base_rate": false,
+        "distinct_predictions": 3,
+        "distribution": {
+          "ALIGNED": 32,
+          "OBSTRUCTION": 64,
+          "UNRESOLVED": 32
+        },
+        "is_constant_predictor": false,
+        "modal_label": "OBSTRUCTION",
+        "modal_share": 0.5,
+        "n": 128
+      },
+      "TYPED_SERIALIZED_BAG": {
+        "accuracy": 0.5,
+        "accuracy_equals_modal_base_rate": true,
+        "distinct_predictions": 1,
+        "distribution": {
+          "OBSTRUCTION": 128
+        },
+        "is_constant_predictor": true,
+        "modal_label": "OBSTRUCTION",
+        "modal_share": 1.0,
+        "n": 128
+      },
+      "UNTYPED_PAIR": {
+        "accuracy": 0.90625,
+        "accuracy_equals_modal_base_rate": false,
+        "distinct_predictions": 3,
+        "distribution": {
+          "ALIGNED": 44,
+          "OBSTRUCTION": 52,
+          "UNRESOLVED": 32
+        },
+        "is_constant_predictor": false,
+        "modal_label": "OBSTRUCTION",
+        "modal_share": 0.4062,
+        "n": 128
+      }
+    },
+    "checkpoint_families": {
+      "distinct": 2,
+      "families": [
+        "LLAMA3_2",
+        "QWEN2_5"
+      ],
+      "n_checkpoints": 6
+    },
+    "claim": ">=20 independent families needed; comparator partly behaves by construction",
+    "families": {
+      "attack_families": [
+        "EQUAL_LENGTH",
+        "ORDER_PERMUTATION",
+        "SEMANTIC_ORBIT"
+      ],
+      "distinct_attack_families": 3,
+      "families_with_no_opportunity": [
+        "ORDER_PERMUTATION"
+      ],
+      "n_cells": 12,
+      "power": {
+        "alpha": 0.05,
+        "n_per_family": 128,
+        "n_total": 512,
+        "note": "Power depends on the discordance rate, which is unknown before the run, so it is reported across a range rather than assumed at one value.",
+        "primary_gate_power_by_discordance": {
+          "0.05": 0.9919,
+          "0.10": 0.8883,
+          "0.20": 0.6477,
+          "0.40": 0.4154
+        },
+        "primary_gate_power_if_true_margin_equals_gate": 0.05,
+        "primary_paired_margin": 0.08,
+        "worst_family_noninferiority_power_by_discordance": {
+          "0.05": 0.2634,
+          "0.10": 0.1764,
+          "0.20": 0.1274,
+          "0.40": 0.099
+        }
+      }
+    },
+    "majority_class_accuracy": 0.5,
+    "n_constant_predictor_arms": 2,
+    "target_distribution": {
+      "ALIGNED": 32,
+      "OBSTRUCTION": 64,
+      "UNRESOLVED": 32
+    }
+  }
+}
