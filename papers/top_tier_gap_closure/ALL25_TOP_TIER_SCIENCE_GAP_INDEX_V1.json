@@ -1,0 +1,59 @@
+{
+  "assessed_main_commit": "87e2bcb330d243b7062ddba1ca26e426632edeab",
+  "assessment_date": "2026-08-29",
+  "authority": {
+    "note": "This is a commit-pinned gap-closure and execution design, not an acceptance prediction or claim ratification.",
+    "programme_authorization_note": "The matrix distinguishes scientific gaps from currently authorized execution. Returned, deferred, spent, and external-authority lanes are not reopened by this artifact.",
+    "same_researcher_ai_agents_are_external_investigators": false,
+    "scientific_authority_delta": "NONE",
+    "top_tier_promotions_earned_by_this_artifact": 0
+  },
+  "matrix_chunks": [
+    "matrix/ORION-01-05.json",
+    "matrix/ORION-06-10.json",
+    "matrix/ORION-11-15.json",
+    "matrix/ORION-16-20.json",
+    "matrix/ORION-21-25.json"
+  ],
+  "review_board": {
+    "decision_rule": "No paper may be upgraded unless all four roles agree that the stronger claim is proved/tested, reproducible, and materially novel/significant. External authority remains external.",
+    "roles": [
+      {
+        "background": "finite mathematics, theorem proving, formal methods, counterexample construction",
+        "responsibility": "quantifiers, assumptions, proof gaps, minimal countermodels, theorem/checker separation",
+        "role": "formal_methods_and_theory"
+      },
+      {
+        "background": "experimental design, uncertainty quantification, benchmark methodology, causal and predictive evaluation",
+        "responsibility": "unit of inference, controls, prospectivity, power/design sensitivity, multiplicity, adverse outcomes",
+        "role": "empirical_design_and_statistics"
+      },
+      {
+        "background": "research software engineering, provenance, content binding, native verifiers, hostile testing",
+        "responsibility": "artifact custody, environment/version pins, independent checkers, fail-closed terminals, reproducible execution",
+        "role": "systems_and_reproducibility"
+      },
+      {
+        "background": "top-tier journal reviewing, contribution framing, donor subtraction, claims-to-evidence alignment",
+        "responsibility": "novelty subtraction, field significance, claim ceilings, stop rules, bounded-paper versus successor decisions",
+        "role": "editorial_novelty_and_venue_fit"
+      }
+    ],
+    "status": "INTERNAL_ADVERSARIAL_REVIEW_ROLES__NOT_EXTERNAL_REVIEWERS"
+  },
+  "schema": "ORION.All25TopTierScienceGapIndex.v1",
+  "scope": "ORION-01 through ORION-25",
+  "shared_theorem_spine": {
+    "papers": [
+      "ORION-02",
+      "ORION-08",
+      "ORION-09",
+      "ORION-10",
+      "ORION-13",
+      "ORION-19",
+      "ORION-22"
+    ],
+    "path": "papers/top_tier_gap_closure/finite_information_interface_v1",
+    "status": "GENERIC_LOGIC_REPRODUCED__NOVELTY_NOT_ASSESSED__NO_PROMOTION"
+  }
+}
