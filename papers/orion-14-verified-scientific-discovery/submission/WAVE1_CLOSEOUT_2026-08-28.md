@@ -1,32 +1,48 @@
-# ORION-14 Wave 1 submission closeout — 2026-08-28
+# ORION-14 Wave-1 submission closeout — 2026-08-28
 
-Tracking issue: #1609
+Tracking issue: #1609  
+Target: TMLR  
+Canonical source subject: `c66fd78440a1ff0e621ca6ada5bcde93604330d5`
 
-## Publication objective
+## Scientific closure
 
-Prepare the **current** ORION-14 manuscript for TMLR filing. Historical V2 readiness and release artifacts remain evidence records; they do not substitute for an audit of the current manuscript bytes.
+- [x] Protected V2 H1 remains 0/360 versus 180/360.
+- [x] Protected V2 H2 remains 60/60 versus 60/60.
+- [x] Protected V2 H3 remains the saturated-axis `NOT_SUPPORTED` result.
+- [x] Protected V3 remains a distinct 30/30 versus 0/30 and 15/30 terminal/interface-attainability result.
+- [x] P4-X remains 400/400 versus 250/400 and 50/400, with the typed donor product tied at 400/400.
+- [x] Naturalistic, deployed, external-software, external-replication and centralization superiority remain unclaimed.
+- [x] Current primary-source nearest-work refresh and donor subtraction are complete.
+- [x] Full atomic inventory and independent coverage are reconciled: 175/175 rows, zero forbidden in-scope states.
 
-## Current scientific authority
+## Manuscript and package closure
 
-- Protected V2 H1 remains supported: 0/360 false promotions for ORION versus 180/360 for the strongest frozen comparator mechanism.
-- Protected V2 H2 remains supported: both systems cover 60/60 clean positives.
-- Protected V2 H3 remains a retained saturated-axis `NOT_SUPPORTED` historical result.
-- Protected V3 adds a distinct exact-axis result: ORION selects the correct `CANNOT_CHECK` terminal on 30/30 cases; the H1-selected comparator selects it on 0/30 and the escalation-capable comparator on 15/30. This is **terminal/interface expressiveness under the frozen non-compensatory gate lattice**, not a general scientific-judgement superiority claim.
-- The two H3 identities must not be pooled or used to relabel the V2 result.
+- [x] One canonical TMLR source and one canonical evidence map are designated.
+- [x] Official TMLR style hashes match the pinned upstream commit.
+- [x] Figures/tables regenerate from bound safe aggregates without drift.
+- [x] First-page LLM-use disclosure is present and accurate.
+- [x] Exact anonymous supplement is deterministic, checksum-bound and identity-scanned.
+- [x] Pinned clean PDF is rebuilt and copied byte-identically into the package.
+- [x] Every one of 19 pages has been inspected; clipping, fonts, metadata, figures, tables and references pass.
+- [x] Exact required-file manifest and SHA-256 list are current.
+- [x] Three targeted re-reviews close all Round-1 must-address concerns.
+- [x] Reader-facing PDF gate passed in `p4-tmlr-submission-audit` run `33172493159` with zero unresolved internal-code, transport, path or filename hits.
 
-Authoritative sources for this distinction are `CLAIM_LEDGER_V4.md`, `evidence/protected_v3/`, and `journal_package/CLAIM_PDF_AUDIT.md`.
+## Exact filing bytes
 
-## Closeout blockers
+| Object | SHA-256 |
+|---|---|
+| `journal_package/manuscript.pdf` | `7aca0deda6f7a086997a8cc796e50c7d2e89eaae6578e248ee9a87b862e39295` |
+| `journal_package/orion14_anonymous_review_2026-08-28.zip` | `ec842a56dc49b7363de847e7c015fa2730c810a04652c5e440d9a72af4b665a3` |
 
-- [ ] `p4-tmlr-submission-audit` passes on this exact PR head.
-- [ ] Current TMLR PDF is rebuilt by the clean-room workflow and its SHA-256 is retained.
-- [ ] Independent final proofread is performed on the **exact current PDF hash**, including abstract, all headline numbers, V2/V3 H3 distinction, limitations, figures and tables.
-- [ ] Current claim/evidence map is checked for H1/H2/V2-H3/V3-H3 consistency.
-- [ ] Current archive/release is either proven to contain these exact current submission bytes or a new archive is produced; historical releases remain historical.
-- [ ] Submission-date nearest-work review is refreshed if filing occurs after the current freshness window.
-- [ ] Human-only filing metadata is supplied at upload time.
-- [ ] OpenReview submission ID is recorded only after a real submission exists.
+## Human-only filing actions
 
-## Close criterion
+- [ ] confirm/create OpenReview profile;
+- [ ] enter complete author names, affiliations and ORCIDs;
+- [ ] enter funding, conflicts and ethics/IRB declarations as applicable;
+- [ ] upload the two exact objects above;
+- [ ] record the submission ID.
 
-`READY_TO_FILE_TMLR` only when the exact current PDF has a green clean-room audit and an independent proofread. No new exploratory science is required merely for Wave 1 closeout unless that audit exposes a scientific defect.
+These filing actions do not change the scientific terminal. Any byte change does.
+
+Terminal: `simulated_publication_ready_for_target`.
