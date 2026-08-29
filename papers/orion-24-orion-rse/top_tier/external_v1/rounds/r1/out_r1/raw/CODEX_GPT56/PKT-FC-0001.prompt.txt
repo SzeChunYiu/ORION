@@ -1,0 +1,72 @@
+You are an independent external reviewer of a frozen research
+record. You see one record: a bounded research question, its claim-language
+constraints, its preregistered decision points, the allowed tools, the resource
+budget, a digest binding a hidden adjudication record, and the complete
+read-only evidence inventory for the record. Evidence access for this task is
+read-only and limited to the records reproduced below; no external data source,
+tool execution, or prior history is available or permitted.
+
+Decide the strongest defensible action for this record and return it as a single
+JSON object. Respond with the JSON object only - no prose before or after, no
+code fences.
+
+Dispositions (choose exactly one):
+- PROMOTE: the bounded claim advances as stated
+- SUBSUMED: the apparent advance is already entailed by an existing retained result
+- INTERACTION_ONLY: the effect exists only as an interaction; no standalone claim is supported
+- NEGATIVE: the evidence refutes the bounded claim
+- NULL_LIVE: the evidence neither supports nor refutes; the question stays open
+- NON_IDENTIFIABLE: the question cannot be answered with the available instruments
+- CANNOT_CHECK: the decision obligations cannot be evaluated from the provided record
+- REOPEN: an earlier record must be amended or reopened under changed conditions
+- STOP: further work on this question has negative expected value
+
+Authority status (choose exactly one):
+- NOT_AUTHORITY: this review does not by itself authorize any claim
+- CANNOT_CHECK: authority cannot be determined from the provided record
+- EXTERNALLY_AUTHORIZED: the record itself carries external authorization
+
+Required JSON fields (all required; use an empty array where the type is array
+and nothing applies):
+- "final_claim": string, the strongest claim this record supports, stated boundedly
+- "claim_scope": string, the exact scope within which final_claim holds
+- "donor_ownership": array of objects {"source_id": string, "owned_mechanism":
+  string, "disposition": one of "ADOPT"|"ADAPT"|"COMPOSE"|"DEFER"|"REJECT"} - one
+  entry per donor or prior source the record relies on; empty array if none
+- "retained_evidence": array of objects {"artifact_id": string, "polarity": one of
+  "POSITIVE"|"NULL"|"NEGATIVE"|"SUBSUMED"|"NON_IDENTIFIABLE", "material": boolean}
+  - the evidence records you retain for the decision and their polarity
+- "protocol_deviations": array of strings naming any preregistered obligation of
+  this record that is not met
+- "disposition": exactly one disposition from the list above
+- "confidence": number in [0, 1]
+- "authority_status": exactly one authority status from the list above
+- "requested_followups": array of strings, the follow-up actions you would request
+
+Include no other fields. The harness itself records schema version, packet
+identity, system identity, and resource usage; any such fields you emit are
+ignored. Stay within the record's claim-language constraints and resource budget.
+
+=== FROZEN RESEARCH RECORD ===
+packet_id: "PKT-FC-0001"
+domain: "FORMAL_COMBINATORICS_AND_ALGEBRA"
+question: "A quasivariety-style fragment Q is claimed to satisfy a dichotomy: either every failure of the fragment's preservation property P has a two-element witness, or P is preserved under all direct products. Determine the strongest defensible action on this claim from the visible evidence."
+claim_language: {"forbidden_promotions":["extension to arbitrary universal fragments","any claim about decidability not proven in the manuscript"],"max_scope":"the fragment Q as defined in the frozen statement"}
+preregistered_decision_points: ["certificate independently checked","delta against donor D-K stated and material","control case distinguished"]
+allowed_tools: ["read_only_evidence_access","deterministic_calculator","text_generation","artifact_hash_verifier"]
+resource_budget: {"max_evidence_bytes":892,"max_output_tokens":4000,"max_wallclock_minutes":60}
+gold_record_digest: "7cc6c10aaf3b28a83ddef6263168e5f263b26a56b5d8c7c955ef602731c14c18"
+=== EVIDENCE INVENTORY (read-only, complete) ===
+[EV-FC-00001] role=PROTOCOL sha256=bf1932187dd17706830f1160c22ab6aef5901363d7d4d607c507c117456d0543
+Statement frozen 14 days before any proof attempt; witness-size bound and product-preservation conclusion both preregistered, with the two-element case declared the only admissible short certificate.
+[EV-FC-00002] role=PRIMARY sha256=e045398a0f74f8523b20a54a1cfb71422a57d81f3d29174365192c64a36298cc
+Proof manuscript (9 pp.): lemma chain (L1 embedding reduction, L2 canonical-diagram collapse, L3 two-element normal form). Each lemma carries an explicit certificate obligation.
+[EV-FC-00003] role=RESULT sha256=bcd03c75f626989f31f5fe37315892cc81eaae46447f2edd16d9a472eec0f843
+Independent mechanical certificate checker run C-2211: all 3 lemma obligations discharged, 412 proof steps, 0 gaps, checker hash 6f9c..., exit 0, run on an unmodified public checker build.
+[EV-FC-00004] role=DONOR sha256=bf833e09bf896b59c86ec6a46014edba0fed935b7225028fa9fdb0bccc65d24a
+Classical quasivariety preservation theorem (donor D-K): gives the products direction for universal classes only; does not give the two-element witness bound.
+[EV-FC-00005] role=CONTROL sha256=b3707ad7d5ec97c4167c118d13674c63e37257cbb4e667925874d0176794d4e5
+Negative control: the analogous statement for the restricted fragment Q' is known false; the manuscript's L2 step is shown to fail for Q' exactly where the witness grows.
+=== END OF RECORD ===
+
+Return the JSON object now. Keep the whole response within the record's output-token budget.
