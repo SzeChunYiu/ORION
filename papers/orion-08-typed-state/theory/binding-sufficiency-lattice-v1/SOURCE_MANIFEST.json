@@ -1,0 +1,78 @@
+{
+  "schema": "ORION.ORION08.BindingSufficiencyLattice.SourceManifest.v1",
+  "paper_id": "ORION-08",
+  "successor_id": "ORION08.BINDING_SUFFICIENCY_LATTICE.v1",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+  "candidate_source": {
+    "pull_request": 1617,
+    "section": "Priority B - ORION-08 Binding sufficiency lattice"
+  },
+  "repository_base": {
+    "branch_base": "origin/main",
+    "commit": "882b88e3a"
+  },
+  "bound_artifacts": [
+    {
+      "path": "research/extensions/orion-q/nlanes/N4_B_STALE_RECEIPT_REOPENING_RESULTS.json",
+      "sha256": "7bb105598eb480b3c96f373548835d4f6d32521bf523c68d44900566600eead5",
+      "role": "frozen receipt; read as DATA for the gap recomputation, never executed",
+      "mutated_by_this_packet": false
+    },
+    {
+      "path": "research/extensions/orion-q/nlanes/N4_F3_REMINT_TRANSPORT_RESULTS.json",
+      "sha256": "3089bfa04e23746e04210f4d94ea166f930abef2dd394a9788b7dce0e38e1ce9",
+      "role": "frozen receipt; read as DATA for the gap recomputation, never executed",
+      "mutated_by_this_packet": false
+    },
+    {
+      "path": "papers/orion-08-typed-state/CLAIM_LEDGER_V3.md",
+      "sha256": "24e2fad28a416c2df9244aeaee90e60022a122e88a11b838bbb2886069582a87",
+      "role": "context for the bounded claim this packet quantifies; NOT edited",
+      "mutated_by_this_packet": false
+    }
+  ],
+  "recomputed_from_frozen_receipts": [
+    {
+      "quantity": "N4-B pooled oracle-gap closed by the scoped binding",
+      "value_pct": 7.6
+    },
+    {
+      "quantity": "N4-B REOPEN_WASTEFUL gap closed",
+      "value_pct": 1.7
+    },
+    {
+      "quantity": "N4-B STALE_MATTERS gap closed",
+      "value_pct": 10.3
+    },
+    {
+      "quantity": "N4-F3 gap closed vs naive carry-forward",
+      "value_pct": 98.4
+    },
+    {
+      "quantity": "N4-F3 gap closed vs strongest non-oracle baseline",
+      "value_pct": 81.9
+    }
+  ],
+  "not_imported": [
+    "any ORION-08 module",
+    "any N-lane executor or protocol script"
+  ],
+  "excluded_paths": {
+    "papers/orion-08-typed-state/submission_tmlr/": "byte-bound under papers/publication_closure/PACKAGE_ADOPTION_V2.json (issue #1601); not read, not written, not depended upon"
+  },
+  "content_freeze_verification": {
+    "checker": "papers/publication_closure/remaining11/check_orion05_10_final_freeze.py",
+    "reported": "PASS",
+    "IMPORTANT_this_is_not_evidence_of_unchanged_content": true,
+    "why": "The script WRITES paper_tree_oid and rewrites subject_commit to the current HEAD, then reports FROZEN. It re-pins rather than verifies, so a PASS from it does not establish that paper content is unchanged. Running it mutates the freeze receipt; that mutation was reverted and is NOT part of this PR.",
+    "actual_effect_of_this_packet_on_the_pin": {
+      "pinned_paper_tree_oid": "5f923e9a9d1e",
+      "live_paper_tree_oid_with_this_additive_directory": "e353f6691507",
+      "changed": true,
+      "disclosure": "Adding any file under papers/orion-08-typed-state/ changes that paper's tree oid. ORION-08's pin is one of the 8 currently matching on main per issue #1625, so this PR will make it one of the mismatching ones. No existing byte is modified; the change is purely additive. Flagged rather than hidden."
+    },
+    "related_issue": 1625
+  },
+  "frozen_paper_bytes_modified": "NONE"
+}

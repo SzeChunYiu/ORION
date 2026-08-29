@@ -1,0 +1,86 @@
+{
+  "schema": "ORION.ORION04.GlobalCertifiedSearchProtocol.v1",
+  "protocol_id": "ORION04.D4.GLOBAL_CERTIFIED_SEARCH.v1",
+  "parent_issue": 1609,
+  "successor_issue": 1665,
+  "subject_lower_bound_revision": "ef02823e68f64965df27d056db8ac387246affeb",
+  "outcome_access_rule": "Protocol, generator semantics, terminal set, authority ceilings, and hostile controls are fixed before reading any new full-instance solver outcome.",
+  "target": {
+    "group": "C_5^3",
+    "sequence_length": 31,
+    "total_sum": [0, 0, 0],
+    "allowed_multiplicities": [0, 1, 2, 4],
+    "minimum_support_from_parent": 14,
+    "forbidden_zero_sum_lengths": [1, 2, 3, 4, 5]
+  },
+  "normalization": {
+    "basis_points": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+    "justification": "Any admissible sequence must span rank three because a rank-at-most-two support would exceed eta(C_5^2)=13; GL(3,5) sends an independent support triple to the standard basis.",
+    "basis_multiplicity_order": "m(e1) >= m(e2) >= m(e3), obtained by permuting the selected basis triple."
+  },
+  "encoding": {
+    "format": "OPB",
+    "generator": "research/orion-rg/promotion/orion04-global-certified-search-v1/generate_opb.py",
+    "multiplicity_variables": "one-hot variables m1_g, m2_g, m4_g for every nonzero group point",
+    "short_zero_constraints": "one inequality for every nonzero zero-sum multiset of cardinality 2 through 5; a multiset is forbidden exactly when all required multiplicity thresholds are simultaneously present",
+    "modular_sum": "coordinate sums equal five times binary-encoded quotient variables",
+    "completeness": "Every sorted forbidden multiset is enumerated exactly once by choosing its first k-1 points and deriving the final point from the zero-sum equation."
+  },
+  "positive_terminals": {
+    "unsat": {
+      "terminal": "ORION04_C0_31_PROVED__D4_C5CUBED_EXACT_30",
+      "required": [
+        "byte-bound full OPB manifest",
+        "complete solver proof",
+        "successful pinned external proof-checker receipt",
+        "independent regeneration of the OPB digest",
+        "all hostile proof and coverage mutants rejected"
+      ]
+    },
+    "sat": {
+      "terminal": "ORION04_D4_31_EXPLICIT_EXTREMAL_INDEPENDENTLY_VERIFIED",
+      "required": [
+        "explicit multiplicity vector",
+        "standalone witness checker PASS",
+        "independent total-sum and short-zero verification",
+        "no reliance on generator success flags"
+      ]
+    },
+    "structural": {
+      "terminal": "ORION04_GLOBAL_OBSTRUCTION_THEOREM_PROVED",
+      "required": [
+        "named theorem implying nonexistence of the registered obstruction",
+        "complete proof independent of a solver exit code",
+        "claim-ledger and donor-subtraction audit"
+      ]
+    }
+  },
+  "negative_terminal": {
+    "terminal": "ORION04_GLOBAL_CERTIFIED_SEARCH_CANNOT_CHECK",
+    "triggers": [
+      "solver timeout or resource exhaustion",
+      "proof checker unavailable or nonzero",
+      "proof/instance digest mismatch",
+      "incomplete forbidden-multiset coverage",
+      "witness checker disagreement",
+      "post-outcome change to encoding, normalization, thresholds, or terminal semantics"
+    ]
+  },
+  "authority": {
+    "support_at_least_14_parent_authority": true,
+    "support_at_least_23_authority": false,
+    "c0_31_authority": false,
+    "exact_d4_authority": false,
+    "external_proof_checked": false,
+    "novelty_authority": false,
+    "venue_authority": false
+  },
+  "prohibited_shortcuts": [
+    "Treating the internal support-through-22 ledger as theorem evidence",
+    "Treating SAT/UNSAT solver exit status as a proof",
+    "Dropping a partition or forbidden-multiset family after outcome access",
+    "Changing symmetry rules after seeing a survivor",
+    "Continuing past a verified witness in search of a preferred conclusion",
+    "Calling repository CI external scientific independence"
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "cross_checks": {
+    "adverse_nulls_visible": true,
+    "all_citations_resolve": true,
+    "figures_required": false,
+    "operational_leakage_absent": true,
+    "quantitative_headline_consistent": true,
+    "tables_bound_to_data": true
+  },
+  "independence_note": "Coverage is grouped by reader question and manuscript surface, not by atomic-ledger identifiers.",
+  "schema_version": "orion.orion13.independent-manuscript-coverage.v1",
+  "surfaces": [
+    {
+      "reader_question": "What is being tested and what is excluded?",
+      "required": [
+        "structured mapping decision",
+        "32-case confirmatory set",
+        "primary effect and interval",
+        "false-split guard",
+        "raw-text/expert/downstream exclusions",
+        "undetermined state"
+      ],
+      "status": "PASS",
+      "surfaces": [
+        "abstract",
+        "introduction"
+      ]
+    },
+    {
+      "reader_question": "How does the rule differ from adjacent systems?",
+      "required": [
+        "upstream extraction boundary",
+        "ontology-matching boundary",
+        "semantic-interoperability donors",
+        "measurement/polarity context",
+        "no priority claim"
+      ],
+      "status": "PASS",
+      "surfaces": [
+        "related work"
+      ]
+    },
+    {
+      "reader_question": "What exactly is the scientific object?",
+      "required": [
+        "three-valued outcome",
+        "projection coordinates",
+        "admissibility rule",
+        "provenance",
+        "polarity-only observed discrimination"
+      ],
+      "status": "PASS",
+      "surfaces": [
+        "methods"
+      ]
+    },
+    {
+      "reader_question": "What data were frozen and how independent are the sets?",
+      "required": [
+        "32+32 cases",
+        "case-ID overlap zero",
+        "two recurring source records",
+        "family counts",
+        "pre-outcome freeze",
+        "expert-atlas exclusion"
+      ],
+      "status": "PASS",
+      "surfaces": [
+        "dataset"
+      ]
+    },
+    {
+      "reader_question": "Are comparators and inference fair to the bounded claim?",
+      "required": [
+        "same structured inputs",
+        "flat false-merge comparator",
+        "exact false-split control",
+        "paired unit",
+        "bootstrap seed/resamples",
+        "non-compensatory rule",
+        "descriptive ablations"
+      ],
+      "status": "PASS",
+      "surfaces": [
+        "evaluation"
+      ]
+    },
+    {
+      "reader_question": "What happened, including adverse and null results?",
+      "required": [
+        "initial evidence separate",
+        "all confirmatory rates",
+        "paired intervals",
+        "six polarity cases",
+        "exact abstention",
+        "zero ablations",
+        "same-custody replay boundary"
+      ],
+      "status": "PASS",
+      "surfaces": [
+        "results"
+      ]
+    },
+    {
+      "reader_question": "What may not be concluded?",
+      "required": [
+        "weak comparator",
+        "small structured set",
+        "source overlap",
+        "no system superiority",
+        "no raw-text/downstream/expert authority",
+        "no universal coordinate necessity"
+      ],
+      "status": "PASS",
+      "surfaces": [
+        "limitations",
+        "conclusion"
+      ]
+    },
+    {
+      "reader_question": "Can a reviewer access the exact materials?",
+      "required": [
+        "archive digests",
+        "licence boundaries",
+        "immutable URL requirement",
+        "URL absence disclosed"
+      ],
+      "status": "PASS_WITH_EXTERNAL_BLOCKER",
+      "surfaces": [
+        "availability"
+      ]
+    }
+  ],
+  "unresolved_external_blockers": [
+    "stable immutable review archive URL",
+    "human author metadata and declarations",
+    "SWJ human-writing compliance attestation",
+    "working journal template or written editor guidance"
+  ]
+}

@@ -1,4 +1,4 @@
-# ORION-02 journal-readiness record
+# ORION-06 journal-readiness record
 
 **Current terminal:** `INTERNAL_REVIEW_PASS__METHOD_CLAIM / SUBMISSION_GATES_OPEN`.
 

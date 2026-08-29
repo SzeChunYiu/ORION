@@ -1,0 +1,265 @@
+\documentclass[10pt]{article}
+\usepackage{tmlr}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\title{Responsibility-Relative Reuse of Learned and Verified State}
+\author{Anonymous Authors}
+
+\def\month{08}
+\def\year{2026}
+\def\openreview{\url{https://openreview.net/}}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newcommand{\RRS}{responsibility-relative state}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Stored state is often reused because it is current, high-confidence, or well provenanced. None of these conditions establishes that the state supports the downstream task now being asked. We formalize state sufficiency relative to a named responsibility and study a fail-closed reuse policy that either serves a registered responsibility, reopens richer state, or declines when support cannot be checked. The evaluation separates what follows by construction from what is measured. On 1,797 handwritten-digit items evaluated under parity and exact-digit responsibilities, the policy deliberately reuses two-dimensional parity state for parity and reopens 64-dimensional input for exact identity. It therefore matches the always-raw accuracies while reading 33 rather than 64 state values per responsibility episode; confidence-only and provenance-only policies reuse unsupported state and reach exact-digit accuracies of 0.396 and 0.238. In a disjoint verifier-backed Boolean-formula study, the policy is correct on all 24 old/new responsibility episodes while reading 60 literals, versus 108 for always-raw; confidence-only and provenance-only reuse all 12 stale certificates after change. A 48-case provenance-tiered comparison shows that current provenance does not encode responsibility support, and a separate 60-case drift study shows complementary failures of unconditional and signature-only certificate transport. An earlier self-scored safety endpoint is retained as invalid because its harm label shared the policy's own support bit. The evidence establishes bounded responsibility-relative reuse on one learned dataset and finite verified constructions. It does not establish deployment safety, population generalization, or transport across arbitrary semantic change.
+\end{abstract}
+
+\section{Introduction}
+
+Learned systems increasingly store compact predictions, summaries, memories, or certificates and reuse them later. Reuse can save computation and preserve continuity, but it also creates a semantic question that confidence, freshness, and provenance do not answer: \emph{what may this state still be used to decide?} A parity summary of a handwritten digit may remain accurate and current while being insufficient for exact digit identity. A satisfying assignment may remain well authenticated while ceasing to satisfy a strengthened formula. In both cases the state has not become corrupt in the ordinary sense; the downstream responsibility has changed.
+
+The distinction is related to statistical sufficiency, state abstraction, and Blackwell comparison, all of which treat informativeness relative to a family of decisions or targets \citep{blackwell1953equivalent,li2006unified,ravindran2004approximate}. It is also adjacent to selective prediction, which withholds decisions under uncertainty \citep{geifman2017selective}, truth-maintenance systems, which revise beliefs after premise changes \citep{doyle1979truth}, and recent work on stale agent memory, execution provenance, and proof-carrying actions \citep{chao2026stale,wang2026traces,wang2026proof}. These lines motivate auditability, expiry, and certification. They do not make provenance or confidence a proof that a representation supports a newly requested task.
+
+We make the responsibility explicit. A state contract records the set of responsibilities for which support has been established, the contextual coordinates that must remain unchanged, and whether richer state can be reopened. A reuse request then has three possible outcomes: use the stored state, reopen richer state, or decline because support cannot be checked. This is a semantic interface rather than a self-authorizing certificate: the declaration must be justified by an external model, verifier, or registered support relation.
+
+The paper contributes four bounded pieces of evidence. First, a learned-data study separates a parity responsibility from exact digit identity on the same 1,797 items. Second, a finite Boolean-formula study makes old and changed responsibilities exactly checkable. Third, a provenance-tiered comparison tests whether current provenance alone prevents unsupported reuse after responsibility change. Fourth, a drift study tests certificate transport rather than treating every context change as automatic revocation. In each study the always-raw or always-reissue arm is a correctness ceiling, not a strawman, and raw-state access is counted explicitly.
+
+Two constraints are central to the interpretation. The responsibility-aware policy's equality with always-raw accuracy follows from its routing rule: it uses the same parity output on parity episodes and the same raw digit or formula solver on unsupported episodes. The empirical question is therefore not whether the router learns to beat always-raw. It is whether the declared support boundary is honored, whether responsibility-blind comparators fail where predicted, and what raw access is avoided. Second, the formula studies are complete finite panels under registered generators, not samples from a natural population.
+
+We retain a failed measurement that preceded these studies. Its reported zero unsafe reuse was defined using the policy's own support bit, leaving no independent harm opportunity. That endpoint is not used as evidence. Keeping this correction visible is necessary because a reuse policy must not grade its own safety.
+
+\section{Related work and claim boundary}
+
+\paragraph{Sufficiency and abstraction.}
+Classical sufficiency asks whether a statistic preserves information about a parameter; decision-theoretic comparison asks when one experiment is at least as informative as another \citep{blackwell1953equivalent}. State-abstraction work makes analogous distinctions for policies and value functions in sequential decision problems \citep{li2006unified,ravindran2004approximate}. Representation learning also distinguishes task-relevant invariance from indiscriminate compression \citep{achille2018emergence}. We use the elementary factorization condition for a fixed downstream function. We do not claim a new universal theory of sufficient statistics or a total ordering over responsibilities.
+
+\paragraph{Confidence, abstention, and stale memory.}
+Selective classification uses confidence or risk estimates to abstain on hard inputs \citep{geifman2017selective}. Our failure mode is different: a stored representation can be highly confident for one responsibility and structurally unable to answer another. Recent stale-memory work asks whether an agent can recognize when later evidence invalidates stored information \citep{chao2026stale}. We study a complementary change in requested responsibility even when provenance remains current.
+
+\paragraph{Provenance and proof-carrying action.}
+Evidence tracing and execution provenance support attribution and auditability \citep{wang2026traces}. Proof-carrying action proposals attach checkable evidence to actions and governance decisions \citep{wang2026proof}. These are necessary substrates for trustworthy reuse. Our narrower residual is that a valid record or signature does not encode every task that the represented content can support. The provenance-tiered baseline operationalizes that distinction rather than treating provenance as a weak or irrelevant comparator.
+
+\paragraph{Truth maintenance and semantic change.}
+Truth-maintenance systems track justifications and retract conclusions when assumptions change \citep{doyle1979truth,dekleer1986assumption}. Our drift study is related, but asks when a compact certificate can be transported without full re-issue. It covers only registered clause addition, deletion, and strengthening patterns. It does not claim a complete belief-revision or program-verification procedure.
+
+\paragraph{Claim boundary.}
+The contribution is the combined support contract, explicit reopen semantics, and matched evidence across learned and exactly verified responsibilities. The paper does not claim that confidence, provenance, signatures, or memory expiry are ineffective. It claims only that they answer different questions and can remain valid when responsibility support has changed.
+
+\section{Responsibility-relative support}
+
+Let $X$ be raw state, $T(X)$ a stored representation, and $g_r(X)$ the correct output for responsibility $r$ over a declared world set $\Omega$.
+
+\begin{definition}[Exact responsibility support]
+$T$ supports responsibility $r$ on $\Omega$ if there exists a decoder $h_r$ such that
+\[
+g_r(x)=h_r(T(x)) \quad \text{for every }x\in\Omega.
+\]
+\end{definition}
+
+Equivalently, every equivalence class induced by $T$ is homogeneous under $g_r$. This definition is conditional on $\Omega$, $r$, and the meaning of correctness. It never licenses a population claim outside the declared world set.
+
+\begin{proposition}[Collision witness]
+If there exist $x,x'\in\Omega$ such that $T(x)=T(x')$ but $g_r(x)\neq g_r(x')$, no decoder that receives only $T(X)$ can be correct on both states for responsibility $r$.
+\end{proposition}
+
+\begin{proof}
+Any such decoder must return the same value on the identical representation, while the two required outputs differ.
+\end{proof}
+
+A state contract contains: the representation identity; the supported responsibility set; support witnesses or verifier identity; relevant context or epoch; omitted distinctions; and a recovery route. Given request $(r,c)$ under current context $c$, the policy is
+\[
+\pi(T,r,c)=
+\begin{cases}
+\text{reuse}, & r\text{ is supported and required context agrees};\\
+\text{reopen}, & \text{support is absent or invalidated and richer state is available};\\
+\text{cannot check}, & \text{otherwise}.
+\end{cases}
+\]
+The contract is fail-closed but not self-validating. A support declaration is evidence only when it is derived independently of the reuse action and the harm label used to assess it.
+
+Provenance and responsibility support form different coordinates. Provenance can establish where state came from, whether an epoch or source identity is current, and which transformations produced it. Responsibility support asks whether the retained distinctions entail the requested output. Neither coordinate subsumes the other.
+
+\section{Evaluation design}
+
+\subsection{Learned-data responsibility change}
+
+We use the 1,797 handwritten digit images bundled with scikit-learn \citep{pedregosa2011scikit}. Images contain 64 pixel values and labels $0$--$9$. Five-fold stratified cross-validation is shuffled with a fixed seed. Standardization and all models are fitted on each training fold only.
+
+A multinomial logistic model predicts parity. Its two class probabilities form the stored compact state. A second logistic model predicts exact identity from all 64 standardized pixels. A hostile compact decoder receives only the two parity probabilities and predicts exact identity. Each test item is queried under two responsibilities: parity and exact digit. This yields 3,594 responsibility episodes per policy arm and 17,970 policy-episode evaluations across five arms.
+
+The arms are:
+\begin{itemize}
+\item \textbf{unqualified reuse}: use compact state for both responsibilities;
+\item \textbf{confidence only}: reuse compact state when maximum parity probability is at least 0.90, otherwise reopen raw state;
+\item \textbf{provenance only}: reuse because provenance is current in every episode;
+\item \textbf{always raw}: read all 64 values for both responsibilities;
+\item \textbf{responsibility relative}: reuse the two-value state for parity and reopen 64 values for exact identity.
+\end{itemize}
+
+Per episode, compact reuse counts two state values and raw use counts 64. Model training and coefficient counts are reported separately in the review data and are not treated as free. The headline comparison concerns post-construction service of the two requests. The main outcomes are task accuracy, unsupported exact-digit reuse, mean state values read, and reopen rate.
+
+\subsection{Verifier-backed responsibility and epoch change}
+
+Twelve finite Boolean-formula cases are frozen before evaluation. Each base formula fixes four of five variables and leaves one free, so exactly two assignments satisfy it. A previously verified assignment is valid for the old responsibility. A new unit clause changes the responsibility and epoch, invalidates that assignment, and leaves exactly one satisfying alternative.
+
+Every arm serves an old and a changed episode, for 24 episodes per arm. Responsibility-relative and always-raw policies solve the changed formula; confidence-only and provenance-only policies reuse the old assignment. Literal reads count the clauses examined. A separate implementation derives the exact model counts, expected correctness, stale reuse, and literal reads without importing the primary search procedure.
+
+\subsection{Provenance-tiered comparison}
+
+The 48-case comparison crosses four cells: supported/current, changed/current, supported/stale, and changed/stale. Each cell has 12 finite formulas. Two provenance-tiered arms use currentness, grounding, and demand grade to decide whether compact state may be served. The responsibility-relative arm adds an explicit requested-obligation support test; a composed arm combines both coordinates. Always-raw reads the full current formula.
+
+This is an implementation-level comparator inspired by provenance-aware memory and evidence-tracing work, not a reproduction of a deployed agent-memory system. The changed/current cell is deliberately discriminating: provenance is current while the requested obligation is unsupported. Correctness is checked by exhaustive Boolean evaluation. The primary endpoint is unsupported reuse, with literal reads and solver calls as resource outcomes.
+
+\subsection{Certificate transport under bounded drift}
+
+A separate 60-case panel contains 20 redundant, 20 conflicting, and 20 mixed shifts. We compare unconditional transport, signature-equality transport, a registered local drift-bound rule, and always re-issuing. The local rule permits transport only when the clause change satisfies the registered relation and newly added clauses are verified against the stored assignment.
+
+For redundant shifts, transport is sound; for conflicting and mixed shifts, the registered predicate denies transport. ``Mixed'' unsoundness is a protocol judgment about changed justification, not necessarily content invalidity, and is reported separately. The endpoints are verifier correctness, unsound transport, needless re-issue, and literal reads. A second implementation enumerates all satisfying assignments and recomputes every disposition.
+
+\subsection{Retained measurement correction}
+
+An earlier finite benchmark labeled harm as reuse of state whose certificate said ``unsupported,'' while the policy itself reused exactly when that certificate said ``supported.'' Across 3,840 enumerated points, corrupting the certificate changed the policy action on 2,304 points but never created a positive harm label. The published zero-unsafe-reuse endpoint therefore had no independent opportunity to vary. We retain it as a measurement failure and exclude it from the evidence below.
+
+\section{Results}
+
+\subsection{Learned state is responsibility dependent}
+
+Table~\ref{tab:digits} reports cross-validated aggregate results. Parity accuracy is 0.917 for every arm because all use the same fitted parity model; routing changes only the representation read. Exact-digit accuracy from raw state is 0.970, while the hostile decoder from two parity probabilities reaches 0.238. Responsibility-relative routing therefore matches always-raw accuracy by design while halving the reopen rate and reducing state values read by 48.44\%.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Handwritten-digit responsibility change. There are 1,797 source items and 3,594 responsibility episodes per arm. Equality between responsibility-relative and always-raw accuracy follows from their shared component predictors; the measured differences are support violations and state access.}
+\label{tab:digits}
+\begin{tabular}{lrrrr}
+\toprule
+Policy & Combined acc. & Digit acc. & Unsupported reuse & Values/episode \\
+\midrule
+Responsibility relative & 0.944 & 0.970 & 0.000 & 33.0 \\
+Always raw & 0.944 & 0.970 & 0.000 & 64.0 \\
+Confidence only & 0.656 & 0.396 & 0.777 & 15.8 \\
+Provenance only & 0.577 & 0.238 & 1.000 & 2.0 \\
+Unqualified reuse & 0.577 & 0.238 & 1.000 & 2.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The confidence threshold rejects some low-confidence parity states, but it is blind to the requested output: 1,397 of 1,797 exact-digit requests are still served from unsupported compact state. Current provenance provides no refusal because all records are current by construction. These failures do not show that confidence or provenance is useless; they show that neither encodes the changed responsibility in this design.
+
+\subsection{Exact certificate revocation after change}
+
+In the formula study, the responsibility-relative and always-raw arms are verifier-correct on all 24 old/new episodes. Confidence-only and provenance-only arms are correct on all 12 old episodes and fail all 12 changed episodes by reusing the stale assignment (Table~\ref{tab:cnf}). Responsibility-relative routing reads 60 literals versus 108 for always-raw, a 44.44\% reduction. Both implementations agree on every count.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Verifier-backed old/new responsibility episodes. Counts are exact over 12 finite cases.}
+\label{tab:cnf}
+\begin{tabular}{lrrr}
+\toprule
+Policy & Verifier-correct & Stale reuse & Literal reads \\
+\midrule
+Responsibility relative & 24/24 & 0 & 60 \\
+Always raw & 24/24 & 0 & 108 \\
+Confidence only & 12/24 & 12 & 0 \\
+Provenance only & 12/24 & 12 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This result is stronger than the learned-data study in verification but narrower in domain. The new clause is constructed to invalidate the stored assignment. The experiment confirms the registered routing and accounting on the complete finite grid; it is not evidence about the frequency of such changes in deployed systems.
+
+\subsection{Current provenance does not encode support}
+
+Table~\ref{tab:donor} reports the 48-case comparison. Both provenance-tiered arms make 12 unsupported reuses in the changed/current cell and are verifier-correct on 36 cases. The responsibility-relative and composed arms are correct on all 48 with no unsupported reuse and average five literal reads, compared with 6.25 for the provenance-tiered arms. Always-raw is also correct on all cases and averages 5.5 reads.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Provenance-tiered comparison over four registered cells with 12 cases each.}
+\label{tab:donor}
+\begin{tabular}{lrrr}
+\toprule
+Policy & Verifier-correct & Unsupported reuse & Mean reads \\
+\midrule
+Provenance tier & 36/48 & 12 & 6.25 \\
+Provenance tier + demand grade & 36/48 & 12 & 6.25 \\
+Responsibility relative & 48/48 & 0 & 5.00 \\
+Composed coordinates & 48/48 & 0 & 5.00 \\
+Always raw & 48/48 & 0 & 5.50 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The composed and responsibility-relative arms are decision-equivalent on this grid because every record has the maximum demand grade. We therefore claim separation from the provenance-tiered arms, not superiority of the composed policy over responsibility-relative routing. The changed/current cell models a responsibility change between provenance checkpoints; it is a registered assumption, not an observation about a deployed memory system.
+
+\subsection{Transport needs more than ``always'' or ``same signature''}
+
+The transport study exposes opposite errors (Table~\ref{tab:transport}). Unconditional transport makes 40 unsound transports. Twenty are content-invalid conflicting cases; 20 mixed cases violate the registered justification predicate even when content may remain satisfying. Signature equality is verifier-correct but needlessly reissues all 20 redundant cases. The local drift-bound rule is verifier-correct on all 60 with no unsound transport and no needless reissue. On redundant drift it reads eight literals on average, versus 12 for always reissuing.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Certificate transport over 20 redundant, 20 conflicting, and 20 mixed shifts.}
+\label{tab:transport}
+\begin{tabular}{lrrrr}
+\toprule
+Policy & Verifier-correct & Unsound & Needless & Mean reads \\
+\midrule
+Unconditional & 40/60 & 40 & 0 & 6.000 \\
+Signature equality & 60/60 & 0 & 20 & 11.333 \\
+Local drift bound & 60/60 & 0 & 0 & 10.000 \\
+Always reissue & 60/60 & 0 & 20 & 11.333 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The local rule is exact only on this grid. We do not claim uniqueness, adversarial robustness, non-monotone rewrite coverage, or transport beyond the registered clause operations.
+
+\section{Discussion}
+
+The learned and verified studies agree on a modest principle: support is a relation among representation, downstream responsibility, and context. Treating it as an intrinsic property of the stored state hides the reason a reopen is necessary. In the digit study, two parity probabilities are useful and current but discard distinctions needed for exact identity. In the formula study, the old assignment is valid and verified until a clause changes the required model. Neither failure is well described as generic low confidence or corrupt provenance.
+
+The policy's resource advantage should not be read as a learned optimization result. Once the responsibility declaration is trusted, its routing is straightforward. The scientific burden moves to how support is established and how changes invalidate it. The collision proposition gives an exact negative certificate for unsupported representations; verifiers can establish support on finite formal objects; learned tasks require calibrated external evidence and cannot self-certify from the same decisions being assessed.
+
+The provenance-tiered comparison clarifies complementarity rather than competition. Provenance answers whether a record is grounded and current. Responsibility support answers whether its contents retain the distinctions needed for the requested output. A practical system needs both. The composed policy's equality with responsibility-relative routing in our grid is a limitation: demand grading adds no information when every record has maximum grade. More diverse grades would be required to study interaction rather than logical non-reducibility.
+
+The transport study adds a second caution. Revoking every certificate after any syntactic change is safe but can waste work, whereas transporting every authenticated certificate is unsound. Local revalidation can occupy the middle, but its conditions are domain specific. In open-ended learned systems, defining the relevant semantic drift may be harder than reopening state.
+
+The retained measurement failure is equally important. A system cannot demonstrate safe reuse when its action rule and harm label share the same support bit. Independent opportunity denominators, gold responsibilities, and verifiers are required. This correction is not superseded by the later positive studies.
+
+\section{Limitations}
+
+The real-data evidence uses one small, bundled image dataset and two responsibilities with a deliberately severe information bottleneck. Cross-validation folds reuse one dataset and are not independent domains. The 17,970 total counts policy evaluations, not 17,970 independent source items. Accuracy equality with always-raw is structural because the same component predictors are routed by responsibility.
+
+All formula results are finite and constructed. Their checkers establish exact counts for those cases, not a distributional guarantee. The provenance-tiered arms approximate an architectural idea rather than reproducing a complete deployed memory system. The changed/current trust window is a modeling choice. The drift rule covers only registered Boolean-clause operations and is not a general semantic-equivalence procedure.
+
+Raw-value and literal-read counts are transparent local resource measures, not latency, energy, memory traffic, or monetary cost. Training the compact representation is shared across policies and separately disclosed, but the headline reuse comparison does not amortize it over a deployment horizon. A different workload mix could favor always-raw or always-reissue.
+
+Responsibilities are known and discrete. Real requests may be ambiguous, compositional, adversarially framed, or governed by human authority. The policy does not determine scientific truth, certify its own support, or decide who may declare a responsibility. External evaluation on real agent workflows, richer semantic changes, and independently authored responsibility labels remains future work.
+
+\section{Reproducibility and availability}
+
+The anonymous review materials contain the aggregate fold record for the learned-data study, complete finite summaries for the three verified studies, the retained adverse measurement, and a standard-library verifier that recomputes every table and stated rate from reader-facing data. The verifier is separate from the model-fitting and Boolean-search programs used to generate the original results.
+
+The source archive contains the anonymous manuscript source, bibliography, and journal style. The review archive contains no author identity or private development history. On publication, the full study programs, frozen case panels, and execution records will be deposited with a persistent public research artifact. Until then, the anonymous review data are sufficient to inspect every quantitative statement in this manuscript.
+
+\section{Conclusion}
+
+Current provenance and high confidence do not by themselves establish that stored state supports a changed task. Across one learned dataset and three finite verified panels, an explicit responsibility contract distinguishes reusable state from state that must be reopened, preserves the always-raw correctness ceiling by construction, and avoids unnecessary raw access. The same studies expose unsupported reuse by responsibility-blind comparators and complementary failures of unconditional and signature-only transport. The conclusion is bounded: state sufficiency is responsibility relative in these registered settings. Deployment safety, population generalization, and arbitrary semantic transport remain unestablished.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

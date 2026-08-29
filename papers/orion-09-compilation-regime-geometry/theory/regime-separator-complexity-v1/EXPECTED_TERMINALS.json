@@ -1,0 +1,103 @@
+{
+  "schema": "ORION.ORION09.RegimeSeparatorComplexity.ExpectedTerminals.v1",
+  "paper_id": "ORION-09",
+  "successor_id": "ORION09.REGIME_SEPARATOR_COMPLEXITY.v1",
+  "authored_date": "2026-08-28",
+  "terminal_set": [
+    {
+      "terminal": "REPLAY_REPRODUCES_RECEIPT",
+      "reached": true,
+      "condition": "every compared stage-1 statistic matches the frozen receipt",
+      "observed": "zero mismatches across 8 compared fields"
+    },
+    {
+      "terminal": "COMPACT_LAW_ESTABLISHED_ON_FROZEN_DOMAIN",
+      "reached": true,
+      "condition": "k* proved exact by exhaustive refutation plus verified witness",
+      "observed": "k* = 4; all subsets of size <= 3 refuted; witness {15,30,39,42} attains floor 0 with 523 cells",
+      "scope_limit": "n <= 3 StabPrep domain only; explicitly does NOT transfer to n = 4"
+    },
+    {
+      "terminal": "MEMORIZATION_CONCERN_QUANTIFIED_AND_RESOLVED",
+      "reached": true,
+      "condition": "structure-free null computed exactly",
+      "observed": "P = 7.057e-07 for L3; P = 1.442e-120 for the 4-feature map; 0/20000 permutation hits"
+    },
+    {
+      "terminal": "MECHANISM_ATTRIBUTION_NOT_SUPPORTED",
+      "reached": true,
+      "adverse": true,
+      "condition": "some sub-vocabulary excluding the new STATE block attains floor 0",
+      "observed": "V2 + donor-path (86 features) attains floor 0; the minimal witness contains zero STATE-block coordinates",
+      "required_handling": "PRESERVE. This is adverse to the recorded revival narrative and must not be softened. It does NOT overturn floor(L3)=0 or the POSITIVE_CONVERSION verdict."
+    },
+    {
+      "terminal": "MANUSCRIPT_INCOMPLETENESS__SUBMISSION_BLOCKED",
+      "reached": true,
+      "condition": "a manuscript presents a superseded scoped result as its finding while committed evidence in the same paper is absent from it",
+      "observed": "abstract presents the V1-scoped 43/1146 result as the StabPrep finding; manuscript/main.tex contains zero occurrences of R2, L3 or revival",
+      "required_action": "Rescope by addition in a SEPARATE PR with its own authority record. Do not submit ORION-09 until then.",
+      "taken_here": false,
+      "severity_note": "The quoted abstract sentences are TRUE as scoped. The defect is material omission/currency, not falsity. The 'not a universal low-order boundary law' conclusion is independently SUPPORTED by the n=4 non-transfer recorded here."
+    },
+    {
+      "terminal": "THEORY_REFUTED",
+      "reached": false,
+      "condition": "any counterexample to Theorem A, B or C, or a covering subset of size <= 3",
+      "required_action": "record the counterexample verbatim and retract the corresponding statement; do not weaken it to fit"
+    },
+    {
+      "terminal": "CANNOT_CHECK",
+      "reached": false,
+      "condition": "module hash drift or a checker that cannot execute",
+      "required_action": "report as CANNOT_CHECK; never as a pass"
+    }
+  ],
+  "preserved_adverse_and_null_evidence": [
+    {
+      "item": "H_B_N4_residual = NOT_IMPROVED; 32/120 CV errors equal to the parent cell-lookup baseline; shuffle-null mean 32.41, empirical p = 0.51",
+      "status": "PRESERVED_UNCHANGED_AND_LOAD_BEARING",
+      "note": "This is the limit on the compact law found here. Reported alongside it in every summary, never separated from it."
+    },
+    {
+      "item": "QG-23 H1 refuted: V2 normalization does not transfer; lattice predicate 3/120 errors on the frozen n=4 panel",
+      "status": "PRESERVED_UNCHANGED",
+      "note": "The QG-23 V2 lattice parent (3/120) still outperforms the L3 vocabulary (32/120) out of sample. Untouched and not explained away."
+    },
+    {
+      "item": "R2 memorization disclosure (near-injectivity, 1109/1146)",
+      "status": "PRESERVED_AND_QUANTIFIED",
+      "note": "Confirmed exactly, then bounded by Theorem B and resolved by the structure-free null. The disclosure was correct; it is superseded by measurement, not contradicted."
+    },
+    {
+      "item": "Authority ceiling NOT_R6",
+      "status": "PRESERVED_UNCHANGED"
+    },
+    {
+      "item": "no physical quantum-advantage claim",
+      "status": "PRESERVED_UNCHANGED"
+    },
+    {
+      "item": "V1 floor 43/1146 and its 12 mixed cells",
+      "status": "PRESERVED_AND_REPRODUCED_EXACTLY",
+      "note": "Still true within V1. Only the generalization drawn from it in the abstract is challenged."
+    }
+  ],
+  "authority_updates": {
+    "recorded_verdicts_changed": "NONE",
+    "H_A_N2": "POSITIVE_CONVERSION - unchanged",
+    "H_B_N4_residual": "NOT_IMPROVED - unchanged",
+    "receipts_or_protocols_edited": "NONE",
+    "manuscript_edited": "NONE",
+    "new_object_created": "papers/orion-09-compilation-regime-geometry/theory/regime-separator-complexity-v1/ (additive)",
+    "submission_package_bytes_touched": "NONE",
+    "new_blocker_raised": "MANUSCRIPT_INCOMPLETENESS__SUBMISSION_BLOCKED (abstract rescope by addition, separate PR)"
+  },
+  "explicitly_out_of_scope": [
+    "any n >= 4 modelling or transfer attempt",
+    "enlarging the feature library",
+    "re-running the R2 experiment",
+    "the manuscript rescope edit itself",
+    "venue, packaging and filing decisions"
+  ]
+}

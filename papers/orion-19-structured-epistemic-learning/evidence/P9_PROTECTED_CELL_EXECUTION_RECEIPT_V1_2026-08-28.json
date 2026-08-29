@@ -1,0 +1,76 @@
+{
+  "date": "2026-08-28",
+  "execution_environment": {
+    "host": "LUNARC (scyiu-orion-ci)",
+    "interpreter": "/projects/hep/fs9/scratch/scyiu-orion-ci/ORION/.venv/bin/python",
+    "numpy": "2.4.6",
+    "python": "3.11.5",
+    "scikit_learn": "1.9.0",
+    "worktree": "/projects/hep/fs9/scratch/scyiu-orion-ci/wtR5"
+  },
+  "mandate_context": "Special-priority item: close the orion-19 D-A protected-cell CANNOT_CHECK by actually EXECUTING the protected evaluation in-repo. Missing resources would be recorded as CANNOT_CHECK-BLOCKED with the resource named. Nothing was missing: both frozen runners are self-contained (sklearn load_digits / pure-python executable cells) and executed to completion.",
+  "protected_cell_status": {
+    "blocked": false,
+    "d_a_protected_gold_under_frozen_v1_rule": "CANNOT_CHECK",
+    "executed_in_repo": true,
+    "mechanistic_ground": {
+      "attribution": "NR-04 stage-1: the failure is the evaluation/decision channel, not the repair channel (bitwise-lossless, max abs reconstruction error 0.0). The 0.965 target sits inside the split-noise band of the 0.9644 ensemble mean, so under the frozen hard-threshold rule the gold is honestly CANNOT_CHECK.",
+      "binomial_sd_single_split": 0.009839502729248396,
+      "decision_margin_abs_level_minus_target": 0.001161335187760737,
+      "noise_to_margin_ratio": 8.472577799197428
+    },
+    "missing_resources": []
+  },
+  "residual_repair": "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_PROTOCOL_V3 (uncertainty-aware LCB95 decision rule, registered before outcome access) re-tests the SAME frozen lattice and returns terminal P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V3_SUPPORTED with the D-A cell abstaining (CANNOT_CHECK) stably across both half-draw sets on both splits. See evidence/P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V3_RUN.json.",
+  "schema": "P9.ProtectedCellExecutionReceipt.v1",
+  "session": "R5 revival (LUNARC wtR5, branch claude/revive-orion19-18-20260827)",
+  "v1_rerun": {
+    "command": "PYTHONPATH=.:src .venv/bin/python <runner> > /tmp/r5_causal_v1_rerun.json",
+    "decision_fields_reproduced": {
+      "all_rows_predicted_and_gold_identical": true,
+      "diagnosis_accuracy": [
+        0.8,
+        0.8
+      ],
+      "terminal": [
+        "P9_CAUSAL_DIAGNOSTIC_V1_SUPPORTED",
+        "P9_CAUSAL_DIAGNOSTIC_V1_SUPPORTED"
+      ]
+    },
+    "difference_attribution": "Exactly one non-decision level differs: D-A protected INFORMATION arm 0.9111111111111111 (recorded, sklearn 1.7.1) vs 0.9083333333333333 (fresh, sklearn 1.9.0) = 1/360 held-out predictions; lbfgs solver version effect in an arm that never reaches the decision boundary. All decision-bearing fields (predicted arm, protected gold, predicted_protected_quality 0.9555555555555556, all probe levels, all other rows) are bit-identical.",
+    "fresh_protocol_sha256": "f81aae841fc8e1509b58800e57be6e18e090b7429be66b87e9ac488209ba469e",
+    "fresh_receipt_sha256": "e53814b1edd1403a16226eb03599672e4ea7ee3c6697bea28dd1558a68544e39",
+    "protocol_byte_drift_explanation": "The pinned protocol digest predates commit 3a1a8317 (ORION-01..25 namespace unification, PR #1474: 2734 renames incl. this protocol's path and internal references). Semantic protocol content (cells, targets, costs, arms) is unchanged; every decision field reproduces.",
+    "rc": 0,
+    "recorded_environment": {
+      "numpy": "2.3.2",
+      "scikit_learn": "1.7.1"
+    },
+    "recorded_protocol_sha256": "267df46aff7bd5502180524cd96f82b7951a2ae4c1d567e3b53bea6ce3f86015",
+    "recorded_receipt_sha256": "bdc4542610df7e2cbad7127d701a80d0099e325543192fa4431bb193628f6915",
+    "row_level_differences": {
+      "D-A": {
+        "protected.INFORMATION": {
+          "fresh": 0.9083333333333333,
+          "recorded": 0.9111111111111111
+        }
+      }
+    },
+    "runner": "papers/orion-19-structured-epistemic-learning/top_tier/run_causal_diagnostic_v1.py"
+  },
+  "v2_rerun": {
+    "command": "PYTHONPATH=.:src .venv/bin/python <runner> > /tmp/r5_transport_v2_rerun.json",
+    "decision_field_differences": {},
+    "fresh_receipt_sha256": "3f1fd9340ad5046c2106ce87ce2d79ae2da4be295d11c083df1fdb75553e534c",
+    "note": "All decision-level fields reproduce across an independent numpy/sklearn minor-version gap (recorded 2.4.4/1.8.0, fresh 2.4.6/1.9.0): terminal P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_GATE_NOT_MET, accuracy 1.0 vs generic 0.2, probe/protected agreement True, half-draw stability False.",
+    "rc": 0,
+    "recorded_environment": {
+      "numpy": "2.4.4",
+      "python": "3.13.12",
+      "scikit_learn": "1.8.0"
+    },
+    "recorded_receipt_sha256": "662b772a3b6a929b8afe5112bfff28c10b0d4709e018abf4755391bbd6495ab2",
+    "runner": "papers/orion-19-structured-epistemic-learning/top_tier/run_causal_diagnostic_transport_v2.py"
+  },
+  "verdict": "PROTECTED CELL EXECUTED AND REPRODUCED. The CANNOT_CHECK is real, deterministic in every decision field, and mechanistically attributed. Not CANNOT_CHECK-BLOCKED: no resource was missing. V3 additionally makes the abstention decision-stable; the D-A protected gold remains CANNOT_CHECK under the frozen V1 rule (honest abstain, not a pass)."
+}
