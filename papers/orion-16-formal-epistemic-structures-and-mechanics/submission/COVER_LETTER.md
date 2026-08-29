@@ -1,19 +1,19 @@
-# Cover letter — Artificial Intelligence
+Dear Editors of Artificial Intelligence,
 
-Dear Editors of *Artificial Intelligence*,
+Please consider the regular paper **“Formal Epistemic Structures and Mechanics: Scientific Admissibility over Repair, Effects, and Authority.”**
 
-Please consider the manuscript **“Scientific Admissibility Is Not Computational Correctness: A Contract Theory for Repair, Effects, and Authority”** for publication in *Artificial Intelligence*.
+The paper addresses a formal AI question that appears when autonomous scientific systems maintain state whose elements have scientific standing rather than only computational values. The surrounding mechanisms are intentionally credited to their parent literatures: truth maintenance and dependency repair, self-adjusting computation, epistemic update, typed effects, authorization, and provenance. The manuscript asks what additional contract is required when those mechanisms maintain certified scientific claims.
 
-The paper addresses a narrow formal problem for autonomous and semi-autonomous scientific systems. Mature dependency repair, incremental computation, typed effects, authorization, provenance, and execution-attestation mechanisms can establish their own computational or operational validity without deciding whether a scientific certificate remains entitled to stand after the evidence, source authority, claim scope, or verification epoch changes. We formalize that interface as a scientific-admissibility contract and state the assumptions under which repair, preservation, composition, and authority remain valid.
+The main results are: (i) a root-inclusive safety theorem for dependency-scoped reopening; (ii) a counterexample showing that dependency soundness alone does not imply graph-descendant minimality, followed by a corrected minimax theorem under affected realizability; (iii) a history-aware commutation theorem that requires faithful scientific read/write footprints; (iv) conservation laws for hard obligations and non-escalating authority; and (v) a typed-erasure separation theorem showing that identical computational/dependency behavior can correspond to different scientific-admissibility judgments.
 
-The paper retains strong donor ownership. Truth maintenance, belief revision, incremental computation, effect systems, authorization, provenance, and generic certification are not claimed as new. The current bounded contribution consists of root-inclusive repair safety, the distinction between graph soundness and minimax minimality, a footprint-faithful history-aware commutation theorem, typed-erasure separation, and a prospectively frozen scientific-certificate theorem family. In the latter, a forgetful view can preserve donor-native validity while failing to reflect scientific admissibility when it hides a non-inert scientific coordinate; the enrichment reduces to donor-native validity when all scientific obligations are discharged, and an information-equivalent ideal donor product ties extensionally.
+The paper is theoretical. Deterministic finite checkers are supplied as regression/countermodel evidence for theorem boundaries, not as a claim of empirical superiority. The strongest comparison is explicitly an integrated product of the donor mechanisms with correct interfaces. If such a product implements the same scientific contract, the manuscript predicts a tie rather than claiming centralization or vocabulary as an advantage.
 
-A frozen finite model evaluates 1,536 states across three bounded donor embeddings. It records zero donor-preservation violations, 96 separation witnesses spanning all four scientific coordinates, zero ideal-product mismatches, and the corresponding conservative-reduction and certificate-revocation cases; an independent implementation reproduces the headline counts. These are bounded formal checks rather than evidence of deployed-agent superiority.
+A fresh literature pass immediately before this submission package absorbed current 2026 dependency-repair, evidence-boundary, and typed-decision-graph work and narrowed the paper’s claims accordingly. No first-of-kind claim is made.
 
-We believe the work is relevant to *Artificial Intelligence* readers interested in reliable agent architectures, scientific reasoning systems, belief/state maintenance, provenance, authorization, and the semantics of safe autonomous action. The manuscript is deliberately explicit about donor ownership, theorem premises, countermodels, and the absence of a real-system performance claim.
+The manuscript has not been framed as an empirical leaderboard and contains no fabricated or unrun performance result. The repository package contains editable source, in-text references, deterministic reproduction instructions, claim ledgers, and a transparent declaration of generative-AI assistance in manuscript preparation.
+
+Correspondence: Sze Chun Yiu, Department of Physics, Stockholm University, SE-106 91 Stockholm, Sweden; sze-chun.yiu@fysik.su.se.
 
 Sincerely,
 
-SzeChunYiu  
-Stockholm University, Stockholm, Sweden  
-sze-chun.yiu@fysik.su.se
+Sze Chun Yiu
