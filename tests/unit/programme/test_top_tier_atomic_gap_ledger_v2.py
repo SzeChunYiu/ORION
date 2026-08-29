@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import copy
 import importlib.util
 import json
 from pathlib import Path
@@ -24,7 +23,7 @@ SPEC.loader.exec_module(CHECKER)
 
 
 def _data() -> dict[str, Any]:
-    return json.loads(LEDGER.read_text(encoding="utf-8"))
+    return CHECKER.load_ledger(LEDGER)
 
 
 def _paper(data: dict[str, Any], paper_id: str) -> dict[str, Any]:
@@ -148,3 +147,10 @@ def test_missing_open_pr_guard_fails() -> None:
     ]
     errors = CHECKER.validate_ledger(data)
     assert any("missing open-PR collision guard #1695" in error for error in errors)
+
+
+def test_missing_shard_fails_closed(tmp_path: Path) -> None:
+    manifest = json.loads(LEDGER.read_text(encoding="utf-8"))
+    manifest_path = tmp_path / "TOP_TIER_ATOMIC_GAP_LEDGER_V2.json"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    assert CHECKER.main(["--ledger", str(manifest_path)]) == CHECKER.EXIT_FAIL
