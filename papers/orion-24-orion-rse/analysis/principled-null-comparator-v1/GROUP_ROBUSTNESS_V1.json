@@ -1,0 +1,50 @@
+{
+  "schema": "ORION24.GROUP_ROBUSTNESS.v1",
+  "status": "MEASURED",
+  "scientific_authority_delta": "NONE",
+  "claim_scope": "Sensitivity of the fixed 67-packet internally adjudicated panel only; not external validation and not population inference.",
+  "full": {
+    "n": 67,
+    "systemb_score": 56,
+    "stratified_score": 16,
+    "system_only_correct": 40,
+    "null_only_correct": 0
+  },
+  "leave_one_domain_out": {
+    "EMPIRICAL_ML_METHODOLOGY": {"n": 43, "systemb_score": 36, "stratified_score": 10, "system_only_correct": 26, "null_only_correct": 0},
+    "FORMAL_COMBINATORICS_AND_ALGEBRA": {"n": 44, "systemb_score": 35, "stratified_score": 11, "system_only_correct": 24, "null_only_correct": 0},
+    "RESEARCH_SYSTEMS_INFRASTRUCTURE": {"n": 47, "systemb_score": 41, "stratified_score": 11, "system_only_correct": 30, "null_only_correct": 0}
+  },
+  "leave_one_family_out": {
+    "APPARENT_POSITIVE_SUBSUMED": {"n": 55, "systemb_score": 44, "stratified_score": 16, "system_only_correct": 28, "null_only_correct": 0},
+    "INTERACTION_ONLY": {"n": 60, "systemb_score": 55, "stratified_score": 16, "system_only_correct": 39, "null_only_correct": 0},
+    "LEAKY_OR_CORRUPT_BENCHMARK": {"n": 60, "systemb_score": 49, "stratified_score": 12, "system_only_correct": 37, "null_only_correct": 0},
+    "NEGATIVE_RETAINED": {"n": 58, "systemb_score": 47, "stratified_score": 12, "system_only_correct": 35, "null_only_correct": 0},
+    "NON_IDENTIFIABLE": {"n": 61, "systemb_score": 50, "stratified_score": 16, "system_only_correct": 34, "null_only_correct": 0},
+    "NULL_LIVE_PARENT": {"n": 58, "systemb_score": 49, "stratified_score": 16, "system_only_correct": 33, "null_only_correct": 0},
+    "REGIME_CHANGE_REOPEN": {"n": 61, "systemb_score": 53, "stratified_score": 16, "system_only_correct": 37, "null_only_correct": 0},
+    "STRONG_PROMOTABLE": {"n": 56, "systemb_score": 45, "stratified_score": 16, "system_only_correct": 29, "null_only_correct": 0}
+  },
+  "family_local_margin_vs_full_stratified": {
+    "APPARENT_POSITIVE_SUBSUMED": 12,
+    "INTERACTION_ONLY": 1,
+    "LEAKY_OR_CORRUPT_BENCHMARK": 2,
+    "NEGATIVE_RETAINED": 3,
+    "NON_IDENTIFIABLE": 6,
+    "NULL_LIVE_PARENT": 7,
+    "REGIME_CHANGE_REOPEN": 3,
+    "STRONG_PROMOTABLE": 6
+  },
+  "summary": {
+    "families": 8,
+    "domains": 3,
+    "all_family_deletions_favour_systemb_vs_recomputed_stratified": true,
+    "all_domain_deletions_favour_systemb_vs_recomputed_stratified": true,
+    "minimum_leave_family_system_only_correct": 28,
+    "maximum_leave_family_null_only_correct": 0,
+    "minimum_leave_domain_system_only_correct": 24,
+    "maximum_leave_domain_null_only_correct": 0,
+    "families_with_positive_local_margin": 8,
+    "minimum_family_local_margin": 1
+  }
+}
