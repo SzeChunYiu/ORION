@@ -18,7 +18,7 @@ No human panel was convened, and none is claimed.
 | Mechanism | `src/orion/study/p1/adjudication.py` |
 | Hash covers | the bytes strictly between the `RUBRIC-BODY-BEGIN` / `RUBRIC-BODY-END` markers |
 
-<!-- RUBRIC-CONTENT-SHA256: 543139fb00d71258c7fa11fb025bd8e307f981fe9c7562049f3852fd5d2914b8 -->
+<!-- RUBRIC-CONTENT-SHA256: dce9f3612f50cc39a22d7761de80a40683f38ebbdf548a7df7b009e7bad941be -->
 
 Verify with `orion.study.p1.adjudication.load_rubric(path)`, which recomputes the digest over the
 body and refuses the file on mismatch. A panel run stamps this digest into every verdict; a judge
