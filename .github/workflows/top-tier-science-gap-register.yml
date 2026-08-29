@@ -1,0 +1,32 @@
+name: Top-tier science-gap register
+
+on:
+  pull_request:
+    paths:
+      - "papers/top_tier_science_closure_v3/**"
+      - ".github/workflows/top-tier-science-gap-register.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "papers/top_tier_science_closure_v3/**"
+      - ".github/workflows/top-tier-science-gap-register.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate register
+        run: python papers/top_tier_science_closure_v3/validate_science_gap_register.py --json
+      - name: Run adversarial mutation tests
+        run: python -m unittest -v papers/top_tier_science_closure_v3/test_science_gap_register_mutations.py
