@@ -35,6 +35,13 @@ That SHA-256 discharges a standing requirement: the manifest noted the Zenodo
 record publishes MD5 only, and required a locally computed SHA-256 recorded
 before any scoring run.
 
+**The payload itself is not in the repository.** The zip was fetched to
+session-local scratch, verified, inspected, and deliberately not committed — it is
+third-party CC-BY data, and this record commits only derived, compact evidence.
+What is durable is the *identity plus integrity*: re-fetch from the DOI and check
+against the SHA-256 above. Read the status as "this archive was obtained and
+verified", not "this archive is in the repository".
+
 Structure observed: 60 ontology files, 56 reference alignments **left unopened**,
 seed ontology `benchmarks/104/onto.rdf` with 33 classes, 24 object properties and
 39 datatype properties. This confirms the manifest's recorded limitation — the
