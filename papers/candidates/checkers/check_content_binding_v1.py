@@ -627,8 +627,18 @@ def check_binding(repo_root: Path, candidate_id: str) -> BindingReport:
         # be re-asked rather than trusted; a status field nothing re-evaluates is
         # a claim that silently stops being true. Asked against the recorded
         # commit, so an unrelated later commit cannot falsify it.
+        # Compared against the same set `--write` pinned. `_subject_commit` derives
+        # the pin over `_subject_paths`, which drops the manifest because a manifest
+        # that recorded its own commit would report itself unbound on every
+        # generation. Asking `--check` over the unfiltered list asks a different
+        # question than the write answered, and the manifest is then permanently
+        # drifted: recording a subject_commit edits it, so its bytes cannot equal
+        # any commit that already exists. The manifest stays in `bound_files` and
+        # stays covered by `SHA256SUMS`, which is what pins its bytes.
         drifted = commit_disagreement(
-            repo_root, recorded_commit, [str(entry["path"]) for entry in derived["bound_files"]]
+            repo_root,
+            recorded_commit,
+            _subject_paths([str(entry["path"]) for entry in derived["bound_files"]]),
         )
         if drifted is None:
             report.cannot_check.append("git cannot compare the tree to subject_commit here")
