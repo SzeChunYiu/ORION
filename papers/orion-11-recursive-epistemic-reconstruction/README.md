@@ -1,22 +1,25 @@
 # Paper 01 — Recursive Epistemic Reconstruction
 
 **Stable ID:** ORION-11  
-**Status:** the archived V2 internal terminal is preserved, but R4 falsifies its comparative mechanism-necessity reading because a faithful ordered-search comparator matches the governed policy on the primary joint criterion. The historical broad H1 remains `NOT_SUPPORTED`, the R4 replication remains `CANNOT_CHECK`, and the current manuscript is `NOT_SUBMISSION_READY`. Local replay grants no submission or external-review authority. The owner-algebra and V11--V13 programme still has 0 certified maps, 720 `CANNOT_CHECK` maps, 0/7 signed external outputs, and 0/4 closed authority acts.
+**Status:** historical bounded V2 `PEER_REVIEW_READY_FOR_FROZEN_MECHANICAL_SUBJECT`; current enlarged manuscript `NOT_SUBMISSION_READY`. The later owner-algebra and V11--V13 programme has 0 certified maps, 720 `CANNOT_CHECK` maps, 0/7 signed external outputs and 0/4 closed authority acts; it does not rewrite the bounded mechanical result.
 
 ## Current package authority
 
 The current status is deliberately split along two axes:
 
-- **Scientific result:** `ORION-11.NECESSITY.V2.2.4` retains its archived
-  internal terminal on the credential-free mechanical world family. R4
-  withdraws the comparative necessity interpretation: the Active-VOI
-  ordered-search comparator matches the governed policy on 480/480 primary
-  hidden-shift worlds with zero forbidden mutations and zero discordant pairs.
-  The historical broad H1
-  remains `NOT_SUPPORTED` at 1/48 root successes for both the subject and its
-  strongest registered baseline, for a difference of zero. The two studies are
-  not pooled. Neither result authorizes model-general, naturalistic, or
-  open-ended superiority.
+- **Scientific result:** `ORION-11.NECESSITY.V2.2.4` remains supported only on the
+  frozen credential-free mechanical world family, as an **internal** necessity
+  result. The historical broad H1 remains `NOT_SUPPORTED`; neither result
+  authorizes model-general, naturalistic, or open-ended superiority.
+- **Comparative reading: RETRACTED 2026-08-28.** The frozen +0.50625 hidden-shift
+  margin over the three named parents is fully recovered by ordered search alone
+  (R4 faithful-comparator study (PR #1603, LUNARC job 3550342, verdict `H_R4_FALSIFIED__FAITHFUL_COMPARATOR_MATCHES_ORION`)); `activevoi_search_admitted_parent`
+  matches ORION on both registered components. The v2.2.4 terminal is **not**
+  retracted --- R4's anchor gate reproduced all four unchanged arms at the
+  committed rates --- but no mechanism-necessity claim relative to those parents
+  is made. Surviving bounded contribution and exact figures:
+  `REFRAMED_CONTRIBUTION_V1.md`; full occurrence audit:
+  `CLAIM_RETRACTION_LEDGER_V1.md`.
 - **Submission package:** `NOT_SUBMISSION_READY`. The current
   `journal_package/MANIFEST.json` is `SUPERSEDED`, and
   `journal_package/RENDER_CLOSURE_STATE.json` is the authority for render
@@ -28,50 +31,11 @@ The current status is deliberately split along two axes:
 
 A clean checkout still lacks (1) a fresh content-bound PDF and visual audit for
 the current source, (2) an immutable public archive/DOI, (3) repository-level
-redistribution terms, (4) the externally held historical 47-entry adapter
-handoff and its separate checksum receipt, and (5) the external authority
-needed to resolve any of the 720 surviving source-native adapters. The fresh
-enumeration does not supply the missing historical custody packet. The fifth
-gate requires an R7 owner
-or formally delegated custodian, a complete licensed and signed seven-target
-algebra, target-corpus rights, host authority, authorized delivery, and
-independent semantic review. All 720 maps are now re-auditable from repository
-artifacts, but 0/720 are resolvable in-repository. This is `CANNOT_CHECK`, not an
-impossibility result or a setup failure.
-
-## Fresh reproducibility and negative-disposition audit
-
-The current audit receipt is
-`revival/r1-negative-revival-audit/AUDIT_RECEIPT.json` (SHA-256
-`e03f3c5b545aa82586539f1d794197bef3674250f42eea5868d8f1c79adbc4ab`).
-It preserves the broad H1 negative, verifies the two 2,882-world and
-40,348-row mechanical archives with zero score or analysis mismatches, confirms
-zero primary/replication task-ID overlap, and reproduces the complete
-117,649-map adapter partition.
-
-LUNARC job 3550083 then replayed both campaigns from a clean archive of the
-committed source on node `cn063`. It completed with exit `0:0` in `00:03:45`.
-The raw results, result records, and independent-verification records were
-byte-identical to both archives. The outer receipt is
-`revival/r1-negative-revival-audit/lunarc-replay-v1/LUNARC_REPLAY_RECEIPT_V1.json`
-(SHA-256 `f049d2c19c508940188f806315d9b467ccb3139da0ecb2b22e96d17921161acc`);
-its compact job output has SHA-256
-`5cd24e6e9a64a9f6b8c4d8c9e89cd9be25cf330352b28b0859b614f40ff28087`.
-Three cited historical provenance commits remain unreachable, so the claimed
-original prospective order remains `CANNOT_CHECK`. A current exact replay
-cannot repair that chronology and is not external review.
-
-## Faithful-comparator correction
-
-The R4 authority disposition is
-`experiments/r4-faithful-comparator-v1/AUTHORITY_DISPOSITION_V1.json`. The
-primary anchor reproduced the archived rates. Active-VOI with ordered candidate
-search then matched the governed policy on the joint success and
-no-forbidden-mutation criterion in all 480 hidden-shift worlds. The original
-0.50625 margin over non-iterating parents is therefore not comparative
-mechanism-necessity evidence. The remaining primary result is descriptive
-level-ordering economy, with mean intervention cost 1.834 versus 2.668 units.
-The replication anchor failed, so no comparative claim is read from that arm.
+redistribution terms, and (4) the externally held 47-entry source-native
+adapter handoff and its independent checksum receipt. Only the recorded
+handoff manifest digest is retained in the manuscript, so clean-checkout byte
+verification of that handoff is `CANNOT_CHECK`. No private or large handoff
+payload has been imported by this authority repair.
 
 ## Scoped paper
 
@@ -87,8 +51,8 @@ The paper centers four candidate deltas:
 The original four-part decomposition remains architectural context. After
 nearest-work rounds A--H, active diagnosis, counterfactual minimal repair,
 diagnosis-to-action admission, dependency rollback, causal-context slicing and
-certificate enforcement are donor-owned substrate. R4 shows that the powered
-successor does not establish comparative necessity for their composition.
+certificate enforcement are donor-owned substrate. The powered successor tests
+only the residual protected mutation-necessity composition.
 
 The canonical research object is `research/paper-programme-v1/PAPER_01_RECURSIVE_RECONSTRUCTION.md`.
 
@@ -112,18 +76,16 @@ Frozen local evidence: `evidence/FALSIFIER_V1.md` and `research/paper-programme-
 
 ## Powered successor evidence
 
-The registered v2.2.4 study runs nine systems and five direct
+The prospectively frozen v2.2.4 study runs nine systems and five direct
 ablations on 2,882 credential-free worlds per run. Both the primary and the
-registered disjoint replication are `P1_MUTATION_NECESSITY_SUPPORTED`; an
+pre-bound disjoint replication are `P1_MUTATION_NECESSITY_SUPPORTED`; an
 independent implementation recomputes all 40,348 score rows per run with zero
 score or analysis mismatches. Evidence and hashes are under
 `research/revival/p1/confirmatory/v2.2/`.
 
-The archived terminal is bounded to the registered mechanical world family.
-Its comparative reading is superseded by R4. The admissible current claim is
-the governed policy's finite constraint implementation and primary descriptive
-cost economy, not mechanism necessity. Model-general, open-ended scientific,
-retrieval, and broad novelty claims are not made.
+The supported claim is bounded to the registered mechanical world family.
+Model-general, open-ended scientific, retrieval, and broad novelty claims are
+not made and would require a separately frozen study.
 
 ## Manuscript
 
