@@ -109,6 +109,33 @@ statistical tests everywhere:
 Demanding a paired test of an exhaustive enumeration is a category error, and a checker that fires
 there is crying wolf on its first real run — which is how checkers get switched off.
 
+## Reading rule — an honest negative and an omission look identical
+
+The controls above are about *designing* an experiment. This one is about *reading* an
+artifact, and it is the cheapest item here.
+
+**A table that declines to report and a table that was never wired both appear as a table
+with no numbers in it.** Nothing in a file listing, a diff stat, or a grep for empty cells
+separates them. The only thing that does is the header comment stating *why* — and you
+have to open the file to see it.
+
+That distinction decided a real call. ORION-15's seven empty manuscript tables were
+flagged as an instrumentation omission — "high value and cheap to wire". They are honest
+`CANNOT_CHECK` declarations with stated reasons and an explicit refusal to impute. P5-T2's
+own header reads: *"no matched baseline/ablation arms, round identities, or campaign-level
+outcomes. Numbers are not imputed from the 21/24 diagnostic accuracy."*
+
+**Wiring numbers into them would have manufactured evidence where the paper had correctly
+declined to.** The lead was plausible, specific, and wrong, and it was checked rather than
+executed.
+
+So: before treating an empty or absent artifact as a gap, open it and look for a stated
+reason. An absence with a recorded justification is a finding. An absence without one is a
+gap. They are the same shape on disk and opposite in meaning, and the programme's whole
+`CANNOT_CHECK` discipline depends on not confusing them — the same rule as
+`"pooled_significance_test": "NOT_COMPUTED_BY_PROTOCOL"`, which makes an omission
+auditable rather than silent.
+
 ## Checklist
 
 1. Name the failure the disfavoured arm is supposed to exhibit.
