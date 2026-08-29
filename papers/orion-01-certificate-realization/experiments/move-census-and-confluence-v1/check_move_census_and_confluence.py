@@ -29,11 +29,11 @@ Standard library only. No ORION, no PyZX import. Read-only on every frozen artif
 """
 
 import argparse
+import hashlib
 import itertools
 import json
 import math
 import platform
-import sys
 from collections import defaultdict
 from pathlib import Path
 
@@ -48,6 +48,7 @@ PRIOR = PAPER / "experiments/contextual-move-completeness-v1/RESULT_V1.json"
 SRCREG = PAPER / "experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_SOURCE_REGISTRY.json"
 R11RES = PAPER / "experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_RESULTS.json"
 R11PR = PAPER / "experiments/r11-pyzx-full-reduce/ORION01_R11_POST_REVIEW_REGISTRY_AUDIT.json"
+PR1469 = PAPER / "evidence/convergence-v1/AB_PR1469_PRODUCTION_REGISTRY_AUDIT.json"
 
 # The frozen R12 exhaustive_panel covers exactly n = 2..6. The main panel must not
 # leave that range or the histogram cross-check has nothing to compare against.
@@ -64,6 +65,54 @@ def load(path):
         return json.loads(path.read_text())
     except Exception as exc:                       # noqa: BLE001 - reported verbatim
         raise CannotCheck("cannot read %s: %s" % (path, exc))
+
+
+def input_bindings():
+    """SHA-256 of every frozen artifact this packet reads, recorded so the result is
+    independently re-verifiable against the commit those artifacts were frozen at.
+
+    This matters because the checker resolves its inputs by path from the working
+    tree. Recording the digests is what lets a reader confirm the measurement was
+    taken against the frozen bytes and not a tree that had moved underneath it.
+    Follows the R11 audit convention (`frozen_registry_sha256`, `raw_result_sha256`)."""
+    out = {}
+    for name, path in (("r12_registry_nonidentifiability", R12),
+                       ("prior_art_contextual_move_completeness", PRIOR),
+                       ("r11_pyzx_source_registry", SRCREG),
+                       ("r11_pyzx_results", R11RES),
+                       ("r11_post_review_registry_audit", R11PR)):
+        try:
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        except Exception as exc:                   # noqa: BLE001 - reported verbatim
+            raise CannotCheck("cannot hash %s: %s" % (path, exc))
+        out[name] = {"path": str(path.relative_to(REPO)), "sha256": digest}
+    return out
+
+
+def check_input_bindings_against_frozen_receipts(bindings, r11pr, pr1469):
+    """C14: three of the digests above were independently recorded INSIDE other frozen
+    artifacts when those artifacts were sealed. Recomputing them here and comparing
+    against those receipts proves the bytes measured are the bytes that were frozen,
+    which a path-resolved read cannot establish on its own."""
+    try:
+        expected = [
+            ("r11_pyzx_source_registry", r11pr["bindings"]["frozen_registry_sha256"],
+             "R11 post-review bindings.frozen_registry_sha256"),
+            ("r11_pyzx_results", r11pr["bindings"]["raw_result_sha256"],
+             "R11 post-review bindings.raw_result_sha256"),
+            ("r12_registry_nonidentifiability", pr1469["json_receipts"][0]["sha256"],
+             "PR1469 audit json_receipts[0].sha256"),
+        ]
+    except Exception as exc:                       # noqa: BLE001 - reported verbatim
+        raise CannotCheck("cannot read frozen receipt digests: %s" % exc)
+    rows, mismatches = [], []
+    for key, want, src in expected:
+        got = bindings[key]["sha256"]
+        rows.append({"input": key, "recorded_in": src, "matches": got == want})
+        if got != want:
+            mismatches.append({"input": key, "computed": got, "recorded": want,
+                               "recorded_in": src})
+    return rows, mismatches
 
 
 # ------------------------------------------------------- the frozen move system
@@ -532,9 +581,13 @@ def hidden_operation_control(ns):
       BENIGN             semantics unchanged and strong observable unchanged
       HONESTLY_DETECTED  semantics changed and strong observable changed
       MIMIC              semantics changed, strong observable UNCHANGED
-      FALSE_IMPROVEMENT  strong observable improves (moves to 1) while some state
-                         loses its normal form -- the metric reads MORE complete
-                         while the system reduces strictly less
+      FALSE_IMPROVEMENT  strong observable falls to EXACTLY 1 while some state loses
+                         its normal form -- the metric reads perfectly complete while
+                         the system reduces strictly less. This is deliberately the
+                         strict `-> 1` subset, so the count is a LOWER BOUND on
+                         metric-misleading cases: a hidden op driving tc from 6 to 2
+                         while destroying a normal form is counted HONESTLY_DETECTED,
+                         because the metric did at least move.
       OBSERVABLE_UNDEFINED  no state is terminal, so the declared metric is undefined
     """
     tally = defaultdict(int)
@@ -739,6 +792,22 @@ def self_test(ns, frozen_hist, hidden_rows):
                     "expect": "no alarms", "alarms": len(a9), "detected": len(a9) == 0,
                     "note": "no-alarm assertion, not a failure path"})
 
+    # P10: tamper a frozen receipt digest -> C14 must report a mismatch.
+    bindings = input_bindings()
+    pr1469 = load(PR1469)
+    bad_pr = json.loads(json.dumps(pr))
+    bad_pr["bindings"]["raw_result_sha256"] = "0" * 64
+    _rows, mm = check_input_bindings_against_frozen_receipts(bindings, bad_pr, pr1469)
+    results.append({"perturbation": "P10_frozen_receipt_digest_tampered",
+                    "expect": "C14 mismatch", "alarms": len(mm), "detected": bool(mm)})
+
+    # P11: unperturbed receipts must match with zero mismatch.
+    _rows, mm0 = check_input_bindings_against_frozen_receipts(bindings, pr, pr1469)
+    results.append({"perturbation": "P11_none_frozen_receipts_unperturbed",
+                    "expect": "no mismatch", "alarms": len(mm0),
+                    "detected": len(mm0) == 0,
+                    "note": "no-alarm assertion, not a failure path"})
+
     ok = all(r["detected"] for r in results)
     return ok, results
 
@@ -764,6 +833,10 @@ def main():
         frozen_hist = dict((int(r["n"]), r["terminal_complexity_histogram"])
                            for r in r12["exhaustive_panel"])
         hidden_rows = r12["hidden_edge_controls"]
+        bindings = input_bindings()
+        pr1469 = load(PR1469)
+        binding_rows, binding_mismatches = check_input_bindings_against_frozen_receipts(
+            bindings, r11pr, pr1469)
     except CannotCheck as exc:
         print(json.dumps({"schema": "ORION.ORION01.MoveCensusAndConfluence.Result.v1",
                           "terminal": "T4_CANNOT_CHECK_FROZEN_INPUT",
@@ -790,6 +863,9 @@ def main():
                        "mismatches": hidden_mismatch})
     hostile, a = hidden_operation_control(ns)
     alarms += a
+    if binding_mismatches:
+        alarms.append({"control": "C14_INPUT_BINDINGS_MATCH_FROZEN_RECEIPTS",
+                       "mismatches": binding_mismatches})
 
     # prior-art continuity: our source-complete counts must equal the already-read
     # values in contextual-move-completeness-v1 for every n they share.
@@ -847,6 +923,7 @@ def main():
         "interpreter": platform.python_version(),
         "domain_sizes": ns,
         "mode": "smoke" if args.smoke else "full",
+        "input_bindings": bindings,
         "S1_census_source": census_src,
         "S1_census_runtime": rows,
         "S2_hidden_operation_control": hostile,
@@ -882,6 +959,8 @@ def main():
             "C12_PRIOR_ART_CONTINUITY": {"passed": not prior_mismatch},
             "C13_MOVE_OCCURRENCE_CLOSED_FORM": {"passed": not any(
                 x["control"] == "C13_MOVE_OCCURRENCE_CLOSED_FORM" for x in alarms)},
+            "C14_INPUT_BINDINGS_MATCH_FROZEN_RECEIPTS": {
+                "passed": not binding_mismatches, "checked": binding_rows},
         },
         "alarms": alarms,
         "cannot_check": cannot_check,

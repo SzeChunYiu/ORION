@@ -788,6 +788,26 @@
     "C13_MOVE_OCCURRENCE_CLOSED_FORM": {
       "passed": true
     },
+    "C14_INPUT_BINDINGS_MATCH_FROZEN_RECEIPTS": {
+      "checked": [
+        {
+          "input": "r11_pyzx_source_registry",
+          "matches": true,
+          "recorded_in": "R11 post-review bindings.frozen_registry_sha256"
+        },
+        {
+          "input": "r11_pyzx_results",
+          "matches": true,
+          "recorded_in": "R11 post-review bindings.raw_result_sha256"
+        },
+        {
+          "input": "r12_registry_nonidentifiability",
+          "matches": true,
+          "recorded_in": "PR1469 audit json_receipts[0].sha256"
+        }
+      ],
+      "passed": true
+    },
     "C1_SOURCE_FIVEFOLD_COUNT_AGREEMENT": {
       "passed": true
     },
@@ -827,6 +847,28 @@
   ],
   "exit_code": 4,
   "extends": "ORION01.CONTEXTUAL_MOVE_COMPLETENESS.v1",
+  "input_bindings": {
+    "prior_art_contextual_move_completeness": {
+      "path": "papers/orion-01-certificate-realization/experiments/contextual-move-completeness-v1/RESULT_V1.json",
+      "sha256": "7dc2477555ef73550141ca97fe8375a157d8a642a302df2de620a1f1c747f685"
+    },
+    "r11_post_review_registry_audit": {
+      "path": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_POST_REVIEW_REGISTRY_AUDIT.json",
+      "sha256": "ac713cf51e847606378656f7f07d5db48c83947061d9162a2ac950bf42681bf7"
+    },
+    "r11_pyzx_results": {
+      "path": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_RESULTS.json",
+      "sha256": "64fc86a6039f44125641a8cc8bf6b018c5b8401503257d9788676f95d6c142ed"
+    },
+    "r11_pyzx_source_registry": {
+      "path": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_SOURCE_REGISTRY.json",
+      "sha256": "725ab425c3cf446212613d920d55dbd1d6af166dc6e52db2498c6c5f2e6b959e"
+    },
+    "r12_registry_nonidentifiability": {
+      "path": "papers/orion-01-certificate-realization/evidence/convergence-v1/REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json",
+      "sha256": "d4f14be666dceb2da71bfac01a25fd32c6fd7bc947734db1d0f945bc10487cf0"
+    }
+  },
   "interpreter": "3.9.6",
   "mode": "full",
   "paper_id": "ORION-01",
