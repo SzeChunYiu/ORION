@@ -22,11 +22,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Verify theorem packet digests
+        run: sha256sum -c papers/orion-15-self-orion/theory/anytime-safe-revision-v1/SHA256SUMS
       - name: Run exact arbitrary-dependence regression
         run: python papers/orion-15-self-orion/theory/anytime-safe-revision-v1/check_anytime_safe_revision_v1.py
-      - name: Emit theorem packet digests
-        run: |
-          sha256sum \
-            papers/orion-15-self-orion/theory/anytime-safe-revision-v1/THEORY.md \
-            papers/orion-15-self-orion/theory/anytime-safe-revision-v1/CLAIM_DISPOSITION.md \
-            papers/orion-15-self-orion/theory/anytime-safe-revision-v1/check_anytime_safe_revision_v1.py
