@@ -1,0 +1,172 @@
+{
+  "directional_consistency_across_holdouts": {
+    "all_discordant_pairs_same_direction": true,
+    "discordant_pairs_total": 10,
+    "disjoint": true,
+    "disjointness_source": "evidence/coordinate-obstruction-v2/PHASE_A_VERIFICATION.json (case_id_overlap_count: 0)",
+    "favouring_coordinate_governed": 10,
+    "favouring_flat": 0,
+    "note": "Per-set exact tests are the significance evidence: confirmatory p=0.031, initial p=0.125 (not significant alone). This block reports only that the discordant pairs agree in direction across two disjoint frozen holdouts. It is not a confirmatory sample-size claim and must not be read as one.",
+    "pooled_significance_test": "NOT_COMPUTED_BY_PROTOCOL",
+    "sets": [
+      "confirmatory",
+      "initial"
+    ]
+  },
+  "purpose": "Reports the baseline degeneracy, discordance count, and coordinate sufficiency behind the published confirmatory mapping comparison. Adds analysis only; changes no threshold, comparator, corpus or gate.",
+  "reproduction_check": {
+    "mismatches": [],
+    "published_source": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+    "status": "REPRODUCED"
+  },
+  "schema": "ORION.P3.NullAndBaselineBattery.v1",
+  "scientific_authority_delta": "NONE",
+  "sets": {
+    "confirmatory": {
+      "baseline_degeneracy": {
+        "flat_false_merge_equals_base_rate": true,
+        "flat_is_constant_always_merge": true,
+        "non_merge_base_rate": 0.1875,
+        "predicate_equal_cases": 32,
+        "predicate_equal_fraction": 1.0
+      },
+      "cascade_branch_census": {
+        "assumption_ids": 0,
+        "attribution_id": 0,
+        "construct_ids": 0,
+        "discourse_relation": 0,
+        "fallthrough_compatible": 26,
+        "measurement_ids": 0,
+        "modality": 0,
+        "polarity": 6,
+        "predicate": 0,
+        "referent_ids": 0,
+        "temporal_context_ids": 0,
+        "unresolved_ambiguities": 0
+      },
+      "case_count": 32,
+      "coordinates_that_never_differ": [
+        "unresolved_ambiguities",
+        "predicate",
+        "referent_ids",
+        "construct_ids",
+        "measurement_ids",
+        "temporal_context_ids",
+        "attribution_id",
+        "discourse_relation",
+        "assumption_ids",
+        "modality"
+      ],
+      "discordance_orion_vs_flat_false_merge": {
+        "b_flat_only_false_merge": 6,
+        "c_orion_only_false_merge": 0,
+        "concordant": 26,
+        "exact_mcnemar_two_sided_p": 0.03125
+      },
+      "minimal_rule_matches_full_mechanism": true,
+      "systems": {
+        "exact_coordinate_conservative": {
+          "abstention_rate": 0.1875,
+          "accuracy": 0.8125,
+          "false_merge_rate": 0.0,
+          "false_split_rate": 0.0,
+          "n": 32
+        },
+        "flat_predicate_canonicalization": {
+          "abstention_rate": 0.0,
+          "accuracy": 0.8125,
+          "false_merge_rate": 0.1875,
+          "false_split_rate": 0.0,
+          "n": 32
+        },
+        "minimal_predicate_modality_polarity": {
+          "abstention_rate": 0.0,
+          "accuracy": 1.0,
+          "false_merge_rate": 0.0,
+          "false_split_rate": 0.0,
+          "n": 32
+        },
+        "orion": {
+          "abstention_rate": 0.0,
+          "accuracy": 1.0,
+          "false_merge_rate": 0.0,
+          "false_split_rate": 0.0,
+          "n": 32
+        }
+      }
+    },
+    "initial": {
+      "baseline_degeneracy": {
+        "flat_false_merge_equals_base_rate": true,
+        "flat_is_constant_always_merge": true,
+        "non_merge_base_rate": 0.125,
+        "predicate_equal_cases": 32,
+        "predicate_equal_fraction": 1.0
+      },
+      "cascade_branch_census": {
+        "assumption_ids": 0,
+        "attribution_id": 0,
+        "construct_ids": 0,
+        "discourse_relation": 0,
+        "fallthrough_compatible": 28,
+        "measurement_ids": 0,
+        "modality": 0,
+        "polarity": 4,
+        "predicate": 0,
+        "referent_ids": 0,
+        "temporal_context_ids": 0,
+        "unresolved_ambiguities": 0
+      },
+      "case_count": 32,
+      "coordinates_that_never_differ": [
+        "unresolved_ambiguities",
+        "predicate",
+        "referent_ids",
+        "construct_ids",
+        "measurement_ids",
+        "temporal_context_ids",
+        "attribution_id",
+        "discourse_relation",
+        "assumption_ids",
+        "modality"
+      ],
+      "discordance_orion_vs_flat_false_merge": {
+        "b_flat_only_false_merge": 4,
+        "c_orion_only_false_merge": 0,
+        "concordant": 28,
+        "exact_mcnemar_two_sided_p": 0.125
+      },
+      "minimal_rule_matches_full_mechanism": true,
+      "systems": {
+        "exact_coordinate_conservative": {
+          "abstention_rate": 0.125,
+          "accuracy": 0.875,
+          "false_merge_rate": 0.0,
+          "false_split_rate": 0.0,
+          "n": 32
+        },
+        "flat_predicate_canonicalization": {
+          "abstention_rate": 0.0,
+          "accuracy": 0.875,
+          "false_merge_rate": 0.125,
+          "false_split_rate": 0.0,
+          "n": 32
+        },
+        "minimal_predicate_modality_polarity": {
+          "abstention_rate": 0.0,
+          "accuracy": 1.0,
+          "false_merge_rate": 0.0,
+          "false_split_rate": 0.0,
+          "n": 32
+        },
+        "orion": {
+          "abstention_rate": 0.0,
+          "accuracy": 1.0,
+          "false_merge_rate": 0.0,
+          "false_split_rate": 0.0,
+          "n": 32
+        }
+      }
+    }
+  }
+}

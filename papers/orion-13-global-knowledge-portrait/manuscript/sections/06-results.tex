@@ -77,6 +77,65 @@ limitations, not read as proof that the coordinates are unnecessary or
 dispensable. The confirmatory protocol treats all ablations as descriptive
 secondary analyses rather than as new significance claims.
 
+\subsection{What the comparison rests on}
+
+The confirmatory verdict above is a pass under a rule frozen in advance, and we
+do not withdraw it. It is, however, reported in a form that overstates how much
+of the design it exercises. Three properties of the holdout, computed from the
+committed gold records and the committed mechanism and recorded in
+\path{evidence/null-and-baseline-battery-v1/BATTERY_V1.json}, size the result
+more honestly. That artifact first recomputes every per-item prediction and
+reproduces the published aggregate rates exactly; the statements below are void
+if that check fails, so it is asserted before anything else is reported.
+
+\paragraph{The flat baseline is degenerate on this corpus.} Flat predicate
+canonicalization merges exactly when the two projections share a predicate. In
+both holdouts every one of the 32 cases is predicate-equal, so the baseline
+returns \textsc{compatible} on every case: on these corpora it is a constant
+``always merge'' predictor. Its false-merge rate is therefore not a property of
+predicate canonicalization at all --- it is identically the base rate of
+non-mergeable cases, 6/32 on the confirmatory holdout and 4/32 on the initial
+one. The headline difference of $-0.1875$ is the same number as that base rate,
+and any always-merge rule whatsoever would have produced it. The comparison
+establishes that the governed mapping does not merge indiscriminately; it does
+not establish an advantage over a baseline that was itself trying.
+
+\paragraph{Six cases separate the two systems.} The paired bootstrap interval is
+computed over a difference vector that is zero on 26 of 32 entries. In McNemar
+terms the confirmatory holdout has $b=6$ cases where flat false-merges and the
+governed mapping does not, $c=0$ in the reverse direction, and 26 concordant
+cases; the exact two-sided test gives $p=0.031$. On the initial holdout the
+counts are $b=4$, $c=0$, giving $p=0.125$, which does not reach conventional
+significance on its own. We deliberately do not compute a pooled exact test over
+the combined 64 cases: this paper's confirmatory protocol declines to pool the
+initial set with the confirmatory one for sample-size purposes, and a pooled
+$p$-value would do precisely that. What we do record is a replication
+observation about direction --- all ten discordant pairs across the two disjoint
+frozen holdouts fall the same way, none in reverse. That is consistency, not
+confirmatory sample size. The exact per-set tests remain the significance
+evidence, and the honest summary is that the effect is a perfect but small
+directional record, not a broad margin.
+
+\paragraph{The holdouts exercise one coordinate.} Table~\ref{tab:coordinate-branch-census}
+counts, for each branch of the comparison cascade, how many cases it actually
+decides. Nine of the ten coordinates never differ between the two projections in either
+holdout, and so decide no case. Every discriminating case is decided at the
+polarity branch, and the 26 and 28 remaining cases reach the compatible
+fall-through with no coordinate differing at all.
+A reduced rule consulting only predicate, modality and polarity reproduces the
+full mechanism's output on all 64 cases in both holdouts, at accuracy 1.000.
+This sharpens rather than contradicts the ablation results above: those show
+that removing the modality/polarity/attribution/discourse group reproduces the
+full effect, and the census locates the effect within that group at polarity
+alone. Consistent with the framing already adopted for the zero-effect
+ablations, we read this as a limit on what these corpora cover, not as evidence
+that the other coordinates are dispensable. The consequence for the claim is
+nonetheless direct: on this evidence the confirmatory result supports
+polarity-sensitive obstruction detection, and a coordinate-governance claim
+broader than that is not exercised by the holdout that was frozen to test it.
+
+\input{tables/coordinate_branch_census}
+
 \subsection{Separate-implementation verification and local falsifiers}
 
 A separately written implementation reproduced the confirmatory mapping
