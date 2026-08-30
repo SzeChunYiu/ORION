@@ -1,0 +1,229 @@
+{
+  "checks": {
+    "authority_fail_closed": true,
+    "fixture:alpha_budget_overrun_blocked": true,
+    "fixture:authority_mutation_rejected": true,
+    "fixture:conflicting_duplicate_blocked": true,
+    "fixture:evaluator_epoch_regression_blocked": true,
+    "fixture:feedback_overrun_rejected": true,
+    "fixture:harm_rejected": true,
+    "fixture:identical_duplicate_idempotent": true,
+    "fixture:missing_required_field_blocked": true,
+    "fixture:negative_history_deletion_blocked": true,
+    "fixture:receipt_hash_tamper_blocked": true,
+    "fixture:replay_only_rejected": true,
+    "fixture:resource_overrun_rejected": true,
+    "fixture:retention_collapse_rejected": true,
+    "fixture:valid_promotion": true,
+    "fixture_hash": true,
+    "protocol_hash": true,
+    "protocol_schema": true,
+    "source_digest": true,
+    "subject_bound": true
+  },
+  "decision": "CONTROL_PLANE_VERIFIED__EMPIRICAL_CAMPAIGN_NOT_RUN",
+  "fixtures": {
+    "alpha_budget_overrun_blocked": {
+      "expected": "LEDGER_BLOCKED",
+      "observed": {
+        "cumulative_alpha": "3/50",
+        "decisions": [
+          "PROMOTE_CONTROL",
+          "PROMOTE_CONTROL"
+        ],
+        "errors": [
+          "2:ALPHA_BUDGET"
+        ],
+        "terminal": "LEDGER_BLOCKED",
+        "unique_receipts": 2
+      },
+      "ok": true
+    },
+    "authority_mutation_rejected": {
+      "expected": "CONTROL_REJECTED",
+      "observed": {
+        "cumulative_alpha": "1/200",
+        "decisions": [
+          "REJECT_CONTROL:AUTHORITY_VIOLATION"
+        ],
+        "errors": [],
+        "terminal": "CONTROL_REJECTED",
+        "unique_receipts": 1
+      },
+      "ok": true
+    },
+    "conflicting_duplicate_blocked": {
+      "expected": "LEDGER_BLOCKED",
+      "observed": {
+        "cumulative_alpha": "1/200",
+        "decisions": [
+          "PROMOTE_CONTROL"
+        ],
+        "errors": [
+          "2:CONFLICTING_DUPLICATE"
+        ],
+        "terminal": "LEDGER_BLOCKED",
+        "unique_receipts": 1
+      },
+      "ok": true
+    },
+    "evaluator_epoch_regression_blocked": {
+      "expected": "LEDGER_BLOCKED",
+      "observed": {
+        "cumulative_alpha": "1/100",
+        "decisions": [
+          "PROMOTE_CONTROL",
+          "PROMOTE_CONTROL"
+        ],
+        "errors": [
+          "2:EPOCH"
+        ],
+        "terminal": "LEDGER_BLOCKED",
+        "unique_receipts": 2
+      },
+      "ok": true
+    },
+    "feedback_overrun_rejected": {
+      "expected": "CONTROL_REJECTED",
+      "observed": {
+        "cumulative_alpha": "1/200",
+        "decisions": [
+          "REJECT_CONTROL:FEEDBACK_BUDGET"
+        ],
+        "errors": [],
+        "terminal": "CONTROL_REJECTED",
+        "unique_receipts": 1
+      },
+      "ok": true
+    },
+    "harm_rejected": {
+      "expected": "CONTROL_REJECTED",
+      "observed": {
+        "cumulative_alpha": "1/200",
+        "decisions": [
+          "REJECT_CONTROL:HARM_GATE"
+        ],
+        "errors": [],
+        "terminal": "CONTROL_REJECTED",
+        "unique_receipts": 1
+      },
+      "ok": true
+    },
+    "identical_duplicate_idempotent": {
+      "expected": "CONTROL_PROMOTED",
+      "observed": {
+        "cumulative_alpha": "1/200",
+        "decisions": [
+          "PROMOTE_CONTROL"
+        ],
+        "errors": [],
+        "terminal": "CONTROL_PROMOTED",
+        "unique_receipts": 1
+      },
+      "ok": true
+    },
+    "missing_required_field_blocked": {
+      "expected": "LEDGER_BLOCKED",
+      "observed": {
+        "cumulative_alpha": "0",
+        "decisions": [],
+        "errors": [
+          "1:MISSING:['evaluator_sha256']"
+        ],
+        "terminal": "LEDGER_BLOCKED",
+        "unique_receipts": 0
+      },
+      "ok": true
+    },
+    "negative_history_deletion_blocked": {
+      "expected": "LEDGER_BLOCKED",
+      "observed": {
+        "cumulative_alpha": "1/100",
+        "decisions": [
+          "PROMOTE_CONTROL",
+          "PROMOTE_CONTROL"
+        ],
+        "errors": [
+          "2:HISTORY_CHAIN"
+        ],
+        "terminal": "LEDGER_BLOCKED",
+        "unique_receipts": 2
+      },
+      "ok": true
+    },
+    "receipt_hash_tamper_blocked": {
+      "expected": "LEDGER_BLOCKED",
+      "observed": {
+        "cumulative_alpha": "1/200",
+        "decisions": [
+          "PROMOTE_CONTROL"
+        ],
+        "errors": [
+          "1:HASH"
+        ],
+        "terminal": "LEDGER_BLOCKED",
+        "unique_receipts": 1
+      },
+      "ok": true
+    },
+    "replay_only_rejected": {
+      "expected": "CONTROL_REJECTED",
+      "observed": {
+        "cumulative_alpha": "1/200",
+        "decisions": [
+          "REJECT_CONTROL:REPLAY_ONLY"
+        ],
+        "errors": [],
+        "terminal": "CONTROL_REJECTED",
+        "unique_receipts": 1
+      },
+      "ok": true
+    },
+    "resource_overrun_rejected": {
+      "expected": "CONTROL_REJECTED",
+      "observed": {
+        "cumulative_alpha": "1/200",
+        "decisions": [
+          "REJECT_CONTROL:RESOURCE_OVERRUN"
+        ],
+        "errors": [],
+        "terminal": "CONTROL_REJECTED",
+        "unique_receipts": 1
+      },
+      "ok": true
+    },
+    "retention_collapse_rejected": {
+      "expected": "CONTROL_REJECTED",
+      "observed": {
+        "cumulative_alpha": "1/200",
+        "decisions": [
+          "REJECT_CONTROL:RETENTION_GATE"
+        ],
+        "errors": [],
+        "terminal": "CONTROL_REJECTED",
+        "unique_receipts": 1
+      },
+      "ok": true
+    },
+    "valid_promotion": {
+      "expected": "CONTROL_PROMOTED",
+      "observed": {
+        "cumulative_alpha": "1/200",
+        "decisions": [
+          "PROMOTE_CONTROL"
+        ],
+        "errors": [],
+        "terminal": "CONTROL_PROMOTED",
+        "unique_receipts": 1
+      },
+      "ok": true
+    }
+  },
+  "frontier_agent_performance_authority": false,
+  "negative_history_effect_authority": false,
+  "protected_transfer_authority": false,
+  "schema": "ORION.ReusableSealedPromotion.GenericVerification.v1",
+  "submission_authority": false,
+  "theorem_and_control_plane_authority": true,
+  "verification_digest": "b56c6eb799f4b94bc8c67bdb0db7df225bcc6943283c85a713c0c7e41445f41c"
+}

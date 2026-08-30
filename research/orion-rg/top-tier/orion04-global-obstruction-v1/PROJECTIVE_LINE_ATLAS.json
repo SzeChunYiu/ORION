@@ -1,0 +1,581 @@
+{
+  "allowed_multiplicities": [
+    0,
+    1,
+    2,
+    4
+  ],
+  "derived_rules": {
+    "high_points_pairwise_projectively_distinct": true,
+    "mult4_isolated": true,
+    "two_mult2_collinear_forbidden": true
+  },
+  "digest": "26e743f434ccb569a72f5f740601b4aaad212f6863f4959530b55ad2bdd19e39",
+  "line_count": 31,
+  "lines": [
+    {
+      "id": 0,
+      "points": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "representative": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 1,
+      "points": [
+        5,
+        10,
+        15,
+        20
+      ],
+      "representative": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "id": 2,
+      "points": [
+        6,
+        12,
+        18,
+        24
+      ],
+      "representative": [
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "points": [
+        7,
+        14,
+        16,
+        23
+      ],
+      "representative": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "id": 4,
+      "points": [
+        8,
+        11,
+        19,
+        22
+      ],
+      "representative": [
+        0,
+        1,
+        3
+      ]
+    },
+    {
+      "id": 5,
+      "points": [
+        9,
+        13,
+        17,
+        21
+      ],
+      "representative": [
+        0,
+        1,
+        4
+      ]
+    },
+    {
+      "id": 6,
+      "points": [
+        25,
+        50,
+        75,
+        100
+      ],
+      "representative": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 7,
+      "points": [
+        26,
+        52,
+        78,
+        104
+      ],
+      "representative": [
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "points": [
+        27,
+        54,
+        76,
+        103
+      ],
+      "representative": [
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "id": 9,
+      "points": [
+        28,
+        51,
+        79,
+        102
+      ],
+      "representative": [
+        1,
+        0,
+        3
+      ]
+    },
+    {
+      "id": 10,
+      "points": [
+        29,
+        53,
+        77,
+        101
+      ],
+      "representative": [
+        1,
+        0,
+        4
+      ]
+    },
+    {
+      "id": 11,
+      "points": [
+        30,
+        60,
+        90,
+        120
+      ],
+      "representative": [
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "id": 12,
+      "points": [
+        31,
+        62,
+        93,
+        124
+      ],
+      "representative": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 13,
+      "points": [
+        32,
+        64,
+        91,
+        123
+      ],
+      "representative": [
+        1,
+        1,
+        2
+      ]
+    },
+    {
+      "id": 14,
+      "points": [
+        33,
+        61,
+        94,
+        122
+      ],
+      "representative": [
+        1,
+        1,
+        3
+      ]
+    },
+    {
+      "id": 15,
+      "points": [
+        34,
+        63,
+        92,
+        121
+      ],
+      "representative": [
+        1,
+        1,
+        4
+      ]
+    },
+    {
+      "id": 16,
+      "points": [
+        35,
+        70,
+        80,
+        115
+      ],
+      "representative": [
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "id": 17,
+      "points": [
+        36,
+        72,
+        83,
+        119
+      ],
+      "representative": [
+        1,
+        2,
+        1
+      ]
+    },
+    {
+      "id": 18,
+      "points": [
+        37,
+        74,
+        81,
+        118
+      ],
+      "representative": [
+        1,
+        2,
+        2
+      ]
+    },
+    {
+      "id": 19,
+      "points": [
+        38,
+        71,
+        84,
+        117
+      ],
+      "representative": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 20,
+      "points": [
+        39,
+        73,
+        82,
+        116
+      ],
+      "representative": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "id": 21,
+      "points": [
+        40,
+        55,
+        95,
+        110
+      ],
+      "representative": [
+        1,
+        3,
+        0
+      ]
+    },
+    {
+      "id": 22,
+      "points": [
+        41,
+        57,
+        98,
+        114
+      ],
+      "representative": [
+        1,
+        3,
+        1
+      ]
+    },
+    {
+      "id": 23,
+      "points": [
+        42,
+        59,
+        96,
+        113
+      ],
+      "representative": [
+        1,
+        3,
+        2
+      ]
+    },
+    {
+      "id": 24,
+      "points": [
+        43,
+        56,
+        99,
+        112
+      ],
+      "representative": [
+        1,
+        3,
+        3
+      ]
+    },
+    {
+      "id": 25,
+      "points": [
+        44,
+        58,
+        97,
+        111
+      ],
+      "representative": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 26,
+      "points": [
+        45,
+        65,
+        85,
+        105
+      ],
+      "representative": [
+        1,
+        4,
+        0
+      ]
+    },
+    {
+      "id": 27,
+      "points": [
+        46,
+        67,
+        88,
+        109
+      ],
+      "representative": [
+        1,
+        4,
+        1
+      ]
+    },
+    {
+      "id": 28,
+      "points": [
+        47,
+        69,
+        86,
+        108
+      ],
+      "representative": [
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "id": 29,
+      "points": [
+        48,
+        66,
+        89,
+        107
+      ],
+      "representative": [
+        1,
+        4,
+        3
+      ]
+    },
+    {
+      "id": 30,
+      "points": [
+        49,
+        68,
+        87,
+        106
+      ],
+      "representative": [
+        1,
+        4,
+        4
+      ]
+    }
+  ],
+  "local_state_count": 21,
+  "schema": "ORION.ORION04.ProjectiveLineAtlas.v2",
+  "states": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      2
+    ],
+    [
+      0,
+      0,
+      0,
+      4
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      2
+    ],
+    [
+      0,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      4,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      2,
+      0,
+      1
+    ],
+    [
+      0,
+      4,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      2,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      1,
+      0,
+      0
+    ],
+    [
+      4,
+      0,
+      0,
+      0
+    ]
+  ]
+}
