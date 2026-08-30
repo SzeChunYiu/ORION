@@ -127,15 +127,7 @@ jobs:
           case "$P" in
             03)
               grep -Fiq 'least fixed point' "$F"
-              python - <<'PY'
-from pathlib import Path
-import re
-text=Path('build/03/source/main.md').read_text()
-abstract=text.split('## Abstract',1)[1].split('## 1. Introduction',1)[0]
-n=len(re.findall(r"\b[\w'-]+\b", abstract))
-print('ORION03_JAR_ABSTRACT_WORDS=',n)
-assert 150 <= n <= 250
-PY
+              python -c "from pathlib import Path; t=Path('build/03/source/main.md').read_text(); a=t.split('## Abstract',1)[1].split('## 1. Introduction',1)[0]; n=len(a.replace(chr(96),'').split()); print('ORION03_JAR_ABSTRACT_WORDS=',n); assert 150 <= n <= 250"
               ;;
             05) grep -Fq 'Support-Two Exactness' "$F"; grep -Fiq 'Author contributions and AI assistance' "$F" ;;
             12) grep -Fq 'Acquisition Is Not Closure' "$F"; grep -Fq 'recall@100 is lower' "$F" ;;
