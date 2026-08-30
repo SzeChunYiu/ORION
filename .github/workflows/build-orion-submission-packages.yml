@@ -1,0 +1,77 @@
+name: Build ORION arXiv and journal submission packages
+
+on:
+  push:
+    branches:
+      - academic-top-tier-refinement-20260830
+    paths:
+      - .github/workflows/build-orion-submission-packages.yml
+      - papers/publication_closure/.submission_payload/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Check out submission branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: academic-top-tier-refinement-20260830
+
+      - name: Restore publication-builder payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat papers/publication_closure/.submission_payload/chunk_*.txt \
+            | base64 --decode \
+            | tar -xz -C .
+          python -m py_compile papers/publication_closure/build_submission_packages_v1.py
+
+      - name: Install document toolchain
+        run: |
+          sudo apt-get update
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+            pandoc latexmk texlive-xetex texlive-latex-extra \
+            texlive-fonts-recommended poppler-utils zip
+
+      - name: Generate packages and PDFs
+        run: python papers/publication_closure/build_submission_packages_v1.py
+
+      - name: Verify generated PDFs and ZIP archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(find papers -path '*/submission_generated_v1/arxiv_v1/main.pdf' | wc -l)" -eq 21
+          test "$(find papers -path '*/submission_generated_v1/journal_v1/main.pdf' | wc -l)" -eq 21
+          test "$(find papers -path '*/submission_generated_v1/HOLD_FOR_EVIDENCE.md' | wc -l)" -eq 4
+          while IFS= read -r pdf; do
+            pdfinfo "$pdf" >/dev/null
+            pdftotext "$pdf" - | grep -q '[[:alpha:]]'
+          done < <(find papers -path '*/submission_generated_v1/*/main.pdf' -print)
+          while IFS= read -r archive; do
+            unzip -t "$archive" >/dev/null
+          done < <(find papers -path '*/submission_generated_v1/*.zip' -print)
+
+      - name: Archive generated submission bundles
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-all25-submission-packages-v1
+          path: |
+            papers/*/submission_generated_v1
+            papers/publication_closure/ALL_25_LIVE_STATUS_AND_SUBMISSION_ROUTE_2026-08-30.md
+            papers/publication_closure/ALL_25_SUBMISSION_PACKAGE_BUILD_RECEIPT_V1.json
+          if-no-files-found: error
+          retention-days: 30
+
+      # The generated bundles are published as a workflow artifact only.
+      # Committing them back to the branch would (a) write into the P6-P8
+      # candidate paper directories, whose whole-directory content-binding
+      # ratchet (tests/unit/programme/test_content_binding_coverage.py) would
+      # then report unbound files, and (b) re-introduce
+      # papers/orion-01-certificate-realization/** paths into a mixed-lane
+      # branch, which the orion-01 custody workflow structurally rejects.

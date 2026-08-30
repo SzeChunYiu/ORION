@@ -46,7 +46,11 @@ def _copy_subject(tmp_path: Path, candidate_id: str) -> Path:
     [
         ("P6", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),
         ("P7", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),
-        ("P8", {"BOUND": 6, "PARTIAL": 2, "CANNOT_CHECK": 1, "DEFERRED": 1}),
+        # P8's exact_subject_commit_identities moved PARTIAL -> BOUND when the
+        # rewrite-master adoption re-pinned subject_commit and subject_tree as a
+        # consistent pair; the previous pin recorded a tree that disagreed with
+        # its commit. protected_labels_custody_and_attack_replay stays PARTIAL.
+        ("P8", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),
     ],
 )
 def test_current_tree_is_classified_target_by_target(
