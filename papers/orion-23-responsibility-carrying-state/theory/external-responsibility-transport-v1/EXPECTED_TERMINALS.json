@@ -1,0 +1,68 @@
+{
+  "schema": "ORION.ORION23.ExternalResponsibilityTransport.ExpectedTerminals.v1",
+  "paper_id": "ORION-23",
+  "successor_id": "ORION23.EXTERNAL_RESPONSIBILITY_TRANSPORT.v1",
+  "governing_issue": 1649,
+  "authored_date": "2026-08-28",
+
+  "terminal_set": [
+    {"terminal": "THEOREM_PROVED__EXPLAINS_FROZEN_EXTERNAL_CAMPAIGN", "reached": true,
+     "observed": "Theorems 1-3 verified over 120 state vectors, 22 witness pairs and 28 cost configurations; all four frozen arms classified correctly; cost floor respected; 4/4 negative controls fire"},
+    {"terminal": "PRIMARY_SUCCESS_CRITERION_MET", "reached": true,
+     "criterion_1649": "exact/near-exact lifecycle correctness with strictly lower cost than always-revalidate and fewer unsafe reuses than provenance-only",
+     "observed": "lifecycle-rcs is behaviourally identical to always-raw on all 93 cases (31/31 VALID, 0/31 FORGED, 0/31 STALE) at 7 vs 10 ops per repository, with stale false-accept 0.00 vs provenance-only's 1.00"},
+    {"terminal": "COST_FLOOR_CONFIRMED_ON_EXTERNAL_DATA", "reached": true,
+     "observed": "the cheapest sound non-vacuous arm costs 7 ops/repo; every cheaper arm is unsound (provenance-only, 5) or vacuous (confidence-only, 3)",
+     "significance": "the 30% reduction is the MAXIMUM a sound policy can achieve on this corpus, not a tuning outcome"},
+    {"terminal": "PROSPECTIVITY_NOT_CLAIMED", "reached": true,
+     "observed": "the campaign was frozen 2026-08-24 and its outcomes were readable before the theorems were written",
+     "consequence": "this is explanatory adequacy on pre-existing frozen evidence; a prospective test is specified in THEORY.md section 6 and is NOT executed here"},
+    {"terminal": "THEORY_REFUTED", "reached": false,
+     "condition": "an arm that is sound and non-vacuous below the cost floor, or a load-bearing state vector whose correct terminal differs from Theorem 1",
+     "required_action": "record the counterexample verbatim, retract the corresponding theorem, and return ORION-23 to the bounded submission lane with no further rescue cycle"},
+    {"terminal": "CANNOT_CHECK", "reached": false,
+     "condition": "campaign receipts missing or the checker cannot execute",
+     "required_action": "report as CANNOT_CHECK; never as a pass"}
+  ],
+
+  "preserved_adverse_and_null_evidence": [
+    {"item": "32 of 155 objective-gold facts are CANNOT_CHECK",
+     "status": "PRESERVED_UNCHANGED_AND_LOAD_BEARING",
+     "note": "reported alongside the 123 decided facts everywhere the result appears"},
+    {"item": "every TEST_EXIT fact is CANNOT_CHECK",
+     "status": "PRESERVED_VERBATIM",
+     "recorded_reason": "the locked per-repository runtime the contract requires does not exist, and an exit status obtained another way is not that fact",
+     "note": "a refusal to substitute a convenient measurement for the specified one; preserved rather than worked around"},
+    {"item": "provenance-only accepts 100% of STALE cases",
+     "status": "PRESERVED_AND_EXPLAINED",
+     "note": "adverse for the provenance baseline, and the theorem predicts not merely that it fails but which horn it takes"},
+    {"item": "confidence-only accepts 0% of VALID cases",
+     "status": "PRESERVED_AND_EXPLAINED",
+     "note": "sound only by being vacuous -- the other horn of Theorem 2"},
+    {"item": "no governance, quality or responsibility judgment is made; those remain CANNOT_CHECK without two independent experts plus tie-break/custodian",
+     "status": "PRESERVED_UNCHANGED"},
+    {"item": "non-bypass boundary: an AI session, a local hash, same-owner replay or same-owner CI does not create protected confirmation",
+     "status": "PRESERVED_AND_APPLIED_TO_THIS_PACKET",
+     "note": "explicitly acknowledged in THEORY.md section 5 as binding on this packet's own status"},
+    {"item": "ORION must never be an external subject of its own lifecycle campaign",
+     "status": "PRESERVED_UNCHANGED"}
+  ],
+
+  "authority_updates": {
+    "campaign_results_or_gates_changed": "NONE",
+    "gold_re_derived": "NONE",
+    "cannot_check_converted": "NONE",
+    "manuscript_edited": "NONE",
+    "new_object_created": "papers/orion-23-responsibility-carrying-state/theory/external-responsibility-transport-v1/ (additive)",
+    "paper_tree_oid_effect": {"pinned": "12087919b88b", "currently_matching_on_main": true,
+                              "effect": "this additive directory moves the pin into the mismatching set; no existing byte modified", "ref_issue": 1625},
+    "promotion_budget": "SPENT -- ORION-23's one attempt under #1649"
+  },
+
+  "explicitly_out_of_scope": [
+    "executing the prospective second-corpus test specified in THEORY.md section 6",
+    "the blinded two-expert external adjudication protocol",
+    "any governance or responsibility judgment",
+    "venue, packaging and filing decisions"
+  ]
+}

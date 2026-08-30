@@ -79,6 +79,44 @@ justify reinstating a point claim under the new identity;
 `T3_TIE_AMBIGUOUS_VERDICT_CHANGING` would confirm the withdrawal. Both are reachable and
 neither is favoured.
 
+## Executed outcome (2026-08-29)
+
+The rescue path has been run, exactly once, under the frozen protocol.
+
+**Terminal: `T3_TIE_AMBIGUOUS_VERDICT_CHANGING`** — the branch that confirms the
+withdrawal. LUNARC job `3552796`, `ORION_SOURCE_COMMIT b8fd5d2ca8eb1f6547592893591ba3aa93bf96c8`,
+runner exit `0`, independent checker exit `0` with `status: PASS` and exact agreement on the
+runner terminal. Raw outputs are preserved verbatim under `result/run-3552796/` and were
+verified byte-for-byte against the digests written on the compute node.
+
+T3 fired because two admissible selections yield different verdicts:
+
+| Endpoint | Verdict | `nondecreasing_in_p` | Spearman `n_cross` vs `ln p` |
+|---|---|---|---:|
+| lo | `C1_LAW_CONFIRMED_REGIME_EXTENDED` | true | `0.9847319278346618` |
+| hi | `C4_INDETERMINATE` | false | `0.9509918346667657` |
+
+Coverage: 7,536 candidate prediction streams, 4,351 separable query points, 899 tied query
+points, `all_n_cross_point_identified: false`.
+
+Two consequences follow, and only these two.
+
+First, the withdrawal recorded above is no longer resting on an instrument we could not
+run. The registered study cannot adjudicate its own hypothesis under its frozen protocol,
+and that is now an executed, independently checked finding rather than an absence.
+
+Second, the fourth limit under "Explicit limits" is superseded on its narrow point: the
+sweep now does establish that `n_cross` is set-valued on the reconstructed ladder, because
+the admissible set was enumerated rather than inferred from a single realised selection.
+Every other limit in that section stands unchanged.
+
+Nothing is promoted. `C1_LAW_CONFIRMED_REGIME_EXTENDED` appears at the lo endpoint and is
+on the protocol's own `forbidden_promotions` list; the disagreement between the endpoints
+is precisely why that endpoint cannot be read as confirmation of the width law. The V1
+lane's controlling terminal `CANNOT_CHECK_INSTRUMENT_DRIFT` is unchanged, the quarantined
+post-outcome positive stays non-authoritative, and `scientific_authority_delta` remains
+`NONE`.
+
 ## Requirements on any successor
 
 1. A deterministic secondary tie key, registered as part of the scientific object.

@@ -1,6 +1,6 @@
-# ORION-04 journal-readiness record
+# ORION-08 journal-readiness record
 
-**Current terminal:** `INTERNAL_REVIEW_PASS__EXACT_SYNTHETIC_MECHANISM_CLAIM / SUBMISSION_GATES_OPEN`.
+**Current terminal:** `INTERNAL_REVIEW_PASS__EXACT_SYNTHETIC_MECHANISM_CLAIM / LITERATURE_AND_REPLAY_GATES_CLOSED__RENDER_REFRESH_REQUIRED`.
 
 ## Review cycle 1 — findings
 
@@ -9,6 +9,8 @@
 - **ORION-04-R3, major:** no conventional Related Work section separated the claimed typed-state residual from generic VOI, robust optimization, provenance, verification, and active-learning parents.
 - **ORION-04-R4, moderate:** negative results were present but arrived late, making them look defensive rather than part of the prespecified outcome space.
 - **ORION-04-R5, moderate:** reproducibility was strong but not organized as a reviewer-verifiable sequence.
+
+The `ORION-04-R*` strings above are historical review-finding identifiers from the pre-canonical Q4 naming and are retained as provenance; the paper identity is ORION-08.
 
 ## Repairs
 
@@ -28,11 +30,17 @@
 **External validity:** intentionally NOT CLAIMED.  
 **Target-journal compliance:** UNRESOLVED.
 
-## Remaining submission gates
+## Submission-gate update — 2026-08-29
 
-- fresh literature closure for the precise typed/scoped-state composition claim;
-- independent replay of the final cited receipts;
+- **Independent replay:** CLOSED — `REPLAY_EXACT`, 3/3 final cited receipts, 0 divergent, 0 uncheckable.
+- **Fresh literature closure:** CLOSED for the bounded claim by `LITERATURE_CLOSURE_EXECUTION_2026-08-29.md`. `NEAREST_WORK_MATRIX_V4.md` supersedes V3 for current positioning; the manuscript now cites the six 2026 nearest works and explicitly removes any priority claim on matched-budget/random-record verification.
+- **Claim boundary after literature update:** exact fibre-based decision sufficiency and cross-family mechanism isolation, not priority on typed memory, stale-state revision, provenance-aware memory, or budget matching.
+- **Render consequence:** the literature repair edits LaTeX and bibliography bytes, so the previously byte-pinned `manuscript/main.pdf` must be rebuilt/imported under the canonical CI recipe before filing. This is a render-integrity gate, not unresolved science.
+
+## Remaining submission mechanics
+
 - final figures/tables chosen after venue/article type is selected;
-- compile/render inspection and permanent archive as required.
+- canonical compile/render inspection and byte-pinned PDF refresh after the source edits above;
+- permanent archive as required by the selected venue.
 
 A real-domain instantiation would strengthen venue reach but is not required for the bounded mechanism-isolation claim.

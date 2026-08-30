@@ -1,0 +1,98 @@
+{
+  "checker": "orion24_principled_null_comparator_v1",
+  "n_packets": 67,
+  "gold_marginal": {
+    "PROMOTE": 11,
+    "SUBSUMED": 12,
+    "INTERACTION_ONLY": 7,
+    "NULL_LIVE": 9,
+    "NEGATIVE": 16,
+    "NON_IDENTIFIABLE": 3,
+    "CANNOT_CHECK": 3,
+    "REOPEN": 6
+  },
+  "domain_majority": {
+    "EMPIRICAL_ML_METHODOLOGY": "NEGATIVE",
+    "FORMAL_COMBINATORICS_AND_ALGEBRA": "PROMOTE",
+    "RESEARCH_SYSTEMS_INFRASTRUCTURE": "NEGATIVE"
+  },
+  "incumbent_comparator_is_degenerate": {
+    "system": "SYSTEMA",
+    "modal_disposition": [
+      "PROMOTE",
+      65
+    ],
+    "distinct_dispositions_emitted": 2,
+    "gold_distinct_dispositions": 8
+  },
+  "scores": {
+    "ALWAYS_PROMOTE": 11,
+    "STRATIFIED_BY_DOMAIN": 16,
+    "SYSTEMA": 13,
+    "SYSTEMB": 56
+  },
+  "marginal_null": {
+    "seeds": 10000,
+    "mean": 10.5739,
+    "p05": 6,
+    "p95": 16,
+    "max": 23
+  },
+  "comparisons": [
+    {
+      "system": "SYSTEMA",
+      "null": "ALWAYS_PROMOTE",
+      "system_only_correct": 2,
+      "null_only_correct": 0,
+      "log10_p": -0.3010299956639812,
+      "discriminates": false,
+      "favours": null
+    },
+    {
+      "system": "SYSTEMA",
+      "null": "STRATIFIED_BY_DOMAIN",
+      "system_only_correct": 8,
+      "null_only_correct": 11,
+      "log10_p": -0.18868920595493233,
+      "discriminates": false,
+      "favours": null
+    },
+    {
+      "system": "SYSTEMA",
+      "null": "MARGINAL_MATCHED",
+      "system_score": 13,
+      "null_mean": 10.5739,
+      "empirical_p_null_ge_system": 0.2527,
+      "discriminates": false,
+      "favours": null
+    },
+    {
+      "system": "SYSTEMB",
+      "null": "ALWAYS_PROMOTE",
+      "system_only_correct": 45,
+      "null_only_correct": 0,
+      "log10_p": -13.245319809215173,
+      "discriminates": true,
+      "favours": "SYSTEMB"
+    },
+    {
+      "system": "SYSTEMB",
+      "null": "STRATIFIED_BY_DOMAIN",
+      "system_only_correct": 40,
+      "null_only_correct": 0,
+      "log10_p": -11.740169830895267,
+      "discriminates": true,
+      "favours": "SYSTEMB"
+    },
+    {
+      "system": "SYSTEMB",
+      "null": "MARGINAL_MATCHED",
+      "system_score": 56,
+      "null_mean": 10.5739,
+      "empirical_p_null_ge_system": 0.0,
+      "discriminates": true,
+      "favours": "SYSTEMB"
+    }
+  ],
+  "status": "MEASURED"
+}

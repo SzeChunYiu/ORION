@@ -1,0 +1,72 @@
+{
+  "schema": "ORION.ORION09.RegimeSeparatorComplexity.Analysis.v1",
+  "inputs": {
+    "instances": 1146,
+    "features": 127,
+    "positives": 222,
+    "negatives": 924
+  },
+  "observed_cell_structure": {
+    "cells": 1109,
+    "singleton_cells": 1072,
+    "non_singleton_cells": 37,
+    "mixed_cells": 0,
+    "floor": 0,
+    "max_cell_size": 2,
+    "cell_size_histogram": {
+      "1": 1072,
+      "2": 37
+    }
+  },
+  "result_1_compression_bound": {
+    "statement": "E*(phi) <= (N - c)/N for any feature map with c cells on N instances",
+    "N_minus_c": 37,
+    "bound": "37/1146",
+    "bound_decimal": 0.032286,
+    "reading": "The realized cell structure confined the floor to [0, 37/1146] before any label was read. Floor 0 is therefore at most this far from the value the cell structure alone would force."
+  },
+  "result_2_structure_free_null": {
+    "question": "Given the exact realized cells and class balance, how often does a random relabelling also attain floor 0?",
+    "exact_favourable": "948964869729464154690988823463900442586770640543207264433455043671493352056585719393963026193418789565705565399842714760508508029327720989109623692114751023942187693347076371210440403747444632905173525756515174248595909939505682052280512",
+    "exact_total": "1344712249583385928120327708823564685964450192996548692197772822804024798474696940041420206819260245825212811504182070860684240886544606606970476705666690382961748442284773525775075017482094560471081053313625707819968142258459719079201354968000",
+    "exact_probability": 7.057010672903955e-07,
+    "exact_probability_sci": "7.057e-07",
+    "permutation_trials": 20000,
+    "permutation_hits": 0,
+    "permutation_rate": 0.0,
+    "reading": "Low probability means floor 0 is NOT explained by cell sizes alone and the labels really are aligned with the feature partition. High probability would mean the conversion is an artifact of near-injectivity."
+  },
+  "result_3_separator_complexity": {
+    "opposite_label_pairs": 205128,
+    "distinct_minimal_discernibility_sets": 43762,
+    "core_features_forced": [],
+    "lower_bound_disjoint_packing": 2,
+    "greedy_upper_bound": 5,
+    "k_star": 4,
+    "k_star_proved_minimal": true,
+    "witness": {
+      "subset": [
+        15,
+        30,
+        39,
+        42
+      ],
+      "size": 4,
+      "cells": 523,
+      "mixed_cells": 0,
+      "floor": 0,
+      "attains_floor_zero": true
+    },
+    "witness_structure_free_null": {
+      "cells": 523,
+      "compression_ratio": 0.45637,
+      "compression_bound": "623/1146",
+      "exact_probability": 1.4416996195477684e-120,
+      "exact_probability_sci": "1.442e-120",
+      "reading": "the witness map is far from injective, so attaining floor 0 with it is overwhelming evidence of genuine structure rather than memorization"
+    },
+    "seconds": 69.1,
+    "reading": "k* is the minimum number of frozen features whose projection still attains floor 0. Small k* means a genuine low-order sufficient vocabulary exists; k* close to the full 127 would quantify the memorization concern."
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,47 @@
+{
+  "accept": "ORION04_C0_31_PROVED__IMPLIES_D4_C5CUBED_EXACT_30",
+  "authority": {
+    "exact_d4_eligible_conditional_on_parent_implication": true,
+    "external_independent_replay": false,
+    "finite_theorem_eligible_on_complete_pass": true,
+    "novelty": false,
+    "submission": false,
+    "venue": false
+  },
+  "chronology_note": "Support-23-through-25 exploratory outcomes preceded this consolidated global packet. Authority therefore rests on the equation-complete cover, explicit normalization proof, deterministic full replay, and independent reconstruction\u2014not on preregistration chronology.",
+  "engines": {
+    "independent": "AVX2 five-plane exact-weight reachability",
+    "primary": "u128 coordinate-mask exact-weight reachability"
+  },
+  "object": {
+    "forbidden_zero_sum_lengths": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "group": "C_5^3",
+    "length": 31,
+    "positive_multiplicities": [
+      1,
+      2,
+      4
+    ],
+    "total_sum": 0
+  },
+  "parent_issue": 1665,
+  "parent_support_le13_result_digest": "6e25fbf0a483817bb5edb4908640e0b0b83be47d2cc4b2da6192feb9fecbc004",
+  "protocol_id": "ORION04.D4.SATURATION_ATOM.GLOBAL_SUPPORT14_31_DUAL_REPLAY.v1",
+  "reject": "ORION04_GLOBAL_REPLAY_REJECTED",
+  "schema": "ORION.ORION04.GlobalSaturationObstructionProtocol.v1",
+  "subject_main_sha": "b8fd5d2ca8eb1f6547592893591ba3aa93bf96c8",
+  "support14_22": {
+    "branch_count": 51,
+    "pattern_count": 42
+  },
+  "support23_31": {
+    "branch_count": 27,
+    "pattern_count": 18
+  }
+}

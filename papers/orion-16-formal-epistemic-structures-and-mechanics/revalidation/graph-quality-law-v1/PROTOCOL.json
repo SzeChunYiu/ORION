@@ -1,0 +1,69 @@
+{
+  "schema": "ORION.ORION16.GraphQualityLaw.Protocol.v1",
+  "protocol_identity": "ORION16.REAL_SYSTEM_MINIMAL_REVALIDATION.v1",
+  "paper_id": "ORION-16",
+  "promotion_issue": "1649",
+  "tier": "A",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "authored_date": "2026-08-28",
+
+  "claims": [
+    {"id": "N1", "statement": "G subset-of G' implies A_G(Delta) subset-of A_G'(Delta)."},
+    {"id": "N2", "statement": "Over-approximation is sound, and the extra work equals |A_G'(Delta) minus A_G*(Delta)|, every element reachable from the head of an added edge."},
+    {"id": "N3", "statement": "Under-approximation's wrongly-retained set is exactly A_G*(Delta) minus A_G''(Delta), equivalently the nodes whose every true path from Delta uses a missing edge."},
+    {"id": "N4", "statement": "For every nonnegative weighting, the minimum-weight sound set is A_G*(Delta) itself."},
+    {"id": "N5", "statement": "Inclusion orders cost and safety oppositely; G* is the unique point optimal in both."}
+  ],
+
+  "enumeration": {
+    "graphs": "all DAGs on n nodes for n in 3..5 under a fixed topological order, so every subset of the allowed edge set is a DAG",
+    "changes": "every nonempty change set Delta",
+    "over_approximations": "every superset of G* within the allowed edge set",
+    "under_approximations": "every subset of G*",
+    "weightings": "a frozen family of nonnegative weightings including uniform, head-heavy, tail-heavy and a zero weighting",
+    "exhaustive": true
+  },
+
+  "controls": [
+    {"id": "W1_unsoundness_is_detectable",
+     "statement": "A planted under-approximation that genuinely misses a reachable node must be reported unsound by the SAME predicate used for real cases. Without this, 'no unsound over-approximation found' is indistinguishable from a predicate that cannot fire.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "W2_n3_set_equality_not_containment",
+     "statement": "N3 is checked as SET EQUALITY against an independently computed wrongly-retained set, not as containment in one direction.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "W3_zero_weighting_no_alarm",
+     "statement": "Under the all-zero weighting every sound set ties at weight 0; N4 must still report A_G*(Delta) as A minimum and must NOT report a violation. A checker that alarms here is wrong about its own claim.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "W4_nontrivial_cases_present",
+     "statement": "The sweep must contain at least one strict over-approximation with positive extra work and at least one strict under-approximation with a nonempty wrongly-retained set, or the theorems are being verified only on degenerate inputs.",
+     "on_failure": "T4_CANNOT_CHECK"}
+  ],
+
+  "terminals": [
+    {"id": "T1_GRAPH_QUALITY_LAW_HOLDS", "class": "FAVOURABLE",
+     "conditions": ["N1 to N5 hold with no counterexample", "all four controls pass"],
+     "licenses": "A bounded statement that graph quality, not weighting, determines revalidation cost and safety: over-approximation is sound at an exactly characterised price, under-approximation fails exactly on nodes whose every path uses a missing edge, and no nonnegative weighting improves on the affected closure.",
+     "does_not_license": ["any deployed-system claim", "any claim that real extraction yields G*", "TOP_TIER_PROMOTION_EARNED"]},
+    {"id": "T2_MONOTONICITY_OR_SOUNDNESS_FAILS", "class": "UNFAVOURABLE",
+     "conditions": ["N1 or N2 has a counterexample"]},
+    {"id": "T3_LOCALISATION_OR_WEIGHT_INVARIANCE_FAILS", "class": "UNFAVOURABLE",
+     "conditions": ["N3's set equality fails, or some nonnegative weighting beats A_G*(Delta)"],
+     "reading": "The cost account is wrong; savings would then depend on weighting after all."},
+    {"id": "T4_CANNOT_CHECK", "class": "CANNOT_CHECK", "conditions": ["any control fails"]}
+  ],
+
+  "real_system_evidence": {
+    "file": "revalidation/P6_REVALIDATION_COMPARISON_V1.json",
+    "outcome_accessed": true,
+    "consequence": "NO FROZEN TEST IS RUN AGAINST IT. Its numbers were read before this theory was authored, so any reference is a labelled retrospective consistency observation and evidences nothing.",
+    "extraction_authoritative_for_G_star": false,
+    "why": "Python import graphs are a superset of true semantic dependencies, so they instantiate the over-approximation case of N2 and cannot certify G* itself.",
+    "stop_rule_applies": true
+  },
+
+  "promotion_status_if_T1": "GENERAL_THEOREM_ESTABLISHED__PROMOTION_NOT_EARNED__BOUNDED_PAPER_RETAINED",
+  "stop_rule": "Outcomes are read once. On T2 or T3 the law is refuted and the lane stops. On T1 the theorem stands but, because extraction is not authoritative for G*, #1649's stop rule keeps ORION-16 in the bounded lane and forbids any deployed-system claim."
+}

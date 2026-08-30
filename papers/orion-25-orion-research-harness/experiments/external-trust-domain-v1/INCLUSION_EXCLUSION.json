@@ -1,0 +1,19 @@
+{
+  "exclude": [
+    "Keys generated or controlled by one operator and merely assigned different labels",
+    "Custom cryptographic verification as a substitute for native verifier outcomes",
+    "Unpinned container tags, mutable tool aliases, or unfrozen trust roots",
+    "Post-outcome protocol, key, threshold, corpus, or metric changes",
+    "Pooling systems or attacks into one success rate without per-cell counts",
+    "Treating a valid signature, TUF target, or in-toto layout as scientific warrant"
+  ],
+  "include": [
+    "Only the seven Git blobs in CORPUS_MANIFEST.json",
+    "Only the exact tool commits in SOFTWARE_LOCK.json",
+    "Only native cosign, python-tuf, and in-toto verification decisions for primary system endpoints",
+    "Only public keys or OIDC identities bound before execution",
+    "Every registered adverse, failure, timeout, and undetermined outcome"
+  ],
+  "schema": "ORION.ORION25.ExternalTrustDomain.InclusionExclusion.v1",
+  "withdrawal_rule": "A custodian may withdraw before execution; the affected slot remains missing and execution stays blocked. Replacement requires a new identity-binding commit before outcomes."
+}

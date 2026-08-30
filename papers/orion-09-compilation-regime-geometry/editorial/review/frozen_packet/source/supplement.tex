@@ -1,0 +1,56 @@
+\documentclass[a4paper,onecolumn,11pt,unpublished,noarxiv]{quantumarticle}
+\pdfoutput=1
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,tabularx,array}
+\usepackage{hyperref}
+\usepackage{placeins}
+\setlength{\emergencystretch}{2em}
+
+\begin{document}
+\title{Supplementary Information for ``Regime maps for exact quantum compilation separate expressivity, certificates and feature transfer''}
+\author{Sze Chun Yiu}
+\email{sze-chun.yiu@fysik.su.se}
+\maketitle
+\input{generated_support_tables}
+
+\section{Local proof obligations}
+
+The all-size statements in the main article are analytic compositions with finite local obligations.  Table~\ref{tab:proof-obligations} lists the complete case domains.  The enumerations are exhaustive over local Pauli letters, target letters, central choices and tag relations specified by each model.  They are not empirical samples.
+
+For the shared-tag Pauli model, every support-at-least-three frame induces an odd-parity multiset in $\mathbb{F}_2^2$.  A zero class or a repeated class supplies a proper subset whose removal preserves partner anticommutation and tag parity.  The local cost table bounds restoration growth by the refunded frame cost.  Induction on total frame support gives the all-size ceiling.
+
+For the rank-two dependent-triple model, deletion, core alignment and tag reconstruction form a case split.  An active non-core column refunds at least four cost units.  Alignment costs at most three.  Reconstructed tags cost four on a shared core and eight on distinct cores.  These inequalities cover same-core and distinct-core configurations and establish support-one sufficiency.  Support-zero infeasibility supplies tightness.
+
+\ProofObligationsTable
+\FloatBarrier
+
+\section{State-preparation representation}
+
+The 127-feature representation joins three groups.  The first group records deterministic reference-synthesis trace counts and stabilizer invariants.  The second records donor-path structure.  The third is sign aware and permutation covariant.  It includes the negative-sign census, sign-split Pauli-weight counts, sign-split $Y$ counts, sign-split binary-parity classes and per-qubit $X/Y/Z$ column marginals.
+
+The complete $n\leq3$ domain has 1,146 states and 1,109 feature cells.  Of these cells, 1,072 are singletons.  No cell is mixed, so a lookup can recover every in-domain label.  The ratio $1{,}109/1{,}146=0.967714$ shows that the representation gives little compression.
+
+The frozen $n=4$ panel contains 120 states, 32 of which are reference exact.  A parity-split lookup covers two states and makes no error among those covered.  The remaining 118 states are uncovered, producing 32 errors under the pre-specified default.  Across 200 shuffled controls, the mean error count is 32.41 and the empirical probability of an error count no larger than 32 is 0.51.  The result therefore does not improve on the constant-negative baseline.
+
+\StateCountsTable
+\FloatBarrier
+
+\section{Retained adverse and conditional results}
+
+The first prospective size-transfer forecast was fixed before the exact $n=4$ distances were opened.  It matched 100 of 120 reference-exactness labels and 67 of 120 exact costs.  Both axes failed their exactness criteria.  These outcomes remain visible because later representation work does not retroactively change a prospective forecast.
+
+A separate search tested whether support two became strictly beneficial outside the proved support-one region.  After correcting the treatment of infeasible local cells, the complete frozen search still found zero strict witnesses among 211,248 candidates under four objectives.  The result excludes those candidates only.  It does not prove that the objective region is globally sharp.
+
+The measured gap between syndrome rank and intrinsic support equals a local exchange margin on two models.  The equality has no residual degrees of freedom with two points, and it fails for one model when the syndrome rank is recomputed under a different aligned rewrite.  It is retained as a diagnostic observation, not a theorem.
+
+\AdverseResultsTable
+\FloatBarrier
+
+\section{Reproduction order}
+
+Reproduction proceeds in four layers.  First, verify content digests for each exact result record.  Second, rerun the selected normalization and boundary analyzers and compare their deterministic scientific digests.  Third, regenerate every manuscript table from the result records.  Fourth, run the standard-library binding verifier, which checks stated fields, arithmetic and exact wording without importing the scientific analyzers.  This structure detects stale paper bindings and generator drift, but it remains same-project verification rather than external replication.
+
+\end{document}

@@ -1,0 +1,125 @@
+{
+  "schema_version": "ORION.TOP_TIER_ATOMIC_GAP_LEDGER.V2",
+  "subject_main_sha": "87e2bcb330d243b7062ddba1ca26e426632edeab",
+  "scientific_authority_delta": "NONE",
+  "paper_range": [
+    "ORION-02",
+    "ORION-02"
+  ],
+  "papers": [
+    {
+      "paper_id": "ORION-02",
+      "slug": "fiberguard-finite-fibre",
+      "title": "FiberGuard Finite-Fibre Certification",
+      "publication_disposition": "TOP_TIER_SUCCESSOR_NOT_SUPPORTED__BOUNDED_RETAINED",
+      "route_class": "EXTERNAL_TRANSFER_NEW_IDENTITY",
+      "evidence_mode": "HYBRID",
+      "protocol_state": "DRAFT_PRE_FREEZE",
+      "scientific_authority_delta": "NONE",
+      "current_ceiling": "V3-C1–C7 theory remains the ceiling; the PMLB revival lanes are adverse and do not validate the registered geometry.",
+      "post_matrix_updates": [
+        "PR #1732 is an open statistical correction: 32/44 versus 39/44 is paired, exact McNemar p≈0.0923 and a 20,000-replicate paired bootstrap interval includes zero. The raw count difference must not be called decisive while that PR is open."
+      ],
+      "pending_prs": [
+        1732
+      ],
+      "load_bearing_adverse": [
+        "R23 geometry coverage is 32/44, below the frozen 0.95 gate; the lexical control is 39/44 but the paired superiority claim is not statistically established.",
+        "R24 reaches 44/44 coverage but its certificate is invalid, with 20/44 strict held-out violations.",
+        "V3-C11 shows the registered alpha=.10 full-coverage goal is arithmetically infeasible on the accessed data."
+      ],
+      "strongest_remaining_gap": "A new external family must test whether finite-fibre geometry predicts certifiability and valid selective coverage beyond the PMLB-specific representation, against equally tuned non-geometric controls.",
+      "decisive_question": "On a prospectively frozen OpenML-CC18 subset, does a fibre-geometry certificate identify valid high-coverage strata that cannot be matched by resource-equal lexical or generic conformal selectors?",
+      "maximum_claim_if_supported": "Finite-fibre geometry supplies a transferable, validity-preserving structural predictor of certifiability, with explicit regimes where it abstains or offers no advantage.",
+      "hypothesis_or_theorem": "The geometry arm should improve the Pareto frontier of valid coverage versus abstention on pre-declared strata, while never exceeding the registered violation budget; no claim is licensed merely by beating a control in raw counts.",
+      "population_or_universe": "All OpenML-CC18 tasks satisfying prospectively frozen schema, sample-size, label and licensing rules, partitioned before any outcome access.",
+      "unit_of_analysis": "Dataset × split × registered arm, with paired decisions on identical held-out examples.",
+      "external_sources": [
+        "E2"
+      ],
+      "historical_only_inputs": [
+        "E1 and all R23/R24 outcomes"
+      ],
+      "design": [
+        "Use a new identity and freeze an all-eligible or rule-sampled OpenML-CC18 corpus.",
+        "Derive fibre structures from training partitions only and keep held-out labels inaccessible to all selectors.",
+        "Compare geometry, lexical and generic conformal arms under identical tuning budgets and feature access.",
+        "Predeclare validity, coverage and utility estimands, including per-dataset paired contrasts and hierarchical uncertainty.",
+        "Retain null/no-value strata and certificate failures as first-class terminals."
+      ],
+      "baselines": [
+        "Resource-matched lexical backoff.",
+        "Generic split-conformal selective predictor.",
+        "Strongest donor finite-fibre or local-density method found by the novelty audit.",
+        "Always-abstain and always-predict reference policies."
+      ],
+      "primary_endpoints": [
+        "Strict held-out violation rate with simultaneous uncertainty.",
+        "Valid selective coverage.",
+        "Utility/regret under a prospectively supplied abstention cost.",
+        "Calibration of predicted certifiability strata."
+      ],
+      "negative_controls": [
+        "Permuted fibre membership preserving class balance.",
+        "Geometry-free lexical selector with identical hyperparameter budget.",
+        "Label-shuffled training control.",
+        "Known infeasible alpha/task cells that must yield abstention or CANNOT_CHECK."
+      ],
+      "analysis_plan": [
+        "Paired per-task contrasts, exact tests where discordant counts are small and bootstrap intervals with frozen seeds.",
+        "Family-wise control across primary co-endpoints or a closed testing procedure fixed before outcomes.",
+        "No secondary metric can rescue a failed validity gate.",
+        "Report task heterogeneity and leave-one-task-family-out sensitivity."
+      ],
+      "power_or_exhaustion_rule": "Use every eligible prospectively pinned task where practical; otherwise power the paired task-level design for the smallest practically meaningful coverage gain while preserving the noncompensatory validity bound.",
+      "success_gate": "The geometry arm satisfies the frozen validity gate, improves the valid-coverage/utility frontier against every donor-complete comparator, and the effect persists across predeclared task strata.",
+      "refutation_gate": "Any validity breach, failure to beat the donor product, or concentration in one post hoc subgroup supports only the bounded theory/adverse result.",
+      "cannot_check_gate": "CANNOT_CHECK if task identity, split custody, tuning budget, certificate semantics or per-example paired records are missing.",
+      "authority_required": "Independent algebraic-statistics review plus an evaluator implementation that does not import the training/selection code.",
+      "resource_accounting": [
+        "Feature construction",
+        "tuning trials",
+        "memory",
+        "model compute",
+        "inference",
+        "latency",
+        "cache/reuse"
+      ],
+      "freeze_before_outcome": [
+        "Corpus membership",
+        "splits",
+        "arms",
+        "tuning budget",
+        "alpha and violation gates",
+        "primary estimands",
+        "multiplicity",
+        "missing-run policy"
+      ],
+      "active_lane": {
+        "status": "PENDING_CORRECTION_AND_NEW_DESIGN",
+        "reference": "PR #1732; #1701 / #1729",
+        "collision_rule": "Do not duplicate or pre-empt #1732, and do not call the new study an R23/R24 rescue."
+      },
+      "immediate_safe_actions": [
+        "Adopt #1732 only after review, preserving both adverse terminals.",
+        "Draft OpenML eligibility and task-family rules without reading candidate outcomes.",
+        "Commission the independent algebraic-statistics review of V3-C1–C7."
+      ],
+      "forbidden_actions": [
+        "Do not assert lexical-control superiority from 39/44 versus 32/44.",
+        "Do not lower the old 0.95 gate or reuse PMLB as fresh confirmation.",
+        "Do not treat coverage without certificate validity as success."
+      ],
+      "next_artifact": "papers/orion-02-fiberguard-finite-fibre/top_tier/openml-finite-fibre-transfer-v1/QUESTION.md",
+      "journal_bar": "A top-tier statistics/methodology paper needs valid selective guarantees, paired external evidence, strong controls, uncertainty at the task level and an honest no-value regime.",
+      "sibling_boundary": "Owns fibre geometry and certifiability; generic state value belongs to ORION-08 and computation placement to ORION-21.",
+      "lead_roles": [
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5"
+      ]
+    }
+  ]
+}

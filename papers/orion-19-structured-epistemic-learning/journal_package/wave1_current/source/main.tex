@@ -1,0 +1,206 @@
+\documentclass[10pt]{article}
+\usepackage{tmlr}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\title{Diagnosing Learning-System Failures Before Escalating Compute}
+\author{Anonymous Authors}
+
+\def\month{08}
+\def\year{2026}
+\def\openreview{\url{https://openreview.net/}}
+
+\newcommand{\Info}{\textsc{information}}
+\newcommand{\Access}{\textsc{accessibility}}
+\newcommand{\Compute}{\textsc{computation}}
+\newcommand{\Indeterminate}{\textsc{indeterminate}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+When a learned system fails, adding model capacity or inference time is useful only if computation is the binding constraint. Failure may instead arise because task-relevant information is absent or because an information-preserving representation is inaccessible to the chosen learner. We evaluate a prospective diagnostic that distinguishes these three cases. For each task family, interventions add semantic information, repair accessibility without changing semantic content, or add computation. The diagnostic selects the lowest registered-cost intervention that reaches a fixed quality threshold on a probe split; the causal disposition is recomputed on protected data. Across five families spanning handwritten-digit classification and exact executable tasks, the diagnostic identified the protected disposition in four families, versus one for a generic compute-escalation policy, and made no false compute escalations versus four. The remaining digit accessibility family was indeterminate because a probe-side threshold crossing did not transport to the protected split. The result survives a corrected vector-valued accounting of representation work, fitted state, model fitting, inference, and explicit computation, although the registered costs cannot be interpreted as a universal physical exchange rate. Secondary studies preserve mixed evidence: information-equivalent access repair recovered linear accuracy on breast-cancer and digit data but produced a null on Wine; increasing Qwen2.5 model size did not yield the registered monotone benefit; and a semantics-preserving symbol remint invalidated an earlier serialization contrast. These results support a bounded procedure for locating failure before spending more compute, not a universal diagnostic, a universal representation advantage, or a general argument against scaling.
+\end{abstract}
+
+\section{Introduction}
+
+Increasing test-time computation can improve language-model reasoning, and repeated sampling can raise the chance of finding a correct answer \citep{snell2024testtime,brown2024monkeys}. These gains make computation a natural response to poor performance. They do not make it the right response to every failure. If a system never receives a decisive variable, no amount of downstream search can recover it. If the variable is present but encoded outside the effective access class of the learner, a representation repair may be more appropriate than a larger model. Only after information and accessibility are adequate is additional computation a well-targeted intervention.
+
+This distinction connects several established research lines. Algorithmic-reasoning benchmarks separate learned execution from exact procedures \citep{velickovic2022clrs,bounsi2024transnar}. Graph and relational models show that organization can change what a learner can exploit \citep{ying2021graphormer,rampasek2022gps}. Work on underspecified questions asks systems to acquire missing information rather than guess \citep{li2025questbench}. Recent analyses also isolate representational inconsistency from downstream reasoning failure and show that serialization alone can materially change performance \citep{liem2026temporal,lo2026serialization}. Our question is narrower: can fixed, single-coordinate interventions diagnose which resource is missing before a generic policy escalates compute?
+
+We study three failure locations. An \Info{} intervention supplies genuinely missing task information. An \Access{} intervention preserves semantic information but changes how it is exposed to a fixed access class. A \Compute{} intervention preserves the information and interface while adding an inference procedure or a richer downstream computation. On a probe split, a frozen rule chooses the lowest registered-cost intervention that reaches a predeclared quality target. On a disjoint protected split, the same target and cost rule define the causal disposition independently. A generic comparator escalates computation whenever the base system is below target.
+
+The primary evaluation contains five fixed families, not a random sample from a declared population. Two use handwritten digits; three are exact executable discriminators for missing information, inaccessible encoding, and required composition. The diagnostic agrees with the protected disposition in four of five families, whereas generic compute escalation agrees in one. The diagnostic makes no false compute escalations; the comparator makes four. The unmatched family is not retuned or discarded: an accessibility repair crosses the target on the probe split but not on protected data, so its protected disposition is indeterminate.
+
+Three secondary results delimit the claim. First, an information-preserving cubic transformation reduces linear-model accessibility on two of three real datasets, and an exact inverse repair restores it; Wine is a null. Second, a protected Qwen2.5 size ladder does not support the registered monotone scaling hypothesis. Third, a hostile symbol-reminting audit changes 32 of 128 predictions of an older same-information serialization comparator, withdrawing that contrast. A later redraw-ensemble analysis reproduces the full-sample diagnostic decisions but fails its own half-sample stability condition. We therefore retain the original four-of-five result.
+
+The contribution is a study design and a bounded evidence object. We do not claim that the three resource classes exhaust all causes of failure, that the abstract registered costs are physical utility, that accessibility repair is generally cheaper than model scaling, or that the result transfers to deployed language-model agents.
+
+\section{Related work and claim boundary}
+
+\paragraph{Adaptive computation and metareasoning.}
+The value-of-computation tradition treats deliberation as a decision under resource constraints \citep{russell1991dowhat}. Contemporary test-time scaling work studies how inference budget and sampling policies affect language-model performance \citep{snell2024testtime,brown2024monkeys}. Our generic comparator is deliberately simpler than those optimized policies: it represents the failure heuristic ``uncertain, therefore compute more.'' We do not compare against every adaptive-compute algorithm and do not claim a new allocation optimum. The paper instead asks whether the premise for compute escalation is correct after information and accessibility interventions are made explicit.
+
+\paragraph{Structure, access, and algorithmic reasoning.}
+Graphormer and GraphGPS establish that relational organization and structural encodings can alter the effective inductive bias of a learner \citep{ying2021graphormer,rampasek2022gps}. The CLRS benchmark and Transformer--neural algorithmic reasoners study learned execution and out-of-distribution algorithmic generalization \citep{velickovic2022clrs,bounsi2024transnar}. Serialization-friction results show that information-equivalent structured tasks can change difficulty when projected into a one-dimensional sequence \citep{lo2026serialization}. These works own the broad ideas that representation matters and that computation can be isolated. We contribute neither a graph architecture nor a universal representation theorem.
+
+\paragraph{Missing information, abstention, and diagnosis.}
+QuestBench evaluates whether language models ask for information needed to answer underspecified questions \citep{li2025questbench}. Temporal neuro-symbolic question answering has been used to separate representational inconsistency from reasoning failure \citep{liem2026temporal}. Selective classification supplies a broader statistical language for withholding a decision when confidence or coverage is inadequate \citep{geifman2017selective}. Our indeterminate outcome is related in spirit but is defined differently: it occurs when no registered intervention has transported across the fixed quality threshold. It is not a calibrated probability of error.
+
+\paragraph{Scope of originality.}
+The original object here is the combined prospective comparison of three intervention classes, protected recomputation of the causal disposition, a generic compute-escalation foil, and vector-valued resource disclosure. The paper does not claim priority for any intervention class alone, for exact collision ceilings, for structured learning, for abstention, or for test-time scaling.
+
+\section{Diagnostic design}
+
+\subsection{Intervention classes}
+
+Let a task family have a base system, quality measure $q$, and target $\tau$. We register three interventions:
+\begin{align*}
+I_{\mathrm{info}} &: \text{add task-relevant semantic information};\\
+I_{\mathrm{access}} &: \text{preserve semantic information and repair its interface};\\
+I_{\mathrm{compute}} &: \text{preserve information and interface and add computation}.
+\end{align*}
+The intervention meanings are fixed within each family. An accessibility intervention must be information-preserving by construction or round-trip verification. A computation intervention may change the access algorithm or execute an explicit operation, but it may not add semantic inputs unavailable to the base system.
+
+For each split $s$ and intervention $j$, let $q_{s,j}$ be observed quality and $c_j$ the registered selection cost. The split-level disposition is
+\[
+d_s =
+\begin{cases}
+\arg\min_{j:q_{s,j}\geq\tau} c_j, & \text{if at least one intervention reaches }\tau,\\
+\Indeterminate, & \text{otherwise.}
+\end{cases}
+\]
+Ties are resolved by the frozen cost order. The diagnostic observes the probe split and predicts $d_{\mathrm{probe}}$; the protected disposition $d_{\mathrm{protected}}$ is computed separately. Diagnostic correctness is exact equality. The generic comparator predicts \Compute{} whenever the base system is below target.
+
+Registered costs serve only as a prospective selector among threshold-reaching interventions. They are not converted into money, energy, time, or a universal utility scale. Section~\ref{sec:accounting} reports the physical-operation coordinates separately.
+
+\subsection{Five primary task families}
+
+\paragraph{Digits with an inaccessible interface.}
+The base representation is a coordinate-wise cubic bijection of 64 standardized pixel values from the scikit-learn handwritten-digits data. A fixed multinomial logistic model is the access class. The information intervention is a no-op, the accessibility intervention applies the exact cube-root inverse before the same logistic access class, and the computation intervention fits an RBF support-vector classifier to the cubic representation. The target accuracy is $0.965$.
+
+\paragraph{Digits with missing information.}
+The base representation contains only total pixel intensity. The information intervention restores the 64 standardized pixels to the logistic access class, the accessibility intervention monotonically rescales the single scalar, and the computation intervention applies an RBF support-vector classifier to that scalar. The target accuracy is $0.95$.
+
+The digits data are divided deterministically into 1,078 training, 359 probe, and 360 protected examples, stratified over ten labels. Preprocessing is fitted on the training split only.
+
+\paragraph{Hidden-bit parity.}
+The target is the parity of four bits, while the base exposes only three. The information intervention reveals the fourth bit; the accessibility intervention bijectively remaps the visible bits; and the computation intervention exhaustively processes only those visible bits. The target is exact accuracy $1.0$.
+
+\paragraph{Reversibly encoded Boolean state.}
+The base exposes $(a,a\oplus b)$ while a frozen constant-or-signed-single-coordinate readout must recover $b$. The accessibility intervention applies the exact inverse transform and projects the recovered coordinate. The computation intervention evaluates XOR. Both can be correct; the registered selector prefers the lower-cost accessibility repair. The target is exact accuracy $1.0$.
+
+\paragraph{Affine-map composition.}
+The base exposes an input and a chain of three one-dimensional affine maps. Information and accessibility interventions preserve or reorder the local maps without composing them. The computation intervention composes the maps exactly and evaluates the result. The target is exact accuracy $1.0$.
+
+The three executable families use disjoint sets of 100 development and 100 protected generator seeds per family. The evaluator computes exact outputs. They are transparent discriminators, not evidence about naturalistic task prevalence.
+
+\subsection{Endpoints and interpretation}
+
+Primary endpoints are the number of families diagnosed correctly, correct diagnoses within the three executable families, false compute escalations, target attainment after the predicted intervention when the protected disposition is actionable, and registered-cost regret relative to the protected disposition. Because the five families are fixed and heterogeneous, we report descriptive counts rather than a population-level significance test.
+
+A false compute escalation occurs when the generic policy selects computation but the protected disposition is information, accessibility, or indeterminate. The last category is counted because the fixed evidence does not authorize computation as the remedy. An indeterminate protected cell is retained in the denominator.
+
+\subsection{Study chronology and secondary analyses}
+
+The intervention meanings, split rules, targets, registered costs, endpoints, and positive criterion were fixed before the primary protected outcomes. Two independent implementations reproduced the five decisions. A later accounting audit corrected previously omitted preprocessing state, transformation work, base-readout touches, and inference work; it was not allowed to alter quality values, targets, costs, predictions, or protected dispositions.
+
+Three secondary studies were defined separately. A five-fold real-data study compared linear access to native standardized features, a coordinate-wise cubic bijection, and its exact inverse on breast-cancer, digits, and Wine datasets. A protected model-size study compared the effect of typed state against a same-information interface for quantized Qwen2.5 models at 0.5B, 1.5B, and 3B parameters \citep{qwen2025report}. A post-outcome hostile audit applied bijective remintings to an earlier held-out procedural comparison. These studies can bound the primary interpretation but cannot upgrade its five-family authority.
+
+After the primary digit threshold failed to transport, a prospectively specified redraw-ensemble follow-up averaged each arm across 24 stratified partitions. We report this successor analysis only as a stability check because it failed its own predeclared half-sample stability clause.
+
+\section{Results}
+
+\subsection{Protected diagnostic outcome}
+
+Table~\ref{tab:primary} reports all five families. The diagnostic agrees with the protected disposition in four families. The generic compute-escalation policy agrees only for affine-map composition. All actionable diagnostic selections reach the protected target, and registered-cost regret on those cells is zero.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Protected outcomes for the five fixed task families. ``No qualifying intervention'' means that none of the three registered interventions reached the protected quality target.}
+\label{tab:primary}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X l l l r}
+\toprule
+Task family & Probe prediction & Protected disposition & Generic prediction & Diagnostic correct \\
+\midrule
+Digits, cubic interface & accessibility & no qualifying intervention & computation & 0 \\
+Digits, missing pixels & information & information & computation & 1 \\
+Hidden-bit parity & information & information & computation & 1 \\
+Reversibly encoded Boolean state & accessibility & accessibility & computation & 1 \\
+Affine-map composition & computation & computation & computation & 1 \\
+\midrule
+Total & & & & \textbf{4/5} \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+The generic policy makes four false compute escalations, whereas the diagnostic makes none. This difference is the central result: the diagnostic does not merely choose a lower-cost arm; it refuses computation when the evidence locates the constraint elsewhere or does not authorize a remedy. The executable-domain diagnoses are exact in all three families. On the two real-digit families, one diagnosis transports and one does not.
+
+The failed digit transport is visible in the underlying levels. The accessibility repair scores $0.9721$ on the probe split, above the $0.965$ target, but $0.9556$ on the protected split. No protected intervention reaches the target, so the protected disposition is indeterminate. Retuning the target after observing this split would change the scientific question and was not done.
+
+\subsection{Corrected resource accounting}
+\label{sec:accounting}
+
+For each arm we record a vector
+\[
+(I_{\mathrm{sem}},A_{\mathrm{dim}},A_{\mathrm{transform}},M_{\mathrm{state}},C_{\mathrm{fit}},C_{\mathrm{infer}},C_{\mathrm{explicit}}),
+\]
+covering semantic input dimension, exposed dimension, deterministic transformation work, fitted state, fitting work, inference work, and explicit operations. The coordinates use task-specific counts and are not scalarized. Re-deriving every decision after charging fitted scaler state, accessibility transforms, base readout touches, and support-vector inference preserves all five primary dispositions, the four-of-five diagnostic count, and the zero-versus-four false-compute count.
+
+The audit also prevents a misleading cost story. In the missing-pixels digit family, restoring the full 64-pixel representation and refitting the linear model has 69,834 counted non-semantic operations, while the scalar support-vector arm has 3,230. Thus the registered selector ranks the information intervention below computation even though this particular aggregate of physical counts ranks it above. The registered units are a frozen decision convention, not an empirical exchange rate. Conversely, in the cubic-interface family the generic support-vector escalation uses 206,720 counted operations versus 69,898 for accessibility repair while still failing the target. These two directions are both reported.
+
+Across the ten probe/protected vector comparisons, no target-reaching arm strictly dominates the selected arm on all seven coordinates. That statement is a finite audit of the registered families, not a general Pareto-optimality theorem.
+
+\subsection{Real accessibility effects include a null}
+
+The five-fold accessibility study holds semantic information fixed because the cubic transform is bijective and the inverse reconstructs the standardized features to floating-point roundoff. For breast-cancer data, mean linear accuracy is $0.98069$ on the native representation and $0.94551$ after the cubic transform, a gap of $0.03518$; inverse repair returns to $0.98069$. For digits, the corresponding values are $0.96995$, $0.94602$, and $0.96995$, a gap of $0.02393$. Wine is a null: the preregistered native-minus-cubic mean gap is $-0.00016$. We therefore conclude only that an information-preserving interface can be load-bearing for a fixed access class on some datasets.
+
+\subsection{Model-size and representation attacks are adverse}
+
+The protected Qwen2.5 size ladder does not support a monotone scaling benefit for the typed state relative to a same-information interface. At the primary budget, the measured differences are $-0.140625$ at 0.5B parameters and $0$ at both 1.5B and 3B. A positive difference at every size and a positive largest-model bootstrap lower bound were both predeclared requirements; both fail. This result does not imply that scaling is generally ineffective. It excludes the registered monotone claim for these models, tasks, and budget.
+
+An older held-out procedural comparison used relational features and a same-information serialized bag. A bijection over 220 semantic atoms preserves all 512 labels and the information content of the serialized arm, yet changes 32 of its 128 protected predictions and moves accuracy from $0.75$ to $0.50$. The relational and untyped structural arms are invariant under the same transform. The serialized margin is therefore withdrawn as a representation advantage: its value depends on the minted symbols. This hostile result motivated the present emphasis on failure location rather than representation ranking.
+
+\subsection{Follow-up transport does not replace the primary result}
+
+The 24-redraw follow-up makes the full-sample probe and protected dispositions agree in all five families, including an indeterminate disposition for cubic-interface digits. However, the two protected half-samples straddle the $0.965$ target for that family, so the predeclared half-sample stability gate fails. The pooled repaired-arm level is approximately $0.964$, only about $0.0006$ below the target and small relative to its sampling uncertainty. We treat the cell as genuinely unresolved at this dataset size and retain the primary four-of-five headline.
+
+\section{Discussion}
+
+The evidence supports a practical ordering: test for missing information, then test whether information-preserving access repair changes the outcome, and only then interpret additional computation as the targeted remedy. On the five registered families, this ordering avoids four compute escalations that the generic policy would make. The result is not that computation is unimportant; the affine-composition family requires it, and the generic policy is correct there. The result is that compute is one causal intervention among several, not a diagnosis by itself.
+
+The protected indeterminate cell is scientifically useful. It shows why a causal intervention effect and a deployable decision threshold are different objects. The cube-root repair is exact, and it raises digit accuracy, but the fixed target does not transport reliably. A method that always emits one of three causal labels would hide this distinction. Here, withholding a diagnosis preserves the predeclared evidence boundary.
+
+Vector accounting changes interpretation without changing the headline count. The finite audit shows that no selected intervention was coordinate-wise dominated, but it also shows that the registered cost order can disagree with measured work. Future use in deployment would require an application-specific utility model over latency, memory, fitting, inference, energy, and information acquisition. We intentionally do not infer such a model from five heterogeneous families.
+
+The secondary evidence blocks three tempting generalizations. The Wine null rules out a universal real-dataset accessibility effect. The Qwen2.5 negative rules out the registered monotone model-size claim. Symbol reminting invalidates the older same-information serialization margin. These are not side notes: each removes a route by which a bounded diagnostic could otherwise be overstated.
+
+\section{Limitations}
+
+The primary denominator is five fixed families across one bundled real dataset and three exact executable constructions. Families, not individual examples, are the comparison units, so four of five is not an estimate of prevalence. The exact tasks were designed to make one failure location decisive; deployed systems may have interacting constraints, distribution shift, data acquisition cost, safety constraints, or failure classes outside information, accessibility, and computation.
+
+The generic comparator is intentionally minimal. Strong adaptive-compute systems can allocate effort more intelligently than always escalating computation. Evaluating such policies would require matched access to the same information and intervention menu. The present result shows that an unconditional compute heuristic can be causally misdirected, not that every modern test-time scaling method is inferior.
+
+The real-data accessibility study uses three small bundled datasets and a fixed linear access class. Its folds are technical repeats, not independent datasets. The Qwen2.5 study uses three quantized sizes under one frozen task and budget family. Neither supplies broad external transfer. The procedural reminting audit is post-outcome and withdraws a claim; it does not create a new positive one.
+
+Finally, the resource coordinates mix dimensions and operation counts. They improve disclosure but do not define an exchange rate. Registered selection costs are part of the prospective rule and should not be interpreted as measured physical costs.
+
+\section{Reproducibility and availability}
+
+The anonymous review materials include a reader-facing table for every primary family, the corrected resource vectors used in the matched comparison, the secondary positive, null, negative, and indeterminate outcomes, and a standard-library verifier. The verifier recomputes the aggregate diagnostic counts, false compute escalations, target attainment, resource-accounting survival checks, and adverse-result presence from those tables. It does not depend on the code that generated the original experiments.
+
+The source archive accompanying the submission contains the complete anonymous manuscript source, bibliography, and journal style. The review materials contain no private development history or author-identifying metadata. The original protected records and full execution provenance will be deposited with the public research artifact after peer review; the anonymous package is sufficient to inspect every number and disposition reported here.
+
+\section{Conclusion}
+
+Poor performance is not a causal diagnosis. Across five fixed learning and executable task families, a prospective information--accessibility--computation diagnostic agrees with four protected dispositions, versus one for generic compute escalation, while avoiding four false compute escalations. The fifth family remains indeterminate because its accessibility threshold does not transport. Corrected resource accounting preserves the result but rejects a universal cost interpretation. A real-data null, a protected model-scaling negative, a hostile serialization failure, and an unstable follow-up gate remain visible. The defensible conclusion is therefore bounded: locate the missing resource before spending more compute, and withhold the diagnosis when the registered discriminator does not transport.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

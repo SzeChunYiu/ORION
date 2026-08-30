@@ -1,0 +1,105 @@
+{
+  "schema": "prospective-dual-instrument-case-series",
+  "study_boundary": {
+    "valid_question_count": 3,
+    "retired_contaminated_candidate_count": 2,
+    "population_sampling": false,
+    "statistical_or_causal_instrument_independence_claimed": false,
+    "reliability_claimed": false,
+    "calibration_claimed": false,
+    "generalization_claimed": false
+  },
+  "valid_questions": [
+    {
+      "public_name": "regime characterization",
+      "prospective_freeze_verified": true,
+      "instrument_relations": {
+        "diagnosis": "agree",
+        "experiment": "agree"
+      },
+      "deferred_alignment": {
+        "host_diagnosis": true,
+        "controller_diagnosis": true,
+        "host_experiment": true,
+        "controller_experiment": true
+      },
+      "bounded_scientific_observation": {
+        "kind": "exact finite-domain characterization and complementary closure",
+        "larger_domain_claimed": false
+      }
+    },
+    {
+      "public_name": "support-threshold stress test",
+      "prospective_freeze_verified": true,
+      "instrument_relations": {
+        "diagnosis": "agree",
+        "experiment": "agree"
+      },
+      "deferred_alignment": {
+        "host_diagnosis": true,
+        "controller_diagnosis": true,
+        "host_experiment": true,
+        "controller_experiment": true
+      },
+      "bounded_scientific_observation": {
+        "exact_panel_rows": 53,
+        "unrestricted_better_than_support_two_rows": 0,
+        "theorem_sharpness_resolved": false,
+        "larger_domain_claimed": false
+      }
+    },
+    {
+      "public_name": "reweighted-objective census",
+      "prospective_freeze_verified": true,
+      "instrument_relations": {
+        "diagnosis": "agree",
+        "experiment": "agree"
+      },
+      "deferred_alignment": {
+        "host_diagnosis": false,
+        "controller_diagnosis": false,
+        "host_experiment": true,
+        "controller_experiment": true
+      },
+      "bounded_scientific_observation": {
+        "ordered_one_object_cases": 729,
+        "reorder_quotiented_two_object_cases": 38760,
+        "total_cases": 39489,
+        "predicate_label_mismatches": 0,
+        "one_object_positives": 0,
+        "two_object_positives": 1,
+        "larger_domain_claimed": false
+      }
+    }
+  ],
+  "retired_candidates": [
+    {
+      "candidate": "information-closure candidate",
+      "reason": "outcome-oriented surface visible before instrument freeze",
+      "result_surface_opened_for_scoring": false,
+      "included_in_valid_question_count": false,
+      "retained": true
+    },
+    {
+      "candidate": "enlarged-vocabulary candidate",
+      "reason": "outcome-oriented surface visible before instrument freeze",
+      "result_surface_opened_for_scoring": false,
+      "included_in_valid_question_count": false,
+      "retained": true
+    }
+  ],
+  "known_instrument_limitations": [
+    {
+      "name": "successful-envelope semantic malformation",
+      "repaired_between_valid_cases": false,
+      "triggered_in_valid_cases": false,
+      "if_triggered_after_freeze": "instrument-invalid or cannot-check; no in-place repair"
+    },
+    {
+      "name": "immutable-success recovery obstruction",
+      "repaired_between_valid_cases": false,
+      "triggered_in_valid_cases": false,
+      "if_triggered_after_freeze": "instrument-invalid or cannot-check; original content retained"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "ORION.ORION25.ExternalAcquisitionDisposition.v1",
+  "identity": "ORION25.EXTERNAL_ACQUISITION_DISPOSITION.v1",
+  "terminal": "CANNOT_CHECK__NOT_OBTAINABLE_BY_PUBLIC_DATA_ACQUISITION",
+  "grants_scientific_authority": false,
+  "outcomes_accessed": false,
+  "assessed_utc": "2026-08-29",
+
+  "finding": "ORION-25's blocker is not missing public data. It is missing programme-internal design artifacts plus an external evaluator-separation attestation. No amount of fetching public datasets can discharge it, so this lane is reported as CANNOT_CHECK rather than partially filled.",
+
+  "basis": {
+    "preflight": "papers/orion-25-orion-research-harness/P15A_ACQUISITION_PREFLIGHT_V1.json",
+    "recorded_terminal": "P15A_ACQUISITION_BLOCKED_NO_SCIENTIFIC_RESULT",
+    "execution_authorized": false,
+    "present_artifacts": 0,
+    "missing_artifacts": 7
+  },
+
+  "per_artifact_disposition": [
+    {"artifact": "programme_paper_issue.json", "obtainable_by_fetching_public_data": false, "why": "A programme-internal design document. Must be authored, not acquired."},
+    {"artifact": "donor_matrix.json", "obtainable_by_fetching_public_data": false, "why": "A programme-internal design document."},
+    {"artifact": "estimand_and_comparator.json", "obtainable_by_fetching_public_data": false, "why": "A protocol decision, not data."},
+    {"artifact": "protected_fault_injection_corpus.jsonl", "obtainable_by_fetching_public_data": false, "why": "Protected corpus. The preflight requires a trusted protected-input verifier, which is not configured (trusted_protected_input_verifier_configured=false). A public substitute would not be the protected corpus and would silently weaken the claim."},
+    {"artifact": "common_receipt_schema_and_resource_envelope.json", "obtainable_by_fetching_public_data": false, "why": "A programme-internal schema."},
+    {"artifact": "independent_evaluator_custody_attestation.json", "obtainable_by_fetching_public_data": false, "why": "Requires an independent external evaluator to attest custody separation. This is a human/institutional dependency of the same class as ORION-18's institution-disjoint expert authority. It cannot be manufactured by this or any agent."},
+    {"artifact": "frozen_terminal_register.json", "obtainable_by_fetching_public_data": false, "why": "A freeze artifact that must be written before outcomes."}
+  ],
+
+  "do_not_duplicate": "The disposition matrix directs that ORION-25's external-trust-domain protocol be rebased/revalidated if chosen, not duplicated. No competing protocol is created here.",
+
+  "not_claimed": [
+    "This record does not weaken, reinterpret, or close the existing P15A_ACQUISITION_BLOCKED_NO_SCIENTIFIC_RESULT terminal; it agrees with it and states why acquisition cannot lift it.",
+    "No substitute corpus was fetched and none is proposed."
+  ]
+}

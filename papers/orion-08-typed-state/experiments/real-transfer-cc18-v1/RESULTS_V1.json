@@ -1,0 +1,222 @@
+{
+  "contradictions": [],
+  "datasets_scored": 5,
+  "environment": {
+    "node": "billy-laptop-old",
+    "numpy": "2.5.2",
+    "python": "3.14.4"
+  },
+  "no_value_stratum": [
+    "qsar-biodeg"
+  ],
+  "protocol_sha256": "82adaa8327490346803cabffdc41f25aed96550c4818be39efec9b9af08b2a3b",
+  "rows": [
+    {
+      "arms": {
+        "coarse": 0.0,
+        "infogain_refine": 0.0,
+        "proxy_strong": -0.012,
+        "refined_typed": -0.01
+      },
+      "cost_distinct_bound_states": {
+        "coarse": 9,
+        "infogain_refine": 9,
+        "proxy_strong": 2,
+        "refined_typed": 67
+      },
+      "d": 7,
+      "data_id": 31,
+      "fraction_of_gap_captured": {
+        "infogain_refine": 0.0,
+        "proxy_strong": -0.04,
+        "refined_typed": -0.03333333333333333
+      },
+      "impure_coarse_fibres": [
+        5,
+        10,
+        11,
+        12
+      ],
+      "in_sample_delta": 0.016,
+      "in_sample_strict_decrease": true,
+      "n": 1000,
+      "name": "credit-g",
+      "oracle_gap_from_coarse": 0.3,
+      "oracle_utility": 0.3,
+      "out_of_sample_delta": -0.01,
+      "out_of_sample_strict_decrease": false,
+      "prediction_holds": true,
+      "predicts_strict_decrease": true,
+      "transfers_out_of_sample": false
+    },
+    {
+      "arms": {
+        "coarse": 0.3802083333333333,
+        "infogain_refine": 0.3802083333333333,
+        "proxy_strong": 0.3723958333333333,
+        "refined_typed": 0.3307291666666667
+      },
+      "cost_distinct_bound_states": {
+        "coarse": 9,
+        "infogain_refine": 9,
+        "proxy_strong": 2,
+        "refined_typed": 76
+      },
+      "d": 8,
+      "data_id": 37,
+      "fraction_of_gap_captured": {
+        "infogain_refine": 0.0,
+        "proxy_strong": -0.028846153846153848,
+        "refined_typed": -0.18269230769230757
+      },
+      "impure_coarse_fibres": [
+        1,
+        7,
+        10,
+        11
+      ],
+      "in_sample_delta": 0.020833333333333315,
+      "in_sample_strict_decrease": true,
+      "n": 768,
+      "name": "diabetes",
+      "oracle_gap_from_coarse": 0.2708333333333333,
+      "oracle_utility": 0.6510416666666666,
+      "out_of_sample_delta": -0.04947916666666663,
+      "out_of_sample_strict_decrease": false,
+      "prediction_holds": true,
+      "predicts_strict_decrease": true,
+      "transfers_out_of_sample": false
+    },
+    {
+      "arms": {
+        "coarse": 0.21164710995219468,
+        "infogain_refine": 0.39765319426336376,
+        "proxy_strong": 0.5567144719687093,
+        "refined_typed": 0.29595827900912647
+      },
+      "cost_distinct_bound_states": {
+        "coarse": 1,
+        "infogain_refine": 2,
+        "proxy_strong": 2,
+        "refined_typed": 2
+      },
+      "d": 57,
+      "data_id": 44,
+      "fraction_of_gap_captured": {
+        "infogain_refine": 0.471885336273429,
+        "proxy_strong": 0.8754134509371556,
+        "refined_typed": 0.21389195148842344
+      },
+      "impure_coarse_fibres": [
+        12
+      ],
+      "in_sample_delta": 0.09478260869565219,
+      "in_sample_strict_decrease": true,
+      "n": 4601,
+      "name": "spambase",
+      "oracle_gap_from_coarse": 0.3941764450239026,
+      "oracle_utility": 0.6058235549760973,
+      "out_of_sample_delta": 0.08431116905693178,
+      "out_of_sample_strict_decrease": true,
+      "prediction_holds": true,
+      "predicts_strict_decrease": true,
+      "transfers_out_of_sample": true
+    },
+    {
+      "data_id": 1462,
+      "name": "banknote",
+      "skipped": "not binary or too few numeric features"
+    },
+    {
+      "data_id": 1464,
+      "name": "blood-transfusion",
+      "skipped": "not binary or too few numeric features"
+    },
+    {
+      "arms": {
+        "coarse": 0.4147727272727273,
+        "infogain_refine": 0.4602272727272727,
+        "proxy_strong": 0.5359848484848485,
+        "refined_typed": 0.4147727272727273
+      },
+      "cost_distinct_bound_states": {
+        "coarse": 9,
+        "infogain_refine": 27,
+        "proxy_strong": 2,
+        "refined_typed": 9
+      },
+      "d": 41,
+      "data_id": 1494,
+      "fraction_of_gap_captured": {
+        "infogain_refine": 0.1832061068702289,
+        "proxy_strong": 0.4885496183206108,
+        "refined_typed": 0.0
+      },
+      "impure_coarse_fibres": [],
+      "in_sample_delta": 0.0,
+      "in_sample_strict_decrease": false,
+      "n": 1055,
+      "name": "qsar-biodeg",
+      "oracle_gap_from_coarse": 0.24810606060606055,
+      "oracle_utility": 0.6628787878787878,
+      "out_of_sample_delta": 0.0,
+      "out_of_sample_strict_decrease": false,
+      "prediction_holds": true,
+      "predicts_strict_decrease": false,
+      "transfers_out_of_sample": false
+    },
+    {
+      "arms": {
+        "coarse": 0.47368421052631576,
+        "infogain_refine": 0.5403508771929825,
+        "proxy_strong": 0.5929824561403508,
+        "refined_typed": 0.43157894736842106
+      },
+      "cost_distinct_bound_states": {
+        "coarse": 9,
+        "infogain_refine": 20,
+        "proxy_strong": 2,
+        "refined_typed": 22
+      },
+      "d": 30,
+      "data_id": 1510,
+      "fraction_of_gap_captured": {
+        "infogain_refine": 0.43181818181818216,
+        "proxy_strong": 0.7727272727272727,
+        "refined_typed": -0.27272727272727254
+      },
+      "impure_coarse_fibres": [
+        1,
+        7,
+        10,
+        12
+      ],
+      "in_sample_delta": 0.010563380281690127,
+      "in_sample_strict_decrease": true,
+      "n": 569,
+      "name": "wdbc",
+      "oracle_gap_from_coarse": 0.15438596491228068,
+      "oracle_utility": 0.6280701754385964,
+      "out_of_sample_delta": -0.0421052631578947,
+      "out_of_sample_strict_decrease": false,
+      "prediction_holds": true,
+      "predicts_strict_decrease": true,
+      "transfers_out_of_sample": false
+    }
+  ],
+  "schema": "ORION08.REAL_TRANSFER_CC18.v1",
+  "scope": "E2 leg only. A pass supports real-domain transfer on OpenML-CC18 and says nothing about E3 Defects4J, which remains separate.",
+  "terminal": "THEOREM_PREDICTS_REAL_TRANSFER",
+  "utility_matrix": {
+    "a0_y0": 0.0,
+    "a0_y1": 0.0,
+    "a1_y0": -1.0,
+    "a1_y1": 1.0
+  },
+  "value_stratum": [
+    "credit-g",
+    "diabetes",
+    "spambase",
+    "wdbc"
+  ]
+}

@@ -1,0 +1,653 @@
+{
+  "allowed_statuses": [
+    "AVAILABLE_IN_BOUND_PACKAGE",
+    "BOUNDED_INTERPRETATION",
+    "COHERENT_DEFINITION",
+    "DISCLOSED_COMPLIANCE",
+    "DISCLOSED_LIMITATION",
+    "ESTABLISHED_ADVERSE_RESULT",
+    "ESTABLISHED_BOUNDED_SEARCH",
+    "ESTABLISHED_COMBINATORIAL",
+    "ESTABLISHED_EXACT_COMPARISON",
+    "ESTABLISHED_EXACT_ENUMERATION",
+    "ESTABLISHED_EXECUTABLE_CHECK",
+    "ESTABLISHED_FORMAL",
+    "ESTABLISHED_PACKAGE_BOUNDARY",
+    "NOT_APPLICABLE",
+    "QUALIFIED_EXTERNAL_SOURCE",
+    "VERIFIED_REFERENCE_METADATA"
+  ],
+  "canonical_manuscript": "manuscript/main.tex",
+  "claims": [
+    {
+      "artifacts": [
+        "HUMAN_PROOF_R6S_2026-08-22.md"
+      ],
+      "boundary": "Exact declared grammar/objective only.",
+      "claim": "Support-two normal forms hold for the shared-Tag Pauli compilation grammar.",
+      "id": "C001",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "title"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "No circuit-depth or hardware objective.",
+      "claim": "The grammar has six targets and three blocks under a logical support-count objective.",
+      "id": "C002",
+      "status": "COHERENT_DEFINITION",
+      "surface": "abstract"
+    },
+    {
+      "artifacts": [
+        "HUMAN_PROOF_R6S_2026-08-22.md",
+        "independent_human_proof_sanity.py"
+      ],
+      "boundary": "All qubit counts in declared grammar.",
+      "claim": "Every feasible solution can be transformed without cost increase to frame support at most two.",
+      "id": "C003",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "abstract"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json"
+      ],
+      "boundary": "Fixed target pairs; complete support-one family.",
+      "claim": "Support one is not uniformly sufficient: the explicit paired two-qubit instance has costs 5 and 6.",
+      "id": "C004",
+      "status": "ESTABLISHED_EXACT_ENUMERATION",
+      "surface": "abstract"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md"
+      ],
+      "boundary": "Upper bound only.",
+      "claim": "The direct exact algorithm has O(n^9) word-RAM time.",
+      "id": "C005",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "abstract"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md"
+      ],
+      "boundary": "Storage upper bound only.",
+      "claim": "The direct algorithm uses O(n^3) working memory.",
+      "id": "C006",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "abstract"
+    },
+    {
+      "artifacts": [
+        "independent_human_proof_sanity.py",
+        "INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json"
+      ],
+      "boundary": "Finite corroboration through the stated domains; not the all-size proof or external replication.",
+      "claim": "Standalone finite checks corroborate the two local proof lemmas and recompute the displayed sharpness instance.",
+      "id": "C007",
+      "status": "ESTABLISHED_EXECUTABLE_CHECK",
+      "surface": "abstract"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "Exact declared objective; no physical cost interpretation.",
+      "claim": "The normalized objective is the stated frame charge plus shared-operator charge and branchwise factor costs.",
+      "id": "C008",
+      "status": "COHERENT_DEFINITION",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "rounds/r12-production-benchmark/result/ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json"
+      ],
+      "boundary": "Descriptive implementation panel.",
+      "claim": "A pre-specified comparison had 108 completions and 12 timeouts among 120 attempts.",
+      "id": "C009",
+      "status": "ESTABLISHED_ADVERSE_RESULT",
+      "surface": "abstract"
+    },
+    {
+      "artifacts": [
+        "rounds/r12-production-benchmark/result/ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json"
+      ],
+      "boundary": "No performance value established.",
+      "claim": "The direct solver timed out on all six corresponding full-subject cells at 120 seconds.",
+      "id": "C010",
+      "status": "ESTABLISHED_ADVERSE_RESULT",
+      "surface": "abstract"
+    },
+    {
+      "artifacts": [
+        "rounds/r12-production-benchmark/result/RAW_ATTEMPTS.jsonl",
+        "submission/build_anonymous_review_artifact.py"
+      ],
+      "boundary": "Jointly completed correctness cells only; no finite-domain referee claim.",
+      "claim": "Both exact solvers returned equal costs on every jointly completed runtime cell.",
+      "id": "C011",
+      "status": "ESTABLISHED_ADVERSE_RESULT",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "manuscript/main.tex"
+      ],
+      "boundary": "Negative authority boundary.",
+      "claim": "No faster-compilation, hardware, fault-tolerant-resource or general block-encoding claim is made.",
+      "id": "C012",
+      "status": "DISCLOSED_LIMITATION",
+      "surface": "abstract"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "Logical structural coordinate only.",
+      "claim": "The objective counts auxiliary and factored-correction support with fixed coefficients.",
+      "id": "C013",
+      "status": "COHERENT_DEFINITION",
+      "surface": "introduction"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "Standard Pauli representation.",
+      "claim": "Phase-ignored Pauli letters use the binary symplectic product for commutation.",
+      "id": "C014",
+      "status": "COHERENT_DEFINITION",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "Binary syndrome and declared grammar only.",
+      "claim": "Each block uses a nonidentity ordered anticommuting frame pair and the shared operator supplies one common syndrome in {(1,0),(0,1)}.",
+      "id": "C015",
+      "status": "COHERENT_DEFINITION",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex",
+        "HUMAN_PROOF_R6S_2026-08-22.md"
+      ],
+      "boundary": "Exact declared objective.",
+      "claim": "The local factor cost is ordinary support minus a two-unit identical-nonidentity discount.",
+      "id": "C016",
+      "status": "COHERENT_DEFINITION",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "HUMAN_PROOF_R6S_2026-08-22.md"
+      ],
+      "boundary": "Fixed multipliers.",
+      "claim": "Removing a central/noncentral frame coordinate refunds two/four units.",
+      "id": "C017",
+      "status": "COHERENT_DEFINITION",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "No omitted feasibility condition.",
+      "claim": "The support-k family changes only the six frame-support caps and retains all other feasibility choices.",
+      "id": "C018",
+      "status": "COHERENT_DEFINITION",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "HUMAN_PROOF_R6S_2026-08-22.md"
+      ],
+      "boundary": "All 192 local cases also checked.",
+      "claim": "Changing pf to p increases one factor cost by at most two.",
+      "id": "C019",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "HUMAN_PROOF_R6S_2026-08-22.md"
+      ],
+      "boundary": "Uses odd anticommutation parity.",
+      "claim": "At frame support at least three, a nonempty proper zero-sum class subset of size at most two exists.",
+      "id": "C020",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "HUMAN_PROOF_R6S_2026-08-22.md"
+      ],
+      "boundary": "Same shared operator stays feasible.",
+      "claim": "The zero-sum subset exchange preserves anticommutation and shared-label syndrome.",
+      "id": "C021",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "HUMAN_PROOF_R6S_2026-08-22.md"
+      ],
+      "boundary": "Termination is well-founded.",
+      "claim": "The exchange never increases cost and strictly reduces total frame support.",
+      "id": "C022",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "HUMAN_PROOF_R6S_2026-08-22.md"
+      ],
+      "boundary": "Declared paired-target grammar/objective.",
+      "claim": "Unrestricted and support-two optima are equal for every admitted instance and qubit count.",
+      "id": "C023",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json"
+      ],
+      "boundary": "Corrected dense decoding verified in closeout.",
+      "claim": "The displayed targets are (XI,XI), (XI,XI), (IX,IY), with qubit 0 written first.",
+      "id": "C024",
+      "status": "ESTABLISHED_EXACT_ENUMERATION",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json"
+      ],
+      "boundary": "Recomputed total 5 and all witness checks pass.",
+      "claim": "The displayed support-two witness uses (YI,XI), (YI,XI), (ZX,IY), S=XI, central choices 0,0,0 and orientation 1,0.",
+      "id": "C025",
+      "status": "ESTABLISHED_EXACT_ENUMERATION",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "orion05_r11_sparse_direct_solver.py"
+      ],
+      "boundary": "Six one-coordinate Paulis, two anticommuting partners each.",
+      "claim": "There are 12 ordered anticommuting support-one pairs on two qubits per block.",
+      "id": "C026",
+      "status": "ESTABLISHED_COMBINATORIAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json"
+      ],
+      "boundary": "Complete for the fixed paired instance.",
+      "claim": "The complete support-one search over stated constant families has minimum 6.",
+      "id": "C027",
+      "status": "ESTABLISHED_EXACT_ENUMERATION",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md"
+      ],
+      "boundary": "Phase ignored.",
+      "claim": "There are 3n+9 choose(n,2) nonidentity support-one-or-two Paulis.",
+      "id": "C028",
+      "status": "ESTABLISHED_COMBINATORIAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md"
+      ],
+      "boundary": "Direct case count.",
+      "claim": "A weight-one first frame has 6n-4 anticommuting support-two partners.",
+      "id": "C029",
+      "status": "ESTABLISHED_COMBINATORIAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md"
+      ],
+      "boundary": "Three disjoint overlap cases.",
+      "claim": "A weight-two first frame has 12n-16 such partners.",
+      "id": "C030",
+      "status": "ESTABLISHED_COMBINATORIAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md",
+        "ORION05_R11_SPARSE_EQUIVALENCE_RESULTS.json"
+      ],
+      "boundary": "Formula checked through n=6.",
+      "claim": "The ordered-pair count is 54n^3-108n^2+60n.",
+      "id": "C031",
+      "status": "ESTABLISHED_COMBINATORIAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md"
+      ],
+      "boundary": "Each pair union is at most three.",
+      "claim": "Three anticommuting support-two frame pairs use at most nine active coordinates.",
+      "id": "C032",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md"
+      ],
+      "boundary": "Outside letters change no constraint and add cost.",
+      "claim": "A minimum shared operator has no support outside the active union.",
+      "id": "C033",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md"
+      ],
+      "boundary": "Constant work in n for fixed frame triple.",
+      "claim": "The shared operator can be minimized by a 64-syndrome dynamic program on at most nine coordinates.",
+      "id": "C034",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "independent_human_proof_sanity.py",
+        "submission/build_anonymous_review_artifact.py"
+      ],
+      "boundary": "Not proof of the all-size theorem or external replication.",
+      "claim": "Finite checks corroborate the two local lemmas and displayed sharpness instance only.",
+      "id": "C035",
+      "status": "ESTABLISHED_EXECUTABLE_CHECK",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/03-results.tex"
+      ],
+      "boundary": "Direct consequence of theorem plus adverse panel.",
+      "claim": "The theorem separates representational sufficiency from implementation performance.",
+      "id": "C036",
+      "status": "BOUNDED_INTERPRETATION",
+      "surface": "discussion"
+    },
+    {
+      "artifacts": [
+        "INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json"
+      ],
+      "boundary": "No claim that all possible proofs share the boundary.",
+      "claim": "The weight-two obstruction is the boundary of this exchange proof.",
+      "id": "C037",
+      "status": "BOUNDED_INTERPRETATION",
+      "surface": "discussion"
+    },
+    {
+      "artifacts": [
+        "TARE_FULLTEXT_DONOR_BOUNDARY_V3.md",
+        "manuscript/bibliography.bib"
+      ],
+      "boundary": "Source anchors: Section 4, Theorems 1-2 and Remarks 1-2; donor numerical comparison separately fixed a canonical frame family.",
+      "claim": "Version 4 of the Tag-and-Restore donor owns the primitive, selectable frames and controls, and nonunique optimizable label solutions.",
+      "id": "C038",
+      "status": "QUALIFIED_EXTERNAL_SOURCE",
+      "surface": "related work"
+    },
+    {
+      "artifacts": [
+        "editorial/LITERATURE_ENTAILMENT_AND_NOVELTY_AUDIT_2026-08-28.md"
+      ],
+      "boundary": "Structured subtraction only; no absence or priority inference.",
+      "claim": "Support-two components, parity sharing, anticommuting partitioning, Pauli compilers, two-qubit universality, stabilizer normal forms and Hamiltonian weight reduction are prior art with different scientific objects.",
+      "id": "C039",
+      "status": "QUALIFIED_EXTERNAL_SOURCE",
+      "surface": "related work"
+    },
+    {
+      "artifacts": [
+        "evidence/convergence-v1/Q1_C_CURRENT_LITERATURE_SUBTRACTION_R9.json",
+        "evidence/convergence-v1/Q1_C_LITERATURE_SUBTRACTION_RERUN_20260828.json"
+      ],
+      "boundary": "Not evidence of absence or priority.",
+      "claim": "No exact equivalent of the full grammar-specific theorem was located in the bounded search.",
+      "id": "C040",
+      "status": "ESTABLISHED_BOUNDED_SEARCH",
+      "surface": "related work"
+    },
+    {
+      "artifacts": [
+        "editorial/LITERATURE_ENTAILMENT_AND_NOVELTY_AUDIT_2026-08-28.md"
+      ],
+      "boundary": "External novelty authority absent.",
+      "claim": "Novelty remains for independent expert review.",
+      "id": "C041",
+      "status": "DISCLOSED_LIMITATION",
+      "surface": "related work"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/06-limitations.tex"
+      ],
+      "boundary": "No generalization claimed.",
+      "claim": "Changing block count, label rank, objective, routing or factor rule requires new proof.",
+      "id": "C042",
+      "status": "DISCLOSED_LIMITATION",
+      "surface": "limitations"
+    },
+    {
+      "artifacts": [
+        "ORION05_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM.md"
+      ],
+      "boundary": "Same-owner/shared-primitives boundary visible.",
+      "claim": "The finite verifier is not externally independent for every witness identity.",
+      "id": "C043",
+      "status": "DISCLOSED_LIMITATION",
+      "surface": "limitations"
+    },
+    {
+      "artifacts": [
+        "rounds/r12-production-benchmark/result/ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json"
+      ],
+      "boundary": "Preserved null.",
+      "claim": "No runtime, memory, energy, logical-depth, fault-tolerant or hardware improvement is established.",
+      "id": "C044",
+      "status": "ESTABLISHED_ADVERSE_RESULT",
+      "surface": "limitations"
+    },
+    {
+      "artifacts": [
+        "submission/build_anonymous_review_artifact.py"
+      ],
+      "boundary": "No author identity, project transport, internal codes, hashes or original unrestricted measurement stack.",
+      "claim": "The anonymous archive provides manuscript source, local-lemma checker, direct solver, sharpness enumeration, sanitized runtime specification, 120 rows, environment record and deterministic aggregator.",
+      "id": "C045",
+      "status": "AVAILABLE_IN_BOUND_PACKAGE",
+      "surface": "availability"
+    },
+    {
+      "artifacts": [
+        "journal_package/README.md"
+      ],
+      "boundary": "Archive is sufficient for stated checks.",
+      "claim": "No protected data are required for any manuscript claim.",
+      "id": "C046",
+      "status": "ESTABLISHED_PACKAGE_BOUNDARY",
+      "surface": "availability"
+    },
+    {
+      "artifacts": [
+        "rounds/r12-production-benchmark/result/RAW_ATTEMPTS.jsonl"
+      ],
+      "boundary": "One censored attempt per timed-out cell at 120 seconds.",
+      "claim": "All twelve timeout rows are retained: six at the three-qubit scale and six at full-subject scale.",
+      "id": "C047",
+      "status": "ESTABLISHED_ADVERSE_RESULT",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/09-ethics-safety-resources.tex"
+      ],
+      "boundary": "Formal/computational study.",
+      "claim": "The work uses no human participants, animals, clinical data or personal data.",
+      "id": "C048",
+      "status": "NOT_APPLICABLE",
+      "surface": "ethics"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/09-ethics-safety-resources.tex"
+      ],
+      "boundary": "Matches observed Quantum instruction.",
+      "claim": "Large-language-model assistance is disclosed and the author retains responsibility.",
+      "id": "C049",
+      "status": "DISCLOSED_COMPLIANCE",
+      "surface": "ethics"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/09-ethics-safety-resources.tex"
+      ],
+      "boundary": "No comparative resource claim.",
+      "claim": "Ordinary CPU resources were used; no life-cycle estimate is supported.",
+      "id": "C050",
+      "status": "DISCLOSED_LIMITATION",
+      "surface": "resources"
+    },
+    {
+      "artifacts": [
+        "manuscript/bibliography.bib"
+      ],
+      "boundary": "Current bounded source set.",
+      "claim": "All cited sources have resolvable bibliographic identities and compiled citations.",
+      "id": "C051",
+      "status": "VERIFIED_REFERENCE_METADATA",
+      "surface": "references"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/07-conclusion.tex"
+      ],
+      "boundary": "No wider authority.",
+      "claim": "The durable result is an objective-scoped normal form plus negative performance outcome.",
+      "id": "C052",
+      "status": "BOUNDED_INTERPRETATION",
+      "surface": "conclusion"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "Absolute costs 5 and 6 use this convention.",
+      "claim": "The frame-charge normalization subtracts the fixed raw baseline 18 and therefore preserves every optimizer.",
+      "id": "C053",
+      "status": "COHERENT_DEFINITION",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "The shared syndrome orientation and central labels are relabelled together.",
+      "claim": "A simultaneous global branch swap reduces eight target-order assignments to four relative orders.",
+      "id": "C054",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "Other objective terms are central-choice independent.",
+      "claim": "For fixed frames, assigning multiplier 2 to the heavier member independently minimizes each block frame charge.",
+      "id": "C055",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/02-methods.tex"
+      ],
+      "boundary": "Feasibility syndrome held fixed.",
+      "claim": "A minimum-weight compatible shared operator suffices because only its support charge depends on its identity.",
+      "id": "C056",
+      "status": "ESTABLISHED_FORMAL",
+      "surface": "methods"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/03-results.tex"
+      ],
+      "boundary": "Fixed target count; n is qubit count.",
+      "claim": "Six explicit n-qubit targets have Theta(n) Pauli-letter input representation.",
+      "id": "C057",
+      "status": "COHERENT_DEFINITION",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "manuscript/sections/03-results.tex"
+      ],
+      "boundary": "No comparator upper bound, lower bound or exponent optimality.",
+      "claim": "The O(n^9) result is a constructive polynomial exact-solvability bound and establishes no same-problem asymptotic improvement.",
+      "id": "C058",
+      "status": "DISCLOSED_LIMITATION",
+      "surface": "results"
+    },
+    {
+      "artifacts": [
+        "submission/build_anonymous_review_artifact.py"
+      ],
+      "boundary": "Audit of retained rows, not a new timing run.",
+      "claim": "The sanitized runtime rows deterministically regenerate 108 completions, 12 timeouts, null support-two full medians and a false positive-performance decision.",
+      "id": "C059",
+      "status": "ESTABLISHED_EXECUTABLE_CHECK",
+      "surface": "availability"
+    },
+    {
+      "artifacts": [
+        "submission/build_anonymous_review_artifact.py"
+      ],
+      "boundary": "Unsanitized source binding remains private audit evidence.",
+      "claim": "The anonymous archive omits the original unrestricted measurement stack and states that limitation.",
+      "id": "C060",
+      "status": "ESTABLISHED_PACKAGE_BOUNDARY",
+      "surface": "availability"
+    },
+    {
+      "artifacts": [
+        "evidence/convergence-v1/Q1_C_LITERATURE_SUBTRACTION_RERUN_20260828.json"
+      ],
+      "boundary": "No absence, priority or novelty inference.",
+      "claim": "The bounded literature search was refreshed through 28 August 2026 using stated donor, support-normal-form and compiler query families.",
+      "id": "C061",
+      "status": "ESTABLISHED_BOUNDED_SEARCH",
+      "surface": "related work"
+    }
+  ],
+  "date": "2026-08-28",
+  "forbidden_release_statuses_remaining": [],
+  "schema": "orion05.atomic-claim-ledger.wave1.v1",
+  "summary": {
+    "blocked": 0,
+    "claims": 61,
+    "contradicted": 0,
+    "hidden_not_assessable": 0,
+    "supported_internal_only": 0,
+    "unresolved": 0
+  },
+  "terminal": "scientifically_sound_but_target_mismatch"
+}

@@ -1,0 +1,115 @@
+{
+  "schema_version": "ORION.TOP_TIER_ATOMIC_GAP_LEDGER.V2",
+  "subject_main_sha": "87e2bcb330d243b7062ddba1ca26e426632edeab",
+  "scientific_authority_delta": "NONE",
+  "paper_range": [
+    "ORION-04",
+    "ORION-04"
+  ],
+  "papers": [
+    {
+      "paper_id": "ORION-04",
+      "slug": "rooted-completion-certificates",
+      "title": "Rooted Completion Certificates",
+      "publication_disposition": "CANNOT_CHECK_EXTERNAL_AUTHORITY__BOUNDED_RETAINED",
+      "route_class": "AUTHORIZED_PROOF_HANDOFF",
+      "evidence_mode": "THEORY",
+      "protocol_state": "AUTHORIZATION_BLOCKED",
+      "scientific_authority_delta": "NONE",
+      "current_ceiling": "The bounded rooted-completion results are retained; exact D4(C5^3)=30 is a proof target, not yet an authorized journal claim.",
+      "post_matrix_updates": [
+        "The proof-producing D4 search design is now on main, but execution/claim authority remains separate from design completeness."
+      ],
+      "pending_prs": [],
+      "load_bearing_adverse": [
+        "The prior CRB replay failed census receipt serialization and left D2/D3 authority CANNOT_CHECK.",
+        "SUBMISSION_BLOCKER records live_authorization ABSENT and d4_rounds_consumed 0.",
+        "A user-supplied attestation is not machine-established external or journal authority."
+      ],
+      "strongest_remaining_gap": "The exact D4(C5^3)=30 handoff needs an authorized one-shot execution, two genuinely independent encodings and a compact proof decomposition that a referee can replay without trusting the search implementation.",
+      "decisive_question": "Under a valid one-shot authorization, do independent exact encodings both certify D4(C5^3)=30 and emit checkable lower- and upper-bound proof objects?",
+      "maximum_claim_if_supported": "An exact, proof-producing determination of D4(C5^3)=30 with independently replayable certificates and a human-readable structural decomposition.",
+      "hypothesis_or_theorem": "Prove an explicit construction of size 30 and an independently checkable impossibility certificate for size 31, with agreement between non-isomorphic search encodings.",
+      "population_or_universe": "The full finite C5^3 completion universe under the frozen rooted-certificate definitions.",
+      "unit_of_analysis": "A candidate family for the upper bound or a proof node/certificate clause for the lower bound.",
+      "external_sources": [],
+      "historical_only_inputs": [
+        "All prior D2/D3/CRB replay outputs"
+      ],
+      "design": [
+        "Keep design, authorization, execution and publication authority in separate records.",
+        "Use encoding A for candidate generation and encoding B for independent certificate replay.",
+        "Emit proof objects for both the size-30 construction and size-31 impossibility.",
+        "Write a decomposition lemma explaining the obstruction classes rather than presenting only a solver terminal.",
+        "Run hostile mutations of the construction, group action and certificate clauses."
+      ],
+      "baselines": [
+        "Existing non-proof-producing CRB search.",
+        "A second exact encoding with different symmetry breaking and data structures.",
+        "Direct brute-force checks on all smaller boundary cases."
+      ],
+      "primary_endpoints": [
+        "Construction validity at size 30.",
+        "Unsatisfiability/proof validity at size 31.",
+        "Cross-encoding agreement.",
+        "Proof size, replay time and symmetry-reduction audit."
+      ],
+      "negative_controls": [
+        "Delete one certificate element from the size-30 construction.",
+        "Perturb a group action or orbit representative.",
+        "Drop one lower-bound clause and require the checker to reject the certificate.",
+        "Replay with authorization absent, which must not emit a scientific terminal."
+      ],
+      "analysis_plan": [
+        "Exact decision only; no stochastic inference.",
+        "Record every solver/version/resource bound and timeout terminal.",
+        "Novelty subtraction covers Davenport/completion-number literature and any prior C5^3 computation."
+      ],
+      "power_or_exhaustion_rule": "Exhaust the frozen finite universe or validate a complete unsatisfiability certificate; timeout is CANNOT_CHECK, never evidence for the lower bound.",
+      "success_gate": "Both independent encodings agree, proof objects replay in a small trusted checker, the construction and lower-bound decomposition survive hostile mutation, and valid authorization binds the exact run.",
+      "refutation_gate": "A size-31 witness or invalid size-30 construction refutes the theorem; encoding disagreement blocks promotion and becomes a diagnostic result.",
+      "cannot_check_gate": "CANNOT_CHECK if one-shot authorization is absent/ambiguous, a proof object is missing, a solver times out or the two encodings disagree.",
+      "authority_required": "Valid operator authorization for the one-shot run, a deterministic proof checker independent of both encodings and independent primary-source theorem review.",
+      "resource_accounting": [
+        "CPU/core-hours",
+        "memory",
+        "solver calls",
+        "symmetry orbits",
+        "proof bytes",
+        "replay time"
+      ],
+      "freeze_before_outcome": [
+        "Authorization record",
+        "problem definition",
+        "encoding hashes",
+        "symmetry rules",
+        "resource cap",
+        "terminal order",
+        "proof-checker version"
+      ],
+      "active_lane": {
+        "status": "BLOCKED_ON_AUTHORIZATION",
+        "reference": "#1701 / #1729; existing D4 handoff",
+        "collision_rule": "Do not spend the one-shot or fork a competing encoding until the authority record is machine-verifiable."
+      },
+      "immediate_safe_actions": [
+        "Complete the proof-decomposition outline and checker interface without accessing outcomes.",
+        "Audit the one-shot authorization schema for machine-verifiable presence and scope.",
+        "Run lower-dimensional controls that do not consume D4 authority."
+      ],
+      "forbidden_actions": [
+        "Do not infer D4 from a timeout or solver log.",
+        "Do not self-certify external/journal authority.",
+        "Do not rerun consumed D2/D3 identities as a rescue."
+      ],
+      "next_artifact": "papers/orion-04-rooted-completion-certificates/evidence/d4-proof-handoff-v1/AUTHORIZED_EXECUTION_GATE.md",
+      "journal_bar": "A top-tier exact-computation paper needs proof objects, independent encodings, structural explanation, authorization custody and primary-source novelty closure.",
+      "sibling_boundary": "Owns the exact rooted-completion theorem; generic certificate realization belongs to ORION-01.",
+      "lead_roles": [
+        "X1",
+        "X4",
+        "X5"
+      ]
+    }
+  ]
+}

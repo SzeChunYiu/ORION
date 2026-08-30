@@ -1,0 +1,60 @@
+{
+  "schema": "ORION.ORION13.MinimalSemanticSeparator.Protocol.v1",
+  "paper_id": "ORION-13",
+  "successor_id": "ORION13.MINIMAL_SEMANTIC_SEPARATOR.v1",
+  "status": "THEORY_PROVED__COMPUTED_ON_FROZEN_GOLD",
+  "lane_type": "THEORY_PLUS_FROZEN_DATA_ANALYSIS",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+
+  "freeze_discipline": {
+    "applicability": "REAL",
+    "why": "Unlike the purely deductive lanes, this one has a genuine held-out set, so the usual discipline applies and is honoured.",
+    "derivation_set": "public-reference-v1",
+    "challenge_set": "public-reference-v1.1-confirmatory",
+    "challenge_set_disjoint": true,
+    "shared_case_ids": 0,
+    "rule_followed": "All 2^7 subsets were enumerated on the derivation set ONLY. The reduct was fixed before the challenge set was evaluated. The challenge set was not used to select, rank or filter any subset.",
+    "post_outcome_changes_forbidden": [
+      "re-selecting the reduct after seeing challenge-set collisions",
+      "dropping a coordinate from the encoding after seeing the reduct",
+      "reclassifying a gold verdict"
+    ],
+    "frozen_paper_bytes_modified": "NONE",
+    "encoding_choice_disclosure": "The agreement-bit encoding ([L_j == R_j]) was fixed before any subset was evaluated, on the grounds that a merge rule reads coordinate agreement rather than coordinate values. No alternative encoding was tried and discarded."
+  },
+
+  "claims_under_test": [
+    "Theorem: merge-sufficiency of S holds iff S hits every opposite-verdict discernibility set.",
+    "Computed: k* = 1 on the derivation set with unique reduct {polarity}.",
+    "Computed: {polarity} remains sufficient on the disjoint challenge set.",
+    "Computed: the gold verdict is perfectly confounded with polarity agreement in BOTH sets.",
+    "Reproduced: flat predicate canonicalization false-merges 6/32 = 0.1875 on the confirmatory set."
+  ],
+
+  "independent_checker_requirements": {
+    "independence_rule": "Coordinates are read from the case records themselves; no mapping-rule implementation is imported. Sufficiency is decided from its definition by pattern collision.",
+    "exhaustiveness": "all 2^7 subsets enumerated; no search heuristic",
+    "held_out_rule": "every reduct must be re-evaluated on the challenge set and its collisions reported",
+    "null": "permutation null on the derivation set for a separator of the observed size",
+    "cannot_check_rule": "exit code 3, status CANNOT_CHECK, never reported as a pass"
+  },
+
+  "what_a_favourable_outcome_would_and_would_not_license": {
+    "would_license": [
+      "stating exactly why full coordinate necessity remains undetermined on this evidence",
+      "naming polarity as the coordinate carrying the measured advantage over flat canonicalization on this corpus",
+      "specifying the corpus extension a future necessity study requires"
+    ],
+    "would_not_license": [
+      "claiming the other six coordinates are unnecessary in general - the gold does not test them",
+      "claiming any coordinate IS necessary",
+      "weakening the scoped C5/C9 mapping claim, the zero-false-merge result or the 0.1875 comparison",
+      "any raw-text, expert-atlas, recoverability or downstream claim",
+      "novelty over donor rough-set / discernibility theory"
+    ]
+  },
+
+  "stop_rule": "Complete. The lane generates no experiment. The corpus extension described in THEORY.md section 5 is optional successor science and is NOT a submission blocker for ORION-13."
+}

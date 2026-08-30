@@ -1,0 +1,44 @@
+{
+ "schema": "ORION.ORION25.CrossSiteReplay.Protocol.v1",
+ "protocol_identity": "ORION25.CROSS_SITE_REPLAY.v1",
+ "status": "FROZEN_BEFORE_ANY_REPLAY_OUTPUT",
+ "purpose": "Discharge WAVE2_DISPOSITION's open 'CROSS_SITE_REPLAY_IF_AVAILABLE' for ORION-25: replay the frozen chained-attestation V2 generator and the trust-domain-law sweep on a second site and compare scientific endpoints by parsed-object equality through one code path.",
+ "custody_boundary": "The second site (billy-old) is under the SAME programme custody. A green replay is portability evidence only: it is NOT independent replication, does NOT create a second custodian, and does NOT lift the trust-domain-law promotion block. scientific_authority_delta: NONE.",
+ "replay_targets": {
+  "attestation_v2": {
+   "generator": "top_tier/run_attestation_composition_v2.py",
+   "generator_sha256": "000811c96a1204d3a2e8ffb35ca1accc8a02627135b62175683d22d36691a701",
+   "reference": "experiments/cross-site-replay-v1/reference_p15_attestation_composition_v2.json",
+   "reference_sha256": "99b905fbf383933d011460a4554682a2cf1279f2b06bc830bdfa6e643fd6f767",
+   "reference_provenance": "CI artifact 9500055966 of run 32665597624, member sha equal to the bound value in P15_ATTESTATION_COMPOSITION_RESULT_RECEIPT_V2_RUN2.md",
+   "projection": "delete observed_environment and receipt_sha256; compare remaining receipt as parsed objects",
+   "reference_environment": {"python_version": "3.12.14", "cryptography_version": "46.0.3", "machine": "x86_64"},
+   "informational_projection_sha256_jq_S_c": "f8d6312285a91e82e39c1107d8618d263c9b01cb8d447f5762699e08a82e0566"
+  },
+  "trust_domain_law": {
+   "generator": "experiments/trust-domain-law-v1/sweep_trust_domain_law.py",
+   "generator_sha256": "6803e76eab02d1238493e8b218aa09b94ba51e5c72453f068b51f2109457d1e6",
+   "reference": "experiments/trust-domain-law-v1/RESULT_V1.json",
+   "reference_canonical_sha256_jq_S_c": "c1071886a9d2b3d1566ab418edef0072d58ba7c569c5a513a825f8a313dc7f58",
+   "projection": "whole object equality (result carries no environment fields)"
+  }
+ },
+ "input_bindings": {
+  "top_tier/p15_real_workflow_receipts_v1.json": "87812194ad77f3cb2be19cd9dbeacb43b662bc35eb6df3b700f4521620f6d200",
+  "top_tier/sei_fault_cases_v1.jsonl": "a9a29f9e457e0be3b42acf806c3fdeb3d83ef252c3a66e81316a42a12245af2c",
+  "top_tier/sei_fault_gold_v1.json": "142d14d089afbad0f49fd4243b5dda252c96017456d392d9c7a3e63e2e5fd45a",
+  "top_tier/P15_ATTESTATION_COMPOSITION_PROTOCOL_V2.md": "fe04e31e9883549c64ce0e6bd578d201a8e9a2d726b87fdfed9bcf90dbaa5505"
+ },
+ "planted_control": "one byte flipped in a COPY of the workload receipts must change the attestation endpoint (or fail the runner) through the SAME projection-comparison path; if it does not fire, the run terminal is CANNOT_CHECK__CONTROL_FAILURE and nothing observed is evidence",
+ "expected_terminals": ["T1_CROSS_SITE_ENDPOINTS_IDENTICAL", "T2_ENDPOINT_DIVERGENCE", "CANNOT_CHECK__CONTROL_FAILURE", "CANNOT_CHECK__BINDING_DRIFT"],
+ "terminal_semantics": {
+  "T1_CROSS_SITE_ENDPOINTS_IDENTICAL": "both endpoint objects reproduce exactly on the second site across a different OS/python/cryptography stack; portability established, custody boundary unchanged",
+  "T2_ENDPOINT_DIVERGENCE": "at least one endpoint differs; the diverging keys are preserved verbatim and the affected result is flagged for root-cause before any further use",
+  "CANNOT_CHECK__CONTROL_FAILURE": "the planted violation did not fire; nothing observed is evidence",
+  "CANNOT_CHECK__BINDING_DRIFT": "an input no longer matches its frozen hash; the replay never ran"
+ },
+ "execution_plan": {"host": "billy-old", "outputs": "experiments/cross-site-replay-v1/RESULT_V1.json committed strictly after this design commit"},
+ "outcome_accessed": false,
+ "scientific_authority_delta": "NONE",
+ "frozen_utc": "2026-08-28T20:05:00Z"
+}

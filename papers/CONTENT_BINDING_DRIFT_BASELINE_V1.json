@@ -3,6 +3,31 @@
   "purpose": "Debt record, not approval. Each entry is a paper whose SHA256SUMS no longer describes its own files. Recorded so that CI can fail on NEW drift without first turning red on drift that predates the check.",
   "how_this_was_found": "content_binding_coverage exits 1 on the live tree, but every test of it used synthetic fixtures, so nothing ran it against the repository. The digest gate was reporting a failure no CI job read.",
   "not_to_be_regenerated": "Refreshing a manifest to match drifted content while retaining current-package authority deletes the evidence that content moved. Entries leave only after a real rebuild or an explicit SUPERSEDED reconciliation that retains the historical render closure and denies current submission authority; never by an unqualified hash-only rewrite.",
-  "papers": {},
-  "total_papers_drifted": 0
+  "papers": {
+    "papers/orion-12-open-world-scientific-discovery": {
+      "drifted": 0,
+      "note": "Not digest drift and not closable by re-pinning. journal_package/current_revision is a journal submission bundle - cover letter, anonymous review archive, source zips, SUBMISSION_MANIFEST.json - and that manifest declares manuscript.pdf as an artifact. The file is absent, and the digest recorded for it does not match the parent package's manuscript.pdf, so it names an earlier render that is not on main at any path. This is a SUBMISSION-READINESS defect, not bookkeeping: the bundle a journal would receive is missing the manuscript it declares. Closing it means rebuilding the bundle, which is the package owner's action; copying the parent PDF in would substitute different bytes for the ones the manifest names.",
+      "kind": "SUBMISSION_BUNDLE_INCOMPLETE"
+    },
+    "papers/orion-13-global-knowledge-portrait": {
+      "drifted": 0,
+      "note": "Same shape at journal_package/wave1_current, whose SUBMISSION_MANIFEST.json declares manuscript.pdf twice and does not ship it. Zero bytes have drifted; the package is incomplete rather than altered. Closing it means rebuilding the submission bundle.",
+      "kind": "SUBMISSION_BUNDLE_INCOMPLETE"
+    }
+  },
+  "total_papers_drifted": 2,
+  "recorded": "2026-08-29",
+  "why_this_was_empty": "The ratchet shipped with an empty papers map while the tree carried drift, so every drifted paper read as new and the test could never pass. Populating it with the drift that predates the check is what the record is for; no digest was regenerated and no drifted byte was touched.",
+  "reconciled": {
+    "papers/orion-11-recursive-epistemic-reconstruction": {
+      "date": "2026-08-29",
+      "was": 1,
+      "how": "experiments/r4-faithful-comparator-v1/SHA256SUMS recorded the digest the script had before d3e2e8f39, which added 115 lines to parameterise the R4 anchor gate and touched no SHA256SUMS. The digest was re-pinned to the bytes that commit produced; all 8 entries in that directory now match. No file content was changed to fit a digest."
+    },
+    "papers/orion-20-structured-problem-solving": {
+      "date": "2026-08-29",
+      "was": 6,
+      "how": "All six drifted files were staled by one commit, ed7ebb4e1 '[ORION-20][Wave 2] Return manuscript to bounded formal lane (#1675)', which changed the manuscript deliberately and updated no SHA256SUMS; for the five source files the recorded digest matches their bytes at that commit's parent, which is the proof. manuscript/main.pdf was staled by the same commit and then rebuilt again by #1728 to the pinned CI bytes, which the manuscript-clipping audit independently verifies byte-for-byte. Digests re-pinned to the current bytes; no file content was changed to fit a digest. All 50 entries now match."
+    }
+  }
 }

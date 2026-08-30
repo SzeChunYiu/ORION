@@ -1,0 +1,95 @@
+{
+  "schema": "ORION.ORION14.PromotionReduct.CheckerReport.v1",
+  "successor_id": "ORION14.MINIMAL_PROMOTION_REDUCT.v1",
+  "independence": "no ORION-14 module imported; bench read as data; reduct recomputed",
+  "scope_gate_400_case_table": {
+    "requested_by_1617": "minimal promotion reduct over the frozen 400 cases",
+    "search_scope": "WHOLE REPOSITORY, excluding .git",
+    "search_by_size_jsonl_350_to_450_rows": [
+      "385 papers/orion-12-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/gold.jsonl",
+      "385 papers/orion-12-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/public.jsonl",
+      "385 papers/orion-12-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/out/trace_sage_single_backend.jsonl",
+      "385 papers/orion-12-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/out/trace_sage_governed_multiroute.jsonl",
+      "385 papers/orion-12-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/out/candidates_sage_governed_multiroute.jsonl",
+      "385 papers/orion-12-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/out/candidates_sage_single_backend.jsonl",
+      "379 papers/orion-12-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/out_backup_1786952833/trace_sage_single_backend.jsonl",
+      "385 papers/orion-12-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/out_backup_1786952833/trace_sage_governed_multiroute.jsonl",
+      "385 papers/orion-12-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/out_backup_1786952833/candidates_sage_governed_multiroute.jsonl",
+      "385 papers/orion-12-open-world-scientific-discovery/evidence/offline_results/SAGE_SHORTFORM_EXTERNAL_V1/out_backup_1786952833/candidates_sage_single_backend.jsonl",
+      "432 papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CORPUS_V1.jsonl"
+    ],
+    "search_by_content_naming_the_promotion_relation": [
+      "research/orion-epistemic-state-v1/results/DES-CENSUS-01/RAW_MANIFEST_V1.json"
+    ],
+    "four_hundred_case_promotion_table_committed": false,
+    "note": "size hits are ORION-12 SAGE corpora (385 rows) unrelated to the promotion contract; content hits carry no 350-450 row table",
+    "consequence": "Upgrade A cannot be executed as specified; the reduct below is computed on the committed 10-case bench and is NOT the 400-case study"
+  },
+  "corpus_actually_analysed": {
+    "path": "papers/orion-14-verified-scientific-discovery/method_authority_extension/METHOD_AUTHORITY_BENCH_V1.json",
+    "cases": 10,
+    "promotable": 3,
+    "features": 17
+  },
+  "check_A_ternary_encoding_is_load_bearing": {
+    "k_star_ternary": 3,
+    "binary_encoding_admits_NO_sufficient_set": true,
+    "k_star_binary_or_null_if_none_exists": null,
+    "binary_collision_pair": [
+      "closed_world_new_method",
+      "novelty_unknown"
+    ],
+    "read_this_as": "the absence of a binary k* is the FINDING, not a failure to compute; the ternary encoding yields k* = 3 while the binary one yields none",
+    "reading": "prior_art_found: null means the novelty search could not run; false means it ran and found nothing. Binarising merges them and no sufficient feature set survives at all."
+  },
+  "check_B_reduct": {
+    "k_star": 3,
+    "reducts": [
+      [
+        "claims_new_primitive",
+        "known_composition",
+        "prior_art_found"
+      ],
+      [
+        "known_composition",
+        "prior_art_found",
+        "req:NOVELTY"
+      ]
+    ],
+    "core_in_every_reduct": [
+      "known_composition",
+      "prior_art_found"
+    ],
+    "never_in_any_reduct": [
+      "assumptions_dropped",
+      "assumptions_preserved",
+      "evaluator_independent",
+      "generator_accessed_evaluator",
+      "novelty_search_available",
+      "protected_result_pass",
+      "reconstruction_valid",
+      "source_lineage_valid",
+      "visible_result_pass",
+      "req:APPLICABILITY",
+      "req:TRANSFER",
+      "req:UTILITY",
+      "req:VALIDITY"
+    ]
+  },
+  "check_D_negative_controls": {
+    "binarising_cannot_check_destroys_the_reduct": {
+      "pass": true,
+      "binary_collision": [
+        "closed_world_new_method",
+        "novelty_unknown"
+      ]
+    },
+    "full_feature_set_is_sufficient_under_ternary": {
+      "pass": true
+    },
+    "empty_set_is_not_sufficient": {
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

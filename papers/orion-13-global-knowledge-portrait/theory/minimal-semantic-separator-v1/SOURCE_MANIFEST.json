@@ -1,0 +1,32 @@
+{
+  "schema": "ORION.ORION13.MinimalSemanticSeparator.SourceManifest.v1",
+  "paper_id": "ORION-13",
+  "successor_id": "ORION13.MINIMAL_SEMANTIC_SEPARATOR.v1",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+  "candidate_source": {"pull_request": 1617, "section": "Priority A - ORION-13 Minimal semantic separator theorem"},
+  "repository_base": {"branch_base": "origin/main", "commit": "882b88e3a"},
+  "bound_artifacts": [
+    {"path": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+     "sha256": "35f9e39b75ff53b7f0ec82cd03ebcaaa82509ee0aea3f5b96aac3fd62c854ed8",
+     "role": "derivation set; reducts computed on this set ONLY", "mutated_by_this_packet": false},
+    {"path": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+     "sha256": "13a76c68c149c2552f3543babeca6e1ad5afe23c45ea9c0dc365c1445cf2782b",
+     "role": "held-out challenge set; disjoint (0 shared case ids); not consulted while choosing reducts", "mutated_by_this_packet": false},
+    {"path": "papers/orion-13-global-knowledge-portrait/manuscript/sections/00-abstract.tex",
+     "sha256": "e96a09bd6e33c2d98abfd5554a98790e9452ce4f633be1b51e3d2975782d513a",
+     "role": "carries the 0.1875 flat-canonicalization headline reproduced here; NOT edited", "mutated_by_this_packet": false},
+    {"path": "papers/orion-13-global-knowledge-portrait/manuscript/sections/06-results.tex",
+     "sha256": "24afda53746b4321d9dd2a6cfbb159453689da66919f1947bfd0dbccf337f3df",
+     "role": "states that full coordinate necessity remains undetermined; this packet supplies the reason and does NOT change the verdict", "mutated_by_this_packet": false}
+  ],
+  "independently_reproduced_manuscript_figures": [
+    {"figure": "flat predicate canonicalization false-merge rate on the confirmatory 32-case set",
+     "manuscript_value": 0.1875, "recomputed": 0.1875, "match": true,
+     "note": "6/32; the false-merge set is exactly the polarity-flip set"}
+  ],
+  "coordinates_used": ["construct_ids","measurement_ids","modality","polarity","predicate","referent_ids","temporal_context_ids"],
+  "identifier_fields_excluded": ["projection_id","source_id","source_span"],
+  "excluded_paths": {"papers/orion-13-global-knowledge-portrait/journal_package/": "not read, not written, not depended upon"},
+  "frozen_paper_bytes_modified": "NONE"
+}

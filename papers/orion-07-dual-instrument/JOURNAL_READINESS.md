@@ -1,4 +1,4 @@
-# ORION-03 journal-readiness record
+# ORION-07 journal-readiness record
 
 **Current terminal:** `MANUSCRIPT_REVIEW_PASS / EVIDENCE_GATE_BLOCKED`.
 

@@ -1,0 +1,55 @@
+{
+  "schema": "ORION.ORION13.MinimalSemanticSeparator.ExpectedTerminals.v1",
+  "paper_id": "ORION-13",
+  "successor_id": "ORION13.MINIMAL_SEMANTIC_SEPARATOR.v1",
+  "authored_date": "2026-08-28",
+
+  "terminal_set": [
+    {"terminal": "SEPARATOR_FOUND_AND_HELD_OUT_CONFIRMED", "reached": true,
+     "observed": "k* = 1, unique reduct {polarity}, sufficient on the disjoint 32-case challenge set with zero collisions; permutation null 0/20000"},
+    {"terminal": "NECESSITY_REMAINS_UNTESTABLE_ON_THIS_GOLD", "reached": true,
+     "adverse_to_breadth": true,
+     "observed": "every non-COMPATIBLE case in BOTH frozen sets is a POSITIVE->NEGATED flip in the polarity_modality_attribution_context family (4/4 and 6/6); every COMPATIBLE case has polarity agreement (28/28 and 26/26)",
+     "consequence": "no coordinate other than polarity can acquire a collision witness on this evidence, so full coordinate necessity is untestable here - in EITHER direction",
+     "required_handling": "PRESERVE. This is a corpus-design limitation. It must not be read as evidence that the other coordinates are unnecessary."},
+    {"terminal": "MANUSCRIPT_SCOPE_CONFIRMED_CORRECT", "reached": true,
+     "observed": "06-results.tex already records full coordinate necessity as undetermined; this packet supplies the exact reason and changes no verdict",
+     "note": "This is NOT a defect finding. The manuscript does not overclaim."},
+    {"terminal": "HEADLINE_COMPARISON_REPRODUCED", "reached": true,
+     "observed": "flat predicate canonicalization false-merges 6/32 = 0.1875 on the confirmatory set, matching the abstract exactly; the false-merge set is exactly the polarity-flip set"},
+    {"terminal": "SEPARATOR_FAILS_HELD_OUT", "reached": false,
+     "condition": "the derivation reduct collides on the challenge set",
+     "required_action": "report the collisions verbatim and retract the sufficiency claim; do not re-derive on the challenge set"},
+    {"terminal": "CANNOT_CHECK", "reached": false,
+     "condition": "gold missing or coordinate sets differ between the two files",
+     "required_action": "report as CANNOT_CHECK; never as a pass"}
+  ],
+
+  "preserved_adverse_and_null_evidence": [
+    {"item": "full coordinate necessity remains undetermined", "status": "PRESERVED_AND_EXPLAINED",
+     "note": "The manuscript's own wording. This packet does not resolve it; it shows it cannot be resolved on the current gold."},
+    {"item": "raw-text expert atlas, generated-portrait recoverability and downstream utility remain undetermined",
+     "status": "PRESERVED_UNCHANGED", "note": "Out of scope; untouched."},
+    {"item": "TREC-COVID-style breadth and any generalization beyond polarity contrasts",
+     "status": "NOT_CLAIMED", "note": "The measured advantage on this corpus is carried by polarity; stated explicitly rather than left implicit."},
+    {"item": "36-case constructed corpus 27/36 deterministic ceiling", "status": "PRESERVED_UNCHANGED",
+     "note": "Separate result; not touched by this lane."}
+  ],
+
+  "authority_updates": {
+    "scoped_C5_C9_mapping_claim": "unchanged",
+    "zero_false_merge_result": "unchanged and independently reproduced",
+    "flat_canonicalization_comparison_0_1875": "unchanged and independently reproduced",
+    "full_coordinate_necessity": "still undetermined - unchanged",
+    "manuscript_edited": "NONE",
+    "gold_or_evaluation_edited": "NONE",
+    "new_object_created": "papers/orion-13-global-knowledge-portrait/theory/minimal-semantic-separator-v1/ (additive)",
+    "new_blocker_raised": "NONE"
+  },
+
+  "explicitly_out_of_scope": [
+    "building the extended corpus described in THEORY.md section 5",
+    "any raw-text extraction",
+    "venue, packaging and filing decisions"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema": "ORION.ORION19.InvariantMarginDiagnosis.CheckerReport.v1",
+  "successor_id": "ORION19.INVARIANT_MARGIN_DIAGNOSIS.v1",
+  "independence": "no ORION-19 module imported; theorems verified on freshly enumerated structures; evidence read as data only",
+  "part_A_orbit_invariance": {
+    "configurations_checked": 1054472,
+    "A1_invariant_representation_gives_invariant_decisions": true,
+    "A2_moved_decision_proves_non_invariance": true,
+    "A3_orbit_majority_bound_holds_for_every_invariant_rule": true
+  },
+  "part_B_threshold_transport": {
+    "interval_threshold_configurations_checked": 196,
+    "B1_emitted_decisions_are_sound": true,
+    "B2_widening_only_moves_toward_CANNOT_CHECK": true,
+    "B3_post_outcome_narrowing_manufactures_a_decision": true
+  },
+  "bound_frozen_dispositions": {
+    "reminting_attack_verdict": "T4_ATTACK_SUCCEEDED",
+    "transport_terminal": "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_GATE_NOT_MET",
+    "cannot_check_terminals_present_in_transport_run": 5
+  },
+  "frozen_dispositions_as_expected": true,
+  "negative_controls": {
+    "B3_post_outcome_narrowing_manufactures_a_decision": {
+      "pass": true
+    },
+    "non_invariant_phi_can_move_a_decision": {
+      "pass": true
+    },
+    "widening_never_creates_authority": {
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,57 @@
+{
+  "checker": "orion08_independent_replay_v1",
+  "gate": "independent replay of the final cited receipts",
+  "receipts": [
+    {
+      "receipt": "publication_paired_analysis",
+      "generator": "papers/orion-08-typed-state/publication_analysis.py",
+      "committed": "papers/orion-08-typed-state/PUBLICATION_PAIRED_ANALYSIS_V1.json",
+      "generator_exit": 0,
+      "replay_digest": "539d7c6ac8cb3b77",
+      "committed_digest": "539d7c6ac8cb3b77",
+      "identical": true,
+      "shared_keys_differing": [],
+      "committed_only_keys": [],
+      "replay_only_keys": [],
+      "status": "EXACT"
+    },
+    {
+      "receipt": "binding_sufficiency_lattice",
+      "generator": "papers/orion-08-typed-state/theory/binding-sufficiency-lattice-v1/independent_checker/check_binding_sufficiency.py",
+      "committed": "papers/orion-08-typed-state/theory/binding-sufficiency-lattice-v1/RESULT.json",
+      "generator_exit": 0,
+      "replay_digest": "956d21c89123f535",
+      "committed_digest": "8de3c556cd479412",
+      "identical": false,
+      "shared_keys_differing": [],
+      "committed_only_keys": [
+        "independence",
+        "schema",
+        "successor_id"
+      ],
+      "replay_only_keys": [],
+      "status": "EXACT"
+    },
+    {
+      "receipt": "familywise_multiplicity",
+      "generator": "papers/orion-08-typed-state/analysis/familywise-multiplicity-v1/check_familywise_multiplicity_v1.py",
+      "committed": "papers/orion-08-typed-state/analysis/familywise-multiplicity-v1/FAMILYWISE_MULTIPLICITY_V1.json",
+      "generator_exit": 0,
+      "replay_digest": "ecf62a9815f56ab4",
+      "committed_digest": "ecf62a9815f56ab4",
+      "identical": true,
+      "shared_keys_differing": [],
+      "committed_only_keys": [],
+      "replay_only_keys": [],
+      "status": "EXACT"
+    }
+  ],
+  "summary": {
+    "total": 3,
+    "exact": 3,
+    "divergent": 0,
+    "cannot_check": 0
+  },
+  "note": "A committed artifact may carry provenance keys its generator does not emit; those are reported under committed_only_keys rather than silently accepted.",
+  "status": "REPLAY_EXACT"
+}

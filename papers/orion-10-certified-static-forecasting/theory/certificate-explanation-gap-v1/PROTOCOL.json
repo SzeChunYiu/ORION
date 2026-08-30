@@ -1,0 +1,54 @@
+{
+  "schema": "ORION.ORION10.CertificateExplanationGap.Protocol.v1",
+  "paper_id": "ORION-10",
+  "successor_id": "ORION10.CERTIFICATE_EXPLANATION_GAP.v1",
+  "status": "THEORY_PROVED__COUNTS_REPRODUCED",
+  "lane_type": "THEORY",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+
+  "freeze_discipline": {
+    "applicability": "PARTIAL",
+    "why": "Deductive lane. The verification is exhaustive over the complete space of candidate explanation functions, not sampled, so there is no outcome to access.",
+    "substituted_guard": "Three negative controls must fire, and the four manuscript counts must reproduce from the frozen receipt -- the latter validates that the receipt was read correctly before any interpretation is placed on it.",
+    "post_outcome_changes_forbidden": [
+      "weakening a theorem after a counterexample",
+      "reinterpreting the 64 witnesses as a formula-size result",
+      "supplying a new explanation family and calling the gap closed"
+    ],
+    "frozen_paper_bytes_modified": "NONE"
+  },
+
+  "claims_under_test": [
+    "Theorem 1: an exact Psi-only explanation exists iff cost is constant on every Psi-fibre.",
+    "Theorem 2: a cost-mixed Psi-fibre admits NO exact function of Psi, of any expression size, in any language over Psi.",
+    "Theorem 3: an exact certificate can coexist with no exact Psi-explanation exactly when the certificate separates a cost-discriminating pair that Psi merges."
+  ],
+  "why_the_enumeration_is_exhaustive_over_formulas": "The complete set of Psi-measurable functions is the set of assignments of one value per fibre. Enumerating fibre-assignments therefore covers every formula of every size in every language over Psi; expression-size budget cannot enlarge the space.",
+
+  "consequence_for_the_proposed_grammar_freeze": {
+    "candidate_note_proposes_freezing": ["primitive predicates", "operators", "interaction order", "expression-size budget"],
+    "theorem_2_implies": "only the primitive predicates can affect any exactness verdict, because only they determine the fibres",
+    "recommendation": "spend the rigour on pinning primitives; a size budget freezes the wrong thing"
+  },
+
+  "explicitly_not_claimed": [
+    "an all-n theorem -- QG7D's all_n_theorem_authority remains false",
+    "that the open comm-s2 sector is closed",
+    "that a further explanation family exists -- btripleprime remains UNFOUND",
+    "any physical or quantum advantage",
+    "novelty over donor measurability / sufficiency theory"
+  ],
+
+  "independent_checker_requirements": {
+    "independence_rule": "No ORION-10 or QG module imported. Theorems verified on freshly enumerated structures. Receipts read as data only.",
+    "cannot_check_rule": "exit code 3, status CANNOT_CHECK, never reported as a pass"
+  },
+  "negative_controls": {
+    "controls": ["mixed_fibre_inexplicable", "larger_value_alphabet_does_not_help", "pure_fibre_explicable"],
+    "pass_condition": "3 of 3 fire"
+  },
+
+  "stop_rule": "Complete. The vocabulary-level lower bound described in THEORY.md section 4 is optional successor science and is NOT a submission blocker."
+}

@@ -1,0 +1,30 @@
+{
+  "case_id": "p1-c011",
+  "task_family": "execution_only_negative_control",
+  "public_prompt": "Training accuracy fell from 0.91 to 0.52 after a dependency bump. Nothing in the model, the data or the hyper-parameters moved. Find the defect in the run: name the defect and give the repair.",
+  "observable_resources": [
+    "train/lockfile.diff — a single line: the data-loading library moves from 3.4.1 to 4.0.0",
+    "vendor/CHANGELOG-4.0.0.md — 'BREAKING: the shuffle argument now defaults to False'",
+    "train/loader.py — builds the loader without passing the shuffle argument",
+    "train/batch-dump.jsonl — batches from the failing run hold a single label class each; batches from the passing run are mixed",
+    "train/rerun.log — pinning the library back to 3.4.1 restores 0.91 with nothing else changed",
+    "closure:model-architecture-review — closed; settles the architecture and the objective, neither of which changed across the two runs",
+    "closure:training-run-acceptance — closed; accepts a run at 0.91 or better as fit to ship; rests on the product bar, not on how batches are ordered",
+    "closure:training-corpus-licence — closed; certifies the corpus licence terms; rests on the legal review, not on how batches are ordered"
+  ],
+  "protected_gold": {
+    "reframe_required": false,
+    "responsibility_family": "EXECUTION",
+    "target_coordinates": [],
+    "dependencies_to_reopen": [],
+    "root_success_rubric": "PASS iff the answer names the changed library default that stopped the shuffling as the defect and repairs it by passing the argument explicitly rather than by pinning the old version, leaving the training formulation untouched. FAIL if the answer changes the model, the learning rate or the data division, attributes the drop to the data, or stops at pinning 3.4.1.",
+    "dependency_depth": 0
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "Run defect: a library default flipped so batches arrived sorted by label. The training formulation is correct; passing the argument explicitly resolves it. Reframing is the wrong move."
+}

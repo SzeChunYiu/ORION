@@ -1,0 +1,39 @@
+{
+  "case_id": "p1-c105",
+  "task_family": "hidden_parent_domain",
+  "public_prompt": "A feature was made available and 46 of 140 teams opted in during Q1. Since then the opted-in teams report 22% fewer incidents than the rest. The reading so far: this gap is the effect of the feature. Report the effect of the feature on incidents.",
+  "observable_resources": [
+    "rollout/optin.csv — 140 teams; 46 opted in during Q1; opt-in was a team decision",
+    "rollout/pre-period.csv — in the 6 months before the feature existed, those same 46 teams already reported 19% fewer incidents than the rest",
+    "rollout/covariates.csv — opt-in teams are larger (median 11 engineers versus 6) and run 2.3x more automated checks",
+    "rollout/design-note.md — no team was assigned at random, and every opt-in team has been on the feature continuously since Q1",
+    "closure:feature-impact-memo — closed; attributes a 22% incident reduction to the feature",
+    "closure:roadmap-q3-priorities — closed; derived from closure:feature-impact-memo, funds a second rollout",
+    "closure:incident-budget-2026 — closed; derived from closure:roadmap-q3-priorities, lowers the reserved incident budget",
+    "rollout/incident-counts.csv — monthly incident counts per team for the 6 months before and the 6 months after Q1, all 140 teams",
+    "closure:feature-accessibility-audit — closed; certifies the feature against the accessibility standard; rests on the interface review, not on any incident figure",
+    "closure:optin-consent-wording — closed; approves the wording teams saw when opting in; rests on the legal review, not on what the feature did afterwards"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "SEARCH",
+    "target_coordinates": [
+      "W.ACTIVE_DOMAINS",
+      "parent_domain:causal_inference"
+    ],
+    "dependencies_to_reopen": [
+      "closure:feature-impact-memo",
+      "closure:roadmap-q3-priorities",
+      "closure:incident-budget-2026"
+    ],
+    "root_success_rubric": "PASS iff the answer refuses the raw 22% contrast, uses the 19% pre-period gap to show the two groups differed before the feature existed, and either reports an adjusted estimate under a stated identifying assumption (a difference of the pre and post gaps is about 3 percentage points) or declares the effect unidentified and names a design that would identify it. FAIL if the answer reports 22%, or dismisses the finding as mere correlation without producing either an adjusted estimate or a design.",
+    "dependency_depth": 3
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the framing reports 22% as the effect; the pre-period record shows most of that gap predates the feature."
+}

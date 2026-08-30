@@ -1,0 +1,62 @@
+\section{Results}
+
+\subsection{Shared-tag Pauli block encoding has a support-two ceiling}
+
+\begin{theorem}[Support-two normalization]
+For every size and target admitted by the shared-tag Pauli model under its unit raw-support objective, an exact optimum exists in which every frame Pauli has support at most two.
+\end{theorem}
+
+The proof considers a frame $R$ of support at least three, its anticommuting partner, and the shared tag.  Each active qubit receives a two-bit class: its local commutation contribution with the partner and its local tag contribution.  The partner relation makes the first class-bit parity odd.  Every multiset of at least three such classes contains either a zero class or a repeated class.  Removing the corresponding one or two letters preserves both parities, so feasibility is retained without modifying the tag.
+
+The cost change is local.  A complete 18,432-case check shows that restoration cost can never exceed the refunded frame cost.  Repeated removal therefore reaches support at most two without increasing cost.  A written parity argument covers arbitrary support; enumeration of 43,688 class tuples corroborates the support-two boundary and the support-three-and-higher descent.
+
+The theorem closes the support envelope, not the smallest explanatory vocabulary inside it.  Exact counterexamples successively require split anchors, support borrowing, off-support borrowing and hybrid constructions.  These mechanisms remain within support two.  Thus, intrinsic expressivity can be closed while a compact human-readable taxonomy remains refinable.
+
+\subsection{The rank-two model has intrinsic support one}
+
+\begin{theorem}[Tight support-one normalization]
+For every size admitted by the rank-two dependent-triple model under the unit objective, an exact optimum exists with generator support at most one.  Support zero is infeasible, so $\kappa=1$.
+\end{theorem}
+
+The decisive transformation localizes each dependent-triple block to one anticommuting core and then reconstructs the shared tag.  Preserving the old tag during every local edit had produced looser bounds.  Reconstruction exposes deletion credits that pay for core alignment and, when needed, relocation of the tag.
+
+The local obligations are complete.  They comprise 2,880 deletion cases, 6,912 core-alignment cases, 576 same-core tag-rigidity cases and 9,216 distinct-core tag lower-bound cases.  The largest core-alignment penalty is three, while a deleted active column earns at least four.  Distinct cores require tag cost eight; equal cores require cost four.  These inequalities close every case in the all-size composition.
+
+A conserved-syndrome abstraction gives a safe ceiling of five for this model.  The tight theorem gives one.  The difference shows that syndrome rank measures what a particular deletion proof preserves, not necessarily what an optimal compiler intrinsically needs.  On the two models where both quantities and a local exchange margin are available, rank minus intrinsic support equals the measured margin.  This is a two-point, rewrite-dependent observation, not a law.
+
+\subsection{The support-one proof has an objective region}
+
+Let $t_c,t_{nc},t_{\mathrm{tag}},t_r$ weight commuting frames, noncommuting frames, tag support and restoration support.  The same support-one proof remains valid when
+\begin{align}
+2t_{nc} &\geq 5t_r, & t_c+t_{nc} &\geq 5t_r,\\
+2t_{nc} &\geq 2t_r+2t_{\mathrm{tag}}, &
+t_c+t_{nc} &\geq 2t_r+2t_{\mathrm{tag}}.
+\end{align}
+When $t_c\leq t_{nc}$, the two inequalities involving $t_c+t_{nc}$ suffice for this certificate.  In the displayed variable order, the unit structural objective is $(t_c,t_{nc},t_{\mathrm{tag}},t_r)=(2,4,2,1)$.  Direct substitution gives margins $(3,1,2,0)$ for the four displayed inequalities, so the point is inside and lies on the last boundary.  The control $(3,5,2,1)$ gives margins $(5,3,4,2)$ and is strictly interior.  Several outside controls violate at least one inequality.  At any point outside, the certificate is silent.  It does not say that support two is necessary.
+
+A corrected search over 211,248 frozen-domain candidates found zero strict support-two witnesses under four objectives.  This strengthens the domain-bounded negative result but does not prove global sharpness of the cone.
+
+\subsection{The six-term model has an exact structural boundary}
+
+\begin{theorem}[Reference-exact boundary]
+For every admitted six-term batch and size in the frozen linear-combination model, the reference construction is exact if and only if the proved pair-gain condition holds.
+\end{theorem}
+
+For a subset $B$ of the six terms, let $s(B)$ be the sum of their Pauli weights and let $f(B)$ count qubit positions at which every term in $B$ has the same nonidentity Pauli.  For a pair $e$, define $g(e)=4f(e)-s(e)$.  The exact condition is
+\begin{align}
+g(e)&\leq0,\nonumber\\
+g(e)+g(f)+1&\leq0,\label{eq:p0}\\
+g(e)+g(f)+g(h)+2&\leq0.\nonumber
+\end{align}
+The three lines quantify respectively over every pair $e$, every two disjoint pairs $e,f$, and every perfect matching $\{e,f,h\}$.
+The proof enumerates 203 partitions across 11 shapes and reduces every non-pair block to consequences of Eq.~\eqref{eq:p0}.  Conversely, violation of each clause gives an explicit cheaper partition of shape $2+1+1+1+1$, $2+2+1+1$ or $2+2+2$.  A separate complete regression checks 729 instances at $n=1$ and 38,760 at $n=2$ with zero mismatches.  This compact boundary is a property of the declared model and objective, not evidence that other compiler boundaries are low order.
+
+\subsection{State preparation transfers mechanisms but not feature generalization}
+
+Exact shortest-path censuses on the complete $n\leq3$ graphs identify 5, 28 and 189 reference-exact states out of 6, 60 and 1,080.  Strict improvements fall into four mechanism classes.  They arise from changing processing order, pivot choice, elimination route, or the global synthesis family.  The last class shows that no tested row-reduction schedule closes the complete domain.
+
+The prospectively frozen $n=4$ forecast failed.  It matched 100 of 120 regime labels and 67 of 120 exact costs.  The mismatches were retained rather than used to redesign the rule.  This result rejects the proposed transfer criterion on the panel.
+
+A coarse 13-feature representation provides a stronger in-domain negative.  Twelve feature cells are mixed, which forces at least 43 errors among the 1,146 complete $n\leq3$ states for every classifier using only those features.  Adding sign-aware state structure changes the in-domain result.  The 127-feature representation has no mixed cells and no irreducible in-domain error.  It produces 1,109 distinct cells, including 1,072 singleton cells.  This is finite-domain vocabulary existence, not a compact law.
+
+The richer representation does not repair transfer (Table~\ref{tab:feature-transfer}).  On the frozen panel it forms 119 cells: 118 singleton cells and one pure doubleton cell.  In the parity-split lookup test, only two states are covered and the remaining labels produce 32 of 120 errors.  The specified 200-permutation shuffle null has mean 32.41 errors (range 30--33), and 51\% of permutations have an error count no larger than 32.  The rule therefore shows no improvement under this null on this panel; no equivalence or broader absence-of-signal claim follows.

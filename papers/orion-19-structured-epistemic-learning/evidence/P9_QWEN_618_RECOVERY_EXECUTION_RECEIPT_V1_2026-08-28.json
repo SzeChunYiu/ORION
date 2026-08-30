@@ -1,0 +1,234 @@
+{
+  "analyzer_execution": {
+    "all_checks": {
+      "all_hostile_controls_green": false,
+      "largest_domain_bootstrap_lower_gt_zero": false,
+      "largest_nonnegative_domain_fraction_ge_0_60": true,
+      "observed_smaller_structured_substitution_exists": false,
+      "positive_delta_every_size": false
+    },
+    "analyzer": "papers/orion-19-structured-epistemic-learning/top_tier/analyze_qwen_618_recovery_v1.py",
+    "output_sha256": "fb8fa572ec1b028c65b42b5cd05c4972a7cb3f531aa0a08f8d91e08b214350bd",
+    "outputs_byte_identical": true,
+    "runs": 2,
+    "schema": "P9.LLMGGUFScalingAnalysis.v1.1",
+    "terminal": "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED"
+  },
+  "artifact_recovery": {
+    "artifacts": [
+      {
+        "expected_zip_sha256": "aa592c1a3c4875e65322bfd91439891e5dcb9cba5c73ff0680fd09b415d22ba9",
+        "id": "9404357527",
+        "name": "p9-llm-0.5B-80029536b6fc8227ceb21f2160ed2c17fb10c160",
+        "verified": true
+      },
+      {
+        "expected_zip_sha256": "958ac6685eadafa74c560e597a3720701256ee615fb85cc664749a5c1c6239f8",
+        "id": "9405331369",
+        "name": "p9-llm-1.5B-80029536b6fc8227ceb21f2160ed2c17fb10c160",
+        "verified": true
+      },
+      {
+        "expected_zip_sha256": "99460a54ad730ab543ea4159d19eb4a80e5debce855f4becd96f1098221d1765",
+        "id": "9405806040",
+        "name": "p9-llm-3B-80029536b6fc8227ceb21f2160ed2c17fb10c160",
+        "verified": true
+      }
+    ],
+    "github_run": "80029536b6fc8227ceb21f2160ed2c17fb10c160",
+    "pre_checks": {
+      "exactly_one_match_per_scale": true,
+      "item_manifest_sha256": {
+        "0.5B": "1cd85ebc47717f6afac622db1af4cf0e6d8846d4dcba302800885adae76a39f6",
+        "1.5B": "1cd85ebc47717f6afac622db1af4cf0e6d8846d4dcba302800885adae76a39f6",
+        "3B": "1cd85ebc47717f6afac622db1af4cf0e6d8846d4dcba302800885adae76a39f6"
+      },
+      "item_manifest_sha256_identical_across_scales": true,
+      "model_scale_field_as_expected": {
+        "0.5B": "0.5B",
+        "1.5B": "1.5B",
+        "3B": "3B"
+      },
+      "prompt_sha256": {
+        "0.5B": "d0b4499c47cc895d58f5e707d1fda04d96f4eaf8489051552e721e5e97f5bc27",
+        "1.5B": "d0b4499c47cc895d58f5e707d1fda04d96f4eaf8489051552e721e5e97f5bc27",
+        "3B": "d0b4499c47cc895d58f5e707d1fda04d96f4eaf8489051552e721e5e97f5bc27"
+      },
+      "prompt_sha256_identical_across_scales": true
+    },
+    "recovered_flat_json_sha256": {
+      "p9-llm-0.5B.json": "2b068dab20036b3a481680bde52a0bdebbaf7eac8611c73e5ca58bb63c8b4e26",
+      "p9-llm-1.5B.json": "46aa863ac8360f9f7b09f1f0dc7d27d3f7b49f810e36a250f1b0853a9c0a6817",
+      "p9-llm-3B.json": "8deba9a82f23495fdc38d0eb0fb312f0a01c3b81064f17088dcb46f86afdfa12"
+    },
+    "zip_digest_verification": "3/3 match the digests frozen in the protocol before download"
+  },
+  "claim_boundary": "Exact Qwen2.5 Q4_K_M 0.5B/1.5B/3B family only. Structured prompts were padded to remove any shorter-input advantage. No full-precision or cross-family generalization.",
+  "date": "2026-08-28",
+  "failing_checks": {
+    "largest_domain_bootstrap_lower_gt_zero": {
+      "diagnosis": "All largest-model domain deltas are 0.0 and the bootstrap interval is [0.0, 0.0].",
+      "domain_block_bootstrap_95pct": [
+        0.0,
+        0.0
+      ],
+      "largest_model_domain_deltas": {
+        "graph_algorithms": 0.0,
+        "numerical_methods": 0.0,
+        "transactional_workflows": 0.0
+      }
+    },
+    "positive_delta_every_size": {
+      "diagnosis": "0.5B structure delta is negative (-0.140625); 1.5B and 3B deltas are exactly 0.0 (degenerate constant predictions).",
+      "observed_effects": [
+        {
+          "R1": 0.5416666666666666,
+          "R2": 0.4010416666666667,
+          "delta": -0.14062499999999994,
+          "model_scale": "0.5B"
+        },
+        {
+          "R1": 0.25,
+          "R2": 0.25,
+          "delta": 0.0,
+          "model_scale": "1.5B"
+        },
+        {
+          "R1": 0.25,
+          "R2": 0.25,
+          "delta": 0.0,
+          "model_scale": "3B"
+        }
+      ]
+    }
+  },
+  "hostile_controls": {
+    "detail": {
+      "0.5B": {
+        "ORDER": {
+          "R1_accuracy": 0.5625,
+          "R2_accuracy": 0.25,
+          "delta": -0.3125,
+          "passes_nonnegative_delta": false
+        },
+        "SYMBOL": {
+          "R1_accuracy": 0.3333333333333333,
+          "R2_accuracy": 0.375,
+          "delta": 0.041666666666666685,
+          "passes_nonnegative_delta": true
+        },
+        "leakage_green": true,
+        "output_token_accounting_green": true,
+        "token_nonshorter_and_context_green": true
+      },
+      "1.5B": {
+        "ORDER": {
+          "R1_accuracy": 0.25,
+          "R2_accuracy": 0.25,
+          "delta": 0.0,
+          "passes_nonnegative_delta": true
+        },
+        "SYMBOL": {
+          "R1_accuracy": 0.25,
+          "R2_accuracy": 0.25,
+          "delta": 0.0,
+          "passes_nonnegative_delta": true
+        },
+        "leakage_green": true,
+        "output_token_accounting_green": true,
+        "token_nonshorter_and_context_green": true
+      },
+      "3B": {
+        "ORDER": {
+          "R1_accuracy": 0.2708333333333333,
+          "R2_accuracy": 0.25,
+          "delta": -0.020833333333333315,
+          "passes_nonnegative_delta": false
+        },
+        "SYMBOL": {
+          "R1_accuracy": 0.25,
+          "R2_accuracy": 0.25,
+          "delta": 0.0,
+          "passes_nonnegative_delta": true
+        },
+        "leakage_green": true,
+        "output_token_accounting_green": true,
+        "token_nonshorter_and_context_green": true
+      }
+    },
+    "failing": {
+      "ORDER@0.5B": {
+        "R1_accuracy": 0.5625,
+        "R2_accuracy": 0.25,
+        "delta": -0.3125,
+        "passes_nonnegative_delta": false
+      },
+      "ORDER@3B": {
+        "R1_accuracy": 0.2708333333333333,
+        "R2_accuracy": 0.25,
+        "delta": -0.020833333333333315,
+        "passes_nonnegative_delta": false
+      }
+    },
+    "note": "ORDER hostile control fails at 0.5B (delta -0.3125) and 3B (delta -0.0208); all leakage/token-accounting controls green at every scale."
+  },
+  "mandate_context": "Recorded negative LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED must receive a genuine revival attempt. The frozen recovery protocol (P9_QWEN_618_RECOVERY_PROTOCOL_V1.md) was EXECUTED in full: recover the immutable CI artifacts, verify digests, run the vendored frozen analyzer. No rerun or retune of inference.",
+  "mechanistic_unsolvability_proof": "The frontier claim ('representation structure improvements grow with scale') requires at least two scales with MEASURABLE representation contrast. At 1.5B and 3B every one of the 576 records per arm parses to the single label 'ALIGNED' in BOTH arms (unique parsed labels = 1), pinning both arm accuracies at exactly 0.25 and the contrast at exactly 0.0 - this holds for any evaluation whatsoever on these artifacts, by construction. The only nondegenerate scale (0.5B) measures the structure delta as NEGATIVE (-0.140625, primary budget 32). No in-family lever exists: representations are frozen by the claim scope (R1_SAME_INFO vs R2_TYPED_STATE), scales are the claim itself, and the analyzer protocol forbids new thresholds after outcome access. Inference rerun/retune is explicitly forbidden by the recovery contract. Therefore the negative is UNSOLVABLE to revive within the frozen Qwen2.5 Q4_K_M 0.5B/1.5B/3B family and stands as recorded.",
+  "parsed_label_degeneracy": {
+    "0.5B": {
+      "label_histogram": {
+        "R1_SAME_INFO": {
+          "ALIGNED": 299,
+          "OBSTRUCTION": 214,
+          "UNRESOLVED": 63
+        },
+        "R2_TYPED_STATE": {
+          "OBSTRUCTION": 168,
+          "UNRESOLVED": 408
+        }
+      },
+      "n_records": 1152,
+      "unique_parsed_labels_per_arm": {
+        "R1_SAME_INFO": 3,
+        "R2_TYPED_STATE": 2
+      }
+    },
+    "1.5B": {
+      "label_histogram": {
+        "R1_SAME_INFO": {
+          "ALIGNED": 576
+        },
+        "R2_TYPED_STATE": {
+          "ALIGNED": 576
+        }
+      },
+      "n_records": 1152,
+      "unique_parsed_labels_per_arm": {
+        "R1_SAME_INFO": 1,
+        "R2_TYPED_STATE": 1
+      }
+    },
+    "3B": {
+      "label_histogram": {
+        "R1_SAME_INFO": {
+          "ALIGNED": 576
+        },
+        "R2_TYPED_STATE": {
+          "ALIGNED": 576
+        }
+      },
+      "n_records": 1152,
+      "unique_parsed_labels_per_arm": {
+        "R1_SAME_INFO": 1,
+        "R2_TYPED_STATE": 1
+      }
+    }
+  },
+  "schema": "P9.Qwen618RecoveryExecutionReceipt.v1",
+  "session": "R5 revival (LUNARC wtR5)",
+  "substitutions": {
+    "compute_substitutions": [],
+    "observed": []
+  },
+  "verdict": "NEGATIVE CONFIRMED AUTHORITATIVE after full execution of the frozen recovery protocol (digest-verified artifacts, frozen analyzer, run twice byte-identical). Revival classification: UNSOLVABLE within the frozen family, with the mechanistic proof above; the negative is CORRECT-SUBTRACTIVE (it narrows the structure-scaling claim to the exact family measured and rules out the frontier)."
+}

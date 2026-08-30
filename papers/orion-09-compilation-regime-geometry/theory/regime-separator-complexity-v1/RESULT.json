@@ -1,0 +1,174 @@
+{
+  "schema": "ORION.ORION09.RegimeSeparatorComplexity.Result.v1",
+  "successor_id": "ORION09.REGIME_SEPARATOR_COMPLEXITY.v1",
+  "generated_from": [
+    "REPLAY_REPORT.json",
+    "ANALYSIS.json",
+    "MINIMALITY_VERIFICATION.json"
+  ],
+  "note": "Consolidated. Every value is copied from a checker output; none is hand-entered.",
+  "independent_replay": {
+    "status": "PASS",
+    "mismatches": {},
+    "module_hashes_match_receipt": true,
+    "protocol_sha256_matches_receipt": true,
+    "recomputed_stage1": {
+      "instances": 1146,
+      "feature_count": 127,
+      "unique_feature_cells": 1109,
+      "singleton_cells": 1072,
+      "mixed_cell_count": 0,
+      "irreducible_error_floor": 0,
+      "compression_ratio_cells_over_instances": 0.967714,
+      "domain": {
+        "1": {
+          "instances": 6,
+          "donor_exact": 5,
+          "expected": 6
+        },
+        "2": {
+          "instances": 60,
+          "donor_exact": 28,
+          "expected": 60
+        },
+        "3": {
+          "instances": 1080,
+          "donor_exact": 189,
+          "expected": 1080
+        }
+      }
+    }
+  },
+  "compression_bound": {
+    "statement": "E*(phi) <= (N - c)/N for any feature map with c cells on N instances",
+    "N_minus_c": 37,
+    "bound": "37/1146",
+    "bound_decimal": 0.032286,
+    "reading": "The realized cell structure confined the floor to [0, 37/1146] before any label was read. Floor 0 is therefore at most this far from the value the cell structure alone would force."
+  },
+  "structure_free_null_full_L3": {
+    "exact_probability": 7.057010672903955e-07,
+    "exact_probability_sci": "7.057e-07",
+    "permutation_trials": 20000,
+    "permutation_hits": 0
+  },
+  "structure_free_null_witness_map": {
+    "cells": 523,
+    "compression_ratio": 0.45637,
+    "compression_bound": "623/1146",
+    "exact_probability": 1.4416996195477684e-120,
+    "exact_probability_sci": "1.442e-120",
+    "reading": "the witness map is far from injective, so attaining floor 0 with it is overwhelming evidence of genuine structure rather than memorization"
+  },
+  "separator_complexity": {
+    "k_star": 4,
+    "k_star_proved_exact": true,
+    "exhaustive_refutation": {
+      "subsets_of_size_1_tested": 127,
+      "subsets_of_size_2_tested": 8001,
+      "subsets_of_size_3_tested": 333375,
+      "covering_subsets_of_size_1": [],
+      "covering_subsets_of_size_2": [],
+      "covering_subsets_of_size_3": []
+    },
+    "witness": {
+      "subset": [
+        15,
+        30,
+        39,
+        42
+      ],
+      "size": 4,
+      "cells": 523,
+      "mixed_cells": 0,
+      "floor": 0,
+      "attains_floor_zero": true,
+      "compression_ratio": 0.45637,
+      "compression_bound_on_this_map": "623/1146"
+    },
+    "drop_one_guard": {
+      "purpose": "independent necessity check by direct cell counting; uses no discernibility machinery, so it would expose a constraint-dropping fault shared by routes 1 and 2",
+      "floor_of_each_3_subset_of_witness": {
+        "15,30,39": 47,
+        "15,30,42": 22,
+        "15,39,42": 17,
+        "30,39,42": 1
+      },
+      "all_strictly_positive": true,
+      "reading": "every coordinate of the witness is individually necessary, so the witness is minimal and not merely of minimum cardinality"
+    },
+    "opposite_label_pairs": 205128,
+    "distinct_minimal_discernibility_sets": 43762
+  },
+  "block_attribution": {
+    "blocks": {
+      "V2_33": {
+        "features": 33,
+        "cells": 1043,
+        "mixed_cells": 1,
+        "floor": 1
+      },
+      "donor_path_53": {
+        "features": 53,
+        "cells": 654,
+        "mixed_cells": 3,
+        "floor": 5
+      },
+      "state_sign_aware_41": {
+        "features": 41,
+        "cells": 461,
+        "mixed_cells": 29,
+        "floor": 43
+      },
+      "V2_plus_donor_path": {
+        "features": 86,
+        "cells": 1106,
+        "mixed_cells": 0,
+        "floor": 0
+      },
+      "V2_plus_state": {
+        "features": 74,
+        "cells": 1088,
+        "mixed_cells": 0,
+        "floor": 0
+      },
+      "donor_path_plus_state": {
+        "features": 94,
+        "cells": 888,
+        "mixed_cells": 0,
+        "floor": 0
+      },
+      "all_127": {
+        "features": 127,
+        "cells": 1109,
+        "mixed_cells": 0,
+        "floor": 0
+      }
+    },
+    "witness_block_composition": {
+      "V2_33": 2,
+      "donor_path_53": 2
+    },
+    "state_block_features_in_witness": 0
+  },
+  "adverse_findings": [
+    {
+      "id": "MECHANISM_ATTRIBUTION_NOT_SUPPORTED",
+      "statement": "V2 + donor-path (86 features, no sign-aware STATE feature) attains floor 0; the minimal 4-feature witness contains zero STATE-block coordinates. The new block was not necessary for the conversion.",
+      "does_not_overturn": "floor(L3)==0 and the H_A_N2 POSITIVE_CONVERSION verdict both stand."
+    },
+    {
+      "id": "MANUSCRIPT_INCOMPLETENESS__SUBMISSION_BLOCKED",
+      "statement": "manuscript/main.tex presents the V1-scoped 43/1146 result as the paper's StabPrep finding and contains zero occurrences of R2, L3 or revival, so the prospectively frozen revival committed in this paper's own evidence/ directory is absent from the manuscript.",
+      "severity_note": "The quoted abstract sentences are TRUE as scoped. The defect is material omission/currency, not falsity. The paper's 'not a universal low-order boundary law' conclusion is independently supported by the n=4 non-transfer recorded here.",
+      "action": "Rescope by addition in a separate PR; ORION-09 must not be submitted until then."
+    }
+  ],
+  "preserved_negative": {
+    "H_B_N4_residual": "NOT_IMPROVED",
+    "cv_errors_120": 32,
+    "shuffle_null_p": 0.51,
+    "note": "The compact n<=3 law does not transfer to unseen n=4 states. Reported with the positive result, never separately."
+  },
+  "status": "PASS"
+}

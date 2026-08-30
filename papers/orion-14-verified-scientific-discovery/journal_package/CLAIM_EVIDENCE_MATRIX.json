@@ -1,0 +1,131 @@
+{
+  "schema_version": "orion.claim-evidence-matrix.v1",
+  "paper_id": "P4",
+  "canonical_manuscript": "manuscript/main.tex",
+  "canonical_pdf": "journal_package/manuscript.pdf",
+  "source_revision": "c66fd78440a1ff0e621ca6ada5bcde93604330d5",
+  "pdf_sha256": "7aca0deda6f7a086997a8cc796e50c7d2e89eaae6578e248ee9a87b862e39295",
+  "target": {
+    "venue": "Transactions on Machine Learning Research",
+    "article_type": "standard double-blind research article"
+  },
+  "terminal": "simulated_publication_ready_for_target",
+  "claims": [
+    {
+      "id": "P4.FORMAL",
+      "status": "SUPPORTED",
+      "claim": "For a finite benchmark, exact-terminal risk is governed by target purity on visible-record fibres and terminal availability; donor and adapter results retain their stated pointwise/distributional and data-processing assumptions.",
+      "evidence": [
+        "manuscript/sections/02a-verification-axis-identifiability.tex",
+        "editorial/FORMAL_PROOF_AUDIT_2026-08-28.md"
+      ],
+      "boundary": "Finite-domain formal results; they do not prove deployed verifiers have target-sufficient representations."
+    },
+    {
+      "id": "P4.H1",
+      "status": "SUPPORTED",
+      "claim": "On the protected V2 battery, false promotions are 0/360 for the governed pipeline and 180/360 for the strongest frozen comparator mechanism; paired difference -0.50 with 95% CI [-0.553,-0.447].",
+      "evidence": [
+        "evidence/protected_v2/PUBLICATION_METRICS_V2.json",
+        "evidence/protected_v2/RESULT_ATTESTATION_V2.md",
+        "../../research/verification/records/P4.H1.false-authority-promotion.json"
+      ],
+      "boundary": "Finite synthetic battery and protocol-matched mechanism reimplementation; not external software or deployed-system superiority."
+    },
+    {
+      "id": "P4.H2",
+      "status": "SUPPORTED",
+      "claim": "On the protected V2 clean controls, both the governed pipeline and strongest frozen comparator promote 60/60.",
+      "evidence": [
+        "evidence/protected_v2/PUBLICATION_METRICS_V2.json",
+        "../../research/verification/records/P4.H2.clean-authority-coverage.json"
+      ],
+      "boundary": "Easy clean controls; not difficult benign-case recall."
+    },
+    {
+      "id": "P4.H3.V2",
+      "status": "NOT_SUPPORTED",
+      "claim": "The registered V2 H3 axis is saturated: all eleven systems score 30/30, so it supplies no comparative result.",
+      "evidence": [
+        "evidence/protected_v2/PUBLICATION_METRICS_V2.json",
+        "evidence/audit/P4_PANEL_RESOLUTION_2026-08-22.json"
+      ],
+      "boundary": "Retained adverse measurement identity; V3 does not relabel or supersede it."
+    },
+    {
+      "id": "P4.H3",
+      "status": "SUPPORTED",
+      "claim": "On the distinct prospectively frozen V3 exact-axis battery, the governed pipeline selects undetermined 30/30 versus 0/30 for the H1-selected comparator and 15/30 for the escalation-capable comparator.",
+      "evidence": [
+        "evidence/protected_v3/FREEZE.md",
+        "evidence/protected_v3/IDENTIFIABILITY_V3.json",
+        "evidence/protected_v3/PANEL_V3.json",
+        "evidence/protected_v3/RESULT.md",
+        "evidence/audit/P4_H3_V3_CLAIM_AXIS_ADJUDICATION_2026-08-22.json"
+      ],
+      "boundary": "Terminal/interface attainability under the declared lattice; not finer scientific judgement. Off-claim noise-control residuals remain disclosed."
+    },
+    {
+      "id": "P4.X",
+      "status": "SUPPORTED",
+      "claim": "Across 400 protected exact contracts, P4-X scores 400/400, generic donor-complete B1 scores 250/400, compensatory B2 scores 50/400, and information-equivalent typed B3 scores 400/400.",
+      "evidence": [
+        "../../research/claim_expansion/p4/P4_X_PROTECTED_RESULT_V1.json",
+        "../../research/claim_expansion/p4/P4_X_INDEPENDENT_VERIFICATION_V1.json"
+      ],
+      "boundary": "Exact registered contracts; the B3 tie rejects unique expressivity or centralization advantage and supplies no naturalistic transfer claim."
+    },
+    {
+      "id": "P4.NOVELTY",
+      "status": "BOUNDED",
+      "claim": "The residual contribution is the joint identifiability, attainability, resolution and factorization criterion, not any donor mechanism in isolation.",
+      "evidence": [
+        "editorial/LITERATURE_ENTAILMENT_AND_NOVELTY_AUDIT_2026-08-28.md",
+        "manuscript/sections/02-related-work.tex"
+      ],
+      "boundary": "The bounded search found no exact collision but is not a novelty certificate."
+    },
+    {
+      "id": "P4.PDF",
+      "status": "SUPPORTED",
+      "claim": "The exact 19-page anonymous clean-build PDF is byte-bound to the canonical source and passed every-page surface and clipping QA.",
+      "evidence": [
+        "manuscript/main.pdf",
+        "journal_package/manuscript.pdf",
+        "journal_package/CLAIM_PDF_AUDIT.md",
+        "editorial/ROUND2_REVIEWER_3_TARGETED_REPRODUCIBILITY_2026-08-28.md"
+      ],
+      "boundary": "Production conformance and simulated pre-submission review; not journal acceptance."
+    },
+    {
+      "id": "P4.ANONYMOUS_REVIEW_ARTIFACT",
+      "status": "SUPPORTED",
+      "claim": "The deterministic ten-member review ZIP contains neutral safe aggregates, hashes and a standalone verifier without author-linked surface or protected gold.",
+      "evidence": [
+        "journal_package/orion14_anonymous_review_2026-08-28.zip",
+        "submission/ANONYMOUS_REVIEW_ARTIFACT_MANIFEST_V1.md"
+      ],
+      "boundary": "Aggregate checking only; it does not rerun protected scoring or constitute external replication."
+    }
+  ],
+  "global_nonclaims": [
+    "naturalistic transfer",
+    "deployed-system superiority",
+    "native external-software superiority",
+    "external replication",
+    "general scientific-judgement superiority",
+    "inherent centralization advantage"
+  ],
+  "human_filing_inputs": [
+    "OpenReview profile",
+    "complete author names and affiliations",
+    "ORCIDs",
+    "funding",
+    "conflicts",
+    "ethics or IRB declaration as applicable",
+    "actual upload",
+    "submission ID"
+  ],
+  "path_base": "papers/orion-14-verified-scientific-discovery",
+  "reader_facing_audit_run_id": 33172493159
+}

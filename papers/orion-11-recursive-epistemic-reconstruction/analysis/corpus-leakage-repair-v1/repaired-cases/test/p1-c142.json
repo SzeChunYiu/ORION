@@ -1,0 +1,37 @@
+{
+  "case_id": "p1-c142",
+  "task_family": "hidden_parent_domain",
+  "public_prompt": "A mesh of 5,000 nodes degrades as links fail. What the group intends: reachability falls in proportion to the link failure probability, so fit a straight line to the sweep. Report the reachable-pair fraction at failure probability 0.47, and the level the mesh must be held below to keep reachability above 0.90.",
+  "observable_resources": [
+    "mesh/topology.json — 5,000 nodes, mean degree 4.0, links placed at random between uniformly chosen pairs",
+    "mesh/sim-sweep.csv — reachable-pair fraction against per-link failure probability: 0.10 to 0.94, 0.20 to 0.91, 0.30 to 0.86, 0.40 to 0.77, 0.50 to 0.63, 0.60 to 0.41, 0.65 to 0.26, 0.70 to 0.10, 0.75 to 0.00",
+    "mesh/fit.md — the current model fits a straight line across the whole sweep and predicts 0.62 reachability at failure probability 0.47",
+    "closure:redundancy-budget-v2 — closed; buys spare links to hold the failure probability at 0.45 on the straight-line prediction",
+    "closure:regional-rollout-plan — closed; derived from closure:redundancy-budget-v2, schedules the same 0.45 target in every region",
+    "mesh/degree-histogram.csv — node degree counts: 61 nodes at degree 1, 402 at 2, 1,180 at 3, 1,504 at 4, 1,168 at 5, 685 at 6 or more",
+    "mesh/sweep-method.md — each sweep point is the mean of 200 independent link-failure draws at that probability, with the spread across draws recorded",
+    "closure:link-vendor-selection — closed; picks the link supplier on price and lead time; rests on the procurement comparison, not on any reachability prediction",
+    "closure:mesh-numbering-plan — closed; assigns addresses across the 5,000 nodes; rests on the addressing standard, not on how the mesh degrades"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "SEARCH",
+    "target_coordinates": [
+      "W.ACTIVE_DOMAINS",
+      "parent_domain:percolation_theory"
+    ],
+    "dependencies_to_reopen": [
+      "closure:redundancy-budget-v2",
+      "closure:regional-rollout-plan"
+    ],
+    "root_success_rubric": "PASS iff the answer rejects proportional degradation, states that the sweep shows a transition band between 0.60 and 0.75 beyond which reachability vanishes entirely, reports roughly 0.68 at failure probability 0.47 rather than the straight-line 0.62, and recommends holding the mesh at or below 0.20, which the sweep puts at 0.91, to keep reachability above 0.90. FAIL if the answer interpolates linearly, treats a sweep point as an outlier, or endorses operating inside the transition band.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the linear framing reports 0.62 at 0.47 and treats 0.45 as safe; the true curve is flat-then-cliff, and the cliff at 0.60-0.75 is where the mesh disconnects outright."
+}

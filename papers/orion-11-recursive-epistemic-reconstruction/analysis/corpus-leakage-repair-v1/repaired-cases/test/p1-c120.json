@@ -1,0 +1,39 @@
+{
+  "case_id": "p1-c120",
+  "task_family": "hidden_representation_or_coordinate_system",
+  "public_prompt": "A supplier list is deduplicated by lowercasing and trimming, leaving 12,404 distinct names drawn from six source ledgers. What the group intends: those 12,404 are genuinely distinct suppliers. Report the distinct supplier count and the procedure that produces it.",
+  "observable_resources": [
+    "suppliers/raw.csv — 18,102 rows; the name column is UTF-8 text from six source ledgers",
+    "suppliers/dedup-run.log — after lowercasing and trimming: 12,404 distinct names",
+    "suppliers/byte-inspection.md — the name 'Cafe Nord' with an accented e appears as bytes 43 61 66 c3 a9 in 220 rows and as 43 61 66 65 cc 81 in 190 rows; the two groups never merge",
+    "suppliers/manual-audit.csv — a hand review of 300 sampled names found 41 pairs a reader treats as identical, including 9 differing by a non-breaking space and 6 by full-width Latin letters",
+    "closure:vendor-consolidation-plan — closed; negotiates on a base of 12,404 suppliers",
+    "closure:spend-concentration-report — closed; derived from closure:vendor-consolidation-plan",
+    "closure:procurement-headcount-model — closed; derived from closure:spend-concentration-report",
+    "suppliers/source-ledgers.md — the six ledgers were keyed by 4 different entry tools between 2019 and 2026, with no shared entry standard",
+    "closure:supplier-payment-terms — closed; sets 30-day terms for every supplier; rests on the treasury standard, not on how many suppliers there turn out to be",
+    "closure:ledger-ingest-schedule — closed; fixes when each of the six source ledgers is pulled; rests on the operations calendar, not on how names are compared"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "REPRESENTATION",
+    "target_coordinates": [
+      "W.REPRESENTATIONS",
+      "representation:compatibility_folding"
+    ],
+    "dependencies_to_reopen": [
+      "closure:vendor-consolidation-plan",
+      "closure:spend-concentration-report",
+      "closure:procurement-headcount-model"
+    ],
+    "root_success_rubric": "PASS iff names are mapped to a single agreed written form before comparison — a compatibility decomposition together with case folding, or an equivalent standard mapping — the reported distinct count falls materially below 12,404, and the answer explains the byte inspection as the same characters written two ways. FAIL if the answer accepts 12,404, adds hand-written substitution rules, or applies approximate string distance as the primary remedy.",
+    "dependency_depth": 3
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the lowercase-and-trim framing reports 12,404; the audit shows that at least 41 pairs in a 300-name sample are the same supplier written differently."
+}

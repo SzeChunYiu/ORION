@@ -1,0 +1,64 @@
+{
+  "schema": "ORION.ORION09.SizeTransferInvariant.Protocol.v1",
+  "protocol_identity": "ORION09.SIZE_TRANSFER_INVARIANT.v1",
+  "paper_id": "ORION-09",
+  "promotion_issue": "1649",
+  "tier": "B",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "authored_date": "2026-08-28",
+
+  "claims": [
+    {"id": "S1", "statement": "A separator reading only phi exists iff every fibre of phi is pure."},
+    {"id": "S2", "statement": "If required distinct outcomes exceed 2^k, some fibre is necessarily mixed and no phi-separator exists."},
+    {"id": "S3", "statement": "Transfer from n to n+1 holds iff no previously pure fibre becomes mixed."}
+  ],
+
+  "decisive_question": {
+    "statement": "Does the one-directional capacity invariant C(n) vs 2^k predict non-transfer BETTER than the existing bounded geometry already does?",
+    "why_it_is_decisive": "#1649's stop rule: if no invariant predicts the transition better than existing bounded geometry, stop the promotion. S1-S3 being true is not sufficient; the invariant must add predictive power.",
+    "operationalisation": "Over the enumerated configurations, compare the capacity invariant's predictions against the trivial baseline that predicts non-transfer whenever any fibre is mixed. The invariant adds power only if it predicts failures the baseline cannot see WITHOUT inspecting fibres, i.e. from counting alone, and does so without false alarms."
+  },
+
+  "enumeration": {
+    "features_k": [2, 3],
+    "instances": "all label assignments over instance sets of size 4..8",
+    "feature_maps": "every map from instances to the 2^k feature cells",
+    "exhaustive": true
+  },
+
+  "controls": [
+    {"id": "R1_mixed_fibre_blocks_separation",
+     "statement": "A planted mixed fibre must be reported as blocking separation by the SAME predicate used for real cases.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "R2_pure_configuration_no_alarm",
+     "statement": "Every all-pure configuration must admit a separator and none may be flagged.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "R3_capacity_bound_never_false_alarms",
+     "statement": "Every configuration with C(n) > 2^k must in fact have a mixed fibre. A single counterexample refutes S2 outright.",
+     "on_failure": "T2_S2_FALSE"},
+    {"id": "R4_both_regimes_present",
+     "statement": "The sweep must contain configurations that fail from capacity exhaustion AND configurations that fail below capacity, or the one-directionality of S2 is untested."}
+  ],
+
+  "terminals": [
+    {"id": "T1_INVARIANT_ADDS_PREDICTIVE_POWER", "class": "FAVOURABLE",
+     "conditions": ["S1, S2, S3 hold", "the capacity invariant predicts a nonempty set of failures from counting alone with zero false alarms", "all controls pass"],
+     "licenses": "A bounded statement that fibre purity is the exact transfer criterion and capacity exhaustion is a search-free sufficient predictor of non-transfer."},
+    {"id": "T2_S2_FALSE", "class": "UNFAVOURABLE",
+     "conditions": ["some configuration exceeds capacity yet has no mixed fibre"]},
+    {"id": "T3_INVARIANT_ADDS_NOTHING", "class": "UNFAVOURABLE__EXPECTED_POSSIBLE",
+     "conditions": ["the capacity invariant never fires, or fires only where fibre inspection already answers, adding no search-free predictive power"],
+     "action": "Apply #1649's stop rule. Stop the PRX-Quantum promotion and return ORION-09 to the strongest defensible specialist venue. Do not start another rescue cycle."},
+    {"id": "T4_CANNOT_CHECK", "class": "CANNOT_CHECK", "conditions": ["R1 or R2 fails"]}
+  ],
+
+  "falsifiability_self_check": {
+    "favourable": 1, "unfavourable": 2, "cannot_check": 1,
+    "note": "T3 is a live possibility: S2 is a pigeonhole bound, and pigeonhole bounds are often vacuous on the configurations that actually arise. The protocol is written so that 'the theorems are true but the invariant is useless' is a reportable outcome rather than a silent pass."
+  },
+
+  "stop_rule": "Outcomes are read once. On T2 or T3 the promotion stops and ORION-09 returns to the specialist-venue lane without another rescue attempt."
+}

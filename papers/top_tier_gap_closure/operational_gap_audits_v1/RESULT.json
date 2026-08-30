@@ -1,0 +1,129 @@
+{
+  "schema": "ORION.OperationalGapAudits.Result.v1",
+  "terminal": "ORION_OPERATIONAL_GAP_AUDITS_V1_GREEN",
+  "scientific_authority_delta": "NONE",
+  "top_tier_promotions_earned": 0,
+  "audits": [
+    {
+      "audit_id": "ORION-02_R24_VALIDITY_AND_CONTROL",
+      "paper": "ORION-02",
+      "registered_cases": 44,
+      "candidate_coverage": 44,
+      "strict_violations": 20,
+      "lexical_control_violations": 14,
+      "candidate_violation_rate": 0.45454545454545453,
+      "control_violation_rate": 0.3181818181818182,
+      "unpaired_rate_difference": 0.13636363636363635,
+      "selector_pearson_r": -0.1442,
+      "selector_permutation_p": 0.3528,
+      "paired_discordance_table_available_in_this_packet": false,
+      "verdict": "PRIMARY_VALIDITY_GATE_FAILED__PAIRED_CONTROL_P_VALUE_CANNOT_BE_RECOMPUTED_FROM_MARGINALS",
+      "top_tier_promotion_earned": false
+    },
+    {
+      "audit_id": "ORION-08_MULTIPLICITY_SCOPE",
+      "paper": "ORION-08",
+      "comparison_rows": 12,
+      "directional_rows_reported_to_survive_exact_holm": true,
+      "unresolved_scoped_vs_never_mean_rows": 2,
+      "row_level_sign_counts_in_this_packet": false,
+      "verdict": "MERGED_EXACT_HOLM_CONCLUSION_RETAINED__INDEPENDENT_ROW_LEVEL_RECOMPUTATION_CANNOT_CHECK_IN_THIS_PACKET",
+      "top_tier_promotion_earned": false
+    },
+    {
+      "audit_id": "ORION-11_HASH_VERSUS_IDENTITY",
+      "paper": "ORION-11",
+      "machine_rubric_id": "P1.adjudication-rubric.v1",
+      "document_header_rubric_id": "ORION-11.adjudication-rubric.v1",
+      "content_hash_loader_green": true,
+      "r4_retraction_must_remain": true,
+      "verdict": "CONTENT_BINDING_REPAIRED__SEMANTIC_IDENTITY_DISAGREEMENT_UNRESOLVED__R4_CONTROLS",
+      "top_tier_promotion_earned": false
+    },
+    {
+      "audit_id": "ORION-12_TERMINAL_INTERFACE_MATCHING",
+      "paper": "ORION-12",
+      "tasks": 390,
+      "baseline_count": 5,
+      "baseline_close_prematurely_on_all_tasks": true,
+      "treatment_terminals": ["CLOSE", "CONTINUE", "CANNOT_CHECK"],
+      "baseline_terminals": ["CLOSE"],
+      "verdict": "COMPARATOR_ACTION_TERMINAL_INTERFACE_MISMATCH__SUPERIORITY_NOT_IDENTIFIED",
+      "top_tier_promotion_earned": false
+    },
+    {
+      "audit_id": "ORION-13_BASELINE_AND_COORDINATE_DEGENERACY",
+      "paper": "ORION-13",
+      "flat_baseline_unique_outputs": 1,
+      "flat_baseline_action": "ALWAYS_MERGE",
+      "coordinate_count": 10,
+      "coordinates_nonvarying_on_both_holdouts": 9,
+      "pooled_significance_test": "NOT_COMPUTED_BY_PROTOCOL",
+      "verdict": "EFFECT_LARGELY_POLARITY_CARRIED__BROAD_COORDINATE_NECESSITY_UNSUPPORTED",
+      "top_tier_promotion_earned": false
+    },
+    {
+      "audit_id": "ORION-14_FIXED_UNIVERSE_VERSUS_TRANSFER",
+      "paper": "ORION-14",
+      "frozen_cases": 360,
+      "attack_or_insufficiency_families": 12,
+      "requested_reduct_rows": 400,
+      "requested_reduct_artifact_status": "CANNOT_CHECK_ARTIFACT_ABSENT",
+      "fresh_compile_exact_matches": 106,
+      "fresh_compile_total": 106,
+      "verdict": "EXACT_FIXED_PANEL_EVIDENCE_STRONG__TRANSFER_UNIT_IS_FAMILY__ABSENT_TABLE_NOT_RECONSTRUCTED",
+      "top_tier_promotion_earned": false
+    },
+    {
+      "audit_id": "ORION-19_FIVE_OF_FIVE_INTERVAL",
+      "paper": "ORION-19",
+      "successes": 5,
+      "trials": 5,
+      "alpha_two_sided": 0.05,
+      "exact_clopper_pearson_lower": 0.4781762498950185,
+      "unit": "TASK_FAMILY",
+      "verdict": "PERFECT_FIXED_SET_RESULT__BROAD_TRANSFER_REMAINS_UNCERTAIN",
+      "top_tier_promotion_earned": false
+    },
+    {
+      "audit_id": "ORION-21_EIGHT_OF_TEN_GATE_CALIBRATION",
+      "paper": "ORION-21",
+      "trials": 10,
+      "pass_threshold": 8,
+      "binomial_pass_probabilities": {
+        "p=0.50": 0.0546875,
+        "p=0.70": 0.3827827864,
+        "p=0.80": 0.6777995264,
+        "p=0.90": 0.9298091736,
+        "p=0.95": 0.9884964426
+      },
+      "verdict": "FAILED_GATE_WEIGHS_AGAINST_HIGH_CAPABILITY__MODERATE_CAPABILITY_NOT_EXCLUDED",
+      "top_tier_promotion_earned": false
+    },
+    {
+      "audit_id": "ORION-22_NINE_OF_NINE_INTERVAL",
+      "paper": "ORION-22",
+      "successes": 9,
+      "trials": 9,
+      "alpha_two_sided": 0.05,
+      "exact_clopper_pearson_lower": 0.6637328831200572,
+      "unit": "FROZEN_CASE_OR_DECISION_CLASS",
+      "verdict": "EXACT_ZERO_REGRET_ON_NINE_CASES__ROBUSTNESS_AND_UNTOUCHED_TRANSFER_OPEN",
+      "top_tier_promotion_earned": false
+    },
+    {
+      "audit_id": "ORION-24_FOUR_ZERO_MCNEMAR",
+      "paper": "ORION-24",
+      "discordant_candidate_wins": 4,
+      "discordant_control_wins": 0,
+      "exact_mcnemar_two_sided_p": 0.125,
+      "exact_directional_p": 0.0625,
+      "reported_rate_contrast": 0.142857,
+      "contrast_carried_by_case_type": "RETAIN_NEGATIVE",
+      "same_programme_authorship": true,
+      "comparator_useful_discovery_recall": "PERFECT_ON_REPORTED_FIXED_SET",
+      "verdict": "NARROW_NEGATIVE_HISTORY_CONFORMANCE__POPULATION_SUPERIORITY_NOT_ESTABLISHED",
+      "top_tier_promotion_earned": false
+    }
+  ]
+}

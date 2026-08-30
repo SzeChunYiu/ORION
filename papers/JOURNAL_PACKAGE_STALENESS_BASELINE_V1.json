@@ -3,6 +3,13 @@
   "purpose": "Debt record, not approval. Each entry is a submission package whose manifest no longer describes its own source. Recorded so CI can fail on new staleness without first failing on staleness that predates the check.",
   "not_to_be_regenerated": "Refreshing a package manifest to match moved source while retaining current-package authority deletes the evidence that the package is no longer what it claims to be. Staleness reaches zero only after a real rebuild or an explicit SUPERSEDED reconciliation that retains historical render evidence and denies current submission authority; never by an unqualified hash-only rewrite.",
   "packages": {
+    "orion-05-tare-expressivity": {
+      "stale": 0,
+      "missing": 40,
+      "entries": 40,
+      "note": "Recorded as debt, not approval, and the 40 is a measurement artefact. This package's SHA256SUMS writes repo-root-relative paths (.github/workflows/..., papers/orion-05-.../...) while every other tracked package writes paper-root-relative paths, so the survey resolves none of them. Resolved from the repo root the real state is 25 matching, 12 drifted and 3 absent.\nThe three absent files were never on main: .github/workflows/orion05-wave1-closeout.yml, journal_package/manuscript.pdf and tests/unit/publication/test_orion05_wave1_manuscript_surface.py exist only on branches that never merged, and no commit on main ever removed them. So the package declares artifacts the repository does not contain - the same defect as ORION-12's and ORION-13's submission bundles, reached by a different route.\nOf the 12 drifted, 10 were staled by the R0 namespace unification (3a1a83178), one by 6d2d1699b, and manuscript/main.pdf by the canonical PDF import in #1731; none is a content change made to evade a digest. Reconciling this package means settling the path convention and deciding whether the three declared-but-absent artifacts should be landed or removed from the declaration. Both are the package owner's calls, not a re-pin.",
+      "kind": "PACKAGE_DECLARES_ABSENT_ARTIFACTS"
+    },
     "orion-11-recursive-epistemic-reconstruction": {
       "stale": 0,
       "missing": 0,

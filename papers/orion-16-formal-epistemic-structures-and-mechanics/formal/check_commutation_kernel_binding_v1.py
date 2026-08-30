@@ -18,6 +18,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 CONTRACT_ID = "P6.COMMUTE.EXACT_THEOREM7.V1"
+# papers/PAPER_ALIASES.md records {old: P6, new: ORION-16} and calls itself the single
+# source of truth for paper-id aliases. The R0 rename rewrote the contract id in the prose
+# artifacts to the ORION-16 form and left it as P6 in the executable source and in the
+# frozen mechanized JSON, which are evidence and must not be rewritten. The same contract is
+# therefore legitimately written two ways, and the binding accepts either spelling.
+CONTRACT_ID_ALIASES = (CONTRACT_ID, CONTRACT_ID.replace("P6.", "ORION-16.", 1))
 FILES = (
     "src/orion/study/p6/commutation_kernel.py",
     "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_COMMUTATION_KERNEL_MECHANIZED_2026-08-24.json",
@@ -38,8 +44,11 @@ def audit(root: Path = ROOT) -> dict[str, object]:
     missing_id = []
     for relative in FILES:
         text = (root / relative).read_text(encoding="utf-8")
-        encoded_id = CONTRACT_ID.replace("_", r"\_") if relative.endswith(".tex") else CONTRACT_ID
-        if encoded_id not in text:
+        candidates = [
+            alias.replace("_", r"\_") if relative.endswith(".tex") else alias
+            for alias in CONTRACT_ID_ALIASES
+        ]
+        if not any(candidate in text for candidate in candidates):
             missing_id.append(relative)
 
     source = (root / FILES[0]).read_text(encoding="utf-8")
@@ -67,7 +76,7 @@ def audit(root: Path = ROOT) -> dict[str, object]:
     rule_count = machine.get("kernel_rule_applications")
     if not isinstance(rule_count, int) or rule_count != len(machine.get("proof_log", [])):
         errors.append("recorded rule count does not match the serialized proof log")
-    if not str(machine.get("statement", "")).startswith(f"{CONTRACT_ID}:"):
+    if not any(str(machine.get("statement", "")).startswith(f"{alias}:") for alias in CONTRACT_ID_ALIASES):
         errors.append("mechanized statement is not bound to the contract id")
     if "ORION-authored Python" not in str(machine.get("trusted_computing_base", "")):
         errors.append("mechanized record omits the trusted-computing-base boundary")

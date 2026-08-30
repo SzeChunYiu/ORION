@@ -1,0 +1,35 @@
+{
+  "case_id": "p1-c140",
+  "task_family": "hidden_measurement_or_operationalization",
+  "public_prompt": "A retrieval bench reports 0.71 pooled across 5,000 queries, against a 0.65 bar agreed with the product team before the run. The queries were drawn from a fixed set. The approach on the table: the pooled figure clears the bar, so ship it. Report whether the bench supports shipping.",
+  "observable_resources": [
+    "bench/queries.csv — 5,000 queries: 78% single-entity lookups, 14% multi-hop, 8% negation",
+    "bench/by-kind.csv — single-entity 0.86, multi-hop 0.31, negation 0.22; the pooled figure is 0.71",
+    "bench/traffic-mix.csv — in production the same three kinds run at 41%, 33% and 26%",
+    "bench/incident-classes.md — all 14 escalated retrieval incidents last quarter were multi-hop or negation queries",
+    "closure:retrieval-ship-decision — closed; approves shipping on the 0.71 pooled figure",
+    "closure:retrieval-roadmap-h2 — closed; derived from closure:retrieval-ship-decision, funds no retrieval work",
+    "closure:retrieval-index-refresh — closed; refreshes the index nightly; rests on the freshness requirement, not on how the bench is summarised"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "EVALUATOR",
+    "target_coordinates": [
+      "M.EVALUATOR",
+      "evaluator:stratified_mixture"
+    ],
+    "dependencies_to_reopen": [
+      "closure:retrieval-ship-decision",
+      "closure:retrieval-roadmap-h2"
+    ],
+    "root_success_rubric": "PASS iff the bench is reported by query kind and re-mixed to the production proportions — giving roughly 0.30 on the 59% of live traffic that is multi-hop or negation and an overall figure well below 0.71 — and the answer states that the pooled figure is carried by a kind over-represented in the bench relative to production. FAIL if the answer ships on 0.71, raises the bar without re-mixing, or adds more queries in the same proportions.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the pooled framing ships on 0.71; every escalated incident last quarter came from the two kinds scoring around 0.3."
+}

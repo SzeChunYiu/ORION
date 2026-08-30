@@ -1,0 +1,36 @@
+{
+  "case_id": "p1-c111",
+  "task_family": "hidden_decomposition_or_interface",
+  "public_prompt": "A processing pipeline dies out of memory whenever the consumer falls behind the producer for any length of time. The step already agreed: the pipeline needs more room, so raise the container limit from 4 GiB to 16 GiB. Name the defect and give the repair.",
+  "observable_resources": [
+    "stream/pipeline.py — the producer appends to an unbounded in-process list; a separate thread drains it",
+    "stream/oom-history.csv — 7 crashes in 30 days; heap dumps put 92-96% of memory in that pending list",
+    "stream/rate.csv — the producer sustains 9,000 items/s and the consumer 6,200 items/s; the shortfall persists for hours during the nightly batch",
+    "stream/memory-note.md — a two-week run at 16 GiB moved the first crash from 3.5 hours in to 13 hours in",
+    "closure:capacity-runbook-stream — closed; tells operators to restart the pipeline when memory passes 80%",
+    "closure:nightly-batch-window — closed; derived from closure:capacity-runbook-stream, keeps the batch inside a 6-hour window",
+    "stream/consumer-profile.md — the consumer's 6,200 items/s is bounded by a downstream write, not by processor time, and has not moved in 9 months",
+    "closure:stream-item-shape — closed; registers the item shape the pipeline carries; rests on the shape agreement, not on what happens when the consumer falls behind"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "INTERFACE",
+    "target_coordinates": [
+      "W.INTERFACE",
+      "interface:demand_signalling"
+    ],
+    "dependencies_to_reopen": [
+      "closure:capacity-runbook-stream",
+      "closure:nightly-batch-window"
+    ],
+    "root_success_rubric": "PASS iff the specified fix bounds the pending buffer and carries the consumer's readiness back to the producer — a blocking hand-off, pausing the source, or an explicit credit or demand token — and the answer states that memory sizing only postpones the crash because the 2,800 items/s shortfall is sustained. FAIL if the fix is more memory, a larger buffer, silent dropping, scheduled restarts, or a faster consumer without a bound on the buffer.",
+    "dependency_depth": 2
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the sizing framing buys 16 GiB and the trial's own numbers show the crash simply moves from hour 3.5 to hour 13."
+}

@@ -1,0 +1,48 @@
+{
+  "canonical_subject_rule": {
+    "algorithm": "UTF-8 JSON parse followed by json.dumps(sort_keys=True,separators=(',', ':'),ensure_ascii=False,allow_nan=False) and one trailing LF",
+    "boundary": "This tests the complete admission pipeline. It does not claim that cosign, TUF, or in-toto natively treat arbitrary JSON byte changes as equivalent.",
+    "purpose": "Registered semantic re-encodings map to one subject byte string before native signing."
+  },
+  "corpus_size": 7,
+  "materialization": "git cat-file blob <blob_sha> > subject.json; the resulting bytes are the signed target before registered transformations",
+  "schema": "ORION.ORION25.ExternalTrustDomain.CorpusManifest.v1",
+  "subject_type": "Git blob containing a frozen ORION-25 JSON result",
+  "subjects": [
+    {
+      "blob_sha": "1dad7d02c9c27ace1afd596031aa37b83655a9a2",
+      "id": "P25-FAULT",
+      "source_path": "experiments/execution-integrity-v1/FAULT_INJECTION_RESULT_V1.json"
+    },
+    {
+      "blob_sha": "96c01f48eab1bad4b99568c25e09782e648914b8",
+      "id": "P25-BENIGN",
+      "source_path": "experiments/execution-integrity-v1/FALSE_REJECTION_RESULT_V1.json"
+    },
+    {
+      "blob_sha": "b9ac17806c6e5d36893caeaecd8f71431f9bc0f3",
+      "id": "P25-CHAIN",
+      "source_path": "experiments/execution-integrity-v1/H1_CHAIN_LENGTH_RESULT_V1.json"
+    },
+    {
+      "blob_sha": "7e4229437722b9ce28ac0a38a9d0b4b44e886436",
+      "id": "P25-DOMAINS",
+      "source_path": "experiments/execution-integrity-v1/H2_TRUST_DOMAIN_RESULT_V1.json"
+    },
+    {
+      "blob_sha": "55252e052401ae43b705b696880238de06ecbc7a",
+      "id": "P25-LIVENESS",
+      "source_path": "experiments/execution-integrity-v1/HOST_PROCESS_FAULT_RESULT_V1.json"
+    },
+    {
+      "blob_sha": "86d65c7196005b3dd10f6e75337abadd7347ad63",
+      "id": "P25-OVERHEAD",
+      "source_path": "experiments/execution-integrity-v1/OVERHEAD_RESULT_V1.json"
+    },
+    {
+      "blob_sha": "6aa60f71ad9be748212e5de6afb3107d5e4e3b97",
+      "id": "P25-LAW",
+      "source_path": "experiments/trust-domain-law-v1/RESULT_V1.json"
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "schema": "ORION.ORION01.SourceCompleteMoveGrammar.v1",
+  "protocol_identity": "orion-01-production-completeness-v1-2026-08-29",
+  "status": "PROSPECTIVELY_FROZEN__INSTANCE_NOT_DISCHARGED",
+  "purpose": "Enumerate and quotient every reachable production graph mutation in the frozen source boundary without relying on a hand-written move-name list.",
+  "abstract_grammar": {
+    "ProductionMove": [
+      "DirectMutation",
+      "MatchedRewrite",
+      "CompositeDriverStep",
+      "ReturnedDeltaApplication",
+      "CallbackMutation",
+      "RegisteredMutation",
+      "ConditionalMutation"
+    ],
+    "DirectMutation": "MutationRoot x ReceiverDomain x ParameterAssignment x SideConditionAssignment",
+    "MatchedRewrite": "MatcherRoot x MatchDomain x RewriteRoot x ParameterAssignment x SideConditionAssignment",
+    "CompositeDriverStep": "DriverRoot x ReachableChildMove x DriverState x SchedulingPolicy",
+    "ReturnedDeltaApplication": "DeltaProducer x DeltaDomain x ReachableDeltaConsumer",
+    "CallbackMutation": "CallbackRegistrationSite x RegisteredCallable x InvocationContext",
+    "RegisteredMutation": "RegistryConstructionPath x RegistryKey x RegisteredCallable x InvocationContext",
+    "ConditionalMutation": "ReachableCallable x BranchGuard x ProductionMove",
+    "MoveInstance": "ProductionMove x ConcreteAdmissibleInput",
+    "NormalizedEffect": "CanonicalBeforeGraph x CanonicalAfterGraph x CanonicalReturnValue x CanonicalRaisedException x ObservableMetadataDelta",
+    "CanonicalEffectClass": "equivalence class of MoveInstance under ExtensionalEquivalence"
+  },
+  "mutation_root_discovery": {
+    "graph_receiver_types": "derive from the uniquely resolved source by tracing concrete graph classes and declared graph protocols reachable from production roots",
+    "mutation_sinks": [
+      "method call that mutates a reachable graph receiver",
+      "attribute assignment or deletion on a reachable graph receiver or its mutable owned state",
+      "item assignment or deletion on a reachable graph-owned container",
+      "in-place operator on graph-owned mutable state",
+      "call returning a delta, replacement, phase update, edge table, vertex table, or command later applied to the graph",
+      "call into a native or optional extension that mutates the graph",
+      "context-manager exit or callback that commits a pending mutation"
+    ],
+    "root_rule": "A reachable callable is a mutation root when at least one admissible path from its entry to a mutation sink exists without passing through another already-recorded mutation root, or when callers expose it as a separately selectable production move.",
+    "wrapper_rule": "Wrappers, aliases, partial applications, registry entries, re-exports, bound methods, and callbacks remain distinct syntactic instances until extensional equivalence is proved.",
+    "composite_rule": "A driver that can select or schedule child mutations is recorded both as a composite driver and as edges to every reachable child; it is not silently replaced by the child list.",
+    "dynamic_rule": "Every unresolved reflective, string-selected, plugin, monkey-patched, or native edge fails closed as `SOURCE_BOUNDARY_COUNTEREXAMPLE` unless its complete finite target set is frozen and evidenced.",
+    "required_output": "MUTATION_ROOTS.json"
+  },
+  "move_instance_expansion": {
+    "receiver_domain": "all canonical receiver-state classes admitted by the frozen production entry roots",
+    "parameter_sources": [
+      "function and method signatures",
+      "default values",
+      "literal and enum domains",
+      "type-constrained finite domains",
+      "reachable caller arguments",
+      "registry keys and configuration tables",
+      "branch guards and matcher outputs"
+    ],
+    "side_condition_sources": [
+      "explicit predicates",
+      "assertions and early returns",
+      "matcher acceptance conditions",
+      "graph invariants checked by callees",
+      "exceptional branches that prevent or roll back mutation",
+      "driver scheduling and repeat-until-stable conditions"
+    ],
+    "finite_domain_rule": "Every parameter or side-condition dimension must be reduced to a finite symbolic partition whose members have proved identical control-flow and normalized-effect semantics, or the protocol terminates `UNBOUNDED_PARAMETER_DOMAIN`.",
+    "match_domain_rule": "Matchers are expanded over canonical match classes, including empty, singleton, overlapping, conflicting, maximal, and nonmaximal matches when reachable.",
+    "no_op_rule": "A selectable production call that is admissible but leaves the canonical graph unchanged is retained as a no-op effect class when its return value, exception behavior, or metadata is observably distinct; otherwise it may quotient with the canonical no-op.",
+    "required_output": "MOVE_INSTANCES.jsonl"
+  },
+  "canonical_graph_encoding": {
+    "vertex_order": "canonical labeling independent of allocation order and incidental integer identifiers",
+    "edge_order": "lexicographic order over canonical endpoints and normalized edge type",
+    "scalar_and_phase_encoding": "exact normalized representation; no floating-point approximation",
+    "metadata": "include every field observable by a later production move or by the frozen ORION caller boundary",
+    "inputs_and_outputs": "preserve ordered boundary roles and all semantically observable labels",
+    "disconnected_components": "canonical multiset ordering with boundary-role ties resolved canonically",
+    "invalid_graphs": "record as rejected inputs or explicit exception effects; never normalize silently into valid graphs",
+    "required_specification": "CANONICAL_GRAPH_ENCODING.md",
+    "required_checker": "canonical_encoding_checker.py"
+  },
+  "normalized_effect": {
+    "before": "canonical graph encoding plus admissible non-graph state visible to the move",
+    "after": "canonical graph encoding plus observable non-graph state after normal return, exception, or rollback",
+    "return": "canonical exact encoding of the return value when observable by a production caller",
+    "exception": "exception class and normalized semantically relevant payload, excluding incidental stack addresses",
+    "metadata_delta": "all later-observable caches, phase trackers, scalar state, boundary maps, registries, and scheduling state",
+    "nondeterminism_rule": "Repeated execution from byte-identical canonical inputs must yield the same normalized effect under the frozen environment; otherwise terminate `NONDETERMINISTIC_EFFECT`."
+  },
+  "distinguishing_basis": {
+    "definition": "A finite, prospectively generated set of canonical inputs and symbolic partitions that separates every pair of nonequivalent move instances in the frozen grammar.",
+    "construction": [
+      "derive path predicates and read/write footprints for every move instance",
+      "generate a witness obligation for every pair whose symbolic normalized-effect functions are not already proved equal",
+      "solve each obligation exactly or produce a proof that the pair is equal over the complete admissible domain",
+      "minimize only after separation is established; retain proof links from every class pair to a witness or equality proof"
+    ],
+    "coverage_requirements": [
+      "every reachable branch outcome",
+      "every finite parameter partition",
+      "every side-condition truth assignment that is jointly satisfiable",
+      "every matcher overlap/conflict class",
+      "every boundary, scalar, phase, edge-type, and isolated-vertex case read by a move",
+      "every normal, no-op, rollback, and admissible exception effect"
+    ],
+    "random_or_fuzz_only_sufficient": false,
+    "bounded_size_only_sufficient_without_small_model_theorem": false,
+    "required_output": "DISTINGUISHING_BASIS_RECEIPT.json",
+    "failure_terminal": "DISTINGUISHING_BASIS_INSUFFICIENT"
+  },
+  "extensional_equivalence": {
+    "symbol": "~ext",
+    "definition": "m1 ~ext m2 iff, for every admissible canonical input in the complete separating basis and every admissible parameter/side-condition partition, their normalized effects are identical.",
+    "required_properties": [
+      "reflexive",
+      "symmetric",
+      "transitive",
+      "congruent_for_every_frozen_production_driver_that selects the move by registry class"
+    ],
+    "name_or_source_location_relevant": false,
+    "small_random_agreement_sufficient": false,
+    "canonical_class_id": "sha256 of the schema-tagged, length-delimited sorted normalized-effect function representation",
+    "representative_rule": "lexicographically least stable syntactic origin tuple; representative choice does not alter class identity",
+    "required_output": "CANONICAL_EFFECT_CLASSES.jsonl"
+  },
+  "completeness_ledger": {
+    "one_row_per_mutation_root": true,
+    "one_row_per_reachable_dynamic_edge": true,
+    "one_row_per_parameter_partition": true,
+    "one_row_per_side_condition_partition": true,
+    "one_row_per_move_instance": true,
+    "one_class_assignment_per_move_instance": true,
+    "duplicate_assignment_permitted": false,
+    "unassigned_instance_permitted": false,
+    "orphan_class_permitted": false,
+    "required_outputs": [
+      "SOURCE_BOUNDARY_RECEIPT.json",
+      "MOVE_INSTANCE_COVERAGE.json",
+      "EQUIVALENCE_COVERAGE.json",
+      "REGISTRY_COMPLETENESS_RECEIPT.json"
+    ]
+  },
+  "counterexample_schema": {
+    "required_output": "REGISTRY_COUNTEREXAMPLE.json",
+    "required_fields": [
+      "schema",
+      "protocol_identity",
+      "resolved_source_commit",
+      "counterexample_type",
+      "source_origin",
+      "reachable_call_path",
+      "canonical_input",
+      "parameter_assignment",
+      "side_condition_assignment",
+      "expected_registry_mapping",
+      "observed_normalized_effect",
+      "replay_command",
+      "artifact_hashes",
+      "terminal"
+    ],
+    "permitted_types": [
+      "OMITTED_MUTATION_ROOT",
+      "OMITTED_DYNAMIC_TARGET",
+      "OMITTED_PARAMETER_PARTITION",
+      "OMITTED_SIDE_CONDITION",
+      "FALSE_EXTENSIONAL_MERGE",
+      "DUPLICATE_OR_AMBIGUOUS_CLASS_ASSIGNMENT",
+      "NONDETERMINISTIC_EFFECT",
+      "INCOMPLETE_CANONICAL_ENCODING"
+    ]
+  },
+  "current_instance": {
+    "resolved_source_commit": null,
+    "mutation_roots": null,
+    "move_instances": null,
+    "canonical_effect_classes": null,
+    "registry_terminal": null,
+    "protocol_terminal": "PROTOCOL_FROZEN__NO_OUTCOME"
+  }
+}

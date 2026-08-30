@@ -1,0 +1,35 @@
+{
+  "schema": "ORION.FiniteInformationInterface.Protocol.v1",
+  "question": "Do the closed-form finite-information-interface results in THEORY.md agree with independent exact brute-force enumeration on bounded universes?",
+  "status": "RETROSPECTIVE_FORMAL_REGRESSION_SPECIFICATION__NOT_AN_EMPIRICAL_PROMOTION_PROTOCOL",
+  "unrestricted_claim_source": "Proofs in THEORY.md for arbitrary finite nonempty state/action sets, positive weights, and real losses.",
+  "checker_scope": {
+    "decision_configurations": [[1,3],[2,3],[3,3],[4,2]],
+    "label_counts": [2,3],
+    "loss_alphabet": [0,1],
+    "weight_alphabet": [1,2],
+    "randomized_policy_simplex_denominator": 3,
+    "scalar_state_counts": [1,2,3,4,5],
+    "scalar_value_alphabet": [-2,-1,0,1,2]
+  },
+  "predictions": [
+    "Closed-form partition risk equals brute-force deterministic policy risk.",
+    "Zero information regret is equivalent to a common optimum on every positive-weight fibre.",
+    "Every same-fibre pair lower bound is no larger than global regret.",
+    "Every checked refinement weakly lowers optimal risk.",
+    "No denominator-3 randomized policy probe beats the deterministic fibre optimum.",
+    "Weighted 0-1 risk equals fibre minority mass.",
+    "Scalar minimax point radius equals half fibre diameter and covering interval width equals fibre diameter."
+  ],
+  "terminals": {
+    "success": "FINITE_INFORMATION_INTERFACE_V1_THEOREMS_REPRODUCED",
+    "failure": "FINITE_INFORMATION_INTERFACE_V1_COUNTEREXAMPLE_OR_IMPLEMENTATION_DRIFT"
+  },
+  "exclusions": [
+    "No novelty conclusion.",
+    "No empirical external-validity conclusion.",
+    "No ORION paper promotion.",
+    "No substitution of bounded regression for unrestricted proof."
+  ],
+  "scientific_authority_delta": "NONE"
+}

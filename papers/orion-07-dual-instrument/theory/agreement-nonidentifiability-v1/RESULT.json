@@ -1,0 +1,94 @@
+{
+  "schema": "ORION.ORION07.AgreementNonidentifiability.CheckerReport.v1",
+  "successor_id": "ORION07.AGREEMENT_NONIDENTIFIABILITY.v1",
+  "independence": "no proof logic imported; observables recomputed from definitions",
+  "arithmetic": "exact (fractions.Fraction); no floating point",
+  "route_a_exhaustive_finite_samples": {
+    "n_max": 7,
+    "samples_checked": 6434,
+    "distinct_agreement_levels": 19,
+    "pass": true,
+    "counterexample": null
+  },
+  "route_b_exact_polytope_vertices": {
+    "agreement_grid_denominator": 12,
+    "grid_points": 13,
+    "pass": true,
+    "counterexample": null,
+    "detail": [
+      {
+        "a": "0",
+        "polytope_image_points": 2
+      },
+      {
+        "a": "1/12",
+        "polytope_image_points": 4
+      },
+      {
+        "a": "1/6",
+        "polytope_image_points": 4
+      },
+      {
+        "a": "1/4",
+        "polytope_image_points": 4
+      },
+      {
+        "a": "1/3",
+        "polytope_image_points": 4
+      },
+      {
+        "a": "5/12",
+        "polytope_image_points": 4
+      },
+      {
+        "a": "1/2",
+        "polytope_image_points": 4
+      },
+      {
+        "a": "7/12",
+        "polytope_image_points": 4
+      },
+      {
+        "a": "2/3",
+        "polytope_image_points": 4
+      },
+      {
+        "a": "3/4",
+        "polytope_image_points": 4
+      },
+      {
+        "a": "5/6",
+        "polytope_image_points": 4
+      },
+      {
+        "a": "11/12",
+        "polytope_image_points": 4
+      },
+      {
+        "a": "1",
+        "polytope_image_points": 2
+      }
+    ]
+  },
+  "corollaries": {
+    "c2_1_perfect_agreement_vacuous": {
+      "min_q": "0",
+      "max_q": "1",
+      "pass": true
+    },
+    "c2_2_perfect_disagreement_pins_half": {
+      "observed_q_values": [
+        "1/2"
+      ],
+      "pass": true
+    },
+    "c2_3_interval_width_at_most_a": {
+      "pass": true,
+      "note": "achieved width <= a for every achieved agreement level"
+    },
+    "c3_1_spread_bound": {
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

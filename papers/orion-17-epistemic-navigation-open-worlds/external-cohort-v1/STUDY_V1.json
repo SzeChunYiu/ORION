@@ -1,0 +1,259 @@
+{
+  "schema": "ORION.ORION17.RuleDisagreementStudy.v1",
+  "identity": "ORION17.RULE_DISAGREEMENT.v1.study",
+  "outcome_definition": {
+    "rule": "donor-coarse is UNSOUND on a repository iff false_closure_retention > 0",
+    "source": "papers/orion-17-epistemic-navigation-open-worlds/transitions/measure_p7_closure_retention_v1.py -- the campaign's own instrument, invoked through its documented CLI. No policy logic was retranscribed and no outcome was invented.",
+    "protocol_gap": "ORION17_RULE_DISAGREEMENT_PROTOCOL_V1.json names the terminals and the gate but does NOT define the outcome measurement; it only refers to 'donor-coarse policy outcomes'. The definition above is read off the campaign's instrument, not chosen.",
+    "n_changes": 700,
+    "n_changes_provenance": "RECOVERED, not chosen. In the campaign's own HELD_OUT_RESULT.json, tornado and sympy both saturate at commits_examined=700, and the five domains sum to 2,265 changes and 1,671,821 certificate decisions, reproducing the manuscript exactly.",
+    "fetch_depth": 800,
+    "instrument_reproduction": {
+      "requests": "changes_used 79 == campaign's recorded 79; preserve 0; sound",
+      "tornado": "changes_used 619 == campaign's recorded 619; false retention 12,787 vs recorded 12,773 (14 newer commits)"
+    }
+  },
+  "frozen_constants": {
+    "density": ">=1.5",
+    "modules": ">=49",
+    "edges": ">=216",
+    "refit": false
+  },
+  "measured": 20,
+  "cannot_check": [],
+  "per_stratum": {
+    "small_fewedge_dense": {
+      "n": 10,
+      "outcomes": {
+        "unsound": 10,
+        "sound": 0
+      },
+      "degenerate": 0,
+      "density_wins": 10
+    },
+    "large_manyedge_sparse": {
+      "n": 10,
+      "outcomes": {
+        "unsound": 6,
+        "sound": 4
+      },
+      "degenerate": 4,
+      "density_wins": 4
+    }
+  },
+  "degeneracy": {
+    "what": "donor-coarse buckets a module by m.split('.')[1]. For a src/ layout every module of package P is named src.P.x, so that component is 'P' for ALL of them; the bucket set collapses to {P} and donor-coarse reopens everything. It has degenerated to always-reopen, which cannot falsely retain, so the repository is 'sound' for a reason unrelated to density, modules or edges.",
+    "verified_on": {
+      "requests_src": "preserve=0, sound (reproduces the campaign's own held-out row)",
+      "flask_src": "preserve=0, sound (campaign calibration; generalization confirmed)",
+      "tornado_flat": "preserve=32285, unsound (negative control: layout-specific)"
+    },
+    "degenerate_repos": [
+      "openai",
+      "anthropic",
+      "cohere",
+      "llama-cloud"
+    ],
+    "count": 4,
+    "symmetric": "A degenerate repository is uninformative for EVERY rule alike: it scores sound whatever any rule predicts, so it simply credits whichever rule predicts sound in that stratum."
+  },
+  "cuts": {
+    "all_measured": {
+      "cut": "ALL_MEASURED",
+      "n": 20,
+      "rules": {
+        "density_rule": {
+          "correct": 14,
+          "n": 20,
+          "accuracy": 0.7,
+          "confusion": {
+            "true_unsound": 10,
+            "true_sound": 4,
+            "false_unsound": 0,
+            "false_sound": 6
+          }
+        },
+        "module_rule": {
+          "correct": 6,
+          "n": 20,
+          "accuracy": 0.3,
+          "confusion": {
+            "true_unsound": 6,
+            "true_sound": 0,
+            "false_unsound": 4,
+            "false_sound": 10
+          }
+        },
+        "edge_rule": {
+          "correct": 6,
+          "n": 20,
+          "accuracy": 0.3,
+          "confusion": {
+            "true_unsound": 6,
+            "true_sound": 0,
+            "false_unsound": 4,
+            "false_sound": 10
+          }
+        }
+      },
+      "paired_tests": {
+        "density_vs_module_rule": {
+          "discordant_pairs": 20,
+          "all_pairs_discordant_by_construction": true,
+          "density_wins": 14,
+          "rival_wins": 6,
+          "test": "McNemar exact == two-sided binomial sign test (all pairs discordant)",
+          "p_two_sided": 0.115318
+        },
+        "density_vs_edge_rule": {
+          "discordant_pairs": 20,
+          "all_pairs_discordant_by_construction": true,
+          "density_wins": 14,
+          "rival_wins": 6,
+          "test": "McNemar exact == two-sided binomial sign test (all pairs discordant)",
+          "p_two_sided": 0.115318
+        }
+      }
+    },
+    "non_degenerate_only": {
+      "cut": "NON_DEGENERATE_ONLY",
+      "n": 16,
+      "rules": {
+        "density_rule": {
+          "correct": 10,
+          "n": 16,
+          "accuracy": 0.625,
+          "confusion": {
+            "true_unsound": 10,
+            "true_sound": 0,
+            "false_unsound": 0,
+            "false_sound": 6
+          }
+        },
+        "module_rule": {
+          "correct": 6,
+          "n": 16,
+          "accuracy": 0.375,
+          "confusion": {
+            "true_unsound": 6,
+            "true_sound": 0,
+            "false_unsound": 0,
+            "false_sound": 10
+          }
+        },
+        "edge_rule": {
+          "correct": 6,
+          "n": 16,
+          "accuracy": 0.375,
+          "confusion": {
+            "true_unsound": 6,
+            "true_sound": 0,
+            "false_unsound": 0,
+            "false_sound": 10
+          }
+        }
+      },
+      "paired_tests": {
+        "density_vs_module_rule": {
+          "discordant_pairs": 16,
+          "all_pairs_discordant_by_construction": true,
+          "density_wins": 10,
+          "rival_wins": 6,
+          "test": "McNemar exact == two-sided binomial sign test (all pairs discordant)",
+          "p_two_sided": 0.454498
+        },
+        "density_vs_edge_rule": {
+          "discordant_pairs": 16,
+          "all_pairs_discordant_by_construction": true,
+          "density_wins": 10,
+          "rival_wins": 6,
+          "test": "McNemar exact == two-sided binomial sign test (all pairs discordant)",
+          "p_two_sided": 0.454498
+        }
+      }
+    }
+  },
+  "per_stratum_non_degenerate": {
+    "small_fewedge_dense": {
+      "n": 10,
+      "density_wins": 10,
+      "rival_wins": 0,
+      "p_two_sided": 0.001953,
+      "outcomes": {
+        "sound": 0,
+        "unsound": 10
+      }
+    },
+    "large_manyedge_sparse": {
+      "n": 6,
+      "density_wins": 0,
+      "rival_wins": 6,
+      "p_two_sided": 0.03125,
+      "outcomes": {
+        "sound": 0,
+        "unsound": 6
+      }
+    }
+  },
+  "post_hoc_diagnosis": {
+    "status": "POST_HOC_OBSERVATION_AFTER_OUTCOME_ACCESS__NOT_A_VALIDATED_RULE",
+    "forbidden_note": "The protocol forbids a new threshold after outcome access. Nothing here is offered as a prespecified or validated rule; it is a diagnosis of WHY the prespecified test could not discriminate.",
+    "outcome_is_constant_on_the_informative_subset": {
+      "non_degenerate_n": 16,
+      "unsound": 16,
+      "sound": 0,
+      "consequence": "With the outcome constant across all informative repositories, no rule can be confirmed or falsified on them. Rule 'accuracy' there only measures how often a rule happens to say 'unsound', not whether it tracks anything."
+    },
+    "degeneracy_predicts_outcome": {
+      "degenerate_and_sound": 4,
+      "degenerate_and_unsound": 0,
+      "nondegenerate_and_unsound": 16,
+      "nondegenerate_and_sound": 0,
+      "agreement": "20/20"
+    },
+    "layout_vs_outcome": {
+      "src": {
+        "sound": 4,
+        "unsound": 0
+      },
+      "flat": {
+        "sound": 0,
+        "unsound": 16
+      }
+    }
+  },
+  "protocol_gate": {
+    "density_wins_total": 14,
+    "density_wins_total_min": 15,
+    "density_wins_per_stratum": {
+      "small_fewedge_dense": 10,
+      "large_manyedge_sparse": 4
+    },
+    "density_wins_each_stratum_min": 7,
+    "passes_as_written": false,
+    "null_joint_probability": 0.01580810546875,
+    "null_reproduced": true,
+    "module_rule_wins_total": 6,
+    "module_rule_passes_same_gate": false,
+    "edge_rule_wins_total": 6,
+    "edge_rule_passes_same_gate": false
+  },
+  "verdict": {
+    "terminal": "NO_DISCRIMINATION",
+    "terminal_options": [
+      "DENSITY_OUTPERFORMS_PRESPECIFIED_ABSOLUTE_SIZE_RIVALS",
+      "ABSOLUTE_SIZE_OUTPERFORMS_DENSITY",
+      "NO_DISCRIMINATION",
+      "CANNOT_CHECK_CUSTODY_OR_USABLE_COUNT"
+    ],
+    "why": [
+      "Density took 14/20, below the prespecified density_wins_total_min of 15.",
+      "Density took 4/10 in large_manyedge_sparse, below the density_wins_each_stratum_min of 7.",
+      "Neither absolute-size rival passes the same gate either (6/20 each), so ABSOLUTE_SIZE_OUTPERFORMS_DENSITY is also not supported.",
+      "All 20 repositories were measured, so CANNOT_CHECK_CUSTODY_OR_USABLE_COUNT does not apply."
+    ],
+    "density_is_not_refuted_either": "This is NOT a demonstration that density is wrong. On the 16 informative repositories the outcome is CONSTANT (all unsound), so the cohort carries no outcome variation that any of the three rules could be scored against. The design could not discriminate, which is a different result from density losing.",
+    "consistent_with_protocol_safe_terminal": "PROSPECTIVE_RULE_SUPPORTED__UNIQUE_MECHANISM_NOT_IDENTIFIED",
+    "adverse_finding_about_the_campaign": "Every 'sound' observation in the campaign's own 8 projects is degenerate: flask (calibration, src/flask) and requests (held-out, src/requests) both measure donor-coarse preserve=0, verified here. The other six are flat and unsound. So the campaign has no informative sound example, and both the 1.5 density threshold and the rival cutpoints 49/216 -- which the protocol derives from 'max observed sound' -- rest on a boundary supplied entirely by packages whose soundness is a mechanical consequence of src/ layout."
+  }
+}

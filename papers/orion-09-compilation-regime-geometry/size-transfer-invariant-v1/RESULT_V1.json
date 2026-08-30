@@ -1,0 +1,56 @@
+{
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "capacity_invariant": {
+    "adds_search_free_power": false,
+    "failures_it_cannot_see": 759128,
+    "failures_it_explains": 0,
+    "false_alarms": 0,
+    "times_it_fired": 0
+  },
+  "configurations_enumerated": 1413120,
+  "controls": {
+    "R1_mixed_fibre_blocks_separation": {
+      "caught": 759128,
+      "eligible": 759128,
+      "passed": true
+    },
+    "R2_pure_configuration_no_alarm": {
+      "clean": 653992,
+      "eligible": 653992,
+      "passed": true
+    },
+    "R3_capacity_bound_never_false_alarms": {
+      "false_alarms": 0,
+      "passed": true
+    },
+    "R4_both_regimes_present": {
+      "below_capacity_failures": 759128,
+      "passed": true
+    }
+  },
+  "enumeration_reduced_before_outcome_access": "frozen sizes 4..8 at k=3 are about 4e9 feature maps and do not terminate; reduced to the sizes shown BEFORE any outcome was read, and recorded here rather than silently",
+  "features_k": [
+    2,
+    3
+  ],
+  "promotion_status": "PROMOTION_STOPPED__RETURN_TO_SPECIALIST_VENUE",
+  "protocol_identity": "ORION09.SIZE_TRANSFER_INVARIANT.v1",
+  "schema": "ORION.ORION09.SizeTransferInvariant.Result.v1",
+  "scientific_authority_delta": "NONE",
+  "sizes_by_k": {
+    "2": [
+      4,
+      5,
+      6
+    ],
+    "3": [
+      4,
+      5
+    ]
+  },
+  "terminal": "T3_INVARIANT_ADDS_NOTHING",
+  "violations": {
+    "S1": 0,
+    "S2": 0
+  }
+}

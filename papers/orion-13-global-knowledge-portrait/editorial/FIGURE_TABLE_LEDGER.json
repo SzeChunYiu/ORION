@@ -1,0 +1,30 @@
+{
+  "figure_decision": {
+    "decision": "OMIT",
+    "main_figures": 0,
+    "reason": "The bounded result has three systems, three family counts, and two paired primary comparisons. A plot would duplicate two compact tables without adding uncertainty or mechanism information."
+  },
+  "omitted_candidates": [
+    "Historical three-panel SVGs: omit because they add no claim beyond T1/T2 and carry internal system labels.",
+    "Coordinate mechanism diagram: omit because the definition is one equation plus a short decision rule; no process topology needs a diagram."
+  ],
+  "schema_version": "orion.orion13.figure-table-ledger.v1",
+  "tables": [
+    {
+      "file": "manuscript/tables/confirmatory_case_families.tex",
+      "generator": "manuscript/generate_tables.py",
+      "id": "T1",
+      "reader_question": "What comprises the confirmatory set?",
+      "source": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+      "status": "VERIFIED"
+    },
+    {
+      "file": "manuscript/tables/confirmatory_primary_results.tex",
+      "generator": "manuscript/generate_tables.py",
+      "id": "T2",
+      "reader_question": "What are the system rates and paired primary effects?",
+      "source": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+      "status": "VERIFIED"
+    }
+  ]
+}

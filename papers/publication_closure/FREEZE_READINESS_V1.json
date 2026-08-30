@@ -1,0 +1,553 @@
+{
+  "bindable": [],
+  "claim_scope": "Records, per paper, whether its science is complete enough that a content binding taken now would survive. Not a readiness verdict in either direction: PENDING_SCIENCE__DO_NOT_BIND says a byte freeze would be invalidated by work already in flight, and says nothing about the quality or validity of any claim.",
+  "decision_rule": "A paper is SCIENCE_COMPLETE__BINDABLE only if no open task, adverse terminal, or running acquisition can still change its bytes. Ambiguity resolves to PENDING, because a wrong BINDABLE produces a freeze that silently stops describing the paper while a wrong PENDING only delays one.",
+  "determined_on": "2026-08-29",
+  "grants_authority": "NONE",
+  "open_science_tasks_across_scope": 139,
+  "papers": [
+    {
+      "candidate_id": "ORION-01",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 10,
+        "representative_tasks": [
+          {
+            "body_line": 131,
+            "quote": "- [ ] Preserve #1602 terminal `CANNOT_CHECK_MOVE_COMPLETENESS` and the fact all eight jobs hit the frozen cap."
+          },
+          {
+            "body_line": 132,
+            "quote": "- [ ] Confirm bounded theorem/proof manuscript remains internally correct after all R0/name repairs."
+          },
+          {
+            "body_line": 133,
+            "quote": "- [ ] Run an implementation-independent proof checker from theorem statements, not production code."
+          }
+        ],
+        "section_body_line": 127,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 10,
+          "path": "papers/orion-01-certificate-realization/theory-A-CLAIM_LEDGER_R2.md",
+          "quote": "| A2-C6 | `s+1` is necessary for general MultiTag-TARE. | OPEN; NOT CLAIMED | No general lower witness. |"
+        }
+      ],
+      "paper": "papers/orion-01-certificate-realization",
+      "reason": "Board keeps a CANNOT_CHECK completeness terminal open and requires an implementation-independent proof check that has not been run."
+    },
+    {
+      "candidate_id": "ORION-02",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 9,
+        "representative_tasks": [
+          {
+            "body_line": 162,
+            "quote": "- [ ] Use E2 OpenML-CC18 as the main fresh source; select >=4 application/task strata by metadata before outcomes."
+          },
+          {
+            "body_line": 157,
+            "quote": "- [ ] Verify V3 theorem/proof independently."
+          },
+          {
+            "body_line": 158,
+            "quote": "- [ ] Close bounded paper/package if not already canonical."
+          }
+        ],
+        "section_body_line": 150,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [],
+      "paper": "papers/orion-02-fiberguard-finite-fibre",
+      "reason": "Board requires a fresh OpenML-CC18 acquisition with strata selected before outcomes; that data is not in the tree, so the theorem's prospective test is still ahead of the paper."
+    },
+    {
+      "candidate_id": "ORION-03",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 9,
+        "representative_tasks": [
+          {
+            "body_line": 179,
+            "quote": "- [ ] Verify the 1,962 external trust-store merge tasks and 46 hybrid obstructions remain bound."
+          },
+          {
+            "body_line": 180,
+            "quote": "- [ ] Preserve the analytic-vs-empirical distinction for perfect M5 metrics."
+          },
+          {
+            "body_line": 181,
+            "quote": "- [ ] Finalize bounded manuscript/package; do not reopen same algebra."
+          }
+        ],
+        "section_body_line": 175,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 13,
+          "path": "papers/orion-03-typed-merge-falsification/CLAIM_LEDGER_R2.md",
+          "quote": "| D2-C9 | The calculus handles arbitrary negation/probability/inconsistency. | OPEN; NOT CLAIMED | Positive conjunctive core only. |"
+        }
+      ],
+      "paper": "papers/orion-03-typed-merge-falsification",
+      "reason": "Board still requires re-verification that the external merge corpus remains bound before the bounded manuscript is finalized."
+    },
+    {
+      "candidate_id": "ORION-04",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 10,
+        "representative_tasks": [
+          {
+            "body_line": 202,
+            "quote": "- [ ] Preserve old CRB replay terminal `...FAILED_CENSUS_RECEIPT_SERIALIZATION__D2_D3_AUTHORITY_CANNOT_CHECK` as history, not contradiction."
+          },
+          {
+            "body_line": 201,
+            "quote": "- [ ] Materialize the handoff into a fresh integration branch **without changing its bytes first**."
+          },
+          {
+            "body_line": 203,
+            "quote": "- [ ] Re-run all three independent handoff checkers and focused tests."
+          }
+        ],
+        "section_body_line": 197,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 5,
+          "path": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/SUBMISSION_BLOCKER.json",
+          "quote": "\"d4\": \"OPEN\","
+        }
+      ],
+      "paper": "papers/orion-04-rooted-completion-certificates",
+      "reason": "The paper's own submission blocker records d2/d3 as CANNOT_CHECK and d4 as OPEN with zero rounds consumed."
+    },
+    {
+      "candidate_id": "ORION-05",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 7,
+        "representative_tasks": [
+          {
+            "body_line": 227,
+            "quote": "- [ ] If a new obstruction appears: terminal = bounded paper; no rescue basis."
+          },
+          {
+            "body_line": 222,
+            "quote": "- [ ] Preserve complete local obstruction classification and `kappa_R6M = 2` theorem."
+          },
+          {
+            "body_line": 223,
+            "quote": "- [ ] Preserve mature manuscript/editorial/package artifacts path-by-path; do not wholesale merge stale branch."
+          }
+        ],
+        "section_body_line": 217,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 2,
+          "path": "papers/orion-05-tare-expressivity/experiments/global-obstruction-basis-v1/result/census-3551911/CONTROL_GATE.json",
+          "quote": "\"control_gate_passed\": false,"
+        },
+        {
+          "line": 1,
+          "path": "papers/orion-05-tare-expressivity/experiments/global-obstruction-basis-v2/COMPUTE_PLAN_V2.md",
+          "quote": "# ORION05.GLOBAL_OBSTRUCTION_BASIS.v2 \u2014 Stage 1 compute plan (DESIGN; LUNARC execution only)"
+        }
+      ],
+      "paper": "papers/orion-05-tare-expressivity",
+      "reason": "The global-obstruction census control gate has not passed and a v2 compute plan is staged; a new obstruction would change the paper's terminal."
+    },
+    {
+      "candidate_id": "ORION-06",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 8,
+        "representative_tasks": [
+          {
+            "body_line": 250,
+            "quote": "- [ ] Use >=3 objective domains. Recommended: E12 Lean/mathlib proof tasks; E3 Defects4J repair/failure tasks; ORION exact quantum/combinatorial tasks as the third domain."
+          },
+          {
+            "body_line": 245,
+            "quote": "- [ ] Preserve all negative/absorbed outcomes and separate successor identities."
+          },
+          {
+            "body_line": 246,
+            "quote": "- [ ] Finalize bounded case-study/method manuscript."
+          }
+        ],
+        "section_body_line": 241,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 3,
+          "path": "papers/orion-06-recursive-recovery/JOURNAL_READINESS.md",
+          "quote": "**Current terminal:** `INTERNAL_REVIEW_PASS__METHOD_CLAIM / SUBMISSION_GATES_OPEN`."
+        }
+      ],
+      "paper": "papers/orion-06-recursive-recovery",
+      "reason": "Board requires the method be exercised over at least three objective domains that have not been run."
+    },
+    {
+      "candidate_id": "ORION-07",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 9,
+        "representative_tasks": [
+          {
+            "body_line": 266,
+            "quote": "- [ ] Recover theorem packet path-by-path; verify exact agreement/accuracy bounds."
+          },
+          {
+            "body_line": 267,
+            "quote": "- [ ] Update manuscript caution if package-binding workflow permits; do not claim reliability from agreement."
+          },
+          {
+            "body_line": 268,
+            "quote": "- [ ] Close current bounded paper."
+          }
+        ],
+        "section_body_line": 262,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 3,
+          "path": "papers/orion-07-dual-instrument/JOURNAL_READINESS.md",
+          "quote": "**Current terminal:** `MANUSCRIPT_REVIEW_PASS / EVIDENCE_GATE_BLOCKED`."
+        },
+        {
+          "line": 29,
+          "path": "papers/orion-07-dual-instrument/JOURNAL_READINESS.md",
+          "quote": "**Standalone evidence sufficiency:** **BLOCKED** by ORION-03-R3."
+        }
+      ],
+      "paper": "papers/orion-07-dual-instrument",
+      "reason": "The paper's own record is EVIDENCE_GATE_BLOCKED: standalone evidence sufficiency is BLOCKED pending 2-3 further frozen question instances."
+    },
+    {
+      "candidate_id": "ORION-08",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 11,
+        "representative_tasks": [
+          {
+            "body_line": 288,
+            "quote": "- [ ] Recover theory packet and independent checker."
+          },
+          {
+            "body_line": 289,
+            "quote": "- [ ] Preserve exact-synthetic scope and no-real-transfer limitation."
+          },
+          {
+            "body_line": 290,
+            "quote": "- [ ] Finish bounded TMLR paper."
+          }
+        ],
+        "section_body_line": 284,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 3,
+          "path": "papers/orion-08-typed-state/JOURNAL_READINESS.md",
+          "quote": "**Current terminal:** `INTERNAL_REVIEW_PASS__EXACT_SYNTHETIC_MECHANISM_CLAIM / SUBMISSION_GATES_OPEN`."
+        }
+      ],
+      "paper": "papers/orion-08-typed-state",
+      "reason": "Board requires recovery of the theory packet and independent checker before the bounded paper is finished."
+    },
+    {
+      "candidate_id": "ORION-09",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 8,
+        "representative_tasks": [
+          {
+            "body_line": 313,
+            "quote": "- [ ] Fix stale manuscript abstract so it includes the prospectively frozen enlarged-vocabulary result; this is a correctness/package action, not new science."
+          },
+          {
+            "body_line": 312,
+            "quote": "- [ ] Recover the four-feature result: `k*=4` on frozen `n<=3`; preserve failure at unseen `n=4` and mechanism-attribution adverse result."
+          },
+          {
+            "body_line": 314,
+            "quote": "- [ ] Preserve any prior #1649 stop as governing the old promotion object."
+          }
+        ],
+        "section_body_line": 308,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 3,
+          "path": "papers/orion-09-compilation-regime-geometry/JOURNAL_READINESS.md",
+          "quote": "**Current terminal:** `INTERNAL_REVIEW_PASS__PROGRAMME_SYNTHESIS / SUBMISSION_GATES_OPEN`."
+        }
+      ],
+      "paper": "papers/orion-09-compilation-regime-geometry",
+      "reason": "The board records the manuscript abstract as stale against a prospectively frozen result; binding would freeze bytes already known to be wrong."
+    },
+    {
+      "candidate_id": "ORION-10",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 9,
+        "representative_tasks": [
+          {
+            "body_line": 333,
+            "quote": "- [ ] Recover theorem packet/checker."
+          },
+          {
+            "body_line": 334,
+            "quote": "- [ ] Preserve separation: exact cost theorem survives; explanation vocabulary can fail."
+          },
+          {
+            "body_line": 335,
+            "quote": "- [ ] Finalize bounded Quantum paper."
+          }
+        ],
+        "section_body_line": 329,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 3,
+          "path": "papers/orion-10-certified-static-forecasting/JOURNAL_READINESS.md",
+          "quote": "**Current terminal:** `INTERNAL_REVIEW_PASS__LAYERED_CERTIFICATE_CLAIM / SUBMISSION_GATES_OPEN`."
+        }
+      ],
+      "paper": "papers/orion-10-certified-static-forecasting",
+      "reason": "Board requires recovery of the theorem packet and checker before the bounded paper is finalized."
+    },
+    {
+      "candidate_id": "ORION-11",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 8,
+        "representative_tasks": [
+          {
+            "body_line": 356,
+            "quote": "- [ ] Preserve replication `CANNOT_CHECK` from anchor-gate mismatch and later parameterized repair if already landed."
+          },
+          {
+            "body_line": 355,
+            "quote": "- [ ] Recover R4 faithful comparator result: ordered Active-VOI matches ORION on frozen joint criterion; comparative reading falsified."
+          },
+          {
+            "body_line": 357,
+            "quote": "- [ ] Preserve costed-ordering result showing licensed-transition policy does not earn economy superiority."
+          }
+        ],
+        "section_body_line": 351,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 11,
+          "path": "papers/orion-11-recursive-epistemic-reconstruction/JOURNAL_READINESS.md",
+          "quote": "**Current terminal:** `CANNOT_CHECK` for submission readiness. The bounded mechanical claim is `SUPPORTED`, and that is unchanged; what cannot be checked is the enlarged manuscript and journal package, which are `NOT_SUBMISSION_READY` (`journal_package/MANIFEST.json` status `SUPERSEDED`). The previous wording stated both facts but named neither scoreboard status, so `research/publication/scoreboar"
+        },
+        {
+          "line": 3,
+          "path": "papers/orion-11-recursive-epistemic-reconstruction/acquisition/SAB_ACQUISITION_BLOCKER_V1.json",
+          "quote": "\"#1086 P1: Run the full benchmark with the official evaluator.\","
+        }
+      ],
+      "paper": "papers/orion-11-recursive-epistemic-reconstruction",
+      "reason": "Submission readiness is CANNOT_CHECK in the paper's own record, and the acquisition blocker leaves the official evaluator unreachable."
+    },
+    {
+      "candidate_id": "ORION-12",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 9,
+        "representative_tasks": [
+          {
+            "body_line": 381,
+            "quote": "- [ ] Use E11 BEIR `SciFact`, `NFCorpus`, `ArguAna`; freeze exact dataset/qrels versions."
+          },
+          {
+            "body_line": 376,
+            "quote": "- [ ] Preserve recall@100 adverse result and +175.7% reads; favourable nDCG cannot override."
+          },
+          {
+            "body_line": 377,
+            "quote": "- [ ] Finish IP&M manuscript/package/citations/PDF."
+          }
+        ],
+        "section_body_line": 372,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 3,
+          "path": "papers/orion-12-open-world-scientific-discovery/JOURNAL_READINESS.md",
+          "quote": "**Current terminal:** `ORION-12 = PEER_REVIEW_READY` on the bounded methods / critical system-design claim as of 2026-08-18."
+        }
+      ],
+      "paper": "papers/orion-12-open-world-scientific-discovery",
+      "reason": "READY is asserted only for a bounded methods claim as of 2026-08-18; the board still requires frozen BEIR runs, and the paper's own journal bundle is recorded as SUBMISSION_BUNDLE_INCOMPLETE in the drift baseline."
+    },
+    {
+      "candidate_id": "ORION-13",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 10,
+        "representative_tasks": [
+          {
+            "body_line": 399,
+            "quote": "- [ ] Preserve conclusion: current corpus does **not test** necessity of other coordinates."
+          },
+          {
+            "body_line": 398,
+            "quote": "- [ ] Recover theory/checker."
+          },
+          {
+            "body_line": 400,
+            "quote": "- [ ] Finish bounded SWJ/JWS-style package."
+          }
+        ],
+        "section_body_line": 394,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 17,
+          "path": "papers/orion-13-global-knowledge-portrait/JOURNAL_READINESS.md",
+          "quote": "**Current terminal:** `PEER_REVIEW_READY` for the scoped ORION-13.C5/ORION-13.C9 structured-mapping claim **only on a commit whose repository CI and `p3-manuscript-audit` both succeed**."
+        },
+        {
+          "line": 2,
+          "path": "papers/orion-13-global-knowledge-portrait/evidence/P3_CLOSURE_BLOCKER_ATTRIBUTION_V1.json",
+          "quote": "\"schema_version\": \"orion.p3.closure-blocker-attribution.v1\","
+        }
+      ],
+      "paper": "papers/orion-13-global-knowledge-portrait",
+      "reason": "READY is conditioned on a commit where repository CI and p3-manuscript-audit both succeed; that condition is unverified at the subject commit, and the corpus is recorded as not testing necessity of other coordinates."
+    },
+    {
+      "candidate_id": "ORION-14",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 11,
+        "representative_tasks": [
+          {
+            "body_line": 421,
+            "quote": "- [ ] Reconcile mature claim ledger, formal audit, literature audit, two reviewer rounds, PDF audit and anonymous artifact with current manuscript bytes."
+          },
+          {
+            "body_line": 422,
+            "quote": "- [ ] Preserve source/provider edge blockers as authority limits; do not keep probing unavailable authority endpoints indefinitely."
+          },
+          {
+            "body_line": 423,
+            "quote": "- [ ] Finish current TMLR package and submission-byte manifest."
+          }
+        ],
+        "section_body_line": 417,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 14,
+          "path": "papers/orion-14-verified-scientific-discovery/JOURNAL_READINESS.md",
+          "quote": "| H3 \u2014 superior correct `CANNOT_CHECK` | **NOT_SUPPORTED**: both `30/30`; effect `0`, CI `[0,0]` |"
+        }
+      ],
+      "paper": "papers/orion-14-verified-scientific-discovery",
+      "reason": "READY is asserted, but H3 is NOT_SUPPORTED and the board still requires the ledger and audits be reconciled with current manuscript bytes."
+    },
+    {
+      "candidate_id": "ORION-15",
+      "classification": "PENDING_SCIENCE__DO_NOT_BIND",
+      "deciding_evidence": {
+        "open_science_tasks": 11,
+        "representative_tasks": [
+          {
+            "body_line": 450,
+            "quote": "- [ ] Recover GLM-5.3 blinded harvest: control 22/24, treatment 23/24; preserve loss of perfect 24/24 ceiling."
+          },
+          {
+            "body_line": 448,
+            "quote": "- [ ] Recover V4 confirmatory result: 180 cases, subject accuracy 1.0, zero false-broad/harm/authority violations, preservation refusal 1.0, fresh transfer 0.889."
+          },
+          {
+            "body_line": 449,
+            "quote": "- [ ] Recover independent verification and retain the noncontrolling executable-rule defect disclosure."
+          }
+        ],
+        "section_body_line": 444,
+        "source": "github.com/SzeChunYiu/ORION issue #1701",
+        "source_state": "OPEN",
+        "source_title": "[TOP-TIER-FIRST canonical execution board] ORION-01-25 - recover all evidence, execute strongest promotion path, fall back only after documented exhaustion"
+      },
+      "in_tree_corroboration": [
+        {
+          "line": 3,
+          "path": "papers/orion-15-self-orion/JOURNAL_READINESS.md",
+          "quote": "**Current terminal:** `NO_TERMINAL_UNDER_FROZEN_RULES` for the bounded 96-case revision-level panel; general governed self-improvement benefit remains `CANNOT_CHECK` / **not** peer-review ready."
+        }
+      ],
+      "paper": "papers/orion-15-self-orion",
+      "reason": "The paper's own terminal is NO_TERMINAL_UNDER_FROZEN_RULES with general benefit CANNOT_CHECK and explicitly not peer-review ready."
+    }
+  ],
+  "pending": [
+    "papers/orion-01-certificate-realization",
+    "papers/orion-02-fiberguard-finite-fibre",
+    "papers/orion-03-typed-merge-falsification",
+    "papers/orion-04-rooted-completion-certificates",
+    "papers/orion-05-tare-expressivity",
+    "papers/orion-06-recursive-recovery",
+    "papers/orion-07-dual-instrument",
+    "papers/orion-08-typed-state",
+    "papers/orion-09-compilation-regime-geometry",
+    "papers/orion-10-certified-static-forecasting",
+    "papers/orion-11-recursive-epistemic-reconstruction",
+    "papers/orion-12-open-world-scientific-discovery",
+    "papers/orion-13-global-knowledge-portrait",
+    "papers/orion-14-verified-scientific-discovery",
+    "papers/orion-15-self-orion"
+  ],
+  "schema_version": "orion.freeze-readiness.v1",
+  "subject_commit": "0cc69505fd7818b8424be163a6bd66f997fb9bb3"
+}

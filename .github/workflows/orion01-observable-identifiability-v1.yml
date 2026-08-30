@@ -1,0 +1,30 @@
+name: ORION-01 observable identifiability v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-01-certificate-realization/theory/observable-identifiability-v1/**'
+      - 'papers/orion-01-certificate-realization/experiments/move-census-and-confluence-v1/RESULT_V1.json'
+      - '.github/workflows/orion01-observable-identifiability-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-01-certificate-realization/theory/observable-identifiability-v1/**'
+      - 'papers/orion-01-certificate-realization/experiments/move-census-and-confluence-v1/RESULT_V1.json'
+      - '.github/workflows/orion01-observable-identifiability-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-binding:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify theorem packet digests
+        run: sha256sum -c papers/orion-01-certificate-realization/theory/observable-identifiability-v1/SHA256SUMS
+      - name: Verify adverse witness instantiates theorem
+        run: python papers/orion-01-certificate-realization/theory/observable-identifiability-v1/check_observable_identifiability_v1.py

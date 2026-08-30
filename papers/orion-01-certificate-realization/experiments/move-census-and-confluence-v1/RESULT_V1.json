@@ -1,0 +1,880 @@
+{
+  "S1_census_runtime": [
+    {
+      "confluent_but_not_source_complete": 1,
+      "confluent_not_source_complete_witness": {
+        "move_count": 0,
+        "n": 2,
+        "normal_form_of_each_state": {
+          "1": [
+            1
+          ],
+          "2": [
+            2
+          ]
+        },
+        "registry_source_target_pairs": [],
+        "terminal_complexity": 2
+      },
+      "confluent_registries": 2,
+      "confluent_registries_recursion": 2,
+      "critical_pairs_closed_form": 0,
+      "critical_pairs_joining": 0,
+      "critical_pairs_non_joinable": 0,
+      "critical_pairs_total": 0,
+      "dead_move_occurrences": 0,
+      "declared_moves": 1,
+      "frozen_r12_count_at_complexity_1": 1,
+      "live_move_occurrences": 1,
+      "locally_confluent_registries": 2,
+      "move_occurrences_closed_form": 1,
+      "n": 2,
+      "non_joinable_pairs_in_source_complete_registries": 0,
+      "non_joinable_witness": null,
+      "registries_total": 2,
+      "source_complete_closed_form": 1,
+      "source_complete_count": 1
+    },
+    {
+      "confluent_but_not_source_complete": 4,
+      "confluent_not_source_complete_witness": {
+        "move_count": 1,
+        "n": 3,
+        "normal_form_of_each_state": {
+          "1": [
+            1
+          ],
+          "2": [
+            1
+          ],
+          "3": [
+            3
+          ]
+        },
+        "registry_source_target_pairs": [
+          [
+            2,
+            1
+          ]
+        ],
+        "terminal_complexity": 3
+      },
+      "confluent_registries": 7,
+      "confluent_registries_recursion": 7,
+      "critical_pairs_closed_form": 2,
+      "critical_pairs_joining": 1,
+      "critical_pairs_non_joinable": 1,
+      "critical_pairs_total": 2,
+      "dead_move_occurrences": 2,
+      "declared_moves": 3,
+      "frozen_r12_count_at_complexity_1": 3,
+      "live_move_occurrences": 10,
+      "locally_confluent_registries": 7,
+      "move_occurrences_closed_form": 12,
+      "n": 3,
+      "non_joinable_pairs_in_source_complete_registries": 0,
+      "non_joinable_witness": {
+        "descendants_of_target_1": [
+          1
+        ],
+        "descendants_of_target_2": [
+          2
+        ],
+        "n": 3,
+        "peak_source": 3,
+        "registry_source_target_pairs": [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "source_complete": false,
+        "targets": [
+          1,
+          2
+        ],
+        "terminal_complexity": 2
+      },
+      "registries_total": 8,
+      "source_complete_closed_form": 3,
+      "source_complete_count": 3
+    },
+    {
+      "confluent_but_not_source_complete": 22,
+      "confluent_not_source_complete_witness": {
+        "move_count": 3,
+        "n": 4,
+        "normal_form_of_each_state": {
+          "1": [
+            1
+          ],
+          "2": [
+            1
+          ],
+          "3": [
+            1
+          ],
+          "4": [
+            4
+          ]
+        },
+        "registry_source_target_pairs": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "terminal_complexity": 4
+      },
+      "confluent_registries": 43,
+      "confluent_registries_recursion": 43,
+      "critical_pairs_closed_form": 64,
+      "critical_pairs_joining": 36,
+      "critical_pairs_non_joinable": 28,
+      "critical_pairs_total": 64,
+      "dead_move_occurrences": 44,
+      "declared_moves": 6,
+      "frozen_r12_count_at_complexity_1": 21,
+      "live_move_occurrences": 148,
+      "locally_confluent_registries": 43,
+      "move_occurrences_closed_form": 192,
+      "n": 4,
+      "non_joinable_pairs_in_source_complete_registries": 0,
+      "non_joinable_witness": {
+        "descendants_of_target_1": [
+          1
+        ],
+        "descendants_of_target_2": [
+          2
+        ],
+        "n": 4,
+        "peak_source": 3,
+        "registry_source_target_pairs": [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "source_complete": false,
+        "targets": [
+          1,
+          2
+        ],
+        "terminal_complexity": 4
+      },
+      "registries_total": 64,
+      "source_complete_closed_form": 21,
+      "source_complete_count": 21
+    },
+    {
+      "confluent_but_not_source_complete": 191,
+      "confluent_not_source_complete_witness": {
+        "move_count": 6,
+        "n": 5,
+        "normal_form_of_each_state": {
+          "1": [
+            1
+          ],
+          "2": [
+            1
+          ],
+          "3": [
+            1
+          ],
+          "4": [
+            1
+          ],
+          "5": [
+            5
+          ]
+        },
+        "registry_source_target_pairs": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        "terminal_complexity": 5
+      },
+      "confluent_registries": 506,
+      "confluent_registries_recursion": 506,
+      "critical_pairs_closed_form": 2560,
+      "critical_pairs_joining": 1592,
+      "critical_pairs_non_joinable": 968,
+      "critical_pairs_total": 2560,
+      "dead_move_occurrences": 1288,
+      "declared_moves": 10,
+      "frozen_r12_count_at_complexity_1": 315,
+      "live_move_occurrences": 3832,
+      "locally_confluent_registries": 506,
+      "move_occurrences_closed_form": 5120,
+      "n": 5,
+      "non_joinable_pairs_in_source_complete_registries": 0,
+      "non_joinable_witness": {
+        "descendants_of_target_1": [
+          1
+        ],
+        "descendants_of_target_2": [
+          2
+        ],
+        "n": 5,
+        "peak_source": 3,
+        "registry_source_target_pairs": [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "source_complete": false,
+        "targets": [
+          1,
+          2
+        ],
+        "terminal_complexity": 5
+      },
+      "registries_total": 1024,
+      "source_complete_closed_form": 315,
+      "source_complete_count": 315
+    },
+    {
+      "confluent_but_not_source_complete": 2926,
+      "confluent_not_source_complete_witness": {
+        "move_count": 10,
+        "n": 6,
+        "normal_form_of_each_state": {
+          "1": [
+            1
+          ],
+          "2": [
+            1
+          ],
+          "3": [
+            1
+          ],
+          "4": [
+            1
+          ],
+          "5": [
+            1
+          ],
+          "6": [
+            6
+          ]
+        },
+        "registry_source_target_pairs": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            4,
+            3
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            5,
+            2
+          ],
+          [
+            5,
+            3
+          ],
+          [
+            5,
+            4
+          ]
+        ],
+        "terminal_complexity": 6
+      },
+      "confluent_registries": 12691,
+      "confluent_registries_recursion": 12691,
+      "critical_pairs_closed_form": 163840,
+      "critical_pairs_joining": 110704,
+      "critical_pairs_non_joinable": 53136,
+      "critical_pairs_total": 163840,
+      "dead_move_occurrences": 62832,
+      "declared_moves": 15,
+      "frozen_r12_count_at_complexity_1": 9765,
+      "live_move_occurrences": 182928,
+      "locally_confluent_registries": 12691,
+      "move_occurrences_closed_form": 245760,
+      "n": 6,
+      "non_joinable_pairs_in_source_complete_registries": 0,
+      "non_joinable_witness": {
+        "descendants_of_target_1": [
+          1
+        ],
+        "descendants_of_target_2": [
+          2
+        ],
+        "n": 6,
+        "peak_source": 3,
+        "registry_source_target_pairs": [
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "source_complete": false,
+        "targets": [
+          1,
+          2
+        ],
+        "terminal_complexity": 6
+      },
+      "registries_total": 32768,
+      "source_complete_closed_form": 9765,
+      "source_complete_count": 9765
+    }
+  ],
+  "S1_census_source": {
+    "by_kind": {
+      "saturating_double_vertex": 2,
+      "saturating_single_vertex": 4,
+      "whole_graph_batch": 2,
+      "whole_graph_batch_double_vertex": 2,
+      "whole_graph_cleanup": 1,
+      "whole_graph_normalization": 1
+    },
+    "control_nodes": [
+      "full_reduce",
+      "clifford_simp",
+      "interior_clifford_simp",
+      "spider_simp"
+    ],
+    "declared_move_count": 12,
+    "declared_moves": [
+      "copy_simp",
+      "fuse_simp",
+      "gadget_simp",
+      "id_simp",
+      "lcomp_simp",
+      "pivot_boundary_simp",
+      "pivot_gadget_simp",
+      "pivot_simp",
+      "remove_isolated_vertices",
+      "remove_self_loop_simp",
+      "supplementarity_simp",
+      "to_gh"
+    ],
+    "exact_search_enabled_count": 12,
+    "excluded_public_operations_count": 16,
+    "frozen_round_terminal": "CANNOT_CHECK_MOVE_COMPLETENESS",
+    "hostile_extension_symbols": [
+      "bialg_simp",
+      "gadget_phasepoly_simp",
+      "hopf_simp"
+    ],
+    "independent_frozen_counts": {
+      "post_review_mutated_registry_omissions": 12,
+      "post_review_mutated_registry_omissions_rejected": 12,
+      "r11_discovered_count": 12,
+      "r11_discovered_registered_symbols": 12,
+      "r11_hostile_omissions_rejected": 12,
+      "r11_hostile_single_omissions": 12,
+      "registered_schemas": 12,
+      "registered_symbol_order": 12
+    },
+    "input_domain_complete_word_count": 4681,
+    "input_domain_executed_before_fail_closed": 74,
+    "normalization_rule": "strip a single receiver qualifier before the final '.' so BaseGraph.X, g.X and X compare equal; drop the four control nodes and the frozen benign non-mutating calls",
+    "reachable_from_entrypoint": [
+      "copy_simp",
+      "fuse_simp",
+      "gadget_simp",
+      "id_simp",
+      "lcomp_simp",
+      "pivot_boundary_simp",
+      "pivot_gadget_simp",
+      "pivot_simp",
+      "remove_isolated_vertices",
+      "remove_self_loop_simp",
+      "supplementarity_simp",
+      "to_gh"
+    ],
+    "unreachable_from_entrypoint": []
+  },
+  "S2_frozen_hidden_edge_mismatches": [],
+  "S2_frozen_hidden_edge_rows_reproduced": 31,
+  "S2_hidden_operation_control": {
+    "by_hidden_operation_kind": {
+      "ASCENDING": {
+        "BENIGN": 164541,
+        "FALSE_IMPROVEMENT": 9530,
+        "HONESTLY_DETECTED": 60028,
+        "MIMIC": 217916,
+        "OBSERVABLE_UNDEFINED": 50155
+      },
+      "SELF_LOOP": {
+        "BENIGN": 135379,
+        "FALSE_IMPROVEMENT": 15903,
+        "HONESTLY_DETECTED": 7858,
+        "MIMIC": 32767,
+        "OBSERVABLE_UNDEFINED": 10105
+      },
+      "TRANSITIVE_COMPOSITE": {
+        "BENIGN": 74320
+      }
+    },
+    "classification_totals": {
+      "BENIGN": 374240,
+      "FALSE_IMPROVEMENT": 25433,
+      "HONESTLY_DETECTED": 67886,
+      "MIMIC": 250683,
+      "OBSERVABLE_UNDEFINED": 60260
+    },
+    "weak_observable_citation": "REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json controls.same_optimizer_signature_for_every_registry = true",
+    "weak_observable_status": "VACUOUS_BY_CONSTRUCTION",
+    "witnesses": {
+      "BENIGN": {
+        "declared_registry_source_target_pairs": [
+          [
+            2,
+            1
+          ]
+        ],
+        "hidden_operation_kind": "SELF_LOOP",
+        "hidden_operation_source_target": [
+          2,
+          2
+        ],
+        "n": 2,
+        "normal_forms_after": {
+          "1": [
+            1
+          ],
+          "2": [
+            1
+          ]
+        },
+        "normal_forms_before": {
+          "1": [
+            1
+          ],
+          "2": [
+            1
+          ]
+        },
+        "severity": 0,
+        "terminal_complexity_after": 1,
+        "terminal_complexity_before": 1,
+        "weak_observable_after": {
+          "feasible_state_count": 2,
+          "optimum_value": 1,
+          "optimum_witness": 1
+        },
+        "weak_observable_before": {
+          "feasible_state_count": 2,
+          "optimum_value": 1,
+          "optimum_witness": 1
+        }
+      },
+      "FALSE_IMPROVEMENT": {
+        "declared_registry_source_target_pairs": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "hidden_operation_kind": "SELF_LOOP",
+        "hidden_operation_source_target": [
+          6,
+          6
+        ],
+        "n": 6,
+        "normal_forms_after": {
+          "1": [
+            1
+          ],
+          "2": [
+            1
+          ],
+          "3": [
+            1
+          ],
+          "4": [
+            1
+          ],
+          "5": [
+            1
+          ],
+          "6": []
+        },
+        "normal_forms_before": {
+          "1": [
+            1
+          ],
+          "2": [
+            1
+          ],
+          "3": [
+            1
+          ],
+          "4": [
+            1
+          ],
+          "5": [
+            1
+          ],
+          "6": [
+            6
+          ]
+        },
+        "severity": 5,
+        "terminal_complexity_after": 1,
+        "terminal_complexity_before": 6,
+        "weak_observable_after": {
+          "feasible_state_count": 6,
+          "optimum_value": 1,
+          "optimum_witness": 1
+        },
+        "weak_observable_before": {
+          "feasible_state_count": 6,
+          "optimum_value": 1,
+          "optimum_witness": 1
+        }
+      },
+      "HONESTLY_DETECTED": {
+        "declared_registry_source_target_pairs": [],
+        "hidden_operation_kind": "SELF_LOOP",
+        "hidden_operation_source_target": [
+          3,
+          3
+        ],
+        "n": 3,
+        "normal_forms_after": {
+          "1": [
+            1
+          ],
+          "2": [
+            2
+          ],
+          "3": []
+        },
+        "normal_forms_before": {
+          "1": [
+            1
+          ],
+          "2": [
+            2
+          ],
+          "3": [
+            3
+          ]
+        },
+        "severity": 0,
+        "terminal_complexity_after": 2,
+        "terminal_complexity_before": 3,
+        "weak_observable_after": {
+          "feasible_state_count": 3,
+          "optimum_value": 1,
+          "optimum_witness": 1
+        },
+        "weak_observable_before": {
+          "feasible_state_count": 3,
+          "optimum_value": 1,
+          "optimum_witness": 1
+        }
+      },
+      "MIMIC": {
+        "declared_registry_source_target_pairs": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "hidden_operation_kind": "SELF_LOOP",
+        "hidden_operation_source_target": [
+          1,
+          1
+        ],
+        "n": 6,
+        "normal_forms_after": {
+          "1": [],
+          "2": [],
+          "3": [],
+          "4": [],
+          "5": [],
+          "6": [
+            6
+          ]
+        },
+        "normal_forms_before": {
+          "1": [
+            1
+          ],
+          "2": [
+            1
+          ],
+          "3": [
+            1
+          ],
+          "4": [
+            1
+          ],
+          "5": [
+            1
+          ],
+          "6": [
+            6
+          ]
+        },
+        "severity": 5,
+        "terminal_complexity_after": 6,
+        "terminal_complexity_before": 6,
+        "weak_observable_after": {
+          "feasible_state_count": 6,
+          "optimum_value": 1,
+          "optimum_witness": 1
+        },
+        "weak_observable_before": {
+          "feasible_state_count": 6,
+          "optimum_value": 1,
+          "optimum_witness": 1
+        }
+      },
+      "OBSERVABLE_UNDEFINED": {
+        "declared_registry_source_target_pairs": [
+          [
+            2,
+            1
+          ]
+        ],
+        "hidden_operation_kind": "SELF_LOOP",
+        "hidden_operation_source_target": [
+          1,
+          1
+        ],
+        "n": 2,
+        "normal_forms_after": {
+          "1": [],
+          "2": []
+        },
+        "normal_forms_before": {
+          "1": [
+            1
+          ],
+          "2": [
+            1
+          ]
+        },
+        "severity": 0,
+        "terminal_complexity_after": null,
+        "terminal_complexity_before": 1,
+        "weak_observable_after": {
+          "feasible_state_count": 2,
+          "optimum_value": 1,
+          "optimum_witness": 1
+        },
+        "weak_observable_before": {
+          "feasible_state_count": 2,
+          "optimum_value": 1,
+          "optimum_witness": 1
+        }
+      }
+    }
+  },
+  "alarms": [],
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "cannot_check": [
+    {
+      "reason": "confluence of the twelve pinned PyZX macro operations on real ZX graphs cannot be decided here: this packet is standard-library only by protocol, and `import pyzx` fails on all three interpreters present on this host (/usr/bin/python3 3.9.6, miniforge 3.13.12, homebrew 3.14.6). The confluence result below is about the frozen abstract move system only.",
+      "stage": "S3b_live_production_confluence",
+      "status": "CANNOT_CHECK"
+    },
+    {
+      "reason": "whether the pinned PyZX build actually contains an operation of the mimicking shape is not decided here. What is decided is that the frozen abstract model admits the witness, and that the pinned registry declares move kinds of that shape (whole_graph_normalization, whole_graph_cleanup, saturating_*).",
+      "stage": "S2b_hidden_operation_in_production",
+      "status": "CANNOT_CHECK"
+    }
+  ],
+  "controls": {
+    "C10_CALL_GRAPH_SURFACE_EQUALS_REGISTRY": {
+      "passed": true
+    },
+    "C11_HOSTILE_EXTENSION_DISJOINT_FROM_REGISTRY": {
+      "passed": true
+    },
+    "C12_PRIOR_ART_CONTINUITY": {
+      "passed": true
+    },
+    "C13_MOVE_OCCURRENCE_CLOSED_FORM": {
+      "passed": true
+    },
+    "C14_INPUT_BINDINGS_MATCH_FROZEN_RECEIPTS": {
+      "checked": [
+        {
+          "input": "r11_pyzx_source_registry",
+          "matches": true,
+          "recorded_in": "R11 post-review bindings.frozen_registry_sha256"
+        },
+        {
+          "input": "r11_pyzx_results",
+          "matches": true,
+          "recorded_in": "R11 post-review bindings.raw_result_sha256"
+        },
+        {
+          "input": "r12_registry_nonidentifiability",
+          "matches": true,
+          "recorded_in": "PR1469 audit json_receipts[0].sha256"
+        }
+      ],
+      "passed": true
+    },
+    "C1_SOURCE_FIVEFOLD_COUNT_AGREEMENT": {
+      "passed": true
+    },
+    "C2_R12_HISTOGRAM_CROSSCHECK": {
+      "passed": true
+    },
+    "C3_CRITICAL_PAIR_CLOSED_FORM": {
+      "passed": true
+    },
+    "C4_NEWMAN_AGREEMENT": {
+      "passed": true,
+      "scope": "declared move system only; it is terminating, which is the precondition for Newman's lemma. The hostile stage deliberately breaks termination and is excluded."
+    },
+    "C5_CONFLUENT_COUNT_RECURSION": {
+      "passed": true
+    },
+    "C6_FROZEN_HIDDEN_EDGE_REPRODUCTION": {
+      "passed": true,
+      "rows": 31
+    },
+    "C7_HOSTILE_CONTROL_DISCRIMINATES": {
+      "passed": true
+    },
+    "C8_REACHABILITY_TWO_METHODS": {
+      "passed": true
+    },
+    "C9_SOURCE_COMPLETE_IMPLIES_CONFLUENT": {
+      "passed": true
+    }
+  },
+  "domain_sizes": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "exit_code": 4,
+  "extends": "ORION01.CONTEXTUAL_MOVE_COMPLETENESS.v1",
+  "input_bindings": {
+    "prior_art_contextual_move_completeness": {
+      "path": "papers/orion-01-certificate-realization/experiments/contextual-move-completeness-v1/RESULT_V1.json",
+      "sha256": "7dc2477555ef73550141ca97fe8375a157d8a642a302df2de620a1f1c747f685"
+    },
+    "r11_post_review_registry_audit": {
+      "path": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_POST_REVIEW_REGISTRY_AUDIT.json",
+      "sha256": "ac713cf51e847606378656f7f07d5db48c83947061d9162a2ac950bf42681bf7"
+    },
+    "r11_pyzx_results": {
+      "path": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_RESULTS.json",
+      "sha256": "64fc86a6039f44125641a8cc8bf6b018c5b8401503257d9788676f95d6c142ed"
+    },
+    "r11_pyzx_source_registry": {
+      "path": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_SOURCE_REGISTRY.json",
+      "sha256": "725ab425c3cf446212613d920d55dbd1d6af166dc6e52db2498c6c5f2e6b959e"
+    },
+    "r12_registry_nonidentifiability": {
+      "path": "papers/orion-01-certificate-realization/evidence/convergence-v1/REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json",
+      "sha256": "d4f14be666dceb2da71bfac01a25fd32c6fd7bc947734db1d0f945bc10487cf0"
+    }
+  },
+  "interpreter": "3.9.6",
+  "mode": "full",
+  "paper_id": "ORION-01",
+  "protocol_identity": "ORION01.MOVE_CENSUS_AND_CONFLUENCE.v1",
+  "schema": "ORION.ORION01.MoveCensusAndConfluence.Result.v1",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "terminal": "T1_CENSUS_COMPLETE__HIDDEN_OP_WITNESS_FOUND__CONFLUENCE_PARTIAL"
+}

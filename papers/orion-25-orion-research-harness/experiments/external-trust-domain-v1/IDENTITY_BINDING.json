@@ -1,0 +1,106 @@
+{
+  "binding_transition": "A successor commit may change status to BOUND only after every field is concrete, public-key/identity uniqueness is checked, administrative separation evidence is digest-bound, and the outcome directory is still absent.",
+  "execution_blocked": true,
+  "minimum_distinct_administrative_custodians": 3,
+  "private_key_material_permitted_in_repository": false,
+  "required_bindings": {
+    "sigstore_dual_identity": {
+      "policy_custodian": {
+        "administrator_evidence_digest": null,
+        "organization": null,
+        "policy_digest": null
+      },
+      "slots": [
+        {
+          "certificate_identity": null,
+          "custodian_organization": null,
+          "custody_evidence_digest": null,
+          "oidc_issuer": null,
+          "repository": null,
+          "slot": "SIGSTORE_A",
+          "workflow_ref": null
+        },
+        {
+          "certificate_identity": null,
+          "custodian_organization": null,
+          "custody_evidence_digest": null,
+          "oidc_issuer": null,
+          "repository": null,
+          "slot": "SIGSTORE_B",
+          "workflow_ref": null
+        }
+      ],
+      "threshold": 2
+    },
+    "tuf_in_toto_threshold": {
+      "in_toto_layout_threshold": 2,
+      "layout_key_slots": [
+        {
+          "custodian_organization": null,
+          "custody_evidence_digest": null,
+          "public_key": null,
+          "slot": "LAYOUT_1"
+        },
+        {
+          "custodian_organization": null,
+          "custody_evidence_digest": null,
+          "public_key": null,
+          "slot": "LAYOUT_2"
+        },
+        {
+          "custodian_organization": null,
+          "custody_evidence_digest": null,
+          "public_key": null,
+          "slot": "LAYOUT_3"
+        }
+      ],
+      "mirror_url": null,
+      "repository_url": null,
+      "targets_key_slots": [
+        {
+          "custodian_organization": null,
+          "custody_evidence_digest": null,
+          "public_key": null,
+          "slot": "TUF_TARGETS_1"
+        },
+        {
+          "custodian_organization": null,
+          "custody_evidence_digest": null,
+          "public_key": null,
+          "slot": "TUF_TARGETS_2"
+        },
+        {
+          "custodian_organization": null,
+          "custody_evidence_digest": null,
+          "public_key": null,
+          "slot": "TUF_TARGETS_3"
+        }
+      ],
+      "targets_threshold": 2,
+      "tuf_root_key_slots": [
+        {
+          "custodian_organization": null,
+          "custody_evidence_digest": null,
+          "public_key": null,
+          "slot": "TUF_ROOT_1"
+        },
+        {
+          "custodian_organization": null,
+          "custody_evidence_digest": null,
+          "public_key": null,
+          "slot": "TUF_ROOT_2"
+        },
+        {
+          "custodian_organization": null,
+          "custody_evidence_digest": null,
+          "public_key": null,
+          "slot": "TUF_ROOT_3"
+        }
+      ],
+      "tuf_root_threshold": 2
+    }
+  },
+  "schema": "ORION.ORION25.ExternalTrustDomain.IdentityBinding.v1",
+  "separation_rule": "No natural person, organization owner, cloud account administrator, secret store, or CI administrator may control more than one load-bearing signing domain.",
+  "status": "PENDING_EXTERNAL_CUSTODY_BINDING"
+}

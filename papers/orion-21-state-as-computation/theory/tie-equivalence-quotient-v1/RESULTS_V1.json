@@ -1,0 +1,561 @@
+{
+  "schema": "orion.orion21.tie-equivalence-quotient.result.v1",
+  "protocol_identity": "ORION21.TIE_EQUIVALENCE_QUOTIENT.v1",
+  "paper": "orion-21-state-as-computation",
+  "scope": {
+    "bank_widths_p": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "support_sizes_r": "1..p inclusive, for every p",
+    "correlation_alphabet": [
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    "correlation_vectors_per_p": "|alphabet|^p = 5^p (complete cross product)",
+    "test_bank": "the COMPLETE sign-row space {-1,+1}^p, all 2^p rows, no sampling",
+    "labels": "predictions of the canonical representative min(S(x)) under the ascending-index key; declared here, prospectively, and used only to give the accuracy readout a canonical reference",
+    "arithmetic": "exact integers only; no float aggregate enters any decision"
+  },
+  "controls": {
+    "ordered_bell_level_structure": {
+      "passed": true,
+      "rows": [
+        {
+          "p": 1,
+          "distinct_level_structures": 1,
+          "fubini_p": 1,
+          "match": true
+        },
+        {
+          "p": 2,
+          "distinct_level_structures": 3,
+          "fubini_p": 3,
+          "match": true
+        },
+        {
+          "p": 3,
+          "distinct_level_structures": 13,
+          "fubini_p": 13,
+          "match": true
+        },
+        {
+          "p": 4,
+          "distinct_level_structures": 75,
+          "fubini_p": 75,
+          "match": true
+        },
+        {
+          "p": 5,
+          "distinct_level_structures": 541,
+          "fubini_p": 541,
+          "match": true
+        }
+      ],
+      "identity": "distinct level structures over magnitude alphabet {0..p-1} == Fubini(p)"
+    },
+    "no_alarm_strictly_distinct": {
+      "passed": true,
+      "states_checked": 256,
+      "rule": "strictly distinct |c| implies a singleton class by BOTH the constructive and the subset-predicate route; zero refutations then follows from singleton-ness and is deliberately not asserted as a separate (vacuous) check"
+    },
+    "refutation_detector_fires": {
+      "passed": true,
+      "probe": {
+        "correlations": [
+          1,
+          1
+        ],
+        "r": 1,
+        "class_size": 2,
+        "fired_on": [
+          "support_identity",
+          "prediction_stream",
+          "accuracy_numerator"
+        ],
+        "stayed_silent_on": [
+          "support_size",
+          "abs_correlation_multiset",
+          "abs_correlation_sum",
+          "min_abs_correlation_in_support",
+          "max_abs_correlation_in_support"
+        ]
+      },
+      "rule": "the refutation detector fires on a known-binding class and stays silent on the class-constant invariants of that same class"
+    },
+    "separable_gap_positive_control": {
+      "passed": true,
+      "states_checked": 18550,
+      "rule": "rank_gap_separable == True implies candidate_count == 1"
+    }
+  },
+  "determinism": "this file is byte-reproducible; provenance (interpreter version, wall seconds) is printed to stderr and deliberately excluded",
+  "terminal": "T1_IMPOSSIBILITY_CERTIFIED",
+  "exit_code": 0,
+  "status": "OK",
+  "rationale": "A tie-equivalence class exists on which a decision-determining readout is non-constant. By fibre-constancy lifting, no representative-independent invariant of any size in any language over the readout determines that decision, within the enumerated scope.",
+  "enumeration": {
+    "states_enumerated": 18550,
+    "realized_outcomes_enumerated": 36824,
+    "quotient_compression": {
+      "realized_outcomes": 36824,
+      "classes_after_quotient": 18550,
+      "ratio": "36824/18550",
+      "note": "the quotient collapses realized (state, support) outcomes onto classes; the class-size histogram counts STATES, so sum(count) == states and sum(size x count) == realized outcomes"
+    },
+    "tie_equivalence_classes": 18550,
+    "singleton_classes": 9620,
+    "nonsingleton_classes": 8930,
+    "decision_binding_classes": 7760,
+    "decision_benign_classes": 1170,
+    "class_size_histogram": {
+      "1": 9620,
+      "2": 3421,
+      "3": 3650,
+      "4": 1066,
+      "5": 130,
+      "6": 533,
+      "10": 130
+    },
+    "benign_classes_by_boundary_level": {
+      "0": 1170
+    },
+    "binding_classes_by_boundary_level": {
+      "1": 3880,
+      "2": 3880
+    },
+    "benign_ties_all_at_zero_boundary": true,
+    "straddle_examples": [
+      {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          -2,
+          -2
+        ],
+        "class_size": 2,
+        "admissible_accuracy_numerators": [
+          2,
+          4
+        ],
+        "denominator": 4,
+        "min_numerator": 2,
+        "max_numerator": 4,
+        "straddle_note": "any threshold theta with 2/4 < theta <= 4/4 receives a different verdict on two members of this single class"
+      },
+      {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          -2,
+          2
+        ],
+        "class_size": 2,
+        "admissible_accuracy_numerators": [
+          2,
+          4
+        ],
+        "denominator": 4,
+        "min_numerator": 2,
+        "max_numerator": 4,
+        "straddle_note": "any threshold theta with 2/4 < theta <= 4/4 receives a different verdict on two members of this single class"
+      },
+      {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          -1,
+          -1
+        ],
+        "class_size": 2,
+        "admissible_accuracy_numerators": [
+          2,
+          4
+        ],
+        "denominator": 4,
+        "min_numerator": 2,
+        "max_numerator": 4,
+        "straddle_note": "any threshold theta with 2/4 < theta <= 4/4 receives a different verdict on two members of this single class"
+      },
+      {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          -1,
+          1
+        ],
+        "class_size": 2,
+        "admissible_accuracy_numerators": [
+          2,
+          4
+        ],
+        "denominator": 4,
+        "min_numerator": 2,
+        "max_numerator": 4,
+        "straddle_note": "any threshold theta with 2/4 < theta <= 4/4 receives a different verdict on two members of this single class"
+      },
+      {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          1,
+          -1
+        ],
+        "class_size": 2,
+        "admissible_accuracy_numerators": [
+          2,
+          4
+        ],
+        "denominator": 4,
+        "min_numerator": 2,
+        "max_numerator": 4,
+        "straddle_note": "any threshold theta with 2/4 < theta <= 4/4 receives a different verdict on two members of this single class"
+      },
+      {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          1,
+          1
+        ],
+        "class_size": 2,
+        "admissible_accuracy_numerators": [
+          2,
+          4
+        ],
+        "denominator": 4,
+        "min_numerator": 2,
+        "max_numerator": 4,
+        "straddle_note": "any threshold theta with 2/4 < theta <= 4/4 receives a different verdict on two members of this single class"
+      },
+      {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          2,
+          -2
+        ],
+        "class_size": 2,
+        "admissible_accuracy_numerators": [
+          2,
+          4
+        ],
+        "denominator": 4,
+        "min_numerator": 2,
+        "max_numerator": 4,
+        "straddle_note": "any threshold theta with 2/4 < theta <= 4/4 receives a different verdict on two members of this single class"
+      },
+      {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          2,
+          2
+        ],
+        "class_size": 2,
+        "admissible_accuracy_numerators": [
+          2,
+          4
+        ],
+        "denominator": 4,
+        "min_numerator": 2,
+        "max_numerator": 4,
+        "straddle_note": "any threshold theta with 2/4 < theta <= 4/4 receives a different verdict on two members of this single class"
+      }
+    ],
+    "validation": {
+      "subset_predicate_cross_check": {
+        "passed": true,
+        "mismatches": 0,
+        "rule": "constructive enumeration equals {s : |s|=r, min_{i in s}|c_i| >= max_{j not in s}|c_j|}"
+      },
+      "binomial_class_size": {
+        "passed": true,
+        "mismatches": 0,
+        "rule": "|S(x)| == C(|tied|, need)"
+      },
+      "benign_restricted_bank_closed_form": {
+        "passed": true,
+        "classes_checked": 112,
+        "rule": "number of row-subsets making a class benign == 2^(n_rows - |disagreement rows|)"
+      }
+    }
+  },
+  "invariants": {
+    "support_size": {
+      "kind": "definitional",
+      "description": "cardinality of the selected support",
+      "verdict": "SURVIVES",
+      "witness": null,
+      "classes_refuted": 0
+    },
+    "abs_correlation_multiset": {
+      "kind": "definitional",
+      "description": "sorted multiset of |c_i| over the selected support",
+      "verdict": "SURVIVES",
+      "witness": null,
+      "classes_refuted": 0
+    },
+    "abs_correlation_sum": {
+      "kind": "definitional",
+      "description": "sum of |c_i| over the selected support",
+      "verdict": "SURVIVES",
+      "witness": null,
+      "classes_refuted": 0
+    },
+    "min_abs_correlation_in_support": {
+      "kind": "definitional",
+      "description": "min |c_i| over the selected support",
+      "verdict": "SURVIVES",
+      "witness": null,
+      "classes_refuted": 0
+    },
+    "max_abs_correlation_in_support": {
+      "kind": "definitional",
+      "description": "max |c_i| over the selected support",
+      "verdict": "SURVIVES",
+      "witness": null,
+      "classes_refuted": 0
+    },
+    "boundary_level": {
+      "kind": "definitional",
+      "description": "the boundary |c| value (a function of the state alone)",
+      "verdict": "SURVIVES",
+      "witness": null,
+      "classes_refuted": 0
+    },
+    "admissible_class_size": {
+      "kind": "definitional",
+      "description": "|S(x)| (a function of the state alone)",
+      "verdict": "SURVIVES",
+      "witness": null,
+      "classes_refuted": 0
+    },
+    "canonical_support": {
+      "kind": "definitional",
+      "description": "min(S(x)) under the ascending-index key (the quotient map itself)",
+      "verdict": "SURVIVES",
+      "witness": null,
+      "classes_refuted": 0
+    },
+    "support_identity": {
+      "kind": "empirical",
+      "description": "the selected support itself",
+      "verdict": "REFUTED",
+      "witness": {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          -2,
+          -2
+        ],
+        "tie_equivalence_class": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "canonical_representative": [
+          0
+        ],
+        "state_a_support": [
+          0
+        ],
+        "state_b_support": [
+          1
+        ],
+        "value_a": [
+          0
+        ],
+        "value_b": [
+          1
+        ]
+      },
+      "classes_refuted": 8930
+    },
+    "signed_correlation_sum": {
+      "kind": "empirical",
+      "description": "sum of c_i (signed) over the selected support",
+      "verdict": "REFUTED",
+      "witness": {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          -2,
+          2
+        ],
+        "tie_equivalence_class": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "canonical_representative": [
+          0
+        ],
+        "state_a_support": [
+          0
+        ],
+        "state_b_support": [
+          1
+        ],
+        "value_a": -2,
+        "value_b": 2
+      },
+      "classes_refuted": 5392
+    },
+    "positive_sign_count": {
+      "kind": "empirical",
+      "description": "number of selected features with c_i > 0",
+      "verdict": "REFUTED",
+      "witness": {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          -2,
+          2
+        ],
+        "tie_equivalence_class": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "canonical_representative": [
+          0
+        ],
+        "state_a_support": [
+          0
+        ],
+        "state_b_support": [
+          1
+        ],
+        "value_a": 0,
+        "value_b": 1
+      },
+      "classes_refuted": 5392
+    },
+    "prediction_stream": {
+      "kind": "empirical",
+      "description": "classifier extension over the COMPLETE sign-row space",
+      "verdict": "REFUTED",
+      "witness": {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          -2,
+          -2
+        ],
+        "tie_equivalence_class": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "canonical_representative": [
+          0
+        ],
+        "state_a_support": [
+          0
+        ],
+        "state_b_support": [
+          1
+        ],
+        "value_a": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "value_b": [
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "classes_refuted": 7760
+    },
+    "accuracy_numerator": {
+      "kind": "empirical",
+      "description": "exact integer count of rows agreeing with the canonical-representative labelling",
+      "verdict": "REFUTED",
+      "witness": {
+        "p": 2,
+        "r": 1,
+        "correlations": [
+          -2,
+          -2
+        ],
+        "tie_equivalence_class": [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        "canonical_representative": [
+          0
+        ],
+        "state_a_support": [
+          0
+        ],
+        "state_b_support": [
+          1
+        ],
+        "value_a": 4,
+        "value_b": 2
+      },
+      "classes_refuted": 7760
+    }
+  },
+  "surviving_invariants": [
+    "abs_correlation_multiset",
+    "abs_correlation_sum",
+    "admissible_class_size",
+    "boundary_level",
+    "canonical_support",
+    "max_abs_correlation_in_support",
+    "min_abs_correlation_in_support",
+    "support_size"
+  ],
+  "refuted_invariants": [
+    "accuracy_numerator",
+    "positive_sign_count",
+    "prediction_stream",
+    "signed_correlation_sum",
+    "support_identity"
+  ],
+  "decision_determining_readouts": [
+    "prediction_stream",
+    "accuracy_numerator"
+  ],
+  "scoped_impossibility": {
+    "certified": true,
+    "statement": "Within the enumerated domain bounds, the subfamily of invariants that are both representative-independent (constant on every tie-equivalence class) and decision-determining (fixing the value of a threshold verdict on the screening accuracy) is EMPTY. Survivors exist, but every survivor factors through class-constant data and is therefore decision-blind.",
+    "lifting_argument": "If f is constant on every tie-equivalence class and the decision V satisfies V = g(f), then V is constant on every class. Contrapositive: one class on which V is non-constant refutes representative-independence for EVERY decision-determining invariant, of every size, in every language over the readout. The complete set of quotient-measurable functions is the set of assignments of one value per class, so enumerating classes covers that family.",
+    "lift_covers": "invariant size and invariant language",
+    "lift_does_NOT_cover": "domain size; the certificate holds only over the bounds below"
+  },
+  "authority": {
+    "scientific_authority_delta": "NONE",
+    "submission_authority": false,
+    "reopens_v1_lane": false,
+    "reopens_tie_robust_phase_v1": false,
+    "magnitude_transfer": "NONE - this is a third instrument; no magnitude here transfers to the NR07 anchor replay or the reconstructed ladder sweep, and none was read from them."
+  }
+}

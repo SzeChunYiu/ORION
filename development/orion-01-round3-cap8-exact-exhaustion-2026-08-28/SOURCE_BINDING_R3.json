@@ -1,0 +1,164 @@
+{
+  "adaptive_parent_result_sha256": "db1253e52a44741613abb9217eb4a865d190c3948abdab9f8fbd344ada035efd",
+  "adaptive_parent_terminal": "CANNOT_CHECK_MOVE_COMPLETENESS",
+  "created_pre_outcome": true,
+  "date": "2026-08-28",
+  "entries": [
+    {
+      "bytes": 2328,
+      "path": "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/PROTOCOL_R3.md",
+      "sha256": "ae0fcf2b29726247948c25dce5989ada08f4425d957adb53b4077bd29643f1a0"
+    },
+    {
+      "bytes": 6927,
+      "path": "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/run_orion01_round3_cap8.py",
+      "sha256": "f73ab42c620f7d8ebe3b58ec747fc412dc663b581646beb57d847446cfa10c54"
+    },
+    {
+      "bytes": 4535,
+      "path": "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/aggregate_orion01_round3_cap8.py",
+      "sha256": "a04eaf68090e031a4739ac8cf2931f531e30b5268a97ac973892df8790bcf5db"
+    },
+    {
+      "bytes": 2299,
+      "path": "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/test_orion01_round3_cap8.py",
+      "sha256": "4ae7534ba7841045c13be5bf14f7e23d4b13d1dc86fd2d3a1e7fa93fcba3697a"
+    },
+    {
+      "bytes": 1064,
+      "path": "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/run_round3_array.slurm",
+      "sha256": "245ae09e8cf18d4424eaf8589df5700a6f122ce109b0ffcfad4aeb5f843fc42e"
+    },
+    {
+      "bytes": 13914625,
+      "path": "development/orion-01-round2-atomic-registry-2026-08-27/ORION01_ROUND2_ATOMIC_RESULTS.json",
+      "sha256": "db1253e52a44741613abb9217eb4a865d190c3948abdab9f8fbd344ada035efd"
+    },
+    {
+      "bytes": 13217,
+      "path": "development/orion-01-round2-atomic-registry-2026-08-27/ORION01_ROUND2_ATOMIC_PROTOCOL.md",
+      "sha256": "e55599f50f39e89dc22e6620c64550fecdfda29b19be2916a847f9647193842b"
+    },
+    {
+      "bytes": 13491,
+      "path": "development/orion-01-round2-atomic-registry-2026-08-27/ORION01_ROUND2_ATOMIC_SOURCE_REGISTRY.json",
+      "sha256": "c9c40425f77f3157ba5df4572044af2949188904fb480dc029f445c1fcc32b78"
+    },
+    {
+      "bytes": 63911,
+      "path": "development/orion-01-round2-atomic-registry-2026-08-27/orion01_round2_atomic_registry.py",
+      "sha256": "01bfc364d665bd12c15bde024d8a44eb6994b3223961bd06b330a4b4fc2681b5"
+    },
+    {
+      "bytes": 3869,
+      "path": "development/orion-01-round2-atomic-registry-2026-08-27/requirements-lock.txt",
+      "sha256": "73c00d85d83940ff3989df17f0551e7339a17042e56db708eb4e83b8a3252ca7"
+    },
+    {
+      "bytes": 3772,
+      "path": "development/orion-01-round2-atomic-registry-2026-08-27/PACKAGE_MANIFEST_R2.json",
+      "sha256": "baf6ccad27e120226d9efb0db948e6b06ea90f4580a8b7e73619aaf9058bd55d"
+    }
+  ],
+  "entry_count": 11,
+  "external_novelty_authority": false,
+  "final_freeze_authority": false,
+  "mechanism_matched_lever": "EXACT_STATE_CAP_EXTENSION_FOR_EIGHT_R2_CAP_WORDS_ONLY",
+  "outcome_files_present_at_binding_time": false,
+  "paper_id": "ORION-01",
+  "pre_outcome_corrections": [
+    {
+      "affected_files": [
+        "development/orion-01-round2-atomic-registry-2026-08-27/ATTEMPT_LEDGER_R2.json",
+        "development/orion-01-round2-atomic-registry-2026-08-27/PACKAGE_MANIFEST_R2.json"
+      ],
+      "cancelled_slurm_job": "3550010",
+      "counts_as_scientific_attempt": false,
+      "reason": "Round-2 fast package verification found ATTEMPT_LEDGER_R2 missing its top-level raw_result binding",
+      "scientific_inputs_or_raw_results_changed": false,
+      "task_receipts_written_before_cancellation": false
+    }
+  ],
+  "r3_frozen_paths": [
+    "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/PROTOCOL_R3.md",
+    "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/run_orion01_round3_cap8.py",
+    "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/aggregate_orion01_round3_cap8.py",
+    "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/test_orion01_round3_cap8.py",
+    "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/run_round3_array.slurm",
+    "development/orion-01-round3-cap8-exact-exhaustion-2026-08-28/SOURCE_BINDING_R3.json"
+  ],
+  "round": 3,
+  "schema": "ORION.ORION01.Round3.SourceBinding.v1",
+  "scientific_authority_delta": "NONE",
+  "self_hash_excluded": true,
+  "setup_failures_count_as_science": false,
+  "state_cap": 500000,
+  "submission_authority": false,
+  "tasks": [
+    {
+      "word": [
+        "S0",
+        "CX10",
+        "S0"
+      ],
+      "word_index": 259
+    },
+    {
+      "word": [
+        "S0",
+        "CX10",
+        "T0"
+      ],
+      "word_index": 261
+    },
+    {
+      "word": [
+        "S1",
+        "CX01",
+        "S1"
+      ],
+      "word_index": 316
+    },
+    {
+      "word": [
+        "S1",
+        "CX01",
+        "T1"
+      ],
+      "word_index": 318
+    },
+    {
+      "word": [
+        "T0",
+        "CX10",
+        "S0"
+      ],
+      "word_index": 387
+    },
+    {
+      "word": [
+        "T0",
+        "CX10",
+        "T0"
+      ],
+      "word_index": 389
+    },
+    {
+      "word": [
+        "T1",
+        "CX01",
+        "S1"
+      ],
+      "word_index": 444
+    },
+    {
+      "word": [
+        "T1",
+        "CX01",
+        "T1"
+      ],
+      "word_index": 446
+    }
+  ],
+  "two_fresh_runs_per_task_required": true
+}

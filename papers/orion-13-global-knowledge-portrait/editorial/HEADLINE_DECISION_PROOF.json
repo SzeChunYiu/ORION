@@ -1,0 +1,47 @@
+{
+  "conditions": [
+    {
+      "id": "FM",
+      "observed": {
+        "ci95": [
+          -0.34375,
+          -0.0625
+        ],
+        "difference": -0.1875
+      },
+      "pass": true,
+      "rule": "difference <= -0.05 and paired 95% interval upper bound < 0"
+    },
+    {
+      "id": "FS",
+      "observed": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "difference": 0.0
+      },
+      "pass": true,
+      "rule": "difference <= +0.03 and paired 95% interval upper bound <= +0.03"
+    }
+  ],
+  "exclusions": [
+    "raw-text extraction",
+    "expert-atlas validity",
+    "downstream utility",
+    "superiority over current integration systems",
+    "necessity or value of every coordinate",
+    "external or cross-host replication"
+  ],
+  "localization": "All six errors prevented relative to the flat comparator are polarity contrasts.",
+  "n": 32,
+  "question": "On frozen structured mapping cases, does the coordinate rule reduce false merges versus the registered flat rule without increasing false splits versus the conservative control?",
+  "schema_version": "orion.orion13.headline-decision-proof.v1",
+  "terminal": "PASS_BOUNDED_STRUCTURED_MAPPING",
+  "unit": "one frozen mapping case",
+  "warrants": [
+    "evidence/public-reference-v1.1-confirmatory/EXECUTION_MANIFEST.json",
+    "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+    "editorial/INDEPENDENT_CONFIRMATORY_REPLAY.json"
+  ]
+}

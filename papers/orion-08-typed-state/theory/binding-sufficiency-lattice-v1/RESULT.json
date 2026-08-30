@@ -1,0 +1,42 @@
+{
+  "schema": "ORION.ORION08.BindingSufficiencyLattice.CheckerReport.v1",
+  "successor_id": "ORION08.BINDING_SUFFICIENCY_LATTICE.v1",
+  "independence": "no ORION-08 or N-lane module imported; theorem verified on freshly enumerated worlds; N4 receipts read as data only",
+  "check_A_B_exhaustive": {
+    "world_action_configurations_checked": 2233980,
+    "sufficiency_iff_common_optimal_action": true,
+    "refinement_never_increases_risk": true,
+    "arithmetic": "exact rational"
+  },
+  "check_C_orion08_instantiation": {
+    "N4_B_scoped_reopening": {
+      "terminal": "N4_B_SCOPED_REOPENING_SUPPORTED__EXACT_SYNTHETIC",
+      "pooled_regret_never": 5.515331279036973,
+      "pooled_regret_scoped": 5.0985858465103755,
+      "pooled_oracle_gap_closed_pct": 7.6,
+      "per_regime_gap_closed_pct": {
+        "REOPEN_WASTEFUL": 1.7,
+        "STALE_MATTERS": 10.3
+      },
+      "reading": "the scoped binding is FAR from decision-sufficient here"
+    },
+    "N4_F3_typed_transport": {
+      "terminal": "N4_F3_TYPED_REMINT_TRANSPORT_SUPPORTED__EXACT_SYNTHETIC",
+      "regret_naive": 11.449223628379812,
+      "regret_re_derive": 1.0343720428515004,
+      "regret_typed": 0.18757524424415184,
+      "gap_closed_vs_naive_pct": 98.4,
+      "gap_closed_vs_strongest_baseline_pct": 81.9,
+      "reading": "the typed binding is NEARLY decision-sufficient here"
+    }
+  },
+  "check_D_negative_controls": {
+    "mixed_fibre_has_strict_regret": {
+      "pass": true
+    },
+    "splitting_pure_fibre_adds_nothing": {
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

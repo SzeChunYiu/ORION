@@ -1,0 +1,31 @@
+{
+  "schema": "ORION.ORION19.InvariantMarginDiagnosis.SourceManifest.v1",
+  "paper_id": "ORION-19",
+  "successor_id": "ORION19.INVARIANT_MARGIN_DIAGNOSIS.v1",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+  "candidate_source": {"pull_request": 1617, "section": "Priority A - ORION-19 Invariant margin-separated causal diagnosis"},
+  "repository_base": {"branch_base": "origin/main", "commit": "882b88e3a"},
+  "bound_artifacts": [
+    {"path": "papers/orion-19-structured-epistemic-learning/evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json",
+     "sha256": "6fd04224d099aa4490c86de4ca413ff0cd348fdc9e82b2ef6a21108ba1befd86",
+     "role": "records T4_ATTACK_SUCCEEDED, the reminting defeat this packet bounds but does NOT reverse",
+     "mutated_by_this_packet": false},
+    {"path": "papers/orion-19-structured-epistemic-learning/evidence/P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_RUN.json",
+     "sha256": "d549bae86187752984665a528bf902591240ca3bbc69ab51ddfe0816dcf97c7c",
+     "role": "records GATE_NOT_MET and the CANNOT_CHECK half-draw terminals preserved here",
+     "mutated_by_this_packet": false}
+  ],
+  "confirmed_frozen_dispositions": [
+    {"disposition": "T4_ATTACK_SUCCEEDED", "status": "unchanged"},
+    {"disposition": "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_GATE_NOT_MET", "status": "unchanged"},
+    {"disposition": "CANNOT_CHECK half-draw decision terminals", "count_in_run": 5, "status": "preserved, none converted"}
+  ],
+  "not_imported": ["any ORION-19 module", "run_p9_serialization_v1.py", "any protocol executor"],
+  "content_freeze_note": {
+    "pinned_paper_tree_oid": "32d3f2597645",
+    "already_mismatching_on_main_per_issue_1625": true,
+    "note": "Additive directory changes the tree oid; that pin already mismatches, and the freeze scripts re-pin rather than verify."
+  },
+  "frozen_paper_bytes_modified": "NONE"
+}

@@ -1,0 +1,37 @@
+{
+  "case_id": "p1-c010",
+  "task_family": "hidden_representation_or_coordinate_system",
+  "public_prompt": "Eighteen teams answered a five-point agreement item coded 1 to 5. The step already agreed: average the codes per team and call a difference of 0.3 material. Report whether teams A and B differ on this item.",
+  "observable_resources": [
+    "survey/responses.csv — 2,900 rows across 18 teams, values in {1,2,3,4,5}",
+    "survey/distributions.csv — team A: 40% answered 1 and 44% answered 5, average 3.1; team B: 78% answered 3, average 3.1",
+    "survey/anchor-study.md — a paired-comparison run on 200 respondents finds the step from 4 to 5 about three times the step from 2 to 3 in underlying agreement",
+    "survey/tool.md — the current tool emits per-team averages and a difference-of-averages test, and nothing else",
+    "closure:engagement-scorecard-h1 — closed; declares teams A and B equivalent on this item",
+    "closure:manager-review-packet — closed; derived from closure:engagement-scorecard-h1",
+    "closure:intervention-plan-h2 — closed; derived from closure:manager-review-packet, funds no action for team A",
+    "closure:survey-privacy-review — closed; certifies that answers cannot be traced to a respondent; rests on the privacy assessment, not on any comparison between teams"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "REPRESENTATION",
+    "target_coordinates": [
+      "W.REPRESENTATIONS",
+      "representation:latent_cutpoints"
+    ],
+    "dependencies_to_reopen": [
+      "closure:engagement-scorecard-h1",
+      "closure:manager-review-packet",
+      "closure:intervention-plan-h2"
+    ],
+    "root_success_rubric": "PASS iff the answer refuses to treat the five codes as equally spaced numbers, distinguishes team A (split between the two ends) from team B (massed in the middle) despite the equal averages, and either fits an underlying-quantity model whose cutpoints are estimated from the anchor study or compares the full response distributions. FAIL if the answer compares averages, applies any fixed weights not estimated from the anchor study, or reports the two teams as equivalent.",
+    "dependency_depth": 3
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the averaging framing reports 3.1 versus 3.1 and declares the teams equivalent, which the distributions contradict outright."
+}

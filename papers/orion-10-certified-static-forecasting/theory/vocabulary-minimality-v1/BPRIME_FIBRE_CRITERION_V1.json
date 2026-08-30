@@ -1,0 +1,43 @@
+{
+  "cost_mixed_fibre_count": 0,
+  "cost_mixed_fibres": {},
+  "criterion": "certificate-explanation-gap-v1/THEORY.md Theorem 2: exact Psi-only explanation exists iff cost is constant on every Psi-fibre",
+  "fibres_keyed_on_f_Bprime": {
+    "10": [
+      9
+    ],
+    "7": [
+      6
+    ],
+    "8": [
+      7
+    ],
+    "9": [
+      8
+    ]
+  },
+  "instances_evaluated_total": 740,
+  "instances_not_serialised": 676,
+  "offset_C_DP_minus_C_Dxx": {
+    "0": 64
+  },
+  "offset_C_Dplus_minus_C_Dxx": {
+    "1": 64
+  },
+  "offset_f_Bprime_minus_C_Dxx": {
+    "1": 64
+  },
+  "offset_is_uniformly_one": true,
+  "panels_represented": 8,
+  "promotes_no_claim": true,
+  "replay_confirmed_all": true,
+  "schema": "ORION.ORION10.BprimeFibreCriterion.v1",
+  "source": "research/extensions/orion-qg/QG7_BPRIME_COMPLETENESS_RESULTS.json",
+  "source_result_digest": "159d174fbb17a66aeb39a3efb53cf4c505f0a86ce8ef1dff76337d00837d152f",
+  "source_terminal": "QG7_FOURTH_SUPPORT2_REGIME_FOUND",
+  "terminal": "CANNOT_CHECK_FIBRE_CONSTANCY_ON_SELECTED_WITNESSES",
+  "what_is_established": "On the 64 witnesses the relationship is exact and uniform: C_Dxx = f_B' - 1 in all 64, C_D+ - C_Dxx = 1 in all 64, and C_DP = C_Dxx in all 64, across 8 panels, all replay-confirmed. That uniformity is a fact about the witness set and is consistent with the source's own claim_boundary, which states C_DP == C_D++ for all n as a committed component.",
+  "what_would_settle_it": "Serialise f_B' and C_D++ for all 740 evaluated instances, not only the 64 candidates, and re-run this fibre grouping over the unselected majority.",
+  "why_cannot_check": "The 64 serialised witnesses are selected on C_D++ < min(C_D+, f_B'). Cost constancy within an f_B' fibre on a gap-selected subset is what the selection produces, not evidence about the space. Testing the criterion needs the 676 unselected instances, which this artifact does not serialise.",
+  "witnesses_serialised": 64
+}

@@ -1,0 +1,474 @@
+{
+  "allowed_release_statuses": [
+    "VERIFIED",
+    "BOUNDED_INFERENCE",
+    "COHERENT_DEFINITION",
+    "NOT_APPLICABLE"
+  ],
+  "paper_id": "ORION-13",
+  "rows": [
+    {
+      "claim": "The initial case archive SHA-256 digest is 35f9e39b...54ed8.",
+      "id": "AVL-01",
+      "kind": "availability",
+      "manuscript_surface": "Data and code availability",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1/SHA256SUMS"
+    },
+    {
+      "claim": "The confirmatory case archive SHA-256 digest is 13a76c68...2782b.",
+      "id": "AVL-02",
+      "kind": "availability",
+      "manuscript_surface": "Data and code availability",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/SHA256SUMS"
+    },
+    {
+      "claim": "No long-term stable immutable review-package URL is currently asserted.",
+      "id": "AVL-03",
+      "kind": "availability",
+      "manuscript_surface": "Data and code availability",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "manuscript/sections/60-availability.tex"
+    },
+    {
+      "claim": "The evidence evaluates already-structured mapping decisions, not raw-text extraction.",
+      "id": "BND-01",
+      "kind": "boundary",
+      "manuscript_surface": "Abstract; Introduction; Dataset; Limitations; Conclusion",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "BOUNDED_INFERENCE",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/EXECUTION_MANIFEST.json"
+    },
+    {
+      "claim": "The broader eight-family expert atlas has not been executed.",
+      "id": "BND-02",
+      "kind": "boundary",
+      "manuscript_surface": "Dataset; Limitations",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/PEER_REVIEW_READY_SCOPED_V1.md"
+    },
+    {
+      "claim": "Expert construct validity, naturalistic transport, generated-portrait recovery, and downstream scientific utility remain untested.",
+      "id": "BND-03",
+      "kind": "boundary",
+      "manuscript_surface": "Abstract; Limitations; Conclusion",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/CANNOT_CHECK_REMAINING_V1.md"
+    },
+    {
+      "claim": "Zero ablation effects do not establish that the corresponding coordinates are unnecessary.",
+      "id": "BND-04",
+      "kind": "boundary",
+      "manuscript_surface": "Results; Limitations",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "BOUNDED_INFERENCE",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+    },
+    {
+      "claim": "The flat comparator is a deliberately weak decision rule and does not support superiority over current integration systems.",
+      "id": "BND-05",
+      "kind": "boundary",
+      "manuscript_surface": "Related work; Limitations; Conclusion",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "manuscript/sections/07-limitations.tex"
+    },
+    {
+      "claim": "No full external schema-induction, ontology-matching, or provenance-aware system was run on the same case universe.",
+      "id": "BND-06",
+      "kind": "boundary",
+      "manuscript_surface": "Limitations",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "manuscript/sections/07-limitations.tex"
+    },
+    {
+      "claim": "A source-local projection keeps referent, construct, measurement, context, polarity, modality, attribution, discourse, assumptions, and unresolved information explicit.",
+      "id": "DEF-01",
+      "kind": "definition",
+      "manuscript_surface": "Methods: Source-local projections",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "manuscript/sections/30-method.tex"
+    },
+    {
+      "claim": "A mapping decision may be admissible, inadmissible, or undetermined; undetermined is not counted as a negative decision.",
+      "id": "DEF-02",
+      "kind": "definition",
+      "manuscript_surface": "Methods: Three-valued decisions",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "manuscript/sections/30-method.tex"
+    },
+    {
+      "claim": "Coordinate-governed mapping accepts only when claim-required coordinate relations are compatible and preservation conditions hold.",
+      "id": "DEF-03",
+      "kind": "definition",
+      "manuscript_surface": "Methods: Coordinate-governed mapping",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "manuscript/sections/30-method.tex"
+    },
+    {
+      "claim": "Flat predicate canonicalization treats matching predicates as sufficient merge evidence.",
+      "id": "DEF-04",
+      "kind": "definition",
+      "manuscript_surface": "Evaluation: Comparators",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "manuscript/sections/50-evaluation.tex"
+    },
+    {
+      "claim": "The exact-coordinate control accepts only exact scientific-coordinate compatibility and may abstain.",
+      "id": "DEF-05",
+      "kind": "definition",
+      "manuscript_surface": "Evaluation: Comparators",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "COHERENT_DEFINITION",
+      "warrant": "manuscript/sections/50-evaluation.tex"
+    },
+    {
+      "claim": "The development set contains 32 cases and is not pooled into the confirmatory verdict.",
+      "id": "DES-01",
+      "kind": "design",
+      "manuscript_surface": "Introduction; Results",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1/SUMMARY.json"
+    },
+    {
+      "claim": "The confirmatory set contains 32 cases.",
+      "id": "DES-02",
+      "kind": "design",
+      "manuscript_surface": "Abstract; Dataset; Results",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/SUMMARY.json"
+    },
+    {
+      "claim": "The confirmatory and initial sets have zero case-identifier overlap.",
+      "id": "DES-03",
+      "kind": "design",
+      "manuscript_surface": "Abstract; Dataset; Results; Limitations",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "editorial/INDEPENDENT_CONFIRMATORY_REPLAY.json"
+    },
+    {
+      "claim": "Two source-locator--content-hash records recur across the initial and confirmatory sets; the sets are not source-disjoint.",
+      "id": "DES-04",
+      "kind": "design",
+      "manuscript_surface": "Dataset; Results; Limitations",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "editorial/INDEPENDENT_CONFIRMATORY_REPLAY.json"
+    },
+    {
+      "claim": "Confirmatory case identities, source revisions, evaluator identities, margins, bootstrap seed, and terminal rule were frozen before confirmatory outputs were examined.",
+      "id": "DES-05",
+      "kind": "design",
+      "manuscript_surface": "Introduction; Dataset; Evaluation",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/EXECUTION_MANIFEST.json"
+    },
+    {
+      "claim": "Confirmatory composition is 13 different-name/same-referent, 13 polarity/modality/attribution/context-family, and 6 representation-mapping cases.",
+      "id": "DES-06",
+      "kind": "design",
+      "manuscript_surface": "Dataset Table 1",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+    },
+    {
+      "claim": "MUSE provides source-grounded problem--solution--rationale structures from scientific text.",
+      "id": "LIT-01",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "muse2026; https://arxiv.org/abs/2608.10974"
+    },
+    {
+      "claim": "SciER is an entity-and-relation extraction dataset for datasets, methods, and tasks in scientific documents.",
+      "id": "LIT-02",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "scier2024; https://doi.org/10.18653/v1/2024.emnlp-main.726"
+    },
+    {
+      "claim": "SciSchema.org provides multidisciplinary expert-annotated scientific-process schemas including measurements, conditions, and provenance-related fields.",
+      "id": "LIT-03",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "scischema2026; https://arxiv.org/abs/2607.27955"
+    },
+    {
+      "claim": "SCOPE is a schema-induction/fusion benchmark and SCION is an auditable evidence-linked reference pipeline.",
+      "id": "LIT-04",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "scopes2026; https://arxiv.org/abs/2607.21610"
+    },
+    {
+      "claim": "Executable Schema Contracts uses discovered schemas for provenance-aware graph construction and multi-source retrieval.",
+      "id": "LIT-05",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "schemaContracts2026; https://arxiv.org/abs/2606.05415"
+    },
+    {
+      "claim": "Ontology matching includes equivalence, subsumption, and disjointness correspondences.",
+      "id": "LIT-06",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "euzenat2007ontology; https://doi.org/10.1007/978-3-540-49612-0"
+    },
+    {
+      "claim": "LLMATCH separates schema preparation, candidate selection, and fine-grained alignment.",
+      "id": "LIT-07",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "llmatch2025; https://arxiv.org/abs/2507.10897"
+    },
+    {
+      "claim": "Knowledge-graph construction reviews cover schema matching, entity resolution, fusion, provenance, and refinement.",
+      "id": "LIT-08",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "hofer2024kgconstruction; https://doi.org/10.3390/info15080509"
+    },
+    {
+      "claim": "Scholarly knowledge-graph reviews cover structuring scholarly communication and integration tasks.",
+      "id": "LIT-09",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "verma2023scholarlykg; https://doi.org/10.1007/s40747-022-00806-6"
+    },
+    {
+      "claim": "I-ADOPT defines machine-readable components for scientific-variable descriptions.",
+      "id": "LIT-10",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "iadopt2021; https://arxiv.org/abs/2107.06547"
+    },
+    {
+      "claim": "The I-ADOPT benchmark reports continuing difficulty in constructing variable descriptions from scientific language.",
+      "id": "LIT-11",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "iadoptbench2026; https://www.semantic-web-journal.net/content/scientific-variables-knowledge-graphs-i-adopt-benchmark"
+    },
+    {
+      "claim": "FAIR 2.0 distinguishes levels of semantic interoperability and emphasizes explicit mappings.",
+      "id": "LIT-12",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "fair2_2024; https://doi.org/10.1038/s41597-025-05011-x"
+    },
+    {
+      "claim": "DEC treats provenance predicates as epistemic stance and preserves disagreement without collapsing it into inconsistency.",
+      "id": "LIT-13",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "dec2026; https://arxiv.org/abs/2606.15246"
+    },
+    {
+      "claim": "Measurement equivalence can require explicit testing across replicated settings.",
+      "id": "LIT-14",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "jilke2017measurement; https://doi.org/10.1080/14719037.2016.1210906"
+    },
+    {
+      "claim": "Stance detection concerns target-relative support and opposition.",
+      "id": "LIT-15",
+      "kind": "literature",
+      "manuscript_surface": "Related work",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "hardalov2022stance; https://doi.org/10.18653/v1/2022.findings-naacl.94"
+    },
+    {
+      "claim": "SciFact provides a public scientific-claim verification resource used by the frozen case construction.",
+      "id": "LIT-16",
+      "kind": "literature",
+      "manuscript_surface": "Dataset",
+      "scope": "citation metadata/abstract entailment checked 2026-08-28",
+      "status": "VERIFIED",
+      "warrant": "wadden2020scifact; https://doi.org/10.18653/v1/2020.emnlp-main.609"
+    },
+    {
+      "claim": "A standard-library-only verifier with no ORION-package imports reproduces all case decisions, primary differences, and the pass rule.",
+      "id": "REP-01",
+      "kind": "reproducibility",
+      "manuscript_surface": "Methods; Results; Conclusion",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "editorial/INDEPENDENT_CONFIRMATORY_REPLAY.json"
+    },
+    {
+      "claim": "The structurally separate replay shares repository and custody and is not external or cross-host replication.",
+      "id": "REP-02",
+      "kind": "reproducibility",
+      "manuscript_surface": "Results; Limitations",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "editorial/INDEPENDENT_CONFIRMATORY_REPLAY.json"
+    },
+    {
+      "claim": "Coordinate-governed mapping false-merge rate is 0/32 = 0.0000 on the confirmatory set.",
+      "id": "RES-01",
+      "kind": "result",
+      "manuscript_surface": "Abstract; Introduction; Results; Table 2",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+    },
+    {
+      "claim": "Flat predicate canonicalization false-merge rate is 6/32 = 0.1875.",
+      "id": "RES-02",
+      "kind": "result",
+      "manuscript_surface": "Abstract; Introduction; Results; Table 2",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+    },
+    {
+      "claim": "The paired false-merge difference is -0.1875 with percentile-bootstrap 95% interval [-0.34375,-0.0625].",
+      "id": "RES-03",
+      "kind": "result",
+      "manuscript_surface": "Abstract; Introduction; Results; Table 2",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+    },
+    {
+      "claim": "The paired false-split difference versus the exact-coordinate control is 0.0000 with interval [0.0000,0.0000].",
+      "id": "RES-04",
+      "kind": "result",
+      "manuscript_surface": "Abstract; Introduction; Results; Table 2",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+    },
+    {
+      "claim": "Both non-compensatory predeclared decision conditions passed.",
+      "id": "RES-05",
+      "kind": "result",
+      "manuscript_surface": "Abstract; Results",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+    },
+    {
+      "claim": "Coordinate-governed mapping accuracy is 1.0000; flat and exact-coordinate control accuracy are each 0.8125.",
+      "id": "RES-06",
+      "kind": "result",
+      "manuscript_surface": "Results; Table 2",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/SUMMARY.json"
+    },
+    {
+      "claim": "The exact-coordinate control abstained on 6/32 = 0.1875.",
+      "id": "RES-07",
+      "kind": "result",
+      "manuscript_surface": "Table 2",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/SUMMARY.json"
+    },
+    {
+      "claim": "All six flat-comparator false merges are polarity contrasts in the 13-case named family.",
+      "id": "RES-08",
+      "kind": "result",
+      "manuscript_surface": "Abstract; Introduction; Methods; Dataset; Results; Limitations",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "editorial/INDEPENDENT_CONFIRMATORY_REPLAY.json"
+    },
+    {
+      "claim": "All compared rules are correct in the other two case families.",
+      "id": "RES-09",
+      "kind": "result",
+      "manuscript_surface": "Dataset; Results",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+    },
+    {
+      "claim": "Forcing compatibility without explicit obstruction increases false merges by +0.1875 with interval [+0.0625,+0.34375].",
+      "id": "RES-10",
+      "kind": "result",
+      "manuscript_surface": "Results",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+    },
+    {
+      "claim": "Removing the modality/polarity/attribution/discourse group produces the same descriptive false-merge increase.",
+      "id": "RES-11",
+      "kind": "result",
+      "manuscript_surface": "Results",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+    },
+    {
+      "claim": "Removing referent, construct, measurement, or temporal context produces measured zero false-merge change on this holdout.",
+      "id": "RES-12",
+      "kind": "result",
+      "manuscript_surface": "Results",
+      "scope": "current C5/C9 mapping manuscript",
+      "status": "VERIFIED",
+      "warrant": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+    }
+  ],
+  "schema_version": "orion.orion13.atomic-claim-ledger.v1",
+  "scope": "C5/C9 structured mapping only",
+  "summary": {
+    "fail_closed_count": 0,
+    "row_count": 50,
+    "statuses": {
+      "BOUNDED_INFERENCE": 2,
+      "COHERENT_DEFINITION": 6,
+      "NOT_APPLICABLE": 0,
+      "VERIFIED": 42
+    }
+  },
+  "target": "Semantic Web Journal full paper"
+}

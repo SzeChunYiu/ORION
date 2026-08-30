@@ -1,0 +1,32 @@
+name: ORION-17 mechanism identifiability v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-17-epistemic-navigation-open-worlds/external-cohort-v1/**'
+      - '.github/workflows/orion17-mechanism-identifiability-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-17-epistemic-navigation-open-worlds/external-cohort-v1/**'
+      - '.github/workflows/orion17-mechanism-identifiability-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnosis-binding:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run independent mechanism-identifiability checker
+        run: python papers/orion-17-epistemic-navigation-open-worlds/external-cohort-v1/check_mechanism_identifiability_v1.py
+      - name: Emit additive packet digests for binding
+        run: |
+          sha256sum \
+            papers/orion-17-epistemic-navigation-open-worlds/external-cohort-v1/MECHANISM_IDENTIFIABILITY_V1.md \
+            papers/orion-17-epistemic-navigation-open-worlds/external-cohort-v1/check_mechanism_identifiability_v1.py \
+            papers/orion-17-epistemic-navigation-open-worlds/external-cohort-v1/SUCCESSOR_V2_REQUIREMENTS.md

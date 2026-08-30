@@ -1,0 +1,20 @@
+{
+  "pinned": "jdk-17.0.14+7",
+  "compile_rc": 0,
+  "compiled_class_count": 106,
+  "projection": {
+    "expected_class_count": 106,
+    "matching_count": 106,
+    "hash_mismatch": 0,
+    "missing_from_compile": 0,
+    "extra_classes_beyond_archive": 0,
+    "exact": true
+  }
+}
+Traceback (most recent call last):
+  File "/projects/hep/fs9/scratch/scyiu-orion-ci/wtR4/development/p4-exact-edge-residual-reprobe-v13-2026-08-28/compile_probe_91_v13.py", line 207, in <module>
+    main()
+  File "/projects/hep/fs9/scratch/scyiu-orion-ci/wtR4/development/p4-exact-edge-residual-reprobe-v13-2026-08-28/compile_probe_91_v13.py", line 203, in main
+    shutil.rmtree(workdir, ignore_errors=True)
+    ^^^^^^
+NameError: name 'shutil' is not defined

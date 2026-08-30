@@ -1,0 +1,281 @@
+{
+  "decision_rule": {
+    "kind": "ensemble_lcb95",
+    "se": "sd(ddof=1)/sqrt(n_draws)",
+    "z": 1.96
+  },
+  "diagnosis_accuracy": 1.0,
+  "digits_accuracy": 1.0,
+  "environment": {
+    "numpy": "2.4.6",
+    "python": "3.11.5",
+    "scikit_learn": "1.9.0"
+  },
+  "executable_accuracy": 1.0,
+  "failing_clauses": [],
+  "false_compute_escalation": 0,
+  "generic_accuracy": 0.2,
+  "generic_false_compute_escalation": 4,
+  "half_draw_decision_stability": {
+    "D-A": {
+      "half_decisions": {
+        "probe:0": "CANNOT_CHECK",
+        "probe:1": "CANNOT_CHECK",
+        "protected:0": "CANNOT_CHECK",
+        "protected:1": "CANNOT_CHECK"
+      },
+      "halves_agree_with_full": true
+    },
+    "D-I": {
+      "half_decisions": {
+        "probe:0": "INFORMATION",
+        "probe:1": "INFORMATION",
+        "protected:0": "INFORMATION",
+        "protected:1": "INFORMATION"
+      },
+      "halves_agree_with_full": true
+    }
+  },
+  "half_draw_decision_stability_all_digits": true,
+  "mean_registered_cost_regret": 0.0,
+  "probe_protected_decision_agreement_all_cells": true,
+  "protected_target_reached_by_prediction_lcb": true,
+  "protocol_v2_sha256": "f296ac6c42a1fb6d406b8d055baaa93868d06eff036c4dd2fb6bbffef96cc100",
+  "protocol_v3_sha256": "0146e0cab347df014f85f9eacb1c70a29da59fa293dbdd8e472bee2f047a944e",
+  "receipt_sha256": "8312b62bb30589ee365a2acb6f02beba2348eef8bd010ab691ebd8bf4dfe4b34",
+  "rows": [
+    {
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "digits",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "predicted": "CANNOT_CHECK",
+      "predicted_protected_lcb95": null,
+      "probe_lcb95": {
+        "ACCESSIBILITY": 0.9607307854377377,
+        "COMPUTATION": 0.11493360175841577,
+        "INFORMATION": 0.9204756467657511
+      },
+      "probe_levels": {
+        "ACCESSIBILITY": 0.9635561745589601,
+        "COMPUTATION": 0.11768802228412256,
+        "INFORMATION": 0.9256035283194057
+      },
+      "probe_protected_decision_agreement": true,
+      "probe_sds": {
+        "ACCESSIBILITY": 0.007062001705924121,
+        "COMPUTATION": 0.006884617168398194,
+        "INFORMATION": 0.012817033946820516
+      },
+      "protected_gold": "CANNOT_CHECK",
+      "protected_lcb95": {
+        "ACCESSIBILITY": 0.9609990859868461,
+        "COMPUTATION": 0.11742426090624764,
+        "INFORMATION": 0.9276808664226108
+      },
+      "protected_levels": {
+        "ACCESSIBILITY": 0.9643518518518519,
+        "COMPUTATION": 0.11944444444444445,
+        "INFORMATION": 0.9315972222222223
+      },
+      "protected_sds": {
+        "ACCESSIBILITY": 0.008380168975801188,
+        "COMPUTATION": 0.005049406995257698,
+        "INFORMATION": 0.009788850367589415
+      },
+      "target": 0.965,
+      "task": "D-A"
+    },
+    {
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "digits",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "predicted": "INFORMATION",
+      "predicted_protected_lcb95": 0.9609990859868461,
+      "probe_lcb95": {
+        "ACCESSIBILITY": 0.11419042396095277,
+        "COMPUTATION": 0.1407305795755087,
+        "INFORMATION": 0.9607307854377377
+      },
+      "probe_levels": {
+        "ACCESSIBILITY": 0.11826833797585885,
+        "COMPUTATION": 0.146355617455896,
+        "INFORMATION": 0.9635561745589601
+      },
+      "probe_protected_decision_agreement": true,
+      "probe_sds": {
+        "ACCESSIBILITY": 0.010192661787208372,
+        "COMPUTATION": 0.014059665908954655,
+        "INFORMATION": 0.007062001705924121
+      },
+      "protected_gold": "INFORMATION",
+      "protected_lcb95": {
+        "ACCESSIBILITY": 0.10997441184288556,
+        "COMPUTATION": 0.14134199541926165,
+        "INFORMATION": 0.9609990859868461
+      },
+      "protected_levels": {
+        "ACCESSIBILITY": 0.11446759259259259,
+        "COMPUTATION": 0.1486111111111111,
+        "INFORMATION": 0.9643518518518519
+      },
+      "protected_sds": {
+        "ACCESSIBILITY": 0.011230612407018559,
+        "COMPUTATION": 0.018169004414581146,
+        "INFORMATION": 0.008380168975801188
+      },
+      "target": 0.95,
+      "task": "D-I"
+    },
+    {
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "executable",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "predicted": "INFORMATION",
+      "predicted_protected_lcb95": 1.0,
+      "probe_lcb95": {
+        "ACCESSIBILITY": 0.52,
+        "COMPUTATION": 0.52,
+        "INFORMATION": 1.0
+      },
+      "probe_levels": {
+        "ACCESSIBILITY": 0.52,
+        "COMPUTATION": 0.52,
+        "INFORMATION": 1.0
+      },
+      "probe_protected_decision_agreement": true,
+      "probe_sds": {
+        "ACCESSIBILITY": 0.0,
+        "COMPUTATION": 0.0,
+        "INFORMATION": 0.0
+      },
+      "protected_gold": "INFORMATION",
+      "protected_lcb95": {
+        "ACCESSIBILITY": 0.5,
+        "COMPUTATION": 0.5,
+        "INFORMATION": 1.0
+      },
+      "protected_levels": {
+        "ACCESSIBILITY": 0.5,
+        "COMPUTATION": 0.5,
+        "INFORMATION": 1.0
+      },
+      "protected_sds": {
+        "ACCESSIBILITY": 0.0,
+        "COMPUTATION": 0.0,
+        "INFORMATION": 0.0
+      },
+      "target": 1.0,
+      "task": "B-I"
+    },
+    {
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "executable",
+      "false_compute_escalation": false,
+      "generic_correct": false,
+      "generic_false_compute_escalation": true,
+      "generic_prediction": "COMPUTATION",
+      "predicted": "ACCESSIBILITY",
+      "predicted_protected_lcb95": 1.0,
+      "probe_lcb95": {
+        "ACCESSIBILITY": 1.0,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.65
+      },
+      "probe_levels": {
+        "ACCESSIBILITY": 1.0,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.65
+      },
+      "probe_protected_decision_agreement": true,
+      "probe_sds": {
+        "ACCESSIBILITY": 0.0,
+        "COMPUTATION": 0.0,
+        "INFORMATION": 0.0
+      },
+      "protected_gold": "ACCESSIBILITY",
+      "protected_lcb95": {
+        "ACCESSIBILITY": 1.0,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.55
+      },
+      "protected_levels": {
+        "ACCESSIBILITY": 1.0,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.55
+      },
+      "protected_sds": {
+        "ACCESSIBILITY": 0.0,
+        "COMPUTATION": 0.0,
+        "INFORMATION": 0.0
+      },
+      "target": 1.0,
+      "task": "B-A"
+    },
+    {
+      "cost_regret": 0.0,
+      "diagnosis_correct": true,
+      "domain": "executable",
+      "false_compute_escalation": false,
+      "generic_correct": true,
+      "generic_false_compute_escalation": false,
+      "generic_prediction": "COMPUTATION",
+      "predicted": "COMPUTATION",
+      "predicted_protected_lcb95": 1.0,
+      "probe_lcb95": {
+        "ACCESSIBILITY": 0.02,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.02
+      },
+      "probe_levels": {
+        "ACCESSIBILITY": 0.02,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.02
+      },
+      "probe_protected_decision_agreement": true,
+      "probe_sds": {
+        "ACCESSIBILITY": 0.0,
+        "COMPUTATION": 0.0,
+        "INFORMATION": 0.0
+      },
+      "protected_gold": "COMPUTATION",
+      "protected_lcb95": {
+        "ACCESSIBILITY": 0.05,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.05
+      },
+      "protected_levels": {
+        "ACCESSIBILITY": 0.05,
+        "COMPUTATION": 1.0,
+        "INFORMATION": 0.05
+      },
+      "protected_sds": {
+        "ACCESSIBILITY": 0.0,
+        "COMPUTATION": 0.0,
+        "INFORMATION": 0.0
+      },
+      "target": 1.0,
+      "task": "B-C"
+    }
+  ],
+  "schema": "P9.CausalDiagnosticTransport.v3",
+  "task_count": 5,
+  "terminal": "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V3_SUPPORTED",
+  "transport": {
+    "R": 24,
+    "inner_seed0": 20261201,
+    "outer_seed0": 20261101
+  }
+}

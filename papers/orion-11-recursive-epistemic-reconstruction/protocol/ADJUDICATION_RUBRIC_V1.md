@@ -1,4 +1,4 @@
-# ORION-11 Adjudication Rubric V1 — MODEL-BASED PANEL
+# ORION-P1 Adjudication Rubric V1 — MODEL-BASED PANEL
 
 **Provenance: MODEL-BASED. This rubric governs a panel of language-model judges, not humans.**
 Every label produced under it carries `AdjudicationStatus.MODEL_ADJUDICATED`, which is a tier
@@ -11,7 +11,7 @@ No human panel was convened, and none is claimed.
 
 | Field | Value |
 | --- | --- |
-| Rubric id | `ORION-11.adjudication-rubric.v1` |
+| Rubric id | `P1.adjudication-rubric.v1` |
 | Status | `FROZEN` |
 | Adjudicator kind | `model_panel` |
 | Binds | `PROTOCOL_V1.json` → `access_policy.hidden_labels`, `access_policy.evaluator_custody` |
@@ -95,7 +95,7 @@ representation, decomposition or measurement model?
 - `execution` — a tooling, runtime, format or budget failure, with the problem statement intact.
 
 Neither warrants a reframe. Over-broad reframing on these two classes is the specific defect this
-rubric exists to catch (`PROTOCOL_V1.json` → `ORION-11.H2`).
+rubric exists to catch (`PROTOCOL_V1.json` → `P1.H2`).
 
 **R3 — Warranting class.** Apply in this order; the first that matches wins:
 
@@ -216,7 +216,7 @@ parses this exact block and refuses to run against a `DisagreementPolicy` that d
 <!-- POLICY-BEGIN -->
 ```json
 {
-  "policy_id": "ORION-11.model-panel-adjudication.v1",
+  "policy_id": "P1.model-panel-adjudication.v1",
   "min_judges": 2,
   "quorum": 2,
   "kappa_threshold": 0.6,

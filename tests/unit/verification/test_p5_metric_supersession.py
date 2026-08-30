@@ -17,7 +17,12 @@ RECEIPT = P5 / "evidence/glm-5.2-attribution/REPRODUCTION_RECEIPT.json"
 TABLE = P5 / "evidence/TABLE_P5_3_HIDDEN_CAUSE_ATTRIBUTION.json"
 DISCREPANCY = P5 / "evidence/DISCREPANCY_P5_D1_MACRO_F1_V1.json"
 SUITE = P5 / "evidence/hidden-cause-suite/PROTECTED_SUITE_V1.json"
-HISTORICAL_REPORT_SHA256 = "13ac651d00513b737023c309eab3ed3bde7adcc5f9612d146705d1d4a0877eca"
+# Pre-R0 identity of the same artifact, retained so the rename stays auditable.
+PRE_R0_REPORT_SHA256 = "13ac651d00513b737023c309eab3ed3bde7adcc5f9612d146705d1d4a0877eca"
+# Current identity: R0 (commit 3a1a83178) renamed the paper directory and rewrote
+# this file's results_path/suite_path with it. Metrics are byte-identical across
+# the rename; see DISCREPANCY_P5_D1_MACRO_F1_V1.json -> original_artifact.identity_migration.
+HISTORICAL_REPORT_SHA256 = "676c1d78e9570f450b1b734ce17990131f3eb6ea5c94afb8ae7baa113c980abe"
 
 
 def _independent_score() -> dict[str, object]:

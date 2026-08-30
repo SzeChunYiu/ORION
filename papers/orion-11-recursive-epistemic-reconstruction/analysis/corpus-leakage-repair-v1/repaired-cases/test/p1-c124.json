@@ -1,0 +1,35 @@
+{
+  "case_id": "p1-c124",
+  "task_family": "hidden_representation_or_coordinate_system",
+  "public_prompt": "A warehouse robot's onboard sensor emits three acceleration channels at 100 Hz. The reading so far: integrate the first two twice to recover the path over the floor. The recovered path drifts into the racking after every turn. Report the corrected path computation.",
+  "observable_resources": [
+    "robot/imu.csv — 180,000 rows of ax, ay, az plus a heading column in degrees that swings up to 90 degrees per second during turns",
+    "robot/recovered-path.csv — the current integration; agrees with the surveyed marks along straight aisle runs and diverges by up to 6 m immediately after every turn",
+    "robot/ground-truth.csv — 42 crossings of surveyed floor marks with exact positions",
+    "robot/sensor-datasheet.md — the three channels report proper acceleration along the chassis forward, lateral and vertical directions",
+    "closure:navigation-tuning-v7 — closed; raises the drift correction gain to mask the post-turn divergence",
+    "closure:robot-safety-certification — closed; certifies the chassis on stopping distance and guarding; rests on physical tests, not on any recovered track",
+    "closure:aisle-marking-standard — closed; fixes the floor markings and their spacing; rests on the warehouse standard, not on how the track is recovered",
+    "closure:sensor-procurement — closed; selects the sensor on price and mounting fit; rests on the parts comparison, not on how its output is processed"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "REPRESENTATION",
+    "target_coordinates": [
+      "W.REPRESENTATIONS",
+      "representation:egocentric_axes"
+    ],
+    "dependencies_to_reopen": [
+      "closure:navigation-tuning-v7"
+    ],
+    "root_success_rubric": "PASS iff the acceleration channels are rotated into the floor's fixed reference using the heading at each sample before integrating, and the answer explains why the error appears strictly after turns — the chassis directions and the floor directions agree on straight runs and disagree afterwards. FAIL if the answer raises the correction gain, low-pass filters the channels, blames sensor bias, or adds more surveyed marks.",
+    "dependency_depth": 1
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the direct-integration framing tunes the drift gain, which fits the straight runs and leaves the post-turn 6 m error intact."
+}

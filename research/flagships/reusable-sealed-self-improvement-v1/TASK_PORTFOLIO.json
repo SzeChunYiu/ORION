@@ -1,0 +1,18 @@
+{
+  "schema": "ORION.ReusableSealedPromotion.TaskPortfolio.v1",
+  "ordered_rounds": 6,
+  "new_task_clusters_per_round": 20,
+  "total_independent_task_clusters": 120,
+  "paired_across_arms": true,
+  "strata": {
+    "DETERMINISTIC_SOFTWARE_REPAIR": 24,
+    "VERIFIER_BACKED_RESEARCH_ARTIFACT": 24,
+    "BLINDED_RESEARCH_JUDGMENT": 24,
+    "SAFE_ABSTAIN_OR_BLOCK_CONTROL": 24,
+    "INFRASTRUCTURE_FAILURE_CONTROL": 24
+  },
+  "denominator_rule": "Every registered cluster remains in the endpoint denominator, including blocked, crashed, abstained, disputed, and CANNOT_CHECK cases.",
+  "task_acquisition_complete": false,
+  "external_scientific_case_denominator": 0,
+  "empirical_authority": false
+}

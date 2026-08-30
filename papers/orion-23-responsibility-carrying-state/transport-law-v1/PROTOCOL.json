@@ -1,0 +1,65 @@
+{
+  "schema": "ORION.ORION23.TransportLaw.Protocol.v1",
+  "protocol_identity": "ORION23.EXTERNAL_RESPONSIBILITY_TRANSPORT.v1",
+  "paper_id": "ORION-23",
+  "promotion_issue": "1649",
+  "tier": "A",
+  "status": "FROZEN_BEFORE_OUTCOME_ACCESS",
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "authored_date": "2026-08-28",
+
+  "claims": [
+    {"id": "P1", "statement": "REUSE is sound iff every load-bearing premise is UNCHANGED or ENTAILED."},
+    {"id": "P2", "statement": "A single CONTRADICTED load-bearing premise makes REUSE unsound, irrecoverably by checking other premises."},
+    {"id": "P3", "statement": "With no CONTRADICTED premise but some UNKNOWN premise the licensed output is CANNOT_CHECK; collapsing UNKNOWN to UNCHANGED gives unsound reuse and collapsing it to CONTRADICTED gives unnecessary revocation."},
+    {"id": "P4", "statement": "When transport fails the recomputation set is exactly the affected closure over the support DAG, and no nonnegative weighting yields a cheaper sound set."},
+    {"id": "P5", "statement": "No two-valued transport rule is both sound and non-over-revoking; the three-valued rule is the unique such point."}
+  ],
+
+  "enumeration": {
+    "support_dags": "all DAGs on 3..4 premise nodes under a fixed topological order",
+    "status_assignments": "every assignment of UNCHANGED/ENTAILED/CONTRADICTED/UNKNOWN to every premise",
+    "rules_compared": ["three_valued", "unknown_as_unchanged (optimistic collapse)", "unknown_as_contradicted (pessimistic collapse)"],
+    "exhaustive": true
+  },
+
+  "controls": [
+    {"id": "V1_unsound_reuse_is_detectable",
+     "statement": "The optimistic collapse MUST be caught producing unsound reuse on at least one case, through the same soundness predicate the three-valued rule is judged by. If it is never caught, the predicate cannot fire and no negative result means anything.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "V2_pessimistic_collapse_is_sound_but_wasteful",
+     "statement": "The pessimistic collapse must be sound in EVERY case and strictly over-revoke in at least one. Both halves are required: soundness shows the control is not merely broken, over-revocation shows the three-valued rule is not vacuous.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "V3_all_clear_no_alarm",
+     "statement": "With every premise UNCHANGED all three rules must REUSE and none may be flagged unsound. A checker that alarms on the all-clear case cries wolf.",
+     "on_failure": "T4_CANNOT_CHECK"},
+    {"id": "V4_unknown_cases_present",
+     "statement": "The sweep must contain cases with UNKNOWN and no CONTRADICTED premise, or P3 — the entire point — is untested.",
+     "on_failure": "T4_CANNOT_CHECK"}
+  ],
+
+  "terminals": [
+    {"id": "T1_TRANSPORT_LAW_HOLDS", "class": "FAVOURABLE",
+     "conditions": ["P1 to P5 hold with no counterexample", "all four controls pass"],
+     "licenses": "A bounded statement that three-valued premise status is necessary and sufficient for sound, minimal certificate transport, and that no two-valued rule achieves both.",
+     "does_not_license": ["any external deployment claim", "any claim that the pinned corpus establishes transport", "TOP_TIER_PROMOTION_EARNED"]},
+    {"id": "T2_REUSE_CHARACTERISATION_FAILS", "class": "UNFAVOURABLE", "conditions": ["P1 or P2 has a counterexample"]},
+    {"id": "T3_TWO_VALUED_RULE_SUFFICES", "class": "UNFAVOURABLE",
+     "conditions": ["some two-valued collapse is both sound and never over-revokes"],
+     "reading": "The three-valued distinction would then be unnecessary, and the paper's central claim would collapse."},
+    {"id": "T4_CANNOT_CHECK", "class": "CANNOT_CHECK", "conditions": ["any control fails"]}
+  ],
+
+  "external_corpus": {
+    "file": "P13_P14_OBJECTIVE_GOLD_RESULTS_V1.json",
+    "outcome_accessed": true,
+    "consequence": "NO FROZEN TEST IS RUN AGAINST IT; any reference is a labelled retrospective observation evidencing nothing.",
+    "boundary_recorded_by_the_corpus_itself": "every TEST_EXIT fact is CANNOT_CHECK because the locked per-repository runtime does not exist — an UNKNOWN premise in the sense of P3, not a refuted one",
+    "stop_rule_applies": true
+  },
+
+  "promotion_status_if_T1": "TRANSPORT_LAW_ESTABLISHED__PROMOTION_NOT_EARNED__BOUNDED_PAPER_RETAINED",
+  "stop_rule": "Outcomes are read once. On T2 or T3 the law is refuted and the lane stops. On T1 the theorem stands but, because the external corpus records its own CANNOT_CHECK boundary rather than crossing it, #1649's stop rule keeps ORION-23 bounded and forbids any external deployment claim."
+}

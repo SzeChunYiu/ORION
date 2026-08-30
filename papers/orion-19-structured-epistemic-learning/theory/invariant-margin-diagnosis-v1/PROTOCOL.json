@@ -1,0 +1,65 @@
+{
+  "schema": "ORION.ORION19.InvariantMarginDiagnosis.Protocol.v1",
+  "paper_id": "ORION-19",
+  "successor_id": "ORION19.INVARIANT_MARGIN_DIAGNOSIS.v1",
+  "status": "THEORY_PROVED__EXHAUSTIVELY_CHECKED",
+  "lane_type": "THEORY",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+
+  "freeze_discipline": {
+    "applicability": "PARTIAL",
+    "why": "Deductive lane, verified exhaustively over finite structures. No threshold, interval or gate is adjusted; nothing is re-run.",
+    "self_referential_note": "Theorem B3 names post-outcome narrowing of an uncertainty set, or movement of a threshold, as the move that manufactures authority without validity. This packet performs neither, and would be self-refuting if it did.",
+    "post_outcome_changes_forbidden": [
+      "narrowing any predeclared uncertainty set",
+      "moving any threshold",
+      "converting a CANNOT_CHECK half-draw terminal",
+      "reversing or softening T4_ATTACK_SUCCEEDED"
+    ],
+    "frozen_paper_bytes_modified": "NONE"
+  },
+
+  "claims_under_test": [
+    "A1: an orbit-invariant representation yields orbit-invariant decisions.",
+    "A2: a decision that moves under a registered semantics-preserving transformation proves the representation is not invariant.",
+    "A3: no G-invariant rule can beat the orbit minority-mass floor E*_G.",
+    "B1: emitted POSITIVE/NEGATIVE decisions are sound whenever the interval contains the true score.",
+    "B2: widening the uncertainty set can only move a decision toward CANNOT_CHECK.",
+    "B3: narrowing the set or moving the threshold after outcome access manufactures a decision with no validity guarantee."
+  ],
+  "explicitly_not_claimed": [
+    "that the reminting defeat is reversed -- it stands",
+    "that the accessibility threshold transports -- it does not",
+    "any deployed LLM or agent claim; ORION-19's bounded causal-diagnosis scope is unchanged per #1609",
+    "novelty over donor invariance/equivariance or interval-abstention theory"
+  ],
+
+  "independent_checker_requirements": {
+    "independence_rule": "No ORION-19 module imported. Theorems verified on freshly enumerated structures; evidence read as data only.",
+    "must_confirm_frozen_dispositions": ["T4_ATTACK_SUCCEEDED", "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_GATE_NOT_MET"],
+    "cannot_check_rule": "exit code 3, status CANNOT_CHECK, never reported as a pass"
+  },
+  "negative_controls": {
+    "controls": ["B3_post_outcome_narrowing_manufactures_a_decision",
+                 "non_invariant_phi_can_move_a_decision",
+                 "widening_never_creates_authority"],
+    "pass_condition": "3 of 3 fire"
+  },
+
+  "what_a_favourable_outcome_would_and_would_not_license": {
+    "would_license": [
+      "stating why the reminting attack counts as a refutation rather than noise",
+      "pre-registering E*_G as the ceiling for the invariant-profile successor BEFORE running it",
+      "naming post-outcome threshold/interval adjustment as forbidden by theorem rather than by convention"
+    ],
+    "would_not_license": [
+      "reversing or softening T4_ATTACK_SUCCEEDED",
+      "converting any CANNOT_CHECK terminal",
+      "any broader LLM/agent generalization"
+    ]
+  },
+
+  "stop_rule": "Complete. The common protocol described in #1617 remains optional successor science and is NOT a submission blocker."
+}

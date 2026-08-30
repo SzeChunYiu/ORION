@@ -1,4 +1,4 @@
-# ORION-01 journal-readiness record
+# ORION-05 journal-readiness record
 
 **Current terminal:** `INTERNAL_REVIEW_PASS__BOUNDED_CLAIM / SUBMISSION_GATES_OPEN`.
 

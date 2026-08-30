@@ -1,0 +1,113 @@
+{
+  "claim": "For every admitted size and target, an exact optimum exists with frame support at most two under the stated structural objective.",
+  "expected_pair_count_check": {
+    "key": 4,
+    "module": "support_two_pair_normalization_checker",
+    "value": 1968
+  },
+  "local_exchange_check": {
+    "class_tabulation_max_net": {
+      "class_00_max_net": 0,
+      "class_01_max_net": 0,
+      "class_10_max_net": 0,
+      "class_11_max_net": 0
+    },
+    "domain_size": 18432,
+    "holds": true,
+    "max_delta_f3": 2,
+    "max_savings_over_refund_ratio": 1.0,
+    "tie_count": 288,
+    "ties_only_at_central_multiplier": true,
+    "violating_cases_verbatim": [],
+    "violations": 0
+  },
+  "model": "shared-tag Pauli block encoding",
+  "parity_class_check": {
+    "per_w": {
+      "2": {
+        "failure_examples": [],
+        "failures": 4,
+        "odd_alpha_tuples_checked": 8
+      },
+      "3": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 32
+      },
+      "4": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 128
+      },
+      "5": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 512
+      },
+      "6": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 2048
+      },
+      "7": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 8192
+      },
+      "8": {
+        "failure_examples": [],
+        "failures": 0,
+        "odd_alpha_tuples_checked": 32768
+      }
+    },
+    "total_odd_alpha_tuples_checked": 43688,
+    "w2_boundary_exact": true,
+    "w2_boundary_note": "Class code = 2*alpha + beta. The failing w=2 patterns are exactly the odd-alpha tuples whose alpha=0 qubit has beta=1: zeroing the locally-commuting qubit must flip the Tag syndrome -- the weight-two local trade weight-2 trade. At w >= 3 the pattern is unrealizable (Lemma B).",
+    "w2_failing_tuples_observed": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ]
+    ],
+    "w2_failing_tuples_predicted": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ]
+    ],
+    "w3_to_w8_all_admit_subset": true,
+    "w3_to_w8_failures": 0
+  },
+  "record_type": "shared_tag_support_normalization",
+  "support_ceiling": 2,
+  "support_two_pair_counts": {
+    "1": 6,
+    "2": 120,
+    "3": 666,
+    "4": 1968
+  }
+}

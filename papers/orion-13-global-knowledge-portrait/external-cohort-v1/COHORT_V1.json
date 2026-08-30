@@ -1,0 +1,113 @@
+{
+  "schema": "ORION.ORION13.ExternalCorpusAcquisition.v1",
+  "identity": "ORION13.EXTERNAL_CORPUS_ACQUISITION.v1",
+  "terminal": "ACQUISITION_ONLY__NO_SCORING__NO_COORDINATE_CASES_CONSTRUCTED",
+  "grants_scientific_authority": false,
+  "outcomes_accessed": false,
+  "reference_alignments_opened": false,
+  "melt_executed": false,
+  "acquired_utc": "2026-08-29",
+  "purpose": "The ORION-13 coordinate branch census (manuscript/tables/coordinate_branch_census.tex) records 10 of 11 comparison coordinates deciding zero cases in both public-reference holdouts; only `polarity` fires (6/32 confirmatory, 4/32 initial). The successor needs an anti-confounded external corpus in which polarity alone cannot solve the task. This record acquires the one licence-cleared external corpus and verifies licences for candidate natural-pair sources.",
+
+  "acquired": [
+    {
+      "source_id": "BENCH23_OAEI_2025",
+      "role": "primary-benchmark",
+      "status": "DOWNLOADED_AND_VERIFIED__PAYLOAD_NOT_RETAINED_IN_REPO",
+      "payload_retention": "The 1,034,779-byte zip was fetched to session-local scratch, verified, inspected, and NOT committed: it is third-party CC-BY data and this record commits only derived, compact evidence. What is durable is the identity plus integrity - re-fetch from the DOI below and check against sha256_computed_locally. Do not read this row as 'the archive is in the repository'.",
+      "doi": "10.5281/zenodo.15827289",
+      "download_url": "https://zenodo.org/api/records/15827289/files/bench23.zip/content",
+      "license": "cc-by-4.0",
+      "license_reverified_utc": "2026-08-29",
+      "license_evidence_url": "https://zenodo.org/api/records/15827289",
+      "license_evidence_field": "metadata.license.id",
+      "size_bytes_observed": 1034779,
+      "size_bytes_expected": 1034779,
+      "md5_observed": "5c70ace8a58d828de693509440eae762",
+      "md5_published": "5c70ace8a58d828de693509440eae762",
+      "md5_match": true,
+      "sha256_computed_locally": "0e23db186d856dc97cd825aef65b63d983053d268716f793e1c185736bf6dfff",
+      "discharges": "gold/OAEI_TRACK_LICENSE_MANIFEST_V1.json required a SHA-256 computed locally at download time and recorded before any scoring run, because the Zenodo record publishes MD5 only. That SHA-256 is recorded here. The manifest's download_status for this source was NOT_DOWNLOADED_IN_THIS_MANIFEST; it is now downloaded and verified.",
+      "structure_observed": {
+        "ontology_files": 60,
+        "reference_alignment_files_present_but_unopened": 56,
+        "reference_alignment_files_note": "56 = 52 refalign.rdf plus 4 refalign-utf8.rdf. None was opened.",
+        "seed_ontology_inspected": "benchmarks/104/onto.rdf",
+        "seed_classes": 33,
+        "seed_object_properties": 24,
+        "seed_datatype_properties": 39
+      },
+      "composition_limitation_confirmed": "The archive is the systematic alteration of ONE seed ontology in the bibliographic domain, as the licence manifest recorded. It therefore cannot alone satisfy the natural-ontology-pair requirement (issue #1086 box 3)."
+    }
+  ],
+
+  "license_verified_natural_pair_candidates": {
+    "note": "Verified against the authoritative OBO Foundry registry, 2026-08-29. These are NEW EXPLICIT LICENCE EVIDENCE of the kind the manifest's non_bypass_boundaries require in order to upgrade a CANNOT_CHECK. They are offered as evidence only: selecting a natural-pair track remains a protocol decision this record does not make, and no payload for these was downloaded.",
+    "evidence_url": "https://obofoundry.org/registry/ontologies.jsonld",
+    "evidence_field": "ontologies[].license.label",
+    "ontologies": [
+      {"id": "go", "license": "CC BY 4.0", "domain": "biological systems"},
+      {"id": "uberon", "license": "CC BY 3.0", "domain": "anatomy and development"},
+      {"id": "cl", "license": "CC BY 4.0", "domain": "anatomy and development"},
+      {"id": "chebi", "license": "CC BY 4.0", "domain": "chemistry and biochemistry"},
+      {"id": "doid", "license": "CC0 1.0", "domain": "health"},
+      {"id": "pato", "license": "CC BY 3.0", "domain": "phenotype"}
+    ],
+    "efo": {
+      "id": "efo",
+      "license": "CANNOT_CHECK",
+      "reason": "EFO is not in the OBO Foundry registry. The EBI OLS4 API record (https://www.ebi.ac.uk/ols4/api/ontologies/efo, title 'Experimental Factor Ontology', version 3.93.0) returned no licence annotation. No licence was inferred from adjacency to other EBI ontologies.",
+      "consequence": "EFO is NOT acquired and NOT proposed. The disposition matrix named 'E10 GO / Uberon / EFO' as the successor corpus; GO and Uberon are licence-clear, EFO is not, on the evidence available here."
+    }
+  },
+
+  "blocked_and_not_acquired": [
+    {"source_id": "OAEI_BIO_ML", "terminal": "EXCLUDED__UMLS_ASSOCIATED_UNAUTHORIZED__VIA_CAMPAIGN_SUCCESSION", "basis": "gold/OAEI_TRACK_LICENSE_MANIFEST_V1.json excluded_tracks", "note": "This is the OAEI track that would otherwise carry biomedical natural pairs. It is excluded, so biomedical natural pairs cannot be taken from OAEI."},
+    {"source_id": "OAEI_LARGEBIO_LEGACY_2015", "terminal": "EXCLUDED__UMLS_ASSOCIATED_UNAUTHORIZED", "basis": "same manifest"},
+    {"source_id": "ECLASS", "terminal": "EXCLUDED__ISSUE_DIRECTIVE", "basis": "issue #1086 box 1"},
+    {"source_id": "OAEI_2025_CONFERENCE_RA1", "terminal": "LICENSE_CANNOT_CHECK__NOT_SELECTED", "basis": "No explicit licence on the OAEI Conference track page or the OntoFarm landing page; a citation request is not a licence grant. Not upgraded here: no new explicit evidence was found."},
+    {"source_id": "OAEI_2025_BIODIV", "terminal": "LICENSE_CANNOT_CHECK__ARCHIVE_DEAD__NOT_SELECTED", "basis": "same manifest"},
+    {"source_id": "SEMTAB_2025", "terminal": "LICENSE_CANNOT_CHECK__NOT_ACTIVATED", "basis": "same manifest licensed_fallback"}
+  ],
+
+  "polarity_anti_confounding_measurement": {
+    "question": "Is the acquired corpus anti-confounded with respect to polarity, i.e. can polarity alone solve its cases?",
+    "method": "Counted ontology files containing OWL negation/distinctness constructs across all 60 ontology files in the archive, with owl:Class as a positive control that must match.",
+    "results": {
+      "files_total": 60,
+      "with_owl_complementOf": 2,
+      "with_owl_disjointWith": 2,
+      "with_owl_NegativePropertyAssertion": 0,
+      "with_owl_differentFrom": 0,
+      "control_with_owl_Class": 60
+    },
+    "reading": "Negation constructs are absent from 58 of 60 ontologies, and ontology-alignment correspondences are positive equivalence assertions carrying no polarity contrast. Polarity is therefore near-constant in this corpus, so it cannot be the coordinate that decides cases -- which is the anti-confounding property the successor requires. This is a property of the source vocabulary as measured; it is NOT a claim that any particular case set has been built or that another coordinate does decide.",
+    "control_justification": "owl:Class matched 60/60, so a zero count above is a real absence and not a failed search."
+  },
+
+  "coordinate_capacity_assessment": {
+    "status": "SOURCE_VOCABULARY_CAPACITY_ONLY__NOT_EXERCISED_CASES",
+    "boundary": "Turning an ontology into ORION-13 probe cases requires the projection and annotation step defined in protocol/ANNOTATION_HANDBOOK_V1.md and protocol/ANNOTATION_SCHEMA_V1.json, which is human annotation work. Acquisition cannot discharge it. Every row below says only whether the acquired vocabulary CAN express variation on that coordinate, not that any case DOES.",
+    "successor_required_coordinates": ["REFERENT", "CONSTRUCT", "MEASUREMENT", "TEMPORAL_CONTEXT"],
+    "successor_required_source": "protocol/P3_PARTIAL_IDENTIFICATION_SUCCESSOR_V1.json design.coordinates_with_required_nonzero_variation",
+    "per_coordinate": [
+      {"coordinate": "referent", "capacity_in_bench23": "PRESENT", "evidence": "Alignment cases pair entities across systematically altered ontology variants; entity identity is exactly what varies."},
+      {"coordinate": "construct", "capacity_in_bench23": "PRESENT", "evidence": "33 named classes in the seed ontology."},
+      {"coordinate": "measurement", "capacity_in_bench23": "PRESENT_IN_VOCABULARY", "evidence": "10 quantitative datatype properties in the seed ontology: chapter, edition, endPage, issue, number, numberOrVolume, price, size, startPage, volume."},
+      {"coordinate": "temporal_context", "capacity_in_bench23": "PRESENT_IN_VOCABULARY", "evidence": "5 temporal datatype properties in the seed ontology: day, month, year, firstPublished, periodicity."},
+      {"coordinate": "predicate", "capacity_in_bench23": "PRESENT_IN_VOCABULARY", "evidence": "24 object properties in the seed ontology."},
+      {"coordinate": "modality", "capacity_in_bench23": "ABSENT", "evidence": "OWL class axioms carry no epistemic modality; no modality vocabulary observed."},
+      {"coordinate": "attribution", "capacity_in_bench23": "NOT_ESTABLISHED", "evidence": "Bibliographic authorship exists as data, but attribution in the ORION-13 sense is the attribution of a claim to a source, which an alignment correspondence does not carry."},
+      {"coordinate": "discourse_relation", "capacity_in_bench23": "ABSENT", "evidence": "Ontology alignment has no discourse; correspondences are not connected prose."},
+      {"coordinate": "assumption_context", "capacity_in_bench23": "NOT_ESTABLISHED", "evidence": "No assumption vocabulary observed in the seed ontology."},
+      {"coordinate": "unresolved_ambiguity_gate", "capacity_in_bench23": "NOT_ESTABLISHED", "evidence": "Would depend on the annotation step, not on the source vocabulary."}
+    ],
+    "honest_summary": "Of the four coordinates the successor requires, all four are expressible in the acquired vocabulary, two of them (referent, construct) straightforwardly. Four of the remaining six coordinates are absent or not established. bench23 alone cannot satisfy the successor: it is one seed ontology in one domain, whereas the successor design calls for 4 domains and 768 independent units."
+  },
+
+  "cannot_check": [
+    {"item": "natural_ontology_pair_track", "reason": "Every OAEI natural-pair candidate is either licence-unverifiable (Conference, Biodiv, SemTab) or UMLS-excluded (Bio-ML, LargeBio). GO/Uberon/CL are licence-clear as ontologies but OAEI ships no licence-clear reference alignment between them that this record could verify, and an incomplete alignment never makes absent pairs true negatives."},
+    {"item": "efo_license", "reason": "No licence annotation returned by the EBI OLS4 API; not inferred."},
+    {"item": "matched_polarity_opposite_verdict_pairs", "reason": "Requires the human annotation step (ANNOTATION_HANDBOOK_V1). Not produced, not estimated."}
+  ]
+}

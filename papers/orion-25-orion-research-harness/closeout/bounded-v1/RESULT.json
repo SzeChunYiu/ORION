@@ -1,0 +1,97 @@
+{
+  "artifact_corruption": {
+    "false_promotion_rate": 0.0,
+    "false_promotions": 0,
+    "faults_applied": 6,
+    "faults_attempted": 6,
+    "faults_detected": 6
+  },
+  "authority": "BOUNDED_SCIENTIFIC_RESULT_EARNED",
+  "benign_reencoding": {
+    "byte_distinct_variants": 4,
+    "false_rejection_rate": 0.0,
+    "false_rejections": 0,
+    "variants_accepted": 6,
+    "variants_applied": 6
+  },
+  "chain_length": {
+    "clean_chains_verified_by_k": {
+      "1": 4,
+      "2": 4,
+      "3": 4
+    },
+    "detection_rate_by_k": {
+      "1": 1.0,
+      "2": 1.0,
+      "3": 1.0
+    },
+    "k_values": [
+      1,
+      2,
+      3
+    ],
+    "trust_domains_fixed": 1,
+    "verdict": "DETECTION_FLAT_IN_K"
+  },
+  "composition_overhead": {
+    "byte_expansion_multiple": 1.3933006064106266,
+    "bytes_attested": 9650,
+    "bytes_no_attestation": 6926,
+    "cases": 4,
+    "median_added_ms": 1.3397741131484509,
+    "median_attested_ms": 1.4444803819060326,
+    "median_no_attestation_ms": 0.10470626875758171,
+    "per_link_overhead_microseconds": 111.6478427623709,
+    "relative_multiple": 13.79554824220053,
+    "repeats": 40,
+    "roles_per_case": 3,
+    "scope": "composition-side only; verification, I/O, and orchestration excluded"
+  },
+  "cryptographic_trust_domains": {
+    "chain_length_fixed": 3,
+    "d_values": [
+      1,
+      2,
+      3
+    ],
+    "domains_compromised": 1,
+    "false_promotion_rate_by_d": {
+      "1": 1.0,
+      "2": 0.0,
+      "3": 0.0
+    },
+    "false_promotions_by_d": {
+      "1": 4,
+      "2": 0,
+      "3": 0
+    },
+    "real_receipts_per_d": 4,
+    "verdict": "RESISTANCE_STEPS_WITH_D_UNDER_SINGLE_DOMAIN_COMPROMISE"
+  },
+  "filing_gate": {
+    "archive_and_license_binding_complete": false,
+    "fresh_pdf_rendered_from_recovered_source": false,
+    "human_filing_metadata_complete": false,
+    "page_level_visual_audit_complete": false
+  },
+  "paper_disposition": "CANNOT_CHECK",
+  "paper_disposition_reason": "Bounded source is complete, but a fresh final PDF render, page-level visual audit, archive binding, and filing have not yet been verified.",
+  "paper_id": "ORION-25",
+  "process_liveness": {
+    "host_process_faults": 4,
+    "stale_valid_artifacts_accepted": 2,
+    "verdict": "ARTIFACT_VALIDITY_DOES_NOT_ATTEST_CURRENT_RUN_LIVENESS",
+    "write_path_failures_that_failed_loudly": 2
+  },
+  "schema": "ORION.ORION25.BoundedCloseout.Result.v1",
+  "scientific_authority_delta": "NONE",
+  "source_closeout_terminal": "BOUNDED_PAPER_SOURCE_COMPLETE__FINAL_RENDER_AND_FILING_PENDING",
+  "trust_domain_law": {
+    "cells_matching_theorem": 1000,
+    "cells_total": 1000,
+    "custody_limit": "Cryptographic independence only; all domains remained under one programme's custody.",
+    "necessity_failures": 0,
+    "promotion_status": "EXTERNAL_ORGANIZATIONAL_TRUST_DOMAIN_LAW_NOT_EARNED",
+    "sufficiency_failures": 0
+  }
+}

@@ -7,7 +7,12 @@ separates point identification, information value and robust action before
 identification is complete. On a prospectively frozen 32-case public-reference
 holdout, coordinate-governed mapping made no false merges, versus 0.1875 for
 flat predicate canonicalization (paired difference $-0.1875$, 95\% bootstrap
-interval $[-0.34375,-0.0625]$). A constructed 36-case corpus gives every
+interval $[-0.34375,-0.0625]$; six discordant cases, exact $p=0.031$). We
+report what that comparison rests on: every case in the holdout is
+predicate-equal, so the flat baseline reduces there to a constant always-merge
+rule whose false-merge rate is identically the non-mergeable base rate, and
+nine of the ten comparison coordinates decide no case, leaving the result a
+polarity-sensitive one. A constructed 36-case corpus gives every
 deterministic observation-only rule an exact 27/36 ceiling. On one historical
 OAEI 2004 test-103 case, BERTMap recovered 33/33 common class pairs versus
 AML's 8/33; full-task F1 was $33/62$ versus $16/137$, with 58 property

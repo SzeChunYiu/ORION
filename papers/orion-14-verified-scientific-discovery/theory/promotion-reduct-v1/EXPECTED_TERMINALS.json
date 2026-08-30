@@ -1,0 +1,54 @@
+{
+  "schema": "ORION.ORION14.PromotionReduct.ExpectedTerminals.v1",
+  "paper_id": "ORION-14",
+  "successor_id": "ORION14.MINIMAL_PROMOTION_REDUCT.v1",
+  "authored_date": "2026-08-28",
+
+  "terminal_set": [
+    {"terminal": "SCOPE_GATED__SPECIFIED_INPUT_ABSENT", "reached": true,
+     "observed": "no .jsonl with 350-450 rows and no 400-length array exists under the paper; the 400-case coordinate table backing ORION-14.X.EXACT.400.PROMOTION_RELATION is not committed",
+     "consequence": "Upgrade A, ranked #2 by expected value in #1617, cannot be executed as specified",
+     "remedy": "commit the 400-row table; this is an artifact task, not a science task"},
+    {"terminal": "REDUCT_COMPUTED_ON_COMMITTED_CORPUS", "reached": true,
+     "observed": "k* = 3 on the 10-case method-authority bench; reducts {claims_new_primitive, known_composition, prior_art_found} and {known_composition, prior_art_found, req:NOVELTY}; core {known_composition, prior_art_found}",
+     "scope_limit": "10 cases, NOT the 400-case study; a different and smaller object"},
+    {"terminal": "CANNOT_CHECK_SHOWN_LOAD_BEARING", "reached": true,
+     "observed": "closed_world_new_method and novelty_unknown are identical on every other recorded field and differ in promotability solely because prior_art_found is false vs null; merging those values makes NO feature set sufficient (k* 3 -> undefined)",
+     "significance": "a concrete demonstration that CANNOT_CHECK must not be conflated with a negative; binarised, the promotion relation stops being a function of the recorded state"},
+    {"terminal": "COORDINATES_UNTESTED_BY_THIS_CORPUS", "reached": true,
+     "adverse_to_breadth": true,
+     "observed": "validity, applicability, transfer and utility coordinates never appear in any reduct because every bench case satisfies them",
+     "required_handling": "PRESERVE. This is a corpus-design limit, NOT evidence that those coordinates are unnecessary."},
+    {"terminal": "CANNOT_CHECK", "reached": false,
+     "condition": "bench missing or checker cannot execute",
+     "required_action": "report as CANNOT_CHECK; never as a pass"}
+  ],
+
+  "preserved_adverse_and_null_evidence": [
+    {"item": "ORION-14.X.EXACT.400.PROMOTION_RELATION = SUPPORTED_BOUNDED_EXACT",
+     "status": "PRESERVED_UNCHANGED_AND_UNTOUCHED",
+     "note": "This packet could not touch it: its data is absent."},
+    {"item": "H3 null", "status": "PRESERVED_UNCHANGED",
+     "note": "#1609 requires H1/H2 positive and H3 null be reported exactly. Untouched here."},
+    {"item": "TRANSPORT_CANNOT_CHECK_HTTP_400 and other recorded CANNOT_CHECK dispositions",
+     "status": "PRESERVED_UNCHANGED - none converted"},
+    {"item": "the validity/applicability/transfer/utility coordinates are untested by this bench",
+     "status": "NEWLY_RECORDED_LIMIT",
+     "note": "Structurally identical to ORION-13's polarity confound: a corpus-design limit, not a coordinate verdict."}
+  ],
+
+  "authority_updates": {
+    "claim_rows_changed": "NONE",
+    "manuscript_or_ledger_edited": "NONE",
+    "new_object_created": "papers/orion-14-verified-scientific-discovery/theory/promotion-reduct-v1/ (additive)",
+    "paper_tree_oid_effect": {"pinned": "aea0d2d1f38a", "currently_matching_on_main": true,
+                              "effect": "moves into the mismatching set", "ref_issue": 1625},
+    "new_blocker_raised": "NONE - the absent table blocks an OPTIONAL upgrade, not the submission"
+  },
+
+  "explicitly_out_of_scope": [
+    "the 400-case reduct, pending the table being committed",
+    "the controlled natural-substrate causal panel (Upgrade B), which #1617 says must not block filing",
+    "venue, packaging and filing decisions"
+  ]
+}

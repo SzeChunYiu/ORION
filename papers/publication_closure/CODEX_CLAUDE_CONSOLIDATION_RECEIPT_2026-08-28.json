@@ -1,0 +1,30 @@
+{
+  "schema": "ORION.CodexClaudeConsolidationReceipt.v1",
+  "date": "2026-08-28",
+  "base_main": "2b912e72797a45756cbe90bdd379d5bf5efc974d",
+  "scientific_authority_delta": "NONE",
+  "selected": {
+    "orion18_p10_foundation": {"source":"PR #1571 via current-main integration #1586","rule":"prefer stronger overlap: active-authority re-pin + P10 membership closure"},
+    "orion02_r23": {"source":"PR #1587","disposition":"additive successor evidence; R22 remains visible; refreeze required"},
+    "orion15_v4": {"source":"PR #1581","disposition":"additive benchmark-local successor evidence; independent authority remains pending"},
+    "orion04_replay_repair": {"source":"PR #1562","disposition":"prerequisite/custody only; replay remains blocked on new operator one-shot authorization"},
+    "orion04_novelty": {"source":"PR #1570","disposition":"additive literature subtraction only; no science terminal"},
+    "foundations_workflow_fix": {"source":"PR #1572","disposition":"operational CI fix only"},
+    "p2_evaluator_dependency": {"source":"PR #1528","disposition":"operational dependency fix only"},
+    "p8_compat_readme": {"source":"PR #1575","disposition":"retain historical checker token plus current ORION-18 disambiguation"},
+    "r0_support_tools": {"source":"PR #1544","disposition":"non-overlapping diagnostic/reseal tooling only"}
+  },
+  "excluded_from_wholesale_merge": {
+    "PR #1544": "overlapping ORION-18/P10 file versions are intermediate relative to selected #1571 repair",
+    "PR #1566": "specialist packages pin an older science_base_commit and carry unrelated repair history; rematerialize instead",
+    "PR #1542": "useful package/freshness machinery is mixed with pre-freeze canonical manuscript/science deltas; port/rematerialize instead"
+  },
+  "required_followups": [
+    "Run consolidated ORION-18 binding and P10 closure gates.",
+    "Issue ORION-02 science/content freeze V2 after R23 integration.",
+    "Issue current-tree ORION-18 content freeze after binding gates.",
+    "Issue ORION-24 formal current-tree freeze receipt.",
+    "Do not promote ORION-15 V4 before independent result and nearest-work authorities complete.",
+    "Rematerialize stale-base specialist packages from the consolidated tree."
+  ]
+}

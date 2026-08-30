@@ -1,0 +1,663 @@
+{
+  "schema": "ORION.ORION17.RuleDisagreementCohort.v1",
+  "identity": "ORION17.RULE_DISAGREEMENT.v1.external_cohort",
+  "terminal": "COHORT_ACQUIRED__OUTCOME_BLIND__NO_OUTCOME_AUTHORITY",
+  "grants_scientific_authority": false,
+  "outcomes_accessed": false,
+  "policy_executed": false,
+  "protocol_source": "papers/publication_closure/issue1701_ab_multiplex_v1/ORION17_RULE_DISAGREEMENT_PROTOCOL_V1.json (branch chatgpt/issue1701-canonical-ab-multiplex-20260829)",
+  "frozen_constants": {
+    "density_rule": "unsound iff edges/modules >= 1.5",
+    "module_rule": "unsound iff modules >= 49",
+    "edge_rule": "unsound iff edges >= 216",
+    "note": "Historical constants from the protocol. NOT re-derived, NOT re-fitted.",
+    "derivation_reproduced": "modules (24+74)/2 = 49 and edges (19+412)/2 = 215.5 -> 216, from max-sound flask and min-unsound tornado across the 8 calibration+evaluation projects. Both close exactly, which is the evidence the exclusion list below is complete."
+  },
+  "builder": {
+    "function": "build_import_graph",
+    "source": "papers/orion-17-epistemic-navigation-open-worlds/transitions/measure_p7_closure_retention_v1.py on branch origin/shadow/orion17-density-v2-recovery-20260829",
+    "validation_against_published_table": {
+      "requests": {
+        "published": [
+          19,
+          16
+        ],
+        "reproduced": [
+          19,
+          16
+        ],
+        "exact": true
+      },
+      "tornado": {
+        "published": [
+          74,
+          412
+        ],
+        "reproduced": [
+          74,
+          412
+        ],
+        "exact": true
+      },
+      "networkx": {
+        "published": [
+          583,
+          1245
+        ],
+        "reproduced": [
+          583,
+          1245
+        ],
+        "exact": true
+      },
+      "django": {
+        "published": [
+          906,
+          3336
+        ],
+        "reproduced": [
+          906,
+          3315
+        ],
+        "exact": false
+      },
+      "sympy": {
+        "published": [
+          1566,
+          13622
+        ],
+        "reproduced": [
+          1566,
+          13591
+        ],
+        "exact": false
+      },
+      "summary": "module counts 5/5 exact; edge counts 3/5 exact, two deltas sub-1% on the most actively developed repos"
+    }
+  },
+  "enumeration": {
+    "source": "https://hugovk.github.io/top-pypi-packages/top-pypi-packages.min.json",
+    "ordering": "download_count descending; fixed before any measurement",
+    "rule": "first 10 qualifying candidates per stratum in rank order",
+    "examined": 1749,
+    "usable": 1054,
+    "reject_reasons": {
+      "package_dir_not_found": 458,
+      "FORBIDDEN_dev_eval_repo": 8,
+      "no_github_url": 162,
+      "clone_failed:error: could not write config file /private/tmp/claude-501/-Users-billy/0dd86967": 3,
+      "clone_failed:error: unable to create file packages/google-cloud-discoveryengine/google/cloud/": 1,
+      "clone_failed:error: unable to create file sdk/redisenterprise/azure-mgmt-redisenterprise/gene": 1,
+      "clone_failed:error: unable to create file packages/google-maps-mapmanagement/samples/generate": 1,
+      "clone_failed:error: unable to write file packages/gcp-sphinx-docfx-yaml/docs/docfx.json\nerror": 1,
+      "clone_failed:error: unable to create file packages/google-cloud-dialogflow-cx/google/cloud/di": 1,
+      "clone_failed:fatal: sha1 file '/private/tmp/claude-501/-Users-billy/0dd86967-88ea-4014-9825-6": 1,
+      "clone_failed:fatal: cannot create directory at 'tests/models/cassettes/test_groq': No space l": 1,
+      "clone_failed:error: unable to write file sdk/network/azure-mgmt-network/azure/mgmt/network/op": 1,
+      "clone_failed:error: unable to create file docs/examples/tutorial/memory_allocation/some_memor": 1,
+      "clone_failed:error: unable to write file packages/google-ai-generativelanguage/google/ai/gene": 1,
+      "clone_failed:error: unable to write file packages/google-cloud-spanner/google/cloud/spanner_a": 1,
+      "clone_failed:error: unable to create file packages/google-cloud-bigtable/google/cloud/bigtabl": 1,
+      "clone_failed:fatal: cannot create directory at 'packages/google-cloud-appengine-logging/googl": 1,
+      "clone_failed:error: unable to create file packages/google-cloud-orchestration-airflow/samples": 1,
+      "clone_failed:fatal: cannot create directory at 'packages/google-cloud-gke-backup': No space l": 1,
+      "clone_failed:error: unable to create file packages/google-cloud-ces/docs/_static/custom.css: ": 1,
+      "clone_failed:error: unable to create file packages/google-cloud-bigquery-connection/google/cl": 1,
+      "clone_failed:error: unable to create file packages/google-cloud-apihub/google/cloud/apihub_v1": 1,
+      "clone_failed:error: unable to create file packages/google-cloud-compute-v1beta/google/cloud/c": 2,
+      "clone_failed:error: unable to write file packages/google-cloud-compute-v1beta/tests/unit/gapi": 1,
+      "clone_failed:fatal: cannot create directory at 'packages/google-cloud-beyondcorp-appconnector": 1,
+      "clone_failed:error: unable to create file packages/google-cloud-chronicle/samples/generated_s": 1,
+      "clone_failed:error: unable to create file packages/sqlalchemy-spanner/tests/mockserver_tests/": 1,
+      "clone_failed:error: unable to create file packages/google-ai-generativelanguage/google/ai/gen": 1,
+      "clone_failed:error: unable to write file sdk/eventhub/azure-eventhub-checkpointstoreblob-aio/": 1,
+      "clone_failed:error: unable to create file stubs/gevent/@tests/stubtest_allowlist_darwin.txt: ": 1,
+      "clone_failed:error: unable to create file .github/actions/sccache-summary/action.yml: No spac": 1,
+      "clone_failed:error: could not lock config file /private/tmp/claude-501/-Users-billy/0dd86967-": 1,
+      "clone_failed:error: unable to create file packages/google-maps-mapsplatformdatasets/google/ma": 1,
+      "clone_failed:fatal: cannot create directory at 'packages/google-ai-generativelanguage/google/": 1,
+      "clone_failed:error: unable to create file packages/google-cloud-beyondcorp-clientgateways/sam": 1,
+      "clone_failed:error: unable to create file packages/google-auth/tests/test__oauth2client.py: N": 1,
+      "clone_failed:error: unable to create file kernel/kernel-defaults/src/test/resources/kernel-pa": 1,
+      "clone_failed:error: unable to create file .github/ISSUE_TEMPLATE/bug_report.yml: No space lef": 1,
+      "clone_failed:error: unable to write file sdk/ai/azure-ai-projects/tests/samples/assets/basic-": 2,
+      "clone_failed:error: unable to write file packages/google-cloud-documentai-toolbox/tests/unit/": 1,
+      "clone_failed:error: unable to write file sdk/networkcloud/azure-mgmt-networkcloud/azure/mgmt/": 1,
+      "clone_failed:fatal: failed to write to /private/tmp/claude-501/-Users-billy/0dd86967-88ea-401": 1,
+      "clone_failed:error: unable to write file instrumentation/opentelemetry-instrumentation-celery": 1,
+      "clone_failed:error: unable to create file dev/breeze/doc/images/output_release-management_gen": 1,
+      "clone_failed:fatal: cannot create directory at 'sdk/ml/azure-ai-ml/tests/test_configs/feature": 1,
+      "clone_failed:error: unable to write file packages/google-cloud-run/tests/unit/gapic/run_v2/te": 1,
+      "clone_failed:error: unable to write file sdk/netapp/azure-mgmt-netapp/azure/mgmt/netapp/aio/o": 1,
+      "clone_failed:remote: Repository not found.\nfatal: repository 'https://github.com/johejo/inuti": 1,
+      "clone_failed:error: unable to write file sdk/formrecognizer/azure-ai-formrecognizer/samples/s": 1,
+      "clone_failed:error: unable to create file packages/google-cloud-bigquery-storage/samples/gene": 1,
+      "clone_failed:remote: Repository not found.\nfatal: repository 'https://github.com/PrefectHQ/bu": 1,
+      "clone_failed:error: unable to write file plugins/sqlfluff-templater-dbt/test/fixtures/dbt/err": 1,
+      "clone_failed:error: unable to write file sdk/hdinsight/azure-mgmt-hdinsight/generated_samples": 1,
+      "clone_failed:error: unable to write file sdk/eventgrid/azure-mgmt-eventgrid/generated_samples": 1,
+      "clone_failed:error: unable to write file sdk/dataprotection/azure-mgmt-dataprotection/generat": 1,
+      "clone_failed:error: unable to create file pkg/engine/lifecycletest/testdata/output/TestRefres": 1,
+      "clone_failed:fatal: cannot create directory at 'python_modules/libraries/dagster-managed-elem": 1,
+      "clone_failed:error: unable to create file sdk/apimanagement/azure-mgmt-apimanagement/generate": 1,
+      "clone_failed:error: unable to create file eng/pipelines/templates/stages/cosmos-sdk-client.ym": 1,
+      "clone_failed:error: unable to create file sdk/identity/azure-identity/azure/identity/_credent": 1,
+      "clone_failed:error: unable to write file sdk/storage/azure-storage-blob/samples/sample-blobs/": 1,
+      "clone_failed:error: unable to write file scripts/breaking_changes_checker/tests/data/expected": 1,
+      "clone_failed:error: unable to write file src/azure-cli/azure/cli/command_modules/network/test": 1,
+      "clone_failed:error: unable to write file sdk/eventhub/azure-eventhub/tests/amqpproxy_recordin": 1,
+      "clone_failed:error: unable to write file sdk/authorization/azure-mgmt-authorization/generated": 1,
+      "clone_failed:remote: Repository not found.\nfatal: repository 'https://github.com/pinecone-io/": 1
+    },
+    "max_rank_reached": 2063,
+    "enospc_repair": {
+      "why": "The 10-way parallel sweep filled the disk while cloning very large generated monorepos. Those failures were NOT random -- they hit large repositories, exactly the population the sparse stratum draws from -- so leaving them out would have biased stratum B.",
+      "candidates_repaired": 28,
+      "method": "re-measured one at a time with a sparse checkout and a free-space guard, so only the package subtree was fetched",
+      "outcome": "Every ENOSPC-lost candidate was re-measured. One, faker at rank 406, qualified for the sparse stratum and is now in the cohort; the rest were excluded by the same package-directory rule applied to every other candidate. No candidate remains unmeasured because of disk space.",
+      "residual_enospc_rejections": 0
+    }
+  },
+  "artifact_screen": {
+    "applies_to": "large_manyedge_sparse only",
+    "why_not_stratum_A": "The repo-root module-naming artifact can only LOWER measured density, so it cannot falsely admit anything to the dense stratum. Stratum A needs no screen for validity.",
+    "rule": "eligible only if density < 1.5 under BOTH the campaign convention and the re-rooted cross-check",
+    "screened": 12,
+    "rejected_by_screen": [
+      "transformers",
+      "inspect-ai"
+    ],
+    "rejected_detail": [
+      {
+        "project": "transformers",
+        "repo_url": "https://github.com/huggingface/transformers",
+        "pinned_commit_sha": "42ca97014c85d71a88ad60d55f08cb9fb4d26e2c",
+        "package_dir": "src/transformers",
+        "pypi_download_rank": 220,
+        "modules": 2972,
+        "import_edges": 3835,
+        "edges_per_module": 1.2904,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "FAIL",
+          "rerooted_modules": 2972,
+          "rerooted_edges": 4714,
+          "rerooted_density": 1.5861,
+          "edge_delta_vs_as_measured": 879
+        }
+      },
+      {
+        "project": "inspect-ai",
+        "repo_url": "https://github.com/UKGovernmentBEIS/inspect_ai",
+        "pinned_commit_sha": "3712507590dc4e6e678114194ac9844fd3a6fd6c",
+        "package_dir": "src/inspect_ai",
+        "pypi_download_rank": 1342,
+        "modules": 785,
+        "import_edges": 343,
+        "edges_per_module": 0.4369,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "FAIL",
+          "rerooted_modules": 785,
+          "rerooted_edges": 2639,
+          "rerooted_density": 3.3618,
+          "edge_delta_vs_as_measured": 2296
+        }
+      }
+    ],
+    "cannot_check_not_merged_into_rejected": [],
+    "cannot_check_detail": [],
+    "cannot_check_policy": "A candidate that could not be screened is excluded conservatively -- it cannot be admitted unverified -- but is recorded separately. Failing to screen is not the same as screening and finding contamination."
+  },
+  "counts": {
+    "small_fewedge_dense": 10,
+    "large_manyedge_sparse": 10
+  },
+  "target_per_stratum": 10,
+  "complete": true,
+  "cohort": {
+    "small_fewedge_dense": [
+      {
+        "project": "s3transfer",
+        "repo_url": "https://github.com/boto/s3transfer",
+        "pinned_commit_sha": "c3beff1a07017a9c7d39364a73af531b5d19bc51",
+        "package_dir": "s3transfer",
+        "pypi_download_rank": 29,
+        "modules": 16,
+        "import_edges": 44,
+        "edges_per_module": 2.75,
+        "predictions": {
+          "density_rule": "unsound",
+          "module_rule": "sound",
+          "edge_rule": "sound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true
+      },
+      {
+        "project": "pathspec",
+        "repo_url": "https://github.com/cpburnz/python-pathspec",
+        "pinned_commit_sha": "4c7fdd18c7818d32858a81f9e915568e829c8f9b",
+        "package_dir": "pathspec",
+        "pypi_download_rank": 40,
+        "modules": 31,
+        "import_edges": 59,
+        "edges_per_module": 1.9032,
+        "predictions": {
+          "density_rule": "unsound",
+          "module_rule": "sound",
+          "edge_rule": "sound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true
+      },
+      {
+        "project": "jmespath",
+        "repo_url": "https://github.com/jmespath/jmespath.py",
+        "pinned_commit_sha": "2812594e69d43098ef60f81f4efc404c071b0418",
+        "package_dir": "jmespath",
+        "pypi_download_rank": 47,
+        "modules": 8,
+        "import_edges": 17,
+        "edges_per_module": 2.125,
+        "predictions": {
+          "density_rule": "unsound",
+          "module_rule": "sound",
+          "edge_rule": "sound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true
+      },
+      {
+        "project": "uvicorn",
+        "repo_url": "https://github.com/Kludex/uvicorn",
+        "pinned_commit_sha": "9ce5e2b07839ac5486dc5b91e677e7050a35332e",
+        "package_dir": "uvicorn",
+        "pypi_download_rank": 55,
+        "modules": 45,
+        "import_edges": 108,
+        "edges_per_module": 2.4,
+        "predictions": {
+          "density_rule": "unsound",
+          "module_rule": "sound",
+          "edge_rule": "sound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true
+      },
+      {
+        "project": "starlette",
+        "repo_url": "https://github.com/Kludex/starlette",
+        "pinned_commit_sha": "d9ed5b0f98fdf081fb138473129b72eb035153a3",
+        "package_dir": "starlette",
+        "pypi_download_rank": 56,
+        "modules": 36,
+        "import_edges": 132,
+        "edges_per_module": 3.6667,
+        "predictions": {
+          "density_rule": "unsound",
+          "module_rule": "sound",
+          "edge_rule": "sound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true
+      },
+      {
+        "project": "jsonschema",
+        "repo_url": "https://github.com/python-jsonschema/jsonschema",
+        "pinned_commit_sha": "2d7d41ebd3b78eaf41a1578df94017ba14d2360b",
+        "package_dir": "jsonschema",
+        "pypi_download_rank": 57,
+        "modules": 37,
+        "import_edges": 75,
+        "edges_per_module": 2.027,
+        "predictions": {
+          "density_rule": "unsound",
+          "module_rule": "sound",
+          "edge_rule": "sound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true
+      },
+      {
+        "project": "pyasn1",
+        "repo_url": "https://github.com/pyasn1/pyasn1",
+        "pinned_commit_sha": "8003397013f6c0e0eabbd2605770477acbc2dc44",
+        "package_dir": "pyasn1",
+        "pypi_download_rank": 62,
+        "modules": 32,
+        "import_edges": 123,
+        "edges_per_module": 3.8438,
+        "predictions": {
+          "density_rule": "unsound",
+          "module_rule": "sound",
+          "edge_rule": "sound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true
+      },
+      {
+        "project": "fastapi",
+        "repo_url": "https://github.com/fastapi/fastapi",
+        "pinned_commit_sha": "49033471594ea5d99a80abdf1043231b7791ee49",
+        "package_dir": "fastapi",
+        "pypi_download_rank": 63,
+        "modules": 48,
+        "import_edges": 111,
+        "edges_per_module": 2.3125,
+        "predictions": {
+          "density_rule": "unsound",
+          "module_rule": "sound",
+          "edge_rule": "sound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true
+      },
+      {
+        "project": "referencing",
+        "repo_url": "https://github.com/python-jsonschema/referencing",
+        "pinned_commit_sha": "b081312fdf2567324d0c11fb07b630d7fcecea35",
+        "package_dir": "referencing",
+        "pypi_download_rank": 69,
+        "modules": 13,
+        "import_edges": 31,
+        "edges_per_module": 2.3846,
+        "predictions": {
+          "density_rule": "unsound",
+          "module_rule": "sound",
+          "edge_rule": "sound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true
+      },
+      {
+        "project": "pydantic-settings",
+        "repo_url": "https://github.com/pydantic/pydantic-settings",
+        "pinned_commit_sha": "1ef086469911101627c8ae72c7932567161b6e79",
+        "package_dir": "pydantic_settings",
+        "pypi_download_rank": 89,
+        "modules": 22,
+        "import_edges": 48,
+        "edges_per_module": 2.1818,
+        "predictions": {
+          "density_rule": "unsound",
+          "module_rule": "sound",
+          "edge_rule": "sound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true
+      }
+    ],
+    "large_manyedge_sparse": [
+      {
+        "project": "setuptools",
+        "repo_url": "https://github.com/pypa/setuptools",
+        "pinned_commit_sha": "7d531288b7c8708d4cc186213da93eaf5d11833d",
+        "package_dir": "setuptools",
+        "pypi_download_rank": 9,
+        "modules": 323,
+        "import_edges": 261,
+        "edges_per_module": 0.808,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "PASS",
+          "rerooted_modules": 323,
+          "rerooted_edges": 261,
+          "rerooted_density": 0.808,
+          "edge_delta_vs_as_measured": 0
+        }
+      },
+      {
+        "project": "openai",
+        "repo_url": "https://github.com/openai/openai-python",
+        "pinned_commit_sha": "b19c2161b1eac80fbf1f6f67a64a50af99c53356",
+        "package_dir": "src/openai",
+        "pypi_download_rank": 107,
+        "modules": 1531,
+        "import_edges": 1546,
+        "edges_per_module": 1.0098,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "PASS",
+          "rerooted_modules": 1531,
+          "rerooted_edges": 1547,
+          "rerooted_density": 1.0105,
+          "edge_delta_vs_as_measured": 1
+        }
+      },
+      {
+        "project": "anthropic",
+        "repo_url": "https://github.com/anthropics/anthropic-sdk-python",
+        "pinned_commit_sha": "071efb619cfe195d74deb377e1dd14814643b2ca",
+        "package_dir": "src/anthropic",
+        "pypi_download_rank": 224,
+        "modules": 1378,
+        "import_edges": 1328,
+        "edges_per_module": 0.9637,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "PASS",
+          "rerooted_modules": 1378,
+          "rerooted_edges": 1334,
+          "rerooted_density": 0.9681,
+          "edge_delta_vs_as_measured": 6
+        }
+      },
+      {
+        "project": "xlsxwriter",
+        "repo_url": "https://github.com/jmcnamara/XlsxWriter",
+        "pinned_commit_sha": "5d4606d89a955226d2d0825a0f44309043ae7251",
+        "package_dir": "xlsxwriter",
+        "pypi_download_rank": 316,
+        "modules": 1325,
+        "import_edges": 1513,
+        "edges_per_module": 1.1419,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "PASS",
+          "rerooted_modules": 1325,
+          "rerooted_edges": 1513,
+          "rerooted_density": 1.1419,
+          "edge_delta_vs_as_measured": 0
+        }
+      },
+      {
+        "project": "faker",
+        "repo_url": "https://github.com/joke2k/faker",
+        "pinned_commit_sha": "c5a00935f1eff78bf0258c8a45fb431747c46b48",
+        "package_dir": "faker",
+        "pypi_download_rank": 406,
+        "modules": 748,
+        "import_edges": 805,
+        "edges_per_module": 1.0762,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "PASS",
+          "rerooted_modules": 748,
+          "rerooted_edges": 805,
+          "rerooted_density": 1.0762,
+          "edge_delta_vs_as_measured": 0
+        }
+      },
+      {
+        "project": "cohere",
+        "repo_url": "https://github.com/cohere-ai/cohere-python",
+        "pinned_commit_sha": "953f5a198de356fdf773e33f5a7be8cfc2d7a947",
+        "package_dir": "src/cohere",
+        "pypi_download_rank": 679,
+        "modules": 358,
+        "import_edges": 330,
+        "edges_per_module": 0.9218,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "PASS",
+          "rerooted_modules": 358,
+          "rerooted_edges": 333,
+          "rerooted_density": 0.9302,
+          "edge_delta_vs_as_measured": 3
+        }
+      },
+      {
+        "project": "streamlit",
+        "repo_url": "https://github.com/streamlit/streamlit",
+        "pinned_commit_sha": "e642eba03d3e795b4d33e14d196e42d1b6eb74a1",
+        "package_dir": "e2e_playwright",
+        "pypi_download_rank": 811,
+        "modules": 499,
+        "import_edges": 438,
+        "edges_per_module": 0.8778,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "PASS",
+          "rerooted_modules": 499,
+          "rerooted_edges": 438,
+          "rerooted_density": 0.8778,
+          "edge_delta_vs_as_measured": 0
+        }
+      },
+      {
+        "project": "llama-cloud",
+        "repo_url": "https://github.com/run-llama/llama-parse-py",
+        "pinned_commit_sha": "3c5ac9986d48aa1e6fb6b7b1c48a03073082e9df",
+        "package_dir": "src/llama_cloud",
+        "pypi_download_rank": 822,
+        "modules": 439,
+        "import_edges": 427,
+        "edges_per_module": 0.9727,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "PASS",
+          "rerooted_modules": 439,
+          "rerooted_edges": 444,
+          "rerooted_density": 1.0114,
+          "edge_delta_vs_as_measured": 17
+        }
+      },
+      {
+        "project": "spacy",
+        "repo_url": "https://github.com/explosion/spaCy",
+        "pinned_commit_sha": "26b4d1dc04a812f426e4bef3e8a1b6f159d6f048",
+        "package_dir": "spacy",
+        "pypi_download_rank": 847,
+        "modules": 871,
+        "import_edges": 989,
+        "edges_per_module": 1.1355,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "PASS",
+          "rerooted_modules": 871,
+          "rerooted_edges": 989,
+          "rerooted_density": 1.1355,
+          "edge_delta_vs_as_measured": 0
+        }
+      },
+      {
+        "project": "cdp-use",
+        "repo_url": "https://github.com/browser-use/cdp-use",
+        "pinned_commit_sha": "b46d0592130c83cdb22e0c5d009ccdb9c0d28902",
+        "package_dir": "cdp_use",
+        "pypi_download_rank": 1415,
+        "modules": 342,
+        "import_edges": 225,
+        "edges_per_module": 0.6579,
+        "predictions": {
+          "density_rule": "sound",
+          "module_rule": "unsound",
+          "edge_rule": "unsound"
+        },
+        "disagrees_with_module_rule": true,
+        "disagrees_with_edge_rule": true,
+        "artifact_screen": {
+          "screen": "PASS",
+          "rerooted_modules": 342,
+          "rerooted_edges": 225,
+          "rerooted_density": 0.6579,
+          "edge_delta_vs_as_measured": 0
+        }
+      }
+    ]
+  },
+  "rule_disagreement": {
+    "accepted_total": 20,
+    "disagree_with_module_rule": 20,
+    "disagree_with_edge_rule": 20,
+    "disagree_with_both_rivals": 20,
+    "interpretation": "DEFINITIONAL, NOT EMPIRICAL. Each stratum's criteria are exactly the region where the density rule and both absolute-size rivals give opposite predictions, so full disagreement is guaranteed by the selection criteria. This is a correctness check on the selector -- any value below the accepted total would be a bug. It is NOT evidence for or against the density rule."
+  },
+  "excluded_dev_eval_repos": [
+    "numpy",
+    "scipy",
+    "flask",
+    "requests",
+    "networkx",
+    "django",
+    "tornado",
+    "sympy"
+  ]
+}

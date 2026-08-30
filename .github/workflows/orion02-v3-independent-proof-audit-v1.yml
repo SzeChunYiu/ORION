@@ -1,0 +1,32 @@
+name: ORION-02 V3 independent proof audit v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/theory/v3-independent-proof-audit-v1/**'
+      - 'papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER_V3.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_V3.md'
+      - '.github/workflows/orion02-v3-independent-proof-audit-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-02-fiberguard-finite-fibre/theory/v3-independent-proof-audit-v1/**'
+      - 'papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER_V3.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_V3.md'
+      - '.github/workflows/orion02-v3-independent-proof-audit-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  proof-regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify proof-audit packet digests
+        run: sha256sum -c papers/orion-02-fiberguard-finite-fibre/theory/v3-independent-proof-audit-v1/SHA256SUMS
+      - name: Run independent V3 theorem regression
+        run: python papers/orion-02-fiberguard-finite-fibre/theory/v3-independent-proof-audit-v1/check_v3_fibre_theorems_independent.py

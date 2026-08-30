@@ -1,0 +1,75 @@
+{
+  "schema": "ORION.ORION05.LocalObstruction.Protocol.v1",
+  "paper_id": "ORION-05",
+  "successor_id": "ORION05.LOCAL_SUPPORT_ONE_OBSTRUCTION.v1",
+  "status": "THEORY_PROVED__INDEPENDENTLY_CHECKED",
+  "lane_type": "THEORY",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+
+  "freeze_discipline": {
+    "applicability": "PARTIAL",
+    "why": "Deductive lane over a 16-element space. There is no outcome to access and the verification is exhaustive rather than sampled, so empirical freeze machinery does not apply.",
+    "substituted_guard": "Negative controls must reject perturbed statements, and the transcription of the Lemma B definitions is validated against two figures recorded independently in the manuscript (43,688 tuples and 4 support-two failures).",
+    "post_outcome_changes_forbidden": [
+      "adjusting the claimed classification after the enumeration disagrees",
+      "narrowing the support range to hide an irreducible tuple at w >= 3",
+      "deleting a negative control that fails to fire"
+    ],
+    "frozen_paper_bytes_modified": "NONE",
+    "disclosure": "One negative control (properness is load-bearing at w=2) FAILED on first run. Investigation showed the control was wrong, not the theorem: odd-alpha already forbids the full-support subset from summing to (0,0), so properness is vacuous at w=2. The control was replaced with one that does bite, and the finding is recorded as an observation in THEORY.md section 3 rather than discarded."
+  },
+
+  "claim_under_test": {
+    "statement": "At support two the locally exchange-irreducible class configurations are exactly ((0,1),(1,0)), ((1,0),(0,1)), ((0,1),(1,1)), ((1,1),(0,1)) -- four ordered, two unordered types.",
+    "definitions_transcribed_from": "HUMAN_PROOF_R6S_2026-08-22.md section 3 (Lemma B)",
+    "explicitly_not_claimed": [
+      "that any occurrence forces GLOBAL support-two optimality",
+      "support-three necessity",
+      "a universal two-trade",
+      "any physical or quantum advantage",
+      "novelty over generic F_2 / zero-sum / linear-dependence arguments"
+    ]
+  },
+
+  "independent_checker_requirements": {
+    "independence_rule": "No import of the R6S implementation, the round scripts, or any generating proof step beyond the three Lemma B definitions. The claimed classification must be COMPARED against enumeration, never used to filter it.",
+    "check_A": "derive the support-two irreducible set by brute force over all 16 ordered class pairs",
+    "check_B": "verify Lemma B's conclusion exhaustively for support 3..8",
+    "check_C": "recompute the manuscript's 43,688-tuple corroboration figure and the support-two failure count",
+    "check_D": "negative controls must reject perturbed statements",
+    "cannot_check_rule": "exit code 3, status CANNOT_CHECK, never reported as a pass"
+  },
+
+  "negative_controls": {
+    "controls": [
+      "odd_alpha_constraint_is_load_bearing",
+      "wrong_classification_rejected",
+      "descent_target_is_load_bearing",
+      "no_irreducible_pair_contains_zero_class"
+    ],
+    "pass_condition": "4 of 4 fire",
+    "retired_control": {
+      "name": "properness_is_load_bearing",
+      "why_retired": "It asserted something false. Properness is vacuous at support two because odd-alpha forbids the full-support subset from summing to (0,0). Retained as an observation, not deleted."
+    }
+  },
+
+  "what_a_favourable_outcome_would_and_would_not_license": {
+    "would_license": [
+      "replacing the manuscript's bare count of four failing pairs with a proved complete classification",
+      "stating the single structural form every local obstruction takes",
+      "presenting kappa_R6M = 2 as explained rather than merely observed"
+    ],
+    "would_not_license": [
+      "any global necessity claim from local irreducibility",
+      "support-three necessity or a universal two-trade",
+      "any physical or quantum advantage claim",
+      "promotion of the O(n^12) representation count to a runtime theorem",
+      "back-porting MultiTag / objective-cone / QG sequel novelty into ORION-05"
+    ]
+  },
+
+  "stop_rule": "Complete once the theorem is proved, the checker passes A-D, and the controls fire. Upgrade B (the finite global obstruction-basis conjecture) is a SEPARATE programme and is NOT started here; it must not block ORION-05's submission lane."
+}

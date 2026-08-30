@@ -2,7 +2,8 @@
 
 **Paper D — hardened manuscript V2**
 Scientific cut: D1 parent, R2 powerset-license calculus, and three scientific cases
-Workflow cut: `academic-paper-skills@188e83e639571c435344630ae68fdc66072650d2`
+
+Workflow cut: `academic-paper-skills@188e83e63957` (full digest in `manuscript/BUILD_PROVENANCE.json`)
 
 ## Abstract
 

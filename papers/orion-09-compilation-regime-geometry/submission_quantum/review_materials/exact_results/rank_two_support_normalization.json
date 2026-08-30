@@ -1,0 +1,62 @@
+{
+  "claim": "Every admitted target has an exact optimum with support at most one under the unit objective; support zero is infeasible.",
+  "composition": {
+    "all_cases_closed": true,
+    "core_alignment_ceiling": 3,
+    "distinct_core_new_tag_cost": 8,
+    "extra_active_column_credit_floor": 4,
+    "same_core_new_tag_cost": 4
+  },
+  "finite_obligations": {
+    "core_alignment": {
+      "frame_contribution_invariant": 10,
+      "max_restore_increase": 3,
+      "max_triple_hamming": 3,
+      "rows": 6912
+    },
+    "deletion": {
+      "anticommuting_rows": 1152,
+      "commuting_rows": 1728,
+      "max_delta_anticommuting": -7,
+      "max_delta_commuting": -4,
+      "rows": 2880
+    },
+    "distinct_qubit_tag": {
+      "basis_pairs": 36,
+      "minimum_cost_all_basis_pairs": 8,
+      "rows": 9216
+    },
+    "original_feasible_tag_cost_floor": 4,
+    "same_qubit_tag_rigidity": {
+      "different_basis_counterexamples": 0,
+      "feasible_rows": 36,
+      "rows": 576
+    }
+  },
+  "intrinsic_support_number": 1,
+  "model": "rank-two dependent-triple block encoding",
+  "record_type": "rank_two_support_normalization",
+  "stress_check": {
+    "failures": 0,
+    "max_delta": -7,
+    "min_delta": -33,
+    "n_values": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "rows": 60,
+    "seed": 20260821
+  },
+  "support_ceiling": 1,
+  "support_two_precursor": {
+    "accepted_cases": 300,
+    "accepted_safe_cases": 300,
+    "accepted_unsafe_cases": 0,
+    "action_profile_cases": 612,
+    "initially_unsafe_cases": 21
+  },
+  "support_zero_infeasible": true
+}

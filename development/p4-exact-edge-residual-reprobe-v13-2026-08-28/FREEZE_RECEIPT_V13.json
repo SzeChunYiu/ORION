@@ -1,0 +1,25 @@
+{
+  "amendments": [
+    {
+      "at": "2026-08-28T05:15:54.672593+00:00",
+      "file": "compile_probe_91_v13.py",
+      "new_sha256": "14e9a7227d9b657023f11d500c804d2f193bf67c6445167b97676d0026d2fbba",
+      "reason": "First execution crashed parsing the Adoptium /v3/assets/version response (release object carries binaries[] not binary{}). Patched the parser only; endpoints, pin, frozen compile command and adjudication unchanged. Amended before any successful probe run."
+    },
+    {
+      "at": "2026-08-28T05:16:27.707984+00:00",
+      "file": "compile_probe_91_v13.py",
+      "new_sha256": "62257f2f48ebb51c836274606b89fbf46796d4e24e2eab2de8dd5be74b7f7009",
+      "reason": "Second pre-run parser fix: checksum lives in binary.package.checksum; removed vestigial binary[checksum] read. No endpoint/pin/command/adjudication change."
+    }
+  ],
+  "frozen_at": "2026-08-28T05:13:16.391231+00:00",
+  "input_sha256": {
+    "PROTOCOL_V13.json": "9366d771699ca11e96396620c83024768cb6044bc70353c4fdacb28f8106235c",
+    "compile_probe_91_v13.py": "62257f2f48ebb51c836274606b89fbf46796d4e24e2eab2de8dd5be74b7f7009",
+    "probe_v13.py": "acc3fd384d746790ee55196220c5cfc84c5e9c3248c8d315b0a1bc6f53bf520d"
+  },
+  "outcomes_accessed": false,
+  "protocol_status": "FROZEN_BEFORE_ANY_PROBE_REQUEST",
+  "schema_version": "orion.p4.exact-edge.residual-reprobe.freeze-receipt.v13.v1"
+}

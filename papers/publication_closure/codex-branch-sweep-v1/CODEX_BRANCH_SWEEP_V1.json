@@ -1,0 +1,1756 @@
+{
+  "schema": "orion.codex-branch-sweep.v1",
+  "swept": 105,
+  "grants_authority": "NONE",
+  "method": "check_branch_adoption_safety_v1.py three-way blob classification against origin/main",
+  "summary": {
+    "clean_with_contributions": 40,
+    "with_evidence_losses": 53,
+    "nothing_unique": 12
+  },
+  "do_not_adopt_wholesale": [
+    {
+      "branch": "p1-p15-takeover-20260823",
+      "evidence_losses": 86,
+      "files": 1024
+    },
+    {
+      "branch": "p1-p5-successor-execution",
+      "evidence_losses": 70,
+      "files": 1021
+    },
+    {
+      "branch": "p6-p10-evidence-closure-20260823",
+      "evidence_losses": 70,
+      "files": 1003
+    },
+    {
+      "branch": "p11-p15-confirmatory-execution",
+      "evidence_losses": 69,
+      "files": 952
+    },
+    {
+      "branch": "p1-diagnostic-ontology-active-base",
+      "evidence_losses": 55,
+      "files": 791
+    },
+    {
+      "branch": "p1-p15-recursive-resolution-ledger",
+      "evidence_losses": 53,
+      "files": 799
+    },
+    {
+      "branch": "p11-wide-successor",
+      "evidence_losses": 53,
+      "files": 788
+    },
+    {
+      "branch": "p12-p13-authority-active-base",
+      "evidence_losses": 52,
+      "files": 801
+    },
+    {
+      "branch": "p3-p9-p15-lifecycle",
+      "evidence_losses": 52,
+      "files": 791
+    },
+    {
+      "branch": "p1-r7-wide-successor",
+      "evidence_losses": 52,
+      "files": 794
+    },
+    {
+      "branch": "p14-positive-adjudication",
+      "evidence_losses": 51,
+      "files": 781
+    },
+    {
+      "branch": "p2-resolution-gate",
+      "evidence_losses": 50,
+      "files": 781
+    },
+    {
+      "branch": "p4-identifiability-worst-seed",
+      "evidence_losses": 48,
+      "files": 783
+    },
+    {
+      "branch": "q-qg-nature-skills-publication-closure-20260821",
+      "evidence_losses": 37,
+      "files": 147
+    },
+    {
+      "branch": "all25-bounded-freeze-v2-20260828",
+      "evidence_losses": 10,
+      "files": 293
+    },
+    {
+      "branch": "orion-v1-quantum-identity-bind-20260826",
+      "evidence_losses": 9,
+      "files": 35
+    },
+    {
+      "branch": "orion-v1-receipt-v3-deadline-p1-20260826",
+      "evidence_losses": 9,
+      "files": 62
+    },
+    {
+      "branch": "orion-q-max-r4eb0-heldout-qg32-20260822",
+      "evidence_losses": 9,
+      "files": 121
+    },
+    {
+      "branch": "orion-qg-qg32-min-probes-20260822",
+      "evidence_losses": 9,
+      "files": 131
+    },
+    {
+      "branch": "orion-q-max-r4eb1-sixlcu-label-value-20260822",
+      "evidence_losses": 9,
+      "files": 121
+    },
+    {
+      "branch": "orion-q-max-r4ea-authority-router-20260822",
+      "evidence_losses": 8,
+      "files": 112
+    },
+    {
+      "branch": "orion-qg-qg34-adaptive-probe-tree-20260822",
+      "evidence_losses": 8,
+      "files": 120
+    },
+    {
+      "branch": "paper-contract-operational-harness",
+      "evidence_losses": 8,
+      "files": 54
+    },
+    {
+      "branch": "p11-p14-research-programme-20260820",
+      "evidence_losses": 8,
+      "files": 8
+    },
+    {
+      "branch": "orion-qg-qg27-bulk-defect-20260822",
+      "evidence_losses": 7,
+      "files": 76
+    },
+    {
+      "branch": "orion-qg-qg28-clifford-orbits-20260822",
+      "evidence_losses": 7,
+      "files": 83
+    },
+    {
+      "branch": "orion-qg-qg29-defect-saturation-20260822",
+      "evidence_losses": 7,
+      "files": 90
+    },
+    {
+      "branch": "orion-qg-qg30-bulk-coarse-grain-20260822",
+      "evidence_losses": 7,
+      "files": 97
+    },
+    {
+      "branch": "orion-qg-qg31-query-abstraction-20260822",
+      "evidence_losses": 7,
+      "files": 113
+    },
+    {
+      "branch": "orion-qg-qg37-one-corruption-robust-20260822",
+      "evidence_losses": 7,
+      "files": 107
+    },
+    {
+      "branch": "orion-qg-qg32b-four-probe-20260822",
+      "evidence_losses": 7,
+      "files": 112
+    },
+    {
+      "branch": "orion-qg-qg26-parikh-histogram-20260822",
+      "evidence_losses": 6,
+      "files": 69
+    },
+    {
+      "branch": "r9-common-conformance-repair-stable-20260826",
+      "evidence_losses": 5,
+      "files": 98
+    },
+    {
+      "branch": "orion-qg-qg24-tropical-wfa-20260822",
+      "evidence_losses": 5,
+      "files": 62
+    },
+    {
+      "branch": "des-donor-frontier-01-x20-20260825",
+      "evidence_losses": 4,
+      "files": 11
+    },
+    {
+      "branch": "p2-active-authority-record-20260826",
+      "evidence_losses": 3,
+      "files": 21
+    },
+    {
+      "branch": "pr1375-p6-determinism-repair-20260826",
+      "evidence_losses": 3,
+      "files": 74
+    },
+    {
+      "branch": "papers-1-8-academic-refine",
+      "evidence_losses": 3,
+      "files": 67
+    },
+    {
+      "branch": "q-paper-publication-wave-2026-08-22",
+      "evidence_losses": 3,
+      "files": 33
+    },
+    {
+      "branch": "issue-102-github-models-fallback",
+      "evidence_losses": 3,
+      "files": 8
+    },
+    {
+      "branch": "orion-qg-qg22-hidden-home-state-20260822",
+      "evidence_losses": 2,
+      "files": 26
+    },
+    {
+      "branch": "orion-qg-qg7e-pp-single-pinner-20260822",
+      "evidence_losses": 2,
+      "files": 35
+    },
+    {
+      "branch": "orion-qg-qg7e-v2-confirm-20260822",
+      "evidence_losses": 2,
+      "files": 40
+    },
+    {
+      "branch": "p1-q1-harness-closure-2026-08-22",
+      "evidence_losses": 2,
+      "files": 13
+    },
+    {
+      "branch": "issue-1701-orion01-closeout-20260829",
+      "evidence_losses": 1,
+      "files": 7
+    },
+    {
+      "branch": "waves-abc-science-freeze-20260828",
+      "evidence_losses": 1,
+      "files": 85
+    },
+    {
+      "branch": "q1-b-independent-finite-search-20260826",
+      "evidence_losses": 1,
+      "files": 106
+    },
+    {
+      "branch": "orion-foundations-v3-theory-complete",
+      "evidence_losses": 1,
+      "files": 24
+    },
+    {
+      "branch": "orion-qg-wave3-frontier-20260822",
+      "evidence_losses": 1,
+      "files": 10
+    },
+    {
+      "branch": "orion-qg-qg18-kappa2-20260822",
+      "evidence_losses": 1,
+      "files": 6
+    },
+    {
+      "branch": "p1-p2-render-citation-gate-20260821",
+      "evidence_losses": 1,
+      "files": 1
+    },
+    {
+      "branch": "p1-r6-2019-replication-freeze-20260821",
+      "evidence_losses": 1,
+      "files": 3
+    },
+    {
+      "branch": "issue-159-p5-live-trial",
+      "evidence_losses": 1,
+      "files": 8
+    }
+  ],
+  "adoption_candidates": [
+    {
+      "branch": "orion-04-crb-replay-exec-20260827",
+      "contributions": 250,
+      "files": 250
+    },
+    {
+      "branch": "crb-full-manifest-1383-20260826",
+      "contributions": 233,
+      "files": 233
+    },
+    {
+      "branch": "r9-nq-full-manifest-unblocker-20260826",
+      "contributions": 218,
+      "files": 218
+    },
+    {
+      "branch": "r9-nq-cleanroom-engine-b-20260826",
+      "contributions": 210,
+      "files": 210
+    },
+    {
+      "branch": "r9-p2-baseline-repair-20260826",
+      "contributions": 116,
+      "files": 131
+    },
+    {
+      "branch": "r9-ab-n2-production-realization-exec-v1",
+      "contributions": 106,
+      "files": 106
+    },
+    {
+      "branch": "q1-a-independent-proof-dag-20260826",
+      "contributions": 102,
+      "files": 102
+    },
+    {
+      "branch": "q1-c-production-resource-literature-20260826",
+      "contributions": 99,
+      "files": 99
+    },
+    {
+      "branch": "fiberguard-adverse-integration-20260826",
+      "contributions": 93,
+      "files": 93
+    },
+    {
+      "branch": "job-c-r8-1-cleanroom-20260826",
+      "contributions": 93,
+      "files": 93
+    },
+    {
+      "branch": "crb-independent-audit-1383",
+      "contributions": 92,
+      "files": 92
+    },
+    {
+      "branch": "five-paper-applications-r9-20260826",
+      "contributions": 92,
+      "files": 92
+    },
+    {
+      "branch": "orion-publication-rewrite-20260825",
+      "contributions": 91,
+      "files": 91
+    },
+    {
+      "branch": "c-action-regret-verifier-r10-20260826",
+      "contributions": 90,
+      "files": 90
+    },
+    {
+      "branch": "crb-manifest-builder-1383-20260826",
+      "contributions": 88,
+      "files": 88
+    },
+    {
+      "branch": "five-paper-top-tier-r8-20260826",
+      "contributions": 88,
+      "files": 88
+    },
+    {
+      "branch": "nq27-red-controls-1384-20260826",
+      "contributions": 88,
+      "files": 88
+    },
+    {
+      "branch": "five-paper-top-tier-r8-c-cleanroom-20260826",
+      "contributions": 75,
+      "files": 75
+    },
+    {
+      "branch": "ab-r8-lane-b-external-optimizer-20260826",
+      "contributions": 72,
+      "files": 72
+    },
+    {
+      "branch": "orion-visualization-atlas-20260826",
+      "contributions": 65,
+      "files": 65
+    },
+    {
+      "branch": "orion-01-paper1-closure-20260829",
+      "contributions": 63,
+      "files": 63
+    },
+    {
+      "branch": "orion-waves-abc-closure-20260828",
+      "contributions": 63,
+      "files": 63
+    },
+    {
+      "branch": "five-paper-r8-materializer-20260826",
+      "contributions": 40,
+      "files": 40
+    },
+    {
+      "branch": "orion-foundations-v2-local-derivations",
+      "contributions": 30,
+      "files": 30
+    },
+    {
+      "branch": "issue-1729-all25-atomic-gap-ledger-v2-20260829",
+      "contributions": 29,
+      "files": 29
+    },
+    {
+      "branch": "all25-top-tier-gap-closure-20260829-pro",
+      "contributions": 28,
+      "files": 28
+    },
+    {
+      "branch": "top-tier-science-closure-v3-20260829",
+      "contributions": 21,
+      "files": 21
+    },
+    {
+      "branch": "all25-science-gap-spine-20260829",
+      "contributions": 21,
+      "files": 21
+    },
+    {
+      "branch": "issue-1701-orion01-paper1-v3-20260829",
+      "contributions": 19,
+      "files": 36
+    },
+    {
+      "branch": "p1-p2-successor-writeback-current-20260821",
+      "contributions": 14,
+      "files": 16
+    },
+    {
+      "branch": "p2-readiness-state-repair-20260826",
+      "contributions": 11,
+      "files": 11
+    },
+    {
+      "branch": "p4-p5-active-authority-20260826",
+      "contributions": 9,
+      "files": 14
+    },
+    {
+      "branch": "pr1442-current-main-integration-20260826",
+      "contributions": 8,
+      "files": 10
+    },
+    {
+      "branch": "p1-p3-active-authority-records-20260826",
+      "contributions": 8,
+      "files": 10
+    },
+    {
+      "branch": "v3-donor-envelope-spec-repair-20260826",
+      "contributions": 7,
+      "files": 7
+    },
+    {
+      "branch": "p2-claim-ledger-evidence-repair-20260826",
+      "contributions": 7,
+      "files": 7
+    },
+    {
+      "branch": "p9-active-claim-authority-20260826",
+      "contributions": 5,
+      "files": 5
+    },
+    {
+      "branch": "orion-algorithmic-frontier-v1-20260825",
+      "contributions": 4,
+      "files": 4
+    },
+    {
+      "branch": "p2-wide-openaire-v2-20260821",
+      "contributions": 3,
+      "files": 7
+    },
+    {
+      "branch": "orion19-custody-receipt-adopt-20260828",
+      "contributions": 1,
+      "files": 10
+    }
+  ],
+  "nothing_unique": [
+    "orion15-bounded-harvest-adopt-20260828",
+    "orion02-r22-proposal-ordering-current-main-20260827",
+    "p1-protected-rr1-direct-exec-successor-v1-20260824",
+    "orion-qg-qg33-sixlcu-label-value-20260822",
+    "orion-q-max-r4e-qg-replay-calibration-20260822",
+    "orion-q-qg11d-stack-remint-20260822",
+    "orion-qg-qg17-execute-20260822",
+    "p1-u-r6-2019-replication-freeze-20260821",
+    "p1-p2-final-render-20260821",
+    "p1-r6-current-main-fix-20260821",
+    "p1-r6-diagnostic-20260821",
+    "issue-102-open-weight-phase2"
+  ],
+  "rows": [
+    {
+      "branch": "all25-top-tier-gap-closure-20260829-pro",
+      "exit": 0,
+      "files": 28,
+      "contributions": 28,
+      "evidence_losses": 0,
+      "only_on_branch": 28,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "top-tier-science-closure-v3-20260829",
+      "exit": 0,
+      "files": 21,
+      "contributions": 21,
+      "evidence_losses": 0,
+      "only_on_branch": 21,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "issue-1729-all25-atomic-gap-ledger-v2-20260829",
+      "exit": 0,
+      "files": 29,
+      "contributions": 29,
+      "evidence_losses": 0,
+      "only_on_branch": 29,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "all25-science-gap-spine-20260829",
+      "exit": 0,
+      "files": 21,
+      "contributions": 21,
+      "evidence_losses": 0,
+      "only_on_branch": 21,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "issue-1701-orion01-closeout-20260829",
+      "exit": 1,
+      "files": 7,
+      "contributions": 0,
+      "evidence_losses": 1,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 5,
+      "both_diverged": 2,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "issue-1701-orion01-paper1-v3-20260829",
+      "exit": 0,
+      "files": 36,
+      "contributions": 19,
+      "evidence_losses": 0,
+      "only_on_branch": 19,
+      "branch_ahead": 0,
+      "same_as_main": 17,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-01-paper1-closure-20260829",
+      "exit": 0,
+      "files": 63,
+      "contributions": 63,
+      "evidence_losses": 0,
+      "only_on_branch": 63,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "all25-bounded-freeze-v2-20260828",
+      "exit": 1,
+      "files": 293,
+      "contributions": 73,
+      "evidence_losses": 10,
+      "only_on_branch": 68,
+      "branch_ahead": 5,
+      "same_as_main": 203,
+      "both_diverged": 17,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-waves-abc-closure-20260828",
+      "exit": 0,
+      "files": 63,
+      "contributions": 63,
+      "evidence_losses": 0,
+      "only_on_branch": 63,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion15-bounded-harvest-adopt-20260828",
+      "exit": 0,
+      "files": 58,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 58,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion19-custody-receipt-adopt-20260828",
+      "exit": 0,
+      "files": 10,
+      "contributions": 1,
+      "evidence_losses": 0,
+      "only_on_branch": 1,
+      "branch_ahead": 0,
+      "same_as_main": 9,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "waves-abc-science-freeze-20260828",
+      "exit": 1,
+      "files": 85,
+      "contributions": 1,
+      "evidence_losses": 1,
+      "only_on_branch": 1,
+      "branch_ahead": 0,
+      "same_as_main": 82,
+      "both_diverged": 2,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion02-r22-proposal-ordering-current-main-20260827",
+      "exit": 0,
+      "files": 4,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 4,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-04-crb-replay-exec-20260827",
+      "exit": 0,
+      "files": 250,
+      "contributions": 250,
+      "evidence_losses": 0,
+      "only_on_branch": 250,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "crb-full-manifest-1383-20260826",
+      "exit": 0,
+      "files": 233,
+      "contributions": 233,
+      "evidence_losses": 0,
+      "only_on_branch": 233,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "pr1442-current-main-integration-20260826",
+      "exit": 0,
+      "files": 10,
+      "contributions": 8,
+      "evidence_losses": 0,
+      "only_on_branch": 8,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 2,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "crb-independent-audit-1383",
+      "exit": 0,
+      "files": 92,
+      "contributions": 92,
+      "evidence_losses": 0,
+      "only_on_branch": 92,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-p3-active-authority-records-20260826",
+      "exit": 0,
+      "files": 10,
+      "contributions": 8,
+      "evidence_losses": 0,
+      "only_on_branch": 8,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 2,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p2-active-authority-record-20260826",
+      "exit": 1,
+      "files": 21,
+      "contributions": 15,
+      "evidence_losses": 3,
+      "only_on_branch": 15,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 6,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p9-active-claim-authority-20260826",
+      "exit": 0,
+      "files": 5,
+      "contributions": 5,
+      "evidence_losses": 0,
+      "only_on_branch": 5,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "pr1375-p6-determinism-repair-20260826",
+      "exit": 1,
+      "files": 74,
+      "contributions": 71,
+      "evidence_losses": 3,
+      "only_on_branch": 71,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 3,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "r9-common-conformance-repair-stable-20260826",
+      "exit": 1,
+      "files": 98,
+      "contributions": 89,
+      "evidence_losses": 5,
+      "only_on_branch": 88,
+      "branch_ahead": 1,
+      "same_as_main": 0,
+      "both_diverged": 9,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p2-readiness-state-repair-20260826",
+      "exit": 0,
+      "files": 11,
+      "contributions": 11,
+      "evidence_losses": 0,
+      "only_on_branch": 11,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p4-p5-active-authority-20260826",
+      "exit": 0,
+      "files": 14,
+      "contributions": 9,
+      "evidence_losses": 0,
+      "only_on_branch": 9,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 5,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "q1-a-independent-proof-dag-20260826",
+      "exit": 0,
+      "files": 102,
+      "contributions": 102,
+      "evidence_losses": 0,
+      "only_on_branch": 102,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "q1-b-independent-finite-search-20260826",
+      "exit": 1,
+      "files": 106,
+      "contributions": 105,
+      "evidence_losses": 1,
+      "only_on_branch": 105,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 1,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "q1-c-production-resource-literature-20260826",
+      "exit": 0,
+      "files": 99,
+      "contributions": 99,
+      "evidence_losses": 0,
+      "only_on_branch": 99,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "r9-ab-n2-production-realization-exec-v1",
+      "exit": 0,
+      "files": 106,
+      "contributions": 106,
+      "evidence_losses": 0,
+      "only_on_branch": 106,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "r9-nq-cleanroom-engine-b-20260826",
+      "exit": 0,
+      "files": 210,
+      "contributions": 210,
+      "evidence_losses": 0,
+      "only_on_branch": 210,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "r9-nq-full-manifest-unblocker-20260826",
+      "exit": 0,
+      "files": 218,
+      "contributions": 218,
+      "evidence_losses": 0,
+      "only_on_branch": 218,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "r9-p2-baseline-repair-20260826",
+      "exit": 0,
+      "files": 131,
+      "contributions": 116,
+      "evidence_losses": 0,
+      "only_on_branch": 116,
+      "branch_ahead": 0,
+      "same_as_main": 8,
+      "both_diverged": 5,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "v3-donor-envelope-spec-repair-20260826",
+      "exit": 0,
+      "files": 7,
+      "contributions": 7,
+      "evidence_losses": 0,
+      "only_on_branch": 7,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "c-action-regret-verifier-r10-20260826",
+      "exit": 0,
+      "files": 90,
+      "contributions": 90,
+      "evidence_losses": 0,
+      "only_on_branch": 90,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "crb-manifest-builder-1383-20260826",
+      "exit": 0,
+      "files": 88,
+      "contributions": 88,
+      "evidence_losses": 0,
+      "only_on_branch": 88,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "five-paper-applications-r9-20260826",
+      "exit": 0,
+      "files": 92,
+      "contributions": 92,
+      "evidence_losses": 0,
+      "only_on_branch": 92,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "five-paper-top-tier-r8-20260826",
+      "exit": 0,
+      "files": 88,
+      "contributions": 88,
+      "evidence_losses": 0,
+      "only_on_branch": 88,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "nq27-red-controls-1384-20260826",
+      "exit": 0,
+      "files": 88,
+      "contributions": 88,
+      "evidence_losses": 0,
+      "only_on_branch": 88,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-visualization-atlas-20260826",
+      "exit": 0,
+      "files": 65,
+      "contributions": 65,
+      "evidence_losses": 0,
+      "only_on_branch": 65,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "ab-r8-lane-b-external-optimizer-20260826",
+      "exit": 0,
+      "files": 72,
+      "contributions": 72,
+      "evidence_losses": 0,
+      "only_on_branch": 72,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "five-paper-top-tier-r8-c-cleanroom-20260826",
+      "exit": 0,
+      "files": 75,
+      "contributions": 75,
+      "evidence_losses": 0,
+      "only_on_branch": 75,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p2-claim-ledger-evidence-repair-20260826",
+      "exit": 0,
+      "files": 7,
+      "contributions": 7,
+      "evidence_losses": 0,
+      "only_on_branch": 7,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "fiberguard-adverse-integration-20260826",
+      "exit": 0,
+      "files": 93,
+      "contributions": 93,
+      "evidence_losses": 0,
+      "only_on_branch": 93,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "job-c-r8-1-cleanroom-20260826",
+      "exit": 0,
+      "files": 93,
+      "contributions": 93,
+      "evidence_losses": 0,
+      "only_on_branch": 93,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "five-paper-r8-materializer-20260826",
+      "exit": 0,
+      "files": 40,
+      "contributions": 40,
+      "evidence_losses": 0,
+      "only_on_branch": 40,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-v1-quantum-identity-bind-20260826",
+      "exit": 1,
+      "files": 35,
+      "contributions": 16,
+      "evidence_losses": 9,
+      "only_on_branch": 16,
+      "branch_ahead": 0,
+      "same_as_main": 8,
+      "both_diverged": 11,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-v1-receipt-v3-deadline-p1-20260826",
+      "exit": 1,
+      "files": 62,
+      "contributions": 43,
+      "evidence_losses": 9,
+      "only_on_branch": 42,
+      "branch_ahead": 1,
+      "same_as_main": 8,
+      "both_diverged": 11,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-algorithmic-frontier-v1-20260825",
+      "exit": 0,
+      "files": 4,
+      "contributions": 4,
+      "evidence_losses": 0,
+      "only_on_branch": 4,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "des-donor-frontier-01-x20-20260825",
+      "exit": 1,
+      "files": 11,
+      "contributions": 0,
+      "evidence_losses": 4,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 4,
+      "both_diverged": 7,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-publication-rewrite-20260825",
+      "exit": 0,
+      "files": 91,
+      "contributions": 91,
+      "evidence_losses": 0,
+      "only_on_branch": 91,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-foundations-v3-theory-complete",
+      "exit": 1,
+      "files": 24,
+      "contributions": 0,
+      "evidence_losses": 1,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 23,
+      "both_diverged": 1,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-protected-rr1-direct-exec-successor-v1-20260824",
+      "exit": 0,
+      "files": 11,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 11,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-foundations-v2-local-derivations",
+      "exit": 0,
+      "files": 30,
+      "contributions": 30,
+      "evidence_losses": 0,
+      "only_on_branch": 30,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-q-max-r4ea-authority-router-20260822",
+      "exit": 1,
+      "files": 112,
+      "contributions": 0,
+      "evidence_losses": 8,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 104,
+      "both_diverged": 8,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-q-max-r4eb0-heldout-qg32-20260822",
+      "exit": 1,
+      "files": 121,
+      "contributions": 0,
+      "evidence_losses": 9,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 112,
+      "both_diverged": 9,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg22-hidden-home-state-20260822",
+      "exit": 1,
+      "files": 26,
+      "contributions": 0,
+      "evidence_losses": 2,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 24,
+      "both_diverged": 2,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg24-tropical-wfa-20260822",
+      "exit": 1,
+      "files": 62,
+      "contributions": 0,
+      "evidence_losses": 5,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 57,
+      "both_diverged": 5,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg26-parikh-histogram-20260822",
+      "exit": 1,
+      "files": 69,
+      "contributions": 0,
+      "evidence_losses": 6,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 63,
+      "both_diverged": 6,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg27-bulk-defect-20260822",
+      "exit": 1,
+      "files": 76,
+      "contributions": 0,
+      "evidence_losses": 7,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 69,
+      "both_diverged": 7,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg28-clifford-orbits-20260822",
+      "exit": 1,
+      "files": 83,
+      "contributions": 0,
+      "evidence_losses": 7,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 76,
+      "both_diverged": 7,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg29-defect-saturation-20260822",
+      "exit": 1,
+      "files": 90,
+      "contributions": 0,
+      "evidence_losses": 7,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 83,
+      "both_diverged": 7,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg30-bulk-coarse-grain-20260822",
+      "exit": 1,
+      "files": 97,
+      "contributions": 0,
+      "evidence_losses": 7,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 90,
+      "both_diverged": 7,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg31-query-abstraction-20260822",
+      "exit": 1,
+      "files": 113,
+      "contributions": 0,
+      "evidence_losses": 7,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 106,
+      "both_diverged": 7,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg32-min-probes-20260822",
+      "exit": 1,
+      "files": 131,
+      "contributions": 0,
+      "evidence_losses": 9,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 122,
+      "both_diverged": 9,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg34-adaptive-probe-tree-20260822",
+      "exit": 1,
+      "files": 120,
+      "contributions": 0,
+      "evidence_losses": 8,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 112,
+      "both_diverged": 8,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg7e-pp-single-pinner-20260822",
+      "exit": 1,
+      "files": 35,
+      "contributions": 0,
+      "evidence_losses": 2,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 33,
+      "both_diverged": 2,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg7e-v2-confirm-20260822",
+      "exit": 1,
+      "files": 40,
+      "contributions": 0,
+      "evidence_losses": 2,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 38,
+      "both_diverged": 2,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-wave3-frontier-20260822",
+      "exit": 1,
+      "files": 10,
+      "contributions": 0,
+      "evidence_losses": 1,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 9,
+      "both_diverged": 1,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-p5-successor-execution",
+      "exit": 1,
+      "files": 1021,
+      "contributions": 616,
+      "evidence_losses": 70,
+      "only_on_branch": 616,
+      "branch_ahead": 0,
+      "same_as_main": 214,
+      "both_diverged": 172,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-q1-harness-closure-2026-08-22",
+      "exit": 1,
+      "files": 13,
+      "contributions": 2,
+      "evidence_losses": 2,
+      "only_on_branch": 2,
+      "branch_ahead": 0,
+      "same_as_main": 8,
+      "both_diverged": 3,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p11-p15-confirmatory-execution",
+      "exit": 1,
+      "files": 952,
+      "contributions": 573,
+      "evidence_losses": 69,
+      "only_on_branch": 573,
+      "branch_ahead": 0,
+      "same_as_main": 197,
+      "both_diverged": 163,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p6-p10-evidence-closure-20260823",
+      "exit": 1,
+      "files": 1003,
+      "contributions": 612,
+      "evidence_losses": 70,
+      "only_on_branch": 612,
+      "branch_ahead": 0,
+      "same_as_main": 204,
+      "both_diverged": 168,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "paper-contract-operational-harness",
+      "exit": 1,
+      "files": 54,
+      "contributions": 3,
+      "evidence_losses": 8,
+      "only_on_branch": 3,
+      "branch_ahead": 0,
+      "same_as_main": 41,
+      "both_diverged": 10,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "papers-1-8-academic-refine",
+      "exit": 1,
+      "files": 67,
+      "contributions": 49,
+      "evidence_losses": 3,
+      "only_on_branch": 49,
+      "branch_ahead": 0,
+      "same_as_main": 15,
+      "both_diverged": 3,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "q-qg-nature-skills-publication-closure-20260821",
+      "exit": 1,
+      "files": 147,
+      "contributions": 85,
+      "evidence_losses": 37,
+      "only_on_branch": 85,
+      "branch_ahead": 0,
+      "same_as_main": 13,
+      "both_diverged": 49,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-p15-recursive-resolution-ledger",
+      "exit": 1,
+      "files": 799,
+      "contributions": 496,
+      "evidence_losses": 53,
+      "only_on_branch": 496,
+      "branch_ahead": 0,
+      "same_as_main": 171,
+      "both_diverged": 121,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-p15-takeover-20260823",
+      "exit": 1,
+      "files": 1024,
+      "contributions": 609,
+      "evidence_losses": 86,
+      "only_on_branch": 609,
+      "branch_ahead": 0,
+      "same_as_main": 218,
+      "both_diverged": 179,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "q-paper-publication-wave-2026-08-22",
+      "exit": 1,
+      "files": 33,
+      "contributions": 0,
+      "evidence_losses": 3,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 28,
+      "both_diverged": 5,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p11-wide-successor",
+      "exit": 1,
+      "files": 788,
+      "contributions": 498,
+      "evidence_losses": 53,
+      "only_on_branch": 498,
+      "branch_ahead": 0,
+      "same_as_main": 161,
+      "both_diverged": 118,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p12-p13-authority-active-base",
+      "exit": 1,
+      "files": 801,
+      "contributions": 504,
+      "evidence_losses": 52,
+      "only_on_branch": 504,
+      "branch_ahead": 0,
+      "same_as_main": 162,
+      "both_diverged": 119,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p3-p9-p15-lifecycle",
+      "exit": 1,
+      "files": 791,
+      "contributions": 496,
+      "evidence_losses": 52,
+      "only_on_branch": 496,
+      "branch_ahead": 0,
+      "same_as_main": 163,
+      "both_diverged": 121,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-diagnostic-ontology-active-base",
+      "exit": 1,
+      "files": 791,
+      "contributions": 497,
+      "evidence_losses": 55,
+      "only_on_branch": 497,
+      "branch_ahead": 0,
+      "same_as_main": 161,
+      "both_diverged": 122,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-r7-wide-successor",
+      "exit": 1,
+      "files": 794,
+      "contributions": 492,
+      "evidence_losses": 52,
+      "only_on_branch": 492,
+      "branch_ahead": 0,
+      "same_as_main": 173,
+      "both_diverged": 118,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p14-positive-adjudication",
+      "exit": 1,
+      "files": 781,
+      "contributions": 493,
+      "evidence_losses": 51,
+      "only_on_branch": 493,
+      "branch_ahead": 0,
+      "same_as_main": 161,
+      "both_diverged": 116,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p2-resolution-gate",
+      "exit": 1,
+      "files": 781,
+      "contributions": 493,
+      "evidence_losses": 50,
+      "only_on_branch": 493,
+      "branch_ahead": 0,
+      "same_as_main": 161,
+      "both_diverged": 116,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p4-identifiability-worst-seed",
+      "exit": 1,
+      "files": 783,
+      "contributions": 493,
+      "evidence_losses": 48,
+      "only_on_branch": 493,
+      "branch_ahead": 0,
+      "same_as_main": 162,
+      "both_diverged": 117,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-q-max-r4eb1-sixlcu-label-value-20260822",
+      "exit": 1,
+      "files": 121,
+      "contributions": 0,
+      "evidence_losses": 9,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 112,
+      "both_diverged": 9,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg33-sixlcu-label-value-20260822",
+      "exit": 0,
+      "files": 8,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 8,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg37-one-corruption-robust-20260822",
+      "exit": 1,
+      "files": 107,
+      "contributions": 0,
+      "evidence_losses": 7,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 100,
+      "both_diverged": 7,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg32b-four-probe-20260822",
+      "exit": 1,
+      "files": 112,
+      "contributions": 0,
+      "evidence_losses": 7,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 105,
+      "both_diverged": 7,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-q-max-r4e-qg-replay-calibration-20260822",
+      "exit": 0,
+      "files": 6,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 6,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-q-qg11d-stack-remint-20260822",
+      "exit": 0,
+      "files": 1,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 1,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg17-execute-20260822",
+      "exit": 0,
+      "files": 1,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 1,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "orion-qg-qg18-kappa2-20260822",
+      "exit": 1,
+      "files": 6,
+      "contributions": 0,
+      "evidence_losses": 1,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 3,
+      "both_diverged": 3,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-p2-render-citation-gate-20260821",
+      "exit": 1,
+      "files": 1,
+      "contributions": 0,
+      "evidence_losses": 1,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 1,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-r6-2019-replication-freeze-20260821",
+      "exit": 1,
+      "files": 3,
+      "contributions": 0,
+      "evidence_losses": 1,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 2,
+      "both_diverged": 1,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-u-r6-2019-replication-freeze-20260821",
+      "exit": 0,
+      "files": 1,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 1,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p2-wide-openaire-v2-20260821",
+      "exit": 0,
+      "files": 7,
+      "contributions": 3,
+      "evidence_losses": 0,
+      "only_on_branch": 3,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 4,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-p2-successor-writeback-current-20260821",
+      "exit": 0,
+      "files": 16,
+      "contributions": 14,
+      "evidence_losses": 0,
+      "only_on_branch": 14,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-p2-final-render-20260821",
+      "exit": 0,
+      "files": 2,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 1,
+      "both_diverged": 1,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-r6-current-main-fix-20260821",
+      "exit": 0,
+      "files": 5,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 5,
+      "both_diverged": 0,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p1-r6-diagnostic-20260821",
+      "exit": 0,
+      "files": 6,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 5,
+      "both_diverged": 1,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "p11-p14-research-programme-20260820",
+      "exit": 1,
+      "files": 8,
+      "contributions": 0,
+      "evidence_losses": 8,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 8,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "issue-102-open-weight-phase2",
+      "exit": 0,
+      "files": 6,
+      "contributions": 0,
+      "evidence_losses": 0,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 4,
+      "both_diverged": 2,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "issue-102-github-models-fallback",
+      "exit": 1,
+      "files": 8,
+      "contributions": 0,
+      "evidence_losses": 3,
+      "only_on_branch": 0,
+      "branch_ahead": 0,
+      "same_as_main": 3,
+      "both_diverged": 5,
+      "deleted_by_branch": 0
+    },
+    {
+      "branch": "issue-159-p5-live-trial",
+      "exit": 1,
+      "files": 8,
+      "contributions": 7,
+      "evidence_losses": 1,
+      "only_on_branch": 7,
+      "branch_ahead": 0,
+      "same_as_main": 0,
+      "both_diverged": 1,
+      "deleted_by_branch": 0
+    }
+  ]
+}

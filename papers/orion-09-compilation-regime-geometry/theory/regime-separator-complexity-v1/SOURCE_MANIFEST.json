@@ -1,0 +1,58 @@
+{
+  "schema": "ORION.ORION09.RegimeSeparatorComplexity.SourceManifest.v1",
+  "paper_id": "ORION-09",
+  "successor_id": "ORION09.REGIME_SEPARATOR_COMPLEXITY.v1",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+  "candidate_source": {
+    "pull_request": 1617,
+    "candidate_id": "ORION09.REGIME_INFORMATION_COMPLEXITY.v1",
+    "premise_status": "SUPERSEDED",
+    "note": "The candidate asks to recompute a 43/1146 irreducible floor and retain a nonzero lower bound. 43/1146 is the V1 floor and is reproduced exactly here, but a prospectively frozen extension drove the floor to 0 on 2026-08-28. The note's own strongest falsifier has fired. See THEORY.md section 7."
+  },
+  "repository_base": {"branch_base": "origin/main", "commit": "92835b8f9"},
+  "bound_artifacts": [
+    {"path": "papers/orion-09-compilation-regime-geometry/evidence/R2_N2_STABPREP_L3_VOCABULARY_RESULTS.json",
+     "sha256": "2f52b5dde955d9c156a0b221a1518a66aa966ca7d1c572ed59a198caac217902",
+     "role": "frozen R2 receipt; stage-1 statistics compared against independent replay, not trusted",
+     "mutated_by_this_packet": false},
+    {"path": "papers/orion-09-compilation-regime-geometry/evidence/R2_N2_STABPREP_L3_VOCABULARY_ADDENDUM.md",
+     "sha256": "fd8a5d624b98ed20bc4d068a9d61cac8b2dc507c30c63be3b1c4c4e735bcf5b9",
+     "role": "source of the qualitative memorization disclosure this packet quantifies, and of the mechanism attribution examined in THEORY.md 3.6",
+     "mutated_by_this_packet": false},
+    {"path": "papers/orion-09-compilation-regime-geometry/evidence/R2_N2_STABPREP_L3_VOCABULARY_PROTOCOL_V1.md",
+     "sha256": "c78b0e0b35663cdbe4c66dfe89aeb6e0154941e43380b0e0b203ad5fd3944135",
+     "role": "frozen protocol; hash matches the receipt's protocol_sha256",
+     "mutated_by_this_packet": false},
+    {"path": "papers/orion-09-compilation-regime-geometry/manuscript/main.tex",
+     "sha256": "0d510b675b2acd3f7052754577df603695c96a70280deb4b08aaa71300182b4b",
+     "role": "carries the abstract claim against which a submission blocker is raised in THEORY.md section 8; NOT edited by this packet",
+     "mutated_by_this_packet": false}
+  ],
+  "regenerated_inputs": {
+    "note": "The feature matrix is NOT read from any artifact. It is regenerated from the committed modules below, whose SHA-256 is verified against the receipt before import. A hash mismatch aborts with CANNOT_CHECK.",
+    "modules": [
+      {"path": "research/extensions/orion-qg/qg15_third_family.py",
+       "sha256": "a17e027fc934eeffc3e598f6016a1f258bc89ad5958ff1f3370a674855874c70"},
+      {"path": "research/extensions/orion-qg/qg15c_vocabulary.py",
+       "sha256": "25dd397f6117fe4f792189ce772f92a5221f159e22bbb9f6095f40abbb606a1f"},
+      {"path": "research/extensions/orion-qg/qg15c_enlarged_vocab.py",
+       "sha256": "962b1d844b184d43d70acbcecdcd97b753af2d2e3f07d7113b1bf680a62af55a"}
+    ],
+    "all_module_hashes_verified_matching": true
+  },
+  "feature_block_layout": {
+    "V2": [0, 33], "donor_path": [33, 86], "state_sign_aware": [86, 127],
+    "verified_by": "empirical length check of v15c.feature_vectors and donor_path_features"
+  },
+  "pipeline_validation_against_independently_recorded_floors": [
+    {"vocabulary": "V1 (13)", "receipt_field": "parents.N2_V1_floor", "receipt_value": 43, "recomputed": 43, "match": true},
+    {"vocabulary": "V2 (33)", "receipt_field": "parents.N2_V2_floor", "receipt_value": 1, "recomputed": 1, "match": true},
+    {"vocabulary": "L2 = V1 + donor-path (66)", "receipt_field": "parents.N2_L2_floor", "receipt_value": 5, "recomputed": 5, "match": true,
+     "note": "mixed-cell count 3 also matches the addendum wording"}
+  ],
+  "excluded_paths": {
+    "papers/orion-09-compilation-regime-geometry/submission_prx/": "not read, not written, not depended upon"
+  },
+  "frozen_paper_bytes_modified": "NONE"
+}

@@ -1,0 +1,47 @@
+{
+  "current_bounded_result": {
+    "adverse_discordances": 0,
+    "authority": "descriptive/bounded; not broad comparative superiority",
+    "favourable_discordances": 4,
+    "one_sided_exact_p": 0.0625,
+    "two_sided_exact_p": 0.125
+  },
+  "forbidden": [
+    "pool within-family cases as independent",
+    "drop adverse families",
+    "claim population superiority from current five families",
+    "define cost weights after seeing results"
+  ],
+  "gatekeeping": [
+    "primary decision endpoint",
+    "cost-normalized net benefit",
+    "mechanism/ambiguity stratum"
+  ],
+  "identity": "ORION19.FAMILY_REPLICATION.v1",
+  "primary": {
+    "alpha_one_sided": 0.025,
+    "endpoint": "paired family-level correctness / registered decision success",
+    "minimum_usable_families": 20,
+    "no_tie_as_win": true,
+    "test": "exact paired McNemar/sign test on discordant families"
+  },
+  "reviewed_main": "e19a3b7cd0140d1f413e802a1188a2948726df6f",
+  "sampling": {
+    "family_is_inference_unit": true,
+    "freeze_inclusion_before_outcomes": true,
+    "minimum_usable_identity_disjoint_families": 20,
+    "retain_all_adverse_families": true
+  },
+  "schema": "ORION.ORION19.FAMILY_REPLICATION.Protocol.v1.design",
+  "secondary": {
+    "cost_weights": "freeze before outcomes",
+    "mechanism_stratum": "freeze ambiguity-rich definition before outcomes",
+    "uncertainty": "family-level paired interval/bootstrap"
+  },
+  "status": "DESIGN_ONLY__NO_OUTCOME_AUTHORITY",
+  "terminals": [
+    "SUPPORTED_BOUNDED_FAMILY_LEVEL",
+    "NOT_SUPPORTED",
+    "CANNOT_CHECK_INSUFFICIENT_FAMILIES_OR_CUSTODY"
+  ]
+}

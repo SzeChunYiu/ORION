@@ -1,0 +1,34 @@
+{
+  "case_id": "p1-c126",
+  "task_family": "hidden_measurement_or_operationalization",
+  "public_prompt": "A churn model scores 0.93 on the offline evaluation and 0.61 in its first month live. The current line is: the world moved between the two, so this is drift; retrain on recent data and the gap closes. Report the cause of the gap and the corrected offline figure.",
+  "observable_resources": [
+    "churn/split.md — rows are shuffled and divided 80/20 at random; one customer contributes up to 36 monthly rows",
+    "churn/leak-audit.csv — 71% of customers in the evaluation side also appear in the training side",
+    "churn/feature-list.md — the feature days_since_last_invoice is recomputed at extract time, after the churn event, for every row",
+    "churn/refit.md — a refit that divides by customer and freezes each feature at the row's own month scores 0.63 offline",
+    "churn/drift-check.csv — the live input distribution matches the offline one within 3% on all 40 features",
+    "closure:churn-campaign-budget — closed; sizes the retention campaign on the 0.93 figure",
+    "closure:retention-offer-catalogue — closed; lists the offers the campaign may use; rests on the commercial approval, not on how the model is scored"
+  ],
+  "protected_gold": {
+    "reframe_required": true,
+    "responsibility_family": "EVALUATOR",
+    "target_coordinates": [
+      "M.EVALUATOR",
+      "evaluator:grouped_holdout"
+    ],
+    "dependencies_to_reopen": [
+      "closure:churn-campaign-budget"
+    ],
+    "root_success_rubric": "PASS iff the answer rules out drift using the 3% distribution match, names both the customer appearing on both sides of the divide and the after-the-fact feature, and reports 0.63 as the corrected offline figure, consistent with the 0.61 live result. FAIL if the answer attributes the gap to drift, retrains on more recent data, recalibrates the output, or names only one of the two defects.",
+    "dependency_depth": 1
+  },
+  "budget_class": "p1_standard_v1",
+  "adjudication_status": "MECHANICAL_GOLD",
+  "source_provenance": [
+    "CONSTRUCTED_FOR_ORION_P1",
+    "no external dataset; every figure is authored for this benchmark and is not an empirical finding"
+  ],
+  "notes": "A solver that keeps the drift framing retrains and gets 0.93 offline again, because the divide still lets the same customer sit on both sides."
+}

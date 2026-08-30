@@ -1,0 +1,25 @@
+{
+  "all_n_cross_point_identified": false,
+  "candidate_prediction_streams_checked": 7536,
+  "endpoint_verdict_hi": {
+    "extreme_flat_condition": false,
+    "nondecreasing_in_p": false,
+    "outside_25pct_count": 0,
+    "spearman_ncross_ln_p": 0.9509918346667657,
+    "verdict": "C4_INDETERMINATE",
+    "within_25pct_count": 10
+  },
+  "endpoint_verdict_lo": {
+    "extreme_flat_condition": false,
+    "nondecreasing_in_p": true,
+    "outside_25pct_count": 0,
+    "spearman_ncross_ln_p": 0.9847319278346618,
+    "verdict": "C1_LAW_CONFIRMED_REGIME_EXTENDED",
+    "within_25pct_count": 10
+  },
+  "protocol_identity": "ORION21.TIE_ROBUST_PHASE.v1",
+  "separable_query_points_checked": 4351,
+  "status": "PASS",
+  "terminal": "T3_TIE_AMBIGUOUS_VERDICT_CHANGING",
+  "tied_query_points_checked": 899
+}

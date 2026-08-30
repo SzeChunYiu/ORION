@@ -1,0 +1,70 @@
+{
+  "schema": "ORION07.AtomicClaimLedger.v1",
+  "date": "2026-08-28",
+  "canonical_submission_source": "papers/orion-07-dual-instrument/submission_tmlr/main.tex",
+  "claims": [
+    {
+      "id": "C001",
+      "claim": "The study reports exactly three valid prospectively frozen unresolved scientific questions.",
+      "evidence": ["Q3_COMPLETION_RECEIPT_V3.md", "replay_q3_v0.py", "instances/Q3-R1-QG19", "instances/Q3-R2-QG20"],
+      "scope": "three non-random cases in one programme",
+      "status": "supported"
+    },
+    {
+      "id": "C002",
+      "claim": "Both instruments agreed on the primary diagnosis and primary experiment in every valid case.",
+      "evidence": ["V0 semantic replay", "both PREOUTCOME_AGREEMENT.json records"],
+      "scope": "row-wise observation only; no rate",
+      "status": "supported"
+    },
+    {
+      "id": "C003",
+      "claim": "Case A was aligned on diagnosis and experiment under its frozen deferred map.",
+      "evidence": ["replay_q3_v0.py"],
+      "scope": "registered finite regime and support-two outcomes",
+      "status": "supported"
+    },
+    {
+      "id": "C004",
+      "claim": "Case B used 53 exact rows and found zero unrestricted-versus-support-two gaps.",
+      "evidence": ["Q3-R1-QG19/INDEPENDENT_REPLAY_RECEIPT.json", "bound QG19 result"],
+      "scope": "frozen panel only; sharpness remains open",
+      "status": "supported"
+    },
+    {
+      "id": "C005",
+      "claim": "Case C exhaustively checked 39,489 declared low-order cases and found zero original-predicate/label mismatches.",
+      "evidence": ["Q3-R2-QG20/INDEPENDENT_REPLAY_RECEIPT.json", "bound QG20 result"],
+      "scope": "729 ordered one-object and 38,760 reorder-quotiented two-object cases; not all sizes",
+      "status": "supported"
+    },
+    {
+      "id": "C006",
+      "claim": "In case C, the instruments agreed but both diagnoses were misaligned, while both selected experiments were aligned.",
+      "evidence": ["Q3-R2-QG20/FINAL_SCORE.json"],
+      "scope": "single explicit counterexample; no prevalence inference",
+      "status": "supported"
+    },
+    {
+      "id": "C007",
+      "claim": "Two candidate questions were retired as contaminated before instrument freeze and were not retrospectively scored.",
+      "evidence": ["Q3_CONTAMINATION_DISPOSITION_2026-08-22.md"],
+      "scope": "protocol history",
+      "status": "supported"
+    },
+    {
+      "id": "C008",
+      "claim": "Two known malformed-success and recoverability defects remain accepted fail-closed limitations, were not repaired between cases and did not trigger in the valid cases.",
+      "evidence": ["Q3_D2_D3_DISPOSITION_V2.md", "completion checks"],
+      "scope": "frozen instrument version; no fault-tolerance claim",
+      "status": "supported"
+    },
+    {
+      "id": "C009",
+      "claim": "The case series does not estimate reliability, calibration, population rates, predictive validity, statistical independence or generalization.",
+      "evidence": ["design boundary", "n_valid=3"],
+      "scope": "explicit non-claim",
+      "status": "required_boundary"
+    }
+  ]
+}

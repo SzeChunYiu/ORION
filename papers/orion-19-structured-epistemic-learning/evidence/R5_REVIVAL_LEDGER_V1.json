@@ -1,0 +1,105 @@
+{
+  "schema": "ORION.R5RevivalLedger.v1",
+  "date": "2026-08-28",
+  "session": "R5 revival, LUNARC worktree wtR5, branch claude/revive-orion19-18-20260827",
+  "scope": "papers/orion-19-structured-epistemic-learning, papers/orion-18-epistemic-authority-autonomous-science",
+  "method": "Every recorded negative receives a genuine revival attempt: attribute the failure to ONE stage, apply the matching mechanic lever (never outcome tuning), re-test against the strongest parent, and record the verdict. UNSOLVABLE requires a mechanistic proof. Items that are status tokens by design (pre-registered NEVER_EXERCISED / correct-by-design gold labels) are excluded as non-defects, with the defining artifact cited.",
+  "orion_19_lanes": [
+    {
+      "claim": "D-A protected cell gold = CANNOT_CHECK (frozen five-cell causal diagnostic)",
+      "old_verdict": "CANNOT_CHECK (recorded; not previously executed in-repo)",
+      "one_stage_attribution": "Evaluation/decision channel: margin 0.001161335187760737 vs single-split binomial SD 0.009839502729248396 (noise-to-margin 8.472577799197428). Repair channel bitwise-lossless.",
+      "lever": "In-repo execution of the frozen V1 and V2 runners (special-priority mandate item), then the V3 uncertainty-aware decision rule registered before outcome access.",
+      "new_verdict": "IMPROVED-CONDITIONAL: protected cell EXECUTED AND REPRODUCED (rc=0 both runners, all decision fields bit-identical incl. predicted ACCESSIBILITY, gold CANNOT_CHECK, predicted_protected_quality 0.9555555555555556; one non-decision arm level differs by 1/360 predictions across sklearn 1.7.1->1.9.0). Not CANNOT_CHECK-BLOCKED: nothing was missing. V3 then makes the abstention decision-stable. D-A gold remains CANNOT_CHECK under the frozen V1 rule (honest abstain).",
+      "evidence": "evidence/P9_PROTECTED_CELL_EXECUTION_RECEIPT_V1_2026-08-28.json"
+    },
+    {
+      "claim": "P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V2_GATE_NOT_MET (half-draw decision stability failed on D-A)",
+      "old_verdict": "GATE_NOT_MET (accuracy 1.0 but stability False)",
+      "one_stage_attribution": "Decision rule: hard threshold applied to a point estimate whose ensemble SE straddles the frozen target; the only failing stage of V2.",
+      "lever": "Uncertainty-aware target satisfaction (LCB95 = mean - 1.96*sd(ddof=1)/sqrt(n) >= target), cheapest-frozen-cost arm among arms that reach, else CANNOT_CHECK; halves decide from own data only. Cells, targets, costs, R=24, seeds, pipeline all frozen from V2.",
+      "new_verdict": "POSITIVE vs strongest parent (V2) on the parent's own failed clause: terminal P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V3_SUPPORTED, failing_clauses empty, diagnosis accuracy 1.0, agreement all 5 cells, half-draw stability both digits cells, deterministic across two executions (byte-identical outputs).",
+      "evidence": "evidence/P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V3_RUN.json; evidence/P9_CAUSAL_DIAGNOSTIC_TRANSPORT_V3_RECEIPT.md; protocol and runner under top_tier/"
+    },
+    {
+      "claim": "LLM_STRUCTURE_SCALING_FRONTIER_NOT_SUPPORTED (Qwen #618 structure-scaling frontier)",
+      "old_verdict": "NOT_SUPPORTED (recorded from CI artifacts; downstream analyze job had failed pre-receipt)",
+      "one_stage_attribution": "Model behavior, not evaluation: constant-prediction collapse at 1.5B and 3B (576/576 records parse to the single label ALIGNED in both arms; both arm accuracies pinned at 0.25; contrast identically 0.0). Only 0.5B is nondegenerate and its measured delta is negative (-0.140625 at primary budget 32).",
+      "lever": "Execute the frozen recovery protocol in full: recover the three immutable CI artifacts (digests 3/3 match the pre-frozen expectations), re-run the vendored frozen analyzer (twice, byte-identical). No inference rerun/retune (contract forbids).",
+      "new_verdict": "UNSOLVABLE within the frozen family (mechanistic proof recorded: the frontier claim needs >=2 scales with measurable contrast; only one scale is nondegenerate and its delta is negative; representations frozen by claim scope, scales are the claim itself, no new thresholds after outcome access). Negative CONFIRMED AUTHORITATIVE; CORRECT-SUBTRACTIVE.",
+      "evidence": "evidence/P9_QWEN_618_RECOVERY_EXECUTION_RECEIPT_V1_2026-08-28.json"
+    },
+    {
+      "claim": "D1v1.2 locked-env replay FAILED (NR-06) with residual TYPED_SERIALIZED_BAG degeneracy",
+      "old_verdict": "Partially revived (replay channel fixed); residual representation degeneracy open",
+      "one_stage_attribution": "Representation implementation stage: the typed-serialized representation is degenerate as implemented; owned by the successor freeze D1v1.3, which is PROSPECTIVE_FROZEN_NOT_EXECUTED.",
+      "lever": "None executable this session: D1v1.3 lists 5 required_inputs, all absent (protocol/P9_D1V1_3_ORDERED_MULTIPLICITY_FREEZE_2026-08-23.json, execution_blocker P9_D1V1_3_PROTECTED_INPUTS_ABSENT).",
+      "new_verdict": "CANNOT_CHECK-BLOCKED. Resources named: the 5 required inputs of the D1v1.3 freeze (protected inputs absent in-repo).",
+      "evidence": "evidence/P9_TRANSPORT_AND_REPLAY_REVIVAL_RECEIPT_V1.json; protocol/P9_D1V1_3_ORDERED_MULTIPLICITY_FREEZE_2026-08-23.json"
+    },
+    {
+      "claim": "U-T3 frontier evaluation grid BLOCKED (T3_GRID_DECLARED_NO_CELL_EXECUTED)",
+      "old_verdict": "BLOCKED / no cell executed",
+      "one_stage_attribution": "Execution-side construction stage: the grid's inputs do not exist in the repo.",
+      "lever": "None executable this session: 7 representation implementations, per-cell item generator+verifier, and a cell runner are all absent; model checkpoints/runtime/compute custody are external.",
+      "new_verdict": "CANNOT_CHECK-BLOCKED. Resources named: 7 representation implementations, per-cell items, cell runner, plus external checkpoints/runtime/compute custody.",
+      "evidence": "evidence/P9_U_T3_EXECUTION_GAP_2026-08-23.json"
+    },
+    {
+      "claim": "U-T4 hostile-attack typed_minus_transcript contrast CANNOT_CHECK",
+      "old_verdict": "CANNOT_CHECK (attack could not be evaluated)",
+      "one_stage_attribution": "Measurement-authority stage: the comparator (TRANSCRIPT_BAG) answers a single constant label (test accuracy 0.25), so the contrast margin was never measured; an attack cannot fail against a margin that does not exist.",
+      "lever": "None within the current measurement authority; new measurement authority is exactly what the successor freeze D1v1.3 owns (still not executed, inputs absent).",
+      "new_verdict": "UNSOLVABLE structurally until a nondegenerate comparator exists: a constant-prediction comparator provides zero contrast margin by construction, so no hostile attack can be scored against it. Mechanistic proof = the comparator's own recorded constant behavior.",
+      "evidence": "evidence/P9_U_T4_HOSTILE_ATTACK_RESULT_2026-08-21.json"
+    },
+    {
+      "claim": "NR05 C-4 component CANNOT_CHECK",
+      "old_verdict": "CANNOT_CHECK (NEVER_EXERCISED by structural invariance)",
+      "one_stage_attribution": "Not a defect: pre-registered as expected CANNOT_CHECK / NEVER_EXERCISED by structural invariance, to be recorded as exactly that and never as a pass.",
+      "lever": "n/a (status token by design)",
+      "new_verdict": "EXCLUDED from revival (recorded exactly as its protocol requires).",
+      "evidence": "P9 nr05 lane pre-registration (see OFFICIAL_EVIDENCE_SUMMARY_V1.json nr05 entry)"
+    }
+  ],
+  "orion_18_lanes": [
+    {
+      "claim": "P8 native cross-system protocol execution_status CANNOT_CHECK (external binaries absent)",
+      "old_verdict": "CANNOT_CHECK (execution), previously closed by the 24/24 binding campaign (PR #1152 wave)",
+      "one_stage_attribution": "External-execution stage: no native system binaries exist in-repo; the lane's own authority boundary forbids simulating outputs.",
+      "lever": "Structural validation instead of execution: frozen test design validated structurally in the producing lane.",
+      "new_verdict": "CLOSED and re-verified on current main (post-merge): binding checker status PASS (schema orion.p8.native-protocol-binding.v1, contract_id P8.NATIVE.CROSS_SYSTEM_PROTOCOL.V1, errors [], authority boundary enforced) and the second independent discharge checker terminal P8_REAL_EVIDENCE_DISCHARGE_SECOND_INDEPENDENT_CHECKER_GREEN (20 cases, formal/empirical/systems/multiple-support 5 each, source_token_audit GREEN, receipt_sha256 1cce4373c5d870c25b49088d386e88d9d5bcec943cd6e8ae021f3a696582451d).",
+      "evidence": "evidence/R5_REVIVAL_REVERIFICATION_2026-08-28.json"
+    },
+    {
+      "claim": "P8 external_validation CANNOT_CHECK",
+      "old_verdict": "CANNOT_CHECK",
+      "one_stage_attribution": "Adjudication stage: requires external scientific adjudication that no in-repo artifact can manufacture.",
+      "lever": "None possible in-repo by definition.",
+      "new_verdict": "UNSOLVABLE in-repo (external authority required); claim scope unchanged.",
+      "evidence": "orion-18 claim ledger (CLAIM_LEDGER_V3.md) external_validation entry"
+    },
+    {
+      "claim": "P8 discharge gold entries labeled CANNOT_CHECK (7 cases in p8_real_evidence_discharge_gold_v1.json)",
+      "old_verdict": "CANNOT_CHECK",
+      "one_stage_attribution": "Not defects: these are gold LABELS whose correct value is CANNOT_CHECK (protocol definition: execution/provenance may be valid but source authority does not establish the requested scope). The discharge checker validates discharge decisions AGAINST them.",
+      "lever": "n/a (correct-by-design gold semantics)",
+      "new_verdict": "EXCLUDED from revival (correct gold labels, not failed claims).",
+      "evidence": "top_tier/P8_REAL_EVIDENCE_DISCHARGE_PROTOCOL_V1.md (definition line); top_tier/p8_real_evidence_discharge_gold_v1.json"
+    }
+  ],
+  "summary": {
+    "orion_19": {
+      "executed_and_reproduced": 1,
+      "positive_vs_parent": 1,
+      "unsolvable_with_mechanistic_proof": 2,
+      "cannot_check_blocked_with_resources_named": 2,
+      "excluded_status_tokens": 1
+    },
+    "orion_18": {
+      "closed_reverified": 1,
+      "unsolvable_in_repo": 1,
+      "excluded_correct_by_design": 1
+    }
+  }
+}

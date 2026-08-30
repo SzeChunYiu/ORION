@@ -1,0 +1,32 @@
+name: ORION-06 claim-preserving recovery v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-06-recursive-recovery/theory/claim-preserving-recovery-v1/**'
+      - '.github/workflows/orion06-claim-preserving-recovery-v1.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-06-recursive-recovery/theory/claim-preserving-recovery-v1/**'
+      - '.github/workflows/orion06-claim-preserving-recovery-v1.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run exact causal-coverage regression
+        run: python papers/orion-06-recursive-recovery/theory/claim-preserving-recovery-v1/check_claim_preserving_recovery_v1.py
+      - name: Emit theorem packet digests
+        run: |
+          sha256sum \
+            papers/orion-06-recursive-recovery/theory/claim-preserving-recovery-v1/THEORY.md \
+            papers/orion-06-recursive-recovery/theory/claim-preserving-recovery-v1/CLAIM_DISPOSITION.md \
+            papers/orion-06-recursive-recovery/theory/claim-preserving-recovery-v1/check_claim_preserving_recovery_v1.py

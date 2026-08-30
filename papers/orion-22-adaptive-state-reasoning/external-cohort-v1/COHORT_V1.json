@@ -1,0 +1,53 @@
+{
+  "schema": "ORION.ORION22.ExternalFamilyAvailability.v1",
+  "identity": "ORION22.EXTERNAL_FAMILY_AVAILABILITY.v1",
+  "terminal": "AVAILABILITY_ONLY__FAMILY_CHOICE_NOT_MADE_HERE",
+  "grants_scientific_authority": false,
+  "outcomes_accessed": false,
+  "acquired_utc": "2026-08-29",
+
+  "why_no_choice_is_made": "The ORION-22 second-family transfer requires ONE family (E3 Defects4J or E2 OpenML) to be chosen BEFORE protocol freeze. Choosing it is a protocol act, not an acquisition act, and making that choice here after having looked at both would destroy the pre-freeze property the design depends on. Both are therefore recorded as available, neither is selected, and the choice is left to whoever writes the freeze.",
+
+  "candidates": [
+    {
+      "family_id": "E3_DEFECTS4J",
+      "availability": "REACHABLE",
+      "slug": "rjust/defects4j",
+      "head_sha": "8c16da8230843cdc918eaf4ddb449637f02b83c6",
+      "pin_method": "git ls-remote HEAD, 2026-08-29; no clone performed",
+      "github_release_object": "NONE_PUBLISHED",
+      "note": "The GitHub releases/latest endpoint returns no release object for this repository, so the commit SHA above is the only stable anchor observed. Version identity should be taken from the repository's own version file at that commit, not from a GitHub Release."
+    },
+    {
+      "family_id": "E2_OPENML",
+      "availability": "REACHABLE",
+      "api_base": "https://www.openml.org/api/v1/json",
+      "api_http_status_observed": 200,
+      "concrete_anchor": {
+        "study_id": 99,
+        "alias": "OpenML-CC18",
+        "name": "OpenML-CC18 Curated Classification benchmark",
+        "datasets": 72,
+        "tasks": 72,
+        "evidence_url": "https://www.openml.org/api/v1/json/study/99"
+      },
+      "note": "OpenML-CC18 is recorded as a concrete, enumerable anchor with a fixed dataset count. It is not proposed as the chosen family."
+    }
+  ],
+
+  "cannot_check": [
+    {
+      "item": "both_zero_regret_and_positive_regret_classes_present",
+      "reason": "The freeze requires the chosen family to contain both zero-regret and positive-regret observation classes. That is an outcome property of running the regret analysis, so it cannot be pre-checked without accessing outcomes. Not checked, not estimated."
+    },
+    {
+      "item": "p12a_superiority",
+      "reason": "Withheld under P12A_COMPARISON_VALIDITY_ADJUDICATION_V1.json. Nothing here touches it."
+    }
+  ],
+
+  "not_claimed": [
+    "No regret analysis was run and no observation class was scored.",
+    "Reachability is not suitability: neither family has been checked against the P12B controlled-result scope."
+  ]
+}

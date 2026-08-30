@@ -1,0 +1,69 @@
+{
+  "current_paper_freeze_mutated": false,
+  "date": "2026-08-29",
+  "interpretation": "The execution completed deterministically, but the scientific predicate remained unresolved because every declared task reached the prospectively frozen state cap. This is not a positive completeness result and not a null effect.",
+  "issue": 1701,
+  "old_identity_larger_post_outcome_search_authorized": false,
+  "paper_id": "ORION-01",
+  "raw_artifact_custody": {
+    "aggregate_and_per_task_hashes_bound_by_source_custody_receipt": true,
+    "full_path_transplant_into_current_main": "COMPLETE_ON_ISSUE_BRANCH",
+    "immutable_source_commit_bound": true,
+    "reason_not_wholesale_merged": "The source branch was substantially stale and diverged; issue #1701 forbids wholesale recovery of such a branch.",
+    "selection_rule": "^development/orion-01-round(2|3)[^/]*/",
+    "transplant_manifest": "development/orion-01-pr1602-evidence-transplant-2026-08-29/TRANSPLANT_MANIFEST.json"
+  },
+  "round2": {
+    "boundary_probe_rows": 16,
+    "bounded_completed_row_signal_promoted_to_full_domain": false,
+    "cap_hit_primary_rows": 8,
+    "primary_rows": 585,
+    "result_bytes": 13914625,
+    "result_sha256": "db1253e52a44741613abb9217eb4a865d190c3948abdab9f8fbd344ada035efd",
+    "terminal": "CANNOT_CHECK_MOVE_COMPLETENESS"
+  },
+  "round3": {
+    "aggregate_blob_sha": "546bc713c35111479513ca39b7ab631ae8fbd041",
+    "aggregate_sha256": "7e26974b9afab27abb88a27b7c2c5ba058e6d351f0d2f8428c4fa8e50acada31",
+    "all_exit_codes": "0:0",
+    "all_task_pairs_byte_identical": true,
+    "all_tasks_completed": true,
+    "all_tasks_executed_twice": true,
+    "all_tasks_hit_frozen_cap": true,
+    "custody_blob_sha": "9c957e8fb58773d33b637cd1d55dd07fef5c3c9e",
+    "identity": "cap-8 exact-exhaustion extension",
+    "lunarc_array_job": "3550016",
+    "move_attempts_range": [
+      50907130,
+      59877776
+    ],
+    "round3_result_blob_sha": "092a9e612553140fb524ec283d64787a47de3f65",
+    "task_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "terminal": "CANNOT_CHECK_MOVE_COMPLETENESS"
+  },
+  "schema": "ORION.ORION01.PR1602AdoptionReceipt.v1",
+  "scientific_authority_delta": "NONE",
+  "source_branch": "codex/orion-waves-abc-closure-20260828",
+  "source_branch_relation_when_inspected": {
+    "ahead_by": 7,
+    "base": "b8fd5d2ca8eb1f6547592893591ba3aa93bf96c8",
+    "behind_by": 137,
+    "status": "diverged",
+    "wholesale_merge_authorized": false
+  },
+  "source_commit": "9e9b870b795b6ae0b3726031ced0b9ebef004897",
+  "source_commit_tree": "4fd5cbfec985c668a583add78561b4f18e88d0f8",
+  "source_pull_request": 1602,
+  "submission_authority": false,
+  "terminal": "BOUNDED_PAPER_RETAINED",
+  "top_tier_authority": false
+}

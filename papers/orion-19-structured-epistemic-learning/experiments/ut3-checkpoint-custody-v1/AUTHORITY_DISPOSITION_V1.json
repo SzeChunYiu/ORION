@@ -1,0 +1,61 @@
+{
+  "admissible_claim": "Four Qwen checkpoints were in LUNARC custody and one GPU decode smoke probe succeeded. No experimental grid cell ran.",
+  "artifacts": [
+    {
+      "bytes": 7424,
+      "path": "papers/orion-19-structured-epistemic-learning/experiments/ut3-checkpoint-custody-v1/run_ut3_checkpoint_custody_lunarc.sbatch",
+      "sha256": "076cc3fd7b44e5da09cb1f166adcab07111d21defd5a4b60846b1021df91644a"
+    },
+    {
+      "bytes": 4572,
+      "path": "papers/orion-19-structured-epistemic-learning/experiments/ut3-checkpoint-custody-v1/job-3550343/P9_UT3_CHECKPOINT_CUSTODY_RECEIPT_V1.json",
+      "sha256": "d1334f0edd16ab64e113a11be016511a6cf422339dc18fb0684bc5aa0d0d5d70"
+    },
+    {
+      "bytes": 655,
+      "path": "papers/orion-19-structured-epistemic-learning/experiments/ut3-checkpoint-custody-v1/job-3550343/o19-ut3-custody-3550343.out",
+      "sha256": "7ef2f044766ed6ca74ee384b138d041f10c22d6fb4233263e54641f39060c7bf"
+    },
+    {
+      "bytes": 1592,
+      "path": "papers/orion-19-structured-epistemic-learning/experiments/ut3-checkpoint-custody-v1/job-3550343/o19-ut3-custody-3550343.err",
+      "sha256": "e18d5cb731ef192d0723bb5f6bbed52e5c100d57e084a5f1b9a1991c575a4d00"
+    },
+    {
+      "bytes": 655,
+      "path": "papers/orion-19-structured-epistemic-learning/experiments/ut3-checkpoint-custody-v1/historical-job-3550340/o19-ut3-custody-3550340.out",
+      "sha256": "7ef2f044766ed6ca74ee384b138d041f10c22d6fb4233263e54641f39060c7bf"
+    },
+    {
+      "bytes": 2713,
+      "path": "papers/orion-19-structured-epistemic-learning/experiments/ut3-checkpoint-custody-v1/historical-job-3550340/o19-ut3-custody-3550340.err",
+      "sha256": "28d42f5930909b830c1b3bf9a218e38c1eed7b729e98c7cf5b5d73f387cdf763"
+    }
+  ],
+  "authority_class": "ENVIRONMENT_AND_CUSTODY_RECEIPT_ONLY",
+  "checkpoint_ladder_declared": 6,
+  "checkpoint_ladder_in_custody": 4,
+  "date": "2026-08-28",
+  "forbidden_promotions": [
+    "S* or C* crossing",
+    "model-scale result",
+    "quality result",
+    "ORION-19 scientific authority delta",
+    "submission, journal, novelty, or external authority"
+  ],
+  "gpu_smoke_status": "GPU_DECODE_OK",
+  "job_ids": [
+    "3550340",
+    "3550343"
+  ],
+  "paper_id": "ORION-19",
+  "preserved_cannot_check": [
+    "Llama-3.2-1B-Instruct gated 401",
+    "Llama-3.2-3B-Instruct gated 401"
+  ],
+  "remaining_blocker": "a cell executor: instance generation per (k,B), the seven representation renderers, majority-vote aggregation over C, and verified-answer scoring. Declared but not built.",
+  "schema": "ORION.ORION19.UT3CheckpointCustody.AuthorityDisposition.v1",
+  "scientific_authority_delta": "NONE",
+  "scientific_cells_executed": 0,
+  "terminal": "P9_UT3_CHECKPOINT_CUSTODY_ONLY__FOUR_OF_SIX_IN_CUSTODY__ZERO_GRID_CELLS_EXECUTED"
+}

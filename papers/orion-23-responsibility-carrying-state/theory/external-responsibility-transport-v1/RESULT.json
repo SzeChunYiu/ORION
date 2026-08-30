@@ -1,0 +1,99 @@
+{
+  "schema": "ORION.ORION23.ExternalResponsibilityTransport.CheckerReport.v1",
+  "successor_id": "ORION23.EXTERNAL_RESPONSIBILITY_TRANSPORT.v1",
+  "independence": "no ORION-23 module imported; theorems verified on freshly enumerated structures; campaign receipts read as data only",
+  "check_A_theorem1_transport_rule": {
+    "state_vectors_checked": 120,
+    "reuse_sound_iff_all_load_bearing_unchanged": true,
+    "contradicted_forces_revalidate": true,
+    "unknown_forces_CANNOT_CHECK": true
+  },
+  "check_B_theorem2_information_necessity": {
+    "witness_pairs": 22,
+    "both_horns_hold": true,
+    "statement": "if the observable does not determine a load-bearing premise, no observable-measurable policy is both sound and non-vacuous on that class"
+  },
+  "check_C_theorem3_cost_floor": {
+    "configurations_checked": 28,
+    "floor_equals_load_bearing_cost": true,
+    "max_saving_equals_non_load_bearing_remainder": true
+  },
+  "check_D_frozen_arm_table_vs_theory": {
+    "repositories": 31,
+    "cases": 93,
+    "case_classes": {
+      "VALID": 31,
+      "FORGED": 31,
+      "STALE": 31
+    },
+    "measured": {
+      "always-raw": {
+        "valid_accept_rate": 1.0,
+        "forged_false_accepts": 0,
+        "stale_false_accept_rate": 0.0,
+        "ops_per_repository": 10.0,
+        "cost_reduction_vs_always_raw": 0.0
+      },
+      "provenance-only": {
+        "valid_accept_rate": 1.0,
+        "forged_false_accepts": 0,
+        "stale_false_accept_rate": 1.0,
+        "ops_per_repository": 5.0,
+        "cost_reduction_vs_always_raw": 0.5
+      },
+      "confidence-only": {
+        "valid_accept_rate": 0.0,
+        "forged_false_accepts": 0,
+        "stale_false_accept_rate": 0.0,
+        "ops_per_repository": 3.0,
+        "cost_reduction_vs_always_raw": 0.7
+      },
+      "lifecycle-rcs": {
+        "valid_accept_rate": 1.0,
+        "forged_false_accepts": 0,
+        "stale_false_accept_rate": 0.0,
+        "ops_per_repository": 7.0,
+        "cost_reduction_vs_always_raw": 0.3
+      }
+    },
+    "theorem_classification": {
+      "always-raw": "SOUND_AND_NON_VACUOUS",
+      "provenance-only": "UNSOUND__ACCEPTS_ON_AN_UNDETERMINED_LOAD_BEARING_PREMISE",
+      "confidence-only": "VACUOUS__SOUND_ONLY_BY_ABSTAINING",
+      "lifecycle-rcs": "SOUND_AND_NON_VACUOUS"
+    },
+    "sound_and_non_vacuous_arms": [
+      "always-raw",
+      "lifecycle-rcs"
+    ],
+    "cheapest_sound_ops_per_repository": 7.0,
+    "cost_floor_respected": true,
+    "pass_gate_evaluation_from_receipt": {
+      "zero_forged_false_accepts": true,
+      "stale_false_accepts_at_most_1pct": true,
+      "valid_accepts_at_least_95pct": true,
+      "cost_reduction_at_least_25pct_vs_always_raw": true
+    }
+  },
+  "preserved_cannot_check": {
+    "facts_decided": 123,
+    "facts_cannot_check": 32,
+    "test_exit_disposition": "every TEST_EXIT fact is CANNOT_CHECK: the locked per-repository runtime the contract requires does not exist, and an exit status obtained another way is not that fact",
+    "boundary": "Case classes are objectively decidable from git. No governance, quality or responsibility judgment is made anywhere; those remain CANNOT_CHECK without two independent experts plus tie-break/custodian."
+  },
+  "check_E_negative_controls": {
+    "unknown_is_not_treated_as_unchanged": {
+      "pass": true
+    },
+    "contradicted_dominates_unknown": {
+      "pass": true
+    },
+    "every_arm_classified": {
+      "pass": true
+    },
+    "cost_floor_separates_sound_from_unsound_and_vacuous": {
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

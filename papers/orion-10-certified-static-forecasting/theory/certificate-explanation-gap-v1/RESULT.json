@@ -1,0 +1,38 @@
+{
+  "schema": "ORION.ORION10.CertificateExplanationGap.CheckerReport.v1",
+  "successor_id": "ORION10.CERTIFICATE_EXPLANATION_GAP.v1",
+  "independence": "no ORION-10 or QG module imported; theorems verified on freshly enumerated structures; receipts read as data only",
+  "check_A_B_C_exhaustive": {
+    "structures_checked": 21501,
+    "exactness_iff_fibre_constancy": true,
+    "size_independence_verified": true,
+    "why_size_independence_is_exhaustive": "the complete set of Psi-measurable functions is the set of assignments of one value per fibre; enumerating it covers every formula of every size in every language over Psi"
+  },
+  "check_D_manuscript_counts": {
+    "expected_from_manuscript": {
+      "fourth_configuration_witnesses": 64,
+      "instances_evaluated_in_hostile_panel": 740,
+      "verified_rows_closed_by_hybrid_family": 10481,
+      "fifth_configuration_confirmed": 0
+    },
+    "recomputed_from_frozen_receipt": {
+      "fourth_configuration_witnesses": 64,
+      "instances_evaluated_in_hostile_panel": 740,
+      "verified_rows_closed_by_hybrid_family": 10481,
+      "fifth_configuration_confirmed": 0
+    },
+    "mismatches": {}
+  },
+  "check_E_negative_controls": {
+    "mixed_fibre_inexplicable": {
+      "pass": true
+    },
+    "larger_value_alphabet_does_not_help": {
+      "pass": true
+    },
+    "pure_fibre_explicable": {
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}
