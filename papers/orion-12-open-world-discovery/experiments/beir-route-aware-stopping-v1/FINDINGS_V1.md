@@ -69,3 +69,39 @@ non-empty titles out of 8,674 documents.
 
 Corpus digests are in `CORPUS_DIGESTS.txt`; they pin corpus, queries and qrels
 together.
+
+## The secondary endpoint says the opposite, and that is the point
+
+nDCG@10, the registered secondary:
+
+| corpus | best single | fusion | generic active | **route-aware** | oracle |
+|---|---|---|---|---|---|
+| SciFact | 0.6246 | 0.6162 | 0.6421 | **0.6421** | 0.6421 |
+| NFCorpus | 0.2699 | 0.2861 | 0.2862 | **0.2953** | 0.2953 |
+| ArguAna | 0.3846 | 0.3690 | 0.3172 | **0.3172** | 0.3172 |
+
+**Route-aware stopping beats fusion on nDCG@10 in 10 of 15 cells**, and on two of
+three corpora it ties the exhaustive oracle.
+
+Read alone, that is a favourable result. It is not one, and the protocol said so
+before the numbers existed: nDCG is secondary and cannot carry the terminal. The
+arm fails every primary endpoint — 0.101 recall behind fusion at equal cost, a
+false-complete rate 8.4 points worse than generic active, cheaper at matched
+recall in 5 of 15 cells.
+
+This is the **same shape as the TREC-COVID result** the ORION-12 lane already
+carries, where favourable nDCG accompanied a failed recall gate and a 175.7% read
+increase. Seeing it recur on three untouched corpora, with a different rule and a
+different failure mechanism, suggests the divergence is systematic rather than an
+accident of that corpus: a rule that stops early keeps a short, precise head and
+loses the tail, and a top-10 metric cannot see the tail it lost. That is a reason
+to distrust nDCG as an endpoint for stopping rules, not a reason to promote this
+one.
+
+**One caveat that cuts against the arm's own nDCG numbers.** The union-based arms
+(`generic_active`, `route_aware_stop`, `oracle`) present documents in
+route-concatenation order rather than a fused relevance ranking, so their top-10
+is not rank-optimised. On ArguAna this drags all three to 0.3172 while a single
+ranked route reaches 0.3846. The nDCG column is therefore not a clean
+apples-to-apples comparison across arm families, which is a further reason it
+cannot carry a terminal here.
