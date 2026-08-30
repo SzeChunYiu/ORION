@@ -1,0 +1,503 @@
+{
+ "degenerate_projects": [],
+ "disagreements": [],
+ "min_mass": 1,
+ "projects": {
+  "Chart": {
+   "agrees": true,
+   "bugs_test": 13,
+   "bugs_train": 13,
+   "coarse_fibres": 15,
+   "impure_examples": [
+    {
+     "coarse_fibre": "org.jfree.chart.block.junit",
+     "sub_actions": {
+      "('org.jfree.chart.block.junit', 'none')": 0,
+      "('org.jfree.chart.block.junit', 'prefix')": 1
+     }
+    },
+    {
+     "coarse_fibre": "org.jfree.chart.plot.junit",
+     "sub_actions": {
+      "('org.jfree.chart.plot.junit', 'none')": 0,
+      "('org.jfree.chart.plot.junit', 'prefix')": 1
+     }
+    },
+    {
+     "coarse_fibre": "org.jfree.chart.renderer.category.junit",
+     "sub_actions": {
+      "('org.jfree.chart.renderer.category.junit', 'none')": 0,
+      "('org.jfree.chart.renderer.category.junit', 'prefix')": 1
+     }
+    }
+   ],
+   "n_impure_coarse_fibres": 8,
+   "observed_value": true,
+   "oos_refinement_helps": true,
+   "oos_regret_coarse": 0.031275,
+   "oos_regret_refined": 0.022768,
+   "predicted_value": true,
+   "refined_fibres": 24,
+   "refined_singleton_frac": 0.25,
+   "regret_coarse": 0.019792,
+   "regret_refined": 0.008422,
+   "rows_train": 1781,
+   "test_universe": 137
+  },
+  "Cli": {
+   "agrees": true,
+   "bugs_test": 20,
+   "bugs_train": 19,
+   "coarse_fibres": 10,
+   "impure_examples": [
+    {
+     "coarse_fibre": "org.apache.commons.cli",
+     "sub_actions": {
+      "('org.apache.commons.cli', 'exact')": 1,
+      "('org.apache.commons.cli', 'none')": 0,
+      "('org.apache.commons.cli', 'prefix')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.apache.commons.cli2.commandline",
+     "sub_actions": {
+      "('org.apache.commons.cli2.commandline', 'exact')": 1,
+      "('org.apache.commons.cli2.commandline', 'none')": 1,
+      "('org.apache.commons.cli2.commandline', 'prefix')": 0
+     }
+    }
+   ],
+   "n_impure_coarse_fibres": 2,
+   "observed_value": true,
+   "oos_refinement_helps": false,
+   "oos_regret_coarse": 0.025574,
+   "oos_regret_refined": 0.02777,
+   "predicted_value": true,
+   "refined_fibres": 19,
+   "refined_singleton_frac": 0.0526,
+   "regret_coarse": 0.028592,
+   "regret_refined": 0.022866,
+   "rows_train": 1406,
+   "test_universe": 74
+  },
+  "Closure": {
+   "agrees": true,
+   "bugs_test": 87,
+   "bugs_train": 87,
+   "coarse_fibres": 8,
+   "impure_examples": [
+    {
+     "coarse_fibre": "com.google.javascript.jscomp",
+     "sub_actions": {
+      "('com.google.javascript.jscomp', 'exact')": 1,
+      "('com.google.javascript.jscomp', 'none')": 0,
+      "('com.google.javascript.jscomp', 'prefix')": 0
+     }
+    },
+    {
+     "coarse_fibre": "com.google.javascript.jscomp.parsing",
+     "sub_actions": {
+      "('com.google.javascript.jscomp.parsing', 'exact')": 1,
+      "('com.google.javascript.jscomp.parsing', 'none')": 0
+     }
+    },
+    {
+     "coarse_fibre": "com.google.javascript.rhino.jstype",
+     "sub_actions": {
+      "('com.google.javascript.rhino.jstype', 'exact')": 1,
+      "('com.google.javascript.rhino.jstype', 'none')": 0,
+      "('com.google.javascript.rhino.jstype', 'prefix')": 0
+     }
+    }
+   ],
+   "n_impure_coarse_fibres": 3,
+   "observed_value": true,
+   "oos_refinement_helps": true,
+   "oos_regret_coarse": 0.011642,
+   "oos_regret_refined": 0.006396,
+   "predicted_value": true,
+   "refined_fibres": 16,
+   "refined_singleton_frac": 0.0,
+   "regret_coarse": 0.011346,
+   "regret_refined": 0.00552,
+   "rows_train": 20271,
+   "test_universe": 233
+  },
+  "Codec": {
+   "agrees": true,
+   "bugs_test": 9,
+   "bugs_train": 9,
+   "coarse_fibres": 6,
+   "impure_examples": [
+    {
+     "coarse_fibre": "org.apache.commons.codec.language",
+     "sub_actions": {
+      "('org.apache.commons.codec.language', 'exact')": 1,
+      "('org.apache.commons.codec.language', 'none')": 0,
+      "('org.apache.commons.codec.language', 'prefix')": 1
+     }
+    },
+    {
+     "coarse_fibre": "org.apache.commons.codec.language.bm",
+     "sub_actions": {
+      "('org.apache.commons.codec.language.bm', 'exact')": 0,
+      "('org.apache.commons.codec.language.bm', 'none')": 0,
+      "('org.apache.commons.codec.language.bm', 'prefix')": 1
+     }
+    },
+    {
+     "coarse_fibre": "org.apache.commons.codec.net",
+     "sub_actions": {
+      "('org.apache.commons.codec.net', 'exact')": 1,
+      "('org.apache.commons.codec.net', 'none')": 0
+     }
+    }
+   ],
+   "n_impure_coarse_fibres": 3,
+   "observed_value": true,
+   "oos_refinement_helps": true,
+   "oos_regret_coarse": 0.042995,
+   "oos_regret_refined": 0.029469,
+   "predicted_value": true,
+   "refined_fibres": 13,
+   "refined_singleton_frac": 0.1538,
+   "regret_coarse": 0.043237,
+   "regret_refined": 0.021256,
+   "rows_train": 207,
+   "test_universe": 23
+  },
+  "Collections": {
+   "agrees": true,
+   "bugs_test": 14,
+   "bugs_train": 14,
+   "coarse_fibres": 11,
+   "impure_examples": [
+    {
+     "coarse_fibre": "org.apache.commons.collections",
+     "sub_actions": {
+      "('org.apache.commons.collections', 'exact')": 1,
+      "('org.apache.commons.collections', 'none')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.apache.commons.collections.buffer",
+     "sub_actions": {
+      "('org.apache.commons.collections.buffer', 'exact')": 1,
+      "('org.apache.commons.collections.buffer', 'none')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.apache.commons.collections.functors",
+     "sub_actions": {
+      "('org.apache.commons.collections.functors', 'exact')": 1,
+      "('org.apache.commons.collections.functors', 'none')": 0
+     }
+    }
+   ],
+   "n_impure_coarse_fibres": 10,
+   "observed_value": true,
+   "oos_refinement_helps": true,
+   "oos_regret_coarse": 0.035143,
+   "oos_regret_refined": 0.001,
+   "predicted_value": true,
+   "refined_fibres": 22,
+   "refined_singleton_frac": 0.2727,
+   "regret_coarse": 0.045571,
+   "regret_refined": 0.006286,
+   "rows_train": 350,
+   "test_universe": 25
+  },
+  "Compress": {
+   "agrees": true,
+   "bugs_test": 24,
+   "bugs_train": 23,
+   "coarse_fibres": 20,
+   "impure_examples": [
+    {
+     "coarse_fibre": "org.apache.commons.compress",
+     "sub_actions": {
+      "('org.apache.commons.compress', 'exact')": 1,
+      "('org.apache.commons.compress', 'none')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.apache.commons.compress.archivers",
+     "sub_actions": {
+      "('org.apache.commons.compress.archivers', 'exact')": 1,
+      "('org.apache.commons.compress.archivers', 'none')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.apache.commons.compress.archivers.cpio",
+     "sub_actions": {
+      "('org.apache.commons.compress.archivers.cpio', 'exact')": 1,
+      "('org.apache.commons.compress.archivers.cpio', 'none')": 0
+     }
+    }
+   ],
+   "n_impure_coarse_fibres": 7,
+   "observed_value": true,
+   "oos_refinement_helps": true,
+   "oos_regret_coarse": 0.024571,
+   "oos_regret_refined": 0.015809,
+   "predicted_value": true,
+   "refined_fibres": 28,
+   "refined_singleton_frac": 0.1786,
+   "regret_coarse": 0.024009,
+   "regret_refined": 0.012436,
+   "rows_train": 1564,
+   "test_universe": 68
+  },
+  "Csv": {
+   "agrees": true,
+   "bugs_test": 8,
+   "bugs_train": 8,
+   "coarse_fibres": 3,
+   "impure_examples": [],
+   "n_impure_coarse_fibres": 0,
+   "observed_value": false,
+   "oos_refinement_helps": false,
+   "oos_regret_coarse": 0.029167,
+   "oos_regret_refined": 0.029167,
+   "predicted_value": false,
+   "refined_fibres": 5,
+   "refined_singleton_frac": 0.0,
+   "regret_coarse": 0.028646,
+   "regret_refined": 0.028646,
+   "rows_train": 96,
+   "test_universe": 12
+  },
+  "Gson": {
+   "agrees": true,
+   "bugs_test": 9,
+   "bugs_train": 9,
+   "coarse_fibres": 8,
+   "impure_examples": [
+    {
+     "coarse_fibre": "com.google.gson.internal",
+     "sub_actions": {
+      "('com.google.gson.internal', 'none')": 0,
+      "('com.google.gson.internal', 'prefix')": 1
+     }
+    },
+    {
+     "coarse_fibre": "com.google.gson.stream",
+     "sub_actions": {
+      "('com.google.gson.stream', 'exact')": 1,
+      "('com.google.gson.stream', 'none')": 0,
+      "('com.google.gson.stream', 'prefix')": 0
+     }
+    }
+   ],
+   "n_impure_coarse_fibres": 2,
+   "observed_value": true,
+   "oos_refinement_helps": true,
+   "oos_regret_coarse": 0.023743,
+   "oos_regret_refined": 0.020833,
+   "predicted_value": true,
+   "refined_fibres": 14,
+   "refined_singleton_frac": 0.2143,
+   "regret_coarse": 0.012765,
+   "regret_refined": 0.010185,
+   "rows_train": 756,
+   "test_universe": 84
+  },
+  "Lang": {
+   "agrees": true,
+   "bugs_test": 31,
+   "bugs_train": 30,
+   "coarse_fibres": 10,
+   "impure_examples": [
+    {
+     "coarse_fibre": "org.apache.commons.lang",
+     "sub_actions": {
+      "('org.apache.commons.lang', 'exact')": 1,
+      "('org.apache.commons.lang', 'none')": 0,
+      "('org.apache.commons.lang', 'prefix')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.apache.commons.lang.time",
+     "sub_actions": {
+      "('org.apache.commons.lang.time', 'exact')": 1,
+      "('org.apache.commons.lang.time', 'none')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.apache.commons.lang3",
+     "sub_actions": {
+      "('org.apache.commons.lang3', 'exact')": 1,
+      "('org.apache.commons.lang3', 'none')": 0,
+      "('org.apache.commons.lang3', 'prefix')": 1
+     }
+    }
+   ],
+   "n_impure_coarse_fibres": 7,
+   "observed_value": true,
+   "oos_refinement_helps": true,
+   "oos_regret_coarse": 0.015375,
+   "oos_regret_refined": 0.003393,
+   "predicted_value": true,
+   "refined_fibres": 22,
+   "refined_singleton_frac": 0.0909,
+   "regret_coarse": 0.022489,
+   "regret_refined": 0.004762,
+   "rows_train": 2310,
+   "test_universe": 77
+  },
+  "Math": {
+   "agrees": true,
+   "bugs_test": 53,
+   "bugs_train": 53,
+   "coarse_fibres": 84,
+   "impure_examples": [
+    {
+     "coarse_fibre": "org.apache.commons.math.analysis",
+     "sub_actions": {
+      "('org.apache.commons.math.analysis', 'exact')": 1,
+      "('org.apache.commons.math.analysis', 'none')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.apache.commons.math.analysis.solvers",
+     "sub_actions": {
+      "('org.apache.commons.math.analysis.solvers', 'exact')": 1,
+      "('org.apache.commons.math.analysis.solvers', 'none')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.apache.commons.math.complex",
+     "sub_actions": {
+      "('org.apache.commons.math.complex', 'exact')": 1,
+      "('org.apache.commons.math.complex', 'none')": 0,
+      "('org.apache.commons.math.complex', 'prefix')": 0
+     }
+    }
+   ],
+   "n_impure_coarse_fibres": 26,
+   "observed_value": true,
+   "oos_refinement_helps": true,
+   "oos_regret_coarse": 0.004671,
+   "oos_regret_refined": 0.003034,
+   "predicted_value": true,
+   "refined_fibres": 134,
+   "refined_singleton_frac": 0.1493,
+   "regret_coarse": 0.004078,
+   "regret_refined": 0.001611,
+   "rows_train": 27242,
+   "test_universe": 514
+  },
+  "Mockito": {
+   "agrees": true,
+   "bugs_test": 19,
+   "bugs_train": 19,
+   "coarse_fibres": 67,
+   "impure_examples": [
+    {
+     "coarse_fibre": "org.mockito.exceptions",
+     "sub_actions": {
+      "('org.mockito.exceptions', 'exact')": 1,
+      "('org.mockito.exceptions', 'none')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.mockito.internal.creation.instance",
+     "sub_actions": {
+      "('org.mockito.internal.creation.instance', 'exact')": 1,
+      "('org.mockito.internal.creation.instance', 'none')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.mockito.internal.invocation",
+     "sub_actions": {
+      "('org.mockito.internal.invocation', 'exact')": 1,
+      "('org.mockito.internal.invocation', 'none')": 0
+     }
+    }
+   ],
+   "n_impure_coarse_fibres": 8,
+   "observed_value": true,
+   "oos_refinement_helps": true,
+   "oos_regret_coarse": 0.015298,
+   "oos_regret_refined": 0.014169,
+   "predicted_value": true,
+   "refined_fibres": 93,
+   "refined_singleton_frac": 0.1935,
+   "regret_coarse": 0.007594,
+   "regret_refined": 0.004662,
+   "rows_train": 5491,
+   "test_universe": 289
+  },
+  "Time": {
+   "agrees": true,
+   "bugs_test": 13,
+   "bugs_train": 13,
+   "coarse_fibres": 6,
+   "impure_examples": [
+    {
+     "coarse_fibre": "org.joda.time",
+     "sub_actions": {
+      "('org.joda.time', 'exact')": 0,
+      "('org.joda.time', 'none')": 0,
+      "('org.joda.time', 'prefix')": 1
+     }
+    },
+    {
+     "coarse_fibre": "org.joda.time.field",
+     "sub_actions": {
+      "('org.joda.time.field', 'exact')": 1,
+      "('org.joda.time.field', 'none')": 0
+     }
+    },
+    {
+     "coarse_fibre": "org.joda.time.format",
+     "sub_actions": {
+      "('org.joda.time.format', 'exact')": 1,
+      "('org.joda.time.format', 'none')": 0,
+      "('org.joda.time.format', 'prefix')": 0
+     }
+    }
+   ],
+   "n_impure_coarse_fibres": 3,
+   "observed_value": true,
+   "oos_refinement_helps": true,
+   "oos_regret_coarse": 0.019072,
+   "oos_regret_refined": 0.009472,
+   "predicted_value": true,
+   "refined_fibres": 13,
+   "refined_singleton_frac": 0.1538,
+   "regret_coarse": 0.0178,
+   "regret_refined": 0.008106,
+   "rows_train": 1573,
+   "test_universe": 121
+  }
+ },
+ "schema": "ORION08.REAL_TRANSFER_DEFECTS4J.v1",
+ "split_seed": 20260830,
+ "strata": {
+  "no_value": [
+   "Csv"
+  ],
+  "value": [
+   "Chart",
+   "Cli",
+   "Closure",
+   "Codec",
+   "Collections",
+   "Compress",
+   "Gson",
+   "Lang",
+   "Math",
+   "Mockito",
+   "Time"
+  ]
+ },
+ "terminal": "THEOREM_PREDICTS_REAL_TRANSFER_D4J",
+ "threshold": 0.02439,
+ "utility": {
+  "(0, 0)": 0.0,
+  "(0, 1)": -1.0,
+  "(1, 0)": -0.05,
+  "(1, 1)": 1.0
+ }
+}

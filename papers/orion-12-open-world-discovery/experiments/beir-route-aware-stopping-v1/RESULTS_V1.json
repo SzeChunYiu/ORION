@@ -1,0 +1,649 @@
+{
+ "corpora": {
+  "arguana": {
+   "best_single_route": "tfidf_word",
+   "by_depth": {
+    "10": {
+     "best_single": {
+      "cost": 10.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.7923
+     },
+     "fusion": {
+      "cost": 10.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.7781
+     },
+     "generic_active": {
+      "cost": 18.51,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.1323,
+      "recall": 0.761
+     },
+     "oracle": {
+      "cost": 23.78,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.8933
+     },
+     "route_aware_stop": {
+      "cost": 10.0,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.2162,
+      "recall": 0.6771
+     }
+    },
+    "100": {
+     "best_single": {
+      "cost": 100.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9659
+     },
+     "fusion": {
+      "cost": 100.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9659
+     },
+     "generic_active": {
+      "cost": 187.37,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0228,
+      "recall": 0.9602
+     },
+     "oracle": {
+      "cost": 260.31,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9829
+     },
+     "route_aware_stop": {
+      "cost": 100.0,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0398,
+      "recall": 0.9431
+     }
+    },
+    "20": {
+     "best_single": {
+      "cost": 20.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9018
+     },
+     "fusion": {
+      "cost": 20.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.8919
+     },
+     "generic_active": {
+      "cost": 36.17,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0754,
+      "recall": 0.8734
+     },
+     "oracle": {
+      "cost": 47.16,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9488
+     },
+     "route_aware_stop": {
+      "cost": 20.0,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.1266,
+      "recall": 0.8222
+     }
+    },
+    "200": {
+     "best_single": {
+      "cost": 200.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9801
+     },
+     "fusion": {
+      "cost": 200.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9801
+     },
+     "generic_active": {
+      "cost": 376.15,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0199,
+      "recall": 0.9687
+     },
+     "oracle": {
+      "cost": 525.94,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9886
+     },
+     "route_aware_stop": {
+      "cost": 200.0,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0313,
+      "recall": 0.9573
+     }
+    },
+    "50": {
+     "best_single": {
+      "cost": 50.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9545
+     },
+     "fusion": {
+      "cost": 50.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9502
+     },
+     "generic_active": {
+      "cost": 92.47,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0455,
+      "recall": 0.9303
+     },
+     "oracle": {
+      "cost": 125.92,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9758
+     },
+     "route_aware_stop": {
+      "cost": 50.0,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0711,
+      "recall": 0.9047
+     }
+    }
+   },
+   "corpus": "arguana",
+   "dev": 703,
+   "dev_marginals": {
+    "0": {
+     "bm25_full": 0.9544807965860598,
+     "bm25_text": 0.9132290184921764,
+     "bm25_title": 0.6884779516358464,
+     "tfidf_char": 0.9658605974395448,
+     "tfidf_word": 0.9857752489331437
+    },
+    "1": {
+     "bm25_text": 0.002844950213371266,
+     "bm25_title": 0.01849217638691323,
+     "tfidf_char": 0.031294452347083924,
+     "tfidf_word": 0.032716927453769556
+    },
+    "2": {
+     "bm25_text": 0.002844950213371266,
+     "tfidf_char": 0.017069701280227598,
+     "tfidf_word": 0.017069701280227598
+    },
+    "3": {
+     "tfidf_char": 0.01422475106685633,
+     "tfidf_word": 0.01422475106685633
+    },
+    "4": {
+     "tfidf_char": 0.001422475106685633
+    }
+   },
+   "dev_recall_at100": {
+    "bm25_full": 0.9544807965860598,
+    "bm25_text": 0.9132290184921764,
+    "bm25_title": 0.6884779516358464,
+    "tfidf_char": 0.9658605974395448,
+    "tfidf_word": 0.9857752489331437
+   },
+   "docs": 8674,
+   "elapsed_s": 1133.2,
+   "held": 703,
+   "mean_pairwise_jaccard_at100": 0.3139,
+   "nonempty_titles": 2699,
+   "queries_scored": 1406
+  },
+  "nfcorpus": {
+   "best_single_route": "tfidf_char",
+   "by_depth": {
+    "10": {
+     "best_single": {
+      "cost": 9.96,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.1272
+     },
+     "fusion": {
+      "cost": 9.96,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.1381
+     },
+     "generic_active": {
+      "cost": 13.13,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.179,
+      "recall": 0.1522
+     },
+     "oracle": {
+      "cost": 19.52,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.1707
+     },
+     "route_aware_stop": {
+      "cost": 19.52,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0,
+      "recall": 0.1707
+     }
+    },
+    "100": {
+     "best_single": {
+      "cost": 98.01,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.2235
+     },
+     "fusion": {
+      "cost": 98.17,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.2419
+     },
+     "generic_active": {
+      "cost": 92.81,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.3951,
+      "recall": 0.2437
+     },
+     "oracle": {
+      "cost": 153.16,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.2831
+     },
+     "route_aware_stop": {
+      "cost": 153.16,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0,
+      "recall": 0.2831
+     }
+    },
+    "20": {
+     "best_single": {
+      "cost": 19.89,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.1536
+     },
+     "fusion": {
+      "cost": 19.89,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.1649
+     },
+     "generic_active": {
+      "cost": 23.96,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.2346,
+      "recall": 0.1737
+     },
+     "oracle": {
+      "cost": 36.25,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.1957
+     },
+     "route_aware_stop": {
+      "cost": 36.25,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0,
+      "recall": 0.1957
+     }
+    },
+    "200": {
+     "best_single": {
+      "cost": 195.51,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.266
+     },
+     "fusion": {
+      "cost": 195.67,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.2888
+     },
+     "generic_active": {
+      "cost": 152.85,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.4568,
+      "recall": 0.2723
+     },
+     "oracle": {
+      "cost": 279.36,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.328
+     },
+     "route_aware_stop": {
+      "cost": 279.36,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0,
+      "recall": 0.328
+     }
+    },
+    "50": {
+     "best_single": {
+      "cost": 49.25,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.1879
+     },
+     "fusion": {
+      "cost": 49.39,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.2072
+     },
+     "generic_active": {
+      "cost": 52.3,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.321,
+      "recall": 0.2074
+     },
+     "oracle": {
+      "cost": 82.69,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.2399
+     },
+     "route_aware_stop": {
+      "cost": 82.69,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0,
+      "recall": 0.2399
+     }
+    }
+   },
+   "corpus": "nfcorpus",
+   "dev": 161,
+   "dev_marginals": {
+    "0": {
+     "bm25_full": 5.60248447204969,
+     "bm25_text": 5.521739130434782,
+     "bm25_title": 3.124223602484472,
+     "tfidf_char": 6.130434782608695,
+     "tfidf_word": 5.6521739130434785
+    },
+    "1": {
+     "bm25_text": 0.07453416149068323,
+     "bm25_title": 0.43478260869565216,
+     "tfidf_char": 1.906832298136646,
+     "tfidf_word": 0.2608695652173913
+    },
+    "2": {
+     "bm25_text": 0.07453416149068323,
+     "tfidf_char": 1.7453416149068324,
+     "tfidf_word": 0.13664596273291926
+    },
+    "3": {
+     "tfidf_char": 1.7267080745341614,
+     "tfidf_word": 0.11180124223602485
+    },
+    "4": {
+     "tfidf_char": 1.6832298136645962
+    }
+   },
+   "dev_recall_at100": {
+    "bm25_full": 0.24698071526408666,
+    "bm25_text": 0.24542943730618338,
+    "bm25_title": 0.18525361226845863,
+    "tfidf_char": 0.2550404354447679,
+    "tfidf_word": 0.2514811382636668
+   },
+   "docs": 3633,
+   "elapsed_s": 22.8,
+   "held": 162,
+   "mean_pairwise_jaccard_at100": 0.4438,
+   "nonempty_titles": 3633,
+   "queries_scored": 323
+  },
+  "scifact": {
+   "best_single_route": "tfidf_word",
+   "by_depth": {
+    "10": {
+     "best_single": {
+      "cost": 10.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.7594
+     },
+     "fusion": {
+      "cost": 10.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.7478
+     },
+     "generic_active": {
+      "cost": 17.6,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.08,
+      "recall": 0.7767
+     },
+     "oracle": {
+      "cost": 23.92,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.8483
+     },
+     "route_aware_stop": {
+      "cost": 10.0,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.1067,
+      "recall": 0.7533
+     }
+    },
+    "100": {
+     "best_single": {
+      "cost": 99.61,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.88
+     },
+     "fusion": {
+      "cost": 100.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.8933
+     },
+     "generic_active": {
+      "cost": 166.57,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.04,
+      "recall": 0.9067
+     },
+     "oracle": {
+      "cost": 221.09,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9467
+     },
+     "route_aware_stop": {
+      "cost": 99.61,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0667,
+      "recall": 0.88
+     }
+    },
+    "20": {
+     "best_single": {
+      "cost": 20.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.8217
+     },
+     "fusion": {
+      "cost": 20.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.8217
+     },
+     "generic_active": {
+      "cost": 35.23,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0867,
+      "recall": 0.8217
+     },
+     "oracle": {
+      "cost": 47.46,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9
+     },
+     "route_aware_stop": {
+      "cost": 20.0,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.1067,
+      "recall": 0.8067
+     }
+    },
+    "200": {
+     "best_single": {
+      "cost": 198.95,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9133
+     },
+     "fusion": {
+      "cost": 200.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9333
+     },
+     "generic_active": {
+      "cost": 310.59,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0533,
+      "recall": 0.92
+     },
+     "oracle": {
+      "cost": 415.94,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9733
+     },
+     "route_aware_stop": {
+      "cost": 198.95,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0733,
+      "recall": 0.9
+     }
+    },
+    "50": {
+     "best_single": {
+      "cost": 49.95,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.8733
+     },
+     "fusion": {
+      "cost": 50.0,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.88
+     },
+     "generic_active": {
+      "cost": 86.16,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0533,
+      "recall": 0.88
+     },
+     "oracle": {
+      "cost": 114.64,
+      "false_complete_applicable": false,
+      "false_complete_rate": null,
+      "recall": 0.9333
+     },
+     "route_aware_stop": {
+      "cost": 49.95,
+      "false_complete_applicable": true,
+      "false_complete_rate": 0.0733,
+      "recall": 0.865
+     }
+    }
+   },
+   "corpus": "scifact",
+   "dev": 150,
+   "dev_marginals": {
+    "0": {
+     "bm25_full": 0.9733333333333334,
+     "bm25_text": 0.9666666666666667,
+     "bm25_title": 0.76,
+     "tfidf_char": 0.98,
+     "tfidf_word": 1.0066666666666666
+    },
+    "1": {
+     "bm25_text": 0.0,
+     "bm25_title": 0.02,
+     "tfidf_char": 0.07333333333333333,
+     "tfidf_word": 0.03333333333333333
+    },
+    "2": {
+     "bm25_text": 0.0,
+     "tfidf_char": 0.05333333333333334,
+     "tfidf_word": 0.02666666666666667
+    },
+    "3": {
+     "tfidf_char": 0.05333333333333334,
+     "tfidf_word": 0.02666666666666667
+    },
+    "4": {
+     "tfidf_char": 0.03333333333333333
+    }
+   },
+   "dev_recall_at100": {
+    "bm25_full": 0.8717777777777777,
+    "bm25_text": 0.8684444444444444,
+    "bm25_title": 0.6695555555555555,
+    "tfidf_char": 0.8813333333333333,
+    "tfidf_word": 0.8964444444444443
+   },
+   "docs": 5183,
+   "elapsed_s": 61.0,
+   "held": 150,
+   "mean_pairwise_jaccard_at100": 0.3771,
+   "nonempty_titles": 5182,
+   "queries_scored": 300
+  }
+ },
+ "depths": [
+  10,
+  20,
+  50,
+  100,
+  200
+ ],
+ "patience": 2,
+ "route_order": [
+  "bm25_full",
+  "bm25_title",
+  "bm25_text",
+  "tfidf_word",
+  "tfidf_char"
+ ],
+ "rrf_k": 60,
+ "schema": "ORION12.BEIR_ROUTE_AWARE_STOPPING.v1",
+ "split_seed": 20260830,
+ "tau": 1.0,
+ "zip_sha256": {
+  "arguana": "cfdf79adce27a401b3cd3ea267903134dbfab2c6afeb95d7fe5724a00bf7557b",
+  "nfcorpus": "efe5be03f8c5b86a5870102d0599d227c8c6e2484328e68c6522560385671b0b",
+  "scifact": "536e14446a0ba56ed1398ab1055f39fe852686ecad24a6306c80c490fa8e0165"
+ }
+}
