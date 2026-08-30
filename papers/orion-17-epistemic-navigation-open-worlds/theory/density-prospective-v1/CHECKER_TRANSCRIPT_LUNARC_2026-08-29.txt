@@ -1,0 +1,77 @@
+# Verbatim LUNARC checker transcript
+# Run 2026-08-29 by the orchestration lane, fresh checkout of wk/p0-evidence-20260829
+# at commit 787b6274, LUNARC venv, Python 3.11.5. Not run on the author's workstation.
+# Authority: IMPLEMENTATION_INDEPENDENT. Same programme, same researcher --
+# NOT external verification, NOT independent-investigator replication.
+# Copied verbatim; not edited, not reformatted.
+
+########## ORION-17 ##########
+{
+ "checks": {
+  "all_five_predictions_correct": true,
+  "exact_containment_never_falsely_retains": true,
+  "tornado_is_small_but_dense": true,
+  "tornado_the_disambiguator_is_correct": true
+ },
+ "correct": "5/5",
+ "negative_controls": {
+  "an_inverted_rule_would_score_worse": true,
+  "both_outcome_classes_occur_in_the_held_out_set": true,
+  "size_rule_would_mispredict_at_least_one": true,
+  "training_domains_are_separated_by_the_same_threshold": true
+ },
+ "rows": {
+  "django": {
+   "actual": "UNSOUND",
+   "donor_false_retention": 63398,
+   "edges_per_module": 3.6821,
+   "exact_false_retention": 0,
+   "modules": 906,
+   "predicted": "UNSOUND"
+  },
+  "networkx": {
+   "actual": "UNSOUND",
+   "donor_false_retention": 91507,
+   "edges_per_module": 2.1355,
+   "exact_false_retention": 0,
+   "modules": 583,
+   "predicted": "UNSOUND"
+  },
+  "requests": {
+   "actual": "SOUND",
+   "donor_false_retention": 0,
+   "edges_per_module": 0.8421,
+   "exact_false_retention": 0,
+   "modules": 19,
+   "predicted": "SOUND"
+  },
+  "sympy": {
+   "actual": "UNSOUND",
+   "donor_false_retention": 344352,
+   "edges_per_module": 8.6986,
+   "exact_false_retention": 0,
+   "modules": 1566,
+   "predicted": "UNSOUND"
+  },
+  "tornado": {
+   "actual": "UNSOUND",
+   "donor_false_retention": 12773,
+   "edges_per_module": 5.5676,
+   "exact_false_retention": 0,
+   "modules": 74,
+   "predicted": "UNSOUND"
+  }
+ },
+ "status": "PASS",
+ "threshold": 1.5
+}
+  ok   all_five_predictions_correct
+  ok   tornado_the_disambiguator_is_correct
+  ok   tornado_is_small_but_dense
+  ok   exact_containment_never_falsely_retains
+  ok   both_outcome_classes_occur_in_the_held_out_set
+  ok   an_inverted_rule_would_score_worse
+  ok   training_domains_are_separated_by_the_same_threshold
+  ok   size_rule_would_mispredict_at_least_one
+EXIT=0
+DONE
