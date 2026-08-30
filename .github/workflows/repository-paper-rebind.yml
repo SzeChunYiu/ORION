@@ -8,6 +8,7 @@ on:
     paths:
       - '.github/workflows/repository-paper-rebind.yml'
       - 'papers/orion-11-recursive-epistemic-reconstruction/**'
+      - 'papers/orion-12-open-world-scientific-discovery/**'
       - 'papers/orion-13-global-knowledge-portrait/**'
       - 'papers/orion-14-verified-scientific-discovery/**'
 
@@ -34,7 +35,7 @@ jobs:
           sudo apt-get install -y -qq --no-install-recommends \
             latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra \
             texlive-pictures texlive-fonts-recommended lmodern poppler-utils librsvg2-bin
-          mkdir -p /tmp/orion-render/{P1,P3,P4}
+          mkdir -p /tmp/orion-render/{P1,P2,P3,P4,P5}
 
       - name: Render P1
         run: |
@@ -55,6 +56,41 @@ jobs:
           ! grep -E 'Overfull \\[hv]box' main.log
           cp main.pdf main.log /tmp/orion-render/P3/
           pdfinfo main.pdf > /tmp/orion-render/P3/pdfinfo.txt
+
+      - name: Render P2
+        run: |
+          set -euo pipefail
+          cd papers/orion-12-open-world-scientific-discovery/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
+          # Overfull boxes are reported, not gated, on this paper's first pass:
+          # its real count has never been measured, so a gate here would be a guess.
+          echo "overfull boxes in P2: $(grep -Ec 'Overfull \\hbox|Overfull \\vbox' main.log || true)"
+          cp main.pdf main.log /tmp/orion-render/P2/
+          pdfinfo main.pdf > /tmp/orion-render/P2/pdfinfo.txt
+
+      - name: Render P5
+        run: |
+          set -euo pipefail
+          cd papers/orion-15-self-orion/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
+          echo "overfull boxes in P5: $(grep -Ec 'Overfull \\hbox|Overfull \\vbox' main.log || true)"
+          cp main.pdf main.log /tmp/orion-render/P5/
+          pdfinfo main.pdf > /tmp/orion-render/P5/pdfinfo.txt
+
+      - name: Assert no placeholder author survives in any rendered PDF
+        run: |
+          set -euo pipefail
+          for P in /tmp/orion-render/P1/main.pdf /tmp/orion-render/P2/main.pdf \
+                   /tmp/orion-render/P3/main.pdf /tmp/orion-render/P5/main.pdf; do
+            [ -f "$P" ] || continue
+            TXT=$(pdftotext -f 1 -l 1 "$P" - 2>/dev/null)
+            # Control: empty extraction must fail, or "no match" proves nothing.
+            [ -n "$(echo "$TXT" | tr -d '[:space:]')" ] || { echo "pdftotext empty for $P"; exit 1; }
+            echo "$TXT" | grep -qi 'Working framework draft' && { echo "placeholder author in $P"; exit 1; }
+            echo "$(dirname "$P"): front matter clean"
+          done
 
       - name: Render P4 through pinned TMLR style
         run: |
@@ -94,7 +130,7 @@ jobs:
           mod = importlib.util.module_from_spec(spec)
           assert spec and spec.loader
           spec.loader.exec_module(mod)
-          for paper_id in ('P1','P3','P4'):
+          for paper_id in ('P1','P2','P3','P4','P5'):
               paper_root = root / mod.PAPER_DIRS[paper_id]
               manifest = mod.load_manifest(paper_root / 'journal_package')
               mod.write_sha256sums(paper_root, mod.hashed_paths(manifest))
@@ -127,12 +163,16 @@ jobs:
             papers/orion-14-verified-scientific-discovery/manuscript/main.pdf \
             papers/orion-11-recursive-epistemic-reconstruction/journal_package/SHA256SUMS \
             papers/orion-13-global-knowledge-portrait/journal_package/SHA256SUMS \
-            papers/orion-14-verified-scientific-discovery/journal_package/SHA256SUMS
+            papers/orion-14-verified-scientific-discovery/journal_package/SHA256SUMS \
+            papers/orion-12-open-world-scientific-discovery/manuscript/main.pdf \
+            papers/orion-15-self-orion/manuscript/main.pdf \
+            papers/orion-12-open-world-scientific-discovery/journal_package/SHA256SUMS \
+            papers/orion-15-self-orion/journal_package/SHA256SUMS
           if git diff --cached --quiet; then
             echo 'Rendered packages already current.'
             exit 0
           fi
-          git commit -m 'chore(papers): render and rebind P1 P3 P4 packages'
+          git commit -m 'chore(papers): render and rebind the five journal packages'
           # Push back to the ref that triggered this run. The previous
           # hardcoded target was a 2026-08-19 repair branch, so every run on any
           # other ref failed non-fast-forward after doing all its real work.
