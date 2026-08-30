@@ -126,4 +126,7 @@ jobs:
             exit 0
           fi
           git commit -m 'chore(papers): render and rebind P1 P3 P4 packages'
-          git push origin HEAD:repair/p2x-claim-literature-integrity-20260819
+          # Push back to the ref that triggered this run. The previous
+          # hardcoded target was a 2026-08-19 repair branch, so every run on any
+          # other ref failed non-fast-forward after doing all its real work.
+          git push origin "HEAD:${GITHUB_REF_NAME}"
