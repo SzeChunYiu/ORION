@@ -17,6 +17,11 @@
 
 \begin{document}
 \maketitle
+\begingroup
+\renewcommand\thefootnote{}
+\footnotetext{General-purpose language-model tools, including OpenAI ChatGPT, were used for literature triage, code and manuscript auditing, organization, and language refinement. All scientific claims, citations, analyses, and final text were reviewed against the underlying evidence by the human author, who retains full responsibility. The language-model tools are not authors and are not treated as scientific authority or independent verification.}
+\addtocounter{footnote}{-1}
+\endgroup
 
 \begin{abstract}
 $abstract$
@@ -26,11 +31,12 @@ $body$
 
 \section*{Data and Code Availability}
 The valid benchmark units, contaminated-slot dispositions, pre-outcome instrument receipts,
-deferred scores, scientific-result bindings and replay receipts are committed in the source
-repository. The independently generated QG19 and QG20 scientific results are bound by exact
-hashes and were reproduced by byte-identical double runs. The source repository is publicly
-inspectable. A permanent archival identifier and explicit reuse licence will be inserted only
-after an authorized release is actually deposited. This case series uses no private human dataset.
+deferred scores, scientific-result bindings and replay receipts are included in the anonymous
+supplementary research package supplied for review. The independently generated QG19 and QG20
+scientific results are bound by exact hashes and were reproduced by byte-identical double runs.
+Repository identity and permanent public-release metadata are withheld from the review version
+to preserve double-blind evaluation and will be restored in the named archival version. This
+case series uses no private human dataset.
 
 \bibliographystyle{tmlr}
 \bibliography{references}

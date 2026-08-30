@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'papers/orion-07-dual-instrument/**'
+      - 'papers/arxiv_preprint/**'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
       - 'papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib'
@@ -17,6 +18,7 @@ on:
       - 'codex/q-qg-nature-skills-publication-closure-20260821'
     paths:
       - 'papers/orion-07-dual-instrument/**'
+      - 'papers/arxiv_preprint/**'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
       - 'papers/Q2_Q3_VERIFIED_BENCHMARK_REFERENCES_V1.bib'
@@ -56,17 +58,22 @@ jobs:
           python papers/check_q_qg_science_manifests.py
       - name: Generate cited masters
         run: python papers/build_q_qg_cited_masters.py --clean
-      - name: Prepare Q3 TMLR Markdown and source directory
+      - name: Prepare Q3 TMLR and arXiv sources
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p build/q3_tmlr/source build/q3_tmlr/rendered
+          mkdir -p build/q3_arxiv/source build/q3_arxiv/rendered
           python papers/orion-07-dual-instrument/submission_tmlr/build_tmlr_source.py \
             --cited-master build/q_qg_cited/Q3/MANUSCRIPT_CITED.md \
             --out build/q3_tmlr/q3_tmlr.md
+          cp build/q3_tmlr/q3_tmlr.md build/q3_arxiv/q3_arxiv.md
           cp build/q_qg_cited/Q3/references.bib build/q3_tmlr/source/references.bib
+          cp build/q_qg_cited/Q3/references.bib build/q3_arxiv/source/references.bib
           cp papers/orion-07-dual-instrument/submission_tmlr/tmlr_pandoc_template.tex \
             build/q3_tmlr/source/pandoc_template.tex
+          cp papers/arxiv_preprint/wave1_pandoc_template.tex \
+            build/q3_arxiv/source/pandoc_template.tex
       - name: Fetch exact official TMLR style files
         shell: bash
         working-directory: build/q3_tmlr/source
@@ -79,82 +86,86 @@ jobs:
           test -s tmlr.sty && test -s tmlr.bst && test -s fancyhdr.sty
           sha256sum tmlr.sty tmlr.bst fancyhdr.sty > style_sha256.txt
           printf '%s\n' "${TMLR_STYLE_COMMIT}" > style_commit.txt
-      - name: Generate anonymous TMLR LaTeX from cited Q3 master
+      - name: Generate anonymous TMLR and named arXiv LaTeX
         shell: bash
         run: |
           set -euo pipefail
           pandoc build/q3_tmlr/q3_tmlr.md \
-            --from=markdown+citations \
-            --to=latex \
-            --natbib \
+            --from=markdown+citations --to=latex --natbib \
             --template=build/q3_tmlr/source/pandoc_template.tex \
             -o build/q3_tmlr/source/main.tex
+          pandoc build/q3_arxiv/q3_arxiv.md \
+            --from=markdown+citations --to=latex --natbib \
+            --template=build/q3_arxiv/source/pandoc_template.tex \
+            -o build/q3_arxiv/source/main.tex
           grep -Fq '\usepackage{tmlr}' build/q3_tmlr/source/main.tex
           grep -Fq '\author{Anonymous Authors}' build/q3_tmlr/source/main.tex
-          grep -Eq '\\cite[pt]?\{' build/q3_tmlr/source/main.tex
+          grep -Fq '\author{Sze Chun Yiu' build/q3_arxiv/source/main.tex
+          ! grep -Fq 'Stockholm University' build/q3_arxiv/source/main.tex
+          grep -Fq 'sze-chun.yiu@fysik.su.se' build/q3_arxiv/source/main.tex
           grep -Fq '39,489' build/q3_tmlr/source/main.tex
-          if grep -Eiq 'Sze[[:space:]-]*Chun|SzeChunYiu|Billy[[:space:]]+Yiu' \
+          grep -Fq '39,489' build/q3_arxiv/source/main.tex
+          if grep -Eiq 'Sze[[:space:]-]*Chun|SzeChunYiu|sze-chun.yiu@fysik.su.se' \
               build/q3_tmlr/source/main.tex build/q3_tmlr/source/references.bib; then
             echo 'Q3_TMLR_SOURCE_ANONYMITY=FAIL'
             exit 1
           fi
-          echo 'Q3_TMLR_SOURCE_ANONYMITY=PASS'
-      - name: Build exact TMLR review PDF
-        shell: bash
-        working-directory: build/q3_tmlr/source
-        run: |
-          set -euo pipefail
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
-          bibtex main
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
-          test -s main.pdf
-      - name: Audit anonymity, references, decisive result and page rendering
+      - name: Build TMLR and arXiv PDFs
         shell: bash
         run: |
           set -euo pipefail
-          pdfinfo build/q3_tmlr/source/main.pdf > build/q3_tmlr/pdfinfo.txt
-          pdffonts build/q3_tmlr/source/main.pdf > build/q3_tmlr/pdffonts.txt
-          pdftotext build/q3_tmlr/source/main.pdf build/q3_tmlr/pdf.txt
-          if grep -Eiq 'Sze[[:space:]-]*Chun|SzeChunYiu|Billy[[:space:]]+Yiu' \
+          for d in build/q3_tmlr/source build/q3_arxiv/source; do
+            pushd "$d"
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            bibtex main
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            test -s main.pdf
+            popd
+          done
+      - name: Audit anonymity, named preprint, references and rendering
+        shell: bash
+        run: |
+          set -euo pipefail
+          for root in build/q3_tmlr build/q3_arxiv; do
+            pdfinfo "$root/source/main.pdf" > "$root/pdfinfo.txt"
+            pdffonts "$root/source/main.pdf" > "$root/pdffonts.txt"
+            pdftotext "$root/source/main.pdf" "$root/pdf.txt"
+            grep -Fq 'References' "$root/pdf.txt"
+            grep -Fq '39,489' "$root/pdf.txt"
+            if grep -Eq '\[@[A-Za-z0-9_:-]+' "$root/pdf.txt"; then
+              echo "Q3_UNRESOLVED_CITATION_TOKEN=FAIL $root"
+              exit 1
+            fi
+            pdftoppm -png -r 144 "$root/source/main.pdf" "$root/rendered/page"
+            sha256sum "$root/source/main.pdf" > "$root/pdf_sha256.txt"
+          done
+          if grep -Eiq 'Sze[[:space:]-]*Chun|SzeChunYiu|sze-chun.yiu@fysik.su.se' \
               build/q3_tmlr/pdf.txt build/q3_tmlr/pdfinfo.txt; then
             echo 'Q3_TMLR_PDF_ANONYMITY=FAIL'
             exit 1
           fi
           grep -Fq 'Anonymous' build/q3_tmlr/pdf.txt
-          grep -Fq 'References' build/q3_tmlr/pdf.txt
-          grep -Fq '39,489' build/q3_tmlr/pdf.txt
+          grep -Fq 'Sze Chun Yiu' build/q3_arxiv/pdf.txt
+          ! grep -Fq 'Stockholm University' build/q3_arxiv/pdf.txt
+          grep -Fq 'AI assistance disclosure' build/q3_arxiv/pdf.txt
           grep -Fq 'ORION-03-R2' build/q3_tmlr/pdf.txt
-          if grep -Eq '\[@[A-Za-z0-9_:-]+' build/q3_tmlr/pdf.txt; then
-            echo 'Q3_TMLR_UNRESOLVED_CITATION_TOKEN=FAIL'
-            exit 1
-          fi
-          pdftoppm -png -r 144 build/q3_tmlr/source/main.pdf build/q3_tmlr/rendered/page
-          pages="$(find build/q3_tmlr/rendered -name 'page-*.png' | wc -l)"
-          test "${pages}" -gt 0
-          sha256sum build/q3_tmlr/source/main.pdf > build/q3_tmlr/pdf_sha256.txt
-          printf 'Q3_TMLR_PDF_ANONYMITY=PASS\nQ3_TMLR_RENDERED_PAGES=%s\n' "${pages}"
-      - name: Build source archive
+          printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' > build/q3_arxiv/ARXIV_LICENSE.txt
+          printf '%s\n' 'cs.AI' > build/q3_arxiv/ARXIV_PRIMARY_CATEGORY.txt
+      - name: Build source archives
         shell: bash
-        working-directory: build/q3_tmlr
         run: |
           set -euo pipefail
-          cp q3_tmlr.md source/SCIENTIFIC_MASTER_CITED.md
-          zip -qr q3-tmlr-review-source.zip source
-          sha256sum q3-tmlr-review-source.zip > source_zip_sha256.txt
-      - name: Archive Q3 TMLR review package
+          cp build/q3_tmlr/q3_tmlr.md build/q3_tmlr/source/SCIENTIFIC_MASTER_CITED.md
+          cp build/q3_arxiv/q3_arxiv.md build/q3_arxiv/source/SCIENTIFIC_MASTER_CITED.md
+          (cd build/q3_tmlr && zip -qr q3-tmlr-review-source.zip source && sha256sum q3-tmlr-review-source.zip > source_zip_sha256.txt)
+          (cd build/q3_arxiv && zip -qr orion-07-arxiv-source.zip source && sha256sum orion-07-arxiv-source.zip > source_zip_sha256.txt)
+      - name: Archive Q3 TMLR and arXiv packages
         uses: actions/upload-artifact@v4
         with:
-          name: q3-tmlr-review-package
+          name: orion-07-tmlr-and-arxiv-packages
           path: |
-            build/q3_tmlr/source/main.pdf
-            build/q3_tmlr/q3-tmlr-review-source.zip
-            build/q3_tmlr/pdfinfo.txt
-            build/q3_tmlr/pdffonts.txt
-            build/q3_tmlr/pdf_sha256.txt
-            build/q3_tmlr/source_zip_sha256.txt
-            build/q3_tmlr/source/style_sha256.txt
-            build/q3_tmlr/source/style_commit.txt
-            build/q3_tmlr/rendered
+            build/q3_tmlr
+            build/q3_arxiv
           if-no-files-found: error
           retention-days: 30

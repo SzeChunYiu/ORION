@@ -1,6 +1,6 @@
 {
   "schema": "ORIONQ.PublicationCitationInsertionMap.v1",
-  "date": "2026-08-22",
+  "date": "2026-08-29",
   "authority": "PUBLICATION_CITATION_PLACEMENT_ONLY__NO_SCIENTIFIC_PROMOTION",
   "bibliographies": [
     "papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib",
@@ -38,13 +38,18 @@
       ]
     },
     "Q4": {
-      "source": "papers/orion-08-typed-state/MANUSCRIPT_V3.md",
+      "source": "papers/orion-08-typed-state/MANUSCRIPT_PUBLICATION_2026-08-29.md",
       "output": "papers/orion-08-typed-state/submission_master/MANUSCRIPT_CITED.md",
       "insertions": [
-        {"needle": "Value-of-information methods", "citation": "[@russell1991rightthing]", "occurrence": 1},
-        {"needle": "Database and workflow provenance", "citation": "[@buneman2001provenance; @cheney2009provenance]", "occurrence": 1},
-        {"needle": "STALE", "citation": "[@chao2026stale]", "occurrence": 1},
-        {"needle": "ContextNest", "citation": "[@sulpovar2026contextnest]", "occurrence": 1}
+        {"needle": "Value-of-information methods ask", "citation": "[@russell1991rightthing]", "occurrence": 1},
+        {"needle": "Database and workflow provenance records", "citation": "[@buneman2001provenance; @cheney2009provenance]", "occurrence": 1},
+        {"needle": "**STALE** studies", "citation": "[@chao2026stale]", "occurrence": 1},
+        {"needle": "**ContextNest** treats", "citation": "[@sulpovar2026contextnest]", "occurrence": 1},
+        {"needle": "**MAP-Graph** represents", "citation": "[@wang2026mapgraph]", "occurrence": 1},
+        {"needle": "**Provenance-sensitivity auditing** directly", "citation": "[@liao2026provenance]", "occurrence": 1},
+        {"needle": "**Governance decay** and", "citation": "[@chen2026governancedecay]", "occurrence": 1},
+        {"needle": "**omission-vs-commission constraint decay** show", "citation": "[@gamage2026omission]", "occurrence": 1},
+        {"needle": "**Nakayashiki's budgeted verification study of inherited stale constraints**", "citation": "[@nakayashiki2026staleconstraints]", "occurrence": 1}
       ]
     },
     "QG1": {

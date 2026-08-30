@@ -17,6 +17,11 @@
 
 \begin{document}
 \maketitle
+\begingroup
+\renewcommand\thefootnote{}
+\footnotetext{General-purpose language-model tools, including OpenAI ChatGPT, were used for literature triage, code and manuscript auditing, organization, and language refinement. All scientific claims, citations, analyses, and final text were reviewed against the underlying evidence by the human author, who retains full responsibility. The language-model tools are not authors and are not treated as scientific authority or independent verification.}
+\addtocounter{footnote}{-1}
+\endgroup
 
 \begin{abstract}
 $abstract$
@@ -26,11 +31,12 @@ $body$
 
 \section*{Data and Code Availability}
 All primary study worlds in this manuscript are synthetic and generated deterministically
-from frozen protocols and repository code. Result receipts for the six primary studies and
-two donor/negative controls are bound to the publication evidence cut. The source repository
-is publicly inspectable. A permanent archival identifier and explicit reuse licence will be
-inserted in the final submission only after the corresponding release is actually deposited
-and authorized; no protected or private human dataset is used in this study.
+from frozen protocols and code. The anonymous review package supplies the result receipts for
+the six primary studies and two donor/negative controls together with the code required to
+replay the bound computations. Repository identity and permanent public-release metadata are
+withheld from the review version to preserve double-blind evaluation and will be restored in
+the named archival version after the corresponding release is deposited and authorized. No
+protected or private human dataset is used in this study.
 
 \bibliographystyle{tmlr}
 \bibliography{references}

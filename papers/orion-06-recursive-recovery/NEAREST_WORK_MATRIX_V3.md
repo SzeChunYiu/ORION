@@ -1,8 +1,8 @@
-# ORION-02 nearest-work matrix — V3
+# ORION-06 nearest-work matrix — V3
 
 **Purpose:** distinguish the recovery contract from already-established infrastructure and neighboring research practices. This is a positioning artifact, not a priority certificate.
 
-| Neighboring idea | What it already contributes | ORION-02 does not claim | Residual ORION-02 object |
+| Neighboring idea | What it already contributes | ORION-06 does not claim | Residual ORION-06 object |
 |---|---|---|---|
 | provenance / experiment tracking / versioned workflows | records what was run, with data/code/lineage needed for audit or replay | invention of provenance, receipts, experiment logging or reproducibility | typed **post-terminal research transitions** that preserve the old terminal while registering a new question |
 | preregistration / Registered Reports | freezes hypotheses/analysis before seeing outcomes and limits outcome-dependent rewriting | invention of preregistration | repeated freezing at the granularity of successor research episodes after an earlier terminal has already been earned |
@@ -14,6 +14,6 @@
 
 ## Strongest bounded contribution statement
 
-> ORION-02 defines and documents a research-control protocol in which adverse/absorbed scientific terminals are immutable state, successor questions are frozen separately, strong known donors can terminate novelty directions, and saturation/lower-bound states can stop a search class without claiming the broader field is solved.
+> ORION-06 defines and documents a research-control protocol in which adverse/absorbed scientific terminals are immutable state, successor questions are frozen separately, strong known donors can terminate novelty directions, and saturation/lower-bound states can stop a search class without claiming the broader field is solved.
 
 The current evidence is one complete programme. It demonstrates that the contract is executable and auditable; it does not establish causal productivity superiority over alternative research workflows.

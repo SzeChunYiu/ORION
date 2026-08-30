@@ -1,0 +1,87 @@
+# ORION-01–25 current-head top-tier readiness audit
+
+**Assessed repository head:** `645ed920b65877af05f9cd9321b4de5af6171bb4`  
+**Assessment date:** 2026-08-29  
+**Scientific-authority delta:** `NONE`  
+**Purpose:** publication triage and manuscript-gap closure. This file does not promote a claim, overwrite a frozen protocol, convert `CANNOT_CHECK` into success, or treat same-programme review as external authority.
+
+## Review board
+
+Four adversarial lenses are applied to every paper:
+
+1. **Formal methods/theory:** quantifiers, assumptions, counterexamples, theorem/checker independence.
+2. **Empirical design/statistics:** unit of inference, matched controls, prospectivity, uncertainty, multiplicity and power.
+3. **Systems/reproducibility:** immutable inputs, replay, native verification, content/render binding, fail-closed terminals.
+4. **Editorial novelty/venue fit:** one clear question, defensible novelty, claim ceiling, limitations, related-work subtraction and reviewer-objection preemption.
+
+## Readiness vocabulary
+
+**Bounded-paper readiness** asks whether the strongest claim already supported by the repository can be submitted without inventing new evidence.
+
+- `B0_PACKAGE_ONLY`: science is sufficient for the bounded claim; remaining work is manuscript/package/literature/render closure.
+- `B1_EXISTING_EVIDENCE_INTEGRATION`: no new outcome is required, but current evidence/theory/adverse findings still need integration or independent audit.
+- `B2_NEW_EVIDENCE_REQUIRED`: even the intended submission claim requires a new outcome, external authority, or unresolved scientific gate.
+- `B3_NEW_QUESTION_REQUIRED`: the old promotion claim is spent, refuted, contaminated, or no longer the right scientific question.
+
+**Top-tier upgrade readiness** asks what is needed to support the broader/highest-impact interpretation.
+
+- `T0_REVIEWABLE_BOUNDED`: a top-tier review attempt is scientifically defensible now if the bounded claim is kept narrow and package work closes.
+- `T1_ONE_INTERNAL_CLOSURE`: one substantial proof/reanalysis/integration gate remains, but no fresh external outcome is intrinsically required.
+- `T2_PROSPECTIVE_OR_EXTERNAL`: the stronger claim needs new prospective data, native external gold, or genuinely independent adjudication.
+- `T3_PROMOTION_ROUTE_STOPPED`: the current upgrade route is terminally adverse/spent; a new frozen question is required.
+
+These labels are readiness states, **not acceptance probabilities**.
+
+## Portfolio verdict
+
+The portfolio is not “25 top-tier-ready papers.” It is a much stronger state than that phrase usually hides: most papers already have explicit claim ceilings, negative-result preservation, frozen gates, independent checkers and reproducibility artifacts. The dominant remaining risk is not weak prose; it is **claim/evidence mismatch**—especially external validity, prospective authority, comparator adequacy and stale journal packages.
+
+The best immediate filing candidates are ORION-06, ORION-08, ORION-10, ORION-14 and ORION-16. ORION-03, 05, 12, 13, 19, 21, 24 and 25 are close behind if framed as bounded specialist/formal/method papers rather than as broad empirical superiority claims. ORION-04 and ORION-18 remain structurally authority-blocked. ORION-09, 17 and 20 require particular care because a former promotion route is now adverse, non-discriminating or failed.
+
+## All 25 papers
+
+| Paper | Strongest defensible current claim | Bounded readiness | Top-tier upgrade | Highest-value gap we can close from current bytes | Irreducible / new-evidence gap |
+|---|---|---|---|---|---|
+| **ORION-01** | Bounded certificate/registry realization plus observable non-identifiability and confluence boundaries. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T1_ONE_INTERNAL_CLOSURE` | Integrate the new move census, hostile hidden-operation witnesses, confluence result, V3 proof repairs and primary-source subtraction into one claim surface; finish split A/B package coherence. | Production/source-complete realization still needs a source-complete semantics and proof; live PyZX checks remain environment-dependent. |
+| **ORION-02** | Proven finite-fibre theorem with counted adverse R23/R24 transfer evidence. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T2_PROSPECTIVE_OR_EXTERNAL` | Center the paper on the independently audited theorem and turn R23/R24 into an explicit falsification boundary rather than a failed rescue narrative. | Heterogeneous prospective OpenML transfer with per-task valid-bound emission is new evidence. |
+| **ORION-03** | Exact typed-merge/retraction calculus with current-main bounded revalidation. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T2_PROSPECTIVE_OR_EXTERNAL` | Rebind the external trust-store result to the final manuscript, sharpen the analytic-vs-empirical distinction and present native-verifier falsification as the key contribution. | Broad transfer needs at least two independently governed native trust/provenance ecosystems. |
+| **ORION-04** | Bounded obstruction/proof obligations around the exact rooted-completion theorem handoff. | `B2_NEW_EVIDENCE_REQUIRED` | `T2_PROSPECTIVE_OR_EXTERNAL` | Make the human-readable proof decomposition, dual-encoding equivalence obligations, mutation controls and resource/receipt boundary explicit without upgrading authority. | The exact handoff requires authorized independent proof/census authority; internal agents cannot manufacture that externality. |
+| **ORION-05** | Exact support-two/local obstruction theorem; global-basis evidence remains fail-closed. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T1_ONE_INTERNAL_CLOSURE` for bounded formal paper; `T2` for practical transfer | Repair package-path accounting, integrate the claim-preserving recovery theorem/Stage-1 authority semantics, and keep partial scans explicitly non-authoritative. | A global obstruction basis and compiler/search consequence require completed governed compute and, for broad transfer, external compiler-facing cases. |
+| **ORION-06** | Replayable claim-preserving negative-recovery method and bounded recovery theorem. | `B0_PACKAGE_ONLY` | `T0_REVIEWABLE_BOUNDED` | Final claim-to-receipt index, submission-date donor/literature refresh, compile/archive closure and concise statement that 4/4 replay is reproducibility—not general effectiveness. | General effectiveness needs an objective-verifier three-domain benchmark. |
+| **ORION-07** | Bounded three-question dual-instrument case series plus agreement non-identifiability theorem. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T2_PROSPECTIVE_OR_EXTERNAL` | Integrate QG19/QG20, prominently retain QG20’s agreement-with-wrong-diagnosis outcome, and make the no-population-reliability boundary impossible to miss. | Reliability/generalization needs a larger prospective multi-domain registry with independent outcomes. |
+| **ORION-08** | Exact binding-sufficiency mechanism taxonomy with reproduced 3/3 receipts and updated 2026 literature positioning. | `B0_PACKAGE_ONLY` | `T0_REVIEWABLE_BOUNDED` | Refresh the render, carry the new nearest-parent mapping into abstract/related work, and distinguish exact fibre theory from the parent’s empirical stale-memory result. | Real-system value/no-value transfer across fresh decision families remains untested. |
+| **ORION-09** | Exact family-specific geometry plus a negative transfer result: the tested size invariant adds nothing. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T3_PROMOTION_ROUTE_STOPPED` | Make `T3_INVARIANT_ADDS_NOTHING` the organizing scientific result, integrate the independent replay and remove any residual language that implies universal transfer. | A broader claim needs a genuinely new frozen scientific question; no second same-lane invariant rescue is admissible. |
+| **ORION-10** | Exact cost/certificate theorem plus the all-cardinality result that universal exact explanation requires the discrete partition. | `B0_PACKAGE_ONLY` | `T0_REVIEWABLE_BOUNDED` | Reframe the paper around the separation between exact prediction and explanatory compression; serialize the current `CANNOT_CHECK` scoped-fibre limitation clearly. | The real B′ scoped claim cannot be settled from the selected 64 witnesses; the missing all-740 emissions or a new mechanism study are required. |
+| **ORION-11** | Corrected bounded mechanical result, preserved comparative retraction, and a measured corpus-leakage diagnosis/repair candidate. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T3_PROMOTION_ROUTE_STOPPED` for the old superiority claim | Rebuild the stale package; resolve rubric identity naming without changing rubric content; integrate the leakage revival and explain why ablations discriminate while the old comparative mechanism claim remains retracted. | A renewed comparative superiority claim requires new external tasks/models and a new frozen identity. |
+| **ORION-12** | Bounded open-world retrieval/governance method with explicit failed TREC-COVID superiority gate and route-exclusive frontier theory. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T1_ONE_INTERNAL_CLOSURE` for bounded methods paper; `T2` for superiority | Rebuild the superseded package, align all baseline action/terminal interfaces in the narrative, and elevate the failed superiority gate as a design lesson rather than burying it. | A superiority claim needs fresh BEIR tasks with matched terminal/action support and budgets. |
+| **ORION-13** | Polarity-sensitive obstruction detection on structured projections; broad ten-coordinate necessity is not supported. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T1_ONE_INTERNAL_CLOSURE` for scoped paper; `T2` for semantic generality | Rebuild the 20pp→current manuscript package, surface the constant always-merge comparator and `NOT_COMPUTED_BY_PROTOCOL`, and use the bench23 anti-confounding scout only as successor design evidence. | Broader coordinate/semantic utility needs an anti-confounded external corpus with discriminating matched-polarity cases. |
+| **ORION-14** | Strong bounded protected-authority result, now with cluster-respecting reanalysis and explicit H3 null. | `B0_PACKAGE_ONLY` | `T0_REVIEWABLE_BOUNDED` | Rebuild/render-audit the package; replace case-level precision language with family-level uncertainty where appropriate; keep absent 400-row reduct as `CANNOT_CHECK`. | External naturalistic multi-domain authority is optional new evidence, not required for the bounded paper. |
+| **ORION-15** | Formal/software governance result, including anytime-safe revision spending; protected empirical self-improvement remains unexecuted. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T1_ONE_INTERNAL_CLOSURE` for formal paper; `T2` for empirical self-improvement | Make the anytime-safety theorem and fail-closed non-computation the center; rebuild stale render and retain all empty justified tables as evidence boundaries. | General governed self-improvement requires the protected longitudinal campaign and external evaluator/model custody. |
+| **ORION-16** | Bounded certificate-lifting/graph-quality theorem with mechanized/exhaustive support and repaired binding semantics. | `B0_PACKAGE_ONLY` | `T0_REVIEWABLE_BOUNDED` | Record a clean immutable CI head, harden fail-closed unresolved-pin behavior, and explicitly separate dependency over-approximation from semantic dependency. | Production consequence needs authoritative Bazel/Cargo/test graphs and independent semantic-dependency gold; active lane must not be duplicated. |
+| **ORION-17** | Bounded closure-carrying result on registered finite regime-change classes; the 20-repo density disagreement successor returned `NO_DISCRIMINATION`. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T3_PROMOTION_ROUTE_STOPPED` for the density route | Rewrite the paper so the external-cohort result and src-layout degeneracy are first-class adverse evidence; formally separate the valid pairwise result from the failed density discriminator. | Any broad navigation law needs a new mechanism-identifiable, organization-disjoint successor; the old prospective density route cannot be relabelled or rerun as fresh. |
+| **ORION-18** | Bounded non-laundering/discharge theory and common-mode non-identifiability. | `B2_NEW_EVIDENCE_REQUIRED` for broad empirical authority; bounded theory can still be packaged | `T2_PROSPECTIVE_OR_EXTERNAL` | Tighten the manuscript around the theorem that valid discharge does not identify external truth and distinguish multiplicity from heterogeneous mechanisms. | Independent human/institutional adjudication and conflict rules are structurally external; same-programme agents cannot close them. |
+| **ORION-19** | Current bounded five-task causal-diagnostic learning result; task family is the inference unit. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T1_ONE_INTERNAL_CLOSURE` for bounded diagnostic paper; `T2` for transfer | Regrade all language at the five-family level, retain small-`n` uncertainty, integrate current manuscript/PDF and custody evidence, and stop counting internal rows/draws as transfer units. | Broad learning/transport requires externally sourced blinded failure episodes with matched diagnostic information and objective comparators. |
+| **ORION-20** | Negative theorem about primitive minimality: multiple singleton minima defeat indispensability. | `B1_EXISTING_EVIDENCE_INTEGRATION` for a negative/formal paper | `T3_PROMOTION_ROUTE_STOPPED` | Turn the failed minimality promotion into a clean impossibility/negative result, remove rescue language and finish the bounded formal package. | “Outside-closure discovery” requires a new operational question, frozen donor set and new domains; no old-claim compute should be spent. |
+| **ORION-21** | Scoped placement/state boundary plus a general tie-equivalence impossibility theorem and retained moderate-band uncertainty. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T1_ONE_INTERNAL_CLOSURE` | Integrate the general-p impossibility theorem, checker hardening, tie ambiguity and ten-responsibility negative into one coherent theorem/falsification story. | External-system magnitude and moderate-capability behavior need new untouched systems/families and a predeclared precision target. |
+| **ORION-22** | Exact unchanged-policy zero-regret law on nine frozen SAT/path/knapsack cases with independent replay. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T2_PROSPECTIVE_OR_EXTERNAL` | Present nine-case exactness separately from exchangeable-case uncertainty, and make broken price/distribution-shift robustness part of the result rather than a footnote. | Top-tier broadening needs robustness plus one untouched transfer family selected before outcomes. |
+| **ORION-23** | Exact responsibility-carrying transport law; controlled P13B is supportable while P13A self-scored safety is not. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T2_PROSPECTIVE_OR_EXTERNAL` | Split P13A/P13B authority visibly in abstract/results, preserve `UNKNOWN` as a third outcome, and integrate the 750-case exact law without implying deployed safety. | Organization-disjoint objective-gold lifecycle evidence is required for broader safety/reuse claims. |
+| **ORION-24** | Strong same-programme specification-conformance result after replacing a degenerate comparator with principled nulls and group-deletion checks. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T2_PROSPECTIVE_OR_EXTERNAL` | Replace all residual “beats SYSTEMA” framing with the harder null-comparator evidence; integrate SYSTEMB 56/67, group robustness and the fact SYSTEMA behaves like a null. | Blinded independent R2 adjudication and truly prospective R3 longitudinal negative-history evidence remain external. |
+| **ORION-25** | Exact bounded cryptographic trust-domain/integrity law and explicit separation of integrity from scientific authority. | `B1_EXISTING_EVIDENCE_INTEGRATION` | `T2_PROSPECTIVE_OR_EXTERNAL` | Reframe around the separation theorem and threat boundary; carry the 1000-cell exact result while stating that signatures do not establish custody, truth or scientific authority. | The frontier law needs at least two real systems with structurally different, genuinely independent governance/trust domains. |
+
+## What can be filled without new science
+
+Across the portfolio, a large amount of top-tier-readiness work is **safe to do now**:
+
+- make adverse/null findings load-bearing rather than apologetic;
+- align abstracts/conclusions with the current claim ledgers and stop rules;
+- replace row-level pseudo-replication with the actual transfer/inference unit;
+- expose comparator degeneracy and terminal/action mismatch;
+- rebuild stale journal packages and claim-to-PDF audits;
+- close reproducibility gaps with independent replay and fail-closed binding;
+- update related work against current nearest parents and explicitly subtract generic shared theorem spines;
+- add reviewer-preemption paragraphs for external validity, authority, selected-sample conditioning, and unavailable artifacts;
+- ensure every bounded paper states the strongest **supported** result and the decisive next experiment without implying that experiment has happened.
+
+## What cannot be filled by writing
+
+The following are scientific-authority gaps and must remain open until genuinely earned: independent institutional adjudication (especially ORION-04/18/24), fresh prospective multi-domain transfer (02/03/06/07/08/12/16/19/22/23/25), protected empirical execution (15), and any attempt to revive a promotion route whose frozen terminal is already adverse or spent (09/17/20 and the old comparative route in 11).

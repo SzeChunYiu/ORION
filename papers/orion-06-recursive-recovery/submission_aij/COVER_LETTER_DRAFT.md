@@ -1,6 +1,4 @@
-# Cover Letter Draft — Artificial Intelligence
-
-**AUTHOR INPUT REQUIRED BEFORE SUBMISSION:** corresponding author name, affiliation, postal address, email, manuscript author list, conflicts/funding declarations, and any journal-specific mandatory statements.
+# Cover Letter — Artificial Intelligence
 
 Dear Editors of *Artificial Intelligence*,
 
@@ -12,12 +10,14 @@ The manuscript deliberately makes no productivity or autonomous-research-quality
 
 We position the work relative to current scientific-agent evaluation and verification rather than claiming those areas as new. ScienceAgentBench, AstaBench, and SciAgentArena receive credit for rigorous scientific-agent benchmarking, while ScientistOne receives credit for broad Chain-of-Evidence and research-integrity auditing. The residual studied here is the authorized transition **after** an evidence-bound scientific disposition has been reached.
 
-We believe the paper may be relevant to *Artificial Intelligence* readers interested in autonomous and semi-autonomous research systems, reasoning under persistent state, scientific agents, and auditable decision processes. The manuscript is fully reproducible at its declared publication cut; no protected subject is opened by the publication workflow; and the publication branch does not modify the underlying scientific receipts or protocols.
+We believe the paper may be relevant to *Artificial Intelligence* readers interested in autonomous and semi-autonomous research systems, reasoning under persistent state, scientific agents, and auditable decision processes. The manuscript is reproducible at its declared publication cut; no protected subject is opened by the publication workflow; and the publication branch does not rewrite the underlying scientific receipts or protocols.
 
-The work has not been submitted elsewhere. **[AUTHOR TO CONFIRM BEFORE SUBMISSION.]**
+The intended publication sequence is arXiv first, followed by submission to one journal at a time. The author will make the journal's originality and non-concurrent-submission attestations in the submission system at the time of filing.
 
 Thank you for considering the manuscript.
 
 Sincerely,
 
-**[CORRESPONDING AUTHOR INPUT REQUIRED]**
+**Sze Chun Yiu**  
+Stockholm University, Stockholm, Sweden  
+sze-chun.yiu@fysik.su.se

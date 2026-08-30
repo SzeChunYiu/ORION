@@ -2,8 +2,8 @@
 """Build and verify the current IP&M review package.
 
 The editable source and review-material archives are deliberately reader-facing
-objects.  They are prepared with generic scientific names and are scanned here
-before the private byte-binding manifest is refreshed.  Earlier archives made
+objects. They are prepared with generic scientific names and are scanned here
+before the private byte-binding manifest is refreshed. Earlier archives made
 directly from repository paths are private audit evidence and must never be
 reintroduced by this builder.
 """
@@ -185,8 +185,8 @@ def build() -> dict[str, object]:
     artifacts = [entry(p, OUT) for p in objects]
     manifest = {
         "schema": "orion12.ipm.wave1.private-byte-binding.v2",
-        "distribution": "private audit evidence; do not upload",
-        "date": "2026-08-28",
+        "distribution": "private audit evidence; reader-facing uploads are named separately below",
+        "date": "2026-08-29",
         "paper_id": "ORION-12",
         "title": "Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery",
         "primary_target": "Information Processing & Management",
@@ -204,25 +204,31 @@ def build() -> dict[str, object]:
             "manuscript.pdf",
             "source.zip",
             "review_materials.zip",
+            "TITLE_PAGE.md",
             "COVER_LETTER.md",
+            "AI_ASSISTANCE_DECLARATION.md",
+            "CREDIT_TEMPLATE.md",
         ],
         "pdf_source_closure": closure,
         "source_zip_members": source_members,
         "review_zip_members": review_members,
         "human_only_fields_open": [
-            "affiliation and full postal address",
-            "phone",
-            "ORCID disposition",
-            "funding",
-            "conflicts",
-            "acknowledgements",
-            "CRediT roles",
-            "final AI-declaration approval",
-            "submission-system metadata and submission ID",
+            "department/unit, street/postal address or phone only if the submission portal mandates them",
+            "ORCID if later supplied",
+            "submission-system classifications, suggested reviewers and submission ID",
+            "originality/non-concurrent-submission checkbox re-confirmed at filing",
+            "future permanent archive URL/DOI if deposited later",
         ],
         "author_fields_supplied": {
-            "name": "Sze Chun Yiu",
+            "name": "SzeChunYiu",
+            "affiliation": "Stockholm University, Stockholm, Sweden",
             "email": "sze-chun.yiu@fysik.su.se",
+            "corresponding_author_designation": "none",
+            "orcid": None,
+            "funding": "The author received no specific funding for this work.",
+            "competing_interests": "The author declares no competing interests.",
+            "public_arxiv_release_approved": True,
+            "patent_ip_timing_conflict": False,
         },
         "historical_package_rule": "Earlier archives and root-package objects are private audit evidence and must not be distributed.",
     }

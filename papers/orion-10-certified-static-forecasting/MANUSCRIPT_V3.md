@@ -7,7 +7,7 @@ Certificate/reporting contract: `FORECAST_CERTIFICATE_AND_BENCHMARK_MAP_V2.md`
 
 ## Abstract
 
-Static quantum-cost analysis and resource estimation are established research areas; the contribution here is not the generic idea of predicting cost without running a full compiler. We study a narrower question in a frozen shared-Tag TARE compilation family with an unrestricted exact dynamic-programming referee: **when a static forecaster mixes proved bounds, theorem-backed exactness, finite-domain equalities and unverified predictions, which authority survives an exact counterexample?** The initial forecaster evaluates three explicit feasible subfamilies and never calls the unrestricted DP. On 9,546 registered DP-compared instances it matches exact truth on 9,545 and fails on exactly one prospectively generated `n=3` row, where the true optimum is 10 and all three closed-form terms return 11. The single mismatch is logically decisive for universal closed-form exactness, so we do not headline a 99.99% accuracy rate. Two stronger certificate layers survive: `10<=11` preserves the constructive upper bound, and an independent all-`n` theorem still places the exact optimum inside the full support-two family. The exact witness localizes the failed layer to an omitted out-of-own-target-support borrow. A separately frozen successor admits that configuration; in parallel, the theorem-backed static forecaster `F2=C_D++` computes the exact support-two family minimum without the unrestricted DP. Later companion counterexamples refine the smaller named-family taxonomy again without affecting `F2`'s theorem authority. We formalize this separation as a **ForecastCertificate reporting schema** rather than as a new general static-analysis formalism. The result is a refutation/localization/repair study showing why feasible upper bounds, theorem-backed exact family minima, finite closed-form hypotheses and forecast-only rows must remain different scientific objects.
+Static quantum-cost analysis and resource estimation are established research areas; the contribution here is not the generic idea of predicting cost without running a full compiler. We study a narrower question in a frozen shared-Tag TARE compilation family with an unrestricted exact dynamic-programming referee: **when a static forecaster mixes proved bounds, theorem-backed exactness, finite-domain equalities and unverified predictions, which authority survives an exact counterexample?** The initial forecaster evaluates three explicit feasible subfamilies and never calls the unrestricted DP. On 9,546 registered DP-compared instances it matches exact truth on 9,545 and fails on exactly one prospectively generated `n=3` row, where the true optimum is 10 and all three closed-form terms return 11. The single mismatch is logically decisive for universal closed-form exactness, so we do not headline a 99.99% accuracy rate. Two stronger certificate layers survive: `10<=11` preserves the constructive upper bound, and an independent all-`n` theorem still places the exact optimum inside the full support-two family. The exact witness localizes the failed layer to an omitted out-of-own-target-support borrow. A separately frozen successor admits that configuration; in parallel, the theorem-backed static forecaster `F2=C_D++` computes the exact support-two family minimum without the unrestricted DP. Later companion counterexamples refine the smaller named-family taxonomy again without affecting `F2`'s theorem authority. A further vocabulary-level theorem sharpens the explanatory boundary: a vocabulary that must explain **every** possible cost function exactly can do so only if it induces the discrete partition of the abstract state space. This universal result does not settle the named practical vocabulary `B′`, because the available 64 rows were selected as gap witnesses and 676 of 740 evaluated instances were not serialized; the scoped fibre-constancy question therefore remains `CANNOT_CHECK`. We formalize the surviving distinctions as a **ForecastCertificate** reporting schema rather than as a new general static-analysis formalism. The result is a refutation/localization/repair study showing why feasible upper bounds, theorem-backed exact family minima, finite closed-form hypotheses, explanation vocabularies and forecast-only rows must remain different scientific objects.
 
 ## 1. Introduction
 
@@ -29,9 +29,9 @@ We study the distinction in an exact compiler family. The frozen R6M shared-Tag 
 
 The scientific sequence is:
 
-`feasible static bound -> finite closed-form success -> prospective exact counterexample -> authority localization -> separately frozen mechanism repair -> theorem-backed exact family forecaster`.
+`feasible static bound -> finite closed-form success -> prospective exact counterexample -> authority localization -> separately frozen mechanism repair -> theorem-backed exact family forecaster -> explanation-vocabulary lower bound`.
 
-The main result is not predictive dominance over current quantum cost-analysis tools. It is a **compiler-specific case study in authority-layered forecasting and falsification**.
+The main result is not predictive dominance over current quantum cost-analysis tools. It is a **compiler-specific case study in authority-layered forecasting and falsification**, including a theorem-level separation between exact prediction and universally compact explanation.
 
 ## 2. Setting: exact truth and restricted forecast families
 
@@ -190,7 +190,19 @@ A separately frozen B″ family repairs those registered finite witnesses. This 
 
 ORION-10 does not need the detailed fourth-regime classification; that belongs to ORION-09. Here it functions as a second falsification test of the same scientific discipline.
 
-## 9. Forecast-only rows and external subjects
+## 9. Universal exact explanation requires the discrete partition
+
+The later vocabulary-minimality analysis asks a stronger question than whether one named compact family happens to predict the registered costs. Let a vocabulary `Psi` induce a partition of the abstract state space into fibres. A `Psi`-only exact explanation exists for a given cost function exactly when the cost is constant on every fibre.
+
+The universal quantifier changes the problem. If one fibre contains two distinct states, choose a cost function that assigns them different costs; no `Psi`-only explanation can then be exact. Therefore a vocabulary that is exact for **every possible cost function** must separate every state from every other state: its partition is discrete. Conversely, the discrete partition is sufficient. Universal exact explanation therefore has no nontrivial coarse vocabulary.
+
+The enumeration for `n=2..6` independently recovers the Bell-number partition counts `2, 5, 15, 52, 203`, and every coarsening is accompanied by a witness pair. A separate brute-force cost-function route agrees with the constructive witness test throughout that finite regression. These checks corroborate the implementation; the all-size result follows from the witness construction rather than from finite enumeration.
+
+This theorem does **not** settle the named `B′` vocabulary on the real evaluated instance space. The 64 serialized QG7 rows are selected precisely because they satisfy a gap criterion. Among 740 evaluated instances, the other 676 per-instance `B′`/cost values were not serialized. Observed fibre constancy on the 64 selected witnesses would therefore be selection-conditioned and cannot establish global sufficiency or insufficiency. The scoped `B′` fibre-constancy question remains `CANNOT_CHECK` until all evaluated rows are emitted or a separately frozen replacement study supplies an unselected test.
+
+The combined lesson is stronger than either result alone: exact cost prediction can be theorem-backed while compact mechanistic explanation remains refutable, and universal explanatory compression is impossible without restricting the cost family.
+
+## 10. Forecast-only rows and external subjects
 
 A static forecaster can return a number for a public library subject even when exact truth has not been computed. We preserve statuses such as:
 
@@ -201,7 +213,7 @@ Only the former contributes to verified comparison counts.
 
 When discussing chemistry transfer, the **subject** is the relevant external scientific case; 15 within-subject matchings are dependent combinatorial views, not 15 independent Hamiltonian systems.
 
-## 10. Relation to current static quantum cost analysis
+## 11. Relation to current static quantum cost analysis
 
 ORION-10 is adjacent to but narrower than current static-analysis/resource-estimation work.
 
@@ -218,11 +230,12 @@ Its residual is the exact **authority decomposition and refutation behavior** in
 - a compact equality can fail;
 - a regime label can fail;
 - the exact witness can localize the omitted family member;
-- the repair can be frozen separately rather than backdated.
+- the repair can be frozen separately rather than backdated;
+- universal exact explanatory compression can itself be ruled out without turning that universal theorem into evidence for a selected named vocabulary.
 
 This structure could inform future static-analysis interfaces, but the current paper does not claim a general program-analysis framework.
 
-## 11. Statistics and timing
+## 12. Statistics and timing
 
 The 9,545/9,546 comparison count is deterministic evidence over registered panels. It is not reported with a population confidence interval or a significance test.
 
@@ -236,18 +249,19 @@ Timing is secondary engineering evidence. Final timing displays must state:
 
 Forecast speedups never provide theorem authority and must not compare a cold forecast to a warm DP baseline.
 
-## 12. Reproducibility
+## 13. Reproducibility
 
 Load-bearing artifacts are:
 
 - `research/extensions/orion-qg/QG5_CERTIFIED_FORECAST_RESULTS.json`;
 - `research/extensions/orion-qg/QG5B_EXACT_FORECASTER_RESULTS.json`;
 - `research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json`;
-- named QG7/QG7b receipts used only for the later closed-form boundary.
+- named QG7/QG7b receipts used only for the later closed-form boundary;
+- `papers/orion-10-certified-static-forecasting/theory/vocabulary-minimality-v1/` for the universal explanation-vocabulary theorem and its independent regression.
 
 `FORECAST_CERTIFICATE_AND_BENCHMARK_MAP_V2.md` specifies the reporting fields, theorem/executable bindings and benchmark decomposition required for the final package. The final repository release should add a permanent archive and explicit reuse licence before the manuscript calls code/data open or reusable.
 
-## 13. Limitations
+## 14. Limitations
 
 **Structural objective.** The forecast targets one frozen compiler objective, not full physical resource cost.
 
@@ -257,6 +271,8 @@ Load-bearing artifacts are:
 
 **Closed-form families remain refutable.** Only the full support-two family has all-`n` exactness authority on this cut.
 
+**Universal vocabulary theorem is not a `B′` verdict.** The theorem quantifies over arbitrary cost functions; the practical `B′` fibre question remains `CANNOT_CHECK` because the available 64 rows are selected witnesses and 676 evaluated rows were not serialized.
+
 **Frozen panels are not a population sample.** Benchmark success fractions are descriptive properties of registered instances/generators.
 
 **Forecast-only rows remain unverified.** A computed number without an exact receipt cannot be called confirmed.
@@ -265,7 +281,7 @@ Load-bearing artifacts are:
 
 **No physical quantum-advantage claim.** A smaller structural cost in this grammar is not an end-to-end advantage result.
 
-## 14. Discussion
+## 15. Discussion
 
 The most useful property of a certified forecast may be what happens when it fails.
 
@@ -273,10 +289,14 @@ One exact 10-versus-11 counterexample is enough to destroy the proposed universa
 
 The successor sequence matters too. B′ is frozen only after the witness reveals its missing borrow coordinate. QG7 later refutes B′ with a different support-two shape. Those refutations are not embarrassment to be averaged away; they are the mechanism by which the compact explanatory model becomes more accurate while the theorem-backed exact family remains stable.
 
-This is the distinction ORION-10 contributes to static compiler forecasting: **bound, theorem, closed form, regime label and forecast-only prediction should be carried as separate authority fields rather than compressed into one confidence score.**
+The vocabulary theorem explains why this process cannot terminate in a universally exact coarse explanation unless the scientific question restricts the admissible cost family. Exact prediction and compact explanation are different objectives. The selected QG7 witnesses are insufficient to decide the scoped `B′` question, so the manuscript preserves that limitation instead of converting a universal impossibility theorem into a post-hoc practical result.
 
-## 15. Conclusion
+This is the distinction ORION-10 contributes to static compiler forecasting: **bound, theorem, closed form, explanation vocabulary, regime label and forecast-only prediction should be carried as separate authority fields rather than compressed into one confidence score.**
+
+## 16. Conclusion
 
 In a frozen shared-Tag TARE compiler family, an initial static closed-form forecaster agrees with 9,545 of 9,546 exact comparisons but is nevertheless universally false: one prospectively generated row has exact cost 10 while the closed form returns 11. Because the forecast is authority-typed, the counterexample does not erase everything. The feasible upper bound survives, the all-`n` support-two theorem survives, the closed-form equality and regime label fail, and the exact witness identifies the missing configuration that a separately frozen successor then admits.
 
-ORION-10 therefore does not claim a new generic static quantum cost analyzer. It demonstrates a narrower scientific principle in an exact compiler setting: **a static forecast is more useful when it reports which part is proved, which part is only evidenced, and which part remains falsifiable.**
+A second theorem-level boundary addresses explanation rather than prediction. Universal exact explanation admits no nontrivial coarse vocabulary: any vocabulary that must explain every cost function exactly must induce the discrete partition. That result is deliberately kept separate from the named `B′` question, which remains `CANNOT_CHECK` on the selected serialized evidence.
+
+ORION-10 therefore does not claim a new generic static quantum cost analyzer. It demonstrates a narrower scientific principle in an exact compiler setting: **a static forecast is more useful when it reports which part is proved, which part is only evidenced, which part explains, and which part remains falsifiable.**

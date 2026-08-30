@@ -1,6 +1,6 @@
-# ORION-04 nearest-work matrix — V3
+# ORION-08 nearest-work matrix — V3
 
-| Neighboring area | Existing contribution | ORION-04 does not claim | Residual ORION-04 experimental delta |
+| Neighboring area | Existing contribution | ORION-08 does not claim | Residual ORION-08 experimental delta |
 |---|---|---|---|
 | typed / provenance-aware agent memory | stores or distinguishes roles, sources, types and truth-bearing content | invention of typed memory or provenance-aware memory | matched-information decision tests asking whether explicit bindings alter a **scientific action** while the visible factual payload is fixed |
 | stale-memory / state-revision benchmarks | tests whether agents detect that prior memory is invalidated or superseded | first stale-state benchmark | applicability-scope test where irrelevant context changes are a hostile control and the question is which coordinates licensed the old failure |

@@ -14,6 +14,20 @@ import sys
 
 HEADING_RE = re.compile(r"^(#{2,6})\s+(?:\d+(?:\.\d+)*\.?\s+)(.*)$")
 
+# pdfLaTeX in the release workflows does not accept every Unicode punctuation
+# code point emitted by the scientific Markdown.  These substitutions are
+# typography-only and preserve the scientific text/identifiers.
+PDFLATEX_SAFE_REPLACEMENTS = {
+    "′": "'",
+    "″": "''",
+}
+
+
+def pdflatex_safe(text: str) -> str:
+    for old, new in PDFLATEX_SAFE_REPLACEMENTS.items():
+        text = text.replace(old, new)
+    return text
+
 
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -58,6 +72,13 @@ def main() -> int:
             print(f"Q2_AIJ_PREP=FAIL\n- highlight exceeds 85 chars ({len(line)}): {line}")
             return 1
 
+    # Normalize only known release-toolchain-incompatible punctuation after all
+    # scientific-content/token checks, so the normalization cannot satisfy or
+    # alter a scientific gate.
+    title = pdflatex_safe(title)
+    abstract = pdflatex_safe(abstract)
+    body = pdflatex_safe(body)
+
     yaml_abstract = "\n".join("  " + ln for ln in abstract.splitlines())
     prepared = (
         "---\n"
@@ -74,6 +95,7 @@ def main() -> int:
     print("Q2_AIJ_PREP=PASS")
     print(f"HIGHLIGHTS={len(highlights)}")
     print("AUTHOR_METADATA=REQUIRED_BEFORE_SUBMISSION")
+    print("PDFLATEX_SAFE_PUNCTUATION_NORMALIZATION=1")
     print("SCIENTIFIC_PROSE_REWRITE=0")
     return 0
 

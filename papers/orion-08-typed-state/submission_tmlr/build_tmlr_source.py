@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare the Q4 cited Markdown for the official TMLR wrapper.
+"""Prepare the current ORION-08 cited Markdown for TMLR/arXiv wrappers.
 
 Allowed transformations are formatting-only:
 - extract title and abstract;
@@ -26,8 +26,7 @@ def main() -> int:
 
     src = pathlib.Path(args.cited_master)
     out = pathlib.Path(args.out)
-    text = src.read_text(encoding="utf-8")
-    lines = text.splitlines()
+    lines = src.read_text(encoding="utf-8").splitlines()
     if not lines or not lines[0].startswith("# "):
         print("Q4_TMLR_PREP=FAIL\n- missing H1 title")
         return 1
@@ -39,11 +38,7 @@ def main() -> int:
         print("Q4_TMLR_PREP=FAIL\n- missing ## Abstract")
         return 1
 
-    next_h2 = None
-    for i in range(abstract_i + 1, len(lines)):
-        if lines[i].startswith("## "):
-            next_h2 = i
-            break
+    next_h2 = next((i for i in range(abstract_i + 1, len(lines)) if lines[i].startswith("## ")), None)
     if next_h2 is None:
         print("Q4_TMLR_PREP=FAIL\n- abstract has no following H2")
         return 1
@@ -58,17 +53,12 @@ def main() -> int:
         print("Q4_TMLR_PREP=FAIL\n- empty abstract")
         return 1
 
-    body_lines = lines[next_h2:]
     normalized: list[str] = []
-    for line in body_lines:
+    for line in lines[next_h2:]:
         m = HEADING_RE.match(line)
-        if m:
-            line = f"{m.group(1)} {m.group(2)}"
-        normalized.append(line)
+        normalized.append(f"{m.group(1)} {m.group(2)}" if m else line)
     body = "\n".join(normalized).strip() + "\n"
 
-    # Make a Pandoc YAML metadata block. Use a YAML literal for abstract to preserve
-    # Markdown citations/emphasis in the abstract.
     yaml_abstract = "\n".join("  " + ln for ln in abstract.splitlines())
     prepared = (
         "---\n"
@@ -79,16 +69,20 @@ def main() -> int:
         f"{body}"
     )
 
-    # Hard scientific-content guards.
+    # Current-publication scientific-content guards. These are deliberately
+    # reviewer-facing claims/boundaries, not internal paper identifiers.
     for token in (
-        "Typed and Scoped Partial-Knowledge State",
-        "scope invalidation",
+        "Epistemic Bindings for Scientific Decisions",
+        "common optimal action",
+        "Nakayashiki",
         "ContextNest",
         "ORION-23",
+        "2,233,980",
         "exact-synthetic",
+        "real scientific-agent effectiveness remains untested",
     ):
         if token.lower() not in prepared.lower():
-            print(f"Q4_TMLR_PREP=FAIL\n- required final-manuscript token missing: {token}")
+            print(f"Q4_TMLR_PREP=FAIL\n- required current-manuscript token missing: {token}")
             return 1
 
     out.parent.mkdir(parents=True, exist_ok=True)

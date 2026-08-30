@@ -1,13 +1,14 @@
 # ORION-01–25 top-tier science-gap closure
 
-**Branch base:** the live `main` ref resolved when this branch was created on 2026-08-29. The parent of the first package commit is the authoritative base commit.  
-**Individually reconciled history:** through `1657c1f5f3b7152f71c6e0e72fedc2bfa439ef98`; inherited later commits must pass the same review gates before merge.  
+**Branch base:** the live `main` ref resolved when this package was created on 2026-08-29.  
+**Individually reconciled core history:** through `1657c1f5f3b7152f71c6e0e72fedc2bfa439ef98`.  
+**Current-head editorial/readiness assessment:** `645ed920b65877af05f9cd9321b4de5af6171bb4`, recorded in `ALL25_CURRENT_HEAD_READINESS_2026-08-29.md`; this does not itself grant scientific promotion.  
 **Scientific-authority delta:** `NONE`  
 **Automatic paper promotions:** `0`
 
-This additive package converts the remaining scientific gaps across ORION-01 through ORION-25 into explicit theorem obligations, matched-control designs, transfer units, uncertainty plans, falsifiers, and stop rules. It also supplies two cross-paper theorem repairs and exact operational re-analyses where the committed bytes support them.
+This additive package converts the remaining scientific gaps across ORION-01 through ORION-25 into explicit theorem obligations, matched-control designs, transfer units, uncertainty plans, falsifiers, stop rules and manuscript-ready claim boundaries. It also supplies cross-paper theorem repairs and exact operational re-analyses where the committed bytes support them.
 
-It deliberately changes no manuscript, frozen protocol, result, retraction, claim ledger, protected control plane, or Task-3 implementation. Stronger claims must be adopted paper by paper only after their registered evidence gates are met.
+It deliberately does not convert an editorial repair into scientific evidence. Stronger claims must be adopted paper by paper only after their registered evidence gates are met. Adverse/null results, retractions, `BROKEN`, unavailable external authority and `CANNOT_CHECK` remain controlling.
 
 ## Review board
 
@@ -24,19 +25,24 @@ No paper is upgraded unless all four roles agree that the stronger claim is prov
 
 - `ALL25_TOP_TIER_SCIENCE_GAP_INDEX_V2.json` — machine-checkable paper states and priorities.
 - `ALL25_TOP_TIER_SCIENCE_GAP_SUMMARY_V2.md` — one-line decisive gap and stop rule for every paper.
-- `ALL25_DETAILED_EXECUTION_MATRIX_V2.md` — paper-by-paper theorem, experiment, statistics, reproducibility, and editorial work plan.
-- `LATEST_MAIN_SCIENCE_AUDIT_2026-08-29.md` — current-state corrections from the latest audited history.
-- `RECENT_COMMIT_RECONCILIATION_V2.md` — scientific consequences of the latest individually reviewed commits.
+- `ALL25_DETAILED_EXECUTION_MATRIX_V2.md` — portfolio-level safe action, scientific gate and stop rule for all 25 papers; detailed designs remain in `matrix/` shards.
+- `ALL25_CURRENT_HEAD_READINESS_2026-08-29.md` — current-head bounded-paper versus top-tier-upgrade readiness assessment.
+- `ALL25_MANUSCRIPT_UPGRADE_PATCHSET_2026-08-29.md` — manuscript-ready current-head claim/limitation/reviewer-preemption deltas for every paper.
+- `LATEST_MAIN_SCIENCE_AUDIT_2026-08-29.md` — current-state corrections from the earlier audited history.
+- `RECENT_COMMIT_RECONCILIATION_V2.md` — scientific consequences of the individually reconciled history.
 - `TOP_TIER_EVIDENCE_CONTRACT_V2.md` — portfolio-wide evidence and claim gates.
 - `finite_information_interface_v1/` — shared exact theorem spine and independent finite regression.
 - `adaptive_promotion_budget_v1/` — corrected deterministic/conditional adaptive-spending theorem for ORION-15/24.
 - `operational_gap_audits_v1/` — exact small-sample and comparator-adequacy audits.
+- `matrix/ORION-01-05.md` through `matrix/ORION-21-25.md` — detailed theorem/experiment/statistics/reproducibility plans.
 - `check_gap_closure_v2.py` — package-level structural validator.
+- `check_current_head_readiness_v1.py` — fail-closed structural checker for the additive current-head readiness/patchset layer.
 
 ## Validation
 
 ```bash
 python papers/top_tier_gap_closure/check_gap_closure_v2.py
+python papers/top_tier_gap_closure/check_current_head_readiness_v1.py
 python papers/top_tier_gap_closure/operational_gap_audits_v1/check_operational_gap_audits.py \
   --check-result papers/top_tier_gap_closure/operational_gap_audits_v1/RESULT.json
 python papers/top_tier_gap_closure/finite_information_interface_v1/check_theory.py \
@@ -47,10 +53,11 @@ Expected terminals:
 
 ```text
 ORION_ALL25_TOP_TIER_GAP_CLOSURE_V2_GREEN papers=25 promotions=0 operational_audits=10
+ORION_ALL25_CURRENT_HEAD_READINESS_V1_GREEN papers=25 head=645ed920b65877af05f9cd9321b4de5af6171bb4 promotions=0
 ORION_OPERATIONAL_GAP_AUDITS_V1_GREEN audits=10 promotions=0 mcnemar24=0.125
 FINITE_INFORMATION_INTERFACE_V1_THEOREMS_REPRODUCED ...
 ```
 
 ## Authority boundary
 
-A scientific opportunity is not execution authorization. Returned, deferred, spent, retracted, contaminated, `BROKEN`, and `CANNOT_CHECK` lanes remain controlling. Same-researcher AI agents do not become independent investigators. Cryptographic integrity, run liveness, and scientific validity are distinct endpoints.
+A scientific opportunity is not execution authorization. Returned, deferred, spent, retracted, contaminated, `BROKEN`, and `CANNOT_CHECK` lanes remain controlling. Same-researcher AI agents do not become independent investigators. Cryptographic integrity, run liveness, and scientific validity are distinct endpoints. The current-head readiness matrix is an editorial/operator assessment, not a replacement for paper-specific frozen authority records.

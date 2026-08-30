@@ -4,6 +4,17 @@ Purpose: isolate facts the publication workflow is **not authorized to infer**. 
 
 ## A. Authorship and affiliations — required for ORION-01/ORION-02/ORION-09/ORION-10 final non-blind packages
 
+> **RESOLVED (operator, 2026-08-30) — applies to every ORION paper.** Sole author
+> `Sze Chun Yiu`; contact `sze-chun.yiu@fysik.su.se`; **no institutional
+> affiliation** on named arXiv surfaces, `Stockholm University, Stockholm,
+> Sweden` only where a venue/portal requires an affiliation; no ORCID; no
+> acknowledgements; no funding (`The author received no specific funding for
+> this work.`); no competing interests (`The author declares no competing
+> interests.`); substantive venue-compliant generative-AI declarations as pinned
+> in `papers/top_tier_gap_closure/ARXIV_AUTHOR_INPUT_GATE_2026-08-29.md`
+> (AI never listed as author; author responsibility asserted).
+
+
 For each paper:
 - final author list in order;
 - corresponding author(s);

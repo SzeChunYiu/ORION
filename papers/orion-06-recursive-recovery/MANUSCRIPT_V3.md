@@ -8,7 +8,7 @@ Declared receipt denominator: `Q2_ELIGIBLE_RECEIPT_INVENTORY_V1.json`
 
 ## Abstract
 
-Scientific-agent systems increasingly preserve code, evidence chains and execution traces, but provenance alone does not determine what a research programme should do after a prospectively frozen hypothesis is refuted, absorbed by prior work or left `CANNOT_CHECK`. We present a bounded longitudinal case study of an executable **negative-result successor discipline** used in the ORION-Q quantum-compilation programme. Each research node retains its frozen claim, result receipt and disposition. A successor edge is admitted only when the predecessor outcome localizes a scientifically relevant responsibility, the strongest located donor receives first right of refusal, and a new protocol is frozen before its outcome. Later success never rewrites the predecessor. For publication, we define a 51-receipt frozen denominator: the 40 receipts in the original ORION-02 receipt index plus 11 pre-cut receipts needed to complete the later R6O–R6S/QG lineage. Twenty-three receipts are included as graph nodes and 28 are explicitly excluded with category-level reasons. The graph contains 13 asserted successor edges; seven negative/absorbed nodes are deliberately retained without an invented successor. A fail-closed validator checks the 51-receipt partition, binds every receipt to the publication cut, rejects graph drift or invented edges, and preserves negative-result visibility. Representative chains show restricted-family refutation to targeted family repair, second refutation to stronger support family, finite positive to all-`n` theorem, bounded prospective confirmation followed by later closed-form refutation, and candidate residual to donor absorption. We subtract direct prior art: ScienceAgentBench, AstaBench and SciAgentArena own substantial territory in rigorous scientific-agent evaluation; ScientistOne owns broad claim-to-evidence traceability and integrity auditing. Our narrower object is the **authorized transition from a retained scientific disposition to the next frozen question**. The evidence demonstrates feasibility and auditability in one exact-heavy programme; it does not establish improved scientific productivity, autonomous governance or cross-domain superiority.
+Scientific-agent systems increasingly preserve code, evidence chains and execution traces, but provenance alone does not determine what a research programme should do after a prospectively frozen hypothesis is refuted, absorbed by prior work or left `CANNOT_CHECK`. We present a bounded longitudinal case study of an executable **negative-result successor discipline** used in the ORION-Q quantum-compilation programme. Each research node retains its frozen claim, result receipt and disposition. A successor edge is admitted only when the predecessor outcome localizes a scientifically relevant responsibility, the strongest located donor receives first right of refusal, and a new protocol is frozen before its outcome. Later success never rewrites the predecessor. A complementary claim-preserving recovery theorem formalizes a necessary condition for calling an intervention a repair of the same claim identity: every failed load-bearing predicate must have at least one admissible action on a declared causal ancestor. This yields no-repair certificates, a minimum weighted causal-coverage lower bound on repair cost, and safe dominance pruning; changes to the question, population, estimand, primary metric, threshold, protected corpus or terminal semantics are classified as new successor identities rather than favorable repairs. For publication, we define a 51-receipt frozen denominator: the 40 receipts in the original ORION-02 receipt index plus 11 pre-cut receipts needed to complete the later R6O–R6S/QG lineage. Twenty-three receipts are included as graph nodes and 28 are explicitly excluded with category-level reasons. The graph contains 13 asserted successor edges; seven negative/absorbed nodes are deliberately retained without an invented successor. A fail-closed validator checks the 51-receipt partition, binds every receipt to the publication cut, rejects graph drift or invented edges, and preserves negative-result visibility. Independent replay of registered headline generators reproduces their committed outputs under a harness that also rejects perturbations and missing generators. We subtract direct prior art: ScienceAgentBench, AstaBench and SciAgentArena own substantial territory in rigorous scientific-agent evaluation; ScientistOne owns broad claim-to-evidence traceability and integrity auditing. Our narrower object is the **authorized transition from a retained scientific disposition to the next frozen question**, together with the causal-coverage boundary separating repair from successor formation. The evidence demonstrates feasibility, auditability and the formal boundary in one exact-heavy programme; it does not establish improved scientific productivity, autonomous governance or cross-domain superiority.
 
 ## 1. Introduction
 
@@ -184,6 +184,22 @@ ORION-02 does **not** demonstrate faster discovery, better research quality, aut
 
 Those would require new controlled/cross-domain evidence and are intentionally outside the current claim.
 
+### 10.1 Formal boundary: causal coverage of same-identity repair
+
+The transition graph records what happened in the programme. A separate theorem asks what must be true before a successful intervention may be described as a repair of the **same** scientific claim rather than a changed successor.
+
+Let the failed claim identity contain load-bearing predicates and let the declared action language specify which causal ancestors each admissible action can affect. A same-identity repair must select actions whose causal-effect union reaches at least one declared ancestor of every failed load-bearing predicate. This yields three consequences.
+
+1. **No-repair certificate.** If one failed predicate has no admissible identity-preserving repair ancestor, no action set in the declared language can repair that claim identity.
+2. **Repair-cost lower bound.** The minimum weighted ancestor cover is a rigorous lower bound on any identity-preserving repair cost in the action language.
+3. **Dominance pruning.** If one action's causal-effect set is contained in another action's set at no lower cost, the dominated action can be removed from at least one minimum cover.
+
+Causal coverage is necessary, not sufficient: an action on a relevant ancestor can still fail or cause a new failure. The theorem therefore constrains candidate repairs without turning them into evidence of success.
+
+The identity rule is equally important. Changing the question, population, estimand, protocol semantics, primary metric, threshold, protected corpus or terminal semantics after failure produces a different scientific identity. Such a run can be successful research, but it is stored as a successor rather than used to rewrite the failed predecessor.
+
+This theorem makes the graph's append-only discipline more than record keeping: it supplies a formal test for one class of post-failure relabeling that the workflow must reject.
+
 ## 11. Reproducibility and availability
 
 The publication bundle should include:
@@ -192,11 +208,13 @@ The publication bundle should include:
 - `Q2_TRANSITION_GRAPH_V2.json`;
 - canonical validator stdout;
 - reviewer-facing table mapping each main-text edge to predecessor/successor protocols/receipts;
+- `papers/orion-06-recursive-recovery/theory/claim-preserving-recovery-v1/` and its independent checker;
+- paper-local independent replay receipts for the cited generators;
 - publication-cut git identity;
 - permanent archive identifier once actually deposited;
 - explicit reuse licence before any “open source” wording is used.
 
-The repository is publicly inspectable, but public visibility is not a reuse licence.
+The repository is publicly inspectable, but public visibility is not a reuse licence. Exact replay establishes attributable reproducibility of the registered computation; it does not by itself establish the scientific validity or cross-domain effectiveness of recursive recovery.
 
 ## 12. Limitations
 
@@ -208,6 +226,8 @@ The repository is publicly inspectable, but public visibility is not a reuse lic
 
 **Selection rule is methodological.** Inclusion/exclusion reasons are explicit, but ORION-02 does not claim every excluded result could never inform a different successor analysis.
 
+**Causal coverage is necessary, not sufficient.** A repair action can touch the right causal ancestor and still fail or introduce a new defect.
+
 **No productivity outcome.** There is no controlled comparison of discovery time, paper quality or scientific yield against another governance policy.
 
 **Human/AI composition.** Humans and multiple AI systems may participate; ORION-02 is not an autonomous-agent superiority result.
@@ -218,12 +238,16 @@ The repository is publicly inspectable, but public visibility is not a reuse lic
 
 The successor discipline changes the meaning of “progress.” An exact counterexample can open the right family extension. A donor absorption can close an unproductive novelty route. A finite positive can justify a theorem attempt without being restated as a theorem. A prospectively confirmed case can remain valid after a different instance refutes the broad extrapolation.
 
+The causal-coverage theorem adds a second discipline: a post-failure intervention is not a same-identity repair merely because it later succeeds. It must act on declared causal ancestors of every failed load-bearing predicate, and changing the scientific question or evaluation semantics creates a successor identity. This prevents a favorable changed question from laundering an earlier failure.
+
 This differs from evidence-chain work in locus, not opposition. Evidence chains answer **what supports this claim?** ORION-02 asks **given the supported disposition, what research transition is now authorized?** Scientific-agent benchmarks ask whether systems solve tasks under controlled conditions. ORION-02 instead tracks how the research question itself changes after evidence arrives.
 
-The 51-receipt denominator and fail-closed graph validator make that case study inspectable rather than anecdotal. They still do not prove that the policy is optimal. That stronger question—whether one successor discipline improves science relative to another—is successor research rather than a hidden assumption of this paper.
+The 51-receipt denominator, fail-closed graph validator and independent replay make that case study inspectable rather than anecdotal. They still do not prove that the policy is optimal. That stronger question—whether one successor discipline improves science relative to another—is successor research rather than a hidden assumption of this paper.
 
 ## 14. Conclusion
 
 Negative results can be represented as more than failed outputs. In the ORION-Q case study, a frozen result becomes a typed persistent state that can authorize, block or redirect later research while preserving its original claim boundary. A 51-receipt declared universe is partitioned into 23 publication graph nodes and 28 explicit exclusions; the graph carries 13 asserted successor edges and retains negative/donor nodes without invented links.
 
-The candidate contribution is deliberately narrower than provenance or scientific-agent benchmarking: **an auditable successor relation from retained scientific disposition to a newly frozen question, with donor first right of refusal and append-only negative history.**
+The formal recovery boundary complements the graph: every same-identity repair must cover a declared causal ancestor of every failed load-bearing predicate, uncovered predicates certify no repair within the action language, and identity-changing successes remain successors. Independent replay strengthens attribution of the registered computations without granting cross-domain effectiveness.
+
+The candidate contribution is deliberately narrower than provenance or scientific-agent benchmarking: **an auditable successor relation from retained scientific disposition to a newly frozen question, with donor first right of refusal, append-only negative history, and a causal-coverage boundary separating repair from successor formation.**

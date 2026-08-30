@@ -5,12 +5,14 @@ on:
     branches: [main]
     paths:
       - 'papers/orion-14-verified-scientific-discovery/**'
+      - 'papers/top_tier_gap_closure/release_builders/orion14/**'
       - 'tests/unit/p4/test_p4_publication_v2.py'
       - '.github/workflows/p4_tmlr_submission_audit.yml'
   push:
     branches: [main]
     paths:
       - 'papers/orion-14-verified-scientific-discovery/**'
+      - 'papers/top_tier_gap_closure/release_builders/orion14/**'
       - 'tests/unit/p4/test_p4_publication_v2.py'
       - '.github/workflows/p4_tmlr_submission_audit.yml'
 
@@ -24,10 +26,6 @@ concurrency:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    # Kept wide as defence in depth. The install is the real fix (see below), but
-    # GitHub reports a job timeout as `cancelled`, which reads as a failed gate in
-    # `gh pr checks` while telling nobody the gate never ran -- so the budget
-    # should not be the thing that decides whether this audit has an opinion.
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
@@ -56,41 +54,14 @@ jobs:
           done
           git diff --exit-code -- papers/orion-14-verified-scientific-discovery/tables
 
-      - name: Retain regenerated safe publication sources
-        uses: actions/upload-artifact@v4
-        with:
-          name: p4-v2-generated-sources-${{ github.run_id }}
-          path: |
-            papers/orion-14-verified-scientific-discovery/figures/p4_2_false_promotion.svg
-            papers/orion-14-verified-scientific-discovery/figures/p4_3_coverage_frontier.svg
-            papers/orion-14-verified-scientific-discovery/figures/p4_4_detection_by_attack.svg
-            papers/orion-14-verified-scientific-discovery/figures/p4_5_attribution_vs_support.svg
-            papers/orion-14-verified-scientific-discovery/figures/p4_6_cost_false_promotion.svg
-            papers/orion-14-verified-scientific-discovery/tables/p4_t1_attack_custody.tex
-            papers/orion-14-verified-scientific-discovery/tables/p4_t2_baseline_ablation_results.tex
-            papers/orion-14-verified-scientific-discovery/tables/p4_t3_cannot_check_errors.tex
-          if-no-files-found: error
-          retention-days: 7
-
       - name: Install TeX/PDF/rendering tools
         shell: bash
-        # Its own budget, so a hang here is reported as this step timing out
-        # rather than as the whole audit being cancelled with no attribution.
         timeout-minutes: 25
         run: |
           set -euo pipefail
           sudo apt-get update -qq
-          # One retry. Both observed hangs were in this install, and a transient
-          # mirror stall should not consume a submission gate.
-          # --no-install-recommends is the actual fix. p2-manuscript.yml installs a
-          # comparable TeX set with it and finishes in about a minute; this job
-          # installed the recommends too and twice blew a 20-minute budget. Every
-          # package the compile needs is named explicitly, and latexmk runs with
-          # -halt-on-error, so anything genuinely missing fails loudly here rather
-          # than silently degrading the PDF.
-          PKGS="latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended"
-          PKGS="$PKGS lmodern poppler-utils librsvg2-bin"
-          # One retry: a transient mirror stall should not consume a submission gate.
+          PKGS="latexmk texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra"
+          PKGS="$PKGS lmodern poppler-utils librsvg2-bin zip"
           sudo apt-get install -y -qq --no-install-recommends $PKGS \
             || { sleep 15; sudo apt-get update -qq; sudo apt-get install -y -qq --no-install-recommends $PKGS; }
 
@@ -111,35 +82,107 @@ jobs:
           curl -fsSL "$BASE/tmlr.sty" -o papers/orion-14-verified-scientific-discovery/manuscript/tmlr.sty
           curl -fsSL "$BASE/tmlr.bst" -o papers/orion-14-verified-scientific-discovery/manuscript/tmlr.bst
 
+      - name: Stage anonymous TMLR review source outside frozen manuscript
+        shell: bash
+        run: |
+          set -euo pipefail
+          P=papers/orion-14-verified-scientific-discovery
+          B=papers/top_tier_gap_closure/release_builders/orion14
+          R="$RUNNER_TEMP/orion14-tmlr-build"
+          mkdir -p "$R/manuscript" "$R/submission" "$R/tables" "$R/figures"
+          cp -R "$P/manuscript/." "$R/manuscript/"
+          cp -R "$P/submission/." "$R/submission/"
+          cp -R "$P/tables/." "$R/tables/"
+          cp -R "$P/figures/." "$R/figures/"
+          cp "$B/08-data-and-code-availability-anonymous.tex" "$R/manuscript/sections/08-data-and-code-availability.tex"
+          cp "$B/10-freeze-and-custody-identifiers-anonymous.tex" "$R/manuscript/sections/10-freeze-and-custody-identifiers.tex"
+          rm -f "$R/manuscript"/*.pdf "$R/manuscript"/*.aux "$R/manuscript"/*.log "$R/manuscript"/*.out \
+                "$R/manuscript"/*.bbl "$R/manuscript"/*.blg "$R/manuscript"/*.fls "$R/manuscript"/*.fdb_latexmk
+
       - name: Compile anonymous TMLR PDF
         shell: bash
         run: |
           set -euo pipefail
-          cd papers/orion-14-verified-scientific-discovery/manuscript
+          cd "$RUNNER_TEMP/orion14-tmlr-build/manuscript"
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           test -s main.pdf
           if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence' main.log; then exit 1; fi
+          cp main.pdf "$RUNNER_TEMP/orion-14-tmlr.pdf"
 
-      - name: Independent PDF/stale-claim audit
+      - name: Compile named arXiv PDF
         shell: bash
         run: |
           set -euo pipefail
-          PDF=papers/orion-14-verified-scientific-discovery/manuscript/main.pdf
-          TXT="$RUNNER_TEMP/p4.txt"
-          pdftotext "$PDF" "$TXT"
-          grep -q 'Under review as submission to TMLR' "$TXT"
-          grep -q '0/360' "$TXT"; grep -q '180/360' "$TXT"; grep -q '60/60' "$TXT"
-          grep -qi 'not supported' "$TXT"
-          if grep -Eiq 'execution bindings remain.*UNBOUND|awaiting external campaign|No external results are reported|remains externally.*CANNOT_CHECK' "$TXT"; then exit 1; fi
-          pdfinfo "$PDF" | tee "$RUNNER_TEMP/pdfinfo.txt"
-          sha256sum "$PDF" | tee "$RUNNER_TEMP/main.pdf.sha256"
+          cd papers/orion-14-verified-scientific-discovery/manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error arxiv.tex
+          test -s arxiv.pdf
+          if grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence' arxiv.log; then exit 1; fi
+
+      - name: Audit anonymous review and named arXiv surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          M=papers/orion-14-verified-scientific-discovery/manuscript
+          TMLR_PDF="$RUNNER_TEMP/orion-14-tmlr.pdf"
+          TMLR_TXT="$RUNNER_TEMP/p4-tmlr.txt"
+          ARXIV_TXT="$RUNNER_TEMP/p4-arxiv.txt"
+          pdftotext "$TMLR_PDF" "$TMLR_TXT"
+          pdftotext "$M/arxiv.pdf" "$ARXIV_TXT"
+          grep -q 'Under review as submission to TMLR' "$TMLR_TXT"
+          grep -q '0/360' "$TMLR_TXT"; grep -q '180/360' "$TMLR_TXT"; grep -q '60/60' "$TMLR_TXT"
+          grep -qi 'not supported' "$TMLR_TXT"
+          if grep -Eiq 'execution bindings remain.*UNBOUND|awaiting external campaign|No external results are reported|remains externally.*CANNOT_CHECK' "$TMLR_TXT"; then exit 1; fi
+          if grep -Eiq 'SzeChunYiu|Sze[[:space:]-]*Chun|sze-chun.yiu@fysik.su.se|github\.com/SzeChunYiu' "$TMLR_TXT"; then echo 'P4_TMLR_ANONYMITY=FAIL'; exit 1; fi
+          grep -Fq 'Sze Chun Yiu' "$ARXIV_TXT"
+          ! grep -Fq 'Stockholm University' "$ARXIV_TXT"
+          grep -Fq 'sze-chun.yiu@fysik.su.se' "$ARXIV_TXT"
+          grep -Fq 'The author received no specific funding for this work.' "$ARXIV_TXT"
+          grep -Fq 'The author declares no competing interests.' "$ARXIV_TXT"
+          pdfinfo "$TMLR_PDF" > "$RUNNER_TEMP/tmlr-pdfinfo.txt"
+          pdfinfo "$M/arxiv.pdf" > "$RUNNER_TEMP/arxiv-pdfinfo.txt"
+          sha256sum "$TMLR_PDF" > "$RUNNER_TEMP/main.pdf.sha256"
+          sha256sum "$M/arxiv.pdf" > "$RUNNER_TEMP/arxiv.pdf.sha256"
+          printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' > "$RUNNER_TEMP/ARXIV_LICENSE.txt"
+          printf '%s\n' 'cs.AI' > "$RUNNER_TEMP/ARXIV_PRIMARY_CATEGORY.txt"
+
+      - name: Build complete source archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          P=papers/orion-14-verified-scientific-discovery
+          T="$RUNNER_TEMP/orion14-tmlr-build"
+          A="$RUNNER_TEMP/orion14-arxiv"
+          rm -f "$T/manuscript"/*.pdf "$T/manuscript"/*.aux "$T/manuscript"/*.log "$T/manuscript"/*.out \
+                "$T/manuscript"/*.bbl "$T/manuscript"/*.blg "$T/manuscript"/*.fls "$T/manuscript"/*.fdb_latexmk
+          mkdir -p "$A/manuscript" "$A/tables" "$A/figures" "$A/submission"
+          cp "$P/manuscript/bibliography.bib" "$A/manuscript/"
+          cp "$P/manuscript/tmlr.bst" "$A/manuscript/"
+          cp -R "$P/manuscript/sections" "$A/manuscript/"
+          cp -R "$P/manuscript/figures" "$A/manuscript/"
+          cp "$P/tables"/*.tex "$A/tables/"
+          cp "$P/figures"/*.png "$A/figures/"
+          cp "$P/submission/P4_X_PROMOTION_AUTHORITY_SECTION.tex" "$A/submission/"
+          cp "$P/manuscript/arxiv.tex" "$A/manuscript/main.tex"
+          (cd "$T" && zip -qr "$RUNNER_TEMP/orion-14-tmlr-source.zip" .)
+          (cd "$A" && zip -qr "$RUNNER_TEMP/orion-14-arxiv-source.zip" .)
+          sha256sum "$RUNNER_TEMP/orion-14-tmlr-source.zip" > "$RUNNER_TEMP/tmlr-source.sha256"
+          sha256sum "$RUNNER_TEMP/orion-14-arxiv-source.zip" > "$RUNNER_TEMP/arxiv-source.sha256"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: p4-tmlr-audited-pdf-${{ github.run_id }}
+          name: orion-14-tmlr-and-arxiv-packages-${{ github.run_id }}
           path: |
-            papers/orion-14-verified-scientific-discovery/manuscript/main.pdf
+            ${{ runner.temp }}/orion-14-tmlr.pdf
+            papers/orion-14-verified-scientific-discovery/manuscript/arxiv.pdf
+            ${{ runner.temp }}/orion-14-tmlr-source.zip
+            ${{ runner.temp }}/orion-14-arxiv-source.zip
             ${{ runner.temp }}/main.pdf.sha256
-            ${{ runner.temp }}/pdfinfo.txt
+            ${{ runner.temp }}/arxiv.pdf.sha256
+            ${{ runner.temp }}/tmlr-source.sha256
+            ${{ runner.temp }}/arxiv-source.sha256
+            ${{ runner.temp }}/tmlr-pdfinfo.txt
+            ${{ runner.temp }}/arxiv-pdfinfo.txt
+            ${{ runner.temp }}/ARXIV_LICENSE.txt
+            ${{ runner.temp }}/ARXIV_PRIMARY_CATEGORY.txt
           if-no-files-found: error
           retention-days: 90

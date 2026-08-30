@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'papers/orion-08-typed-state/**'
+      - 'papers/arxiv_preprint/**'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
       - 'papers/build_q_qg_cited_masters.py'
@@ -13,6 +14,7 @@ on:
       - 'codex/q-qg-nature-skills-publication-closure-20260821'
     paths:
       - 'papers/orion-08-typed-state/**'
+      - 'papers/arxiv_preprint/**'
       - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
       - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
       - 'papers/build_q_qg_cited_masters.py'
@@ -45,17 +47,22 @@ jobs:
           python papers/check_q_qg_science_manifests.py
       - name: Generate cited Q4 master
         run: python papers/build_q_qg_cited_masters.py --clean
-      - name: Prepare Q4 TMLR Markdown and source directory
+      - name: Prepare Q4 TMLR and arXiv sources
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p build/q4_tmlr/source build/q4_tmlr/rendered
+          mkdir -p build/q4_arxiv/source build/q4_arxiv/rendered
           python papers/orion-08-typed-state/submission_tmlr/build_tmlr_source.py \
             --cited-master build/q_qg_cited/Q4/MANUSCRIPT_CITED.md \
             --out build/q4_tmlr/q4_tmlr.md
+          cp build/q4_tmlr/q4_tmlr.md build/q4_arxiv/q4_arxiv.md
           cp build/q_qg_cited/Q4/references.bib build/q4_tmlr/source/references.bib
+          cp build/q_qg_cited/Q4/references.bib build/q4_arxiv/source/references.bib
           cp papers/orion-08-typed-state/submission_tmlr/tmlr_pandoc_template.tex \
             build/q4_tmlr/source/pandoc_template.tex
+          cp papers/arxiv_preprint/wave1_pandoc_template.tex \
+            build/q4_arxiv/source/pandoc_template.tex
       - name: Fetch exact official TMLR style files
         shell: bash
         working-directory: build/q4_tmlr/source
@@ -68,79 +75,87 @@ jobs:
           test -s tmlr.sty && test -s tmlr.bst && test -s fancyhdr.sty
           sha256sum tmlr.sty tmlr.bst fancyhdr.sty > style_sha256.txt
           printf '%s\n' "${TMLR_STYLE_COMMIT}" > style_commit.txt
-      - name: Generate anonymous TMLR LaTeX from cited scientific master
+      - name: Generate anonymous TMLR and named arXiv LaTeX
         shell: bash
         run: |
           set -euo pipefail
           pandoc build/q4_tmlr/q4_tmlr.md \
-            --from=markdown+citations \
-            --to=latex \
-            --natbib \
+            --from=markdown+citations --to=latex --natbib \
             --template=build/q4_tmlr/source/pandoc_template.tex \
             -o build/q4_tmlr/source/main.tex
+          pandoc build/q4_arxiv/q4_arxiv.md \
+            --from=markdown+citations --to=latex --natbib \
+            --template=build/q4_arxiv/source/pandoc_template.tex \
+            -o build/q4_arxiv/source/main.tex
           grep -Fq '\usepackage{tmlr}' build/q4_tmlr/source/main.tex
           grep -Fq '\author{Anonymous Authors}' build/q4_tmlr/source/main.tex
-          grep -Eq '\\cite[pt]?\{' build/q4_tmlr/source/main.tex
-          if grep -Eiq 'Sze[[:space:]-]*Chun|SzeChunYiu|Billy[[:space:]]+Yiu' \
+          grep -Fq '\author{Sze Chun Yiu' build/q4_arxiv/source/main.tex
+          ! grep -Fq 'Stockholm University' build/q4_arxiv/source/main.tex
+          grep -Fq 'sze-chun.yiu@fysik.su.se' build/q4_arxiv/source/main.tex
+          grep -Fq '2,233,980' build/q4_tmlr/source/main.tex
+          grep -Fq 'Nakayashiki' build/q4_tmlr/source/main.tex
+          grep -Fq 'MAP-Graph' build/q4_tmlr/source/main.tex
+          if grep -Eiq 'Sze[[:space:]-]*Chun|SzeChunYiu|sze-chun.yiu@fysik.su.se' \
               build/q4_tmlr/source/main.tex build/q4_tmlr/source/references.bib; then
             echo 'Q4_TMLR_SOURCE_ANONYMITY=FAIL'
             exit 1
           fi
-          echo 'Q4_TMLR_SOURCE_ANONYMITY=PASS'
-      - name: Build exact TMLR review PDF
-        shell: bash
-        working-directory: build/q4_tmlr/source
-        run: |
-          set -euo pipefail
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
-          bibtex main
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
-          test -s main.pdf
-      - name: Audit anonymity, references, PDF structure and page rendering
+      - name: Build TMLR and arXiv PDFs
         shell: bash
         run: |
           set -euo pipefail
-          pdfinfo build/q4_tmlr/source/main.pdf > build/q4_tmlr/pdfinfo.txt
-          pdffonts build/q4_tmlr/source/main.pdf > build/q4_tmlr/pdffonts.txt
-          pdftotext build/q4_tmlr/source/main.pdf build/q4_tmlr/pdf.txt
-          if grep -Eiq 'Sze[[:space:]-]*Chun|SzeChunYiu|Billy[[:space:]]+Yiu' \
+          for d in build/q4_tmlr/source build/q4_arxiv/source; do
+            pushd "$d"
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            bibtex main
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            pdflatex -interaction=nonstopmode -halt-on-error main.tex
+            test -s main.pdf
+            popd
+          done
+      - name: Audit anonymity, named preprint, references and rendering
+        shell: bash
+        run: |
+          set -euo pipefail
+          for root in build/q4_tmlr build/q4_arxiv; do
+            pdfinfo "$root/source/main.pdf" > "$root/pdfinfo.txt"
+            pdffonts "$root/source/main.pdf" > "$root/pdffonts.txt"
+            pdftotext "$root/source/main.pdf" "$root/pdf.txt"
+            grep -Fq 'References' "$root/pdf.txt"
+            grep -Fq '2,233,980' "$root/pdf.txt"
+            grep -Fq 'Nakayashiki' "$root/pdf.txt"
+            if grep -Eq '\[@[A-Za-z0-9_:-]+' "$root/pdf.txt"; then
+              echo "Q4_UNRESOLVED_CITATION_TOKEN=FAIL $root"
+              exit 1
+            fi
+            pdftoppm -png -r 144 "$root/source/main.pdf" "$root/rendered/page"
+            sha256sum "$root/source/main.pdf" > "$root/pdf_sha256.txt"
+          done
+          if grep -Eiq 'Sze[[:space:]-]*Chun|SzeChunYiu|sze-chun.yiu@fysik.su.se' \
               build/q4_tmlr/pdf.txt build/q4_tmlr/pdfinfo.txt; then
             echo 'Q4_TMLR_PDF_ANONYMITY=FAIL'
             exit 1
           fi
           grep -Fq 'Anonymous' build/q4_tmlr/pdf.txt
-          grep -Fq 'References' build/q4_tmlr/pdf.txt
-          if grep -Eq '\[@[A-Za-z0-9_:-]+' build/q4_tmlr/pdf.txt; then
-            echo 'Q4_TMLR_UNRESOLVED_CITATION_TOKEN=FAIL'
-            exit 1
-          fi
-          pdftoppm -png -r 144 build/q4_tmlr/source/main.pdf build/q4_tmlr/rendered/page
-          pages="$(find build/q4_tmlr/rendered -name 'page-*.png' | wc -l)"
-          test "${pages}" -gt 0
-          sha256sum build/q4_tmlr/source/main.pdf > build/q4_tmlr/pdf_sha256.txt
-          printf 'Q4_TMLR_PDF_ANONYMITY=PASS\nQ4_TMLR_RENDERED_PAGES=%s\n' "${pages}"
-      - name: Build source archive
+          grep -Fq 'Sze Chun Yiu' build/q4_arxiv/pdf.txt
+          ! grep -Fq 'Stockholm University' build/q4_arxiv/pdf.txt
+          grep -Fq 'AI assistance disclosure' build/q4_arxiv/pdf.txt
+          printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' > build/q4_arxiv/ARXIV_LICENSE.txt
+          printf '%s\n' 'cs.AI' > build/q4_arxiv/ARXIV_PRIMARY_CATEGORY.txt
+      - name: Build source archives
         shell: bash
-        working-directory: build/q4_tmlr
         run: |
           set -euo pipefail
-          cp q4_tmlr.md source/SCIENTIFIC_MASTER_CITED.md
-          zip -qr q4-tmlr-review-source.zip source
-          sha256sum q4-tmlr-review-source.zip > source_zip_sha256.txt
-      - name: Archive Q4 TMLR review package
+          cp build/q4_tmlr/q4_tmlr.md build/q4_tmlr/source/SCIENTIFIC_MASTER_CITED.md
+          cp build/q4_arxiv/q4_arxiv.md build/q4_arxiv/source/SCIENTIFIC_MASTER_CITED.md
+          (cd build/q4_tmlr && zip -qr q4-tmlr-review-source.zip source && sha256sum q4-tmlr-review-source.zip > source_zip_sha256.txt)
+          (cd build/q4_arxiv && zip -qr orion-08-arxiv-source.zip source && sha256sum orion-08-arxiv-source.zip > source_zip_sha256.txt)
+      - name: Archive Q4 TMLR and arXiv packages
         uses: actions/upload-artifact@v4
         with:
-          name: q4-tmlr-review-package
+          name: orion-08-tmlr-and-arxiv-packages
           path: |
-            build/q4_tmlr/source/main.pdf
-            build/q4_tmlr/q4-tmlr-review-source.zip
-            build/q4_tmlr/pdfinfo.txt
-            build/q4_tmlr/pdffonts.txt
-            build/q4_tmlr/pdf_sha256.txt
-            build/q4_tmlr/source_zip_sha256.txt
-            build/q4_tmlr/source/style_sha256.txt
-            build/q4_tmlr/source/style_commit.txt
-            build/q4_tmlr/rendered
+            build/q4_tmlr
+            build/q4_arxiv
           if-no-files-found: error
           retention-days: 30
