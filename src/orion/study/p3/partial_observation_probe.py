@@ -185,7 +185,7 @@ RESULT_SCHEMA_VERSION = "orion.p3.partial-observation-result.v1"
 PROBE_SCHEMA_VERSION = "orion.p3.partial-observation-probe-case.v1"
 
 FREEZE_DOCUMENT = (
-    "papers/orion-13-global-knowledge-portrait/protocol/"
+    "papers/paper-03-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md"
 )
 ORIGINAL_FREEZE_TWIN = (
@@ -199,7 +199,7 @@ ORIGINAL_FREEZE_TWIN = (
 # runner binds to it. Nothing the original document decided is reopened --- no
 # threshold moves, no gate is renamed, no adjudicated case is touched.
 AMENDMENT_DOCUMENT = (
-    "papers/orion-13-global-knowledge-portrait/protocol/"
+    "papers/paper-03-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.md"
 )
 AMENDMENT_TWIN = (
@@ -213,7 +213,7 @@ AMENDMENT_TWIN = (
 # different arm would be a relabelling rather than a repair. Amendment 001 and the
 # 2026-08-21 freeze are both left byte-identical.
 AMENDMENT_002_DOCUMENT = (
-    "papers/orion-13-global-knowledge-portrait/protocol/"
+    "papers/paper-03-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_002.md"
 )
 AMENDMENT_002_TWIN = (
@@ -228,7 +228,7 @@ AMENDMENT_002_TWIN = (
 # No threshold moves and no gate changes its subject. Amendments 001 and 002 and
 # the 2026-08-21 freeze are all left byte-identical.
 AMENDMENT_003_DOCUMENT = (
-    "papers/orion-13-global-knowledge-portrait/protocol/"
+    "papers/paper-03-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.md"
 )
 AMENDMENT_003_TWIN = (
@@ -242,7 +242,7 @@ AMENDMENT_003_TWIN = (
 # statement, its threshold, its subject and its FAIL. Amendments 001, 002 and 003
 # and the 2026-08-21 freeze are all left byte-identical.
 AMENDMENT_004_DOCUMENT = (
-    "papers/orion-13-global-knowledge-portrait/protocol/"
+    "papers/paper-03-global-knowledge-portrait/protocol/"
     "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.md"
 )
 AMENDMENT_004_TWIN = (
@@ -546,6 +546,21 @@ INTACT_SOURCES: dict[str, str] = {
     # have hidden. See AMENDMENT_003_DOCUMENT and
     # research/p3-partial-observation-record-gold-v1/.
     INTACT_RECORD_GOLD: "research/p3-partial-observation-record-gold-v1/cases.jsonl",
+}
+
+# The addresses these corpora had when the coordinate freeze was taken. R0
+# (3a1a83178) moved the paper directory, which changed every path string above and
+# therefore changed sha256_json(FROZEN_PARAMETERS) -- breaking a freeze that had
+# recorded nothing scientific about the move. INTACT_SOURCES must track the live
+# tree because its values are dereferenced (repo_root / relative -> load_jsonl);
+# what the freeze recorded must not move at all. Keeping the two separate is what
+# lets the digest match while the files stay readable.
+INTACT_SOURCES_AS_FROZEN: dict[str, str] = {
+    key: value.replace(
+        "papers/orion-13-global-knowledge-portrait",
+        "papers/paper-03-global-knowledge-portrait",
+    )
+    for key, value in INTACT_SOURCES.items()
 }
 
 #: What each intact corpus is for. Declared per corpus rather than inferred from
@@ -2003,7 +2018,7 @@ FROZEN_PARAMETERS: dict[str, Any] = {
     },
     "probe_gold_derivation_rule": PROBE_GOLD_DERIVATION_RULE,
     "sides_per_redactable_pair": list(SIDES),
-    "intact_sources": dict(INTACT_SOURCES),
+    "intact_sources": dict(INTACT_SOURCES_AS_FROZEN),
     "intact_roles": dict(INTACT_ROLE),
     "symmetric_intact_sources": list(SYMMETRIC_INTACT_ORDER),
     "partially_observed_intact_sources": list(PARTIALLY_OBSERVED_INTACT_ORDER),
