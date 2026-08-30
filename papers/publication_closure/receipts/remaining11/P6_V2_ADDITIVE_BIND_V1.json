@@ -1,0 +1,37 @@
+{
+<<<<<<< HEAD
+  "added_count": 2,
+  "added_paths": [
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/NEGATIVE_HISTORY.jsonl",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/graph-quality-revalidation-v1/RESOURCE_ACCOUNTING.json"
+=======
+  "added_count": 7,
+  "added_paths": [
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/dependency-closed-revalidation-v1/CLAIM_DISPOSITION.md",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/dependency-closed-revalidation-v1/EXPECTED_TERMINALS.json",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/dependency-closed-revalidation-v1/PROTOCOL.json",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/dependency-closed-revalidation-v1/RESULT.json",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/dependency-closed-revalidation-v1/SOURCE_MANIFEST.json",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/dependency-closed-revalidation-v1/THEORY.md",
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/theory/dependency-closed-revalidation-v1/independent_checker/check_dependency_closure.py"
+>>>>>>> ee37eb10e02472bf5eea6b910fdb56a181852524
+  ],
+  "binds": "BYTES ONLY",
+  "candidate_id": "P6",
+  "closes_no_gate": true,
+  "grants_authority": "NONE",
+  "licenses_no_archive": true,
+  "operation": "bind additive successor-theory files into CONTENT_MANIFEST_V2",
+  "ordering_rule": "binding written AFTER every content edit it covers",
+  "paper": "papers/orion-16-formal-epistemic-structures-and-mechanics",
+  "schema": "orion.candidate.v2-additive-bind.v1",
+<<<<<<< HEAD
+  "subject_commit": "69af50628c969be8cc9fd0be25a888bcd1058388",
+  "subject_tree": "c448bdb8028cbcb5c51749dce55c837009c9d559",
+=======
+  "subject_commit": "0ad26a5693605efd2ebcb691308b62a9cfe4f0e4",
+  "subject_tree": "78aca1b9266c18c7f87009a640c484a2bd9e0478",
+>>>>>>> ee37eb10e02472bf5eea6b910fdb56a181852524
+  "v1_manifest_modified": false,
+  "why": "check_content_binding_v1.py refuses to regenerate V1 for additive files and directs them to V2; an unmanifested addition turns the checker red by design"
+}
