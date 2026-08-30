@@ -9,23 +9,23 @@
         "id": "AMENDMENT_001",
         "left_byte_identical": true,
         "parameters_sha256": "d4e97dcfc8a35d97656ec5eee60efc249a8e24dc682dd153c029fd9450b59ac8",
-        "twin": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.json"
+        "twin": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.json"
       },
       {
         "id": "AMENDMENT_002",
         "left_byte_identical": true,
         "parameters_sha256": "9292414c63a50f0f31ad832b45a891a1eaf90584751f90f10362d941ad36c28e",
-        "twin": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_002.json"
+        "twin": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_002.json"
       },
       {
         "id": "AMENDMENT_003",
         "left_byte_identical": true,
         "parameters_sha256": "a1057b6fe0d1d6fbe1f95c8e2202abe2936c913309aa549036a89a878a4d9b34",
-        "twin": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.json"
+        "twin": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.json"
       }
     ],
-    "prose_freeze": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
-    "twin": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.json"
+    "prose_freeze": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
+    "twin": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.json"
   },
   "arm_considered_and_not_registered": {
     "correct_answers_destroyed_on_intact_record_gold": 1,
@@ -37,14 +37,14 @@
     "wrong_answers_repaired": 1
   },
   "artifacts_of_the_amended_documents_left_in_place": [
-    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json",
-    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-21.jsonl",
-    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_001.json",
-    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_001.jsonl",
-    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_002.json",
-    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_002.jsonl",
-    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_003.json",
-    "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_003.jsonl"
+    "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-21.json",
+    "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-21.jsonl",
+    "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_001.json",
+    "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_001.jsonl",
+    "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_002.json",
+    "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_002.jsonl",
+    "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_003.json",
+    "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_003.jsonl"
   ],
   "date": "2026-08-22",
   "defect_under_repair": {
@@ -53,8 +53,8 @@
     "reported_detail": "A3 destroyed 9 correct answers on INTACT_RECORD_GOLD and repaired 0.",
     "reported_outcome": "FAIL"
   },
-  "expected_probe_artifact": "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_004.jsonl",
-  "expected_result_artifact": "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json",
+  "expected_probe_artifact": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/PROBE_CASES_2026-08-22_AMENDMENT_004.jsonl",
+  "expected_result_artifact": "papers/paper-03-global-knowledge-portrait/evidence/partial-observation-t5/P3_PARTIAL_OBSERVATION_RESULT_2026-08-22_AMENDMENT_004.json",
   "external_validity": "The bound is a bound over INTACT_RECORD_GOLD and its held-out redraws, which are synthetic. It says that on pairs of this shape the relation is not recoverable from the projections and quantifies what that costs any rule. It says nothing about how often scientific extraction drops a coordinate on one side only, and no accuracy, false-merge, false-split, superiority or optimality number over this corpus is evidence about ORION's competence on scientific text. 'A0 is optimal here' is a statement about 36 synthetic cases; A0 pays for that optimality with 8 false merges and 1 false split.",
   "gate_outcome_changes": [],
   "gate_served": "G9_HARM_A3",
@@ -100,7 +100,7 @@
           "reports correct_answers_destroyed and a per-corpus breakdown on G6"
         ],
         "date": "2026-08-22",
-        "document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.md",
+        "document": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_001.md",
         "id": "AMENDMENT_001",
         "reason": "G6_HARM_A1 was pre-declared vacuous and ran as CANNOT_CHECK: the three intact corpora state every coordinate on both sides of every pair or on neither, so A1 could not fire and 0 changes was a structural zero",
         "unchanged": [
@@ -120,7 +120,7 @@
           "scopes the G5_MINING_YIELD census to the three arms it was frozen over and reports A3's census beside it, so a published three-arm finding does not silently become a four-arm one"
         ],
         "date": "2026-08-22",
-        "document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_002.md",
+        "document": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_002.md",
         "id": "AMENDMENT_002",
         "reason": "G6_HARM_A1 came back FAIL on evidence: A1 abstains on the presence of a one-sided absence, so on the twelve H_UNDECISIVE_ABSENCE pairs --- where the absent coordinate is not what the answer turns on --- it destroys an answer A0 already had right. That is a defect in A1's design, not in the measurement. The science wants abstention when the absence changes the answer, and no arm on record decides that way",
         "unchanged": [
@@ -140,7 +140,7 @@
           "reports which corpora A3 destroyed a correct answer on and which of those supply independent gold"
         ],
         "date": "2026-08-22",
-        "document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.md",
+        "document": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_003.md",
         "id": "AMENDMENT_003",
         "numbers_this_amendment_moves": "G5_MINING_YIELD, G6_HARM_A1 and G7_COST_A2 are totals over the intact corpora, so adding one moves them. Their per-corpus rows for the four earlier corpora are unchanged, their thresholds are unchanged, and their outcomes are unchanged: G5 and G6 were FAIL and stay FAIL. A gate reading 'changes 0 decisions' or 'every failure has a discriminating coordinate' cannot be passed by a corpus added to it.",
         "reason": "G9_HARM_A3 ran as CANNOT_CHECK because no intact corpus supplied non-circular evidence for A3's zero harm: the three corpora frozen on 2026-08-21 have no one-sided absence for A3 to fire on, and INTACT_HARM_SYNTHETIC derives its gold by the completion-invariance criterion A3 decides by. Amendment 002 named what would discharge the gate and judged it unbuildable, on the ground that under partial observation the relation is genuinely underdetermined. That is true of the inference and false of the relation: a projection's silence is a fact about ORION's extraction, and the relation between the two source statements is fixed by the sources",
@@ -162,7 +162,7 @@
           "adds undecidability_witness_cases to the corpus builder, which constructs the witness in its sharpest form: an LA case and an LD case losing the same side, whose projections are then identical value for value"
         ],
         "date": "2026-08-22",
-        "document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.md",
+        "document": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.md",
         "id": "AMENDMENT_004",
         "numbers_this_amendment_moves": "none. No gate's outcome, threshold, subject or count changes. The amendment adds reported fields --- the ceiling per corpus, the floor on G9 --- and the arms, corpora and gold are untouched, so every number the runner published before it publishes after it.",
         "reason": "G9_HARM_A3 came back FAIL on nine destroyed correct answers and left the question of what the nine mean. A failing harm gate reads as a repairable defect of the arm it names, and this one is not: the nine are the price of the evidence, and no rule reading only the projections can pay less while still abstaining where the projections do not determine the relation. That is a bound, it is provable from the corpus's own cases, and leaving it unstated would invite the next amendment to go looking for a fifth arm that cannot exist",
@@ -281,7 +281,7 @@
       "modality"
     ],
     "decisiveness_rule_marker": "completion-invariance",
-    "freeze_document": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
+    "freeze_document": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21.md",
     "gates": {
       "G10_BENEFIT_A3": {
         "amendment_003": {
@@ -377,9 +377,9 @@
       "INTACT_RECORD_GOLD": "HARM_MEASUREMENT_ON_GOLD_ANCHORED_OUTSIDE_THE_PROJECTIONS"
     },
     "intact_sources": {
-      "INTACT_DERIVATION": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "INTACT_DERIVATION": "papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl",
       "INTACT_HARM_SYNTHETIC": "research/p3-partial-observation-harm-v1/cases.jsonl",
-      "INTACT_HELDOUT_REAL": "papers/orion-13-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl",
+      "INTACT_HELDOUT_REAL": "papers/paper-03-global-knowledge-portrait/gold/adjudicated/public-reference-v1/PUBLIC_REFERENCE_GOLD_V1.jsonl",
       "INTACT_HELDOUT_SYNTHETIC": "research/p3-coordinate-necessity-v1/cases.jsonl",
       "INTACT_RECORD_GOLD": "research/p3-partial-observation-record-gold-v1/cases.jsonl"
     },
@@ -440,7 +440,7 @@
       "the four corpora frozen before amendment 003 and INTACT_RECORD_GOLD itself"
     ]
   },
-  "prose_amendment": "papers/orion-13-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.md",
+  "prose_amendment": "papers/paper-03-global-knowledge-portrait/protocol/P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_2026-08-21_AMENDMENT_004.md",
   "record": "P3_PARTIAL_OBSERVATION_COORDINATE_FREEZE_AMENDMENT_004",
   "runner": "src/orion/study/p3/partial_observation_probe.py",
   "schema_version": "orion.p3.partial-observation-coordinate-freeze-amendment.v1",

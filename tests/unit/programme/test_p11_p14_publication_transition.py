@@ -6,6 +6,7 @@ paper at a time. This guard preserves the useful invariant without treating
 publication progress as a failure.
 """
 
+import re
 from pathlib import Path
 
 from orion.programme.superiority_terminals import FUTURE_PAPER_DIRECTORIES
@@ -33,7 +34,12 @@ def test_p11_to_p14_are_either_honest_placeholders_or_complete_canonical_package
         readme = root / "README.md"
         assert readme.is_file(), f"{paper_id} has no README"
         text = readme.read_text(encoding="utf-8")
-        assert f"ORION-{paper_id}" in text
+        # R0 renamed these papers, so the identity is not "ORION-" + the legacy
+        # P-number: PAPER_ALIASES maps P11..P14 onto ORION-21..ORION-24. Deriving
+        # it from the directory keeps this checking the paper's real stable ID
+        # rather than a concatenation that names nothing.
+        stable_id = re.match(r"papers/(orion-\d+)", directory).group(1).upper()
+        assert stable_id in text, f"{paper_id} README does not carry {stable_id}"
 
         manuscript = root / "MANUSCRIPT.md"
         placeholder = "NO_PROTECTED_RESULT" in text
