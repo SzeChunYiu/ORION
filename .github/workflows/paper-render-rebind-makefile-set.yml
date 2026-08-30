@@ -1,0 +1,90 @@
+name: paper-render-rebind-makefile-set
+
+# Render-and-rebind for the papers that carry their own manuscript Makefile
+# (ORION-21..24). Before this, only ORION-11..15 had any render-and-commit path,
+# so a manuscript repair to any other paper desynchronised its hash-bound PDF
+# with no way to regenerate it.
+#
+# Mirrors repository-paper-rebind.yml: render, gate on undefined references and
+# overfull boxes, commit the PDF **together with** its checksums, and push back
+# to the triggering ref.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render-rebind:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install TeX toolchain
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-pictures texlive-fonts-recommended texlive-luatex lmodern poppler-utils
+
+      - name: Render each Makefile paper
+        run: |
+          set -euo pipefail
+          for d in papers/orion-21-* papers/orion-22-* papers/orion-23-* papers/orion-24-*; do
+            [ -f "$d/manuscript/Makefile" ] || continue
+            echo "::group::render $d"
+            ( cd "$d/manuscript" && latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex )
+            LOG="$d/manuscript/main.log"
+            # Same quality gates the existing rebind workflow applies.
+            ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' "$LOG"
+            ! grep -Eq 'Overfull \\hbox|Overfull \\vbox' "$LOG"
+            echo "::endgroup::"
+          done
+
+      - name: Refresh each paper's SHA256SUMS entry for its PDF
+        run: |
+          set -euo pipefail
+          for d in papers/orion-21-* papers/orion-22-* papers/orion-23-* papers/orion-24-*; do
+            S="$d/SHA256SUMS"
+            P="$d/manuscript/main.pdf"
+            [ -f "$S" ] && [ -f "$P" ] || continue
+            NEW=$(sha256sum "$P" | awk '{print $1}')
+            python - "$S" "$P" "$NEW" <<'PY'
+          import sys, pathlib
+          sums, pdf, new = pathlib.Path(sys.argv[1]), sys.argv[2], sys.argv[3]
+          out = []
+          for line in sums.read_text().splitlines():
+              parts = line.split(None, 1)
+              if len(parts) == 2 and parts[1].strip().endswith(pdf.split('/', 1)[1]):
+                  out.append(f"{new}  {parts[1]}")
+              else:
+                  out.append(line)
+          sums.write_text("\n".join(out) + "\n")
+          PY
+          done
+
+      - name: Commit the rendered PDFs with their checksums
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # The PDF and the checksums that describe it must move together, or the
+          # package is self-inconsistent by construction.
+          for d in papers/orion-21-* papers/orion-22-* papers/orion-23-* papers/orion-24-*; do
+            [ -f "$d/manuscript/main.pdf" ] && git add "$d/manuscript/main.pdf" || true
+            [ -f "$d/SHA256SUMS" ] && git add "$d/SHA256SUMS" || true
+          done
+          if git diff --cached --quiet; then
+            echo 'Rendered papers already current.'
+            exit 0
+          fi
+          git commit -m 'chore(papers): render and rebind the Makefile paper set'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
