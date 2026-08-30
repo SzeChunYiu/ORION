@@ -1,0 +1,137 @@
+{
+  "claim_ceiling": {
+    "authorized": "The complete ORION-RSE implementation conforms to every registered P14C/P14E governance case while the strongest partial contract misses the registered retained-negative stratum.",
+    "not_authorized": [
+      "population-level superiority",
+      "external scientific validity",
+      "real-agent superiority",
+      "cross-domain generalization",
+      "independent external adjudication"
+    ]
+  },
+  "p14c": {
+    "accuracy_difference": 0.14285714285714285,
+    "benchmark": "P14C",
+    "case_level_exact_mcnemar_two_sided_p": 0.125,
+    "case_level_test_role": "DIAGNOSTIC_ONLY: the four cases are precedence variants from one authored stratum, not independent population draws",
+    "comparator": "MULTI_REVIEW",
+    "discordant_case_ids": [
+      "RN-01",
+      "RN-02",
+      "RN-03",
+      "RN-04"
+    ],
+    "discordant_strata": [
+      "RETAIN_NEGATIVE"
+    ],
+    "frozen_cases": 28,
+    "interpretation": "The complete contract matches every registered P14C case while MULTI_REVIEW misses the four RETAIN_NEGATIVE variants. Removing that one stratum removes the entire measured advantage. P14C therefore establishes frozen-specification conformance, not a population-level superiority effect.",
+    "leave_one_stratum_out": {
+      "CANNOT_CHECK": {
+        "accuracy_difference": 0.16666666666666666,
+        "comparator_accuracy": 0.8333333333333334,
+        "n_cases": 24,
+        "subject_accuracy": 1.0
+      },
+      "INTERACTION_ONLY": {
+        "accuracy_difference": 0.16666666666666666,
+        "comparator_accuracy": 0.8333333333333334,
+        "n_cases": 24,
+        "subject_accuracy": 1.0
+      },
+      "NEGATIVE": {
+        "accuracy_difference": 0.16666666666666666,
+        "comparator_accuracy": 0.8333333333333334,
+        "n_cases": 24,
+        "subject_accuracy": 1.0
+      },
+      "RETAIN_NEGATIVE": {
+        "accuracy_difference": 0.0,
+        "comparator_accuracy": 1.0,
+        "n_cases": 24,
+        "subject_accuracy": 1.0
+      },
+      "SUBSUMED": {
+        "accuracy_difference": 0.16666666666666666,
+        "comparator_accuracy": 0.8333333333333334,
+        "n_cases": 24,
+        "subject_accuracy": 1.0
+      },
+      "SUPPORTED_CLEAN": {
+        "accuracy_difference": 0.16666666666666666,
+        "comparator_accuracy": 0.8333333333333334,
+        "n_cases": 24,
+        "subject_accuracy": 1.0
+      },
+      "SUPPORTED_REOPEN": {
+        "accuracy_difference": 0.16666666666666666,
+        "comparator_accuracy": 0.8333333333333334,
+        "n_cases": 24,
+        "subject_accuracy": 1.0
+      }
+    },
+    "paired_correctness_table": {
+      "both_correct": 24,
+      "both_wrong": 0,
+      "comparator_only_correct": 0,
+      "subject_only_correct": 4
+    },
+    "semantic_strata": 7,
+    "stratum_level_exact_sign_two_sided_p": 1.0,
+    "stratum_outcome_counts": {
+      "comparator_wins": 0,
+      "subject_wins": 1,
+      "ties": 6
+    },
+    "stratum_outcomes": {
+      "CANNOT_CHECK": "tie",
+      "INTERACTION_ONLY": "tie",
+      "NEGATIVE": "tie",
+      "RETAIN_NEGATIVE": "subject_win",
+      "SUBSUMED": "tie",
+      "SUPPORTED_CLEAN": "tie",
+      "SUPPORTED_REOPEN": "tie"
+    },
+    "subject": "ORION_RSE_FULL"
+  },
+  "p14e": {
+    "accuracy_difference": 0.1428571428571429,
+    "benchmark": "P14E",
+    "between_family_standard_deviation": 0.0,
+    "case_level_exact_test": "NOT_APPLICABLE_AS_POPULATION_INFERENCE",
+    "cases_per_stratum_per_family": 80,
+    "comparator": "MULTI_REVIEW",
+    "comparator_accuracy": 0.8571428571428571,
+    "comparator_only_correct_cases": 0,
+    "differing_strata": [
+      "RETAIN_NEGATIVE"
+    ],
+    "family_accuracy_differences": [
+      0.1428571428571429,
+      0.1428571428571429,
+      0.1428571428571429,
+      0.1428571428571429,
+      0.1428571428571429,
+      0.1428571428571429,
+      0.1428571428571429,
+      0.1428571428571429,
+      0.1428571428571429,
+      0.1428571428571429,
+      0.1428571428571429,
+      0.1428571428571429
+    ],
+    "interpretation": "P14E is a larger deterministic stress test of the registered governance logic. It strengthens implementation and replay evidence but does not convert internal authored cases into external scientific-validity or real-agent superiority evidence.",
+    "nominal_families": 12,
+    "reason": "Each family contains exactly the same number of cases in each semantic stratum, and the complete and partial policies differ only on the fully pinned RETAIN_NEGATIVE stratum. Nuisance randomization cannot move this paired correctness contrast. The 960-to-0 discordance is therefore fixed by the benchmark design, not an estimate from 6,720 independent scientific decisions.",
+    "semantic_strata": 7,
+    "subject": "ORION_RSE_FULL",
+    "subject_accuracy": 1.0,
+    "subject_only_correct_cases": 960,
+    "subject_only_correct_cases_per_family": 80,
+    "total_cases": 6720
+  },
+  "paper_id": "ORION-24",
+  "schema": "ORION.P14.PairedEvidenceInterpretation.v1",
+  "scientific_authority_delta": "NONE",
+  "terminal": "P14_PAIRED_EVIDENCE_INTERPRETATION_COMPLETE__CONTROLLED_CONFORMANCE_ONLY__NO_POPULATION_SUPERIORITY"
+}
