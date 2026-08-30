@@ -1,0 +1,22 @@
+{
+  "authority_note": "Denied by this reconciliation. Submission authority is not created by superseding a binding record; it is earned by whatever process grants it, and this record does not grant it. This supersedes a byte binding so a typography and metadata defect can be repaired, and nothing more.",
+  "current_submission_authority": false,
+  "date": "2026-08-30T204109Z",
+  "directory": "papers/orion-16-formal-epistemic-structures-and-mechanics",
+  "historical_digest": {
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/manuscript/main.tex": "7c8a2bce34ca04362abbfc6d37e28cdfdcab82587d049107e00dc21c3bc62e20"
+  },
+  "moved_paths": [
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/manuscript/main.tex"
+  ],
+  "paper_id": "orion-16-formal-epistemic-structures-and-mechanics",
+  "reason": "Two manuscript-surface defects had to be repaired: the title carried an internal version suffix (\"--- V5\") and the author field carried the placeholder \"Working framework draft\". Both are forbidden on a submitted paper. CONTENT_MANIFEST_V1.json binds manuscript/main.tex at subject commit 87e2bcb330d2, so the repair necessarily moves the file away from that frozen record.",
+  "replacement_digest": {
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/manuscript/main.tex": "173fbd5ee96b2c4fe44731700284f58122c19df4649124e749b2c5a596a5daab"
+  },
+  "schema": "ORION.SUPERSEDED_BINDING.v1",
+  "scientific_authority_delta": "NONE",
+  "superseded_record": "CONTENT_MANIFEST_V1.json",
+  "superseded_subject_commit": "87e2bcb330d243b7062ddba1ca26e426632edeab",
+  "what_v1_still_asserts": "V1 continues to assert, truthfully, what was bound at its own subject commit. It is retained verbatim and is not rewritten, repointed or regenerated. Reading V1 tells you what the paper looked like then, which is exactly its purpose."
+}
