@@ -85,6 +85,10 @@ Before any controlling manuscript becomes an upload-facing master, it still requ
 
 Existing release packages remain authoritative only for the exact manuscript bytes they bind. These editorial masters and refinement records do not silently replace or upgrade an older PDF, arXiv surface, journal bundle, or readiness terminal.
 
-## 7. Final status
+## 7. Mirror binding
+
+The canonical mirror contains the same controlling manuscript map and claim ceilings under `SzeChunYiu/ORION-paper:v1-papers/`. The mirror commit is recorded by the companion repository's authoritative index and draft PR; this research-repository index does not treat mirroring as a scientific authority event.
+
+## 8. Final status
 
 `23_BOUNDED_MANUSCRIPT_OBJECTS_INDEXED__3_RESULT_LANES_HELD__NO_PROSE_CREATED_AUTHORITY__TARGET_RELEASE_WORK_REMAINS`
