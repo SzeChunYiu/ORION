@@ -1,0 +1,36 @@
+{
+  "checker": "legacy_paper_identifiers_v1",
+  "alias_entries": 39,
+  "orion_to_orion_aliases": 0,
+  "documents_checked": 45,
+  "header_lines_inspected": 3,
+  "findings": [
+    {
+      "paper_dir": "orion-06-recursive-recovery",
+      "document": "NEAREST_WORK_MATRIX_V3.md",
+      "declares": "ORION-02",
+      "belongs_to": "ORION-06",
+      "registry_sanctioned": false,
+      "why": "ORION-02 is not a registered alias of ORION-06; PAPER_ALIASES.md maps no ORION-NN id to a different ORION-NN"
+    },
+    {
+      "paper_dir": "orion-07-dual-instrument",
+      "document": "README.md",
+      "declares": "ORION-03",
+      "belongs_to": "ORION-07",
+      "registry_sanctioned": false,
+      "why": "ORION-03 is not a registered alias of ORION-07; PAPER_ALIASES.md maps no ORION-NN id to a different ORION-NN"
+    },
+    {
+      "paper_dir": "orion-08-typed-state",
+      "document": "NEAREST_WORK_MATRIX_V3.md",
+      "declares": "ORION-04",
+      "belongs_to": "ORION-08",
+      "registry_sanctioned": false,
+      "why": "ORION-04 is not a registered alias of ORION-08; PAPER_ALIASES.md maps no ORION-NN id to a different ORION-NN"
+    }
+  ],
+  "status": "MISMATCH",
+  "claim_scope": "Reports front-matter identifiers that disagree with their own directory and are not sanctioned by the alias registry. Says nothing about the content.",
+  "grants_authority": "NONE"
+}
