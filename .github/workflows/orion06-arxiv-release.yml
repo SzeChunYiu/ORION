@@ -63,8 +63,8 @@ jobs:
             --from=markdown+citations --to=latex --natbib \
             --template=build/orion06_arxiv/source/pandoc_template.tex \
             -o build/orion06_arxiv/source/main.tex
-          grep -Fq '\author{SzeChunYiu' build/orion06_arxiv/source/main.tex
-          grep -Fq 'Stockholm University, Stockholm, Sweden' build/orion06_arxiv/source/main.tex
+          grep -Fq '\author{Sze Chun Yiu' build/orion06_arxiv/source/main.tex
+          ! grep -Fq 'Stockholm University' build/orion06_arxiv/source/main.tex
           grep -Fq 'sze-chun.yiu@fysik.su.se' build/orion06_arxiv/source/main.tex
           grep -Fq 'AI assistance disclosure' build/orion06_arxiv/source/main.tex
           grep -Eq '\\cite[pt]?\{' build/orion06_arxiv/source/main.tex
@@ -86,8 +86,8 @@ jobs:
           pdfinfo build/orion06_arxiv/source/main.pdf > build/orion06_arxiv/pdfinfo.txt
           pdffonts build/orion06_arxiv/source/main.pdf > build/orion06_arxiv/pdffonts.txt
           pdftotext build/orion06_arxiv/source/main.pdf build/orion06_arxiv/pdf.txt
-          grep -Fq 'SzeChunYiu' build/orion06_arxiv/pdf.txt
-          grep -Fq 'Stockholm University' build/orion06_arxiv/pdf.txt
+          grep -Fq 'Sze Chun Yiu' build/orion06_arxiv/pdf.txt
+          ! grep -Fq 'Stockholm University' build/orion06_arxiv/pdf.txt
           grep -Fq 'sze-chun.yiu@fysik.su.se' build/orion06_arxiv/pdf.txt
           grep -Fq 'The author received no specific funding for this work.' build/orion06_arxiv/pdf.txt
           grep -Fq 'The author declares no competing interests.' build/orion06_arxiv/pdf.txt

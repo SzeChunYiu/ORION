@@ -66,7 +66,7 @@ jobs:
               --natbib \
               --template="build/quantum_preprint/${p}/source/pandoc_template.tex" \
               -o "build/quantum_preprint/${p}/source/main.tex"
-            grep -Fq '\author{SzeChunYiu' "build/quantum_preprint/${p}/source/main.tex"
+            grep -Fq '\author{Sze Chun Yiu' "build/quantum_preprint/${p}/source/main.tex"
             grep -Fq 'Stockholm University, Stockholm, Sweden' "build/quantum_preprint/${p}/source/main.tex"
             grep -Fq 'sze-chun.yiu@fysik.su.se' "build/quantum_preprint/${p}/source/main.tex"
             grep -Fq '\section*{Author contributions}' "build/quantum_preprint/${p}/source/main.tex"
@@ -87,7 +87,7 @@ jobs:
             test -s "${pdf}"
             pdfinfo "${pdf}" > "build/quantum_preprint/${p}/pdfinfo.txt"
             pdftotext "${pdf}" "build/quantum_preprint/${p}/pdf.txt"
-            grep -Fq 'SzeChunYiu' "build/quantum_preprint/${p}/pdf.txt"
+            grep -Fq 'Sze Chun Yiu' "build/quantum_preprint/${p}/pdf.txt"
             grep -Fq 'Stockholm University' "build/quantum_preprint/${p}/pdf.txt"
             grep -Fq 'Author contributions' "build/quantum_preprint/${p}/pdf.txt"
             grep -Fq 'References' "build/quantum_preprint/${p}/pdf.txt"

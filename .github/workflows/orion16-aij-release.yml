@@ -72,7 +72,7 @@ jobs:
           C=papers/top_tier_gap_closure/release_builders/orion16/COVER_LETTER.md
           pdftotext "$D/AIJ_MANUSCRIPT_CURRENT.pdf" "$RUNNER_TEMP/orion16.txt"
           pdfinfo "$D/AIJ_MANUSCRIPT_CURRENT.pdf" > "$RUNNER_TEMP/orion16-pdfinfo.txt"
-          for token in 'SzeChunYiu' 'Stockholm University' 'sze-chun.yiu@fysik.su.se' '1,536 states' '96 typed-erasure separation witnesses' 'ideal donor product' 'The author received no specific funding for this work.' 'The author declares no competing interests.' 'Declaration of generative AI'; do grep -Fq "$token" "$RUNNER_TEMP/orion16.txt"; done
+          for token in 'Sze Chun Yiu' 'Stockholm University' 'sze-chun.yiu@fysik.su.se' '1,536 states' '96 typed-erasure separation witnesses' 'ideal donor product' 'The author received no specific funding for this work.' 'The author declares no competing interests.' 'Declaration of generative AI'; do grep -Fq "$token" "$RUNNER_TEMP/orion16.txt"; done
           if grep -Eiq 'AUTHOR INPUT REQUIRED|CORRESPONDING AUTHOR INPUT REQUIRED|supplied through the journal submission interface after author confirmation' "$RUNNER_TEMP/orion16.txt" "$D/AIJ_MANUSCRIPT_CURRENT.tex" "$C"; then exit 1; fi
           sha256sum "$D/AIJ_MANUSCRIPT_CURRENT.pdf" > "$RUNNER_TEMP/orion16.pdf.sha256"
           printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' > "$RUNNER_TEMP/ARXIV_LICENSE.txt"

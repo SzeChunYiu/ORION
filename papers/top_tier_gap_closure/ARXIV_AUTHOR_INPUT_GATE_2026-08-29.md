@@ -4,8 +4,8 @@ Applies first to **ORION-06, 07, 08, 10, 12, 14, 16**. These facts are human-con
 
 ## Resolved shared filing metadata
 
-- **Author list/order:** `SzeChunYiu` (sole author).
-- **Institutional affiliation:** `Stockholm University, Stockholm, Sweden`. No department/unit or street/postal address is inferred.
+- **Author list/order:** `Sze Chun Yiu` (sole author).
+- **Institutional affiliation:** omitted by author preference (operator update 2026-08-30). Named arXiv deposits carry no affiliation. Where a venue or portal *requires* an affiliation (Elsevier AIJ/IP&M metadata, Quantum), use `Stockholm University, Stockholm, Sweden`. No department/unit or street/postal address is inferred.
 - **Corresponding author:** none designated by the author. Do not add a corresponding-author mark to the manuscript. If an external submission portal requires one, use the sole-author/submitter role only as a portal requirement and do not infer a separate manuscript designation.
 - **Correspondence/contact email:** `sze-chun.yiu@fysik.su.se`.
 - **ORCID:** not supplied; omit.
@@ -37,7 +37,7 @@ Where AI-assisted tooling materially participated in the research workflow rathe
 
 Quantum requires the scope of AI use inside the author-contribution statement. Use:
 
-> **Author contributions.** SzeChunYiu conceived and directed the study, curated the evidence, verified the analyses and claims, and wrote and revised the manuscript. OpenAI ChatGPT and related language-model tooling were used for literature triage, code and manuscript auditing, organization, language refinement, and portions of code/text production under author review. The author checked the resulting claims, calculations, citations, and final manuscript and takes full responsibility for the work.
+> **Author contributions.** Sze Chun Yiu conceived and directed the study, curated the evidence, verified the analyses and claims, and wrote and revised the manuscript. OpenAI ChatGPT and related language-model tooling were used for literature triage, code and manuscript auditing, organization, language refinement, and portions of code/text production under author review. The author checked the resulting claims, calculations, citations, and final manuscript and takes full responsibility for the work.
 
 Do not list any AI system as an author.
 
@@ -47,7 +47,7 @@ TMLR permits general-purpose LLM assistance but holds the human author fully res
 
 > **AI assistance disclosure.** General-purpose language-model tools, including OpenAI ChatGPT, were used for literature triage, code and manuscript auditing, organization, and language refinement. All scientific claims, citations, analyses, and final text were reviewed against the underlying evidence by the human author, who retains full responsibility. The language-model tools are not authors and are not treated as scientific authority.
 
-The named arXiv/final version may replace “the human author” with `SzeChunYiu`.
+The named arXiv/final version may replace “the human author” with `Sze Chun Yiu`.
 
 ## arXiv choices per paper
 

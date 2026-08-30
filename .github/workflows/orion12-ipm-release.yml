@@ -69,8 +69,8 @@ jobs:
           pdftotext "$M/ipm_submission.pdf" "$RUNNER_TEMP/ipm.txt"
           pdftotext "$M/arxiv_release.pdf" "$RUNNER_TEMP/arxiv.txt"
           if grep -Eiq 'SzeChunYiu|Sze[[:space:]-]*Chun|sze-chun.yiu@fysik.su.se' "$RUNNER_TEMP/ipm.txt"; then echo 'IPM_ANONYMITY=FAIL'; exit 1; fi
-          grep -Fq 'SzeChunYiu' "$RUNNER_TEMP/arxiv.txt"
-          grep -Fq 'Stockholm University' "$RUNNER_TEMP/arxiv.txt"
+          grep -Fq 'Sze Chun Yiu' "$RUNNER_TEMP/arxiv.txt"
+          ! grep -Fq 'Stockholm University' "$RUNNER_TEMP/arxiv.txt"
           grep -Fq 'sze-chun.yiu@fysik.su.se' "$RUNNER_TEMP/arxiv.txt"
           grep -Fq 'The author received no specific funding for this work.' "$RUNNER_TEMP/arxiv.txt"
           grep -Fq 'The author declares no competing interests.' "$RUNNER_TEMP/arxiv.txt"

@@ -14,6 +14,6 @@ We believe the work is relevant to *Artificial Intelligence* readers interested 
 
 Sincerely,
 
-SzeChunYiu  
+Sze Chun Yiu  
 Stockholm University, Stockholm, Sweden  
 sze-chun.yiu@fysik.su.se

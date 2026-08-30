@@ -19,6 +19,7 @@ HEADING_RE = re.compile(r"^(#{2,6})\s+(?:\d+(?:\.\d+)*\.?\s+)(.*)$")
 # typography-only and preserve the scientific text/identifiers.
 PDFLATEX_SAFE_REPLACEMENTS = {
     "′": "'",
+    "″": "''",
 }
 
 

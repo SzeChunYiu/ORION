@@ -89,8 +89,8 @@ jobs:
             -o build/q4_arxiv/source/main.tex
           grep -Fq '\usepackage{tmlr}' build/q4_tmlr/source/main.tex
           grep -Fq '\author{Anonymous Authors}' build/q4_tmlr/source/main.tex
-          grep -Fq '\author{SzeChunYiu' build/q4_arxiv/source/main.tex
-          grep -Fq 'Stockholm University, Stockholm, Sweden' build/q4_arxiv/source/main.tex
+          grep -Fq '\author{Sze Chun Yiu' build/q4_arxiv/source/main.tex
+          ! grep -Fq 'Stockholm University' build/q4_arxiv/source/main.tex
           grep -Fq 'sze-chun.yiu@fysik.su.se' build/q4_arxiv/source/main.tex
           grep -Fq '2,233,980' build/q4_tmlr/source/main.tex
           grep -Fq 'Nakayashiki' build/q4_tmlr/source/main.tex
@@ -137,8 +137,8 @@ jobs:
             exit 1
           fi
           grep -Fq 'Anonymous' build/q4_tmlr/pdf.txt
-          grep -Fq 'SzeChunYiu' build/q4_arxiv/pdf.txt
-          grep -Fq 'Stockholm University' build/q4_arxiv/pdf.txt
+          grep -Fq 'Sze Chun Yiu' build/q4_arxiv/pdf.txt
+          ! grep -Fq 'Stockholm University' build/q4_arxiv/pdf.txt
           grep -Fq 'AI assistance disclosure' build/q4_arxiv/pdf.txt
           printf '%s\n' 'arXiv.org perpetual, non-exclusive license 1.0' > build/q4_arxiv/ARXIV_LICENSE.txt
           printf '%s\n' 'cs.AI' > build/q4_arxiv/ARXIV_PRIMARY_CATEGORY.txt

@@ -9,9 +9,9 @@ def fail(msg): print('ORION12_ARXIV_BUILD=FAIL\n- '+msg); return 1
 def main():
     text = SRC.read_text(encoding='utf-8')
     replacements = {
-        'pdfauthor={Anonymous authors}': 'pdfauthor={SzeChunYiu}',
-        r'\author[1]{Anonymous authors}': r'\author[1]{SzeChunYiu}\ead{sze-chun.yiu@fysik.su.se}\affiliation[1]{organization={Stockholm University},city={Stockholm},country={Sweden}}',
-        r'\shortauthors{Anonymous authors}': r'\shortauthors{SzeChunYiu}',
+        'pdfauthor={Anonymous authors}': 'pdfauthor={Sze Chun Yiu}',
+        r'\author[1]{Anonymous authors}': r'\author[1]{Sze Chun Yiu}\ead{sze-chun.yiu@fysik.su.se}',
+        r'\shortauthors{Anonymous authors}': r'\shortauthors{Sze Chun Yiu}',
     }
     for old,new in replacements.items():
         if old not in text: return fail('missing source token: '+old)
@@ -36,7 +36,7 @@ The author declares no competing interests.
 '''
     if old_ai not in text: return fail('AI declaration block missing')
     text = text.replace(old_ai,new_ai)
-    for token in ('SzeChunYiu','Stockholm University','sze-chun.yiu@fysik.su.se','The author received no specific funding','The author declares no competing interests','TREC-COVID'):
+    for token in ('Sze Chun Yiu','sze-chun.yiu@fysik.su.se','The author received no specific funding','The author declares no competing interests','TREC-COVID'):
         if token not in text: return fail('required token missing: '+token)
     if 'Anonymous authors' in text: return fail('anonymous metadata remains')
     OUTDIR.mkdir(parents=True,exist_ok=True); OUT.write_text(text,encoding='utf-8')

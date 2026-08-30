@@ -4,7 +4,7 @@ These statements use the author-controlled filing facts supplied on 2026-08-29. 
 
 ## Author metadata
 
-- Author: **SzeChunYiu**
+- Author: **Sze Chun Yiu**
 - Affiliation: **Stockholm University, Stockholm, Sweden**
 - Contact email: **sze-chun.yiu@fysik.su.se**
 - Corresponding-author designation in manuscript: **none**
@@ -32,7 +32,7 @@ The author received no specific funding for this work.
 
 ## Author contributions
 
-SzeChunYiu conceived and directed the study, curated the evidence, verified the analyses and claims, and wrote and revised the manuscript. Language-model tooling assisted with literature triage, code/manuscript auditing, organization, language refinement, and portions of code/text production under author review; it is not an author or independent scientific authority.
+Sze Chun Yiu conceived and directed the study, curated the evidence, verified the analyses and claims, and wrote and revised the manuscript. Language-model tooling assisted with literature triage, code/manuscript auditing, organization, language refinement, and portions of code/text production under author review; it is not an author or independent scientific authority.
 
 ## Public release / IP
 

@@ -71,7 +71,7 @@ jobs:
             --template=build/q2_aij/source/pandoc_template.tex \
             -o build/q2_aij/source/main.tex
           grep -Fq '\documentclass[preprint,12pt]{elsarticle}' build/q2_aij/source/main.tex
-          grep -Fq '\author{SzeChunYiu}' build/q2_aij/source/main.tex
+          grep -Fq '\author{Sze Chun Yiu}' build/q2_aij/source/main.tex
           grep -Fq 'Stockholm University, Stockholm, Sweden' build/q2_aij/source/main.tex
           grep -Fq 'sze-chun.yiu@fysik.su.se' build/q2_aij/source/main.tex
           grep -Fq 'Declaration of generative AI' build/q2_aij/source/main.tex
@@ -92,7 +92,7 @@ jobs:
           set -euo pipefail
           pdfinfo build/q2_aij/source/main.pdf > build/q2_aij/pdfinfo.txt
           pdftotext build/q2_aij/source/main.pdf build/q2_aij/pdf.txt
-          grep -Fq 'SzeChunYiu' build/q2_aij/pdf.txt
+          grep -Fq 'Sze Chun Yiu' build/q2_aij/pdf.txt
           grep -Fq 'Stockholm University' build/q2_aij/pdf.txt
           grep -Fq 'sze-chun.yiu@fysik.su.se' build/q2_aij/pdf.txt
           grep -Fq 'The author received no specific funding for this work.' build/q2_aij/pdf.txt

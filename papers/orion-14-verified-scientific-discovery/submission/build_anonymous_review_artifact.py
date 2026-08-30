@@ -52,6 +52,7 @@ FORBIDDEN_TEXT = [
     re.compile(pattern, re.IGNORECASE)
     for pattern in (
         r"SzeChunYiu",
+        r"Sze Chun Yiu",
         r"github\.com/",
         r"api\.github\.com",
         r"GitHub Actions",
