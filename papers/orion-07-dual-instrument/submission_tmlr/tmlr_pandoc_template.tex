@@ -17,6 +17,11 @@
 
 \begin{document}
 \maketitle
+\begingroup
+\renewcommand\thefootnote{}
+\footnotetext{General-purpose language-model tools, including OpenAI ChatGPT, were used for literature triage, code and manuscript auditing, organization, and language refinement. All scientific claims, citations, analyses, and final text were reviewed against the underlying evidence by the human author, who retains full responsibility. The language-model tools are not authors and are not treated as scientific authority or independent verification.}
+\addtocounter{footnote}{-1}
+\endgroup
 
 \begin{abstract}
 $abstract$
@@ -32,13 +37,6 @@ scientific results are bound by exact hashes and were reproduced by byte-identic
 Repository identity and permanent public-release metadata are withheld from the review version
 to preserve double-blind evaluation and will be restored in the named archival version. This
 case series uses no private human dataset.
-
-\section*{AI assistance disclosure}
-General-purpose language-model tools, including OpenAI ChatGPT, were used for literature
-triage, code and manuscript auditing, organization, and language refinement. All scientific
-claims, citations, analyses, and final text were reviewed against the underlying evidence by
-the human author, who retains full responsibility. The language-model tools are not authors
-and are not treated as scientific authority or independent verification.
 
 \bibliographystyle{tmlr}
 \bibliography{references}
