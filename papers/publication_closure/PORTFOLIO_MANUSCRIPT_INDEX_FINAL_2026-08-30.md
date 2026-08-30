@@ -2,6 +2,7 @@
 
 **As of:** 2026-08-30 (Europe/Stockholm)  
 **Branch:** `academic-rewrite-batch-06-07-08-10-12-14-16-20260829`  
+**Canonical mirror branch:** `SzeChunYiu/ORION-paper:academic-rewrite-batch-06-07-08-10-12-14-16-20260829`  
 **Purpose:** resolve concurrent editorial-pass inventory differences and identify one controlling manuscript/disposition per bounded paper object.  
 **Precedence:** this index controls over earlier same-branch portfolio-count or inclusion summaries where they disagree. Scientific ledgers, proofs, protocols, results, and paper-local readiness records continue to control scientific authority.
 
@@ -87,7 +88,7 @@ Existing release packages remain authoritative only for the exact manuscript byt
 
 ## 7. Mirror binding
 
-The canonical mirror contains the same controlling manuscript map and claim ceilings under `SzeChunYiu/ORION-paper:v1-papers/`. The mirror commit is recorded by the companion repository's authoritative index and draft PR; this research-repository index does not treat mirroring as a scientific authority event.
+The canonical mirror contains the same controlling manuscript map and claim ceilings under `SzeChunYiu/ORION-paper:v1-papers/`. Mirroring is an archival/publication-surface operation and creates no scientific authority.
 
 ## 8. Final status
 
