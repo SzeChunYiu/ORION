@@ -27,7 +27,7 @@ The `ORION-02-R*` strings above are historical review-finding identifiers from t
 **Whole-paper continuity:** PASS.  
 **Reproducibility/reporting:** PASS at manuscript level.  
 **Cross-paper overlap:** PASS against companion-paper boundaries.  
-**Target-journal compliance:** UNRESOLVED; no exact venue/article type selected.
+**Target-journal compliance:** current primary route is **Artificial Intelligence — Regular Paper**; final venue-specific build remains a submission-package operation.
 
 ## Current-head science update — 2026-08-29
 
@@ -39,20 +39,20 @@ The theorem establishes necessary causal-ancestor coverage for same-identity rep
 
 This strengthens the paper's formal recovery contract. It does **not** establish cross-domain productivity or superiority over naive retry, donor repair, debugging tools, or research agents.
 
-## Submission-gate update — 2026-08-29
+## Submission-gate update — 2026-08-30
 
 - **Independent replay:** CLOSED for the two registered ORION-06 headline generators — both replay targets match under canonicalized JSON, and the replay harness is two-sided (unmodified -> `MATCH`, perturbed -> `DIFFERS`, missing generator -> `CANNOT_CHECK`).
 - **Receipt-index byte integrity:** CLOSED — 40/40 indexed digests match, with 0 missing and 0 mismatched.
-- **Receipt-index-to-final-claim coverage:** `CANNOT_CHECK` — byte integrity does not establish that every final manuscript claim is mapped to an indexed receipt; a claim-to-receipt mapping must be generated against the final submission text.
-- **Render inspection:** CLOSED for the currently committed PDF — clipping audit reports one manuscript audited with zero findings. This does not replace a final venue-specific rebuild.
-- **Compile gate:** OPEN and venue-dependent; rebuild after venue/style selection.
-- **Literature/donor refresh:** OPEN by design until submission date.
+- **Final claim-to-evidence coverage:** CLOSED — `submission/CLAIM_TO_RECEIPT_MAP_V1.md` maps every independently load-bearing abstract claim to its theorem, programme, replay, or integrity authority and explicitly prevents replay/checksum evidence from being promoted into scientific validity.
+- **Generative-AI disclosure:** CLOSED in `manuscript/main.tex` under the current Elsevier policy: the declaration is a separate section immediately before the references and records OpenAI ChatGPT use, purpose, human review, and author responsibility.
+- **Render inspection:** CLOSED for the currently committed PDF — clipping audit reports one manuscript audited with zero findings. This does not replace a final venue-specific rebuild after the latest source edits.
+- **Compile gate:** OPEN and venue-specific; rebuild the final Artificial Intelligence submission surface after source/style selection.
+- **Literature/donor refresh:** OPEN by design until the submission-date search is frozen.
 
 ## Remaining submission gates
 
-- run the hostile literature/donor refresh at submission and narrow the residual if a close parent is found;
-- generate and verify the final **claim-to-receipt** mapping (the 40/40 byte-integrity check is already closed);
-- perform the final venue-specific compile/render after source/style selection;
-- archive the final evidence snapshot if required by the venue.
+- run and bind the final hostile literature/donor refresh at filing and narrow the residual if a close parent is found;
+- perform the final Artificial Intelligence compile/render/source-package audit on the post-disclosure source;
+- supply human filing metadata and archive the final evidence snapshot if required by the venue.
 
 No remaining gate licenses stronger claims about methodology effectiveness. A cross-domain Lean/mathlib + Defects4J + exact-ORION recovery benchmark remains a separately named successor, not a prerequisite for filing the bounded methods/provenance paper.
