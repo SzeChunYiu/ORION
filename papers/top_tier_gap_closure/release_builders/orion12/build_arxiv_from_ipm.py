@@ -10,7 +10,12 @@ def main():
     text = SRC.read_text(encoding='utf-8')
     replacements = {
         'pdfauthor={Anonymous authors}': 'pdfauthor={Sze Chun Yiu}',
-        r'\author[1]{Anonymous authors}': r'\author[1]{Sze Chun Yiu}\ead{sze-chun.yiu@fysik.su.se}',
+        r'\author[1]{Anonymous authors}': (
+            r'\author[1]{Sze Chun Yiu}\ead{sze-chun.yiu@fysik.su.se}'
+            # cas-sc only renders \ead through a corresponding-author mark,
+            # which the author-input gate forbids; print the contact visibly.
+            r'\nonumnote{Contact: sze-chun.yiu@fysik.su.se.}'
+        ),
         r'\shortauthors{Anonymous authors}': r'\shortauthors{Sze Chun Yiu}',
     }
     for old,new in replacements.items():
