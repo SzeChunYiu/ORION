@@ -59,3 +59,41 @@ history, not artifacts, and are excluded from the twelve.
 `grants_authority: NONE`.
 
 **Terminal:** `CONTRACT_NOT_SATISFIED__0_OF_65__CORPUS_DEFINITION_IS_THE_DEBT`
+
+---
+
+## Correction V1.1 — the first version penalised correct behaviour
+
+The audit above required all twelve artifacts of every candidate. That is wrong
+for one class of directory, and the exemplar is what exposed it.
+
+`papers/orion-25-orion-research-harness/experiments/external-trust-domain-v1`
+holds **every** contract artifact except `RESULT` — because it is a **frozen
+protocol that has not been executed yet**. The contract's own item
+"outcome-free protocol commit" endorses exactly that state. Dinging it for the
+absence of a result inverts the discipline the contract is trying to enforce.
+
+The audit now splits by phase. `RESULT`, `ADVERSE_AND_CANNOT_CHECK` and
+`CLAIM_DISPOSITION` are required only of directories that have executed;
+frozen protocols are held to the nine pre-execution items.
+
+**Corrected result:**
+
+| phase | dirs | satisfy applicable contract |
+|---|---|---|
+| executed | 48 | **0** (of 12 items) |
+| frozen (protocol-only) | 17 | **1** (of 9 items) |
+
+So the headline moves from `0 of 65` to `1 of 65`, and the one is
+`external-trust-domain-v1` — the single directory in the portfolio that
+demonstrates what full pre-execution compliance looks like. It should be the
+template for the rest.
+
+The substantive finding is unchanged and, if anything, sharper: **no executed
+successor satisfies the contract**, and the corpus-definition items
+(`CORPUS_MANIFEST`, `INCLUSION_EXCLUSION`, `BASELINES`) remain at 1 of 65 each —
+all three occurrences being that same exemplar. Every other empirical result in
+the portfolio was produced without a machine-readable statement of the
+population it ran over.
+
+**Corrected terminal:** `CONTRACT_NOT_SATISFIED__1_OF_65__ORION25_TRUST_DOMAIN_IS_THE_TEMPLATE`

@@ -11,6 +11,11 @@ Grants no scientific authority; it checks presence, never content.
 from __future__ import annotations
 import collections, json, pathlib, sys
 
+# Phase split: a frozen-but-unexecuted protocol legitimately has no RESULT.
+# The contract's own "outcome-free protocol commit" item endorses exactly that
+# state, so requiring RESULT of it penalises correct behaviour.
+POST_ONLY = {"RESULT", "ADVERSE_AND_CANNOT_CHECK", "CLAIM_DISPOSITION"}
+
 CONTRACT = [
     ("QUESTION",             lambda n: any(x.startswith("QUESTION") for x in n)),
     ("PROTOCOL",             lambda n: any(x.startswith("PROTOCOL") for x in n)),
@@ -45,12 +50,17 @@ def audit(root: pathlib.Path) -> dict:
     cov = collections.Counter()
     full, rows = [], []
     for d, names in cands:
-        hits = [k for k, f in CONTRACT if f(names)]
+        executed = any(x.startswith(("RESULT", "RESULTS")) and x.endswith(".json")
+                       for x in names)
+        applicable = [(k, f) for k, f in CONTRACT
+                      if executed or k not in POST_ONLY]
+        hits = [k for k, f in applicable if f(names)]
         for h in hits:
             cov[h] += 1
-        rows.append({"dir": str(d), "satisfied": len(hits), "missing":
-                     [k for k, _ in CONTRACT if k not in hits]})
-        if len(hits) == len(CONTRACT):
+        rows.append({"dir": str(d), "phase": "executed" if executed else "frozen",
+                     "satisfied": len(hits), "applicable": len(applicable),
+                     "missing": [k for k, _ in applicable if k not in hits]})
+        if len(hits) == len(applicable):
             full.append(str(d))
     return {
         "schema": "ORION.ARTIFACT_CONTRACT_AUDIT.v1",
