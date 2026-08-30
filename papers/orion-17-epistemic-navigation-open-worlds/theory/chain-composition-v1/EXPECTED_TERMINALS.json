@@ -1,0 +1,73 @@
+{
+  "schema": "ORION.ORION17.ChainComposition.ExpectedTerminals.v1",
+  "paper_id": "ORION-17",
+  "successor_id": "ORION17.CLOSURE_CHAIN_COMPOSITION.v1",
+  "governing_issue": 1649,
+  "authored_date": "2026-08-28",
+  "terminal_set": [
+    {
+      "terminal": "RE_VERIFICATION_PLUS_ONE_LEMMA",
+      "reached": true,
+      "observed": "composition re-verified over 775 bridging chains by explicit enumeration (a different method from the ledger's Z3 proof); necessity and order witnesses exhibited; three frozen policies classified; 4/4 controls fire"
+    },
+    {
+      "terminal": "ARBITRARY_CHAIN_THEOREM_ALREADY_EXISTED",
+      "reached": true,
+      "adverse_to_this_packet": true,
+      "observed": "CLAIM_LEDGER_V4.md ORION-17.V4.5 states the arbitrary-length composition theorem, mechanized in Z3, including necessity via 'only under'",
+      "consequence": "an earlier draft's framing of Theorems 1-2 as new is RETRACTED; flagged by the Wave-1 closure blueprint section 4.10"
+    },
+    {
+      "terminal": "TIER_A_EVIDENCE_NOT_EARNED__RETURNED_TO_BOUNDED_LANE",
+      "reached": true,
+      "observed": "the decisive naturalistic multi-hop study required by blueprint section 4.12 -- a real three-operation chain with externally sourced facts, predictions stamped before labels, and five registered baselines -- is not done",
+      "required_action": "ORION-17 returns to its bounded submission lane; no further rescue cycle"
+    },
+    {
+      "terminal": "CANNOT_CHECK",
+      "reached": false,
+      "condition": "campaign missing or checker cannot execute",
+      "required_action": "report as CANNOT_CHECK; never as a pass"
+    }
+  ],
+  "preserved_adverse_and_null_evidence": [
+    {
+      "item": "donor-coarse retains closure falsely 27,348 times on numpy and 50,282 times on scipy",
+      "status": "PRESERVED_AND_EXPLAINED",
+      "note": "adverse for the donor baseline; the theorem predicts the failure mode from inexactness of the containment test alone"
+    },
+    {
+      "item": "always-reopen incurs up to 382,044 unnecessary reopenings",
+      "status": "PRESERVED_UNCHANGED",
+      "note": "the cost of refusing to compose at all"
+    },
+    {
+      "item": "flask: donor-coarse is merely conservative, not unsound",
+      "status": "PRESERVED_AS_AN_INFORMATIVE_CONTROL",
+      "note": "with only 19 import edges the coarse test coincides with the exact one. The adverse regime appears exactly where dependency structure separates the tests -- reported rather than dropped as an inconvenient domain."
+    },
+    {
+      "item": "existing nonclosure countermodels and pairwise bridge-binding results",
+      "status": "PRESERVED_UNCHANGED",
+      "note": "extended, not replaced"
+    }
+  ],
+  "authority_updates": {
+    "campaign_results_or_counts_changed": "NONE",
+    "pairwise_composition_theory": "unchanged and extended",
+    "cannot_check_converted": "NONE",
+    "manuscript_edited": "NONE",
+    "new_object_created": "papers/orion-17-epistemic-navigation-open-worlds/theory/chain-composition-v1/ (additive)",
+    "paper_tree_oid_effect": {
+      "pinned": "277c71dfebc3",
+      "already_mismatching_on_main": true,
+      "ref_issue": 1625
+    },
+    "promotion_budget": "SPENT -- terminating in RETURN TO BOUNDED LANE"
+  },
+  "explicitly_out_of_scope": [
+    "the prospective fourth-package density test specified in THEORY.md section 6",
+    "any deployed-agent or open-world navigation claim beyond the bounded paper",
+    "venue, packaging and filing decisions"
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "schema": "ORION.ORION17.ChainComposition.CheckerReport.v1",
+  "successor_id": "ORION17.CLOSURE_CHAIN_COMPOSITION.v1",
+  "independence": "no ORION-17 module imported; chain theorems verified on freshly enumerated finite chains; campaign read as data",
+  "check_A_composition": {
+    "chains_checked": 775,
+    "max_chain_length": 5,
+    "holds": true
+  },
+  "check_B_necessity_broken_bridge": {
+    "witness": {
+      "chain_length": 2,
+      "contract_sequence": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "reading": "every pairwise step is individually satisfiable, but a broken bridge link makes global closure fail -- pairwise success does not compose"
+    }
+  },
+  "check_C_order_sensitivity": {
+    "witness": {
+      "original": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "reordered": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "reading": "the same transforms in a different order break a bridge that held"
+    }
+  },
+  "check_D_frozen_three_domain_campaign": {
+    "domains": [
+      "numpy",
+      "scipy",
+      "flask"
+    ],
+    "measured": {
+      "numpy": {
+        "modules": 426,
+        "import_edges": 1076,
+        "transitions": 347,
+        "certificate_decisions": 147822,
+        "policies": {
+          "always-reopen": {
+            "false_closure_retention": 0,
+            "unnecessary_reopenings": 112482
+          },
+          "donor-coarse": {
+            "false_closure_retention": 27348,
+            "unnecessary_reopenings": 22298
+          },
+          "exact-containment": {
+            "false_closure_retention": 0,
+            "unnecessary_reopenings": 0
+          }
+        }
+      },
+      "scipy": {
+        "modules": 813,
+        "import_edges": 2156,
+        "transitions": 552,
+        "certificate_decisions": 448776,
+        "policies": {
+          "always-reopen": {
+            "false_closure_retention": 0,
+            "unnecessary_reopenings": 382044
+          },
+          "donor-coarse": {
+            "false_closure_retention": 50282,
+            "unnecessary_reopenings": 32186
+          },
+          "exact-containment": {
+            "false_closure_retention": 0,
+            "unnecessary_reopenings": 0
+          }
+        }
+      },
+      "flask": {
+        "modules": 24,
+        "import_edges": 19,
+        "transitions": 331,
+        "certificate_decisions": 7944,
+        "policies": {
+          "always-reopen": {
+            "false_closure_retention": 0,
+            "unnecessary_reopenings": 7096
+          },
+          "donor-coarse": {
+            "false_closure_retention": 0,
+            "unnecessary_reopenings": 7096
+          },
+          "exact-containment": {
+            "false_closure_retention": 0,
+            "unnecessary_reopenings": 0
+          }
+        }
+      }
+    },
+    "classification": {
+      "numpy": {
+        "always-reopen": "SOUND_BUT_CONSERVATIVE",
+        "donor-coarse": "UNSOUND__RETAINS_CLOSURE_WITHOUT_THE_BRIDGE",
+        "exact-containment": "SOUND_AND_EXACT"
+      },
+      "scipy": {
+        "always-reopen": "SOUND_BUT_CONSERVATIVE",
+        "donor-coarse": "UNSOUND__RETAINS_CLOSURE_WITHOUT_THE_BRIDGE",
+        "exact-containment": "SOUND_AND_EXACT"
+      },
+      "flask": {
+        "always-reopen": "SOUND_BUT_CONSERVATIVE",
+        "donor-coarse": "SOUND_BUT_CONSERVATIVE",
+        "exact-containment": "SOUND_AND_EXACT"
+      }
+    },
+    "transitions_per_domain": {
+      "numpy": 347,
+      "scipy": 552,
+      "flask": 331
+    },
+    "zero_false_closure_retention": {
+      "numpy": true,
+      "scipy": true,
+      "flask": true
+    },
+    "donor_false_closure_retention": {
+      "numpy": 27348,
+      "scipy": 50282,
+      "flask": 0
+    }
+  },
+  "check_E_negative_controls": {
+    "necessity_witness_exists": {
+      "pass": true
+    },
+    "order_sensitivity_witness_exists": {
+      "pass": true
+    },
+    "exact_containment_sound_and_exact_in_every_domain": {
+      "pass": true
+    },
+    "donor_coarse_unsound_in_at_least_one_domain": {
+      "pass": true
+    }
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "ORION.ORION17.ChainComposition.Protocol.v1",
+  "paper_id": "ORION-17",
+  "successor_id": "ORION17.CLOSURE_CHAIN_COMPOSITION.v1",
+  "governing_issue": 1649,
+  "status": "RE_VERIFICATION_PLUS_ONE_LEMMA__TIER_A_EVIDENCE_NOT_EARNED",
+  "lane_type": "THEORY_OVER_PRE_EXISTING_FROZEN_CAMPAIGN",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+  "freeze_discipline": {
+    "applicability": "NO_NEW_OUTCOMES_GENERATED",
+    "why": "The three-domain campaign was executed and frozen before this packet existed. This lane runs nothing and re-derives nothing.",
+    "prospectivity_disclosure": "Outcomes were readable before the theorems were written. Section 4 is explanatory classification, NOT prediction. No prospectivity is claimed.",
+    "policy_selection_disclosure": "All three policies present in the frozen campaign are classified. None was added, dropped or redefined.",
+    "post_outcome_changes_forbidden": [
+      "re-running the campaign",
+      "reclassifying a policy after seeing its counts",
+      "dropping the flask domain because it is the least favourable"
+    ],
+    "frozen_paper_bytes_modified": "NONE"
+  },
+  "claims_under_test": [
+    "Theorem 1 (RE-VERIFICATION of ledger row ORION-17.V4.5, not new): preservation plus consecutive bridging implies final closure for arbitrary finite chains.",
+    "Theorem 2 (RE-VERIFICATION of V4.5's 'only under', not new): a broken bridge link admits a chain where every pairwise step succeeds and global closure fails.",
+    "Theorem 3: reordering the same transforms can break a bridge that held.",
+    "Lemma 3.4 (NOT in the ledger): the obligations reachable from Delta and ancestral to the closure root r form the unique minimal sound revalidation set.",
+    "Classification: exact containment is sound and exact in all three domains; coarse containment is unsound where dependency structure separates the tests."
+  ],
+  "information_matching": {
+    "requirement_1649": "strongest fair baselines must be information/action/budget matched",
+    "how_satisfied": "always-reopen receives strictly MORE budget (it reopens everything) and is the safety upper bound; donor-coarse and exact-containment decide the SAME frozen transitions on the SAME dependency graphs, differing only in the exactness of the containment test. The comparison isolates test exactness, not information."
+  },
+  "explicitly_not_claimed": [
+    "prospective prediction -- see the disclosure",
+    "that the chain theory is a new verification paradigm; the contribution is a composition condition and its necessity",
+    "any deployed-agent or open-world navigation claim beyond the bounded paper",
+    "novelty over assume-guarantee / contract-based compositional verification"
+  ],
+  "independent_checker_requirements": {
+    "independence_rule": "No ORION-17 module imported. Chain theorems verified on freshly enumerated chains; campaign read as data only.",
+    "witness_rule": "Theorems 2 and 3 must be established by EXHIBITED witnesses, not assertions",
+    "cannot_check_rule": "exit code 3, status CANNOT_CHECK, never reported as a pass"
+  },
+  "negative_controls": {
+    "controls": [
+      "necessity_witness_exists",
+      "order_sensitivity_witness_exists",
+      "exact_containment_sound_and_exact_in_every_domain",
+      "donor_coarse_unsound_in_at_least_one_domain"
+    ],
+    "pass_condition": "4 of 4 fire"
+  },
+  "stop_rule_1649_verbatim": "If arbitrary-chain behaviour adds no new consequence beyond pairwise theory, keep the bounded paper and do not inflate the contribution.",
+  "stop_rule_evaluation": "THE STOP RULE FIRES on the corrected reading. V4.5 already owns the arbitrary-chain theorem, so no new arbitrary-chain consequence is added. Per blueprint section 4.12 the actual Tier-A blocker is a decisive naturalistic multi-hop study, which is NOT done here. ORION-17 returns to its bounded submission lane.",
+  "promotion_budget_status": "SPENT -- ORION-17's one attempt under #1649, terminating in RETURN TO BOUNDED LANE.",
+  "retraction": {
+    "what_was_retracted": "the framing of Theorems 1-2 as a NEW arbitrary-chain theorem",
+    "why": "CLAIM_LEDGER_V4.md row ORION-17.V4.5 already states it as a mechanized theorem (Z3 over uninterpreted sorts) for chains of any length, including the necessity direction via 'only under'",
+    "flagged_by": "ORION Wave-1 Top-Tier Closure Blueprint 2026-08-28, section 4.10",
+    "what_survives": [
+      "independent re-verification by explicit finite enumeration rather than Z3",
+      "classification of the frozen three-domain campaign",
+      "the affected-obligation slice lemma, absent from the ledger"
+    ]
+  }
+}

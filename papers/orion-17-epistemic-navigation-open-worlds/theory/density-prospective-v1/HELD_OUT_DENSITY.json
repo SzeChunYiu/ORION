@@ -1,0 +1,45 @@
+{
+ "stage": "DENSITY_ONLY",
+ "held_out": [
+  {
+   "domain": "sympy",
+   "package": "sympy",
+   "usable": true,
+   "modules": 1566,
+   "import_edges": 13622,
+   "edges_per_module": 8.6986
+  },
+  {
+   "domain": "requests",
+   "package": "src/requests",
+   "usable": true,
+   "modules": 19,
+   "import_edges": 16,
+   "edges_per_module": 0.8421
+  },
+  {
+   "domain": "networkx",
+   "package": "networkx",
+   "usable": true,
+   "modules": 583,
+   "import_edges": 1245,
+   "edges_per_module": 2.1355
+  },
+  {
+   "domain": "django",
+   "package": "django",
+   "usable": true,
+   "modules": 906,
+   "import_edges": 3336,
+   "edges_per_module": 3.6821
+  },
+  {
+   "domain": "tornado",
+   "package": "tornado",
+   "usable": true,
+   "modules": 74,
+   "import_edges": 412,
+   "edges_per_module": 5.5676
+  }
+ ]
+}

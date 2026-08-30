@@ -1,0 +1,235 @@
+% ORION-17 --- standalone venue manuscript for ORION17.DENSITY_PROSPECTIVE.v1.
+%
+% This document exists because theory/density-prospective-v1/RESULT.md recorded
+% the filing terminal BLOCKED__NO_STANDALONE_MANUSCRIPT: the scientific package
+% was complete and independently checked, but the only manuscript artifact
+% carrying this result was manuscript/main.pdf, an internal working overlay with
+% no venue template, no author block and no abstract environment.
+%
+% Preamble follows submission/AIJ_MANUSCRIPT.tex so the two submissions in this
+% paper's tree share typesetting behaviour, including the microtype +
+% \emergencystretch pair that absorbs unbreakable snake_case compounds.
+%
+% Every number in this document is copied from a committed artifact:
+%   theory/density-prospective-v1/STAMPED_PREDICTIONS.md   (pre-outcome)
+%   theory/density-prospective-v1/HELD_OUT_DENSITY.json    (pre-outcome)
+%   theory/density-prospective-v1/HELD_OUT_RESULT.json     (post-outcome)
+%   theory/chain-composition-v1/{RESULT.json,NEGATIVE_HISTORY.jsonl}
+% None is hand-derived and none is re-estimated here.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\emergencystretch=1em
+\usepackage{booktabs}
+% Long repository paths and SCREAMING_SNAKE identifiers appear in the data
+% statement and the governance discussion. TeX will not break at `/' or `_',
+% so a 79-character \texttt{} box runs into the margin and microtype plus
+% \emergencystretch cannot absorb it. This is the same fix, in the same
+% position, that this paper's companion manuscript/main.tex already uses; long
+% identifiers below are set with \path{} rather than \texttt{}.
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage[strings]{underscore}
+\newtheorem{definition}{Definition}
+
+\title{Dependency Density Predicts Where a Coarse Closure-Retention Policy Becomes Unsound:\\A Prospectively Stamped Test on Five Held-Out Repositories}
+\author{Sze Chun Yiu\\Department of Physics, Stockholm University, Stockholm, Sweden\\\texttt{sze-chun.yiu@fysik.su.se}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Systems that carry scientific closure across change must decide, after each change, which previously discharged obligations may be retained and which must be reopened. A coarse retention test is cheap and is what most donor pipelines actually implement, but it is unsound: it can retain closure that a change has invalidated. Whether that unsoundness is a property of the test alone or of the system it runs on has been an open question, and an earlier campaign over three Python packages produced only a post-hoc attribution: the coarse policy was unsound on numpy and scipy but merely conservative on flask, which was attributed to dependency-structure richness. Because that attribution was formed after the outcomes were visible, it was recorded as explanatory and not as a claim. Here we convert it into a prospective test. From the three calibration domains we froze a single rule --- predict the coarse policy unsound iff the package's internal import graph carries at least $1.5$ import edges per module --- and committed the rule together with five predictions to version-control history before any held-out outcome existed. Five packages from five organizations were then evaluated over $2{,}265$ changes and $1{,}671{,}821$ certificate decisions. All five predictions were correct. The load-bearing case was registered in advance: tornado is small at $74$ modules but dense at $5.57$ edges per module, so a density explanation and a size explanation disagree on it, and a size explanation predicts it sound. It was unsound, with $12{,}773$ false closure retentions. Density, not size, carries the effect. The result is bounded in four ways that we state rather than absorb: it concerns Python import graphs under one campaign construction; the threshold was calibrated on three domains and validated on five, and its transfer to other ecosystems is untested; the disambiguation rests on tornado alone, since requests repeats flask's small-and-sparse confound; and the claim is about \emph{where} the coarse policy fails, not \emph{how badly}, since false-retention counts span two orders of magnitude across the five. In particular, this study does not discharge the naturalistic multi-hop navigation study that remains this programme's separately tracked evidence blocker, and it does not claim to.
+\end{abstract}
+
+\noindent\textbf{Keywords:} closure transport; selective revalidation; dependency structure; prospective prediction; preregistration; software evolution
+
+\section{Introduction}
+An agent that carries scientific closure across change faces a bookkeeping problem with a soundness edge. When a change arrives, some obligations that were previously discharged remain discharged and some do not, and the agent must decide which without redoing all the work. Reopening everything is always sound and usually unaffordable. Retaining everything is cheap and wrong. Real pipelines therefore run a test in between, and the test they run is usually coarse, because the exact test needs containment information that the coarse test replaces with an over-approximation.
+
+A coarse test that over-approximates in the wrong direction retains closure it should have reopened. We call such an event a \emph{false closure retention}: the policy asserts that a previously discharged obligation is still discharged when the exact containment test would have reopened it. False closure retentions are the failure mode that matters, because they are silent. The system reports completion, and nothing in the system's own accounting records that the report was unlicensed.
+
+A prior campaign in this programme evaluated three retention policies over three Python packages and found a pattern rather than a uniform failure. The coarse policy was unsound on numpy and on scipy but merely conservative on flask, where it never retained closure falsely. The campaign attributed the difference to dependency-structure richness: with only $19$ import edges, flask's coarse test coincides with the exact one, so there is nothing for the approximation to get wrong. That attribution was made after the outcomes were visible, and the packet that recorded it said so, filing it as an explanatory observation rather than a claim \cite{orion17chain}.
+
+This paper reports what happens when that attribution is required to predict. We extracted a single scalar from the three calibration domains, fixed a threshold on it, wrote down five predictions for five held-out packages, and committed all of it to version-control history before running any policy on any held-out package. We then ran the campaign and opened the outcomes.
+
+The contribution is one prospectively validated mechanism claim, with its disambiguating case registered in advance, and an explicit statement of the four boundaries beyond which it does not reach.
+
+\section{Related work as donor structure}
+Selective revalidation is a mature area and this paper claims no novelty in it. Regression test selection, incremental build systems and change-impact analysis all compute a set of things that must be redone after a change, and the soundness of such a set relative to a dependency graph is well understood. What is borrowed here is exactly that machinery: the exact policy in our comparison is an ordinary containment test over the package's internal import graph.
+
+Contract-based and assume-guarantee compositional verification owns the general question of when locally valid facts continue to discharge a global obligation after composition. This paper's programme has a mechanized theorem in that space, and the present study is not a contribution to it \cite{orion17chain}.
+
+The methodological donor is preregistration. Fixing a rule, a corpus and a success criterion before outcomes are observable is standard practice in the empirical sciences, and its purpose is precisely to remove the degree of freedom that a post-hoc attribution enjoys. What this study adds is not the idea of preregistration but the use of a version-control commit as the stamping instrument, which makes the ordering checkable by a third party from the repository alone rather than from the authors' testimony.
+
+The surrounding open-world navigation literature --- graph navigation, partial observability, planning abstraction, schema and ontology transport, goal-evolving agents and self-evolving world models --- supplies this programme's donor structure and is positioned in the companion theory manuscript \cite{sog2025,banihashemi2017,dong2025,saga2025,sewm2026,categorical2026,sheaf2026}. None of that work is displaced by the result reported here.
+
+\section{Setting}
+\begin{definition}[Certificate decision]
+Fix a package with an internal import graph over its modules. A \emph{change} is one commit's set of modified modules. For each change and each previously discharged obligation, a retention policy emits one \emph{certificate decision}: \textsc{preserve} or \textsc{reopen}.
+\end{definition}
+
+\begin{definition}[The three policies]
+\texttt{always-reopen} emits \textsc{reopen} for every decision. \texttt{exact-containment} emits \textsc{preserve} exactly when the exact containment test licenses it. \texttt{donor-coarse} is the coarse over-approximating test that donor pipelines implement.
+\end{definition}
+
+\begin{definition}[The two error types]
+A \emph{false closure retention} is a decision where the policy emits \textsc{preserve} and the exact test emits \textsc{reopen}. An \emph{unnecessary reopening} is a decision where the policy emits \textsc{reopen} and the exact test emits \textsc{preserve}. The first is unsoundness; the second is cost.
+\end{definition}
+
+\begin{definition}[Import density]
+The \emph{import density} of a package is its number of internal import edges divided by its number of modules, computed by the campaign's own \texttt{build_import_graph} over the package source. It is a property of the code, not of any policy or outcome.
+\end{definition}
+
+Import density is deliberately the cheapest non-trivial statistic available. It is computable from the source tree alone, before any commit history is walked and before any policy is run, which is what makes it usable as a pre-outcome predictor.
+
+\section{The retrospective observation, and why it was not yet a claim}
+The three calibration domains gave the pattern in Table~\ref{tab:calib}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrrl}
+\toprule
+domain & modules & import edges & edges/module & \texttt{donor-coarse} outcome \\
+\midrule
+flask & $24$ & $19$ & $0.79$ & sound ($0$ false retentions) \\
+numpy & $426$ & $1{,}076$ & $2.53$ & unsound ($27{,}348$) \\
+scipy & $813$ & $2{,}156$ & $2.65$ & unsound ($50{,}282$) \\
+\bottomrule
+\end{tabular}
+\caption{The three calibration domains. The coarse policy fails on the two dense packages and not on the sparse one.}
+\label{tab:calib}
+\end{table}
+
+Two readings fit this table equally well. Under a density reading, the coarse test fails when the import graph is rich enough to separate it from the exact test, and flask's $19$ edges are too few for the two tests to disagree. Under a size reading, the coarse test fails on large packages and flask is simply small at $24$ modules.
+
+The three calibration domains cannot distinguish these, because the sound domain is both the sparsest and the smallest. This is why the prior packet filed its attribution as explanatory rather than as a claim, and why it returned the paper to its bounded lane rather than promoting it. The distinction is not a technicality: a size reading and a density reading recommend different engineering, and only one of them is a statement about the test's mechanism.
+
+\section{Prospective protocol}
+\subsection{The frozen rule}
+From Table~\ref{tab:calib} we fixed one rule with one free parameter and then removed the freedom:
+\begin{quote}
+Predict \texttt{donor-coarse} \textbf{unsound} iff $\text{import edges} / \text{modules} \ge 1.5$; otherwise predict it merely conservative.
+\end{quote}
+The threshold $1.5$ was written into the stamped document and was not moved afterwards.
+
+\subsection{The held-out corpus and the stamped predictions}
+Five packages were selected from five distinct organizations, none of them numpy, scipy or flask. Their densities were computed with the campaign's own graph builder. Crucially, that pass calls only \texttt{build_import_graph} and never evaluates a policy, so at the moment of stamping the outcomes did not exist anywhere. Table~\ref{tab:pred} is the stamped prediction table.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llrrrl}
+\toprule
+package & source & modules & edges & edges/module & prediction \\
+\midrule
+requests & psf/requests & $19$ & $16$ & $0.84$ & sound / conservative \\
+networkx & networkx/networkx & $583$ & $1{,}245$ & $2.14$ & unsound \\
+django & django/django & $906$ & $3{,}336$ & $3.68$ & unsound \\
+tornado & tornadoweb/tornado & $74$ & $412$ & $5.57$ & unsound \\
+sympy & sympy/sympy & $1{,}566$ & $13{,}622$ & $8.70$ & unsound \\
+\bottomrule
+\end{tabular}
+\caption{Stamped predictions. Committed to history before any held-out policy outcome existed.}
+\label{tab:pred}
+\end{table}
+
+\subsection{The registered disambiguator}
+The confound in Table~\ref{tab:calib} survives into requests, which is small and sparse exactly as flask is and therefore adds little. One package was selected to break it, and was named as such in the stamped document before it was run.
+
+tornado has $74$ modules. It is small --- three times flask, an order of magnitude below sympy --- but at $5.57$ edges per module it is denser than numpy or scipy. The two readings therefore disagree on it: the density rule predicts tornado unsound, and a size-based explanation predicts it sound. The stamped document recorded that tornado's outcome is load-bearing, and that if tornado came out sound the density attribution would be recorded as refuted.
+
+\subsection{Success and failure, fixed in advance}
+Three outcomes were defined before the run. \emph{Success}: all five predictions correct, including tornado unsound. \emph{Partial}: four of five correct with tornado correct, so the mechanism holds and one boundary case is mispredicted. \emph{Failure}: tornado mispredicted, or two or more of the five wrong; either outcome refutes the density attribution and is to be reported as a refutation rather than reinterpreted.
+
+\subsection{Stamping mechanics, and how a referee can check the ordering}
+The ordering claim is the load-bearing methodological claim of this paper, so it is made checkable from the repository rather than asserted. Three facts are verifiable with \texttt{git} alone and without trusting any timestamp:
+
+\begin{enumerate}
+\item The tree of commit \texttt{1db5eaa46}, which stamps the predictions, contains \texttt{HELD_OUT_DENSITY.json}, \texttt{STAMPED_PREDICTIONS.md} and the density script, and \textbf{contains no result file}.
+\item Commit \texttt{9841b15c4} is a descendant of \texttt{1db5eaa46}, and is the first commit whose tree contains \texttt{HELD_OUT_RESULT.json}.
+\item The three pre-outcome files are \textbf{byte-identical} between the two commits, so neither the threshold nor any of the five predictions was edited after the outcomes were opened.
+\end{enumerate}
+
+Fact 3 is the strongest of the three, because it does not depend on commit metadata at all. Commit timestamps are author-settable and we do not rest the argument on them; tree content and ancestry are not.
+
+\section{Results}
+All five predictions were correct. Table~\ref{tab:res} gives the outcomes.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrllrr}
+\toprule
+package & modules & edges/mod. & predicted & observed & \texttt{donor-coarse} & \texttt{exact} \\
+ & & & & & false ret. & false ret. \\
+\midrule
+requests & $19$ & $0.84$ & sound & \textbf{sound} & $0$ & $0$ \\
+networkx & $583$ & $2.14$ & unsound & \textbf{unsound} & $91{,}507$ & $0$ \\
+django & $906$ & $3.68$ & unsound & \textbf{unsound} & $63{,}398$ & $0$ \\
+tornado & $74$ & $5.57$ & unsound & \textbf{unsound} & $12{,}773$ & $0$ \\
+sympy & $1{,}566$ & $8.70$ & unsound & \textbf{unsound} & $344{,}352$ & $0$ \\
+\bottomrule
+\end{tabular}
+\caption{Held-out outcomes. Five of five predictions correct. \texttt{exact-containment} was sound in all five packages, as expected of the exact test.}
+\label{tab:res}
+\end{table}
+
+The evaluation covered $2{,}488$ commits, of which $2{,}265$ yielded usable changes, producing $1{,}671{,}821$ certificate decisions. \texttt{donor-coarse} incurred $512{,}030$ false closure retentions in total, all of them in the four dense packages. In every package both decision outcomes occurred for at least one policy, so no domain is degenerate in the sense of admitting only one answer.
+
+The cost side behaved as the setting predicts and is reported here so that the soundness result is not read as a recommendation. \texttt{exact-containment} incurred zero unnecessary reopenings in all five packages. \texttt{always-reopen} incurred $1{,}303$, $191{,}344$, $254{,}607$, $26{,}057$ and $579{,}115$ unnecessary reopenings respectively --- the price of refusing to compose at all. \texttt{donor-coarse} incurred $1{,}303$, $84{,}972$, $51{,}076$, $6{,}545$ and $35{,}228$: strictly fewer than \texttt{always-reopen} in the four dense packages, which is exactly why a coarse test is attractive and why its silent unsoundness matters.
+
+requests is worth one further sentence, because it sharpens the previous section rather than merely passing it. There \texttt{donor-coarse} emitted \textsc{reopen} on all $1{,}501$ decisions and \textsc{preserve} on none, so it did not merely happen to be sound --- it degenerated to \texttt{always-reopen} and retained nothing at all, while \texttt{exact-containment} safely preserved $1{,}303$ of the same decisions. A sparse package can therefore report a clean soundness record for a coarse policy that is, on that package, buying its soundness by declining to do the job.
+
+\section{Density, not size}
+tornado decides between the two readings, and it decides against size. At $74$ modules it sits in the lower half of the corpus by size and is smaller than networkx, django and sympy by an order of magnitude or more. A size-based explanation therefore predicted it sound. It was unsound, with $12{,}773$ false closure retentions over $45{,}806$ certificate decisions.
+
+The registration matters here more than the number. tornado was not selected after the fact as an illustrative case; it was named in the stamped document as the case whose outcome would decide the question, together with the direction each reading predicted and the commitment to record a refutation if the density reading lost. That commitment was made when the outcome did not exist.
+
+We therefore state the mechanism claim at the strength the evidence supports: on Python import graphs under this campaign's construction, the coarse retention test's unsoundness tracks dependency density rather than package size, and a density of at least $1.5$ import edges per module was sufficient to predict unsoundness in five of five held-out packages. We do not claim the threshold is sharp, nor that $1.5$ is a constant of nature.
+
+\section{Discussion}
+The finding is best read as a statement about when an over-approximation has room to be wrong. The coarse test and the exact test can only disagree where the import graph gives them something to disagree about. In a package with $19$ edges over $19$ modules the two tests very nearly coincide, so the coarse test's soundness there is not evidence of its quality; it is evidence that the package could not exercise the difference. Density measures, cheaply and before any history is walked, how much room the approximation has.
+
+This has one practical consequence that we state narrowly. A team that has validated a coarse retention policy on a sparse codebase has not thereby validated it, and the sparse validation is close to uninformative about the dense case. The corpus here contains one such misleading validation, requests, which passes exactly as flask did and for the same structural reason.
+
+A convergent boundary appeared independently within this programme, in the ORION-16 real-system discriminator. We flag it as convergent evidence from the same programme and same research group, not as independent corroboration; same-researcher agreement does not carry external-investigator authority, and nothing here was tuned to produce it.
+
+\subsection{What this result does not do}
+The governing issue for this paper defined its evidence blocker by a specific study design: a decisive naturalistic multi-hop study over one genuine chain of three distinct operations --- representation or schema migration, responsibility relabel, and objective change --- with all facts externally sourced, predictions stamped before global closure labels are opened, and five registered baselines. That study was not run here, and a different study, however cleanly executed, cannot discharge a blocker defined by design. The blocker therefore remains open and separately tracked.
+
+Nor does this lane reopen the object that the same governing issue stopped. The stop rule fired on an arbitrary-chain composition theorem that this paper's own claim ledger already owned as a mechanized theorem, and that adverse terminal stands unchanged and unretracted. The present study tests a different object --- the mechanism attribution behind a policy's empirical failure pattern --- against evidence that did not exist when the attribution was written. It is neither a rescue of the stopped object nor a substitute for the study that remains outstanding.
+
+\section{Limitations}
+Four limits are inherited from the design and are stated here in full rather than distributed through the discussion.
+
+\emph{Ecosystem.} The claim concerns Python import graphs under this campaign's construction. Whether the threshold $1.5$, or the density statistic at all, transfers to build graphs, module systems with different granularity, or non-Python ecosystems is untested.
+
+\emph{Calibration base.} The threshold was calibrated on three domains and validated on five. That is a small calibration base, and a threshold fitted on three points should not be treated as precisely located.
+
+\emph{Disambiguation rests on one case.} requests repeats flask's small-and-sparse confound and so adds little to the density-versus-size question. The separation rests on tornado alone. A second small-and-dense package would strengthen it, and none is reported here.
+
+\emph{Where, not how badly.} The claim is about where the coarse policy fails, not about the magnitude of failure. False-retention counts across the five span two orders of magnitude, from $12{,}773$ on tornado to $344{,}352$ on sympy, and nothing here predicts that spread.
+
+Beyond these, the study inherits the campaign's construction of changes and obligations, and reports no human-subject or animal data.
+
+\section{Conclusion}
+A post-hoc attribution became a prediction, and the prediction held. Across five held-out repositories from five organizations, $2{,}265$ changes and $1{,}671{,}821$ certificate decisions, a threshold on import density fixed and committed before any outcome existed correctly separated the packages where a coarse closure-retention policy is unsound from the one where it is merely conservative, five times out of five. The case registered in advance to distinguish density from size --- small, dense tornado --- came out on the density side. Within Python import graphs under one campaign construction, unsoundness of the coarse retention test tracks how much room the approximation has to be wrong, and that room is measurable from the source tree before any policy is run. The naturalistic multi-hop study that this programme separately requires remains outstanding, and this result does not stand in for it.
+
+\section*{Declaration of generative AI and AI-assisted technologies in manuscript preparation}
+AI assistance was used during research preparation for literature discovery, adversarial checking, organization, and drafting and editing. The author reviewed and revised the manuscript, independently checked every reported number against the recorded artifacts, and takes responsibility for the submitted content. No AI system is an author and no empirical result is attributed to one. Replays and checks performed by AI agents working within the same research group are same-researcher work and are not reported as external investigator verification anywhere in this paper.
+
+\section*{Data, code, and competing-interest statements}
+The stamped prediction document, the pre-outcome density file, the post-outcome result file, the campaign scripts and an independent checker that re-derives the verdict from the recorded files --- importing no module of the parent system and re-running no campaign --- are maintained in the ORION repository under \path{papers/orion-17-epistemic-navigation-open-worlds/theory/density-prospective-v1/} at the exact submission commit, together with the parent packet under \path{theory/chain-composition-v1/} and its preserved negative history. The five held-out packages are public repositories, identified in Table~\ref{tab:pred} by organization and name. The checker has been executed on a separate compute cluster from a fresh checkout: it exited $0$ with \texttt{status: PASS}, \texttt{correct: 5/5}, and all four of its negative controls firing, including the control confirming that a size-based rule mispredicts at least one package in this corpus. That execution was carried out within the same research group on different hardware, so it establishes implementation independence only; it is not external or independent-investigator verification, and we do not report it as such. This study reports no human-subject or animal data. Competing-interest and funding declarations are supplied through the journal submission interface after author confirmation.
+
+\begin{thebibliography}{99}
+\bibitem{orion17chain} ORION-17 packet \path{ORION17.CLOSURE_CHAIN_COMPOSITION.v1}, \path{papers/orion-17-epistemic-navigation-open-worlds/theory/chain-composition-v1/}, 2026. Records the three-domain campaign, the post-hoc density attribution, the preserved negative history, and the adverse terminal \path{ARBITRARY_CHAIN_THEOREM_ALREADY_EXISTED}.
+\bibitem{sog2025} J.A. Sun et al., Search-on-Graph: Iterative informed navigation for large language model reasoning on knowledge graphs, arXiv:2510.08825, 2025.
+\bibitem{banihashemi2017} B. Banihashemi, G. De Giacomo, Y. Lesp\'erance, Abstraction in situation calculus action theories, AAAI (2017). doi:10.1609/aaai.v31i1.10693.
+\bibitem{dong2025} H. Dong, Z. Shi, H. Zeng, Y. Liu, An automatic sound and complete abstraction method for generalized planning with baggable types, AAAI (2025) 14875--14884. doi:10.1609/aaai.v39i14.33631.
+\bibitem{saga2025} Y. Du et al., Accelerating scientific discovery with autonomous goal-evolving agents, arXiv:2512.21782, 2025.
+\bibitem{sewm2026} X. Zhang et al., Self-evolving world models for LLM agent planning, arXiv:2606.30639, 2026.
+\bibitem{categorical2026} F.Y. Wang, M.J. Buehler, Self-revising discovery systems for science: A categorical framework for agentic artificial intelligence, arXiv:2606.01444, 2026.
+\bibitem{sheaf2026} D.N. Olivieri, R.J. Hern\'andez, Sheaf-theoretic transport and obstruction for detecting scientific theory shift in AI agents, arXiv:2605.14033, 2026.
+\end{thebibliography}
+\end{document}
