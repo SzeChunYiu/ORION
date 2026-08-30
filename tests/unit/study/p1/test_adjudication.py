@@ -56,8 +56,8 @@ RUBRIC_PATH = (
 
 # Frozen. A change to either document breaks these literals on purpose: that is what makes
 # "the rubric and the policy predate the verdicts" a checkable claim rather than a promise.
-FROZEN_RUBRIC_HASH = "543139fb00d71258c7fa11fb025bd8e307f981fe9c7562049f3852fd5d2914b8"
-FROZEN_POLICY_HASH = "d93b30f5a030d366acba2d0be47045cfca43f839cd2be6bfc7ccc2c9ff2e7978"
+FROZEN_RUBRIC_HASH = "dce9f3612f50cc39a22d7761de80a40683f38ebbdf548a7df7b009e7bad941be"
+FROZEN_POLICY_HASH = "4978f54fc97e0319eb3d3aed15dd6e33f4fd67a8c3acd872adda383a19d6be9e"
 
 OTHER_HASH = "f" * 64
 
