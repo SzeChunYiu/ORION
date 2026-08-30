@@ -649,7 +649,7 @@ class DisagreementPolicy:
 
 
 V1_POLICY = DisagreementPolicy(
-    policy_id="ORION-11.model-panel-adjudication.v1",
+    policy_id="P1.model-panel-adjudication.v1",
     min_judges=2,
     quorum=2,
     kappa_threshold=0.6,

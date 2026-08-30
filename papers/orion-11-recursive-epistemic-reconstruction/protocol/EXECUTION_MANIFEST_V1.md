@@ -123,7 +123,7 @@ e4ab2add3ecb6c1dc98600935269067b86126a05a640fb3f271e714f1f3f7bc3
 | Component | Path | Hash |
 |-----------|------|------|
 | Adjudication | `src/orion/study/p1/adjudication.py` | `71dc50464d3d9550d0eecef739f306bf26f99506da866bfed0504397bb96bef8` |
-| Rubric | `protocol/ADJUDICATION_RUBRIC_V1.md` | (covered by SHA-256 in `adjudication.py`; rubric body hash: `dce9f3612f50cc39a22d7761de80a40683f38ebbdf548a7df7b009e7bad941be`) |
+| Rubric | `protocol/ADJUDICATION_RUBRIC_V1.md` | (covered by SHA-256 in `adjudication.py`; rubric body hash: `543139fb00d71258c7fa11fb025bd8e307f981fe9c7562049f3852fd5d2914b8`) |
 
 ### 6.3 Conductor (harness + run entrypoint)
 
