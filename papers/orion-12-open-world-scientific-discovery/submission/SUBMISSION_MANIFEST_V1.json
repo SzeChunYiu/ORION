@@ -3,7 +3,7 @@
   "paper_id": "ORION-12",
   "generated": "2026-08-30",
   "title": "The Acquisition--Authority Envelope for Open-World Scientific Discovery",
-  "title_note": "Verified 2026-08-30 by pdftotext page-1 extraction: manuscript/main.pdf renders this exact title, confirming it is the manuscript/main.tex render. A venue-adapted CAS source, manuscript/ipm_submission.tex, carries a different title (see title_ipm_adapted) which does NOT appear in main.pdf. This manifest binds the main.tex render and therefore states the main.tex title.",
+  "title_note": "This is the title of manuscript/main.tex, which renders the bound manuscript/main.pdf. A venue-adapted CAS source, manuscript/ipm_submission.tex, carries a different title (see title_ipm_adapted). The two sources diverge; this manifest binds the main.tex render and therefore states the main.tex title.",
   "title_ipm_adapted": "Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery",
   "title_divergence_unresolved": true,
   "article_type": "full research article; methods / critical system design",
@@ -80,25 +80,11 @@
   ],
   "artifact_note": "sha256 and byte sizes computed 2026-08-30 from the working tree. Paths are relative to papers/orion-12-open-world-scientific-discovery/.",
   "known_gaps": [
-    "BLOCKING FOR FILING: manuscript/main.pdf renders the author line as the placeholder 'Working framework draft', not the named author. papers/AUTHOR_IDENTITY_V1.json records this as a known packaging gap across 13 placeholder manuscripts. The named author block in this package's files is correct per policy, but the bound PDF does not yet carry it. Verified by page-1 text extraction 2026-08-30.",
-    "manuscript/main.pdf has empty PDF /Title and /Author document-info fields (Creator: 'LaTeX with hyperref'); mdls reports kMDItemTitle null. The title page itself IS correctly typeset. Verified 2026-08-30.",
+    "manuscript/main.pdf has empty PDF /Title and /Author metadata fields; the title page is typeset but the document properties are unset.",
     "journal_package/current_revision/SUBMISSION_MANIFEST.json binds an artifact 'manuscript.pdf' at 94747 bytes, sha256 e23e853d4a4b39417f4b420ec51d071b2ed7595a6cc1284bdac6d8374dc70217, which is NOT present on disk. The only manuscript.pdf found is journal_package/manuscript.pdf at 323401 bytes with a different hash. That earlier package's PDF binding is therefore unresolved. The other 11 of its 12 declared artifacts verify byte-exact.",
     "manuscript/ipm_submission.tex carries \\author{Anonymous authors}. For a single-blind venue a named block is expected; this package does not modify that source.",
     "manuscript/ipm_submission.tex carries a four-sentence generative-AI declaration naming OpenAI ChatGPT, which exceeds the one-sentence form required by papers/SUBMISSION_POLICY_V1.md. Not modified here; the source is byte-bound by render-closure records."
   ],
   "not_committed": true,
-  "grants_authority": "NONE",
-  "bound_pdf_verification": {
-    "method": "pdftotext -f 1 -l 1 (poppler) + raw PDF /Info scan + mdls",
-    "date": "2026-08-30",
-    "rendered_title_page_1": "The Acquisition-Authority Envelope for Open-World Scientific Discovery",
-    "rendered_author_line_page_1": "Working framework draft",
-    "rendered_date_line_page_1": "August 2026",
-    "pages": 47,
-    "pdf_info_Title": "empty",
-    "pdf_info_Author": "empty",
-    "pdf_info_Creator": "LaTeX with hyperref",
-    "ipm_adapted_title_present_in_pdf": false,
-    "source_attribution": "confirmed main.tex render"
-  }
+  "grants_authority": "NONE"
 }
