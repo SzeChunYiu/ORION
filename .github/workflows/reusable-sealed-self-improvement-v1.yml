@@ -1,0 +1,32 @@
+name: Reusable sealed longitudinal self-improvement v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/reusable-sealed-self-improvement-v1.yml"
+      - "research/flagships/reusable-sealed-self-improvement-v1/**"
+      - "tests/research/test_reusable_sealed_promotion_v1.py"
+permissions:
+  contents: read
+jobs:
+  theorem-and-control-plane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: python -m pip install pytest==8.4.2
+      - name: Deterministic rebuild and independent check
+        run: |
+          set -euo pipefail
+          p=research/flagships/reusable-sealed-self-improvement-v1
+          cp "$p/CONTROL_FIXTURES.json" /tmp/fixtures.json
+          python "$p/build_controls.py" --output /tmp/control.json
+          cmp "$p/CONTROL_FIXTURES.json" /tmp/fixtures.json
+          cmp "$p/CONTROL_RESULT.json" /tmp/control.json
+          python "$p/independent_checker/check_controls.py" --output /tmp/generic.json
+          cmp "$p/GENERIC_RESULT.json" /tmp/generic.json
+          python -m pytest -q tests/research/test_reusable_sealed_promotion_v1.py
+          git diff --check
+          git diff --exit-code

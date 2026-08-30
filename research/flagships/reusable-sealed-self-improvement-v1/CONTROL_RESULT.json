@@ -1,0 +1,28 @@
+{
+  "fixture_file_sha256": "bc67232bef6aa9c8adcee9be7a8daf23087f51709aeb7cb69ba90fa316b07295",
+  "fixture_terminals": {
+    "alpha_budget_overrun_blocked": "LEDGER_BLOCKED",
+    "authority_mutation_rejected": "CONTROL_REJECTED",
+    "conflicting_duplicate_blocked": "LEDGER_BLOCKED",
+    "evaluator_epoch_regression_blocked": "LEDGER_BLOCKED",
+    "feedback_overrun_rejected": "CONTROL_REJECTED",
+    "harm_rejected": "CONTROL_REJECTED",
+    "identical_duplicate_idempotent": "CONTROL_PROMOTED",
+    "missing_required_field_blocked": "LEDGER_BLOCKED",
+    "negative_history_deletion_blocked": "LEDGER_BLOCKED",
+    "receipt_hash_tamper_blocked": "LEDGER_BLOCKED",
+    "replay_only_rejected": "CONTROL_REJECTED",
+    "resource_overrun_rejected": "CONTROL_REJECTED",
+    "retention_collapse_rejected": "CONTROL_REJECTED",
+    "valid_promotion": "CONTROL_PROMOTED"
+  },
+  "frontier_agent_performance_authority": false,
+  "negative_history_effect_authority": false,
+  "protected_transfer_authority": false,
+  "protocol_sha256": "b91028cc751f94c4639affac369ff0b695e052198759396390558f1c7287c330",
+  "result_digest": "ec8415e194ed982dae8ba153e0168883e6aa76ee5b8d1a0ea56879b8fd9537a1",
+  "schema": "ORION.ReusableSealedPromotion.ControlResult.v1",
+  "submission_authority": false,
+  "terminal": "CONTROL_PLANE_GENERATED__INDEPENDENT_CHECK_REQUIRED",
+  "theorem_and_control_plane_authority": true
+}
