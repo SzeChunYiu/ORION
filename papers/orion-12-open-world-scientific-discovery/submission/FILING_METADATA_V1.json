@@ -1,0 +1,81 @@
+{
+  "schema": "orion12.filing_metadata.v1",
+  "paper_id": "ORION-12",
+  "generated": "2026-08-30",
+  "route": "arxiv_first",
+  "route_note": "Deposit on arXiv first, then submit to IP&M citing the arXiv identifier. Elsevier permits preprint deposit prior to submission; confirm the current IP&M preprint policy before filing.",
+  "title": "The Acquisition--Authority Envelope for Open-World Scientific Discovery",
+  "title_ipm_adapted": "Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery",
+  "title_divergence_unresolved": true,
+  "author": {
+    "name": "Sze Chun Yiu",
+    "email": "sze-chun.yiu@fysik.su.se",
+    "affiliation": "Department of Physics, Stockholm University, Stockholm, Sweden"
+  },
+  "arxiv": {
+    "primary_category": "cs.IR",
+    "primary_category_rationale": "The paper's control problem is retrieval-side: acquisition, screening and stopping for scientific-literature discovery. cs.IR is the standard primary for retrieval controllers and evidence-synthesis systems.",
+    "cross_lists": [
+      "cs.AI",
+      "cs.CL",
+      "cs.DL"
+    ],
+    "cross_list_rationale": {
+      "cs.AI": "controller/agent design, authority semantics and learned stopping",
+      "cs.CL": "query reformulation, reranking and selective reading over text",
+      "cs.DL": "systematic review, bibliography expansion and scientific evidence synthesis"
+    },
+    "license": "CC BY 4.0",
+    "license_identifier": "http://creativecommons.org/licenses/by/4.0/",
+    "license_basis": "journal_package/LICENSE.md records paper text as CC BY 4.0 under LICENSE-PAPERS-CC-BY-4.0.txt. This filing is consistent with that record.",
+    "license_scope_caveat": "CC BY 4.0 covers the manuscript text and project-authored figures/analysis only. Third-party benchmark corpora (TREC-COVID/CORD-19, MetaSyn, AutoResearchBench, SAGE) are NOT redistributed and remain under their original licences; the CC BY grant does not broaden them.",
+    "comments_field": "Reports a failed registered TREC-COVID recall/cost gate; open-world benefit unconfirmed."
+  },
+  "journal_primary": {
+    "name": "Information Processing & Management",
+    "publisher": "Elsevier",
+    "review_model": "single-blind",
+    "article_type": "full research article; methods / critical system design",
+    "submission_system": "Editorial Manager",
+    "target_adapter_source": "manuscript/ipm_submission.tex (CAS single-column)"
+  },
+  "journal_fallback": {
+    "name": "Journal of the Association for Information Science and Technology",
+    "source": "journal_package/current_revision/SUBMISSION_MANIFEST.json fallback_target"
+  },
+  "keywords": [
+    "open-world scientific discovery",
+    "information retrieval",
+    "deep research agents",
+    "acquisition envelope",
+    "scientific closure",
+    "systematic review",
+    "stopping rules"
+  ],
+  "keywords_source": "manuscript/main.tex Keywords line",
+  "declarations": {
+    "ai_disclosure": "Generative AI tools were used for drafting and editing assistance. The author is responsible for all scientific content.",
+    "competing_interests": "The author declares no competing interests.",
+    "funding": "No funding was received for this work.",
+    "acknowledgements": "omitted by author policy (papers/SUBMISSION_POLICY_V1.md)",
+    "mandated_by_venue": "unverified_assumed_elsevier_standard"
+  },
+  "human_only_fields_open": [
+    "ORCID disposition",
+    "full postal address, phone and corresponding-author address",
+    "Editorial Manager subject classifications",
+    "suggested and opposed reviewers",
+    "author-approved CRediT roles",
+    "final human approval of the AI-assistance wording",
+    "arXiv identifier once assigned",
+    "submission ID once assigned"
+  ],
+  "blocking_before_filing": [
+    "Resolve the title divergence between manuscript/main.tex and manuscript/ipm_submission.tex; the cover letter title must match the title page of whichever PDF is uploaded.",
+    "Restore or rebuild the manuscript.pdf bound by journal_package/current_revision/SUBMISSION_MANIFEST.json, or supersede that manifest; its declared PDF is absent from disk.",
+    "Set a named author block in the uploaded source for this single-blind venue (ipm_submission.tex is currently anonymous).",
+    "Verify IP&M's current declaration and preprint requirements against the live guide for authors."
+  ],
+  "not_committed": true,
+  "grants_authority": "NONE"
+}
