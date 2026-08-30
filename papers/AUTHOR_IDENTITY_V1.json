@@ -1,0 +1,25 @@
+{
+  "schema": "ORION.AUTHOR_IDENTITY.v1",
+  "canonical_author": {
+    "name": "Sze Chun Yiu",
+    "email": "sze-chun.yiu@fysik.su.se",
+    "affiliation": "Department of Physics, Stockholm University, Stockholm, Sweden",
+    "affiliation_short": "Stockholm University"
+  },
+  "latex_author_block": "\\author{Sze Chun Yiu\\\\Department of Physics, Stockholm University, Stockholm, Sweden\\\\\\texttt{sze-chun.yiu@fysik.su.se}}",
+  "anonymous_author_block": "\\author{Anonymous authors}",
+  "rule": {
+    "attributed": "arXiv preprints, camera-ready versions, cover letters, and any non-blind venue carry the canonical author block.",
+    "anonymous": "Double-blind REVIEW copies (TMLR, and any venue whose review is double-blind) MUST keep the anonymous block. Substituting the canonical block into a review PDF breaks double-blind review and fails the anonymity audit in .github/workflows/q4-tmlr-package.yml.",
+    "affiliation_optional": "The author prefers to omit affiliation where a venue does not require it; affiliation_short is the minimal form when one is mandatory."
+  },
+  "current_state_2026_08_30": {
+    "placeholder_author_manuscripts": 13,
+    "placeholder_value": "Working framework draft",
+    "internal_id_as_author": ["ORION-P11", "ORION-P12", "ORION-P13", "ORION-P14", "ORION Paper X Ultimate-Successor Working Manuscript"],
+    "correctly_anonymous": ["ORION-05", "ORION-14", "ORION-25"],
+    "note": "The 13 placeholder manuscripts are the concrete packaging gap: their author field literally reads 'Working framework draft'."
+  },
+  "precedent": "papers/candidates/paper-07-epistemic-navigation-open-worlds/submission/AIJ_MANUSCRIPT.tex already carries the canonical block verbatim; this record generalises it.",
+  "grants_authority": "NONE"
+}
