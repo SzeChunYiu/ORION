@@ -1,0 +1,51 @@
+{
+  "schema": "ORION.FILING_METADATA.v1",
+  "paper": "ORION-03",
+  "title": "Typed Falsification-Aware Scientific Authority as a Least Fixed Point",
+  "author": {
+    "name": "Sze Chun Yiu",
+    "email": "sze-chun.yiu@fysik.su.se",
+    "affiliation": "Department of Physics, Stockholm University, Stockholm, Sweden",
+    "affiliation_included": "only where the venue requires it"
+  },
+  "route": {
+    "order": "arXiv first, then one journal at a time",
+    "arxiv": {
+      "primary_category": "cs.LO",
+      "cross_lists": ["cs.AI", "cs.SE"],
+      "licence": "CC BY 4.0",
+      "author_block": "named"
+    },
+    "journal_primary": {
+      "name": "Journal of Automated Reasoning",
+      "publisher": "Springer",
+      "review_model": "single-blind",
+      "author_block": "named"
+    },
+    "journal_fallback": {
+      "name": "ACM Transactions on Computational Logic",
+      "publisher": "ACM",
+      "author_block": "named"
+    }
+  },
+  "declarations": {
+    "competing_interests": "The author declares no competing interests.",
+    "funding": "No funding was received for this work.",
+    "acknowledgements": "omitted by author policy",
+    "ai_usage": "Generative AI tools were used for drafting and editing assistance. The author is responsible for all scientific content.",
+    "policy_source": "papers/SUBMISSION_POLICY_V1.md"
+  },
+  "keywords": [
+    "automated reasoning",
+    "least fixed point",
+    "provenance",
+    "typed authority",
+    "falsification",
+    "scientific claim retraction"
+  ],
+  "msc_or_acm": {
+    "acm_ccs": ["Theory of computation~Logic and verification", "Computing methodologies~Knowledge representation and reasoning"]
+  },
+  "data_and_code_availability": "The X.509 trust-store corpus is derived from third-party OpenSSL material pinned to an exact upstream commit; 268 files are digest-bound and every digest is verifiable from the recorded source binding. No new human-subject or personally identifiable data is involved.",
+  "grants_authority": "NONE"
+}
