@@ -36,7 +36,11 @@ U = {(1, 1): 1.0, (1, 0): -1.0, (0, 1): 0.0, (0, 0): 0.0}
 K_COARSE = 2
 K_EXTRA = 2
 N_BINS = 3
-MIN_MASS = 10          # a fibre below this is not "positive mass" for the test
+# "Positive mass" on an empirical distribution means at least one row. An
+# arbitrary threshold here would apply to the prediction but not to the regret
+# measurement, which counts every row, and the mismatch would manufacture
+# contradictions out of small fibres the purity test never looked at.
+MIN_MASS = 1
 SPLIT_SEED = 20260830
 
 # CC18 members with binary targets, in ascending data_id. Fixed before outcomes.
@@ -147,6 +151,16 @@ def run_dataset(data_id: int, name: str) -> dict | None:
     _, ia = policy_utility(itr, ytr)
     arms["infogain_refine"] = apply(ia, ite)
 
+    # The theorem is an exact statement about the distribution the fibres are
+    # defined on, so it is scored IN-SAMPLE. Measuring it out-of-sample instead
+    # conflates it with generalisation: a refinement has more fibres and fewer
+    # rows each, so it can lose to estimation error for reasons the theorem never
+    # claims to govern. Both are reported; only the in-sample one tests T2.
+    u_coarse_in, _ = policy_utility(ctr, ytr)
+    u_refined_in, _ = policy_utility(rtr, ytr)
+    in_sample_delta = u_refined_in - u_coarse_in
+    strict_in = in_sample_delta > 1e-12
+
     gap = orc - arms["coarse"]
     observed = arms["refined_typed"] - arms["coarse"]
     strict = observed > 1e-12
@@ -154,8 +168,12 @@ def run_dataset(data_id: int, name: str) -> dict | None:
         "data_id": data_id, "name": name, "n": int(len(y)), "d": int(X.shape[1]),
         "impure_coarse_fibres": impure,
         "predicts_strict_decrease": predicts_strict_decrease,
-        "observed_strict_decrease": bool(strict),
-        "prediction_holds": predicts_strict_decrease == strict,
+        "in_sample_strict_decrease": bool(strict_in),
+        "in_sample_delta": in_sample_delta,
+        "prediction_holds": predicts_strict_decrease == strict_in,
+        "out_of_sample_strict_decrease": bool(strict),
+        "out_of_sample_delta": observed,
+        "transfers_out_of_sample": bool(strict),
         "oracle_utility": orc,
         "arms": arms,
         "oracle_gap_from_coarse": gap,
@@ -189,7 +207,7 @@ def main() -> int:
             continue
         rows.append(r)
         print(f"  {name:<20} predict_strict={r['predicts_strict_decrease']!s:<5} "
-              f"observed={r['observed_strict_decrease']!s:<5} holds={r['prediction_holds']!s:<5} "
+              f"in_sample={r['in_sample_strict_decrease']!s:<5} holds={r['prediction_holds']!s:<5} "
               f"gap_captured_typed="
               f"{(r['fraction_of_gap_captured']['refined_typed'] if r['fraction_of_gap_captured']['refined_typed'] is not None else float('nan')):.3f}",
               flush=True)
