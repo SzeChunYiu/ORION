@@ -97,6 +97,22 @@ jobs:
           mod = importlib.util.module_from_spec(spec)
           assert spec and spec.loader
           spec.loader.exec_module(mod)
+          # A package that has just received its rendered PDF has met the
+          # documented condition for leaving SCAFFOLDING ("stays SCAFFOLDING
+          # until an in-tree or DOI-bound PDF is present"). Promote it in the
+          # same operation that places the PDF, otherwise the checker correctly
+          # rejects a state this workflow itself created.
+          import json as _json
+          for paper_id in ('P1','P3','P4'):
+              _pkg = root / mod.PAPER_DIRS[paper_id] / 'journal_package'
+              _mf = _pkg / 'MANIFEST.json'
+              if _mf.is_file() and list(_pkg.glob('*.pdf')):
+                  _d = _json.loads(_mf.read_text())
+                  if _d.get('package_status') == 'SCAFFOLDING':
+                      _raw = _mf.read_text()
+                      _mf.write_text(_raw.replace('"package_status": "SCAFFOLDING"',
+                                                  '"package_status": "SUBMISSION_READY"', 1))
+                      print(f'{paper_id}: package_status SCAFFOLDING -> SUBMISSION_READY (PDF present)')
           for paper_id in ('P1','P3','P4'):
               paper_root = root / mod.PAPER_DIRS[paper_id]
               manifest = mod.load_manifest(paper_root / 'journal_package')
