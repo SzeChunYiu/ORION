@@ -1,0 +1,115 @@
+name: paper-render-rebind-submission-set
+
+# Render-and-rebind for ORION-06/07/08/10 -- the papers nearest submission.
+#
+# Why this exists: their committed PDFs were rendered before the author block was
+# corrected, so all four shipped a title page reading "Working framework draft"
+# while main.tex was already correct. No existing workflow covered them:
+# paper-render-rebind-article-set.yml globs orion-16..18, the makefile set globs
+# orion-21..24, and repository-paper-rebind.yml covers orion-11/13/14 only. A
+# paper whose PDF cannot be rebuilt cannot be made submission-ready.
+#
+# Same shape as the article set, and for the same reasons:
+#   * no -shell-escape -- none of the four uses gobble.sty or sections/*.md.
+#   * no figure step and no librsvg2-bin -- \includegraphics count is 0 in all four.
+#   * the overfull-box gate is reported, not enforced, on this first pass. The
+#     real count is unknown; main.log is archived so the gate can be set from
+#     measurement rather than guessed.
+#
+# Citation integrity IS gated: \nocite{*} makes every bib entry load-bearing.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render-rebind:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install TeX toolchain
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended lmodern poppler-utils
+
+      - name: Render
+        run: |
+          set -euo pipefail
+          for d in papers/orion-06-* papers/orion-07-* papers/orion-08-* papers/orion-10-*; do
+            [ -f "$d/manuscript/main.tex" ] || continue
+            echo "::group::render $d"
+            ( cd "$d/manuscript" && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex )
+            LOG="$d/manuscript/main.log"
+            ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' "$LOG"
+            echo "overfull boxes in $d: $(grep -Ec 'Overfull \\hbox|Overfull \\vbox' "$LOG" || true)"
+            echo "::endgroup::"
+          done
+
+      - name: Assert the placeholder author is gone from every rendered PDF
+        run: |
+          set -euo pipefail
+          for d in papers/orion-06-* papers/orion-07-* papers/orion-08-* papers/orion-10-*; do
+            PDF="$d/manuscript/main.pdf"
+            [ -f "$PDF" ] || continue
+            TXT=$(pdftotext "$PDF" - 2>/dev/null | head -40)
+            # Control: the extraction must actually yield text, or the check proves nothing.
+            [ -n "$(echo "$TXT" | tr -d '[:space:]')" ] || { echo "pdftotext produced nothing for $PDF"; exit 1; }
+            if echo "$TXT" | grep -qi 'Working framework draft'; then
+              echo "placeholder author still rendered in $PDF"; exit 1
+            fi
+            echo "$d: front matter clean"
+          done
+
+      - name: Archive render logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: submission-set-render-logs
+          path: papers/orion-*/manuscript/main.log
+          if-no-files-found: warn
+
+      - name: Refresh each paper's SHA256SUMS entry for its PDF
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, pathlib
+          for pat in ('orion-06-*', 'orion-07-*', 'orion-08-*', 'orion-10-*'):
+              for d in sorted(pathlib.Path('papers').glob(pat)):
+                  sums, pdf = d / 'SHA256SUMS', d / 'manuscript' / 'main.pdf'
+                  if not (sums.is_file() and pdf.is_file()):
+                      continue
+                  new = hashlib.sha256(pdf.read_bytes()).hexdigest()
+                  out = []
+                  for line in sums.read_text().splitlines():
+                      parts = line.split(None, 1)
+                      if len(parts) == 2 and parts[1].strip() == str(pdf):
+                          out.append(f'{new}  {parts[1]}')
+                      else:
+                          out.append(line)
+                  sums.write_text('\n'.join(out) + '\n')
+                  print(f'{d.name}: pdf digest refreshed')
+          PY
+
+      - name: Commit the rendered PDFs with their checksums
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for d in papers/orion-06-* papers/orion-07-* papers/orion-08-* papers/orion-10-*; do
+            [ -f "$d/manuscript/main.pdf" ] && git add "$d/manuscript/main.pdf" || true
+            [ -f "$d/SHA256SUMS" ] && git add "$d/SHA256SUMS" || true
+          done
+          if git diff --cached --quiet; then
+            echo 'Rendered papers already current.'
+            exit 0
+          fi
+          git commit -m 'chore(papers): render and rebind the submission paper set'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
