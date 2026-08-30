@@ -43,7 +43,6 @@ jobs:
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' main.log
           ! grep -Eq 'Overfull \\hbox|Overfull \\vbox' main.log
-          cp main.pdf ../journal_package/manuscript.pdf
           cp main.pdf main.log /tmp/orion-render/P1/
           pdfinfo main.pdf > /tmp/orion-render/P1/pdfinfo.txt
 
@@ -54,7 +53,6 @@ jobs:
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
           ! grep -E 'LaTeX Warning: (Citation|Reference).*(undefined)|There were undefined references|undefined citations|multiply defined' main.log
           ! grep -E 'Overfull \\[hv]box' main.log
-          cp main.pdf ../journal_package/manuscript.pdf
           cp main.pdf main.log /tmp/orion-render/P3/
           pdfinfo main.pdf > /tmp/orion-render/P3/pdfinfo.txt
 
@@ -81,7 +79,6 @@ jobs:
           grep -q '180/360' /tmp/p4.txt
           grep -q '60/60' /tmp/p4.txt
           grep -qi 'not supported' /tmp/p4.txt
-          cp main.pdf ../journal_package/manuscript.pdf
           cp main.pdf main.log /tmp/orion-render/P4/
           pdfinfo main.pdf > /tmp/orion-render/P4/pdfinfo.txt
 
@@ -97,22 +94,6 @@ jobs:
           mod = importlib.util.module_from_spec(spec)
           assert spec and spec.loader
           spec.loader.exec_module(mod)
-          # A package that has just received its rendered PDF has met the
-          # documented condition for leaving SCAFFOLDING ("stays SCAFFOLDING
-          # until an in-tree or DOI-bound PDF is present"). Promote it in the
-          # same operation that places the PDF, otherwise the checker correctly
-          # rejects a state this workflow itself created.
-          import json as _json
-          for paper_id in ('P1','P3','P4'):
-              _pkg = root / mod.PAPER_DIRS[paper_id] / 'journal_package'
-              _mf = _pkg / 'MANIFEST.json'
-              if _mf.is_file() and list(_pkg.glob('*.pdf')):
-                  _d = _json.loads(_mf.read_text())
-                  if _d.get('package_status') == 'SCAFFOLDING':
-                      _raw = _mf.read_text()
-                      _mf.write_text(_raw.replace('"package_status": "SCAFFOLDING"',
-                                                  '"package_status": "SUBMISSION_READY"', 1))
-                      print(f'{paper_id}: package_status SCAFFOLDING -> SUBMISSION_READY (PDF present)')
           for paper_id in ('P1','P3','P4'):
               paper_root = root / mod.PAPER_DIRS[paper_id]
               manifest = mod.load_manifest(paper_root / 'journal_package')
@@ -137,15 +118,15 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add \
-            papers/orion-11-recursive-epistemic-reconstruction/journal_package/manuscript.pdf \
             papers/orion-11-recursive-epistemic-reconstruction/journal_package/SHA256SUMS \
-            papers/orion-13-global-knowledge-portrait/journal_package/manuscript.pdf \
             papers/orion-13-global-knowledge-portrait/journal_package/SHA256SUMS \
-            papers/orion-14-verified-scientific-discovery/journal_package/manuscript.pdf \
             papers/orion-14-verified-scientific-discovery/journal_package/SHA256SUMS
           if git diff --cached --quiet; then
             echo 'Rendered packages already current.'
             exit 0
           fi
           git commit -m 'chore(papers): render and rebind P1 P3 P4 packages'
-          git push origin HEAD:repair/p2x-claim-literature-integrity-20260819
+          # Push back to the ref that triggered this run. The previous
+          # hardcoded target was a 2026-08-19 repair branch, so every run on any
+          # other ref failed non-fast-forward after doing all its real work.
+          git push origin "HEAD:${GITHUB_REF_NAME}"
