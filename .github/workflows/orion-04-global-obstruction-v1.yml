@@ -1,0 +1,62 @@
+name: ORION-04 global saturation obstruction v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-04-global-obstruction-v1.yml"
+      - "research/orion-rg/top-tier/orion04-global-obstruction-v1/**"
+      - "tests/research/test_orion04_global_obstruction.py"
+permissions:
+  contents: read
+jobs:
+  static-and-committed-result:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: python -m pip install pytest==8.4.2
+      - name: Rebuild deterministic covers
+        run: |
+          set -euo pipefail
+          p=research/orion-rg/top-tier/orion04-global-obstruction-v1
+          cp "$p/PROJECTIVE_LINE_ATLAS.json" /tmp/atlas.json
+          cp "$p/CUBE_COVER.json" /tmp/cubes.json
+          cp "$p/FULL_CUBE_COVER.json" /tmp/full.json
+          python "$p/generate_cover.py"
+          python "$p/generate_full_cover.py"
+          cmp "$p/PROJECTIVE_LINE_ATLAS.json" /tmp/atlas.json
+          cmp "$p/CUBE_COVER.json" /tmp/cubes.json
+          cmp "$p/FULL_CUBE_COVER.json" /tmp/full.json
+      - name: Independent checkers and hostile tests
+        run: |
+          set -euo pipefail
+          p=research/orion-rg/top-tier/orion04-global-obstruction-v1
+          python "$p/independent_checker/check_static.py"
+          python "$p/independent_checker/check_full_cover.py"
+          python "$p/independent_checker/check_result.py"
+          python -m pytest -q tests/research/test_orion04_global_obstruction.py
+      - name: Compile both exact engines
+        run: |
+          set -euo pipefail
+          grep -q avx2 /proc/cpuinfo || { echo 'CANNOT_CHECK_ENVIRONMENT: AVX2 unavailable'; exit 1; }
+          p=research/orion-rg/top-tier/orion04-global-obstruction-v1
+          for f in "$p"/engine_*.c; do gcc -std=gnu11 -O3 -march=native -Wall -Wextra -Werror "$f" -o "/tmp/$(basename "$f" .c)"; done
+          git diff --check
+          git diff --exit-code
+  full-dual-replay:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Full 156-run exact replay
+        run: |
+          set -euo pipefail
+          p=research/orion-rg/top-tier/orion04-global-obstruction-v1
+          grep -q avx2 /proc/cpuinfo || { echo 'CANNOT_CHECK_ENVIRONMENT: AVX2 unavailable'; exit 1; }
+          python "$p/run_replay.py" --max-workers 2 --output /tmp/RESULT.json
+          cmp "$p/RESULT.json" /tmp/RESULT.json
