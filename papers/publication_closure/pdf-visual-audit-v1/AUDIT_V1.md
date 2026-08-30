@@ -62,3 +62,50 @@ rather than 22 identical papers. Rendered-page reading is the method that works.
 **Remaining:** 17 of 22. `grants_authority: NONE`.
 
 **Terminal:** `PDF_VISUAL_AUDIT_5_OF_22__NO_DEFECTS_FOUND`
+
+---
+
+# Batch 2 — 8 of 22 audited
+
+| paper | KB | verdict |
+|---|---|---|
+| ORION-06 recursive-recovery | 133 | clean |
+| ORION-12 open-world-scientific-discovery | 469 | clean |
+| ORION-25 orion-research-harness | 376 | clean, partially submission-formatted |
+
+Still no placeholders, unresolved references, missing-figure boxes, or
+internal-path leakage in any PDF audited.
+
+## The pattern holds, and strengthens
+
+- **ORION-06** names its own submission gate in the abstract: *"A fresh
+  literature closure remains a submission gate for any novelty statement about
+  the methodology itself."* It also refuses the general reading: *"The evidence
+  is a one-programme case study, not a statistical evaluation of
+  research-methodology effectiveness."*
+- **ORION-12** enumerates its own failures in the abstract — *"six locked gates
+  fail and the full candidate loses to its frozen u4 donor"*, *"V10 fails four
+  gates"*, *"only 4/7 reviews support it"*, *"Independent custody remains 0/3"* —
+  and **ends on** *"open-world benefit remains unconfirmed."*
+- **ORION-25** titles its opening section **"Scope and nonclaims"**, and closes
+  it with *"The framework grants no scientific truth, novelty, publication,
+  deployment or adoption authority."*
+
+## Submission formatting is the discriminator, not science quality
+
+Of eight audited, the split is now clear:
+
+- **ORION-14** — full submission render: TMLR header, `Anonymous authors / Paper
+  under double-blind review`, citation apparatus.
+- **ORION-25** — partial: `Anonymous Authors` and numbered citations `[4, 5, 6,
+  10]`, but no venue header.
+- **The other six** — `Working framework draft` + a date. No anonymisation, no
+  venue, no bibliography rendered on page 1.
+
+Every one of the eight is scientifically disciplined about its own limits. What
+separates them is packaging. That is the actionable finding for the #1701
+"bounded paper ready to file" boxes: the science is not the blocker.
+
+**Remaining:** 14 of 22.
+
+**Terminal (batch 2):** `PDF_VISUAL_AUDIT_8_OF_22__NO_DEFECTS__PACKAGING_IS_THE_GAP`
