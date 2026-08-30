@@ -1,0 +1,57 @@
+{
+  "candidates": 65,
+  "contract_items": 12,
+  "coverage": {
+    "ADVERSE_AND_CANNOT_CHECK": 2,
+    "BASELINES": 1,
+    "CLAIM_DISPOSITION": 33,
+    "CORPUS_MANIFEST": 1,
+    "EXPECTED_TERMINALS": 17,
+    "INCLUSION_EXCLUSION": 1,
+    "PROTOCOL": 50,
+    "QUESTION": 3,
+    "RESOURCE_ACCOUNTING": 4,
+    "RESULT": 48,
+    "SHA256SUMS": 21,
+    "independent_checker": 22
+  },
+  "full_contract_compliant": [],
+  "grants_authority": "NONE",
+  "positive_control": {
+    "scored_full": true,
+    "synthetic_dir_with_all_12": {
+      "ADVERSE_AND_CANNOT_CHECK": 1,
+      "BASELINES": 1,
+      "CLAIM_DISPOSITION": 1,
+      "CORPUS_MANIFEST": 1,
+      "EXPECTED_TERMINALS": 1,
+      "INCLUSION_EXCLUSION": 1,
+      "PROTOCOL": 1,
+      "QUESTION": 1,
+      "RESOURCE_ACCOUNTING": 1,
+      "RESULT": 1,
+      "SHA256SUMS": 1,
+      "independent_checker": 1
+    }
+  },
+  "schema": "ORION.ARTIFACT_CONTRACT_AUDIT.v1",
+  "terminal": "CONTRACT_NOT_SATISFIED",
+  "worst_covered": [
+    [
+      1,
+      "BASELINES"
+    ],
+    [
+      1,
+      "CORPUS_MANIFEST"
+    ],
+    [
+      1,
+      "INCLUSION_EXCLUSION"
+    ],
+    [
+      2,
+      "ADVERSE_AND_CANNOT_CHECK"
+    ]
+  ]
+}
