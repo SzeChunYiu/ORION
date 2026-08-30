@@ -90,3 +90,38 @@ was verified through Girard–Plagne's citation of it, not read directly.
 `scientific_authority_delta: NONE`.
 
 **Terminal:** `NOVELTY_SUBTRACTION_CURRENT__TWO_CITATION_CORRECTIONS__OBJECT_DISTINCT_FROM_SUBSET_DAVENPORT`
+
+---
+
+## Addendum — this resolves the audit's own open question 3
+
+`NOVELTY_AUDIT_V1.md` lists as an unresolved item:
+
+> "**Whether the subset-alphabet Davenport variant is already named in the
+> literature under another convention.** Paper A §2 anticipates this ... but
+> does not resolve it. If a published subset-Davenport invariant coincides
+> [with `zsf`] ..."
+
+**Resolved, and the answer is two-sided.**
+
+**Yes, a subset-Davenport invariant is named** — van Emde Boas' `μ(G, X)`
+(1969), carried forward as `D(X)` by Plagne–Tringali (2015) and Girard–Plagne
+(2025). Paper A §2's caution was well placed: the convention exists, it is old,
+and it is active.
+
+**No, it does not coincide with `zsf(H;A)`.** `D(X)` maximises over *minimal
+zero-sum* sequences; `zsf(H;A)` maximises over *zero-sum-free* ones. The
+relation `D = zsf + 1` holds for the full alphabet — which is why Paper A §2's
+concession `zsf(H;H\{0}) = D(H)-1` is correct — but it **fails on subsets**,
+and Girard–Plagne give the reason: `D(X)` can be finite while zero-sum-free
+sequences over `X` grow without bound.
+
+So the honest disposition of the row is neither `DONOR-OWNED` nor "no nearest
+donor exists". It is: *a named, older, active neighbour exists; the objects
+provably separate on exactly the domain the paper works in — subsets — and the
+separation is in the paper's favour, but only because `H` is finite.*
+
+That is a stronger novelty position than the audit currently claims, and it is
+the one that survives contact with a referee who knows this literature. It
+should be stated affirmatively in the manuscript rather than left as an open
+question.
