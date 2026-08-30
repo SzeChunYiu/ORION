@@ -1,0 +1,206 @@
+name: ORION-paper yellow release runner
+
+on:
+  push:
+    branches:
+      - chatgpt/orion-paper-yellow-release-runner-20260830
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  orion03:
+    name: ORION-03 JAR + arXiv
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Install render tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-xetex poppler-utils zip
+      - name: Build bounded release source
+        run: python papers/top_tier_gap_closure/yellow_release_runner_20260830.py 03
+      - name: Render editable LaTeX and PDF
+        run: |
+          cd build/orion-paper-yellow/ORION-03
+          pandoc manuscript.md -s -o manuscript.tex
+          pandoc manuscript.md -s -o ORION-03-arxiv.pdf --pdf-engine=xelatex
+          cp ORION-03-arxiv.pdf ORION-03-JAR.pdf
+          pdftotext ORION-03-JAR.pdf - | grep -q "SzeChunYiu"
+          pdftotext ORION-03-JAR.pdf - | grep -q "Stockholm University"
+          grep -q "Statements and declarations" manuscript.tex
+          zip -r ORION-03-release.zip manuscript.md manuscript.tex ORION-03-arxiv.pdf ORION-03-JAR.pdf verification_receipt.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ORION-03-release
+          path: build/orion-paper-yellow/ORION-03/ORION-03-release.zip
+
+  orion05:
+    name: ORION-05 PRX Quantum + arXiv
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Install render tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-xetex poppler-utils zip
+      - name: Exact-head theorem replay
+        run: python papers/orion-05-tare-expressivity/independent_human_proof_sanity.py
+      - name: Verify dated literature closure
+        run: |
+          test -s papers/orion-05-tare-expressivity/LITERATURE_CLOSURE_2026-08-30.md
+          grep -q "2026-08-30" papers/orion-05-tare-expressivity/LITERATURE_CLOSURE_2026-08-30.md
+      - name: Build refined theorem release source
+        run: python papers/top_tier_gap_closure/yellow_release_runner_20260830.py 05
+      - name: Render editable LaTeX and PDF
+        run: |
+          cd build/orion-paper-yellow/ORION-05
+          pandoc manuscript.md -s -o manuscript.tex
+          pandoc manuscript.md -s -o ORION-05-arxiv.pdf --pdf-engine=xelatex
+          cp ORION-05-arxiv.pdf ORION-05-PRX-Quantum.pdf
+          pdftotext ORION-05-PRX-Quantum.pdf - | grep -qi "support-two"
+          pdftotext ORION-05-PRX-Quantum.pdf - | grep -q "SzeChunYiu"
+          ! pdftotext ORION-05-PRX-Quantum.pdf - | grep -q "one pinned comm-s2 lemma short"
+          zip -r ORION-05-release.zip manuscript.md manuscript.tex ORION-05-arxiv.pdf ORION-05-PRX-Quantum.pdf verification_receipt.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ORION-05-release
+          path: build/orion-paper-yellow/ORION-05/ORION-05-release.zip
+
+  orion12:
+    name: ORION-12 IP&M anonymous + arXiv
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Install render tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-pictures texlive-publishers poppler-utils zip
+      - name: Build release-only repaired surfaces
+        run: python papers/top_tier_gap_closure/yellow_release_runner_20260830.py 12
+      - name: Compile anonymous IP&M surface
+        run: |
+          cd build/orion-paper-yellow/ORION-12/anonymous_source
+          latexmk -pdf -interaction=nonstopmode -halt-on-error ipm_submission.tex
+          cp ipm_submission.pdf ../ORION-12-IPM-anonymous.pdf
+          ! grep -Eq "There were undefined references|Citation .* undefined|Reference .* undefined" ipm_submission.log
+      - name: Compile named arXiv surface
+        run: |
+          cd build/orion-paper-yellow/ORION-12/arxiv_source
+          latexmk -pdf -interaction=nonstopmode -halt-on-error arxiv.tex
+          cp arxiv.pdf ../ORION-12-arxiv.pdf
+          ! grep -Eq "There were undefined references|Citation .* undefined|Reference .* undefined" arxiv.log
+      - name: Audit anonymity and named metadata
+        run: |
+          pdftotext build/orion-paper-yellow/ORION-12/ORION-12-IPM-anonymous.pdf /tmp/anon12.txt
+          ! grep -Eqi "SzeChunYiu|Sze Chun Yiu|sze-chun.yiu@fysik.su.se|Stockholm University" /tmp/anon12.txt
+          pdftotext build/orion-paper-yellow/ORION-12/ORION-12-arxiv.pdf /tmp/named12.txt
+          grep -qi "SzeChunYiu" /tmp/named12.txt
+          grep -qi "Stockholm University" /tmp/named12.txt
+          grep -qi "sze-chun.yiu@fysik.su.se" /tmp/named12.txt
+      - name: Package
+        run: |
+          cd build/orion-paper-yellow/ORION-12
+          zip -r ORION-12-release.zip anonymous_source arxiv_source ORION-12-IPM-anonymous.pdf ORION-12-arxiv.pdf verification_receipt.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ORION-12-release
+          path: build/orion-paper-yellow/ORION-12/ORION-12-release.zip
+
+  orion13:
+    name: ORION-13 scoped SWJ + arXiv
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Install render tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra poppler-utils zip
+      - name: Build scoped release surface
+        run: python papers/top_tier_gap_closure/yellow_release_runner_20260830.py 13
+      - name: Compile scoped PDF
+        run: |
+          cd build/orion-paper-yellow/ORION-13/scoped_source
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          cp main.pdf ../ORION-13-SWJ.pdf
+          cp main.pdf ../ORION-13-arxiv.pdf
+          ! grep -Eq "There were undefined references|Citation .* undefined|Reference .* undefined" main.log
+      - name: Audit scoped claim and practical length
+        run: |
+          pdftotext build/orion-paper-yellow/ORION-13/ORION-13-SWJ.pdf /tmp/orion13.txt
+          grep -qi "Representational Compatibility Is Not Scientific Identity" /tmp/orion13.txt
+          grep -qi "SzeChunYiu" /tmp/orion13.txt
+          ! grep -qi "Epistemic portrait envelope theory" /tmp/orion13.txt
+          pages=$(pdfinfo build/orion-paper-yellow/ORION-13/ORION-13-SWJ.pdf | awk '/^Pages:/ {print $2}')
+          echo "ORION13_PAGES=$pages"
+          test "$pages" -le 30
+      - name: Package
+        run: |
+          cd build/orion-paper-yellow/ORION-13
+          zip -r ORION-13-release.zip scoped_source ORION-13-SWJ.pdf ORION-13-arxiv.pdf verification_receipt.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ORION-13-release
+          path: build/orion-paper-yellow/ORION-13/ORION-13-release.zip
+
+  orion19:
+    name: ORION-19 TMLR anonymous + arXiv
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Install scientific and render tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra poppler-utils zip
+          python -m pip install --upgrade pip
+          python -m pip install numpy scipy pandas scikit-learn
+      - name: Exact-head scientific replay
+        run: python papers/orion-19-structured-epistemic-learning/reproduce_final.py
+      - name: Build anonymous and named surfaces
+        run: python papers/top_tier_gap_closure/yellow_release_runner_20260830.py 19
+      - name: Compile anonymous TMLR PDF
+        run: |
+          cd build/orion-paper-yellow/ORION-19/anonymous_source
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          cp main.pdf ../ORION-19-TMLR-anonymous.pdf
+          ! grep -Eq "There were undefined references|Citation .* undefined|Reference .* undefined" main.log
+      - name: Compile named arXiv PDF
+        run: |
+          cd build/orion-paper-yellow/ORION-19/arxiv_source
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          cp main.pdf ../ORION-19-arxiv.pdf
+      - name: Audit double-blind separation
+        run: |
+          pdftotext build/orion-paper-yellow/ORION-19/ORION-19-TMLR-anonymous.pdf /tmp/anon19.txt
+          ! grep -Eqi "SzeChunYiu|Sze Chun Yiu|sze-chun.yiu@fysik.su.se|Stockholm University|github.com/SzeChunYiu" /tmp/anon19.txt
+          pdftotext build/orion-paper-yellow/ORION-19/ORION-19-arxiv.pdf /tmp/named19.txt
+          grep -qi "SzeChunYiu" /tmp/named19.txt
+          grep -qi "Stockholm University" /tmp/named19.txt
+      - name: Package
+        run: |
+          cd build/orion-paper-yellow/ORION-19
+          zip -r ORION-19-release.zip anonymous_source arxiv_source ORION-19-TMLR-anonymous.pdf ORION-19-arxiv.pdf verification_receipt.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ORION-19-release
+          path: build/orion-paper-yellow/ORION-19/ORION-19-release.zip
+
+  orion24:
+    name: ORION-24 current portfolio resolution
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify consolidation authority
+        run: python papers/top_tier_gap_closure/yellow_release_runner_20260830.py 24
+      - name: Expose resolution receipt
+        run: cat build/orion-paper-yellow/ORION-24/verification_receipt.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ORION-24-resolution
+          path: build/orion-paper-yellow/ORION-24/verification_receipt.json
