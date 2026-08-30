@@ -1,4 +1,4 @@
-# ORION-11-T2_baseline_ablation_results
+# P1-T2_baseline_ablation_results
 
 **Status:** `OK`
 
@@ -138,13 +138,13 @@ Comparator: `arex_like_recursive_audit_followup` — highest overall root_succes
 
 | comparison | raw p | Holm-adjusted p | rejected at α=0.05 |
 |---|---|---|---|
-| ORION-11.secondary:HIDDEN_SHIFT_SUBSET | 1.0000 | 1.0000 | no |
-| ORION-11.H2 | 1.0000 | 1.0000 | no |
-| ORION-11.secondary:hidden_parent_domain | 1.0000 | 1.0000 | no |
-| ORION-11.secondary:hidden_representation_or_coordinate_system | 1.0000 | 1.0000 | no |
-| ORION-11.secondary:hidden_decomposition_or_interface | 1.0000 | 1.0000 | no |
-| ORION-11.secondary:hidden_measurement_or_operationalization | 1.0000 | 1.0000 | no |
-| ORION-11.H2 | 1.0000 | 1.0000 | no |
-| ORION-11.H2 | 1.0000 | 1.0000 | no |
+| P1.secondary:HIDDEN_SHIFT_SUBSET | 1.0000 | 1.0000 | no |
+| P1.H2 | 1.0000 | 1.0000 | no |
+| P1.secondary:hidden_parent_domain | 1.0000 | 1.0000 | no |
+| P1.secondary:hidden_representation_or_coordinate_system | 1.0000 | 1.0000 | no |
+| P1.secondary:hidden_decomposition_or_interface | 1.0000 | 1.0000 | no |
+| P1.secondary:hidden_measurement_or_operationalization | 1.0000 | 1.0000 | no |
+| P1.H2 | 1.0000 | 1.0000 | no |
+| P1.H2 | 1.0000 | 1.0000 | no |
 
 _Rates use the frozen case as the unit; the 5 stochastic repeats are reduced per case before any interval is taken. `CANNOT_CHECK` marks a quantity that was not observed and is never rendered as 0._

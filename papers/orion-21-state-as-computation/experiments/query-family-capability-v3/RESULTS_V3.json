@@ -1,0 +1,354 @@
+{
+  "authority": "estimation study; declares no gate, promotes no ORION-21 claim. V1's >=8/10 negative and P11_ACTIVE_CLAIM_AUTHORITY_V2 stand.",
+  "clustering_unit": "fold seed",
+  "environment": {
+    "node": "billy-laptop-old",
+    "numpy": "2.5.2",
+    "python": "3.14.4",
+    "sklearn": "1.9.0"
+  },
+  "family_size": 55,
+  "not_addressed": "the shared dataset. Only digits has the d>=16 features and class count this mechanism needs among datasets available without network access, so dataset-level independence is out of reach here and is not claimed.",
+  "parent": "ORION21.QUERY_FAMILY_CAPABILITY.v2",
+  "parent_unchanged": true,
+  "per_seed_counts": [
+    {
+      "counts": {
+        "KNN": 23,
+        "LINEAR": 7,
+        "RBF": 21
+      },
+      "n": 55,
+      "seed": 20261121
+    },
+    {
+      "counts": {
+        "KNN": 20,
+        "LINEAR": 6,
+        "RBF": 25
+      },
+      "n": 55,
+      "seed": 20261122
+    },
+    {
+      "counts": {
+        "KNN": 23,
+        "LINEAR": 9,
+        "RBF": 20
+      },
+      "n": 55,
+      "seed": 20261123
+    },
+    {
+      "counts": {
+        "KNN": 20,
+        "LINEAR": 8,
+        "RBF": 23
+      },
+      "n": 55,
+      "seed": 20261124
+    },
+    {
+      "counts": {
+        "KNN": 21,
+        "LINEAR": 9,
+        "RBF": 22
+      },
+      "n": 55,
+      "seed": 20261125
+    },
+    {
+      "counts": {
+        "KNN": 22,
+        "LINEAR": 8,
+        "RBF": 22
+      },
+      "n": 55,
+      "seed": 20261126
+    },
+    {
+      "counts": {
+        "KNN": 21,
+        "LINEAR": 11,
+        "RBF": 23
+      },
+      "n": 55,
+      "seed": 20261127
+    },
+    {
+      "counts": {
+        "KNN": 23,
+        "LINEAR": 9,
+        "RBF": 22
+      },
+      "n": 55,
+      "seed": 20261128
+    },
+    {
+      "counts": {
+        "KNN": 21,
+        "LINEAR": 10,
+        "RBF": 25
+      },
+      "n": 55,
+      "seed": 20261129
+    },
+    {
+      "counts": {
+        "KNN": 22,
+        "LINEAR": 9,
+        "RBF": 21
+      },
+      "n": 55,
+      "seed": 20261130
+    },
+    {
+      "counts": {
+        "KNN": 21,
+        "LINEAR": 6,
+        "RBF": 22
+      },
+      "n": 55,
+      "seed": 20261131
+    },
+    {
+      "counts": {
+        "KNN": 24,
+        "LINEAR": 8,
+        "RBF": 23
+      },
+      "n": 55,
+      "seed": 20261132
+    },
+    {
+      "counts": {
+        "KNN": 21,
+        "LINEAR": 10,
+        "RBF": 21
+      },
+      "n": 55,
+      "seed": 20261133
+    },
+    {
+      "counts": {
+        "KNN": 22,
+        "LINEAR": 9,
+        "RBF": 21
+      },
+      "n": 55,
+      "seed": 20261134
+    },
+    {
+      "counts": {
+        "KNN": 18,
+        "LINEAR": 9,
+        "RBF": 20
+      },
+      "n": 55,
+      "seed": 20261135
+    },
+    {
+      "counts": {
+        "KNN": 22,
+        "LINEAR": 8,
+        "RBF": 23
+      },
+      "n": 55,
+      "seed": 20261136
+    },
+    {
+      "counts": {
+        "KNN": 20,
+        "LINEAR": 8,
+        "RBF": 23
+      },
+      "n": 55,
+      "seed": 20261137
+    },
+    {
+      "counts": {
+        "KNN": 20,
+        "LINEAR": 6,
+        "RBF": 20
+      },
+      "n": 55,
+      "seed": 20261138
+    },
+    {
+      "counts": {
+        "KNN": 21,
+        "LINEAR": 9,
+        "RBF": 21
+      },
+      "n": 55,
+      "seed": 20261139
+    },
+    {
+      "counts": {
+        "KNN": 23,
+        "LINEAR": 8,
+        "RBF": 22
+      },
+      "n": 55,
+      "seed": 20261140
+    }
+  ],
+  "protocol_sha256": "b7b5a2e9951fcb188e7d8f319030624fe547b6b6cbc7dc5494e8de8ea4fee001",
+  "readings": {
+    "KNN": "BELOW_0.6__SURVIVES_CLUSTERING",
+    "LINEAR": "BELOW_0.6__SURVIVES_CLUSTERING",
+    "RBF": "BELOW_0.6__SURVIVES_CLUSTERING"
+  },
+  "schema": "ORION21.QUERY_FAMILY_CAPABILITY.v3",
+  "seeds": [
+    20261121,
+    20261122,
+    20261123,
+    20261124,
+    20261125,
+    20261126,
+    20261127,
+    20261128,
+    20261129,
+    20261130,
+    20261131,
+    20261132,
+    20261133,
+    20261134,
+    20261135,
+    20261136,
+    20261137,
+    20261138,
+    20261139,
+    20261140
+  ],
+  "summary": {
+    "KNN": {
+      "mean_capability": 0.38909090909090904,
+      "per_seed_capability": [
+        0.4182,
+        0.3636,
+        0.4182,
+        0.3636,
+        0.3818,
+        0.4,
+        0.3818,
+        0.4182,
+        0.3818,
+        0.4,
+        0.3818,
+        0.4364,
+        0.3818,
+        0.4,
+        0.3273,
+        0.4,
+        0.3636,
+        0.3636,
+        0.3818,
+        0.4182
+      ],
+      "pooled_n": 1100,
+      "pooled_supported": 428,
+      "seed_clustered_ci95": [
+        0.3781818181818181,
+        0.4
+      ],
+      "seed_clustered_width": 0.021818181818181903,
+      "seed_spread_min_max": [
+        0.32727272727272727,
+        0.43636363636363634
+      ],
+      "v2_style_binomial_ci95_first_seed": [
+        0.2865452452489992,
+        0.5589415894230065
+      ],
+      "v2_style_width": 0.2723963441740073,
+      "width_ratio_clustered_over_binomial": 0.08009719030679945
+    },
+    "LINEAR": {
+      "mean_capability": 0.1518181818181818,
+      "per_seed_capability": [
+        0.1273,
+        0.1091,
+        0.1636,
+        0.1455,
+        0.1636,
+        0.1455,
+        0.2,
+        0.1636,
+        0.1818,
+        0.1636,
+        0.1091,
+        0.1455,
+        0.1818,
+        0.1636,
+        0.1636,
+        0.1455,
+        0.1455,
+        0.1091,
+        0.1636,
+        0.1455
+      ],
+      "pooled_n": 1100,
+      "pooled_supported": 167,
+      "seed_clustered_ci95": [
+        0.1409090909090909,
+        0.1618181818181818
+      ],
+      "seed_clustered_width": 0.020909090909090905,
+      "seed_spread_min_max": [
+        0.10909090909090909,
+        0.2
+      ],
+      "v2_style_binomial_ci95_first_seed": [
+        0.052735182963729484,
+        0.24480272032202482
+      ],
+      "v2_style_width": 0.19206753735829535,
+      "width_ratio_clustered_over_binomial": 0.10886322174311903
+    },
+    "RBF": {
+      "mean_capability": 0.4,
+      "per_seed_capability": [
+        0.3818,
+        0.4545,
+        0.3636,
+        0.4182,
+        0.4,
+        0.4,
+        0.4182,
+        0.4,
+        0.4545,
+        0.3818,
+        0.4,
+        0.4182,
+        0.3818,
+        0.3818,
+        0.3636,
+        0.4182,
+        0.4182,
+        0.3636,
+        0.3818,
+        0.4
+      ],
+      "pooled_n": 1100,
+      "pooled_supported": 440,
+      "seed_clustered_ci95": [
+        0.38909090909090904,
+        0.41090909090909095
+      ],
+      "seed_clustered_width": 0.021818181818181903,
+      "seed_spread_min_max": [
+        0.36363636363636365,
+        0.45454545454545453
+      ],
+      "v2_style_binomial_ci95_first_seed": [
+        0.2540916483225453,
+        0.5227377450394978
+      ],
+      "v2_style_width": 0.26864609671695244,
+      "width_ratio_clustered_over_binomial": 0.0812153315637774
+    }
+  },
+  "terminal": "CAPABILITY_SURVIVES_SPLIT_CLUSTERING"
+}

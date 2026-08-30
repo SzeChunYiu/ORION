@@ -63,7 +63,7 @@ def test_r2_manuscripts_are_self_contained_and_boundary_explicit():
     d = MANUSCRIPTS["D"].read_text()
     assert "Typed proof-tree" in d
     assert "cannot manufacture prospective authority" in d
-    assert "support-at-least-23" in d
+    assert "support at least 23" in d
 
     n = MANUSCRIPTS["N"].read_text()
     assert "s+c_4<=24" in n
