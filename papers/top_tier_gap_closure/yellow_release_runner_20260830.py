@@ -132,7 +132,6 @@ def build05() -> None:
     s0 = read(source)
     if r"\kappa_{\mathrm{R6M}}=2" not in s0 or "one pinned comm-$s2$ lemma short" in s0:
         fail("ORION-05 authoritative refined theorem source not closed")
-    # Convert the future archive placeholder into a concrete immutable source locator for submission.
     body = strip_internal_markdown(s0)
     body = body.replace(
         "`REPRODUCE.md` gives the intended clean-checkout reproduction route. Before archival publication, the cited code/results should be tagged or deposited in a DOI-minting repository and the permanent identifier inserted here.",
@@ -283,7 +282,6 @@ def build19() -> None:
     src = ROOT / "papers/orion-19-structured-epistemic-learning/manuscript"
     anon = out / "anonymous_source"; shutil.copytree(src, anon)
     a = read(anon / "main.tex")
-    # Match the canonical paper-repo reviewer-facing disclosure without exposing identity.
     disclosure = r"\footnotetext{AI assistance disclosure: General-purpose language-model tools, including OpenAI ChatGPT, were used for literature triage, code and manuscript auditing, organization, and language refinement. All scientific claims, citations, analyses, and final text were reviewed against the underlying evidence by the human author, who retains full responsibility. The language-model tools are not authors and are not treated as scientific authority.}"
     if disclosure not in a:
         a = a.replace(r"\maketitle", r"\maketitle" + "\n" + disclosure, 1)
@@ -319,8 +317,10 @@ def resolve24() -> None:
     m = read(manuscript); b = json.loads(read(binding))
     if b.get("disposition") != "CONSOLIDATE_LIFECYCLE_CONTRACT_SAFETY" or b.get("p14_separate_75_paper") is not False:
         fail("ORION-24 current consolidation authority not found")
-    for t in ("not a separate paper at the 75+ bar", "external campaign", "CANNOT_CHECK"):
-        if t.lower() not in m.lower(): fail(f"ORION-24 canonical manuscript missing consolidation boundary: {t}")
+    normalized = " ".join(m.lower().split())
+    for t in ("not a separate paper at the 75+ bar", "external campaign", "cannot_check"):
+        if t not in normalized:
+            fail(f"ORION-24 canonical manuscript missing consolidation boundary: {t}")
     write_receipt(out, "ORION-24", "RESOLVED_BY_CONSOLIDATION_NOT_STANDALONE_SUBMISSION", {
         "source_blob_sha": "d2856f3be0be5b5711e8c1e48ef6f8a67ad8fb93",
         "disposition": b["disposition"],
