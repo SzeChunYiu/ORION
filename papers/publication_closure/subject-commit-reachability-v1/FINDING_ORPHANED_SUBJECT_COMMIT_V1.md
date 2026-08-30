@@ -75,3 +75,28 @@ the object store, which would drop the path from the binding entirely.
   `PARTIAL`. While diagnosing this, a staged file from an unrelated probe produced
   three failures that looked like regressions from this fix and were not. Run these
   checks on a clean tree.
+
+## Why the rename-blind walk is diagnosed here but not fixed here
+
+The fix is one function: fall back to every historical path sharing the source's
+basename. It was written, and it works — `test_negative_history_is_content_bound`
+fails on `main` and passes with it, same tree and command, while a 64-zero digest
+is still rejected.
+
+It is **not shipped in this change**, because the file it edits,
+`papers/candidates/checkers/check_negative_null_history_v1.py`, is itself a
+**bound file** in ORION-16's and ORION-17's `CONTENT_MANIFEST_V2.json`, pinned by
+SHA-256. Editing it breaks those bindings by construction, and on CI it traded one
+failure for five: three subject-identity checks, a diagnostic-count check, and a
+P6 certificate check.
+
+Re-deriving those manifests is a legitimate operation — a content binding records
+what the tree contains, unlike a frozen protocol — and `check_content_binding_v1.py`
+has a `--write` mode for exactly this. But `--write` regenerates
+`CONTENT_MANIFEST_V1.json`, not the V2 manifests these tests read, and it rewrites
+118 lines of two papers' `SHA256SUMS`. That is a papers-lane operation on two
+papers' content bindings, and it is not taken here while that lane is active.
+
+**What a fixer needs:** the one-function change above, plus a V2 content re-binding
+for ORION-16 and ORION-17 that repins this checker's digest. The bug, the fix and
+its validation are recorded so that work does not have to be rediscovered.

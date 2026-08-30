@@ -8,7 +8,7 @@ import hashlib
 import json
 import re
 import subprocess
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 
 PAPERS = {
     "P6": Path("papers/orion-16-formal-epistemic-structures-and-mechanics"),
@@ -36,59 +36,25 @@ def historical_source_is_bound(root: Path, source: str, digest: str) -> bool:
     source_path = root / source
     if source_path.is_file() and sha256_file(source_path) == digest:
         return True
-    if _digest_at_path(root, source, digest):
-        return True
-    # `git log -- <path>` stops at a rename, and `--follow` does not survive a
-    # restructuring that moves thousands of files at once. The R0 namespace
-    # unification moved these ledgers twice, so a walk anchored to the current
-    # path cannot see bytes recorded under either earlier path. Fall back to
-    # every historical file sharing this basename: that keeps the claim "this
-    # named artifact had these bytes" while surviving directory renames, and is
-    # strictly narrower than accepting any blob anywhere in the object store.
-    return _digest_under_any_historical_path_with_same_name(root, source, digest)
-
-
-def _git(root: Path, *args: str) -> str | None:
     try:
-        return subprocess.run(
-            ["git", "-C", str(root), *args],
-            check=True, capture_output=True, text=True,
-        ).stdout
+        commits = subprocess.run(
+            ["git", "-C", str(root), "log", "--format=%H", "--", source],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.splitlines()
     except (OSError, subprocess.CalledProcessError):
-        return None
-
-
-def _digest_at_path(root: Path, path: str, digest: str) -> bool:
-    out = _git(root, "log", "--format=%H", "--", path)
-    if out is None:
         return False
-    for commit in out.splitlines():
+    for commit in commits:
         try:
             content = subprocess.run(
-                ["git", "-C", str(root), "show", f"{commit}:{path}"],
-                check=True, capture_output=True,
+                ["git", "-C", str(root), "show", f"{commit}:{source}"],
+                check=True,
+                capture_output=True,
             ).stdout
         except (OSError, subprocess.CalledProcessError):
             continue
         if hashlib.sha256(content).hexdigest() == digest:
-            return True
-    return False
-
-
-def _digest_under_any_historical_path_with_same_name(
-    root: Path, source: str, digest: str
-) -> bool:
-    name = PurePosixPath(source).name
-    seen: set[str] = set()
-    out = _git(root, "log", "--all", "--name-only", "--format=", "--diff-filter=AMR")
-    if out is None:
-        return False
-    for line in out.splitlines():
-        line = line.strip()
-        if line and line != source and PurePosixPath(line).name == name:
-            seen.add(line)
-    for path in sorted(seen):
-        if _digest_at_path(root, path, digest):
             return True
     return False
 
