@@ -1,6 +1,6 @@
 name: paper-render-rebind-submission-set
 
-# Render-and-rebind for ORION-06/07/08/10 -- the papers nearest submission.
+# Render-and-rebind for ORION-06/07/08/09/10 -- the papers nearest submission.
 #
 # Why this exists: their committed PDFs were rendered before the author block was
 # corrected, so all four shipped a title page reading "Working framework draft"
@@ -44,7 +44,7 @@ jobs:
       - name: Render
         run: |
           set -euo pipefail
-          for d in papers/orion-06-* papers/orion-07-* papers/orion-08-* papers/orion-10-*; do
+          for d in papers/orion-06-* papers/orion-07-* papers/orion-08-* papers/orion-09-* papers/orion-10-*; do
             [ -f "$d/manuscript/main.tex" ] || continue
             echo "::group::render $d"
             ( cd "$d/manuscript" && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex )
@@ -57,7 +57,7 @@ jobs:
       - name: Assert the placeholder author is gone from every rendered PDF
         run: |
           set -euo pipefail
-          for d in papers/orion-06-* papers/orion-07-* papers/orion-08-* papers/orion-10-*; do
+          for d in papers/orion-06-* papers/orion-07-* papers/orion-08-* papers/orion-09-* papers/orion-10-*; do
             PDF="$d/manuscript/main.pdf"
             [ -f "$PDF" ] || continue
             TXT=$(pdftotext "$PDF" - 2>/dev/null | head -40)
@@ -81,7 +81,7 @@ jobs:
           set -euo pipefail
           python - <<'PY'
           import hashlib, pathlib
-          for pat in ('orion-06-*', 'orion-07-*', 'orion-08-*', 'orion-10-*'):
+          for pat in ('orion-06-*', 'orion-07-*', 'orion-08-*', 'orion-09-*', 'orion-10-*'):
               for d in sorted(pathlib.Path('papers').glob(pat)):
                   sums, pdf = d / 'SHA256SUMS', d / 'manuscript' / 'main.pdf'
                   if not (sums.is_file() and pdf.is_file()):
@@ -103,7 +103,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          for d in papers/orion-06-* papers/orion-07-* papers/orion-08-* papers/orion-10-*; do
+          for d in papers/orion-06-* papers/orion-07-* papers/orion-08-* papers/orion-09-* papers/orion-10-*; do
             [ -f "$d/manuscript/main.pdf" ] && git add "$d/manuscript/main.pdf" || true
             [ -f "$d/SHA256SUMS" ] && git add "$d/SHA256SUMS" || true
           done
