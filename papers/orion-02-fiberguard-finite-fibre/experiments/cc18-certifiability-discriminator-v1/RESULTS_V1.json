@@ -1,0 +1,558 @@
+{
+ "K": 4,
+ "datasets": {
+  "11": {
+   "classes": 3,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.5399,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 3.0
+   },
+   "distance_proxy": {
+    "coverage": 1.0,
+    "error": 0.3067,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 3.0
+   },
+   "learned": {
+    "coverage": 1.0,
+    "error": 0.4058,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 3.0
+   },
+   "n": 625,
+   "name": "balance-scale",
+   "observed_value": false,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 3,
+    "width": 1.0
+   },
+   "predicted_value": false,
+   "theorem_minimal": {
+    "coverage": 1.0,
+    "error": 0.3834,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 3.0
+   }
+  },
+  "14": {
+   "classes": 10,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.9,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 10.0
+   },
+   "distance_proxy": {
+    "coverage": 0.995,
+    "error": 0.654,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 7.105
+   },
+   "learned": {
+    "coverage": 0.998,
+    "error": 0.726,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 8.851
+   },
+   "n": 2000,
+   "name": "mfeat-fourier",
+   "observed_value": true,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 10,
+    "width": 1.0
+   },
+   "predicted_value": true,
+   "theorem_minimal": {
+    "coverage": 0.993,
+    "error": 0.703,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 8.237
+   }
+  },
+  "1462": {
+   "classes": 2,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.4446,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 2.0
+   },
+   "distance_proxy": {
+    "coverage": 1.0,
+    "error": 0.3017,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   },
+   "learned": {
+    "coverage": 1.0,
+    "error": 0.105,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   },
+   "n": 1372,
+   "name": "banknote-authentication",
+   "observed_value": true,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 2,
+    "width": 1.0
+   },
+   "predicted_value": true,
+   "theorem_minimal": {
+    "coverage": 1.0,
+    "error": 0.1808,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 1.7507
+   }
+  },
+  "1471": {
+   "classes": 2,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.4487,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 2.0
+   },
+   "distance_proxy": {
+    "coverage": 1.0,
+    "error": 0.4487,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 1.9999
+   },
+   "learned": {
+    "coverage": 1.0,
+    "error": 0.3697,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   },
+   "n": 14980,
+   "name": "eeg-eye-state",
+   "observed_value": false,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 2,
+    "width": 1.0
+   },
+   "predicted_value": false,
+   "theorem_minimal": {
+    "coverage": 1.0,
+    "error": 0.3945,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   }
+  },
+  "1494": {
+   "classes": 2,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.3371,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 2.0
+   },
+   "distance_proxy": {
+    "coverage": 1.0,
+    "error": 0.3011,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 1.9848
+   },
+   "learned": {
+    "coverage": 1.0,
+    "error": 0.2348,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   },
+   "n": 1055,
+   "name": "qsar-biodeg",
+   "observed_value": false,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 2,
+    "width": 1.0
+   },
+   "predicted_value": false,
+   "theorem_minimal": {
+    "coverage": 1.0,
+    "error": 0.2841,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   }
+  },
+  "16": {
+   "classes": 10,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.9,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 10.0
+   },
+   "distance_proxy": {
+    "coverage": 0.999,
+    "error": 0.655,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 9.154
+   },
+   "learned": {
+    "coverage": 0.998,
+    "error": 0.665,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 8.679
+   },
+   "n": 2000,
+   "name": "mfeat-karhunen",
+   "observed_value": true,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 10,
+    "width": 1.0
+   },
+   "predicted_value": true,
+   "theorem_minimal": {
+    "coverage": 1.0,
+    "error": 0.701,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 8.715
+   }
+  },
+  "18": {
+   "classes": 10,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.9,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 10.0
+   },
+   "distance_proxy": {
+    "coverage": 0.999,
+    "error": 0.611,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 7.145
+   },
+   "learned": {
+    "coverage": 0.999,
+    "error": 0.608,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 6.636
+   },
+   "n": 2000,
+   "name": "mfeat-morphological",
+   "observed_value": true,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 10,
+    "width": 1.0
+   },
+   "predicted_value": true,
+   "theorem_minimal": {
+    "coverage": 0.999,
+    "error": 0.656,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 7.042
+   }
+  },
+  "187": {
+   "classes": 3,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.6067,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 3.0
+   },
+   "distance_proxy": {
+    "coverage": 0.9888,
+    "error": 0.0112,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 1.2697
+   },
+   "learned": {
+    "coverage": 0.9888,
+    "error": 0.1685,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 1.7303
+   },
+   "n": 178,
+   "name": "wine",
+   "observed_value": true,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 3,
+    "width": 1.0
+   },
+   "predicted_value": true,
+   "theorem_minimal": {
+    "coverage": 1.0,
+    "error": 0.2584,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   }
+  },
+  "31": {
+   "classes": 2,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.3,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 2.0
+   },
+   "distance_proxy": {
+    "coverage": 1.0,
+    "error": 0.308,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   },
+   "learned": {
+    "coverage": 1.0,
+    "error": 0.304,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   },
+   "n": 1000,
+   "name": "credit-g",
+   "observed_value": false,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 2,
+    "width": 1.0
+   },
+   "predicted_value": false,
+   "theorem_minimal": {
+    "coverage": 1.0,
+    "error": 0.3,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   }
+  },
+  "37": {
+   "classes": 2,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.349,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 2.0
+   },
+   "distance_proxy": {
+    "coverage": 1.0,
+    "error": 0.2943,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   },
+   "learned": {
+    "coverage": 1.0,
+    "error": 0.3073,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 1.9922
+   },
+   "n": 768,
+   "name": "diabetes",
+   "observed_value": false,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 2,
+    "width": 1.0
+   },
+   "predicted_value": false,
+   "theorem_minimal": {
+    "coverage": 1.0,
+    "error": 0.2682,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   }
+  },
+  "44": {
+   "classes": 2,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.3942,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 2.0
+   },
+   "distance_proxy": {
+    "coverage": 1.0,
+    "error": 0.2008,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 1.9922
+   },
+   "learned": {
+    "coverage": 1.0,
+    "error": 0.1421,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 2.0
+   },
+   "n": 4601,
+   "name": "spambase",
+   "observed_value": false,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 2,
+    "width": 1.0
+   },
+   "predicted_value": false,
+   "theorem_minimal": {
+    "coverage": 1.0,
+    "error": 0.2447,
+    "fallback_rate": 0.0,
+    "fibres": 2,
+    "width": 2.0
+   }
+  },
+  "54": {
+   "classes": 4,
+   "coarse": {
+    "coverage": 1.0,
+    "error": 0.7423,
+    "fallback_rate": 0.0,
+    "fibres": 1,
+    "width": 4.0
+   },
+   "distance_proxy": {
+    "coverage": 1.0,
+    "error": 0.6596,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 3.6525
+   },
+   "learned": {
+    "coverage": 0.9929,
+    "error": 0.4846,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 3.6761
+   },
+   "n": 846,
+   "name": "vehicle",
+   "observed_value": true,
+   "oracle": {
+    "coverage": 1.0,
+    "error": 0.0,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 1.0
+   },
+   "predicted_value": true,
+   "theorem_minimal": {
+    "coverage": 1.0,
+    "error": 0.5437,
+    "fallback_rate": 0.0,
+    "fibres": 4,
+    "width": 3.7045
+   }
+  }
+ },
+ "disagreements": [],
+ "gate": 0.9,
+ "gate_holds": true,
+ "schema": "ORION02.CC18_CERTIFIABILITY.v1",
+ "seed": 20260830,
+ "strata": {
+  "binary_small": {
+   "mean_width_proxy": 1.9974,
+   "mean_width_theorem": 2.0,
+   "min_coverage_theorem": 1.0,
+   "n_datasets": 3,
+   "observed_value": false,
+   "predicted_value": false
+  },
+  "binary_wide": {
+   "mean_width_proxy": 1.9949,
+   "mean_width_theorem": 1.9169,
+   "min_coverage_theorem": 1.0,
+   "n_datasets": 3,
+   "observed_value": true,
+   "predicted_value": true
+  },
+  "multiclass_small": {
+   "mean_width_proxy": 2.6407,
+   "mean_width_theorem": 2.9015,
+   "min_coverage_theorem": 1.0,
+   "n_datasets": 3,
+   "observed_value": true,
+   "predicted_value": true
+  },
+  "multiclass_wide": {
+   "mean_width_proxy": 7.8013,
+   "mean_width_theorem": 7.998,
+   "min_coverage_theorem": 0.993,
+   "n_datasets": 3,
+   "observed_value": true,
+   "predicted_value": true
+  }
+ },
+ "strata_no_value": [
+  "binary_small"
+ ],
+ "strata_value": [
+  "binary_wide",
+  "multiclass_small",
+  "multiclass_wide"
+ ],
+ "terminal": "CERTIFIABILITY_DISCRIMINATOR_NOT_SUPPORTED",
+ "width_no_worse_than_proxy": false
+}
