@@ -117,7 +117,14 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # The in-tree PDF is the canonical, hash-bound artifact (COMPILE.md).
+          # Committing regenerated checksums without the re-rendered PDF they
+          # describe leaves the package self-inconsistent: the SHA256SUMS names
+          # a PDF that is not in the tree.
           git add \
+            papers/orion-11-recursive-epistemic-reconstruction/manuscript/main.pdf \
+            papers/orion-13-global-knowledge-portrait/manuscript/main.pdf \
+            papers/orion-14-verified-scientific-discovery/manuscript/main.pdf \
             papers/orion-11-recursive-epistemic-reconstruction/journal_package/SHA256SUMS \
             papers/orion-13-global-knowledge-portrait/journal_package/SHA256SUMS \
             papers/orion-14-verified-scientific-discovery/journal_package/SHA256SUMS
