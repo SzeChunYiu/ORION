@@ -24,7 +24,7 @@ CONTRACT = [
     ("BASELINES",            lambda n: any("BASELINE" in x for x in n)),
     ("RESOURCE_ACCOUNTING",  lambda n: any("RESOURCE_ACCOUNTING" in x for x in n)),
     ("EXPECTED_TERMINALS",   lambda n: any("EXPECTED_TERMINAL" in x for x in n)),
-    ("RESULT",               lambda n: any(x.startswith(("RESULT", "RESULTS")) for x in n)),
+    ("RESULT",               lambda n: any("RESULT" in x.upper() for x in n)),
     ("ADVERSE_AND_CANNOT_CHECK", lambda n: any("ADVERSE" in x for x in n)),
     ("independent_checker",  lambda n: any(x.startswith("check") and x.endswith(".py") for x in n)),
     ("CLAIM_DISPOSITION",    lambda n: any("DISPOSITION" in x for x in n)),
@@ -39,7 +39,7 @@ def candidates(root: pathlib.Path):
         names = {f.name for f in d.iterdir() if f.is_file()}
         if not names:
             continue
-        has_result = any(x.startswith(("RESULT", "RESULTS")) and x.endswith(".json") for x in names)
+        has_result = any("RESULT" in x.upper() and x.endswith(".json") for x in names)
         has_proto = any(x.startswith("PROTOCOL") for x in names)
         if has_result or (has_proto and len(names) >= 3):
             out.append((d, names))
@@ -50,7 +50,7 @@ def audit(root: pathlib.Path) -> dict:
     cov = collections.Counter()
     full, rows = [], []
     for d, names in cands:
-        executed = any(x.startswith(("RESULT", "RESULTS")) and x.endswith(".json")
+        executed = any("RESULT" in x.upper() and x.endswith(".json")
                        for x in names)
         applicable = [(k, f) for k, f in CONTRACT
                       if executed or k not in POST_ONLY]

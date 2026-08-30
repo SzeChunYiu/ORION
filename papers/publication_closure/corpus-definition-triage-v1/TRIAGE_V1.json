@@ -1,0 +1,1322 @@
+{
+  "already_defined": [
+    "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore"
+  ],
+  "counts": {
+    "already": 1,
+    "blocked": 38,
+    "derivable": 69
+  },
+  "derivable_from_frozen_data": [
+    {
+      "dir": "papers/orion-01-certificate-realization/evidence/convergence-v1",
+      "exclusion_signals": 1,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "REGISTRY_NONIDENTIFIABILITY_R12_RESULTS.json:exhaustive_registry_total",
+          33866
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-01-certificate-realization/evidence/independent-proof-checker-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULT_V1.json:rows",
+          7
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-01-certificate-realization/experiments/move-census-and-confluence-v1",
+      "exclusion_signals": 1,
+      "population_signals": 5,
+      "strongest": [
+        [
+          "RESULT_V1.json:RESULT_V1.json:S1_census_source.input_domain_complete_word_count",
+          4681
+        ],
+        [
+          "RESULT_V1.json:RESULT_V1.json:S1_census_source.excluded_public_operations_count",
+          16
+        ],
+        [
+          "RESULT_V1.json:RESULT_V1.json:S1_census_source.declared_move_count",
+          12
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce",
+      "exclusion_signals": 1,
+      "population_signals": 3,
+      "strongest": [
+        [
+          "ORION01_R11_PYZX_RESULTS.json:ORION01_R11_PYZX_RESULTS.json:input_domain.complete_word_count",
+          4681
+        ],
+        [
+          "ORION01_R11_PYZX_SOURCE_REGISTRY.json:ORION01_R11_PYZX_SOURCE_REGISTRY.json:input_domain.complete_word_count",
+          4681
+        ],
+        [
+          "ORION01_R11_PYZX_RESULTS.json:ORION01_R11_PYZX_RESULTS.json:registry_audit.discovered_count",
+          12
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-01-certificate-realization/v3-bounded-closeout-2026-08-29",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "PR1602_ADOPTION_RECEIPT.json:PR1602_ADOPTION_RECEIPT.json:round3.task_indices",
+          8
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/experiments/results",
+      "exclusion_signals": 0,
+      "population_signals": 3,
+      "strongest": [
+        [
+          "CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json:CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json:CERTIFIED_NEIGHBORHOOD_CONFORMAL_RECOVERY_RESULT_V2.json:self_test.quantile_receipt.calibration_count",
+          200
+        ],
+        [
+          "CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V1.json:CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V1.json:CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V1.json:self_test.quantile_receipt.calibration_count",
+          200
+        ],
+        [
+          "CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V2.json:CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V2.json:CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V2.json:self_test.quantile_receipt.calibration_count",
+          200
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/experiments/selective-fibre-risk-v1",
+      "exclusion_signals": 1,
+      "population_signals": 2,
+      "strongest": [
+        [
+          "EXPECTED_TERMINALS.json:EXPECTED_TERMINALS.json:design_check.total_terminals",
+          10
+        ],
+        [
+          "PROTOCOL.json:PROTOCOL.json:domains.count_required",
+          4
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/extensions/r11",
+      "exclusion_signals": 0,
+      "population_signals": 7,
+      "strongest": [
+        [
+          "FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json:FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json:FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json:registered_baselines.no_features.maximum_fibre_size",
+          1614
+        ],
+        [
+          "FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json:FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json:exact_best_static_representation.maximum_fibre_size",
+          20
+        ],
+        [
+          "FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json:FIBERGUARD_ASLIB_SAT12_ALL_R11_RESULTS_SUMMARY.json:exact_best_static_representation.worst_fibre_size",
+          20
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/extensions/r14",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "FIBERGUARD_ASLIB_HELDOUT_R14_RESULTS_SUMMARY.json:FIBERGUARD_ASLIB_HELDOUT_R14_RESULTS_SUMMARY.json:leave_family_out.fold_instance_counts",
+          5
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/extensions/r15",
+      "exclusion_signals": 0,
+      "population_signals": 2,
+      "strongest": [
+        [
+          "FIBERGUARD_MULTIDOMAIN_R15_RESULTS_SUMMARY.json:FIBERGUARD_MULTIDOMAIN_R15_RESULTS_SUMMARY.json:portfolio.scenario_count",
+          3
+        ],
+        [
+          "FIBERGUARD_MULTIDOMAIN_R15_RESULTS_SUMMARY.json:FIBERGUARD_MULTIDOMAIN_R15_RESULTS_SUMMARY.json:portfolio.scenario_pass_count",
+          2
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/extensions/r16",
+      "exclusion_signals": 0,
+      "population_signals": 2,
+      "strongest": [
+        [
+          "FIBERGUARD_CROSS_SCENARIO_R16_RESULTS_SUMMARY.json:FIBERGUARD_CROSS_SCENARIO_R16_RESULTS_SUMMARY.json:selected_configuration.development_candidate_count",
+          192
+        ],
+        [
+          "FIBERGUARD_CROSS_SCENARIO_R16_RESULTS_SUMMARY.json:FIBERGUARD_CROSS_SCENARIO_R16_RESULTS_SUMMARY.json:portable_representation.common_feature_count",
+          50
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/extensions/r18",
+      "exclusion_signals": 0,
+      "population_signals": 24,
+      "strongest": [
+        [
+          "R18_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json:R18_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json:api_snapshot.artifact_size_in_bytes",
+          22592
+        ],
+        [
+          "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json:FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json:development.instance_count",
+          876
+        ],
+        [
+          "FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json:FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json:FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json:scenarios.MAXSAT12-PMS.instance_count",
+          876
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/extensions/r20",
+      "exclusion_signals": 0,
+      "population_signals": 14,
+      "strongest": [
+        [
+          "BNSL_R20_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json:BNSL_R20_ACTION_ARTIFACT_ARCHIVE_CUSTODY_V1.json:api_snapshot.artifact_size_in_bytes",
+          4997
+        ],
+        [
+          "BNSL_R20_CUSTODY_V1.json:BNSL_R20_CUSTODY_V1.json:scientific_observation.best_static_fibre_count",
+          1179
+        ],
+        [
+          "FIBERGUARD_BNSL_ADAPTIVE_R20_RESULTS.json:FIBERGUARD_BNSL_ADAPTIVE_R20_RESULTS.json:adaptive_one_step.initial_fibre_count",
+          1179
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/rounds/r21-direct-relative",
+      "exclusion_signals": 0,
+      "population_signals": 11,
+      "strongest": [
+        [
+          "FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_RESULTS.json:FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_RESULTS.json:out_of_fold.row_count",
+          4642
+        ],
+        [
+          "FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_RESULTS.json:FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_RESULTS.json:out_of_fold.rows",
+          4642
+        ],
+        [
+          "FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_RESULTS.json:FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_RESULTS.json:FIBERGUARD_CSPMZN_DIRECT_RELATIVE_R21_RESULTS.json:out_of_fold.paired_interval.certified_learned_count",
+          1414
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/rounds/r22-proposal-ordering",
+      "exclusion_signals": 1,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "REPLACEMENT_SOURCE_STATUS.json:REPLACEMENT_SOURCE_STATUS.json:REPLACEMENT_SOURCE_STATUS.json:preferred_candidate.metadata_only_candidate_filter.candidate_count",
+          45
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival",
+      "exclusion_signals": 3,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_CUSTODY.json:FIBERGUARD_PMLB_PROPOSAL_ORDERING_R23_CUSTODY.json:verification.pre_amendment_failure_count",
+          2
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy",
+      "exclusion_signals": 0,
+      "population_signals": 7,
+      "strongest": [
+        [
+          "PYTHON_ADJUDICATION_V1.json:request_rows",
+          15
+        ],
+        [
+          "SOURCE_BINDING_V1.json:SOURCE_BINDING_V1.json:selection.request_count",
+          15
+        ],
+        [
+          "RUST_ADJUDICATION_V1.json:RUST_ADJUDICATION_V1.json:hostile_and_safe_controls.cases",
+          8
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-05-tare-expressivity",
+      "exclusion_signals": 0,
+      "population_signals": 3,
+      "strongest": [
+        [
+          "ORION05_R11_ROUND1_STATUS.json:ORION05_R11_ROUND1_STATUS.json:ORION05_R11_ROUND1_STATUS.json:pr1498_adverse_runtime_context.raw_observations.sampled_cells_total",
+          384
+        ],
+        [
+          "ORION05_R12_ROUND2_STATUS.json:ORION05_R12_ROUND2_STATUS.json:result.attempts_total",
+          120
+        ],
+        [
+          "INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json:INDEPENDENT_HUMAN_PROOF_SANITY_RESULTS_2026-08-22.json:restore_lemma.max_delta_case_count",
+          6
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-05-tare-expressivity/evidence/historical/pr-1498-q1-xover-v1/raw/research/extensions/orion-q",
+      "exclusion_signals": 0,
+      "population_signals": 10,
+      "strongest": [
+        [
+          "Q1_XOVER_TIMING_V1.json:panel_rows",
+          648
+        ],
+        [
+          "Q1_XOVER_RESULTS_V1.json:Q1_XOVER_RESULTS_V1.json:fresh_subject.eligible_candidate_count",
+          31
+        ],
+        [
+          "Q1_XOVER_RESULTS_V1.json:Q1_XOVER_RESULTS_V1.json:Q1_XOVER_RESULTS_V1.json:chemistry.H4.matching_count",
+          15
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-05-tare-expressivity/experiments/global-obstruction-basis-v1",
+      "exclusion_signals": 0,
+      "population_signals": 6,
+      "strongest": [
+        [
+          "PROTOCOL.json:PROTOCOL.json:instance_family.count",
+          5005
+        ],
+        [
+          "PROTOCOL.json:per_instance_procedure",
+          8
+        ],
+        [
+          "PROTOCOL.json:PROTOCOL.json:instance_family.first_instance_codes",
+          6
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-05-tare-expressivity/rounds/r12-production-benchmark/result",
+      "exclusion_signals": 0,
+      "population_signals": 2,
+      "strongest": [
+        [
+          "ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json:ORION05_R12_PRODUCTION_BENCHMARK_RESULT.json:attempt_counts.total",
+          120
+        ],
+        [
+          "BENCHMARK_ENVIRONMENT.json:logical_cpu_count",
+          48
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-05-tare-expressivity/rounds/r13-parent-certificate-ordering/result",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "ORION05_R13_RESULT.json:cell_count",
+          24
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-05-tare-expressivity/theory/local-obstruction-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULT.json:RESULT.json:check_A_support_two_classification.count",
+          4
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-06-recursive-recovery/revival",
+      "exclusion_signals": 1,
+      "population_signals": 2,
+      "strongest": [
+        [
+          "ORION06_NEGATIVE_COVERAGE_RESULT.json:standalone_rows",
+          7
+        ],
+        [
+          "ORION06_NEGATIVE_REVIVAL_R1_SUCCESSOR.json:rows",
+          7
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-07-dual-instrument/theory/agreement-nonidentifiability-v1",
+      "exclusion_signals": 0,
+      "population_signals": 3,
+      "strongest": [
+        [
+          "NEGATIVE_CONTROLS.json:controls_total",
+          5
+        ],
+        [
+          "CASE_SERIES_BINDING.json:units",
+          3
+        ],
+        [
+          "SOURCE_MANIFEST.json:SOURCE_MANIFEST.json:derived_case_series_counts.units",
+          3
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-08-typed-state/experiments/real-transfer-cc18-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULTS_V1.json:rows",
+          7
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-08-typed-state/experiments/real-transfer-rocrate-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULTS_V1.json:n_usable",
+          1533
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-09-compilation-regime-geometry/evidence",
+      "exclusion_signals": 1,
+      "population_signals": 3,
+      "strongest": [
+        [
+          "R2_N2_STABPREP_L3_VOCABULARY_RESULTS.json:R2_N2_STABPREP_L3_VOCABULARY_RESULTS.json:stage1.feature_count",
+          127
+        ],
+        [
+          "STATE_PREPARATION_PANEL_RECORDS_V1.json:STATE_PREPARATION_PANEL_RECORDS_V1.json:feature_schema.count",
+          127
+        ],
+        [
+          "STATE_PREPARATION_PANEL_RECORDS_V1.json:STATE_PREPARATION_PANEL_RECORDS_V1.json:panel_partition.cell_sizes_sum",
+          120
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-09-compilation-regime-geometry/theory/regime-separator-complexity-v1",
+      "exclusion_signals": 0,
+      "population_signals": 12,
+      "strongest": [
+        [
+          "MINIMALITY_VERIFICATION.json:MINIMALITY_VERIFICATION.json:route_1_exhaustive_refutation.subsets_of_size_3_tested",
+          333375
+        ],
+        [
+          "RESULT.json:RESULT.json:RESULT.json:separator_complexity.exhaustive_refutation.subsets_of_size_3_tested",
+          333375
+        ],
+        [
+          "MINIMALITY_VERIFICATION.json:MINIMALITY_VERIFICATION.json:route_1_exhaustive_refutation.subsets_of_size_2_tested",
+          8001
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-10-certified-static-forecasting/theory/vocabulary-minimality-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "BPRIME_FIBRE_CRITERION_V1.json:instances_evaluated_total",
+          740
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-11-recursive-epistemic-reconstruction/analysis/discriminating-power-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULTS_V1.json:RESULTS_V1.json:summary.total_comparisons",
+          6
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-11-recursive-epistemic-reconstruction/experiments/costed-ordering-v1",
+      "exclusion_signals": 3,
+      "population_signals": 3,
+      "strongest": [
+        [
+          "INDEPENDENT_CHECK_RESULT_V1.json:INDEPENDENT_CHECK_RESULT_V1.json:decision.frozen_terminal_set_size",
+          12
+        ],
+        [
+          "INDEPENDENT_CHECK_RESULT_V1.json:INDEPENDENT_CHECK_RESULT_V1.json:INDEPENDENT_CHECK_RESULT_V1.json:analysis.holm.family_size",
+          7
+        ],
+        [
+          "RESULT_V1.json:RESULT_V1.json:anchor_reproduction_gate.rows",
+          4
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-11-recursive-epistemic-reconstruction/experiments/costed-ordering-v1/independent_checker",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "CHECK_RESULT_V1_REFUSAL.json:CHECK_RESULT_V1_REFUSAL.json:decision.frozen_terminal_set_size",
+          12
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1/result/primary",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json:ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json:anchor_reproduction_gate.rows",
+          4
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1/result/replication",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json:ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json:anchor_reproduction_gate.rows",
+          4
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-11-recursive-epistemic-reconstruction/experiments/r4-faithful-comparator-v1/result/replication-gate-parameterised-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json:ORION11_R4_FAITHFUL_COMPARATOR_RESULT.json:anchor_reproduction_gate.rows",
+          4
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-11-recursive-epistemic-reconstruction/results",
+      "exclusion_signals": 0,
+      "population_signals": 14,
+      "strongest": [
+        [
+          "P1-T2_baseline_ablation_results.json:P1-T2_baseline_ablation_results.json:P1-T2_baseline_ablation_results.json:provenance.integrity.record_count",
+          2880
+        ],
+        [
+          "P1-T2_baseline_ablation_results.json:P1-T2_baseline_ablation_results.json:provenance.record_count",
+          2880
+        ],
+        [
+          "P1-T3_failure_taxonomy.json:P1-T3_failure_taxonomy.json:P1-T3_failure_taxonomy.json:provenance.integrity.record_count",
+          2880
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-12-open-world-scientific-discovery/evidence/external_results",
+      "exclusion_signals": 0,
+      "population_signals": 44,
+      "strongest": [
+        [
+          "METASYN_ACTIONS_ARTIFACT_MANIFEST_V1.json:METASYN_ACTIONS_ARTIFACT_MANIFEST_V1.json:source_evidence.artifact_size_bytes",
+          180422
+        ],
+        [
+          "DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json:DEEP_ZERO_HIT_STAGE_ATTRIBUTION_2026-08-17.json:counts.total_candidate_titles",
+          10850
+        ],
+        [
+          "METASYN_SCREENING_FN_LEDGER_V1.json:METASYN_SCREENING_FN_LEDGER_V1.json:aggregate.final_false_negative_count",
+          941
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-12-open-world-scientific-discovery/evidence/offline_results",
+      "exclusion_signals": 0,
+      "population_signals": 12,
+      "strongest": [
+        [
+          "ROUTE_STOP_ORACLE_V1.json:ROUTE_STOP_ORACLE_V1.json:ROUTE_STOP_ORACLE_V1.json:orion_full_by_route.RESTRICTED.attempts_after_exhaustion_total",
+          377
+        ],
+        [
+          "ROUTE_STOP_ORACLE_V1.json:ROUTE_STOP_ORACLE_V1.json:ROUTE_STOP_ORACLE_V1.json:systems.adaptive_multiroute_exploratory.attempts_after_exhaustion_total",
+          377
+        ],
+        [
+          "ROUTE_STOP_ORACLE_V1.json:ROUTE_STOP_ORACLE_V1.json:ROUTE_STOP_ORACLE_V1.json:systems.no_content_identity_dedup.attempts_after_exhaustion_total",
+          377
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-12-open-world-scientific-discovery/evidence/p2x",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "P2_X_INDEPENDENT_VERIFICATION_V1.json:case_count",
+          400
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-12-open-world-scientific-discovery/evidence/successor_results",
+      "exclusion_signals": 0,
+      "population_signals": 6,
+      "strongest": [
+        [
+          "P2_ACQUISITION_CEILING_DIAGNOSIS_2026-08-22.json:P2_ACQUISITION_CEILING_DIAGNOSIS_2026-08-22.json:acquisition.gold_total",
+          229
+        ],
+        [
+          "P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json:P2_LEXICAL_ECHO_SUCCESSOR_RESULT_2026-08-21.json:post_hoc_diagnostics.total_tasks",
+          220
+        ],
+        [
+          "P2_ACQUISITION_CEILING_DIAGNOSIS_2026-08-22.json:P2_ACQUISITION_CEILING_DIAGNOSIS_2026-08-22.json:subject.submitted_set_size",
+          20
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-14-verified-scientific-discovery/analysis/cluster-respecting-reanalysis-v1",
+      "exclusion_signals": 1,
+      "population_signals": 4,
+      "strongest": [
+        [
+          "RESULTS_V1.json:RESULTS_V1.json:context.retained_error_case_count",
+          2370
+        ],
+        [
+          "RESULTS_V1.json:case_count",
+          420
+        ],
+        [
+          "RESULTS_V1.json:RESULTS_V1.json:constancy.total_cases",
+          420
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-14-verified-scientific-discovery/figures/data",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULTS_SUMMARY_V1.json:retained_error_case_count",
+          2370
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-14-verified-scientific-discovery/theory/promotion-reduct-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULT.json:RESULT.json:scope_gate_400_case_table.search_by_size_jsonl_350_to_450_rows",
+          11
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-14-verified-scientific-discovery/top_tier",
+      "exclusion_signals": 0,
+      "population_signals": 11,
+      "strongest": [
+        [
+          "P4_H3_V21_RESULTS_V1.json:P4_H3_V21_RESULTS_V1.json:P4_H3_V21_RESULTS_V1.json:scores.ORION.abstention_set_size",
+          30
+        ],
+        [
+          "P4_H3_V21_RESULTS_V1.json:P4_H3_V21_RESULTS_V1.json:P4_H3_V21_RESULTS_V1.json:scores.attributionbench-multisource-attribution.abstention_set_size",
+          30
+        ],
+        [
+          "P4_H3_V21_RESULTS_V1.json:P4_H3_V21_RESULTS_V1.json:P4_H3_V21_RESULTS_V1.json:scores.citation-presence-format.abstention_set_size",
+          30
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-15-self-orion/protocol",
+      "exclusion_signals": 0,
+      "population_signals": 7,
+      "strongest": [
+        [
+          "P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json:P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json:design.stratum_count",
+          64
+        ],
+        [
+          "P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json:P5_WIDE_REVISION_LEVEL_SUCCESSOR_V1.json:design.domain_count",
+          8
+        ],
+        [
+          "PROTOCOL_V1.json:task_families",
+          8
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-18-epistemic-authority-autonomous-science/evidence/local",
+      "exclusion_signals": 0,
+      "population_signals": 2,
+      "strongest": [
+        [
+          "cross_capability_attack_replay_result_v2.json:total_reference_cases",
+          17
+        ],
+        [
+          "cross_capability_attack_replay_result_v2.json:rows",
+          5
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-18-epistemic-authority-autonomous-science/formal",
+      "exclusion_signals": 0,
+      "population_signals": 3,
+      "strongest": [
+        [
+          "P8_NATIVE_CROSS_SYSTEM_PROTOCOL_2026-08-24.json:slot_count",
+          24
+        ],
+        [
+          "P8_NATIVE_CROSS_SYSTEM_RESULTS.json:slot_count",
+          24
+        ],
+        [
+          "P8_NATIVE_CROSS_SYSTEM_PROTOCOL_2026-08-24.json:case_classes",
+          2
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-19-structured-epistemic-learning/evidence",
+      "exclusion_signals": 2,
+      "population_signals": 18,
+      "strongest": [
+        [
+          "P9_U_T3_EXECUTION_GAP_2026-08-23.json:P9_U_T3_EXECUTION_GAP_2026-08-23.json:what_the_freeze_already_provides.declared_cell_count",
+          1344
+        ],
+        [
+          "P9_D1V1_3_PROSPECTIVE_ATTAINABILITY_2026-08-23.json:P9_D1V1_3_PROSPECTIVE_ATTAINABILITY_2026-08-23.json:power.n_total",
+          512
+        ],
+        [
+          "OFFICIAL_EVIDENCE_SUMMARY_V1.json:OFFICIAL_EVIDENCE_SUMMARY_V1.json:OFFICIAL_EVIDENCE_SUMMARY_V1.json:d1.exact_typed_relational_comparator.correct_count",
+          128
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-19-structured-epistemic-learning/experiments/smt-failure-diagnosis-v1",
+      "exclusion_signals": 6,
+      "population_signals": 3,
+      "strongest": [
+        [
+          "RESULTS_V1.json:rows",
+          40
+        ],
+        [
+          "RESULTS_V2.json:rows",
+          40
+        ],
+        [
+          "RESULTS_HOSTILE_V1.json:rows",
+          34
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-20-structured-problem-solving/top_tier/primitive-minimality-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULT_V1.json:codes_total",
+          16
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-21-state-as-computation",
+      "exclusion_signals": 0,
+      "population_signals": 2,
+      "strongest": [
+        [
+          "NR07_LOW_WIDTH_CAPACITY_BOUND_RESULT_V1.json:NR07_LOW_WIDTH_CAPACITY_BOUND_RESULT_V1.json:consequences.n_readings_total",
+          42
+        ],
+        [
+          "P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json:P11I_WIDE_HIGH_WIDTH_REPLICATION_RESULT_V1.json:scientific_payload.high_width_units",
+          9
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-21-state-as-computation/experiments/nr07-exact-anchor-v2",
+      "exclusion_signals": 0,
+      "population_signals": 3,
+      "strongest": [
+        [
+          "RESULT.json:RESULT.json:transcript_delta.prediction_disagreement_count",
+          1011
+        ],
+        [
+          "PROTOCOL.json:PROTOCOL.json:anchor.train_size",
+          64
+        ],
+        [
+          "RESULT.json:RESULT.json:anchor.train_size",
+          64
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/authoritative-job-3550337",
+      "exclusion_signals": 0,
+      "population_signals": 3,
+      "strongest": [
+        [
+          "NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1.json:NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1.json:constants.gate_train_size",
+          64
+        ],
+        [
+          "NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1.json:NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1.json:NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1.json:adjudication.replay.rows",
+          3
+        ],
+        [
+          "NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1.json:NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1.json:instrument_precondition_p0.rows",
+          3
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-21-state-as-computation/experiments/nr07-width-law-falsification-v1/quarantine-post-outcome-readjudication",
+      "exclusion_signals": 0,
+      "population_signals": 2,
+      "strongest": [
+        [
+          "NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1_1.json:NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1_1.json:constants.gate_train_size",
+          64
+        ],
+        [
+          "NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1_1.json:NR07_WIDTH_LAW_FALSIFICATION_RESULT_V1_1.json:instrument_precondition_p0.rows",
+          3
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-21-state-as-computation/experiments/query-family-capability-v3",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULTS_V3.json:family_size",
+          55
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-21-state-as-computation/experiments/query-family-power-successor-v2",
+      "exclusion_signals": 0,
+      "population_signals": 2,
+      "strongest": [
+        [
+          "RESULTS_V2.json:family_size",
+          55
+        ],
+        [
+          "RESULTS_V2.json:rows",
+          55
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-21-state-as-computation/experiments/tie-robust-phase-v1/result/run-3552796",
+      "exclusion_signals": 0,
+      "population_signals": 6,
+      "strongest": [
+        [
+          "CHECKER_REPORT.json:CHECKER_REPORT.json:endpoint_verdict_hi.within_25pct_count",
+          10
+        ],
+        [
+          "CHECKER_REPORT.json:CHECKER_REPORT.json:endpoint_verdict_lo.within_25pct_count",
+          10
+        ],
+        [
+          "RESULT.json:RESULT.json:RESULT.json:ladder.endpoint_verdict_hi.rows_sorted",
+          10
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-21-state-as-computation/theory/tie-equivalence-quotient-v1",
+      "exclusion_signals": 0,
+      "population_signals": 2,
+      "strongest": [
+        [
+          "CHECKER_REPORT_V1.json:CHECKER_REPORT_V1.json:CHECKER_REPORT_V1.json:recomputed.classes_refuted.positive_sign_count",
+          5392
+        ],
+        [
+          "RESULTS_V1.json:RESULTS_V1.json:RESULTS_V1.json:controls.ordered_bell_level_structure.rows",
+          5
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-22-adaptive-state-reasoning",
+      "exclusion_signals": 0,
+      "population_signals": 5,
+      "strongest": [
+        [
+          "P12_ACTIVE_CLAIM_AUTHORITY_V2.json:P12_ACTIVE_CLAIM_AUTHORITY_V2.json:P12_ACTIVE_CLAIM_AUTHORITY_V2.json:active_claim_leaf.scope.identical_action_count_per_arm",
+          4
+        ],
+        [
+          "P12_ACTIVE_CLAIM_AUTHORITY_V3.json:P12_ACTIVE_CLAIM_AUTHORITY_V3.json:P12_ACTIVE_CLAIM_AUTHORITY_V3.json:active_claim_leaf.scope.identical_action_count_per_arm",
+          4
+        ],
+        [
+          "P12_ACTIVE_CLAIM_AUTHORITY_V4.json:P12_ACTIVE_CLAIM_AUTHORITY_V4.json:P12_ACTIVE_CLAIM_AUTHORITY_V4.json:active_claim_leaf.scope.identical_action_count_per_arm",
+          4
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-22-adaptive-state-reasoning/experiments/observation-aliasing-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULT_V1.json:classes_total",
+          36
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-22-adaptive-state-reasoning/experiments/observation-regret-law-v1",
+      "exclusion_signals": 0,
+      "population_signals": 2,
+      "strongest": [
+        [
+          "RESULT_V1.json:total_regret_mass_forced",
+          5092
+        ],
+        [
+          "RESULT_V1.json:classes_total",
+          36
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-22-adaptive-state-reasoning/experiments/regret-floor-transfer-d4j-v1",
+      "exclusion_signals": 12,
+      "population_signals": 8,
+      "strongest": [
+        [
+          "RESULTS_V1.json:RESULTS_V1.json:pooled_protected.total_floor",
+          19
+        ],
+        [
+          "RESULTS_V1.json:RESULTS_V1.json:pooled_protected.refined_total_floor",
+          10
+        ],
+        [
+          "RESULTS_V1.json:RESULTS_V1.json:RESULTS_V1.json:projects.Mockito.total_floor",
+          6
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-22-adaptive-state-reasoning/top_tier",
+      "exclusion_signals": 1,
+      "population_signals": 6,
+      "strongest": [
+        [
+          "P12_PRICE_AWARE_SUCCESSOR_PROTOCOL_PREREG_V1.json:P12_PRICE_AWARE_SUCCESSOR_PROTOCOL_PREREG_V1.json:P12_PRICE_AWARE_SUCCESSOR_PROTOCOL_PREREG_V1.json:one_stage_attribution.diagnosis_evidence_frozen_before_successor_run.original_positive_cells_total",
+          45
+        ],
+        [
+          "sat_resource_location_cases_v1.json:cases",
+          16
+        ],
+        [
+          "p12_procedural_path_cases_v1.json:grid_size",
+          15
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-23-responsibility-carrying-state",
+      "exclusion_signals": 3,
+      "population_signals": 17,
+      "strongest": [
+        [
+          "P13A_RCS_SAFETY_COST_RESULT_RECEIPT_V1.json:total_episodes",
+          12288
+        ],
+        [
+          "P13C_COMPOSED_RESULT_V1.json:P13C_COMPOSED_RESULT_V1.json:P13C_COMPOSED_RESULT_V1.json:core.episode_design.total_episodes",
+          12288
+        ],
+        [
+          "P13A_PROTOCOL_ADJUDICATION_V2.json:P13A_PROTOCOL_ADJUDICATION_V2.json:P13A_PROTOCOL_ADJUDICATION_V2.json:scientific_summary.ALWAYS_RAW.cannot_check_count",
+          599
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-24-orion-rse",
+      "exclusion_signals": 0,
+      "population_signals": 7,
+      "strongest": [
+        [
+          "P14B_BALANCED_GOVERNANCE_RESULT_RECEIPT_V1.json:total_cases",
+          6720
+        ],
+        [
+          "P14E_SUPERIORITY_RESULT_V1.json:P14E_SUPERIORITY_RESULT_V1.json:P14E_SUPERIORITY_RESULT_V1.json:core.design.total_cases",
+          6720
+        ],
+        [
+          "P14_PAIRED_EVIDENCE_INTERPRETATION_V1.json:P14_PAIRED_EVIDENCE_INTERPRETATION_V1.json:p14e.total_cases",
+          6720
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-25-orion-research-harness/closeout/bounded-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULT.json:RESULT.json:trust_domain_law.cells_total",
+          1000
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-25-orion-research-harness/experiments/execution-integrity-v1",
+      "exclusion_signals": 0,
+      "population_signals": 6,
+      "strongest": [
+        [
+          "SOURCE_MANIFEST.json:SOURCE_MANIFEST.json:bound_numbers_reused_as_denominators.total_corpus_cases",
+          22
+        ],
+        [
+          "H1_CHAIN_LENGTH_RESULT_V1.json:H1_CHAIN_LENGTH_RESULT_V1.json:H1_CHAIN_LENGTH_RESULT_V1.json:per_k.1.clean_chains_total",
+          4
+        ],
+        [
+          "H1_CHAIN_LENGTH_RESULT_V1.json:H1_CHAIN_LENGTH_RESULT_V1.json:H1_CHAIN_LENGTH_RESULT_V1.json:per_k.2.clean_chains_total",
+          4
+        ]
+      ]
+    },
+    {
+      "dir": "papers/orion-25-orion-research-harness/experiments/trust-domain-law-v1",
+      "exclusion_signals": 0,
+      "population_signals": 1,
+      "strongest": [
+        [
+          "RESULT_V1.json:cells_total",
+          1000
+        ]
+      ]
+    }
+  ],
+  "emits_manifests": false,
+  "executed_studies": 108,
+  "grants_authority": "NONE",
+  "not_derivable_no_population_signal": [
+    {
+      "dir": "papers/candidates",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/candidates/hostile_review_v1/artifacts",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/candidates/orion-learning-machine/results",
+      "exclusion_signals": 2,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-01-certificate-realization/evidence/manuscript-consistency-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-01-certificate-realization/experiments/contextual-move-completeness-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/experiments/cc18-certifiability-discriminator-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/experiments/fibre-diameter-floor-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/experiments/refinement-to-certifiability-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/extensions/r17",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/extensions/r18-relative",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/extensions/r19",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/rounds/r19",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/rounds/r23-density-backoff-revival/failed-executions/3550005",
+      "exclusion_signals": 4,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/failed-executions/3550259",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-02-fiberguard-finite-fibre/rounds/r24-arm-conditional-fibres-revival/failed-executions/3550275",
+      "exclusion_signals": 6,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-05-tare-expressivity/rounds/xover-budget-revival-v1/result",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-08-typed-state/experiments/real-transfer-defects4j-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-08-typed-state/theory/binding-sufficiency-lattice-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-09-compilation-regime-geometry/size-transfer-invariant-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-09-compilation-regime-geometry/theory/size-transfer-invariant-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-10-certified-static-forecasting/theory/certificate-explanation-gap-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-12-open-world-scientific-discovery/experiments/beir-route-aware-stopping-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-13-global-knowledge-portrait/evidence/partial-observation-t5",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-13-global-knowledge-portrait/theory/minimal-semantic-separator-v1",
+      "exclusion_signals": 1,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-15-self-orion/evidence/tables",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-16-formal-epistemic-structures-and-mechanics/revalidation/graph-quality-law-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-17-epistemic-navigation-open-worlds/top_tier",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-19-structured-epistemic-learning/theory/invariant-margin-diagnosis-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-19-structured-epistemic-learning/theory/orbit-coverage-gate-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-23-responsibility-carrying-state/theory/external-responsibility-transport-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-23-responsibility-carrying-state/transport-law-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-24-orion-rse/analysis/principled-null-comparator-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-25-orion-research-harness/experiments/cross-site-replay-v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-learning-machine/experiments/phase2_real_source",
+      "exclusion_signals": 2,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/orion-learning-machine/results",
+      "exclusion_signals": 2,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/top_tier_gap_closure/finite_information_interface_v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    },
+    {
+      "dir": "papers/top_tier_gap_closure/operational_gap_audits_v1",
+      "exclusion_signals": 0,
+      "population_signals": 0,
+      "strongest": []
+    }
+  ],
+  "schema": "ORION.CORPUS_DEFINITION_TRIAGE.v1",
+  "why_not": "a key matching a heuristic is not a corpus definition; each derivation must be read and must balance against an independent artifact, as ORION-03 round-2 does (192 parsed = 191 usable + 1 excluded, cross-checked against UPSTREAM_TABLE_V2 191 rows)"
+}
