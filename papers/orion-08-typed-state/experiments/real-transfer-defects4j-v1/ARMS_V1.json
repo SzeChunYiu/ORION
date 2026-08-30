@@ -1,0 +1,410 @@
+{
+ "Chart": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.019792,
+    "run_rate": 0.1095
+   },
+   "det_proxy": {
+    "oracle_gap_captured": -0.305,
+    "regret": 0.025828,
+    "run_rate": 0.0
+   },
+   "info_gain": {
+    "oracle_gap_captured": 0.4709,
+    "regret": 0.010472,
+    "run_rate": 0.0152
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.0129
+   },
+   "typed": {
+    "oracle_gap_captured": 0.5745,
+    "regret": 0.008422,
+    "run_rate": 0.0432
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.01412,
+   "name_match": 0.03869
+  }
+ },
+ "Cli": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.028592,
+    "run_rate": 0.473
+   },
+   "det_proxy": {
+    "oracle_gap_captured": 0.1343,
+    "regret": 0.024751,
+    "run_rate": 0.0171
+   },
+   "info_gain": {
+    "oracle_gap_captured": 0.1343,
+    "regret": 0.024751,
+    "run_rate": 0.0171
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.0178
+   },
+   "typed": {
+    "oracle_gap_captured": 0.2002,
+    "regret": 0.022866,
+    "run_rate": 0.2127
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.01083,
+   "name_match": 0.0195
+  }
+ },
+ "Closure": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.011346,
+    "run_rate": 0.0
+   },
+   "det_proxy": {
+    "oracle_gap_captured": 0.5135,
+    "regret": 0.00552,
+    "run_rate": 0.0048
+   },
+   "info_gain": {
+    "oracle_gap_captured": 0.5135,
+    "regret": 0.00552,
+    "run_rate": 0.0048
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.0057
+   },
+   "typed": {
+    "oracle_gap_captured": 0.5135,
+    "regret": 0.00552,
+    "run_rate": 0.0048
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.0006,
+   "name_match": 0.01882
+  }
+ },
+ "Codec": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.043237,
+    "run_rate": 0.913
+   },
+   "det_proxy": {
+    "oracle_gap_captured": -0.1453,
+    "regret": 0.049517,
+    "run_rate": 0.0483
+   },
+   "info_gain": {
+    "oracle_gap_captured": 0.4749,
+    "regret": 0.022705,
+    "run_rate": 0.1063
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.0483
+   },
+   "typed": {
+    "oracle_gap_captured": 0.5084,
+    "regret": 0.021256,
+    "run_rate": 0.4734
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.01525,
+   "name_match": 0.10686
+  }
+ },
+ "Collections": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.045571,
+    "run_rate": 0.72
+   },
+   "det_proxy": {
+    "oracle_gap_captured": 0.8621,
+    "regret": 0.006286,
+    "run_rate": 0.0514
+   },
+   "info_gain": {
+    "oracle_gap_captured": 0.8621,
+    "regret": 0.006286,
+    "run_rate": 0.0514
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.0429
+   },
+   "typed": {
+    "oracle_gap_captured": 0.8621,
+    "regret": 0.006286,
+    "run_rate": 0.0514
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.00687,
+   "name_match": 0.18791
+  }
+ },
+ "Compress": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.024009,
+    "run_rate": 0.1029
+   },
+   "det_proxy": {
+    "oracle_gap_captured": 0.4567,
+    "regret": 0.013043,
+    "run_rate": 0.0147
+   },
+   "info_gain": {
+    "oracle_gap_captured": 0.4567,
+    "regret": 0.013043,
+    "run_rate": 0.0147
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.016
+   },
+   "typed": {
+    "oracle_gap_captured": 0.482,
+    "regret": 0.012436,
+    "run_rate": 0.0288
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.01326,
+   "name_match": 0.04889
+  }
+ },
+ "Csv": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.028646,
+    "run_rate": 0.6667
+   },
+   "det_proxy": {
+    "oracle_gap_captured": -1.9818,
+    "regret": 0.085417,
+    "run_rate": 0.0938
+   },
+   "info_gain": {
+    "oracle_gap_captured": -0.5818,
+    "regret": 0.045312,
+    "run_rate": 1.0
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.0938
+   },
+   "typed": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.028646,
+    "run_rate": 0.6667
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.05828,
+   "name_match": 0.12496
+  }
+ },
+ "Gson": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.012765,
+    "run_rate": 0.1071
+   },
+   "det_proxy": {
+    "oracle_gap_captured": -0.0363,
+    "regret": 0.013228,
+    "run_rate": 0.0079
+   },
+   "info_gain": {
+    "oracle_gap_captured": 0.1295,
+    "regret": 0.011111,
+    "run_rate": 0.0198
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.0146
+   },
+   "typed": {
+    "oracle_gap_captured": 0.2021,
+    "regret": 0.010185,
+    "run_rate": 0.0556
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.02811,
+   "name_match": 0.05617
+  }
+ },
+ "Lang": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.022489,
+    "run_rate": 0.0909
+   },
+   "det_proxy": {
+    "oracle_gap_captured": 0.6776,
+    "regret": 0.007251,
+    "run_rate": 0.0169
+   },
+   "info_gain": {
+    "oracle_gap_captured": 0.7719,
+    "regret": 0.00513,
+    "run_rate": 0.0277
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.0139
+   },
+   "typed": {
+    "oracle_gap_captured": 0.7883,
+    "regret": 0.004762,
+    "run_rate": 0.0203
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.00989,
+   "name_match": 0.06122
+  }
+ },
+ "Math": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.004078,
+    "run_rate": 0.0039
+   },
+   "det_proxy": {
+    "oracle_gap_captured": 0.5666,
+    "regret": 0.001767,
+    "run_rate": 0.0028
+   },
+   "info_gain": {
+    "oracle_gap_captured": 0.5666,
+    "regret": 0.001767,
+    "run_rate": 0.0028
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.0021
+   },
+   "typed": {
+    "oracle_gap_captured": 0.6049,
+    "regret": 0.001611,
+    "run_rate": 0.0057
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.00321,
+   "name_match": 0.00901
+  }
+ },
+ "Mockito": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.007594,
+    "run_rate": 0.0519
+   },
+   "det_proxy": {
+    "oracle_gap_captured": 0.2674,
+    "regret": 0.005564,
+    "run_rate": 0.0038
+   },
+   "info_gain": {
+    "oracle_gap_captured": 0.2674,
+    "regret": 0.005564,
+    "run_rate": 0.0038
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.0046
+   },
+   "typed": {
+    "oracle_gap_captured": 0.3861,
+    "regret": 0.004662,
+    "run_rate": 0.0231
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.00891,
+   "name_match": 0.01098
+  }
+ },
+ "Time": {
+  "arms": {
+   "coarse": {
+    "oracle_gap_captured": 0.0,
+    "regret": 0.0178,
+    "run_rate": 0.0
+   },
+   "det_proxy": {
+    "oracle_gap_captured": 0.2089,
+    "regret": 0.014081,
+    "run_rate": 0.0038
+   },
+   "info_gain": {
+    "oracle_gap_captured": 0.5286,
+    "regret": 0.008392,
+    "run_rate": 0.0203
+   },
+   "oracle": {
+    "oracle_gap_captured": 1.0,
+    "regret": 0.0,
+    "run_rate": 0.0089
+   },
+   "typed": {
+    "oracle_gap_captured": 0.5446,
+    "regret": 0.008106,
+    "run_rate": 0.0146
+   }
+  },
+  "info_gain_feature": "name_match",
+  "mi_bits": {
+   "coarse_pkg": 0.00351,
+   "name_match": 0.0219
+  }
+ }
+}
