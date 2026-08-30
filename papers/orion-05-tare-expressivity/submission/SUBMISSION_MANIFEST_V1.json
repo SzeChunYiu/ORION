@@ -1,0 +1,85 @@
+{
+  "author": {
+    "affiliation": "Department of Physics, Stockholm University, Stockholm, Sweden",
+    "email": "sze-chun.yiu@fysik.su.se",
+    "name": "Sze Chun Yiu"
+  },
+  "canonical_ledger": {
+    "evidence": "papers/orion-05-tare-expressivity/README.md line 4: 'Canonical claim ledger: CLAIM_LEDGER_V3.md'",
+    "file": "papers/orion-05-tare-expressivity/CLAIM_LEDGER_V3.md"
+  },
+  "claim_boundary_verbatim": {
+    "adverse_runtime_comparison": "A prespecified runtime comparison is adverse: the direct support-two implementation timed out on all six full-subject cells under a 120-second limit, although both solvers agreed on every jointly completed cell.",
+    "scope_limit": "The result is therefore a grammar-specific normal form and algorithmic upper bound, not evidence of faster compilation, hardware benefit, fault-tolerant resource advantage, or general block-encoding optimality.",
+    "source": "abstract, papers/orion-05-tare-expressivity/manuscript/main.pdf p.1"
+  },
+  "competing_canonical_designation": {
+    "hashed_artifact_here": "manuscript/main.pdf",
+    "note": "papers/ORION05_CANONICAL_MANUSCRIPT_DECISION_V1.md (2026-08-27) names MANUSCRIPT_V3_REFINED.md the canonical ORION-05 manuscript, while journal_package/MANIFEST.json (2026-08-28) names manuscript/main.pdf the canonical PDF. Recorded, not resolved."
+  },
+  "corroboration": {
+    "canonical_pdf_matches_journal_package_manifest": true,
+    "detail": "manuscript/main.pdf sha256 75a893f32465a8eabba8161f2368839a880b3c046f1b0edf04cc6375d46a968b and 98333 bytes match journal_package/MANIFEST.json canonical_pdf exactly; journal_package/manuscript.pdf is byte-identical to manuscript/main.pdf",
+    "verified": "2026-08-30"
+  },
+  "declarations": {
+    "acknowledgements": "omitted by author policy",
+    "ai_disclosure": "Generative AI tools were used for drafting and editing assistance. The author is responsible for all scientific content.",
+    "author_contributions": "Sze Chun Yiu is the sole author and performed all work reported.",
+    "competing_interests": "omitted by author policy (venue does not mandate a statement)",
+    "funding": "omitted by author policy (venue does not mandate a statement)",
+    "policy_source": "papers/SUBMISSION_POLICY_V1.md"
+  },
+  "file_count": 5,
+  "files": [
+    {
+      "bytes": 98333,
+      "path": "papers/orion-05-tare-expressivity/manuscript/main.pdf",
+      "sha256": "75a893f32465a8eabba8161f2368839a880b3c046f1b0edf04cc6375d46a968b"
+    },
+    {
+      "bytes": 2445,
+      "path": "papers/orion-05-tare-expressivity/CLAIM_LEDGER_V3.md",
+      "sha256": "c651a1c9fe49a4b3535b00e16353a16249a9e890de60dcd801e5c2b2db714aa7"
+    },
+    {
+      "bytes": 9615,
+      "path": "papers/orion-05-tare-expressivity/CLAIM_LEDGER_V2.md",
+      "sha256": "306b0d97ea1330a34552e4a1551b8ccd382225a5c2a9cea411cbb8071ba2a6b9"
+    },
+    {
+      "bytes": 12024,
+      "path": "papers/orion-05-tare-expressivity/CLAIM_LEDGER.md",
+      "sha256": "ef111db654465fd9c0e72cf36ff3080cf0fcddd1cb352b4801a2280f86c7a09d"
+    },
+    {
+      "bytes": 10207,
+      "path": "papers/orion-05-tare-expressivity/CLAIM_LEDGER_ALL_N_REGIME_HISTORY_2026-08-23.md",
+      "sha256": "b289641fba66ddf8531173389b2ba4bff1788a1b9c931b0a90fed5f0eeebebfd"
+    }
+  ],
+  "grants_authority": "NONE",
+  "manifest_date": "2026-08-30",
+  "paper": "ORION-05",
+  "schema": "ORION.SUBMISSION_MANIFEST.v1",
+  "source_pdf_divergence": {
+    "finding": "The committed main.pdf was not built from the committed main.tex. A clean build from source at HEAD produces a differently titled manuscript with a placeholder author block. Resolve before filing; the hashes recorded here are of the PDF artifact, not of a reproducible build.",
+    "head_commit": "a9ba2ead1ab982d2c26d54e8314919a7833d4821",
+    "pdf_author_block": "Anonymous authors",
+    "pdf_title": "Support-Two Normal Forms for a Shared-Tag Pauli Compilation Grammar",
+    "status": "OPEN — blocks any claim that the PDF rebuilds from committed source",
+    "tex_author_at_head": "Working framework draft",
+    "tex_path": "papers/orion-05-tare-expressivity/manuscript/main.tex",
+    "tex_title_at_head": "Support-Two Exactness and Regime Geometry of Shared-Tag TARE Compilation",
+    "working_tree_clean": true
+  },
+  "submission_commit": "a9ba2ead1ab982d2c26d54e8314919a7833d4821",
+  "title": "Support-Two Normal Forms for a Shared-Tag Pauli Compilation Grammar",
+  "venue": {
+    "article_type": "original research article",
+    "author_block": "named",
+    "fallback": "Theoretical Computer Science (Elsevier)",
+    "primary": "Quantum (quantum-journal.org)",
+    "review_model": "not double-blind (Quantum publishes under CC BY 4.0)"
+  }
+}

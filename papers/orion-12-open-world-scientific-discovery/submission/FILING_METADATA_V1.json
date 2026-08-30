@@ -71,9 +71,11 @@
     "submission ID once assigned"
   ],
   "blocking_before_filing": [
-    "Resolve the title divergence between manuscript/main.tex and manuscript/ipm_submission.tex; the cover letter title must match the title page of whichever PDF is uploaded.",
+    "Replace the placeholder author line 'Working framework draft' in manuscript/main.tex with the named author block before any deposit or upload; the bound main.pdf currently renders the placeholder.",
+    "Resolve the title divergence between manuscript/main.tex and manuscript/ipm_submission.tex; the cover letter title must match the title page of whichever PDF is uploaded. Verified: main.pdf carries the main.tex title only.",
+    "Set PDF document-info /Title and /Author (hyperref pdftitle/pdfauthor) before arXiv deposit; both are currently empty.",
     "Restore or rebuild the manuscript.pdf bound by journal_package/current_revision/SUBMISSION_MANIFEST.json, or supersede that manifest; its declared PDF is absent from disk.",
-    "Set a named author block in the uploaded source for this single-blind venue (ipm_submission.tex is currently anonymous).",
+    "Set a named author block in the uploaded IP&M source for this single-blind venue (ipm_submission.tex is currently anonymous).",
     "Verify IP&M's current declaration and preprint requirements against the live guide for authors."
   ],
   "not_committed": true,
