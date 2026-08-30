@@ -1,0 +1,118 @@
+{
+  "checker": "ORION01.THEORY_A.LEMMA3.INDEPENDENT.v1",
+  "source": "theorem statement only; no import from src/orion",
+  "rows": [
+    {
+      "b": 2,
+      "max_increase_observed": 1,
+      "claimed_bound_b_minus_1": 1,
+      "at_most_holds": true,
+      "bound_attained": true,
+      "witness": {
+        "from": "II",
+        "position": 0,
+        "replaced_by": "X",
+        "F_before": 0,
+        "F_after": 1
+      },
+      "tuples_checked": 16
+    },
+    {
+      "b": 3,
+      "max_increase_observed": 2,
+      "claimed_bound_b_minus_1": 2,
+      "at_most_holds": true,
+      "bound_attained": true,
+      "witness": {
+        "from": "XXX",
+        "position": 0,
+        "replaced_by": "Y",
+        "F_before": 1,
+        "F_after": 3
+      },
+      "tuples_checked": 64
+    },
+    {
+      "b": 4,
+      "max_increase_observed": 3,
+      "claimed_bound_b_minus_1": 3,
+      "at_most_holds": true,
+      "bound_attained": true,
+      "witness": {
+        "from": "XXXX",
+        "position": 0,
+        "replaced_by": "Y",
+        "F_before": 1,
+        "F_after": 4
+      },
+      "tuples_checked": 256
+    },
+    {
+      "b": 5,
+      "max_increase_observed": 4,
+      "claimed_bound_b_minus_1": 4,
+      "at_most_holds": true,
+      "bound_attained": true,
+      "witness": {
+        "from": "XXXXX",
+        "position": 0,
+        "replaced_by": "Y",
+        "F_before": 1,
+        "F_after": 5
+      },
+      "tuples_checked": 1024
+    },
+    {
+      "b": 6,
+      "max_increase_observed": 5,
+      "claimed_bound_b_minus_1": 5,
+      "at_most_holds": true,
+      "bound_attained": true,
+      "witness": {
+        "from": "XXXXXX",
+        "position": 0,
+        "replaced_by": "Y",
+        "F_before": 1,
+        "F_after": 6
+      },
+      "tuples_checked": 4096
+    },
+    {
+      "b": 7,
+      "max_increase_observed": 6,
+      "claimed_bound_b_minus_1": 6,
+      "at_most_holds": true,
+      "bound_attained": true,
+      "witness": {
+        "from": "XXXXXXX",
+        "position": 0,
+        "replaced_by": "Y",
+        "F_before": 1,
+        "F_after": 7
+      },
+      "tuples_checked": 16384
+    },
+    {
+      "b": 8,
+      "max_increase_observed": 7,
+      "claimed_bound_b_minus_1": 7,
+      "at_most_holds": true,
+      "bound_attained": true,
+      "witness": {
+        "from": "XXXXXXXX",
+        "position": 0,
+        "replaced_by": "Y",
+        "F_before": 1,
+        "F_after": 8
+      },
+      "tuples_checked": 65536
+    }
+  ],
+  "all_b_pass": true,
+  "mutation_control": {
+    "mutation": "F without the all-same-nonidentity special case",
+    "max_increase_under_mutation_b4": 1,
+    "detected_as_different": true
+  },
+  "terminal": "LEMMA3_EXHAUSTIVELY_VERIFIED_b2_b8"
+}
