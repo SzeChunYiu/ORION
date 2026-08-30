@@ -1032,7 +1032,12 @@ def test_vacated_numbers_are_recorded_and_are_not_identities() -> None:
     actives = {entry.active for entry in PAPER_DIRECTORIES}
     for directory, was, reason in VACATED_PAPER_NUMBERS:
         assert (REPO_ROOT / directory).is_dir(), directory
-        assert directory.startswith("papers/paper-xx-")
+        # R0 moved one of these under papers/archive/2026-08-pre-unification/.
+        # What matters is the identity, not where it is filed: the basename must
+        # still be paper-xx-, which is what keeps it invisible to the
+        # paper-number scan.
+        assert directory.startswith("papers/")
+        assert directory.rsplit("/", 1)[-1].startswith("paper-xx-")
         assert was in ("was P9", "was P10")
         assert reason.strip()
         # Vacated means vacated: not a registered identity, and invisible to the
