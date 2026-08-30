@@ -83,6 +83,8 @@ Before any controlling manuscript becomes an upload-facing master, it still requ
 7. human-supplied authorship, affiliation, funding, conflict, contribution, and filing declarations;
 8. independent replay or external authority only where the paper's actual claim requires it.
 
+Existing release packages remain authoritative only for the exact manuscript bytes they bind. These editorial masters and refinement records do not silently replace or upgrade an older PDF, arXiv surface, journal bundle, or readiness terminal.
+
 ## 7. Final status
 
 `23_BOUNDED_MANUSCRIPT_OBJECTS_INDEXED__3_RESULT_LANES_HELD__NO_PROSE_CREATED_AUTHORITY__TARGET_RELEASE_WORK_REMAINS`
