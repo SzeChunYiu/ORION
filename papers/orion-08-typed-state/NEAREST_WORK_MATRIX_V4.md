@@ -1,55 +1,59 @@
 # ORION-08 nearest-work matrix — V4
 
-**Literature cut:** 2026-08-29.  
-**Scope:** nearest work for the bounded exact-synthetic typed/scoped-state composition claim.  
-**Authority:** positioning only; no result or terminal is upgraded by this matrix.
+Supersedes `NEAREST_WORK_MATRIX_V3.md`, which was headed "ORION-04 nearest-work matrix"
+(legacy numbering) and predated the 2026-08 agent-memory literature. Rebuilt after the
+submission-date refresh recorded in `submission/literature-closure-v1/`.
 
-V4 supersedes V3 for current positioning. V3 remains provenance. The important
-change is that recent 2026 agent-memory and provenance work now occupies parts of
-the design space that V3 described too broadly.
+**Nothing here refutes ORION-08's results.** The V3 deltas mostly survive; two rows are
+contested and one is directly hit, and the paper's strongest positioning turned out to be
+unstated in V3 and is stated here.
 
-| Neighboring area | Current nearest work | What ORION-08 does **not** claim | Residual ORION-08 delta after V4 |
+## Row-by-row
+
+| Neighbouring area | Existing contribution | ORION-08 does **not** claim | Residual ORION-08 delta |
 |---|---|---|---|
-| typed / provenance-aware agent memory | MAP-Graph (arXiv:2608.10509) represents provenance in a typed execution graph with ancestry, permission filtering, path trust, and action gating; provenance-sensitivity auditing (arXiv:2607.20827) changes source authority while holding other task factors fixed | invention of typed memory, provenance-aware memory, or provenance-sensitive action | an **exact matched-information mechanism suite** in which the binding relation is manipulated while the factual world is held fixed, plus an exact fibre criterion for when any binding can support a zero-regret action |
-| stale-memory / state revision | STALE (arXiv:2605.06527) directly benchmarks whether agents detect and act on invalidated memory; Nakayashiki (arXiv:2608.25553) studies inherited stale constraints under a fixed verification budget | first stale-state benchmark or first study of superseded memory | an exact decision-sufficiency formulation: worlds merged by one readable binding require a common optimal action; refinement helps exactly when it separates an action-impure fibre |
-| value of information / information acquisition | classical VoI and active-learning parents remain; recent agent work makes budgeted information selection operational | invention of VoI, active acquisition, or budget matching | type/scoping enters as the **state variable that determines decision sufficiency**, with exact action-regret consequences and prespecified no-value regimes rather than a general acquisition heuristic |
-| provenance / lineage transport | MAP-Graph and provenance-sensitivity auditing establish provenance as an operational action signal, not only audit metadata | invention of provenance, lineage, or permission filtering | exact constructed tests separating full-path transport validity from weaker last-hop readings, with the claim restricted to the frozen synthetic mechanism |
-| uncertainty / Pareto verification | Nakayashiki (arXiv:2608.25553) uses the same verification budget in every arm and explicitly includes a random-record control | priority on matched-budget verification, random verification controls, or uncertainty-aware planning | **not matched budget itself**. The residual is the exact common-optimal-action/fibre criterion and its mechanism-isolation use: the paper asks when the readable binding is sufficient and when a refinement can change the optimum |
-| governed / versioned long-context state | Governance Decay (arXiv:2606.22528) shows safety constraints can disappear under compaction; Gamage (arXiv:2604.20911) shows asymmetric persistence of omission vs commission constraints | first observation that long-context governance/state can decay | explicit scope/version/remint constructions with a prespecified **no-value regime** where the typed mechanism must tie re-derivation; this is a bounded synthetic mechanism claim, not deployment prevalence |
-| cross-family composition | the nearest 2026 parents above are each organized around one principal mechanism family | priority on any component primitive | six separately frozen studies share one post-study contract: same factual world → vary epistemic binding → matched comparator → hostile/no-value control → exact bounded terminal |
+| typed / provenance-aware agent memory | stores or distinguishes roles, sources, types, truth-bearing content; shared provenance-aware memory for multi-agent workflows [MAP-Graph, arXiv:2608.10509]; provenance-sensitivity auditing in action selection [arXiv:2607.20827] | invention of typed or provenance-aware memory | matched-information decision tests where the visible factual payload is fixed and only the explicit binding varies |
+| stale-memory / state-revision benchmarks | STALE and the implicit-policy-adaptation gap [arXiv:2605.06527]; budgeted verification of stale inherited constraints [arXiv:2608.25553] | first stale-state benchmark | applicability-scope test where irrelevant context change is a hostile control and the question is which coordinates licensed the old failure |
+| value of information | classical decision theory; agent work applying VoI to clarification | invention of VoI or active acquisition | type-conditioned inputs to otherwise identical VoI under a shared stopping rule |
+| provenance / lineage tracking | records transformations and source history; supersession and revocation at the store | invention of lineage or provenance | exact constructed test that full-path transport validity catches deep evidence splices missed by last-hop checks |
+| uncertainty-aware / Pareto decision-making | uncertainty-aware planners; **matched-budget verification with a random-record control** [arXiv:2608.25553] | first uncertainty-aware planner, **and no longer priority on matched-budget verification with a random control** | matched-budget verification targeted specifically at *unresolved Pareto ambiguity*, with the budget varying the epistemic type rather than the inspection slot |
+| governed / versioned memory | scope, version, access and supersession control | generic memory governance | remint/transport decision with an explicit **no-value regime** in which the typed mechanism must tie re-derivation exactly |
+| constraint decay in long contexts | governance decay under compaction [arXiv:2606.22528]; omission-vs-commission constraint decay [arXiv:2604.20911] | first account of constraint loss | constraints here are *present and wrong*, not lost — a different failure mode |
 
-## Nearest new parent: budgeted verification of inherited stale constraints
+## What changed from V3, explicitly
 
-Nakayashiki, arXiv:2608.25553, is the closest new parent because it overlaps
-four design commitments that can no longer be described as ORION-specific:
-fixed factual payload across policy comparisons, equal verification budget,
-a random/no-value control structure, and deterministic outcome scoring.
+1. **The Pareto/matched-budget row is corrected.** V3 claimed "matched-budget verification
+   … with paired regret against random verification" as a delta. arXiv:2608.25553 runs
+   matched-budget verification with a random-record control. The delta is narrowed to what
+   survives: the budget varies the *epistemic type*, not which record is inspected.
+2. **Two rows gained closer parents** (typed/provenance-aware memory; stale-memory).
+3. **A seventh row is added** for constraint decay, which V3 did not cover.
 
-The remaining distinction is therefore **not** “matched-budget verification
-against random verification.” It is the object being identified:
+## The positioning V3 omitted
 
-- Nakayashiki measures how a fixed two-record allocation changes behavior in a
-  sampled 5,400-episode agent study.
-- ORION-08's binding-sufficiency lattice is an exact finite object and states a
-  biconditional: a binding supports deterministic zero regret iff each positive
-  fibre has a common optimal action; a refinement is useful only when it splits
-  an action-impure fibre.
-- The existing transfer note maps the new parent's reported effect/null pattern
-  onto that criterion, but it is explicitly a prediction check, **not** an
-  episode-level re-analysis. Its stated fibre-level falsifier remains open.
+This is the paper's strongest claim to distinctness and it appears nowhere in V3:
 
-This absorbs the parent rather than fencing it off.
+**Exact and exhaustive, not sampled.** The binding-sufficiency lattice checks **2,233,980
+world-action configurations in exact rational arithmetic** and returns a proved
+biconditional — a zero-regret policy on binding `B` exists **iff** every positive-mass
+fibre has a common optimal action. Every parent found estimates a rate with intervals.
+Proving a condition and estimating a rate are different epistemic objects.
 
-## Boundary after V4
+**Mechanism identification, which the nearest parent explicitly disclaims.**
+arXiv:2608.25553 states it "does not identify why native allocation selects what it
+selects, it does not establish mediation", and lists mechanism non-isolation as its
+Limitation 9. Mechanism isolation under matched information is ORION-08's entire design.
 
-The bounded contribution is now stated as:
+**Cross-family composition.** Every parent found is single-family; ORION-08's object is the
+family-level contract across six preregistered studies.
 
-> Across six separately frozen exact-synthetic studies, ORION-08 isolates when
-> an explicit epistemic binding is decision-sufficient under matched
-> information. Its exact fibre criterion separates cases where refinement can
-> change the optimal action from cases where it cannot. Recent empirical
-> stale-memory, provenance, and budgeted-verification studies establish nearby
-> phenomena; ORION-08 does not claim priority on those primitives or controls.
+Stronger still, and recorded separately in
+`theory/binding-sufficiency-lattice-v1/transfer-v1/`: the lattice **predicts that parent's
+result on both sides**, including its null control, from fibre purity alone.
 
-That statement is deliberately narrower than V3 and is the wording the
-manuscript should support.
+## Discipline
+
+The theorem itself is **not claimed as novel** — `THEORY.md` calls it "generic
+decision-sufficiency / Blackwell-style donor theory. No novelty is claimed", and that
+stands. The instantiation, the cross-family contract, and the measured transfer are the
+contribution.
