@@ -84,3 +84,41 @@ With the CC18 leg (`real-transfer-cc18-v1`, terminal
 decision families are both complete: a tabular classification decision under a
 cost matrix, and a selection decision over a test suite. Neither shares anything
 with the other except the theorem.
+
+## The registered arm set, and the fraction of the oracle gap captured
+
+#1701 names five arms: coarse; strongest deterministic proxy; generic
+acquisition/info-gain; typed binding; oracle. All five, on the training half:
+
+| project | coarse | det. proxy | info-gain | **typed** | oracle | typed captures | typed run rate |
+|---|---|---|---|---|---|---|---|
+| Chart | 0.0198 | 0.0258 | 0.0105 | **0.0084** | 0 | 57.5% | 4.3% |
+| Cli | 0.0286 | 0.0248 | 0.0248 | **0.0229** | 0 | 20.0% | 21.3% |
+| Closure | 0.0113 | 0.0055 | 0.0055 | **0.0055** | 0 | 51.3% | 0.5% |
+| Codec | 0.0432 | 0.0495 | 0.0227 | **0.0213** | 0 | 50.8% | 47.3% |
+| Collections | 0.0456 | 0.0063 | 0.0063 | **0.0063** | 0 | 86.2% | 5.1% |
+| Compress | 0.0240 | 0.0130 | 0.0130 | **0.0124** | 0 | 48.2% | 2.9% |
+| Csv | 0.0286 | 0.0854 | 0.0453 | **0.0286** | 0 | 0.0% | 66.7% |
+| Gson | 0.0128 | 0.0132 | 0.0111 | **0.0102** | 0 | 20.2% | 5.6% |
+| Lang | 0.0225 | 0.0073 | 0.0051 | **0.0048** | 0 | 78.8% | 2.0% |
+| Math | 0.0041 | 0.0018 | 0.0018 | **0.0016** | 0 | 60.5% | 0.6% |
+| Mockito | 0.0076 | 0.0056 | 0.0056 | **0.0047** | 0 | 38.6% | 2.3% |
+| Time | 0.0178 | 0.0141 | 0.0084 | **0.0081** | 0 | 54.5% | 1.5% |
+
+The deterministic proxy is "run iff the test names the changed class" — no fibre
+statistics at all. The info-gain arm refines the coarse binding on whichever single
+feature carries the most mutual information with catching, chosen without any
+reference to the theorem's impurity criterion.
+
+**Typed is at least as good as the deterministic proxy on 12 of 12 and at least as
+good as generic info-gain on 12 of 12.** On the large projects it runs 0.5–5% of
+the suite. The deterministic proxy is not merely weaker: it is *worse than the
+coarse binding it was meant to beat* on Chart, Codec, Gson and Csv, because a rule
+that runs only name-matching tests skips a great many bugs whose triggering test
+does not carry the changed class's name.
+
+**Typed captures a mean 47.2% of the oracle-achievable gap** (range 0–86.2%). That
+number belongs in the limitations as much as in the results: over half the regret
+an omniscient per-decision oracle would avoid is still on the table, so the typed
+binding is a real improvement over every registered competitor and is nowhere near
+optimal. Nothing here claims otherwise.
