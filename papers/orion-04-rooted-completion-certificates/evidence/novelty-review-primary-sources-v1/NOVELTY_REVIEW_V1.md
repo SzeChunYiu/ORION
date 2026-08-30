@@ -3,14 +3,23 @@
 **Scope.** Discharges the #1701 box "Run current primary-source novelty review
 for Davenport/zero-sum/combinatorial bounds."
 
-**Claim under review.** `D_4(C_5^3) = 30`, and consequently
-`D_k(C_5^3) = 5k + 10` for every `k >= 2`.
+**Status of the target, established first.** ORION-04 does **not** currently
+assert a value for `D_4(C_5^3)`. `CLAIM_LEDGER.md` records both candidates as
+open: `N-C11` (`D_4(C_5^3)=30`) is `OPEN; top-tier blocker`, and `N-C12`
+(`D_4(C_5^3)=31`) is `OPEN` with `no admitted extremal`. The proof-handoff
+packet `evidence/d4-proof-handoff-v1/` is terminal at
+`PROOF_INTERFACE_FROZEN__D4_EXECUTION_UNAUTHORIZED` with
+`scientific_authority_delta: NONE`, and states in its own disposition that it
+supplies no size-30 construction, executes no size-31 impossibility proof, and
+that `exact D_4(C_5^3)=30` is **not** a manuscript-authorized claim.
+
+This review therefore subtracts prior work from an **open target**. It does not
+presuppose either value, and nothing below should be read as support for one.
 
 **Method.** Literature retrieved 2026-08-30 against the primary arXiv record,
-not against secondary summaries. Each subtraction below cites the retrieved
-source text. `D_k(G)` throughout is the k-th Davenport constant: the least `l`
-such that every sequence over `G` of length `>= l` has `k` disjoint nontrivial
-zero-sum subsequences.
+not against secondary summaries. `D_k(G)` throughout is the k-th Davenport
+constant: the least `l` such that every sequence over `G` of length `>= l` has
+`k` disjoint nontrivial zero-sum subsequences.
 
 ## What the primary sources establish
 
@@ -21,13 +30,13 @@ Halter-Koch [27, Thm 6.1.5]: for `G = C_{n_1} + C_{n_2}` with `n_1 | n_2`,
 `D_k(G) = n_1 + k n_2 - 1`. That paper's entire scope is rank 2; it computes
 `D_k` for no rank-3 group.
 
-**2. The linear form is known to hold eventually, and known to FAIL at rank >= 3
-for p = 2 and p = 3.** Same source, p. 2, on Freeze–Schmid (2010): `D_k(G) =
+**2. The linear form holds eventually, and is known to FAIL at rank >= 3 for
+p = 2 and p = 3.** Same source, p. 2, on Freeze–Schmid (2010): `D_k(G) =
 D_0(G) + k exp(G)` for some `D_0(G)` and all sufficiently large `k`; it holds
 for all `k` at rank <= 2; "Yet, it fails for elementary 2 and 3-groups of rank
 at least 3", citing Delorme–Ordaz–Quiroz and Bhowmik–Schlage-Puchta. The same
-page states computing or even bounding `D_k` is substantially harder than `D(G)`
-for elementary p-groups.
+page states computing or even bounding `D_k` is substantially harder than
+`D(G)` for elementary p-groups.
 
 **3. The rank-3 literature computes DIFFERENT invariants.**
 Zhang, *On some zero-sum invariants for abelian groups of rank three*
@@ -42,42 +51,45 @@ certain groups of rank three*, address `D(G)`, `eta`, `s`, not `D_k`.
 |---|---|---|---|
 | Zhong 2025 (2503.21231) | `D_k` | 2 only | No |
 | Geroldinger–Halter-Koch Thm 6.1.5 | `D_k` | <= 2 | No |
-| Zhang 2023 (2310.05458) | `s_{k exp}`, `s_{<=t}` | 3 | No — different invariant, and p=3 |
+| Zhang 2023 (2310.05458) | `s_{k exp}`, `s_{<=t}` | 3 | No — different invariant, p=3 |
 | Girard–Schmid rank-three papers | `D`, `eta`, `s` | 3 | No — different invariant |
 | Delorme–Ordaz–Quiroz; Bhowmik–Schlage-Puchta | `D_k` failures | >= 3 | No — p=2,3 |
 
-No retrieved primary source computes `D_k` for any elementary p-group of rank 3
-with `p >= 5`.
+**Finding: no retrieved primary source computes `D_k` for any elementary
+p-group of rank 3 with `p >= 5`, at any value.**
 
-## What is therefore new
+## What this does and does not buy the paper
 
-`D(C_5^3) = 3(5-1) + 1 = 13` is classical (Olson). The claim under review is not
-about `D`; it is the first exact `D_k` determination for an elementary p-group of
-rank 3 at `p = 5`, and it asserts that the linear form `D_0 + k exp(G)` **holds**
-there with `D_0 = 10`, from `k = 2` onward.
+**Buys:** the target is open in the literature, not merely open in this
+repository. Whichever value ORION-04 eventually proves would be the first exact
+`D_k` determination for an elementary p-group of rank 3 at `p >= 5`. Two things
+make that non-routine: the rank-2 formula does not apply and yields no
+prediction at rank 3; and the nearest rank-3 evidence is evidence of *failure*
+of the linear form at `p = 2, 3`, so a rank-3 case either way is a boundary
+result about where that failure stops.
 
-Two things make that a non-trivial position rather than an application of a known
-formula:
+**Does not buy:** any support for 30 over 31, or for the linear form holding at
+`p = 5`. `D(C_5^3) = 13` is classical (Olson) and is not in question; the open
+target is `D_4`, and `5(1)+10 = 15 != 13` means any linear form can begin no
+earlier than `k = 2` — which is consistent with Freeze–Schmid's "sufficiently
+large k" but is a constraint on how a result must be stated, not evidence for
+one.
 
-- The rank-2 formula does not apply and gives no prediction at rank 3.
-- The nearest rank-3 evidence in the literature is evidence of **failure** of the
-  linear form (at `p = 2, 3`). A rank-3 case where it holds is therefore a
-  boundary result about where that failure stops, not a routine extension.
-- The onset is genuinely at `k = 2`, not `k = 1`: `5(1) + 10 = 15 != 13 = D(G)`.
-  This is consistent with Freeze–Schmid ("all sufficiently large k") and must be
-  stated as `k >= 2`, never as all `k`.
+## Boundaries
 
-## Boundaries this review does NOT clear
-
-- It does not verify the proof of `D_4(C_5^3) = 30`. It establishes only that no
-  retrieved primary source already contains the value, in either direction.
+- This review verifies no proof. It establishes only that no retrieved primary
+  source already contains a value for `D_k(C_5^3)`, in either direction.
 - Retrieval covers the arXiv primary record. A pre-arXiv or non-indexed
-  determination of `D_k(C_5^3)` would not have been caught, and the manuscript
-  should not claim exhaustive priority — only that the standard references
-  (Gao–Geroldinger survey, Geroldinger–Halter-Koch monograph, and the current
-  rank-2/rank-3 literature above) do not contain it.
-- `D_4(C_5^3) = 31` appears in the repository as a competing branch. This review
-  is agnostic between 30 and 31; it subtracts prior work from *whichever* value
-  the proof establishes.
+  determination would not have been caught, so the manuscript should claim only
+  that the standard references (Gao–Geroldinger survey, Geroldinger–Halter-Koch
+  monograph, and the rank-2/rank-3 literature above) do not contain it — never
+  exhaustive priority.
+- The `N-C11`/`N-C12` discrepancy is a live top-tier blocker tracked in the
+  claim ledger. Structurally: `D_4 >= 30` and `D_4 = 31` are consistent, so the
+  discriminating artifact is whichever carries `<= 30` — here
+  `d4-proof-handoff-v1/PROOF_OBJECT_CONTRACT_V1.md`, which is frozen as an
+  interface and explicitly unexecuted. The `>=` direction is machine-checkable
+  from a witness sequence; the `<=` direction is universal over the length-30
+  space and resolves by argument, not by enumeration.
 
-**Terminal:** `NOVELTY_SUBTRACTION_COMPLETE__NO_PRIMARY_SOURCE_COMPUTES_D_K_FOR_RANK_3_P_GE_5`
+**Terminal:** `NOVELTY_SUBTRACTION_COMPLETE__NO_PRIMARY_SOURCE_COMPUTES_D_K_FOR_RANK_3_P_GE_5__TARGET_REMAINS_OPEN`
