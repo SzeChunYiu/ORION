@@ -1,6 +1,14 @@
 {
   "grants_authority": "NONE",
-  "hard_violations_title_or_author": [],
+  "hard_violations_title_or_author": [
+    "orion-16-formal-epistemic-structures-and-mechanics",
+    "orion-17-epistemic-navigation-open-worlds",
+    "orion-18-epistemic-authority-autonomous-science",
+    "orion-21-state-as-computation",
+    "orion-22-adaptive-state-reasoning",
+    "orion-23-responsibility-carrying-state",
+    "orion-24-orion-rse"
+  ],
   "papers": {
     "orion-03-typed-merge-falsification": {
       "status": "NO_MAIN_TEX"
@@ -209,12 +217,12 @@
         "AUTHOR_CODE": 0,
         "BODY_PAPERCODE": 6,
         "BODY_TERMINAL": 2,
-        "BODY_VERSION": 20,
+        "BODY_VERSION": 21,
         "TITLE_CODE": 0,
-        "TITLE_VERSION": 0
+        "TITLE_VERSION": 1
       },
       "status": "LEAKAGE",
-      "title": "Formal Epistemic Structures and Mechanics"
+      "title": "Formal Epistemic Structures and Mechanics --- V5"
     },
     "orion-17-epistemic-navigation-open-worlds": {
       "author": "Working framework draft",
@@ -227,12 +235,12 @@
         "AUTHOR_CODE": 0,
         "BODY_PAPERCODE": 16,
         "BODY_TERMINAL": 3,
-        "BODY_VERSION": 24,
+        "BODY_VERSION": 25,
         "TITLE_CODE": 0,
-        "TITLE_VERSION": 0
+        "TITLE_VERSION": 1
       },
       "status": "LEAKAGE",
-      "title": "Epistemic Navigation in Open Worlds"
+      "title": "Epistemic Navigation in Open Worlds --- V4"
     },
     "orion-18-epistemic-authority-autonomous-science": {
       "author": "Working framework draft",
@@ -247,12 +255,12 @@
         "AUTHOR_CODE": 0,
         "BODY_PAPERCODE": 19,
         "BODY_TERMINAL": 5,
-        "BODY_VERSION": 26,
+        "BODY_VERSION": 27,
         "TITLE_CODE": 0,
-        "TITLE_VERSION": 0
+        "TITLE_VERSION": 1
       },
       "status": "LEAKAGE",
-      "title": "A Theory of Epistemic Authority for Autonomous Science"
+      "title": "A Theory of Epistemic Authority for Autonomous Science --- V3 science update"
     },
     "orion-19-structured-epistemic-learning": {
       "author": "Anonymous Authors",
@@ -283,11 +291,11 @@
       "title": "Obstruction-Certified Method-Language Expansion:\\\\Formal Closure Theory and an Exact Measu"
     },
     "orion-21-state-as-computation": {
-      "author": "Anonymous authors",
+      "author": "ORION-P11",
       "body_terminal_examples": [],
       "counts": {
-        "AUTHOR_CODE": 0,
-        "BODY_PAPERCODE": 1,
+        "AUTHOR_CODE": 1,
+        "BODY_PAPERCODE": 2,
         "BODY_TERMINAL": 0,
         "BODY_VERSION": 0,
         "TITLE_CODE": 0,
@@ -297,11 +305,11 @@
       "title": "State as Computation: Moving Structural Search between Representation Construction and Dow"
     },
     "orion-22-adaptive-state-reasoning": {
-      "author": "Anonymous authors",
+      "author": "ORION-P12",
       "body_terminal_examples": [],
       "counts": {
-        "AUTHOR_CODE": 0,
-        "BODY_PAPERCODE": 1,
+        "AUTHOR_CODE": 1,
+        "BODY_PAPERCODE": 2,
         "BODY_TERMINAL": 0,
         "BODY_VERSION": 0,
         "TITLE_CODE": 0,
@@ -311,11 +319,11 @@
       "title": "Adaptive State--Reasoning Co-Design under Matched Total Compute"
     },
     "orion-23-responsibility-carrying-state": {
-      "author": "Anonymous authors",
+      "author": "ORION-P13",
       "body_terminal_examples": [],
       "counts": {
-        "AUTHOR_CODE": 0,
-        "BODY_PAPERCODE": 1,
+        "AUTHOR_CODE": 1,
+        "BODY_PAPERCODE": 2,
         "BODY_TERMINAL": 0,
         "BODY_VERSION": 0,
         "TITLE_CODE": 0,
@@ -325,18 +333,18 @@
       "title": "Responsibility-Carrying State: Auditable Sufficiency, Reopen Contracts, and Safe State Reu"
     },
     "orion-24-orion-rse": {
-      "author": "Anonymous authors",
+      "author": "ORION-P14",
       "body_terminal_examples": [],
       "counts": {
-        "AUTHOR_CODE": 0,
-        "BODY_PAPERCODE": 1,
+        "AUTHOR_CODE": 1,
+        "BODY_PAPERCODE": 2,
         "BODY_TERMINAL": 0,
         "BODY_VERSION": 0,
-        "TITLE_CODE": 0,
+        "TITLE_CODE": 1,
         "TITLE_VERSION": 0
       },
       "status": "LEAKAGE",
-      "title": "Recursive Scientific Governance as a Falsifiable Decision Contract"
+      "title": "ORION-RSE: Recursive Scientific Governance as a Falsifiable Decision Contract"
     },
     "orion-25-orion-research-harness": {
       "author": "Anonymous Authors",
@@ -354,13 +362,13 @@
     }
   },
   "schema": "ORION.INTERNAL_LEAKAGE_AUDIT.v1",
-  "terminal": "NO_TITLE_OR_AUTHOR_LEAKAGE",
+  "terminal": "TITLE_OR_AUTHOR_LEAKAGE_PRESENT",
   "totals": {
-    "AUTHOR_CODE": 0,
-    "BODY_PAPERCODE": 341,
+    "AUTHOR_CODE": 4,
+    "BODY_PAPERCODE": 345,
     "BODY_TERMINAL": 42,
-    "BODY_VERSION": 888,
-    "TITLE_CODE": 0,
-    "TITLE_VERSION": 0
+    "BODY_VERSION": 891,
+    "TITLE_CODE": 1,
+    "TITLE_VERSION": 3
   }
 }
