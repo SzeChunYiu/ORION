@@ -1,0 +1,36 @@
+name: top-tier-theorem-wave2
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-18-epistemic-authority-autonomous-science/theory/authority-cut-identifiability-v1/**'
+      - 'papers/orion-20-structured-problem-solving/theory/template-kernel-v1/**'
+      - 'papers/orion-22-adaptive-state-reasoning/theory/regret-margin-robustness-v1/**'
+      - 'papers/orion-23-responsibility-carrying-state/theory/responsibility-closure-minimality-v1/**'
+      - 'papers/orion-25-orion-research-harness/theory/custody-threshold-law-v1/**'
+      - 'papers/publication_closure/TOP_TIER_THEOREM_WAVE2_2026-08-29.md'
+      - '.github/workflows/top-tier-theorem-wave2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: ORION-18 authority-cut identifiability
+        run: python papers/orion-18-epistemic-authority-autonomous-science/theory/authority-cut-identifiability-v1/check_authority_cut_identifiability_v1.py
+      - name: ORION-20 template kernel quotient
+        run: python papers/orion-20-structured-problem-solving/theory/template-kernel-v1/check_template_kernel_v1.py
+      - name: ORION-22 regret-margin robustness
+        run: python papers/orion-22-adaptive-state-reasoning/theory/regret-margin-robustness-v1/check_regret_margin_robustness_v1.py
+      - name: ORION-23 responsibility closure minimality
+        run: python papers/orion-23-responsibility-carrying-state/theory/responsibility-closure-minimality-v1/check_responsibility_closure_minimality_v1.py
+      - name: ORION-25 custody threshold law
+        run: python papers/orion-25-orion-research-harness/theory/custody-threshold-law-v1/check_custody_threshold_law_v1.py
