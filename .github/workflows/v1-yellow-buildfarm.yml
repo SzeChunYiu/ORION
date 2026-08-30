@@ -1,0 +1,235 @@
+name: v1-yellow-buildfarm
+
+on:
+  push:
+    branches:
+      - chatgpt/v1-yellow-buildfarm-20260830
+    paths:
+      - 'papers/orion-03-typed-merge-falsification/**'
+      - 'papers/orion-05-tare-expressivity/**'
+      - 'papers/orion-12-open-world-scientific-discovery/**'
+      - 'papers/orion-13-global-knowledge-portrait/**'
+      - 'papers/orion-19-structured-epistemic-learning/**'
+      - 'papers/orion-24-orion-rse/**'
+      - 'papers/release_builders/v1_yellow_buildfarm.py'
+      - '.github/workflows/v1-yellow-buildfarm.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        paper: ['03', '05', '12', '13', '19', '24']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Bind canonical ORION-paper source identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          P='${{ matrix.paper }}'
+          case "$P" in
+            03)
+              test "$(git hash-object papers/orion-03-typed-merge-falsification/MANUSCRIPT_V2.md)" = b3eb3a718bd0ed46969324c6a5a4b6d448fc2bc4
+              ;;
+            05)
+              test "$(git hash-object papers/orion-05-tare-expressivity/manuscript/main.tex)" = dd324fbfd1bc53b4cd9c607d30ed5e7616a50b23
+              test "$(git hash-object papers/orion-05-tare-expressivity/manuscript/bibliography.bib)" = 929459d878bb98291ed8c3f0f29811c8737c7ee8
+              test "$(git rev-parse HEAD:papers/orion-05-tare-expressivity/manuscript/sections)" = 9a657f9e1566c2d4115c12e1d94c4cb9596bf180
+              ;;
+            12)
+              test "$(git hash-object papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.tex)" = e685d1dc7013afd3597c7c2dfcf4b176447af6b8
+              test "$(git hash-object papers/orion-12-open-world-scientific-discovery/manuscript/bibliography.bib)" = 8e205ffc1b0558e86bb06602d0739147ff094b1c
+              test "$(git hash-object papers/orion-12-open-world-scientific-discovery/manuscript/novelty_refresh_2026.bib)" = f9add6bb531c361d9b1f96b9a0a1c5e3832e072c
+              test "$(git rev-parse HEAD:papers/orion-12-open-world-scientific-discovery/manuscript/figures)" = 7555c3076dad05d938efdbf3d41be0f1926b919e
+              test "$(git rev-parse HEAD:papers/orion-12-open-world-scientific-discovery/manuscript/generated)" = 0b0a7e2aa764b6ba064318ee18ef50f79c415422
+              ;;
+            13)
+              test "$(git hash-object papers/orion-13-global-knowledge-portrait/manuscript/main.tex)" = eed53fb760b116a5505927b380d4464b973b00d8
+              test "$(git hash-object papers/orion-13-global-knowledge-portrait/manuscript/bibliography.bib)" = 30a0ec89245ef3f411b443e9ca2f48384f3b072d
+              test "$(git rev-parse HEAD:papers/orion-13-global-knowledge-portrait/manuscript/sections)" = 8643c250f7b69bd0db9caa9d62c0809d727c79dc
+              test "$(git rev-parse HEAD:papers/orion-13-global-knowledge-portrait/manuscript/tables)" = 14ea5f4dcde1203610e0d37540869c23c9825667
+              ;;
+            19)
+              test "$(git hash-object papers/orion-19-structured-epistemic-learning/manuscript/main.tex)" = 4482380f2fd0dac0b70b502573fdb0b55999e57d
+              test "$(git hash-object papers/orion-19-structured-epistemic-learning/manuscript/references.bib)" = edec9a05a4fe7e4442d542cd2bc592676c980e68
+              test "$(git rev-parse HEAD:papers/orion-19-structured-epistemic-learning/manuscript/sections)" = b3536c24b0fcc2c6b92c8c5ae1df97b1b9a3ec07
+              test "$(git hash-object papers/orion-19-structured-epistemic-learning/manuscript/tmlr.sty)" = c0c62d03c6e2383c688b20965de03800dc15c79c
+              ;;
+            24)
+              test "$(git hash-object papers/orion-24-orion-rse/manuscript/main.tex)" = 569eab814ebdfdeb2be277e22c2c8df93c24fc46
+              test "$(git hash-object papers/orion-24-orion-rse/manuscript/references.bib)" = 303a463789333862f6260e89048f6abaa1178f51
+              test "$(git rev-parse HEAD:papers/orion-24-orion-rse/manuscript/sections)" = 98d6a32848bbb9c0ae46de8385d30d8a5a473eb8
+              test "$(git rev-parse HEAD:papers/orion-24-orion-rse/manuscript/figures)" = d564d0bc3dd917926892c55e3706cc116d5b165e
+              ;;
+          esac
+          echo "ORION_${P}_CANONICAL_SOURCE_BINDING=PASS"
+
+      - name: Install document toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            pandoc latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-publishers texlive-bibtex-extra texlive-xetex \
+            lmodern poppler-utils zip
+
+      - name: Build named release source
+        shell: bash
+        run: |
+          set -euo pipefail
+          P='${{ matrix.paper }}'
+          python papers/release_builders/v1_yellow_buildfarm.py --paper "$P" --out "build/$P"
+          test -d "build/$P/source"
+
+      - name: Compile named arXiv surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          P='${{ matrix.paper }}'
+          S="build/$P/source"
+          if [[ "$P" == 03 ]]; then
+            pandoc "$S/main.md" --from=gfm+tex_math_dollars --standalone --pdf-engine=xelatex -o "$S/main.pdf"
+          else
+            (cd "$S" && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex)
+          fi
+          test -s "$S/main.pdf"
+          if [[ -f "$S/main.log" ]] && grep -E 'LaTeX Warning: (Reference|Citation).*undefined|There were undefined references|Undefined control sequence' "$S/main.log"; then
+            echo NAMED_RELEASE_TEX_AUDIT=FAIL
+            exit 1
+          fi
+
+      - name: Audit named arXiv surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          P='${{ matrix.paper }}'
+          S="build/$P/source"
+          pdftotext "$S/main.pdf" "build/$P/named.txt"
+          tr '\n' ' ' < "build/$P/named.txt" | tr -s '[:space:]' ' ' > "build/$P/named.flat.txt"
+          F="build/$P/named.flat.txt"
+          grep -Fq SzeChunYiu "$F"
+          grep -Fq 'Stockholm University' "$F"
+          grep -Fq 'sze-chun.yiu@fysik.su.se' "$F"
+          grep -Fq 'The author received no specific funding for this work.' "$F"
+          grep -Fq 'The author declares no competing interests.' "$F"
+          grep -Fiq ChatGPT "$F"
+          case "$P" in
+            03)
+              grep -Fiq 'least fixed point' "$F"
+              python - <<'PY'
+from pathlib import Path
+import re
+text=Path('build/03/source/main.md').read_text()
+abstract=text.split('## Abstract',1)[1].split('## 1. Introduction',1)[0]
+n=len(re.findall(r"\b[\w'-]+\b", abstract))
+print('ORION03_JAR_ABSTRACT_WORDS=',n)
+assert 150 <= n <= 250
+PY
+              ;;
+            05) grep -Fq 'Support-Two Exactness' "$F"; grep -Fiq 'Author contributions and AI assistance' "$F" ;;
+            12) grep -Fq 'Acquisition Is Not Closure' "$F"; grep -Fq 'recall@100 is lower' "$F" ;;
+            13) grep -Fq 'Representational Compatibility Is Not Scientific Identity' "$F" ;;
+            19) grep -Fq 'When Structure Is the Model' "$F" ;;
+            24) grep -Fq ORION-RSE "$F" ;;
+          esac
+          pdfinfo "$S/main.pdf" > "build/$P/arxiv-pdfinfo.txt"
+          sha256sum "$S/main.pdf" > "build/$P/arxiv-pdf.sha256"
+
+      - name: Audit journal-facing surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          P='${{ matrix.paper }}'
+          case "$P" in
+            03)
+              mkdir -p build/03/journal
+              cp build/03/source/main.pdf build/03/journal/manuscript.pdf
+              cp build/03/source/main.md build/03/journal/manuscript.md
+              grep -Fq 'Keywords:' build/03/source/main.md
+              grep -Fq 'Data and code availability' build/03/source/main.md
+              grep -Fq 'Statements and Declarations' build/03/source/main.md
+              ;;
+            05)
+              grep -Fiq 'Author contributions and AI assistance' build/05/named.flat.txt
+              ;;
+            12)
+              mkdir -p build/12/journal
+              cp -a papers/orion-12-open-world-scientific-discovery/manuscript/. build/12/journal/
+              rm -f build/12/journal/*.pdf build/12/journal/*.aux build/12/journal/*.log build/12/journal/*.out build/12/journal/*.bbl build/12/journal/*.blg build/12/journal/*.fls build/12/journal/*.fdb_latexmk
+              (cd build/12/journal && latexmk -pdf -interaction=nonstopmode -halt-on-error ipm_submission.tex)
+              pdftotext build/12/journal/ipm_submission.pdf build/12/journal/review.txt
+              if grep -Eiq 'SzeChunYiu|Sze[[:space:]-]*Chun|sze-chun.yiu@fysik.su.se' build/12/journal/review.txt; then
+                echo ORION12_IPM_ANONYMITY=FAIL
+                exit 1
+              fi
+              ;;
+            13)
+              PAGES=$(pdfinfo build/13/source/main.pdf | awk '/^Pages:/ {print $2}')
+              echo ORION13_CURRENT_PAGES="$PAGES"
+              test "$PAGES" -ge 40
+              ;;
+            19)
+              mkdir -p build/19/review
+              cp -a papers/orion-19-structured-epistemic-learning/manuscript/. build/19/review/
+              rm -f build/19/review/main.pdf build/19/review/*.aux build/19/review/*.log build/19/review/*.out build/19/review/*.bbl build/19/review/*.blg build/19/review/*.fls build/19/review/*.fdb_latexmk
+              (cd build/19/review && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex)
+              pdftotext build/19/review/main.pdf build/19/review/review.txt
+              if grep -Eiq 'SzeChunYiu|Sze[[:space:]-]*Chun|sze-chun.yiu@fysik.su.se|github\.com/SzeChunYiu' build/19/review/review.txt; then
+                echo ORION19_TMLR_ANONYMITY=FAIL
+                exit 1
+              fi
+              grep -Fiq 'AI assistance disclosure' build/19/review/review.txt
+              grep -Fq 'Under review as submission to TMLR' build/19/review/review.txt
+              ;;
+            24)
+              test -s papers/orion-24-orion-rse/JAAMAS_INFORMATION_SHEET_V1.md
+              grep -Fiq 'main claim' papers/orion-24-orion-rse/JAAMAS_INFORMATION_SHEET_V1.md
+              ;;
+          esac
+
+      - name: Write release metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          P='${{ matrix.paper }}'
+          case "$P" in
+            03) CAT='cs.LO'; LIC='arXiv.org perpetual, non-exclusive license 1.0'; VENUE='Journal of Automated Reasoning';;
+            05) CAT='quant-ph'; LIC='CC BY 4.0'; VENUE='Quantum';;
+            12) CAT='cs.IR'; LIC='arXiv.org perpetual, non-exclusive license 1.0'; VENUE='Information Processing & Management';;
+            13) CAT='cs.AI'; LIC='arXiv.org perpetual, non-exclusive license 1.0'; VENUE='Semantic Web Journal';;
+            19) CAT='cs.AI'; LIC='CC BY 4.0'; VENUE='Transactions on Machine Learning Research';;
+            24) CAT='cs.AI'; LIC='arXiv.org perpetual, non-exclusive license 1.0'; VENUE='Autonomous Agents and Multi-Agent Systems';;
+          esac
+          printf '%s\n' "$CAT" > "build/$P/ARXIV_PRIMARY_CATEGORY.txt"
+          printf '%s\n' "$LIC" > "build/$P/ARXIV_LICENSE.txt"
+          printf '%s\n' "$VENUE" > "build/$P/PRIMARY_JOURNAL.txt"
+          printf '%s\n' SzeChunYiu > "build/$P/AUTHOR.txt"
+          printf '%s\n' 'Stockholm University, Stockholm, Sweden' > "build/$P/AFFILIATION.txt"
+          printf '%s\n' 'sze-chun.yiu@fysik.su.se' > "build/$P/CONTACT.txt"
+
+      - name: Build source archive and release manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          P='${{ matrix.paper }}'
+          (cd "build/$P" && zip -qr "orion-$P-arxiv-source.zip" source)
+          sha256sum "build/$P/orion-$P-arxiv-source.zip" > "build/$P/arxiv-source.sha256"
+          find "build/$P" -maxdepth 2 -type f -print0 | sort -z | xargs -0 sha256sum > "build/$P/RELEASE_MANIFEST.sha256"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-${{ matrix.paper }}-canonical-release-${{ github.run_id }}
+          path: build/${{ matrix.paper }}
+          if-no-files-found: error
+          retention-days: 90
