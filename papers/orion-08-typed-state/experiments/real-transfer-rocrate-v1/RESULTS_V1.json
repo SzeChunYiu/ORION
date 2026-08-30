@@ -1,0 +1,135 @@
+{
+ "agrees": true,
+ "arms": {
+  "attempt_all": 0.109661,
+  "coarse": 0.103133,
+  "oracle": 0.0,
+  "refined_typed": 0.006527
+ },
+ "coarse_fibres": 22,
+ "disagreements": [],
+ "impure_examples": [
+  {
+   "coarse_fibre": "Apache-2.0",
+   "sub_actions": {
+    "('Apache-2.0', 'Unrecognized workflow type')": 0,
+    "('Apache-2.0', 'apache_airflow')": 0,
+    "('Apache-2.0', 'autosubmit')": 0,
+    "('Apache-2.0', 'cwl')": 1,
+    "('Apache-2.0', 'docker')": 0,
+    "('Apache-2.0', 'galaxy')": 1,
+    "('Apache-2.0', 'jupyter')": 0,
+    "('Apache-2.0', 'knime')": 0,
+    "('Apache-2.0', 'nextflow')": 0,
+    "('Apache-2.0', 'pycompss')": 0,
+    "('Apache-2.0', 'python')": 0,
+    "('Apache-2.0', 'r_markdown')": 0,
+    "('Apache-2.0', 'scipion')": 0,
+    "('Apache-2.0', 'shell_script')": 0,
+    "('Apache-2.0', 'snakemake')": 0
+   }
+  },
+  {
+   "coarse_fibre": "MIT",
+   "sub_actions": {
+    "('MIT', 'Unrecognized workflow type')": 0,
+    "('MIT', 'cwl')": 1,
+    "('MIT', 'docker')": 0,
+    "('MIT', 'galaxy')": 1,
+    "('MIT', 'nextflow')": 0,
+    "('MIT', 'python')": 0,
+    "('MIT', 'r_markdown')": 0,
+    "('MIT', 'shell_script')": 0,
+    "('MIT', 'snakemake')": 0
+   }
+  },
+  {
+   "coarse_fibre": "CC-BY-4.0",
+   "sub_actions": {
+    "('CC-BY-4.0', 'Unrecognized workflow type')": 1,
+    "('CC-BY-4.0', 'biocompute_object')": 0,
+    "('CC-BY-4.0', 'cwl')": 1,
+    "('CC-BY-4.0', 'docker')": 0,
+    "('CC-BY-4.0', 'galaxy')": 1,
+    "('CC-BY-4.0', 'jupyter')": 0,
+    "('CC-BY-4.0', 'knime')": 0,
+    "('CC-BY-4.0', 'nextflow')": 0,
+    "('CC-BY-4.0', 'playbook_workflow_builder_workflow')": 1,
+    "('CC-BY-4.0', 'pycompss')": 0,
+    "('CC-BY-4.0', 'python')": 0,
+    "('CC-BY-4.0', 'quarto_markdown')": 0,
+    "('CC-BY-4.0', 'scipion')": 0,
+    "('CC-BY-4.0', 'snakemake')": 0,
+    "('CC-BY-4.0', 'workflow_description_language')": 0
+   }
+  }
+ ],
+ "n_impure_coarse_fibres": 5,
+ "n_listed": 1533,
+ "n_usable": 1533,
+ "observed_value": true,
+ "oos_regret_coarse": 0.107562,
+ "oos_regret_refined": 0.01369,
+ "predicted_value": true,
+ "refined_fibres": 76,
+ "refined_singleton_frac": 0.3421,
+ "regret_coarse": 0.103133,
+ "regret_refined": 0.006527,
+ "retrieved_utc": "2026-08-30T13:00:45Z",
+ "schema": "ORION08.REAL_TRANSFER_ROCRATE.v1",
+ "source": "https://workflowhub.eu public JSON API",
+ "split_seed": 20260830,
+ "strata": {
+  "0": {
+   "agrees": true,
+   "n": 251,
+   "observed_value": true,
+   "predicted_value": true,
+   "regret_coarse": 0.13247,
+   "regret_refined": 0.006972
+  },
+  "1-2": {
+   "agrees": true,
+   "n": 115,
+   "observed_value": true,
+   "predicted_value": true,
+   "regret_coarse": 0.076087,
+   "regret_refined": 0.004348
+  },
+  "3-5": {
+   "agrees": true,
+   "n": 298,
+   "observed_value": true,
+   "predicted_value": true,
+   "regret_coarse": 0.062919,
+   "regret_refined": 0.0
+  },
+  "6+": {
+   "agrees": true,
+   "n": 102,
+   "observed_value": true,
+   "predicted_value": true,
+   "regret_coarse": 0.134804,
+   "regret_refined": 0.004902
+  }
+ },
+ "strata_no_value": [],
+ "strata_value": [
+  "3-5",
+  "1-2",
+  "0",
+  "6+"
+ ],
+ "stratifier": "n_tags band (amendment 1)",
+ "terminal": "CANNOT_CHECK_NO_CONTRAST",
+ "test_n": 767,
+ "threshold": 0.111111,
+ "train_n": 766,
+ "usable_rate_overall": 0.5806,
+ "utility": {
+  "(0, 0)": 0.0,
+  "(0, 1)": -1.0,
+  "(1, 0)": -0.25,
+  "(1, 1)": 1.0
+ }
+}

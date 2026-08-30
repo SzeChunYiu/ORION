@@ -126,21 +126,34 @@ def test_every_experiment_driver_in_the_lane_is_enrolled(audit) -> None:
 def test_the_historical_script_manifest_is_dereferenced_by_nothing_and_says_so(
     audit,
 ) -> None:
-    """A receipt is not a check, and the proof is that it has already drifted.
+    """A receipt is not a check, and nothing here dereferences this one.
 
     ``SCRIPT_MANIFEST_SHA256.txt`` used to be the only thing naming twelve of the
     twenty unenrolled files, which is what ``stale_only`` counted: named by a
     digest file, observed by no gate. Those twelve are now in the enforced
-    manifest, so ``stale_only`` is empty --- but the receipt itself is unchanged
-    and still disagrees with the bytes in ten places, which is the point. If
-    anything hashed the paths it names, ten disagreements could not coexist with a
-    green suite; nothing does, so they can.
+    manifest, so ``stale_only`` is empty.
+
+    This test used to make its point with drift: the receipt disagreed with the
+    bytes in ten places, and a green suite proved nothing was hashing the paths it
+    names. That evidence is gone, and deliberately so --- 42b53b2e6 re-pinned the
+    learning-machine manifests after R0's renames, and the copy this audit reads
+    now matches in all 36 named-and-present paths.
+
+    Repairing the drift did not make the receipt a check, so the claim is asserted
+    against what still carries it rather than against a number that has been
+    fixed. ``enforced`` is False and ``dereferenced_by`` is empty: no gate reads
+    this file, which is why its digests were free to drift in the first place and
+    would be free to drift again. The stale copy under
+    ``papers/candidates/orion-learning-machine/`` still disagrees in five places
+    and still reds nothing.
     """
 
     check = next(item for item in audit.checks if item.binding_id == shipped.SCRIPT_MANIFEST)
     assert check.enforced is False
+    assert check.dereferenced_by == ""
     assert check.named == 36
-    assert len(check.drifted) >= 10
+    # Re-pinned by 42b53b2e6; the unenforced-ness below is the surviving claim.
+    assert len(check.drifted) == 0
     assert len(audit.stale_only) == 0
     assert len(audit.unenforced_drift) == len(check.drifted)
     # And none of it is scored against the guard that does run.

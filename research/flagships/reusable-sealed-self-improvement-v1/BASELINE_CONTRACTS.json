@@ -1,0 +1,8 @@
+{
+  "schema": "ORION.ReusableSealedPromotion.BaselineContracts.v1",
+  "fairness_rule": "Every primary comparator receives the same public task packet, repository snapshot, archive access, tool and network policy, protected-evaluator query budget, total resource vector, retry policy, stopping authority, and final output format.",
+  "resource_vector": ["PREPROCESSING", "PERSISTENT_STATE", "MODEL_COMPUTE", "SEARCH", "TOOL_CALLS", "LATENCY", "CACHE_REUSE", "RECOVERY", "MONETARY_COST"],
+  "arms": ["NO_EDIT", "DIRECT_SELF_EDIT", "ARCHIVE_ISSUE_REVISION", "GENERIC_CAUSAL_REPAIR", "DGM_STYLE_OPEN_ENDED_SEARCH", "PACE_STYLE_SEQUENTIAL_ACCEPTANCE", "FULL_REUSABLE_SEALED_ORION", "FULL_WITHOUT_NEGATIVE_HISTORY", "FULL_WITHOUT_INDEPENDENT_PROMOTION"],
+  "status": "PROSPECTIVE_UNEXECUTED",
+  "performance_authority": false
+}

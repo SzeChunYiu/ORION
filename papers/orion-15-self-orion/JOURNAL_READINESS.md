@@ -2,7 +2,7 @@
 
 **Current terminal:** `NO_TERMINAL_UNDER_FROZEN_RULES` for the bounded 96-case revision-level panel; general governed self-improvement benefit remains `CANNOT_CHECK` / **not** peer-review ready.  
 **Audit date:** 2026-08-24 against the current shared worktree, the immutable V11--V13 C2 successor packets and the frozen V3 confirmatory receipt.  
-**Headline empirical records:** historical diagnostic attribution is **21/24** from `evidence/glm-5.2-attribution/results.jsonl`. The three residual errors are named rather than counted, because a retained-but-unnamed error is not a result a reader can check: `ORION-15-HC-002` attributes `RETRIEVAL_MISS` as `REPRESENTATION_GAP` at MEDIUM confidence; `ORION-15-HC-012` attributes `ENVIRONMENT_DEPENDENCY_TOOL_FAILURE` as `IMPLEMENTATION_BUG` at HIGH confidence; `ORION-15-HC-018` attributes `REPRESENTATION_GAP` as `METHOD_BASIS_GAP` at HIGH confidence. Two of the three are HIGH-confidence misattributions, so the failures are not concentrated in the cases the system was least sure about, which is the direction that would have been easier to explain away; the frozen revision-level panel places FULL_T7 at **12/96** with no registered terminal. A stale perfect-score report is refused.
+**Headline empirical records:** historical diagnostic attribution is **21/24** from `evidence/glm-5.2-attribution/results.jsonl`. The three residual errors are named rather than counted, because a retained-but-unnamed error is not a result a reader can check: `P5-HC-002` attributes `RETRIEVAL_MISS` as `REPRESENTATION_GAP` at MEDIUM confidence; `P5-HC-012` attributes `ENVIRONMENT_DEPENDENCY_TOOL_FAILURE` as `IMPLEMENTATION_BUG` at HIGH confidence; `P5-HC-018` attributes `REPRESENTATION_GAP` as `METHOD_BASIS_GAP` at HIGH confidence. Two of the three are HIGH-confidence misattributions, so the failures are not concentrated in the cases the system was least sure about, which is the direction that would have been easier to explain away; the frozen revision-level panel places FULL_T7 at **12/96** with no registered terminal. A stale perfect-score report is refused.
 
 A checked design/protocol item does **not** convert `CANNOT_CHECK` into empirical PASS.
 
@@ -144,7 +144,7 @@ Definitions frozen in protocol. Only diagnostic attribution accuracy is populate
 
 - [x] **Table ORION-15-1:** nearest-work/novelty disposition matrix.
 - [x] **Figure/Table ORION-15-3:** confusion matrix from archived glm-5.2 JSONL (21/24; three errors retained).
-- [x] residual-error ledger for `ORION-15-HC-002`, `ORION-15-HC-012`, `ORION-15-HC-018`.
+- [x] residual-error ledger for `P5-HC-002`, `P5-HC-012`, `P5-HC-018`.
 - [ ] **ORION-15-1:** governed development loop figure.
 - [ ] **ORION-15-2:** replay vs fresh scatter — `CANNOT_CHECK` stub only.
 - [ ] **ORION-15-4:** longitudinal specialist regression — `CANNOT_CHECK` stub only.
