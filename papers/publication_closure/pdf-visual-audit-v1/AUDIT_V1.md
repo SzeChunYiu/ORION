@@ -109,3 +109,53 @@ separates them is packaging. That is the actionable finding for the #1701
 **Remaining:** 14 of 22.
 
 **Terminal (batch 2):** `PDF_VISUAL_AUDIT_8_OF_22__NO_DEFECTS__PACKAGING_IS_THE_GAP`
+
+---
+
+# Batch 3 — 10 of 22 audited, and a correction to batch 2
+
+| paper | KB | verdict |
+|---|---|---|
+| ORION-05 tare-expressivity | 96 | clean, **partially submission-formatted** |
+| ORION-13 global-knowledge-portrait | 431 | clean |
+
+Still zero defects across all ten.
+
+## Correction to batch 2's packaging table
+
+Batch 2 placed ORION-05 among the six "Working framework draft" renders. That is
+**wrong**, and wrong because of a change made in this same session: PR #1877
+adopted ORION-05's *rebuilt* PDF, which renders `Anonymous authors` and carries
+a citation `[1]`. Batch 2 was written against the pre-#1877 state.
+
+Corrected standing, ten audited:
+
+| render | papers |
+|---|---|
+| full submission (venue header + anonymised + citations) | ORION-14 |
+| partial (anonymised + citations, no venue header) | ORION-05, ORION-25 |
+| `Working framework draft` | ORION-03, -06, -08, -11, -12, -13, -22 |
+
+The lesson is the same one this session keeps producing: a measurement taken
+before a change does not describe the state after it.
+
+## Two more abstracts that argue against themselves
+
+- **ORION-05** reports an adverse prespecified comparison in the abstract: *"the
+  direct support-two implementation timed out on all six full-subject cells
+  under a 120-second limit, although both solvers agreed on every jointly
+  completed cell"*, and scopes the result to *"a grammar-specific normal form
+  and algorithmic upper bound, not evidence of faster compilation, hardware
+  benefit, fault-tolerant resource advantage, or general block-encoding
+  optimality."*
+- **ORION-13** explains why its own positive is weaker than it looks: *"We
+  report what that comparison rests on: every case in the holdout is
+  predicate-equal, so the flat baseline reduces there to a constant always-merge
+  rule whose false-merge rate is identically the non-mergeable base rate, and
+  nine of the ten comparison coordinates decide no case, leaving the result a
+  polarity-sensitive one."* It reports `p = 0.031` **with** that caveat attached,
+  not instead of it.
+
+**Remaining:** 12 of 22.
+
+**Terminal (batch 3):** `PDF_VISUAL_AUDIT_10_OF_22__NO_DEFECTS__BATCH2_PACKAGING_TABLE_CORRECTED`
