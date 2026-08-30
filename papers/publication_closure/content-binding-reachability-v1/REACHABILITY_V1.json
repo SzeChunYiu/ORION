@@ -1,0 +1,199 @@
+{
+  "commit_missing": 0,
+  "false_bindings": 0,
+  "manifests_audited": 16,
+  "reading": "A false binding is untrue as written and must be corrected to CANNOT_CHECK with its disagreeing paths listed. An unreachable binding is true but only checkable by someone holding the side branch it names, which a reviewer working from the default branch is not.",
+  "ref": "origin/main",
+  "rows": [
+    {
+      "bound_files": 51,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/candidates/paper-06-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "764588c36162e38faebfaaf41761bb815f4eda29",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 52,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/candidates/paper-07-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "764588c36162e38faebfaaf41761bb815f4eda29",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 52,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/candidates/paper-08-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "764588c36162e38faebfaaf41761bb815f4eda29",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 81,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/orion-16-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": true,
+      "status": "BOUND",
+      "subject_commit": "87e2bcb330d243b7062ddba1ca26e426632edeab",
+      "verdict": "OK"
+    },
+    {
+      "bound_files": 106,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/orion-16-formal-epistemic-structures-and-mechanics/CONTENT_MANIFEST_V2.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "c0aa940413f39357f4944c7433786f8eee8735a6",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 73,
+      "commit_exists": true,
+      "declared_unbound_paths": [
+        "papers/paper-07-epistemic-navigation-open-worlds/manuscript/main.pdf",
+        "papers/paper-07-epistemic-navigation-open-worlds/manuscript/main.tex"
+      ],
+      "disagreeing": [],
+      "manifest": "papers/orion-17-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "CANNOT_CHECK",
+      "subject_commit": "622969a2df66cab86c8d96dfebb78533edd337ab",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 118,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/orion-17-epistemic-navigation-open-worlds/CONTENT_MANIFEST_V2.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "c0aa940413f39357f4944c7433786f8eee8735a6",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 75,
+      "commit_exists": true,
+      "declared_unbound_paths": [
+        "papers/paper-08-epistemic-authority-autonomous-science/manuscript/main.pdf",
+        "papers/paper-08-epistemic-authority-autonomous-science/manuscript/main.tex"
+      ],
+      "disagreeing": [],
+      "manifest": "papers/orion-18-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "CANNOT_CHECK",
+      "subject_commit": "622969a2df66cab86c8d96dfebb78533edd337ab",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 86,
+      "commit_exists": true,
+      "declared_unbound_paths": [
+        "papers/orion-18-epistemic-authority-autonomous-science/evidence/local/P8_LOCAL_REPLAY_CONTRACT_V3.json",
+        "papers/orion-18-epistemic-authority-autonomous-science/rewrite_academic_pipeline/MANUSCRIPT_REWRITE_V1.md"
+      ],
+      "disagreeing": [
+        "papers/orion-18-epistemic-authority-autonomous-science/evidence/local/P8_LOCAL_REPLAY_CONTRACT_V3.json",
+        "papers/orion-18-epistemic-authority-autonomous-science/rewrite_academic_pipeline/MANUSCRIPT_REWRITE_V1.md"
+      ],
+      "manifest": "papers/orion-18-epistemic-authority-autonomous-science/CONTENT_MANIFEST_V2.json",
+      "reachable_from_ref": true,
+      "status": "CANNOT_CHECK",
+      "subject_commit": "d6a1e08f49b7de5bccbbd52432f25a2eb7f631f0",
+      "verdict": "DISAGREES_AND_SAYS_SO"
+    },
+    {
+      "bound_files": 133,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/orion-19-structured-epistemic-learning/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "81473e5ee0c75977bdb059954ea52c90045c66a2",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 50,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/orion-20-structured-problem-solving/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "81473e5ee0c75977bdb059954ea52c90045c66a2",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 134,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/orion-21-state-as-computation/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "81473e5ee0c75977bdb059954ea52c90045c66a2",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 134,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/orion-22-adaptive-state-reasoning/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "81473e5ee0c75977bdb059954ea52c90045c66a2",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 121,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/orion-23-responsibility-carrying-state/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "81473e5ee0c75977bdb059954ea52c90045c66a2",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 103,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/orion-24-orion-rse/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "81473e5ee0c75977bdb059954ea52c90045c66a2",
+      "verdict": "UNREACHABLE_BINDING"
+    },
+    {
+      "bound_files": 51,
+      "commit_exists": true,
+      "declared_unbound_paths": [],
+      "disagreeing": [],
+      "manifest": "papers/orion-25-orion-research-harness/CONTENT_MANIFEST_V1.json",
+      "reachable_from_ref": false,
+      "status": "BOUND",
+      "subject_commit": "81473e5ee0c75977bdb059954ea52c90045c66a2",
+      "verdict": "UNREACHABLE_BINDING"
+    }
+  ],
+  "schema": "ORION.CONTENT_BINDING_REACHABILITY.v1",
+  "unreachable_bindings": 14
+}
