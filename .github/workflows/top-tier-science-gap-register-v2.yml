@@ -1,0 +1,28 @@
+name: Top-tier science-gap register V2
+
+on:
+  pull_request:
+    paths:
+      - "papers/publication_closure/TOP_TIER_SCIENCE_GAP_REGISTER_V2_2026-08-29.md"
+      - "papers/publication_closure/check_top_tier_science_gap_register_v2.py"
+      - ".github/workflows/top-tier-science-gap-register-v2.yml"
+  push:
+    paths:
+      - "papers/publication_closure/TOP_TIER_SCIENCE_GAP_REGISTER_V2_2026-08-29.md"
+      - "papers/publication_closure/check_top_tier_science_gap_register_v2.py"
+      - ".github/workflows/top-tier-science-gap-register-v2.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  exact-register-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Recompute exact scientific diagnoses
+        run: python3 papers/publication_closure/check_top_tier_science_gap_register_v2.py
