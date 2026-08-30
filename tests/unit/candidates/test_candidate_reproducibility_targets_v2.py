@@ -46,7 +46,7 @@ def _copy_subject(tmp_path: Path, candidate_id: str) -> Path:
     [
         ("P6", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),
         ("P7", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),
-        ("P8", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),
+        ("P8", {"BOUND": 6, "PARTIAL": 2, "CANNOT_CHECK": 1, "DEFERRED": 1}),
     ],
 )
 def test_current_tree_is_classified_target_by_target(

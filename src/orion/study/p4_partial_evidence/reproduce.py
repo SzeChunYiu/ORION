@@ -35,7 +35,7 @@ def reproduce_p4_v2_hypotheses() -> dict[str, Any]:
         raise IntegrityError("frozen campaign_run_id mismatch")
     if metrics["subject_commit"] != "f6e51b5c8f905382b8e2f5568d9035fc14241aa1":
         raise IntegrityError("frozen subject_commit mismatch")
-    if "ORION-P4 = PEER_REVIEW_READY" not in readiness:
+    if "ORION-14 = PEER_REVIEW_READY" not in readiness:
         raise IntegrityError("JOURNAL_READINESS no longer attests PEER_REVIEW_READY")
     if "NOT_SUPPORTED" not in readiness:
         raise IntegrityError("JOURNAL_READINESS no longer preserves the H3 null")

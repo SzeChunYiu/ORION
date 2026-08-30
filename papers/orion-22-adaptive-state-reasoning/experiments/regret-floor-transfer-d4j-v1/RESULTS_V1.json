@@ -1,0 +1,156 @@
+{
+ "exactly_when_violation_count": 0,
+ "exactly_when_violations": [],
+ "monotonicity_violations": [],
+ "pooled_protected": {
+  "bugs": 300,
+  "floor_rate": 0.063333,
+  "inside_predicted_interval": true,
+  "predicted_cp95": [
+   0.049722,
+   0.113935
+  ],
+  "reduction": 9,
+  "refined_total_floor": 10,
+  "total_floor": 19
+ },
+ "positive_regret_classes": 15,
+ "predictions_sha256": "5fc333c32bc101a2eeaa02afa0f528010fcdfa95c5dca93055296dbc9b8b3195",
+ "projects": {
+  "Chart": {
+   "bugs_used": 13,
+   "classes": 9,
+   "heuristic_regret": 1,
+   "max_class_floor": 0,
+   "oracle_regret": 0,
+   "positive_regret_classes": 0,
+   "refined_total_floor": 0,
+   "refinement_reduction": 0,
+   "total_floor": 0
+  },
+  "Cli": {
+   "bugs_used": 20,
+   "classes": 3,
+   "heuristic_regret": 6,
+   "max_class_floor": 4,
+   "oracle_regret": 0,
+   "positive_regret_classes": 1,
+   "refined_total_floor": 4,
+   "refinement_reduction": 0,
+   "total_floor": 4
+  },
+  "Closure": {
+   "bugs_used": 87,
+   "classes": 6,
+   "heuristic_regret": 3,
+   "max_class_floor": 1,
+   "oracle_regret": 0,
+   "positive_regret_classes": 1,
+   "refined_total_floor": 0,
+   "refinement_reduction": 1,
+   "total_floor": 1
+  },
+  "Codec": {
+   "bugs_used": 9,
+   "classes": 2,
+   "heuristic_regret": 0,
+   "max_class_floor": 0,
+   "oracle_regret": 0,
+   "positive_regret_classes": 0,
+   "refined_total_floor": 0,
+   "refinement_reduction": 0,
+   "total_floor": 0
+  },
+  "Collections": {
+   "bugs_used": 14,
+   "classes": 8,
+   "heuristic_regret": 0,
+   "max_class_floor": 0,
+   "oracle_regret": 0,
+   "positive_regret_classes": 0,
+   "refined_total_floor": 0,
+   "refinement_reduction": 0,
+   "total_floor": 0
+  },
+  "Compress": {
+   "bugs_used": 24,
+   "classes": 7,
+   "heuristic_regret": 1,
+   "max_class_floor": 1,
+   "oracle_regret": 0,
+   "positive_regret_classes": 1,
+   "refined_total_floor": 1,
+   "refinement_reduction": 0,
+   "total_floor": 1
+  },
+  "Csv": {
+   "bugs_used": 8,
+   "classes": 1,
+   "heuristic_regret": 0,
+   "max_class_floor": 0,
+   "oracle_regret": 0,
+   "positive_regret_classes": 0,
+   "refined_total_floor": 0,
+   "refinement_reduction": 0,
+   "total_floor": 0
+  },
+  "Gson": {
+   "bugs_used": 9,
+   "classes": 4,
+   "heuristic_regret": 7,
+   "max_class_floor": 2,
+   "oracle_regret": 0,
+   "positive_regret_classes": 3,
+   "refined_total_floor": 1,
+   "refinement_reduction": 3,
+   "total_floor": 4
+  },
+  "Lang": {
+   "bugs_used": 31,
+   "classes": 11,
+   "heuristic_regret": 0,
+   "max_class_floor": 0,
+   "oracle_regret": 0,
+   "positive_regret_classes": 0,
+   "refined_total_floor": 0,
+   "refinement_reduction": 0,
+   "total_floor": 0
+  },
+  "Math": {
+   "bugs_used": 53,
+   "classes": 28,
+   "heuristic_regret": 5,
+   "max_class_floor": 1,
+   "oracle_regret": 0,
+   "positive_regret_classes": 3,
+   "refined_total_floor": 1,
+   "refinement_reduction": 2,
+   "total_floor": 3
+  },
+  "Mockito": {
+   "bugs_used": 19,
+   "classes": 9,
+   "heuristic_regret": 11,
+   "max_class_floor": 1,
+   "oracle_regret": 0,
+   "positive_regret_classes": 6,
+   "refined_total_floor": 3,
+   "refinement_reduction": 3,
+   "total_floor": 6
+  },
+  "Time": {
+   "bugs_used": 13,
+   "classes": 4,
+   "heuristic_regret": 0,
+   "max_class_floor": 0,
+   "oracle_regret": 0,
+   "positive_regret_classes": 0,
+   "refined_total_floor": 0,
+   "refinement_reduction": 0,
+   "total_floor": 0
+  }
+ },
+ "schema": "ORION22.REGRET_FLOOR_TRANSFER_D4J.v1.protected",
+ "terminal": "REGRET_FLOOR_LAW_TRANSFERS",
+ "zero_regret_classes": 77
+}
