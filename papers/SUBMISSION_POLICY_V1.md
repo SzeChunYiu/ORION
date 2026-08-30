@@ -50,6 +50,20 @@ placement and naming; do not expand the substance.
 acknowledged** — the latter both because acknowledgements are omitted by default
 and because several venues explicitly forbid acknowledging AI as a contributor.
 
+## Standing author defaults — do not re-ask
+
+These are settled. Apply them without asking:
+
+- **Email:** `sze-chun.yiu@fysik.su.se` on every paper, every venue.
+- **Affiliation:** `Independent Researcher`. This research has no institutional
+  involvement from Stockholm University, so that institution is never listed.
+- **Every optional submission question defaults to NO** — optional sections,
+  optional declarations, optional supplementary offers, opt-ins. If a venue
+  makes it optional, omit it.
+- **AI disclosure:** always the minimal form that satisfies the venue, and
+  always comfortably below any stated word limit. Never expand it, never name
+  additional tools, never volunteer detail the venue did not ask for.
+
 ## Precedence
 
 1. A venue's **mandatory** requirement.
