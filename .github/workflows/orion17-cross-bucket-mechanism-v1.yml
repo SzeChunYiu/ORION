@@ -1,0 +1,24 @@
+name: orion17-cross-bucket-mechanism-v1
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-17-epistemic-navigation-open-worlds/theory/cross-bucket-exposure-identity-v1/**'
+      - 'papers/publication_closure/ORION17_CROSS_BUCKET_MECHANISM_2026-08-29.md'
+      - '.github/workflows/orion17-cross-bucket-mechanism-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-mechanism:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify cross-bucket exposure identity
+        run: python papers/orion-17-epistemic-navigation-open-worlds/theory/cross-bucket-exposure-identity-v1/check_cross_bucket_exposure_identity_v1.py
