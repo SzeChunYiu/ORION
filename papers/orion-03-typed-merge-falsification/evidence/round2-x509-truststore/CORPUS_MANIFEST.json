@@ -1,0 +1,31 @@
+{
+  "corpus_size": 1962,
+  "derived": true,
+  "derived_from": {
+    "ROUND2_RESULTS_V2.json": "4b2ea6360b6af60abfdaadccb8e0d15c87023910da785cacf6bddd408a34a1f6",
+    "SOURCE_BINDING_V2.json": "b4a0072ce85aadd26522946c19c7511ae367f2cde5f820af665eb6b6426a6055",
+    "TASK_MANIFEST_V2.json": "ff54dbd02346d8369a4fa11e71ba179cb74fedfcad8280c97dd47e3dc29e5aff"
+  },
+  "external_source": {
+    "commit": "d3c1b1169b3569ff3069e5b399f47b2b28e03d79",
+    "license": "Apache-2.0",
+    "repository": "https://github.com/openssl/openssl",
+    "selection_rule": "content-based: vendored iff >=1 CERTIFICATE/TRUSTED-CERTIFICATE/X509-CRL PEM block and no private-key block",
+    "tag": "openssl-3.6.4",
+    "tarball": "https://github.com/openssl/openssl/releases/download/openssl-3.6.4/openssl-3.6.4.tar.gz",
+    "tarball_sha256": "9bffaa1ad1e07b354c21bd3324ec02fa15579f45a7d0494b3e74bc449b7333ef"
+  },
+  "families": {
+    "PARITY_PARTITION": 104,
+    "UPSTREAM_PAIR": 1858
+  },
+  "frozen_attime": 1759276800,
+  "grants_authority": "NONE",
+  "note": "Derived view over artifacts already frozen in this directory. It introduces no new facts; every field below is copied from the digests recorded above.",
+  "schema": "ORION.CORPUS_MANIFEST.v1",
+  "unit_of_analysis": "merge task (a pair of upstream X.509 trust-store cases)",
+  "upstream_rows_parsed": 192,
+  "upstream_rows_usable": 191,
+  "vendored_file_count": 252,
+  "vendored_selection_rule": "content-based: vendored iff >=1 CERTIFICATE/TRUSTED-CERTIFICATE/X509-CRL PEM block and no private-key block"
+}
