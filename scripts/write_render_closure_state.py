@@ -130,10 +130,10 @@ def derived_states() -> list[tuple[Path, dict]]:
     """Every package that can say whether it is current, and its state."""
 
     states: list[tuple[Path, dict]] = []
-    for closure_path in sorted(REPO_ROOT.glob(f"papers/*/journal_package/{CLOSURE_NAME}")):
+    for closure_path in sorted(REPO_ROOT.glob(f"papers/*/journal_package*/{CLOSURE_NAME}")):
         states.append((closure_path.parent, state_for(closure_path)))
     pinned = {package for package, _ in states}
-    for package in sorted(REPO_ROOT.glob("papers/*/journal_package")):
+    for package in sorted(REPO_ROOT.glob("papers/*/journal_package*")):
         if package in pinned:
             continue
         state = rendered_pdf_state(package)
