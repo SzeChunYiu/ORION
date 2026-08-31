@@ -1,12 +1,20 @@
-# Public finite records
+# ORION-01A reproducibility records
 
-`finite_records.json` is a public, label-free summary of the finite checks that
-accompany the manuscript.  It records the small binary-signature enumeration,
-the exact local Restore-sensitivity histogram, and the one-Tag three-block
-control row.
+Run the standard-library checker from this directory:
 
-The file is a machine-readable record, not an executable proof and not an
-independent replication.  The displayed manuscript arguments carry the
-all-size normal-form theorem.  The control row does not establish an
-equivalence between the abstract grammar and any external compiler.
+```sh
+python3 proof_checker_v3.py --output reproduced-proof-result.json
+python3 -m unittest -v test_proof_checker_v3.py
+```
 
+`finite_records.json` summarizes the exact finite checks and the complete
+two-site support-at-most-one enumeration. The all-size normal-form authority
+remains the displayed manuscript proof; finite enumeration is used only for
+the exact lower witness and transcription controls.
+
+`adverse-pyzx-round1/` preserves the exact counterexample graphs, result,
+status delta, and interpretation for the consumed adverse transfer round. Its
+terminal remains `CANNOT_CHECK_MOVE_COMPLETENESS`. Those records refute only
+free macro reordering under callable guards. They do not refute scheduled
+`full_reduce`, establish complete move coverage, realize a certificate gap, or
+authorize a complete-domain null.

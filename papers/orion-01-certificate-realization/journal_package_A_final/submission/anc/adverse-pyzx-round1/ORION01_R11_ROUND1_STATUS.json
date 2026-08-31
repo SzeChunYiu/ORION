@@ -1,0 +1,149 @@
+{
+  "schema": "ORION.ORION01.R11.Round1CanonicalDelta.v1",
+  "date": "2026-08-27",
+  "paper_id": "ORION-01",
+  "title": "Certificate Realization",
+  "record_kind": "ADDITIVE_CANONICAL_STATUS_DELTA",
+  "terminal": "CANNOT_CHECK_MOVE_COMPLETENESS",
+  "canonical_delta": {
+    "base_commit": "27ea5e1b04dbed853b7ddba60c8bf736ef087bf5",
+    "immutable_sources": [
+      {
+        "path": "research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json",
+        "git_blob": "b8e65dfd421e2188ed41f1f3595f05c05b57c1cf",
+        "sha256": "ba51c854a5a0b2dd37da513aada1173399cc0b53139fce039ae8f805b2bcb8fb"
+      },
+      {
+        "path": "research/orion-01-05-convergence-v1/SUPERSESSION_PLAN_V1.json",
+        "git_blob": "7512cea3d6f1f069bc03f4a13f0073f62c4e2cd3",
+        "sha256": "8f6c6d1d42a2ff55470b876a4bd33755f6a014f3522851f1714abd48c683a26b"
+      }
+    ],
+    "precedence": {
+      "rule": "Convergence V1 remains immutable; this additive delta controls only the enumerated ORION-01 pointers after both authority conditions pass.",
+      "authority_effective_only_if": [
+        "this exact packet commit is reachable from main",
+        "the merged-main ORION-01 R11 pinned-PyZX workflow passes"
+      ],
+      "before_conditions_pass": "CONVERGENCE_V1_CONTROLS",
+      "after_conditions_pass": "THIS_ORION01_DELTA_CONTROLS_ENUMERATED_POINTERS_ONLY",
+      "all_non_orion01_v1_fields": "UNCHANGED",
+      "science_status_remains_open": true,
+      "portfolio_submission_authorized": false
+    },
+    "science_status_transitions": [
+      {
+        "json_pointer": "/papers/ORION-01/rounds/consumed",
+        "old": 0,
+        "new": 1
+      },
+      {
+        "json_pointer": "/papers/ORION-01/rounds/current",
+        "old": "ROUND_1_DESIGNED_NOT_EXECUTED",
+        "new": "ROUND_1_ADVERSE_CANNOT_CHECK_CONTEXTUAL_GUARD__ROUND_2_OPEN"
+      },
+      {
+        "json_pointer": "/papers/ORION-01/established_scope",
+        "old": [
+          "abstract certificate and registry-nonidentifiability results at their stated finite-language ceilings"
+        ],
+        "new": [
+          "abstract certificate and registry-nonidentifiability results at their stated finite-language ceilings",
+          "deterministic pinned-PyZX counterexample showing that the twelve full_reduce automatic macros are not a sound freely reorderable grammar under only their callable guards; production full_reduce itself is not refuted"
+        ]
+      },
+      {
+        "json_pointer": "/papers/ORION-01/open_science_gates",
+        "old": [
+          "complete source-bound production move and guard registry",
+          "extensional or schema completeness proof",
+          "semantic preservation and weak-move lifting",
+          "critical-interaction and omitted-move hostile controls",
+          "realized production value or exact-search reduction"
+        ],
+        "new": [
+          "scientifically distinct Round 2 with source-complete stateful scheduler/context guards or another public finite grammar",
+          "extensional or schema completeness proof including contextual guards",
+          "semantic preservation and weak-move lifting",
+          "critical-interaction and omitted-move hostile controls",
+          "realized production value or exact-search reduction",
+          "external reproduction"
+        ]
+      },
+      {
+        "json_pointer": "/papers/ORION-01/next_gate",
+        "old": "Execute one prospectively frozen complete-registry realization study on a public finite rewrite subject.",
+        "new": "Freeze and execute a scientifically distinct Round 2 whose stateful scheduler/context guards are source-complete; do not relabel, delete, or outcome-restrict the adverse PyZX Round-1 macro language."
+      },
+      {
+        "json_pointer": "/papers/ORION-01/evidence_status/convergence_summary/label",
+        "old": "ORION-01_PRODUCTION_TRANSFER_NOT_ESTABLISHED__SCIENCE_OPEN",
+        "new": "ORION-01_ROUND_1_CONTEXTUAL_GUARD_COUNTEREXAMPLE__ROUND_2_OPEN__PRODUCTION_TRANSFER_NOT_ESTABLISHED"
+      },
+      {
+        "json_pointer": "/papers/ORION-01/evidence_status/convergence_summary/derived_from",
+        "old": [
+          "ORION01_AB_R12_REGISTRY",
+          "ORION01_AB_R9_REJECTION",
+          "ORION01_AB_R20_AUDIT"
+        ],
+        "new": [
+          "ORION01_AB_R12_REGISTRY",
+          "ORION01_AB_R9_REJECTION",
+          "ORION01_AB_R20_AUDIT",
+          "ORION01_R11_PYZX_CONTEXTUAL_GUARD_COUNTEREXAMPLE"
+        ]
+      }
+    ],
+    "science_status_additions": [
+      {
+        "json_pointer": "/papers/ORION-01/evidence_status/established_records",
+        "old_state": "ABSENT",
+        "new": [
+          {
+            "id": "ORION01_R11_PYZX_CONTEXTUAL_GUARD_COUNTEREXAMPLE",
+            "value": "CANNOT_CHECK_MOVE_COMPLETENESS",
+            "record_kind": "RAW_ADVERSE_SCIENCE_TERMINAL",
+            "source": {
+              "kind": "CURRENT_MAIN_ADDITIVE_PACKET_AFTER_MERGED_MAIN_PASS",
+              "protocol": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_ROUND1_PROTOCOL.md",
+              "receipt": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_RESULTS.json",
+              "interpretation": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_ADVERSE_INTERPRETATION.md",
+              "status_delta": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_ROUND1_STATUS.json"
+            },
+            "authority_scope": "deterministic bounded counterexample to freely reordering pinned full_reduce automatic macros under callable guards; scheduled full_reduce is not refuted",
+            "controls_current_science_status": true,
+            "disposition": "ACTIVE_ADVERSE",
+            "authority": {
+              "production_full_reduce_refuted": false,
+              "complete_contextual_registry": false,
+              "realized_certificate_gap": false,
+              "bounded_null": false,
+              "external_independence": false,
+              "novelty": false,
+              "journal_authority": false,
+              "submission_authorized": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "rounds": {
+    "consumed": 1,
+    "maximum": 3,
+    "current": "ROUND_1_ADVERSE_CANNOT_CHECK_CONTEXTUAL_GUARD__ROUND_2_OPEN"
+  },
+  "science_status": "OPEN",
+  "authority": {
+    "bounded_counterexample_established": true,
+    "production_authority_established": false,
+    "realized_certificate_gap_established": false,
+    "bounded_null_established": false,
+    "external_independence_established": false,
+    "novelty_authority_established": false,
+    "journal_authority_established": false,
+    "submission_authorized": false,
+    "protected_task3_or_p9": false
+  }
+}
