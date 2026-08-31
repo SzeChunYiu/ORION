@@ -1,0 +1,64 @@
+{
+  "adverse_production_transfer": {
+    "complete_domain_null_established": false,
+    "complete_move_coverage_established": false,
+    "failing_word": "three consecutive Hadamard gates on qubit 0",
+    "finite_certificate_terminal": "FINITE_PRODUCTION_REALIZATION_CERTIFICATE_REJECTED",
+    "ordered_words_declared": 4681,
+    "ordered_words_executed": 74,
+    "production_full_reduce_refuted": false,
+    "pyzx_round1_terminal": "CANNOT_CHECK_MOVE_COMPLETENESS",
+    "realized_certificate_gap_established": false,
+    "scheduled_full_reduce_preserved_semantics_on_same_word": true,
+    "source_bound_followup_terminal": "AB_PR1469_PRODUCTION_TRANSFER_NOT_ESTABLISHED"
+  },
+  "dependent_triple_normalization_record": {
+    "core_alignment_rows_checked": 6912,
+    "deletion_rows_checked": 2880,
+    "distinct_site_tag_rows_checked": 9216,
+    "intrinsic_joint_active_column_support": 1,
+    "joint_active_column_statistic": "max_j |supp(R_j0) union supp(R_j1)|",
+    "same_site_rigidity_rows_checked": 576,
+    "support_zero_infeasible": true
+  },
+  "dependent_triple_rank_only_record": {
+    "block_a_basis": [
+      1,
+      68,
+      136,
+      272,
+      544
+    ],
+    "block_a_basis_rank": 5,
+    "block_b_basis": [
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "block_b_basis_rank": 5,
+    "maximum_individual_frame_weight_is_not_the_word_length": true,
+    "minimum_local_improvement_per_deleted_active_column": 4,
+    "objective_soundness_rows_checked": 46080,
+    "production_change_encoding_bits": 10,
+    "rank_only_joint_active_column_budget": 5,
+    "word_position": "one block column in which at least one independent frame is active"
+  },
+  "matched_two_site_obstruction": {
+    "central_choices": 8,
+    "complete_support_at_most_one_enumeration": true,
+    "feasible_anticommuting_frame_tuples": 1728,
+    "frame_six_tuples_enumerated": 117649,
+    "instance_size": 2,
+    "intrinsic_support": 2,
+    "rank_only_budget": 2,
+    "relative_target_orders": 4,
+    "strict_gap": 1,
+    "support_at_most_one_optimum": 6,
+    "support_two_cost": 5,
+    "tag_keys_enumerated": 16
+  },
+  "schema": "orion-01b.public-control-records.v2",
+  "scope": "Deterministic finite controls for the declared rank-only calculus and compiler families; no production move-registry completeness is asserted."
+}

@@ -1,0 +1,80 @@
+{
+  "all_passed": true,
+  "analytic_all_size_authority": false,
+  "checker_identity": "theorem-statements-only-v3",
+  "checks": [
+    {
+      "ambient_spanning_alphabets": 194,
+      "families": 276,
+      "generated_span_equalities": 276,
+      "name": "binary_generated_span_identity",
+      "scope": "all alphabets, including zero, in F2^d for d=1,2,3",
+      "status": "PASS",
+      "strict_inequality_cases": 0
+    },
+    {
+      "cases": 9,
+      "name": "cyclic_singleton_counterexample_to_general_rank_reading",
+      "scope": "Z_n with alphabet {1}, n=2,...,10",
+      "status": "PASS"
+    },
+    {
+      "comparisons": 582528,
+      "name": "exact_one_argument_restore_sensitivity",
+      "scope": "Pauli alphabet, b=2,...,7",
+      "sharpness_cases": 6,
+      "status": "PASS"
+    },
+    {
+      "fixtures": 3,
+      "name": "proper_deletion_and_zero_sum_free_terminal",
+      "scope": "three exhaustive finite fixtures",
+      "status": "PASS"
+    },
+    {
+      "fixtures": 3,
+      "name": "simultaneous_global_fixed_point_descent",
+      "scope": "three two-generator fixtures under the monotonicity premise",
+      "status": "PASS"
+    },
+    {
+      "accepted_frame_tag_pairs": 1248,
+      "complete_support_at_most_one_enumeration": true,
+      "feasible_frame_six_tuples": 1728,
+      "frame_six_tuples_enumerated": 117649,
+      "imports_orion": false,
+      "name": "r6m_two_site_support_obstruction",
+      "objective_evaluations": 39936,
+      "scope": "complete support-at-most-one family for the frozen n=2 witness",
+      "status": "PASS",
+      "strict_gap": 1,
+      "support_at_most_one_optimum": 6,
+      "support_two_cost": 5,
+      "support_two_maximum_frame_support": 2,
+      "tag_keys_enumerated": 16
+    },
+    {
+      "basis_vectors_are_10_bit_encodings": true,
+      "block_a_basis_rank": 5,
+      "block_b_basis_rank": 5,
+      "disjoint_example_joint_columns": 2,
+      "disjoint_example_maximum_individual_weight": 1,
+      "name": "r6i_joint_active_column_statistic",
+      "scope": "formal support-statistic identity plus rank of the two bound 10-bit basis records; no production-alphabet reconstruction",
+      "statistics_are_not_interchangeable": true,
+      "status": "PASS"
+    },
+    {
+      "fixtures": 4,
+      "name": "soundness_inequality_and_componentwise_arithmetic",
+      "scope": "four arithmetic fixtures plus R6M/R6I statement consistency",
+      "status": "PASS"
+    }
+  ],
+  "implementation_independent": true,
+  "imports_orion": false,
+  "imports_pyzx": false,
+  "production_witness_authority": false,
+  "schema": "ORION.ORION01.IndependentProofCheck.v3",
+  "terminal": "SUPPORTED_WITHIN_DECLARED_FINITE_SCOPE"
+}
