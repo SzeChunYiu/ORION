@@ -31,6 +31,7 @@ The frozen V2 manuscripts and R2 ledgers remain immutable historical records. V3
 - disambiguates the paper's `beta_P` quantity as a certifiable support budget rather than Boolean-function certificate complexity;
 - states the subsequence/proper-deletion convention needed by the terminal-word lemma;
 - names the frozen objective for both R6M and R6I comparisons;
+- corrects the R6I support statistic to joint active block columns, because its rank-five deletion zeros both independent generators at one coordinate;
 - makes the support-five result explicitly relative to the registered rank-only proof system;
 - uses the no-cross-component/additive-budget assumptions explicitly in the product lower-bound proof;
 - separates the `n->infinity` direct-enumeration asymptotic from the `t->infinity` additive-gap statement;

@@ -1,6 +1,21 @@
-# R24's control violation comparison is not checkable from committed data
+# RETRACTED — R24's control violation comparison is not checkable from committed data
 
-**Date:** 2026-08-29 · **Disposition:** `CANNOT_CHECK` · **Terminal:** unchanged
+**Date:** 2026-08-29  
+**Retraction date:** 2026-08-31  
+**Current disposition:** `RETRACTED_FALSE_INTERPRETATION__PROVENANCE_ONLY`  
+**Successor authority:** `R24_COMPARATOR_CANNOT_CHECK_RETRACTION_V1.md` and `R24_STRICT_VIOLATION_COMPARATOR_V1.json`  
+**Frozen study terminal:** `C_R24_ARM_CONDITIONAL_CERTIFICATE_INVALID` — unchanged
+
+> **Do not use this note as current scientific authority.** Its central
+> assertion is false: the frozen `folds` records do retain the geometry-selected
+> arm and paired Boolean `violation_strict` flags for both policies. The
+> deterministic successor reconstruction gives 20/44 versus 14/44, paired
+> contingency `(14,6,0,24)`, and exact two-sided McNemar `p = 0.03125`.
+> Both policies still fail the frozen 0.10 gate. This file is retained verbatim
+> below the banner only to preserve the erroneous reasoning as auditable
+> provenance.
+
+## Retracted historical text
 
 R24's manuscript paragraph states that the matched no-geometry lexical control also
 reached `44/44` coverage **"with fewer violations than the geometric arm (14 versus

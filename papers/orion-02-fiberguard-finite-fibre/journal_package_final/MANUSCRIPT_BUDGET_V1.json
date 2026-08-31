@@ -1,0 +1,367 @@
+{
+  "constraints": [
+    {
+      "actual": 7,
+      "constraint_id": "C_TOTAL_PAGES",
+      "count_rule": "Pages reported by pdfinfo on the PDF built with the unmodified TMLR template; current TMLR guidance permits submissions of any length but says length must be justified by content.",
+      "limit": null,
+      "source_ref": "TMLR_AUTHOR_GUIDE",
+      "status": "within",
+      "strength": "none_stated",
+      "surface": "Rendered submission PDF",
+      "unit": "pages"
+    },
+    {
+      "actual": 200,
+      "constraint_id": "C_ABSTRACT_WORDS",
+      "count_rule": "academic-paper-skills abstract scanner count on the canonical Markdown abstract; TMLR states no separate abstract word limit in the checked author guide.",
+      "limit": null,
+      "source_ref": "TMLR_AUTHOR_GUIDE",
+      "status": "within",
+      "strength": "none_stated",
+      "surface": "Abstract",
+      "unit": "words"
+    },
+    {
+      "actual": 3475,
+      "constraint_id": "C_MANUSCRIPT_WORDS",
+      "count_rule": "academic-paper-skills narrative scanner token count on canonical MANUSCRIPT_V3.md, retained as an allocation diagnostic rather than a venue limit.",
+      "limit": null,
+      "source_ref": "TMLR_AUTHOR_GUIDE",
+      "status": "within",
+      "strength": "none_stated",
+      "surface": "Canonical manuscript body",
+      "unit": "words"
+    },
+    {
+      "actual": 13,
+      "constraint_id": "C_REFERENCES",
+      "count_rule": "Numbered manuscript bibliography entries; no TMLR reference-count limit was stated in the checked author guide.",
+      "limit": null,
+      "source_ref": "TMLR_AUTHOR_GUIDE",
+      "status": "within",
+      "strength": "none_stated",
+      "surface": "Reference list",
+      "unit": "references"
+    },
+    {
+      "actual": 1,
+      "constraint_id": "C_DISPLAY_ITEMS",
+      "count_rule": "One evidence-bearing table and no figures; displayed equations are part of the formal spine and are not counted as figure/table display items.",
+      "limit": null,
+      "source_ref": "TMLR_AUTHOR_GUIDE",
+      "status": "within",
+      "strength": "none_stated",
+      "surface": "Main-text figures and tables",
+      "unit": "display_items"
+    },
+    {
+      "actual": 0.11962,
+      "constraint_id": "C_SUPPLEMENT_SIZE_MB",
+      "count_rule": "The schema v1 has no byte-size unit, so this row uses items as a typed numeric carrier for decimal megabytes: 119,620 bytes divided by 1,000,000. Official TMLR guidance permits up to 100 MB.",
+      "limit": 100,
+      "source_ref": "TMLR_AUTHOR_GUIDE",
+      "status": "within",
+      "strength": "hard",
+      "surface": "Anonymous supplementary ZIP size in decimal megabytes",
+      "unit": "items"
+    }
+  ],
+  "manuscript_id": "ORION-02-TMLR-20260831",
+  "release": {
+    "decision": "PASS",
+    "notes": [
+      "The seven-page rendered length is measured, not inferred from words.",
+      "TMLR's any-length policy is recorded as none_stated rather than converted into an invented total limit.",
+      "The 100 MB supplementary limit is satisfied by a 119,620-byte anonymous ZIP in this candidate; the package builder rechecks its current bytes.",
+      "No P1-P3 function is underdeveloped or displaced by positioning, provenance or implementation detail.",
+      "Soft section percentages are deliberately absent because the contract forbids universal quotas."
+    ],
+    "reviewed_at": "2026-08-31T22:20:00+02:00"
+  },
+  "reserve": {
+    "actual": null,
+    "expected_revision": false,
+    "planned": null,
+    "rationale": "TMLR states no total length limit. Revision space is managed by explicit function-level reallocation rather than an invented word or page reserve.",
+    "unit": "none"
+  },
+  "schema_version": "1.0.0",
+  "sections": [
+    {
+      "actual": 209,
+      "claim_ids": [
+        "C_ABS_001",
+        "C_ABS_010"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P1",
+      "reader_question": "What problem, formal result, meaning and boundary define this paper?",
+      "scientific_function": "High-information entry point for the finite deterministic certificate/refinement calculus.",
+      "section_id": "front",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Title, abstract and keywords",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 401,
+      "claim_ids": [
+        "C_DISC_001",
+        "C_LIT_009"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P1",
+      "reader_question": "Why can an action-sufficient representation still be certificate-insufficient, and what does the paper establish?",
+      "scientific_function": "Activate the problem, adjacent literatures, formal question, bounded contribution and excluded authority.",
+      "section_id": "intro",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Introduction",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 246,
+      "claim_ids": [
+        "C_FORM_001",
+        "C_FORM_008"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P1",
+      "reader_question": "What are the finite instance space, representation fibres, target diameter, certificate and separator-measurable refinement?",
+      "scientific_function": "Activate every formal object and assumption used by the theorems.",
+      "section_id": "formal",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Formal setting",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 195,
+      "claim_ids": [
+        "C_THEORY_001",
+        "C_THEORY_003"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P2",
+      "reader_question": "What is the best possible fibre-constant deterministic point or interval certificate?",
+      "scientific_function": "Establish the exact half-diameter minimax floor and midpoint witness.",
+      "section_id": "sharp",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Sharp certificate limits",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 441,
+      "claim_ids": [
+        "C_THEORY_004",
+        "C_THEORY_006"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P2",
+      "reader_question": "When is a fibre certifiable, what is the minimum unrestricted repair, and when can declared separators realize it?",
+      "scientific_function": "Prove the tolerance equivalence, exact greedy refinement and restricted-separator criterion.",
+      "section_id": "refinement",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Exact refinement to certifiability",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 155,
+      "claim_ids": [
+        "C_THEORY_007",
+        "C_THEORY_007"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P2",
+      "reader_question": "What valid coverage is possible when whole original fibres must be accepted or rejected?",
+      "scientific_function": "Derive the exact whole-fibre coverage identity and representation-cost interpretation.",
+      "section_id": "abstain",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Refine-or-abstain frontier",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 129,
+      "claim_ids": [
+        "C_CHECK_001",
+        "C_CHECK_003"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P5",
+      "reader_question": "Do independent finite enumerations catch transcription errors without being promoted to proof?",
+      "scientific_function": "Report corroborating finite checks and their explicit authority ceiling.",
+      "section_id": "checks",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Finite model checks",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 510,
+      "claim_ids": [
+        "C_APP_001",
+        "C_APP_015"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P3",
+      "reader_question": "Which application failures and repair records remain decision-relevant, including the corrected R24 paired comparison?",
+      "scientific_function": "Preserve the shortest claim-changing adverse chain, the R24 retraction/correction, and non-transfer boundary.",
+      "section_id": "adverse",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Preserved adverse and repair boundaries",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 229,
+      "claim_ids": [
+        "C_LIT_001",
+        "C_LIT_011"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P4",
+      "reader_question": "What is inherited from decision theory, selective prediction and conformal work, and what bounded residual contribution remains?",
+      "scientific_function": "Subtract prior art and state the narrow contribution without priority inflation.",
+      "section_id": "related",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Relation to prior work",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 214,
+      "claim_ids": [
+        "C_DISC_001",
+        "C_DISC_003"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P3",
+      "reader_question": "What does target diameter change conceptually, which repairs are distinct, where do the theorems stop, and what should be measured next?",
+      "scientific_function": "Interpret the formal result, alternatives, implications, boundaries and next discriminator.",
+      "section_id": "discussion",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Discussion",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 121,
+      "claim_ids": [
+        "C_LIM_001",
+        "C_LIM_005"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P3",
+      "reader_question": "Which assumptions and unmeasured quantities prevent broader statistical, computational or transfer claims?",
+      "scientific_function": "Link each limitation to the inference it blocks.",
+      "section_id": "limitations",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Limitations",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 94,
+      "claim_ids": [
+        "C_REL_001",
+        "C_REL_003"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P0",
+      "reader_question": "What exact anonymous materials are provided, and what upstream reruns are not provided?",
+      "scientific_function": "Bind reproducibility scope without repository leakage or false full-rerun authority.",
+      "section_id": "availability",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Data and code availability",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 28,
+      "claim_ids": [
+        "C_REL_004",
+        "C_REL_005"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P0",
+      "reader_question": "What assistance was used and who retains responsibility?",
+      "scientific_function": "Satisfy transparent responsibility disclosure.",
+      "section_id": "ai",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Generative AI disclosure",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    },
+    {
+      "actual": 275,
+      "claim_ids": [
+        "C_LIT_001",
+        "C_LIT_011"
+      ],
+      "overflow_route": "Preserve the stated reader function; move implementation/provenance detail to the anonymous supplement or repository record, never a claim-changing premise, theorem step, adverse boundary or availability limit.",
+      "priority": "P0",
+      "reader_question": "Which sources support the adjacent-literature propositions and source identities?",
+      "scientific_function": "Provide the 13 verified sources needed for attribution and claim entailment.",
+      "section_id": "references",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "References",
+      "unit": "words",
+      "variance_reason": "No universal section quota is applied; sufficiency was judged by reader dependency and the E1-E9 release audit."
+    }
+  ],
+  "sources": [
+    {
+      "accessed_at": "2026-08-31",
+      "source_id": "TMLR_AUTHOR_GUIDE",
+      "supports": [
+        "C_TOTAL_PAGES",
+        "C_ABSTRACT_WORDS",
+        "C_MANUSCRIPT_WORDS",
+        "C_REFERENCES",
+        "C_DISPLAY_ITEMS",
+        "C_SUPPLEMENT_SIZE_MB"
+      ],
+      "title": "TMLR guidelines for authors",
+      "url": "https://jmlr.org/tmlr/author-guide.html"
+    }
+  ],
+  "target": {
+    "article_type": "complete anonymous research manuscript",
+    "as_of": "2026-08-31",
+    "budget_basis": "advisory_length",
+    "stage": "initial_submission",
+    "venue": "Transactions on Machine Learning Research (TMLR)"
+  }
+}

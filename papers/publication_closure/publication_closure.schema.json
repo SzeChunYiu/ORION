@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orion.invalid/schemas/publication-closure-v1.json",
+  "title": "ORION publication closure manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "paper", "date", "title", "venue", "article_type",
+    "requirements_url", "requirements_accessed", "identity_policy",
+    "active_authority", "active_authority_sha256", "terminal",
+    "package_status", "blocker_classification", "scientific_authority_delta",
+    "skills_applied", "publication_closure_skill", "verifier", "pdf_pages",
+    "build_environment", "inferential_units", "payload"
+  ],
+  "properties": {
+    "schema": {"const": "ORION.PublicationClosure.v1"},
+    "paper": {"pattern": "^ORION-[0-9]+$"},
+    "date": {"format": "date"},
+    "title": {"type": "string", "minLength": 1},
+    "venue": {"type": "string", "minLength": 1},
+    "article_type": {"type": "string", "minLength": 1},
+    "requirements_url": {"type": "string", "format": "uri"},
+    "requirements_accessed": {"format": "date"},
+    "identity_policy": {"enum": ["double_blind", "identified", "identified_transparent_review"]},
+    "active_authority": {"type": "string", "minLength": 1},
+    "active_authority_sha256": {"pattern": "^[0-9a-f]{64}$"},
+    "terminal": {"type": "string", "minLength": 1},
+    "package_status": {"const": "INTERNAL_PACKAGE_VALIDATED__HUMAN_PORTAL_INPUTS_PENDING"},
+    "blocker_classification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current_claim_blocker", "package_blocker", "human_filing_only", "successor_science_only"],
+      "properties": {
+        "current_claim_blocker": {"const": false},
+        "package_blocker": {"const": false},
+        "human_filing_only": {"type": "boolean"},
+        "successor_science_only": {"type": "boolean"}
+      }
+    },
+    "scientific_authority_delta": {"const": "NONE"},
+    "skills_applied": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "publication_closure_skill": {"$ref": "#/$defs/contentBinding"},
+    "verifier": {"$ref": "#/$defs/contentBinding"},
+    "pdf_pages": {"type": "integer", "minimum": 1},
+    "build_environment": {"type": "object"},
+    "inferential_units": {"type": "string", "minLength": 1},
+    "payload": {
+      "type": "object",
+      "minProperties": 8,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sha256", "bytes"],
+        "properties": {
+          "sha256": {"pattern": "^[0-9a-f]{64}$"},
+          "bytes": {"type": "integer", "minimum": 1}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "contentBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

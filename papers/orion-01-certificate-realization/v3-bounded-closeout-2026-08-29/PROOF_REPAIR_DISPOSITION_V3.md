@@ -9,7 +9,7 @@ This file maps the independent proof review and sibling-decoupling audit to the 
 | A-F1 subword/subsequence ambiguity | DEFECT | Section 2 defines subsequence as arbitrary indexed positions, not necessarily contiguous; proper is used only when needed. | none in statement layer |
 | A-F2 simultaneous/global fixed point | GAP | Theorem 1 descends on total support over all constrained generators and proves termination at a global fixed point. | depends on A2/A4 premises |
 | A-F3 whole-instance feasibility | GAP | A2 is explicitly global; local signature preservation alone is not treated as sufficient. | grammar proof obligation remains visible |
-| A-F4 Restore incidence/additivity | GAP | Section 5.1 states one coordinate-indexed Restore term and one changed argument; Section 6 accounts per coordinate. | transfer to another grammar requires a new incidence proof |
+| A-F4 Restore incidence/additivity | GAP | Section 5.2 states one coordinate-indexed Restore term and one changed argument; Section 7 accounts per coordinate. | transfer to another grammar requires a new incidence proof |
 | A-F5 solution-relative alphabet | DEFECT RISK | `A_R` is fixed at instance level over all admissible local configurations before selecting an optimum. | computing the restricted invariant may remain hard |
 | A-F6 global symplectic sum | GAP | Section 5 derives the first total-signature component from bilinearity of the global symplectic product. | none in stated model |
 | A-F7 rank scope | OVERBROAD | Binary-only scope is explicit; `Z_n` singleton counterexample is included. | no general rank theorem claimed |
@@ -27,6 +27,7 @@ This file maps the independent proof review and sibling-decoupling audit to the 
 | B-F5 product theorem oversold | OVERCLAIM | Section 7 labels it definitional amplification and requires additive objective/support plus no cross-component move or rule. | no cross-coupled product claim |
 | B-F6 asymptotic regimes conflated | AMBIGUOUS | Section 8 separates growing instance size at fixed rank from growing rank/components. | none |
 | B-F7 naming collision | TERMINOLOGY | `certifiable support budget` replaces `certificate complexity`. | none |
+| B-F8 R6I support-statistic mismatch | SCIENTIFIC DEFINITION DEFECT | The current manuscript defines one rank-only word position as one active block column, uses `max_j |supp(R_j0) union supp(R_j1)|` on both sides of the five-to-one comparison, and names the statistic in the product/search corollaries. | no maximum-individual-frame lower bound follows from the rank-five word |
 
 ## Sibling decoupling
 

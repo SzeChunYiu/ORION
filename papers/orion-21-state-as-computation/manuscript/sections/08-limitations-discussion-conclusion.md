@@ -6,8 +6,8 @@ The experiments change the interpretation of task-conditioned construction. The 
 
 Aggressive specialization can make one task cheap while destroying immediate support for future tasks. Retaining raw state, caching compilations or materializing wider state are different allocations of computation and memory across time.
 
-ORION-21 establishes a controlled theory/systems result: fixed linear-accessible state scales with query-family rank; task-conditioned construction can expose smaller task-facing state; a hostile sparse decoder buys part of the controlled gain back; and a width-conditioned `r=7` result survives the registered pooled attack. The adverse digits result prevents promotion to family-scale compilation support. `P11_ACTIVE_CLAIM_AUTHORITY_V2.json` binds these disjoint positive and negative scopes without converting the latter into support.
+The controlled evidence establishes that fixed linearly accessible state scales with query-family rank; task-conditioned construction can expose smaller task-facing state; a hostile sparse decoder buys part of the controlled gain back; and the width-seven result survives the pooled attack across three independent execution seeds and three fixed geometry strata. The adverse digits result prevents promotion to family-scale compilation support.
 
 > **State construction, decoder search, and future recoverability are coupled resource choices. Moving structure into state can reduce downstream discovery work, but the benefit shrinks as the downstream access mechanism becomes better at discovering that structure, and specialization creates option debt unless recoverability is retained.**
 
-The controlled claim does not authorize a universal nonlinear lower bound, transformer scaling law, free preprocessing or real-agent superiority.
+The controlled claim does not authorize a universal nonlinear lower bound, transformer scaling law, free preprocessing or real-agent superiority. The repository control-plane binding remains `P11_ACTIVE_CLAIM_AUTHORITY_V2.json`; this identifier is not part of the reader-facing scientific claim.
