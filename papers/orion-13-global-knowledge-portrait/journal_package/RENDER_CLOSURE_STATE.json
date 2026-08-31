@@ -1,11 +1,9 @@
 {
-  "schema": "orion.journal-package.render-closure-state.v1",
-  "package": "papers/orion-13-global-knowledge-portrait/journal_package",
-  "state": "CONTENT_MATCHED",
-  "evidence": "EXACT_GIT_BLOB_COPY",
   "built_manuscript_pages": 47,
+  "evidence": "RENDERED_PDF",
+  "means": "the packaged manuscript.pdf has the same page count and extracted text as the manuscript this paper builds today",
+  "package": "papers/orion-13-global-knowledge-portrait/journal_package",
   "packaged_pdf_pages": 47,
-  "source_pdf_git_blob": "bd77cf84cef75bdb831544d7bc7a03650f439742",
-  "packaged_pdf_git_blob": "bd77cf84cef75bdb831544d7bc7a03650f439742",
-  "means": "journal_package/manuscript.pdf is an exact Git-blob copy of manuscript/main.pdf on the publication-closure branch; no historical 20-page render is used as the submission PDF"
+  "schema": "orion.journal-package.render-closure-state.v1",
+  "state": "CURRENT"
 }
