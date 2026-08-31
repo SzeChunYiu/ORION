@@ -1,0 +1,107 @@
+name: orion-13-14-19-postmerge-package-repair-20260831
+
+on:
+  push:
+    branches:
+      - publication/orion-13-14-19-postmerge-package-repair-20260831
+    paths:
+      - .github/workflows/orion-13-14-19-postmerge-package-repair-20260831.yml
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: publication/orion-13-14-19-postmerge-package-repair-20260831
+          fetch-depth: 0
+
+      - name: Adopt clean audited ORION-14 working PDF
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api /repos/${GITHUB_REPOSITORY}/actions/artifacts/9753414648/zip > /tmp/rebuilt.zip
+          rm -rf /tmp/rebuilt && mkdir -p /tmp/rebuilt
+          unzip -q /tmp/rebuilt.zip -d /tmp/rebuilt
+          src=/tmp/rebuilt/orion-14-verified-scientific-discovery/manuscript/main.pdf
+          dst=papers/orion-14-verified-scientific-discovery/manuscript/main.pdf
+          test "$(git hash-object "$src")" = 0b349c24790c86d8e2cc93488b3eb182f7d1cdda
+          test "$(sha256sum "$src" | cut -d' ' -f1)" = 216d2d5aa0b0f51f15d2ad46623fc0589c5869f960157d406e91d7244af43eea
+          cp "$src" "$dst"
+
+      - name: Rebind only affected checksum entries
+        shell: python
+        run: |
+          from pathlib import Path
+          import hashlib
+
+          def digest(path: Path) -> str:
+              return hashlib.sha256(path.read_bytes()).hexdigest()
+
+          def patch_manifest(manifest: Path, paper_root: Path, wanted: set[str]) -> None:
+              lines = manifest.read_text().splitlines()
+              out = []
+              seen = set()
+              for line in lines:
+                  parts = line.split(None, 1)
+                  if len(parts) == 2:
+                      old, rel = parts
+                      rel = rel.strip()
+                      if rel in wanted:
+                          target = paper_root / rel
+                          if not target.is_file():
+                              raise SystemExit(f'missing checksum target: {target}')
+                          line = f'{digest(target)}  {rel}'
+                          seen.add(rel)
+                  out.append(line)
+              missing = wanted - seen
+              if missing:
+                  raise SystemExit(f'checksum entries absent from {manifest}: {sorted(missing)}')
+              manifest.write_text('\n'.join(out) + '\n')
+
+          p13 = Path('papers/orion-13-global-knowledge-portrait')
+          patch_manifest(
+              p13 / 'SHA256SUMS', p13,
+              {
+                  'JOURNAL_READINESS.md',
+                  'journal_package/CLAIM_PDF_AUDIT.md',
+                  'journal_package/MANIFEST.json',
+                  'journal_package/VENUE_DECISION_V1.md',
+                  'journal_package/manuscript.pdf',
+              },
+          )
+
+          p14 = Path('papers/orion-14-verified-scientific-discovery')
+          patch_manifest(
+              p14 / 'journal_package/SHA256SUMS', p14,
+              {'manuscript/main.pdf'},
+          )
+
+      - name: Verify scoped derived-artifact identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object papers/orion-13-global-knowledge-portrait/manuscript/main.pdf)" = bd77cf84cef75bdb831544d7bc7a03650f439742
+          test "$(git hash-object papers/orion-13-global-knowledge-portrait/journal_package/manuscript.pdf)" = bd77cf84cef75bdb831544d7bc7a03650f439742
+          test "$(git hash-object papers/orion-14-verified-scientific-discovery/manuscript/main.pdf)" = 0b349c24790c86d8e2cc93488b3eb182f7d1cdda
+          test "$(git hash-object papers/orion-19-structured-epistemic-learning/manuscript/main.pdf)" = 7effd662d5a73e14e0ea57c85a4329fd129cbbe8
+
+      - name: Commit repair and remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/orion-13-14-19-postmerge-package-repair-20260831.yml
+          git add \
+            papers/orion-13-global-knowledge-portrait/SHA256SUMS \
+            papers/orion-14-verified-scientific-discovery/manuscript/main.pdf \
+            papers/orion-14-verified-scientific-discovery/journal_package/SHA256SUMS
+          git commit -m 'papers: repair ORION-13 checksums and ORION-14 clean PDF'
+          git push origin HEAD:publication/orion-13-14-19-postmerge-package-repair-20260831
