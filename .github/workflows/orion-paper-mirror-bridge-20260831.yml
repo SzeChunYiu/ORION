@@ -15,13 +15,13 @@ jobs:
       - name: Checkout exact ORION source
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 2
 
       - name: Assert source anchor
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD^)" = "e7cadc870a783e49bd54df1b2f0d4a95a0a02908"
+          test "$(git rev-parse HEAD~2)" = "e7cadc870a783e49bd54df1b2f0d4a95a0a02908"
 
       - name: Clone ORION-paper target branch
         env:
@@ -54,16 +54,16 @@ jobs:
               if [ -e "${keep}/${item}" ]; then cp -a "${keep}/${item}" "${dst}/"; fi
             done
             rm -rf "${keep}"
-            cat > "${dst}/MIRROR_RECEIPT_2026-08-31.md" <<EOF
-# Exact mirror receipt — ${paper}
-
-Source repository: \`SzeChunYiu/ORION\`
-Source commit: \`e7cadc870a783e49bd54df1b2f0d4a95a0a02908\`
-Source path: \`papers/${paper}/\`
-Target path: \`v1-papers/${paper}/\`
-
-The source tree is mirrored byte-for-byte except the declared target-only overlays \`PROVENANCE.md\`, \`MIRROR_RECEIPT_2026-08-31.md\`, and \`code/\`.
-EOF
+            printf '%s\n' \
+              "# Exact mirror receipt — ${paper}" \
+              "" \
+              "Source repository: SzeChunYiu/ORION" \
+              "Source commit: e7cadc870a783e49bd54df1b2f0d4a95a0a02908" \
+              "Source path: papers/${paper}/" \
+              "Target path: v1-papers/${paper}/" \
+              "" \
+              "The source tree is mirrored byte-for-byte except the declared target-only overlays PROVENANCE.md, MIRROR_RECEIPT_2026-08-31.md, and code/." \
+              > "${dst}/MIRROR_RECEIPT_2026-08-31.md"
             delta="$(rsync -ani --delete \
               --exclude=PROVENANCE.md \
               --exclude=MIRROR_RECEIPT_2026-08-31.md \
@@ -81,8 +81,6 @@ EOF
           (cd target/v1-papers/orion-06-recursive-recovery/submission_tmlr && sha256sum -c SHA256SUMS)
 
       - name: Commit exact mirror to existing ORION-paper PR branch
-        env:
-          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
