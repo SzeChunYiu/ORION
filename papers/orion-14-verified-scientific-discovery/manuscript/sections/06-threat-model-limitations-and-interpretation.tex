@@ -57,6 +57,8 @@ systems.
 
 Recent benchmark-auditing work is an additional caution: expert-built tasks and evaluation harnesses can contain specification, environment, ground-truth, or grading defects that materially alter measured rankings \citep{benchguard2026,autobenchmarkaudit2026,hal2025}. Deterministic generation, typed-panel validation, exact split/harness binding, protected custody, post-run public slicing, and independent reproduction mitigate this risk, but these controls do not prove that the 13-family taxonomy is complete or that every benchmark-design assumption is correct.
 
+The reported intervals are computed at the case level, and the cases are not independent: they cluster by attack family. A cluster-respecting reanalysis of the protected campaign, resampling families rather than cases over 20{,}000 replicates, widens the normal half-width from $0.0528$ to $0.2829$, a ratio of $5.48$, and gives a family-bootstrap interval of $[-0.75,-0.25]$ against a published case-level interval of $[-0.553,-0.447]$. The direction and sign of the effect survive that change of inference unit, and an exact sign test over the twelve independent clusters is two-sided $p=0.031$ with six discordant clusters, all six favouring the governed pipeline and none favouring the comparator. What does not survive is the apparent precision: any case-level interval in this paper should be read as roughly five times narrower than the family-level evidence supports, and the effect is established in direction rather than in magnitude.
+
 The registered naturalistic successor, identified as
 \idt{P4.H3.NATURALISTIC.V1}, is the upward test rather than a claimed result.  It
 specifies a target of 768 independent source--case-family clusters in 32 strata

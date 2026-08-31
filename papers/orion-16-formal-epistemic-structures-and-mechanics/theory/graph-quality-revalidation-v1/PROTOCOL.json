@@ -1,0 +1,53 @@
+{
+  "schema": "ORION.ORION16.GraphQualityRevalidation.Protocol.v1",
+  "paper_id": "ORION-16",
+  "successor_id": "ORION16.REAL_SYSTEM_MINIMAL_REVALIDATION.v1",
+  "governing_issue": 1649,
+  "status": "THEOREM_PROVED__TAXONOMY_MATCHES_FROZEN_REAL_GOLD",
+  "lane_type": "THEORY_OVER_PRE_EXISTING_FROZEN_AUDIT",
+  "scientific_authority_delta": "NONE",
+  "authored_date": "2026-08-28",
+
+  "freeze_discipline": {
+    "applicability": "NO_NEW_OUTCOMES_GENERATED",
+    "why": "The real-transition audit was executed and frozen before this packet existed. This lane runs no audit, derives no gold and re-evaluates no terminal.",
+    "prospectivity_disclosure": "The 16 gold terminals were readable before the theorems were written. The taxonomy match in THEORY.md section 4 is explanatory agreement on pre-existing frozen evidence, NOT prospective prediction. No prospectivity is claimed.",
+    "case_selection_disclosure": "Four of the 16 gold cases instantiate the graph-quality taxonomy and are the four reported. The other twelve concern P9/P10 subject matter outside this theorem's scope and are neither used nor suppressed; the full gold file is bound by SHA-256 so the selection is auditable.",
+    "post_outcome_changes_forbidden": [
+      "re-running the audit or re-deriving gold",
+      "rewriting any of the 16 terminals",
+      "selecting cases after seeing which fit the taxonomy"
+    ],
+    "frozen_paper_bytes_modified": "NONE"
+  },
+
+  "claims_under_test": [
+    "Theorem 1: G superset of G* implies A_{G*}(Delta) subset of A_G(Delta); over-approximation is sound.",
+    "Theorem 2: extra work equals w(A_G(Delta) \\ A_{G*}(Delta)) exactly.",
+    "Theorem 3: a missing true edge strands an obligation, so the method is unsound; the only safe response to detected incompleteness is CANNOT_CHECK.",
+    "Theorem 4: exactness is the unique cost-optimal sound choice.",
+    "Taxonomy: the four regimes predict ADMISSIBLE / ADMISSIBLE / CANNOT_CHECK / REOPEN on the frozen gold."
+  ],
+  "explicitly_not_claimed": [
+    "any deployed-system or cost-benchmark result",
+    "the #1649 empirical discriminator, which requires 2-3 independently sourced systems and does not exist here",
+    "universal minimality of the five lift coordinates",
+    "discharge of external_independent_validation, which remains CANNOT_CHECK",
+    "novelty over donor static-analysis / incremental-verification theory"
+  ],
+
+  "independent_checker_requirements": {
+    "independence_rule": "No ORION-16 module imported. Theorems verified on freshly enumerated DAG PAIRS. Gold read as data only.",
+    "witness_rule": "Theorem 3's unsoundness must be exhibited by an explicit stranded-obligation witness, not asserted",
+    "cannot_check_rule": "exit code 3, status CANNOT_CHECK, never reported as a pass"
+  },
+  "negative_controls": {
+    "controls": ["missing_edge_strands_an_obligation", "over_approximation_never_strands",
+                 "gold_taxonomy_matches_theorem", "abstention_is_the_sound_response_to_incompleteness"],
+    "pass_condition": "4 of 4 fire"
+  },
+
+  "stop_rule_1649_verbatim": "If real dependency extraction cannot be made authoritative, keep the general theorem and bounded paper; do not manufacture deployed-system claims.",
+  "stop_rule_evaluation": "Real dependency extraction across 2-3 independently sourced systems has NOT been made authoritative. The general theorem is kept, the bounded paper stands, and no deployed-system claim is made.",
+  "promotion_budget_status": "SPENT -- ORION-16's one attempt under #1649. No further rescue cycle authorized."
+}

@@ -1,0 +1,1615 @@
+{
+  "authority": "estimation study; declares no gate of its own and promotes no ORION-21 claim. The V1 >=8/10 negative and P11_ACTIVE_CLAIM_AUTHORITY_V2 stand.",
+  "capability": {
+    "pair_|S|=2": {
+      "KNN": {
+        "ci95_clopper_pearson": [
+          0.25697589519263137,
+          0.5566864875209978
+        ],
+        "n": 45,
+        "point": 0.4,
+        "supported": 18,
+        "width": 0.29971059232836644
+      },
+      "LINEAR": {
+        "ci95_clopper_pearson": [
+          0.02475295778346905,
+          0.21221173695433954
+        ],
+        "n": 45,
+        "point": 0.08888888888888889,
+        "supported": 4,
+        "width": 0.18745877917087048
+      },
+      "RBF": {
+        "ci95_clopper_pearson": [
+          0.21868401073558574,
+          0.5121989948518539
+        ],
+        "n": 45,
+        "point": 0.35555555555555557,
+        "supported": 16,
+        "width": 0.2935149841162682
+      }
+    },
+    "pooled": {
+      "KNN": {
+        "ci95_clopper_pearson": [
+          0.2865452452489992,
+          0.5589415894230065
+        ],
+        "n": 55,
+        "point": 0.41818181818181815,
+        "supported": 23,
+        "width": 0.2723963441740073
+      },
+      "LINEAR": {
+        "ci95_clopper_pearson": [
+          0.052735182963729484,
+          0.24480272032202482
+        ],
+        "n": 55,
+        "point": 0.12727272727272726,
+        "supported": 7,
+        "width": 0.19206753735829535
+      },
+      "RBF": {
+        "ci95_clopper_pearson": [
+          0.2540916483225453,
+          0.5227377450394978
+        ],
+        "n": 55,
+        "point": 0.38181818181818183,
+        "supported": 21,
+        "width": 0.26864609671695244
+      }
+    },
+    "single_|S|=1": {
+      "KNN": {
+        "ci95_clopper_pearson": [
+          0.18708602844739855,
+          0.8129139715526015
+        ],
+        "n": 10,
+        "point": 0.5,
+        "supported": 5,
+        "width": 0.625827943105203
+      },
+      "LINEAR": {
+        "ci95_clopper_pearson": [
+          0.06673951117773447,
+          0.6524528500599973
+        ],
+        "n": 10,
+        "point": 0.3,
+        "supported": 3,
+        "width": 0.5857133388822628
+      },
+      "RBF": {
+        "ci95_clopper_pearson": [
+          0.18708602844739855,
+          0.8129139715526015
+        ],
+        "n": 10,
+        "point": 0.5,
+        "supported": 5,
+        "width": 0.625827943105203
+      }
+    }
+  },
+  "dependence_note": "responsibilities within a stratum share one dataset and one fold split, so they are not independent; these are nominal binomial intervals and the dependence is stated rather than modelled away",
+  "environment": {
+    "node": "billy-laptop-old",
+    "numpy": "2.4.6",
+    "python": "3.14.4",
+    "sklearn": "1.9.0"
+  },
+  "estimand": "P(responsibility is quality-supported), compiled >= universal - 0.02",
+  "family_size": 55,
+  "parent_terminal": "P11_QUERY_FAMILY_PHASE_V1_GATE_NOT_MET",
+  "parent_unchanged": true,
+  "pooled_readings": {
+    "KNN": "BOUNDED_BELOW_0.6__V1_NEGATIVE_STRENGTHENED",
+    "LINEAR": "BOUNDED_BELOW_0.6__V1_NEGATIVE_STRENGTHENED",
+    "RBF": "BOUNDED_BELOW_0.6__V1_NEGATIVE_STRENGTHENED"
+  },
+  "protocol_sha256": "5f538604e185890642450ea90b11e419e1b4bf18a1c14a94569127f47ece2c49",
+  "reproduction_ok": true,
+  "reproduction_stage_a": {
+    "KNN": {
+      "matches": true,
+      "recomputed": 5,
+      "v1_recorded": 5
+    },
+    "LINEAR": {
+      "matches": true,
+      "recomputed": 3,
+      "v1_recorded": 3
+    },
+    "RBF": {
+      "matches": true,
+      "recomputed": 5,
+      "v1_recorded": 5
+    }
+  },
+  "rows": [
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9943650793650793,
+          "delta": -0.005634920634920659,
+          "quality_supported": true,
+          "universal_mean": 1.0
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9888095238095238,
+          "delta": -0.002777777777777768,
+          "quality_supported": true,
+          "universal_mean": 0.9915873015873016
+        },
+        "RBF": {
+          "compiled_mean": 0.9915873015873016,
+          "delta": -0.002777777777777768,
+          "quality_supported": true,
+          "universal_mean": 0.9943650793650793
+        }
+      },
+      "stratum": 1,
+      "subset": [
+        0
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9661662757245384,
+          "delta": -0.024639960871845057,
+          "quality_supported": false,
+          "universal_mean": 0.9908062365963834
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9197705647497006,
+          "delta": -0.04547937020342441,
+          "quality_supported": false,
+          "universal_mean": 0.965249934953125
+        },
+        "RBF": {
+          "compiled_mean": 0.9570638791911282,
+          "delta": -0.036837400829862865,
+          "quality_supported": false,
+          "universal_mean": 0.9939012800209911
+        }
+      },
+      "stratum": 1,
+      "subset": [
+        1
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9675749559082893,
+          "delta": -0.015211640211640232,
+          "quality_supported": true,
+          "universal_mean": 0.9827865961199296
+        },
+        "LINEAR": {
+          "compiled_mean": 0.929373897707231,
+          "delta": -0.06746031746031766,
+          "quality_supported": false,
+          "universal_mean": 0.9968342151675487
+        },
+        "RBF": {
+          "compiled_mean": 0.9825573192239858,
+          "delta": 0.0023985890652555852,
+          "quality_supported": true,
+          "universal_mean": 0.9801587301587302
+        }
+      },
+      "stratum": 1,
+      "subset": [
+        2
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9283681196724676,
+          "delta": -0.05070137425209886,
+          "quality_supported": false,
+          "universal_mean": 0.9790694939245664
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8944624748972576,
+          "delta": -0.04771179046541363,
+          "quality_supported": false,
+          "universal_mean": 0.9421742653626712
+        },
+        "RBF": {
+          "compiled_mean": 0.9196408105828395,
+          "delta": -0.04484867890665001,
+          "quality_supported": false,
+          "universal_mean": 0.9644894894894895
+        }
+      },
+      "stratum": 1,
+      "subset": [
+        3
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9790104345831899,
+          "delta": -0.0015451209723655879,
+          "quality_supported": true,
+          "universal_mean": 0.9805555555555555
+        },
+        "LINEAR": {
+          "compiled_mean": 0.965506218292596,
+          "delta": -0.019985697772075595,
+          "quality_supported": true,
+          "universal_mean": 0.9854919160646716
+        },
+        "RBF": {
+          "compiled_mean": 0.9743817605014715,
+          "delta": 0.010267646387357443,
+          "quality_supported": true,
+          "universal_mean": 0.9641141141141141
+        }
+      },
+      "stratum": 1,
+      "subset": [
+        4
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9597800070452289,
+          "delta": -0.025552461646372926,
+          "quality_supported": false,
+          "universal_mean": 0.9853324686916018
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9527524944965606,
+          "delta": -0.023937998886399248,
+          "quality_supported": false,
+          "universal_mean": 0.9766904933829599
+        },
+        "RBF": {
+          "compiled_mean": 0.9546100796358793,
+          "delta": -0.02617070114490161,
+          "quality_supported": false,
+          "universal_mean": 0.9807807807807809
+        }
+      },
+      "stratum": 1,
+      "subset": [
+        5
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9799382716049383,
+          "delta": -0.016665711118755366,
+          "quality_supported": true,
+          "universal_mean": 0.9966039827236937
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9651205842113096,
+          "delta": -0.018212749122023753,
+          "quality_supported": true,
+          "universal_mean": 0.9833333333333334
+        },
+        "RBF": {
+          "compiled_mean": 0.9691358024691358,
+          "delta": -0.019443488896533245,
+          "quality_supported": true,
+          "universal_mean": 0.988579291365669
+        }
+      },
+      "stratum": 1,
+      "subset": [
+        6
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9768451630164737,
+          "delta": -0.010189962924740947,
+          "quality_supported": true,
+          "universal_mean": 0.9870351259412147
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9584746452187112,
+          "delta": -0.020844431339787528,
+          "quality_supported": false,
+          "universal_mean": 0.9793190765584987
+        },
+        "RBF": {
+          "compiled_mean": 0.9787008370599702,
+          "delta": -0.010188051828918687,
+          "quality_supported": true,
+          "universal_mean": 0.9888888888888889
+        }
+      },
+      "stratum": 1,
+      "subset": [
+        7
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.8747889423575698,
+          "delta": -0.08148547966195019,
+          "quality_supported": false,
+          "universal_mean": 0.95627442201952
+        },
+        "LINEAR": {
+          "compiled_mean": 0.7958251015505916,
+          "delta": -0.06173876958190705,
+          "quality_supported": false,
+          "universal_mean": 0.8575638711324987
+        },
+        "RBF": {
+          "compiled_mean": 0.8475066436831142,
+          "delta": -0.08946814623285215,
+          "quality_supported": false,
+          "universal_mean": 0.9369747899159664
+        }
+      },
+      "stratum": 1,
+      "subset": [
+        8
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9354861827772044,
+          "delta": -0.035498604900049635,
+          "quality_supported": false,
+          "universal_mean": 0.970984787677254
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9157340519053626,
+          "delta": -0.029632496273363174,
+          "quality_supported": false,
+          "universal_mean": 0.9453665481787258
+        },
+        "RBF": {
+          "compiled_mean": 0.9296267629858962,
+          "delta": -0.036730306157550685,
+          "quality_supported": false,
+          "universal_mean": 0.9663570691434469
+        }
+      },
+      "stratum": 1,
+      "subset": [
+        9
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9760223093302361,
+          "delta": -0.017025987224157935,
+          "quality_supported": true,
+          "universal_mean": 0.9930482965543941
+        },
+        "LINEAR": {
+          "compiled_mean": 0.7263356562137049,
+          "delta": -0.1562572590011615,
+          "quality_supported": false,
+          "universal_mean": 0.8825929152148664
+        },
+        "RBF": {
+          "compiled_mean": 0.9676950251645373,
+          "delta": -0.024664876113046907,
+          "quality_supported": false,
+          "universal_mean": 0.9923599012775842
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        0,
+        1
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9883468583511835,
+          "delta": -0.002853538474213324,
+          "quality_supported": true,
+          "universal_mean": 0.9912003968253968
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9311343304927604,
+          "delta": -0.048800388354734436,
+          "quality_supported": false,
+          "universal_mean": 0.9799347188474948
+        },
+        "RBF": {
+          "compiled_mean": 0.9876713331701087,
+          "delta": -0.0006523589828087983,
+          "quality_supported": true,
+          "universal_mean": 0.9883236921529175
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        0,
+        2
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9483562417554232,
+          "delta": -0.03986655039006348,
+          "quality_supported": false,
+          "universal_mean": 0.9882227921454867
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8454681265573347,
+          "delta": -0.0786226319157326,
+          "quality_supported": false,
+          "universal_mean": 0.9240907584730673
+        },
+        "RBF": {
+          "compiled_mean": 0.936674537039973,
+          "delta": -0.04081066801372535,
+          "quality_supported": false,
+          "universal_mean": 0.9774852050536984
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        0,
+        3
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9787205634874697,
+          "delta": -0.011537652474971627,
+          "quality_supported": true,
+          "universal_mean": 0.9902582159624413
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9500620703188579,
+          "delta": -0.027346105767395712,
+          "quality_supported": false,
+          "universal_mean": 0.9774081760862536
+        },
+        "RBF": {
+          "compiled_mean": 0.9772723152591908,
+          "delta": -0.005710978197954852,
+          "quality_supported": true,
+          "universal_mean": 0.9829832934571456
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        0,
+        4
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9531585199589593,
+          "delta": -0.03883231556724698,
+          "quality_supported": false,
+          "universal_mean": 0.9919908355262063
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9136408070239741,
+          "delta": -0.061036428920588026,
+          "quality_supported": false,
+          "universal_mean": 0.9746772359445621
+        },
+        "RBF": {
+          "compiled_mean": 0.955922128116403,
+          "delta": -0.0353161049991213,
+          "quality_supported": false,
+          "universal_mean": 0.9912382331155243
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        0,
+        5
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9909306789244955,
+          "delta": -0.006985987742171296,
+          "quality_supported": true,
+          "universal_mean": 0.9979166666666668
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9655199319221562,
+          "delta": -0.02091641992878679,
+          "quality_supported": false,
+          "universal_mean": 0.986436351850943
+        },
+        "RBF": {
+          "compiled_mean": 0.987113654147105,
+          "delta": -0.00976134585289501,
+          "quality_supported": true,
+          "universal_mean": 0.996875
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        0,
+        6
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9842705744741231,
+          "delta": -0.0080685551545977,
+          "quality_supported": true,
+          "universal_mean": 0.9923391296287208
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9087084055000003,
+          "delta": -0.06304742974779343,
+          "quality_supported": false,
+          "universal_mean": 0.9717558352477937
+        },
+        "RBF": {
+          "compiled_mean": 0.9779826606769773,
+          "delta": -0.012255993470127624,
+          "quality_supported": true,
+          "universal_mean": 0.9902386541471049
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        0,
+        7
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.965256312964291,
+          "delta": -0.012743798430722597,
+          "quality_supported": true,
+          "universal_mean": 0.9780001113950136
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8674304651438041,
+          "delta": -0.02821802789052652,
+          "quality_supported": false,
+          "universal_mean": 0.8956484930343306
+        },
+        "RBF": {
+          "compiled_mean": 0.9555334776827052,
+          "delta": -0.006852951619753078,
+          "quality_supported": true,
+          "universal_mean": 0.9623864293024583
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        0,
+        8
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9605474990866609,
+          "delta": -0.024114827856024923,
+          "quality_supported": false,
+          "universal_mean": 0.9846623269426859
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9431228631954328,
+          "delta": -0.009125586854459966,
+          "quality_supported": true,
+          "universal_mean": 0.9522484500498928
+        },
+        "RBF": {
+          "compiled_mean": 0.9626308324199944,
+          "delta": -0.012964593114240919,
+          "quality_supported": true,
+          "universal_mean": 0.9755954255342353
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        0,
+        9
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9808711176271722,
+          "delta": -0.01009868492799626,
+          "quality_supported": true,
+          "universal_mean": 0.9909698025551684
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9285530425098013,
+          "delta": -0.027200704225352257,
+          "quality_supported": false,
+          "universal_mean": 0.9557537467351536
+        },
+        "RBF": {
+          "compiled_mean": 0.9850230618126101,
+          "delta": -0.0038438455938883953,
+          "quality_supported": true,
+          "universal_mean": 0.9888669074064985
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        1,
+        2
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9474389675439602,
+          "delta": -0.033965163894868367,
+          "quality_supported": false,
+          "universal_mean": 0.9814041314388285
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8312382378023149,
+          "delta": -0.049870679832377696,
+          "quality_supported": false,
+          "universal_mean": 0.8811089176346926
+        },
+        "RBF": {
+          "compiled_mean": 0.9253043147185179,
+          "delta": -0.05102774132109045,
+          "quality_supported": false,
+          "universal_mean": 0.9763320560396084
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        1,
+        3
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9609578656855635,
+          "delta": -0.0241350786654414,
+          "quality_supported": false,
+          "universal_mean": 0.9850929443510049
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9251645021274155,
+          "delta": -0.03653229114409384,
+          "quality_supported": false,
+          "universal_mean": 0.9616967932715094
+        },
+        "RBF": {
+          "compiled_mean": 0.9575111007296522,
+          "delta": -0.023502194338312132,
+          "quality_supported": false,
+          "universal_mean": 0.9810132950679643
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        1,
+        4
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.950357908370354,
+          "delta": -0.034820461307263906,
+          "quality_supported": false,
+          "universal_mean": 0.985178369677618
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8778332098025967,
+          "delta": -0.039530176106144954,
+          "quality_supported": false,
+          "universal_mean": 0.9173633859087417
+        },
+        "RBF": {
+          "compiled_mean": 0.9491098672135674,
+          "delta": -0.03816638764120395,
+          "quality_supported": false,
+          "universal_mean": 0.9872762548547713
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        1,
+        5
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9750428606490997,
+          "delta": -0.018706697548567797,
+          "quality_supported": true,
+          "universal_mean": 0.9937495581976675
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8909870536596273,
+          "delta": -0.05094141727647339,
+          "quality_supported": false,
+          "universal_mean": 0.9419284709361007
+        },
+        "RBF": {
+          "compiled_mean": 0.9733657155189086,
+          "delta": -0.019704001107549995,
+          "quality_supported": true,
+          "universal_mean": 0.9930697166264586
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        1,
+        6
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9694760732640786,
+          "delta": -0.015968966484753322,
+          "quality_supported": true,
+          "universal_mean": 0.9854450397488319
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8562534609884678,
+          "delta": -0.046004831726724316,
+          "quality_supported": false,
+          "universal_mean": 0.9022582927151921
+        },
+        "RBF": {
+          "compiled_mean": 0.9556312937535791,
+          "delta": -0.03470114198271568,
+          "quality_supported": false,
+          "universal_mean": 0.9903324357362948
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        1,
+        7
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9643834680799795,
+          "delta": -0.023386124315212697,
+          "quality_supported": false,
+          "universal_mean": 0.9877695923951922
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8591504478338038,
+          "delta": -0.05524645665650019,
+          "quality_supported": false,
+          "universal_mean": 0.914396904490304
+        },
+        "RBF": {
+          "compiled_mean": 0.9299890224308314,
+          "delta": -0.05292002613480962,
+          "quality_supported": false,
+          "universal_mean": 0.982909048565641
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        1,
+        8
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9501919224323585,
+          "delta": -0.026946888009158343,
+          "quality_supported": false,
+          "universal_mean": 0.9771388104415168
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8127435704678436,
+          "delta": -0.07706702648337316,
+          "quality_supported": false,
+          "universal_mean": 0.8898105969512168
+        },
+        "RBF": {
+          "compiled_mean": 0.9502384683985502,
+          "delta": -0.024524835129788314,
+          "quality_supported": false,
+          "universal_mean": 0.9747633035283385
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        1,
+        9
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.948600222609369,
+          "delta": -0.035073073945025124,
+          "quality_supported": false,
+          "universal_mean": 0.9836732965543942
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9197674699961285,
+          "delta": -0.05279471544715464,
+          "quality_supported": false,
+          "universal_mean": 0.9725621854432831
+        },
+        "RBF": {
+          "compiled_mean": 0.9558967286101433,
+          "delta": -0.027436604723190094,
+          "quality_supported": false,
+          "universal_mean": 0.9833333333333334
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        2,
+        3
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9731608424911873,
+          "delta": -0.008336288940533398,
+          "quality_supported": true,
+          "universal_mean": 0.9814971314317207
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8637673485879453,
+          "delta": -0.04908394827329787,
+          "quality_supported": false,
+          "universal_mean": 0.9128512968612432
+        },
+        "RBF": {
+          "compiled_mean": 0.9681645444463939,
+          "delta": -0.007757607567669189,
+          "quality_supported": true,
+          "universal_mean": 0.9759221520140631
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        2,
+        4
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.917201881332917,
+          "delta": -0.06570249096950198,
+          "quality_supported": false,
+          "universal_mean": 0.982904372302419
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8516148264087999,
+          "delta": -0.09557333186855477,
+          "quality_supported": false,
+          "universal_mean": 0.9471881582773547
+        },
+        "RBF": {
+          "compiled_mean": 0.924442657494882,
+          "delta": -0.058772769006286474,
+          "quality_supported": false,
+          "universal_mean": 0.9832154265011684
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        2,
+        5
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9528071716205089,
+          "delta": -0.03606215545304359,
+          "quality_supported": false,
+          "universal_mean": 0.9888693270735525
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8852236215395353,
+          "delta": -0.07254488993582098,
+          "quality_supported": false,
+          "universal_mean": 0.9577685114753562
+        },
+        "RBF": {
+          "compiled_mean": 0.9556252828624865,
+          "delta": -0.028997920449526426,
+          "quality_supported": false,
+          "universal_mean": 0.9846232033120129
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        2,
+        6
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9835667890464663,
+          "delta": -0.0013841666879400583,
+          "quality_supported": true,
+          "universal_mean": 0.9849509557344064
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9098295869024218,
+          "delta": -0.04574248402757952,
+          "quality_supported": false,
+          "universal_mean": 0.9555720709300013
+        },
+        "RBF": {
+          "compiled_mean": 0.983197043177945,
+          "delta": -0.004512128518902814,
+          "quality_supported": true,
+          "universal_mean": 0.9877091716968478
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        2,
+        7
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9392436556571505,
+          "delta": -0.0369410656461886,
+          "quality_supported": false,
+          "universal_mean": 0.9761847213033391
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8484027768129817,
+          "delta": -0.04197616055548148,
+          "quality_supported": false,
+          "universal_mean": 0.8903789373684632
+        },
+        "RBF": {
+          "compiled_mean": 0.9373807808661724,
+          "delta": -0.0313144793236626,
+          "quality_supported": false,
+          "universal_mean": 0.968695260189835
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        2,
+        8
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9007433489827855,
+          "delta": -0.0751026995305164,
+          "quality_supported": false,
+          "universal_mean": 0.9758460485133019
+        },
+        "LINEAR": {
+          "compiled_mean": 0.7670089984350548,
+          "delta": -0.14679186228482,
+          "quality_supported": false,
+          "universal_mean": 0.9138008607198748
+        },
+        "RBF": {
+          "compiled_mean": 0.887661384976526,
+          "delta": -0.08359252738654133,
+          "quality_supported": false,
+          "universal_mean": 0.9712539123630674
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        2,
+        9
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9304473130629998,
+          "delta": -0.0482030272739844,
+          "quality_supported": false,
+          "universal_mean": 0.9786503403369842
+        },
+        "LINEAR": {
+          "compiled_mean": 0.7747587054887423,
+          "delta": -0.11477801141391175,
+          "quality_supported": false,
+          "universal_mean": 0.889536716902654
+        },
+        "RBF": {
+          "compiled_mean": 0.9106468150404,
+          "delta": -0.042314036893054685,
+          "quality_supported": false,
+          "universal_mean": 0.9529608519334547
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        3,
+        4
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9531904982552655,
+          "delta": -0.03171879699390168,
+          "quality_supported": false,
+          "universal_mean": 0.9849092952491671
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9429959075064762,
+          "delta": -0.010667072062290117,
+          "quality_supported": true,
+          "universal_mean": 0.9536629795687663
+        },
+        "RBF": {
+          "compiled_mean": 0.9584319291143768,
+          "delta": -0.017266920740530267,
+          "quality_supported": true,
+          "universal_mean": 0.9756988498549071
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        3,
+        5
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9289130302734303,
+          "delta": -0.05864727761942978,
+          "quality_supported": false,
+          "universal_mean": 0.9875603078928601
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8690560680953616,
+          "delta": -0.06617252547001995,
+          "quality_supported": false,
+          "universal_mean": 0.9352285935653816
+        },
+        "RBF": {
+          "compiled_mean": 0.9175909932651101,
+          "delta": -0.05869403901307291,
+          "quality_supported": false,
+          "universal_mean": 0.976285032278183
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        3,
+        6
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9541008039274829,
+          "delta": -0.02927382843332549,
+          "quality_supported": false,
+          "universal_mean": 0.9833746323608084
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9015043915415616,
+          "delta": -0.04494213558279703,
+          "quality_supported": false,
+          "universal_mean": 0.9464465271243586
+        },
+        "RBF": {
+          "compiled_mean": 0.9395032925134412,
+          "delta": -0.034545313940987254,
+          "quality_supported": false,
+          "universal_mean": 0.9740486064544285
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        3,
+        7
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.946910359284862,
+          "delta": -0.02824001820536781,
+          "quality_supported": false,
+          "universal_mean": 0.9751503774902298
+        },
+        "LINEAR": {
+          "compiled_mean": 0.797225617291393,
+          "delta": -0.0984707934759842,
+          "quality_supported": false,
+          "universal_mean": 0.8956964107673772
+        },
+        "RBF": {
+          "compiled_mean": 0.9363922875311339,
+          "delta": -0.030000505348271922,
+          "quality_supported": false,
+          "universal_mean": 0.9663927928794058
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        3,
+        8
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9652442829240775,
+          "delta": -0.018188636895828614,
+          "quality_supported": true,
+          "universal_mean": 0.9834329198199061
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9254363976966717,
+          "delta": -0.023090627028983235,
+          "quality_supported": false,
+          "universal_mean": 0.948527024725655
+        },
+        "RBF": {
+          "compiled_mean": 0.9572699133058722,
+          "delta": -0.02312625065193552,
+          "quality_supported": false,
+          "universal_mean": 0.9803961639578077
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        3,
+        9
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9692705348443738,
+          "delta": -0.013169709323234358,
+          "quality_supported": true,
+          "universal_mean": 0.9824402441676081
+        },
+        "LINEAR": {
+          "compiled_mean": 0.894357417557384,
+          "delta": -0.05317820057211997,
+          "quality_supported": false,
+          "universal_mean": 0.9475356181295039
+        },
+        "RBF": {
+          "compiled_mean": 0.9689447497040213,
+          "delta": -0.007653423811960436,
+          "quality_supported": true,
+          "universal_mean": 0.9765981735159818
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        4,
+        5
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9850787747306707,
+          "delta": -0.0031322759219101215,
+          "quality_supported": true,
+          "universal_mean": 0.9882110506525809
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9747131365219405,
+          "delta": -0.0027575336086861357,
+          "quality_supported": true,
+          "universal_mean": 0.9774706701306266
+        },
+        "RBF": {
+          "compiled_mean": 0.9861265074857206,
+          "delta": 0.008602032387740599,
+          "quality_supported": true,
+          "universal_mean": 0.97752447509798
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        4,
+        6
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9860659383128036,
+          "delta": -0.004554896246469431,
+          "quality_supported": true,
+          "universal_mean": 0.9906208345592731
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9635078627554764,
+          "delta": -0.018085194026018825,
+          "quality_supported": true,
+          "universal_mean": 0.9815930567814952
+        },
+        "RBF": {
+          "compiled_mean": 0.9829189568304134,
+          "delta": -0.005331355406074878,
+          "quality_supported": true,
+          "universal_mean": 0.9882503122364883
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        4,
+        7
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9333152219739042,
+          "delta": -0.03743458202115424,
+          "quality_supported": false,
+          "universal_mean": 0.9707498039950584
+        },
+        "LINEAR": {
+          "compiled_mean": 0.7370931635565025,
+          "delta": -0.14777520756991003,
+          "quality_supported": false,
+          "universal_mean": 0.8848683711264125
+        },
+        "RBF": {
+          "compiled_mean": 0.9004859418912552,
+          "delta": -0.049986196494615664,
+          "quality_supported": false,
+          "universal_mean": 0.9504721383858709
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        4,
+        8
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9161168387613425,
+          "delta": -0.06134692921048579,
+          "quality_supported": false,
+          "universal_mean": 0.9774637679718283
+        },
+        "LINEAR": {
+          "compiled_mean": 0.7650540248675481,
+          "delta": -0.1461754179063316,
+          "quality_supported": false,
+          "universal_mean": 0.9112294427738797
+        },
+        "RBF": {
+          "compiled_mean": 0.9130193334712212,
+          "delta": -0.05619083416861559,
+          "quality_supported": false,
+          "universal_mean": 0.9692101676398368
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        4,
+        9
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9786394349144933,
+          "delta": -0.013098487458452324,
+          "quality_supported": true,
+          "universal_mean": 0.9917379223729457
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9544298448053041,
+          "delta": -0.02039378362569999,
+          "quality_supported": false,
+          "universal_mean": 0.9748236284310041
+        },
+        "RBF": {
+          "compiled_mean": 0.9748499386884786,
+          "delta": -0.014845121768568115,
+          "quality_supported": true,
+          "universal_mean": 0.9896950604570467
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        5,
+        6
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9354625221239751,
+          "delta": -0.05067761904193335,
+          "quality_supported": false,
+          "universal_mean": 0.9861401411659084
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8853140929660585,
+          "delta": -0.06621098967370254,
+          "quality_supported": false,
+          "universal_mean": 0.951525082639761
+        },
+        "RBF": {
+          "compiled_mean": 0.9383456608068144,
+          "delta": -0.044364621741588284,
+          "quality_supported": false,
+          "universal_mean": 0.9827102825484026
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        5,
+        7
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9116440859691017,
+          "delta": -0.062040381949521106,
+          "quality_supported": false,
+          "universal_mean": 0.9736844679186228
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8179576618689453,
+          "delta": -0.06071738727250098,
+          "quality_supported": false,
+          "universal_mean": 0.8786750491414462
+        },
+        "RBF": {
+          "compiled_mean": 0.8884327906114116,
+          "delta": -0.06698094178295466,
+          "quality_supported": false,
+          "universal_mean": 0.9554137323943662
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        5,
+        8
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9699139508308822,
+          "delta": -0.016618066336158477,
+          "quality_supported": true,
+          "universal_mean": 0.9865320171670406
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9335977720677437,
+          "delta": -0.02181464125583743,
+          "quality_supported": false,
+          "universal_mean": 0.9554124133235812
+        },
+        "RBF": {
+          "compiled_mean": 0.9651147566794492,
+          "delta": -0.018986704932035914,
+          "quality_supported": true,
+          "universal_mean": 0.9841014616114852
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        5,
+        9
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9704667537746806,
+          "delta": -0.01980739450251645,
+          "quality_supported": true,
+          "universal_mean": 0.9902741482771971
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8825929152148664,
+          "delta": -0.05385090011614402,
+          "quality_supported": false,
+          "universal_mean": 0.9364438153310104
+        },
+        "RBF": {
+          "compiled_mean": 0.9621394696089818,
+          "delta": -0.021538666279520058,
+          "quality_supported": false,
+          "universal_mean": 0.9836781358885018
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        6,
+        7
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9508548212479837,
+          "delta": -0.02668894094068064,
+          "quality_supported": false,
+          "universal_mean": 0.9775437621886643
+        },
+        "LINEAR": {
+          "compiled_mean": 0.882016213556977,
+          "delta": -0.040313306365041934,
+          "quality_supported": false,
+          "universal_mean": 0.922329519922019
+        },
+        "RBF": {
+          "compiled_mean": 0.9384881737230899,
+          "delta": -0.03123591266515835,
+          "quality_supported": false,
+          "universal_mean": 0.9697240863882483
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        6,
+        8
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.8752360741126193,
+          "delta": -0.10915189413456206,
+          "quality_supported": false,
+          "universal_mean": 0.9843879682471813
+        },
+        "LINEAR": {
+          "compiled_mean": 0.7657640702422276,
+          "delta": -0.0682481511092019,
+          "quality_supported": false,
+          "universal_mean": 0.8340122213514295
+        },
+        "RBF": {
+          "compiled_mean": 0.8540935703074444,
+          "delta": -0.12159966430347324,
+          "quality_supported": false,
+          "universal_mean": 0.9756932346109176
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        6,
+        9
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9194914421167526,
+          "delta": -0.05045151967166339,
+          "quality_supported": false,
+          "universal_mean": 0.969942961788416
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8329646670874922,
+          "delta": -0.056519202198968665,
+          "quality_supported": false,
+          "universal_mean": 0.8894838692864608
+        },
+        "RBF": {
+          "compiled_mean": 0.9148974619535746,
+          "delta": -0.04550799800726679,
+          "quality_supported": false,
+          "universal_mean": 0.9604054599608414
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        7,
+        8
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9579373088122229,
+          "delta": -0.025023191315917126,
+          "quality_supported": false,
+          "universal_mean": 0.9829605001281401
+        },
+        "LINEAR": {
+          "compiled_mean": 0.9025898275833866,
+          "delta": -0.04276076513280214,
+          "quality_supported": false,
+          "universal_mean": 0.9453505927161887
+        },
+        "RBF": {
+          "compiled_mean": 0.9520173888861626,
+          "delta": -0.029554222353088577,
+          "quality_supported": false,
+          "universal_mean": 0.9815716112392512
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        7,
+        9
+      ]
+    },
+    {
+      "per_decoder": {
+        "KNN": {
+          "compiled_mean": 0.9355079066285448,
+          "delta": -0.03167371008055264,
+          "quality_supported": false,
+          "universal_mean": 0.9671816167090974
+        },
+        "LINEAR": {
+          "compiled_mean": 0.8734246550042275,
+          "delta": -0.032945198584819146,
+          "quality_supported": false,
+          "universal_mean": 0.9063698535890466
+        },
+        "RBF": {
+          "compiled_mean": 0.9340762897260534,
+          "delta": -0.024326878707848665,
+          "quality_supported": false,
+          "universal_mean": 0.958403168433902
+        }
+      },
+      "stratum": 2,
+      "subset": [
+        8,
+        9
+      ]
+    }
+  ],
+  "schema": "ORION21.QUERY_FAMILY_CAPABILITY.v2",
+  "terminal": "QUERY_FAMILY_CAPABILITY_ESTIMATED"
+}

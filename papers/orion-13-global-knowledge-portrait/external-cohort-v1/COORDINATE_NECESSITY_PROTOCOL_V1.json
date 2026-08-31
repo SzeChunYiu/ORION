@@ -1,0 +1,72 @@
+{
+  "schema_version": "orion13.external-coordinate-necessity.v1",
+  "identity": "ORION13.EXTERNAL_COORDINATE_NECESSITY.v1",
+  "status": "DESIGN_ONLY__REFERENCE_OUTCOMES_NOT_OPENED_BY_THIS_PACKET",
+  "scientific_authority_delta": "NONE",
+  "semantic_coordinates": [
+    "construct_ids",
+    "measurement_ids",
+    "modality",
+    "polarity",
+    "predicate",
+    "referent_ids",
+    "temporal_context_ids"
+  ],
+  "priority_nonpolarity_coordinates": [
+    "construct_ids",
+    "measurement_ids",
+    "modality",
+    "predicate",
+    "referent_ids",
+    "temporal_context_ids"
+  ],
+  "exclusive_witness": {
+    "opposite_gold_verdicts": true,
+    "same_agreement_bits_on_all_other_coordinates": true,
+    "different_agreement_bit_on_target_coordinate": true,
+    "hold_polarity_agreement_fixed_for_nonpolarity_targets": true
+  },
+  "acquisition": {
+    "candidate_selection_uses_final_gold_labels": false,
+    "candidate_replacement_after_adjudication_begins": false,
+    "minimum_candidates_per_nonpolarity_coordinate": 10,
+    "target_minimum_source_families_per_coordinate": 3,
+    "closed_world_absence_is_gold_negative": false
+  },
+  "coordinate_support_gate": {
+    "valid_exclusive_witnesses_min": 5,
+    "source_families_min": 3,
+    "bounded_witness_range": [1, 4]
+  },
+  "independent_adjudication": {
+    "required_when_source_lacks_explicit_relation": true,
+    "primary_adjudicators": 2,
+    "pre_named_tiebreak_or_frozen_conflict_rule": true,
+    "orion_policy_output_hidden": true,
+    "retain_disagreements_and_abstentions": true,
+    "programme_generated_label_counts_as_external_gold": false
+  },
+  "analysis_order": [
+    "exclusive_witness_audit",
+    "complete_frozen_corpus_reduct_and_core",
+    "policy_comparison"
+  ],
+  "terminals": [
+    "ALL_SEVEN_COORDINATES_HAVE_EXTERNAL_EXCLUSIVE_WITNESSES",
+    "SOME_COORDINATES_HAVE_EXTERNAL_EXCLUSIVE_WITNESSES",
+    "BOUNDED_WITNESS_SUPPORT__INSUFFICIENT_BREADTH",
+    "NO_EXCLUSIVE_WITNESS_OBSERVED",
+    "CANNOT_CHECK_COORDINATE_STRATUM_UNAVAILABLE",
+    "CANNOT_CHECK_EXTERNAL_ADJUDICATION"
+  ],
+  "claim_boundary": {
+    "exclusive_witness_supports": "necessity for universal correctness on any admissible class containing that witness",
+    "external_core_supports": "core membership on the complete frozen external corpus",
+    "does_not_support": [
+      "population prevalence",
+      "average effect in an unspecified target population",
+      "automatic necessity of coordinates with no witness",
+      "discarding the historical polarity-confounding result"
+    ]
+  }
+}

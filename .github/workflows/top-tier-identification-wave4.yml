@@ -1,0 +1,28 @@
+name: top-tier-identification-wave4
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-13-global-knowledge-portrait/external-cohort-v1/COORDINATE_NECESSITY_PROTOCOL_V1.*'
+      - 'papers/orion-13-global-knowledge-portrait/external-cohort-v1/check_coordinate_necessity_protocol_v1.py'
+      - 'papers/orion-24-orion-rse/theory/stratum-transport-partial-identification-v1/**'
+      - 'papers/publication_closure/TOP_TIER_IDENTIFICATION_WAVE4_2026-08-29.md'
+      - '.github/workflows/top-tier-identification-wave4.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  identification-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: ORION-13 exclusive-witness protocol
+        run: python papers/orion-13-global-knowledge-portrait/external-cohort-v1/check_coordinate_necessity_protocol_v1.py
+      - name: ORION-24 transport partial-identification theorem
+        run: python papers/orion-24-orion-rse/theory/stratum-transport-partial-identification-v1/check_stratum_transport_bounds_v1.py

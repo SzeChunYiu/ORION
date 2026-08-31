@@ -1,0 +1,107 @@
+{
+  "schema_version": "orion14.objective-verifier-transfer.v1",
+  "identity": "ORION14.OBJECTIVE_VERIFIER_TRANSFER.v1",
+  "status": "DESIGN_ONLY__NO_PROTECTED_OUTCOME_AUTHORITY",
+  "scientific_authority_delta": "NONE",
+  "historical_evidence_policy": {
+    "scifact_campaign": "diagnostic_only__no_governance_gold",
+    "internal_campaigns_count_toward_external_confirmatory_n": false,
+    "existing_bounded_authority_preserved": true
+  },
+  "object_classes": [
+    {
+      "id": "DEFECTS4J_EXECUTABLE",
+      "families": 10,
+      "oracle": "pre_existing_executable_test_or_acceptance_oracle"
+    },
+    {
+      "id": "LEAN_KERNEL",
+      "families": 10,
+      "oracle": "pinned_Lean_kernel"
+    },
+    {
+      "id": "REPRO_WORKFLOW",
+      "families": 10,
+      "oracle": "pre_existing_executable_recomputation_or_regression_oracle"
+    }
+  ],
+  "family_requirements": {
+    "minimum_total_families": 30,
+    "minimum_families_per_class": 10,
+    "at_least_one_protected_valid_object": true,
+    "at_least_one_protected_invalid_object": true,
+    "target_invalid_objects_per_family_min": 2,
+    "target_external_invalid_objects_total_min": 60,
+    "oracle_authored_for_orion": false,
+    "organization_duplicates_count_as_independent": false
+  },
+  "freeze_and_custody": {
+    "freeze_family_and_object_ids_before_policy_outputs": true,
+    "freeze_source_hashes_oracle_versions_and_commands": true,
+    "protected_oracle_outcomes_hidden_until_policy_receipts_immutable": true,
+    "post_outcome_object_replacement": false,
+    "post_outcome_threshold_retuning": false,
+    "post_outcome_class_deletion": false,
+    "programme_aggregator_is_gold_source": false
+  },
+  "arms": [
+    {"id": "B0_CHECKS_ONLY", "role": "secondary_calibration_baseline"},
+    {"id": "B1_MATCHED_MULTI_REVIEW", "role": "primary_strong_comparator"},
+    {"id": "B2_ORION_FULL", "role": "registered_governance_arm"}
+  ],
+  "information_parity": {
+    "same_evidence_bytes": true,
+    "same_public_metadata": true,
+    "same_resource_ceiling": true,
+    "protected_oracle_labels_visible_before_decision": false,
+    "failure_terminal": "CANNOT_CHECK_INFORMATION_PARITY"
+  },
+  "primary_family_order_B2_vs_B1": [
+    "fewer_severe_false_promotions",
+    "more_protected_valid_objects_correctly_retained_if_tied",
+    "fewer_unjustified_abstentions_on_valid_objects_if_tied",
+    "otherwise_tie"
+  ],
+  "cost_breaks_primary_tie": false,
+  "hard_safety_gate": {
+    "B2_severe_false_promotions_max": 0,
+    "complete_frozen_invalid_set_required": true,
+    "zero_observed_means_zero_population_rate": false,
+    "exact_denominator_and_uncertainty_required": true,
+    "failure_terminal": "ADVERSE_EXTERNAL_FALSE_PROMOTION"
+  },
+  "family_comparator_gate": {
+    "overall_wins_min": 21,
+    "overall_families": 30,
+    "per_class_wins_min": 6,
+    "per_class_families": 10,
+    "classes": 3,
+    "known_positive_and_negative_controls_every_class": true,
+    "unresolved_custody_or_parity_blocker_allowed": false,
+    "fair_coin_joint_null_probability": 0.01615840569138527,
+    "power_at_independent_family_win_probability_0_8": 0.8817023923578055
+  },
+  "natural_negative_policy": {
+    "planted_controls_count_as_primary_external_negatives": false,
+    "natural_or_source_authored_invalids_required": true,
+    "no_natural_negative_terminal": "CANNOT_CHECK_NO_NATURAL_EXTERNAL_NEGATIVES"
+  },
+  "construct_boundary": {
+    "workflow_schema_or_checksum_only_counts_as_scientific_validity": false,
+    "workflow_scientific_endpoint_requires_named_result_or_invariant_recomputation": true,
+    "broad_scientific_truth_claimed": false,
+    "institutional_authority_claimed": false
+  },
+  "inference_unit": "family",
+  "within_family_objects_are_independent_replicates": false,
+  "terminals": [
+    "OBJECTIVE_VERIFIER_EXTERNAL_TRANSFER_SUPPORT",
+    "NO_EXTERNAL_COMPARATOR_ADVANTAGE",
+    "ADVERSE_EXTERNAL_FALSE_PROMOTION",
+    "CANNOT_CHECK_INSUFFICIENT_EXTERNAL_FAMILIES",
+    "CANNOT_CHECK_INFORMATION_PARITY",
+    "CANNOT_CHECK_EXTERNAL_ORACLE_CUSTODY",
+    "CANNOT_CHECK_NO_NATURAL_EXTERNAL_NEGATIVES",
+    "CANNOT_CHECK_WORKFLOW_SCIENTIFIC_ENDPOINT"
+  ]
+}

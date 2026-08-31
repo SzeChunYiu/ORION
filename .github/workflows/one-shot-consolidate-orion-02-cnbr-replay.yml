@@ -1,0 +1,165 @@
+name: one-shot-consolidate-orion-02-cnbr-replay
+
+on:
+  push:
+    branches: [r1/c-nbr-20260827]
+    paths: ['.github/workflows/one-shot-consolidate-orion-02-cnbr-replay.yml']
+  workflow_dispatch:
+
+permissions: {contents: write}
+
+jobs:
+  consolidate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: r1/c-nbr-20260827}
+      - name: Replace exploratory replay workflows with one fail-closed terminal replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > .github/workflows/orion-02-certified-neighborhood-terminal-replay.yml <<'YAML'
+          name: orion-02-certified-neighborhood-terminal-replay
+
+          on:
+            push:
+              branches: [r1/c-nbr-20260827]
+              paths:
+                - 'papers/orion-02-fiberguard-finite-fibre/experiments/certified_neighborhood.py'
+                - 'papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json'
+                - '.github/workflows/orion-02-certified-neighborhood-terminal-replay.yml'
+            pull_request:
+              paths:
+                - 'papers/orion-02-fiberguard-finite-fibre/experiments/certified_neighborhood.py'
+                - 'papers/orion-02-fiberguard-finite-fibre/experiments/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json'
+                - '.github/workflows/orion-02-certified-neighborhood-terminal-replay.yml'
+            workflow_dispatch:
+
+          permissions: {contents: read}
+
+          jobs:
+            cross-host-adverse-terminal-replay:
+              runs-on: ubuntu-24.04
+              timeout-minutes: 45
+              env:
+                CNBR_SOURCE_GIT_SHA: 62e46900cf2f0e7dd412735384e090a04f8c8de6
+                OMP_NUM_THREADS: '1'
+                OPENBLAS_NUM_THREADS: '1'
+                MKL_NUM_THREADS: '1'
+              steps:
+                - uses: actions/checkout@v4
+                - uses: actions/setup-python@v5
+                  with: {python-version: '3.11'}
+                - run: python -m pip install 'numpy==1.26.4' 'scikit-learn==1.5.2'
+                - name: Preserve registered result, compile, and replay twice
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    root='papers/orion-02-fiberguard-finite-fibre/experiments'
+                    cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json" "$RUNNER_TEMP/registered.json"
+                    cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md" "$RUNNER_TEMP/registered.md"
+                    python -m py_compile "$root/certified_neighborhood.py" 'papers/paper-xx-executable-research-core/benchmark/run_aslib_v1.py'
+                    for suffix in a b; do
+                      rm -f "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json" "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md"
+                      python "$root/certified_neighborhood.py" | tee "$RUNNER_TEMP/terminal-$suffix.txt"
+                      cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json" "$RUNNER_TEMP/result-$suffix.json"
+                      cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md" "$RUNNER_TEMP/result-$suffix.md"
+                    done
+                    cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
+                    cmp "$RUNNER_TEMP/result-a.md" "$RUNNER_TEMP/result-b.md"
+                    cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
+                - name: Verify registered and replayed load-bearing scientific projection
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    python - <<'PY'
+                    import json,os
+                    from pathlib import Path
+                    temp=Path(os.environ['RUNNER_TEMP'])
+                    registered=json.loads((temp/'registered.json').read_text())
+                    observed=json.loads((temp/'result-a.json').read_text())
+                    exact_paths=[
+                      ('schema',),('disposition',),('overall_verdict',),
+                      ('source','commit'),('source','scenario'),('source','git_sha'),
+                      ('population','algorithms'),('population','features'),('population','instances'),('population','outer_folds'),
+                      ('self_test','status'),
+                    ]
+                    def get(value,path):
+                      for key in path:value=value[key]
+                      return value
+                    for path in exact_paths:
+                      assert get(observed,path)==get(registered,path),(path,get(observed,path),get(registered,path))
+                    assert observed['source']['commit']=='551b22beef8df17de59286b4822ef720e0aa4d6f'
+                    assert observed['source']['scenario']=='SAT11-HAND-ALGO'
+                    assert observed['source']['git_sha']==os.environ['CNBR_SOURCE_GIT_SHA']
+                    assert [row['verdict'] for row in observed['splits']]==['CERTIFICATE_INVALID','CERTIFICATE_INVALID']
+                    assert [row['verdict'] for row in registered['splits']]==['CERTIFICATE_INVALID','CERTIFICATE_INVALID']
+                    official,family=observed['splits']
+                    registered_official,registered_family=registered['splits']
+                    assert official['split']==registered_official['split']=='SPLIT_OFFICIAL_FOLD'
+                    assert family['split']==registered_family['split']=='SPLIT_FAMILY_DISJOINT'
+                    for representation in ('NBR_FULL','NBR_PCA10'):
+                      assert official['representations'][representation]['certificate_heldout_violation_rate']>0.10
+                      assert registered_official['representations'][representation]['certificate_heldout_violation_rate']>0.10
+                      assert family['representations'][representation]['heldout_coverage']['epsilon_5000']==0.0
+                      assert registered_family['representations'][representation]['heldout_coverage']['epsilon_5000']==0.0
+                    receipt={
+                      'schema':'ORION02.CNBR.CrossHostTerminalReplay.v1',
+                      'terminal':'ORION_02_CNBR_CROSS_HOST_ADVERSE_TERMINAL_REPLAY_PASS',
+                      'registered_environment':registered['environment'],
+                      'observed_environment':observed['environment'],
+                      'load_bearing_projection_equal':True,
+                      'full_cross_host_byte_identity':False,
+                      'authority':{
+                        'same_program_cross_host_terminal_corroboration':True,
+                        'external_independence':False,
+                        'novelty':False,
+                        'journal_authority':False,
+                      },
+                    }
+                    (temp/'REPLAY_RECEIPT.json').write_text(json.dumps(receipt,sort_keys=True,separators=(',',':'))+'\n')
+                    print(receipt['terminal'])
+                    PY
+                - name: Restore registered bytes and check hygiene
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    root='papers/orion-02-fiberguard-finite-fibre/experiments/results'
+                    cp "$RUNNER_TEMP/registered.json" "$root/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json"
+                    cp "$RUNNER_TEMP/registered.md" "$root/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md"
+                    git diff --check
+                    git diff --exit-code -- "$root/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json" "$root/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md"
+                - name: Stage durable replay artifact
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    out="$RUNNER_TEMP/orion-02-cnbr-terminal-replay";mkdir -p "$out"
+                    cp "$RUNNER_TEMP/result-a.json" "$out/OBSERVED_RESULT.json"
+                    cp "$RUNNER_TEMP/registered.json" "$out/REGISTERED_RESULT.json"
+                    cp "$RUNNER_TEMP/result-a.md" "$out/OBSERVED_RESULT.md"
+                    cp "$RUNNER_TEMP/registered.md" "$out/REGISTERED_RESULT.md"
+                    cp "$RUNNER_TEMP/terminal-a.txt" "$out/EXECUTION_TERMINAL.txt"
+                    cp "$RUNNER_TEMP/REPLAY_RECEIPT.json" "$out/"
+                    sha256sum "$out"/* > "$out/SHA256SUMS"
+                - uses: actions/upload-artifact@v4
+                  with:
+                    name: orion-02-cnbr-terminal-replay
+                    path: ${{ runner.temp }}/orion-02-cnbr-terminal-replay/
+                    if-no-files-found: error
+                    retention-days: 30
+          YAML
+          for path in \
+            .github/workflows/orion-02-certified-neighborhood-replay.yml \
+            .github/workflows/orion-02-certified-neighborhood-diagnostic.yml \
+            .github/workflows/orion-02-certified-neighborhood-scientific-replay-v2.yml \
+            .github/workflows/one-shot-fix-orion-02-cnbr-replay.yml \
+            .github/workflows/one-shot-consolidate-orion-02-cnbr-replay.yml \
+            papers/orion-02-fiberguard-finite-fibre/experiments/REPLAY_REQUEST_V2.txt \
+            papers/orion-02-fiberguard-finite-fibre/experiments/REPLAY_REQUEST_V3.txt; do
+            rm -f "$path"
+          done
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A .github/workflows papers/orion-02-fiberguard-finite-fibre/experiments
+          git commit -m 'ci(ORION-02): consolidate neighborhood replay on load-bearing projection'
+          git push origin HEAD:refs/heads/r1/c-nbr-20260827

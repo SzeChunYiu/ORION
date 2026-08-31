@@ -1,0 +1,126 @@
+{
+  "by_case": {
+    "COMPUTED": [
+      "papers/orion-11-recursive-epistemic-reconstruction/journal_package",
+      "papers/orion-12-open-world-scientific-discovery/journal_package",
+      "papers/orion-13-global-knowledge-portrait/journal_package",
+      "papers/orion-15-self-orion/journal_package"
+    ],
+    "NO_BUILT_MANUSCRIPT": [
+      "papers/orion-01-certificate-realization/journal_package_A",
+      "papers/orion-01-certificate-realization/journal_package_B"
+    ],
+    "NO_PACKAGED_PDF": [
+      "papers/orion-05-tare-expressivity/journal_package",
+      "papers/orion-10-certified-static-forecasting/journal_package",
+      "papers/orion-14-verified-scientific-discovery/journal_package",
+      "papers/orion-19-structured-epistemic-learning/journal_package",
+      "papers/orion-23-responsibility-carrying-state/journal_package"
+    ]
+  },
+  "packages": 11,
+  "reading": "NO_PACKAGED_PDF is not a staleness problem: the package ships no manuscript, so a reviewer downloading it receives none. UNEXPECTED_PDF_NAME and NO_BUILT_MANUSCRIPT are why a closure reads as never computed rather than as drifted.",
+  "rows": [
+    {
+      "case": "NO_BUILT_MANUSCRIPT",
+      "closure_state_committed": false,
+      "has_built_manuscript": false,
+      "has_expected_packaged_pdf": false,
+      "package": "papers/orion-01-certificate-realization/journal_package_A",
+      "pdfs_shipped": [
+        "main.pdf"
+      ]
+    },
+    {
+      "case": "NO_BUILT_MANUSCRIPT",
+      "closure_state_committed": false,
+      "has_built_manuscript": false,
+      "has_expected_packaged_pdf": false,
+      "package": "papers/orion-01-certificate-realization/journal_package_B",
+      "pdfs_shipped": [
+        "main.pdf"
+      ]
+    },
+    {
+      "case": "NO_PACKAGED_PDF",
+      "closure_state_committed": false,
+      "has_built_manuscript": true,
+      "has_expected_packaged_pdf": false,
+      "package": "papers/orion-05-tare-expressivity/journal_package",
+      "pdfs_shipped": []
+    },
+    {
+      "case": "NO_PACKAGED_PDF",
+      "closure_state_committed": false,
+      "has_built_manuscript": true,
+      "has_expected_packaged_pdf": false,
+      "package": "papers/orion-10-certified-static-forecasting/journal_package",
+      "pdfs_shipped": []
+    },
+    {
+      "case": "COMPUTED",
+      "closure_state_committed": true,
+      "has_built_manuscript": true,
+      "has_expected_packaged_pdf": true,
+      "package": "papers/orion-11-recursive-epistemic-reconstruction/journal_package",
+      "pdfs_shipped": [
+        "manuscript.pdf"
+      ]
+    },
+    {
+      "case": "COMPUTED",
+      "closure_state_committed": true,
+      "has_built_manuscript": true,
+      "has_expected_packaged_pdf": true,
+      "package": "papers/orion-12-open-world-scientific-discovery/journal_package",
+      "pdfs_shipped": [
+        "manuscript.pdf"
+      ]
+    },
+    {
+      "case": "COMPUTED",
+      "closure_state_committed": true,
+      "has_built_manuscript": true,
+      "has_expected_packaged_pdf": true,
+      "package": "papers/orion-13-global-knowledge-portrait/journal_package",
+      "pdfs_shipped": [
+        "manuscript.pdf"
+      ]
+    },
+    {
+      "case": "NO_PACKAGED_PDF",
+      "closure_state_committed": false,
+      "has_built_manuscript": true,
+      "has_expected_packaged_pdf": false,
+      "package": "papers/orion-14-verified-scientific-discovery/journal_package",
+      "pdfs_shipped": []
+    },
+    {
+      "case": "COMPUTED",
+      "closure_state_committed": true,
+      "has_built_manuscript": true,
+      "has_expected_packaged_pdf": true,
+      "package": "papers/orion-15-self-orion/journal_package",
+      "pdfs_shipped": [
+        "manuscript.pdf"
+      ]
+    },
+    {
+      "case": "NO_PACKAGED_PDF",
+      "closure_state_committed": false,
+      "has_built_manuscript": true,
+      "has_expected_packaged_pdf": false,
+      "package": "papers/orion-19-structured-epistemic-learning/journal_package",
+      "pdfs_shipped": []
+    },
+    {
+      "case": "NO_PACKAGED_PDF",
+      "closure_state_committed": false,
+      "has_built_manuscript": true,
+      "has_expected_packaged_pdf": false,
+      "package": "papers/orion-23-responsibility-carrying-state/journal_package",
+      "pdfs_shipped": []
+    }
+  ],
+  "schema": "ORION.JOURNAL_PACKAGE_RENDER_AUDIT.v1"
+}

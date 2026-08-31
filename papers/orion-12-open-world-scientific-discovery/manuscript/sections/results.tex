@@ -88,13 +88,9 @@ are keyword-capable, however, so no keyword-only residual can meet the unchanged
 six-of-seven sign gates and no performance run was authorized.
 
 V14 sought a source-disjoint keyword-capable family but stopped at the source
-identity gate.  Frozen commit
-\idt{38b35218e4d0f99621cec5a8a25a0147bb88c654} resolves to tree
-\idt{49f437c367cc45a90867418fcef77c9ff3614456} and index blob
-\idt{f4f5007156cb71e7d54e99057037fb75d44f87c4}, not the frozen expected
-blob \idt{ada2668adfbb33d61e11a6bec02b10637e419bde}; those expected bytes
-belong to later commit \idt{dc2dadfdbb98eb1b4259604789abd640aa3b693e},
-which was not substituted.  V15 repaired the source-state binding without
+identity gate.  The frozen commit resolves to a tree and index blob that are not the frozen
+expected blob; those expected bytes belong to a later commit, which was not
+substituted.  All five identities are listed in the availability statement.  V15 repaired the source-state binding without
 crossing into population or outcome access.  The provider-valid signed commit,
 tag and recursive tree coherently expose the exact 22,135-byte index entry and
 61 same-snapshot dataset CSV blobs.  This is source-state availability, not an
@@ -158,7 +154,7 @@ validity gate; its outcome is retained separately as undetermined.}
 \begin{figure}[t]
 \centering
 \input{figures/P2-2_recall_vs_queries}
-\caption{\textbf{Figure P2-2.} Cumulative complete-gold recall versus the
+\caption{Cumulative complete-gold recall versus the
 host-recorded number of search queries for the governed system and the strongest
 frozen confirmatory baseline.  Deterministic repeats are first checked for identical
 traces and then collapsed within task; the curves are means over the \OfflineTaskCount{} tasks
@@ -203,7 +199,7 @@ safety rather than headline recall.
 \begin{figure}[t]
 \centering
 \input{figures/P2-4_route_contribution_publication}
-\caption{\textbf{Figure P2-4.} Mean number of first relevant content identities
+\caption{Mean number of first relevant content identities
 contributed by each route in the governed system's campaign order.  ``Independent'' is an
 earned structural annotation relative to the lexical reference route; the
 reformulation route is deliberately marked shared-backend even though it adds a
@@ -223,7 +219,7 @@ independent capture occasion.
 \begin{figure}[t]
 \centering
 \input{figures/P2-5_route_overlap}
-\caption{\textbf{Figure P2-5.} Mean task-level Jaccard overlap between route
+\caption{Mean task-level Jaccard overlap between route
 captures, computed over content identities rather than source locators, together
 with the structural independence verdict for each off-diagonal pair.  The
 lexical--semantic overlap is 0.07557; the other off-diagonal mean overlaps are
@@ -243,7 +239,7 @@ construction, while overlap remains a measured diagnostic.
 \begin{figure}[t]
 \centering
 \input{figures/P2-6_stopping_failures}
-\caption{\textbf{Figure P2-6.} Terminal premature-closure classifications for
+\caption{Terminal premature-closure classifications for
 selected stopping-safety controls in the frozen \OfflineTaskCount{}-task offline companion.  The
 plot is generated from the immutable publication summary.  It shows task counts,
 not an inferential estimate; lower-precedence failure mechanisms can be masked by

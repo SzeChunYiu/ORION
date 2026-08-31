@@ -1,0 +1,60 @@
+{
+  "schema": "ORION.ORION16.GraphQualityRevalidation.SourceManifest.v1",
+  "paper_id": "ORION-16",
+  "successor_id": "ORION16.REAL_SYSTEM_MINIMAL_REVALIDATION.v1",
+  "governing_issue": 1649,
+  "tier": "A",
+  "extends": "ORION16.DEPENDENCY_CLOSED_REVALIDATION.v1 (PR #1638)",
+  "authorized_by": "papers/publication_closure/wave1/WAVE1_TOP_TIER_PROMOTION_TRIAGE_2026-08-28.md",
+  "promotion_budget": "this is ORION-16's ONE attempt under #1649",
+  "authored_date": "2026-08-28",
+  "repository_base": {
+    "branch_base": "origin/main",
+    "commit": "3a6da292e"
+  },
+  "bound_artifacts": [
+    {
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/p6_real_transition_gold_v1.json",
+      "sha256": "be7210be8c2407b630f7b7053ec556b4abd8e17535e0c45ac80077740edb34df",
+      "role": "16 frozen real transition terminals; read as DATA, four of them instantiate the graph-quality taxonomy",
+      "mutated_by_this_packet": false
+    },
+    {
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/P6_REAL_TRANSITION_AUDIT_RESULT_RECEIPT_V1.md",
+      "sha256": "c0b70e0081dbaafde04b67e8df6c44d7a1d8010b93db44e69d7ecc2b664e3372",
+      "role": "records the audit as SUPPORTED with a second independent checker green; context only",
+      "mutated_by_this_packet": false
+    },
+    {
+      "path": "papers/orion-16-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V4.md",
+      "sha256": "43eeca8a03ce753b334604315673a8c9700b5c03309743987bf60570f7e4fc2d",
+      "role": "scope ceiling preserved verbatim by this packet; NOT edited",
+      "mutated_by_this_packet": false
+    }
+  ],
+  "what_this_packet_earns": "the THEORY OBJECTIVE of #1649's ORION-16 entry",
+  "what_this_packet_does_not_earn": {
+    "empirical_discriminator": "2-3 independently sourced systems with real dependency/change graphs compared against full revalidation, direct-neighbour, changed-set-only, dependency-closure and a strongest incremental verification baseline",
+    "why": "The ORION-16 discriminator has not been run. The frozen real-transition audit is a TERMINAL-CORRECTNESS audit over 16 cases on one system, not a COST comparison.",
+    "consequence": "per the #1649 stop rule the general theorem and bounded paper stand; no deployed-system claim is made and none is manufactured",
+    "correction": "An earlier draft asserted that no such comparison exists IN THE REPOSITORY. That was a repo-scoped absence claim made from a paper-scoped search and it is wrong. See adjacent_evidence_pointer."
+  },
+  "not_imported": [
+    "check_finite_models.py",
+    "refutation_audit.py",
+    "run_real_transition_audit_v1.py",
+    "any ORION-16 module"
+  ],
+  "no_new_execution": {
+    "audit_re_run": false,
+    "gold_re_derived": false,
+    "network_access": false
+  },
+  "frozen_paper_bytes_modified": "NONE",
+  "adjacent_evidence_pointer": {
+    "path": "papers/orion-17-epistemic-navigation-open-worlds/transitions/P7_CLOSURE_RETENTION_V1.json",
+    "what_it_is": "executed campaign over three independently sourced real Python packages (numpy, scipy, flask) with real import graphs, real commit histories and a three-policy comparison including an always-reopen baseline",
+    "why_it_does_not_substitute": "it measures closure retention under transforms, not revalidation-set cost, and its baselines are containment policies rather than build-system or test-selection tools",
+    "why_it_is_still_recorded": "it is the closest thing in the repository to the ORION-16 discriminator; a reviewer assessing the not-earned claim should look here first"
+  }
+}

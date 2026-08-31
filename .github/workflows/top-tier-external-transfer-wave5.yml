@@ -1,0 +1,27 @@
+name: top-tier-external-transfer-wave5
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-11-recursive-epistemic-reconstruction/external/objective-task-transfer-v1/**'
+      - 'papers/orion-14-verified-scientific-discovery/external/objective-verifier-transfer-v1/**'
+      - 'papers/publication_closure/TOP_TIER_EXTERNAL_TRANSFER_WAVE5_2026-08-29.md'
+      - '.github/workflows/top-tier-external-transfer-wave5.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  protocol-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: ORION-11 objective task transfer
+        run: python papers/orion-11-recursive-epistemic-reconstruction/external/objective-task-transfer-v1/check_protocol_v1.py
+      - name: ORION-14 objective verifier transfer
+        run: python papers/orion-14-verified-scientific-discovery/external/objective-verifier-transfer-v1/check_protocol_v1.py

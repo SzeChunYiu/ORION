@@ -1,0 +1,90 @@
+{
+  "schema": "orion12.submission_manifest.v1",
+  "paper_id": "ORION-12",
+  "generated": "2026-08-30",
+  "title": "The Acquisition--Authority Envelope for Open-World Scientific Discovery",
+  "title_note": "This is the title of manuscript/main.tex, which renders the bound manuscript/main.pdf. A venue-adapted CAS source, manuscript/ipm_submission.tex, carries a different title (see title_ipm_adapted). The two sources diverge; this manifest binds the main.tex render and therefore states the main.tex title.",
+  "title_ipm_adapted": "Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery",
+  "title_divergence_unresolved": true,
+  "article_type": "full research article; methods / critical system design",
+  "venue": {
+    "journal_primary": "Information Processing & Management (Elsevier)",
+    "journal_fallback": "Journal of the Association for Information Science and Technology",
+    "review_model": "single-blind",
+    "author_block_rule": "Single-blind review permits and expects a named author block; the named block is used in every file of this package."
+  },
+  "author": {
+    "name": "Sze Chun Yiu",
+    "email": "sze-chun.yiu@fysik.su.se",
+    "affiliation": "Department of Physics, Stockholm University, Stockholm, Sweden"
+  },
+  "claim_boundary": "Bounded acquisition-authority control. No claim of external retrieval superiority and no claim of open-world completeness. Open-world benefit remains unconfirmed.",
+  "registered_external_decision": "TREC-COVID registered recall and cost gate FAILED. Favorable nDCG@10 is secondary and does not rescue the failed gate.",
+  "controlled_index_status": {
+    "tasks": 390,
+    "documents": 1210,
+    "topics": 78,
+    "systems": 14,
+    "repeats": 3,
+    "run_records": 16380,
+    "analysis_authority": "TIER_B_committed",
+    "achieved_half_width": 0.0496,
+    "underpowered": true,
+    "role": "descriptive only; not evidence of superiority",
+    "source": "manuscript/generated/suite_facts.tex"
+  },
+  "declarations": {
+    "ai_disclosure": "Generative AI tools were used for drafting and editing assistance. The author is responsible for all scientific content.",
+    "competing_interests": "The author declares no competing interests.",
+    "funding": "No funding was received for this work.",
+    "acknowledgements": "omitted by author policy (papers/SUBMISSION_POLICY_V1.md)",
+    "mandated_by_venue": "unverified_assumed_elsevier_standard",
+    "mandated_by_venue_note": "IP&M's current exact declaration requirements were NOT verified from an authoritative venue source. The shortest truthful negative forms permitted by papers/SUBMISSION_POLICY_V1.md are used on the assumption that Elsevier mandates a declarations statement. Confirm against the live IP&M guide for authors before filing."
+  },
+  "artifacts": [
+    {
+      "path": "manuscript/main.pdf",
+      "bytes": 480712,
+      "sha256": "6c6b7354c3aec1ba7b4f7d506324c9e57452c6e05b9a5fe452c4e01ea0046d0d"
+    },
+    {
+      "path": "JOURNAL_READINESS.md",
+      "bytes": 12741,
+      "sha256": "511e6cb0382355b85e52d94b2275336f4cdac882012a24234b3afdf59635f64e"
+    },
+    {
+      "path": "JOURNAL_READINESS_V2.md",
+      "bytes": 8168,
+      "sha256": "2a847e27cdba6045373173e64cac49d03ecf9efdbbebef4bc2933c1fdffbeaa7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4619,
+      "sha256": "7e01fd19c5ccfa7262942552dd27c9177485c4626c2c812ed14a400dadacc573"
+    },
+    {
+      "path": "REPRODUCE.md",
+      "bytes": 6228,
+      "sha256": "f24c34c92a53868d73daba7280c66592868a47379dd36fa440ca2c65bab66737"
+    },
+    {
+      "path": "RSE_SUCCESSOR_BOUNDARY_V1.md",
+      "bytes": 660,
+      "sha256": "69be8c544ae65d545a9bfcac285ec4e95b09f95a2a8d9c77e3275deecdb7bfdb"
+    },
+    {
+      "path": "TOP_TIER_DYNAMIC_EPISTEMIC_MANUSCRIPT_V1.md",
+      "bytes": 4593,
+      "sha256": "268fa52891cfe1641c7c3066fd3fc4a683cfbe570b9d6bd449cebd49bab93fec"
+    }
+  ],
+  "artifact_note": "sha256 and byte sizes computed 2026-08-30 from the working tree. Paths are relative to papers/orion-12-open-world-scientific-discovery/.",
+  "known_gaps": [
+    "manuscript/main.pdf has empty PDF /Title and /Author metadata fields; the title page is typeset but the document properties are unset.",
+    "journal_package/current_revision/SUBMISSION_MANIFEST.json binds an artifact 'manuscript.pdf' at 94747 bytes, sha256 e23e853d4a4b39417f4b420ec51d071b2ed7595a6cc1284bdac6d8374dc70217, which is NOT present on disk. The only manuscript.pdf found is journal_package/manuscript.pdf at 323401 bytes with a different hash. That earlier package's PDF binding is therefore unresolved. The other 11 of its 12 declared artifacts verify byte-exact.",
+    "manuscript/ipm_submission.tex carries \\author{Anonymous authors}. For a single-blind venue a named block is expected; this package does not modify that source.",
+    "manuscript/ipm_submission.tex carries a four-sentence generative-AI declaration naming OpenAI ChatGPT, which exceeds the one-sentence form required by papers/SUBMISSION_POLICY_V1.md. Not modified here; the source is byte-bound by render-closure records."
+  ],
+  "not_committed": true,
+  "grants_authority": "NONE"
+}

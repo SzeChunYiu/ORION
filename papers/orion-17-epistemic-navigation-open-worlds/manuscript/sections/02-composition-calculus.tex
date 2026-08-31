@@ -1,4 +1,4 @@
-\section{18. The composition calculus (replaces the informal V3.5)}
+\section{The composition calculus}
 
 Let \texttt{Trans}, \texttt{Contract}, \texttt{Coord} and \texttt{Obl} be sorts,
 \texttt{Native : Trans -> Bool} the
@@ -41,6 +41,6 @@ Under an obligation semantics defined without reference to any composition rule,
 \texttt{Total(t) <-> forall o. Demands(Tgt t, o) -> Demands(Src t, o) OR Discharged(t,o)
 OR Fresh(t,o)}, matching intermediate contracts \textbf{suffice} for totality to
 compose but are \textbf{not necessary}. The exact condition is weaker: containment of
-the second leg's source demands in the first leg's target demands. P7's rule
+the second leg's source demands in the first leg's target demands. This paper's rule
 therefore refuses composites that are in fact obligation-total. This is a real
 gap in the paper's own rule and is reported as one.

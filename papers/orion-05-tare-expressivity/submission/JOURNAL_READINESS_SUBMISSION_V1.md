@@ -1,0 +1,78 @@
+# ORION-05 — submission readiness record
+
+**Terminal: READY_TO_SUBMIT_SECOND_TIER.**
+Target venue _Quantum_; fallback npj Quantum Information. PRX Quantum was
+assessed and declined on the significance gate (see `VENUE_DECISION.md`).
+"Second tier" here names the venue tier reached, not a defect in the work.
+
+## Basis for the terminal
+
+| Gate | State | Evidence |
+|---|---|---|
+| Canonical manuscript designated | Closed | `CANONICAL_SOURCE_DECISION.md` |
+| Compiles to submittable PDF | Closed | 7 pages, no undefined references, no overfull boxes |
+| Headline numbers verified against artifacts | Closed | 4 headline figures traced to semantic keys in committed JSON; 0 numeric literals in the manuscript lack a repository trace |
+| Claim ceiling respected | Closed | Claims Q1V3-1 … Q1V3-6 unchanged; no claim widened |
+| House style | Closed | No machine tokens, internal identifiers, sibling-paper cross-references, or defensive scaffolding sections in narrative prose |
+| Content binding | Unchanged | `BOUND_PARTIAL / PASS`, same as baseline; manuscript is not under any binding |
+| Venue selected | Closed | `VENUE_DECISION.md` |
+| Submission manifest | Closed | `SUBMISSION_MANIFEST.md` / `.sha256`, 12 files |
+| Cover letter | Closed | `COVER_LETTER.md` |
+| Data/code availability | Closed | `DATA_AND_CODE_AVAILABILITY.md` |
+
+## Claims and their boundary, restated
+
+The manuscript claims an exact support normal form for one frozen grammar under
+one frozen objective, a zero-error static evaluator for the resulting family,
+and a refutation-guided map of the remaining low-support coupling geometry. It
+claims no full-circuit, hardware, or global block-encoding optimality. The
+all-`n` finite-basis argument remains one pinned lemma short of closure, and the
+manuscript says so rather than deferring the gap to a footnote.
+
+Nothing in this packaging pass converted a null, an adverse result, or an
+undetermined outcome into a pass. The refutation ladder is intact, including the
+64 hostile hybrid witnesses that defeated the enlarged-borrow repair.
+
+## What changed in this pass
+
+Nothing in the manuscript body. ORION-05 was already free of machine tokens,
+repository paths in narrative, internal identifiers, and sibling cross-references.
+The pass added the submission package and recorded the canonical-source and
+venue decisions.
+
+## Venue-format conversion — named explicitly
+
+The manuscript is `\documentclass[11pt]{article}` with `\author{Working framework
+draft}`. It is a complete, sectioned, bibliography-resolved manuscript that
+compiles cleanly, but it is **not** in Quantum's submission format: no venue
+class or style file, no author block, and no anonymisation decision recorded.
+
+Converting it requires quantumarticle, which is not obtainable from the toolchain used in
+this pass, so this is left as an input rather than attempted and half-done.
+Treat it as mechanical filing work, not evidence work: the science, the claim
+ceiling, and the checks are complete and independent of the template.
+
+## Remaining inputs — human only
+
+These cannot be supplied from the repository and are the only things standing
+between this package and a filed submission:
+
+1. **Author list**, in final order. The manuscript currently reads
+   "Working framework draft" on the title page; this must be replaced.
+2. **Affiliations** for each author.
+3. **ORCID** identifiers.
+4. **Corresponding author** designation, email, and postal address.
+5. **Funding statement** and grant numbers.
+6. **Competing-interests declaration.**
+7. **Author-contribution statement**, if the venue requests one.
+8. **Suggested and excluded referees.**
+9. **Public archival deposit.** The digests above reference an internal
+   repository. Before filing, the five evidence artifacts and three generating
+   modules should be deposited in a public archive (Zenodo or equivalent) and
+   the resulting DOI substituted into the availability statement. The digests
+   themselves do not change.
+10. **Licence election** for the deposited artifacts.
+
+Once 1–10 are supplied, the package is filable as it stands.
+
+Also required before filing: **convert to Quantum's submission template** (quantumarticle) and record the anonymisation decision.

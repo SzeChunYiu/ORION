@@ -1,0 +1,20 @@
+{
+  "compute": {
+    "arithmetic": "exact integer set operations; no sampling",
+    "checker_wall_seconds_order": "< 60",
+    "max_nodes": 5,
+    "over_approximation_triples_enumerated": 11892,
+    "under_approximation_pairs_enumerated": 54172
+  },
+  "cost_bounds_status": "PROVED_NOT_MEASURED",
+  "evidence_reused_not_regenerated": {
+    "cases_used_by_the_taxonomy": 4,
+    "frozen_transition_gold_cases": 16
+  },
+  "fair_baseline_statement": "No baseline comparison is claimed by this lane. The #1649 empirical discriminator -- 2-3 independently sourced systems against full / direct-neighbour / changed-set-only / dependency-closure / incremental-verification baselines -- HAS NOT BEEN RUN, and the cost bounds of Theorems 2 and 3 are proved rather than measured.",
+  "lane": "ORION16.REAL_SYSTEM_MINIMAL_REVALIDATION.v1",
+  "network_requests": 0,
+  "new_experiments_executed": 0,
+  "note": "The real-transition audit was executed and frozen before this lane. This lane runs no audit, derives no gold and re-evaluates no terminal; it proves theorems on freshly enumerated DAG pairs and reads the gold as data.",
+  "schema": "orion.successor.resource-accounting.v1"
+}

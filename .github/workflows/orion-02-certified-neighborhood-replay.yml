@@ -55,7 +55,6 @@ jobs:
           cp "$root/results/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md" "$RUNNER_TEMP/registered.md"
           python -m py_compile \
             "$root/certified_neighborhood.py" \
-            "$root/certified_neighborhood_test.py" \
             'papers/paper-xx-executable-research-core/benchmark/run_aslib_v1.py'
 
       - name: Replay frozen executor twice
@@ -79,8 +78,61 @@ jobs:
           cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/result-b.json"
           cmp "$RUNNER_TEMP/result-a.md" "$RUNNER_TEMP/result-b.md"
           cmp "$RUNNER_TEMP/terminal-a.txt" "$RUNNER_TEMP/terminal-b.txt"
-          cmp "$RUNNER_TEMP/result-a.json" "$RUNNER_TEMP/registered.json"
-          cmp "$RUNNER_TEMP/result-a.md" "$RUNNER_TEMP/registered.md"
+
+      - name: Verify scientific equality modulo declared host environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          temp = Path(os.environ['RUNNER_TEMP'])
+          observed = json.loads((temp / 'result-a.json').read_text())
+          registered = json.loads((temp / 'registered.json').read_text())
+          observed_environment = observed.pop('environment')
+          registered_environment = registered.pop('environment')
+          if observed != registered:
+              def walk(left, right, path=''):
+                  if type(left) is not type(right):
+                      print('TYPE', path, type(left).__name__, type(right).__name__)
+                      return
+                  if isinstance(left, dict):
+                      for key in sorted(set(left) | set(right)):
+                          if key not in left or key not in right:
+                              print('KEY', f'{path}/{key}', key in left, key in right)
+                          else:
+                              walk(left[key], right[key], f'{path}/{key}')
+                  elif isinstance(left, list):
+                      if len(left) != len(right):
+                          print('LEN', path, len(left), len(right))
+                      for index, (lvalue, rvalue) in enumerate(zip(left, right)):
+                          walk(lvalue, rvalue, f'{path}/{index}')
+                  elif left != right:
+                      print('VALUE', path, repr(left), repr(right))
+              walk(observed, registered)
+              raise AssertionError('scientific projection differs from registered result')
+          assert observed_environment['numpy'] == registered_environment['numpy'] == '1.26.4'
+          assert observed_environment['scikit_learn'] == registered_environment['scikit_learn'] == '1.5.2'
+          assert observed_environment['python'].split('.')[:2] == ['3', '11']
+          assert registered_environment['python'] == '3.11.5'
+          assert registered_environment['platform'].startswith('Linux-5.14.0-')
+          assert observed_environment['platform'].startswith('Linux-')
+          (temp / 'REPLAY_ENVIRONMENT.json').write_text(
+              json.dumps(
+                  {
+                      'registered_lunarc_environment': registered_environment,
+                      'github_replay_environment': observed_environment,
+                      'scientific_projection_equal': True,
+                      'registered_markdown_sha256_is_environment_specific': True,
+                  },
+                  sort_keys=True,
+                  separators=(',', ':'),
+              ) + '\n'
+          )
+          print('CERTIFIED_NEIGHBORHOOD_SCIENTIFIC_PROJECTION_EQUAL')
+          PY
 
       - name: Verify adverse terminal and immutable controls
         shell: bash
@@ -111,10 +163,10 @@ jobs:
           official, family = result['splits']
           assert official['split'] == 'SPLIT_OFFICIAL_FOLD'
           assert family['split'] == 'SPLIT_FAMILY_DISJOINT'
-          assert official['representations']['NBR_FULL']['certificate_heldout_violation_rate'] > 0.10
-          assert official['representations']['NBR_PCA10']['certificate_heldout_violation_rate'] > 0.10
-          assert family['representations']['NBR_FULL']['heldout_coverage']['epsilon_5000'] == 0.0
-          assert family['representations']['NBR_PCA10']['heldout_coverage']['epsilon_5000'] == 0.0
+          assert official['relations']['NBR_FULL']['certificate_heldout_violation_rate'] > 0.10
+          assert official['relations']['NBR_PCA10']['certificate_heldout_violation_rate'] > 0.10
+          assert family['relations']['NBR_FULL']['heldout_coverage']['epsilon_5000'] == 0.0
+          assert family['relations']['NBR_PCA10']['heldout_coverage']['epsilon_5000'] == 0.0
           print('ORION_02_CERTIFIED_NEIGHBORHOOD_REFUTATION_REPLAY_VERIFIED')
           PY
 
@@ -136,9 +188,12 @@ jobs:
           set -euo pipefail
           out="$RUNNER_TEMP/orion-02-certified-neighborhood-replay"
           mkdir -p "$out"
-          cp "$RUNNER_TEMP/result-a.json" "$out/CERTIFIED_NEIGHBORHOOD_RESULT_V1.json"
-          cp "$RUNNER_TEMP/result-a.md" "$out/CERTIFIED_NEIGHBORHOOD_RESULT_V1.md"
+          cp "$RUNNER_TEMP/result-a.json" "$out/CERTIFIED_NEIGHBORHOOD_REPLAY_RESULT.json"
+          cp "$RUNNER_TEMP/registered.json" "$out/CERTIFIED_NEIGHBORHOOD_REGISTERED_LUNARC_RESULT.json"
+          cp "$RUNNER_TEMP/result-a.md" "$out/CERTIFIED_NEIGHBORHOOD_REPLAY_RESULT.md"
+          cp "$RUNNER_TEMP/registered.md" "$out/CERTIFIED_NEIGHBORHOOD_REGISTERED_LUNARC_RESULT.md"
           cp "$RUNNER_TEMP/terminal-a.txt" "$out/TERMINAL.txt"
+          cp "$RUNNER_TEMP/REPLAY_ENVIRONMENT.json" "$out/"
           sha256sum "$out"/* > "$out/SHA256SUMS"
 
       - uses: actions/upload-artifact@v4
