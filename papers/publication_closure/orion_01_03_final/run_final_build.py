@@ -43,6 +43,17 @@ def publication_markdown(spec: b.Spec) -> str:
         )
         text = text.replace("The the second study corpus", "The second-study corpus")
         text = text.replace("Jin and Ren (2024)", "Jin and Ren (2025)")
+        text = text.replace(
+            "Separate exhaustive in-repository checkers were used as hostile finite-model verification rather than as theorem authority or external replication.",
+            "Separate exhaustive in-repository checkers were used as hostile finite-model verification rather than as theorem authority. These independent-code-path checks are not external replication.",
+        )
+        limitation = "No cross-domain transfer, production benefit, physical quantum advantage, computational-hardness result, or broad empirical superiority is claimed."
+        if limitation in text:
+            text = text.replace(
+                limitation,
+                limitation + " The counted empirical studies establish no broad empirical superiority or transfer claim.",
+                1,
+            )
     if spec.mode == "quantum" and "## Author contributions" not in text:
         marker = "\n## References\n"
         contribution = (
