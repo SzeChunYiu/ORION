@@ -11,6 +11,44 @@ root = paper / "manuscript"
 main_text = (root / "main.tex").read_text(encoding="utf-8")
 tex_files = [root / "main.tex", *sorted((root / "sections").glob("*.tex"))]
 text = "\n".join(path.read_text(encoding="utf-8") for path in tex_files)
+errors: list[str] = []
+
+bib_files: list[Path] = []
+for group in re.findall(r"\\bibliography\{([^}]+)\}", main_text):
+    for stem in group.split(","):
+        stem = stem.strip()
+        if stem:
+            bib_files.append(root / f"{stem}.bib")
+missing_bib_files = [str(path.relative_to(root)) for path in bib_files if not path.is_file()]
+bib_text = "\n".join(path.read_text(encoding="utf-8") for path in bib_files if path.is_file())
+bib_keys_list = re.findall(r"@\w+\s*\{\s*([^,\s]+)", bib_text)
+bib_keys = set(bib_keys_list)
+cite_keys: set[str] = set()
+for group in re.findall(r"\\cite\w*\{([^}]+)\}", text):
+    cite_keys.update(key.strip() for key in group.split(",") if key.strip())
+missing_cites = sorted(cite_keys - bib_keys)
+duplicate_bib_keys = sorted({key for key in bib_keys_list if bib_keys_list.count(key) > 1})
+
+missing_inputs: list[str] = []
+for target in re.findall(r"\\input\{([^}]+)\}", main_text):
+    path = root / target
+    if not path.suffix:
+        path = path.with_suffix(".tex")
+    if not path.is_file():
+        missing_inputs.append(str(path.relative_to(root)))
+labels = re.findall(r"\\label\{([^}]+)\}", text)
+duplicate_labels = sorted({label for label in labels if labels.count(label) > 1})
+
+if missing_bib_files:
+    errors.append("missing_bibliography_files:" + ",".join(missing_bib_files))
+if missing_cites:
+    errors.append("missing_citation_keys:" + ",".join(missing_cites))
+if duplicate_bib_keys:
+    errors.append("duplicate_bibliography_keys:" + ",".join(duplicate_bib_keys))
+if missing_inputs:
+    errors.append("missing_input_files:" + ",".join(missing_inputs))
+if duplicate_labels:
+    errors.append("duplicate_labels:" + ",".join(duplicate_labels))
 
 abstract = (root / "sections/00-abstract.tex").read_text(encoding="utf-8")
 introduction = (root / "sections/10-introduction.tex").read_text(encoding="utf-8")
@@ -20,7 +58,6 @@ conclusion = (root / "sections/08-conclusion.tex").read_text(encoding="utf-8")
 limitations = (root / "sections/07-limitations.tex").read_text(encoding="utf-8")
 scoped = (paper / "SCOPED_PUBLICATION_TRACK_V1.md").read_text(encoding="utf-8")
 
-errors: list[str] = []
 for name, fragment in [
     ("abstract", abstract),
     ("introduction", introduction),
@@ -72,17 +109,6 @@ for name, phrases in {
         if phrase in fragment:
             errors.append(f"{name}_reintroduces_unexecuted_broad_claim:{phrase}")
 
-bib_files: list[Path] = []
-for group in re.findall(r"\\bibliography\{([^}]+)\}", main_text):
-    for stem in group.split(","):
-        stem = stem.strip()
-        if stem:
-            bib_files.append(root / f"{stem}.bib")
-bib_text = "\n".join(path.read_text(encoding="utf-8") for path in bib_files if path.is_file())
-bib_keys = set(re.findall(r"@\w+\s*\{\s*([^,\s]+)", bib_text))
-cite_keys: set[str] = set()
-for group in re.findall(r"\\cite\w*\{([^}]+)\}", text):
-    cite_keys.update(key.strip() for key in group.split(",") if key.strip())
 forbidden_removed_keys = {
     "adias2026",
     "raghunathan2022stance",
@@ -98,6 +124,6 @@ if stale_keys:
 
 if errors:
     for error in errors:
-        print(f"P3_CLAIM_SURFACE_ERROR: {error}")
+        print(f"P3_MANUSCRIPT_AUDIT_ERROR: {error}")
     raise SystemExit(1)
-print("P3_BOUNDED_CLAIM_SURFACE_OK")
+print("P3_MANUSCRIPT_STATIC_AND_BOUNDED_CLAIM_SURFACE_OK")
