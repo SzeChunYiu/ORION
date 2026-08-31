@@ -521,12 +521,11 @@ production validity, or authority beyond the bounded manuscript and ledger.
             print(json.dumps(candidate_manifest, indent=2, sort_keys=True))
             return
 
-        # The signed independent-review receipt records the review lane's
-        # absolute local candidate directory.  Preserve those exact bytes as
-        # repository-side provenance, but never copy them into the upload set.
-        # The public package carries only a digest and repository-relative
-        # locator so it remains independently bindable without leaking a local
-        # workstation path.
+        # Keep the sanitized independent-review receipt as repository-side
+        # provenance and exclude the receipt itself from the journal upload
+        # set.  The public package carries only a digest and repository-relative
+        # locator, so both the package and exact public mirror remain free of
+        # review-worktree paths.
         independent_review = closure / "INDEPENDENT_RELEASE_REVIEW_V1.json"
         independent_review_locator = independent_review.relative_to(repo).as_posix()
         independent_review_provenance = stage / "INDEPENDENT_RELEASE_REVIEW_PROVENANCE.json"

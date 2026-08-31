@@ -27,7 +27,17 @@ class ReviewReceiptDispositionTests(unittest.TestCase):
         submission.mkdir(parents=True)
         receipt = closure / REVIEW_RECEIPT
         receipt.write_text(
-            json.dumps({"candidate": {"directory": "/Users/reviewer/private/candidate"}}) + "\n",
+            json.dumps(
+                {
+                    "candidate": {
+                        "directory": (
+                            "papers/orion-03-typed-merge-falsification/"
+                            "publication_closure_20260831/candidate_package"
+                        )
+                    }
+                }
+            )
+            + "\n",
             encoding="utf-8",
         )
         (package / REVIEW_PROVENANCE).write_text(
@@ -56,6 +66,31 @@ class ReviewReceiptDispositionTests(unittest.TestCase):
             repo, closure, package, submission = self.make_fixture(Path(temp_name))
             shutil.copy2(closure / REVIEW_RECEIPT, package / REVIEW_RECEIPT)
             with self.assertRaisesRegex(VerificationError, "receipt leaked"):
+                verify_review_receipt_disposition(
+                    repo=repo, closure=closure, package=package, submission=submission
+                )
+
+    def test_repository_receipt_with_absolute_local_path_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_name:
+            repo, closure, package, submission = self.make_fixture(Path(temp_name))
+            receipt = closure / REVIEW_RECEIPT
+            receipt.write_text(
+                json.dumps(
+                    {"candidate": {"directory": "/Users/reviewer/private/candidate"}}
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            provenance_path = package / REVIEW_PROVENANCE
+            provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+            provenance["sha256"] = sha256_file(receipt)
+            provenance["byte_count"] = receipt.stat().st_size
+            provenance_path.write_text(
+                json.dumps(provenance) + "\n", encoding="utf-8"
+            )
+            with self.assertRaisesRegex(
+                VerificationError, "absolute local path leaked into repository receipt"
+            ):
                 verify_review_receipt_disposition(
                     repo=repo, closure=closure, package=package, submission=submission
                 )

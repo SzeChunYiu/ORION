@@ -108,7 +108,7 @@ def abstract_and_keyword_checks(manuscript_text: str) -> tuple[int, int]:
 def verify_review_receipt_disposition(
     *, repo: Path, closure: Path, package: Path, submission: Path
 ) -> None:
-    """Keep signed review bytes private while preserving a public digest binding."""
+    """Keep review provenance bindable without publishing workstation paths."""
 
     receipt = closure / REVIEW_RECEIPT
     provenance_path = package / REVIEW_PROVENANCE
@@ -146,6 +146,12 @@ def verify_review_receipt_disposition(
         b"/" + b"home" + b"/",
         b"C:" + bytes((92,)),
     )
+    receipt_bytes = receipt.read_bytes()
+    for marker in forbidden_local_markers:
+        require(
+            marker not in receipt_bytes,
+            "absolute local path leaked into repository receipt",
+        )
     for path in sorted(p for p in package.rglob("*") if p.is_file()):
         data = path.read_bytes()
         require(
