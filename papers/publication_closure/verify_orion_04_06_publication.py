@@ -16,11 +16,10 @@ def reject(path, patterns):
         if re.search(p, data, flags=re.I):
             errors.append(f"{path}: forbidden publication phrase matched {p!r}")
 
-need("papers/orion-04-rooted-completion-certificates/WAVE3_SCOPED_MANUSCRIPT_V2.md", "Exact D_4 remains open")
+need("papers/orion-04-rooted-completion-certificates/WAVE3_SCOPED_MANUSCRIPT_V2.md", "does not decide whether \\(D_4=30\\) or \\(31\\)")
 need("papers/orion-04-rooted-completion-certificates/CLAIM_LEDGER_V2.md", "WITHHELD / NOT CLAIMED")
 need("papers/orion-05-tare-expressivity/CLAIM_LEDGER_V4.md", "NEGATIVE/OPEN TERMINAL PRESERVED")
 need("papers/orion-05-tare-expressivity/manuscript/main.tex", "no full-circuit, hardware, or global block-encoding optimality is claimed")
-need("papers/orion-06-recursive-recovery/CLAIM_LEDGER_V4.md", "CROSS-DOMAIN") if False else None
 need("papers/orion-06-recursive-recovery/CLAIM_LEDGER_V4.md", "NEGATIVE/UNDETERMINED TERMINAL PRESERVED")
 need("papers/orion-06-recursive-recovery/manuscript/main.tex", "one-programme case study, not a statistical evaluation")
 need("papers/orion-06-recursive-recovery/submission_tmlr/PUBLICATION_CLOSURE.md", "CROSS_DOMAIN_UNDETERMINED")
