@@ -1,9 +1,5 @@
 # Exact Certificate Complexity versus Intrinsic Support in Quantum Compilation
 
-**Paper B — hardened manuscript V2**
-Scientific cut: Paper-B/B1 parents plus R2 alphabet-Davenport theorem
-Workflow cut: `academic-paper-skills@188e83e639571c435344630ae68fdc66072650d2`
-
 ## Abstract
 
 A finite-support certificate can be perfectly sharp for its proof language and arbitrarily loose as a description of the compiler it certifies. We formalize this separation using an alphabet-restricted zero-sum invariant. Let `H` be a finite abelian signature group and `A subseteq H` an allowed alphabet. Define `zsf(H;A)` as the maximum length of a zero-sum-free word over `A`. In the abstract deletion proof system whose legal step removes a nonempty proper zero-sum subword from a nonzero-total word, the exact uniform terminal complexity is `zsf(H;A)`: every longer word is reducible, while a maximum zero-sum-free word is a matching terminal witness. For a production compiler, this remains an exact certificate lower bound only when that witness is realizable.

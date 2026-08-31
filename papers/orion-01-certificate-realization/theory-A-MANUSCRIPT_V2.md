@@ -1,9 +1,5 @@
 # Alphabet-Davenport Normal Forms for Multi-Tag Quantum Compilation
 
-**Paper A — hardened manuscript V2**
-Scientific cut: Paper-A/A1 parents plus R2 theorem package
-Workflow cut: `academic-paper-skills@188e83e639571c435344630ae68fdc66072650d2`
-
 ## Abstract
 
 Finite-support normal forms make exact quantum compiler optimization enumerable, but a rank bound can obscure the more general combinatorial object controlling deletion. We formulate that object for a finite abelian signature group. For an allowed signature alphabet `A subset H`, let `zsf(H;A)` be the maximum length of a sequence over `A` containing no nonempty zero-sum subsequence. Consider any compiler grammar in which active coordinates carry signatures in `A`, the total signature of each constrained generator is nonzero, and deletion of a zero-signature subword preserves feasibility without increasing the objective. We prove that every admitted instance has an exact optimum with support at most `zsf(H;A)`. The proof is an iterative proper-subword deletion; nonzero total signature prevents the removable zero-sum subword from being the whole generator. For `H=F_2^d`, `zsf(H;A)<=d`, and equality holds whenever `A` contains a basis. Thus the familiar constraint-rank normal form is a sharp corollary for the deletion language rather than the primitive theorem.
