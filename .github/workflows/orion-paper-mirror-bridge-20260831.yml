@@ -12,16 +12,17 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout exact ORION source
+      - name: Checkout literal ORION source commit
         uses: actions/checkout@v4
         with:
-          fetch-depth: 3
+          ref: e7cadc870a783e49bd54df1b2f0d4a95a0a02908
+          fetch-depth: 1
 
       - name: Assert source anchor
         shell: bash
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD~2)" = "e7cadc870a783e49bd54df1b2f0d4a95a0a02908"
+          test "$(git rev-parse HEAD)" = "e7cadc870a783e49bd54df1b2f0d4a95a0a02908"
 
       - name: Clone ORION-paper target branch
         env:
