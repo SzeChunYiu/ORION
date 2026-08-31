@@ -1,0 +1,43 @@
+{
+ "schema": "ORION.P13P14.CorpusGitLicenseBindingProtocol.v1",
+ "status": "FROZEN_BEFORE_ANY_OBSERVATION",
+ "issue": 1086,
+ "successor_of": "development/p13-p14-live-git-acquisition-v1 (adverse terminal P13_P14_LIVE_GIT_ACQUISITION_MINIMUM_NOT_MET__CAMPAIGN_BLOCKED)",
+ "purpose": "Repair the diagnosed instrument defect, not the outcome: the corpus's evidence_fetch_sha256 hashes an unretained GitHub REST representation and is unreproducible from git objects (V1 diagnosis, 31/31 eligible rows DIGEST_MISMATCH). This increment observes, from live git objects at each pinned sha, the license blob path (parsed from the frozen evidence_url), git blob SHA-1, blob-byte SHA-256 and byte length, and records them as NEW receipted bindings under this NEW identity. The V1 adverse terminal and the old field are never relabelled.",
+ "bindings": {
+  "corpus": "papers/orion-23-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json",
+  "corpus_sha256": "fc90d18d97561509f6e10de6f37229ee24f8c7475b474c99145b78ee858d9e53",
+  "v1_adverse_result": "development/p13-p14-live-git-acquisition-v1/LIVE_GIT_ACQUISITION_RESULT_V1.json",
+  "v1_adverse_result_sha256": "63bf92b65f0bc78e1b2585f36cf59d0fcb129c2d9601a54d70832d7310693c0f",
+  "v1_runner_sha256": "1e3e3395b608144d828fc078272b4fa4617c16842da324f4053bcea911e1bfcb",
+  "gold_derivation_rule": "papers/orion-23-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md",
+  "gold_derivation_rule_sha256": "3656565539ea89742dd0f876347ba0b7ec918dfe605d95ab691c5323b77f8ce9"
+ },
+ "subjects": "all 45 corpus entries at their pinned shas; gold_eligible flags carried through unchanged",
+ "observations_per_entry": ["pinned_object_exists (with one recorded unadvertised-object fetch retry)", "license_path parsed from frozen evidence_url blob URL", "git_blob_sha1 via rev-parse <pin>:<path>", "blob_byte_sha256 and blob_bytes via cat-file blob", "rest_hash_context: OBSERVED_EQUALS_REST_HASH | OBSERVED_DIFFERS_FROM_REST_HASH (context only, evidencing nothing beyond the V1 diagnosis)", "raw_command_receipt_digest"],
+ "planted_controls": {
+  "control_a": "forged pinned sha (one hex flipped) through the SAME observe path must not reach BINDING_RECORDED",
+  "control_b": "forged license path through the SAME observe path must not reach BINDING_RECORDED",
+  "rule": "either control failing to fire makes the run terminal CANNOT_CHECK__CONTROL_FAILURE"
+ },
+ "expected_terminals": ["T1_ALL_BINDINGS_RECORDED", "T2_PARTIAL_BINDINGS_RECORDED", "T3_NO_BINDING_RECORDED", "CANNOT_CHECK__CONTROL_FAILURE"],
+ "terminal_semantics": {
+  "T1_ALL_BINDINGS_RECORDED": "every corpus entry now carries a git-verifiable license binding; a later campaign increment may verify license bytes against THESE bindings, while gold eligibility still requires the frozen derivation contract's preconditions",
+  "T2_PARTIAL_BINDINGS_RECORDED": "entries without a recorded binding stay CANNOT_CHECK and cannot support later license verification",
+  "T3_NO_BINDING_RECORDED": "the repair failed; the campaign remains blocked exactly as V1 left it",
+  "CANNOT_CHECK__CONTROL_FAILURE": "nothing observed in the run is evidence"
+ },
+ "prohibitions": {
+  "v1_relabelling": "the V1 adverse terminal and evidence_fetch_sha256 field are never edited or reinterpreted",
+  "gold_derivation": "prohibited in this increment",
+  "post_outcome_edits": "no subject, predicate, or terminal may change after the first observation receipt is written"
+ },
+ "execution_plan": {
+  "host": "billy-old, strictly after the running pilot-target acquisition V2 completes (shared clone cache, serialized runs)",
+  "outputs": "development/p13-p14-corpus-git-license-binding-v1/receipts/CORPUS_GIT_LICENSE_BINDING_RECEIPTS_V1.json committed strictly after this design commit"
+ },
+ "outcome_accessed": false,
+ "results_exist": false,
+ "scientific_authority_delta": "NONE",
+ "frozen_utc": "2026-08-28T19:50:00Z"
+}
