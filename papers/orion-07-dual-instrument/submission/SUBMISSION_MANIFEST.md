@@ -1,0 +1,25 @@
+# Submission manifest — orion-07-dual-instrument
+
+Target venue: **TMLR (Transactions on Machine Learning Research)**  
+Compiled manuscript: `submission/manuscript.pdf` (6 pages)  
+Manifest generated: 2026-08-28
+
+Every file below is a byte-exact input to, or output of, the compiled
+manuscript. Digests are SHA-256 over file bytes.
+
+| File | SHA-256 |
+|---|---|
+| `manuscript/bibliography.bib` | `eb4541f5c4aa61ae0d97ba6112266c0f5c3706f3459be642364508df32605260` |
+| `manuscript/main.tex` | `2b525f3d179cfa3ed8f3a464e3f7acbe4bbd8187d880da522b91781754ae11a0` |
+| `manuscript/sections/01-introduction.tex` | `20de7711272c2786197a1a4ecd9597d8b02fb1f5861a2eb015c322ada613c57b` |
+| `manuscript/sections/02-methods.tex` | `017c5e035f3e4c0b07067b04785e7ea723d1b05793bff68cc54b08feb7c6d6e8` |
+| `manuscript/sections/03-results.tex` | `3be96009be492af33a229cabf1c210681cff81b9ef75ee2c82b1ef2e77fc11b3` |
+| `manuscript/sections/04-discussion.tex` | `c9b1d228efa9ad799d45010f4ed4547a572a9e61ab2ec1b78263f6b235aa472c` |
+| `manuscript/sections/05-related-work-boundary.tex` | `282ae14821ce8a3581dddfb877c5ec85378375bfe872da1edfc9e7c123722d13` |
+| `manuscript/sections/06-limitations.tex` | `632991b2709c9449ab3bbf478f1bbe31e7ca804b9a3efea07cfb97b4e1b81010` |
+| `manuscript/sections/07-conclusion.tex` | `a7d76892749b404b26399b95890edab9b9e8aa87088ba43009b69d1ff15612fa` |
+| `manuscript/sections/08-reproducibility.tex` | `3ae59a0fe0dd7f4693b377c8e82931f1fa8802d602eff0b39fca4f2cf4ac1296` |
+| `manuscript/sections/09-ethics-safety-resources.tex` | `2a4f5a6d018e321601c39c3b6ca3a9956482f7a1ba1cb408aeed1430e4775ce3` |
+| `submission/manuscript.pdf` | `4449c5a926d9a90f72fdff71daa53e549e70c11d7613b7b3938775663025214d` |
+
+Files: 12

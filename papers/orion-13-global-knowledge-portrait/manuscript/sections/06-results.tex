@@ -242,14 +242,11 @@ scoring and 75,391 remained \textsc{CannotCheck}: 2,415 lacked a reference
 member, 72,941 were outside the licensed reference domain, and 35 had
 non-binary relations. The full binary identification envelope attained
 gold-in-envelope coverage 1.0 and tied its information-equivalent ideal
-exactly. This yields the mechanics terminal
-\idt{PUBLIC_V3_MAXIMAL_BINARY_ENVELOPE_COVERAGE_PASS}.
+exactly. The mechanics outcome is therefore that maximal binary envelope coverage passes.
 
 Coverage did not imply better action. The maximal envelope was unresolved on
 every scorable case and incurred mean harm 0.25 in each frozen regime.
-Candidate-minus-AML harm was $+0.224799$, $+0.224732$ and $+0.193522$; the
-comparative terminal was therefore
-\idt{PUBLIC_V3_NO_HARM_SUPERIORITY}. The predecessor agreement-to-point rule
+Candidate-minus-AML harm was $+0.224799$, $+0.224732$ and $+0.193522$; the comparative outcome was therefore no harm superiority. The predecessor agreement-to-point rule
 also remained falsified on the wider licensed census: it produced 333 envelope
 failures, all cases in which AML nonselection and unequal normalized labels
 jointly licensed obstruction despite public equivalence. Thus V3 establishes a
@@ -368,8 +365,7 @@ and maintained DeepOnto 0.9.3 at commit
 \idt{74ca8d47f01bad0b8739f19ee2c392bdf6d9c090}.  Under Python 3.10, a
 26-distribution hash lock using Transformers 4.46.3, Tokenizers 0.20.3,
 Accelerate 1.0.1 and Torch 2.5.1 accepts DeepOnto's
-\texttt{evaluation\_strategy} argument.  This converts the V6 API mismatch
-only into \idt{DEPENDENCY_API_CONSTRUCTOR_PASS}; no training, prediction or
+\texttt{evaluation\_strategy} argument.  This resolves the V6 API mismatch only at the level of dependency and constructor compatibility; no training, prediction or
 mapping is inferred.
 
 The next native source stage exposes a different defect.  When configured with
@@ -394,12 +390,8 @@ prediction, repair or scoring was opened or run.
 \subsection{V8 BERTMap table-reader source repair}
 
 V8 prospectively freezes a separately versioned minimal repair against the
-same DeepOnto commit and exact \texttt{mapping.py} SHA-256
-\idt{9cf0dce1c5bd142e4175f628f8f3267f54ed6deac9f31e165a25b4a073eedff0}.
-The patch changes only \texttt{dp["Score"]} to \texttt{dp.Score}; its SHA-256
-is \idt{412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b},
-and the resulting source SHA-256 is
-\idt{d0b3b6cfdee45019783707c4bd623cc76f8325142828cf1e10ebb74ad628d70f}.
+same DeepOnto commit and an exact pinned \texttt{mapping.py} digest.
+The patch changes only \texttt{dp["Score"]} to \texttt{dp.Score}; the patch and the resulting source are each pinned by digest.
 After normalizing only that access, the method abstract syntax tree is
 unchanged.
 
@@ -438,8 +430,7 @@ under Java~17, Guice cglib raises an inaccessible-object exception because
 \texttt{java.base/}\allowbreak\texttt{java.lang} is
 not open to the unnamed module. DeepOnto does not propagate that child failure
 and then raises a secondary missing-file error for the absent repair
-output. The unchanged five-artifact parser therefore returns
-\idt{CANNOT_CHECK_NATIVE_ARTIFACT_CONTRACT_FAILURE}. No retry or post-result
+output. The unchanged five-artifact parser therefore leaves the native artifact contract undetermined, recording a contract failure rather than a result. No retry or post-result
 patch is made.
 
 The exact V9 terminal is
@@ -490,8 +481,7 @@ V13 freezes an anchored typed grammar over the retained rows. It performs no
 training, Java, LogMap, reference opening or scoring. Twelve of twelve
 adversarial malformed-wrapper cases pass; 16/16 source and 16/16 target values
 decode injectively to exact role-specific universe members; and the unchanged
-five-artifact parser exits zero. The decoded artifact SHA-256 is
-\idt{c67ee88d541013f41984b239f9cdeaebdcd81573f2080d8af24c7688207dd0f3},
+five-artifact parser exits zero. The decoded artifact is pinned by digest,
 while the raw V12 repair remains byte-identical. This closes native shape and
 lexical-interface readiness, not mapping truth.
 
