@@ -308,20 +308,17 @@ The accompanying source binds the exact objective, family definitions, basis obs
 
 These are package-local finite checks, not external replication. The all-size values of \(\kappa\) depend on the displayed analytic composition arguments and the bound exact witnesses. No production move-registry completeness follows.
 
-An earlier finite R6M production-realization study rejected its proposed certificate. The declared optimizer values were corroborated, but the study did not establish a complete production move registry; a source-bound follow-up again left production transfer unestablished. These are adverse transfer results, not failures of the formal support-budget comparison. Their exact machine terminals and immutable evidence remain in the accompanying provenance ledger.
+An earlier finite production-realization study of the matched family rejected its proposed certificate. The declared optimizer values were corroborated, but the study did not establish a complete production move registry; a source-bound follow-up again left production transfer unestablished. These are adverse transfer results, not failures of the formal support-budget comparison. Their exact machine terminals and immutable evidence remain in the accompanying provenance ledger.
 
 A separate, prospectively ordered production-transfer attempt used pinned PyZX 0.10.5. It executed 74 of 4,681 ordered two-qubit circuit words before failing closed on the word consisting of three consecutive Hadamard gates on qubit 0. After a semantics-preserving prefix, the callable guard accepted a second boundary-pivot simplification, but that transition changed the dense linear map even up to a nonzero scalar. The scheduled production reduction preserved the map on the same word. This adverse result refutes only the proposed freely reorderable language of twelve macros under their callable guards. It does not refute the scheduled production reduction, establish complete PyZX move coverage, realize a certificate gap, or authorize a complete-domain null. The round is consumed as an indeterminate completeness study and is not retuned or relabelled; its exact machine-readable terminal is retained in the provenance ledger.
 
 ## 10. Limitations
 
-1. \(\beta_{P_{\mathrm{rank}}}\) is exact only for the explicitly defined rank-only proof system.
-2. No lower bound is proved for every local, syndrome-preserving, or unrestricted proof system.
-3. The values for \(F_M\) and \(F_I\) apply only to the stated fixed objective, support statistic, and formal families; the \(F_I\) statistic is joint active-column support, not maximum individual-frame weight.
-4. The product theorem assumes additive joint-column support, additive objective, and no cross-component move or inference rule.
-5. The enumeration exponent concerns a direct block-column support enumerator, not arbitrary algorithms.
-6. Structural support is not gate count, depth, runtime, qubits, error rate, or physical quantum advantage.
-7. The adverse PyZX transfer record shows that callable macro guards omit load-bearing scheduler context; the formal state languages are not established as complete move registries for a production compiler.
-8. Author-side verification is not independent specialist proof review, novelty authority, peer review, or external replication.
+The exact value of \(\beta_{P_{\mathrm{rank}}}\) is relative to the explicitly defined rank-only proof system. We prove no lower bound that applies to every local, syndrome-preserving, or unrestricted proof system. The reported values for \(F_M\) and \(F_I\) are likewise tied to the stated fixed objective, support statistic, and formal families. In particular, the \(F_I\) statistic is joint active-column support rather than maximum individual-frame weight.
+
+The product theorem assumes additive joint-column support, an additive objective, and the absence of cross-component moves or inference rules. Its enumeration exponent therefore describes the direct block-column support enumerator, not arbitrary algorithms. More broadly, structural support is not gate count, depth, runtime, qubit count, error rate, or physical quantum advantage.
+
+The production boundary remains unresolved. The adverse PyZX transfer record shows that callable macro guards omit load-bearing scheduler context, and the formal state languages are not established as complete move registries for a production compiler. The author-side verification reported here also does not constitute independent specialist proof review, novelty authority, peer review, or external replication.
 
 ## 11. Conclusion
 
@@ -329,16 +326,16 @@ Intrinsic optimal support and a proof system's certifiable support budget answer
 
 ## Data and code availability
 
-The submission source contains the deterministic checkers, expected outputs, finite control records used in the manuscript, and the immutable adverse PyZX transfer record summarized above. No external dataset is used. These artifacts corroborate the stated finite case analyses and exact witnesses but do not establish external replication or production move completeness. A public archival identifier has not yet been assigned and must be added before filing.
+The submission source contains the deterministic checkers, expected outputs, finite control records used in the manuscript, and the immutable adverse PyZX transfer record summarized above. No external dataset is used. These artifacts corroborate the stated finite case analyses and exact witnesses but do not establish external replication or production move completeness. The exact source archive is available to editors and referees with the manuscript and will accompany the public manuscript record.
 
 ## Author contributions
 
-Sze Chun Yiu is the sole author. Generative AI tools assisted literature discovery, drafting, language editing, adversarial review, and submission-package preparation. Final author verification and approval remain required before filing.
+Sze Chun Yiu is the sole author and is responsible for the scientific claims and final manuscript. Generative AI tools assisted literature discovery, drafting, language editing, adversarial review, and submission-package preparation.
 
 ## References
 
-1. N. Schillo, A. Sturm, and R. Quay, "TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation," arXiv:2601.05740v4 [quant-ph] (2026), https://arxiv.org/abs/2601.05740v4.
-2. G. Li, A. Wu, Y. Shi, A. Javadi-Abhari, Y. Ding, and Y. Xie, "Paulihedral: A Generalized Block-Wise Compiler Optimization Framework for Quantum Simulation Kernels," in *Proceedings of ASPLOS 2022*, 554-569 (2022), https://doi.org/10.1145/3503222.3507715.
-3. A. Plagne and S. Tringali, "The Davenport Constant of a Box," *Acta Arithmetica* **171**(3), 197-219 (2015), https://doi.org/10.4064/aa171-3-1.
-4. I. Aliev, J. A. De Loera, F. Eisenbrand, T. Oertel, and R. Weismantel, "The Support of Integer Optimal Solutions," *SIAM Journal on Optimization* **28**(3), 2152-2157 (2018), https://doi.org/10.1137/17M1162792.
-5. S. A. Cook and R. A. Reckhow, "The Relative Efficiency of Propositional Proof Systems," *Journal of Symbolic Logic* **44**(1), 36-50 (1979), https://doi.org/10.2307/2273702.
+1. N. Schillo, A. Sturm, and R. Quay, "TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation," [arXiv:2601.05740v4](https://arxiv.org/abs/2601.05740v4) [quant-ph] (2026).
+2. G. Li, A. Wu, Y. Shi, A. Javadi-Abhari, Y. Ding, and Y. Xie, "Paulihedral: A Generalized Block-Wise Compiler Optimization Framework for Quantum Simulation Kernels," in *Proceedings of ASPLOS 2022*, 554–569 (2022), [DOI](https://doi.org/10.1145/3503222.3507715).
+3. A. Plagne and S. Tringali, "The Davenport Constant of a Box," *Acta Arithmetica* **171**(3), 197–219 (2015), [DOI](https://doi.org/10.4064/aa171-3-1).
+4. I. Aliev, J. A. De Loera, F. Eisenbrand, T. Oertel, and R. Weismantel, "The Support of Integer Optimal Solutions," *SIAM Journal on Optimization* **28**(3), 2152–2157 (2018), [DOI](https://doi.org/10.1137/17M1162792).
+5. S. A. Cook and R. A. Reckhow, "The Relative Efficiency of Propositional Proof Systems," *Journal of Symbolic Logic* **44**(1), 36–50 (1979), [DOI](https://doi.org/10.2307/2273702).

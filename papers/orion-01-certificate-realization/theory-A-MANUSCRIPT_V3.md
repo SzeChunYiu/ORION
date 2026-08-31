@@ -243,20 +243,15 @@ The accompanying source includes a deterministic checker derived from the theore
 
 These computations corroborate finite case analyses and transcription. They do not replace the all-size proofs, establish implementation transfer, or constitute external replication.
 
-An earlier finite R6M production-realization study rejected its proposed certificate. The declared optimizer values were corroborated, but the study did not establish a complete production move registry; a source-bound follow-up again left production transfer unestablished. These are adverse transfer results, not failures of the formal support theorem. Their exact machine terminals and immutable evidence remain in the accompanying provenance ledger.
+An earlier finite production-realization study of the matched family rejected its proposed certificate. The declared optimizer values were corroborated, but the study did not establish a complete production move registry; a source-bound follow-up again left production transfer unestablished. These are adverse transfer results, not failures of the formal support theorem. Their exact machine terminals and immutable evidence remain in the accompanying provenance ledger.
 
 A separate, prospectively ordered production-transfer attempt used pinned PyZX 0.10.5. It executed 74 of 4,681 ordered two-qubit circuit words before failing closed on the word consisting of three consecutive Hadamard gates on qubit 0. After a semantics-preserving prefix, the callable guard accepted a second boundary-pivot simplification, but that transition changed the dense linear map even up to a nonzero scalar. The scheduled production reduction preserved the map on the same word. This adverse result refutes only the proposed freely reorderable language of twelve macros under their callable guards. It does not refute the scheduled production reduction, establish complete PyZX move coverage, realize a certificate gap, or authorize a complete-domain null. The round is consumed as an indeterminate completeness study and is not retuned or relabelled; its exact machine-readable terminal is retained in the provenance ledger.
 
 ## 11. Limitations
 
-1. The deletion theorem requires whole-instance soundness, objective dominance, and support monotonicity.
-2. The MultiTag cone uses the one-deletion/one-Restore-argument incidence stated in Section 5.2.
-3. The binary rank identity does not extend to arbitrary finite abelian groups.
-4. Outside \(\mu\geq (b-1)t_R\), the proof is silent; no larger-support necessity follows.
-5. General MultiTag sharpness remains open.
-6. Structural support is not T count, depth, runtime, qubits, error rate, or quantum advantage.
-7. The adverse PyZX transfer record shows that callable macro guards omit load-bearing scheduler context; the formal families have not been shown to reproduce a complete production move language.
-8. Author-side checking is not independent proof certification, novelty authority, peer review, or external replication.
+The normal-form result is conditional on whole-instance soundness, objective dominance, and support monotonicity. Its MultiTag specialization further uses the one-deletion/one-Restore-argument incidence stated in Section 5.2. The binary rank identity is specific to the generated binary signature groups and does not extend to arbitrary finite abelian groups. The proof is also silent outside \(\mu\geq (b-1)t_R\): it implies no larger-support necessity there, and sharpness for general MultiTag instances remains open.
+
+These scope restrictions also limit the result's interpretation. Structural support is not T count, depth, runtime, qubit count, error rate, or quantum advantage. The adverse PyZX transfer record shows that callable macro guards omit load-bearing scheduler context, so the formal families have not been shown to reproduce a complete production move language. Finally, the author-side checks reported here do not constitute independent proof certification, novelty authority, peer review, or external replication.
 
 ## 12. Conclusion
 
@@ -264,18 +259,18 @@ A zero-sum deletion ceiling becomes a compiler normal form only after its semant
 
 ## Data and code availability
 
-The submission source contains the deterministic finite checker, its expected output, the control records used for the exact two-site obstruction, and the immutable adverse PyZX transfer record summarized above. No external dataset is used. The records are provenance aids rather than theorem authority; the displayed proofs and exact obstruction carry the stated all-size and lower-bound claims. A public archival identifier has not yet been assigned and must be added before filing.
+The submission source contains the deterministic finite checker, its expected output, the control records used for the exact two-site obstruction, and the immutable adverse PyZX transfer record summarized above. No external dataset is used. The records are provenance aids rather than theorem authority; the displayed proofs and exact obstruction carry the stated all-size and lower-bound claims. The exact source archive is available to editors and referees with the manuscript and will accompany the public manuscript record.
 
 ## Author contributions
 
-Sze Chun Yiu is the sole author. Generative AI tools assisted literature discovery, drafting, language editing, adversarial review, and submission-package preparation. Final author verification and approval remain required before filing.
+Sze Chun Yiu is the sole author and is responsible for the scientific claims and final manuscript. Generative AI tools assisted literature discovery, drafting, language editing, adversarial review, and submission-package preparation.
 
 ## References
 
-1. N. Schillo, A. Sturm, and R. Quay, "TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation," arXiv:2601.05740v4 [quant-ph] (2026), https://arxiv.org/abs/2601.05740v4.
-2. A. Plagne and S. Tringali, "The Davenport Constant of a Box," *Acta Arithmetica* **171**(3), 197-219 (2015), https://doi.org/10.4064/aa171-3-1.
-3. M. Freeze and W. A. Schmid, "Remarks on a Generalization of the Davenport Constant," *Discrete Mathematics* **310**(23), 3373-3389 (2010), https://doi.org/10.1016/j.disc.2010.07.028.
-4. G. Wang, "The Universal Zero-Sum Invariant and Weighted Zero-Sum for Infinite Abelian Groups," *Communications in Algebra* **53**(4), 1581-1599 (2025), https://doi.org/10.1080/00927872.2024.2418017.
-5. I. Aliev, J. A. De Loera, F. Eisenbrand, T. Oertel, and R. Weismantel, "The Support of Integer Optimal Solutions," *SIAM Journal on Optimization* **28**(3), 2152-2157 (2018), https://doi.org/10.1137/17M1162792.
-6. J. Dehaene and B. De Moor, "Clifford Group, Stabilizer States, and Linear and Quadratic Operations over GF(2)," *Physical Review A* **68**(4), 042318 (2003), https://doi.org/10.1103/PhysRevA.68.042318.
-7. S. Aaronson and D. Gottesman, "Improved Simulation of Stabilizer Circuits," *Physical Review A* **70**(5), 052328 (2004), https://doi.org/10.1103/PhysRevA.70.052328.
+1. N. Schillo, A. Sturm, and R. Quay, "TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation," [arXiv:2601.05740v4](https://arxiv.org/abs/2601.05740v4) [quant-ph] (2026).
+2. A. Plagne and S. Tringali, "The Davenport Constant of a Box," *Acta Arithmetica* **171**(3), 197–219 (2015), [DOI](https://doi.org/10.4064/aa171-3-1).
+3. M. Freeze and W. A. Schmid, "Remarks on a Generalization of the Davenport Constant," *Discrete Mathematics* **310**(23), 3373–3389 (2010), [DOI](https://doi.org/10.1016/j.disc.2010.07.028).
+4. G. Wang, "The Universal Zero-Sum Invariant and Weighted Zero-Sum for Infinite Abelian Groups," *Communications in Algebra* **53**(4), 1581–1599 (2025), [DOI](https://doi.org/10.1080/00927872.2024.2418017).
+5. I. Aliev, J. A. De Loera, F. Eisenbrand, T. Oertel, and R. Weismantel, "The Support of Integer Optimal Solutions," *SIAM Journal on Optimization* **28**(3), 2152–2157 (2018), [DOI](https://doi.org/10.1137/17M1162792).
+6. J. Dehaene and B. De Moor, "Clifford Group, Stabilizer States, and Linear and Quadratic Operations over GF(2)," *Physical Review A* **68**(4), 042318 (2003), [DOI](https://doi.org/10.1103/PhysRevA.68.042318).
+7. S. Aaronson and D. Gottesman, "Improved Simulation of Stabilizer Circuits," *Physical Review A* **70**(5), 052328 (2004), [DOI](https://doi.org/10.1103/PhysRevA.70.052328).

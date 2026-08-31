@@ -1,9 +1,27 @@
-# ORION-01B final journal package
+# ORION-01B Quantum/arXiv handoff package
 
-Primary target: **Quantum**.
+**Title:** Certifiable Support Budgets versus Intrinsic Support in Quantum Compilation
+**Primary target:** Quantum
+**Terminal:** `PACKAGE_COMPLETE_PENDING_FINAL_AUTHOR_CONFIRMATION_AND_ARXIV_POSTING`
 
-Scientific source of authority remains `papers/orion-01-certificate-realization/theory-B-MANUSCRIPT_V3.md` with claim ledger `papers/orion-01-certificate-realization/theory-B-CLAIM_LEDGER_V3.md`. `MANUSCRIPT.md` is a claim-equivalent reader-facing publication surface: it removes project-control front matter, fixes already-recorded independence wording where applicable, verifies/updates citations, and preserves the bounded claims and negative results.
+`MANUSCRIPT.md` is byte-identical to the current canonical V3 science source,
+and `CLAIM_LEDGER.md` is byte-identical to its live bounded claim ledger. The
+named PDF is the exact reader-facing artifact compiled from the named LaTeX
+source. `BUILD_RECEIPT.json`, `PACKAGE_MANIFEST.json`, and `SHA256SUMS` bind the
+source, PDF, archives, and reproducibility components.
 
-Quantum uses single-blind review and takes an arXiv quant-ph reference as the manuscript submission. The repository therefore freezes an arXiv-ready source archive and review PDF; obtaining the external arXiv identifier and completing the journal form remain human filing actions. A cover letter is intentionally omitted because Quantum states that it is not required.
+The `submission/` directory contains the review PDF, editable LaTeX, a
+deterministic arXiv source archive, a journal handoff archive, and package-local
+finite checkers/records. The adverse PyZX Round-1 record is retained verbatim in
+the ancillary tree; its exact `CANNOT_CHECK_MOVE_COMPLETENESS` terminal is not
+promoted into a production-completeness conclusion.
 
-This package does **not** claim acceptance, external specialist validation, external replication, or any authority beyond the bound manuscript and ledger.
+Quantum currently requires an arXiv reference posted or cross-listed to
+`quant-ph`; the repository cannot perform that author/account action. A cover
+letter is intentionally omitted because Quantum does not require one. Final
+author approval and external posting remain the only closure gates represented
+by the terminal above.
+
+This package does not claim journal acceptance, external peer review, external
+replication, production move completeness, unrestricted complexity authority,
+or hardware advantage.
