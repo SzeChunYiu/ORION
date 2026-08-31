@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""FIBRE_DIAMETER_FLOOR_PUBLIC.v1 -- exhaustive counterexample search.
+"""ANON.FIBRE_DIAMETER_FLOOR.v1 -- exhaustive counterexample search.
 
 Searches for a certificate that BEATS the D(z)/2 floor. Finding none over an
 exhaustive family is evidence only if the search can see a violation when one is
@@ -116,8 +116,8 @@ def main() -> int:
         terminal, rc = "T1_FLOOR_HOLDS_EXHAUSTIVELY", 0
 
     print(json.dumps({
-        "schema": "FibreDiameterFloor.PublicResult.v1",
-        "protocol_identity": "FIBRE_DIAMETER_FLOOR_PUBLIC.v1",
+        "schema": "ANON.FibreDiameterFloor.Result.v1",
+        "protocol_identity": "ANON.FIBRE_DIAMETER_FLOOR.v1",
         "authority": "MEASUREMENT_AND_PROOF_ONLY", "scientific_authority_delta": "NONE",
         "enumeration": {"value_grid": VALUE_GRID, "fibre_sizes": FIBRE_SIZES,
                         "certificate_grid_step": CSTEP,

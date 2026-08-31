@@ -1,211 +1,218 @@
 # When a Representation Can Certify: Sharp Fibre-Diameter Limits and Minimal Refinement
 
-**ORION-02 — canonical submission manuscript V3**  
-**Scientific cut:** fibre-diameter floor, refinement-to-certifiability theorem, and the preserved R24 certification failure  
-**Status:** bounded theory/methodology manuscript; no empirical superiority claim
-
 ## Abstract
 
-A representation can be sufficient for making a decision while remaining insufficient for certifying the value attached to that decision. We give an exact finite-fibre characterization of this gap. Let `phi` map instances to a representation, let `F_z` be a representation fibre, let `V` be the target quantity, and let `D(z)` be the range of `V` on that fibre. Any deterministic point certificate that is constant on `F_z` has worst-case error at least `D(z)/2`, and any interval of radius below `D(z)/2` must miss at least one fibre member. The bound is sharp.
+Compressed representations are often reused both to choose actions and to certify the value of those actions, although the two tasks need not require the same information. We characterize this gap exactly for deterministic certificates on finite representation fibres. If a fibre has target diameter $D$, every fibre-constant point certificate has worst-case error at least $D/2$, and the midpoint of the extreme target values attains the bound. A certificate with tolerance $\varepsilon$ therefore exists if and only if $D\leq 2\varepsilon$. When this condition fails, a greedy interval cover of the sorted targets gives the minimum unconstrained refinement. With a restricted separator family, certification is possible exactly when no indistinguishable pair differs by more than $2\varepsilon$; without refinement, the maximum coverage is the mass of fibres that already satisfy this condition. Preserved application studies failed at decision value, useful coverage, or held-out validity, while an analytic joint-profile repair corrected a specification defect without establishing transfer value. They motivate the formal question but do not measure empirical fibre diameters. The contribution is therefore an exact finite representation-level certification and refinement calculus, not a broad empirical-transfer result.
 
-The same quantity gives a constructive converse. A fibre admits an `eps`-valid constant certificate if and only if `D(z) <= 2 eps`; the midpoint of its extreme target values is then valid. For finite fibres, the minimum number of refined parts required for `eps`-valid certification is exactly the count returned by a greedy interval sweep over the sorted target values. Under a restricted separator family, certification is possible if and only if the separators distinguish every pair whose target values differ by more than `2 eps`. Without refinement, achievable coverage is exactly the mass of fibres already satisfying `D(z) <= 2 eps`. These results turn a representation-induced impossibility boundary into an exact refine-or-abstain law.
-
-Exhaustive independent checks found no violations over the registered finite configuration families and include planted counterexamples to show that the checkers can fail. We also retain a prospective empirical failure that motivated the theory: a frozen certificate study reached `44/44` coverage but incurred `20/44` strict held-out violations, and its available selection score was not detectably correlated with realised excess (`r=-0.144`, permutation `p=0.353`, `n=44`). Those data do not establish the fibre diameters of the real corpus; they show why marginal coverage and a weak selector cannot substitute for conditional certifiability. The contribution is therefore a sharp representation-level certification criterion and exact refinement calculus, not a claim of broad empirical transfer.
+**Keywords:** representation sufficiency; deterministic certification; fibre diameter; selective prediction; abstention; algorithm selection
 
 ## 1. Introduction
 
-Many learned and rule-based systems compress a complex object into a representation before making a prediction, selecting an action, or issuing a certificate. The representation may be excellent for one query and inadequate for another. A state summary can identify which action to take while failing to identify how much value that action carries. A classifier can have good marginal performance while a conditional certificate fails on the subset where it is actually used. A coarse state can support a ranking but not a guarantee.
+Learned and rule-based systems routinely compress complex instances before selecting an action. The same compressed state is then often used to issue a bound, confidence statement, or safety certificate. A representation may contain enough information to choose an action while omitting information needed to certify the value attached to that action. Marginal predictive validity does not by itself resolve this problem, because the certificate may be used only on a selected subset or may be constant over instances with different target values.
 
-This paper asks a narrower question than general representation learning: **when can a fixed representation support a uniformly valid certificate, and what is the minimum refinement required when it cannot?** The answer is governed by one object, the target diameter of each representation fibre. If two instances are indistinguishable to the certificate but their target values are far apart, no tuning of the certificate can make that ambiguity disappear. Conversely, once refinement reduces every fibre diameter below the target tolerance, a valid certificate exists by construction.
+Statistical work addresses complementary parts of this difficulty. Conformal prediction provides finite-sample marginal guarantees under exchangeability, while conditional and selection-conditional methods study reliability for local or selected cases [5,8–12]. Selective classification studies the trade-off between coverage and risk when a system may abstain [6,7]. These methods govern sampling, calibration, and selection. A logically prior question remains: does the representation distinguish every pair of instances that must receive different certified values?
 
-This deterministic viewpoint complements statistical work on marginal, conditional, and selection-conditional uncertainty. Conformal prediction supplies distribution-free marginal guarantees under exchangeability, while recent selective-conformal work studies how coverage changes after data-dependent selection. Those methods address sampling validity. Our question is prior to sampling: if a representation maps two target-separated instances to the same observable state, then no fibre-constant certificate can distinguish them, regardless of calibration procedure. We therefore treat conditional coverage methods as donors for the statistical layer and isolate the representation-level obstruction underneath it.
+We answer that question in a finite deterministic setting. Let a representation partition the instance space into fibres, and let a scalar target be attached to each instance. The target diameter of a fibre is the largest target difference hidden by the representation. This single quantity gives both the exact minimax radius of a fibre-constant certificate and the precise tolerance at which certification becomes possible.
 
-The paper makes five claims. First, `D(z)/2` is the exact worst-case radius of any deterministic point certificate accepted on a fibre. Second, `D(z) <= 2 eps` is necessary and sufficient for an `eps`-valid fibre-constant certificate. Third, the minimum unconstrained refinement cost is exactly computable by a greedy interval sweep. Fourth, a restricted separator family can realize certification exactly when it separates every pair with target gap greater than `2 eps`. Fifth, without refinement the maximum certifiable coverage is exactly the probability mass of already-small fibres, giving a refine-or-abstain frontier.
+The same characterization yields a constructive repair calculus. For arbitrary refinement, the fewest certifiable parts are obtained by a greedy cover of sorted target values. When only a declared family of separators is available, the joint separator signature is sufficient exactly when it distinguishes every target-separated pair. If refinement is not allowed, the maximum whole-fibre coverage is the probability mass of fibres whose diameters already satisfy the tolerance.
 
-These claims do **not** rely on the earlier `A_t/B_t` gadget family from the previous manuscript. An adversarial proof review found that those all-`t` formulas require an unstated cross-gadget separability argument under a non-additive global width term. V3 therefore removes that family, its minimax corollaries, the conditional four-index compiler theorem, and the missing single-block convention from the submission spine. They remain historical research records, not premises of the present paper.
+The formal results are accompanied by adverse evidence rather than a successful application claim. Frozen algorithm-selection and classification studies exhibited three distinct failures: certificates that were too loose to act, certificates that acted but violated their risk criterion, and a selection score that did not identify the difficult cases. A later analytic repair corrected the joint learned/fallback policy language but did not turn those null results into unseen-instance value. We retain these outcomes because they delimit what the theorem explains and what remains unmeasured.
 
-## 2. Setting and terminology
+The paper establishes an exact finite-fibre calculus for deterministic scalar certification. It does not establish statistical estimation of fibre diameter, learned separator quality, randomized-certificate guarantees, production benefit, computational hardness, or cross-domain transfer.
 
-Let `X` be a finite instance set and let
+## 2. Formal setting
 
-`phi : X -> Z`
+Let $X$ be a finite instance set, and let
 
-be a representation. For an observed state `z`, define the fibre
+$$
+\phi:X\rightarrow Z
+$$
 
-`F_z = {x in X : phi(x) = z}`.
+be a representation. For every attained state $z\in\phi(X)$, define the non-empty fibre
 
-Let
+$$
+F_z=\{x\in X : \phi(x)=z\}.
+$$
 
-`V : X -> R`
+Let $V:X\rightarrow\mathbb{R}$ be the scalar target to be certified. The target diameter hidden by state $z$ is
 
-be the scalar target to be certified. Its fibre diameter is
+$$
+D_\phi(z)=\max_{x, x'\in F_z}|V(x)-V(x')|.
+$$
 
-`D_phi(z) = max_{x,x' in F_z} |V(x)-V(x')|`.
+A deterministic point certificate based only on the representation is a function $c:Z\rightarrow\mathbb{R}$. If the certificate is issued at state $z$, it returns the same value $c(z)$ for every member of $F_z$. At tolerance $\varepsilon\geq 0$, it is valid on $F_z$ when
 
-A deterministic point certificate based only on `phi` is a function `c : Z -> R`. It is accepted on a fibre when it is issued for every member of that fibre. Because all members share the same representation, the certificate must return the same value for all of them.
+$$
+|c(z)-V(x)|\leq\varepsilon\qquad\text{for every }x\in F_z.
+$$
 
-An interval certificate is likewise a function of `z`; write its centre as `c(z)` and radius as `r(z)`. At a fixed tolerance `eps >= 0`, a point certificate is `eps`-valid on `F_z` when
+An interval certificate has centre $c(z)$ and radius $r(z)$. A refinement $\phi'$ of $\phi$ may split an original fibre but may not merge points from different original fibres. Thus $\phi'(x)=\phi'(x')$ implies $\phi(x)=\phi(x')$.
 
-`|c(z)-V(x)| <= eps`
+For a family $\mathcal{S}$ of available predicates, write $x\sim_{\mathcal{S}}x'$ when every predicate in $\mathcal{S}$ takes the same value on $x$ and $x'$. An $\mathcal{S}$-measurable refinement retains the original state $\phi(x)$ and, within each original fibre, may use only the joint $\mathcal{S}$-signature. It therefore neither merges original fibres nor splits an equivalence class of $\sim_{\mathcal{S}}$ within one fibre.
 
-for every `x in F_z`.
+The results below make no sampling, exchangeability, smoothness, computational, or model-class assumption. They concern the information retained by a fixed finite representation when the target values are treated as given.
 
-A representation `phi'` refines `phi` when equality under `phi'` implies equality under `phi`. Equivalently, every `phi'` fibre is contained in one `phi` fibre.
-
-The theory is deliberately finite and deterministic. It assumes no sampling model, prior, exchangeability, smoothness, learned model class, or computational hardness. Statistical estimation of `D(z)` and learning a useful refinement are separate problems.
-
-## 3. The fibre-diameter floor
+## 3. Sharp certificate limits
 
 ### 3.1 Point certificates
 
-**Theorem 1 (sharp point-certificate floor).** For every fibre `F_z` and every deterministic point certificate `c(z)` accepted on it,
+**Theorem 1 (sharp point-certificate floor).** For every attained fibre $F_z$ and every deterministic point certificate $c(z)$,
 
-`max_{x in F_z} |c(z)-V(x)| >= D_phi(z)/2`.
+$$
+\max_{x\in F_z}|c(z)-V(x)|\geq \frac{D_\phi(z)}{2}.
+$$
 
-**Proof.** Choose two fibre members with target separation `D_phi(z)`. By the triangle inequality,
+Equality is attained by the midpoint certificate
 
-`D_phi(z) <= |V(x)-c(z)| + |c(z)-V(x')|`.
+$$
+c^*(z)=\frac{\min_{x\in F_z}V(x)+\max_{x\in F_z}V(x)}{2}.
+$$
 
-At least one term is therefore at least `D_phi(z)/2`. Conversely, the midpoint
+**Proof.** Choose $x_-, x_+\in F_z$ with $V(x_+)-V(x_-)=D_\phi(z)$. The triangle inequality gives
 
-`c*(z) = (min_{x in F_z} V(x) + max_{x in F_z} V(x))/2`
+$$
+D_\phi(z)\leq |V(x_-)-c(z)|+|c(z)-V(x_+)|.
+$$
 
-has worst-case error exactly `D_phi(z)/2`. The bound is exact. ∎
+At least one term is at least $D_\phi(z)/2$. The midpoint $c^*(z)$ is at distance at most half the range from every target value in the fibre, so it attains the lower bound. $\square$
 
-This is an information statement rather than a complexity statement. Unlimited compute cannot beat the radius while the certificate sees only `z`.
+The floor is informational. Additional computation cannot improve it while the certificate observes only $z$.
 
 ### 3.2 Interval certificates
 
-**Theorem 2 (interval floor).** An interval of radius `r < D_phi(z)/2` cannot contain `V(x)` for every `x in F_z`.
+**Corollary 1 (interval floor).** An interval centred at $c(z)$ and having radius $r<D_\phi(z)/2$ cannot contain $V(x)$ for every $x\in F_z$.
 
-The result follows because any interval covering all target values on the fibre must span a set of diameter `D_phi(z)` and therefore have width at least `D_phi(z)`.
+**Proof.** An interval covering the minimum and maximum target values must have width at least $D_\phi(z)$ and therefore radius at least $D_\phi(z)/2$. $\square$
 
-A probabilistic corollary follows immediately. If a conditional distribution places probability one half on each endpoint of a diameter-attaining pair, then every fibre-constant interval with radius below `D_phi(z)/2` has conditional miscoverage at least one half. This is a worst-case witness, not a statement that every real fibre has such a distribution.
+If a conditional distribution places probability one half on each endpoint of a diameter-attaining pair, every narrower fibre-constant interval has conditional miscoverage at least one half. This is a worst-case witness, not a distributional claim about an observed corpus.
 
-## 4. From impossibility to construction
+## 4. Exact refinement to certifiability
 
-The floor becomes useful when read as an exact design criterion rather than only as a negative result.
+### 4.1 The certifiability threshold
 
-### 4.1 Exact certifiability threshold
+**Theorem 2 (certifiability equivalence).** A deterministic point certificate with error at most $\varepsilon$ on every member of $F_z$ exists if and only if
 
-**Theorem 3 (certifiability equivalence).** An `eps`-valid deterministic point certificate constant on a fibre exists if and only if
+$$
+D_\phi(z)\leq 2\varepsilon.
+$$
 
-`D_phi(z) <= 2 eps`.
+**Proof.** Necessity follows from Theorem 1. If the condition holds, the midpoint certificate has maximum error $D_\phi(z)/2\leq\varepsilon$, proving sufficiency. $\square$
 
-Necessity is Theorem 1. Sufficiency is constructive: the midpoint certificate lies within half the diameter of every fibre member.
-
-Thus a representation is not “approximately certifiable” in an informal sense. At a declared tolerance, each fibre is either already certifiable or must be split.
+At a declared tolerance, an original fibre is therefore either certifiable as it stands or must be refined or rejected.
 
 ### 4.2 Minimum unconstrained refinement
 
-Fix one fibre and sort its target values:
+Fix one fibre and sort its target values, with multiplicity, as $v_1\leq\cdots\leq v_n$. A refined part is certifiable at tolerance $\varepsilon$ exactly when its target diameter is at most $2\varepsilon$.
 
-`v_1 <= v_2 <= ... <= v_n`.
+**Theorem 3 (exact minimum refinement).** The minimum number of certifiable parts is returned by the following greedy sweep. Start a part at the smallest uncovered value $v_i$, include every remaining value no larger than $v_i+2\varepsilon$, and repeat on the uncovered suffix.
 
-A refined part is certifiable at tolerance `eps` exactly when its diameter is at most `2 eps`. The problem is therefore to cover the sorted values with the fewest intervals of length `2 eps`.
+**Proof.** Consider the smallest value that remains uncovered. Any feasible part containing it can contain only values at most $2\varepsilon$ above it. The greedy part contains every remaining value that any feasible part anchored at that minimum could contain. Replacing the corresponding part of an optimal partition by the greedy part leaves a suffix no larger than the suffix left by the optimum, and cannot increase the number of parts needed. Induction on the number of uncovered values proves optimality. $\square$
 
-**Theorem 4 (exact minimum refinement cost).** The minimum number of certifiable parts equals the count returned by the following greedy sweep: start a part at the smallest uncovered value and include every subsequent value no more than `2 eps` above that part's minimum; then repeat on the remaining suffix.
+Let $k^*(z,\varepsilon)$ denote this count. Then $k^*(z,\varepsilon)-1$ is the minimum number of additional states required within the fibre when arbitrary partitions are allowed. The greedy interval-cover primitive is classical; the result here identifies it as the exact refinement cost for the certificate problem.
 
-**Proof sketch.** An optimal part containing the smallest remaining value cannot extend beyond that value plus `2 eps`. The greedy first part covers every point any feasible first part could cover. Replacing an optimal first part by the greedy one cannot increase the number of parts. Induction on the remaining suffix proves optimality. ∎
+### 4.3 Restricted separator families
 
-Write this minimum as `k*(z,eps)`. The number `k*-1` is the exact unconstrained number of additional representation states required to make that fibre certifiable.
+An arbitrary partition may use distinctions that a real system cannot compute. The available separator family therefore changes the realizable frontier.
 
-### 4.3 What available separators can realize
+**Theorem 4 (separator realizability).** An $\mathcal{S}$-measurable refinement supporting an $\varepsilon$-valid deterministic certificate exists if and only if
 
-An abstract partition may not be obtainable from the information a system can actually compute. Let `S` be a family of admissible predicates or features, and require the refined representation to be measurable with respect to `S`.
+$$
+x\sim_{\mathcal{S}}x'\quad\Longrightarrow\quad |V(x)-V(x')|\leq 2\varepsilon
+$$
 
-Two instances are `S`-indistinguishable when every predicate in `S` takes the same value on them.
+for every pair $x, x'$ in the original fibre.
 
-**Theorem 5 (separator realizability).** An `S`-measurable `eps`-valid refinement exists if and only if every `S`-indistinguishable pair satisfies
+**Proof.** If an indistinguishable pair differs by more than $2\varepsilon$, every $\mathcal{S}$-measurable refinement places it in one refined fibre, which is uncertifiable by Theorem 2. Conversely, if every indistinguishable pair satisfies the bound, each joint-signature class within the original fibre has target diameter at most $2\varepsilon$. The representation given by the pair of the original state and the joint signature, together with midpoint certificates on its fibres, is therefore valid. $\square$
 
-`|V(x)-V(x')| <= 2 eps`.
-
-**Proof.** If an indistinguishable pair exceeds `2 eps`, every `S`-measurable representation places it in one atom, which is uncertifiable by Theorem 3. Conversely, if no such pair exists, each atom of the joint `S`-signature has target diameter at most `2 eps`; the midpoint certificate is valid on every atom. ∎
-
-This theorem separates two costs that are easy to conflate. `k*` is the information-theoretic minimum over arbitrary refinements. The realizable cost depends on the separator vocabulary. A weak vocabulary may require more states than `k*`, and if it merges one target-separated pair it cannot certify the fibre at any number of downstream tuning steps.
+This theorem separates information-theoretic and implementable refinement. The unconstrained count $k^*$ may be unattainable under a weak separator vocabulary, and downstream calibration cannot repair a separator family that merges a target-separated pair.
 
 ## 5. The refine-or-abstain frontier
 
-Suppose fibres have probability mass `P(phi=z)` under a target population. Without refinement, a fibre can be certified at tolerance `eps` exactly when `D_phi(z) <= 2 eps`.
+Suppose the original fibres have masses $P(\phi(X)=z)$ under a declared target population. A certificate that observes only $z$ must accept or reject the whole original fibre.
 
-**Theorem 6 (coverage identity).** The maximum coverage achievable by a certificate that either accepts an entire original fibre or abstains on it is
+**Theorem 5 (whole-fibre coverage identity).** Without refinement, the maximum coverage of an $\varepsilon$-valid deterministic certificate is
 
-`sum_z P(phi=z) * 1{D_phi(z) <= 2 eps}`.
+$$
+\sum_{z\in\phi(X)}P(\phi(X)=z)\,\mathbf{1}\{D_\phi(z)\leq 2\varepsilon\}.
+$$
 
-Refining an uncertifiable fibre purchases exactly that fibre's probability mass at the representation cost required to split it into certifiable parts. Under unconstrained refinement that cost is `k*(z,eps)-1`; under a separator family, it is the corresponding measurable refinement cost.
+**Proof.** Theorem 2 makes every small-diameter fibre certifiable and every large-diameter fibre uncertifiable. Accepting all and only the certifiable fibres attains the stated mass, and no other whole-fibre acceptance rule can add mass without accepting an invalid fibre. $\square$
 
-This gives an exact frontier rather than a generic recommendation to “use more features.” For each fibre, the relevant questions are: how large is the target diameter, which target-separated pairs the available information can distinguish, and whether the purchased coverage is worth the required refinement.
+Refining an uncertifiable fibre can purchase its probability mass at a representation cost. Under arbitrary refinement, that cost is $k^*(z,\varepsilon)-1$ additional states. Under a separator restriction, it is the cost of a measurable partition whose signature classes satisfy Theorem 4. This is an exact accounting identity, not a claim that target diameters, separator costs, or population masses are easy to learn.
 
-## 6. Independent verification
+## 6. Finite model checks
 
-The mathematical statements are proved above. Separate exhaustive checkers were used as hostile finite-model verification rather than as theorem authority.
+The proofs carry the general authority. Separate exhaustive programs were used only to test transcription and implementation on finite instances.
 
-For the fibre-diameter floor, the registered checker enumerated 784 finite configurations. It found zero point certificates beating `D/2`, zero intervals of radius below `D/2` covering both diameter endpoints, and zero balanced two-point examples with miscoverage below one half. Its negative controls give the certificate access to the member identity and require the checker to detect that the floor can then be beaten; planted violations fired rather than passing vacuously.
+The first program enumerated 784 configurations. It found no point certificate beating $D/2$, no interval of radius below $D/2$ covering both endpoints, and no balanced two-point witness with miscoverage below one half. A negative control gave the certificate the hidden member identity and confirmed that the checker then detected a violation of the fibre-constant floor.
 
-For the refinement theorem, the registered checker covered 4,704 main configurations plus nested separator enumerations. It compared the greedy part count against an exhaustive enumeration of set partitions on an independent code path. The registered claims R1-R5 had zero violations. Planted-violation controls fired for the sufficiency, necessity, separator, and coverage predicates, while the no-alarm control stayed silent.
+The refinement program examined 4,704 main configurations, together with nested separator enumerations. It compared the greedy count with an exhaustive enumeration of set partitions on a separate code path. All registered sufficiency, necessity, separator, and coverage predicates agreed, and planted violations fired. These enumerations do not convert finite checks into proof or external replication.
 
-These finite enumerations test implementation and transcription. General authority comes from the proofs, not from the absence of a small counterexample.
+## 7. Preserved adverse and repair boundaries
 
-## 7. A preserved adverse empirical boundary
+The application records below use different corpora and loss scales. They are not pooled, and none directly measures $D_\phi(z)$. Their role is to show the practical failure modes that a representation-level certificate must distinguish.
 
-The theory was motivated by a sequence of failed certificate constructions, and those failures remain part of the scientific record rather than being overwritten by the later theorem.
+| Study object | Preserved observation | Supported interpretation |
+|---|---|---|
+| Paired learned/fallback routing on three public algorithm-selection scenarios | None of 99 frozen development candidates was feasible, and the selected certificate changed no route decision. | Outcome-exposed corroborating null; an earlier positive interpretation remains retracted. |
+| Exact joint learned/fallback profile repair | A diagonal pairing shortcut changed one exact randomized minimax value from 35 to 70; identical marginal profile sets admitted joint values 0 and 50 under different compatibility relations. | The legal joint profile and acquisition timing are required certificate inputs; this analytic repair establishes no unseen-instance value. |
+| Initial certified-neighbourhood envelope | The certificate was invalid on both registered splits. On the official split, full-space and reduced-space coverage were 0.210 and 0.331, with violation rates 0.169 and 0.182; family-disjoint coverage was zero. | Limited coverage did not carry valid action authority. |
+| Corrected split-conformal neighbourhood envelope | The marginal violation criterion was met on both splits only with zero held-out coverage and no improvement over the single-best fallback. | Validity without coverage or value is an operational null, not a recovered application claim. |
+| Held-out density-backoff study | Coverage was 32/44, below the frozen 0.95 threshold. A lexical control reached 39/44, but the paired difference was not established (exact McNemar $p=0.092$; bootstrap interval included zero). | The registered geometry was not validated, and the control comparison is descriptive rather than decisive. |
+| Held-out arm-conditional study | Coverage reached 44/44, but the geometry primary had 20/44 strict violations and the matched lexical control had 14/44; both exceeded the frozen 0.10 maximum. The serialized paired flags give $(\text{both},\text{geometry only},\text{control only},\text{neither})=(14,6,0,24)$ and exact two-sided McNemar $p=0.03125$. | Both certificates are invalid. Geometry has six additional strict violations and no fewer on this frozen endpoint; this adverse correction does not establish broad lexical superiority. |
 
-The first counted revival attempt, R23, asked whether a Hamming-radius backoff could restore certified coverage on 44 held-out PMLB decisions. Against a corrected exact-cell parent at `0/44 = 0.0000`, the backoff reached `32/44 = 0.7273`. That improved coverage substantially but missed the frozen `0.95` gate. The outcome-independent lexical negative control, which ignores the geometry entirely, reached `39/44 = 0.8864` — a higher raw count than the registered Hamming geometry. That gap is not statistically established. The two arms are evaluated on the same 44 decisions under the same fold assignment, so the comparison is paired: of the 13 datasets on which the arms disagree, the control certifies 10 and the geometry 3, giving an exact McNemar two-sided `p = 0.0923` and a 20,000-replicate paired bootstrap interval on the difference of `[-0.3182, 0.0000]`, which does not exclude zero (`rounds/r23-density-backoff-revival/R23_CONTROL_PAIRED_TEST_V1.json`, recomputed from the per-dataset records by `verify_r23_control_paired_test.py`). The proposed geometry was therefore not validated by this round, but the reason is that it missed the frozen `0.95` gate at `0.7273`, not that the control outperformed it: the data do not support the stronger claim that a geometry-free baseline beats the geometry. Within the same round, the primary learned ordering minus the matched static adaptive arm had mean excess difference `-0.001218244987` with bootstrap 95% interval `[-0.011716227308, 0.008821064426]`, while acquiring more groups on average (`1.113636` versus `0.840909`); it did not establish learned-ordering value, and it carried 24 strict realized-bound violations among 42 certified commits. The R23 terminal is `C_R23_PMLB_BACKOFF_COVERAGE_IMPROVED_BELOW_GATE`.
+The paired-route null is preserved exactly because its later analytic repair addresses a specification defect rather than the failed application endpoint. Correct joint profiles prevent an invalid compression of learned and fallback actions, but they do not supply conditional validity, family-shift validity, or production value.
 
-The second counted attempt, R24, evaluated the same 44 held-out decisions. Its arm-conditional construction raised coverage from R23's `32/44` to `44/44`, meeting the registered `0.95` gate — and validity still failed: strict held-out violations were `20/44 = 0.455`, against a registered maximum of `0.10`. A matched no-geometry lexical control also reached `44/44` coverage, with fewer violations than the geometric arm (14 versus 20), so the registered geometry again supplied no measured advantage on that corpus. The R24 terminal remains `C_R24_ARM_CONDITIONAL_CERTIFICATE_INVALID`.
+The neighbourhood sequence shows the opposite sides of the validity-utility trade-off. The initial envelope acted on some cases but violated its registered criterion. The corrected conformal envelope satisfied a marginal criterion only by abstaining everywhere. A later full-coverage construction acted on every held-out case but failed conditional validity. These are distinct scientific outcomes, not stages of a successful certificate.
 
-Across both counted attempts the same negative control outperformed the registered geometry. That repetition, rather than either round alone, is what the theory section treats as the empirical boundary worth explaining.
-
-A subsequent diagnostic on the same committed records showed that the registered target was arithmetically infeasible at full coverage: `11/44 = 0.25` held-out excesses exceeded `tau=0.02`, whereas the gate required at most `0.10` violations with a bound no larger than `tau`. A split-conformal bound valid at `alpha=0.10` on all 44 points was `0.061381`, about `3.07 tau`.
-
-An oracle abstention analysis showed that a useful interior point existed: removing the 25% highest realised-excess cases left 33 cases with zero violations and a conformal bound `0.016837`, below `tau`. This oracle is not an implementable method because realised excess is unknown at decision time.
-
-The available model score did not provide a substitute. Its Pearson correlation with realised excess was `-0.1442` (`p=0.3528` under 20,000 permutations; Spearman `rho=-0.1921`, `n=44`). Abstaining on that score made the retained violation rate worse. A noise-degraded oracle simulation suggested that correlations near `0.85` would be needed on that one empirical distribution, but the value is a design target for a successor, not a general constant.
-
-These observations are **not** used to claim that R24's real fibres have a measured diameter above `2 eps`; the study did not measure `D(z)` directly. They establish a narrower point: the empirical certificate was invalid, full coverage at the registered gate was impossible on the realised excess distribution, and the available selector did not identify the cases on which abstention would help. The theory states what must be measured or refined next.
+The arm-conditional study also retained a selector diagnostic. The available score had Pearson correlation $r=-0.144$ with realised excess under 20,000 permutations ($p=0.353$, $n=44$). This result does not prove zero association; it shows that a useful association was not established on the frozen sample. The adverse application records therefore motivate prospective measurement of fibre diameter and selector quality, but they do not verify the finite-fibre theorem on those corpora.
 
 ## 8. Relation to prior work
 
-The general mathematical ingredients are donor-owned. Sufficient-statistic and comparison-of-experiments theory establish that information is valuable relative to a decision problem rather than in the abstract. Robust decision theory likewise studies performance when observations leave sets of compatible states. Interval covering on a line and the greedy minimum-cover argument are classical algorithmic facts. We make no novelty claim for those components.
+The decision value of information is classical. Blackwell comparison orders experiments by their usefulness across decision problems [1], and the algorithm-selection formulation makes the instance-to-algorithm decision problem explicit [2]. The present result does not claim a new general information order. It fixes one representation and one scalar certificate target, then computes the exact ambiguity that this representation leaves.
 
-Conformal prediction provides finite-sample marginal coverage under exchangeability. Recent work on selection-conditional conformal inference makes the selection event part of the validity target; Jin and Ren (2024) give exact selection-conditional procedures for broad classes of selection rules, while Sale and Ramdas (2025) identify failures in online selective calibration and give exchangeability-preserving alternatives. Current conditional-coverage work continues to study how local reliability can be assessed and compared. Those methods operate at the statistical calibration layer.
+Selective classification formalizes coverage-risk trade-offs when a predictor may reject cases [6,7]. Theorem 5 is narrower: it gives the exact deterministic whole-fibre coverage when acceptance cannot distinguish members of one representation state. It does not learn a rejection function or provide a population risk bound.
 
-The present paper isolates a complementary deterministic layer: **before asking whether calibration is statistically valid, ask whether the representation identifies the target finely enough for any fibre-constant certificate at the requested tolerance.** Its residual contribution is the exact joint calculus linking fibre diameter, deterministic certificate radius, minimal partition refinement, separator realizability, and abstention coverage, together with a preserved empirical failure that motivates the distinction.
+Conformal prediction supplies distribution-free marginal coverage under exchangeability [5,8]. Exact conditional validity cannot generally be obtained distribution-free without restrictions [9]. Recent work develops selection-conditional procedures [10,11] and local or structured conditional-coverage assessment [12,13]. Those papers address calibration, selection, and conditional reliability. The finite-fibre floor instead asks whether a fixed observable state identifies the target at the requested tolerance before any calibration method is chosen.
 
-## 9. Limitations
+The greedy cover of sorted values and the midpoint of an interval are standard ingredients. The residual contribution is their joint use in a fail-closed certificate object: exact radius, tolerance equivalence, minimal refinement, separator realizability, and whole-fibre abstention all follow from the same target diameter. The adverse records make clear that this deterministic calculus is not a statistical or empirical transfer guarantee.
 
-1. The core theorems concern finite fibres and a scalar target. Infinite spaces require topological or measurable extensions that are not supplied here.
-2. The point-certificate results are deterministic. Randomized certificates require an explicit loss and coverage convention.
-3. The theorem assumes the target values on a fibre when constructing the midpoint and computing minimal refinement. Learning or estimating those values without leakage is a separate statistical problem.
-4. Separator realizability says when a declared feature family is sufficient. It does not learn the family or price feature acquisition.
-5. The R24 corpus does not directly measure `D(z)` on accepted fibres. It is an adverse application record, not empirical confirmation of the diameter law.
-6. The selector-correlation threshold near `0.85` comes from one 44-case realised distribution and is not a universal requirement.
-7. No cross-domain transfer, production benefit, physical quantum advantage, computational-hardness result, or broad empirical superiority is claimed.
-8. Earlier V2 compiler theorems depending on unstated dominance, single-block, padding, or cross-gadget assumptions are not part of the V3 submission claim. Their historical records are retained for audit.
+## 9. Discussion
 
-## 10. Discussion and conclusion
+Representations are sufficient only relative to a question. A state can support action selection while remaining inadequate for a value certificate. The target diameter makes this mismatch explicit. If $D_\phi(z)>2\varepsilon$, no deterministic certificate observing only $z$ can attain error $\varepsilon$ on the whole fibre. If $D_\phi(z)\leq2\varepsilon$, the midpoint certificate attains it immediately.
 
-A representation is not simply sufficient or insufficient. Sufficiency is relative to the question and to the tolerance at which an answer must be certified. The target diameter of a representation fibre makes that statement exact. If `D(z) > 2 eps`, no deterministic certificate that sees only `z` can meet error `eps`; if `D(z) <= 2 eps`, the midpoint certificate meets it immediately.
+This equivalence distinguishes three repair routes. A calibration problem calls for a statistical repair; a weak selector calls for better information about which cases should be accepted; and a large fibre diameter requires refinement of the representation itself. Treating these failures as interchangeable encourages post-outcome retuning of a certificate whose observable state may never have contained the required information.
 
-That equivalence turns an impossibility result into a design calculus. Minimal unconstrained refinement is an exact interval-cover problem. Realizable refinement is controlled by separator power. Abstention covers precisely the fibres that are already narrow enough. The resulting frontier separates three failure modes that are otherwise easy to mix: a certificate may be badly calibrated, the selector may fail to identify difficult cases, or the representation may merge target-separated instances so that no calibration can succeed without refinement.
+The adverse studies illustrate all three boundaries. One certificate was too conservative to change any route, another obtained nominal marginal validity only through universal abstention, and another attained full coverage while violating its own held-out criterion. The correct response is not to reinterpret these outcomes as near successes. They delimit successor questions about learning diameters, separators, or selectors under disjoint evaluation.
 
-The preserved R24 result illustrates why the distinction matters. Coverage reached every held-out case while conditional validity failed, and the available selector carried no detected signal about realised excess. The appropriate response is not to relax the gate after observing that failure. It is to measure the information problem prospectively: estimate fibre diameter, test separator sufficiency, or learn a selector under disjoint custody and then validate the retained set.
+The bounded conclusion is that deterministic certifiability is governed exactly by within-representation target variation, and that the minimum abstract repair can be characterized. Whether practical learned representations approach this frontier remains an empirical question outside the present claim.
 
-The bounded conclusion is therefore simple: **certifiability is governed by within-representation target variation, and the cost of repairing an insufficient representation can be characterized exactly.** The external multi-domain question—whether practical learned representations can approach that information-theoretic frontier—remains successor science rather than a condition for submitting the present theory paper.
+## 10. Limitations
 
-## Selected references
+The theorems concern finite fibres and a scalar target. Infinite spaces and vector-valued certificates require additional topological, measurable, or geometric assumptions. The certificates are deterministic, so randomized procedures require a separately declared loss and coverage convention. The constructions also use the target values within a fibre; estimating those values without leakage is a distinct statistical problem.
 
-- D. Blackwell, *Equivalent Comparisons of Experiments*, Annals of Mathematical Statistics 24, 265–272 (1953).
-- V. Vovk, A. Gammerman and G. Shafer, *Algorithmic Learning in a Random World*, Springer (2005).
-- Y. Jin and Z. Ren, *Confidence on the Focal: Conformal Prediction with Selection-Conditional Coverage*, arXiv:2403.03868 (2024).
-- Y. Sale and A. Ramdas, *Online Selective Conformal Prediction: Errors and Solutions*, arXiv:2503.16809 (2025).
-- Z. Zhou, X. Zhang, C. Tao and Y. Yang, *Conformal Prediction Assessment: A Framework for Conditional Coverage Evaluation and Selection*, arXiv:2603.27189 (2026).
+The repair results carry further operational boundaries. Separator realizability evaluates a declared feature family but neither learns that family nor prices feature acquisition. The coverage identity assumes known target-population fibre masses and whole-fibre acceptance. Moreover, the preserved studies do not measure target diameters on their empirical fibres and therefore cannot confirm the theorem's mechanism on those corpora. We make no broad transfer, production-advantage, computational-hardness, or comparative-superiority claim.
 
-## Publication decision record
+## 11. Data and code availability
 
-**Canonical submission source:** this file, `MANUSCRIPT_V3.md`.  
-**Supersedes for submission:** `MANUSCRIPT_V2.md`, which remains historical evidence and must not be used as the submission manuscript.  
-**Primary target posture:** Transactions on Machine Learning Research (TMLR), theory/methodology paper.  
-**Fallback posture:** Machine Learning, theory/methodology article.  
-**Scientific terminal:** `BOUNDED_THEORY_READY__EXTERNAL_MULTI_DOMAIN_DISCRIMINATOR_OPTIONAL_SUCCESSOR`.  
-**Submission authority:** not granted by this manuscript. Current source binding, independent reviewer pass, target-format build/PDF, archive/licence, and human filing metadata remain package tasks.
+During double-blind review, an anonymous supplementary archive provides the standard-library theorem checkers, frozen expected outputs, anonymized scientific projections of the exact result objects underlying the adverse summaries, and the paired-comparison and selector-diagnostic scripts. The archive includes a machine-readable manifest with SHA-256 digests and distinguishes checks on enclosed results from full upstream-data reruns. The third-party benchmark data originate from the public Algorithm Selection Benchmark Library (ASlib) and Penn Machine Learning Benchmarks (PMLB) resources [3,4] and remain subject to their original licences. Full provenance-bearing result objects and a permanent archival identifier will accompany the non-anonymous record.
+
+## 12. Generative AI disclosure
+
+A generative language model assisted with manuscript organization, language revision, adversarial review, and package preparation. The author remains responsible for the scientific claims, citations, code, and final submission.
+
+## References
+
+1. D. Blackwell. Equivalent comparisons of experiments. *The Annals of Mathematical Statistics* **24**, 265–272 (1953). doi:10.1214/aoms/1177729032
+2. J. R. Rice. The algorithm selection problem. *Advances in Computers* **15**, 65–118 (1976). doi:10.1016/S0065-2458(08)60520-3
+3. B. Bischl et al. ASlib: A benchmark library for algorithm selection. *Artificial Intelligence* **237**, 41–58 (2016). doi:10.1016/j.artint.2016.04.003
+4. R. S. Olson, W. La Cava, P. Orzechowski, R. J. Urbanowicz and J. H. Moore. PMLB: a large benchmark suite for machine learning evaluation and comparison. *BioData Mining* **10**, 36 (2017). doi:10.1186/s13040-017-0154-4
+5. V. Vovk, A. Gammerman and G. Shafer. *Algorithmic Learning in a Random World*. Springer (2005).
+6. R. El-Yaniv and Y. Wiener. On the foundations of noise-free selective classification. *Journal of Machine Learning Research* **11**, 1605–1641 (2010).
+7. Y. Geifman and R. El-Yaniv. Selective classification for deep neural networks. *Advances in Neural Information Processing Systems* **30** (2017). arXiv:1705.08500.
+8. A. N. Angelopoulos and S. Bates. Conformal prediction: a gentle introduction. *Foundations and Trends in Machine Learning* **16**, 494–591 (2023). doi:10.1561/2200000101
+9. R. F. Barber, E. J. Candes, A. Ramdas and R. J. Tibshirani. The limits of distribution-free conditional predictive inference. *Information and Inference* **10**, 455–482 (2021). doi:10.1093/imaiai/iaaa017
+10. Y. Jin and Z. Ren. Confidence on the focal: conformal prediction with selection-conditional coverage. *Journal of the Royal Statistical Society Series B* **87**, 1239–1259 (2025). doi:10.1093/jrsssb/qkaf016
+11. Y. Sale and A. Ramdas. Online selective conformal prediction: errors and solutions. arXiv:2503.16809 (2025).
+12. Z. Zhou, X. Zhang, C. Tao and Y. Yang. Conformal prediction assessment: a framework for conditional coverage evaluation and selection. arXiv:2603.27189 (2026).
+13. Y. Min, L. Peng and C. Zou. A unified theory of conditional coverage in conformal prediction with applications. arXiv:2605.11602 (2026).
