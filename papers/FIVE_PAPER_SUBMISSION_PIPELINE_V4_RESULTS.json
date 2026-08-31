@@ -1,0 +1,140 @@
+{
+  "all_checks": true,
+  "checks": {
+    "all_pdf_integrity_checks_pass": true,
+    "all_pdf_page_counts_plausible": true,
+    "all_source_archives_valid": true,
+    "all_submission_files_present": true,
+    "closure_frozen_in_five_controls": true,
+    "correct_freeze_schmid_doi_present_twice": true,
+    "data_code_availability_in_all_five": true,
+    "five_manuscripts_present": true,
+    "generated_tex_surface_clean": true,
+    "incorrect_freeze_schmid_doi_absent": true,
+    "inherited_r3_scientific_gates_pass": true,
+    "keywords_in_all_five": true,
+    "paper_d_artifact_archive_present": true,
+    "paper_d_nine_tests_pass": true,
+    "paper_d_structural_semantic_contract_documented": true,
+    "reproducible_build_script_executable": true,
+    "stale_tare_title_absent": true,
+    "submission_manuscript_surface_clean": true,
+    "submission_package_checksums_match": true,
+    "v4_control_and_reference_reports_present": true
+  },
+  "details": {
+    "archive_integrity": {
+      "A": true,
+      "B": true,
+      "C": true,
+      "D": true,
+      "N": true
+    },
+    "checksum_summary": [
+      "papers/theory-A-multitag-constraint-rank/submission/main.pdf: OK",
+      "papers/theory-A-multitag-constraint-rank/submission/source.zip: OK",
+      "papers/theory-B-certificate-complexity/submission/main.pdf: OK",
+      "papers/theory-B-certificate-complexity/submission/source.zip: OK",
+      "papers/theory-C-low-order-information/submission/main.pdf: OK",
+      "papers/theory-C-low-order-information/submission/source.zip: OK",
+      "papers/theory-D-falsification-authority/submission/main.pdf: OK",
+      "papers/theory-D-falsification-authority/submission/source.zip: OK",
+      "papers/theory-D-falsification-authority/submission/artifact.zip: OK",
+      "papers/nonquantum-c5cubed-davenport/submission/main.pdf: OK",
+      "papers/nonquantum-c5cubed-davenport/submission/source.zip: OK"
+    ],
+    "package_inventory": {
+      "A": [
+        "README.md",
+        "cover_letter.md",
+        "main.pdf",
+        "main.tex",
+        "source.zip",
+        "submission_checklist.md"
+      ],
+      "B": [
+        "README.md",
+        "cover_letter.md",
+        "main.pdf",
+        "main.tex",
+        "source.zip",
+        "submission_checklist.md"
+      ],
+      "C": [
+        "README.md",
+        "cover_letter.md",
+        "main.pdf",
+        "main.tex",
+        "source.zip",
+        "submission_checklist.md"
+      ],
+      "D": [
+        "README.md",
+        "artifact.zip",
+        "cover_letter.md",
+        "main.aux",
+        "main.fdb_latexmk",
+        "main.pdf",
+        "main.tex",
+        "source.zip",
+        "submission_checklist.md"
+      ],
+      "N": [
+        "README.md",
+        "cover_letter.md",
+        "main.pdf",
+        "main.tex",
+        "source.zip",
+        "submission_checklist.md"
+      ]
+    },
+    "paper_d_test_summary": [
+      "----------------------------------------------------------------------",
+      "Ran 9 tests in 0.020s",
+      "",
+      "OK"
+    ],
+    "pdf_integrity": {
+      "A": {
+        "author_placeholder": true,
+        "eof": true,
+        "pdfinfo": true,
+        "pdftotext": true
+      },
+      "B": {
+        "author_placeholder": true,
+        "eof": true,
+        "pdfinfo": true,
+        "pdftotext": true
+      },
+      "C": {
+        "author_placeholder": true,
+        "eof": true,
+        "pdfinfo": true,
+        "pdftotext": true
+      },
+      "D": {
+        "author_placeholder": true,
+        "eof": true,
+        "pdfinfo": true,
+        "pdftotext": true
+      },
+      "N": {
+        "author_placeholder": true,
+        "eof": true,
+        "pdfinfo": true,
+        "pdftotext": true
+      }
+    },
+    "pdf_pages": {
+      "A": 6,
+      "B": 5,
+      "C": 6,
+      "D": 6,
+      "N": 7
+    },
+    "surface_hits": {}
+  },
+  "schema": "orion.five-paper-submission-packages-v4.v1",
+  "terminal_state": "TECHNICALLY_PACKAGED_AUTHOR_SIGNOFF_REQUIRED"
+}
