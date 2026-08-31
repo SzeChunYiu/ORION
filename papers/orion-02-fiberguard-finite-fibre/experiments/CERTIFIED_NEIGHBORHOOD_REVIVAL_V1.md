@@ -1,52 +1,101 @@
-# ORION-02 C-NBR2 — certified-neighborhood revival disposition
+# ORION-02 C-NBR2 — certified-neighborhood revival authority correction
 
-> Revival pass on the V1 `CERTIFICATE_INVALID` verdict (commit `87e7860f`, PR #1486),
-> executed under the frozen protocol `CERTIFIED_NEIGHBORHOOD_CONFORMAL_PROTOCOL_V1.md`
-> (SHA-256 `79309ec0…d82be932`, commit `31ee8705`) by
-> `certified_neighborhood_conformal.py` (SHA-256 `f2b0e572…`). Machine-readable source
-> of truth: `results/CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V1.json`.
+> **Authority status: `QUARANTINED_IMPLEMENTATION_DEVIATION`.**
+>
+> PR #1493 was merged as main commit `9d270935dfbbf0c2881929d93793119ed4726660`, but the merged executor does **not** implement the frozen C-NBR2 protocol. The merge does not promote the reported `VALID_WITHOUT_COVERAGE_OR_VALUE` terminal to theorem, experiment, application, or manuscript authority.
+>
+> Preserve the merged result JSONs as immutable receipts of the defective execution. Do not overwrite them and do not infer a corrected result from the exposed numbers.
 
-## Parent failure (one-stage attribution)
+## Blocking protocol/executor mismatch
 
-V1 failed at the **certification-constant stage**: the pairwise-slope Lipschitz
-constant `L` (PAR10 per feature unit) made the certified radius
-`eps / L` far smaller than any held-out nearest-anchor distance, so no certificate
-ever fired — coverage 0.0000, CNF systems degenerate to SBS.
+The frozen protocol `CERTIFIED_NEIGHBORHOOD_CONFORMAL_PROTOCOL_V1.md` defines
+`d1(x)` as the Euclidean distance from `x` to the **single nearest DEV-TRAIN
+anchor**, and then sets
 
-## Lever applied (this revival)
+`sigma(x) = CNBR2_SIGMA_OFFSET + d1(x)`.
 
-Replace the distribution-free pairwise-slope `L` with a **split-conformal calibrated
-constant** `q_hat` (order statistic over calibration residuals, fail-closed to
-infinity), pooled and PCA10 and Mondrian-3 variants. This is the standard tighter
-data-driven alternative and needs no new theorem authority.
+The merged executor `certified_neighborhood_conformal.py`, however, computes
 
-Outcome: `q_hat` = **3348.0 / 3375.2 PAR10 per unit** (official-fold / family-disjoint)
-— **21–25% tighter than V1's pairwise-slope `L`**, self-test GREEN, protocol hash bound.
+```python
+d1 = distances[:, 0]
+```
 
-## Re-test result — still unaffordable (the boundary result)
+which is the distance to DEV-TRAIN row 0, not the rowwise nearest-anchor
+distance. `neighbour_rows` is sorted correctly, but its nearest index is not
+used to obtain `d1`.
 
-- Certified radius at the protocol's `eps = 5000`: `≤ 5000/3348 ≈ 1.5` units.
-- Held-out nearest-anchor distances: **median 14.1 / 16.8 units** — a ~10× gap.
-- Certified coverage **0.0000** on both splits, all three relations, and the
-  exact-equality control (5× = 0.0000). CNF_POOLED / CNF_POOLED_PCA10 / CNF_MONDRIAN3
-  all degenerate to SBS exactly (`SBS − CNF_POOLED: 0.00 [0.0, 0.0]`).
-- Overall verdict: **`VALID_WITHOUT_COVERAGE_OR_VALUE`**,
-  disposition `EXECUTED__FROZEN_PROTOCOL_APPLIED`.
+This value is scientifically load-bearing: it enters `sigma`, split-conformal
+nonconformity scores, pooled and Mondrian quantiles/strata, held-out bounds,
+certificate coverage, and the reported nearest-anchor geometry diagnostic.
+The synthetic self-test does not detect this mismatch because calibration and
+test both use the same defective `d1` implementation.
 
-## Terminal disposition
+Therefore the merged numerical receipt is a reproducible
+**implementation-deviation receipt**, not a protocol-faithful execution.
 
-The certification-constant stage is **exhausted**: the conformal lever bought 21–25%
-and the affordability gap is ~10×, so no realistic calibration refinement closes it.
-The blocker is geometric — anchor-set spacing (14–17 units) against the loss scale
-(PAR10/unit) — not the certification method. A further revival would have to change
-the *representation* (feature geometry that shrinks nearest-anchor distances by an
-order of magnitude) or the *loss scale*, which is a different mechanic, not a tighter
-bound on this one. **C-NBR lane closed terminal** on this harness
-(`VALID_WITHOUT_COVERAGE_OR_VALUE`); no fourth attempt queued.
+## Authority consequence
 
-## Claim boundary
+Until a repaired frozen rerun lands:
 
-One bounded public scenario (ASlib fold + family-disjoint split); no ASlib-wide,
-SAT-wide, cross-domain, or selective-prediction superiority claim. The conformal
-bound is a finite-sample **marginal** guarantee under exchangeability — not
-conditional-on-covariates validity. Certificate coverage is not action authority.
+- `VALID_WITHOUT_COVERAGE_OR_VALUE` is **quarantined** and must not be cited as
+  C-NBR2 scientific authority;
+- the reported 14–17-unit nearest-anchor spacing and the resulting ~10x
+  geometric-gap explanation are not admissible;
+- `certification-constant stage exhausted`, `blocker geometric not
+  methodological`, and `C-NBR lane closed terminal` are suspended;
+- the earlier C-NBR V1 `CERTIFICATE_INVALID` result remains the last
+  protocol-faithful certificate terminal for this lane;
+- merging #1493 into `main` changes repository custody only, not evidence
+  authority.
+
+## Exact repair gate
+
+The repair must be defect-only and prospective with respect to the corrected
+execution:
+
+1. Change only `d1` to the rowwise nearest-anchor distance, e.g. the distance
+   at `neighbour_rows[:, 0]` (or an equivalent rowwise minimum). Do not change
+   alpha, `mu=16`, the sigma offset, epsilon, representations, source bytes,
+   split rules, fallback, or comparison arms.
+2. Add a hostile test in which training row 0 is deliberately far while a
+   different row is nearest, plus an anchor-permutation-invariance test. Both
+   must fail the merged executor and pass the repair.
+3. Commit the repaired executor and tests **before** reading corrected target
+   outcomes.
+4. Rerun the exact same frozen source and split definitions and write a new
+   immutable result artifact. Preserve the #1493 result files unchanged.
+5. Accept whatever corrected positive, null, adverse, or invalid terminal is
+   produced. Do not retune the protocol in response to the repaired outcome.
+
+A useful custody record for the repair should bind the defective merge commit
+`9d270935dfbbf0c2881929d93793119ed4726660`, the original frozen protocol
+commit `31ee8705c50d74d20828d67560bbf871fd9e96f5`, the repair commit, executor
+SHA-256, result SHA-256, and rerun job/host receipt.
+
+## Two prose corrections that remain independent of the rerun outcome
+
+For a bound of the form
+
+`U(x) = m(x) + q_hat * (1 + d1(x))`,
+
+certification at threshold `eps` requires
+
+`d1(x) <= (eps - m(x)) / q_hat - 1`.
+
+When `m(x) >= 0`, the optimistic ceiling is therefore
+`d1(x) <= eps / q_hat - 1`, not `eps / q_hat`.
+
+Also, ordinary split-conformal finite-sample coverage relies on exchangeability
+between calibration and test examples. The deliberately family-disjoint panel
+is a transfer/distribution-shift audit; absent a separate non-exchangeable or
+shift-valid conformal argument, its observed violation rate is empirical
+fixed-panel evidence rather than an automatic distribution-free coverage
+guarantee.
+
+## Historical receipt retained for provenance
+
+The merged #1493 files record `q_hat` around 3348–3375 PAR10/unit, zero
+reported certificate coverage, and degeneration of the CNF arms to SBS. Those
+numbers remain useful only for reproducing and diagnosing the defective
+execution. They are not evidence for the scientific terminal until the repair
+gate above is completed.
