@@ -1,0 +1,297 @@
+%% BioMed_Central_Bib_Style_v1.01
+
+\begin{thebibliography}{16}
+% BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
+\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
+\ifx \binits  \undefined \def \binits#1{#1}\fi
+\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
+\ifx \batitle  \undefined \def \batitle#1{#1}\fi
+\ifx \bjtitle  \undefined \def \bjtitle#1{#1}\fi
+\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
+\ifx \byear  \undefined \def \byear#1{#1}\fi
+\ifx \bissue  \undefined \def \bissue#1{#1}\fi
+\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
+\ifx \blpage  \undefined \def \blpage #1{#1}\fi
+\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
+\ifx \doiurl  \undefined \def \doiurl#1{\url{https://doi.org/#1}}\fi
+\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
+\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
+\ifx \binstitutionaled  \undefined \def \binstitutionaled#1{#1}\fi
+\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
+\ifx \beditor  \undefined \def \beditor#1{#1}\fi
+\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
+\ifx \bbtitle  \undefined \def \bbtitle#1{#1}\fi
+\ifx \bedition  \undefined \def \bedition#1{#1}\fi
+\ifx \bseriesno  \undefined \def \bseriesno#1{#1}\fi
+\ifx \blocation  \undefined \def \blocation#1{#1}\fi
+\ifx \bsertitle  \undefined \def \bsertitle#1{#1}\fi
+\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
+\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
+\ifx \barticle \undefined \def \barticle#1{#1}\fi
+\bibcommenthead
+\ifx \bconfdate \undefined \def \bconfdate #1{#1}\fi
+\ifx \botherref \undefined \def \botherref #1{#1}\fi
+\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
+\ifx \bchapter \undefined \def \bchapter#1{#1}\fi
+\ifx \bbook \undefined \def \bbook#1{#1}\fi
+\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
+\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
+\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
+\ifx \endbibitem  \undefined \def \endbibitem {}\fi
+\ifx \bconflocation  \undefined \def \bconflocation#1{#1}\fi
+\ifx \arxivurl  \undefined \def \arxivurl#1{\textsf{#1}}\fi
+\csname PreBibitemsHook\endcsname
+
+%%% 1
+\bibitem[\protect\citeauthoryear{Doyle}{1979}]{doyle1979}
+\begin{barticle}
+\bauthor{\bsnm{Doyle}, \binits{J.}}:
+\batitle{A truth maintenance system}.
+\bjtitle{Artificial Intelligence}
+\bvolume{12}(\bissue{3}),
+\bfpage{231}--\blpage{272}
+(\byear{1979})
+\doiurl{10.1016/0004-3702(79)90008-0}
+\end{barticle}
+\endbibitem
+
+%%% 2
+\bibitem[\protect\citeauthoryear{Martins and Shapiro}{1988}]{martins1988}
+\begin{barticle}
+\bauthor{\bsnm{Martins}, \binits{J.P.}},
+\bauthor{\bsnm{Shapiro}, \binits{S.C.}}:
+\batitle{A model for belief revision}.
+\bjtitle{Artificial Intelligence}
+\bvolume{35}(\bissue{1}),
+\bfpage{25}--\blpage{79}
+(\byear{1988})
+\doiurl{10.1016/0004-3702(88)90031-8}
+\end{barticle}
+\endbibitem
+
+%%% 3
+\bibitem[\protect\citeauthoryear{Alchourr\'on et~al.}{1985}]{agm1985}
+\begin{barticle}
+\bauthor{\bsnm{Alchourr\'on}, \binits{C.E.}},
+\bauthor{\bsnm{G\"ardenfors}, \binits{P.}},
+\bauthor{\bsnm{Makinson}, \binits{D.}}:
+\batitle{On the logic of theory change: Partial meet contraction and revision
+  functions}.
+\bjtitle{Journal of Symbolic Logic}
+\bvolume{50}(\bissue{2}),
+\bfpage{510}--\blpage{530}
+(\byear{1985})
+\doiurl{10.2307/2274239}
+\end{barticle}
+\endbibitem
+
+%%% 4
+\bibitem[\protect\citeauthoryear{Kifer and Subrahmanian}{1992}]{kifer1992}
+\begin{barticle}
+\bauthor{\bsnm{Kifer}, \binits{M.}},
+\bauthor{\bsnm{Subrahmanian}, \binits{V.S.}}:
+\batitle{Theory of generalized annotated logic programming and its
+  applications}.
+\bjtitle{Journal of Logic Programming}
+\bvolume{12}(\bissue{4}),
+\bfpage{335}--\blpage{367}
+(\byear{1992})
+\doiurl{10.1016/0743-1066(92)90007-P}
+\end{barticle}
+\endbibitem
+
+%%% 5
+\bibitem[\protect\citeauthoryear{Green et~al.}{2007}]{green2007}
+\begin{bchapter}
+\bauthor{\bsnm{Green}, \binits{T.J.}},
+\bauthor{\bsnm{Karvounarakis}, \binits{G.}},
+\bauthor{\bsnm{Tannen}, \binits{V.}}:
+\bctitle{Provenance semirings}.
+In: \bbtitle{Proceedings of the Twenty-Sixth ACM SIGMOD-SIGACT-SIGART Symposium
+  on Principles of Database Systems},
+pp. \bfpage{31}--\blpage{40}
+(\byear{2007}).
+\doiurl{10.1145/1265530.1265535}
+\end{bchapter}
+\endbibitem
+
+%%% 6
+\bibitem[\protect\citeauthoryear{Cheney et~al.}{2009}]{cheney2009}
+\begin{barticle}
+\bauthor{\bsnm{Cheney}, \binits{J.}},
+\bauthor{\bsnm{Chiticariu}, \binits{L.}},
+\bauthor{\bsnm{Tan}, \binits{W.-C.}}:
+\batitle{Provenance in databases: Why, how, and where}.
+\bjtitle{Foundations and Trends in Databases}
+\bvolume{1}(\bissue{4}),
+\bfpage{379}--\blpage{474}
+(\byear{2009})
+\doiurl{10.1561/1900000006}
+\end{barticle}
+\endbibitem
+
+%%% 7
+\bibitem[\protect\citeauthoryear{Bourgaux et~al.}{2022}]{bourgaux2022}
+\begin{bchapter}
+\bauthor{\bsnm{Bourgaux}, \binits{C.}},
+\bauthor{\bsnm{Bourhis}, \binits{P.}},
+\bauthor{\bsnm{Peterfreund}, \binits{L.}},
+\bauthor{\bsnm{Thomazo}, \binits{M.}}:
+\bctitle{Revisiting semiring provenance for datalog}.
+In: \bbtitle{Proceedings of the Nineteenth International Conference on
+  Principles of Knowledge Representation and Reasoning},
+pp. \bfpage{91}--\blpage{101}
+(\byear{2022}).
+\doiurl{10.24963/kr.2022/10}
+\end{bchapter}
+\endbibitem
+
+%%% 8
+\bibitem[\protect\citeauthoryear{Abo~Khamis et~al.}{2022}]{abokhamis2022}
+\begin{bchapter}
+\bauthor{\bsnm{Abo~Khamis}, \binits{M.}},
+\bauthor{\bsnm{Ngo}, \binits{H.Q.}},
+\bauthor{\bsnm{Pichler}, \binits{R.}},
+\bauthor{\bsnm{Suciu}, \binits{D.}},
+\bauthor{\bsnm{Wang}, \binits{Y.R.}}:
+\bctitle{Convergence of datalog over (pre-)semirings}.
+In: \bbtitle{Proceedings of the 41st ACM SIGMOD-SIGACT-SIGAI Symposium on
+  Principles of Database Systems},
+pp. \bfpage{105}--\blpage{117}
+(\byear{2022}).
+\doiurl{10.1145/3517804.3524140}
+\end{bchapter}
+\endbibitem
+
+%%% 9
+\bibitem[\protect\citeauthoryear{Bonatti et~al.}{2011}]{bonatti2011}
+\begin{barticle}
+\bauthor{\bsnm{Bonatti}, \binits{P.A.}},
+\bauthor{\bsnm{Hogan}, \binits{A.}},
+\bauthor{\bsnm{Polleres}, \binits{A.}},
+\bauthor{\bsnm{Sauro}, \binits{L.}}:
+\batitle{Robust and scalable linked data reasoning incorporating provenance and
+  trust annotations}.
+\bjtitle{Journal of Web Semantics}
+\bvolume{9}(\bissue{2}),
+\bfpage{165}--\blpage{201}
+(\byear{2011})
+\doiurl{10.1016/j.websem.2011.06.003}
+\end{barticle}
+\endbibitem
+
+%%% 10
+\bibitem[\protect\citeauthoryear{Buneman et~al.}{2002}]{buneman2002}
+\begin{bchapter}
+\bauthor{\bsnm{Buneman}, \binits{P.}},
+\bauthor{\bsnm{Khanna}, \binits{S.}},
+\bauthor{\bsnm{Tan}, \binits{W.-C.}}:
+\bctitle{On propagation of deletions and annotations through views}.
+In: \bbtitle{Proceedings of the Twenty-First ACM SIGMOD-SIGACT-SIGART Symposium
+  on Principles of Database Systems},
+pp. \bfpage{150}--\blpage{158}
+(\byear{2002}).
+\doiurl{10.1145/543613.543633}
+\end{bchapter}
+\endbibitem
+
+%%% 11
+\bibitem[\protect\citeauthoryear{Meliou et~al.}{2010}]{meliou2010}
+\begin{barticle}
+\bauthor{\bsnm{Meliou}, \binits{A.}},
+\bauthor{\bsnm{Gatterbauer}, \binits{W.}},
+\bauthor{\bsnm{Moore}, \binits{K.F.}},
+\bauthor{\bsnm{Suciu}, \binits{D.}}:
+\batitle{The complexity of causality and responsibility for query answers and
+  non-answers}.
+\bjtitle{Proceedings of the VLDB Endowment}
+\bvolume{4}(\bissue{1}),
+\bfpage{34}--\blpage{45}
+(\byear{2010})
+\doiurl{10.14778/1880172.1880176}
+\end{barticle}
+\endbibitem
+
+%%% 12
+\bibitem[\protect\citeauthoryear{Thapa and Staab}{2026a}]{thapa2026minimal}
+\begin{botherref}
+\oauthor{\bsnm{Thapa}, \binits{R.B.}},
+\oauthor{\bsnm{Staab}, \binits{S.}}:
+Causality and Minimal Supports in Recursive Datalog.
+arXiv:2607.16443v2.
+Accepted for RuleML+RR 2026; \url{https://arxiv.org/abs/2607.16443v2}
+(2026)
+\end{botherref}
+\endbibitem
+
+%%% 13
+\bibitem[\protect\citeauthoryear{Thapa and Staab}{2026b}]{thapa2026stratified}
+\begin{botherref}
+\oauthor{\bsnm{Thapa}, \binits{R.B.}},
+\oauthor{\bsnm{Staab}, \binits{S.}}:
+Causal Explanations for Stratified Datalog.
+arXiv:2608.21141v1.
+Preprint; \url{https://arxiv.org/abs/2608.21141v1}
+(2026)
+\end{botherref}
+\endbibitem
+
+%%% 14
+\bibitem[\protect\citeauthoryear{Cutler et~al.}{2024}]{cutler2024}
+\begin{barticle}
+\bauthor{\bsnm{Cutler}, \binits{J.W.}},
+\bauthor{\bsnm{Disselkoen}, \binits{C.}},
+\bauthor{\bsnm{Eline}, \binits{A.}},
+\bauthor{\bsnm{He}, \binits{S.}},
+\bauthor{\bsnm{Headley}, \binits{K.}},
+\bauthor{\bsnm{Hicks}, \binits{M.}},
+\bauthor{\bsnm{Hietala}, \binits{K.}},
+\bauthor{\bsnm{Ioannidis}, \binits{E.}},
+\bauthor{\bsnm{Kastner}, \binits{J.}},
+\bauthor{\bsnm{Mamat}, \binits{A.}},
+\bauthor{\bsnm{McAdams}, \binits{D.}},
+\bauthor{\bsnm{McCutchen}, \binits{M.}},
+\bauthor{\bsnm{Rungta}, \binits{N.}},
+\bauthor{\bsnm{Torlak}, \binits{E.}},
+\bauthor{\bsnm{Wells}, \binits{A.M.}}:
+\batitle{Cedar: A new language for expressive, fast, safe, and analyzable
+  authorization}.
+\bjtitle{Proceedings of the ACM on Programming Languages}
+\bvolume{8}(\bissue{OOPSLA1}),
+\bfpage{670}--\blpage{697}
+(\byear{2024})
+\doiurl{10.1145/3649835}
+\end{barticle}
+\endbibitem
+
+%%% 15
+\bibitem[\protect\citeauthoryear{Cooper et~al.}{2008}]{rfc5280}
+\begin{botherref}
+\oauthor{\bsnm{Cooper}, \binits{D.}},
+\oauthor{\bsnm{Santesson}, \binits{S.}},
+\oauthor{\bsnm{Farrell}, \binits{S.}},
+\oauthor{\bsnm{Boeyen}, \binits{S.}},
+\oauthor{\bsnm{Housley}, \binits{R.}},
+\oauthor{\bsnm{Polk}, \binits{W.}}:
+Internet x.509 public key infrastructure certificate and certificate revocation
+  list profile.
+Technical Report RFC 5280,
+RFC Editor
+(2008).
+\doiurl{10.17487/RFC5280}
+\end{botherref}
+\endbibitem
+
+%%% 16
+\bibitem[\protect\citeauthoryear{{The OpenSSL Project}}{2026}]{openssl364}
+\begin{botherref}
+\oauthor{\bsnm{{The OpenSSL Project}}}:
+OpenSSL 3.6.4 Source and Test Corpus.
+\url{https://github.com/openssl/openssl/tree/openssl-3.6.4}.
+Accessed 31 August 2026
+(2026)
+\end{botherref}
+\endbibitem
+
+\end{thebibliography}

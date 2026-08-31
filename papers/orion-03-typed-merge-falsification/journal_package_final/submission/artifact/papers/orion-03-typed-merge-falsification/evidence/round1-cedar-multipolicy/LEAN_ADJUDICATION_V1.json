@@ -1,0 +1,23 @@
+{
+  "authority": {
+    "cedar_semantics_formalized": false,
+    "external_independence": false,
+    "finite_origin_core_only": true,
+    "journal_authority": false,
+    "novelty": false
+  },
+  "execution_commit": "097210a821b4d4f7c76f296d66c2614b8a0dc93f",
+  "lean_version": "Lean 4.33.1 commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+  "schema": "ORION.ORION03.CedarMultiPolicy.LeanAdjudication.v1",
+  "source_sha256": "e7bcfeda558f34c0edc225570d3ee3dc125d1571f94598b340b8f54a4143d6ee",
+  "successful_local_builds": 2,
+  "terminal": "LEAN_TYPED_AUTHORITY_CORE_PASS",
+  "theorems": [
+    "typed_implies_flat",
+    "two_origin_flat_but_not_typed",
+    "alternative_complete_origin_is_typed",
+    "unsupported_positive_cycle_is_empty"
+  ],
+  "theorems_checked": 4,
+  "toolchain": "leanprover/lean4:v4.33.1"
+}

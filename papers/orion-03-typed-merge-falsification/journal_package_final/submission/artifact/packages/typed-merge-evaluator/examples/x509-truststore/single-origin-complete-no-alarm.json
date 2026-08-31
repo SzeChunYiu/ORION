@@ -1,0 +1,66 @@
+{
+  "claims": [
+    "anchor:root-cert",
+    "chain:ca-cert",
+    "chain:ee-cert"
+  ],
+  "expect": {
+    "first_mixing": {
+      "chain:ee-cert": false
+    },
+    "flat_authorized": {
+      "chain:ee-cert": true
+    },
+    "typed_authorized": {
+      "chain:ee-cert": true
+    },
+    "typed_licenses": {
+      "chain:ee-cert": [
+        "A"
+      ]
+    }
+  },
+  "id": "x509-truststore/single-origin-complete-no-alarm",
+  "licenses": [
+    "A",
+    "B"
+  ],
+  "provenance": {
+    "domain": "X.509 trust-store merge",
+    "encoded_from": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/ROUND2_RESULTS_V2.json and papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/TASK_MANIFEST_V2.json",
+    "note": "Same shape as C6-HOSTILE-SPLIT except that store A holds the intermediate too. A detector that flagged this would be unusable, so the negative case is asserted explicitly rather than assumed.",
+    "upstream_material": "openssl/openssl @ openssl-3.6.4 test/certs (Apache-2.0)"
+  },
+  "refuted": [],
+  "rules": [
+    {
+      "body": [
+        "anchor:root-cert"
+      ],
+      "cap": [
+        "A",
+        "B"
+      ],
+      "head": "chain:ca-cert",
+      "id": "root-issues-ca"
+    },
+    {
+      "body": [
+        "chain:ca-cert"
+      ],
+      "cap": "ALL",
+      "head": "chain:ee-cert",
+      "id": "ca-issues-ee"
+    }
+  ],
+  "schema": "ORION.TypedMerge.Instance.v1",
+  "seeds": {
+    "anchor:root-cert": [
+      "A"
+    ]
+  },
+  "targets": [
+    "chain:ee-cert"
+  ],
+  "title": "Round 2 no-alarm control: a complete single-origin chain must not be flagged"
+}

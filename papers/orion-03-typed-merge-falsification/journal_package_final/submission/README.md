@@ -1,9 +1,14 @@
-# ORION-03 final journal package
+# ORION-03 Journal of Automated Reasoning package
 
-Primary target: **Journal of Automated Reasoning**.
+The reader authority is the PDF identified in `PUBLICATION_RELEASE_MANIFEST.json`.
+`MANUSCRIPT.md` and `CLAIM_LEDGER.md` are byte-identical copies of the canonical
+repository source and scientific claim ledger. The source and artifact archives
+have exact, hash-bound member inventories.
 
-Scientific source of authority remains `papers/orion-03-typed-merge-falsification/MANUSCRIPT_V3.md` with claim ledger `papers/orion-03-typed-merge-falsification/CLAIM_LEDGER_V3.md`. `MANUSCRIPT.md` is a claim-equivalent reader-facing publication surface: it removes project-control front matter, fixes already-recorded independence wording where applicable, verifies/updates citations, and preserves the bounded claims and negative results.
+`RESEARCH_INTEGRITY_LEDGER.json` binds the exact reader PDF to the independent
+atomic-claim/source coverage review; `RESEARCH_INTEGRITY_REPORT.json` is the
+released skill verifier's fail-closed result for those exact bytes.
 
-The package provides the review PDF, editable LaTeX source, artifact archive, and a conservative cover-letter draft. Author metadata and final portal fields remain human filing actions.
-
-This package does **not** claim acceptance, external specialist validation, external replication, or any authority beyond the bound manuscript and ledger.
+This package is ready for author filing, not already filed or accepted. It does
+not claim external replication, external peer review, security evaluation,
+production validity, or authority beyond the bounded manuscript and ledger.

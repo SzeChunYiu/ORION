@@ -1,0 +1,40 @@
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{microtype}
+\usepackage{xurl}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\raggedbottom
+
+\begin{document}
+
+\hypersetup{
+  pdftitle={$title$},
+  pdfauthor={Sze Chun Yiu},
+  pdfsubject={Finite evidence licenses and fail-closed nonpromotion},
+  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$}
+}
+
+\title[$short-title$]{$title$}
+
+\author*[1]{\fnm{Sze Chun} \sur{Yiu}}\email{sze-chun.yiu@fysik.su.se}
+\affil*[1]{\orgname{Independent Researcher}}
+
+\abstract{$abstract$}
+
+\keywords{$for(keywords)$$keywords$$sep$; $endfor$}
+
+\maketitle
+
+$body$
+
+\bibliography{references}
+
+\end{document}

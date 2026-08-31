@@ -1,0 +1,252 @@
+{
+  "contract": {
+    "article_type": {
+      "aliases": [
+        "research article"
+      ],
+      "id": "original-research",
+      "name": "Original research article"
+    },
+    "contract_id": "JAR-original-research-initial-submission-20260831",
+    "contract_schema_version": "1.0.0",
+    "decision_contract": {
+      "acceptance_objective": {
+        "id": "jar-scope-fit",
+        "rule": "Evaluate original automated-reasoning contributions for scientific correctness, clarity, reproducibility, and fit to the journal readership; do not substitute a broad-interest prestige objective.",
+        "scope": "non_universal",
+        "source_refs": [
+          "jar-scope",
+          "jar-guidelines"
+        ]
+      },
+      "acceptance_states": {
+        "actual_decisions": [
+          "reject",
+          "revise",
+          "accept",
+          "transfer or other editor decision"
+        ],
+        "criteria_satisfied": "Repository-side decision readiness for the resolved target; not acceptance.",
+        "scientific_failure": "A contradiction, unsupported claim, integrity defect, or non-reproducible bound blocks readiness.",
+        "target_failure": "Out-of-scope contribution or unresolved mandatory filing requirement blocks target readiness."
+      },
+      "ai_confidentiality_policy": {
+        "author_ai_use": "Disclose actual author AI assistance and retain author responsibility.",
+        "confidentiality": "The author must recheck current portal and publisher confidentiality terms at filing.",
+        "live_check_required": true,
+        "reviewer_ai_use": "Not resolved by this journal-page snapshot.",
+        "source_refs": [
+          "jar-guidelines"
+        ]
+      },
+      "allowed_repair_routes": [
+        {
+          "constraint": "Must preserve the scientific record and may not hide null/adverse results.",
+          "policy_status": "conditionally_allowed",
+          "route": "claim narrowing or removal",
+          "source_refs": [
+            "jar-guidelines"
+          ]
+        },
+        {
+          "constraint": "May not fabricate evidence or change the frozen study retrospectively.",
+          "policy_status": "conditionally_allowed",
+          "route": "clarification, citation repair, or package correction",
+          "source_refs": [
+            "jar-guidelines"
+          ]
+        },
+        {
+          "constraint": "Not required for the bounded claims in this closure unless a real contradiction is found.",
+          "policy_status": "not_applicable",
+          "route": "optional new experiment",
+          "source_refs": [
+            "jar-scope"
+          ]
+        }
+      ],
+      "audience_interest_gate": {
+        "accepted_values": [
+          "formal semantics",
+          "automated reasoning",
+          "executable evaluation"
+        ],
+        "observation_key": "automated_reasoning_readership_fit",
+        "required": true,
+        "rule": "The manuscript must make the formal semantics, executable evaluation, and limitations legible to automated-reasoning readers.",
+        "source_refs": [
+          "jar-scope"
+        ]
+      },
+      "breadth_gate": {
+        "observation_key": "cross_field_breadth",
+        "required": false,
+        "rule": "Cross-field breadth is not treated as a hard gate; the bounded formal and executable contribution is evaluated within journal scope.",
+        "source_refs": [
+          "jar-scope"
+        ]
+      },
+      "burden_of_doubt": {
+        "default": "Unresolved scientific, citation, reproducibility, or declaration defects block repository-side submission readiness.",
+        "overrides": {
+          "editorial_fit": "A repository-side fit assessment cannot determine the real editor decision."
+        },
+        "rule": "Fail closed on manuscript-controlled defects; keep uncontrollable editorial judgment separate.",
+        "source_refs": [
+          "jar-guidelines",
+          "jar-scope"
+        ]
+      },
+      "certification_layer": {
+        "notes": "Package and integrity verification certify byte/provenance checks only; they do not certify acceptance or scientific truth.",
+        "schemes": [],
+        "separate_from_acceptance": true
+      },
+      "impact_gate": {
+        "observation_key": "broad_societal_impact",
+        "required": false,
+        "rule": "No separate broad societal-impact threshold was located in the checked journal guidance; scientific relevance to automated reasoning remains required.",
+        "source_refs": [
+          "jar-scope"
+        ]
+      },
+      "novelty_gate": {
+        "observation_key": "bounded_residual_contribution",
+        "required": true,
+        "rule": "State the evidence-license/nonpromotion specialization relative to donor fields without claiming generic fixed-point or provenance novelty.",
+        "source_refs": [
+          "jar-scope"
+        ]
+      },
+      "review_model": {
+        "editorial_outcome": "Real editor/reviewer decisions remain external",
+        "identity": "single-blind as stated on the checked journal page",
+        "source_refs": [
+          "jar-guidelines"
+        ]
+      },
+      "scientific_gates": [
+        {
+          "id": "bounded-formal-validity",
+          "observation_key": "formal_claims_verified",
+          "required": true,
+          "rule": "The formal claims and proof spine must remain correct at the declared finite-system scope.",
+          "source_refs": [
+            "jar-scope"
+          ]
+        },
+        {
+          "id": "empirical-reproducibility",
+          "observation_key": "empirical_receipts_and_artifact",
+          "required": true,
+          "rule": "Empirical outcomes, adverse results, methods, and the executable artifact must be internally consistent and inspectable.",
+          "source_refs": [
+            "jar-guidelines"
+          ]
+        },
+        {
+          "id": "integrity-declarations",
+          "observation_key": "required_declarations_complete",
+          "required": true,
+          "rule": "Required statements, citations, authorship, availability, and third-party rights must be complete.",
+          "source_refs": [
+            "jar-guidelines"
+          ]
+        }
+      ]
+    },
+    "fallback_profile_id": "field-advancement-specialist-formal-methods",
+    "policy_validity": {
+      "effective_date_basis": "No effective date was stated on the live pages; this contract is an observed-current snapshot only.",
+      "effective_from": null,
+      "effective_until": null,
+      "next_review_due": null,
+      "observed_active_at": "2026-08-31",
+      "reviewed_at": "2026-08-31"
+    },
+    "provenance": {
+      "resolution_mode": "live_official_resolution",
+      "sources": [
+        {
+          "accessed_at": "2026-08-31",
+          "authority": "Springer Nature journal page",
+          "source_id": "jar-guidelines",
+          "stated_effective_date": null,
+          "supports": [
+            "article preparation",
+            "abstract",
+            "keywords",
+            "headings",
+            "references",
+            "declarations",
+            "review model",
+            "submission components"
+          ],
+          "title": "Journal of Automated Reasoning submission guidelines",
+          "url": "https://link.springer.com/journal/10817/submission-guidelines"
+        },
+        {
+          "accessed_at": "2026-08-31",
+          "authority": "Springer Nature journal page",
+          "source_id": "jar-scope",
+          "stated_effective_date": null,
+          "supports": [
+            "scope",
+            "contribution fit",
+            "intended readership"
+          ],
+          "title": "Journal of Automated Reasoning aims and scope",
+          "url": "https://link.springer.com/journal/10817/aims-and-scope"
+        },
+        {
+          "accessed_at": "2026-08-31",
+          "authority": "Springer Nature author support",
+          "source_id": "sn-latex",
+          "stated_effective_date": null,
+          "supports": [
+            "official editable source route",
+            "template provenance"
+          ],
+          "title": "Springer Nature LaTeX author support",
+          "url": "https://www.springernature.com/gp/authors/campaigns/latex-author-support"
+        }
+      ],
+      "unresolved_conflicts": [
+        "Portal-specific metadata fields and publisher-wide AI/confidentiality text must be rechecked by the author at actual filing; no future-effective policy is inferred."
+      ]
+    },
+    "stages": [
+      "initial_submission"
+    ],
+    "venue": {
+      "aliases": [
+        "JAR"
+      ],
+      "id": "jar",
+      "name": "Journal of Automated Reasoning"
+    }
+  },
+  "live_official_resolution_recommended": false,
+  "live_official_resolution_required": false,
+  "not_yet_effective_contract_ids": [],
+  "request": {
+    "article_type": "original-research",
+    "as_of": "2026-08-31",
+    "stage": "initial_submission",
+    "venue": "jar"
+  },
+  "resolution_certification": {
+    "as_of": "2026-08-31",
+    "does_not_certify": [
+      "real_journal_acceptance",
+      "manuscript_scientific_validity",
+      "policy_before_the_supported_validity_window",
+      "unstated_or_unresolved_policy"
+    ],
+    "level": "live_official",
+    "source_count": 3,
+    "tuple_verified": true
+  },
+  "resolution_mode": "exact_live_official",
+  "warnings": []
+}

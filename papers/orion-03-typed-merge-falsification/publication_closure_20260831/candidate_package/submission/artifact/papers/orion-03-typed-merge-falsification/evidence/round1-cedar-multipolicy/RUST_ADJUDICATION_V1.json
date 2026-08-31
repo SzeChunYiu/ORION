@@ -1,0 +1,73 @@
+{
+  "authority": {
+    "external_independence": "CANNOT_CHECK",
+    "hostile_controls_are_real_domain_results": false,
+    "journal_authority": false,
+    "native_semantics_only": true
+  },
+  "hostile_and_safe_controls": {
+    "cases": [
+      {
+        "flat": true,
+        "name": "spliced_foreign_origin_requirements",
+        "status": "PASS",
+        "typed": false
+      },
+      {
+        "flat": true,
+        "name": "retracted_evidence_erasure",
+        "status": "PASS",
+        "typed": false
+      },
+      {
+        "flat": false,
+        "name": "unsupported_positive_cycle",
+        "status": "PASS",
+        "typed": false
+      },
+      {
+        "flat": true,
+        "name": "two_partial_sources_make_stronger_target",
+        "status": "PASS",
+        "typed": false
+      },
+      {
+        "flat": true,
+        "name": "alternative_complete_origin",
+        "status": "PASS",
+        "typed": true
+      },
+      {
+        "flat": true,
+        "name": "explicit_bridge_licence",
+        "status": "PASS",
+        "typed": true
+      },
+      {
+        "flat": true,
+        "name": "single_origin_complete_record",
+        "status": "PASS",
+        "typed": true
+      },
+      {
+        "flat": true,
+        "name": "multiple_complete_origins_not_false_alarm",
+        "status": "PASS",
+        "typed": true
+      }
+    ],
+    "passed": 8,
+    "total": 8
+  },
+  "native_cedar": {
+    "decision_reason_error_and_validation_exact": true,
+    "fixtures_passed": 5,
+    "requests_adjudicated": 15
+  },
+  "schema": "ORION.ORION03.CedarMultiPolicy.RustAdjudication.v1",
+  "terminal": "NATIVE_CEDAR_AND_RUST_CONTROLS_PASS",
+  "upstream": {
+    "cedar_commit": "bcb8bd93a292b59ae8f1dcf53b9b4176a2d3405d",
+    "integration_commit": "75989795c75d861270ce6cac38ef9d9e5b220a0c"
+  }
+}
