@@ -1,0 +1,1026 @@
+{
+  "schema": "ORION.Issue1701.TopTierRecursiveClosure.v1",
+  "issue": 1701,
+  "date": "2026-08-29",
+  "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+  "scope": [
+    "ORION-01",
+    "ORION-02",
+    "ORION-03",
+    "ORION-04",
+    "ORION-05",
+    "ORION-06",
+    "ORION-07",
+    "ORION-08",
+    "ORION-09",
+    "ORION-10",
+    "ORION-11",
+    "ORION-12",
+    "ORION-13",
+    "ORION-14",
+    "ORION-15",
+    "ORION-16",
+    "ORION-17",
+    "ORION-18",
+    "ORION-19",
+    "ORION-20",
+    "ORION-21",
+    "ORION-22",
+    "ORION-23",
+    "ORION-24",
+    "ORION-25"
+  ],
+  "scientific_authority_delta": "NONE",
+  "top_tier_definition": {
+    "class": "Nature-class or comparably selective interdisciplinary venue",
+    "criteria": [
+      "original research",
+      "outstanding scientific importance",
+      "interdisciplinary interest",
+      "novel/arresting result with immediate and far-reaching implications",
+      "strong evidence and technical correctness",
+      "replicable data, code, materials and protocols"
+    ],
+    "warning": "This packet evaluates readiness and freezes successors; it cannot guarantee editorial acceptance."
+  },
+  "expert_board": [
+    {
+      "role": "formal_methods_and_theory",
+      "background": "Formal verification, exact algorithms, combinatorics, and theorem/certificate auditing.",
+      "decision_right": "Rejects any theorem or impossibility claim lacking a checkable proof object, exhaustive boundary, or explicit CANNOT_CHECK terminal."
+    },
+    {
+      "role": "experimental_design_and_statistics",
+      "background": "Prospective study design, power, negative controls, sequential testing, and error-rate control.",
+      "decision_right": "Rejects post-outcome tuning, underpowered transfer claims, missing fair baselines, or unregistered endpoint changes."
+    },
+    {
+      "role": "domain_and_novelty",
+      "background": "Quantum compilation, software/research systems, knowledge representation, and primary-source novelty subtraction.",
+      "decision_right": "Rejects donor relabelling, domain-forced equivalence, or claims whose novelty disappears after nearest-work subtraction."
+    },
+    {
+      "role": "reproducibility_and_forensics",
+      "background": "Content-addressed artifacts, clean-room replay, provenance, CI, and hostile mutation testing.",
+      "decision_right": "Rejects unbound artifacts, stale packages, missing adverse records, or same-implementation replay presented as independent authority."
+    },
+    {
+      "role": "top_tier_editor",
+      "background": "Cross-disciplinary editorial triage focused on importance, broad relevance, surprising conclusions, and readable claim scope.",
+      "decision_right": "Rejects technically correct but narrow work from a Nature-class claim unless the scientific consequence and external reach are demonstrated."
+    }
+  ],
+  "global_rules": {
+    "protocol_is_not_evidence": true,
+    "same_researcher_ai_is_not_external_investigator": true,
+    "adverse_null_and_cannot_check_are_immutable_inputs": true,
+    "post_outcome_tuning_forbidden": true,
+    "one_highest_information_move_per_paper": true,
+    "old_identity_rescue_forbidden_when_closed": true,
+    "external_authority_cannot_be_self_certified": true
+  },
+  "papers": [
+    {
+      "paper_id": "ORION-01",
+      "paper_slug": "orion-01-certificate-realization",
+      "title": "Certificate Realization",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "BOUNDED_SPLIT_THEOREMS_RETAINED__OLD_COMPLETENESS_SUCCESSOR_CANNOT_CHECK",
+      "top_tier_route": "TOP_TIER_NEW_SUCCESSOR_REQUIRED__OLD_PROTOCOL_CLOSED",
+      "gap_type": "theory_and_exact_compute",
+      "top_tier_rejection_hypothesis": "A referee can accept the local normal forms but reject the manuscript's broader significance because the production move grammar is not source-complete and the old cap-limited search cannot establish completeness.",
+      "highest_information_move": "Define an extensional, source-complete move registry; prove completeness or expose a counterexample; then measure one certificate/search consequence without increasing the old cap under the same identity.",
+      "successor_protocol": {
+        "state": "FROZEN_DESIGN_ONLY",
+        "scientific_question": "Does a prospectively defined extensional move registry completely realize every admissible production move, and does that completeness materially reduce exact search or certificate complexity?",
+        "design": "Freeze registry syntax and semantics; independent theorem checker; counterexample generator; consequence benchmark with identical exact instances.",
+        "donors_and_controls": "Old cap-8 search as adverse history; syntactic-only registry; unrestricted exact oracle.",
+        "authority_required": "Independent proof review plus implementation-independent checker.",
+        "positive_gate": "Registry completeness is proved with zero checker disagreement and the predeclared consequence improves exact work while preserving answers.",
+        "negative_or_cannot_check_terminal": "Any counterexample, incomplete registry, checker disagreement, or no material consequence yields BOUNDED_PAPER_RETAINED.",
+        "no_rescue_rule": "Do not raise the old cap, rename the old protocol, or count quotient completeness as source completeness.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-01-certificate-realization",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": false,
+      "old_identity_closed": true,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-02",
+      "paper_slug": "orion-02-fiberguard-finite-fibre",
+      "title": "Finite-Fibre Certifiability",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "BOUNDED_THEORY_PROVEN__R23_R24_REVIVALS_ADVERSE",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "external_transfer",
+      "top_tier_rejection_hypothesis": "A referee can reject the theorem as a curated finite-domain observation because both prior revival attempts were matched or beaten by lexical controls and one certificate violated its held-out bound.",
+      "highest_information_move": "Run one untouched, prospectively task-frozen OpenML-CC18 multi-stratum discriminator with valid-bound coverage as the primary endpoint.",
+      "successor_protocol": {
+        "state": "FROZEN_DESIGN_ONLY",
+        "scientific_question": "Across heterogeneous untouched real tasks, does theorem-minimal refinement increase certifiable coverage under a valid bound beyond lexical, distance, learned, and oracle controls?",
+        "design": "Freeze at least four application strata, exact task IDs, splits, representation arms, bound checker, and resource budgets before labels are exposed to the candidate pipeline.",
+        "donors_and_controls": "Coarse representation; lexical/distance proxy; learned representation; oracle refinement; at least one theorem-predicted tie stratum.",
+        "authority_required": "Published task gold plus independent bound checker; external investigator remains separate.",
+        "positive_gate": "Predeclared valid-bound coverage gate is met, strict held-out violations stay below the frozen ceiling, and the theorem arm discriminates from lexical/learned controls in multiple strata.",
+        "negative_or_cannot_check_terminal": "Bound invalidity, no discrimination, or control parity is terminal TOP_TIER_SUCCESSOR_NOT_SUPPORTED__BOUNDED_RETAINED.",
+        "no_rescue_rule": "PMLB R23/R24 tasks are historical only; do not alter alpha, coverage gate, or representation after outcomes.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-02-fiberguard-finite-fibre",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-03",
+      "paper_slug": "orion-03-typed-merge-falsification",
+      "title": "Typed Merge Falsification",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "BOUNDED_ALGEBRA_AND_EXTERNAL_X509_TASKS_RETAINED",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "cross_ecosystem_transfer",
+      "top_tier_rejection_hypothesis": "A referee can reject broad provenance-safety significance because the result has not survived native semantics in structurally different trust ecosystems.",
+      "highest_information_move": "Prospectively test one common typed-merge question in cosign, python-tuf, and in-toto using each system's native verifier as gold.",
+      "successor_protocol": {
+        "state": "FROZEN_DESIGN_ONLY",
+        "scientific_question": "Does typed merge prevent hybrid authority errors across genuinely different trust systems without merely re-encoding each native policy?",
+        "design": "Pin releases and native configurations; include valid, expired/revoked, conflicting-authority, stale, and unresolved cases; require at least two discriminating ecosystems.",
+        "donors_and_controls": "Flat key/value merge; provenance-only merge; each native policy; unresolved/abstention control.",
+        "authority_required": "Native verifier outputs and independent ecosystem maintainers or reviewers.",
+        "positive_gate": "Typed merge preserves native-valid cases and rejects native-invalid hybrids in at least two ecosystems with a prospectively frozen cross-system abstraction.",
+        "negative_or_cannot_check_terminal": "No cross-ecosystem discrimination or abstraction failure yields bounded specialist paper only.",
+        "no_rescue_rule": "Do not force unlike systems into a shared ontology that predetermines typed merge's success.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-03-typed-merge-falsification",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-04",
+      "paper_slug": "orion-04-rooted-completion-certificates",
+      "title": "Rooted Completion Certificates",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "PROOF_PRODUCING_D4_MACHINERY_PRESENT__THEOREM_AUTHORITY_NOT_YET_EARNED",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__THEORY_OR_EXACT_COMPUTE",
+      "gap_type": "exact_theorem_execution",
+      "top_tier_rejection_hypothesis": "A referee can reject the exact D4 claim if the computational completeness argument, certificate interface, or independent replay is missing even when the search code exists.",
+      "highest_information_move": "Execute and independently replay the proof-producing D4 packet, verify all enumerated branches and mutation controls, and produce a readable proof decomposition.",
+      "successor_protocol": {
+        "state": "EXECUTION_READY__OUTCOME_NOT_ASSERTED",
+        "scientific_question": "Does the frozen proof-producing search establish the claimed exact D4 value with a complete reduction and independently checkable certificates?",
+        "design": "Verify the registered support-pattern and branch census, dual-engine agreement, zero survivors, largest-branch resource receipt, and proof mutations.",
+        "donors_and_controls": "Historical serialization-failure packet; deliberately corrupted certificates; omitted-branch mutation; second checker implementation.",
+        "authority_required": "Independent proof audit; exact certificate replay; primary-source novelty review.",
+        "positive_gate": "All registered branches and dual-engine executions reconcile, zero survivors remain, all mutations are caught, and the human proof maps one-to-one to certificates.",
+        "negative_or_cannot_check_terminal": "Any count mismatch, survivor, mutation escape, or unbound execution yields CANNOT_CHECK or theorem withdrawal.",
+        "no_rescue_rule": "A failed certificate or omitted branch cannot be repaired after seeing the theorem outcome under the same execution identity.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-04-rooted-completion-certificates",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": false,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-05",
+      "paper_slug": "orion-05-tare-expressivity",
+      "title": "TARE Expressivity",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "SUPPORT_TWO_THEOREM_RETAINED__GLOBAL_BASIS_CANNOT_CHECK_CHECKER_DISAGREEMENT",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__THEORY_OR_EXACT_COMPUTE",
+      "gap_type": "checker_adjudication_then_consequence",
+      "top_tier_rejection_hypothesis": "A referee can reject the global obstruction basis because runner and independent checker disagree on planted positives; an ungradable census cannot support a universal basis.",
+      "highest_information_move": "First adjudicate the checker disagreement under a third specification-derived checker; only a gradable positive basis may proceed to a pre-frozen solver-work consequence.",
+      "successor_protocol": {
+        "state": "EXECUTION_READY__GATED_BY_CHECKER",
+        "scientific_question": "Can the global obstruction basis be graded consistently, and if it survives, does it reduce exact search work without solving targets first?",
+        "design": "Derive a third checker from the written semantics; replay planted controls and all census rows; if and only if consistent, freeze exact-solver work metrics before consequence execution.",
+        "donors_and_controls": "Runner; frozen independent checker; planted positives; exhaustive exact solver; obstruction-guided solver.",
+        "authority_required": "Specification-derived checker agreement and complete receipt reconciliation.",
+        "positive_gate": "All three checkers agree on controls and census; then obstruction guidance reduces explored states or solver calls with identical exact answers.",
+        "negative_or_cannot_check_terminal": "Persistent checker disagreement is terminal CANNOT_CHECK; any new obstruction or no work reduction returns to bounded support-two paper.",
+        "no_rescue_rule": "Do not majority-vote inconsistent checkers or tune obstruction rules against disputed rows.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-05-tare-expressivity",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": false,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-06",
+      "paper_slug": "orion-06-recursive-recovery",
+      "title": "Recursive Recovery",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "BOUNDED_EXECUTABLE_NEGATIVE_RECOVERY_METHOD_RETAINED",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "multi_domain_causal_utility",
+      "top_tier_rejection_hypothesis": "A referee can reject a broad recovery methodology claim because existing evidence does not show objective-verified benefit across independent domains under equal information and compute.",
+      "highest_information_move": "Run a three-domain benchmark on pre-existing negative histories in Lean/mathlib, Defects4J, and one exact ORION domain.",
+      "successor_protocol": {
+        "state": "FROZEN_DESIGN_ONLY",
+        "scientific_question": "Does preserving and structurally using negative history improve verified recovery and stopping decisions across objective-verifier domains?",
+        "design": "Freeze task IDs with prior failures; equalize information and compute; compare recovery, false revival, claim drift, stop correctness, verifier calls, and cost.",
+        "donors_and_controls": "No-revival; naive retry; donor/domain repair; ORION recovery; oracle diagnostic ceiling.",
+        "authority_required": "Native Lean/test/exact verifiers plus independent task freezer.",
+        "positive_gate": "Verified recovery improves in multiple domains without increased false revival, claim drift, or verifier cost beyond frozen margins.",
+        "negative_or_cannot_check_terminal": "No multi-domain benefit or any false-revival gate failure yields bounded methods paper only.",
+        "no_rescue_rule": "Failed recoveries and donor wins remain in denominators; no task replacement after outcomes.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-06-recursive-recovery",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-07",
+      "paper_slug": "orion-07-dual-instrument",
+      "title": "Dual Instrument",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "AGREEMENT_NONIDENTIFIABILITY_THEOREM_PROVEN__PROSPECTIVE_OUTCOMES_PENDING",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "temporal_prospective_validation",
+      "top_tier_rejection_hypothesis": "A referee can reject the instrumentation claim because agreement is provably non-identifying and the frozen future cases have not yet produced enough outcomes to estimate error modes.",
+      "highest_information_move": "Execute only the already frozen deferred cases as outcomes arrive, then accumulate at least twenty prospectively unresolved cases under unchanged instruments.",
+      "successor_protocol": {
+        "state": "TEMPORAL_PROTOCOL__AWAITING_OUTCOMES",
+        "scientific_question": "Can two structurally different instruments predict future outcomes better than agreement heuristics while explicitly detecting jointly wrong cases?",
+        "design": "Preserve temporal order; register each case before outcome; score calibration, selective risk, jointly-wrong rate, and decision value over at least 20 cases.",
+        "donors_and_controls": "Instrument A; instrument B; agreement-only; always-abstain; retrospective oracle.",
+        "authority_required": "Externally realized future outcomes and timestamped pre-outcome custody.",
+        "positive_gate": "Prospective instruments improve selective decision value over agreement-only and expose jointly-wrong cases with calibrated abstention.",
+        "negative_or_cannot_check_terminal": "No power, joint failure, or temporal custody breach yields nonidentifiability theorem only.",
+        "no_rescue_rule": "No replacement of missed cases, no backfilling predictions, and no threshold change after any outcome.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-07-dual-instrument",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-08",
+      "paper_slug": "orion-08-typed-state",
+      "title": "Typed State",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "BOUNDED_BINDING_SUFFICIENCY_LATTICE_RETAINED",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "real_decision_value_transfer",
+      "top_tier_rejection_hypothesis": "A referee can reject typed-state significance because the lattice is predominantly synthetic and has not improved decisions in independent real task families.",
+      "highest_information_move": "Freeze one OpenML and one Defects4J decision family, then compare typed, untyped, learned, and oracle state representations under equal acquisition budgets.",
+      "successor_protocol": {
+        "state": "FROZEN_DESIGN_ONLY",
+        "scientific_question": "Does typed state improve verified downstream decisions, not just representation recovery, across two task families?",
+        "design": "Predeclare task IDs, acquisition costs, decision losses, abstention, and state-binding interventions; require both zero-value and positive-value strata.",
+        "donors_and_controls": "Untyped state; lexical features; learned embedding; oracle state; always-abstain.",
+        "authority_required": "Published labels/native tests and independent split custody.",
+        "positive_gate": "Typed state improves predeclared decision utility in both families while preserving calibration and cost.",
+        "negative_or_cannot_check_terminal": "No cross-family decision gain or learned-control parity yields bounded theory only.",
+        "no_rescue_rule": "Do not redefine utility, binding, or task strata after seeing decisions.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-08-typed-state",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-09",
+      "paper_slug": "orion-09-compilation-regime-geometry",
+      "title": "Compilation Regime Geometry",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "FOUR_FEATURE_N_LE_3_LAW_RETAINED__N4_TRANSFER_FAILED__PROPOSED_INVARIANT_TRUE_BUT_VACUOUS",
+      "top_tier_route": "TOP_TIER_PROMOTION_FAILED__SECOND_TIER_FALLBACK_JUSTIFIED",
+      "gap_type": "closed_negative_transfer",
+      "top_tier_rejection_hypothesis": "A referee can reject top-tier generality because the compact separator fails unseen size transfer and the proposed capacity invariant never discriminates failures.",
+      "highest_information_move": "Stop recursive rescue of the separator/invariant identity; retain the bounded map and permit only a scientifically distinct practical-compiler question with a new claim and protocol.",
+      "successor_protocol": {
+        "state": "OLD_IDENTITY_CLOSED",
+        "scientific_question": "No same-identity successor is authorized. A future project must ask a distinct question such as whether a pre-outcome structural certificate changes exact compilation work in a practical compiler setting.",
+        "design": "New question, corpus, endpoint, and donor subtraction required before any execution.",
+        "donors_and_controls": "Existing n<=3 separator, failed n=4 transfer, and vacuous invariant must be adverse baselines.",
+        "authority_required": "Fresh protocol review required before execution.",
+        "positive_gate": "No positive gate exists for the old identity.",
+        "negative_or_cannot_check_terminal": "Terminal is BOUNDED_PAPER_RETAINED / SECOND_TIER_ONLY unless a genuinely new project is preregistered.",
+        "no_rescue_rule": "No additional feature vocabulary, size patch, or invariant variant may be called confirmation of the old law.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-09-compilation-regime-geometry",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": false,
+      "old_identity_closed": true,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-10",
+      "paper_slug": "orion-10-certified-static-forecasting",
+      "title": "Certified Static Forecasting",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "FINITE_CERTIFICATE_EXPLANATION_GAP_THEOREM_PROVEN",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__THEORY_OR_EXACT_COMPUTE",
+      "gap_type": "generality_and_mechanism",
+      "top_tier_rejection_hypothesis": "A referee can reject the result as finite-vocabulary bookkeeping unless there is a permanent lower bound over an admissible vocabulary family or a new mechanism that transfers.",
+      "highest_information_move": "Prove or refute a vocabulary-family lower bound from the fibre criterion before attempting any cross-family forecast claim.",
+      "successor_protocol": {
+        "state": "FROZEN_DESIGN_ONLY",
+        "scientific_question": "Is there an admissible class of static explanation vocabularies for which exact cost certification provably coexists with irreducible explanation failure at every expression size?",
+        "design": "Define vocabulary closure operations prospectively; prove a lower bound or construct a finite separator; then test the surviving mechanism in a second exact family.",
+        "donors_and_controls": "Unrestricted identifiers; memorizing vocabulary; current finite vocabulary; constructive separator search.",
+        "authority_required": "Independent proof checker and exact second-family referee.",
+        "positive_gate": "Nontrivial lower bound holds over the frozen vocabulary class and predicts a second-family explanation gap.",
+        "negative_or_cannot_check_terminal": "Constructive separator, vocabulary leakage, or no transfer yields bounded finite theorem only.",
+        "no_rescue_rule": "Do not call a mixed fibre permanent until closure under the allowed vocabulary operations is proved.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-10-certified-static-forecasting",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": false,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-11",
+      "paper_slug": "orion-11-recursive-epistemic-reconstruction",
+      "title": "Recursive Epistemic Reconstruction",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "FAITHFUL_ORDERED_COMPARATOR_RETRACTED_COMPARATIVE_SUPERIORITY__BOUNDED_MECHANISM_RETAINED",
+      "top_tier_route": "TOP_TIER_NEW_SUCCESSOR_REQUIRED__OLD_PROTOCOL_CLOSED",
+      "gap_type": "new_task_family_causal_test",
+      "top_tier_rejection_hypothesis": "A referee can reject comparative claims because the faithful ordered Active-VOI comparator removed the prior superiority interpretation.",
+      "highest_information_move": "Define a new causal question on independent task families where ordering, reconstruction, and verification interventions can be separated prospectively.",
+      "successor_protocol": {
+        "state": "FROZEN_NEW_IDENTITY_ONLY",
+        "scientific_question": "When does preserving ordered epistemic dependencies improve verified reconstruction decisions beyond a faithful active-information comparator?",
+        "design": "At least two independent objective-verifier task families; factorial ablation of ordering, reconstruction, and verification; frozen cost and stopping rules.",
+        "donors_and_controls": "Faithful ordered Active-VOI; unordered reconstruction; no-reconstruction; oracle.",
+        "authority_required": "External task gold and implementation-independent comparator audit.",
+        "positive_gate": "Ordered reconstruction adds verified value beyond the faithful comparator in both families under matched resources.",
+        "negative_or_cannot_check_terminal": "No incremental value or comparator mismatch yields bounded mechanistic paper only.",
+        "no_rescue_rule": "Do not rescue or reuse the old retracted comparative reading, and never use an unfaithful comparator.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-11-recursive-epistemic-reconstruction",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": true,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-12",
+      "paper_slug": "orion-12-open-world-scientific-discovery",
+      "title": "Open-World Scientific Discovery",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "BOUNDED_METHOD_RETAINED__TREC_COVID_SUCCESSOR_FAILED_RECALL_AND_COST_GATES",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "fresh_retrieval_transfer",
+      "top_tier_rejection_hypothesis": "A referee can reject discovery superiority because the registered TREC-COVID comparison failed both recall non-inferiority and cost gates despite an nDCG gain outside the gate.",
+      "highest_information_move": "Run one genuinely new BEIR identity on SciFact, NFCorpus, and ArguAna with qrels, route budgets, and success gates frozen before execution.",
+      "successor_protocol": {
+        "state": "FROZEN_DESIGN_ONLY",
+        "scientific_question": "Can the open-world discovery procedure deliver useful retrieval/discovery value across untouched BEIR tasks without sacrificing recall or cost?",
+        "design": "Freeze datasets, topics, qrels version, retrieval budgets, routes, bootstrap plan, and multi-dataset aggregation.",
+        "donors_and_controls": "Strong sparse and dense retrievers; prior u4 donor; cost-matched routing; always-full-read.",
+        "authority_required": "Published qrels and independent scorer.",
+        "positive_gate": "Multi-dataset primary gate passes recall non-inferiority and cost reduction, with predeclared secondary quality gains.",
+        "negative_or_cannot_check_terminal": "Any primary gate failure yields TOP_TIER_SUCCESSOR_NOT_SUPPORTED__BOUNDED_RETAINED.",
+        "no_rescue_rule": "TREC-COVID is excluded from fresh confirmation; nDCG cannot rescue a failed registered recall/cost gate.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-12-open-world-scientific-discovery",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-13",
+      "paper_slug": "orion-13-global-knowledge-portrait",
+      "title": "Global Knowledge Portrait",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "UNIQUE_POLARITY_REDUCT_FOUND__CORPUS_CONFOUNDING_DIAGNOSED",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "anti_confounded_external_semantics",
+      "top_tier_rejection_hypothesis": "A referee can reject coordinate necessity and portrait generality because gold verdict is perfectly confounded with polarity in the current corpus.",
+      "highest_information_move": "Build a prospectively released anti-confounded ontology corpus from GO, Uberon, and EFO with matched-polarity opposite-verdict pairs.",
+      "successor_protocol": {
+        "state": "FROZEN_DESIGN_ONLY",
+        "scientific_question": "Which semantic coordinates remain necessary when polarity is experimentally decorrelated from verdict across independent ontologies?",
+        "design": "Pin ontology releases; generate machine-readable matched pairs before model scoring; hold out ontology families; test minimal reducts and downstream utility.",
+        "donors_and_controls": "Polarity-only; lexical-only; random-coordinate; full coordinates; ontology-native relation oracle.",
+        "authority_required": "Ontology identifiers/relations as native gold plus external domain review.",
+        "positive_gate": "Polarity-only fails by construction, a stable nontrivial reduct transfers across held-out ontologies, and downstream decisions improve.",
+        "negative_or_cannot_check_terminal": "Polarity leakage, no stable reduct, or no transfer leaves the confounding diagnosis as the bounded result.",
+        "no_rescue_rule": "Do not rebalance or edit pairs after observing which coordinates win.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-13-global-knowledge-portrait",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-14",
+      "paper_slug": "orion-14-verified-scientific-discovery",
+      "title": "Verified Scientific Discovery",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "STRONG_BOUNDED_FALSE_PROMOTION_AND_CUSTODY_RESULT__H3_NOT_SUPPORTED",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "multi_domain_external_objective",
+      "top_tier_rejection_hypothesis": "A referee can accept the bounded governance result but reject broad scientific-discovery authority because external objective-verifier transfer is unrun and H3 is null.",
+      "highest_information_move": "Run the optional three-domain transfer across Defects4J, Lean/mathlib, and RO-Crate with unchanged false-promotion and custody logic.",
+      "successor_protocol": {
+        "state": "FROZEN_DESIGN_ONLY",
+        "scientific_question": "Does protected-authority governance reduce false scientific promotion without losing clean coverage across three native-verifier domains?",
+        "design": "Freeze tasks and native gold; preserve H1/H2 as primary; retain H3 as secondary null unless newly supported; run registered ablations and custody telemetry.",
+        "donors_and_controls": "Frozen comparator; no protected authority; no custody; permissive promotion; native oracle.",
+        "authority_required": "Native objective verifiers and independent protected evaluator.",
+        "positive_gate": "H1/H2 replicate in all domains with zero authority violations and no unacceptable clean-coverage loss.",
+        "negative_or_cannot_check_terminal": "Any false-promotion, custody, or coverage gate failure yields bounded paper only; H3 remains separately graded.",
+        "no_rescue_rule": "The absent 400-row reduct table stays CANNOT_CHECK and cannot be synthetically reconstructed; H3 cannot be promoted post hoc.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-14-verified-scientific-discovery",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-15",
+      "paper_slug": "orion-15-self-orion",
+      "title": "Self-ORION",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "REVISION_LEVEL_DISCRIMINATION_SUPPORTED__GENERAL_SELF_IMPROVEMENT_AUTHORITY_ABSENT",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_MODEL_REQUIRED",
+      "gap_type": "protected_longitudinal_model_transfer",
+      "top_tier_rejection_hypothesis": "A referee can reject general governed self-improvement because the bounded revision panel is not a repeated protected longitudinal campaign across model families and independent evaluators.",
+      "highest_information_move": "Use the already frozen reusable-sealed longitudinal protocol; bind exact model revisions, task splits, evaluator custody, and fair comparator budgets before execution.",
+      "successor_protocol": {
+        "state": "DELEGATED_TO_EXISTING_FROZEN_PROTOCOL",
+        "scientific_question": "Can adaptive revision deliver repeated protected fresh-task gains while controlling retention loss, harm, false promotion, leakage, authority violations, and cost?",
+        "design": "Use at least three model/agent families, six ordered rounds, protected fresh/retention splits, required arms, alpha ledger, and blinded ambiguous-task adjudication.",
+        "donors_and_controls": "No revision; direct self-edit; archive revision; open-ended evolution; PACE-style acceptance; sealed nonregression; named ablations.",
+        "authority_required": "Independent protected evaluator and promotion authority; external investigators required for replication.",
+        "positive_gate": "All frozen fresh, retention, harm, false-promotion, authority, safe-promotion, and cumulative-advantage gates pass with independent reproduction.",
+        "negative_or_cannot_check_terminal": "Any component failure yields the registered negative/CANNOT_CHECK terminal; bounded revision-level result remains.",
+        "no_rescue_rule": "No replay-as-fresh substitution, alpha reset, dropped failures, self-certification, or weaker comparator access.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-15-self-orion",
+        "research/self-orion/reusable-sealed-promotion-v1/PROTOCOL.json",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": {
+        "path": "research/self-orion/reusable-sealed-promotion-v1",
+        "reason": "Existing complete longitudinal protocol; no duplicate writer."
+      },
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-16",
+      "paper_slug": "orion-16-formal-epistemic-structures-and-mechanics",
+      "title": "Formal Epistemic Structures and Mechanics",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "BOUNDED_FORMAL_CERTIFICATE_LIFTING_AND_GRAPH_QUALITY_RESULTS_RETAINED",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "real_system_graph_validity",
+      "top_tier_rejection_hypothesis": "A referee can reject broad engineering significance because exhaustive small-graph theorems and retrospective real-system evidence do not establish prospective native-graph consequences.",
+      "highest_information_move": "Do not duplicate active #1695; complete the frozen RTPTorrent/Bazel/Cargo campaign with native graph extraction and objective revalidation.",
+      "successor_protocol": {
+        "state": "DELEGATED_ACTIVE_LANE",
+        "scientific_question": "Do dependency closure and graph-quality laws predict real revalidation work and unsound retention across structurally different build/test ecosystems?",
+        "design": "Pin RTPTorrent, Envoy/Abseil/gRPC Bazel configurations, and Polkadot Cargo metadata; prospectively freeze changes and native gold.",
+        "donors_and_controls": "Full rebuild; heuristic AST graph; exact native graph; over- and under-approximation mutations.",
+        "authority_required": "Native build/test systems and independent graph extraction audit.",
+        "positive_gate": "Predeclared graph-quality predictions hold across multiple ecosystems and explain native work/soundness outcomes.",
+        "negative_or_cannot_check_terminal": "Extraction failure, non-discrimination, or native-gold mismatch yields bounded formal theorem only.",
+        "no_rescue_rule": "No heuristic graph may be relabelled native; do not create a competing protocol while #1695 owns the lane.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-16-formal-epistemic-structures-and-mechanics",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": {
+        "issue_or_pr": "#1695",
+        "reason": "Active real-system graph campaign; duplicate execution prohibited."
+      },
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-17",
+      "paper_slug": "orion-17-epistemic-navigation-open-worlds",
+      "title": "Epistemic Navigation in Open Worlds",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "PROSPECTIVE_DENSITY_RESULT_5_OF_5_EXISTS_OUTSIDE_CONTROLLING_MAIN__BINDING_UNRESOLVED",
+      "top_tier_route": "TOP_TIER_CANDIDATE__INTEGRATION_AND_GOVERNANCE_REVIEW_REQUIRED",
+      "gap_type": "evidence_integration_and_replication",
+      "top_tier_rejection_hypothesis": "A referee can reject or defer because the strongest prospective packet is not bound to controlling main, governance conflict is unresolved, and five repositories may still be too narrow for a Nature-class reach claim.",
+      "highest_information_move": "Recover the exact packet path-by-path from its owning lane, verify chronology and checker independently, adjudicate one-shot governance, write a standalone manuscript, then pre-register one unrelated replication cohort if the target venue requires broader reach.",
+      "successor_protocol": {
+        "state": "INTEGRATION_FIRST__NO_RERUN",
+        "scientific_question": "Does a prospectively frozen density rule predict when epistemic navigation/revalidation is unsound across held-out naturalistic repositories?",
+        "design": "First integrate the immutable 5/5 packet without rerun; independently verify density→prediction→outcome chronology and Tornado disambiguator; any replication must use unrelated ecosystems and a new frozen cohort.",
+        "donors_and_controls": "Size-only rule; always-sound/always-unsound; shuffled threshold; native outcomes.",
+        "authority_required": "Immutable external repository outcomes, independent checker, and governance adjudication.",
+        "positive_gate": "Existing packet survives integration/hostile audit; governance is clean; manuscript establishes broad consequence; any required replication is prospectively positive.",
+        "negative_or_cannot_check_terminal": "Any binding, chronology, checker, or governance mismatch blocks promotion; replication failure narrows the claim.",
+        "no_rescue_rule": "Do not rerun the five repositories as fresh, change threshold 1.5, or suppress the size-vs-density disambiguator.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-17-epistemic-navigation-open-worlds",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": {
+        "issue_or_pr": "#1692",
+        "reason": "Owning density-prospective packet; recover path-by-path, do not duplicate."
+      },
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-18",
+      "paper_slug": "orion-18-epistemic-authority-autonomous-science",
+      "title": "Epistemic Authority for Autonomous Science",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "BOUNDED_AUTHORIZATION_AND_EVIDENCE_DISCHARGE_THEORY_RETAINED__EXTERNAL_AUTHORITY_NONIDENTIFIABLE_INTERNALLY",
+      "top_tier_route": "TOP_TIER_PROMOTION_BLOCKED__EXTERNAL_AUTHORITY_REQUIRED",
+      "gap_type": "external_human_or_institution",
+      "top_tier_rejection_hypothesis": "A referee can reject empirical authority because no same-team software or AI replay can supply the independent human/institutional judgment the claim requires.",
+      "highest_information_move": "Prepare a sealed external handoff to institution-disjoint experts; no internal run can close the broader authority claim.",
+      "successor_protocol": {
+        "state": "EXTERNAL_HANDOFF_READY__NOT_SELF_EXECUTABLE",
+        "scientific_question": "Can independent institutions apply the frozen authority contracts consistently on native-rule and genuinely ambiguous scientific cases without laundering candidate assertions?",
+        "design": "Blinded, institution-disjoint adjudication; native-rule anchors; paired blockers; coercion/laundering attacks; explicit CANNOT_CHECK option.",
+        "donors_and_controls": "Same-team replay as reproducibility only; self-certification; native-rule oracle; blinded expert panels.",
+        "authority_required": "Independent human or institutional authority is mandatory.",
+        "positive_gate": "Independent institutions reproduce contract decisions, detect laundering, and agree on ambiguous-case disposition under predeclared rules.",
+        "negative_or_cannot_check_terminal": "Absent external authority or material disagreement remains REQUIRES_EXTERNAL_HUMAN_OR_INSTITUTION / CANNOT_CHECK.",
+        "no_rescue_rule": "Same-researcher AI, a second implementation, or internal consensus cannot be counted as external authority.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-18-epistemic-authority-autonomous-science",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-19",
+      "paper_slug": "orion-19-structured-epistemic-learning",
+      "title": "Structured Epistemic Learning",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "BOUNDED_REVIEW_BRANCH_RESULT__MAIN_MANUSCRIPT_ABSENT__UT3_ZERO_GRID_CELLS",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "integration_then_coverage_transfer",
+      "top_tier_rejection_hypothesis": "A referee can reject because the controlling manuscript/evidence are not integrated and the checkpoint grid has zero executed cells, so coverage and transfer remain unknown.",
+      "highest_information_move": "First integrate the exact review-branch manuscript and verified V3 evidence path-by-path; then bind a grid-cell executor with frozen renderers and native gold before any UT3 run.",
+      "successor_protocol": {
+        "state": "INTEGRATION_AND_EXECUTOR_PRECONDITION",
+        "scientific_question": "Does causal-diagnostic structural learning remain calibrated and useful across checkpoint/model/domain cells rather than a small available subset?",
+        "design": "Immutable checkpoint custody; frozen renderers and gold; predeclared available/unavailable handling; coverage, diagnosis, abstention, and decision utility.",
+        "donors_and_controls": "Representation-only repair; lexical diagnosis; strongest model-only baseline; oracle diagnosis.",
+        "authority_required": "Pinned model revisions, native task gold, and independent scorer.",
+        "positive_gate": "Predeclared grid coverage is achieved and diagnostic/utility gates transfer across model and domain cells with stable abstention.",
+        "negative_or_cannot_check_terminal": "Insufficient coverage, no utility, or scorer drift yields bounded result only.",
+        "no_rescue_rule": "Unavailable checkpoints remain missing; no substitution after outcomes; V2 CANNOT_CHECK and Qwen negative remain in the record.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-19-structured-epistemic-learning",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-20",
+      "paper_slug": "orion-20-structured-problem-solving",
+      "title": "Structured Problem Solving",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "PRIMITIVE_MINIMALITY_SUCCESSOR_FAILED__NO_UNIQUE_INDISPENSABLE_PRIMITIVE",
+      "top_tier_route": "TOP_TIER_NEW_SUCCESSOR_REQUIRED__OLD_PROTOCOL_CLOSED",
+      "gap_type": "new_scientific_identity",
+      "top_tier_rejection_hypothesis": "A referee can reject the old minimality claim because AND and OR are both singleton bases; reordering primitives cannot restore indispensability.",
+      "highest_information_move": "Define a genuinely new outside-closure discovery question with a frozen donor set, objective native verifiers, and at least three external domains.",
+      "successor_protocol": {
+        "state": "FROZEN_NEW_IDENTITY_ONLY",
+        "scientific_question": "Can a problem-solving system discover useful operations outside a prospectively frozen donor closure under matched resources across objective-verifier domains?",
+        "design": "Formalize closure before tasks; freeze donor primitives, invention budget, equivalence checker, and three native-verifier domains.",
+        "donors_and_controls": "Donor-only search; random invention; larger donor set; oracle closure witness.",
+        "authority_required": "Native verifiers and independent equivalence audit.",
+        "positive_gate": "Outside-closure operations are independently verified, improve objective outcomes in multiple domains, and are not donor-equivalent.",
+        "negative_or_cannot_check_terminal": "No verified outside-closure value yields bounded paper / negative successor.",
+        "no_rescue_rule": "No further compute on the old primitive-minimality identity; changing primitive order or donor encoding is not a successor.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-20-structured-problem-solving",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": true,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-21",
+      "paper_slug": "orion-21-state-as-computation",
+      "title": "State as Computation",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "TIE_ROBUST_SUCCESSOR_CONFIRMED_AMBIGUITY__PHASE_BOUNDARY_WITHDRAWN",
+      "top_tier_route": "TOP_TIER_PROMOTION_FAILED__SECOND_TIER_FALLBACK_JUSTIFIED",
+      "gap_type": "closed_negative_instrument",
+      "top_tier_rejection_hypothesis": "A referee can reject the width-law/phase claim because tie handling changes verdicts and the faithful V1 executable bytes are absent; the surviving modified variant is quarantined.",
+      "highest_information_move": "Stop rescue of the old width law. Any future work must define an invariant on tie-equivalence classes under a new identity before data.",
+      "successor_protocol": {
+        "state": "OLD_IDENTITY_CLOSED",
+        "scientific_question": "No same-identity promotion is authorized. A future question may ask whether any decision invariant survives all admissible tie resolutions.",
+        "design": "Prospectively define tie-equivalence and invariant; exact adversarial tie enumerator; independent checker.",
+        "donors_and_controls": "All tie resolutions; quarantined modified variant; old width heuristic.",
+        "authority_required": "Exact enumeration and preserved executable custody.",
+        "positive_gate": "No positive gate exists for the old identity.",
+        "negative_or_cannot_check_terminal": "Old top-tier path is closed; bounded width-conditioned result and negative successor are retained.",
+        "no_rescue_rule": "No post-outcome tie rule, no use of quarantined bytes as faithful replay, and no positive-assuming CI interpretation.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-21-state-as-computation",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": false,
+      "old_identity_closed": true,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-22",
+      "paper_slug": "orion-22-adaptive-state-reasoning",
+      "title": "Adaptive-State Reasoning",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "EXACT_OBSERVATION_REGRET_LAW_SCOPED__ROBUSTNESS_AXES_BROKEN",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "second_family_transfer",
+      "top_tier_rejection_hypothesis": "A referee can reject broad adaptive-reasoning significance because the exact law is from one controlled family and price/distribution-shift robustness is broken.",
+      "highest_information_move": "Choose exactly one second family—Defects4J or OpenML—before protocol freeze and require both zero-regret and positive-regret observation classes.",
+      "successor_protocol": {
+        "state": "FROZEN_DESIGN_ONLY",
+        "scientific_question": "Does the observation-regret law identify unavoidable decision loss and a sufficient refinement in a genuinely different task family?",
+        "design": "Freeze family, observations, hidden states, action costs, regret, refinement, and distribution-shift stress tests.",
+        "donors_and_controls": "Price-blind observation; full observation; learned policy; oracle; random refinement.",
+        "authority_required": "Native test/label gold and independent regret calculator.",
+        "positive_gate": "Both zero- and positive-regret classes occur; predicted floors and refinement closure hold under frozen stress tests.",
+        "negative_or_cannot_check_terminal": "No class diversity, law violation, or failed refinement yields bounded exact law only.",
+        "no_rescue_rule": "No family switching, price-axis repair, or distribution reweighting after outcomes.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-22-adaptive-state-reasoning",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-23",
+      "paper_slug": "orion-23-responsibility-carrying-state",
+      "title": "Responsibility-Carrying State",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "EXACT_THREE_VALUED_TRANSPORT_LAW_RETAINED__P13A_SELF_SCORED_AUTHORITY_WITHHELD",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "organization_disjoint_transport_and_external_safety",
+      "top_tier_rejection_hypothesis": "A referee can accept the transport theorem but reject empirical safety and generality because the safety endpoint is self-scored and the live-Git successor needs organization-disjoint evidence.",
+      "highest_information_move": "Do not duplicate #1691; complete its live-Git acquisition outside the old corpus and obtain external adjudication for safety-cost outcomes.",
+      "successor_protocol": {
+        "state": "DELEGATED_ACTIVE_LANE",
+        "scientific_question": "Does three-valued responsibility transport prevent unsound reuse without excessive revocation across organization-disjoint repositories and externally judged safety outcomes?",
+        "design": "Freeze repositories outside prior 31-repo/14-org corpus; predeclare REUSABLE/non-reusable cases, head/non-head changes, abstention and safety-cost scoring.",
+        "donors_and_controls": "Optimistic collapse; pessimistic collapse; always-unknown; native provenance policy.",
+        "authority_required": "Native Git evidence plus independent safety adjudicators.",
+        "positive_gate": "Zero unsound transport, bounded over-revocation, discriminating reuse cases, and external safety-cost validation across organizations.",
+        "negative_or_cannot_check_terminal": "Non-discriminating design yields CANNOT_CHECK_DESIGN_POWER; safety without external adjudication stays withheld.",
+        "no_rescue_rule": "UNKNOWN remains a third outcome; no binary recoding or corpus replacement after outcomes.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-23-responsibility-carrying-state",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": {
+        "issue_or_pr": "#1691",
+        "reason": "Active live-Git acquisition; duplicate writer prohibited."
+      },
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-24",
+      "paper_slug": "orion-24-orion-rse",
+      "title": "ORION Recursive Scientific Evaluation",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "CONTROL_PLANE_VERIFIED__EMPIRICAL_CAMPAIGN_NOT_RUN",
+      "top_tier_route": "TOP_TIER_PROMOTION_BLOCKED__EXTERNAL_AUTHORITY_REQUIRED",
+      "gap_type": "frontier_agents_blinded_experts_longitudinal",
+      "top_tier_rejection_hypothesis": "A referee can reject broad evaluation claims because the control plane is not evidence of frontier-agent performance, blinded expert validity, or longitudinal benefit.",
+      "highest_information_move": "Use the existing reusable-sealed campaign machinery for R1 frontier-agent runs, R2 blinded institution-disjoint adjudication, and R3 prospective longitudinal negative-history ablation.",
+      "successor_protocol": {
+        "state": "EXTERNAL_CAMPAIGN_READY__NOT_SELF_EXECUTABLE",
+        "scientific_question": "Does recursive scientific evaluation improve valid discovery and stopping while controlling false promotion, harm, authority violations, and negative-history loss in a prospective longitudinal campaign?",
+        "design": "Frontier agents; blinded experts; multiple rounds; protected tasks; full-history versus positive-only ablation; cost and cannot-check accounting.",
+        "donors_and_controls": "No revision; direct self-edit; open-ended evolution; positive-only history; no independent promotion.",
+        "authority_required": "Independent blinded experts and protected promotion authority.",
+        "positive_gate": "All registered discovery, false-promotion, harm, retention, authority, cost, and longitudinal ablation gates pass with external adjudication.",
+        "negative_or_cannot_check_terminal": "No external authority, campaign nonexecution, or any safety/validity gate failure remains CANNOT_CHECK or bounded governance-conformance only.",
+        "no_rescue_rule": "Retrospective replay is not prospective longitudinal evidence; same-team agents cannot fill the expert arm.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-24-orion-rse",
+        "research/self-orion/reusable-sealed-promotion-v1/PROTOCOL.json",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": {
+        "path": "research/self-orion/reusable-sealed-promotion-v1",
+        "reason": "Shared sealed campaign machinery; empirical authority still external."
+      },
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    },
+    {
+      "paper_id": "ORION-25",
+      "paper_slug": "orion-25-orion-research-harness",
+      "title": "ORION Research Harness",
+      "assessed_main": "f17dc68ee8d8202a673db33e9f491b982e5a0286",
+      "current_terminal": "EXACT_CRYPTOGRAPHIC_TRUST_DOMAIN_LAW_RETAINED__FRONTIER_PROTOCOL_UNEXECUTED",
+      "top_tier_route": "TOP_TIER_PROMOTION_ACTIVE__EXTERNAL_DATA_REQUIRED",
+      "gap_type": "real_governance_transfer",
+      "top_tier_rejection_hypothesis": "A referee can reject organizational-independence significance because cryptographic independence inside one harness does not establish separate governance in real systems.",
+      "highest_information_move": "Execute the preregistered frontier successor on at least two systems with structurally different trust and governance models using native verification.",
+      "successor_protocol": {
+        "state": "PREREGISTERED_SUCCESSOR__NOT_EXECUTED",
+        "scientific_question": "Does the trust-domain law predict forgeability and execution-integrity failure in real systems whose independence comes from separate governance, not only keys?",
+        "design": "Pin at least two real systems and governance boundaries; map attestations prospectively; include false-rejection endpoints and chained-signature mutations.",
+        "donors_and_controls": "Single-domain harness; key-only independence; organization-only label; native verifier; forged and stale attestations.",
+        "authority_required": "Native system verification and organization-disjoint governance evidence.",
+        "positive_gate": "Law predictions and integrity gates hold in at least two structurally distinct real systems with acceptable false rejection.",
+        "negative_or_cannot_check_terminal": "No cross-system law or governance separation yields bounded cryptographic theorem only.",
+        "no_rescue_rule": "Do not infer organizational independence from key separation alone or change system selection after outcomes.",
+        "outcome_accessed": false
+      },
+      "evidence_paths": [
+        "papers/orion-25-orion-research-harness",
+        "papers/PUBLICATION_DISPOSITION_MATRIX_V1.md"
+      ],
+      "delegation": null,
+      "irreducible_external_dependency": true,
+      "old_identity_closed": false,
+      "board_signoff": {
+        "formal_methods_and_theory": "APPROVE_BOUNDED_SCOPE",
+        "experimental_design_and_statistics": "APPROVE_PROTOCOL_ONLY__NO_OUTCOME_AUTHORITY",
+        "domain_and_novelty": "APPROVE_NEW_IDENTITY_OR_STOP_RULE",
+        "reproducibility_and_forensics": "APPROVE_FAIL_CLOSED_CUSTODY",
+        "top_tier_editor": "NOT_TOP_TIER_READY_UNTIL_GATE_EARNED"
+      },
+      "notes": []
+    }
+  ]
+}
