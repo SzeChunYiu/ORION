@@ -1,11 +1,9 @@
-# ORION-02 repository-side filing checklist
+# Review-packet checklist
 
-- [x] Canonical V3 science and live claim ledger bound by SHA-256.
-- [x] Reader-facing manuscript surface removes repository control metadata without changing claim authority.
-- [x] Negative/adverse results and forbidden promotions retained.
-- [x] PDF compiles cleanly; extracted text is non-empty; no undefined references; no overfull boxes.
-- [x] Editable source and reproducibility/artifact archive included.
-- [x] Package manifest and SHA256SUMS generated deterministically.
-- [x] TMLR submission PDF and supplementary material are anonymized.
-- [x] Pinned TMLR style/template files included in source archive.
-- [ ] Complete external portal/account metadata and upload (human action).
+- [x] Anonymous PDF built with the unmodified official TMLR style.
+- [x] Hand-written mathematical source and bibliography included in the source ZIP.
+- [x] Anonymous supplement includes theorem, repair, paired-comparison, selector and enclosed-result checks.
+- [x] Supplement distinguishes scientific projections from full provenance-bearing objects.
+- [x] R24 primary/control margin remains CANNOT_CHECK.
+- [x] Package manifests and SHA-256 bindings verify.
+- [ ] Complete the human actions in ../TMLR_FILING_CHECKLIST_V4.md before upload.

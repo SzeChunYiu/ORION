@@ -1,0 +1,103 @@
+{
+  "authority": "DIAGNOSTIC_ONLY",
+  "extraction_control": {
+    "matches_committed": true,
+    "recomputed_violations": [
+      20,
+      11
+    ]
+  },
+  "model_bound_abstention": [
+    {
+      "abstain": 0.0,
+      "conformal_bound_alpha_0.10": 0.061381131577,
+      "retained": 44,
+      "violations_at_tau": 11
+    },
+    {
+      "abstain": 0.2,
+      "conformal_bound_alpha_0.10": 0.061532331512,
+      "retained": 35,
+      "violations_at_tau": 10
+    },
+    {
+      "abstain": 0.25,
+      "conformal_bound_alpha_0.10": 0.061532331512,
+      "retained": 33,
+      "violations_at_tau": 10
+    },
+    {
+      "abstain": 0.5,
+      "conformal_bound_alpha_0.10": 0.061532331512,
+      "retained": 22,
+      "violations_at_tau": 8
+    }
+  ],
+  "n": 44,
+  "oracle_abstention": [
+    {
+      "abstain": 0.2,
+      "conformal_bound_alpha_0.10": 0.017333333333,
+      "retained": 35,
+      "violations_at_tau": 2
+    },
+    {
+      "abstain": 0.25,
+      "conformal_bound_alpha_0.10": 0.016836830638,
+      "retained": 33,
+      "violations_at_tau": 0
+    },
+    {
+      "abstain": 0.3,
+      "conformal_bound_alpha_0.10": 0.01421965812,
+      "retained": 31,
+      "violations_at_tau": 0
+    }
+  ],
+  "p_excess_gt_tau": 0.25,
+  "required_bound_by_alpha": {
+    "0.05": 0.065566238845,
+    "0.1": 0.061381131577,
+    "0.15": 0.057887276123,
+    "0.2": 0.034719609892,
+    "0.25": 0.031507936508,
+    "0.3": 0.017178063488
+  },
+  "schema": "anon.anon.selector-limited-certification.v1",
+  "scientific_authority_delta": "NONE",
+  "selector_quality_requirement": [
+    {
+      "conformal_bound_alpha_0.10": 0.016836830638,
+      "selector_corr": 1.0,
+      "violations_at_tau": 0
+    },
+    {
+      "conformal_bound_alpha_0.10": 0.016836830638,
+      "selector_corr": 0.9797801696463063,
+      "violations_at_tau": 0
+    },
+    {
+      "conformal_bound_alpha_0.10": 0.016836830638,
+      "selector_corr": 0.9236144865252441,
+      "violations_at_tau": 1
+    },
+    {
+      "conformal_bound_alpha_0.10": 0.017178063488,
+      "selector_corr": 0.8450296140044504,
+      "violations_at_tau": 2
+    },
+    {
+      "conformal_bound_alpha_0.10": 0.033333333334,
+      "selector_corr": 0.7590001004910579,
+      "violations_at_tau": 3
+    }
+  ],
+  "selector_signal": {
+    "pearson": -0.14421430857642653,
+    "permutation_p_two_sided": 0.35285,
+    "shuffles": 20000,
+    "verdict": "NO_USABLE_SIGNAL"
+  },
+  "tau": 0.02,
+  "terminal": "FRONTIER_IS_SELECTOR_LIMITED_NOT_FUNDAMENTAL"
+}
