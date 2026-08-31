@@ -233,6 +233,30 @@ def main() -> int:
     only = {s.strip() for s in args.papers.split(",") if s.strip()} or None
 
     head = run_git(repo, "rev-parse", "HEAD").strip()
+
+    # A pin must name a commit that still exists after this branch merges. This
+    # repository squash-merges, so a commit that lives only on a feature branch is
+    # destroyed on merge and every bound file then fails to resolve via
+    # `git show <subject_commit>:<path>`, silently degrading to PARTIAL. Warn at
+    # write time rather than letting it surface as unexplained CI failures on main.
+    try:
+        upstream = run_git(repo, "rev-parse", "--verify", "-q", "origin/main").strip()
+    except Exception:
+        upstream = ""
+    if upstream:
+        merge_base = ""
+        try:
+            merge_base = run_git(repo, "merge-base", head, upstream).strip()
+        except Exception:
+            pass
+        if merge_base != head:
+            print(
+                f"warning: subject_commit {head[:12]} is not reachable from origin/main.\n"
+                "         This repo squash-merges, so that commit will not survive the merge and\n"
+                "         every pin written now will dangle on main. Re-pin after merging, or pin\n"
+                "         to a commit already on origin/main that contains the bound bytes.",
+                file=sys.stderr,
+            )
     rc = 0
     for paper in paper_dirs(repo, only):
         name = paper.name
