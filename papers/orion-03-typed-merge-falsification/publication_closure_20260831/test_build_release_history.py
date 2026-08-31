@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 import unittest
 
+from build_integrity_ledger import reviewed_manuscript_fingerprint
 from build_release import historical_file_hash
 from verify_release import VerificationError, verify_historical_candidate_hashes
 
@@ -87,6 +88,37 @@ class HistoricalCandidateManifestTests(unittest.TestCase):
             VerificationError, "historical manuscript candidate hash mismatch"
         ):
             verify_historical_candidate_hashes(manifest)
+
+
+class IndependentReviewFingerprintTests(unittest.TestCase):
+    def test_fingerprint_is_copied_from_frozen_reviewer_output(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_name:
+            manuscript = Path(temp_name) / "paper.pdf"
+            manuscript.write_bytes(b"reviewed bytes\n")
+            digest = hashlib.sha256(manuscript.read_bytes()).hexdigest()
+            review = {
+                "candidate": {
+                    "immutable_objects": {"reader_pdf": {"sha256": digest}}
+                }
+            }
+
+            self.assertEqual(
+                reviewed_manuscript_fingerprint(review, manuscript),
+                f"sha256:{digest}",
+            )
+
+    def test_reviewer_fingerprint_is_not_rebound_to_later_bytes(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_name:
+            manuscript = Path(temp_name) / "paper.pdf"
+            manuscript.write_bytes(b"later bytes\n")
+            review = {
+                "candidate": {
+                    "immutable_objects": {"reader_pdf": {"sha256": "1" * 64}}
+                }
+            }
+
+            with self.assertRaisesRegex(ValueError, "PDF binding mismatch"):
+                reviewed_manuscript_fingerprint(review, manuscript)
 
 
 if __name__ == "__main__":

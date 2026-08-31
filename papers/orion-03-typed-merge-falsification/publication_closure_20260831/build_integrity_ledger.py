@@ -49,6 +49,17 @@ def _require_equal(actual: Any, expected: Any, label: str) -> None:
         raise ValueError(f"independent review {label} mismatch")
 
 
+def reviewed_manuscript_fingerprint(
+    review: dict[str, Any], manuscript: Path
+) -> str:
+    """Copy the exact reader digest frozen by the independent reviewer."""
+    digest = str(
+        review["candidate"]["immutable_objects"]["reader_pdf"]["sha256"]
+    )
+    _require_equal(digest, sha256_file(manuscript), "PDF binding")
+    return f"sha256:{digest}"
+
+
 def _resolve_pointer(stage: Path, pointer: str) -> Path:
     raw = pointer.split("#", 1)[0]
     target = (stage / raw).resolve()
@@ -86,7 +97,7 @@ def build_ledger(*, closure: Path, paper: Path, pdf: Path) -> dict[str, object]:
     )
     immutable = review["candidate"]["immutable_objects"]
     _require_equal(immutable["canonical_manuscript"]["sha256"], sha256_file(paper / "MANUSCRIPT_V3.md"), "manuscript binding")
-    _require_equal(immutable["reader_pdf"]["sha256"], sha256_file(pdf), "PDF binding")
+    reviewed_fingerprint = reviewed_manuscript_fingerprint(review, pdf)
     _require_equal(immutable["atomic_claim_inventory"]["sha256"], sha256_file(inventory_path), "atomic inventory binding")
     _require_equal(immutable["candidate_review_manifest"]["sha256"], sha256_file(candidate_manifest_path), "candidate manifest binding")
     _require_equal(immutable["component_binding_manifest"]["sha256"], sha256_file(component_path), "component manifest binding")
@@ -272,6 +283,7 @@ def build_ledger(*, closure: Path, paper: Path, pdf: Path) -> dict[str, object]:
             "verifier_id": REVIEWER_ID,
             "verification_method": "independent_model_with_retrieved_source",
             "checked_at": review.get("reviewed_at_utc", CHECKED_AT),
+            "reviewed_manuscript_fingerprint": reviewed_fingerprint,
             "notes": f"Independent clean-context reconstruction covered all {len(specs)} atomic claims and all citation uses in the exact source, PDF, and package candidate.",
         },
         "sources": sources,
