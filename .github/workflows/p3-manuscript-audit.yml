@@ -1,0 +1,93 @@
+name: p3-manuscript-audit
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-13-global-knowledge-portrait/**'
+      - 'research/publication/publication_status.json'
+      - 'tests/test_publication_status.py'
+      - 'tests/test_paper_manuscript_integrity.py'
+      - 'scripts/check_p3_current_package.py'
+      - 'scripts/check_p3_manuscript_claim_surface.py'
+      - 'scripts/write_render_closure_state.py'
+      - '.github/workflows/p3-manuscript-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'papers/orion-13-global-knowledge-portrait/**'
+      - 'research/publication/publication_status.json'
+      - 'tests/test_publication_status.py'
+      - 'tests/test_paper_manuscript_integrity.py'
+      - 'scripts/check_p3_current_package.py'
+      - 'scripts/check_p3_manuscript_claim_surface.py'
+      - 'scripts/write_render_closure_state.py'
+      - '.github/workflows/p3-manuscript-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  manuscript:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install Python dependencies
+        run: python -m pip install -e '.[dev,candidates]'
+
+      - name: Install TeX toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-pictures texlive-fonts-recommended poppler-utils
+
+      - name: Audit scoped structure and bounded claim surface
+        run: python scripts/check_p3_manuscript_claim_surface.py
+
+      - name: Verify tracked journal package checksums
+        working-directory: papers/orion-13-global-knowledge-portrait
+        run: sha256sum -c journal_package/SHA256SUMS
+
+      - name: Compile canonical scoped PDF deterministically
+        working-directory: papers/orion-13-global-knowledge-portrait/manuscript
+        run: |
+          set -euo pipefail
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          test -s main.pdf
+          if grep -E 'LaTeX Warning: (Citation|Reference).*(undefined)|There were undefined references|undefined citations|multiply defined' main.log; then
+            echo 'Unresolved or duplicate LaTeX reference/citation remains after convergence.' >&2
+            exit 1
+          fi
+          test "$(git hash-object main.pdf)" = bd77cf84cef75bdb831544d7bc7a03650f439742
+          pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
+
+      - name: Verify current exact package binding and retained adverse terminals
+        run: |
+          set -euo pipefail
+          python scripts/write_render_closure_state.py --check
+          python scripts/check_p3_current_package.py
+
+      - name: Verify package and publication scoreboard
+        run: |
+          set -euo pipefail
+          python research/publication/scoreboard.py --check
+          python research/paper-programme-v1/journal_package/check_journal_package.py --root .
+          pytest -q tests/test_publication_status.py tests/unit/publication/test_journal_package.py
+
+      - name: Archive audit and rebuilt PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: p3-manuscript-audit-${{ github.sha }}
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            /tmp/p3-pdfinfo.txt
+            papers/orion-13-global-knowledge-portrait/manuscript/main.pdf
+            papers/orion-13-global-knowledge-portrait/manuscript/main.log
