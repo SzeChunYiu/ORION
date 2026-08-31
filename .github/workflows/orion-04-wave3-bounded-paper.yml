@@ -1,0 +1,42 @@
+name: ORION-04 Wave 3 bounded paper
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-04-wave3-bounded-paper.yml"
+      - "papers/orion-04-rooted-completion-certificates/WAVE3_PUBLICATION_DECISION_V1.md"
+      - "papers/orion-04-rooted-completion-certificates/wave3_bounded_closeout_v1/**"
+      - "tests/research/test_orion04_wave3_bounded_paper.py"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/orion-04-wave3-bounded-paper.yml"
+      - "papers/orion-04-rooted-completion-certificates/WAVE3_PUBLICATION_DECISION_V1.md"
+      - "papers/orion-04-rooted-completion-certificates/wave3_bounded_closeout_v1/**"
+      - "tests/research/test_orion04_wave3_bounded_paper.py"
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-paper:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install pytest==8.4.2 ruff==0.15.10
+      - name: Verify publication package
+        run: python papers/orion-04-rooted-completion-certificates/wave3_bounded_closeout_v1/verify_closeout.py
+      - name: Run focused tests
+        run: python -m pytest -q tests/research/test_orion04_wave3_bounded_paper.py
+      - name: Static checks
+        run: |
+          ruff check \
+            papers/orion-04-rooted-completion-certificates/wave3_bounded_closeout_v1/verify_closeout.py \
+            tests/research/test_orion04_wave3_bounded_paper.py
+          git diff --check
+          git diff --exit-code
