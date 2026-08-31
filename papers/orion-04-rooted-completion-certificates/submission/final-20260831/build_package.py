@@ -22,11 +22,17 @@ def deterministic_zip(path, files):
             zf.writestr(info, Path(src).read_bytes())
 
 def normalized_markdown(src):
-    # The frozen manuscript uses LaTeX \(...\)/\[...\] delimiters and a
-    # Unicode QED marker. Pandoc's pdflatex path can preserve those as raw TeX
-    # outside math mode / unsupported Unicode. Normalize only the temporary
-    # build copy; never rewrite the canonical scientific source.
+    # The frozen manuscript contains research-internal front-matter, LaTeX
+    # \(...\)/\[...\] delimiters, and a Unicode QED marker. The journal PDF
+    # adapter removes only non-scientific routing labels and normalizes render
+    # syntax in a temporary copy; it never rewrites canonical scientific bytes.
     text = Path(src).read_text(encoding="utf-8")
+    drop_prefixes = (
+        "**ORION-04 — Wave 3 scientific successor V2**",
+        "**Supersedes for journal science:**",
+        "**Preserves:**",
+    )
+    text = "\n".join(line for line in text.splitlines() if not line.startswith(drop_prefixes)) + "\n"
     text = text.replace("\\[", "$$").replace("\\]", "$$").replace("\\(", "$").replace("\\)", "$")
     return text.replace("∎", "$\\square$")
 
