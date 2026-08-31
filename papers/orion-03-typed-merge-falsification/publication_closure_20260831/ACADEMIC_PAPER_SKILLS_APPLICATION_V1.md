@@ -1,6 +1,6 @@
 # ORION-03 academic-paper-skills application record
 
-skills-applied: `academic-writing@1.15.0`; released repository revision `0c05ac4c2c7f6a6a7d26dad22c1de1efdc186b4b`; abstract-information budget; section craftsmanship; standalone-reader contract; narrative architecture; epistemic rhetoric; numerical precision; formal-spine preservation; protocol/conduct; data integrity; statistical inference boundary; display decision; scholarly surface semantics; manuscript surface QA; literature version/source quality; venue-constrained budgeting; manuscript excellence gate.
+skills-applied: `academic-writing@1.15.0`; content/editing baseline revision `0c05ac4c2c7f6a6a7d26dad22c1de1efdc186b4b`; final release-integrity revision `fd5e935c035a55363fca169c058cb95bed21143e`; abstract-information budget; section craftsmanship; standalone-reader contract; narrative architecture; epistemic rhetoric; numerical precision; formal-spine preservation; protocol/conduct; data integrity; statistical inference boundary; display decision; scholarly surface semantics; manuscript surface QA; literature version/source quality; venue-constrained budgeting; manuscript excellence gate; publication-release binding; local-path privacy gate.
 
 ## Concrete changes caused by the skill contracts
 
@@ -19,6 +19,6 @@ skills-applied: `academic-writing@1.15.0`; released repository revision `0c05ac4
 - narrative precision audit: PASS;
 - scholarly-surface and manuscript-surface scanners: contextual findings dispositioned in `SURFACE_FINDING_DISPOSITION_V1.md`;
 - local release verifier: PASS;
-- publication-release-integrity verifier from the parallel skill repair: PASS.
+- publication-release-integrity verifier at `fd5e935c035a55363fca169c058cb95bed21143e`: PASS.
 
-The skill revision is refreshed immediately before final integration. If upstream advances, this record and the generated package are rebuilt with the final reviewed revision.
+The content/editing baseline is preserved as historical provenance rather than silently rewritten. The candidate and final package are rebuilt and verified with the separately recorded final release-integrity revision above. Later upstream skill changes do not retroactively change this closed package; any later rebuild must record a new reviewed revision and rebind every dependent receipt.

@@ -26,10 +26,13 @@ make install_sw
 From the Round-2 evidence directory, replay with:
 
 ```sh
+prefix="${OPENSSL_PREFIX:-$PWD/openssl-3.6.4-install}"
 python generate_tasks.py
 python run_round2.py --engine "$prefix/bin/openssl"
 python run_round2.py --engine "$prefix/bin/openssl" --check-final
 ```
+
+Set `OPENSSL_PREFIX` only if the pinned installation was written elsewhere.
 
 `run_round2.py` checks the native engine version and fails closed if it is not
 OpenSSL 3.6.4. The recipe does not certify that a host can build OpenSSL, and a

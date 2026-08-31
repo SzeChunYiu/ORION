@@ -20,6 +20,17 @@ SOURCE_ZIP = "Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_source.zip"
 ARTIFACT_ZIP = "Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_artifact.zip"
 REVIEW_PROVENANCE = "INDEPENDENT_RELEASE_REVIEW_PROVENANCE.json"
 REVIEW_RECEIPT = "INDEPENDENT_RELEASE_REVIEW_V1.json"
+EXPECTED_HISTORICAL_MANUSCRIPT_HASHES = {
+    "ORION-03-BASE-V3-SOURCE": (
+        "sha256:968c9fed9d370af8551e0ced3588569975649409ce627b869da30844229de8d8"
+    ),
+    "ORION-03-HISTORICAL-JOURNAL-SOURCE": (
+        "sha256:9b9abc02bcf9d7bb6690c7c5f8b54928603922f949bc2c4f27e97e5ff5bdbd71"
+    ),
+    "ORION-03-HISTORICAL-JOURNAL-PDF": (
+        "sha256:ab046f403ea64459f0d162c56887c5e80e6b9483b294e25c85c9261b0d2bf893"
+    ),
+}
 
 
 class VerificationError(RuntimeError):
@@ -37,6 +48,20 @@ def sha256_file(path: Path) -> str:
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise VerificationError(message)
+
+
+def verify_historical_candidate_hashes(release: dict[str, object]) -> None:
+    candidates = {
+        str(candidate["manuscript_id"]): candidate
+        for candidate in release.get("manuscript_candidates", [])  # type: ignore[union-attr]
+    }
+    for manuscript_id, expected_hash in EXPECTED_HISTORICAL_MANUSCRIPT_HASHES.items():
+        candidate = candidates.get(manuscript_id)
+        require(candidate is not None, f"historical manuscript candidate missing: {manuscript_id}")
+        require(
+            candidate.get("sha256") == expected_hash,
+            f"historical manuscript candidate hash mismatch: {manuscript_id}",
+        )
 
 
 def run(command: list[str], cwd: Path, *, capture: bool = True) -> str:
@@ -292,6 +317,7 @@ def main() -> None:
 
     release_manifest = package / "PUBLICATION_RELEASE_MANIFEST.json"
     release = json.loads(release_manifest.read_text(encoding="utf-8"))
+    verify_historical_candidate_hashes(release)
     require(release["requested_state"] == "submission_ready", "wrong release state")
     authoritative = [c for c in release["manuscript_candidates"] if c["disposition"] == "authoritative"]
     require(len(authoritative) == 1, "reader authority is ambiguous")

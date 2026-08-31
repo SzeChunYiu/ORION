@@ -18,6 +18,19 @@ import zipfile
 PDF_NAME = "Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion.pdf"
 SOURCE_ZIP = "Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_source.zip"
 ARTIFACT_ZIP = "Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_artifact.zip"
+REVIEW_PROVENANCE = "INDEPENDENT_RELEASE_REVIEW_PROVENANCE.json"
+REVIEW_RECEIPT = "INDEPENDENT_RELEASE_REVIEW_V1.json"
+EXPECTED_HISTORICAL_MANUSCRIPT_HASHES = {
+    "ORION-03-BASE-V3-SOURCE": (
+        "sha256:968c9fed9d370af8551e0ced3588569975649409ce627b869da30844229de8d8"
+    ),
+    "ORION-03-HISTORICAL-JOURNAL-SOURCE": (
+        "sha256:9b9abc02bcf9d7bb6690c7c5f8b54928603922f949bc2c4f27e97e5ff5bdbd71"
+    ),
+    "ORION-03-HISTORICAL-JOURNAL-PDF": (
+        "sha256:ab046f403ea64459f0d162c56887c5e80e6b9483b294e25c85c9261b0d2bf893"
+    ),
+}
 
 
 class VerificationError(RuntimeError):
@@ -35,6 +48,20 @@ def sha256_file(path: Path) -> str:
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise VerificationError(message)
+
+
+def verify_historical_candidate_hashes(release: dict[str, object]) -> None:
+    candidates = {
+        str(candidate["manuscript_id"]): candidate
+        for candidate in release.get("manuscript_candidates", [])  # type: ignore[union-attr]
+    }
+    for manuscript_id, expected_hash in EXPECTED_HISTORICAL_MANUSCRIPT_HASHES.items():
+        candidate = candidates.get(manuscript_id)
+        require(candidate is not None, f"historical manuscript candidate missing: {manuscript_id}")
+        require(
+            candidate.get("sha256") == expected_hash,
+            f"historical manuscript candidate hash mismatch: {manuscript_id}",
+        )
 
 
 def run(command: list[str], cwd: Path, *, capture: bool = True) -> str:
@@ -103,6 +130,82 @@ def abstract_and_keyword_checks(manuscript_text: str) -> tuple[int, int]:
     return len(words), len(keywords)
 
 
+def verify_review_receipt_disposition(
+    *, repo: Path, closure: Path, package: Path, submission: Path
+) -> None:
+    """Keep review provenance bindable without publishing workstation paths."""
+
+    receipt = closure / REVIEW_RECEIPT
+    provenance_path = package / REVIEW_PROVENANCE
+    require(receipt.is_file(), "repository-side independent-review receipt missing")
+    require(
+        not (package / REVIEW_RECEIPT).exists(),
+        "signed independent-review receipt leaked into final package",
+    )
+    require(provenance_path.is_file(), "independent-review provenance record missing")
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    expected_locator = receipt.relative_to(repo).as_posix()
+    require(
+        provenance.get("disposition")
+        == "REPOSITORY_SIDE_PROVENANCE__EXCLUDED_FROM_UPLOAD_SET",
+        "independent-review receipt disposition is not upload-excluded",
+    )
+    require(
+        provenance.get("repository_relative_path") == expected_locator,
+        "independent-review repository locator mismatch",
+    )
+    require(
+        provenance.get("sha256") == sha256_file(receipt),
+        "independent-review provenance digest mismatch",
+    )
+    require(
+        provenance.get("byte_count") == receipt.stat().st_size,
+        "independent-review provenance byte count mismatch",
+    )
+
+    receipt_digest = sha256_file(receipt)
+    # Construct the markers so the packaged verifier does not trigger its own
+    # payload scan merely by naming the forbidden patterns.
+    forbidden_local_markers = (
+        b"/" + b"Users" + b"/",
+        b"/" + b"home" + b"/",
+        b"C:" + bytes((92,)),
+    )
+    receipt_bytes = receipt.read_bytes()
+    for marker in forbidden_local_markers:
+        require(
+            marker not in receipt_bytes,
+            "absolute local path leaked into repository receipt",
+        )
+    for path in sorted(p for p in package.rglob("*") if p.is_file()):
+        data = path.read_bytes()
+        require(
+            sha256_bytes(data) != receipt_digest,
+            f"signed independent-review receipt bytes leaked into package: {path.relative_to(package)}",
+        )
+        # Compressed byte streams can contain these short byte patterns by
+        # chance; inspect every decoded ZIP member below instead.
+        if not zipfile.is_zipfile(path):
+            for marker in forbidden_local_markers:
+                require(
+                    marker not in data,
+                    f"absolute local path leaked into package: {path.relative_to(package)}",
+                )
+    for archive_path in sorted(submission.glob("*.zip")):
+        with zipfile.ZipFile(archive_path) as archive:
+            for info in archive.infolist():
+                data = archive.read(info.filename)
+                require(
+                    sha256_bytes(data) != receipt_digest,
+                    f"signed independent-review receipt bytes leaked into archive: {archive_path.name}:{info.filename}",
+                )
+                for marker in forbidden_local_markers:
+                    require(
+                        marker not in data,
+                        f"absolute local path leaked into archive: {archive_path.name}:{info.filename}",
+                    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -154,6 +257,18 @@ def main() -> None:
     require(package_manifest["canonical_science"]["sha256"] == sha256_file(canonical), "canonical manuscript hash mismatch")
     require(package_manifest["canonical_claim_ledger"]["sha256"] == sha256_file(ledger), "canonical ledger hash mismatch")
     require(package_manifest["reader_pdf"]["sha256"] == sha256_file(pdf), "PDF package-manifest hash mismatch")
+    verify_review_receipt_disposition(
+        repo=repo,
+        closure=closure,
+        package=package,
+        submission=submission,
+    )
+    review_provenance = package / REVIEW_PROVENANCE
+    require(
+        package_manifest["independent_review_provenance"]["sha256"]
+        == sha256_file(review_provenance),
+        "independent-review provenance package-manifest hash mismatch",
+    )
     integrity_ledger = package / "RESEARCH_INTEGRITY_LEDGER.json"
     integrity_report = package / "RESEARCH_INTEGRITY_REPORT.json"
     require(integrity_ledger.is_file(), "research-integrity ledger missing")
@@ -202,6 +317,7 @@ def main() -> None:
 
     release_manifest = package / "PUBLICATION_RELEASE_MANIFEST.json"
     release = json.loads(release_manifest.read_text(encoding="utf-8"))
+    verify_historical_candidate_hashes(release)
     require(release["requested_state"] == "submission_ready", "wrong release state")
     authoritative = [c for c in release["manuscript_candidates"] if c["disposition"] == "authoritative"]
     require(len(authoritative) == 1, "reader authority is ambiguous")

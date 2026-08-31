@@ -24,6 +24,7 @@ PDF_NAME = "Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion.pdf"
 SOURCE_ZIP = "Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_source.zip"
 ARTIFACT_ZIP = "Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_artifact.zip"
 MANUSCRIPT_ID = "ORION-03-JAR-20260831"
+HISTORICAL_BASE_REVISION = "b4d00a36a6681aa920c994d0783970135ab576a3"
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -89,17 +90,17 @@ def zip_tree(source: Path, target: Path, prefix: str = "") -> list[dict[str, obj
     return members
 
 
-def historical_pdf_hash(repo: Path, relative_path: str, fallback: Path) -> str:
+def historical_file_hash(repo: Path, revision: str, relative_path: str) -> str:
     result = subprocess.run(
-        ["git", "show", f"HEAD:{relative_path}"],
+        ["git", "show", f"{revision}:{relative_path}"],
         cwd=repo,
         check=False,
         stdout=subprocess.PIPE,
         stderr=subprocess.DEVNULL,
     )
-    if result.returncode == 0:
-        return sha256_bytes(result.stdout)
-    return sha256_file(fallback) if fallback.exists() else "0" * 64
+    if result.returncode != 0:
+        raise RuntimeError(f"missing historical object: {revision}:{relative_path}")
+    return sha256_bytes(result.stdout)
 
 
 def main() -> None:
@@ -151,8 +152,9 @@ def main() -> None:
         "papers/orion-03-typed-merge-falsification/journal_package_final/submission/"
         "Typed_Scientific_Authority_with_Fail-Closed_Nonpromotion.pdf"
     )
-    old_pdf = repo / old_pdf_rel
-    old_pdf_sha = historical_pdf_hash(repo, old_pdf_rel, old_pdf)
+    old_pdf_sha = historical_file_hash(
+        repo, HISTORICAL_BASE_REVISION, old_pdf_rel
+    )
 
     with tempfile.TemporaryDirectory(prefix="orion03-release-", dir=paper) as temp_name:
         stage = Path(temp_name) / "journal_package_final"
@@ -684,14 +686,14 @@ production validity, or authority beyond the bounded manuscript and ledger.
                 },
                 {
                     "manuscript_id": "ORION-03-BASE-V3-SOURCE",
-                    "sha256": f"sha256:{historical_pdf_hash(repo, 'papers/orion-03-typed-merge-falsification/MANUSCRIPT_V3.md', manuscript)}",
+                    "sha256": f"sha256:{historical_file_hash(repo, HISTORICAL_BASE_REVISION, 'papers/orion-03-typed-merge-falsification/MANUSCRIPT_V3.md')}",
                     "disposition": "superseded",
                     "superseded_by": MANUSCRIPT_ID,
                     "reason": "Pre-closure V3 source bytes from the branch base; retained only in Git history.",
                 },
                 {
                     "manuscript_id": "ORION-03-HISTORICAL-JOURNAL-SOURCE",
-                    "sha256": f"sha256:{historical_pdf_hash(repo, 'papers/orion-03-typed-merge-falsification/journal_package_final/MANUSCRIPT.md', manuscript)}",
+                    "sha256": f"sha256:{historical_file_hash(repo, HISTORICAL_BASE_REVISION, 'papers/orion-03-typed-merge-falsification/journal_package_final/MANUSCRIPT.md')}",
                     "disposition": "superseded",
                     "superseded_by": MANUSCRIPT_ID,
                     "reason": "Pre-closure journal-package source; replaced by the byte-identical final canonical source.",

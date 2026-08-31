@@ -1,28 +1,34 @@
 {
   "academic_paper_skills": {
-    "applicable_pr24_release_ledger_delta": {
-      "closing_receipt_scope_match": "MATCH",
-      "result": "PASS",
-      "schema": "1.0",
-      "superseded_by_pointer_present": false,
-      "superseded_by_resolution": "NOT_APPLICABLE_CURRENT_NO_SUPERSESSION",
-      "verification_scope": "full_manuscript"
+    "applicable_fd5_release_integrity_controls": {
+      "candidate_phase_boundary": "Final release manifest and mirror verification intentionally follow this independent review and are not claimed by the candidate.",
+      "exact_archive_member_binding": "PASS",
+      "local_path_release_payload_guard": "PASS",
+      "payload_bearing_zip_directory_guard": "PASS",
+      "single_reader_authority_binding": "PASS"
     },
     "baseline_rewritten": false,
-    "live_main_fetch_result": "PASS",
-    "live_main_revision_checked_immediately_before_receipt": "60adaa6d376c272f8fe0e2300b72fe6cf9d6e4ef",
-    "local_review_skill_snapshots": {
-      "nature_reviewer_skill_sha256": "ece352659947a8b902196f94d33be28d7208a07c41a3e8ad3882a76af7f20a36",
-      "pdf_skill_sha256": "afc4472ec4d625f703e9f414fe6814ce3cfa0ec51c7a07887fe587264c8b561e",
-      "verification_before_completion_skill_sha256": "ea52d15aabaf72bc6b558efe2c126f161b53961090ddcd712000273bfe8c7b6c"
+    "candidate_revision": "fd5e935c035a55363fca169c058cb95bed21143e",
+    "candidate_revision_matches_live_origin_main": true,
+    "closure_application_record": {
+      "byte_count": 2488,
+      "content_and_release_revision_roles_explicit": true,
+      "repository_relative_path": "papers/orion-03-typed-merge-falsification/publication_closure_20260831/ACADEMIC_PAPER_SKILLS_APPLICATION_V1.md",
+      "result": "PASS",
+      "sha256": "2e57e92c9289f69830b803bef3a11b32601a89088963c9853299b56e53045a3d",
+      "stale_future_refresh_promise_removed": true
     },
-    "package_baseline_revision": "0c05ac4c2c7f6a6a7d26dad22c1de1efdc186b4b"
+    "content_editing_baseline_revision": "0c05ac4c2c7f6a6a7d26dad22c1de1efdc186b4b",
+    "final_release_integrity_revision": "fd5e935c035a55363fca169c058cb95bed21143e",
+    "live_origin_main_fetch_result": "PASS",
+    "live_origin_main_revision_checked_immediately_before_receipt": "fd5e935c035a55363fca169c058cb95bed21143e"
   },
   "atomic_claim_coverage": {
+    "all_artifact_pointers_resolve": true,
     "blocked_or_nonclosing_target_status_count": 0,
     "claim_count_declared": 375,
     "claim_count_reviewed": 375,
-    "coverage_basis": "375 separately enumerated manuscript assertions, read in three complete batches from title through references; not inferred from the 368 artifact-archive members or a 22-headline ledger",
+    "coverage_basis": "375 separately enumerated assertions covering the full manuscript from title through references; unchanged assertion and citation-use sets were re-bound to the new component manifest and checked against current candidate bytes.",
     "decision": "PASS",
     "scope_match": "MATCH",
     "scope_match_counts": {
@@ -40,15 +46,17 @@
     "verification_scope": "full_manuscript"
   },
   "authority_limitations": [
-    "This PASS certifies only the scoped independent review of the exact bytes and bindings recorded in this receipt.",
+    "This PASS certifies only the scoped independent review of the exact candidate bytes and bindings recorded here.",
+    "It does not change the candidate declaration CANDIDATE_ONLY__NOT_RELEASE_READY; final release generation and verification remain separate.",
     "It does not certify scientific truth beyond the bounded evidence and inference statuses recorded in the 375-atom inventory.",
     "It does not convert any null, adverse, harmful, timeout, retraction, quarantine, or CANNOT_CHECK result into a positive result.",
     "It does not certify external peer review, independent external replication, Cedar or Lean native replay, security, usability, deployment, production prevalence, or production value.",
-    "It does not certify submission-portal upload, venue-rule acceptance, editorial acceptance, journal acceptance, or publication.",
-    "It does not confer broader novelty on generic fixed-point, Datalog, provenance, truth-maintenance, minimal-support, or deletion-robustness mathematics."
+    "It does not certify a clean Git state, a merged commit, submission-portal upload, venue-rule acceptance, editorial acceptance, journal acceptance, publication, or an external mirror.",
+    "It does not confer broader novelty on generic fixed-point, Datalog, provenance, truth-maintenance, minimal-support, causality, or deletion-robustness mathematics."
   ],
   "build_and_executable_evidence": {
     "clean_source_archive_builds": {
+      "byte_identical_to_each_other": true,
       "byte_identical_to_reader_pdf": true,
       "count": 2,
       "overfull_boxes": 0,
@@ -56,6 +64,11 @@
       "undefined_controls": 0,
       "unresolved_citations": 0,
       "unresolved_references": 0
+    },
+    "closure_regression_tests": {
+      "failed": 0,
+      "passed": 9,
+      "result": "PASS"
     },
     "decision": "PASS_WITH_EXPLICIT_NATIVE_REPLAY_CANNOT_CHECK_BOUNDARY",
     "packaged_examples": {
@@ -76,12 +89,14 @@
       "result": "PASS"
     },
     "round2_binding": {
+      "authority": "BOUNDED_R2_EVIDENCE_REMAINS_BOUND__NO_NATIVE_ENGINE_RERUN",
+      "duplicate_receipt_pairs_identical": 3,
       "mismatches": 0,
       "result": "PASS",
       "verified": 269
     },
     "standalone_round1_native_replay": {
-      "classification": "expected when the immutable package is reviewed outside the original Git history; this does not establish Cedar or Lean native replay",
+      "classification": "Expected for the immutable artifact extracted without the original Git history; this does not establish Cedar or Lean native replay.",
       "command_scope": "verify_round1.py --check-final",
       "observed_terminal": "ORION03_R1_VERIFY_FAIL: Lean execution commit is not an exact reachable Git commit",
       "promoted_to_pass": false,
@@ -89,19 +104,20 @@
     }
   },
   "candidate": {
+    "candidate_file_count": 412,
     "declared_state_at_review": "CANDIDATE_ONLY__NOT_RELEASE_READY",
     "directory": "papers/orion-03-typed-merge-falsification/publication_closure_20260831/candidate_package",
     "immutable_objects": {
       "artifact_archive": {
-        "byte_count": 628193,
+        "byte_count": 628256,
         "member_count": 368,
         "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_artifact.zip",
-        "sha256": "de1aa235fc0b9cf0895fb31fa6a70a8aafea1cb23201ea59bef452bc9b1b392b"
+        "sha256": "3c74031c41af891be823c9b19064c413339060c28119c22d6db559d70e5e1347"
       },
       "atomic_claim_inventory": {
         "byte_count": 412078,
         "path": "ATOMIC_CLAIM_INVENTORY.json",
-        "sha256": "a100a797d85b743e0bbfa87e211f3028a8ff189c67bcc3dd318eed3f03473b78"
+        "sha256": "60b5f20fe4cfceeef8abed6e43ac3068d14a8cb0887c2550734b7d296ba784a8"
       },
       "author_confirmation": {
         "byte_count": 1038,
@@ -112,7 +128,7 @@
       "candidate_review_manifest": {
         "byte_count": 107478,
         "path": "CANDIDATE_REVIEW_MANIFEST.json",
-        "sha256": "a39c2e7c989d0575702a17c2bfc8e6da785032920f413e0c20c45b13a60a01b7"
+        "sha256": "3d31f52e85d49ce102b6e63742aef4a0151f4d7aa83461c9aacf55e63a24e5cf"
       },
       "canonical_claim_ledger": {
         "byte_count": 4020,
@@ -127,7 +143,17 @@
       "component_binding_manifest": {
         "byte_count": 106678,
         "path": "COMPONENT_BINDING_MANIFEST.json",
-        "sha256": "1dd8a8c6d332fbaf2cb44345dd25258d09a03a41cda39d1af5926080e079cea3"
+        "sha256": "93b86538ee51e2107370745932713ec3e5b3ef143626201532ab450eb20e36db"
+      },
+      "packaged_release_verifier": {
+        "byte_count": 23795,
+        "path": "review_records/verify_release.py",
+        "sha256": "52f92f46c766ad1a92b2c4bd0b5f198a5a9d2d412f461fc66006fa6f1e0aac5f"
+      },
+      "pinned_openssl_build_record": {
+        "byte_count": 1243,
+        "path": "submission/artifact/papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/PINNED_OPENSSL_BUILD.md",
+        "sha256": "190ea91cdc6d763fbc08599bc31db1b0fb9d39ef0f29248d2d11ec659c96815a"
       },
       "reader_pdf": {
         "byte_count": 118823,
@@ -137,7 +163,7 @@
       "sha256sums": {
         "byte_count": 82726,
         "path": "SHA256SUMS",
-        "sha256": "5f6511bd1ae8fce88f9b35ae5e0c2c24cb78c42e67cfe080dca511ee1fc209d3"
+        "sha256": "4730fbb4cc8b24e177d512c07c8b17ad917505ca6521d52a763af377dfb3a44b"
       },
       "source_archive": {
         "byte_count": 57560,
@@ -145,29 +171,59 @@
         "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_source.zip",
         "sha256": "e1c3ff42e3cebfd16f8264a35009ff751394865b38e7963debb3e25cb26fd951"
       }
-    }
+    },
+    "repository_head_note": "Repository context only; the exact reviewed bytes are bound by the exhaustive checksum inventory and before/after custody snapshot.",
+    "repository_head_observed": "3c0957c989eccd9a05a1427980901e50b405f4ad"
+  },
+  "candidate_custody": {
+    "after_snapshot": {
+      "byte_count": 103764,
+      "file_count": 412,
+      "sha256": "df11fbd3537c7f0690186837640eaa2bdf86ab5e5ff2c14c0a1850368509c469"
+    },
+    "before_snapshot": {
+      "byte_count": 103764,
+      "file_count": 412,
+      "sha256": "df11fbd3537c7f0690186837640eaa2bdf86ab5e5ff2c14c0a1850368509c469"
+    },
+    "candidate_bytes_modified_by_reviewer": false,
+    "decision": "PASS",
+    "snapshots_byte_identical": true
   },
   "citation_coverage": {
+    "all_cited_keys_resolve": true,
     "bibliography_keys": 16,
+    "citation_sequence_matches_inventory": true,
     "citation_use_rows": 24,
     "decision": "PASS",
     "email_at_sign_excluded": true,
-    "interpretation": "citation-use rows represent manuscript citation occurrences; broader source context inherited by bounded downstream atoms does not create additional manuscript citation occurrences",
-    "manuscript_citation_occurrences": 24
+    "manuscript_citation_occurrences": 24,
+    "uncited_bibliography_keys": 0
   },
   "decision": "PASS",
   "decision_basis": [
-    "Every scoped immutable-object hash and byte count matched.",
-    "The checksum inventory was exhaustive and passed without drift.",
-    "Both archives had exact safe member sets and byte-matching expanded trees.",
-    "Two clean builds reproduced the exact bound reader PDF.",
-    "All applicable packaged tests, examples, and Round-2 bindings passed.",
-    "All 375 enumerated manuscript assertions were reviewed and closed at their bounded statuses with scope_match MATCH.",
-    "All 24 citation uses reconciled to the manuscript and 16 bibliography keys.",
-    "The PDF passed complete rendered-page visual review.",
-    "The package-baseline skill revision was preserved and the applicable live-main PR #24 delta requirements passed.",
-    "The native-replay failure remains explicitly classified as CANNOT_CHECK and was not promoted."
+    "Every scoped immutable-object hash and byte count matched the current candidate.",
+    "The 411-entry checksum inventory exhaustively covered all 412 candidate files except only its own root checksum file.",
+    "Both archives had exact safe member sets, matching hashes and sizes, and byte-matching expanded members.",
+    "Two independent clean source-archive builds reproduced the bound reader PDF exactly.",
+    "All applicable packaged tests, examples, Round-2 bindings, and closure regressions passed.",
+    "All 375 atomic assertions closed at bounded allowed statuses with scope_match MATCH, and all 24 citation uses reconciled to 16 bibliography keys.",
+    "All 14 PDF pages passed fresh rendered visual inspection.",
+    "The Cedar null, zero-request failure, five OpenSSL disagreements, analytic origin-witness identity, two-parent cost, and native replay CANNOT_CHECK boundaries remain visible and unpromoted.",
+    "The freshly fetched academic-paper-skills origin/main exactly matched the candidate revision, and the repaired closure application record now distinguishes historical content baseline from final release-integrity authority.",
+    "The before and after candidate custody snapshots were byte-identical."
   ],
+  "negative_evidence_review": {
+    "analytic_identity_not_promoted_to_detector_performance": true,
+    "decision": "PASS",
+    "five_openssl_disagreements_retained": true,
+    "native_replay_cannot_check_retained": true,
+    "null_adverse_results_retained": true,
+    "retraction_bound_to_declared_algebra": true,
+    "timeouts_or_quarantines_relabelled_as_positive": false,
+    "two_parent_cost_retained": true,
+    "zero_request_failure_retained": true
+  },
   "package_integrity": {
     "all_listed_hashes_match": true,
     "artifact_archive": {
@@ -176,16 +232,20 @@
       "expanded_tree_byte_match": true,
       "member_count": 368
     },
-    "candidate_file_count": 412,
+    "candidate_local_path_or_prior_receipt_leaks": 0,
+    "checksum_member_set_exact": true,
     "decision": "PASS",
-    "fresh_final_no_drift_check": {
-      "exit_code": 0,
-      "method": "shasum -a 256 -c SHA256SUMS",
-      "result": "PASS"
-    },
+    "json_files_parsed": 64,
     "manifest_namespaces_resolve_internally": true,
+    "privacy_markers_checked": [
+      "user-home absolute paths",
+      "Unix home absolute paths",
+      "Windows user absolute paths",
+      "original-review receipt bytes",
+      "privacy-reissue receipt bytes"
+    ],
     "sha256sums_entry_count": 411,
-    "sha256sums_exclusion": "SHA256SUMS only",
+    "sha256sums_exclusion": "candidate-root SHA256SUMS only; nested files named SHA256SUMS remain included",
     "source_archive": {
       "all_member_hashes_and_sizes_match": true,
       "exact_member_set": true,
@@ -194,24 +254,26 @@
     },
     "zip_safety": {
       "absolute_path_entries": 0,
+      "directory_entries": 0,
       "duplicate_entries": 0,
       "encrypted_entries": 0,
       "path_traversal_entries": 0,
       "symlink_entries": 0
     }
   },
+  "package_verification_scope": "full_candidate_package",
   "paper": "ORION-03",
   "pdf_review": {
     "clipping": 0,
     "decision": "PASS",
+    "fresh_visual_inspection": true,
     "future_public_repository_promises_remaining": 0,
     "metadata_matches": true,
     "missing_glyphs": 0,
     "overlap": 0,
     "page_count": 14,
     "page_size": "A4",
-    "pages_13_through_14": "re-inspected after availability edits",
-    "pages_1_through_12": "render-identical to the previously inspected bound candidate",
+    "reader_pdf_sha256": "8bef2f1938ba328120b6bebfc5bbedb7ad72cfa8092f482a1b11a6a30ecf1a21",
     "rendered_page_coverage": "1-14",
     "unresolved_markers": 0
   },
@@ -223,42 +285,39 @@
     "ORIGIN_WITNESS_TWO_PARENT_EVALUATION_COST",
     "PACKAGE_NATIVE_REPLAY_CANNOT_CHECK_BOUNDARIES"
   ],
-  "receipt_history": [
-    {
-      "basis": "academic-paper-skills PR #25 local-path privacy rule",
-      "change": "candidate.directory replaced by a repository-relative identifier; this history note was added",
+  "receipt_lineage": {
+    "current_event": "FRESH_REVIEW_OF_UPDATED_CANDIDATE",
+    "original_review": {
+      "byte_count": 10687,
+      "event": "ORIGINAL_INDEPENDENT_REVIEW",
+      "reviewed_at_utc": "2026-08-31T16:33:53Z",
+      "sha256": "5ed689ae14acb94c7534055a588cbba9760a914eaa7d53dbeed3185c03db8a34"
+    },
+    "prior_conclusions_copied_without_recheck": false,
+    "privacy_reissue": {
+      "basis": "academic-paper-skills PR number 25 local-path privacy rule",
+      "byte_count": 11362,
       "event": "PRIVACY_SANITIZATION_REISSUE",
-      "original_receipt": {
-        "byte_count": 10687,
-        "reviewed_at_utc": "2026-08-31T16:33:53Z",
-        "sha256": "5ed689ae14acb94c7534055a588cbba9760a914eaa7d53dbeed3185c03db8a34"
-      },
-      "original_review_timestamp_modified": false,
       "reissued_at_utc": "2026-08-31T17:00:49Z",
-      "review_conclusions_modified": false,
-      "review_decision_modified": false,
-      "reviewed_candidate_bytes_modified": false,
-      "reviewed_immutable_object_hashes_modified": false
+      "sha256": "4ddd8f1bd528681bd1b3f64a60dff29afafb83592d0a9f37fe1ebba1762ec7fc"
     }
-  ],
-  "receipt_type": "ORION-03 independent release review",
-  "reviewed_at_utc": "2026-08-31T16:33:53Z",
+  },
+  "receipt_type": "ORION-03 fresh independent candidate and package re-review",
+  "reviewed_at_utc": "2026-08-31T17:29:21Z",
   "reviewer": {
     "candidate_bytes_modified": false,
     "identity": "OpenAI Codex independent read-only review lane /root/orion03_independent_release_review",
     "methods": [
       "exact SHA-256 and byte-count verification",
-      "exhaustive top-level checksum-set verification",
-      "manifest namespace and binding audit",
-      "ZIP central-directory, member-set, member-hash, and expanded-tree audit",
+      "exhaustive checksum-set and manifest binding audit",
+      "ZIP central-directory, member-set, member-hash, privacy, and expanded-member audit",
       "two independent clean source-archive rebuilds",
       "packaged executable tests and example replay",
-      "full-manuscript atomic-claim review in three complete batches",
-      "citation-use reconciliation",
-      "PDF metadata, text, render, and visual-layout inspection",
-      "live academic-paper-skills main-branch delta audit"
+      "full-manuscript atomic-claim and citation-use reconciliation",
+      "PDF metadata, text, complete rendering, and visual-layout inspection",
+      "fresh live academic-paper-skills origin-main revision and release-integrity control audit"
     ],
-    "role": "independent package and full-manuscript atomic-claim reviewer",
+    "role": "independent candidate-package and full-manuscript atomic-claim reviewer",
     "separate_from_candidate_authoring_lane": true
   },
   "schema": "1.0",
