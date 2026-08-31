@@ -1,0 +1,141 @@
+name: orion-01-03-publication-closure
+
+on:
+  push:
+    branches:
+      - pub/orion-01-03-publication-closure-20260831
+    paths:
+      - '.github/workflows/orion-01-03-publication-closure.yml'
+      - 'papers/publication_closure/orion_01_03_final/**'
+      - 'papers/orion-01-certificate-realization/theory-A-MANUSCRIPT_V3.md'
+      - 'papers/orion-01-certificate-realization/theory-A-CLAIM_LEDGER_V3.md'
+      - 'papers/orion-01-certificate-realization/theory-B-MANUSCRIPT_V3.md'
+      - 'papers/orion-01-certificate-realization/theory-B-CLAIM_LEDGER_V3.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_V3.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER_V3.md'
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/fibre-diameter-floor-v1/**'
+      - 'papers/orion-02-fiberguard-finite-fibre/experiments/refinement-to-certifiability-v1/**'
+      - 'papers/orion-03-typed-merge-falsification/MANUSCRIPT_V3.md'
+      - 'papers/orion-03-typed-merge-falsification/CLAIM_LEDGER_V3.md'
+      - 'papers/orion-03-typed-merge-falsification/submission/artifact/**'
+
+permissions:
+  contents: write
+
+jobs:
+  hostile-package-closure:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deterministic paper toolchain
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            pandoc latexmk texlive-latex-base texlive-latex-recommended \
+            texlive-latex-extra texlive-fonts-recommended lmodern \
+            poppler-utils zip unzip curl
+
+      - name: Compile closure tooling
+        run: |
+          set -euo pipefail
+          python -m py_compile \
+            papers/publication_closure/orion_01_03_final/build_final_packages.py \
+            papers/publication_closure/orion_01_03_final/run_final_build.py \
+            papers/publication_closure/orion_01_03_final/verify_final_packages.py \
+            papers/publication_closure/orion_01_03_final/run_final_verify.py
+
+      - name: Build current-source journal packages
+        run: |
+          set -euo pipefail
+          python papers/publication_closure/orion_01_03_final/run_final_build.py
+          python papers/publication_closure/orion_01_03_final/run_final_verify.py \
+            | tee /tmp/orion-01-03-final-verification-first.json
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          roots = [
+              Path('papers/orion-01-certificate-realization/journal_package_A_final'),
+              Path('papers/orion-01-certificate-realization/journal_package_B_final'),
+              Path('papers/orion-02-fiberguard-finite-fibre/journal_package_final'),
+              Path('papers/orion-03-typed-merge-falsification/journal_package_final'),
+          ]
+          lines=[]
+          for root in roots:
+              for p in sorted(x for x in root.rglob('*') if x.is_file()):
+                  lines.append(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.as_posix()}")
+          Path('/tmp/orion-01-03-first.sha256').write_text('\n'.join(lines)+'\n')
+          PY
+
+      - name: Execute packaged reproducibility checks
+        run: |
+          set -euo pipefail
+          python papers/orion-01-certificate-realization/journal_package_B_final/submission/anc/verify_dependent_triple_lemmas.py >/tmp/orion01b-check.json
+          python papers/orion-02-fiberguard-finite-fibre/journal_package_final/submission/anc/check_fibre_diameter_floor.py >/tmp/orion02-floor.json
+          python papers/orion-02-fiberguard-finite-fibre/journal_package_final/submission/anc/check_refinement_to_certifiability.py >/tmp/orion02-refinement.json
+          python -m unittest discover \
+            -s papers/orion-03-typed-merge-falsification/journal_package_final/submission/artifact \
+            -p 'test_*.py'
+
+      - name: Rebuild and require byte-identical package state
+        run: |
+          set -euo pipefail
+          python papers/publication_closure/orion_01_03_final/run_final_build.py
+          python papers/publication_closure/orion_01_03_final/run_final_verify.py \
+            | tee /tmp/orion-01-03-final-verification-second.json
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          roots = [
+              Path('papers/orion-01-certificate-realization/journal_package_A_final'),
+              Path('papers/orion-01-certificate-realization/journal_package_B_final'),
+              Path('papers/orion-02-fiberguard-finite-fibre/journal_package_final'),
+              Path('papers/orion-03-typed-merge-falsification/journal_package_final'),
+          ]
+          lines=[]
+          for root in roots:
+              for p in sorted(x for x in root.rglob('*') if x.is_file()):
+                  lines.append(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.as_posix()}")
+          Path('/tmp/orion-01-03-second.sha256').write_text('\n'.join(lines)+'\n')
+          PY
+          diff -u /tmp/orion-01-03-first.sha256 /tmp/orion-01-03-second.sha256
+
+      - name: Archive final review evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-01-03-publication-closure-${{ github.sha }}
+          path: |
+            /tmp/orion-01-03-final-verification-second.json
+            /tmp/orion-01-03-second.sha256
+            papers/orion-01-certificate-realization/journal_package_A_final
+            papers/orion-01-certificate-realization/journal_package_B_final
+            papers/orion-02-fiberguard-finite-fibre/journal_package_final
+            papers/orion-03-typed-merge-falsification/journal_package_final
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Commit exact derived package state
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/orion-01-certificate-realization/journal_package_A_final \
+            papers/orion-01-certificate-realization/journal_package_B_final \
+            papers/orion-02-fiberguard-finite-fibre/journal_package_final \
+            papers/orion-03-typed-merge-falsification/journal_package_final
+          if git diff --cached --quiet; then
+            echo 'Final packages already current.'
+            exit 0
+          fi
+          git commit -m 'build(papers): freeze ORION-01–03 final journal packages'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
