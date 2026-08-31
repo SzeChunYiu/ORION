@@ -92,7 +92,7 @@ def build_ledger(*, closure: Path, paper: Path, pdf: Path) -> dict[str, object]:
     )
     _require_equal(
         review.get("reviewer", {}).get("identity"),
-        "OpenAI Codex independent read-only review lane /root/orion03_independent_release_review",
+        "OpenAI Codex independent read-only review lane /root/orion02_closure/orion03_independent_review_v3",
         "reviewer identity",
     )
     immutable = review["candidate"]["immutable_objects"]

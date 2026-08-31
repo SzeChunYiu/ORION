@@ -299,6 +299,45 @@ def main() -> None:
         submission / ARTIFACT_ZIP, package_manifest["artifact_archive"], artifact
     )
 
+    replay_recipe = artifact / (
+        "papers/orion-03-typed-merge-falsification/evidence/"
+        "round2-x509-truststore/PINNED_OPENSSL_BUILD.md"
+    )
+    require(replay_recipe.is_file(), "pinned OpenSSL replay recipe missing")
+    replay_text = replay_recipe.read_text(encoding="utf-8")
+    logical_replay_text = replay_text.replace("\\\n", " ")
+    unsafe_replays = [
+        line.strip()
+        for line in logical_replay_text.splitlines()
+        if line.strip().startswith("python run_round2.py")
+        and "--check-final" not in line
+    ]
+    require(
+        not unsafe_replays,
+        "replay recipe contains a receipt-overwriting evaluator invocation",
+    )
+    for required_replay_guard in (
+        'mkdir "$replay/frozen" "$replay/run"',
+        'ROUND2_RESULTS_V2.json COST_ROUND2_V2.json "$replay/frozen/"',
+        'cp generate_tasks.py run_round2.py "$replay/run/"',
+        'ln -s "$evidence_dir/third_party" "$replay/run/third_party"',
+        'cd "$replay/run"',
+        'cmp "$replay/frozen/TASK_MANIFEST_V2.json" TASK_MANIFEST_V2.json',
+        'cmp "$replay/frozen/UPSTREAM_TABLE_V2.json" UPSTREAM_TABLE_V2.json',
+        '--results "$replay/frozen/ROUND2_RESULTS_V2.json"',
+        '--cost-out "$replay/frozen/COST_ROUND2_V2.json"',
+        'trap cleanup EXIT',
+        'rm -rf "$replay"',
+    ):
+        require(
+            required_replay_guard in replay_text,
+            f"replay recipe guard missing: {required_replay_guard}",
+        )
+    require(
+        'cp "$replay/' not in replay_text,
+        "replay cleanup can copy disposable bytes into published receipts",
+    )
+
     # The top-level checksum list binds every file other than itself.
     checksum_lines = (package / "SHA256SUMS").read_text(encoding="utf-8").splitlines()
     checksum_paths: set[str] = set()
