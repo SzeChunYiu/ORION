@@ -16,6 +16,11 @@ finite checkers/records. The adverse PyZX Round-1 record is retained verbatim in
 the ancillary tree; its exact `CANNOT_CHECK_MOVE_COMPLETENESS` terminal is not
 promoted into a production-completeness conclusion.
 
+The exact same reader-facing PDF is used for the arXiv posting and the Quantum
+submission. Quantum receives the arXiv reference rather than a separately
+typeset journal manuscript; the two source archives record their routes without
+manufacturing a cosmetically different scientific PDF.
+
 Quantum currently requires an arXiv reference posted or cross-listed to
 `quant-ph`; the repository cannot perform that author/account action. A cover
 letter is intentionally omitted because Quantum does not require one. Final
