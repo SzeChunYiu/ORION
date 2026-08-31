@@ -1,0 +1,35 @@
+{
+  "schema": "ORION.Wave3.PublicationDisposition.v2",
+  "paper": "ORION-04",
+  "date": "2026-08-31",
+  "canonical_manuscript": "papers/orion-04-rooted-completion-certificates/WAVE3_SCOPED_MANUSCRIPT_V2.md",
+  "canonical_claim_ledger": "papers/orion-04-rooted-completion-certificates/CLAIM_LEDGER_V2.md",
+  "terminal": "ORION04_EXACT_D4_NOT_ESTABLISHED__SUPPORT_AT_LEAST_14_THEOREM_READY",
+  "publication_scope": "ONE_UNIT_CORRIDOR_PLUS_BOUNDED_SUPPORT_AT_LEAST_14_COMPUTER_ASSISTED_THEOREM",
+  "scientific_authority_delta": "CLARIFICATION_ONLY",
+  "admitted_claims": {
+    "one_unit_corridor_for_k_ge_4": true,
+    "conditional_lower_line_tail_if_d4_eq_30": true,
+    "d4_interval_30_or_31": true,
+    "saturation_defect_theorem": true,
+    "multiplicity_three_excluded": true,
+    "parent_support_le_10_exclusion": true,
+    "support_11_13_complete_exact_replay": true,
+    "hypothetical_length31_obstruction_support_at_least_14": true
+  },
+  "withheld_claims": {
+    "support_at_least_23_theorem_authority": false,
+    "c0_31_authority": false,
+    "exact_d4_authority": false,
+    "external_independent_replay_complete": false,
+    "novelty_of_generic_davenport_machinery": false,
+    "top_tier_authority": false
+  },
+  "corrections_from_v1": [
+    "renamed the result from ambiguous exact support-14 reduction to support-at-least-14 theorem",
+    "made the parent support-at-most-10 theorem an explicit premise of the final finite theorem",
+    "made in-repository implementation independence distinct from external replication",
+    "corrected the support-23 multiplicity notation to 1^15 2^8, 1^17 2^5 4^1, 1^19 2^2 4^2"
+  ],
+  "successor_rule": "Any exact-D4 or stronger support frontier successor must use a new prospectively governed identity and cannot rewrite this bounded terminal."
+}
