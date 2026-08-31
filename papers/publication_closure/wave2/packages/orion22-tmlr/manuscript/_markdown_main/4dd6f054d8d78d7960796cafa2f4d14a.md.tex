@@ -1,0 +1,22 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{Resource-accounting contract and statistical analysis}\markdownRendererInterblockSeparator
+{}The scalar controlled budget is intentionally clean. Real systems require vector receipts including:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBeginTight
+\markdownRendererUlItem compiler/retrieval/preprocessing model and operations;\markdownRendererUlItemEnd 
+\markdownRendererUlItem state tokens/bytes and memory traffic;\markdownRendererUlItemEnd 
+\markdownRendererUlItem downstream generated tokens/recurrent steps;\markdownRendererUlItemEnd 
+\markdownRendererUlItem search nodes and verifier calls;\markdownRendererUlItemEnd 
+\markdownRendererUlItem tool calls and external latency;\markdownRendererUlItemEnd 
+\markdownRendererUlItem cache/recovery cost;\markdownRendererUlItemEnd 
+\markdownRendererUlItem model identity/capacity;\markdownRendererUlItemEnd 
+\markdownRendererUlItem end-to-end latency and reproducible energy where available.\markdownRendererUlItemEnd 
+\markdownRendererUlEndTight \markdownRendererInterblockSeparator
+{}A joint policy cannot “win” by shortening the downstream trace while hiding expensive retrieval or compilation upstream. Likewise a reasoning-only baseline cannot receive a larger model or search cap. If resource vectors are incomparable, the result should be a quality–resource Pareto frontier rather than a post-hoc weighted score.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Statistical analysis}\markdownRendererInterblockSeparator
+{}The protected unit is the held-out family RNG block. P12A has 16 family blocks. P12B has 32 independent family blocks, eight in each fixed noise stratum. Its primary deterministic 20,000-resample bootstrap samples families within each stratum, preserving the registered mixture. An unstratified 32-family bootstrap is reported only as sensitivity.\markdownRendererInterblockSeparator
+{}The analysis does not pool P12A's 8,192 or P12B's 32,768 technical episodes as independent domains. Hyperparameters are frozen before protected evaluation. The worst-family and minimum-stratum gains prevent a favorable mean from hiding a family- or stratum-level failure.\markdownRendererInterblockSeparator
+{}Strict reconstruction also binds the execution environment. The active V1.1 receipt records the repository \markdownRendererCodeSpan{uv.lock} digest, CPython 3.12.13 and NumPy 2.5.2; an environment-field mutation is a noncompensatory failure even when every scientific value is unchanged.
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererDocumentEnd
