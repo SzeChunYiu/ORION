@@ -30,6 +30,15 @@ promotion requirements committed **before** any outcome exists. That ordering is
 scientific content of this artifact, and it is worth preserving exactly because
 nothing has been run against it.
 
+Alongside it the paper carries **formal** content rather than empirical content: a
+closure formalism, a definition of certified expansion with a macro-rejection lemma,
+a minimality definition, and an exact measurement contract. The package status
+records this under terminal
+`ORION_20_BOUNDED_OCME_SCIENCE_FROZEN__NATIVE_PROMOTION_PENDING` with
+`journal_authority: false`. That formal content is frozen here — but see F-1 below,
+because the set of theorems the paper actually claims is not yet well defined, and
+this freeze must not be read as settling it.
+
 ## Frozen boundary
 
 `execution_authorized` is `false`, and the blocker is named:
@@ -57,6 +66,36 @@ Promotion requires all six of: a prospectively frozen P10 protocol; native
 verifier-backed execution; strong donor-complete comparators; an independently
 witnessed OCME case; protected cross-domain replication; and external review
 custody. `scientific_authority_delta` remains `NONE`.
+
+## Two open findings the freeze records rather than settles
+
+**F-1 (major) — the paper's theorem corpora do not agree.** `THEOREM_PROOF_AUDIT_V1.md`
+records two incompatible theorem schemes, five entries against six, with different
+titles, different content and **no mapping recorded anywhere**. Specifically: A-T1
+asserts *decidability* while its nearest counterpart proves *unreachability* — a
+different proposition, with no decision procedure, finiteness hypothesis or
+termination argument supplied; A-T2 has **no counterpart and no proof anywhere**;
+A-T3's necessity half is unproved; A-T4 uses a strength preorder that is **never
+defined** against a counterpart stated by set inclusion; and A-T5's conservativity
+conjunct is never proved.
+
+So while the formal content above is frozen, **the set of theorems this paper claims
+is not currently well defined**, and no reader should treat the formalism as settled
+until F-1 is resolved.
+
+**Canonical manuscript source is open.** There is not exactly one: four surfaces
+inside the paper directory carry manuscript-level content, and
+`successor/P10_U_MANUSCRIPT.tex` differs from the concatenated section files by
+**331 lines**. The LaTeX build target was treated as canonical for the audit pass,
+but no decision is recorded.
+
+Venue choice depends on both. The status document is explicit that it cannot be made
+responsibly until the canonical source and F-1 are resolved, because the claimed
+theorem set is not yet determinate.
+
+The paper-level `SHA256SUMS` does currently verify **50 of 50** entries when checked
+from the repository root; the "46 of 50" note in the status document describes the
+state mid-pass, not the committed tree.
 
 ## What would unblock it
 
