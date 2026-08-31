@@ -1,0 +1,59 @@
+{
+ "schema": "ORION.P13P14.LiveGitAcquisitionProtocol.v1",
+ "status": "FROZEN_BEFORE_ANY_ACQUISITION_OUTPUT",
+ "issue": 1086,
+ "successor_of": "development/p13-p14-public-lifecycle-v1 (FROZEN_ACQUISITION_PILOT_AWAITING_EXECUTION)",
+ "purpose": "Discharge the pilot's named acquisition requirement: re-observe every pinned public-repository fact from live Git objects with retained command-receipt digests. Receipts only; no gold, no policy evaluation, no campaign result.",
+ "bindings": {
+  "pilot_protocol": "development/p13-p14-public-lifecycle-v1/P13_P14_PUBLIC_LIFECYCLE_PROTOCOL_V1.json",
+  "pilot_protocol_sha256": "49f56742c932a51829964a332f780a999483e2a21351f596c683e4abd97da88c",
+  "pilot_runner_sha256": "cc0c54bdc610e627bdda2974f2322e49a35bfd07fea239e5d2b44e30e2df18ac",
+  "corpus": "papers/orion-23-responsibility-carrying-state/P13_P14_PINNED_REPOSITORY_CORPUS_V1.json",
+  "corpus_sha256": "fc90d18d97561509f6e10de6f37229ee24f8c7475b474c99145b78ee858d9e53",
+  "gold_derivation_contract_sha256": "cd7fbfdd78acac9877168e686ac9e6ba73887fa675e7ef3b84f3cd6e465ad12e",
+  "gold_derivation_rule": "papers/orion-23-responsibility-carrying-state/P13_P14_LIFECYCLE_GOLD_DERIVATION_RULE_V1.md",
+  "gold_derivation_rule_sha256": "3656565539ea89742dd0f876347ba0b7ec918dfe605d95ab691c5323b77f8ce9"
+ },
+ "subjects": {
+  "acquisition_targets": "all 30 pilot records (role ACQUISITION_TARGET): full six-observation set",
+  "corpus_pins": "all 45 corpus entries (role CORPUS_PIN): pinned-object existence plus receipt digest only, because corpus license evidence is API-level (no git blob sha/path recorded), so live-git license verification is undefined for them",
+  "corpus_pilot_overlap": ["golang/go", "microsoft/vscode", "numpy/numpy", "pallets/flask", "pallets/jinja", "pallets/werkzeug", "pandas-dev/pandas", "scipy/scipy"],
+  "gold_scope_note": "Objective gold, when a later increment derives it, remains restricted by the frozen derivation contract to corpus entries at pinned_sha with VERIFIED_WITH_URL_AND_DATE licenses (31 entries, 14 organizations). The 30 acquisition targets outside that corpus can never yield gold under the current contract; this increment records the split instead of widening either freeze."
+ },
+ "observations": {
+  "ACQUISITION_TARGET": ["head_object_exists", "parent_object_exists", "parent_is_direct_parent", "license_blob_matches_git_object", "license_sha256_matches_blob_bytes", "raw_command_receipt_digest"],
+  "CORPUS_PIN": ["pinned_object_exists", "raw_command_receipt_digest"]
+ },
+ "method": {
+  "clone": "git clone --filter=blob:none --no-checkout --bare <remote>; the partial-clone filter keeps the full commit graph (existence and ancestry are native git-object checks) while license blobs are lazily fetched as git objects on demand; the filter is recorded in the environment binding",
+  "unadvertised_object_fallback": "one recorded `git fetch origin <sha>` retry before labeling CANNOT_CHECK__OBJECT_UNRETRIEVABLE",
+  "fail_closed": "any predicate error, timeout, or partial evidence yields CANNOT_CHECK for that observation; no label is inferred from absence of evidence",
+  "ref_equality_not_asserted": "pins are branch-head pins at retrieval time; whether any current ref still points at the pinned sha is NOT an observation of this increment"
+ },
+ "planted_controls": {
+  "control_a": "forged head sha (one hex digit flipped) routed through the SAME object-existence predicate must NOT verify",
+  "control_b": "forged license sha256 (one hex digit flipped) routed through the SAME byte-comparison predicate must yield MISMATCH",
+  "rule": "if either control fails to fire, the whole run terminal is CANNOT_CHECK__CONTROL_FAILURE"
+ },
+ "receipt_binding": ["protocol_sha256", "runner_sha256", "source_commit", "git_version", "repository_remote", "observed_objects", "retained_command_receipts", "hostname", "clone_filter"],
+ "expected_terminals": ["T1_ALL_OBSERVATIONS_VERIFIED", "T2_DIVERGENCE_FOUND", "T3_INCOMPLETE_CANNOT_CHECK", "CANNOT_CHECK__CONTROL_FAILURE"],
+ "terminal_semantics": {
+  "T1_ALL_OBSERVATIONS_VERIFIED": "every subject record verified on every applicable observation; objective-gold authority for the corpus advances from CANNOT_CHECK_UNTIL_LIVE_GIT_ACQUISITION to LIVE_GIT_OBSERVED for the observed facts only",
+  "T2_DIVERGENCE_FOUND": "at least one live observation contradicts a frozen pinned fact; the divergence is preserved verbatim and the affected record is excluded from any later gold derivation",
+  "T3_INCOMPLETE_CANNOT_CHECK": "no divergence proven, but at least one observation could not be completed; incomplete records remain CANNOT_CHECK and yield no gold",
+  "CANNOT_CHECK__CONTROL_FAILURE": "a planted violation failed to fire; nothing observed in the run is evidence"
+ },
+ "prohibitions": {
+  "result_creation": "acquisition receipts are not campaign results; no policy is evaluated",
+  "gold_derivation": "prohibited in this increment; a later increment may derive gold only under the bound derivation contract",
+  "post_outcome_edits": "no threshold, subject list, or predicate may change after the first receipt is written"
+ },
+ "execution_plan": {
+  "host": "billy-old (dedicated fetch host); never the orchestration Mac",
+  "outputs": "development/p13-p14-live-git-acquisition-v1/receipts/LIVE_GIT_ACQUISITION_RECEIPTS_V1.json committed after execution, in a commit strictly after this frozen design commit"
+ },
+ "outcome_accessed": false,
+ "results_exist": false,
+ "scientific_authority_delta": "NONE",
+ "frozen_utc": "2026-08-28T19:35:00Z"
+}
