@@ -71,13 +71,25 @@ def _papers_in_render_workflows() -> set[str]:
             continue
         if "latexmk" not in text:
             continue
+        # A workflow may exclude a paper from its render path explicitly. The
+        # marker is read here so the workflow and CURATED_PDF cannot silently
+        # disagree: excluding a paper there is what keeps it out of this set.
+        excluded = set(re.findall(r"#\s*CURATED_EXCLUDE:\s*(\S+)", text))
         for name in names:
+            if name in excluded:
+                continue
             if name in text:
                 rendered.add(name)
                 continue
             # workflows address papers by glob, e.g. papers/orion-07-*
             stem = re.match(r"(orion-\d+)-", name)
             if stem and f"papers/{stem.group(1)}-*" in text:
+                rendered.add(name)
+                continue
+            # ...or by a wildcard covering every paper, e.g. papers/orion-??-*.
+            # Missing these is how a curated PDF ended up inside a render path
+            # without this guard noticing.
+            if re.search(r"papers/orion-[?*]+-?\*", text):
                 rendered.add(name)
     return rendered
 
