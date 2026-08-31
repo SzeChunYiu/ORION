@@ -1,0 +1,67 @@
+name: patch-p3-current-package-audit-20260831
+
+on:
+  push:
+    branches:
+      - publication/orion-13-14-19-postmerge-package-repair-20260831
+    paths:
+      - .github/workflows/patch-p3-current-package-audit-20260831.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: publication/orion-13-14-19-postmerge-package-repair-20260831
+          fetch-depth: 0
+      - name: Replace stale superseded-package assertion
+        shell: python
+        run: |
+          from pathlib import Path
+          path = Path('.github/workflows/p3-manuscript-audit.yml')
+          text = path.read_text(encoding='utf-8')
+          start_token = '      - name: Verify current rebuild and superseded historical package authority\n'
+          end_token = '      - name: Verify package and publication scoreboard\n'
+          start = text.index(start_token)
+          end = text.index(end_token, start)
+          replacement = '''      - name: Verify current exact package binding and retained adverse terminals
+                run: |
+                  set -euo pipefail
+                  python scripts/write_render_closure_state.py --check
+                  python scripts/check_p3_current_package.py
+
+          '''.replace('\n                ', '\n        ').replace('\n          ', '\n')
+          path.write_text(text[:start] + replacement + text[end:], encoding='utf-8')
+      - name: Rebind all ORION-13 package checksums to current files
+        shell: python
+        run: |
+          from pathlib import Path
+          import hashlib
+          root = Path('papers/orion-13-global-knowledge-portrait')
+          manifest = root / 'journal_package/SHA256SUMS'
+          out = []
+          for line in manifest.read_text(encoding='utf-8').splitlines():
+              parts = line.split(None, 1)
+              if len(parts) != 2:
+                  out.append(line)
+                  continue
+              _, rel = parts
+              rel = rel.strip()
+              target = root / rel
+              if not target.is_file():
+                  raise SystemExit(f'missing checksum target: {target}')
+              digest = hashlib.sha256(target.read_bytes()).hexdigest()
+              out.append(f'{digest}  {rel}')
+          manifest.write_text('\n'.join(out) + '\n', encoding='utf-8')
+      - name: Commit audit repair
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .github/workflows/p3-manuscript-audit.yml papers/orion-13-global-knowledge-portrait/journal_package/SHA256SUMS
+          git commit -m 'ci(p3): validate current exact package authority'
+          git push origin HEAD:publication/orion-13-14-19-postmerge-package-repair-20260831
