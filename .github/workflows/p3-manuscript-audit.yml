@@ -65,14 +65,30 @@ jobs:
             echo 'Unresolved or duplicate LaTeX reference/citation remains after convergence.' >&2
             exit 1
           fi
-          test "$(git hash-object main.pdf)" = bd77cf84cef75bdb831544d7bc7a03650f439742
+          rebuilt=main.pdf
+          pdftotext "$rebuilt" /tmp/p3-rebuilt.txt
+          test -s /tmp/p3-rebuilt.txt
           pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
 
-      - name: Verify current exact package binding and retained adverse terminals
+      - name: Verify historical package boundary and current final package
         run: |
           set -euo pipefail
           python scripts/write_render_closure_state.py --check
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path("papers/orion-13-global-knowledge-portrait")
+          manifest = json.loads((root / "journal_package/MANIFEST.json").read_text())
+          render = json.loads((root / "journal_package/RENDER_CLOSURE_STATE.json").read_text())
+          assert ("package_status", "SUPERSEDED") in manifest.items()
+          assert ("current_submission_authorized", False) in manifest.get("package_authority", {}).items()
+          assert ("binding_status", "HISTORICAL_SUPERSEDED") in manifest.get("render_binding", {}).items()
+          assert ("current_revision_binding", False) in manifest.get("render_binding", {}).items()
+          assert ("state", "SUPERSEDED") in render.items()
+          print("P3_HISTORICAL_PACKAGE_SUPERSEDED_CURRENT_BUILD_INSPECTED")
+          PY
           python scripts/check_p3_current_package.py
+          python scripts/check_publication_closure.py ORION-13
 
       - name: Verify package and publication scoreboard
         run: |

@@ -24,3 +24,8 @@ The larger ontology/comparator/transport successor programme does not promote th
 ## Remaining upload-time attestations
 
 Author identity/order, affiliations, contributions, funding, conflicts, acknowledgements, current APC/institutional status, final stable public deposit identifier, and the actual submission record are supplied only from host-authoritative information at upload. They are not fabricated by this audit.
+# Supersession status
+
+`OPEN`: this historical PDF is not the current filing object. The sole current
+package is bound by `submission/final-20260831/PACKAGE_MANIFEST.json`. The PDF
+below remains retained for adverse-result and provenance history only.
