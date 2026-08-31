@@ -22,11 +22,13 @@ def deterministic_zip(path, files):
             zf.writestr(info, Path(src).read_bytes())
 
 def normalized_markdown(src):
-    # The frozen manuscript uses LaTeX \(...\)/\[...\] delimiters. Pandoc's
-    # PDF path can preserve those as raw TeX outside math mode. Normalize only
-    # the temporary build copy; never rewrite the canonical scientific source.
+    # The frozen manuscript uses LaTeX \(...\)/\[...\] delimiters and a
+    # Unicode QED marker. Pandoc's pdflatex path can preserve those as raw TeX
+    # outside math mode / unsupported Unicode. Normalize only the temporary
+    # build copy; never rewrite the canonical scientific source.
     text = Path(src).read_text(encoding="utf-8")
-    return text.replace("\\[", "$$").replace("\\]", "$$").replace("\\(", "$").replace("\\)", "$")
+    text = text.replace("\\[", "$$").replace("\\]", "$$").replace("\\(", "$").replace("\\)", "$")
+    return text.replace("∎", "$\\square$")
 
 def main():
     with tempfile.TemporaryDirectory() as td:
