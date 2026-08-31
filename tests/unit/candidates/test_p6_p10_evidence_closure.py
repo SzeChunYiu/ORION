@@ -271,7 +271,10 @@ def test_diagnostic_counts_close_only_local_targets() -> None:
     expected = {
         "P6": {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1, "PARTIAL": 0},
         "P7": {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1, "PARTIAL": 0},
-        "P8": {"BOUND": 6, "CANNOT_CHECK": 1, "DEFERRED": 1, "PARTIAL": 2},
+        # exact_subject_commit_identities moved PARTIAL -> BOUND when the
+        # rewrite-master adoption re-pinned P8's subject_commit/subject_tree as
+        # a consistent pair (the old pin's tree disagreed with its commit).
+        "P8": {"BOUND": 7, "CANNOT_CHECK": 1, "DEFERRED": 1, "PARTIAL": 1},
     }
     for paper_id, counts in expected.items():
         report = module.derive_report(ROOT, paper_id)
