@@ -1,0 +1,209 @@
+{
+  "active_claim_leaf": {
+    "claim_id": "P12B.EQUAL_ACTION.TWO_SIGNAL_COMPLEMENTARITY",
+    "effect": {
+      "mean_gain_vs_stronger_one_signal": 0.25390625,
+      "minimum_family_gain": 0.1962890625,
+      "stratified_family_bootstrap_95ci": [
+        0.251220703125,
+        0.25665283203125
+      ]
+    },
+    "maximum_authorized_wording": "Across 32 independent simulated family RNG blocks in the registered equal-action four-regime world, the two-signal policy improved exact allocation accuracy over the stronger one-signal policy by 0.253906 on average (stratified family-block 95% bootstrap interval 0.251221 to 0.256653).",
+    "scope": {
+      "budget": 2,
+      "fixed_sigma_strata": [
+        0.2,
+        0.4,
+        0.6,
+        0.8
+      ],
+      "identical_action_count_per_arm": 4,
+      "independent_family_rng_blocks": 32,
+      "locked_environment": {
+        "numpy_version": "2.5.2",
+        "python_version": "3.12.13",
+        "uv_lock_sha256": "4e0f595c568cf7cfdf15bb88518ad2fc5951a1cf9f03bb3c4b307471f852dade"
+      },
+      "scoring": "exact_required_allocation",
+      "technical_episodes_per_family": 1024
+    },
+    "status": "SUPPORTED_LOCKED_ENVIRONMENT_REVALIDATED_FAMILY_PANEL",
+    "terminal": "P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_SUPPORTED"
+  },
+  "active_terminal": "P12_SIGNAL_COMPLEMENTARITY_AUTHORITY_SUPPORTED",
+  "artifact_identity_note": "No P12C artifact exists. The adverse landed study is P12_ROBUSTNESS_STRESS_V1; the later successor is conditional on exact published charge certificates and is not public-data validation.",
+  "evidence_bindings": {
+    "certificate_necessity_receipt": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_CERTIFICATE_NECESSITY_RESULT_RECEIPT_V1.md",
+      "sha256": "a6a6c57367e3220053888de0aef31c8172d8f607ad3a26bf78546f9c24b2e0b6"
+    },
+    "historical_p12a_authority": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V1.json",
+      "sha256": "2eed354d98e414298c2b5019f1f7236981db6d5872d9295c22fed2d94f70fb41"
+    },
+    "historical_p12b_result_v1": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1.json",
+      "sha256": "a373fcbc63114eac5d42cafa96cce1898a9e6392e480c5d4d0e177cafd7a0523"
+    },
+    "p12b_locked_environment_revalidation": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/P12B_LOCKED_ENVIRONMENT_REVALIDATION_V1_1.md",
+      "sha256": "5ae7e19b9dc903b34de09ab7b9952734e864f30c0cc2983e3a8e3656f362a8c1"
+    },
+    "p12b_preflight": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/P12B_PREFLIGHT_ATTAINABILITY_V1_1.json",
+      "sha256": "6046ec0134fe153c0a596de59650ef95831ec6c549ce68d9d211880547dd8b9d"
+    },
+    "p12b_protocol": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_PROTOCOL_V1.md",
+      "sha256": "a44870bea56ea0c94c1b0dec15f3f11961e9371c1f3fedbda3048c654210cb09"
+    },
+    "p12b_protocol_amendment": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/P12B_PROTOCOL_AMENDMENT_V1_1.md",
+      "sha256": "4c3422390190d5124289419b75c4c9eadc141fe524fdbebce50ffac1636536fa"
+    },
+    "p12b_result_v1_1": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/P12B_EQUAL_ACTION_SIGNAL_COMPLEMENTARITY_RESULT_V1_1.json",
+      "sha256": "8fd71535d67b4b3afa310baaf3b44b272441277bbde7ccf59df360e3af5281be"
+    },
+    "p12b_runner_v1_1": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/run_p12b_equal_action_signal_complementarity_v1_1.py",
+      "sha256": "061160dcce0dd9754cdd9f4860f6be9a5eeb96a1f7baa47fff5feed2873b979f"
+    },
+    "p12b_subject_module_v1_1": {
+      "artifact": "src/orion/study/p12/equal_action_successor_v1_1.py",
+      "sha256": "cc96a8dc630c50bed0a669a085ef2486fc21df0ae8b3eeb5732fa8ec6e458ce8"
+    },
+    "previous_p12b_authority": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V2.json",
+      "sha256": "df4c1a6668644ca2a4ccfc34971fb79022c14eb820593f62fdedc039fdcb61e0"
+    },
+    "price_aware_preregistration": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_PROTOCOL_PREREG_V1.json",
+      "sha256": "efbec9ef4dd9d2e5cfd6bb6a562089d7ad3f12e36e9c7787744dbf73f2280cfa"
+    },
+    "price_aware_result": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_RESULT_V1.json",
+      "sha256": "5e8c065b303936533bd876ec1aaec8b6eaf863cf15c645284cefd02d5806921f"
+    },
+    "price_aware_result_receipt": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_PRICE_AWARE_SUCCESSOR_RESULT_RECEIPT_V1.md",
+      "sha256": "3d8839c2c3b02868426b3122abfaf457e248f3f79c233b75a1d438983966762d"
+    },
+    "robustness_result_receipt": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_ROBUSTNESS_STRESS_RESULT_RECEIPT_V1.md",
+      "sha256": "6d8d4f3a40c7cd36047d5042fd8b1b75b5eba37bb4d878d75140b7a4d1f885cc"
+    },
+    "selection_sufficiency_receipt": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_SELECTION_SUFFICIENCY_RESULT_RECEIPT_V1.md",
+      "sha256": "fe1a6c0d8d566ac59cffbcdd58c7b7255f49ef6ace77ad6971bc21f4adf496d1"
+    },
+    "stopgo_checker": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/check_p12_stopgo_integration_v1.py",
+      "role": "fail-closed integration audit; reports scientific_authority_delta=NONE, external_validation=CANNOT_CHECK",
+      "sha256": "9064d9e55519ac15c674db6aba8cab04c88385a2925f086db2abe911e82ef461"
+    },
+    "stopgo_menus_doc": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_STOPGO_FROZEN_MENUS_V1.md",
+      "role": "protocol doc twin of the frozen menus",
+      "sha256": "2ac9d27d8ff954cf0d6792681fd0c52167415666ed9b53d310bae42b8dfd8023"
+    },
+    "stopgo_menus_json": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/top_tier/p12_stopgo_frozen_menus_v1.json",
+      "role": "frozen identical action+signal menus for the stop/go public-data campaign (no results)",
+      "sha256": "42fea2d0103d4c36095295be81c4cc6bce7cb57c8344c0ade3821688dd4fe73d"
+    },
+    "transfer_result_receipt": {
+      "artifact": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_TRANSFER_ALLOCATION_RESULT_RECEIPT_V1.md",
+      "sha256": "8db11e2ba6a3f110d57aff6488c8cf8f5e7c6846231f613f3d6fb82f16dfd206"
+    },
+    "uv_lock": {
+      "artifact": "uv.lock",
+      "sha256": "f48cdb16ee305d2b5f4a3cedf9064bf3e000ac727ca060355f380e27bb34b01c"
+    }
+  },
+  "external_public_benchmark_status": "CANNOT_CHECK_NO_BOUND_PUBLIC_DATA_RESULT",
+  "forbidden_promotions": [
+    "P12A_ACTION_SET_HANDICAP_AS_SIGNAL_EFFECT",
+    "TECHNICAL_EPISODES_AS_INDEPENDENT_N",
+    "NATURALISTIC_AGENT_SUPERIORITY",
+    "EXTERNAL_SYSTEM_GENERALIZATION",
+    "UNREGISTERED_NOISE_MIXTURE_GENERALIZATION",
+    "PRICE_OR_SHIFT_ROBUSTNESS_OF_V1_ALLOCATOR",
+    "FORWARD_TIME_DEPLOYABILITY_FROM_EXACT_CERTIFICATES",
+    "SCIENCEAGENTBENCH_OR_EXTERNAL_TRANSFER",
+    "P12C_ARTIFACT_IDENTITY",
+    "PUBLICDATA_CAMPAIGN_RESULT_CLAIM_BEFORE_EXECUTION",
+    "P12C_ARTIFACT_INVENTED_RETROACTIVELY"
+  ],
+  "historical_boundary_leaf": {
+    "authority": "HISTORICAL_COMPARISON_FAILURE_NOT_ACTIVE",
+    "claim_id": "P12A.TWO_SIGNAL_SUPERIORITY_OVER_ONE_AXIS_POLICIES",
+    "reason": "BASELINE_CEILING_BELOW_WINNER",
+    "terminal": "P12A_SUPERIORITY_AUTHORITY_WITHHELD"
+  },
+  "paper_id": "P12",
+  "paper_level_outcome": "SUPPORTED_WITH_TRANSFER_AND_CERTIFICATE_BOUNDS",
+  "price_aware_successor_leaf": {
+    "battery_cells_cross_checked": 195,
+    "claim_id": "P12.PRICE_AWARE.EXACT_CERTIFICATE.SUCCESSOR.V1",
+    "forward_time_deployability": "CANNOT_CHECK",
+    "new_free_parameters": 0,
+    "status": "SUPPORTED_CONDITIONAL_ON_EXACT_PUBLISHED_CERTIFICATES",
+    "successor_positive_cells": 0,
+    "terminal": "P12_PRICE_AWARE_SUCCESSOR_SUPPORTED"
+  },
+  "promotion_allowed": true,
+  "robustness_boundary_leaf": {
+    "authority": "BINDING_NEGATIVE_BOUNDARY",
+    "claim_id": "P12.TRANSFER.ROBUSTNESS.STRESS.V1",
+    "distribution_shift_axis": "BROKEN",
+    "flat_replication": "SUPPORTED",
+    "price_axis": "BROKEN",
+    "retuned": false,
+    "terminal": "P12_ROBUSTNESS_STRESS_V1_EXECUTED"
+  },
+  "schema": "ORION.P12.ActiveClaimAuthority.v5",
+  "selection_information_boundary": {
+    "maximum_authorized_use": "Exact additive charge certificates are sufficient for optimal selection, and each registered coarsening admits an impossibility witness in the registered reduced environment. Certificate availability before action is not established.",
+    "necessity_terminal": "P12_CERTIFICATE_NECESSITY_THEOREM_FALSIFIER_GREEN",
+    "sufficiency_terminal": "P12_SELECTION_SUFFICIENCY_THEOREM_FALSIFIER_GREEN"
+  },
+  "stopgo_campaign_leaf": {
+    "artifact_class": "FROZEN_PROTOCOL_NO_RESULTS",
+    "authority": "FROZEN_PROTOCOL_PENDING_EXECUTION",
+    "binding_prior_terminals": [
+      "P12A_SUPERIORITY_AUTHORITY_WITHHELD",
+      "P12_ROBUSTNESS_STRESS_V1_EXECUTED",
+      "P12_PRICE_AWARE_SUCCESSOR_SUPPORTED"
+    ],
+    "campaign_executed": false,
+    "claim_id": "P12.STOPGO.PUBLICDATA.V1",
+    "fail_action": "stop the positive complementarity claim and publish the boundary/null result; do not iterate until positive; any successor requires a new preregistered protocol with its own frozen thresholds",
+    "inference_unit": {
+      "aggregation": "domain",
+      "primary": "task_family"
+    },
+    "issue_1086_label_note": "No P12C artifact exists in this repository (no file, commit, pull request or issue carries that label); none was invented retroactively. The binding prior adverse evidence actually integrated is binding_prior_terminals above.",
+    "maximum_authorized_wording": "A stop/go public-data campaign protocol is frozen: identical action menu ((0,0),(2,0),(0,2),(1,1)) and identical closed four-signal menu across the adaptive and both one-signal arms, task-family/domain inference unit, preregistered pass gate and fail action. The campaign has not been executed; no result, gate verdict or terminal exists.",
+    "results_exist": false
+  },
+  "top_tier_submission_allowed": false,
+  "transfer_claim_leaf": {
+    "claim_id": "P12.TRANSFER.EXACT.THREE_DOMAIN.V1",
+    "scope": {
+      "allocator_regret_positive_cells": 0,
+      "cases": 9,
+      "domain_specific_parameters": 0,
+      "domains": [
+        "SAT_PROPAGATION",
+        "PATH_PLANNING",
+        "KNAPSACK"
+      ],
+      "exact_outputs_all_arms": true
+    },
+    "status": "SUPPORTED_BOUNDED_INTERNAL_EXACT_DOMAINS",
+    "terminal": "P12_TRANSFER_ALLOCATION_V1_SUPPORTED"
+  },
+  "v5_change_note": "V5 = the landed lifecycle V4 byte-frozen on every inherited leaf, terminal, status, binding and forbidden promotion; adds only the stop/go campaign leaf, its three evidence bindings and two new forbidden promotions. No result is added because none exists."
+}
