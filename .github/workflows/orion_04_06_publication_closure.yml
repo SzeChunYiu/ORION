@@ -1,0 +1,106 @@
+name: ORION 04-06 publication closure
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-04-rooted-completion-certificates/**'
+      - 'papers/orion-05-tare-expressivity/**'
+      - 'papers/orion-06-recursive-recovery/**'
+      - 'papers/publication_closure/**'
+      - '.github/workflows/orion_04_06_publication_closure.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publication-closure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install document toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-base texlive-latex-recommended texlive-fonts-recommended texlive-bibtex-extra poppler-utils
+      - name: Build ORION-04 package
+        run: python papers/orion-04-rooted-completion-certificates/submission/final-20260831/build_package.py
+      - name: Build ORION-05 package
+        run: python papers/orion-05-tare-expressivity/submission/final-20260831/build_package.py
+      - name: Build ORION-06 TMLR package
+        run: python papers/orion-06-recursive-recovery/submission_tmlr/build_package.py
+      - name: Verify generated package hashes
+        run: |
+          (cd papers/orion-04-rooted-completion-certificates/submission/final-20260831 && sha256sum -c SHA256SUMS)
+          (cd papers/orion-05-tare-expressivity/submission/final-20260831 && sha256sum -c SHA256SUMS)
+          (cd papers/orion-06-recursive-recovery/submission_tmlr && sha256sum -c SHA256SUMS)
+      - name: Verify claim boundaries and anonymity
+        run: python papers/publication_closure/verify_orion_04_06_publication.py
+      - name: PDF preflight and render controls
+        run: |
+          mkdir -p closure-artifacts/renders
+          pdfinfo papers/orion-04-rooted-completion-certificates/submission/final-20260831/manuscript.pdf > closure-artifacts/orion04-pdfinfo.txt
+          pdfinfo papers/orion-05-tare-expressivity/submission/final-20260831/manuscript.pdf > closure-artifacts/orion05-pdfinfo.txt
+          pdfinfo papers/orion-06-recursive-recovery/submission_tmlr/main.pdf > closure-artifacts/orion06-pdfinfo.txt
+          pdftotext papers/orion-06-recursive-recovery/submission_tmlr/main.pdf closure-artifacts/orion06.txt
+          ! grep -Eqi 'Sze Chun Yiu|sze-chun\.yiu@|ORION-Q|development/orion|research/extensions' closure-artifacts/orion06.txt
+          pdftoppm -f 1 -singlefile -png -r 150 papers/orion-04-rooted-completion-certificates/submission/final-20260831/manuscript.pdf closure-artifacts/renders/orion04-first
+          pdftoppm -f 1 -singlefile -png -r 150 papers/orion-05-tare-expressivity/submission/final-20260831/manuscript.pdf closure-artifacts/renders/orion05-first
+          pdftoppm -f 1 -singlefile -png -r 150 papers/orion-06-recursive-recovery/submission_tmlr/main.pdf closure-artifacts/renders/orion06-first
+      - name: Verify tracked package bytes are deterministic
+        shell: bash
+        run: |
+          paths=(
+            papers/orion-04-rooted-completion-certificates/submission/final-20260831/manuscript.pdf
+            papers/orion-04-rooted-completion-certificates/submission/final-20260831/source.zip
+            papers/orion-04-rooted-completion-certificates/submission/final-20260831/SHA256SUMS
+            papers/orion-05-tare-expressivity/submission/final-20260831/manuscript.pdf
+            papers/orion-05-tare-expressivity/submission/final-20260831/arxiv-source.zip
+            papers/orion-05-tare-expressivity/submission/final-20260831/SHA256SUMS
+            papers/orion-06-recursive-recovery/submission_tmlr/main.pdf
+            papers/orion-06-recursive-recovery/submission_tmlr/anonymous-source.zip
+            papers/orion-06-recursive-recovery/submission_tmlr/anonymous-review-supplement.zip
+            papers/orion-06-recursive-recovery/submission_tmlr/SHA256SUMS
+          )
+          if git ls-files --error-unmatch "${paths[0]}" >/dev/null 2>&1; then
+            git diff --exit-code -- "${paths[@]}"
+            test -z "$(git status --porcelain -- "${paths[@]}")"
+          fi
+      - name: Bind generated package bytes to PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        run: |
+          paths=(
+            papers/orion-04-rooted-completion-certificates/submission/final-20260831/manuscript.pdf
+            papers/orion-04-rooted-completion-certificates/submission/final-20260831/source.zip
+            papers/orion-04-rooted-completion-certificates/submission/final-20260831/SHA256SUMS
+            papers/orion-05-tare-expressivity/submission/final-20260831/manuscript.pdf
+            papers/orion-05-tare-expressivity/submission/final-20260831/arxiv-source.zip
+            papers/orion-05-tare-expressivity/submission/final-20260831/SHA256SUMS
+            papers/orion-06-recursive-recovery/submission_tmlr/main.pdf
+            papers/orion-06-recursive-recovery/submission_tmlr/anonymous-source.zip
+            papers/orion-06-recursive-recovery/submission_tmlr/anonymous-review-supplement.zip
+            papers/orion-06-recursive-recovery/submission_tmlr/SHA256SUMS
+          )
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- "${paths[@]}"
+          if ! git diff --cached --quiet; then
+            git commit -m 'papers: bind validated publication package bytes'
+            git push origin "HEAD:${{ github.head_ref }}"
+          fi
+      - name: Stage generated packages
+        run: |
+          mkdir -p closure-artifacts/generated/orion04 closure-artifacts/generated/orion05 closure-artifacts/generated/orion06
+          cp papers/orion-04-rooted-completion-certificates/submission/final-20260831/{manuscript.pdf,source.zip,SHA256SUMS} closure-artifacts/generated/orion04/
+          cp papers/orion-05-tare-expressivity/submission/final-20260831/{manuscript.pdf,arxiv-source.zip,SHA256SUMS} closure-artifacts/generated/orion05/
+          cp papers/orion-06-recursive-recovery/submission_tmlr/{main.pdf,anonymous-source.zip,anonymous-review-supplement.zip,SHA256SUMS} closure-artifacts/generated/orion06/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-04-06-publication-closure
+          path: closure-artifacts/
+          if-no-files-found: error
