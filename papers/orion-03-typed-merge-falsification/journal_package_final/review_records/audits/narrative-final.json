@@ -1,0 +1,22 @@
+{
+  "decision": "PASS",
+  "counts": {
+    "error": 0,
+    "review": 0
+  },
+  "findings": [],
+  "metrics": {
+    "body_word_count": 4881,
+    "long_decimal_count": 0,
+    "defensive_phrase_count": 2,
+    "defensive_phrases_per_1000_words": 0.41,
+    "opaque_id_occurrences": 0,
+    "opaque_ids_first_seen_in_results": []
+  },
+  "notes": [
+    "All findings are conservative review signals; section sufficiency, necessary caveats, and justified precision require contextual scientific judgment.",
+    "The scanner does not impose a universal word count, significant-figure rule, or ban on caveats/experiment IDs.",
+    "Short setup sections are not flagged solely for length; the setup review requires a downstream reader-activation signal.",
+    "Section-length checks include child subsections rather than truncating the parent at the next lower-level heading."
+  ]
+}

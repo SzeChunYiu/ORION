@@ -1,0 +1,219 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "reader-pdf",
+      "byte_count": 118823,
+      "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion.pdf",
+      "role": "reader_manuscript",
+      "sha256": "sha256:8bef2f1938ba328120b6bebfc5bbedb7ad72cfa8092f482a1b11a6a30ecf1a21"
+    },
+    {
+      "artifact_id": "atomic-claim-inventory",
+      "byte_count": 412078,
+      "path": "ATOMIC_CLAIM_INVENTORY.json",
+      "role": "release_receipt",
+      "sha256": "sha256:a100a797d85b743e0bbfa87e211f3028a8ff189c67bcc3dd318eed3f03473b78"
+    },
+    {
+      "artifact_id": "component-binding-manifest",
+      "byte_count": 106678,
+      "path": "COMPONENT_BINDING_MANIFEST.json",
+      "role": "release_receipt",
+      "sha256": "sha256:1dd8a8c6d332fbaf2cb44345dd25258d09a03a41cda39d1af5926080e079cea3"
+    },
+    {
+      "artifact_id": "independent-release-review-provenance",
+      "byte_count": 515,
+      "path": "INDEPENDENT_RELEASE_REVIEW_PROVENANCE.json",
+      "role": "release_receipt",
+      "sha256": "sha256:8868c010db1e96c8d636e073fd83300261855906e2b25df1d15d43089e5333f2"
+    },
+    {
+      "artifact_id": "release-claim-ledger",
+      "byte_count": 1039,
+      "path": "CLAIM_LEDGER_RELEASE.json",
+      "role": "release_receipt",
+      "sha256": "sha256:1374e50a054807e0aea92f6e487359fbb06b4bd27f5cbc08d949102fcaf71fe0"
+    },
+    {
+      "artifact_id": "research-integrity-ledger",
+      "byte_count": 556839,
+      "path": "RESEARCH_INTEGRITY_LEDGER.json",
+      "role": "claim_ledger",
+      "sha256": "sha256:96e7c787237fb4d2c350fd19798521770401b70073f4f15d73837df06c94be85"
+    },
+    {
+      "artifact_id": "research-integrity-report",
+      "byte_count": 346,
+      "path": "RESEARCH_INTEGRITY_REPORT.json",
+      "role": "release_receipt",
+      "sha256": "sha256:5059cd5d8a4751326339ed3631783ae2861267a2bda0cfc24d69260475d7dac1"
+    },
+    {
+      "artifact_id": "canonical-source",
+      "byte_count": 34232,
+      "path": "MANUSCRIPT.md",
+      "role": "manuscript_source",
+      "sha256": "sha256:7181bd6d64c375a29fc2d037cfa5a03f67e6dc69d6b32d0af95961ce410fa1ee"
+    },
+    {
+      "artifact_id": "scientific-claim-ledger",
+      "byte_count": 4020,
+      "path": "CLAIM_LEDGER.md",
+      "role": "release_receipt",
+      "sha256": "sha256:6dca07cc8f96557e08228a2dfe5100f4b66e819abf42ee2bbbe9207e095e1f8c"
+    },
+    {
+      "artifact_id": "source-archive",
+      "byte_count": 57560,
+      "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_source.zip",
+      "role": "submission_component",
+      "sha256": "sha256:e1c3ff42e3cebfd16f8264a35009ff751394865b38e7963debb3e25cb26fd951"
+    },
+    {
+      "artifact_id": "artifact-archive",
+      "byte_count": 628193,
+      "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_artifact.zip",
+      "role": "reproducibility_component",
+      "sha256": "sha256:de1aa235fc0b9cf0895fb31fa6a70a8aafea1cb23201ea59bef452bc9b1b392b"
+    },
+    {
+      "artifact_id": "cover-letter",
+      "byte_count": 1538,
+      "path": "submission/cover_letter.md",
+      "role": "submission_component",
+      "sha256": "sha256:2022d91824d5d173ae715e4107323f41ed35fdb7611601f7c091cc0815f5eef2"
+    },
+    {
+      "artifact_id": "filing-checklist",
+      "byte_count": 1403,
+      "path": "submission/submission_checklist.md",
+      "role": "submission_component",
+      "sha256": "sha256:2d5c1faa2be5de811ac1d7a59d87a87cf952d80e8a2d2aabe7121c695f0d789d"
+    }
+  ],
+  "authority": {
+    "claim_ledger_artifact_id": "research-integrity-ledger",
+    "manuscript_artifact_id": "reader-pdf",
+    "manuscript_id": "ORION-03-JAR-20260831"
+  },
+  "canonical_paper_id": "ORION-03",
+  "manuscript_candidates": [
+    {
+      "artifact_id": "reader-pdf",
+      "disposition": "authoritative",
+      "manuscript_id": "ORION-03-JAR-20260831",
+      "reason": "Exact reader-facing PDF governing the filing package.",
+      "sha256": "sha256:8bef2f1938ba328120b6bebfc5bbedb7ad72cfa8092f482a1b11a6a30ecf1a21"
+    },
+    {
+      "disposition": "historical_provenance",
+      "manuscript_id": "ORION-03-V3-EDITABLE-SOURCE",
+      "reason": "Canonical editable scientific source bound to the PDF; not a competing reader artifact.",
+      "sha256": "sha256:7181bd6d64c375a29fc2d037cfa5a03f67e6dc69d6b32d0af95961ce410fa1ee"
+    },
+    {
+      "disposition": "superseded",
+      "manuscript_id": "ORION-03-V2",
+      "reason": "Earlier scientific manuscript retained only for provenance.",
+      "sha256": "sha256:b572bcbcb8033b5aa59f515d5040e7a16fcf2c4afb172f1d4bad34b891e60e53",
+      "superseded_by": "ORION-03-JAR-20260831"
+    },
+    {
+      "disposition": "superseded",
+      "manuscript_id": "ORION-03-V3-PIPELINE-DRAFT",
+      "reason": "Pipeline draft retained only as historical provenance; excluded from the upload set.",
+      "sha256": "sha256:14ded2a90a7c273d94aa6cc640e22640f0557ae1e109f299dfdfe9021731dce5",
+      "superseded_by": "ORION-03-JAR-20260831"
+    },
+    {
+      "disposition": "superseded",
+      "manuscript_id": "ORION-03-BASE-V3-SOURCE",
+      "reason": "Pre-closure V3 source bytes from the branch base; retained only in Git history.",
+      "sha256": "sha256:968c9fed9d370af8551e0ced3588569975649409ce627b869da30844229de8d8",
+      "superseded_by": "ORION-03-JAR-20260831"
+    },
+    {
+      "disposition": "superseded",
+      "manuscript_id": "ORION-03-HISTORICAL-JOURNAL-SOURCE",
+      "reason": "Pre-closure journal-package source; replaced by the byte-identical final canonical source.",
+      "sha256": "sha256:9b9abc02bcf9d7bb6690c7c5f8b54928603922f949bc2c4f27e97e5ff5bdbd71",
+      "superseded_by": "ORION-03-JAR-20260831"
+    },
+    {
+      "disposition": "superseded",
+      "manuscript_id": "ORION-03-HISTORICAL-JOURNAL-PDF",
+      "reason": "Earlier malformed and incomplete journal package; excluded from the upload set.",
+      "sha256": "sha256:ab046f403ea64459f0d162c56887c5e80e6b9483b294e25c85c9261b0d2bf893",
+      "superseded_by": "ORION-03-JAR-20260831"
+    },
+    {
+      "disposition": "superseded",
+      "manuscript_id": "ORION-03-HISTORICAL-MANUSCRIPT-BUILD-PDF",
+      "reason": "Historical repository build outside the final filing package.",
+      "sha256": "sha256:18836fad31d38fe4d20e74ff24f58b0e4e7064493d0e3ec586e554175f57580e",
+      "superseded_by": "ORION-03-JAR-20260831"
+    },
+    {
+      "disposition": "superseded",
+      "manuscript_id": "ORION-03-HISTORICAL-SUBMISSION-PDF",
+      "reason": "Historical submission rendering with predecessor title; excluded from the final upload set.",
+      "sha256": "sha256:fbb57818b2f86c102cfc049e52a03b72e849e1b430ce3df43efc6316973172bf",
+      "superseded_by": "ORION-03-JAR-20260831"
+    },
+    {
+      "disposition": "historical_provenance",
+      "manuscript_id": "ORION-03-SOURCE-TREE-BUILD-DERIVATIVE",
+      "reason": "Byte-identical rebuild retained inside the editable source tree; not a separate reader authority or upload target.",
+      "sha256": "sha256:8bef2f1938ba328120b6bebfc5bbedb7ad72cfa8092f482a1b11a6a30ecf1a21"
+    }
+  ],
+  "package": {
+    "format": "file_set",
+    "members": [
+      {
+        "artifact_id": "reader-pdf",
+        "member_path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion.pdf"
+      },
+      {
+        "artifact_id": "source-archive",
+        "member_path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_source.zip"
+      },
+      {
+        "artifact_id": "artifact-archive",
+        "member_path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_artifact.zip"
+      },
+      {
+        "artifact_id": "cover-letter",
+        "member_path": "submission/cover_letter.md"
+      },
+      {
+        "artifact_id": "filing-checklist",
+        "member_path": "submission/submission_checklist.md"
+      },
+      {
+        "artifact_id": "atomic-claim-inventory",
+        "member_path": "ATOMIC_CLAIM_INVENTORY.json"
+      },
+      {
+        "artifact_id": "component-binding-manifest",
+        "member_path": "COMPONENT_BINDING_MANIFEST.json"
+      },
+      {
+        "artifact_id": "independent-release-review-provenance",
+        "member_path": "INDEPENDENT_RELEASE_REVIEW_PROVENANCE.json"
+      },
+      {
+        "artifact_id": "research-integrity-ledger",
+        "member_path": "RESEARCH_INTEGRITY_LEDGER.json"
+      },
+      {
+        "artifact_id": "research-integrity-report",
+        "member_path": "RESEARCH_INTEGRITY_REPORT.json"
+      }
+    ]
+  },
+  "release_id": "ORION-03-JAR-PUBLICATION-CLOSURE-20260831",
+  "requested_state": "submission_ready",
+  "schema_version": "1.0"
+}

@@ -1,0 +1,76 @@
+{
+  "work/ORION/papers/orion-03-typed-merge-falsification/MANUSCRIPT_V3.md": [
+    {
+      "line": 6,
+      "column": 2,
+      "kind": "repeated_space",
+      "severity": "warning",
+      "text": "   ",
+      "message": "Repeated spaces in prose; verify typography.",
+      "availability_context": false
+    },
+    {
+      "line": 7,
+      "column": 2,
+      "kind": "repeated_space",
+      "severity": "warning",
+      "text": "   ",
+      "message": "Repeated spaces in prose; verify typography.",
+      "availability_context": false
+    },
+    {
+      "line": 41,
+      "column": 289,
+      "kind": "unexpanded_abbreviation_review",
+      "severity": "review",
+      "text": "AGM",
+      "message": "Abbreviation/acronym may be unexplained on this standalone surface; expand or define it locally unless verified as universal for the intended reader.",
+      "availability_context": false
+    },
+    {
+      "line": 62,
+      "column": 22,
+      "kind": "missing_space_after_punctuation",
+      "severity": "error",
+      "text": ",",
+      "message": "Likely missing space after punctuation.",
+      "availability_context": false
+    },
+    {
+      "line": 239,
+      "column": 595,
+      "kind": "opaque_identifier_review",
+      "severity": "review",
+      "text": "SHA-256",
+      "message": "Opaque alphanumeric label may be internal; give it a reader-facing scientific identity or remove/relocate it.",
+      "availability_context": false
+    },
+    {
+      "line": 265,
+      "column": 178,
+      "kind": "unexpanded_abbreviation_review",
+      "severity": "review",
+      "text": "ORION",
+      "message": "Abbreviation/acronym may be unexplained on this standalone surface; expand or define it locally unless verified as universal for the intended reader.",
+      "availability_context": true
+    },
+    {
+      "line": 265,
+      "column": 196,
+      "kind": "repository_url",
+      "severity": "review",
+      "text": "https://github.com/SzeChunYiu/ORION",
+      "message": "Repository URL should normally be concentrated in a designated availability/artifact section.",
+      "availability_context": true
+    },
+    {
+      "line": 265,
+      "column": 200,
+      "kind": "local_path",
+      "severity": "error",
+      "text": "s://github.com/SzeChunYiu/ORION).",
+      "message": "Local filesystem path should not appear in manuscript-facing prose.",
+      "availability_context": true
+    }
+  ]
+}

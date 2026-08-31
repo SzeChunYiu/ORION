@@ -1,32 +1,1944 @@
 {
-  "academic_paper_skills_revision": "a45568215d648e5d446a03980277d282b19e57d7",
-  "canonical_science_path": "papers/orion-03-typed-merge-falsification/MANUSCRIPT_V3.md",
-  "canonical_science_sha256": "968c9fed9d370af8551e0ced3588569975649409ce627b869da30844229de8d8",
-  "claim_ledger_path": "papers/orion-03-typed-merge-falsification/CLAIM_LEDGER_V3.md",
-  "claim_ledger_sha256": "efbf726f834b14a28ee2c286d7ee723f1604a8ab3110109dc0dcb9e0ef246ecf",
-  "files": {
-    "CLAIM_LEDGER.md": "efbf726f834b14a28ee2c286d7ee723f1604a8ab3110109dc0dcb9e0ef246ecf",
-    "MANUSCRIPT.md": "9b9abc02bcf9d7bb6690c7c5f8b54928603922f949bc2c4f27e97e5ff5bdbd71",
-    "README.md": "f5df5b1a0a28a5b6ed032e367294ecac1d76805b390c316a3b66bd2ad717bc87",
-    "submission/README.md": "f5df5b1a0a28a5b6ed032e367294ecac1d76805b390c316a3b66bd2ad717bc87",
-    "submission/Typed_Scientific_Authority_with_Fail-Closed_Nonpromotion.pdf": "ab046f403ea64459f0d162c56887c5e80e6b9483b294e25c85c9261b0d2bf893",
-    "submission/Typed_Scientific_Authority_with_Fail-Closed_Nonpromotion.tex": "9fca640384e1684e131b7dd45900fa1c17c66b4e113fdc9090c48dd5358cf43e",
-    "submission/Typed_Scientific_Authority_with_Fail-Closed_Nonpromotion_artifact.zip": "39e2aaf6514e46067ebbe963d80443f6bb809a500ff7b757a5840a6f5caf1b06",
-    "submission/Typed_Scientific_Authority_with_Fail-Closed_Nonpromotion_journal_source.zip": "d89a91c54133f81e5ee1ac3f2f3377ee84f62bfc31e736139ff85b2ccbebf441",
-    "submission/artifact/README.md": "77ae17e9e459061162bda1f3c9100ae642973481b1d8b90be900ecadc3ebd9bf",
-    "submission/artifact/evidence_license_evaluator.py": "82ecb77dcdbce97d3980152d5053a166227d6a0403d11f021a6f478108b1b86a",
-    "submission/artifact/evidence_license_schema.json": "8e6310a151143922151f382aa38dd95cb57c7ba9b61642e51b9a6c1543904afa",
-    "submission/artifact/examples/bounded_frontier.json": "c8e8640e2b9ea1700a93592a6d6d76c29772a290f990fd81a4a9bf969647516f",
-    "submission/artifact/examples/forecast_falsification.json": "ebd96e2e20192fe30f8383239f8ce142c707eed0c11f09e3b17045db8dd5e887",
-    "submission/artifact/examples/query_specific_falsification.json": "63178ff0ab7a2eac7d41bd3151d4483811a07e3620c53b1d9257f79737024f15",
-    "submission/artifact/test_evidence_license_evaluator.py": "6c32a4914cfb095bb243f76780b2d1cf143b9684814a7726aaa2ce016a1e27ef",
-    "submission/cover_letter.md": "b29972bd3cc73d66624ce49869bbb1b7f74d3ca6b5859fa4e54f9fdb0a313b8f",
-    "submission/submission_checklist.md": "748ac07426e2cd1c6674a117e8549e6dfb1f964fa2c818ef3aa9bd64901c6c32"
+  "academic_paper_skills_revision": "60adaa6d376c272f8fe0e2300b72fe6cf9d6e4ef",
+  "artifact_archive": {
+    "byte_count": 628193,
+    "members": [
+      {
+        "byte_count": 961,
+        "member_path": "README.md",
+        "sha256": "90336392b4a236bde75098c8b61cb45a758eaa8dc1fc3b70f22b13755266bac6"
+      },
+      {
+        "byte_count": 1155,
+        "member_path": "licenses/OPENSSL_ATTRIBUTION.md",
+        "sha256": "5daef3007804966080632b3bb1ec6897e37d57aaf4650cee75465dbea090d510"
+      },
+      {
+        "byte_count": 10175,
+        "member_path": "licenses/OPENSSL_LICENSE.txt",
+        "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a"
+      },
+      {
+        "byte_count": 38,
+        "member_path": "packages/typed-merge-evaluator/.gitignore",
+        "sha256": "599e8d09a18b6bac6f70ed12bf96f67e49c4d992ee2601bc173d92fbcb64b11d"
+      },
+      {
+        "byte_count": 10147,
+        "member_path": "packages/typed-merge-evaluator/README.md",
+        "sha256": "0870260c2a31c3c677db09838cd29184129100db3f5563e70c1e8c566275241f"
+      },
+      {
+        "byte_count": 6210,
+        "member_path": "packages/typed-merge-evaluator/REPRODUCTION.md",
+        "sha256": "be935bd4a4403ea8bc209b4bb5b9b86660eb32eed0f7e99d012ad15f654d7c87"
+      },
+      {
+        "byte_count": 6397,
+        "member_path": "packages/typed-merge-evaluator/SCHEMA_V1.json",
+        "sha256": "d363fadd732a11b86efea5be7520dbeff4eb42933f8e0c5d5b7b8fdad5e1e1ad"
+      },
+      {
+        "byte_count": 6936,
+        "member_path": "packages/typed-merge-evaluator/examples/build_examples.py",
+        "sha256": "8f1cede8d6a4ef7ce13a126161b2ddcd582c426b489debfaf7b3ed090670656b"
+      },
+      {
+        "byte_count": 1503,
+        "member_path": "packages/typed-merge-evaluator/examples/cedar-multipolicy/alternative_complete_origin.json",
+        "sha256": "ed232e23a32e46d972f0402d466de819097a4bb8efac3f6d57ddaa023839027b"
+      },
+      {
+        "byte_count": 1534,
+        "member_path": "packages/typed-merge-evaluator/examples/cedar-multipolicy/explicit_bridge_licence.json",
+        "sha256": "a00d3ea4b9bf59e5622476d50f432b870932c9d9fbe08300e508ce0a3824bcd8"
+      },
+      {
+        "byte_count": 1522,
+        "member_path": "packages/typed-merge-evaluator/examples/cedar-multipolicy/multiple_complete_origins_not_false_alarm.json",
+        "sha256": "2de4e4f00be267768d7c5d407aa355acfb327c8ad1c1ca1433d9a7d567687145"
+      },
+      {
+        "byte_count": 1799,
+        "member_path": "packages/typed-merge-evaluator/examples/cedar-multipolicy/retracted_evidence_erasure.json",
+        "sha256": "21b4ff0b57db9b0208e997114c9f8b0906a41c9276ec659614d9efae6c1868bf"
+      },
+      {
+        "byte_count": 1467,
+        "member_path": "packages/typed-merge-evaluator/examples/cedar-multipolicy/single_origin_complete_record.json",
+        "sha256": "b31493982986f9487dddbee62a86824938826e3ee5cf10409ad495a19c8d6b7f"
+      },
+      {
+        "byte_count": 1488,
+        "member_path": "packages/typed-merge-evaluator/examples/cedar-multipolicy/spliced_foreign_origin_requirements.json",
+        "sha256": "6d6e623e4f6c74f30e895ed718a9b7b2fa9e05aac90fe36bb8748dc627cb93d4"
+      },
+      {
+        "byte_count": 1610,
+        "member_path": "packages/typed-merge-evaluator/examples/cedar-multipolicy/two_partial_sources_make_stronger_target.json",
+        "sha256": "cdecd72e1b0eff6e7f4dab6fbb65596f24595672312753c97951f8573105f24f"
+      },
+      {
+        "byte_count": 1479,
+        "member_path": "packages/typed-merge-evaluator/examples/cedar-multipolicy/unsupported_positive_cycle.json",
+        "sha256": "4e2921d5170d92fad7df71a30b8c6486c5ad3068a9cb21890858eaabb5136b23"
+      },
+      {
+        "byte_count": 2844,
+        "member_path": "packages/typed-merge-evaluator/examples/manuscript-cases/case3-d4-bounded-computation.json",
+        "sha256": "6eeae352f87cf8b63fe9f6ddec0e9b60051d2d11d6fd3818e5bdad90a33be0d8"
+      },
+      {
+        "byte_count": 3575,
+        "member_path": "packages/typed-merge-evaluator/examples/manuscript_cases_builder.py",
+        "sha256": "3ad0df96ea0e3f5c7d1ca2b4617f8eb20f9b1d3ddf2ba3c8a767b20f3a348a68"
+      },
+      {
+        "byte_count": 2293,
+        "member_path": "packages/typed-merge-evaluator/examples/x509-truststore/C4-retraction-non-resurrection.json",
+        "sha256": "9a0743f1a8e1a0e2a0b2ded58780af9b516a4e8546eae30c8c683079fe08036c"
+      },
+      {
+        "byte_count": 1716,
+        "member_path": "packages/typed-merge-evaluator/examples/x509-truststore/C6-HOSTILE-SPLIT.json",
+        "sha256": "1740e84e8ec552b6d42afbc852d640cfde5ca56477e73a2594a48e116c3668cd"
+      },
+      {
+        "byte_count": 1667,
+        "member_path": "packages/typed-merge-evaluator/examples/x509-truststore/FU-0379-policy-oracle.json",
+        "sha256": "dc1cc0013808c36c3a5861e490cf98a1b4646b66c921438161346f51efe8965a"
+      },
+      {
+        "byte_count": 1614,
+        "member_path": "packages/typed-merge-evaluator/examples/x509-truststore/single-origin-complete-no-alarm.json",
+        "sha256": "b9089c4406ad670b96839a078cceb0a789370f19ad5cead678813d0cf5b98189"
+      },
+      {
+        "byte_count": 9486,
+        "member_path": "packages/typed-merge-evaluator/examples/x509_builder.py",
+        "sha256": "8d964b26664e8f00896d161741b558898d9ff43beb08485165d4b8b532a597b2"
+      },
+      {
+        "byte_count": 16155,
+        "member_path": "packages/typed-merge-evaluator/tests/test_typed_merge_evaluator.py",
+        "sha256": "2380882d625af72bc05a411010ec4f547e492676a041b2fba63d0ccdfe200e82"
+      },
+      {
+        "byte_count": 1012,
+        "member_path": "packages/typed-merge-evaluator/typed_merge_evaluator/__init__.py",
+        "sha256": "b7af556962018b744a9d7e040157207b22f81e2979fb3ed464242db6d8269f28"
+      },
+      {
+        "byte_count": 48,
+        "member_path": "packages/typed-merge-evaluator/typed_merge_evaluator/__main__.py",
+        "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d"
+      },
+      {
+        "byte_count": 5926,
+        "member_path": "packages/typed-merge-evaluator/typed_merge_evaluator/analysis.py",
+        "sha256": "5bce51984b1b3d1f5e5b247dcac6679a33e253201844a20596461fc81b54a50a"
+      },
+      {
+        "byte_count": 1985,
+        "member_path": "packages/typed-merge-evaluator/typed_merge_evaluator/cli.py",
+        "sha256": "a9592ff059e525310ab1bbbbe7825e3328e862e19a75db4c96a5d089607dcfe3"
+      },
+      {
+        "byte_count": 9068,
+        "member_path": "packages/typed-merge-evaluator/typed_merge_evaluator/core.py",
+        "sha256": "53790150d98c7ab1c11bdace88dae4a1c8e6eb8ff58a8d5c6a2bdcb789160ba2"
+      },
+      {
+        "byte_count": 2114,
+        "member_path": "packages/typed-merge-evaluator/typed_merge_evaluator/enumeration.py",
+        "sha256": "c0259eae6ab6c412e83ba95ba781cb106ec75dfdefbbd04b63ca66858c9ceb03"
+      },
+      {
+        "byte_count": 4973,
+        "member_path": "packages/typed-merge-evaluator/typed_merge_evaluator/model.py",
+        "sha256": "473a9fa52bc0ed552b73b6eda39c44474d23f7c7647a364072f0265a931861ea"
+      },
+      {
+        "byte_count": 4020,
+        "member_path": "papers/orion-03-typed-merge-falsification/CLAIM_LEDGER_V3.md",
+        "sha256": "6dca07cc8f96557e08228a2dfe5100f4b66e819abf42ee2bbbe9207e095e1f8c"
+      },
+      {
+        "byte_count": 20362,
+        "member_path": "papers/orion-03-typed-merge-falsification/MANUSCRIPT_V2.md",
+        "sha256": "b572bcbcb8033b5aa59f515d5040e7a16fcf2c4afb172f1d4bad34b891e60e53"
+      },
+      {
+        "byte_count": 4545,
+        "member_path": "papers/orion-03-typed-merge-falsification/NOVELTY_SUBTRACTION_20260828.md",
+        "sha256": "1c028c7915500e328a8f7c1b3af4f3225af5c2807a3e38fc20014c2ab220c133"
+      },
+      {
+        "byte_count": 1665,
+        "member_path": "papers/orion-03-typed-merge-falsification/PUBLICATION_FREEZE_ADDENDUM_V1.md",
+        "sha256": "9414f5ec379a3ad7d49254a5bbac1b86889534c8e27889b1a236bec273858678"
+      },
+      {
+        "byte_count": 4092,
+        "member_path": "papers/orion-03-typed-merge-falsification/ROUND2_METRIC_STATUS_FINDING.md",
+        "sha256": "a60ae3e9acd25ed3a7a09a2d91df68612a957769fd8d776f5dcde028c85a9f60"
+      },
+      {
+        "byte_count": 1816,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/AGENTGATEWAY_ORIGIN_WITNESS_SAFE_MERGE_R11_RESULTS_SUMMARY.json",
+        "sha256": "18f05100d6a982a6274e8fe15920ca708bc2ff40f070cd16a96445aa4b963a35"
+      },
+      {
+        "byte_count": 1891,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/D_PR1466_FIRST_MIXING_AUDIT.json",
+        "sha256": "3212e52793f5217f30c116ab5b120bf43090255afa2c49f5d4fda8d62e858639"
+      },
+      {
+        "byte_count": 2608,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/FIRST_MIXING_R12_RESULT.md",
+        "sha256": "ce86c1d1311610403123df5af71a26e7f26177394ff3a9f3ed3ddeeb35612ccd"
+      },
+      {
+        "byte_count": 1774,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/FIRST_MIXING_R12_RESULTS.json",
+        "sha256": "df15ba9dce6fa471087819cd7b7f517d5125eef93adb8cfa150155dcca27e291"
+      },
+      {
+        "byte_count": 11718,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/ORIGIN_WITNESS_FIRST_MIXING_R12.md",
+        "sha256": "9e492b525134f949e267472da5346aad24d601c34f3548489c668f9d406e69c4"
+      },
+      {
+        "byte_count": 13255,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/convergence-v1/verify_origin_witness_first_mixing_r12.py",
+        "sha256": "bef487f5bf93f4f223f2d05358098ef313a2fea78378b3a897c5331ef0aa7352"
+      },
+      {
+        "byte_count": 2198,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/current-main-revalidation-v1/NOTE_V1.md",
+        "sha256": "bd5cd41391d743a26ef0fec5f296e399b2cbe15a64f57ccbcdd3eb35e74130ad"
+      },
+      {
+        "byte_count": 5804,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/current-main-revalidation-v1/check_orion03_round2_binding_v1.py",
+        "sha256": "09852b604048fb48a4376ed1f57323b32a8c0c9b6c36ca325bac037ad1c7b83e"
+      },
+      {
+        "byte_count": 1093,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/HOSTILE_REVIEW_V1.json",
+        "sha256": "eb11c407add6ed8db5be67a0978d4df67ffc1cf6b88dc622259bddf2c953df2d"
+      },
+      {
+        "byte_count": 810,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/LEAN_ADJUDICATION_V1.json",
+        "sha256": "06343140765f99a3891d1389b9566a6f9b40f06f04a48e98c9c00b69510ece0c"
+      },
+      {
+        "byte_count": 711,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/PREEXECUTION_FAILURE_V1.json",
+        "sha256": "771f2317b89f4ddb8cc0af2fcd36c4d00fda3fecdec7be7fd25c056add3af9fc"
+      },
+      {
+        "byte_count": 7014,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/PROTOCOL_V1.md",
+        "sha256": "80e142ff2520433e06d86fe4d26e46e5a3b096472d60fd8829a291f6299cd197"
+      },
+      {
+        "byte_count": 6944,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/PYTHON_ADJUDICATION_V1.json",
+        "sha256": "b4ba0a19f9daddd698d392f5c35ec73d430006a729bdd71af415229d6bd56d54"
+      },
+      {
+        "byte_count": 1168,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/README.md",
+        "sha256": "a173671a7dc435e3bb85dd5c5792e126c8c6859d91b634030204c227495166cc"
+      },
+      {
+        "byte_count": 5112,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/ROUND1_RESULTS_V1.json",
+        "sha256": "d320ff4856e7c44bc75f980df37d4b9cb11aae0dd4d506db2ea872b9c5ba4653"
+      },
+      {
+        "byte_count": 3977,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/ROUND1_RESULT_V1.md",
+        "sha256": "4fe0f7d7ac0d850c943a49c64c80231975c4ff43f1d47724a1e483386aa39c09"
+      },
+      {
+        "byte_count": 1801,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/RUST_ADJUDICATION_V1.json",
+        "sha256": "a8177a6db19f34e82e3d98c109a9ff1c5f3f27f77889f421c68ef130a1836ca2"
+      },
+      {
+        "byte_count": 5848,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/SOURCE_BINDING_V1.json",
+        "sha256": "398b6c32d73c48643845570758f7105afb46e206d89842c45d2a1389471932fd"
+      },
+      {
+        "byte_count": 980,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/THIRD_PARTY_SOURCE.md",
+        "sha256": "16b8a7211519ea5ddef049ca66afcc07e85751d5440d843023ac539433d61727"
+      },
+      {
+        "byte_count": 5702,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/hostile_review.py",
+        "sha256": "9798a76201f632abadef7cc19f1106610440b0a708c9260f81e044196cbf5ec2"
+      },
+      {
+        "byte_count": 8,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/lean/.gitignore",
+        "sha256": "5375c2c5e323f40c0031aa8c82f66bb9197214001039e6a8c9ff2a5eb3aa24a9"
+      },
+      {
+        "byte_count": 2483,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/lean/Orion03Round1.lean",
+        "sha256": "e7bcfeda558f34c0edc225570d3ee3dc125d1571f94598b340b8f54a4143d6ee"
+      },
+      {
+        "byte_count": 150,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/lean/lake-manifest.json",
+        "sha256": "cb8ca595d47e7438486cca25244af4b08816be58098bf68dcf1f76b84f854d8b"
+      },
+      {
+        "byte_count": 114,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/lean/lakefile.toml",
+        "sha256": "2434d451db47b2db7042b4683f846a90c1117464f1457f197e2bd6f9c3239e33"
+      },
+      {
+        "byte_count": 25,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/lean/lean-toolchain",
+        "sha256": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+      },
+      {
+        "byte_count": 9,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/rust-adjudicator/.gitignore",
+        "sha256": "306fd52e74fca6746e12acc750f232de15e71da917756a1270d74c91f5eb7368"
+      },
+      {
+        "byte_count": 42848,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/rust-adjudicator/Cargo.lock",
+        "sha256": "2c1ef91024ff3b71d8e55c1a689c8f9dfb67a95010886ce495c60479b5f3b5dd"
+      },
+      {
+        "byte_count": 290,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/rust-adjudicator/Cargo.toml",
+        "sha256": "07a4527fd1a586fce967bf79ee4c346ddb9b1c256add77f4f1cc7f061b366114"
+      },
+      {
+        "byte_count": 11171,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/rust-adjudicator/src/main.rs",
+        "sha256": "d3adf767b69eed83d20e060bf99fb6a5a5d2cda13fbd92998745808862bac86f"
+      },
+      {
+        "byte_count": 10142,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/LICENSE",
+        "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"
+      },
+      {
+        "byte_count": 31,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/NOTICE",
+        "sha256": "1655edcbb2f7a4304842eab37a9c4df680835aa7b3f1c1da7823601a868f16ac"
+      },
+      {
+        "byte_count": 3519,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/README.md",
+        "sha256": "b2895d641006cf1ffdce42b235c41a5e2e26de4c35520a8aa3f2df4686d4b934"
+      },
+      {
+        "byte_count": 2516,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/sample-data/sandbox_a/entities.json",
+        "sha256": "11b77076c7e1c42aa0a804675488cc1cba84c0733804925b182767c7640b91af"
+      },
+      {
+        "byte_count": 943,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/sample-data/sandbox_a/schema.cedarschema",
+        "sha256": "7cb33c1a488aac0fd788d208c554d884dc5d21469fd12d1af5d517ade66a2257"
+      },
+      {
+        "byte_count": 4262,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/sample-data/sandbox_b/entities.json",
+        "sha256": "275d99c99e51883be9f48ffe8e02762197c845478d548375600f8e2788289428"
+      },
+      {
+        "byte_count": 962,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/sample-data/sandbox_b/schema.cedarschema",
+        "sha256": "d826a5585c637de425b13c55b7a7a3b08b148111b3fb5ba66cee3ba1310372d4"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/sample-data/sandbox_b/schema_exts.cedarschema",
+        "sha256": "32ae8a4ab408d3e170c5a92392de7260c3bba393910b058f6da8aeabb839cf8a"
+      },
+      {
+        "byte_count": 2023,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/tests/multi/1.json",
+        "sha256": "d3d6f60c2d4ea6c32bbb36c9b463952a93d4e13c6a3882839f696fd972b4386f"
+      },
+      {
+        "byte_count": 1114,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/tests/multi/2.json",
+        "sha256": "f43acee982a10f2d953c4985de6d2c72b81fe17e6db00c2065dd42f768542361"
+      },
+      {
+        "byte_count": 2040,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/tests/multi/3.json",
+        "sha256": "21d7c63e0acb53aa52aa205bbce6f2ee5547b201ff3c0e13a786df1462861e4a"
+      },
+      {
+        "byte_count": 1452,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/tests/multi/4.json",
+        "sha256": "b4ceb4483b553695729ddc00ad397217cd413707d1818f7681a54c5ac9cab221"
+      },
+      {
+        "byte_count": 1151,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/tests/multi/5.json",
+        "sha256": "4c83e8c0cc7842ae4ea576bacf6a6286a5bf1fa853530bc66dc152f7a27ce09f"
+      },
+      {
+        "byte_count": 319,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/tests/multi/policies_1.cedar",
+        "sha256": "9b413991fe4ebd5f12ab2ce71eeed66c7354645da619ba33786f5e0e698e07d2"
+      },
+      {
+        "byte_count": 331,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/tests/multi/policies_2.cedar",
+        "sha256": "4ec7308249bcc7858c5b27c86afaa08f0041366c06f430a5e3748107e86cf179"
+      },
+      {
+        "byte_count": 489,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/tests/multi/policies_3.cedar",
+        "sha256": "b186f6e471d499c7aac0bea2898134e46c4cbd17b6d9d0a0735531d93f8330dc"
+      },
+      {
+        "byte_count": 776,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/tests/multi/policies_4.cedar",
+        "sha256": "b499b9a342dbfa3866bc0347eabf7213382bfb53824da0f6e30c2b70e50e9c89"
+      },
+      {
+        "byte_count": 485,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/third_party/cedar-integration-tests/tests/multi/policies_5.cedar",
+        "sha256": "cbf5fc8300b72ab96b59c17e738dc0b188d11ad28476e0c73d4776542db78dcc"
+      },
+      {
+        "byte_count": 19303,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/verify_round1.py",
+        "sha256": "66c90d2a10c098226e3ace0668865733b8fb4b728a468c86651b1543541e4d7e"
+      },
+      {
+        "byte_count": 1543,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/CORPUS_MANIFEST.json",
+        "sha256": "5e7171fbc0593909a0405a5d98bea5e7a71fe688bfc4207085870672c3b013df"
+      },
+      {
+        "byte_count": 330,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/COST_ROUND2_V2.json",
+        "sha256": "d28225820d89439565a0c9f77f56b4a04a25a50b29ce27a2e84837a97a9a2f39"
+      },
+      {
+        "byte_count": 330,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/COST_ROUND2_V2.run2.json",
+        "sha256": "d28225820d89439565a0c9f77f56b4a04a25a50b29ce27a2e84837a97a9a2f39"
+      },
+      {
+        "byte_count": 1647,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/INCLUSION_EXCLUSION.json",
+        "sha256": "c3efd5eb9858edf917bd6a31500eb259507c4aa5f25d519b50e04bc8bdc9e716"
+      },
+      {
+        "byte_count": 3775,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/INDEPENDENT_REPRO_R2.json",
+        "sha256": "44d2c4c28cef59ec5aff03b7cb9fa65af730f394ccbbc850e7b8708993f9169e"
+      },
+      {
+        "byte_count": 3775,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/INDEPENDENT_REPRO_R2.run2.json",
+        "sha256": "44d2c4c28cef59ec5aff03b7cb9fa65af730f394ccbbc850e7b8708993f9169e"
+      },
+      {
+        "byte_count": 1111,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/PINNED_OPENSSL_BUILD.md",
+        "sha256": "58c848d91f91ddd5bd71e62db86b35da7d837f85941ee9029743dd8574540983"
+      },
+      {
+        "byte_count": 12983,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/PROTOCOL_V2.md",
+        "sha256": "1a4aad3592533e67b7fdc4350905f6ca356a4a0edcb1c63ba0d6d8a3e72f1ae0"
+      },
+      {
+        "byte_count": 3222,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/README.md",
+        "sha256": "c47974ccd02aff8a765441522426690395da6522cd3646546106dadfcfb9e695"
+      },
+      {
+        "byte_count": 340310,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/ROUND2_RESULTS_V2.json",
+        "sha256": "4b2ea6360b6af60abfdaadccb8e0d15c87023910da785cacf6bddd408a34a1f6"
+      },
+      {
+        "byte_count": 340310,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/ROUND2_RESULTS_V2.run2.json",
+        "sha256": "4b2ea6360b6af60abfdaadccb8e0d15c87023910da785cacf6bddd408a34a1f6"
+      },
+      {
+        "byte_count": 6815,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/ROUND2_RESULT_V2.md",
+        "sha256": "5faed4883d9dbe353fe6a0733c4f393abd68a4312e853afd89f885b8a02df0d3"
+      },
+      {
+        "byte_count": 28524,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/SOURCE_BINDING_V2.json",
+        "sha256": "b4a0072ce85aadd26522946c19c7511ae367f2cde5f820af665eb6b6426a6055"
+      },
+      {
+        "byte_count": 2344177,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/TASK_MANIFEST_V2.json",
+        "sha256": "ff54dbd02346d8369a4fa11e71ba179cb74fedfcad8280c97dd47e3dc29e5aff"
+      },
+      {
+        "byte_count": 1155,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/THIRD_PARTY_SOURCE.md",
+        "sha256": "5daef3007804966080632b3bb1ec6897e37d57aaf4650cee75465dbea090d510"
+      },
+      {
+        "byte_count": 54501,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/UPSTREAM_TABLE_V2.json",
+        "sha256": "08ecf3b752abad96fbda8c26227b9672f166730003f9d23e07cda8f4825236db"
+      },
+      {
+        "byte_count": 181,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/binding-verification-v1/SHA256SUMS",
+        "sha256": "3ee3cc11bf28ef75e190f3316f8b790a3e38673c8ae3e1a8f193cd618b0db21a"
+      },
+      {
+        "byte_count": 25,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/binding-verification-v1/UPSTREAM_VERIFICATION_LOG.txt",
+        "sha256": "94f720fda58da751100b0db4c366b212caac77cd0c9a19d2413f289fc58732e7"
+      },
+      {
+        "byte_count": 2876,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/binding-verification-v1/VERIFICATION_V1.md",
+        "sha256": "ed72f287c20b9ed469a01df7c237bc2d9bb6f5be838405e51bc11da6053c461e"
+      },
+      {
+        "byte_count": 12188,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/generate_tasks.py",
+        "sha256": "34867fbebf351211a5dbd285ade92d0de4953d2a499479a8a61d9b3f6669d0c2"
+      },
+      {
+        "byte_count": 19171,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/repro_independent.py",
+        "sha256": "02247ad1759799ba02b89af2517ffce81656f1d7841ca1e46ed98a7c778c94dc"
+      },
+      {
+        "byte_count": 217,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/run1.log",
+        "sha256": "453b639ea5ecd539bcf30fa54debcb4487013aced11ee0933afaa0fd8e06944b"
+      },
+      {
+        "byte_count": 222,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/run2.log",
+        "sha256": "332808d322ff80c796d66c7270e2ea2944eb1ee860b2cccfef85d11e594dbb9e"
+      },
+      {
+        "byte_count": 33492,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/run_round2.py",
+        "sha256": "5f4da6fefd74db3d256bda808bedeb2e9fa66c4ee798345f98ef696cca880195"
+      },
+      {
+        "byte_count": 4542,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/EXCLUDED_FILES.txt",
+        "sha256": "296e246dce30beb9564ca89f44ad172a9dc5505f5a8b9d7f9a26ce1b7afa7d80"
+      },
+      {
+        "byte_count": 1277,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/alt1-cert.pem",
+        "sha256": "317434fa43cb1c2735b70e581ae46e6158d179fde9b2e7551b85459771ccd285"
+      },
+      {
+        "byte_count": 1216,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/alt2-cert.pem",
+        "sha256": "94edda10267d34261341569afd99e108441b63c84a826c5a18ad82400297f8c3"
+      },
+      {
+        "byte_count": 1265,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/alt3-cert.pem",
+        "sha256": "46e6689298f5fc9cf9363178adb84d1221aaada7c916fc6713aa9131edfbafb4"
+      },
+      {
+        "byte_count": 1192,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/bad-othername-cert.pem",
+        "sha256": "d18e6326df4ccc5c97c50caabdc8aa967aff5da10f9f9888ebf882ad648d7555"
+      },
+      {
+        "byte_count": 1025,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/bad-othername-namec-inter.pem",
+        "sha256": "eed3195c5ddd01c03b4eb2b5d93197d5828f9cd2791bd395528e8debfd13d607"
+      },
+      {
+        "byte_count": 1034,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/bad-othername-namec.pem",
+        "sha256": "7d1e2935da4e7336c161b955e33f2b83cd85bdda1e25a0df448373ace54aa04b"
+      },
+      {
+        "byte_count": 1245,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/bad-pc3-cert.pem",
+        "sha256": "67016f30a44ce9c6cc73c3109ffc25a46dfb148d2f8e48c5fa385a03fe23b355"
+      },
+      {
+        "byte_count": 1269,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/bad-pc4-cert.pem",
+        "sha256": "fda55073d2dd0494033b0d3d2618c9a5863a34939b6d821043479b3c8f2b6f5d"
+      },
+      {
+        "byte_count": 1265,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/bad-pc6-cert.pem",
+        "sha256": "1f423cdb58e91e521210388c49bbe0eeaa036de58f9e2f1cc43509b8821a33cd"
+      },
+      {
+        "byte_count": 1261,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/bad.pem",
+        "sha256": "51326050279acb0ba7ab46261a8058a2f9b3c866bc8c73ac1c57560c45e38d94"
+      },
+      {
+        "byte_count": 1204,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/badalt1-cert.pem",
+        "sha256": "34eebda7ca113bec29b8fc2cfe52052a0b0cc0f106b2432a772b462ab7f2a7c7"
+      },
+      {
+        "byte_count": 1285,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/badalt10-cert.pem",
+        "sha256": "1d1eec5495a0e003ddeee7c68464389e6e3d81763ed15c2a53401044e988acb8"
+      },
+      {
+        "byte_count": 1200,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/badalt2-cert.pem",
+        "sha256": "1a8ca0bbda92e60dda5b89164d3a7bb6b4359818b2d9cd70c253e54b7f5a0b38"
+      },
+      {
+        "byte_count": 1245,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/badalt3-cert.pem",
+        "sha256": "a1ce10f8a1d62edf65b6d698161ea8f6f029c95a0d087e1cafbc9c24b5d0787b"
+      },
+      {
+        "byte_count": 1245,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/badalt4-cert.pem",
+        "sha256": "3e988a956c994a59f43e6bac90ef992d5c7d6c0ccb46524b8092b8bce346ba99"
+      },
+      {
+        "byte_count": 1212,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/badalt5-cert.pem",
+        "sha256": "477ccbcbef959fdaedf12db8dc5ea83244474368c5782a5c5b91b2b943978d9c"
+      },
+      {
+        "byte_count": 1265,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/badalt6-cert.pem",
+        "sha256": "4b778c4ed7fb84f2c9b2fcc3c8c94798ef949e35345c3cf9300e880c5f0ab8ee"
+      },
+      {
+        "byte_count": 1346,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/badalt7-cert.pem",
+        "sha256": "9dfd6524e4103f11ba41983d75935b851fcd660fd60685f9059b6b0f44900917"
+      },
+      {
+        "byte_count": 1277,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/badalt8-cert.pem",
+        "sha256": "f25549f0bf739bcb11ea2d81f3126de3c9bc87073e3537b7fc443746aa3f709a"
+      },
+      {
+        "byte_count": 1277,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/badalt9-cert.pem",
+        "sha256": "c6b2f3fdbbbd341fd1671ca770d095c6bd67790eaf537f78fd094ef9fda03894"
+      },
+      {
+        "byte_count": 1188,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/badcn1-cert.pem",
+        "sha256": "617731acd3172752ce9b3004df8c69c70cec12d3f9e4a47890e52b333cdf8467"
+      },
+      {
+        "byte_count": 1102,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca+anyEKU.pem",
+        "sha256": "41256779656619c3c191d1d8709f0a1edaf3272309c9504e0fe2f3e170062d6b"
+      },
+      {
+        "byte_count": 1110,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca+clientAuth.pem",
+        "sha256": "43842d0c1a19d21238a1571a0f29bb936f55e4a882c83c6aefb779b802fb7791"
+      },
+      {
+        "byte_count": 1110,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca+serverAuth.pem",
+        "sha256": "868d30de9abb97715a0a2d2a847a153c5d7e81e24a9bc676934c16f4d697f886"
+      },
+      {
+        "byte_count": 1102,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-anyEKU.pem",
+        "sha256": "37ebab734aef5aa4d93ed0ba3e94be4b2b3a53cefaed7d0f80133e6ab69e0b13"
+      },
+      {
+        "byte_count": 867,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-cert-768.pem",
+        "sha256": "0363661305e98d2f348e2c462ef9b27d64bef6f977ece731a6345b32de202455"
+      },
+      {
+        "byte_count": 875,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-cert-768i.pem",
+        "sha256": "f43760de31a46106d405f49c45da1cb5dc14ba23b7c2bd6b8f8149656fcff9b5"
+      },
+      {
+        "byte_count": 1151,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-cert-ec-explicit.pem",
+        "sha256": "ffde46fe9c2e94091d258c5d5bf4723bc08dc4a6d11a04b8e43c6dd6b8243f25"
+      },
+      {
+        "byte_count": 822,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-cert-ec-named.pem",
+        "sha256": "8cf00c7d2c4ec9acd4546a5fb9d2d99348815d6fb9a23be8f0ea6d02ddc006ee"
+      },
+      {
+        "byte_count": 1127,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-cert-md5-any.pem",
+        "sha256": "3c2a5e86c9bf4331f230b46e3e037ce99ba808c57e65ad2faf2027ac0e3b9406"
+      },
+      {
+        "byte_count": 1094,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-cert-md5.pem",
+        "sha256": "aebd16c38dd09f7ae1249091b3b762ee92d9f9a265606bc6c1cd1fe21377569f"
+      },
+      {
+        "byte_count": 1094,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-cert.pem",
+        "sha256": "b88d649376c6c013c4fdd0cb4014d18bace9a8edc1841142233c392cb4271488"
+      },
+      {
+        "byte_count": 1094,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-cert2.pem",
+        "sha256": "a0d258458664bccc5d877e86998fd7f34c4f5e5ca0399f3be91e5d9b4308bd0e"
+      },
+      {
+        "byte_count": 1110,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-clientAuth.pem",
+        "sha256": "5b06a83bbd8654964fdb451234445d9dce13877f355ac8a1991cbf444d3e43a9"
+      },
+      {
+        "byte_count": 1094,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-expired.pem",
+        "sha256": "beb81643e97a139b37f9e651c2c1efd027dc5ce4ace9e95400de4d2c39faee7e"
+      },
+      {
+        "byte_count": 1099,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-name2.pem",
+        "sha256": "1ec95cb324096c90c5efb9c6566ecd8f93752a5c9483d2014d7b7aca8b6a8b19"
+      },
+      {
+        "byte_count": 1074,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-nonbc.pem",
+        "sha256": "c759ab111f4b06acc53f7411352a8094ed4aef7616ad994a08bc2ebbe17b4197"
+      },
+      {
+        "byte_count": 1119,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-nonca.pem",
+        "sha256": "65a3a7ab2aa4d21267d45d5ba337524d6907cc34fa7cb3b5b98a60054bd07640"
+      },
+      {
+        "byte_count": 1131,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-pol-cert.pem",
+        "sha256": "729f0d130ad9d6aeb320e84b444f08a0ea1631421c868cc5eb6c77cdad43f819"
+      },
+      {
+        "byte_count": 1229,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-pss-cert.pem",
+        "sha256": "1fa89788bf0420f55c5bc8da789884104faf1a92f16c7b64d5e9f3d64efd080c"
+      },
+      {
+        "byte_count": 1094,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-root2.pem",
+        "sha256": "e10bb68cc15417c6d1017805242fa659e5c3adc78a27d53ace4559f73371be81"
+      },
+      {
+        "byte_count": 1110,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ca-serverAuth.pem",
+        "sha256": "eb848052c75706def3cebd93da5b214f7da41337cf5d491af28efeb472ed0051"
+      },
+      {
+        "byte_count": 1155,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cca+anyEKU.pem",
+        "sha256": "6094bb8b36d7fd3d93427576b266629337c62b71c56a6bb958e26ed78815aaea"
+      },
+      {
+        "byte_count": 1159,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cca+clientAuth.pem",
+        "sha256": "a4435932503e05fab352d996b6a55646220c65916c39d572a833f2232c6fee58"
+      },
+      {
+        "byte_count": 1159,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cca+serverAuth.pem",
+        "sha256": "eccb06d6ad35286b60209049a76a5d3e2108f8774f58851592e8993ecc8b4074"
+      },
+      {
+        "byte_count": 1155,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cca-anyEKU.pem",
+        "sha256": "b698f417f72c7e53f4bb9a07c5320ebf9f308032786048371d1cf3176cf1e7cc"
+      },
+      {
+        "byte_count": 1123,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cca-cert.pem",
+        "sha256": "6c76c4fb21f00b95fbdb5311f5f04573f5fcbec17cde4837460f05efb87d342f"
+      },
+      {
+        "byte_count": 1159,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cca-clientAuth.pem",
+        "sha256": "498aaddae92d1ce1592baff06c9bcbef2f821b9d2a7d9c578d68cc0df1c0dcbb"
+      },
+      {
+        "byte_count": 1159,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cca-serverAuth.pem",
+        "sha256": "781b3264bc19791e42f25c219874f48fbf5c793fbdfd7234a81ed865bbfad03f"
+      },
+      {
+        "byte_count": 1880,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/client-ed25519-cert.pem",
+        "sha256": "b061c4fc2ebeadbd3096c7c76045f6497c7d32d4f016d8d2ea1dbae0d1a994ce"
+      },
+      {
+        "byte_count": 843,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/client-ed448-cert.pem",
+        "sha256": "03bb7cd7dcf3c0719359d177af9bd8e86c15dc2c2c726f610cdd8ceebd913414"
+      },
+      {
+        "byte_count": 1241,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/client-pss-restrict-cert.pem",
+        "sha256": "a0a51936646f54260073c12d9732fb109970847406b7be498f3d8dee836f33ff"
+      },
+      {
+        "byte_count": 1139,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/croot+anyEKU.pem",
+        "sha256": "bfb085b2c37ce7a11991cc384f914e510e8eb6860ea512271d957b68b21aee72"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/croot+clientAuth.pem",
+        "sha256": "1869bb8baabfe4ec9d2cef849cc493ebca29b096395a24c3a9ffd0a36832d11b"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/croot+serverAuth.pem",
+        "sha256": "13c4ce9adec9600742c7dbf089497b53557c3a57aeb1789405b7f2d92a36a3cd"
+      },
+      {
+        "byte_count": 1139,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/croot-anyEKU.pem",
+        "sha256": "c8cfd8ca9a9f2c678ffd2fc37aefaf48d33afa75871b141672dd72104cac1bd4"
+      },
+      {
+        "byte_count": 1131,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/croot-cert.pem",
+        "sha256": "9a3faf55c8af13c8b87a9181c5ed8c745f72936551817fff4932a759c6660e1d"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/croot-clientAuth.pem",
+        "sha256": "fdd4aa266cb860aafc45f76942aad44890bc510e7e7e723285f78e5b47df283a"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/croot-serverAuth.pem",
+        "sha256": "159075332f96107031361a2aa8fc604e6de3344ecdf3654412214324abfea163"
+      },
+      {
+        "byte_count": 1094,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cross-root.pem",
+        "sha256": "88a3dccc81634c4e722373ec028b5568c04ea2af6bb5177041fe25d81b68a2d6"
+      },
+      {
+        "byte_count": 1131,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cve-2026-28388-ca.pem",
+        "sha256": "56e0e50cda4f23e3d0103016c5232e376d08aa8a8324e301467ab49ab320250f"
+      },
+      {
+        "byte_count": 1182,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cve-2026-28388-crls.pem",
+        "sha256": "d5aac1da8b4c1316531015a1bbc2c8d421cd26afdf15eeb4d6dc8a4fbc72be22"
+      },
+      {
+        "byte_count": 1139,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cve-2026-28388-leaf.pem",
+        "sha256": "b927dedc5d02475099c2d4dcf2a908ec70053da72b9a8b90bbbca53dafab5fd7"
+      },
+      {
+        "byte_count": 4507,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cyrillic.msb",
+        "sha256": "f68e4a81c51e0749706fd95e59ca6d8b4273870474b9d317e0335e6dd4ef8e20"
+      },
+      {
+        "byte_count": 1302,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cyrillic.pem",
+        "sha256": "c69d115b79344da504d6a96b2c121fb27f5231bd7ab8d6d021d9a43d978b6555"
+      },
+      {
+        "byte_count": 4382,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cyrillic.utf8",
+        "sha256": "07a26c236b9b8f96e6dcd718ffbbfd8151e568a8a9d994f58d8765437b7b01db"
+      },
+      {
+        "byte_count": 715,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cyrillic_crl.pem",
+        "sha256": "451cd8b3505f503d78dc09c2c924b82114da47276a5759547e7a67d03d471320"
+      },
+      {
+        "byte_count": 2081,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/cyrillic_crl.utf8",
+        "sha256": "b2935feb81276de2c59fb02c1e863e411b21779286e4d0263f9ee06ca29a5bc4"
+      },
+      {
+        "byte_count": 1188,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/delta-crl-as-complete-ca.pem",
+        "sha256": "b21107065daad3f193e8215f91dcdae91c5b0708165068021a1d3e21d9dd0f03"
+      },
+      {
+        "byte_count": 666,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/delta-crl-as-complete-delta-reasons.pem",
+        "sha256": "af730b07ec923c5c65413d4c159ea7184bf7c549a6ed8e91d832b6a1ac5f5e8d"
+      },
+      {
+        "byte_count": 642,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/delta-crl-as-complete-delta.pem",
+        "sha256": "c88990e8b5fd0e08d4460c591dec3541ef488c211647772429274010ce797c71"
+      },
+      {
+        "byte_count": 1188,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/delta-crl-as-complete-leaf.pem",
+        "sha256": "83bad57868777513b5d2dbfaf2ffa6fd494f12749ba775b37ca5b5d59903d290"
+      },
+      {
+        "byte_count": 1180,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee+clientAuth.pem",
+        "sha256": "a4f9d73eedeec781964b0e5cf70b60b58e4a74108530fc64a363cc4499c4009e"
+      },
+      {
+        "byte_count": 1180,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee+serverAuth.pem",
+        "sha256": "ef2c06898ae265465351d9ea8c8844d6d5a1a557b131d30fd44309616581aff9"
+      },
+      {
+        "byte_count": 964,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-1024.pem",
+        "sha256": "ab7e9548d25158b4860d70f9e29ba8ebb7ec7967101960db31a6f2d4449c834c"
+      },
+      {
+        "byte_count": 1318,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-3072.pem",
+        "sha256": "88ae70e2689a20dd5284dd40593c7070e1c7873296c7e5b4fd34630375f92820"
+      },
+      {
+        "byte_count": 1493,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-4096.pem",
+        "sha256": "d764d1dc04b74b98d6e10a84317362beb60b3d961b504a84ca11d1398c705516"
+      },
+      {
+        "byte_count": 916,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-768.pem",
+        "sha256": "9247caf45bd3cb774b5ac7bb7245f742cf97caf325d5a6e0bd8f95f95bc0f447"
+      },
+      {
+        "byte_count": 924,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-768i.pem",
+        "sha256": "3fd8c5e4b1eb05e51ced33cb1c7266d227d87e84a5f6d5643012aeafa1cd2df9"
+      },
+      {
+        "byte_count": 2183,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-8192.pem",
+        "sha256": "aaf0d92377924b4e82b97fcbd779e24123734dbc0e5dd69030b6f4e812ad92a0"
+      },
+      {
+        "byte_count": 1168,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-crit-unknown-ext.pem",
+        "sha256": "97dc83f557c544db71b905e67a2956af27baa2d2f832533375ded9dc8ff8f111"
+      },
+      {
+        "byte_count": 936,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-ec-explicit.pem",
+        "sha256": "618cf56bff6e09913686e0e57c53f076ce2853a0fe196db90db15e0e5e06fc80"
+      },
+      {
+        "byte_count": 607,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-ec-named-explicit.pem",
+        "sha256": "3702ba3be8692c9858edc64fd4454a45e0bd8de06d778cd6a1cda0a8787b107c"
+      },
+      {
+        "byte_count": 607,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-ec-named-named.pem",
+        "sha256": "fb1c663ceb6c511cfdbb3d6ddf522b445e836ede011f50c5ed6774474115cb1a"
+      },
+      {
+        "byte_count": 574,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-ec-sha3-224.pem",
+        "sha256": "f7882475fac1cffebe0ee69881e8dadc41526ae6cafb6b621034e0025ff48cac"
+      },
+      {
+        "byte_count": 574,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-ec-sha3-256.pem",
+        "sha256": "59f2dcf692e121bd60d7ed5103eecbd305dd17769b77f6992f238f7e4579c425"
+      },
+      {
+        "byte_count": 574,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-ec-sha3-384.pem",
+        "sha256": "195f5cf3bf1b99f68bd125b8f4a5908ca5e8b517ffc35607dd3e01b6ae8139c3"
+      },
+      {
+        "byte_count": 574,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-ec-sha3-512.pem",
+        "sha256": "1a0b6582da247b7214ee28aff1cbe7ee66131c6df01a84d3dcab7531ad9198e2"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-md5.pem",
+        "sha256": "87cb5518862bfc536069688a3252ad6890b249a4e3e4a3341c546fa5f9130b2f"
+      },
+      {
+        "byte_count": 1164,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-noncrit-unknown-ext.pem",
+        "sha256": "7dbd4e706b20b6364975bca462cc4cf30c9f7ff8ac43fb6c7fa6f46f2fb0c077"
+      },
+      {
+        "byte_count": 1176,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-ocsp-nocheck.pem",
+        "sha256": "866ea4150ec005eae213c946052156b62fd8ea40a7e986fd836a0d2cadaaecc5"
+      },
+      {
+        "byte_count": 1204,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-policies-bad.pem",
+        "sha256": "2d389deff477fc2bfeef496e39b18053354d38a2fc5b417a46b65f76a8bb5444"
+      },
+      {
+        "byte_count": 1184,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert-policies.pem",
+        "sha256": "b9b594892b56462ee195caf685e661ebc1cc9c16cc43553329409e1a84491672"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert.pem",
+        "sha256": "b925098415e694620dd62ccdf51e79904d5c6c477fdb0ab3ef2193ad909a464e"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-cert2.pem",
+        "sha256": "371a9817987a8413e6500d515afcb6765c69fcca1fa793fe484ae975c26deec9"
+      },
+      {
+        "byte_count": 2217,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-client-chain.pem",
+        "sha256": "8d41c09c285e72fab8a66520ac880be2795ca31c1fd1d328709d5125596945d2"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-client.pem",
+        "sha256": "34a4707d417809c5632f7188c590ee046c7ef7f520389db67d339426a71b4802"
+      },
+      {
+        "byte_count": 1180,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-clientAuth.pem",
+        "sha256": "7d4026e1a55b3f6080404a6490ddde1f5b266daa14fc929360b424da0ae6b2e2"
+      },
+      {
+        "byte_count": 1139,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-codesign-anyextkeyusage.pem",
+        "sha256": "43e714e163ddd8ab58765e2f8c5ea274e14829da28650b489c8a4183eb1a78c3"
+      },
+      {
+        "byte_count": 1131,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-codesign-crlsign.pem",
+        "sha256": "950cff6bb99cd399be9ce0f7ef9b97429b2e277363b5265965ad66e8794de1d3"
+      },
+      {
+        "byte_count": 1131,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-codesign-keycertsign.pem",
+        "sha256": "568610c02ecabd070df6a328f108ef31a9bd19ac30ef330da225cda4e2bff917"
+      },
+      {
+        "byte_count": 1127,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-codesign-noncritical.pem",
+        "sha256": "f35e4ab506bba1ffd1ff28658fd605ac56cf9f16e24fe3a6c959054703720113"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-codesign-serverauth.pem",
+        "sha256": "abfb51c9a842c6a17d6af519065da2ebb8fd747c11f5fecfad3ea1dc1d920c71"
+      },
+      {
+        "byte_count": 1131,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-codesign.pem",
+        "sha256": "d1d438326b9966654f8fa3aafbe9ba57a9dbd0a68616b13dab141102caf584cd"
+      },
+      {
+        "byte_count": 1953,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-ecdsa-client-chain.pem",
+        "sha256": "0c1c2de8ec5a5da45276660b7041e34c3153804378c4f40cd4588f145fedc122"
+      },
+      {
+        "byte_count": 1638,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-ed25519.pem",
+        "sha256": "564a1ec3e625419afc00d8cd16ee2b2fb4e7fbf56052f5d2f1d670424dee667a"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-expired.pem",
+        "sha256": "f909b2499350248b766efe28dfe6ef2888252b005b01d75be67745e5aec607da"
+      },
+      {
+        "byte_count": 1147,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-name2.pem",
+        "sha256": "b269a326feeb1421d2f4f6c7e7c81fcc26a25b756a2734eb5aca1a3158a9ad06"
+      },
+      {
+        "byte_count": 1082,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-pathlen.pem",
+        "sha256": "ebc784e20c3bdae3b0fccef4e40aed5d3f53a0b1a4ad82cf4a4889798c172c71"
+      },
+      {
+        "byte_count": 1257,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-pss-cert.pem",
+        "sha256": "7c2b03eda3b5277d5a261d86f1fc2e3816605112da6c47f16ec2d23917a7eaac"
+      },
+      {
+        "byte_count": 1127,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-pss-sha1-cert.pem",
+        "sha256": "dbf2d88d2c86a7fee113867f10e8e7ced50a9da29a38e524b28d848b842d98ce"
+      },
+      {
+        "byte_count": 1265,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-pss-sha256-cert.pem",
+        "sha256": "4353a80b48b21696f508a8ea45894d9d559d80167e410ce290c7db6146fa4f31"
+      },
+      {
+        "byte_count": 1147,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-pss-wrong1.5-cert.pem",
+        "sha256": "55f9b8d3703bddfb6986e8c149224972c85315244975663373b4c0dfdbfd4110"
+      },
+      {
+        "byte_count": 1281,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-self-signed-pss.pem",
+        "sha256": "9620536dfd79807f57558ec29c283e9a2c14c999e228672db2f3f01a03a5a76c"
+      },
+      {
+        "byte_count": 1034,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-self-signed.pem",
+        "sha256": "aea892a243d071a2e9002b2dc2cc4896d3ba53295db8788de7a9313b9ca8bb99"
+      },
+      {
+        "byte_count": 1180,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-serverAuth.pem",
+        "sha256": "dc00bc2cd0908eae2eba7f9cb8e8a554429cd42e6f5c2df81bce7abb1cbec35c"
+      },
+      {
+        "byte_count": 1127,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-ss-with-keyCertSign.pem",
+        "sha256": "34ef6ea3ec126aebba5a66d38f1c8ec3037547c9d77a2a08d74be7d52693b99c"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-timestampsign-CABforum-anyextkeyusage.pem",
+        "sha256": "4c4568564ed5941446886a8a788de779ae11714370c4f4cd09cc994ac472a38f"
+      },
+      {
+        "byte_count": 1135,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-timestampsign-CABforum-crlsign.pem",
+        "sha256": "4bfa65beebf356dfdeff50e7ba82726cd6c5d1102cfc22b6186c6986f4554e46"
+      },
+      {
+        "byte_count": 1135,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-timestampsign-CABforum-keycertsign.pem",
+        "sha256": "5adb0af3792e00a8901e30c405f42fa647e55ec6b701bcfaeba7c3342035b1c1"
+      },
+      {
+        "byte_count": 1131,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-timestampsign-CABforum-noncritxku.pem",
+        "sha256": "1ea7b90a7f0ab83c04fdf3f495a75ff88c09dcd8c623688ef70ca28a523fc0f2"
+      },
+      {
+        "byte_count": 1147,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-timestampsign-CABforum-serverauth.pem",
+        "sha256": "84713d0f728fdb95f01760555ffad31991b83130bf38a85e0f04dc53a99b09cb"
+      },
+      {
+        "byte_count": 1135,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-timestampsign-CABforum.pem",
+        "sha256": "5a9c7e62d9c76fb95951541b523237008cee9a0dfe7b10a9a06cc111ee5fae75"
+      },
+      {
+        "byte_count": 1131,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-timestampsign-rfc3161-digsig.pem",
+        "sha256": "d922a080334ae30a3a044b0a8e7108ee71be2ec5f29866f99b0b79c80fd02aec"
+      },
+      {
+        "byte_count": 1107,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-timestampsign-rfc3161-noncritxku.pem",
+        "sha256": "b9f5655dfc1144eddb0d16fdfacb8d745ba8e67d7aa4240bf93386304443decd"
+      },
+      {
+        "byte_count": 1111,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ee-timestampsign-rfc3161.pem",
+        "sha256": "4e2369fd585f8cc6eba744de1a8b7eadecd752544b8e449d2989dc7af6ca0d89"
+      },
+      {
+        "byte_count": 1440,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/embeddedSCTs1.pem",
+        "sha256": "4b7d1712e2819df58adabfe9c8a7dcc05b3086c8755abefe519dfb9d6eff5aac"
+      },
+      {
+        "byte_count": 1391,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/embeddedSCTs1_issuer.pem",
+        "sha256": "5d629e2f2099310a4fb629e4e7696c188c16b2cad89b02c32b31d8f5cb646824"
+      },
+      {
+        "byte_count": 2748,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/embeddedSCTs3.pem",
+        "sha256": "dcb5e902265b8b38829835719f69c1056e6962aab533576ebd14d8cbadc1d806"
+      },
+      {
+        "byte_count": 2159,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/embeddedSCTs3_issuer.pem",
+        "sha256": "ba2950f8419b916e714c04a2c30f450c6c215a44ea34160a6f83407d77981494"
+      },
+      {
+        "byte_count": 652,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-aAissuingDistributionPoint.pem",
+        "sha256": "f7deaff880f3945895796e7b726d5fceb69acbc278e7a5fe8ebfdbad3719a881"
+      },
+      {
+        "byte_count": 603,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-acceptableCertPolicies.pem",
+        "sha256": "fd3274c649f5dd1ad3197e7ad8831abe4f8513c2c18418629937c0d6b0bdeb45"
+      },
+      {
+        "byte_count": 603,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-acceptablePrivilegePolicies.pem",
+        "sha256": "828ac021557c8c6f2ed2afde748c3fa7aaa17fb82733441ce607056be4fba885"
+      },
+      {
+        "byte_count": 656,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-allowedAttributeAssignments.pem",
+        "sha256": "27fa3e1d403b92ecabb4190bcbf530746639ff954c1d6b0f0b671a9370357d24"
+      },
+      {
+        "byte_count": 542,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-associatedInformation.pem",
+        "sha256": "80767f74912cbcca658f2230c596860cef62deae85cfd2dc09ac59407f9dad6a"
+      },
+      {
+        "byte_count": 769,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-attributeDescriptor.pem",
+        "sha256": "35470eb969a197ba282d5a9af6b7b9b46fcb41e465853352bf2bc3e7ec28f7f8"
+      },
+      {
+        "byte_count": 696,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-attributeMappings.pem",
+        "sha256": "ef9c38a9cdc185d29d9ea692c0772719ea5f2a37c62b13afe1635ca8ad4ab37d"
+      },
+      {
+        "byte_count": 603,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-auditIdentity.pem",
+        "sha256": "cf5fa92bfd299fa5f39ded4f6250f2e7bdfb3616abb902cb31a434d52a440bb0"
+      },
+      {
+        "byte_count": 652,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-authorityAttributeIdentifier.pem",
+        "sha256": "d7589d16c60da7230becc4c2909f7bb5a945d1f2ef5932171be4188b0daa15cc"
+      },
+      {
+        "byte_count": 599,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-basicAttConstraints.pem",
+        "sha256": "b8cfd185f49f85d626b6bcb2a51c67214ada8b1985276fef2a3fa6c53893ede6"
+      },
+      {
+        "byte_count": 648,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-delegatedNameConstraints.pem",
+        "sha256": "5cc4b0efe74119edbb48bd975571a813ae78de7963db36b6fe6775e6eff493c7"
+      },
+      {
+        "byte_count": 591,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-groupAC.pem",
+        "sha256": "ced04116a939590f27ca442d8851c9c372969f3788d75ffdf572333effd6453b"
+      },
+      {
+        "byte_count": 648,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-holderNameConstraints.pem",
+        "sha256": "a3364a30486666fd9b4883fcd024473ce515392a376502e8be3fe15267d9b27e"
+      },
+      {
+        "byte_count": 591,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-indirectIssuer.pem",
+        "sha256": "9cff452591aa98f1b8439df8a3731871e03af48761b367ca9385b44532ed6273"
+      },
+      {
+        "byte_count": 631,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-issuedOnBehalfOf.pem",
+        "sha256": "7d0fd454aaf697bf6877513bfbfb544c24bd6dc0f578c7fc8edfa2b19cf57894"
+      },
+      {
+        "byte_count": 591,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-noAssertion.pem",
+        "sha256": "9f1c0d62ef8952dbf593131b4d56cfa9c54c35d7688a742cbc009baba16efbb4"
+      },
+      {
+        "byte_count": 595,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-noRevAvail.pem",
+        "sha256": "7ced3d9d1e68356b61c899cc61fb8ac2d9d7a8655b559b3677ac7b7ba113af3b"
+      },
+      {
+        "byte_count": 733,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-roleSpecCertIdentifier.pem",
+        "sha256": "e3075385e09dee740d1143f99a834bd570cb7861349f9180991d7599f68bb7bc"
+      },
+      {
+        "byte_count": 591,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-sOAIdentifier.pem",
+        "sha256": "950881cdfac80c5d3b58fc6228371cc2b94ab51d7e792edab11ffb3b7d6b5154"
+      },
+      {
+        "byte_count": 644,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-singleUse.pem",
+        "sha256": "9442e0806514c9418baf7a04c210fb39110cd798307aabd4c4092aeeb43fadd1"
+      },
+      {
+        "byte_count": 542,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-subjectDirectoryAttributes.pem",
+        "sha256": "e50e3a09f79601b529c794124ddd915cd73b7333a0b016b883d0c71388b9bf8e"
+      },
+      {
+        "byte_count": 813,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-targetingInformation.pem",
+        "sha256": "8b9592dceb30e200147b61d9cecff73ccc39f62a0fc983c80b7ba73a82f3c7e1"
+      },
+      {
+        "byte_count": 704,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-timeSpecification-absolute.pem",
+        "sha256": "920b58df6f67e28bc317335cbd6e44d7b9ac3b6fb97c8aceca564e9e4236ee94"
+      },
+      {
+        "byte_count": 818,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-timeSpecification-periodic-no-second.pem",
+        "sha256": "94a429cecd532958cc79c1be14c674a559a955baca32930782dbeb5a4745281f"
+      },
+      {
+        "byte_count": 826,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-timeSpecification-periodic.pem",
+        "sha256": "b03448db6c940eaac03918daa5aa58fd4cf57083554f939fd5028c6f6be75d45"
+      },
+      {
+        "byte_count": 737,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ext-userNotice.pem",
+        "sha256": "affa69745b5e0ee3b4f289bd9da12d56c5a4a68c339a6e2932a3c9ba4743605c"
+      },
+      {
+        "byte_count": 2248,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/fake-gp.pem",
+        "sha256": "5554b19ad975fc895a67584ba0a79d0a228e134cc308de62c43287263e13a623"
+      },
+      {
+        "byte_count": 1298,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/goodcn1-cert.pem",
+        "sha256": "eb1e99999ec04d0fe8c6fc59305ba1a0ab965f7340bb29acc65ca869e71db1c4"
+      },
+      {
+        "byte_count": 1139,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/goodcn2-cert.pem",
+        "sha256": "881475350544bdc9ca2fbd62a5598920f10f056c8ad9dc8d1dbb0cad1e8416f7"
+      },
+      {
+        "byte_count": 2380,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/goodcn2-chain.pem",
+        "sha256": "48dce1cee10a3420c312c587d954b3c5368af343e87edc15028746ec42a971ff"
+      },
+      {
+        "byte_count": 1826,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/grfc.pem",
+        "sha256": "a659fb80defaa2ff0d132819d2117f0d10a927aa711898af97eb4e13f203fffa"
+      },
+      {
+        "byte_count": 1273,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/interCA.pem",
+        "sha256": "9aab2a35ba50760923935c3936b468e116fbccdb7fb3d89fd6559c3e442ed1bc"
+      },
+      {
+        "byte_count": 1167,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/invalid-cert.pem",
+        "sha256": "9b8b78fc3deaf6032946b60712f8de39f064c54a2bbaa828f14b70351ca09cd8"
+      },
+      {
+        "byte_count": 5100,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/leaf-chain.pem",
+        "sha256": "b5bc29a44196996a6b05d50a03c18111f83b9304b8a1950a96c29e087dba8c4f"
+      },
+      {
+        "byte_count": 1273,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/leaf.pem",
+        "sha256": "2b92c1e2b42817d539c4ca3bac9d3db57bb7f463ef09152f4d6f60d43ff7eadf"
+      },
+      {
+        "byte_count": 18852,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/many-constraints.pem",
+        "sha256": "2efc269bf7a6280b4a4a0afd3130963c56f50fc0af914c785bd5c7275e86e1a7"
+      },
+      {
+        "byte_count": 26473,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/many-names1.pem",
+        "sha256": "c6da25cef1f433ab4e97d8f294c11233ae86396f9d3e12496c08f2829b8201b5"
+      },
+      {
+        "byte_count": 16219,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/many-names2.pem",
+        "sha256": "9c8eca157524bbd5dc0e9d8d3df5aba5422a5c0544d0a33638e34f4a20eed1ef"
+      },
+      {
+        "byte_count": 37015,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/many-names3.pem",
+        "sha256": "bf85cf8c90c0862c3d9e0fda94053ce0725cddc6d59a7de7648cf0c4c0f68987"
+      },
+      {
+        "byte_count": 1237,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/nc-uri-cert.pem",
+        "sha256": "21dc31e92f42e5642a56982350880fd06730b0baee9a833e7e4917f647ce4952"
+      },
+      {
+        "byte_count": 1147,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/nca+anyEKU.pem",
+        "sha256": "8e722431cdbdc1d025b9c9d648dedd266d3e35d5cd0938bdeb4b9c787a3aa767"
+      },
+      {
+        "byte_count": 1155,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/nca+serverAuth.pem",
+        "sha256": "6762de2c5dfcc2d67f7706d944c69669a84103fd5324610256abd38ce023b9b0"
+      },
+      {
+        "byte_count": 1265,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ncca-cert.pem",
+        "sha256": "355b479f2d1edf79570aa33a7b7d1e072ea05e5537ebb008970e70a3d0918437"
+      },
+      {
+        "byte_count": 1241,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ncca1-cert.pem",
+        "sha256": "355a9d3a3b717e120a7479e164af45a8514c3ce7202db950943f0389ade5808d"
+      },
+      {
+        "byte_count": 1216,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ncca2-cert.pem",
+        "sha256": "061733aa3dfd8777670c637c53091b9384ba6db350ae070697a3c358b6361d7b"
+      },
+      {
+        "byte_count": 1208,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ncca3-cert.pem",
+        "sha256": "971c1e6a37262c2e7fcdb1c172d18014ef25343191dccf2075c254c936a1472b"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/ncca4-cert.pem",
+        "sha256": "2f273c7601d7789051d56258d49d3858dd95c49691e006f980eba3aa7d80f5f3"
+      },
+      {
+        "byte_count": 1184,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/nccaothername-cert.pem",
+        "sha256": "6a1b2812dde5d36180f831b6219375d0ee76e60b724fa941f78c09e4704cd865"
+      },
+      {
+        "byte_count": 1163,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/nroot+anyEKU.pem",
+        "sha256": "ff4c7014790583761d0cdcb0e80cf6d3cfc828d73b0ab4260d56a31b6b93c97b"
+      },
+      {
+        "byte_count": 1167,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/nroot+serverAuth.pem",
+        "sha256": "f18f7e6099fece332b185449a2b78638ccf909e62d816bf80a7bdedd83057a73"
+      },
+      {
+        "byte_count": 843,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/p256-ee-rsa-ca-cert.pem",
+        "sha256": "2d42468142174e56c3be9875ba53531b223c23910ec214db6ce38fa1aa693413"
+      },
+      {
+        "byte_count": 680,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/p256-server-cert.pem",
+        "sha256": "3acf87bc5cad6c263584de4a3989798c3e5520715491a01d76da9ef5721d7fea"
+      },
+      {
+        "byte_count": 656,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/p384-root.pem",
+        "sha256": "7b802128593950692a759c814c743995ac5e7c36670ae86dbfce1c315cc17a5b"
+      },
+      {
+        "byte_count": 721,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/p384-server-cert.pem",
+        "sha256": "10e9c51e2edeb47e99b122bed4e7c4eec148df414a71c915d34c89844bafab0d"
+      },
+      {
+        "byte_count": 1294,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/pathlen.pem",
+        "sha256": "6a316ab830a07bf09a1453ade8aca728f9901f8d660976630172eae1b870115b"
+      },
+      {
+        "byte_count": 1204,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/pc1-cert.pem",
+        "sha256": "1f1648e6074548577e3e1a5b1c4042d4b266e276f51c86712abe1fd9607a1233"
+      },
+      {
+        "byte_count": 1269,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/pc2-cert.pem",
+        "sha256": "8baa728968f33fdcbc200e22e284a08b62b2bbd4fd0524d14a9dfe38e75494f3"
+      },
+      {
+        "byte_count": 1265,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/pc5-cert.pem",
+        "sha256": "49b42f7a2d886af7cbf3ee7ff4d3bd0da831a1423a713d074446c996bae12231"
+      },
+      {
+        "byte_count": 1196,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/pkitsta.pem",
+        "sha256": "c4cba32cb508b8ee420ac1310768eaee4861ebcd6d2264d8865117801ee980f5"
+      },
+      {
+        "byte_count": 1110,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root+anyEKU.pem",
+        "sha256": "38d3d10308de3b352868c6b3055abfd3d92cdce1fdb050ab5f1cab21a922c7ad"
+      },
+      {
+        "byte_count": 1115,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root+clientAuth.pem",
+        "sha256": "09052b4af56aa454f05d1e521fe24f9a0cff7eb0a48230ec1bd487f05b9545ca"
+      },
+      {
+        "byte_count": 1115,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root+serverAuth.pem",
+        "sha256": "7a65a8db13989dda38f13a8bae42ad43647c438c29afca5b5fc7c84c1db849e2"
+      },
+      {
+        "byte_count": 1110,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-anyEKU.pem",
+        "sha256": "a9dc346edb534b85c5f7a04b44f5aea1817869c4ece94b24951339415a3128c5"
+      },
+      {
+        "byte_count": 656,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-cert-768.pem",
+        "sha256": "e725e7e5f601d976710a3e7e3f41bb6b9af45180f8ac97d60f0dc376e7b92f1e"
+      },
+      {
+        "byte_count": 1103,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-cert-md5.pem",
+        "sha256": "1753368eedda8374eac2b76f53661dedb02c4b77edbc8d677975ef6ab2869037"
+      },
+      {
+        "byte_count": 1074,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-cert-rsa2.pem",
+        "sha256": "241caae7bea468c3e97cfa6ea4a0aee3fb5e7c2658f9b6eb2f62d4d79d1b0569"
+      },
+      {
+        "byte_count": 1103,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-cert.pem",
+        "sha256": "5c347cba1665df551275dbde61a044ec138bed481040501ca49e6b6f5079f967"
+      },
+      {
+        "byte_count": 1103,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-cert2.pem",
+        "sha256": "d0be0db8c18d7558ff88b7344e0de97626be74f2e3b432c570040a7b4eb7385c"
+      },
+      {
+        "byte_count": 1115,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-clientAuth.pem",
+        "sha256": "58cc5323635515e2c6f9162dc85f87f4de83c18a29885143d61e9135c9aa6468"
+      },
+      {
+        "byte_count": 1090,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-cross-cert.pem",
+        "sha256": "4a2c93b5b9ed3a766ab4868f3bf591ef05afa1ff8dc2cc1ccfd7faff16b1267f"
+      },
+      {
+        "byte_count": 1710,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-ed25519.pem",
+        "sha256": "98dcdf5d9b12587bb748c2c89f82235234dc31615df0d0e2097067ef54f67464"
+      },
+      {
+        "byte_count": 591,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-ed448-cert.pem",
+        "sha256": "638fd11355ad6861210bc84c6635ea6c36be8a8accc7482f34b53800a5c2428c"
+      },
+      {
+        "byte_count": 1099,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-expired.pem",
+        "sha256": "565cfa06c3be5f84d14ac5279cea6164bffd95da789010764d76b4cc208c2092"
+      },
+      {
+        "byte_count": 5409,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-ml-dsa-44-cert.pem",
+        "sha256": "e5af14872d239113a2543b402e09b146232d3807aab90f8e6d57d79e53f74fd7"
+      },
+      {
+        "byte_count": 1115,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-name2.pem",
+        "sha256": "9f28b3358c28461881a35e903d883822f35c4bfe0732f3bc2b4555c15bfbac1c"
+      },
+      {
+        "byte_count": 1131,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-nonca.pem",
+        "sha256": "da368b921057a81c338709c5831da05b0b3edf66ec67eb241a4f918f0814cdad"
+      },
+      {
+        "byte_count": 1115,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-noserver.pem",
+        "sha256": "cfe3b16e664d9e66a154395f26fcaceb71b9b81179019f0b826c164cd6eb4eef"
+      },
+      {
+        "byte_count": 1115,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root-serverAuth.pem",
+        "sha256": "af773d3b0f03b81c13f1f3836987f01809f96d37d1afd8d86fa121e4ba78c6a1"
+      },
+      {
+        "byte_count": 1115,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root2+clientAuth.pem",
+        "sha256": "aaa3f7ede480685c16220ea6c3a976411b906d0137023604fea991f9bf9df1ca"
+      },
+      {
+        "byte_count": 1115,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root2+serverAuth.pem",
+        "sha256": "c6337fecd2e6a8626cd91078500b774f92b37b36275a74b9fac4c498756d93ec"
+      },
+      {
+        "byte_count": 1115,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/root2-serverAuth.pem",
+        "sha256": "e6b2cadaa2ae44b025db46e5d2a2e0774df29dd04b911ad03d2095c62cbe9f64"
+      },
+      {
+        "byte_count": 4363,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/rootCA.pem",
+        "sha256": "6695342a9440ef406c6b91db6deb82b62dcaec0f221bcf1a3bc2646bf8534051"
+      },
+      {
+        "byte_count": 1082,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/rootcert.pem",
+        "sha256": "e2da48877db306d87cb7e185d354aaeed04d359b13cf716e1249f27297e8a599"
+      },
+      {
+        "byte_count": 2558,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/roots.pem",
+        "sha256": "798bea18b613f6039ef06cf4481c3587bb0fbc15977f8761988f3f4f650148d9"
+      },
+      {
+        "byte_count": 1155,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sca+anyEKU.pem",
+        "sha256": "7e50ca9fe1e0d1a7899509b5a2af3533a853dc00639e57c080136d831fc97b62"
+      },
+      {
+        "byte_count": 1159,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sca+clientAuth.pem",
+        "sha256": "bf1b238a9473bf5ea679fefd3b9dac1cee6e368f3b4a610a49d1d4ee2550f3c8"
+      },
+      {
+        "byte_count": 1159,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sca+serverAuth.pem",
+        "sha256": "9a6ba3c3a0062471150ac02a5b900a2563d0d1b89926362ef0b478bb258a0820"
+      },
+      {
+        "byte_count": 1155,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sca-anyEKU.pem",
+        "sha256": "9a09d531d95d0507da9377e05d9c71599658d81db15057e36e136e9a03008855"
+      },
+      {
+        "byte_count": 1123,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sca-cert.pem",
+        "sha256": "8398412d230609cadd12c56810b9f2341117c4d42b2745b166b8f5ebb9061616"
+      },
+      {
+        "byte_count": 1159,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sca-clientAuth.pem",
+        "sha256": "0047b41d5a54a207027345c06883b15b01e638f7b58a26fc0d4577a78de533db"
+      },
+      {
+        "byte_count": 1159,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sca-serverAuth.pem",
+        "sha256": "0d484fe2f5e78f0a5b0a39a19f8f5c65722a3c10deaa5358d65b86d0d3c41fb2"
+      },
+      {
+        "byte_count": 851,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/server-cecdsa-cert.pem",
+        "sha256": "661c9dbf24ccc3df13a0e94de10077f9e8c17c351a0f0e2c55475d207bc8fe43"
+      },
+      {
+        "byte_count": 1887,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/server-dsa-cert.pem",
+        "sha256": "2e8cfef1889f818407a99f4e3c089c1fb1f43bb08f4f7da8fcff5a496d2131ef"
+      },
+      {
+        "byte_count": 644,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/server-ec-compressed-cert.pem",
+        "sha256": "e47b661578acbbae8f731ec62ddba868103dfce63fe8a4f0ec28135e5acfff4f"
+      },
+      {
+        "byte_count": 932,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/server-ecdsa-brainpoolP256r1-cert.pem",
+        "sha256": "94d0cf32cd82e904f5b9e9563f62e8fddcc1f95a871de2a36364ebf6d54f3e65"
+      },
+      {
+        "byte_count": 887,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/server-ecdsa-cert.pem",
+        "sha256": "f5d5a6b81fa90966fc70e0efbb845e90949f1c2059b1b0d9170e31ca0388cae9"
+      },
+      {
+        "byte_count": 794,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/server-ed25519-cert.pem",
+        "sha256": "b5262edd65a4ac53b3c718399965f3725123b8ea69fc2c7cdaf1e121df87ea79"
+      },
+      {
+        "byte_count": 611,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/server-ed448-cert.pem",
+        "sha256": "7b11e085c9fbffab43966afc8aa16ce7b884a4cff07ec53da4607f4e205740da"
+      },
+      {
+        "byte_count": 5449,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/server-ml-dsa-44-cert.pem",
+        "sha256": "aedd73dfbc41c461517afb1a2a9d4470ada8d5104b800a8b1f5fa1f43d912096"
+      },
+      {
+        "byte_count": 1139,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/server-pss-cert.pem",
+        "sha256": "366b959dfee2a70c2ead3e73430cb2a3410709cc2699f0a560c39d94a1f2aa30"
+      },
+      {
+        "byte_count": 1233,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/server-pss-restrict-cert.pem",
+        "sha256": "c731aa614d4fd269edc6eb29a0c45fa32297f31d2a1f6364db364adfe529bb3e"
+      },
+      {
+        "byte_count": 1188,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/server-trusted.pem",
+        "sha256": "eda68be6d67e88cbee1f0ec60b805d900135c5626e87ba75febc889e22a1667b"
+      },
+      {
+        "byte_count": 1151,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/servercert.pem",
+        "sha256": "a191595426f6f5ccf89eeed75b27f31ef4e885b372658d79dc3c78d22cf291bf"
+      },
+      {
+        "byte_count": 806,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sm2-ca-cert.pem",
+        "sha256": "608c5f49827d0392114c852d5f4f1dc36a327afbe9c5cbb3ae6eb20164de834c"
+      },
+      {
+        "byte_count": 806,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sm2-root.crt",
+        "sha256": "608c5f49827d0392114c852d5f4f1dc36a327afbe9c5cbb3ae6eb20164de834c"
+      },
+      {
+        "byte_count": 826,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sm2.pem",
+        "sha256": "60cfb1a6021c9b9d0f88be7147bf930f1b84aae826d463c48694e0d439e7877a"
+      },
+      {
+        "byte_count": 13599,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/some-names1.pem",
+        "sha256": "4f43459d1d7e3f9775015a0c12eac0c624119e21386d566939e20aa00e9d21d8"
+      },
+      {
+        "byte_count": 8557,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/some-names2.pem",
+        "sha256": "d78473b2edbb8de7e0f3b0b96a0b8a4e87a84141b110eed93d4cf794a11bf1f1"
+      },
+      {
+        "byte_count": 18953,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/some-names3.pem",
+        "sha256": "6c2650c5a31c74b3892853c73a636d4b0d9e4fc3e7b73c307f359a9663a16b23"
+      },
+      {
+        "byte_count": 1139,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sroot+anyEKU.pem",
+        "sha256": "adec99c3bdcb1fd3d3bee7490790c9302ed2229026d92a665cf9c0eb8898560e"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sroot+clientAuth.pem",
+        "sha256": "59826836f05628930038e6547450c3caf4b769d5d66ed3eeb374c1948a27ad10"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sroot+serverAuth.pem",
+        "sha256": "5106cd7aee04296667380c9e7b38f4bec9f6340f9a8ec34ad41253ad1f711d93"
+      },
+      {
+        "byte_count": 1139,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sroot-anyEKU.pem",
+        "sha256": "0d2ad9522e87ef433a4b68b39d604d966501defe01521cef02a4e7c03f158ace"
+      },
+      {
+        "byte_count": 1131,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sroot-cert.pem",
+        "sha256": "d1e44df0982f74d4b5cb60f69d9a08dd7b5d307de533cfebc06962d011ae251d"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sroot-clientAuth.pem",
+        "sha256": "1e4a49a01a9a41077a3eced7b7c01f07c52f93e5e5d9bbc80f626da0f3b1ca11"
+      },
+      {
+        "byte_count": 1143,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/sroot-serverAuth.pem",
+        "sha256": "0d301e239b10e0a29d4da7a2226dea46430772c8252ccc075de08634ea0659ca"
+      },
+      {
+        "byte_count": 1285,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/subinterCA-ss.pem",
+        "sha256": "02eb837eeefe47086e6281e8a9de45cc27fc83f9eebd1a14e84c94050bad84da"
+      },
+      {
+        "byte_count": 1281,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/subinterCA.pem",
+        "sha256": "a04c591ff2697f95b65281abd91e050baa3fe25d9f7d741a564a1610e885f9ad"
+      },
+      {
+        "byte_count": 420,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/tab-in-dn.pem",
+        "sha256": "02eb481bab181ceca980eb27191485d64761d031df1fbc72a83b21c0ed2e19f9"
+      },
+      {
+        "byte_count": 1151,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/timing-cert.pem",
+        "sha256": "a191595426f6f5ccf89eeed75b27f31ef4e885b372658d79dc3c78d22cf291bf"
+      },
+      {
+        "byte_count": 2554,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/untrusted.pem",
+        "sha256": "6ed78d0bb68704fbd924837f9146da3b3a74a8f718653272f40fe695b458e8b0"
+      },
+      {
+        "byte_count": 1099,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/certs/wrongcert.pem",
+        "sha256": "23c1ab6fd410a94b01801dd9f21fedcc08fa3292ffee73853792d21d82c5dc53"
+      },
+      {
+        "byte_count": 32487,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/third_party/openssl-3.6.4-testcerts/test/recipes/25-test_verify.t",
+        "sha256": "5ba87fccf8a3f9b0d65fdb442744829d9873eebe3d3ca51aa74a8da80515ecc6"
+      },
+      {
+        "byte_count": 7885,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence_license_evaluator.py",
+        "sha256": "82ecb77dcdbce97d3980152d5053a166227d6a0403d11f021a6f478108b1b86a"
+      },
+      {
+        "byte_count": 2168,
+        "member_path": "papers/orion-03-typed-merge-falsification/evidence_license_schema.json",
+        "sha256": "dc9e1dec121754763373f25793171545f9732c6c9a089cc1652d7d088529371a"
+      },
+      {
+        "byte_count": 688,
+        "member_path": "papers/orion-03-typed-merge-falsification/examples/bounded_frontier.json",
+        "sha256": "c8e8640e2b9ea1700a93592a6d6d76c29772a290f990fd81a4a9bf969647516f"
+      },
+      {
+        "byte_count": 592,
+        "member_path": "papers/orion-03-typed-merge-falsification/examples/forecast_falsification.json",
+        "sha256": "ebd96e2e20192fe30f8383239f8ce142c707eed0c11f09e3b17045db8dd5e887"
+      },
+      {
+        "byte_count": 365,
+        "member_path": "papers/orion-03-typed-merge-falsification/examples/query_specific_falsification.json",
+        "sha256": "63178ff0ab7a2eac7d41bd3151d4483811a07e3620c53b1d9257f79737024f15"
+      },
+      {
+        "byte_count": 7639,
+        "member_path": "papers/orion-03-typed-merge-falsification/test_evidence_license_evaluator.py",
+        "sha256": "cfe496ed7912a5c8297d9f1f2cd096aadf2a8656e4f8daa01f628e98c6d90c25"
+      }
+    ],
+    "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_artifact.zip",
+    "sha256": "de1aa235fc0b9cf0895fb31fa6a70a8aafea1cb23201ea59bef452bc9b1b392b"
+  },
+  "canonical_claim_ledger": {
+    "byte_count": 4020,
+    "path": "CLAIM_LEDGER.md",
+    "sha256": "6dca07cc8f96557e08228a2dfe5100f4b66e819abf42ee2bbbe9207e095e1f8c"
+  },
+  "canonical_science": {
+    "byte_count": 34232,
+    "path": "MANUSCRIPT.md",
+    "sha256": "7181bd6d64c375a29fc2d037cfa5a03f67e6dc69d6b32d0af95961ce410fa1ee"
+  },
+  "does_not_certify": [
+    "external_replication",
+    "external_peer_review",
+    "portal_upload",
+    "acceptance",
+    "security_or_deployment_validity"
+  ],
+  "independent_review_provenance": {
+    "byte_count": 515,
+    "path": "INDEPENDENT_RELEASE_REVIEW_PROVENANCE.json",
+    "sha256": "8868c010db1e96c8d636e073fd83300261855906e2b25df1d15d43089e5333f2"
   },
   "paper": "ORION-03",
   "primary_target": "Journal of Automated Reasoning",
-  "publication_surface_sha256": "9b9abc02bcf9d7bb6690c7c5f8b54928603922f949bc2c4f27e97e5ff5bdbd71",
-  "schema": "ORION.PublicationClosure.FinalJournalPackage.v1",
+  "reader_pdf": {
+    "byte_count": 118823,
+    "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion.pdf",
+    "sha256": "8bef2f1938ba328120b6bebfc5bbedb7ad72cfa8092f482a1b11a6a30ecf1a21"
+  },
+  "research_integrity_ledger": {
+    "byte_count": 556839,
+    "path": "RESEARCH_INTEGRITY_LEDGER.json",
+    "sha256": "96e7c787237fb4d2c350fd19798521770401b70073f4f15d73837df06c94be85"
+  },
+  "research_integrity_report": {
+    "byte_count": 346,
+    "path": "RESEARCH_INTEGRITY_REPORT.json",
+    "sha256": "5059cd5d8a4751326339ed3631783ae2861267a2bda0cfc24d69260475d7dac1"
+  },
+  "schema": "ORION.PublicationClosure.FinalJournalPackage.v2",
   "scientific_authority_delta": "NONE__EDITORIAL_AND_PACKAGE_CLOSURE_ONLY",
-  "source_parent_commit": "d1300afaa5b7a34c7a079b85b49aad6084fa004e"
+  "source_archive": {
+    "byte_count": 57560,
+    "members": [
+      {
+        "byte_count": 34232,
+        "member_path": "MANUSCRIPT.md",
+        "sha256": "7181bd6d64c375a29fc2d037cfa5a03f67e6dc69d6b32d0af95961ce410fa1ee"
+      },
+      {
+        "byte_count": 367,
+        "member_path": "README.md",
+        "sha256": "f3e84424d1ea68116cd9666e457430f28698124f4f70c8160090bc3b744e9047"
+      },
+      {
+        "byte_count": 679,
+        "member_path": "build.sh",
+        "sha256": "10f4b2bd33658c37252c30aa1bb490be5b5c26cbd7d17d433111342f72a84da0"
+      },
+      {
+        "byte_count": 809,
+        "member_path": "jar-pandoc-template.tex",
+        "sha256": "e7e5bf26dfecb7733594029b8210c1f387c9934774a490c00b191852e1a90438"
+      },
+      {
+        "byte_count": 37362,
+        "member_path": "main.tex",
+        "sha256": "6c7086054797586f1f0ecd9650fb94f6ed31051bafe1b97ad80786bce217731d"
+      },
+      {
+        "byte_count": 5646,
+        "member_path": "references.bib",
+        "sha256": "b50ab7fb0bed6f6d0694419dc6f09135a7fdc595ff83f0ae8aedd040a09ef2fa"
+      },
+      {
+        "byte_count": 55857,
+        "member_path": "sn-jnl.cls",
+        "sha256": "36d0c3273a59d48dc6a9c7b080dfa1ec50dc10229d8751568d1f2e490ffa5ecc"
+      },
+      {
+        "byte_count": 64164,
+        "member_path": "sn-mathphys-num.bst",
+        "sha256": "b3a7c7fbcc1e7f9619de634fcea2f5bb7a245818a5942bc576e40ea001633332"
+      }
+    ],
+    "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_source.zip",
+    "sha256": "e1c3ff42e3cebfd16f8264a35009ff751394865b38e7963debb3e25cb26fd951"
+  },
+  "vendor": {
+    "official_download": "https://cms-resources.apps.public.k8s.springernature.io/springer-cms/rest/v1/content/18782940/data/v12",
+    "sn-jnl.cls": "36d0c3273a59d48dc6a9c7b080dfa1ec50dc10229d8751568d1f2e490ffa5ecc",
+    "sn-mathphys-num.bst": "b3a7c7fbcc1e7f9619de634fcea2f5bb7a245818a5942bc576e40ea001633332",
+    "template_release": "Springer Nature article template v3.1, December 2024"
+  }
 }

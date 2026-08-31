@@ -1,0 +1,57 @@
+{
+  "claims": [
+    "subject=alice",
+    "scope=admin",
+    "__target__"
+  ],
+  "expect": {
+    "first_mixing": {
+      "__target__": false
+    },
+    "flat_authorized": {
+      "__target__": true
+    },
+    "typed_authorized": {
+      "__target__": true
+    }
+  },
+  "id": "cedar-multipolicy/alternative_complete_origin",
+  "licenses": [
+    "A",
+    "B",
+    "C"
+  ],
+  "provenance": {
+    "domain": "authorization records with origin attribution",
+    "encoding": "One license per non-retracted origin record. Each required atom is seeded with the origins whose record carries it, so the capped rule transfer (intersection of body labels) yields exactly the origins carrying every required atom -- the typed predicate. The license-erased pass yields the flat predicate.",
+    "expectations_from": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/RUST_ADJUDICATION_V1.json",
+    "transcribed_from": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/rust-adjudicator/src/main.rs"
+  },
+  "refuted": [],
+  "rules": [
+    {
+      "body": [
+        "subject=alice",
+        "scope=admin"
+      ],
+      "cap": "ALL",
+      "head": "__target__",
+      "id": "compose"
+    }
+  ],
+  "schema": "ORION.TypedMerge.Instance.v1",
+  "seeds": {
+    "scope=admin": [
+      "B",
+      "C"
+    ],
+    "subject=alice": [
+      "A",
+      "C"
+    ]
+  },
+  "targets": [
+    "__target__"
+  ],
+  "title": "Round 1 origin-witness control: alternative_complete_origin"
+}
