@@ -10,6 +10,7 @@ from pathlib import Path
 import build_final_packages as b
 
 _original_publication_markdown = b.publication_markdown
+_original_pandoc_fragment = b.pandoc_fragment
 
 
 def publication_markdown(spec: b.Spec) -> str:
@@ -51,6 +52,10 @@ def publication_markdown(spec: b.Spec) -> str:
             raise SystemExit(f"missing References marker for Quantum author contribution insertion: {spec.key}")
         text = text.replace(marker, contribution + marker, 1)
     return text
+
+
+def pandoc_fragment(markdown: str, *, shift: bool = False) -> str:
+    return _original_pandoc_fragment(markdown, shift=shift).replace("\\tightlist\n", "")
 
 
 def _sanitized_checker(source: Path, *, old_schema: str, new_schema: str, old_protocol: str, new_protocol: str) -> str:
@@ -117,6 +122,7 @@ def prepare_orion02_public_artifact() -> Path:
 
 
 b.publication_markdown = publication_markdown
+b.pandoc_fragment = pandoc_fragment
 
 _orion02_artifact = prepare_orion02_public_artifact()
 b.SPECS = [
