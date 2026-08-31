@@ -1,36 +1,21 @@
 # ORION-19 TMLR venue audit V1
 
-Checked: **2026-08-19** against current official TMLR/JMLR sources.
+Refreshed: **2026-08-31** against current official TMLR/JMLR guidance.
 
-## Official sources
+## Standard-PDF requirements
 
-- TMLR Author Guide: `jmlr.org/tmlr/author-guide.html`;
-- TMLR Editorial Policies / Action Editor guidance;
-- official JMLR organization repository: `JmlrOrg/tmlr-style-file`.
-
-## Current standard-PDF requirements relevant to ORION-19
-
-1. TMLR uses **double-blind review**; the submitted manuscript must be anonymized.
-2. Standard submissions must be **PDF files generated with the TMLR LaTeX stylefile and template**.
-3. The unmodified official style is a format gate; format violations / non-anonymized submissions can be desk rejected.
-4. A submission PDF may include an appendix after references; reviewers are not required to read it.
-5. Supplementary material may include supporting data/code/video, subject to TMLR size/format rules and anonymization; reproducibility-supporting material is explicitly encouraged.
-6. The authors must also comply with TMLR editorial, ethics, conflict, OpenReview-profile and disclosure requirements at submission time.
-7. TMLR also has a newer Beyond-PDF route, but ORION-19 is currently targeting the **standard PDF route**; no interactive-format requirement is introduced.
+1. TMLR uses double-blind review; the submission PDF must be anonymized.
+2. Submissions must use the official TMLR LaTeX style/template without layout modification.
+3. Supplementary material must also be anonymized; PDF/ZIP supplements may directly support the work and reproducibility material is encouraged.
+4. Every author must have a complete active OpenReview profile. The exact author set is fixed at submission and may not be changed afterward.
+5. Originality rules prohibit reuse of text, figures or results from published, accepted or parallel archival peer-reviewed papers; preprints remain allowed provided the TMLR double blind is not broken by links in the anonymous submission.
+6. Authors are fully responsible for content produced with assistive LLM tools; LLMs are not eligible for authorship.
+7. The paper is evaluated on whether its claims are supported by accurate, convincing and clear evidence and whether the findings are of interest to some part of the TMLR audience; modest significance is not itself a rejection criterion.
 
 ## ORION-19 package consequence
 
-Before readiness:
+The existing 8-page standard-PDF package remains the authoritative route. The source requires `Anonymous Authors`, the bound PDF audit records blank Author metadata and no overflow/anonymity defects, and the one-command fail-closed `reproduce_final.py` chain remains the reproducibility authority.
 
-- vendor/use the then-current official `tmlr.sty`/template **without modification**;
-- keep author identity anonymous in the review PDF and supplementary materials;
-- ensure the historical ORION repository/preprints do not create an explicit identity link in the submitted anonymized manuscript;
-- compile the final ORION-19 source through the official style rather than the current drafting `article` wrapper;
-- include only result artifacts and supplements that are actually accessible/reproducible;
-- run final PDF visual/citation/anonymity checks after all official result values are frozen.
+The Wine null, Qwen scaling negative, D-A `CANNOT_CHECK`, post-hoc D1 uncertainty label and `P9_NEURAL_ESCALATION_NOT_JUSTIFIED` terminal must remain visible. Optional UT3/open-weight/hostile-transfer successor science is not a filing prerequisite.
 
-## Timing rule
-
-This audit freezes the venue requirements early, but **style conversion happens after M1/A2-A4/D1 result integration** so layout reflow cannot pressure scientific wording or encourage premature result insertion.
-
-Recheck the official TMLR Author Guide and style repository immediately before the final package freeze. If requirements changed materially, update this receipt and the submission package; do not silently rely on this 2026-08-19 snapshot.
+Exact author metadata, active OpenReview profiles, action-editor recommendation and the eventual OpenReview submission ID are portal-time host attestations and are not fabricated in the anonymous package.
