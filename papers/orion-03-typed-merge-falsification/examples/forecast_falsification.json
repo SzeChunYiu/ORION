@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "licenses": ["THEOREM", "CONSTRUCTIVE_BOUND", "PROSPECTIVE", "POST_OUTCOME"],
+  "claims": [
+    {"id": "support_theorem", "seeds": ["THEOREM"]},
+    {"id": "feasible_upper_bound", "seeds": ["CONSTRUCTIVE_BOUND"]},
+    {"id": "prospective_equality", "seeds": ["PROSPECTIVE"]},
+    {"id": "repaired_forecast", "seeds": ["POST_OUTCOME"]}
+  ],
+  "rules": [
+    {
+      "id": "repair_uses_support_theorem",
+      "body": ["support_theorem"],
+      "head": "repaired_forecast",
+      "cap": ["THEOREM", "POST_OUTCOME"]
+    }
+  ],
+  "refutations": ["prospective_equality"]
+}
