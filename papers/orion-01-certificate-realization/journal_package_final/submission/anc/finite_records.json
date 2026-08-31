@@ -1,0 +1,55 @@
+{
+  "adverse_production_transfer": {
+    "complete_domain_null_established": false,
+    "complete_move_coverage_established": false,
+    "failing_word": "three consecutive Hadamard gates on qubit 0",
+    "finite_certificate_terminal": "FINITE_PRODUCTION_REALIZATION_CERTIFICATE_REJECTED",
+    "ordered_words_declared": 4681,
+    "ordered_words_executed": 74,
+    "production_full_reduce_refuted": false,
+    "pyzx_round1_terminal": "CANNOT_CHECK_MOVE_COMPLETENESS",
+    "realized_certificate_gap_established": false,
+    "scheduled_full_reduce_preserved_semantics_on_same_word": true,
+    "source_bound_followup_terminal": "AB_PR1469_PRODUCTION_TRANSFER_NOT_ESTABLISHED"
+  },
+  "all_declared_checks": true,
+  "binary_generated_span_identity": {
+    "alphabet_families_checked": 276,
+    "ambient_spanning_alphabets": 194,
+    "dimensions": [
+      1,
+      2,
+      3
+    ],
+    "generated_span_equalities": 276,
+    "strict_inequality_cases": 0
+  },
+  "matched_two_site_obstruction": {
+    "central_choices": 8,
+    "complete_support_at_most_one_enumeration": true,
+    "feasible_anticommuting_frame_tuples": 1728,
+    "frame_six_tuples_enumerated": 117649,
+    "instance_size": 2,
+    "intrinsic_support": 2,
+    "relative_target_orders": 4,
+    "strict_gap": 1,
+    "support_at_most_one_optimum": 6,
+    "support_two_cost": 5,
+    "tag_keys_enumerated": 16
+  },
+  "restore_sensitivity": {
+    "block_counts": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "comparisons_checked": 582528,
+    "sharpness_cases": 6,
+    "status": "PASS"
+  },
+  "schema": "orion-01a.public-finite-records.v2",
+  "scope": "Deterministic corroboration and exact finite lower-witness enumeration; the displayed analytic proof carries the all-size normal-form theorem."
+}
