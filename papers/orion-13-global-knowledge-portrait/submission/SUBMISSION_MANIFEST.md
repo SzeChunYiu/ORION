@@ -1,0 +1,33 @@
+# Submission manifest — orion-13-global-knowledge-portrait
+
+Target venue: **Semantic Web Journal**  
+Compiled manuscript: `submission/manuscript.pdf` (45 pages)  
+Manifest generated: 2026-08-28
+
+Every file below is a byte-exact input to, or output of, the compiled
+manuscript. Digests are SHA-256 over file bytes.
+
+| File | SHA-256 |
+|---|---|
+| `manuscript/bibliography.bib` | `767e14569f25393df294a30ac7535f8cbc73a2cdf908ceb88211c0a9b2fbb7a7` |
+| `manuscript/main.tex` | `cfdc92dea7ff5a7503e488c169bd49c3701ac9eb73091b7c86db3a86ce2ec0a3` |
+| `manuscript/novelty_refresh_2026.bib` | `e00a2f8bd11447a1ff3bb1c9fdf50628e1b18f7eacbffde6c0d140e7a2f21a01` |
+| `manuscript/sections/00-abstract.tex` | `e96a09bd6e33c2d98abfd5554a98790e9452ce4f633be1b51e3d2975782d513a` |
+| `manuscript/sections/06-results.tex` | `cd7f250160169a2a4cc87d8335fba9ffce651c3910924188e8d1b9cdd3ad87a3` |
+| `manuscript/sections/07-limitations.tex` | `35dd3a91394119a7b7322046d987b772a2603988ca846bb9db4fd9116ed3a921` |
+| `manuscript/sections/08-conclusion.tex` | `35661330d97eefa23b951a12fb7c086d8f74236d24b0c96455532a62ece17051` |
+| `manuscript/sections/10-introduction.tex` | `2caeb91ab11d00935b689aed0274dfc8cae535b3dd6b07815b18f26deb40d34f` |
+| `manuscript/sections/20-related-work.tex` | `65d8f47e88f605a922c373bdd5ff9f167a1f3cdecc025eeff7e90d48c5bcbe70` |
+| `manuscript/sections/25-p3x-novelty-refresh.tex` | `42875ba97b2ecd548b37f8a74470d430123deacd84ee0dd8ef5a90569717ad5e` |
+| `manuscript/sections/30-method.tex` | `9fa036d6d74bf8cd39be0c2c2250da08fd5787cebe6154c745ef7aa972500707` |
+| `manuscript/sections/35-method-structure.tex` | `9d220376ab8705e7bfa13b77bf018dfb88e6f902cf78a4fee6649e0413e7ca78` |
+| `manuscript/sections/36-partial-identification-theory.tex` | `cf0bd82fde09fcc3f61e459232b619a17337604517882bcd7cfe0870d193aa89` |
+| `manuscript/sections/40-dataset.tex` | `54db9ac0dfb72512c24845192e0adb76be6e70109ddd794996959e2f54671347` |
+| `manuscript/sections/50-evaluation.tex` | `cbbe02eeb1b90ed25d5f8167e17bb7c1fc36e6e160dc9de77e96e5149fcec3b8` |
+| `manuscript/sections/55-method-structure-evaluation.tex` | `9d68752967a8a9a05a8e74d3859dd5b8c066c38bb218581d566f6a259d2e90e5` |
+| `manuscript/sections/56-p3x-successor.tex` | `df3ff4ea1f9a7da5cde834cbd12c670c0625e91a3a0b09fca765d5064eea1ed3` |
+| `manuscript/sections/57-successor-correspondence-interface.tex` | `22de3a1ebbfa0446f5b841da785e962b7a7ef123830ed3b42def9adfd5c80fdc` |
+| `manuscript/sections/60-availability.tex` | `1fb3a7fd6383bad5c468ffaf0d26d70c520897b173d68f99541b7201e8cb7509` |
+| `submission/manuscript.pdf` | `3d595d0439682e73f7a1f20b88adb10a1ce8abc3c81d9fd727c7ea3c4a37ad09` |
+
+Files: 20
