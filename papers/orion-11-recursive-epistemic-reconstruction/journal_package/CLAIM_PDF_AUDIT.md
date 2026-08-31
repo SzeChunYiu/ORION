@@ -1,4 +1,4 @@
-# ORION-11 claim/PDF audit — historical exact binary retained; current package open
+# ORION-11 claim/PDF audit — historical exact binary superseded by a pinned-renderer rebuild; current package open
 
 Historical render audit date: 2026-08-21  
 Current authority update: 2026-08-24  
@@ -23,7 +23,21 @@ and 21 also received full-resolution follow-up because the TeX log reported
 overfull boxes. No clipping, overlap, black-square/glyph corruption, unreadable
 figure/table placement, or page-edge contact was observed.
 
-`journal_package/manuscript.pdf` retains those exact inspected bytes.
+`journal_package/manuscript.pdf` no longer holds those bytes, and this line previously
+claimed it did. On 2026-08-28 the package was rebuilt through the pinned renderer
+(commit `7ae62c87c`, render run `33175368554`, which compiles twice under a pinned TeX
+toolchain and a git-derived reproducible epoch and compares the outputs). That rebuild
+replaced `06a60f0f...` with
+`cda6ceb1ea69c2470d8d1df5fa886d6654de30bf96aee9ca0b293703c63823e0`, which is what
+`journal_package/SHA256SUMS` records and what the working tree contains. The rebuild was
+deliberate: the guards required the package to be rebuilt rather than re-hashed, so that
+the evidence of the move was not deleted.
+
+The historical exact-render binary `06a60f0f...` is therefore preserved in git history at
+commit `3a1a83178`, not in the working tree. Nothing in the paragraph above is withdrawn —
+that inspection genuinely happened against those bytes — but it describes a binary this
+directory no longer carries, and the 33-page inspection has not been repeated against the
+current one.
 `journal_package/RENDER_INPUT_CLOSURE.json` preserves the V3 repository-input
 closure from the protected artifact. The render subject is **not** relabelled.
 At the original rebind base, the complete tracked TeX input closure supplied the
