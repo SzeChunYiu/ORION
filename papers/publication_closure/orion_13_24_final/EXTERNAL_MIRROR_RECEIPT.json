@@ -1,0 +1,37 @@
+{
+  "schema": "ORION.ExternalMirrorReceipt.v1",
+  "recorded_at_utc": "2026-08-31T22:04:00Z",
+  "source_repository": "SzeChunYiu/ORION",
+  "source_commit": "0943c43e3d250a38cf2988115929dab60d1205d1",
+  "source_pull_request": 1996,
+  "target_repository": "SzeChunYiu/ORION-paper",
+  "target_commit": "a5c9b7521f016efbb08894bb9982d4c30bacd94d",
+  "target_pull_request": 41,
+  "source_paths": [
+    "papers/orion-13-global-knowledge-portrait",
+    "papers/orion-14-verified-scientific-discovery",
+    "papers/orion-19-structured-epistemic-learning",
+    "papers/orion-21-state-as-computation",
+    "papers/orion-23-responsibility-carrying-state",
+    "papers/orion-24-orion-rse"
+  ],
+  "target_prefix": "v1-papers",
+  "declared_target_overlays": [
+    "PROVENANCE.md",
+    "MIRROR_RECEIPT_2026-08-31.md",
+    "code"
+  ],
+  "verification": {
+    "source_non_overlay_files": 1216,
+    "non_overlay_mismatches": 0,
+    "stale_non_overlay_target_files": 0,
+    "target_overlay_drift": 0,
+    "receipts_present": 6,
+    "comparison_basis": "Git blob identity after exact target tree construction"
+  },
+  "authority": {
+    "paper_and_package_mirror": "VERIFIED",
+    "scientific_authority_delta": "NONE",
+    "submission_status_delta": "NONE"
+  }
+}

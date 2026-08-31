@@ -35,7 +35,13 @@ jobs:
       - name: Checkout merged ORION main commit
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
+
+      - name: Install PDF verification dependency
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends --yes poppler-utils
 
       - name: Verify source packages before transfer
         run: |
@@ -45,7 +51,42 @@ jobs:
           python scripts/check_publication_closure.py \
             ORION-13 ORION-14 ORION-19 ORION-21 ORION-23 ORION-24
 
+      - name: Resolve mirror transport or verified external receipt
+        id: transport
+        run: |
+          set -euo pipefail
+          if [ -n "${MIRROR_TOKEN}" ]; then
+            printf '%s\n' 'mirror_required=true' >> "${GITHUB_OUTPUT}"
+            exit 0
+          fi
+
+          receipt='papers/publication_closure/orion_13_24_final/EXTERNAL_MIRROR_RECEIPT.json'
+          test -f "${receipt}"
+          source_commit="$(jq -er '.source_commit' "${receipt}")"
+          target_commit="$(jq -er '.target_commit' "${receipt}")"
+          test "$(jq -er '.verification.non_overlay_mismatches' "${receipt}")" = '0'
+          test "$(jq -er '.verification.stale_non_overlay_target_files' "${receipt}")" = '0'
+          git cat-file -e "${source_commit}^{commit}"
+          for paper in \
+            orion-13-global-knowledge-portrait \
+            orion-14-verified-scientific-discovery \
+            orion-19-structured-epistemic-learning \
+            orion-21-state-as-computation \
+            orion-23-responsibility-carrying-state \
+            orion-24-orion-rse
+          do
+            if ! git diff --quiet "${source_commit}" "${GITHUB_SHA}" -- "papers/${paper}"; then
+              printf '%s\n' \
+                'ORION_PAPER_MIRROR_TOKEN is required: paper trees changed after the verified external receipt.' >&2
+              exit 1
+            fi
+          done
+          printf '%s\n' 'mirror_required=false' >> "${GITHUB_OUTPUT}"
+          printf 'Mirror already verified externally: ORION `%s` -> ORION-paper `%s`.\n' \
+            "${source_commit}" "${target_commit}" >> "${GITHUB_STEP_SUMMARY}"
+
       - name: Clone ORION-paper with a scoped cross-repository token
+        if: steps.transport.outputs.mirror_required == 'true'
         run: |
           set -euo pipefail
           if [ -z "${MIRROR_TOKEN}" ]; then
@@ -62,6 +103,7 @@ jobs:
           git -C target remote set-url origin "https://github.com/${TARGET_REPOSITORY}.git"
 
       - name: Mirror and compare exact paper trees
+        if: steps.transport.outputs.mirror_required == 'true'
         run: |
           set -euo pipefail
           python scripts/mirror_orion_papers_13_24.py \
@@ -80,6 +122,7 @@ jobs:
           done
 
       - name: Commit, push and merge through an ORION-paper pull request
+        if: steps.transport.outputs.mirror_required == 'true'
         env:
           GH_TOKEN: ${{ secrets.ORION_PAPER_MIRROR_TOKEN }}
         run: |
