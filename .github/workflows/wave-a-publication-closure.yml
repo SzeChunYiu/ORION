@@ -1,0 +1,136 @@
+name: wave-a-publication-closure
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'papers/README.md'
+      - 'papers/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/WAVE_A_PUBLICATION_CLOSURE_MANIFEST_V1.json'
+      - 'papers/Q_QG_VENUE_TARGET_MATRIX_V2.md'
+      - 'papers/check_publication_dashboard.py'
+      - 'papers/check_wave_a_publication_closure.py'
+      - 'papers/publication_closure/**'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/build_q_qg_cited_masters.py'
+      - 'papers/quantum_preprint/**'
+      - 'papers/orion-05-tare-expressivity/Q1_R11_*'
+      - 'papers/orion-05-tare-expressivity/q1_r11_*'
+      - 'papers/orion-19-structured-epistemic-learning/manuscript/**'
+      - 'papers/orion-22-adaptive-state-reasoning/manuscript/**'
+      - 'papers/orion-23-responsibility-carrying-state/manuscript/**'
+      - '.github/workflows/wave-a-publication-closure.yml'
+  push:
+    branches:
+      - chatgpt/orion-publication-closure-wave-a-20260827
+    paths:
+      - 'papers/README.md'
+      - 'papers/PUBLICATION_CLOSURE_WAVE_A_V1.md'
+      - 'papers/WAVE_A_PUBLICATION_CLOSURE_MANIFEST_V1.json'
+      - 'papers/Q_QG_VENUE_TARGET_MATRIX_V2.md'
+      - 'papers/check_publication_dashboard.py'
+      - 'papers/check_wave_a_publication_closure.py'
+      - 'papers/publication_closure/**'
+      - 'papers/Q_QG_CITATION_INSERTION_MAP_V1.json'
+      - 'papers/Q_QG_VERIFIED_CORE_REFERENCES_V1.bib'
+      - 'papers/build_q_qg_cited_masters.py'
+      - 'papers/quantum_preprint/**'
+      - 'papers/orion-05-tare-expressivity/Q1_R11_*'
+      - 'papers/orion-05-tare-expressivity/q1_r11_*'
+      - 'papers/orion-19-structured-epistemic-learning/manuscript/**'
+      - 'papers/orion-22-adaptive-state-reasoning/manuscript/**'
+      - 'papers/orion-23-responsibility-carrying-state/manuscript/**'
+      - '.github/workflows/wave-a-publication-closure.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: wave-a-publication-closure-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Compile closure control and projection tools
+        run: |
+          python -m py_compile papers/check_publication_dashboard.py
+          python -m py_compile papers/check_wave_a_publication_closure.py
+          python -m py_compile papers/publication_closure/check_wave_a_quantum_authority.py
+          python -m py_compile papers/publication_closure/build_wave_a_specialist_receipt.py
+          python -m py_compile papers/publication_closure/run_wave_a_quantum_replays.py
+          python -m py_compile papers/publication_closure/check_orion14_filing_preflight.py
+          python -m py_compile papers/publication_closure/apply_tqe_submission_projection.py
+          python -m py_compile papers/quantum_preprint/build_quantum_source.py
+          bash -n papers/publication_closure/materialize_wave_a_specialist.sh
+
+      - name: Validate publication dashboard
+        run: python papers/check_publication_dashboard.py
+
+      - name: Validate current Wave-A quantum authority
+        run: python papers/publication_closure/check_wave_a_quantum_authority.py
+
+      - name: Validate frozen Wave-A structure
+        run: python papers/check_wave_a_publication_closure.py --root "$GITHUB_WORKSPACE" --json
+
+      - name: Verify patch hygiene
+        run: git diff --check
+
+  materialize-specialist:
+    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '[wave-a-materialized]') }}
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chatgpt/orion-publication-closure-wave-a-20260827
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install publication runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev,candidates]'
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            pandoc latexmk poppler-utils zip \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended texlive-fonts-extra texlive-bibtex-extra \
+            texlive-publishers lmodern
+
+      - name: Verify ORION-17 exact content binding
+        shell: bash
+        run: PYTHONPATH=src python papers/candidates/checkers/check_content_binding_v1.py --check
+
+      - name: Materialize all eight bounded specialist packages and publish receipt
+        shell: bash
+        run: bash papers/publication_closure/materialize_wave_a_specialist.sh
+
+      - name: Archive repository-side closure objects
+        uses: actions/upload-artifact@v4
+        with:
+          name: wave-a-specialist-closure-${{ github.sha }}
+          path: |
+            papers/publication_closure/submissions
+            papers/publication_closure/receipts/WAVE_A_SPECIALIST_CLOSURE_V1.json
+          if-no-files-found: error
+          retention-days: 30

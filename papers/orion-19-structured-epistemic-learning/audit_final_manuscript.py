@@ -56,6 +56,7 @@ REQUIRED_CITATION_KEYS = {
     "liem2026temporal",
     "anonymous2026chokepoints",
     "li2025questbench",
+    "kassenaar2026when",
 }
 
 FORBIDDEN_FINAL_MARKERS = {

@@ -1,0 +1,11 @@
+## Direct exact sparse search after the support-two theorem
+
+The support-two theorem has an algorithmic consequence that was evaluated only after a separate prospective R11 protocol was frozen. For one ordered anticommuting support-two Pauli pair on `n` qubits, the exact count is
+
+`B(n) = 54 n^3 - 108 n^2 + 60 n`.
+
+The counting proof is constructive: legal partners are generated from their support-overlap cases rather than by scanning the quadratic cross-product of all support-two strings. Three block pairs therefore contribute `B(n)^3 = Theta(n^9)` frame triples. Because each anticommuting support-two pair occupies at most three coordinates, the active union of all six frame strings has size at most nine. A minimum compatible Tag may be confined to that union, and the six symplectic constraints give a support bound of at most six for one feasible row-echelon solution. After `O(n)` target-local preprocessing, Restore-factor scoring, frame cost, Tag feasibility, and the constant matching/permutation/central choices can consequently be evaluated in `O(1)` time with respect to `n` for each frame triple. The resulting direct exact optimization bound for the frozen R6M six-slot grammar is `O(n^9)` time, with an `O(n^3)` pair list that may also be streamed.
+
+The executable R11 gate was not permitted to fall back to the historical dense dynamic program, import its helpers, materialize a `4^(2n)` pattern table, or sweep all `4^n` Tags. The committed result reaches terminal `Q1_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM`: all frozen gates pass, the complete `n=1` denominator is 729/729, an isolated checker reproduces the ordered-pair formula for `n=1,...,6`, and the registered support-two exact panels agree with their bound DP receipts. These checks support an **algorithmic theorem for this frozen grammar and objective only**. They do not establish production wall-clock advantage, physical quantum-resource value, a generic TARE complexity theorem, or novelty independently of current literature subtraction.
+
+**Bound authority:** `papers/orion-05-tare-expressivity/Q1_R11_SPARSE_DIRECT_EXECUTABLE_RESULT_V1.json` with terminal `Q1_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM`; protocol SHA-256 recorded by that result is `7619efb258f919c1a4a3770f21dbf2ba628ec0d1002cd67949773f091d4da5c1`.

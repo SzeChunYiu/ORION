@@ -1,0 +1,108 @@
+{
+  "schema": "ORION.PublicationClosureWaveA.v1",
+  "date": "2026-08-27",
+  "owner_issue": 1541,
+  "authority_delta": "NONE",
+  "closure_policy": "GOOD_SPECIALIST_FIRST__TOP_TIER_OPTIONAL",
+  "rules": {
+    "text_only_promotion_forbidden": true,
+    "negative_history_required": true,
+    "public_external_authority_preferred": true,
+    "protocol_before_outcomes": true,
+    "independent_verification_required": true,
+    "final_submission_bytes_required": true,
+    "top_tier_discriminator_does_not_block_specialist_submission": true
+  },
+  "required_protocol_sections": ["Maximum current claim", "Good specialist finish", "Required artifacts", "Registered terminals"],
+  "papers": [
+    {
+      "paper_id": "ORION-14",
+      "directory": "papers/orion-14-verified-scientific-discovery",
+      "control_packet": "papers/publication_closure/wave_a/ORION-14.md",
+      "priority": 1,
+      "lane": "PACKAGE_ONLY",
+      "current_posture": "BOUNDED_PEER_REVIEW_READY",
+      "specialist_gate": "REPOSITORY_PACKAGE_AND_FILING_PREFLIGHT_ONLY",
+      "top_tier_gate": "OPTIONAL_NOT_REQUIRED_FOR_CLOSURE",
+      "science_reopen": "ONLY_ON_DIRECT_DONOR_SUBSUMPTION_CORRECTNESS_DEFECT_OR_EDITOR_DISCRIMINATOR",
+      "required_phases": ["FILING_TIME_FRESHNESS", "HOSTILE_REVIEW", "CLEAN_REPRODUCTION", "VISUAL_AUDIT", "FINAL_BYTE_BINDING", "HUMAN_FILING_ATTESTATIONS"]
+    },
+    {
+      "paper_id": "ORION-09",
+      "directory": "papers/orion-09-compilation-regime-geometry",
+      "control_packet": "papers/publication_closure/wave_a/ORION-09.md",
+      "priority": 2,
+      "lane": "SPECIALIST_PACKAGE",
+      "current_posture": "INTERNAL_REVIEW_PASS_PROGRAMME_SYNTHESIS",
+      "specialist_gate": "LITERATURE_REPLAY_VENUE_FORMAT_PACKAGE",
+      "top_tier_gate": "OPTIONAL_INDEPENDENT_PUBLIC_FAMILY_OR_STRONGER_GENERAL_THEOREM",
+      "required_phases": ["CURRENT_LITERATURE_REFRESH", "INDEPENDENT_REPLAY", "VENUE_FIT", "MANUSCRIPT_SYNC", "FINAL_PACKAGE"]
+    },
+    {
+      "paper_id": "ORION-23",
+      "directory": "papers/orion-23-responsibility-carrying-state",
+      "control_packet": "papers/publication_closure/wave_a/ORION-23.md",
+      "priority": 3,
+      "lane": "SPECIALIST_PACKAGE",
+      "current_posture": "READY_FOR_CONTROLLED_P13B_CLAIM_EXTERNAL_VALIDATION_OPEN",
+      "specialist_gate": "CONTROLLED_CLAIM_SYNC_LITERATURE_REPLAY_PACKAGE",
+      "top_tier_gate": "OPTIONAL_PUBLIC_REAL_WORKFLOW_RESPONSIBILITY_TRANSFER",
+      "required_phases": ["CURRENT_AUTHORITY_SYNC", "CURRENT_LITERATURE_REFRESH", "INDEPENDENT_REPLAY", "VENUE_FIT", "FINAL_PACKAGE"]
+    },
+    {
+      "paper_id": "ORION-19",
+      "directory": "papers/orion-19-structured-epistemic-learning",
+      "control_packet": "papers/publication_closure/wave_a/ORION-19.md",
+      "priority": 4,
+      "lane": "SPECIALIST_PACKAGE",
+      "current_posture": "STRONG_MIXED_RESULT_WITH_GREEN_TMLR_BUILD",
+      "specialist_gate": "CURRENT_DONOR_REFRESH_AUTHORITY_SYNC_FINAL_BYTE_BINDING",
+      "top_tier_gate": "OPTIONAL_PUBLIC_MULTI_MODEL_BREADTH",
+      "required_phases": ["CURRENT_LITERATURE_REFRESH", "CURRENT_AUTHORITY_SYNC", "CLEAN_REPRODUCTION", "TMLR_BUILD_AUDIT", "FINAL_PACKAGE"]
+    },
+    {
+      "paper_id": "ORION-05",
+      "directory": "papers/orion-05-tare-expressivity",
+      "control_packet": "papers/publication_closure/wave_a/ORION-05.md",
+      "priority": 5,
+      "lane": "SPECIALIST_PACKAGE",
+      "current_posture": "INTERNAL_REVIEW_PASS_BOUNDED_CLAIM",
+      "specialist_gate": "LITERATURE_REPLAY_VENUE_FORMAT_PACKAGE",
+      "top_tier_gate": "OPTIONAL_ACTIVE_CORE_CROSSOVER_AND_SECOND_COMPILER_FAMILY",
+      "required_phases": ["CURRENT_LITERATURE_REFRESH", "INDEPENDENT_PROOF_AND_RESULT_AUDIT", "VENUE_FIT", "MANUSCRIPT_SYNC", "FINAL_PACKAGE"]
+    },
+    {
+      "paper_id": "ORION-17",
+      "directory": "papers/orion-17-epistemic-navigation-open-worlds",
+      "control_packet": "papers/publication_closure/wave_a/ORION-17.md",
+      "priority": 6,
+      "lane": "SPECIALIST_PACKAGE",
+      "current_posture": "PEER_REVIEW_PACKAGE_EXISTS__CURRENT_BINDING_MUST_REVALIDATE",
+      "specialist_gate": "CONTENT_BINDING_CURRENT_REPLAY_LITERATURE_PACKAGE",
+      "top_tier_gate": "OPTIONAL_TARGET_AMBIGUITY_AND_PUBLIC_DONOR_LENS_TRANSFER",
+      "required_phases": ["CONTENT_BINDING_REVALIDATION", "CURRENT_LITERATURE_REFRESH", "INDEPENDENT_REPLAY", "VENUE_FIT", "FINAL_PACKAGE"]
+    },
+    {
+      "paper_id": "ORION-22",
+      "directory": "papers/orion-22-adaptive-state-reasoning",
+      "control_packet": "papers/publication_closure/wave_a/ORION-22.md",
+      "priority": 7,
+      "lane": "SPECIALIST_PACKAGE",
+      "current_posture": "CONTROLLED_LIFECYCLE_RESULT_BOUND_PUBLIC_TRANSFER_OPEN",
+      "specialist_gate": "CURRENT_AUTHORITY_SYNC_REPLAY_TMLR_PACKAGE",
+      "top_tier_gate": "OPTIONAL_PUBLIC_STOP_GO_TRANSFER",
+      "required_phases": ["CURRENT_AUTHORITY_SYNC", "CURRENT_LITERATURE_REFRESH", "INDEPENDENT_REPLAY", "TMLR_BUILD_AUDIT", "FINAL_PACKAGE"]
+    },
+    {
+      "paper_id": "ORION-10",
+      "directory": "papers/orion-10-certified-static-forecasting",
+      "control_packet": "papers/publication_closure/wave_a/ORION-10.md",
+      "priority": 8,
+      "lane": "SPECIALIST_PACKAGE",
+      "current_posture": "INTERNAL_REVIEW_PASS_LAYERED_CERTIFICATE_CLAIM",
+      "specialist_gate": "LITERATURE_REPLAY_VENUE_FORMAT_PACKAGE",
+      "top_tier_gate": "OPTIONAL_SECOND_FAMILY_DECISION_VALUE",
+      "required_phases": ["CURRENT_LITERATURE_REFRESH", "INDEPENDENT_REPLAY", "VENUE_FIT", "MANUSCRIPT_SYNC", "FINAL_PACKAGE"]
+    }
+  ]
+}

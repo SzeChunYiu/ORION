@@ -1,0 +1,55 @@
+\documentclass[journal,onecolumn]{IEEEtran}
+% One-column is the IEEEtran review/draft layout. The scientific masters contain
+% long tables that Pandoc renders with longtable, which cannot run in TeX's
+% two-column mode. Production two-column typesetting is a later publisher step;
+% this source keeps the TQE/IEEE class while remaining mechanically buildable for
+% peer review without rewriting scientific tables.
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
+\DeclareUnicodeCharacter{00B1}{\ensuremath{\pm}}
+\DeclareUnicodeCharacter{2013}{\textendash}
+\DeclareUnicodeCharacter{2014}{\textemdash}
+\DeclareUnicodeCharacter{2032}{\ensuremath{{}^{\prime}}}
+\DeclareUnicodeCharacter{2033}{\ensuremath{{}^{\prime\prime}}}
+\DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
+\DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
+\DeclareUnicodeCharacter{2260}{\ensuremath{\neq}}
+\DeclareUnicodeCharacter{2264}{\ensuremath{\leq}}
+\DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
+\DeclareUnicodeCharacter{2248}{\ensuremath{\approx}}
+\DeclareUnicodeCharacter{2297}{\ensuremath{\otimes}}
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+\title{$title$}
+\author{AUTHOR METADATA REQUIRED BEFORE SUBMISSION}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+$abstract$
+\end{abstract}
+
+\begin{IEEEkeywords}
+quantum compilation, certification, exact methods, reproducibility
+\end{IEEEkeywords}
+
+$body$
+
+$if(dataavailability)$
+\section*{Data and Code Availability}
+$dataavailability$
+$endif$
+
+\bibliographystyle{IEEEtranN}
+\bibliography{references}
+\end{document}

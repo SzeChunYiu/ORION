@@ -1,0 +1,400 @@
+{
+  "authority": {
+    "algorithmic_theorem": true,
+    "novelty_authority": false,
+    "physical_quantum_resource_authority": false,
+    "production_runtime_value": false,
+    "scope": "frozen R6M six-slot grammar and declared objective only",
+    "submission_authority": false
+  },
+  "complete_n1": {
+    "denominator": 729,
+    "expected_denominator": 729,
+    "max_active_union": 1,
+    "max_single_solve_seconds": 0.004760695000072701,
+    "mismatches": [],
+    "pass": true,
+    "strict_support2_improvements": 0,
+    "wall_seconds": 3.0048018449999745
+  },
+  "date": "2026-08-27",
+  "frozen_dp_panels": {
+    "pass": true,
+    "rows": [
+      {
+        "dp": 2,
+        "id": "n1_identical",
+        "max_frame_support": 1,
+        "n": 1,
+        "pass": true,
+        "sparse": 2,
+        "support1": 2,
+        "wall_seconds": 0.00017072000002826826
+      },
+      {
+        "dp": 2,
+        "id": "n1_swapped",
+        "max_frame_support": 1,
+        "n": 1,
+        "pass": true,
+        "sparse": 2,
+        "support1": 2,
+        "wall_seconds": 0.0002751060000036887
+      },
+      {
+        "dp": 3,
+        "id": "n1_mixed",
+        "max_frame_support": 1,
+        "n": 1,
+        "pass": true,
+        "sparse": 3,
+        "support1": 3,
+        "wall_seconds": 0.004668131000016729
+      },
+      {
+        "dp": 6,
+        "id": "n2_a",
+        "max_frame_support": 1,
+        "n": 2,
+        "pass": true,
+        "sparse": 6,
+        "support1": 6,
+        "wall_seconds": 0.5023740499999576
+      },
+      {
+        "dp": 8,
+        "id": "n2_b",
+        "max_frame_support": 1,
+        "n": 2,
+        "pass": true,
+        "sparse": 8,
+        "support1": 8,
+        "wall_seconds": 3.3398582180000176
+      }
+    ]
+  },
+  "gates": {
+    "complete_n1_729": true,
+    "constructive_pair_generation": true,
+    "frozen_dp_n1_n2_panels": true,
+    "independent_pair_checker": true,
+    "protocol_exists": true,
+    "qg7_support2_rows": true,
+    "source_isolation": true
+  },
+  "independent_pair_checker": {
+    "pass": true,
+    "returncode": 0,
+    "stdout_sha256": "cbd097a761298102a9c65e8bbd248ac6c11e00b70b58c0fc6e312c5d6c07fa58",
+    "stdout_tail": "n=1 support<=2=3 ordered_anticommuting=6 formula=6\nn=2 support<=2=15 ordered_anticommuting=120 formula=120\nn=3 support<=2=36 ordered_anticommuting=666 formula=666\nn=4 support<=2=66 ordered_anticommuting=1968 formula=1968\nn=5 support<=2=105 ordered_anticommuting=4350 formula=4350\nn=6 support<=2=153 ordered_anticommuting=8136 formula=8136\ntag_active_union_checks=512 feasible_tag_cases=326\nQ1_R11_INDEPENDENT_FINITE_CHECK_PASS\n",
+    "terminal_present": true
+  },
+  "pair_checker_sha256": "c5bf396fb01ab5cd4729b2a141258a1e0b13ec28d27536a875518b5e1717c572",
+  "pair_generation": {
+    "pass": true,
+    "rows": [
+      {
+        "all_anticommuting": true,
+        "all_support_le_2": true,
+        "count": 6,
+        "expected": 6,
+        "max_pair_union": 1,
+        "n": 1
+      },
+      {
+        "all_anticommuting": true,
+        "all_support_le_2": true,
+        "count": 120,
+        "expected": 120,
+        "max_pair_union": 2,
+        "n": 2
+      },
+      {
+        "all_anticommuting": true,
+        "all_support_le_2": true,
+        "count": 666,
+        "expected": 666,
+        "max_pair_union": 3,
+        "n": 3
+      },
+      {
+        "all_anticommuting": true,
+        "all_support_le_2": true,
+        "count": 1968,
+        "expected": 1968,
+        "max_pair_union": 3,
+        "n": 4
+      },
+      {
+        "all_anticommuting": true,
+        "all_support_le_2": true,
+        "count": 4350,
+        "expected": 4350,
+        "max_pair_union": 3,
+        "n": 5
+      },
+      {
+        "all_anticommuting": true,
+        "all_support_le_2": true,
+        "count": 8136,
+        "expected": 8136,
+        "max_pair_union": 3,
+        "n": 6
+      }
+    ]
+  },
+  "protocol_sha256": "7619efb258f919c1a4a3770f21dbf2ba628ec0d1002cd67949773f091d4da5c1",
+  "qg7_sha256": "7341f9630c2ca32b8a6cc601e9c1201db68f21212e04eb3b2e36bca63f214159",
+  "qg7_support2": {
+    "pass": true,
+    "rows": [
+      {
+        "dp_replay": 7,
+        "local_index": 2,
+        "max_frame_support": 2,
+        "panel": "H1_n3",
+        "pass": true,
+        "recorded_C_DP": 7,
+        "recorded_C_Dplus": 8,
+        "recorded_C_Dxx": 7,
+        "sparse": 7,
+        "stats": {
+          "support1": {
+            "lower_bound_pruned": 5475,
+            "max_active_union": 3,
+            "tag_dp_candidates": 357,
+            "triples_visited": 5832
+          },
+          "support2": {
+            "lower_bound_pruned": 2789749,
+            "max_active_union": 3,
+            "tag_dp_candidates": 450,
+            "triples_visited": 2735208
+          },
+          "wall_seconds": 51.68287095599999
+        },
+        "strict_support2_improvement": true,
+        "support1": 8,
+        "witness": {
+          "S": [
+            3,
+            0
+          ],
+          "active_union": [
+            0,
+            1,
+            2
+          ],
+          "blocks": [
+            {
+              "R0": [
+                2,
+                0
+              ],
+              "R1": [
+                2,
+                2
+              ],
+              "block": "A",
+              "central": 0,
+              "pair_index": 7,
+              "support": [
+                1,
+                1
+              ],
+              "uanti": 0
+            },
+            {
+              "R0": [
+                4,
+                0
+              ],
+              "R1": [
+                6,
+                6
+              ],
+              "block": "B",
+              "central": 1,
+              "pair_index": 209,
+              "support": [
+                1,
+                2
+              ],
+              "uanti": 2
+            },
+            {
+              "R0": [
+                1,
+                0
+              ],
+              "R1": [
+                1,
+                1
+              ],
+              "block": "C",
+              "central": 0,
+              "pair_index": 1,
+              "support": [
+                1,
+                1
+              ],
+              "uanti": 0
+            }
+          ],
+          "checks": {
+            "active_union_le_9": true,
+            "common_labels": true,
+            "cost_recomputed": true,
+            "pair_support_and_anticommutation": true,
+            "tag_supported_on_active_union": true,
+            "tag_weight_recomputed": true
+          },
+          "cost": 7,
+          "orientation": [
+            0,
+            1
+          ],
+          "relative_permutation_B": 0,
+          "relative_permutation_C": 0,
+          "restore_support": 1,
+          "tag_weight": 2
+        }
+      },
+      {
+        "dp_replay": 7,
+        "local_index": 5,
+        "max_frame_support": 2,
+        "panel": "H1_n3",
+        "pass": true,
+        "recorded_C_DP": 7,
+        "recorded_C_Dplus": 8,
+        "recorded_C_Dxx": 7,
+        "sparse": 7,
+        "stats": {
+          "support1": {
+            "lower_bound_pruned": 5531,
+            "max_active_union": 3,
+            "tag_dp_candidates": 301,
+            "triples_visited": 5832
+          },
+          "support2": {
+            "lower_bound_pruned": 2789817,
+            "max_active_union": 3,
+            "tag_dp_candidates": 382,
+            "triples_visited": 2735208
+          },
+          "wall_seconds": 51.563294670000005
+        },
+        "strict_support2_improvement": true,
+        "support1": 8,
+        "witness": {
+          "S": [
+            6,
+            2
+          ],
+          "active_union": [
+            0,
+            1,
+            2
+          ],
+          "blocks": [
+            {
+              "R0": [
+                4,
+                0
+              ],
+              "R1": [
+                4,
+                4
+              ],
+              "block": "A",
+              "central": 0,
+              "pair_index": 13,
+              "support": [
+                1,
+                1
+              ],
+              "uanti": 0
+            },
+            {
+              "R0": [
+                1,
+                0
+              ],
+              "R1": [
+                3,
+                1
+              ],
+              "block": "B",
+              "central": 1,
+              "pair_index": 24,
+              "support": [
+                1,
+                2
+              ],
+              "uanti": 2
+            },
+            {
+              "R0": [
+                2,
+                2
+              ],
+              "R1": [
+                2,
+                0
+              ],
+              "block": "C",
+              "central": 0,
+              "pair_index": 10,
+              "support": [
+                1,
+                1
+              ],
+              "uanti": 0
+            }
+          ],
+          "checks": {
+            "active_union_le_9": true,
+            "common_labels": true,
+            "cost_recomputed": true,
+            "pair_support_and_anticommutation": true,
+            "tag_supported_on_active_union": true,
+            "tag_weight_recomputed": true
+          },
+          "cost": 7,
+          "orientation": [
+            0,
+            1
+          ],
+          "relative_permutation_B": 0,
+          "relative_permutation_C": 1,
+          "restore_support": 1,
+          "tag_weight": 2
+        }
+      }
+    ]
+  },
+  "result_digest": "83c08bebcb4a82c50004f3e98e4148f9962512a5dced80e97fbe1695925ac72a",
+  "schema": "ORION.Q1.R11.SparseDirectExecutableGate.v1",
+  "solver_sha256": "321622dbfe85d93cde0f742b79cf0ba2adb0e2053ba23f5ef41e00251c54258c",
+  "source_isolation": {
+    "forbidden_modules": [],
+    "forbidden_text": {
+      "global_4_pow_n_tag_sweep": false,
+      "historical_dp_symbol": false,
+      "pattern_table_4_pow_2n": false
+    },
+    "imports": [
+      "__future__",
+      "argparse",
+      "itertools",
+      "json",
+      "time",
+      "dataclasses",
+      "pathlib",
+      "typing"
+    ],
+    "pass": true
+  },
+  "terminal": "Q1_R11_EXACT_O_N9_DIRECT_SOLVER_THEOREM"
+}

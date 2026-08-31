@@ -1,0 +1,63 @@
+name: orion-14-filing-preflight
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'papers/orion-14-verified-scientific-discovery/**'
+      - 'papers/publication_closure/check_orion14_filing_preflight.py'
+      - '.github/workflows/orion-14-filing-preflight.yml'
+  push:
+    branches:
+      - chatgpt/orion-publication-closure-wave-a-20260827
+    paths:
+      - 'papers/orion-14-verified-scientific-discovery/**'
+      - 'papers/publication_closure/check_orion14_filing_preflight.py'
+      - '.github/workflows/orion-14-filing-preflight.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orion-14-filing-preflight-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-filing-preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Compile fail-closed preflight
+        run: python -m py_compile papers/publication_closure/check_orion14_filing_preflight.py
+
+      - name: Run repository filing preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/orion-14-filing-preflight"
+          mkdir -p "$out"
+          python papers/publication_closure/check_orion14_filing_preflight.py \
+            --root "$GITHUB_WORKSPACE" \
+            --as-of "$(date -u +%F)" \
+            --write-json "$out/ORION14_REPOSITORY_FILING_PREFLIGHT_V1.json" \
+            --write-md "$out/ORION14_REPOSITORY_FILING_PREFLIGHT_V1.md" \
+            | tee "$out/stdout.json"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+
+      - name: Require no patch hygiene defects
+        run: git diff --check
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-14-filing-preflight-${{ github.sha }}
+          path: ${{ runner.temp }}/orion-14-filing-preflight/
+          if-no-files-found: error
+          retention-days: 30

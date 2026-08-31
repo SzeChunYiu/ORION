@@ -1,0 +1,68 @@
+name: orion-14-filing-preflight-publish
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orion-14-filing-preflight-publish
+  cancel-in-progress: false
+
+jobs:
+  verify-and-publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: chatgpt/orion-publication-closure-wave-a-20260827
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run exact repository filing preflight
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/orion-14-filing-preflight"
+          mkdir -p "$out"
+          python -m py_compile papers/publication_closure/check_orion14_filing_preflight.py
+          python papers/publication_closure/check_orion14_filing_preflight.py \
+            --root "$GITHUB_WORKSPACE" \
+            --as-of "$(date -u +%F)" \
+            --write-json "$out/REPOSITORY_FILING_PREFLIGHT_V1.json" \
+            --write-md "$out/REPOSITORY_FILING_PREFLIGHT_V1.md"
+          sha256sum "$out"/* > "$out/SHA256SUMS"
+          git diff --check
+
+      - name: Publish current receipt without mutating the paper package
+        shell: bash
+        run: |
+          set -euo pipefail
+          target='papers/publication_closure/receipts/ORION-14'
+          mkdir -p "$target"
+          cp "$RUNNER_TEMP/orion-14-filing-preflight/REPOSITORY_FILING_PREFLIGHT_V1.json" "$target/REPOSITORY_FILING_PREFLIGHT_V1.json"
+          cp "$RUNNER_TEMP/orion-14-filing-preflight/REPOSITORY_FILING_PREFLIGHT_V1.md" "$target/REPOSITORY_FILING_PREFLIGHT_V1.md"
+          cp "$RUNNER_TEMP/orion-14-filing-preflight/SHA256SUMS" "$target/SHA256SUMS"
+          printf '%s\n' 'REPOSITORY_FILING_PREFLIGHT_V1' > "$target/LATEST"
+          git diff --check
+          if git diff --quiet -- "$target"; then
+            echo 'ORION-14 filing preflight receipt already current'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target"
+          git commit -m 'papers(publication): record ORION-14 repository filing preflight'
+          git push origin HEAD:chatgpt/orion-publication-closure-wave-a-20260827
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orion-14-filing-preflight-published-${{ github.sha }}
+          path: ${{ runner.temp }}/orion-14-filing-preflight/
+          if-no-files-found: error
+          retention-days: 30
