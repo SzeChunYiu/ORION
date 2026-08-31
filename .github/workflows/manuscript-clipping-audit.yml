@@ -95,6 +95,32 @@ jobs:
             echo "::error::expected 21 manuscript entry points, found ${#entries[@]}"
             exit 1
           }
+          # ORION-05's committed PDF is a curated, de-identified artifact whose
+          # title and author deliberately differ from its source, so it can never
+          # equal a source rebuild. Rendering it here and demanding a byte match
+          # is what turned main red once already; #1918 is that revert.
+          # tests/unit/programme/test_render_path_respects_curated_pdfs.py owns
+          # the CURATED_PDF set and now also reads this exclusion list, so the
+          # two rules stay in agreement instead of contradicting each other.
+          # CURATED_EXCLUDE: orion-05-tare-expressivity
+          curated=(orion-05-tare-expressivity)
+          keep=()
+          for entry in "${entries[@]}"; do
+            skip=""
+            for c in "${curated[@]}"; do
+              case "$entry" in papers/"$c"/*) skip=1 ;; esac
+            done
+            if [ -n "$skip" ]; then
+              echo "skipping curated committed PDF: $entry"
+            else
+              keep+=("$entry")
+            fi
+          done
+          entries=("${keep[@]}")
+          test "${#entries[@]}" -eq 20 || {
+            echo "::error::expected 20 renderable entry points after curated exclusion, found ${#entries[@]}"
+            exit 1
+          }
           for entry in "${entries[@]}"; do
             manuscript_dir="$(dirname "$entry")"
             # A PDF-only artifact-import commit must not move its own render
@@ -129,7 +155,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git diff --exit-code -- ':(glob)papers/orion-??-*/manuscript/main.pdf' || {
+          # The curated paper is excluded from the rebuild above, so it is also
+          # excluded here: nothing rebuilt it, and its committed bytes are pinned
+          # by tests/unit/publication/test_orion05_wave1_manuscript_surface.py
+          # rather than by equality with a render.
+          git diff --exit-code -- ':(glob)papers/orion-??-*/manuscript/main.pdf' \
+            ':(exclude)papers/orion-05-tare-expressivity/manuscript/main.pdf' || {
             echo '::error::tracked manuscript PDF bytes are stale relative to the clean pinned rebuild'
             exit 1
           }
