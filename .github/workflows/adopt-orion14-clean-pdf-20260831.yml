@@ -1,0 +1,37 @@
+name: adopt-orion14-clean-pdf-20260831
+
+on:
+  push:
+    branches:
+      - publication/orion-13-14-19-postmerge-package-repair-20260831
+    paths:
+      - .github/workflows/adopt-orion14-clean-pdf-20260831.yml
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  adopt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: publication/orion-13-14-19-postmerge-package-repair-20260831
+      - name: Copy audited clean rebuild
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api /repos/${GITHUB_REPOSITORY}/actions/artifacts/9753414648/zip > /tmp/rebuilt.zip
+          mkdir -p /tmp/rebuilt
+          unzip -q /tmp/rebuilt.zip -d /tmp/rebuilt
+          src=/tmp/rebuilt/orion-14-verified-scientific-discovery/manuscript/main.pdf
+          dst=papers/orion-14-verified-scientific-discovery/manuscript/main.pdf
+          test "$(git hash-object "$src")" = 0b349c24790c86d8e2cc93488b3eb182f7d1cdda
+          cp "$src" "$dst"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$dst"
+          git commit -m 'papers(orion-14): adopt clean audited manuscript PDF'
+          git push origin HEAD:publication/orion-13-14-19-postmerge-package-repair-20260831
