@@ -57,10 +57,21 @@ result narrowed what this paper may claim; it did not widen it.
 
 ## Frozen content surface
 
-The content packet consists of `manuscript/main.tex` and its sections,
-`CLAIM_EVIDENCE_LEDGER.md`, `PEER_REVIEW_READINESS.md`,
-`P11_ACTIVE_CLAIM_AUTHORITY_V2.json` and the evidence it binds, the adverse
+The content packet is the set bound by `CONTENT_MANIFEST_V1.json` against
+`SHA256SUMS`: `MANUSCRIPT.md`, `CLAIM_EVIDENCE_LEDGER.md`, the manuscript build
+tree, and the full P11C–P11I protocol, receipt and result chain, together with
+`PEER_REVIEW_READINESS.md`, `P11_ACTIVE_CLAIM_AUTHORITY_V2.json`, the adverse
 integration checker `check_p11_adverse_integration_v2.py`, and this addendum. The
+checker enforces its own required-paths-in-manifest condition over the authority
+JSON, the manuscript and the query bindings, so the packet cannot quietly shed a
+member.
+
+This paper has **no `submission/` directory and no venue decision**, unlike its
+bounded siblings. It is frozen as an external-review-ready controlled result, not
+as a filing packet, and three checklist items remain explicitly unchecked: a
+learned non-oracle compiler, full end-to-end compiler accounting in a real system,
+and a smaller-real-reasoner versus larger-universal-reasoner matched-cost
+replication. The
 ORION-21 claim is about moving structural search between representation construction
 and downstream use under a stated width condition; it does not own the
 responsibility-transport results of its sibling papers.
