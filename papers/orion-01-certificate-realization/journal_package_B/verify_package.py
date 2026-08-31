@@ -1,41 +1,38 @@
 #!/usr/bin/env python3
-from __future__ import annotations
-import hashlib
+import argparse, hashlib, json
 from pathlib import Path
-import sys
 
-HERE = Path(__file__).resolve().parent
-REPO = HERE.parents[2]
+p = argparse.ArgumentParser()
+p.add_argument('--require-render', action='store_true')
+a = p.parse_args()
+root = Path(__file__).resolve().parent
+m = json.loads((root/'SUBMISSION_MANIFEST.json').read_text())
 
-FILES = {
-    "SOURCE.md": (REPO / "papers/orion-01-certificate-realization/theory-B-MANUSCRIPT_V2.md", "286e49f0ba93b21f4d2bc140390b254d7b64f3c4abf001a24fcc79b26c544988"),
-    "CLAIM_LEDGER.md": (REPO / "papers/orion-01-certificate-realization/theory-B-CLAIM_LEDGER_R2.md", "d0a9539d27321dceb22df2717c795cede7358040537f2ded023fa5aa41446ea3"),
-}
+def git_blob(data: bytes) -> str:
+    return hashlib.sha1(f'blob {len(data)}\0'.encode()+data).hexdigest()
 
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def fail(msg: str):
+    raise SystemExit('FAIL: '+msg)
 
-def main() -> int:
-    for packaged_name, (canonical, expected) in FILES.items():
-        packaged = HERE / packaged_name
-        if not canonical.is_file() or not packaged.is_file():
-            print(f"CANNOT_CHECK missing file: {canonical if not canonical.is_file() else packaged}", file=sys.stderr)
-            return 3
-        if packaged.read_bytes() != canonical.read_bytes():
-            print(f"RED byte drift: {packaged_name} != {canonical}", file=sys.stderr)
-            return 2
-        got = sha256(packaged)
-        if got != expected:
-            print(f"RED sha256 mismatch for {packaged_name}: {got} != {expected}", file=sys.stderr)
-            return 2
-    required = ["COMPILE.md", "build.sh", "DATA_CODE_AVAILABILITY.md", "LICENSE_STATUS.md",
-                "COVER_LETTER_DRAFT.md", "SUBMISSION_MANIFEST.json"]
-    missing = [name for name in required if not (HERE / name).is_file()]
-    if missing:
-        print("CANNOT_CHECK missing package files: " + ", ".join(missing), file=sys.stderr)
-        return 3
-    print("ORION01_PACKAGE_SOURCE_BINDING_GREEN")
-    return 0
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+for local, key in [('SOURCE.md','canonical_source'),('CLAIM_LEDGER.md','canonical_claim_ledger')]:
+    lp = root/local; cp = (root/m[key]).resolve()
+    if not lp.is_file() or not cp.is_file(): fail(f'missing {local} or canonical source')
+    data = lp.read_bytes(); canon = cp.read_bytes()
+    if data != canon: fail(f'{local} differs from {m[key]}')
+    got = git_blob(data); want = m['git_blob_sha1'][local]
+    if got != want: fail(f'{local} git blob {got} != manifest {want}')
+if not (root/'SOURCE.md').read_text(errors='replace').startswith('# '+m['title']): fail('title/source mismatch')
+for name in ['README.md','SUBMISSION_MANIFEST.json','verify_package.py','build.sh','COMPILE.md','REPRODUCIBILITY.md','FILING_CHECKLIST.md','COVER_LETTER_DRAFT.md','DATA_CODE_AVAILABILITY.md','LICENSE_STATUS.md']:
+    if not (root/name).is_file(): fail(f'missing required file {name}')
+if a.require_render:
+    pdf = root/m['render']['pdf']; sums = root/m['render']['checksums']
+    if not pdf.is_file() or not sums.is_file(): fail('render or checksum receipt missing')
+    if not pdf.read_bytes().startswith(b'%PDF-'): fail('main.pdf lacks PDF signature')
+    expected = {}
+    for line in sums.read_text().splitlines():
+        fields=line.split()
+        if len(fields)>=2: expected[fields[-1].lstrip('*')] = fields[0]
+    for name in ['SOURCE.md','CLAIM_LEDGER.md',m['render']['pdf']]:
+        got=hashlib.sha256((root/name).read_bytes()).hexdigest()
+        if expected.get(name) != got: fail(f'SHA256 receipt mismatch for {name}')
+print(json.dumps({'paper_id':m['paper_id'],'source_blob':m['git_blob_sha1']['SOURCE.md'],'ledger_blob':m['git_blob_sha1']['CLAIM_LEDGER.md'],'render_required':a.require_render,'status':'PASS'}, sort_keys=True))

@@ -1,57 +1,11 @@
 {
-  "authority": {
-    "external_independent_proof_review": false,
-    "external_replication": false,
-    "scientific_authority_delta": "NONE",
-    "submission_authority": false,
-    "top_tier_authority": false
-  },
-  "base_commit": "d138a05c83754cc76c304205c401fdda03f41e6e",
-  "build": {
-    "command": "./build.sh",
-    "pdf_committed": true,
-    "pdf_engine_actual": "tectonic 0.15.0",
-    "pdf_engine_declared": "pdflatex",
-    "pdf_engine_substitution_note": "build.sh declares --pdf-engine=pdflatex; pdflatex/latexmk are unavailable on the build host, so the committed review render was produced by the equivalent pandoc invocation with --pdf-engine=tectonic. Frozen canonical source bytes are unchanged and verify_package.py remains GREEN. filing_time_open item 'run build in clean environment and retain resulting PDF/hash' is NOT discharged by this render.",
-    "review_pdf_output": "main.pdf",
-    "review_pdf_sha256": "7d84ce47e28cc3f6af0a54ed25dd0a366fe5250355372fe9ca3d0c5d5a8511bd"
-  },
-  "canonical_claim_ledger": {
-    "path": "papers/orion-01-certificate-realization/theory-A-CLAIM_LEDGER_R2.md",
-    "sha256": "3c2a7771774856e2de2d18cf38f2b62c0e069301925a40624105349dd46d03db"
-  },
-  "canonical_source": {
-    "path": "papers/orion-01-certificate-realization/theory-A-MANUSCRIPT_V2.md",
-    "sha256": "596217cfcf623b77ab77ecbd2ae0abbffdaf7ef2392cb2f8915ed790eec68365"
-  },
-  "date": "2026-08-28",
-  "filing_time_open": [
-    "run build in clean environment and retain resulting PDF/hash",
-    "final journal template conversion if required",
-    "immutable archive/DOI",
-    "licence application confirmation",
-    "corresponding author, affiliations, ORCID, funding, conflicts and declarations",
-    "author confirmation of no concurrent submission and approval",
-    "external independent proof/novelty review"
-  ],
-  "package_claim_ledger_copy": {
-    "path": "CLAIM_LEDGER.md",
-    "sha256": "3c2a7771774856e2de2d18cf38f2b62c0e069301925a40624105349dd46d03db"
-  },
-  "package_files": {
-    "COMPILE.md": {"sha256": "4ef13e33c7e9133b8b38498a858c6320b3be300ba7d25ac539fc59b1f1b5937f"},
-    "COVER_LETTER_DRAFT.md": {"sha256": "b311bd62d98e6d3782fcc2b1b605dda611cbb40c3b6a7620379b80d40f583ca1"},
-    "DATA_CODE_AVAILABILITY.md": {"sha256": "b1e587378e39e245ed4d77566d79c2e7a3b12f90d08b363d0f322442085f68fd"},
-    "LICENSE_STATUS.md": {"sha256": "58fb379f4aaf83629d01de4e08f04209ffd7bb1de0c87628d5b6e701c9f2330b"},
-    "README.md": {"sha256": "18ffd734237fe9ad396cf0caf4e7e817de64530023c64033809c8c43e0c94d9e"},
-    "build.sh": {"sha256": "4be681b1adc04b0f7aee2d9e8090cac5ed4da6a69da5aadfae8a496bf6177638"},
-    "verify_package.py": {"sha256": "9c11ed090df9990c32d1b14583c749864c876c5c91fc9642ba1b056dd83ff33b"}
-  },
-  "package_source_copy": {
-    "path": "SOURCE.md",
-    "sha256": "596217cfcf623b77ab77ecbd2ae0abbffdaf7ef2392cb2f8915ed790eec68365"
-  },
-  "paper": "A",
-  "schema": "ORION.ORION01.JournalPackageManifest.v1",
-  "title": "Alphabet-Davenport Normal Forms for Multi-Tag Quantum Compilation"
+  "schema_version": 2,
+  "paper_id": "ORION-01A",
+  "title": "Restore-Sensitive Support Normal Forms for Multi-Tag Quantum Compilation",
+  "canonical_source": "../theory-A-MANUSCRIPT_V3.md",
+  "canonical_claim_ledger": "../theory-A-CLAIM_LEDGER_V3.md",
+  "git_blob_sha1": {"SOURCE.md": "f9f2de6b6a3b8102c9c1d51954b2f46a4f382fdf", "CLAIM_LEDGER.md": "ac4b66c3ecb41546ab8bf2aa01d3737ecd7cf00d"},
+  "render": {"script": "build.sh", "pdf": "main.pdf", "checksums": "BUILD_SHA256SUMS"},
+  "authority": {"claim_ceiling": "CLAIM_LEDGER.md", "preserve_negative_results": true, "no_new_science_in_closure": true},
+  "filing_time_inputs": ["author-affiliation-ORCID", "target-journal-style", "conflict-and-funding-declarations", "publication-licence", "immutable-archive-identifier-if-required"]
 }

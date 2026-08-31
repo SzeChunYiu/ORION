@@ -1,25 +1,11 @@
-# ORION-01 Paper B journal package
+# ORION-01B journal package — V3
 
-**Canonical title:** *Exact Certificate Complexity versus Intrinsic Support in Quantum Compilation*  
-**Primary venue intent:** Quantum  
-**Stretch venue:** PRX Quantum only under an external exceptional-significance judgement  
-**Scientific status:** bounded high-selectivity specialist candidate with exact tight-vs-loose controls; no top-tier authority granted by this package.
+**Title:** Certifiable Support Budgets versus Intrinsic Support in Quantum Compilation
 
-`SOURCE.md` and `CLAIM_LEDGER.md` are byte-identical copies of the frozen canonical source and R2 ledger. Run `python verify_package.py` before any build or submission.
+This package is the journal-facing V3 package. `SOURCE.md` is byte-identical to `../theory-B-MANUSCRIPT_V3.md`; `CLAIM_LEDGER.md` is byte-identical to `../theory-B-CLAIM_LEDGER_V3.md`. The claim ledger is the authority ceiling.
 
-This package closes repository-side packaging scaffolding only. It does not clear the external proof-review, novelty/editorial, archive/DOI, licence-confirmation, or human-author-metadata gates.
+The closure pass does not add science. It preserves the distinction between proof-system-relative certifiable support budgets and intrinsic support, plus all negative and forbidden boundaries. It does not promote donor zero-sum theory, generic certificate complexity, or unrestricted proof-system lower bounds as ORION novelty.
 
-## Files
+Run `python verify_package.py` before editing and `./build.sh` to generate and validate `main.pdf`. A filing build is closed only when `python verify_package.py --require-render` passes.
 
-- `SOURCE.md` — exact package copy of canonical manuscript
-- `CLAIM_LEDGER.md` — exact package copy of canonical claim ledger
-- `COMPILE.md` / `build.sh` — one-command review-PDF path
-- `DATA_CODE_AVAILABILITY.md` — paper-local availability language
-- `LICENSE_STATUS.md` — explicit filing-time licence confirmation gate
-- `COVER_LETTER_DRAFT.md` — claim-consistent draft with human placeholders
-- `SUBMISSION_MANIFEST.json` — exact package/source binding
-- `verify_package.py` — fail-closed source/ledger binding check
-
-## Stop rule
-
-Do not reopen the science merely because final journal production remains. Any future scientific expansion requires a new externally testable question rather than another internal theorem polish.
+Human filing inputs remain deliberately unfilled: author/affiliation/ORCID metadata, target-journal style, conflict/funding declarations, publication licence choice, and immutable archive/DOI where required. These are administrative inputs, not scientific authority.

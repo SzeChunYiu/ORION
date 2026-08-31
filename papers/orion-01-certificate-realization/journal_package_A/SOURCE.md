@@ -1,164 +1,154 @@
-# Alphabet-Davenport Normal Forms for Multi-Tag Quantum Compilation
+# Restore-Sensitive Support Normal Forms for Multi-Tag Quantum Compilation
+
+**ORION-01A — scientific successor manuscript V3**  
+**Supersedes for journal science:** `theory-A-MANUSCRIPT_V2.md`  
+**Preserves:** all V2 results, negative boundaries, and frozen provenance
 
 ## Abstract
 
-Finite-support normal forms make exact quantum compiler optimization enumerable, but a rank bound can obscure the more general combinatorial object controlling deletion. We formulate that object for a finite abelian signature group. For an allowed signature alphabet `A subset H`, let `zsf(H;A)` be the maximum length of a sequence over `A` containing no nonempty zero-sum subsequence. Consider any compiler grammar in which active coordinates carry signatures in `A`, the total signature of each constrained generator is nonzero, and deletion of a zero-signature subword preserves feasibility without increasing the objective. We prove that every admitted instance has an exact optimum with support at most `zsf(H;A)`. The proof is an iterative proper-subword deletion; nonzero total signature prevents the removable zero-sum subword from being the whole generator. For `H=F_2^d`, `zsf(H;A)<=d`, and equality holds whenever `A` contains a basis. Thus the familiar constraint-rank normal form is a sharp corollary for the deletion language rather than the primitive theorem.
+Support bounds in exact quantum compilation often arise from a restricted deletion proof rather than from an intrinsic lower bound of the compiler. We isolate that distinction for a MultiTag-TARE grammar. The combinatorial zero-sum invariant used in the proof is donor mathematics: for a finite abelian signature group `H` and a fixed allowed alphabet `A`, let `zsf(H;A)` be the longest zero-sum-free sequence over `A`. The new content is the compiler-side contract that makes this donor invariant usable.
 
-We instantiate the result in an explicit arbitrary-block MultiTag-TARE grammar. With `b>=2` ordered blocks, `s>=0` shared Tags, minimum frame coefficient `mu`, and Restore coefficient `t_R`, changing one local letter increases the `b`-way Restore functional by at most `b-1`, exactly. Hence throughout
+We state the deletion theorem with the quantifiers needed by a real compiler: each generator has an instance-level alphabet fixed before optimization; a legal deletion preserves feasibility of the whole instance; and repeated deletions cannot increase any generator's support. Starting from an optimum and applying admissible zero-sum deletions until a global fixed point is reached gives one optimum satisfying the `zsf` ceiling simultaneously for every constrained generator. In an elementary binary quotient this implies the familiar rank ceiling, but that rank statement is explicitly binary-specific and is not itself novel.
 
-`mu >= (b-1)t_R`,
+For the registered arbitrary-block MultiTag grammar, one frame-support deletion changes one argument of one charged local `b`-way Restore term. The exact one-argument sensitivity of that term is `b-1`; therefore the objective-deletion cone is
 
-every instance has an optimum satisfying
+`mu >= (b-1)t_R`.
+
+Inside this cone, every admitted instance has an optimum with
 
 `support(R) <= zsf(H_R;A_R) <= rank(H_R) <= s+1`
 
-for every frame `R`, with the middle rank inequality specialized to the elementary binary signature quotient. The one-Tag, three-block R6M specialization remains sharply intrinsic with `kappa_R6M=2`. No sharpness is claimed for multiple Tags or outside the proof-validity cone. The result reframes constraint rank as one computable instance of an alphabet-sensitive zero-sum certificate and exposes which part of the theorem belongs to compiler semantics, which to the objective, and which to the proof language.
+for every frame `R`, where `A_R` is the fixed instance-level signature alphabet and `H_R=<A_R>`. The frozen one-Tag, three-block R6M family is the sharp control: the certificate ceiling is two and independent compiler evidence establishes intrinsic support `kappa_R6M=2`. We do not claim general MultiTag sharpness, necessity outside the cone, or physical quantum advantage.
 
-## 1. Introduction
+## 1. Scientific question and novelty boundary
 
-TARE is an upstream block-encoding construction. It exposes frame, Tag, branch, and Restore choices; this paper studies exact normal forms for those auxiliary choices and assigns no novelty to the donor primitive.
+The question is not whether Davenport-type zero-sum thresholds exist; they do, and that mathematics is prior work. The question is what a compiler must establish before such a threshold becomes a valid simultaneous normal form under its semantics and objective.
 
-A common compiler proof attaches a finite binary syndrome to each active coordinate. If support exceeds syndrome dimension, linear dependence yields a removable zero-syndrome subset. The resulting dimension can look intrinsic, but the argument actually uses only two facts: sufficiently long signature words contain a zero-sum subword, and deleting that subword is non-increasing. This observation suggests replacing ambient rank by an alphabet-sensitive zero-sum invariant.
+The surviving paper-level contributions are therefore:
 
-That replacement matters in three ways. First, it applies to finite abelian signature groups beyond elementary binary quotients. Second, even inside `F_2^d`, a restricted realized alphabet can have a smaller zero-sum-free ceiling than the ambient dimension. Third, it separates a combinatorial certificate from the objective inequality that licenses deletion.
+1. an explicit whole-instance deletion contract and global fixed-point proof that yields simultaneous support ceilings;
+2. the exact Restore sensitivity `b-1` and resulting objective cone for the stated MultiTag grammar;
+3. the compiler-specific separation between certificate ceiling and intrinsic support, with R6M as a sharp control.
 
-### 1.1 Contributions
+The following are **not** claimed as novel: Davenport constants, zero-sum-free sequence theory, the binary rank corollary, generic proof-system-relative complexity, or sparse-support theory.
 
-1. **Alphabet-Davenport deletion theorem.** `zsf(H;A)` is a universal support ceiling for every deletion-dominant grammar with nonzero total signature.
-2. **Binary rank corollary.** For `F_2^d`, `zsf<=d`; a realized basis makes the deletion-language ceiling exactly `d`.
-3. **Arbitrary-block MultiTag instantiation.** The exact local Restore sensitivity is `b-1`, giving the cone `mu>=(b-1)t_R` and an instance-adaptive realized-alphabet ceiling.
-4. **Sharp one-Tag control.** R6M has intrinsic support two by independent upper and lower evidence.
-5. **Boundary semantics.** The paper distinguishes alphabet ceiling, realized rank, intrinsic support, objective cone, and physical resources.
+## 2. Fixed alphabets and zero-sum-free sequences
 
-## 2. The alphabet zero-sum invariant
+Let `H` be a finite abelian group written additively and let `A subseteq H` be a finite alphabet fixed independently of the optimum being bounded. A **subsequence** means an arbitrary sub-multiset of positions; it need not be contiguous.
 
-Let `H` be a finite abelian group written additively, and let `A subseteq H` be a finite allowed alphabet. A word over `A` is **zero-sum-free** when none of its nonempty subwords has sum zero. Define
+A sequence over `A` is zero-sum-free if no nonempty subsequence has sum zero. Define
 
-`zsf(H;A) = max{|W| : W is a zero-sum-free word over A}`.
+`zsf(H;A) = max({0} union {|W| : W is zero-sum-free over A})`.
 
-This is a subset/alphabet Davenport invariant. We use the explicit `zsf` notation to avoid conflating it with several established weighted, universal, or subset Davenport conventions.
+The explicit zero in the maximum handles degenerate alphabets. For the full nonzero alphabet the object reduces to the standard small-Davenport threshold; for restricted alphabets it is an alphabet-specific variant. We use `zsf` only as notation for this donor-owned combinatorial object.
 
-For `A=H\{0}`, `zsf(H;A)=D(H)-1`. For a smaller alphabet it may be strictly lower. The invariant concerns words with repetition, matching compiler coordinates.
+## 3. Simultaneous deletion theorem
 
-## 3. General deletion theorem
-
-Fix an optimization grammar. For each constrained generator `R`, every active coordinate `q` carries a signature `v_q in A_R subseteq H_R`.
+Fix one optimization instance. For each constrained generator `R`, let `A_R` be the set of signatures realizable by any admissible local state of that instance, fixed before optimization, and let every active coordinate of `R` carry `v_q in A_R subseteq H_R`.
 
 Assume:
 
-1. **nonzero total:** `sum_q v_q != 0` for every feasible constrained generator;
-2. **zero-sum deletion soundness:** setting `R` to identity on any nonempty zero-sum subword preserves all semantic constraints represented by the signatures;
-3. **deletion dominance:** the same operation does not increase the objective.
+1. **nonzero total:** every feasible constrained generator satisfies `sum_q v_q != 0`;
+2. **whole-instance deletion soundness:** deleting any nonempty zero-sum subsequence of coordinates of `R` preserves all constraints of the full instance, not only constraints local to `R`;
+3. **objective dominance:** the same deletion does not increase the objective;
+4. **support monotonicity:** deleting coordinates of one generator does not activate coordinates of another generator or otherwise increase any generator's support.
 
-**Theorem 1 (alphabet-Davenport normal form).** Every admitted instance has an exact optimum in which
+**Theorem 1 (simultaneous alphabet ceiling).** Every admitted instance has an exact optimum such that, simultaneously for every constrained generator `R`,
 
-`support(R) <= zsf(H_R;A_R)`
+`support(R) <= zsf(H_R;A_R)`.
 
-for every constrained generator `R`.
+**Proof.** Start from any optimum. If some generator `R` has a signature sequence longer than `zsf(H_R;A_R)`, it contains a nonempty zero-sum subsequence. Since the total signature of `R` is nonzero, that subsequence cannot be the whole active sequence. Delete it. Assumptions 2 and 3 preserve feasibility and optimality, while total support strictly decreases and no other support increases by Assumption 4. Repeat whenever any generator remains reducible. Total support is a nonnegative integer, so the process terminates at a global fixed point. At that fixed point no generator contains a nonempty zero-sum subsequence; hence every generator's active signature sequence is zero-sum-free over its fixed alphabet and has length at most `zsf(H_R;A_R)`. This one terminal optimum satisfies all generator bounds simultaneously. ∎
 
-**Proof.** Start from an optimum. If the signature word of `R` is longer than `zsf(H_R;A_R)`, it contains a nonempty zero-sum subword. Because the total signature is nonzero, that subword is proper. Delete its coordinates. Soundness preserves feasibility and dominance preserves optimality. Support strictly decreases, so iteration terminates at a word of length at most `zsf(H_R;A_R)`. Repeat for every generator. ∎
+This global fixed-point argument is the required quantifier step; a one-pass instruction to “repeat for every generator” is not sufficient when generators may share constraints.
 
-The theorem is intentionally abstract but not vacuous: all compiler-specific work is concentrated in the signature map, the nonzero-total invariant, and the objective accounting needed for deletion dominance.
+## 4. Binary rank is only a corollary
 
-## 4. Rank is a binary corollary
+If `H=F_2^d`, any sequence of more than `d` vectors is linearly dependent. The dependent positions form a nonempty zero-XOR subsequence, so
 
-Let `H=F_2^d`. Every word longer than `d` is linearly dependent, hence has a nonempty zero-XOR subword. Therefore
+`zsf(F_2^d;A) <= d`.
 
-`zsf(F_2^d;A) <= d`
+If `A` contains a basis, equality holds for the abstract deletion language.
 
-for every alphabet `A`. If `A` contains a basis, the basis word is zero-sum-free, so equality holds.
+This statement is specific to elementary binary groups. It must not be generalized to arbitrary finite abelian groups: for example, in `Z_n` with alphabet `{1}`, the sequence of `n-1` ones is zero-sum-free even though the group has rank one.
 
-**Corollary 2.** In an elementary binary signature system, an ambient rank-`d` deletion theorem is exact for the deletion language whenever a basis word is allowed. It is intrinsic to the compiler only if a separate compiler lower witness establishes necessity.
+A rank ceiling becomes an intrinsic compiler statement only after a separate compiler lower witness.
 
-This distinction is developed fully in Paper B.
+## 5. MultiTag-TARE grammar and the nonzero-total invariant
 
-## 5. MultiTag-TARE grammar
-
-Fix `b>=2` ordered two-target blocks and `s>=0` shared Tag Paulis `S_1,...,S_s`. Each frame Pauli `R` has an anticommuting partner `R'`. At every active coordinate define the binary signature
+Fix `b>=2` ordered blocks and `s>=0` shared Tag Paulis `S_1,...,S_s`. Each constrained frame Pauli `R` has an anticommuting partner `R'`. At an active frame coordinate `q`, define
 
 `v_q=(<R_q,R'_q>,<S_1q,R_q>,...,<S_sq,R_q>) in F_2^(s+1)`.
 
-The XOR of the first components is one, so total signature is nonzero.
+The XOR of the first components equals the global binary symplectic product `<R,R'>`. Since `R` and `R'` anticommute, `<R,R'>=1`, and therefore the total signature is nonzero. This discharges Theorem 1's first assumption for the registered grammar.
 
-The structural objective contains frame support charged by coefficients at least `mu`, arbitrary nonnegative Tag-support charges, and coefficient `t_R>=0` times the local `b`-way Restore functional
+For each frame `R`, define `A_R` at the instance level as the set of signatures realizable by any admissible local frame state, not the alphabet observed in a particular optimum. Set `H_R=<A_R>`.
+
+## 6. Exact Restore sensitivity
+
+The local Restore term is
 
 `F_b(a_1,...,a_b)=1`
 
-when all letters are the same nonidentity Pauli, and otherwise the number of nonidentity letters.
+when all `b` letters are the same nonidentity Pauli, and otherwise equals the number of nonidentity letters.
 
-## 6. Exact local Restore sensitivity
+**Lemma 2 (one-argument sensitivity).** Replacing one argument of `F_b` can increase its value by at most `b-1`, and the bound is attained whenever the local Pauli alphabet contains at least two distinct nonidentity letters.
 
-**Lemma 3.** Replacing one argument of `F_b` increases its value by at most `b-1`, and the bound is attained.
+**Proof.** Away from the all-equal nonidentity state, changing one argument changes ordinary nonidentity Hamming weight by at most one. Entering the special state lowers the value. Leaving the all-equal nonidentity state by replacing one letter with a different nonidentity letter changes the value from `1` to `b`, giving the exact increase `b-1`. ∎
 
-**Proof.** Away from the all-equal nonidentity state, `F_b` is ordinary nonidentity Hamming weight, so one replacement raises it by at most one. Entering the special state lowers the value to one. Leaving that state while keeping the changed letter nonidentity changes the value from one to `b`, giving the exact increase `b-1`. ∎
+The registered MultiTag incidence contract assigns a frame-support deletion to exactly one argument replacement in exactly one charged local `F_b` term. This incidence is part of the grammar; without it the following objective cone would have to be multiplied by the number of affected Restore terms.
 
-The additive verifier exhausts all local Pauli tuples for `b=2,...,7`; the all-`b` authority is the proof.
+## 7. Restore-sensitive MultiTag normal form
 
-## 7. MultiTag normal form
+The objective charges each active frame coordinate by at least `mu`, includes arbitrary nonnegative Tag-support terms, and charges the local Restore term by `t_R>=0`.
 
-Let `A_R` be the alphabet actually realized by the local partner/Tag signatures of frame `R`, and let `H_R` be its generated subgroup.
+Deleting `k` frame coordinates in a sound zero-sum subsequence refunds at least `k mu`. By the incidence contract and Lemma 2 it adds at most `k(b-1)t_R` in Restore cost. Hence deletion is non-increasing whenever
 
-**Theorem 4.** If
+`mu >= (b-1)t_R`.
 
-`mu >= (b-1)t_R`,
-
-then every admitted MultiTag-TARE instance has an exact optimum in which
+**Theorem 3 (MultiTag support normal form).** Under the registered grammar and incidence contract, if `mu >= (b-1)t_R`, every admitted instance has an exact optimum satisfying
 
 `support(R) <= zsf(H_R;A_R) <= rank(H_R) <= s+1`
 
-for every frame.
+simultaneously for every frame `R`.
 
-**Proof.** A zero-signature subword preserves partner anticommutation and every Tag label; Tags themselves remain fixed. Each deleted coordinate refunds at least `mu` in frame cost and can add at most `(b-1)t_R` in Restore cost by Lemma 3. Thus the deletion is non-increasing in the stated cone. Theorem 1 applies. Since `H_R` is an elementary binary subgroup of `F_2^(s+1)`, its zero-sum-free ceiling is at most its rank. ∎
+**Proof.** Zero signature preserves the partner and Tag constraints by the registered semantic map. The objective calculation above establishes deletion dominance. Theorem 1 then gives the simultaneous `zsf` ceiling. Because `H_R` is an elementary binary subgroup of `F_2^(s+1)`, Section 4 gives the rank bounds. ∎
 
-The first inequality can be strictly stronger than realized rank when the allowed signature alphabet lacks a basis of its generated subgroup. This is the new alphabet-sensitive refinement.
+The first inequality may be strictly stronger than rank when the fixed admissible alphabet does not realize a basis of its generated subgroup.
 
-## 8. Sharp R6M specialization
+## 8. Sharp R6M control
 
-For the frozen one-Tag, three-block R6M grammar,
+For the frozen one-Tag, three-block R6M family,
 
 `b=3`, `s=1`, `mu=2`, `t_R=1`.
 
-The objective sits on the cone boundary. The signature alphabet realizes a basis of `F_2^2`, so the deletion certificate ceiling is two. Independent all-size upper and exact lower results give
+The objective lies on the cone boundary. The registered signature alphabet realizes a basis of `F_2^2`, so the rank-only deletion ceiling is two. The commit-bound A1 parent evidence supplies the all-size upper result and the independent support-one obstruction needed to conclude
 
-`kappa_R6M=2`.
+`kappa_R6M=2`,
 
-Only this specialization receives an intrinsic sharpness claim.
+where `kappa` denotes the mathematical minimum uniform support bound of the compiler family under the frozen objective. This exact value is a compiler result; the zero-sum/rank argument alone would not establish it.
+
+No corresponding lower theorem is claimed for general MultiTag-TARE.
 
 ## 9. Relation to prior work
 
-Sparse optimal solutions, Davenport constants, subset/universal zero-sum invariants, finite-field dependence, Pauli symplectic algebra, and exact synthesis are established donor areas. Aliev et al. provide general objective-independent sparsity bounds for integer optimal solutions. Modern zero-sum work provides flexible invariant frameworks over selected sequence families and weights. These results own the general ideas of sparse optima and zero-sum thresholds.
+Zero-sum sequence theory owns Davenport-type thresholds and restricted-alphabet variants. Sparse integer optimization owns general support bounds for optimal solutions. Standard stabilizer formalism owns the binary symplectic signature machinery. Proof-complexity and formal-methods literatures own the general distinction between a proof system and the object it certifies.
 
-The residual theorem is the compiler-specific conjunction: a TARE-derived semantic signature, exact arbitrary-block Restore sensitivity, an objective cone, and an alphabet-sensitive support normal form with a separately sharp R6M control.
+The residual contribution is narrower: the registered TARE/MultiTag semantic signature, the exact Restore sensitivity and objective cone, the whole-instance simultaneous deletion contract, and the sharp R6M control.
 
-## 10. Reproducibility
+## 10. Reproducibility and authority
 
-The R6M parent theorem and necessity witness are commit-bound in the A1 evidence package. The R2 verifier independently checks small finite-group alphabet controls and the complete binary rank mechanism through dimension four. The analytic proofs carry all-size authority. Internal independent implementations are not described as external replication.
+The R6M parent theorem, objective ledger and necessity witness are commit-bound in the existing A1 evidence package. The finite verifiers test the local Restore function and small-group signature mechanisms, but all-size authority comes from the proofs above and from the cited R6M parent theorem. Internal independent implementations are not external replication.
 
 ## 11. Limitations
 
-1. The abstract theorem applies only where zero-sum deletion is semantics-preserving and non-increasing.
-2. `zsf(H;A)` may be hard to compute for a general alphabet.
-3. The MultiTag result is scoped to the explicit grammar and objective.
-4. Outside `mu>=(b-1)t_R`, the proof is silent; no larger-support necessity follows.
-5. General multi-Tag sharpness is open.
-6. Structural support is not physical T count, runtime, depth, qubits, or quantum advantage.
-7. Author-side donor review is not an external novelty certificate.
+1. The zero-sum object is donor mathematics; novelty is not claimed for `zsf` itself.
+2. The deletion theorem requires whole-instance soundness, objective dominance and support monotonicity.
+3. The MultiTag cone uses the explicitly stated one-deletion/one-Restore-argument incidence contract.
+4. Outside `mu >= (b-1)t_R`, the proof is silent; no larger-support necessity follows.
+5. General MultiTag sharpness is open.
+6. Structural support is not T count, depth, runtime, qubits, or quantum advantage.
+7. Submission-date donor overlap and independent specialist proof review remain external scientific checks.
 
-## 12. Discussion and conclusion
+## 12. Conclusion
 
-The most useful support bound is not always ambient rank. The exact deletion threshold is the longest zero-sum-free word that the realized signature alphabet can express. Rank supplies a simple universal upper bound in binary quotients and becomes exact when a basis is realized. This refinement makes the proof more transferable while clarifying its ontology: `zsf` and rank first measure a certificate language; only a matching compiler witness turns them into intrinsic support.
-
-For MultiTag-TARE, the number of blocks controls deletion profitability through the `b-1` Restore penalty, whereas the signature alphabet controls sufficient support. The one-Tag R6M case aligns both certificate and intrinsic complexity at two. Beyond that case, the paper reports a strong normal form without pretending that its ceiling is necessary.
-
-## Selected references
-
-- N. Schillo, A. Sturm and R. Quay, *TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation*, arXiv:2601.05740v4 (2026).
-- I. Aliev, J. A. De Loera, F. Eisenbrand, T. Oertel and R. Weismantel, *The Support of Integer Optimal Solutions*, SIAM J. Optim. 28, 2152–2157 (2018), DOI `10.1137/17M1162792`.
-- G. Wang, *The universal zero-sum invariant and weighted zero-sum for infinite abelian groups*, Commun. Algebra 53 (2025), DOI `10.1080/00927872.2024.2418017`.
-
-## Publication decision record
-
-**Primary target:** `Quantum`, whose current criteria require a very significant technical or conceptual contribution beyond the state of the art.
-**Stretch:** `PRX Quantum` only if independent editors view the alphabet-zero-sum/compiler connection as an exceptional cross-area insight.
-**R2 status:** `HIGH_SELECTIVITY_SPECIALIST_CANDIDATE__PRX_EXCEPTIONALITY_EXTERNAL`.
-**External-only gates:** full donor PDF audit, independent proof replay, final figures, exact journal packaging, archive deposition.
+The scientifically defensible result is not a new zero-sum invariant. It is a compiler theorem specifying exactly when donor zero-sum mathematics can be converted into a simultaneous support normal form. The global fixed-point proof closes the multi-generator quantifier; the instance-level alphabet removes solution-relative circularity; the Restore incidence and exact `b-1` sensitivity expose the objective condition; and R6M shows one case where the certificate ceiling is genuinely intrinsic. That bounded result is the journal object.

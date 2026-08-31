@@ -1,0 +1,85 @@
+name: ORION 01-03 publication closeout
+
+on:
+  push:
+    branches:
+      - publication/orion-01-03-final-closure-20260831
+  pull_request:
+    paths:
+      - 'papers/orion-01-certificate-realization/**'
+      - 'papers/orion-02-fiberguard-finite-fibre/**'
+      - 'papers/orion-03-typed-merge-falsification/**'
+      - 'papers/ORION_01_03_PUBLICATION_CLOSURE_V1.md'
+      - '.github/workflows/orion-01-03-publication-closeout.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  closeout:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: SzeChunYiu/academic-paper-skills
+          ref: a45568215d648e5d446a03980277d282b19e57d7
+          path: _academic_paper_skills
+      - name: Install rendering and PDF audit tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-base texlive-latex-recommended texlive-fonts-recommended qpdf poppler-utils
+      - name: Hostile manuscript-surface audit
+        run: |
+          set -euo pipefail
+          AUDIT=_academic_paper_skills/skills/nature-shared/scripts/audit_manuscript_surface.py
+          python "$AUDIT" --strict papers/orion-01-certificate-realization/journal_package_A/SOURCE.md
+          python "$AUDIT" --strict papers/orion-01-certificate-realization/journal_package_B/SOURCE.md
+          python "$AUDIT" --strict papers/orion-02-fiberguard-finite-fibre/journal_package/SOURCE.md
+          python "$AUDIT" --strict papers/orion-03-typed-merge-falsification/journal_package/SOURCE.md
+      - name: Verify canonical package bindings
+        run: |
+          python papers/orion-01-certificate-realization/journal_package_A/verify_package.py
+          python papers/orion-01-certificate-realization/journal_package_B/verify_package.py
+          python papers/orion-02-fiberguard-finite-fibre/journal_package/verify_package.py
+          python papers/orion-03-typed-merge-falsification/journal_package/verify_package.py
+      - name: Build and validate review PDFs
+        run: |
+          papers/orion-01-certificate-realization/journal_package_A/build.sh
+          papers/orion-01-certificate-realization/journal_package_B/build.sh
+          papers/orion-02-fiberguard-finite-fibre/journal_package/build.sh
+          papers/orion-03-typed-merge-falsification/journal_package/build.sh
+          for p in \
+            papers/orion-01-certificate-realization/journal_package_A/main.pdf \
+            papers/orion-01-certificate-realization/journal_package_B/main.pdf \
+            papers/orion-02-fiberguard-finite-fibre/journal_package/main.pdf \
+            papers/orion-03-typed-merge-falsification/journal_package/main.pdf; do
+            qpdf --check "$p"
+            pdfinfo "$p" | grep -E '^(Pages|Page size|File size):'
+            pdftotext "$p" - | awk 'NF {n += length($0)} END {if (n < 1000) exit 1; print "extracted_text_chars=" n}'
+          done
+      - name: Final render-required package gate
+        run: |
+          python papers/orion-01-certificate-realization/journal_package_A/verify_package.py --require-render
+          python papers/orion-01-certificate-realization/journal_package_B/verify_package.py --require-render
+          python papers/orion-02-fiberguard-finite-fibre/journal_package/verify_package.py --require-render
+          python papers/orion-03-typed-merge-falsification/journal_package/verify_package.py --require-render
+      - name: Commit validated renders to closure branch
+        if: github.event_name == 'push'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/orion-01-certificate-realization/journal_package_A/main.pdf \
+            papers/orion-01-certificate-realization/journal_package_A/BUILD_SHA256SUMS \
+            papers/orion-01-certificate-realization/journal_package_B/main.pdf \
+            papers/orion-01-certificate-realization/journal_package_B/BUILD_SHA256SUMS \
+            papers/orion-02-fiberguard-finite-fibre/journal_package/main.pdf \
+            papers/orion-02-fiberguard-finite-fibre/journal_package/BUILD_SHA256SUMS \
+            papers/orion-03-typed-merge-falsification/journal_package/main.pdf \
+            papers/orion-03-typed-merge-falsification/journal_package/BUILD_SHA256SUMS
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(papers): render validated ORION-01-03 V3 review PDFs [skip ci]'
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi

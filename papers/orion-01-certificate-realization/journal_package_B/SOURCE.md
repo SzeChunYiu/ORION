@@ -1,34 +1,38 @@
-# Exact Certificate Complexity versus Intrinsic Support in Quantum Compilation
+# Certifiable Support Budgets versus Intrinsic Support in Quantum Compilation
+
+**ORION-01B — scientific successor manuscript V3**  
+**Supersedes for journal science:** `theory-B-MANUSCRIPT_V2.md`  
+**Preserves:** all V2 results, limitations, and frozen provenance
 
 ## Abstract
 
-A finite-support certificate can be perfectly sharp for its proof language and arbitrarily loose as a description of the compiler it certifies. We formalize this separation using an alphabet-restricted zero-sum invariant. Let `H` be a finite abelian signature group and `A subseteq H` an allowed alphabet. Define `zsf(H;A)` as the maximum length of a zero-sum-free word over `A`. In the abstract deletion proof system whose legal step removes a nonempty proper zero-sum subword from a nonzero-total word, the exact uniform terminal complexity is `zsf(H;A)`: every longer word is reducible, while a maximum zero-sum-free word is a matching terminal witness. For a production compiler, this remains an exact certificate lower bound only when that witness is realizable.
+A support bound can be exact for a restricted proof system and still be loose as a description of the compiler it certifies. We make that distinction explicit in two quantum-compilation families. The generic zero-sum language is donor mathematics: for a finite abelian group `H` and fixed alphabet `A`, let `zsf(H;A)` be the maximum length of a zero-sum-free sequence over `A`. In the registered rank-only deletion proof system, `zsf(H;A)` is the exact terminal support budget when a maximum zero-sum-free word is realizable and no additional rule is available.
 
-Two quantum-compilation families provide opposite controls. In one-Tag R6M, the production signature alphabet realizes `F_2^2`, the rank-only certificate complexity is two, and independent compiler upper/lower results give intrinsic support `kappa_R6M=2`. In R6I, both production alphabets realize basis obstructions in `F_2^5`, so the rank-only certificate complexity is exactly five, while an independent whole-system Tag-relocation theorem gives intrinsic support exactly one. Hence
+The compiler quantity is different. Define intrinsic support `kappa(F,C)` as the least `k` for which every instance of compiler family `F` under objective `C` has an exact optimum of support at most `k`. Evidence that `k-1` cannot suffice is required to establish an exact numerical value, but it is not part of the definition. This makes `kappa` a mathematical property of the compiler rather than a statement about current knowledge.
+
+The main result is the matched tight/loose pair. In frozen one-Tag R6M, the rank-only certifiable support budget is two and independent compiler upper/lower evidence gives `kappa_R6M=2`. In frozen R6I under the same declared unit-objective interpretation used by its parent theorem, the rank-only system has exact budget five, while a stronger whole-system Tag-relocation theorem gives `kappa_R6I=1`. Thus
 
 `beta_rank-only(R6I)=5 > 1=kappa_R6I`.
 
-For `t` registered independent components, certificate and intrinsic budgets are `5t` and `t`; the additive gap is `4t`, and a direct support enumerator incurs an asymptotic search-volume ratio `Theta(n^(4t))` for fixed local alphabet and `t`. The result is not an unrestricted proof lower bound. It establishes a precise reporting principle: a support number belongs to the compiler only after an intrinsic lower witness; otherwise it is a property of a normalization or certificate language.
+The separation is deliberately proof-system-relative: it does not prove that every local, syndrome-preserving, or unrestricted proof system needs support five. Registered direct products amplify the same mechanism to budgets `5t` versus `t` because the product definition imposes additive support and forbids cross-component moves; the corresponding `Theta(n^(4t))` direct-enumeration ratio is a corollary of that declared search model, not an algorithm-independent lower bound. The contribution is therefore the production tight/loose control pair and the identification of the missing operation in the looser certificate language, not a new generic zero-sum or proof-complexity theory.
 
-## 1. Introduction
+## 1. Scientific question and novelty boundary
 
-Support bounds make otherwise unbounded exact compiler searches finite. Their numerical value, however, can answer three different questions:
+Three quantities are often collapsed in compiler papers:
 
-1. What support does the compiler intrinsically require?
-2. What support can a named normalization reach?
-3. What support can a restricted proof system certify?
+1. the smallest support the compiler intrinsically needs;
+2. the support reached by a named normalization;
+3. the support a restricted proof system can certify.
 
-These questions coincide in some families and diverge sharply in others. Paper A provides the positive normal-form theorem. This paper identifies its exact proof-language complexity and compares it with independently established intrinsic support.
+This paper asks when those quantities coincide and when they do not.
 
-The central refinement is to replace ambient rank by `zsf(H;A)`, the longest zero-sum-free word over the actual signature alphabet. In elementary binary systems this equals dimension when a basis is present, but the general definition makes the quantifiers and lower-witness obligation explicit.
+The generic ingredients—zero-sum thresholds, rank obstructions, proof-system-relative lower bounds, and direct products—are prior mathematics. The paper-level residual is:
 
-### 1.1 Contributions
+- a tight production control in R6M;
+- a strict production separation in R6I under an explicitly named rank-only proof system;
+- the compiler operation absent from that proof system: whole-system Tag relocation/reconstruction.
 
-1. **Exact abstract certificate theorem:** the zero-sum deletion language has terminal complexity `zsf(H;A)`.
-2. **Realization criterion:** a compiler inherits the matching lower bound only if it realizes a maximum zero-sum-free word.
-3. **Tight control:** R6M has certificate and intrinsic support both equal to two.
-4. **Strict separation:** R6I has exact rank-only certificate five and intrinsic support one.
-5. **Product/search amplification:** registered products give `5t` versus `t` and direct-enumeration ratio `Theta(n^(4t))`.
+Product amplification is reported only as a transparent corollary of the registered product construction.
 
 ## 2. Three support quantities
 
@@ -36,133 +40,135 @@ Fix a compiler family `F` and objective `C`.
 
 ### 2.1 Intrinsic support
 
-`kappa(F,C)` is the least `k` such that every instance has an exact optimum of support at most `k`, with an independent witness showing `k-1` cannot suffice.
+Define
+
+`kappa(F,C) = min { k : every instance in F has an exact optimum of support <= k }`,
+
+whenever such a uniform finite bound exists.
+
+This is a mathematical property of `(F,C)`. To prove `kappa(F,C)=k`, one needs both an upper theorem at `k` and a lower witness showing that `k-1` fails for at least one admitted instance. The witness is evidence for the value; it is not part of the definition.
 
 ### 2.2 Normalization ceiling
 
-A transformation `N` may prove every configuration has a no-more-expensive representative of support at most `B_N`. Without a matching compiler lower witness, `B_N` belongs to `(F,C,N)` rather than intrinsically to `(F,C)`.
+A transformation `N` may show that every feasible configuration has a no-more-expensive representative of support at most `B_N`. Unless a matching intrinsic lower witness is known, `B_N` belongs to `(F,C,N)` rather than to the compiler alone.
 
-### 2.3 Certificate complexity
+### 2.3 Certifiable support budget
 
-A proof system `P` restricts visible information and legal inference. `beta_P(F,C)` is the least uniform support budget that `P` can certify for its production scope. Soundness gives
+Let `P` be an explicitly registered proof system with a fixed observation language and legal rules. Define `beta_P(F,C)` as the least uniform support budget that `P` can certify over the production scope for `(F,C)`.
 
-`kappa(F,C) <= beta_P(F,C)`,
+This paper uses **certifiable support budget** rather than unqualified “certificate complexity” to avoid collision with the established Boolean-function quantity usually denoted `C(f)`.
 
-but equality is additional mathematics.
+Soundness of `P` gives
 
-## 3. Alphabet-restricted zero-sum deletion
+`kappa(F,C) <= beta_P(F,C)`
 
-Let `H` be a finite abelian group and `A subseteq H`. A certificate word `v_1...v_w` has nonzero total. The only legal shortening removes a nonempty proper subword summing to zero.
+when both quantities refer to the same compiler family and the same objective. Equality requires additional mathematics.
 
-Define
+## 3. Donor zero-sum scaffold
 
-`zsf(H;A)=max{|W|: W is a zero-sum-free word over A}`.
+Let `H` be a finite abelian group and let `A subseteq H` be fixed. A subsequence means an arbitrary nonempty subset of positions, not necessarily a contiguous factor. A sequence is zero-sum-free when no nonempty subsequence sums to zero. Define
 
-**Theorem 1 (exact abstract certificate complexity).** The maximum terminal length of the abstract deletion language over all nonzero-total words on `A` is exactly `zsf(H;A)`.
+`zsf(H;A)=max({0} union {|W| : W is zero-sum-free over A})`.
 
-**Proof.** A word longer than `zsf` contains a nonempty zero-sum subword. Its nonzero total prevents that subword from being the whole word, so a legal deletion exists. Conversely, a maximum zero-sum-free word has nonzero total and admits no deletion. ∎
+Consider the abstract deletion language whose states are nonzero-total sequences over `A` and whose only legal shortening removes a nonempty **proper** zero-sum subsequence.
 
-This theorem is generic zero-sum mathematics. The compiler question begins with realization.
+**Lemma 1 (terminal length of the registered deletion language).** The maximum terminal length is `zsf(H;A)`.
 
-**Corollary 2 (production realization).** If every production word lies over `A`, the certificate ceiling is at most `zsf(H;A)`. If a production state realizes a maximum zero-sum-free word and no other certificate rule can reduce it, the ceiling is exact.
+**Proof.** Any sequence longer than `zsf` contains a nonempty zero-sum subsequence. Because the state's total sum is nonzero, that subsequence cannot be the whole sequence, so the deletion is legal. Conversely, a maximum zero-sum-free sequence has nonzero total: if its total were zero, the whole sequence itself would be a forbidden nonempty zero-sum subsequence. It therefore belongs to the state language and has no legal deletion. ∎
 
-For `H=F_2^d`, `zsf<=d`; any alphabet containing a basis has `zsf=d`.
+This lemma is generic zero-sum mathematics and is not claimed as a new theorem of this paper.
+
+A production compiler obtains an exact `zsf`-based lower witness only when it realizes such a terminal word **and** the named proof system has no other rule that can reduce it.
 
 ## 4. Tight control: R6M
 
-A one-Tag R6M frame coordinate carries partner and Tag bits. The production alphabet realizes a basis of `F_2^2`; hence the rank-only certificate language has
+All quantities in this section use the frozen R6M unit objective bound by the parent evidence.
+
+The one-Tag R6M production signature alphabet contains a basis of `F_2^2`. In the registered rank-only proof system, the basis word is terminal and the binary dependence upper bound is two, hence
 
 `beta_rank-only(R6M)=2`.
 
-Independent all-size normalization and exact support-one obstruction results establish
+Separately, the all-size compiler normalization supplies support at most two and the committed lower witness rules out support one for an admitted instance. Therefore
 
 `kappa_R6M=2`.
 
-Therefore R6M is a tight control:
+Thus R6M is a genuine tight control:
 
 `beta_rank-only(R6M)=kappa_R6M=2`.
 
-The existence of this control matters. It shows that the certificate is not generically loose; tightness depends on whether its obstruction is also an intrinsic compiler obstruction.
+The proof-system certificate is not automatically loose; tightness depends on whether the certificate obstruction is also a compiler obstruction.
 
 ## 5. Strict separation: R6I
 
-R6I has two rank-2 dependent-triple blocks with a shared two-bit Tag. The production block-deletion alphabets span five-dimensional binary quotients and contain realized basis words. The abstract theorem and production binding give
+All quantities in this section use the frozen R6I unit objective named in the live claim ledger.
+
+The R6I production block-deletion alphabets realize basis obstructions in a five-dimensional binary quotient. The explicitly registered **rank-only** proof system contains only the zero-sum/rank deletion rule for this bound. Therefore the production upper and realized terminal witness give
 
 `beta_rank-only(R6I)=5`.
 
-A stronger transformation leaves the rank-only language. It localizes each block to an anticommuting core and then relocates/reconstructs the shared Tag globally. That all-size theorem proves support at most one, while support zero is infeasible:
+This exactness is intentionally relative to that proof system. The paper does not assert that rank-only is the strongest proof language available to practitioners or that every local proof system has the same lower bound.
+
+A stronger compiler transformation changes the auxiliary structure that rank-only freezes: it localizes each block to an anticommuting core and then relocates/reconstructs the shared Tag at whole-system scope. The committed all-size theorem gives support at most one, while support zero is infeasible. Therefore
 
 `kappa_R6I=1`.
 
-Thus the exact single-component separation is
+The exact production separation is
 
-`beta_rank-only-kappa=4`.
+`beta_rank-only(R6I)-kappa_R6I=4`.
 
-There is no contradiction. The basis word blocks zero-XOR deletion while the successful proof changes auxiliary Tag structure that the certificate freezes.
+This identifies the missing proof operation rather than merely observing a smaller bound.
 
-## 6. Product amplification
+## 6. Registered product amplification
 
-Let `F_R6I^t` be the registered product of `t` independent components on disjoint coordinates with additive support budget and no cross-component move.
+Let `F_R6I^t` be the registered direct product of `t` independent R6I components on disjoint coordinates. By definition:
 
-**Theorem 3.** For every `t>=1`,
+1. support budgets add across components; and
+2. the registered product proof system permits no cross-component move.
+
+**Theorem 2 (declared-product budgets).** For every `t>=1`,
 
 `beta_rank-only(F_R6I^t)=5t`,
 
 `kappa(F_R6I^t)=t`.
 
-**Proof.** Componentwise upper bounds add. A realized basis obstruction in each component gives the certificate lower bound five per component. Support zero is infeasible in each component and the support-one normalization acts independently, giving intrinsic lower and upper value one per component. ∎
+**Proof.** Componentwise upper bounds give `beta<=5t` and `kappa<=t`. For the rank-only lower bound, each component realizes its support-five terminal obstruction; because the product proof system has no cross-component move and the budget is additive, these `t` component lower bounds compose to `beta>=5t`. For intrinsic support, support zero is infeasible in every component, so any exact product solution needs at least one supported coordinate per component, giving `kappa>=t`. The componentwise support-one compiler normalization attains `t`. ∎
 
-The additive gap is `4t`.
+The additive gap is `4t`. This is amplification of one registered mechanism, not a second independent compiler phenomenon.
 
-### 6.1 Direct enumeration consequence
+### 6.1 Direct enumeration corollary
 
-For fixed local alphabet and fixed support budget `B`, a direct support enumerator over `n` coordinates has leading search growth `Theta(n^B)`. Consequently the registered product's rank-only and intrinsic direct enumerators scale as
+For a direct support enumerator over `n` coordinates with fixed local alphabet and fixed support budget `B`, the leading search volume is `Theta(n^B)`. Under the declared product model the rank-only and intrinsic budgets therefore induce
 
-`Theta(n^(5t))` and `Theta(n^t)`,
+`Theta(n^(5t))` and `Theta(n^t)`
 
-with ratio
+for fixed `t`, with ratio `Theta(n^(4t))` as `n -> infinity`.
 
-`Theta(n^(4t))`.
-
-This is an exact statement about the declared enumeration model, not an algorithm-independent complexity-class lower bound.
+The separate statement that the additive budget gap grows without bound is a `t -> infinity` observation. The two limits are not conflated, and neither statement is an algorithm-independent complexity-class lower bound.
 
 ## 7. Relation to prior work
 
-General sparse-optimum theory already studies support bounds and lower constructions for integer optimization. Classical and modern zero-sum theory owns Davenport constants, subset/weighted/universal variants, basis obstructions, and direct sums. Proof complexity and formal methods already distinguish object difficulty from lower bounds inside a restricted language.
+Davenport and restricted zero-sum theory own the generic sequence thresholds. Sparse integer optimization owns general support bounds and lower constructions. Proof-complexity and formal-methods literature own the distinction between an object's property and what a restricted calculus can prove.
 
-The residual contribution is the exact production realization in quantum compilation: the same algebraic certificate is tight for R6M, loose by five-to-one for R6I, and unboundedly loose in additive budget under products. The stronger R6I transformation pinpoints the missing proof operation—whole-system Tag reconstruction—rather than merely reporting a smaller number.
+The substantive residual here is the **matched production pair**: R6M, where the rank-only certificate is tight, and R6I, where the same style of certificate is loose by five-to-one because the compiler admits a stronger global Tag reconstruction that the proof language freezes out.
 
-## 8. Reproducibility
+The abstract zero-sum lemma and the declared-product search exponent are supporting scaffolds, not standalone novelty claims.
 
-The production R6I alphabets, basis witnesses, source/generic/native agreement, and intrinsic support-one parent are commit-bound in the B1 package. The R6M all-size upper theorem and its exact support-one obstruction witness are commit-bound in the A1 parent package at `research/extensions/orion-qg/paper_a_a1_multitag_tare.py` and `research/extensions/orion-qg/PAPER_A_A1_MULTITAG_TARE_RESULTS_2026-08-24.json`; that package records `multitag_sharpness_authority: false`, so it binds the `kappa_M = 2` boundary corollary and does not carry general multitag-sharpness authority. The R2 verifier checks alphabet invariants on small nonbinary and binary groups, basis obstructions through dimension four, and the exact product formulas.
+## 8. Reproducibility and evidence authority
 
-All-size authority comes from Theorems 1 and 3. Internal independent implementations remain distinct from external replication.
+The R6I production alphabets, basis witnesses, source/generic/native agreement and support-one parent theorem are commit-bound in the existing B1 package. The R6M support-two upper theorem and support-one obstruction are commit-bound in the A1 parent package. Finite verifiers check representative alphabet and product identities; all-size authority for the compiler values comes from the corresponding parent theorems and witnesses.
+
+Internal independent implementations are not external specialist replication.
 
 ## 9. Limitations
 
-1. The abstract exactness theorem concerns the stated zero-sum deletion language.
-2. A compiler lower bound requires realization of the zero-sum-free witness.
-3. No lower bound is proved for every local, syndrome-preserving, or unrestricted proof system.
-4. The product amplifies one mechanism and forbids cross-component transformations by definition.
-5. `Theta(n^(4t))` concerns a direct support enumerator, not arbitrary algorithms.
-6. Structural support is not a physical quantum-resource advantage.
-7. Submission-date novelty and independent proof review remain external.
+1. `beta_rank-only` is exact only for the explicitly registered rank-only proof system.
+2. No lower bound is proved for every local, syndrome-preserving or unrestricted proof system.
+3. The product theorem uses additive support and no cross-component move by definition.
+4. The search exponent concerns a direct support enumerator, not arbitrary algorithms.
+5. Structural support is not a hardware speedup or physical quantum-resource advantage.
+6. The generic zero-sum and proof-system concepts are donor-owned.
+7. Submission-date overlap review and independent specialist proof attack remain external scientific checks.
 
-## 10. Discussion and conclusion
+## 10. Conclusion
 
-A certificate can be sound, useful, and internally optimal while measuring the wrong layer for an intrinsic interpretation. `zsf(H;A)` identifies the exact expressive ceiling of zero-sum deletion. R6M shows that this ceiling can coincide with intrinsic support. R6I shows that a stronger global transformation can cross it dramatically.
-
-The practical reporting rule is simple: label a number as intrinsic only after a compiler lower witness; otherwise state the normalization or proof system that owns it. This turns later improvements from apparent contradictions into interpretable increases in proof-language expressivity.
-
-## Selected references
-
-- I. Aliev et al., *The Support of Integer Optimal Solutions*, SIAM J. Optim. 28, 2152–2157 (2018), DOI `10.1137/17M1162792`.
-- G. Wang, *The universal zero-sum invariant and weighted zero-sum for infinite abelian groups*, Commun. Algebra 53 (2025), DOI `10.1080/00927872.2024.2418017`.
-- M. Freeze and W. A. Schmid, *Remarks on a generalization of the Davenport constant*, Discrete Math. 310, 3373–3389 (2010), arXiv:0905.4248.
-
-## Publication decision record
-
-**Primary target:** `Quantum`, provided the introduction makes the compiler/proof-language consequence immediate and the reproducibility archive is external-review ready.
-**Stretch:** `PRX Quantum` only under an independently endorsed exceptional-connection case.
-**R2 status:** `HIGH_SELECTIVITY_SPECIALIST_CANDIDATE__EXACT_TIGHT_VS_LOOSE_CONTROLS`.
-**External-only gates:** hostile proof audit, full primary-source overlap check, figures, exact formatting, permanent archive.
+A support ceiling should be assigned to the layer that proves it. In R6M, the rank-only ceiling and intrinsic compiler support coincide at two. In R6I, the rank-only budget is five while the compiler's intrinsic support is one because a stronger whole-system Tag transformation leaves the certificate language. The paper's contribution is this production tight/loose control pair and the identified missing proof operation. Generic zero-sum mathematics and direct-product amplification are supporting tools, not the novelty claim.

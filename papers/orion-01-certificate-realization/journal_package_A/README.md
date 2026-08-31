@@ -1,25 +1,11 @@
-# ORION-01 Paper A journal package
+# ORION-01A journal package — V3
 
-**Canonical title:** *Alphabet-Davenport Normal Forms for Multi-Tag Quantum Compilation*  
-**Primary venue intent:** Quantum  
-**Stretch venue:** PRX Quantum only under an external exceptional-significance judgement  
-**Scientific status:** bounded high-selectivity specialist candidate; no top-tier authority granted by this package.
+**Title:** Restore-Sensitive Support Normal Forms for Multi-Tag Quantum Compilation
 
-`SOURCE.md` and `CLAIM_LEDGER.md` are byte-identical copies of the frozen canonical source and R2 ledger. Run `python verify_package.py` before any build or submission.
+This package is the journal-facing V3 package. `SOURCE.md` is byte-identical to `../theory-A-MANUSCRIPT_V3.md`; `CLAIM_LEDGER.md` is byte-identical to `../theory-A-CLAIM_LEDGER_V3.md`. The claim ledger is the authority ceiling.
 
-This package closes repository-side packaging scaffolding only. It does not clear the external proof-review, novelty/editorial, archive/DOI, licence-confirmation, or human-author-metadata gates.
+The closure pass does not add science. It preserves the manuscript's donor attribution, negative terminals, and the prohibition on promoting generic zero-sum/Davenport theory, unrestricted MultiTag sharpness, or physical quantum advantage.
 
-## Files
+Run `python verify_package.py` before editing and `./build.sh` to generate and validate `main.pdf`. A filing build is closed only when `python verify_package.py --require-render` passes.
 
-- `SOURCE.md` — exact package copy of canonical manuscript
-- `CLAIM_LEDGER.md` — exact package copy of canonical claim ledger
-- `COMPILE.md` / `build.sh` — one-command review-PDF path
-- `DATA_CODE_AVAILABILITY.md` — paper-local availability language
-- `LICENSE_STATUS.md` — explicit filing-time licence confirmation gate
-- `COVER_LETTER_DRAFT.md` — claim-consistent draft with human placeholders
-- `SUBMISSION_MANIFEST.json` — exact package/source binding
-- `verify_package.py` — fail-closed source/ledger binding check
-
-## Stop rule
-
-Do not reopen the science merely because final journal production remains. Any future scientific expansion requires a new externally testable question rather than another internal theorem polish.
+Human filing inputs remain deliberately unfilled: author/affiliation/ORCID metadata, target-journal style, conflict/funding declarations, publication licence choice, and immutable archive/DOI where required. These are administrative inputs, not scientific authority.

@@ -1,23 +1,13 @@
-# Cover letter draft — Paper A
+# Cover-letter draft — ORION-01A
 
-**Target:** Quantum  
-**Manuscript:** *Alphabet-Davenport Normal Forms for Multi-Tag Quantum Compilation*
+Dear Editor,
 
-Dear Editors,
+Please consider our manuscript, **“Restore-Sensitive Support Normal Forms for Multi-Tag Quantum Compilation,”** for [Journal]. The paper isolates a bounded compiler-side result: under the registered grammar, deletion-soundness and objective conditions, one can obtain simultaneous Restore-support ceilings, together with an exact local Restore sensitivity statement and sharp control for the registered R6M case.
 
-Please consider our manuscript, *Alphabet-Davenport Normal Forms for Multi-Tag Quantum Compilation*, for publication in **Quantum**.
+The manuscript deliberately does **not** claim novelty for the underlying zero-sum/Davenport mathematics, unrestricted MultiTag sharpness, information-theoretic optimality across all compilers, or physical quantum advantage. Those boundaries are part of the submission contract and are preserved in the attached claim ledger.
 
-The paper asks a focused compiler-theory question: when an exact finite-support normalization is proved by deleting zero-signature subwords, what combinatorial quantity actually controls the support ceiling? We show that the relevant object is an alphabet-restricted zero-sum invariant `zsf(H;A)`, with ambient binary rank appearing as a corollary rather than the primitive theorem. For the explicit MultiTag-TARE grammar, we combine this invariant with an exact arbitrary-block Restore sensitivity bound to obtain a support normal form throughout the stated objective cone. The one-Tag R6M specialization is separately sharp with intrinsic support two.
-
-The manuscript is deliberately bounded. It assigns no novelty to the upstream TARE primitive; it does not claim multi-Tag sharpness, physical quantum advantage, runtime improvement, or authority outside the proof-validity cone. Generic sparse-optimum and zero-sum mathematics are treated as donors. The claimed contribution is the compiler-specific conjunction of the TARE-derived signature semantics, objective accounting, alphabet-sensitive normal form, and the independently sharp R6M control.
-
-Analytic proofs carry the all-size claims. Finite verification is used to corroborate local obligations and bound production artifacts, not to replace the proofs. The package retains the current authority ceilings: external independent proof review, final archive deposition, and filing-time metadata remain external/human steps.
-
-This submission is not under review elsewhere **[AUTHOR TO CONFIRM]**. All authors approve the submission **[AUTHOR TO CONFIRM]**. Competing interests, funding, affiliations, ORCID identifiers, and the final corresponding-author details must be supplied by the authors at filing time.
-
-Thank you for considering the manuscript.
+The submission is not under broadened scientific review through this package; publication closure only binds the already-reviewed V3 manuscript to its ledger and reproducible render. Author, conflict/funding and journal-specific declarations should be inserted only after human confirmation.
 
 Sincerely,
 
-**[CORRESPONDING AUTHOR — TO BE SUPPLIED]**  
-**[AFFILIATION / EMAIL — TO BE SUPPLIED]**
+[Corresponding author]
