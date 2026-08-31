@@ -121,5 +121,40 @@ class IndependentReviewFingerprintTests(unittest.TestCase):
                 reviewed_manuscript_fingerprint(review, manuscript)
 
 
+class ReplayRecipeSafetyTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.recipe = (
+            Path(__file__).resolve().parents[1]
+            / "evidence/round2-x509-truststore/PINNED_OPENSSL_BUILD.md"
+        ).read_text(encoding="utf-8")
+
+    def test_evaluator_never_writes_before_checking_frozen_receipts(self) -> None:
+        logical_recipe = self.recipe.replace("\\\n", " ")
+        unsafe = [
+            line.strip()
+            for line in logical_recipe.splitlines()
+            if line.strip().startswith("python run_round2.py")
+            and "--check-final" not in line
+        ]
+        self.assertEqual(unsafe, [])
+
+    def test_replay_is_isolated_from_published_receipts(self) -> None:
+        for guard in (
+            'mkdir "$replay/frozen" "$replay/run"',
+            'ROUND2_RESULTS_V2.json COST_ROUND2_V2.json "$replay/frozen/"',
+            'cp generate_tasks.py run_round2.py "$replay/run/"',
+            'ln -s "$evidence_dir/third_party" "$replay/run/third_party"',
+            'cd "$replay/run"',
+            'cmp "$replay/frozen/TASK_MANIFEST_V2.json" TASK_MANIFEST_V2.json',
+            'cmp "$replay/frozen/UPSTREAM_TABLE_V2.json" UPSTREAM_TABLE_V2.json',
+            '--results "$replay/frozen/ROUND2_RESULTS_V2.json"',
+            '--cost-out "$replay/frozen/COST_ROUND2_V2.json"',
+            "trap cleanup EXIT",
+            'rm -rf "$replay"',
+        ):
+            self.assertIn(guard, self.recipe)
+        self.assertNotIn('cp "$replay/', self.recipe)
+
+
 if __name__ == "__main__":
     unittest.main()

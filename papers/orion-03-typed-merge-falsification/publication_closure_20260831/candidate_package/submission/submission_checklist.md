@@ -7,7 +7,7 @@
 - [x] Every PDF page visually inspected, including the policy table, declarations, references, and final page.
 - [x] Editable Springer Nature source archive and complete reproducibility artifact included.
 - [x] Deterministic source/artifact ZIPs have exact member inventories; extra, missing, or stale members fail closed.
-- [x] Final `academic-paper-skills` revision `fd5e935c035a55363fca169c058cb95bed21143e` recorded and applicable audits rerun.
+- [x] Final `academic-paper-skills` revision `d07da1fbd66dd54011199608ca790d1ac7c3095c` recorded and applicable audits rerun.
 - [ ] Independent atomic-claim and package review is pending; this candidate is not releasable.
 - [ ] Final release manifests and research-integrity ledger/report are intentionally absent until review passes.
 - [ ] Complete external portal/account metadata and upload (human action).
