@@ -1,0 +1,26 @@
+{
+  "schema": "ORION.PublicationClosure.FinalSkillRefresh.v1",
+  "paper": "ORION-03",
+  "checked_at": "2026-08-31T19:42:55+02:00",
+  "candidate_review_skill_revision": "fd5e935c035a55363fca169c058cb95bed21143e",
+  "candidate_review_skill_tree": "b9358d3513e8db61ec7683d471c5d452bd857abc",
+  "final_build_skill_revision": "95529c55ff14a30e78db1c240ea4a3843c4ea7e7",
+  "final_build_skill_tree": "b9358d3513e8db61ec7683d471c5d452bd857abc",
+  "fresh_origin_main_revision": "95529c55ff14a30e78db1c240ea4a3843c4ea7e7",
+  "origin_main_fetch_result": "PASS",
+  "candidate_and_final_skill_trees_identical": true,
+  "candidate_bytes_modified": false,
+  "final_package_rebuilt_and_reverified": true,
+  "disposition": "REPOSITORY_SIDE_PROVENANCE__EXCLUDED_FROM_UPLOAD_SET",
+  "notes": [
+    "The immutable independent-review receipt remains historical evidence for the exact fd5e935 candidate and was not rewritten.",
+    "The later live origin/main commit differs only in commit identity: its complete tree is byte-identical to the reviewed skill tree.",
+    "Any later non-identical skill-tree update requires a new applicability audit before merge or filing."
+  ],
+  "does_not_certify": [
+    "external_peer_review",
+    "external_replication",
+    "portal_upload",
+    "journal_acceptance"
+  ]
+}

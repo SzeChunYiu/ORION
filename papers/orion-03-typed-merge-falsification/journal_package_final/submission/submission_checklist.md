@@ -7,7 +7,7 @@
 - [x] Every PDF page visually inspected, including the policy table, declarations, references, and final page.
 - [x] Editable Springer Nature source archive and complete reproducibility artifact included.
 - [x] Deterministic source/artifact ZIPs have exact member inventories; extra, missing, or stale members fail closed.
-- [x] Final `academic-paper-skills` revision `fd5e935c035a55363fca169c058cb95bed21143e` recorded and applicable audits rerun.
+- [x] Final `academic-paper-skills` revision `95529c55ff14a30e78db1c240ea4a3843c4ea7e7` recorded and applicable audits rerun.
 - [x] Independent checksum-bound atomic-claim coverage and research-integrity verification passed.
 - [x] Package manifest, release manifest, research-integrity ledger/report, and `SHA256SUMS` generated from the final bytes.
 - [ ] Complete external portal/account metadata and upload (human action).
