@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib, os, shutil, subprocess, tempfile, zipfile
 
 HERE = Path(__file__).resolve().parent
-PAPER = HERE.parent.parent.parent
+PAPER = HERE.parent.parent
 SRC = PAPER / "manuscript"
 FIXED_TIME = (2026, 8, 31, 0, 0, 0)
 

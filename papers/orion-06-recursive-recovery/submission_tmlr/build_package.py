@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import hashlib, os, shutil, subprocess, tempfile, zipfile
+import hashlib, os, subprocess, tempfile, zipfile
 
 HERE = Path(__file__).resolve().parent
 PAPER = HERE.parent
@@ -33,8 +33,15 @@ def main():
         text = text.replace("../manuscript/bibliography", "bibliography")
         main_copy = work / "main.tex"
         main_copy.write_text(text, encoding="utf-8")
-        entries = [("main.tex", main_copy), ("tmlr.sty", HERE / "tmlr.sty"), ("tmlr.bst", HERE / "tmlr.bst"), ("fancyhdr.sty", HERE / "fancyhdr.sty"), ("bibliography.bib", SRC / "bibliography.bib")]
-        entries += [(f"sections/{p.name}", p) for p in sorted((SRC / "sections").glob("*.tex"))]
+        entries = [
+            ("main.tex", main_copy),
+            ("tmlr.sty", HERE / "tmlr.sty"),
+            ("tmlr.bst", HERE / "tmlr.bst"),
+            ("fancyhdr.sty", HERE / "fancyhdr.sty"),
+            ("bibliography.bib", SRC / "bibliography.bib"),
+            ("09-ethics-safety-resources-anonymous.tex", HERE / "09-ethics-safety-resources-anonymous.tex"),
+        ]
+        entries += [(f"sections/{p.name}", p) for p in sorted((SRC / "sections").glob("*.tex")) if p.name != "09-ethics-safety-resources.tex"]
         zip_files(HERE / "anonymous-source.zip", entries)
 
     zip_files(HERE / "anonymous-review-supplement.zip", [
