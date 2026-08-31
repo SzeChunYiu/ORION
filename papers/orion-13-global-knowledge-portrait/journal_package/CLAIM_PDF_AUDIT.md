@@ -1,13 +1,26 @@
-# ORION-13 historical claim / PDF audit
+# ORION-13 current claim / PDF audit
 
-Historical build subject: `6dd510c811deb20a10f722e40d915cb5bda13548`.  
-Retained PDF: `journal_package/manuscript.pdf`.  
-PDF SHA256: `52ff9d7f33aa62bf0c6493713b10244ee97cc4ebce0a40de8742b48fa312979e`.  
-Historical pages: `20`; current working pages: `45`.  
-Package status: `SUPERSEDED`; current package: **OPEN**.
+Closure date: `2026-08-31`.  
+Submission PDF: `journal_package/manuscript.pdf`.  
+Canonical source render: `manuscript/main.pdf`.  
+Exact Git blob for both paths: `bd77cf84cef75bdb831544d7bc7a03650f439742`.  
+Pages recorded by the current render-closure audit: `47`.  
+Package status: `CONTENT_MATCHED`.
 
-The bounded ORION-13.C5, ORION-13.C10, ORION-13.C11, and ORION-13.STRUCTURE findings remain scoped to
-structured scientific-integration and identity-authority evidence. ORION-13.C7 and
-ORION-13.C8 remain `CANNOT_CHECK`. The retained 20-page PDF is an earlier audited
-record only and does not render or authorize the current manuscript. A fresh
-immutable PDF and page-level visual and claim audit are required.
+The package no longer relies on the historical 20-page render. The submission PDF is an exact Git-object copy of the current canonical manuscript PDF, so package/source byte identity is fail-closed at repository level.
+
+## Claim boundary checked for filing
+
+The bounded ORION-13 structured-mapping / obstruction findings remain scoped to their frozen public-reference and exact structured-evidence objects. The package must preserve the following limitations as substantive results/boundaries:
+
+- the current public-reference corpus admits a polarity-only reduct and does not establish universal necessity of the remaining coordinates;
+- zero-effect coordinate ablations remain visible;
+- raw-text/end-to-end extraction superiority is not claimed;
+- downstream scientific answer-quality improvement is not claimed;
+- missing or non-identifying evidence is not converted into obstruction or evidence of absence.
+
+The larger ontology/comparator/transport successor programme does not promote the filing claim and is not a prerequisite of this package.
+
+## Remaining upload-time attestations
+
+Author identity/order, affiliations, contributions, funding, conflicts, acknowledgements, current APC/institutional status, final stable public deposit identifier, and the actual submission record are supplied only from host-authoritative information at upload. They are not fabricated by this audit.
