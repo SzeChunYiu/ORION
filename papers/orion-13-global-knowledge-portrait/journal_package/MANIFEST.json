@@ -1,50 +1,52 @@
 {
-  "schema_version": "orion.journal-package.v1",
-  "paper_id": "P3",
-  "package_status": "BOUNDED_PEER_REVIEW_READY",
-  "declared_paper_terminal": "SCOPED_STRUCTURED_INTEGRATION_PEER_REVIEW_READY",
-  "claim_boundary": "P3_C5_C9_REPLICATED_MAPPING__P3_C10_C11_EXACT_IDENTITY_AUTHORITY__NO_RAW_TEXT_OR_DOWNSTREAM_SUPERIORITY",
   "audit_date": "2026-08-31",
-  "required_files": [
-    {"path":"journal_package/manuscript.pdf","role":"current-content-matched-submission-manuscript"},
-    {"path":"manuscript/main.tex","role":"canonical-manuscript-source"},
-    {"path":"manuscript/bibliography.bib","role":"primary-bibliography"},
-    {"path":"manuscript/novelty_refresh_2026.bib","role":"current-literature-bibliography"},
-    {"path":"CLAIM_LEDGER_V1.md","role":"claim-ledger"},
-    {"path":"CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md","role":"manuscript-claim-map"},
-    {"path":"SCOPED_PUBLICATION_TRACK_V1.md","role":"scoped-publication-decision"},
-    {"path":"evidence/P3_X_RESULT_RECEIPT_V1.md","role":"protected-result-binding"},
-    {"path":"evidence/PEER_REVIEW_READY_SCOPED_V1.md","role":"bounded-readiness-attestation"},
-    {"path":"evidence/method-structure/BOUNDED_PILOT_RECEIPT_V1.md","role":"bounded-structure-result"},
-    {"path":"evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json","role":"confirmatory-analysis"},
-    {"path":"JOURNAL_READINESS.md","role":"readiness-gate"},
-    {"path":"REPRODUCE.md","role":"deterministic-reproduction-route"},
-    {"path":"journal_package/COVER_LETTER_DRAFT.md","role":"cover-letter-draft"},
-    {"path":"journal_package/AVAILABILITY_STATEMENT_V1.md","role":"availability-statement"},
-    {"path":"journal_package/VENUE_DECISION_V1.md","role":"venue-decision"},
-    {"path":"journal_package/REFERENCE_METADATA_AUDIT_V1.md","role":"reference-metadata-audit"},
-    {"path":"journal_package/CLAIM_PDF_AUDIT.md","role":"current-claim-pdf-audit"},
-    {"path":"journal_package/RENDER_CLOSURE_STATE.json","role":"current-render-binding"},
-    {"path":"PUBLICATION_CLOSURE_2026-08-31.md","role":"final-bounded-publication-closure"}
-  ],
-  "missing_artifacts": [],
-  "submission_operations": [
-    {"path":"journal_package/AUTHOR_ATTESTATION_FINAL.md","status":"SUBMISSION_OPERATION","reason":"Author identities/order, affiliations, contributions, funding, conflicts and acknowledgements require host-authoritative attestations at actual upload."},
-    {"path":"journal_package/PERMANENT_ARCHIVE_RECEIPT.json","status":"SUBMISSION_OPERATION","reason":"Create only when an exact final public deposit/release actually exists."},
-    {"path":"journal_package/COVER_LETTER_FINAL.md","status":"SUBMISSION_OPERATION","reason":"Finalize from actual author declarations and submission metadata immediately before upload."},
-    {"path":"journal_package/LITERATURE_REFRESH_SUBMISSION.md","status":"SUBMISSION_OPERATION","reason":"Refresh if the actual upload falls outside the current literature-freshness window."}
-  ],
+  "audit_subject_revision": "6dd510c811deb20a10f722e40d915cb5bda13548",
+  "claim_boundary": "P3_C5_C9_REPLICATED_MAPPING__P3_C10_C11_EXACT_IDENTITY_AUTHORITY__NO_RAW_TEXT_OR_DOWNSTREAM_SUPERIORITY",
   "claims": [
-    {"id":"P3.C5","status":"BOUNDED","text":"On the disjoint confirmatory public-reference holdout (n=32), ORION false-merge 0 vs flat 0.1875, paired delta -0.1875, CI [-0.34375,-0.0625]; false-split difference vs exact-coordinate conservative control 0 [0,0]."},
-    {"id":"P3.C9","status":"BOUNDED","text":"The scoped public-reference mapping result is prospectively replicated and independently reproducible."},
-    {"id":"P3.C10","status":"BOUNDED","text":"The registered exact structured-integration result remains bounded to its 400 frozen contracts and comparator mechanism."},
-    {"id":"P3.C11","status":"BOUNDED","text":"The information-equivalent typed-product tie establishes portability only at the registered decision scope."},
-    {"id":"P3.C7","status":"CANNOT_CHECK","text":"Raw-text end-to-end scientific integration superiority remains outside the scoped paper."},
-    {"id":"P3.C8","status":"CANNOT_CHECK","text":"Downstream scientific answer-quality improvement remains outside the scoped paper."},
-    {"id":"P3.POLARITY_REDUCT","status":"ADVERSE_RETAINED","text":"The current public-reference corpus admits a polarity-only reduct; universal necessity of other coordinates is not established."},
-    {"id":"P3.CURRENT_PACKAGE","status":"BOUND","text":"journal_package/manuscript.pdf and manuscript/main.pdf are the same Git blob on the closure branch."}
+    {
+      "id": "P3.C5",
+      "status": "BOUNDED",
+      "text": "On the disjoint confirmatory public-reference holdout (n=32), ORION false-merge 0 vs flat 0.1875, paired delta -0.1875, CI [-0.34375,-0.0625]; false-split difference vs exact-coordinate conservative control 0 [0,0]."
+    },
+    {
+      "id": "P3.C9",
+      "status": "BOUNDED",
+      "text": "The scoped public-reference mapping result is prospectively replicated and independently reproducible."
+    },
+    {
+      "id": "P3.C10",
+      "status": "BOUNDED",
+      "text": "The registered exact structured-integration result remains bounded to its 400 frozen contracts and comparator mechanism."
+    },
+    {
+      "id": "P3.C11",
+      "status": "BOUNDED",
+      "text": "The information-equivalent typed-product tie establishes portability only at the registered decision scope."
+    },
+    {
+      "id": "P3.C7",
+      "status": "CANNOT_CHECK",
+      "text": "Raw-text end-to-end scientific integration superiority remains outside the scoped paper."
+    },
+    {
+      "id": "P3.C8",
+      "status": "CANNOT_CHECK",
+      "text": "Downstream scientific answer-quality improvement remains outside the scoped paper."
+    },
+    {
+      "id": "P3.POLARITY_REDUCT",
+      "status": "ADVERSE_RETAINED",
+      "text": "The current public-reference corpus admits a polarity-only reduct; universal necessity of other coordinates is not established."
+    },
+    {
+      "id": "P3.CURRENT_PACKAGE",
+      "status": "BOUND",
+      "text": "journal_package/manuscript.pdf and manuscript/main.pdf are the same Git blob on the closure branch."
+    }
   ],
-  "scientific_authority_delta": "NONE",
+  "declared_paper_terminal": "SCOPED_STRUCTURED_INTEGRATION_PEER_REVIEW_READY",
+  "issue": 100,
+  "missing_artifacts": [],
   "package_authority": {
     "current_submission_authorized": true,
     "authorization_scope": "BOUNDED_SCIENCE_AND_REPOSITORY_PACKAGE_ONLY",
@@ -52,10 +54,125 @@
     "packaged_pdf_git_blob": "bd77cf84cef75bdb831544d7bc7a03650f439742",
     "authority_precedence": "This manifest, CLAIM_PDF_AUDIT.md and RENDER_CLOSURE_STATE.json supersede the historical 20-page package state. Upload-time author/portal attestations remain external operations."
   },
+  "package_status": "BOUNDED_PEER_REVIEW_READY",
+  "paper_id": "P3",
   "render_binding": {
     "current_revision_binding": true,
     "binding_status": "CONTENT_MATCHED",
     "pages": 47,
     "git_blob": "bd77cf84cef75bdb831544d7bc7a03650f439742"
-  }
+  },
+  "required_files": [
+    {
+      "path": "journal_package/manuscript.pdf",
+      "role": "current-content-matched-submission-manuscript"
+    },
+    {
+      "path": "manuscript/main.tex",
+      "role": "canonical-manuscript-source"
+    },
+    {
+      "path": "manuscript/bibliography.bib",
+      "role": "primary-bibliography"
+    },
+    {
+      "path": "manuscript/novelty_refresh_2026.bib",
+      "role": "current-literature-bibliography"
+    },
+    {
+      "path": "CLAIM_LEDGER_V1.md",
+      "role": "claim-ledger"
+    },
+    {
+      "path": "CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md",
+      "role": "manuscript-claim-map"
+    },
+    {
+      "path": "SCOPED_PUBLICATION_TRACK_V1.md",
+      "role": "scoped-publication-decision"
+    },
+    {
+      "path": "evidence/P3_X_RESULT_RECEIPT_V1.md",
+      "role": "protected-result-binding"
+    },
+    {
+      "path": "evidence/PEER_REVIEW_READY_SCOPED_V1.md",
+      "role": "bounded-readiness-attestation"
+    },
+    {
+      "path": "evidence/method-structure/BOUNDED_PILOT_RECEIPT_V1.md",
+      "role": "bounded-structure-result"
+    },
+    {
+      "path": "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+      "role": "confirmatory-analysis"
+    },
+    {
+      "path": "JOURNAL_READINESS.md",
+      "role": "readiness-gate"
+    },
+    {
+      "path": "REPRODUCE.md",
+      "role": "deterministic-reproduction-route"
+    },
+    {
+      "path": "journal_package/COVER_LETTER_DRAFT.md",
+      "role": "cover-letter-draft"
+    },
+    {
+      "path": "journal_package/AVAILABILITY_STATEMENT_V1.md",
+      "role": "availability-statement"
+    },
+    {
+      "path": "journal_package/VENUE_DECISION_V1.md",
+      "role": "venue-decision"
+    },
+    {
+      "path": "journal_package/REFERENCE_METADATA_AUDIT_V1.md",
+      "role": "reference-metadata-audit"
+    },
+    {
+      "path": "journal_package/CLAIM_PDF_AUDIT.md",
+      "role": "current-claim-pdf-audit"
+    },
+    {
+      "path": "journal_package/RENDER_CLOSURE_STATE.json",
+      "role": "current-render-binding"
+    },
+    {
+      "path": "PUBLICATION_CLOSURE_2026-08-31.md",
+      "role": "final-bounded-publication-closure"
+    }
+  ],
+  "schema_version": "orion.journal-package.v1",
+  "scientific_authority_delta": "NONE",
+  "scientific_result_verification": {
+    "owner_issue": 283,
+    "schema_name": "ScientificResultVerification.v1",
+    "records_present": [
+      "research/verification/records/P3.C5.confirmatory-mapping.json"
+    ]
+  },
+  "submission_operations": [
+    {
+      "path": "journal_package/AUTHOR_ATTESTATION_FINAL.md",
+      "status": "SUBMISSION_OPERATION",
+      "reason": "Author identities/order, affiliations, contributions, funding, conflicts and acknowledgements require host-authoritative attestations at actual upload."
+    },
+    {
+      "path": "journal_package/PERMANENT_ARCHIVE_RECEIPT.json",
+      "status": "SUBMISSION_OPERATION",
+      "reason": "Create only when an exact final public deposit/release actually exists."
+    },
+    {
+      "path": "journal_package/COVER_LETTER_FINAL.md",
+      "status": "SUBMISSION_OPERATION",
+      "reason": "Finalize from actual author declarations and submission metadata immediately before upload."
+    },
+    {
+      "path": "journal_package/LITERATURE_REFRESH_SUBMISSION.md",
+      "status": "SUBMISSION_OPERATION",
+      "reason": "Refresh if the actual upload falls outside the current literature-freshness window."
+    }
+  ]
 }
