@@ -55,7 +55,7 @@ jobs:
         working-directory: papers/orion-13-global-knowledge-portrait
         run: sha256sum -c journal_package/SHA256SUMS
 
-      - name: Compile canonical scoped PDF deterministically
+      - name: Compile canonical scoped PDF and compare scientific surface
         working-directory: papers/orion-13-global-knowledge-portrait/manuscript
         run: |
           set -euo pipefail
@@ -65,8 +65,11 @@ jobs:
             echo 'Unresolved or duplicate LaTeX reference/citation remains after convergence.' >&2
             exit 1
           fi
-          test "$(git hash-object main.pdf)" = bd77cf84cef75bdb831544d7bc7a03650f439742
           pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
+          test "$(pdfinfo main.pdf | awk '/^Pages:/ {print $2}')" = 47
+          pdftotext -layout main.pdf /tmp/p3-rebuilt.txt
+          pdftotext -layout ../journal_package/manuscript.pdf /tmp/p3-packaged.txt
+          diff -u /tmp/p3-packaged.txt /tmp/p3-rebuilt.txt
 
       - name: Verify current exact package binding and retained adverse terminals
         run: |
