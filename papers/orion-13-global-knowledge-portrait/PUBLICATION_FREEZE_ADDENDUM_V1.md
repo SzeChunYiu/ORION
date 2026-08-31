@@ -12,6 +12,13 @@ authority beyond them.
 The submission terminal is `READY_TO_SUBMIT_SECOND_TIER`, target Semantic Web
 Journal with the Journal of Web Semantics as fallback.
 
+The supported result is a scoped scientific-identity-authority claim: false merges
+at **0.000** against **0.1875** for flat predicate canonicalization, a paired delta
+of **−0.1875** with 95% bootstrap CI **[−0.34375, −0.0625]**, while the false-split
+delta against the exact-coordinate conservative control is **0.000 [0.000, 0.000]**.
+The method-structure bridge pilot does not establish general extraction from
+arbitrary papers.
+
 The canonical manuscript is the LaTeX tree `manuscript/`, designated in
 `submission/CANONICAL_SOURCE_DECISION.md`. It compiles to 45 pages with 0 undefined
 references and 0 overfull boxes. `check_bounded_publication_track.py` reports
@@ -34,6 +41,12 @@ That failure is inherited from another lane and is not ORION-13's to fix.
 The package invariants the CI asserts still hold: status `SUPERSEDED`, submission not
 authorized, historical PDF role unchanged, binding status unchanged. Content binding
 is `BOUND_PARTIAL / PASS`.
+
+Five things are named as not claimed: raw-text end-to-end scientific-integration
+superiority (ORION-13.C7); downstream scientific answer-quality improvement
+(ORION-13.C8); completion of the original expert eight-family atlas; universal
+necessity of every semantic coordinate; and general method-learning or cross-domain
+extraction performance.
 
 Where true semantic judgment exceeds machine-readable metadata, the paper marks the
 outcome undetermined rather than self-labelling it. A study whose gold comes from an

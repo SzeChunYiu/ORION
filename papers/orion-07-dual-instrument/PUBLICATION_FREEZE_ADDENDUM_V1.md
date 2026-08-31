@@ -13,6 +13,17 @@ was the assigned route and is the correct one: its acceptance criterion is wheth
 claims are supported by convincing evidence, which is exactly the axis this paper
 can meet.
 
+The recorded terminal is
+`Q3_PROSPECTIVE_CASE_SERIES_COMPLETE__N3_VALID__AGREEMENT_NOT_VALIDATION_COUNTEREXAMPLE_OBSERVED__NO_RELIABILITY_GENERALIZATION`.
+
+**The central result is negative, and it is the point of the paper.** Three
+prospectively frozen frontier questions were scored — V0, R1/QG-19 and R2/QG-20.
+In all three the two instruments, a tool-capable LLM host diagnosis and a typed
+deterministic non-LLM controller, agreed on the primary diagnosis and move. On R2
+they were **jointly wrong**. The series therefore supports the methodological
+separation *agreement is not correctness* on at least one prospectively scored
+unit, which is a stronger and more useful finding than concordance would have been.
+
 The evidence gate that previously blocked standalone submission is now closed **on
 its own terms, by running the work rather than by relaxing the requirement**. The
 earlier readiness record listed standalone evidence sufficiency as blocked because

@@ -26,18 +26,31 @@ visually inspected.
 
 ## Frozen boundary
 
-The scientific terminal is unchanged and remains **narrowed**. Cross-arena
-superiority is **untested**, and the external matched campaign remains
-**undetermined rather than null**. Nothing in the pass that produced this state
-converted an adverse or undetermined result into a pass, and this freeze does not
-either.
+The scientific terminal is unchanged and remains **narrowed**. Matched external
+discovery superiority is `CANNOT_CHECK` and is not claimed.
 
-The distinction matters for how the paper may be read: an undetermined external
-campaign is not evidence that the framework fails outside its studied arena. It is
-evidence that the question has not been answered.
+That is not the same as untested, and the record should not be read that way. The
+matched external comparator was run, and its prespecified pass gate was not met:
+recall@100 came in at **−0.0177** with a bootstrap CI of **[−0.0273, −0.0091]**
+against a **−0.02** margin, and reads at **+175.7%** against a **−25%**
+requirement. The paper's own routing terminal on that corpus is also
+`CANNOT_CHECK`, because two of five routes were unavailable — CITATION had no
+earned seed and RESTRICTED had no provider.
 
-A cross-arena matched campaign is successor work. It must not retroactively promote
-the present framework result.
+A separately measured result is retained without being promoted: multi-route
+exploration improved top-10 quality at nDCG@10 **+0.1488**, CI
+**[+0.1010, +0.1995]**, ahead on 42 of 50 topics. That was measured but is **not a
+gate criterion**, and it cannot rescue the failed superiority row. The cover letter
+discloses the adverse result in its second paragraph rather than leaving a reviewer
+to find it.
+
+So the ready paper claims governance semantics and bounded controlled mechanism
+evidence. It does not claim that the system discovers more literature than simpler
+systems on the open web. Scientific RAG, agentic literature search, systematic-review
+automation and capture–recapture are not claimed as novel.
+
+A matched external campaign that meets its gate is successor work. It must not
+retroactively promote the present framework result.
 
 ## Frozen content surface
 

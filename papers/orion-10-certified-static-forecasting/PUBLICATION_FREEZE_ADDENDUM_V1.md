@@ -35,6 +35,10 @@ unchanged by this freeze. That is a stated gap in coverage, not a pass: the byte
 this paper are not currently watched by a binding, so a future change to them would
 not be caught by that mechanism.
 
+One filing note belongs with the freeze rather than being discovered later: two
+sibling manuscripts from the same programme are routed to *Quantum* in this same
+wave. The filer should stagger them or disclose the relationship.
+
 A new primitive would have to specify its mechanism first and freeze it before
 testing, and any practical bridge to native compilers is secondary evidence.
 Both are successor work and must not retroactively promote the present bounded

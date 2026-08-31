@@ -13,11 +13,20 @@ The submission terminal is `READY_TO_SUBMIT_SECOND_TIER`, target venue TMLR.
 Artificial Intelligence was assessed as the assigned primary and declined on scope,
 for reasons the paper states about itself rather than for convenience.
 
-What the evidence establishes is a receipted method for recovering negative
-quantum-method results: the complete R6 saturation/recovery arc and the N1–N4
-closure families, chosen because the programme defined them before this synthesis
-and because they carry heterogeneous terminals. The paper does not select only
+What the evidence establishes is a **complete receipted single-programme case
+study**, and the ledger says so in those words: a post-terminal recovery contract in
+which negative, absorbed, mixed, saturated, lower-bound and cannot-check terminals
+remain explicit state, successors are registered separately, and a worked recovery
+sequence runs from donor saturation through two exact refutations to a later
+all-`n` theorem. It covers the R6 saturation/recovery arc and the N1–N4 closure
+families, chosen because the programme defined them before this synthesis and
+because they carry heterogeneous terminals. The paper does not select only
 successful recoveries.
+
+The single-programme scope is exactly why AIJ was declined rather than attempted:
+the evidence is one end-to-end programme, so generality is an open question rather
+than a result. A second content-disjoint programme under the same frozen protocol
+would be the thing that changes that.
 
 The checkers that stand behind this run clean: `check_transition_graph.py` exits 0,
 and `verify_orion06_negative_coverage.py` prints `ORION06_NEGATIVE_COVERAGE=PASS`.
