@@ -11,6 +11,7 @@ import build_final_packages as b
 
 _original_publication_markdown = b.publication_markdown
 _original_pandoc_fragment = b.pandoc_fragment
+_original_mathify_code = b.mathify_code
 
 
 def publication_markdown(spec: b.Spec) -> str:
@@ -56,6 +57,11 @@ def publication_markdown(spec: b.Spec) -> str:
 
 def pandoc_fragment(markdown: str, *, shift: bool = False) -> str:
     return _original_pandoc_fragment(markdown, shift=shift).replace("\\tightlist\n", "")
+
+
+def mathify_code(text: str) -> str:
+    rendered = _original_mathify_code(text)
+    return rendered.replace(r"\A_post", r"\setminus A_post")
 
 
 def _sanitized_checker(source: Path, *, old_schema: str, new_schema: str, old_protocol: str, new_protocol: str) -> str:
@@ -123,6 +129,7 @@ def prepare_orion02_public_artifact() -> Path:
 
 b.publication_markdown = publication_markdown
 b.pandoc_fragment = pandoc_fragment
+b.mathify_code = mathify_code
 
 _orion02_artifact = prepare_orion02_public_artifact()
 b.SPECS = [
