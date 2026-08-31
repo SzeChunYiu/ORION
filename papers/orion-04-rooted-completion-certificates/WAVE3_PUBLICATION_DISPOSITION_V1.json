@@ -1,0 +1,46 @@
+{
+  "schema": "ORION.Wave3.PublicationDisposition.v1",
+  "paper": "ORION-04",
+  "date": "2026-08-28",
+  "canonical_manuscript": "papers/orion-04-rooted-completion-certificates/WAVE3_SCOPED_MANUSCRIPT_V1.md",
+  "terminal": "ORION04_EXACT_D4_NOT_ESTABLISHED__PAPER_REFRAMED_TO_BOUNDED_STRUCTURAL_RESULT",
+  "publication_scope": "BOUNDED_STRUCTURAL_THEOREM_AND_EXACT_DUAL_REPLAY",
+  "admitted_claims": {
+    "one_unit_corridor_for_k_ge_4": true,
+    "conditional_lower_line_tail_if_d4_eq_30": true,
+    "d4_interval_30_or_31": true,
+    "saturation_defect_theorem": true,
+    "multiplicity_three_excluded": true,
+    "hypothetical_length31_obstruction_support_at_least_14": true
+  },
+  "evidence": [
+    "papers/orion-04-rooted-completion-certificates/CLAIM_LEDGER.md",
+    "research/orion-rg/wave3/orion04-support11-13-v1/PROTOCOL.json",
+    "research/orion-rg/wave3/orion04-support11-13-v1/SOURCE_MANIFEST.json",
+    "research/orion-rg/wave3/orion04-support11-13-v1/RESULT.json",
+    "research/orion-rg/wave3/orion04-support11-13-v1/GENERIC_RESULT.json",
+    "research/orion-rg/wave3/orion04-support11-13-v1/CLAIM_DISPOSITION.md",
+    "tests/research/test_orion04_wave3_m4_packet.py"
+  ],
+  "withheld_claims": {
+    "support_at_least_23_theorem_authority": false,
+    "c0_31_authority": false,
+    "exact_d4_authority": false,
+    "external_independent_replay_complete": false,
+    "novelty_authority": false,
+    "venue_authority": false,
+    "top_tier_authority": false
+  },
+  "historical_sources": {
+    "status": "ARCHIVAL_INPUT_NOT_WAVE3_CANONICAL_WHERE_CONFLICTING",
+    "superseded_reader_facing_boundary": "support at least 11 / M1-M3",
+    "wave3_boundary": "support at least 14 / M1-M4"
+  },
+  "successor_rule": "Any exact-D4 or support-14-plus successor must use a new prospectively frozen identity and add evidence without rewriting this terminal.",
+  "review": {
+    "theorem_and_computation_auditor": "ACCEPT_WITH_BOUNDED_AUTHORITY",
+    "causal_evaluation_lead": "NOT_APPLICABLE_TO_THEOREM_ENDPOINT",
+    "research_software_and_external_validity_lead": "INTERNAL_REPLAY_VERIFIED__EXTERNAL_REPLICATION_FALSE",
+    "journal_editor": "ACCEPT_REFRAMED_STRUCTURAL_PAPER__REJECT_EXACT_D4_PROMOTION"
+  }
+}
