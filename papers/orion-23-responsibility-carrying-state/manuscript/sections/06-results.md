@@ -42,9 +42,9 @@ Always reopening has the reported historical P13A cost/action profile. P13A
 cannot establish the safety coordinate because its scorer was not independently
 gradable.
 
-## Prospectively frozen P13B
+## Certificate-independent finite panel
 
-P13B defines gold support from task requirements and state variables without
+The panel defines gold support from task requirements and state variables without
 reading the certificate. The complete panel contains six state forms and five
 tasks. Omitted, overbroad, forged and stale-epoch worlds each have 30 live
 mutation opportunities before scoring. Authenticated RCS rejects every mutated
@@ -52,7 +52,19 @@ certificate and makes zero gold-scored unsafe reuses in every world; unverified
 RCS has 0, 5, 5 and 16 unsafe reuses in the omitted, overbroad, forged and stale worlds.
 On valid certificates, authenticated RCS is exactly correct and costs 0.6111
 times always raw. Two fresh subprocess payloads are byte-identical, supporting
-the registered controlled finite-world claim.
-Always reopening has the reported historical cost/action profile. Whether RCS
-occupies a valid interior safety–cost frontier remains a P13B question because
-the load-bearing safety coordinate was not independently gradable.
+the controlled finite-world claim.
+
+## Composed safety and efficacy world
+
+The composed evaluation contains 12,288 episodes and 2,457 scheduled
+certificate corruptions. Authenticated reuse rejects every scheduled corruption
+and makes zero unsafe reuses. Its verified correctness is 0.97933, compared with
+0.95247 for always-raw recovery and 0.98063 for reuse without certificate
+authentication. Its overall cost is 0.539 times always raw and its parent-form
+subpanel cost is 0.498 times always raw.
+
+The similar correctness of the unverified arm does not make authentication
+decorative. Without authentication, the same world contains 330 unsafe reuses
+(66 forged, 87 overbroad and 177 stale) and 123 adversary-induced unnecessary
+reopens under omitted support. The contrast is finite and specification-bound;
+it is not a population estimate or external validation.

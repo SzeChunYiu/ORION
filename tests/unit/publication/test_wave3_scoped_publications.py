@@ -133,16 +133,20 @@ def test_orion24_keeps_zero_external_denominator_at_cannot_check() -> None:
     admitted = disposition["admitted_claims"]
 
     assert disposition["terminal"] == EXPECTED["ORION-24"]["terminal"]
-    assert admitted["requested_external_artifacts"] == 8
-    assert admitted["admissible_external_artifacts"] == 0
+    assert admitted["required_preflight_artifact_types"] == 8
+    assert admitted["present_preflight_artifact_types"] == 0
+    assert admitted["execution_authorized"] is False
+    assert admitted["interface_and_harness_readiness"] is False
     assert admitted["external_endpoint_status"] == "CANNOT_CHECK"
-    assert disposition["acquisition_failure"]["retained_additively"] is True
-    assert disposition["acquisition_failure"][
+    assert disposition["preflight_failure"]["retained_additively"] is True
+    assert disposition["preflight_failure"][
         "internal_demonstrations_may_replace_external_denominator"
     ] is False
     assert all(value is False for value in disposition["withheld_claims"].values())
 
     manuscript = EXPECTED["ORION-24"]["manuscript"].read_text()
-    assert "zero of eight" in manuscript.lower()
+    assert "zero of eight required" in manuscript.lower()
+    assert "negative acquisition result" not in manuscript.lower()
+    assert "requested eight admissible artifacts" not in manuscript.lower()
     assert "external endpoints `CANNOT_CHECK`" in manuscript
     assert "not frontier-agent superiority" in manuscript

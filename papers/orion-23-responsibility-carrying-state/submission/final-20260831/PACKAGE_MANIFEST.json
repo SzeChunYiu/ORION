@@ -1,0 +1,85 @@
+{
+  "active_authority": "papers/orion-23-responsibility-carrying-state/P13_ACTIVE_CLAIM_AUTHORITY_V3.json",
+  "active_authority_sha256": "15a51c8943ced4dd3967b121d3bead3c23f0c5c7ac8da819e91ab620eda414d7",
+  "article_type": "Regular paper",
+  "blocker_classification": {
+    "current_claim_blocker": false,
+    "human_filing_only": true,
+    "package_blocker": false,
+    "successor_science_only": true
+  },
+  "build_environment": {
+    "latexmk": "Latexmk, John Collins, 31 Jan. 2024. Version 4.83",
+    "pdftex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)",
+    "python": "3.12.13",
+    "uv_lock_sha256": "f48cdb16ee305d2b5f4a3cedf9064bf3e000ac727ca060355f380e27bb34b01c",
+    "xetex": "XeTeX 3.141592653-2.6-0.999995 (TeX Live 2023/Debian)"
+  },
+  "date": "2026-08-31",
+  "identity_policy": "identified",
+  "inferential_units": "complete authored finite panels/worlds; no population inference",
+  "package_status": "INTERNAL_PACKAGE_VALIDATED__HUMAN_PORTAL_INPUTS_PENDING",
+  "paper": "ORION-23",
+  "payload": {
+    "AI_USE_DISCLOSURE.md": {
+      "bytes": 142,
+      "sha256": "60110d9221535cf107346202e2f1641ca325ad055d469e742659044218d7a5d2"
+    },
+    "DATA_AND_CODE_AVAILABILITY.md": {
+      "bytes": 315,
+      "sha256": "46d6987af119c67f1c8a1f48bf32ed30818a521e533128683d72c2c4b31fb261"
+    },
+    "HUMAN_INPUTS_REQUIRED.md": {
+      "bytes": 323,
+      "sha256": "646fc3380f376df23a93bfae3df67cd40cc8d605c736b11b2e1abd010f79865e"
+    },
+    "INFORMATION_SHEET.md": {
+      "bytes": 1966,
+      "sha256": "39dd3d220d94e2713baa97c315f74e1029cabff17fcdc25a4261f41a650ae7cc"
+    },
+    "RESULT_RETENTION.md": {
+      "bytes": 414,
+      "sha256": "bc3ead15f5a3c0c2c881eec117c0d88082310106828d3249cdfeecaa9db27a62"
+    },
+    "VENUE_REQUIREMENTS.md": {
+      "bytes": 465,
+      "sha256": "8cab9744ad05de976cdcd545049fd2f16c96159e139bc1ae4b329d5df5e767e9"
+    },
+    "manuscript.pdf": {
+      "bytes": 161479,
+      "sha256": "0e77c15b7c557bf341e32df493f6155fadbade1f076964c40478dcc561623bcd"
+    },
+    "review_materials.zip": {
+      "bytes": 9292,
+      "sha256": "97aabd559bb759abd97de16697a1d6ecd59dc6ae5680b9ee95703610de9906e8"
+    },
+    "source.zip": {
+      "bytes": 16564,
+      "sha256": "bffe8bed13c09588bc812b413f1fdbb4e0d036303ca8d9982dab82556e937871"
+    }
+  },
+  "pdf_pages": 7,
+  "publication_closure_skill": {
+    "path": "papers/skills/nature/nature-publication-closure/SKILL.md",
+    "sha256": "696791f8fba7c5930da0c8d4eea7995f5377bc305606a07299081be57ad73525"
+  },
+  "requirements_accessed": "2026-08-31",
+  "requirements_url": "https://link.springer.com/journal/10458/submission-guidelines",
+  "schema": "ORION.PublicationClosure.v1",
+  "scientific_authority_delta": "NONE",
+  "skills_applied": [
+    "nature-writing",
+    "nature-polishing",
+    "nature-reviewer",
+    "nature-statistics",
+    "nature-ref-verifier",
+    "nature-publication-closure"
+  ],
+  "terminal": "P13_CONTROLLED_COMPOSED_SAFETY_EFFICACY_AUTHORITY_SUPPORTED",
+  "title": "Responsibility-Carrying State: Auditable Sufficiency, Reopen Contracts, and Safe State Reuse",
+  "venue": "Autonomous Agents and Multi-Agent Systems",
+  "verifier": {
+    "path": "scripts/check_publication_closure.py",
+    "sha256": "51e477d8ef8258f0a45771765f13f369f731d3f101e0afa5965a4f82db66cb3b"
+  }
+}

@@ -4,68 +4,92 @@
   "claim_boundary": "P3_C5_C9_REPLICATED_MAPPING__P3_C10_C11_EXACT_IDENTITY_AUTHORITY__NO_RAW_TEXT_OR_DOWNSTREAM_SUPERIORITY",
   "claims": [
     {
+      "artifacts": [
+        "evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json"
+      ],
       "id": "P3.C5",
       "status": "BOUNDED",
       "text": "On the disjoint confirmatory public-reference holdout (n=32), ORION false-merge 0 vs flat 0.1875, paired delta -0.1875, CI [-0.34375,-0.0625]; false-split difference vs exact-coordinate conservative control 0 [0,0]."
     },
     {
+      "artifacts": [
+        "editorial/INDEPENDENT_CONFIRMATORY_REPLAY.json"
+      ],
       "id": "P3.C9",
       "status": "BOUNDED",
       "text": "The scoped public-reference mapping result is prospectively replicated and independently reproducible."
     },
     {
+      "artifacts": [
+        "evidence/P3_X_RESULT_RECEIPT_V1.md"
+      ],
       "id": "P3.C10",
       "status": "BOUNDED",
       "text": "The registered exact structured-integration result remains bounded to its 400 frozen contracts and comparator mechanism."
     },
     {
+      "artifacts": [
+        "evidence/P3_X_RESULT_RECEIPT_V1.md"
+      ],
       "id": "P3.C11",
       "status": "BOUNDED",
       "text": "The information-equivalent typed-product tie establishes portability only at the registered decision scope."
     },
     {
+      "artifacts": [
+        "SCOPED_PUBLICATION_TRACK_V1.md"
+      ],
       "id": "P3.C7",
       "status": "CANNOT_CHECK",
       "text": "Raw-text end-to-end scientific integration superiority remains outside the scoped paper."
     },
     {
+      "artifacts": [
+        "SCOPED_PUBLICATION_TRACK_V1.md"
+      ],
       "id": "P3.C8",
       "status": "CANNOT_CHECK",
       "text": "Downstream scientific answer-quality improvement remains outside the scoped paper."
     },
     {
+      "artifacts": [
+        "CLAIM_LEDGER_V1.md"
+      ],
       "id": "P3.POLARITY_REDUCT",
-      "status": "ADVERSE_RETAINED",
+      "status": "BOUNDED",
       "text": "The current public-reference corpus admits a polarity-only reduct; universal necessity of other coordinates is not established."
     },
     {
+      "artifacts": [],
+      "current_claim": true,
+      "lifecycle": "ACTIVE_SUPPORTING",
       "id": "P3.CURRENT_PACKAGE",
-      "status": "BOUND",
-      "text": "journal_package/manuscript.pdf and manuscript/main.pdf are the same Git blob on the closure branch."
+      "status": "OPEN",
+      "text": "The historical journal_package is not the current filing object; use submission/final-20260831/PACKAGE_MANIFEST.json."
     }
   ],
   "declared_paper_terminal": "SCOPED_STRUCTURED_INTEGRATION_PEER_REVIEW_READY",
   "issue": 100,
   "missing_artifacts": [],
   "package_authority": {
-    "current_submission_authorized": true,
-    "authorization_scope": "BOUNDED_SCIENCE_AND_REPOSITORY_PACKAGE_ONLY",
+    "current_submission_authorized": false,
+    "authorization_scope": "HISTORICAL_PACKAGE_ONLY",
     "source_pdf_git_blob": "bd77cf84cef75bdb831544d7bc7a03650f439742",
     "packaged_pdf_git_blob": "bd77cf84cef75bdb831544d7bc7a03650f439742",
-    "authority_precedence": "This manifest, CLAIM_PDF_AUDIT.md and RENDER_CLOSURE_STATE.json supersede the historical 20-page package state. Upload-time author/portal attestations remain external operations."
+    "authority_precedence": "This retained journal_package is superseded for filing by submission/final-20260831/PACKAGE_MANIFEST.json. Its adverse and provenance history remains immutable."
   },
-  "package_status": "BOUNDED_PEER_REVIEW_READY",
+  "package_status": "SUPERSEDED",
   "paper_id": "P3",
   "render_binding": {
-    "current_revision_binding": true,
-    "binding_status": "CONTENT_MATCHED",
+    "current_revision_binding": false,
+    "binding_status": "HISTORICAL_SUPERSEDED",
     "pages": 47,
     "git_blob": "bd77cf84cef75bdb831544d7bc7a03650f439742"
   },
   "required_files": [
     {
       "path": "journal_package/manuscript.pdf",
-      "role": "current-content-matched-submission-manuscript"
+      "role": "retained-historical-manuscript"
     },
     {
       "path": "manuscript/main.tex",
@@ -142,6 +166,10 @@
     {
       "path": "PUBLICATION_CLOSURE_2026-08-31.md",
       "role": "final-bounded-publication-closure"
+    },
+    {
+      "path": "submission/final-20260831/PACKAGE_MANIFEST.json",
+      "role": "current-filing-package-manifest"
     }
   ],
   "schema_version": "orion.journal-package.v1",

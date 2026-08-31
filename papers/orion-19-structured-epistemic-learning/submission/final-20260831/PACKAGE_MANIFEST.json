@@ -1,0 +1,81 @@
+{
+  "active_authority": "papers/orion-19-structured-epistemic-learning/PUBLICATION_FREEZE_ADDENDUM_V1.md",
+  "active_authority_sha256": "8c1d64991b3c366aa2ad53ebea3274751131a31faa17554894c1e7ea5aff853b",
+  "article_type": "Research article",
+  "blocker_classification": {
+    "current_claim_blocker": false,
+    "human_filing_only": true,
+    "package_blocker": false,
+    "successor_science_only": true
+  },
+  "build_environment": {
+    "latexmk": "Latexmk, John Collins, 31 Jan. 2024. Version 4.83",
+    "pdftex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)",
+    "python": "3.12.13",
+    "uv_lock_sha256": "f48cdb16ee305d2b5f4a3cedf9064bf3e000ac727ca060355f380e27bb34b01c",
+    "xetex": "XeTeX 3.141592653-2.6-0.999995 (TeX Live 2023/Debian)"
+  },
+  "date": "2026-08-31",
+  "identity_policy": "double_blind",
+  "inferential_units": "five fixed heterogeneous task families; descriptive counts",
+  "package_status": "INTERNAL_PACKAGE_VALIDATED__HUMAN_PORTAL_INPUTS_PENDING",
+  "paper": "ORION-19",
+  "payload": {
+    "AI_USE_DISCLOSURE.md": {
+      "bytes": 142,
+      "sha256": "60110d9221535cf107346202e2f1641ca325ad055d469e742659044218d7a5d2"
+    },
+    "DATA_AND_CODE_AVAILABILITY.md": {
+      "bytes": 315,
+      "sha256": "46d6987af119c67f1c8a1f48bf32ed30818a521e533128683d72c2c4b31fb261"
+    },
+    "HUMAN_INPUTS_REQUIRED.md": {
+      "bytes": 296,
+      "sha256": "2acc31eb977afebee895c339ce32fc85b709b6b0a1159eb31ef71599ba0e6370"
+    },
+    "RESULT_RETENTION.md": {
+      "bytes": 342,
+      "sha256": "a343d240ef90f3e50057e6222138dd62b044a3edacc241e26e0fc413ccdf811a"
+    },
+    "VENUE_REQUIREMENTS.md": {
+      "bytes": 448,
+      "sha256": "a1d21a8aafc020a52695cd3ff9842d80efc0f5e47471e1428b223630f3eeeae3"
+    },
+    "manuscript.pdf": {
+      "bytes": 276327,
+      "sha256": "6c2fa281eac852b1a6afd6515c6e509558b01733c9792c2c2e918f8ef7c0e605"
+    },
+    "review_materials.zip": {
+      "bytes": 2086,
+      "sha256": "efdce381389b182bd69e86ec98ecd78669aeac9d0902f1d5e3a1a97e08731096"
+    },
+    "source.zip": {
+      "bytes": 13752,
+      "sha256": "01eb2a9cd4ef946def5d0f12daeb18005e6b0bc24c05a41ae90c4eb219148a49"
+    }
+  },
+  "pdf_pages": 8,
+  "publication_closure_skill": {
+    "path": "papers/skills/nature/nature-publication-closure/SKILL.md",
+    "sha256": "696791f8fba7c5930da0c8d4eea7995f5377bc305606a07299081be57ad73525"
+  },
+  "requirements_accessed": "2026-08-31",
+  "requirements_url": "https://jmlr.org/tmlr/author-guide.html",
+  "schema": "ORION.PublicationClosure.v1",
+  "scientific_authority_delta": "NONE",
+  "skills_applied": [
+    "nature-writing",
+    "nature-polishing",
+    "nature-reviewer",
+    "nature-statistics",
+    "nature-ref-verifier",
+    "nature-publication-closure"
+  ],
+  "terminal": "P9_BOUNDED_CAUSAL_DIAGNOSTIC_PEER_REVIEW_READY",
+  "title": "Diagnosing Learning-System Failures Before Escalating Compute",
+  "venue": "Transactions on Machine Learning Research",
+  "verifier": {
+    "path": "scripts/check_publication_closure.py",
+    "sha256": "51e477d8ef8258f0a45771765f13f369f731d3f101e0afa5965a4f82db66cb3b"
+  }
+}

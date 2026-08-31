@@ -1,0 +1,17 @@
+{
+  "schema": "ORION.PublicationClosureMirrorPlan.v1",
+  "source_repository": "SzeChunYiu/ORION",
+  "source_ref_requirement": "refs/heads/main after publication-closure PR merge",
+  "status": "PENDING_POST_MERGE_WORKFLOW",
+  "target_repository": "SzeChunYiu/ORION-paper",
+  "target_branch": "publication/orion-13-24-exact-mirror-20260831",
+  "target_paths": [
+    "v1-papers/orion-13-global-knowledge-portrait",
+    "v1-papers/orion-14-verified-scientific-discovery",
+    "v1-papers/orion-19-structured-epistemic-learning",
+    "v1-papers/orion-21-state-as-computation",
+    "v1-papers/orion-23-responsibility-carrying-state",
+    "v1-papers/orion-24-orion-rse"
+  ],
+  "workflow": ".github/workflows/orion-paper-mirror-13-24-20260831.yml"
+}

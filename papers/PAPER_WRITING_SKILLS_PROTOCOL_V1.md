@@ -50,6 +50,9 @@ style; it stops and says so (that is a cannot-check, not a pass).
 | Insert/verify citations; literature search; systematic pipelines | `nature-citation`, `nature-academic-search`, `nature-literature-pipeline` |
 | Data availability statements and repository plans | `nature-data` |
 | Internal referee simulation before submission | `nature-reviewer` |
+| Statistical reporting, uncertainty, estimands and inferential-unit audit | `nature-statistics` (installed skill; use the vendored closure checklist when the package is unavailable) |
+| Reference-identity and metadata verification | `nature-ref-verifier` (installed skill) together with `nature-citation` |
+| Publication closure, venue/anonymity routing, package binding and repository mirroring | `nature-publication-closure` |
 | Point-by-point response letters | `nature-response` |
 | Reading/absorbing prior work while positioning the paper | `nature-reader` (comprehension aid; not a manuscript output) |
 
@@ -123,6 +126,17 @@ craft rules and bind every new or rewritten manuscript exactly like the skills:
    cite it.
 7. **Internal identifiers out of prose.** An experiment id gets one
    reader-holdable name ("the exact-contract battery").
+
+## 8. Publication-closure authority
+
+Publication closure is a separate, fail-closed craft and custody step. Apply
+`papers/skills/nature/nature-publication-closure/SKILL.md` whenever work claims
+that a manuscript or submission package is current, complete, ready to file, or
+mirrored. A prose readiness note cannot supply that authority. The closure
+record must bind the active claim authority, reader-facing source, rendered PDF,
+venue/article type, audience-specific identity rule, package inventory, and any
+mirror receipt. Contradictory visible terminals must be explicitly historical or
+name the current superseding record.
 
 Scope order: ORION-12 first, reviewed, then the same treatment per paper as each
 is finished. All R2 rewrite waves apply this section from their first draft.

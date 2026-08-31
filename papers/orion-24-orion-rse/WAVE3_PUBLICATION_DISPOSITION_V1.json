@@ -4,12 +4,13 @@
   "date": "2026-08-28",
   "canonical_manuscript": "papers/orion-24-orion-rse/WAVE3_SCOPED_MANUSCRIPT_V1.md",
   "terminal": "ORION24_EXTERNAL_ACQUISITION_BLOCKED__EXECUTABLE_HANDOFF_COMPLETE",
-  "publication_scope": "FAIL_CLOSED_EXTERNAL_EVALUATION_ARCHITECTURE_AND_NEGATIVE_ACQUISITION_RESULT",
+  "publication_scope": "FAIL_CLOSED_EXTERNAL_EVALUATION_SPECIFICATION_AND_BLOCKED_PREFLIGHT",
   "admitted_claims": {
-    "requested_external_artifacts": 8,
-    "admissible_external_artifacts": 0,
+    "required_preflight_artifact_types": 8,
+    "present_preflight_artifact_types": 0,
     "external_endpoint_status": "CANNOT_CHECK",
-    "interface_and_harness_readiness": true,
+    "execution_authorized": false,
+    "interface_and_harness_readiness": false,
     "role_separated_custody_architecture_specified": true,
     "blinded_or_mechanical_adjudication_contract_specified": true,
     "negative_history_ablation_contract_specified": true,
@@ -33,18 +34,18 @@
     "venue_authority": false,
     "top_tier_authority": false
   },
-  "acquisition_failure": {
+  "preflight_failure": {
     "terminal": "P14D_EXTERNAL_ACQUISITION_BLOCKED",
-    "requested": 8,
-    "admissible": 0,
+    "required_artifact_types": 8,
+    "present_artifact_types": 0,
     "retained_additively": true,
     "internal_demonstrations_may_replace_external_denominator": false
   },
-  "successor_rule": "Any live external evaluation must freeze a new task-acquisition and custody identity, retain the 0/8 record, and report failed acquisition, execution and adjudication cases under prospectively frozen denominator rules.",
+  "successor_rule": "Any live external evaluation must freeze a new task-acquisition and custody identity, retain the 0/8 required-artifact-type preflight record, and report failed acquisition, execution and adjudication cases under prospectively frozen denominator rules.",
   "review": {
     "theorem_and_computation_auditor": "NOT_APPLICABLE_TO_EXTERNAL_EFFICACY_ENDPOINT",
     "causal_evaluation_lead": "NO_CAUSAL_OR_ABLATION_EFFECT_ESTIMABLE",
-    "research_software_and_external_validity_lead": "ACCEPT_EXECUTABLE_HANDOFF__REJECT_EXTERNAL_PERFORMANCE_CLAIM",
-    "journal_editor": "ACCEPT_INFRASTRUCTURE_AND_NEGATIVE_ACQUISITION_REFRAME"
+    "research_software_and_external_validity_lead": "ACCEPT_SPECIFICATION_HANDOFF__REJECT_EXECUTABLE_OR_EXTERNAL_PERFORMANCE_CLAIM",
+    "journal_editor": "ACCEPT_SPECIFICATION_AND_BLOCKED_PREFLIGHT_REFRAME"
   }
 }

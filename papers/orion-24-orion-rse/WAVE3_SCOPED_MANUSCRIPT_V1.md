@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Evaluating frontier agents on research-software-engineering tasks requires more than a runnable harness. A valid result must bind independently sourced tasks, actual executions, neutralized evidence packets, blinded or mechanical adjudication, immutable promotion decisions, failure-inclusive denominators and resource accounting. We present the ORION-RSE evaluation architecture for these requirements and report its decisive Wave 3 boundary. The external acquisition lane requested eight admissible artifacts and obtained zero. Consequently, the registered external scientific endpoints remain `CANNOT_CHECK`: no claim is made about frontier-agent performance, useful-discovery recall, false-promotion rate or the benefit of retaining negative history. The engineering contribution is nevertheless complete enough to be useful. The system defines role-separated custody, machine-readable task and arm contracts, fail-closed execution receipts, blinded adjudication rules, longitudinal history states, independent endpoint reconstruction and hostile controls against stale artifacts, leaked labels, dropped failures and favorable post-hoc resolution. This paper is therefore an executable evaluation and evidence-infrastructure paper accompanied by a negative acquisition result, not an external efficacy paper. Its terminal is `ORION24_EXTERNAL_ACQUISITION_BLOCKED__EXECUTABLE_HANDOFF_COMPLETE`.
+Evaluating frontier agents on research-software-engineering tasks requires more than a runnable harness. A valid result must bind independently sourced tasks, actual executions, neutralized evidence packets, blinded or mechanical adjudication, immutable promotion decisions, failure-inclusive denominators and resource accounting. We specify a fail-closed evaluation architecture for these requirements and report its decisive preflight boundary. None of eight required external-input artifact classes was present, so execution was never authorized. Consequently, the registered external scientific endpoints remain undetermined: no claim is made about frontier-agent performance, useful-discovery recall, false-promotion rate or the benefit of retaining negative history. The contribution is a specification and handoff contract, not a completed harness or external efficacy study. It defines role-separated custody, task and arm contracts, fail-closed receipts, blinded adjudication rules, longitudinal history states, endpoint reconstruction and hostile controls that a future implementation must satisfy. By separating readiness to measure from outcome authority, the architecture prevents interface artifacts, internal demonstrations or missing prerequisites from being promoted into empirical evidence. A historical project label describing an “executable handoff” denotes only the specification handoff, not implemented execution.
 
 ## 1. The evaluation problem
 
@@ -13,17 +13,17 @@ Research software engineering combines deterministic implementation work with sc
 
 A public interface, schema or dry run answers neither question by itself. It demonstrates readiness to measure, not the value being measured.
 
-## 2. Wave 3 acquisition result
+## 2. Wave 3 preflight result
 
-The registered external-acquisition lane sought eight admissible artifacts. The realized denominator was:
+The external-acquisition preflight required eight artifact classes. The realized completeness count was:
 
-| Requested artifacts | Admissible artifacts obtained | External endpoint status |
+| Required artifact classes | Present artifact classes | Execution status |
 |---:|---:|---|
-| 8 | 0 | `CANNOT_CHECK` |
+| 8 | 0 | not authorized |
 
-The failure is retained under the project record associated with issue #1351 and the terminal `P14D_EXTERNAL_ACQUISITION_BLOCKED`. It is not repaired by replacing external cases with internally authored demonstrations. Conditioning the dataset on tasks that were easy to acquire or execute would change the estimand after outcome access.
+The blocked preflight is retained under the project record associated with issue #1351 and the terminal `P14D_EXTERNAL_ACQUISITION_BLOCKED`. The eight-count is a file-class inventory, not a count of attempted external cases, solicitations or failed acquisitions. It is not repaired by replacing external cases with internally authored demonstrations.
 
-Because the admissible external denominator is zero, the paper does not estimate:
+Because the admissible external denominator is zero, the external endpoints `CANNOT_CHECK`. The paper does not estimate:
 
 - useful-discovery recall;
 - false-promotion or false-rejection rates;
@@ -32,13 +32,13 @@ Because the admissible external denominator is zero, the paper does not estimate
 - blinded-adjudication validity; or
 - the causal effect of retaining negative history.
 
-The acquisition failure is itself an informative systems result: external evidence is a separate resource that an evaluation architecture cannot manufacture from its own readiness.
+The preflight failure is a custody boundary: external evidence is a separate resource that a specification cannot manufacture from its own completeness.
 
 ## 3. Contribution and claim boundary
 
-The finished Wave 3 contribution is an executable, fail-closed evaluation architecture. It specifies the complete chain from task acquisition to endpoint reconstruction and makes the absence of external data visible at the final authority layer.
+The finished Wave 3 contribution is a fail-closed evaluation specification. It describes the chain from task acquisition to endpoint reconstruction and makes the absence of required external inputs visible before execution.
 
-The paper does not claim that the architecture has already established external ORION-RSE superiority. It also does not describe AI adjudication as human expert authority, agreement as validity or repository CI as independent scientific replication.
+The paper does not claim an implemented end-to-end harness or external superiority. It also does not describe AI adjudication as human expert authority, agreement as validity or repository CI as independent scientific replication.
 
 ## 4. Custody model
 
@@ -117,7 +117,7 @@ The architecture is designed to test whether preserving adverse history improves
 
 Agent, task family, tools, resource budget and stopping authority must remain fixed. Outcomes should include repeated-failure rate, useful-discovery recall, false promotion, false rejection and cost. History can be corrected only by an additive superseding record; silent deletion changes the experimental state.
 
-The present paper specifies this experiment but does not report a positive or negative effect because no admissible external longitudinal denominator was obtained.
+The present paper specifies this experiment but does not report a positive or negative effect because execution never passed the external-input preflight.
 
 ## 9. Endpoint construction
 
@@ -167,7 +167,7 @@ The required hostile suite includes:
 9. resource overrun counted as ordinary success; and
 10. subjective adjudication contradicting a deterministic oracle.
 
-Every mutation must lead to the prospectively frozen safe terminal. A list of controls is not itself empirical validation, but it defines what the executable handoff must reject.
+Every mutation should lead to the prospectively frozen safe terminal. A list of controls is not empirical validation; it defines obligations for a future implementation.
 
 ## 12. Reproducibility and handoff
 
@@ -175,7 +175,7 @@ The implementation, claim ledger, manuscript materials and execution/evaluation 
 
 `papers/orion-24-orion-rse/`
 
-The retained acquisition boundary is documented in the repository history and issue #1351. The wider RSE successor handoff is also indexed from the portfolio-level records in `papers/`.
+The retained preflight boundary is documented in the repository history. The wider successor handoff is indexed in the associated artifact package.
 
 A future external execution root should contain:
 
@@ -196,24 +196,45 @@ A future external execution root should contain:
 
 Continuous integration may verify content bindings and endpoint reconstruction. It must not pretend to rerun unavailable external agents or transform interface readiness into outcome authority.
 
-## 13. Limitations
+## 13. Related evaluation and reporting work
 
-The primary limitation is decisive: no admissible external artifact was acquired, so the registered external scientific endpoints cannot be evaluated. The architecture has also not established that its blinded packet neutralization is effective in a live multi-provider study, that the negative-history intervention is beneficial or that its governance overhead is cost-effective.
+Research-engineering and scientific-reproduction benchmarks already define
+realistic tasks, environments, resource budgets and graded work products.
+RE-Bench compares agents and human experts on open-ended research engineering;
+CORE-Bench and PaperBench evaluate computational and paper-level reproduction.
+Rollout Cards treats retained rollout records, failure counts and reporting rules
+as the unit of agent-evaluation reproducibility. These works own the empirical
+benchmark and reporting foundations. The residual here is only a fail-closed
+specification that composes task custody, matched arm contracts, neutralized
+adjudication, failure-inclusive denominators and endpoint reconstruction, while
+making its blocked preflight explicit. No novelty authority is claimed for any
+component in isolation.
+
+## 14. Limitations
+
+The primary limitation is decisive: none of the eight required external-input artifact classes was present, so execution was unauthorized and the registered scientific endpoints cannot be evaluated. The eight classes are not an acquisition denominator. The specification has not established that its packet neutralization works in a live multi-provider study, that the negative-history intervention is beneficial or that its governance overhead is cost-effective. The listed schemas, calculators and hostile controls remain implementation obligations unless separately bound as executable artifacts.
 
 These limitations prevent an efficacy conclusion. They do not erase the engineering contribution or justify substituting internal demonstrations for the missing denominator.
 
-## 14. Scientific disposition
+## 15. Scientific disposition
 
 The exact Wave 3 terminal is:
 
 `ORION24_EXTERNAL_ACQUISITION_BLOCKED__EXECUTABLE_HANDOFF_COMPLETE`
 
-The present paper is an evaluation-infrastructure and negative-acquisition paper. Future external evidence must begin under a new frozen protocol and preserve the zero-of-eight record additively. A future positive result may supersede the external endpoint status, but it may not rewrite the acquisition failure as though the requested evidence had already existed.
+The present paper is an evaluation-specification and blocked-preflight paper. Future external evidence must begin under a new frozen protocol and preserve the zero-of-eight required-class record additively. A future positive result may supersede the external endpoint status, but it may not rewrite the blocked preflight as an attempted external study.
 
-## 15. Conclusion
+## 16. Conclusion
 
-Reliable evaluation of autonomous research software engineering requires matched agent contracts, independent task custody, actual execution, blinded or mechanical outcome authority, failure-inclusive denominators and independent endpoint reconstruction. ORION-RSE supplies this fail-closed architecture. Wave 3 did not obtain an admissible external scientific denominator: zero of eight requested artifacts were acquired, leaving the external endpoints `CANNOT_CHECK`. The finished claim is therefore executable evaluation infrastructure with an honest negative acquisition result, not frontier-agent superiority.
+Reliable evaluation of autonomous research software engineering requires matched agent contracts, independent task custody, actual execution, blinded or mechanical outcome authority, failure-inclusive denominators and independent endpoint reconstruction. The proposed specification composes these requirements. Wave 3 did not pass preflight: zero of eight required external-input artifact classes was present, so no external scientific denominator was formed. The finished claim is a fail-closed evaluation specification with an honest blocked-preflight result, not executable infrastructure and not frontier-agent superiority.
+
+## References
+
+- H. Wijk et al. *RE-Bench: Evaluating Frontier AI R&D Capabilities of Language Model Agents Against Human Experts.* arXiv:2411.15114, 2024.
+- Z. S. Siegel, S. Kapoor, N. Nadgir, B. Stroebl & A. Narayanan. *CORE-Bench: Fostering the Credibility of Published Research Through a Computational Reproducibility Agent Benchmark.* arXiv:2409.11363, 2024.
+- G. Starace et al. *PaperBench: Evaluating AI's Ability to Replicate AI Research.* arXiv:2504.01848, 2025.
+- C. Masters, Z. Liu & S. V. Albrecht. *Rollout Cards: A Reproducibility Standard for Agent Research.* arXiv:2605.12131, 2026.
 
 ## Data and code availability
 
-The architecture, schemas, claim records and handoff materials are available in the repository. No admissible external case dataset supports the present paper's external endpoints; this absence is part of the reported result.
+The specification, claim records and preflight materials are available in the repository. No external case dataset supports the present paper's endpoints; the missing required artifact classes and unauthorized execution are part of the reported boundary.
