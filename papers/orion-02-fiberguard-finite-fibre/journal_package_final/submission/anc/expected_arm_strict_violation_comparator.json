@@ -1,0 +1,353 @@
+{
+  "correction": {
+    "bounded_result": "The geometry policy has six additional strict violations and no fewer on this frozen endpoint; both policies fail the registered 0.10 validity gate.",
+    "geometry_superiority": "NOT_SUPPORTED",
+    "historical_cannot_check_interpretation": "RETRACTED",
+    "lexical_broad_superiority": "NOT_ESTABLISHED",
+    "reason": "The committed fold records do serialize paired violation_strict flags for the geometry-selected arm in both policies.",
+    "science_terminal_unchanged": true
+  },
+  "does_not_certify": [
+    "a valid certificate for either policy",
+    "broad superiority of lexical selection",
+    "unseen-instance or cross-domain transfer",
+    "external replication or independence"
+  ],
+  "matched_lexical_control": {
+    "gate": "FAIL",
+    "maximum_registered_rate": 0.1,
+    "strict_violation_rate": 0.3181818181818182,
+    "strict_violations": 14
+  },
+  "matching_rule": "For each frozen fold, apply the geometry fold's serialized selected primary arm to both the geometry and matched lexical-control test maps; pair by dataset name.",
+  "mcnemar_exact_two_sided_p": 0.03125,
+  "n": 44,
+  "paired_contingency": {
+    "both_violate": 14,
+    "control_only_violates": 0,
+    "neither_violates": 24,
+    "primary_only_violates": 6
+  },
+  "pairs": [
+    {
+      "control_violation_strict": false,
+      "dataset": "credit_approval_australia",
+      "fold": 0,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "credit_approval_germany",
+      "fold": 0,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "ionosphere",
+      "fold": 0,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "schizo",
+      "fold": 0,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "vehicle",
+      "fold": 0,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "calendarDOW",
+      "fold": 1,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_RF300"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "car_evaluation",
+      "fold": 1,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_RF300"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "heart_disease_va_long_beach",
+      "fold": 1,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_RF300"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "monk1",
+      "fold": 1,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_RF300"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "monk2",
+      "fold": 1,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_RF300"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "congressional_voting_records",
+      "fold": 2,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "contraceptive_method",
+      "fold": 2,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "ecoli",
+      "fold": 2,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "prnn_synth",
+      "fold": 2,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "xd6",
+      "fold": 2,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "biomed",
+      "fold": 3,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "breast_cancer_wisconsin_original",
+      "fold": 3,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "parity5+5",
+      "fold": 3,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "prnn_crabs",
+      "fold": 3,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "profb",
+      "fold": 3,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "analcatdata_germangss",
+      "fold": 4,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "breast_cancer",
+      "fold": 4,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "horse_colic_lesion_type",
+      "fold": 4,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "new_thyroid",
+      "fold": 4,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "tic_tac_toe",
+      "fold": 4,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "balance_scale",
+      "fold": 5,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_3"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "breast_cancer_wisconsin_diagnostic",
+      "fold": 5,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_3"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "horse_colic_outcome",
+      "fold": 5,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_3"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "irish",
+      "fold": 5,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_3"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "penguins",
+      "fold": 5,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_3"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "bupa",
+      "fold": 6,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_3"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "cars",
+      "fold": 6,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_3"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "monk3",
+      "fold": 6,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_3"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "spect",
+      "fold": 6,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_3"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "threeOf9",
+      "fold": 6,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_3"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "dermatology",
+      "fold": 7,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_RF300"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "heart_disease_cleveland",
+      "fold": 7,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_RF300"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "heart_disease_hungarian",
+      "fold": 7,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_RF300"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "saheart",
+      "fold": 7,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_RF300"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "wine_quality_red",
+      "fold": 7,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_RF300"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "analcatdata_dmft",
+      "fold": 8,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": true,
+      "dataset": "haberman",
+      "fold": 8,
+      "primary_violation_strict": true,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "horse_colic_surgery",
+      "fold": 8,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_5"
+    },
+    {
+      "control_violation_strict": false,
+      "dataset": "mofn_3_7_10",
+      "fold": 8,
+      "primary_violation_strict": false,
+      "selected_arm": "LEARNED_KNN_5"
+    }
+  ],
+  "primary": {
+    "gate": "FAIL",
+    "maximum_registered_rate": 0.1,
+    "strict_violation_rate": 0.45454545454545453,
+    "strict_violations": 20
+  },
+  "schema": "ANON.STUDY_FStrictViolationComparatorCorrection.v1",
+  "source": {
+    "result_schema": "ANON.PMLBArmConditionalBoundaryFibres.STUDY_F.Result.v1",
+    "sha256": "768759953193d41e6286636ac8dd244f2af5d5fd2ceca029b0baf487d1b96e43",
+    "terminal": "C_STUDY_F_ARM_CONDITIONAL_CERTIFICATE_INVALID"
+  }
+}

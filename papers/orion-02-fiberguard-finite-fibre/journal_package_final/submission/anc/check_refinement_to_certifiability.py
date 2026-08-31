@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""REFINEMENT_TO_CERTIFIABILITY_PUBLIC.v1 -- exhaustive counterexample search.
+"""ANON.REFINEMENT_TO_CERTIFIABILITY.v1 -- exhaustive counterexample search.
 
 Every check looks for a VIOLATION of R1-R5. Finding none over an exhaustive family is
 the evidence, and the planted-violation controls are what make that evidence mean
@@ -210,8 +210,8 @@ def main() -> int:
         terminal, rc = "T1_REFINEMENT_CROSSES_THE_BOUNDARY_CONSTRUCTIVELY", 0
 
     print(json.dumps({
-        "schema": "RefinementToCertifiability.PublicResult.v1",
-        "protocol_identity": "REFINEMENT_TO_CERTIFIABILITY_PUBLIC.v1",
+        "schema": "ANON.RefinementToCertifiability.Result.v1",
+        "protocol_identity": "ANON.REFINEMENT_TO_CERTIFIABILITY.v1",
         "authority": "MEASUREMENT_AND_PROOF_ONLY", "scientific_authority_delta": "NONE",
         "enumeration": {
             "value_grid": GRID, "eps_grid": EPS_GRID,
@@ -232,8 +232,8 @@ def main() -> int:
             "X4_unrealisable_case_detected": {"eligible": x4_elig, "caught": x4_caught, "passed": x4_ok},
             "X5_eps_zero_recovers_the_barrier": {"checked": x5_checked, "ok": x5_ok, "passed": x5_ok_all}},
         "terminal": terminal,
-        "promotion_status": ("FINITE_CHECK_COMPLETE__NO_SCIENTIFIC_PROMOTION"
-                             if terminal.startswith("T1") else "FINITE_CHECK_FOUND_A_VIOLATION"),
+        "promotion_status": ("THEORY_STEP_COMPLETE__PROMOTION_NOT_YET_EARNED"
+                             if terminal.startswith("T1") else "PROMOTION_FAILED_AT_THEORY_STEP"),
     }, indent=2, sort_keys=True))
     return rc
 
