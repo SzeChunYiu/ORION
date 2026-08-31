@@ -86,32 +86,305 @@ def restore_functional(values: Sequence[int]) -> int:
     return sum(value != 0 for value in values)
 
 
-def check_f2_restricted_bound() -> dict[str, object]:
-    families = 0
-    basis_equalities = 0
-    for dimension in range(1, 4):
-        nonzero = tuple(range(1, 1 << dimension))
-        basis = {1 << index for index in range(dimension)}
-        for mask in range(1 << len(nonzero)):
-            alphabet = tuple(
-                value for index, value in enumerate(nonzero) if (mask >> index) & 1
+PauliKey = tuple[int, int]
+
+
+def pauli_weight(key: PauliKey) -> int:
+    return (key[0] | key[1]).bit_count()
+
+
+def pauli_product(left: PauliKey, right: PauliKey) -> PauliKey:
+    """Multiply phase-quotiented Paulis in the binary symplectic encoding."""
+    return left[0] ^ right[0], left[1] ^ right[1]
+
+
+def pauli_symplectic(left: PauliKey, right: PauliKey) -> int:
+    return (
+        (left[0] & right[1]).bit_count()
+        + (left[1] & right[0]).bit_count()
+    ) & 1
+
+
+def pauli_local_letter(key: PauliKey, coordinate: int) -> tuple[int, int]:
+    return (key[0] >> coordinate) & 1, (key[1] >> coordinate) & 1
+
+
+def restore_three(
+    left: tuple[int, int], middle: tuple[int, int], right: tuple[int, int]
+) -> int:
+    if left == middle == right and left != (0, 0):
+        return 1
+    return sum(letter != (0, 0) for letter in (left, middle, right))
+
+
+def r6m_acceptance(
+    frames: Sequence[PauliKey], tag: PauliKey
+) -> tuple[int, int] | None:
+    if len(frames) != 6:
+        raise ValueError("R6M requires exactly six frame Paulis")
+    if any(
+        pauli_symplectic(frames[2 * block], frames[2 * block + 1]) != 1
+        for block in range(3)
+    ):
+        return None
+    labels = (
+        pauli_symplectic(tag, frames[0]),
+        pauli_symplectic(tag, frames[1]),
+    )
+    if labels[0] == labels[1]:
+        return None
+    for block in (1, 2):
+        if (
+            pauli_symplectic(tag, frames[2 * block]),
+            pauli_symplectic(tag, frames[2 * block + 1]),
+        ) != labels:
+            return None
+    return labels
+
+
+def r6m_objective(
+    targets: Sequence[PauliKey],
+    frames: Sequence[PauliKey],
+    tag: PauliKey,
+    centrals: Sequence[int],
+    qubits: int,
+) -> int:
+    """Frozen unit-cost R6M objective used by the two-site obstruction."""
+    raw_frame = 0
+    for block in range(3):
+        first_multiplier = 2 if centrals[block] == 0 else 4
+        second_multiplier = 2 if centrals[block] == 1 else 4
+        raw_frame += first_multiplier * pauli_weight(frames[2 * block])
+        raw_frame += second_multiplier * pauli_weight(frames[2 * block + 1])
+    restored = [
+        pauli_product(target, frame) for target, frame in zip(targets, frames)
+    ]
+    restore_cost = 0
+    for role in (0, 1):
+        for coordinate in range(qubits):
+            restore_cost += restore_three(
+                pauli_local_letter(restored[role], coordinate),
+                pauli_local_letter(restored[2 + role], coordinate),
+                pauli_local_letter(restored[4 + role], coordinate),
             )
+    return raw_frame + 2 * pauli_weight(tag) - 18 + restore_cost
+
+
+def permute_target_pairs(
+    target_pairs: Sequence[tuple[PauliKey, PauliKey]], permutations: Sequence[int]
+) -> tuple[PauliKey, ...]:
+    ordered: list[PauliKey] = []
+    for pair, permutation in zip(target_pairs, permutations):
+        ordered.extend(pair if permutation == 0 else (pair[1], pair[0]))
+    return tuple(ordered)
+
+
+def weight_at_most_one_paulis(qubits: int) -> tuple[PauliKey, ...]:
+    keys: list[PauliKey] = [(0, 0)]
+    for coordinate in range(qubits):
+        bit = 1 << coordinate
+        keys.extend(((bit, 0), (bit, bit), (0, bit)))
+    return tuple(keys)
+
+
+def all_paulis(qubits: int) -> tuple[PauliKey, ...]:
+    return tuple(
+        (x_mask, z_mask)
+        for x_mask in range(1 << qubits)
+        for z_mask in range(1 << qubits)
+    )
+
+
+def joint_active_column_support(left: PauliKey, right: PauliKey) -> int:
+    """Count columns where either member of a Pauli frame pair is active."""
+    return (left[0] | left[1] | right[0] | right[1]).bit_count()
+
+
+def check_r6i_joint_column_statistic() -> dict[str, object]:
+    """Keep the rank-five R6I word aligned with its block-column statistic.
+
+    A rank-only R6I letter is created by zeroing both independent generators at
+    one column.  Consequently its word length counts the union of the two
+    support sets.  This is not, in general, the maximum of the two individual
+    Pauli weights.  The rank-five production bindings are recorded as 10-bit
+    integer vectors; this checker corroborates their formal rank and encoding
+    boundary without claiming to reconstruct the production alphabet.
+    """
+    left = (1, 0)
+    right = (2, 0)
+    joint = joint_active_column_support(left, right)
+    maximum_individual = max(pauli_weight(left), pauli_weight(right))
+    block_a_basis = (1, 68, 136, 272, 544)
+    block_b_basis = (2, 4, 8, 16, 32)
+    basis_vectors_are_10_bit = all(
+        0 <= value < (1 << 10) for value in block_a_basis + block_b_basis
+    )
+    block_a_rank = f2_span_rank(block_a_basis)
+    block_b_rank = f2_span_rank(block_b_basis)
+    assert joint == 2
+    assert maximum_individual == 1
+    assert joint != maximum_individual
+    assert basis_vectors_are_10_bit
+    assert block_a_rank == block_b_rank == 5
+    return {
+        "name": "r6i_joint_active_column_statistic",
+        "status": "PASS",
+        "scope": (
+            "formal support-statistic identity plus rank of the two bound "
+            "10-bit basis records; no production-alphabet reconstruction"
+        ),
+        "disjoint_example_joint_columns": joint,
+        "disjoint_example_maximum_individual_weight": maximum_individual,
+        "statistics_are_not_interchangeable": joint != maximum_individual,
+        "block_a_basis_rank": block_a_rank,
+        "block_b_basis_rank": block_b_rank,
+        "basis_vectors_are_10_bit_encodings": basis_vectors_are_10_bit,
+    }
+
+
+def check_r6m_two_site_support_obstruction() -> dict[str, object]:
+    """Recompute the frozen 5-versus-6 witness without ORION imports."""
+    qubits = 2
+    target_pairs: tuple[tuple[PauliKey, PauliKey], ...] = (
+        ((0, 1), (0, 1)),
+        ((0, 1), (0, 1)),
+        ((0, 2), (2, 0)),
+    )
+    support_two_frames: tuple[PauliKey, ...] = (
+        (0, 1),
+        (1, 1),
+        (0, 1),
+        (1, 1),
+        (0, 2),
+        (3, 0),
+    )
+    support_two_tag = (0, 1)
+    support_two_centrals = (0, 0, 1)
+    support_two_permutations = (0, 0, 0)
+    support_two_labels = r6m_acceptance(support_two_frames, support_two_tag)
+    support_two_cost = r6m_objective(
+        permute_target_pairs(target_pairs, support_two_permutations),
+        support_two_frames,
+        support_two_tag,
+        support_two_centrals,
+        qubits,
+    )
+    support_two_maximum = max(map(pauli_weight, support_two_frames))
+
+    frame_keys = weight_at_most_one_paulis(qubits)
+    tag_keys = all_paulis(qubits)
+    central_choices = tuple(itertools.product((0, 1), repeat=3))
+    permutation_choices = tuple(
+        (0, second, third)
+        for second in (0, 1)
+        for third in (0, 1)
+    )
+    permuted_targets = {
+        permutation: permute_target_pairs(target_pairs, permutation)
+        for permutation in permutation_choices
+    }
+    frame_six_tuples_enumerated = 0
+    feasible_frame_six_tuples = 0
+    accepted_frame_tag_pairs = 0
+    objective_evaluations = 0
+    support_at_most_one_optimum: int | None = None
+    for frames in itertools.product(frame_keys, repeat=6):
+        frame_six_tuples_enumerated += 1
+        if any(
+            pauli_symplectic(frames[2 * block], frames[2 * block + 1]) != 1
+            for block in range(3)
+        ):
+            continue
+        feasible_frame_six_tuples += 1
+        for tag in tag_keys:
+            if r6m_acceptance(frames, tag) is None:
+                continue
+            accepted_frame_tag_pairs += 1
+            for centrals in central_choices:
+                for permutations in permutation_choices:
+                    objective_evaluations += 1
+                    value = r6m_objective(
+                        permuted_targets[permutations],
+                        frames,
+                        tag,
+                        centrals,
+                        qubits,
+                    )
+                    if (
+                        support_at_most_one_optimum is None
+                        or value < support_at_most_one_optimum
+                    ):
+                        support_at_most_one_optimum = value
+
+    assert support_two_labels == (0, 1)
+    assert support_two_maximum == 2
+    assert support_two_cost == 5
+    assert frame_six_tuples_enumerated == len(frame_keys) ** 6 == 7**6
+    assert feasible_frame_six_tuples == 12**3
+    assert support_at_most_one_optimum == 6
+    return {
+        "name": "r6m_two_site_support_obstruction",
+        "status": "PASS",
+        "scope": "complete support-at-most-one family for the frozen n=2 witness",
+        "support_two_cost": support_two_cost,
+        "support_two_maximum_frame_support": support_two_maximum,
+        "support_at_most_one_optimum": support_at_most_one_optimum,
+        "strict_gap": support_at_most_one_optimum - support_two_cost,
+        "frame_six_tuples_enumerated": frame_six_tuples_enumerated,
+        "feasible_frame_six_tuples": feasible_frame_six_tuples,
+        "tag_keys_enumerated": len(tag_keys),
+        "accepted_frame_tag_pairs": accepted_frame_tag_pairs,
+        "objective_evaluations": objective_evaluations,
+        "complete_support_at_most_one_enumeration": True,
+        "imports_orion": False,
+    }
+
+
+def f2_span_rank(alphabet: Sequence[int]) -> int:
+    """Return the rank of integer-encoded binary vectors."""
+    pivots: dict[int, int] = {}
+    for original in alphabet:
+        value = original
+        while value:
+            pivot = value.bit_length() - 1
+            if pivot in pivots:
+                value ^= pivots[pivot]
+            else:
+                pivots[pivot] = value
+                break
+    return len(pivots)
+
+
+def check_f2_generated_span_identity() -> dict[str, object]:
+    families = 0
+    ambient_spanning_alphabets = 0
+    strict_inequality_cases = 0
+    for dimension in range(1, 4):
+        vectors = tuple(range(1 << dimension))
+        for mask in range(1 << len(vectors)):
+            alphabet = tuple(
+                value for index, value in enumerate(vectors) if (mask >> index) & 1
+            )
+            rank = f2_span_rank(alphabet)
             value = zsf_bruteforce(
                 alphabet, lambda left, right: left ^ right, 0, dimension + 1
             )
-            assert value <= dimension
-            if basis.issubset(set(alphabet)):
-                assert value == dimension
-                basis_equalities += 1
+            assert value == rank
+            if value < rank:
+                strict_inequality_cases += 1
+            if rank == dimension:
+                ambient_spanning_alphabets += 1
             families += 1
-    assert families == 138
-    assert basis_equalities == 19
+    assert families == 276
+    assert strict_inequality_cases == 0
     return {
-        "name": "restricted_F2_rank_bound",
+        "name": "binary_generated_span_identity",
         "status": "PASS",
-        "scope": "all alphabets in F2^d for d=1,2,3",
+        "scope": "all alphabets, including zero, in F2^d for d=1,2,3",
         "families": families,
-        "basis_equalities": basis_equalities,
+        "generated_span_equalities": families,
+        "ambient_spanning_alphabets": ambient_spanning_alphabets,
+        "strict_inequality_cases": strict_inequality_cases,
     }
 
 
@@ -282,11 +555,13 @@ def check_soundness_and_product_arithmetic() -> dict[str, object]:
 
 def run_checks() -> dict[str, object]:
     checks = [
-        check_f2_restricted_bound(),
+        check_f2_generated_span_identity(),
         check_cyclic_rank_boundary(),
         check_restore_sensitivity(),
         check_deletion_terminal_equivalence(),
         check_global_descent(),
+        check_r6m_two_site_support_obstruction(),
+        check_r6i_joint_column_statistic(),
         check_soundness_and_product_arithmetic(),
     ]
     assert all(check["status"] == "PASS" for check in checks)
