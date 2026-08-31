@@ -7,6 +7,7 @@ PAPER = HERE.parent.parent
 MANUSCRIPT = PAPER / "WAVE3_SCOPED_MANUSCRIPT_V2.md"
 RELATED = HERE / "RELATED_WORK_AND_NOVELTY.md"
 FIXED_TIME = (2026, 8, 31, 0, 0, 0)
+FIXED_PDF_ID = "0123456789ABCDEF0123456789ABCDEF"
 
 def run(cmd, cwd=None):
     env = os.environ.copy()
@@ -37,12 +38,29 @@ def normalized_markdown(src):
     text = text.replace("\\[", "$$").replace("\\]", "$$").replace("\\(", "$").replace("\\)", "$")
     return text.replace("∎", "$\\square$")
 
+def deterministic_pdf_header():
+    # pdfTeX otherwise emits a run-dependent trailer ID when Pandoc stages its
+    # temporary TeX source. Pin the metadata/trailer fields so identical
+    # publication input produces byte-identical PDF output across clean runs.
+    return (
+        "\\pdfinfoomitdate=1\n"
+        f"\\pdftrailerid{{<{FIXED_PDF_ID}><{FIXED_PDF_ID}>}}\n"
+        "\\pdfsuppressptexinfo=15\n"
+    )
+
 def main():
     submission_text = normalized_markdown(MANUSCRIPT).rstrip() + "\n\n" + RELATED.read_text(encoding="utf-8").lstrip()
     with tempfile.TemporaryDirectory() as td:
-        temp = Path(td) / "manuscript.md"
+        td_path = Path(td)
+        temp = td_path / "manuscript.md"
+        header = td_path / "deterministic-pdf-header.tex"
         temp.write_text(submission_text, encoding="utf-8")
-        run(["pandoc", str(temp), "--pdf-engine=pdflatex", "-V", "geometry:margin=1in", "-V", "fontsize=11pt", "-o", str(HERE / "manuscript.pdf")])
+        header.write_text(deterministic_pdf_header(), encoding="utf-8")
+        run([
+            "pandoc", str(temp), "--pdf-engine=pdflatex", "-H", str(header),
+            "-V", "geometry:margin=1in", "-V", "fontsize=11pt",
+            "-o", str(HERE / "manuscript.pdf"),
+        ])
     readme = (
         "ORION-04 journal source package\n\n"
         "`manuscript.md` is the publication-clean rendering source. The repository's "
