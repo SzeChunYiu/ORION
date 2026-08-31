@@ -39,6 +39,17 @@ def publication_markdown(spec: b.Spec) -> str:
             "The preserved the second study result illustrates",
             "The preserved second-study result illustrates",
         )
+        text = text.replace("The the second study corpus", "The second-study corpus")
+        text = text.replace("Jin and Ren (2024)", "Jin and Ren (2025)")
+    if spec.mode == "quantum" and "## Author contributions" not in text:
+        marker = "\n## References\n"
+        contribution = (
+            "\n## Author contributions\n\n"
+            "Sze Chun Yiu is the sole listed author and performed the authorship contributions represented in this manuscript, including the formal analysis, computational verification, and manuscript preparation.\n"
+        )
+        if marker not in text:
+            raise SystemExit(f"missing References marker for Quantum author contribution insertion: {spec.key}")
+        text = text.replace(marker, contribution + marker, 1)
     return text
 
 
