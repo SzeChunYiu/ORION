@@ -10,7 +10,7 @@ The paper was reviewed as if by a skeptical TMLR action editor, a formal-methods
 |---|---|
 | The prior PDF contained malformed symbols, duplicated section numbers, monospace scientific quantities, and repository/version vocabulary. | Replaced it with hand-written mathematical LaTeX using theorem/proof environments and rebuilt the PDF with the official TMLR style. |
 | The abstract was a result catalogue with repository-facing detail. | Rewritten as a single-paragraph theory abstract with one formal spine and one compressed adverse-evidence boundary. |
-| The R24 aggregate 14-versus-20 control margin was presented as if comparative superiority were testable. | Ledger, table and discussion now state that per-instance policy-arm flags were not serialized and the paired comparison is CANNOT_CHECK. |
+| The closure draft incorrectly classified the R24 14-versus-20 strict-violation margin as `CANNOT_CHECK`. | The retained fold records do serialize paired flags. A deterministic correction reconstructs `(14,6,0,24)` and exact two-sided McNemar $p=0.03125$, retracts the false interpretation, and preserves both policies' adverse 0.10-gate failures without promoting broad lexical superiority. |
 | The R23 32-versus-39 counts risked implying a decisive difference. | The exact paired McNemar result and bootstrap interval are reported; the difference was not established. |
 | The application studies could be read as empirical verification of a large fibre diameter. | The manuscript now states repeatedly that none measured empirical fibre diameter. |
 | R19 risked laundering a specification repair into application value. | The 35-to-70 and 0-versus-50 witnesses are retained as analytic repair evidence only; no empirical transfer follows. |
@@ -27,7 +27,7 @@ The paper was reviewed as if by a skeptical TMLR action editor, a formal-methods
 1. The theorem components are elementary and a referee may judge the integrated contribution incremental. The paper states the prior-work boundary honestly; this is an editorial significance risk, not a reason to invent broader claims.
 2. The adverse empirical studies do not establish the theorem's mechanism on real corpora. The paper treats them as motivating boundaries.
 3. The anonymous supplement cannot rerun the original upstream-data pipelines. It supports exact enclosed-result checks and is explicit about that limit.
-4. The R24 comparator margin is permanently uncheckable from the recorded object. It remains visible rather than reconstructed or guessed.
+4. The R24 paired strict-violation correction is bounded to one outcome-exposed pinned-corpus study. It is adverse to geometry on that endpoint, but both policies are invalid and no broad lexical-superiority claim follows.
 5. External novelty, replication and acceptance authority remain open.
 
 ## Hostile decision

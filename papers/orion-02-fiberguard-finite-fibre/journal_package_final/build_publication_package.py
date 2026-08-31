@@ -11,11 +11,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
 import sys
+import tempfile
 import zipfile
+
+from build_release_integrity import build as build_release_integrity
 
 PACKAGE = Path(__file__).resolve().parent
 PAPER = PACKAGE.parent
@@ -23,8 +27,15 @@ REPO = PAPER.parents[1]
 SUB = PACKAGE / "submission"
 ANC = SUB / "anc"
 EPOCH = (2026, 8, 31, 0, 0, 0)
-SKILLS_REVISION = "0c05ac4c2c7f6a6a7d26dad22c1de1efdc186b4b"
+SKILLS_REVISION = "8d5d314009b79039ac77dd297df8439e1aac63b2"
+SKILLS_TREE = "744cd0b4274ca04a65e779ce835dffdb5f2b6e58"
 TMLR_STYLE_REVISION = "7bf90efe3a0debbba703c05c43f3ff7e4d4a2992"
+SOURCE_DATE_EPOCH = "1788134400"  # 2026-08-31T00:00:00Z
+REVIEW_TEX = SUB / "When_a_Representation_Can_Certify.tex"
+REVIEW_PDF = SUB / "When_a_Representation_Can_Certify.pdf"
+ARXIV_TEX = SUB / "When_a_Representation_Can_Certify_arxiv.tex"
+ARXIV_PDF = SUB / "When_a_Representation_Can_Certify_arxiv.pdf"
+ARXIV_SOURCE_ZIP = SUB / "When_a_Representation_Can_Certify_arxiv_source.zip"
 
 RAW = {
     "paired_route_result.json": PAPER / "extensions/r18/FIBERGUARD_PAIRED_ROUTE_R18_RECOVERY_RESULTS.json",
@@ -100,6 +111,77 @@ def run_stdout(command: list[str], cwd: Path) -> str:
     return proc.stdout
 
 
+def write_arxiv_source() -> None:
+    """Derive the public preprint source by changing only route metadata."""
+    review = REVIEW_TEX.read_text(encoding="utf-8")
+    replacements = (
+        (r"\usepackage{tmlr}", r"\usepackage[preprint]{tmlr}"),
+        ("% Author identities are intentionally absent from the review source.",
+         "% Public arXiv preprint; scientific body is identical to the review source."),
+        (r"\author{Anonymous authors}", r"\author{Sze Chun Yiu}"),
+        ("pdfauthor={Anonymous}", "pdfauthor={Sze Chun Yiu}"),
+    )
+    public = review
+    for old, new in replacements:
+        if public.count(old) != 1:
+            raise SystemExit(f"arXiv source derivation expected one occurrence: {old}")
+        public = public.replace(old, new)
+    ARXIV_TEX.write_text(public, encoding="utf-8")
+
+
+def compile_pdf(tex: Path, destination: Path) -> None:
+    """Compile one deterministic route PDF without leaving TeX intermediates."""
+    with tempfile.TemporaryDirectory() as temporary:
+        output = Path(temporary)
+        proc = subprocess.run(
+            ["tectonic", str(tex), "--outdir", str(output), "--keep-logs", "--keep-intermediates"],
+            cwd=SUB,
+            text=True,
+            capture_output=True,
+            env={**os.environ, "SOURCE_DATE_EPOCH": SOURCE_DATE_EPOCH},
+        )
+        if proc.returncode:
+            print(proc.stdout)
+            print(proc.stderr, file=sys.stderr)
+            raise SystemExit(f"tectonic failed for {tex.name}")
+        built = output / f"{tex.stem}.pdf"
+        log = output / f"{tex.stem}.log"
+        if not built.is_file():
+            raise SystemExit(f"tectonic did not produce {built.name}")
+        diagnostics = proc.stdout + proc.stderr
+        if log.is_file():
+            diagnostics += log.read_text(encoding="utf-8", errors="replace")
+        forbidden = ("Undefined control sequence", "LaTeX Error", "Overfull \\hbox", "Overfull \\vbox")
+        found = [token for token in forbidden if token in diagnostics]
+        if found:
+            raise SystemExit(f"blocking render diagnostics for {tex.name}: {found}")
+        shutil.copy2(built, destination)
+
+
+def verify_route_outputs() -> None:
+    """Fail closed if route identity or PDF metadata drifts."""
+    review = REVIEW_TEX.read_text(encoding="utf-8")
+    public = ARXIV_TEX.read_text(encoding="utf-8")
+    reconstructed = review.replace(r"\usepackage{tmlr}", r"\usepackage[preprint]{tmlr}")
+    reconstructed = reconstructed.replace(
+        "% Author identities are intentionally absent from the review source.",
+        "% Public arXiv preprint; scientific body is identical to the review source.",
+    )
+    reconstructed = reconstructed.replace(r"\author{Anonymous authors}", r"\author{Sze Chun Yiu}")
+    reconstructed = reconstructed.replace("pdfauthor={Anonymous}", "pdfauthor={Sze Chun Yiu}")
+    if public != reconstructed:
+        raise SystemExit("arXiv source differs from the allowed route-only transformation")
+    review_info = run_stdout(["pdfinfo", REVIEW_PDF.name], SUB)
+    arxiv_info = run_stdout(["pdfinfo", ARXIV_PDF.name], SUB)
+    if "Author:          Anonymous" not in review_info:
+        raise SystemExit("TMLR review PDF metadata is not anonymous")
+    if "Author:          Sze Chun Yiu" not in arxiv_info:
+        raise SystemExit("arXiv PDF metadata does not name the author")
+    for label, info in (("TMLR", review_info), ("arXiv", arxiv_info)):
+        if "Pages:           7" not in info:
+            raise SystemExit(f"{label} route PDF page-count drift")
+
+
 def write_zip(path: Path, base: Path, members: list[Path]) -> None:
     with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for member in sorted(members, key=lambda x: x.relative_to(base).as_posix()):
@@ -144,6 +226,10 @@ def prepare_ancillary() -> None:
         ANC / "verify_density_paired_comparison.py",
     )
     scrub_script(
+        PAPER / "rounds/r24-arm-conditional-fibres-revival/verify_r24_strict_violation_comparator.py",
+        ANC / "verify_arm_strict_violation_comparator.py",
+    )
+    scrub_script(
         PAPER / "experiments/selective-fibre-risk-v1/analyze_selector_limit.py",
         ANC / "analyze_selector_diagnostic.py",
     )
@@ -177,6 +263,18 @@ def prepare_ancillary() -> None:
             [
                 sys.executable,
                 "analyze_selector_diagnostic.py",
+                "results/arm_conditional_result.json",
+            ],
+            ANC,
+        ),
+        encoding="utf-8",
+    )
+    (ANC / "expected_arm_strict_violation_comparator.json").write_text(
+        run_stdout(
+            [
+                sys.executable,
+                "verify_arm_strict_violation_comparator.py",
+                "--results",
                 "results/arm_conditional_result.json",
             ],
             ANC,
@@ -238,7 +336,18 @@ def main():
     f = load("arm_conditional_result.json")
     assert f["primary"]["certified_n"] == 44 and f["primary"]["n"] == 44
     assert f["primary"]["violations_strict"] == 20
-    assert "per_instance_policy_arm_violation_flags" not in f
+    paired_f = json.loads((ROOT.parent / "expected_arm_strict_violation_comparator.json").read_text(encoding="utf-8"))
+    assert paired_f["primary"]["strict_violations"] == 20
+    assert paired_f["matched_lexical_control"]["strict_violations"] == 14
+    assert paired_f["paired_contingency"] == {
+        "both_violate": 14,
+        "primary_only_violates": 6,
+        "control_only_violates": 0,
+        "neither_violates": 24,
+    }
+    assert paired_f["mcnemar_exact_two_sided_p"] == 0.03125
+    assert paired_f["primary"]["gate"] == "FAIL"
+    assert paired_f["matched_lexical_control"]["gate"] == "FAIL"
 
     selector = load("selector_diagnostic.json")
     assert selector["n"] == 44
@@ -267,6 +376,7 @@ Run, using Python 3.10 or later:
     python3 check_refinement_to_certifiability.py
     python3 verify_joint_route_repair.py --output /tmp/joint.json
     python3 verify_density_paired_comparison.py --results results/density_backoff_result.json
+    python3 verify_arm_strict_violation_comparator.py --results results/arm_conditional_result.json
     python3 analyze_selector_diagnostic.py results/arm_conditional_result.json
     python3 recheck_enclosed_results.py
 
@@ -276,9 +386,9 @@ The result files are deterministic anonymous scientific projections of the full 
 
 ## What this archive does not provide
 
-It does not include the upstream ASlib or PMLB datasets and therefore does not rerun the original model-fitting pipelines. It rechecks the enclosed frozen outcomes, the exact paired coverage analysis, the selector diagnostic, and the analytic finite verifiers. Full provenance-bearing objects, upstream acquisition instructions and a permanent archival identifier are camera-ready actions after deanonymization.
+It does not include the upstream ASlib or PMLB datasets and therefore does not rerun the original model-fitting pipelines. It rechecks the enclosed frozen outcomes, the exact paired coverage analysis, the paired strict-violation correction, the selector diagnostic, and the analytic finite verifiers. Full provenance-bearing objects, upstream acquisition instructions and a permanent archival identifier are camera-ready actions after deanonymization.
 
-The primary/control violation margin in the final held-out study remains CANNOT_CHECK: the full frozen object contains aggregate counts but did not serialize the per-instance policy-arm flags required for a paired comparison. No script in this archive invents those missing flags.
+The final held-out fold records do retain paired strict-violation flags. Matching each geometry fold's serialized selected arm into both policies reconstructs 20/44 versus 14/44, contingency `(14,6,0,24)`, and exact two-sided McNemar `p=0.03125`. Both policies fail the frozen 0.10 validity gate. This adverse correction does not establish broad lexical superiority.
 
 The supplementary verification code is distributed under Apache License 2.0; see LICENSE_CODE.txt. Manuscript licensing is governed separately by the TMLR submission terms.
 '''
@@ -303,7 +413,13 @@ def write_anc_manifest() -> None:
 
 
 def verify_anonymity() -> None:
-    forbidden = ("SzeChunYiu", "/Users/", "github.com/SzeChunYiu", "ORION", "FiberGuard")
+    forbidden = (
+        "SzeChunYiu",
+        "/" + "Users" + "/",
+        "github.com/SzeChunYiu",
+        "ORION",
+        "FiberGuard",
+    )
     checked = [
         p for p in [SUB / "When_a_Representation_Can_Certify.tex", SUB / "references.bib", *ANC.rglob("*")]
         if p.is_file() and p.suffix.lower() not in {".pdf", ".zip", ".pyc"}
@@ -319,12 +435,67 @@ def verify_anonymity() -> None:
         raise SystemExit(f"anonymity scan failed: {findings}")
 
 
+def verify_no_local_paths() -> None:
+    """Reject workstation paths from package files and decoded archive members."""
+    markers = (
+        b"/" + b"Users" + b"/",
+        b"/" + b"home" + b"/",
+        b"C:" + bytes((92,)),
+    )
+    for path in sorted(
+        p
+        for p in PACKAGE.rglob("*")
+        if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"
+    ):
+        if zipfile.is_zipfile(path):
+            with zipfile.ZipFile(path) as archive:
+                for info in archive.infolist():
+                    payload = archive.read(info.filename)
+                    if any(marker in payload for marker in markers):
+                        raise SystemExit(
+                            "local absolute path in archive member: "
+                            f"{path.relative_to(PACKAGE)}:{info.filename}"
+                        )
+            continue
+        payload = path.read_bytes()
+        if any(marker in payload for marker in markers):
+            raise SystemExit(f"local absolute path in package file: {path.relative_to(PACKAGE)}")
+
+
+def verify_target_budget() -> None:
+    """Bind measured package bytes to the materialized TMLR budget ledger."""
+    budget = json.loads((PACKAGE / "MANUSCRIPT_BUDGET_V1.json").read_text(encoding="utf-8"))
+    constraints = {row["constraint_id"]: row for row in budget["constraints"]}
+    supplement = SUB / "When_a_Representation_Can_Certify_supplementary_anonymous.zip"
+    supplement_mb = supplement.stat().st_size / 1_000_000
+    declared_mb = constraints["C_SUPPLEMENT_SIZE_MB"]["actual"]
+    if abs(supplement_mb - declared_mb) > 1e-12:
+        raise SystemExit(
+            f"supplement-size budget drift: actual {supplement_mb} MB, ledger {declared_mb} MB"
+        )
+    if supplement_mb > constraints["C_SUPPLEMENT_SIZE_MB"]["limit"]:
+        raise SystemExit("anonymous supplement exceeds the recorded TMLR 100 MB limit")
+
+    page_output = run_stdout(
+        ["pdfinfo", "When_a_Representation_Can_Certify.pdf"],
+        SUB,
+    )
+    page_line = next((line for line in page_output.splitlines() if line.startswith("Pages:")), None)
+    if page_line is None:
+        raise SystemExit("pdfinfo did not report a page count")
+    pages = int(page_line.split(":", 1)[1].strip())
+    declared_pages = constraints["C_TOTAL_PAGES"]["actual"]
+    if pages != declared_pages:
+        raise SystemExit(f"rendered-page budget drift: actual {pages}, ledger {declared_pages}")
+
+
 def verify_rechecks() -> None:
     commands = [
         [sys.executable, "check_fibre_diameter_floor.py"],
         [sys.executable, "check_refinement_to_certifiability.py"],
         [sys.executable, "verify_joint_route_repair.py", "--output", "_joint.tmp.json"],
         [sys.executable, "verify_density_paired_comparison.py", "--results", "results/density_backoff_result.json"],
+        [sys.executable, "verify_arm_strict_violation_comparator.py", "--results", "results/arm_conditional_result.json"],
         [sys.executable, "analyze_selector_diagnostic.py", "results/arm_conditional_result.json"],
         [sys.executable, "recheck_enclosed_results.py"],
     ]
@@ -350,9 +521,16 @@ def build_archives() -> None:
         )
     ]
     write_zip(SUB / "When_a_Representation_Can_Certify_tmlr_source.zip", SUB, source_members)
+    arxiv_members = [
+        ARXIV_TEX,
+        SUB / "references.bib",
+        SUB / "tmlr.sty",
+        SUB / "tmlr.bst",
+    ]
+    write_zip(ARXIV_SOURCE_ZIP, SUB, arxiv_members)
 
 
-def write_package_manifest() -> None:
+def write_package_manifest(review_receipt: Path | None = None) -> None:
     shutil.copy2(PAPER / "MANUSCRIPT_V3.md", PACKAGE / "MANUSCRIPT.md")
     shutil.copy2(PAPER / "CLAIM_LEDGER_V3.md", PACKAGE / "CLAIM_LEDGER.md")
     for name in (
@@ -364,8 +542,11 @@ def write_package_manifest() -> None:
         "VISUAL_QA_V4.md",
         "TMLR_FILING_CHECKLIST_V4.md",
         "PORTAL_METADATA_TEMPLATE.md",
+        "MANUSCRIPT_EXCELLENCE_AUDIT_V1.md",
+        "MANUSCRIPT_BUDGET_V1.json",
     ):
         shutil.copy2(PAPER / name, PACKAGE / name)
+    build_release_integrity(PACKAGE, PAPER, review_receipt)
     files = {}
     for path in sorted(PACKAGE.rglob("*")):
         if not path.is_file():
@@ -383,8 +564,9 @@ def write_package_manifest() -> None:
         "schema": "ORION.PublicationClosure.FinalJournalPackage.v2",
         "paper": "ORION-02",
         "primary_target": "Transactions on Machine Learning Research (TMLR)",
-        "scientific_authority_delta": "NONE__EDITORIAL_AND_PACKAGE_CLOSURE_ONLY",
+        "scientific_authority_delta": "BOUNDED_CORRECTION_ONLY__R24_PAIRED_FLAGS_RECONSTRUCTED__NO_POSITIVE_PROMOTION",
         "academic_paper_skills_revision": SKILLS_REVISION,
+        "academic_paper_skills_tree": SKILLS_TREE,
         "tmlr_style_revision": TMLR_STYLE_REVISION,
         "canonical_science_path": str((PAPER / "MANUSCRIPT_V3.md").relative_to(REPO)),
         "canonical_science_sha256": sha(PAPER / "MANUSCRIPT_V3.md"),
@@ -424,8 +606,16 @@ def verify_manifest() -> None:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--verify-only", action="store_true")
+    parser.add_argument(
+        "--review-receipt",
+        type=Path,
+        help="Frozen external independent-review receipt used only after its exact candidate PASS.",
+    )
     args = parser.parse_args()
     if not args.verify_only:
+        write_arxiv_source()
+        compile_pdf(REVIEW_TEX, REVIEW_PDF)
+        compile_pdf(ARXIV_TEX, ARXIV_PDF)
         prepare_ancillary()
         write_rechecker()
         write_ancillary_docs()
@@ -433,8 +623,11 @@ def main() -> int:
         verify_anonymity()
         verify_rechecks()
         build_archives()
-        write_package_manifest()
+        write_package_manifest(args.review_receipt)
+    verify_route_outputs()
     verify_anonymity()
+    verify_no_local_paths()
+    verify_target_budget()
     verify_rechecks()
     verify_manifest()
     print("ORION02_PUBLICATION_PACKAGE_VERIFIED")

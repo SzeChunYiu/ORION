@@ -45,6 +45,25 @@ The result SHA-256 is
 the parent remains byte-identical to frozen R23 SHA-256
 `cf1a0db71ab135278b64c02633f07d05a23604a121f0b62743f4e59c6358fc77`.
 
+## Paired strict-violation interpretation correction
+
+A later publication-closure draft incorrectly stated that only aggregate R24
+strict-violation counts had been serialized and therefore marked the comparator
+margin `CANNOT_CHECK`.  The frozen `folds` object in fact retains the geometry
+fold's selected primary arm and per-dataset `violation_strict` flags for that arm
+under both the geometry and lexical-control policies.  The deterministic
+`verify_r24_strict_violation_comparator.py` reconstruction gives 20/44 versus
+14/44, with paired contingency `(both, geometry only, control only, neither) =
+(14, 6, 0, 24)` and exact two-sided McNemar `p = 0.03125`.
+
+The false `CANNOT_CHECK` interpretation is retracted in
+`R24_COMPARATOR_CANNOT_CHECK_RETRACTION_V1.md`; it remains preserved there as
+historical provenance.  Both policies exceed the registered 0.10 maximum and
+remain adverse.  The corrected endpoint supplies no geometry-superiority claim
+and, because both certificates are invalid on one outcome-exposed pinned corpus,
+does not establish broad lexical superiority.  No raw result, protocol,
+comparator, tolerance, terminal, or earlier negative result changed.
+
 ## Disposition
 
 This is a genuine, counted negative revival.  It localizes the remaining

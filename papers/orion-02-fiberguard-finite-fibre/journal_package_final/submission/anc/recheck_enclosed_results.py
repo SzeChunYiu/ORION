@@ -50,7 +50,18 @@ def main():
     f = load("arm_conditional_result.json")
     assert f["primary"]["certified_n"] == 44 and f["primary"]["n"] == 44
     assert f["primary"]["violations_strict"] == 20
-    assert "per_instance_policy_arm_violation_flags" not in f
+    paired_f = json.loads((ROOT.parent / "expected_arm_strict_violation_comparator.json").read_text(encoding="utf-8"))
+    assert paired_f["primary"]["strict_violations"] == 20
+    assert paired_f["matched_lexical_control"]["strict_violations"] == 14
+    assert paired_f["paired_contingency"] == {
+        "both_violate": 14,
+        "primary_only_violates": 6,
+        "control_only_violates": 0,
+        "neither_violates": 24,
+    }
+    assert paired_f["mcnemar_exact_two_sided_p"] == 0.03125
+    assert paired_f["primary"]["gate"] == "FAIL"
+    assert paired_f["matched_lexical_control"]["gate"] == "FAIL"
 
     selector = load("selector_diagnostic.json")
     assert selector["n"] == 44

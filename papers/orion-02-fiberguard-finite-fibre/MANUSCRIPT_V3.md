@@ -159,7 +159,7 @@ The application records below use different corpora and loss scales. They are no
 | Initial certified-neighbourhood envelope | The certificate was invalid on both registered splits. On the official split, full-space and reduced-space coverage were 0.210 and 0.331, with violation rates 0.169 and 0.182; family-disjoint coverage was zero. | Limited coverage did not carry valid action authority. |
 | Corrected split-conformal neighbourhood envelope | The marginal violation criterion was met on both splits only with zero held-out coverage and no improvement over the single-best fallback. | Validity without coverage or value is an operational null, not a recovered application claim. |
 | Held-out density-backoff study | Coverage was 32/44, below the frozen 0.95 threshold. A lexical control reached 39/44, but the paired difference was not established (exact McNemar $p=0.092$; bootstrap interval included zero). | The registered geometry was not validated, and the control comparison is descriptive rather than decisive. |
-| Held-out arm-conditional study | Coverage reached 44/44, but 20/44 strict violations exceeded the frozen 0.10 maximum. The control had 14 aggregate violations, but per-instance policy-arm flags were not retained, so the paired difference remains undetermined. | The primary certificate is invalid on its own criterion; no comparative superiority follows from the untestable aggregate difference. |
+| Held-out arm-conditional study | Coverage reached 44/44, but the geometry primary had 20/44 strict violations and the matched lexical control had 14/44; both exceeded the frozen 0.10 maximum. The serialized paired flags give $(\text{both},\text{geometry only},\text{control only},\text{neither})=(14,6,0,24)$ and exact two-sided McNemar $p=0.03125$. | Both certificates are invalid. Geometry has six additional strict violations and no fewer on this frozen endpoint; this adverse correction does not establish broad lexical superiority. |
 
 The paired-route null is preserved exactly because its later analytic repair addresses a specification defect rather than the failed application endpoint. Correct joint profiles prevent an invalid compression of learned and fallback actions, but they do not supply conditional validity, family-shift validity, or production value.
 
@@ -189,13 +189,9 @@ The bounded conclusion is that deterministic certifiability is governed exactly 
 
 ## 10. Limitations
 
-1. The theorems concern finite fibres and a scalar target. Infinite spaces and vector-valued certificates require additional topological, measurable, or geometric assumptions.
-2. The certificates are deterministic. Randomized procedures require a declared loss and coverage convention.
-3. The constructions use the target values within a fibre. Estimating those values without leakage is a separate statistical problem.
-4. Separator realizability evaluates a declared feature family. It neither learns the family nor prices feature acquisition.
-5. The coverage identity assumes known target-population fibre masses and whole-fibre acceptance.
-6. The preserved studies do not measure target diameters on their empirical fibres. They cannot confirm the theorem's mechanism on those corpora.
-7. No broad transfer, production advantage, computational-hardness result, or comparative superiority claim is made.
+The theorems concern finite fibres and a scalar target. Infinite spaces and vector-valued certificates require additional topological, measurable, or geometric assumptions. The certificates are deterministic, so randomized procedures require a separately declared loss and coverage convention. The constructions also use the target values within a fibre; estimating those values without leakage is a distinct statistical problem.
+
+The repair results carry further operational boundaries. Separator realizability evaluates a declared feature family but neither learns that family nor prices feature acquisition. The coverage identity assumes known target-population fibre masses and whole-fibre acceptance. Moreover, the preserved studies do not measure target diameters on their empirical fibres and therefore cannot confirm the theorem's mechanism on those corpora. We make no broad transfer, production-advantage, computational-hardness, or comparative-superiority claim.
 
 ## 11. Data and code availability
 
