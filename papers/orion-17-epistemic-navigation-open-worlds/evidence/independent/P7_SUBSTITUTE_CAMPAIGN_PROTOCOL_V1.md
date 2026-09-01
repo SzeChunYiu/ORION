@@ -1,9 +1,9 @@
-# ORION-17 substitute campaign protocol V1 — synthetic-grounded multi-domain navigation arena
+# P7 substitute campaign protocol V1 — synthetic-grounded multi-domain navigation arena
 
-**Programme:** ORION-11–ORION-25 recursive resolution lane B (substitute replication).
-**Target blocker:** `ORION-17.OPEN_WORLD.NAVIGATION.EMPIRICAL.V1` (`EXTERNAL_EVIDENCE_BLOCKER`,
-blocked gates `ORION-17-U-T3_NATURALISTIC_ARENA`, `ORION-17-U-T4_NATURALISTIC_COMPARISON`,
-`ORION-17-U-T5_DUAL_INDEPENDENT_REVIEW`).
+**Programme:** P1–P15 recursive resolution lane B (substitute replication).
+**Target blocker:** `P7.OPEN_WORLD.NAVIGATION.EMPIRICAL.V1` (`EXTERNAL_EVIDENCE_BLOCKER`,
+blocked gates `P7-U-T3_NATURALISTIC_ARENA`, `P7-U-T4_NATURALISTIC_COMPARISON`,
+`P7-U-T5_DUAL_INDEPENDENT_REVIEW`).
 **Status:** FROZEN BEFORE EXECUTION. This file is digested and bound into the sealed
 label manifest produced by the custodian unit, and into the final receipt. Any change
 after the commit phase invalidates every signature downstream.
@@ -50,7 +50,7 @@ exhaustive symbolic counts, with no sampled intervals.
 ## 3. Latent structure and label law (custodian side)
 
 Each instance carries latent ground truth, generated deterministically from
-`sha256("ORION-17-SUBSTITUTE-V1|<domain>|<family>|<k>")` streams (no PRNG library, no
+`sha256("P7-SUBSTITUTE-V1|<domain>|<family>|<k>")` streams (no PRNG library, no
 seed drift). The custodian's label law over latents generalizes the frozen V2
 reference oracle:
 
@@ -77,7 +77,7 @@ file.
 
 ## 5. Contenders (frozen semantics)
 
-**ORION-17 atlas navigator** (primary evaluator, independently implemented here):
+**P7 atlas navigator** (primary evaluator, independently implemented here):
 
 ```
 CANNOT_CHECK  if censoring_events>0 or coverage_denominator=="UNKNOWN"
@@ -146,5 +146,5 @@ corpus alone, proving predictions are a pure function of public data).
 This substitute certifies navigation-decision correctness on a synthetic-grounded
 multi-domain corpus under independent sealed-label custody. It does NOT certify
 performance on naturalistic corpora, live-agent execution, or any claim about
-deployed systems. The historical `ORION-17.OPEN_WORLD.NAVIGATION.EMPIRICAL.V1` entry is
+deployed systems. The historical `P7.OPEN_WORLD.NAVIGATION.EMPIRICAL.V1` entry is
 never relabelled; this protocol's successor claim is appended separately.

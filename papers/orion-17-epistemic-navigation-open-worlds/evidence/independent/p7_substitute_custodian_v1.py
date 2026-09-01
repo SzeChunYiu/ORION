@@ -294,18 +294,32 @@ def main() -> int:
     if negative_controls != 2 * SEEDS_PER_CELL * len(DOMAINS):
         raise SystemExit(f"custodian: negative-control count unexpected: {negative_controls}")
 
+    # The three path strings below are SIGNED CONTENT, not references. They record
+    # where these artifacts lived when the labels were sealed on 2026-08-24, before
+    # any prediction existed, and the Ed25519 signature is taken over exactly these
+    # bytes. Rewriting them to the current directory names -- which the R0 namespace
+    # unification did in 3a1a83178 -- changes the payload without changing the
+    # signature, and the seal stops verifying. `paper_id` below is left at "P7" for
+    # the same reason and was correctly not rewritten.
+    #
+    # papers/PAPER_ALIASES.md maps paper-07-... -> orion-17-... . That registry, not
+    # this file, is where the current name belongs. Nothing resolves files through
+    # these strings: the custodian and the independent checker both locate artifacts
+    # relative to their own directory, and compare digests, never paths.
+    #
+    # Do not "fix" these to the new namespace. See SEAL_INTEGRITY_NOTE_V1.md.
     facts = {
         "schema_version": "orion.p7.substitute-sealed-manifest.v1",
         "commit_date": "2026-08-24",
         "paper_id": "P7",
         "custodian_unit": "p7_substitute_custodian_v1",
-        "protocol_path": "papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CAMPAIGN_PROTOCOL_V1.md",
+        "protocol_path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CAMPAIGN_PROTOCOL_V1.md",
         "protocol_sha256": _digest(PROTOCOL.read_bytes()),
-        "corpus_path": "papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CORPUS_V1.jsonl",
+        "corpus_path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CORPUS_V1.jsonl",
         "corpus_sha256": _digest(corpus_bytes),
         "corpus_rows": len(public_rows),
         "labels_payload_digest": labels_payload_digest,
-        "labels_reveal_path": "papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_LABELS_REVEALED_V1.json",
+        "labels_reveal_path": "papers/paper-07-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_LABELS_REVEALED_V1.json",
         "generator": {
             "stem": SEED_STEM,
             "determinism": "sha256 domain streams; no PRNG library; version-stable bytes",
