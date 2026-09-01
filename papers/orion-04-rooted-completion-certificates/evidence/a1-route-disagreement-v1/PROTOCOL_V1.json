@@ -1,0 +1,43 @@
+{
+  "schema": "ORION04.A1.RouteDisagreementProtocol.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A1",
+  "artifact_class": "CALIBRATION_HARNESS_ONLY__NO_D4_TARGET",
+  "purpose": "Verify on stable small controls that independently designed lower-bound routes are compared by strict unanimity: any disagreement is adverse evidence and is never majority-voted away.",
+  "target_d4_execution_performed": false,
+  "protected_d4_outcome_accessed": false,
+  "d4_rounds_consumed": 0,
+  "route_bindings": {
+    "DP_LB": {
+      "path": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_a/engine_a_lower_bound_v1.py",
+      "git_blob_sha": "b938d6dfde0c048b0291340ad02886ceba0e9699",
+      "execution": "live small-control evaluation"
+    },
+    "PYSAT_LA": {
+      "input_path": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/controls/batch_input/records.jsonl",
+      "input_git_blob_sha": "aff0326b9455c308cf04c9c99ced36b9de196dda",
+      "certificate_path": "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/controls/BATCH_CERTIFICATES.jsonl",
+      "certificate_git_blob_sha": "6429de73a813c52c35d3d10a487c5d474a94aa9f",
+      "execution": "read committed small-control solver certificates; UNSAT proof remains externally_unchecked=false authority"
+    },
+    "Z3_INDEPENDENT": {
+      "path": "papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/z3_disjoint_zero_sum_v1.py",
+      "git_blob_sha": "7b606fca37749c6311bc78048539c7cbbaaa0172",
+      "execution": "live small-control evaluation with z3-solver==5.1.0.0"
+    }
+  },
+  "decision_rule": {
+    "all_routes_same_SAT": "CONSENSUS_SAT_CONTROL",
+    "all_routes_same_UNSAT": "CONSENSUS_UNSAT_CONTROL",
+    "any_route_missing_or_unknown": "CANNOT_CHECK_ROUTE",
+    "any_nonunanimous_SAT_UNSAT_vector": "ADVERSE_ROUTE_DISAGREEMENT",
+    "majority_vote_allowed": false
+  },
+  "required_hostile_controls": [
+    "flip exactly one route on a consensus-SAT control; must yield ADVERSE_ROUTE_DISAGREEMENT",
+    "flip exactly one route on a consensus-UNSAT control; must yield ADVERSE_ROUTE_DISAGREEMENT",
+    "remove exactly one route; must yield CANNOT_CHECK_ROUTE"
+  ],
+  "authority_boundary": "Consensus on small controls validates route-comparison plumbing only. It neither runs D4 nor converts any solver UNSAT into the independently checked branch certificate required by issue #49.",
+  "scientific_authority_delta": "NONE__CALIBRATION_DISAGREEMENT_GUARD_ONLY"
+}
