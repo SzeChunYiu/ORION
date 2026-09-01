@@ -9,13 +9,13 @@ ORION-01 is one paper. Its only live manuscript and claim ledger are:
 
 - `MANUSCRIPT_V4.md`
 - `CLAIM_LEDGER_V4.md`
-- `journal_package_final/`
+- `submission/tier-b-final-20260901/`
 
-The exact same reader-facing PDF in `journal_package_final/submission/` is the artifact for both arXiv and the primary journal target, Quantum. Route-specific source archives are packaging conveniences and do not define different papers.
+The exact same identified reader-facing PDF in `submission/tier-b-final-20260901/arxiv/` and `submission/tier-b-final-20260901/journal/` is the artifact for both arXiv and the primary journal target, Quantum. Route-specific source archives are packaging conveniences and do not define different papers.
 
 ## Historical component status
 
-`theory-A-*`, `theory-B-*`, `journal_package_A*`, and `journal_package_B*` remain preserved as scientific and editorial provenance. They are not separate submission authorities, must not be filed as ORION-01A/ORION-01B, and cannot supersede V4. Their historical checksums and adverse evidence remain intact.
+`theory-A-*`, `theory-B-*`, `journal_package_A*`, `journal_package_B*`, `journal_package_final/`, and `submission/publication-ready-20260831/` remain preserved as scientific and editorial provenance. They are not separate submission authorities, must not be filed as ORION-01A/ORION-01B, and cannot supersede V4. Their historical checksums and adverse evidence remain intact.
 
 ## Integrated scientific case
 
@@ -23,6 +23,10 @@ V4 joins the two previously separated components into one argument. The first co
 
 The production-realization retraction and the PyZX `CANNOT_CHECK_MOVE_COMPLETENESS` result remain adverse boundaries. V4 does not claim production move completeness, general MultiTag sharpness, a lower bound for richer proof systems, algorithm-independent complexity, external replication, or hardware advantage.
 
+## ORION-05 merger
+
+The ORION-05 support-two theorem and exact support-one obstruction are absorbed into this one object. ORION-05 remains provenance and is not a second submission. Its static-evaluator/regime records are routed to the merged ORION-09/10 object. The claim-by-claim coverage decision is in `submission/tier-b-closure-20260901/ORION05_MERGE_COVERAGE_AUDIT.md`.
+
 ## Publication disposition
 
-The repository-side manuscript and package are complete subject to final author confirmation and the external arXiv/Quantum portal actions. Reproducibility expansion is deferred; the existing deterministic control records, checkers, and immutable adverse-transfer records are nevertheless retained in the package.
+The repository-side manuscript and v1.21.0 package are complete subject only to final author confirmation and the external arXiv/Quantum portal actions. Reproducibility expansion is deferred; the existing deterministic control records, checkers, and immutable adverse-transfer records are nevertheless retained in the package.

@@ -1,0 +1,27 @@
+{
+  "authority_boundary": "Finite replay corroborates transcription and bounded lemmas; it does not replace the all-size proofs or establish production transfer.",
+  "checks": [
+    {
+      "command": "python anc/test_proof_checker_v3.py",
+      "result": "PASS",
+      "script_sha256": "1756ec62a60f34a451f85faddf1eb57f098e03831960900f1190f4ef05dc096b",
+      "tests": 6
+    },
+    {
+      "all_checks": true,
+      "command": "python anc/verify_dependent_triple_lemmas.py",
+      "result": "PASS",
+      "rows": {
+        "core_alignment": 6912,
+        "deletion": 2880,
+        "distinct_site_tag_cost": 9216,
+        "same_site_rigidity": 576
+      },
+      "script_sha256": "c96c2abbcbef19dfa551efa33f073d1a92c9710eb7545b02e38f501f4284295c"
+    }
+  ],
+  "date": "2026-09-01",
+  "paper": "ORION-01",
+  "schema": "ORION.tier-b-scientific-replay.v1",
+  "status": "PASS"
+}

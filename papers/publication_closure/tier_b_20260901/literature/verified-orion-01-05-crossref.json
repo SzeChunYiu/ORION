@@ -1,0 +1,127 @@
+[
+  {
+    "queried_doi": "10.48550/arXiv.2601.05740",
+    "status": "crossref_unresolved",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "queried_doi": "10.1145/3503222.3507715",
+    "status": "verified_crossref",
+    "title": "Paulihedral: a generalized block-wise compiler optimization framework for Quantum simulation kernels",
+    "authors": [
+      "Gushu Li",
+      "Anbang Wu",
+      "Yunong Shi",
+      "Ali Javadi-Abhari",
+      "Yufei Ding",
+      "Yuan Xie"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          2,
+          22
+        ]
+      ]
+    },
+    "type": "proceedings-article",
+    "container": "Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems",
+    "doi": "10.1145/3503222.3507715",
+    "url": "https://doi.org/10.1145/3503222.3507715",
+    "abstract": null
+  },
+  {
+    "queried_doi": "10.1109/QCE57702.2023.00087",
+    "status": "verified_crossref",
+    "title": "PCOAST: A Pauli-Based Quantum Circuit Optimization Framework",
+    "authors": [
+      "Jennifer Paykin",
+      "Albert T. Schmitz",
+      "Mohannad Ibrahim",
+      "Xin-Chuan Wu",
+      "A. Y. Matsuura"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          9,
+          17
+        ]
+      ]
+    },
+    "type": "proceedings-article",
+    "container": "2023 IEEE International Conference on Quantum Computing and Engineering (QCE)",
+    "doi": "10.1109/qce57702.2023.00087",
+    "url": "https://doi.org/10.1109/qce57702.2023.00087",
+    "abstract": null
+  },
+  {
+    "queried_doi": "10.22331/q-2022-06-07-729",
+    "status": "verified_crossref",
+    "title": "Architecture aware compilation of quantum circuits via lazy synthesis",
+    "authors": [
+      "Simon Martiel",
+      "Timothée Goubault de Brugière"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2022,
+          6,
+          7
+        ]
+      ]
+    },
+    "type": "journal-article",
+    "container": "Quantum",
+    "doi": "10.22331/q-2022-06-07-729",
+    "url": "https://doi.org/10.22331/q-2022-06-07-729",
+    "abstract": "<jats:p>Qubit routing is a key problem for quantum circuit compilation. It consists in rewriting a quantum circuit by adding the least possible number of instructions to make the circuit compliant with some architecture&amp;apos;s connectivity constraints. Usually, this problem is tackled via either SWAP insertion techniques or re-synthesis of portions of the circuit using architecture aware synthesis algorithms. In this work, we propose a meta-heuristic that couples the iterative approach of SWAP insertion techniques with greedy architecture-aware synthesis routines. We propose two new compilation algorithms based on this meta-heuristic and compare their performances to state-of-the-art quantum circuit compilation techniques for several standard classes of quantum circuits and show significant reduction in the entangling gate overhead due to compilation.</jats:p>"
+  },
+  {
+    "queried_doi": "10.22331/q-2023-10-03-1126",
+    "status": "verified_crossref",
+    "title": "Quantum circuit compilation and hybrid computation using Pauli-based computation",
+    "authors": [
+      "Filipa C. R. Peres",
+      "Ernesto F. Galvão"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2023,
+          10,
+          3
+        ]
+      ]
+    },
+    "type": "journal-article",
+    "container": "Quantum",
+    "doi": "10.22331/q-2023-10-03-1126",
+    "url": "https://doi.org/10.22331/q-2023-10-03-1126",
+    "abstract": "<jats:p>\n                    Pauli-based computation (PBC) is driven by a sequence of adaptively chosen, non-destructive measurements of Pauli observables. Any quantum circuit written in terms of the Clifford+\n                    <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                      <mml:mi>T</mml:mi>\n                    </mml:math>\n                    gate set and having\n                    <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                      <mml:mi>t</mml:mi>\n                    </mml:math>\n                    <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                      <mml:mi>T</mml:mi>\n                    </mml:math>\n                    gates can be compiled into a PBC on\n                    <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                      <mml:mi>t</mml:mi>\n                    </mml:math>\n                    qubits. Here we propose practical ways of implementing PBC as adaptive quantum circuits and provide code to do the required classical side-processing. Our schemes reduce the number of quantum gates to\n                    <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                      <mml:mi>O</mml:mi>\n                      <mml:mo stretchy=\"false\">(</mml:mo>\n                      <mml:msup>\n                        <mml:mi>t</mml:mi>\n                        <mml:mn>2</mml:mn>\n                      </mml:msup>\n                      <mml:mo stretchy=\"false\">)</mml:mo>\n                    </mml:math>\n                    (from a previous\n                    <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                      <mml:mi>O</mml:mi>\n                      <mml:mo stretchy=\"false\">(</mml:mo>\n                      <mml:msup>\n                        <mml:mi>t</mml:mi>\n                        <mml:mn>3</mml:mn>\n                      </mml:msup>\n                      <mml:mrow class=\"MJX-TeXAtom-ORD\">\n                        <mml:mo>/</mml:mo>\n                      </mml:mrow>\n                      <mml:mi>log</mml:mi>\n                      <mml:mo>&amp;#x2061;</mml:mo>\n                      <mml:mi>t</mml:mi>\n                      <mml:mo stretchy=\"false\">)</mml:mo>\n                    </mml:math>\n                    scaling) and space/time trade-offs are discussed which lead to a reduction of the depth from\n                    <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                      <mml:mi>O</mml:mi>\n                      <mml:mo stretchy=\"false\">(</mml:mo>\n                      <mml:mi>t</mml:mi>\n                      <mml:mi>log</mml:mi>\n                      <mml:mo>&amp;#x2061;</mml:mo>\n                      <mml:mi>t</mml:mi>\n                      <mml:mo stretchy=\"false\">)</mml:mo>\n                    </mml:math>\n                    to\n                    <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                      <mml:mi>O</mml:mi>\n                      <mml:mo stretchy=\"false\">(</mml:mo>\n                      <mml:mi>t</mml:mi>\n                      <mml:mo stretchy=\"false\">)</mml:mo>\n                    </mml:math>\n                    within our schemes, at the cost of\n                    <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                      <mml:mi>t</mml:mi>\n                    </mml:math>\n                    additional auxiliary qubits. We compile examples of random and hidden-shift quantum circuits into adaptive PBC circuits. We also simulate hybrid quantum computation, where a classical computer effectively extends the working memory of a small quantum computer by\n                    <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                      <mml:mi>k</mml:mi>\n                    </mml:math>\n                    virtual qubits, at a cost exponential in\n                    <mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                      <mml:mi>k</mml:mi>\n                    </mml:math>\n                    . Our results demonstrate the practical advantage of PBC techniques for circuit compilation and hybrid computation.\n                  </jats:p>"
+  },
+  {
+    "queried_doi": "10.1109/TQE.2025.3610112",
+    "status": "verified_crossref",
+    "title": "Quantum Circuit Optimization and MBQC Scheduling With a Pauli Tracking Library",
+    "authors": [
+      "Jannis Ruh",
+      "Simon Devitt"
+    ],
+    "published": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    },
+    "type": "journal-article",
+    "container": "IEEE Transactions on Quantum Engineering",
+    "doi": "10.1109/tqe.2025.3610112",
+    "url": "https://doi.org/10.1109/tqe.2025.3610112",
+    "abstract": null
+  }
+]

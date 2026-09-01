@@ -11,9 +11,11 @@ Expressivity). Their current evidence hierarchy and science-first closure gates
 are controlled by `../research/orion-01-05-convergence-v1/README.md` and
 `../research/orion-01-05-convergence-v1/SCIENCE_STATUS_V1.json`.
 
+The numbered directories remain provenance identities, but the post-triage publication portfolio is anti-fragmented: ORION-05 is merged into the ORION-01 submission object, and ORION-09 is merged into ORION-10. A merged directory must not be filed independently.
+
 ## Publication status checklist
 
-**Last updated:** 2026-08-29 21:43 CEST (Europe/Stockholm)  
+**Last updated:** 2026-09-01 (Europe/Stockholm)  
 **Update rule:** change this timestamp whenever any row changes.  
 **Checkbox rule:** replace `☐` with `☑` only when the corresponding event has actually happened and is supported by repository evidence (merge commit, arXiv identifier/URL, or journal submission receipt/ID).  
 **Git rule:** the Git box is ticked only when the **latest publication state** for that paper is on `main`; a paper directory merely existing on `main` is not enough.  
@@ -34,11 +36,11 @@ are controlled by `../research/orion-01-05-convergence-v1/README.md` and
 
 | No. | Paper title | Status on Git | Primary target | Fallback / specialist target | Bounded | Top-tier | Submit-now blocker | Stronger/top-tier successor gap | arXiv | Journal |
 |---:|---|---|---|---|---|---|---|---|---|---|
-| 01 | [ORION-01 — Certificate Realization](orion-01-certificate-realization/) | ☑ `main` | Quantum | Theoretical Computer Science | `B1` | `T1` | Final author confirmation and external arXiv/Quantum portal filing only; one unified V4 manuscript/PDF is authoritative. | Source-complete semantics/proof for the broader realization claim. | ☐ | ☐ |
+| 01 | [ORION-01 — Certificate Realization](orion-01-certificate-realization/) | ☑ `main` | Quantum | Theoretical Computer Science | `B0` | `T2` | **No scientific or package blocker.** File the merged ORION-01+05 V4 object from `submission/tier-b-final-20260901/`; only author-controlled arXiv/Quantum portal actions remain. | Independent priority/proof authority and production transfer would be required only for a broader or stronger route. | ☐ | ☐ |
 | 02 | [ORION-02 — FiberGuard Finite Fibre](orion-02-fiberguard-finite-fibre/) | ☑ `main` | TMLR | Machine Learning / theory specialist | `B1` | `T2` | Recenter manuscript on the audited finite-fibre theorem plus adverse transfer boundary. | Prospective heterogeneous OpenML transfer with valid per-task bounds. | ☐ | ☐ |
 | 03 | [ORION-03 — Typed-Merge Falsification](orion-03-typed-merge-falsification/) | ☑ `main` | Formal/security journal | Theoretical Computer Science | `B1` | `T2` | Rebind native trust-store/verifier evidence and finish the theorem-first reframe. | Independently governed native trust/provenance ecosystems for broad transfer. | ☐ | ☐ |
 | 04 | [ORION-04 — Rooted Completion Certificates](orion-04-rooted-completion-certificates/) | ☑ `main` | Journal of Automated Reasoning-style | Theoretical Computer Science | `B2` | `T2` | Authorized independent proof/census authority is still required for the intended claim. | Same external authority gate; internal agents cannot manufacture it. | ☐ | ☐ |
-| 05 | [ORION-05 — TARE Expressivity](orion-05-tare-expressivity/) | ☑ `main` | Quantum | Theoretical Computer Science | `B1` | `T1` | Finish governed compute/global-obstruction accounting and current package authority closure. | External compiler-facing cases for broader practical transfer. | ☐ | ☐ |
+| 05 | [ORION-05 — TARE Expressivity](orion-05-tare-expressivity/) | ☑ `main` provenance | **Merged into ORION-01** | -- | `MERGED` | `MERGED` | **Do not submit separately.** The support-two theorem is in ORION-01; regime/static evidence is routed to merged ORION-09/10. | Reopen only for a genuinely broader theorem that survives a new paper-existence gate. | -- | -- |
 | 06 | [ORION-06 — Recursive Recovery](orion-06-recursive-recovery/) | ☐ PR #1798 — release package **GREEN** | Artificial Intelligence (AIJ) | TMLR | `B0` | `T0` | **No scientific blocker.** Merge PR #1798 / final release record, then file arXiv and AIJ. | **None for the bounded AIJ/TMLR attempt.** Cross-domain effectiveness is optional successor research. | ☐ | ☐ |
 | 07 | [ORION-07 — Dual Instrument](orion-07-dual-instrument/) | ☐ PR #1798 — release package **GREEN** | TMLR | AIJ Research Note | `B0` | `T0` | **No scientific blocker.** Merge/package is green; file the bounded three-case paper. | **None for the bounded TMLR attempt.** Population reliability/generalization would require a prospective multi-domain registry. | ☐ | ☐ |
 | 08 | [ORION-08 — Typed State](orion-08-typed-state/) | ☐ PR #1798 — release package **GREEN** | TMLR | AIJ | `B0` | `T0` | **No scientific blocker.** Merge current routed master/package, then file. | **None for the bounded TMLR attempt.** Real-system transfer is optional successor evidence. | ☐ | ☐ |
