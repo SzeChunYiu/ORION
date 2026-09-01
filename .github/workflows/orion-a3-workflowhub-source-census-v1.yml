@@ -1,0 +1,61 @@
+name: ORION A3 WorkflowHub source census v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a3-workflowhub-source-census-v1.yml"
+      - "papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_VERSIONED_SOURCE_CENSUS_FREEZE_V1.json"
+      - "papers/publication_closure/a3-external-change-transport-v1/census_workflowhub_versioned_sources_v1.py"
+permissions:
+  contents: read
+jobs:
+  source-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen source-census boundary
+        run: |
+          python - <<'PY'
+          import json
+          p='papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_VERSIONED_SOURCE_CENSUS_FREEZE_V1.json'
+          d=json.load(open(p))
+          assert d['schema']=='ORION.A3.WorkflowHubVersionedSourceCensusFreeze.v1'
+          assert d['protected_orion_predictions_accessed'] is False
+          assert d['external_gold_accessed'] is False
+          assert d['capacity_question']['target_distinct_workflow_families']==128
+          assert d['candidate_family_rule']['one_candidate_cluster_per_workflow_family'] is True
+          PY
+      - name: Run offline parser self-test
+        run: python papers/publication_closure/a3-external-change-transport-v1/census_workflowhub_versioned_sources_v1.py --self-test
+      - name: Query public WorkflowHub TRS and version metadata
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/census_workflowhub_versioned_sources_v1.py \
+            --target 128 --output /tmp/workflowhub-source-census-v1.json | tee /tmp/workflowhub-source-census-v1.stdout
+      - name: Assert source-capacity boundary only
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/workflowhub-source-census-v1.json'))
+          assert d['decision']=='WORKFLOWHUB_VERSIONED_LICENSED_FAMILY_CAPACITY_AT_LEAST_128'
+          assert d['versioned_public_licensed_candidate_families']>=128
+          assert len({r['workflow_id'] for r in d['candidate_workflows']})==len(d['candidate_workflows'])
+          assert d['one_candidate_per_workflow_family'] is True
+          assert d['stratum_eligibility_adjudicated'] is False
+          assert d['gold_adjudicated'] is False
+          assert d['protected_orion_predictions_accessed'] is False
+          print('WORKFLOWHUB_SOURCE_CAPACITY_GREEN', d['versioned_public_licensed_candidate_families'], d['candidate_manifest_sha256'])
+          PY
+      - name: Upload exact candidate census
+        uses: actions/upload-artifact@v4
+        with:
+          name: workflowhub-source-census-v1
+          path: /tmp/workflowhub-source-census-v1.json
+          retention-days: 30
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
