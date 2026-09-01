@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "review_id": "ORION-13-F1000-BRIEF-REPORT-TARGETED-REREVIEW-20260901-FINAL",
+  "predecessor_review": "REVIEW_FREEZE.json",
+  "manuscript": {
+    "path": "release/ORION-13-Brief-Report-final.pdf",
+    "sha256": "sha256:114b4d2bd22c85dacf88a3741623f62ad45a1fad8d748abb4f1f214645a1c990",
+    "pages": 7
+  },
+  "target_criteria": {
+    "path": "TARGET_CRITERIA_CARD.json",
+    "sha256": "sha256:4dbdf163d070a065dff3159fd786c51080c7639a166b99be9ecedb4c05d8c7ca"
+  },
+  "isolation": {
+    "method": "Three separate ephemeral read-only Codex CLI processes with separate working directories",
+    "shared_inputs": [
+      "Exact final revised manuscript PDF and extracted text",
+      "Target criteria card",
+      "Common targeted-rereview skeleton",
+      "Reviewed manuscript fingerprint"
+    ],
+    "reviewer_specific_inputs": [
+      "Only that reviewer's own frozen initial report",
+      "That reviewer's preassigned emphasis"
+    ],
+    "withheld_from_reviewers": [
+      "Other initial reviewer reports",
+      "Other targeted rereviews",
+      "Editorial triage and synthesis",
+      "Shared concern or claim ledger",
+      "Desired recommendation"
+    ],
+    "network_access": false,
+    "repository_parent_access": false,
+    "mutual_blindness": "technically_isolated"
+  },
+  "frozen_at": "2026-09-01T18:49:32+02:00",
+  "reports": [
+    {
+      "reviewer_id": "orion13-isolated-reviewer-1-targeted-20260901",
+      "path": "reviewers/REVIEWER_1_TARGETED_REREVIEW_FROZEN.md",
+      "sha256": "sha256:cc9ce5a0d7301752270a60a6c3230b90149ce7c5d87c72d091e830b59d15fe93",
+      "closure": "Initial blocking concerns R1-01 and R1-02 closed; no new concern; persistent archive item remains non-scientific filing work."
+    },
+    {
+      "reviewer_id": "orion13-isolated-reviewer-2-targeted-20260901",
+      "path": "reviewers/REVIEWER_2_TARGETED_REREVIEW_FROZEN.md",
+      "sha256": "sha256:c1a28da23a998d2fe9b5898eab375b52a3ff9f2cbb6d5d5292ce9569f89ac117",
+      "closure": "Initial blocking concerns R2-MC-01 and R2-MC-02 closed; bounded originality concern closed; no new concern; persistent archive item remains filing work."
+    },
+    {
+      "reviewer_id": "orion13-isolated-reviewer-3-targeted-20260901",
+      "path": "reviewers/REVIEWER_3_TARGETED_REREVIEW_FROZEN.md",
+      "sha256": "sha256:67a3a2187dcbf364c6ec2a92d464bc8e734c041a737254401b1b56dc5601b895",
+      "closure": "Initial blocking concern R3-01 and crosswalk concern R3-02 closed; no new concern; persistent archive item remains filing work."
+    }
+  ],
+  "atomic_coverage": {
+    "status": "PASS",
+    "reviewed_manuscript_fingerprint": "sha256:114b4d2bd22c85dacf88a3741623f62ad45a1fad8d748abb4f1f214645a1c990",
+    "basis": "All three isolated targeted rereviews independently checked central claims, methods, results, null/adverse evidence, conformance boundaries, availability and declarations."
+  },
+  "technical_blockers": [],
+  "scientific_contradictions": [],
+  "new_experiments_required": false,
+  "remaining_human_filing_inputs": [
+    "Persistent public archive identifier for the exact frozen snapshot, or journal confirmation that the commit-pinned snapshot suffices at filing",
+    "Author identity, affiliation and ORCID confirmation",
+    "Licence, AI-policy, fee and portal declarations",
+    "Independent author confirmation of the table, formula and final wording"
+  ],
+  "freeze_rule": "These targeted rereviews are immutable and govern only the exact final manuscript fingerprint declared above."
+}
