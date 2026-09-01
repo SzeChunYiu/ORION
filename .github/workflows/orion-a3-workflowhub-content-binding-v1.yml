@@ -1,4 +1,4 @@
-name: ORION A3 WorkflowHub content binding v1
+name: ORION A3 WorkflowHub normalized content binding v2
 on:
   workflow_dispatch:
   pull_request:
@@ -12,35 +12,37 @@ permissions:
 jobs:
   content-binding:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Verify content-binding boundary
+      - name: Verify normalized content-binding boundary
         run: |
           python - <<'PY'
           import json
           p='papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_CONTENT_BINDING_PREFLIGHT_V1.json'
           d=json.load(open(p))
-          assert d['schema']=='ORION.A3.WorkflowHubContentBindingPreflight.v1'
+          assert d['schema']=='ORION.A3.WorkflowHubContentBindingPreflight.v2'
           assert d['protected_orion_predictions_accessed'] is False
           assert d['external_gold_accessed'] is False
           assert d['source_snapshot']['candidate_count']==128
-          assert d['network_policy']['maximum_concurrency']==4
+          assert d['network_policy']['maximum_concurrency']==2
+          assert d['network_policy']['accept_header']=='*/*'
+          assert d['content_identity_rule']['scientific_content_identity'].startswith('normalized RO-Crate')
           PY
-      - name: Compile and run offline self-test
+      - name: Compile and prove ZIP-packaging nuisance is normalized away
         run: |
           python -m py_compile papers/publication_closure/a3-external-change-transport-v1/bind_workflowhub_rocrate_content_v1.py
           python papers/publication_closure/a3-external-change-transport-v1/bind_workflowhub_rocrate_content_v1.py --self-test
-      - name: Fetch and hash frozen public RO-Crates
+      - name: Fetch and normalize frozen public RO-Crates
         id: binding
         shell: bash
         run: |
           set +e
           python papers/publication_closure/a3-external-change-transport-v1/bind_workflowhub_rocrate_content_v1.py \
-            --workers 4 --output /tmp/workflowhub-content-binding-v1.json >/tmp/content-binding.stdout
+            --workers 2 --output /tmp/workflowhub-normalized-content-binding-v2.json >/tmp/content-binding.stdout
           rc=$?
           echo "scientific_rc=$rc" >> "$GITHUB_OUTPUT"
           cat /tmp/content-binding.stdout
@@ -49,24 +51,25 @@ jobs:
         run: |
           python - <<'PY'
           import json
-          d=json.load(open('/tmp/workflowhub-content-binding-v1.json'))
+          d=json.load(open('/tmp/workflowhub-normalized-content-binding-v2.json'))
           assert d['terminal'] in {
-            'WORKFLOWHUB_128_FROZEN_FAMILIES_ROCRATE_CONTENT_BOUND',
-            'CANNOT_CHECK_WORKFLOWHUB_CONTENT_BINDING_FOR_128_FAMILIES',
+            'WORKFLOWHUB_128_FROZEN_FAMILIES_NORMALIZED_ROCRATE_CONTENT_BOUND',
+            'CANNOT_CHECK_WORKFLOWHUB_NORMALIZED_CONTENT_BINDING_FOR_128_FAMILIES',
           }
           assert d['candidate_n']==128
-          assert d['content_bound_different_n']+d['unchanged_content_n']+d['cannot_check_n']==128
+          assert d['normalized_content_bound_different_n']+d['unchanged_normalized_content_n']+d['cannot_check_n']==128
+          assert d['raw_zip_hash_is_transport_receipt_only'] is True
           assert d['change_stratum_adjudicated'] is False
           assert d['external_gold_accessed'] is False
           assert d['protected_orion_predictions_accessed'] is False
-          print('A3_CONTENT_BINDING_TERMINAL',d['terminal'])
-          print('BOUND_DIFFERENT',d['content_bound_different_n'],'UNCHANGED',d['unchanged_content_n'],'CANNOT_CHECK',d['cannot_check_n'])
+          print('A3_NORMALIZED_CONTENT_BINDING_TERMINAL',d['terminal'])
+          print('BOUND_DIFFERENT',d['normalized_content_bound_different_n'],'UNCHANGED',d['unchanged_normalized_content_n'],'CANNOT_CHECK',d['cannot_check_n'])
           PY
-      - name: Upload exact binding result
+      - name: Upload exact normalized binding result
         uses: actions/upload-artifact@v4
         with:
-          name: workflowhub-content-binding-v1
-          path: /tmp/workflowhub-content-binding-v1.json
+          name: workflowhub-normalized-content-binding-v2
+          path: /tmp/workflowhub-normalized-content-binding-v2.json
           retention-days: 30
       - name: Repository cleanliness
         run: |
