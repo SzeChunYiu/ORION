@@ -1,0 +1,19 @@
+# Complete adverse, null, corrected, open and CANNOT_CHECK retention
+
+- Scoped versus never-reopen intervals cross zero in both registered reopening regimes, so no scoped-versus-never superiority is claimed.
+- The remint-unnecessary transport regime is an exact tie; a positive advantage there would have invalidated the synthetic study.
+- Twelve synthetic mean comparisons are reported without family-wise corrected bootstrap intervals; targeted verification and acquisition against the deterministic proxy are most exposed.
+- Language-model-labelled comparators are deterministic proxies and do not measure language models.
+- Transport-chain identifiers are construction identifiers, not cryptographic digests; the 200/200 census is not real adversarial-security evidence.
+- No minimal or complete epistemic-state schema and no universal necessity or lower-bound theorem across all mechanism families is established.
+- An ideal value-of-information donor exactly absorbs the allocation-policy residual in the first negative study.
+- The model-selection donor ties the candidate at 0.9948 on the original world; only the bounded misspecified-world difference survives.
+- Six positive synthetic families are not six independent real-world populations, and their cross-family taxonomy is a post-study synthesis.
+- The earlier refinement strictness wording was underspecified and is withdrawn: merely splitting an impure coarse fibre does not guarantee lower risk.
+- The initial OpenML analysis falsely treated an out-of-sample disagreement as a theorem refutation and used inconsistent minimum-mass rules; both defects were corrected after outcome inspection, so the result is descriptive.
+- Held-out OpenML transfer is adverse on three of five datasets relative to the attainable oracle gap, and generic information-gain refinement beats the typed binding on three of five.
+- The Defects4J binding was amended after fibre-size inspection but before catch outcomes; held-out refinement helps on ten of twelve projects, while Cli is a genuine unexplained failure and Csv has no development value to transfer.
+- A proposed project-level shortcut fails on the only Defects4J no-value project, and no recorded size, coverage or development-gain variable predicts the genuine held-out failure.
+- The WorkflowHub stratifier initially made the refinement an identity and was changed after the outcome; every replacement stratum still predicts value, so the theorem contrast remains CANNOT_CHECK_NO_CONTRAST.
+- Same-distribution agreement on OpenML and Defects4J is an algebraic instantiation and implementation check, not independent empirical confirmation of the theorem.
+- No deployed-agent, practical-superiority, broad real-domain generalization, or journal-acceptance claim follows from the bounded evidence.

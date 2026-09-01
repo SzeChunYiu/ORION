@@ -1,6 +1,6 @@
-# ORION-04 reproduction guide
+# ORION-08 reproduction guide
 
-ORION-04 is currently scoped to six **exact-synthetic matched-information mechanism studies** plus donor/negative bounds. It is not a real-agent deployment claim.
+ORION-08 is scoped to six exact-synthetic matched-information mechanism studies, a corrected finite decision criterion, three bounded real-data studies, and donor/negative bounds. It is not a real-agent deployment claim.
 
 ## Primary six-study suite
 
@@ -38,7 +38,7 @@ from pathlib import Path
 expected = json.loads(Path('papers/orion-08-typed-state/PUBLICATION_PAIRED_ANALYSIS_V1.json').read_text())
 actual = json.loads(Path('/tmp/q4-publication-analysis.json').read_text())
 assert actual == expected
-print('ORION-04 publication paired analysis: MATCH')
+print('ORION-08 publication paired analysis: MATCH')
 PY
 ```
 
@@ -59,16 +59,44 @@ python research/extensions/orion-q/nlanes/n2_f5b_donor_comparison.py
 
 They prevent the final manuscript from promoting the typed-state result into a universal policy or crossover-prediction claim.
 
+## Corrected finite criterion
+
+The publication-authority statement is in
+`theory/binding-sufficiency-lattice-v1/THEOREM_CORRECTION_2026-09-01.md`.
+Run the independent checker from repository root:
+
+```bash
+python papers/orion-08-typed-state/theory/binding-sufficiency-lattice-v1/independent_checker/check_binding_sufficiency.py
+```
+
+The checker imports no ORION-08 generator. It verifies the zero-regret criterion
+and monotonicity over 2,233,980 configurations, the corrected refinement
+strictness equivalence over 641,034 coarse/refined partition pairs, and three
+negative controls, including a counterexample to the withdrawn shorthand.
+
+## Real-data studies
+
+The committed study directories are:
+
+- `experiments/real-transfer-cc18-v1/`;
+- `experiments/real-transfer-defects4j-v1/`;
+- `experiments/real-transfer-rocrate-v1/`.
+
+Each directory contains the protocol, runner, frozen output, findings, hashes,
+and any amendments or post-hoc analyses. Verify its `SHA256SUMS` before running.
+The OpenML and WorkflowHub runs may require network retrieval; use the pinned
+source identities and do not replace unavailable records. Defects4J uses the
+pinned upstream metadata recorded by the study. A reproduction must retain the
+mixed held-out outcomes and the WorkflowHub `CANNOT_CHECK_NO_CONTRAST` terminal.
+
 ## Frozen protocols and replay
 
 Protocols live under `development/orion-q-nlane-closure/`; deterministic replay status is recorded in `REPLAY_VERIFICATION_LEDGER.md`. `.github/workflows/orion-q-nlane-closure.yml` binds the frozen script/result/protocol identities used by the original closure.
 
 ## Publication synchronization
 
-```bash
-pytest tests/unit/publication/test_framework_snapshot.py \
-       tests/unit/publication/test_q_series_final_spec.py \
-       tests/unit/publication/test_q_series_content_binding.py
-```
-
-The future real-domain protocol in `TOP_TIER_UPGRADE_PROTOCOL_2026-08-22.md` is not part of the current evidence package and must not be described as executed.
+The current publication authority is `CLAIM_LEDGER_V4.md`, the LaTeX manuscript
+tree, and the checksum-closed Tier-B package. Historical cross-paper registries
+and V1--V3 manuscript/ledger files remain provenance and are not current release
+authority. Run the Tier-B package verifier against the final package after any
+source or metadata change.

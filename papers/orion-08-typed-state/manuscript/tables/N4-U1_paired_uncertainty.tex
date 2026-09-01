@@ -3,27 +3,27 @@
 % Every value is transcribed from the source JSON. No new estimate is derived.
 \begin{table}[t]
   \centering
-  \caption{Paired uncertainty for every N4 comparison in the committed publication analysis. Intervals are 95\,\% percentile bootstrap intervals over paired episode differences (5000 deterministic resamples, seeds recorded per row in the source artifact). Win/tie/loss is the paired decomposition over the same $n$ pairs. Intervals are per-comparison and are \emph{not} adjusted for the twelve comparisons shown; any family-wise adjustment widens them, so rows already containing zero would continue to contain zero. Rows marked $\dagger$ have an interval containing zero: the contrast is \emph{undetermined} at this $n$ and is not a positive result. The row marked $\ddagger$ is the prespecified remint-unnecessary regime, where the exact tie on all pairs is the passing outcome and a positive advantage would have invalidated the study; its interval is $[0,0]$ by construction and is not an undetermined contrast.}
-  \label{tab:N4-U1}
+  \caption{Paired uncertainty for every synthetic comparison in the preserved publication analysis. Intervals are 95\,\% percentile bootstrap intervals over paired episode differences (5000 deterministic resamples, seeds recorded per row in the source artifact). Win/tie/loss is the paired decomposition over the same $n$ pairs. Intervals are per-comparison and are \emph{not} adjusted for the twelve comparisons shown; any family-wise adjustment widens them, so rows already containing zero would continue to contain zero. Rows marked $\dagger$ have an interval containing zero: the contrast is \emph{undetermined} at this $n$ and is not a positive result. The row marked $\ddagger$ is the prespecified remint-unnecessary regime, where the exact tie on all pairs is the passing outcome and a positive advantage would have invalidated the study; its interval is $[0,0]$ by construction and is not an undetermined contrast.}
+  \label{tab:paired-uncertainty}
   \footnotesize
   \begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X r r r r}
     \toprule
     Study & Comparison & Mean diff. & 95\,\% CI & $n$ & win/tie/loss \\
     \midrule
-    N4-A & typed VOI vs.\ greedy known-graph & 2.933 & $[2.556,\ 3.301]$ & 300 & 0.55/0.30/0.15 \\
-    N4-A & typed VOI vs.\ uniform-prior VOI & 1.111 & $[0.833,\ 1.400]$ & 300 & 0.29/0.58/0.13 \\
-    N4-B & scoped vs.\ never reopen (wasteful)$\dagger$ & 0.060 & $[-0.540,\ 0.634]$ & 200 & 0.17/0.79/0.04 \\
-    N4-B & scoped vs.\ unscoped reopen (wasteful) & 15.050 & $[13.624,\ 16.451]$ & 200 & 0.78/0.11/0.11 \\
-    N4-B & scoped vs.\ never reopen (stale)$\dagger$ & 0.774 & $[-0.663,\ 2.254]$ & 200 & 0.59/0.20/0.21 \\
-    N4-B & scoped vs.\ unscoped reopen (stale) & 6.973 & $[5.740,\ 8.255]$ & 200 & 0.52/0.35/0.13 \\
-    N4-C & interval-Pareto vs.\ random verification & 0.142 & $[0.100,\ 0.187]$ & 400 & 0.26/0.67/0.07 \\
-    N4-E & decision VOI vs.\ information gain & 2.146 & $[1.976,\ 2.299]$ & 400 & 0.95/0.03/0.02 \\
-    N4-E & decision VOI vs.\ LLM proxy & 0.277 & $[0.119,\ 0.412]$ & 400 & 0.45/0.44/0.14 \\
-    N4-F3 & typed transport vs.\ naive carry-forward & 17.242 & $[15.577,\ 18.836]$ & 200 & 0.69/0.30/0.00 \\
-    N4-F3 & typed transport vs.\ re-derivation (mixed) & 2.264 & $[1.717,\ 2.825]$ & 200 & 0.32/0.69/0.00 \\
-    N4-F3 & typed transport vs.\ re-derivation (no remint needed)$\ddagger$ & 0.000 & $[0.000,\ 0.000]$ & 200 & 0.00/1.00/0.00 \\
+    Prior & typed VOI vs.\ greedy known-graph & 2.933 & $[2.556,\ 3.301]$ & 300 & 0.55/0.30/0.15 \\
+    Prior & typed VOI vs.\ uniform-prior VOI & 1.111 & $[0.833,\ 1.400]$ & 300 & 0.29/0.58/0.13 \\
+    Reopening & scoped vs.\ never reopen (wasteful)$\dagger$ & 0.060 & $[-0.540,\ 0.634]$ & 200 & 0.17/0.79/0.04 \\
+    Reopening & scoped vs.\ unscoped reopen (wasteful) & 15.050 & $[13.624,\ 16.451]$ & 200 & 0.78/0.11/0.11 \\
+    Reopening & scoped vs.\ never reopen (stale)$\dagger$ & 0.774 & $[-0.663,\ 2.254]$ & 200 & 0.59/0.20/0.21 \\
+    Reopening & scoped vs.\ unscoped reopen (stale) & 6.973 & $[5.740,\ 8.255]$ & 200 & 0.52/0.35/0.13 \\
+    Verify & interval-Pareto vs.\ random verification & 0.142 & $[0.100,\ 0.187]$ & 400 & 0.26/0.67/0.07 \\
+    Acquire & decision VOI vs.\ information gain & 2.146 & $[1.976,\ 2.299]$ & 400 & 0.95/0.03/0.02 \\
+    Acquire & decision VOI vs.\ LLM proxy & 0.277 & $[0.119,\ 0.412]$ & 400 & 0.45/0.44/0.14 \\
+    Transport & typed transport vs.\ naive carry-forward & 17.242 & $[15.577,\ 18.836]$ & 200 & 0.69/0.30/0.00 \\
+    Transport & typed transport vs.\ re-derivation (mixed) & 2.264 & $[1.717,\ 2.825]$ & 200 & 0.32/0.69/0.00 \\
+    Transport & typed transport vs.\ re-derivation (no remint needed)$\ddagger$ & 0.000 & $[0.000,\ 0.000]$ & 200 & 0.00/1.00/0.00 \\
     \bottomrule
   \end{tabularx}
   \par\smallskip
-  \textit{Metric note:} N4-A, N4-E and N4-F3 differences are in episode utility; N4-B in mean round utility; N4-C in scalarized regret reduction. N4-D is a frozen exact census (200 laundering / 200 honest chains), not a sampled paired comparison, and therefore has no interval; its counts are reported in the text.
+  \textit{Metric note:} Prior, acquisition and transport differences are in episode utility; reopening in mean round utility; verification in scalarized regret reduction. The provenance family is a frozen exact census (200 laundering / 200 honest chains), not a sampled paired comparison, and therefore has no interval; its counts are reported in the text.
 \end{table}

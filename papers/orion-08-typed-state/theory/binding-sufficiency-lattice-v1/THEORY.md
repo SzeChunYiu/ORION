@@ -44,19 +44,28 @@ it is optimal in every world of that fibre, so total regret is zero.
 policy emits on `z` is suboptimal in at least one positive-mass world of `z`, so
 regret is strictly positive. ∎
 
-### Theorem 2 (refinement monotonicity, and when it is strict)
+### Theorem 2 (refinement monotonicity, and when it is strict; corrected)
 
 If `B'` refines `B` then Bayes risk under `B'` is no larger, because every
-`B`-measurable policy is `B'`-measurable. The decrease is **strict exactly when**
-`B'` splits a positive-mass `B`-fibre whose worlds share no optimal action; a
-refinement that only splits already-pure fibres changes nothing. ∎
+`B`-measurable policy is `B'`-measurable. For each positive-mass `B'`-subfibre
+`G`, let `O_G` be the actions minimizing aggregate loss on `G`. The decrease is
+**strict exactly when** at least one positive-mass `B`-fibre has
+`intersection_G O_G = empty` across its `B'`-subfibres. If the intersection is
+nonempty, one action attains every subfibre minimum and the coarse and refined
+risks agree on that fibre; if it is empty, no coarse action can attain the sum
+of the subfibre minima. ∎
+
+The earlier sentence "strict exactly when it splits an action-impure fibre" was
+underspecified and is withdrawn. The correction and its interpretive consequence
+are recorded in `THEOREM_CORRECTION_2026-09-01.md`.
 
 ### The lattice reading
 
 Bindings form a lattice under refinement, and decision value is **not** monotone
 in "amount of typed state" — it is monotone only in *fibre purity with respect to
-optimal actions*. Adding typed state that does not separate action-incompatible
-worlds is free of benefit, however detailed it is.
+optimal actions*. Adding typed state that does not induce disagreement among the
+aggregate optimal actions of refined subfibres is free of benefit, however
+detailed it is.
 
 This is generic decision-sufficiency / Blackwell-style **donor** theory. No
 novelty is claimed, and per #1617 it should be implemented once across the
@@ -131,9 +140,10 @@ problems; the N4 receipts are read as **data** and never executed.
 |---|---|
 | A — sufficiency iff common optimal action | holds |
 | B — refinement never increases risk | holds |
+| B2 — strict iff no action jointly minimizes all refined subfibres | holds over 641,034 coarse/refined partition pairs |
 | exhaustive over | **2,233,980** world/action/binding configurations |
 | C — instantiation recomputed from frozen receipts | as tabulated above |
-| D — negative controls | **2/2 fire** |
+| D — negative controls | **3/3 fire**, including a counterexample to the withdrawn shorthand |
 
 Arithmetic is integer throughout (uniform mass makes division unnecessary), so
 nothing is approximated. Controls: a fibre mixing worlds with disjoint optimal
@@ -147,8 +157,12 @@ add nothing.
 ## 5. Strongest falsifier
 
 A finite decision problem where a binding with an action-incompatible fibre still
-admits a zero-regret deterministic policy, or where a refinement increases Bayes
-risk. Refuted exhaustively over 2.2M configurations.
+admits a zero-regret deterministic policy, where a refinement increases Bayes
+risk, or where strict decrease disagrees with the corrected joint-subfibre-optimum
+criterion. The first two conditions were checked over 2,233,980 configurations and
+the strictness equivalence over 641,034 coarse/refined partition pairs. The old
+impure-split shorthand is not a falsifier because the checker now contains a
+counterexample to it.
 
 For the instantiation, the falsifier is arithmetic: if the recomputed gap
 fractions disagreed with the frozen receipts, the reading would be wrong. They

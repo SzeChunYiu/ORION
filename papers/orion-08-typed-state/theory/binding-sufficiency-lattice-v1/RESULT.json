@@ -6,6 +6,8 @@
     "world_action_configurations_checked": 2233980,
     "sufficiency_iff_common_optimal_action": true,
     "refinement_never_increases_risk": true,
+    "refinement_strict_iff_no_joint_subfibre_optimum": true,
+    "coarse_refined_partition_pairs_checked": 641034,
     "arithmetic": "exact rational"
   },
   "check_C_orion08_instantiation": {
@@ -35,6 +37,9 @@
       "pass": true
     },
     "splitting_pure_fibre_adds_nothing": {
+      "pass": true
+    },
+    "withdrawn_impure_split_shorthand_is_false": {
       "pass": true
     }
   },

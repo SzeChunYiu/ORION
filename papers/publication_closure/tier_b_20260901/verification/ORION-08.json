@@ -1,0 +1,52 @@
+{
+  "builds": {
+    "arxiv": {
+      "build_tail": "itten on main.pdf (11 pages, 243698 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+      "normalized_text_similarity": 1.0,
+      "overfull_boxes": 0,
+      "pages": 11,
+      "release_pdf_sha256": "5b2b0c08184344a87c6f63383125ef5d42e75ba58dca261a99756b9441f8fea7",
+      "source_zip_sha256": "e656fd15b805a6da66c00ebe993de6553dcf4192a2af068d5f1233aa28a82ab2"
+    },
+    "journal": {
+      "build_tail": "ic/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (10 pages, 242665 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+      "normalized_text_similarity": 1.0,
+      "overfull_boxes": 0,
+      "pages": 10,
+      "release_pdf_sha256": "e60afef46421f01dd74bad130ecae032117dd484cca1d1c05f4c309f7d5a3baf",
+      "source_zip_sha256": "df616f0b009e3023c6118b2784fc6f18fe3241b551e67a94fad2e4d3f221e54e"
+    }
+  },
+  "checks": [
+    "manifest_payload_exact",
+    "sha256_closure",
+    "academic_paper_pipeline_1_21",
+    "active_authority_binding",
+    "paper_existence_schema",
+    "paper_existence_gate_PASS",
+    "paper_specific_artifact_archive",
+    "archive_path_safety",
+    "identity_partition",
+    "visible_placeholder_scan",
+    "route_science_similarity",
+    "adverse_null_cannot_check_retention",
+    "fresh_clean_arxiv_build",
+    "fresh_clean_journal_build",
+    "source_pdf_text_binding",
+    "resolved_references"
+  ],
+  "package": "papers/orion-08-typed-state/submission/tier-b-final-20260901",
+  "package_manifest_sha256": "84d252d454e5fc30eaa92042861491ef58f9e1d0f7bbb48e044097023e408df2",
+  "paper": "ORION-08",
+  "paper_existence_gate": {
+    "disposition": "WRITE_FULL_PAPER",
+    "findings": [],
+    "paper_id": "ORION-08",
+    "verdict": "PASS"
+  },
+  "route_science_similarity": 0.9696861626248217,
+  "schema": "ORION.tier-b-package-verification.v1",
+  "status": "PASS",
+  "terminal": "TIER_B_ORION08_COMPLETE__CONTROLLED_MECHANISMS_AND_BOUNDED_TRANSFER",
+  "visual_audit": "PENDING_SEPARATE_RENDER_INSPECTION"
+}

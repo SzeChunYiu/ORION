@@ -1,0 +1,44 @@
+{
+  "authority_boundary": "Deterministic replay, exact arithmetic, checksums and package binding corroborate the registered computations and artifact identities only. They do not establish deployed-agent behavior, cryptographic security, universal necessity, practical superiority or broad real-domain generalization.",
+  "checks": [
+    {
+      "command": "python papers/orion-08-typed-state/submission/independent-replay-v1/replay_cited_receipts_v1.py --json-out <temporary-file>",
+      "result": "PASS",
+      "terminal": "REPLAY_EXACT__3_OF_3__ZERO_DIVERGENT__ZERO_CANNOT_CHECK"
+    },
+    {
+      "command": "python papers/orion-08-typed-state/publication_analysis.py",
+      "result": "PASS",
+      "terminal": "JSON_SEMANTIC_EXACT_MATCH__FORMATTING_ONLY_DIFF"
+    },
+    {
+      "command": "shasum -a 256 -c SHA256SUMS in each of the three real-data study directories",
+      "result": "PASS",
+      "studies": 3
+    },
+    {
+      "command": "python papers/orion-08-typed-state/theory/binding-sufficiency-lattice-v1/independent_checker/check_binding_sufficiency.py",
+      "result": "PASS",
+      "world_action_configurations": 2233980,
+      "coarse_refined_partition_pairs": 641034,
+      "negative_controls": 3
+    },
+    {
+      "command": "unzip -tq papers/orion-08-typed-state/submission/tier-b-final-20260901/journal/artifact.zip",
+      "result": "PASS",
+      "artifact_members": 58
+    }
+  ],
+  "date": "2026-09-01",
+  "paper": "ORION-08",
+  "preserved_observations": {
+    "withdrawn_strictness_shorthand": "MERELY_SPLITTING_AN_IMPURE_FIBRE_IS_NOT_SUFFICIENT",
+    "openml_held_out_transfer": "ADVERSE_ON_3_OF_5_RELATIVE_TO_ORACLE_ACHIEVABLE_GAP",
+    "defects4j_held_out_transfer": "POSITIVE_ON_10_OF_12__CSV_NO_VALUE__CLI_UNEXPLAINED_FAILURE",
+    "workflowhub": "CANNOT_CHECK_NO_CONTRAST",
+    "scoped_vs_never_reopen": "UNDETERMINED_IN_BOTH_REGIMES",
+    "remint_unnecessary": "EXACT_TIE"
+  },
+  "schema": "ORION.tier-b-scientific-replay.v1",
+  "status": "PASS"
+}

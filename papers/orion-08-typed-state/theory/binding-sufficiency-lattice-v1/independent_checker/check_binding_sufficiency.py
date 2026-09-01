@@ -12,9 +12,9 @@ Checks
     A. Sufficiency theorem -- a deterministic zero-regret policy using only the
        binding B exists IFF every positive-mass B-fibre has a common optimal
        action. Exhaustive over small finite worlds.
-    B. Refinement monotonicity -- refining a binding never increases Bayes risk,
-       and strictly decreases it exactly when it splits a fibre whose worlds
-       share no optimal action.
+    B. Refinement monotonicity -- refining a binding never increases Bayes risk.
+       The decrease is strict exactly when some coarse fibre has no action that
+       minimizes aggregate loss on every positive-mass refined subfibre.
     C. ORION-08 instantiation -- oracle-gap fractions recomputed from the frozen
        N4-B and N4-F3 receipts.
     D. Negative controls.
@@ -51,6 +51,41 @@ def optimal_actions(loss_row):
     return {a for a, v in enumerate(loss_row) if v == m}
 
 
+def canonical_partitions(n):
+    """Yield each set partition once as a restricted-growth label tuple."""
+    for labels in itertools.product(range(n), repeat=n):
+        if labels[0] != 0:
+            continue
+        if all(labels[i] <= 1 + max(labels[:i]) for i in range(1, n)):
+            yield labels
+
+
+def refines(fine, coarse):
+    """Return whether every fine block is contained in one coarse block."""
+    return all(fine[i] != fine[j] or coarse[i] == coarse[j]
+               for i in range(len(fine)) for j in range(len(fine)))
+
+
+def strict_refinement_criterion(loss, coarse, fine):
+    """Correct equality condition for minimum-of-sums versus sum-of-minima."""
+    n_actions = len(loss[0])
+    coarse_blocks = {}
+    for w, label in enumerate(coarse):
+        coarse_blocks.setdefault(label, []).append(w)
+    for worlds in coarse_blocks.values():
+        subblocks = {}
+        for w in worlds:
+            subblocks.setdefault(fine[w], []).append(w)
+        common = set(range(n_actions))
+        for subworlds in subblocks.values():
+            totals = [sum(loss[w][a] for w in subworlds)
+                      for a in range(n_actions)]
+            common &= optimal_actions(totals)
+        if not common:
+            return True
+    return False
+
+
 def main() -> int:
     try:
         # ---- A + B: exhaustive over small finite worlds -------------------
@@ -58,6 +93,7 @@ def main() -> int:
         # sum_z min_a sum_{w in z} loss[w][a].  Integer arithmetic throughout;
         # no division is needed and nothing is approximated.
         checked = 0
+        strict_checked = 0
         CONFIGS = [(2, 2), (2, 3), (3, 2), (3, 3), (4, 2)]
         for n_worlds, n_actions in CONFIGS:
             for flat in itertools.product(range(3), repeat=n_worlds * n_actions):
@@ -83,6 +119,41 @@ def main() -> int:
                             {"check": "B", "loss": loss}))
                     checked += 1
 
+                # Verify the corrected strictness IFF over every unique
+                # coarse/refined partition pair. This is deliberately separate
+                # from the zero-oracle-regret theorem above: world-level action
+                # impurity is not by itself enough for an arbitrary refinement
+                # to reduce risk.
+                parts = list(canonical_partitions(n_worlds))
+                risks = {}
+                for part in parts:
+                    fibres = {}
+                    for w, label in enumerate(part):
+                        fibres.setdefault(label, []).append(w)
+                    risks[part] = sum(
+                        min(sum(loss[w][a] for w in ws)
+                            for a in range(n_actions))
+                        for ws in fibres.values()
+                    )
+                for coarse in parts:
+                    for fine in parts:
+                        if not refines(fine, coarse):
+                            continue
+                        observed_strict = risks[fine] < risks[coarse]
+                        predicted_strict = strict_refinement_criterion(
+                            loss, coarse, fine)
+                        if observed_strict != predicted_strict:
+                            raise AssertionError(json.dumps({
+                                "check": "B_strict_iff",
+                                "loss": loss,
+                                "coarse": coarse,
+                                "fine": fine,
+                                "coarse_risk": risks[coarse],
+                                "fine_risk": risks[fine],
+                                "criterion": predicted_strict,
+                            }))
+                        strict_checked += 1
+
         # ---- D: negative controls -----------------------------------------
         controls = {}
         # a fibre mixing worlds with disjoint optimal actions must have regret > 0
@@ -98,6 +169,28 @@ def main() -> int:
         controls["splitting_pure_fibre_adds_nothing"] = {
             "pass": bayes_risk([0, 1], mass, loss2, coarse)
             == bayes_risk([0, 1], mass, loss2, fine)}
+        # Counterexample to the withdrawn shorthand: the coarse fibre contains
+        # worlds with incompatible pointwise optima and is split, but both
+        # refined subfibres have the same aggregate optimum, so risk is equal.
+        loss3 = {
+            0: [0, 3], 1: [2, 0],
+            2: [0, 3], 3: [2, 0],
+        }
+        mass3 = {w: Fraction(1, 4) for w in loss3}
+        coarse3 = {w: 0 for w in loss3}
+        fine3 = {0: 0, 1: 0, 2: 1, 3: 1}
+        controls["withdrawn_impure_split_shorthand_is_false"] = {
+            "pass": (
+                not set.intersection(*(optimal_actions(loss3[w]) for w in loss3))
+                and bayes_risk(list(loss3), mass3, loss3, coarse3)
+                == bayes_risk(list(loss3), mass3, loss3, fine3)
+                and not strict_refinement_criterion(
+                    [loss3[w] for w in sorted(loss3)],
+                    tuple(coarse3[w] for w in sorted(loss3)),
+                    tuple(fine3[w] for w in sorted(loss3)),
+                )
+            )
+        }
         controls_ok = all(v["pass"] for v in controls.values())
 
         # ---- C: ORION-08 instantiation from frozen receipts ----------------
@@ -149,6 +242,8 @@ def main() -> int:
             "world_action_configurations_checked": checked,
             "sufficiency_iff_common_optimal_action": True,
             "refinement_never_increases_risk": True,
+            "refinement_strict_iff_no_joint_subfibre_optimum": True,
+            "coarse_refined_partition_pairs_checked": strict_checked,
             "arithmetic": "exact rational",
         },
         "check_C_orion08_instantiation": instantiation,

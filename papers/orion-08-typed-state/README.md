@@ -1,7 +1,7 @@
 # ORION-08 — Epistemic bindings for scientific decisions
 
-**Canonical manuscript:** `MANUSCRIPT_V3_REFINED.md`  
-**Canonical claim ledger:** `CLAIM_LEDGER_V3.md`  
+**Canonical manuscript:** `manuscript/`
+**Canonical claim ledger:** `CLAIM_LEDGER_V4.md`
 **Benchmark index:** `BENCHMARK_INDEX_V1.json`  
 **Paired publication analysis:** `PUBLICATION_PAIRED_ANALYSIS_V1.json` + `publication_analysis.py`  
 **Nearest-work matrix:** `NEAREST_WORK_MATRIX_V4.md` (V3 retained as provenance)  
@@ -11,17 +11,17 @@
 
 Current bounded publication claim:
 
-> Six separately frozen **exact-synthetic matched-information** studies form a post-study benchmark taxonomy of epistemic bindings for scientific decisions. Strong donor/no-value regimes and paired uncertainty delimit where the relation changes the decision and where it is absent or absorbed.
+> Six separately frozen exact-synthetic matched-information studies isolate how epistemic bindings affect decisions. A corrected finite refinement criterion organizes the mechanism, while three real-data instantiations expose mixed held-out transfer and a preserved `CANNOT_CHECK` contrast failure.
 
 Current targeting state:
 
-- **Nature Machine Intelligence real-agent/scientific-discovery claim:** `EVIDENCE_BLOCKED` until the frozen real-domain transfer study executes.
-- **npj Artificial Intelligence / AI-for-science methods venue:** internally ready for the scoped exact-synthetic mechanism/benchmark claim, subject to final render/venue mechanics.
+- **Transactions on Machine Learning Research:** bounded research-paper route, double blind.
+- **Broader real-agent/scientific-discovery or practical-superiority claim:** unsupported. The completed real-data studies are mixed and do not license it.
 
-The paper makes no priority claim for typed memory, provenance-aware memory, stale-state revision, matched-budget verification, random-record verification controls, or value-of-information primitives. The paired publication analysis is secondary reporting over the original frozen seeds; it changes no primary protocol or terminal. In particular, the N4-B scoped-vs-never intervals cross zero and the V3 paper preserves that boundary rather than relying only on the pooled ranking.
+The paper makes no priority claim for typed memory, provenance-aware memory, stale-state revision, matched-budget verification, random-record verification controls, or value-of-information primitives. The paired publication analysis is secondary reporting over the original frozen seeds; it changes no primary protocol or terminal. In particular, the scoped-versus-never reopening intervals cross zero, and the current paper preserves that boundary rather than relying only on the pooled ranking.
 
-The 2026-08-29 literature closure and `NEAREST_WORK_MATRIX_V4.md` absorb the new budgeted-verification, stale-memory, and provenance-aware agent literature. The residual bounded contribution is the exact fibre-based decision-sufficiency/mechanism-isolation object and its cross-family instantiation, not priority on those neighboring primitives.
+The 2026-08-29 literature closure and `NEAREST_WORK_MATRIX_V4.md` absorb the new budgeted-verification, stale-memory, and provenance-aware agent literature. The residual bounded contribution is mechanism isolation across six frozen families plus an honest account of where the same binding idea does and does not transfer on held-out real data, not priority on neighboring primitives or generic decision-sufficiency theory.
 
-Earlier V1/V2 manuscripts, ledgers, and `NEAREST_WORK_MATRIX_V3.md` remain provenance. `TOP_TIER_UPGRADE_PROTOCOL_2026-08-22.md` is registered successor research for real scientific decisions and has no results yet.
+Earlier Markdown manuscripts, V1--V3 ledgers, and `NEAREST_WORK_MATRIX_V3.md` remain provenance. The real-data successor studies under `experiments/` have executed; their positive, adverse, amended, post-hoc and `CANNOT_CHECK` outcomes are all retained. The underspecified earlier Theorem 2 wording is withdrawn and corrected in `theory/binding-sufficiency-lattice-v1/THEOREM_CORRECTION_2026-09-01.md`.
 
-Canonical cross-paper authority is `papers/Q_SERIES_FINAL_SPEC_V1.json`; framework/content synchronization is governed by `papers/SYNC_CONTRACT.md`.
+Historical cross-paper registries remain provenance. The current publication authority for this paper is the LaTeX manuscript plus `CLAIM_LEDGER_V4.md` and the checksum-closed Tier-B package.

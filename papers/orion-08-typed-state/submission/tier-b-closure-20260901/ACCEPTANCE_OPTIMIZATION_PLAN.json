@@ -1,0 +1,124 @@
+{
+  "blockers": [
+    {
+      "class": "scientific_blocker",
+      "id": "O8-THEOREM-WORDING",
+      "notes": "The earlier strictness shorthand was withdrawn; the corrected criterion and counterexample are now in the current authority.",
+      "resolution_test": "Corrected theorem, exhaustive strictness check and explicit counterexample all pass without restoring the old wording.",
+      "status": "closed"
+    },
+    {
+      "class": "manuscript_visibility",
+      "id": "O8-TRANSFER-VISIBILITY",
+      "notes": "All completed real-data studies, amendments and adverse boundaries are now in the paper.",
+      "resolution_test": "OpenML, Defects4J and WorkflowHub results appear consistently in abstract, Methods, Results, Discussion, limitations and claim ledger.",
+      "status": "closed"
+    }
+  ],
+  "levers": [
+    {
+      "action": "Correct the refinement strictness condition and retain the withdrawn wording as an explicit negative control.",
+      "closure_test": "Independent checker passes the zero-regret theorem, monotonicity, the corrected strictness equivalence and the old-wording counterexample.",
+      "decision_axis": "science_integrity",
+      "enforcement": "hard_gate",
+      "evidence_grade": "MANUSCRIPT_INTERNAL",
+      "id": "O8-L1",
+      "scientific_effect": "corrects_error",
+      "source_urls": [],
+      "stage": "evidence_maturation",
+      "status": "satisfied"
+    },
+    {
+      "action": "Integrate already-executed real-data studies and let held-out failures determine the transfer claim.",
+      "closure_test": "No manuscript surface calls same-distribution agreement external validation, and every adverse or CANNOT_CHECK result remains visible.",
+      "decision_axis": "evidence_maturity",
+      "enforcement": "hard_gate",
+      "evidence_grade": "MANUSCRIPT_INTERNAL",
+      "id": "O8-L2",
+      "scientific_effect": "narrows_or_removes_claim",
+      "source_urls": [],
+      "stage": "evidence_maturation",
+      "status": "satisfied"
+    },
+    {
+      "action": "Use a double-blind TMLR research-paper route and separate it from the attributed arXiv route.",
+      "closure_test": "Journal PDF/source contain no author identity; arXiv PDF/source contain complete verified identity; scientific text remains route-equivalent.",
+      "decision_axis": "reporting_compliance",
+      "enforcement": "hard_gate",
+      "evidence_grade": "D",
+      "id": "O8-L3",
+      "scientific_effect": "improves_target_fit",
+      "source_urls": [
+        "https://jmlr.org/tmlr/author-guide.html"
+      ],
+      "stage": "submission_package",
+      "status": "satisfied"
+    },
+    {
+      "action": "Name current stale-memory, provenance and verification neighbours and deny component or generic-theory priority.",
+      "closure_test": "Closest works are named head-to-head and the residual contribution remains mechanism isolation plus transfer boundaries.",
+      "decision_axis": "contribution_novelty",
+      "enforcement": "hard_gate",
+      "evidence_grade": "MANUSCRIPT_INTERNAL",
+      "id": "O8-L4",
+      "scientific_effect": "clarifies_existing_evidence",
+      "source_urls": [
+        "https://arxiv.org/abs/2608.25553",
+        "https://arxiv.org/abs/2605.06527",
+        "https://arxiv.org/abs/2608.10509"
+      ],
+      "stage": "target_fit",
+      "status": "satisfied"
+    }
+  ],
+  "objective": "fixed_target_decision_readiness",
+  "public_review_history": {
+    "accepted_case_count": 0,
+    "notes": "No public review histories were used as acceptance evidence.",
+    "rejected_or_rejection_evidence_count": 0,
+    "survivorship_warning_recorded": true,
+    "used": false
+  },
+  "registered_report": {
+    "availability": "not_applicable",
+    "eligibility": "not_applicable",
+    "notes": "Outcome data have already been accessed; this is a standard completed-study submission.",
+    "official_policy_url": null,
+    "stage1_quality_controls_defined": null
+  },
+  "release_state": "decision_ready_but_editorial_outcome_uncertain",
+  "schema_version": "1.0.0",
+  "study_state": "pre_submission",
+  "target": {
+    "article_type": "research paper",
+    "as_of_date": "2026-09-01",
+    "exact_venue": "Transactions on Machine Learning Research",
+    "official_policy_urls": [
+      "https://jmlr.org/tmlr/author-guide.html"
+    ],
+    "policy_state": "resolved_current",
+    "route": "standard_article",
+    "stage": "initial submission"
+  },
+  "target_ladder": [
+    {
+      "article_type": "research paper",
+      "fit_class": "best_fit",
+      "fit_rationale": "TMLR can evaluate the controlled machine-learning mechanisms, formal criterion and bounded transfer without requiring a broad deployed-agent claim.",
+      "policy_state": "resolved_current",
+      "venue": "Transactions on Machine Learning Research"
+    }
+  ],
+  "uncontrollable_context": [
+    {
+      "factor": "editorial novelty and readership judgment",
+      "notes": "The package can establish claim scope and fit but cannot predict the action editor's decision.",
+      "state": "unknown"
+    },
+    {
+      "factor": "reviewer availability and legitimate expert disagreement",
+      "notes": "These are external to manuscript authority.",
+      "state": "unknown"
+    }
+  ]
+}
