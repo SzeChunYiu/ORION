@@ -1,0 +1,42 @@
+{
+  "schema": "ORION.TierA.ExternalIntakeGates.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49",
+  "purpose": "Reduce the remaining external Tier-A blockers to exact manifests that can be validated before protected outcomes or candidate-blind gold are revealed.",
+  "protected_outcomes_accessed": false,
+  "lanes": {
+    "A2": {
+      "freeze": "papers/orion-21-state-as-computation/top_tier/P11_EXTERNAL_EXECUTION_HARNESS_FREEZE_V1.json",
+      "validator": "papers/orion-21-state-as-computation/top_tier/validate_p11_external_execution_manifest_v1.py",
+      "current_blocker": "exact executable model identities/access plans and materialized benchmark/session registries are external"
+    },
+    "A3": {
+      "freeze": "papers/publication_closure/a3-external-change-transport-v1/EXECUTION_AND_ANALYSIS_FREEZE_V1.json",
+      "validator": "papers/publication_closure/a3-external-change-transport-v1/validate_change_cluster_manifest_v1.py",
+      "current_blocker": "96+32 real source-disjoint change clusters and independent curator/gold receipts are external"
+    },
+    "A4": {
+      "freeze": "papers/publication_closure/a4-hidden-cause-external-v1/SCIAGENTARENA_TERMINALBENCH_ACCESS_GATE_V2.json",
+      "validator": "papers/publication_closure/a4-hidden-cause-external-v1/validate_sciagentarena_task_manifest_v2.py",
+      "current_blocker": "SciAgentArena Terminal-Bench exact files are gated behind upstream contact-information agreement; advertised counts alone cannot establish executable-task eligibility"
+    },
+    "A5": {
+      "freeze": "papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/NATURALISTIC_SCORING_AND_NULL_ANALYSIS_FREEZE_V1.json",
+      "validator": "papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/validate_naturalistic_panel_manifest_v1.py",
+      "current_blocker": "768+256 eligible rights-bound natural pairs, external custody and candidate-blind resolving-state gold are external"
+    },
+    "A6": {
+      "freeze": "papers/publication_closure/a6-external-authority-study-v1/EXTERNAL_AUTHORITY_EXECUTION_ANALYSIS_FREEZE_V1.json",
+      "validator": "papers/publication_closure/a6-external-authority-study-v1/validate_external_authority_packet_manifest_v1.py",
+      "current_blocker": "60 primary packets plus a host-selected/frozen source-disjoint replication N and independent scientific-authority adjudication are external"
+    }
+  },
+  "global_fail_closed_rules": [
+    "no gold/prediction/outcome fields in pre-gold intake manifests",
+    "exact quotas and source-lineage disjointness are validated before predictions",
+    "task/source/scorer/model identities are hash/revision bound rather than moving aliases",
+    "CANNOT_CHECK is returned for inaccessible or incomplete external material; synthetic/local substitutions do not close the external gate",
+    "a manifest validator passing is execution readiness only, never an empirical result"
+  ],
+  "scientific_authority_delta": "NONE__EXTERNAL_INTAKE_INFRASTRUCTURE_ONLY"
+}
