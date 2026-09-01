@@ -1,0 +1,58 @@
+name: ORION V1 P1-P15 Result Identity Audit
+
+on:
+  pull_request:
+    paths:
+      - "papers/P1_P15_RESULT_BOUND_CLAIM_LEDGER_V1.json"
+      - "research/orion-epistemic-state-v1/results/**"
+      - "scripts/audit_p1_p15_result_identities_v1.py"
+      - "tests/unit/orion_v1/test_p1_p15_result_identity_audit.py"
+      - "development/orion-v1-p1-p15-identity-audit-2026-08-26/**"
+      - ".github/workflows/orion-v1-p1-p15-result-identity-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  identity-and-byte-custody:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Bind audit implementation and frozen subject
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse ef51b7b9263a72c725dc9d2045627b934b772a92^{commit})" = \
+            ef51b7b9263a72c725dc9d2045627b934b772a92
+          test "$(git rev-parse ef51b7b9263a72c725dc9d2045627b934b772a92^{tree})" = \
+            5d5ff0985551b0a94453ea6eaa9925bda3e10fa2
+          python -m py_compile scripts/audit_p1_p15_result_identities_v1.py
+          git diff --check
+      - name: Run hostile unit tests
+        run: python -m pytest -q tests/unit/orion_v1/test_p1_p15_result_identity_audit.py
+      - name: Derive all 25 Git-object and artifact-byte identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/orion-v1-p1-p15-identity
+          python scripts/audit_p1_p15_result_identities_v1.py \
+            --subject-ref ef51b7b9263a72c725dc9d2045627b934b772a92 \
+            --output-dir /tmp/orion-v1-p1-p15-identity \
+            --json | tee /tmp/orion-v1-p1-p15-identity/stdout.json
+          test -z "$(git status --porcelain)"
+      - name: Upload immutable audit packet
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-v1-p1-p15-result-identity-${{ github.sha }}
+          if-no-files-found: error
+          retention-days: 90
+          path: /tmp/orion-v1-p1-p15-identity
