@@ -1,0 +1,51 @@
+{
+  "schema": "ORION.publication-upstream-reconciliation.v1",
+  "checked_utc_date": "2026-09-01",
+  "local_base_commit": "f2f9da18559cc6db986890d41b38153dab5d3b90",
+  "origin_main_commit": "f2f9da18559cc6db986890d41b38153dab5d3b90",
+  "result": "EXACT_BASE_MATCH",
+  "reconciled_deltas": [
+    {
+      "commit": "ff10173cd83e0b4ce3d9ef59c9f970cee04389e8",
+      "classification": "PROSPECTIVE_REVIEWER_GATE_ONLY",
+      "scientific_authority_delta": "NONE",
+      "publication_package_delta": "NONE",
+      "reason": "The landed reviewer-gate packet declares no scientific-authority delta, predates the R0 namespace, and explicitly forbids one-to-one attribution to current ORION paper numbers. Current paper-local ledgers, results, and publication bytes therefore remain controlling."
+    },
+    {
+      "commit": "f2f9da18559cc6db986890d41b38153dab5d3b90",
+      "classification": "INTEGRITY_DIAGNOSIS_WITHOUT_SCIENCE_PROMOTION",
+      "scientific_authority_delta": "NONE",
+      "publication_package_delta": "ORION-17_DISCLOSURE_ADDED",
+      "reason": "The ORION-17 diagnosis verifies the original pre-R0 seal and corpus arithmetic but records three unresolved current-path binding failures after identifier rewriting. The failure is retained in ORION-17 filing materials without re-sealing or granting external authority. The accompanying ORION-01 PDF materialization changes no source manuscript or scientific authority."
+    }
+  ],
+  "scope": [
+    "ORION-01",
+    "ORION-02",
+    "ORION-03",
+    "ORION-04",
+    "ORION-05",
+    "ORION-06",
+    "ORION-07",
+    "ORION-08",
+    "ORION-09",
+    "ORION-10",
+    "ORION-11",
+    "ORION-12",
+    "ORION-13",
+    "ORION-14",
+    "ORION-15",
+    "ORION-16",
+    "ORION-17",
+    "ORION-18",
+    "ORION-19",
+    "ORION-20",
+    "ORION-21",
+    "ORION-22",
+    "ORION-23",
+    "ORION-24",
+    "ORION-25"
+  ],
+  "rule": "Fetch origin/main again immediately before push; if it advances, reconcile the new result authority and rebuild every affected publication object."
+}

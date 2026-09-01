@@ -1,3 +1,5 @@
-# Historical ORION-01 component package
+# Superseded publication package
 
-This directory is preserved for provenance only. It represents one legacy theory-A or theory-B component and is **not** a live paper or submission package. The sole ORION-01 submission authority is `../MANUSCRIPT_V4.md` with `../CLAIM_LEDGER_V4.md` and `../journal_package_final/`. Do not submit this directory as ORION-01A or ORION-01B. Existing records remain unchanged evidence.
+This directory is a legacy theory-A component of unified ORION-01. It is retained for provenance and is not a current submission object.
+
+The current arXiv/journal package is `papers/orion-01-certificate-realization/submission/publication-ready-20260831/`. No manuscript, result, negative finding, PDF, or source archive was changed by this reconciliation.

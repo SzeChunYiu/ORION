@@ -1,5 +1,8 @@
 # ORION-11 publication-freeze addendum V1
 
+> **Historical freeze.** Superseded by `REFRAMED_CONTRIBUTION_V2.md`; the
+> costed-ordering successor has now executed and falsified the economy residual.
+
 **Freeze date:** 2026-08-31  
 **Status:** `NECESSITY_CLAIM_FALSIFIED__COST_OBSERVATION_RETAINED__PACKAGE_OPEN`
 

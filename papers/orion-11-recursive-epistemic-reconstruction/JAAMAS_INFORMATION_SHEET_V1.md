@@ -1,5 +1,8 @@
 # ORION-11 — JAAMAS submission information sheet (V1)
 
+> **Historical route artifact.** ORION-11 now targets JAIR, and its former
+> economy residual is superseded by `REFRAMED_CONTRIBUTION_V2.md`.
+
 JAAMAS requires a 1–2 page sheet with every submission, and returns submissions
 whose sheet is incomplete or uninformative without review. It asks two questions
 and warns that "We are the first to have done X" is not an acceptable answer to

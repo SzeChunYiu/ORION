@@ -1,5 +1,8 @@
 # ORION-11 — reframed bounded contribution V1
 
+> **Historical predecessor.** Superseded by `REFRAMED_CONTRIBUTION_V2.md` after
+> the costed-ordering execution falsified the proposed economy residual.
+
 `scientific_authority_delta: NONE`
 
 This document records and reframes an existing frozen result after a falsification.
@@ -155,12 +158,17 @@ one world family.
   the first explicitly; Theorem C forces the second. The cost gap is a pointer to a
   successor question, not a result, and specifically **not** evidence that typed
   responsibility ordering is what makes ORION cheap.
-- **Replication arm: `CANNOT_CHECK`, still open.** The R4 replication world set
-  returned `INSTRUMENT_FAULT__ANCHOR_REPRODUCTION_FAILED__NO_CLAIM_READ` because the
-  runner hardcodes the *primary* committed rates in its anchor gate while the
-  replication set has its own. This is **neither a pass nor a failure** and must not
-  be narrated as either. The root cause is already fixed on a separate branch; the
-  arm remains unread until a re-run with a per-world-set parameterised gate.
+- **Original replication arm: historical `CANNOT_CHECK`; parameterized successor
+  resolves the measurement without erasing it.** The immutable original record
+  remains `INSTRUMENT_FAULT__ANCHOR_REPRODUCTION_FAILED__NO_CLAIM_READ` because its
+  gate hardcoded the *primary* anchor rates. A new result at
+  `experiments/r4-faithful-comparator-v1/result/replication-gate-parameterised-v1/`
+  uses the replication set's separately frozen anchor reference, passes all four
+  unchanged anchors, and reproduces the same falsification: the admitted
+  active-value-of-information parent matches both registered components with
+  `b/c = 0/0`, while mean costs are 1.8359 versus 2.6693. The new record's
+  `scientific_authority_delta` is `NONE`; it corroborates the already controlling
+  reframe and is not external replication.
 - **No claim that the two forbidden-carrying parents are unfixable.** They were given
   exactly one repair. A different repair might close their safety gap; that is an
   open question, not a settled asymmetry.

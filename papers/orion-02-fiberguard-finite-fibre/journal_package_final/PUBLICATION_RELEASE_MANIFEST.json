@@ -2,24 +2,24 @@
   "artifacts": [
     {
       "artifact_id": "reader-pdf",
-      "byte_count": 90300,
+      "byte_count": 291750,
       "path": "submission/When_a_Representation_Can_Certify.pdf",
       "role": "reader_manuscript",
-      "sha256": "sha256:aeb0ec1b091fc5de7defaeb83b4043657627c2d07519f660940be692d121cfae"
+      "sha256": "sha256:1f8f8838a16751263cb67260a42224a93c1103676b81134c5525fa2c37a6ab8a"
     },
     {
       "artifact_id": "arxiv-reader-pdf",
-      "byte_count": 89750,
+      "byte_count": 316654,
       "path": "submission/When_a_Representation_Can_Certify_arxiv.pdf",
       "role": "reader_manuscript",
-      "sha256": "sha256:4b72b2fa0340b9bfaa257288f1474d4f3b56bfc80c1cdbe8a809214425de3d88"
+      "sha256": "sha256:6f9d44b4a1efe7b1905eb3c74d71ffc41dc0b9a80dfc4865d7d18dfffc2e7b15"
     },
     {
       "artifact_id": "research-integrity-ledger",
       "byte_count": 134749,
       "path": "RESEARCH_INTEGRITY_LEDGER.json",
       "role": "claim_ledger",
-      "sha256": "sha256:749466f097648897d139b4dbc72f85c84dad6ef26519e83ebe2866787311a6f8"
+      "sha256": "sha256:0cde9a3f6fc25dfb60fe514a71f298beeec1d5c7abd9e15b331c0d5516976cf1"
     },
     {
       "artifact_id": "canonical-markdown-source",
@@ -40,7 +40,7 @@
       "byte_count": 33168,
       "path": "ATOMIC_CLAIM_INVENTORY.json",
       "role": "release_receipt",
-      "sha256": "sha256:aed9dfa68020473ee0cb7cb275f73024b6f57bdb07d37cd633c67342c83eb68f"
+      "sha256": "sha256:3dcf01fd5ed69a6869f17b7adc12b9ede16f4524f0a31a30c7320eafa419d73e"
     },
     {
       "artifact_id": "tmlr-source-archive",
@@ -51,10 +51,10 @@
     },
     {
       "artifact_id": "arxiv-source-archive",
-      "byte_count": 18843,
+      "byte_count": 18887,
       "path": "submission/When_a_Representation_Can_Certify_arxiv_source.zip",
       "role": "submission_component",
-      "sha256": "sha256:e66e7ebf5610d1443333d04873eb2a4f2d6597ee59de3e379a6cd5095daae639"
+      "sha256": "sha256:e2961b438d26d50bc97547e4b41a45a35ae781e2ec56acce7c3052bd0141d3b2"
     },
     {
       "artifact_id": "anonymous-supplement",
@@ -72,10 +72,10 @@
     },
     {
       "artifact_id": "arxiv-latex-source",
-      "byte_count": 23709,
+      "byte_count": 23768,
       "path": "submission/When_a_Representation_Can_Certify_arxiv.tex",
       "role": "manuscript_source",
-      "sha256": "sha256:5c03d5fa7f63964884ebbfc9d5805ecaf7145c824cf844d97f74298e3f8a75ed"
+      "sha256": "sha256:8d731e207ea34b4de6d1e1c8b0cf97f5f5c3122c3a989fb2f75909a46567d209"
     }
   ],
   "authority": {
@@ -90,14 +90,14 @@
       "disposition": "authoritative",
       "manuscript_id": "ORION-02-TMLR-20260831",
       "reason": "Exact anonymous reader-facing PDF governing the TMLR review package.",
-      "sha256": "sha256:aeb0ec1b091fc5de7defaeb83b4043657627c2d07519f660940be692d121cfae"
+      "sha256": "sha256:1f8f8838a16751263cb67260a42224a93c1103676b81134c5525fa2c37a6ab8a"
     },
     {
       "artifact_id": "arxiv-reader-pdf",
       "disposition": "excluded_incompatible",
       "manuscript_id": "ORION-02-ARXIV-20260831",
       "reason": "Identified public arXiv rendering of the identical scientific body; it is intentionally excluded from the anonymous TMLR release package and does not compete with that route's reader authority.",
-      "sha256": "sha256:4b72b2fa0340b9bfaa257288f1474d4f3b56bfc80c1cdbe8a809214425de3d88"
+      "sha256": "sha256:6f9d44b4a1efe7b1905eb3c74d71ffc41dc0b9a80dfc4865d7d18dfffc2e7b15"
     },
     {
       "disposition": "historical_provenance",

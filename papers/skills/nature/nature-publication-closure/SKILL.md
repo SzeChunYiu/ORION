@@ -23,6 +23,9 @@ Read `references/closure-contract.md` completely. Then:
 6. Emit one machine-readable current closure state. Mark every contradictory
    visible predecessor historical or point it to the superseding state.
 7. Verify any mirror by comparing content, not by asserting that a copy ran.
+8. Reconcile the closure against the live results branch before building and
+   again immediately before merge. New evidence may narrow, refute or complete
+   an older terminal; never freeze against a stale checkout.
 
 Stop fail-closed if a requested paper is unhandled, the active authority is
 ambiguous, a claim is not supported by bound evidence, a venue requirement is
@@ -52,3 +55,18 @@ Required output semantics:
 
 For every material closure, preserve a reviewer-audit record and a command that
 recomputes the package checks from a clean tree.
+
+Additional invariants learned from multi-paper closure:
+
+- Resolve the current *paper identity* before packaging. If later work unifies
+  historical components, emit one package for the unified paper and label the
+  split packages historical; package counts must follow current identities.
+- Treat author metadata as a typed matrix over artifact and audience. Canonical
+  name, affiliation, email and identifier choices must agree across identified
+  TeX, PDF, metadata, title page and cover materials, while blinded reviewer
+  artifacts must contain none of them.
+- For arXiv, prefer a buildable TeX source archive whenever source exists. Put a
+  single top-level main file in the archive and validate the plain-ASCII
+  abstract against the current arXiv limit.
+- A same-source replay on a different host is useful portability evidence, but
+  is not an independent implementation or independent scientific replication.

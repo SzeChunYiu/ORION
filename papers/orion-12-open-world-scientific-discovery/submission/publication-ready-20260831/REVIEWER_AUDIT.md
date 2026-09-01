@@ -1,0 +1,51 @@
+# Three-reviewer adversarial audit - ORION-12
+
+## Review setup
+
+- Input scope: current manuscript, active authority `PUBLICATION_FREEZE_ADDENDUM_V2.md`, and the packaged result-retention ledger.
+- Assessment boundary: bounded publication claim only; optional successor science is outside this review.
+- Shared claim: A fail-closed controller separates route stopping from task closure and retains unavailable material routes as open obligations.
+
+## Reviewer 1 - evidence and inference emphasis
+
+**Overall assessment.** The bounded claim is reviewable if every numeric or
+theorem statement remains tied to its declared unit and authority class.
+
+**Concern R1-M1 - claim moderation.** Claim pointer: the shared claim above.
+Evidence pointer: `PUBLICATION_FREEZE_ADDENDUM_V2.md` and `RESULT_RETENTION.md`. Resolution
+test: the manuscript and metadata retain the following adverse boundary without
+pooling or euphemism: The registered TREC-COVID recall/cost gate fails: recall@100 delta -0.01769 with 95% bootstrap interval [-0.02729,-0.00906], while reads increase 175.7%. On ArguAna, density normalization and a query-conditional estimator each leave all five decisions unchanged; the rank-overlap marginal is signal-inert there, so the failure is in the measurement rather than its threshold. OpenAIRE remains CANNOT_CHECK after provider invalidity; the fresh 48-task campaign was not accessed; favorable nDCG and complete-gold diagnostics do not establish external superiority or open-world completeness.
+
+## Reviewer 2 - novelty and scope emphasis
+
+**Overall assessment.** The contribution should be judged as the stated residual,
+not as ownership of donor mechanisms or a broad real-world generalization.
+
+**Concern R2-M1 - novelty boundary.** Claim pointer: introduction and related
+work. Evidence pointer: active claim ledger plus the package novelty record.
+Resolution test: no donor-owned primitive, null, refutation, or open successor is
+presented as this paper's positive novelty.
+
+## Reviewer 3 - reproducibility and filing emphasis
+
+**Overall assessment.** The source and review archive make the bounded object
+inspectable, subject to the live portal confirmations listed separately.
+
+**Concern R3-M1 - release binding.** Claim pointer: availability and declarations.
+Evidence pointer: `PACKAGE_MANIFEST.json`, `SHA256SUMS`, and both source archives.
+Resolution test: clean rebuilds match the reader PDFs, double-blind files contain
+no author tokens, and portal-only IDs are not fabricated.
+
+## Cross-review synthesis
+
+The reviewers agree that the paper is referee-resistant only at its explicit
+bounded ceiling. The consensus technical risk is accidental promotion of a
+negative, null, CANNOT_CHECK, or same-programme replay into a stronger claim.
+No broader experiment is required to submit the bounded object; a broader claim
+would require successor science and a new authority disposition.
+
+## Risk / unsupported claims
+
+- The registered TREC-COVID recall/cost gate fails: recall@100 delta -0.01769 with 95% bootstrap interval [-0.02729,-0.00906], while reads increase 175.7%.
+- On ArguAna, density normalization and a query-conditional estimator each leave all five decisions unchanged; the rank-overlap marginal is signal-inert there, so the failure is in the measurement rather than its threshold.
+- OpenAIRE remains CANNOT_CHECK after provider invalidity; the fresh 48-task campaign was not accessed; favorable nDCG and complete-gold diagnostics do not establish external superiority or open-world completeness.

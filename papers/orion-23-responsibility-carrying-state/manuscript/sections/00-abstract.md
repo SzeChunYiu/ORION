@@ -13,6 +13,6 @@ scheduled corruptions, makes no unsafe reuse, attains verified correctness
 0.97933, and costs 0.539 times always raw overall; the unverified policy makes
 330 unsafe reuses and 123 adversary-induced unnecessary reopens. The historical
 self-scored zero, two unsafe comparator arms, and a failed predecessor gate are
-all retained. These controlled worlds support responsibility-indexed reuse and
+all retained. These controlled finite-world evaluations support responsibility-indexed reuse and
 authentication as a load-bearing mechanism; they do not establish external or
 population-level safety.

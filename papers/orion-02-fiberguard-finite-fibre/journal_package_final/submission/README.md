@@ -1,17 +1,9 @@
-# TMLR submission packet
+# ORION-02 final journal package
 
-Upload the following review artifacts:
+Primary target: **Transactions on Machine Learning Research (TMLR)**.
 
-1. When_a_Representation_Can_Certify.pdf
-2. When_a_Representation_Can_Certify_supplementary_anonymous.zip
+Scientific source of authority remains `papers/orion-02-fiberguard-finite-fibre/MANUSCRIPT_V3.md` with claim ledger `papers/orion-02-fiberguard-finite-fibre/CLAIM_LEDGER_V3.md`. `MANUSCRIPT.md` is a claim-equivalent reader-facing publication surface: it removes project-control front matter, fixes already-recorded independence wording where applicable, verifies/updates citations, and preserves the bounded claims and negative results.
 
-The TMLR source archive is retained for editing and camera-ready custody. The PDF and supplement are anonymous. The supplement distinguishes enclosed-result checks from unavailable full upstream-data reruns.
+The review PDF is anonymized and built with the pinned TMLR style. The supplementary archive is also anonymized. OpenReview profile metadata, conflict/funding fields, action-editor recommendations, and the final upload remain human filing actions and are not encoded as scientific authority.
 
-The public arXiv route uses:
-
-1. When_a_Representation_Can_Certify_arxiv.pdf
-2. When_a_Representation_Can_Certify_arxiv_source.zip
-
-The arXiv source differs from the review source only in the official TMLR `preprint` option, author line, source comment and PDF-author metadata. Do not upload or link the identified arXiv file from the anonymous TMLR review submission.
-
-Before filing, complete TMLR_FILING_CHECKLIST_V4.md and PORTAL_METADATA_TEMPLATE.md at the package root. Do not upload repository control records as supplementary material.
+This package does **not** claim acceptance, external specialist validation, external replication, or any authority beyond the bound manuscript and ledger.

@@ -1,5 +1,9 @@
 # A one-unit generalized-Davenport corridor and a support-at-least-14 theorem in \(C_5^3\)
 
+> **Historical predecessor.** Superseded for current journal science by
+> `WAVE3_SCOPED_MANUSCRIPT_V3.md` after the complete global obstruction packet
+> earned the exact theorem `D_4(C_5^3)=30`.
+
 **ORION-04 — Wave 3 scientific successor V2**  
 **Supersedes for journal science:** `WAVE3_SCOPED_MANUSCRIPT_V1.md`  
 **Preserves:** the bounded Wave-3 terminal and all unresolved exact-\(D_4\) boundaries

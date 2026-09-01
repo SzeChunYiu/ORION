@@ -1,0 +1,315 @@
+{
+  "article_type": "full paper",
+  "artifacts": [
+    {
+      "bytes": 171406,
+      "path": "manuscript.pdf",
+      "sha256": "7137a9a9d8c88c0b64f69550596d000db5f6bf9d267c4b0852e0e94b87ce6176"
+    },
+    {
+      "bytes": 17796,
+      "path": "source.zip",
+      "sha256": "e81720d03d1b05b92d45c6c4bbb3111b1566ff4845fb1aa2c3b1c51a45e21c99"
+    },
+    {
+      "bytes": 6121,
+      "path": "review_materials.zip",
+      "sha256": "02aad4b045c04a66da61778e3429f7fc4dc74a97b741024640dff801c065c983"
+    },
+    {
+      "bytes": 2513,
+      "path": "COVER_LETTER.md",
+      "sha256": "8c86a27bf24e3be0a1b6537f879593a132e96e005b761419729419213acae5c9"
+    },
+    {
+      "bytes": 881,
+      "path": "AVAILABILITY_STATEMENT.md",
+      "sha256": "27ed40536ce8df988bb94959c079ac853285171f5f0aadb1a5a2ba3a1d66e726"
+    },
+    {
+      "bytes": 1100,
+      "path": "HUMAN_INPUTS_REQUIRED.md",
+      "sha256": "a5dd86464d6904fa929db8116286c8e0245a3395522475ee575f462574c06847"
+    },
+    {
+      "bytes": 1333,
+      "path": "REVIEW_RESOURCES_README.md",
+      "sha256": "8bef2e0fdde329d5d81f0c825b87e15505257744d9f7c737f8ca2449b7e37835"
+    }
+  ],
+  "author": {
+    "email": "sze-chun.yiu@fysik.su.se",
+    "human_only_fields_open": [
+      "affiliation",
+      "ORCID",
+      "funding",
+      "conflicts",
+      "contributions",
+      "final acknowledgements"
+    ],
+    "name": "Sze Chun Yiu"
+  },
+  "blockers": [
+    {
+      "class": "PUBLICATION_CRITERIA",
+      "detail": "SWJ full-paper significance is not established by a 32-case polarity-localized comparison against a deliberately weak baseline.",
+      "id": "ORION13-B1",
+      "resolution": "fair same-universe current comparator, affirmative editor fit indication, or defensible retargeting"
+    },
+    {
+      "class": "OPEN_SCIENCE",
+      "detail": "No long-term stable immutable URL is bound to the exact review-resource ZIP.",
+      "id": "ORION13-B2",
+      "resolution": "deposit these exact bytes and record the stable URL without rebuilding the ZIP"
+    },
+    {
+      "class": "TARGET_TEMPLATE",
+      "detail": "The official linked Sage LaTeX template URL returns an HTML 404 artifact.",
+      "id": "ORION13-B3",
+      "resolution": "obtain a working current template or written editor guidance, then rebuild exact filing bytes"
+    },
+    {
+      "class": "HUMAN_AUTHORSHIP_POLICY",
+      "detail": "SWJ FAQ Q28 human-writing compliance cannot be attested by the editing system.",
+      "id": "ORION13-B4",
+      "resolution": "human rewrite/verification as needed plus exact assistance disclosure and author attestation"
+    },
+    {
+      "class": "HUMAN_METADATA",
+      "detail": "Affiliation and filing declarations are incomplete.",
+      "id": "ORION13-B5",
+      "resolution": "human author completes every field or explicitly marks it not applicable"
+    }
+  ],
+  "claim_boundary": "C5/C9 already-structured mapping only; all six observed comparator errors are polarity contrasts. No raw-text, expert-atlas, downstream, universal-coordinate, current-system superiority, external-replication, or cross-host claim.",
+  "fallback_venue": "Journal of Web Semantics",
+  "package_surface_gate": {
+    "original_unsanitized_archives": "private_evidence_only",
+    "review_materials_archive": "clean",
+    "source_archive": "clean"
+  },
+  "paper_id": "ORION-13",
+  "pdf": {
+    "bytes": 171406,
+    "pages": 8,
+    "path": "manuscript.pdf",
+    "sha256": "7137a9a9d8c88c0b64f69550596d000db5f6bf9d267c4b0852e0e94b87ce6176",
+    "source_pdf_exact_byte_match": true,
+    "source_pdf_sha256": "7137a9a9d8c88c0b64f69550596d000db5f6bf9d267c4b0852e0e94b87ce6176",
+    "template_blocker": "official linked Sage LaTeX ZIP resolves to an HTML 404 page",
+    "template_compliance": false
+  },
+  "primary_venue": "Semantic Web Journal",
+  "private_evidence_archives": [
+    {
+      "bytes": 22025,
+      "path": "private_evidence/unsanitized_archives/ORION13_SWJ_SOURCE.zip",
+      "sha256": "72295a308f335c9077b03e6fba8e0227a9631dffadcc5d8c31bd170febf6b431",
+      "submission_facing": false
+    },
+    {
+      "bytes": 33170,
+      "path": "private_evidence/unsanitized_archives/ORION13_SWJ_REVIEW_RESOURCES.zip",
+      "sha256": "5c89e144e4a495c98d11afda6f9d73a01c5638974c61b6a90861273564f16460",
+      "submission_facing": false
+    }
+  ],
+  "readiness_judgments": {
+    "strong_specialist_submission": "BLOCKED_BY_INTEGRITY_OR_COMPLIANCE",
+    "top_tier_or_external_authority": "NOT_ESTABLISHED"
+  },
+  "review_archive_url": null,
+  "review_resource_closure": [
+    {
+      "bytes": 1176,
+      "path": "README.md",
+      "sha256": "a85dbd9ff097a5410c8af756854eb12dff9d26d3260e11a97f27fc280941c3e0"
+    },
+    {
+      "bytes": 22827,
+      "path": "data/confirmatory_cases.jsonl",
+      "sha256": "a4bd45ab345db629680eb3ea9f22a719db00b76e36510eb940eb776bb5d28911"
+    },
+    {
+      "bytes": 23949,
+      "path": "data/initial_cases.jsonl",
+      "sha256": "f2af0ba38573f4346a8d461301b4a485afe7afeba6b625273e61a75b4aec7f06"
+    },
+    {
+      "bytes": 1203,
+      "path": "expected_results.json",
+      "sha256": "908999303e76cfc3a4f7bcd6e1e68f69729018eff18e267bde807836f2edb018"
+    },
+    {
+      "bytes": 5067,
+      "path": "verify.py",
+      "sha256": "4fee4ee24564a8fcfa27fbb84439d6db24d54d45c55bd0dc8af5c9055d550cca"
+    }
+  ],
+  "round1_review_pdf_sha256": "b843d9ef8cd399c3e186e3a05edca582a2bd9de08f3c22d192b7187b42ac4c19",
+  "schema_version": "orion.orion13.wave1-submission-manifest.v1",
+  "scientific_terminal": "PASS_BOUNDED_STRUCTURED_MAPPING",
+  "skills_applied": [
+    "nature-writing",
+    "nature-polishing",
+    "nature-figure",
+    "nature-citation",
+    "nature-academic-search",
+    "nature-literature-pipeline",
+    "nature-data",
+    "nature-reviewer"
+  ],
+  "source_closure": [
+    {
+      "bytes": 5771,
+      "path": "manuscript/bibliography.bib",
+      "sha256": "24dde025c1ee1d452fadb40df8efbeb6f80ca401db21579839eae3dd81459fe7"
+    },
+    {
+      "bytes": 3646,
+      "path": "manuscript/generate_tables.py",
+      "sha256": "4b01c65d504e4020fa585c10cf1716062dd4835222b660f746fe999d7aad8f24"
+    },
+    {
+      "bytes": 1862,
+      "path": "manuscript/main.tex",
+      "sha256": "bb6547e8ed4ff7bc817ca37e43fdd060a743bf93ac168bef8f4e7813a04ede39"
+    },
+    {
+      "bytes": 1285,
+      "path": "manuscript/sections/00-abstract.tex",
+      "sha256": "fc18889d9db3a0dbc720893bf8ee692f87974f812cd3d8ec6cd1e1020a8eca15"
+    },
+    {
+      "bytes": 2542,
+      "path": "manuscript/sections/06-results.tex",
+      "sha256": "a363c07525af37217b9f6b3afab0b435d865f9fcf4a439d3feea695d2ccd5aa5"
+    },
+    {
+      "bytes": 1743,
+      "path": "manuscript/sections/07-limitations.tex",
+      "sha256": "11fb546f2804caf27552a8d96b507e02957f800067abc76eefafd9c55de16b98"
+    },
+    {
+      "bytes": 1187,
+      "path": "manuscript/sections/08-conclusion.tex",
+      "sha256": "247dbd60c4b47c029c2ce2ef232e35d817dbd3d67a8ccc233f1afaa7c51284dd"
+    },
+    {
+      "bytes": 2711,
+      "path": "manuscript/sections/10-introduction.tex",
+      "sha256": "19462b90152d3764efdd7c8bbb9296674162d3f3b2c03034b1e3e30e2d3861c7"
+    },
+    {
+      "bytes": 3324,
+      "path": "manuscript/sections/20-related-work.tex",
+      "sha256": "983494eaff764ff439e2b7eb154371f6093edc0033225c8909e573334aa1af29"
+    },
+    {
+      "bytes": 2507,
+      "path": "manuscript/sections/30-method.tex",
+      "sha256": "6f87ed45e203e7c6e544e97f96f57007b56ac126def9ef8b25074feadcd67ddf"
+    },
+    {
+      "bytes": 1846,
+      "path": "manuscript/sections/40-dataset.tex",
+      "sha256": "21a313773cc2f2a4c807b78c43a536ae26da38729577be3b124345191c167f86"
+    },
+    {
+      "bytes": 2406,
+      "path": "manuscript/sections/50-evaluation.tex",
+      "sha256": "132880cafcdb1c75ae32cc9ad2330ffdb352f416403d6c23d782eaf674fc8e80"
+    },
+    {
+      "bytes": 996,
+      "path": "manuscript/sections/60-availability.tex",
+      "sha256": "0d64cffb12741bee402300ef4a1e36f2b11d5f7a8bf5c97d64ab8df068229091"
+    },
+    {
+      "bytes": 470,
+      "path": "manuscript/tables/confirmatory_case_families.tex",
+      "sha256": "b22d5c7332a236ed24adb2a632566ace6304c8789294518f9f38a463c71c0893"
+    },
+    {
+      "bytes": 793,
+      "path": "manuscript/tables/confirmatory_primary_results.tex",
+      "sha256": "7a82c25e73fe6678ad27e609e1c58049678d5162ac277481e48f8fbf6de8b11a"
+    }
+  ],
+  "submission_authorized": false,
+  "submission_terminal": "BLOCKED_BY_INTEGRITY_OR_COMPLIANCE",
+  "tex_input_closure": [
+    {
+      "bytes": 1862,
+      "path": "manuscript/main.tex",
+      "sha256": "bb6547e8ed4ff7bc817ca37e43fdd060a743bf93ac168bef8f4e7813a04ede39"
+    },
+    {
+      "bytes": 5771,
+      "path": "manuscript/bibliography.bib",
+      "sha256": "24dde025c1ee1d452fadb40df8efbeb6f80ca401db21579839eae3dd81459fe7"
+    },
+    {
+      "bytes": 1285,
+      "path": "manuscript/sections/00-abstract.tex",
+      "sha256": "fc18889d9db3a0dbc720893bf8ee692f87974f812cd3d8ec6cd1e1020a8eca15"
+    },
+    {
+      "bytes": 2542,
+      "path": "manuscript/sections/06-results.tex",
+      "sha256": "a363c07525af37217b9f6b3afab0b435d865f9fcf4a439d3feea695d2ccd5aa5"
+    },
+    {
+      "bytes": 1743,
+      "path": "manuscript/sections/07-limitations.tex",
+      "sha256": "11fb546f2804caf27552a8d96b507e02957f800067abc76eefafd9c55de16b98"
+    },
+    {
+      "bytes": 1187,
+      "path": "manuscript/sections/08-conclusion.tex",
+      "sha256": "247dbd60c4b47c029c2ce2ef232e35d817dbd3d67a8ccc233f1afaa7c51284dd"
+    },
+    {
+      "bytes": 2711,
+      "path": "manuscript/sections/10-introduction.tex",
+      "sha256": "19462b90152d3764efdd7c8bbb9296674162d3f3b2c03034b1e3e30e2d3861c7"
+    },
+    {
+      "bytes": 3324,
+      "path": "manuscript/sections/20-related-work.tex",
+      "sha256": "983494eaff764ff439e2b7eb154371f6093edc0033225c8909e573334aa1af29"
+    },
+    {
+      "bytes": 2507,
+      "path": "manuscript/sections/30-method.tex",
+      "sha256": "6f87ed45e203e7c6e544e97f96f57007b56ac126def9ef8b25074feadcd67ddf"
+    },
+    {
+      "bytes": 1846,
+      "path": "manuscript/sections/40-dataset.tex",
+      "sha256": "21a313773cc2f2a4c807b78c43a536ae26da38729577be3b124345191c167f86"
+    },
+    {
+      "bytes": 2406,
+      "path": "manuscript/sections/50-evaluation.tex",
+      "sha256": "132880cafcdb1c75ae32cc9ad2330ffdb352f416403d6c23d782eaf674fc8e80"
+    },
+    {
+      "bytes": 996,
+      "path": "manuscript/sections/60-availability.tex",
+      "sha256": "0d64cffb12741bee402300ef4a1e36f2b11d5f7a8bf5c97d64ab8df068229091"
+    },
+    {
+      "bytes": 470,
+      "path": "manuscript/tables/confirmatory_case_families.tex",
+      "sha256": "b22d5c7332a236ed24adb2a632566ace6304c8789294518f9f38a463c71c0893"
+    },
+    {
+      "bytes": 793,
+      "path": "manuscript/tables/confirmatory_primary_results.tex",
+      "sha256": "7a82c25e73fe6678ad27e609e1c58049678d5162ac277481e48f8fbf6de8b11a"
+    }
+  ],
+  "tex_input_closure_sha256": "40dc935adc98e6000cde38b1e13cda89b747d1a4a4ed3aeea31c80ec8cc3b64d",
+  "title": "Coordinate-Governed Mapping of Source-Local Scientific Projections"
+}

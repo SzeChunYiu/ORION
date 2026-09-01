@@ -123,7 +123,7 @@ Suppose an analytic lemma is seeded with $\{\textsf{THEOREM}\}$ and an exact fin
 
 A rule cap can impose an additional boundary. If every premise carries both $\textsf{PROSPECTIVE}$ and $\textsf{POST\_OUTCOME}$ but a repair rule is capped at $\{\textsf{POST\_OUTCOME}\}$, the repaired conclusion receives only the post-outcome license. The rule does not deny that the repair may be exact on observed data. It denies the stronger statement that an outcome-informed repair is prospective evidence.
 
-Direct refutation and route withdrawal remain distinct. For example, let $\Lambda=\{\textsf{PROSPECTIVE},\textsf{POST\_OUTCOME}\}$, seed $p$ with $\{\textsf{PROSPECTIVE}\}$ and $s$ with $\{\textsf{POST\_OUTCOME}\}$, and register two single-premise rules from $p$ and $s$ to the same conclusion $q$, capped by their respective licenses. Before refutation, $q$ carries both licenses through separate proof trees. Refuting $p$ leaves only the post-outcome route and license. Refuting $q$ itself instead fixes $q$ to the empty label, regardless of either incoming rule.
+Direct refutation and route withdrawal remain distinct. For example, let the license universe contain the labels $\textsf{PROSPECTIVE}$ and $\textsf{POST\_OUTCOME}$. Seed $p$ with the prospective license and $s$ with the post-outcome license, and register two single-premise rules from $p$ and $s$ to the same conclusion $q$, capped by their respective licenses. Before refutation, $q$ carries both licenses through separate proof trees. Refuting $p$ leaves only the post-outcome route and license. Refuting $q$ itself instead fixes $q$ to the empty label, regardless of either incoming rule.
 
 ## Monotone loss under refutation
 

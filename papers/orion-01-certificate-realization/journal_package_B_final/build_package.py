@@ -140,7 +140,7 @@ def render_tex(markdown: str) -> str:
 \\setlength{{\\emergencystretch}}{{3em}}
 \\providecommand{{\\tightlist}}{{\\setlength{{\\itemsep}}{{0pt}}\\setlength{{\\parskip}}{{0pt}}}}
 \\title{{{latex_escape(title)}}}
-\\author{{Sze Chun Yiu}}
+\\author{{Sze Chun Yiu\\\\Independent Researcher\\\\\\texttt{{sze-chun.yiu@fysik.su.se}}}}
 \\date{{}}
 \\hypersetup{{pdftitle={{{latex_escape(title)}}},pdfauthor={{Sze Chun Yiu}}}}
 \\begin{{document}}
@@ -201,6 +201,8 @@ def build() -> None:
 
     shutil.copy2(canonical, manuscript)
     shutil.copy2(claim_ledger, packaged_ledger)
+    if manuscript.read_bytes() != canonical.read_bytes():
+        raise AssertionError("canonical copy drifted before package generation")
     copy_common_ancillary(ancillary)
 
     stem = str(CONFIG["stem"])
@@ -211,18 +213,18 @@ def build() -> None:
     with tempfile.TemporaryDirectory() as temporary:
         output = Path(temporary)
         log = run(
-            "tectonic",
+            "latexmk",
+            "-pdf",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            f"-outdir={output}",
             str(tex_path),
-            "--outdir",
-            str(output),
-            "--keep-logs",
-            "--keep-intermediates",
             capture=True,
         )
         built_pdf = output / f"{stem}.pdf"
         built_log = output / f"{stem}.log"
         if not built_pdf.is_file():
-            raise FileNotFoundError("tectonic did not produce the expected PDF")
+            raise FileNotFoundError("latexmk did not produce the expected PDF")
         combined_log = log + (built_log.read_text(encoding="utf-8", errors="replace") if built_log.is_file() else "")
         forbidden = ("Undefined control sequence", "LaTeX Error", "Overfull \\hbox", "Overfull \\vbox")
         found = [token for token in forbidden if token in combined_log]
@@ -242,11 +244,10 @@ def build() -> None:
         journal_members.append((name, submission / name))
     zip_deterministically(journal_zip, journal_members)
 
-    tectonic_version_output = run("tectonic", "--version", capture=True)
-    tectonic_match = re.search(r"(?i)tectonic\s+\d+(?:\.\d+)+", tectonic_version_output)
+    latexmk_version_output = run("latexmk", "-v", capture=True)
     tool_versions = {
         "pandoc": run("pandoc", "--version", capture=True).splitlines()[0],
-        "tectonic": tectonic_match.group(0) if tectonic_match else tectonic_version_output.strip(),
+        "latexmk": latexmk_version_output.splitlines()[0],
         "python": run("python3", "--version", capture=True).strip(),
     }
     receipt = {

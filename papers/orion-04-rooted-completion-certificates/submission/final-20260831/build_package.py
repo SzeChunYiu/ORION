@@ -4,10 +4,13 @@ import hashlib, os, subprocess, tempfile, zipfile
 
 HERE = Path(__file__).resolve().parent
 PAPER = HERE.parent.parent
-MANUSCRIPT = PAPER / "WAVE3_SCOPED_MANUSCRIPT_V2.md"
+MANUSCRIPT = PAPER / "WAVE3_SCOPED_MANUSCRIPT_V3.md"
 RELATED = HERE / "RELATED_WORK_AND_NOVELTY.md"
 FIXED_TIME = (2026, 8, 31, 0, 0, 0)
 FIXED_PDF_ID = "0123456789ABCDEF0123456789ABCDEF"
+AUTHOR = "Sze Chun Yiu"
+AFFILIATION = "Independent Researcher"
+EMAIL = "sze-chun.yiu@fysik.su.se"
 
 def run(cmd, cwd=None):
     env = os.environ.copy()
@@ -30,13 +33,29 @@ def normalized_markdown(src):
     # untouched in the repository.
     text = Path(src).read_text(encoding="utf-8")
     drop_prefixes = (
-        "**ORION-04 — Wave 3 scientific successor V2**",
+        "**ORION-04 — exact-theorem successor V3**",
         "**Supersedes for journal science:**",
         "**Preserves:**",
     )
     text = "\n".join(line for line in text.splitlines() if not line.startswith(drop_prefixes)) + "\n"
     text = text.replace("\\[", "$$").replace("\\]", "$$").replace("\\(", "$").replace("\\)", "$")
-    return text.replace("∎", "$\\square$")
+    text = text.replace("∎", "$\\square$")
+    lines = text.splitlines()
+    if not lines or not lines[0].startswith("# "):
+        raise RuntimeError("publication manuscript must begin with a level-one title")
+    title = lines[0][2:].strip().replace('"', '\\"')
+    body = "\n".join(lines[1:]).lstrip()
+    return (
+        "---\n"
+        f'title: "{title}"\n'
+        f'author: "{AUTHOR}"\n'
+        'date: ""\n'
+        "---\n\n"
+        f"**Affiliation:** {AFFILIATION}\n\n"
+        f"**Correspondence:** {EMAIL}\n\n"
+        + body
+        + "\n"
+    )
 
 def deterministic_pdf_header():
     # pdfTeX otherwise emits a run-dependent trailer ID when Pandoc stages its
@@ -64,7 +83,7 @@ def main():
     readme = (
         "ORION-04 journal source package\n\n"
         "`manuscript.md` is the publication-clean rendering source. The repository's "
-        "WAVE3_SCOPED_MANUSCRIPT_V2.md and CLAIM_LEDGER_V2.md remain the scientific "
+        "WAVE3_SCOPED_MANUSCRIPT_V3.md and CLAIM_LEDGER_V3.md remain the scientific "
         "authority and are intentionally not rewritten by this package.\n"
     ).encode("utf-8")
     deterministic_zip_bytes(HERE / "source.zip", [

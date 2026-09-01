@@ -1,5 +1,8 @@
 # ORION-12 publication-freeze addendum V1
 
+> **Historical predecessor.** Superseded by `PUBLICATION_FREEZE_ADDENDUM_V2.md`,
+> which retains the landed V2/V3 estimator-falsification results.
+
 **Freeze date:** 2026-08-31  
 **Status:** `CURRENT_EARNED_CEILING_FROZEN__CROSS_ARENA_SUCCESSOR_ONLY`
 

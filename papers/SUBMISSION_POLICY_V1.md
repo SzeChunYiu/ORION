@@ -9,8 +9,8 @@ Canonical identity lives in `papers/AUTHOR_IDENTITY_V1.json`. Summary:
 
 - **Name:** Sze Chun Yiu
 - **Email:** sze-chun.yiu@fysik.su.se
-- **Affiliation:** Department of Physics, Stockholm University — **include only
-  where the venue requires it**. The author's preference is to omit it.
+- **Affiliation:** Independent Researcher. Stockholm University is not an
+  affiliation for this work and must not appear in submission materials.
 
 **Double-blind review copies keep `\author{Anonymous authors}`.** TMLR review is
 double-blind and `q4-tmlr-package.yml` runs an anonymity audit; substituting the

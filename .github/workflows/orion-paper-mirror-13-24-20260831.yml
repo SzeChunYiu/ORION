@@ -1,18 +1,16 @@
-name: ORION-paper exact mirror — ORION-13/14/19/21/23/24
+name: ORION-paper exact mirror -- ORION-01--25
 
 on:
   push:
     branches: [main]
     paths:
-      - 'papers/orion-13-global-knowledge-portrait/**'
-      - 'papers/orion-14-verified-scientific-discovery/**'
-      - 'papers/orion-19-structured-epistemic-learning/**'
-      - 'papers/orion-21-state-as-computation/**'
-      - 'papers/orion-23-responsibility-carrying-state/**'
-      - 'papers/orion-24-orion-rse/**'
-      - 'papers/publication_closure/orion_13_24_final/**'
-      - 'scripts/check_publication_closure.py'
-      - 'scripts/mirror_orion_papers_13_24.py'
+      - 'papers/orion-*/**'
+      - 'papers/AUTHOR_IDENTITY_V1.json'
+      - 'papers/SUBMISSION_POLICY_V1.md'
+      - 'papers/publication_closure/orion_all_submission_20260831/**'
+      - 'papers/publication_closure/vendor/jair-author-kit-20260216/**'
+      - 'papers/skills/nature/nature-publication-closure/**'
+      - 'scripts/mirror_orion_papers_all.py'
       - '.github/workflows/orion-paper-mirror-13-24-20260831.yml'
   workflow_dispatch:
 
@@ -20,16 +18,16 @@ permissions:
   contents: read
 
 concurrency:
-  group: orion-paper-exact-mirror-13-24-20260831
+  group: orion-paper-exact-mirror-all-20260831
   cancel-in-progress: false
 
 jobs:
   mirror:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
     env:
       TARGET_REPOSITORY: SzeChunYiu/ORION-paper
-      TARGET_BRANCH: publication/orion-13-24-exact-mirror-20260831
+      TARGET_BRANCH: publication/orion-all-exact-mirror-20260831
       MIRROR_TOKEN: ${{ secrets.ORION_PAPER_MIRROR_TOKEN }}
     steps:
       - name: Checkout merged ORION main commit
@@ -37,62 +35,55 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install PDF verification dependency
+      - name: Install package-audit dependency
         run: |
           set -euo pipefail
           sudo apt-get update
           sudo apt-get install --no-install-recommends --yes poppler-utils
 
-      - name: Verify source packages before transfer
+      - name: Verify all package bytes and bound full-build report
         run: |
           set -euo pipefail
           test "$(git branch --show-current)" = "main"
           test "$(git rev-parse HEAD)" = "${GITHUB_SHA}"
-          python scripts/check_publication_closure.py \
-            ORION-13 ORION-14 ORION-19 ORION-21 ORION-23 ORION-24
+          ORION_VERIFY_SKIP_CLEAN_BUILDS=1 ORION_VERIFY_NO_REPORT_WRITE=1 \
+            python papers/publication_closure/orion_all_submission_20260831/verify_all_submission_materials.py
+          python - <<'PY'
+          import hashlib, json, pathlib
+          root = pathlib.Path('papers/publication_closure/orion_all_submission_20260831')
+          report = json.loads((root / 'VERIFICATION_REPORT.json').read_text())
+          sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+          assert report['aggregate'] == 'PASS' and len(report['papers']) == 25
+          assert report['builder_sha256'] == sha(root / 'build_all_submission_materials.py')
+          assert report['verifier_sha256'] == sha(root / 'verify_all_submission_materials.py')
+          assert all('clean_arxiv_build' in p['checks'] and 'clean_journal_build' in p['checks'] for p in report['papers'])
+          PY
 
-      - name: Resolve mirror transport or verified external receipt
+      - name: Audit legacy six-paper external receipt
         id: transport
         run: |
           set -euo pipefail
-          if [ -n "${MIRROR_TOKEN}" ]; then
-            printf '%s\n' 'mirror_required=true' >> "${GITHUB_OUTPUT}"
-            exit 0
-          fi
-
           receipt='papers/publication_closure/orion_13_24_final/EXTERNAL_MIRROR_RECEIPT.json'
-          test -f "${receipt}"
-          source_commit="$(jq -er '.source_commit' "${receipt}")"
-          target_commit="$(jq -er '.target_commit' "${receipt}")"
-          test "$(jq -er '.verification.non_overlay_mismatches' "${receipt}")" = '0'
-          test "$(jq -er '.verification.stale_non_overlay_target_files' "${receipt}")" = '0'
+          source_commit="$(jq -r .source_commit "${receipt}")"
           git cat-file -e "${source_commit}^{commit}"
-          for paper in \
-            orion-13-global-knowledge-portrait \
-            orion-14-verified-scientific-discovery \
-            orion-19-structured-epistemic-learning \
-            orion-21-state-as-computation \
-            orion-23-responsibility-carrying-state \
-            orion-24-orion-rse
-          do
-            if ! git diff --quiet "${source_commit}" "${GITHUB_SHA}" -- "papers/${paper}"; then
-              printf '%s\n' \
-                'ORION_PAPER_MIRROR_TOKEN is required: paper trees changed after the verified external receipt.' >&2
-              exit 1
-            fi
-          done
-          printf '%s\n' 'mirror_required=false' >> "${GITHUB_OUTPUT}"
-          printf 'Mirror already verified externally: ORION `%s` -> ORION-paper `%s`.\n' \
-            "${source_commit}" "${target_commit}" >> "${GITHUB_STEP_SUMMARY}"
+          if git diff --quiet "${source_commit}" -- \
+              papers/orion-13-global-knowledge-portrait \
+              papers/orion-14-verified-scientific-discovery \
+              papers/orion-19-structured-epistemic-learning \
+              papers/orion-21-state-as-computation \
+              papers/orion-23-responsibility-carrying-state \
+              papers/orion-24-orion-rse; then
+            printf '%s\n' 'Legacy six-paper receipt remains byte-consistent; the expanded 25-paper mirror still runs.'
+          else
+            printf '%s\n' 'paper trees changed after the verified external receipt'
+          fi
+          printf '%s\n' 'mirror_required=true' >> "${GITHUB_OUTPUT}"
 
-      - name: Clone ORION-paper with a scoped cross-repository token
+      - name: Clone ORION-paper with scoped token
         if: steps.transport.outputs.mirror_required == 'true'
         run: |
           set -euo pipefail
-          if [ -z "${MIRROR_TOKEN}" ]; then
-            printf '%s\n' 'ORION_PAPER_MIRROR_TOKEN is required for the private target repository.' >&2
-            exit 1
-          fi
+          test -n "${MIRROR_TOKEN}"
           git clone "https://x-access-token:${MIRROR_TOKEN}@github.com/${TARGET_REPOSITORY}.git" target
           if git -C target ls-remote --exit-code --heads origin "${TARGET_BRANCH}" >/dev/null 2>&1; then
             git -C target fetch origin "${TARGET_BRANCH}"
@@ -102,26 +93,19 @@ jobs:
           fi
           git -C target remote set-url origin "https://github.com/${TARGET_REPOSITORY}.git"
 
-      - name: Mirror and compare exact paper trees
+      - name: Mirror and compare exact paper/package state
         if: steps.transport.outputs.mirror_required == 'true'
         run: |
           set -euo pipefail
-          python scripts/mirror_orion_papers_13_24.py \
+          python scripts/mirror_orion_papers_all.py \
             --source-root . \
             --target-root target \
             --source-commit "${GITHUB_SHA}"
-          for package in \
-            target/v1-papers/orion-13-global-knowledge-portrait/submission/final-20260831 \
-            target/v1-papers/orion-14-verified-scientific-discovery/submission/final-20260831 \
-            target/v1-papers/orion-19-structured-epistemic-learning/submission/final-20260831 \
-            target/v1-papers/orion-21-state-as-computation/submission/final-20260831 \
-            target/v1-papers/orion-23-responsibility-carrying-state/submission/final-20260831 \
-            target/v1-papers/orion-24-orion-rse/submission/final-20260831
-          do
-            (cd "${package}" && sha256sum -c SHA256SUMS)
-          done
+          while IFS= read -r sums; do
+            (cd "$(dirname "${sums}")" && sha256sum -c SHA256SUMS)
+          done < <(find target/v1-papers/orion-* -path '*/submission/publication-ready-20260831/SHA256SUMS' -print | sort)
 
-      - name: Commit, push and merge through an ORION-paper pull request
+      - name: Commit, push, and merge through ORION-paper pull request
         if: steps.transport.outputs.mirror_required == 'true'
         env:
           GH_TOKEN: ${{ secrets.ORION_PAPER_MIRROR_TOKEN }}
@@ -129,18 +113,12 @@ jobs:
           set -euo pipefail
           git -C target config user.name "github-actions[bot]"
           git -C target config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git -C target add \
-            v1-papers/orion-13-global-knowledge-portrait \
-            v1-papers/orion-14-verified-scientific-discovery \
-            v1-papers/orion-19-structured-epistemic-learning \
-            v1-papers/orion-21-state-as-computation \
-            v1-papers/orion-23-responsibility-carrying-state \
-            v1-papers/orion-24-orion-rse
+          git -C target add v1-papers
           if git -C target diff --cached --quiet; then
             printf '%s\n' 'Mirror already exact.' >> "${GITHUB_STEP_SUMMARY}"
             exit 0
           fi
-          git -C target commit -m "papers: exact-mirror ORION-13/14/19/21/23/24 from ${GITHUB_SHA:0:12}"
+          git -C target commit -m "papers: exact-mirror ORION-01--25 from ${GITHUB_SHA:0:12}"
           target_commit="$(git -C target rev-parse HEAD)"
           git -C target remote set-url origin "https://x-access-token:${MIRROR_TOKEN}@github.com/${TARGET_REPOSITORY}.git"
           git -C target push origin "HEAD:${TARGET_BRANCH}"
@@ -149,9 +127,9 @@ jobs:
           number="$(gh api "repos/${TARGET_REPOSITORY}/pulls?state=open&head=SzeChunYiu:${TARGET_BRANCH}&base=${base}" --jq '.[0].number // empty')"
           if [ -z "${number}" ]; then
             number="$(gh api --method POST "repos/${TARGET_REPOSITORY}/pulls" \
-              -f title='Exact mirror ORION-13/14/19/21/23/24' \
+              -f title='Exact mirror ORION-01--25 publication closure' \
               -f head="${TARGET_BRANCH}" -f base="${base}" \
-              -f body="Exact mirror of ORION ${GITHUB_SHA}; target-only overlays are declared in each receipt." \
+              -f body="Exact mirror of ORION ${GITHUB_SHA}; target-only overlays are declared in each paper receipt." \
               --jq .number)"
           fi
           gh api --method PUT "repos/${TARGET_REPOSITORY}/pulls/${number}/merge" -f merge_method=merge >/tmp/orion-paper-merge.json

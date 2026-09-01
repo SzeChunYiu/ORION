@@ -339,3 +339,38 @@ Sze Chun Yiu is the sole author and is responsible for the scientific claims and
 3. A. Plagne and S. Tringali, "The Davenport Constant of a Box," *Acta Arithmetica* **171**(3), 197–219 (2015), [DOI](https://doi.org/10.4064/aa171-3-1).
 4. I. Aliev, J. A. De Loera, F. Eisenbrand, T. Oertel, and R. Weismantel, "The Support of Integer Optimal Solutions," *SIAM Journal on Optimization* **28**(3), 2152–2157 (2018), [DOI](https://doi.org/10.1137/17M1162792).
 5. S. A. Cook and R. A. Reckhow, "The Relative Efficiency of Propositional Proof Systems," *Journal of Symbolic Logic* **44**(1), 36–50 (1979), [DOI](https://doi.org/10.2307/2273702).
+
+## Tool-use disclosure
+
+A generative language model assisted manuscript organization, language revision,
+adversarial review, and submission-package preparation. The listed author remains
+responsible for the mathematical statements, proofs, references, executable claims,
+and final text.
+
+## Data and code availability
+
+The source package contains finite control records and the standalone verifier used
+for the dependent local lemmas and product bookkeeping. The all-size support claims
+remain proof- and witness-authorized; packaged computations do not enlarge them.
+
+## References
+
+1. I. Aliev, J. A. De Loera, F. Eisenbrand, T. Oertel, and R. Weismantel,
+   “The Support of Integer Optimal Solutions,” *SIAM Journal on Optimization*
+   **28**, 2152–2157 (2018). DOI: 10.1137/17M1162792.
+2. M. Freeze and W. A. Schmid, “Remarks on a generalization of the Davenport
+   constant,” *Discrete Mathematics* **310**, 3373–3389 (2010).
+   DOI: 10.1016/j.disc.2010.07.028.
+3. G. Wang, “The universal zero-sum invariant and weighted zero-sum for infinite
+   abelian groups,” *Communications in Algebra* **53**(4), 1581–1599 (2025).
+   DOI: 10.1080/00927872.2024.2418017.
+4. S. A. Cook and R. A. Reckhow, “The relative efficiency of propositional proof
+   systems,” *Journal of Symbolic Logic* **44**(1), 36–50 (1979).
+   DOI: 10.2307/2273702.
+5. N. Schillo, A. Sturm, and R. Quay, “TARE: Block Encoding Linear Combinations
+   of Pauli Strings Without Ancilla State Preparation,” arXiv:2601.05740v4
+   [quant-ph] (2026).
+6. G. Li, A. Wu, Y. Shi, A. Javadi-Abhari, Y. Ding, and Y. Xie,
+   “Paulihedral: A Generalized Block-Wise Compiler Optimization Framework for
+   Quantum Simulation Kernels,” in *ASPLOS 2022*, 554–569 (2022).
+   DOI: 10.1145/3503222.3507715.

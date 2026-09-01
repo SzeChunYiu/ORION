@@ -231,6 +231,34 @@ def run(cmd: list[str], *, cwd: Path | None = None, input_text: str | None = Non
 
 def strip_control_front_matter(text: str) -> str:
     lines = text.splitlines()
+    if lines and lines[0].strip() == "---":
+        try:
+            close = lines.index("---", 1)
+        except ValueError as exc:
+            raise SystemExit("unterminated YAML front matter") from exc
+        front = lines[1:close]
+        title_line = next((line for line in front if line.startswith("title:")), "")
+        title = title_line.split(":", 1)[1].strip().strip('"')
+        abstract_start = next((i for i, line in enumerate(front) if line.startswith("abstract:")), None)
+        if not title or abstract_start is None:
+            raise SystemExit("YAML front matter is missing title or abstract")
+        abstract_lines: list[str] = []
+        for line in front[abstract_start + 1:]:
+            if line.startswith("  "):
+                abstract_lines.append(line[2:])
+            else:
+                break
+        body = lines[close + 1:]
+        # Reserve level one for the article title and level two for the
+        # reconstructed abstract and top-level manuscript sections.
+        body = ["#" + line if line.startswith("#") else line for line in body]
+        return (
+            f"# {title}\n\n## Abstract\n\n"
+            + "\n".join(abstract_lines).strip()
+            + "\n\n"
+            + "\n".join(body).strip()
+            + "\n"
+        )
     if not lines or not lines[0].startswith("# "):
         raise SystemExit("missing H1 title")
     out = [lines[0], ""]
@@ -285,6 +313,10 @@ def clean_orion02(text: str) -> str:
     text = text.replace("registered finite configuration families", "specified finite configuration families")
     text = text.replace("registered checker", "specified checker")
     text = text.replace("registered `alpha=.10`", "pre-specified `alpha=.10`")
+    text = text.replace(
+        "The serialized paired flags give $(\\text{both},\\text{geometry only},\\text{control only},\\text{neither})=(14,6,0,24)$",
+        "The serialized paired counts (both, geometry only, control only, neither) are $(14,6,0,24)$",
+    )
     text = text.replace("Current conditional-coverage work continues", "Recent conditional-coverage work continues")
     text = text.replace(
         "- Y. Jin and Z. Ren, *Confidence on the Focal: Conformal Prediction with Selection-Conditional Coverage*, arXiv:2403.03868 (2024).",
@@ -407,8 +439,11 @@ def make_tex(spec: Spec, md: str, submission: Path) -> str:
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage{booktabs}
+\usepackage{longtable,array,calc}
 \usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \DeclareUnicodeCharacter{220E}{\ensuremath{\square}}
 \setlength{\emergencystretch}{3em}
 """
@@ -418,7 +453,7 @@ def make_tex(spec: Spec, md: str, submission: Path) -> str:
         extra = "\\def\\month{MM}\n\\def\\year{YYYY}\n\\def\\openreview{\\url{https://openreview.net/forum?id=XXXX}}\n"
     else:
         preamble = "\\documentclass[11pt]{article}\n\\usepackage[margin=1in]{geometry}\n" + common
-        author = "Sze Chun Yiu"
+        author = r"Sze Chun Yiu\\Independent Researcher\\\texttt{sze-chun.yiu@fysik.su.se}"
         extra = ""
     tex = (
         preamble

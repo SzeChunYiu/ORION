@@ -248,6 +248,11 @@ ENTRIES: dict[str, tuple[str, str, str, str]] = {
         "SWIFT-Review: a text-mining workbench for systematic review",
         "pre_existing_independent_claim",
     ),
+    "voorhees2020treccovid": (
+        "doi", "10.1145/3451964.3451965",
+        "TREC-COVID",
+        "pre_existing_independent_claim",
+    ),
 }
 
 

@@ -1,0 +1,19 @@
+{
+  "abstract": "Research-agent benchmarks usually score decisions against known answers or environment rewards. Live research questions are different: the correct next move may not yet have a gold label. We define a controller-host agreement benchmark for this setting. Two architecturally distinct instruments receive the same frozen evidence packet and frontier question. One is an LLM-host-driven research lane whose external interactions are bound to immutable capability receipts; the other is a typed campaign controller whose decision path contains no LLM and whose revision/computation choices are constrained by explicit obligations. The benchmark scores whether the lanes diagnose the same responsible layer, select compatible next moves, and use overlapping admissible evidence, with a later research outcome available as deferred rather than contemporaneous scoring. Benchmark V0 was frozen before either lane outcome. Both instruments diagnosed the representation-regime-characterization layer and selected regime characterization as the primary move. The typed controller additionally withheld an unlicensed representation split because its membership-predicate obligation remained unresolved. Later characterization and closure results make the deferred coordinate 'ALIGNED'. This is a benchmark definition with one measurement, not an evaluation of reliability or predictive validity. The broader systems-harness guarantee surface is outside this paper and is routed to separate work. This report presents a first measurement on a single frontier question; additional instances are required before the agreement measure can support a general claim.",
+  "abstract_characters": 1648,
+  "authors": "Sze Chun Yiu (Independent Researcher)",
+  "comments": "7 pages; all null, adverse, refuted and CANNOT_CHECK results retained.",
+  "correspondence": "sze-chun.yiu@fysik.su.se",
+  "cross_lists": [
+    "cs.LG"
+  ],
+  "doi": null,
+  "journal_reference": null,
+  "license_recommendation": "CC BY 4.0, subject to final author selection in the arXiv portal and journal compatibility check",
+  "paper": "ORION-07",
+  "portal_status": "NOT_FILED",
+  "primary_category": "cs.AI",
+  "report_number": null,
+  "schema": "ORION.arxiv-metadata.v1",
+  "title": "Controller--Host Agreement on Live Research Decisions: A Receipted Benchmark and First Measurement"
+}

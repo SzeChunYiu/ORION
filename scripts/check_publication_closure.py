@@ -44,6 +44,14 @@ FORBIDDEN = {
     "ORION-23": ("population-level safety", "externally validated safety"),
     "ORION-24": ("negative acquisition result", "eight attempted external", "eight external cases", "we implemented an end-to-end harness"),
 }
+ALLOWED_NEGATED_BOUNDARIES = {
+    "ORION-23": {
+        "population-level safety": (
+            "do not establish external or population-level safety",
+            "does not establish population-level safety",
+        ),
+    },
+}
 
 
 def sha256(path: Path) -> str:
@@ -229,7 +237,10 @@ def verify_paper(paper: str, manifest_path: Path, rebuild: bool) -> list[str]:
     for token in CLAIM_TOKENS.get(paper, ()):
         check(normalized(token) in combined, f"{paper}: retained claim/boundary missing from PDF: {token}", failures)
     for token in FORBIDDEN.get(paper, ()):
-        check(normalized(token) not in combined, f"{paper}: forbidden promotion in PDF: {token}", failures)
+        screened = combined
+        for boundary in ALLOWED_NEGATED_BOUNDARIES.get(paper, {}).get(token, ()):
+            screened = screened.replace(normalized(boundary), "")
+        check(normalized(token) not in screened, f"{paper}: forbidden promotion in PDF: {token}", failures)
 
     identity = manifest.get("identity_policy")
     if identity == "double_blind":
