@@ -1,0 +1,62 @@
+{
+  "schema": "ORION04.A1.IndependentZ3BackendProtocol.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A1",
+  "artifact_class": "CALIBRATION_ONLY__NO_TARGET_EXECUTION_AUTHORITY",
+  "purpose": "Add a materially different exact SMT representation for the primitive k-disjoint-zero-sum predicate, calibrate it independently against brute-force semantics and published small-group controls, and expose semantic mutation sensitivity without consuming the protected D4 target.",
+  "target_d4_execution_authorized": false,
+  "target_d4_execution_performed": false,
+  "d4_rounds_consumed": 0,
+  "protected_d4_outcome_accessed": false,
+  "solver": {
+    "package": "z3-solver",
+    "pinned_package_version": "5.1.0.0",
+    "representation": "one integer assignment variable per sequence occurrence with value -1 for unused or 0..k-1 for its unique zero-sum bin",
+    "constraints": [
+      "each bin is nonempty",
+      "each occurrence belongs to at most one bin by construction of the single assignment variable",
+      "for every bin and group coordinate, the sum of selected coordinate residues is congruent to zero modulo the coordinate order"
+    ],
+    "no_symmetry_reduction": true,
+    "no_candidate_filter": true,
+    "no_imported_branch_table": true,
+    "no_imported_normalized_candidate_stream": true
+  },
+  "independence_boundary": {
+    "forbidden_inputs": [
+      "current branch list",
+      "current SAT/CNF encoder",
+      "current DP implementation",
+      "current fingerprints",
+      "current generator output",
+      "current orbit/census table",
+      "protected D4 target records"
+    ],
+    "allowed_inputs": [
+      "primitive finite abelian group orders",
+      "explicit sequence occurrences",
+      "integer k",
+      "published small-instance calibration records"
+    ]
+  },
+  "calibration": {
+    "frozen_suite_path": "papers/orion-04-rooted-completion-certificates/evidence/d4-proof-handoff-v1/calibration-suite-v1/CALIBRATION_SUITE_V1.json",
+    "frozen_suite_git_blob": "35e481901680df4f4f8b480df158eada60024446",
+    "required_cross_check": "every sequence-bearing frozen control must agree among published expected answer, the Z3 representation, and an independent brute-force assignment enumeration implemented in this backend",
+    "additional_exhaustive_small_domains": [
+      "all multisets of C3 of length 0..5 for k up to min(3,n)",
+      "all multisets of C2 x C2 of length 0..4 for k up to min(3,n)"
+    ]
+  },
+  "required_semantic_mutations": [
+    "allow empty bins",
+    "allow the same occurrence to be reused across bins",
+    "change the group modulus from 5 to 3 on a discriminating control",
+    "drop the zero-sum constraint"
+  ],
+  "mutation_rule": "each mutant must disagree with the correct backend on a predeclared small control for the semantic reason it targets; a source/hash mismatch is not sufficient",
+  "unsat_authority_boundary": "A Z3 UNSAT result is a solver decision, not an independently checked lower-bound certificate. This backend does not satisfy the issue #49 requirement for an independently produced proof/certificate for every excluded D4 branch.",
+  "reviewer_boundary": "Machine calibration does not satisfy the independent-human mathematical proof audit checkbox.",
+  "next_authorized_step": "After separate one-shot D4 authorization, this generic backend may be bound to an independently generated target proposition. That future execution must receive a new result identity and cannot be inferred from this calibration artifact.",
+  "scientific_authority_delta": "NONE__INDEPENDENT_EXACT_BACKEND_CALIBRATION_ONLY"
+}

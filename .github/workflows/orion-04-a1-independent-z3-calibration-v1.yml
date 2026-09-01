@@ -1,0 +1,85 @@
+name: ORION-04 A1 independent Z3 calibration v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-04-a1-independent-z3-calibration-v1.yml"
+      - "papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/**"
+      - "papers/orion-04-rooted-completion-certificates/evidence/d4-proof-handoff-v1/calibration-suite-v1/CALIBRATION_SUITE_V1.json"
+permissions:
+  contents: read
+jobs:
+  independent-z3-calibration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Install exact SMT runtime
+        run: python -m pip install 'z3-solver==5.1.0.0'
+      - name: Verify protocol and frozen calibration binding
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          protocol=json.loads(Path('papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/PROTOCOL_V1.json').read_text())
+          assert protocol['schema']=='ORION04.A1.IndependentZ3BackendProtocol.v1'
+          assert protocol['target_d4_execution_authorized'] is False
+          assert protocol['target_d4_execution_performed'] is False
+          assert protocol['protected_d4_outcome_accessed'] is False
+          assert protocol['d4_rounds_consumed']==0
+          assert protocol['solver']['pinned_package_version']=='5.1.0.0'
+          assert protocol['solver']['no_symmetry_reduction'] is True
+          assert protocol['solver']['no_imported_branch_table'] is True
+          assert 'not an independently checked lower-bound certificate' in protocol['unsat_authority_boundary']
+          PY
+          suite=papers/orion-04-rooted-completion-certificates/evidence/d4-proof-handoff-v1/calibration-suite-v1/CALIBRATION_SUITE_V1.json
+          test "$(git hash-object "$suite")" = "35e481901680df4f4f8b480df158eada60024446"
+      - name: Enforce implementation independence surface
+        run: |
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+          p=Path('papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/z3_disjoint_zero_sum_v1.py')
+          tree=ast.parse(p.read_text())
+          roots=set()
+          for n in ast.walk(tree):
+            if isinstance(n, ast.Import):
+              roots.update(a.name.split('.')[0] for a in n.names)
+            elif isinstance(n, ast.ImportFrom) and n.module:
+              roots.add(n.module.split('.')[0])
+          allowed={'__future__','argparse','hashlib','itertools','json','pathlib','typing','z3'}
+          assert roots <= allowed, sorted(roots-allowed)
+          PY
+          f=papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/z3_disjoint_zero_sum_v1.py
+          ! grep -Eq 'engine_a|engine_b|FULL_CUBE_COVER|PROJECTIVE_LINE_ATLAS|crb_census|WAVE3_' "$f"
+      - name: Run frozen calibration, exhaustive small cross-check and semantic mutants
+        run: |
+          python papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/z3_disjoint_zero_sum_v1.py \
+            --self-test \
+            --calibration-suite papers/orion-04-rooted-completion-certificates/evidence/d4-proof-handoff-v1/calibration-suite-v1/CALIBRATION_SUITE_V1.json \
+            | tee /tmp/a1-z3-calibration.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/a1-z3-calibration.json'))
+          assert d['decision']=='GREEN'
+          assert d['target_d4_execution_performed'] is False
+          assert d['protected_d4_outcome_accessed'] is False
+          assert d['d4_rounds_consumed']==0
+          assert d['frozen_suite']['all_controls_agree'] is True
+          assert d['exhaustive_small_crosscheck']['all_agree'] is True
+          assert d['exhaustive_small_crosscheck']['cases_checked'] >= 250
+          assert d['mutation_controls']['all_mutations_detected'] is True
+          PY
+      - name: Reviewer worksheet must remain unsigned
+        run: |
+          set -euo pipefail
+          f=papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/INDEPENDENT_REVIEW_WORKSHEET_V1.md
+          grep -Fq 'Review date: _blank_' "$f"
+          grep -Fq 'Disposition: `PASS / FAIL / CANNOT_CHECK` — _blank_' "$f"
+          grep -Fq 'zero-survivor/certificate requirement' "$f"
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
