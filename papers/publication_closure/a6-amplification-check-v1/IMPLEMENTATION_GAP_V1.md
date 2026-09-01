@@ -66,8 +66,45 @@ What it does not change: the counterexample still needs encoding against a repai
 authority model that the programme does not yet have. Building that model **is** the
 composition work, and it is the same work either way.
 
-## Open item, named so it is not lost
+## Open item, now settled — and it favours the papers
 
-Determine whether ORION-16's ten authority-mentioning files model authority or merely
-mention it. That single check decides whether `A6_COMPOSITION_ROUTE_V1.md`'s disjointness
-framing needs amending.
+ORION-16's code **genuinely models permission and authority**. It is not incidental
+vocabulary:
+
+```
+check_real_transition_audit_independent_v1.py
+    deny = {k for k in ("generic_permission", "commit_authority") if not c[k]}
+    if "generic_permission" in deny: return "DENIED"
+
+run_real_transition_audit_v1.py
+    if not c["generic_permission"]: return "DENIED"
+
+check_theory_closure_v2.py
+    if not guard_authorized:
+        raise PermissionError("conditional guard is not authorized")
+
+check_assumption_regressions_v2.py
+    def self_authorization_countermodel(candidate_controls_policy, candidate_controls_evidence)
+```
+
+So ORION-16's implementation already carries `generic_permission`, `commit_authority`,
+`DENIED` terminals, an `explicit_authorized_discharge` flag and a self-authorization
+countermodel.
+
+**`A6_COMPOSITION_ROUTE_V1.md`'s disjointness framing therefore needs amending, and in the
+direction that helps.** The formal cores are disjoint — that measurement stands, 13-vs-4
+and 29-vs-0. The *implementations* are not. ORION-16's code has been reaching across the
+seam that its theory does not describe.
+
+Three consequences:
+
+1. **The composition is more tractable than the formal cores suggested.** One side already
+   has permission vocabulary and a commit-authority notion; the theory simply has not
+   caught up to the code.
+2. **The amplification attack may be encodable against ORION-16's real transition audit**
+   rather than only against my own model, because `generic_permission` and
+   `commit_authority` are exactly the quantities the attack promotes. That is the next
+   concrete step and it is now clearly worth taking.
+3. **The asymmetry is the real finding.** ORION-18 models root classes and obligations but
+   cannot express repair. ORION-16 models repair *and* permission but has no root classes.
+   Each has two of the three ingredients the attack needs, and neither has all three.
