@@ -1,0 +1,113 @@
+name: five-paper-r9-verifiers
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - codex/five-paper-top-tier-r8-20260826
+    paths:
+      - 'papers/five-paper-top-tier-r8/**'
+      - '.github/workflows/five-paper-r9-verifiers.yml'
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/**'
+      - '.github/workflows/five-paper-r9-verifiers.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exact-r9-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Record custody
+        run: |
+          set -euo pipefail
+          mkdir -p papers/five-paper-top-tier-r8/ci-r9
+          {
+            echo "head_sha=${GITHUB_SHA}"
+            echo "ref=${GITHUB_REF}"
+            echo "event=${GITHUB_EVENT_NAME}"
+            echo "runner_os=${RUNNER_OS}"
+            python --version
+            uname -a
+          } | tee papers/five-paper-top-tier-r8/ci-r9/CUSTODY.txt
+
+      - name: Static syntax and whitespace audit
+        run: |
+          set -euo pipefail
+          git diff --check
+          python -m compileall -q papers/five-paper-top-tier-r8
+
+      - name: Integrated AB finite controls
+        run: |
+          set -euo pipefail
+          python papers/five-paper-top-tier-r8/AB/verify_ab_r9.py \
+            | tee papers/five-paper-top-tier-r8/ci-r9/AB_STDOUT.json
+
+      - name: FiberGuard refinement Bellman controls
+        run: |
+          set -euo pipefail
+          python papers/five-paper-top-tier-r8/C/verify_refinement_bellman_r9.py \
+            | tee papers/five-paper-top-tier-r8/ci-r9/C_STDOUT.json
+
+      - name: Typed-authority exhaustive merge audit
+        run: |
+          set -euo pipefail
+          /usr/bin/time -v python papers/five-paper-top-tier-r8/D/verify_merge_safety_r9.py \
+            > papers/five-paper-top-tier-r8/ci-r9/D_STDOUT.json \
+            2> papers/five-paper-top-tier-r8/ci-r9/D_RESOURCE.txt
+          cat papers/five-paper-top-tier-r8/ci-r9/D_STDOUT.json
+          cat papers/five-paper-top-tier-r8/ci-r9/D_RESOURCE.txt
+
+      - name: Verify result schemas and PASS terminals
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          paths = [
+              Path('papers/five-paper-top-tier-r8/AB/AB_R9_VERIFIER_RESULTS.json'),
+              Path('papers/five-paper-top-tier-r8/C/REFINEMENT_BELLMAN_R9_RESULTS.json'),
+              Path('papers/five-paper-top-tier-r8/D/MERGE_SAFETY_R9_RESULTS.json'),
+          ]
+          rows = []
+          for path in paths:
+              obj = json.loads(path.read_text())
+              if obj.get('status') != 'PASS':
+                  raise SystemExit(f'non-PASS result: {path}: {obj.get("status")}')
+              rows.append({'path': str(path), 'schema': obj.get('schema'), 'status': obj.get('status'), 'authority': obj.get('authority')})
+          out = Path('papers/five-paper-top-tier-r8/ci-r9/RESULT_INDEX.json')
+          out.write_text(json.dumps({'schema':'ORION.FivePaperR9.CIResultIndex.v1','results':rows}, indent=2, sort_keys=True) + '\n')
+          print(out.read_text())
+          PY
+
+      - name: Generate SHA-256 manifest
+        run: |
+          set -euo pipefail
+          find papers/five-paper-top-tier-r8 -type f \
+            \( -name '*R9_RESULTS.json' -o -path '*/ci-r9/*' \) \
+            -print0 | sort -z | xargs -0 sha256sum \
+            > papers/five-paper-top-tier-r8/ci-r9/SHA256SUMS
+          cat papers/five-paper-top-tier-r8/ci-r9/SHA256SUMS
+
+      - name: Upload receipt artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: five-paper-r9-verifier-receipts-${{ github.run_id }}
+          path: |
+            papers/five-paper-top-tier-r8/AB/AB_R9_VERIFIER_RESULTS.json
+            papers/five-paper-top-tier-r8/C/REFINEMENT_BELLMAN_R9_RESULTS.json
+            papers/five-paper-top-tier-r8/D/MERGE_SAFETY_R9_RESULTS.json
+            papers/five-paper-top-tier-r8/ci-r9/
+          if-no-files-found: error
+          retention-days: 90

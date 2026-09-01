@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nq-engine-a-engineering-staging"
+version = "0.1.0"
+description = "Non-independent engineering staging for exact C_p^d factorization controls"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+test = [
+  "coverage==7.13.5",
+  "jsonschema==4.26.0",
+  "pytest==8.4.2",
+  "ruff==0.15.10",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "permitted_lower_control: expected-outcome-exposed lower-witness control",
+  "augmentation_equivalence: exhaustive raw-versus-augmentation equivalence control",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["nq_engine_a"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "C4", "SIM", "RUF"]

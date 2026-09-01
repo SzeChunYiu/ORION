@@ -1,0 +1,128 @@
+{
+  "$id": "urn:orion:nq-engine-a:normalization-binding-receipt:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority": {
+      "const": "frozen_internal_specification_binding_only"
+    },
+    "binding_terminal": {
+      "const": "BOUND_MATHEMATICAL_NORMALIZATION"
+    },
+    "contract_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "controls": {
+      "additionalProperties": false,
+      "properties": {
+        "equal_multiplicity_residual_source_images": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "gl_round_trip_cases": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "gl_round_trip_mismatches": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "hostile_witnesses_accepted": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "hostile_witnesses_checked": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "mixed_source_images": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "mixed_source_witnesses": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "strict_multiplicity_source_images": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "strict_multiplicity_source_images",
+        "equal_multiplicity_residual_source_images",
+        "mixed_source_images",
+        "mixed_source_witnesses",
+        "gl_round_trip_cases",
+        "gl_round_trip_mismatches",
+        "hostile_witnesses_checked",
+        "hostile_witnesses_accepted"
+      ],
+      "type": "object"
+    },
+    "exposure_markers": {
+      "const": [
+        "EXPECTED_OUTCOME_EXPOSURE",
+        "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+      ]
+    },
+    "full_census_executed": {
+      "const": false
+    },
+    "implementation_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "independence_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "lunarc_submission": {
+      "const": false
+    },
+    "remaining_execution_gaps": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "nq-engine-a-normalization-binding-receipt-v1"
+    },
+    "scientific_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "source_blob_sha1s": {
+      "additionalProperties": {
+        "pattern": "^[0-9a-f]{40}$",
+        "type": "string"
+      },
+      "minProperties": 3,
+      "type": "object"
+    },
+    "test_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "binding_terminal",
+    "independence_terminal",
+    "exposure_markers",
+    "authority",
+    "contract_sha256",
+    "implementation_sha256",
+    "test_sha256",
+    "controls",
+    "source_blob_sha1s",
+    "full_census_executed",
+    "lunarc_submission",
+    "scientific_terminal",
+    "remaining_execution_gaps"
+  ],
+  "title": "NQ donor normalization binding receipt",
+  "type": "object"
+}

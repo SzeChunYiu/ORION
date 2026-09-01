@@ -1,0 +1,47 @@
+name: Five-paper R8 harness bootstrap
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/five-paper-top-tier-r8-20260826]
+    paths:
+      - 'papers/five-paper-top-tier-r8/**'
+      - '.github/workflows/five-paper-r8-harness.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install ORION and research harness
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+          python -m pip install -e 'packages/orion-research-harness[dev]'
+      - name: Verify R8 exact artifacts
+        run: python papers/five-paper-top-tier-r8/harness/validate_r8_artifacts.py | tee papers/five-paper-top-tier-r8/harness/artifact-validation.json
+      - name: Replay R8 exact artifacts
+        run: |
+          python papers/five-paper-top-tier-r8/AB/artifact/xor_production_separation_r8.py > /tmp/ab-r8.stdout
+          python papers/five-paper-top-tier-r8/C/artifact/fiberguard_r8.py > /tmp/c-r8.stdout
+          python papers/five-paper-top-tier-r8/D/artifact/typed_authority_merge_r8.py > /tmp/d-r8.stdout
+          python papers/five-paper-top-tier-r8/harness/validate_r8_artifacts.py
+          git diff --exit-code -- papers/five-paper-top-tier-r8/AB/artifact papers/five-paper-top-tier-r8/C/artifact papers/five-paper-top-tier-r8/D/artifact
+      - name: Initialize and drive harness to first host handoff
+        run: bash papers/five-paper-top-tier-r8/harness/bootstrap_r8.sh .orion-five-paper-r8
+      - name: Archive content-bound workspace
+        uses: actions/upload-artifact@v4
+        with:
+          name: five-paper-r8-harness-workspace
+          path: |
+            .orion-five-paper-r8
+            papers/five-paper-top-tier-r8/harness/*.json
+            papers/five-paper-top-tier-r8/harness/*.md
+          if-no-files-found: error

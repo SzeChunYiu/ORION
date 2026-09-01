@@ -1,0 +1,224 @@
+{
+  "$id": "urn:orion:nq-engine-a:donor-normalization-contract:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "acceptance_exclusions": {
+      "additionalProperties": false,
+      "properties": {
+        "published_full_counts_used_as_stopping_rules": {
+          "const": false
+        },
+        "published_full_counts_used_as_test_targets": {
+          "const": false
+        },
+        "published_full_counts_used_as_tuning_targets": {
+          "const": false
+        }
+      },
+      "required": [
+        "published_full_counts_used_as_test_targets",
+        "published_full_counts_used_as_stopping_rules",
+        "published_full_counts_used_as_tuning_targets"
+      ],
+      "type": "object"
+    },
+    "action": {
+      "additionalProperties": false,
+      "properties": {
+        "linear": {
+          "const": "GL(3,5)"
+        },
+        "positions": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "linear",
+        "positions"
+      ],
+      "type": "object"
+    },
+    "authority": {
+      "const": "frozen_internal_specification_binding_only"
+    },
+    "binding_terminal": {
+      "const": "BOUND_MATHEMATICAL_NORMALIZATION"
+    },
+    "enumeration_semantics": {
+      "additionalProperties": false,
+      "properties": {
+        "complete_orbit_slice": {
+          "const": true
+        },
+        "definition": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "one_per_gl_orbit": {
+          "const": false
+        }
+      },
+      "required": [
+        "one_per_gl_orbit",
+        "complete_orbit_slice",
+        "definition"
+      ],
+      "type": "object"
+    },
+    "exposure_markers": {
+      "const": [
+        "EXPECTED_OUTCOME_EXPOSURE",
+        "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+      ]
+    },
+    "group": {
+      "const": {
+        "d": 3,
+        "element_encoding": "three coordinates in F_5",
+        "name": "C_5^3",
+        "p": 5
+      }
+    },
+    "independence_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "local_diff": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter": {
+          "const": "declared_donor_images"
+        },
+        "adapter_role": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "declared_donor_family_one_per_gl_orbit": {
+          "const": false
+        },
+        "local_canonicalizer_definition": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "local_canonicalizer_one_per_gl_orbit": {
+          "const": true
+        }
+      },
+      "required": [
+        "local_canonicalizer_one_per_gl_orbit",
+        "local_canonicalizer_definition",
+        "declared_donor_family_one_per_gl_orbit",
+        "adapter",
+        "adapter_role"
+      ],
+      "type": "object"
+    },
+    "orbit_slice_construction": {
+      "additionalProperties": false,
+      "properties": {
+        "basis_domain": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "basis_filter": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "duplicate_policy": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "map": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "output": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "basis_domain",
+        "basis_filter",
+        "map",
+        "output",
+        "duplicate_policy"
+      ],
+      "type": "object"
+    },
+    "pointwise_predicate": {
+      "additionalProperties": false,
+      "properties": {
+        "multiplicity_inequality": {
+          "const": "m(e1) <= m(e2) <= m(e3)"
+        },
+        "required_anchors": {
+          "const": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        }
+      },
+      "required": [
+        "required_anchors",
+        "multiplicity_inequality"
+      ],
+      "type": "object"
+    },
+    "remaining_execution_gaps": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "nq-engine-a-donor-normalization-contract-v1"
+    },
+    "sequence_semantics": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_records": {
+      "items": {
+        "type": "object"
+      },
+      "minItems": 5,
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "binding_terminal",
+    "independence_terminal",
+    "exposure_markers",
+    "authority",
+    "group",
+    "sequence_semantics",
+    "action",
+    "pointwise_predicate",
+    "orbit_slice_construction",
+    "enumeration_semantics",
+    "local_diff",
+    "source_records",
+    "acceptance_exclusions",
+    "remaining_execution_gaps"
+  ],
+  "title": "Frozen NQ donor normalization binding",
+  "type": "object"
+}

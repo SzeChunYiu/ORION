@@ -1,0 +1,78 @@
+name: Five-paper R9 NQ CR-B control gate
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/five-paper-r9-nq-crb-control.yml'
+      - 'papers/five-paper-top-tier-r8/NQ/engine-a-bounded-pilot-v1/**'
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/**'
+  push:
+    branches:
+      - codex/r9-nq-cleanroom-engine-b-20260826
+    paths:
+      - '.github/workflows/five-paper-r9-nq-crb-control.yml'
+      - 'papers/five-paper-top-tier-r8/NQ/engine-a-bounded-pilot-v1/**'
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/**'
+
+permissions:
+  contents: read
+
+jobs:
+  crb-rank2-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install frozen control tools
+        run: python -m pip install pytest==8.4.2 ruff==0.15.10
+      - name: Run CR-B lint and format gates
+        run: |
+          ruff check papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay
+          ruff format --check papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay
+      - name: Build exact external DRUP checker
+        env:
+          DRAT_COMMIT: 2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+          DRAT_TREE: b4e75a5f8c89d664652727458369cb5e0b610e31
+        run: |
+          set -euo pipefail
+          DRAT_ROOT="${RUNNER_TEMP}/drat-trim"
+          git init -q "${DRAT_ROOT}"
+          git -C "${DRAT_ROOT}" remote add origin https://github.com/marijnheule/drat-trim.git
+          git -C "${DRAT_ROOT}" fetch --depth=1 origin "${DRAT_COMMIT}"
+          git -C "${DRAT_ROOT}" checkout --detach FETCH_HEAD
+          test "$(git -C "${DRAT_ROOT}" rev-parse HEAD)" = "${DRAT_COMMIT}"
+          test "$(git -C "${DRAT_ROOT}" rev-parse 'HEAD^{tree}')" = "${DRAT_TREE}"
+          make -C "${DRAT_ROOT}" drat-trim
+      - name: Run focused and hostile controls
+        env:
+          PYTHONPATH: papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay:papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b
+        run: |
+          python -m pytest -q \
+            papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/tests \
+            papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/tests
+          python papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/control_replay.py
+          python papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/verify_control_receipt.py
+          python papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/verify_receipt.py \
+            papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/NON_OUTCOME_VALIDATION.json \
+            --source-manifest papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/SOURCE_MANIFEST.json
+          ENGINE_B=papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b
+          DRAT_ROOT="${RUNNER_TEMP}/drat-trim"
+          EXTERNAL_LOGS="${RUNNER_TEMP}/nq-external-drup-logs"
+          EXTERNAL_RECEIPT="${RUNNER_TEMP}/nq-external-drup-receipt.json"
+          python "${ENGINE_B}/external_drup.py" run \
+            --checker "${DRAT_ROOT}/drat-trim" \
+            --checker-source-root "${DRAT_ROOT}" \
+            --log-root "${EXTERNAL_LOGS}" \
+            --output "${EXTERNAL_RECEIPT}"
+          python "${ENGINE_B}/external_drup.py" verify \
+            --checker "${DRAT_ROOT}/drat-trim" \
+            --checker-source-root "${DRAT_ROOT}" \
+            --log-root "${EXTERNAL_LOGS}" \
+            --receipt "${EXTERNAL_RECEIPT}"
+          python papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/build_replay_manifest.py
+          python -m compileall -q papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay
+          git diff --exit-code

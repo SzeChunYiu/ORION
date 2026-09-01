@@ -1,0 +1,32 @@
+{
+  "blinded_independence": "NOT_CLAIMED",
+  "d4_c5_cubed": "OPEN",
+  "execution_performed": false,
+  "expected_outcomes_are_execution_evidence": false,
+  "exposed_expected_outcomes": {
+    "d2_c5_cubed": 20,
+    "d2_normalized_length_19_records": 98622,
+    "d3_c5_cubed": 25,
+    "d3_final_candidates": 230983,
+    "d3_expected_survivors_without_three_disjoint": 0,
+    "d4_current_public_corridor": [
+      30,
+      31
+    ],
+    "d4_public_partial_support_boundary": "support_at_least_23",
+    "short_spectrum_disclosures": {
+      "s_le_6": 24,
+      "s_le_7": 19
+    }
+  },
+  "reference_nq_algorithm_opened_or_imported": false,
+  "reference_nq_result_or_verdict_file_opened": false,
+  "schema": "ORION.NQ.EngineB.BlindingDisclosure.v1",
+  "sources": [
+    "GitHub issue 981",
+    "GitHub issue 1377",
+    "NQ_INDEPENDENT_REPLAY_PROTOCOL_R8.md",
+    "MANUSCRIPT_R8_EARLY_CONSTANTS.md",
+    "CODEX_LUNARC_EXECUTION_PACKET.md"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "ORION.FivePaperTopTier.HarnessQueue.v2",
+  "created_date": "2026-08-26",
+  "supersedes": "HARNESS_R9_QUEUE.json",
+  "branch": "codex/five-paper-top-tier-r8-20260826",
+  "global_rule": "Every blocker is a frozen research question with explicit evidence, hostile controls, and nonpromotion terminals. No manuscript score or green workflow substitutes for the named evidence.",
+  "lanes": [
+    {
+      "id": "Q1-R9",
+      "identity": "sharp support-two shared-Tag R6M theorem",
+      "question": "Does the theorem survive independent quantum-compiler proof review, and does it have faithful production-resource value beyond its scoped structural objective?",
+      "capabilities": ["independent expert review", "clean-room proof reconstruction", "current primary-source search", "production circuit/resource experiment"],
+      "strong_terminals": ["Q1_SCOPED_THEOREM_SURVIVES_INDEPENDENT_REVIEW", "Q1_PRODUCTION_RESOURCE_VALUE_ESTABLISHED"],
+      "boundary_terminals": ["Q1_SCOPED_THEOREM_ONLY__RESOURCE_MAP_NOT_FAITHFUL", "Q1_NEAREST_WORK_SUBSUMES_RESIDUAL", "CANNOT_CHECK_INDEPENDENT_QUANTUM_EXPERT", "CANNOT_CHECK_PRODUCTION_RESOURCE_MAP"],
+      "refutation_terminals": ["Q1_PROOF_REVIEW_FOUND_CORRECTABLE_GAP", "Q1_PROOF_REVIEW_REFUTES_THEOREM"],
+      "promotion_ceiling": "Independent theorem survival supports scoped submission; production-resource value strengthens significance but is not silently inferred."
+    },
+    {
+      "id": "AB-R9",
+      "identity": "integrated certificate-realization paper",
+      "question": "Does a strict certificate/intrinsic gap survive a complete named production move and interaction audit, and materially change exact search?",
+      "capabilities": ["production grammar formalization", "critical interaction audit", "independent terminality replay", "scaling experiment", "current source search"],
+      "strong_terminals": ["AB_REALIZED_CERTIFICATE_GAP_WITH_COMPLETE_MOVE_AUDIT"],
+      "boundary_terminals": ["AB_REALIZATION_FAILS__ABSTRACT_THEORY_ONLY", "AB_CROSS_MOVE_COLLAPSES_PRODUCT_CLAIM", "AB_SEARCH_VALUE_NOT_MATERIAL", "CANNOT_CHECK_MOVE_COMPLETENESS", "CANNOT_CHECK_PRODUCTION_EQUIVALENCE"],
+      "promotion_ceiling": "Production-separation headline requires complete realization and interaction evidence; otherwise retain pure abstraction-boundary theory."
+    },
+    {
+      "id": "C-R9",
+      "identity": "FiberGuard exact representation audit",
+      "question": "Can exact fibre certificates and cost-aware refinement scale across non-isomorphic exact domains with material decision value?",
+      "capabilities": ["clean-room exact replay", "scaling computation", "feature-cost experiment", "production-derived benchmark", "current source search"],
+      "strong_terminals": ["C_EXACT_REFINEMENT_POLICY_SCALES_ACROSS_DOMAINS"],
+      "boundary_terminals": ["C_EXACT_FIBRES_SCALE_ONLY_IN_PARAMETERIZED_REGIME", "C_COLLISIONS_VALID_BUT_EXTERNAL_PREVALENCE_LOW", "C_REFINEMENT_COST_ERASES_OPERATIONAL_VALUE", "CANNOT_CHECK_RESOURCE_BOUND", "CANNOT_CHECK_PRODUCTION_DOMAIN"],
+      "promotion_ceiling": "Exact theory survives null operational value; broad ML impact does not."
+    },
+    {
+      "id": "D-R9",
+      "identity": "typed authority and graph-merge safety",
+      "question": "Does typed nonpromotion prevent a consequential authority error made by an untyped baseline on an independently reviewed real policy graph?",
+      "capabilities": ["real corpus/policy access", "independent domain review", "blinded encoding", "independent merge replay", "current source search"],
+      "strong_terminals": ["D_REAL_POLICY_ERROR_PREVENTED_WITH_DOMAIN_REVIEW"],
+      "boundary_terminals": ["D_TYPED_AND_UNTYPED_EQUIVALENT_ON_REGISTERED_DOMAIN", "D_POLICY_REQUIRES_RICHER_SEMANTICS", "D_ENCODING_DISAGREEMENT_BLOCKS_VALIDATION", "CANNOT_CHECK_DATA_OR_POLICY_ACCESS", "CANNOT_CHECK_INDEPENDENT_DOMAIN_REVIEW"],
+      "promotion_ceiling": "Formal positive-rule theorems remain valid under a null real-case terminal; broad policy/AI-safety impact does not."
+    },
+    {
+      "id": "NQ-R9-REPLAY",
+      "identity": "exact early C5^3 constants and one-unit corridor",
+      "question": "Can two structurally independent LUNARC engines reproduce every finite manifest needed for the early constants?",
+      "github_issue_number": 1383,
+      "capabilities": ["LUNARC CPU", "independent canonical enumeration", "independent SAT/CP-SAT or meet-in-the-middle", "digest-bound range manifests"],
+      "strong_terminals": ["NQ_D2_D3_INDEPENDENT_REPLAY_PASS"],
+      "boundary_terminals": ["NQ_D2_D3_INDEPENDENT_REPLAY_DISAGREEMENT", "NQ_D2_D3_PRIOR_RESULT_REFUTED", "CANNOT_CHECK_RESOURCE_BOUND", "CANNOT_CHECK_ENVIRONMENT"],
+      "promotion_ceiling": "PASS upgrades finite proof reproducibility, not novelty, peer review, or D4 authority."
+    },
+    {
+      "id": "NQ-R9-LIFT",
+      "identity": "source-level residual D4/C0 obstruction",
+      "question": "Are the surviving 27-diagonal rank-two strata source-realizable under short-sum, saturation, lift, packing, and stabilizer constraints?",
+      "github_issue_number": 1384,
+      "depends_on": ["NQ-R9-REPLAY environment preflight"],
+      "capabilities": ["LUNARC CPU", "lazy-cut SAT/CP-SAT", "source-level packing adversary", "full stabilizer audit", "independent replay"],
+      "strong_terminals": ["NQ27_LIFT_AWARE_UNSAT_CERTIFIED", "NQ27_LIFT_AWARE_SURVIVOR_REPLAYED"],
+      "boundary_terminals": ["NQ27_PARTIAL_STRATUM_COMPRESSED_TO_NEW_INVARIANT", "CANNOT_CHECK_RESOURCE_BOUND", "CANNOT_CHECK_COMPLETENESS"],
+      "promotion_ceiling": "A stratum result advances the obstruction programme; it does not determine D4 unless all remaining source strata are closed."
+    }
+  ],
+  "director_next_step": "For every lane, reuse only a content-matching verified receipt; otherwise emit one capability request and stop at host handoff. External expert/domain review and LUNARC jobs remain non-self-service capabilities."
+}

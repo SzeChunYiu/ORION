@@ -1,0 +1,176 @@
+{
+  "authority": {
+    "finite_controls_pass": true,
+    "grants_scientific_authority": false,
+    "hardware_or_runtime_benefit": false,
+    "production_system_is_complete_by_definition": true,
+    "symbolic_proof_required_for_all_d": true
+  },
+  "content_sha256": "fe5e936fd208a0fbb16e1195ec5d575340b46d35dd650263b83f3bd79f6d41f4",
+  "finite_controls": [
+    {
+      "alphabet_size": 3,
+      "basis_production_witness": [
+        1,
+        2
+      ],
+      "basis_strong_reduction": [
+        {
+          "move": "FUSE",
+          "operands": [
+            2,
+            1
+          ],
+          "result": 3,
+          "state": [
+            3
+          ]
+        }
+      ],
+      "certificate_waste": 1,
+      "dimension": 2,
+      "maximum_tested_length": 3,
+      "nonzero_total_multisets_tested": 15,
+      "status": "FINITE_EXACT",
+      "strong_maximum_witness": [
+        1
+      ],
+      "strong_terminal_budget": 1,
+      "strong_terminal_count": 3,
+      "weak_maximum_witness": [
+        1,
+        2
+      ],
+      "weak_terminal_budget": 2,
+      "weak_terminal_count": 6
+    },
+    {
+      "alphabet_size": 7,
+      "basis_production_witness": [
+        1,
+        2,
+        4
+      ],
+      "basis_strong_reduction": [
+        {
+          "move": "FUSE",
+          "operands": [
+            4,
+            2
+          ],
+          "result": 6,
+          "state": [
+            1,
+            6
+          ]
+        },
+        {
+          "move": "FUSE",
+          "operands": [
+            6,
+            1
+          ],
+          "result": 7,
+          "state": [
+            7
+          ]
+        }
+      ],
+      "certificate_waste": 2,
+      "dimension": 3,
+      "maximum_tested_length": 4,
+      "nonzero_total_multisets_tested": 280,
+      "status": "FINITE_EXACT",
+      "strong_maximum_witness": [
+        1
+      ],
+      "strong_terminal_budget": 1,
+      "strong_terminal_count": 7,
+      "weak_maximum_witness": [
+        1,
+        2,
+        4
+      ],
+      "weak_terminal_budget": 3,
+      "weak_terminal_count": 56
+    },
+    {
+      "alphabet_size": 15,
+      "basis_production_witness": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "basis_strong_reduction": [
+        {
+          "move": "FUSE",
+          "operands": [
+            8,
+            4
+          ],
+          "result": 12,
+          "state": [
+            1,
+            2,
+            12
+          ]
+        },
+        {
+          "move": "FUSE",
+          "operands": [
+            12,
+            2
+          ],
+          "result": 14,
+          "state": [
+            1,
+            14
+          ]
+        },
+        {
+          "move": "FUSE",
+          "operands": [
+            14,
+            1
+          ],
+          "result": 15,
+          "state": [
+            15
+          ]
+        }
+      ],
+      "certificate_waste": 3,
+      "dimension": 4,
+      "maximum_tested_length": 5,
+      "nonzero_total_multisets_tested": 14535,
+      "status": "FINITE_EXACT",
+      "strong_maximum_witness": [
+        1
+      ],
+      "strong_terminal_budget": 1,
+      "strong_terminal_count": 15,
+      "weak_maximum_witness": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "weak_terminal_budget": 4,
+      "weak_terminal_count": 1380
+    }
+  ],
+  "model": {
+    "objective": "number of live parity fragments",
+    "state": "nonzero-total multiset of nonzero F_2^d parity fragments",
+    "strong_moves": "weak moves plus fusion of two distinct fragments into their XOR",
+    "weak_moves": "proper zero-XOR deletion"
+  },
+  "schema": "ORION.XORProductionSeparationR8.Results.v1",
+  "theorem_claim": {
+    "basis_word_is_realized_weak_terminal": true,
+    "production_gap": "d-1",
+    "strong_terminal_budget": "1",
+    "weak_terminal_budget": "d"
+  }
+}

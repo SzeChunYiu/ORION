@@ -1,0 +1,575 @@
+{
+  "$id": "urn:orion:nq-engine-a:target-resource-pilot-receipt:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority": {
+      "const": "engineering_resource_pilot_only"
+    },
+    "checkpoint_restart": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_edge_budget_per_invocation": {
+          "const": 7
+        },
+        "candidate_edges": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "final_checkpoint_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "global_coverage": {
+          "const": false
+        },
+        "invocation_count": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "invocations": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "candidate_edges": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "checkpoint_sha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "cursor": {
+                "additionalProperties": false,
+                "properties": {
+                  "parent_index": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "representative_index": {
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "parent_index",
+                  "representative_index"
+                ],
+                "type": "object"
+              },
+              "invocation_index": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "terminal": {
+                "enum": [
+                  "CHECKPOINT_SAVED__NOT_GLOBAL",
+                  "CHECKPOINT_LEVEL_COMPLETE__NOT_GLOBAL"
+                ]
+              }
+            },
+            "required": [
+              "invocation_index",
+              "terminal",
+              "checkpoint_sha256",
+              "candidate_edges",
+              "cursor"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "output_record_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "output_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "parent_range": {
+          "const": [
+            0,
+            20
+          ]
+        },
+        "parent_records_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "terminal": {
+          "const": "CHECKPOINT_LEVEL_COMPLETE__NOT_GLOBAL"
+        },
+        "uninterrupted_restart_byte_identical": {
+          "const": true
+        }
+      },
+      "required": [
+        "terminal",
+        "parent_records_sha256",
+        "parent_range",
+        "candidate_edge_budget_per_invocation",
+        "invocation_count",
+        "invocations",
+        "uninterrupted_restart_byte_identical",
+        "final_checkpoint_sha256",
+        "candidate_edges",
+        "output_record_count",
+        "output_sha256",
+        "global_coverage"
+      ],
+      "type": "object"
+    },
+    "donor_slice_ranges": {
+      "additionalProperties": false,
+      "properties": {
+        "global_coverage": {
+          "const": false
+        },
+        "output_record_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "output_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "range_manifest_sha256": {
+          "items": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array"
+        },
+        "ranges": {
+          "const": [
+            [
+              0,
+              8
+            ],
+            [
+              8,
+              16
+            ],
+            [
+              16,
+              20
+            ]
+          ]
+        },
+        "terminal": {
+          "const": "RANGE_COMPLETE__NOT_GLOBAL"
+        },
+        "union_dedup_equal_to_uninterrupted": {
+          "const": true
+        }
+      },
+      "required": [
+        "terminal",
+        "ranges",
+        "range_manifest_sha256",
+        "output_record_count",
+        "output_sha256",
+        "union_dedup_equal_to_uninterrupted",
+        "global_coverage"
+      ],
+      "type": "object"
+    },
+    "exposure_markers": {
+      "const": [
+        "EXPECTED_OUTCOME_EXPOSURE",
+        "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+      ]
+    },
+    "full_census_executed": {
+      "const": false
+    },
+    "future_slurm_pilot_envelope": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu_count": {
+          "const": 1
+        },
+        "memory_gib": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "scope": {
+          "const": "future_same_pilot_only_not_full_census"
+        },
+        "wall_minutes": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cpu_count",
+        "memory_gib",
+        "wall_minutes",
+        "scope"
+      ],
+      "type": "object"
+    },
+    "independence_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "lunarc_submission": {
+      "type": "null"
+    },
+    "non_duplication_key": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "observed_resources": {
+      "additionalProperties": false,
+      "properties": {
+        "process_max_rss_bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "process_max_rss_raw": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "process_max_rss_raw_unit": {
+          "enum": [
+            "bytes",
+            "kibibytes"
+          ]
+        },
+        "total_elapsed_ns": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "total_elapsed_ns",
+        "process_max_rss_raw",
+        "process_max_rss_raw_unit",
+        "process_max_rss_bytes"
+      ],
+      "type": "object"
+    },
+    "pilot_id": {
+      "const": "nq-engine-a-c5cubed-checkpoint-resource-pilot-v1"
+    },
+    "protocol_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "nq-engine-a-target-resource-pilot-receipt-v1"
+    },
+    "scientific_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "source_manifest_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "target_kernel_panel": {
+      "additionalProperties": false,
+      "properties": {
+        "case_count": {
+          "const": 16
+        },
+        "cases": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "case_index": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "kernels": {
+                "additionalProperties": false,
+                "properties": {
+                  "canonicalization": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "elapsed_ns": {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "record_sha256": {
+                        "pattern": "^[0-9a-f]{64}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "elapsed_ns",
+                      "record_sha256"
+                    ],
+                    "type": "object"
+                  },
+                  "donor_slice_expansion": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "elapsed_ns": {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "image_count": {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "image_sha256": {
+                        "pattern": "^[0-9a-f]{64}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "elapsed_ns",
+                      "image_count",
+                      "image_sha256"
+                    ],
+                    "type": "object"
+                  },
+                  "exact_two_bin_factorization_dp": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "certificate": {
+                        "oneOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "additionalProperties": false,
+                            "properties": {
+                              "bins": {
+                                "items": {
+                                  "items": {
+                                    "minimum": 0,
+                                    "type": "integer"
+                                  },
+                                  "type": "array"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "required": [
+                              "bins"
+                            ],
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "elapsed_ns": {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "exhaustive": {
+                        "type": "boolean"
+                      },
+                      "frontier_peak": {
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "k": {
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "layers_completed": {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "max_states": {
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "sequence_length": {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "states_explored": {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "status": {
+                        "enum": [
+                          "POSITIVE",
+                          "NEGATIVE",
+                          "CANNOT_CHECK_RESOURCE_BOUND"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "elapsed_ns",
+                      "max_states",
+                      "status",
+                      "sequence_length",
+                      "k",
+                      "layers_completed",
+                      "states_explored",
+                      "frontier_peak",
+                      "exhaustive",
+                      "certificate"
+                    ],
+                    "type": "object"
+                  },
+                  "extension_orbit_stabilizer_construction": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "elapsed_ns": {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "representative_count": {
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      "representative_sha256": {
+                        "pattern": "^[0-9a-f]{64}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "elapsed_ns",
+                      "representative_count",
+                      "representative_sha256"
+                    ],
+                    "type": "object"
+                  }
+                },
+                "required": [
+                  "canonicalization",
+                  "donor_slice_expansion",
+                  "extension_orbit_stabilizer_construction",
+                  "exact_two_bin_factorization_dp"
+                ],
+                "type": "object"
+              },
+              "matrix": {
+                "items": false,
+                "prefixItems": [
+                  {
+                    "items": false,
+                    "prefixItems": [
+                      {
+                        "maximum": 4,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      {
+                        "maximum": 4,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      {
+                        "maximum": 4,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    ],
+                    "type": "array"
+                  },
+                  {
+                    "items": false,
+                    "prefixItems": [
+                      {
+                        "maximum": 4,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      {
+                        "maximum": 4,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      {
+                        "maximum": 4,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    ],
+                    "type": "array"
+                  },
+                  {
+                    "items": false,
+                    "prefixItems": [
+                      {
+                        "maximum": 4,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      {
+                        "maximum": 4,
+                        "minimum": 0,
+                        "type": "integer"
+                      },
+                      {
+                        "maximum": 4,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    ],
+                    "type": "array"
+                  }
+                ],
+                "type": "array"
+              },
+              "scientific_terminal": {
+                "const": "CANNOT_CHECK"
+              },
+              "transformed_witness_sha256": {
+                "pattern": "^[0-9a-f]{64}$",
+                "type": "string"
+              },
+              "witness_length": {
+                "const": 19
+              }
+            },
+            "required": [
+              "case_index",
+              "matrix",
+              "witness_length",
+              "transformed_witness_sha256",
+              "scientific_terminal",
+              "kernels"
+            ],
+            "type": "object"
+          },
+          "maxItems": 16,
+          "minItems": 16,
+          "type": "array"
+        }
+      },
+      "required": [
+        "case_count",
+        "cases"
+      ],
+      "type": "object"
+    },
+    "terminal": {
+      "const": "PILOT_EXECUTED_ENGINEERING_ONLY__CANNOT_CHECK"
+    },
+    "two_engine_pass_increment": {
+      "const": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "pilot_id",
+    "authority",
+    "terminal",
+    "independence_terminal",
+    "exposure_markers",
+    "scientific_terminal",
+    "protocol_sha256",
+    "source_manifest_sha256",
+    "non_duplication_key",
+    "full_census_executed",
+    "lunarc_submission",
+    "two_engine_pass_increment",
+    "checkpoint_restart",
+    "donor_slice_ranges",
+    "target_kernel_panel",
+    "observed_resources",
+    "future_slurm_pilot_envelope"
+  ],
+  "title": "Bounded NQ Engine-A checkpoint and target-kernel resource receipt",
+  "type": "object"
+}

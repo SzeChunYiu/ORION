@@ -1,0 +1,56 @@
+name: NQ Engine-A clean integration gate
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'papers/five-paper-top-tier-r8/NQ/engine-a-bounded-pilot-v1/**'
+      - 'papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1/**'
+      - 'papers/five-paper-top-tier-r8/NQ/ENGINE_A_CLEAN_INTEGRATION_R9.json'
+      - '.github/workflows/five-paper-r9-nq-engine-a-clean.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  engineering-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: papers/five-paper-top-tier-r8/NQ/engine-a-bounded-pilot-v1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen engineering package
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[test]'
+      - name: Full bounded engineering tests
+        run: pytest -q
+      - name: Static and formatting gates
+        run: |
+          ruff check .
+          ruff format --check .
+          python -m compileall -q src tests
+      - name: Branch coverage gate
+        run: |
+          coverage erase
+          coverage run --branch -m pytest -q -m 'not permitted_lower_control and not augmentation_equivalence'
+          coverage report -m --fail-under=90
+      - name: Preserve scientific and submission ceilings
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          quality = json.loads(Path('QUALITY_GATES.json').read_text())
+          receipt = json.loads(Path('TARGET_RESOURCE_PILOT_RECEIPT.json').read_text())
+          assert quality['independence_terminal'] == 'CANNOT_CHECK'
+          assert quality['full_census_execution_terminal'] == 'NOT_EXECUTED__CANNOT_CHECK'
+          assert quality['lunarc_submission'] is None
+          assert quality['authority'] == 'engineering_verification_only'
+          assert receipt['authority'] == 'engineering_resource_pilot_only'
+          assert receipt['lunarc_submission'] is None
+          PY

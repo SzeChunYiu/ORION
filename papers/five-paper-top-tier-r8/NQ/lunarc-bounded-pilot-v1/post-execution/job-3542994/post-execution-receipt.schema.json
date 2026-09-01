@@ -1,0 +1,306 @@
+{
+  "$id": "urn:orion:nq-engine-a:lunarc-post-execution:job-3542994:v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "file_binding": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "git_sha": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "authority": {
+      "const": "engineering_resource_pilot_only"
+    },
+    "bundle": {
+      "additionalProperties": false,
+      "properties": {
+        "accounting": {
+          "$ref": "#/$defs/file_binding"
+        },
+        "authorization_packet": {
+          "$ref": "#/$defs/file_binding"
+        },
+        "metadata": {
+          "$ref": "#/$defs/file_binding"
+        },
+        "pilot_receipt": {
+          "$ref": "#/$defs/file_binding"
+        },
+        "scope": {
+          "const": "minimum_post_execution_subset"
+        },
+        "submission": {
+          "$ref": "#/$defs/file_binding"
+        },
+        "terminal": {
+          "$ref": "#/$defs/file_binding"
+        }
+      },
+      "required": [
+        "accounting",
+        "authorization_packet",
+        "metadata",
+        "pilot_receipt",
+        "scope",
+        "submission",
+        "terminal"
+      ],
+      "type": "object"
+    },
+    "claim_ceiling": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "execution": {
+      "additionalProperties": false,
+      "properties": {
+        "account": {
+          "const": "lu2026-2-51"
+        },
+        "elapsed": {
+          "const": "00:00:15"
+        },
+        "exit_code": {
+          "const": "0:0"
+        },
+        "job_id": {
+          "const": "3542994"
+        },
+        "job_name": {
+          "const": "nq-ea-pilot"
+        },
+        "partition": {
+          "const": "lu48"
+        },
+        "state": {
+          "const": "COMPLETED"
+        },
+        "terminal": {
+          "const": "COMPLETED_ENGINEERING_PILOT_ONLY__CANNOT_CHECK"
+        }
+      },
+      "required": [
+        "account",
+        "elapsed",
+        "exit_code",
+        "job_id",
+        "job_name",
+        "partition",
+        "state",
+        "terminal"
+      ],
+      "type": "object"
+    },
+    "exposure_markers": {
+      "const": [
+        "EXPECTED_OUTCOME_EXPOSURE",
+        "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+      ]
+    },
+    "forbidden_promotions": {
+      "const": [
+        "full_census",
+        "two_engine_pass",
+        "independent_replay",
+        "scientific_negative",
+        "d2_or_d3_verification",
+        "d4_result",
+        "novelty",
+        "paper_or_journal_authority"
+      ]
+    },
+    "frozen_bindings": {
+      "additionalProperties": false,
+      "properties": {
+        "authorization_commit": {
+          "$ref": "#/$defs/git_sha"
+        },
+        "authorization_packet_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "authorization_tree": {
+          "$ref": "#/$defs/git_sha"
+        },
+        "non_duplication_key": {
+          "$ref": "#/$defs/sha256"
+        },
+        "protocol_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_commit": {
+          "$ref": "#/$defs/git_sha"
+        },
+        "source_manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_tree": {
+          "$ref": "#/$defs/git_sha"
+        },
+        "submit_script_commit": {
+          "$ref": "#/$defs/git_sha"
+        },
+        "submit_script_git_blob": {
+          "$ref": "#/$defs/git_sha"
+        },
+        "submit_script_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "submit_script_tree": {
+          "$ref": "#/$defs/git_sha"
+        }
+      },
+      "required": [
+        "authorization_commit",
+        "authorization_packet_sha256",
+        "authorization_tree",
+        "non_duplication_key",
+        "protocol_sha256",
+        "source_commit",
+        "source_manifest_sha256",
+        "source_tree",
+        "submit_script_commit",
+        "submit_script_git_blob",
+        "submit_script_sha256",
+        "submit_script_tree"
+      ],
+      "type": "object"
+    },
+    "full_census_executed": {
+      "const": false
+    },
+    "independence_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "pilot_observations": {
+      "additionalProperties": false,
+      "properties": {
+        "checkpoint": {
+          "additionalProperties": false,
+          "properties": {
+            "candidate_edges": {
+              "const": 255
+            },
+            "invocation_count": {
+              "const": 37
+            },
+            "output_record_count": {
+              "const": 95
+            },
+            "uninterrupted_restart_byte_identical": {
+              "const": true
+            }
+          },
+          "required": [
+            "candidate_edges",
+            "invocation_count",
+            "output_record_count",
+            "uninterrupted_restart_byte_identical"
+          ],
+          "type": "object"
+        },
+        "pilot_receipt_lunarc_submission_field": {
+          "type": "null"
+        },
+        "pilot_receipt_terminal": {
+          "const": "PILOT_EXECUTED_ENGINEERING_ONLY__CANNOT_CHECK"
+        },
+        "target_panel": {
+          "additionalProperties": false,
+          "properties": {
+            "case_count": {
+              "const": 16
+            },
+            "expected_outcome_exposed": {
+              "const": true
+            },
+            "scientific_interpretation": {
+              "const": "CANNOT_CHECK"
+            },
+            "status_counts": {
+              "additionalProperties": false,
+              "properties": {
+                "CANNOT_CHECK_RESOURCE_BOUND": {
+                  "const": 0
+                },
+                "NEGATIVE": {
+                  "const": 16
+                },
+                "POSITIVE": {
+                  "const": 0
+                }
+              },
+              "required": [
+                "CANNOT_CHECK_RESOURCE_BOUND",
+                "NEGATIVE",
+                "POSITIVE"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "case_count",
+            "expected_outcome_exposed",
+            "scientific_interpretation",
+            "status_counts"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "checkpoint",
+        "pilot_receipt_lunarc_submission_field",
+        "pilot_receipt_terminal",
+        "target_panel"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "nq-engine-a-lunarc-post-execution-v1"
+    },
+    "scientific_terminal": {
+      "const": "CANNOT_CHECK"
+    },
+    "two_engine_pass_increment": {
+      "const": 0
+    }
+  },
+  "required": [
+    "authority",
+    "bundle",
+    "claim_ceiling",
+    "execution",
+    "exposure_markers",
+    "forbidden_promotions",
+    "frozen_bindings",
+    "full_census_executed",
+    "independence_terminal",
+    "pilot_observations",
+    "schema_version",
+    "scientific_terminal",
+    "two_engine_pass_increment"
+  ],
+  "title": "ORION NQ Engine-A LUNARC post-execution receipt for job 3542994",
+  "type": "object"
+}

@@ -1,0 +1,24 @@
+{
+  "certificate_sha256": "a4869a213b2cb7fc896bb7c8f93ff804753391906839684e9e772e8bd3b8173d",
+  "cnf": {
+    "bytes": 5332,
+    "format": "DIMACS_CNF",
+    "path": "negative-batch.cnf",
+    "sha256": "5756b2a592ff9b1162f5871a046eac61678b1c7153995fed4e342ca80fd64e0f"
+  },
+  "cnf_sha256": "340c777877a4053b9d35c34addbc2d12e57c97428d9f42193809b8cfa76a6e39",
+  "proof": {
+    "bytes": 1951,
+    "externally_checked": false,
+    "format": "DRUP",
+    "path": "negative-batch.drup",
+    "sha256": "14caaf9679455c8ca0470715411ffcb7071e7b700e830f389a65712f3addf082"
+  },
+  "record_id": "negative-batch",
+  "required_bins": 2,
+  "schema": "ORION.NQ.EngineB.UNSATCertificate.v2",
+  "sequence_sha256": "34993fa07cb3d2f52071509310842e0d0b9018d6b19b26149af25ee12f6258c2",
+  "solver_identity": "PYTHON_SAT_g4",
+  "status": "UNSAT_PROOF_EMITTED_REQUIRES_EXTERNAL_CHECK",
+  "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
+}

@@ -1,0 +1,61 @@
+{
+  "authority": {
+    "blinded_independence": "NOT_CLAIMED_EXPECTED_OUTCOMES_EXPOSED",
+    "d2_d3_replay_complete": false,
+    "d4_c5_cubed": "OPEN",
+    "full_census_executed": false,
+    "independence_terminal": "CANNOT_CHECK",
+    "paper_authority_delta": "NONE",
+    "science_terminal": "CANNOT_CHECK"
+  },
+  "branch": "codex/crb-full-manifest-1383-20260826",
+  "control_receipt": {
+    "case_count": 61,
+    "mismatch_count": 0,
+    "path": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/controls/RANK2_PREFIX_CONTROL_RECEIPT.json",
+    "sha256": "54bd7f017a306b61b72daf81a78bc4c66a8d676178deefb28a97e5fabd497059",
+    "terminal": "NQ_CR_A_CR_B_RANK2_PREFIX_CONTROL_PASS"
+  },
+  "custody_parent": "6167aa27e9b7aebd4fcc766159cdc80bf3b3130a",
+  "engine_a_dependency": {
+    "integration_pr": 1405,
+    "tree": "b64f2188238e5fc869680ca117d241a0a3615349"
+  },
+  "engine_b": {
+    "full_replay_authorization": {
+      "nonduplication_key": "741454d7d6b513ccd80d2aa9a78d2a9f5076fe8075341d0ecc8e95566ecc28ea",
+      "packet": "papers/five-paper-top-tier-r8/NQ/lunarc-r9/replay/engine_b/FULL_REPLAY_AUTHORIZATION.json",
+      "partition_plan_sha256": "14c04a132c16a738a199587a00bdddc9d50e32bf3437595af5572560baf28029"
+    },
+    "imports_engine_a": false,
+    "source_manifest_sha256": "273743ce7a49294593aa80968b298ce21dce634a754cb6cef8b016bdc625a449",
+    "state_representation": "CNF occurrence-bin variables plus modular prefix-sum automata",
+    "symmetry": "fixed span basis plus literal GL(r,5) matrix-action enumeration"
+  },
+  "implementation_commit": "1e7b05abd2b127c70ca4dbee17b09168594a207b",
+  "implementation_tree": "2c18619858ce081e85987783249e1dd08c361038",
+  "live_target_observed": {
+    "branch": "codex/five-paper-top-tier-r8-20260826",
+    "commit": "6bf15e3e950c645e7bc383203567149d53b2db29",
+    "protected_context": "papers/five-paper-top-tier-r8/NQ/BINARY_KERNEL_PACKING_TRANSLATION_R10.md",
+    "protected_context_modified": false
+  },
+  "nonduplication": {
+    "engine_a_pilot_job": 3542994,
+    "engine_a_pilot_key": "5bbd43879aedf49bf9ac5e80ee1cc7b5b7f835675c5850e186b2de6b95f62307",
+    "renamed_key_permits_duplicate": false,
+    "resubmission_forbidden": true
+  },
+  "remaining_blocker": "LUNARC execution of the authorized CR-B full-census replay (generation, per-record SAT execution, external DRUP verification of every UNSAT certificate) and root review of the local commit",
+  "replay_source_manifest_sha256": "29d853a2fd0cea72d37ba2df703afa689f1180dd5a4646e87b0c0fa66efccb15",
+  "schema": "ORION.NQ.R9.CRBCustodyBinding.v1",
+  "scientific_subject": "0c451e862a0eeddac7c673813c4dc499f134b088",
+  "validation": {
+    "compileall": "PASS",
+    "diff_check": "PASS",
+    "focused_tests": "72 passed",
+    "receipt_verifiers": "PASS",
+    "ruff_format": "PASS",
+    "ruff_lint": "PASS"
+  }
+}

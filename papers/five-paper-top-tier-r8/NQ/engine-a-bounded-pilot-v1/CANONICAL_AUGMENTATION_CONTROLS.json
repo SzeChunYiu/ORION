@@ -1,0 +1,161 @@
+{
+  "algorithm_terminal": "CANONICAL_AUGMENTATION_SMALL_DOMAIN_EQUIVALENCE_PASS",
+  "authority": "engineering_small_domain_equivalence_only",
+  "exposure_markers": [
+    "EXPECTED_OUTCOME_EXPOSURE",
+    "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+  ],
+  "full_census_executed": false,
+  "full_execution_terminal": "NOT_EXECUTED__CANNOT_CHECK",
+  "hostile_controls": {
+    "full_gl_stabilizer_orbit_mismatches": 0,
+    "full_gl_stabilizer_reference_groups": [
+      "C_2^2",
+      "C_3^2"
+    ],
+    "noncanonical_parent_accepted": 0,
+    "resource_partial_level_promoted": 0
+  },
+  "independence_terminal": "CANNOT_CHECK",
+  "panels": [
+    {
+      "augmentation_candidate_edges": 71,
+      "duplicates_in_output": 0,
+      "group": {
+        "d": 2,
+        "p": 2
+      },
+      "length": 5,
+      "mismatches": 0,
+      "panel_id": "C2^2_n5_unpruned",
+      "profile": {},
+      "raw_candidates": 56,
+      "record_sha256": "c5b97ed79eceef68e5179b157dc0f0ca411069779ba2083d2ddb7372c3e4c56a",
+      "records": 16
+    },
+    {
+      "augmentation_candidate_edges": 79,
+      "duplicates_in_output": 0,
+      "group": {
+        "d": 2,
+        "p": 3
+      },
+      "length": 4,
+      "mismatches": 0,
+      "panel_id": "C3^2_n4_unpruned",
+      "profile": {},
+      "raw_candidates": 495,
+      "record_sha256": "f13a58858b7528ee35b660e65587acfac53acba47213ae2fdbb46e7d04298449",
+      "records": 25
+    },
+    {
+      "augmentation_candidate_edges": 46,
+      "duplicates_in_output": 0,
+      "group": {
+        "d": 3,
+        "p": 2
+      },
+      "length": 4,
+      "mismatches": 0,
+      "panel_id": "C2^3_n4_unpruned",
+      "profile": {},
+      "raw_candidates": 330,
+      "record_sha256": "2df18f9d0cb9f5eb44bd0af8d48cafaadfc30c39ca1e23796fc7c0da737c29cb",
+      "records": 15
+    },
+    {
+      "augmentation_candidate_edges": 260,
+      "duplicates_in_output": 0,
+      "group": {
+        "d": 2,
+        "p": 5
+      },
+      "length": 4,
+      "mismatches": 0,
+      "panel_id": "C5^2_n4_unpruned",
+      "profile": {},
+      "raw_candidates": 20475,
+      "record_sha256": "161b6f217ba5f8bb29771ec0bb336e25220abe581612f874779144c58c3697ce",
+      "records": 76
+    },
+    {
+      "augmentation_candidate_edges": 84,
+      "duplicates_in_output": 0,
+      "group": {
+        "d": 2,
+        "p": 3
+      },
+      "length": 5,
+      "mismatches": 0,
+      "panel_id": "C3^2_n5_short2",
+      "profile": {
+        "short_zero_sum_cutoff": 2
+      },
+      "pruned_k_disjoint": 0,
+      "pruned_short_zero_sum": 9,
+      "raw_candidates": 1287,
+      "raw_canonical_before_filter": 51,
+      "record_sha256": "d4ce39a0d74a20973c37ebc6a3f301b3c8f83f24d3a3080197909816c7226de8",
+      "records": 11
+    },
+    {
+      "augmentation_candidate_edges": 62,
+      "duplicates_in_output": 0,
+      "group": {
+        "d": 3,
+        "p": 2
+      },
+      "length": 5,
+      "mismatches": 0,
+      "panel_id": "C2^3_n5_k2",
+      "profile": {
+        "forbid_k_disjoint": 2
+      },
+      "pruned_k_disjoint": 9,
+      "pruned_short_zero_sum": 0,
+      "raw_candidates": 792,
+      "raw_canonical_before_filter": 26,
+      "record_sha256": "fcda275b068da030c7bbb4774fd10aa3977b1fa0535828ebc085cfd529758378",
+      "records": 4
+    },
+    {
+      "augmentation_candidate_edges": 84,
+      "duplicates_in_output": 0,
+      "group": {
+        "d": 2,
+        "p": 3
+      },
+      "length": 5,
+      "mismatches": 0,
+      "panel_id": "C3^2_n5_short2_k2",
+      "profile": {
+        "forbid_k_disjoint": 2,
+        "short_zero_sum_cutoff": 2
+      },
+      "pruned_k_disjoint": 0,
+      "pruned_short_zero_sum": 9,
+      "raw_candidates": 1287,
+      "raw_canonical_before_filter": 51,
+      "record_sha256": "d4ce39a0d74a20973c37ebc6a3f301b3c8f83f24d3a3080197909816c7226de8",
+      "records": 11
+    },
+    {
+      "augmentation_candidate_edges": 50,
+      "duplicates_in_output": 0,
+      "group": {
+        "d": 3,
+        "p": 5
+      },
+      "length": 3,
+      "mismatches": 0,
+      "panel_id": "C5^3_n3_unpruned_largest_tractable",
+      "profile": {},
+      "raw_candidates": 333375,
+      "receipt_source": "fresh exhaustive equality command; regression test reruns both generators",
+      "record_sha256": "4de1ffc69d855e58f7f05fd11778dc3e46aca058ccd69b362f0a7b24a7766a10",
+      "records": 20
+    }
+  ],
+  "published_full_counts_used_as_acceptance": false,
+  "schema_version": "nq-engine-a-canonical-augmentation-controls-v1"
+}

@@ -1,0 +1,78 @@
+{
+  "authority": {
+    "d4_c5_cubed": "OPEN",
+    "full_census_executed": false,
+    "independent_replay_authority": "CANNOT_CHECK",
+    "paper_authority_delta": "NONE",
+    "scientific_authority_delta": "NONE",
+    "scope": "ONE_UNSAT_ENGINEERING_CONTROL"
+  },
+  "checker": {
+    "binary": {
+      "bytes": 69720,
+      "path": "drat-trim",
+      "sha256": "2f8f8baa88cb30a5c857a6d1f03076c72c9d470a33f989cf5cbbbf8a64d3d691"
+    },
+    "license": "MIT",
+    "license_file": {
+      "bytes": 1184,
+      "path": "LICENSE",
+      "sha256": "71ab2a9dc5a294ad8fba4ccb8c45aaa8a439596d314a2a046ac9b62266872a18"
+    },
+    "name": "drat-trim",
+    "repository": "https://github.com/marijnheule/drat-trim.git",
+    "source_commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "source_tree": "b4e75a5f8c89d664652727458369cb5e0b610e31",
+    "tracked_source_status": "CLEAN"
+  },
+  "execution": {
+    "command": [
+      "drat-trim",
+      "negative-batch.cnf",
+      "negative-batch.drup"
+    ],
+    "return_code": 0,
+    "stderr": {
+      "bytes": 0,
+      "path": "negative-batch.drat-trim.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout": {
+      "bytes": 364,
+      "path": "negative-batch.drat-trim.stdout",
+      "sha256": "6061a70584a250f94d94751f0df977d2990953b13c6eb80d439a0e7c0f268ba4"
+    },
+    "terminal": "NQ_ENGINE_B_EXTERNAL_DRUP_CONTROL_VERIFIED",
+    "verified_marker_seen": true
+  },
+  "input": {
+    "certificate": {
+      "bytes": 922,
+      "path": "UNSAT_CONTROL_CERTIFICATE_V2.json",
+      "sha256": "51b599a67718a4a833043c10f3b9c38d17b23d50cf1403412982ef07239c70a7"
+    },
+    "certificate_sha256": "a4869a213b2cb7fc896bb7c8f93ff804753391906839684e9e772e8bd3b8173d",
+    "cnf_file_sha256": "5756b2a592ff9b1162f5871a046eac61678b1c7153995fed4e342ca80fd64e0f",
+    "cnf_semantic_sha256": "340c777877a4053b9d35c34addbc2d12e57c97428d9f42193809b8cfa76a6e39",
+    "proof_sha256": "14caaf9679455c8ca0470715411ffcb7071e7b700e830f389a65712f3addf082",
+    "record_stream": {
+      "bytes": 278,
+      "path": "records.jsonl",
+      "sha256": "9d68a6d49bee6ed68eb90b054249855c5249f405f6226d384e3fbeab616621bd"
+    }
+  },
+  "protocol": {
+    "bytes": 839,
+    "path": "EXTERNAL_DRUP_CHECKER_PROTOCOL.json",
+    "sha256": "14537d9d24ff6fd58804c5cc67333cc8f6d5236ed87a5a232542851c8133a7d9"
+  },
+  "receipt_sha256": "dae3a7dc9114c65ef074610ce9df0fce87e1ef96bbf065a44b889c3a5a88c4cd",
+  "record_id": "negative-batch",
+  "runtime": {
+    "machine": "arm64",
+    "platform": "macOS-26.4-arm64-arm-64bit-Mach-O",
+    "python": "3.13.12"
+  },
+  "schema": "ORION.NQ.EngineB.ExternalDRUPReceipt.v1",
+  "subject_commit": "0c451e862a0eeddac7c673813c4dc499f134b088"
+}

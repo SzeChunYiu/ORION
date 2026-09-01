@@ -1,0 +1,88 @@
+{
+  "authority": "engineering_verification_only",
+  "canonical_augmentation_controls_sha256": "22d94f05c32b1afe11ab41a32e36a7fda16334870459bee068135dafd9d8538b",
+  "canonical_augmentation_proof_sha256": "60d343584d08d2faee775e5a7b2d4be55cd508e399dcd86a5d0eb098c8d00268",
+  "canonical_augmentation_terminal": "CANONICAL_AUGMENTATION_SMALL_DOMAIN_EQUIVALENCE_PASS",
+  "coverage_json_sha256": "98ad1af6ee41bc536235c1e894c5a1246ed9bfdad8ec1b456f2a8fef71c824c2",
+  "exposure_markers": [
+    "EXPECTED_OUTCOME_EXPOSURE",
+    "ENGINE_B_EXPOSURE_IN_PRIOR_CONTEXT__CANNOT_CHECK"
+  ],
+  "full_census_execution_terminal": "NOT_EXECUTED__CANNOT_CHECK",
+  "gates": [
+    {
+      "command": "pytest -q",
+      "status": "PASS",
+      "summary": "111 passed; includes 2 expected-outcome-exposed lower controls, 2 largest raw-equivalence controls, and bounded checkpoint/resource controls"
+    },
+    {
+      "command": "ruff check .",
+      "status": "PASS",
+      "summary": "No issues found"
+    },
+    {
+      "command": "ruff format --check .",
+      "status": "PASS",
+      "summary": "18 files already formatted"
+    },
+    {
+      "command": "python -m compileall -q src tests",
+      "status": "PASS",
+      "summary": "exit 0"
+    },
+    {
+      "command": "coverage run --branch -m pytest -q -m \"not permitted_lower_control and not augmentation_equivalence\"",
+      "status": "PASS",
+      "summary": "106 passed, 5 deselected"
+    },
+    {
+      "command": "coverage report -m",
+      "status": "PASS",
+      "summary": "93 percent total branch coverage; threshold 90"
+    },
+    {
+      "command": "Draft202012Validator.check_schema + JSON fixture parse",
+      "status": "PASS",
+      "summary": "13 schemas and 2 lower-witness fixtures"
+    },
+    {
+      "command": "canonical augmentation vs raw complete panels",
+      "status": "PASS",
+      "summary": "8 panels; 0 mismatches; 0 duplicated output orbits"
+    },
+    {
+      "command": "canonical augmentation largest C5^3 small panel",
+      "status": "PASS",
+      "summary": "333375 raw length-3 multisets; identical 20-record digest; 50 augmentation edges"
+    },
+    {
+      "command": "full GL stabilizer-orbit hostile controls",
+      "status": "PASS",
+      "summary": "C_2^2 and C_3^2 exact partitions; 0 mismatches"
+    },
+    {
+      "command": "repeated seven-edge checkpoint restart vs uninterrupted reference",
+      "status": "PASS",
+      "summary": "255 candidate edges; 37 invocations; byte-identical 95-record child level; global coverage false"
+    },
+    {
+      "command": "three donor class-index range manifests vs uninterrupted expansion",
+      "status": "PASS",
+      "summary": "exact [0,8), [8,16), [16,20) cover; recomputed union/dedup equality; global coverage false"
+    },
+    {
+      "command": "16 fixed target-length kernel cases",
+      "status": "PASS",
+      "summary": "all four engineering kernels measured; 16 exposed DP negatives preserved; no scientific promotion"
+    }
+  ],
+  "independence_terminal": "CANNOT_CHECK",
+  "lunarc_submission": null,
+  "normalization_binding": "BOUND_MATHEMATICAL_NORMALIZATION",
+  "normalization_binding_receipt_sha256": "63cc6545ca297d2854e2f3640c6008f46472252c617c822bfab72ac338c5da7f",
+  "normalization_execution_boundary": "normalization grammar and class-index range merge bound on the frozen 20-class small denominator; no full class archive/census; scientific terminal CANNOT_CHECK",
+  "schema_version": "nq-engine-a-quality-gates-v1",
+  "target_resource_pilot_boundary": "bounded local checkpoint/restart, donor class-index ranges, and 16-case target-kernel resource panel only; no LUNARC submission or full census; 16 expected-outcome-exposed DP negatives retained as engineering observations only",
+  "target_resource_pilot_protocol_sha256": "059970ec26cd0767028a75aae92de70e53fbb0cb9f7439cff7696cc237351f69",
+  "target_resource_pilot_terminal": "PILOT_EXECUTED_ENGINEERING_ONLY__CANNOT_CHECK"
+}

@@ -1,0 +1,72 @@
+{
+  "schema": "ORION.NQ.EngineACleanIntegrationR9.v1",
+  "created_at_utc": "2026-08-26T16:23:00Z",
+  "live_base": {
+    "branch": "codex/five-paper-top-tier-r8-20260826",
+    "commit": "b598a7ba0806a06ec46581875f20b20106cbfe55",
+    "tree": "039dea1b2887e0f56b6e67187d5e1cf986064fed"
+  },
+  "source_branch": {
+    "branch": "codex/nq-engine-a-bounded-pilot-r8-20260826",
+    "commit": "7f3499ff2d9511139402d0f90c611639fd8067e7",
+    "merge_base_with_live": "0c451e862a0eeddac7c673813c4dc499f134b088",
+    "ahead_of_live": 13,
+    "behind_live": 17
+  },
+  "transplant": {
+    "commit": "bd03d7264e2c25d11d0953c42240f7896c6ee485",
+    "included_subtrees": [
+      {
+        "path": "papers/five-paper-top-tier-r8/NQ/engine-a-bounded-pilot-v1",
+        "tree_sha": "b64f2188238e5fc869680ca117d241a0a3615349"
+      },
+      {
+        "path": "papers/five-paper-top-tier-r8/NQ/lunarc-bounded-pilot-v1",
+        "tree_sha": "69f45633c7c632d74fff23771461d7cd0be38933"
+      }
+    ],
+    "excluded_stale_branch_changes": [
+      ".github/workflows/five-paper-r8-packet-binding.yml",
+      "papers/five-paper-top-tier-r8/R8_PACKET_BINDING.md",
+      "papers/five-paper-top-tier-r8/R8_PACKET_COMMIT.json",
+      "papers/five-paper-top-tier-r8/R8_PACKET_COMMIT_V1_PRESERVED.json",
+      "papers/five-paper-top-tier-r8/R8_PACKET_PUBLICATION_BINDING.json",
+      "papers/five-paper-top-tier-r8/harness/read_packet_commit.py",
+      "papers/five-paper-top-tier-r8/harness/validate_r8_packet_binding.py",
+      "tests/unit/five_paper_r8/test_r8_packet_binding.py"
+    ]
+  },
+  "authorization_boundary": {
+    "embedded_lunarc_packet_is_historical": true,
+    "embedded_packet_execution_commit": "ce3ad440337c1bd413a8e5202c94a67374721403",
+    "embedded_packet_has_lunarc_submission": false,
+    "new_integration_commit_authorized_for_submission": false,
+    "required_before_any_submission": "issue a new immutable authorization correction binding the clean integration commit, exact source tree, submit-script blob, nonduplication key, account, and resource envelope",
+    "scientific_terminal": "CANNOT_CHECK",
+    "forbidden_promotions": [
+      "full_census",
+      "independent_replay",
+      "scientific_negative",
+      "D2_or_D3_replay_pass",
+      "paper_or_journal_authority"
+    ]
+  },
+  "engineering_gate": {
+    "commands": [
+      "python -m pip install -e '.[test]'",
+      "pytest -q",
+      "ruff check .",
+      "ruff format --check .",
+      "python -m compileall -q src tests",
+      "coverage run --branch -m pytest -q -m 'not permitted_lower_control and not augmentation_equivalence'",
+      "coverage report -m --fail-under=90"
+    ],
+    "expected_existing_receipt": {
+      "pytest": "111 passed",
+      "coverage_percent": 93,
+      "independence_terminal": "CANNOT_CHECK",
+      "lunarc_submission": null
+    }
+  },
+  "terminal": "NQ_ENGINE_A_TRANSPLANTED_TO_LIVE_R9_BASE__ENGINEERING_REPLAY_REQUIRED__NO_SUBMISSION_AUTHORITY"
+}

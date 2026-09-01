@@ -1,0 +1,91 @@
+{
+  "$defs": {
+    "coverage_declaration": {
+      "additionalProperties": false,
+      "properties": {
+        "coverage_argument_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "declared_complete": {
+          "type": "boolean"
+        },
+        "expected_record_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "generator_identity": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "normalization_identity": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema": {
+          "const": "ORION.NQ.EngineB.CoverageDeclaration.v1"
+        },
+        "scope": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "subject_commit": {
+          "const": "0c451e862a0eeddac7c673813c4dc499f134b088"
+        }
+      },
+      "required": [
+        "schema",
+        "subject_commit",
+        "scope",
+        "declared_complete",
+        "expected_record_count",
+        "coverage_argument_sha256",
+        "generator_identity",
+        "normalization_identity"
+      ],
+      "type": "object"
+    },
+    "sequence_record": {
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$",
+          "type": "string"
+        },
+        "required_bins": {
+          "maximum": 4,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "schema": {
+          "const": "ORION.NQ.EngineB.SequenceRecord.v1"
+        },
+        "scope": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sequence": {
+          "items": {
+            "maximum": 124,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "maxItems": 31,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema",
+        "record_id",
+        "scope",
+        "sequence",
+        "required_bins"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "ORION.NQ.EngineB.InputSchemas.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "sha256_policy": "canonical JSONL records plus byte-exact file manifests"
+}

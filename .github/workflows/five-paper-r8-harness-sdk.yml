@@ -1,0 +1,62 @@
+name: Five-paper R8 harness SDK archive
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/five-paper-top-tier-r8-20260826]
+    paths:
+      - 'papers/five-paper-top-tier-r8/HARNESS_SDK_TRIGGER_R8.md'
+      - '.github/workflows/five-paper-r8-harness-sdk.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build-sdk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build offline-installable wheel set
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip wheel
+          mkdir -p /tmp/r8-sdk/wheels
+          # Build the root package and its dependency closure first. Then build
+          # the harness without asking the public index to resolve the local
+          # exact-version dependency on orion-research-os.
+          python -m pip wheel --wheel-dir /tmp/r8-sdk/wheels '.[dev]'
+          python -m pip wheel --no-deps --wheel-dir /tmp/r8-sdk/wheels packages/orion-research-harness
+          python -m pip install --no-index --find-links /tmp/r8-sdk/wheels orion-research-os orion-research-harness
+          orion-harness mechanics-coverage > /tmp/r8-sdk/mechanics-coverage.json
+          orion-harness execution-coverage > /tmp/r8-sdk/execution-coverage.json
+      - name: Create canonical first-handoff workspace
+        run: |
+          set -euo pipefail
+          bash papers/five-paper-top-tier-r8/harness/bootstrap_r8.sh /tmp/r8-sdk/workspace
+          cp papers/five-paper-top-tier-r8/harness/*.json /tmp/r8-sdk/
+          cp papers/five-paper-top-tier-r8/harness/*.md /tmp/r8-sdk/
+          cp papers/five-paper-top-tier-r8/harness/bootstrap_r8.sh /tmp/r8-sdk/
+          cp papers/five-paper-top-tier-r8/harness/validate_r8_artifacts.py /tmp/r8-sdk/
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path('/tmp/r8-sdk')
+          rows=[]
+          for p in sorted(root.rglob('*')):
+              if p.is_file() and p.name != 'SDK_MANIFEST.json':
+                  b=p.read_bytes()
+                  rows.append({'path':str(p.relative_to(root)),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()})
+          (root/'SDK_MANIFEST.json').write_text(json.dumps({'schema':'ORION.FivePaperR8HarnessSDK.v1','branch':'codex/five-paper-top-tier-r8-20260826','base_commit':'99049ff6dfbdd78590bbdae0d24b9037aae83e3c','files':rows},indent=2,sort_keys=True)+'\n')
+          PY
+      - name: Archive wheels, exact workspace, and receipts
+        uses: actions/upload-artifact@v4
+        with:
+          name: five-paper-r8-harness-sdk
+          path: /tmp/r8-sdk
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
