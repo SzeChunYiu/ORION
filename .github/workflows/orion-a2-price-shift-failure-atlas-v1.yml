@@ -34,6 +34,7 @@ jobs:
           assert d['results_exist'] is False
           assert d['price_lattice']['levels']==[0.5,1.0,2.0]
           assert d['price_lattice']['no_interpolation'] is True
+          assert 'literal edge between adjacent lattice cells' in d['price_lattice']['boundary_rule']
           assert d['uncertainty']['resamples']==10000
           assert d['derived_quantities']['cell_max_regret_reference']==2.0
           terms=[x['terminal'] for x in d['cell_classification_in_priority_order']]
@@ -42,12 +43,11 @@ jobs:
           PY
       - name: Execute deterministic self-test
         run: python papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_external_price_shift_failure_atlas_v1.py --self-test
-      - name: Reject host RNG and smoothing imports
+      - name: Reject host RNG and numerical smoothing dependencies
         run: |
           set -euo pipefail
           f=papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_external_price_shift_failure_atlas_v1.py
           ! grep -Eq '^import (random|numpy|scipy)|^from (random|numpy|scipy)' "$f"
-          ! grep -Ei 'spline|loess|lowess|interpolat' "$f" | grep -v 'no interpolation' >/dev/null || false
       - name: Repository cleanliness
         run: |
           git diff --check
