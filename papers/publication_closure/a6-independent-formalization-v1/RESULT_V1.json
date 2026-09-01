@@ -1,0 +1,68 @@
+{
+  "authority": {
+    "checked_states": 96,
+    "cross_domain_no_new_authority_states": 24,
+    "cross_epoch_no_new_authority_states": 24,
+    "domain_confinement": true,
+    "epoch_confinement": true,
+    "history_non_retroactivity": true,
+    "no_new_authority_states": 48,
+    "non_amplification": true
+  },
+  "authority_mutation_controls": {
+    "all_mutants_detected": true,
+    "mutants_detected": {
+      "ignore_domain_binding": true,
+      "ignore_epoch_binding": true,
+      "obligation_free_reground_without_new_authority": true
+    }
+  },
+  "checks": {
+    "authority_mutants": true,
+    "domain_confinement": true,
+    "donor_mutants": true,
+    "epoch_confinement": true,
+    "ideal_information_equivalent_donor_tie": true,
+    "independent_model": true,
+    "non_amplification": true,
+    "selective_mutants": true,
+    "selective_revalidation": true
+  },
+  "decision": "PASS__A6_INDEPENDENT_MERGED_FORMALIZATION",
+  "ideal_donor": {
+    "all_terminals_equal": true,
+    "candidate_reads_extra_information": false,
+    "ideal_information_equivalent_donor_tie": true,
+    "information_tuple_states": 48
+  },
+  "ideal_donor_mutation_controls": {
+    "all_mutants_detected": true,
+    "mutants_detected": {
+      "extra_confidence_bit_claimed_information_equivalent": true,
+      "ignore_domain_binding": true
+    }
+  },
+  "independence": {
+    "implementation_basis": "primitive finite graph, certificate, domain, epoch and three-valued permission definitions only",
+    "imports_orion_expected_outputs": false,
+    "imports_orion_transition_functions": false,
+    "reads_orion_case_or_result_files": false
+  },
+  "schema": "ORION.A6.IndependentMergedFormalization.v1",
+  "scientific_authority_delta": "NONE__FINITE_FORMALIZATION_ONLY",
+  "selective_mutation_controls": {
+    "all_mutants_detected": true,
+    "mutants_detected": {
+      "allow_direct_root_self_preservation": true,
+      "omit_direct_changed_roots": true,
+      "omit_one_affected_descendant": true
+    }
+  },
+  "selective_revalidation": {
+    "all_selective_revalidation_checks": true,
+    "checked_states": 8640,
+    "ordered_dags": 64,
+    "states_exercising_direct_root_proof_rejection": 6760,
+    "states_with_preservation": 3520
+  }
+}
