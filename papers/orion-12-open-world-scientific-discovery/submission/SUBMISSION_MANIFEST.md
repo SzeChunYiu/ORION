@@ -1,7 +1,7 @@
 # Submission manifest — orion-12-open-world-scientific-discovery
 
 Target venue: **Information Processing & Management**  
-Compiled manuscript: `submission/manuscript.pdf` (40 pages)
+Compiled manuscript: `submission/manuscript.pdf` (41 pages)
 Manifest refreshed: 2026-09-01
 
 Every file below is a byte-exact input to, or output of, the compiled
@@ -32,6 +32,6 @@ manuscript. Digests are SHA-256 over file bytes.
 | `manuscript/sections/p2x_unresolved_route_successor.tex` | `0f5756b5328c3320545a0a9523590f8dfc5dfa17d372f98d251cc25e3bf14018` |
 | `manuscript/sections/results.tex` | `5ed8c29bdb27a14742fb2ac86482f31f9215bf7395bde909c52b30f7fc382fe3` |
 | `manuscript/sections/structure-conditioned-discovery-interface.tex` | `5c523d31443a59ce580499c129ff9f8223d38b4c0c65f5a6da860f219c5577d7` |
-| `submission/manuscript.pdf` | `fd1aad4acd0d8529e1fe30a6102029f001944c2998538479863ddbe7aaa9ced3` |
+| `submission/manuscript.pdf` | `31bb1f8843126c91240b67de2e2b0357670a9da3b417d32ea8fc3ba46aa1f2f9` |
 
 Files: 24
