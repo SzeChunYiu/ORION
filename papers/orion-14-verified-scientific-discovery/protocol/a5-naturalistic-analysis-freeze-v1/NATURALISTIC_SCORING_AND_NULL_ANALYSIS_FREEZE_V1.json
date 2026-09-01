@@ -1,0 +1,79 @@
+{
+  "schema": "ORION.A5.NaturalisticScoringNullAnalysisFreeze.v1",
+  "registered_date": "2026-09-01",
+  "artifact_class": "FROZEN_BEFORE_EXTERNAL_ADJUDICATION_OUTCOMES",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A5",
+  "protected_outcomes_accessed": false,
+  "parent_comparator_freeze": {
+    "path": "papers/orion-14-verified-scientific-discovery/protocol/a5-comparator-freeze-v1/COMPARATOR_EXECUTION_FREEZE_V1.json",
+    "git_blob_sha": "531406b0e1a071ecf043e61700efb97c53ea137a"
+  },
+  "scientific_unit": "natural pair / cluster",
+  "panel": {
+    "domains": ["EARTH_ENVIRONMENT", "LIFE_BIOMEDICAL", "SCIENTIFIC_SOFTWARE", "PHYSICAL_ENGINEERING"],
+    "mechanisms": ["M1_ABSTRACT_TO_FULLTEXT", "M2_EARLIER_TO_LATER_VERSION", "M3_PROTOCOL_TO_RESULTS", "M4_ARTICLE_TO_CORRECTION", "M5_ARTICLE_TO_DATA_DOCUMENTATION", "M6_ARTICLE_TO_CODE_RELEASE", "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER", "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"],
+    "cells": 32,
+    "primary_per_cell": 24,
+    "primary_total": 768,
+    "replication_per_cell": 8,
+    "replication_total": 256
+  },
+  "gold_contract": {
+    "restricted_terminal_required": "CannotCheck",
+    "resolving_terminal_allowed": ["ResolvedTrue", "ResolvedFalse"],
+    "unresolved_or_disputed_resolving_state": "CANNOT_CHECK_GOLD",
+    "gold_owner": "independent candidate-blind adjudicators; disagreements retained"
+  },
+  "arm_ids": ["CANDIDATE", "C1_CALIBRATED_THREEWAY_NLI", "C2_SCIENTIFIC_EVIDENCE_ESCALATION", "C3_PROVENANCE_AWARE_VERIFIER", "C4_INFORMATION_EQUIVALENT_TYPED_DONOR"],
+  "joint_primary_success": "arm restricted output == CannotCheck AND arm resolving output == independently adjudicated resolving terminal",
+  "required_analyses": [
+    "candidate and C1-C4 joint exact-success rates",
+    "paired candidate-minus-comparator success contrasts with deterministic 10000-resample cluster bootstrap 95% intervals",
+    "primary and source-disjoint replication reported separately",
+    "per-domain and per-mechanism direction for every arm/contrast",
+    "panel resolution: max arm success rate minus min arm success rate",
+    "restricted-state false-resolution rate",
+    "resolving-state correct-resolution rate",
+    "CANNOT_CHECK/undetermined cell counts and reasons",
+    "registered nuisance/shortcut probe results without coercing missing probes to pass",
+    "terminal-interface parity audit",
+    "C4 ideal-donor exact-tie audit"
+  ],
+  "c4_fail_closed_rule": "any candidate/C4 output mismatch on an information-equivalent packet invalidates the epistemic comparison before performance interpretation",
+  "terminal_interface_rule": "all compared outputs must be one of ResolvedTrue / ResolvedFalse / CannotCheck; parse failures, binary BLOCK/ALLOW, low confidence or missing fields cannot be post-hoc renamed",
+  "uncertainty": {
+    "unit": "cluster",
+    "method": "deterministic SHA-256 counter-stream nonparametric bootstrap",
+    "resamples": 10000,
+    "interval": "equal-tail percentile 95%",
+    "forbidden": "claim-row, extracted-claim or repeated-call pseudoreplication"
+  },
+  "negative_result_taxonomy": [
+    "CANNOT_CHECK_PANEL_OR_GOLD",
+    "INVALID_C4_INFORMATION_PARITY",
+    "NO_PANEL_RESOLUTION",
+    "DONOR_EQUIVALENT_NULL",
+    "INTERFACE_LIMITED_CONTRAST",
+    "HETEROGENEOUS_DOMAIN_OR_MECHANISM",
+    "REPLICATION_DISAGREEMENT",
+    "NUISANCE_PROBE_FAILURE",
+    "BOUNDED_POSITIVE_CONTRAST"
+  ],
+  "interpretation_rules": {
+    "C4_tie": "expected control behavior, not evidence that the candidate is useless; it confirms no advantage exists over an information-equivalent donor",
+    "C1_C3_catch_up": "report as donor-equivalent/null or representation sufficiency, not tune comparator interfaces weaker",
+    "zero_panel_resolution": "no comparative competence ordering is identified",
+    "interface_only_gap": "if an arm lacks attainable exact terminals, report terminal attainability rather than epistemic superiority",
+    "replication_disagreement": "retain primary and replication separately; never average disagreement into support"
+  },
+  "forbidden": [
+    "changing comparator identities after gold",
+    "dropping mechanisms/domains because they are adverse",
+    "pooling primary and replication to rescue direction",
+    "coercing disputed resolving states to binary gold",
+    "claim-row pseudoreplication",
+    "post-hoc terminal remapping",
+    "treating C4 mismatch as a performance loss instead of invalid comparison"
+  ],
+  "scientific_authority_delta": "NONE__ANALYSIS_PREREGISTRATION_ONLY"
+}
