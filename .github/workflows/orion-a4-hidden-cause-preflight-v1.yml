@@ -1,0 +1,28 @@
+name: ORION A4 hidden-cause benchmark preflight v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a4-hidden-cause-preflight-v1.yml"
+      - "papers/publication_closure/a4-hidden-cause-preflight-v1/**"
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Check preflight terminal
+        run: python papers/publication_closure/a4-hidden-cause-preflight-v1/check_preflight_v1.py
+      - name: Require no protected outputs or subset artifacts
+        run: |
+          set -euo pipefail
+          p=papers/publication_closure/a4-hidden-cause-preflight-v1
+          ! find "$p" -maxdepth 1 -type f \( -iname '*result*' -o -iname '*score*' -o -iname '*split*' -o -iname '*subset*' \) | grep -q .
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
