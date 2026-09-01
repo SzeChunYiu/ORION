@@ -1,0 +1,77 @@
+{
+  "schema": "ORION.A2.P11ExternalExecutionHarnessFreeze.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A2 Phase 2",
+  "artifact_class": "FROZEN_EXECUTION_INTERFACE_BEFORE_PROTECTED_RUNS",
+  "protected_outcomes_accessed": false,
+  "execution_started": false,
+  "requirements_binding": {
+    "path": "papers/orion-21-state-as-computation/P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md",
+    "git_blob_sha": "f8ba0680dc5fd0fd0acef8b5926b093cb84b26cc"
+  },
+  "benchmark_version_binding": {
+    "path": "papers/orion-21-state-as-computation/top_tier/LONGMEMEVAL_EXTERNAL_VERSION_FREEZE_V1.json",
+    "git_blob_sha": "e725a48bcd94262aa851b3128c51ba61a3edd611"
+  },
+  "required_model_family_classes": ["GPT_CLASS", "CLAUDE_OR_GEMINI_CLASS", "OPEN_WEIGHT"],
+  "model_identity_rule": "At least one exact executable model identity from each required class must be frozen with provider/runtime, exact model id/revision, access-plan id, decoding parameters and context limit before protected runs. This protocol does not invent those identities without an executable access plan.",
+  "model_identities_frozen": false,
+  "required_arms": [
+    "COMPILED_QUERY_CONDITIONED_STATE",
+    "HYBRID_DENSE_BM25_RERANK",
+    "FULL_CONTEXT_NO_RETRIEVAL",
+    "REASON_ONLY",
+    "STATE_RETRIEVAL_ONLY",
+    "FIXED_STATE_REASON_SPLITS",
+    "SIMPLE_UNCERTAINTY_ROUTING",
+    "CURRENT_ADAPTIVE_ALLOCATOR",
+    "LEARNED_JOINT_ALLOCATOR_DEV_ONLY",
+    "HINDSIGHT_ORACLE_ANALYSIS_ONLY"
+  ],
+  "arm_freeze_rule": "Every non-oracle arm must have one exact entrypoint/config/revision and may tune only on development. Hindsight oracle is never candidate-selectable.",
+  "shared_execution_contract": {
+    "arm_order": "randomized by deterministic SHA-256 ordering per independent session after all arm ids are frozen",
+    "same_model_identity_within_comparison": true,
+    "same_session_input_within_comparison": true,
+    "no_free_preprocessing": true,
+    "compilation_materialization_charged": true,
+    "retrieval_precomputation_charged": true,
+    "failed_or_unsupported_arm": "CANNOT_CHECK with reason; never substitute a different arm after protected outcomes"
+  },
+  "resource_vector_fields": [
+    "input_tokens",
+    "output_tokens",
+    "wall_latency_ms",
+    "peak_memory_bytes",
+    "embedding_calls",
+    "sparse_retrieval_calls",
+    "dense_retrieval_calls",
+    "reranking_calls",
+    "compilation_calls",
+    "materialization_calls",
+    "preprocessing_time_ms",
+    "state_construction_time_ms",
+    "explicit_vendor_or_local_cost"
+  ],
+  "budget_parity_rule": "No new numeric tolerance is invented here. The complete resource vector is mandatory. If arms are not exactly resource-matched under the frozen campaign charge, report the difference through the already-required priced sensitivity analysis; do not call preprocessing free or silently normalize it away.",
+  "optionality": {
+    "compile_before_future_queries_known": true,
+    "required_query_sets": ["realized_queries", "fresh_source_disjoint_queries"],
+    "future_query_set_identity_frozen_after_compilation_but_before_scoring": true,
+    "query_specific_recompile_forbidden": true
+  },
+  "leave_one_benchmark_out": {
+    "required": true,
+    "rule": "for each benchmark identity in the final external campaign, fit/tune only on the remaining development benchmarks and evaluate the held-out benchmark without protected retuning"
+  },
+  "reporting": [
+    "per-model-family arm tables before pooled results",
+    "per-benchmark arm tables",
+    "complete resource vectors",
+    "optionality realized-vs-fresh query results",
+    "leave-one-benchmark-out results",
+    "CANNOT_CHECK arms/cells and reasons"
+  ],
+  "negative_result_policy": "A model-family reversal, benchmark loss, optionality failure, resource-parity failure or CANNOT_CHECK is retained and cannot be repaired by changing identities after protected outcomes.",
+  "scientific_authority_delta": "NONE__EXECUTION_INTERFACE_ONLY"
+}

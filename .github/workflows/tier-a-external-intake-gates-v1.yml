@@ -1,0 +1,70 @@
+name: Tier-A external intake gates v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/tier-a-external-intake-gates-v1.yml"
+      - "papers/publication_closure/TIER_A_EXTERNAL_INTAKE_GATES_V1.json"
+      - "papers/orion-21-state-as-computation/top_tier/P11_EXTERNAL_EXECUTION_HARNESS_FREEZE_V1.json"
+      - "papers/orion-21-state-as-computation/top_tier/validate_p11_external_execution_manifest_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/validate_change_cluster_manifest_v1.py"
+      - "papers/publication_closure/a4-hidden-cause-external-v1/SCIAGENTARENA_TERMINALBENCH_ACCESS_GATE_V2.json"
+      - "papers/publication_closure/a4-hidden-cause-external-v1/validate_sciagentarena_task_manifest_v2.py"
+      - "papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/validate_naturalistic_panel_manifest_v1.py"
+      - "papers/publication_closure/a6-external-authority-study-v1/validate_external_authority_packet_manifest_v1.py"
+permissions:
+  contents: read
+jobs:
+  external-intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Verify A2 parent requirements/version bindings
+        run: |
+          set -euo pipefail
+          test "$(git hash-object papers/orion-21-state-as-computation/P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md)" = "f8ba0680dc5fd0fd0acef8b5926b093cb84b26cc"
+          test "$(git hash-object papers/orion-21-state-as-computation/top_tier/LONGMEMEVAL_EXTERNAL_VERSION_FREEZE_V1.json)" = "e725a48bcd94262aa851b3128c51ba61a3edd611"
+      - name: Validate index and fail-closed authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          idx=json.loads(Path('papers/publication_closure/TIER_A_EXTERNAL_INTAKE_GATES_V1.json').read_text())
+          assert idx['schema']=='ORION.TierA.ExternalIntakeGates.v1'
+          assert idx['protected_outcomes_accessed'] is False
+          assert set(idx['lanes'])=={'A2','A3','A4','A5','A6'}
+          assert idx['scientific_authority_delta'].startswith('NONE__')
+          a2=json.loads(Path('papers/orion-21-state-as-computation/top_tier/P11_EXTERNAL_EXECUTION_HARNESS_FREEZE_V1.json').read_text())
+          assert a2['model_identities_frozen'] is False
+          assert a2['execution_started'] is False
+          assert len(a2['required_arms'])==10
+          a4=json.loads(Path('papers/publication_closure/a4-hidden-cause-external-v1/SCIAGENTARENA_TERMINALBENCH_ACCESS_GATE_V2.json').read_text())
+          assert a4['current_terminal']=='CANNOT_CHECK_GATED_TASK_BYTES_AND_MANIFEST'
+          assert a4['public_dataset_card']['advertised_task_count']==308
+          assert a4['public_dataset_card']['exact_task_manifest_available_to_this_gate'] is False
+          PY
+      - name: Compile intake validators
+        run: |
+          python -m py_compile \
+            papers/orion-21-state-as-computation/top_tier/validate_p11_external_execution_manifest_v1.py \
+            papers/publication_closure/a3-external-change-transport-v1/validate_change_cluster_manifest_v1.py \
+            papers/publication_closure/a4-hidden-cause-external-v1/validate_sciagentarena_task_manifest_v2.py \
+            papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/validate_naturalistic_panel_manifest_v1.py \
+            papers/publication_closure/a6-external-authority-study-v1/validate_external_authority_packet_manifest_v1.py
+      - name: A2 external execution manifest self-test
+        run: python papers/orion-21-state-as-computation/top_tier/validate_p11_external_execution_manifest_v1.py --self-test
+      - name: A3 change-cluster intake self-test
+        run: python papers/publication_closure/a3-external-change-transport-v1/validate_change_cluster_manifest_v1.py --self-test
+      - name: A4 task-universe and deterministic split self-test
+        run: python papers/publication_closure/a4-hidden-cause-external-v1/validate_sciagentarena_task_manifest_v2.py --self-test
+      - name: A5 naturalistic panel intake self-test
+        run: python papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/validate_naturalistic_panel_manifest_v1.py --self-test
+      - name: A6 authority packet intake self-test
+        run: python papers/publication_closure/a6-external-authority-study-v1/validate_external_authority_packet_manifest_v1.py --self-test
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code

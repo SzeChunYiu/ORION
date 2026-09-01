@@ -1,0 +1,59 @@
+{
+  "schema": "ORION.A4.SciAgentArenaTerminalBenchAccessGate.v2",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A4",
+  "artifact_class": "PUBLIC_METADATA_PREFLIGHT__EXACT_TASK_BYTES_GATED",
+  "protected_outcomes_accessed": false,
+  "public_dataset_card": {
+    "repository": "iLOVE2D/sciagentarena_tb",
+    "url": "https://huggingface.co/datasets/iLOVE2D/sciagentarena_tb",
+    "advertised_task_count": 308,
+    "advertised_benchmark_families": 7,
+    "advertised_reference_solution_count": 298,
+    "advertised_license": "CC-BY-4.0",
+    "advertised_total_size": "34.1 GB",
+    "advertised_scoring": "delegates to benchmark evaluation code; exact task/scorer bytes must still be bound before confirmation",
+    "access_condition": "public repository metadata, but file/content access requires agreeing to share contact information",
+    "exact_task_manifest_available_to_this_gate": false
+  },
+  "current_terminal": "CANNOT_CHECK_GATED_TASK_BYTES_AND_MANIFEST",
+  "why_not_mark_issue_49_scope_box": "Advertised count/families are discovery metadata. The >=120 executable-task requirement needs exact task identities, scientific-domain assignments, licences, scorer/threshold identities and executable preflight receipts; those gated bytes are not available here.",
+  "confirmatory_manifest_requirements": {
+    "minimum_eligible_tasks": 120,
+    "minimum_scientific_domains": 4,
+    "task_fields": [
+      "task_id",
+      "task_path",
+      "task_sha256",
+      "scientific_domain_id",
+      "domain_rubric_id",
+      "source_family_id",
+      "license_or_rights_receipt_id",
+      "scorer_path",
+      "scorer_sha256",
+      "scorer_provenance",
+      "success_threshold_provenance",
+      "container_or_environment_sha256",
+      "task_container_preflight_passed",
+      "scorer_executable_preflight_passed",
+      "split"
+    ],
+    "eligibility": [
+      "exact task/scorer/environment bytes are hash-bound",
+      "task's content-class rights permit evaluation",
+      "scientific domain is assigned by a frozen pre-outcome rubric",
+      "scorer provenance and any success-threshold provenance are explicit",
+      "task and scorer preflight execute before protected agent outcomes",
+      "no answer key, scorer output or protected intervention outcome is candidate-visible"
+    ]
+  },
+  "partition_freeze": {
+    "target_ratio": {"development": 0.20, "primary": 0.60, "replication": 0.20},
+    "unit_of_assignment": "source_family_id within scientific domain; a source family cannot cross splits",
+    "algorithm": "bucket = int(SHA256('A4-SPLIT-V2|' + scientific_domain_id + '|' + source_family_id),16) mod 10; buckets 0-1 development, 2-7 primary, 8-9 replication",
+    "domain_stratification_check": "every scientific domain counted toward the >=4-domain claim must have at least one eligible source family in each split; otherwise CANNOT_CHECK_PARTITION_BALANCE",
+    "post_outcome_reassignment_forbidden": true
+  },
+  "access_unblock_rule": "After an authorized account accepts the upstream access condition, materialize the exact frozen revision, build the required manifest, run validate_sciagentarena_task_manifest_v2.py, and only then freeze agent/model identities or launch protected runs.",
+  "scientific_authority_delta": "NONE__ACCESS_AND_INTAKE_GATE_ONLY"
+}
