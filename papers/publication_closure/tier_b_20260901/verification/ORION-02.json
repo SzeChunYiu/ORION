@@ -18,6 +18,7 @@
     }
   },
   "checks": [
+    "publication_surfaces_free_of_internal_classification_labels",
     "manifest_payload_exact",
     "sha256_closure",
     "academic_paper_pipeline_1_21",
@@ -35,7 +36,7 @@
     "resolved_references"
   ],
   "package": "papers/orion-02-fiberguard-finite-fibre/submission/tier-b-final-20260901",
-  "package_manifest_sha256": "0b9e72a9eba99ff0746477a5968b563aac2685b830f4d9a936fbc813d5b8410a",
+  "package_manifest_sha256": "daaf9338e790d6984c0a3e498b4a5cbf415b6c346fa5580a77f540a30d1f13d8",
   "paper": "ORION-02",
   "paper_existence_gate": {
     "disposition": "WRITE_FULL_PAPER",
@@ -44,8 +45,8 @@
     "verdict": "PASS"
   },
   "route_science_similarity": 0.9906823787338997,
-  "schema": "ORION.tier-b-package-verification.v1",
+  "schema": "ORION.publication-package-verification.v1",
   "status": "PASS",
-  "terminal": "TIER_B_ORION02_COMPLETE__PORTAL_ACTIONS_ONLY",
+  "terminal": "ORION02_COMPLETE__PORTAL_ACTIONS_ONLY",
   "visual_audit": "PENDING_SEPARATE_RENDER_INSPECTION"
 }

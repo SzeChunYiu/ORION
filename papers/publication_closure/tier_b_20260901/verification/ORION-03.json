@@ -18,6 +18,7 @@
     }
   },
   "checks": [
+    "publication_surfaces_free_of_internal_classification_labels",
     "manifest_payload_exact",
     "sha256_closure",
     "academic_paper_pipeline_1_21",
@@ -36,7 +37,7 @@
     "resolved_references"
   ],
   "package": "papers/orion-03-typed-merge-falsification/submission/tier-b-final-20260901",
-  "package_manifest_sha256": "c11307a967fa3b6a851b76242ef3c63c8e839bff0243f6dc139fb443c04a1cf0",
+  "package_manifest_sha256": "25cd1e8b28713bc574811acc0493242156626f62fe850cb3eb1e0830f6f7fb6c",
   "paper": "ORION-03",
   "paper_existence_gate": {
     "disposition": "WRITE_FULL_PAPER",
@@ -45,8 +46,8 @@
     "verdict": "PASS"
   },
   "route_science_similarity": 1.0,
-  "schema": "ORION.tier-b-package-verification.v1",
+  "schema": "ORION.publication-package-verification.v1",
   "status": "PASS",
-  "terminal": "TIER_B_ORION03_COMPLETE__PORTAL_ACTIONS_ONLY",
+  "terminal": "ORION03_COMPLETE__PORTAL_ACTIONS_ONLY",
   "visual_audit": "PENDING_SEPARATE_RENDER_INSPECTION"
 }

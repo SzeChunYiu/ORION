@@ -1,0 +1,53 @@
+{
+  "builds": {
+    "arxiv": {
+      "build_tail": "ic/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (11 pages, 288697 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+      "normalized_text_similarity": 1.0,
+      "overfull_boxes": 0,
+      "pages": 11,
+      "release_pdf_sha256": "9d340610cecb539d8ab9e940d1469c517b8cc64b4173744c70ec6cebe20e4f65",
+      "source_zip_sha256": "5fe51cfc038786792122e44ce83c7b27c7e3a2af26d0b00faf849aee5738f609"
+    },
+    "journal": {
+      "build_tail": "rfull \\hbox (badness 2343) in paragraph at lines 158--163\nwarning: internal consistency problem when checking if main.bbl changed\nwarning: TeX rerun seems needed, but stopping at 6 passes\nwarning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.\nnote: Running xdvipdfmx ...\nnote: Writing `main.blg` (195 B)\nnote: Writing `main.pdf` (106.16 KiB)\nnote: Writing `main.log` (32.37 KiB)\nnote: Skipped writing 3 intermediate files (use --keep-intermediates to keep them)\n",
+      "normalized_text_similarity": 1.0,
+      "overfull_boxes": 0,
+      "pages": 9,
+      "release_pdf_sha256": "5d96a7819a82f0648f5fff7eee60dd91fbc72d4592aa927c4e2eddd5bba7079b",
+      "source_zip_sha256": "f7b2bc8558fba3bc87c0b0714ccbd14cf93d180a4a95cc59f2196342ea8a8279"
+    }
+  },
+  "checks": [
+    "publication_surfaces_free_of_internal_classification_labels",
+    "manifest_payload_exact",
+    "sha256_closure",
+    "academic_paper_pipeline_1_21",
+    "active_authority_binding",
+    "paper_existence_schema",
+    "paper_existence_gate_PASS",
+    "paper_specific_artifact_archive",
+    "archive_path_safety",
+    "identity_partition",
+    "visible_placeholder_scan",
+    "route_science_similarity",
+    "adverse_null_cannot_check_retention",
+    "fresh_clean_arxiv_build",
+    "fresh_clean_journal_build",
+    "source_pdf_text_binding",
+    "resolved_references"
+  ],
+  "package": "papers/orion-10-certified-static-forecasting/submission/tier-b-final-20260901",
+  "package_manifest_sha256": "1e04e1efe9e32a985d037adbb5e3e59fdca674640a36a4a46a0e5e984b5a4629",
+  "paper": "ORION-10",
+  "paper_existence_gate": {
+    "disposition": "WRITE_FULL_PAPER",
+    "findings": [],
+    "paper_id": "ORION-10",
+    "verdict": "PASS"
+  },
+  "route_science_similarity": 0.9436633375351499,
+  "schema": "ORION.publication-package-verification.v1",
+  "status": "PASS",
+  "terminal": "ORION10_COMPLETE__ORION09_MERGED__BOUNDED_EXACT_MODELS",
+  "visual_audit": "PENDING_SEPARATE_RENDER_INSPECTION"
+}
