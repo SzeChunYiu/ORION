@@ -62,13 +62,30 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+class ToolUnavailable(RuntimeError):
+    """A binary this verification depends on is not installed on this host."""
+
+    def __init__(self, tool: str) -> None:
+        super().__init__(f"required tool not installed: {tool}")
+        self.tool = tool
+
+
 def run(args: list[str], cwd: Path | None = None) -> subprocess.CompletedProcess[str]:
     env = os.environ.copy()
     env["SOURCE_DATE_EPOCH"] = "315532800"
-    return subprocess.run(args, cwd=cwd or ROOT, env=env, text=True,
-                          encoding="utf-8", errors="replace",
-                          stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                          check=False)
+    try:
+        return subprocess.run(args, cwd=cwd or ROOT, env=env, text=True,
+                              encoding="utf-8", errors="replace",
+                              stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                              check=False)
+    except FileNotFoundError as exc:
+        # A tool that is absent is a different fact from a tool that ran and
+        # disagreed.  `pdf_text` already handles pdfinfo returning non-zero, but
+        # an uninstalled binary raises before any return code exists, so without
+        # this the run exits 1 and an incomplete host is indistinguishable from
+        # six packages that failed verification.  CI run 33467487052 failed
+        # exactly that way.
+        raise ToolUnavailable(args[0]) from exc
 
 
 def normalized(text: str) -> str:
@@ -275,13 +292,28 @@ def main(argv: list[str] | None = None) -> int:
     check(not unknown, f"unregistered requested papers: {unknown}", setup_failures)
     results: dict[str, dict[str, object]] = {}
     failures = list(setup_failures)
-    for paper in requested:
-        if paper not in records:
-            continue
-        before = len(failures)
-        manifest = ROOT / records[paper]["package_manifest"]
-        failures.extend(verify_paper(paper, manifest, args.rebuild))
-        results[paper] = {"ok": len(failures) == before, "failures": failures[before:]}
+    try:
+        for paper in requested:
+            if paper not in records:
+                continue
+            before = len(failures)
+            manifest = ROOT / records[paper]["package_manifest"]
+            failures.extend(verify_paper(paper, manifest, args.rebuild))
+            results[paper] = {"ok": len(failures) == before, "failures": failures[before:]}
+    except ToolUnavailable as exc:
+        # Exit 3 is this repository's could-not-check code, the same one
+        # manuscript-clipping-audit.yml documents.  Callers that read any
+        # non-zero exit as a refutation would otherwise record a verification
+        # that never ran as one that ran and failed.
+        print(json.dumps({
+            "schema": "ORION.PublicationClosureVerification.v1",
+            "requested_papers": requested,
+            "rebuild": args.rebuild,
+            "status": "CANNOT_CHECK",
+            "missing_tool": exc.tool,
+            "detail": str(exc),
+        }, indent=2, sort_keys=True))
+        return 3
     check(set(results) == set(requested) - set(unknown), "requested/result coverage mismatch", failures)
     output = {
         "schema": "ORION.PublicationClosureVerification.v1",
