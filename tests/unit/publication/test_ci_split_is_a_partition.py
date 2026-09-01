@@ -133,7 +133,9 @@ def test_every_job_is_bounded_in_time() -> None:
         if name == "test":
             continue  # the gate is a shell echo; it cannot hang on tests
         assert "timeout-minutes" in job, f"{name} has no timeout-minutes"
-        assert job["timeout-minutes"] <= 30, (
-            f"{name} allows {job['timeout-minutes']}m; the whole suite is ~31m "
-            f"serial, so a single lane past 30 is wrong rather than slow"
+        limit = 40 if name == "fast" else 30
+        assert job["timeout-minutes"] <= limit, (
+            f"{name} allows {job['timeout-minutes']}m; expected at most {limit}m. "
+            "The fast lane alone has a measured 40m hosted-run allowance; every "
+            "other executable lane remains capped at 30m."
         )

@@ -1,6 +1,6 @@
 {
   "aggregate": "PASS",
-  "builder_sha256": "4ab51c11ac406716e2858c9c6820b368668c47a75782114f933c44bc3c93d6ef",
+  "builder_sha256": "69c7131b3ea69d321652edfe324161b48e45405b88739175a39554d7d10b7b37",
   "global_checks": [
     "registry_exact_25",
     "route_matrix_exact_25",
@@ -12,12 +12,12 @@
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "c/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb\n></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (12 pages, 372587 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "c/texmf-dist/fonts/type1/public/lm/lmtt12.pf\nb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/symbols/\nmsam10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts\n/symbols/msbm10.pfb>\nOutput written on main.pdf (12 pages, 371473 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 12
         },
         "journal": {
-          "latexmk_output_tail": "c/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb\n></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (12 pages, 372587 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "c/texmf-dist/fonts/type1/public/lm/lmtt12.pf\nb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/symbols/\nmsam10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts\n/symbols/msbm10.pfb>\nOutput written on main.pdf (12 pages, 371473 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 12
         }
@@ -31,6 +31,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -41,20 +42,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "0a56e76742962329fda678651b998f57df430971e58ac34131e9664ae3975b70",
+      "manifest_sha256": "14e89e67f63dd4ba2f2c8c92aa95cf068f8d5f61aa1ed207fa37797ff282062d",
       "package": "papers/orion-01-certificate-realization/submission/publication-ready-20260831",
       "paper": "ORION-01",
+      "route_science_similarity": 1.0,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "mf-dist/fonts/t\nype1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (7 pages, 292003 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "ublic/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (7 pages, 291733 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         },
         "journal": {
-          "latexmk_output_tail": "/usr/share/texmf/fonts/type1/public/lm/\nlmtt9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/ms\nbm10.pfb>\nOutput written on main.pdf (7 pages, 291764 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": " written on main.pdf (7 pages, 290881 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         }
@@ -68,6 +70,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -78,20 +81,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "c9ccf4e5bab8cf37ebe6bd906507171e3bb9790dddaa22f2ba26c10a91998dec",
+      "manifest_sha256": "333f13a258373a3555a12b513574fe2380add31654a668d7aece32fd83ead335",
       "package": "papers/orion-02-fiberguard-finite-fibre/submission/publication-ready-20260831",
       "paper": "ORION-02",
+      "route_science_similarity": 0.9964850615114236,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "/fonts/type1/public/amsfonts/symbols/msam10.pfb\n></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>\n\nOutput written on main.pdf (14 pages, 294079 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "blic/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (14 pages, 293629 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 14
         },
         "journal": {
-          "latexmk_output_tail": "/fonts/type1/public/amsfonts/symbols/msam10.pfb\n></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>\n\nOutput written on main.pdf (14 pages, 294079 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "blic/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (14 pages, 293629 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 14
         }
@@ -105,6 +109,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -115,22 +120,23 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "7dcbd78f3bc353c28e08fa72c2bcd1bcb521f2c2842e4aff0d77fea1e90670c9",
+      "manifest_sha256": "bf21fb433e3ad853888a456cd6a9d9c0d8750b0895bd33d140e6af75ef451912",
       "package": "papers/orion-03-typed-merge-falsification/submission/publication-ready-20260831",
       "paper": "ORION-03",
+      "route_science_similarity": 1.0,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "are/\ntexmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/\nlmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texli\nve/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>\nOutput written on main.pdf (6 pages, 277701 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "exlive/2026basic/texmf-dist/fonts/type1/public/l\nm/lmtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/lm/lmt\nt12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/sy\nmbols/msam10.pfb>\nOutput written on main.pdf (5 pages, 273524 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
-          "pages": 6
+          "pages": 5
         },
         "journal": {
-          "latexmk_output_tail": "are/\ntexmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/\nlmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb></usr/share/texli\nve/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>\nOutput written on main.pdf (6 pages, 277701 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "exlive/2026basic/texmf-dist/fonts/type1/public/l\nm/lmtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/lm/lmt\nt12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/sy\nmbols/msam10.pfb>\nOutput written on main.pdf (5 pages, 273524 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
-          "pages": 6
+          "pages": 5
         }
       },
       "checks": [
@@ -142,6 +148,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -152,20 +159,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "2cebf63b507e17d72d1031ece57b9fb0ed4408e9c306d38485713a1eb0bc82f1",
+      "manifest_sha256": "34839bde64e65fc9fde6234388d7434192a5fb5f01d815541150b16733824e59",
       "package": "papers/orion-04-rooted-completion-certificates/submission/publication-ready-20260831",
       "paper": "ORION-04",
+      "route_science_similarity": 1.0,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "exmf-dist/fonts/type1/public/amsfonts/cm/cmtt\n10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb\n>\nOutput written on main.pdf (7 pages, 220919 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/amsfonts/c\nm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 220888 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         },
         "journal": {
-          "latexmk_output_tail": "exmf-dist/fonts/type1/public/amsfonts/cm/cmtt\n10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb\n>\nOutput written on main.pdf (7 pages, 220919 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/amsfonts/c\nm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 220888 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         }
@@ -179,6 +187,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -189,20 +198,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "9be931f8ca4573292dd1e2b5a97fa34a8d1d3a62dd843b2a974c9f4504db0bbc",
+      "manifest_sha256": "3c00226c2c0feb36f9084c4db02db407d0dd77d51dc9cc692b3789c70e94774e",
       "package": "papers/orion-05-tare-expressivity/submission/publication-ready-20260831",
       "paper": "ORION-05",
+      "route_science_similarity": 1.0,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "/cmti10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 137758 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "sfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (6 pages, 162545 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./manuscript/bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
-          "pages": 7
+          "pages": 6
         },
         "journal": {
-          "latexmk_output_tail": "/lmr10.pfb></usr/share/texmf/fonts/type1/pub\nlic/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb>\nOutput written on main.pdf (6 pages, 141943 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./manuscript/bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "blic/lm/lmssbx10.pfb>\nOutput written on main.pdf (6 pages, 141745 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./manuscript/bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 6
         }
@@ -216,6 +226,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -226,20 +237,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "2a56c8ba4ce9ecfc5882f3de5503175582f7cac8a5baef5af1b6f848b74037a3",
+      "manifest_sha256": "da743241f1683e77fca5480f5e32fa704c93912f036993ab86c8eaee9488cacb",
       "package": "papers/orion-06-recursive-recovery/submission/publication-ready-20260831",
       "paper": "ORION-06",
+      "route_science_similarity": 0.9975481611208407,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "/cmtt10.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 158296 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "e1/public/amsfonts/\ncm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 210411 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
-          "pages": 7
+          "pages": 9
         },
         "journal": {
-          "latexmk_output_tail": "/public/lm/lmri10.pfb></usr/share/texmf/font\ns/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.p\nfb>\nOutput written on main.pdf (10 pages, 269412 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "fonts/type1/public/lm/lmsy10.pfb>\nOutput written on main.pdf (10 pages, 269281 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 10
         }
@@ -253,6 +265,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -263,20 +276,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "b0cdfaba12072a1d3362841fcc453d6ca0f5862ad3f187e0a881fcb77c122508",
+      "manifest_sha256": "9ef11879a012a83be523dffc8f65e45ebef7ac580a67c467393837b1f89bca64",
       "package": "papers/orion-07-dual-instrument/submission/publication-ready-20260831",
       "paper": "ORION-07",
+      "route_science_similarity": 0.9955317247542449,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/s\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 211209 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 211203 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 9
         },
         "journal": {
-          "latexmk_output_tail": "pe1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8\n.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (7 pages, 234082 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "onts/type1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (7 pages, 233473 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         }
@@ -290,6 +304,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -300,20 +315,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "d62e808136937d9f3bf6035eb49436549acbd9dc1eaa09167e87bcfb81280bae",
+      "manifest_sha256": "6b477c0fb089ef2b3e9afc4f190444b30dc99537cf0778b1dfbba206c084ae81",
       "package": "papers/orion-08-typed-state/submission/publication-ready-20260831",
       "paper": "ORION-08",
+      "route_science_similarity": 0.9810376613115618,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 181066 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 181017 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         },
         "journal": {
-          "latexmk_output_tail": "/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 181066 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 181017 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         }
@@ -327,6 +343,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -337,20 +354,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "29e1b683a5c065b5429a4cd59add33517082a4ae7a7149fb4e7cca228e0c938d",
+      "manifest_sha256": "7a476f9ffb3b5cfa9df68a3d1ca8192f3291417add1b7d75325f32e4e666ee93",
       "package": "papers/orion-09-compilation-regime-geometry/submission/publication-ready-20260831",
       "paper": "ORION-09",
+      "route_science_similarity": 1.0,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 247751 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 247696 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         },
         "journal": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 247751 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 247696 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         }
@@ -364,6 +382,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -374,22 +393,23 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "5bda604545f6f3f70a54642eaf9ec04565edb7d40fe3cef96e715ff645834606",
+      "manifest_sha256": "cfea054f785e9f58a2697e3c22190d4e78f7d6e27bda835ed22da0a20df7f47d",
       "package": "papers/orion-10-certified-static-forecasting/submission/publication-ready-20260831",
       "paper": "ORION-10",
+      "route_science_similarity": 1.0,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "ymbols/msam10.pfb></usr/share/texlive/t\nexmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (48 pages, 531047 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\n  ./novelty_refresh_2026.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "\n>\nOutput written on main.pdf (48 pages, 526110 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\n  ./novelty_refresh_2026.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 48
         },
         "journal": {
-          "latexmk_output_tail": "ymbols/msam10.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (44 pages, 691048 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\n  ./novelty_refresh_2026.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "b>\nOutput written on main.pdf (41 pages, 788771 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\n  ./novelty_refresh_2026.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
-          "pages": 44
+          "pages": 41
         }
       },
       "checks": [
@@ -401,6 +421,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -411,20 +432,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "363a4b612249f3c37bc5fa1a22e77edd0835e3f30a4af7463d29d36ed6deca2d",
+      "manifest_sha256": "dbf026235c8f99aeab93aa1b071134feb2f72936da5dcc584e96839a7e20f3fc",
       "package": "papers/orion-11-recursive-epistemic-reconstruction/submission/publication-ready-20260831",
       "paper": "ORION-11",
+      "route_science_similarity": 0.9377026796381636,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "nts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (29 pages, 352281 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\n  ./novelty_refresh_2026.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "b>\nOutput written on main.pdf (29 pages, 349686 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\n  ./novelty_refresh_2026.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 29
         },
         "journal": {
-          "latexmk_output_tail": "nts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (29 pages, 352281 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\n  ./novelty_refresh_2026.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "b>\nOutput written on main.pdf (29 pages, 349686 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\n  ./novelty_refresh_2026.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 29
         }
@@ -438,6 +460,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -448,20 +471,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "ed2d2e18d0588feb47252bf741cc0f860899e020d7f3f49a8b0c0c9f2ff89cb7",
+      "manifest_sha256": "8b5560c2b7b90f3532ba926660056af903a82e490300eec7f23a8f425efdb222",
       "package": "papers/orion-12-open-world-scientific-discovery/submission/publication-ready-20260831",
       "paper": "ORION-12",
+      "route_science_similarity": 1.0,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 167512 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/amsfonts/cm/cm\ntt12.pfb>\nOutput written on main.pdf (9 pages, 167337 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 9
         },
         "journal": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 168691 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/amsfonts/cm/cm\ntt12.pfb>\nOutput written on main.pdf (9 pages, 168537 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 9
         }
@@ -475,6 +499,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -485,20 +510,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "755385af5392aed200b29671d29cce2f3fd42ccf7c8eb74755993a1fe5041205",
+      "manifest_sha256": "7b0638edef3d011147b33e1859de011dee87cf40fa959109f84c0a29f0cd2ea2",
       "package": "papers/orion-13-global-knowledge-portrait/submission/publication-ready-20260831",
       "paper": "ORION-13",
+      "route_science_similarity": 0.9550881182490051,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "exmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (12 pages, 590136 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (12 pages, 589860 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 12
         },
         "journal": {
-          "latexmk_output_tail": "ublic/lm/lms\nsbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/\nfonts/type1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (12 pages, 596198 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "ts/t\nype1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (12 pages, 595428 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 12
         }
@@ -512,6 +538,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -522,20 +549,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "47ac2bd6aaad483052abebfdbdf7736f2a497115c038c21cc7c331818ea4ad1d",
+      "manifest_sha256": "886e42183798bda7c5fd89fdcfa55b85a112d8e7a5671fc73b4403a3f6e8afd9",
       "package": "papers/orion-14-verified-scientific-discovery/submission/publication-ready-20260831",
       "paper": "ORION-14",
+      "route_science_similarity": 0.9961559582646897,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "onts/type1/public/amsfonts/symbols/\nmsam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m\nsbm10.pfb>\nOutput written on main.pdf (38 pages, 449833 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "ic/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (38 pages, 445903 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 38
         },
         "journal": {
-          "latexmk_output_tail": "onts/type1/public/a\nmsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (33 pages, 577809 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "ic/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (33 pages, 572728 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 33
         }
@@ -549,6 +577,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -559,20 +588,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "efddd6ac937e54f3096beb8ce06dc481b1eb3033c4dcbae04afaf552879f3656",
+      "manifest_sha256": "c51bd7d5d6be7a872782744fc7840c10125043b2c7efb771a808e37db5ac8136",
       "package": "papers/orion-15-self-orion/submission/publication-ready-20260831",
       "paper": "ORION-15",
+      "route_science_similarity": 0.9775437509679418,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb\n></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 156606 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/amsfonts/cm/cmtt1\n2.pfb>\nOutput written on main.pdf (7 pages, 156471 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         },
         "journal": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb\n></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (8 pages, 157646 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/amsfonts/cm/cmtt1\n2.pfb>\nOutput written on main.pdf (8 pages, 157544 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 8
         }
@@ -586,6 +616,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -596,20 +627,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "6aec3d86b07e5f6a4479eb1b2550aa02d3894458bd166e14004a849c95cac571",
+      "manifest_sha256": "fe8dc76aaed0a32fa2a4c727b3f7f85c90a028c84ebbeb506eb910853b00ec0a",
       "package": "papers/orion-16-formal-epistemic-structures-and-mechanics/submission/publication-ready-20260831",
       "paper": "ORION-16",
+      "route_science_similarity": 0.9869158878504672,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 142737 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/amsfon\nts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 142429 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         },
         "journal": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 143365 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/amsfon\nts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 143052 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         }
@@ -623,6 +655,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -633,20 +666,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "3a225f895d38f4d8d45809a495f86589c7701fa100c7b4079dd08dbc33ca256b",
+      "manifest_sha256": "797476d2504da5979bf42bfcd41c231c30ccbe710b2be9195b888cc00cde61c3",
       "package": "papers/orion-17-epistemic-navigation-open-worlds/submission/publication-ready-20260831",
       "paper": "ORION-17",
+      "route_science_similarity": 0.982110259218693,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 158759 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/am\nsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 158553 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 9
         },
         "journal": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 158759 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/am\nsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 158553 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 9
         }
@@ -660,6 +694,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -670,20 +705,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "3c862856d13848c26c4eeb44d154a0dc4160bf5eede6fbd3cf47c79760c15a40",
+      "manifest_sha256": "7ce85797a18fd4707ab0365692bb53e8a2210f386a32363123fa308d1218d078",
       "package": "papers/orion-18-epistemic-authority-autonomous-science/submission/publication-ready-20260831",
       "paper": "ORION-18",
+      "route_science_similarity": 1.0,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "e/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (8 pages, 241798 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "pe1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (8 pages, 241901 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 8
         },
         "journal": {
-          "latexmk_output_tail": "ain.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "t/fonts/type1/public/lm/lmsy7.pfb>\nOutput written on main.pdf (8 pages, 275718 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 8
         }
@@ -697,6 +733,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -707,20 +744,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "9b233e64180c41dae37e38ed286905670054ed3183e41d15adee9b08a9281cef",
+      "manifest_sha256": "8a776e0db0228d57e150eaf655690ace8985299ae4e6149e622e6d434c00c0ee",
       "package": "papers/orion-19-structured-epistemic-learning/submission/publication-ready-20260831",
       "paper": "ORION-19",
+      "route_science_similarity": 0.9901783406565003,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 182518 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/amsfonts\n/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 182622 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 9
         },
         "journal": {
-          "latexmk_output_tail": "texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 182518 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/public/amsfonts\n/cm/cmtt12.pfb>\nOutput written on main.pdf (9 pages, 182622 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./bibliography.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 9
         }
@@ -734,6 +772,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -744,20 +783,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "3c4e67f470712c2bbc21c6c4555e4b8619296fd032088627e67bde48a19f95f3",
+      "manifest_sha256": "a735bcd37b4f39140e79db0112a8bbde41d04fc64816d0fa89f256bf6c74af6e",
       "package": "papers/orion-20-structured-problem-solving/submission/publication-ready-20260831",
       "paper": "ORION-20",
+      "route_science_similarity": 1.0,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": ".pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/t\nexmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>\nOutput written on main.pdf (8 pages, 222761 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "asic/texmf-dist/fonts/type1/public/amsfonts/cm/c\nmtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmtt12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfo\nnts/cm/cmtt9.pfb>\nOutput written on main.pdf (8 pages, 221463 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 8
         },
         "journal": {
-          "latexmk_output_tail": "lic/lm/lmr10.pfb></usr\n/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/pub\nlic/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/sh\nare/texmf/fonts/type1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (8 pages, 186971 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/usr/local/texlive/2026basic/texmf-dist/fo\nnts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts\n/type1/public/lm/lmsy10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type\n1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (8 pages, 184971 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 8
         }
@@ -771,6 +811,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -781,20 +822,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "be2f5458f5739a7c74d238e3f73b9dd71142d2ff9bd5b0af7d51d3d7f0f5e7dc",
+      "manifest_sha256": "578b7d4b8e407ce2fce9f2af205edf12c70c22045eee570e35a55184b96606fe",
       "package": "papers/orion-21-state-as-computation/submission/publication-ready-20260831",
       "paper": "ORION-21",
+      "route_science_similarity": 0.9906490649064906,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": ".pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 162781 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "sic/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmti10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 161852 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         },
         "journal": {
-          "latexmk_output_tail": "lic/lm/lmr10.pfb></usr\n/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/pub\nlic/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/sh\nare/texmf/fonts/type1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (6 pages, 176740 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "/usr/local/texlive/2026basic/texmf-dist/fo\nnts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts\n/type1/public/lm/lmsy10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type\n1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (6 pages, 174941 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 6
         }
@@ -808,6 +850,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -818,20 +861,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "731d2317f0225bdf23ba38f05a001f6839343130b6d54fa0046902c2bbf60e15",
+      "manifest_sha256": "2bdfd55456fdfd87456902fc9fecadeca87ee33525d803a1ea5f117a61fb0db9",
       "package": "papers/orion-22-adaptive-state-reasoning/submission/publication-ready-20260831",
       "paper": "ORION-22",
+      "route_science_similarity": 0.9830234438156831,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": ".pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 162933 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "sic/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmti10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 162608 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         },
         "journal": {
-          "latexmk_output_tail": ".pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 162933 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "sic/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmti10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmtt12.pfb>\nOutput written on main.pdf (7 pages, 162608 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 7
         }
@@ -845,6 +889,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -855,20 +900,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "f27dae471cfe45e3d4a37f917051a8d7181bffcde3e6345c7346b1802b3d4853",
+      "manifest_sha256": "e656c33962449f191a4e95434b4afbd5975c9d6449751b4400c140c6f5efdc6d",
       "package": "papers/orion-23-responsibility-carrying-state/submission/publication-ready-20260831",
       "paper": "ORION-23",
+      "route_science_similarity": 1.0,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "og'\nLatexmk: Log file says output to 'main.xdv'\nLatexmk: applying rule 'xdvipdfmx'...\nRule 'xdvipdfmx':  Reasons for rerun\nChanged files or newly in use/created:\n  main.xdv\nCategory 'changed_source_rules':\n  xelatex\nCategory 'no_dest':\n  xdvipdfmx\n\n------------\nRun number 1 of rule 'xdvipdfmx'\n------------\n------------\nRunning 'xdvipdfmx -E -o \"main.pdf\"  \"main.xdv\"'\n------------\nmain.xdv -> main.pdf\n[1][2][3][4][5][6]\n72624 bytes written\nLatexmk: All targets (main.xdv main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "og'\nLatexmk: Log file says output to 'main.xdv'\nLatexmk: applying rule 'xdvipdfmx'...\nRule 'xdvipdfmx':  Reasons for rerun\nChanged files or newly in use/created:\n  main.xdv\nCategory 'changed_source_rules':\n  xelatex\nCategory 'no_dest':\n  xdvipdfmx\n\n------------\nRun number 1 of rule 'xdvipdfmx'\n------------\n------------\nRunning 'xdvipdfmx -E -o \"main.pdf\"  \"main.xdv\"'\n------------\nmain.xdv -> main.pdf\n[1][2][3][4][5][6]\n72776 bytes written\nLatexmk: All targets (main.xdv main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 6
         },
         "journal": {
-          "latexmk_output_tail": "og'\nLatexmk: Log file says output to 'main.xdv'\nLatexmk: applying rule 'xdvipdfmx'...\nRule 'xdvipdfmx':  Reasons for rerun\nChanged files or newly in use/created:\n  main.xdv\nCategory 'changed_source_rules':\n  xelatex\nCategory 'no_dest':\n  xdvipdfmx\n\n------------\nRun number 1 of rule 'xdvipdfmx'\n------------\n------------\nRunning 'xdvipdfmx -E -o \"main.pdf\"  \"main.xdv\"'\n------------\nmain.xdv -> main.pdf\n[1][2][3][4][5][6]\n72628 bytes written\nLatexmk: All targets (main.xdv main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "og'\nLatexmk: Log file says output to 'main.xdv'\nLatexmk: applying rule 'xdvipdfmx'...\nRule 'xdvipdfmx':  Reasons for rerun\nChanged files or newly in use/created:\n  main.xdv\nCategory 'changed_source_rules':\n  xelatex\nCategory 'no_dest':\n  xdvipdfmx\n\n------------\nRun number 1 of rule 'xdvipdfmx'\n------------\n------------\nRunning 'xdvipdfmx -E -o \"main.pdf\"  \"main.xdv\"'\n------------\nmain.xdv -> main.pdf\n[1][2][3][4][5][6]\n72776 bytes written\nLatexmk: All targets (main.xdv main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 6
         }
@@ -882,6 +928,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -892,20 +939,21 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "69287ca7e666cbb0c629ac59fa8b1b3a6905592eacff3adcf8d94851cd71ed20",
+      "manifest_sha256": "bb87bf558f0ae5ef9b5f70b8437024c966fdf5af7adf5738a4de4191b9523b5a",
       "package": "papers/orion-24-orion-rse/submission/publication-ready-20260831",
       "paper": "ORION-24",
+      "route_science_similarity": 1.0,
       "status": "PASS"
     },
     {
       "builds": {
         "arxiv": {
-          "latexmk_output_tail": "pe1/public/lm/lmsy7.pfb></usr/share/te\nxmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lm\ntt12.pfb>\nOutput written on main.pdf (12 pages, 414776 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "onts/type1/public/lm/lmtt12\n.pfb>\nOutput written on main.pdf (12 pages, 414108 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 12
         },
         "journal": {
-          "latexmk_output_tail": "ype1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/\ntype1/public/lm/lmsy7.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (12 pages, 291943 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+          "latexmk_output_tail": "fonts/type1/public/lm/lmtt10.pfb>\nOutput written on main.pdf (12 pages, 290927 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
           "overfull_boxes": 0,
           "pages": 12
         }
@@ -919,6 +967,7 @@
         "archive_safety",
         "identity_partition",
         "visible_placeholder_scan",
+        "route_science_similarity",
         "negative_result_retention",
         "arxiv_metadata",
         "journal_metadata",
@@ -929,12 +978,13 @@
         "pdf_text_parity",
         "reference_resolution"
       ],
-      "manifest_sha256": "47b4bd0500a38a80c6e3bb2c02f3485c69c50d63ebcc3a745c929d23f6c5934c",
+      "manifest_sha256": "d5da76a888e87de640f3b28613d7eb806205a00da18881c8e06d218a1e56a98c",
       "package": "papers/orion-25-orion-research-harness/submission/publication-ready-20260831",
       "paper": "ORION-25",
+      "route_science_similarity": 0.9783802941697679,
       "status": "PASS"
     }
   ],
   "schema": "ORION.all-dual-submission-verification.v1",
-  "verifier_sha256": "31f45efb892f99ce779481ede929ce18b40043c5fd9c088c06e944bb81e2c6e0"
+  "verifier_sha256": "fa406fd3823563a6cd1a97d4798ac167829d1060456016c1582f38900b300d23"
 }

@@ -1,6 +1,6 @@
 # arXiv submission checklist
 
-- [x] Named author PDF and source use `Sze Chun Yiu`, `Independent Researcher`, `sze-chun.yiu@fysik.su.se`.
+- [x] Named author PDF and source use `Sze Chun Yiu`, `Stockholm University`, `sze-chun.yiu@fysik.su.se`.
 - [x] TeX source archive is supplied; PDF-only filing is not intended.
 - [x] Abstract is ASCII-oriented and below arXiv's 1,920-character limit.
 - [x] Primary category proposed: `cs.IR`.

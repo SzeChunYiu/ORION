@@ -26,7 +26,7 @@ DATE = "2026-08-31"
 EPOCH = (1980, 1, 1, 0, 0, 0)
 AUTHOR = "Sze Chun Yiu"
 EMAIL = "sze-chun.yiu@fysik.su.se"
-AFFILIATION = "Independent Researcher"
+AFFILIATION = "Stockholm University"
 
 
 SPECS = {

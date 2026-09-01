@@ -16,6 +16,8 @@ again in the live portal immediately before filing.
 
 Sincerely,
 
-Sze Chun Yiu  
-Independent Researcher  
+Sze Chun Yiu
+
+Stockholm University
+
 sze-chun.yiu@fysik.su.se

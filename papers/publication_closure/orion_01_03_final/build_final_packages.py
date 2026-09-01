@@ -453,7 +453,7 @@ def make_tex(spec: Spec, md: str, submission: Path) -> str:
         extra = "\\def\\month{MM}\n\\def\\year{YYYY}\n\\def\\openreview{\\url{https://openreview.net/forum?id=XXXX}}\n"
     else:
         preamble = "\\documentclass[11pt]{article}\n\\usepackage[margin=1in]{geometry}\n" + common
-        author = r"Sze Chun Yiu\\Independent Researcher\\\texttt{sze-chun.yiu@fysik.su.se}"
+        author = r"Sze Chun Yiu\\Stockholm University\\\texttt{sze-chun.yiu@fysik.su.se}"
         extra = ""
     tex = (
         preamble

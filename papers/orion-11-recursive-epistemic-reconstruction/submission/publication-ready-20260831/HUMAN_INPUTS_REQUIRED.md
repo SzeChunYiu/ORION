@@ -1,7 +1,7 @@
 # Human-controlled filing inputs
 
 - [x] Canonical name: Sze Chun Yiu.
-- [x] Canonical affiliation: Independent Researcher.
+- [x] Canonical affiliation: Stockholm University.
 - [x] Correspondence email: sze-chun.yiu@fysik.su.se.
 - [x] Standing policy: no funding; no competing interests; acknowledgements omitted unless mandatory.
 - [ ] ORCID, if the author has and chooses to supply one.

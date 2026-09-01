@@ -1,6 +1,6 @@
 # ORION-01--25 submission route matrix
 
-Canonical identified-route metadata: **Sze Chun Yiu**, Independent Researcher, `sze-chun.yiu@fysik.su.se`. No ORCID is supplied or invented.
+Canonical identified-route metadata: **Sze Chun Yiu**, Stockholm University, `sze-chun.yiu@fysik.su.se`. No ORCID is supplied or invented.
 
 | Paper | arXiv | Journal | Article type | Review | Repository state |
 |---|---|---|---|---|---|
