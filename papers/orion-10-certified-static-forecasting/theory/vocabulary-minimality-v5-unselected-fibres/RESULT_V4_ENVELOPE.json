@@ -1,0 +1,48 @@
+{
+  "envelope": 3,
+  "identification_unambiguous": true,
+  "per_quantity": {
+    "C_DP_minus_C_Dxx": {
+      "offsets": {},
+      "over_envelope": 0,
+      "panels": {},
+      "regimes": {}
+    },
+    "C_Dplus_minus_C_Dxx": {
+      "offsets": {},
+      "over_envelope": 0,
+      "panels": {},
+      "regimes": {}
+    },
+    "f_Bprime_minus_C_Dxx": {
+      "offsets": {
+        "4": 8,
+        "5": 1
+      },
+      "over_envelope": 9,
+      "panels": {
+        "H2_n3": 5,
+        "H4_n3": 4
+      },
+      "regimes": {
+        "split": 9
+      }
+    }
+  },
+  "promotes_no_claim": true,
+  "quantities_reproducing_v3_panel_split": [
+    "f_Bprime_minus_C_Dxx"
+  ],
+  "quantities_with_any_violation": [
+    "f_Bprime_minus_C_Dxx"
+  ],
+  "receipt_sha256": "28a760c7b4abb552cb9c4cd66c705bd070c21c4332b5330d7b53191e8ee7857f",
+  "rows": 13458,
+  "schema": "ORION10.OffsetEnvelopeV4.v1",
+  "scientific_authority_delta": "NONE",
+  "terminal": "ENVELOPE_REFUTED__V3_VIOLATIONS_CONFIRMED_GENUINE",
+  "v3_expected_panels": {
+    "H2_n3": 5,
+    "H4_n3": 4
+  }
+}
