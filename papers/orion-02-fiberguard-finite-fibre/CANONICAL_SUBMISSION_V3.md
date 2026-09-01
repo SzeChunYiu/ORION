@@ -1,6 +1,6 @@
 # ORION-02 canonical submission designation V3
 
-**Date:** 2026-08-28  
+**Date:** 2026-09-01  
 **scientific_authority_delta:** `NONE`
 
 ## Canonical source
@@ -32,20 +32,19 @@ The paper's residual is the exact joint representation-level certification/refin
 
 ## Package state
 
-Science: **bounded core coherent**.  
-Canonical manuscript: **designated**.  
-Canonical claim ledger: **designated**.  
-Current target-format PDF: **OPEN**.  
-Exact submission-byte manifest: **OPEN**.  
-Independent external proof review: **OPEN / external**.  
-Archive/licence/human filing metadata: **OPEN**.
-
-Working venue routing: **TMLR primary**, **Machine Learning fallback**. This is venue intent, not acceptance or submission authority.
+Science: **bounded core coherent and paper-existence gate PASS**.  
+Canonical manuscript and claim ledger: **designated**.  
+Current dual-route package: `submission/tier-b-final-20260901/`.  
+TMLR journal PDF/source/review materials: **anonymous and checksum closed**.  
+arXiv PDF/source: **attributed and checksum closed**.  
+Fresh exact-byte source rebuild: `papers/publication_closure/tier_b_20260901/verification/ORION-02.json`.  
+Complete page-level visual audit: `papers/publication_closure/tier_b_20260901/verification/ORION-02_VISUAL_AUDIT.md`.  
+Author/OpenReview/portal actions: **external and pending**.
 
 ## Terminal
 
-`BOUNDED_THEORY_READY__PACKAGE_BUILD_OPEN__EMPIRICAL_PROMOTION_OPTIONAL_SUCCESSOR`
+`TIER_B_ORION02_COMPLETE__PORTAL_ACTIONS_ONLY`
 
 The external multi-domain selector experiment may strengthen a later version, but it is not a prerequisite for packaging V3. A real reviewer finding against V3-C1–V3-C7 reopens the theory; absence of the optional empirical promotion does not.
 
-skills-applied: nature-writing, nature-polishing
+skills-applied: academic-paper-pipeline@1.21.0, academic-writing@2.8.0, nature-polishing@7.5.0, nature-reviewer@3.5.0

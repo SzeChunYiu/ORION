@@ -1,0 +1,51 @@
+{
+  "builds": {
+    "arxiv": {
+      "build_tail": "ublic/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (7 pages, 291733 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+      "normalized_text_similarity": 1.0,
+      "overfull_boxes": 0,
+      "pages": 7,
+      "release_pdf_sha256": "0395692eb1518c038e32094f2abca498520f02c6ffb4055eca82d006faeccd2a",
+      "source_zip_sha256": "9a54c260721329dc16a99a6afc4d9c86b669f6106c932482ebb7a65ec26f9584"
+    },
+    "journal": {
+      "build_tail": " written on main.pdf (7 pages, 290881 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+      "normalized_text_similarity": 1.0,
+      "overfull_boxes": 0,
+      "pages": 7,
+      "release_pdf_sha256": "f176ffc2446455d0f51bfdd0cbf7af7e40366950dafc421721d7903863ec7240",
+      "source_zip_sha256": "0dd9f8e6b87dbf3dd65ef98a4e3ceb2d4b12cd78eda35f18286a9447a44b9787"
+    }
+  },
+  "checks": [
+    "manifest_payload_exact",
+    "sha256_closure",
+    "academic_paper_pipeline_1_21",
+    "active_authority_binding",
+    "paper_existence_schema",
+    "paper_existence_gate_PASS",
+    "archive_path_safety",
+    "identity_partition",
+    "visible_placeholder_scan",
+    "route_science_similarity",
+    "adverse_null_cannot_check_retention",
+    "fresh_clean_arxiv_build",
+    "fresh_clean_journal_build",
+    "source_pdf_text_binding",
+    "resolved_references"
+  ],
+  "package": "papers/orion-02-fiberguard-finite-fibre/submission/tier-b-final-20260901",
+  "package_manifest_sha256": "0b9e72a9eba99ff0746477a5968b563aac2685b830f4d9a936fbc813d5b8410a",
+  "paper": "ORION-02",
+  "paper_existence_gate": {
+    "disposition": "WRITE_FULL_PAPER",
+    "findings": [],
+    "paper_id": "ORION-02",
+    "verdict": "PASS"
+  },
+  "route_science_similarity": 0.9906823787338997,
+  "schema": "ORION.tier-b-package-verification.v1",
+  "status": "PASS",
+  "terminal": "TIER_B_ORION02_COMPLETE__PORTAL_ACTIONS_ONLY",
+  "visual_audit": "PENDING_SEPARATE_RENDER_INSPECTION"
+}

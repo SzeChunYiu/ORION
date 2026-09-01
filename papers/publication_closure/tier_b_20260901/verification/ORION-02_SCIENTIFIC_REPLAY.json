@@ -1,0 +1,31 @@
+{
+  "authority_boundary": "The analytic proofs carry the all-parameter claims. Independent finite replay corroborates transcription and controls only; it does not establish external empirical transfer.",
+  "checks": [
+    {
+      "command": "python papers/orion-02-fiberguard-finite-fibre/theory/v3-independent-proof-audit-v1/check_v3_fibre_theorems_independent.py",
+      "counts": {
+        "coverage_subset_cases": 1024,
+        "floor_midpoint_cases": 461,
+        "greedy_vs_all_partitions_cases": 1316,
+        "separator_atom_cases": 42021
+      },
+      "planted_controls": {
+        "bad_greedy_detected": true,
+        "member_identity_positive_control": true,
+        "same_atom_obstruction_detected": true,
+        "separate_atom_no_alarm": true
+      },
+      "result": "PASS",
+      "terminal": "V3_C1_C7_PROOF_AUDIT_PASS__EXTERNAL_TRANSFER_STILL_OPEN"
+    },
+    {
+      "command": "python papers/orion-02-fiberguard-finite-fibre/journal_package_final/build_publication_package.py --verify-only",
+      "result": "PASS",
+      "terminal": "ORION02_PUBLICATION_PACKAGE_VERIFIED"
+    }
+  ],
+  "date": "2026-09-01",
+  "paper": "ORION-02",
+  "schema": "ORION.tier-b-scientific-replay.v1",
+  "status": "PASS"
+}

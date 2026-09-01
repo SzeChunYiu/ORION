@@ -1,0 +1,15 @@
+# Complete adverse, null, retracted, open and CANNOT_CHECK retention
+
+- R18 found zero feasible paired-route candidates among 99 frozen development candidates and changed no route decision; the earlier positive interpretation remains retracted.
+- R19 repaired an invalid joint-profile specification but executed no paired ASlib experiment and established no transfer or production value.
+- The initial certified-neighbourhood envelope was invalid on both registered splits; family-disjoint coverage was zero.
+- The corrected split-conformal neighbourhood envelope met its marginal criterion only with zero held-out coverage and no decision-value improvement.
+- R23 covered 32 of 44 held-out datasets, below its frozen 0.95 gate; the lexical control reached 39 of 44 but the paired difference was not established.
+- R24 covered 44 of 44 datasets but had 20 strict violations; the matched lexical control had 14, and both exceeded the frozen validity limit.
+- The R24 selector diagnostic did not establish a useful association between the available bound and realised excess.
+- None of the application records directly measured empirical fibre target diameters; they cannot be cited as evidence that D_phi(z)>2 epsilon.
+- The BNSL lane is a consumed null: a free static representation already achieved the virtual best on all 1,179 instances, and the raw positive-looking terminal is quarantined.
+- The TSP-LION2015 lane is CANNOT_CHECK_TSP_DIRECT_RELATIVE_SOURCE_OR_RESOURCE because 21 required feature-cost cells lacked numeric costs; no outcome was produced and the round was not consumed.
+- The untouched CSP-MZN round was adverse: the certified router increased mean total excess and timeouts relative to its registered same-information comparator.
+- A pre-freeze recursive search exposed the cached ASlib tree; the entire cache is disqualified as an untouched Round-3 source, with no scientific terminal and no round consumed.
+- Earlier all-t gadget formulas, minimax corollaries, the conditional four-index compiler theorem and single-block sharpness are superseded for submission after independent proof review found undeclared assumptions.
