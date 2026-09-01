@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/g3qyTRneGKRSYcNRXCfan1Lneds</id>
+  <title>arXiv Query: search_query=&amp;id_list=2601.05740&amp;start=0&amp;max_results=10</title>
+  <updated>2026-09-01T10:31:26Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=10&amp;id_list=2601.05740" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>10</opensearch:itemsPerPage>
+  <opensearch:totalResults>1</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2601.05740v4</id>
+    <title>TARE: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation</title>
+    <updated>2026-05-13T09:02:08Z</updated>
+    <link href="https://arxiv.org/abs/2601.05740v4" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2601.05740v4" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Quantum algorithms based on Quantum Signal Processing (QSP) offer the potential for speedups across a broad range of applications, with block encodings serving as the central input model. In this framework, non-unitary matrices are embedded into larger unitary operators, and the cost of constructing these encodings often dominates the overall gate complexity. In this work, we introduce Tag-and-Restore Encoding (TARE), a block-encoding method for linear combinations of Pauli strings. In this method coefficient magnitudes are absorbed into a unitary built from a set of mutually anti-commuting Pauli strings acting on the system register. These Pauli strings are then mapped to the target Pauli strings through appropriate transformations, yielding a block encoding of the target operator. The ancilla register size scales logarithmically with the number of Pauli strings and can be extended to larger registers providing a width/depth tradeoff. We evaluate TARE through numerical simulations of the transverse-field Ising model, the Jordan-Wigner image of a fermionic star Hamiltonian, and random Pauli-string operators. Compared with standard Linear Combination of Unitaries (LCU), TARE substantially reduces the T-gate count while improving circuit depth in several cases. These results suggest that TARE can provide resource-efficient block encodings for a wide range of relevant systems.</summary>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-01-09T11:41:46Z</published>
+    <arxiv:primary_category term="quant-ph"/>
+    <author>
+      <name>Niclas Schillo</name>
+    </author>
+    <author>
+      <name>Andreas Sturm</name>
+    </author>
+    <author>
+      <name>Rüdiger Quay</name>
+    </author>
+  </entry>
+</feed>

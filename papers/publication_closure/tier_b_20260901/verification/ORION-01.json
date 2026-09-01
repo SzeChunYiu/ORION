@@ -1,0 +1,55 @@
+{
+  "builds": {
+    "arxiv": {
+      "build_tail": "c/texmf-dist/fonts/type1/public/lm/lmtt12.pf\nb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/symbols/\nmsam10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts\n/symbols/msbm10.pfb>\nOutput written on main.pdf (12 pages, 371473 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+      "normalized_text_similarity": 1.0,
+      "overfull_boxes": 0,
+      "pages": 12,
+      "release_pdf_sha256": "48021079335edf6aa490a2319e0c739015e5c8e625019af916b9335612bab0bf",
+      "source_zip_sha256": "3e84ba75d20e7ad43e620551dbcba7c068a957cce46cb6ec8604f066a10af90d"
+    },
+    "journal": {
+      "build_tail": "c/texmf-dist/fonts/type1/public/lm/lmtt12.pf\nb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/symbols/\nmsam10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts\n/symbols/msbm10.pfb>\nOutput written on main.pdf (12 pages, 371473 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+      "normalized_text_similarity": 1.0,
+      "overfull_boxes": 0,
+      "pages": 12,
+      "release_pdf_sha256": "48021079335edf6aa490a2319e0c739015e5c8e625019af916b9335612bab0bf",
+      "source_zip_sha256": "3e84ba75d20e7ad43e620551dbcba7c068a957cce46cb6ec8604f066a10af90d"
+    }
+  },
+  "checks": [
+    "manifest_payload_exact",
+    "sha256_closure",
+    "academic_paper_pipeline_1_21",
+    "active_authority_binding",
+    "paper_existence_schema",
+    "paper_existence_gate_PASS",
+    "archive_path_safety",
+    "identity_partition",
+    "visible_placeholder_scan",
+    "route_science_similarity",
+    "adverse_null_cannot_check_retention",
+    "fresh_clean_arxiv_build",
+    "fresh_clean_journal_build",
+    "source_pdf_text_binding",
+    "resolved_references",
+    "complete_render_visual_audit",
+    "package_local_scientific_replay"
+  ],
+  "package": "papers/orion-01-certificate-realization/submission/tier-b-final-20260901",
+  "package_manifest_sha256": "8bd8a8a0ed5155bc66e4a06b2777ab64a4b31d60f4bf8171c4f676b719d3f51e",
+  "paper": "ORION-01",
+  "paper_existence_gate": {
+    "disposition": "WRITE_FULL_PAPER",
+    "findings": [],
+    "paper_id": "ORION-01+ORION-05",
+    "verdict": "PASS"
+  },
+  "route_science_similarity": 1.0,
+  "schema": "ORION.tier-b-package-verification.v1",
+  "scientific_replay_record": "papers/publication_closure/tier_b_20260901/verification/ORION-01_SCIENTIFIC_REPLAY.json",
+  "status": "PASS",
+  "terminal": "TIER_B_ORION01_MERGED_OBJECT_COMPLETE__PORTAL_ACTIONS_ONLY",
+  "visual_audit": "PASS__ZERO_VISIBLE_LAYOUT_DEFECTS",
+  "visual_audit_record": "papers/publication_closure/tier_b_20260901/verification/ORION-01_VISUAL_AUDIT.md"
+}

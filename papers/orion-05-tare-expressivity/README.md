@@ -1,5 +1,8 @@
 # Q-paper-01 — TARE support complexity
 
+> **Publication disposition (2026-09-01):** `MERGE_WITH_SIBLING -> ORION-01`. This directory preserves theorem/evidence provenance and must not be submitted as an independent paper. See `submission/tier-b-closure-20260901/`.
+
+
 **Canonical manuscript:** `manuscript/main.tex`  
 **Canonical claim ledger:** `CLAIM_LEDGER_V3.md`  
 **Main-figure contract:** `FIGURE_CONTRACT_V3.md`  
@@ -11,10 +14,10 @@ Headline scoped theorem:
 
 `kappa_R6M = 2` for the frozen R6M three-block shared-one-bit-Tag TARE-M2 grammar under the frozen support-count objective.
 
-Current internal targeting state:
+Historical internal targeting state (superseded by the 2026-09-01 merger):
 
-- **PRX Quantum:** internally ready for a scoped `exceptional insight` submission attempt; real editorial judgment remains external.
-- **npj Quantum Information:** internally ready for the scoped theorem after ordinary production formatting.
+- Earlier PRX Quantum and npj Quantum Information routes are closed as standalone ORION-05 routes.
+- Submit the absorbed theorem only through the ORION-01 Quantum/arXiv object.
 
 Load-bearing proof/evidence:
 
