@@ -1,0 +1,43 @@
+{
+  "schema": "ORION.A3.WorkflowHubContentBindingPreflight.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A3 source/version hashes",
+  "artifact_class": "OUTCOME_BLIND_PUBLIC_CONTENT_BINDING_PREFLIGHT",
+  "protected_orion_predictions_accessed": false,
+  "external_gold_accessed": false,
+  "source_snapshot": {
+    "manifest_path": "papers/publication_closure/a3-external-change-transport-v1/workflowhub-source-census-v1/CENSUS_SNAPSHOT_V1.json",
+    "snapshot_candidate_rows_sha256": "a2d9f82fb78a0b73b9f6fa623cc9c115dddc25387208be17165140b6d2973f55",
+    "candidate_count": 128
+  },
+  "content_endpoint": "https://workflowhub.eu/workflows/{workflow_id}/ro_crate?version={version_id}",
+  "per_version_requirements": [
+    "anonymous HTTP retrieval succeeds",
+    "response is at most 52428800 bytes",
+    "bytes parse as ZIP",
+    "ZIP contains ro-crate-metadata.json",
+    "raw archive SHA-256 and byte count are recorded"
+  ],
+  "pair_requirements": [
+    "both frozen versions satisfy per-version requirements",
+    "before and after raw RO-Crate SHA-256 differ",
+    "workflow family occurs once in the frozen source snapshot"
+  ],
+  "network_policy": {
+    "maximum_concurrency": 4,
+    "timeout_seconds": 60,
+    "retries": 3,
+    "user_agent": "ORION-A3-content-binding-v1/1.0 (+https://github.com/SzeChunYiu/ORION)"
+  },
+  "success_terminal": "WORKFLOWHUB_128_FROZEN_FAMILIES_ROCRATE_CONTENT_BOUND",
+  "failure_terminal": "CANNOT_CHECK_WORKFLOWHUB_CONTENT_BINDING_FOR_128_FAMILIES",
+  "not_established": [
+    "change-stratum eligibility",
+    "scientific REUSE/REOPEN/CANNOT_CHECK gold",
+    "normalized organization lineage",
+    "curator/adjudicator independence",
+    "primary/replication assignment",
+    "ORION or baseline performance"
+  ],
+  "scientific_authority_delta": "NONE__PUBLIC_CONTENT_HASH_PREFLIGHT_ONLY"
+}
