@@ -1,0 +1,45 @@
+{
+  "schema": "ORION.A3.WorkflowHubVersionedSourceCensusFreeze.v1",
+  "date": "2026-09-01",
+  "paper_ids": ["ORION-17", "ORION-23"],
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A3 data acquisition",
+  "artifact_class": "OUTCOME_BLIND_SOURCE_UNIVERSE_PREFLIGHT",
+  "protected_orion_predictions_accessed": false,
+  "external_gold_accessed": false,
+  "source": {
+    "registry": "WorkflowHub",
+    "trs_root": "https://workflowhub.eu/ga4gh/trs/v2/",
+    "trs_service_specification": "GA4GH TRS 2.0.1",
+    "service_info_checked": "2026-09-01",
+    "workflow_landing_template": "https://workflowhub.eu/workflows/{tool_id}?version={version_id}",
+    "bioschemas_accept": "application/ld+json",
+    "ro_crate_template": "https://workflowhub.eu/workflows/{tool_id}/ro_crate?version={version_id}"
+  },
+  "candidate_family_rule": {
+    "independent_unit": "WorkflowHub workflow/tool id",
+    "one_candidate_cluster_per_workflow_family": true,
+    "minimum_distinct_versions": 2,
+    "candidate_pair": "the two highest integer-valued WorkflowHub version ids among the TRS versions for that workflow",
+    "licence_rule": "both candidate version landing metadata records must expose a non-empty licence; licence identity is recorded verbatim and not interpreted as scientific eligibility here",
+    "public_rule": "workflow and both candidate versions must be returned through unauthenticated public WorkflowHub/TRS endpoints",
+    "no_version_pair_inflation": "additional versions of the same workflow do not create additional independent N"
+  },
+  "capacity_question": {
+    "target_distinct_workflow_families": 128,
+    "why_128": "A3 proposes 96 primary + 32 source-disjoint replication change clusters; this source census asks only whether at least that many independent versioned public/licensed workflow families exist before stratum/gold adjudication",
+    "success_terminal": "WORKFLOWHUB_VERSIONED_LICENSED_FAMILY_CAPACITY_AT_LEAST_128",
+    "shortfall_terminal": "CANNOT_CHECK_WORKFLOWHUB_VERSIONED_LICENSED_FAMILY_CAPACITY"
+  },
+  "not_established_by_this_census": [
+    "representation/schema stratum eligibility",
+    "responsibility/output-contract stratum eligibility",
+    "objective/acceptance-criterion stratum eligibility",
+    "evidence/dependency stratum eligibility",
+    "REUSE/REOPEN/CANNOT_CHECK gold",
+    "adjudicator independence",
+    "exact before/after content hash binding required by the execution intake manifest",
+    "primary/replication assignment",
+    "ORION performance or any protected outcome"
+  ],
+  "scientific_authority_delta": "NONE__SOURCE_UNIVERSE_CAPACITY_PREFLIGHT_ONLY"
+}
