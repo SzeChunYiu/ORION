@@ -57,6 +57,9 @@ jobs:
           assert report['builder_sha256'] == sha(root / 'build_all_submission_materials.py')
           assert report['verifier_sha256'] == sha(root / 'verify_all_submission_materials.py')
           assert all('clean_arxiv_build' in p['checks'] and 'clean_journal_build' in p['checks'] for p in report['papers'])
+          for paper in report['papers']:
+              manifest = pathlib.Path(paper['package']) / 'PACKAGE_MANIFEST.json'
+              assert paper['manifest_sha256'] == sha(manifest), f"stale full-build report for {paper['paper']}"
           PY
 
       - name: Audit legacy six-paper external receipt

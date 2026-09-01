@@ -7,6 +7,8 @@ from pathlib import Path
 import re
 import zipfile
 
+import pytest
+
 
 ROOT = Path(__file__).resolve().parents[3]
 BUILDER = (
@@ -82,6 +84,48 @@ def test_expanded_mirror_has_exact_25_paper_coverage(tmp_path: Path) -> None:
     ).read_text(encoding="utf-8")
 
 
+def test_full_build_report_is_bound_to_each_current_manifest(tmp_path: Path) -> None:
+    module = load_module(MIRROR, "mirror_orion_papers_all_report_binding")
+    closure = tmp_path / "papers/publication_closure/orion_all_submission_20260831"
+    closure.mkdir(parents=True)
+    builder = closure / "build_all_submission_materials.py"
+    verifier = closure / "verify_all_submission_materials.py"
+    builder.write_text("# builder\n", encoding="utf-8")
+    verifier.write_text("# verifier\n", encoding="utf-8")
+
+    papers = []
+    for number in range(1, 26):
+        paper_id = f"ORION-{number:02d}"
+        package = tmp_path / "papers" / paper_id / "submission/publication-ready-20260831"
+        package.mkdir(parents=True)
+        manifest = package / "PACKAGE_MANIFEST.json"
+        manifest.write_text(json.dumps({"paper": paper_id}) + "\n", encoding="utf-8")
+        papers.append(
+            {
+                "paper": paper_id,
+                "package": package.relative_to(tmp_path).as_posix(),
+                "status": "PASS",
+                "checks": ["clean_arxiv_build", "clean_journal_build"],
+                "manifest_sha256": hashlib.sha256(manifest.read_bytes()).hexdigest(),
+            }
+        )
+    report = {
+        "aggregate": "PASS",
+        "papers": papers,
+        "builder_sha256": hashlib.sha256(builder.read_bytes()).hexdigest(),
+        "verifier_sha256": hashlib.sha256(verifier.read_bytes()).hexdigest(),
+    }
+    (closure / "VERIFICATION_REPORT.json").write_text(
+        json.dumps(report), encoding="utf-8"
+    )
+    module.verify_full_report(tmp_path)
+
+    first = tmp_path / papers[0]["package"] / "PACKAGE_MANIFEST.json"
+    first.write_text('{"paper":"ORION-01","changed":true}\n', encoding="utf-8")
+    with pytest.raises(RuntimeError, match="full clean-build report is stale for ORION-01"):
+        module.verify_full_report(tmp_path)
+
+
 def test_superseded_packages_retain_pre_existing_binding_drift() -> None:
     for package in SUPERSEDED_PACKAGES:
         receipt = json.loads(
@@ -98,6 +142,10 @@ def test_superseded_packages_retain_pre_existing_binding_drift() -> None:
         assert record["scientific_authority_delta"] == "NONE"
         assert record["historical_checksum_payload_drift"]
         assert "NOT_A_CURRENT_SUBMISSION_SURFACE" in record["disposition"]
+        assert not any(
+            row["path"].startswith("papers/")
+            for row in record["historical_internal_binding_claim_drift"]
+        )
 
         sums = (package / "SHA256SUMS").read_text().splitlines()
         inventory = dict(line.split("  ", 1)[::-1] for line in sums)

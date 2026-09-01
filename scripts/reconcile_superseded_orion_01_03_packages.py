@@ -123,7 +123,11 @@ def internal_binding_drift(package: Path) -> list[dict[str, object]]:
             continue
         payload = json.loads(record.read_text(encoding="utf-8"))
         for relative, expected in _walk_path_hash_claims(payload):
-            path = package / relative
+            # Receipt paths use two conventions: package-relative paths for
+            # packaged artifacts and repository-relative paths for canonical
+            # source inputs. Treating both as package-relative creates false
+            # MISSING findings for a source that is present and hash-correct.
+            path = ROOT / relative if relative.startswith("papers/") else package / relative
             actual = sha256(path) if path.is_file() else None
             if actual != expected:
                 rows.append(

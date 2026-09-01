@@ -151,6 +151,13 @@ def verify_full_report(source_root: Path) -> None:
     for paper in report["papers"]:
         if paper["status"] != "PASS" or "clean_arxiv_build" not in paper["checks"] or "clean_journal_build" not in paper["checks"]:
             raise RuntimeError(f"full clean-build evidence missing for {paper['paper']}")
+        package = source_root / paper["package"]
+        manifest = package / "PACKAGE_MANIFEST.json"
+        if paper["manifest_sha256"] != sha256(manifest):
+            raise RuntimeError(
+                f"full clean-build report is stale for {paper['paper']}: "
+                "PACKAGE_MANIFEST.json changed after the recorded build"
+            )
 
 
 def main() -> int:
