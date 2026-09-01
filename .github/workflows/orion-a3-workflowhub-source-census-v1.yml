@@ -6,6 +6,7 @@ on:
       - ".github/workflows/orion-a3-workflowhub-source-census-v1.yml"
       - "papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_VERSIONED_SOURCE_CENSUS_FREEZE_V1.json"
       - "papers/publication_closure/a3-external-change-transport-v1/census_workflowhub_versioned_sources_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-source-census-v1/**"
 permissions:
   contents: read
 jobs:
@@ -31,6 +32,40 @@ jobs:
           PY
       - name: Run offline parser self-test
         run: python papers/publication_closure/a3-external-change-transport-v1/census_workflowhub_versioned_sources_v1.py --self-test
+      - name: Verify committed census snapshot and provenance
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('.')
+          base=root/'papers/publication_closure/a3-external-change-transport-v1/workflowhub-source-census-v1'
+          m=json.loads((base/'CENSUS_SNAPSHOT_V1.json').read_text())
+          assert m['schema']=='ORION.A3.WorkflowHubVersionedSourceCensusSnapshotManifest.v1'
+          assert m['source_run_id']==33529419804
+          assert m['source_artifact_id']==9809208171
+          assert m['source_result_json_sha256']=='f4d24f4515a318f20e4ae5529cd10610e074cedeb768df5b1978ad79b9e35d02'
+          assert m['candidate_manifest_sha256']=='763cb2ae3eb4a7f61de62052c29c5e6e0344b0aae93d4da4d0b1c81d8ad9ad6d'
+          rows=[]
+          seen=set()
+          for c in m['chunks']:
+            p=root/c['path']
+            raw=p.read_bytes()
+            assert hashlib.sha256(raw).hexdigest()==c['sha256']
+            d=json.loads(raw)
+            assert d['schema']=='ORION.A3.WorkflowHubVersionedSourceCensusChunk.v1'
+            assert len(d['candidate_rows'])==c['rows']==32
+            assert d['candidate_rows'][0][0]==c['first_workflow_id']
+            assert d['candidate_rows'][-1][0]==c['last_workflow_id']
+            for r in d['candidate_rows']:
+              assert r[0] not in seen
+              seen.add(r[0]); rows.append(r)
+          assert len(rows)==128==m['versioned_public_licensed_candidate_families']
+          digest=hashlib.sha256(json.dumps(rows,separators=(',',':')).encode()).hexdigest()
+          assert digest==m['snapshot_candidate_rows_sha256']=='a2d9f82fb78a0b73b9f6fa623cc9c115dddc25387208be17165140b6d2973f55'
+          assert m['stratum_eligibility_adjudicated'] is False
+          assert m['gold_adjudicated'] is False
+          assert m['protected_orion_predictions_accessed'] is False
+          print('WORKFLOWHUB_DURABLE_SNAPSHOT_GREEN', len(rows), digest)
+          PY
       - name: Query public WorkflowHub TRS and version metadata
         run: |
           python papers/publication_closure/a3-external-change-transport-v1/census_workflowhub_versioned_sources_v1.py \
