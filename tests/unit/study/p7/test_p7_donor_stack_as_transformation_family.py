@@ -114,7 +114,29 @@ class TestTheFrameConditionsCarryTheProof:
         # Pinned rather than merely counted: a condition that starts carrying a
         # different theorem has changed meaning, and a non-empty set of losses
         # would hide that.
-        assert set(load_bearing["theorems_refuted_by_dropping"][condition]) == expected_lost
+        #
+        # A bare equality cannot say WHY a theorem left the set. "The condition no
+        # longer carries it" and "the countermodel search gave up on it" are
+        # different worlds, and only the first is about the science. The module
+        # already separates them -- `theorems_the_search_gave_up_on` is right there
+        # in the report -- so use it rather than letting a contended runner report a
+        # frame condition as carrying one theorem fewer (#2020, fourth of the class).
+        refuted = set(load_bearing["theorems_refuted_by_dropping"][condition])
+        gave_up = set(load_bearing.get("theorems_the_search_gave_up_on", {}).get(condition, []))
+
+        undecided = (expected_lost - refuted) & gave_up
+        assert not undecided, (
+            f"dropping {condition!r}: the countermodel search gave up on {sorted(undecided)} "
+            f"within {load_bearing['refutation_timeout_ms']}ms across world sizes "
+            f"{load_bearing['world_sizes_tried']}. That is the search running out, not the "
+            "condition ceasing to carry the theorem -- these searches settle on an unloaded "
+            "machine. Re-run before reading anything else into it."
+        )
+        assert refuted == expected_lost, (
+            f"dropping {condition!r} refuted {sorted(refuted)}, expected {sorted(expected_lost)}. "
+            "No theorem in the difference is one the search gave up on, so this is a real "
+            "change in what the condition carries."
+        )
 
     def test_the_second_condition_is_the_one_the_counts_cannot_see(
         self, load_bearing: dict, sensitivity: dict
@@ -456,3 +478,51 @@ class TestTheReport:
         source = committed.read_text(encoding="utf-8")
         assert "assert compose(c1, c2, True)" in source
         assert "assert not compose(c1, c2, False)" in source
+
+
+class TestTheUndecidedDistinctionItself:
+    """The CI failure this guards against, exercised directly.
+
+    Run 33511788834 reported the frame condition `handoffs_are_never_contract_identities`
+    carrying six theorems instead of seven, on a PR that touches no p7 file. The
+    missing one had landed in the search's give-up set. These two cases prove the
+    assertion can tell that from a real change, without waiting for a slow runner.
+    """
+
+    CONDITION = "handoffs_are_never_contract_identities"
+    EXPECTED = {"A", "B"}
+
+    def _assert(self, report: dict) -> None:
+        refuted = set(report["theorems_refuted_by_dropping"][self.CONDITION])
+        gave_up = set(report.get("theorems_the_search_gave_up_on", {}).get(self.CONDITION, []))
+        undecided = (self.EXPECTED - refuted) & gave_up
+        assert not undecided, (
+            f"dropping {self.CONDITION!r}: the countermodel search gave up on "
+            f"{sorted(undecided)} within {report['refutation_timeout_ms']}ms across world "
+            f"sizes {report['world_sizes_tried']}. That is the search running out, not the "
+            "condition ceasing to carry the theorem."
+        )
+        assert refuted == self.EXPECTED, (
+            f"dropping {self.CONDITION!r} refuted {sorted(refuted)}, expected "
+            f"{sorted(self.EXPECTED)}. No theorem in the difference is one the search gave "
+            "up on, so this is a real change in what the condition carries."
+        )
+
+    def _report(self, refuted: list[str], gave_up: list[str]) -> dict:
+        return {
+            "theorems_refuted_by_dropping": {self.CONDITION: refuted},
+            "theorems_the_search_gave_up_on": {self.CONDITION: gave_up},
+            "refutation_timeout_ms": 40000,
+            "world_sizes_tried": [3, 4, 5],
+        }
+
+    def test_a_timeout_is_reported_as_the_search_running_out(self) -> None:
+        with pytest.raises(AssertionError, match="the search running out"):
+            self._assert(self._report(refuted=["A"], gave_up=["B"]))
+
+    def test_a_real_change_is_reported_as_a_real_change(self) -> None:
+        with pytest.raises(AssertionError, match="real change in what the condition carries"):
+            self._assert(self._report(refuted=["A"], gave_up=[]))
+
+    def test_the_expected_set_raises_nothing(self) -> None:
+        self._assert(self._report(refuted=["A", "B"], gave_up=[]))
