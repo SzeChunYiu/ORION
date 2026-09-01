@@ -1,0 +1,25 @@
+{
+  "schema": "ORION.A3.RawZipContentIdentitySuperseded.v1",
+  "status": "SUPERSEDED_BEFORE_STRATUM_GOLD_OR_CANDIDATE_PREDICTIONS",
+  "superseded_reason": "raw ZIP SHA-256 is a transport serialization identity and may vary with ZIP member order, timestamps, compression or packaging; it is not a stable scientific content identity",
+  "source_workflow_run_id": 33531430733,
+  "source_artifact_id": 9810134336,
+  "source_artifact_digest": "sha256:47b530ebe37ede7fd339bd6c40c1fc97b447a3bbcac8824f5ff2d1cc16aa5729",
+  "source_result_json_sha256": "924f8b12a0c8253ce10a8947d7ff3be286d5e8eb4585e235b283683ea368e4c3",
+  "source_result_rows_sha256": "de741d27aee3a2bf5e69e0a790b0339ca64bedec8430198006516d4540bb79cf",
+  "source_terminal": "CANNOT_CHECK_WORKFLOWHUB_CONTENT_BINDING_FOR_128_FAMILIES",
+  "source_counts": {
+    "candidate_n": 128,
+    "raw_zip_different_n": 121,
+    "raw_zip_unchanged_n": 0,
+    "cannot_check_n": 7
+  },
+  "source_cannot_check_workflow_ids": ["55", "326", "360", "384", "402", "444", "462"],
+  "scientific_result_disposition": "DO_NOT_USE_RAW_ZIP_DIFFERENCE_AS_CHANGE_EVIDENCE",
+  "retained_transport_information": "raw archive hashes/byte counts remain useful transport receipts in the normalized successor",
+  "successor_identity": "ORION.A3.WorkflowHubContentBindingPreflight.v2",
+  "external_gold_accessed_before_successor_freeze": false,
+  "candidate_predictions_accessed_before_successor_freeze": false,
+  "protected_outcomes_accessed_before_successor_freeze": false,
+  "scientific_authority_delta": "NONE__AUDIT_TRAIL_ONLY"
+}

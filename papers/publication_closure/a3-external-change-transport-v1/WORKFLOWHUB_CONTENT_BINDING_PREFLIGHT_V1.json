@@ -1,0 +1,53 @@
+{
+  "schema": "ORION.A3.WorkflowHubContentBindingPreflight.v2",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A3 source/version hashes",
+  "artifact_class": "OUTCOME_BLIND_PUBLIC_CONTENT_BINDING_PREFLIGHT",
+  "protected_orion_predictions_accessed": false,
+  "external_gold_accessed": false,
+  "source_snapshot": {
+    "manifest_path": "papers/publication_closure/a3-external-change-transport-v1/workflowhub-source-census-v1/CENSUS_SNAPSHOT_V1.json",
+    "snapshot_candidate_rows_sha256": "a2d9f82fb78a0b73b9f6fa623cc9c115dddc25387208be17165140b6d2973f55",
+    "candidate_count": 128
+  },
+  "content_endpoint": "https://workflowhub.eu/workflows/{workflow_id}/ro_crate?version={version_id}",
+  "per_version_requirements": [
+    "anonymous HTTP retrieval succeeds",
+    "response is at most 268435456 bytes",
+    "bytes parse as ZIP",
+    "ZIP contains exactly one root ro-crate-metadata.json",
+    "ZIP has no duplicate, absolute or parent-traversal member path and passes CRC verification",
+    "raw archive SHA-256 and byte count are recorded as transport receipts",
+    "normalized content identity is SHA-256 over sorted non-directory member records containing path, uncompressed bytes, content SHA-256 and normalized Unix file type/executable-bit class"
+  ],
+  "content_identity_rule": {
+    "scientific_content_identity": "normalized RO-Crate member-manifest SHA-256, not raw ZIP SHA-256",
+    "why": "raw ZIP serialization can change because of member order, timestamps, compression or packaging while the member bytes remain identical; raw archive hashes remain transport receipts only",
+    "ignored_zip_nuisance": ["member order", "ZIP timestamp", "compression method", "compressed size", "archive comment", "extra fields"],
+    "preserved_semantics": ["canonical member path", "uncompressed member bytes", "regular-vs-symlink file type", "executable bit"],
+    "directory_entries_ignored": true
+  },
+  "pair_requirements": [
+    "both frozen versions satisfy per-version requirements",
+    "before and after normalized RO-Crate content-manifest SHA-256 differ",
+    "workflow family occurs once in the frozen source snapshot"
+  ],
+  "network_policy": {
+    "maximum_concurrency": 2,
+    "timeout_seconds": 120,
+    "retries": 3,
+    "accept_header": "*/*",
+    "user_agent": "ORION-A3-content-binding-v2/1.0 (+https://github.com/SzeChunYiu/ORION)"
+  },
+  "success_terminal": "WORKFLOWHUB_128_FROZEN_FAMILIES_NORMALIZED_ROCRATE_CONTENT_BOUND",
+  "failure_terminal": "CANNOT_CHECK_WORKFLOWHUB_NORMALIZED_CONTENT_BINDING_FOR_128_FAMILIES",
+  "not_established": [
+    "change-stratum eligibility",
+    "scientific REUSE/REOPEN/CANNOT_CHECK gold",
+    "normalized organization lineage",
+    "curator/adjudicator independence",
+    "primary/replication assignment",
+    "ORION or baseline performance"
+  ],
+  "scientific_authority_delta": "NONE__PUBLIC_NORMALIZED_CONTENT_HASH_PREFLIGHT_ONLY"
+}
