@@ -102,12 +102,16 @@ def test_expanded_mirror_preserves_tracked_symlinks(tmp_path: Path) -> None:
     rounds = source / "rounds"
     rounds.mkdir()
     (rounds / "r19").symlink_to("../extensions/r19", target_is_directory=True)
+    cache = source / "__pycache__"
+    cache.mkdir()
+    (cache / "stale.cpython-313.pyc").write_bytes(b"not a repository artifact")
 
     module.mirror_paper(source_root, target_root, paper, "c" * 40)
 
     mirrored = target_root / "v1-papers" / paper / "rounds/r19"
     assert mirrored.is_symlink()
     assert os.readlink(mirrored) == "../extensions/r19"
+    assert not (target_root / "v1-papers" / paper / "__pycache__").exists()
 
 
 def test_mirror_target_directory_overlay_replaces_source_collision(

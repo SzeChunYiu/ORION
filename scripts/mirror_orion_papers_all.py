@@ -47,6 +47,8 @@ SUPPORT_PATHS = (
     "skills/nature/nature-publication-closure",
 )
 TARGET_OVERLAYS = {"PROVENANCE.md", "MIRROR_RECEIPT_2026-08-31.md", "code"}
+IGNORED_BUILD_PARTS = {"__pycache__"}
+IGNORED_BUILD_SUFFIXES = {".pyc", ".pyo"}
 
 
 def sha256(path: Path) -> str:
@@ -63,6 +65,8 @@ def tree_map(root: Path, exclude_overlays: bool = False) -> dict[str, str]:
         if not path.is_file():
             continue
         rel = path.relative_to(root)
+        if any(part in IGNORED_BUILD_PARTS for part in rel.parts) or path.suffix in IGNORED_BUILD_SUFFIXES:
+            continue
         if exclude_overlays and rel.parts[0] in TARGET_OVERLAYS:
             continue
         result[rel.as_posix()] = sha256(path)
@@ -86,7 +90,12 @@ def copy_item(source: Path, destination: Path) -> None:
         # ORION-02 ``rounds/r19``). Expanding them into directories changes the
         # Git object type and can duplicate files outside the declared mirror
         # surface even when their current contents happen to hash identically.
-        shutil.copytree(source, destination, symlinks=True)
+        shutil.copytree(
+            source,
+            destination,
+            symlinks=True,
+            ignore=shutil.ignore_patterns(*IGNORED_BUILD_PARTS, "*.pyc", "*.pyo"),
+        )
     else:
         shutil.copy2(source, destination)
 
