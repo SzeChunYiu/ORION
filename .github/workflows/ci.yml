@@ -67,6 +67,21 @@ jobs:
       - run: >-
           python -m pip install -e '.[dev,candidates]'
           --constraint .github/ci-fast-replay-constraints.txt
+      # `scripts/check_publication_closure.py` shells out to pdfinfo and
+      # pdftotext to read the packaged manuscripts.  Without poppler the run
+      # aborted with FileNotFoundError and the suite reported a failed
+      # verification for six packages that in fact verify clean.  No version
+      # pin here: this lane compares whitespace-normalised text, so it needs
+      # the tools to exist rather than to match an exact build.
+      # `manuscript-clipping-audit.yml` pins its poppler because it measures
+      # page geometry, where the build does change the answer.
+      - name: Install the PDF text toolchain the closure verifier needs
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends poppler-utils
+          command -v pdfinfo
+          command -v pdftotext
       - run: pytest -q --ignore=tests/unit/p2 --durations=10
 
   # The 14 expensive cases, spread across six runners.
