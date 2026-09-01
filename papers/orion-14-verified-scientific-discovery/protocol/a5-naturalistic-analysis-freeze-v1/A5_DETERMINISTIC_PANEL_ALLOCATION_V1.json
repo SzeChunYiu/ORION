@@ -1,0 +1,44 @@
+{
+  "schema": "ORION.A5.DeterministicPanelAllocation.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A5 naturalistic 24 primary + 8 replication + 16 reserve per cell",
+  "parent_protocol_path": "papers/orion-14-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V2_AMENDMENT.json",
+  "parent_protocol_blob": "c2de4a426f1ea32fba084250390c21304d885507",
+  "artifact_class": "FROZEN_BEFORE_TERMINAL_ADJUDICATION_AND_COMPARATOR_OUTCOMES",
+  "protected_outcomes_accessed": false,
+  "comparator_outputs_accessed": false,
+  "terminal_gold_accessed": false,
+  "domains": ["EARTH_ENVIRONMENT", "LIFE_BIOMEDICAL", "SCIENTIFIC_SOFTWARE", "PHYSICAL_ENGINEERING"],
+  "mechanisms": [
+    "M1_ABSTRACT_TO_FULLTEXT", "M2_EARLIER_TO_LATER_VERSION", "M3_PROTOCOL_TO_RESULTS",
+    "M4_ARTICLE_TO_CORRECTION", "M5_ARTICLE_TO_DATA_DOCUMENTATION", "M6_ARTICLE_TO_CODE_RELEASE",
+    "M7_CONFERENCE_ABSTRACT_TO_FULL_PAPER", "M8_ARTICLE_TO_LICENSED_SUPPLEMENT"
+  ],
+  "candidate_roles_per_cell": {"primary": 24, "replication": 8, "screening_reserve": 16},
+  "total_roles_per_cell": 48,
+  "total_cells": 32,
+  "minimum_balanced_candidate_frame": 1536,
+  "allocation_key": "SHA256('A5-PANEL-ALLOCATION-V1|' + domain + '|' + mechanism + '|' + candidate_id + '|' + source_family_id + '|' + normalized_author_lineage + '|' + doi_or_artifact_lineage_id + '|' + provider_capture_id)",
+  "selection_rule": [
+    "independent external eligibility/mechanism screen must establish candidate domain/mechanism and source/rights/natural-origin fields before terminal gold and comparator outcomes",
+    "within each domain x mechanism cell sort eligible pre-terminal candidates by allocation_key then candidate_id",
+    "select 24 primary, then 8 replication, then 16 screening_reserve",
+    "source_family_id, normalized_author_lineage, doi_or_artifact_lineage_id, exact_artifact_id and provider_capture_id must be unique across all 48 selected roles in the cell",
+    "screening reserve may replace a pre-outcome ineligible/withdrawn primary or replication candidate only in its original deterministic reserve order and before any comparator or protected terminal outcome is accessed",
+    "replacement inherits the vacated role; no role/case substitution after comparator or protected terminal outcome access",
+    "a cell with insufficient independently eligible/disjoint candidates terminates CANNOT_CHECK rather than borrowing from another domain/mechanism cell"
+  ],
+  "replacement_log_requirements": [
+    "vacated_candidate_id",
+    "vacated_role",
+    "pre_outcome_attrition_reason_code",
+    "replacement_candidate_id",
+    "replacement_reserve_rank",
+    "replacement_timestamp_or_receipt",
+    "proof_no_comparator_or_terminal_outcome_accessed"
+  ],
+  "success_terminal": "A5_PANEL_24_8_16_ALLOCATION_FROZEN_BEFORE_OUTCOMES",
+  "shortfall_terminal": "CANNOT_CHECK_A5_PANEL_CELL_QUOTA_OR_DISJOINTNESS_SHORTFALL",
+  "late_replacement_terminal": "INVALID_A5_POST_OUTCOME_PANEL_REPLACEMENT",
+  "scientific_authority_delta": "NONE__PANEL_ALLOCATION_FREEZE_ONLY"
+}
