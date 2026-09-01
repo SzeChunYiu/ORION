@@ -108,3 +108,20 @@ Three consequences:
 3. **The asymmetry is the real finding.** ORION-18 models root classes and obligations but
    cannot express repair. ORION-16 models repair *and* permission but has no root classes.
    Each has two of the three ingredients the attack needs, and neither has all three.
+
+---
+
+## Closed, 2026-09-01
+
+Consequence 2 above — "the amplification attack may be encodable against ORION-16's real
+transition audit" — was taken up and is now done. See
+`../a6-amplification-real-classifier-v1/FINDING_V1.md`.
+
+The attack was run against the shipped `classify()`, imported by path and sha-pinned rather
+than copied, so the objection this document raised against the earlier self-authored model
+no longer applies. Four amplifying edges exist, none from the outer unknown layer, and five
+are realized inside ORION-16's own case set. A one-coordinate guard closes them under a
+metric controlled by the requirement that it still detect the attack unrepaired.
+
+Two predictions failed along the way and both receipts are kept: that no real case pair
+would realize the attack, and that the repair's first metric would report zero.
