@@ -1,0 +1,170 @@
+{
+  "all_agree": true,
+  "cases_agreeing": 14,
+  "cases_checked": 14,
+  "d4_outcome_accessed": false,
+  "disagreements": [],
+  "external_to_every_implementation_under_test": true,
+  "ground_truth": "published closed forms D_k(C_n)=k n and D_k(C_m (+) C_n)=m+k n-1",
+  "rows": [
+    {
+      "agrees": true,
+      "closed_form": 2,
+      "computed": 2,
+      "group": "C_2",
+      "k": 1,
+      "orders": [
+        2
+      ],
+      "wall_milliseconds": 0
+    },
+    {
+      "agrees": true,
+      "closed_form": 4,
+      "computed": 4,
+      "group": "C_2",
+      "k": 2,
+      "orders": [
+        2
+      ],
+      "wall_milliseconds": 0
+    },
+    {
+      "agrees": true,
+      "closed_form": 6,
+      "computed": 6,
+      "group": "C_2",
+      "k": 3,
+      "orders": [
+        2
+      ],
+      "wall_milliseconds": 2
+    },
+    {
+      "agrees": true,
+      "closed_form": 3,
+      "computed": 3,
+      "group": "C_3",
+      "k": 1,
+      "orders": [
+        3
+      ],
+      "wall_milliseconds": 0
+    },
+    {
+      "agrees": true,
+      "closed_form": 6,
+      "computed": 6,
+      "group": "C_3",
+      "k": 2,
+      "orders": [
+        3
+      ],
+      "wall_milliseconds": 2
+    },
+    {
+      "agrees": true,
+      "closed_form": 4,
+      "computed": 4,
+      "group": "C_4",
+      "k": 1,
+      "orders": [
+        4
+      ],
+      "wall_milliseconds": 1
+    },
+    {
+      "agrees": true,
+      "closed_form": 8,
+      "computed": 8,
+      "group": "C_4",
+      "k": 2,
+      "orders": [
+        4
+      ],
+      "wall_milliseconds": 190
+    },
+    {
+      "agrees": true,
+      "closed_form": 5,
+      "computed": 5,
+      "group": "C_5",
+      "k": 1,
+      "orders": [
+        5
+      ],
+      "wall_milliseconds": 4
+    },
+    {
+      "agrees": true,
+      "closed_form": 10,
+      "computed": 10,
+      "group": "C_5",
+      "k": 2,
+      "orders": [
+        5
+      ],
+      "wall_milliseconds": 29853
+    },
+    {
+      "agrees": true,
+      "closed_form": 6,
+      "computed": 6,
+      "group": "C_6",
+      "k": 1,
+      "orders": [
+        6
+      ],
+      "wall_milliseconds": 19
+    },
+    {
+      "agrees": true,
+      "closed_form": 7,
+      "computed": 7,
+      "group": "C_7",
+      "k": 1,
+      "orders": [
+        7
+      ],
+      "wall_milliseconds": 132
+    },
+    {
+      "agrees": true,
+      "closed_form": 3,
+      "computed": 3,
+      "group": "C_2 (+) C_2",
+      "k": 1,
+      "orders": [
+        2,
+        2
+      ],
+      "wall_milliseconds": 0
+    },
+    {
+      "agrees": true,
+      "closed_form": 5,
+      "computed": 5,
+      "group": "C_2 (+) C_4",
+      "k": 1,
+      "orders": [
+        2,
+        4
+      ],
+      "wall_milliseconds": 18
+    },
+    {
+      "agrees": true,
+      "closed_form": 5,
+      "computed": 5,
+      "group": "C_3 (+) C_3",
+      "k": 1,
+      "orders": [
+        3,
+        3
+      ],
+      "wall_milliseconds": 34
+    }
+  ],
+  "schema": "ORION04.CalibrationSweep.ClosedForms.v1",
+  "scientific_authority_delta": "NONE"
+}
