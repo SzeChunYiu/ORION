@@ -6,6 +6,7 @@ on:
       - ".github/workflows/orion-a3-workflowhub-two-replacement-successor-v1.yml"
       - "papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_V1.json"
       - "papers/publication_closure/a3-external-change-transport-v1/find_workflowhub_replacements_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-two-replacement-successor-v1/**"
       - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-normalized-content-binding-v2/**"
       - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-source-census-v1/**"
 permissions:
@@ -34,6 +35,35 @@ jobs:
           assert d['protected_orion_predictions_accessed'] is False
           assert d['external_gold_accessed'] is False
           assert d['change_stratum_adjudicated'] is False
+          PY
+      - name: Verify durable successful successor result
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          p='papers/publication_closure/a3-external-change-transport-v1/workflowhub-two-replacement-successor-v1/RESULT_V1.json'
+          d=json.load(open(p))
+          assert d['schema']=='ORION.A3.WorkflowHubTwoReplacementSuccessorDurableResult.v1'
+          assert d['terminal']=='WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_CONTENT_BOUND'
+          assert d['source_run']['workflow_run_id']==33536602521
+          assert d['source_run']['artifact_id']==9812210179
+          assert d['source_run']['artifact_zip_sha256']=='5e1142106e3e8d04b5abe087812c0280871909a9efc920196b7d3a7f9cd6cc5a'
+          assert d['source_run']['result_json_sha256']=='ee174c4ad2078fea806f4de0cc7f0095869b339dc24cc0c942d77c4d0b48e6c7'
+          assert d['base']['excluded_original_workflow_ids']==['402','444']
+          assert d['replacement_n']==d['replacement_target_n']==2
+          assert [(r['workflow_id'],r['version_before'],r['version_after']) for r in d['replacements']]==[('625',30,31),('631',5,6)]
+          assert all(r['license_before'].endswith('CC-BY-4.0') and r['license_after'].endswith('CC-BY-4.0') for r in d['replacements'])
+          assert all(r['before_normalized_sha256']!=r['after_normalized_sha256'] for r in d['replacements'])
+          assert d['final_source_family_n']==d['final_unique_source_family_n']==128
+          assert d['successor_frame_sha256']=='a47d9255aa37de056cb5cdd7c140bcccb487aa3285790655a48abb5e538c2993'
+          assert d['change_stratum_adjudicated'] is False
+          assert d['external_gold_accessed'] is False
+          assert d['protected_orion_predictions_accessed'] is False
+          assert d['primary_replication_assignment_performed'] is False
+          attempts=d['scan']['attempts_before_stop']
+          replacements=d['replacements']
+          assert hashlib.sha256(json.dumps(attempts,sort_keys=True,separators=(',',':')).encode()).hexdigest()==d['scan']['attempts_before_stop_sha256']
+          assert hashlib.sha256(json.dumps(replacements,sort_keys=True,separators=(',',':')).encode()).hexdigest()==d['replacements_sha256']
+          print('DURABLE_TWO_REPLACEMENT_RESULT_GREEN',d['successor_frame_sha256'])
           PY
       - name: Compile and run offline deterministic self-test
         run: |
