@@ -32,7 +32,8 @@ jobs:
                   imports.update(a.name.split('.')[0] for a in n.names)
               elif isinstance(n, ast.ImportFrom) and n.module:
                   imports.add(n.module.split('.')[0])
-          assert imports <= {'itertools', 'json', 'dataclasses'}, imports
+          # __future__ is a language-level compiler directive, not a dependency.
+          assert imports <= {'__future__', 'itertools', 'json', 'dataclasses'}, imports
           calls = [n for n in ast.walk(tree) if isinstance(n, ast.Call)]
           forbidden = {'open', 'exec', 'eval', 'compile', '__import__'}
           called = {n.func.id for n in calls if isinstance(n.func, ast.Name)}
