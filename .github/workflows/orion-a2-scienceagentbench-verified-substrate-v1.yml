@@ -1,0 +1,54 @@
+name: ORION A2 ScienceAgentBench verified substrate v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a2-scienceagentbench-verified-substrate-v1.yml"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/P12_SCIENCEAGENTBENCH_VERIFIED_SUBSTRATE_FREEZE_V1.json"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_scienceagentbench_verified_substrate_v1.py"
+permissions:
+  contents: read
+jobs:
+  verified-substrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned Parquet reader
+        run: python -m pip install --disable-pip-version-check pyarrow==17.0.0
+      - name: Run local hostile self-test
+        run: python papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_scienceagentbench_verified_substrate_v1.py --self-test
+      - name: Fetch exact verified split and verify clean-license census
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://huggingface.co/datasets/osunlp/ScienceAgentBench/resolve/5c930ba210e4e481a08cc93bdcc11ff1620b3646/data/verified-00000-of-00001.parquet'
+          curl --fail --location --retry 3 --retry-all-errors --output /tmp/scienceagentbench-verified.parquet "$url"
+          printf '%s  %s\n' 'c6f937863a220bd1762a00c20a0f79cc8dfca900b819bdb552150310731ae147' /tmp/scienceagentbench-verified.parquet | sha256sum --check --strict
+          python papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_scienceagentbench_verified_substrate_v1.py \
+            --freeze papers/orion-22-adaptive-state-reasoning/top_tier/P12_SCIENCEAGENTBENCH_VERIFIED_SUBSTRATE_FREEZE_V1.json \
+            --parquet /tmp/scienceagentbench-verified.parquet | tee /tmp/substrate-result.json
+      - name: Assert only the dataset-side scope precondition
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/substrate-result.json'))
+          assert d['decision']=='GREEN'
+          assert d['verified_rows']==102
+          assert d['clean_tasks']==96
+          assert d['excluded_instance_ids']==[3,32,46,53,54,84]
+          assert d['task_families']>=20
+          assert d['domains']>=3
+          assert d['dataset_only_scope_precondition_pass'] is True
+          assert d['model_family_execution_requirement_satisfied'] is False
+          assert d['campaign_executed'] is False
+          assert d['protected_outcomes_accessed'] is False
+          print('SCIENCEAGENTBENCH_DATASET_SCOPE_GREEN', d['task_families'], d['domains'])
+          PY
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
