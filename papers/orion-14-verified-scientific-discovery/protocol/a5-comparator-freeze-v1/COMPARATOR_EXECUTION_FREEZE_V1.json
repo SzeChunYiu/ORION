@@ -1,0 +1,115 @@
+{
+  "schema": "ORION.A5.NaturalisticComparatorExecutionFreeze.v1",
+  "date": "2026-09-01",
+  "paper_id": "ORION-14",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A5 comparator panel",
+  "protocol_binding": {
+    "path": "papers/orion-14-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V2_AMENDMENT.json",
+    "git_blob": "c2de4a426f1ea32fba084250390c21304d885507"
+  },
+  "adapter_binding": {
+    "path": "papers/orion-14-verified-scientific-discovery/protocol/a5-comparator-freeze-v1/comparator_adapters_v1.py",
+    "git_blob": "95e7a44726d6c4d39a462833a96a1c5b9e0f62ea"
+  },
+  "artifact_class": "FROZEN_BEFORE_ADJUDICATION_OUTCOMES",
+  "protected_outcomes_accessed": false,
+  "case_adjudication_outcomes_consumed": false,
+  "comparator_execution_started": false,
+  "shared_terminal_alphabet": ["ResolvedTrue", "ResolvedFalse", "CannotCheck"],
+  "shared_resource_envelope": {
+    "candidate_visible_raw_information": "exact frozen restricted/resolving source bytes plus the same public source/version/rights/lineage metadata admitted by the natural-pair packet; no protected gold, adjudicator notes, expected terminal or pair-selection hint",
+    "model_comparators": "one frozen NLI inference per state, tokenizer max_length=512, truncation=true, no retrieval and no additional model/tool calls; C2/C3 use exactly the same two state calls and differ only by prospectively frozen escalation/provenance logic",
+    "typed_donor": "no learned model call; only the exact candidate-visible typed coordinates; no protected gold or hidden field",
+    "post_outcome_retuning": "forbidden"
+  },
+  "runtime_lock": {
+    "python": "3.11",
+    "torch": "2.3.1",
+    "transformers": "4.41.2",
+    "safetensors": "0.4.3",
+    "sentencepiece": "0.2.0",
+    "protobuf": "4.25.3"
+  },
+  "backbone": {
+    "repository": "MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+    "revision": "eb8b17b1983bca679126ea69b12b5d28c5fe9b9a",
+    "license": "MIT",
+    "model_file": "model.safetensors",
+    "model_sha256": "06d6fd89edd4f97816831626daafbdb0b029cf63bae8edc0bccab1d64e2e7707",
+    "model_bytes": 368877646,
+    "native_named_labels_required": ["entailment", "neutral", "contradiction"],
+    "runtime_precondition": "model.config label names must expose exactly the three frozen semantic names; numeric label ids are not hard-coded and a mismatch is CANNOT_CHECK_MODEL_BINDING"
+  },
+  "comparators": [
+    {
+      "id": "C1_CALIBRATED_THREEWAY_NLI",
+      "identity": "original immutable NLI model plus frozen named-label adapter",
+      "model": "backbone",
+      "prompt_or_input_contract": "premise=state text; hypothesis=exact unchanged target claim; encode as native sequence pair; no generation prompt",
+      "states_scored": ["restricted", "resolving"],
+      "entrypoint": "transformers AutoTokenizer + AutoModelForSequenceClassification at the exact backbone revision; argmax native named label per state",
+      "native_outputs": ["entailment", "neutral", "contradiction"],
+      "terminal_map": {
+        "entailment": "ResolvedTrue",
+        "neutral": "CannotCheck",
+        "contradiction": "ResolvedFalse"
+      },
+      "forbidden": ["confidence threshold terminal remapping", "parse-failure-as-CannotCheck", "post-outcome calibration"]
+    },
+    {
+      "id": "C2_SCIENTIFIC_EVIDENCE_ESCALATION",
+      "identity": "declared reimplementation v1 over the immutable NLI backbone",
+      "model": "backbone",
+      "prompt_or_input_contract": "same exact target claim is paired separately with restricted and resolving state text",
+      "entrypoint": "c2_evidence_escalation_terminal(restricted_label,resolving_label)",
+      "native_record": ["restricted_named_nli_label", "resolving_named_nli_label", "escalation_state"],
+      "rule": "restricted must be native neutral to license escalation; otherwise abstain CannotCheck. If neutral, resolving entailment/contradiction/neutral maps to ResolvedTrue/ResolvedFalse/CannotCheck.",
+      "forbidden": ["gold-assisted escalation", "threshold retuning", "binary forcing when resolving state is neutral"]
+    },
+    {
+      "id": "C3_PROVENANCE_AWARE_VERIFIER",
+      "identity": "declared reimplementation v1 over the immutable NLI backbone plus exact packet-integrity coordinates",
+      "model": "backbone",
+      "prompt_or_input_contract": "same two NLI state calls as C2 plus source identity, content integrity, lineage, rights, state-order and one-coordinate-change booleans from the frozen packet",
+      "entrypoint": "c3_provenance_verifier_terminal(...) in the bound adapter source",
+      "native_record": [
+        "restricted_named_nli_label",
+        "resolving_named_nli_label",
+        "source_identity_valid",
+        "content_integrity_valid",
+        "lineage_valid",
+        "rights_valid",
+        "state_order_valid",
+        "one_coordinate_change_valid"
+      ],
+      "rule": "any failed/absent provenance coordinate => CannotCheck; provenance cannot manufacture a truth label; all gates passing delegates only to the frozen C2 semantic relation",
+      "forbidden": ["missing-coordinate flattering default", "provenance-only ResolvedTrue", "outcome-derived exception"]
+    },
+    {
+      "id": "C4_INFORMATION_EQUIVALENT_TYPED_DONOR",
+      "identity": "separate deterministic implementation in the bound adapter source",
+      "model": null,
+      "prompt_or_input_contract": "none; exact candidate-visible typed coordinates only",
+      "entrypoint": "c4_information_equivalent_typed_donor(**record)",
+      "candidate_entrypoint": "candidate_naturalistic_terminal(**record)",
+      "typed_coordinates": [
+        "restricted_semantic_terminal",
+        "resolving_semantic_terminal",
+        "source_identity_valid",
+        "content_integrity_valid",
+        "lineage_valid",
+        "rights_valid",
+        "state_order_valid",
+        "one_coordinate_change_valid"
+      ],
+      "information_parity": "exact same ordered field set as candidate; extra or missing field is rejected",
+      "output_parity": ["ResolvedTrue", "ResolvedFalse", "CannotCheck"],
+      "exhaustive_preoutcome_test_states": 576,
+      "expected_relation": "exact equality with candidate on all 3^2 * 2^6 typed states",
+      "forbidden": ["protected_gold", "adjudicator_note", "expected_terminal", "extra confidence bit", "oracle label"]
+    }
+  ],
+  "freeze_rule": "Any model revision, adapter source, input contract, native-output map, runtime version, resource envelope or C4 typed coordinate change after adjudication outcomes are consumed creates a new successor identity and cannot replace this comparator family.",
+  "terminal": "FOUR_COMPARATORS_EXECUTION_IDENTITIES_FROZEN__OUTCOMES_UNRUN",
+  "scientific_authority_delta": "NONE__COMPARATOR_FREEZE_ONLY"
+}
