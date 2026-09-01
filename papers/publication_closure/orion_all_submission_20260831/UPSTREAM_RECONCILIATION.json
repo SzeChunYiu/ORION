@@ -1,8 +1,8 @@
 {
   "schema": "ORION.publication-upstream-reconciliation.v1",
   "checked_utc_date": "2026-09-01",
-  "local_base_commit": "f2f9da18559cc6db986890d41b38153dab5d3b90",
-  "origin_main_commit": "f2f9da18559cc6db986890d41b38153dab5d3b90",
+  "local_base_commit": "177f371a14f30f74c75ef777bf9f411161ce7851",
+  "origin_main_commit": "177f371a14f30f74c75ef777bf9f411161ce7851",
   "result": "EXACT_BASE_MATCH",
   "reconciled_deltas": [
     {
@@ -18,6 +18,13 @@
       "scientific_authority_delta": "NONE",
       "publication_package_delta": "ORION-17_DISCLOSURE_ADDED",
       "reason": "The ORION-17 diagnosis verifies the original pre-R0 seal and corpus arithmetic but records three unresolved current-path binding failures after identifier rewriting. The failure is retained in ORION-17 filing materials without re-sealing or granting external authority. The accompanying ORION-01 PDF materialization changes no source manuscript or scientific authority."
+    },
+    {
+      "commit": "177f371a14f30f74c75ef777bf9f411161ce7851",
+      "classification": "PUBLICATION_BINDING_AND_BOUNDED_WORDING_RECONCILIATION",
+      "scientific_authority_delta": "NONE",
+      "publication_package_delta": "ORION-23_DUAL_ROUTE_REBUILT__ORION-01_21_23_BINDINGS_RETAINED",
+      "reason": "The landed change repairs ORION-01/21/23 checksum bindings and changes ORION-23's abstract from controlled finite-world evaluations to controlled finite-world results. The wording preserves the same authored finite-world evidence and explicit no-external/no-population boundary. The ORION-23 legacy filing object plus current arXiv and journal PDFs, sources, metadata, and manifests were rebuilt so the filing bytes match the latest source. No experiment, terminal, null result, adverse result, or authority state changed."
     }
   ],
   "scope": [
