@@ -66,6 +66,16 @@ they are the legitimate case, convicted by a metric that could not see the disti
 coordinate exists, vacuity is a property of the **state**, not of the coordinate. My
 protocol-design error, not a defect in the repair.
 
+### A note on two edge counts that look inconsistent and are not
+
+`RESULT_V1.json` reports **4** amplifying edges; `REPAIR_RESULT_V1.json` reports **8**
+before the repair. These are the same finding counted over different domains.
+
+The first enumerates the original eight-coordinate space, 256 states. The second enumerates
+the nine-coordinate space the repair introduces, 512 states, in which every original state
+appears twice — once with `transport_vacuous` false and once true. Each of the four edges is
+therefore counted twice. Nothing about the attack changed between the two receipts.
+
 ## Result 4 — corrected metric, with the control that matters
 
 `REPAIR_RESULT_V2.json`, verdict `REPAIR_HOLDS_UNDER_CORRECTED_METRIC_WITH_CONTROL`. The
