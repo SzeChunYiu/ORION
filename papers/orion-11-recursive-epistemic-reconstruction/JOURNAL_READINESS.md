@@ -126,15 +126,15 @@ Statistics:
 
 Freeze plotting code/spec before final outcome analysis.
 
-- [x] **Figure ORION-11-1:** benchmark protocol diagram showing hidden cause, observable trace, allowed interventions and protected labels. (`manuscript/figures/ORION-11-1_protocol_diagram.pdf`, 49.1K)
-- [x] **Figure ORION-11-2:** root success by task family and baseline with uncertainty intervals. (`results/figures/ORION-11-2_main_outcome.pdf`, 19.3K)
-- [x] **Figure ORION-11-3:** false-reframe rate vs hidden-shift success (selectivity frontier). (`results/figures/ORION-11-3_selectivity_frontier.pdf`, 17.4K)
-- [x] **Figure ORION-11-4:** reopen precision/recall or F1 by dependency depth. (`results/figures/ORION-11-4_reopening.pdf`, 31.7K)
-- [x] **Figure ORION-11-5:** cost-to-success / success-cost Pareto frontier. (`results/figures/ORION-11-5_efficiency.pdf`, 17.3K)
-- [x] **Figure ORION-11-6:** invariant/trace error vs recursion depth. (`results/figures/ORION-11-6_recursion_stability.pdf`, 24.1K)
-- [x] **Table ORION-11-1:** nearest-work mechanism matrix. (`manuscript/tables/ORION-11-T1_nearest_work.tex`, 11.9K; `\input` at `manuscript/sections/06-related-work-boundary.tex:35`, `\ref{tab:ORION-11-T1}` at :7)
-- [x] **Table ORION-11-2:** full ablation table with delta and confidence interval. (`results/ORION-11-T2_baseline_ablation_results.md`, 23.3K)
-- [x] **Table ORION-11-3:** failure taxonomy with representative blinded cases. (`results/ORION-11-T3_failure_taxonomy.md`, 5.0K)
+- [x] **Figure ORION-11-1:** benchmark protocol diagram showing hidden cause, observable trace, allowed interventions and protected labels. (`manuscript/figures/P1-1_protocol_diagram.pdf`, 49.1K)
+- [x] **Figure ORION-11-2:** root success by task family and baseline with uncertainty intervals. (`results/figures/P1-2_main_outcome.pdf`, 19.3K)
+- [x] **Figure ORION-11-3:** false-reframe rate vs hidden-shift success (selectivity frontier). (`results/figures/P1-3_selectivity_frontier.pdf`, 17.4K)
+- [x] **Figure ORION-11-4:** reopen precision/recall or F1 by dependency depth. (`results/figures/P1-4_reopening.pdf`, 31.7K)
+- [x] **Figure ORION-11-5:** cost-to-success / success-cost Pareto frontier. (`results/figures/P1-5_efficiency.pdf`, 17.3K)
+- [x] **Figure ORION-11-6:** invariant/trace error vs recursion depth. (`results/figures/P1-6_recursion_stability.pdf`, 24.1K)
+- [x] **Table ORION-11-1:** nearest-work mechanism matrix. (`manuscript/tables/P1-T1_nearest_work.tex`, 11.9K; `\input` at `manuscript/sections/06-related-work-boundary.tex:35`, `\ref{tab:ORION-11-T1}` at :7)
+- [x] **Table ORION-11-2:** full ablation table with delta and confidence interval. (`results/P1-T2_baseline_ablation_results.md`, 23.3K)
+- [x] **Table ORION-11-3:** failure taxonomy with representative blinded cases. (`results/P1-T3_failure_taxonomy.md`, 5.0K)
 
 **Status:** 11/11 done. The historical six figures and three tables remain. Figure ORION-11-7 and Table ORION-11-4 add the powered primary/replication rates, strongest-parent paired intervals, and mechanism ablations; both are generated or transcribed from hash-bound result JSON and integrated with labels/references.
 
@@ -212,8 +212,8 @@ satisfied.
 
 ## Historical scientific completion record
 
-1. ~~**Figure ORION-11-1 (protocol diagram):**~~ DONE — `manuscript/figures/ORION-11-1_protocol_diagram.pdf`, included in §05a-methods.
-2. ~~**Table ORION-11-1 (nearest-work matrix):**~~ DONE — `manuscript/tables/ORION-11-T1_nearest_work.tex`, included via `\input` in §06.
+1. ~~**Figure ORION-11-1 (protocol diagram):**~~ DONE — `manuscript/figures/P1-1_protocol_diagram.pdf`, included in §05a-methods.
+2. ~~**Table ORION-11-1 (nearest-work matrix):**~~ DONE — `manuscript/tables/P1-T1_nearest_work.tex`, included via `\input` in §06.
 3. ~~**Figure/table LaTeX infrastructure:**~~ DONE — graphicx/booktabs/tabularx/caption/longtable/array/ragged2e in `main.tex`; figures + tables all `\label`/`\ref`-linked; manuscript compiles clean.
 4. ~~**MAST mode-name check:**~~ DONE — all 14 mode names retrieved from full text (Appendix A); none targets a formulation/search-universe/representation/decomposition/measurement coordinate; ORION-11.D2 not narrowed further. Recorded in §06 and the matrix. No remaining open check can move the ORION-11.D2 verdict.
 5. ~~**Surfaced-but-unfetched cluster:**~~ DONE — TRAIL, AEGIS, AgenTracer, AgentErrorBench, ErrorProbe, AgentRx, REFLECT and span-level/DRIFT all retrieved and read; none attaches a permission to modify the formulation or search universe on the basis of the diagnosed error type; ORION-11.D2 safe against the failure-attribution family. Recorded in §06 and the matrix.

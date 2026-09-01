@@ -26,9 +26,9 @@ were excluded — zero file collisions (verified). Gap-wave agent branches
 - `research/extensions/orion-qg/QG38_PARENT_QG36_PROJECTION.json` ← `<-`
 - `research/extensions/orion-qg/qg38_observation_hierarchy.py` ← `<-`
 - `papers/orion-11-recursive-epistemic-reconstruction/manuscript/sections/06a-post-saturation-novelty-refresh.tex` ← `<-`
-- `papers/orion-11-recursive-epistemic-reconstruction/manuscript/tables/ORION-11-T1_nearest_work.tex` ← `<-`
+- `papers/orion-11-recursive-epistemic-reconstruction/manuscript/tables/P1-T1_nearest_work.tex` ← `<-`
 - `papers/orion-13-global-knowledge-portrait/manuscript/sections/25-p3x-novelty-refresh.tex` ← `<-`
-- `papers/orion-15-self-orion/manuscript/tables/ORION-15-T1_nearest_work.tex` ← `<-`
+- `papers/orion-15-self-orion/manuscript/tables/P5-T1_nearest_work.tex` ← `<-`
 - `papers/orion-21-state-as-computation/paper/chapters/05-hostile-decoder-substitution.md` ← `<-`
 - `papers/orion-21-state-as-computation/paper/main.tex` ← `<-`
 - `papers/orion-22-adaptive-state-reasoning/paper/chapters/00-abstract.md` ← `<-`
