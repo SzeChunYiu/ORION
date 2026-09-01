@@ -24,4 +24,4 @@ The 2026-08-29 literature closure and `NEAREST_WORK_MATRIX_V4.md` absorb the new
 
 Earlier Markdown manuscripts, V1--V3 ledgers, and `NEAREST_WORK_MATRIX_V3.md` remain provenance. The real-data successor studies under `experiments/` have executed; their positive, adverse, amended, post-hoc and `CANNOT_CHECK` outcomes are all retained. The underspecified earlier Theorem 2 wording is withdrawn and corrected in `theory/binding-sufficiency-lattice-v1/THEOREM_CORRECTION_2026-09-01.md`.
 
-Historical cross-paper registries remain provenance. The current publication authority for this paper is the LaTeX manuscript plus `CLAIM_LEDGER_V4.md` and the checksum-closed Tier-B package.
+Historical cross-paper registries remain provenance. The current publication authority for this paper is the LaTeX manuscript plus `CLAIM_LEDGER_V4.md` and the checksum-closed publication package.
