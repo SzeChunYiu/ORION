@@ -1,5 +1,8 @@
 # ORION-10 claim ledger V2
 
+> **Historical predecessor.** Superseded by `CLAIM_LEDGER_V3.md`, which retains
+> the full 740-instance fibre-constancy refutation.
+
 | ID | Claim | Evidence | Status / boundary |
 |---|---|---|---|
 | QG2V2-C1 | The original QG-5 closed-form forecaster `min(C_R6L,C_Dplus,f_B)` is exactly refuted on one frozen fresh `n=3` instance, 10 vs 11. | QG-5 receipt | EXACT COUNTEREXAMPLE. |

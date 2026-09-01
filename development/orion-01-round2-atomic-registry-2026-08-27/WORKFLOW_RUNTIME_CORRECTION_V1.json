@@ -1,8 +1,8 @@
 {
   "active_workflow": {
-    "bytes": 6859,
+    "bytes": 7689,
     "path": ".github/workflows/orion01-round2-atomic-registry.yml",
-    "sha256": "81a5d1e4b2c0572c57c21267445cfb5e0b74dba374321e8a646293992666ea43"
+    "sha256": "1380f6aaba6cad4d7363ddef6cc6b0cecdf16b24e20e5837231a2d1b46eb2353"
   },
   "ci_requirements": {
     "bytes": 268,
@@ -32,6 +32,12 @@
   "paper_id": "ORION-01",
   "schema": "ORION.ORION01.Round2.WorkflowRuntimeCorrection.v1",
   "scientific_authority_delta": "NONE",
+  "scope_correction": {
+    "date": "2026-09-01",
+    "prior_failure_mode": "A path-filtered ORION-01 job rejected unrelated manuscript and publication-package paths in a legitimate multi-paper pull request even though those paths were outside the replay dependency graph.",
+    "current_policy": "The exact result replay and narrow authority assertions remain unconditional. Custody rejects out-of-scope changes only when they touch shared Python, package, pytest, ruff, or Python-startup execution surfaces that can alter the replay job.",
+    "scientific_authority_delta": "NONE"
+  },
   "submission_authority": false,
   "top_tier_authority": false
 }

@@ -1,5 +1,8 @@
 # ORION-04 claim ledger V2 — bounded structural theorem
 
+> **Historical predecessor.** Superseded by `CLAIM_LEDGER_V3.md`; the later
+> exact-authority packet proves `D_4(C_5^3)=30`.
+
 **Canonical scientific successor:** `WAVE3_SCOPED_MANUSCRIPT_V2.md`  
 **Historical predecessor preserved:** `WAVE3_SCOPED_MANUSCRIPT_V1.md`
 

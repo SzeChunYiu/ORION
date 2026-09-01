@@ -11,7 +11,7 @@
 \setlength{\emergencystretch}{3em}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \title{Certifiable Support Budgets versus Intrinsic Support in Quantum Compilation}
-\author{Sze Chun Yiu}
+\author{Sze Chun Yiu\\Independent Researcher\\\texttt{sze-chun.yiu@fysik.su.se}}
 \date{}
 \hypersetup{pdftitle={Certifiable Support Budgets versus Intrinsic Support in Quantum Compilation},pdfauthor={Sze Chun Yiu}}
 \begin{document}
@@ -21,7 +21,8 @@ A support ceiling can be exact for a restricted proof system and still overestim
 \end{abstract}
 \noindent\textbf{Keywords:} quantum compilation; certifiable support; intrinsic support; proof systems; Pauli strings
 
-\section*{1. Scientific question and contribution}\label{scientific-question-and-contribution}
+\hypertarget{scientific-question-and-contribution}{%
+\section*{1. Scientific question and contribution}\label{scientific-question-and-contribution}}
 
 Support bounds appear at several distinct layers of a compiler argument:
 
@@ -42,7 +43,8 @@ The paper's contribution is a pair of within-family comparisons, each keeping bo
 
 The rank-only system is deliberately restricted. It is not claimed to model every proof method used in practice, and no lower bound is asserted for every local, syndrome-preserving, or unrestricted proof system. Zero-sum sequence theory, general proof-system relativity, and direct-product arithmetic are prior or elementary scaffolds {[}3-5{]}.
 
-\section*{2. Intrinsic support}\label{intrinsic-support}
+\hypertarget{intrinsic-support}{%
+\section*{2. Intrinsic support}\label{intrinsic-support}}
 
 Let \(F\) be a family of finite exact-compilation instances. For an instance \(I\), let \(X(I)\) be its feasible set, \(C_I:X(I)\to\mathbb{R}\) its fixed objective, and \(\sigma_I(x)\) the support statistic under study.
 
@@ -64,7 +66,8 @@ This is a mathematical property of the family and objective. An upper theorem an
 
 The second quantity is deliberately proof-system-relative. To make its lower-bound obligation checkable, we define the proof system operationally rather than referring to an unspecified notion of what it can prove.
 
-\section*{3. Rank-only zero-sum deletion calculus}\label{rank-only-zero-sum-deletion-calculus}
+\hypertarget{rank-only-zero-sum-deletion-calculus}{%
+\section*{3. Rank-only zero-sum deletion calculus}\label{rank-only-zero-sum-deletion-calculus}}
 
 Let \(A\subseteq\mathbb{F}_2^d\) be an alphabet fixed before optimization and let \(H=\langle A\rangle\). Write
 
@@ -131,7 +134,8 @@ The reverse inequality does not follow. The calculus may omit a valid compiler t
 
 The basis word is a countermodel to a smaller conclusion from the rank-only premises. It is not automatically a lower bound for the compiler. A compiler may have a smaller optimum because it uses structure that the alphabet model discards, and a richer proof system may formalize that structure.
 
-\section*{4. Fixed objective and family definitions}\label{fixed-objective-and-family-definitions}
+\hypertarget{fixed-objective-and-family-definitions}{%
+\section*{4. Fixed objective and family definitions}\label{fixed-objective-and-family-definitions}}
 
 We use phase-quotiented \(n\)-qubit Paulis \(P=(x,z)\in\mathbb{F}_2^n\times\mathbb{F}_2^n\). Multiplication is componentwise bitwise exclusive-or (XOR), \(w(P)\) counts coordinates whose local letter is nonidentity, and
 
@@ -149,7 +153,8 @@ f_3(a,b,c)=
 \end{cases}
 \]
 
-\subsection*{4.1 Matched three-block family}\label{matched-three-block-family}
+\hypertarget{matched-three-block-family}{%
+\subsection*{4.1 Matched three-block family}\label{matched-three-block-family}}
 
 An instance of \(F_M\) supplies three ordered target pairs \((T_{\ell0},T_{\ell1})\), with \(\ell\in\{A,B,C\}\). A compiler state contains six frame Paulis \(R_{\ell k}\), one shared Tag \(S\), a central role \(c_\ell\in\{0,1\}\) for each block, and an allowed within-pair target order \(\pi_\ell\). It is feasible when
 
@@ -186,7 +191,8 @@ f_3\!\left(
 
 The support statistic is \(\sigma_M(x)=\max_{\ell,k}w(R_{\ell k})\). Each constrained object is one frame, and each word position is one active coordinate of that frame. Its signature records the symplectic bit with its partner and with \(S\), so the rank-only span has dimension at most two.
 
-\subsection*{4.2 Separated dependent-triple family}\label{separated-dependent-triple-family}
+\hypertarget{separated-dependent-triple-family}{%
+\subsection*{4.2 Separated dependent-triple family}\label{separated-dependent-triple-family}}
 
 An instance of \(F_I\) has two blocks \(j\in\{A,B\}\). Each block contains independent frames \(R_{j0},R_{j1}\) with \(\langle R_{j0},R_{j1}\rangle=1\) and dependent frame \(R_{j2}=R_{j0}R_{j1}\). For a transparent canonical-label subfamily, two shared Tags satisfy, in both blocks,
 
@@ -224,7 +230,8 @@ A zero-sum set of these block-column symbols preserves all five block parities. 
 
 The objectives \(C_M\) and \(C_I\) are different fixed formal objectives. Every comparison below keeps the relevant objective and support statistic fixed between \(\beta\) and \(\kappa\). Neither rank-only language is claimed to be a complete move registry for an external production implementation.
 
-\section*{5. Matched family: certificate and intrinsic support coincide}\label{matched-family-certificate-and-intrinsic-support-coincide}
+\hypertarget{matched-family-certificate-and-intrinsic-support-coincide}{%
+\section*{5. Matched family: certificate and intrinsic support coincide}\label{matched-family-certificate-and-intrinsic-support-coincide}}
 
 In \(F_M\), the frame alphabet spans two binary signature coordinates and admits a basis word. Theorem 2 gives
 
@@ -234,12 +241,11 @@ In \(F_M\), the frame alphabet spans two binary signature coordinates and admits
 
 Separately, the whole-instance normalization gives an exact optimum of support at most two for every admitted size. The lower direction can be checked on the following two-site instance. Pauli keys are the binary masks \((x,z)\) defined in Section 4. Each displayed integer is the decimal encoding of a two-bit mask, so \((0,2)\) and \((3,0)\) denote two-qubit Paulis rather than individual coordinates.
 
-{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Block
@@ -258,11 +264,9 @@ A minimizing support-at-most-one frame pair
 \(B\) & \(((0,1),(0,1))\) & \(((0,1),(1,1))\) & \(((0,1),(1,0))\) \\
 \(C\) & \(((0,2),(2,0))\) & \(((0,2),(3,0))\) & \(((0,1),(1,1))\) \\
 \end{longtable}
-}
 
 Both displayed states use \(S=(0,1)\). For the support-two state, the central choices are \((0,0,1)\) and the target orders are unchanged. Its objective components are
 
-{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}lrrrrr@{}}
 \toprule\noalign{}
 State & Weighted frame & Tag & Constant & Restore & \(C_M\) \\
@@ -273,7 +277,6 @@ State & Weighted frame & Tag & Constant & Restore & \(C_M\) \\
 displayed support-two state & 20 & 2 & -18 & 1 & 5 \\
 displayed support-at-most-one state & 18 & 2 & -18 & 4 & 6 \\
 \end{longtable}
-}
 
 The second row is not merely an example. The independent checker enumerates all \(7^6=117{,}649\) six-frame tuples with frame support at most one, including all \(12^3=1{,}728\) anticommuting frame tuples, all \(16\) Tags, all eight central choices, and all four allowed relative target orders. Its exact minimum is \(6\). The feasible support-two state costs \(5\), so no support-at-most-one state can be optimal for this instance. Therefore support one is not a uniform optimum bound and
 
@@ -292,7 +295,8 @@ Consequently
 
 The rank-only certificate is therefore sharp for this family and objective. This does not imply sharpness for general MultiTag grammars.
 
-\section*{6. Separated family: rank-only budget five, intrinsic support one}\label{separated-family-rank-only-budget-five-intrinsic-support-one}
+\hypertarget{separated-family-rank-only-budget-five-intrinsic-support-one}{%
+\section*{6. Separated family: rank-only budget five, intrinsic support one}\label{separated-family-rank-only-budget-five-intrinsic-support-one}}
 
 The enumerated block alphabets contain the following rank-five bases, written as integer encodings of their ambient 10-bit binary change vectors:
 
@@ -324,7 +328,8 @@ The exact separation is
 
 Thus both sides of the inequality use the same statistic \(\sigma_I\). The result diagnoses the operation missing from \(P_{\mathrm{rank}}\); it does not show that every stronger local or unrestricted proof system needs budget five.
 
-\section*{7. Declared product amplification}\label{declared-product-amplification}
+\hypertarget{declared-product-amplification}{%
+\section*{7. Declared product amplification}\label{declared-product-amplification}}
 
 Let \(F_I^t\) be the direct product of \(t\) independent \(F_I\) components on disjoint coordinates, with product objective \(C_I^{\oplus t}\) and support statistic \(\sigma_I^{\oplus t}(x_1,\ldots,x_t)=\sum_{h=1}^t\sigma_I(x_h)\). By definition, objectives and these component joint-column supports add, compiler moves remain componentwise, and the product proof system has no cross-component inference rule.
 
@@ -340,11 +345,13 @@ Let \(F_I^t\) be the direct product of \(t\) independent \(F_I\) components on d
 
 The additive gap is \(4t\), while the ratio remains five. This is a definitional amplification of the one-component mechanism, not an independent compiler phenomenon.
 
-\subsection*{7.1 Direct-enumeration corollary}\label{direct-enumeration-corollary}
+\hypertarget{direct-enumeration-corollary}{%
+\subsection*{7.1 Direct-enumeration corollary}\label{direct-enumeration-corollary}}
 
 For a direct enumerator over \(n\) candidate block columns with fixed local alphabet and fixed joint active-column budget \(B\), the leading search volume is \(\Theta(n^B)\). At fixed \(t\), the declared product budgets therefore give volumes \(\Theta(n^{5t})\) and \(\Theta(n^t)\), with ratio \(\Theta(n^{4t})\) as \(n\to\infty\). The separate statement that the additive gap grows with \(t\) concerns a different limit. Neither statement is an algorithm-independent complexity lower bound.
 
-\section*{8. Discussion and relation to prior work}\label{discussion-and-relation-to-prior-work}
+\hypertarget{discussion-and-relation-to-prior-work}{%
+\section*{8. Discussion and relation to prior work}\label{discussion-and-relation-to-prior-work}}
 
 Subset-conditioned zero-sum sequences provide the combinatorial deletion scaffold {[}3{]}, while general sparse integer optimization supplies broader support context {[}4{]}. Cook and Reckhow's theory of relative proof-system efficiency is a conceptual predecessor for separating a mathematical property from what a fixed calculus can establish {[}5{]}. The present quantities are not Boolean proof complexity, and the paper claims no general proof-complexity theorem.
 
@@ -352,7 +359,8 @@ Within quantum compilation, Tag-and-Restore Encoding (TARE) makes Tag selection 
 
 The separated result should not be read as an indictment of local reasoning in general. The proof language was chosen to isolate one inference pattern: signatures are summarized by binary rank and shortening is limited to zero-signature deletion. Exactness of its budget means exactness relative to those rules. The strict inequality shows only that those rules discard compiler structure needed to reach the intrinsic optimum.
 
-\section*{9. Reproducibility}\label{reproducibility}
+\hypertarget{reproducibility}{%
+\section*{9. Reproducibility}\label{reproducibility}}
 
 The accompanying source binds the exact objective, family definitions, basis obstructions, support-two lower witness for \(F_M\), and dependent-triple local lemmas for \(F_I\). A standard-library verifier exhausts 2,880 deletion rows, 6,912 core-alignment rows, 576 same-site rigidity rows, and 9,216 distinct-site Tag rows, then checks the composition arithmetic and the support-zero obstruction. A second checker verifies the abstract binary and product statements and distinguishes joint active-column support from maximum individual-frame weight.
 
@@ -362,7 +370,8 @@ An earlier finite production-realization study of the matched family rejected it
 
 A separate, prospectively ordered production-transfer attempt used pinned PyZX 0.10.5. It executed 74 of 4,681 ordered two-qubit circuit words before failing closed on the word consisting of three consecutive Hadamard gates on qubit 0. After a semantics-preserving prefix, the callable guard accepted a second boundary-pivot simplification, but that transition changed the dense linear map even up to a nonzero scalar. The scheduled production reduction preserved the map on the same word. This adverse result refutes only the proposed freely reorderable language of twelve macros under their callable guards. It does not refute the scheduled production reduction, establish complete PyZX move coverage, realize a certificate gap, or authorize a complete-domain null. The round is consumed as an indeterminate completeness study and is not retuned or relabelled; its exact machine-readable terminal is retained in the provenance ledger.
 
-\section*{10. Limitations}\label{limitations}
+\hypertarget{limitations}{%
+\section*{10. Limitations}\label{limitations}}
 
 The exact value of \(\beta_{P_{\mathrm{rank}}}\) is relative to the explicitly defined rank-only proof system. We prove no lower bound that applies to every local, syndrome-preserving, or unrestricted proof system. The reported values for \(F_M\) and \(F_I\) are likewise tied to the stated fixed objective, support statistic, and formal families. In particular, the \(F_I\) statistic is joint active-column support rather than maximum individual-frame weight.
 
@@ -370,19 +379,23 @@ The product theorem assumes additive joint-column support, an additive objective
 
 The production boundary remains unresolved. The adverse PyZX transfer record shows that callable macro guards omit load-bearing scheduler context, and the formal state languages are not established as complete move registries for a production compiler. The author-side verification reported here also does not constitute independent specialist proof review, novelty authority, peer review, or external replication.
 
-\section*{11. Conclusion}\label{conclusion}
+\hypertarget{conclusion}{%
+\section*{11. Conclusion}\label{conclusion}}
 
 Intrinsic optimal support and a proof system's certifiable support budget answer different questions, but a numerical comparison is meaningful only when both use the same statistic. Soundness gives \(\kappa\leq\beta\), while equality requires a compiler lower witness and strict inequality identifies structure missing from the proof language. The matched family \(F_M\) supplies the equality control at maximum frame support two. The separated family \(F_I\) has rank-only joint active-column budget five but intrinsic joint active-column support one because whole-system Tag reconstruction lies outside the certificate language. The result is deliberately proof-system-relative and carries no unrestricted complexity or hardware claim.
 
-\section*{Data and code availability}\label{data-and-code-availability}
+\hypertarget{data-and-code-availability}{%
+\section*{Data and code availability}\label{data-and-code-availability}}
 
 The submission source contains the deterministic checkers, expected outputs, finite control records used in the manuscript, and the immutable adverse PyZX transfer record summarized above. No external dataset is used. These artifacts corroborate the stated finite case analyses and exact witnesses but do not establish external replication or production move completeness. The exact source archive is available to editors and referees with the manuscript and will accompany the public manuscript record.
 
-\section*{Author contributions}\label{author-contributions}
+\hypertarget{author-contributions}{%
+\section*{Author contributions}\label{author-contributions}}
 
 Sze Chun Yiu is the sole author and is responsible for the scientific claims and final manuscript. Generative AI tools assisted literature discovery, drafting, language editing, adversarial review, and submission-package preparation.
 
-\section*{References}\label{references}
+\hypertarget{references}{%
+\section*{References}\label{references}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}

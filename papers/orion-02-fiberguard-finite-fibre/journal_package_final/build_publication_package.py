@@ -118,7 +118,7 @@ def write_arxiv_source() -> None:
         (r"\usepackage{tmlr}", r"\usepackage[preprint]{tmlr}"),
         ("% Author identities are intentionally absent from the review source.",
          "% Public arXiv preprint; scientific body is identical to the review source."),
-        (r"\author{Anonymous authors}", r"\author{Sze Chun Yiu}"),
+        (r"\author{Anonymous authors}", r"\author{Sze Chun Yiu\\Independent Researcher\\\texttt{sze-chun.yiu@fysik.su.se}}"),
         ("pdfauthor={Anonymous}", "pdfauthor={Sze Chun Yiu}"),
     )
     public = review
@@ -134,7 +134,7 @@ def compile_pdf(tex: Path, destination: Path) -> None:
     with tempfile.TemporaryDirectory() as temporary:
         output = Path(temporary)
         proc = subprocess.run(
-            ["tectonic", str(tex), "--outdir", str(output), "--keep-logs", "--keep-intermediates"],
+            ["latexmk", "-pdf", "-interaction=nonstopmode", "-halt-on-error", f"-outdir={output}", tex.name],
             cwd=SUB,
             text=True,
             capture_output=True,
@@ -143,11 +143,11 @@ def compile_pdf(tex: Path, destination: Path) -> None:
         if proc.returncode:
             print(proc.stdout)
             print(proc.stderr, file=sys.stderr)
-            raise SystemExit(f"tectonic failed for {tex.name}")
+            raise SystemExit(f"latexmk failed for {tex.name}")
         built = output / f"{tex.stem}.pdf"
         log = output / f"{tex.stem}.log"
         if not built.is_file():
-            raise SystemExit(f"tectonic did not produce {built.name}")
+            raise SystemExit(f"latexmk did not produce {built.name}")
         diagnostics = proc.stdout + proc.stderr
         if log.is_file():
             diagnostics += log.read_text(encoding="utf-8", errors="replace")
@@ -167,7 +167,10 @@ def verify_route_outputs() -> None:
         "% Author identities are intentionally absent from the review source.",
         "% Public arXiv preprint; scientific body is identical to the review source.",
     )
-    reconstructed = reconstructed.replace(r"\author{Anonymous authors}", r"\author{Sze Chun Yiu}")
+    reconstructed = reconstructed.replace(
+        r"\author{Anonymous authors}",
+        r"\author{Sze Chun Yiu\\Independent Researcher\\\texttt{sze-chun.yiu@fysik.su.se}}",
+    )
     reconstructed = reconstructed.replace("pdfauthor={Anonymous}", "pdfauthor={Sze Chun Yiu}")
     if public != reconstructed:
         raise SystemExit("arXiv source differs from the allowed route-only transformation")
@@ -613,9 +616,18 @@ def main() -> int:
     )
     args = parser.parse_args()
     if not args.verify_only:
+        review_snapshot = REVIEW_TEX.read_bytes()
+
+        def require_review_unchanged(phase: str) -> None:
+            if REVIEW_TEX.read_bytes() != review_snapshot:
+                raise SystemExit(f"anonymous review source drifted during {phase}")
+
         write_arxiv_source()
+        require_review_unchanged("arXiv derivation")
         compile_pdf(REVIEW_TEX, REVIEW_PDF)
+        require_review_unchanged("review compilation")
         compile_pdf(ARXIV_TEX, ARXIV_PDF)
+        require_review_unchanged("arXiv compilation")
         prepare_ancillary()
         write_rechecker()
         write_ancillary_docs()
@@ -623,7 +635,9 @@ def main() -> int:
         verify_anonymity()
         verify_rechecks()
         build_archives()
+        require_review_unchanged("archive construction")
         write_package_manifest(args.review_receipt)
+        require_review_unchanged("release-manifest construction")
     verify_route_outputs()
     verify_anonymity()
     verify_no_local_paths()

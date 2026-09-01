@@ -142,19 +142,22 @@
     }
   ],
   "pdf_render_binding": {
-    "note": "Local tectonic (XeTeX/xdvipdfmx) render, not the CI clean-room artifact; see CLAIM_PDF_AUDIT.md addenda 2026-08-24 (original render and abstract-carrier restoration re-render).",
-    "source_revision": "abfc846a61a1596309a7ebc0ac38e579aa0f333f",
-    "rendered_utc_date": "2026-08-24",
-    "engine": "tectonic (XeTeX, xdvipdfmx producer)",
-    "sha256": "2d3841da6c0a70b169dcaf162fb126fc0e1b0c9c54d0a15fd897744239644f71",
-    "pages": 26
+    "note": "Pinned clean-CI render imported from the manuscript-clipping-audit artifact. The render-only reconciliation changes no source, claim, table, evidence, null result, or authority state.",
+    "source_revision": "ae693283365d6b7c0129e7122ce9c6f5a7ac03d3",
+    "rendered_utc_date": "2026-09-01",
+    "engine": "pdfTeX-1.40.25 via latexmk 4.83; pinned Ubuntu 24.04 TeX Live 2023",
+    "source_date_epoch_policy": "latest commit touching manuscript inputs, excluding manuscript/main.pdf",
+    "workflow_run_id": "33463297400",
+    "artifact_id": "9783994917",
+    "sha256": "76c9a0c43d2e53bceff04f1397fbe2cceb1427b16240bb5c0a6c6b3478445ea1",
+    "pages": 28
   },
   "missing_artifacts": [
     {
       "path": "journal_package/manuscript.pdf",
       "role": "compiled-pdf-copied-into-package",
       "status": "CANNOT_CHECK",
-      "reason": "Intentionally not copied: COMPILE.md forbids copying a PDF into journal_package/. An in-tree compiled PDF exists and is hash-bound as manuscript/main.pdf (pdf_render_binding; local tectonic render 2026-08-24). The audited 12-page release PDF remains in GitHub Release orion-p4-v2-peer-review-ready-saturated-2026-08-17 (SHA-256 f2ede371e254e37cf57c309565a5ede09ab3d61f9feba75b67eccca2a4893ccf)."
+      "reason": "Intentionally not copied: COMPILE.md keeps the compiled working PDF at manuscript/main.pdf. That file is hash-bound by pdf_render_binding to the pinned clean-CI render dated 2026-09-01. The audited 12-page V2 release PDF remains historical and separately identified by its release hash."
     },
     {
       "path": "journal_package/DOI.txt",
@@ -231,5 +234,21 @@
       "research/verification/records/P4.H1.false-authority-promotion.json",
       "research/verification/records/P4.H2.clean-authority-coverage.json"
     ]
-  }
+  },
+  "pdf_render_binding_history": [
+    {
+      "note": "Local tectonic (XeTeX/xdvipdfmx) render, not the CI clean-room artifact; see CLAIM_PDF_AUDIT.md addenda 2026-08-24 (original render and abstract-carrier restoration re-render).",
+      "source_revision": "abfc846a61a1596309a7ebc0ac38e579aa0f333f",
+      "rendered_utc_date": "2026-08-24",
+      "engine": "tectonic (XeTeX, xdvipdfmx producer)",
+      "sha256": "2d3841da6c0a70b169dcaf162fb126fc0e1b0c9c54d0a15fd897744239644f71",
+      "pages": 26,
+      "superseded_reason": "Replaced by the pinned clean-CI pdfTeX render required by the repository clipping and byte-equality gate.",
+      "scientific_authority_delta": "NONE",
+      "preserved_manifest": "journal_package/history/MANIFEST_2026-08-24.json",
+      "preserved_checksum_record": "journal_package/history/SHA256SUMS_PRE_CI_RENDER_2026-09-01.txt",
+      "tracked_pdf_sha256_at_reconciliation": "216d2d5aa0b0f51f15d2ad46623fc0589c5869f960157d406e91d7244af43eea",
+      "binding_consistency_at_reconciliation": "MISMATCH_RETAINED: the historical manifest named the local tectonic render, while the then-current tracked PDF and checksum record named a different PDF. Both records are preserved; neither mismatch is treated as scientific evidence or authority."
+    }
+  ]
 }

@@ -1,5 +1,9 @@
 # ORION-11 — comparative mechanism-necessity claim retraction ledger V1
 
+> **Historical transition ledger.** Its R4 corrections remain valid, but the
+> “surviving cost economy” wording is superseded by
+> `REFRAMED_CONTRIBUTION_V2.md` and the executed costed-ordering result.
+
 `scientific_authority_delta: NONE`
 
 This ledger records and reframes. It creates no new scientific authority, promotes
@@ -44,7 +48,7 @@ ORION composition relative to a faithful parent.
 | §`sec:revision` revision-responsibility battery (`05c`) | **OUT OF SCOPE** | Different experiment: 400 authored exact contracts, different comparators (donor-complete greedy, repair-authorizing, information-equivalent ideal product), `+0.3125` paired advantage, `b=125 / c=0`. R4 tested only the mutation-necessity parents. Retracting here would destroy a live, untouched result. |
 | Analytic theory in `02a-minimal-escalation-theory.tex` | **OUT OF SCOPE** | Theorem language ("necessary and sufficient condition"), not a comparative empirical claim. |
 | Historical 48-case H1 study | **OUT OF SCOPE** | Already `NOT_SUPPORTED` / `UNDERPOWERED`; its design thresholds are explicitly labelled "design thresholds, not claimed outcomes". |
-| Replication-arm reading | **`CANNOT_CHECK` — preserved** | R4's replication world set returned `INSTRUMENT_FAULT__ANCHOR_REPRODUCTION_FAILED__NO_CLAIM_READ` (runner hardcodes primary committed rates in its gate). This is neither pass nor failure and **must not** be narrated as either. Root cause is fixed on a separate branch. |
+| Replication-arm reading | **Historical `CANNOT_CHECK` preserved; parameterized successor corroborates the falsification with no authority delta** | R4's original replication world set returned `INSTRUMENT_FAULT__ANCHOR_REPRODUCTION_FAILED__NO_CLAIM_READ` because its gate hardcoded primary committed rates. That immutable record is neither pass nor failure. The later `replication-gate-parameterised-v1` result uses a separately frozen replication-set anchor, passes all four unchanged arms, and again finds the admitted active-value-of-information parent tied on success and safety (`b/c = 0/0`). Its declared `scientific_authority_delta` is `NONE`, so the controlling terminal and residual contribution do not change. |
 
 ---
 
@@ -340,8 +344,12 @@ is not edited by this ledger.
 
 No edit in this ledger weakens a preserved adverse or `CANNOT_CHECK` record. Specifically:
 
-- The replication-arm `INSTRUMENT_FAULT__ANCHOR_REPRODUCTION_FAILED__NO_CLAIM_READ`
-  is described as `CANNOT_CHECK` (neither pass nor failure) everywhere it is mentioned.
+- The original replication-arm
+  `INSTRUMENT_FAULT__ANCHOR_REPRODUCTION_FAILED__NO_CLAIM_READ` remains described
+  as historical `CANNOT_CHECK` (neither pass nor failure). The separate
+  parameterized-gate result is reported as a successful measurement that
+  corroborates the already controlling falsification with authority delta
+  `NONE`; it does not retroactively rewrite the failed instrument record.
 - The historical 48-case H1 remains `NOT_SUPPORTED` / `UNDERPOWERED` and is not pooled,
   rewritten, or rehabilitated.
 - Existing anti-claims (`evidence/CLAIM_LEDGER.md` lines 104, 107, 112;

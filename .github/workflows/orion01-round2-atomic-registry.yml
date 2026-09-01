@@ -63,7 +63,7 @@ jobs:
             git diff --exit-code -- \
               "$root/ORION01_ROUND2_ATOMIC_RESULTS_SUBSET.json"
           fi
-      - name: Enforce narrow authority and ORION-01-only custody
+      - name: Enforce narrow authority and ORION-01 dependency custody
         env:
           EVENT_NAME: ${{ github.event_name }}
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
@@ -124,6 +124,11 @@ jobs:
           else
             base="HEAD^"
           fi
+          # This is a path-filtered job in a monorepo.  Unrelated paper/package
+          # changes in the same PR cannot affect the replay and must not make a
+          # valid multi-paper closure fail.  Fail only when an out-of-custody
+          # change touches a shared Python or test/lint execution surface that
+          # can alter this job's semantics.
           bad=0
           while IFS= read -r path; do
             case "$path" in
@@ -133,9 +138,16 @@ jobs:
               development/orion-01-production-completeness-successor-2026-08-29/*|\
               papers/orion-01-certificate-realization/*)
                 ;;
-              *)
-                echo "ORION-01 Paper-1 lane scope violation: $path" >&2
+              src/*|packages/*|pyproject.toml|pytest.ini|tox.ini|setup.cfg|setup.py|\
+              conftest.py|*/conftest.py|ruff.toml|.ruff.toml|\
+              sitecustomize.py|usercustomize.py)
+                echo "ORION-01 shared replay dependency custody violation: $path" >&2
                 bad=1
+                ;;
+              *)
+                # Manuscripts, publication packages, independent paper trees,
+                # and their dedicated automation are outside this replay's
+                # dependency graph.  Their presence is not ORION-01 authority.
                 ;;
             esac
           done < <(git diff --name-only "$base"...HEAD)

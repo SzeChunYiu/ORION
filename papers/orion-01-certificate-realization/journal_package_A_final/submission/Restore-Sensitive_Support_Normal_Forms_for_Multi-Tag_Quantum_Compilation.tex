@@ -11,7 +11,7 @@
 \setlength{\emergencystretch}{3em}
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \title{Restore-Sensitive Support Normal Forms for Multi-Tag Quantum Compilation}
-\author{Sze Chun Yiu}
+\author{Sze Chun Yiu\\Independent Researcher\\\texttt{sze-chun.yiu@fysik.su.se}}
 \date{}
 \hypersetup{pdftitle={Restore-Sensitive Support Normal Forms for Multi-Tag Quantum Compilation},pdfauthor={Sze Chun Yiu}}
 \begin{document}
@@ -21,7 +21,8 @@ Support ceilings in exact quantum compilation can describe the reach of a normal
 \end{abstract}
 \noindent\textbf{Keywords:} quantum compilation; Pauli strings; support normal forms; zero-sum deletion; sparse optimization
 
-\section*{1. Scientific question and contribution}\label{scientific-question-and-contribution}
+\hypertarget{scientific-question-and-contribution}{%
+\section*{1. Scientific question and contribution}\label{scientific-question-and-contribution}}
 
 Tag-and-Restore Encoding (TARE) maps a mutually anticommuting Pauli family to target Pauli strings and uses shared Tag operators to identify the branches {[}1{]}. Its Tag equations can have multiple solutions, and the original construction explicitly notes minimum-weight and joint optimization as possible choices. This flexibility raises a separate question: when does a local deletion certificate imply a support normal form for the complete compiler objective?
 
@@ -44,7 +45,8 @@ This paper establishes four bounded results:
 
 The zero-sum invariant, its binary specialization, and general sparse optimization are used as prior mathematics. The paper does not claim a new Davenport-type invariant, general MultiTag sharpness, production-compiler transfer, or a hardware-resource advantage.
 
-\section*{2. Fixed alphabets and zero-sum-free sequences}\label{fixed-alphabets-and-zero-sum-free-sequences}
+\hypertarget{fixed-alphabets-and-zero-sum-free-sequences}{%
+\section*{2. Fixed alphabets and zero-sum-free sequences}\label{fixed-alphabets-and-zero-sum-free-sequences}}
 
 Let \(H\) be a finite abelian group written additively, and let \(A\subseteq H\) be a finite alphabet fixed independently of the optimum to be bounded. A subsequence selects an arbitrary set of positions and need not be contiguous. A sequence over \(A\) is \textbf{zero-sum-free} if no nonempty subsequence has sum zero. Define
 
@@ -62,7 +64,8 @@ The explicit zero handles degenerate alphabets. If \(D(H)\) denotes the least le
 
 For restricted \(A\), \(\operatorname{zsf}(H;A)+1\) is the corresponding forcing length. This is donor mathematics, not a contribution of the present paper.
 
-\section*{3. Simultaneous deletion theorem}\label{simultaneous-deletion-theorem}
+\hypertarget{simultaneous-deletion-theorem}{%
+\section*{3. Simultaneous deletion theorem}\label{simultaneous-deletion-theorem}}
 
 Fix an optimization instance with a nonempty finite feasible set, so an exact optimum exists. For every constrained generator \(R\), let \(A_R\) be the set of signatures realizable by any admissible local state of that instance, fixed before optimization. Let every active coordinate \(q\) of \(R\) carry \(v_q\in A_R\subseteq H_R\).
 
@@ -93,7 +96,8 @@ Assume the following.
 
 The global descent is essential: reducing one generator only once would not establish the existential-optimum/universal-generator quantifier when generators share constraints.
 
-\section*{4. Exact binary specialization}\label{exact-binary-specialization}
+\hypertarget{exact-binary-specialization}{%
+\section*{4. Exact binary specialization}\label{exact-binary-specialization}}
 
 The restricted alphabet does not improve the rank ceiling once the binary signature group is defined to be the span of that alphabet.
 
@@ -109,7 +113,8 @@ This equality is special to the elementary binary setting. It must not be genera
 
 The equality is still only a certificate ceiling. It becomes an intrinsic compiler value only when a separate compiler witness rules out every smaller-support optimum.
 
-\section*{5. Phase-quotiented MultiTag-TARE parity grammar}\label{phase-quotiented-multitag-tare-parity-grammar}
+\hypertarget{phase-quotiented-multitag-tare-parity-grammar}{%
+\section*{5. Phase-quotiented MultiTag-TARE parity grammar}\label{phase-quotiented-multitag-tare-parity-grammar}}
 
 We now define the formal compiler grammar to which the abstract deletion theorem is applied. An \(n\)-qubit Pauli is represented up to phase by \(P=(x,z)\in\mathbb{F}_2^n\times\mathbb{F}_2^n\). Multiplication is componentwise XOR, support is
 
@@ -160,7 +165,8 @@ because the global symplectic product is the sum of its local products and \(R\)
 
 For each frame \(R\), define \(A_R\) from all local signatures allowed by the instance grammar, not from a selected optimum, and set \(H_R=\langle A_R\rangle\).
 
-\subsection*{5.1 Deletion semantics}\label{deletion-semantics}
+\hypertarget{deletion-semantics}{%
+\subsection*{5.1 Deletion semantics}\label{deletion-semantics}}
 
 For \(Q\subseteq\{1,\ldots,n\}\), deletion of \(Q\) from \(R\) replaces \(R_q\) by \(I\) for every \(q\in Q\) and changes no other variable. The change in the partner and Tag parity vector is exactly
 
@@ -170,7 +176,8 @@ For \(Q\subseteq\{1,\ldots,n\}\), deletion of \(Q\) from \(R\) replaces \(R_q\) 
 
 Consequently a zero-signature deletion preserves every parity equation of the grammar. Because no other feasibility constraint contains the deleted letters, it preserves whole-instance feasibility. It only turns active letters into identities, so it cannot increase any frame support.
 
-\subsection*{5.2 Restore incidence and objective}\label{restore-incidence-and-objective}
+\hypertarget{restore-incidence-and-objective}{%
+\subsection*{5.2 Restore incidence and objective}\label{restore-incidence-and-objective}}
 
 Each frame role \(u\) has fixed target Paulis \(T_{1u},\ldots,T_{bu}\). At coordinate \(q\), its Restore term takes the ordered residual letters
 
@@ -193,7 +200,8 @@ where \(C_0\) is independent of the frame letters, \(C_{\mathrm{Tag}}\geq0\) is 
 
 This one-occurrence incidence is part of the formal grammar. A compiler in which one frame deletion changes several Restore terms requires a different coefficient and is outside the theorem below.
 
-\section*{6. Exact Restore sensitivity}\label{exact-restore-sensitivity}
+\hypertarget{exact-restore-sensitivity}{%
+\section*{6. Exact Restore sensitivity}\label{exact-restore-sensitivity}}
 
 For a local Pauli alphabet containing the identity and at least two distinct nonidentity letters, define
 
@@ -209,7 +217,8 @@ F_b(a_1,\ldots,a_b)=
 
 \textbf{Proof.} Away from the all-equal nonidentity state, changing one argument raises ordinary nonidentity Hamming weight by at most one; entering the exceptional state lowers the value. Leaving an all-equal nonidentity state by replacing one letter with a different nonidentity letter changes the value from \(1\) to \(b\), an increase of \(b-1\). No case is larger. \(\square\)
 
-\section*{7. Restore-sensitive MultiTag normal form}\label{restore-sensitive-multitag-normal-form}
+\hypertarget{restore-sensitive-multitag-normal-form}{%
+\section*{7. Restore-sensitive MultiTag normal form}\label{restore-sensitive-multitag-normal-form}}
 
 Deleting \(k\) coordinates refunds at least \(k\mu\). By the incidence contract and Lemma 3, the Restore increase is at most \(k(b-1)t_R\). This bound is also valid when several one-argument replacements affect the same local functional: order the replacements and telescope the one-argument bound. The deletion is therefore objective-nonincreasing when
 
@@ -234,7 +243,8 @@ simultaneously for every constrained frame \(R\).
 
 Outside the stated cone, this proof is unavailable. That fact does not establish that larger support is necessary.
 
-\section*{8. Matched support-two control}\label{matched-support-two-control}
+\hypertarget{matched-support-two-control}{%
+\section*{8. Matched support-two control}\label{matched-support-two-control}}
 
 The matched family \(F_M\) is the one-Tag, three-block specialization with
 
@@ -244,12 +254,11 @@ b=3,\qquad s=1,\qquad \mu=2,\qquad t_R=1.
 
 Its objective lies on the cone boundary. The signature group has rank two, so Theorem 4 gives an all-size support-two upper bound. The matching lower direction is witnessed at \(n=2\). Using the binary Pauli keys \((x,z)\) of Section 5, the target pairs and two feasible frame states are shown below. Each integer in a key is the decimal encoding of a two-bit mask: for example, \(2=10_2\) selects the second qubit and \(3=11_2\) selects both qubits. Thus \((0,2)\) and \((3,0)\) denote two-qubit Paulis, not individual binary coordinates.
 
-{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Block
@@ -268,7 +277,6 @@ A minimizing support-at-most-one frame pair
 \(B\) & \(((0,1),(0,1))\) & \(((0,1),(1,1))\) & \(((0,1),(1,0))\) \\
 \(C\) & \(((0,2),(2,0))\) & \(((0,2),(3,0))\) & \(((0,1),(1,1))\) \\
 \end{longtable}
-}
 
 Both states use \(S=(0,1)\). For the support-two state, the central choices are \((0,0,1)\) and the target orders are unchanged. Its weighted-frame, Tag, constant, and Restore contributions are \(20,2,-18,1\), giving total cost \(5\). The displayed support-at-most-one state has contributions \(18,2,-18,4\), giving cost \(6\).
 
@@ -280,7 +288,8 @@ To establish the lower bound, the checker enumerates the complete support-at-mos
 
 Here \(\kappa\) is the least uniform support bound attained by exact optima under this fixed objective. The lower witness makes the certificate ceiling intrinsic for \(F_M\); no analogous lower theorem is claimed for general MultiTag-TARE.
 
-\section*{9. Discussion and relation to prior work}\label{discussion-and-relation-to-prior-work}
+\hypertarget{discussion-and-relation-to-prior-work}{%
+\section*{9. Discussion and relation to prior work}\label{discussion-and-relation-to-prior-work}}
 
 The closest zero-sum donor is the subset-conditioned Davenport literature {[}2{]}, with broader generalized and weighted variants providing context {[}3,4{]}. In the finite binary grammar considered here, however, the alphabet-specific sequence ceiling collapses exactly to the rank of its generated span. The novelty cannot therefore rest on a smaller restricted-alphabet bound. It rests on the compiler transfer: the admissible alphabet is fixed before optimization, deletion is sound for the whole instance, the descent closes the simultaneous quantifier, and the Restore incidence exposes the exact objective condition.
 
@@ -288,7 +297,8 @@ Sparse integer optimization provides general support bounds for optimal solution
 
 The matched family also clarifies the difference between a certificate ceiling and intrinsic support. The rank argument alone supplies only an upper bound. Equality with intrinsic support follows here because a separate exact instance excludes support one. A compiler with transformations outside the deletion language may have a strictly smaller intrinsic value, a possibility treated explicitly in the companion analysis of certifiable support budgets.
 
-\section*{10. Reproducibility}\label{reproducibility}
+\hypertarget{reproducibility}{%
+\section*{10. Reproducibility}\label{reproducibility}}
 
 The accompanying source includes a deterministic checker derived from the theorem statements. It enumerates all alphabets in \(\mathbb{F}_2^d\) for \(d=1,2,3\), checks the generated-span equality, tests the cyclic counterexample to a general rank reading, verifies zero-sum deletion and global descent on finite fixtures, and exhausts Restore sensitivity for \(b=2,\ldots,7\). The source also includes the exact two-site support-one obstruction summarized in Section 8.
 
@@ -298,25 +308,30 @@ An earlier finite production-realization study of the matched family rejected it
 
 A separate, prospectively ordered production-transfer attempt used pinned PyZX 0.10.5. It executed 74 of 4,681 ordered two-qubit circuit words before failing closed on the word consisting of three consecutive Hadamard gates on qubit 0. After a semantics-preserving prefix, the callable guard accepted a second boundary-pivot simplification, but that transition changed the dense linear map even up to a nonzero scalar. The scheduled production reduction preserved the map on the same word. This adverse result refutes only the proposed freely reorderable language of twelve macros under their callable guards. It does not refute the scheduled production reduction, establish complete PyZX move coverage, realize a certificate gap, or authorize a complete-domain null. The round is consumed as an indeterminate completeness study and is not retuned or relabelled; its exact machine-readable terminal is retained in the provenance ledger.
 
-\section*{11. Limitations}\label{limitations}
+\hypertarget{limitations}{%
+\section*{11. Limitations}\label{limitations}}
 
 The normal-form result is conditional on whole-instance soundness, objective dominance, and support monotonicity. Its MultiTag specialization further uses the one-deletion/one-Restore-argument incidence stated in Section 5.2. The binary rank identity is specific to the generated binary signature groups and does not extend to arbitrary finite abelian groups. The proof is also silent outside \(\mu\geq (b-1)t_R\): it implies no larger-support necessity there, and sharpness for general MultiTag instances remains open.
 
 These scope restrictions also limit the result's interpretation. Structural support is not T count, depth, runtime, qubit count, error rate, or quantum advantage. The adverse PyZX transfer record shows that callable macro guards omit load-bearing scheduler context, so the formal families have not been shown to reproduce a complete production move language. Finally, the author-side checks reported here do not constitute independent proof certification, novelty authority, peer review, or external replication.
 
-\section*{12. Conclusion}\label{conclusion}
+\hypertarget{conclusion}{%
+\section*{12. Conclusion}\label{conclusion}}
 
 A zero-sum deletion ceiling becomes a compiler normal form only after its semantic and objective obligations are proved. For the stated MultiTag grammar, global anticommutation supplies a nonzero signature total, the coordinate-indexed Restore term has exact sensitivity \(b-1\), and a global descent gives one optimum satisfying all frame ceilings. Because each binary signature group is defined as the span of its alphabet, the zero-sum-free ceiling equals rank rather than improving it. The matched family \(F_M\) supplies a bounded case in which a separate lower witness makes the support-two certificate intrinsic.
 
-\section*{Data and code availability}\label{data-and-code-availability}
+\hypertarget{data-and-code-availability}{%
+\section*{Data and code availability}\label{data-and-code-availability}}
 
 The submission source contains the deterministic finite checker, its expected output, the control records used for the exact two-site obstruction, and the immutable adverse PyZX transfer record summarized above. No external dataset is used. The records are provenance aids rather than theorem authority; the displayed proofs and exact obstruction carry the stated all-size and lower-bound claims. The exact source archive is available to editors and referees with the manuscript and will accompany the public manuscript record.
 
-\section*{Author contributions}\label{author-contributions}
+\hypertarget{author-contributions}{%
+\section*{Author contributions}\label{author-contributions}}
 
 Sze Chun Yiu is the sole author and is responsible for the scientific claims and final manuscript. Generative AI tools assisted literature discovery, drafting, language editing, adversarial review, and submission-package preparation.
 
-\section*{References}\label{references}
+\hypertarget{references}{%
+\section*{References}\label{references}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}

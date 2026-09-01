@@ -64,6 +64,11 @@ jobs:
           cache-dependency-path: |
             pyproject.toml
             .github/ci-fast-replay-constraints.txt
+      # Publication-closure tests inspect page counts and extracted PDF text.
+      # Keep their system dependency explicit in the lane that runs them.
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends poppler-utils
       - run: >-
           python -m pip install -e '.[dev,candidates]'
           --constraint .github/ci-fast-replay-constraints.txt

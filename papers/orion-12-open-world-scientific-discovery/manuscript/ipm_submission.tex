@@ -49,7 +49,10 @@ gate fails. Against a BM25 lexical baseline, recall@100 is lower by 0.01769 with
 $[-0.02729,-0.00906]$, and the controller reads 175.7\% more candidates.
 Although normalized discounted cumulative gain at rank 10 (nDCG@10) is
 higher by 0.1488, that secondary result cannot replace the
-registered recall-and-cost criteria. The contribution is therefore a bounded
+registered recall-and-cost criteria. Two later BEIR diagnostics leave all five
+ArguAna stopping decisions unchanged after density normalization and then
+query-conditional estimation, localizing the defect to a signal-inert
+rank-overlap marginal rather than its threshold. The contribution is therefore a bounded
 control method for representing acquisition authority, not evidence of
 external retrieval superiority or open-world completeness.
 \end{abstract}
@@ -186,6 +189,17 @@ top-ranked relevance on many topics, but it answers a different question. A
 post-outcome substitution of nDCG for recall and cost would change the study
 rather than pass it. The paper therefore makes no external superiority claim.
 
+Two separately frozen BEIR diagnostics sharpen the mechanism-level negative.
+Density normalization changes the nominal threshold but leaves every ArguAna
+decision identical to the original rule at all five depths. A subsequent
+query-conditional estimator again leaves all five ArguAna decisions unchanged,
+and SciFact is also unchanged; NFCorpus moves only slightly and remains well
+short of fusion. On ArguAna the rank-overlap marginal assigns near-zero expected
+contribution to every unread route at every query and prefix. The failure is
+therefore in the statistic's information content, not only its threshold or
+query conditioning. The registered no-rescue rule forbids a fourth estimator
+under the same identity.
+
 Several additional probes remain bounded or undetermined. A public MetaSyn
 probe quantifies retrieval and screening loss, but it does not exercise the
 complete controller. An AutoResearchBench Deep probe returns no official title
@@ -193,8 +207,8 @@ matches after a successful judge control, which is a bounded negative
 diagnostic rather than a matched comparison. OpenAIRE/Crossref campaigns fail
 their provider-validity criterion; their zero paired differences cannot be read
 as equivalence. Public screening studies sometimes favor the frozen donor over
-the candidate. Table~\ref{tab:p2-external-boundaries} keeps these results visible
-without averaging incompatible authority levels.
+the candidate. The result-retention ledger keeps these outcomes visible without
+averaging incompatible authority levels.
 
 The formal control rules also have limits. Route independence is conservative
 and provenance-based; it does not prove statistical independence. The closure
@@ -223,7 +237,9 @@ question-conditioned processing, keeps route stopping local, and retains
 unresolved material routes as open obligations. Controlled and exact-contract
 tests show that these rules behave as designed. The registered TREC-COVID
 recall-and-cost gate nevertheless fails, and favorable nDCG does not replace
-that decision. The present contribution is therefore a bounded, reproducible
+that decision. The later density-normalized and query-conditional successors
+also leave every ArguAna stopping decision unchanged, showing that the frozen
+rank-overlap marginal is signal-inert there. The present contribution is therefore a bounded, reproducible
 control method for representing acquisition authority. External retrieval
 benefit and open-world completeness remain unestablished.
 

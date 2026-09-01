@@ -1,0 +1,19 @@
+{
+  "abstract": "When a learned system fails, adding model capacity or inference time is useful only if computation is the binding constraint. Failure may instead arise because task-relevant information is absent or because an information-preserving representation is inaccessible to the chosen learner. We evaluate a prospective diagnostic that distinguishes these three cases. For each task family, interventions add semantic information, repair accessibility without changing semantic content, or add computation. The diagnostic selects the lowest registered-cost intervention that reaches a fixed quality threshold on a probe split; the causal disposition is recomputed on protected data. Across five families spanning handwritten-digit classification and exact executable tasks, the diagnostic identified the protected disposition in four families, versus one for a generic compute-escalation policy, and made no false compute escalations versus four. The remaining digit accessibility family was indeterminate because a probe-side threshold crossing did not transport to the protected split. The result survives a corrected vector-valued accounting of representation work, fitted state, model fitting, inference, and explicit computation, although the registered costs cannot be interpreted as a universal physical exchange rate. Secondary studies preserve mixed evidence: information-equivalent access repair recovered linear accuracy on breast-cancer and digit data but produced a null on Wine; increasing Qwen2.5 model size did not yield the registered monotone benefit; and a semantics-preserving symbol remint invalidated an earlier serialization contrast. These results support a bounded procedure for locating failure before spending more compute, not a universal diagnostic, a universal representation advantage, or a general argument against scaling.",
+  "abstract_characters": 1848,
+  "authors": "Sze Chun Yiu (Independent Researcher)",
+  "comments": "8 pages; all null, adverse, refuted and CANNOT_CHECK results retained.",
+  "correspondence": "sze-chun.yiu@fysik.su.se",
+  "cross_lists": [
+    "cs.AI"
+  ],
+  "doi": null,
+  "journal_reference": null,
+  "license_recommendation": "CC BY 4.0, subject to final author selection in the arXiv portal and journal compatibility check",
+  "paper": "ORION-19",
+  "portal_status": "NOT_FILED",
+  "primary_category": "cs.LG",
+  "report_number": null,
+  "schema": "ORION.arxiv-metadata.v1",
+  "title": "Diagnosing Learning-System Failures Before Escalating Compute"
+}

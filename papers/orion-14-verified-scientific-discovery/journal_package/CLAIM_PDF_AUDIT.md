@@ -125,3 +125,28 @@ render, same-session mechanical audit, `ORION-14.PDF` stays OPEN pending an
 independent proofread of this exact file (by hash).
 
 The local 26-page render and same-session mechanical audit are recorded separately as `ORION-14.LOCAL_RENDER` = **BOUNDED**. They do not satisfy `ORION-14.PDF` or create a submission package.
+
+## Addendum, 2026-09-01 — pinned clean-CI render reconciliation
+
+The repository's clipping gate rebuilt every working manuscript from the same
+source under its pinned Ubuntu 24.04 / TeX Live 2023 environment. The resulting
+ORION-14 PDF is the current tracked working render:
+
+| Field | Value |
+|---|---|
+| Source revision | `ae693283365d6b7c0129e7122ce9c6f5a7ac03d3` |
+| Workflow run | `33463297400` |
+| Artifact ID | `9783994917` |
+| SHA-256 | `76c9a0c43d2e53bceff04f1397fbe2cceb1427b16240bb5c0a6c6b3478445ea1` |
+| Pages | 28 |
+| Engine | pdfTeX-1.40.25 via latexmk 4.83; pinned Ubuntu 24.04 TeX Live 2023 |
+
+The two-page layout difference from the retained 26-page tectonic render is an
+engine/layout effect. The historical manifest named the tectonic render SHA
+`2d3841da...`, while the tracked PDF immediately before this reconciliation and
+its checksum record named `216d2d5a...`; that pre-existing mismatch is retained
+explicitly in the manifest history rather than normalized away. No manuscript
+source, claim, table, evidence artifact, negative result, or authority record
+changed in this reconciliation. The prior manifest and checksum records remain
+under `journal_package/history/`. This is still a programmatic same-project
+render audit, not an independent proofread: `ORION-14.PDF` remains **OPEN**.

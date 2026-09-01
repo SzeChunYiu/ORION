@@ -1,5 +1,8 @@
 # ORION-04 publication-freeze addendum V1
 
+> **Historical freeze.** Thawed and superseded by the prospectively separate
+> global-obstruction successor recorded in `WAVE3_PUBLICATION_DISPOSITION_V3.json`.
+
 **Freeze date:** 2026-08-27  
 **Status:** `CURRENT_EARNED_STRUCTURAL_CEILING_FROZEN__EXACT_D4_SUCCESSOR_ONLY`
 

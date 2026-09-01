@@ -30,8 +30,22 @@ PAPERS = REPO_ROOT / "papers"
 # with being rendered from source. Adding a name here is a claim that someone
 # opened the test and checked what it pins -- not a way to silence this.
 RENDER_COMPATIBLE = {
+    # The unified publication test names ORION-01--03 while inspecting their
+    # current package archives, not a hand-curated working PDF. Their working
+    # PDFs are already rebuilt and byte-compared by the clipping workflow.
+    "orion-01-certificate-realization",
+    "orion-02-fiberguard-finite-fibre",
+    "orion-03-typed-merge-falsification",
     "orion-11-recursive-epistemic-reconstruction",
     "orion-12-open-world-scientific-discovery",
+    # The publication regression module names ORION-14 while checking that its
+    # clean-CI render provenance remains attached to the batch that produced
+    # it.  The committed PDF is that canonical render, not a curated divergent
+    # artifact, and the clipping workflow already rebuilds and byte-checks it.
+    "orion-14-verified-scientific-discovery",
+    # The render-reconciliation regression test intentionally exercises this
+    # working PDF's checksum binding; the clean-CI PDF is its canonical render.
+    "orion-23-responsibility-carrying-state",
 }
 
 # Papers whose committed PDF is curated and must never be rendered from source.

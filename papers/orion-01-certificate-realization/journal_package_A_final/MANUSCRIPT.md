@@ -274,3 +274,38 @@ Sze Chun Yiu is the sole author and is responsible for the scientific claims and
 5. I. Aliev, J. A. De Loera, F. Eisenbrand, T. Oertel, and R. Weismantel, "The Support of Integer Optimal Solutions," *SIAM Journal on Optimization* **28**(3), 2152–2157 (2018), [DOI](https://doi.org/10.1137/17M1162792).
 6. J. Dehaene and B. De Moor, "Clifford Group, Stabilizer States, and Linear and Quadratic Operations over GF(2)," *Physical Review A* **68**(4), 042318 (2003), [DOI](https://doi.org/10.1103/PhysRevA.68.042318).
 7. S. Aaronson and D. Gottesman, "Improved Simulation of Stabilizer Circuits," *Physical Review A* **70**(5), 052328 (2004), [DOI](https://doi.org/10.1103/PhysRevA.70.052328).
+
+## Tool-use disclosure
+
+A generative language model assisted manuscript organization, language revision,
+adversarial review, and submission-package preparation. The listed author remains
+responsible for the mathematical statements, proofs, references, executable claims,
+and final text.
+
+## Data and code availability
+
+The source package accompanying this manuscript contains finite-group and
+Restore-sensitivity control records used for implementation checks. These files are
+provenance aids rather than theorem authority; the displayed proofs and the cited
+parent theorem/witness carry the all-size claims.
+
+## References
+
+1. N. Schillo, A. Sturm, and R. Quay, “TARE: Block Encoding Linear Combinations
+   of Pauli Strings Without Ancilla State Preparation,” arXiv:2601.05740v4
+   [quant-ph] (2026).
+2. I. Aliev, J. A. De Loera, F. Eisenbrand, T. Oertel, and R. Weismantel,
+   “The Support of Integer Optimal Solutions,” *SIAM Journal on Optimization*
+   **28**, 2152–2157 (2018). DOI: 10.1137/17M1162792.
+3. M. Freeze and W. A. Schmid, “Remarks on a generalization of the Davenport
+   constant,” *Discrete Mathematics* **310**, 3373–3389 (2010).
+   DOI: 10.1016/j.disc.2010.07.028.
+4. G. Wang, “The universal zero-sum invariant and weighted zero-sum for infinite
+   abelian groups,” *Communications in Algebra* **53**(4), 1581–1599 (2025).
+   DOI: 10.1080/00927872.2024.2418017.
+5. J. Dehaene and B. De Moor, “Clifford group, stabilizer states, and linear and
+   quadratic operations over GF(2),” *Physical Review A* **68**, 042318 (2003).
+   DOI: 10.1103/PhysRevA.68.042318.
+6. S. Aaronson and D. Gottesman, “Improved simulation of stabilizer circuits,”
+   *Physical Review A* **70**, 052328 (2004).
+   DOI: 10.1103/PhysRevA.70.052328.

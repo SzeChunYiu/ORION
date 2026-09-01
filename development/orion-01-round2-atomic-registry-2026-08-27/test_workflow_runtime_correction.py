@@ -69,6 +69,10 @@ def test_corrected_workflow_uses_a_minimal_pinned_verifier_runtime() -> None:
     assert "requirements-lock.txt" not in workflow
     assert "--no-deps" in workflow
     assert PYZX_COMMIT in workflow
+    assert "ORION-01 dependency custody" in workflow
+    assert "shared replay dependency custody violation" in workflow
+    assert "src/*|packages/*|pyproject.toml" in workflow
+    assert "Paper-1 lane scope violation" not in workflow
     assert not any(line.startswith("blist==") for line in requirements)
 
     declared = {line for line in requirements if line and not line.startswith("#")}

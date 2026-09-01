@@ -1,0 +1,20 @@
+{
+  "abstract": "Scientific-literature discovery combines evidence acquisition with decisions about when a search may stop. These functions are often evaluated as one policy, although a locally exhausted or unavailable retrieval route does not establish that the scientific task is complete. We introduce a fail-closed control layer that separates route stopping from task closure, derives route independence from backend and query provenance, distinguishes content identity from question-conditioned processing state, and retains unresolved material routes as open obligations. A 390-task complete-gold controlled index shows the intended mechanism behavior: the governed controller reaches mean recall 0.979487 with no premature task closure, but the preregistered comparison is underpowered and does not establish superiority. An exact-contract battery isolates the unresolved-route rule on 400 protected cases. The fail-closed controller is correct on 400 cases, compared with 250 for a donor-complete product that excludes unavailable material routes; an information-equivalent product ties the controller. The registered external Text REtrieval Conference COVID-19 (TREC-COVID) gate fails. Against a BM25 lexical baseline, recall@100 is lower by 0.01769 with a 95% bootstrap interval of [-0.02729,-0.00906], and the controller reads 175.7% more candidates. Although normalized discounted cumulative gain at rank 10 (nDCG@10) is higher by 0.1488, that secondary result cannot replace the registered recall-and-cost criteria. Two later BEIR diagnostics leave all five ArguAna stopping decisions unchanged after density normalization and then query-conditional estimation, localizing the defect to a signal-inert rank-overlap marginal rather than its threshold.",
+  "abstract_characters": 1747,
+  "authors": "Sze Chun Yiu (Independent Researcher)",
+  "comments": "29 pages; all null, adverse, refuted and CANNOT_CHECK results retained.",
+  "correspondence": "sze-chun.yiu@fysik.su.se",
+  "cross_lists": [
+    "cs.AI",
+    "cs.DL"
+  ],
+  "doi": null,
+  "journal_reference": null,
+  "license_recommendation": "CC BY 4.0, subject to final author selection in the arXiv portal and journal compatibility check",
+  "paper": "ORION-12",
+  "portal_status": "NOT_FILED",
+  "primary_category": "cs.IR",
+  "report_number": null,
+  "schema": "ORION.arxiv-metadata.v1",
+  "title": "Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery"
+}
