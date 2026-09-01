@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib.util
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import zipfile
@@ -84,6 +85,29 @@ def test_expanded_mirror_has_exact_25_paper_coverage(tmp_path: Path) -> None:
     assert f"Source commit: `{'a' * 40}`" in (
         destination / "MIRROR_RECEIPT_2026-08-31.md"
     ).read_text(encoding="utf-8")
+
+
+def test_expanded_mirror_preserves_tracked_symlinks(tmp_path: Path) -> None:
+    module = load_module(MIRROR, "mirror_orion_papers_all_symlinks")
+    paper = module.PAPERS[1]
+    source_root = tmp_path / "source"
+    target_root = tmp_path / "target"
+    source = source_root / "papers" / paper
+    package = source / "submission/publication-ready-20260831"
+    package.mkdir(parents=True)
+    (package / "PACKAGE_MANIFEST.json").write_text("{}\n", encoding="utf-8")
+    extension = source / "extensions/r19"
+    extension.mkdir(parents=True)
+    (extension / "result.json").write_text("{}\n", encoding="utf-8")
+    rounds = source / "rounds"
+    rounds.mkdir()
+    (rounds / "r19").symlink_to("../extensions/r19", target_is_directory=True)
+
+    module.mirror_paper(source_root, target_root, paper, "c" * 40)
+
+    mirrored = target_root / "v1-papers" / paper / "rounds/r19"
+    assert mirrored.is_symlink()
+    assert os.readlink(mirrored) == "../extensions/r19"
 
 
 def test_mirror_target_directory_overlay_replaces_source_collision(

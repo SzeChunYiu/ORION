@@ -82,7 +82,11 @@ def safe_target(target_root: Path, relative: Path) -> Path:
 def copy_item(source: Path, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     if source.is_dir():
-        shutil.copytree(source, destination)
+        # Paper trees contain tracked compatibility symlinks (for example,
+        # ORION-02 ``rounds/r19``). Expanding them into directories changes the
+        # Git object type and can duplicate files outside the declared mirror
+        # surface even when their current contents happen to hash identically.
+        shutil.copytree(source, destination, symlinks=True)
     else:
         shutil.copy2(source, destination)
 
