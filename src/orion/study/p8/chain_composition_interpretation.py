@@ -1559,30 +1559,53 @@ def main(argv: list[str]) -> int:
         f"{sensitivity['every_wrong_composition_moves_the_soundness_count']}"
     )
 
+    # A finding and an unmeasured run exit differently, because they are not the
+    # same event. The convention is already the repo's own:
+    # scripts/audit_manuscript_clipping.py ends `return 2 if (new or stale) else 0`
+    # and reserves 3 for the runs it could not check, a split its workflow states
+    # in words ("Exit 2 = new clipping or a stale baseline entry. Exit 3 = could
+    # not check"). This CLI used to answer 3 to everything, so "the composition is
+    # not sound" -- a real negative result about P8 -- left under the code meaning
+    # "I could not measure". That is the confusion this module's own
+    # _assert_all_discharged docstring refuses to make one layer up: "One says
+    # P8's interpretation is false; the other says a measurement was not taken."
     if not report["all_discharged"]:
-        print(f"UNDISCHARGED: {report['undischarged']}")
+        graded = (*report["theorems"], *report["chain_ladder"]["results"])
+        refuted = [i["name"] for i in graded if i["outcome"] == "COUNTEREXAMPLE"]
+        undecided = [i["name"] for i in graded if i["outcome"] == "UNKNOWN"]
+        if refuted:
+            print(f"REFUTED: {refuted}")
+            if undecided:
+                print(f"  (also undecided, and not counted as refuted: {undecided})")
+            return 2
+        print(
+            f"CANNOT CHECK: Z3 returned UNKNOWN for {undecided} within "
+            f"{PROOF_TIMEOUT_MS}ms. These proofs run in well under a second when "
+            "the solver is not starved, so an undecided run here is a measurement "
+            "not taken, not a theorem lost."
+        )
         return 3
     if not report["state_space_reduction"]["reduction_is_exact"]:
         print("THE 192 REPRESENTATIVES DO NOT STAND IN FOR THE 3,072 STATES")
-        return 3
+        return 2
     if not soundness["composition_is_sound"]:
         print("THE COMPOSITION IS NOT SOUND AGAINST THE CHAIN THEOREM")
-        return 3
+        return 2
     if not soundness["every_widening_hop_blocks"]:
         print("A WIDENING HOP DID NOT BLOCK")
-        return 3
+        return 2
     if not soundness["exercised_both_verdicts"]:
         print("THE COMPOSITION CORPUS EXERCISED ONE VERDICT; THE IDENTITY IS VACUOUS")
-        return 3
+        return 2
     if not counts["counts_reproduced"]:
         print("THE PUBLISHED CHAIN COUNTS WERE NOT REPRODUCED UNDER THE INTERPRETATION")
-        return 3
+        return 2
     if not frames["every_condition_carries_a_theorem"]:
         print(f"INERT FRAME CONDITIONS: {frames['inert_conditions']}")
-        return 3
+        return 2
     if not sensitivity["every_wrong_composition_moves_the_soundness_count"]:
         print("A WRONG COMPOSITION REPRODUCED THE SOUNDNESS COUNT")
-        return 3
+        return 2
     return 0
 
 

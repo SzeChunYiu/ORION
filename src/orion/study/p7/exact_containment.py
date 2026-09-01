@@ -782,8 +782,18 @@ def main(argv: list[str]) -> int:
 
     for item in report["theorems"]:
         print(f"  {item['outcome']:15s} {item['name']}")
+    # 2 = a finding, 3 = could not check, as scripts/audit_manuscript_clipping.py
+    # already uses them. A refuted theorem is a result about this containment; a
+    # solver that never returned is a measurement not taken.
     if not report["all_discharged"]:
-        print(f"UNDISCHARGED: {report['undischarged']}")
+        refuted = [i["name"] for i in report["theorems"] if i["outcome"] == "COUNTEREXAMPLE"]
+        undecided = [i["name"] for i in report["theorems"] if i["outcome"] == "UNKNOWN"]
+        if refuted:
+            print(f"REFUTED: {refuted}")
+            if undecided:
+                print(f"  (also undecided, and not counted as refuted: {undecided})")
+            return 2
+        print(f"CANNOT CHECK: Z3 returned UNKNOWN for {undecided}")
         return 3
     return 0
 

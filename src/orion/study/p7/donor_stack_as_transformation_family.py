@@ -1583,15 +1583,26 @@ def main(argv: list[str]) -> int:
         f"{sens['every_indistinguishable_assignment_is_caught_by_a_theorem']}"
     )
 
+    # 2 = a finding, 3 = could not check, as scripts/audit_manuscript_clipping.py
+    # already uses them. The distinction below between "inert" and "left
+    # undecided" was already drawn in prose by whoever wrote those two messages;
+    # it just could not reach the exit code while everything returned 3.
     if not report["all_discharged"]:
-        print(f"UNDISCHARGED: {report['undischarged']}")
+        refuted = [i["name"] for i in report["theorems"] if i["outcome"] == "COUNTEREXAMPLE"]
+        undecided = [i["name"] for i in report["theorems"] if i["outcome"] == "UNKNOWN"]
+        if refuted:
+            print(f"REFUTED: {refuted}")
+            if undecided:
+                print(f"  (also undecided, and not counted as refuted: {undecided})")
+            return 2
+        print(f"CANNOT CHECK: Z3 returned UNKNOWN for {undecided}")
         return 3
     if not counts["counts_reproduced"]:
         print("THE PUBLISHED COUNTS WERE NOT REPRODUCED UNDER THE INTERPRETATION")
-        return 3
+        return 2
     if frames["inert_conditions"]:
         print(f"INERT FRAME CONDITIONS: {frames['inert_conditions']}")
-        return 3
+        return 2
     if frames["conditions_left_undecided"]:
         # A different sentence from the one above, and it must stay different:
         # the countermodel search did not settle, so whether these carry a
@@ -1603,13 +1614,13 @@ def main(argv: list[str]) -> int:
         return 3
     if not space["every_triple_reached"]:
         print(f"ARGUMENT TRIPLES STILL UNREACHED: {space['unreached']}")
-        return 3
+        return 2
     if space["differential"]["disagreements"]:
         print("THE COMMITTED COMPOSE DISAGREES WITH THE PROVED RULE")
-        return 3
+        return 2
     if not sens["every_indistinguishable_assignment_is_caught_by_a_theorem"]:
         print("A WRONG CONTRACT ASSIGNMENT ESCAPED BOTH THE COUNTS AND THE THEOREMS")
-        return 3
+        return 2
     return 0
 
 
