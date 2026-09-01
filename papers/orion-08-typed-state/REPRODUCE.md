@@ -96,7 +96,7 @@ Protocols live under `development/orion-q-nlane-closure/`; deterministic replay 
 ## Publication synchronization
 
 The current publication authority is `CLAIM_LEDGER_V4.md`, the LaTeX manuscript
-tree, and the checksum-closed Tier-B package. Historical cross-paper registries
+tree, and the checksum-closed publication package. Historical cross-paper registries
 and V1--V3 manuscript/ledger files remain provenance and are not current release
-authority. Run the Tier-B package verifier against the final package after any
+authority. Run the publication-package verifier against the final package after any
 source or metadata change.

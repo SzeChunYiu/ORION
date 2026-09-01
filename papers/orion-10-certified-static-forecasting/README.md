@@ -4,8 +4,8 @@
 **Merged historical ID:** ORION-09  
 **Scientific authority:** `CLAIM_LEDGER_V4.md`  
 **Canonical source:** `manuscript/`  
-**Current filing package:** `submission/tier-b-final-20260901/`  
-**Terminal:** `TIER_B_ORION10_COMPLETE__ORION09_MERGED__BOUNDED_EXACT_MODELS`
+**Current filing package:** [final dual-route package](submission/tier-b-final-20260901/)  
+**Terminal:** `ORION10_COMPLETE__ORION09_MERGED__BOUNDED_EXACT_MODELS`
 
 ORION-10 studies when a numerical quantum-compilation cost has theorem authority, when finite agreement is only an implementation check, and when an interpretable regime vocabulary remains falsifiable. Under the frozen shared-tag grammar and unit objective, a support-two normalization theorem makes the restricted forecaster exact for every admitted size. The paper retains the prospective 11-versus-10 refutation, 64 hostile explanation gaps, six cost-mixed fibres, failed global proof links, an outside-cone support-three control, and the adverse weighted-Clifford transfer panel.
 
