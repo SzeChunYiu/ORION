@@ -1,0 +1,68 @@
+{
+  "schema": "ORION.A2.LongMemEvalExternalVersionFreeze.v1",
+  "date": "2026-09-01",
+  "paper_ids": ["ORION-21", "ORION-22"],
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A2 Phase 2",
+  "artifact_class": "FROZEN_BEFORE_PROTECTED_EVALUATION",
+  "protected_outcomes_accessed": false,
+  "benchmark_evaluation_executed": false,
+  "selection_rule": "Use the current upstream-maintained public benchmark version whose licence permits evaluation. The deprecated LongMemEval Hugging Face dataset is not eligible when the upstream-maintained cleaned replacement exists.",
+  "longmemeval": {
+    "name": "LongMemEval cleaned",
+    "code_repository": "xiaowu0162/LongMemEval",
+    "code_commit": "9e0b455f4ef0e2ab8f2e582289761153549043fc",
+    "code_tree": "f2b63ffd523c37a0139cccab9a936e11dbeb5820",
+    "code_license": "MIT",
+    "code_license_blob": "2e2c8491038bf0383c324a478b66a4663833efea",
+    "dataset_repository": "xiaowu0162/longmemeval-cleaned",
+    "dataset_revision": "98d7416c24c778c2fee6e6f3006e7a073259d48f",
+    "dataset_license": "MIT",
+    "dataset_files": [
+      "longmemeval_oracle.json",
+      "longmemeval_s_cleaned.json",
+      "longmemeval_m_cleaned.json"
+    ],
+    "known_file_hashes": {
+      "longmemeval_s_cleaned.json": "d6f21ea9d60a0d56f34a05b609c79c88a451d2ae03597821ea3d5a9678c3a442"
+    },
+    "snapshot_hash_is_authoritative_for_all_files": true,
+    "deprecated_dataset_excluded": {
+      "dataset_repository": "xiaowu0162/longmemeval",
+      "reason": "upstream dataset card marks it deprecated and replaced by longmemeval-cleaned"
+    }
+  },
+  "longmemeval_v2": {
+    "name": "LongMemEval-V2",
+    "code_repository": "xiaowu0162/LongMemEval-V2",
+    "code_commit": "2cc8c540bdb87fe6761629b585e727e1c4704520",
+    "code_tree": "a1c4c7dd7ff7de593b930380c0682be7f0785c23",
+    "code_license": "Apache-2.0",
+    "code_license_blob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+    "code_data_loader_blob": "75f36a8acc054a02b16e05cfd220ea7558bec4a0",
+    "dataset_repository": "xiaowu0162/longmemeval-v2",
+    "dataset_revision": "f152293e235517d504809563c833d7190b8c713b",
+    "dataset_license": "Apache-2.0",
+    "dataset_checksum_manifest_commit": "ada2a12066345df3d32afd0563f30088a1675968",
+    "dataset_core_sha256": {
+      "questions.jsonl": "0a3ae5ebea938c24d7800e1e0b0828e08ae1646f939a53853b2b8cdc08e292b7",
+      "trajectories.jsonl": "363cec9a8e87aa8d9101ce4e600aadbf7031d674056ebe4f969e8424abc5f3c6",
+      "haystacks/lme_v2_small.json": "9b5301defb23a088a5f06e45ff8d5f35e569d78305a66d492046a9fff9b46593",
+      "haystacks/lme_v2_medium.json": "4756d5126347f0d18f045bb6c47b08cb3b23e9db24386cc48a9b2879e7969b59"
+    },
+    "public_scope": {
+      "questions": 451,
+      "trajectories": 1870,
+      "domains": ["web", "enterprise"],
+      "memory_abilities": 5
+    }
+  },
+  "freeze_semantics": {
+    "version_identity": "exact upstream commit/revision, not a moving main branch",
+    "hash_identity": "Git commit/tree/blob identity for code plus Hugging Face snapshot revision and upstream SHA-256 checksums where published",
+    "future_upstream_changes": "ignored for this campaign unless this freeze is prospectively superseded before any protected evaluation; after protected evaluation begins, no version substitution is allowed",
+    "materialization_check": "before execution, download exactly the frozen dataset revision and require all published per-file hashes to match; any mismatch is CANNOT_CHECK_VERSION_BINDING",
+    "licence_check": "MIT for LongMemEval cleaned and Apache-2.0 for LongMemEval-V2 at the frozen public sources"
+  },
+  "terminal": "VERSIONS_AND_HASHES_FROZEN__OUTCOMES_UNRUN",
+  "scientific_authority_delta": "NONE__VERSION_FREEZE_ONLY"
+}
