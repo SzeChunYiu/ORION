@@ -1,0 +1,67 @@
+{
+  "schema": "ORION.A2.ScienceAgentBenchVerifiedSubstrateFreeze.v1",
+  "date": "2026-09-01",
+  "paper_ids": ["ORION-21", "ORION-22"],
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A2 Phase 1",
+  "artifact_class": "FROZEN_BEFORE_PROTECTED_EVALUATION",
+  "protected_outcomes_accessed": false,
+  "campaign_executed": false,
+  "dataset": {
+    "repository": "osunlp/ScienceAgentBench",
+    "config": "default",
+    "split": "verified",
+    "verified_split_introducing_commit": "5c930ba210e4e481a08cc93bdcc11ff1620b3646",
+    "verified_parquet_path": "data/verified-00000-of-00001.parquet",
+    "verified_parquet_sha256": "c6f937863a220bd1762a00c20a0f79cc8dfca900b819bdb552150310731ae147",
+    "verified_parquet_bytes": 129086,
+    "declared_rows": 102,
+    "declared_domains": 4,
+    "license": "CC-BY-4.0 except the six upstream-license instances listed below",
+    "readme_commit_after_verified_release": "9c6e96c9e74572e979b0930ee735041cef528cb7"
+  },
+  "upstream_execution_repository": {
+    "repository": "OSU-NLP-Group/ScienceAgentBench",
+    "frozen_instruction_commit": "c26e151ed601ba109dc4d35e057ff8e73fec469d"
+  },
+  "clean_license_exclusion": {
+    "instance_ids": [3, 32, 46, 53, 54, 84],
+    "rule": "exclude exactly these six instance ids before any tuning/protected split or result computation; do not expand or shrink this set after outcomes",
+    "upstream_sources": {
+      "3": "hackingmaterials/matminer",
+      "32": "rasterio/rasterio",
+      "46": "rasterio/rasterio",
+      "53": "rasterio/rasterio",
+      "54": "rasterio/rasterio",
+      "84": "rasterio/rasterio"
+    }
+  },
+  "scientific_unit": {
+    "primary": "task_family",
+    "family_key": "github_name",
+    "domain_key": "domain",
+    "instance_rows_are_not_independent_n": true
+  },
+  "dataset_only_scope_gate": {
+    "minimum_clean_tasks": 1,
+    "minimum_task_families": 20,
+    "minimum_domains": 3,
+    "model_family_requirement": ">=2 exact executable model families remains separately unresolved and is not satisfied by this substrate artifact"
+  },
+  "authority_boundary": {
+    "may_establish": [
+      "immutable verified annotation substrate identity",
+      "exact six-instance clean-license exclusion",
+      "post-exclusion task-family/domain census",
+      "dataset-only >=20-family and >=3-domain precondition"
+    ],
+    "cannot_establish": [
+      "campaign execution",
+      ">=2 model-family execution",
+      "adaptive superiority",
+      "bootstrap result",
+      "regret result",
+      "any protected outcome"
+    ]
+  },
+  "scientific_authority_delta": "NONE__SUBSTRATE_AND_CENSUS_PREFLIGHT_ONLY"
+}
