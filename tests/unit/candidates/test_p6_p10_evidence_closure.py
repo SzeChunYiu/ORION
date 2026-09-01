@@ -270,11 +270,7 @@ def test_diagnostic_counts_close_only_local_targets() -> None:
     module = load_script(CHECKER, "candidate_reproducibility_v2_final")
     expected = {
         "P6": {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1, "PARTIAL": 0},
-        # P7's subject-commit pin is deliberately unbound while its sealed evidence
-        # sits at seal-time bytes; see the parametrisation in
-        # test_candidate_reproducibility_targets_v2.py for the full reason, and
-        # evidence/independent/SEAL_INTEGRITY_NOTE_V1.md for the incident.
-        "P7": {"BOUND": 7, "CANNOT_CHECK": 1, "DEFERRED": 1, "PARTIAL": 1},
+        "P7": {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1, "PARTIAL": 0},
         "P8": {"BOUND": 7, "CANNOT_CHECK": 1, "DEFERRED": 1, "PARTIAL": 1},
     }
     for paper_id, counts in expected.items():

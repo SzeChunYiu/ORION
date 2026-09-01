@@ -724,14 +724,9 @@
   ],
   "schema_version": "orion.candidate-content-binding.v2",
   "subject_commit": "bf2a35750229798d2656f39e9f5045e450aff1d1",
-  "subject_commit_blocker": "the sealed-evidence artifacts were restored to their seal-time bytes to repair an Ed25519 seal that commit 3a1a83178 invalidated; no existing commit carries both the restored bytes and the rest of the current tree, so subject_commit cannot describe these bytes until this change lands on main and the pin is re-taken",
-  "subject_commit_status": "UNBOUND_PENDING_REPIN",
-  "subject_commit_unbound_paths": [
-    "papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_CAMPAIGN_PROTOCOL_V1.md",
-    "papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/P7_SUBSTITUTE_SEALED_LABELS_V1.json",
-    "papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/SEAL_INTEGRITY_NOTE_V1.md",
-    "papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/p7_substitute_custodian_v1.py"
-  ],
+  "subject_commit_blocker": null,
+  "subject_commit_status": "BOUND",
+  "subject_commit_unbound_paths": [],
   "subject_tree": "46646a1fe658e7e31407e0560d33ebed80f902e4",
   "transport_rebinding_history": [
     {

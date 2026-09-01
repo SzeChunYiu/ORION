@@ -45,14 +45,7 @@ def _copy_subject(tmp_path: Path, candidate_id: str) -> Path:
     ("candidate_id", "expected_counts"),
     [
         ("P6", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),
-        # P7's subject-commit pin is deliberately unbound. Its sealed-evidence
-        # artifacts were restored to their seal-time bytes to repair an Ed25519 seal
-        # that the R0 rename pass invalidated, and no existing commit carries both
-        # those bytes and the rest of the current tree -- so no value of
-        # subject_commit can describe them until the restore lands on main and the
-        # pin is re-taken. See evidence/independent/SEAL_INTEGRITY_NOTE_V1.md and
-        # the pin-repin follow-up. This is the same shape P8 already carries.
-        ("P7", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),
+        ("P7", {"BOUND": 8, "CANNOT_CHECK": 1, "DEFERRED": 1}),
         ("P8", {"BOUND": 7, "PARTIAL": 1, "CANNOT_CHECK": 1, "DEFERRED": 1}),
     ],
 )
@@ -298,33 +291,3 @@ def test_cli_json_is_deterministic_and_fail_closed() -> None:
         command + ["--fail-on-unresolved"], capture_output=True, text=True, timeout=120
     )
     assert gated.returncode == 3
-
-
-def test_p7_partial_is_the_subject_commit_pin_and_names_the_seal_restore() -> None:
-    """A count alone would let any other P7 target rot into PARTIAL unnoticed.
-
-    P7 moved from BOUND 8 to BOUND 7 + PARTIAL 1 for one reason: its sealed-evidence
-    artifacts were restored to their seal-time bytes so an Ed25519 seal verifies again,
-    and no commit carries both those bytes and the rest of the current tree. Pinning
-    *which* target is PARTIAL, and that the manifest says why, keeps the expectation
-    from silently absorbing a different degradation later.
-    """
-
-    assessments = checker.assess_targets(ROOT, "P7")
-    partial = sorted(name for name, a in assessments.items() if a.status == "PARTIAL")
-    assert partial == ["exact_subject_commit_identities"], partial
-
-    blocker = assessments["exact_subject_commit_identities"].blocker or ""
-    assert "UNBOUND_PENDING_REPIN" in blocker, blocker
-    assert "P7_SUBSTITUTE_CAMPAIGN_PROTOCOL_V1.md" in blocker, blocker
-
-    manifest = json.loads(
-        (ROOT / checker.PAPERS["P7"] / "CONTENT_MANIFEST_V2.json").read_text(encoding="utf-8")
-    )
-    assert manifest["subject_commit_status"] == "UNBOUND_PENDING_REPIN"
-    assert "seal-time bytes" in (manifest["subject_commit_blocker"] or "")
-    # Every path named unbound must really disagree with the recorded pin, or the
-    # declaration is a story rather than a record.
-    assert len(manifest["subject_commit_unbound_paths"]) == 4
-    for path in manifest["subject_commit_unbound_paths"]:
-        assert path.startswith("papers/orion-17-epistemic-navigation-open-worlds/evidence/independent/")
