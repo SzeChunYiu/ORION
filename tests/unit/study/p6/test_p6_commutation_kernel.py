@@ -184,8 +184,14 @@ class TestTheCommittedArtifact:
 
 class TestTheCrossCheck:
     def test_z3_refutes_the_negation(self) -> None:
-        outcome = ck.z3_cross_check()
-        assert str(getattr(outcome, "outcome", outcome)) == "ProofOutcome.PROVED"
+        # A bare equality against "PROVED" makes a contended host indistinguishable
+        # from a countermodel, so a slow runner retracts Theorem 7 without saying so
+        # (#2011). The shared helper fails on both and reports which one happened.
+        from orion.programme.mechanized import ProofResult, assert_all_discharged
+
+        result = ck.z3_cross_check()
+        assert isinstance(result, ProofResult)
+        assert_all_discharged([result], what="the P6 commutation-kernel Z3 cross-check")
 
 
 class TestTheBinding:

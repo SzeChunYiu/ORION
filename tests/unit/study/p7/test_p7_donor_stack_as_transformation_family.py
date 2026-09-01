@@ -178,8 +178,25 @@ class TestTheFrameConditionsCarryTheProof:
         # No longer what load-bearing is measured by -- that is now a bounded
         # countermodel -- but still worth keeping: it says an unknown in the
         # unbounded drop runs is not a rushed proof.
-        assert load_bearing["slowest_discharged_seconds"] * 1000 < (
-            load_bearing["drop_timeout_ms"] / 50
+        #
+        # This bound is deliberately weaker than the one it replaces, and the
+        # weakening is the fix (#1995). The old form required a 50x headroom
+        # (`slowest * 1000 < drop_timeout_ms / 50`), which is a statement about how
+        # fast the host is, not about how hard the formula is: the identical proof
+        # measured 854ms on a contended CI runner against a 60ms bound and failed,
+        # while passing on the runs either side of it. Nothing in the module
+        # justified 50 over any other number.
+        #
+        # What the claim actually needs is that a discharged proof was not truncated
+        # by the budget, and 2x headroom is the defensible form of that. The module
+        # already computes the ratio in consistent units, so use its number rather
+        # than re-deriving it here and risking a seconds/milliseconds slip.
+        factor = load_bearing["headroom_factor"]
+        assert factor is not None, "no proof was discharged, so no headroom was measured"
+        assert factor >= 2.0, (
+            f"the slowest discharged proof used more than half the drop budget "
+            f"(headroom factor {factor}). Either the budget is too tight to call an "
+            f"unbounded UNKNOWN a hard formula, or this host is heavily contended."
         )
 
     def test_the_bounded_runs_are_timed_separately(self, load_bearing: dict) -> None:
