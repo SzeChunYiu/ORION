@@ -1,0 +1,46 @@
+{
+  "schema": "ORION.A2.P12StopGoFinalAnalysisFreeze.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A2 Phase 1",
+  "artifact_class": "FROZEN_ANALYSIS_BEFORE_PROTECTED_PUBLIC_DATA_CAMPAIGN",
+  "protected_outcomes_accessed": false,
+  "parent_protocol": {
+    "path": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_STOPGO_FROZEN_MENUS_V1.md",
+    "git_blob_sha": "632e959eeafd3fe2cdd246be83224773ae19c042"
+  },
+  "scientific_unit": "task family",
+  "minimum_scope": {
+    "task_families": 20,
+    "domains": 3,
+    "model_families": 2
+  },
+  "arm_ids": ["ADAPTIVE", "ONE_SIGNAL_STATE", "ONE_SIGNAL_REASON"],
+  "comparator_selection": "stronger one-signal arm identity must be frozen from tuning data before protected evaluation; protected results may not select or swap it",
+  "family_score": "for each task family, average the frozen normalized-point score within arm across the exact frozen model-family set; models/seeds do not become independent N",
+  "family_gain": "ADAPTIVE family score - selected one-signal family score",
+  "hindsight_regret": "hindsight-oracle normalized points - ADAPTIVE normalized points, evaluated per family x model and maximized over the complete protected campaign",
+  "uncertainty": {
+    "unit": "task family",
+    "method": "deterministic SHA-256 counter-stream nonparametric bootstrap of family gains",
+    "resamples": 10000,
+    "interval": "equal-tail percentile 95%"
+  },
+  "pass_gate_all_required": {
+    "mean_family_gain_normalized_points": ">= 3.0",
+    "family_bootstrap_lower_95": "> 0",
+    "positive_domains": ">= 2 of the frozen 3-domain claim set; if the frozen campaign has more than 3 domains, require positive in at least ceil(2D/3)",
+    "leave_one_domain_out": "mean family gain > 0 for every frozen domain omitted in turn",
+    "maximum_hindsight_regret": "<= 2.0 normalized points"
+  },
+  "terminal_priority": [
+    "CANNOT_CHECK_SCOPE_OR_BINDING",
+    "NOT_SUPPORTED_GAIN_LT_3",
+    "NOT_SUPPORTED_BOOTSTRAP",
+    "HETEROGENEOUS_DOMAIN_FAILURE",
+    "LEAVE_ONE_DOMAIN_OUT_FAILURE",
+    "NOT_SUPPORTED_MAX_REGRET",
+    "SUPPORTED_FROZEN_P12_STOPGO_GATE"
+  ],
+  "negative_result_policy": "Any failed component stops the positive complementarity claim. Do not change the stronger comparator, family unit, threshold, domain denominator or regret definition until positive; a successor must get a new preregistration identity.",
+  "scientific_authority_delta": "NONE__FINAL_ANALYSIS_PREREGISTRATION_ONLY"
+}
