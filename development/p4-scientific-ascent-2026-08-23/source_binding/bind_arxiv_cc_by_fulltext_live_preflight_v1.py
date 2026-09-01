@@ -20,6 +20,7 @@ EXPECTED_POOL_SHA256 = "47dd24657752731cdf45bab95852f3e18b50946af8a29b5acee95956
 EXPECTED_ROWS = 1536
 EXPECTED_PER_DOMAIN = {"EARTH_ENVIRONMENT": 384, "LIFE_BIOMEDICAL": 384, "PHYSICAL_ENGINEERING": 384, "SCIENTIFIC_SOFTWARE": 384}
 FROZEN_SAMPLE_INDICES = [0, 383, 384, 767, 768, 1151, 1152, 1535]
+FROZEN_SAMPLE_DOMAINS = ["EARTH_ENVIRONMENT", "EARTH_ENVIRONMENT", "LIFE_BIOMEDICAL", "LIFE_BIOMEDICAL", "SCIENTIFIC_SOFTWARE", "SCIENTIFIC_SOFTWARE", "PHYSICAL_ENGINEERING", "PHYSICAL_ENGINEERING"]
 REQUEST_INTERVAL_SECONDS = 3.1
 MAX_PDF_BYTES = 64 * 1024 * 1024
 USER_AGENT = "ORION-P4-A5-fulltext-preflight-v1/1.0 (research source binding; https://github.com/SzeChunYiu/ORION)"
@@ -91,8 +92,7 @@ def load_frozen_pool() -> tuple[dict[str, Any], list[dict[str, Any]]]:
     if len(rows) != EXPECTED_ROWS or per_domain != EXPECTED_PER_DOMAIN:
         raise ValueError(f"source pool shape mismatch: rows={len(rows)} per_domain={per_domain}")
     sampled_domains = [rows[i]["domain_id"] for i in FROZEN_SAMPLE_INDICES]
-    expected_domains = ["EARTH_ENVIRONMENT", "EARTH_ENVIRONMENT", "LIFE_BIOMEDICAL", "LIFE_BIOMEDICAL", "PHYSICAL_ENGINEERING", "PHYSICAL_ENGINEERING", "SCIENTIFIC_SOFTWARE", "SCIENTIFIC_SOFTWARE"]
-    if sampled_domains != expected_domains:
+    if sampled_domains != FROZEN_SAMPLE_DOMAINS:
         raise ValueError(f"frozen sample no longer maps two-per-domain: {sampled_domains}")
     return binding, rows
 
