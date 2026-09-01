@@ -6,7 +6,7 @@ For the shared-tag unit objective, a support-two normalization theorem makes the
 
 ## Donor and priority limits
 
-- Scientific authority is bound to `CLAIM_LEDGER_V4.md` and terminal `TIER_B_ORION10_COMPLETE__ORION09_MERGED__BOUNDED_EXACT_MODELS`.
+- Scientific authority is bound to `CLAIM_LEDGER_V4.md` and terminal `ORION10_COMPLETE__ORION09_MERGED__BOUNDED_EXACT_MODELS`.
 - Generic methods, venue conventions, comparator mechanisms, and cited donor results remain donor-owned.
 - The paper claims the bounded formal, controlled, or measurement residual above; it does not claim priority for a generic donor primitive.
 - No exhaustive first-in-literature, editorial-acceptance, venue-ranking, or independent-replication claim is made by this package.

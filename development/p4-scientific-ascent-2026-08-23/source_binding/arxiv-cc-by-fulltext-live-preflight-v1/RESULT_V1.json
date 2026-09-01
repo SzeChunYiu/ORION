@@ -1,0 +1,114 @@
+{
+  "baseline_predictions_accessed": false,
+  "bindings": [
+    {
+      "abstract_sha256": "2dfa855c9d3650c9a4484b7cd0c4b9691f1300976e50ee63a980091063f18b1d",
+      "domain_id": "EARTH_ENVIRONMENT",
+      "exact_arxiv_id": "1801.09096v1",
+      "pdf_bytes": 984752,
+      "pdf_sha256": "71bfd9838971530820eec7f8c433647686a5c6a988fbb4bf2888b787d802f5da",
+      "pool_index": 0
+    },
+    {
+      "abstract_sha256": "1f333f1c39a38752155f459846ed40fa4d05b85b700d8dc25c10cbb48bdd5f93",
+      "domain_id": "EARTH_ENVIRONMENT",
+      "exact_arxiv_id": "2007.07828v1",
+      "pdf_bytes": 149036,
+      "pdf_sha256": "8ad451cb16b12295446c4495e2a212f9edaea7483efc6788429e28ee463adcb3",
+      "pool_index": 383
+    },
+    {
+      "abstract_sha256": "005ebbdab584622f63c94cd940444c38d4506531ea9b92f6782a28e7dbbd466b",
+      "domain_id": "LIFE_BIOMEDICAL",
+      "exact_arxiv_id": "1801.00636v1",
+      "pdf_bytes": 2981982,
+      "pdf_sha256": "adff320e9e73e575037d2e41b850f11a0d8f1c585b292a03e6f64bba008b32f9",
+      "pool_index": 384
+    },
+    {
+      "abstract_sha256": "e2ebe16257a04ba849d9cf90d98e0e83edf1b181be4168a41e9dbd156e39a534",
+      "domain_id": "LIFE_BIOMEDICAL",
+      "exact_arxiv_id": "1808.02195v2",
+      "pdf_bytes": 1071946,
+      "pdf_sha256": "31bf4b3025199d9bd1320abff4d6b122c31db5b7bbee8ed7bf9a1ebdcd3c7d20",
+      "pool_index": 767
+    },
+    {
+      "abstract_sha256": "9631d2d76102b13be16ad31fe844c6da68920a118e811c6cec8ec23e35d93870",
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "exact_arxiv_id": "1801.04644v1",
+      "pdf_bytes": 694267,
+      "pdf_sha256": "8b5b9cf2e38c53abbaa1237f56174b5bda3a755407333e004a4f04409ca3bc52",
+      "pool_index": 768
+    },
+    {
+      "abstract_sha256": "775721c595ff193577deff2f04e1f7de3932c44fb08ad07163d7f0b5e08f0b30",
+      "domain_id": "SCIENTIFIC_SOFTWARE",
+      "exact_arxiv_id": "2103.11013v1",
+      "pdf_bytes": 111583,
+      "pdf_sha256": "68ad94ee7f37f8d370d04e8a027f7a3cc0552636e30ed8b463d5b8064022def4",
+      "pool_index": 1151
+    },
+    {
+      "abstract_sha256": "297d1cc59452bba00f729af43f0f7b3d1a8df9c53a95e593600c720f8fd24fed",
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "exact_arxiv_id": "1801.02128v1",
+      "pdf_bytes": 4181236,
+      "pdf_sha256": "6b534137f95df42ff20d60cde7de3fb8348ad38b61eb3f7c79dab1aa00cdce75",
+      "pool_index": 1152
+    },
+    {
+      "abstract_sha256": "e0a88b9f23a357bfb397965adcf3a1f382666f18ededa4aa35859e2f8c8de415",
+      "domain_id": "PHYSICAL_ENGINEERING",
+      "exact_arxiv_id": "1909.05128v1",
+      "pdf_bytes": 478465,
+      "pdf_sha256": "9190ebe40c51a28505644213a8ebbf3f3ab5aef72f9ba7283a801cbdb0cfae13",
+      "pool_index": 1535
+    }
+  ],
+  "bound_n": 8,
+  "cannot_check_n": 0,
+  "case_eligibility_adjudicated": false,
+  "date": "2026-09-01",
+  "external_gold_accessed": false,
+  "full_pool_per_item_binding_complete": false,
+  "grants_scientific_authority": false,
+  "network_policy": {
+    "allowed_final_hosts": [
+      "arxiv.org",
+      "export.arxiv.org"
+    ],
+    "maximum_concurrency": 1,
+    "maximum_pdf_bytes": 67108864,
+    "minimum_request_interval_seconds": 3.1,
+    "retries_per_pdf": 3,
+    "timeout_seconds": 120
+  },
+  "protected_orion_predictions_accessed": false,
+  "result_rows_sha256": "7c537060a865da06d86406129a9f6d4cc182415279b0d33e3f823a56ce50c82a",
+  "route_specific_pair_adjudication_performed": false,
+  "schema": "ORION.A5.ArxivCCByFulltextLivePreflightDurableResult.v1",
+  "scientific_authority_delta": "NONE__DURABLE_LIVE_SOURCE_BINDING_PREFLIGHT_RECEIPT_ONLY",
+  "selection_indices": [
+    0,
+    383,
+    384,
+    767,
+    768,
+    1151,
+    1152,
+    1535
+  ],
+  "source_binding_id": "P4.NAT.AXIS.768.ARXIV_CC_BY_POOL_1536.V1",
+  "source_pool_rows": 1536,
+  "source_pool_sha256": "47dd24657752731cdf45bab95852f3e18b50946af8a29b5acee95956ec81d895",
+  "source_run": {
+    "artifact_id": 9814382058,
+    "artifact_zip_sha256": "63864d2d06770cf1af629f7fe25d8f11818fec854a7a41a224053801d7ae282d",
+    "head_sha": "780f21176942cb05ab2cc37d3f297c6e362883ea",
+    "result_json_sha256": "0adfe71b1e8d513d62b7d7a590a1973a521add8428fe2e3ded19a1d8dc2168fd",
+    "workflow_job_id": 99973407799,
+    "workflow_run_id": 33542940707
+  },
+  "terminal": "ARXIV_CC_BY_EXACT_VERSION_FULLTEXT_LIVE_PREFLIGHT_PASS"
+}
