@@ -1,0 +1,41 @@
+name: ORION A5 comparator execution freeze v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a5-comparator-freeze-v1.yml"
+      - "papers/orion-14-verified-scientific-discovery/protocol/P4_NATURALISTIC_IDENTIFIABILITY_SUCCESSOR_V2_AMENDMENT.json"
+      - "papers/orion-14-verified-scientific-discovery/protocol/a5-comparator-freeze-v1/**"
+permissions:
+  contents: read
+jobs:
+  comparator-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - name: Verify outcome-blind comparator freeze and exhaustive C4 parity
+        run: python papers/orion-14-verified-scientific-discovery/protocol/a5-comparator-freeze-v1/check_comparator_freeze_v1.py
+      - name: Verify immutable NLI snapshot metadata without downloading weights
+        run: |
+          set -euo pipefail
+          rev=eb8b17b1983bca679126ea69b12b5d28c5fe9b9a
+          url="https://huggingface.co/api/models/MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli/revision/${rev}?blobs=true"
+          curl --fail --location --silent --show-error "$url" -o /tmp/model.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/model.json'))
+          assert d.get('sha') == 'eb8b17b1983bca679126ea69b12b5d28c5fe9b9a', d.get('sha')
+          assert (d.get('cardData') or {}).get('license') == 'mit', (d.get('cardData') or {}).get('license')
+          row=next(x for x in d['siblings'] if x['rfilename']=='model.safetensors')
+          lfs=row.get('lfs') or {}
+          assert lfs.get('sha256') == '06d6fd89edd4f97816831626daafbdb0b029cf63bae8edc0bccab1d64e2e7707', lfs
+          assert lfs.get('size') == 368877646, lfs
+          print('A5_BACKBONE_BINDING_GREEN', d['sha'], lfs['sha256'], lfs['size'])
+          PY
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
