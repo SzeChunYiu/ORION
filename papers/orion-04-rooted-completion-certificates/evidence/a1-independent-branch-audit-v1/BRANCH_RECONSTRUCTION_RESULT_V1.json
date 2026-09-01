@@ -1,0 +1,74 @@
+{
+  "comparison_to_committed": {
+    "atlas_path": "papers/orion-04-rooted-completion-certificates/evidence/global-obstruction-v1/PROJECTIVE_LINE_ATLAS.json",
+    "branches_exact": true,
+    "committed_branch_count": 78,
+    "committed_line_state_count": 21,
+    "committed_pattern_count": 60,
+    "cover_path": "papers/orion-04-rooted-completion-certificates/evidence/global-obstruction-v1/FULL_CUBE_COVER.json",
+    "extra_branches": [],
+    "extra_line_states": [],
+    "extra_patterns": [],
+    "generated_branch_count": 78,
+    "generated_line_state_count": 21,
+    "generated_lower_branch_count": 51,
+    "generated_pattern_count": 60,
+    "generated_upper_branch_count": 27,
+    "line_states_exact": true,
+    "missing_branches": [],
+    "missing_line_states": [],
+    "missing_patterns": [],
+    "patterns_exact": true,
+    "unknown_committed_labels": []
+  },
+  "counts": {
+    "branches_support_14_22": 51,
+    "branches_support_23_31": 27,
+    "branches_total": 78,
+    "patterns": 60,
+    "patterns_support_14_22": 42,
+    "patterns_support_23_31": 18,
+    "projective_line_states": 21
+  },
+  "d4_target_execution_performed_by_this_audit": false,
+  "external_peer_review_authority": false,
+  "generation_does_not_import": [
+    "current branch list",
+    "current C engines",
+    "current fingerprints",
+    "current generator output"
+  ],
+  "limitations": [
+    "This reconstructs the finite cover, not the zero-survivor search result.",
+    "It does not supply external/human peer-review authority.",
+    "It does not test the separate forged-zero-solution-digest mutation control."
+  ],
+  "method": "equation + primitive projective-line enumeration + eta/rank case analysis",
+  "mutation_controls": {
+    "all_rejected": true,
+    "altered_eta_threshold_15": {
+      "mutated_branch_count": 80,
+      "rejected": true
+    },
+    "altered_multiplicity_equation_total_30": {
+      "mutated_pattern_count": 56,
+      "rejected": true
+    },
+    "altered_rank_condition_drop_c4_eq_3_plane_split": {
+      "mutated_branch_count": 69,
+      "rejected": true
+    },
+    "omitted_one_branch": {
+      "mutated_branch_count": 77,
+      "rejected": true
+    }
+  },
+  "projective_line_consequences": {
+    "high_points_pairwise_projectively_distinct": true,
+    "mult4_isolated": true,
+    "two_mult2_collinear_forbidden": true
+  },
+  "schema": "ORION04.A1.IndependentBranchProofAudit.v1",
+  "scientific_authority_delta": "NONE",
+  "status": "PASS__INDEPENDENT_COVER_RECONSTRUCTION_MATCHES_COMMITTED"
+}
