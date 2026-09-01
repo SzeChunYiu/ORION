@@ -33,8 +33,8 @@ custody*, *independent investigator / laboratory / institution / group / team* â
 returned 171 occurrences, 119 of them without a nearby same-researcher qualifier.
 **That result was not reportable**, and the reason matters: nearly all of those
 sentences *require* external verification rather than claim it â€” "lacks a
-self-contained external verification path", "External replication remains open", "no
-role in this ledger counts as independent external verification". A checker that
+self-contained external verification path", "External replication remains open",
+"no role in this ledger counts as independent external verification". A checker that
 matches the topic instead of the assertion cries wolf on its first real run.
 
 The reported pass therefore demands three things of a single sentence: claim
