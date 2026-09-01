@@ -1,0 +1,32 @@
+{
+  "all_unrepaired_edges_use_vacuous_transport": true,
+  "amplifying_edges_repaired": 0,
+  "amplifying_edges_unrepaired": 4,
+  "gold_broken": [],
+  "gold_verdicts_checked": 16,
+  "metric": "state-sensitive vacuity: transport coords vacuous iff dest transport_vacuous",
+  "obligations_only_edges_repaired": 0,
+  "obligations_only_edges_unrepaired": 0,
+  "predicates_not_evaluated": [
+    "whether transport_vacuous can be misreported \u2014 it can; the repair relocates trust onto a fact of the derivation rather than removing trust",
+    "whether the repair is sound over ORION-16's full formal core rather than this eight-coordinate audit classifier",
+    "whether the VACUOUS reading is the papers' intended one, which is argued in ../A6_AMPLIFICATION_COUNTEREXAMPLE_V1.md and not proved"
+  ],
+  "predictions": {
+    "P1_metric_still_detects_attack_unrepaired": true,
+    "P2_zero_amplifying_after_repair": true,
+    "P3_gold_preserved": true,
+    "P4_no_obligations_only_edge": true
+  },
+  "predictions_failed": [],
+  "prior_receipt_stands": "REPAIR_RESULT_V1.json records P1 failing and is not edited",
+  "protocol_sha256": "619c7130fadda2933ce6cf44910bf2b39f280df136e66504fcd2233ec789b841",
+  "receipt_sha256": "a6f68ec5805b084237e5ab07742229558af05e05e7e84271b5d6995ca76c1488",
+  "schema": "A6.AmplificationRepairCheck.v2",
+  "scientific_authority_delta": "NONE",
+  "states_enumerated": 512,
+  "subject": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py",
+  "subject_sha256": "698f49ca952f59ec015ff50aafec9f78a44c4a17481723dcede4a3b5e4c8c4db",
+  "supersedes_metric_of": "check_repair_v1.py (coordinate-sensitive vacuity list)",
+  "verdict": "REPAIR_HOLDS_UNDER_CORRECTED_METRIC_WITH_CONTROL"
+}
