@@ -187,9 +187,16 @@ class TestTheCrossCheck:
         # A bare equality against "PROVED" makes a contended host indistinguishable
         # from a countermodel, so a slow runner retracts Theorem 7 without saying so
         # (#2011). The shared helper fails on both and reports which one happened.
-        from orion.programme.mechanized import ProofResult, assert_all_discharged
+        from orion.programme.mechanized import ProofResult
+        from orion.programme.proof_assertions import assert_all_discharged
 
-        result = ck.z3_cross_check()
+        # The 60s default is not headroom, it is the wall this keeps hitting: CI run
+        # 33512213821 spent 60.17s here and returned UNKNOWN, on a PR touching only
+        # ORION-14 files. Reporting an exhausted budget honestly (below) is necessary
+        # and not sufficient -- a check that legibly fails on every contended runner
+        # is still a check nobody can act on. Five minutes is ~5x the unloaded cost
+        # and is only ever paid when the host is contended.
+        result = ck.z3_cross_check(timeout_ms=300_000)
         assert isinstance(result, ProofResult)
         assert_all_discharged([result], what="the P6 commutation-kernel Z3 cross-check")
 

@@ -10,12 +10,8 @@ from __future__ import annotations
 
 import pytest
 
-from orion.programme.mechanized import (
-    ProofOutcome,
-    ProofResult,
-    Theorem,
-    assert_all_discharged,
-)
+from orion.programme.mechanized import ProofOutcome, ProofResult, Theorem
+from orion.programme.proof_assertions import assert_all_discharged
 
 
 def _result(name: str, outcome: ProofOutcome) -> ProofResult:

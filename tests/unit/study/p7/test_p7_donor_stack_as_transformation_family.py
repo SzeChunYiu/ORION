@@ -41,7 +41,14 @@ def counts() -> dict:
 
 @pytest.fixture(scope="module")
 def load_bearing() -> dict:
-    return ds.frame_conditions_are_load_bearing()
+    # The module's own docstring is right that a longer refutation budget "lowers
+    # the odds without changing what an exhausted budget is reported as" -- so the
+    # reporting is fixed first, in the pinned-theorem test below. This is the other
+    # half. CI run 33511788834 exhausted the 40s default on
+    # DISTINCT_HANDOFFS_CAN_DIFFER_IN_VERDICT and reported a frame condition as
+    # carrying one theorem fewer. Most calls in the sweep return well inside the
+    # budget, so the raise is paid only where the search is actually hard.
+    return ds.frame_conditions_are_load_bearing(refutation_timeout_ms=120_000)
 
 
 @pytest.fixture(scope="module")

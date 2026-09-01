@@ -26,7 +26,7 @@ from pathlib import Path
 
 import pytest
 
-from orion.programme.mechanized import assert_all_discharged
+from orion.programme.proof_assertions import assert_all_discharged
 from orion.study.p7 import composition_calculus_smt as calc
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
