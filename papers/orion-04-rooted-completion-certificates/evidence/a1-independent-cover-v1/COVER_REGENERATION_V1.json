@@ -1,0 +1,41 @@
+{
+  "admissible_patterns": 60,
+  "admissible_supports_14_to_22": 42,
+  "admissible_supports_23_to_31": 18,
+  "backend": "exact Python over integer tuples (existing engines are C bitmask/AVX2)",
+  "branch_partition": {
+    "reason": "The 78 rank/plane branches subdivide the 60 patterns using the corridor and saturation lemmas -- eta(C_5^2)=13, the four multiplicity-four rank-three basis, the c_4=3 plane case, and the rank(H) profiles (2,2,2)/(4,2,2)/(4,4,2). WAVE3_SCOPED_MANUSCRIPT_V3 states these in prose but not at the precision needed to re-derive 51 and 27 without guessing. Guessing them and matching the published counts would be the failure mode this whole exercise exists to avoid.",
+    "status": "NOT_REGENERATED",
+    "what_would_close_it": "the explicit branch predicates, or the lemma statements with enough detail to enumerate the plane-direction and basis-extension cases"
+  },
+  "checks": {
+    "admissible_count_is_60": true,
+    "every_pattern_satisfies_length_equation": true,
+    "every_pattern_support_is_sum_of_counts": true,
+    "no_duplicate_patterns": true
+  },
+  "expected_by_issue_49": {
+    "admissible_patterns": 60,
+    "branches_14_22": 51,
+    "branches_23_31": 27,
+    "branches_total": 78
+  },
+  "independent_of": [
+    "engine_b",
+    "existing C engines",
+    "existing branch list",
+    "existing fingerprints",
+    "existing generator output"
+  ],
+  "mutation_controls": {
+    "altered_multiplicity_equation_total_30": 56,
+    "altered_multiplicity_equation_total_32": 66,
+    "altered_support_floor_13": 64,
+    "altered_support_floor_15": 56
+  },
+  "mutation_controls_all_differ_from_60": true,
+  "pattern_regeneration_agrees": true,
+  "raw_solutions_to_length_equation": 72,
+  "schema": "ORION04.A1.IndependentCoverRegeneration.v1",
+  "scientific_authority_delta": "NONE"
+}
