@@ -32,6 +32,6 @@ manuscript. Digests are SHA-256 over file bytes.
 | `manuscript/sections/p2x_unresolved_route_successor.tex` | `0f5756b5328c3320545a0a9523590f8dfc5dfa17d372f98d251cc25e3bf14018` |
 | `manuscript/sections/results.tex` | `5ed8c29bdb27a14742fb2ac86482f31f9215bf7395bde909c52b30f7fc382fe3` |
 | `manuscript/sections/structure-conditioned-discovery-interface.tex` | `5c523d31443a59ce580499c129ff9f8223d38b4c0c65f5a6da860f219c5577d7` |
-| `submission/manuscript.pdf` | `bdc30220bdba288be52d4887ea0cd5a96b4438f5261632c9f8bd0a2cbfd19a15` |
+| `submission/manuscript.pdf` | `fd1aad4acd0d8529e1fe30a6102029f001944c2998538479863ddbe7aaa9ced3` |
 
 Files: 24
