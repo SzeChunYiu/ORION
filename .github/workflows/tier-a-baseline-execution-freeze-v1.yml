@@ -1,0 +1,60 @@
+name: Tier-A baseline execution freeze v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/tier-a-baseline-execution-freeze-v1.yml"
+      - "papers/publication_closure/TIER_A_BASELINE_EXECUTION_FREEZE_V1.json"
+      - "papers/publication_closure/a3-external-change-transport-v1/baselines_v1.py"
+      - "papers/publication_closure/a4-hidden-cause-external-v1/baseline_routers_v1.py"
+      - "papers/publication_closure/a6-external-authority-study-v1/baselines_v1.py"
+permissions:
+  contents: read
+jobs:
+  baseline-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Validate freeze boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('papers/publication_closure/TIER_A_BASELINE_EXECUTION_FREEZE_V1.json').read_text())
+          assert d['schema']=='ORION.TierA.BaselineExecutionFreeze.v1'
+          assert d['protected_outcomes_accessed'] is False
+          assert d['scientific_authority_delta'].startswith('NONE__')
+          assert len(d['A3']['implemented'])==5
+          assert len(d['A4']['outcome_blind_implemented'])==9
+          assert d['A4']['analysis_only_implemented']==['INTERVENTION_ORACLE']
+          assert len(d['A6']['implemented'])==6
+          assert 'using protected gold in an outcome-blind baseline' in d['global_forbidden']
+          PY
+      - name: Compile baseline code
+        run: |
+          python -m py_compile \
+            papers/publication_closure/a3-external-change-transport-v1/baselines_v1.py \
+            papers/publication_closure/a4-hidden-cause-external-v1/baseline_routers_v1.py \
+            papers/publication_closure/a6-external-authority-study-v1/baselines_v1.py
+      - name: Run A3 baseline self-test
+        run: python papers/publication_closure/a3-external-change-transport-v1/baselines_v1.py
+      - name: Run A4 baseline-router self-test
+        run: python papers/publication_closure/a4-hidden-cause-external-v1/baseline_routers_v1.py
+      - name: Run A6 typed-donor self-test
+        run: python papers/publication_closure/a6-external-authority-study-v1/baselines_v1.py
+      - name: Static gold/oracle boundary checks
+        run: |
+          set -euo pipefail
+          a4=papers/publication_closure/a4-hidden-cause-external-v1/baseline_routers_v1.py
+          grep -Fq 'protected/gold fields supplied to outcome-blind routers' "$a4"
+          grep -Fq 'oracle may run only after unblinding' "$a4"
+          a6=papers/publication_closure/a6-external-authority-study-v1/baselines_v1.py
+          grep -Fq 'typed_states' "$a6"
+          grep -Fq 'extra protected field was accepted' "$a6"
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
