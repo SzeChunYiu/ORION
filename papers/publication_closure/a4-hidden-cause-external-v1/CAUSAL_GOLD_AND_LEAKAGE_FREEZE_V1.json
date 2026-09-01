@@ -1,0 +1,97 @@
+{
+  "schema": "ORION.A4.HiddenCauseCausalGoldLeakageFreeze.v1",
+  "registered_date": "2026-09-01",
+  "artifact_class": "FROZEN_BEFORE_PROTECTED_AGENT_RUNS",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A4",
+  "protected_outcomes_accessed": false,
+  "scientific_unit": "task",
+  "diagnosis_denominator": "only eligible base tasks that fail or are insufficient under the frozen base budget",
+  "partition_target": {
+    "development": 0.20,
+    "primary": 0.60,
+    "source_disjoint_replication": 0.20,
+    "rule": "actual eligible task ids and source-family groups must be frozen before protected runs; replication may not share a source family with development or primary",
+    "shortfall": "CANNOT_CHECK rather than padding or post-outcome reassignment"
+  },
+  "interventions": {
+    "INFORMATION": {
+      "allowed_changed_coordinate": "information",
+      "rule": "expose only a missing benchmark-provided source/tool/data item; model, representation and compute remain frozen"
+    },
+    "ACCESSIBILITY": {
+      "allowed_changed_coordinate": "accessibility",
+      "rule": "preserve semantic information bytes; change only parsing/structure/representation/access path"
+    },
+    "COMPUTATION": {
+      "allowed_changed_coordinate": "computation",
+      "rule": "same information and representation; use the separately frozen increased reasoning/tool-call budget"
+    },
+    "RECONSTRUCTION": {
+      "allowed_changed_coordinate": "reconstruction",
+      "rule": "same information and compute ceiling; allow exactly the registered ORION-11 replan/reformulation/reopen operation"
+    }
+  },
+  "causal_gold": {
+    "success_target": "benchmark-native frozen stepwise/final success target",
+    "rule": "among successful allowed interventions, choose the intervention with the lexicographically smallest frozen cost vector",
+    "cost_vector": [
+      "total_charged_cost",
+      "added_information_bytes",
+      "added_compute_units",
+      "representation_delta_units",
+      "reconstruction_ops",
+      "fixed_intervention_order"
+    ],
+    "fixed_intervention_order": ["INFORMATION", "ACCESSIBILITY", "COMPUTATION", "RECONSTRUCTION"],
+    "no_success_terminal": "METHOD/CANNOT_CHECK",
+    "base_success_terminal": "EXCLUDED_BASE_SUCCESS",
+    "coordinate_violation": "CANNOT_CHECK_INTERVENTION_NOT_ATOMIC"
+  },
+  "leakage_contract": {
+    "diagnosis_seal": "candidate diagnostic features, model identity and selected action must be hashed before any protected intervention outcome is revealed",
+    "forbidden_diagnostic_inputs": [
+      "gold cause",
+      "intervention success/failure",
+      "intervention charged outcome",
+      "benchmark hidden gold",
+      "post-intervention trace",
+      "oracle-selected intervention"
+    ],
+    "common_visible_packet": "candidate and all non-oracle routers receive the same base-failure visible packet",
+    "oracle": "intervention oracle is analysis only and cannot be a candidate or training label outside development"
+  },
+  "required_baseline_slots": [
+    "compute-first",
+    "information-first",
+    "accessibility-first",
+    "restart/reformulate-first",
+    "random/majority",
+    "cheapest-intervention",
+    "uncertainty-to-compute",
+    "learned-router-development-only",
+    "candidate-causal-diagnostic-plus-reconstruction",
+    "human-expert-blinded-subset-if-feasible",
+    "intervention-oracle-analysis-only"
+  ],
+  "required_metrics": [
+    "final task success after selected intervention",
+    "charged intervention cost and regret",
+    "false compute escalation",
+    "diagnosis accuracy only on identifiable cases",
+    "CANNOT_CHECK rate and calibration",
+    "per-domain direction",
+    "source-disjoint replication direction"
+  ],
+  "negative_result_terminals": [
+    "NOT_SUPPORTED_FINAL_SUCCESS",
+    "NOT_SUPPORTED_CHARGED_REGRET",
+    "NOT_SUPPORTED_FALSE_COMPUTE",
+    "HETEROGENEOUS_DOMAIN_FAILURE",
+    "REPLICATION_DIRECTION_FAILURE",
+    "LEAKAGE_INVALID",
+    "CANNOT_CHECK_SOURCE_OR_INTERVENTION",
+    "SUPPORTED_FROZEN_A4_GATE"
+  ],
+  "negative_result_policy": "Do not redefine cause classes, intervention costs, denominator, or tie rule after protected outcomes. A null, harmful, heterogeneous, leakage-invalid or CANNOT_CHECK result is retained.",
+  "scientific_authority_delta": "NONE__CAUSAL_GOLD_PREREGISTRATION_ONLY"
+}
