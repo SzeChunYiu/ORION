@@ -1,0 +1,57 @@
+{
+  "nonquantum": {
+    "allowed_normalized_442_coordinates": [
+      [1,1], [1,2], [1,3], [1,4], [2,1], [2,3], [3,1], [3,2], [4,1]
+    ],
+    "diagonal_26": [
+      [26,21,5,0], [25,21,3,1], [24,21,1,2]
+    ],
+    "independent_engines_agree": true,
+    "normalized_excluded_profile_checks": {
+      "2,2,2,2,2_states": 1540,
+      "2,2,2,2,2_survivors": 0,
+      "4,2,2,2_states": 231,
+      "4,2,2,2_survivors": 0
+    },
+    "raw_exact_classification": [
+      {"profile":[4,4,2],"survivors":2160,"tested":6000},
+      {"profile":[4,2,2,2],"survivors":0,"tested":42480},
+      {"profile":[2,2,2,2,2],"survivors":0,"tested":42504}
+    ],
+    "swap_classes": [[1,1],[1,2],[1,3],[1,4],[2,3]]
+  },
+  "paper_A": {
+    "quotient_example": {
+      "image_zsf": 1,
+      "max_image_atom": 2,
+      "source_zsf": 4,
+      "upper_bound": 7
+    },
+    "standard_generator_formula": [
+      {"moduli":[2,3,4],"zsf":6},
+      {"moduli":[3,5],"zsf":6},
+      {"moduli":[2,2,3],"zsf":4}
+    ]
+  },
+  "paper_B": {
+    "certificate_waste": [2,3,1],
+    "common_scale_exponent": 6,
+    "component_budgets": [3,4,3],
+    "intrinsic_budgets": [1,1,2],
+    "leading_constant": 0.5,
+    "normalized_ratio_samples": [0.40403901457968827,0.44952666584824563,0.4741114511042096]
+  },
+  "paper_C": {
+    "coarsened_radius": 3.5,
+    "fiber_radii": {"a":2.0,"b":1.0,"c":0.0},
+    "global_radius": 2.0,
+    "near_collision_lower_bound": 3.0
+  },
+  "paper_D": {
+    "bounded_projection": ["bounded_seed","bridge","claim"],
+    "license_locality": "PASS",
+    "theorem_projection": ["bridge","claim","theorem_seed"],
+    "unseeded_prospective_projection": []
+  },
+  "status": "PASS"
+}
