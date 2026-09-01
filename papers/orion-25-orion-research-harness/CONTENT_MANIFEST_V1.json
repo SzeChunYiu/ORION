@@ -549,8 +549,23 @@
   "issue": null,
   "reproducibility_targets": {},
   "schema_version": "orion.candidate-content-binding.v1",
-  "subject_commit": "d9425f1affe00e16e59c9c5268d39d2e183746dd",
+  "subject_commit": "d163369a99fd15fca524f27c1a5d577333f0f359",
   "subject_commit_blocker": null,
   "subject_commit_status": "BOUND",
-  "subject_commit_unbound_paths": []
+  "subject_commit_unbound_paths": [],
+  "publication_render_rebinding_history": [
+    {
+      "prior_subject_commit": "d9425f1affe00e16e59c9c5268d39d2e183746dd",
+      "new_subject_commit": "d163369a99fd15fca524f27c1a5d577333f0f359",
+      "reason": "Imported the pinned clean-CI manuscript PDF required by the clipping and byte-equality gate.",
+      "scientific_authority_delta": "NONE",
+      "workflow_run_id": "33463297400",
+      "artifact_id": "9783994917",
+      "changed_derived_file": {
+        "path": "papers/orion-25-orion-research-harness/manuscript/main.pdf",
+        "prior_sha256": "dbc9be631bcbec0a9a0d3551843c033eb970910353e5fcaf244cb99f8a73f877",
+        "new_sha256": "1f2d73c6a3b69acb923711381221c2363a9ce621e3c37b33840499b84fdd52cd"
+      }
+    }
+  ]
 }
