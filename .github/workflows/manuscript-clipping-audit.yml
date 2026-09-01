@@ -43,6 +43,7 @@ jobs:
           sudo apt-get install -y -qq --no-install-recommends \
             latexmk texlive-binaries texlive-base texlive-latex-base \
             texlive-latex-recommended texlive-latex-extra texlive-pictures \
+            texlive-publishers \
             texlive-fonts-recommended texlive-bibtex-extra texlive-science \
             texlive-plain-generic texlive-lang-greek lmodern fonts-lmodern \
             fonts-texgyre fonts-texgyre-math fonts-urw-base35 libkpathsea6 \
@@ -58,6 +59,7 @@ jobs:
           texlive-bibtex-extra	2023.20240207-1
           texlive-science	2023.20240207-1
           texlive-pictures	2023.20240207-1
+          texlive-publishers	2023.20240207-1
           texlive-plain-generic	2023.20240207-1
           texlive-lang-greek	2023.20240207-1
           latexmk	1:4.83-1
@@ -136,7 +138,21 @@ jobs:
               export SOURCE_DATE_EPOCH="$source_epoch"
               export FORCE_SOURCE_DATE=1
               latexmk -C main.tex >/dev/null
-              latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex
+              # A missing .sty is the runner lacking a package, not this manuscript
+              # clipping. Both fail, but a reader who cannot tell them apart will
+              # go looking for a layout defect that is not there -- which is what
+              # happened when quantumarticle.cls's RequirePackage{ltxgrid} met a
+              # toolchain without texlive-publishers, and main went red reporting
+              # a clipping audit failure.
+              if ! latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex; then
+                missing="$(grep -oE "File \`[^']+\.(sty|cls)' not found" main.log | head -3 || true)"
+                if [ -n "$missing" ]; then
+                  echo "::error::TOOLCHAIN GAP, not a clipping finding: $entry needs $missing. Install the providing TeX package and pin it in expected-render-packages.tsv." >&2
+                else
+                  echo "::error::LaTeX build failed for $entry" >&2
+                fi
+                exit 1
+              fi
               if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references|undefined citations' main.log; then
                 echo "undefined reference or citation in $entry" >&2
                 exit 1
