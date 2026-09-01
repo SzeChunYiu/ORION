@@ -1,0 +1,70 @@
+{
+  "amplifying_edges_after_repair": 4,
+  "amplifying_edges_before_repair": 8,
+  "extended_states_enumerated": 512,
+  "forced_vacuous_admissible_states": 0,
+  "gold_broken": [],
+  "gold_verdicts_checked": 16,
+  "legitimate_promotion_edges_after": 228,
+  "legitimate_promotion_edges_before": 688,
+  "predicates_not_evaluated": [
+    "whether transport_vacuous can itself be misreported \u2014 it can, and the repair relocates trust rather than removing it (REPAIR_PROTOCOL_V1.md states this)",
+    "whether ORION-16's authors intend this reading of the transport coordinates",
+    "whether the repair is sound over the papers' full formal cores, as opposed to this eight-coordinate audit classifier"
+  ],
+  "predictions": {
+    "P1_zero_amplifying_edges_survive": false,
+    "P2_all_gold_preserved": true,
+    "P3_legitimate_routes_retained": true,
+    "P4_forced_vacuous_never_admissible": true,
+    "P5_all_realized_pairs_blocked": true
+  },
+  "predictions_failed": [
+    "P1_zero_amplifying_edges_survive"
+  ],
+  "protocol_sha256": "c81dc60e97f482df68a480e635ad5b84b3b074beca5108ac22e33d4f1f5a5ff3",
+  "realized_pairs": [
+    {
+      "blocked": true,
+      "from": "RC-ALIAS-MISSING",
+      "repaired": "CANNOT_CHECK",
+      "to": "RC-ALIAS-COMPLETE",
+      "unrepaired": "ADMISSIBLE"
+    },
+    {
+      "blocked": true,
+      "from": "RC-ALIAS-MISSING",
+      "repaired": "CANNOT_CHECK",
+      "to": "RC-UNCHANGED",
+      "unrepaired": "ADMISSIBLE"
+    },
+    {
+      "blocked": true,
+      "from": "RC-ALIAS-MISSING",
+      "repaired": "CANNOT_CHECK",
+      "to": "P9-RECOVERY-NEGATIVE",
+      "unrepaired": "ADMISSIBLE"
+    },
+    {
+      "blocked": true,
+      "from": "RC-ALIAS-MISSING",
+      "repaired": "CANNOT_CHECK",
+      "to": "P10-COVERAGE-BOUNDARY",
+      "unrepaired": "ADMISSIBLE"
+    },
+    {
+      "blocked": true,
+      "from": "RC-ALIAS-MISSING",
+      "repaired": "CANNOT_CHECK",
+      "to": "P15-INTEROP-WITH-SCIENCE",
+      "unrepaired": "ADMISSIBLE"
+    }
+  ],
+  "receipt_sha256": "770f682c58d7aef74524a467cbf4f4729ca19552697ad1316fa86cc891ba221a",
+  "repair": "one guard: transport_vacuous -> CANNOT_CHECK, wrapping the real classify()",
+  "schema": "A6.AmplificationRepairCheck.v1",
+  "scientific_authority_delta": "NONE",
+  "subject": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py",
+  "subject_sha256": "698f49ca952f59ec015ff50aafec9f78a44c4a17481723dcede4a3b5e4c8c4db",
+  "verdict": "REPAIR_FAILS__P1_zero_amplifying_edges_survive"
+}

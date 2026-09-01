@@ -1,0 +1,160 @@
+{
+  "amplifying_edges": 4,
+  "amplifying_edges_from_outer_unknown": 0,
+  "attack": {
+    "end_verdict": "ADMISSIBLE",
+    "flips": [
+      "evidence_transport_known",
+      "evidence_transport_valid"
+    ],
+    "promoted": true,
+    "start_verdict": "CANNOT_CHECK",
+    "unchanged_evidence_coordinates": {
+      "execution_support": true,
+      "provenance_binding": true,
+      "source_current": true
+    }
+  },
+  "attack_and_legitimate_repair_indistinguishable": true,
+  "control_failures": [],
+  "controls": {
+    "C-DENY": {
+      "end_verdict": "DENIED",
+      "flips": [
+        "evidence_transport_known",
+        "evidence_transport_valid",
+        "generic_permission"
+      ],
+      "held": true,
+      "required": "DENIED",
+      "start_verdict": "CANNOT_CHECK"
+    },
+    "C-LEGIT": {
+      "end_verdict": "ADMISSIBLE",
+      "flips": [
+        "evidence_transport_known",
+        "evidence_transport_valid"
+      ],
+      "held": true,
+      "required": "ADMISSIBLE",
+      "start_verdict": "CANNOT_CHECK"
+    },
+    "C-NULL": {
+      "end_verdict": "CANNOT_CHECK",
+      "flips": [],
+      "held": true,
+      "required": "CANNOT_CHECK",
+      "start_verdict": "CANNOT_CHECK"
+    },
+    "C-OUTER": {
+      "end_verdict": "CANNOT_CHECK",
+      "flips": [
+        "evidence_transport_known",
+        "evidence_transport_valid"
+      ],
+      "held": true,
+      "required": "CANNOT_CHECK",
+      "start_verdict": "CANNOT_CHECK"
+    },
+    "C-REOPEN": {
+      "end_verdict": "REOPEN",
+      "flips": [
+        "evidence_transport_known",
+        "evidence_transport_valid",
+        "obligations_clear"
+      ],
+      "held": true,
+      "required": "REOPEN",
+      "start_verdict": "CANNOT_CHECK"
+    }
+  },
+  "legitimate_promotion_edges": 228,
+  "minimal_amplifying_flip_sets": [
+    [
+      "evidence_transport_known"
+    ],
+    [
+      "evidence_transport_known",
+      "evidence_transport_valid"
+    ],
+    [
+      "evidence_transport_known",
+      "evidence_transport_valid",
+      "obligations_clear"
+    ],
+    [
+      "evidence_transport_known",
+      "obligations_clear"
+    ]
+  ],
+  "predicates_not_evaluated": [
+    "whether ORION-16 anywhere claims non-amplification (it does not; that is the gap)",
+    "whether any real transition was actually promoted this way in practice",
+    "whether the VACUOUS mapping is the papers' intended reading, which is argued and not proved"
+  ],
+  "protocol_sha256": "2751038388b50efa0a99313a701e761af9a6754de860123202f7ebd3015d8c00",
+  "real_cases": {
+    "amplifying_pairs_found": [
+      {
+        "flips": [
+          "evidence_transport_known",
+          "evidence_transport_valid"
+        ],
+        "from": "RC-ALIAS-MISSING",
+        "to": "RC-ALIAS-COMPLETE"
+      },
+      {
+        "flips": [
+          "evidence_transport_known",
+          "evidence_transport_valid"
+        ],
+        "from": "RC-ALIAS-MISSING",
+        "to": "RC-UNCHANGED"
+      },
+      {
+        "flips": [
+          "evidence_transport_known",
+          "evidence_transport_valid"
+        ],
+        "from": "RC-ALIAS-MISSING",
+        "to": "P9-RECOVERY-NEGATIVE"
+      },
+      {
+        "flips": [
+          "evidence_transport_known",
+          "evidence_transport_valid"
+        ],
+        "from": "RC-ALIAS-MISSING",
+        "to": "P10-COVERAGE-BOUNDARY"
+      },
+      {
+        "flips": [
+          "evidence_transport_known",
+          "evidence_transport_valid"
+        ],
+        "from": "RC-ALIAS-MISSING",
+        "to": "P15-INTEROP-WITH-SCIENCE"
+      }
+    ],
+    "note": "16 real cases, all ordered pairs examined",
+    "ordered_pairs_checked": 240
+  },
+  "receipt_sha256": "1c91819b54481848fb91d21267c20543d54f49cffa2ab490000bc5f9c8c90263",
+  "schema": "A6.AmplificationAgainstRealClassifier.v1",
+  "scientific_authority_delta": "NONE",
+  "states_enumerated": 256,
+  "subject": "papers/orion-16-formal-epistemic-structures-and-mechanics/top_tier/check_real_transition_audit_independent_v1.py",
+  "subject_sha256": "698f49ca952f59ec015ff50aafec9f78a44c4a17481723dcede4a3b5e4c8c4db",
+  "vacuous_coordinates": [
+    "evidence_transport_known",
+    "evidence_transport_valid",
+    "obligations_clear"
+  ],
+  "verdict": "ATTACK_LANDS_ON_INNER_LAYER_ONLY",
+  "verdict_histogram": {
+    "ADMISSIBLE": 1,
+    "CANNOT_CHECK": 232,
+    "DENIED": 17,
+    "REOPEN": 6
+  }
+}

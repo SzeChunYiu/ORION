@@ -1,0 +1,90 @@
+{
+  "attack_unconstrained": {
+    "amplified": true,
+    "domain_after": "h_free",
+    "domain_before": "h",
+    "evidence_available": [],
+    "new_evidence_supplied": false,
+    "obligations_after": [],
+    "obligations_before": [
+      "PROTECTED_LAB_RESULT"
+    ],
+    "perm_after": "AUTHORIZED",
+    "perm_before": "CANNOT_CHECK",
+    "repair_note": "REGROUNDED"
+  },
+  "checks_my_formalisation_not_the_papers_implementation": true,
+  "refutation_1_domain_preservation": {
+    "amplified": false,
+    "domain_after": "h",
+    "domain_before": "h",
+    "evidence_available": [],
+    "new_evidence_supplied": false,
+    "obligations_after": [
+      "PROTECTED_LAB_RESULT"
+    ],
+    "obligations_before": [
+      "PROTECTED_LAB_RESULT"
+    ],
+    "perm_after": "CANNOT_CHECK",
+    "perm_before": "CANNOT_CHECK",
+    "repair_note": "REFUSED_domain_preservation"
+  },
+  "refutation_2_root_class_monotonicity": {
+    "amplified": false,
+    "domain_after": "h",
+    "domain_before": "h",
+    "evidence_available": [],
+    "new_evidence_supplied": false,
+    "obligations_after": [
+      "PROTECTED_LAB_RESULT"
+    ],
+    "obligations_before": [
+      "PROTECTED_LAB_RESULT"
+    ],
+    "perm_after": "CANNOT_CHECK",
+    "perm_before": "CANNOT_CHECK",
+    "repair_note": "REFUSED_root_class_monotonicity"
+  },
+  "refutations_that_stop_it": [
+    "refutation_1_domain_preservation",
+    "refutation_2_root_class_monotonicity"
+  ],
+  "schema": "ORION.A6.AmplificationCheck.v1",
+  "scientific_authority_delta": "NONE",
+  "self_test": {
+    "all_ok": true,
+    "cases": [
+      {
+        "expected": "AUTHORIZED",
+        "got": "AUTHORIZED",
+        "ok": true,
+        "why": "obligation discharged by real evidence -> AUTHORIZED"
+      },
+      {
+        "expected": "CANNOT_CHECK",
+        "got": "CANNOT_CHECK",
+        "ok": true,
+        "why": "obligation undischarged -> CANNOT_CHECK"
+      },
+      {
+        "expected": "CANNOT_CHECK",
+        "got": "CANNOT_CHECK",
+        "ok": true,
+        "why": "undetermined blocker forces CANNOT_CHECK even when discharged"
+      },
+      {
+        "expected": "AUTHORIZED",
+        "got": "AUTHORIZED",
+        "ok": true,
+        "why": "obligation-free domain is vacuously discharged"
+      }
+    ],
+    "discriminates": true,
+    "distinct_verdicts": [
+      "AUTHORIZED",
+      "CANNOT_CHECK"
+    ]
+  },
+  "verdict": "ATTACK_LANDS_UNCONSTRAINED"
+}
