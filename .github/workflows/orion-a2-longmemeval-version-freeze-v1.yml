@@ -1,0 +1,40 @@
+name: ORION A2 LongMemEval version freeze v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a2-longmemeval-version-freeze-v1.yml"
+      - "papers/orion-21-state-as-computation/top_tier/LONGMEMEVAL_EXTERNAL_VERSION_FREEZE_V1.json"
+      - "papers/orion-21-state-as-computation/top_tier/check_longmemeval_external_version_freeze_v1.py"
+      - "papers/orion-21-state-as-computation/P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md"
+permissions:
+  contents: read
+jobs:
+  freeze-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Verify immutable benchmark bindings
+        run: python papers/orion-21-state-as-computation/top_tier/check_longmemeval_external_version_freeze_v1.py
+      - name: Verify frozen V2 checksum manifest remotely without downloading benchmark data
+        run: |
+          set -euo pipefail
+          rev=f152293e235517d504809563c833d7190b8c713b
+          url="https://huggingface.co/datasets/xiaowu0162/longmemeval-v2/resolve/${rev}/checksums.sha256"
+          curl --fail --location --silent --show-error "$url" -o /tmp/checksums.sha256
+          grep -Fq '0a3ae5ebea938c24d7800e1e0b0828e08ae1646f939a53853b2b8cdc08e292b7 questions.jsonl' /tmp/checksums.sha256
+          grep -Fq '363cec9a8e87aa8d9101ce4e600aadbf7031d674056ebe4f969e8424abc5f3c6 trajectories.jsonl' /tmp/checksums.sha256
+          grep -Fq '9b5301defb23a088a5f06e45ff8d5f35e569d78305a66d492046a9fff9b46593 haystacks/lme_v2_small.json' /tmp/checksums.sha256
+          grep -Fq '4756d5126347f0d18f045bb6c47b08cb3b23e9db24386cc48a9b2879e7969b59 haystacks/lme_v2_medium.json' /tmp/checksums.sha256
+      - name: Verify frozen Hugging Face revisions still resolve
+        run: |
+          set -euo pipefail
+          git ls-remote https://huggingface.co/datasets/xiaowu0162/longmemeval-cleaned HEAD | grep -Fq '98d7416c24c778c2fee6e6f3006e7a073259d48f'
+          git ls-remote https://huggingface.co/datasets/xiaowu0162/longmemeval-v2 HEAD | grep -Fq 'f152293e235517d504809563c833d7190b8c713b'
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
