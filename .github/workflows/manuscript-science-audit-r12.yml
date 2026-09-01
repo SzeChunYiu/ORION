@@ -1,0 +1,116 @@
+name: manuscript-science-audit-r12
+
+on:
+  push:
+    branches:
+      - chatgpt/r12-manuscript-science-audit-20260826-d
+    paths:
+      - scripts/audit_orion_manuscripts_r12.py
+      - .github/workflows/manuscript-science-audit-r12.yml
+      - papers/manuscript-science-audit-r12/OWNERSHIP_AND_SCOPE_2026-08-26.md
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  AUDIT_BRANCH: chatgpt/r12-manuscript-science-audit-20260826-d
+  COORDINATION_MAIN: 926c7529e7b1a4aad18e8a8d7067c2fb293fe771
+  PROTECTED_BRANCH: codex/orion-v1-takeover-01a03f7a-20260826
+
+jobs:
+  audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out complete repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ env.AUDIT_BRANCH }}
+
+      - name: Fetch every branch for receipt custody
+        run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+
+      - name: Assert branch and protected-scope separation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git branch --show-current)" = "$AUDIT_BRANCH"
+          test "$AUDIT_BRANCH" != "$PROTECTED_BRANCH"
+          changed="$(git diff --name-only "$COORDINATION_MAIN"...HEAD)"
+          if grep -Eq '^(src/orion/|tests/.*/receipt|tests/.*/evidence|development/.*/receipt|development/.*/evidence)' <<<"$changed"; then
+            echo 'Protected ORION V1/Receipt V3/evidence-audit scope overlap detected.' >&2
+            printf '%s\n' "$changed" >&2
+            exit 1
+          fi
+          if grep -Eq '(^|/)1332([^0-9]|$)' <<<"$changed"; then
+            echo 'Closed #1332 computation programme must not be modified.' >&2
+            exit 1
+          fi
+
+      - name: Generate fail-closed manuscript science audit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/audit_orion_manuscripts_r12.py | tee manuscript-science-audit-r12-manifest.json
+
+      - name: Verify authority boundaries and generated set
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          manifest=json.loads(Path('papers/manuscript-science-audit-r12/ORION_R9_R11_MANUSCRIPT_SCIENCE_AUDIT_2026-08-26.json').read_text())
+          assert manifest['authority']['open_pr_file_inventory_exact'] is True
+          assert manifest['authority']['scientific_claims_auto_promoted'] is False
+          assert manifest['authority']['top_tier_sufficiency_auto_promoted'] is False
+          assert manifest['authority']['external_authority'] is False
+          assert manifest['closed_programme_issue'] == 1332
+          assert manifest['protected_branch'] == 'codex/orion-v1-takeover-01a03f7a-20260826'
+          for lane in ('Q1','AB','C','D','NQ'):
+              assert lane in manifest['lanes']
+              assert manifest['lanes'][lane]['classification']['top_tier_sufficiency'] == 'NOT_CLOSED'
+              assert manifest['lanes'][lane]['classification']['external_authority'] == 'CANNOT_CHECK'
+          for path in manifest['generated_paths']:
+              assert Path(path).is_file(), path
+          print(manifest['status'])
+          print(manifest['content_sha256'])
+          PY
+          grep -R --line-number 'CANNOT_CHECK' papers/manuscript-science-audit-r12 papers/Q-paper-01-tare-expressivity 2>/dev/null | head -50
+
+      - name: Commit immutable additive audit outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/manuscript-science-audit-r12 \
+            papers/Q-paper-01-tare-expressivity/Q1_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md \
+            papers/five-paper-top-tier-r8/AB/AB_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md \
+            papers/five-paper-top-tier-r8/C/C_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md \
+            papers/five-paper-top-tier-r8/D/D_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md \
+            papers/five-paper-top-tier-r8/NQ/NQ_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md \
+            2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+            exit 0
+          fi
+          git commit -m 'docs(science): bind R9-R11 receipts to manuscript readiness'
+          git push origin "HEAD:$AUDIT_BRANCH"
+
+      - name: Upload audit receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: orion-r9-r11-manuscript-science-audit-r12
+          path: |
+            papers/manuscript-science-audit-r12
+            papers/Q-paper-01-tare-expressivity/Q1_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md
+            papers/five-paper-top-tier-r8/AB/AB_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md
+            papers/five-paper-top-tier-r8/C/C_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md
+            papers/five-paper-top-tier-r8/D/D_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md
+            papers/five-paper-top-tier-r8/NQ/NQ_RECEIPT_BOUND_MANUSCRIPT_UPDATE_R12_2026-08-26.md
+          if-no-files-found: error
+          retention-days: 30
