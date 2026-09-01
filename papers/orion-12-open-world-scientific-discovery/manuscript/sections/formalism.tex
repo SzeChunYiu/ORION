@@ -3,7 +3,7 @@
 
 This section fixes the objects the evaluation measures. Every definition below is
 implemented in the system under test rather than assumed: work identity and read
-state, route independence and coverage, and route control each correspond to a
+state, structural route distinctness and coverage, and route control each correspond to a
 module of the implementation, named in Section~\ref{sec:availability}. Where a
 definition is deliberately conservative we state the failure it is conservative
 against, because the direction of the bias is what makes the refusal a safety
@@ -13,7 +13,7 @@ property rather than a preference.
 
 Let $R$ be the set of raw identifiers a route can emit (DOIs, arXiv ids,
 OpenAlex ids, local ids, URLs). Canonicalization is a map
-$\varphi: R \rightarrow \mathcal{S} \times V$ sending a raw identifier to a
+$\varphi: R \rightarrow (\mathcal{S} \times V) \cup \{\textsc{unknown}\}$ sending a raw identifier to a
 scheme-qualified key and a rendition version, so that
 $\varphi(\texttt{arXiv:2301.00001v1})$ and $\varphi(\texttt{arXiv:2301.00001v2})$
 share a key and differ only in $V$: a version is a rendition of one work, not a
@@ -60,31 +60,36 @@ repeat extraction under a changed content digest, schema or frame is a
 --- is how a system reports coverage of material it only skimmed for a different
 purpose.
 
-\subsection{Earned route independence}
+\subsection{Structural route distinctness}
 
 A route capture is a tuple $\rho = (k, b, d, C)$: route kind, backend identity,
 query-derivation process, and the set $C$ of captured content digests. For two
-captures $\rho_i, \rho_j$ the independence predicate is
+captures $\rho_i, \rho_j$ the structural-distinctness predicate is
 \[
-\mathrm{ind}(\rho_i,\rho_j) \iff k_i \neq k_j \ \wedge\ b_i \neq b_j \ \wedge\ d_i \neq d_j ,
+\mathrm{distinct}(\rho_i,\rho_j) \iff k_i \neq k_j \ \wedge\ b_i \neq b_j \ \wedge\ d_i \neq d_j ,
 \]
 and the verdict otherwise names the shared cause
 (\textsc{same\_route\_kind}, \textsc{shared\_backend},
 \textsc{shared\_query\_derivation}). Independence is thus \emph{earned} from the
 generation and capture process; a distinct route label carries no evidential
-weight.
+weight. This predicate is an eligibility screen for a coverage diagnostic. It
+does not establish statistical independence between the returned rankings or
+captures.
 
 \begin{proposition}[Direction of the conservatism]
 \label{prop:conservative}
-Positive dependence between capture occasions biases unseen-mass estimators
-downward. Admitting a dependent pair therefore produces false confidence that
-search is near exhaustion, whereas refusing an independent pair only forfeits a
-diagnostic. The predicate is accordingly biased toward refusal.
+Positive dependence between capture occasions can bias unseen-mass estimators
+downward. Admitting a pair that shares known generation structure can therefore
+produce false confidence that search is near exhaustion, whereas refusing a
+structurally distinct pair only forfeits a diagnostic. The screen is accordingly
+biased toward refusal.
 \end{proposition}
 
 \subsection{Coverage diagnostics are never authority}
 
-For an independent pair with captures of size $n_i, n_j$ and overlap $m_{ij}$,
+For a structurally distinct pair whose captures additionally satisfy the
+sampling assumptions required by the estimator, with sizes $n_i, n_j$ and
+overlap $m_{ij}$,
 the two-source estimate is $\hat{N} = n_i n_j / m_{ij}$, undefined at
 $m_{ij}=0$. Zero overlap places no upper bound on the population, so the system
 returns a refusal with reason rather than a large number that would read as a
@@ -99,7 +104,8 @@ singletons into doubletons and deflates the estimator toward ``nearly done''.
 
 Let a route hold attempts $a_1,\dots,a_t$, each with retrieved digests
 $D_i$, novel digests $N_i \subseteq D_i$, cost, failure signatures and a
-backend-exhaustion flag. Marginal novelty of an attempt is $|N_t|/|D_t|$, and
+backend-exhaustion flag. For a nonempty return, marginal novelty is
+$|N_t|/|D_t|$; a successful empty return has novelty zero. The
 the flat streak $z$ is the number of trailing attempts that succeeded, reported
 no exhaustion and returned no novel digest. Under a frozen policy with
 thresholds $\theta_{\mathrm{ref}} \leq \theta_{\mathrm{sw}}$, the decision is
@@ -165,7 +171,7 @@ items), route-stop false negatives (a route continued past its exhaustion
 point), premature task closure (task closed while a gold item was still
 reachable within remaining budget), and duplicate processing versus legitimate
 reread as separated by the four read coordinates. Route overlap, per-route
-marginal contribution and earned-independence status are computed over content
+marginal contribution and structural-distinctness status are computed over content
 digests. Metrics whose denominator is the gold set are reported only where that
 denominator is complete; the conditions are stated per metric in the frozen
 measurement plan.

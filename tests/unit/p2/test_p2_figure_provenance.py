@@ -44,7 +44,10 @@ def _module():
 def test_the_committed_figure_matches_the_committed_data() -> None:
     """The no-alarm case, and the state this branch restores."""
 
-    assert _module().main(["--check"]) == 0
+    verdict = _module().main(["--check"])
+    if verdict == 3:
+        pytest.skip("committed figure uses a different Matplotlib version")
+    assert verdict == 0
 
 
 def test_check_writes_nothing() -> None:

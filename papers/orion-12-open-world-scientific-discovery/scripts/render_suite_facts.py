@@ -115,7 +115,12 @@ def render(facts: dict[str, Any]) -> str:
     # A seed is an identifier, not a quantity: 20{,}260{,}816 would be wrong in
     # the same way a thousands-separated commit hash would be.
     identifiers = {"OfflineSuiteSeed"}
+    # The analysis-tier enums remain in the machine-readable sidecar and
+    # evidence ledgers, but are deliberately absent from reader-facing TeX.
+    private_labels = {"OfflineAnalysisAuthority", "OfflineAchievedTier"}
     for key, value in facts.items():
+        if key in private_labels:
+            continue
         if isinstance(value, int):
             rendered = str(value) if key in identifiers else _fmt_int(value)
         else:

@@ -1,15 +1,12 @@
 \section{Methods}
 \label{sec:methods}
 
-The design choices in this section were fixed before the result-bearing offline
-campaign.  Post-outcome edits to this prose are limited to correcting execution
-status (for example, saying that an external benchmark has not yet been run) and
-do not change a hypothesis, task family, system, metric, budget, exclusion rule,
-margin or decision rule.  Machine-readable artifacts govern rather than this
-narrative: a design freeze, a measurement plan, a statistical plan, an
-external-artifact access audit, the controlled-world freeze and a prospective
-execution binding.  Each is archived, and Section~\ref{sec:availability} names
-where.
+This section reports the designs that generated the controlled-index,
+exact-contract, TREC-COVID, and BEIR evidence. Post-outcome manuscript edits do
+not alter their systems, tasks, endpoints, margins, budgets, exclusions, or
+decision rules. The versioned design, execution, and result records govern when
+their status differs from historical prose. Section~\ref{sec:availability}
+describes the archived evidence and its access conditions.
 
 \subsection{Three-valued outcomes}
 Every decision this paper measures is three-valued rather than binary.  A task
@@ -62,16 +59,68 @@ after the candidate returns.  The candidate receives only a public task view and
 label-free retrieved records; protected gold and the relevance rule are never
 passed through the system interface.
 
-\paragraph{External benchmark tasks.}
+The five task variants generated from each topic share the same synthetic world
+and question. We therefore treat the topic, not the variant, as the independent
+cluster. The \OfflineTaskCount{} variant-level outcomes are descriptive mechanism
+diagnostics; deterministic repeats test execution stability and do not increase
+the number of independent units.
+
+\paragraph{Exact-contract battery.}
+The exact-contract battery isolates the task-closure rule from retrieval
+quality. It spans five acquisition families: scientific literature, web and API
+evidence, dataset registries, code and artifact repositories, and experimental
+or measurement routes. Each family instantiates eight hostile archetypes,
+including an available route that remains open; an unavailable, censored, or
+provider-invalid material route; duplicate coverage; acquired but not
+question-processed content; and low-utility routes that remain material. Route
+order is seed-permuted, and held-out variants add unavailable non-material
+decoys so that a blanket refusal to close cannot pass.
+
+The primary comparator, B1, is an authored composite of prior mechanisms rather
+than a published product. It receives route identity and materiality, evidence
+coverage, decision sufficiency, utility stopping, finite route certificates,
+deduplication, route state, and question-conditioned processing state. It makes
+the same route-local decisions as the governed controller. The sole systematic
+difference is task-level aggregation: B1 excludes unavailable, censored, or
+provider-invalid material routes from the closure denominator once all
+available material routes have stopped. B2 allows a global sufficiency signal
+to authorize closure. B3 receives the same unresolved-route semantics as the
+governed controller and tests whether the rule is portable to an
+information-equivalent product. The protected unit is the authored case. Exact
+scientific closure decision is agreement with the declared case label.
+
+\paragraph{Descriptive TREC-COVID comparison.}
+The external comparison uses the 50 official Round~5 TREC-COVID topics and
+judgments \cite{voorhees2020treccovid}. The governed multi-route arm and three
+comparators share the frozen corpus, topics, maximum of 300 distinct reads, six
+route calls, and 400 tool calls. Citation and restricted-provider routes are
+unavailable in this collection and remain recorded rather than being treated as
+empty successful routes. No separate pre-outcome record was found that binds the
+comparator-selection rule, the $-0.02$ non-inferiority margin, the 25\% read
+reduction criterion, or the bootstrap procedure. We therefore treat the
+completed four-arm comparison as post hoc and descriptive. The result artifact
+selects the strongest observed comparator, BM25, and applies those recall, cost,
+and safety reference criteria. Paired topic differences are summarized with a
+10,000-resample percentile bootstrap interval. nDCG@10 is reported alongside
+them but does not establish an overall superiority claim.
+
+\paragraph{BEIR mechanism diagnostics.}
+Three prospectively separated studies use SciFact, NFCorpus, and ArguAna with
+fixed corpus hashes, held-out query halves, and depths 10, 20, 50, 100, and 200.
+Five retrieval functions over each local corpus create route heterogeneity.
+The original route-aware rule compares an estimated unread-route contribution
+with an absolute threshold. The first successor changes only the threshold scale
+through development-split relevance-density normalization. The second restores
+the original threshold and changes only the estimator by scaling its global
+marginal with each held-out query's unseen-route fraction. Its falsifier was
+predeclared: if all five ArguAna decisions matched the original rule, the
+query-conditional estimator would be recorded as decision-inert and no fourth
+estimator would be introduced under the same study identity.
+
+\paragraph{Other external benchmark tasks.}
 AutoResearchBench provides Wide and Deep scientific-discovery tasks
-\cite{autoresearchbench2026}.  The access audit establishes a narrower fact than
-an external result: Wide's official exact IoU/recall/precision path scores
-normalized arXiv identifiers without a credential, while its sampled
-maximum-IoU-at-$k$ family is noisy because upstream sampling is unseeded.
-Deep's official title-matching evaluator needs an OpenAI-compatible judge.  The
-Wide scorer was exercised on synthetic scorer input to verify that credential
-independence; no matched Wide result against a baseline is archived in this
-revision, and the scorer is not claimed to be vendored here.
+\cite{autoresearchbench2026}. Its completed probes remain bounded acquisition or
+transport diagnostics, not matched evidence for the full controller.
 
 SAGE is retained as neighbouring work and as a lexical-baseline warning
 \cite{sage2026}, but is not executed as if its published setting were available:
@@ -81,19 +130,17 @@ weighting rule would be a declared deviation rather than the SAGE system.
 MetaSyn's separation of retrieval from screening is adopted as a measurement
 constraint \cite{metasyn2026}; its credential-free BM25 plus public-protocol
 screening probe subsequently completed on all 86 released test reviews and is
-reported as a bounded retrieval/screening result, not as the full P2 system.
+reported as a bounded retrieval/screening result, not as the complete proposed
+controller.
 AgentSLR remains a protocol-driven systematic-review neighbor/baseline family
 rather than an official evaluator dependency \cite{agentslr2026}.
 
-\paragraph{Frozen external retrieval snapshots and live-provider campaign.}
-The prospective external design freezes a gold-blind candidate pool per query
-before comparing systems, then runs a smaller predeclared live subsample.  Pool
-coverage must be reported as a shared ceiling because a gold-blind pool can omit
-gold.  Live requests are designed to retain URL/parameters, query derivation,
-timestamp, raw response and typed transport outcome.  The capture machinery and
-manifest exist and have been exercised, but the final result-bearing external
-pool and live campaign have not been executed in this revision.  Therefore no
-external cost, latency or recall result is inferred from the capture audit.
+\paragraph{Live-provider campaigns.}
+The OpenAIRE and Crossref campaigns freeze gold-blind candidate pools and retain
+request, query-derivation, timestamp, raw-response, and typed transport records.
+Their provider-validity gates failed, so their numerical ties do not support a
+null, equivalence, or superiority conclusion. A separate fresh 48-task campaign
+was not accessed and contributes no outcome.
 
 \subsection{Systems under test}
 The implementation evaluated here is the ORION discovery layer; it is the
@@ -123,12 +170,12 @@ coverage-diagnostic non-authority, and content-identity deduplication.  All use
 the same session and budgets as the governed system.
 
 \subsection{Identity, reads and stopping}
-A read is keyed by content identity, content digest and extraction question in
-the full system.  A new question can therefore reopen unchanged content for a
-legitimate reread, while mirrors with the same content identity/digest do not
-become new evidence.  The corresponding ablations remove the question coordinate
-or replace content identity with document locator to expose suppression or
-duplicate work.
+A read is keyed by work identity, content digest, extraction-schema version,
+and scientific question. A new question or schema can therefore reopen
+unchanged content for a legitimate reread, while mirrors with the same work and
+digest do not become new evidence. The corresponding ablations remove the
+question coordinate or replace content identity with document locator to expose
+suppression or duplicate work.
 
 Route stop and task closure are separate actions.  A route may stop after its
 public probe space is exhausted or after a typed transport outcome, but task
@@ -153,27 +200,15 @@ semantics support them.  Those definitions do not imply that an external result
 exists.
 
 \subsection{Statistics and authority}
-The statistical unit is the task.  Repeated stochastic runs nest within task and
-system and never count as additional tasks.  The frozen plan defines paired
-bootstrap comparisons, Wilson intervals for standalone binary rates,
-superiority/non-inferiority margins, a cost ceiling and Holm correction for the
-external confirmatory analysis.  It also defines an authority ladder.  The
-completed offline suite has $n=\OfflineTaskCount$, which reaches the precision
-tier the plan committed to in advance---registered in that plan as
-\idt{TIER_B_committed} and requiring $n=385$---at an achieved half-width of
-\OfflineAchievedHalfWidth{}; because that half-width exceeds the frozen
-superiority margin, the primary offline result carries the plan's mandatory
-underpowered label.  The three deterministic repeat seeds verify stable
-execution; they do not manufacture additional tasks.  We therefore report
-descriptive absolute differences and mechanism diagnostics, with no promoted
-superiority decision from the offline companion.
-
-For a future external confirmatory result, the frozen primary rule requires the
-family superiority margin of 0.03 under matched resources with the premature
-closure safety guard no worse than 0.02.  Non-inferiority uses the predeclared
-0.01 margin and is inadmissible above the 1.25 consumed-cost ratio.  Secondary
-families use Holm correction.  These rules remain prospective because no
-external system result is reported here.
+The controlled-index outcomes are reported descriptively because the five
+within-topic variants are dependent and the study does not establish a
+population-sampling model. Deterministic repeats nest within topic, task, and
+system and test only stable execution. The 400 exact-contract cases are also a
+fixed authored battery. Their stratified bootstrap interval and McNemar count
+describe that battery and are not population uncertainty. TREC-COVID uses the
+topic as the paired unit under its archived external gate. The BEIR studies use
+held-out queries for their fixed-corpus mechanism decisions. These authorities
+are not pooled or averaged.
 
 \subsection{Failures, exclusions and contamination}
 Candidate failures, malformed outputs, budget exhaustion, abstention and typed
@@ -189,9 +224,10 @@ candidate run is archived with the external results and reports a task rate of
 live-provider contamination.
 
 \subsection{Decision rule}
-The paper-level rule is fail-closed.  The offline companion can support a
-mechanism claim only at descriptive authority.  External discovery superiority
-requires an archived denominator-valid external result under the frozen matched
-resources and safety rule.  If that evidence is absent, blocked or
-undetermined, the claim is narrowed rather than promoted by analogy from the
-synthetic world.
+The paper-level rule is fail-closed. The offline companion can support a
+mechanism claim only at descriptive authority. External discovery superiority
+requires a denominator-valid external result that passes its archived
+matched-resource and safety rule. The TREC-COVID result fails that gate, the
+BEIR successors remain negative mechanism diagnostics, and provider-invalid or
+unaccessed campaigns remain undetermined. None is promoted by analogy from the
+controlled world.

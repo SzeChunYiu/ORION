@@ -35,17 +35,14 @@ systems, 3 repeats) is **descriptive only**. Its analysis tier is
 TIER_B_committed at an achieved half-width of 0.0496, and it is recorded as
 underpowered. It is not offered as evidence of superiority.
 
-The registered external comparison is adverse and is reported as such. On
-TREC-COVID, recall@100 for the controller arm sits 0.0177 below the strongest
-comparator with a paired bootstrap interval of [-0.0273, -0.0091]; the point
-estimate falls inside the -0.02 noninferiority margin but the interval's lower
-bound does not, and noninferiority is a claim about the interval. Cost fails
-outright rather than marginally, at 2.8x the reads where the gate required at
-least 25% fewer. One measured result runs the other way -- nDCG@10 is +0.1488
-with a bootstrap interval of [+0.1010, +0.1995], ahead on 42 of 50 topics -- but
-that criterion is outside the registered gate and **does not rescue it**. The
-external superiority verdict therefore remains unestablished on the strength of
-a comparison that was actually run. The corpus used is BEIR's 171,332-document
+The external TREC-COVID comparison is adverse on recall and cost and is reported
+as post-hoc and descriptive because no separate pre-outcome record binds the
+exact decision rule. Recall@100 for the controller arm sits 0.0177 below the
+strongest observed comparator with a paired bootstrap interval of
+[-0.0273, -0.0091]. Cost moves in the same adverse direction at 2.8x the reads.
+One measured result runs the other way: nDCG@10 is +0.1488 with a bootstrap
+interval of [+0.1010, +0.1995], ahead on 42 of 50 topics. These opposing results
+do not establish external superiority. The corpus used is BEIR's 171,332-document
 trec-covid derivative rather than the 191,175-docid official round-5 release.
 
 The internal campaign record is likewise negative in places, and the manuscript
@@ -69,7 +66,7 @@ result.
 The control problem sits between information retrieval and information science:
 what a system may legitimately infer about task completeness from local
 acquisition outcomes. I believe the combination of explicit authority semantics,
-controlled mechanism evidence, and a preserved failed registered gate is
+controlled mechanism evidence, and a preserved adverse external comparison is
 relevant to IP&M readers working on retrieval, scientific-discovery systems,
 evidence synthesis and systematic review automation.
 
@@ -88,5 +85,5 @@ No funding was received for this work.
 Sincerely,
 
 Sze Chun Yiu
-Department of Physics, Stockholm University, Stockholm, Sweden
+Stockholm University
 sze-chun.yiu@fysik.su.se

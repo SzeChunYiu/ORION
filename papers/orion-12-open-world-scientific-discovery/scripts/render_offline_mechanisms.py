@@ -34,10 +34,7 @@ def _expected_authority(n_tasks: int) -> str:
 
 
 def _scope(data: dict[str, Any], *, detail: str) -> str:
-    return (
-        f"{data['n_tasks']} frozen tasks; {detail}; "
-        f"authority {data['analysis_authority']} (precision tier only, no primary promotion)"
-    )
+    return f"{data['n_tasks']} frozen tasks; {detail}; descriptive mechanism summary"
 
 
 def _validate(data: dict[str, Any]) -> None:

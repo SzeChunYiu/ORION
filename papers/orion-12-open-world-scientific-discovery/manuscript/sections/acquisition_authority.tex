@@ -45,7 +45,7 @@ the strongest retriever.}
 
 \subsection{Absorbing strong acquisition mechanisms}
 
-The acquisition layer is intentionally donor-composable.  SAGE shows that
+The acquisition layer intentionally composes with prior mechanisms. SAGE shows that
 keyword-oriented agent queries can make strong lexical retrieval difficult to
 beat and that corpus-side metadata/keyword augmentation can further improve
 retrieval \cite{sage2026}.  AgentIR shows that an agent's reasoning trace can be
@@ -74,15 +74,15 @@ when routes are dependent, unavailable, censored or only locally exhausted?
 
 \subsection{The authority residual}
 
-This decomposition yields four residual design claims that are separable from
-the mechanics above.  First, route independence must be earned from backend,
-query-derivation and capture identity rather than from distinct tool names.
-Second, route-local stopping and task-global closure are different authority
-levels.  Third, an unavailable or censored route remains a typed open obligation
-rather than becoming an empty result.  Fourth, content identity and
-question-conditioned processing state must remain distinct so duplicate
-rediscovery does not inflate coverage while a genuinely changed scientific
-question can trigger justified rereading.
+The implementation composes four control elements: provenance-based route
+distinctness, separation of route stopping from task closure, explicit open
+states for unavailable or censored routes, and separation of content identity
+from question-conditioned processing state. Prior work owns strong retrieval,
+coverage, sufficiency, stopping, memory, and obligation mechanisms. The narrower
+residual tested here is their task-level aggregation: a prospectively material
+route that is unavailable, censored, or provider-invalid must not disappear
+from the closure denominator. The exact-contract comparison changes this rule
+while granting the comparator the other prior mechanisms.
 
 The resulting design is deliberately asymmetric.  It is permissive about
 \emph{how} evidence is acquired: a stronger retriever, query generator,
@@ -103,5 +103,5 @@ should the closure layer be challenged with direct ablations and strong stopping
 baselines.  A positive external result must therefore show both acquisition
 quality and the incremental effect of typed closure authority; a cheaper stop
 that hides reachable relevant evidence is not a positive result.  Conversely,
-a stronger donor retriever that improves acquisition while leaving the closure
+a stronger substituted retriever that improves acquisition while leaving the closure
 constraints intact strengthens the system rather than weakening the claim.

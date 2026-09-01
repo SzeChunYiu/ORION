@@ -3,7 +3,7 @@
 \begin{tikzpicture}[x=0.48cm,y=5.0cm]
 \draw[->] (0,0) -- (12.7,0) node[right]{search queries};
 \draw[->] (0,0) -- (0,1.08);
-\node[rotate=90,anchor=south] at (-0.62,0.54) {complete-gold recall};
+\node[rotate=90,anchor=south] at (-1.02,0.54) {complete-gold recall};
 \foreach \x in {0,2,4,6,8,10,12} \draw (\x,0.012) -- (\x,-0.012) node[below]{\x};
 \foreach \y/\lab in {0/0,0.25/.25,0.5/.50,0.75/.75,1/1.0} \draw (0.10,\y) -- (-0.10,\y) node[left]{\lab};
 \draw[thick] plot coordinates {(0,0.000000) (1,0.333333) (2,0.444444) (3,0.555556) (4,0.648148) (5,0.651567) (6,0.689744) (7,0.757835) (8,0.819943) (9,0.898006) (10,0.922507) (11,0.952707) (12,0.979487)};
