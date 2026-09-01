@@ -87,6 +87,10 @@ def main()->int:
  for route in ('arxiv','journal'):
   safe_zip(package/route/'source.zip')
  safe_zip(package/'journal/review-materials.zip')
+ artifact=package/'journal/artifact.zip'
+ if artifact.is_file():
+  safe_zip(artifact)
+  checks.append('paper_specific_artifact_archive')
  checks.append('archive_path_safety')
  arx=text_pdf(package/'arxiv/manuscript.pdf'); jour=text_pdf(package/'journal/manuscript.pdf')
  if any(x.lower() in arx.lower() or x.lower() in jour.lower() for x in PLACEHOLDERS): raise RuntimeError('visible manuscript placeholder')
