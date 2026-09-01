@@ -2,12 +2,12 @@
 """Reconcile clean-CI manuscript renders without changing scientific authority.
 
 The clipping workflow rebuilds every working manuscript in a pinned Ubuntu
-24.04 / TeX Live 2023 environment.  This utility imports the nine derived PDFs
-from one such run, updates only the checksums that explicitly bind those PDFs,
-and then (in a second commit) re-pins the four V1 candidate manifests whose
-subjects include a changed render.  The two phases must not be collapsed: the
-subject commit has to contain the bytes and digest file before a manifest can
-truthfully name it.
+24.04 / TeX Live 2023 environment.  This utility imports nine derived PDFs from
+identified clean-CI runs, updates only the checksums that explicitly bind those
+PDFs, and then (in a second commit) re-pins the four V1 candidate manifests
+whose subjects include a changed render.  The two phases must not be collapsed:
+the subject commit has to contain the bytes and digest file before a manifest
+can truthfully name it.
 
 This is render reconciliation, not scientific reconciliation.  Source, claims,
 tables, evidence, null results, and authority records are outside the allowed
@@ -25,9 +25,6 @@ import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CI_SOURCE_COMMIT = "b380d807d11665698c5474bd07bde3f700206041"
-CI_WORKFLOW_RUN = "33466273211"
-CI_ARTIFACT_ID = "9784999811"
 RENDER_DATE = "2026-09-01"
 
 RENDERS = {
@@ -67,6 +64,27 @@ RENDERS = {
         "1f2d73c6a3b69acb923711381221c2363a9ce621e3c37b33840499b84fdd52cd",
         12,
     ),
+}
+
+INITIAL_RENDER_PROVENANCE = {
+    "source_revision": "ae693283365d6b7c0129e7122ce9c6f5a7ac03d3",
+    "workflow_run_id": "33463297400",
+    "artifact_id": "9783994917",
+    "rendered_utc_date": RENDER_DATE,
+}
+RENDER_PROVENANCE = {
+    slug: dict(INITIAL_RENDER_PROVENANCE)
+    for slug in RENDERS
+}
+# ORION-23 was rebuilt after its bounded-claim wording was reconciled with the
+# then-current main branch.  Its bytes therefore come from a later, targeted
+# clipping run; the other eight PDFs retain the provenance of the batch that
+# actually produced them.
+RENDER_PROVENANCE["orion-23-responsibility-carrying-state"] = {
+    "source_revision": "b380d807d11665698c5474bd07bde3f700206041",
+    "workflow_run_id": "33466273211",
+    "artifact_id": "9784999811",
+    "rendered_utc_date": RENDER_DATE,
 }
 
 V1_BINDINGS = {
@@ -160,17 +178,23 @@ def verify_imported_renders(selected: set[str] | None = None) -> None:
             raise RuntimeError(f"{slug}: imported PDF digest {actual}, expected {expected}")
 
 
+def validate_targeted_selection(selected: set[str] | None) -> None:
+    if selected is None:
+        return
+    supported = set(V1_BINDINGS.values()) & set(RENDERS)
+    unsupported = selected - supported
+    if unsupported:
+        raise RuntimeError(
+            "targeted render reconciliation supports V1-bound papers only: "
+            + ", ".join(sorted(unsupported))
+        )
+
+
 def prepare_digest_subject(selected: set[str] | None = None) -> None:
+    validate_targeted_selection(selected)
     verify_imported_renders(selected)
 
     if selected is not None:
-        binding_slugs = set(V1_BINDINGS.values())
-        unsupported = selected - binding_slugs
-        if unsupported:
-            raise RuntimeError(
-                "targeted preparation supports V1-bound papers only: "
-                + ", ".join(sorted(unsupported))
-            )
         for slug in sorted(selected):
             paper = ROOT / "papers" / slug
             relative = f"papers/{slug}/manuscript/main.pdf"
@@ -233,14 +257,22 @@ def prepare_digest_subject(selected: set[str] | None = None) -> None:
             "artifact. The render-only reconciliation changes no source, claim, "
             "table, evidence, null result, or authority state."
         ),
-        "source_revision": CI_SOURCE_COMMIT,
-        "rendered_utc_date": RENDER_DATE,
+        "source_revision": RENDER_PROVENANCE[
+            "orion-14-verified-scientific-discovery"
+        ]["source_revision"],
+        "rendered_utc_date": RENDER_PROVENANCE[
+            "orion-14-verified-scientific-discovery"
+        ]["rendered_utc_date"],
         "engine": "pdfTeX-1.40.25 via latexmk 4.83; pinned Ubuntu 24.04 TeX Live 2023",
         "source_date_epoch_policy": (
             "latest commit touching manuscript inputs, excluding manuscript/main.pdf"
         ),
-        "workflow_run_id": CI_WORKFLOW_RUN,
-        "artifact_id": CI_ARTIFACT_ID,
+        "workflow_run_id": RENDER_PROVENANCE[
+            "orion-14-verified-scientific-discovery"
+        ]["workflow_run_id"],
+        "artifact_id": RENDER_PROVENANCE[
+            "orion-14-verified-scientific-discovery"
+        ]["artifact_id"],
         "sha256": target_digest,
         "pages": RENDERS["orion-14-verified-scientific-discovery"][1],
     }
@@ -282,6 +314,7 @@ def prepare_digest_subject(selected: set[str] | None = None) -> None:
 
 
 def bind_subject(commit: str, selected: set[str] | None = None) -> None:
+    validate_targeted_selection(selected)
     if not re.fullmatch(r"[0-9a-f]{40}", commit):
         raise RuntimeError("--subject-commit must be a full lowercase Git commit ID")
     git_text("cat-file", "-e", f"{commit}^{{commit}}")
@@ -320,6 +353,7 @@ def bind_subject(commit: str, selected: set[str] | None = None) -> None:
         if not isinstance(history_rows, list):
             raise RuntimeError(f"{slug}: malformed publication render history")
         if not any(row.get("new_subject_commit") == commit for row in history_rows):
+            provenance = RENDER_PROVENANCE[slug]
             history_rows.append(
                 {
                     "prior_subject_commit": prior_subject,
@@ -329,8 +363,8 @@ def bind_subject(commit: str, selected: set[str] | None = None) -> None:
                         "clipping and byte-equality gate."
                     ),
                     "scientific_authority_delta": "NONE",
-                    "workflow_run_id": CI_WORKFLOW_RUN,
-                    "artifact_id": CI_ARTIFACT_ID,
+                    "workflow_run_id": provenance["workflow_run_id"],
+                    "artifact_id": provenance["artifact_id"],
                     "changed_derived_file": {
                         "path": f"papers/{slug}/manuscript/main.pdf",
                         "prior_sha256": PRIOR_PDF_DIGESTS[slug],

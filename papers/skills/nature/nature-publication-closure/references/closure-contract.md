@@ -118,6 +118,13 @@ deletions or content drift. A workflow definition, push attempt or source-side
 commit is not proof of a completed mirror; record the target commit or leave the
 mirror terminal pending.
 
+Treat overlays as an ownership boundary, not as an unchecked copy exception.
+Exclude the same declared overlay names from both sides of the source/target
+comparison, restore target-owned directories with replace semantics, and test a
+source/overlay name collision explicitly. A directory-copy primitive that
+assumes the destination is absent can turn a legitimate future source `code/`
+directory into a stopped or partially completed mirror.
+
 Do not place a commit identifier inside the same commit/tree whose identity it
 claims to bind. Bind file or subtree hashes in the source package. Resolve the
 immutable main commit after merge, mirror that tree, and store source/target
@@ -128,6 +135,12 @@ commit receipts outside the mirrored paper roots or in external CI evidence.
 Verifiers accept the requested paper set and fail if any requested identifier is
 unregistered or skipped. Avoid fixed scoreboards whose success can silently omit
 new papers. Emit a per-paper result and a failing aggregate terminal.
+
+Do not infer coverage from only the files a discovery loop happens to return.
+Compare discovered identifiers with the expected registry, then verify one
+checksum-closed package for every expected paper. Targeted maintenance commands
+must validate their requested identifiers before reading or changing state; a
+typo or unsupported paper is an error, never a successful no-op.
 
 The registry terminal must match the active machine-readable scientific
 disposition when one exists. Where the authority is prose-only, bind its hash
@@ -148,3 +161,9 @@ Do not promote the first category into the second or third. Bind host, command,
 input hashes and output hashes for replay claims, and retain disagreements or
 environment-dependent failures as results rather than silently normalizing
 them away.
+
+Bind derived-PDF provenance per artifact. If one manuscript is later rebuilt in
+a targeted CI run, do not replace batch-global provenance constants in a way
+that makes unchanged PDFs appear to come from that later artifact. Record the
+actual source revision, workflow run, artifact identifier, build date, engine
+and digest for each rendered PDF, and regression-test mixed-run reconciliation.

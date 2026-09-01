@@ -117,7 +117,11 @@ def mirror_paper(source_root: Path, target_root: Path, paper: str, source_commit
             shutil.rmtree(destination)
         copy_item(source, destination)
         for item in overlays.iterdir():
-            copy_item(item, destination / item.name)
+            # Target-owned overlays win even if a future source paper introduces
+            # a path with the same name (notably ``code/``).  Replace the copied
+            # source path atomically at item granularity instead of asking
+            # copytree to merge two independently owned directories.
+            replace_exact(item, destination / item.name)
     receipt = destination / "MIRROR_RECEIPT_2026-08-31.md"
     receipt.write_text(
         f"""# Exact mirror receipt -- {paper}
@@ -135,7 +139,9 @@ workflow after commit, avoiding a self-referential receipt.
 """,
         encoding="utf-8",
     )
-    if tree_map(source) != tree_map(destination, exclude_overlays=True):
+    if tree_map(source, exclude_overlays=True) != tree_map(
+        destination, exclude_overlays=True
+    ):
         raise RuntimeError(f"post-copy tree mismatch: {paper}")
 
 

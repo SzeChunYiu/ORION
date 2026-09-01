@@ -86,6 +86,36 @@ def test_expanded_mirror_has_exact_25_paper_coverage(tmp_path: Path) -> None:
     ).read_text(encoding="utf-8")
 
 
+def test_mirror_target_directory_overlay_replaces_source_collision(
+    tmp_path: Path,
+) -> None:
+    module = load_module(MIRROR, "mirror_orion_papers_all_overlay_collision")
+    paper = module.PAPERS[0]
+    source_root = tmp_path / "source"
+    target_root = tmp_path / "target"
+    source = source_root / "papers" / paper
+    package = source / "submission/publication-ready-20260831"
+    package.mkdir(parents=True)
+    (package / "PACKAGE_MANIFEST.json").write_text("{}\n", encoding="utf-8")
+    (source / "paper.txt").write_text("current\n", encoding="utf-8")
+    (source / "code").mkdir()
+    (source / "code/source-owned.txt").write_text("source\n", encoding="utf-8")
+
+    destination = target_root / "v1-papers" / paper
+    (destination / "code").mkdir(parents=True)
+    (destination / "code/target-owned.txt").write_text("target\n", encoding="utf-8")
+
+    module.mirror_paper(source_root, target_root, paper, "b" * 40)
+
+    assert (destination / "code/target-owned.txt").read_text(encoding="utf-8") == (
+        "target\n"
+    )
+    assert not (destination / "code/source-owned.txt").exists()
+    assert module.tree_map(source, exclude_overlays=True) == module.tree_map(
+        destination, exclude_overlays=True
+    )
+
+
 def test_mirror_checksum_verification_cannot_pass_with_missing_papers(
     tmp_path: Path,
 ) -> None:
@@ -137,6 +167,28 @@ def test_ci_render_reconciliation_can_target_one_v1_paper(tmp_path: Path) -> Non
     assert (paper / "SHA256SUMS").read_text(encoding="utf-8") == (
         f"{hashlib.sha256(pdf.read_bytes()).hexdigest()}  {relative}\n"
     )
+
+
+def test_ci_render_provenance_is_bound_per_actual_artifact() -> None:
+    module = load_module(RENDER_RECONCILER, "ci_render_provenance")
+    original = module.RENDER_PROVENANCE[
+        "orion-14-verified-scientific-discovery"
+    ]
+    refreshed = module.RENDER_PROVENANCE[
+        "orion-23-responsibility-carrying-state"
+    ]
+
+    assert original["workflow_run_id"] == "33463297400"
+    assert original["artifact_id"] == "9783994917"
+    assert refreshed["workflow_run_id"] == "33466273211"
+    assert refreshed["artifact_id"] == "9784999811"
+    assert original != refreshed
+
+
+def test_ci_render_subject_bind_rejects_unsupported_target_before_git() -> None:
+    module = load_module(RENDER_RECONCILER, "ci_render_target_validation")
+    with pytest.raises(RuntimeError, match="supports V1-bound papers only"):
+        module.bind_subject("a" * 40, {"orion-99-typo"})
 
 
 def test_fast_ci_installs_publication_pdf_tooling() -> None:
