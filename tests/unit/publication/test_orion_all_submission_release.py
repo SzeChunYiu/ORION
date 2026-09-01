@@ -84,6 +84,35 @@ def test_expanded_mirror_has_exact_25_paper_coverage(tmp_path: Path) -> None:
     ).read_text(encoding="utf-8")
 
 
+def test_mirror_checksum_verification_cannot_pass_with_missing_papers(
+    tmp_path: Path,
+) -> None:
+    module = load_module(MIRROR, "mirror_orion_papers_all_checksum_coverage")
+    paper = module.PAPERS[0]
+    package = (
+        tmp_path
+        / "v1-papers"
+        / paper
+        / "submission/publication-ready-20260831"
+    )
+    package.mkdir(parents=True)
+    payload = package / "payload.txt"
+    payload.write_text("current\n", encoding="utf-8")
+    (package / "SHA256SUMS").write_text(
+        f"{hashlib.sha256(payload.read_bytes()).hexdigest()}  payload.txt\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(RuntimeError, match="checksum file missing"):
+        module.verify_mirrored_package_checksums(tmp_path)
+
+    module.PAPERS = (paper,)
+    module.verify_mirrored_package_checksums(tmp_path)
+    payload.write_text("drift\n", encoding="utf-8")
+    with pytest.raises(RuntimeError, match="checksum mismatch"):
+        module.verify_mirrored_package_checksums(tmp_path)
+
+
 def test_full_build_report_is_bound_to_each_current_manifest(tmp_path: Path) -> None:
     module = load_module(MIRROR, "mirror_orion_papers_all_report_binding")
     closure = tmp_path / "papers/publication_closure/orion_all_submission_20260831"

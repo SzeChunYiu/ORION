@@ -104,9 +104,6 @@ jobs:
             --source-root . \
             --target-root target \
             --source-commit "${GITHUB_SHA}"
-          while IFS= read -r sums; do
-            (cd "$(dirname "${sums}")" && sha256sum -c SHA256SUMS)
-          done < <(find target/v1-papers/orion-* -path '*/submission/publication-ready-20260831/SHA256SUMS' -print | sort)
 
       - name: Commit, push, and merge through ORION-paper pull request
         if: steps.transport.outputs.mirror_required == 'true'

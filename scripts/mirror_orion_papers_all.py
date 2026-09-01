@@ -160,6 +160,39 @@ def verify_full_report(source_root: Path) -> None:
             )
 
 
+def verify_mirrored_package_checksums(target_root: Path) -> None:
+    """Require one checksum-closed current package for every declared paper."""
+    checked: list[str] = []
+    for paper in PAPERS:
+        package = (
+            target_root
+            / "v1-papers"
+            / paper
+            / "submission/publication-ready-20260831"
+        )
+        sums_path = package / "SHA256SUMS"
+        if not sums_path.is_file():
+            raise RuntimeError(f"mirrored publication checksum file missing: {paper}")
+        rows = sums_path.read_text(encoding="utf-8").splitlines()
+        if not rows:
+            raise RuntimeError(f"mirrored publication checksum file is empty: {paper}")
+        seen: set[str] = set()
+        for row in rows:
+            try:
+                expected, relative = row.split("  ", 1)
+            except ValueError as exc:
+                raise RuntimeError(f"malformed mirrored checksum row: {paper}: {row}") from exc
+            path = (package / relative).resolve()
+            if package.resolve() not in path.parents or relative in seen:
+                raise RuntimeError(f"unsafe or duplicate mirrored checksum path: {paper}: {relative}")
+            if not path.is_file() or sha256(path) != expected:
+                raise RuntimeError(f"mirrored publication checksum mismatch: {paper}: {relative}")
+            seen.add(relative)
+        checked.append(paper)
+    if tuple(checked) != PAPERS:
+        raise RuntimeError("mirrored checksum verification did not cover ORION-01--25 exactly")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--source-root", type=Path, required=True)
@@ -177,6 +210,7 @@ def main() -> int:
     for paper in PAPERS:
         mirror_paper(source_root, target_root, paper, args.source_commit)
         print(f"MIRRORED {paper}")
+    verify_mirrored_package_checksums(target_root)
     for rel_string in SUPPORT_PATHS:
         rel = Path(rel_string)
         source = source_root / "papers" / rel
