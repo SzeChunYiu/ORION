@@ -1,0 +1,16 @@
+{
+  "confidence": "MODERATE_LOW",
+  "executor": {
+    "model": "Claude Opus 5 (1M context)",
+    "provider": "Anthropic",
+    "type": "LLM_HOST_RESEARCH_DIAGNOSIS"
+  },
+  "input_restricted_to_shared_packet": true,
+  "item_id": "django_django#21859",
+  "rationale": "Tiny one-file change, but Django's floor for any merge is ticket plus review; 1 day old.",
+  "schema": "ORIONQ.Q3PublicLaneAReceipt.v1",
+  "scientific_authority": false,
+  "scientific_outcome_accessed": false,
+  "shared_packet_sha256": "119dfd31c7bdf26631129ed1734996c39ecf951a1994479c0cad976f1e3f7d13",
+  "verdict": "PREDICT_UNRESOLVED_AT_HORIZON"
+}

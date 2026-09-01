@@ -1,0 +1,16 @@
+{
+  "confidence": "MODERATE_LOW",
+  "executor": {
+    "model": "Claude Opus 5 (1M context)",
+    "provider": "Anthropic",
+    "type": "LLM_HOST_RESEARCH_DIAGNOSIS"
+  },
+  "input_restricted_to_shared_packet": true,
+  "item_id": "networkx_networkx#8883",
+  "rationale": "+112/-45 across 2 files is larger; 1 day old so review has not started.",
+  "schema": "ORIONQ.Q3PublicLaneAReceipt.v1",
+  "scientific_authority": false,
+  "scientific_outcome_accessed": false,
+  "shared_packet_sha256": "d7a3dce8e376f3473354d325dde6f38c55d9af08a69e6f1ebc66992e5d778e1b",
+  "verdict": "PREDICT_MERGED"
+}

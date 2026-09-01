@@ -1,0 +1,16 @@
+{
+  "confidence": "MODERATE",
+  "executor": {
+    "model": "Claude Opus 5 (1M context)",
+    "provider": "Anthropic",
+    "type": "LLM_HOST_RESEARCH_DIAGNOSIS"
+  },
+  "input_restricted_to_shared_packet": true,
+  "item_id": "django_django#21856",
+  "rationale": "Same Django review pipeline; 2 days old is far too fresh to have cleared triage.",
+  "schema": "ORIONQ.Q3PublicLaneAReceipt.v1",
+  "scientific_authority": false,
+  "scientific_outcome_accessed": false,
+  "shared_packet_sha256": "5fdc822d1c45bc5f6c4a5391ae6ad3c13265c0bcbf482eb4f520c6fdd1ec3c34",
+  "verdict": "PREDICT_UNRESOLVED_AT_HORIZON"
+}

@@ -1,0 +1,16 @@
+{
+  "confidence": "MODERATE",
+  "executor": {
+    "model": "Claude Opus 5 (1M context)",
+    "provider": "Anthropic",
+    "type": "LLM_HOST_RESEARCH_DIAGNOSIS"
+  },
+  "input_restricted_to_shared_packet": true,
+  "item_id": "pallets_flask#5660",
+  "rationale": "615 days open in pallets. Flask maintainers periodically close long-stale PRs rather than leave them; closure is likelier than a merge.",
+  "schema": "ORIONQ.Q3PublicLaneAReceipt.v1",
+  "scientific_authority": false,
+  "scientific_outcome_accessed": false,
+  "shared_packet_sha256": "e07a5c04bf92f4fe3449bec0fbc1ada07a531475ce886e8a052615b0a7af76f0",
+  "verdict": "PREDICT_CLOSED_UNMERGED"
+}

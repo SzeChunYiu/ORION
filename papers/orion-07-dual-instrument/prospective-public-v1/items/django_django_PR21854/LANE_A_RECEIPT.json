@@ -1,0 +1,16 @@
+{
+  "confidence": "MODERATE",
+  "executor": {
+    "model": "Claude Opus 5 (1M context)",
+    "provider": "Anthropic",
+    "type": "LLM_HOST_RESEARCH_DIAGNOSIS"
+  },
+  "input_restricted_to_shared_packet": true,
+  "item_id": "django_django#21854",
+  "rationale": "Django requires a Trac ticket and usually several review rounds; a 3-day-old small patch rarely lands inside 90 days.",
+  "schema": "ORIONQ.Q3PublicLaneAReceipt.v1",
+  "scientific_authority": false,
+  "scientific_outcome_accessed": false,
+  "shared_packet_sha256": "3c94398e9d6c13d5c38b79b30ca3b65c2587a3a3fc9de56c41f803816d513984",
+  "verdict": "PREDICT_UNRESOLVED_AT_HORIZON"
+}

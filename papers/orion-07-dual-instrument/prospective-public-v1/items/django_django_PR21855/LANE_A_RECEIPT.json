@@ -1,0 +1,16 @@
+{
+  "confidence": "HIGH",
+  "executor": {
+    "model": "Claude Opus 5 (1M context)",
+    "provider": "Anthropic",
+    "type": "LLM_HOST_RESEARCH_DIAGNOSIS"
+  },
+  "input_restricted_to_shared_packet": true,
+  "item_id": "django_django#21855",
+  "rationale": "25 files across Django needs coordinated review; broad diffs there routinely sit for many months.",
+  "schema": "ORIONQ.Q3PublicLaneAReceipt.v1",
+  "scientific_authority": false,
+  "scientific_outcome_accessed": false,
+  "shared_packet_sha256": "5269e857efd3afc853a61eab61d573f3b5c32fe4817bd280118ab8da930b73c2",
+  "verdict": "PREDICT_UNRESOLVED_AT_HORIZON"
+}

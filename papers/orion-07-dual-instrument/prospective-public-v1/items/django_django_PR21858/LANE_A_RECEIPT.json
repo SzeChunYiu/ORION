@@ -1,0 +1,16 @@
+{
+  "confidence": "MODERATE",
+  "executor": {
+    "model": "Claude Opus 5 (1M context)",
+    "provider": "Anthropic",
+    "type": "LLM_HOST_RESEARCH_DIAGNOSIS"
+  },
+  "input_restricted_to_shared_packet": true,
+  "item_id": "django_django#21858",
+  "rationale": "Deletion-heavy cleanup (+42/-206) touches existing behaviour, which Django reviews conservatively.",
+  "schema": "ORIONQ.Q3PublicLaneAReceipt.v1",
+  "scientific_authority": false,
+  "scientific_outcome_accessed": false,
+  "shared_packet_sha256": "3d40f2adc3ad56446a5cbe3a44a08ef26db32b21689f62b29cf778530a78aa18",
+  "verdict": "PREDICT_UNRESOLVED_AT_HORIZON"
+}
