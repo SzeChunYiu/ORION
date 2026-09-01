@@ -1,0 +1,105 @@
+{
+  "schema": "ORION.A2.ExternalPriceShiftFailureAtlasFreeze.v1",
+  "registered_date": "2026-09-01",
+  "artifact_class": "FROZEN_ANALYSIS_BEFORE_PROTECTED_OUTCOMES",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A2 Phase 3",
+  "protected_outcomes_accessed": false,
+  "results_exist": false,
+  "source_preregistration": {
+    "path": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_EXTERNAL_PRICE_SHIFT_SUCCESSOR_PREREG_V1.json",
+    "git_blob_sha": "600f80cb203c634d3781c38ecab2c0e70f4f5641"
+  },
+  "purpose": "Freeze the exact negative/null/phase-boundary analysis before any protected price x shift result exists, so adverse cells are scientific results rather than post-hoc interpretation choices.",
+  "input_record": {
+    "format": "JSONL, one record per independent scientific unit per frozen price x shift cell",
+    "required_fields": [
+      "unit_id",
+      "benchmark",
+      "stratum",
+      "shift_axis",
+      "shift_regime",
+      "price_materialization",
+      "price_retrieval",
+      "price_reasoning_tool",
+      "eligible",
+      "cannot_check_reason",
+      "candidate_normalized_points",
+      "strongest_baseline_normalized_points",
+      "hindsight_oracle_normalized_points"
+    ],
+    "value_semantics": "The three normalized-point values are supplied by the already-frozen benchmark-specific campaign accounting. This atlas does not invent or refit a reward/cost exchange rate.",
+    "scientific_unit_rule": "unit_id must be the campaign's frozen independent unit, never a seed, generated row, tool call or repeated episode"
+  },
+  "price_lattice": {
+    "levels": [0.5, 1.0, 2.0],
+    "dimensions": ["materialization", "retrieval", "reasoning_tool"],
+    "expected_cells_per_shift_regime": 27,
+    "no_interpolation": true,
+    "boundary_rule": "a phase boundary is a literal edge between adjacent lattice cells whose frozen classification differs; no smoothing, curve fitting or visual interpolation may create a boundary"
+  },
+  "derived_quantities": {
+    "candidate_gain": "candidate_normalized_points - strongest_baseline_normalized_points",
+    "hindsight_regret": "hindsight_oracle_normalized_points - candidate_normalized_points",
+    "regret_tolerance": 1e-12,
+    "regret_guard": "a materially negative hindsight regret is an invalid input and fails closed",
+    "cell_max_regret_reference": 2.0,
+    "cell_max_regret_reference_provenance": "existing P12 frozen stop/go maximum-regret threshold; used here as a preregistered diagnostic boundary, not as retroactive proof of robustness"
+  },
+  "uncertainty": {
+    "estimand": "mean candidate gain over independent scientific units in a cell",
+    "method": "deterministic unit-block nonparametric bootstrap",
+    "resamples": 10000,
+    "interval": "equal-tail percentile 95%",
+    "randomness": "SHA-256 counter stream keyed by the canonical cell key; no runtime or host RNG",
+    "cannot_check_rows": "excluded from numeric resampling but counted and reported; a cell with zero eligible rows is CANNOT_CHECK"
+  },
+  "cell_classification_in_priority_order": [
+    {
+      "terminal": "CANNOT_CHECK",
+      "rule": "zero eligible scientific units"
+    },
+    {
+      "terminal": "BASELINE_LOSS",
+      "rule": "bootstrap 95% upper bound for mean candidate gain <= 0"
+    },
+    {
+      "terminal": "POSITIVE_NEAR_ORACLE",
+      "rule": "bootstrap 95% lower bound for mean candidate gain > 0 AND cell maximum hindsight regret <= 2 normalized points"
+    },
+    {
+      "terminal": "POSITIVE_HIGH_REGRET",
+      "rule": "bootstrap 95% lower bound for mean candidate gain > 0 AND cell maximum hindsight regret > 2 normalized points"
+    },
+    {
+      "terminal": "UNRESOLVED_DIRECTION",
+      "rule": "all remaining eligible cells, including intervals spanning zero"
+    }
+  ],
+  "required_report": [
+    "all frozen price x shift cells including adverse and CANNOT_CHECK cells",
+    "eligible N and CANNOT_CHECK N/reasons per cell",
+    "mean gain and 95% interval per cell",
+    "mean and maximum hindsight regret per cell",
+    "literal adjacent-cell phase-boundary edges",
+    "per-stratum direction without pooling away failures",
+    "unshifted reference cell",
+    "negative-result terminal counts"
+  ],
+  "forbidden": [
+    "dropping an adverse cell",
+    "changing any price level after outcomes",
+    "choosing a different uncertainty method after outcomes",
+    "smoothing a failure region into a success region",
+    "redefining the independent unit",
+    "replacing CANNOT_CHECK with a guessed value",
+    "selecting a new strongest baseline from protected outcomes",
+    "using the hindsight oracle as a candidate policy"
+  ],
+  "negative_result_interpretation": {
+    "BASELINE_LOSS": "publish as an adverse transfer region; do not retune the same estimand until positive",
+    "POSITIVE_HIGH_REGRET": "publish as a resource-location boundary: apparent gain is materially below attainable hindsight performance",
+    "UNRESOLVED_DIRECTION": "publish as statistically unresolved at the frozen unit and interval definition",
+    "CANNOT_CHECK": "publish the access/accounting/source reason; do not substitute authored or easier cells"
+  },
+  "scientific_authority_delta": "NONE__ANALYSIS_PREREGISTRATION_ONLY"
+}
