@@ -1,6 +1,6 @@
 # Four committed manuscript PDFs do not reproduce, and the check that says so had never run
 
-**Status:** `FINDING__FOUR_PAPERS_BLOCKED_ON_PDF_REPRODUCIBILITY`
+**Status:** `DIAGNOSED__COMMITTED_PDFS_RENDERED_OUTSIDE_THE_PINNED_PATH`
 **Scientific authority delta:** `NONE`.
 
 ## What the audit found the first time it could
@@ -59,6 +59,48 @@ produced a PDF of **identical byte length and a different digest**, which is the
 a non-reproducible render rather than an edit. Reverting to the committed bytes clears the
 drift and restores a PDF that still does not reproduce.
 
+## Diagnosed
+
+The three-step diagnostic below was run, and it resolves all four.
+
+**The committed PDFs were rendered outside the pinned render path.** Each carries a
+`CreationDate` that is the author's wall clock at render time, not the
+`SOURCE_DATE_EPOCH` the workflow derives from the manuscript's own source commit:
+
+| paper | committed `CreationDate` | what `SOURCE_DATE_EPOCH` gives | gap |
+|---|---|---|---|
+| `orion-08-typed-state` | `D:20260901114631Z` | `D:20260901115822Z` | 12 minutes early |
+| `orion-19-structured-epistemic-learning` | `D:20260901095132Z` | `D:20260901121303Z` | 2h 22m early |
+| `orion-12-open-world-scientific-discovery` | `D:20260901023132Z` | `D:20260901150101Z` | 12h 30m early |
+
+For ORION-08 and ORION-19 the PDF and its sources were committed in the *same* commit, so
+the pinned epoch would be that commit's timestamp. The PDF instead carries a time shortly
+*before* it — the moment someone rendered locally, minutes before committing. CI renders with
+the epoch exported, so it cannot help but produce different bytes.
+
+That is why ORION-19's re-render inside another pull request had **identical byte length and
+a different digest**. The documents are the same; only the embedded timestamp and the
+resulting `/ID` differ.
+
+ORION-12 is the compound case: rendered outside the path *and* stale, its sources having
+moved in `4b8e4cdb5` after the PDF was written in `d163369a9`.
+
+**ORION-10 is a different sub-case.** Its PDF carries no `CreationDate`, no `ModDate` and no
+`/Producer` at all, where the other three carry `pdfTeX-1.40.25`. It was produced by some
+other route, and naming that route is the one piece still open.
+
+## The repair this implies
+
+Regenerate each committed PDF *through the workflow's own loop*, with `SOURCE_DATE_EPOCH`
+and `FORCE_SOURCE_DATE` exported, and commit the result. After that the committed bytes and
+the CI rebuild are produced by one procedure and agree by construction.
+
+Nothing here says the PDFs are wrong as documents. It says the committed artifact and the
+rebuilt artifact were made by different procedures, so no comparison between them could ever
+have succeeded — and a reproducibility gate that cannot succeed is not a gate.
+
+## The original three-step diagnostic, for the record
+
 ## What would settle each case
 
 For each of the four, in order, stopping at the first that explains it:
@@ -70,9 +112,8 @@ For each of the four, in order, stopping at the first that explains it:
    render, and `SOURCE_DATE_EPOCH`/`FORCE_SOURCE_DATE` coverage is the thing to check.
 3. Does the committed PDF's own metadata name a toolchain the workflow no longer pins?
 
-None of that is done here. This document records the finding and the fact that it was
-invisible until the toolchain gap closed; the per-paper diagnosis is the next piece of work
-and is queued, not claimed.
+That diagnostic was run; its result is the Diagnosed section above. Only ORION-10's
+producing route remains unnamed.
 
 ## Provenance
 
