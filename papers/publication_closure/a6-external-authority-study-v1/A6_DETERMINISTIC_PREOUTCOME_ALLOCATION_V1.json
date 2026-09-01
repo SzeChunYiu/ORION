@@ -1,0 +1,27 @@
+{
+  "schema": "ORION.A6.DeterministicPreOutcomeAllocation.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A6 Phase 2",
+  "artifact_class": "FROZEN_BEFORE_CANDIDATE_PREDICTIONS_AND_GOLD",
+  "protected_outcomes_accessed": false,
+  "candidate_predictions_accessed": false,
+  "primary_quota_by_stratum": {
+    "scientific_software_release_provenance_attestation": 20,
+    "workflowhub_rocrate_versioned_workflow": 20,
+    "scientific_record_transition": 20
+  },
+  "replication_quota_rule": "external study host must freeze an integer replication quota >=1 for each of the three strata, plus their sum replication_target_n, before candidate predictions; this protocol does not invent those quotas",
+  "allocation_key": "SHA256('A6-ALLOCATION-V1|' + stratum + '|' + packet_id + '|' + source_family_id + '|' + normalized_organization_lineage + '|' + artifact_lineage_id)",
+  "algorithm": [
+    "validate that replication_target_n and exact per-stratum replication quotas are frozen before candidate predictions and sum exactly",
+    "within each stratum sort eligible packets by allocation_key ascending then packet_id",
+    "select 20 primary packets per stratum",
+    "continue scanning and select the externally frozen replication quota for that stratum",
+    "source_family_id, normalized_organization_lineage and artifact_lineage_id must be unique across all selected primary and replication packets",
+    "do not move replication quota across strata after outcomes",
+    "shortfall is CANNOT_CHECK, not a reason to change replication N or substitute another stratum"
+  ],
+  "success_terminal": "A6_EXTERNAL_PRIMARY_REPLICATION_ALLOCATION_FROZEN",
+  "shortfall_terminal": "CANNOT_CHECK_A6_PREOUTCOME_QUOTA_OR_DISJOINTNESS_SHORTFALL",
+  "scientific_authority_delta": "NONE__ALLOCATION_FREEZE_ONLY"
+}
