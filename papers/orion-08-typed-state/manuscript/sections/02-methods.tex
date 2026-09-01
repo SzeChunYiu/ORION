@@ -6,11 +6,28 @@ Each study freezes its world generator, seed, arms, metrics, gates, tie-breaks, 
 \subsection{Matched information}
 Within a family, every non-oracle arm receives the identical serialized visible state. Mechanism comparisons therefore change the decision rule, not the available facts. Oracle arms are included only as upper/reference bounds and are not described as deployable baselines.
 
+\subsection{Finite decision criterion}
+Let $X$ be a finite set of worlds with mass $p(x)>0$, let $A$ be a finite action set, and let $\ell(x,a)$ be loss. A binding $B$ partitions $X$ into fibres $F$. The minimum risk attainable by a deterministic $B$-measurable policy is
+\[
+R(B)=\sum_{F\in B}\min_{a\in A}\sum_{x\in F}p(x)\ell(x,a).
+\]
+A zero-oracle-regret $B$-measurable policy exists exactly when every fibre has an action that is optimal in every world in that fibre. If $B'$ refines $B$, then $R(B')\leq R(B)$. For a $B'$-subfibre $G$, define $O_G$ as the actions minimizing aggregate loss on $G$. The inequality is strict exactly when at least one coarse fibre has $\bigcap_{G\subseteq F}O_G=\varnothing$ across its positive-mass refined subfibres. If the intersection is nonempty, one action attains every subfibre minimum and the risks agree on that fibre; if it is empty, no coarse action can attain their summed minima. This is a finite decision-sufficiency identity rather than a claimed new theorem. An earlier shorthand that referred only to splitting an ``impure fibre'' was too broad and is withdrawn.
+
 \subsection{First right of refusal}
-The strongest donor-complete comparator appropriate to each construction is registered in advance. A donor tie or win closes the mechanism/policy claim. This rule is responsible for the N1-C and original-world N2-F5B negatives reported below.
+The strongest donor-complete comparator appropriate to each construction is registered in advance. A donor tie or win closes the mechanism or policy claim. This rule is responsible for the costly-verification donor and original-world model-selection donor negatives reported below.
 
 \subsection{Hostile validity gates}
 Worlds include a regime that should punish the shortcut under test: blind optimism, global reopening, partial chain inspection, decision-irrelevant information gain, stale carry-forward, or a typed operation that should provide no value. The expected trap must actually bite where prespecified; otherwise the world terminates invalid rather than yielding a positive mechanism claim.
 
 \subsection{Determinism and authority}
-The N4 studies use frozen seeds and deterministic decision paths. Canonical receipts encode result and scope. Arms labelled as language-model proxies refer to fixed heuristics, not to measurements of any deployed model. Authority strings explicitly limit the results to exact-synthetic mechanism isolation.
+The synthetic studies use frozen seeds and deterministic decision paths. Canonical receipts encode result and scope. Arms labelled as language-model proxies refer to fixed heuristics, not to measurements of any deployed model. The result boundary is exact-synthetic mechanism isolation.
+
+\subsection{Real-data instantiations and held-out evaluation}
+We used three public data sources with frozen actions and losses. The OpenML benchmark suite CC18 supplies binary classification datasets and standardized metadata \cite{bischl2021openmlsuites,vanschoren2014openml}. For each of five datasets, quantile-binned coarse and refined bindings were fitted on one half; the same half determined the optimal fibre actions and the finite-criterion instantiation, while the other half measured transfer. Defects4J supplies modified classes and tests associated with 597 faults in twelve Java projects \cite{just2014defects4j}. Candidate test classes were scored under a fixed run/skip utility. A project was the scientific unit, and held-out bugs were not used to choose fibre actions. WorkflowHub supplied 1,533 registry records describing computational workflows \cite{gustafsson2025workflowhub}; the decision was whether to attempt parsing an RO-Crate, using licence as the coarse binding and workflow class as its refinement \cite{soilandreyes2022rocrate}.
+
+The same-distribution criterion check is algebraic: once subfibre-optimal actions and risks are computed from the same empirical distribution, agreement is a consequence of the identity above. We therefore treat it as an implementation and domain-instantiation check, not independent confirmation. Scientific transfer is assessed only on the held-out halves.
+
+\subsection{Deviations and analysis status}
+The OpenML analysis was corrected after initial outcomes exposed two specification errors: the first version scored the finite identity out of sample, and a minimum-mass threshold was applied to the prediction but not to the risk calculation. Because those repairs followed outcome inspection, the corrected OpenML results are descriptive rather than confirmatory. For Defects4J, a proposed binding produced 72.7\% singleton fibres; it was replaced after inspecting fibre sizes but before catch outcomes were computed, and a 50\% degeneracy gate was added. The WorkflowHub protocol initially stratified by the same feature introduced by the refinement, making the within-stratum refinement an identity. The stratifier was changed after that outcome, but all replacement strata still predicted value. The study therefore retains a cannot-assess conclusion for the required two-sided contrast rather than searching for a favorable stratum.
+
+Synthetic paired intervals are percentile-bootstrap intervals over the registered paired episodes. They are reported per comparison without family-wise correction. The real-data project and dataset counts are descriptive; rows, tests, bugs, and records are not treated as independent replications of cross-domain transfer.

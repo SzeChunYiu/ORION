@@ -107,7 +107,7 @@ def main() -> int:
     lines.append("\\begin{table}[t]")
     lines.append("  \\centering")
     lines.append(
-        "  \\caption{Paired uncertainty for every N4 comparison in the committed publication "
+        "  \\caption{Paired uncertainty for every synthetic comparison in the preserved publication "
         "analysis. Intervals are 95\\,\\% percentile bootstrap intervals over paired episode "
         "differences (5000 deterministic resamples, seeds recorded per row in the source "
         "artifact). Win/tie/loss is the paired decomposition over the same $n$ pairs. "
@@ -120,7 +120,7 @@ def main() -> int:
         "advantage would have invalidated the study; its interval is $[0,0]$ by construction "
         "and is not an undetermined contrast.}"
     )
-    lines.append("  \\label{tab:N4-U1}")
+    lines.append("  \\label{tab:paired-uncertainty}")
     lines.append("  \\footnotesize")
     # tabularx with an expanding, ragged-right label column: the comparison names are
     # long enough to overflow \textwidth in a plain tabular at 11pt/1in margins, and
@@ -136,6 +136,13 @@ def main() -> int:
 
     crossing: list[str] = []
     exact_ties: list[str] = []
+    public_study = {
+        "N4-A": "Prior",
+        "N4-B": "Reopening",
+        "N4-C": "Verify",
+        "N4-E": "Acquire",
+        "N4-F3": "Transport",
+    }
     for study, path, label, metric in ROWS:
         node = _dig(payload, study, path)
         low, high = node["bootstrap_95pct_ci"]
@@ -158,7 +165,7 @@ def main() -> int:
         else:
             marker = ""
         lines.append(
-            f"    {study} & {label}{marker} & {_fmt(mean)} "
+            f"    {public_study[study]} & {label}{marker} & {_fmt(mean)} "
             f"& $[{_fmt(low)},\\ {_fmt(high)}]$ & {n_pairs} "
             f"& {win:.2f}/{tie:.2f}/{loss:.2f} \\\\"
         )
@@ -167,9 +174,9 @@ def main() -> int:
     lines.append("  \\end{tabularx}")
     lines.append("  \\par\\smallskip")
     lines.append(
-        "  \\textit{Metric note:} N4-A, N4-E and N4-F3 differences are in episode utility; "
-        "N4-B in mean round utility; N4-C in scalarized regret reduction. "
-        "N4-D is a frozen exact census (200 laundering / 200 honest chains), not a sampled "
+        "  \\textit{Metric note:} Prior, acquisition and transport differences are in episode utility; "
+        "reopening in mean round utility; verification in scalarized regret reduction. "
+        "The provenance family is a frozen exact census (200 laundering / 200 honest chains), not a sampled "
         "paired comparison, and therefore has no interval; its counts are reported in the text."
     )
     lines.append("\\end{table}")
