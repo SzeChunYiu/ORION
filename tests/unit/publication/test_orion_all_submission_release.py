@@ -17,6 +17,7 @@ BUILDER = (
 )
 MIRROR = ROOT / "scripts/mirror_orion_papers_all.py"
 RENDER_RECONCILER = ROOT / "scripts/reconcile_ci_manuscript_renders.py"
+CI_WORKFLOW = ROOT / ".github/workflows/ci.yml"
 SUPERSEDED_PACKAGES = (
     ROOT / "papers/orion-01-certificate-realization/journal_package_A_final",
     ROOT / "papers/orion-01-certificate-realization/journal_package_B_final",
@@ -136,6 +137,11 @@ def test_ci_render_reconciliation_can_target_one_v1_paper(tmp_path: Path) -> Non
     assert (paper / "SHA256SUMS").read_text(encoding="utf-8") == (
         f"{hashlib.sha256(pdf.read_bytes()).hexdigest()}  {relative}\n"
     )
+
+
+def test_fast_ci_installs_publication_pdf_tooling() -> None:
+    workflow = CI_WORKFLOW.read_text(encoding="utf-8")
+    assert "poppler-utils" in workflow
 
 
 def test_full_build_report_is_bound_to_each_current_manifest(tmp_path: Path) -> None:
