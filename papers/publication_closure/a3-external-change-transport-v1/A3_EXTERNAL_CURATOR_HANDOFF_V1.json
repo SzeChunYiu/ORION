@@ -1,0 +1,55 @@
+{
+  "schema": "ORION.A3.ExternalCuratorHandoffContract.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A3 gold/custody",
+  "purpose": "Mechanically validate externally authored candidate-blind A3 stratum and REUSE/REOPEN/CANNOT_CHECK adjudication packets without creating or inferring those judgments inside ORION.",
+  "source_frame": {
+    "provider": "WorkflowHub",
+    "successor_frame_sha256": "a47d9255aa37de056cb5cdd7c140bcccb487aa3285790655a48abb5e538c2993",
+    "source_family_n": 128,
+    "retained_original_n": 126,
+    "replacement_workflow_ids": ["625", "631"],
+    "excluded_transport_failure_workflow_ids": ["402", "444"]
+  },
+  "packet_schema": "ORION.A3.ExternalCuratorAdjudicationPacket.v1",
+  "required_strata": [
+    "representation_schema",
+    "responsibility_output_contract",
+    "objective_acceptance_criterion",
+    "evidence_dependency"
+  ],
+  "allowed_targets": ["REUSE", "REOPEN", "CANNOT_CHECK"],
+  "required_source_binding": [
+    "workflow_id belongs to the frozen 128-family successor frame",
+    "before/after version IDs exactly match the durable source receipt",
+    "before/after licences exactly match the durable source receipt",
+    "before/after normalized content SHA-256 values exactly match the durable source receipt and differ"
+  ],
+  "required_lineage_fields": [
+    "source_family_id",
+    "normalized_organization_lineage",
+    "artifact_lineage_id"
+  ],
+  "required_custody": [
+    "candidate_visible_packet_sha256",
+    "external curator identifier",
+    "external curator receipt SHA-256",
+    "independence attestation",
+    "adjudication started before prediction reveal",
+    "ORION predictions not visible",
+    "baseline predictions not visible",
+    "protected outcomes not visible",
+    "explicit disagreement record"
+  ],
+  "disagreement_rule": "If disagreement_observed is true, a non-empty resolution is required; if false, resolution must be null/empty. Notes are always required.",
+  "batch_rule": "cluster_id must be unique across all validated packets",
+  "validator": "papers/publication_closure/a3-external-change-transport-v1/validate_external_curator_packet_v1.py",
+  "external_packet_committed_by_this_contract": false,
+  "stratum_judgments_created_by_this_contract": false,
+  "gold_targets_created_by_this_contract": false,
+  "candidate_predictions_accessed": false,
+  "baseline_predictions_accessed": false,
+  "protected_outcomes_accessed": false,
+  "grants_scientific_authority": false,
+  "scientific_authority_delta": "NONE__CUSTODY_VALIDATION_ONLY"
+}

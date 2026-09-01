@@ -10,4 +10,4 @@ These works own TARE, block-wise/global compiler transformations, Pauli-based op
 
 **Manuscript action:** no new priority sentence is added. `MANUSCRIPT_V4.md` already cites the closest load-bearing donors and states the residual negatively. The newer tracking-library item does not change the paper's theorem boundary and is recorded here rather than added as decorative bibliography.
 
-Machine-readable source snapshots used in this refresh are under `papers/publication_closure/tier_b_20260901/literature/`.
+Machine-readable source snapshots used in this refresh are retained in the repository publication-closure literature record.
