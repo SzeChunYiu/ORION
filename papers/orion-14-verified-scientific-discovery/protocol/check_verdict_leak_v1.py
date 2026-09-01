@@ -32,7 +32,25 @@ import re
 import sys
 from pathlib import Path
 
-DEFAULT_MANIFEST = Path(__file__).resolve().parent / "ATTACK_MANIFEST_V1.jsonl"
+HERE = Path(__file__).resolve().parent
+
+#: The battery in force. V1 is the frozen historical record and is deliberately
+#: NOT repaired -- `ATTACK_MANIFEST_V2_SUPERSESSION_V1.md` says so in as many
+#: words, because a benchmark whose construction is repaired is a new benchmark
+#: and the old one has to stay a reproducible record of what was measured.
+#:
+#: Pointing the default at V1 therefore made this checker report FAIL forever,
+#: on a battery nobody scores, for a leak that was found, documented and fixed in
+#: V2. A red that means "the frozen historical artifact is still the way we
+#: recorded it" is not a defect report, and a check that can never go green stops
+#: being read.
+DEFAULT_MANIFEST = HERE / "ATTACK_MANIFEST_V2.jsonl"
+
+#: Kept as the checker's detection-power control, against real data rather than a
+#: fixture: V1 must still trip. If it ever comes back clean, the phrase list has
+#: been broken and the clean verdict on V2 means nothing.
+HISTORICAL_LEAKING_MANIFEST = HERE / "ATTACK_MANIFEST_V1.jsonl"
+EXPECTED_HISTORICAL_LEAKS = 3
 
 #: Phrases that assert a verdict rather than describe evidence.
 #:
@@ -65,6 +83,27 @@ def leaks_in(case: dict) -> list[str]:
     return sorted({match.group(0).lower() for match in LEAK.finditer(blob)})
 
 
+def _historical_control() -> int | None:
+    """How many cases still leak in the frozen V1 battery, or None if unreadable.
+
+    Returning None rather than 0 matters: "could not run the control" and "the
+    control found nothing" are different worlds, and only one of them is a reason
+    to distrust a clean result.
+    """
+
+    if not HISTORICAL_LEAKING_MANIFEST.is_file():
+        return None
+    try:
+        rows = [
+            json.loads(line)
+            for line in HISTORICAL_LEAKING_MANIFEST.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+    except json.JSONDecodeError:
+        return None
+    return sum(1 for row in rows if leaks_in(row))
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
@@ -95,7 +134,30 @@ def main(argv: list[str] | None = None) -> int:
             )
 
     if not findings:
-        print(f"VERDICT LEAK CHECK: clean ({len(cases)} cases)")
+        # Clean is only meaningful if the phrase list can still catch the leak it
+        # was written for. V1 is the known-leaking real battery, so it is the
+        # control -- not a fixture, and not something that can drift into
+        # agreement with the checker.
+        control = _historical_control()
+        if control is None:
+            print(
+                "CANNOT_CHECK: the historical leaking manifest is absent, so a clean "
+                "verdict here cannot be distinguished from a broken phrase list",
+                file=sys.stderr,
+            )
+            return 2
+        if control != EXPECTED_HISTORICAL_LEAKS:
+            print(
+                f"CANNOT_CHECK: the control found {control} leaks in "
+                f"{HISTORICAL_LEAKING_MANIFEST.name}, expected {EXPECTED_HISTORICAL_LEAKS}. "
+                "The phrase list has changed; this run's clean verdict proves nothing.",
+                file=sys.stderr,
+            )
+            return 2
+        print(
+            f"VERDICT LEAK CHECK: clean ({len(cases)} cases in {args.manifest.name}; "
+            f"control: {control} leaks still detected in {HISTORICAL_LEAKING_MANIFEST.name})"
+        )
         return 0
 
     by_family: dict[str, int] = {}
