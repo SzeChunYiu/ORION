@@ -26,6 +26,7 @@ from pathlib import Path
 
 import pytest
 
+from orion.programme.proof_assertions import assert_all_discharged
 from orion.study.p7 import composition_calculus_smt as calc
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
@@ -50,10 +51,11 @@ def instantiation() -> dict:
 
 class TestTheorems:
     def test_every_theorem_is_discharged(self, proofs: tuple[calc.ProofResult, ...]) -> None:
-        undischarged = [
-            (r.theorem.name, r.outcome.value, r.detail) for r in proofs if not r.discharged
-        ]
-        assert undischarged == []
+        # `discharged` is false for both a countermodel and a solver that gave up, so
+        # asserting on it alone lets a contended CI runner report P7's composition
+        # theorem as undischarged when nothing about it changed (#2020). Both still
+        # fail; the shared helper says which one happened.
+        assert_all_discharged(proofs, what="the P7 composition-calculus theorem list")
 
     def test_every_declared_theorem_is_actually_attempted(
         self, proofs: tuple[calc.ProofResult, ...]
@@ -64,7 +66,10 @@ class TestTheorems:
 
     def test_the_chain_ladder_is_discharged_at_every_length(self) -> None:
         ladder = calc.prove_chain_ladder(bound=5)
-        assert [r.outcome for r in ladder] == [calc.ProofOutcome.PROVED] * 5
+        assert len(ladder) == 5
+        # Same defect as above: an equality against a list of PROVED cannot say
+        # whether a missing one was refuted or merely timed out (#2020).
+        assert_all_discharged(ladder, what="the P7 chain ladder at every length")
         assert ladder[0].theorem.name == "CHAIN_STEP_LEMMA"
 
     def test_the_hinge_is_proved_from_the_axioms_alone(self) -> None:

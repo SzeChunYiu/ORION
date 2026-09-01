@@ -41,7 +41,14 @@ def counts() -> dict:
 
 @pytest.fixture(scope="module")
 def load_bearing() -> dict:
-    return ds.frame_conditions_are_load_bearing()
+    # The module's own docstring is right that a longer refutation budget "lowers
+    # the odds without changing what an exhausted budget is reported as" -- so the
+    # reporting is fixed first, in the pinned-theorem test below. This is the other
+    # half. CI run 33511788834 exhausted the 40s default on
+    # DISTINCT_HANDOFFS_CAN_DIFFER_IN_VERDICT and reported a frame condition as
+    # carrying one theorem fewer. Most calls in the sweep return well inside the
+    # budget, so the raise is paid only where the search is actually hard.
+    return ds.frame_conditions_are_load_bearing(refutation_timeout_ms=120_000)
 
 
 @pytest.fixture(scope="module")
@@ -114,7 +121,29 @@ class TestTheFrameConditionsCarryTheProof:
         # Pinned rather than merely counted: a condition that starts carrying a
         # different theorem has changed meaning, and a non-empty set of losses
         # would hide that.
-        assert set(load_bearing["theorems_refuted_by_dropping"][condition]) == expected_lost
+        #
+        # A bare equality cannot say WHY a theorem left the set. "The condition no
+        # longer carries it" and "the countermodel search gave up on it" are
+        # different worlds, and only the first is about the science. The module
+        # already separates them -- `theorems_the_search_gave_up_on` is right there
+        # in the report -- so use it rather than letting a contended runner report a
+        # frame condition as carrying one theorem fewer (#2020, fourth of the class).
+        refuted = set(load_bearing["theorems_refuted_by_dropping"][condition])
+        gave_up = set(load_bearing.get("theorems_the_search_gave_up_on", {}).get(condition, []))
+
+        undecided = (expected_lost - refuted) & gave_up
+        assert not undecided, (
+            f"dropping {condition!r}: the countermodel search gave up on {sorted(undecided)} "
+            f"within {load_bearing['refutation_timeout_ms']}ms across world sizes "
+            f"{load_bearing['world_sizes_tried']}. That is the search running out, not the "
+            "condition ceasing to carry the theorem -- these searches settle on an unloaded "
+            "machine. Re-run before reading anything else into it."
+        )
+        assert refuted == expected_lost, (
+            f"dropping {condition!r} refuted {sorted(refuted)}, expected {sorted(expected_lost)}. "
+            "No theorem in the difference is one the search gave up on, so this is a real "
+            "change in what the condition carries."
+        )
 
     def test_the_second_condition_is_the_one_the_counts_cannot_see(
         self, load_bearing: dict, sensitivity: dict
@@ -178,8 +207,25 @@ class TestTheFrameConditionsCarryTheProof:
         # No longer what load-bearing is measured by -- that is now a bounded
         # countermodel -- but still worth keeping: it says an unknown in the
         # unbounded drop runs is not a rushed proof.
-        assert load_bearing["slowest_discharged_seconds"] * 1000 < (
-            load_bearing["drop_timeout_ms"] / 50
+        #
+        # This bound is deliberately weaker than the one it replaces, and the
+        # weakening is the fix (#1995). The old form required a 50x headroom
+        # (`slowest * 1000 < drop_timeout_ms / 50`), which is a statement about how
+        # fast the host is, not about how hard the formula is: the identical proof
+        # measured 854ms on a contended CI runner against a 60ms bound and failed,
+        # while passing on the runs either side of it. Nothing in the module
+        # justified 50 over any other number.
+        #
+        # What the claim actually needs is that a discharged proof was not truncated
+        # by the budget, and 2x headroom is the defensible form of that. The module
+        # already computes the ratio in consistent units, so use its number rather
+        # than re-deriving it here and risking a seconds/milliseconds slip.
+        factor = load_bearing["headroom_factor"]
+        assert factor is not None, "no proof was discharged, so no headroom was measured"
+        assert factor >= 2.0, (
+            f"the slowest discharged proof used more than half the drop budget "
+            f"(headroom factor {factor}). Either the budget is too tight to call an "
+            f"unbounded UNKNOWN a hard formula, or this host is heavily contended."
         )
 
     def test_the_bounded_runs_are_timed_separately(self, load_bearing: dict) -> None:
@@ -439,3 +485,51 @@ class TestTheReport:
         source = committed.read_text(encoding="utf-8")
         assert "assert compose(c1, c2, True)" in source
         assert "assert not compose(c1, c2, False)" in source
+
+
+class TestTheUndecidedDistinctionItself:
+    """The CI failure this guards against, exercised directly.
+
+    Run 33511788834 reported the frame condition `handoffs_are_never_contract_identities`
+    carrying six theorems instead of seven, on a PR that touches no p7 file. The
+    missing one had landed in the search's give-up set. These two cases prove the
+    assertion can tell that from a real change, without waiting for a slow runner.
+    """
+
+    CONDITION = "handoffs_are_never_contract_identities"
+    EXPECTED = {"A", "B"}
+
+    def _assert(self, report: dict) -> None:
+        refuted = set(report["theorems_refuted_by_dropping"][self.CONDITION])
+        gave_up = set(report.get("theorems_the_search_gave_up_on", {}).get(self.CONDITION, []))
+        undecided = (self.EXPECTED - refuted) & gave_up
+        assert not undecided, (
+            f"dropping {self.CONDITION!r}: the countermodel search gave up on "
+            f"{sorted(undecided)} within {report['refutation_timeout_ms']}ms across world "
+            f"sizes {report['world_sizes_tried']}. That is the search running out, not the "
+            "condition ceasing to carry the theorem."
+        )
+        assert refuted == self.EXPECTED, (
+            f"dropping {self.CONDITION!r} refuted {sorted(refuted)}, expected "
+            f"{sorted(self.EXPECTED)}. No theorem in the difference is one the search gave "
+            "up on, so this is a real change in what the condition carries."
+        )
+
+    def _report(self, refuted: list[str], gave_up: list[str]) -> dict:
+        return {
+            "theorems_refuted_by_dropping": {self.CONDITION: refuted},
+            "theorems_the_search_gave_up_on": {self.CONDITION: gave_up},
+            "refutation_timeout_ms": 40000,
+            "world_sizes_tried": [3, 4, 5],
+        }
+
+    def test_a_timeout_is_reported_as_the_search_running_out(self) -> None:
+        with pytest.raises(AssertionError, match="the search running out"):
+            self._assert(self._report(refuted=["A"], gave_up=["B"]))
+
+    def test_a_real_change_is_reported_as_a_real_change(self) -> None:
+        with pytest.raises(AssertionError, match="real change in what the condition carries"):
+            self._assert(self._report(refuted=["A"], gave_up=[]))
+
+    def test_the_expected_set_raises_nothing(self) -> None:
+        self._assert(self._report(refuted=["A", "B"], gave_up=[]))
