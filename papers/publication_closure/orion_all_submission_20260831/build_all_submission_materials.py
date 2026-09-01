@@ -432,6 +432,33 @@ def special_source(spec_: dict, variant: str, root: Path) -> Path:
         return root
     if mode == "orion03":
         copy_tree(paper / "journal_package_final/submission/source", root)
+        # The historical release source remains useful for the exact Springer
+        # class, bibliography, template, and build assets, but it is not the
+        # current scientific source.  Rebind every new submission build to the
+        # designated V3 manuscript before generating LaTeX.  This prevents the
+        # upload-facing PDF/source archive from silently preserving an older
+        # prose surface after MANUSCRIPT_V3.md has become canonical.
+        shutil.copy2(paper / "MANUSCRIPT_V3.md", root / "MANUSCRIPT.md")
+        run(
+            "pandoc",
+            "MANUSCRIPT.md",
+            "--from=markdown+yaml_metadata_block",
+            "--to=latex",
+            "--natbib",
+            "--top-level-division=section",
+            "--template=jar-pandoc-template.tex",
+            "--wrap=preserve",
+            "--output=main.tex",
+            cwd=root,
+        )
+        main = root / "main.tex"
+        text = main.read_text(encoding="utf-8")
+        text = text.replace(
+            r"\section*{Statements and Declarations}",
+            r"\backmatter" + "\n\n" + r"\section*{Statements and Declarations}",
+            1,
+        )
+        main.write_text(text, encoding="utf-8", newline="\n")
         return root
     if mode == "orion04":
         run("python3", "submission/final-20260831/build_package.py", cwd=paper)
@@ -1111,6 +1138,14 @@ def build_one(spec_: dict) -> dict:
     (out / "journal").mkdir()
     arxiv = build_variant(spec_, "arxiv", out / "arxiv")
     journal = build_variant(spec_, "journal", out / "journal")
+    if spec_["paper"] == "ORION-03":
+        artifact = (
+            paper_root
+            / "journal_package_final/submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_artifact.zip"
+        )
+        if not artifact.is_file():
+            raise RuntimeError("ORION-03 bounded artifact archive is missing")
+        shutil.copy2(artifact, out / "journal/artifact.zip")
 
     arxiv_meta = {
         "schema": "ORION.arxiv-metadata.v1",
@@ -1178,6 +1213,7 @@ def build_one(spec_: dict) -> dict:
 - [x] Reader PDF and complete source archive are supplied.
 - [x] Review identity mode is `{spec_['review']}`.
 - [x] Cover letter, title page, declarations, availability statement and review archive are supplied.
+- [x] Any paper-specific artifact archive named in the manuscript is supplied when applicable.
 - [x] Null, adverse, refuted and CANNOT_CHECK results are retained.
 - [ ] Author confirms originality and no simultaneous journal review in the live portal.
 - [ ] Author supplies ORCID only if desired or mandatory; no identifier is invented.
@@ -1188,6 +1224,8 @@ def build_one(spec_: dict) -> dict:
 
     write(out / "RESULT_RETENTION.md", "# Result-retention ledger\n\n" + "\n".join(f"- {x}" for x in spec_["negatives"]) + "\n")
     availability = "# Data and code availability\n\nThe source archives and review-material archive in this directory bind the reader-facing manuscript to the repository evidence used for its bounded claims. A public persistent archive identifier must be inserted only after a real deposit; no DOI or submission identifier is synthesized by this package.\n"
+    if spec_["paper"] == "ORION-03":
+        availability += "\nThe journal directory also contains `artifact.zip`, the checksum-bound executable evaluator and bounded evidence archive named by the manuscript. Native-tool routes that the artifact marks `CANNOT_CHECK` remain unavailable; the archive does not convert them into reproduced outcomes.\n"
     if spec_["paper"] == "ORION-17":
         availability += "\nThe retained substitute-campaign corpus is arithmetically intact and its original pre-R0 seal verifies against the bytes that were signed. The current post-R0 path checker nevertheless fails three bindings because sealed identifiers were rewritten during namespace unification. `ORION17_SEAL_INTEGRITY_DIAGNOSIS_V1.md` records that unresolved current-path integrity boundary; this package does not re-seal the campaign or claim added external authority.\n"
     write(out / "DATA_AND_CODE_AVAILABILITY.md", availability)

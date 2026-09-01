@@ -1,0 +1,37 @@
+{
+  "authority_boundary": "The formal proofs carry the finite algebraic claims. Tests and archive replay corroborate implementation and binding only; they do not establish external replication, security efficacy, deployment validity, or cross-institution transfer.",
+  "checks": [
+    {
+      "command": "python -m pytest test_evidence_license_evaluator.py -q",
+      "result": "PASS",
+      "tests": 10
+    },
+    {
+      "command": "python -m pytest journal_package_final/submission/artifact/packages/typed-merge-evaluator/tests/test_typed_merge_evaluator.py -q",
+      "result": "PASS",
+      "tests": 32
+    },
+    {
+      "command": "cmp MANUSCRIPT_V3.md <source.zip:MANUSCRIPT.md>",
+      "result": "PASS",
+      "terminal": "CURRENT_CANONICAL_MANUSCRIPT_BOUND_TO_BOTH_ROUTE_SOURCE_ARCHIVES"
+    },
+    {
+      "command": "unzip -t submission/tier-b-final-20260901/journal/artifact.zip",
+      "result": "PASS",
+      "terminal": "ALL_ARTIFACT_ARCHIVE_MEMBERS_DECOMPRESS_AND_PATH_AUDIT_PASSES"
+    }
+  ],
+  "date": "2026-09-01",
+  "paper": "ORION-03",
+  "preserved_observations": {
+    "cedar_transfer": "NULL_OR_ADVERSE",
+    "openssl_anchor": "186_OF_191_WITH_FIVE_DISAGREEMENTS_RETAINED",
+    "origin_witness_performance": "ANALYTIC_IDENTITY_NOT_PERFORMANCE",
+    "parent_evaluations": 3924,
+    "merged_store_evaluations": 1962,
+    "native_replay_boundary": "CANNOT_CHECK_ROUTES_RETAINED"
+  },
+  "schema": "ORION.tier-b-scientific-replay.v1",
+  "status": "PASS"
+}

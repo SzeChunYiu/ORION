@@ -1,0 +1,52 @@
+{
+  "builds": {
+    "arxiv": {
+      "build_tail": "blic/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (14 pages, 293675 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+      "normalized_text_similarity": 1.0,
+      "overfull_boxes": 0,
+      "pages": 14,
+      "release_pdf_sha256": "4a1b74604880deccaebfac7697794ee0864b8f0a33271db6d293af51e46f0dc9",
+      "source_zip_sha256": "f078348be94f68395b2bebfdc5b0dd2540b17c238386140d3154074953156435"
+    },
+    "journal": {
+      "build_tail": "blic/amsfonts/symbols/msbm10.pfb>\nOutput written on main.pdf (14 pages, 293675 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\n\n",
+      "normalized_text_similarity": 1.0,
+      "overfull_boxes": 0,
+      "pages": 14,
+      "release_pdf_sha256": "4a1b74604880deccaebfac7697794ee0864b8f0a33271db6d293af51e46f0dc9",
+      "source_zip_sha256": "f078348be94f68395b2bebfdc5b0dd2540b17c238386140d3154074953156435"
+    }
+  },
+  "checks": [
+    "manifest_payload_exact",
+    "sha256_closure",
+    "academic_paper_pipeline_1_21",
+    "active_authority_binding",
+    "paper_existence_schema",
+    "paper_existence_gate_PASS",
+    "paper_specific_artifact_archive",
+    "archive_path_safety",
+    "identity_partition",
+    "visible_placeholder_scan",
+    "route_science_similarity",
+    "adverse_null_cannot_check_retention",
+    "fresh_clean_arxiv_build",
+    "fresh_clean_journal_build",
+    "source_pdf_text_binding",
+    "resolved_references"
+  ],
+  "package": "papers/orion-03-typed-merge-falsification/submission/tier-b-final-20260901",
+  "package_manifest_sha256": "c11307a967fa3b6a851b76242ef3c63c8e839bff0243f6dc139fb443c04a1cf0",
+  "paper": "ORION-03",
+  "paper_existence_gate": {
+    "disposition": "WRITE_FULL_PAPER",
+    "findings": [],
+    "paper_id": "ORION-03",
+    "verdict": "PASS"
+  },
+  "route_science_similarity": 1.0,
+  "schema": "ORION.tier-b-package-verification.v1",
+  "status": "PASS",
+  "terminal": "TIER_B_ORION03_COMPLETE__PORTAL_ACTIONS_ONLY",
+  "visual_audit": "PENDING_SEPARATE_RENDER_INSPECTION"
+}
