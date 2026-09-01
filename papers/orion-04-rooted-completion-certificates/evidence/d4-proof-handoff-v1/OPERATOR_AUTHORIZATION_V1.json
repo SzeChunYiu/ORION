@@ -1,0 +1,36 @@
+{
+  "attempt_limit": 1,
+  "authorization": {
+    "authorized_at_utc": "2026-09-01T08:18:46Z",
+    "authorized_by": "USER_SUPPLIED_UNVERIFIED_BY_MACHINE",
+    "channel": "interactive session, 2026-09-01",
+    "verbatim_grant": "i authorize everything you need"
+  },
+  "authorization_semantics": {
+    "external_independence": "CANNOT_CHECK",
+    "grants_scientific_authority": "NONE",
+    "machine_established_externality": false,
+    "machine_established_identity": false,
+    "note": "Classified at the strength AWAITING_NEW_ONE_SHOT_AUTHORIZATION.json prescribes for an operator grant. Permits the run; does not establish external or journal authority, and does not lift CANNOT_CHECK_EXTERNAL_AUTHORITY.",
+    "operational_permission_only": true
+  },
+  "d4_rounds_consumed": 0,
+  "execution_gate": {
+    "gate_document": "papers/orion-04-rooted-completion-certificates/evidence/d4-proof-handoff-v1/AUTHORIZED_EXECUTION_GATE.md",
+    "met_preconditions": [
+      "operator operational permission recorded"
+    ],
+    "rule": "The one-shot MUST NOT be spent while any precondition is unmet; a single-encoding run cannot clear the journal bar and would consume the only attempt.",
+    "status": "GATED",
+    "unmet_preconditions": [
+      "engine_a absent: 0 paths on origin/main against 66 for engine_b",
+      "standalone upper-bound verifier independent of both search implementations absent"
+    ]
+  },
+  "execution_performed": false,
+  "paper_id": "ORION-04",
+  "schema": "ORION.ORION04.D4.OperatorAuthorization.v1",
+  "scientific_authority_delta": "NONE",
+  "subject_main_commit": "0d6c4d2fc34d6a1ac4ef6b5e46262f7ad43a73b5",
+  "terminal": "OPERATOR_AUTHORIZATION_RECORDED__EXECUTION_STILL_GATED"
+}
