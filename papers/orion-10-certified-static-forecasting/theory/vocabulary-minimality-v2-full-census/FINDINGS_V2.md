@@ -2,6 +2,20 @@
 
 **Terminal: `FIBRE_CONSTANCY_REFUTED`.**
 
+> **Coverage correction, added 2026-09-01.** This document calls its 740 rows "the full
+> census" and reports results "over all 740 instances". That overstates what was
+> enumerated. `FULL_CENSUS_RESULTS_V2.json` records `cap_hit: true` for **all ten
+> panels**, with `template_pair_space` running 2,873–28,090 per panel against 740
+> instances evaluated in total — the rows are an early prefix of the enumeration order,
+> not a complete census, and the directory name repeats the same overstatement.
+>
+> **The terminal is unaffected.** Refuting constancy requires only exhibiting cost-mixed
+> fibres, and six of seven were exhibited; a witness found in a prefix is still a witness.
+> What the caps do undermine is any statement about a *range* — see the envelope in
+> `REVIVAL_PASS_V1.md`, which carries the qualification in full, and
+> `../vocabulary-minimality-v3-cap-lift/PROTOCOL_V3.md`, which lifts the caps twentyfold
+> to test it.
+
 The V1 packet's `CANNOT_CHECK_FIBRE_CONSTANCY_ON_SELECTED_WITNESSES` is resolved, and
 it resolves against the criterion. The uniformity V1 observed was a selection artifact,
 exactly as V1's own reasoning anticipated.
