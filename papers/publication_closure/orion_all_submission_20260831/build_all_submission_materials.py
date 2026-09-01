@@ -27,8 +27,13 @@ PAPERS = ROOT / "papers"
 DATE = "2026-08-31"
 EPOCH = (1980, 1, 1, 0, 0, 0)
 AUTHOR = "Sze Chun Yiu"
-AFFILIATION = "Independent Researcher"
+AFFILIATION = "Stockholm University"
 EMAIL = "sze-chun.yiu@fysik.su.se"
+ACADEMIC_PAPER_SKILLS_REVISION = "be335c630240cd5e73535e8f813594b227d736a8"
+ACADEMIC_PAPER_PIPELINE_VERSION = "1.20.0"
+ACADEMIC_WRITING_VERSION = "1.18.0"
+NATURE_POLISHING_VERSION = "7.5.0"
+NATURE_REVIEWER_VERSION = "3.5.0"
 NAMED_AUTHOR_TEX = rf"{AUTHOR}\\{AFFILIATION}\\\texttt{{{EMAIL}}}"
 TMLR_STYLE = PAPERS / "orion-14-verified-scientific-discovery/manuscript/tmlr.sty"
 TMLR_BST = PAPERS / "orion-14-verified-scientific-discovery/manuscript/tmlr.bst"
@@ -183,6 +188,7 @@ def anonymize_tree(root: Path) -> None:
         AUTHOR: "The author",
         EMAIL: "anonymous@example.invalid",
         AFFILIATION: "Affiliation withheld for double-blind review",
+        "Independent Researcher": "Affiliation withheld for double-blind review",
         "SzeChunYiu": "anonymous-author",
         "github.com/SzeChunYiu/ORION": "anonymous review archive",
     }
@@ -205,6 +211,11 @@ def set_identity(root: Path, spec_: dict, variant: str) -> None:
     anonymous = variant == "journal" and spec_["review"] == "double_blind"
     if spec_["paper"] != "ORION-03" and command_span(text, "author") is not None:
         text = replace_command(text, "author", "Anonymous authors" if anonymous else NAMED_AUTHOR_TEX)
+    if spec_["paper"] == "ORION-03":
+        text = text.replace(
+            r"\affil*[1]{\orgname{Independent Researcher}}",
+            rf"\affil*[1]{{\orgname{{{AFFILIATION}}}}}",
+        )
     if command_span(text, "date") is not None:
         text = replace_command(text, "date", "31 August 2026")
     text = re.sub(r"pdfauthor\s*=\s*\{[^{}]*\}", "pdfauthor={Anonymous}" if anonymous else f"pdfauthor={{{AUTHOR}}}", text)
@@ -217,6 +228,14 @@ def set_identity(root: Path, spec_: dict, variant: str) -> None:
             text = replace_command(text, "author", "Anonymous authors")
         text = re.sub(r"pdfauthor\s*=\s*\{[^{}]*\}", "pdfauthor={Anonymous}", text)
         main.write_text(text, encoding="utf-8")
+    else:
+        # Identity must be coherent across every attributed source surface,
+        # including templates and manuscript copies retained beside main.tex.
+        for path in root.rglob("*"):
+            if path.is_file() and path.suffix.lower() in {".tex", ".md", ".bib", ".txt", ".json", ".yaml", ".yml", ".csv"}:
+                source_text = path.read_text(encoding="utf-8", errors="replace")
+                source_text = source_text.replace("Independent Researcher", AFFILIATION)
+                path.write_text(source_text, encoding="utf-8")
 
 
 def convert_to_tmlr(root: Path) -> None:
@@ -292,6 +311,14 @@ def adapt_jair(root: Path) -> None:
     )
     # acmart/jair owns page geometry, hyperlinks and caption formatting.
     text = re.sub(r"^\\usepackage(?:\[[^\]]*\])?\{(?:geometry|hyperref|caption)\}\s*$", "", text, flags=re.M)
+    # TeX Live 2026's acmart font stack defines \Bbbk through newtxmath before
+    # this legacy source loads amssymb.  Clear only that duplicate symbol before
+    # amssymb so the official JAIR class and the manuscript can coexist.
+    text = text.replace(
+        r"\usepackage{amsmath,amssymb}",
+        "\\usepackage{amsmath}\n\\let\\Bbbk\\relax\n\\usepackage{amssymb}",
+        1,
+    )
     text = re.sub(r"^\\author\{.*?\}\s*$", "", text, flags=re.M)
     text = re.sub(r"^\\date\{.*?\}\s*$", "", text, flags=re.M)
     identity = rf"""
@@ -410,6 +437,15 @@ def special_source(spec_: dict, variant: str, root: Path) -> Path:
         run("python3", "submission/final-20260831/build_package.py", cwd=paper)
         with zipfile.ZipFile(paper / "submission/final-20260831/source.zip") as zf:
             zf.extractall(root)
+        manuscript = root / "manuscript.md"
+        publication_text = manuscript.read_text(encoding="utf-8")
+        publication_text = re.sub(
+            r"\n\*\*Affiliation:\*\*[^\n]*\n\s*\n\*\*Correspondence:\*\*[^\n]*\n\s*\n",
+            "\n",
+            publication_text,
+            count=1,
+        )
+        manuscript.write_text(publication_text, encoding="utf-8")
         # Match the paper's proven publication builder. The explicit
         # tex_math_single_backslash extension changes how literal underscores
         # in the Markdown evidence ledger are tokenised and can emit invalid
@@ -423,12 +459,7 @@ def special_source(spec_: dict, variant: str, root: Path) -> Path:
         if spec_["paper"] == "ORION-13" and variant == "journal":
             adapt_semantic_web(flattened)
         return flattened
-    if mode == "orion06" and variant == "journal":
-        copy_tree(paper / "submission_tmlr", root)
-        copy_tree(paper / "manuscript", root / "manuscript")
-        normalize_paths(root)
-        return root
-    if mode == "orion07" and variant == "journal":
+    if mode in {"orion06", "orion07"}:
         copy_tree(paper / "submission_tmlr", root)
         copy_tree(paper / "manuscript", root / "manuscript")
         normalize_paths(root)
@@ -480,6 +511,15 @@ def compile_source(spec_: dict, variant: str, root: Path) -> Path:
     elif variant == "arxiv":
         convert_from_tmlr(root)
     set_identity(root, spec_, variant)
+    # TeX Live 2026 longtable validates the declared caption-counter name even
+    # for Pandoc's intentionally unnumbered tables.  Older releases accepted
+    # ``LTcaptype=none`` without a counter.  Define that no-op counter so the
+    # same source remains portable without changing table content or numbering.
+    main = root / "main.tex"
+    main_text = main.read_text(encoding="utf-8")
+    if r"\def\LTcaptype{none}" in main_text and r"\newcounter{none}" not in main_text:
+        main_text = main_text.replace(r"\begin{document}", r"\newcounter{none}" + "\n" + r"\begin{document}", 1)
+        main.write_text(main_text, encoding="utf-8")
     if spec_["paper"] == "ORION-11" and variant == "journal":
         adapt_jair(root)
     if variant == "journal" and spec_["venue"] in {"Artificial Intelligence", "Information Processing & Management"}:
@@ -721,8 +761,10 @@ again in the live portal immediately before filing.
 
 Sincerely,
 
-{AUTHOR}  
-{AFFILIATION}  
+{AUTHOR}
+
+{AFFILIATION}
+
 {EMAIL}
 """
 
@@ -1106,10 +1148,14 @@ def build_one(spec_: dict) -> dict:
 
 **Title:** {spec_['title']}
 
-**Article type:** {VENUE_PROFILES[spec_['venue']]['article_type']}  
-**Author:** {AUTHOR}  
-**Affiliation:** {AFFILIATION}  
-**Corresponding author:** {AUTHOR}, {EMAIL}  
+**Article type:** {VENUE_PROFILES[spec_['venue']]['article_type']}
+
+**Author:** {AUTHOR}
+
+**Affiliation:** {AFFILIATION}
+
+**Corresponding author:** {AUTHOR}, {EMAIL}
+
 **ORCID:** not supplied in the repository; omit unless the author provides one.
 """)
     journal_meta = {
@@ -1148,7 +1194,7 @@ def build_one(spec_: dict) -> dict:
     write(out / "HUMAN_INPUTS_REQUIRED.md", """# Human-controlled filing inputs
 
 - [x] Canonical name: Sze Chun Yiu.
-- [x] Canonical affiliation: Independent Researcher.
+- [x] Canonical affiliation: Stockholm University.
 - [x] Correspondence email: sze-chun.yiu@fysik.su.se.
 - [x] Standing policy: no funding; no competing interests; acknowledgements omitted unless mandatory.
 - [ ] ORCID, if the author has and chooses to supply one.
@@ -1232,6 +1278,16 @@ This directory is the publication adapter for the current bounded manuscript.
 identity mode `{spec_['review']}` for {spec_['venue']}. Scientific authority remains
 with `{spec_['authority']}`; this package changes no result terminal.
 """)
+    write(out / "SKILLS_APPLIED.md", f"""# Academic-paper skill application
+
+`skills-applied: academic-paper-pipeline@{ACADEMIC_PAPER_PIPELINE_VERSION}, academic-writing@{ACADEMIC_WRITING_VERSION}, nature-polishing@{NATURE_POLISHING_VERSION}, nature-reviewer@{NATURE_REVIEWER_VERSION}, publication-release-integrity, manuscript-element-justification`
+
+Skill authority: `SzeChunYiu/academic-paper-skills@{ACADEMIC_PAPER_SKILLS_REVISION}`.
+The final pass used the latest verified skill revision for targeted hostile
+review, route parity, release binding, identity partitioning, and manuscript-
+element justification. It did not reopen optional science or widen the active
+claim.
+""")
 
     payload = {}
     for path in sorted(p for p in out.rglob("*") if p.is_file() and p.name not in {"PACKAGE_MANIFEST.json", "SHA256SUMS"}):
@@ -1254,6 +1310,14 @@ with `{spec_['authority']}`; this package changes no result terminal.
             "pages": journal["pages"],
         },
         "identity": {"source": "papers/AUTHOR_IDENTITY_V1.json", "name": AUTHOR, "affiliation": AFFILIATION, "email": EMAIL},
+        "academic_paper_skills": {
+            "repository": "https://github.com/SzeChunYiu/academic-paper-skills",
+            "revision": ACADEMIC_PAPER_SKILLS_REVISION,
+            "academic_paper_pipeline_version": ACADEMIC_PAPER_PIPELINE_VERSION,
+            "academic_writing_version": ACADEMIC_WRITING_VERSION,
+            "nature_polishing_version": NATURE_POLISHING_VERSION,
+            "nature_reviewer_version": NATURE_REVIEWER_VERSION,
+        },
         "scientific_authority_delta": "NONE",
         "payload": payload,
     }
@@ -1318,7 +1382,7 @@ Repository-controlled submission packages cover the current 25 paper identities.
 - ORCID: not supplied; enter one only if the author has and chooses to use it
 - Funding: none
 - Competing interests: none
-- Stockholm University: not an affiliation for this work
+- Stockholm University: author-confirmed affiliation for every attributed route
 
 ## arXiv portal
 

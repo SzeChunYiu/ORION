@@ -51,7 +51,7 @@ def reconcile(spec: dict[str, object]) -> None:
     manifest["superseded_by"] = spec["successor"]
     manifest["scientific_authority_delta"] = "NONE"
     if spec["paper"] == "ORION-12":
-        manifest.setdefault("author", {})["affiliation"] = "Independent Researcher"
+        manifest.setdefault("author", {})["affiliation"] = "Stockholm University"
     else:
         manifest["historical_unavailable_artifacts"] = ["manuscript.pdf"]
     manifest_path.write_text(

@@ -100,7 +100,7 @@ def check_current(errors: list[str]) -> None:
     if manifest.get("identity") != {
         "source": "papers/AUTHOR_IDENTITY_V1.json",
         "name": "Sze Chun Yiu",
-        "affiliation": "Independent Researcher",
+        "affiliation": "Stockholm University",
         "email": "sze-chun.yiu@fysik.su.se",
     }:
         errors.append("current canonical identity mismatch")

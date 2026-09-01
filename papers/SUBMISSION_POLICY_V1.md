@@ -9,8 +9,7 @@ Canonical identity lives in `papers/AUTHOR_IDENTITY_V1.json`. Summary:
 
 - **Name:** Sze Chun Yiu
 - **Email:** sze-chun.yiu@fysik.su.se
-- **Affiliation:** Independent Researcher. Stockholm University is not an
-  affiliation for this work and must not appear in submission materials.
+- **Affiliation:** Stockholm University.
 
 **Double-blind review copies keep `\author{Anonymous authors}`.** TMLR review is
 double-blind and `q4-tmlr-package.yml` runs an anonymity audit; substituting the
@@ -55,8 +54,8 @@ and because several venues explicitly forbid acknowledging AI as a contributor.
 These are settled. Apply them without asking:
 
 - **Email:** `sze-chun.yiu@fysik.su.se` on every paper, every venue.
-- **Affiliation:** `Independent Researcher`. This research has no institutional
-  involvement from Stockholm University, so that institution is never listed.
+- **Affiliation:** `Stockholm University` on every attributed manuscript,
+  preprint, title page, cover letter, and private portal-metadata record.
 - **Every optional submission question defaults to NO** — optional sections,
   optional declarations, optional supplementary offers, opt-ins. If a venue
   makes it optional, omit it.
@@ -67,7 +66,7 @@ These are settled. Apply them without asking:
 ## Precedence
 
 1. A venue's **mandatory** requirement.
-2. This policy.
+2. The author's explicit identity instruction recorded in this policy.
 3. Paper-local convention.
 
 A paper that silently carries an acknowledgements, funding, or COI section

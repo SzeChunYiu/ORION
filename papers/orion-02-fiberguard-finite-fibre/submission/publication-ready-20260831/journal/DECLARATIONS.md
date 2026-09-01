@@ -8,7 +8,7 @@ and the final submission decision.
 
 ## Affiliation and correspondence
 
-- Affiliation: Independent Researcher
+- Affiliation: Stockholm University
 - Correspondence: sze-chun.yiu@fysik.su.se
 
 ## Funding and competing interests

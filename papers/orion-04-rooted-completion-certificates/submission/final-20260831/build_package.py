@@ -9,7 +9,7 @@ RELATED = HERE / "RELATED_WORK_AND_NOVELTY.md"
 FIXED_TIME = (2026, 8, 31, 0, 0, 0)
 FIXED_PDF_ID = "0123456789ABCDEF0123456789ABCDEF"
 AUTHOR = "Sze Chun Yiu"
-AFFILIATION = "Independent Researcher"
+AFFILIATION = "Stockholm University"
 EMAIL = "sze-chun.yiu@fysik.su.se"
 
 def run(cmd, cwd=None):
@@ -37,7 +37,22 @@ def normalized_markdown(src):
         "**Supersedes for journal science:**",
         "**Preserves:**",
     )
-    text = "\n".join(line for line in text.splitlines() if not line.startswith(drop_prefixes)) + "\n"
+    # Drop the complete internal routing block.  The final line wraps in the
+    # Markdown source, so prefix-only filtering used to leave an orphaned
+    # sentence above the Abstract in the reader PDF.
+    lines = text.splitlines()
+    kept = []
+    in_routing_block = False
+    for line in lines:
+        if line.startswith(drop_prefixes):
+            in_routing_block = True
+            continue
+        if in_routing_block:
+            if not line.strip():
+                in_routing_block = False
+            continue
+        kept.append(line)
+    text = "\n".join(kept) + "\n"
     text = text.replace("\\[", "$$").replace("\\]", "$$").replace("\\(", "$").replace("\\)", "$")
     text = text.replace("∎", "$\\square$")
     lines = text.splitlines()

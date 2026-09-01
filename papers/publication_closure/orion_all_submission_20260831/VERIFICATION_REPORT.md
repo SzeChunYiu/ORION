@@ -3,21 +3,21 @@
 **Aggregate:** `PASS`  
 **Packages checked:** 25/25  
 **Global checks:** 4  
-**Verifier:** `31f45efb892f99ce779481ede929ce18b40043c5fd9c088c06e944bb81e2c6e0`
+**Verifier:** `fa406fd3823563a6cd1a97d4798ac167829d1060456016c1582f38900b300d23`
 
 | Paper | Result | arXiv pages | Journal pages | Overfull boxes |
 |---|---:|---:|---:|---:|
 | ORION-01 | PASS | 12 | 12 | 0 |
 | ORION-02 | PASS | 7 | 7 | 0 |
 | ORION-03 | PASS | 14 | 14 | 0 |
-| ORION-04 | PASS | 6 | 6 | 0 |
+| ORION-04 | PASS | 5 | 5 | 0 |
 | ORION-05 | PASS | 7 | 7 | 0 |
-| ORION-06 | PASS | 7 | 6 | 0 |
-| ORION-07 | PASS | 7 | 10 | 0 |
+| ORION-06 | PASS | 6 | 6 | 0 |
+| ORION-07 | PASS | 9 | 10 | 0 |
 | ORION-08 | PASS | 9 | 7 | 0 |
 | ORION-09 | PASS | 7 | 7 | 0 |
 | ORION-10 | PASS | 7 | 7 | 0 |
-| ORION-11 | PASS | 48 | 44 | 0 |
+| ORION-11 | PASS | 48 | 41 | 0 |
 | ORION-12 | PASS | 29 | 29 | 0 |
 | ORION-13 | PASS | 9 | 9 | 0 |
 | ORION-14 | PASS | 12 | 12 | 0 |

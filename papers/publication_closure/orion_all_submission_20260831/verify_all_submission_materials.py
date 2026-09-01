@@ -13,6 +13,7 @@ import stat
 import subprocess
 import tempfile
 import zipfile
+from collections import Counter
 from pathlib import Path, PurePosixPath
 
 
@@ -24,8 +25,8 @@ REPORT_MD = HERE / "VERIFICATION_REPORT.md"
 AUTHOR_TOKENS = (
     "Sze Chun Yiu",
     "sze-chun.yiu@fysik.su.se",
-    "Independent Researcher",
     "Stockholm University",
+    "Independent Researcher",
     "SzeChunYiu",
 )
 REQUIRED_COMMON = {
@@ -38,6 +39,7 @@ REQUIRED_COMMON = {
     "RESEARCH_INTEGRITY_LEDGER.json",
     "RESULT_RETENTION.md",
     "REVIEWER_AUDIT.md",
+    "SKILLS_APPLIED.md",
     "SHA256SUMS",
     "arxiv/SUBMISSION_CHECKLIST.md",
     "arxiv/manuscript.pdf",
@@ -105,6 +107,29 @@ def normalized_pdf_text(path: Path) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+def route_science_similarity(arxiv_text: str, journal_text: str) -> float:
+    """Detect route drift while allowing style, identity and abstract adapters."""
+    removable = (
+        "under review as submission to tmlr",
+        "anonymous authors",
+        "paper under double-blind review",
+        "sze chun yiu",
+        "sze-chun.yiu@fysik.su.se",
+        "stockholm university",
+    )
+
+    def tokens(text: str) -> Counter[str]:
+        lowered = text.lower()
+        for phrase in removable:
+            lowered = lowered.replace(phrase, " ")
+        return Counter(re.findall(r"[a-z]+(?:'[a-z]+)?", lowered))
+
+    left = tokens(arxiv_text)
+    right = tokens(journal_text)
+    union = sum((left | right).values())
+    return 1.0 if union == 0 else sum((left & right).values()) / union
+
+
 def safe_zip(path: Path) -> list[str]:
     with zipfile.ZipFile(path) as archive:
         names = archive.namelist()
@@ -146,7 +171,7 @@ def verify_metadata(spec: dict, root: Path) -> list[str]:
         raise RuntimeError("arXiv abstract is not ASCII")
     if not 80 <= len(abstract) <= 1920 or arxiv["abstract_characters"] != len(abstract):
         raise RuntimeError("arXiv abstract length record is invalid")
-    if arxiv["authors"] != "Sze Chun Yiu (Independent Researcher)" or arxiv["correspondence"] != AUTHOR_TOKENS[1]:
+    if arxiv["authors"] != "Sze Chun Yiu (Stockholm University)" or arxiv["correspondence"] != AUTHOR_TOKENS[1]:
         raise RuntimeError("arXiv personal metadata is not canonical")
     if arxiv["portal_status"] != "NOT_FILED":
         raise RuntimeError("an arXiv filing status was synthesized")
@@ -156,7 +181,7 @@ def verify_metadata(spec: dict, root: Path) -> list[str]:
         raise RuntimeError("journal route metadata mismatch")
     if journal["author"] != {
         "name": "Sze Chun Yiu",
-        "affiliation": "Independent Researcher",
+        "affiliation": "Stockholm University",
         "email": AUTHOR_TOKENS[1],
         "corresponding": True,
         "sole_author": True,
@@ -216,6 +241,15 @@ def verify_one(spec: dict) -> dict:
         raise RuntimeError("manifest paper/terminal mismatch")
     if manifest["journal"]["article_type"] != spec["article_type"]:
         raise RuntimeError("manifest article type mismatch")
+    if manifest.get("academic_paper_skills") != {
+        "repository": "https://github.com/SzeChunYiu/academic-paper-skills",
+        "revision": "be335c630240cd5e73535e8f813594b227d736a8",
+        "academic_paper_pipeline_version": "1.20.0",
+        "academic_writing_version": "1.18.0",
+        "nature_polishing_version": "7.5.0",
+        "nature_reviewer_version": "3.5.0",
+    }:
+        raise RuntimeError("academic-paper-skills release authority mismatch")
     authority = ROOT / manifest["active_authority"]
     if sha256(authority) != manifest["active_authority_sha256"]:
         raise RuntimeError("active-authority hash mismatch")
@@ -253,6 +287,11 @@ def verify_one(spec: dict) -> dict:
         raise RuntimeError("attributed arXiv PDF contains a visible internal placeholder")
     if not all(token.lower() in arxiv_text.lower() for token in AUTHOR_TOKENS[:3]):
         raise RuntimeError("attributed arXiv PDF lacks canonical identity")
+    arxiv_source = zip_bytes(root / "arxiv/source.zip").decode("utf-8", errors="ignore")
+    if not all(token.lower() in arxiv_source.lower() for token in AUTHOR_TOKENS[:3]):
+        raise RuntimeError("attributed arXiv source lacks canonical identity")
+    if AUTHOR_TOKENS[3].lower() in arxiv_source.lower():
+        raise RuntimeError("attributed arXiv source retains obsolete affiliation")
     journal_text = pdf_text(root / "journal/manuscript.pdf")
     if any(token.lower() in journal_text.lower() for token in visible_placeholders):
         raise RuntimeError("journal PDF contains a visible internal placeholder")
@@ -262,9 +301,19 @@ def verify_one(spec: dict) -> dict:
         for token in AUTHOR_TOKENS:
             if token.lower() in journal_text.lower() or token.lower() in journal_source.lower() or token.lower() in review_materials.lower():
                 raise RuntimeError(f"double-blind identity leak: {token}")
-    elif not all(token.lower() in journal_text.lower() for token in AUTHOR_TOKENS[:3]):
-        raise RuntimeError("identified journal PDF lacks canonical identity")
-    checks.extend(["identity_partition", "visible_placeholder_scan"])
+    else:
+        if not all(token.lower() in journal_text.lower() for token in AUTHOR_TOKENS[:3]):
+            raise RuntimeError("identified journal PDF lacks canonical identity")
+        if not all(token.lower() in journal_source.lower() for token in AUTHOR_TOKENS[:3]):
+            raise RuntimeError("identified journal source lacks canonical identity")
+        if AUTHOR_TOKENS[3].lower() in journal_source.lower():
+            raise RuntimeError("identified journal source retains obsolete affiliation")
+    similarity = route_science_similarity(arxiv_text, journal_text)
+    if similarity < 0.90:
+        raise RuntimeError(
+            f"arXiv/journal scientific-surface drift: multiset similarity {similarity:.4f} < 0.90"
+        )
+    checks.extend(["identity_partition", "visible_placeholder_scan", "route_science_similarity"])
 
     retention = (root / "RESULT_RETENTION.md").read_text(encoding="utf-8")
     inventory = json.loads((root / "ATOMIC_CLAIM_INVENTORY.json").read_text(encoding="utf-8"))
@@ -290,6 +339,7 @@ def verify_one(spec: dict) -> dict:
         "package": str(root.relative_to(ROOT)),
         "manifest_sha256": sha256(root / "PACKAGE_MANIFEST.json"),
         "checks": checks,
+        "route_science_similarity": similarity,
         "builds": builds,
     }
 
@@ -345,7 +395,7 @@ def verify_global_registry(specs: list[dict]) -> list[str]:
         raise RuntimeError("submission route matrix coverage mismatch")
     identity = json.loads((ROOT / "papers/AUTHOR_IDENTITY_V1.json").read_text(encoding="utf-8"))["canonical_author"]
     if (identity["name"], identity["affiliation"], identity["email"]) != (
-        "Sze Chun Yiu", "Independent Researcher", "sze-chun.yiu@fysik.su.se"
+        "Sze Chun Yiu", "Stockholm University", "sze-chun.yiu@fysik.su.se"
     ):
         raise RuntimeError("canonical personal-information record mismatch")
     upstream = json.loads((HERE / "UPSTREAM_RECONCILIATION.json").read_text(encoding="utf-8"))

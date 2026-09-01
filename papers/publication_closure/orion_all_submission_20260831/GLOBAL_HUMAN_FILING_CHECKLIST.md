@@ -5,12 +5,12 @@ Repository-controlled submission packages cover the current 25 paper identities.
 ## Canonical personal information
 
 - Name: Sze Chun Yiu
-- Affiliation: Independent Researcher
+- Affiliation: Stockholm University
 - Correspondence: sze-chun.yiu@fysik.su.se
 - ORCID: not supplied; enter one only if the author has and chooses to use it
 - Funding: none
 - Competing interests: none
-- Stockholm University: not an affiliation for this work
+- Stockholm University: author-confirmed affiliation for every attributed route
 
 ## arXiv portal
 
