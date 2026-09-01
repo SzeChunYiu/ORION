@@ -2,7 +2,9 @@
 
 Tracking issue: #1609
 
-This file is publication metadata for the current manuscript tree. The canonical manuscript entry point remains `main.tex`; this file is not included in the paper text.
+This file is publication metadata for the current manuscript tree. The canonical
+filing source is now `ipm_submission.tex`; `main.tex` is a non-filing long-form
+research record. This file is not included in the paper text.
 
 ## Scientific scope to preserve
 
@@ -10,8 +12,11 @@ The submission claim is the narrowed methods / critical system-design result:
 
 - fail-closed route/read/stopping authority semantics and controlled mechanism behavior are supported in the frozen controlled setting;
 - external Wide/Deep ORION-vs-baseline superiority is **not** supported by the present evidence and is not part of the submission claim;
-- the TREC-COVID registered recall/cost superiority gate failed and remains visible;
-- the favorable nDCG@10 result is secondary and must not be used to rescue the failed registered gate;
+- the TREC-COVID recall and cost results are adverse and remain visible;
+- the comparison is reported as post-hoc/descriptive because no separate
+  pre-outcome record binds its exact decision rule;
+- the favorable nDCG@10 result remains visible but does not establish overall
+  superiority against the adverse recall and cost results;
 - future valid multi-provider superiority studies are successor science, not a hidden prerequisite of this narrowed manuscript.
 
 ## Historical package problem — resolved additively

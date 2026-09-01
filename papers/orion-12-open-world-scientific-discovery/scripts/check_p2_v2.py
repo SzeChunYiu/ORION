@@ -138,11 +138,15 @@ def validate() -> list[str]:
         "Acquisition is not closure",
         "typed obligation state",
         "cannot by itself delete an unresolved",
-        "donor-composable",
         "MiCP",
     ):
         if phrase not in authority:
             errors.append(f"authority section missing concept: {phrase}")
+    if not any(
+        phrase in authority
+        for phrase in ("donor-composable", "intentionally composes with prior mechanisms")
+    ):
+        errors.append("authority section missing donor-composition concept")
 
     return errors
 

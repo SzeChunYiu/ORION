@@ -132,7 +132,7 @@ def render_tex(trajectory_data: dict) -> str:
     # Axes
     add("\\draw[->] (0,0) -- (12.7,0) node[right]{search queries};")
     add("\\draw[->] (0,0) -- (0,1.08);")
-    add("\\node[rotate=90,anchor=south] at (-0.62,0.54) {complete-gold recall};")
+    add("\\node[rotate=90,anchor=south] at (-1.02,0.54) {complete-gold recall};")
 
     # Tick marks
     add("\\foreach \\x in {0,2,4,6,8,10,12} \\draw (\\x,0.012) -- (\\x,-0.012) node[below]{\\x};")

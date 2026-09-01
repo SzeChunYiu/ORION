@@ -168,7 +168,7 @@ def render_svg(payload: dict) -> str:
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<rect width="100%" height="100%" fill="white"/>',
         '<text x="28" y="32" font-family="sans-serif" font-size="20" font-weight="700">P2-6 — stopping-safety failures in the frozen offline companion</text>',
-        f'<text x="28" y="55" font-family="sans-serif" font-size="13">Terminal premature-closure classifications / {n_tasks} tasks · {authority}</text>',
+        f'<text x="28" y="55" font-family="sans-serif" font-size="13">Terminal premature-closure classifications / {n_tasks} frozen tasks / descriptive only</text>',
         f'<line x1="{left}" y1="{top-12}" x2="{left}" y2="{top+step*(len(rows)-1)+bar_height+8}" stroke="black"/>',
     ]
     for tick in ticks:
@@ -199,7 +199,6 @@ def render_tikz(payload: dict) -> str:
     x_scale = 5.25 / n_tasks
     node_offset = n_tasks / 80
     axis_max = n_tasks * 1.05
-    escaped_authority = authority.replace("_", r"\_")
     lines = [
         "% GENERATED from evidence/offline_results/RESULTS_SUMMARY_V1.json",
         f"\\begin{{tikzpicture}}[x={x_scale:.5f}cm,y=0.65cm]",
@@ -216,7 +215,7 @@ def render_tikz(payload: dict) -> str:
         lines.append(f"\\node[anchor=west] at ({count+node_offset:.2f},{y+0.18}) {{{count}}};")
     lines.extend(
         [
-            f"\\node[anchor=west,font=\\small] at (0,{len(rows)+1.0}) {{{n_tasks} frozen tasks; achieved precision {escaped_authority}}};",
+            f"\\node[anchor=west,font=\\small] at (0,{len(rows)+1.0}) {{{n_tasks} frozen tasks; descriptive only}};",
             "\\end{tikzpicture}",
             "",
         ]

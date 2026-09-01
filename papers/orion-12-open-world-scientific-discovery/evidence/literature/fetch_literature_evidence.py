@@ -29,6 +29,11 @@ ATOM = {"a": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/a
 #   derived_from_this_fetch -> new entry; the claim was written FROM the fetch,
 #     so the record is provenance, not an independent test.
 ENTRIES: dict[str, tuple[str, str, str, str]] = {
+    "hazra2026crase": (
+        "arxiv", "2608.24809",
+        "Structurally-bounded Agentic Graph Exploration for Evidence-Grounded Scholarly DeepSearch",
+        "derived_from_this_fetch",
+    ),
     "knowplan2026": (
         "arxiv", "2608.06530",
         "KNOWPLAN: Knowledge-Driven AI Agents for Smart Degree Pathway Planning",

@@ -1,0 +1,24 @@
+{
+  "bib_key": "hazra2026crase",
+  "claimed_title": "Structurally-bounded Agentic Graph Exploration for Evidence-Grounded Scholarly DeepSearch",
+  "claim_provenance": "derived_from_this_fetch",
+  "fetch_url": "https://export.arxiv.org/api/query?id_list=2608.24809",
+  "fetched_utc": "2026-09-01T14:33:23Z",
+  "verdict": "VERIFIED",
+  "verdict_reason": "claimed title matches fetched title exactly (normalised)",
+  "fetched_title": "Structurally-bounded Agentic Graph Exploration for Evidence-Grounded Scholarly DeepSearch",
+  "fetched_authors": [
+    "Rima Hazra",
+    "Sayan Layek",
+    "Somnath Banerjee",
+    "Soumen Chakrabarti",
+    "Animesh Mukherjee"
+  ],
+  "fetched_year": 2026,
+  "fetched_venue": "arXiv preprint",
+  "arxiv_id": "2608.24809v1",
+  "doi": null,
+  "published": "2026-08-25T16:51:26Z",
+  "updated": "2026-08-25T16:51:26Z",
+  "abstract": "We present Crase, a bounded and inspectable alternative to deep research agents for scholarly search. Instead of an open-ended search loop, Crase queries a search engine once for seed papers, expands them along their 1.5-hop citation neighborhood, prunes citation edges whose claims lack entailment support, and ranks the remaining papers with a recency-aware random walk. This makes the candidate set, the reason each paper is kept, and the stopping condition explicit and fixed before inference. On LitSearch and one further benchmarks over a 500K-paper arXiv corpus, Crase outperforms deep research agents built on proprietary models by up to 3$\\times$ recall@50 at roughly a third of the cost."
+}

@@ -125,13 +125,18 @@ residual evidence.
 
 ```bash
 cd papers/orion-12-open-world-scientific-discovery/manuscript
-latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
-python ../scripts/check_manuscript_typography.py --log main.log
+python ../scripts/build_ipm_submission.py --check
+TEXINPUTS=./elsevier-cas//: latexmk -xelatex -interaction=nonstopmode -halt-on-error ipm_submission.tex
+latexmk -xelatex -interaction=nonstopmode -halt-on-error arxiv_submission.tex
+python ../scripts/check_manuscript_typography.py --log ipm_submission.log
+python ../scripts/check_manuscript_typography.py --log arxiv_submission.log
 cd ..
-sha256sum -c journal_package/SHA256SUMS
+python scripts/build_submission_package.py --check
 ```
 
-Expected review artifact: 21-page `journal_package/manuscript.pdf`, with no
-unresolved citation/reference warning and zero overfull boxes. The package
-attests only the bounded methods / critical system-design claim; external
-ORION-vs-baseline superiority remains `CANNOT_CHECK`.
+Expected filing artifacts are the anonymous IP\&M CAS PDF and the attributed
+arXiv PDF in `submission/publication-final-20260901/`. The builder reconstructs
+each PDF from its distributed source archive, verifies exact PDF equality,
+checks the anonymous route for author identity, and refreshes the manifest and
+checksums. The package attests only the bounded methods / critical system-design
+claim; external ORION-vs-baseline superiority remains unestablished.

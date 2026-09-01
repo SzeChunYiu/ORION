@@ -104,3 +104,15 @@ reranking as the mechanism for redundancy control.
 **ORION delta under test:** do routes that earn independence contribute more
 unique relevant evidence than nominally distinct routes whose diversity is only
 list-level? Open question, and it is the direct operationalisation of `ORION-12.H2`.
+
+---
+
+## 12. Structurally bounded scholarly graph search — `hazra2026crase`
+
+Crase builds a bounded, inspectable citation-graph candidate set and applies an
+explicit stopping condition to scholarly deep search. It therefore owns an
+adjacent acquisition-and-stopping design. The residual tested here is different:
+whether a prospectively material route that is unavailable, censored, or
+provider-invalid may disappear from task-level closure. The citation supports
+the nearest-work boundary; it does not supply evidence for external retrieval
+superiority or open-world completeness.

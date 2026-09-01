@@ -68,6 +68,12 @@ def claim(ledger: dict, claim_id: str) -> dict:
     raise AssertionError(f"claim {claim_id} not in ledger")
 
 
+def region_file(paper: Path, region: str = "results") -> Path:
+    """Return the manuscript file the committed ledger actually audits."""
+    relative = load_ledger(paper)["regions"][region]["file"]
+    return paper / "manuscript" / relative
+
+
 def inject_defect(paper: Path) -> dict:
     """Recreate the archived-only defect pattern the committed ledger used to carry.
 
@@ -347,7 +353,7 @@ def test_allowlist_entry_without_reason_is_caught(paper: Path) -> None:
 
 def test_manuscript_number_diverging_from_artifact_is_caught(paper: Path) -> None:
     """A number edited in the prose but not in the archive is the core defect."""
-    results = paper / "manuscript" / "sections" / "results.tex"
+    results = region_file(paper)
     source = results.read_text(encoding="utf-8")
     assert "The governed system attains mean complete-gold recall 0.979487" in source
     results.write_text(
@@ -365,7 +371,7 @@ def test_manuscript_number_diverging_from_artifact_is_caught(paper: Path) -> Non
 
 def test_sign_flip_is_caught(paper: Path) -> None:
     """-1.0 and 1.0 must not be treated as the same value."""
-    results = paper / "manuscript" / "sections" / "results.tex"
+    results = region_file(paper)
     source = results.read_text(encoding="utf-8")
     assert "premature-closure difference of -1.0" in source
     results.write_text(
@@ -393,7 +399,7 @@ def test_unbound_number_is_caught(paper: Path) -> None:
 
 def test_number_added_to_a_ledgered_sentence_is_caught(paper: Path) -> None:
     """A new number in the prose must not slip past the ledger."""
-    results = paper / "manuscript" / "sections" / "results.tex"
+    results = region_file(paper)
     source = results.read_text(encoding="utf-8")
     assert "Its premature-task-closure rate is\n0." in source
     results.write_text(
@@ -414,7 +420,7 @@ def test_ledger_number_rotting_away_from_the_manuscript_is_caught(paper: Path) -
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     summary["systems"]["orion_full"]["mean_precision"] = 0.97
     summary_path.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
-    results = paper / "manuscript" / "sections" / "results.tex"
+    results = region_file(paper)
     results.write_text(
         results.read_text(encoding="utf-8").replace(
             "recall 0.979487 and precision 1.0.", "recall 0.979487 and precision 0.97."
@@ -428,7 +434,7 @@ def test_ledger_number_rotting_away_from_the_manuscript_is_caught(paper: Path) -
 
 def test_role_swap_is_caught_by_positional_binding(paper: Path) -> None:
     """Same numbers, swapped systems: unordered matching would pass this."""
-    results = paper / "manuscript" / "sections" / "results.tex"
+    results = region_file(paper)
     source = results.read_text(encoding="utf-8")
     results.write_text(
         source.replace(
@@ -453,15 +459,10 @@ def test_coordinated_regeneration_stays_green(paper: Path) -> None:
     summary["systems"]["orion_full"]["mean_complete_gold_recall"] = 0.981111
     summary_path.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 
-    for relative, old, new in (
-        (Path("manuscript") / "main.tex", "mean recall 0.979487", "mean recall 0.981111"),
-        (
-            Path("manuscript") / "sections" / "results.tex",
-            "complete-gold recall 0.979487",
-            "complete-gold recall 0.981111",
-        ),
+    for path, old, new in (
+        (paper / "manuscript" / "main.tex", "mean recall 0.979487", "mean recall 0.981111"),
+        (region_file(paper), "complete-gold recall 0.979487", "complete-gold recall 0.981111"),
     ):
-        path = paper / relative
         path.write_text(path.read_text(encoding="utf-8").replace(old, new), encoding="utf-8")
 
     ledger = load_ledger(paper)
@@ -567,7 +568,7 @@ def test_strict_mode_promotes_known_defects_to_violations(paper: Path) -> None:
 def test_defect_entry_becomes_stale_once_the_manuscript_is_fixed(paper: Path) -> None:
     """A fixed manuscript must force the defect entry to be retired."""
     inject_defect(paper)
-    results = paper / "manuscript" / "sections" / "results.tex"
+    results = region_file(paper)
     source = results.read_text(encoding="utf-8")
     start = source.index("Its premature-task-closure rate is")
     end = source.index("The strongest of the six protocol-frozen")
@@ -656,7 +657,7 @@ def test_missing_manuscript_region_is_a_harness_error(paper: Path) -> None:
 
 
 def test_missing_manuscript_file_is_a_harness_error(paper: Path) -> None:
-    (paper / "manuscript" / "sections" / "results.tex").unlink()
+    region_file(paper).unlink()
     proc = run(paper)
     assert proc.returncode == EXIT_HARNESS, messages(proc)
 
@@ -668,7 +669,7 @@ def test_missing_manuscript_file_is_a_harness_error(paper: Path) -> None:
 
 def test_new_unledgered_results_claim_is_caught(paper: Path) -> None:
     """Results prose is hard-failing: a new outcome sentence there must not pass."""
-    results = paper / "manuscript" / "sections" / "results.tex"
+    results = region_file(paper)
     results.write_text(
         results.read_text(encoding="utf-8")
         + "\nORION reaches a recall of 0.99 on real scientific literature.\n",
@@ -723,21 +724,11 @@ def test_named_list_selector_must_resolve_uniquely(paper: Path) -> None:
 
 
 def test_tier_binding_points_at_the_tier_the_prose_names() -> None:
-    """The prose names the achieved tier; verify the bound tier is that plan tier.
-
-    The 20-task era carried DESCRIPTIVE_ONLY prose; the 390-task reconciliation
-    names the committed tier the campaign actually reached. Either way the
-    binding must address the tier the manuscript claims, that tier must exist
-    in the frozen plan, and the archived N must genuinely meet its required_n.
-    """
+    """The internal binding names a real plan tier without leaking it into prose."""
     plan = json.loads(
         (PAPER / "protocol" / "STATISTICAL_PLAN_V1.json").read_text(encoding="utf-8")
     )
     tiers = {t["tier"]: t for t in plan["precision_plan"]["precision_tiers"]}
-    methods = (PAPER / "manuscript" / "sections" / "methods.tex").read_text(encoding="utf-8")
-    named = [name for name in tiers if name in methods]
-    assert named, "methods.tex must name a tier that exists in the frozen plan"
-
     ledger = json.loads((PAPER / LEDGER_RELATIVE).read_text(encoding="utf-8"))
     bound = {
         binding["key"]
@@ -746,9 +737,11 @@ def test_tier_binding_points_at_the_tier_the_prose_names() -> None:
         if "precision_tiers" in binding["key"]
     }
     assert bound, "expected at least one tier binding"
+    named = [name for name in tiers if any(f"[tier={name}]" in key for key in bound)]
+    assert named, "tier bindings must address a tier in the frozen plan"
     for key in bound:
         assert any(f"[tier={name}]" in key for name in named), (
-            f"binding {key} does not address a tier the prose names as achieved ({named})"
+            f"binding {key} does not address a frozen plan tier ({named})"
         )
 
     evidence = json.loads(
@@ -871,7 +864,7 @@ def test_stale_record_digest_is_caught(paper: Path) -> None:
     current = payload["frozen_run"]["record_digest_sha256"]
     fake = "a" * 64
     assert current != fake
-    results_tex = paper / "manuscript" / "sections" / "results.tex"
+    results_tex = region_file(paper)
     source = results_tex.read_text(encoding="utf-8")
     assert current in source
     results_tex.write_text(source.replace(current, fake, 1), encoding="utf-8")
@@ -891,7 +884,7 @@ def test_missing_bound_digest_is_caught(paper: Path) -> None:
     current = json.loads(results.read_text(encoding="utf-8"))["frozen_run"][
         "record_digest_sha256"
     ]
-    results_tex = paper / "manuscript" / "sections" / "results.tex"
+    results_tex = region_file(paper)
     source = results_tex.read_text(encoding="utf-8")
     results_tex.write_text(source.replace(current, "not-a-digest", 1), encoding="utf-8")
     ledger = load_ledger(paper)

@@ -17,14 +17,14 @@ read the claims.
 | Claim | Evidence | Authority |
 | --- | --- | --- |
 | Discovery is a separable capability from synthesis, and earned route independence with question-framed retrieval is the candidate contribution | scoped methods/system-design argument in this README and `JOURNAL_READINESS.md` | `PEER_REVIEW_READY` on the bounded methods/critical-system-design claim |
-| ORION's routing and stopping beat a matched external comparator on discovery | four-arm TREC-COVID study, `external/P2_TREC_COVID_ARMS_V1.json`, 50 official topics under one matched budget | **`CANNOT_CHECK`** — the pass gate fails: recall@100 −0.0177 with bootstrap CI [−0.0273, −0.0091] against a −0.02 margin, and +175.7% reads against a −25% requirement |
-| Multi-route exploration improves top-10 quality | same study: nDCG@10 +0.1488, bootstrap CI [+0.1010, +0.1995], ahead on 42/50 topics | measured, **not a gate criterion**; cannot rescue the row above |
+| ORION's routing and stopping beat a matched external comparator on discovery | four-arm TREC-COVID study, `external/P2_TREC_COVID_ARMS_V1.json`, 50 official topics under one matched budget | **Not established** — treated as post-hoc/descriptive because no separate pre-outcome record binds the exact rule; recall@100 is −0.0177 with bootstrap CI [−0.0273, −0.0091] and reads increase 175.7% |
+| Multi-route exploration improves top-10 quality | same study: nDCG@10 +0.1488, bootstrap CI [+0.1010, +0.1995], ahead on 42/50 topics | favorable descriptive result; does not establish overall superiority against the adverse recall and cost results |
 | ORION's own routing terminal on that corpus | two of five routes unavailable: CITATION has no earned seed, RESTRICTED no provider | `CANNOT_CHECK`, and the arm declines completeness on 50/50 topics where both baselines declare it |
 | Scientific RAG, agentic literature search, systematic-review automation, capture-recapture | donor-owned; see the nearest-work boundary below | not claimed as novel |
 
 The second and third rows are deliberately adjacent. A reader who takes the
-nDCG gain as the headline has read a criterion outside the gate as though it
-settled the gate.
+nDCG gain as the headline would hide the adverse recall and cost results and
+overstate a post-hoc comparison.
 
 ## Nearest-work boundary
 
@@ -50,4 +50,9 @@ The ready paper claims governance semantics and bounded controlled mechanism evi
 
 ## Manuscript
 
-`manuscript/main.tex` is the canonical source. The visually audited 21-page review PDF and checksummed package are under `journal_package/`; its Results section preserves failed and non-promoted campaigns instead of inventing benchmark support.
+`manuscript/ipm_submission.tex` is the current filing-science source. The
+attributed arXiv adapter is generated from it, while the IP&M reviewer route
+keeps the canonical anonymous CAS wrapper. `manuscript/main.tex` is a non-filing
+long-form research record. The current upload objects and their checksums are in
+`submission/publication-final-20260901/`; older packages are historical audit
+evidence.

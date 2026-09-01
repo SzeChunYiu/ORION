@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -15,6 +16,7 @@ def test_offline_failure_table_and_figure_are_generated_from_result_summary() ->
     proc = subprocess.run(
         [sys.executable, str(RENDER), "--check"],
         cwd=ROOT,
+        env={**os.environ, "PYTHONPATH": str(ROOT / "src")},
         text=True,
         capture_output=True,
         check=False,
