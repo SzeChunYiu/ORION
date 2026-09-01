@@ -1,0 +1,90 @@
+name: Tier-A negative-result analysis kits v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/tier-a-negative-analysis-kits-v1.yml"
+      - "papers/publication_closure/TIER_A_NEGATIVE_RESULT_REGISTRY_V1.json"
+      - "papers/publication_closure/tier_a_analysis_common_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/**"
+      - "papers/publication_closure/a4-hidden-cause-external-v1/**"
+      - "papers/publication_closure/a6-external-authority-study-v1/**"
+      - "papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/**"
+      - "papers/orion-14-verified-scientific-discovery/protocol/a5-comparator-freeze-v1/COMPARATOR_EXECUTION_FREEZE_V1.json"
+permissions:
+  contents: read
+jobs:
+  blind-analysis-kits:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Verify frozen A5 comparator parent
+        run: |
+          set -euo pipefail
+          src=papers/orion-14-verified-scientific-discovery/protocol/a5-comparator-freeze-v1/COMPARATOR_EXECUTION_FREEZE_V1.json
+          test "$(git hash-object "$src")" = "531406b0e1a071ecf043e61700efb97c53ea137a"
+      - name: Validate protocol-only authority and adverse registry
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          files = [
+            Path('papers/orion-22-adaptive-state-reasoning/top_tier/P12_EXTERNAL_PRICE_SHIFT_FAILURE_ATLAS_FREEZE_V1.json'),
+            Path('papers/publication_closure/a3-external-change-transport-v1/EXECUTION_AND_ANALYSIS_FREEZE_V1.json'),
+            Path('papers/publication_closure/a4-hidden-cause-external-v1/CAUSAL_GOLD_AND_LEAKAGE_FREEZE_V1.json'),
+            Path('papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/NATURALISTIC_SCORING_AND_NULL_ANALYSIS_FREEZE_V1.json'),
+            Path('papers/publication_closure/a6-external-authority-study-v1/EXTERNAL_AUTHORITY_EXECUTION_ANALYSIS_FREEZE_V1.json'),
+          ]
+          for p in files:
+            d=json.loads(p.read_text())
+            assert d['protected_outcomes_accessed'] is False, p
+            assert d['scientific_authority_delta'].startswith('NONE__'), p
+          a6=json.loads(files[-1].read_text())
+          assert a6['replication']['numeric_minimum'] is None
+          assert 'does not authorize inventing a replication N' in a6['replication']['reason_numeric_minimum_null']
+          reg=json.loads(Path('papers/publication_closure/TIER_A_NEGATIVE_RESULT_REGISTRY_V1.json').read_text())
+          assert reg['schema']=='ORION.TierA.NegativeResultRegistry.v1'
+          assert len(reg['lanes'])==6
+          for lane in reg['lanes'].values():
+            assert lane['adverse_terminals']
+          PY
+      - name: Compile analysis code
+        run: |
+          python -m py_compile \
+            papers/publication_closure/tier_a_analysis_common_v1.py \
+            papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_external_price_shift_failure_atlas_v1.py \
+            papers/publication_closure/a3-external-change-transport-v1/analyze_external_change_transport_v1.py \
+            papers/publication_closure/a4-hidden-cause-external-v1/construct_causal_gold_v1.py \
+            papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/analyze_naturalistic_panel_v1.py \
+            papers/publication_closure/a6-external-authority-study-v1/analyze_external_authority_study_v1.py
+      - name: A2 failure-atlas self-test
+        run: python papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_external_price_shift_failure_atlas_v1.py --self-test
+      - name: A3 change-transport self-test
+        run: python papers/publication_closure/a3-external-change-transport-v1/analyze_external_change_transport_v1.py --self-test
+      - name: A4 causal-gold/leakage self-test
+        run: python papers/publication_closure/a4-hidden-cause-external-v1/construct_causal_gold_v1.py --self-test
+      - name: A5 naturalistic scoring self-test
+        run: python papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/analyze_naturalistic_panel_v1.py --self-test
+      - name: A6 external-authority self-test
+        run: python papers/publication_closure/a6-external-authority-study-v1/analyze_external_authority_study_v1.py --self-test
+      - name: Ban host RNG/numerical statistics dependencies
+        run: |
+          set -euo pipefail
+          files=(
+            papers/publication_closure/tier_a_analysis_common_v1.py
+            papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_external_price_shift_failure_atlas_v1.py
+            papers/publication_closure/a3-external-change-transport-v1/analyze_external_change_transport_v1.py
+            papers/publication_closure/a4-hidden-cause-external-v1/construct_causal_gold_v1.py
+            papers/orion-14-verified-scientific-discovery/protocol/a5-naturalistic-analysis-freeze-v1/analyze_naturalistic_panel_v1.py
+            papers/publication_closure/a6-external-authority-study-v1/analyze_external_authority_study_v1.py
+          )
+          for f in "${files[@]}"; do
+            ! grep -Eq '^import (random|numpy|scipy)|^from (random|numpy|scipy)' "$f"
+          done
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
