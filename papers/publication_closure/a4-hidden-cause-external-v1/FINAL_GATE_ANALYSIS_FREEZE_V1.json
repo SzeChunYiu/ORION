@@ -1,0 +1,46 @@
+{
+  "schema": "ORION.A4.HiddenCauseFinalGateAnalysisFreeze.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A4",
+  "artifact_class": "FROZEN_FINAL_ANALYSIS_BEFORE_PROTECTED_AGENT_OUTCOMES",
+  "protected_outcomes_accessed": false,
+  "causal_gold_binding": {
+    "path": "papers/publication_closure/a4-hidden-cause-external-v1/CAUSAL_GOLD_AND_LEAKAGE_FREEZE_V1.json",
+    "git_blob_sha": "1ce39af81fd4b3686b52221349ddfb865c11a8fb"
+  },
+  "baseline_router_binding": {
+    "path": "papers/publication_closure/a4-hidden-cause-external-v1/baseline_routers_v1.py",
+    "git_blob_sha": "9ab86b8c98fdb74ce9cf39f6722f746f6218c373"
+  },
+  "scientific_unit": "eligible base-failure task",
+  "strongest_fixed_policy_selection": "one of COMPUTE_FIRST / INFORMATION_FIRST / ACCESSIBILITY_FIRST / RESTART_REFORMULATE_FIRST is selected on development data before protected primary/replication; no protected reselection",
+  "primary_success_contrast": "candidate final task success - strongest fixed final task success",
+  "uncertainty": {
+    "unit": "task",
+    "method": "deterministic SHA-256 counter-stream nonparametric bootstrap of paired success differences",
+    "resamples": 10000,
+    "interval": "equal-tail percentile 95%"
+  },
+  "charged_regret": "per task, charged cost of selected action minus the causal-gold minimum charged cost; for METHOD/CANNOT_CHECK where no intervention succeeds, regret is still the charged attempted intervention cost relative to zero successful-intervention cost only if the frozen campaign accounting defines it prospectively; otherwise the task must carry CANNOT_CHECK_REGRET and the broad regret gate cannot pass",
+  "false_compute_escalation": "selected action == COMPUTATION while causal gold cause != COMPUTATION",
+  "pass_gate_all_required": {
+    "final_success_gain": ">= 0.05 and paired task-bootstrap 95% lower bound > 0",
+    "charged_regret": "mean candidate charged regret <= 0.5 * mean strongest-fixed charged regret",
+    "false_compute": "candidate false-compute-escalation rate < compute-first false-compute-escalation rate",
+    "domain_direction": "positive mean success difference in >=3 of the frozen >=4 scientific domains",
+    "replication": "source-disjoint replication mean success difference > 0",
+    "leakage": "every task passed the frozen causal-gold leakage contract; any violation invalidates the study"
+  },
+  "terminal_priority": [
+    "CANNOT_CHECK_SCOPE_OR_REGRET",
+    "LEAKAGE_INVALID",
+    "NOT_SUPPORTED_FINAL_SUCCESS",
+    "NOT_SUPPORTED_CHARGED_REGRET",
+    "NOT_SUPPORTED_FALSE_COMPUTE",
+    "HETEROGENEOUS_DOMAIN_FAILURE",
+    "REPLICATION_DIRECTION_FAILURE",
+    "SUPPORTED_FROZEN_A4_GATE"
+  ],
+  "negative_result_policy": "No cause-class, fixed baseline, cost rule, domain denominator, false-compute definition or task denominator may change after protected outcomes. A null, harmful, heterogeneous, replication-negative, leakage-invalid or CANNOT_CHECK result is retained.",
+  "scientific_authority_delta": "NONE__FINAL_ANALYSIS_PREREGISTRATION_ONLY"
+}
