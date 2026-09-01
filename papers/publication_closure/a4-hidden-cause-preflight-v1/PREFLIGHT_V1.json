@@ -1,0 +1,97 @@
+{
+  "schema": "ORION.A4.HiddenCauseExternalBenchmarkPreflight.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A4",
+  "artifact_class": "PRE_OUTCOME_PREFLIGHT",
+  "protected_agent_runs_executed": false,
+  "protected_outcomes_accessed": false,
+  "confirmatory_subset_selected": false,
+  "preflight_dimensions": ["licence", "dataset", "tools", "executable_tasks"],
+  "primary_proposed_substrate": {
+    "name": "SciAgentArena",
+    "code_repository": {
+      "repository": "HelloWorldLTY/SciAgentArena",
+      "main_commit": "9865bb0c261bd9a59ef23576805b268b458b59d2",
+      "root_listing_checked": true,
+      "root_license_file_present": false,
+      "license_terminal": "CANNOT_CHECK_REPOSITORY_LICENSE_FROM_ROOT"
+    },
+    "official_dataset": {
+      "repository": "iLOVE2D/SciAgentArena",
+      "access": "GATED",
+      "visible_terms": "testing only; do not use for model training",
+      "license_metadata_verified": false,
+      "file_manifest_available_to_this_preflight": false,
+      "terminal": "CANNOT_CHECK_LICENSE_AND_TASK_MANIFEST_UNTIL_GATE_ACCEPTED"
+    },
+    "public_scope": {
+      "approximate_tasks": 200,
+      "stepwise_verification": true,
+      "scientific_domains": [
+        "drug_discovery",
+        "single_cell_omics",
+        "spatial_omics",
+        "ehr_modeling",
+        "genetics"
+      ],
+      "meets_nominal_count_and_domain_floor": true,
+      "why_not_confirmatory_yet": "nominal public counts do not substitute for a byte-frozen eligible task manifest with licence and execution checks"
+    },
+    "preflight_terminal": "NOT_SELECTABLE_FOR_CONFIRMATORY_SUBSET_YET"
+  },
+  "equivalent_external_candidate": {
+    "name": "SciAgentArena Terminal-Bench (Harbor) packaging",
+    "dataset_repository": "iLOVE2D/sciagentarena_tb",
+    "access": "GATED_CONTACT_INFO_AGREEMENT",
+    "license": "CC-BY-4.0",
+    "advertised_task_count": 308,
+    "advertised_benchmark_families": 7,
+    "advertised_scientific_domain_families_at_least": [
+      "drug_discovery",
+      "ehr",
+      "single_cell",
+      "spatial",
+      "cross_domain"
+    ],
+    "reference_solutions": {
+      "with_working_reference": 298,
+      "without_reference": 10,
+      "without_reference_note": "C3 molecule-optimization tasks"
+    },
+    "scoring": "benchmark-owned evaluation code; no scoring logic reimplemented in the packaging",
+    "data_packaging": "all task data advertised as included; no additional download required after authorized dataset access",
+    "tool_entrypoint": "tb run / Harbor Terminal-Bench runner",
+    "file_manifest_available_to_this_preflight": false,
+    "executable_in_current_preflight_environment": false,
+    "terminal": "CANNOT_CHECK_EXECUTABLE_TASK_CENSUS_UNTIL_DATASET_GATE_ACCEPTED_AND_TOOL_LOCK_FROZEN"
+  },
+  "tool_preflight": {
+    "required_classes": [
+      "containerized Terminal-Bench/Harbor task runner for the equivalent packaging",
+      "benchmark-owned scorer dependencies",
+      "agent/model runtimes frozen separately before protected execution"
+    ],
+    "runner_version_frozen": false,
+    "reason": "the gated task manifest is not visible, so a compatible runner lock cannot yet be bound to exact task bytes",
+    "fallback_rule": "do not replace unavailable tasks with authored or easier tasks; mark CANNOT_CHECK and narrow the claim"
+  },
+  "broad_claim_gate": {
+    "required_executable_tasks": 120,
+    "required_scientific_domains": 4,
+    "nominal_public_scope_is_large_enough": true,
+    "eligible_executable_task_count_verified": false,
+    "eligible_domain_count_verified_from_task_manifest": false,
+    "current_terminal": "CANNOT_CHECK_ACCESS_GATE",
+    "must_not_claim_requirement_satisfied": true
+  },
+  "next_actions_after_authorized_access": [
+    "materialize the exact gated task manifest without running agents",
+    "record dataset revision/content hashes and per-task licence/source identifiers",
+    "install/freeze the compatible Harbor/Terminal-Bench runner and scorer environment",
+    "execute scorer/reference-solution smoke checks without candidate agent outputs",
+    "count executable eligible tasks and domains",
+    "only then freeze the confirmatory subset and 20/60/20 source-disjoint split"
+  ],
+  "preflight_decision": "COMPLETE__BLOCKER_FOUND__NO_CONFIRMATORY_SUBSET_SELECTED",
+  "scientific_authority_delta": "NONE"
+}
