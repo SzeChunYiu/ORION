@@ -1,0 +1,88 @@
+{
+  "schema": "ORION.A3.ExternalChangeTransportExecutionAnalysisFreeze.v1",
+  "registered_date": "2026-09-01",
+  "artifact_class": "FROZEN_BEFORE_EXTERNAL_GOLD_AND_PROTECTED_PREDICTIONS",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A3",
+  "protected_outcomes_accessed": false,
+  "external_gold_consumed": false,
+  "scientific_unit": "independent change cluster",
+  "strata": [
+    "representation_schema",
+    "responsibility_output_contract",
+    "objective_acceptance_criterion",
+    "evidence_dependency"
+  ],
+  "quotas": {
+    "primary_per_stratum": 24,
+    "primary_total": 96,
+    "source_disjoint_replication_per_stratum": 8,
+    "replication_total": 32,
+    "shortfall_rule": "CANNOT_CHECK_STRATUM_SHORTFALL; never replace a short stratum after outcome access"
+  },
+  "custody_contract": {
+    "gold_owner": "independent curator/adjudicator, not ORION candidate code or authors' rules",
+    "gold_alphabet": ["REUSE", "REOPEN", "CANNOT_CHECK"],
+    "gold_reveal_rule": "all candidate and baseline predictions plus visible-packet hashes must be sealed before gold is revealed",
+    "disagreement_rule": "retain raw adjudicator labels and disagreement; unresolved disagreement is CANNOT_CHECK, not majority-forced binary gold",
+    "required_receipts": [
+      "source and version hashes",
+      "licence/rights receipt",
+      "change-stratum adjudication",
+      "reuse-validity adjudication",
+      "prediction-seal timestamp/hash",
+      "gold-reveal timestamp/hash"
+    ]
+  },
+  "source_disjointness": {
+    "primary_replication_must_not_share": [
+      "source_family_id",
+      "normalized_organization_lineage",
+      "artifact_lineage_id"
+    ],
+    "duplicate_cluster_rule": "exact source/version pair and materially equivalent change event count once"
+  },
+  "baseline_identities": {
+    "ALWAYS_REUSE": "emit REUSE for every adjudicable cluster",
+    "ALWAYS_REOPEN": "emit REOPEN for every adjudicable cluster; safety ceiling",
+    "VERSION_PROVENANCE_ONLY": "REOPEN iff the frozen source/version/provenance receipt records a material version/provenance change; missing receipt => CANNOT_CHECK",
+    "SEMANTIC_DIFF_ONLY": "REOPEN iff the separately frozen outcome-blind semantic-diff preprocessor marks a material semantic change; missing/failed parse => CANNOT_CHECK",
+    "CONFIDENCE_ONLY": "admissible only for a source with a native pre-outcome confidence signal and a threshold frozen on development data; otherwise this arm is CANNOT_CHECK_NOT_MEANINGFUL",
+    "CANDIDATE": "current responsibility/closure-aware policy, exact executable identity to be frozen before protected predictions"
+  },
+  "strongest_noncandidate_selection": "select exactly one non-candidate arm on the development split before primary/replication gold; the selected baseline id is immutable in the protected result packet",
+  "per_cluster_outcomes": [
+    "unsound reuse / false closure",
+    "unnecessary reopen / recompute",
+    "downstream validity after decision",
+    "charged recomputation/state-recovery cost",
+    "CANNOT_CHECK terminal and reason"
+  ],
+  "primary_analysis": {
+    "paired_unsound_reuse_improvement": "I(strongest baseline unsound reuse) - I(candidate unsound reuse)",
+    "uncertainty": "deterministic 10000-resample cluster bootstrap, SHA-256 counter stream, equal-tail 95% interval",
+    "required_lower_bound": "> 0",
+    "downstream_noninferiority": "mean candidate downstream validity - mean ALWAYS_REOPEN downstream validity >= -0.01",
+    "charged_saving": "1 - sum(candidate charged cost)/sum(ALWAYS_REOPEN charged cost) >= 0.25",
+    "stratum_direction": "mean paired unsound-reuse improvement > 0",
+    "heterogeneity_gate": "positive direction in >=3/4 strata and every leave-one-stratum-out primary analysis",
+    "replication_gate": "source-disjoint replication mean paired unsound-reuse improvement > 0"
+  },
+  "terminal_priority": [
+    "CANNOT_CHECK_QUOTA_OR_CUSTODY",
+    "NOT_SUPPORTED_UNSOUND_REUSE",
+    "NOT_SUPPORTED_DOWNSTREAM_VALIDITY",
+    "NOT_SUPPORTED_RECOMPUTE_SAVING",
+    "HETEROGENEOUS_STRATUM_FAILURE",
+    "REPLICATION_DIRECTION_FAILURE",
+    "SUPPORTED_FROZEN_A3_GATE"
+  ],
+  "leakage_guards": [
+    "gold label absent from every candidate-visible feature manifest",
+    "gold reveal occurs after prediction seal",
+    "same visible packet hash supplied to all compared policies",
+    "no primary/replication source-lineage overlap",
+    "no threshold or baseline reselection after protected gold"
+  ],
+  "negative_result_policy": "Every adverse terminal is retained as the scientific result. No stratum replacement, relabeling, denominator change or baseline reselection is permitted after protected outcomes.",
+  "scientific_authority_delta": "NONE__EXECUTION_KIT_ONLY"
+}
