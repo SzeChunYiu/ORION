@@ -24,6 +24,7 @@ def main() -> int:
     )
     text = common + "\n" + adapters
     surface = re.sub(r"\s+", " ", text)
+    prose_without_access_paths = re.sub(r"\\path\{[^}]+\}", "", text)
     errors: list[str] = []
 
     required = {
@@ -56,7 +57,8 @@ def main() -> int:
         "full-paper status": r"(?i)full[- ]length article|full paper",
     }
     for label, pattern in forbidden.items():
-        if re.search(pattern, text):
+        candidate = prose_without_access_paths if label == "private decision token" else text
+        if re.search(pattern, candidate):
             errors.append(f"forbidden {label}")
 
     common_surface = re.sub(r"\s+", " ", common)

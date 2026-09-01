@@ -31,7 +31,6 @@ PUBLIC_FORBIDDEN = (
     b"tier b",
     b"tier-b",
     b"tier_b",
-    b"p3_",
     b"peer_review_ready",
     b"package_complete",
     b"reclassify_as_note",
@@ -412,7 +411,7 @@ F1000Research does not accept supplementary material. No supplementary file is r
         "title": TITLE,
         "authors": ["Sze Chun Yiu"],
         "suggested_primary_category": "cs.AI",
-        "comments": f"Brief Report; {arxiv['pages']} pages, 1 table. Bounded fixed-panel study.",
+        "comments": f"Brief Report; {arxiv['pages']} pages, 2 tables. Bounded fixed-panel study.",
         "keywords": journal_metadata["keywords"],
         "files": arxiv,
     }

@@ -51,8 +51,8 @@ def pdf_text(path: Path, errors: list[str]) -> str:
         errors.append(f"pdfinfo failed: {path.relative_to(CURRENT)}")
         return ""
     pages = re.search(r"^Pages:\s+(\d+)", info.stdout, flags=re.M)
-    if not pages or int(pages.group(1)) != 6:
-        errors.append(f"route is not six pages: {path.relative_to(CURRENT)}")
+    if not pages or int(pages.group(1)) != 7:
+        errors.append(f"route is not seven pages: {path.relative_to(CURRENT)}")
     extracted = subprocess.run(
         ["pdftotext", str(path), "-"], text=True, capture_output=True, check=False
     )
@@ -141,7 +141,7 @@ def check_current(errors: list[str]) -> None:
                 errors.append(f"{route} PDF missing bounded result: {token}")
         if FORBIDDEN.search(text):
             errors.append(f"{route} PDF leaks an internal publication token")
-        if record.get("pages") != 6:
+        if record.get("pages") != 7:
             errors.append(f"{route} manifest page binding mismatch")
 
     if manifest.get("journal", {}).get("venue") != "F1000Research" or manifest.get(

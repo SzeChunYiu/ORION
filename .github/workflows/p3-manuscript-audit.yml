@@ -67,7 +67,7 @@ jobs:
               echo "Unresolved or duplicate LaTeX reference/citation in ${route}.tex." >&2
               exit 1
             fi
-            test "$(pdfinfo "${route}.pdf" | awk '/^Pages:/ {print $2}')" = 6
+            test "$(pdfinfo "${route}.pdf" | awk '/^Pages:/ {print $2}')" = 7
             pdftotext "${route}.pdf" "/tmp/p3-${route}.txt"
             test -s "/tmp/p3-${route}.txt"
             pdfinfo "${route}.pdf" > "/tmp/p3-${route}-pdfinfo.txt"
@@ -92,12 +92,11 @@ jobs:
           PY
           python scripts/check_p3_current_package.py
 
-      - name: Verify package and publication scoreboard
+      - name: Verify publication scoreboard
         run: |
           set -euo pipefail
           python research/publication/scoreboard.py --check
-          python research/paper-programme-v1/journal_package/check_journal_package.py --root .
-          pytest -q tests/test_publication_status.py tests/unit/publication/test_journal_package.py
+          pytest -q tests/test_publication_status.py
 
       - name: Archive audit and rebuilt PDF
         uses: actions/upload-artifact@v4

@@ -22,9 +22,9 @@ battery, the complete rule scored 400/400, the strong semantic product 250/400,
 and canonical matching 50/400. An information-equivalent
 typed implementation also scored 400/400.
 
-\textbf{Conclusions.} These panels support a bounded observation: retaining
-polarity and an explicit non-merge terminal avoids the six false agreements
-created by the registered flat rule. They do not establish population error
+\textbf{Conclusions.} These panels support a bounded observation: the complete
+polarity-sensitive non-merge condition avoids the six false agreements created
+by the registered flat rule. They do not establish population error
 rates, superiority over deployed integration systems, the independent value of
 every coordinate, raw-text extraction performance or downstream scientific
 utility.
@@ -66,6 +66,13 @@ This evidence architecture supports a Brief Report: the scientific units are
 three confirmatory case families and eight unique conformance archetypes; the
 432 scored rows are not independent scientific observations.
 
+The individual coordinates, inconsistency-sensitive separation, provenance and
+abstention are inherited from the neighbouring traditions cited above. The
+increment tested here is their frozen, claim-relative composition into one
+decision condition, its prospective fixed-panel evaluation and its executable
+contract. We do not claim a new general ontology language or a new extraction
+method.
+
 \section{Methods}
 
 \subsection{Mapping decisions}
@@ -76,10 +83,39 @@ P_s=\langle R_s,C_s,M_s,X_s,\rho_s,\mu_s,a_s,\delta_s,\Pi_s\rangle,
 \end{equation}
 where the entries denote referent, construct, measurement, context, polarity,
 modality, attribution, discourse relation and assumptions or missing
-information. The evaluated rule returns one of three scientific decisions:
-admissible merge, typed non-merge, or undetermined. A required incompatibility
-produces non-merge; a missing load-bearing coordinate produces undetermined.
-The study does not infer absent coordinates from source text.
+information. Table~\ref{tab:decision-rule} gives the frozen precedence rule.
+Each condition is evaluated from top to bottom and the first applicable row is
+returned. Equality means exact equality of the exposed identifiers or enum
+value. An empty coordinate is not declared incompatible; absence produces an
+undetermined decision only when it is recorded as an unresolved ambiguity or
+prevents predicate normalization. The study does not infer absent coordinates
+from source text.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{@{}p{0.58\linewidth}p{0.19\linewidth}p{0.16\linewidth}@{}}
+\toprule
+\textbf{First applicable condition} & \textbf{Fine relation} & \textbf{Decision} \\
+\midrule
+Either record retains an unresolved ambiguity, or predicates are not normalized
+to the same relation & unresolved & undetermined \\
+Both nonempty referent identifiers differ & distinct referent & typed non-merge \\
+Both nonempty construct identifiers differ & distinct construct & typed non-merge \\
+Both nonempty measurement identifiers differ & distinct measurement & typed non-merge \\
+Both nonempty temporal, attribution, discourse or assumption coordinates differ,
+or modalities differ & contextual difference & typed non-merge \\
+Known polarities differ; the fine relation is contradiction when both modalities
+are asserted and contextual difference otherwise & contradiction or contextual
+difference & typed non-merge \\
+None of the preceding conditions applies & compatible & admissible merge \\
+\bottomrule
+\end{tabular}
+\caption{Normative holdout decision rule. For example, aligned asserted
+projections with opposite polarity return contradiction and hence typed
+non-merge; an explicit unresolved ambiguity returns undetermined.}
+\label{tab:decision-rule}
+\end{table}
 
 \subsection{Fixed panels and scientific units}
 
@@ -112,6 +148,17 @@ exact-coordinate conservative rule could abstain and served as the false-split
 control. These rules are not implementations of complete contemporary
 ontology-matching or integration systems.
 
+All rates use the 32 cases as denominator. A false merge is a compatible
+prediction when gold is any typed non-merge relation; a false split is a typed
+non-merge prediction when gold is compatible. An unresolved prediction counts
+as abstention, not as either error. Thus abstaining on a gold non-merge case can
+lower exact-match accuracy without creating a false split. The flat comparator
+returns compatible for equal predicates and unresolved otherwise. The
+conservative comparator returns compatible only when every exposed coordinate
+is exactly equal and unresolved otherwise. Registered ablations remove only
+the named coordinate comparison from the ordered rule above; the
+force-compatibility ablation maps every typed non-merge relation to compatible.
+
 The confirmatory gate had two non-compensatory conditions. The
 coordinate-governed-minus-flat false-merge estimate had to be at most $-0.05$
 with the upper bound of its paired fixed-panel bootstrap diagnostic below zero.
@@ -137,6 +184,15 @@ therefore an attainability result under that declared interface, not evidence
 of general capability superiority. Canonical matching uses a binary threshold.
 The fourth comparator is definitionally information-equivalent to the complete
 rule and must tie it exactly.
+
+This four-way contract refines, rather than duplicates, the holdout alphabet:
+merge maps to admissible merge; obstruction and plural view both map to typed
+non-merge, with plural view retaining both source projections; and unresolved
+maps to undetermined. The mapping is therefore many-to-one. The eight
+archetypes contain one merge, four obstruction, two plural-view and one
+unresolved state, each repeated across labels and identifiers. The reported
+conformance scores are exact four-way scores computed before this crosswalk;
+they are not a second evaluation of the holdout's fine-grained relation labels.
 
 \section{Results}
 
@@ -178,7 +234,7 @@ external replication.
 
 Across the 400 generated conformance records, the complete rule scored
 400/400, the strong semantic product 250/400, and canonical matching
-50/400. The complete-minus-structured difference was $+0.375$, with a
+50/400. The complete-minus-strong-semantic-product difference was $+0.375$, with a
 domain-stratified fixed-battery bootstrap diagnostic of $[0.3275,0.4225]$ and
 150--0 discordant decisions. The complete rule made zero false merge decisions
 and retained all clean merges. The information-equivalent typed comparator
@@ -188,13 +244,13 @@ to the registered interfaces but do not measure population performance.
 
 \section{Discussion}
 
-The confirmatory observation is narrow but falsifiable. Keeping polarity and a
-typed non-merge outcome prevented six false agreements produced when the
-registered flat rule discarded that condition, while the predeclared
+The confirmatory observation is narrow but falsifiable. The complete
+polarity-sensitive non-merge condition prevented six false agreements produced
+when the registered flat rule discarded that condition, while the predeclared
 false-split guard was satisfied. Insufficient evidence remained distinct from
-a negative decision. The conformance battery confirms that the deterministic
-relation is implemented exactly and that an information-equivalent typed
-implementation reproduces it.
+a negative decision. The separate conformance battery confirms its own
+four-way contract exactly and an information-equivalent typed implementation
+reproduces that contract.
 
 Several limits determine the interpretation. First, all observed
 discrimination lies in one authored family; the other 19 holdout cases and four
@@ -221,9 +277,18 @@ Report and are not represented as completed evidence.
 The frozen case records, source registry, protocols, deterministic analyses and
 independent implementation check are available in the public ORION repository
 snapshot at commit \texttt{3813e6495}:
-\url{https://github.com/SzeChunYiu/ORION/tree/3813e64955f03926b0276e50c21b9a65154ad3db/papers/orion-13-global-knowledge-portrait}.
-That snapshot contains the confirmatory records, contract generator, frozen
-protocol, results and independent verification. Code is licensed under
+\url{https://github.com/SzeChunYiu/ORION/tree/3813e64955f03926b0276e50c21b9a65154ad3db}.
+Within that snapshot, the holdout protocol, cases, frozen analysis and
+independent scorer are, respectively,
+\path{protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json},
+\path{gold/adjudicated/public-reference-v1.1-confirmatory/PUBLIC_REFERENCE_GOLD_V1.jsonl},
+\path{evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json}
+and \path{scripts/verify_confirmatory_independent.py}. The normative holdout
+evaluator is \path{src/orion/knowledge/semantics.py}; the four-way contract and
+its independent reconstruction are
+\path{research/claim_expansion/p3/P3_X_PROTOCOL_V1.md} and
+\path{research/claim_expansion/p3/verify_p3_x_independent.py} at the repository
+root. Code is licensed under
 Apache-2.0 and manuscript text under the Creative Commons Attribution 4.0
 International licence; upstream resource licences remain controlling.
 Restricted third-party text is not redistributed. A repository DOI may be
