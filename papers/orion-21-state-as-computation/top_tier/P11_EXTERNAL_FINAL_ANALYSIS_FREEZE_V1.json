@@ -1,0 +1,38 @@
+{
+  "schema": "ORION.A2.P11ExternalFinalAnalysisFreeze.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A2 Phase 2",
+  "artifact_class": "FROZEN_ANALYSIS_BEFORE_PROTECTED_LONGMEMEVAL_RUNS",
+  "protected_outcomes_accessed": false,
+  "requirements_binding": {
+    "path": "papers/orion-21-state-as-computation/P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md",
+    "git_blob_sha": "f8ba0680dc5fd0fd0acef8b5926b093cb84b26cc"
+  },
+  "execution_manifest_binding": "result packet must bind a GREEN P11 external execution manifest from validate_p11_external_execution_manifest_v1.py",
+  "scientific_unit": "frozen task/session block from the external execution registry; calls, queries, seeds and retrieved chunks are not independent N",
+  "candidate_and_strongest_baseline": "exact arm ids are frozen from development before protected scoring; the analyzer refuses identical ids or post-outcome selection",
+  "quality_scale": "0..1 benchmark-native final quality normalized prospectively within benchmark; no post-outcome rescaling",
+  "resource_scalar_for_gate": "explicit_total_charged_cost from the frozen campaign accounting; the complete resource vector remains separately reportable and no preprocessing is free",
+  "primary_gate": {
+    "route_quality": "deterministic block-bootstrap 95% lower bound of paired candidate-minus-strongest-baseline quality > 0",
+    "route_resource": "strongest-baseline total charged cost / candidate total charged cost >= 2.0 AND mean candidate-minus-baseline quality >= -0.02",
+    "pass": "quality route OR resource route"
+  },
+  "benchmark_harm": "for every frozen benchmark, mean candidate-minus-baseline quality >= -0.05",
+  "stability": "for every benchmark x model-family cell with adjudicable blocks, either mean quality difference >0 OR cost ratio >=2.0 with mean quality difference >=-0.02",
+  "uncertainty": {
+    "unit": "task/session block",
+    "method": "deterministic SHA-256 counter-stream nonparametric bootstrap",
+    "resamples": 10000,
+    "interval": "equal-tail percentile 95%"
+  },
+  "terminal_priority": [
+    "CANNOT_CHECK_SCOPE_OR_BINDING",
+    "NOT_SUPPORTED_PRIMARY_GATE",
+    "NOT_SUPPORTED_BENCHMARK_HARM",
+    "NOT_SUPPORTED_MODEL_BENCHMARK_STABILITY",
+    "SUPPORTED_FROZEN_P11_EXTERNAL_GATE"
+  ],
+  "negative_result_policy": "No benchmark, model family, resource charge or arm may be dropped or reselected after protected outcomes. If only the resource route passes, report quality noninferiority and exact cost ratio rather than calling it a quality win.",
+  "scientific_authority_delta": "NONE__FINAL_ANALYSIS_PREREGISTRATION_ONLY"
+}
