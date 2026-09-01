@@ -1,0 +1,78 @@
+{
+  "schema": "ORION.A6.ExternalAuthorityExecutionAnalysisFreeze.v1",
+  "registered_date": "2026-09-01",
+  "artifact_class": "FROZEN_BEFORE_EXTERNAL_GOLD_AND_PROTECTED_PREDICTIONS",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A6 Phase 2",
+  "protected_outcomes_accessed": false,
+  "external_gold_consumed": false,
+  "scientific_unit": "independently curated authority/evidence packet",
+  "primary_strata": {
+    "scientific_software_release_provenance_attestation": 20,
+    "workflowhub_rocrate_versioned_workflow": 20,
+    "scientific_record_transition": 20
+  },
+  "primary_total": 60,
+  "replication": {
+    "required": true,
+    "numeric_minimum": null,
+    "reason_numeric_minimum_null": "Issue #49 requires a source-disjoint replication set frozen before outcomes but does not authorize inventing a replication N. The eventual manifest must freeze its exact N before predictions.",
+    "source_disjoint_on": ["source_family_id", "normalized_organization_lineage", "artifact_lineage_id"]
+  },
+  "external_gold": {
+    "owner": "independent candidate-blind adjudicators",
+    "separate_labels": [
+      "local_action_release_authority",
+      "scientific_discharge_admission_authority"
+    ],
+    "scientific_terminal_alphabet": ["ADMIT", "DENY", "CANNOT_CHECK"],
+    "rule": "ORION authors/rules do not generate gold; disagreements remain recorded and unresolved authority is CANNOT_CHECK"
+  },
+  "baseline_ids": [
+    "AUTHORIZATION_ONLY",
+    "PROVENANCE_ONLY",
+    "VERIFICATION_ONLY",
+    "STRONGEST_COMBINED_DONOR_WITHOUT_SCIENTIFIC_DISCHARGE",
+    "MERGED_CANDIDATE",
+    "INFORMATION_EQUIVALENT_TYPED_DONOR"
+  ],
+  "strongest_incomplete_donor_rule": "select/freeze the strongest incomplete donor identity on development material before primary/replication gold; no protected-result reselection",
+  "information_equivalent_control": "typed donor receives exactly the candidate target-relevant scientific coordinates and terminal alphabet; any mismatch invalidates the comparison",
+  "per_packet_metrics": [
+    "false scientific promotion",
+    "false denial of valid admission",
+    "selective revalidation set size",
+    "charged selective recheck work",
+    "global-recheck charged work",
+    "post-revalidation adjudicated validity",
+    "per-stratum direction",
+    "ideal typed-donor mismatch"
+  ],
+  "analysis_gate": {
+    "ideal_typed_donor": "exact candidate tie on every information-equivalent packet",
+    "false_promotion": "paired improvement I(strongest incomplete donor false promotion) - I(candidate false promotion), deterministic 10000-resample packet bootstrap 95% lower bound > 0",
+    "valid_admission": "candidate valid-admission rate is no more than 0.02 below the best safe comparator",
+    "safe_comparator_definition": "non-candidate arm with zero false scientific promotions among adjudicable primary packets; choose the highest valid-admission rate, ties by frozen baseline order",
+    "selective_revalidation": "1 - sum(candidate charged recheck work)/sum(global-recheck work) >= 0.25 AND candidate post-revalidation validity rate >= global-recheck validity rate",
+    "strata": "mean paired false-promotion improvement > 0 in all three primary strata",
+    "replication": "source-disjoint replication mean paired false-promotion improvement > 0"
+  },
+  "terminal_priority": [
+    "CANNOT_CHECK_PRIMARY_OR_REPLICATION_CUSTODY",
+    "INVALID_INFORMATION_EQUIVALENT_DONOR",
+    "NOT_SUPPORTED_FALSE_PROMOTION",
+    "NOT_SUPPORTED_VALID_ADMISSION",
+    "NOT_SUPPORTED_SELECTIVE_REVALIDATION",
+    "HETEROGENEOUS_STRATUM_FAILURE",
+    "REPLICATION_DIRECTION_FAILURE",
+    "SUPPORTED_FROZEN_A6_EXTERNAL_GATE"
+  ],
+  "leakage_guards": [
+    "all candidate/baseline predictions sealed before adjudication reveal",
+    "identical candidate-visible packet hash for information-matched arms",
+    "scientific gold absent from candidate-visible features",
+    "primary and replication source lineages disjoint",
+    "typed donor has neither extra information nor missing candidate information"
+  ],
+  "negative_result_policy": "A false-promotion null, admission tradeoff, revalidation-savings failure, stratum heterogeneity, replication reversal, donor mismatch or CANNOT_CHECK is retained. Do not reinterpret same-programme conformance as external generality.",
+  "scientific_authority_delta": "NONE__EXECUTION_ANALYSIS_PREREGISTRATION_ONLY"
+}
