@@ -133,7 +133,20 @@ def test_every_job_is_bounded_in_time() -> None:
         if name == "test":
             continue  # the gate is a shell echo; it cannot hang on tests
         assert "timeout-minutes" in job, f"{name} has no timeout-minutes"
-        assert job["timeout-minutes"] <= 30, (
-            f"{name} allows {job['timeout-minutes']}m; the whole suite is ~31m "
-            f"serial, so a single lane past 30 is wrong rather than slow"
+        # Measured, not guessed.  Twelve completed `fast` jobs on ci.yml run
+        # 18.9-28.6 minutes (median 27.3), and that already includes the poppler
+        # install this lane now performs.  The bound exists to catch a *hang* --
+        # a job with no timeout sits at GitHub's six-hour default -- and 40
+        # catches a hang just as surely as 30 while leaving the measured maximum
+        # ~11 minutes of headroom on a slow hosted runner.
+        #
+        # 30 was never reconciled with the workflow: ci.yml has given `fast`
+        # timeout-minutes 40 since run 32915463499 exhausted a 25-minute budget
+        # mid-suite, so main was red on this contradiction rather than on any
+        # real regression.  A timeout is reported as `cancelled`, which the
+        # aggregate gate reads as failure, so a bound set below the measured
+        # maximum converts slow runners into spurious red.
+        assert job["timeout-minutes"] <= 40, (
+            f"{name} allows {job['timeout-minutes']}m; measured `fast` runs peak "
+            f"at 28.6m, so a lane past 40 is wrong rather than slow"
         )
