@@ -38,6 +38,11 @@ RENDER_COMPATIBLE = {
     "orion-03-typed-merge-falsification",
     "orion-11-recursive-epistemic-reconstruction",
     "orion-12-open-world-scientific-discovery",
+    # The publication regression module names ORION-14 while checking that its
+    # clean-CI render provenance remains attached to the batch that produced
+    # it.  The committed PDF is that canonical render, not a curated divergent
+    # artifact, and the clipping workflow already rebuilds and byte-checks it.
+    "orion-14-verified-scientific-discovery",
     # The render-reconciliation regression test intentionally exercises this
     # working PDF's checksum binding; the clean-CI PDF is its canonical render.
     "orion-23-responsibility-carrying-state",
