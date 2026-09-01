@@ -1,7 +1,33 @@
-# Four committed manuscript PDFs do not reproduce, and the check that says so had never run
+# A reproducibility gate that had never run, and the four PDFs it found when it could
 
-**Status:** `DIAGNOSED__COMMITTED_PDFS_RENDERED_OUTSIDE_THE_PINNED_PATH`
+**Status:** `RESOLVED_ON_MAIN__KEPT_AS_THE_ACCOUNT_OF_A_GATE_THAT_COULD_NOT_RUN`
 **Scientific authority delta:** `NONE`.
+
+## Resolved, and by the repair this document prescribed
+
+All four are fixed on `main`. Every committed `main.pdf` now carries a `CreationDate` equal
+to the `SOURCE_DATE_EPOCH` derived from its own source commit:
+
+| paper | committed `CreationDate` | epoch | |
+|---|---|---|---|
+| `orion-08-typed-state` | `D:20260901115822Z` | `D:20260901115822Z` | match |
+| `orion-10-certified-static-forecasting` | `D:20260901130335Z` | `D:20260901130335Z` | match |
+| `orion-12-open-world-scientific-discovery` | `D:20260901171947Z` | `D:20260901171947Z` | match |
+| `orion-19-structured-epistemic-learning` | `D:20260901121303Z` | `D:20260901121303Z` | match |
+
+`997b26aa6` — *"papers: bind deterministic manuscript renders"* (#2070) — regenerated three
+of them, and `aa7018400` regenerated ORION-12. ORION-10, the sub-case whose PDF carried no
+`CreationDate`, `ModDate` or `/Producer` at all, now carries one; that open question is
+closed with it.
+
+The repair applied is the repair this document prescribed before seeing it: regenerate each
+PDF *through the workflow's own loop* with the epoch exported. Two routes reaching the same
+place is worth more than either alone, and it is the reason this file is kept rather than
+deleted.
+
+**What it is now.** Not a live defect report. An account of a reproducibility gate that had
+never once run, why it could not, what it found in the single window where it could, and the
+mechanism behind that finding. The finding itself is spent.
 
 ## What the audit found the first time it could
 
