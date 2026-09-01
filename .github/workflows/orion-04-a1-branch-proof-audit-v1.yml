@@ -7,6 +7,8 @@ on:
       - "papers/orion-04-rooted-completion-certificates/evidence/a1-independent-branch-audit-v1/**"
       - "papers/orion-04-rooted-completion-certificates/evidence/global-obstruction-v1/FULL_CUBE_COVER.json"
       - "papers/orion-04-rooted-completion-certificates/evidence/global-obstruction-v1/PROJECTIVE_LINE_ATLAS.json"
+      - "papers/orion-04-rooted-completion-certificates/evidence/global-obstruction-v1/RESULT.json"
+      - "papers/orion-04-rooted-completion-certificates/evidence/global-obstruction-v1/independent_checker/check_result.py"
 permissions:
   contents: read
 jobs:
@@ -23,5 +25,10 @@ jobs:
           p=papers/orion-04-rooted-completion-certificates/evidence/a1-independent-branch-audit-v1
           python "$p/reconstruct_branch_cover_v1.py"
           git diff --exit-code -- "$p/BRANCH_RECONSTRUCTION_RESULT_V1.json"
+      - name: Reject forged result evidence
+        run: |
+          set -euo pipefail
+          p=papers/orion-04-rooted-completion-certificates/evidence/a1-independent-branch-audit-v1
+          python "$p/check_result_hostile_mutations_v1.py"
       - name: Repository cleanliness
         run: git diff --check
