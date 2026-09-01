@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
-"""Verify the superseded ORION-13 render and current dual-route package."""
+"""Verify the sole current ORION-13 Brief Report package."""
 
 from __future__ import annotations
 
 import hashlib
 import json
 from pathlib import Path
+import re
+import subprocess
+import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
 PAPER = ROOT / "papers/orion-13-global-knowledge-portrait"
 LEGACY = PAPER / "journal_package"
-CURRENT = PAPER / "submission/publication-ready-20260831"
+CURRENT = PAPER / "submission/publication-final-20260901"
+FORBIDDEN = re.compile(r"(?i)tier[ _-]?b|peer_review_ready|package_complete|reclassify_as_note")
 
 
 def sha256(path: Path) -> str:
@@ -25,17 +29,37 @@ def check_legacy(errors: list[str]) -> None:
     )
     expected = (
         (manifest, "package_status", "SUPERSEDED"),
-        (manifest, "scientific_authority_delta", "NONE"),
         (manifest.get("package_authority") or {}, "current_submission_authorized", False),
         (manifest.get("render_binding") or {}, "current_revision_binding", False),
-        (manifest.get("render_binding") or {}, "binding_status", "HISTORICAL_SUPERSEDED"),
         (state, "state", "SUPERSEDED"),
+        (
+            state,
+            "superseded_by",
+            "papers/orion-13-global-knowledge-portrait/submission/publication-final-20260901/PACKAGE_MANIFEST.json",
+        ),
     )
     for record, key, value in expected:
         if record.get(key) != value:
-            errors.append(
-                f"legacy {key}: expected {value!r}, got {record.get(key)!r}"
-            )
+            errors.append(f"legacy {key}: expected {value!r}, got {record.get(key)!r}")
+
+
+def pdf_text(path: Path, errors: list[str]) -> str:
+    info = subprocess.run(
+        ["pdfinfo", str(path)], text=True, capture_output=True, check=False
+    )
+    if info.returncode:
+        errors.append(f"pdfinfo failed: {path.relative_to(CURRENT)}")
+        return ""
+    pages = re.search(r"^Pages:\s+(\d+)", info.stdout, flags=re.M)
+    if not pages or int(pages.group(1)) != 7:
+        errors.append(f"route is not seven pages: {path.relative_to(CURRENT)}")
+    extracted = subprocess.run(
+        ["pdftotext", str(path), "-"], text=True, capture_output=True, check=False
+    )
+    if extracted.returncode or not extracted.stdout.strip():
+        errors.append(f"PDF text extraction failed: {path.relative_to(CURRENT)}")
+        return ""
+    return re.sub(r"\s+", " ", extracted.stdout)
 
 
 def check_current(errors: list[str]) -> None:
@@ -43,24 +67,25 @@ def check_current(errors: list[str]) -> None:
     sums_path = CURRENT / "SHA256SUMS"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     expected = (
-        ("schema", "ORION.dual-submission-package.v1"),
+        ("schema", "orion.publication-package.v1"),
         ("paper", "ORION-13"),
-        ("status", "PACKAGE_COMPLETE__PORTAL_INPUTS_PENDING"),
-        (
-            "terminal",
-            "P3_C5_C9_REPLICATED_MAPPING__P3_C10_C11_EXACT_IDENTITY_AUTHORITY",
-        ),
-        ("scientific_authority_delta", "NONE"),
+        ("publication_route", "F1000Research Brief Report and attributed arXiv preprint"),
     )
     for key, value in expected:
         if manifest.get(key) != value:
             errors.append(f"current {key}: expected {value!r}, got {manifest.get(key)!r}")
 
-    authority = ROOT / str(manifest.get("active_authority"))
-    if not authority.is_file() or sha256(authority) != manifest.get(
-        "active_authority_sha256"
+    for key, digest_key in (
+        ("active_authority", "active_authority_sha256"),
+        ("canonical_science_source", "canonical_science_source_sha256"),
     ):
-        errors.append("current active-authority binding mismatch")
+        path = ROOT / str(manifest.get(key, ""))
+        if not path.is_file() or sha256(path) != manifest.get(digest_key):
+            errors.append(f"current {key} binding mismatch")
+    for relative, digest in (manifest.get("canonical_sources") or {}).items():
+        path = ROOT / relative
+        if not path.is_file() or sha256(path) != digest:
+            errors.append(f"current canonical-source binding mismatch: {relative}")
 
     actual_payload = {
         path.relative_to(CURRENT).as_posix()
@@ -82,32 +107,49 @@ def check_current(errors: list[str]) -> None:
     sums: dict[str, str] = {}
     for line in sums_path.read_text(encoding="utf-8").splitlines():
         digest, relative = line.split("  ", 1)
+        if relative in sums:
+            errors.append(f"duplicate checksum entry: {relative}")
         sums[relative] = digest
-    expected_sums = actual_payload | {"PACKAGE_MANIFEST.json"}
-    if set(sums) != expected_sums:
+    if set(sums) != actual_payload | {"PACKAGE_MANIFEST.json"}:
         errors.append("current SHA256SUMS coverage mismatch")
     for relative, digest in sums.items():
-        if not (CURRENT / relative).is_file() or sha256(CURRENT / relative) != digest:
+        path = CURRENT / relative
+        if not path.is_file() or sha256(path) != digest:
             errors.append(f"current SHA256SUMS mismatch: {relative}")
 
-    inventory = json.loads(
-        (CURRENT / "ATOMIC_CLAIM_INVENTORY.json").read_text(encoding="utf-8")
-    )
-    retention = (CURRENT / "RESULT_RETENTION.md").read_text(encoding="utf-8")
-    negatives = inventory.get("retained_negative_null_open_cannot_check") or []
-    if not negatives or any(item not in retention for item in negatives):
-        errors.append("current negative/null result retention mismatch")
-    if manifest.get("identity") != {
-        "source": "papers/AUTHOR_IDENTITY_V1.json",
-        "name": "Sze Chun Yiu",
-        "affiliation": "Stockholm University",
-        "email": "sze-chun.yiu@fysik.su.se",
-    }:
-        errors.append("current canonical identity mismatch")
-    if manifest.get("arxiv", {}).get("pages") != 9 or manifest.get("journal", {}).get(
-        "pages"
-    ) != 9:
-        errors.append("current route page-count binding mismatch")
+    required = ("32-case holdout", "six of 32", "400/400", "250/400", "50/400", "eight unique")
+    for route in ("arxiv", "journal"):
+        record = manifest.get(route) or {}
+        pdf = CURRENT / str(record.get("pdf", ""))
+        source = CURRENT / str(record.get("source", ""))
+        if not pdf.is_file() or sha256(pdf) != record.get("pdf_sha256"):
+            errors.append(f"{route} PDF binding mismatch")
+            continue
+        if not source.is_file() or sha256(source) != record.get("source_sha256"):
+            errors.append(f"{route} source binding mismatch")
+        else:
+            try:
+                with zipfile.ZipFile(source) as archive:
+                    if archive.testzip() is not None or archive.namelist() != sorted(archive.namelist()):
+                        errors.append(f"{route} source archive is corrupt or non-canonical")
+            except zipfile.BadZipFile:
+                errors.append(f"{route} source archive is unreadable")
+        text = pdf_text(pdf, errors)
+        lower = text.lower()
+        for token in required:
+            if token.lower() not in lower:
+                errors.append(f"{route} PDF missing bounded result: {token}")
+        if FORBIDDEN.search(text):
+            errors.append(f"{route} PDF leaks an internal publication token")
+        if record.get("pages") != 7:
+            errors.append(f"{route} manifest page binding mismatch")
+
+    if manifest.get("journal", {}).get("venue") != "F1000Research" or manifest.get(
+        "journal", {}
+    ).get("article_type") != "Brief Report":
+        errors.append("journal route is not the resolved Brief Report")
+    if "DOI" not in (CURRENT / "HUMAN_INPUTS_REQUIRED.md").read_text(encoding="utf-8"):
+        errors.append("human filing blockers do not retain the archive DOI requirement")
 
 
 def main() -> int:
@@ -118,7 +160,7 @@ def main() -> int:
         for error in errors:
             print(f"P3_CURRENT_PACKAGE_ERROR: {error}")
         return 1
-    print("P3_HISTORICAL_RENDER_SUPERSEDED__CURRENT_DUAL_ROUTE_PACKAGE_BOUND")
+    print("P3_BRIEF_REPORT_PACKAGE_BOUND__HUMAN_FILING_INPUTS_PENDING")
     return 0
 
 

@@ -32,7 +32,8 @@ exists. It also does not authorize successor science.
 
 ```bash
 python papers/publication_closure/orion_13_24_final/build_final_packages.py
-python scripts/check_publication_closure.py --rebuild ORION-13 ORION-14 ORION-19 ORION-21 ORION-23 ORION-24
+python scripts/check_p3_current_package.py
+python scripts/check_publication_closure.py --rebuild ORION-14 ORION-19 ORION-21 ORION-23 ORION-24
 ```
 
 The verifier checks registry coverage, active-authority hashes, complete payload

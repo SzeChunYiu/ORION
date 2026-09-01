@@ -664,6 +664,14 @@ def main() -> int:
             "paper": m["paper"],
             "package_manifest": f"papers/{SPECS[m['paper']]['slug']}/submission/final-20260831/PACKAGE_MANIFEST.json",
             "terminal": m["terminal"],
+            **(
+                {
+                    "current_filing_authority": False,
+                    "superseded_by": "papers/orion-13-global-knowledge-portrait/submission/publication-final-20260901/PACKAGE_MANIFEST.json",
+                }
+                if m["paper"] == "ORION-13"
+                else {}
+            ),
         } for m in manifests],
     }, indent=2, sort_keys=True) + "\n")
     write(out.parent / "REVIEWER_AUDIT_AND_RELEASE_DECISION.md", """# ORION-13/14/19/21/23/24 reviewer audit and release decision
@@ -700,7 +708,8 @@ exists. It also does not authorize successor science.
 
 ```bash
 python papers/publication_closure/orion_13_24_final/build_final_packages.py
-python scripts/check_publication_closure.py --rebuild ORION-13 ORION-14 ORION-19 ORION-21 ORION-23 ORION-24
+python scripts/check_p3_current_package.py
+python scripts/check_publication_closure.py --rebuild ORION-14 ORION-19 ORION-21 ORION-23 ORION-24
 ```
 
 The verifier checks registry coverage, active-authority hashes, complete payload

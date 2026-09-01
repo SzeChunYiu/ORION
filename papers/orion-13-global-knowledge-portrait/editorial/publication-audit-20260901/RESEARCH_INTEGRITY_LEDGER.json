@@ -1,0 +1,1462 @@
+{
+  "authoring_agent_id": "orion13-release-ledger-builder-20260901",
+  "citation_usages": [
+    {
+      "citation_id": "CITE_C_LIT_001_S_muse2026",
+      "claim_ids": [
+        "C_LIT_001"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_muse2026"
+    },
+    {
+      "citation_id": "CITE_C_LIT_001_S_scischema2026",
+      "claim_ids": [
+        "C_LIT_001"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_scischema2026"
+    },
+    {
+      "citation_id": "CITE_C_LIT_001_S_scope2026",
+      "claim_ids": [
+        "C_LIT_001"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_scope2026"
+    },
+    {
+      "citation_id": "CITE_C_LIT_001_S_schema_contracts2026",
+      "claim_ids": [
+        "C_LIT_001"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_schema_contracts2026"
+    },
+    {
+      "citation_id": "CITE_C_LIT_001_S_scier2024",
+      "claim_ids": [
+        "C_LIT_001"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_scier2024"
+    },
+    {
+      "citation_id": "CITE_C_LIT_002_S_euzenat2007",
+      "claim_ids": [
+        "C_LIT_002"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_euzenat2007"
+    },
+    {
+      "citation_id": "CITE_C_LIT_003_S_santos2015",
+      "claim_ids": [
+        "C_LIT_003"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_santos2015"
+    },
+    {
+      "citation_id": "CITE_C_LIT_004_S_bernasconi2022",
+      "claim_ids": [
+        "C_LIT_004"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_bernasconi2022"
+    },
+    {
+      "citation_id": "CITE_C_LIT_004_S_iadopt2021",
+      "claim_ids": [
+        "C_LIT_004"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_iadopt2021"
+    },
+    {
+      "citation_id": "CITE_C_LIT_004_S_vogt2025",
+      "claim_ids": [
+        "C_LIT_004"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_vogt2025"
+    },
+    {
+      "citation_id": "CITE_C_LIT_005_S_vitali2026",
+      "claim_ids": [
+        "C_LIT_005"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_vitali2026"
+    },
+    {
+      "citation_id": "CITE_C_LIT_005_S_hardalov2022",
+      "claim_ids": [
+        "C_LIT_005"
+      ],
+      "location": "Introduction, prior-work paragraph",
+      "source_id": "S_hardalov2022"
+    }
+  ],
+  "claims": [
+    {
+      "claim_class": "method",
+      "claim_id": "C_SCOPE_001",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-2-targeted-20260901"
+      },
+      "location": "Abstract; Introduction",
+      "release_status": "COHERENT_DEFINITION",
+      "risk": "normal",
+      "text": "The paper evaluates only a downstream merge decision on already-structured scientific projections and does not evaluate raw-text retrieval or extraction."
+    },
+    {
+      "claim_class": "definition",
+      "claim_id": "C_METHOD_001",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+      },
+      "location": "Methods §2.1, Equation 1 and Table 1",
+      "release_status": "COHERENT_DEFINITION",
+      "risk": "normal",
+      "text": "The evaluated projection exposes nine named coordinates and an ordered, first-applicable-condition rule returning admissible merge, typed non-merge, or undetermined."
+    },
+    {
+      "claim_class": "method",
+      "claim_id": "C_METHOD_002",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+      },
+      "location": "Methods §2.3",
+      "release_status": "COHERENT_DEFINITION",
+      "risk": "normal",
+      "text": "All rates use 32 cases; unresolved predictions count as abstentions rather than false merges or false splits; comparator and ablation behavior is explicitly defined."
+    },
+    {
+      "claim_class": "method",
+      "claim_id": "C_DESIGN_001",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+      },
+      "location": "Methods §2.2",
+      "release_status": "VERIFIED",
+      "risk": "normal",
+      "text": "Development and confirmatory panels each contain 32 cases; the holdout is case-identifier-disjoint but repeats two source-locator/content-hash combinations and remains same-programme authored evidence."
+    },
+    {
+      "claim_class": "method",
+      "claim_id": "C_DESIGN_002",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+      },
+      "location": "Methods §2.2–2.3",
+      "release_status": "VERIFIED",
+      "risk": "normal",
+      "text": "The protocol fixed case digest, source revisions, evaluator identities, seed 20260817, margins and terminal rule before holdout outputs were examined, and development and confirmatory panels are not pooled."
+    },
+    {
+      "claim_class": "quantitative_result",
+      "claim_id": "C_RESULT_001",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "DONE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+      },
+      "location": "Abstract; Results; Table 2",
+      "release_status": "VERIFIED",
+      "risk": "high",
+      "text": "On the 32-case confirmatory holdout, coordinate-governed mapping made 0 false merges and flat canonicalization made 6, for a difference of -0.1875 with fixed-panel diagnostic [-0.34375, -0.0625]."
+    },
+    {
+      "claim_class": "quantitative_result",
+      "claim_id": "C_RESULT_002",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "DONE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+      },
+      "location": "Abstract; Results; Table 2",
+      "release_status": "VERIFIED",
+      "risk": "high",
+      "text": "The false-split difference from the exact-coordinate conservative comparator was zero with fixed-panel diagnostic [0, 0]."
+    },
+    {
+      "claim_class": "quantitative_result",
+      "claim_id": "C_RESULT_003",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "DONE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+      },
+      "location": "Abstract; Results; Discussion",
+      "release_status": "VERIFIED",
+      "risk": "high",
+      "text": "All six flat-rule false merges were polarity contrasts in one 13-case family; the other two families, comprising 19 cases, did not discriminate the rules."
+    },
+    {
+      "claim_class": "quantitative_result",
+      "claim_id": "C_RESULT_004",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "DONE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+      },
+      "location": "Results; Discussion",
+      "release_status": "BOUNDED_INFERENCE",
+      "risk": "high",
+      "text": "Four coordinate ablations produced zero measured change on this holdout, which is interpreted as absent comparison opportunity rather than coordinate dispensability."
+    },
+    {
+      "claim_class": "interpretation",
+      "claim_id": "C_RESULT_005",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-3-targeted-20260901"
+      },
+      "location": "Results",
+      "release_status": "VERIFIED",
+      "risk": "normal",
+      "text": "A standard-library scorer independently reproduced holdout decisions and verdict without importing the original analysis code, but shared repository snapshot and custody and is not external replication."
+    },
+    {
+      "claim_class": "quantitative_result",
+      "claim_id": "C_CONFORMANCE_001",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "DONE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+      },
+      "location": "Abstract; Methods §2.4; Results",
+      "release_status": "VERIFIED",
+      "risk": "high",
+      "text": "The separate conformance battery has 400 generated rows but only eight unique candidate-visible states, each repeated across labels and identifier variants."
+    },
+    {
+      "claim_class": "quantitative_result",
+      "claim_id": "C_CONFORMANCE_002",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "DONE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+      },
+      "location": "Abstract; Results",
+      "release_status": "VERIFIED",
+      "risk": "high",
+      "text": "On the frozen four-way contract, the complete rule scored 400/400, the strong semantic product 250/400, canonical matching 50/400, and the information-equivalent typed implementation 400/400."
+    },
+    {
+      "claim_class": "definition",
+      "claim_id": "C_CONFORMANCE_003",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+      },
+      "location": "Methods §2.4; Discussion",
+      "release_status": "COHERENT_DEFINITION",
+      "risk": "normal",
+      "text": "The four-way contract maps merge to admissible merge, obstruction and plural view to typed non-merge, and unresolved to undetermined; four-way scores precede this many-to-one crosswalk and do not duplicate the holdout evaluation."
+    },
+    {
+      "claim_class": "interpretation",
+      "claim_id": "C_CONFORMANCE_004",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-3-targeted-20260901"
+      },
+      "location": "Methods §2.4; Results; Discussion",
+      "release_status": "BOUNDED_INFERENCE",
+      "risk": "normal",
+      "text": "The strong semantic product has a narrower terminal interface, so 250/400 is an attainability result under that interface and not evidence of general capability superiority."
+    },
+    {
+      "claim_class": "interpretation",
+      "claim_id": "C_BOUNDARY_001",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-3-targeted-20260901"
+      },
+      "location": "Abstract; Methods; Discussion",
+      "release_status": "BOUNDED_INFERENCE",
+      "risk": "normal",
+      "text": "The fixed authored panels do not establish population error rates, deployed-system superiority, naturalistic transport, raw-text extraction, downstream utility, external replication, or independent value of every coordinate."
+    },
+    {
+      "claim_class": "availability_or_compliance",
+      "claim_id": "C_AVAIL_001",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "DONE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-3-targeted-20260901"
+      },
+      "location": "Data and software availability",
+      "release_status": "VERIFIED",
+      "risk": "high",
+      "text": "The exact frozen repository snapshot and artifact paths are stated; code and manuscript licences are disclosed; no repository DOI is asserted in this version."
+    },
+    {
+      "claim_class": "availability_or_compliance",
+      "claim_id": "C_DECL_001",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "DONE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-3-targeted-20260901"
+      },
+      "location": "Ethics, contributions, competing interests, grant information and acknowledgements",
+      "release_status": "VERIFIED",
+      "risk": "high",
+      "text": "The manuscript states no human, personal-data or animal involvement and includes authorship, competing-interest, funding and AI-assistance declarations."
+    },
+    {
+      "claim_class": "literature_fact",
+      "claim_id": "C_LIT_001",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-2-targeted-20260901"
+      },
+      "location": "Introduction, prior-work paragraph",
+      "release_status": "VERIFIED",
+      "risk": "normal",
+      "text": "The cited scientific extraction, schema-induction and schema-contract works provide structured upstream representations that are outside this downstream merge study."
+    },
+    {
+      "claim_class": "literature_fact",
+      "claim_id": "C_LIT_002",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-2-targeted-20260901"
+      },
+      "location": "Introduction, prior-work paragraph",
+      "release_status": "VERIFIED",
+      "risk": "normal",
+      "text": "Ontology matching includes equivalence, subsumption and disjointness correspondence types."
+    },
+    {
+      "claim_class": "literature_fact",
+      "claim_id": "C_LIT_003",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-2-targeted-20260901"
+      },
+      "location": "Introduction, prior-work paragraph",
+      "release_status": "VERIFIED",
+      "risk": "normal",
+      "text": "Ontology-alignment repair shows that individually plausible correspondences can yield incoherence when combined."
+    },
+    {
+      "claim_class": "literature_fact",
+      "claim_id": "C_LIT_004",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-2-targeted-20260901"
+      },
+      "location": "Introduction, prior-work paragraph",
+      "release_status": "VERIFIED",
+      "risk": "normal",
+      "text": "Ontological unpacking, I-ADOPT and FAIR semantic-interoperability work make scientific-variable structure and mapping conditions explicit."
+    },
+    {
+      "claim_class": "literature_fact",
+      "claim_id": "C_LIT_005",
+      "counterevidence_search": {
+        "notes": "Null, adverse, limitation and competing-interpretation surfaces were retained and checked.",
+        "status": "NOT_APPLICABLE"
+      },
+      "independent_check": {
+        "notes": "Checked against the exact final PDF and the frozen bounded evidence surface.",
+        "status": "PASS",
+        "verifier_id": "orion13-isolated-reviewer-2-targeted-20260901"
+      },
+      "location": "Introduction, prior-work paragraph",
+      "release_status": "VERIFIED",
+      "risk": "normal",
+      "text": "Provenance-bearing statements and target-relative stance motivate retaining source and polarity rather than reducing every relation to a scalar match."
+    }
+  ],
+  "coverage_check": {
+    "checked_at": "2026-09-01T18:49:32+02:00",
+    "notes": "Fingerprint copied verbatim from the frozen targeted rereview. All three isolated targeted reviewers independently checked atomic coverage; no gap or new concern remained.",
+    "reviewed_manuscript_fingerprint": "sha256:114b4d2bd22c85dacf88a3741623f62ad45a1fad8d748abb4f1f214645a1c990",
+    "status": "PASS",
+    "verification_method": "independent_model_with_retrieved_source",
+    "verifier_id": "orion13-isolated-reviewer-1-targeted-20260901"
+  },
+  "evidence_receipts": [
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json",
+      "claim_id": "C_SCOPE_001",
+      "evidence_fingerprint": "sha256:494616042d990a113533865092bf01a2ce2a314ba1ec660f798a6afc9a3530a9",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_SCOPE_001",
+      "scope_match": "MATCH",
+      "support_status": "ENTAILS",
+      "verification_method": "authoritative_project_record",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "method_record"
+    },
+    {
+      "artifact_pointer": "src/orion/knowledge/semantics.py",
+      "claim_id": "C_METHOD_001",
+      "evidence_fingerprint": "sha256:51576c0b15914491ab47df4d3f444a79a739f6a90ca66407a897416ab8c9d692",
+      "notes": "The normative evaluator and final manuscript Table 1 define the same bounded decision surface.",
+      "receipt_id": "E_C_METHOD_001",
+      "scope_match": "MATCH",
+      "support_status": "ENTAILS",
+      "verification_method": "authoritative_project_record",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "definition"
+    },
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/protocol/PUBLIC_REFERENCE_CONFIRMATORY_EXECUTION_V1.json",
+      "claim_id": "C_METHOD_002",
+      "evidence_fingerprint": "sha256:494616042d990a113533865092bf01a2ce2a314ba1ec660f798a6afc9a3530a9",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_METHOD_002",
+      "scope_match": "MATCH",
+      "support_status": "ENTAILS",
+      "verification_method": "authoritative_project_record",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "method_record"
+    },
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/evidence/coordinate-obstruction-v2/CONFIRMATORY_REPRODUCTION_RECEIPT.json",
+      "claim_id": "C_DESIGN_001",
+      "evidence_fingerprint": "sha256:16c198eae10e2f5e0e8f41d7e780ef7d4da3e53caa65ff271ef199dea5b82ee8",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_DESIGN_001",
+      "scope_match": "MATCH",
+      "support_status": "ENTAILS",
+      "verification_method": "authoritative_project_record",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "method_record"
+    },
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/EXECUTION_MANIFEST.json",
+      "claim_id": "C_DESIGN_002",
+      "evidence_fingerprint": "sha256:494616042d990a113533865092bf01a2ce2a314ba1ec660f798a6afc9a3530a9",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_DESIGN_002",
+      "scope_match": "MATCH",
+      "support_status": "ENTAILS",
+      "verification_method": "authoritative_project_record",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "method_record"
+    },
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+      "claim_id": "C_RESULT_001",
+      "evidence_fingerprint": "sha256:c15676f2c897e963441e042df7911e97fc86955f2dd73b9fd823cdb2948fa92d",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_RESULT_001",
+      "scope_match": "MATCH",
+      "support_status": "ENTAILS",
+      "verification_method": "deterministic_recompute",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "analysis"
+    },
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+      "claim_id": "C_RESULT_002",
+      "evidence_fingerprint": "sha256:c15676f2c897e963441e042df7911e97fc86955f2dd73b9fd823cdb2948fa92d",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_RESULT_002",
+      "scope_match": "MATCH",
+      "support_status": "ENTAILS",
+      "verification_method": "deterministic_recompute",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "analysis"
+    },
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+      "claim_id": "C_RESULT_003",
+      "evidence_fingerprint": "sha256:c15676f2c897e963441e042df7911e97fc86955f2dd73b9fd823cdb2948fa92d",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_RESULT_003",
+      "scope_match": "MATCH",
+      "support_status": "ENTAILS",
+      "verification_method": "deterministic_recompute",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "analysis"
+    },
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/evidence/public-reference-v1.1-confirmatory/CONFIRMATORY_ANALYSIS.json",
+      "claim_id": "C_RESULT_004",
+      "evidence_fingerprint": "sha256:c15676f2c897e963441e042df7911e97fc86955f2dd73b9fd823cdb2948fa92d",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_RESULT_004",
+      "scope_match": "MATCH",
+      "support_status": "BOUNDS",
+      "verification_method": "deterministic_recompute",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "analysis"
+    },
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/editorial/INDEPENDENT_CONFIRMATORY_REPLAY.json",
+      "claim_id": "C_RESULT_005",
+      "evidence_fingerprint": "sha256:6b16e94b5a7aa2a1562460f173eab0025e1e33b93a9632b8c596a693d8f38d5f",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_RESULT_005",
+      "scope_match": "MATCH",
+      "support_status": "BOUNDS",
+      "verification_method": "deterministic_recompute",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "analysis"
+    },
+    {
+      "artifact_pointer": "research/claim_expansion/p3/P3_X_PROTOCOL_V1.md",
+      "claim_id": "C_CONFORMANCE_001",
+      "evidence_fingerprint": "sha256:aff188993288dd12097930c3578cfe6908b512ecc36853354756195c6d062619",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_CONFORMANCE_001",
+      "scope_match": "MATCH",
+      "support_status": "ENTAILS",
+      "verification_method": "authoritative_project_record",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "method_record"
+    },
+    {
+      "artifact_pointer": "research/claim_expansion/p3/P3_X_PROTECTED_RESULT_V1.json",
+      "claim_id": "C_CONFORMANCE_002",
+      "evidence_fingerprint": "sha256:333fc366a289fa871bb271caff57765e6e03cd64fe769a44ac5fc9d92b6d99da",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_CONFORMANCE_002",
+      "scope_match": "MATCH",
+      "support_status": "ENTAILS",
+      "verification_method": "deterministic_recompute",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "analysis"
+    },
+    {
+      "artifact_pointer": "research/claim_expansion/p3/P3_X_PROTOCOL_V1.md",
+      "claim_id": "C_CONFORMANCE_003",
+      "evidence_fingerprint": "sha256:aff188993288dd12097930c3578cfe6908b512ecc36853354756195c6d062619",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_CONFORMANCE_003",
+      "scope_match": "MATCH",
+      "support_status": "ENTAILS",
+      "verification_method": "authoritative_project_record",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "method_record"
+    },
+    {
+      "artifact_pointer": "research/claim_expansion/p3/P3_X_INDEPENDENT_VERIFICATION_V1.json",
+      "claim_id": "C_CONFORMANCE_004",
+      "evidence_fingerprint": "sha256:2aa59b6f32e84c19050686fa6f60625524373a27518b1b75fe4584ebff94a723",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_CONFORMANCE_004",
+      "scope_match": "MATCH",
+      "support_status": "BOUNDS",
+      "verification_method": "deterministic_recompute",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "analysis"
+    },
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/editorial/publication-audit-20260901/PAPER_EXISTENCE_SCIENTIFIC_MASS.json",
+      "claim_id": "C_BOUNDARY_001",
+      "evidence_fingerprint": "sha256:065244581035891ab4e6e8f6d022ffd6da9c8a0eb6861a62454c9a5100b0d1dd",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_BOUNDARY_001",
+      "scope_match": "MATCH",
+      "support_status": "BOUNDS",
+      "verification_method": "human_review",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "method_record"
+    },
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/submission/publication-final-20260901/PACKAGE_MANIFEST.json",
+      "claim_id": "C_AVAIL_001",
+      "evidence_fingerprint": "sha256:35d0d0ee3a35a248c1de6ca94141549c23a2fb007efbb7da98b6ed4dc6111523",
+      "notes": "The package manifest and manuscript availability statement consistently bind the exact repository snapshot while retaining the absent-DOI disclosure.",
+      "receipt_id": "E_C_AVAIL_001",
+      "scope_match": "MATCH",
+      "support_status": "BOUNDS",
+      "verification_method": "authoritative_project_record",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "method_record"
+    },
+    {
+      "artifact_pointer": "papers/orion-13-global-knowledge-portrait/submission/publication-final-20260901/journal/DECLARATIONS.md",
+      "claim_id": "C_DECL_001",
+      "evidence_fingerprint": "sha256:273322a435298fd800ce51ff26f46f3a0018f5d55cf83931073cbed1a9f30dba",
+      "notes": "Exact frozen repository artifact supports the claim at the stated scope.",
+      "receipt_id": "E_C_DECL_001",
+      "scope_match": "MATCH",
+      "support_status": "BOUNDS",
+      "verification_method": "human_review",
+      "verifier_id": "orion13-evidence-binding-verifier-20260901",
+      "warrant_type": "method_record"
+    },
+    {
+      "claim_id": "C_LIT_001",
+      "evidence_fingerprint": "sha256:2106b9faf0acffb94e01f48c310debb57e61ed72326a2fc6ea06c341ff1c4725",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row muse2026; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_001_S_muse2026",
+      "scope_match": "MATCH",
+      "source_id": "S_muse2026",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    },
+    {
+      "claim_id": "C_LIT_001",
+      "evidence_fingerprint": "sha256:3818c1be2bd54112bad9d725f28f15abe9af1c3955a78c7baf15bf751c90b742",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row scischema2026; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_001_S_scischema2026",
+      "scope_match": "MATCH",
+      "source_id": "S_scischema2026",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    },
+    {
+      "claim_id": "C_LIT_001",
+      "evidence_fingerprint": "sha256:ea5fc2c0158797834394390f0f392ad88d85646545f784b18b011beb6a1036ac",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row scopes2026; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_001_S_scope2026",
+      "scope_match": "MATCH",
+      "source_id": "S_scope2026",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    },
+    {
+      "claim_id": "C_LIT_001",
+      "evidence_fingerprint": "sha256:ccc3ef76864723d03ba2a7d4a0ac13fb13e461a3cd0d1265b08ff39f3634a987",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row schemaContracts2026; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_001_S_schema_contracts2026",
+      "scope_match": "MATCH",
+      "source_id": "S_schema_contracts2026",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    },
+    {
+      "claim_id": "C_LIT_001",
+      "evidence_fingerprint": "sha256:617be880ea16edb753f8c73a92f4a504336c8157a5141ad88e4cde54e64400fe",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row scier2024; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_001_S_scier2024",
+      "scope_match": "MATCH",
+      "source_id": "S_scier2024",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    },
+    {
+      "claim_id": "C_LIT_002",
+      "evidence_fingerprint": "sha256:1f4dd789716bce483a4c7d18ac8ebb9f89d7b796bc8a2cac8a6b39abeb972bb0",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row euzenat2007ontology; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_002_S_euzenat2007",
+      "scope_match": "MATCH",
+      "source_id": "S_euzenat2007",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    },
+    {
+      "claim_id": "C_LIT_003",
+      "evidence_fingerprint": "sha256:fdf0e49f8c10a8c1aabd3a9c0c3a10f6e231bf65c6d0d27dc1ea7afba7c2b0d3",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row santos2015alignment; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_003_S_santos2015",
+      "scope_match": "MATCH",
+      "source_id": "S_santos2015",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    },
+    {
+      "claim_id": "C_LIT_004",
+      "evidence_fingerprint": "sha256:2ab6b4984a6dca8d09061b0cc603b5b287bb92d16b9b4d066767e9e6f89f3273",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row bernasconi2022interoperability; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_004_S_bernasconi2022",
+      "scope_match": "MATCH",
+      "source_id": "S_bernasconi2022",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    },
+    {
+      "claim_id": "C_LIT_004",
+      "evidence_fingerprint": "sha256:f2f56cab810c620ec6d48126cf81eeeb44b64b7234e90ea79d16ccecbfb0cce1",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row iadopt2021; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_004_S_iadopt2021",
+      "scope_match": "MATCH",
+      "source_id": "S_iadopt2021",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    },
+    {
+      "claim_id": "C_LIT_004",
+      "evidence_fingerprint": "sha256:d79f66ace2ad94070d95dea46fcb024541e3dfe31a782c191e45b9d16cd423af",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row fair2_2024; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_004_S_vogt2025",
+      "scope_match": "MATCH",
+      "source_id": "S_vogt2025",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    },
+    {
+      "claim_id": "C_LIT_005",
+      "evidence_fingerprint": "sha256:47d9d3194d69c140c05dfadb914b0d0d2612acac9862fefd743c6cc6f541ed96",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row dec2026; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_005_S_vitali2026",
+      "scope_match": "MATCH",
+      "source_id": "S_vitali2026",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    },
+    {
+      "claim_id": "C_LIT_005",
+      "evidence_fingerprint": "sha256:34e947daffbcc356e0d4bc455e7e494d2cdc2bcdb8e3977104d3c664cb602a82",
+      "locator": "LITERATURE_ENTAILMENT_AUDIT_2026-08-28.md row hardalov2022stance; official record in SOURCE_VERIFICATION_RECEIPTS.json",
+      "notes": "The source abstract or official landing page entails only the bounded use stated in the manuscript.",
+      "receipt_id": "E_C_LIT_005_S_hardalov2022",
+      "scope_match": "MATCH",
+      "source_id": "S_hardalov2022",
+      "support_status": "ENTAILS",
+      "verification_method": "fulltext_span_check",
+      "verifier_id": "orion13-literature-entailment-verifier-20260828",
+      "warrant_type": "literature"
+    }
+  ],
+  "manuscript_fingerprint": "sha256:114b4d2bd22c85dacf88a3741623f62ad45a1fad8d748abb4f1f214645a1c990",
+  "manuscript_id": "ORION-13-F1000-BRIEF-REPORT-20260901-FINAL",
+  "release": {
+    "notes": "This state requests byte and integrity validation for the technical submission package. Human DOI, identity, ORCID, licence, AI-policy, fee, portal, table, formula and final-wording confirmations remain outside this machine contract and are not asserted complete.",
+    "requested_state": "submission_ready"
+  },
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "bibliographic": {
+        "authors": [
+          "Anna Bernasconi",
+          "Giancarlo Guizzardi",
+          "Oscar Pastor",
+          "Veda C. Storey"
+        ],
+        "title": "Semantic interoperability: ontological unpacking of a viral conceptual model",
+        "venue": "BMC Bioinformatics",
+        "year": 2022
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "doi",
+          "value": "10.1186/s12859-022-05022-0"
+        },
+        {
+          "scheme": "url",
+          "value": "https://doi.org/10.1186/s12859-022-05022-0"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "crossref",
+          "status": "MATCH",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_bernasconi2022",
+      "source_type": "journal_article",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "crossref",
+          "status": "ACTIVE",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    },
+    {
+      "bibliographic": {
+        "authors": [
+          "Tsofia Cohen",
+          "Tom Hope"
+        ],
+        "title": "MUSE: A Full-Text Cross-Domain Knowledge Base of Scientific Problems, Solutions, and Rationales",
+        "venue": "arXiv",
+        "year": 2026
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "arxiv",
+          "value": "2608.10974"
+        },
+        {
+          "scheme": "url",
+          "value": "https://arxiv.org/abs/2608.10974"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "arXiv",
+          "status": "MATCH",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_muse2026",
+      "source_type": "preprint",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "arXiv",
+          "status": "ACTIVE",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    },
+    {
+      "bibliographic": {
+        "authors": [
+          "Jennifer D'Souza"
+        ],
+        "title": "SciSchema.org: A Multidisciplinary Collection of Schemas for Structured Scientific Process Descriptions",
+        "venue": "arXiv",
+        "year": 2026
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "arxiv",
+          "value": "2607.27955"
+        },
+        {
+          "scheme": "url",
+          "value": "https://arxiv.org/abs/2607.27955"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "arXiv",
+          "status": "MATCH",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_scischema2026",
+      "source_type": "preprint",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "arXiv",
+          "status": "ACTIVE",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    },
+    {
+      "bibliographic": {
+        "authors": [
+          "Jérôme Euzenat",
+          "Pavel Shvaiko"
+        ],
+        "title": "Ontology Matching",
+        "venue": "Springer",
+        "year": 2007
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "doi",
+          "value": "10.1007/978-3-540-49612-0"
+        },
+        {
+          "scheme": "url",
+          "value": "https://doi.org/10.1007/978-3-540-49612-0"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "crossref",
+          "status": "MATCH",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_euzenat2007",
+      "source_type": "book",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "crossref",
+          "status": "ACTIVE",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    },
+    {
+      "bibliographic": {
+        "authors": [
+          "Momchil Hardalov",
+          "Arnav Arora",
+          "Preslav Nakov",
+          "Isabelle Augenstein"
+        ],
+        "title": "A Survey on Stance Detection for Mis- and Disinformation Identification",
+        "venue": "Findings of ACL: NAACL 2022",
+        "year": 2022
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "doi",
+          "value": "10.18653/v1/2022.findings-naacl.94"
+        },
+        {
+          "scheme": "url",
+          "value": "https://doi.org/10.18653/v1/2022.findings-naacl.94"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "crossref",
+          "status": "MATCH",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_hardalov2022",
+      "source_type": "conference_paper",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "crossref",
+          "status": "ACTIVE",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    },
+    {
+      "bibliographic": {
+        "authors": [
+          "Miaobo Hu",
+          "Xiaobo Guo",
+          "Shuhao Hu",
+          "Bokun Wang",
+          "Rui Chen",
+          "Xin Wang",
+          "Daren Zha",
+          "Jun Xiao"
+        ],
+        "title": "SCOPE and SCION: A Benchmark and an Auditable Reference Pipeline for Schema Induction and Fusion from Text",
+        "venue": "arXiv",
+        "year": 2026
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "arxiv",
+          "value": "2607.21610"
+        },
+        {
+          "scheme": "url",
+          "value": "https://arxiv.org/abs/2607.21610"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "arXiv",
+          "status": "MATCH",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_scope2026",
+      "source_type": "preprint",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "arXiv",
+          "status": "ACTIVE",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    },
+    {
+      "bibliographic": {
+        "authors": [
+          "Padmaja Jonnalagedda",
+          "Yuguang Yao",
+          "Xiang Gao",
+          "Hilaf Hasson",
+          "Kamalika Das"
+        ],
+        "title": "Executable Schema Contracts: From Automatic Ingestion to Multi-Source Retrieval",
+        "venue": "arXiv",
+        "year": 2026
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "arxiv",
+          "value": "2606.05415"
+        },
+        {
+          "scheme": "url",
+          "value": "https://arxiv.org/abs/2606.05415"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "arXiv",
+          "status": "MATCH",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_schema_contracts2026",
+      "source_type": "preprint",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "arXiv",
+          "status": "ACTIVE",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    },
+    {
+      "bibliographic": {
+        "authors": [
+          "Barbara Magagna",
+          "Ilaria Rosati",
+          "Maria Stoica",
+          "Sirko Schindler",
+          "Gwenaelle Moncoiffe",
+          "Anusuriya Devaraju",
+          "Johannes Peterseil",
+          "Robert Huber"
+        ],
+        "title": "The I-ADOPT Interoperability Framework for FAIRer Data Descriptions of Biodiversity",
+        "venue": "arXiv",
+        "year": 2021
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "arxiv",
+          "value": "2107.06547"
+        },
+        {
+          "scheme": "url",
+          "value": "https://arxiv.org/abs/2107.06547"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "arXiv",
+          "status": "MATCH",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_iadopt2021",
+      "source_type": "preprint",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "arXiv",
+          "status": "ACTIVE",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    },
+    {
+      "bibliographic": {
+        "authors": [
+          "Emanuel Santos",
+          "Daniel Faria",
+          "Catia Pesquita",
+          "Francisco M. Couto"
+        ],
+        "title": "Ontology Alignment Repair through Modularization and Confidence-Based Heuristics",
+        "venue": "PLOS ONE",
+        "year": 2015
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "doi",
+          "value": "10.1371/journal.pone.0144807"
+        },
+        {
+          "scheme": "url",
+          "value": "https://doi.org/10.1371/journal.pone.0144807"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "crossref",
+          "status": "MATCH",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_santos2015",
+      "source_type": "journal_article",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "crossref",
+          "status": "ACTIVE",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    },
+    {
+      "bibliographic": {
+        "authors": [
+          "Fabio Vitali",
+          "Valentina Pasqual"
+        ],
+        "title": "Provenance-Enhanced Statements in Knowledge Graphs",
+        "venue": "arXiv",
+        "year": 2026
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "arxiv",
+          "value": "2606.15246"
+        },
+        {
+          "scheme": "url",
+          "value": "https://arxiv.org/abs/2606.15246"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "arXiv",
+          "status": "MATCH",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_vitali2026",
+      "source_type": "preprint",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "arXiv",
+          "status": "ACTIVE",
+          "verification_method": "publisher_or_primary_record",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    },
+    {
+      "bibliographic": {
+        "authors": [
+          "Lars Vogt",
+          "Philip Strömert",
+          "Nicolas Matentzoglu",
+          "Naouel Karam",
+          "Marcel Konrad",
+          "Manuel Prinz",
+          "Roman Baum"
+        ],
+        "title": "Suggestions for extending the FAIR Principles based on a linguistic perspective on semantic interoperability",
+        "venue": "Scientific Data",
+        "year": 2025
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "doi",
+          "value": "10.1038/s41597-025-05011-x"
+        },
+        {
+          "scheme": "url",
+          "value": "https://doi.org/10.1038/s41597-025-05011-x"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "crossref",
+          "status": "MATCH",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_vogt2025",
+      "source_type": "journal_article",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "crossref",
+          "status": "ACTIVE",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    },
+    {
+      "bibliographic": {
+        "authors": [
+          "Qi Zhang",
+          "Zhijia Chen",
+          "Huitong Pan",
+          "Cornelia Caragea",
+          "Longin Jan Latecki",
+          "Eduard Dragut"
+        ],
+        "title": "SciER: An Entity and Relation Extraction Dataset for Datasets, Methods, and Tasks in Scientific Documents",
+        "venue": "EMNLP 2024",
+        "year": 2024
+      },
+      "declared_publication_status": "ACTIVE",
+      "identifiers": [
+        {
+          "scheme": "doi",
+          "value": "10.18653/v1/2024.emnlp-main.726"
+        },
+        {
+          "scheme": "url",
+          "value": "https://doi.org/10.18653/v1/2024.emnlp-main.726"
+        }
+      ],
+      "identity_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "Identifier, title, first author and year checked against the official record.",
+          "provider": "crossref",
+          "status": "MATCH",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-record-verifier-20260901"
+        }
+      ],
+      "source_id": "S_scier2024",
+      "source_type": "conference_paper",
+      "status_adjudication": {
+        "notes": "Current checked record is active and identity matched.",
+        "status": "PASS"
+      },
+      "status_checks": [
+        {
+          "checked_at": "2026-09-01T18:50:00+02:00",
+          "notes": "No retraction, withdrawal, correction or expression-of-concern flag was present in the checked record.",
+          "provider": "crossref",
+          "status": "ACTIVE",
+          "verification_method": "registry_lookup",
+          "verifier_id": "orion13-source-status-verifier-20260901"
+        }
+      ]
+    }
+  ],
+  "verification_scope": "full_manuscript"
+}
