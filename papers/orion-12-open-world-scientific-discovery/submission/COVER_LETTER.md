@@ -31,9 +31,11 @@ instead of averaging them away.
 I would rather state the boundaries here than have them discovered in review.
 
 The controlled index covering 390 tasks (1,210 documents, 78 topics, 14
-systems, 3 repeats) is **descriptive only**. Its analysis tier is
-TIER_B_committed at an achieved half-width of 0.0496, and it is recorded as
-underpowered. It is not offered as evidence of superiority.
+systems, 3 repeats) is **descriptive only**. It meets the registered precision
+target (required n=385; achieved half-width 0.0496),
+but that half-width exceeds the frozen superiority margin of 0.03. The campaign
+is therefore underpowered for a superiority decision and is not offered as
+evidence of superiority.
 
 The external TREC-COVID comparison is adverse on recall and cost and is reported
 as post-hoc and descriptive because no separate pre-outcome record binds the
