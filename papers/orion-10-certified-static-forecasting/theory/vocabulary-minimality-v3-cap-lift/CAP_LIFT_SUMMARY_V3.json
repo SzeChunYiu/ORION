@@ -1,0 +1,194 @@
+{
+  "falsifier": {
+    "declared": "any admitted instance with f_Bprime - C_Dxx > 3",
+    "instances_exceeding": 9,
+    "max_offset_observed": 5,
+    "status": "CANDIDATE_REFUTATION_PENDING_CLEAN_RUN",
+    "violations": [
+      {
+        "C_DP": 4,
+        "C_Dplus": 4,
+        "C_Dxx": 4,
+        "f_Bprime": 8,
+        "gap4": 0,
+        "local_index": 374,
+        "panel": "H2_n3",
+        "regime": "split"
+      },
+      {
+        "C_DP": 2,
+        "C_Dplus": 2,
+        "C_Dxx": 2,
+        "f_Bprime": 7,
+        "gap4": 0,
+        "local_index": 623,
+        "panel": "H2_n3",
+        "regime": "split"
+      },
+      {
+        "C_DP": 3,
+        "C_Dplus": 3,
+        "C_Dxx": 3,
+        "f_Bprime": 7,
+        "gap4": 0,
+        "local_index": 2076,
+        "panel": "H2_n3",
+        "regime": "split"
+      },
+      {
+        "C_DP": 3,
+        "C_Dplus": 3,
+        "C_Dxx": 3,
+        "f_Bprime": 7,
+        "gap4": 0,
+        "local_index": 2176,
+        "panel": "H2_n3",
+        "regime": "split"
+      },
+      {
+        "C_DP": 4,
+        "C_Dplus": 4,
+        "C_Dxx": 4,
+        "f_Bprime": 8,
+        "gap4": 0,
+        "local_index": 2436,
+        "panel": "H2_n3",
+        "regime": "split"
+      },
+      {
+        "C_DP": 3,
+        "C_Dplus": 3,
+        "C_Dxx": 3,
+        "f_Bprime": 7,
+        "gap4": 0,
+        "local_index": 763,
+        "panel": "H4_n3",
+        "regime": "split"
+      },
+      {
+        "C_DP": 3,
+        "C_Dplus": 3,
+        "C_Dxx": 3,
+        "f_Bprime": 7,
+        "gap4": 0,
+        "local_index": 917,
+        "panel": "H4_n3",
+        "regime": "split"
+      },
+      {
+        "C_DP": 4,
+        "C_Dplus": 4,
+        "C_Dxx": 4,
+        "f_Bprime": 8,
+        "gap4": 0,
+        "local_index": 1091,
+        "panel": "H4_n3",
+        "regime": "split"
+      },
+      {
+        "C_DP": 3,
+        "C_Dplus": 3,
+        "C_Dxx": 3,
+        "f_Bprime": 7,
+        "gap4": 0,
+        "local_index": 1262,
+        "panel": "H4_n3",
+        "regime": "split"
+      }
+    ]
+  },
+  "fourth_regime_candidates_total": 567,
+  "hard_assertion_failures": [],
+  "instances_evaluated": 13401,
+  "job": {
+    "cluster": "LUNARC",
+    "elapsed": "02:02:54",
+    "exit_code": "0:0",
+    "job_id": 3561253,
+    "node": "cn128",
+    "outcome_free_commit": "9ad587938",
+    "state": "COMPLETED",
+    "threads": 48
+  },
+  "note": "H5_n3 reports cap_hit false at 1001 of a possible 2400 - the only panel to exhaust its space.",
+  "offset_distribution": {
+    "0": 8400,
+    "1": 4485,
+    "2": 302,
+    "3": 205,
+    "4": 8,
+    "5": 1
+  },
+  "panels_cap_hit": {
+    "H1_n3": true,
+    "H1_n4": true,
+    "H2_n3": true,
+    "H2_n4": true,
+    "H3_n3": true,
+    "H3_n4": true,
+    "H4_n3": true,
+    "H4_n4": true,
+    "H5_n3": false,
+    "H5_n4": true
+  },
+  "prefix_control": {
+    "passed": false,
+    "per_panel": {
+      "H1_n3": {
+        "matches": true,
+        "v2": 120,
+        "v3": 2400
+      },
+      "H1_n4": {
+        "matches": true,
+        "v2": 40,
+        "v3": 800
+      },
+      "H2_n3": {
+        "matches": false,
+        "v2": 160,
+        "v3": 3200
+      },
+      "H2_n4": {
+        "matches": false,
+        "v2": 40,
+        "v3": 800
+      },
+      "H3_n3": {
+        "matches": false,
+        "v2": 90,
+        "v3": 1800
+      },
+      "H3_n4": {
+        "matches": true,
+        "v2": 24,
+        "v3": 480
+      },
+      "H4_n3": {
+        "matches": false,
+        "v2": 90,
+        "v3": 1800
+      },
+      "H4_n4": {
+        "matches": true,
+        "v2": 32,
+        "v3": 640
+      },
+      "H5_n3": {
+        "matches": false,
+        "v2": 120,
+        "v3": 1001
+      },
+      "H5_n4": {
+        "matches": true,
+        "v2": 24,
+        "v3": 480
+      }
+    },
+    "root_cause": "run_full_census_v2.py:1060 creates ONE dedupe set shared across all panels; raising an earlier panel's cap inserts extra canonical_key entries and changes which instances later panels skip, so enumeration depends on prior panels' caps."
+  },
+  "schema": "ORION10.BPRIME_FIBRE_CRITERION_CAP_LIFT.v3.summary",
+  "scientific_authority_delta": "NONE",
+  "terminal": "CANNOT_CHECK_PREFIX_CONTROL_FAILED",
+  "v2_instances": 740
+}
