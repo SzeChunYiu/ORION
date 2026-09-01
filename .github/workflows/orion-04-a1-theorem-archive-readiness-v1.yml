@@ -1,0 +1,54 @@
+name: ORION-04 A1 theorem archive readiness v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-04-a1-theorem-archive-readiness-v1.yml"
+      - "papers/orion-04-rooted-completion-certificates/evidence/a1-theorem-packet-archive-v1/**"
+permissions:
+  contents: read
+jobs:
+  archive-readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile archive builder
+        run: python -m py_compile papers/orion-04-rooted-completion-certificates/evidence/a1-theorem-packet-archive-v1/build_theorem_packet_archive_v1.py
+      - name: Verify current packet is hash-bound but correctly incomplete
+        run: |
+          python papers/orion-04-rooted-completion-certificates/evidence/a1-theorem-packet-archive-v1/build_theorem_packet_archive_v1.py \
+            --self-test | tee /tmp/archive-self-test.json
+      - name: Emit current readiness manifest
+        run: |
+          python papers/orion-04-rooted-completion-certificates/evidence/a1-theorem-packet-archive-v1/build_theorem_packet_archive_v1.py \
+            --output /tmp/A1_THEOREM_PACKET_ARCHIVE_READINESS_V1.json >/tmp/archive.stdout
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/A1_THEOREM_PACKET_ARCHIVE_READINESS_V1.json'))
+          assert d['archive_ready'] is False
+          assert d['terminal']=='CANNOT_CHECK_THEOREM_PACKET_ARCHIVE_INCOMPLETE'
+          expected={
+            'MISSING_SIGNED_INDEPENDENT_MATHEMATICAL_REVIEW',
+            'MISSING_INDEPENDENT_BRANCH_CERTIFICATE_MANIFEST',
+            'MISSING_INDEPENDENT_BRANCH_OUTPUT_MANIFEST',
+            'MISSING_FINAL_AUTHORIZATION_AND_CUSTODY_RECEIPT',
+          }
+          assert expected <= set(d['blockers'])
+          assert not any(x.startswith('MISSING_LOCAL_REQUIRED_ARTIFACT') for x in d['blockers'])
+          assert d['target_d4_execution_performed_by_builder'] is False
+          print('A1_ARCHIVE_READINESS_FAILS_CLOSED', d['artifact_count'], d['artifact_manifest_sha256'])
+          PY
+      - name: Upload current readiness manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: a1-theorem-packet-archive-readiness-v1
+          path: /tmp/A1_THEOREM_PACKET_ARCHIVE_READINESS_V1.json
+          retention-days: 30
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
