@@ -1,17 +1,10 @@
 # Canonical manuscript decision — ORION-09
 
-**Decision.** The canonical manuscript is the LaTeX tree
-`papers/orion-09-compilation-regime-geometry/manuscript/`.
+**Decision.** ORION-09 has disposition `MERGE_WITH_SIBLING` and no independent filing source. The only current manuscript is
+`papers/orion-10-certified-static-forecasting/manuscript/`.
 
-**Superseded for submission purposes.** `MANUSCRIPT_V2.md` and
-`MANUSCRIPT_V3.md` remain on disk as research-side drafts.
+**Superseded for submission purposes.** Every ORION-09 manuscript, PDF, archive and manifest in this tree remains historical provenance only.
 
-**Why the LaTeX tree.** It is the only compilable form and carries the required
-section architecture. It is also the version whose StabPrep refutation figures
-were re-derived from the predicate-language result artifact in this pass.
+**Coverage authority.** `papers/orion-10-certified-static-forecasting/ORION09_TO_ORION10_MERGE_COVERAGE_V1.md` maps every surviving ORION-09 object into the unified manuscript or an explicit retained negative.
 
-**Binding status.** This paper binds nothing: its content-binding state is
-`UNBOUND / CANNOT_CHECK`, both before and after this pass. That is a real gap in
-coverage, not a clean result. It means the repository would not notice if this
-manuscript's bytes changed. It is recorded here rather than silently treated as
-a pass, and closing it is listed as a remaining input.
+**Filing rule.** Do not submit the historical ORION-09 bytes. Use only the checksum-bound unified ORION-10 Tier-B package.

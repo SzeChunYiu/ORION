@@ -1,36 +1,32 @@
 # ORION-10 journal-readiness record
 
-**Current terminal:** `INTERNAL_REVIEW_PASS__LAYERED_CERTIFICATE_CLAIM / SUBMISSION_GATES_OPEN`.
+**Current terminal:** `TIER_B_ORION10_COMPLETE__ORION09_MERGED__BOUNDED_EXACT_MODELS`  
+**Route:** attributed arXiv (`quant-ph`, optional `cs.DS` cross-list) followed by Quantum  
+**Repository status:** filing package complete; portal actions only
 
-## Review cycle 1 — blockers found
+## Closed scientific gates
 
-- **ORION-10-R1, blocking:** V1 ended with the QG-5 counterexample even though QG-5b subsequently constructed a theorem-backed exact F2 forecaster and closed that observed cost gap.
-- **ORION-10-R2, blocking:** a repair based on enlarged borrow `B'` could be read as globally complete, but QG-7 later finds 64 exact hybrid configurations outside `B'`.
-- **ORION-10-R3, major:** V1 coupled three different certificate questions: is the cost exact, is the regime label/explanation exact, and did a finite benchmark match the referee?
-- **ORION-10-R4, major:** the old prose risked making empirical zero error the source of exactness even though R6S is the stronger all-`n` warrant for F2.
-- **ORION-10-R5, moderate:** timing/forecast convenience could distract from the scientific point and is implementation-dependent across the closed-form and support-two evaluators.
+- The prospective three-family forecast failure remains a headline 11-versus-10 refutation.
+- The shared-tag support-two forecaster is exact for every admitted size under the frozen unit objective.
+- The QG-7e envelope closes 378 of 378 geometries and 6,341,787,648 states with zero residue through the per-block target-permutation route.
+- `CHAIN_ALL_N=false`, `GLOBAL_BDOUBLEPRIME_COMPLETENESS=false`, the refuted two-coordinate chain representation and the sufficient-only objective cone remain visible.
+- The enlarged borrow explanation remains refuted on 64 hostile gaps and six of seven cost-mixed fibres.
+- Weighted-Clifford transfer remains adverse: 32 errors on 120 next-size states and shuffle `p=0.51`.
+- ORION-09 is merged with complete positive, null, adverse and open-result coverage and has no independent filing route.
 
-## Repairs
+## Closed publication gates
 
-- Recentered the paper on per-component proof status and the refutation--repair chain.
-- Made R6S the source of F2 exactness; the 9,547 zero-error comparison is explicitly a consistency/implementation validation.
-- Kept `B'` as an explanatory compression that is finite-panel exact but later refuted all-`n` by QG-7.
-- Added the QG-7b/QG-7c state of the explanation layer without claiming its one-link-open theorem is closed.
-- Separated Methods, Results, Discussion, Related Work, Limitations, Conclusion, Reproducibility, and Ethics/Resources.
+- Current Quantum and arXiv sources compile to attributed 9-page and 11-page PDFs.
+- The attributed 10-page Supplementary Information is supplied to both routes.
+- The v1.21 paper-existence ledger and acceptance-optimization plan validate.
+- The unified receipt verifier passes 37/37 checks.
+- Final package verification clean-builds both source archives with exact text and page binding, zero overfull boxes, safe archives, complete identity and full adverse-result retention.
+- Every packaged PDF has been rendered page by page and inspected without clipping, overlap, blank pages, broken tables or missing glyphs.
 
-## Review cycle 2
+## Human-controlled filing actions
 
-**Cost-certificate validity:** PASS for the frozen unit-objective R6M grammar.  
-**Explanation/regime calibration:** PASS after explicitly retaining QG-7 refutation.  
-**Prospective/benchmark reporting:** PASS.  
-**Claim hierarchy:** PASS; theorem > finite benchmark > unresolved explanation theorem is explicit.  
-**Target-journal compliance:** UNRESOLVED.
+1. Upload the supplied arXiv source, preview arXiv's compilation and record the real identifier.
+2. Confirm the final arXiv licence and any optional cross-list.
+3. Submit that real `quant-ph` arXiv identifier to Quantum and complete current portal declarations, editor/referee suggestions and conflict checks.
 
-## Remaining submission gates
-
-- fresh literature closure for certified/static resource forecasting and proof-carrying compilation cost prediction;
-- independent replay of QG-3, QG-5, QG-5b, QG-7, QG-7b, and QG-7c on the final submission commit;
-- select the final timing/runtime presentation only after measuring the canonical F2 implementation on the submission environment;
-- final figures/tables, PDF render inspection, and permanent archive as required.
-
-No gate licenses transferring F2 to QG-2's reweighted objective.
+These actions cannot be synthesized in the repository and do not change scientific authority.

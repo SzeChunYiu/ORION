@@ -1,16 +1,15 @@
-# Canonical manuscript decision — ORION-10
+# Canonical manuscript decision - ORION-10
 
-**Decision.** The canonical manuscript is the LaTeX tree
-`papers/orion-10-certified-static-forecasting/manuscript/`.
+The canonical scientific manuscript is the LaTeX tree at `papers/orion-10-certified-static-forecasting/manuscript/`, governed by `CLAIM_LEDGER_V4.md` and `ORION09_TO_ORION10_MERGE_COVERAGE_V1.md`.
 
-**Superseded for submission purposes.** `MANUSCRIPT_V2.md` and
-`MANUSCRIPT_V3.md` remain on disk as research-side drafts.
+The current upload-facing filing object is `submission/tier-b-final-20260901/`:
 
-**Why the LaTeX tree.** It is the only compilable form and carries the required
-section architecture, including the chronology-preserving Reproducibility
-section that the paper's argument depends on.
+- `arxiv/manuscript.pdf` and `arxiv/source.zip` are the attributed arXiv route;
+- `journal/manuscript.pdf` and `journal/source.zip` are the attributed Quantum route;
+- both routes include the same attributed `supplement.pdf`;
+- `journal/artifact.zip` contains the bounded unified verifier and selected committed receipts;
+- `PACKAGE_MANIFEST.json` and `SHA256SUMS` bind every declared package byte.
 
-**Binding status.** This paper binds nothing: content-binding state is
-`UNBOUND / CANNOT_CHECK`, before and after this pass. As with its sibling
-mapping paper, that is a coverage gap rather than a clean result, and it is
-recorded rather than reported as a pass.
+`MANUSCRIPT_V2.md`, `MANUSCRIPT_V3.md`, the old six-page `submission/manuscript.pdf`, and pre-2026-09-01 packages remain provenance only. They are not submission authority.
+
+ORION-09 is merged into this filing and must not be submitted independently.

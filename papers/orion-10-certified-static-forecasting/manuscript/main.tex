@@ -1,33 +1,46 @@
-\documentclass[11pt]{article}
-\usepackage{amsmath,amssymb}
-\usepackage[margin=1in]{geometry}
+\documentclass[a4paper,twocolumn,11pt,unpublished]{quantumarticle}
+\pdfoutput=1
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,tabularx,array}
+\usepackage[numbers,sort&compress]{natbib}
 \usepackage{hyperref}
-\usepackage{booktabs,tabularx}
-\usepackage[strings]{underscore}
+\usepackage{xurl}
 \setlength{\emergencystretch}{2em}
 
-\title{Theorem-Backed Static Cost Forecasting with Refutable Explanations for Quantum Compilation}
-\author{Sze Chun Yiu\\Independent Researcher\\\texttt{sze-chun.yiu@fysik.su.se}}
-\date{August 2026}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
 
 \begin{document}
+
+\title{Certified cost forecasts and refutable regime maps for exact quantum compilation}
+\author{Sze Chun Yiu}
+\email{sze-chun.yiu@fysik.su.se}
+\affiliation{Stockholm University}
 \maketitle
+
 \begin{abstract}
-A compilation-cost predictor can be numerically correct for three different reasons: theorem, benchmark agreement, or accidental coverage by a compact regime classifier. We separate these certificate layers for a frozen shared-Tag TARE grammar. The initial forecaster $F_1(t)=\min(C_{R6L},C_{D^+},f_B)$ passes 102/102 prospectively staged rows but is exactly refuted on a fresh $n=3$ instance: $C_{DP}=10$ while $F_1=11$. An existing all-$n$ support theorem instead proves $C_{DP}=C_{D^{++}}$ under the unit support-count objective, so $F_2(t)=C_{D^{++}}(t)$ uses an independent support-$\le2$ evaluator without an unrestricted-DP call. It has zero error on 9,547 compared instances; the theorem supplies exactness and the panel checks implementation. An enlarged-borrow explanation $B'$ repairs the original row, but a hostile search finds 64 hybrid configurations outside it. A subsequent full 740-instance fibre census sharpens that negative: six of seven $f_{B'}$ fibres contain mixed exact costs, so the named vocabulary cannot provide an exact $\Psi$-only explanation. The 64 selected hostile rows alone have a uniform offset only because selection conditioned on the gap. These explanation failures remain inside $D^{++}$ and do not affect F2 cost exactness. The contribution is certificate separation: theorem-backed cost, refutable explanation, prospective and hostile evidence, and row-specific verification authority. No full-circuit, runtime, transfer, or hardware claim follows.
+A numerical compilation forecast may be supported by a theorem, agreement on tested instances, or a structural model that happens to cover those instances.  These warrants are not interchangeable.  We separate them for an exact shared-tag Pauli block-encoding model and then test whether the resulting regime description transfers to another compiler family.  An interpretable three-family formula first matches a prospectively staged panel, yet a frozen fresh instance refutes it: the formula returns 11 while the exact optimum is 10.  A support-two normalization theorem yields a stronger forecaster that equals the unrestricted optimum for every admitted size under the unit structural objective; all finite implementation comparisons agree.  Explanation remains separately falsifiable: a repaired borrow vocabulary fails on 64 hostile cases, and six of seven of its complete-census fibres contain mixed exact costs.  A later per-block-permutation argument closes the previously open commuting-support-two sector, while two alternative global proof links remain explicitly open.  In weighted Clifford state preparation, a four-feature separator is minimal on the complete small-size domain, but the frozen next-size rule makes 32 errors on 120 states and shows no improvement under the specified shuffle null ($p=0.51$).  Exact cost, explanation, finite verification and transfer therefore require distinct certificates.  The results concern frozen algebraic objectives and do not establish runtime, production-compiler, hardware or quantum-advantage claims.
 \end{abstract}
 
-\noindent\textbf{Keywords:} quantum resource estimation; certified forecasting; exact compilation; proof-carrying computation; regime classification.
+\noindent\textbf{Keywords:} quantum compilation; exact optimization; resource forecasting; stabilizer circuits; algorithm selection; verified computation.
 
-\input{sections/01-introduction}
-\input{sections/02-methods}
-\input{sections/03-results}
-\input{sections/04-discussion}
-\input{sections/05-related-work-boundary}
-\input{sections/06-limitations}
-\input{sections/07-conclusion}
-\input{sections/08-reproducibility}
-\input{sections/09-ethics-safety-resources}
+\input{sections/introduction}
+\input{generated_results_tables}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/related_work}
+\input{sections/limitations}
+\input{sections/conclusion}
+\input{sections/data_and_code_availability}
+\input{sections/ethics_and_author_statement}
 
-\bibliographystyle{unsrt}
+\bibliographystyle{quantum}
 \bibliography{bibliography}
+
 \end{document}

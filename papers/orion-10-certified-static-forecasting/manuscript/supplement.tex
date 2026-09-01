@@ -1,0 +1,226 @@
+\documentclass[a4paper,onecolumn,11pt,unpublished,noarxiv]{quantumarticle}
+\pdfoutput=1
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,tabularx,array,longtable}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{hyperref}
+\usepackage{placeins}
+\setlength{\emergencystretch}{2em}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+
+\begin{document}
+\title{Supplementary Information for ``Certified cost forecasts and refutable regime maps for exact quantum compilation''}
+\author{Sze Chun Yiu}
+\email{sze-chun.yiu@fysik.su.se}
+\affiliation{Stockholm University}
+\maketitle
+\input{generated_support_tables}
+
+\section{Formal model definitions}\label{sec:formal-models}
+
+\subsection{Pauli notation}
+
+An $n$-qubit Pauli word modulo global phase is represented by $(x,z)\in\mathbb F_2^{2n}$.  Multiplication is vector addition.  Its support is $\operatorname{wt}(x,z)=|\{q:(x_q,z_q)\ne(0,0)\}|$, and its commutation parity with $(x',z')$ is $\langle(x,z),(x',z')\rangle=x\mathbin{\cdot}z'+z\mathbin{\cdot}x'\pmod2$.  All theorem statements below quantify over every $n$ and every target tuple for which the stated feasible set is nonempty.
+
+\subsection{Shared-tag paired-block model}
+
+An instance is six nonidentity targets $P_{jk}$, with $j\in\{0,1,2\}$ and $k\in\{0,1\}$.  A configuration consists of six nonidentity frames $R_{jk}$, a tag $S$, and a central index $c_j\in\{0,1\}$ for each block, subject to
+\begin{align}
+\langle R_{j0},R_{j1}\rangle&=1,\\
+\langle S,R_{j0}\rangle&=\ell_0,\qquad
+\langle S,R_{j1}\rangle=\ell_1,\\
+(\ell_0,\ell_1)&\in\{(0,1),(1,0)\},
+\end{align}
+with the same $(\ell_0,\ell_1)$ for all three blocks.  Write $T_{jk}=P_{jk}R_{jk}$.  For local Pauli letters define
+\begin{equation}
+F_3(a,b,c)=
+\begin{cases}
+1,&a=b=c\ne I,\\
+\mathbf1[a\ne I]+\mathbf1[b\ne I]+\mathbf1[c\ne I],&\text{otherwise}.
+\end{cases}
+\end{equation}
+The structural objective is
+\begin{align}
+C_{\mathrm{shared}}={}&\sum_{j=0}^2\left[2\bigl(\operatorname{wt}(R_{j,c_j})-1\bigr)+4\bigl(\operatorname{wt}(R_{j,1-c_j})-1\bigr)\right]+2\operatorname{wt}(S)\nonumber\\
+&+\sum_{q=1}^n\sum_{k=0}^1F_3\bigl(T_{0k}[q],T_{1k}[q],T_{2k}[q]\bigr).
+\label{eq:shared-cost}
+\end{align}
+The subtracted one in each frame term is a constant normalization over feasible configurations.  The support coordinate is $\max_{j,k}\operatorname{wt}(R_{jk})$.
+
+\subsection{Rank-two dependent-triple model}
+
+An instance contains two ordered target triples $P_{bk}$, $b\in\{A,B\}$ and $k\in\{0,1,2\}$.  A configuration selects a relative permutation $\pi_B$, a central branch $c_b\in\{0,1,2\}$ in each block, independent frames $R_{b0},R_{b1}$ satisfying $\langle R_{b0},R_{b1}\rangle=1$, dependent frames $R_{b2}=R_{b0}R_{b1}$, and two shared tags $S_0,S_1$.  Define
+\begin{equation}
+\lambda(R)=2\langle S_0,R\rangle+\langle S_1,R\rangle\in\{0,1,2,3\}.
+\end{equation}
+Feasibility requires
+\begin{equation}
+(\lambda(R_{A0}),\lambda(R_{A1}))=(\lambda(R_{B0}),\lambda(R_{B1}))=(a,b),
+\quad a,b\in\{1,2,3\},\ a\ne b.
+\label{eq:rank2-labels}
+\end{equation}
+The dependent label is then $a\mathbin{\mathsf{xor}}b$, the third nonzero label.  With $\pi_A$ the identity, the objective is
+\begin{align}
+C_{\mathrm{rank2}}={}&\sum_{b\in\{A,B\}}\left[t_c(\operatorname{wt}(R_{b,c_b})-1)+t_{nc}\sum_{k\ne c_b}(\operatorname{wt}(R_{bk})-1)+t_r\sum_{k=0}^2\operatorname{wt}(P_{b,\pi_b(k)}R_{bk})\right]\nonumber\\
+&+t_{\mathrm{tag}}\left(\operatorname{wt}(S_0)+\operatorname{wt}(S_1)\right).
+\label{eq:rank2-cost}
+\end{align}
+The unit structural objective is $(t_c,t_{nc},t_{\mathrm{tag}},t_r)=(2,4,2,1)$.  The support coordinate is $\max_{b,k\in\{0,1\}}\operatorname{wt}(R_{bk})$.
+
+\subsection{Six-term linear-combination model}
+
+An instance is a formal batch $(p_1,\ldots,p_6)$ of nonidentity $n$-qubit Pauli words; repeated words are allowed.  A configuration is a set partition $G$ of $\{1,\ldots,6\}$, a factoring bit $\varphi_g$ for every block, and either shared or dedicated index ancillas.  For a block $g$ of size $m$, let $b(m)=\lceil\log_2m\rceil$, with $b(1)=0$.  Its common factor $F_g$ contains the local letter shared nontrivially by every $p_i$, $i\in g$, and identity elsewhere; $r_i=p_iF_g$ modulo phase.  Let $f=1$ when $G$ has at least two blocks and $f=0$ otherwise.  The selection contribution of $g$ is
+\begin{equation}
+\operatorname{SEL}_g=
+\begin{cases}
+\sum_{i\in g}(f+b(m)+1)\operatorname{wt}(p_i),&\varphi_g=0,\\
+(f+1)\operatorname{wt}(F_g)+\sum_{i\in g}(f+b(m)+1)\operatorname{wt}(r_i),&\varphi_g=1.
+\end{cases}
+\end{equation}
+Writing $d(1),\ldots,d(6)=(0,0,1,2,4,6)$ for the frozen balanced-tree depth sums,
+\begin{align}
+\operatorname{PREP}(G)&=\mathbf1[|G|\ge2](2|G|-3)+\sum_{g:|g|\ge2}\bigl[(|g|-1)(1+f)+d(|g|)\bigr],\\
+\operatorname{WIDTH}(G)&=\mathbf1[|G|\ge2]|G|+
+\begin{cases}
+\max_g b(|g|),&\text{shared},\\
+\sum_gb(|g|),&\text{dedicated}.
+\end{cases}
+\end{align}
+The exact family cost is the minimum of $\sum_g\operatorname{SEL}_g+\operatorname{PREP}+\operatorname{WIDTH}$ over all 203 partitions, factoring bits and ancilla choices.  The reference is the six-singleton partition, with cost $C_U=2\sum_i\operatorname{wt}(p_i)+15$.
+
+\section{Forecast families and explanation closure}\label{sec:forecast-families}
+
+For the shared-tag model, let $C_{\rm ref}$ denote the frozen reference construction, $C_{\le1}$ the exact minimum over the support-one restricted family, $C_{\le2}$ the exact minimum over all support-at-most-two frames, and $C_{\rm DP}$ the unrestricted dynamic-programming minimum.  The archived implementation names these quantities $C_{R6L}$, $C_{D^+}$, $C_{D^{++}}$ and $C_{DP}$, respectively.  The cost theorem proved in Section~\ref{sec:normalization-proofs} is
+\begin{equation}
+C_{\rm DP}=C_{\le2}
+\end{equation}
+for every admitted size under Eq.~\eqref{eq:shared-cost}.
+
+The explanation families are nested by mechanism rather than by evidence status.  $B$ contains the initial central-borrow construction.  $B'$ additionally permits the borrow home to lie outside its block target support or inside the union support.  $B''$ contains the verified split-and-borrow hybrid shapes.  Their cost functions are the exact minima within the declared families, not fitted regressors.
+
+The first explanation attack evaluates all 740 frozen instances, not only strict-gap rows.  Relative to $f_{B'}$, exact offsets have counts $389,325,13,13$ at offsets $0,1,2,3$.  Six of seven $f_{B'}$ fibres are cost-mixed.  Selecting the 64 rows with $C_{\le2}<\min(C_{\le1},f_{B'})$ instead yields a uniform one-unit gap and no mixed fibre, proving that the apparent regularity is induced by selection.
+
+The last commuting-support-two obligation consists of 378 irreducible geometries.  Each geometry has $2^{24}$ assignments of the target letters at the two active qubits.  Permuting the two target assignments independently within each remaining block gives, for every one of the $378\times2^{24}=6{,}341{,}787{,}648$ states, an alternative with cost change $\Delta\le0$ and strictly fewer commuting-support-two blocks.  Induction on that count, composed with the previously checked reductions, yields
+\begin{equation}
+C_{\rm DP}=\min\{C_{\le1},f_{B'},f_{B''}\}.
+\end{equation}
+
+Two alternative routes do not prove this statement.  The single-pinner normalization closes its 133,349,376-state local product domain, but the registered global chain and global $B''$-completeness fields remain false.  A two-coordinate chain premise is refuted by an exact three-Tag configuration with multiple irreducible commuting-support-two blocks.  The successful proof uses per-block target permutations and does not convert either negative into support.
+
+\section{All-size normalization proofs}\label{sec:normalization-proofs}
+
+\subsection{Shared-tag support-two proof}
+
+Fix a feasible configuration and a frame $R=R_{jk}$ with support $w\ge3$; let $R'$ be its anticommuting partner.  At each $q\in\operatorname{supp}(R)$ assign
+\begin{equation}
+(\alpha_q,\beta_q)=\bigl(\langle R[q],R'[q]\rangle,\langle S[q],R[q]\rangle\bigr)\in\mathbb F_2^2.
+\end{equation}
+The total $\alpha$ parity is one.  Any such multiset of size at least three contains either a $(0,0)$ singleton or an equal pair.  Indeed, if there is no zero and no repetition, it is a subset of the three nonzero vectors; the only size-three case has zero total $\alpha$, a contradiction.  Removing the indicated proper subset $Q$, with $1\le|Q|\le2$, therefore changes neither total $\alpha$ nor total $\beta$.  Zeroing $R$ on $Q$ preserves block anticommutation and the shared tag syndrome, leaves the other two blocks unchanged, and needs no tag repair.
+
+It remains to compare cost.  For each removed local letter, central or noncentral frame support refunds respectively two or four units.  Exhaustive evaluation of the local factor $F_3$ in Eq.~\eqref{eq:shared-cost} covers the removed nonidentity letter, its partner and tag letters, the raw target letter, the two other block letters, the branch position and both multipliers.  Across all 18,432 cases the increase in $F_3$ is at most the frame refund.  Thus the edit is non-increasing in cost and strictly decreases total frame support.  Repeating it terminates with support at most two.  The four two-letter class patterns that do not contain a removable zero-sum proper subset explain why this argument stops at two rather than one.
+
+\subsection{Rank-two support-one proof}
+
+The support-one proof begins from a support-two normal form for the same feasible family.  The precursor certificate uses a syndrome-preserving relabel-and-delete grammar.  Its full local action space contains 612 support-three profile cases; 21 are unsafe before imposing Eq.~\eqref{eq:rank2-labels}, and none of those 21 is feasible after the complete label predicate is applied.  Hence every optimum has a support-two representative.  The packaged checker reconstructs these profiles from local Pauli descriptors and verifies the acceptance filter; the 144-case support-two control retains 36 feasible obstructions to that older edit grammar, so the precursor alone does not claim support one.
+
+Now take any support-two representative.  Each anticommuting pair has exactly one qubit at which its two local letters anticommute; call it the core.  Delete every non-core active column, align each remaining local basis at its core, and reconstruct the tags only after both blocks have been localized.  The complete local bounds are:
+\begin{enumerate}
+\item deleting a commuting active column refunds at least four objective units (and deleting an anticommuting column refunds at least seven);
+\item changing an anticommuting local basis at a fixed core changes the restoration term by at most three while leaving the frame contribution equal to ten;
+\item on a shared core, feasibility forces the two blocks to use the same local basis, and the canonical dual tag costs four;
+\item on distinct cores, the canonical dual tags cost eight; if both blocks were already support one the original tag costs at least eight, while otherwise one non-core deletion from each affected side supplies the additional cost.
+\end{enumerate}
+The numerical inequalities $4>3$, $4+4\ge8$ and the tag lower bounds close the same-core and distinct-core cases.  The edit preserves Eq.~\eqref{eq:rank2-labels} by construction and never increases Eq.~\eqref{eq:rank2-cost}.  Both independent generators end on one core.  Support zero is infeasible because $\langle I,I\rangle=0$, so the anticommutation constraint cannot be met.  Hence the intrinsic support number is one.
+
+\ProofObligationsTable
+\FloatBarrier
+
+\section{Objective-indexed certificates}
+
+\subsection{Shared-tag support-two cone}
+
+In the shared-tag descent, deleting a central or noncentral frame letter refunds respectively $t_c$ or $t_{nc}$, while the local restoration functional can increase by at most $2t_r$.  The same exchange therefore proves an all-size support-two normal form throughout
+\begin{equation}
+t_c\ge2t_r,\qquad t_{nc}\ge2t_r.
+\end{equation}
+The unit point $(t_c,t_{nc},t_{\rm tag},t_r)=(2,4,2,1)$ lies on the central boundary.  The registered outside point $(1,7,4,3)$ contains exact support-three optima with $C_{\rm DP}=11<C_{\le2}=13$.  It refutes an objective-independent support-two theorem.  Because violation of a sufficient inequality is not a converse proof, the global sharpness of the cone remains open.
+
+\subsection{Rank-two support-one region}
+
+For a deleted commuting column, let $(r_c,r_{nc},\Delta_r)$ record refunded central support, refunded noncentral support and restoration increase.  The complete 1,728-row resource domain has two undominated worst vectors, $(0,2,2)$ and $(1,1,2)$.  Core alignment may add a further $3t_r$, while moving the two tag words to a second core may add $2t_{\mathrm{tag}}$.  Requiring each worst refund to cover either obligation gives
+\begin{align}
+2t_{nc}&\ge5t_r,&t_c+t_{nc}&\ge5t_r,\\
+2t_{nc}&\ge2t_r+2t_{\mathrm{tag}},&t_c+t_{nc}&\ge2t_r+2t_{\mathrm{tag}}.
+\end{align}
+For $(2,4,2,1)$ the left-minus-right margins in displayed order are $(3,1,2,0)$.  For $(3,5,2,1)$ they are $(5,3,4,2)$.  Thus the first point lies on the certificate boundary and the second lies strictly inside.  These inequalities are sufficient for this proof.  Their violation provides no converse statement.
+
+\section{Six-term pair-gain equivalence}\label{sec:six-proof}
+
+For $B\subseteq\{1,\ldots,6\}$, write $s(B)=\sum_{i\in B}\operatorname{wt}(p_i)$ and let $f(B)$ count all-equal nonidentity columns.  The gain of a factored block of size $m$ has coefficients $(A_m,B_m)$ multiplying $(f(B),s(B))$:
+\begin{equation}
+(A_m,B_m)=(0,0),(4,-1),(10,-2),(14,-2),(23,-3)\quad(m=1,\ldots,5).
+\end{equation}
+For $m=6$ the gain is $23f(B)-2s(B)+1$.  A partition contributes the sum of its block gains plus the shape constant shown in Table~\ref{tab:six-shapes}.
+
+Let $g(e)=4f(e)-s(e)$ for each pair.  Condition $P_0$ consists of $g(e)\le0$ for every pair, $g(e)+g(f)+1\le0$ for every two disjoint pairs, and $g(e)+g(f)+g(h)+2\le0$ for every perfect matching.  Summing pair clauses within a block yields $s(B)\ge6f(B)$ for triples, $s(B)\ge8f(B)$ for quads, $s(B)\ge10f(B)$ for quints, and $s(B)\ge12f(B)+2$ for the six-term block.  Substitution makes every non-pair shape gain nonpositive.  The three multi-pair shapes are exactly the three clauses of $P_0$.  Conversely, violation of any clause makes its corresponding pair partition strictly cheaper than the singleton reference.  This proves $C_F=C_U$ if and only if $P_0$ for every admitted batch and every $n$.
+
+\SixShapeTable
+\FloatBarrier
+
+\section{State-preparation model and exact feature construction}\label{sec:state-protocol}
+
+A state is the full signed stabilizer group in canonical sorted binary form.  The allowed gates are $H$, $S$, $S^\dagger$ and controlled-NOT with costs $1,1,1,3$.  The exact referee is Dijkstra search from $|0\cdots0\rangle$ over the complete stabilizer-state graph.  The deterministic reference synthesis processes qubits in ascending order, selects the lexicographically smallest admissible $X$ pivot, uses the $X$ elimination route when available, otherwise uses the forced signed-$Z$ route, and applies the inverse elimination sequence for preparation.  Sign repairs and controlled-NOT routes are therefore deterministic functions of the target state.
+
+The 127 coordinates are ordered in three blocks.  The 33 schedule/tensor coordinates comprise 13 base quantities and 20 trace quantities.  The base quantities are five reference event counts, reference cost, binary $X$ rank, tensor-factor count, the lower bound $r_X+3(n-c)$, and four declared differences from these quantities.  The trace block records maximum, first and last step costs, the maximizing index, cost descents and moment, high/zero-cost step counts, event maxima and sign/$Y$ co-occurrences, signed-pivot and pivot-weight summaries, $Z$-route and rank-drop counts, largest tensor-factor size and reference cost, the enlarged-schedule cost, and its improvement over the reference.
+
+The 53 path coordinates comprise four gate totals; minimum, maximum, sum of squares and zero count for each of five per-qubit gate channels; eight directed controlled-NOT graph summaries; all 16 ordered adjacent gate-kind transition counts; and first kind, last kind, run count, maximum run and number of distinct kinds.  The 41 state coordinates comprise the negative-sign count; positive/negative Pauli-weight histograms for weights zero through four; positive/negative $Y$-count histograms; positive/negative binary parity-class counts; and minimum, maximum, sum of squares and zero count of the per-qubit $X$, $Y$ and $Z$ column marginals.  The archive gives the exact coordinate names, order and formulas and supplies every panel vector.
+
+The complete $n\le3$ domain has 1,146 states and 1,109 feature cells, including 1,072 singletons.  No cell is mixed, so a lookup recovers every in-domain label.  The ratio $1{,}109/1{,}146=0.967714$ shows that the representation gives little compression.
+
+\StateCountsTable
+\FloatBarrier
+
+\section{Frozen panel, transfer rule and shuffle null}\label{sec:null}
+
+Using NumPy's default generator with seed 20260821, each candidate panel state is produced from $|0000\rangle$ by 24 draws.  A draw chooses uniformly among $H,S,S^\dagger,$ and controlled-NOT; a one-qubit gate receives a uniform qubit, while a controlled-NOT receives a uniform control and then a uniform distinct target.  Duplicate final states are discarded until 120 unique states have been retained in generation order.  The review materials provide the ordered list of canonical states.  Exact four-qubit costs are then read from the 36,720-state Dijkstra graph.
+
+The representation and in-domain success criterion were frozen before four-qubit evaluation.  Panel index parity defines two folds.  For each test state, the other fold supplies counts for an exactly equal 127-coordinate vector.  A seen cell predicts the strict majority label, with a tie mapped to negative; an unseen cell also predicts negative.  Coverage is the number of test states whose vector occurs in the other fold.  The 120 panel states form 119 cells: 118 singletons and one pure doubleton, so the partition invariant is $118\times1+1\times2=120$.  Only the two states in the doubleton are covered across parity folds.  Both are classified correctly; all 32 errors occur among the 118 uncovered states and equal the panel's 32 positive labels.
+
+For the null, the feature vectors, state order, folds, lookup rule and negative default remain fixed.  Python's pseudorandom generator with seed 20260828 produces 200 independent permutations of the 120 observed labels.  Each permuted label vector is evaluated by the identical two-fold procedure.  If $E_0=32$ is the observed error count and $E_b$ is permutation $b$'s error count, the reported empirical probability is
+\begin{equation}
+p_{\le}=\frac1{200}\sum_{b=1}^{200}\mathbf1[E_b\le E_0].
+\end{equation}
+The null counts range from 30 to 33, have mean 32.41, and give $p_{\le}=0.51$.  This descriptive randomization result says that the declared lookup shows no improvement under this null on this panel.  It is not an equivalence test.
+
+The earlier prospective forecast is a separate frozen analysis.  Its 120 panel states, predicted labels and predicted costs were fixed before the four-qubit referee was invoked.  It matched 100 regime labels and 67 exact costs.  Later feature work does not revise those predictions.
+
+\section{Nearest-work subtraction and consequence}\label{sec:nearest-work}
+
+\NearestWorkTable
+\FloatBarrier
+
+The comparison supports a narrow consequence.  Instance-space analysis and compiler prediction remain the closest frameworks for feature-conditioned performance, while verified and exact synthesis remain the closest frameworks for correctness and bounded optimality.  The present exact results add model-specific normal forms and a pair-gain equivalence; the typed record prevents their theorem authority from being transferred to the finite feature study.  It does not displace the cited frameworks or establish a universal compiler theory.
+
+\section{Retained adverse and conditional results}
+
+The first prospective size-transfer forecast was fixed before the exact four-qubit distances were opened.  It matched 100 of 120 reference-exactness labels and 67 of 120 exact costs.  Both axes failed their exactness criteria.  These outcomes remain visible because later representation work does not retroactively change a prospective forecast.
+
+A separate search tested whether support two became strictly beneficial outside the proved support-one region.  After correcting the treatment of infeasible local cells, the complete frozen search still found zero strict witnesses among 211,248 candidates under four objectives.  The result excludes those candidates only.  It does not prove that the objective region is globally sharp.
+
+The measured gap between syndrome rank and intrinsic support equals a local exchange margin on two models.  The equality has no residual degrees of freedom with two points, and it fails for one model when the syndrome rank is recomputed under a different aligned rewrite.  It is retained as a diagnostic observation, not a theorem.
+
+\AdverseResultsTable
+\FloatBarrier
+
+\section{Reproduction order}
+
+The review materials support four layers of checking.  First, inspect the exact result records.  Second, run the separate verifier, which checks theorem fields, objective vectors, panel-partition arithmetic, table values and required claim wording without invoking a scientific calculation.  Third, regenerate all tables and the per-state feature and prediction record.  Fourth, where the declared Python dependencies are available, rerun the selected scientific analyses and compare their deterministic outputs.  These operations detect inconsistent values and implementation drift.  They are same-team checks, not external replication or independent proof review.
+
+\bibliographystyle{unsrtnat}
+\bibliography{bibliography}
+
+\end{document}

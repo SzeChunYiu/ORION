@@ -1,0 +1,58 @@
+\section{Results}
+
+\subsection{A support-two theorem makes exact static forecasting possible}
+
+\begin{theorem}[Support-two normalization]
+For every admitted size and target in the shared-tag Pauli model under the unit structural objective, an exact optimum exists in which every frame Pauli has support at most two.  Consequently,
+\begin{equation}
+ C_{\rm DP}(x)=C_{\le2}(x)=F_2(x)
+ \label{eq:support2}
+\end{equation}
+for every admitted instance $x$.
+\end{theorem}
+
+The proof assigns each active qubit of a frame a two-bit class recording local commutation with its partner and with the shared Tag.  Global anticommutation makes the first-bit parity odd.  Any class multiset of size at least three contains a removable zero class or equal pair; deleting the corresponding one or two frame letters preserves both parities.  A complete 18,432-case local check bounds the restoration increase by the refunded frame cost.  Repeated deletion therefore terminates at support two without increasing the objective.  Supplementary Section~S2 states the arbitrary-size composition and the support-two obstruction to this particular descent.
+
+This theorem is the authority for Eq.~\eqref{eq:f2}.  The implementation does not call unrestricted dynamic programming in its forecast path.  Agreement with a finite referee checks the implementation and its bindings; it is not used to manufacture the theorem.
+
+The same local inequality proves support two throughout the sufficient objective cone $t_c\ge2t_r$ and $t_{nc}\ge2t_r$; the unit objective lies on its central boundary.  An exact outside-cone control at $(t_c,t_{nc},t_{\rm tag},t_r)=(1,7,4,3)$ has a support-three optimum.  This refutes an objective-independent support-two claim, but it does not prove that every point outside the cone requires support three or that the global boundary is sharp.
+
+\subsection{Prospective success is followed by an exact refutation}
+
+The initial formula in Eq.~\eqref{eq:f1} correctly classifies all 102 prospectively staged rows: 90 reference-exact library rows and 12 engineered boundary rows spanning reference, split and borrow cases.  The larger frozen benchmark then supplies the necessary hostile opportunity.  The formula agrees on all 9,261 structured two-qubit rows and the committed chemistry rows but fails on one fresh seeded three-qubit instance.  Its predicted value is 11, whereas unrestricted optimization and a checked support-two witness give 10.
+
+The failure is structural.  The witness uses a support-two frame whose effective borrow home lies outside that block's own target support.  Enlarging the borrow family to $B'$ repairs this row.  More importantly, Eq.~\eqref{eq:support2} yields $F_2$, which returns 10 and agrees with exact cost on all 9,547 compared instances.  The original error remains part of the result: the cost layer was repaired by moving to a proved family, not by redefining the failed forecast.
+
+\subsection{Exact cost survives two explanation attacks}
+
+The first hostile explanation panel finds 64 instances among 740 for which
+\begin{equation}
+ C_{\le2}<\min\{C_{\le1},f_{B'}\}.
+ \label{eq:bprimegap}
+\end{equation}
+Each gap is one unit, and a representative witness combines a weight-two Tag with a phantom borrow.  The same rows continue to satisfy Eq.~\eqref{eq:support2}; they refute the named explanation, not the cost.
+
+The complete 740-instance census also removes a misleading regularity produced by selecting only Eq.~\eqref{eq:bprimegap}.  Across all rows the exact offset distribution relative to $f_{B'}$ is $\{0:389,1:325,2:13,3:13\}$.  Six of seven $f_{B'}$ fibres contain more than one exact cost.  Restricting to the 64 selected gaps yields the apparently uniform offset one and no mixed fibre.  Thus the uniformity is a selection effect, while the full census proves that $f_{B'}$ alone cannot be an exact explanation on this domain.
+
+Adding the hybrid family $B''$ yields zero gap on a separate 10,481-instance panel.  A later all-size argument closes the previously open commuting-support-two sector by allowing independent target permutations within each remaining block.  For each of 378 irreducible geometries, all $2^{24}$ target-letter states admit a non-increasing alternative with fewer commuting support-two blocks.  The complete domain therefore contains 6,341,787,648 exact states and zero residue.  Composed with the previously proved reductions in this route, it gives
+\begin{equation}
+ C_{\rm DP}=\min\{C_{\le1},f_{B'},f_{B''}\}
+ \label{eq:envelope}
+\end{equation}
+under the unit objective.
+
+Two negative proof results remain essential to the interpretation.  A separate single-pinner normalization is valid over 133,349,376 composite configurations, but its composition into a global chain is unproved.  Its machine fields therefore remain $\textsc{chain-all-n}=\mathrm{false}$ and $\textsc{global-}B''\textsc{-completeness}=\mathrm{false}$.  A proposed two-coordinate chain representation is also refuted by an exact three-Tag configuration.  These failures do not contradict Eq.~\eqref{eq:envelope}, whose proof uses per-block target permutations; neither may be cited as an independent proof of it.
+
+\subsection{Cross-model controls separate proof ceilings from intrinsic support}
+
+Two additional exact models test whether the certificate distinctions are merely terminological.  In a rank-two dependent-triple Pauli model, a conserved-syndrome deletion abstraction gives a safe support ceiling of five, whereas a whole-system Tag reconstruction proves intrinsic support one: support one always suffices and support zero is infeasible.  The support-one proof holds inside an explicit objective-weight region; outside that region the certificate is silent.  A corrected search over 211,248 frozen-domain candidates finds no strict outside witness under four objectives, which is a bounded negative rather than global sharpness.
+
+In a six-term linear-combination model, the reference construction is exact if and only if a proved pair-gain condition holds for every admitted batch and size.  This supplies the opposite control: a low-order exact boundary can exist even when minimizing witnesses use larger block structure.  The complete regression covers 729 instances at $n=1$ and 38,760 at $n=2$ with zero mismatches.  These two results are used only to test the certificate schema; they do not enlarge Eq.~\eqref{eq:support2} or Eq.~\eqref{eq:envelope} to other grammars.
+
+\subsection{Finite feature determination fails to transfer}
+
+For weighted Clifford state preparation, exact shortest-path censuses find 5, 28 and 189 reference-exact states among the complete 6, 60 and 1,080 states for $n=1,2,3$.  Strict improvements fall into four mechanism classes: processing order, pivot choice, elimination route and global synthesis family.  A prospectively frozen next-size forecast then fails, matching 100 of 120 regime labels and 67 of 120 exact costs.
+
+The original 13-feature representation contains 12 mixed cells and forces at least 43 errors among the 1,146 complete small-size states.  An enlarged 127-feature vocabulary removes all mixed cells, producing 1,109 cells including 1,072 singletons.  Exhaustive search over all one-, two- and three-feature subsets finds no exact separator; the four features consisting of first schedule cost, maximum factor cost, the sum of squared per-qubit $H$ counts and maximum per-qubit $S$ count form an exact separator with 523 cells.  Dropping any one feature restores a positive error floor.  The minimum separator size is therefore exactly four on $n\le3$.  It contains no sign-aware state coordinate, so the proposed state-sign mechanism is not supported.
+
+The compact separator still does not license transfer.  Under the frozen parity-split lookup protocol on 120 four-qubit states, the richer representation covers only two states and makes 32 errors.  The specified 200-permutation shuffle null has mean 32.41 errors, and 51\% of permutations have an error count no larger than 32.  The result shows no improvement under this null on this panel; it is neither an equivalence test nor a claim that no transferable representation exists.

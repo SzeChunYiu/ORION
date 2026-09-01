@@ -1,47 +1,248 @@
-@article{schillo2026blockencoding,
-  title = {Block Encoding Linear Combinations of Pauli Strings Using the Stabilizer Formalism},
+@incollection{rice1976algorithm,
+  author = {Rice, John R.},
+  title = {The Algorithm Selection Problem},
+  booktitle = {Advances in Computers},
+  volume = {15},
+  pages = {65--118},
+  year = {1976},
+  publisher = {Elsevier},
+  doi = {10.1016/S0065-2458(08)60520-3}
+}
+
+@article{smithmiles2009meta,
+  author = {Smith-Miles, Kate A.},
+  title = {Cross-disciplinary perspectives on meta-learning for algorithm selection},
+  journal = {ACM Computing Surveys},
+  volume = {41},
+  number = {1},
+  pages = {1--25},
+  year = {2009},
+  doi = {10.1145/1456650.1456656}
+}
+
+@article{smithmiles2023isa,
+  author = {Smith-Miles, Kate and Mu{\~n}oz, Mario Andr{\'e}s},
+  title = {Instance Space Analysis for Algorithm Testing: Methodology and Software Tools},
+  journal = {ACM Computing Surveys},
+  volume = {55},
+  number = {12},
+  pages = {1--31},
+  year = {2023},
+  doi = {10.1145/3572895}
+}
+
+@article{katial2025qaoa,
+  author = {Katial, Vivek and Smith-Miles, Kate and Hill, Charles and Hollenberg, Lloyd},
+  title = {On the Instance Dependence of Parameter Initialization for the Quantum Approximate Optimization Algorithm: Insights via Instance Space Analysis},
+  journal = {INFORMS Journal on Computing},
+  volume = {37},
+  number = {1},
+  pages = {146--171},
+  year = {2025},
+  doi = {10.1287/ijoc.2024.0564}
+}
+
+@article{moussa2020selection,
+  author = {Moussa, Charles and Calandra, Henri and Dunjko, Vedran},
+  title = {To quantum or not to quantum: towards algorithm selection in near-term quantum optimization},
+  journal = {Quantum Science and Technology},
+  volume = {5},
+  number = {4},
+  pages = {044009},
+  year = {2020},
+  doi = {10.1088/2058-9565/abb8e5}
+}
+
+@inproceedings{quetschlich2023options,
+  author = {Quetschlich, Nils and Burgholzer, Lukas and Wille, Robert},
+  title = {Predicting Good Quantum Circuit Compilation Options},
+  booktitle = {2023 IEEE International Conference on Quantum Software},
+  pages = {43--53},
+  year = {2023},
+  doi = {10.1109/QSW59989.2023.00015}
+}
+
+@article{quetschlich2025predictor,
+  author = {Quetschlich, Nils and Burgholzer, Lukas and Wille, Robert},
+  title = {{MQT Predictor}: Automatic Device Selection with Device-Specific Circuit Compilation for Quantum Computing},
+  journal = {ACM Transactions on Quantum Computing},
+  volume = {6},
+  number = {1},
+  pages = {1--26},
+  year = {2025},
+  doi = {10.1145/3673241}
+}
+
+@article{hietala2021verified,
+  author = {Hietala, Kesha and Rand, Robert and Hung, Shih-Han and Wu, Xiaodi and Hicks, Michael},
+  title = {A verified optimizer for quantum circuits},
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {5},
+  number = {POPL},
+  pages = {1--29},
+  year = {2021},
+  doi = {10.1145/3434318}
+}
+
+@article{iten2022patterns,
+  author = {Iten, Raban and Moyard, Romain and Metger, Tony and Sutter, David and Woerner, Stefan},
+  title = {Exact and Practical Pattern Matching for Quantum Circuit Optimization},
+  journal = {ACM Transactions on Quantum Computing},
+  volume = {3},
+  number = {1},
+  pages = {1--41},
+  year = {2022},
+  doi = {10.1145/3498325}
+}
+
+@article{duncan2020zx,
+  author = {Duncan, Ross and Kissinger, Aleks and Perdrix, Simon and van de Wetering, John},
+  title = {Graph-theoretic Simplification of Quantum Circuits with the {ZX}-calculus},
+  journal = {Quantum},
+  volume = {4},
+  pages = {279},
+  year = {2020},
+  doi = {10.22331/q-2020-06-04-279}
+}
+
+@article{quetschlich2023mqtbench,
+  author = {Quetschlich, Nils and Burgholzer, Lukas and Wille, Robert},
+  title = {{MQT Bench}: Benchmarking Software and Design Automation Tools for Quantum Computing},
+  journal = {Quantum},
+  volume = {7},
+  pages = {1062},
+  year = {2023},
+  doi = {10.22331/q-2023-07-20-1062}
+}
+
+@article{li2023qasmbench,
+  author = {Li, Ang and Stein, Samuel and Krishnamoorthy, Sriram and Ang, James},
+  title = {{QASMBench}: A Low-Level Quantum Benchmark Suite for {NISQ} Evaluation and Simulation},
+  journal = {ACM Transactions on Quantum Computing},
+  volume = {4},
+  number = {2},
+  pages = {1--26},
+  year = {2023},
+  doi = {10.1145/3550488}
+}
+
+@article{bravyi2022clifford,
+  author = {Bravyi, Sergey and Latone, Joseph A. and Maslov, Dmitri},
+  title = {6-qubit optimal {Clifford} circuits},
+  journal = {npj Quantum Information},
+  volume = {8},
+  pages = {79},
+  year = {2022},
+  doi = {10.1038/s41534-022-00583-7}
+}
+
+@article{izmaylov2020unitary,
+  author = {Izmaylov, Artur F. and Yen, Tzu-Ching and Lang, Robert A. and Verteletskyi, Vladyslav},
+  title = {Unitary Partitioning Approach to the Measurement Problem in the Variational Quantum Eigensolver Method},
+  journal = {Journal of Chemical Theory and Computation},
+  volume = {16},
+  number = {1},
+  pages = {190--195},
+  year = {2020},
+  doi = {10.1021/acs.jctc.9b00791}
+}
+
+@article{peres2023pbc,
+  author = {Peres, Filipa C. R. and Galv{\~a}o, Ernesto F.},
+  title = {Quantum circuit compilation and hybrid computation using Pauli-based computation},
+  journal = {Quantum},
+  volume = {7},
+  pages = {1126},
+  year = {2023},
+  doi = {10.22331/q-2023-10-03-1126}
+}
+
+@article{vandenberg2020diagonalization,
+  author = {van den Berg, Ewout and Temme, Kristan},
+  title = {Circuit optimization of Hamiltonian simulation by simultaneous diagonalization of Pauli clusters},
+  journal = {Quantum},
+  volume = {4},
+  pages = {322},
+  year = {2020},
+  doi = {10.22331/q-2020-09-12-322}
+}
+
+@inproceedings{paykin2023pcoast,
+  author = {Paykin, Jennifer and Schmitz, Albert T. and Ibrahim, Mohannad and Wu, Xin-Chuan and Matsuura, A. Y.},
+  title = {{PCOAST}: A Pauli-Based Quantum Circuit Optimization Framework},
+  booktitle = {2023 IEEE International Conference on Quantum Computing and Engineering},
+  pages = {715--726},
+  year = {2023},
+  doi = {10.1109/QCE57702.2023.00087}
+}
+
+@article{yuan2025connectivity,
+  author = {Yuan, Pei and Zhang, Shengyu},
+  title = {Full Characterization of the Depth Overhead for Quantum Circuit Compilation with Arbitrary Qubit Connectivity Constraint},
+  journal = {Quantum},
+  volume = {9},
+  pages = {1757},
+  year = {2025},
+  doi = {10.22331/q-2025-05-28-1757}
+}
+
+@article{schillo2026tare,
   author = {Schillo, Niclas and Sturm, Andreas and Quay, R{\"u}diger},
-  journal = {arXiv preprint arXiv:2601.05740},
+  title = {{TARE}: Block Encoding Linear Combinations of Pauli Strings Without Ancilla State Preparation},
+  journal = {arXiv preprint arXiv:2601.05740v4},
   year = {2026},
   eprint = {2601.05740},
   archivePrefix = {arXiv},
   primaryClass = {quant-ph}
 }
 
-@article{paykin2023pcoast,
-  title = {{PCOAST}: A Pauli-based Quantum Circuit Optimization Framework},
-  author = {Paykin, Jennifer and Schmitz, Albert T. and Ibrahim, Mohannad and Wu, Xin-Chuan and Matsuura, A. Y.},
-  journal = {arXiv preprint arXiv:2305.10966},
-  year = {2023},
-  eprint = {2305.10966},
+@article{li2022oracles,
+  author = {Li, Liyi and Voichick, Finn and Hietala, Kesha and Peng, Yuxiang and Wu, Xiaodi and Hicks, Michael},
+  title = {Verified Compilation of Quantum Oracles},
+  journal = {Proceedings of the ACM on Programming Languages},
+  volume = {6},
+  number = {OOPSLA2},
+  pages = {589--615},
+  year = {2022},
+  doi = {10.1145/3563309}
+}
+
+@article{campbell2026resourceestimation,
+  author = {Campbell, Colin and Rines, Rich and Omole, Victory and Oberoi, Tina and Goiporia, Palash and Roy, Rayat and Cline, R. Peyton and Jones, Eric B. and Tomesh, Teague},
+  title = {Resource Estimation via Efficient Compilation of Key Quantum Primitives},
+  journal = {arXiv preprint arXiv:2604.01376},
+  year = {2026},
+  eprint = {2604.01376},
   archivePrefix = {arXiv},
   primaryClass = {quant-ph}
 }
 
-@article{yang2026symphony,
-  title = {Efficient Compilation for Hamiltonian Simulation via Global Binary Symplectic Form Simplification},
-  author = {Yang, Zhaohui and Han, Yuwei and Zhang, Ruiyun and Ding, Dawei and Chen, Jianxin and Feng, Yuan and Xie, Yuan},
-  journal = {arXiv preprint arXiv:2608.11579},
+@article{autoqureo2026,
+  author = {Oza, Harshkumar and Sarkar, Aritra and Abbas, Syed Naqi and Bhowmick, Rahul and Prakash, Aryan and Kulkarni, Prateek P. and Sabapathy, Krishna Kumar},
+  title = {{AutoQuREO}: A Framework for Automated Quantum Resource Estimation and Optimization},
+  journal = {arXiv preprint arXiv:2608.12936},
   year = {2026},
-  eprint = {2608.11579},
+  eprint = {2608.12936},
   archivePrefix = {arXiv},
   primaryClass = {quant-ph}
 }
 
 @article{sarkar2026decomp2,
-  title = {{DeComp2}: Description Complexity Aware Decomposition},
   author = {Sarkar, Aritra},
+  title = {{DeComp2}: Description Complexity Aware Decomposition},
+  journal = {arXiv preprint arXiv:2607.23990},
   year = {2026},
   eprint = {2607.23990},
   archivePrefix = {arXiv},
   primaryClass = {quant-ph}
 }
 
-@article{campbell2026resourceestimation,
-  title = {Resource Estimation via Efficient Compilation of Key Quantum Primitives},
-  author = {Campbell, Colin and Rines, Rich and Omole, Victory and Oberoi, Tina and Goiporia, Palash and Roy, Rayat and Cline, R. Peyton and Jones, Eric B. and Tomesh, Teague},
+@article{yang2026symphony,
+  author = {Yang, Zhaohui and Han, Yuwei and Zhang, Ruiyun and Ding, Dawei and Chen, Jianxin and Feng, Yuan and Xie, Yuan},
+  title = {Efficient Compilation for Hamiltonian Simulation via Global Binary Symplectic Form Simplification},
+  journal = {arXiv preprint arXiv:2608.11579v2},
   year = {2026},
-  eprint = {2604.01376},
+  eprint = {2608.11579},
   archivePrefix = {arXiv},
   primaryClass = {quant-ph}
 }
