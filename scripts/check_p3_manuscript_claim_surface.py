@@ -1,103 +1,93 @@
 #!/usr/bin/env python3
+"""Fail closed on the current ORION-13 Brief Report claim surface."""
+
 from __future__ import annotations
 
 import re
-import sys
 from pathlib import Path
 
-repo = Path(__file__).resolve().parents[1]
-paper = repo / "papers/orion-13-global-knowledge-portrait"
-root = paper / "manuscript"
-main_text = (root / "main.tex").read_text(encoding="utf-8")
-tex_files = [root / "main.tex", *sorted((root / "sections").glob("*.tex"))]
-text = "\n".join(path.read_text(encoding="utf-8") for path in tex_files)
 
-abstract = (root / "sections/00-abstract.tex").read_text(encoding="utf-8")
-introduction = (root / "sections/10-introduction.tex").read_text(encoding="utf-8")
-dataset = (root / "sections/40-dataset.tex").read_text(encoding="utf-8")
-evaluation = (root / "sections/50-evaluation.tex").read_text(encoding="utf-8")
-conclusion = (root / "sections/08-conclusion.tex").read_text(encoding="utf-8")
-limitations = (root / "sections/07-limitations.tex").read_text(encoding="utf-8")
-scoped = (paper / "SCOPED_PUBLICATION_TRACK_V1.md").read_text(encoding="utf-8")
+ROOT = Path(__file__).resolve().parents[1]
+PAPER = ROOT / "papers/orion-13-global-knowledge-portrait"
+SOURCE = PAPER / "manuscript/brief-report-final"
 
-errors: list[str] = []
-for name, fragment in [
-    ("abstract", abstract),
-    ("introduction", introduction),
-    ("conclusion", conclusion),
-]:
-    if "0.1875" not in fragment or "-0.1875" not in fragment:
-        errors.append(f"{name}_missing_confirmatory_effect")
-    if "0.125 for flat predicate" in fragment or "$-0.125$" in fragment:
-        errors.append(f"{name}_still_uses_exploratory_headline")
 
-sys.path.insert(0, str(repo / "tests"))
-from test_paper_manuscript_integrity import _states_the_three_valued_boundary
+def main() -> int:
+    common = (SOURCE / "common.tex").read_text(encoding="utf-8")
+    adapters = "\n".join(
+        (SOURCE / name).read_text(encoding="utf-8")
+        for name in ("main.tex", "arxiv.tex")
+    )
+    bibliography = (SOURCE / "bibliography.bib").read_text(encoding="utf-8")
+    authority = (PAPER / "SCOPED_PUBLICATION_TRACK_V1.md").read_text(
+        encoding="utf-8"
+    )
+    text = common + "\n" + adapters
+    surface = re.sub(r"\s+", " ", text)
+    errors: list[str] = []
 
-for name, fragment in [("abstract", abstract), ("conclusion", conclusion)]:
-    token = "CANNOT\\_CHECK" in fragment or "\\conststatus{}" in fragment
-    if not token and not _states_the_three_valued_boundary(fragment):
-        errors.append(f"{name}_missing_evidence_boundary")
+    required = {
+        "holdout denominator": "32-case holdout",
+        "false-merge contrast": "six of 32",
+        "paired effect": "-0.1875",
+        "fixed-panel diagnostic": "[-0.34375,-0.0625]",
+        "false-split null": "false-split difference",
+        "family-level breadth": "three authored families",
+        "other-family non-discrimination": "other two families (19 cases)",
+        "effective conformance states": "eight unique decision archetypes",
+        "complete result": "400/400",
+        "narrow-interface comparator": "250/400",
+        "canonical result": "50/400",
+        "same-programme limitation": "same authorship and research programme",
+        "raw-text boundary": "raw-text extraction",
+        "downstream boundary": "downstream scientific utility",
+        "population boundary": "population error rates",
+    }
+    for label, fragment in required.items():
+        if fragment not in surface:
+            errors.append(f"missing {label}: {fragment}")
 
-if "has not been executed" not in limitations:
-    errors.append("limitations_do_not_mark_broad_study_unexecuted")
-if "ORION-13.C7" not in scoped or "ORION-13.C8" not in scoped:
-    errors.append("scoped_track_missing_nonclaim_ids")
+    forbidden = {
+        "internal tier label": r"(?i)tier[ _-]?b",
+        "private decision token": r"\b(?:CANNOT_CHECK|P3_[A-Z0-9_]+)\b",
+        "internal workflow": r"(?i)hostile review|peer.review.ready|package.complete",
+        "population inference": r"(?i)population confidence interval",
+        "deployed superiority": r"(?i)superior(?:ity)? to deployed",
+        "full-paper status": r"(?i)full[- ]length article|full paper",
+    }
+    for label, pattern in forbidden.items():
+        if re.search(pattern, text):
+            errors.append(f"forbidden {label}")
 
-for name, phrases in {
-    "introduction": [
-        "independently annotated gold dataset spanning four disciplines",
-        "gold study is designed to test",
-    ],
-    "dataset": [
-        "The released manifest is \\texttt{SEED}",
-        "Final gold replaces these",
-        "all 32 samples annotated and adjudicated",
-    ],
-    "evaluation": [
-        "same gold dataset",
-        "five stochastic seeds",
-        "deepseek-v4-pro",
-        "Six baselines are implemented",
-        "Eight ablations are implemented",
-        "Seventeen metrics are computed per run",
-    ],
-}.items():
-    fragment = {
-        "introduction": introduction,
-        "dataset": dataset,
-        "evaluation": evaluation,
-    }[name]
-    for phrase in phrases:
-        if phrase in fragment:
-            errors.append(f"{name}_reintroduces_unexecuted_broad_claim:{phrase}")
+    common_surface = re.sub(r"\s+", " ", common)
+    if "They do not establish population error" not in common_surface:
+        errors.append("abstract does not bound the population interpretation")
+    if "Those nulls indicate absent comparison opportunity, not dispensability" not in common_surface:
+        errors.append("zero-effect ablations are not retained as bounded nulls")
+    if "information-equivalent typed comparator" not in common_surface or "must tie" not in common_surface:
+        errors.append("information-equivalent comparator tie is not explicit")
 
-bib_files: list[Path] = []
-for group in re.findall(r"\\bibliography\{([^}]+)\}", main_text):
-    for stem in group.split(","):
-        stem = stem.strip()
-        if stem:
-            bib_files.append(root / f"{stem}.bib")
-bib_text = "\n".join(path.read_text(encoding="utf-8") for path in bib_files if path.is_file())
-bib_keys = set(re.findall(r"@\w+\s*\{\s*([^,\s]+)", bib_text))
-cite_keys: set[str] = set()
-for group in re.findall(r"\\cite\w*\{([^}]+)\}", text):
-    cite_keys.update(key.strip() for key in group.split(",") if key.strip())
-forbidden_removed_keys = {
-    "adias2026",
-    "raghunathan2022stance",
-    "liu2022scholar",
-    "oh2017unified",
-    "sebastian2017measurement",
-    "chang2012",
-    "swanson1990",
-}
-stale_keys = sorted((cite_keys | bib_keys) & forbidden_removed_keys)
-if stale_keys:
-    errors.append("stale_or_invalid_reference_keys:" + ",".join(stale_keys))
+    bib_keys = set(re.findall(r"@\w+\s*\{\s*([^,\s]+)", bibliography))
+    cite_keys: set[str] = set()
+    for group in re.findall(r"\\cite\w*\{([^}]+)\}", common):
+        cite_keys.update(key.strip() for key in group.split(",") if key.strip())
+    missing_citations = sorted(cite_keys - bib_keys)
+    if missing_citations:
+        errors.append("missing bibliography keys: " + ",".join(missing_citations))
 
-if errors:
-    for error in errors:
-        print(f"P3_CLAIM_SURFACE_ERROR: {error}")
-    raise SystemExit(1)
-print("P3_BOUNDED_CLAIM_SURFACE_OK")
+    if "RECLASSIFIED_AS_BRIEF_REPORT" not in authority:
+        errors.append("active authority does not record the Brief Report disposition")
+    for fragment in ("eight unique", "narrower terminal", "information-equivalent"):
+        if fragment not in authority:
+            errors.append(f"active authority missing scientific-mass boundary: {fragment}")
+
+    if errors:
+        for error in errors:
+            print(f"P3_CLAIM_SURFACE_ERROR: {error}")
+        return 1
+    print("P3_BRIEF_REPORT_BOUNDED_CLAIM_SURFACE_OK")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

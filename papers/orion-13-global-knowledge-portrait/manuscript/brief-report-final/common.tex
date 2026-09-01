@@ -1,0 +1,259 @@
+\begin{abstract}
+\textbf{Background.} Scientific statements can appear to agree after their
+polarity, measurement, context or provenance has been discarded. We test a
+small decision-layer rule that keeps those coordinates explicit when mapping
+already-structured scientific projections.
+
+\textbf{Methods.} An initial 32-case panel motivated a prospectively frozen,
+case-identifier-disjoint 32-case holdout spanning three authored case families.
+We compared coordinate-governed mapping with flat predicate canonicalization
+and an exact-coordinate conservative rule. Bootstrap intervals are descriptive
+diagnostics for this fixed panel, not population uncertainty. A separate
+deterministic conformance battery contains 400 generated records instantiating
+eight unique decision archetypes across five labels and ten identifier variants.
+
+\textbf{Results.} On the holdout, coordinate-governed mapping made no false
+merges, whereas flat canonicalization made six of 32 (difference $-0.1875$;
+fixed-panel 95\% bootstrap diagnostic $[-0.34375,-0.0625]$). All six errors were
+polarity contrasts; the other two families (19 cases) did not discriminate the
+rules. The
+false-split difference from the conservative rule was zero. In the conformance
+battery, the complete rule scored 400/400, the strong semantic product 250/400,
+and canonical matching 50/400. An information-equivalent
+typed implementation also scored 400/400.
+
+\textbf{Conclusions.} These panels support a bounded observation: retaining
+polarity and an explicit non-merge terminal avoids the six false agreements
+created by the registered flat rule. They do not establish population error
+rates, superiority over deployed integration systems, the independent value of
+every coordinate, raw-text extraction performance or downstream scientific
+utility.
+\end{abstract}
+
+\noindent\textbf{Keywords:} semantic interoperability; knowledge
+representation; evidence provenance; coordinate systems; scientific mapping.
+
+\section{Introduction}
+
+Scientific claims are distributed across fields that use different terms,
+measurements, contexts and representational conventions. Identical predicates
+can refer to different objects, and a positive claim from one source can be
+mistakenly merged with a negative claim from another. This report studies only
+the downstream decision of whether two already-structured scientific
+projections may be treated as one statement. It does not study retrieval or
+extraction from raw text.
+
+Scientific information extraction, schema induction and knowledge-graph
+construction supply increasingly structured upstream representations
+\cite{muse2026,scier2024,scischema2026,scopes2026,schemaContracts2026}.
+Ontology matching studies equivalence, subsumption and disjointness
+\cite{euzenat2007ontology}; alignment repair also shows that individually
+plausible correspondences can make a combined ontology incoherent
+\cite{santos2015alignment}. Ontological unpacking, I-ADOPT and FAIR 2.0 make
+scientific-variable structure and mapping conditions explicit
+\cite{bernasconi2022interoperability,iadopt2021,fair2_2024}.
+Provenance-bearing statements and target-relative stance further motivate
+preserving source and polarity rather than collapsing them into a scalar match
+\cite{dec2026,hardalov2022stance}. The present contribution is smaller than
+these extraction, matching and modelling programmes: it tests a claim-relative
+merge rule only after the source projections have already been constructed.
+
+The rule records referent, construct, measurement, context, polarity, modality
+and attribution separately, permits an explicit non-merge decision, and leaves
+insufficiently supported relations undetermined. We evaluate the rule on a
+prospectively frozen holdout and report a separate deterministic contract test.
+This evidence architecture supports a Brief Report: the scientific units are
+three confirmatory case families and eight unique conformance archetypes; the
+432 scored rows are not independent scientific observations.
+
+\section{Methods}
+
+\subsection{Mapping decisions}
+
+For a source record $s$, the structured projection is
+\begin{equation}
+P_s=\langle R_s,C_s,M_s,X_s,\rho_s,\mu_s,a_s,\delta_s,\Pi_s\rangle,
+\end{equation}
+where the entries denote referent, construct, measurement, context, polarity,
+modality, attribution, discourse relation and assumptions or missing
+information. The evaluated rule returns one of three scientific decisions:
+admissible merge, typed non-merge, or undetermined. A required incompatibility
+produces non-merge; a missing load-bearing coordinate produces undetermined.
+The study does not infer absent coordinates from source text.
+
+\subsection{Fixed panels and scientific units}
+
+The development panel and the confirmatory holdout each contain 32
+already-structured cases assembled from pinned public resources and
+deterministic standards. The holdout was selected by an outcome-blind
+round-robin window and shares no case identifiers with development, although
+two combinations of source locator and content hash recur. Before holdout outputs were
+examined, the protocol fixed the case digest, source revisions, evaluator
+identities, bootstrap seed, margins and terminal rule.
+
+The holdout contains three authored families: 13 different-name/same-referent
+cases, 13 polarity/modality/attribution/context cases, and six valid/invalid
+representation-mapping cases. A case is the scoring unit for the registered
+rates and paired differences. It is not an independent population or
+cross-domain generalization unit. The three families are the appropriate scale
+for assessing scientific breadth, and only the second family contains observed
+between-rule discrimination. The expected decisions, candidate rule and
+evaluation were produced within the same authorship and research programme.
+Prospective freezing limits outcome-contingent adaptation but does not turn
+same-programme gold into independent adjudication.
+
+\subsection{Comparators and analysis}
+
+All rules received the same structured inputs. Flat predicate canonicalization
+treated compatible predicates as sufficient merge evidence and was the
+predeclared false-merge comparator. It is intentionally weak and isolates the
+consequence of removing the registered coordinate condition. The
+exact-coordinate conservative rule could abstain and served as the false-split
+control. These rules are not implementations of complete contemporary
+ontology-matching or integration systems.
+
+The confirmatory gate had two non-compensatory conditions. The
+coordinate-governed-minus-flat false-merge estimate had to be at most $-0.05$
+with the upper bound of its paired fixed-panel bootstrap diagnostic below zero.
+The coordinate-governed-minus-conservative false-split estimate had to be at
+most $+0.03$ with the diagnostic upper bound no greater than $+0.03$. Paired
+diagnostics use 10,000 percentile-bootstrap resamples with seed 20260817. The
+rules are deterministic, so stochastic repetitions were not manufactured. The
+development and confirmatory panels are not pooled.
+
+\subsection{Deterministic contract conformance}
+
+A separately frozen generator produced 400 records as five domain labels
+$\times$ eight decision archetypes $\times$ ten identifier variants. Domain
+and variant change identifiers and commitments but not the candidate-visible
+decision state. The effective mechanism census is therefore eight unique
+states, each repeated 50 times. This battery tests deterministic interface and
+specification conformance; it does not supply 400 independent observations.
+
+The complete rule can return merge, obstruction, plural view or unresolved.
+The strong semantic product omits the provenance/plural-view
+and global-cycle relations and cannot emit plural view; its 250/400 score is
+therefore an attainability result under that declared interface, not evidence
+of general capability superiority. Canonical matching uses a binary threshold.
+The fourth comparator is definitionally information-equivalent to the complete
+rule and must tie it exactly.
+
+\section{Results}
+
+On the development panel, coordinate-governed mapping made no false merges or
+false splits; flat canonicalization made four false merges. This outcome
+motivated the frozen holdout and is not pooled into its verdict.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\textbf{Rule} & \textbf{Acc.} & \textbf{False merge} & \textbf{False split} & \textbf{Abstain} \\
+\midrule
+Coordinate-governed & 1.0000 & 0.0000 & 0.0000 & 0.0000 \\
+Flat canonicalization & 0.8125 & 0.1875 & 0.0000 & 0.0000 \\
+Exact conservative & 0.8125 & 0.0000 & 0.0000 & 0.1875 \\
+\bottomrule
+\end{tabular}
+\caption{Outcomes on the 32-case confirmatory holdout. Rates use one decision
+per case. The coordinate-governed-minus-flat false-merge difference is
+$-0.1875$ (fixed-panel 95\% bootstrap diagnostic
+$[-0.34375,-0.0625]$); the false-split difference from the conservative rule is
+zero, with diagnostic $[0,0]$.}
+\label{tab:results}
+\end{table}
+
+All six flat-rule false merges were polarity contrasts within the family
+covering polarity, modality, attribution and context. Every rule was correct in the other two families (19 cases). Forcing compatibility without the non-merge terminal increased
+the false-merge rate by $0.1875$; removing the modality, polarity, attribution
+and discourse group produced the same change. Ablations of referent, construct,
+measurement and temporal context produced zero measured change on this panel.
+Those nulls indicate absent comparison opportunity, not dispensability.
+
+A standard-library scorer that imports none of the original analysis code
+reproduced the holdout decisions and verdict from the frozen records. It shares
+repository snapshot and custody and is therefore an implementation check, not
+external replication.
+
+Across the 400 generated conformance records, the complete rule scored
+400/400, the strong semantic product 250/400, and canonical matching
+50/400. The complete-minus-structured difference was $+0.375$, with a
+domain-stratified fixed-battery bootstrap diagnostic of $[0.3275,0.4225]$ and
+150--0 discordant decisions. The complete rule made zero false merge decisions
+and retained all clean merges. The information-equivalent typed comparator
+scored 400/400 with zero decision mismatches. Because these are repetitions of
+eight authored states, the counts and diagnostics establish exact conformance
+to the registered interfaces but do not measure population performance.
+
+\section{Discussion}
+
+The confirmatory observation is narrow but falsifiable. Keeping polarity and a
+typed non-merge outcome prevented six false agreements produced when the
+registered flat rule discarded that condition, while the predeclared
+false-split guard was satisfied. Insufficient evidence remained distinct from
+a negative decision. The conformance battery confirms that the deterministic
+relation is implemented exactly and that an information-equivalent typed
+implementation reproduces it.
+
+Several limits determine the interpretation. First, all observed
+discrimination lies in one authored family; the other 19 holdout cases and four
+coordinate-ablation cells are null. Second, the comparator that fails on the
+holdout was designed to be weak, and no strong same-universe external
+integration system was executed. Third, the holdout is identifier-disjoint but
+not fully source-disjoint, and its expected decisions and candidate rule remain
+within one authorship and research programme. Fourth, the 400-record battery contains only
+eight distinct candidate-visible states, and the strong semantic product
+has a narrower terminal alphabet. These facts prevent population-like or
+general-superiority interpretations.
+
+The report also says nothing about recovering the coordinates from raw text,
+expert agreement over a broader atlas, naturalistic transport, deployed
+integration, or downstream answer quality. The result is best read as a small
+methods observation and an executable interface contract. A broader paper would
+need independently governed, source-disjoint naturalistic cases, strong
+same-universe comparators at matched information, and evaluation of raw-text or
+downstream use. Those optional successors are not required for this Brief
+Report and are not represented as completed evidence.
+
+\section{Data and software availability}
+
+The frozen case records, source registry, protocols, deterministic analyses and
+independent implementation check are available in the public ORION repository
+snapshot at commit \texttt{3813e6495}:
+\url{https://github.com/SzeChunYiu/ORION/tree/3813e64955f03926b0276e50c21b9a65154ad3db/papers/orion-13-global-knowledge-portrait}.
+That snapshot contains the confirmatory records, contract generator, frozen
+protocol, results and independent verification. Code is licensed under
+Apache-2.0 and manuscript text under the Creative Commons Attribution 4.0
+International licence; upstream resource licences remain controlling.
+Restricted third-party text is not redistributed. A repository DOI may be
+added after long-term deposit; none is asserted in this version.
+
+\section*{Ethics and consent}
+
+Not applicable. This computational study involved no human participants,
+personal data or animals.
+
+\section*{Author contributions}
+
+Sze Chun Yiu: conceptualization, methodology, software, validation, formal
+analysis, investigation, data curation, writing, visualization and project
+administration.
+
+\section*{Competing interests}
+
+No competing interests were disclosed.
+
+\section*{Grant information}
+
+The author declared that no grants were involved in supporting this work.
+
+\section*{Acknowledgements}
+
+OpenAI Codex was used for language and structural revision,
+literature-search assistance and preparation of submission files. The author
+checked the claims, sources, analyses and final wording and retains
+responsibility for the article. No generative AI tool produced research data.
+
+\bibliographystyle{plain}
+\bibliography{bibliography}

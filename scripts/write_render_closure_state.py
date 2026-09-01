@@ -61,13 +61,22 @@ def rendered_pdf_state(package: Path) -> dict | None:
     """State for a package that ships a PDF but pins no inputs."""
 
     packaged = package / _MANUSCRIPT_PDF_NAME
-    built = package.parent / "manuscript" / "main.pdf"
+    if package.parent.name == "orion-13-global-knowledge-portrait":
+        built = package.parent / "manuscript" / "brief-report-final" / "main.pdf"
+        superseding_manifest = (
+            package.parent
+            / "submission/publication-final-20260901/PACKAGE_MANIFEST.json"
+        )
+    else:
+        built = package.parent / "manuscript" / "main.pdf"
+        superseding_manifest = (
+            package.parent / "submission/final-20260831/PACKAGE_MANIFEST.json"
+        )
     if not packaged.exists() or not built.exists():
         return None
 
     packaged_pages, packaged_text = _pdf_pages_and_text(packaged.read_bytes())
     built_pages, built_text = _pdf_pages_and_text(built.read_bytes())
-    superseding_manifest = package.parent / "submission/final-20260831/PACKAGE_MANIFEST.json"
     if package.parent.name == "orion-13-global-knowledge-portrait" and superseding_manifest.is_file():
         return {
             "schema": SCHEMA,
@@ -79,7 +88,7 @@ def rendered_pdf_state(package: Path) -> dict | None:
             "binding_status": "HISTORICAL_SUPERSEDED",
             "current_revision_binding": False,
             "superseded_by": superseding_manifest.relative_to(REPO_ROOT).as_posix(),
-            "means": "the retained journal_package PDF is historical; the final-20260831 package is the sole current filing object",
+            "means": "the retained journal_package PDF is historical; the bounded Brief Report package is the sole current filing object",
         }
     matches = packaged_pages == built_pages and packaged_text == built_text
     return {
@@ -159,9 +168,19 @@ def derived_states() -> list[tuple[Path, dict]]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="fail if any committed state is stale")
+    parser.add_argument(
+        "--paper",
+        help="limit generation/checking to one paper directory name",
+    )
     args = parser.parse_args(argv)
 
     states = derived_states()
+    if args.paper:
+        states = [
+            item
+            for item in states
+            if item[0].relative_to(REPO_ROOT).parts[1] == args.paper
+        ]
     if not states:
         print("no packages can report a render state", file=sys.stderr)
         return 1
