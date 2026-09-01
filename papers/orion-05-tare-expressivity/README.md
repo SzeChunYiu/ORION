@@ -1,6 +1,6 @@
 # Q-paper-01 — TARE support complexity
 
-**Canonical manuscript:** `MANUSCRIPT_V3_REFINED.md`  
+**Canonical manuscript:** `manuscript/main.tex`  
 **Canonical claim ledger:** `CLAIM_LEDGER_V3.md`  
 **Main-figure contract:** `FIGURE_CONTRACT_V3.md`  
 **Nearest-work delta:** `NEAREST_WORK_DELTA_V3.md`  

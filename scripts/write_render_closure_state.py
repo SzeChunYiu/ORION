@@ -67,6 +67,20 @@ def rendered_pdf_state(package: Path) -> dict | None:
 
     packaged_pages, packaged_text = _pdf_pages_and_text(packaged.read_bytes())
     built_pages, built_text = _pdf_pages_and_text(built.read_bytes())
+    superseding_manifest = package.parent / "submission/final-20260831/PACKAGE_MANIFEST.json"
+    if package.parent.name == "orion-13-global-knowledge-portrait" and superseding_manifest.is_file():
+        return {
+            "schema": SCHEMA,
+            "package": package.relative_to(REPO_ROOT).as_posix(),
+            "state": "SUPERSEDED",
+            "evidence": "EXPLICIT_CURRENT_PACKAGE",
+            "packaged_pdf_pages": packaged_pages,
+            "built_manuscript_pages": built_pages,
+            "binding_status": "HISTORICAL_SUPERSEDED",
+            "current_revision_binding": False,
+            "superseded_by": superseding_manifest.relative_to(REPO_ROOT).as_posix(),
+            "means": "the retained journal_package PDF is historical; the final-20260831 package is the sole current filing object",
+        }
     matches = packaged_pages == built_pages and packaged_text == built_text
     return {
         "schema": SCHEMA,
@@ -130,10 +144,10 @@ def derived_states() -> list[tuple[Path, dict]]:
     """Every package that can say whether it is current, and its state."""
 
     states: list[tuple[Path, dict]] = []
-    for closure_path in sorted(REPO_ROOT.glob(f"papers/*/journal_package/{CLOSURE_NAME}")):
+    for closure_path in sorted(REPO_ROOT.glob(f"papers/*/journal_package*/{CLOSURE_NAME}")):
         states.append((closure_path.parent, state_for(closure_path)))
     pinned = {package for package, _ in states}
-    for package in sorted(REPO_ROOT.glob("papers/*/journal_package")):
+    for package in sorted(REPO_ROOT.glob("papers/*/journal_package*")):
         if package in pinned:
             continue
         state = rendered_pdf_state(package)

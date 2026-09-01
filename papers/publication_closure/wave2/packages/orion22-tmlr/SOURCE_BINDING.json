@@ -1,0 +1,46 @@
+{
+  "schema": "orion.wave2.orion22.repository-handoff.v1",
+  "date": "2026-08-28",
+  "paper": "ORION-22",
+  "target_posture": "TMLR bounded submission package",
+  "source_main_commit": "ef02823e68f64965df27d056db8ac387246affeb",
+  "scientific_authority_delta": "NONE",
+  "submission_authority": false,
+  "package_semantics": "Exact repository handoff copy of the current canonical manuscript tree, audited PDF, active claim authority, package audit, readiness note, and repository paper licence. It is not evidence of external archive deposit or journal filing.",
+  "bindings": {
+    "canonical_manuscript_tree": {
+      "source_path": "papers/orion-22-adaptive-state-reasoning/manuscript",
+      "git_tree_sha": "e9b9ab23f4c3403fc5d24f7605ed2459ca49abf4"
+    },
+    "current_pdf": {
+      "source_path": "papers/orion-22-adaptive-state-reasoning/manuscript/main.pdf",
+      "git_blob_sha": "56683f5895e77adccdd6269d8755d5eeb417f9cd",
+      "bytes": 155816
+    },
+    "active_claim_authority": {
+      "source_path": "papers/orion-22-adaptive-state-reasoning/P12_ACTIVE_CLAIM_AUTHORITY_V5.json",
+      "git_blob_sha": "bbe961d41584dbe06e401930477fcdb5d88cfae9"
+    },
+    "package_audit": {
+      "source_path": "papers/orion-22-adaptive-state-reasoning/PACKAGE_AUDIT_V1.md",
+      "git_blob_sha": "44c16e4bc96f1e96e222f1db385c8e1f08672aa1"
+    },
+    "peer_review_readiness": {
+      "source_path": "papers/orion-22-adaptive-state-reasoning/PEER_REVIEW_READINESS.md",
+      "git_blob_sha": "4a5e19c87705362a2417ddccdc09635f05dc2acc"
+    },
+    "paper_licence": {
+      "source_path": "LICENSE-PAPERS-CC-BY-4.0.txt",
+      "git_blob_sha": "da6ab6cc8f333d7e89a99812866df8f24374d47c"
+    }
+  },
+  "repository_handoff_state": "PACKAGE_BYTES_MATERIALIZED",
+  "external_archive_state": "OPEN_HUMAN_FILING_STEP",
+  "journal_submission_state": "NOT_SUBMITTED_BY_THIS_RECORD",
+  "human_metadata_state": "OPEN",
+  "notes": [
+    "The canonical source is the manuscript/ tree; the historical root MANUSCRIPT.md is explicitly noncanonical.",
+    "The current PDF is already covered by the repository pinned clean rebuild and clipping audit.",
+    "A permanent external archive/DOI and the actual journal upload remain external human actions."
+  ]
+}

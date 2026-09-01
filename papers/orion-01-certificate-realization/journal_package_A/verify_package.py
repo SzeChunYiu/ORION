@@ -8,7 +8,7 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
 
 FILES = {
-    "SOURCE.md": (REPO / "papers/orion-01-certificate-realization/theory-A-MANUSCRIPT_V2.md", "596217cfcf623b77ab77ecbd2ae0abbffdaf7ef2392cb2f8915ed790eec68365"),
+    "SOURCE.md": (REPO / "papers/orion-01-certificate-realization/theory-A-MANUSCRIPT_V2.md", "45c77b077a4ec0e07c7b84dc3cfef87a7f9e12b3cad678a6afafd81328349555"),
     "CLAIM_LEDGER.md": (REPO / "papers/orion-01-certificate-realization/theory-A-CLAIM_LEDGER_R2.md", "3c2a7771774856e2de2d18cf38f2b62c0e069301925a40624105349dd46d03db"),
 }
 

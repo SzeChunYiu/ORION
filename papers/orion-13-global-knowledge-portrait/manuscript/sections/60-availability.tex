@@ -338,4 +338,29 @@ generated-portrait recoverability and downstream answer quality have no
 artifacts here, and their outcomes remain undetermined rather than absent by
 oversight.
 
+
+\subsection{Source-provenance chain for the BERTMap repair line}
+
+The V7, V8 and V12 results depend on an auditable chain of pinned sources rather
+than on a described patch. Every identity in that chain is recorded here, so the
+Results narrative can state what changed without carrying the digests inline.
+
+\begin{itemize}
+\item BERTMap canonical paper source, commit\\
+  \idt{ce848402b40e2f9513bf2d004894d3f82635022c}
+\item DeepOnto 0.9.3 (maintained), commit\\
+  \idt{74ca8d47f01bad0b8739f19ee2c392bdf6d9c090}
+\item Unrepaired \texttt{mapping.py}, SHA-256\\
+  \idt{9cf0dce1c5bd142e4175f628f8f3267f54ed6deac9f31e165a25b4a073eedff0}
+\item Minimal patch, SHA-256\\
+  \idt{412050c5d3a0e7891a21744a9690d3e4ba06886ea51eec273b6045bff688e42b}
+\item Repaired source, SHA-256\\
+  \idt{d0b3b6cfdee45019783707c4bd623cc76f8325142828cf1e10ebb74ad628d70f}
+\item Decoded V12 artifact, SHA-256\\
+  \idt{c67ee88d541013f41984b239f9cdeaebdcd81573f2080d8af24c7688207dd0f3}
+\end{itemize}
+
+The patch changes only \texttt{dp["Score"]} to \texttt{dp.Score}. Its digest is
+recorded so that the minimality of the change is checkable rather than asserted.
+
 \endinput

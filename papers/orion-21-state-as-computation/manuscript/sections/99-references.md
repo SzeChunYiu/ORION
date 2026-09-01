@@ -6,3 +6,4 @@
 4. M. Kang et al. *ACON: Optimizing Context Compression for Long-horizon LLM Agents.* ICML, 2026. arXiv:2510.00615.
 5. N. D. Jones, C. K. Gomard, and P. Sestoft. *Partial Evaluation and Automatic Program Generation.* Prentice Hall, 1993.
 6. A. Darwiche and P. Marquis. *A Knowledge Compilation Map.* Journal of Artificial Intelligence Research 17, 229–264, 2002.
+7. J. Bang and M. Pawłowski. *Neural Information Causality.* arXiv:2605.09316, 2026. doi:10.48550/arXiv.2605.09316.

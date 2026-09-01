@@ -2,102 +2,132 @@
 
 \begin{center}
 \fcolorbox{black}{gray!10}{\parbox{0.91\linewidth}{
-\textbf{No protected superiority result exists.} One bounded result has been
-frozen and executed (\S\ref{sec:attestation-composition}); it is
-\textsc{bounded-executable-verified} and it is largely a negative. Unit tests and
-deterministic scans establish only conformance of a checked implementation to
-their registered cases. They do not estimate general reliability, authenticate
-all executor claims, or establish scientific corroboration.}}
+\textbf{No protected scientific-superiority result is claimed.} The bounded
+execution-integrity studies now support a narrower statement: cryptographic
+receipts can fail closed against registered artifact corruption and can make
+independent key domains load-bearing, but a valid artifact does not attest that
+\emph{this} process invocation completed and a valid signature chain does not
+establish scientific admission.}}
 \end{center}
 
-This chapter is intentionally not populated with prospective tables or inferred
-numbers. A publication result may be added only after the protocol in
-Section~\ref{sec:attacks} is frozen on an immutable digest and executed by an
-identified implementation under the declared custody plan.
+The results below are therefore organized by what the execution layer can and
+cannot establish. They are measurements within frozen finite protocols, not a
+general reliability estimate and not an authorization to collapse provenance,
+execution integrity and scientific validity into one decision.
 
 \subsection{Attestation composition is not scientific admission}
 \label{sec:attestation-composition}
 
-The attestation-composition V2 protocol was frozen on an immutable digest and
-executed (run \texttt{32664075763}, artifact \texttt{9499830847}, ZIP SHA-256
-\texttt{\seqsplit{fccf3b28f3f33af8b07a87eab6764742c7882de88018d65be16e2dba1dee3bff}}), with
-a second independent implementation GREEN on all 13 agreement-table entries. It
-therefore meets the condition above, and it is reported here because its
-principal finding is adverse.
+The frozen three-role attestation study verified Ed25519 chains under the
+registered truncation, substitution, splice, reorder, cross-occurrence replay,
+and stale-representation attacks. The central adverse control was full key-set
+compromise: when the attacker possessed every role key, cryptographic validation
+detected \textbf{0/6} forged cases and the unscoped chain-as-science reading
+false-promoted all \textbf{6/6}. The experiment therefore establishes a boundary,
+not a rescue: a signature proves possession of a signing key under the registered
+verification rule; it does not prove that key custody was independent or that the
+scientific conclusion was warranted.
 
-\paragraph{The negative first: signatures do not observe key custody.} Under a
-full key-set compromise, simulated by re-signing with genuine key material, the
-signature layer detects \textbf{0/6}. Worse, those same six cases
-\emph{false-promote} through \textsc{chain-plus-sei} (\textbf{6/6}). A chain
-that verifies perfectly says nothing about whether the right party held the key.
-Key custody is an inherited premise, now explicitly registered as one, not
-something the cryptographic layer measures. Collapsing the chain directly into
-the scientific-admission decision false-promotes a further \textbf{12} cases,
-where the properly scoped cryptographic-only reading returns \cannotcheck{}
-everywhere.
+The same study retained non-vacuity controls. Valid chains were accepted, the
+registered scientific fields did not leak into the cryptographic/provenance layer,
+and the scientific-admission decision remained separate from chain validity. The
+current paper keeps that separation as a premise of every later experiment.
 
-\paragraph{What did hold.} Over the frozen 22-case corpus, three-link Ed25519
-chains verify and fail closed against every registered attack family: truncation
-\textbf{66/66}, substitution \textbf{22/22}, splice-with-partial-re-signing
-\textbf{22/22}, reorder \textbf{22/22}, cross-occurrence replay \textbf{22/22}
-and stale or consumed re-presentation \textbf{22/22}. Chain-plus-SEI agreement
-with the frozen gold is \textbf{22/22}, and scientific-field leakage into the
-cryptographic/provenance layer is \textbf{0}.
+\subsection{Artifact corruption is detected without rejecting benign re-encoding}
 
-\paragraph{The layer does not win by rejecting everything.} False rejection over
-the full valid workload -- seven execution-valid fault cases plus four real
-receipts -- is \textbf{0/11} at the chain layer and \textbf{0/5} at disposition
-level, with \textbf{0/4} real false promotions. That matters because a detector
-that refuses everything would score perfectly on the attack families above and be
-useless.
+A prospective execution-integrity successor tested six externally applied artifact
+faults: truncation, signature-byte corruption, dropped chain link, public-key
+substitution, favourable terminal relabelling and count inflation. All six faults
+were applied and all six were rejected by the checker, with \textbf{0/6 false
+promotions}. This result concerns committed-artifact integrity; it does not by
+itself cover an error occurring inside the producer before the artifact is
+committed.
 
-\subsection{Provenance interoperability, and what its size measures are not}
+The corresponding false-rejection control applied six semantics-preserving
+re-encodings of a valid result. All six remained accepted, with \textbf{0/6 false
+rejections}; four variants changed the serialized bytes. The checker therefore
+canonicalizes the registered semantics rather than demanding raw byte identity.
+This endpoint is deliberately narrow: it does not estimate false rejection under
+clock skew, memory pressure, filesystem faults or other transient host conditions.
 
-A second frozen study asks whether the admission boundary survives being carried
-in someone else's representation, which matters because a separation obtained
-only by forcing users into an ORION-specific receipt is not much of a
-separation. Execution-only facts were serialized independently of scientific
-fields, through the production \texttt{prov} 3.1.0 library for W3C PROV-JSON
-and through an RO-Crate 1.3 / Workflow-Run \texttt{CreateAction} projection
-carrying the same normalized vector. Over 22 cases -- the 18 hostile SEI cases
-plus four real ORION workflow receipts -- both round-trips are exact
-(\textbf{1.000}), with \textbf{0} scientific fields leaked into
-provenance-only records, \textbf{0} native-versus-imported SEI disagreements,
-\textbf{0} provenance-only false scientific successes, and \textbf{0}
-real-receipt false rejections or false promotions.
+\subsection{Chain length is not the measured security axis}
 
-The size measures are reported because omitting them would hide the cost of the
-representation, not because they characterize anything: mean PROV-JSON
-\textbf{1619.64} bytes per case and mean RO-Crate JSON-LD \textbf{2014.64}
-bytes per case.
+The frozen trust-domain experiment separates two quantities that the earlier
+three-link study confounded. At one trust domain, attack detection was
+\textbf{1.000} for chain lengths $k=1,2,3$, with all four clean chains accepted at
+each length. Increasing the number of signed links therefore produced no measured
+improvement on the registered attack family. Longer chains may carry more semantic
+roles, but length alone did not improve this endpoint.
 
-These are descriptive figures over a 22-case corpus. They are not a performance
-characterization and must not be read as one. Twenty-two cases cannot establish
-how either serialization behaves at corpus scale, hosted wall time is not used
-as a performance claim anywhere in this paper, and no throughput, latency or
-storage projection follows from these numbers.
+At fixed chain length $k=3$, the experiment then varied the number of independent
+cryptographic key domains while compromising exactly one domain. On four real
+receipts, a one-domain construction accepted forged favourable chains in
+\textbf{4/4} cases. With two independent domains the same attack was accepted in
+\textbf{0/4}, and with three domains in \textbf{0/4}. Thus the measured false-promotion
+rate stepped from $1.00$ to $0.00$ between $d=1$ and $d=2$ under this threat model,
+whereas the $k$-only experiment was flat.
 
-\paragraph{Scope.} A frozen 22-case corpus with simulated per-role keys. No
-hardware-backed custody, external timestamping or KMS, and no comparison against
-production Sigstore or in-toto is claimed. The composition-and-boundary statement
-is verified within that scope; the C15.5 superiority claim remains \cannotcheck{}.
+This is a cryptographic-independence result, not a theorem about organizational
+independence. Independent key generation is the modeled property; separate teams,
+institutions, machines and administrative domains are possible implementations but
+were not all measured. The panel has four real receipts, one compromised domain and
+$k=3$ for the $d$ comparison. No claim is made about multiple-domain compromise or
+arbitrary trust organizations.
 
-When results exist, the primary table must contain one row per attack family and
-report the frozen fixture count, false admissions, false rejections, coverage
-alarms, incorrect labels, execution environment digest, receipt-set digest and
-adjudication receipt. A separate reliability table may be reported only if the
-multi-instance sampling gate passes. The abstract, title and conclusion must name
-the highest verified independence level and must report all failed or
-\cannotcheck{} gates.
+\subsection{Content integrity does not attest process liveness}
 
-Existing engineering checks, if cited in a future version, belong in a development
-history table. They may motivate attacks or demonstrate that the protocol is
-executable, but they cannot be promoted retrospectively into protected paper
-evidence. Likewise, agreement between deterministic auditors on one source tree is
-an L1 structural result; zero model calls remove model-generated semantic judgment
-from that audit but do not create evidence or scientific independence.
+Host/process fault injection exposed a different boundary. When the producer was
+terminated by \texttt{SIGKILL} or \texttt{SIGTERM} while an older valid artifact
+remained at the output path, the artifact checker correctly returned green for that
+old artifact. Two such stale-artifact cases were accepted. By contrast, an
+unwritable output path and an absent output directory failed loudly and did not
+silently produce a new result.
 
-The absence of a result is an explicit status and must not be hidden. It is the
-present status of a framework paper whose nontrivial empirical claims are prospective.
-This separation prevents the manuscript structure from manufacturing an apparent
-positive terminal before the evidence exists.
+The implication is operationally important: an artifact verifier answers
+``is this artifact valid?'', not ``did this invocation complete?''. A workflow that
+uses a green artifact check as evidence of current-run success needs an additional
+occurrence/liveness binding supplied by the orchestrator. This is not a checker bug;
+it is the boundary of the object being checked.
+
+\subsection{The measured cost is small in absolute time and large relative to a tiny baseline}
+
+A no-attestation comparator reused the same frozen facts and canonicalization while
+removing Ed25519 key derivation and signing. Across four cases and 40 repeats, median
+composition time was approximately \textbf{0.105 ms} without attestation and
+\textbf{1.444 ms} with attestation, an added median of \textbf{1.340 ms}. Because the
+baseline is very small, the relative multiple is \textbf{13.8$\times$}; the measured
+increment is about \textbf{111.6 $\mu$s per signed link}. Serialized output grew from
+6926 to 9650 bytes, or \textbf{1.39$\times$}.
+
+These figures measure composition-side cost only. Verification, I/O and orchestration
+are excluded, so the numbers are not an end-to-end performance characterization.
+
+\subsection{Provenance interoperability preserves the boundary}
+
+A separate frozen study serialized execution-only facts through W3C PROV-JSON and an
+RO-Crate workflow-run projection. Across the registered 22-case corpus, both
+round-trips preserved the normalized execution vector, scientific fields remained
+outside the provenance-only records, and imported versus native execution-status
+interpretation agreed on every case. The representation therefore transports the
+execution/science boundary without requiring an implementation-specific receipt
+format.
+
+The serialized sizes are descriptive rather than performance claims. They do not
+support throughput, latency or storage projections at corpus scale.
+
+\subsection{What the combined results establish}
+
+The combined evidence supports four bounded conclusions. First, the registered
+artifact checker rejects the tested committed-artifact corruptions without rejecting
+the tested semantics-preserving encodings. Second, chain length and cryptographic
+trust-domain count are distinct variables, and only the latter changed compromise
+resistance in the registered panel. Third, artifact integrity and process liveness
+are distinct properties. Fourth, none of these properties is scientific warrant:
+a cryptographically and structurally valid receipt may still rest on a false premise,
+a weak study design or a shared trust root.
+
+Accordingly, any publication table must report the threat model, the number of trust
+domains, the compromise pattern, false promotions, false rejections, liveness status
+and the scientific-admission disposition as separate fields. A future general
+reliability claim would require a larger independently custodied campaign rather than
+pooling these bounded protocol checks into one rate.

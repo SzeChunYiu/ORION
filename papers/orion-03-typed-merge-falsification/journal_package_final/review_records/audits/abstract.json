@@ -1,0 +1,38 @@
+{
+  "decision": "PASS",
+  "counts": {
+    "error": 0,
+    "unresolved": 0,
+    "review": 0
+  },
+  "findings": [],
+  "metrics": {
+    "abstract_start_line": 8,
+    "abstract_word_count": 213,
+    "sentence_count": 10,
+    "numeric_token_count": 5,
+    "long_decimal_count": 0,
+    "opaque_identifier_count": 0,
+    "inferential_marker_count": 0,
+    "defensive_phrase_count": 0,
+    "numeric_tokens_per_sentence": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      5,
+      0,
+      0
+    ],
+    "quantitative_result_context_sentences": [],
+    "reporting_mandated_profile": false
+  },
+  "notes": [
+    "Numeric-density findings are contextual review signals, not universal number quotas.",
+    "Use --reporting-mandated for abstract regimes where a reporting guideline legitimately requires multiple numerical objects; target-specific completeness still requires human/contract review.",
+    "A confidence interval or estimate/comparator bundle should be judged semantically, not as an arbitrary count of digits."
+  ]
+}

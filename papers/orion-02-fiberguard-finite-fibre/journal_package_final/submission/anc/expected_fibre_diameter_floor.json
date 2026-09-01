@@ -1,0 +1,51 @@
+{
+  "authority": "MEASUREMENT_AND_PROOF_ONLY",
+  "controls": {
+    "C1_planted_distinguishing_certificate_is_caught": {
+      "caught": 756,
+      "eligible": 756,
+      "note": "routes through the same beats_floor comparison as a real finding",
+      "passed": true
+    },
+    "C2_degenerate_fibre_no_alarm": {
+      "alarms": 0,
+      "passed": true
+    },
+    "C3_optimum_equals_half_diameter": {
+      "failures": 0,
+      "passed": true
+    },
+    "C4_planted_wide_interval_is_detected": {
+      "caught": 756,
+      "eligible": 756,
+      "note": "proves interval_covers_both_ends can return True at all",
+      "passed": true
+    }
+  },
+  "enumeration": {
+    "certificate_grid_step": 0.05,
+    "configurations_enumerated": 784,
+    "exhaustive": true,
+    "fibre_sizes": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "value_grid": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "protocol_identity": "ANON.FIBRE_DIAMETER_FLOOR.v1",
+  "schema": "ANON.FibreDiameterFloor.Result.v1",
+  "scientific_authority_delta": "NONE",
+  "terminal": "T1_FLOOR_HOLDS_EXHAUSTIVELY",
+  "violation_examples": [],
+  "violations_found": 0
+}

@@ -1,0 +1,446 @@
+{
+  "authority": {
+    "all_pyzx_completeness": false,
+    "all_zx_calculus_completeness": false,
+    "bounded_counterexample_established": true,
+    "bounded_null_established": false,
+    "complete_contextual_registry_established": false,
+    "external_independence": false,
+    "generic_compiler_optimality": false,
+    "journal_authority": false,
+    "novelty": false,
+    "physical_or_hardware_advantage": false,
+    "production_full_reduce_refuted": false,
+    "protected_task3_or_p9": false,
+    "realized_certificate_gap_established": false,
+    "submission_authorized": false
+  },
+  "claim_boundary": {
+    "established": "A deterministic bounded counterexample shows that freely reordering the twelve automatic full_reduce macro operations under only their callable guards is not a sound semantics-preserving production language.",
+    "not_established": [
+      "PyZX full_reduce is unsound in its source scheduler",
+      "all PyZX pivot-boundary uses are unsound",
+      "a complete contextual PyZX production registry",
+      "a realized certificate gap",
+      "the complete-domain bounded null",
+      "all-PyZX or all-ZX-calculus completeness",
+      "generic compiler optimality or speedup",
+      "physical or hardware advantage",
+      "external novelty or journal authority",
+      "submission readiness or authorization"
+    ]
+  },
+  "counterexample": {
+    "adverse_guard_accepted": true,
+    "adverse_operation": "pivot_boundary_simp",
+    "adverse_operation_registered_id": "PYZX.FR.07",
+    "after": {
+      "bytes": 344,
+      "path": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_COUNTEREXAMPLE_AFTER.json",
+      "sha256": "102babf6392e6d16136d262f967d49990a4075db36c39823b148de124ace038d"
+    },
+    "after_matrix_real_imag": [
+      [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    ],
+    "after_resource": [
+      0,
+      2,
+      3
+    ],
+    "after_structural_measure": [
+      6,
+      0,
+      3
+    ],
+    "before": {
+      "bytes": 386,
+      "path": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_PYZX_COUNTEREXAMPLE_BEFORE.json",
+      "sha256": "fc217397673f7daf78672942239dfbb0c4596e5e07a3ff892b9003a0d60353c0"
+    },
+    "before_matrix_real_imag": [
+      [
+        [
+          0.707106781187,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.707106781187,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.707106781187,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.707106781187,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.707106781187,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -0.707106781187,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.707106781187,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -0.707106781187,
+          0.0
+        ]
+      ]
+    ],
+    "before_resource": [
+      0,
+      3,
+      5
+    ],
+    "before_structural_measure": [
+      7,
+      0,
+      5
+    ],
+    "dense_semantics_equal_including_scalar": false,
+    "dense_semantics_equal_up_to_nonzero_scalar": false,
+    "frobenius_matrix_residual": 1.53073372946,
+    "max_absolute_matrix_residual": 0.707106781187,
+    "production_full_reduce_on_same_source_word": {
+      "output_resource": [
+        0,
+        0,
+        2
+      ],
+      "output_state_sha256": "dd9a9160fb67ca443de0e680688d5048f4a843e296b587254275da578b1b79ac",
+      "semantics_equal_including_scalar": true
+    },
+    "semantics_preserving_prefix": [
+      {
+        "after_sha256": "7c1793aa05d7731ec78260bf6af3ec2eafdfa90742cca38403039cd6b49c908a",
+        "before_sha256": "c53afc26a018fff674645d2232c591823c2bc66939abd3bad6a37513da152957",
+        "dense_semantics_including_scalar": true,
+        "symbol": "pivot_boundary_simp"
+      },
+      {
+        "after_sha256": "3d1d41ad314f7de164ea32545a8f411d99623d8b50c6ac133575645565cb6d88",
+        "before_sha256": "7c1793aa05d7731ec78260bf6af3ec2eafdfa90742cca38403039cd6b49c908a",
+        "dense_semantics_including_scalar": true,
+        "symbol": "copy_simp"
+      },
+      {
+        "after_sha256": "fc217397673f7daf78672942239dfbb0c4596e5e07a3ff892b9003a0d60353c0",
+        "before_sha256": "3d1d41ad314f7de164ea32545a8f411d99623d8b50c6ac133575645565cb6d88",
+        "dense_semantics_including_scalar": true,
+        "symbol": "to_gh"
+      }
+    ],
+    "source_word": [
+      "H0",
+      "H0",
+      "H0"
+    ],
+    "source_word_label": "H0,H0,H0",
+    "start_state_sha256": "c53afc26a018fff674645d2232c591823c2bc66939abd3bad6a37513da152957"
+  },
+  "date": "2026-08-27",
+  "disposition": "FREE_REORDERING_CONTEXTUAL_GUARD_UNSOUND__PRODUCTION_ENTRYPOINT_NOT_REFUTED",
+  "execution_failure_custody": [
+    {
+      "bytes": 841,
+      "path": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_EXECUTION_FAILURE_01.json",
+      "sha256": "948733118d73e97c5be40e64540f415f194559f9233d9467862b0357d07d3d7f"
+    },
+    {
+      "bytes": 652,
+      "path": "papers/orion-01-certificate-realization/experiments/r11-pyzx-full-reduce/ORION01_R11_EXECUTION_FAILURE_02.json",
+      "sha256": "3fb1e754bf6a1352c23994985262237850130e16e3b45515c69074909ac2dccf"
+    }
+  ],
+  "gates": {
+    "adverse_transition_changes_dense_semantics_even_up_to_scalar": true,
+    "adverse_transition_changes_dense_semantics_including_scalar": true,
+    "all_single_registry_omissions_rejected": true,
+    "complete_ast_symbol_inventory": true,
+    "complete_frozen_domain_search": false,
+    "exact_public_source_identity": true,
+    "free_reordering_semantics_gate": false,
+    "production_entrypoint_semantics_preserved_on_witness": true,
+    "registered_guard_accepts_adverse_transition": true,
+    "semantics_preserving_prefix_replayed": true,
+    "strict_gap_or_bounded_null_authorized": false
+  },
+  "hostile_authority_controls": {
+    "all_passed": true,
+    "complete_registry_no_gap": {
+      "minimum": 1,
+      "passed": true
+    },
+    "omitted_cross_component_merge": {
+      "gap_collapsed": true,
+      "global_terminal": 1,
+      "local_additive_terminal": 2
+    },
+    "trace_equivalent_omitted_global_move": {
+      "completed_minimum": 1,
+      "gap_collapsed": true,
+      "incomplete_minimum": 2,
+      "shared_observed_edge": [
+        "s3",
+        "s2"
+      ]
+    }
+  },
+  "input_domain": {
+    "complete_domain_executed": false,
+    "complete_word_count": 4681,
+    "executed_before_fail_closed_terminal": 74,
+    "first_failing_word_one_based_ordinal": 74,
+    "first_failing_word_zero_based_index": 73,
+    "gate_alphabet": [
+      "H0",
+      "H1",
+      "S0",
+      "S1",
+      "T0",
+      "T1",
+      "CX01",
+      "CX10"
+    ],
+    "max_word_length": 4,
+    "min_word_length": 0,
+    "qubits": 2,
+    "sampling": false
+  },
+  "next_gate": "Round 2 must use a scientifically distinct subject with source-complete contextual scheduler guards, or another public finite grammar; it may not delete the counterexample or silently restrict PYZX.FR.07 after outcome access.",
+  "paper_id": "ORION-01",
+  "protocol_freeze": {
+    "freeze_commit": "449b254a8b0265747e8dc70dd771d432dd296b83",
+    "frozen_blob_manifest_sha256": "cb7260d8465ff7d1798497955a76a8538c73b2929997154f1fb5f879b371f57d",
+    "runner_last_change_commit": "e1d0b1a4acf927679f707fe9d1c7570554213937"
+  },
+  "registry_audit": {
+    "discovered_count": 12,
+    "discovered_registered_symbols": [
+      "copy_simp",
+      "fuse_simp",
+      "gadget_simp",
+      "id_simp",
+      "lcomp_simp",
+      "pivot_boundary_simp",
+      "pivot_gadget_simp",
+      "pivot_simp",
+      "remove_isolated_vertices",
+      "remove_self_loop_simp",
+      "supplementarity_simp",
+      "to_gh"
+    ],
+    "hostile_omissions_rejected": 12,
+    "hostile_single_omissions": [
+      {
+        "omitted": "fuse_simp",
+        "rejected": true
+      },
+      {
+        "omitted": "remove_self_loop_simp",
+        "rejected": true
+      },
+      {
+        "omitted": "to_gh",
+        "rejected": true
+      },
+      {
+        "omitted": "id_simp",
+        "rejected": true
+      },
+      {
+        "omitted": "pivot_simp",
+        "rejected": true
+      },
+      {
+        "omitted": "lcomp_simp",
+        "rejected": true
+      },
+      {
+        "omitted": "pivot_boundary_simp",
+        "rejected": true
+      },
+      {
+        "omitted": "pivot_gadget_simp",
+        "rejected": true
+      },
+      {
+        "omitted": "gadget_simp",
+        "rejected": true
+      },
+      {
+        "omitted": "copy_simp",
+        "rejected": true
+      },
+      {
+        "omitted": "supplementarity_simp",
+        "rejected": true
+      },
+      {
+        "omitted": "remove_isolated_vertices",
+        "rejected": true
+      }
+    ],
+    "manifest_exact": true,
+    "observed_control_call_graph": {
+      "clifford_simp": [
+        "interior_clifford_simp",
+        "pivot_boundary_simp"
+      ],
+      "full_reduce": [
+        "BaseGraph.remove_isolated_vertices",
+        "clifford_simp",
+        "copy_simp",
+        "gadget_simp",
+        "interior_clifford_simp",
+        "pivot_gadget_simp",
+        "supplementarity_simp"
+      ],
+      "interior_clifford_simp": [
+        "id_simp",
+        "lcomp_simp",
+        "pivot_simp",
+        "spider_simp",
+        "to_gh"
+      ],
+      "spider_simp": [
+        "fuse_simp",
+        "remove_self_loop_simp"
+      ]
+    }
+  },
+  "round": 1,
+  "round_accounting": {
+    "consumed": 1,
+    "maximum": 3,
+    "next_round_required": true,
+    "round_disposition": "ADVERSE_CANNOT_CHECK",
+    "same_incomplete_macro_language_may_not_be_relabeled_as_round_2": true,
+    "science_status_after_this_round": "OPEN"
+  },
+  "schema": "ORION.ORION01.R11.PyZXFullReduceRound1AdverseResults.v1",
+  "source_binding": {
+    "commit": "dade7d46f193635bbdaefd8fcde837f9449fddc5",
+    "direct_url": "https://github.com/zxcalc/pyzx.git",
+    "requested_revision": "dade7d46f193635bbdaefd8fcde837f9449fddc5",
+    "source_file_manifest_sha256": "8bfc00575dbb26b1e1a62be7eea88a490e5b31130469a69875946600ee3e2e10",
+    "source_files_checked": 16,
+    "version": "0.10.5"
+  },
+  "terminal": "CANNOT_CHECK_MOVE_COMPLETENESS"
+}

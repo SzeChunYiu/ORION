@@ -1,0 +1,43 @@
+{
+  "authority": {
+    "external_independence": false,
+    "journal_authority": false,
+    "novelty": false,
+    "scientific_result": false
+  },
+  "baseline": "PASS",
+  "mutations": [
+    {
+      "mutation": "vendored_source_byte_tamper",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "python_receipt_denominator_tamper",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "rust_control_status_tamper",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "lean_source_binding_tamper",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "lean_execution_commit_tamper",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "positive_terminal_promotion_tamper",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "mutation": "safe_control_vulnerability_relabel_tamper",
+      "status": "REJECTED_AS_REQUIRED"
+    }
+  ],
+  "mutations_rejected": 7,
+  "mutations_total": 7,
+  "schema": "ORION.ORION03.CedarMultiPolicy.HostileReview.v1",
+  "terminal": "ORION03_R1_HOSTILE_MUTATION_REVIEW_PASS"
+}

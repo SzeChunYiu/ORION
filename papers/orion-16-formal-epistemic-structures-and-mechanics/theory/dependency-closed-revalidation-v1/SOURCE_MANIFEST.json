@@ -1,0 +1,32 @@
+{
+  "schema": "ORION.ORION16.DependencyClosedRevalidation.SourceManifest.v1",
+  "paper_id": "ORION-16",
+  "successor_id": "ORION16.DEPENDENCY_CLOSED_REVALIDATION.v1",
+  "authored_date": "2026-08-28",
+  "packet_layout_source": "issue #1608 Mandatory successor packet layout",
+  "candidate_source": {"pull_request": 1617, "section": "Priority A - ORION-16 Dependency-closed selective revalidation"},
+  "repository_base": {"branch_base": "origin/main", "commit": "882b88e3a"},
+  "bound_artifacts": [
+    {"path": "papers/orion-16-formal-epistemic-structures-and-mechanics/CLAIM_LEDGER_V4.md",
+     "sha256": "43eeca8a03ce753b334604315673a8c9700b5c03309743987bf60570f7e4fc2d",
+     "role": "source of claim rows V4.4 (necessary-and-sufficient repair, registered model) and V4.6 (155 / 1055 counts), and of the scope ceiling this packet preserves",
+     "mutated_by_this_packet": false},
+    {"path": "papers/orion-16-formal-epistemic-structures-and-mechanics/formal/mechanized/P6_CERTIFICATE_AS_DEPENDENCY_GRAPH_V2_2026-08-26.json",
+     "sha256": "06d4032dd9fdb417ff5cd0a57f35904598482e6aa3320fa8f2d88a59b9313b16",
+     "role": "mechanized record of the registered five-coordinate model; read for context, NOT imported and NOT used as an input to any computation",
+     "mutated_by_this_packet": false}
+  ],
+  "independently_reproduced_published_counts": [
+    {"figure": "full-revalidation sufficiency witnesses", "published": 155, "reconstructed": 155, "match": true},
+    {"figure": "strict-subset necessity countermodels", "published": 1055, "reconstructed": 1055, "match": true,
+     "decomposition": "5 donors x sum_{D nonempty subset of 5 coordinates} (2^|D| - 1) = 5 x 211"}
+  ],
+  "not_imported": [
+    "formal/check_finite_models.py",
+    "formal/refutation_audit.py",
+    "formal/check_theory_closure_v2.py and v2_1",
+    "any other committed ORION-16 module"
+  ],
+  "excluded_paths": {"papers/orion-16-formal-epistemic-structures-and-mechanics/submission/": "not read, not written, not depended upon"},
+  "frozen_paper_bytes_modified": "NONE"
+}

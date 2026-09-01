@@ -1,0 +1,34 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{Protected matched-budget benchmark}\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Resource regimes}\markdownRendererInterblockSeparator
+{}Each protected item has one hidden requirement:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBeginTight
+\markdownRendererUlItem \markdownRendererCodeSpan{EASY = (0,0)};\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ACCESS = (2,0)};\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{REASON = (0,2)};\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{BOTH = (1,1)}.\markdownRendererUlItemEnd 
+\markdownRendererUlEndTight \markdownRendererInterblockSeparator
+{}Every policy receives total budget \markdownRendererCodeSpan{B=2}. Success is exact: allocated state and reasoning resources must meet both requirements. No arm receives extra budget and unused resource is not retrospectively reassigned.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Held-out families}\markdownRendererInterblockSeparator
+{}The protected split contains \markdownRendererStrongEmphasis{16 held-out families × 512 items}. Family regime proportions vary, while a uniform mixture component prevents degenerate single-regime families. Signal noise \markdownRendererCodeSpan{sigma\markdownRendererUnderscore{}f} ranges from \markdownRendererCodeSpan{0.30} to \markdownRendererCodeSpan{0.80} across families.\markdownRendererInterblockSeparator
+{}All adaptive arms receive the same pre-outcome signals\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{s\markdownRendererUnderscore{}c = c\markdownRendererUnderscore{}req + Normal(0,sigma\markdownRendererUnderscore{}f)}\markdownRendererHardLineBreak
+{}\markdownRendererCodeSpan{s\markdownRendererUnderscore{}r = r\markdownRendererUnderscore{}req + Normal(0,sigma\markdownRendererUnderscore{}f)}.\markdownRendererInterblockSeparator
+{}These signals contain no protected success outcome, verifier result or post-allocation feedback.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Frozen policies}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBeginTight
+\markdownRendererUlItem \markdownRendererCodeSpan{FIXED\markdownRendererUnderscore{}11}: always \markdownRendererCodeSpan{(1,1)}.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ADAPTIVE\markdownRendererUnderscore{}STATE\markdownRendererUnderscore{}ONLY}: choose \markdownRendererCodeSpan{(2,0)} if \markdownRendererCodeSpan{s\markdownRendererUnderscore{}c>=1}, else \markdownRendererCodeSpan{(0,0)}.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ADAPTIVE\markdownRendererUnderscore{}REASON\markdownRendererUnderscore{}ONLY}: choose \markdownRendererCodeSpan{(0,2)} if \markdownRendererCodeSpan{s\markdownRendererUnderscore{}r>=1}, else \markdownRendererCodeSpan{(0,0)}.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{JOINT\markdownRendererUnderscore{}FROZEN}: choose the feasible allocation in \markdownRendererCodeSpan{\markdownRendererLeftBrace{}(0,0),(1,1),(2,0),(0,2)\markdownRendererRightBrace{}} nearest to \markdownRendererCodeSpan{(s\markdownRendererUnderscore{}c,s\markdownRendererUnderscore{}r)} under squared Euclidean distance, with frozen tie order.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ORACLE\markdownRendererUnderscore{}JOINT}: exact hindsight requirement, diagnostic only.\markdownRendererUlItemEnd 
+\markdownRendererUlEndTight \markdownRendererInterblockSeparator
+{}No policy is tuned on protected family outcomes.
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererDocumentEnd

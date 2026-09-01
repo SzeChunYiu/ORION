@@ -1,0 +1,57 @@
+{
+  "claims": [
+    "cycle_a",
+    "cycle_b"
+  ],
+  "expect": {
+    "first_mixing": {
+      "cycle_a": false,
+      "cycle_b": false
+    },
+    "flat_authorized": {
+      "cycle_a": false,
+      "cycle_b": false
+    },
+    "typed_authorized": {
+      "cycle_a": false,
+      "cycle_b": false
+    }
+  },
+  "id": "cedar-multipolicy/unsupported_positive_cycle",
+  "licenses": [
+    "origin"
+  ],
+  "provenance": {
+    "also_proved_in": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/lean/Orion03Round1.lean (unsupported_positive_cycle_is_empty)",
+    "domain": "authorization records with origin attribution",
+    "encoding": "Two claims deriving each other, with no seed label anywhere.",
+    "expectations_from": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/RUST_ADJUDICATION_V1.json",
+    "transcribed_from": "papers/orion-03-typed-merge-falsification/evidence/round1-cedar-multipolicy/rust-adjudicator/src/main.rs (positive_closure, empty seeds)"
+  },
+  "refuted": [],
+  "rules": [
+    {
+      "body": [
+        "cycle_b"
+      ],
+      "cap": "ALL",
+      "head": "cycle_a",
+      "id": "a_from_b"
+    },
+    {
+      "body": [
+        "cycle_a"
+      ],
+      "cap": "ALL",
+      "head": "cycle_b",
+      "id": "b_from_a"
+    }
+  ],
+  "schema": "ORION.TypedMerge.Instance.v1",
+  "seeds": {},
+  "targets": [
+    "cycle_a",
+    "cycle_b"
+  ],
+  "title": "Round 1 origin-witness control: unsupported_positive_cycle"
+}

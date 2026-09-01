@@ -1,6 +1,6 @@
 # Q-paper-02 — Recursive negative-result recovery
 
-**Canonical manuscript:** `MANUSCRIPT_V3_REFINED.md`  
+**Canonical manuscript:** `manuscript/main.tex`  
 **Canonical claim ledger:** `CLAIM_LEDGER_V3.md`  
 **Receipt index:** `RECEIPT_INDEX.md` + `RECEIPT_INDEX_V2.md`  
 **Nearest-work matrix:** `NEAREST_WORK_MATRIX_V3.md`  

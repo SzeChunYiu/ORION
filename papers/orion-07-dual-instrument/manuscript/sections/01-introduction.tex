@@ -2,7 +2,7 @@
 
 When a research system is asked a question whose answer is already known, task success is the natural endpoint. A frontier decision poses a different measurement problem. The system may need to decide which assumption failed, which representation should change, or which experiment should run next before ground truth exists. Repeated sampling from one model can measure self-consistency, but it does not provide an architecturally distinct instrument that can disagree for different reasons.
 
-Q3 defines a benchmark around that gap. The object measured is not whether an LLM is correct and not whether a typed controller is correct. It is whether two different decision procedures, constrained to the same admitted evidence, converge on the same epistemic diagnosis and next action under a protocol frozen before either outcome. Divergence is data, not failure.
+This benchmark defines a benchmark around that gap. The object measured is not whether an LLM is correct and not whether a typed controller is correct. It is whether two different decision procedures, constrained to the same admitted evidence, converge on the same epistemic diagnosis and next action under a protocol frozen before either outcome. Divergence is data, not failure.
 
 The first lane is host-driven and can use an LLM to synthesize a decision, but its evidence-bearing external interactions are captured in content-bound receipts. The second lane uses typed production control modules over a frozen manifest and receipt-transcribed observations; no LLM participates in its decision path. The distinction is architectural rather than absolute: both lanes are constructed inside one programme and share the evidence corpus by design.
 

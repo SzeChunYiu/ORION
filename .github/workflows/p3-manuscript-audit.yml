@@ -3,32 +3,24 @@ name: p3-manuscript-audit
 on:
   pull_request:
     paths:
-      - 'papers/orion-13-global-knowledge-portrait/manuscript/**'
-      - 'papers/orion-13-global-knowledge-portrait/CLAIM_LEDGER_V1.md'
-      - 'papers/orion-13-global-knowledge-portrait/CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md'
-      - 'papers/orion-13-global-knowledge-portrait/SCOPED_PUBLICATION_TRACK_V1.md'
-      - 'papers/orion-13-global-knowledge-portrait/journal_package/**'
-      - 'papers/orion-13-global-knowledge-portrait/evidence/PEER_REVIEW_READY_SCOPED_V1.md'
-      - 'papers/orion-13-global-knowledge-portrait/evidence/method-structure/**'
-      - 'papers/orion-13-global-knowledge-portrait/REPRODUCE.md'
-      - 'papers/orion-13-global-knowledge-portrait/README.md'
+      - 'papers/orion-13-global-knowledge-portrait/**'
       - 'research/publication/publication_status.json'
       - 'tests/test_publication_status.py'
+      - 'tests/test_paper_manuscript_integrity.py'
+      - 'scripts/check_p3_current_package.py'
+      - 'scripts/check_p3_manuscript_claim_surface.py'
+      - 'scripts/write_render_closure_state.py'
       - '.github/workflows/p3-manuscript-audit.yml'
   push:
     branches: [main]
     paths:
-      - 'papers/orion-13-global-knowledge-portrait/manuscript/**'
-      - 'papers/orion-13-global-knowledge-portrait/CLAIM_LEDGER_V1.md'
-      - 'papers/orion-13-global-knowledge-portrait/CLAIM_LEDGER_MANUSCRIPT_MAP_V1.md'
-      - 'papers/orion-13-global-knowledge-portrait/SCOPED_PUBLICATION_TRACK_V1.md'
-      - 'papers/orion-13-global-knowledge-portrait/journal_package/**'
-      - 'papers/orion-13-global-knowledge-portrait/evidence/PEER_REVIEW_READY_SCOPED_V1.md'
-      - 'papers/orion-13-global-knowledge-portrait/evidence/method-structure/**'
-      - 'papers/orion-13-global-knowledge-portrait/REPRODUCE.md'
-      - 'papers/orion-13-global-knowledge-portrait/README.md'
+      - 'papers/orion-13-global-knowledge-portrait/**'
       - 'research/publication/publication_status.json'
       - 'tests/test_publication_status.py'
+      - 'tests/test_paper_manuscript_integrity.py'
+      - 'scripts/check_p3_current_package.py'
+      - 'scripts/check_p3_manuscript_claim_surface.py'
+      - 'scripts/write_render_closure_state.py'
       - '.github/workflows/p3-manuscript-audit.yml'
   workflow_dispatch:
 
@@ -56,149 +48,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-pictures texlive-fonts-recommended poppler-utils
 
-      - name: Audit scoped claim wiring and manuscript inputs
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import json
-          import re
-          import sys
-          from pathlib import Path
-
-          paper = Path('papers/orion-13-global-knowledge-portrait')
-          root = paper / 'manuscript'
-          main_text = (root / 'main.tex').read_text(encoding='utf-8')
-          tex_files = [root / 'main.tex', *sorted((root / 'sections').glob('*.tex'))]
-          text = '\n'.join(path.read_text(encoding='utf-8') for path in tex_files)
-
-          bib_files = []
-          for group in re.findall(r'\\bibliography\{([^}]+)\}', main_text):
-              for stem in group.split(','):
-                  stem = stem.strip()
-                  if stem:
-                      bib_files.append(root / f'{stem}.bib')
-          missing_bib_files = [str(path.relative_to(root)) for path in bib_files if not path.is_file()]
-          bib_text = '\n'.join(path.read_text(encoding='utf-8') for path in bib_files if path.is_file())
-          bib_keys = set(re.findall(r'@\w+\s*\{\s*([^,\s]+)', bib_text))
-
-          cite_keys = set()
-          for group in re.findall(r'\\cite\w*\{([^}]+)\}', text):
-              cite_keys.update(key.strip() for key in group.split(',') if key.strip())
-          missing_cites = sorted(cite_keys - bib_keys)
-
-          missing_inputs = []
-          for target in re.findall(r'\\input\{([^}]+)\}', main_text):
-              path = root / target
-              if not path.suffix:
-                  path = path.with_suffix('.tex')
-              if not path.is_file():
-                  missing_inputs.append(str(path.relative_to(root)))
-
-          labels = re.findall(r'\\label\{([^}]+)\}', text)
-          duplicate_labels = sorted({label for label in labels if labels.count(label) > 1})
-
-          abstract = (root / 'sections' / '00-abstract.tex').read_text(encoding='utf-8')
-          introduction = (root / 'sections' / '10-introduction.tex').read_text(encoding='utf-8')
-          dataset = (root / 'sections' / '40-dataset.tex').read_text(encoding='utf-8')
-          evaluation = (root / 'sections' / '50-evaluation.tex').read_text(encoding='utf-8')
-          conclusion = (root / 'sections' / '08-conclusion.tex').read_text(encoding='utf-8')
-          limitations = (root / 'sections' / '07-limitations.tex').read_text(encoding='utf-8')
-          scoped = (paper / 'SCOPED_PUBLICATION_TRACK_V1.md').read_text(encoding='utf-8')
-
-          claim_errors = []
-          for name, fragment in [('abstract', abstract), ('introduction', introduction), ('conclusion', conclusion)]:
-              if '0.1875' not in fragment or '-0.1875' not in fragment:
-                  claim_errors.append(f'{name}_missing_confirmatory_effect')
-              if '0.125 for flat predicate' in fragment or '$-0.125$' in fragment:
-                  claim_errors.append(f'{name}_still_uses_exploratory_headline')
-          # The headline sections must still carry the evidence boundary. This
-          # used to require the literal `\conststatus{}` macro, which prints the
-          # machine token CANNOT_CHECK -- so satisfying the check meant keeping an
-          # internal identifier in the abstract and the conclusion, which is
-          # exactly backwards. What has to survive is the distinction, not the
-          # token: an outcome that could not be determined is reported separately
-          # from one determined to be false. tests/test_paper_manuscript_integrity
-          # already made that move for the manuscript-wide check; this imports its
-          # predicate rather than copying it, so the two cannot drift apart, and
-          # applies it per headline section, which is stricter than the
-          # manuscript-wide form. Either accepted form passes; a section that
-          # quietly drops the boundary passes neither.
-          sys.path.insert(0, 'tests')
-          from test_paper_manuscript_integrity import _states_the_three_valued_boundary
-
-          for name, fragment in [('abstract', abstract), ('conclusion', conclusion)]:
-              token = 'CANNOT\\_CHECK' in fragment or '\\conststatus{}' in fragment
-              if token or _states_the_three_valued_boundary(fragment):
-                  continue
-              claim_errors.append(f'{name}_missing_evidence_boundary')
-          if 'has not been executed' not in limitations:
-              claim_errors.append('limitations_do_not_mark_broad_study_unexecuted')
-          if 'ORION-13.C7' not in scoped or 'ORION-13.C8' not in scoped:
-              claim_errors.append('scoped_track_missing_nonclaim_ids')
-
-          forbidden_executed_broad_claims = {
-              'introduction': [
-                  'independently annotated gold dataset spanning four disciplines',
-                  'gold study is designed to test',
-              ],
-              'dataset': [
-                  'The released manifest is \\texttt{SEED}',
-                  'Final gold replaces these',
-                  'all 32 samples annotated and adjudicated',
-              ],
-              'evaluation': [
-                  'same gold dataset',
-                  'five stochastic seeds',
-                  'deepseek-v4-pro',
-                  'Six baselines are implemented',
-                  'Eight ablations are implemented',
-                  'Seventeen metrics are computed per run',
-              ],
-          }
-          for name, phrases in forbidden_executed_broad_claims.items():
-              fragment = {'introduction': introduction, 'dataset': dataset, 'evaluation': evaluation}[name]
-              for phrase in phrases:
-                  if phrase in fragment:
-                      claim_errors.append(f'{name}_reintroduces_unexecuted_broad_claim:{phrase}')
-
-          forbidden_removed_keys = {
-              'adias2026',
-              'raghunathan2022stance',
-              'liu2022scholar',
-              'oh2017unified',
-              'sebastian2017measurement',
-              'chang2012',
-              'swanson1990',
-          }
-          stale_keys = sorted((cite_keys | bib_keys) & forbidden_removed_keys)
-          if stale_keys:
-              claim_errors.append('stale_or_invalid_reference_keys:' + ','.join(stale_keys))
-
-          report = {
-              'schema_version': 'orion.p3.manuscript-static-audit.v3',
-              'tex_files_scanned': len(tex_files),
-              'bibliography_files': [str(path.relative_to(root)) for path in bib_files],
-              'bibliography_entries': len(bib_keys),
-              'citation_keys_used': len(cite_keys),
-              'missing_bibliography_files': missing_bib_files,
-              'missing_citation_keys': missing_cites,
-              'missing_input_files': missing_inputs,
-              'duplicate_labels': duplicate_labels,
-              'claim_errors': claim_errors,
-          }
-          Path('/tmp/p3-manuscript-audit.json').write_text(
-              json.dumps(report, indent=2, sort_keys=True) + '\n', encoding='utf-8'
-          )
-          print('P3_MANUSCRIPT_STATIC_AUDIT=' + json.dumps(report, sort_keys=True))
-          if missing_bib_files or missing_cites or missing_inputs or duplicate_labels or claim_errors:
-              raise SystemExit(1)
-          PY
+      - name: Audit scoped structure and bounded claim surface
+        run: python scripts/check_p3_manuscript_claim_surface.py
 
       - name: Verify tracked journal package checksums
         working-directory: papers/orion-13-global-knowledge-portrait
         run: sha256sum -c journal_package/SHA256SUMS
 
-      - name: Compile canonical scoped PDF
+      - name: Compile canonical scoped PDF deterministically
         working-directory: papers/orion-13-global-knowledge-portrait/manuscript
         run: |
           set -euo pipefail
@@ -208,76 +65,30 @@ jobs:
             echo 'Unresolved or duplicate LaTeX reference/citation remains after convergence.' >&2
             exit 1
           fi
-          pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
-
-      - name: Verify current rebuild and superseded historical package authority
-        run: |
-          set -euo pipefail
-          rebuilt='papers/orion-13-global-knowledge-portrait/manuscript/main.pdf'
-          tracked='papers/orion-13-global-knowledge-portrait/journal_package/manuscript.pdf'
-          test -s "$rebuilt"
-          test -s "$tracked"
+          rebuilt=main.pdf
           pdftotext "$rebuilt" /tmp/p3-rebuilt.txt
           test -s /tmp/p3-rebuilt.txt
+          pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
+
+      - name: Verify historical package boundary and current final package
+        run: |
+          set -euo pipefail
           python scripts/write_render_closure_state.py --check
           python - <<'PY'
-          import hashlib
           import json
           from pathlib import Path
-
-          package = Path('papers/orion-13-global-knowledge-portrait/journal_package')
-          manifest = json.loads((package / 'MANIFEST.json').read_text(encoding='utf-8'))
-          state = json.loads((package / 'RENDER_CLOSURE_STATE.json').read_text(encoding='utf-8'))
-          authority = manifest.get('package_authority') or {}
-          binding = manifest.get('render_binding') or {}
-          errors = []
-
-          expected_markers = [
-              (manifest, "package_status", "SUPERSEDED"),
-              (authority, "current_submission_authorized", False),
-              (authority, "historical_pdf_role", "EARLIER_INSPECTED_RECORD_ONLY"),
-              (binding, "binding_status", "HISTORICAL_SUPERSEDED"),
-              (binding, "current_revision_binding", False),
-              (state, "state", "SUPERSEDED"),
-              (state, "evidence", "RENDERED_PDF"),
-          ]
-          for record, key, expected in expected_markers:
-              if record.get(key) != expected:
-                  errors.append(f'{key} must be {expected!r}, got {record.get(key)!r}')
-
-          historical_pdf = package / 'manuscript.pdf'
-          historical_sha = hashlib.sha256(historical_pdf.read_bytes()).hexdigest()
-          if binding.get('historical_pdf_sha256') != historical_sha:
-              errors.append('historical PDF digest drifted from render_binding')
-          if binding.get('historical_pdf_pages') != state.get('packaged_pdf_pages'):
-              errors.append('historical PDF page count drifted from render-closure state')
-
-          claims = {
-              claim.get('id'): claim
-              for claim in manifest.get('claims', [])
-              if isinstance(claim, dict)
-          }
-          historical_claim = claims.get('P3.PDF') or {}
-          if (
-              historical_claim.get('status') != 'BOUNDED'
-              or historical_claim.get('lifecycle') != 'HISTORICAL_IMMUTABLE'
-              or historical_claim.get('current_claim') is not False
-          ):
-              errors.append('P3.PDF must remain bounded historical immutable evidence')
-          current_claim = claims.get('P3.CURRENT_PACKAGE') or {}
-          if (
-              current_claim.get('status') != 'OPEN'
-              or current_claim.get('current_claim') is not True
-              or current_claim.get('artifacts') != []
-          ):
-              errors.append('P3.CURRENT_PACKAGE must remain an unsupported active OPEN claim')
-
-          if errors:
-              for error in errors:
-                  print(f'P3_SUPERSEDED_AUTHORITY_ERROR: {error}')
-              raise SystemExit(1)
-          print('P3_HISTORICAL_PACKAGE_SUPERSEDED_CURRENT_BUILD_INSPECTED')
+          root = Path("papers/orion-13-global-knowledge-portrait")
+          manifest = json.loads((root / "journal_package/MANIFEST.json").read_text())
+          render = json.loads((root / "journal_package/RENDER_CLOSURE_STATE.json").read_text())
+          assert ("package_status", "SUPERSEDED") in manifest.items()
+          assert ("current_submission_authorized", False) in manifest.get("package_authority", {}).items()
+          assert ("binding_status", "HISTORICAL_SUPERSEDED") in manifest.get("render_binding", {}).items()
+          assert ("current_revision_binding", False) in manifest.get("render_binding", {}).items()
+          assert ("state", "SUPERSEDED") in render.items()
+          print("P3_HISTORICAL_PACKAGE_SUPERSEDED_CURRENT_BUILD_INSPECTED")
           PY
+          python scripts/check_p3_current_package.py
+          python scripts/check_publication_closure.py ORION-13
 
       - name: Verify package and publication scoreboard
         run: |
@@ -293,7 +104,6 @@ jobs:
           retention-days: 30
           if-no-files-found: error
           path: |
-            /tmp/p3-manuscript-audit.json
             /tmp/p3-pdfinfo.txt
             papers/orion-13-global-knowledge-portrait/manuscript/main.pdf
             papers/orion-13-global-knowledge-portrait/manuscript/main.log

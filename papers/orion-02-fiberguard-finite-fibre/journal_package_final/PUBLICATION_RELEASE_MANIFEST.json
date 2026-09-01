@@ -1,0 +1,158 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "reader-pdf",
+      "byte_count": 90300,
+      "path": "submission/When_a_Representation_Can_Certify.pdf",
+      "role": "reader_manuscript",
+      "sha256": "sha256:aeb0ec1b091fc5de7defaeb83b4043657627c2d07519f660940be692d121cfae"
+    },
+    {
+      "artifact_id": "arxiv-reader-pdf",
+      "byte_count": 89750,
+      "path": "submission/When_a_Representation_Can_Certify_arxiv.pdf",
+      "role": "reader_manuscript",
+      "sha256": "sha256:4b72b2fa0340b9bfaa257288f1474d4f3b56bfc80c1cdbe8a809214425de3d88"
+    },
+    {
+      "artifact_id": "research-integrity-ledger",
+      "byte_count": 134749,
+      "path": "RESEARCH_INTEGRITY_LEDGER.json",
+      "role": "claim_ledger",
+      "sha256": "sha256:749466f097648897d139b4dbc72f85c84dad6ef26519e83ebe2866787311a6f8"
+    },
+    {
+      "artifact_id": "canonical-markdown-source",
+      "byte_count": 24203,
+      "path": "MANUSCRIPT.md",
+      "role": "manuscript_source",
+      "sha256": "sha256:e064e8fbce6fb536358d6711b085e48f4a31387a4617367e75070527e4c53d69"
+    },
+    {
+      "artifact_id": "scientific-claim-ledger",
+      "byte_count": 12649,
+      "path": "CLAIM_LEDGER.md",
+      "role": "release_receipt",
+      "sha256": "sha256:4024ac85d311bcab857c3a0a64c970b2f31256a100c205fdbd44a032ce318175"
+    },
+    {
+      "artifact_id": "atomic-claim-inventory",
+      "byte_count": 33168,
+      "path": "ATOMIC_CLAIM_INVENTORY.json",
+      "role": "release_receipt",
+      "sha256": "sha256:aed9dfa68020473ee0cb7cb275f73024b6f57bdb07d37cd633c67342c83eb68f"
+    },
+    {
+      "artifact_id": "tmlr-source-archive",
+      "byte_count": 18813,
+      "path": "submission/When_a_Representation_Can_Certify_tmlr_source.zip",
+      "role": "submission_component",
+      "sha256": "sha256:a7a6d712942ffe1c8076da3d8af4b7bc44af40aa0dfb638ebcc68bd320339f32"
+    },
+    {
+      "artifact_id": "arxiv-source-archive",
+      "byte_count": 18843,
+      "path": "submission/When_a_Representation_Can_Certify_arxiv_source.zip",
+      "role": "submission_component",
+      "sha256": "sha256:e66e7ebf5610d1443333d04873eb2a4f2d6597ee59de3e379a6cd5095daae639"
+    },
+    {
+      "artifact_id": "anonymous-supplement",
+      "byte_count": 119620,
+      "path": "submission/When_a_Representation_Can_Certify_supplementary_anonymous.zip",
+      "role": "reproducibility_component",
+      "sha256": "sha256:703c35bcaf9bb3ea5df346d675b7527adc58ca4c5ad71ac55bd7f88bc7184afe"
+    },
+    {
+      "artifact_id": "reader-latex-source",
+      "byte_count": 23694,
+      "path": "submission/When_a_Representation_Can_Certify.tex",
+      "role": "manuscript_source",
+      "sha256": "sha256:062f739fa83f2940144e3fb4c8711507b8311b4b712c31a6b62f488a6b37accb"
+    },
+    {
+      "artifact_id": "arxiv-latex-source",
+      "byte_count": 23709,
+      "path": "submission/When_a_Representation_Can_Certify_arxiv.tex",
+      "role": "manuscript_source",
+      "sha256": "sha256:5c03d5fa7f63964884ebbfc9d5805ecaf7145c824cf844d97f74298e3f8a75ed"
+    }
+  ],
+  "authority": {
+    "claim_ledger_artifact_id": "research-integrity-ledger",
+    "manuscript_artifact_id": "reader-pdf",
+    "manuscript_id": "ORION-02-TMLR-20260831"
+  },
+  "canonical_paper_id": "ORION-02",
+  "manuscript_candidates": [
+    {
+      "artifact_id": "reader-pdf",
+      "disposition": "authoritative",
+      "manuscript_id": "ORION-02-TMLR-20260831",
+      "reason": "Exact anonymous reader-facing PDF governing the TMLR review package.",
+      "sha256": "sha256:aeb0ec1b091fc5de7defaeb83b4043657627c2d07519f660940be692d121cfae"
+    },
+    {
+      "artifact_id": "arxiv-reader-pdf",
+      "disposition": "excluded_incompatible",
+      "manuscript_id": "ORION-02-ARXIV-20260831",
+      "reason": "Identified public arXiv rendering of the identical scientific body; it is intentionally excluded from the anonymous TMLR release package and does not compete with that route's reader authority.",
+      "sha256": "sha256:4b72b2fa0340b9bfaa257288f1474d4f3b56bfc80c1cdbe8a809214425de3d88"
+    },
+    {
+      "disposition": "historical_provenance",
+      "manuscript_id": "ORION-02-V3-EDITABLE-SOURCE",
+      "reason": "Canonical editable scientific source bound to the PDF; it is not a competing reader artifact.",
+      "sha256": "sha256:e064e8fbce6fb536358d6711b085e48f4a31387a4617367e75070527e4c53d69"
+    },
+    {
+      "disposition": "historical_provenance",
+      "manuscript_id": "ORION-02-V3-PACKAGE-SOURCE",
+      "reason": "Byte-identical package copy of the canonical editable source; not a separate authority.",
+      "sha256": "sha256:e064e8fbce6fb536358d6711b085e48f4a31387a4617367e75070527e4c53d69"
+    },
+    {
+      "disposition": "historical_provenance",
+      "manuscript_id": "ORION-02-V3-TMLR-LATEX",
+      "reason": "Editable target-specific source from which the authoritative reader PDF is built.",
+      "sha256": "sha256:062f739fa83f2940144e3fb4c8711507b8311b4b712c31a6b62f488a6b37accb"
+    },
+    {
+      "disposition": "superseded",
+      "manuscript_id": "ORION-02-V2",
+      "reason": "Earlier manuscript retained only as development provenance.",
+      "sha256": "sha256:a5a7abc0adcdf1c562b41ccceb32f3cd0bdd337cdad3ad935955dc13b0292269",
+      "superseded_by": "ORION-02-TMLR-20260831"
+    },
+    {
+      "disposition": "superseded",
+      "manuscript_id": "ORION-02-V3-PIPELINE-DRAFT",
+      "reason": "Repository-facing pipeline draft excluded from the journal upload set.",
+      "sha256": "sha256:884b5ab163111c8b8ac5b1f037e885fc8bb30f6f0e4d8dccb5f325c1dcdf1b5d",
+      "superseded_by": "ORION-02-TMLR-20260831"
+    },
+    {
+      "disposition": "superseded",
+      "manuscript_id": "ORION-02-HISTORICAL-SUBMISSION-PDF",
+      "reason": "Historical predecessor rendering with a different title and superseded scientific surface.",
+      "sha256": "sha256:95bf2c379e989b480e1233834ddbb16b388c3940a9aced2760fcb965a567bdc2",
+      "superseded_by": "ORION-02-TMLR-20260831"
+    }
+  ],
+  "package": {
+    "format": "file_set",
+    "members": [
+      {
+        "artifact_id": "reader-pdf",
+        "member_path": "submission/When_a_Representation_Can_Certify.pdf"
+      },
+      {
+        "artifact_id": "anonymous-supplement",
+        "member_path": "submission/When_a_Representation_Can_Certify_supplementary_anonymous.zip"
+      }
+    ]
+  },
+  "release_id": "ORION-02-TMLR-PUBLICATION-CLOSURE-20260831",
+  "requested_state": "submission_ready",
+  "schema_version": "1.0"
+}

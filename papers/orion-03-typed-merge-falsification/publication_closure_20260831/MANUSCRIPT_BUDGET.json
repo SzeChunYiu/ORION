@@ -1,0 +1,254 @@
+{
+  "constraints": [
+    {
+      "actual": 217,
+      "constraint_id": "abstract-max",
+      "count_rule": "Released abstract scanner tokenization; unstructured abstract.",
+      "limit": 250,
+      "source_ref": "jar-guidelines",
+      "status": "within",
+      "strength": "hard",
+      "surface": "abstract",
+      "unit": "words"
+    },
+    {
+      "actual": 6,
+      "constraint_id": "keyword-max",
+      "count_rule": "YAML keyword list entries.",
+      "limit": 6,
+      "source_ref": "jar-guidelines",
+      "status": "within",
+      "strength": "hard",
+      "surface": "keywords",
+      "unit": "items"
+    },
+    {
+      "actual": 2,
+      "constraint_id": "heading-depth",
+      "count_rule": "Distinct manuscript heading levels before declarations.",
+      "limit": 3,
+      "source_ref": "jar-guidelines",
+      "status": "within",
+      "strength": "hard",
+      "surface": "heading levels",
+      "unit": "items"
+    },
+    {
+      "actual": 14,
+      "constraint_id": "main-text-pages",
+      "count_rule": "PDF page count recorded for QA only; no hard JAR page limit was located.",
+      "limit": null,
+      "source_ref": "jar-guidelines",
+      "status": "within",
+      "strength": "none_stated",
+      "surface": "rendered manuscript",
+      "unit": "pages"
+    },
+    {
+      "actual": 4881,
+      "constraint_id": "main-text-words",
+      "count_rule": "Released narrative scanner body count; no hard JAR main-text word limit was located.",
+      "limit": null,
+      "source_ref": "jar-guidelines",
+      "status": "within",
+      "strength": "none_stated",
+      "surface": "main manuscript body",
+      "unit": "words"
+    }
+  ],
+  "manuscript_id": "ORION-03-JAR-20260831",
+  "release": {
+    "decision": "PASS",
+    "notes": [
+      "No hard total word/page limit was invented.",
+      "All central sections passed zero-context and craftsmanship review."
+    ],
+    "reviewed_at": "2026-08-31T18:30:00+02:00"
+  },
+  "reserve": {
+    "actual": null,
+    "expected_revision": false,
+    "planned": null,
+    "rationale": "No binding total word/page limit was located; revision capacity is governed by functional sufficiency and exact claim boundaries rather than an invented quota.",
+    "unit": "none"
+  },
+  "schema_version": "1.0.0",
+  "sections": [
+    {
+      "actual": 470,
+      "claim_ids": [],
+      "overflow_route": "Move only non-inference-critical detail to the artifact or support material; do not delete adverse evidence.",
+      "priority": "P1",
+      "reader_question": "Does this section perform its declared scientific function for a zero-context reader?",
+      "scientific_function": "Introduction",
+      "section_id": "s01",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Introduction",
+      "unit": "words"
+    },
+    {
+      "actual": 474,
+      "claim_ids": [],
+      "overflow_route": "Move only non-inference-critical detail to the artifact or support material; do not delete adverse evidence.",
+      "priority": "P2",
+      "reader_question": "Does this section perform its declared scientific function for a zero-context reader?",
+      "scientific_function": "Related work and contribution boundary",
+      "section_id": "s02",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Related work and contribution boundary",
+      "unit": "words"
+    },
+    {
+      "actual": 753,
+      "claim_ids": [],
+      "overflow_route": "Move only non-inference-critical detail to the artifact or support material; do not delete adverse evidence.",
+      "priority": "P1",
+      "reader_question": "Does this section perform its declared scientific function for a zero-context reader?",
+      "scientific_function": "Finite typed authority system",
+      "section_id": "s03",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Finite typed authority system",
+      "unit": "words"
+    },
+    {
+      "actual": 535,
+      "claim_ids": [],
+      "overflow_route": "Move only non-inference-critical detail to the artifact or support material; do not delete adverse evidence.",
+      "priority": "P0",
+      "reader_question": "Does this section perform its declared scientific function for a zero-context reader?",
+      "scientific_function": "Nonpromotion, cycles, and retraction",
+      "section_id": "s04",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Nonpromotion, cycles, and retraction",
+      "unit": "words"
+    },
+    {
+      "actual": 417,
+      "claim_ids": [],
+      "overflow_route": "Move only non-inference-critical detail to the artifact or support material; do not delete adverse evidence.",
+      "priority": "P0",
+      "reader_question": "Does this section perform its declared scientific function for a zero-context reader?",
+      "scientific_function": "Executable semantics and evaluation design",
+      "section_id": "s05",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Executable semantics and evaluation design",
+      "unit": "words"
+    },
+    {
+      "actual": 860,
+      "claim_ids": [],
+      "overflow_route": "Move only non-inference-critical detail to the artifact or support material; do not delete adverse evidence.",
+      "priority": "P1",
+      "reader_question": "Does this section perform its declared scientific function for a zero-context reader?",
+      "scientific_function": "Empirical instantiations",
+      "section_id": "s06",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Empirical instantiations",
+      "unit": "words"
+    },
+    {
+      "actual": 412,
+      "claim_ids": [],
+      "overflow_route": "Move only non-inference-critical detail to the artifact or support material; do not delete adverse evidence.",
+      "priority": "P0",
+      "reader_question": "Does this section perform its declared scientific function for a zero-context reader?",
+      "scientific_function": "Discussion",
+      "section_id": "s07",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Discussion",
+      "unit": "words"
+    },
+    {
+      "actual": 189,
+      "claim_ids": [],
+      "overflow_route": "Move only non-inference-critical detail to the artifact or support material; do not delete adverse evidence.",
+      "priority": "P1",
+      "reader_question": "Does this section perform its declared scientific function for a zero-context reader?",
+      "scientific_function": "Limitations",
+      "section_id": "s08",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Limitations",
+      "unit": "words"
+    },
+    {
+      "actual": 136,
+      "claim_ids": [],
+      "overflow_route": "Move only non-inference-critical detail to the artifact or support material; do not delete adverse evidence.",
+      "priority": "P1",
+      "reader_question": "Does this section perform its declared scientific function for a zero-context reader?",
+      "scientific_function": "Reproducibility",
+      "section_id": "s09",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Reproducibility",
+      "unit": "words"
+    },
+    {
+      "actual": 136,
+      "claim_ids": [],
+      "overflow_route": "Move only non-inference-critical detail to the artifact or support material; do not delete adverse evidence.",
+      "priority": "P1",
+      "reader_question": "Does this section perform its declared scientific function for a zero-context reader?",
+      "scientific_function": "Conclusion",
+      "section_id": "s10",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Conclusion",
+      "unit": "words"
+    },
+    {
+      "actual": 212,
+      "claim_ids": [],
+      "overflow_route": "Move only non-inference-critical detail to the artifact or support material; do not delete adverse evidence.",
+      "priority": "P2",
+      "reader_question": "Does this section perform its declared scientific function for a zero-context reader?",
+      "scientific_function": "Statements and Declarations",
+      "section_id": "s11",
+      "soft_max": null,
+      "soft_min": null,
+      "status": "within_budget",
+      "title": "Statements and Declarations",
+      "unit": "words"
+    }
+  ],
+  "sources": [
+    {
+      "accessed_at": "2026-08-31",
+      "source_id": "jar-guidelines",
+      "supports": [
+        "abstract-max",
+        "keyword-max",
+        "heading-depth",
+        "main-text-pages",
+        "main-text-words"
+      ],
+      "title": "Journal of Automated Reasoning submission guidelines",
+      "url": "https://link.springer.com/journal/10817/submission-guidelines"
+    }
+  ],
+  "target": {
+    "article_type": "Original research article",
+    "as_of": "2026-08-31",
+    "budget_basis": "mixed",
+    "stage": "initial_submission",
+    "venue": "Journal of Automated Reasoning"
+  }
+}

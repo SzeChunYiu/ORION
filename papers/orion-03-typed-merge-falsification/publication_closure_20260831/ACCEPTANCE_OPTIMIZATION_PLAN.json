@@ -1,0 +1,130 @@
+{
+  "blockers": [
+    {
+      "class": "scientific_blocker",
+      "id": "scientific-contradiction",
+      "resolution_test": "Independent formal and claim-evidence review finds no contradiction at the declared scope.",
+      "status": "closed"
+    },
+    {
+      "class": "integrity_ethics",
+      "id": "package-integrity",
+      "resolution_test": "Final hashes, archive memberships, rights, references, and research-integrity ledger verify.",
+      "status": "closed"
+    }
+  ],
+  "levers": [
+    {
+      "action": "Bind every formal, empirical, negative, and availability claim to the exact final PDF and retained receipts.",
+      "closure_test": "Checksum-bound independent atomic-claim coverage and research-integrity verification pass.",
+      "decision_axis": "science_integrity",
+      "enforcement": "hard_gate",
+      "evidence_grade": "MANUSCRIPT_INTERNAL",
+      "id": "science-integrity",
+      "scientific_effect": "corrects_error",
+      "source_urls": [],
+      "stage": "evidence_maturation",
+      "status": "satisfied"
+    },
+    {
+      "action": "Present only the evidence-license/nonpromotion residual and explicitly credit donor fields.",
+      "closure_test": "No generic fixed-point, provenance, causality, belief-revision, security, or deployment novelty claim remains.",
+      "decision_axis": "contribution_novelty",
+      "enforcement": "hard_gate",
+      "evidence_grade": "D",
+      "id": "bounded-novelty",
+      "scientific_effect": "narrows_or_removes_claim",
+      "source_urls": [
+        "https://link.springer.com/journal/10817/aims-and-scope"
+      ],
+      "stage": "target_fit",
+      "status": "satisfied"
+    },
+    {
+      "action": "Frame the paper as finite formal semantics plus executable automated-reasoning evaluation.",
+      "closure_test": "Venue contract and manuscript scope language agree.",
+      "decision_axis": "scope",
+      "enforcement": "hard_gate",
+      "evidence_grade": "D",
+      "id": "scope-fit",
+      "scientific_effect": "improves_target_fit",
+      "source_urls": [
+        "https://link.springer.com/journal/10817/aims-and-scope"
+      ],
+      "stage": "target_fit",
+      "status": "satisfied"
+    },
+    {
+      "action": "Provide exact editable source, PDF, artifact, declarations, rights, manifests, checksums, and sole-authority disposition.",
+      "closure_test": "Release verifier passes twice in a clean environment and all PDF pages pass visual QA.",
+      "decision_axis": "reporting_compliance",
+      "enforcement": "hard_gate",
+      "evidence_grade": "D",
+      "id": "submission-package",
+      "scientific_effect": "improves_reporting",
+      "source_urls": [
+        "https://link.springer.com/journal/10817/submission-guidelines",
+        "https://www.springernature.com/gp/authors/campaigns/latex-author-support"
+      ],
+      "stage": "submission_package",
+      "status": "satisfied"
+    },
+    {
+      "action": "Apply the released academic-writing, section-craftsmanship, standalone-reader, narrative, and manuscript-surface gates.",
+      "closure_test": "All automated scanners pass or have exact contextual dispositions, and hostile review has no unresolved repair.",
+      "decision_axis": "writing_explanation",
+      "enforcement": "hard_gate",
+      "evidence_grade": "MANUSCRIPT_INTERNAL",
+      "id": "reader-clarity",
+      "scientific_effect": "clarifies_existing_evidence",
+      "source_urls": [],
+      "stage": "desk_preflight",
+      "status": "satisfied"
+    }
+  ],
+  "objective": "fixed_target_decision_readiness",
+  "public_review_history": {
+    "accepted_case_count": 0,
+    "notes": "No public review history was used as an acceptance heuristic.",
+    "rejected_or_rejection_evidence_count": 0,
+    "survivorship_warning_recorded": false,
+    "used": false
+  },
+  "registered_report": {
+    "availability": "unknown",
+    "eligibility": "not_eligible",
+    "notes": "Results have already been accessed; no retrospective Stage 1 status is claimed.",
+    "official_policy_url": "https://link.springer.com/journal/10817/submission-guidelines",
+    "stage1_quality_controls_defined": null
+  },
+  "release_state": "decision_ready_but_editorial_outcome_uncertain",
+  "schema_version": "1.0.0",
+  "study_state": "pre_submission",
+  "target": {
+    "article_type": "Original research article",
+    "as_of_date": "2026-08-31",
+    "exact_venue": "Journal of Automated Reasoning",
+    "official_policy_urls": [
+      "https://link.springer.com/journal/10817/submission-guidelines",
+      "https://link.springer.com/journal/10817/aims-and-scope",
+      "https://www.springernature.com/gp/authors/campaigns/latex-author-support"
+    ],
+    "policy_state": "resolved_current",
+    "route": "standard_article",
+    "stage": "initial_submission"
+  },
+  "uncontrollable_context": [
+    {
+      "factor": "Real editor judgment, reviewer availability, confidential competing submissions, and legitimate disagreement",
+      "notes": "Cannot be repaired or predicted from the repository-side package.",
+      "source_url": null,
+      "state": "unknown"
+    },
+    {
+      "factor": "Portal filing and corresponding-author confirmation",
+      "notes": "External author action; not a defect in the bound upload package.",
+      "source_url": "https://link.springer.com/journal/10817/submission-guidelines",
+      "state": "known_contextual_risk"
+    }
+  ]
+}

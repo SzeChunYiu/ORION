@@ -1,0 +1,104 @@
+name: paper-render-rebind-article-set
+
+# Render-and-rebind for ORION-16/17/18. These are the last papers that hash-bind
+# a PDF with no way to regenerate it.
+#
+# They were excluded from paper-render-rebind-makefile-set.yml twice over: by its
+# orion-21..24 glob, and by its `[ -f "$d/manuscript/Makefile" ]` guard. All three
+# DO have a paper-root Makefile, but it carries only checker targets and no PDF
+# target, so the guard correctly skipped them.
+#
+# Deliberate differences from the Makefile set:
+#   * no -shell-escape. That flag exists there for gobble.sty and sections/*.md;
+#     these three have neither, and passing it would widen the build surface for
+#     no reason.
+#   * no figure generation and no librsvg2-bin: figures/ and tables/ hold only
+#     .gitkeep and there is no \includegraphics anywhere.
+#   * the overfull-box gate is NOT enabled on this first pass. These preambles
+#     carry \emergencystretch and protrusion-only microtype, i.e. the authors
+#     were already working against overfull boxes, so whether they render clean
+#     is unknown. The run captures main.log as an artifact; the gate is added
+#     once the real state is known rather than guessed.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render-rebind:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install TeX toolchain
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            latexmk texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended lmodern poppler-utils
+
+      - name: Render
+        run: |
+          set -euo pipefail
+          for d in papers/orion-16-* papers/orion-17-* papers/orion-18-*; do
+            [ -f "$d/manuscript/main.tex" ] || continue
+            echo "::group::render $d"
+            ( cd "$d/manuscript" && latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex )
+            LOG="$d/manuscript/main.log"
+            # Citation/reference integrity IS gated: \nocite{*} makes every bib
+            # entry load-bearing and main.bbl is gitignored, so BibTeX must run.
+            ! grep -Eqi 'LaTeX Warning: (Citation .* undefined|Reference .* undefined)|There were undefined references|There were undefined citations' "$LOG"
+            echo "overfull boxes in $d: $(grep -Ec 'Overfull \\hbox|Overfull \\vbox' "$LOG" || true)"
+            echo "::endgroup::"
+          done
+
+      - name: Archive render logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: article-set-render-logs
+          path: papers/orion-1[678]-*/manuscript/main.log
+          if-no-files-found: warn
+
+      - name: Refresh each paper's SHA256SUMS entry for its PDF
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, pathlib
+          for pat in ('orion-16-*', 'orion-17-*', 'orion-18-*'):
+              for d in sorted(pathlib.Path('papers').glob(pat)):
+                  sums, pdf = d / 'SHA256SUMS', d / 'manuscript' / 'main.pdf'
+                  if not (sums.is_file() and pdf.is_file()):
+                      continue
+                  new = hashlib.sha256(pdf.read_bytes()).hexdigest()
+                  out = []
+                  for line in sums.read_text().splitlines():
+                      parts = line.split(None, 1)
+                      if len(parts) == 2 and parts[1].strip() == str(pdf):
+                          out.append(f'{new}  {parts[1]}')
+                      else:
+                          out.append(line)
+                  sums.write_text('\n'.join(out) + '\n')
+                  print(f'{d.name}: pdf digest refreshed')
+          PY
+
+      - name: Commit the rendered PDFs with their checksums
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for d in papers/orion-16-* papers/orion-17-* papers/orion-18-*; do
+            [ -f "$d/manuscript/main.pdf" ] && git add "$d/manuscript/main.pdf" || true
+            [ -f "$d/SHA256SUMS" ] && git add "$d/SHA256SUMS" || true
+          done
+          if git diff --cached --quiet; then
+            echo 'Rendered papers already current.'
+            exit 0
+          fi
+          git commit -m 'chore(papers): render and rebind the article paper set'
+          git push origin "HEAD:${GITHUB_REF_NAME}"

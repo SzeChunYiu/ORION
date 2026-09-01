@@ -1,0 +1,94 @@
+{
+  "author": {
+    "affiliation": "Department of Physics, Stockholm University, Stockholm, Sweden",
+    "affiliation_included": "yes — Quantum is not double-blind and requires attributed submission",
+    "corresponding": true,
+    "email": "sze-chun.yiu@fysik.su.se",
+    "name": "Sze Chun Yiu",
+    "sole_author": true
+  },
+  "claim_boundary_verbatim": {
+    "adverse_runtime_comparison": "A prespecified runtime comparison is adverse: the direct support-two implementation timed out on all six full-subject cells under a 120-second limit, although both solvers agreed on every jointly completed cell.",
+    "scope_limit": "The result is therefore a grammar-specific normal form and algorithmic upper bound, not evidence of faster compilation, hardware benefit, fault-tolerant resource advantage, or general block-encoding optimality.",
+    "source": "abstract, papers/orion-05-tare-expressivity/manuscript/main.pdf p.1"
+  },
+  "declarations": {
+    "acknowledgements": "omitted by author policy",
+    "ai_usage": "Generative AI tools were used for drafting and editing assistance. The author is responsible for all scientific content.",
+    "author_contributions": "Sze Chun Yiu is the sole author and performed all work reported.",
+    "competing_interests": "omitted — venue does not mandate a competing-interests statement in the observed contract",
+    "competing_interests_if_mandated": "The author declares no competing interests.",
+    "data_and_code_availability": "All code, exact counterexamples, and reproduction commands are in the public ORION repository; a review archive is available to anonymous referees on request, as Quantum's observed author guidance requires.",
+    "funding": "omitted — venue does not mandate a funding statement in the observed contract",
+    "funding_if_mandated": "No funding was received for this work.",
+    "policy_source": "papers/SUBMISSION_POLICY_V1.md",
+    "venue_mandate_verification": "Mandatory-declaration set taken from the Quantum contract recorded in editorial/TARGET_POLICY_AND_ARCHETYPE_2026-08-28.md (observed 2026-08-28: author contributions and AI-assistance disclosure required; no competing-interests or funding mandate observed). Not re-verified against the live journal site in this pass."
+  },
+  "filing_status": "NOT FILED — no submission has been made",
+  "grants_authority": "NONE",
+  "human_metadata_outstanding": {
+    "items": [
+      "complete institutional postal address",
+      "ORCID, if applicable",
+      "final author approval of the AI-use disclosure",
+      "confirmation that every rights holder approves submission",
+      "arXiv account/profile identifier",
+      "actual upload and filing confirmation identifier"
+    ],
+    "source": "papers/orion-05-tare-expressivity/submission/HUMAN_METADATA_REQUIRED.md"
+  },
+  "keywords": [
+    "quantum compilation",
+    "Pauli operators",
+    "block encoding",
+    "exact optimization",
+    "normal forms",
+    "support complexity"
+  ],
+  "manuscript_state": {
+    "action_required_before_filing": "rebuild the manuscript with the canonical named author block (papers/AUTHOR_IDENTITY_V1.json latex_author_block) for arXiv and Quantum; Quantum is not double-blind, so an anonymous block must not be filed",
+    "hashed_artifact": "papers/orion-05-tare-expressivity/manuscript/main.pdf",
+    "manuscript_author_block_current": "Anonymous authors",
+    "source_pdf_divergence": "at HEAD a9ba2ead1ab982d2c26d54e8314919a7833d4821 the committed main.tex carries title 'Support-Two Exactness and Regime Geometry of Shared-Tag TARE Compilation' and author 'Working framework draft', which do not match the committed main.pdf; a clean build from source does not reproduce the hashed PDF"
+  },
+  "paper": "ORION-05",
+  "prepared": "2026-08-30",
+  "route": {
+    "arxiv": {
+      "author_block": "named",
+      "cross_lists_proposed": [
+        "cs.DS"
+      ],
+      "cross_lists_status": "proposed; requires author confirmation before posting",
+      "licence": "CC BY 4.0",
+      "primary_category": "quant-ph"
+    },
+    "journal_fallback": {
+      "author_block": "named",
+      "name": "Theoretical Computer Science",
+      "publisher": "Elsevier",
+      "status": "fallback only; venue article contract not independently verified in this pass"
+    },
+    "journal_primary": {
+      "article_type": "original research article",
+      "author_block": "named",
+      "cover_letter_note": "Quantum author guidance observed 2026-08-28 states a cover letter is not necessary; COVER_LETTER.md is supplied anyway.",
+      "cover_letter_required": false,
+      "cover_letter_supplied": true,
+      "licence": "CC BY 4.0",
+      "name": "Quantum",
+      "review_model": "not double-blind",
+      "url": "https://quantum-journal.org"
+    },
+    "order": "arXiv first, then one journal at a time"
+  },
+  "schema": "ORION.FILING_METADATA.v1",
+  "target_fit_status": {
+    "note": "Recorded so the package does not assert Quantum readiness the repo's own editorial ledger denies.",
+    "pipeline_terminal": "scientifically_sound_but_target_mismatch",
+    "quantum_readiness": "significance blocker recorded; not a filing gate",
+    "record_self_label": "that record self-describes as a simulated editorial decision, not external peer review, acceptance, novelty certification or filing authority",
+    "source": "papers/orion-05-tare-expressivity/editorial/TARGET_POLICY_AND_ARCHETYPE_2026-08-28.md"
+  },
+  "title": "Support-Two Normal Forms for a Shared-Tag Pauli Compilation Grammar"
+}

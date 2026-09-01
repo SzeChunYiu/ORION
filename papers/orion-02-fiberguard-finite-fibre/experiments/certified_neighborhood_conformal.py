@@ -43,8 +43,8 @@ HARNESS_PATH = (
 )
 PROTOCOL_PATH = HERE / "CERTIFIED_NEIGHBORHOOD_CONFORMAL_PROTOCOL_V1.md"
 RESULT_DIR = HERE / "results"
-JSON_PATH = RESULT_DIR / "CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V1.json"
-MARKDOWN_PATH = RESULT_DIR / "CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V1.md"
+JSON_PATH = RESULT_DIR / "CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V2.json"
+MARKDOWN_PATH = RESULT_DIR / "CERTIFIED_NEIGHBORHOOD_CONFORMAL_RESULT_V2.md"
 
 
 def env_float(name: str, default: float) -> float:
@@ -188,7 +188,7 @@ def neighborhood_predictor(
     distances = pairwise_distances(phi_query, phi_train)
     neighbour_rows = np.argsort(distances, axis=1, kind="stable")[:, :mu]
     m = regret_train[neighbour_rows].mean(axis=1)
-    d1 = distances[np.arange(len(phi_query)), neighbour_rows[:, 0]]
+    d1 = np.take_along_axis(distances, neighbour_rows[:, :1], axis=1).ravel()
     a_base = np.argmin(m, axis=1)
     return m, d1, a_base
 
@@ -348,6 +348,58 @@ def self_test() -> dict[str, Any]:
             f"self-test failed: hostile control ({hostile_violations}) does "
             f"not exceed honest bound violations ({violations})"
         )
+
+    # Hostile anchor-order control (issue #1495 repair gate): every recorded
+    # d1 / q_hat / coverage value must be invariant to the ORDER of the
+    # anchor rows. Protocol §4 defines d1(x) as the distance to the single
+    # NEAREST anchor; a `distances[:, 0]` regression (distance to anchor
+    # row 0) changes d1 under any non-identity anchor permutation and must
+    # fail here, before any receipt is written.
+    eps_check = float(np.median(bound))
+    covered = bound <= eps_check
+    invariance_orders = {
+        "random": np.random.default_rng(20260828).permutation(n_train),
+        "reversed": np.arange(n_train)[::-1],
+    }
+    for label, order in invariance_orders.items():
+        m_cal_o, d1_cal_o, a_base_cal_o = neighborhood_predictor(
+            train[order], regret_train[order], cal
+        )
+        m_test_o, d1_test_o, a_base_test_o = neighborhood_predictor(
+            train[order], regret_train[order], test
+        )
+        if not (
+            np.array_equal(d1_cal, d1_cal_o)
+            and np.array_equal(d1_test, d1_test_o)
+            and np.allclose(m_cal, m_cal_o, rtol=0.0, atol=1e-9)
+            and np.allclose(m_test, m_test_o, rtol=0.0, atol=1e-9)
+            and np.array_equal(a_base_cal, a_base_cal_o)
+            and np.array_equal(a_base_test, a_base_test_o)
+        ):
+            raise AssertionError(
+                "self-test failed: anchor-row permutation "
+                f"({label}) changed d1/m/a_base — d1 is not the "
+                "nearest-anchor distance"
+            )
+        scores_o = normalized_scores(
+            m_cal_o, d1_cal_o, a_base_cal_o, regret_cal
+        )
+        q_hat_o, _ = conformal_quantile(scores_o, 1.0 - ALPHA)
+        bound_o = m_test_o[np.arange(n_test), a_base_test_o] + q_hat_o * (
+            SIGMA_OFFSET + d1_test_o
+        )
+        covered_o = bound_o <= eps_check
+        if not (
+            math.isclose(q_hat_o, q_hat, rel_tol=1e-12, abs_tol=1e-12)
+            and np.allclose(bound, bound_o, rtol=0.0, atol=1e-9)
+            and np.array_equal(covered, covered_o)
+            and int(np.sum(realized > bound_o + 1e-9)) == violations
+        ):
+            raise AssertionError(
+                "self-test failed: anchor-row permutation "
+                f"({label}) changed q_hat/coverage/violations — recorded "
+                "values must be anchor-order invariant"
+            )
     return {
         "conformal_violations": violations,
         "conformal_violation_rate": violations / n_test,
@@ -356,6 +408,10 @@ def self_test() -> dict[str, Any]:
         "q_hat": q_hat,
         "quantile_receipt": q_receipt,
         "n_test": n_test,
+        "anchor_order_invariance": {
+            "permutations": sorted(invariance_orders),
+            "status": "GREEN",
+        },
         "status": "GREEN",
     }
 

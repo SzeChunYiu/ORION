@@ -1,0 +1,42 @@
+{
+  "arithmetic_check": {
+    "balances": true,
+    "excluded": 1,
+    "parsed": 192,
+    "usable": 191,
+    "usable_plus_excluded": 192
+  },
+  "derived": true,
+  "derived_from": {
+    "ROUND2_RESULTS_V2.json": "4b2ea6360b6af60abfdaadccb8e0d15c87023910da785cacf6bddd408a34a1f6",
+    "SOURCE_BINDING_V2.json": "b4a0072ce85aadd26522946c19c7511ae367f2cde5f820af665eb6b6426a6055",
+    "TASK_MANIFEST_V2.json": "ff54dbd02346d8369a4fa11e71ba179cb74fedfcad8280c97dd47e3dc29e5aff"
+  },
+  "excluded": {
+    "excluded_list_entries": 1,
+    "exclusion_records": [
+      {
+        "missing": [
+          "pc6-cert"
+        ],
+        "name": "failed proxy cert where last CN was added as a multivalue RDN component",
+        "reason": "setup.sh-generated material absent from the tag snapshot"
+      }
+    ],
+    "upstream_rows_excluded_runtime_material": 1
+  },
+  "exclusion_basis": "content-based: a file is vendored iff it contains >=1 CERTIFICATE/TRUSTED-CERTIFICATE/X509-CRL PEM block and no private-key block; runtime-material upstream rows are excluded before task construction",
+  "grants_authority": "NONE",
+  "included": {
+    "tasks_constructed": 1962,
+    "upstream_rows_usable": 191,
+    "vendored_files": 252
+  },
+  "inclusion_rule": "content-based: vendored iff >=1 CERTIFICATE/TRUSTED-CERTIFICATE/X509-CRL PEM block and no private-key block",
+  "independent_cross_check": {
+    "equals_usable": true,
+    "note": "UPSTREAM_TABLE_V2.json is a separately frozen artifact; its row count matching upstream_rows_usable is a check the two were derived consistently.",
+    "upstream_table_rows": 191
+  },
+  "schema": "ORION.INCLUSION_EXCLUSION.v1"
+}

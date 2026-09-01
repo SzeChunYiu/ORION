@@ -1,0 +1,31 @@
+{
+  "branches": 78,
+  "compile_flags": [
+    "-std=gnu11",
+    "-O3",
+    "-march=native",
+    "-Wall",
+    "-Wextra",
+    "-Werror"
+  ],
+  "elapsed_seconds_observational": {
+    "avx": {
+      "count": 78,
+      "max": 496.65678488899994,
+      "sum": 1842.2534863000005
+    },
+    "u128": {
+      "count": 78,
+      "max": 673.941120962,
+      "sum": 2474.6983833249988
+    }
+  },
+  "engine_runs": 156,
+  "host": {
+    "gcc": "gcc (Debian 14.2.0-19) 14.2.0",
+    "logical_cpus": 5,
+    "platform": "Linux-6.18.35-x86_64-with-glibc2.41"
+  },
+  "note": "Elapsed times are observational and are deliberately excluded from the deterministic theorem result digest.",
+  "schema": "ORION.ORION04.GlobalResourceReceipt.v1"
+}

@@ -1,0 +1,47 @@
+{
+  "claims": [
+    "engine-authorizes:ee-cert"
+  ],
+  "expect": {
+    "first_mixing": {
+      "engine-authorizes:ee-cert": true
+    },
+    "flat_authorized": {
+      "engine-authorizes:ee-cert": true
+    },
+    "typed_authorized": {
+      "engine-authorizes:ee-cert": false
+    }
+  },
+  "flat_seeded_claims": [
+    "engine-authorizes:ee-cert"
+  ],
+  "id": "x509-truststore/FU-0379-policy-oracle",
+  "licenses": [
+    "A",
+    "B"
+  ],
+  "provenance": {
+    "committed_verdicts": {
+      "source": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/ROUND2_RESULTS_V2.json hybrid_tasks[FU-0379]",
+      "structural_kind": "POLICY",
+      "vA": false,
+      "vB": false,
+      "vU": true
+    },
+    "domain": "X.509 trust-store merge",
+    "encoded_from": "papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/ROUND2_RESULTS_V2.json and papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/TASK_MANIFEST_V2.json",
+    "note": "This instance derives nothing. It records the engine's per-origin verdicts as seeds and shows what the calculus adds on top of them: the union authorization is not carried by any single origin. 45 of the 46 committed hybrids are of this kind, so the calculus's contribution on them is the typed combination rule, not chain derivation.",
+    "upstream_material": "openssl/openssl @ openssl-3.6.4 test/certs (Apache-2.0)"
+  },
+  "refuted": [],
+  "rules": [],
+  "schema": "ORION.TypedMerge.Instance.v1",
+  "seeds": {
+    "engine-authorizes:ee-cert": []
+  },
+  "targets": [
+    "engine-authorizes:ee-cert"
+  ],
+  "title": "Round 2 POLICY-kind hybrid consumed as an oracle fact"
+}

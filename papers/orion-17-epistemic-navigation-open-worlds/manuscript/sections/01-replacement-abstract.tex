@@ -1,9 +1,9 @@
-\section{Replacement abstract for V4}
+\section*{Abstract}
 
 Scientific navigation already has strong donor mechanisms: sound planning
 abstraction and refinement, counterexample-guided refinement, bidirectional
 transformation and migration, world-model replanning, and terminal-commitment
-frameworks. P7 treats these as reusable navigation transforms and asks how
+frameworks. This paper treats these as reusable navigation transforms and asks how
 task-global scientific closure survives them. The answer is a closure-carrying
 navigation semantics in which a donor-valid transformation carries closure only
 through an explicit obligation witness, and in which heterogeneous transforms
@@ -19,7 +19,7 @@ side conditions are named rather than assumed away: the unit law needs the
 contract test to be reflexive, the equational forms of the laws need
 extensionality, and obligation-totality composition needs containment of
 demanded obligations rather than a registered bridge. One consequence is
-negative and is kept: P7's composition rule is provably \textbf{incomplete against its
+negative and is kept: this paper's composition rule is provably \textbf{incomplete against its
 own obligation semantics}, refusing composites whose contracts demand exactly
 the same obligations when no bridge is registered. It is sound and fail-closed,
 not exact.
@@ -30,7 +30,7 @@ family}: each is a transformation with its own source and target obligation
 contracts, and the intermediate-contract test becomes a function of the two
 transformations and of the registered bridge relation rather than a value
 supplied by the caller. Under three frame conditions, twelve further theorems
-are discharged at arbitrary width, and P7's published 25 composition successes
+are discharged at arbitrary width, and this paper's published 25 composition successes
 and 25 bridge-mismatch countermodels are recomputed by running the committed
 implementation with the hand-off computed rather than typed.
 

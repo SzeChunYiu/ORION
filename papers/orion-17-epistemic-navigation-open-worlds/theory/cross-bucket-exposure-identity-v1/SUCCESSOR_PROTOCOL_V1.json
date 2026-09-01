@@ -1,0 +1,72 @@
+{
+  "schema_version": "orion17.cross-bucket-mechanism-successor.v1",
+  "identity": "ORION17.CROSS_BUCKET_MECHANISM_PROSPECTIVE.v1",
+  "status": "DESIGN_ONLY__NO_PROTECTED_OUTCOME_AUTHORITY",
+  "scientific_authority_delta": "NONE",
+  "parent_density_identity_terminal": "NO_DISCRIMINATION",
+  "source_semantics": {
+    "branch": "shadow/orion17-density-v2-recovery-20260829",
+    "path": "papers/orion-17-epistemic-navigation-open-worlds/transitions/measure_p7_closure_retention_v1.py",
+    "git_blob_sha": "4531c2c0230070f8a8aaf49acabee6bce9633929"
+  },
+  "candidate_family": [
+    {
+      "id": "C0_SAFE",
+      "definition": "cross_bucket_transitive_pair_count == 0",
+      "status": "EXACT_UNIVERSAL_SOUNDNESS_CERTIFICATE_UNDER_INSTRUMENT_SEMANTICS"
+    },
+    {
+      "id": "C1_MAX_EXPOSURE",
+      "definition": "max_c cross_bucket_transitive_reader_count(c)",
+      "status": "PROSPECTIVE_RISK_ORDERING_CANDIDATE"
+    },
+    {
+      "id": "C2_TOTAL_EXPOSURE",
+      "definition": "cross_bucket_transitive_pair_count",
+      "status": "PROSPECTIVE_RISK_ORDERING_CANDIDATE"
+    },
+    {
+      "id": "C3_EXPECTED_EXPOSURE",
+      "definition": "sum_c p_train(c) * cross_bucket_transitive_reader_count(c)",
+      "status": "TRAIN_HISTORY_WEIGHTED_CANDIDATE__PROTECTED_HISTORY_FORBIDDEN"
+    }
+  ],
+  "corpus": {
+    "exclude_historical_campaign_8": true,
+    "exclude_rule_disagreement_v1_20": true,
+    "package_root_must_be_normalized_before_protected_measurement": true,
+    "outcome_blind_layout_equivalence_preflight": true
+  },
+  "protected_outcome": {
+    "instrument_and_parameters_frozen_before_access": true,
+    "false_closure_retention_definition": "retained_invalid count from frozen donor-coarse instrument",
+    "report_preserve": true,
+    "report_reopen": true,
+    "report_unnecessary_reopenings": true,
+    "constant_non_degenerate_outcome_terminal": "CANNOT_CHECK_MECHANISM__OUTCOME_CONSTANT"
+  },
+  "controls": [
+    "flat_vs_src_layout_equivalence_after_root_normalization",
+    "known_zero_cross_bucket_graph_must_certify_C0_SAFE",
+    "synthetic_cross_bucket_singleton_change_must_produce_false_retention",
+    "always_reopen_zero_false_retention_but_zero_preserve_control",
+    "exact_containment_zero_false_retention_control",
+    "bucket-map mutation_must_change_structural_certificate_on_hostile_fixture"
+  ],
+  "anti_leakage": [
+    "no density threshold refit",
+    "no module_or_edge threshold refit",
+    "no protected transition frequencies in C3 training weights",
+    "no repository deletion after protected outcome access",
+    "no conversion of C1_or_C2 performance into support for density_1_5"
+  ],
+  "terminals": [
+    "C0_SAFE_CERTIFICATE_HAS_NONTRIVIAL_EXTERNAL_COVERAGE",
+    "CROSS_BUCKET_RISK_ORDERING_SUPPORTED",
+    "CROSS_BUCKET_RISK_ORDERING_NOT_SUPPORTED",
+    "CANNOT_CHECK_MECHANISM__OUTCOME_CONSTANT",
+    "CANNOT_CHECK_LAYOUT_NORMALIZATION",
+    "CANNOT_CHECK_INSTRUMENT_OR_HISTORY",
+    "ADVERSE_CERTIFICATE_SEMANTICS_DISAGREEMENT"
+  ]
+}

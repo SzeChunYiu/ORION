@@ -1,0 +1,27 @@
+name: top-tier-formal-gap-wave3
+
+on:
+  pull_request:
+    paths:
+      - 'papers/orion-04-rooted-completion-certificates/evidence/d4-proof-handoff-v1/**'
+      - 'papers/orion-19-structured-epistemic-learning/theory/intervention-identifiability-v1/**'
+      - 'papers/publication_closure/TOP_TIER_FORMAL_GAP_WAVE3_2026-08-29.md'
+      - '.github/workflows/top-tier-formal-gap-wave3.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-structural-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: ORION-04 D4 proof handoff contract
+        run: python papers/orion-04-rooted-completion-certificates/evidence/d4-proof-handoff-v1/check_d4_proof_handoff_v1.py
+      - name: ORION-19 intervention identifiability
+        run: python papers/orion-19-structured-epistemic-learning/theory/intervention-identifiability-v1/check_intervention_identifiability_v1.py

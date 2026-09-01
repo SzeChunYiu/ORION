@@ -1,5 +1,12 @@
 # Provenance — vendored `nature-*` paper-writing skills package
 
+## Local positive-feedback extension
+
+`nature-publication-closure/` is an ORION-local extension added on 2026-08-31
+after six-paper closure review exposed recurring authority-precedence,
+denominator, venue-identity and exact-mirror gaps. It does not claim upstream
+provenance and must remain labelled local when the upstream bundle is refreshed.
+
 - **Source repo:** `/Users/billy/nature-skills` (local git checkout)
 - **Pinned revision:** `93bb0f9` (2026-07-03, "Merge pull request #90 …")
 - **Vendored on:** 2026-08-26 by the V1 takeover session, at operator directive:

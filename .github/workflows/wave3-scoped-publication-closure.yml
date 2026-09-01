@@ -1,0 +1,83 @@
+name: Wave 3 scoped publication closure
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/wave3-scoped-publication-closure.yml"
+      - "papers/WAVE3_PORTFOLIO_PUBLICATION_CLOSURE_V1.md"
+      - "papers/WAVE3_PORTFOLIO_PUBLICATION_DISPOSITION_V1.json"
+      - "papers/orion-04-rooted-completion-certificates/WAVE3_*"
+      - "papers/orion-15-self-orion/WAVE3_*"
+      - "papers/orion-24-orion-rse/WAVE3_*"
+      - "papers/orion-15-self-orion/evidence/glm-5.3-attribution-v2/**"
+      - "research/orion-rg/wave3/orion04-support11-13-v1/**"
+      - "tests/unit/publication/test_wave3_scoped_publications.py"
+      - "tests/unit/publication/test_orion15_glm53_bounded_harvest.py"
+      - "tests/research/test_orion04_wave3_m4_packet.py"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/wave3-scoped-publication-closure.yml"
+      - "papers/WAVE3_PORTFOLIO_PUBLICATION_CLOSURE_V1.md"
+      - "papers/WAVE3_PORTFOLIO_PUBLICATION_DISPOSITION_V1.json"
+      - "papers/orion-04-rooted-completion-certificates/WAVE3_*"
+      - "papers/orion-15-self-orion/WAVE3_*"
+      - "papers/orion-24-orion-rse/WAVE3_*"
+      - "papers/orion-15-self-orion/evidence/glm-5.3-attribution-v2/**"
+      - "research/orion-rg/wave3/orion04-support11-13-v1/**"
+      - "tests/unit/publication/test_wave3_scoped_publications.py"
+      - "tests/unit/publication/test_orion15_glm53_bounded_harvest.py"
+      - "tests/research/test_orion04_wave3_m4_packet.py"
+
+permissions:
+  contents: read
+
+jobs:
+  scoped-publication-authority:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install frozen test runtime
+        run: python -m pip install pytest==8.4.2
+      - name: Verify all three scoped papers and inherited evidence
+        run: |
+          python -m pytest -q \
+            tests/unit/publication/test_wave3_scoped_publications.py \
+            tests/unit/publication/test_orion15_glm53_bounded_harvest.py \
+            tests/research/test_orion04_wave3_m4_packet.py
+      - name: Independently enforce portfolio terminals
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path("papers")
+          portfolio = json.loads(
+              (root / "WAVE3_PORTFOLIO_PUBLICATION_DISPOSITION_V1.json").read_text()
+          )
+          expected = {
+              "ORION-04": "ORION04_EXACT_D4_NOT_ESTABLISHED__PAPER_REFRAMED_TO_BOUNDED_STRUCTURAL_RESULT",
+              "ORION-15": "SELF_ORION_PROTECTED_TRANSFER_NOT_ESTABLISHED__GOVERNANCE_THEORY_RETAINED",
+              "ORION-24": "ORION24_EXTERNAL_ACQUISITION_BLOCKED__EXECUTABLE_HANDOFF_COMPLETE",
+          }
+          assert {row["paper"]: row["terminal"] for row in portfolio["papers"]} == expected
+          assert portfolio["portfolio_rules"][
+              "repository_ci_counts_as_external_scientific_independence"
+          ] is False
+          assert portfolio["portfolio_rules"][
+              "protocol_readiness_counts_as_empirical_outcome"
+          ] is False
+          PY
+      - name: Check text and repository cleanliness
+        run: |
+          set -euo pipefail
+          python -m compileall -q tests/unit/publication/test_wave3_scoped_publications.py
+          find tests/unit/publication -type d -name __pycache__ -prune -exec rm -rf {} +
+          test -z "$(find tests/unit/publication -type f \( -name '*.pyc' -o -name '*.pyo' \) -print -quit)"
+          git diff --check
+          git diff --exit-code

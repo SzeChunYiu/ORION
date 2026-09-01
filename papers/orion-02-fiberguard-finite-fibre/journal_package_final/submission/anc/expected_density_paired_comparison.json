@@ -1,0 +1,28 @@
+{
+  "arms": {
+    "control": "STUDY_E_LEXICAL_BACKOFF_K2_NEGATIVE_CONTROL",
+    "geometry": "STUDY_E_HAMMING_BACKOFF_K2"
+  },
+  "bootstrap": {
+    "ci_excludes_zero": false,
+    "ci_lower": -0.3181818181818181,
+    "ci_upper": 0.0,
+    "replicates": 20000,
+    "seed": 20260829
+  },
+  "contingency": {
+    "both": 29,
+    "control_only": 10,
+    "geometry_only": 3,
+    "neither": 2
+  },
+  "control_certified": 39,
+  "discordant_pairs": 13,
+  "frozen_gate": 0.95,
+  "geometry_certified": 32,
+  "interpretation": "The control's higher raw count is not a significant paired difference. Both arms miss the frozen gate, so the round's adverse terminal is unchanged; what changes is that the control comparison must not be reported as decisive on counts alone.",
+  "mcnemar_exact_two_sided_p": 0.09228515625,
+  "n_paired_datasets": 44,
+  "paired_difference_geometry_minus_control": -0.15909090909090906,
+  "schema": "ANON.STUDY_E_CONTROL_PAIRED_TEST.v1"
+}

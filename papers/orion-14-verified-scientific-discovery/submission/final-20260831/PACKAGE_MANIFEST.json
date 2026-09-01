@@ -1,0 +1,81 @@
+{
+  "active_authority": "papers/orion-14-verified-scientific-discovery/PUBLICATION_FREEZE_ADDENDUM_V1.md",
+  "active_authority_sha256": "e02907b3fdd7e0ef015aa3dc6e6628d19291f1508ad127dc0387fa02e848356c",
+  "article_type": "Research article",
+  "blocker_classification": {
+    "current_claim_blocker": false,
+    "human_filing_only": true,
+    "package_blocker": false,
+    "successor_science_only": true
+  },
+  "build_environment": {
+    "latexmk": "Latexmk, John Collins, 31 Jan. 2024. Version 4.83",
+    "pdftex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)",
+    "python": "3.12.13",
+    "uv_lock_sha256": "f48cdb16ee305d2b5f4a3cedf9064bf3e000ac727ca060355f380e27bb34b01c",
+    "xetex": "XeTeX 3.141592653-2.6-0.999995 (TeX Live 2023/Debian)"
+  },
+  "date": "2026-08-31",
+  "identity_policy": "double_blind",
+  "inferential_units": "12 attack-family clusters; case-level interval descriptive",
+  "package_status": "INTERNAL_PACKAGE_VALIDATED__HUMAN_PORTAL_INPUTS_PENDING",
+  "paper": "ORION-14",
+  "payload": {
+    "AI_USE_DISCLOSURE.md": {
+      "bytes": 142,
+      "sha256": "60110d9221535cf107346202e2f1641ca325ad055d469e742659044218d7a5d2"
+    },
+    "DATA_AND_CODE_AVAILABILITY.md": {
+      "bytes": 315,
+      "sha256": "46d6987af119c67f1c8a1f48bf32ed30818a521e533128683d72c2c4b31fb261"
+    },
+    "HUMAN_INPUTS_REQUIRED.md": {
+      "bytes": 296,
+      "sha256": "2acc31eb977afebee895c339ce32fc85b709b6b0a1159eb31ef71599ba0e6370"
+    },
+    "RESULT_RETENTION.md": {
+      "bytes": 350,
+      "sha256": "1da4ab9aaccaa1ddef7d9adde79d49d79f79fab24304266e033e385a2c875c48"
+    },
+    "VENUE_REQUIREMENTS.md": {
+      "bytes": 448,
+      "sha256": "a1d21a8aafc020a52695cd3ff9842d80efc0f5e47471e1428b223630f3eeeae3"
+    },
+    "manuscript.pdf": {
+      "bytes": 596189,
+      "sha256": "a7f5bd11f5fef54b58532a8ef91f9a9a3c76b125fc81f14eb0f03460f4a380c0"
+    },
+    "review_materials.zip": {
+      "bytes": 2427,
+      "sha256": "3dcf6af4a71dfc4253fd28c5967ae480c0c33a574043775d8082658f7b5c288d"
+    },
+    "source.zip": {
+      "bytes": 491657,
+      "sha256": "5812361d6ca2332cafeaf556f0207e24384bc7ade0143dfdea3fee7416e150a6"
+    }
+  },
+  "pdf_pages": 12,
+  "publication_closure_skill": {
+    "path": "papers/skills/nature/nature-publication-closure/SKILL.md",
+    "sha256": "696791f8fba7c5930da0c8d4eea7995f5377bc305606a07299081be57ad73525"
+  },
+  "requirements_accessed": "2026-08-31",
+  "requirements_url": "https://jmlr.org/tmlr/author-guide.html",
+  "schema": "ORION.PublicationClosure.v1",
+  "scientific_authority_delta": "NONE",
+  "skills_applied": [
+    "nature-writing",
+    "nature-polishing",
+    "nature-reviewer",
+    "nature-statistics",
+    "nature-ref-verifier",
+    "nature-publication-closure"
+  ],
+  "terminal": "P4_PROTECTED_AUTHORITY_V2_BOUNDED__H3_NOT_SUPPORTED",
+  "title": "Non-Escalating Scientific Authority under Content-Bound Evidence and Protected Evaluation",
+  "venue": "Transactions on Machine Learning Research",
+  "verifier": {
+    "path": "scripts/check_publication_closure.py",
+    "sha256": "51e477d8ef8258f0a45771765f13f369f731d3f101e0afa5965a4f82db66cb3b"
+  }
+}
