@@ -1,0 +1,35 @@
+{
+  "schema": "ORION.TierA.FinalGateAnalyzers.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49",
+  "protected_outcomes_accessed": false,
+  "purpose": "Make the remaining A2 Phase1/Phase2 and A4 issue stop-go rules executable before protected results, preserving negative/null outcomes without post-hoc gate changes.",
+  "analyzers": {
+    "A2_P12_SCIENCEAGENTBENCH": {
+      "freeze": "papers/orion-22-adaptive-state-reasoning/top_tier/P12_STOPGO_FINAL_ANALYSIS_FREEZE_V1.json",
+      "code": "papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_stopgo_final_v1.py",
+      "primary_unit": "task family",
+      "headline_gate": ">=3 normalized-point family gain + family-bootstrap lower>0 + domain/LODO direction + max regret<=2"
+    },
+    "A2_P11_LONGMEMEVAL": {
+      "freeze": "papers/orion-21-state-as-computation/top_tier/P11_EXTERNAL_FINAL_ANALYSIS_FREEZE_V1.json",
+      "code": "papers/orion-21-state-as-computation/top_tier/analyze_p11_external_final_v1.py",
+      "primary_unit": "frozen task/session block",
+      "headline_gate": "positive-quality bootstrap OR >=2x charged-resource saving at <=2pp quality noninferiority; then no benchmark loss >5pp and modelxbenchmark stability"
+    },
+    "A4_HIDDEN_CAUSE": {
+      "freeze": "papers/publication_closure/a4-hidden-cause-external-v1/FINAL_GATE_ANALYSIS_FREEZE_V1.json",
+      "code": "papers/publication_closure/a4-hidden-cause-external-v1/analyze_final_gate_v1.py",
+      "primary_unit": "eligible base-failure task",
+      "headline_gate": ">=5pp final-success gain + task-bootstrap lower>0 + regret<=0.5x fixed + less false compute + >=75% domain direction + replication + no leakage"
+    }
+  },
+  "global_rules": [
+    "candidate/strongest baseline identities are frozen on development before protected scoring",
+    "hindsight/intervention oracle never enters the primary candidate comparison",
+    "all named required arms remain in result packets even when not used in the headline contrast",
+    "CANNOT_CHECK or missing broad-scope cells cannot be coerced into a passing gate",
+    "negative/null/heterogeneous/replication-negative/leakage-invalid results are terminal for the current preregistration"
+  ],
+  "scientific_authority_delta": "NONE__FINAL_ANALYSIS_PREREGISTRATION_ONLY"
+}
