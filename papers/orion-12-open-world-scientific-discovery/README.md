@@ -17,8 +17,8 @@ read the claims.
 | Claim | Evidence | Authority |
 | --- | --- | --- |
 | Discovery is a separable capability from synthesis, and earned route independence with question-framed retrieval is the candidate contribution | scoped methods/system-design argument in this README and `JOURNAL_READINESS.md` | `PEER_REVIEW_READY` on the bounded methods/critical-system-design claim |
-| ORION's routing and stopping beat a matched external comparator on discovery | four-arm TREC-COVID study, `external/P2_TREC_COVID_ARMS_V1.json`, 50 official topics under one matched budget | **Not established** — treated as post-hoc/descriptive because no separate pre-outcome record binds the exact rule; recall@100 is −0.0177 with bootstrap CI [−0.0273, −0.0091] and reads increase 175.7% |
-| Multi-route exploration improves top-10 quality | same study: nDCG@10 +0.1488, bootstrap CI [+0.1010, +0.1995], ahead on 42/50 topics | favorable descriptive result; does not establish overall superiority against the adverse recall and cost results |
+| ORION's routing and stopping beat a matched external comparator on discovery | four-arm TREC-COVID study, `external/P2_TREC_COVID_ARMS_V1.json`, 50 official topics under one matched budget | **Not established** — treated as post-hoc/descriptive because no separate pre-outcome record binds the exact rule; recall@100 is −0.0177 with bootstrap CI [−0.0273, −0.0091] and reads increase +175.7% |
+| Multi-route exploration improves top-10 quality | same study: nDCG@10 +0.1488, bootstrap CI [+0.1010, +0.1995], ahead on 42/50 topics | nDCG@10 was not a gate criterion and cannot rescue the row above; it remains a favorable descriptive result, not evidence of overall superiority |
 | ORION's own routing terminal on that corpus | two of five routes unavailable: CITATION has no earned seed, RESTRICTED no provider | `CANNOT_CHECK`, and the arm declines completeness on 50/50 topics where both baselines declare it |
 | Scientific RAG, agentic literature search, systematic-review automation, capture-recapture | donor-owned; see the nearest-work boundary below | not claimed as novel |
 

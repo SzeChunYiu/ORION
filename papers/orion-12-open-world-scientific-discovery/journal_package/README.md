@@ -9,7 +9,7 @@
 `90e424cff27f1a1cde8c37d774c3bcf17b7c1d98c0905c2f53e22b8753790fb3`.
 The protected V3 renderer binds its complete tracked TeX input closure in
 `RENDER_INPUT_CLOSURE.json`. `RENDER_CLOSURE_STATE.json`, regenerated from the
-current tree, records that 13 of 31 inputs moved and that the retained PDF is
+current tree, records that 26 of 31 inputs moved and that the retained PDF is
 `SUPERSEDED`. It must not be relabelled or submitted as the current manuscript.
 
 `ORION-12.CURRENT_PACKAGE` is `OPEN`: the current manuscript lacks a fresh immutable

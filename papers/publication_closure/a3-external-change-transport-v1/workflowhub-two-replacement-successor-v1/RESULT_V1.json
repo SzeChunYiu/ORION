@@ -1,0 +1,77 @@
+{
+  "schema": "ORION.A3.WorkflowHubTwoReplacementSuccessorDurableResult.v1",
+  "date": "2026-09-01",
+  "terminal": "WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_CONTENT_BOUND",
+  "source_run": {
+    "workflow_run_id": 33536602521,
+    "artifact_id": 9812210179,
+    "artifact_zip_sha256": "5e1142106e3e8d04b5abe087812c0280871909a9efc920196b7d3a7f9cd6cc5a",
+    "result_json_sha256": "ee174c4ad2078fea806f4de0cc7f0095869b339dc24cc0c942d77c4d0b48e6c7"
+  },
+  "base": {
+    "original_frame_n": 128,
+    "retained_original_n": 126,
+    "excluded_original_workflow_ids": ["402", "444"],
+    "base_normalized_selected_rows_sha256": "2f36f8d5900c904d939e87f7c582281e27445f4045d520754b7b11dcbbc3b882"
+  },
+  "scan": {
+    "trs_tools_seen": 1534,
+    "all_original_128_workflow_ids_excluded_from_replacement_search": true,
+    "selection_rule": "first two passing non-original families in deterministic WorkflowHub id order",
+    "attempts_before_stop_sha256": "9939c3018d76d7a44070ca5931f76df0395a2f425a779c87dc3e3c92f54f7adf",
+    "attempts_before_stop": [
+      {"workflow_id":"41","version_before":1,"version_after":2,"stage":"metadata","status":"REJECTED_PUBLIC_METADATA","reason":"missing licence in version landing metadata"},
+      {"workflow_id":"45","version_before":6,"version_after":7,"stage":"metadata","status":"REJECTED_PUBLIC_METADATA","reason":"missing licence in version landing metadata"},
+      {"workflow_id":"49","version_before":1,"version_after":2,"stage":"metadata","status":"REJECTED_PUBLIC_METADATA","reason":"missing licence in version landing metadata"},
+      {"workflow_id":"98","version_before":1,"version_after":2,"stage":"metadata","status":"REJECTED_PUBLIC_METADATA","reason":"missing licence in version landing metadata"},
+      {"workflow_id":"486","version_before":4,"version_after":5,"stage":"metadata","status":"REJECTED_PUBLIC_METADATA","reason":"missing licence in version landing metadata"},
+      {"workflow_id":"487","version_before":2,"version_after":3,"stage":"metadata","status":"REJECTED_PUBLIC_METADATA","reason":"missing licence in version landing metadata"},
+      {"workflow_id":"488","version_before":2,"version_after":3,"stage":"metadata","status":"REJECTED_PUBLIC_METADATA","reason":"missing licence in version landing metadata"},
+      {"workflow_id":"512","version_before":1,"version_after":2,"stage":"metadata","status":"REJECTED_PUBLIC_METADATA","reason":"missing licence in version landing metadata"},
+      {"workflow_id":"606","version_before":1,"version_after":2,"stage":"metadata","status":"REJECTED_PUBLIC_METADATA","reason":"missing licence in version landing metadata"},
+      {"workflow_id":"625","version_before":30,"version_after":31,"stage":"normalized_content","status":"SELECTED_REPLACEMENT","before_normalized_sha256":"ae075088ef883cb4b8f8cd0a97b1056794facadc6f95a9d267f2e9ac0d2e0271","after_normalized_sha256":"2ca796bd0f2435b79f3fe7f0e3ea2a5c02435dc5d62a42c7a1b49a6ccee95538"},
+      {"workflow_id":"631","version_before":5,"version_after":6,"stage":"normalized_content","status":"SELECTED_REPLACEMENT","before_normalized_sha256":"ef6a403a7972a4166ea0b1d2ddf3e450bcbd9cfa13dae9987213f392e187dbb9","after_normalized_sha256":"9907bafc115aeff1fcd141d7a32c217fb3947f62bc37bf075f6146caecec84c8"}
+    ]
+  },
+  "replacement_target_n": 2,
+  "replacement_n": 2,
+  "replacements_sha256": "8e614d9e27bd66d61cd7dac985a1c1ee9f92e022d70e3d711df4d53dab170d19",
+  "replacements": [
+    {
+      "workflow_id": "625",
+      "version_before": 30,
+      "version_after": 31,
+      "license_before": "https://spdx.org/licenses/CC-BY-4.0",
+      "license_after": "https://spdx.org/licenses/CC-BY-4.0",
+      "metadata_sha256_before": "5f42831b36c9564cf625e799ee548b45e3d4de07ffce676f474f93c4b33ffe16",
+      "metadata_sha256_after": "4605f79729c7be10b68bb5149af730823d46ffe686d94e42ab8b27c1d50b09a3",
+      "before_member_count": 7,
+      "after_member_count": 7,
+      "before_normalized_sha256": "ae075088ef883cb4b8f8cd0a97b1056794facadc6f95a9d267f2e9ac0d2e0271",
+      "after_normalized_sha256": "2ca796bd0f2435b79f3fe7f0e3ea2a5c02435dc5d62a42c7a1b49a6ccee95538",
+      "status": "NORMALIZED_CONTENT_BOUND_DIFFERENT"
+    },
+    {
+      "workflow_id": "631",
+      "version_before": 5,
+      "version_after": 6,
+      "license_before": "https://spdx.org/licenses/CC-BY-4.0",
+      "license_after": "https://spdx.org/licenses/CC-BY-4.0",
+      "metadata_sha256_before": "4eeeea4323a100023db7507d6d9298c418f6804c5dbaf5fb51d87aefd9ed0bc4",
+      "metadata_sha256_after": "f2caa66df8295643d35e7ca59a29092b9a5572908635c177fcc544b4243910ec",
+      "before_member_count": 18,
+      "after_member_count": 18,
+      "before_normalized_sha256": "ef6a403a7972a4166ea0b1d2ddf3e450bcbd9cfa13dae9987213f392e187dbb9",
+      "after_normalized_sha256": "9907bafc115aeff1fcd141d7a32c217fb3947f62bc37bf075f6146caecec84c8",
+      "status": "NORMALIZED_CONTENT_BOUND_DIFFERENT"
+    }
+  ],
+  "final_source_family_n": 128,
+  "final_unique_source_family_n": 128,
+  "successor_frame_sha256": "a47d9255aa37de056cb5cdd7c140bcccb487aa3285790655a48abb5e538c2993",
+  "change_stratum_adjudicated": false,
+  "external_gold_accessed": false,
+  "protected_orion_predictions_accessed": false,
+  "primary_replication_assignment_performed": false,
+  "scientific_authority_delta": "NONE__OUTCOME_BLIND_SOURCE_FRAME_REPAIR_ONLY"
+}

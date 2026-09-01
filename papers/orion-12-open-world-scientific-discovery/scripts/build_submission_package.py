@@ -35,7 +35,13 @@ COMMON = (
     "figures/P2-7_acquisition_authority.tex",
 )
 PRIVATE_MARKERS = (b"Sze Chun Yiu", b"Stockholm University", b"sze-chun.yiu@", b"/Users/")
-PUBLIC_FORBIDDEN = (b"TIER_B", b"TIER\\_B", b"tier-b", b"tier_b")
+PUBLIC_FORBIDDEN = (
+    b"TIER_B",
+    b"TIER\\_B",
+    b"tier-b",
+    b"tier_b",
+    b"tier b committed",
+)
 
 
 def digest(path: Path) -> str:
@@ -96,6 +102,10 @@ def pages(pdf: Path) -> int:
     return int(next(line.split(":", 1)[1] for line in info.splitlines() if line.startswith("Pages:")))
 
 
+def metadata_of(pdf: Path) -> bytes:
+    return subprocess.check_output(["pdfinfo", str(pdf)])
+
+
 def scan_tree(root: Path, markers: tuple[bytes, ...]) -> None:
     for path in (p for p in root.rglob("*") if p.is_file()):
         data = path.read_bytes().lower()
@@ -123,13 +133,13 @@ def build_route(name: str, entry: str, *, journal: bool) -> dict[str, object]:
             raise ValueError(f"{name} source archive does not reproduce the built PDF exactly")
         route.mkdir(parents=True, exist_ok=True)
         shutil.copy2(first, pdf_out)
-    pdf_text = text_of(pdf_out).lower()
-    if journal and any(marker.lower() in pdf_text for marker in PRIVATE_MARKERS):
+    pdf_surface = (text_of(pdf_out) + metadata_of(pdf_out)).lower()
+    if journal and any(marker.lower() in pdf_surface for marker in PRIVATE_MARKERS):
         raise ValueError("author identity leaked into anonymous journal PDF")
-    if not journal and b"sze chun yiu" not in pdf_text:
+    if not journal and b"sze chun yiu" not in pdf_surface:
         raise ValueError("attributed arXiv PDF is missing the author")
-    if any(marker.lower() in pdf_text for marker in PUBLIC_FORBIDDEN):
-        raise ValueError(f"private analysis label leaked into {name} PDF")
+    if any(marker.lower() in pdf_surface for marker in PUBLIC_FORBIDDEN):
+        raise ValueError(f"private analysis label leaked into {name} PDF text or metadata")
     return {
         "pdf": pdf_out.relative_to(OUT).as_posix(),
         "pdf_sha256": digest(pdf_out),
@@ -180,6 +190,7 @@ def build() -> dict[str, object]:
         "".join(f"{digest(path)}  {path.relative_to(OUT).as_posix()}\n" for path in files),
         encoding="utf-8",
     )
+    scan_tree(OUT, PUBLIC_FORBIDDEN)
     return manifest
 
 
