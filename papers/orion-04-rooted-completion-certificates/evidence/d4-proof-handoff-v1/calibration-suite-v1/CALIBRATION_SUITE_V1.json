@@ -1,0 +1,118 @@
+{
+  "all_controls_agree": true,
+  "controls": [
+    {
+      "agrees": true,
+      "closed_form": "D_k(C_n) = k*n",
+      "closed_form_value": 6,
+      "control_kind": "known_constructible",
+      "expected_max_disjoint_zero_sums": 1,
+      "group": "C_3",
+      "k": 2,
+      "length": 5,
+      "observed_max_disjoint_zero_sums": 1,
+      "orders": [
+        3
+      ],
+      "sequence": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "why": "length 5 = D_2(C_3) - 1, so some sequence achieves at most k-1 = 1."
+    },
+    {
+      "agrees": true,
+      "closed_form": "D_k(C_n) = k*n",
+      "closed_form_value": 6,
+      "control_kind": "known_impossible",
+      "expected_min_disjoint_zero_sums": 2,
+      "group": "C_3",
+      "k": 2,
+      "length": 6,
+      "observed_max_disjoint_zero_sums": 2,
+      "orders": [
+        3
+      ],
+      "sequence": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "why": "length 6 = D_2(C_3); a witness with fewer than 2 is impossible."
+    },
+    {
+      "agrees": true,
+      "closed_form": "D_k(C_m (+) C_n) = m + k*n - 1",
+      "closed_form_value": 3,
+      "control_kind": "symmetry_rich",
+      "expected_max_disjoint_zero_sums": 0,
+      "group": "C_2 (+) C_2",
+      "k": 1,
+      "length": 2,
+      "observed_max_disjoint_zero_sums": 0,
+      "orders": [
+        2,
+        2
+      ],
+      "sequence": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "why": "length 2 = D_1 - 1; the two distinct involutions sum to the third non-identity element, so no nonempty subsequence sums to zero."
+    },
+    {
+      "asserted_value_in_malformed_object": 7,
+      "closed_form": "D_k(C_n) = k*n",
+      "closed_form_value": 6,
+      "control_kind": "malformed_proof_object",
+      "expected_verdict": "REJECT",
+      "group": "C_3",
+      "k": 2,
+      "orders": [
+        3
+      ],
+      "why": "asserts D_2(C_3) = 7 against the closed form's 6. Any route that accepts it is not checking the value it claims to check."
+    }
+  ],
+  "d4_outcome_accessed": false,
+  "ground_truth_source": "Published closed forms for rank <= 2. Not derived from any ORION search implementation, which is what makes them external.",
+  "paper_id": "ORION-04",
+  "purpose": "Frozen small-instance calibration required by PROOF_OBJECT_CONTRACT_V1 before any D4 execution.",
+  "schema": "ORION04.D4.CalibrationSuite.v1",
+  "scientific_authority_delta": "NONE",
+  "suite_sha256": "559c45da02c311753c9e2615c728905830b65a3a8590a10b4ae89719622f76ee"
+}
