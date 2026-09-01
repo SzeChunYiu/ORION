@@ -465,9 +465,18 @@
   },
   "grants_authority": "NONE",
   "schema_version": "orion.candidate-content-binding.v2",
-  "subject_commit": "5fea7d67492f10f615296d3ee8c846cdd6dc09f8",
+  "subject_commit": "c66cd6395eb41e8f91aeeab2fcdb657b3343be95",
   "subject_commit_blocker": null,
   "subject_commit_status": "BOUND",
   "subject_commit_unbound_paths": [],
-  "subject_tree": "dab2efd411028b0596ce02df6c46f801d3352500"
+  "subject_tree": "197a37fbbf6310233203484be80667f89d186d17",
+  "transport_rebinding_history": [
+    {
+      "new_subject_commit": "c66cd6395eb41e8f91aeeab2fcdb657b3343be95",
+      "prior_subject_commit": "5fea7d67492f10f615296d3ee8c846cdd6dc09f8",
+      "reason": "GitHub connector transport reproduced the exact validated subject tree; bind to the reachable uploaded commit.",
+      "scientific_authority_delta": "NONE",
+      "subject_tree": "197a37fbbf6310233203484be80667f89d186d17"
+    }
+  ]
 }
