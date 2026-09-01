@@ -78,3 +78,94 @@ The same-information contrast was originally the important one for interpretatio
 
 As a post-hoc robustness analysis of the already-frozen D1 endpoint, we compared the selected typed relational arm to each comparator on the identical 128 protected cases. Against transcript, the accuracy difference is \DOneTypedMinusTranscript{} with paired bootstrap 95\% interval [\DOneTranscriptPairedCILow, \DOneTranscriptPairedCIHigh]; all \DOneTranscriptDiscordantWins{} discordant cases favor typed relational and none favor transcript (exact McNemar $p=\DOneTranscriptMcNemarP$). Because the transcript arm is constant on these cases, that comparison is against a majority-class predictor and should be read as such rather than as a contrast between two fitted views. Against the same-information typed serialization, the difference is \DOneTypedMinusSerialized{} with paired interval [\DOneSerializedPairedCILow, \DOneSerializedPairedCIHigh] and discordance \DOneSerializedDiscordantWins{}--\DOneSerializedDiscordantLosses{} ($p=\DOneSerializedMcNemarP$). Against the untyped pair arm, the paired interval is [\DOneUntypedPairedCILow, \DOneUntypedPairedCIHigh] with discordance \DOneUntypedDiscordantWins{}--\DOneUntypedDiscordantLosses{} ($p=\DOneUntypedMcNemarP$). These intervals and exact tests were not preregistered primary endpoints; they quantify the frozen case-level predictions without changing the terminal.
 
+\subsection{An uncertainty-aware decision rule repairs the V2 stability failure}
+\label{sec:v3-transport}
+
+The registered V2 transport gate did not close. Its diagnosis accuracy was
+$1.0$ and its probe/protected agreement held on all five families, but one
+pre-registered clause failed: half-draw decision stability on the D-A cell,
+giving terminal \textsc{p9\_causal\_diagnostic\_transport\_v2\_gate\_not\_met}.
+
+The failure is attributable to exactly one stage, and the attribution was carried
+forward rather than re-derived. Under V2's hard threshold on the $R{=}24$ ensemble
+mean, protected half-1 scored $0.9662$ and crossed the frozen $0.965$ target, while
+half-0 ($0.9625$) and the full mean ($0.9644$) did not. The decision margin is
+$0.001161$ against a single-split binomial standard deviation of $0.009840$, a
+noise-to-margin ratio of $8.47$. The rule was applying a hard threshold inside its
+own noise band. The repair channel is bitwise lossless (maximum absolute
+reconstruction error $0.0$), so splits, targets and pipeline were not implicated.
+
+V3 changes the decision rule and nothing else. An arm reaches a target if and only
+if its ensemble lower $95\%$ confidence bound,
+$\mathrm{LCB}_{95} = \bar{x} - 1.96\,s/\sqrt{n}$, reaches it. The rule is applied
+uniformly to every cell, split and half, and halves decide from their own data with
+no standard-deviation borrowing. Cells, arms, frozen targets (D-A $0.965$, D-I
+$0.95$, executable $1.0$), frozen costs ($8.0/2.0/12.0$), $R{=}24$, draw seeds and
+the per-draw pipeline are all inherited unchanged from V2. \textbf{The D-A target
+was not relaxed.}
+
+All pre-registered clauses then pass, with terminal
+\textsc{p9\_causal\_diagnostic\_transport\_v3\_supported} and no failing clauses.
+Diagnosis accuracy is $1.0$ against $0.2$ for the generic policy, executable and
+digits are $1.0$, false compute escalations are $0$ against $4$, and mean registered
+cost regret is $0.0$.
+
+\textbf{The repaired clause does not become a pass, and that distinction carries the
+result.} On D-A both probe and protected lower bounds fall below $0.965$, so the
+decision is \textsc{cannot-check} on both sides and all four half decisions agree ---
+a stable abstention rather than a threshold artifact. Under the frozen V1 gold rule
+the D-A protected cell remains \textsc{cannot-check}; what changed is that the
+abstention is now mechanistically grounded and decision-stable. D-I returns
+\textsc{information} on both sides (protected $\mathrm{LCB}_{95} = 0.9610 \ge 0.95$)
+and is half-stable. The run was executed twice with byte-identical outputs.
+
+This is a positive result against the strongest parent, on that parent's own failed
+clause. It establishes no universal resource law and does not touch the protected
+Qwen scaling negative.
+
+\subsection{An orbit ceiling separates irreducible from recoverable error}
+\label{sec:orbit-gate}
+
+The D1 protected set admits a symmetry that bounds any orbit-invariant predictor.
+Partitioning the $128$ protected cases by the frozen colouring yields $7$ orbit
+cells, and a predictor constant within every cell can score at most $112/128 =
+0.875$. The fitted model scores $96/128 = 0.75$.
+
+The gap decomposes cleanly. Of the $32$ errors, $16$ are an irreducible floor forced
+by cells containing both labels, and $16$ are recoverable --- error that an
+orbit-invariant predictor is not obliged to make. Reporting a single accuracy figure
+would conflate the two.
+
+Coverage is the reason this is a boundary rather than a result about the model.
+Development cases lie entirely inside the orbit ($\text{coverage} = 1.0$) and
+protected cases lie entirely outside it ($\text{coverage} = 0.0$), across $18$
+development, $18$ training and $7$ protected cells. The gate therefore measures
+what the frozen partition can express about held-out cases, not how well the model
+was fitted.
+
+Four negative controls were registered and all fire: a mixed cell exists, so the
+floor is not trivially zero; the model score differs from the ceiling; shuffled
+labels break the ceiling; and training cells are non-empty, so coverage is actually
+tested. The checker is independent of the scoring path --- no ORION-19 scoring
+module is imported, the partition is recomputed from the frozen colouring, and the
+recorded result is read as data.
+
+\subsection{U-T3 is a custody record and carries no scientific authority}
+\label{sec:ut3-custody}
+
+The U-T3 checkpoint ladder is reported here to record what exists, and explicitly
+not as a result. Its authority class is
+\textsc{environment\_and\_custody\_receipt\_only}.
+
+Four of six declared checkpoints reached custody, and one GPU decode smoke probe
+succeeded. \textbf{Zero grid cells were executed.} Two ladder rungs remain
+\textsc{cannot-check} for an external reason that is preserved rather than worked
+around: \texttt{Llama-3.2-1B-Instruct} and \texttt{Llama-3.2-3B-Instruct} return
+gated $401$ responses.
+
+The blocker is a cell executor --- instance generation per $(k,B)$, the seven
+representation renderers, majority-vote aggregation over $C$, and verified-answer
+scoring. None of these exist, so no ladder cell can be run, and no quality, scaling
+or crossing claim may be drawn from custody alone. The record is included because
+omitting it would leave the reader unable to distinguish work not yet done from work
+attempted and hidden.

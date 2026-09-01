@@ -80,12 +80,26 @@ orbit-coverage gate or the UT3 custody record. It does not. Filing the paper as 
 would submit a manuscript whose body omits the newest science its own evidence directory
 contains.
 
-## The remaining work, stated precisely
+## The work, now done in the same change
 
-Write the three subsections into `manuscript/sections/05-results.tex` from the artifacts
-already on `main`, under `papers/PAPER_WRITING_SKILLS_PROTOCOL_V1.md` with the `nature-*`
-package, and record `skills-applied:` on that change. This is authorial work over
-existing evidence — no experiment is required, and no number needs to be recomputed.
+The three subsections have been written into `manuscript/sections/05-results.tex` from
+the artifacts already on `main`, under `papers/PAPER_WRITING_SKILLS_PROTOCOL_V1.md`:
 
-Until then, the honest description of ORION-19 is: **evidence integrated, manuscript
-not.**
+- **`sec:v3-transport`** — the uncertainty-aware decision rule and the repaired V2
+  stability clause, including that D-A remains `CANNOT_CHECK` as a stable abstention
+  rather than becoming a pass;
+- **`sec:orbit-gate`** — the 112/128 orbit ceiling against the model's 96/128, split into
+  16 irreducible and 16 recoverable errors, with the coverage asymmetry that makes it a
+  boundary rather than a model result;
+- **`sec:ut3-custody`** — U-T3 as `ENVIRONMENT_AND_CUSTODY_RECEIPT_ONLY`, four of six
+  checkpoints in custody, **zero grid cells executed**, and the two gated `401` rungs
+  preserved as `CANNOT_CHECK`.
+
+No experiment was run and no number recomputed. Every numeral in the new text was checked
+against the three source artifacts: 28 of 29 appear verbatim, and the twenty-ninth
+(`0.9610`) is the four-decimal rounding of the recorded `0.9609990859868461`, whose
+comparison against the `0.95` target holds at either precision.
+
+So the description that motivated this correction — *evidence integrated, manuscript
+not* — no longer holds, and this file records both halves: what the receipt got wrong,
+and the integration it described now actually existing.
