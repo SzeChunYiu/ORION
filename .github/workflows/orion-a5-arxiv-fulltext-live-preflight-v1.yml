@@ -1,0 +1,84 @@
+name: ORION A5 arXiv CC-BY fulltext live preflight v1
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a5-arxiv-fulltext-live-preflight-v1.yml"
+      - "development/p4-scientific-ascent-2026-08-23/source_binding/bind_arxiv_cc_by_fulltext_live_preflight_v1.py"
+      - "development/p4-scientific-ascent-2026-08-23/source_binding/ARXIV_CC_BY_FULLTEXT_LIVE_PREFLIGHT_V1.json"
+      - "development/p4-scientific-ascent-2026-08-23/source_binding/ARXIV_CC_BY_SOURCE_POOL_BINDING_V1.json"
+      - "development/p4-scientific-ascent-2026-08-23/source_binding/ARXIV_CC_BY_SOURCE_POOL_V1.jsonl"
+permissions:
+  contents: read
+jobs:
+  fulltext-live-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          p='development/p4-scientific-ascent-2026-08-23/source_binding/ARXIV_CC_BY_FULLTEXT_LIVE_PREFLIGHT_V1.json'
+          d=json.load(open(p))
+          assert d['schema']=='ORION.A5.ArxivCCByFulltextLivePreflightContract.v1'
+          assert d['parent_source_binding']['candidate_rows']==1536
+          assert d['parent_source_binding']['pool_sha256']=='47dd24657752731cdf45bab95852f3e18b50946af8a29b5acee95956ec81d895'
+          assert d['selection_rule']['indices_zero_based']==[0,383,384,767,768,1151,1152,1535]
+          assert d['selection_rule']['data_dependent_selection'] is False
+          assert d['network_policy']['maximum_concurrency']==1
+          assert d['network_policy']['minimum_request_interval_seconds']>=3.1
+          assert d['full_pool_per_item_binding_complete'] is False
+          assert d['route_specific_pair_adjudication_performed'] is False
+          assert d['case_eligibility_adjudicated'] is False
+          assert d['protected_orion_predictions_accessed'] is False
+          assert d['baseline_predictions_accessed'] is False
+          assert d['external_gold_accessed'] is False
+          assert d['grants_scientific_authority'] is False
+          PY
+      - name: Compile and run offline hostile guards
+        run: |
+          python -m py_compile development/p4-scientific-ascent-2026-08-23/source_binding/bind_arxiv_cc_by_fulltext_live_preflight_v1.py
+          python development/p4-scientific-ascent-2026-08-23/source_binding/bind_arxiv_cc_by_fulltext_live_preflight_v1.py --self-test
+      - name: Fetch frozen exact-version PDF sample serially
+        shell: bash
+        run: |
+          set +e
+          python development/p4-scientific-ascent-2026-08-23/source_binding/bind_arxiv_cc_by_fulltext_live_preflight_v1.py --output /tmp/a5-arxiv-fulltext-live-preflight-v1.json >/tmp/a5.stdout
+          rc=$?
+          echo "scientific_rc=$rc" >> "$GITHUB_ENV"
+          cat /tmp/a5.stdout
+          exit 0
+      - name: Validate positive or fail-closed scientific terminal
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/a5-arxiv-fulltext-live-preflight-v1.json'))
+          assert d['schema']=='ORION.A5.ArxivCCByFulltextLivePreflight.v1'
+          assert d['terminal'] in {'ARXIV_CC_BY_EXACT_VERSION_FULLTEXT_LIVE_PREFLIGHT_PASS','CANNOT_CHECK_ARXIV_CC_BY_EXACT_VERSION_FULLTEXT_LIVE_PREFLIGHT'}
+          assert d['source_pool_sha256']=='47dd24657752731cdf45bab95852f3e18b50946af8a29b5acee95956ec81d895'
+          assert d['source_pool_rows']==1536
+          assert d['bound_n']+d['cannot_check_n']==8
+          assert d['selection_rule']['data_dependent_selection'] is False
+          assert d['full_pool_per_item_binding_complete'] is False
+          assert d['route_specific_pair_adjudication_performed'] is False
+          assert d['case_eligibility_adjudicated'] is False
+          assert d['protected_orion_predictions_accessed'] is False
+          assert d['baseline_predictions_accessed'] is False
+          assert d['external_gold_accessed'] is False
+          print('A5_ARXIV_FULLTEXT_TERMINAL',d['terminal'])
+          print('BOUND',d['bound_n'],'CANNOT_CHECK',d['cannot_check_n'])
+          PY
+      - name: Upload exact live receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: a5-arxiv-fulltext-live-preflight-v1
+          path: /tmp/a5-arxiv-fulltext-live-preflight-v1.json
+          retention-days: 30
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
