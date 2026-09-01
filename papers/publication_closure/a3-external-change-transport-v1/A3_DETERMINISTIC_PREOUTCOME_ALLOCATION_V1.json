@@ -1,0 +1,36 @@
+{
+  "schema": "ORION.A3.DeterministicPreOutcomeAllocation.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A3 96 primary + 32 source-disjoint replication",
+  "artifact_class": "FROZEN_BEFORE_CANDIDATE_PREDICTIONS_AND_GOLD_UNBLINDING",
+  "protected_outcomes_accessed": false,
+  "candidate_predictions_accessed": false,
+  "strata": [
+    "representation_schema",
+    "responsibility_output_contract",
+    "objective_acceptance_criterion",
+    "evidence_dependency"
+  ],
+  "quota_per_stratum": {
+    "primary": 24,
+    "replication": 8
+  },
+  "eligible_pool_preconditions": [
+    "independent curator has assigned exactly one frozen stratum before candidate predictions",
+    "rights/source/version/content hashes and curator assignment receipts are bound",
+    "candidate-visible packet is frozen",
+    "no REUSE/REOPEN/CANNOT_CHECK gold is present",
+    "no ORION/baseline prediction or outcome is present"
+  ],
+  "allocation_key": "SHA256('A3-ALLOCATION-V1|' + stratum + '|' + cluster_id + '|' + source_family_id + '|' + normalized_organization_lineage + '|' + artifact_lineage_id)",
+  "algorithm": [
+    "within each stratum sort eligible candidates by allocation_key ascending then cluster_id",
+    "scan in order and select 24 primary candidates whose source_family_id, normalized_organization_lineage and artifact_lineage_id are each unique among all selected candidates",
+    "continue scanning remaining candidates and select 8 replication candidates with the same uniqueness rule, therefore source/org/artifact-disjoint from primary",
+    "do not substitute candidates across strata",
+    "do not manually rebalance after protected outcomes"
+  ],
+  "shortfall_terminal": "CANNOT_CHECK_A3_PREOUTCOME_QUOTA_OR_DISJOINTNESS_SHORTFALL",
+  "success_terminal": "A3_PREOUTCOME_PRIMARY_REPLICATION_ALLOCATION_FROZEN",
+  "scientific_authority_delta": "NONE__ALLOCATION_FREEZE_ONLY"
+}
