@@ -7,6 +7,7 @@ on:
       - "papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_CONTENT_BINDING_PREFLIGHT_V1.json"
       - "papers/publication_closure/a3-external-change-transport-v1/bind_workflowhub_rocrate_content_v1.py"
       - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-source-census-v1/**"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-normalized-content-binding-v2/**"
 permissions:
   contents: read
 jobs:
@@ -31,6 +32,40 @@ jobs:
           assert d['network_policy']['maximum_concurrency']==2
           assert d['network_policy']['accept_header']=='*/*'
           assert d['content_identity_rule']['scientific_content_identity'].startswith('normalized RO-Crate')
+          PY
+      - name: Verify durable normalized-result snapshot
+        run: |
+          python - <<'PY'
+          import hashlib, json, pathlib
+          root=pathlib.Path('.')
+          p=root/'papers/publication_closure/a3-external-change-transport-v1/workflowhub-normalized-content-binding-v2/SNAPSHOT_V2.json'
+          s=json.loads(p.read_text())
+          assert s['schema']=='ORION.A3.WorkflowHubNormalizedContentBindingDurableSnapshot.v2'
+          assert s['candidate_n']==128
+          assert s['normalized_content_bound_different_n']==126
+          assert s['unchanged_normalized_content_n']==0
+          assert s['cannot_check_n']==2
+          assert s['cannot_check_workflow_ids']==['402','444']
+          assert s['raw_zip_hash_is_transport_receipt_only'] is True
+          assert s['change_stratum_adjudicated'] is False
+          assert s['external_gold_accessed'] is False
+          assert s['protected_orion_predictions_accessed'] is False
+          rows=[]
+          for c in s['chunks']:
+              cp=root/c['path']
+              raw=cp.read_bytes()
+              assert hashlib.sha256(raw).hexdigest()==c['sha256']
+              d=json.loads(raw)
+              assert d['schema']=='ORION.A3.WorkflowHubNormalizedContentBindingSnapshotChunk.v2'
+              assert len(d['rows'])==c['rows']==32
+              rows.extend(d['rows'])
+          assert len(rows)==128
+          assert len({r['workflow_id'] for r in rows})==128
+          assert sum(r['status']=='NORMALIZED_CONTENT_BOUND_DIFFERENT' for r in rows)==126
+          assert [r['workflow_id'] for r in rows if r['status']=='CANNOT_CHECK_NORMALIZED_CONTENT_BINDING']==['402','444']
+          digest=hashlib.sha256(json.dumps(rows,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          assert digest==s['selected_rows_sha256']
+          print('DURABLE_NORMALIZED_SNAPSHOT_GREEN', digest)
           PY
       - name: Compile and prove ZIP-packaging nuisance is normalized away
         run: |
