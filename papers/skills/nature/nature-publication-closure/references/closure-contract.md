@@ -142,6 +142,13 @@ checksum-closed package for every expected paper. Targeted maintenance commands
 must validate their requested identifiers before reading or changing state; a
 typo or unsupported paper is an error, never a successful no-op.
 
+In a monorepo, a path-filtered per-paper workflow may run inside a legitimate
+multi-paper closure. Scope guards should protect the paper's actual shared
+execution dependencies and authority surfaces, not reject every unrelated path
+in the pull request. Keep exact evidence replay and authority assertions
+unconditional; classify unrelated manuscript/package paths as outside the
+paper's dependency graph rather than as custody violations.
+
 The registry terminal must match the active machine-readable scientific
 disposition when one exists. Where the authority is prose-only, bind its hash
 and quote the exact terminal in the package record. Verification must cover
