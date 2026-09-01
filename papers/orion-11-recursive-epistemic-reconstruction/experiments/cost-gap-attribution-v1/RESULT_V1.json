@@ -1,0 +1,30 @@
+{
+  "schema": "ORION11.COST_GAP_ATTRIBUTION.v1",
+  "paper_id": "ORION-11",
+  "reference_arm": "faithful_active_voi",
+  "n_trace_rows": 19022,
+  "n_worlds_paired": 2882,
+  "predeclared_stratum_decomposition": {
+    "terminal": "ATTRIBUTION_INCOMPLETE",
+    "reason": "Degenerate on this data by design: 6 of 7 arms run the identical 2,882-world set with an identical stratum mix, so the composition term is structurally ~0 and cannot discriminate donor-owned composition from within-stratum ordering. The 7th arm (exact_dp_oracle, 1,730 worlds, different mix) is excluded from the paired comparison; the pre-declared formula's fallback for absent strata silently zeroed its composition term, which is a defect in the decomposition as written, not a measurement."
+  },
+  "valid_component_attribution": {
+    "basis": "paired arms only, identical world sets, so the per-row cost-component split is exact",
+    "components": ["inspection", "intervention", "reopening"],
+    "mean_cost_reference": {"total": 1.167, "inspection": 0.6891, "intervention": 0.3783, "reopening": 0.0996},
+    "gap_vs_reference": {
+      "cost_greedy_repair":   {"total": 0.7996, "inspection": 0.6858, "intervention": 0.0845, "reopening": 0.0293, "inspection_share_pct": 85.8},
+      "gain_per_cost_greedy": {"total": 0.6164, "inspection": 0.4420, "intervention": 0.1363, "reopening": 0.0381, "inspection_share_pct": 71.7},
+      "global_flat_voi":      {"total": 0.7695, "inspection": 0.5933, "intervention": 0.1400, "reopening": 0.0361, "inspection_share_pct": 77.1},
+      "orion_level_monotone": {"total": 1.0191, "inspection": 0.8810, "intervention": 0.1094, "reopening": 0.0287, "inspection_share_pct": 86.4},
+      "random_safe_ablation": {"total": 1.1313, "inspection": 1.0036, "intervention": 0.1028, "reopening": 0.0250, "inspection_share_pct": 88.7}
+    },
+    "finding": "COST_GAP_LOCALIZED_TO_INSPECTION",
+    "range_inspection_share_pct": [71.7, 88.7]
+  },
+  "does_not_establish": [
+    "that the inspection difference is donor-owned mathematics rather than ORION-side ordering -- the paired design cannot separate these",
+    "any revival of the falsified necessity claim"
+  ],
+  "scientific_authority_delta": "NONE"
+}
