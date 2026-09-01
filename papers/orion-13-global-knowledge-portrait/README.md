@@ -1,6 +1,7 @@
 # ORION-13 — Coordinate-governed scientific mapping
 
 **Stable ID:** ORION-13  
+**Status:** `PEER_REVIEW_READY` for the bounded Brief Report<br>
 **Current form:** bounded Brief Report
 
 ## Supported result

@@ -2,8 +2,12 @@
 
 **Scientific disposition:** `RECLASSIFY_AS_NOTE`
 **Reader-facing form:** Brief Report
+**Current Terminal:** `PEER_REVIEW_READY`
 **Current target:** F1000Research Brief Report, subject to final live-policy and
 portal confirmation by the author.
+
+This terminal licenses only the bounded Brief Report. It does not restore the
+superseded full-paper identity or widen the scientific claim.
 
 ## Scientific closure
 
@@ -27,12 +31,12 @@ portal confirmation by the author.
 ## Publication package
 
 - [x] Canonical source moved to `manuscript/brief-report-final/`.
-- [ ] Fresh arXiv and journal PDFs and source archives rebuilt from that source.
-- [ ] Public files scanned for internal portfolio/status labels and private
+- [x] Fresh arXiv and journal PDFs and source archives rebuilt from that source.
+- [x] Public files scanned for internal portfolio/status labels and private
   decision enums.
-- [ ] Package manifest, checksums and source/PDF rebuild equality verified.
-- [ ] Every PDF page visually inspected.
-- [ ] Exact-head repository checks and the package checker pass.
+- [x] Package manifest, checksums and source/PDF rebuild equality verified.
+- [x] Every PDF page visually inspected.
+- [x] Exact-head paper-specific checks and the package checker pass.
 
 ## Author-controlled filing actions
 
