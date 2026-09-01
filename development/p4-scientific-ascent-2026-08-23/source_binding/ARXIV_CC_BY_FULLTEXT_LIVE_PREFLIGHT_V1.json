@@ -1,0 +1,47 @@
+{
+  "schema": "ORION.A5.ArxivCCByFulltextLivePreflightContract.v1",
+  "route_id": "R1_ARXIV_CC_BY",
+  "parent_source_binding": {
+    "binding_id": "P4.NAT.AXIS.768.ARXIV_CC_BY_POOL_1536.V1",
+    "pool_path": "development/p4-scientific-ascent-2026-08-23/source_binding/ARXIV_CC_BY_SOURCE_POOL_V1.jsonl",
+    "pool_sha256": "47dd24657752731cdf45bab95852f3e18b50946af8a29b5acee95956ec81d895",
+    "candidate_rows": 1536,
+    "per_domain": 384
+  },
+  "purpose": "Test whether exact-version CC BY 4.0 arXiv full-text PDF bytes can be fetched, identity-checked and SHA-256 bound for a frozen cross-domain sample before any scientific case adjudication.",
+  "selection_rule": {
+    "frozen_before_live_fetch": true,
+    "indices_zero_based": [0, 383, 384, 767, 768, 1151, 1152, 1535],
+    "description": "first and last source-pool row in each frozen 384-row domain block",
+    "sample_n": 8,
+    "data_dependent_selection": false
+  },
+  "per_item_requirements": [
+    "source pool and parent binding hashes match",
+    "exact content licence is CC BY 4.0",
+    "exact_arxiv_id equals arxiv_id plus vN",
+    "abstract_sha256 matches the frozen abstract bytes",
+    "PDF request uses the frozen exact-version immutable_pdf_url",
+    "redirect remains HTTPS on an allowed arXiv host and preserves exact versioned identifier",
+    "response begins with PDF signature and is no larger than 64 MiB",
+    "record PDF byte count and SHA-256"
+  ],
+  "network_policy": {
+    "maximum_concurrency": 1,
+    "minimum_request_interval_seconds": 3.1,
+    "retries_per_item": 3,
+    "timeout_seconds": 120,
+    "maximum_pdf_bytes": 67108864,
+    "allowed_final_hosts": ["arxiv.org", "export.arxiv.org"]
+  },
+  "success_terminal": "ARXIV_CC_BY_EXACT_VERSION_FULLTEXT_LIVE_PREFLIGHT_PASS",
+  "failure_terminal": "CANNOT_CHECK_ARXIV_CC_BY_EXACT_VERSION_FULLTEXT_LIVE_PREFLIGHT",
+  "full_pool_per_item_binding_complete": false,
+  "route_specific_pair_adjudication_performed": false,
+  "case_eligibility_adjudicated": false,
+  "protected_orion_predictions_accessed": false,
+  "baseline_predictions_accessed": false,
+  "external_gold_accessed": false,
+  "grants_scientific_authority": false,
+  "scientific_authority_delta": "NONE__LIVE_SOURCE_BINDING_PREFLIGHT_ONLY"
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed exact-byte, source-build and claim-boundary audit for one Tier-B package."""
+"""Fail-closed exact-byte, source-build and claim-boundary publication audit."""
 from __future__ import annotations
 import argparse, collections, hashlib, json, os, re, shutil, subprocess, tempfile, zipfile
 from pathlib import Path
@@ -10,6 +10,12 @@ DEFAULT_SKILL=Path('/Users/billy/Documents/Codex/2026-08-31/prompt-1-orion-01-02
 EXPECTED_SKILL='488fc5310b84e578431f4a9a176d55bf9a3f0b99'
 AUTHOR=('Sze Chun Yiu','Stockholm University','sze-chun.yiu@fysik.su.se')
 PLACEHOLDERS=('TITLE TBD','PLACEHOLDER AUTHOR','Working framework draft','Replacement abstract for')
+PUBLIC_LABEL_PATTERNS=(
+ re.compile(r'(?i)(?<![A-Za-z0-9])tier[-_ ]?b(?:[_A-Za-z0-9-]*)'),
+ re.compile(r'(?i)ready_to_submit_second_tier(?:[_A-Za-z0-9-]*)'),
+ re.compile(r'(?i)\bsecond[ -]tier\b'),
+ re.compile(r'(?i)\bportfolio[ -]tier\b'),
+)
 
 def sha(p:Path)->str:
  h=hashlib.sha256()
@@ -23,6 +29,35 @@ def run(*args,cwd=None)->str:
  return p.stdout
 def text_pdf(p:Path)->str:
  return run('pdftotext','-layout',str(p),'-')
+def public_label_hits(text:str)->list[str]:
+ return [m.group(0) for pattern in PUBLIC_LABEL_PATTERNS for m in pattern.finditer(text)]
+def scan_publication_labels(package:Path)->None:
+ leaks=[]
+ for p in sorted(package.rglob('*')):
+  if not p.is_file(): continue
+  rel=p.relative_to(package).as_posix()
+  if public_label_hits(rel): leaks.append(f'path:{rel}')
+  if p.suffix.lower()=='.pdf':
+   for surface,text in (('text',text_pdf(p)),('metadata',run('pdfinfo',str(p)))):
+    hits=public_label_hits(text)
+    if hits: leaks.append(f'{surface}:{rel}:{hits}')
+  elif p.suffix.lower()=='.zip':
+   with zipfile.ZipFile(p) as z:
+    for name in z.namelist():
+     if public_label_hits(name): leaks.append(f'zip-path:{rel}::{name}')
+     if name.endswith('/'): continue
+     data=z.read(name)
+     try: text=data.decode('utf-8')
+     except UnicodeDecodeError: continue
+     hits=public_label_hits(text)
+     if hits: leaks.append(f'zip-text:{rel}::{name}:{hits}')
+  else:
+   data=p.read_bytes()
+   try: text=data.decode('utf-8')
+   except UnicodeDecodeError: continue
+   hits=public_label_hits(text)
+   if hits: leaks.append(f'text:{rel}:{hits}')
+ if leaks: raise RuntimeError('internal publication classification leak:\n'+'\n'.join(leaks))
 def pages(p:Path)->int:
  out=run('pdfinfo',str(p)); m=re.search(r'^Pages:\s+(\d+)',out,re.M)
  if not m: raise RuntimeError(f'cannot read page count: {p}')
@@ -41,7 +76,7 @@ def safe_zip(p:Path)->list[str]:
    out.append(i.filename)
  return out
 def clean_build(source_zip:Path,release_pdf:Path)->dict:
- with tempfile.TemporaryDirectory(prefix='orion-tier-b-build-') as td:
+ with tempfile.TemporaryDirectory(prefix='orion-publication-build-') as td:
   w=Path(td)
   with zipfile.ZipFile(source_zip) as z:z.extractall(w)
   if not (w/'main.tex').is_file(): raise RuntimeError(f'no top-level main.tex in {source_zip}')
@@ -61,6 +96,8 @@ def main()->int:
  ap=argparse.ArgumentParser(); ap.add_argument('package',type=Path); ap.add_argument('--report',type=Path); a=ap.parse_args()
  package=a.package.resolve(); manifest=json.loads((package/'PACKAGE_MANIFEST.json').read_text())
  checks=[]; actual={p.relative_to(package).as_posix() for p in package.rglob('*') if p.is_file()}
+ scan_publication_labels(package)
+ checks.append('publication_surfaces_free_of_internal_classification_labels')
  payload=actual-{'PACKAGE_MANIFEST.json','SHA256SUMS'}
  if set(manifest['payload'])!=payload: raise RuntimeError('manifest payload file-set mismatch')
  for rel,rec in manifest['payload'].items():
@@ -113,7 +150,7 @@ def main()->int:
  checks.append('adverse_null_cannot_check_retention')
  builds={route:clean_build(package/route/'source.zip',package/route/'manuscript.pdf') for route in ('arxiv','journal')}
  checks.extend(['fresh_clean_arxiv_build','fresh_clean_journal_build','source_pdf_text_binding','resolved_references'])
- report={'schema':'ORION.tier-b-package-verification.v1','paper':manifest['paper'],'terminal':manifest['terminal'],'status':'PASS','package':str(package.relative_to(ROOT)),'package_manifest_sha256':sha(package/'PACKAGE_MANIFEST.json'),'checks':checks,'route_science_similarity':route_sim,'builds':builds,'paper_existence_gate':gate,'visual_audit':'PENDING_SEPARATE_RENDER_INSPECTION'}
+ report={'schema':'ORION.publication-package-verification.v1','paper':manifest['paper'],'terminal':manifest['terminal'],'status':'PASS','package':str(package.relative_to(ROOT)),'package_manifest_sha256':sha(package/'PACKAGE_MANIFEST.json'),'checks':checks,'route_science_similarity':route_sim,'builds':builds,'paper_existence_gate':gate,'visual_audit':'PENDING_SEPARATE_RENDER_INSPECTION'}
  if a.report:
   a.report.parent.mkdir(parents=True,exist_ok=True); a.report.write_text(json.dumps(report,indent=2,sort_keys=True)+'\n')
  print(json.dumps(report,indent=2,sort_keys=True))

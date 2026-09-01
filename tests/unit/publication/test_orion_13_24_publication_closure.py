@@ -9,6 +9,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[3]
 PAPERS = ["ORION-13", "ORION-14", "ORION-19", "ORION-21", "ORION-23", "ORION-24"]
+CURRENT_LEGACY_PACKAGES = PAPERS[1:]
 CHECKER = ROOT / "scripts/check_publication_closure.py"
 REGISTRY = ROOT / "papers/publication_closure/orion_13_24_final/CLOSURE_REGISTRY.json"
 
@@ -18,11 +19,16 @@ def test_registry_has_exact_requested_coverage() -> None:
     assert registry["requested_papers"] == PAPERS
     assert [record["paper"] for record in registry["papers"]] == PAPERS
     assert len({record["package_manifest"] for record in registry["papers"]}) == len(PAPERS)
+    orion13 = registry["papers"][0]
+    assert orion13["current_filing_authority"] is False
+    assert orion13["superseded_by"].endswith(
+        "submission/publication-final-20260901/PACKAGE_MANIFEST.json"
+    )
 
 
 def test_publication_packages_pass_fast_verifier() -> None:
     result = subprocess.run(
-        [sys.executable, str(CHECKER), *PAPERS],
+        [sys.executable, str(CHECKER), *CURRENT_LEGACY_PACKAGES],
         cwd=ROOT,
         text=True,
         stdout=subprocess.PIPE,
@@ -48,11 +54,11 @@ def test_unknown_paper_fails_closed() -> None:
 def test_a_missing_pdf_toolchain_is_cannot_check_not_a_failed_verification(
     tmp_path,
 ) -> None:
-    """A host without poppler must say so, not report six refuted packages.
+    """A host without poppler must say so, not report refuted packages.
 
     CI run 33467487052 failed exactly this way: `pdfinfo` was absent, the verifier
     died with FileNotFoundError, and the suite recorded a failed publication-closure
-    check for six packages that verify clean wherever the tool is installed. Exit 3
+    check for packages that verify clean wherever the tool is installed. Exit 3
     is this repository's could-not-check code and has to stay distinguishable from
     exit 1, which means refuted.
     """
@@ -62,7 +68,7 @@ def test_a_missing_pdf_toolchain_is_cannot_check_not_a_failed_verification(
     # sys.executable is absolute, so emptying PATH removes pdfinfo/pdftotext
     # without also hiding the interpreter.
     stripped = subprocess.run(
-        [sys.executable, str(CHECKER), *PAPERS],
+        [sys.executable, str(CHECKER), *CURRENT_LEGACY_PACKAGES],
         cwd=ROOT,
         env={**os.environ, "PATH": str(empty_bin)},
         text=True,
@@ -79,7 +85,7 @@ def test_a_missing_pdf_toolchain_is_cannot_check_not_a_failed_verification(
     # The no-alarm case. Without this the guard could swallow real refutations by
     # taking the could-not-check branch on a healthy host.
     healthy = subprocess.run(
-        [sys.executable, str(CHECKER), *PAPERS],
+        [sys.executable, str(CHECKER), *CURRENT_LEGACY_PACKAGES],
         cwd=ROOT,
         text=True,
         stdout=subprocess.PIPE,

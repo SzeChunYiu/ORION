@@ -1,0 +1,130 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "reader-manuscript-final",
+      "byte_count": 89550,
+      "path": "release/ORION-13-Brief-Report-final.pdf",
+      "role": "reader_manuscript",
+      "sha256": "sha256:114b4d2bd22c85dacf88a3741623f62ad45a1fad8d748abb4f1f214645a1c990"
+    },
+    {
+      "artifact_id": "reader-manuscript-initial-hostile-review",
+      "byte_count": 76876,
+      "path": "release/ORION-13-Brief-Report.pdf",
+      "role": "other",
+      "sha256": "sha256:db9e60ba90507adb485e04aac1e76f1cdfb61b63101607bba5889e04bee1b36f"
+    },
+    {
+      "artifact_id": "research-integrity-ledger",
+      "byte_count": 60537,
+      "path": "RESEARCH_INTEGRITY_LEDGER.json",
+      "role": "claim_ledger",
+      "sha256": "sha256:b7b563da61ec0b78474ab08c30b38ab1ac5c0903e355d18516be622cc410ce63"
+    },
+    {
+      "artifact_id": "source-verification-receipts",
+      "byte_count": 15558,
+      "path": "SOURCE_VERIFICATION_RECEIPTS.json",
+      "role": "release_receipt",
+      "sha256": "sha256:8fcd0c9b6ae2ceaec762b54310f446c5056d3f1e54febc0aa17330260ba7219c"
+    },
+    {
+      "artifact_id": "initial-review-freeze",
+      "byte_count": 2686,
+      "path": "REVIEW_FREEZE.json",
+      "role": "release_receipt",
+      "sha256": "sha256:7c94645e92731a7e8868e734b1563932013b63e58bfaeef1b92976df96280846"
+    },
+    {
+      "artifact_id": "targeted-rereview-freeze",
+      "byte_count": 3522,
+      "path": "TARGETED_REREVIEW_FREEZE.json",
+      "role": "release_receipt",
+      "sha256": "sha256:aa9415b006ec2913f7a4184db9ccdcf3e43f150a09b04ec79b6a6823a45de6f7"
+    },
+    {
+      "artifact_id": "final-editor-synthesis",
+      "byte_count": 2732,
+      "path": "EDITOR_SYNTHESIS_FINAL.md",
+      "role": "release_receipt",
+      "sha256": "sha256:ccbcab05aca49fecc8cfedfddf6ecdb019ae7b642b5b35ed55c8a5cc8f42acc1"
+    },
+    {
+      "artifact_id": "initial-reviewer-1",
+      "byte_count": 16311,
+      "path": "reviewers/REVIEWER_1_FROZEN.md",
+      "role": "release_receipt",
+      "sha256": "sha256:b57a06002500d73cab6ee4ac7e5f49d1f682492e61a1288052caa7086709b848"
+    },
+    {
+      "artifact_id": "initial-reviewer-2",
+      "byte_count": 17706,
+      "path": "reviewers/REVIEWER_2_FROZEN.md",
+      "role": "release_receipt",
+      "sha256": "sha256:ddaef021466d87665e077ceed6643b51c563a66662f4d74de8e7732dfb9cf7df"
+    },
+    {
+      "artifact_id": "initial-reviewer-3",
+      "byte_count": 14094,
+      "path": "reviewers/REVIEWER_3_FROZEN.md",
+      "role": "release_receipt",
+      "sha256": "sha256:00f334604caf3e47f46bd1c42b43459b6bf5ea8237904a32dab5d7303b606df0"
+    },
+    {
+      "artifact_id": "targeted-rereviewer-1",
+      "byte_count": 8927,
+      "path": "reviewers/REVIEWER_1_TARGETED_REREVIEW_FROZEN.md",
+      "role": "release_receipt",
+      "sha256": "sha256:cc9ce5a0d7301752270a60a6c3230b90149ce7c5d87c72d091e830b59d15fe93"
+    },
+    {
+      "artifact_id": "targeted-rereviewer-2",
+      "byte_count": 9218,
+      "path": "reviewers/REVIEWER_2_TARGETED_REREVIEW_FROZEN.md",
+      "role": "release_receipt",
+      "sha256": "sha256:c1a28da23a998d2fe9b5898eab375b52a3ff9f2cbb6d5d5292ce9569f89ac117"
+    },
+    {
+      "artifact_id": "targeted-rereviewer-3",
+      "byte_count": 8391,
+      "path": "reviewers/REVIEWER_3_TARGETED_REREVIEW_FROZEN.md",
+      "role": "release_receipt",
+      "sha256": "sha256:67a3a2187dcbf364c6ec2a92d464bc8e734c041a737254401b1b56dc5601b895"
+    }
+  ],
+  "authority": {
+    "claim_ledger_artifact_id": "research-integrity-ledger",
+    "manuscript_artifact_id": "reader-manuscript-final",
+    "manuscript_id": "ORION-13-F1000-BRIEF-REPORT-20260901-FINAL"
+  },
+  "canonical_paper_id": "ORION-13",
+  "manuscript_candidates": [
+    {
+      "artifact_id": "reader-manuscript-final",
+      "disposition": "authoritative",
+      "manuscript_id": "ORION-13-F1000-BRIEF-REPORT-20260901-FINAL",
+      "reason": "Exact seven-page journal reader PDF after hostile-review repair and three isolated targeted rereviews. Technical submission integrity only; human filing inputs remain recorded outside this contract.",
+      "sha256": "sha256:114b4d2bd22c85dacf88a3741623f62ad45a1fad8d748abb4f1f214645a1c990"
+    },
+    {
+      "artifact_id": "reader-manuscript-initial-hostile-review",
+      "disposition": "superseded",
+      "manuscript_id": "ORION-13-F1000-BRIEF-REPORT-20260901-INITIAL",
+      "reason": "Six-page predecessor retained as immutable hostile-review provenance; it lacked the operational rule specification and terminal crosswalk now present in the authoritative revision.",
+      "sha256": "sha256:db9e60ba90507adb485e04aac1e76f1cdfb61b63101607bba5889e04bee1b36f",
+      "superseded_by": "ORION-13-F1000-BRIEF-REPORT-20260901-FINAL"
+    }
+  ],
+  "package": {
+    "format": "file_set",
+    "members": [
+      {
+        "artifact_id": "reader-manuscript-final",
+        "member_path": "release/ORION-13-Brief-Report-final.pdf"
+      }
+    ]
+  },
+  "release_id": "ORION-13-F1000-BRIEF-REPORT-TECHNICAL-RELEASE-20260901",
+  "requested_state": "submission_ready",
+  "schema_version": "1.0"
+}

@@ -55,25 +55,28 @@ jobs:
         working-directory: papers/orion-13-global-knowledge-portrait
         run: sha256sum -c journal_package/SHA256SUMS
 
-      - name: Compile canonical scoped PDF deterministically
-        working-directory: papers/orion-13-global-knowledge-portrait/manuscript
+      - name: Compile both current Brief Report routes
+        working-directory: papers/orion-13-global-knowledge-portrait/manuscript/brief-report-final
         run: |
           set -euo pipefail
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
-          test -s main.pdf
-          if grep -E 'LaTeX Warning: (Citation|Reference).*(undefined)|There were undefined references|undefined citations|multiply defined' main.log; then
-            echo 'Unresolved or duplicate LaTeX reference/citation remains after convergence.' >&2
-            exit 1
-          fi
-          rebuilt=main.pdf
-          pdftotext "$rebuilt" /tmp/p3-rebuilt.txt
-          test -s /tmp/p3-rebuilt.txt
-          pdfinfo main.pdf | tee /tmp/p3-pdfinfo.txt
+          latexmk -pdf -interaction=nonstopmode -halt-on-error arxiv.tex
+          for route in main arxiv; do
+            test -s "${route}.pdf"
+            if grep -E 'LaTeX Warning: (Citation|Reference).*(undefined)|There were undefined references|undefined citations|multiply defined' "${route}.log"; then
+              echo "Unresolved or duplicate LaTeX reference/citation in ${route}.tex." >&2
+              exit 1
+            fi
+            test "$(pdfinfo "${route}.pdf" | awk '/^Pages:/ {print $2}')" = 7
+            pdftotext "${route}.pdf" "/tmp/p3-${route}.txt"
+            test -s "/tmp/p3-${route}.txt"
+            pdfinfo "${route}.pdf" > "/tmp/p3-${route}-pdfinfo.txt"
+          done
 
       - name: Verify historical package boundary and current final package
         run: |
           set -euo pipefail
-          python scripts/write_render_closure_state.py --check
+          python scripts/write_render_closure_state.py --check --paper orion-13-global-knowledge-portrait
           python - <<'PY'
           import json
           from pathlib import Path
@@ -88,14 +91,12 @@ jobs:
           print("P3_HISTORICAL_PACKAGE_SUPERSEDED_CURRENT_BUILD_INSPECTED")
           PY
           python scripts/check_p3_current_package.py
-          python scripts/check_publication_closure.py ORION-13
 
-      - name: Verify package and publication scoreboard
+      - name: Verify publication scoreboard
         run: |
           set -euo pipefail
           python research/publication/scoreboard.py --check
-          python research/paper-programme-v1/journal_package/check_journal_package.py --root .
-          pytest -q tests/test_publication_status.py tests/unit/publication/test_journal_package.py
+          pytest -q tests/test_publication_status.py
 
       - name: Archive audit and rebuilt PDF
         uses: actions/upload-artifact@v4
@@ -104,6 +105,9 @@ jobs:
           retention-days: 30
           if-no-files-found: error
           path: |
-            /tmp/p3-pdfinfo.txt
-            papers/orion-13-global-knowledge-portrait/manuscript/main.pdf
-            papers/orion-13-global-knowledge-portrait/manuscript/main.log
+            /tmp/p3-main-pdfinfo.txt
+            /tmp/p3-arxiv-pdfinfo.txt
+            papers/orion-13-global-knowledge-portrait/manuscript/brief-report-final/main.pdf
+            papers/orion-13-global-knowledge-portrait/manuscript/brief-report-final/main.log
+            papers/orion-13-global-knowledge-portrait/manuscript/brief-report-final/arxiv.pdf
+            papers/orion-13-global-knowledge-portrait/manuscript/brief-report-final/arxiv.log

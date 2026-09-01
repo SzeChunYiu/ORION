@@ -34,16 +34,16 @@ The paper's residual is the exact joint representation-level certification/refin
 
 Science: **bounded core coherent and paper-existence gate PASS**.  
 Canonical manuscript and claim ledger: **designated**.  
-Current dual-route package: `submission/tier-b-final-20260901/`.  
+Current dual-route package: [final package](submission/tier-b-final-20260901/).  
 TMLR journal PDF/source/review materials: **anonymous and checksum closed**.  
 arXiv PDF/source: **attributed and checksum closed**.  
-Fresh exact-byte source rebuild: `papers/publication_closure/tier_b_20260901/verification/ORION-02.json`.  
-Complete page-level visual audit: `papers/publication_closure/tier_b_20260901/verification/ORION-02_VISUAL_AUDIT.md`.  
+Fresh exact-byte source rebuild: [verification receipt](../publication_closure/tier_b_20260901/verification/ORION-02.json).  
+Complete page-level visual audit: [visual-audit receipt](../publication_closure/tier_b_20260901/verification/ORION-02_VISUAL_AUDIT.md).  
 Author/OpenReview/portal actions: **external and pending**.
 
 ## Terminal
 
-`TIER_B_ORION02_COMPLETE__PORTAL_ACTIONS_ONLY`
+`ORION02_COMPLETE__PORTAL_ACTIONS_ONLY`
 
 The external multi-domain selector experiment may strengthen a later version, but it is not a prerequisite for packaging V3. A real reviewer finding against V3-C1–V3-C7 reopens the theory; absence of the optional empirical promotion does not.
 

@@ -2,7 +2,7 @@
 
 The canonical scientific manuscript is the LaTeX tree at `papers/orion-10-certified-static-forecasting/manuscript/`, governed by `CLAIM_LEDGER_V4.md` and `ORION09_TO_ORION10_MERGE_COVERAGE_V1.md`.
 
-The current upload-facing filing object is `submission/tier-b-final-20260901/`:
+The current upload-facing filing object is the [final dual-route package](tier-b-final-20260901/):
 
 - `arxiv/manuscript.pdf` and `arxiv/source.zip` are the attributed arXiv route;
 - `journal/manuscript.pdf` and `journal/source.zip` are the attributed Quantum route;

@@ -18,6 +18,7 @@
     }
   },
   "checks": [
+    "publication_surfaces_free_of_internal_classification_labels",
     "manifest_payload_exact",
     "sha256_closure",
     "academic_paper_pipeline_1_21",
@@ -36,7 +37,7 @@
     "resolved_references"
   ],
   "package": "papers/orion-08-typed-state/submission/tier-b-final-20260901",
-  "package_manifest_sha256": "84d252d454e5fc30eaa92042861491ef58f9e1d0f7bbb48e044097023e408df2",
+  "package_manifest_sha256": "d33f2332a874bcc2a1f2f6d3184e4e5885704873a5bdebfbc101691358c7f104",
   "paper": "ORION-08",
   "paper_existence_gate": {
     "disposition": "WRITE_FULL_PAPER",
@@ -45,8 +46,8 @@
     "verdict": "PASS"
   },
   "route_science_similarity": 0.9696861626248217,
-  "schema": "ORION.tier-b-package-verification.v1",
+  "schema": "ORION.publication-package-verification.v1",
   "status": "PASS",
-  "terminal": "TIER_B_ORION08_COMPLETE__CONTROLLED_MECHANISMS_AND_BOUNDED_TRANSFER",
+  "terminal": "ORION08_COMPLETE__CONTROLLED_MECHANISMS_AND_BOUNDED_TRANSFER",
   "visual_audit": "PENDING_SEPARATE_RENDER_INSPECTION"
 }

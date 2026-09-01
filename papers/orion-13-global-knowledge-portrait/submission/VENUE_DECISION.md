@@ -1,21 +1,14 @@
 # Venue decision — ORION-13
 
-**Target: Semantic Web Journal.** Fallback Journal of Web Semantics.
+**Target:** F1000Research  
+**Article type:** Brief Report  
+**Companion route:** attributed arXiv preprint
 
-SWJ is the assigned primary and it fits. The contribution is a structured
-knowledge-mapping result with an explicit partial-identification treatment, an
-ontology-matching baseline comparison, and a deliberately bounded claim about
-what the mapping supports. SWJ's open review process is well suited to a paper
-whose central discipline is that coverage does not imply benefit, because
-reviewers can see the retained negatives directly.
+This route matches the earned scientific mass: a bounded 32-case authored
+holdout observation and a separate eight-state interface-conformance result.
+The earlier Semantic Web Journal full-paper route is superseded and is not a
+current filing option.
 
-**The claim being submitted is narrow, and deliberately so.** The paper's own
-scoped publication track holds two claim identifiers as explicitly *not*
-claimed, and the manuscript's limitations state that the broad study has not
-been executed. The submitted claim is the scoped structured-mapping result, not
-a general knowledge-graph result.
-
-**Article type.** Full paper, 45 pages.
-
-**Concurrent-submission note.** None. No sibling manuscript in this wave is
-routed to SWJ or to Journal of Web Semantics.
+The exact current package is `publication-final-20260901/`. Filing remains
+subject only to the human inputs recorded there, including the public archive
+DOI and live portal declarations.

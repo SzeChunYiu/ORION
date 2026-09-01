@@ -19,6 +19,9 @@ PAPERS = (
     "orion-23-responsibility-carrying-state",
     "orion-24-orion-rse",
 )
+FINAL_MANIFESTS = {
+    "orion-13-global-knowledge-portrait": "submission/publication-final-20260901/PACKAGE_MANIFEST.json",
+}
 TARGET_OVERLAYS = {"PROVENANCE.md", "MIRROR_RECEIPT_2026-08-31.md", "code"}
 
 
@@ -65,7 +68,9 @@ def mirror_paper(source_root: Path, target_root: Path, paper: str,
     source = source_root / "papers" / paper
     if not source.is_dir():
         raise FileNotFoundError(f"source paper missing: {source}")
-    final_manifest = source / "submission/final-20260831/PACKAGE_MANIFEST.json"
+    final_manifest = source / FINAL_MANIFESTS.get(
+        paper, "submission/final-20260831/PACKAGE_MANIFEST.json"
+    )
     if not final_manifest.is_file():
         raise FileNotFoundError(f"final manifest missing: {final_manifest}")
     destination = safe_destination(target_root, paper)

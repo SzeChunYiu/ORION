@@ -1,0 +1,60 @@
+name: ORION A3 external curator handoff validator v1
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a3-external-curator-handoff-v1.yml"
+      - "papers/publication_closure/a3-external-change-transport-v1/A3_EXTERNAL_CURATOR_HANDOFF_V1.json"
+      - "papers/publication_closure/a3-external-change-transport-v1/validate_external_curator_packet_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-normalized-content-binding-v2/**"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-two-replacement-successor-v1/**"
+permissions:
+  contents: read
+jobs:
+  curator-handoff-validator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen handoff authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          p='papers/publication_closure/a3-external-change-transport-v1/A3_EXTERNAL_CURATOR_HANDOFF_V1.json'
+          d=json.load(open(p))
+          assert d['schema']=='ORION.A3.ExternalCuratorHandoffContract.v1'
+          assert d['source_frame']['successor_frame_sha256']=='a47d9255aa37de056cb5cdd7c140bcccb487aa3285790655a48abb5e538c2993'
+          assert d['source_frame']['source_family_n']==128
+          assert d['allowed_targets']==['REUSE','REOPEN','CANNOT_CHECK']
+          assert d['external_packet_committed_by_this_contract'] is False
+          assert d['stratum_judgments_created_by_this_contract'] is False
+          assert d['gold_targets_created_by_this_contract'] is False
+          assert d['candidate_predictions_accessed'] is False
+          assert d['baseline_predictions_accessed'] is False
+          assert d['protected_outcomes_accessed'] is False
+          assert d['grants_scientific_authority'] is False
+          PY
+      - name: Compile and run hostile self-test
+        run: |
+          python -m py_compile papers/publication_closure/a3-external-change-transport-v1/validate_external_curator_packet_v1.py
+          python papers/publication_closure/a3-external-change-transport-v1/validate_external_curator_packet_v1.py --self-test
+      - name: Ban judgment inference and prediction inputs
+        run: |
+          python - <<'PY'
+          import ast,pathlib
+          p=pathlib.Path('papers/publication_closure/a3-external-change-transport-v1/validate_external_curator_packet_v1.py')
+          mod=ast.parse(p.read_text())
+          forbidden_imports={'random','numpy','sklearn','torch','openai'}
+          for node in ast.walk(mod):
+              if isinstance(node,ast.Import):
+                  for alias in node.names:
+                      assert alias.name.split('.')[0] not in forbidden_imports
+              if isinstance(node,ast.ImportFrom) and node.module:
+                  assert node.module.split('.')[0] not in forbidden_imports
+          PY
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code

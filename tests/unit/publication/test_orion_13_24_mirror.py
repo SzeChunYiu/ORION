@@ -29,8 +29,9 @@ def test_exact_mirror_preserves_declared_overlays(tmp_path: Path) -> None:
     target_root = tmp_path / "target"
     source = source_root / "papers" / paper
     destination = target_root / "v1-papers" / paper
-    (source / "submission/final-20260831").mkdir(parents=True)
-    (source / "submission/final-20260831/PACKAGE_MANIFEST.json").write_text("{}\n")
+    manifest = source / module.FINAL_MANIFESTS[paper]
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text("{}\n")
     (source / "paper.txt").write_text("current\n")
     destination.mkdir(parents=True)
     (destination / "paper.txt").write_text("stale\n")

@@ -9,9 +9,9 @@ ORION-01 is one paper. Its only live manuscript and claim ledger are:
 
 - `MANUSCRIPT_V4.md`
 - `CLAIM_LEDGER_V4.md`
-- `submission/tier-b-final-20260901/`
+- [final dual-route package](submission/tier-b-final-20260901/)
 
-The exact same identified reader-facing PDF in `submission/tier-b-final-20260901/arxiv/` and `submission/tier-b-final-20260901/journal/` is the artifact for both arXiv and the primary journal target, Quantum. Route-specific source archives are packaging conveniences and do not define different papers.
+The [arXiv PDF](submission/tier-b-final-20260901/arxiv/manuscript.pdf) and [journal PDF](submission/tier-b-final-20260901/journal/manuscript.pdf) are byte-identical reader-facing artifacts for arXiv and the primary journal target, Quantum. Route-specific source archives are packaging conveniences and do not define different papers.
 
 ## Historical component status
 
@@ -25,7 +25,7 @@ The production-realization retraction and the PyZX `CANNOT_CHECK_MOVE_COMPLETENE
 
 ## ORION-05 merger
 
-The ORION-05 support-two theorem and exact support-one obstruction are absorbed into this one object. ORION-05 remains provenance and is not a second submission. Its static-evaluator/regime records are routed to the merged ORION-09/10 object. The claim-by-claim coverage decision is in `submission/tier-b-closure-20260901/ORION05_MERGE_COVERAGE_AUDIT.md`.
+The ORION-05 support-two theorem and exact support-one obstruction are absorbed into this one object. ORION-05 remains provenance and is not a second submission. Its static-evaluator/regime records are routed to the merged ORION-09/10 object. The [claim-by-claim coverage decision](submission/tier-b-closure-20260901/ORION05_MERGE_COVERAGE_AUDIT.md) records the merger.
 
 ## Publication disposition
 

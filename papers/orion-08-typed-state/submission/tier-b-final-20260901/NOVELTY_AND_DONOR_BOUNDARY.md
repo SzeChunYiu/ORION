@@ -6,7 +6,7 @@ Six exact-synthetic matched-information families isolate how typed epistemic bin
 
 ## Donor and priority limits
 
-- Scientific authority is bound to `CLAIM_LEDGER_V4.md` and terminal `TIER_B_ORION08_COMPLETE__CONTROLLED_MECHANISMS_AND_BOUNDED_TRANSFER`.
+- Scientific authority is bound to `CLAIM_LEDGER_V4.md` and terminal `ORION08_COMPLETE__CONTROLLED_MECHANISMS_AND_BOUNDED_TRANSFER`.
 - Generic methods, venue conventions, comparator mechanisms, and cited donor results remain donor-owned.
 - The paper claims the bounded formal, controlled, or measurement residual above; it does not claim priority for a generic donor primitive.
 - No exhaustive first-in-literature, editorial-acceptance, venue-ranking, or independent-replication claim is made by this package.
