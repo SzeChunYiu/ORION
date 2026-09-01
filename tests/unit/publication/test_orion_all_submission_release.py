@@ -16,6 +16,7 @@ BUILDER = (
     / "papers/publication_closure/orion_all_submission_20260831/build_all_submission_materials.py"
 )
 MIRROR = ROOT / "scripts/mirror_orion_papers_all.py"
+RENDER_RECONCILER = ROOT / "scripts/reconcile_ci_manuscript_renders.py"
 SUPERSEDED_PACKAGES = (
     ROOT / "papers/orion-01-certificate-realization/journal_package_A_final",
     ROOT / "papers/orion-01-certificate-realization/journal_package_B_final",
@@ -111,6 +112,30 @@ def test_mirror_checksum_verification_cannot_pass_with_missing_papers(
     payload.write_text("drift\n", encoding="utf-8")
     with pytest.raises(RuntimeError, match="checksum mismatch"):
         module.verify_mirrored_package_checksums(tmp_path)
+
+
+def test_ci_render_reconciliation_can_target_one_v1_paper(tmp_path: Path) -> None:
+    module = load_module(RENDER_RECONCILER, "targeted_ci_render_reconciliation")
+    slug = "orion-23-responsibility-carrying-state"
+    paper = tmp_path / "papers" / slug
+    pdf = paper / "manuscript/main.pdf"
+    pdf.parent.mkdir(parents=True)
+    pdf.write_bytes(b"new pinned render")
+    relative = f"papers/{slug}/manuscript/main.pdf"
+    old_digest = hashlib.sha256(b"old render").hexdigest()
+    (paper / "SHA256SUMS").write_text(
+        f"{old_digest}  {relative}\n", encoding="utf-8"
+    )
+
+    module.ROOT = tmp_path
+    module.RENDERS = {slug: (hashlib.sha256(pdf.read_bytes()).hexdigest(), 1)}
+    module.V1_BINDINGS = {"P13": slug}
+    module.PRIOR_PDF_DIGESTS = {slug: old_digest}
+    module.prepare_digest_subject({slug})
+
+    assert (paper / "SHA256SUMS").read_text(encoding="utf-8") == (
+        f"{hashlib.sha256(pdf.read_bytes()).hexdigest()}  {relative}\n"
+    )
 
 
 def test_full_build_report_is_bound_to_each_current_manifest(tmp_path: Path) -> None:

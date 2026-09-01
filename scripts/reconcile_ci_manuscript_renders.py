@@ -25,9 +25,9 @@ import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CI_SOURCE_COMMIT = "ae693283365d6b7c0129e7122ce9c6f5a7ac03d3"
-CI_WORKFLOW_RUN = "33463297400"
-CI_ARTIFACT_ID = "9783994917"
+CI_SOURCE_COMMIT = "b380d807d11665698c5474bd07bde3f700206041"
+CI_WORKFLOW_RUN = "33466273211"
+CI_ARTIFACT_ID = "9784999811"
 RENDER_DATE = "2026-09-01"
 
 RENDERS = {
@@ -60,7 +60,7 @@ RENDERS = {
         7,
     ),
     "orion-23-responsibility-carrying-state": (
-        "6411b6fa73bca8f892f211755ec4a937438c957b27b04ea7f6ce3ed32b2de87f",
+        "d3a86ab98c877d2584b414518962d158ab459dd9c0ab6e305fde7944204e1c5c",
         6,
     ),
     "orion-25-orion-research-harness": (
@@ -84,7 +84,7 @@ PRIOR_PDF_DIGESTS = {
         "a703ca1407df9d58421b9c2e5c33ba24fa90b6a80e4368996e4e1c32203cc010"
     ),
     "orion-23-responsibility-carrying-state": (
-        "eb19a6db3d1a83316d90734956d235a44c8d8eecaaee110490bcd4c855e03773"
+        "6411b6fa73bca8f892f211755ec4a937438c957b27b04ea7f6ce3ed32b2de87f"
     ),
     "orion-25-orion-research-harness": (
         "dbc9be631bcbec0a9a0d3551843c033eb970910353e5fcaf244cb99f8a73f877"
@@ -150,16 +150,38 @@ def replace_sum(path: Path, relative: str, digest: str, *, expected_old: str | N
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def verify_imported_renders() -> None:
+def verify_imported_renders(selected: set[str] | None = None) -> None:
     for slug, (expected, _pages) in RENDERS.items():
+        if selected is not None and slug not in selected:
+            continue
         pdf = ROOT / "papers" / slug / "manuscript" / "main.pdf"
         actual = sha256_file(pdf)
         if actual != expected:
             raise RuntimeError(f"{slug}: imported PDF digest {actual}, expected {expected}")
 
 
-def prepare_digest_subject() -> None:
-    verify_imported_renders()
+def prepare_digest_subject(selected: set[str] | None = None) -> None:
+    verify_imported_renders(selected)
+
+    if selected is not None:
+        binding_slugs = set(V1_BINDINGS.values())
+        unsupported = selected - binding_slugs
+        if unsupported:
+            raise RuntimeError(
+                "targeted preparation supports V1-bound papers only: "
+                + ", ".join(sorted(unsupported))
+            )
+        for slug in sorted(selected):
+            paper = ROOT / "papers" / slug
+            relative = f"papers/{slug}/manuscript/main.pdf"
+            replace_sum(
+                paper / "SHA256SUMS",
+                relative,
+                RENDERS[slug][0],
+                expected_old=PRIOR_PDF_DIGESTS[slug],
+            )
+        print(f"prepared {len(selected)} targeted CI render checksum binding(s)")
+        return
 
     p4 = ROOT / "papers" / "orion-14-verified-scientific-discovery"
     package = p4 / "journal_package"
@@ -259,13 +281,15 @@ def prepare_digest_subject() -> None:
     print("prepared nine CI renders and reconciled five PDF checksum bindings")
 
 
-def bind_subject(commit: str) -> None:
+def bind_subject(commit: str, selected: set[str] | None = None) -> None:
     if not re.fullmatch(r"[0-9a-f]{40}", commit):
         raise RuntimeError("--subject-commit must be a full lowercase Git commit ID")
     git_text("cat-file", "-e", f"{commit}^{{commit}}")
     git_text("merge-base", "--is-ancestor", commit, "HEAD")
 
     for candidate_id, slug in V1_BINDINGS.items():
+        if selected is not None and slug not in selected:
+            continue
         paper = ROOT / "papers" / slug
         manifest_path = paper / "CONTENT_MANIFEST_V1.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -319,11 +343,17 @@ def main() -> int:
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--prepare", action="store_true")
     group.add_argument("--subject-commit")
+    parser.add_argument(
+        "--papers",
+        default="",
+        help="comma-separated V1 paper slugs for an incremental render reconciliation",
+    )
     args = parser.parse_args()
+    selected = {item.strip() for item in args.papers.split(",") if item.strip()} or None
     if args.prepare:
-        prepare_digest_subject()
+        prepare_digest_subject(selected)
     else:
-        bind_subject(args.subject_commit)
+        bind_subject(args.subject_commit, selected)
     return 0
 
 
