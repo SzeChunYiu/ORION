@@ -1,4 +1,4 @@
-# ORION-15-6_failure_recurrence
+# P5-6_failure_recurrence
 
 **Status:** `CANNOT_CHECK`
 

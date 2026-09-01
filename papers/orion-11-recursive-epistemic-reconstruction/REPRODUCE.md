@@ -293,10 +293,10 @@ Overridable as make variables: `P1_ARCHIVE`, `P1_OUT`, `P1_REPEATS`,
 
 | File | Contents |
 |---|---|
-| `results/ORION-11-T2_baseline_ablation_results.json` / `.md` | system × family: rate with Wilson 95% CI, paired difference against the strongest matched baseline with bootstrap CI, effect size, hypothesis verdict, Holm-corrected secondary family |
-| `results/ORION-11-T3_failure_taxonomy.json` / `.md` | failure modes by frequency with representative **blinded** case ids |
+| `results/P1-T2_baseline_ablation_results.json` / `.md` | system × family: rate with Wilson 95% CI, paired difference against the strongest matched baseline with bootstrap CI, effect size, hypothesis verdict, Holm-corrected secondary family |
+| `results/P1-T3_failure_taxonomy.json` / `.md` | failure modes by frequency with representative **blinded** case ids |
 
-`ORION-11-T1_nearest_work_matrix` is the nearest-work mechanism matrix and is not
+`P1-T1_nearest_work_matrix` is the nearest-work mechanism matrix and is not
 produced by this pipeline.
 
 JSON and markdown only. There is no plotting code in `orion.study.p1` and none
