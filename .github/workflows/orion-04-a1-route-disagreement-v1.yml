@@ -1,0 +1,74 @@
+name: ORION-04 A1 route disagreement v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-04-a1-route-disagreement-v1.yml"
+      - "papers/orion-04-rooted-completion-certificates/evidence/a1-route-disagreement-v1/**"
+      - "papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/z3_disjoint_zero_sum_v1.py"
+      - "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_a/engine_a_lower_bound_v1.py"
+      - "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/controls/batch_input/records.jsonl"
+      - "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/controls/BATCH_CERTIFICATES.jsonl"
+permissions:
+  contents: read
+jobs:
+  route-disagreement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Install pinned Z3 runtime
+        run: python -m pip install 'z3-solver==5.1.0.0'
+      - name: Verify frozen route/control bindings
+        run: |
+          set -euo pipefail
+          test "$(git hash-object papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_a/engine_a_lower_bound_v1.py)" = "b938d6dfde0c048b0291340ad02886ceba0e9699"
+          test "$(git hash-object papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/z3_disjoint_zero_sum_v1.py)" = "7b606fca37749c6311bc78048539c7cbbaaa0172"
+          test "$(git hash-object papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/controls/batch_input/records.jsonl)" = "aff0326b9455c308cf04c9c99ced36b9de196dda"
+          test "$(git hash-object papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/controls/BATCH_CERTIFICATES.jsonl)" = "6429de73a813c52c35d3d10a487c5d474a94aa9f"
+      - name: Verify route-disagreement protocol boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('papers/orion-04-rooted-completion-certificates/evidence/a1-route-disagreement-v1/PROTOCOL_V1.json').read_text())
+          assert d['schema']=='ORION04.A1.RouteDisagreementProtocol.v1'
+          assert d['target_d4_execution_performed'] is False
+          assert d['protected_d4_outcome_accessed'] is False
+          assert d['d4_rounds_consumed']==0
+          assert d['decision_rule']['majority_vote_allowed'] is False
+          assert d['decision_rule']['any_nonunanimous_SAT_UNSAT_vector']=='ADVERSE_ROUTE_DISAGREEMENT'
+          PY
+      - name: Run live DP/Z3 plus committed PySAT control comparison
+        run: |
+          python papers/orion-04-rooted-completion-certificates/evidence/a1-route-disagreement-v1/compare_lower_bound_routes_v1.py \
+            --engine-a papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_a/engine_a_lower_bound_v1.py \
+            --z3-route papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/z3_disjoint_zero_sum_v1.py \
+            --records papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/controls/batch_input/records.jsonl \
+            --certificates papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/controls/BATCH_CERTIFICATES.jsonl \
+            | tee /tmp/routes.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/routes.json'))
+          assert d['decision']=='GREEN'
+          assert d['target_d4_execution_performed'] is False
+          assert d['protected_d4_outcome_accessed'] is False
+          assert d['d4_rounds_consumed']==0
+          assert d['majority_vote_used'] is False
+          rows={r['record_id']:r for r in d['rows']}
+          assert rows['positive-batch']['terminal']=='CONSENSUS_SAT_CONTROL'
+          assert rows['positive-batch']['pysat_sat_witness_verified'] is True
+          assert rows['negative-batch']['terminal']=='CONSENSUS_UNSAT_CONTROL'
+          assert rows['negative-batch']['pysat_unsat_proof_externally_checked'] is False
+          h=d['hostile_controls']['controls']
+          assert h['two_to_one_sat_control_is_adverse'] is True
+          assert h['two_to_one_unsat_control_is_adverse'] is True
+          assert h['missing_route_is_cannot_check'] is True
+          assert d['hostile_controls']['majority_vote_can_rescue_disagreement'] is False
+          PY
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
