@@ -1,0 +1,48 @@
+\section{Formal setting and study design}
+
+\subsection{Exact cost and certificate layers}
+
+Let $x$ be an instance, $\mathcal C(x)$ its feasible compiler configurations, and $C(c;x,\theta)$ a fixed objective indexed by weights $\theta$.  The exact cost is
+\begin{equation}
+ C^\star(x;\theta)=\min_{c\in\mathcal C(x)} C(c;x,\theta).
+ \label{eq:exact-cost}
+\end{equation}
+We distinguish four evidential objects.  A \emph{cost certificate} proves a reported value equals Eq.~\eqref{eq:exact-cost}.  An \emph{implementation check} compares executable code with exact referees or independently checked witnesses.  An \emph{explanation certificate} identifies a structural minimizing family or feature regime.  A \emph{row-level verification record} states whether a particular emitted row has an exact referee receipt.  Failure of one object changes another only when a logical dependency is shown.
+
+For a deterministic reference compiler with cost $C_D$, its exact region is $\mathcal R_D(\theta)=\{x:C_D(x;\theta)=C^\star(x;\theta)\}$.  When configurations carry a support statistic $s(c)$, the intrinsic support number is
+\begin{equation}
+ \kappa(\theta)=\min\{k:\forall x\;\exists c^\star\text{ with }s(c^\star)\le k\}.
+ \label{eq:kappa}
+\end{equation}
+A proof of support at most $k$ is only an upper bound until a separate obstruction excludes smaller support.
+
+\subsection{Shared-tag Pauli model and forecast families}
+
+An $n$-qubit Pauli word modulo global phase is represented by $(x,z)\in\mathbb F_2^{2n}$, with symplectic commutation form $\langle(x,z),(x',z')\rangle=x\cdot z'+z\cdot x'\pmod2$.  The primary model contains three ordered target pairs.  Each block selects two nonidentity frame Paulis that anticommute, one shared Tag Pauli supplies the same two distinct syndrome bits to every block, and one frame per block is assigned the lower structural weight.  The unit objective charges weighted frame support, Tag support and a three-block restored-target functional.  Supplementary Section~S1 gives the complete feasible set and objective.
+
+We use reader-facing notation for four nested cost families.  $C_{\rm ref}$ is the original reference construction; $C_{\le1}$ is the support-one restricted optimum; $C_{\le2}$ is the complete support-at-most-two optimum; and $C_{\rm DP}$ is the unrestricted dynamic-programming optimum.  In the archived code these correspond to $C_{R6L}$, $C_{D^+}$, $C_{D^{++}}$ and $C_{DP}$, respectively.  The initial static forecaster is
+\begin{equation}
+ F_1(x)=\min\{C_{\rm ref}(x),C_{\le1}(x),f_B(x)\},
+ \label{eq:f1}
+\end{equation}
+where $B$ is a named central-borrow family.  The theorem-backed forecaster is
+\begin{equation}
+ F_2(x)=C_{\le2}(x).
+ \label{eq:f2}
+\end{equation}
+The enlarged family $B'$ permits the borrow home to lie outside a block's own target support or in the union support.  The hybrid family $B''$ additionally allows the split-and-borrow support-two shapes exposed by hostile search.  These names describe feasible configuration families; agreement of their minima on a panel is not itself a completeness proof.
+
+\subsection{Regime representation and transfer}
+
+For a frozen feature map $\phi(x)$ and binary label $y(x)=1[x\in\mathcal R_D]$, a feature cell contains instances with the same $\phi$.  The smallest error attainable by any deterministic classifier using only $\phi$ on a finite domain is
+\begin{equation}
+ E_{\min}(\phi)=\sum_v\min\{n_0(v),n_1(v)\},
+ \label{eq:emin}
+\end{equation}
+where $n_b(v)$ counts label $b$ in cell $v$.  A positive value is a representation-level impossibility result on that domain.  A zero value proves only finite determination.  Cell and singleton counts reveal whether that determination compresses the domain or approaches memorization.
+
+Weighted Clifford state preparation supplies the transfer test.  Allowed gates are $H$, $S$, $S^\dagger$ and controlled-NOT with costs $1,1,1,3$.  Exact costs are Dijkstra distances from $|0\cdots0\rangle$ on complete stabilizer-state graphs of sizes 6, 60, 1,080 and 36,720 for $n=1,2,3,4$.  Complete feature analysis uses all 1,146 states with $n\le3$; the next-size test uses a frozen 120-state four-qubit panel.  Supplementary Sections~S5--S6 specify the deterministic reference synthesis, all 127 features, panel generator, folds and shuffle null.
+
+\subsection{Prospective and hostile tests}
+
+The forecast sequence was ordered before each corresponding referee was opened.  A 102-row boundary panel tested the initial structural labels.  A separate 9,546-row benchmark admitted exact refutation of Eq.~\eqref{eq:f1}.  The repaired implementation in Eq.~\eqref{eq:f2} was then compared on 9,547 rows.  A 740-instance hostile census tested $B'$ without changing its definition; a further 10,481-instance panel tested $B''$.  The previously open commuting-support-two sector was checked over 378 irreducible geometries and all $2^{24}$ target-letter states per geometry.  The state-preparation features and transfer rule were fixed before four-qubit evaluation.  Later repairs never replace earlier failures in the reported denominator.

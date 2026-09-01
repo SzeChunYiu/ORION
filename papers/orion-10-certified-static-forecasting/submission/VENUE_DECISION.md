@@ -1,22 +1,13 @@
-# Venue decision — ORION-10
+# Venue decision - ORION-10
 
-**Target: _Quantum_.** Quantum Science and Technology only if impact clearly
-supports it, and it does not.
+**Target:** Quantum  
+**Article type:** research article  
+**arXiv:** primary `quant-ph`, optional `cs.DS` cross-list
 
-The routing set _Quantum_ as primary with QST conditional on impact. The paper's
-contribution is a distinction: it separates the exact cost theorem, the
-implementation check against the unrestricted dynamic program, the
-human-readable regime model, the prospective prediction evidence, and the
-row-level verification authority, and it shows why collapsing them is a
-mistake. That is a structural argument about what a certified forecast is, not
-an impact result, and it is squarely in _Quantum_'s scope.
+Quantum is the best-fit specialist route for the model-specific exact compilation theorem, prospectively staged refutation and bounded cross-model controls. The paper does not depend on a production optimizer, hardware result, runtime comparison or quantum-advantage claim.
 
-**Article type.** Regular research article, 6 pages.
+Quantum's author instructions were checked live on 2026-09-01. The journal accepts the arXiv identifier of a preprint posted in or cross-listed with `quant-ph`; no cover letter is required. The supplied arXiv and Quantum PDFs are distinct route builds of the same science and both are attributed.
 
-## Concurrent-submission note for the filer
+ORION-09 is merged into ORION-10 and has no independent filing route. ORION-05 remains a separate paper with a narrower grammar-expressivity question, so it is not duplicated here.
 
-Two sibling manuscripts from the same programme are also routed to _Quantum_ in
-this wave. They are distinct contributions and each stands alone, but they share
-a substrate and some evidence artifacts. The filer should stagger them or
-disclose the relationship in the cover letters rather than filing three at once
-in silence. This is a human editorial judgement.
+This is a fit decision, not an acceptance prediction.

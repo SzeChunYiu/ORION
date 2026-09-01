@@ -45,7 +45,10 @@ def clean_build(source_zip:Path,release_pdf:Path)->dict:
   w=Path(td)
   with zipfile.ZipFile(source_zip) as z:z.extractall(w)
   if not (w/'main.tex').is_file(): raise RuntimeError(f'no top-level main.tex in {source_zip}')
-  out=run('latexmk','-pdf','-interaction=nonstopmode','-halt-on-error','main.tex',cwd=w)
+  if 'quantumarticle' in (w/'main.tex').read_text(errors='replace'):
+   out=run('tectonic','--keep-logs','main.tex',cwd=w)
+  else:
+   out=run('latexmk','-pdf','-interaction=nonstopmode','-halt-on-error','main.tex',cwd=w)
   built=w/'main.pdf'
   bt,rt=text_pdf(built),text_pdf(release_pdf)
   sim=similarity(bt,rt)

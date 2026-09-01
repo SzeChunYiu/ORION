@@ -29,8 +29,8 @@ EPOCH = (1980, 1, 1, 0, 0, 0)
 AUTHOR = "Sze Chun Yiu"
 AFFILIATION = "Stockholm University"
 EMAIL = "sze-chun.yiu@fysik.su.se"
-ACADEMIC_PAPER_SKILLS_REVISION = "be335c630240cd5e73535e8f813594b227d736a8"
-ACADEMIC_PAPER_PIPELINE_VERSION = "1.20.0"
+ACADEMIC_PAPER_SKILLS_REVISION = "488fc5310b84e578431f4a9a176d55bf9a3f0b99"
+ACADEMIC_PAPER_PIPELINE_VERSION = "1.21.0"
 ACADEMIC_WRITING_VERSION = "1.18.0"
 NATURE_POLISHING_VERSION = "7.5.0"
 NATURE_REVIEWER_VERSION = "3.5.0"
@@ -90,7 +90,7 @@ SPECS = [
         crosslists=["cs.LG"],
     ),
     spec("ORION-09", "orion-09-compilation-regime-geometry", "Compilation Regime Geometry: A Receipted Programme for Mapping Exact Optimization Families", "Quantum", "identified", "quant-ph", "CLAIM_LEDGER_V2.md", "READY_TO_SUBMIT_SECOND_TIER__EXACT_MODEL_SPECIFIC_GEOMETRY", "Three exact model-specific compilation families separate intrinsic support, proof ceilings, objective certificates, and representation identifiability.", ["The TARE closed-form trade basis and a universal low-order state-preparation boundary are refuted.", "The QG15b representation has 43 irreducible errors among 1,146 cases; no generic transfer, hardware advantage, or externally independent proof is claimed."], crosslists=["cs.DS"]),
-    spec("ORION-10", "orion-10-certified-static-forecasting", "Theorem-Backed Static Cost Forecasting with Refutable Explanations for Quantum Compilation", "Quantum", "identified", "quant-ph", "CLAIM_LEDGER_V3.md", "READY_TO_SUBMIT_SECOND_TIER__BOUNDED_STATIC_FORECAST", "For the frozen F2 family, a theorem identifies the exact static cost feature for all n, with 9,547 finite agreements and 102 of 102 staged predictions as bounded checks.", ["The original QG5 formula is refuted on a fresh n=3 instance (10 versus 11).", "A full 740-instance census refutes exact explanation by the named B-prime vocabulary: six of seven f_Bprime fibres are cost-mixed; the earlier 64-instance uniform offset was a selection artifact.", "The communication-support-two proof sector remains open, and no runtime, full-circuit, transfer, hardware, or reweighted-objective claim is made."], crosslists=["cs.DS"]),
+    spec("ORION-10", "orion-10-certified-static-forecasting", "Certified Cost Forecasts and Refutable Regime Maps for Exact Quantum Compilation", "Quantum", "identified", "quant-ph", "CLAIM_LEDGER_V4.md", "TIER_B_ORION10_COMPLETE__ORION09_MERGED__BOUNDED_EXACT_MODELS", "For the shared-tag unit objective, a support-two normalization theorem makes the restricted forecaster exact for every admitted size; separately falsifiable explanation and cross-model controls show that exact cost, explanation, finite verification and transfer require distinct certificates.", ["The initial three-family formula is refuted on a frozen fresh instance: it returns 11 while the exact optimum is 10.", "The enlarged borrow vocabulary has 64 hostile gaps; six of seven complete-census fibres are cost-mixed, so the earlier one-unit offset is a selection artifact rather than an exact explanation.", "Two global proof links remain false or open: CHAIN_ALL_N=false and GLOBAL_BDOUBLEPRIME_COMPLETENESS=false; the two-coordinate chain representation is refuted.", "The all-size 6,341,787,648-state envelope is same-project theorem custody and does not establish external replication, runtime, hardware, production-compiler or quantum-advantage claims.", "For weighted Clifford state preparation, the exact four-feature separator is bounded to the complete small-size domain; the frozen next-size rule makes 32 errors on 120 states and the shuffle null is p=0.51.", "Rank-support behavior is rewrite-dependent rather than a general law; no full-circuit, reweighted-objective or broad transfer claim is made."], crosslists=["cs.DS"]),
     spec("ORION-11", "orion-11-recursive-epistemic-reconstruction", "Typed Responsibility Licensing for Scientific Revision: Transition Envelopes and Exact Mechanism Evidence", "Journal of Artificial Intelligence Research", "identified", "cs.AI", "REFRAMED_CONTRIBUTION_V2.md", "ORION11_COMPARATIVE_NECESSITY_AND_ECONOMY_RETIRED__BOUNDED_MECHANISM_RETAINED", "Typed responsibility-to-authority licensing attains the bounded mechanical constraints and 400/400 exact-contract decisions, while an information-equivalent product also ties at 400/400 as required by the factorization theorem.", ["The earlier +0.50625/+0.5167 comparative-necessity reading is withdrawn because ordered search recovers the margin.", "The costed-ordering successor refutes economy: the licensed policy costs about 1.818 times faithful Active-VOI at equal success and safety and 1.20 times the exact DP optimum, missing both preregistered gates.", "The formal costed-ordering terminal is CANNOT_CHECK__CHECKER_DISAGREEMENT on an ambiguous G6 scope; the cost-component attribution is ATTRIBUTION_INCOMPLETE, and neither defect rescues the jointly failed economy gates."], crosslists=["cs.LG"]),
     spec("ORION-12", "orion-12-open-world-scientific-discovery", "Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery", "Information Processing & Management", "identified", "cs.IR", "PUBLICATION_FREEZE_ADDENDUM_V2.md", "CURRENT_BOUNDED_CONTROL_METHOD__EXTERNAL_SUPERIORITY_NOT_SUPPORTED__ESTIMATOR_SIGNAL_INERT", "A fail-closed controller separates route stopping from task closure and retains unavailable material routes as open obligations.", ["The registered TREC-COVID recall/cost gate fails: recall@100 delta -0.01769 with 95% bootstrap interval [-0.02729,-0.00906], while reads increase 175.7%.", "On ArguAna, density normalization and a query-conditional estimator each leave all five decisions unchanged; the rank-overlap marginal is signal-inert there, so the failure is in the measurement rather than its threshold.", "OpenAIRE remains CANNOT_CHECK after provider invalidity; the fresh 48-task campaign was not accessed; favorable nDCG and complete-gold diagnostics do not establish external superiority or open-world completeness."], crosslists=["cs.AI", "cs.DL"]),
     spec("ORION-13", "orion-13-global-knowledge-portrait", "Coordinate-Governed Mapping of Source-Local Scientific Projections", "Semantic Web Journal", "identified", "cs.AI", "SCOPED_PUBLICATION_TRACK_V1.md", "P3_C5_C9_REPLICATED_MAPPING__P3_C10_C11_EXACT_IDENTITY_AUTHORITY", "Coordinate-governed mapping prevents six false merges in a 32-case fixed panel and supports the registered 400-contract decision scope.", ["All six discordances lie in one polarity family and fixed-panel intervals are diagnostics, not population uncertainty.", "An information-equivalent typed product ties 400/400; raw-text extraction and downstream scientific utility remain undetermined."], source="final_zip", crosslists=["cs.DL"]),
@@ -135,7 +135,7 @@ def write(path: Path, value: str) -> None:
 
 
 def copy_tree(src: Path, dst: Path) -> None:
-    generated = {"main.pdf", "main.aux", "main.bbl", "main.blg", "main.fdb_latexmk", "main.fls", "main.log", "main.out", "main.toc", "main.xdv", "main.markdown.lua", "main.markdown.out"}
+    generated = {"main.pdf", "main-arxiv.pdf", "supplement.pdf", "main.aux", "main.bbl", "main.blg", "main.fdb_latexmk", "main.fls", "main.log", "main.out", "main.toc", "main.xdv", "main.markdown.lua", "main.markdown.out"}
     for path in sorted(src.rglob("*")):
         if not path.is_file() or path.name in generated or ".git" in path.parts:
             continue
@@ -231,7 +231,8 @@ def set_identity(root: Path, spec_: dict, variant: str) -> None:
     text = replace_command(text, "title", title_tex)
     anonymous = variant == "journal" and spec_["review"] == "double_blind"
     if spec_["paper"] != "ORION-03" and command_span(text, "author") is not None:
-        text = replace_command(text, "author", "Anonymous authors" if anonymous else NAMED_AUTHOR_TEX)
+        named = AUTHOR if r"\email{" in text and r"\affiliation{" in text else NAMED_AUTHOR_TEX
+        text = replace_command(text, "author", "Anonymous authors" if anonymous else named)
     if spec_["paper"] == "ORION-03":
         text = text.replace(
             r"\affil*[1]{\orgname{Independent Researcher}}",
@@ -513,6 +514,9 @@ def special_source(spec_: dict, variant: str, root: Path) -> Path:
         normalize_paths(root)
         return root
     copy_tree(paper / "manuscript", root)
+    if spec_["paper"] == "ORION-10" and variant == "arxiv":
+        shutil.copy2(root / "main-arxiv.tex", root / "main.tex")
+        (root / "main-arxiv.tex").unlink()
     for name in ("figures", "tables"):
         if (paper / name).is_dir() and not (root / name).exists():
             copy_tree(paper / name, root / name)
@@ -574,6 +578,8 @@ def compile_source(spec_: dict, variant: str, root: Path) -> Path:
         insert_elsevier_ai_declaration(root)
     apply_targeted_layout_guards(root, spec_["paper"], variant)
     args = ["latexmk", "-pdf", "-interaction=nonstopmode", "-halt-on-error"]
+    if spec_["paper"] == "ORION-10" and variant == "journal":
+        args = ["tectonic", "--keep-logs"]
     if spec_["paper"] in {"ORION-21", "ORION-22", "ORION-23"}:
         args.append("-shell-escape")
     if spec_["paper"] == "ORION-24":
@@ -1159,6 +1165,29 @@ def build_one(spec_: dict) -> dict:
     (out / "journal").mkdir()
     arxiv = build_variant(spec_, "arxiv", out / "arxiv")
     journal = build_variant(spec_, "journal", out / "journal")
+    if spec_["paper"] == "ORION-10":
+        supplement = paper_root / "manuscript/supplement.pdf"
+        if not supplement.is_file():
+            raise RuntimeError("ORION-10 attributed supplement PDF is missing")
+        shutil.copy2(supplement, out / "arxiv/supplement.pdf")
+        shutil.copy2(supplement, out / "journal/supplement.pdf")
+        artifact_stage = out / "artifact-stage"
+        artifact_stage.mkdir()
+        for relative in (
+            "papers/orion-10-certified-static-forecasting/editorial/verify_unified_paper.py",
+            "papers/orion-10-certified-static-forecasting/editorial/UNIFIED_PAPER_VERIFICATION.json",
+            "research/extensions/orion-q/MAX_R6S_ALL_N_COMPOSITION_RESULTS.json",
+            "research/extensions/orion-qg/QG7E_TWELVE_STATES_RESULTS.json",
+            "research/extensions/orion-qg/QG7F_CHAIN_REPRESENTATION_AUDIT_RESULTS.json",
+            "papers/orion-09-compilation-regime-geometry/evidence/STATE_PREPARATION_PANEL_RECORDS_V1.json",
+            "papers/orion-09-compilation-regime-geometry/theory/regime-separator-complexity-v1/RESULT.json",
+        ):
+            src = ROOT / relative
+            dst = artifact_stage / relative
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
+        deterministic_zip(artifact_stage, out / "journal/artifact.zip")
+        shutil.rmtree(artifact_stage)
     if spec_["paper"] == "ORION-03":
         artifact = (
             paper_root
@@ -1247,6 +1276,8 @@ def build_one(spec_: dict) -> dict:
     availability = "# Data and code availability\n\nThe source archives and review-material archive in this directory bind the reader-facing manuscript to the repository evidence used for its bounded claims. A public persistent archive identifier must be inserted only after a real deposit; no DOI or submission identifier is synthesized by this package.\n"
     if spec_["paper"] == "ORION-03":
         availability += "\nThe journal directory also contains `artifact.zip`, the checksum-bound executable evaluator and bounded evidence archive named by the manuscript. Native-tool routes that the artifact marks `CANNOT_CHECK` remain unavailable; the archive does not convert them into reproduced outcomes.\n"
+    if spec_["paper"] == "ORION-10":
+        availability += "\nBoth routes include the attributed Supplementary Information. The journal directory also contains `artifact.zip`, which binds the standard-library unified verifier to selected committed exact-result and adverse-result receipts. This is same-project custody, not external replication.\n"
     if spec_["paper"] == "ORION-17":
         availability += "\nThe retained substitute-campaign corpus is arithmetically intact and its original pre-R0 seal verifies against the bytes that were signed. The current post-R0 path checker nevertheless fails three bindings because sealed identifiers were rewritten during namespace unification. `ORION17_SEAL_INTEGRITY_DIAGNOSIS_V1.md` records that unresolved current-path integrity boundary; this package does not re-seal the campaign or claim added external authority.\n"
     write(out / "DATA_AND_CODE_AVAILABILITY.md", availability)

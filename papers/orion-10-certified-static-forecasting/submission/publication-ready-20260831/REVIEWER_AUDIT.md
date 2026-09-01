@@ -2,9 +2,9 @@
 
 ## Review setup
 
-- Input scope: current manuscript, active authority `CLAIM_LEDGER_V3.md`, and the packaged result-retention ledger.
+- Input scope: current manuscript, active authority `CLAIM_LEDGER_V4.md`, and the packaged result-retention ledger.
 - Assessment boundary: bounded publication claim only; optional successor science is outside this review.
-- Shared claim: For the frozen F2 family, a theorem identifies the exact static cost feature for all n, with 9,547 finite agreements and 102 of 102 staged predictions as bounded checks.
+- Shared claim: For the shared-tag unit objective, a support-two normalization theorem makes the restricted forecaster exact for every admitted size; separately falsifiable explanation and cross-model controls show that exact cost, explanation, finite verification and transfer require distinct certificates.
 
 ## Reviewer 1 - evidence and inference emphasis
 
@@ -12,9 +12,9 @@
 theorem statement remains tied to its declared unit and authority class.
 
 **Concern R1-M1 - claim moderation.** Claim pointer: the shared claim above.
-Evidence pointer: `CLAIM_LEDGER_V3.md` and `RESULT_RETENTION.md`. Resolution
+Evidence pointer: `CLAIM_LEDGER_V4.md` and `RESULT_RETENTION.md`. Resolution
 test: the manuscript and metadata retain the following adverse boundary without
-pooling or euphemism: The original QG5 formula is refuted on a fresh n=3 instance (10 versus 11). A full 740-instance census refutes exact explanation by the named B-prime vocabulary: six of seven f_Bprime fibres are cost-mixed; the earlier 64-instance uniform offset was a selection artifact. The communication-support-two proof sector remains open, and no runtime, full-circuit, transfer, hardware, or reweighted-objective claim is made.
+pooling or euphemism: The initial three-family formula is refuted on a frozen fresh instance: it returns 11 while the exact optimum is 10. The enlarged borrow vocabulary has 64 hostile gaps; six of seven complete-census fibres are cost-mixed, so the earlier one-unit offset is a selection artifact rather than an exact explanation. Two global proof links remain false or open: CHAIN_ALL_N=false and GLOBAL_BDOUBLEPRIME_COMPLETENESS=false; the two-coordinate chain representation is refuted. The all-size 6,341,787,648-state envelope is same-project theorem custody and does not establish external replication, runtime, hardware, production-compiler or quantum-advantage claims. For weighted Clifford state preparation, the exact four-feature separator is bounded to the complete small-size domain; the frozen next-size rule makes 32 errors on 120 states and the shuffle null is p=0.51. Rank-support behavior is rewrite-dependent rather than a general law; no full-circuit, reweighted-objective or broad transfer claim is made.
 
 ## Reviewer 2 - novelty and scope emphasis
 
@@ -46,6 +46,9 @@ would require successor science and a new authority disposition.
 
 ## Risk / unsupported claims
 
-- The original QG5 formula is refuted on a fresh n=3 instance (10 versus 11).
-- A full 740-instance census refutes exact explanation by the named B-prime vocabulary: six of seven f_Bprime fibres are cost-mixed; the earlier 64-instance uniform offset was a selection artifact.
-- The communication-support-two proof sector remains open, and no runtime, full-circuit, transfer, hardware, or reweighted-objective claim is made.
+- The initial three-family formula is refuted on a frozen fresh instance: it returns 11 while the exact optimum is 10.
+- The enlarged borrow vocabulary has 64 hostile gaps; six of seven complete-census fibres are cost-mixed, so the earlier one-unit offset is a selection artifact rather than an exact explanation.
+- Two global proof links remain false or open: CHAIN_ALL_N=false and GLOBAL_BDOUBLEPRIME_COMPLETENESS=false; the two-coordinate chain representation is refuted.
+- The all-size 6,341,787,648-state envelope is same-project theorem custody and does not establish external replication, runtime, hardware, production-compiler or quantum-advantage claims.
+- For weighted Clifford state preparation, the exact four-feature separator is bounded to the complete small-size domain; the frozen next-size rule makes 32 errors on 120 states and the shuffle null is p=0.51.
+- Rank-support behavior is rewrite-dependent rather than a general law; no full-circuit, reweighted-objective or broad transfer claim is made.

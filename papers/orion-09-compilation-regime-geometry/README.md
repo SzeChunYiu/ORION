@@ -1,8 +1,8 @@
 # ORION-09 — Compilation regime geometry
 
 **Stable ID:** ORION-QG-ORION-11  
-**Canonical manuscript:** `manuscript/main.tex`  
-**Status:** `INTERNAL_REVIEW_PASS__PROGRAMME_SYNTHESIS / SUBMISSION_GATES_OPEN`
+**Canonical filing manuscript:** `../orion-10-certified-static-forecasting/manuscript/main.tex`  
+**Status:** `MERGE_WITH_SIBLING__NO_INDEPENDENT_SUBMISSION_ROUTE`
 
 ## One job
 
@@ -20,4 +20,4 @@ TARE's own map also evolved: theorem-backed support two remains exact under the 
 
 The contribution is the receipted mapping programme and the cross-family results actually established. The paper does not claim that every compiler family has a small trade basis, a low-order predicate, or a support bound inferable from one generic formula. StabPrep is the explicit counterexample to that universalization.
 
-See `JOURNAL_READINESS.md`, `REPRODUCE.md`, and `CLAIM_LEDGER_V2.md`.
+The historical manuscript, ledgers and receipts remain as provenance. Submission authority is the unified ORION-10 `CLAIM_LEDGER_V4.md` and its Tier-B package. See `MERGE_WITH_ORION10_V1.md` and the merge-coverage audit in ORION-10.
