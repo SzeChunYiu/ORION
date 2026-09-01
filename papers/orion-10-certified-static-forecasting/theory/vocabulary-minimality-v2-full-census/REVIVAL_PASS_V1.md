@@ -60,6 +60,30 @@ relation, **not** a structural localization, and it must not be reported as one.
 vocabulary: among everything the census measured, no admissible feature can rescue
 constancy.
 
+## Coverage: the census is a capped prefix, not an exhaustive enumeration
+
+This qualification applies to everything below and was missing from the first version of
+this document, which called the 740 rows "the frozen census" without saying what they
+cover.
+
+`FULL_CENSUS_RESULTS_V2.json` reports `cap_hit: true` for **all ten panels**. Each panel
+stops at a `CAPS` entry rather than at the end of its space, and the spaces are far
+larger than the caps — `H1_n3` alone records `template_pair_space: 12800` against
+`evaluated: 120`. The 740 instances are therefore an early prefix of the enumeration
+order, on the order of one percent of the reachable space, not a complete census. The
+directory name and `FINDINGS_V2.md`'s phrase "the full census" both overstate this.
+
+The refutation is unharmed, because refuting constancy needs only existence: six
+cost-mixed fibres were exhibited, and exhibiting them in a prefix exhibits them. **The
+envelope below is a different matter and is weaker than a full census would make it** —
+it is an observed range over a truncated prefix, so an instance violating it could sit
+anywhere in the unexplored remainder.
+
+`PROTOCOL_V2.md` warns that *"a selection-conditioned sample cannot establish"* the
+uniformity V1 saw, and `FINDINGS_V2.md` calls V1 "a clean demonstration that a
+selection-conditioned sample can invert a conclusion." The caps put V2's own numbers
+under a weaker form of that same warning.
+
 ## What does survive, stated at its real strength
 
 ```
@@ -94,14 +118,20 @@ one-line check against a new census and needs no new machinery.
 
 ## Improvement path
 
-1. **Prove or refute the lower envelope.** A bound of `3` on a vocabulary-to-cost offset
+1. **Raise the caps before anything else.** Every panel is truncated, so the cheapest
+   decisive experiment is simply more of the same enumeration: run the frozen generator
+   under a new identity with higher `CAPS`, and check whether any instance violates
+   `offset <= 3`. This needs no new mechanism and it is what makes the envelope worth
+   arguing about either way. It is heavy but embarrassingly parallel, which is what a
+   cluster is for.
+2. **Prove or refute the lower envelope.** A bound of `3` on a vocabulary-to-cost offset
    is either a theorem about B' or an accident of this instance space. Deciding which is
    the highest-value next question this lane owns, and it is decidable.
-2. **Look for a Psi-side feature outside the recorded set.** The census records only
+3. **Look for a Psi-side feature outside the recorded set.** The census records only
    `f_Bprime`, three costs, `gap4`, `regime` and `panel`. An admissible enrichment, if
    one exists, is a structural invariant nobody has serialised yet — so the next census
    should record candidate Psi-side invariants *before* outcomes are computed, which
    this one did not.
-3. **Do not re-run the census to change this answer.** The 740 rows are frozen, the
+4. **Do not re-run the census to change this answer.** The 740 rows are frozen, the
    control reproduces QG-7's 64 fourth-regime entries verbatim, and re-tuning the
    criterion against the same instances is exactly the rescue the protocol forbids.
