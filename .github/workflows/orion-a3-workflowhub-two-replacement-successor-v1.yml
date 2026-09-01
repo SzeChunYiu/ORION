@@ -1,0 +1,118 @@
+name: ORION A3 WorkflowHub two-replacement successor v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a3-workflowhub-two-replacement-successor-v1.yml"
+      - "papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_V1.json"
+      - "papers/publication_closure/a3-external-change-transport-v1/find_workflowhub_replacements_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-two-replacement-successor-v1/**"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-normalized-content-binding-v2/**"
+      - "papers/publication_closure/a3-external-change-transport-v1/workflowhub-source-census-v1/**"
+permissions:
+  contents: read
+jobs:
+  replacement-successor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify frozen successor boundary
+        run: |
+          python - <<'PY'
+          import json
+          p='papers/publication_closure/a3-external-change-transport-v1/WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_V1.json'
+          d=json.load(open(p))
+          assert d['schema']=='ORION.A3.WorkflowHubTwoReplacementSuccessor.v1'
+          assert d['replacement_target_n']==2
+          assert d['base_normalized_snapshot']['retained_normalized_content_bound_n']==126
+          assert d['base_normalized_snapshot']['excluded_transport_failure_workflow_ids']==['402','444']
+          assert d['candidate_universe_rule']['exclude_all_original_128_workflow_ids'] is True
+          assert d['candidate_universe_rule']['selection'].startswith('admit the first two')
+          assert d['protected_orion_predictions_accessed'] is False
+          assert d['external_gold_accessed'] is False
+          assert d['change_stratum_adjudicated'] is False
+          PY
+      - name: Verify durable successful successor result
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          p='papers/publication_closure/a3-external-change-transport-v1/workflowhub-two-replacement-successor-v1/RESULT_V1.json'
+          d=json.load(open(p))
+          assert d['schema']=='ORION.A3.WorkflowHubTwoReplacementSuccessorDurableResult.v1'
+          assert d['terminal']=='WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_CONTENT_BOUND'
+          assert d['source_run']['workflow_run_id']==33536602521
+          assert d['source_run']['artifact_id']==9812210179
+          assert d['source_run']['artifact_zip_sha256']=='5e1142106e3e8d04b5abe087812c0280871909a9efc920196b7d3a7f9cd6cc5a'
+          assert d['source_run']['result_json_sha256']=='ee174c4ad2078fea806f4de0cc7f0095869b339dc24cc0c942d77c4d0b48e6c7'
+          assert d['base']['excluded_original_workflow_ids']==['402','444']
+          assert d['replacement_n']==d['replacement_target_n']==2
+          assert [(r['workflow_id'],r['version_before'],r['version_after']) for r in d['replacements']]==[('625',30,31),('631',5,6)]
+          assert all(r['license_before'].endswith('CC-BY-4.0') and r['license_after'].endswith('CC-BY-4.0') for r in d['replacements'])
+          assert all(r['before_normalized_sha256']!=r['after_normalized_sha256'] for r in d['replacements'])
+          assert d['final_source_family_n']==d['final_unique_source_family_n']==128
+          assert d['successor_frame_sha256']=='a47d9255aa37de056cb5cdd7c140bcccb487aa3285790655a48abb5e538c2993'
+          assert d['change_stratum_adjudicated'] is False
+          assert d['external_gold_accessed'] is False
+          assert d['protected_orion_predictions_accessed'] is False
+          assert d['primary_replication_assignment_performed'] is False
+          attempts=d['scan']['attempts_before_stop']
+          replacements=d['replacements']
+          assert hashlib.sha256(json.dumps(attempts,sort_keys=True,separators=(',',':')).encode()).hexdigest()==d['scan']['attempts_before_stop_sha256']
+          assert hashlib.sha256(json.dumps(replacements,sort_keys=True,separators=(',',':')).encode()).hexdigest()==d['replacements_sha256']
+          print('DURABLE_TWO_REPLACEMENT_RESULT_GREEN',d['successor_frame_sha256'])
+          PY
+      - name: Compile and run offline deterministic self-test
+        run: |
+          python -m py_compile papers/publication_closure/a3-external-change-transport-v1/find_workflowhub_replacements_v1.py
+          python papers/publication_closure/a3-external-change-transport-v1/find_workflowhub_replacements_v1.py --self-test
+      - name: Find first two passing non-original families
+        id: successor
+        shell: bash
+        run: |
+          set +e
+          python papers/publication_closure/a3-external-change-transport-v1/find_workflowhub_replacements_v1.py \
+            --output /tmp/workflowhub-two-replacement-successor-v1.json >/tmp/replacement.stdout
+          rc=$?
+          echo "scientific_rc=$rc" >> "$GITHUB_OUTPUT"
+          cat /tmp/replacement.stdout
+          exit 0
+      - name: Validate terminal without forcing positive science
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/workflowhub-two-replacement-successor-v1.json'))
+          assert d['terminal'] in {
+            'WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_CONTENT_BOUND',
+            'CANNOT_CHECK_WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_CAPACITY',
+          }
+          assert d['original_frame_n']==128
+          assert d['retained_original_n']==126
+          assert d['excluded_original_workflow_ids']==['402','444']
+          assert d['replacement_target_n']==2
+          assert d['all_original_128_workflow_ids_excluded_from_replacement_search'] is True
+          assert d['change_stratum_adjudicated'] is False
+          assert d['external_gold_accessed'] is False
+          assert d['protected_orion_predictions_accessed'] is False
+          assert d['primary_replication_assignment_performed'] is False
+          if d['terminal'].startswith('WORKFLOWHUB_TWO_REPLACEMENT'):
+              assert d['replacement_n']==2
+              assert d['final_source_family_n']==128
+              assert d['final_unique_source_family_n']==128
+              assert len({r['workflow_id'] for r in d['replacements']})==2
+          print('A3_REPLACEMENT_TERMINAL',d['terminal'])
+          print('REPLACEMENTS',[(r['workflow_id'],r['version_before'],r['version_after']) for r in d['replacements']])
+          PY
+      - name: Upload exact successor result
+        uses: actions/upload-artifact@v4
+        with:
+          name: workflowhub-two-replacement-successor-v1
+          path: /tmp/workflowhub-two-replacement-successor-v1.json
+          retention-days: 30
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code

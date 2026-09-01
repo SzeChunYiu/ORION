@@ -1,0 +1,31 @@
+{
+  "schema": "ORION.A3.WorkflowHubTwoReplacementSuccessor.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A3 external change transport",
+  "purpose": "Replace only the two outcome-blind transport failures in the frozen 128-family WorkflowHub frame without inspecting change strata, gold, ORION predictions or baseline outcomes.",
+  "base_normalized_snapshot": {
+    "path": "papers/publication_closure/a3-external-change-transport-v1/workflowhub-normalized-content-binding-v2/SNAPSHOT_V2.json",
+    "selected_rows_sha256": "2f36f8d5900c904d939e87f7c582281e27445f4045d520754b7b11dcbbc3b882",
+    "candidate_n": 128,
+    "retained_normalized_content_bound_n": 126,
+    "excluded_transport_failure_workflow_ids": ["402", "444"]
+  },
+  "replacement_target_n": 2,
+  "candidate_universe_rule": {
+    "provider": "WorkflowHub public GA4GH TRS plus public version landing metadata and versioned RO-Crate endpoint",
+    "exclude_all_original_128_workflow_ids": true,
+    "sort": "numeric WorkflowHub workflow id, then text id",
+    "one_candidate_per_workflow_family": true,
+    "version_pair": "two highest integer WorkflowHub version ids",
+    "licence_requirement": "both frozen versions expose non-empty public licence metadata",
+    "content_requirement": "both versioned RO-Crates parse under normalized-content preflight v2 and normalized member-manifest SHA-256 values differ",
+    "selection": "admit the first two candidates satisfying every rule; no manual substitution or ranking override"
+  },
+  "failure_terminal": "CANNOT_CHECK_WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_CAPACITY",
+  "success_terminal": "WORKFLOWHUB_TWO_REPLACEMENT_SUCCESSOR_CONTENT_BOUND",
+  "protected_orion_predictions_accessed": false,
+  "external_gold_accessed": false,
+  "change_stratum_adjudicated": false,
+  "primary_replication_assignment_performed": false,
+  "scientific_authority_delta": "NONE__OUTCOME_BLIND_SOURCE_FRAME_REPAIR_ONLY"
+}
