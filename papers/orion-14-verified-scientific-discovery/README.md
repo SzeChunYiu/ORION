@@ -4,7 +4,7 @@
 **Current science:** `SCIENTIFIC_ASCENT_V4_THEORY_INTEGRATED`; external naturalistic execution remains open.  
 **Current science manuscript:** `manuscript/main.tex`.  
 **Historical specification:** `manuscript/FINAL_V3.md` and `CLAIM_LEDGER_V3.md` remain the preserved pre-ascent record.  
-**PDF boundary:** since 2026-08-24 a fresh render exists in-tree — `manuscript/main.pdf` (26 pages, local tectonic/XeTeX; SHA-256 and source revision bound in `journal_package/MANIFEST.json` `pdf_render_binding`). It supersedes the historical V2 PDF as the current manuscript render; the independent proofread box (`ORION-14.PDF`) remains OPEN.
+**PDF boundary:** `manuscript/main.pdf` is the 28-page clean-CI pdfTeX render imported on 2026-09-01 from pinned workflow run `33463297400`; its SHA-256, source revision, engine and artifact identity are bound in `journal_package/MANIFEST.json` under `pdf_render_binding`. The prior 26-page local tectonic/XeTeX render remains in the binding history. This render reconciliation changes no scientific source or authority, and the independent proofread box (`ORION-14.PDF`) remains OPEN.
 
 ## Current research question
 
