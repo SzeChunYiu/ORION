@@ -1,0 +1,81 @@
+{
+  "schema": "ORION.TierA.BaselineExecutionFreeze.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49",
+  "protected_outcomes_accessed": false,
+  "purpose": "Turn baseline names in the Tier-A external studies into deterministic pre-outcome executable semantics. This is readiness infrastructure; baseline issue boxes remain empirical until the policies are run on the protected scientific units.",
+  "A3": {
+    "path": "papers/publication_closure/a3-external-change-transport-v1/baselines_v1.py",
+    "implemented": [
+      "ALWAYS_REUSE",
+      "ALWAYS_REOPEN",
+      "VERSION_PROVENANCE_ONLY",
+      "SEMANTIC_DIFF_ONLY",
+      "CONFIDENCE_ONLY"
+    ],
+    "rules": [
+      "unknown version/provenance or semantic-diff inputs return CANNOT_CHECK",
+      "confidence-only is admitted only where the native confidence signal is meaningful and its reopen threshold was frozen on development data",
+      "low confidence reopens; equality to the threshold reuses",
+      "strongest non-candidate selection remains a separate development-only freeze"
+    ],
+    "not_implemented_here": ["current candidate responsibility/closure-aware policy"]
+  },
+  "A4": {
+    "path": "papers/publication_closure/a4-hidden-cause-external-v1/baseline_routers_v1.py",
+    "outcome_blind_implemented": [
+      "COMPUTE_FIRST",
+      "INFORMATION_FIRST",
+      "ACCESSIBILITY_FIRST",
+      "RESTART_REFORMULATE_FIRST",
+      "RANDOM_UNIFORM",
+      "MAJORITY_DEVELOPMENT",
+      "CHEAPEST_INTERVENTION",
+      "UNCERTAINTY_TO_COMPUTE",
+      "LEARNED_ROUTER_DEVELOPMENT_ONLY"
+    ],
+    "analysis_only_implemented": ["INTERVENTION_ORACLE"],
+    "rules": [
+      "random is deterministic SHA-256-uniform over allowed interventions with salt A4-RANDOM-V1",
+      "majority uses one intervention identity frozen from development gold before protected primary/replication",
+      "cheapest uses only predeclared cost vectors, never intervention success",
+      "uncertainty-to-compute uses a development-frozen threshold and otherwise falls back to cheapest intervention",
+      "learned router accepts only a hash-bound model explicitly trained on development only",
+      "outcome-blind router dispatcher rejects any supplied gold/intervention-outcome field",
+      "intervention oracle raises unless explicitly invoked analysis-only after unblinding"
+    ],
+    "not_implemented_here": [
+      "candidate causal diagnostic + ORION-11 reconstruction action",
+      "human expert blinded subset"
+    ]
+  },
+  "A6": {
+    "path": "papers/publication_closure/a6-external-authority-study-v1/baselines_v1.py",
+    "implemented": [
+      "AUTHORIZATION_ONLY",
+      "PROVENANCE_ONLY",
+      "VERIFICATION_ONLY",
+      "STRONGEST_COMBINED_DONOR_WITHOUT_SCIENTIFIC_DISCHARGE",
+      "MERGED_CANDIDATE_TYPED_RELATION",
+      "INFORMATION_EQUIVALENT_TYPED_DONOR"
+    ],
+    "coordinate_alphabet": ["PASS", "FAIL", "UNKNOWN"],
+    "terminal_alphabet": ["ADMIT", "DENY", "CANNOT_CHECK"],
+    "rules": [
+      "single-coordinate donors map PASS->ADMIT, FAIL->DENY, UNKNOWN->CANNOT_CHECK",
+      "combined incomplete donor uses only authorization/provenance/verification and cannot read scientific_discharge",
+      "full candidate/ideal relation reads exactly authorization/provenance/verification/scientific_discharge",
+      "any FAIL denies, all PASS admits, otherwise CANNOT_CHECK",
+      "candidate and information-equivalent donor are exhaustively required to tie on all 81 typed states",
+      "extra fields such as protected gold are rejected"
+    ]
+  },
+  "global_forbidden": [
+    "selecting a baseline after protected outcomes because it is easier to beat",
+    "using protected gold in an outcome-blind baseline",
+    "silently substituting a different baseline when an input is unavailable",
+    "treating CANNOT_CHECK as a baseline loss",
+    "using the intervention/hindsight oracle as a candidate policy"
+  ],
+  "scientific_authority_delta": "NONE__BASELINE_EXECUTION_READINESS_ONLY"
+}
