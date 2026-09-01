@@ -1,0 +1,26 @@
+name: ORION A2 external price-shift prereg v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a2-external-price-shift-prereg-v1.yml"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/P12_EXTERNAL_PRICE_SHIFT_SUCCESSOR_PREREG_V1.json"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_external_price_shift_prereg_v1.py"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/p12_stopgo_frozen_menus_v1.json"
+      - "papers/orion-21-state-as-computation/P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md"
+permissions:
+  contents: read
+jobs:
+  prereg-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Verify frozen price grid and shift axes
+        run: python papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_external_price_shift_prereg_v1.py
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
