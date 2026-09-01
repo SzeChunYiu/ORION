@@ -285,7 +285,17 @@ def bind_subject(commit: str, selected: set[str] | None = None) -> None:
     if not re.fullmatch(r"[0-9a-f]{40}", commit):
         raise RuntimeError("--subject-commit must be a full lowercase Git commit ID")
     git_text("cat-file", "-e", f"{commit}^{{commit}}")
-    git_text("merge-base", "--is-ancestor", commit, "HEAD")
+    local_ancestor = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", commit, "HEAD"], cwd=ROOT
+    ).returncode == 0
+    remote_refs = git_text(
+        "for-each-ref", "--format=%(refname)", "--contains", commit, "refs/remotes"
+    )
+    if not local_ancestor and not remote_refs:
+        raise RuntimeError(
+            "subject commit is neither an ancestor of HEAD nor reachable from a "
+            "fetched remote-tracking ref"
+        )
 
     for candidate_id, slug in V1_BINDINGS.items():
         if selected is not None and slug not in selected:

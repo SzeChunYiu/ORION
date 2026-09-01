@@ -780,14 +780,25 @@
       "reason": "Imported the pinned clean-CI manuscript PDF required by the clipping and byte-equality gate.",
       "scientific_authority_delta": "NONE",
       "workflow_run_id": "33463297400"
+    },
+    {
+      "prior_subject_commit": "f83ea31466a817b3b9a3076d281a7446b95072f6",
+      "new_subject_commit": "a5b26ee17358ca2b81401f06d54e6d38081795a4",
+      "reason": "Imported the pinned clean-CI manuscript PDF required by the clipping and byte-equality gate.",
+      "scientific_authority_delta": "NONE",
+      "workflow_run_id": "33466273211",
+      "artifact_id": "9784999811",
+      "changed_derived_file": {
+        "path": "papers/orion-23-responsibility-carrying-state/manuscript/main.pdf",
+        "prior_sha256": "6411b6fa73bca8f892f211755ec4a937438c957b27b04ea7f6ce3ed32b2de87f",
+        "new_sha256": "d3a86ab98c877d2584b414518962d158ab459dd9c0ab6e305fde7944204e1c5c"
+      }
     }
   ],
   "reproducibility_targets": {},
   "schema_version": "orion.candidate-content-binding.v1",
-  "subject_commit": "144ddacee38a00169bb576d9fc66db3dca4d884c",
-  "subject_commit_blocker": "bound files differ from the recorded commit; the commit does not describe these bytes",
-  "subject_commit_status": "CANNOT_CHECK",
-  "subject_commit_unbound_paths": [
-    "papers/orion-23-responsibility-carrying-state/manuscript/main.pdf"
-  ]
+  "subject_commit": "a5b26ee17358ca2b81401f06d54e6d38081795a4",
+  "subject_commit_blocker": null,
+  "subject_commit_status": "BOUND",
+  "subject_commit_unbound_paths": []
 }
