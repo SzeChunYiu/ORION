@@ -1,0 +1,16 @@
+{
+  "confidence": "HIGH",
+  "executor": {
+    "model": "Claude Opus 5 (1M context)",
+    "provider": "Anthropic",
+    "type": "LLM_HOST_RESEARCH_DIAGNOSIS"
+  },
+  "input_restricted_to_shared_packet": true,
+  "item_id": "psf_requests#7506",
+  "rationale": "Same: requests almost never merges outside contributions regardless of how small the diff is.",
+  "schema": "ORIONQ.Q3PublicLaneAReceipt.v1",
+  "scientific_authority": false,
+  "scientific_outcome_accessed": false,
+  "shared_packet_sha256": "d0f2212e2485f9c52463f146f9b56a4f4bb73642d9a269d31fd12e94c0848cbc",
+  "verdict": "PREDICT_UNRESOLVED_AT_HORIZON"
+}

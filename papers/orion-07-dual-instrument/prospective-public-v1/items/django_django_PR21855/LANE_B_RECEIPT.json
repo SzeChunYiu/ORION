@@ -1,0 +1,18 @@
+{
+  "frozen_at_commit": "dd191b8a5d52e4deb586c7d905abc1a8b8b8e1cd",
+  "item_id": "django_django#21855",
+  "rule_set": "q3_public_controller_v1.py::decide",
+  "rules_fired": [
+    "R2_BROAD(files=25,lines=381)",
+    "R4_BROAD_AND_FRESH->UNRESOLVED"
+  ],
+  "schema": "ORIONQ.Q3PublicLaneBController.v1",
+  "scientific_outcome_accessed": false,
+  "shared_packet_sha256": "5269e857efd3afc853a61eab61d573f3b5c32fe4817bd280118ab8da930b73c2",
+  "typed_observations_used": {
+    "age_days_at_freeze": 2,
+    "changed_files": 25,
+    "total_lines": 381
+  },
+  "verdict": "PREDICT_UNRESOLVED_AT_HORIZON"
+}

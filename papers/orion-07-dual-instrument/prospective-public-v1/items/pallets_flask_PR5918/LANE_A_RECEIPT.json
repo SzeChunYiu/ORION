@@ -1,0 +1,16 @@
+{
+  "confidence": "MODERATE_LOW",
+  "executor": {
+    "model": "Claude Opus 5 (1M context)",
+    "provider": "Anthropic",
+    "type": "LLM_HOST_RESEARCH_DIAGNOSIS"
+  },
+  "input_restricted_to_shared_packet": true,
+  "item_id": "pallets_flask#5918",
+  "rationale": "200 days is stale but below the pallets sweep threshold I would expect; likeliest it simply keeps sitting.",
+  "schema": "ORIONQ.Q3PublicLaneAReceipt.v1",
+  "scientific_authority": false,
+  "scientific_outcome_accessed": false,
+  "shared_packet_sha256": "05d384d936830c19619e1a43bdfbc4f4200b1c585e74a303278a8d597d40dea5",
+  "verdict": "PREDICT_UNRESOLVED_AT_HORIZON"
+}

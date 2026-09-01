@@ -1,0 +1,14 @@
+{
+  "horizon_utc": "2026-11-30T09:15:29Z",
+  "item_id": "networkx_networkx#8823",
+  "observation_command": "gh pr view 8823 -R networkx/networkx --json state,mergedAt,closedAt",
+  "outcome_produced_by": "upstream maintainers of networkx/networkx",
+  "outcome_produced_by_q3_instruments": false,
+  "resolution_rule": {
+    "CLOSED_UNMERGED": "PR is closed without merge on or before the horizon",
+    "MERGED": "PR is merged on or before the horizon",
+    "UNRESOLVED_AT_HORIZON": "PR is still open at the horizon"
+  },
+  "schema": "ORIONQ.Q3PublicDeferredOutcomeBinding.v1",
+  "scored": false
+}
