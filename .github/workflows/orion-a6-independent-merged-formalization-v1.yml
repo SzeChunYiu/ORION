@@ -1,0 +1,67 @@
+name: ORION A6 independent merged formalization v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a6-independent-merged-formalization-v1.yml"
+      - "papers/publication_closure/A6_MERGED_THEOREM_OBJECT_V1.md"
+      - "papers/publication_closure/A6_DONOR_MATRIX_V2.md"
+      - "papers/publication_closure/A6_DONOR_SUBTRACTION_V1.md"
+      - "papers/publication_closure/A6_REMAINING_CANDIDATES_ADVERSARIAL_V1.md"
+      - "papers/publication_closure/a6-independent-formalization-v1/**"
+permissions:
+  contents: read
+jobs:
+  independent-formalization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Enforce implementation independence
+        run: |
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+          p = Path('papers/publication_closure/a6-independent-formalization-v1/check_merged_formalization_v1.py')
+          tree = ast.parse(p.read_text())
+          imports = set()
+          for n in ast.walk(tree):
+              if isinstance(n, ast.Import):
+                  imports.update(a.name.split('.')[0] for a in n.names)
+              elif isinstance(n, ast.ImportFrom) and n.module:
+                  imports.add(n.module.split('.')[0])
+          assert imports <= {'itertools', 'json', 'dataclasses'}, imports
+          calls = [n for n in ast.walk(tree) if isinstance(n, ast.Call)]
+          forbidden = {'open', 'exec', 'eval', 'compile', '__import__'}
+          called = {n.func.id for n in calls if isinstance(n.func, ast.Name)}
+          assert not (called & forbidden), called & forbidden
+          print('A6_INDEPENDENCE_STATIC_GREEN', sorted(imports))
+          PY
+      - name: Recompute exhaustive merged formalization
+        run: |
+          set -euo pipefail
+          p=papers/publication_closure/a6-independent-formalization-v1
+          python "$p/check_merged_formalization_v1.py" > /tmp/A6_RESULT_V1.json
+          cmp "$p/RESULT_V1.json" /tmp/A6_RESULT_V1.json
+      - name: Require all donor fields and controlling tally
+        run: |
+          set -euo pipefail
+          f=papers/publication_closure/A6_DONOR_MATRIX_V2.md
+          for phrase in \
+            'authorization / delegation logics' \
+            'provenance algebras' \
+            'TMS / ATMS / belief revision' \
+            'proof-carrying action / authorization' \
+            'typed effects / capabilities' \
+            'assurance cases'; do
+            grep -Fq "$phrase" "$f"
+          done
+          grep -Fq '| `DONOR` | 6 |' "$f"
+          grep -Fq '| `SPECIALIZATION` | 5 |' "$f"
+          grep -Fq '| `SURVIVING_NEW_CONSEQUENCE` | 1 |' "$f"
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
