@@ -14,6 +14,8 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+import re
+import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -60,6 +62,108 @@ def package_files(package: Path) -> list[Path]:
     ]
 
 
+def parse_sums(payload: bytes) -> dict[str, str]:
+    rows: dict[str, str] = {}
+    for raw in payload.decode("utf-8").splitlines():
+        if not raw.strip() or raw.lstrip().startswith("#"):
+            continue
+        digest, separator, relative = raw.partition("  ")
+        if not separator or not re.fullmatch(r"[0-9a-f]{64}", digest) or not relative:
+            raise RuntimeError(f"malformed historical checksum row: {raw!r}")
+        rows[relative] = digest
+    return rows
+
+
+def historical_payload_drift(package: Path, before_sums: bytes) -> list[dict[str, object]]:
+    """Compare retained payload to its old inventory without normalizing drift away."""
+
+    rows: list[dict[str, object]] = []
+    for relative, expected in parse_sums(before_sums).items():
+        # Reconciliation necessarily rewrites the package authority manifest;
+        # payload drift is everything else in the old inventory.
+        if relative == "PACKAGE_MANIFEST.json":
+            continue
+        path = package / relative
+        actual = sha256(path) if path.is_file() else None
+        if actual != expected:
+            rows.append(
+                {
+                    "path": relative,
+                    "historical_sha256": expected,
+                    "current_sha256": actual,
+                    "status": "MISMATCH" if actual is not None else "MISSING",
+                }
+            )
+    return rows
+
+
+def _walk_path_hash_claims(node: object) -> list[tuple[str, str]]:
+    found: list[tuple[str, str]] = []
+    if isinstance(node, dict):
+        path = node.get("path")
+        digest = node.get("sha256")
+        if isinstance(path, str) and isinstance(digest, str):
+            found.append((path, digest.removeprefix("sha256:")))
+        for value in node.values():
+            found.extend(_walk_path_hash_claims(value))
+    elif isinstance(node, list):
+        for value in node:
+            found.extend(_walk_path_hash_claims(value))
+    return found
+
+
+def internal_binding_drift(package: Path) -> list[dict[str, object]]:
+    """Audit retained receipts as historical claims; never rewrite their bytes."""
+
+    rows: list[dict[str, object]] = []
+    names = ("BUILD_RECEIPT.json", "PUBLICATION_RELEASE_MANIFEST.json")
+    for name in names:
+        record = package / name
+        if not record.is_file():
+            continue
+        payload = json.loads(record.read_text(encoding="utf-8"))
+        for relative, expected in _walk_path_hash_claims(payload):
+            path = package / relative
+            actual = sha256(path) if path.is_file() else None
+            if actual != expected:
+                rows.append(
+                    {
+                        "record": name,
+                        "path": relative,
+                        "claimed_sha256": expected,
+                        "current_sha256": actual,
+                        "status": "MISMATCH" if actual is not None else "MISSING",
+                    }
+                )
+    return rows
+
+
+def back_matter_counts(text: str) -> dict[str, int]:
+    return {
+        "data_and_code_availability": len(
+            re.findall(r"(?im)^##?\s+Data and code availability\s*$", text)
+        ),
+        "references": len(re.findall(r"(?im)^##?\s+References\s*$", text)),
+    }
+
+
+def successor_back_matter(successor: Path) -> dict[str, dict[str, int]]:
+    rows: dict[str, dict[str, int]] = {}
+    for route in ("arxiv", "journal"):
+        archive = successor / route / "source.zip"
+        if not archive.is_file():
+            continue
+        with zipfile.ZipFile(archive) as zipped:
+            main = zipped.read("main.tex").decode("utf-8")
+        rows[route] = {
+            "data_and_code_availability": len(
+                re.findall(r"\\section\*?\{Data and code availability\}", main)
+            ),
+            "references": len(re.findall(r"\\section\*?\{References\}", main)),
+        }
+    return rows
+
+
 def reconcile(package: Path, successor: str, role: str) -> None:
     manifest_path = package / "PACKAGE_MANIFEST.json"
     sums_path = package / "SHA256SUMS"
@@ -78,13 +182,56 @@ def reconcile(package: Path, successor: str, role: str) -> None:
         historical_manifest.write_bytes(before_manifest)
         historical_sums.write_bytes(before_sums)
 
+    payload_drift = historical_payload_drift(package, before_sums)
+    internal_drift = internal_binding_drift(package)
+    manuscript = package / "MANUSCRIPT.md"
+    legacy_back_matter = (
+        back_matter_counts(manuscript.read_text(encoding="utf-8"))
+        if manuscript.is_file()
+        else {}
+    )
+    successor_path = ROOT / successor
+    successor_counts = successor_back_matter(successor_path)
+
+    drift_record = package / "HISTORICAL_BINDING_DRIFT_V1.json"
+    drift_record.write_text(
+        json.dumps(
+            {
+                "schema": "ORION.PublicationClosure.HistoricalBindingDrift.v1",
+                "date": "2026-09-01",
+                "package": package.relative_to(ROOT).as_posix(),
+                "package_status": "HISTORICAL_SUPERSEDED",
+                "current_submission_authorized": False,
+                "successor": successor,
+                "scientific_authority_delta": "NONE",
+                "historical_checksum_payload_drift": payload_drift,
+                "historical_internal_binding_claim_drift": internal_drift,
+                "legacy_manuscript_back_matter_counts": legacy_back_matter,
+                "successor_source_back_matter_counts": successor_counts,
+                "disposition": (
+                    "PRE_EXISTING_DRIFT_AND_LAYOUT_ANOMALIES_RETAINED_AS_HISTORY; "
+                    "NOT_A_CURRENT_SUBMISSION_SURFACE"
+                    if payload_drift or internal_drift or any(v > 1 for v in legacy_back_matter.values())
+                    else "NO_PRE_EXISTING_PAYLOAD_DRIFT_DETECTED"
+                ),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
     marker = package / "HISTORICAL_COMPONENT_ONLY.md"
     marker.write_text(
         "# Superseded publication package\n\n"
         f"This directory is a {role}. It is retained for provenance and is not a "
         "current submission object.\n\n"
-        f"The current arXiv/journal package is `{successor}/`. No manuscript, result, "
-        "negative finding, PDF, or source archive was changed by this reconciliation.\n",
+        f"The current arXiv/journal package is `{successor}/`. This reconciliation did "
+        "not edit a manuscript, result, negative finding, PDF, or source archive. Any "
+        "pre-existing payload or internal-binding drift is retained verbatim and listed "
+        "in `HISTORICAL_BINDING_DRIFT_V1.json`; it is not normalized into a claim that "
+        "the old package remained current.\n",
         encoding="utf-8",
     )
     receipt = {
@@ -96,7 +243,10 @@ def reconcile(package: Path, successor: str, role: str) -> None:
         "successor": successor,
         "current_submission_authorized": False,
         "scientific_authority_delta": "NONE",
-        "retained_payload_edited": False,
+        "payload_edited_by_this_reconciliation": False,
+        "pre_existing_payload_binding_drift_detected": bool(payload_drift or internal_drift),
+        "pre_existing_payload_binding_drift_count": len(payload_drift) + len(internal_drift),
+        "historical_binding_drift_record": drift_record.name,
         "terminal": "SUPERSEDED_PACKAGE_BYTES_RECONCILED_WITH_HISTORY_RETAINED",
     }
     receipt_path = package / "SUPERSEDED_RECONCILIATION_V1.json"
@@ -112,7 +262,10 @@ def reconcile(package: Path, successor: str, role: str) -> None:
         "date": "2026-09-01",
         "receipt": receipt_path.relative_to(package).as_posix(),
         "pre_reconciliation_history": history.relative_to(package).as_posix(),
-        "retained_payload_edited": False,
+        "payload_edited_by_this_reconciliation": False,
+        "pre_existing_payload_binding_drift_detected": bool(payload_drift or internal_drift),
+        "pre_existing_payload_binding_drift_count": len(payload_drift) + len(internal_drift),
+        "historical_binding_drift_record": drift_record.name,
         "scientific_authority_delta": "NONE",
     }
     candidates = [

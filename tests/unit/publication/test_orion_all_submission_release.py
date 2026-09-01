@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
+import re
+import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -11,6 +14,12 @@ BUILDER = (
     / "papers/publication_closure/orion_all_submission_20260831/build_all_submission_materials.py"
 )
 MIRROR = ROOT / "scripts/mirror_orion_papers_all.py"
+SUPERSEDED_PACKAGES = (
+    ROOT / "papers/orion-01-certificate-realization/journal_package_A_final",
+    ROOT / "papers/orion-01-certificate-realization/journal_package_B_final",
+    ROOT / "papers/orion-02-fiberguard-finite-fibre/journal_package_final",
+    ROOT / "papers/orion-03-typed-merge-falsification/journal_package_final",
+)
 
 
 def load_module(path: Path, name: str):
@@ -71,3 +80,52 @@ def test_expanded_mirror_has_exact_25_paper_coverage(tmp_path: Path) -> None:
     assert f"Source commit: `{'a' * 40}`" in (
         destination / "MIRROR_RECEIPT_2026-08-31.md"
     ).read_text(encoding="utf-8")
+
+
+def test_superseded_packages_retain_pre_existing_binding_drift() -> None:
+    for package in SUPERSEDED_PACKAGES:
+        receipt = json.loads(
+            (package / "SUPERSEDED_RECONCILIATION_V1.json").read_text()
+        )
+        assert "retained_payload_edited" not in receipt
+        assert receipt["payload_edited_by_this_reconciliation"] is False
+        assert receipt["pre_existing_payload_binding_drift_detected"] is True
+        assert receipt["pre_existing_payload_binding_drift_count"] > 0
+
+        record_path = package / receipt["historical_binding_drift_record"]
+        record = json.loads(record_path.read_text())
+        assert record["current_submission_authorized"] is False
+        assert record["scientific_authority_delta"] == "NONE"
+        assert record["historical_checksum_payload_drift"]
+        assert "NOT_A_CURRENT_SUBMISSION_SURFACE" in record["disposition"]
+
+        sums = (package / "SHA256SUMS").read_text().splitlines()
+        inventory = dict(line.split("  ", 1)[::-1] for line in sums)
+        assert inventory[record_path.name] == hashlib.sha256(
+            record_path.read_bytes()
+        ).hexdigest()
+
+
+def test_orion01_current_routes_have_one_back_matter_copy() -> None:
+    paper = ROOT / "papers/orion-01-certificate-realization"
+    current = paper / "submission/publication-ready-20260831"
+    for route in ("arxiv", "journal"):
+        with zipfile.ZipFile(current / route / "source.zip") as archive:
+            source = archive.read("main.tex").decode("utf-8")
+        assert len(re.findall(r"\\section\*?\{References\}", source)) == 1
+        assert len(
+            re.findall(r"\\section\*?\{Data and code availability\}", source)
+        ) == 1
+
+    for component in ("journal_package_A_final", "journal_package_B_final"):
+        record = json.loads(
+            (paper / component / "HISTORICAL_BINDING_DRIFT_V1.json").read_text()
+        )
+        assert record["legacy_manuscript_back_matter_counts"] == {
+            "data_and_code_availability": 2,
+            "references": 2,
+        }
+        assert record["successor_source_back_matter_counts"] == {
+            "arxiv": {"data_and_code_availability": 1, "references": 1},
+            "journal": {"data_and_code_availability": 1, "references": 1},
+        }

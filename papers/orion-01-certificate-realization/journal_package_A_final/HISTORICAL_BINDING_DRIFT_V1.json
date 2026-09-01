@@ -1,0 +1,48 @@
+{
+  "current_submission_authorized": false,
+  "date": "2026-09-01",
+  "disposition": "PRE_EXISTING_DRIFT_AND_LAYOUT_ANOMALIES_RETAINED_AS_HISTORY; NOT_A_CURRENT_SUBMISSION_SURFACE",
+  "historical_checksum_payload_drift": [
+    {
+      "current_sha256": "752582a69c8289e0c88f1c4a0cca37a6d543dafe7a0197f6ce284de1f638dbaf",
+      "historical_sha256": "2f20d23f34fb79a96f5e105697ea583dc7d9a5bef2c5c9bc851409998e817ad9",
+      "path": "MANUSCRIPT.md",
+      "status": "MISMATCH"
+    }
+  ],
+  "historical_internal_binding_claim_drift": [
+    {
+      "claimed_sha256": "2f20d23f34fb79a96f5e105697ea583dc7d9a5bef2c5c9bc851409998e817ad9",
+      "current_sha256": null,
+      "path": "papers/orion-01-certificate-realization/theory-A-MANUSCRIPT_V3.md",
+      "record": "BUILD_RECEIPT.json",
+      "status": "MISSING"
+    },
+    {
+      "claimed_sha256": "2f20d23f34fb79a96f5e105697ea583dc7d9a5bef2c5c9bc851409998e817ad9",
+      "current_sha256": "752582a69c8289e0c88f1c4a0cca37a6d543dafe7a0197f6ce284de1f638dbaf",
+      "path": "MANUSCRIPT.md",
+      "record": "BUILD_RECEIPT.json",
+      "status": "MISMATCH"
+    }
+  ],
+  "legacy_manuscript_back_matter_counts": {
+    "data_and_code_availability": 2,
+    "references": 2
+  },
+  "package": "papers/orion-01-certificate-realization/journal_package_A_final",
+  "package_status": "HISTORICAL_SUPERSEDED",
+  "schema": "ORION.PublicationClosure.HistoricalBindingDrift.v1",
+  "scientific_authority_delta": "NONE",
+  "successor": "papers/orion-01-certificate-realization/submission/publication-ready-20260831",
+  "successor_source_back_matter_counts": {
+    "arxiv": {
+      "data_and_code_availability": 1,
+      "references": 1
+    },
+    "journal": {
+      "data_and_code_availability": 1,
+      "references": 1
+    }
+  }
+}

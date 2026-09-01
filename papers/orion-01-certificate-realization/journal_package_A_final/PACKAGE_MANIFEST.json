@@ -11,10 +11,11 @@
   "files": {
     "BUILD_RECEIPT.json": "894069ce96b6dc6f7557d1335b666c13671b1fe6605c303667afee0c2af57a11",
     "CLAIM_LEDGER.md": "ebaff0a3c4a41764b463837ecaccb5979421860375e3334088467728a9e157df",
-    "HISTORICAL_COMPONENT_ONLY.md": "60e7e4d857f776608cf69605f4f3d1fda8d1b1f91001c615680f3f74a949ae69",
+    "HISTORICAL_BINDING_DRIFT_V1.json": "5a55cc41a6217d2e4694e99b29946a6d1082cd9654fe98a7517168ecbe598ab5",
+    "HISTORICAL_COMPONENT_ONLY.md": "26c404fb510a1ca1dc5dae323c86575b34e298cc809b8d665df44cc7faeaf354",
     "MANUSCRIPT.md": "752582a69c8289e0c88f1c4a0cca37a6d543dafe7a0197f6ce284de1f638dbaf",
     "README.md": "d5e0a9e827fc65cc54b396c939c05c1f2c6521d1dfbe17885837d31f9656c6f9",
-    "SUPERSEDED_RECONCILIATION_V1.json": "6d24b0034650a893cb0cc933bdaa1e4a2e292053105785df01390e4ac62b5689",
+    "SUPERSEDED_RECONCILIATION_V1.json": "562823712eb192830094acb040a216175b6752d4d4b3c7e8352e8a0c7af9ab89",
     "build_package.py": "3f1ffeae0774df7d0cedd744f445332d3b2822af12151703d2d023055af41f9d",
     "history/pre-unified-reconciliation-20260901/PACKAGE_MANIFEST.json": "a9d8cea528e6c1dc918092d94296ce31f38317af81de8da267bcf552018bb5d0",
     "history/pre-unified-reconciliation-20260901/SHA256SUMS.pre-reconciliation.txt": "ea6f0d3ae4ae53d0f14ece9edaf347c6530f91405200de3ccfe124a3b016b503",
@@ -44,9 +45,12 @@
   "reader_pdf_sha256": "8d3b4df4d03e38e3e79ee98ceccf13bfa20c820420073225e941191e3b64b195",
   "reconciliation": {
     "date": "2026-09-01",
+    "historical_binding_drift_record": "HISTORICAL_BINDING_DRIFT_V1.json",
+    "payload_edited_by_this_reconciliation": false,
+    "pre_existing_payload_binding_drift_count": 3,
+    "pre_existing_payload_binding_drift_detected": true,
     "pre_reconciliation_history": "history/pre-unified-reconciliation-20260901",
     "receipt": "SUPERSEDED_RECONCILIATION_V1.json",
-    "retained_payload_edited": false,
     "scientific_authority_delta": "NONE"
   },
   "schema": "ORION.PublicationClosure.FinalJournalPackage.v2",

@@ -1,0 +1,115 @@
+{
+  "current_submission_authorized": false,
+  "date": "2026-09-01",
+  "disposition": "PRE_EXISTING_DRIFT_AND_LAYOUT_ANOMALIES_RETAINED_AS_HISTORY; NOT_A_CURRENT_SUBMISSION_SURFACE",
+  "historical_checksum_payload_drift": [
+    {
+      "current_sha256": null,
+      "historical_sha256": "2b90252b0ede52080e17c303dbc69fa19ac5af35687652a7bd296d6e6fcaba15",
+      "path": "submission/Typed_Scientific_Authority_with_Fail-Closed_Nonpromotion.pdf",
+      "status": "MISSING"
+    },
+    {
+      "current_sha256": null,
+      "historical_sha256": "ddf14bd973f9962a1403c49f48ef91b0be4af87459a375cd3929d02dea8ebe4d",
+      "path": "submission/Typed_Scientific_Authority_with_Fail-Closed_Nonpromotion.tex",
+      "status": "MISSING"
+    },
+    {
+      "current_sha256": null,
+      "historical_sha256": "39e2aaf6514e46067ebbe963d80443f6bb809a500ff7b757a5840a6f5caf1b06",
+      "path": "submission/Typed_Scientific_Authority_with_Fail-Closed_Nonpromotion_artifact.zip",
+      "status": "MISSING"
+    },
+    {
+      "current_sha256": null,
+      "historical_sha256": "276b81009015fd398b0f67a9bedc8079d2209152ade866bbb731e8f625a793e6",
+      "path": "submission/Typed_Scientific_Authority_with_Fail-Closed_Nonpromotion_journal_source.zip",
+      "status": "MISSING"
+    },
+    {
+      "current_sha256": "90336392b4a236bde75098c8b61cb45a758eaa8dc1fc3b70f22b13755266bac6",
+      "historical_sha256": "77ae17e9e459061162bda1f3c9100ae642973481b1d8b90be900ecadc3ebd9bf",
+      "path": "submission/artifact/README.md",
+      "status": "MISMATCH"
+    },
+    {
+      "current_sha256": null,
+      "historical_sha256": "82ecb77dcdbce97d3980152d5053a166227d6a0403d11f021a6f478108b1b86a",
+      "path": "submission/artifact/evidence_license_evaluator.py",
+      "status": "MISSING"
+    },
+    {
+      "current_sha256": null,
+      "historical_sha256": "8e6310a151143922151f382aa38dd95cb57c7ba9b61642e51b9a6c1543904afa",
+      "path": "submission/artifact/evidence_license_schema.json",
+      "status": "MISSING"
+    },
+    {
+      "current_sha256": null,
+      "historical_sha256": "c8e8640e2b9ea1700a93592a6d6d76c29772a290f990fd81a4a9bf969647516f",
+      "path": "submission/artifact/examples/bounded_frontier.json",
+      "status": "MISSING"
+    },
+    {
+      "current_sha256": null,
+      "historical_sha256": "ebd96e2e20192fe30f8383239f8ce142c707eed0c11f09e3b17045db8dd5e887",
+      "path": "submission/artifact/examples/forecast_falsification.json",
+      "status": "MISSING"
+    },
+    {
+      "current_sha256": null,
+      "historical_sha256": "63178ff0ab7a2eac7d41bd3151d4483811a07e3620c53b1d9257f79737024f15",
+      "path": "submission/artifact/examples/query_specific_falsification.json",
+      "status": "MISSING"
+    },
+    {
+      "current_sha256": null,
+      "historical_sha256": "6c32a4914cfb095bb243f76780b2d1cf143b9684814a7726aaa2ce016a1e27ef",
+      "path": "submission/artifact/test_evidence_license_evaluator.py",
+      "status": "MISSING"
+    }
+  ],
+  "historical_internal_binding_claim_drift": [
+    {
+      "claimed_sha256": "7181bd6d64c375a29fc2d037cfa5a03f67e6dc69d6b32d0af95961ce410fa1ee",
+      "current_sha256": "b3b5c14d00da005249ae4bbaaeaab3f97a886c40cd99c422ec8e37f647ebbbc9",
+      "path": "MANUSCRIPT.md",
+      "record": "PUBLICATION_RELEASE_MANIFEST.json",
+      "status": "MISMATCH"
+    },
+    {
+      "claimed_sha256": "2022d91824d5d173ae715e4107323f41ed35fdb7611601f7c091cc0815f5eef2",
+      "current_sha256": "b29972bd3cc73d66624ce49869bbb1b7f74d3ca6b5859fa4e54f9fdb0a313b8f",
+      "path": "submission/cover_letter.md",
+      "record": "PUBLICATION_RELEASE_MANIFEST.json",
+      "status": "MISMATCH"
+    },
+    {
+      "claimed_sha256": "dd6e82be58f4a9b97a7be91ed3407e0e3c3200ad5d3d5f4d654d98d09430587e",
+      "current_sha256": "748ac07426e2cd1c6674a117e8549e6dfb1f964fa2c818ef3aa9bd64901c6c32",
+      "path": "submission/submission_checklist.md",
+      "record": "PUBLICATION_RELEASE_MANIFEST.json",
+      "status": "MISMATCH"
+    }
+  ],
+  "legacy_manuscript_back_matter_counts": {
+    "data_and_code_availability": 1,
+    "references": 1
+  },
+  "package": "papers/orion-03-typed-merge-falsification/journal_package_final",
+  "package_status": "HISTORICAL_SUPERSEDED",
+  "schema": "ORION.PublicationClosure.HistoricalBindingDrift.v1",
+  "scientific_authority_delta": "NONE",
+  "successor": "papers/orion-03-typed-merge-falsification/submission/publication-ready-20260831",
+  "successor_source_back_matter_counts": {
+    "arxiv": {
+      "data_and_code_availability": 0,
+      "references": 0
+    },
+    "journal": {
+      "data_and_code_availability": 0,
+      "references": 0
+    }
+  }
+}
