@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "review_id": "ORION-13-F1000-BRIEF-REPORT-HOSTILE-REVIEW-20260901-R1",
+  "manuscript": {
+    "path": "release/ORION-13-Brief-Report.pdf",
+    "sha256": "sha256:db9e60ba90507adb485e04aac1e76f1cdfb61b63101607bba5889e04bee1b36f",
+    "pages": 6
+  },
+  "target_criteria": {
+    "path": "TARGET_CRITERIA_CARD.json",
+    "sha256": "sha256:4dbdf163d070a065dff3159fd786c51080c7639a166b99be9ecedb4c05d8c7ca"
+  },
+  "isolation": {
+    "method": "Three separate ephemeral read-only Codex CLI processes with separate working directories",
+    "shared_inputs": [
+      "Exact manuscript PDF and extracted text",
+      "Target criteria card",
+      "Common report skeleton",
+      "Reviewed manuscript fingerprint"
+    ],
+    "reviewer_specific_inputs": [
+      "Reviewer 1 emphasis: validity, methods, data, inference and statistics",
+      "Reviewer 2 emphasis: prior work, contribution, originality and target fit",
+      "Reviewer 3 emphasis: reproducibility, reporting, clarity and boundaries"
+    ],
+    "withheld_from_reviewers": [
+      "Editorial triage conclusion",
+      "Other reviewer reports",
+      "Shared concern or claim ledger",
+      "Post-review synthesis",
+      "Desired recommendation"
+    ],
+    "network_access": false,
+    "repository_parent_access": false,
+    "mutual_blindness": "technically_isolated"
+  },
+  "frozen_at": "2026-09-01T19:12:00+02:00",
+  "reports": [
+    {
+      "reviewer_id": "orion13-isolated-reviewer-1-20260901",
+      "path": "reviewers/REVIEWER_1_FROZEN.md",
+      "sha256": "sha256:b57a06002500d73cab6ee4ac7e5f49d1f682492e61a1288052caa7086709b848",
+      "emphasis": "validity_methods_data_inference_statistics"
+    },
+    {
+      "reviewer_id": "orion13-isolated-reviewer-2-20260901",
+      "path": "reviewers/REVIEWER_2_FROZEN.md",
+      "sha256": "sha256:ddaef021466d87665e077ceed6643b51c563a66662f4d74de8e7732dfb9cf7df",
+      "emphasis": "prior_work_contribution_originality_target_fit"
+    },
+    {
+      "reviewer_id": "orion13-isolated-reviewer-3-20260901",
+      "path": "reviewers/REVIEWER_3_FROZEN.md",
+      "sha256": "sha256:00f334604caf3e47f46bd1c42b43459b6bf5ea8237904a32dab5d7303b606df0",
+      "emphasis": "reproducibility_reporting_clarity_boundaries"
+    }
+  ],
+  "freeze_rule": "Reports are immutable. Manuscript repair requires a new targeted rereview against a new manuscript fingerprint; the original reports remain unchanged.",
+  "adverse_result_retention": "All reports preserve the one-family discrimination, 19 non-discriminating cases, four null ablations, weak comparator, same-programme custody, eight-state effective conformance mass, interface mismatch and generalization ceiling."
+}
