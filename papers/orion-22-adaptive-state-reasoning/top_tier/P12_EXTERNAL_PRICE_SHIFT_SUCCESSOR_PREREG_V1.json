@@ -1,0 +1,160 @@
+{
+  "schema": "ORION.A2.ExternalPriceShiftSuccessorPrereg.v1",
+  "paper_ids": ["ORION-21", "ORION-22"],
+  "registered_date": "2026-09-01",
+  "artifact_class": "FROZEN_BEFORE_PROTECTED_OUTCOMES",
+  "results_exist": false,
+  "protected_outcomes_accessed": false,
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A2 Phase 3",
+  "purpose": "Freeze price and distribution-shift stress axes for the external ScienceAgentBench plus LongMemEval/LongMemEval-V2 programme before any protected external outcome is evaluated.",
+  "source_bindings": {
+    "orion22_stopgo_menu": {
+      "path": "papers/orion-22-adaptive-state-reasoning/top_tier/p12_stopgo_frozen_menus_v1.json",
+      "git_blob_sha": "5ef722ac99f95b12dbb8c484cd659f5c9ff14984"
+    },
+    "orion21_external_requirements": {
+      "path": "papers/orion-21-state-as-computation/P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md",
+      "git_blob_sha": "f8ba0680dc5fd0fd0acef8b5926b093cb84b26cc"
+    },
+    "ScienceAgentBench": {
+      "upstream": "OSU-NLP-Group/ScienceAgentBench",
+      "verified_release_note_date": "2026-04-30",
+      "public_task_count": 102,
+      "public_discipline_count": 4,
+      "excluded_upstream_license_instances": [3, 32, 46, 53, 54, 84]
+    },
+    "LongMemEval": {
+      "upstream": "xiaowu0162/LongMemEval",
+      "question_types": [
+        "temporal-reasoning",
+        "multi-session",
+        "knowledge-update",
+        "single-session-user",
+        "single-session-assistant",
+        "single-session-preference"
+      ]
+    },
+    "LongMemEval-V2": {
+      "upstream": "xiaowu0162/LongMemEval-V2",
+      "public_question_count": 451,
+      "domains": ["web", "enterprise"],
+      "memory_abilities": [
+        "static_state_recall",
+        "dynamic_state_tracking",
+        "workflow_knowledge",
+        "environment_gotchas",
+        "premise_awareness"
+      ]
+    }
+  },
+  "price_grid": {
+    "unit": "dimensionless multiplier applied to the empirically measured base charge in each resource locus; contemporaneous vendor USD prices are reported separately and cannot change this grid",
+    "materialization_locus": "state compilation/materialization plus preprocessing/state-construction work",
+    "retrieval_locus": "embedding, sparse/dense retrieval and reranking calls",
+    "reasoning_tool_locus": "reasoning generation plus non-retrieval tool calls",
+    "levels": [0.5, 1.0, 2.0],
+    "construction": "full Cartesian product of levels across materialization x retrieval x reasoning_tool",
+    "regime_count": 27,
+    "flat_reference": [1.0, 1.0, 1.0],
+    "post_outcome_edit_forbidden": true
+  },
+  "distribution_shift_axes": {
+    "ScienceAgentBench": {
+      "scientific_unit": "task_family",
+      "disciplines": [
+        "bioinformatics",
+        "computational_chemistry",
+        "geographical_information_science",
+        "psychology_and_cognitive_neuroscience"
+      ],
+      "axes": [
+        {
+          "axis": "discipline_mix",
+          "regimes": [
+            "observed_protected_mix",
+            "uniform_over_eligible_families",
+            "double_weight_each_discipline_one_at_a_time",
+            "leave_one_discipline_out_each_discipline_one_at_a_time"
+          ],
+          "outcome_inputs_forbidden": true
+        },
+        {
+          "axis": "family_workload_multiplicity",
+          "regimes": ["lower_half", "upper_half"],
+          "split_rule": "median pre-outcome S_PENDING_MULTIPLICITY within discipline; ties assigned by canonical family id",
+          "outcome_inputs_forbidden": true
+        }
+      ]
+    },
+    "LongMemEval": {
+      "scientific_unit": "question/session",
+      "axes": [
+        {
+          "axis": "question_type_mix",
+          "regimes": [
+            "observed_mix",
+            "uniform_over_question_types",
+            "double_weight_each_type_one_at_a_time",
+            "leave_one_type_out_each_type_one_at_a_time"
+          ]
+        },
+        {
+          "axis": "history_scale",
+          "regimes": ["S", "M"],
+          "rule": "use official LongMemEval-S and LongMemEval-M where context limits permit; inability is CANNOT_CHECK rather than substitution"
+        }
+      ]
+    },
+    "LongMemEval-V2": {
+      "scientific_unit": "question/haystack",
+      "axes": [
+        {
+          "axis": "domain_mix",
+          "regimes": [
+            "observed_mix",
+            "web_only",
+            "enterprise_only",
+            "double_weight_web",
+            "double_weight_enterprise"
+          ]
+        },
+        {
+          "axis": "ability_mix",
+          "regimes": [
+            "observed_mix",
+            "uniform_over_abilities",
+            "double_weight_each_ability_one_at_a_time",
+            "leave_one_ability_out_each_ability_one_at_a_time"
+          ]
+        },
+        {
+          "axis": "haystack_scale",
+          "regimes": ["small", "medium"],
+          "rule": "use public leaderboard tiers only in V1"
+        }
+      ]
+    }
+  },
+  "allocator_freeze": {
+    "original_allocator": "same allocator identity frozen for the corresponding external campaign; no threshold, signal, action, model-specific or benchmark-specific retuning after protected outcomes",
+    "price_aware_successor": "any widened price-aware policy requires a separately versioned preregistration committed before its own protected external run and cannot replace the original allocator in the same estimand",
+    "hindsight_oracle": "analysis only; never selectable by the candidate"
+  },
+  "reporting_contract": {
+    "primary": "regret against hindsight oracle in every price x shift cell",
+    "required": [
+      "per-benchmark phase diagram",
+      "failure-region boundaries",
+      "unshifted reference cell",
+      "per-domain or per-question-type direction",
+      "CANNOT_CHECK cells and reasons"
+    ],
+    "forbidden": [
+      "dropping adverse cells",
+      "changing the price grid after outcomes",
+      "pool-fitting a new threshold on protected data",
+      "averaging away domain failures without the required stratified report"
+    ]
+  },
+  "scientific_authority_delta": "NONE__PROTOCOL_ONLY"
+}
