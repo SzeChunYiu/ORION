@@ -904,12 +904,24 @@ def main(argv: list[str]) -> int:
         f"  differential: {diff['agreements']}/{diff['trials']} agree, "
         f"{diff['positive_trials']} authorised"
     )
+    # Same split as the chain-composition CLI, for the same reason: the repo
+    # reserves 3 for "could not check" (scripts/audit_manuscript_clipping.py)
+    # and 2 for a finding. A refuted theorem is a finding about this calculus;
+    # an undecided solver is a measurement that was not taken.
     if not report["all_discharged"]:
-        print(f"UNDISCHARGED: {report['undischarged']}")
+        graded = (*report["theorems"], *report["chain_ladder"]["results"])
+        refuted = [i["name"] for i in graded if i["outcome"] == "COUNTEREXAMPLE"]
+        undecided = [i["name"] for i in graded if i["outcome"] == "UNKNOWN"]
+        if refuted:
+            print(f"REFUTED: {refuted}")
+            if undecided:
+                print(f"  (also undecided, and not counted as refuted: {undecided})")
+            return 2
+        print(f"CANNOT CHECK: Z3 returned UNKNOWN for {undecided}")
         return 3
     if not diff["agreed"] or not diff["exercised_both_verdicts"]:
         print("DIFFERENTIAL DID NOT ESTABLISH AGREEMENT ON AN INFORMATIVE CORPUS")
-        return 3
+        return 2
     return 0
 
 

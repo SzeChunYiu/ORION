@@ -12,6 +12,7 @@ negatives about the 169 the ones it actually computed.
 
 from __future__ import annotations
 
+import copy
 import json
 from pathlib import Path
 
@@ -566,6 +567,62 @@ class TestTheReport:
         assert written["record"] == "P8_CHAIN_COMPOSITION_INTERPRETATION"
         assert len(written["theorems"]) == len(cci.THEOREMS)
         assert len(written["chain_ladder"]["results"]) == cci.CHAIN_LADDER_BOUND
+
+    def test_a_refutation_and_an_undecided_run_exit_differently(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """The exit code has to say which of the two worlds the run was in.
+
+        The repo already fixed this convention elsewhere: audit_manuscript_clipping.py
+        ends ``return 2 if (new or stale) else 0`` and keeps 3 for the runs it could
+        not check. This CLI answered 3 to everything, so "the composition is not
+        sound" -- a real negative result about P8 -- and "the solver was starved and
+        gave up" were the same integer to any caller. `_assert_all_discharged` in
+        this file refuses to conflate them one layer up; the CLI now agrees.
+        """
+        clean = cci.build_report(REPO_ROOT, date="2026-08-22")
+
+        def run(mutate) -> int:
+            report = copy.deepcopy(clean)
+            mutate(report)
+            monkeypatch.setattr(cci, "build_report", lambda *a, **k: report)
+            return cci.main(
+                ["--date", "2026-08-22", "--output", str(tmp_path / "r.json")]
+            )
+
+        def undecided(report: dict) -> None:
+            report["all_discharged"] = False
+            report["theorems"][0]["outcome"] = "UNKNOWN"
+
+        def refuted(report: dict) -> None:
+            report["all_discharged"] = False
+            report["theorems"][0]["outcome"] = "COUNTEREXAMPLE"
+
+        def both(report: dict) -> None:
+            report["all_discharged"] = False
+            report["theorems"][0]["outcome"] = "COUNTEREXAMPLE"
+            report["theorems"][1]["outcome"] = "UNKNOWN"
+
+        assert run(lambda r: None) == 0
+        assert run(undecided) == 3, "an undecided solver is CANNOT_CHECK, not a finding"
+        assert run(refuted) == 2, "a refuted theorem is a finding, not a failed measurement"
+        # A refutation stays a refutation even when something else went undecided:
+        # the finding is the stronger claim and must not be downgraded to 3.
+        assert run(both) == 2
+
+        # Every non-solver failure is a finding about P8, not an unmeasured run.
+        for key, field in (
+            ("composition_soundness", "composition_is_sound"),
+            ("composition_soundness", "every_widening_hop_blocks"),
+            ("composition_soundness", "exercised_both_verdicts"),
+            ("state_space_reduction", "reduction_is_exact"),
+            ("published_counts", "counts_reproduced"),
+            ("frame_conditions", "every_condition_carries_a_theorem"),
+            ("interpretation_sensitivity",
+             "every_wrong_composition_moves_the_soundness_count"),
+        ):
+            code = run(lambda r, k=key, f=field: r[k].__setitem__(f, False))
+            assert code == 2, f"{key}.{field} is a finding and must exit 2, got {code}"
 
     def test_the_committed_artifact_matches_what_the_module_computes(self) -> None:
         artifact = (
