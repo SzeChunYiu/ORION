@@ -1,0 +1,59 @@
+{
+  "schema": "ORION.A1.TheoremPacketArchiveContract.v1",
+  "date": "2026-09-01",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A1 archive theorem packet",
+  "purpose": "Make archive readiness mechanically decidable without treating an incomplete local packet as theorem authority.",
+  "protected_target_execution_authorized_by_this_contract": false,
+  "scientific_authority_delta": "NONE__ARCHIVE_READINESS_ONLY",
+  "present_required_artifacts": [
+    "papers/orion-04-rooted-completion-certificates/WAVE3_SCOPED_MANUSCRIPT_V3.md",
+    "papers/orion-04-rooted-completion-certificates/WAVE3_PUBLICATION_DISPOSITION_V3.json",
+    "papers/orion-04-rooted-completion-certificates/evidence/d4-proof-handoff-v1/PROOF_OBJECT_CONTRACT_V1.md",
+    "papers/orion-04-rooted-completion-certificates/evidence/d4-proof-handoff-v1/calibration-suite-v1/CALIBRATION_SUITE_V1.json",
+    "papers/orion-04-rooted-completion-certificates/evidence/d4-proof-handoff-v1/standalone-verifier-v1/verify_construction_v1.py",
+    "papers/orion-04-rooted-completion-certificates/evidence/a1-independent-branch-audit-v1/reconstruct_branch_cover_v1.py",
+    "papers/orion-04-rooted-completion-certificates/evidence/a1-independent-branch-audit-v1/BRANCH_RECONSTRUCTION_RESULT_V1.json",
+    "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_a/engine_a_lower_bound_v1.py",
+    "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/engine_b.py",
+    "papers/orion-04-rooted-completion-certificates/evidence/crb-full-replay/successor-v1/engine_b/PROOF_OF_COMPLETENESS.md",
+    "papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/z3_disjoint_zero_sum_v1.py",
+    "papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/PROTOCOL_V1.json",
+    "papers/orion-04-rooted-completion-certificates/evidence/a1-independent-z3-backend-v1/INDEPENDENT_REVIEW_WORKSHEET_V1.md",
+    "papers/orion-04-rooted-completion-certificates/evidence/a1-route-disagreement-v1/ROUTE_DISAGREEMENT_PROTOCOL_V1.json",
+    "papers/orion-04-rooted-completion-certificates/evidence/a1-route-disagreement-v1/check_route_disagreement_v1.py"
+  ],
+  "future_external_slots": {
+    "signed_independent_mathematical_review": {
+      "path": "papers/orion-04-rooted-completion-certificates/evidence/a1-theorem-packet-archive-v1/external/INDEPENDENT_MATHEMATICAL_REVIEW_SIGNED_V1.json",
+      "required_fields": ["reviewer_identity", "independence_declaration", "reviewed_subject_commit", "cover_60_patterns", "cover_78_branches", "dependency_chain_verified", "verdict", "signature_or_receipt_sha256"],
+      "required_verdict": "PASS"
+    },
+    "independent_branch_certificate_manifest": {
+      "path": "papers/orion-04-rooted-completion-certificates/evidence/a1-theorem-packet-archive-v1/external/INDEPENDENT_BRANCH_CERTIFICATE_MANIFEST_V1.json",
+      "required_branch_count": 78,
+      "required_fields_per_branch": ["branch_identity", "input_sha256", "certificate_path", "certificate_sha256", "checker_identity", "checker_receipt_sha256", "survivor_count"],
+      "required_survivor_count_per_branch": 0
+    },
+    "independent_branch_outputs_manifest": {
+      "path": "papers/orion-04-rooted-completion-certificates/evidence/a1-theorem-packet-archive-v1/external/INDEPENDENT_BRANCH_OUTPUTS_MANIFEST_V1.json",
+      "required_branch_count": 78,
+      "required_fields_per_branch": ["branch_identity", "output_path", "output_sha256", "survivor_count"],
+      "required_survivor_count_per_branch": 0
+    },
+    "final_authorization_and_custody_receipt": {
+      "path": "papers/orion-04-rooted-completion-certificates/evidence/a1-theorem-packet-archive-v1/external/FINAL_AUTHORIZATION_AND_CUSTODY_RECEIPT_V1.json",
+      "required_fields": ["subject_commit", "one_shot_authorization_id", "nonduplication_key", "execution_environment_sha256", "custody_receipt_sha256", "d4_rounds_consumed"],
+      "required_d4_rounds_consumed": 1
+    }
+  },
+  "archive_ready_requires": [
+    "all present_required_artifacts exist and are SHA-256 bound",
+    "signed independent mathematical review PASS",
+    "78 distinct independent branch certificates with survivor_count=0",
+    "78 distinct independent branch outputs with survivor_count=0",
+    "certificate checker receipts are present and hash-bound",
+    "final one-shot authorization/custody receipt exists and records exactly one consumed D4 round",
+    "no duplicate branch identities or duplicate certificate/output paths"
+  ],
+  "current_expected_terminal": "CANNOT_CHECK_ARCHIVE_MISSING_EXTERNAL_REVIEW_CERTIFICATES_OUTPUTS_AND_FINAL_CUSTODY"
+}
