@@ -1,0 +1,54 @@
+name: ORION A2 price-shift failure atlas v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a2-price-shift-failure-atlas-v1.yml"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/P12_EXTERNAL_PRICE_SHIFT_FAILURE_ATLAS_FREEZE_V1.json"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_external_price_shift_failure_atlas_v1.py"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/P12_EXTERNAL_PRICE_SHIFT_SUCCESSOR_PREREG_V1.json"
+permissions:
+  contents: read
+jobs:
+  failure-atlas-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Verify frozen parent binding
+        run: |
+          set -euo pipefail
+          src=papers/orion-22-adaptive-state-reasoning/top_tier/P12_EXTERNAL_PRICE_SHIFT_SUCCESSOR_PREREG_V1.json
+          test "$(git hash-object "$src")" = "600f80cb203c634d3781c38ecab2c0e70f4f5641"
+      - name: Verify analysis freeze semantics
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('papers/orion-22-adaptive-state-reasoning/top_tier/P12_EXTERNAL_PRICE_SHIFT_FAILURE_ATLAS_FREEZE_V1.json')
+          d=json.loads(p.read_text())
+          assert d['schema']=='ORION.A2.ExternalPriceShiftFailureAtlasFreeze.v1'
+          assert d['protected_outcomes_accessed'] is False
+          assert d['results_exist'] is False
+          assert d['price_lattice']['levels']==[0.5,1.0,2.0]
+          assert d['price_lattice']['no_interpolation'] is True
+          assert d['uncertainty']['resamples']==10000
+          assert d['derived_quantities']['cell_max_regret_reference']==2.0
+          terms=[x['terminal'] for x in d['cell_classification_in_priority_order']]
+          assert terms==['CANNOT_CHECK','BASELINE_LOSS','POSITIVE_NEAR_ORACLE','POSITIVE_HIGH_REGRET','UNRESOLVED_DIRECTION']
+          assert 'dropping an adverse cell' in d['forbidden']
+          PY
+      - name: Execute deterministic self-test
+        run: python papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_external_price_shift_failure_atlas_v1.py --self-test
+      - name: Reject host RNG and smoothing imports
+        run: |
+          set -euo pipefail
+          f=papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_external_price_shift_failure_atlas_v1.py
+          ! grep -Eq '^import (random|numpy|scipy)|^from (random|numpy|scipy)' "$f"
+          ! grep -Ei 'spline|loess|lowess|interpolat' "$f" | grep -v 'no interpolation' >/dev/null || false
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
