@@ -1,0 +1,79 @@
+name: Tier-A final gate analyzers v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/tier-a-final-gate-analyzers-v1.yml"
+      - "papers/publication_closure/TIER_A_FINAL_GATE_ANALYZERS_V1.json"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/P12_STOPGO_FINAL_ANALYSIS_FREEZE_V1.json"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_stopgo_final_v1.py"
+      - "papers/orion-21-state-as-computation/top_tier/P11_EXTERNAL_FINAL_ANALYSIS_FREEZE_V1.json"
+      - "papers/orion-21-state-as-computation/top_tier/analyze_p11_external_final_v1.py"
+      - "papers/publication_closure/a4-hidden-cause-external-v1/FINAL_GATE_ANALYSIS_FREEZE_V1.json"
+      - "papers/publication_closure/a4-hidden-cause-external-v1/analyze_final_gate_v1.py"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/P12_STOPGO_FROZEN_MENUS_V1.md"
+      - "papers/orion-21-state-as-computation/P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md"
+      - "papers/publication_closure/a4-hidden-cause-external-v1/CAUSAL_GOLD_AND_LEAKAGE_FREEZE_V1.json"
+      - "papers/publication_closure/a4-hidden-cause-external-v1/baseline_routers_v1.py"
+permissions:
+  contents: read
+jobs:
+  final-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Verify parent bindings
+        run: |
+          set -euo pipefail
+          test "$(git hash-object papers/orion-22-adaptive-state-reasoning/top_tier/P12_STOPGO_FROZEN_MENUS_V1.md)" = "632e959eeafd3fe2cdd246be83224773ae19c042"
+          test "$(git hash-object papers/orion-21-state-as-computation/P11_EXTERNAL_VALIDATION_REQUIREMENTS_V1.md)" = "f8ba0680dc5fd0fd0acef8b5926b093cb84b26cc"
+          test "$(git hash-object papers/publication_closure/a4-hidden-cause-external-v1/CAUSAL_GOLD_AND_LEAKAGE_FREEZE_V1.json)" = "1ce39af81fd4b3686b52221349ddfb865c11a8fb"
+          test "$(git hash-object papers/publication_closure/a4-hidden-cause-external-v1/baseline_routers_v1.py)" = "9ab86b8c98fdb74ce9cf39f6722f746f6218c373"
+      - name: Validate preregistration-only boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          idx=json.loads(Path('papers/publication_closure/TIER_A_FINAL_GATE_ANALYZERS_V1.json').read_text())
+          assert idx['schema']=='ORION.TierA.FinalGateAnalyzers.v1'
+          assert idx['protected_outcomes_accessed'] is False
+          assert set(idx['analyzers'])=={'A2_P12_SCIENCEAGENTBENCH','A2_P11_LONGMEMEVAL','A4_HIDDEN_CAUSE'}
+          freezes=[
+            'papers/orion-22-adaptive-state-reasoning/top_tier/P12_STOPGO_FINAL_ANALYSIS_FREEZE_V1.json',
+            'papers/orion-21-state-as-computation/top_tier/P11_EXTERNAL_FINAL_ANALYSIS_FREEZE_V1.json',
+            'papers/publication_closure/a4-hidden-cause-external-v1/FINAL_GATE_ANALYSIS_FREEZE_V1.json',
+          ]
+          for f in freezes:
+            d=json.loads(Path(f).read_text())
+            assert d['protected_outcomes_accessed'] is False
+            assert d['scientific_authority_delta'].startswith('NONE__')
+          PY
+      - name: Compile final analyzers
+        run: |
+          python -m py_compile \
+            papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_stopgo_final_v1.py \
+            papers/orion-21-state-as-computation/top_tier/analyze_p11_external_final_v1.py \
+            papers/publication_closure/a4-hidden-cause-external-v1/analyze_final_gate_v1.py
+      - name: P12 stop-go self-test
+        run: python papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_stopgo_final_v1.py --self-test
+      - name: P11 external final-gate self-test
+        run: python papers/orion-21-state-as-computation/top_tier/analyze_p11_external_final_v1.py --self-test
+      - name: A4 final-gate self-test
+        run: python papers/publication_closure/a4-hidden-cause-external-v1/analyze_final_gate_v1.py --self-test
+      - name: Ban host RNG/numerical stats dependencies
+        run: |
+          set -euo pipefail
+          for f in \
+            papers/orion-22-adaptive-state-reasoning/top_tier/analyze_p12_stopgo_final_v1.py \
+            papers/orion-21-state-as-computation/top_tier/analyze_p11_external_final_v1.py \
+            papers/publication_closure/a4-hidden-cause-external-v1/analyze_final_gate_v1.py
+          do
+            ! grep -Eq '^import (random|numpy|scipy)|^from (random|numpy|scipy)' "$f"
+          done
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
