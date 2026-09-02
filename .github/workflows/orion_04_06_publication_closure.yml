@@ -9,6 +9,14 @@ on:
       - 'papers/publication_closure/**'
       - '.github/workflows/orion_04_06_publication_closure.yml'
   workflow_dispatch:
+    inputs:
+      rebind_orion05:
+        description: >-
+          Rebuild and push the tracked ORION-05 package bytes from the current
+          manuscript sources (use only after an intentional orion-05 .tex edit;
+          the exactness verify then re-binds against these bytes).
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -76,6 +84,20 @@ jobs:
           # reader text and source are identical. Keep the already reviewed,
           # checksum-bound PDF bytes after validating the clean hosted rebuild.
           git checkout -- "$pdf" "$sums"
+      - name: Rebind ORION-05 package bytes (explicit dispatch only)
+        if: github.event_name == 'workflow_dispatch' && inputs.rebind_orion05
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- papers/orion-05-tare-expressivity/submission/final-20260831/manuscript.pdf \
+            papers/orion-05-tare-expressivity/submission/final-20260831/arxiv-source.zip \
+            papers/orion-05-tare-expressivity/submission/final-20260831/SHA256SUMS
+          if ! git diff --cached --quiet; then
+            git commit -m 'papers: rebind ORION-05 package bytes after manuscript edit'
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
       - name: Verify tracked package bindings remain exact
         shell: bash
         run: |
