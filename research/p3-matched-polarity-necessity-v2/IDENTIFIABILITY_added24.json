@@ -1,0 +1,883 @@
+{
+  "atlas_id": "matched-polarity-necessity-v2-added-only",
+  "audits": {
+    "hash_parity": [
+      {
+        "benchmark_id": "matched-polarity-necessity-v2-added-only:hash_parity",
+        "detail": "matched-polarity-necessity-v2-added-only:hash_parity/COMPATIBLE: probe ordinal_quartile recovers the label at informedness 1.0 (7/7 of the label, 0 false positives over 2) from cues that carry none of the competence",
+        "high_cardinality_probes": [],
+        "label": "COMPATIBLE",
+        "outcome": "FAIL",
+        "reason": "LABEL_RECOVERED_BY_CUE",
+        "results": [
+          {
+            "false_negative": 0,
+            "false_positive": 2,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "case_id_shape",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 0,
+            "true_positive": 7,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 2,
+            "fitted_signatures": 2,
+            "label": "COMPATIBLE",
+            "probe_id": "case_family",
+            "recovery": -0.5714285714285714,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 0,
+            "true_positive": 3,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 2,
+            "fitted_signatures": 4,
+            "label": "COMPATIBLE",
+            "probe_id": "discipline",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 0,
+            "true_positive": 7,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 2,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "source_provenance",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 0,
+            "true_positive": 7,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 2,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "gold_authority_stamp",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 0,
+            "true_positive": 7,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 2,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "coordinate_arity",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 0,
+            "true_positive": 7,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 2,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "coordinate_missingness",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 0,
+            "true_positive": 7,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 2,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "identifier_string_shape",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 0,
+            "true_positive": 7,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 0,
+            "fitted_signatures": 4,
+            "label": "COMPATIBLE",
+            "probe_id": "ordinal_quartile",
+            "recovery": 1.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 2,
+            "true_positive": 7,
+            "unscored": 0
+          }
+        ],
+        "worst_recovery": 1.0
+      },
+      {
+        "benchmark_id": "matched-polarity-necessity-v2-added-only:hash_parity",
+        "detail": "matched-polarity-necessity-v2-added-only:hash_parity/DISTINCT_CONSTRUCT: probe ordinal_quartile recovers the label at informedness 1.0 (2/2 of the label, 0 false positives over 7) from cues that carry none of the competence",
+        "high_cardinality_probes": [],
+        "label": "DISTINCT_CONSTRUCT",
+        "outcome": "FAIL",
+        "reason": "LABEL_RECOVERED_BY_CUE",
+        "results": [
+          {
+            "false_negative": 2,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "case_id_shape",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 7,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 2,
+            "false_positive": 0,
+            "fitted_signatures": 2,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "case_family",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 7,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 2,
+            "false_positive": 0,
+            "fitted_signatures": 4,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "discipline",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 7,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 2,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "source_provenance",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 7,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 2,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "gold_authority_stamp",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 7,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 2,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "coordinate_arity",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 7,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 2,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "coordinate_missingness",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 7,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 2,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "identifier_string_shape",
+            "recovery": 0.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 7,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 0,
+            "fitted_signatures": 4,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "ordinal_quartile",
+            "recovery": 1.0,
+            "resolution": 0.14285714285714285,
+            "scored": 9,
+            "true_negative": 7,
+            "true_positive": 2,
+            "unscored": 0
+          }
+        ],
+        "worst_recovery": 1.0
+      },
+      {
+        "benchmark_id": "matched-polarity-necessity-v2-added-only:hash_parity",
+        "detail": "matched-polarity-necessity-v2-added-only:hash_parity/DISTINCT_REFERENT: case_family, case_id_shape, coordinate_arity, coordinate_missingness, discipline, gold_authority_stamp, identifier_string_shape, ordinal_quartile, source_provenance produced no positive or no negative on the eval split; a probe that could not run recovers zero labels for the same reason an unpressed guard reports zero violations",
+        "high_cardinality_probes": [],
+        "label": "DISTINCT_REFERENT",
+        "outcome": "CANNOT_CHECK",
+        "reason": "NO_PROBE_SCORED",
+        "results": [
+          {
+            "false_negative": 0,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "case_id_shape",
+            "recovery": null,
+            "resolution": null,
+            "scored": 9,
+            "true_negative": 9,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 4,
+            "fitted_signatures": 2,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "case_family",
+            "recovery": null,
+            "resolution": null,
+            "scored": 9,
+            "true_negative": 5,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 0,
+            "fitted_signatures": 4,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "discipline",
+            "recovery": null,
+            "resolution": null,
+            "scored": 9,
+            "true_negative": 9,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "source_provenance",
+            "recovery": null,
+            "resolution": null,
+            "scored": 9,
+            "true_negative": 9,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "gold_authority_stamp",
+            "recovery": null,
+            "resolution": null,
+            "scored": 9,
+            "true_negative": 9,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "coordinate_arity",
+            "recovery": null,
+            "resolution": null,
+            "scored": 9,
+            "true_negative": 9,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "coordinate_missingness",
+            "recovery": null,
+            "resolution": null,
+            "scored": 9,
+            "true_negative": 9,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "identifier_string_shape",
+            "recovery": null,
+            "resolution": null,
+            "scored": 9,
+            "true_negative": 9,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 0,
+            "fitted_signatures": 4,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "ordinal_quartile",
+            "recovery": null,
+            "resolution": null,
+            "scored": 9,
+            "true_negative": 9,
+            "true_positive": 0,
+            "unscored": 0
+          }
+        ],
+        "worst_recovery": null
+      }
+    ],
+    "in_sample": [
+      {
+        "benchmark_id": "matched-polarity-necessity-v2-added-only:in_sample",
+        "detail": "matched-polarity-necessity-v2-added-only:in_sample/COMPATIBLE: probe ordinal_quartile recovers the label at informedness 0.75 (12/16 of the label, 0 false positives over 8) from cues that carry none of the competence",
+        "high_cardinality_probes": [],
+        "label": "COMPATIBLE",
+        "outcome": "FAIL",
+        "reason": "LABEL_RECOVERED_BY_CUE",
+        "results": [
+          {
+            "false_negative": 0,
+            "false_positive": 8,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "case_id_shape",
+            "recovery": 0.0,
+            "resolution": 0.0625,
+            "scored": 24,
+            "true_negative": 0,
+            "true_positive": 16,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 8,
+            "fitted_signatures": 2,
+            "label": "COMPATIBLE",
+            "probe_id": "case_family",
+            "recovery": 0.0,
+            "resolution": 0.0625,
+            "scored": 24,
+            "true_negative": 0,
+            "true_positive": 16,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 8,
+            "fitted_signatures": 4,
+            "label": "COMPATIBLE",
+            "probe_id": "discipline",
+            "recovery": 0.0,
+            "resolution": 0.0625,
+            "scored": 24,
+            "true_negative": 0,
+            "true_positive": 16,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 8,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "source_provenance",
+            "recovery": 0.0,
+            "resolution": 0.0625,
+            "scored": 24,
+            "true_negative": 0,
+            "true_positive": 16,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 8,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "gold_authority_stamp",
+            "recovery": 0.0,
+            "resolution": 0.0625,
+            "scored": 24,
+            "true_negative": 0,
+            "true_positive": 16,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 8,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "coordinate_arity",
+            "recovery": 0.0,
+            "resolution": 0.0625,
+            "scored": 24,
+            "true_negative": 0,
+            "true_positive": 16,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 8,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "coordinate_missingness",
+            "recovery": 0.0,
+            "resolution": 0.0625,
+            "scored": 24,
+            "true_negative": 0,
+            "true_positive": 16,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 8,
+            "fitted_signatures": 1,
+            "label": "COMPATIBLE",
+            "probe_id": "identifier_string_shape",
+            "recovery": 0.0,
+            "resolution": 0.0625,
+            "scored": 24,
+            "true_negative": 0,
+            "true_positive": 16,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 4,
+            "label": "COMPATIBLE",
+            "probe_id": "ordinal_quartile",
+            "recovery": 0.75,
+            "resolution": 0.0625,
+            "scored": 24,
+            "true_negative": 8,
+            "true_positive": 12,
+            "unscored": 0
+          }
+        ],
+        "worst_recovery": 0.75
+      },
+      {
+        "benchmark_id": "matched-polarity-necessity-v2-added-only:in_sample",
+        "detail": "matched-polarity-necessity-v2-added-only:in_sample/DISTINCT_CONSTRUCT: probe ordinal_quartile recovers the label at informedness 0.8999999999999999 (4/4 of the label, 2 false positives over 20) from cues that carry none of the competence",
+        "high_cardinality_probes": [],
+        "label": "DISTINCT_CONSTRUCT",
+        "outcome": "FAIL",
+        "reason": "LABEL_RECOVERED_BY_CUE",
+        "results": [
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "case_id_shape",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 2,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "case_family",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 4,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "discipline",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "source_provenance",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "gold_authority_stamp",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "coordinate_arity",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "coordinate_missingness",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "identifier_string_shape",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 2,
+            "fitted_signatures": 4,
+            "label": "DISTINCT_CONSTRUCT",
+            "probe_id": "ordinal_quartile",
+            "recovery": 0.8999999999999999,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 18,
+            "true_positive": 4,
+            "unscored": 0
+          }
+        ],
+        "worst_recovery": 0.8999999999999999
+      },
+      {
+        "benchmark_id": "matched-polarity-necessity-v2-added-only:in_sample",
+        "detail": "matched-polarity-necessity-v2-added-only:in_sample/DISTINCT_REFERENT: probe ordinal_quartile recovers the label at informedness 0.8999999999999999 (4/4 of the label, 2 false positives over 20) from cues that carry none of the competence",
+        "high_cardinality_probes": [],
+        "label": "DISTINCT_REFERENT",
+        "outcome": "FAIL",
+        "reason": "LABEL_RECOVERED_BY_CUE",
+        "results": [
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "case_id_shape",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 2,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "case_family",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 4,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "discipline",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "source_provenance",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "gold_authority_stamp",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "coordinate_arity",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "coordinate_missingness",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 4,
+            "false_positive": 0,
+            "fitted_signatures": 1,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "identifier_string_shape",
+            "recovery": 0.0,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 20,
+            "true_positive": 0,
+            "unscored": 0
+          },
+          {
+            "false_negative": 0,
+            "false_positive": 2,
+            "fitted_signatures": 4,
+            "label": "DISTINCT_REFERENT",
+            "probe_id": "ordinal_quartile",
+            "recovery": 0.8999999999999999,
+            "resolution": 0.05,
+            "scored": 24,
+            "true_negative": 18,
+            "true_positive": 4,
+            "unscored": 0
+          }
+        ],
+        "worst_recovery": 0.8999999999999999
+      }
+    ]
+  },
+  "labels": [
+    "COMPATIBLE",
+    "DISTINCT_CONSTRUCT",
+    "DISTINCT_REFERENT"
+  ],
+  "max_recovery": 0.0,
+  "n_cases": 24,
+  "overall_outcome": "FAIL",
+  "primary_split": "in_sample",
+  "probes": [
+    {
+      "cue_names": [
+        "case_id_length",
+        "case_id_hyphen_count",
+        "case_id_alpha_prefix"
+      ],
+      "cue_rationale": "the length, separator count and leading non-digit run of an opaque case identifier; naming a case involves no judgement about which meaning relation holds between its two projections",
+      "kind": "IDENTIFIER_SHAPE",
+      "probe_id": "case_id_shape"
+    },
+    {
+      "cue_names": [
+        "case_family"
+      ],
+      "cue_rationale": "the closed-vocabulary token naming which contrast dimension the case was drawn to probe, read as an opaque token; it names the axis, and a family that determined the answer would be a construction cue by definition",
+      "kind": "ENUM_VALUE",
+      "probe_id": "case_family"
+    },
+    {
+      "cue_names": [
+        "discipline"
+      ],
+      "cue_rationale": "the closed-vocabulary discipline stratum the case was sampled into; which field a pair comes from carries none of the comparison",
+      "kind": "ENUM_VALUE",
+      "probe_id": "discipline"
+    },
+    {
+      "cue_names": [
+        "source_record_count",
+        "source_datasets"
+      ],
+      "cue_rationale": "how many upstream records the case cites and which datasets they came from; provenance bookkeeping is fixed by the sampling frame before any relation is adjudicated",
+      "kind": "COUNT",
+      "probe_id": "source_provenance"
+    },
+    {
+      "cue_names": [
+        "authority_kind",
+        "authority_has_derivation",
+        "evidence_count"
+      ],
+      "cue_rationale": "the gold record's provenance stamp read as tokens and counts, never its derivation rule text or evidence strings; how the label was authorised is not what the label says",
+      "kind": "ENUM_VALUE",
+      "probe_id": "gold_authority_stamp"
+    },
+    {
+      "cue_names": [
+        "arity_left_referent_ids",
+        "arity_left_construct_ids",
+        "arity_left_measurement_ids",
+        "arity_left_temporal_context_ids",
+        "arity_right_referent_ids",
+        "arity_right_construct_ids",
+        "arity_right_measurement_ids",
+        "arity_right_temporal_context_ids"
+      ],
+      "cue_rationale": "how many ids each coordinate tuple holds on each side, never which ids; cardinality is a shape of the extraction, and this is the P4-shaped cue that a repair populating a coordinate is most likely to introduce",
+      "kind": "COUNT",
+      "probe_id": "coordinate_arity"
+    },
+    {
+      "cue_names": [
+        "empty_left_referent_ids",
+        "empty_left_construct_ids",
+        "empty_left_measurement_ids",
+        "empty_left_temporal_context_ids",
+        "empty_right_referent_ids",
+        "empty_right_construct_ids",
+        "empty_right_measurement_ids",
+        "empty_right_temporal_context_ids"
+      ],
+      "cue_rationale": "which coordinate tuples are empty on each side, irrespective of the values present; a label that follows from which fields the builder filled in is recoverable without comparing anything",
+      "kind": "FIELD_MISSINGNESS",
+      "probe_id": "coordinate_missingness"
+    },
+    {
+      "cue_names": [
+        "projection_id_length_left",
+        "projection_id_length_right",
+        "source_span_length_left",
+        "source_span_length_right"
+      ],
+      "cue_rationale": "lengths of the three projection fields the comparison rule provably ignores --- compare_meaning never reads projection_id, source_id or source_span, and exact_coordinate_baseline excludes them explicitly",
+      "kind": "STRING_SHAPE",
+      "probe_id": "identifier_string_shape"
+    },
+    {
+      "cue_names": [
+        "ordinal_quartile"
+      ],
+      "cue_rationale": "which quartile of the emitted order the case sits in; where a case lands in a sorted file is a property of the emission, not of the pair",
+      "kind": "ORDINAL_POSITION",
+      "probe_id": "ordinal_quartile"
+    }
+  ],
+  "schema_version": "orion.p3.atlas-identifiability.v1"
+}

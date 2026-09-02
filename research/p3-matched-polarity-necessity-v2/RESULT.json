@@ -1,0 +1,561 @@
+{
+  "artifacts": {
+    "research/p3-matched-polarity-necessity-v2/AUDIT_AFTER_matched-polarity-necessity-v2.json": "0e92eec27e6f37a65d4d43f800f0ce613ef3bc33305d28a2dcacab18b36c717b",
+    "research/p3-matched-polarity-necessity-v2/AUDIT_BEFORE_parent56.json": "80abf8200f4952ce10f4680add6ea746aea2bc85fd7f7f7540c820cd03d1cbc5",
+    "research/p3-matched-polarity-necessity-v2/IDENTIFIABILITY_added24.json": "95606222b2775811f771ab4d9ced78b61f5337bedb34417f8fad628fac35d9b3",
+    "research/p3-matched-polarity-necessity-v2/IDENTIFIABILITY_merged80.json": "095691eb1bf4770285cd4028fea1cdaa31477b5cc5ca5ad5266a4e3a4959e64b",
+    "research/p3-matched-polarity-necessity-v2/SYNTHETIC_MATCHED_POLARITY_STANDARD.json": "598091f41d64b726c2f290ee224e2a4d3f4b902d95a4507330846e28e0c00d9a",
+    "research/p3-matched-polarity-necessity-v2/cases.jsonl": "f663d5b2d0ac8105d787fc4bf142dac0e03e1fd6df1175379b51d62c8017038a",
+    "research/p3-matched-polarity-necessity-v2/separator_challenge.jsonl": "f663d5b2d0ac8105d787fc4bf142dac0e03e1fd6df1175379b51d62c8017038a",
+    "research/p3-matched-polarity-necessity-v2/separator_derivation.jsonl": "5594bee07965c7e744c31643be09233cce9e8591e28d88514f78d9a69d7d0003"
+  },
+  "atlas": {
+    "added_case_count": 24,
+    "added_shape_invariants": {
+      "authority_kind": [
+        "DERIVED_FROM_ALLOWED"
+      ],
+      "case_id_alpha_prefix": [
+        "matched-synth-"
+      ],
+      "case_id_hyphen_count": [
+        2
+      ],
+      "case_id_length": [
+        30
+      ],
+      "coordinate_arity": [
+        [
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "derivation_rule": [
+        "identity:frozen-registry-distinctness"
+      ],
+      "evidence_count": [
+        2
+      ],
+      "projection_id_length": [
+        26
+      ],
+      "source_record_count": [
+        1
+      ],
+      "source_span_length": [
+        69
+      ]
+    },
+    "atlas_id": "matched-polarity-necessity-v2",
+    "case_families_merged": {
+      "different_name_same_referent": 25,
+      "polarity_modality_attribution_context": 13,
+      "same_construct_different_measurement": 12,
+      "same_entity_different_temporal_state": 12,
+      "valid_invalid_representation_mapping": 18
+    },
+    "cases_sha256": "f663d5b2d0ac8105d787fc4bf142dac0e03e1fd6df1175379b51d62c8017038a",
+    "coordinate_population": {
+      "added": {
+        "construct_ids": 24,
+        "measurement_ids": 24,
+        "referent_ids": 24,
+        "temporal_context_ids": 24
+      },
+      "merged": {
+        "construct_ids": 67,
+        "measurement_ids": 48,
+        "referent_ids": 80,
+        "temporal_context_ids": 48
+      },
+      "parent": {
+        "construct_ids": 43,
+        "measurement_ids": 24,
+        "referent_ids": 56,
+        "temporal_context_ids": 24
+      }
+    },
+    "dependence_receipts": [
+      {
+        "ablated": "COMPATIBLE",
+        "ablation_changes_answer": true,
+        "arm": "remove_construct",
+        "case_id": "matched-synth-9331859699293237",
+        "coordinate": "construct_ids",
+        "full_system": "DISTINCT_CONSTRUCT",
+        "full_system_correct": true,
+        "gold": "DISTINCT_CONSTRUCT"
+      },
+      {
+        "ablated": "COMPATIBLE",
+        "ablation_changes_answer": true,
+        "arm": "remove_construct",
+        "case_id": "matched-synth-6290912072601620",
+        "coordinate": "construct_ids",
+        "full_system": "DISTINCT_CONSTRUCT",
+        "full_system_correct": true,
+        "gold": "DISTINCT_CONSTRUCT"
+      },
+      {
+        "ablated": "COMPATIBLE",
+        "ablation_changes_answer": true,
+        "arm": "remove_construct",
+        "case_id": "matched-synth-2939610018212863",
+        "coordinate": "construct_ids",
+        "full_system": "DISTINCT_CONSTRUCT",
+        "full_system_correct": true,
+        "gold": "DISTINCT_CONSTRUCT"
+      },
+      {
+        "ablated": "COMPATIBLE",
+        "ablation_changes_answer": true,
+        "arm": "remove_construct",
+        "case_id": "matched-synth-2187217569900331",
+        "coordinate": "construct_ids",
+        "full_system": "DISTINCT_CONSTRUCT",
+        "full_system_correct": true,
+        "gold": "DISTINCT_CONSTRUCT"
+      },
+      {
+        "ablated": "COMPATIBLE",
+        "ablation_changes_answer": true,
+        "arm": "remove_referent",
+        "case_id": "matched-synth-8099594524474602",
+        "coordinate": "referent_ids",
+        "full_system": "DISTINCT_REFERENT",
+        "full_system_correct": true,
+        "gold": "DISTINCT_REFERENT"
+      },
+      {
+        "ablated": "COMPATIBLE",
+        "ablation_changes_answer": true,
+        "arm": "remove_referent",
+        "case_id": "matched-synth-3058272310163712",
+        "coordinate": "referent_ids",
+        "full_system": "DISTINCT_REFERENT",
+        "full_system_correct": true,
+        "gold": "DISTINCT_REFERENT"
+      },
+      {
+        "ablated": "COMPATIBLE",
+        "ablation_changes_answer": true,
+        "arm": "remove_referent",
+        "case_id": "matched-synth-5415846498009841",
+        "coordinate": "referent_ids",
+        "full_system": "DISTINCT_REFERENT",
+        "full_system_correct": true,
+        "gold": "DISTINCT_REFERENT"
+      },
+      {
+        "ablated": "COMPATIBLE",
+        "ablation_changes_answer": true,
+        "arm": "remove_referent",
+        "case_id": "matched-synth-2715940841999356",
+        "coordinate": "referent_ids",
+        "full_system": "DISTINCT_REFERENT",
+        "full_system_correct": true,
+        "gold": "DISTINCT_REFERENT"
+      }
+    ],
+    "expected_relations_added": {
+      "COMPATIBLE": 16,
+      "DISTINCT_CONSTRUCT": 4,
+      "DISTINCT_REFERENT": 4
+    },
+    "expected_relations_merged": {
+      "COMPATIBLE": 58,
+      "CONTEXTUAL_DIFFERENCE": 4,
+      "CONTRADICTORY": 6,
+      "DISTINCT_CONSTRUCT": 4,
+      "DISTINCT_MEASUREMENT": 4,
+      "DISTINCT_REFERENT": 4
+    },
+    "n": 80,
+    "parent": {
+      "case_count": 56,
+      "note": "copied through unchanged; the frozen v1 atlas is never edited",
+      "path": "research/p3-coordinate-necessity-v1/cases.jsonl",
+      "sha256": "271ef70de685ab49a74b322dc6382f488e5f2cd9b1f82a946cf79e838ebb695c"
+    },
+    "parent_id_collisions": [],
+    "standard_sha256": "598091f41d64b726c2f290ee224e2a4d3f4b902d95a4507330846e28e0c00d9a"
+  },
+  "audit_after": {
+    "arms": {
+      "force_compatibility_without_obstruction": {
+        "cases_treated": 80,
+        "decisions_changed": 22,
+        "outcome": "PASS",
+        "reason": "COORDINATE_LOAD_BEARING"
+      },
+      "remove_construct": {
+        "cases_treated": 67,
+        "decisions_changed": 4,
+        "outcome": "PASS",
+        "reason": "COORDINATE_LOAD_BEARING"
+      },
+      "remove_measurement": {
+        "cases_treated": 48,
+        "decisions_changed": 4,
+        "outcome": "PASS",
+        "reason": "COORDINATE_LOAD_BEARING"
+      },
+      "remove_modality_polarity_attribution_discourse": {
+        "cases_treated": 67,
+        "decisions_changed": 6,
+        "outcome": "PASS",
+        "reason": "COORDINATE_LOAD_BEARING"
+      },
+      "remove_referent": {
+        "cases_treated": 80,
+        "decisions_changed": 4,
+        "outcome": "PASS",
+        "reason": "COORDINATE_LOAD_BEARING"
+      },
+      "remove_temporal_context": {
+        "cases_treated": 48,
+        "decisions_changed": 4,
+        "outcome": "PASS",
+        "reason": "COORDINATE_LOAD_BEARING"
+      }
+    },
+    "guards": {
+      "P3.FALSE_SCIENTIFIC_MERGE": "PASS",
+      "P3.FALSE_SCIENTIFIC_SPLIT": "CANNOT_CHECK",
+      "P3.OVERRESOLVED_UNRESOLVED_CASE": "CANNOT_CHECK"
+    },
+    "overall_outcome": "CANNOT_CHECK"
+  },
+  "audit_before": {
+    "arms": {
+      "force_compatibility_without_obstruction": {
+        "cases_treated": 56,
+        "decisions_changed": 14,
+        "outcome": "PASS",
+        "reason": "COORDINATE_LOAD_BEARING"
+      },
+      "remove_construct": {
+        "cases_treated": 43,
+        "decisions_changed": 0,
+        "outcome": "FAIL",
+        "reason": "COORDINATE_NOT_LOAD_BEARING"
+      },
+      "remove_measurement": {
+        "cases_treated": 24,
+        "decisions_changed": 4,
+        "outcome": "PASS",
+        "reason": "COORDINATE_LOAD_BEARING"
+      },
+      "remove_modality_polarity_attribution_discourse": {
+        "cases_treated": 43,
+        "decisions_changed": 6,
+        "outcome": "PASS",
+        "reason": "COORDINATE_LOAD_BEARING"
+      },
+      "remove_referent": {
+        "cases_treated": 56,
+        "decisions_changed": 0,
+        "outcome": "FAIL",
+        "reason": "COORDINATE_NOT_LOAD_BEARING"
+      },
+      "remove_temporal_context": {
+        "cases_treated": 24,
+        "decisions_changed": 4,
+        "outcome": "PASS",
+        "reason": "COORDINATE_LOAD_BEARING"
+      }
+    },
+    "overall_outcome": "FAIL"
+  },
+  "authority": "LOAD_BEARING_IN_THE_COMPARISON_RULE_ON_A_CONSTRUCTED_MATCHED_POLARITY_CORPUS__NO_EXTERNAL_VALIDITY__NO_ACCURACY_CLAIM__V1_FAILS_STAND__NO_GENERAL_NECESSITY_CLAIM",
+  "base_revision": "e7cb0d94397ebb920b732c2cb0c997541d1daabb",
+  "flat_baseline_false_merges_descriptive": {
+    "count": 22,
+    "n": 80,
+    "note": "descriptive only; the flat baseline is not the study's comparator"
+  },
+  "gate_pass": {
+    "G1": true,
+    "G2": true,
+    "G3": true,
+    "G4": true,
+    "G5": true,
+    "G6": true,
+    "G7": true,
+    "G8": true
+  },
+  "gates": {
+    "G1_parent_integrity": {
+      "all_parent_ids_present": true,
+      "challenge_gold_sha256": true,
+      "derivation_gold_sha256": true,
+      "parent_sha256": true
+    },
+    "G2_added_case_correctness": {
+      "all_added_correct": true,
+      "differ_cases_depend": true
+    },
+    "G3_arm_repair": {
+      "pass": true,
+      "remove_construct": {
+        "cases_treated": 67,
+        "decisions_changed": 4,
+        "outcome": "PASS",
+        "pass": true,
+        "reason": "COORDINATE_LOAD_BEARING",
+        "v1_outcome": "FAIL"
+      },
+      "remove_referent": {
+        "cases_treated": 80,
+        "decisions_changed": 4,
+        "outcome": "PASS",
+        "pass": true,
+        "reason": "COORDINATE_LOAD_BEARING",
+        "v1_outcome": "FAIL"
+      }
+    },
+    "G4_separator": {
+      "all_reducts_sufficient_on_challenge": true,
+      "full_set_sufficient": true,
+      "no_singleton_sufficient": true,
+      "polarity_not_sufficient_challenge": true,
+      "polarity_not_sufficient_derivation": true
+    },
+    "G5_identifiability": {
+      "in_sample_overall": "PASS",
+      "pass": true
+    },
+    "G6_guards": {
+      "outcome": "PASS",
+      "pass": true
+    },
+    "G7_shape_invariants": {
+      "pass": true,
+      "varying": []
+    },
+    "G8_import_gate": {
+      "pass": true
+    }
+  },
+  "identifiability": {
+    "added_only_overall": "FAIL",
+    "hash_parity_descriptive": {
+      "COMPATIBLE": "PASS",
+      "CONTEXTUAL_DIFFERENCE": "PASS",
+      "CONTRADICTORY": "PASS",
+      "DISTINCT_CONSTRUCT": "PASS",
+      "DISTINCT_MEASUREMENT": "FAIL",
+      "DISTINCT_REFERENT": "CANNOT_CHECK"
+    },
+    "merged_labels": [
+      "COMPATIBLE",
+      "CONTEXTUAL_DIFFERENCE",
+      "CONTRADICTORY",
+      "DISTINCT_CONSTRUCT",
+      "DISTINCT_MEASUREMENT",
+      "DISTINCT_REFERENT"
+    ],
+    "merged_overall": "PASS"
+  },
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "predictions": {
+    "P10_family_tokens_mixed": {
+      "observed": true,
+      "predicted": true
+    },
+    "P1_polarity_insufficient_on_D": {
+      "observed": true,
+      "predicted": true
+    },
+    "P2_polarity_insufficient_on_C": {
+      "observed": true,
+      "predicted": true
+    },
+    "P3_no_singleton_sufficient_on_D": {
+      "observed": true,
+      "predicted": true
+    },
+    "P4_k_star_5_unique_reduct": {
+      "note": "derived prediction; wrong if any parent COMPATIBLE case carries a zero bit on the five",
+      "observed": true,
+      "predicted": true
+    },
+    "P5_every_derivation_reduct_sufficient_on_C": {
+      "observed": true,
+      "predicted": true
+    },
+    "P6_null_rate_small": {
+      "observed": 0.0,
+      "predicted": "small"
+    },
+    "P7_arm_counts": {
+      "observed": {
+        "force_compatibility_without_obstruction": 22,
+        "remove_construct": 4,
+        "remove_measurement": 4,
+        "remove_modality_polarity_attribution_discourse": 6,
+        "remove_referent": 4,
+        "remove_temporal_context": 4
+      },
+      "predicted": {
+        "force_compatibility_without_obstruction": 22,
+        "remove_construct": 4,
+        "remove_measurement": 4,
+        "remove_modality_polarity_attribution_discourse": 6,
+        "remove_referent": 4,
+        "remove_temporal_context": 4
+      }
+    },
+    "P8_treated_counts_floor": {
+      "observed": {
+        "remove_construct": 67,
+        "remove_referent": 80
+      },
+      "predicted": {
+        "remove_construct": 67,
+        "remove_referent": 80
+      }
+    },
+    "P9_overall_audit_cannot_check": {
+      "observed": "CANNOT_CHECK",
+      "predicted": "CANNOT_CHECK"
+    }
+  },
+  "protocol_sha256": "069ebca56bdaa4be59d88d8c3af86b4ddb3281d729cf44cb3913aa503d776eab",
+  "result_digest": "cff46be2b343b72ec5496166e6559314d646d94526ef604b8dde59bc0bb5c893",
+  "schema": "ORION.ORION13.MatchedPolarityNecessity.Result.v1",
+  "separator": {
+    "challenge_set": {
+      "cases": 80,
+      "families": {
+        "different_name_same_referent": 25,
+        "polarity_modality_attribution_context": 13,
+        "same_construct_different_measurement": 12,
+        "same_entity_different_temporal_state": 12,
+        "valid_invalid_representation_mapping": 18
+      },
+      "path": "research/p3-matched-polarity-necessity-v2/separator_challenge.jsonl",
+      "shared_case_ids_note": "the 48 synthetic rows appear in both corpora by construction; the held-out part of the challenge set is its 32 parent rows",
+      "shared_case_ids_with_derivation_set": 48,
+      "verdicts": {
+        "COMPATIBLE": 58,
+        "CONTEXTUAL_DIFFERENCE": 4,
+        "CONTRADICTORY": 6,
+        "DISTINCT_CONSTRUCT": 4,
+        "DISTINCT_MEASUREMENT": 4,
+        "DISTINCT_REFERENT": 4
+      }
+    },
+    "coordinates": [
+      "construct_ids",
+      "measurement_ids",
+      "modality",
+      "polarity",
+      "predicate",
+      "referent_ids",
+      "temporal_context_ids"
+    ],
+    "coordinates_in_no_reduct": [
+      "modality",
+      "predicate"
+    ],
+    "core_coordinates_in_every_reduct": [
+      "construct_ids",
+      "measurement_ids",
+      "polarity",
+      "referent_ids",
+      "temporal_context_ids"
+    ],
+    "derivation_set": {
+      "cases": 80,
+      "families": {
+        "different_name_same_referent": 23,
+        "polarity_modality_attribution_context": 11,
+        "same_construct_different_measurement": 12,
+        "same_entity_different_temporal_state": 12,
+        "valid_invalid_representation_mapping": 22
+      },
+      "path": "research/p3-matched-polarity-necessity-v2/separator_derivation.jsonl",
+      "verdicts": {
+        "COMPATIBLE": 60,
+        "CONTEXTUAL_DIFFERENCE": 4,
+        "CONTRADICTORY": 4,
+        "DISTINCT_CONSTRUCT": 4,
+        "DISTINCT_MEASUREMENT": 4,
+        "DISTINCT_REFERENT": 4
+      }
+    },
+    "full_coordinate_set_sufficient_on_derivation": true,
+    "held_out_validation": [
+      {
+        "collisions_on_challenge_set": [],
+        "size": 5,
+        "subset": [
+          "construct_ids",
+          "measurement_ids",
+          "polarity",
+          "referent_ids",
+          "temporal_context_ids"
+        ],
+        "sufficient_on_challenge_set": true
+      }
+    ],
+    "k_star_on_derivation": 5,
+    "minimal_sufficient_subsets_reducts": [
+      [
+        "construct_ids",
+        "measurement_ids",
+        "polarity",
+        "referent_ids",
+        "temporal_context_ids"
+      ]
+    ],
+    "polarity_collisions_on_challenge": [
+      [
+        "coordinate-synth-0250416771983528",
+        "coordinate-synth-1533854547027142"
+      ],
+      [
+        "coordinate-synth-0250416771983528",
+        "coordinate-synth-4804629546359177"
+      ],
+      [
+        "coordinate-synth-0250416771983528",
+        "coordinate-synth-5079634372462734"
+      ],
+      [
+        "coordinate-synth-0250416771983528",
+        "coordinate-synth-5338943138487279"
+      ],
+      [
+        "coordinate-synth-0250416771983528",
+        "coordinate-synth-5391281620499353"
+      ]
+    ],
+    "polarity_sufficient_on_challenge": false,
+    "polarity_sufficient_on_derivation": false,
+    "reduct_count": 1,
+    "singletons_sufficient_on_derivation": {
+      "construct_ids": false,
+      "measurement_ids": false,
+      "modality": false,
+      "polarity": false,
+      "predicate": false,
+      "referent_ids": false,
+      "temporal_context_ids": false
+    },
+    "structure_free_null": {
+      "hits": 0,
+      "rate": 0.0,
+      "seed": 20260828,
+      "trials": 20000
+    }
+  },
+  "smoke": false,
+  "study_id": "ORION13.MATCHED_POLARITY_NECESSITY.v2",
+  "terminal": "MPN2_ARMS_MEASURED_AND_POLARITY_DETHRONED",
+  "wall_clock_seconds": 1.1
+}
