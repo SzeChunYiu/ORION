@@ -1,5 +1,23 @@
 # ORION-01 — Primary-source novelty audit V1
 
+> **V4 status header — added 2026-09-02 (additive; the audit body below is unchanged).**
+>
+> This audit targeted the **V2-era theory manuscripts** (`theory-A-MANUSCRIPT_V2.md`,
+> `theory-B-MANUSCRIPT_V2.md`). The canonical ORION-01 surfaces are now
+> `MANUSCRIPT_V4.md` and `CLAIM_LEDGER_V4.md`. Status of this audit's actionable
+> recommendations in V4, verified against those files on 2026-09-02:
+>
+> | Audit recommendation | Status in V4 | Verified basis |
+> |---|---|---|
+> | Demote A2, B1, B5 from numbered contribution lists (no surviving delta) | Closed in V4 | V4 §1 has no numbered contribution list and states the binary rank identity, Davenport-type theory, proof-system relativity, and direct-product arithmetic are "scaffolds rather than standalone novelty"; §10 calls the product a definitional amplification; ledger O1-V4-C14 marks them FORBIDDEN/DONOR-OWNED. |
+> | A1 phrasing ("universal support ceiling for every deletion-dominant grammar") read stronger than the ledger | Closed in V4 | Theorem 2 is stated conditionally on Assumptions 1-4 for declared instance contracts; ledger O1-V4-C2 carries the boundary; the abstract phrases the result as a whole-instance contract and descent. |
+> | B4's weight limited by proof review B-F4 (one-rule exactness) | Closed 2026-09-02 | The V4 abstract now names the one-rule scope and the true-by-construction status of the budget's exactness (see `INDEPENDENT_PROOF_REVIEW_V1.md` header, B-F4 row). |
+> | Naming collision on "certificate complexity" (audit §3) | Closed in V4 | V4 §5 uses "rank-only certifiable support budget" with an explicit collision-avoidance sentence. |
+> | §5 items 1-4 (TARE donor-PDF retrieval; bibliographic verification against CrossRef/arXiv; subset-Davenport naming search; parent-artifact execution) | Open by design — external gates | Not closable from repository files. V4 §13 retains "the author-side checks are not independent proof certification, novelty authority, peer review, or external replication." A submission-day literature refresh remains a filing prerequisite (see `SUBMISSION_CHECKLIST_QIC.md`). |
+>
+> This header records no novelty authority and does not change
+> `novelty_authority_established: false`.
+
 > **Subject-version note (2026-09-02).** This audit's subject is
 > `theory-A/B-MANUSCRIPT_V2.md`, **not** the canonical `MANUSCRIPT_V4.md`
 > (designated 2026-09-01). Its per-contribution classifications (NO SURVIVING
