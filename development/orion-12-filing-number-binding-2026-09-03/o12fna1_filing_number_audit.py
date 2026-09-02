@@ -271,6 +271,31 @@ def parse_sums(text: str):
     return rows
 
 
+def macro_body(tex: str, name: str):
+    """Extract a \\newcommand{\\name}{...} body with brace-depth awareness
+    (protocol M-A compares after stripping `{,}` separators, and a body like
+    `1{,}210` contains nested braces a `[^}]*` regex would truncate)."""
+    m = re.search(r"\\newcommand\{\\%s\}\{" % re.escape(name), tex)
+    if m is None:
+        return None
+    i, depth, out = m.end(), 1, []
+    while i < len(tex) and depth:
+        c = tex[i]
+        if c == "{":
+            depth += 1
+            out.append(c)
+        elif c == "}":
+            depth -= 1
+            if depth:
+                out.append(c)
+        else:
+            out.append(c)
+        i += 1
+    if depth:
+        raise InternalDefect(f"unbalanced macro body for {name}")
+    return "".join(out)
+
+
 def format_text_value(value, precision):
     if precision is not None:
         return f"{float(value):.{precision}f}"
@@ -393,8 +418,9 @@ def main() -> int:
                  "OfflineSystemCount", "OfflineRepeatCount",
                  "OfflineRunRecordCount", "OfflineAchievedHalfWidth",
                  "OfflineUnderpowered"]:
-        m = re.search(r"\\newcommand\{\\%s\}\{([^}]*)\}" % re.escape(name), tex8)
-        body = m.group(1).replace("{,}", "") if m else None
+        body = macro_body(tex8, name)
+        if body is not None:
+            body = body.replace("{,}", "")
         expected = format_text_value(jf[name], None)
         ok = body == expected
         macro_rows.append({"macro": name, "tex_body": body, "json": jf[name],
