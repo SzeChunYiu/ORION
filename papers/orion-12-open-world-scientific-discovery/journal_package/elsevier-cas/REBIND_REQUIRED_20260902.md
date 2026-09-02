@@ -71,3 +71,20 @@ to the one-shot rebind workflow in CI.
 `journal_package/RENDER_CLOSURE_STATE.json` already listed drifted inputs before
 this change (other concurrent lanes). The rebind workflow should reconcile the
 full closure rather than only `ipm_submission.tex`.
+
+## Reconciliation applied 2026-09-02 — journal_package/SHA256SUMS (one line)
+
+Commit 9cba37c1b ("add same-programme single-author disclosure to limitations")
+deliberately edited `manuscript/main.tex` (one sentence in "Limitations and
+integrity") and updated no `SHA256SUMS`, staling exactly one of the 41
+input-closure lines (`5a4a534b…` → actual `31e6b11d…`). A pre-rebind audit of
+all 41 lines against the tree found this the **only** mismatch. The digests were
+then re-pinned with the package checker's own writer
+(`check_journal_package.py --paper P2 --write-hashes`), which regenerated the
+file from the tree; the resulting diff is that single line, and a post-write
+audit of all 41 lines matches. No file content was changed to fit a digest, and
+no baseline entry (`CONTENT_BINDING_DRIFT_BASELINE_V1`,
+`JOURNAL_PACKAGE_STALENESS_BASELINE_V1`, both recording orion-12 at 0) was
+edited. This follows the reconciliation precedent recorded in the drift
+baseline's `reconciled` section (orion-11 re-pin 2026-08-29; orion-20 six-line
+re-pin after deliberate manuscript edit ed7ebb4e1).
