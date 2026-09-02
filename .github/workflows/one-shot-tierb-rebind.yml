@@ -23,6 +23,10 @@ on:
       papers:
         description: 'Comma-separated paper slugs (e.g. orion-08-typed-state,orion-13-global-knowledge-portrait)'
         required: true
+      extra-tex:
+        description: 'Optional comma-separated .tex paths to also render + commit (e.g. papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.tex); sibling class dirs are added to TEXINPUTS'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -133,6 +137,50 @@ jobs:
               cmp /tmp/first.pdf main.pdf   # determinism: two clean builds agree
             )
           done
+      - name: Render extra filing surfaces (optional)
+        if: inputs.extra-tex != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          head_epoch="$(git log -1 --format=%ct)"
+          IFS=',' read -ra EXTRA <<< "${{ inputs.extra-tex }}"
+          for tex in "${EXTRA[@]}"; do
+            tex="$(echo "$tex" | xargs)"
+            test -f "$tex" || {
+              echo "::error::no such tex: $tex" >&2
+              exit 1
+            }
+            dir="$(dirname "$tex")"
+            base="$(basename "$tex" .tex)"
+            (
+              cd "$dir"
+              export SOURCE_DATE_EPOCH="$head_epoch"
+              export FORCE_SOURCE_DATE=1
+              # Vendored class/style dirs (e.g. elsevier-cas/) are not on the
+              # default search path; add every immediate subdir holding a
+              # .cls file so the filing source finds its own class files.
+              classpath=""
+              for sub in */; do
+                if compgen -G "$sub*.cls" >/dev/null; then
+                  classpath="$classpath${sub}:"
+                fi
+              done
+              export TEXINPUTS="${classpath}"
+              latexmk -C "$base.tex" >/dev/null
+              if ! latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error "$base.tex"; then
+                echo "::error::LaTeX build failed for $tex" >&2
+                exit 1
+              fi
+              if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references|undefined citations' "$base.log"; then
+                echo "undefined reference or citation in $tex" >&2
+                exit 1
+              fi
+              cp "$base.pdf" /tmp/extra-first.pdf
+              latexmk -C "$base.tex" >/dev/null
+              latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error "$base.tex"
+              cmp /tmp/extra-first.pdf "$base.pdf"   # determinism: two clean builds agree
+            )
+          done
       - name: Rebuild publication-ready package (ORION-08 only)
         if: contains(inputs.papers, 'orion-08')
         shell: bash
@@ -168,6 +216,13 @@ jobs:
             slug="$(echo "$slug" | xargs)"
             git add "papers/$slug/manuscript/main.pdf"
           done
+          if [ -n "${{ inputs.extra-tex }}" ]; then
+            IFS=',' read -ra EXTRA <<< "${{ inputs.extra-tex }}"
+            for tex in "${EXTRA[@]}"; do
+              tex="$(echo "$tex" | xargs)"
+              git add "${tex%.tex}.pdf"
+            done
+          fi
           if echo "${{ inputs.papers }}" | grep -q 'orion-08'; then
             git add \
               papers/orion-08-typed-state/submission/publication-ready-20260831 \
