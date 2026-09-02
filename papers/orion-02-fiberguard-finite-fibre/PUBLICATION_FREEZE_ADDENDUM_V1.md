@@ -1,3 +1,5 @@
+> **SUPERSEDED (2026-09-02) by `PUBLICATION_FREEZE_ADDENDUM_V2.md`.** This V1 addendum names the `MANUSCRIPT_V2.md` + `CLAIM_LEDGER_R2.md` content surface and describes V2 compiler-spine theorems that are superseded for submission per ledger V3-X6. It remains intact historical evidence; the current freeze authority is V2, which names `MANUSCRIPT_V3.md` + `CLAIM_LEDGER_V3.md` and the decision-(a) short-note surface `MANUSCRIPT_SHORT_V1.md`.
+
 # ORION-02 publication-freeze addendum V1
 
 **Freeze date:** 2026-08-27  

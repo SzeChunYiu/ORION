@@ -67,3 +67,13 @@ Comparison of experiments, sufficient-statistic theory, robust decision theory, 
 ## Stop rule
 
 The bounded theorem/adverse paper does not wait for a broader selector or transfer experiment. Any successor empirical promotion must be prospective, use disjoint train/calibration/test custody, and preserve the present nulls if it fails. No post-outcome change to tolerance, risk level, representation, separator vocabulary, selector threshold, or comparator can increase the authority of the frozen application studies.
+
+## Dated addendum — 2026-09-02: decision (a) short-note filing surface
+
+**Decision (a) of SzeChunYiu/ORION-paper#78 is final.** The TMLR filing is a short, honestly-scoped theory note. This section is additive; every table and rule above is unchanged and remains canonical.
+
+- **Filing surface:** `MANUSCRIPT_SHORT_V1.md`, derived from this ledger's canonical `MANUSCRIPT_V3.md`. `MANUSCRIPT_V3.md` remains the canonical manuscript and is untouched by the derivation.
+- **Headline:** the filed short note's stated contribution is the **joint fail-closed calculus** (claims V3-C1–V3-C7 as one object: exact radius, tolerance equivalence, minimum refinement, separator realizability, whole-fibre abstention).
+- **The seven records are the measured boundary, not caveats:** `V3-E1`–`V3-E7` are retained in the short note as a single boundary table with evidence pointers, presented as the paper's measured identity. Their statuses, numbers, and forbidden promotions above are binding on the short note verbatim.
+- **McNemar reporting rule (V3-E7):** the exact two-sided `p=0.03125` must be reported only as six discordant pairs, all one-way, at `n=44`, with both arms failing the frozen 0.10 validity gate. It is never stated as headline significance and supports no superiority claim in either direction. The same rule applies to every V3-derived package surface.
+- **Scientific authority delta:** `NONE`. No claim above changes status; the decision is a filing-surface and presentation decision only.
