@@ -216,7 +216,10 @@ def build(content_base: str, allow_unreachable: bool = False) -> tuple[dict, str
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--content-base", required=True)
-    parser.add_argument("--out-dir", type=Path, default=ROOT)
+    # Must default to the directory named by V3_MANIFEST_REL / V3_CHECKER_REL.
+    # The manifest records those relative paths as its own identity, so writing
+    # anywhere else produces a file that misdescribes where it lives.
+    parser.add_argument("--out-dir", type=Path, default=ROOT / "papers")
     parser.add_argument("--date", default=None)
     parser.add_argument("--disposition-unreachable", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
