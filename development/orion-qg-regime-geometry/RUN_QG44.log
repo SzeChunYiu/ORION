@@ -1,0 +1,20 @@
+OB Q44G_tr2_dc-3_dnc0_tag2 margins=(-3,0) t_c=1 evals=1356 gaps=21 p4_gaps=0 min_gap=-2 [65.6s]
+OB Q44G_tr2_dc-3_dnc1_tag2 margins=(-3,1) t_c=1 evals=1356 gaps=21 p4_gaps=0 min_gap=-2 [71.8s]
+OB Q44G_tr2_dc-2_dnc0_tag2 margins=(-2,0) t_c=2 evals=1356 gaps=1 p4_gaps=0 min_gap=-2 [64.5s]
+OB Q44G_tr2_dc-2_dnc1_tag2 margins=(-2,1) t_c=2 evals=1356 gaps=1 p4_gaps=0 min_gap=-2 [65.4s]
+OB Q44G_tr2_dc-1_dnc0_tag2 margins=(-1,0) t_c=3 evals=1356 gaps=0 p4_gaps=0 min_gap=0 [65.9s]
+OB Q44G_tr2_dc-1_dnc1_tag2 margins=(-1,1) t_c=3 evals=1356 gaps=0 p4_gaps=0 min_gap=0 [74.8s]
+OB Q44G_tr3_dc-3_dnc0_tag2 margins=(-3,0) t_c=3 evals=627 gaps=1 p4_gaps=0 min_gap=-2 [47.8s]
+OB Q44G_tr4_dc-3_dnc0_tag2 margins=(-3,0) t_c=5 evals=627 gaps=0 p4_gaps=0 min_gap=0 [48.3s]
+OB Q44G_tr3_dc-3_dnc1_tag2 margins=(-3,1) t_c=3 evals=627 gaps=1 p4_gaps=0 min_gap=-2 [49.5s]
+OB Q44G_tr4_dc-3_dnc1_tag2 margins=(-3,1) t_c=5 evals=627 gaps=0 p4_gaps=0 min_gap=0 [50.3s]
+OB Q44G_tr3_dc-2_dnc0_tag2 margins=(-2,0) t_c=4 evals=627 gaps=0 p4_gaps=0 min_gap=0 [46.4s]
+OB Q44G_tr4_dc-2_dnc0_tag2 margins=(-2,0) t_c=6 evals=627 gaps=0 p4_gaps=0 min_gap=0 [46.6s]
+OB Q44G_O1ANCHOR margins=(-5,1) t_c=1 evals=27 gaps=22 p4_gaps=0 min_gap=-4 [4.4s]
+Q4 continuation rows: 20
+BRUTE Q44G_O1ANCHOR: 12 instances exact
+BRUTE Q44G_tr2_dc-3_dnc0_tag2: 12 instances exact
+O1ANCHOR replay: True (2 rows)
+G7 QG43 binding: terminal_ok=True roundtrip_ok=True
+{"digest":"806e24d25a6cddc68f116298fd21e9dde448e3033de7e157b23be9d9785475be","q1":true,"q1_cells":["dc-2_dnc0_tr2_tc2","dc-2_dnc1_tr2_tc2","dc-3_dnc0_tr3_tc3","dc-3_dnc1_tr3_tc3"],"terminal":"QG44_FRONTIER_IS_GEOMETRY"}
+EXIT=0
