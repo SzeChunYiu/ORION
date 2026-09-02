@@ -1,0 +1,1004 @@
+{
+ "authority": "AUDIT_ONLY__BINDING_VERIFICATION_NOT_NEW_SCIENCE_NOT_A_CLAIM_CHANGE_NOT_A_REBIND",
+ "authority_flags": {
+  "audit_only": true,
+  "claim_change": false,
+  "novelty_authority": false,
+  "physical_quantum_advantage_claim": false,
+  "rebind": false
+ },
+ "base_revision": "3c0000928887d12d168f0c4ef3d5d485ab994359",
+ "drift_slots": [
+  "M3:manuscript/main.tex"
+ ],
+ "driver": "development/orion-12-filing-number-binding-2026-09-03/o12fna1_filing_number_audit.py",
+ "filing_consistency": [
+  {
+   "id": "F-A",
+   "meta": "The Acquisition--Authority Envelope for Open-World Scientific Discovery",
+   "ok": true,
+   "tex": "The Acquisition--Authority Envelope for Open-World Scientific Discovery"
+  },
+  {
+   "id": "F-B",
+   "meta": "Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery",
+   "ok": true,
+   "tex": "Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery"
+  },
+  {
+   "absent": [],
+   "declared": [
+    "manuscript.pdf",
+    "source.zip",
+    "review_materials.zip",
+    "TITLE_PAGE.md",
+    "COVER_LETTER.md",
+    "GLOSSARY.md",
+    "FIGURE_CAPTIONS.md",
+    "AI_ASSISTANCE_DECLARATION.md",
+    "HUMAN_INPUTS_REQUIRED.md",
+    "CREDIT_TEMPLATE.md",
+    "LICENSE_AND_THIRD_PARTY_TERMS.md",
+    "ANONYMOUS_REVIEW_README.md",
+    "manuscript.pdf",
+    "source.zip",
+    "review_materials.zip",
+    "COVER_LETTER.md"
+   ],
+   "declared_count": 16,
+   "id": "F-C",
+   "ok": true
+  }
+ ],
+ "gates": {
+  "G0_existence": {
+   "missing": [],
+   "ok": true
+  },
+  "G1_M1_journal_package_sums": {
+   "checked": 40,
+   "mismatches": []
+  },
+  "G2_M2_submission_sums": {
+   "checked": 13,
+   "mismatches": []
+  },
+  "G3_M3_M4_sums": {
+   "M3": {
+    "checked": 24,
+    "mismatches": [
+     "manuscript/main.tex"
+    ]
+   },
+   "M4": {
+    "checked": 9,
+    "mismatches": []
+   }
+  },
+  "G4_nonvacuity": {
+   "min_registered": 35,
+   "ok": true,
+   "registered_bindings": 38
+  }
+ },
+ "macro_bindings": [
+  {
+   "expected": "390",
+   "json": 390,
+   "macro": "OfflineTaskCount",
+   "ok": true,
+   "tex_body": "390"
+  },
+  {
+   "expected": "1210",
+   "json": 1210,
+   "macro": "OfflineDocumentCount",
+   "ok": true,
+   "tex_body": "1210"
+  },
+  {
+   "expected": "78",
+   "json": 78,
+   "macro": "OfflineTopicCount",
+   "ok": true,
+   "tex_body": "78"
+  },
+  {
+   "expected": "2f6936ba52fb",
+   "json": "2f6936ba52fb",
+   "macro": "OfflineSuiteFingerprintShort",
+   "ok": true,
+   "tex_body": "2f6936ba52fb"
+  },
+  {
+   "expected": "20260816",
+   "json": 20260816,
+   "macro": "OfflineSuiteSeed",
+   "ok": true,
+   "tex_body": "20260816"
+  },
+  {
+   "expected": "14",
+   "json": 14,
+   "macro": "OfflineSystemCount",
+   "ok": true,
+   "tex_body": "14"
+  },
+  {
+   "expected": "3",
+   "json": 3,
+   "macro": "OfflineRepeatCount",
+   "ok": true,
+   "tex_body": "3"
+  },
+  {
+   "expected": "16380",
+   "json": 16380,
+   "macro": "OfflineRunRecordCount",
+   "ok": true,
+   "tex_body": "16380"
+  },
+  {
+   "expected": "0.0496",
+   "json": 0.0496,
+   "macro": "OfflineAchievedHalfWidth",
+   "ok": true,
+   "tex_body": "0.0496"
+  },
+  {
+   "expected": "yes",
+   "json": true,
+   "macro": "OfflineUnderpowered",
+   "ok": true,
+   "tex_body": "yes"
+  },
+  {
+   "computed": 16380,
+   "json": 16380,
+   "macro": "M-B derived: Task*System*Repeat == RunRecordCount",
+   "ok": true
+  },
+  {
+   "macro": "row32 S4 ref \\OfflineUnderpowered{}",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true
+  },
+  {
+   "macro": "row32 S4 ref \\OfflineAchievedHalfWidth{}",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true
+  },
+  {
+   "macro": "row32 S4 ref \\OfflineTaskCount{}",
+   "min_occ": 1,
+   "occurrences": 3,
+   "ok": true
+  },
+  {
+   "macro": "row32 S4 ref \\OfflineSystemCount{}",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true
+  },
+  {
+   "macro": "row32 S4 ref \\OfflineRepeatCount{}",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true
+  },
+  {
+   "macro": "row32 S4 ref \\OfflineTopicCount{}",
+   "min_occ": 1,
+   "occurrences": 2,
+   "ok": true
+  }
+ ],
+ "manifest_digest_checks": {
+  "M1": {
+   "checked": 40,
+   "mismatches": []
+  },
+  "M2": {
+   "checked": 13,
+   "mismatches": []
+  },
+  "M3": {
+   "checked": 24,
+   "mismatches": [
+    "manuscript/main.tex"
+   ]
+  },
+  "M4": {
+   "checked": 9,
+   "mismatches": []
+  }
+ },
+ "novelty_authority": false,
+ "number_and_text_bindings": [
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": 0.110334,
+   "expected_literal": "0.110334",
+   "id": "CL-01",
+   "key": "arms_macro.bm25.recall_at_100",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": 0.092642,
+   "expected_literal": "0.092642",
+   "id": "CL-02",
+   "key": "arms_macro.orion_full.recall_at_100",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": -0.01769,
+   "expected_literal": "-0.01769",
+   "id": "CL-03",
+   "key": "pass_gate_verdict.criteria.recall_noninferiority.delta_mean",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": -0.02729,
+   "expected_literal": "-0.02729",
+   "id": "CL-04",
+   "key": "pass_gate_verdict.criteria.recall_noninferiority.bootstrap_ci95[0]",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": -0.00906,
+   "expected_literal": "-0.00906",
+   "id": "CL-05",
+   "key": "pass_gate_verdict.criteria.recall_noninferiority.bootstrap_ci95[1]",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": 175.7,
+   "expected_literal": "175.7",
+   "id": "CL-06",
+   "key": "pass_gate_verdict.criteria.cost_reduction.reads_vs_comparator_pct",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": 0.1488,
+   "expected_literal": "0.1488",
+   "id": "CL-07",
+   "key": "pass_gate_verdict.not_a_gate_criterion_but_measured.ndcg_at_10_delta_mean",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A3",
+   "artifact_path": "evidence/p2x/P2_X_CLAIM_VALUES_V1.json",
+   "artifact_values": [
+    400
+   ],
+   "expected_literal": "matches 400 of",
+   "id": "CL-08",
+   "keys": [
+    "p2x_correct"
+   ],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A3",
+   "artifact_path": "evidence/p2x/P2_X_CLAIM_VALUES_V1.json",
+   "artifact_values": [
+    250,
+    400
+   ],
+   "expected_literal": "250 of 400",
+   "id": "CL-09",
+   "keys": [
+    "b1_correct",
+    "n"
+   ],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A4",
+   "artifact_path": "manuscript/generated/suite_facts.json",
+   "artifact_value": 0.0496,
+   "expected_literal": "0.0496",
+   "id": "CL-10",
+   "key": "OfflineAchievedHalfWidth",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A5",
+   "artifact_path": "protocol/STATISTICAL_PLAN_V1.json",
+   "artifact_value": 0.03,
+   "expected_literal": "0.03",
+   "id": "CL-11",
+   "key": "TIER_A_full.half_width",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A4",
+   "artifact_path": "manuscript/generated/suite_facts.json",
+   "artifact_values": [
+    78
+   ],
+   "expected_literal": "78-topic",
+   "id": "CL-12",
+   "keys": [
+    "OfflineTopicCount"
+   ],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A4",
+   "artifact_path": "manuscript/generated/suite_facts.json",
+   "artifact_value": 390,
+   "expected_literal": "390",
+   "id": "CL-13",
+   "key": "OfflineTaskCount",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S2",
+   "surface_path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": -0.01769,
+   "expected_literal": "-0.01769",
+   "id": "FA-14",
+   "key": "pass_gate_verdict.criteria.recall_noninferiority.delta_mean",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S1",
+   "surface_path": "PUBLICATION_FREEZE_ADDENDUM_V2.md"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_values": [
+    -0.02729,
+    -0.00906
+   ],
+   "expected_literal": "[-0.02729,-0.00906]",
+   "id": "FA-15",
+   "keys": [
+    "pass_gate_verdict.criteria.recall_noninferiority.bootstrap_ci95[0]",
+    "pass_gate_verdict.criteria.recall_noninferiority.bootstrap_ci95[1]"
+   ],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S1",
+   "surface_path": "PUBLICATION_FREEZE_ADDENDUM_V2.md"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": 175.7,
+   "expected_literal": "175.7",
+   "id": "FA-16",
+   "key": "pass_gate_verdict.criteria.cost_reduction.reads_vs_comparator_pct",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S1",
+   "surface_path": "PUBLICATION_FREEZE_ADDENDUM_V2.md"
+  },
+  {
+   "artifact": null,
+   "artifact_path": null,
+   "artifact_values": [],
+   "expected_literal": "recall@100",
+   "id": "FA-17",
+   "keys": [],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S1",
+   "surface_path": "PUBLICATION_FREEZE_ADDENDUM_V2.md"
+  },
+  {
+   "artifact": "A3",
+   "artifact_path": "evidence/p2x/P2_X_CLAIM_VALUES_V1.json",
+   "artifact_values": [
+    400
+   ],
+   "expected_literal": "matches 400 of",
+   "id": "IP-22",
+   "keys": [
+    "p2x_correct"
+   ],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S4",
+   "surface_path": "manuscript/ipm_submission.tex"
+  },
+  {
+   "artifact": "A3",
+   "artifact_path": "evidence/p2x/P2_X_CLAIM_VALUES_V1.json",
+   "artifact_values": [
+    250,
+    400
+   ],
+   "expected_literal": "250 of 400",
+   "id": "IP-23",
+   "keys": [
+    "b1_correct",
+    "n"
+   ],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S4",
+   "surface_path": "manuscript/ipm_submission.tex"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": 0.01769,
+   "expected_literal": "0.01769",
+   "id": "IP-24",
+   "key": "abs:pass_gate_verdict.criteria.recall_noninferiority.delta_mean",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S4",
+   "surface_path": "manuscript/ipm_submission.tex"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_values": [
+    -0.02729,
+    -0.00906
+   ],
+   "expected_literal": "[-0.02729,-0.00906]",
+   "id": "IP-25",
+   "keys": [
+    "pass_gate_verdict.criteria.recall_noninferiority.bootstrap_ci95[0]",
+    "pass_gate_verdict.criteria.recall_noninferiority.bootstrap_ci95[1]"
+   ],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S4",
+   "surface_path": "manuscript/ipm_submission.tex"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": 175.7,
+   "expected_literal": "175.7",
+   "id": "IP-26",
+   "key": "pass_gate_verdict.criteria.cost_reduction.reads_vs_comparator_pct",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S4",
+   "surface_path": "manuscript/ipm_submission.tex"
+  },
+  {
+   "artifact": "A1",
+   "artifact_path": "external/P2_TREC_COVID_ARMS_V1.json",
+   "artifact_value": 0.1488,
+   "expected_literal": "0.1488",
+   "id": "IP-27",
+   "key": "pass_gate_verdict.not_a_gate_criterion_but_measured.ndcg_at_10_delta_mean",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S4",
+   "surface_path": "manuscript/ipm_submission.tex"
+  },
+  {
+   "artifact": "A5",
+   "artifact_path": "protocol/STATISTICAL_PLAN_V1.json",
+   "artifact_values": [
+    1068,
+    0.03
+   ],
+   "expected_literal": "1068 at half-width $0.03$",
+   "id": "IP-28",
+   "keys": [
+    "TIER_A_full.required_n",
+    "TIER_A_full.half_width"
+   ],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S4",
+   "surface_path": "manuscript/ipm_submission.tex"
+  },
+  {
+   "artifact": "A5",
+   "artifact_path": "protocol/STATISTICAL_PLAN_V1.json",
+   "artifact_values": [
+    385,
+    0.05
+   ],
+   "expected_literal": "385 at $0.05$",
+   "id": "IP-29",
+   "keys": [
+    "TIER_B_committed.required_n",
+    "TIER_B_committed.half_width"
+   ],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S4",
+   "surface_path": "manuscript/ipm_submission.tex"
+  },
+  {
+   "artifact": "A5",
+   "artifact_path": "protocol/STATISTICAL_PLAN_V1.json",
+   "artifact_values": [
+    171,
+    0.075
+   ],
+   "expected_literal": "171 at $0.075$",
+   "id": "IP-30",
+   "keys": [
+    "TIER_C_reduced.required_n",
+    "TIER_C_reduced.half_width"
+   ],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S4",
+   "surface_path": "manuscript/ipm_submission.tex"
+  },
+  {
+   "artifact": "A5",
+   "artifact_path": "protocol/STATISTICAL_PLAN_V1.json",
+   "artifact_values": [
+    97,
+    0.1
+   ],
+   "expected_literal": "97 at $0.10$",
+   "id": "IP-31",
+   "keys": [
+    "TIER_D_minimum_inferential.required_n",
+    "TIER_D_minimum_inferential.half_width"
+   ],
+   "kind": "TEXT",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S4",
+   "surface_path": "manuscript/ipm_submission.tex"
+  },
+  {
+   "artifact": "A2",
+   "artifact_path": "evidence/P2_INTEGRATED_CLAIM_BINDINGS_V1.json",
+   "artifact_value": 0.7224435590969456,
+   "expected_literal": "0.722444",
+   "id": "MS-33a",
+   "key": "facts.zenodo.active_audit_u4_recall_at_10",
+   "kind": "NUMBER",
+   "min_occ": 2,
+   "occurrences": 2,
+   "ok": true,
+   "surface": "S5",
+   "surface_path": "manuscript/main.tex"
+  },
+  {
+   "artifact": "A2",
+   "artifact_path": "evidence/P2_INTEGRATED_CLAIM_BINDINGS_V1.json",
+   "artifact_value": 0.7224435590969456,
+   "expected_literal": "0.722444",
+   "id": "MS-33b",
+   "key": "facts.zenodo.active_audit_u4_recall_at_10",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S6",
+   "surface_path": "manuscript/sections/05a-public-screening-transport.tex"
+  },
+  {
+   "artifact": "A2",
+   "artifact_path": "evidence/P2_INTEGRATED_CLAIM_BINDINGS_V1.json",
+   "artifact_value": 0.7034085878707392,
+   "expected_literal": "0.703409",
+   "id": "MS-34a",
+   "key": "facts.zenodo.active_audit_candidate_recall_at_10",
+   "kind": "NUMBER",
+   "min_occ": 2,
+   "occurrences": 2,
+   "ok": true,
+   "surface": "S5",
+   "surface_path": "manuscript/main.tex"
+  },
+  {
+   "artifact": "A2",
+   "artifact_path": "evidence/P2_INTEGRATED_CLAIM_BINDINGS_V1.json",
+   "artifact_value": 0.7034085878707392,
+   "expected_literal": "0.703409",
+   "id": "MS-34b",
+   "key": "facts.zenodo.active_audit_candidate_recall_at_10",
+   "kind": "NUMBER",
+   "min_occ": 2,
+   "occurrences": 3,
+   "ok": true,
+   "surface": "S6",
+   "surface_path": "manuscript/sections/05a-public-screening-transport.tex"
+  },
+  {
+   "artifact": "A2",
+   "artifact_path": "evidence/P2_INTEGRATED_CLAIM_BINDINGS_V1.json",
+   "artifact_value": 0.7447442625518915,
+   "expected_literal": "0.744744",
+   "id": "MS-35a",
+   "key": "facts.zenodo.active_audit_candidate_wss_at_95",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S5",
+   "surface_path": "manuscript/main.tex"
+  },
+  {
+   "artifact": "A2",
+   "artifact_path": "evidence/P2_INTEGRATED_CLAIM_BINDINGS_V1.json",
+   "artifact_value": 0.7447442625518915,
+   "expected_literal": "0.744744",
+   "id": "MS-35b",
+   "key": "facts.zenodo.active_audit_candidate_wss_at_95",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 3,
+   "ok": true,
+   "surface": "S6",
+   "surface_path": "manuscript/sections/05a-public-screening-transport.tex"
+  },
+  {
+   "artifact": "A2",
+   "artifact_path": "evidence/P2_INTEGRATED_CLAIM_BINDINGS_V1.json",
+   "artifact_value": 0.14882047515976088,
+   "expected_literal": "0.148820",
+   "id": "MS-36",
+   "key": "facts.kifms_v7.learner_balancer_mean_recall_at_10",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S5",
+   "surface_path": "manuscript/main.tex"
+  },
+  {
+   "artifact": "A2",
+   "artifact_path": "evidence/P2_INTEGRATED_CLAIM_BINDINGS_V1.json",
+   "artifact_value": 0.11981318648444647,
+   "expected_literal": "0.119813",
+   "id": "MS-37",
+   "key": "facts.kifms_v7.learner_balancer_mean_wss_at_95",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S5",
+   "surface_path": "manuscript/main.tex"
+  },
+  {
+   "artifact": "A9",
+   "artifact_path": "evidence/external_results/P2_V2_ACQUISITION_DEV3R_RESULT_2026-08-18.json",
+   "artifact_value": 0.051422,
+   "expected_literal": "0.051422",
+   "id": "JR-38",
+   "key": "official_metrics.baseline.avg_recall",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S7",
+   "surface_path": "JOURNAL_READINESS_V2.md"
+  },
+  {
+   "artifact": "A9",
+   "artifact_path": "evidence/external_results/P2_V2_ACQUISITION_DEV3R_RESULT_2026-08-18.json",
+   "artifact_value": 0.044213,
+   "expected_literal": "0.044213",
+   "id": "JR-39",
+   "key": "official_metrics.candidate.avg_recall",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S7",
+   "surface_path": "JOURNAL_READINESS_V2.md"
+  },
+  {
+   "artifact": "A9",
+   "artifact_path": "evidence/external_results/P2_V2_ACQUISITION_DEV3R_RESULT_2026-08-18.json",
+   "artifact_value": -0.007209,
+   "expected_literal": "-0.007209",
+   "id": "JR-40",
+   "key": "official_metrics.candidate_minus_baseline.avg_recall",
+   "kind": "NUMBER",
+   "min_occ": 1,
+   "occurrences": 1,
+   "ok": true,
+   "surface": "S7",
+   "surface_path": "JOURNAL_READINESS_V2.md"
+  }
+ ],
+ "physical_quantum_advantage_claim": false,
+ "protocol": "development/orion-12-filing-number-binding-2026-09-03/O12FNA1_PROTOCOL_V1.md",
+ "protocol_sha256": "7f3a7ca8ac56b65e4fa2231c9dbfd37069e7f0b68c85845c9ff27aee41a96bf1",
+ "recorded_findings": [
+  {
+   "evidence": {
+    "ipm_title": "Acquisition Is Not Closure: Fail-Closed Control for Open-World Scientific-Literature Discovery",
+    "main_tex_title": "The Acquisition--Authority Envelope for Open-World Scientific Discovery"
+   },
+   "finding": "blocking_before_filing[0] title divergence",
+   "state": "OPEN"
+  },
+  {
+   "evidence": {
+    "m5_declared_absent": [],
+    "note": "all M5-declared artifact paths resolve on this tree"
+   },
+   "finding": "blocking_before_filing[1] declared PDF absent",
+   "state": "STALE_RESOLVED"
+  },
+  {
+   "evidence": {
+    "ipm_author_literal": "Anonymous authors"
+   },
+   "finding": "blocking_before_filing[2] anonymous author block",
+   "state": "OPEN"
+  },
+  {
+   "evidence": {
+    "note": "no network call in this study; distinct from 'checked and fine'"
+   },
+   "finding": "blocking_before_filing[3] live IP&M guide verification",
+   "state": "CANNOT_CHECK_EXTERNAL"
+  },
+  {
+   "entries": [
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "A1",
+     "path": "external/P2_TREC_COVID_ARMS_V1.json"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "A2",
+     "path": "evidence/P2_INTEGRATED_CLAIM_BINDINGS_V1.json"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "A3",
+     "path": "evidence/p2x/P2_X_CLAIM_VALUES_V1.json"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "A4",
+     "path": "manuscript/generated/suite_facts.json"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "A5",
+     "path": "protocol/STATISTICAL_PLAN_V1.json"
+    },
+    {
+     "digest_bound_by": "M4",
+     "id": "A6",
+     "path": "experiments/beir-route-aware-stopping-v1/RESULTS_V1.json"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "A7",
+     "path": "experiments/beir-route-aware-stopping-v2-density/RESULTS_V2.json"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "A8",
+     "path": "experiments/beir-route-aware-stopping-v3-conditional/RESULTS_V3.json"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "A9",
+     "path": "evidence/external_results/P2_V2_ACQUISITION_DEV3R_RESULT_2026-08-18.json"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "M1",
+     "path": "journal_package/SHA256SUMS"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "M2",
+     "path": "submission/SHA256SUMS"
+    },
+    {
+     "digest_bound_by": "M2",
+     "id": "M3",
+     "path": "submission/SUBMISSION_MANIFEST.sha256"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "M4",
+     "path": "experiments/beir-route-aware-stopping-v1/SHA256SUMS"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "M5",
+     "path": "journal_package/current_revision/SUBMISSION_MANIFEST.json"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "S1",
+     "path": "PUBLICATION_FREEZE_ADDENDUM_V2.md"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "S2",
+     "path": "journal_package/elsevier-cas/cover_letter_ipm_20260902.md"
+    },
+    {
+     "digest_bound_by": "M2",
+     "id": "S3",
+     "path": "submission/FILING_METADATA_V1.json"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "S4",
+     "path": "manuscript/ipm_submission.tex"
+    },
+    {
+     "digest_bound_by": "M3",
+     "id": "S5",
+     "path": "manuscript/main.tex"
+    },
+    {
+     "digest_bound_by": "M3",
+     "id": "S6",
+     "path": "manuscript/sections/05a-public-screening-transport.tex"
+    },
+    {
+     "digest_bound_by": "UNBOUND",
+     "id": "S7",
+     "path": "JOURNAL_READINESS_V2.md"
+    },
+    {
+     "digest_bound_by": "M3",
+     "id": "S8",
+     "path": "manuscript/generated/suite_facts.tex"
+    }
+   ],
+   "finding": "binding_status_census"
+  },
+  {
+   "fail": 0,
+   "filing_consistency_checks": 3,
+   "finding": "binding_count_census",
+   "identity_checks": 4,
+   "macro_checks": 17,
+   "number_and_text_bindings_evaluated": 38,
+   "pass": 38,
+   "registered_table_rows": 40
+  }
+ ],
+ "result_digest": "295a7a019199cd1131e5142ec132ab825523134d26e6542f1fda26a1fd3f648e",
+ "schema": "ORION.ORION12.FilingNumberAudit.v1",
+ "smoke": false,
+ "stopping_identity": [
+  {
+   "id": "I1_arguana_V2_eq_V1",
+   "observed": true,
+   "ok": true,
+   "registered_expectation": true
+  },
+  {
+   "id": "I2_arguana_V3_eq_V1",
+   "observed": true,
+   "ok": true,
+   "registered_expectation": true
+  },
+  {
+   "id": "I3_scifact_V3_eq_V1",
+   "observed": true,
+   "ok": true,
+   "registered_expectation": true
+  },
+  {
+   "id": "I4_nfcorpus_V3_neq_V1",
+   "observed": true,
+   "ok": true,
+   "registered_expectation": true
+  }
+ ],
+ "study_id": "O12FNA1",
+ "terminal": "O12_FNA1_FILING_NUMBER_DRIFT_DETECTED"
+}

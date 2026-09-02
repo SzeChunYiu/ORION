@@ -1,0 +1,14 @@
+=== RUN_O12FNA1 — ORION-12 filing-number binding audit ===
+study_id: O12FNA1
+registration_commits: a1f1834ed (protocol+driver) ; 3c0000928 (driver M-A fix, protocol unchanged)
+base_revision: 3c0000928887d12d168f0c4ef3d5d485ab994359
+protocol_sha256: 7f3a7ca8ac56b65e4fa2231c9dbfd37069e7f0b68c85845c9ff27aee41a96bf1
+note: an earlier pre-results run at a1f1834ed exposed a driver defect (macro-body regex truncated at nested braces); fixed by 3c0000928 before this registered outcome run.
+
+--- run 1 of 2 (timeout 3600) ---
+{"base_revision": "3c0000928887d12d168f0c4ef3d5d485ab994359", "drift_slots": ["M3:manuscript/main.tex"], "result_digest": "295a7a019199cd1131e5142ec132ab825523134d26e6542f1fda26a1fd3f648e", "result_path": "/private/tmp/lane-o12-000834/development/orion-12-filing-number-binding-2026-09-03/O12FNA1_RESULTS.json", "result_sha256": "b6e67049e270e654725662bf939bc1cee4fb5b1c82ff3f223b33412b58137205", "terminal": "O12_FNA1_FILING_NUMBER_DRIFT_DETECTED"}
+EXIT=2
+--- run 2 of 2 (timeout 3600, determinism check) ---
+{"base_revision": "3c0000928887d12d168f0c4ef3d5d485ab994359", "drift_slots": ["M3:manuscript/main.tex"], "result_digest": "295a7a019199cd1131e5142ec132ab825523134d26e6542f1fda26a1fd3f648e", "result_path": "/private/tmp/lane-o12-000834/development/orion-12-filing-number-binding-2026-09-03/O12FNA1_RESULTS.json", "result_sha256": "b6e67049e270e654725662bf939bc1cee4fb5b1c82ff3f223b33412b58137205", "terminal": "O12_FNA1_FILING_NUMBER_DRIFT_DETECTED"}
+EXIT=2
+DETERMINISM: byte-identical
