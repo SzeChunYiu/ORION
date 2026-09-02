@@ -46,9 +46,21 @@ and ORION-18 adopted `FINAL_V4` (#2089).
 Binding tests after all three changes: **48 passed**, and no digest was
 regenerated to match bytes that moved — which is what the drift ratchet forbids.
 
-**Consequence for §7.** "Full-text related-work section with atomic donor
-dispositions" edits the manuscript inside this package, and that edit is
-reachable by the route above. §7 is **not** blocked by #1634.
+**Consequence for §7, stated precisely.** The route above adds files; it does
+**not** license editing existing ones. `manuscript/FINAL_V4.md`, `main.tex` and
+every `sections/*.tex` are bound in `CONTENT_MANIFEST_V1.json` *and* the
+top-level `SHA256SUMS`, whose identity is frozen — so modifying them in place is
+genuinely blocked, and that is what #1634 is about.
+
+§7 is nonetheless reachable, by the route the package already uses:
+`manuscript/RESOLUTION_LIFECYCLE_AMENDMENT_V1.md` is bound in **V2 only**
+(`V1=0`, absent from `SHA256SUMS`), and ORION-16 and ORION-18 adopted `FINAL_V6`
+and `FINAL_V4` the same way. So "full-text related-work section with atomic
+donor dispositions" is closed by **adopting a successor manuscript that carries
+the section**, not by editing the frozen one.
+
+That distinction matters: #1634 blocks *in-place correction*, which is the
+narrow thing it claims, and does not block §7.
 
 ## Dispositions
 
