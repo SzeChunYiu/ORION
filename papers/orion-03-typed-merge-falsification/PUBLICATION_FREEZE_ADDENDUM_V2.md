@@ -14,7 +14,7 @@ surface no longer names the canonical documents.
 The frozen paper-content packet is `MANUSCRIPT_V3.md` (canonical scientific source) and
 `CLAIM_LEDGER_V3.md` (canonical claim ledger), together with the convergence/evidence
 authority under `evidence/`. The canonical designation record is
-`CANONICAL_SUBMISSION_V3.md`. All ledger statuses stand as frozen there: D3-C1–C6
+`CANONICAL_SUBMISSION_V3.md`. The packet also carries the checksum-closed submission package `submission/tier-b-final-20260901/` shared by the arXiv and Journal of Automated Reasoning routes; the build-surface note below governs its rebuild state. All ledger statuses stand as frozen there: D3-C1–C6
 PROVEN, D3-C7 VERIFIED, D3-C8 MEASURED, D3-C9–C15 forbidden / null / adverse / refuted /
 cannot-check. No status in this document modifies the ledger.
 
