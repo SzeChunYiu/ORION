@@ -24,7 +24,7 @@ coverage was zero.
 | base-plan item | state | evidence |
 |---|---|---|
 | deontic / input-output / action logic families dispositioned atomically | **DISCHARGED** | deontic and action logic across `A6_COMPOSITION_ROUTE_V1`, `A6_DONOR_SUBTRACTION_COMPLETION_V1`, `A6_PROPOSITION12_ADVERSARIAL_V1`, `A6_PROPOSITION14_DONOR_CHECK_V1`, `A6_REMAINING_CANDIDATES_ADVERSARIAL_V1`; input/output logic in `A6_DONOR_MATRIX_V4` |
-| access-control / trust-management / authorization-logic families dispositioned, including delegation revocation | **DISCHARGED** | authorization logics in `A6_DONOR_MATRIX_V2`; delegation revocation in `A6_PROPOSITION14_DONOR_CHECK_V1`; trust management in `A6_DONOR_MATRIX_V4` |
+| access-control / trust-management / authorization-logic families dispositioned, including delegation revocation | **DISCHARGED** | authorization logics in `A6_DONOR_MATRIX_V2`; delegation revocation in `A6_PROPOSITION14_DONOR_CHECK_V1`; trust management split across two documents — the RT framework of Li, Mitchell & Winsborough already `SPECIALIZATION` in `A6_DONOR_SUBTRACTION_COMPLETION_V1`, and the PolicyMaker / KeyNote / SPKI-SDSI compliance-checking strand newly in `A6_DONOR_MATRIX_V4` |
 | information-flow / non-interference parent formulations dispositioned | **DISCHARGED** | `A6_DONOR_MATRIX_V3` |
 | ETAS / effect-system families dispositioned | **DISCHARGED** | `A6_DONOR_SUBTRACTION_V1`, `A6_DONOR_SUBTRACTION_COMPLETION_V1` (Bernstein 1966; Lucassen & Gifford 1988) |
 | FAVA / evidence-backed permission graph families dispositioned | **DISCHARGED** | `A6_DONOR_MATRIX_V3` |
