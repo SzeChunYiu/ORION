@@ -1,0 +1,644 @@
+{
+  "derivation_sha256": "6fee2c6c75761da379b2192261575aa9f6cfe2a8bb2c9e15922f27a383cffd8a",
+  "environment": {
+    "node": "BillydeMac-mini.local",
+    "numpy": "2.4.4",
+    "python": "3.13.12"
+  },
+  "phase_D": {
+    "reason": "~/d4j_data.json not on this host",
+    "status": "D4J_SKIPPED_DATA_UNAVAILABLE"
+  },
+  "phase_P": {
+    "complete": true,
+    "gate_pass": false,
+    "rows": [
+      {
+        "arms": {
+          "coarse": 0.26857142857142857,
+          "infogain_refine": 0.26857142857142857,
+          "refined_typed": 0.26857142857142857
+        },
+        "d": 9,
+        "data_id": 15,
+        "dhat_typed_jeffreys": 0.017500221881598332,
+        "dhat_typed_uniform": 0.01074487161336285,
+        "n": 699,
+        "name": "openml-15",
+        "observed_arm_winner": "refined_typed",
+        "observed_typed_delta": 0.0,
+        "observed_typed_sign": 0,
+        "oracle_utility": 0.3457142857142857,
+        "predicted_arm_winner": "refined_typed",
+        "predicted_typed_sign": 1,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.2664145068005722,
+            "uhat_uniform": 0.2635898485468686
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.2664145068005722,
+            "uhat_uniform": 0.2635898485468686
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.28391472868217055,
+            "uhat_uniform": 0.27433472016023147
+          }
+        },
+        "sign_agrees": false,
+        "winner_agrees": true
+      },
+      {
+        "arms": {
+          "coarse": 0.17391304347826086,
+          "infogain_refine": 0.3101449275362319,
+          "refined_typed": 0.3333333333333333
+        },
+        "d": 6,
+        "data_id": 29,
+        "dhat_typed_jeffreys": 0.10938828108859172,
+        "dhat_typed_uniform": 0.08380405192103901,
+        "n": 690,
+        "name": "openml-29",
+        "observed_arm_winner": "refined_typed",
+        "observed_typed_delta": 0.15942028985507245,
+        "observed_typed_sign": 1,
+        "oracle_utility": 0.553623188405797,
+        "predicted_arm_winner": "infogain_refine",
+        "predicted_typed_sign": 1,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.17516994651311418,
+            "uhat_uniform": 0.17086208709292605
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.27702175036138504,
+            "uhat_uniform": 0.2653679499750477
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.2845582276017059,
+            "uhat_uniform": 0.25466613901396506
+          }
+        },
+        "sign_agrees": true,
+        "winner_agrees": false
+      },
+      {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.0,
+          "refined_typed": 0.0
+        },
+        "d": 7,
+        "data_id": 38,
+        "dhat_typed_jeffreys": 0.0,
+        "dhat_typed_uniform": 0.0,
+        "n": 3772,
+        "name": "openml-38",
+        "observed_arm_winner": "refined_typed",
+        "observed_typed_delta": 0.0,
+        "observed_typed_sign": 0,
+        "oracle_utility": 0.06097560975609756,
+        "predicted_arm_winner": "refined_typed",
+        "predicted_typed_sign": 0,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          }
+        },
+        "sign_agrees": true,
+        "winner_agrees": true
+      },
+      {
+        "arms": {
+          "coarse": 0.19782838983050846,
+          "infogain_refine": 0.3358933615819209,
+          "refined_typed": 0.3452065677966102
+        },
+        "d": 7,
+        "data_id": 151,
+        "dhat_typed_jeffreys": 0.14948367248690045,
+        "dhat_typed_uniform": 0.1484466333591917,
+        "n": 45312,
+        "name": "openml-151",
+        "observed_arm_winner": "refined_typed",
+        "observed_typed_delta": 0.14737817796610173,
+        "observed_typed_sign": 1,
+        "oracle_utility": 0.5754766949152542,
+        "predicted_arm_winner": "refined_typed",
+        "predicted_typed_sign": 1,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.193249241780069,
+            "uhat_uniform": 0.1931722737370762
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.3322801861771609,
+            "uhat_uniform": 0.33185204100866117
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.34273291426696945,
+            "uhat_uniform": 0.3416189070962679
+          }
+        },
+        "sign_agrees": true,
+        "winner_agrees": true
+      },
+      {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.0,
+          "refined_typed": -0.006858710562414266
+        },
+        "d": 37,
+        "data_id": 1049,
+        "dhat_typed_jeffreys": 0.006081390032007314,
+        "dhat_typed_uniform": 0.005526161081716635,
+        "n": 1458,
+        "name": "openml-1049",
+        "observed_arm_winner": "infogain_refine",
+        "observed_typed_delta": -0.006858710562414266,
+        "observed_typed_sign": -1,
+        "oracle_utility": 0.12208504801097393,
+        "predicted_arm_winner": "refined_typed",
+        "predicted_typed_sign": 1,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.006081390032007314,
+            "uhat_uniform": 0.005526161081716635
+          }
+        },
+        "sign_agrees": false,
+        "winner_agrees": false
+      },
+      {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.0,
+          "refined_typed": 0.0
+        },
+        "d": 37,
+        "data_id": 1050,
+        "dhat_typed_jeffreys": 0.0,
+        "dhat_typed_uniform": 0.0,
+        "n": 1563,
+        "name": "openml-1050",
+        "observed_arm_winner": "refined_typed",
+        "observed_typed_delta": 0.0,
+        "observed_typed_sign": 0,
+        "oracle_utility": 0.10230179028132992,
+        "predicted_arm_winner": "refined_typed",
+        "predicted_typed_sign": 0,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          }
+        },
+        "sign_agrees": true,
+        "winner_agrees": true
+      },
+      {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.0,
+          "refined_typed": 0.0
+        },
+        "d": 21,
+        "data_id": 1053,
+        "dhat_typed_jeffreys": 0.0,
+        "dhat_typed_uniform": 0.0,
+        "n": 10885,
+        "name": "openml-1053",
+        "observed_arm_winner": "refined_typed",
+        "observed_typed_delta": 0.0,
+        "observed_typed_sign": 0,
+        "oracle_utility": 0.1934594892522506,
+        "predicted_arm_winner": "refined_typed",
+        "predicted_typed_sign": 0,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          }
+        },
+        "sign_agrees": true,
+        "winner_agrees": true
+      },
+      {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.011494252873563218,
+          "refined_typed": 0.03065134099616858
+        },
+        "d": 21,
+        "data_id": 1063,
+        "dhat_typed_jeffreys": 0.003783524904214546,
+        "dhat_typed_uniform": 0.003736814720211927,
+        "n": 522,
+        "name": "openml-1063",
+        "observed_arm_winner": "refined_typed",
+        "observed_typed_delta": 0.03065134099616858,
+        "observed_typed_sign": 1,
+        "oracle_utility": 0.20306513409961685,
+        "predicted_arm_winner": "infogain_refine",
+        "predicted_typed_sign": 1,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.011350574712643705,
+            "uhat_uniform": 0.011210444160635715
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.003783524904214546,
+            "uhat_uniform": 0.003736814720211927
+          }
+        },
+        "sign_agrees": true,
+        "winner_agrees": false
+      },
+      {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.0,
+          "refined_typed": 0.0
+        },
+        "d": 21,
+        "data_id": 1067,
+        "dhat_typed_jeffreys": 0.0,
+        "dhat_typed_uniform": 0.0,
+        "n": 2109,
+        "name": "openml-1067",
+        "observed_arm_winner": "refined_typed",
+        "observed_typed_delta": 0.0,
+        "observed_typed_sign": 0,
+        "oracle_utility": 0.15450236966824646,
+        "predicted_arm_winner": "refined_typed",
+        "predicted_typed_sign": 0,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          }
+        },
+        "sign_agrees": true,
+        "winner_agrees": true
+      },
+      {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": -0.007207207207207207,
+          "refined_typed": 0.0
+        },
+        "d": 21,
+        "data_id": 1068,
+        "dhat_typed_jeffreys": 0.0,
+        "dhat_typed_uniform": 0.0,
+        "n": 1109,
+        "name": "openml-1068",
+        "observed_arm_winner": "refined_typed",
+        "observed_typed_delta": 0.0,
+        "observed_typed_sign": 0,
+        "oracle_utility": 0.07027027027027027,
+        "predicted_arm_winner": "infogain_refine",
+        "predicted_typed_sign": 0,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.0009025270758122744,
+            "uhat_uniform": 0.0006016847172081828
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          }
+        },
+        "sign_agrees": true,
+        "winner_agrees": false
+      },
+      {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.0,
+          "refined_typed": 0.0
+        },
+        "d": 7,
+        "data_id": 1461,
+        "dhat_typed_jeffreys": 0.0,
+        "dhat_typed_uniform": 0.0,
+        "n": 45211,
+        "name": "openml-1461",
+        "observed_arm_winner": "refined_typed",
+        "observed_typed_delta": 0.0,
+        "observed_typed_sign": 0,
+        "oracle_utility": 0.11700433513226577,
+        "predicted_arm_winner": "refined_typed",
+        "predicted_typed_sign": 0,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          }
+        },
+        "sign_agrees": true,
+        "winner_agrees": true
+      },
+      {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.010273972602739725,
+          "refined_typed": 0.030821917808219176
+        },
+        "d": 9,
+        "data_id": 1480,
+        "dhat_typed_jeffreys": 0.050351824578628704,
+        "dhat_typed_uniform": 0.04273366953779324,
+        "n": 583,
+        "name": "openml-1480",
+        "observed_arm_winner": "refined_typed",
+        "observed_typed_delta": 0.030821917808219176,
+        "observed_typed_sign": 1,
+        "oracle_utility": 0.2876712328767123,
+        "predicted_arm_winner": "refined_typed",
+        "predicted_typed_sign": 1,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.012688342585249802,
+            "uhat_uniform": 0.011782032400589105
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.050351824578628704,
+            "uhat_uniform": 0.04273366953779324
+          }
+        },
+        "sign_agrees": true,
+        "winner_agrees": true
+      }
+    ],
+    "stat": {
+      "n_scored": 12,
+      "predicted_neg": 0,
+      "predicted_pos": 6,
+      "sign_agreements": 10,
+      "strong_contradictions": 1
+    }
+  },
+  "phase_R": {
+    "gate_pass": false,
+    "notes": [],
+    "rows": [
+      {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.0,
+          "refined_typed": -0.01
+        },
+        "d": 7,
+        "data_id": 31,
+        "dhat_typed_jeffreys": 0.013133333333333337,
+        "dhat_typed_uniform": 0.01150002278423331,
+        "n": 1000,
+        "name": "credit-g",
+        "observed_arm_winner": "infogain_refine",
+        "observed_typed_delta": -0.01,
+        "observed_typed_sign": -1,
+        "oracle_utility": 0.3,
+        "predicted_arm_winner": "refined_typed",
+        "predicted_typed_sign": 1,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.0,
+            "uhat_uniform": 0.0
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.013133333333333337,
+            "uhat_uniform": 0.01150002278423331
+          }
+        },
+        "recorded_v1_sign": -1,
+        "retro_agrees": false,
+        "sign_agrees": false,
+        "v1_arm_reproduction_max_abs_diff": 0.0,
+        "winner_agrees": false
+      },
+      {
+        "arms": {
+          "coarse": 0.3802083333333333,
+          "infogain_refine": 0.3802083333333333,
+          "refined_typed": 0.3307291666666667
+        },
+        "d": 8,
+        "data_id": 37,
+        "dhat_typed_jeffreys": -0.03358046774167295,
+        "dhat_typed_uniform": -0.0666935322151998,
+        "n": 768,
+        "name": "diabetes",
+        "observed_arm_winner": "infogain_refine",
+        "observed_typed_delta": -0.04947916666666663,
+        "observed_typed_sign": -1,
+        "oracle_utility": 0.6510416666666666,
+        "predicted_arm_winner": "infogain_refine",
+        "predicted_typed_sign": -1,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.38526859317300494,
+            "uhat_uniform": 0.3777261049665226
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.38526859317300494,
+            "uhat_uniform": 0.3777261049665226
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.351688125431332,
+            "uhat_uniform": 0.3110325727513228
+          }
+        },
+        "recorded_v1_sign": -1,
+        "retro_agrees": true,
+        "sign_agrees": true,
+        "v1_arm_reproduction_max_abs_diff": 0.0,
+        "winner_agrees": true
+      },
+      {
+        "arms": {
+          "coarse": 0.21164710995219468,
+          "infogain_refine": 0.39765319426336376,
+          "refined_typed": 0.29595827900912647
+        },
+        "d": 57,
+        "data_id": 44,
+        "dhat_typed_jeffreys": 0.09467379879884047,
+        "dhat_typed_uniform": 0.09456517190388386,
+        "n": 4601,
+        "name": "spambase",
+        "observed_arm_winner": "infogain_refine",
+        "observed_typed_delta": 0.08431116905693178,
+        "observed_typed_sign": 1,
+        "oracle_utility": 0.6058235549760973,
+        "predicted_arm_winner": "infogain_refine",
+        "predicted_typed_sign": 1,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.21208170360712741,
+            "uhat_uniform": 0.21198957428323206
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.38409710995774127,
+            "uhat_uniform": 0.3838467207074429
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.3067555024059679,
+            "uhat_uniform": 0.3065547461871159
+          }
+        },
+        "recorded_v1_sign": 1,
+        "retro_agrees": true,
+        "sign_agrees": true,
+        "v1_arm_reproduction_max_abs_diff": 0.0,
+        "winner_agrees": true
+      },
+      {
+        "arms": {
+          "coarse": 0.4147727272727273,
+          "infogain_refine": 0.4602272727272727,
+          "refined_typed": 0.4147727272727273
+        },
+        "d": 41,
+        "data_id": 1494,
+        "dhat_typed_jeffreys": 0.0,
+        "dhat_typed_uniform": 0.0,
+        "n": 1055,
+        "name": "qsar-biodeg",
+        "observed_arm_winner": "infogain_refine",
+        "observed_typed_delta": 0.0,
+        "observed_typed_sign": 0,
+        "oracle_utility": 0.6628787878787878,
+        "predicted_arm_winner": "infogain_refine",
+        "predicted_typed_sign": 0,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.35444279909224596,
+            "uhat_uniform": 0.34857495083119583
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.4124401286124756,
+            "uhat_uniform": 0.393904877227343
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.35444279909224596,
+            "uhat_uniform": 0.34857495083119583
+          }
+        },
+        "recorded_v1_sign": 0,
+        "retro_agrees": true,
+        "sign_agrees": true,
+        "v1_arm_reproduction_max_abs_diff": 0.0,
+        "winner_agrees": true
+      },
+      {
+        "arms": {
+          "coarse": 0.47368421052631576,
+          "infogain_refine": 0.5403508771929825,
+          "refined_typed": 0.43157894736842106
+        },
+        "d": 30,
+        "data_id": 1510,
+        "dhat_typed_jeffreys": -0.0016148639827888722,
+        "dhat_typed_uniform": -0.005582657715533623,
+        "n": 569,
+        "name": "wdbc",
+        "observed_arm_winner": "infogain_refine",
+        "observed_typed_delta": -0.0421052631578947,
+        "observed_typed_sign": -1,
+        "oracle_utility": 0.6280701754385964,
+        "predicted_arm_winner": "infogain_refine",
+        "predicted_typed_sign": -1,
+        "predictions": {
+          "coarse": {
+            "uhat_jeffreys": 0.5127031313379447,
+            "uhat_uniform": 0.49821211126985293
+          },
+          "infogain_refine": {
+            "uhat_jeffreys": 0.5190056483099222,
+            "uhat_uniform": 0.49624703848905677
+          },
+          "refined_typed": {
+            "uhat_jeffreys": 0.5110882673551558,
+            "uhat_uniform": 0.4926294535543193
+          }
+        },
+        "recorded_v1_sign": -1,
+        "retro_agrees": true,
+        "sign_agrees": true,
+        "v1_arm_reproduction_max_abs_diff": 0.0,
+        "winner_agrees": true
+      }
+    ]
+  },
+  "protocol_sha256": "c73d9edbadea024e5a5929c86699113332129c7e2472bc7e6613518ef0d462c3",
+  "schema": "ORION08.FINITE_SAMPLE_LAW.v1",
+  "terminal": "LAW_FAILS_RETRO"
+}

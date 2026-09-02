@@ -223,7 +223,7 @@ def phase_retro() -> tuple[list[dict], bool, list[str]]:
 
 
 def phase_prospective() -> tuple[list[dict], dict, bool, bool]:
-    rows, scored = [], [], True
+    rows, scored = [], []
     ids = [i for i in cc18_ids() if i not in V1_IDS]
     print(f"  CC18 registry: {len(ids)} candidate ids after excluding v1's 7", flush=True)
     for did in ids:
