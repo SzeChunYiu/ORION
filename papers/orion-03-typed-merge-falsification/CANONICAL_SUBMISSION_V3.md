@@ -21,3 +21,9 @@ The source archives are freshly rebuilt from `MANUSCRIPT_V3.md`, not the superse
 No additional theory or empirical campaign is required for the current claim. Portal upload, final live-policy confirmation, external peer review, editorial acceptance, and author confirmation remain external acts. A future scientific reopening requires a genuinely new externally testable scientific question, not another generic provenance theorem.
 
 skills-applied: academic-paper-pipeline@1.21.0, academic-writing@2.8.0, nature-polishing@7.5.0, nature-reviewer@3.5.0
+
+**2026-09-02 post-freeze note (additive):** the current frozen surface is named by
+`PUBLICATION_FREEZE_ADDENDUM_V2.md`. Clarification edits to `MANUSCRIPT_V3.md` and the
+bibliography postdate the PDF digest recorded above; the source/PDF/checksums must be
+rebuilt from the edited sources on a build-capable host before portal filing. See
+`SCIENCE_ITEM_DISPOSITION_20260902.md` for the disposition ladder that produced them.
