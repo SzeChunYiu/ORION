@@ -101,8 +101,8 @@ def predictive_mc(R_tr: np.ndarray, ytr: np.ndarray, n_te: int,
     k_f = np.array([ytr[R_tr == f].sum() for f in fibres], dtype=float)
     q = n_f / n_f.sum()
     q = q / q.sum()
-    if prior == "uniform":
-        a_p, b_p = k_f + 1.0, n_f - k_f + 2.0
+    if prior == "uniform":  # conjugate posterior to Uniform(0,1) prior: mean (k+1)/(n+2)
+        a_p, b_p = k_f + 1.0, n_f - k_f + 1.0
     else:  # Jeffreys: Beta(k+1/2, n-k+1/2)
         a_p, b_p = k_f + 0.5, n_f - k_f + 0.5
     act = {arm: np.array([amap[int(f)] for f in fibres], dtype=float)
@@ -305,7 +305,7 @@ def main() -> int:
                  if r["uniform"]["ci80"][0] <= r["observed"]["typed_delta"] <= r["uniform"]["ci80"][1])
     n_tot = len(scored_rows)
     g2_p = binom_two_sided(inside, n_tot)
-    g2_pass = (g2_p >= 0.05) and n_tot == 17
+    g2_pass = (g2_p >= 0.05) and n_tot == 16  # A1: achieved n (registry exhausted at 11 P2 scorers)
     g4_bad = [r["name"] for r in scored_rows if r["predicted_zero_v1"]
               and not (r["uniform"]["ci80"][0] <= r["observed"]["typed_delta"] <= r["uniform"]["ci80"][1])]
     jeff_break = [r["name"] for r in scored_rows
@@ -322,7 +322,7 @@ def main() -> int:
     structural_ok = (arm_check.get("status") == "OK"
                      and arm_check.get("max_abs_diff", 1.0) < 1e-9
                      and not cf_bad)
-    if n_tot != 17:
+    if n_tot != 16:  # A1
         terminal, rc = "V2_INCOMPLETE_NO_VERDICT", 3
     elif not structural_ok:
         terminal, rc = "V2_INCOMPLETE_REPRODUCTION_FAILED", 3

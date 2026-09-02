@@ -51,3 +51,24 @@ One script, one pass, stdout + `RESULTS_V1.json` (schema
 receipt. No fitted parameter; the only new constants are MC size (10k) and MC
 seed, both named here. Frozen surfaces untouched; additive only. V1's
 refutation is not re-litigated.
+
+## Amendment A1 (2026-09-02, after aborted pass 1, BEFORE any verdict)
+
+Pass 1 aborted with `V2_INCOMPLETE_NO_VERDICT` — no gate outcome was consumed.
+Two facts it established, registered here before the clean rerun:
+
+1. **MC posterior bug, fixed to the registered model.** The runner coded the
+   uniform posterior as Beta(k+1, n−k+2) (mean (k+1)/(n+3)); the registered
+   derivation (DERIVATION_V2.md §model) is Beta(k+1, n−k+1) (mean (k+1)/(n+2),
+   V1's p̄). The R2 MC-vs-closed-form cross-check caught it (13/16 violations,
+   up to ~50 MC-SE); the fix is exactly that one parameter. No gate input or
+   threshold changed.
+2. **Registry exhaustion.** The ascending scan past openml-1480 yields exactly
+   11 qualifying scorers (40927 fails fetch and is 10-class regardless;
+   40996/41027 are 10-class). Pooled cohort is structurally 16, not 17.
+   G2 therefore runs its exact two-sided binomial test at the ACHIEVED n
+   (16); the n=17 literal is replaced by "n = all scored datasets". All other
+   gates unchanged.
+
+Pass 1's receipts are retained as `RESULTS_V2_pass1_aborted.json`; the result
+of record is the post-A1 single clean pass.
