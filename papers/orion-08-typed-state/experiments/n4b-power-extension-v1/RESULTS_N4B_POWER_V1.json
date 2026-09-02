@@ -1,0 +1,76 @@
+{
+  "design": {
+    "bonferroni_family": 2,
+    "bootstrap_draws": 5000,
+    "delta": 1.0,
+    "module_seed": 20260821,
+    "n_ext": 2000,
+    "seed_ext": "20260902"
+  },
+  "environment": {
+    "node": "BillydeMac-mini.local",
+    "python": "3.13.12"
+  },
+  "monitoring": {
+    "REOPEN_WASTEFUL": {
+      "frozen_mean": 15.049828805128543,
+      "scoped_vs_unscoped_mean": 14.372572317433843,
+      "within_10pct": true
+    },
+    "STALE_MATTERS": {
+      "frozen_mean": 6.972958867088621,
+      "scoped_vs_unscoped_mean": 6.4974943790841735,
+      "within_10pct": true
+    }
+  },
+  "p1_prefix": {
+    "REOPEN_WASTEFUL": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    },
+    "STALE_MATTERS": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    }
+  },
+  "schema": "ORION08.N4B_POWER.v1",
+  "split_half": {
+    "REOPEN_WASTEFUL": {
+      "first1000_mean": -0.03653719240281582,
+      "full_mean": 0.019386693523760164,
+      "second1000_mean": 0.07531057945033615
+    },
+    "STALE_MATTERS": {
+      "first1000_mean": 0.3257454606914307,
+      "full_mean": -0.09690713134393121,
+      "second1000_mean": -0.5195597233792931
+    }
+  },
+  "targets": {
+    "REOPEN_WASTEFUL": {
+      "ci_975": [
+        -0.18107781252734295,
+        0.21988869865384847
+      ],
+      "loss": 0.0485,
+      "mean": 0.019386693523760164,
+      "n": 2000,
+      "tie": 0.8175,
+      "verdict": "BOUNDED_NULL",
+      "win": 0.134
+    },
+    "STALE_MATTERS": {
+      "ci_975": [
+        -0.6729237827565124,
+        0.4472932603365779
+      ],
+      "loss": 0.2375,
+      "mean": -0.09690713134393121,
+      "n": 2000,
+      "tie": 0.1575,
+      "verdict": "BOUNDED_NULL",
+      "win": 0.605
+    }
+  },
+  "terminal": "N4B_POWER_DETERMINED_BOTH"
+}

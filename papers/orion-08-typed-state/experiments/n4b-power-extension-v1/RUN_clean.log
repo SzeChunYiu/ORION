@@ -1,0 +1,23 @@
+P1 STALE_MATTERS: max|diff|=0.000e+00 PASS
+P1 REOPEN_WASTEFUL: max|diff|=0.000e+00 PASS
+STALE_MATTERS: mean=-0.0969 CI97.5=[-0.6729,+0.4473] win/loss/tie=0.605/0.237/0.158 -> BOUNDED_NULL
+REOPEN_WASTEFUL: mean=+0.0194 CI97.5=[-0.1811,+0.2199] win/loss/tie=0.134/0.049/0.818 -> BOUNDED_NULL
+{
+  "targets": {
+    "STALE_MATTERS": "BOUNDED_NULL",
+    "REOPEN_WASTEFUL": "BOUNDED_NULL"
+  },
+  "monitoring": {
+    "STALE_MATTERS": {
+      "scoped_vs_unscoped_mean": 6.4974943790841735,
+      "frozen_mean": 6.972958867088621,
+      "within_10pct": true
+    },
+    "REOPEN_WASTEFUL": {
+      "scoped_vs_unscoped_mean": 14.372572317433843,
+      "frozen_mean": 15.049828805128543,
+      "within_10pct": true
+    }
+  },
+  "terminal": "N4B_POWER_DETERMINED_BOTH"
+}
