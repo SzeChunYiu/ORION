@@ -1,0 +1,156 @@
+name: one-shot-orion08-tierb-rebind
+
+# One-shot: rebind ORION-08's committed manuscript/main.pdf and both Tier-B
+# packages after the 2026-09-02 multiplicity/proxy/real-data source pass.
+# The clipping audit gates PR bytes against exactly this pinned toolchain, so
+# the rebuild that produces the committed artifacts must run on it too.
+
+on:
+  workflow_dispatch:
+    inputs:
+      head-sha:
+        description: 'Commit sha carrying the edited ORION-08 sources'
+        required: true
+      branch:
+        description: 'Branch to push the rebound artifacts to'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  rebind:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ inputs.head-sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned PDF and TeX toolchains
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            latexmk texlive-binaries texlive-base texlive-latex-base \
+            texlive-latex-recommended texlive-latex-extra texlive-pictures \
+            texlive-publishers \
+            texlive-fonts-recommended texlive-bibtex-extra texlive-science \
+            texlive-plain-generic texlive-lang-greek lmodern fonts-lmodern \
+            fonts-texgyre fonts-texgyre-math fonts-urw-base35 libkpathsea6 \
+            libptexenc1 libsynctex2 libtexlua53-5 poppler-utils libpoppler134 \
+            poppler-data fontconfig libc-bin
+          # Same version pins as manuscript-clipping-audit.yml: a drift here
+          # is a byte drift in the committed PDF, so fail loudly instead.
+          cat > /tmp/expected-render-packages.tsv <<'EOF'
+          texlive-binaries	2023.20230311.66589-9build3
+          texlive-base	2023.20240207-1
+          texlive-latex-base	2023.20240207-1
+          texlive-latex-recommended	2023.20240207-1
+          texlive-latex-extra	2023.20240207-1
+          texlive-fonts-recommended	2023.20240207-1
+          texlive-bibtex-extra	2023.20240207-1
+          texlive-science	2023.20240207-1
+          texlive-pictures	2023.20240207-1
+          texlive-publishers	2023.20240207-1
+          texlive-plain-generic	2023.20240207-1
+          texlive-lang-greek	2023.20240207-1
+          latexmk	1:4.83-1
+          libkpathsea6	2023.20230311.66589-9build3
+          libptexenc1	2023.20230311.66589-9build3
+          libsynctex2	2023.20230311.66589-9build3
+          libtexlua53-5	2023.20230311.66589-9build3
+          fonts-lmodern	2.005-1
+          lmodern	2.005-1
+          fonts-texgyre	20180621-6
+          fonts-texgyre-math	20180621-6
+          fonts-urw-base35	20200910-8
+          poppler-utils	24.02.0-1ubuntu9.9
+          libpoppler134	24.02.0-1ubuntu9.9
+          poppler-data	0.4.12-1
+          fontconfig	2.15.0-1.1ubuntu2
+          libc-bin	2.39-0ubuntu8.8
+          EOF
+          while IFS=$'\t' read -r package expected; do
+            actual="$(dpkg-query -W -f='${Version}' "$package")"
+            test "$actual" = "$expected" || {
+              echo "render toolchain drift: $package expected $expected, got $actual" >&2
+              exit 1
+            }
+          done < /tmp/expected-render-packages.tsv
+      - name: Rebuild committed main.pdf at its source epoch
+        shell: bash
+        run: |
+          set -euo pipefail
+          manuscript_dir=papers/orion-08-typed-state/manuscript
+          source_epoch="$(git log -1 --format=%ct -- \
+            "$manuscript_dir" \
+            ":(exclude)$manuscript_dir/main.pdf")"
+          test -n "$source_epoch"
+          echo "rendering at SOURCE_DATE_EPOCH=$source_epoch"
+          export SOURCE_DATE_EPOCH="$source_epoch"
+          export FORCE_SOURCE_DATE=1
+          cd "$manuscript_dir"
+          latexmk -C main.tex >/dev/null
+          latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex
+          if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references|undefined citations' main.log; then
+            echo "undefined reference or citation" >&2
+            exit 1
+          fi
+          cp main.pdf /tmp/orion08-first.pdf
+          latexmk -C main.tex >/dev/null
+          latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex
+          cmp /tmp/orion08-first.pdf main.pdf   # determinism: two clean builds agree
+      - name: Rebuild publication-ready package (ORION-08 only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd papers/publication_closure/orion_all_submission_20260831
+          ORION_PAPERS=ORION-08 python3 build_all_submission_materials.py
+      - name: Finalize Tier-B package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 papers/publication_closure/tier_b_20260901/finalize_tier_b_package.py \
+            --paper-dir orion-08-typed-state \
+            --paper-id ORION-08 \
+            --authority CLAIM_LEDGER_V4.md \
+            --terminal ORION08_COMPLETE__CONTROLLED_MECHANISMS_AND_BOUNDED_TRANSFER \
+            --closure-file submission/tier-b-closure-20260901/ACCEPTANCE_OPTIMIZATION_PLAN.json \
+            --closure-file submission/tier-b-closure-20260901/ATOMIC_CLAIM_INVENTORY.json \
+            --closure-file submission/tier-b-closure-20260901/LITERATURE_AND_LINEAGE_REFRESH.md \
+            --closure-file submission/tier-b-closure-20260901/PAPER_EXISTENCE_SCIENTIFIC_MASS.json \
+            --closure-file submission/tier-b-closure-20260901/RESULT_RETENTION.md \
+            --closure-file submission/tier-b-closure-20260901/REVIEWER_AUDIT.md \
+            --closure-file submission/tier-b-closure-20260901/VENUE_RESOLUTION.md
+      - name: Commit rebound artifacts to the PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            papers/orion-08-typed-state/manuscript/main.pdf \
+            papers/orion-08-typed-state/submission/publication-ready-20260831 \
+            papers/orion-08-typed-state/submission/tier-b-final-20260901 \
+            papers/publication_closure/orion_all_submission_20260831/CLOSURE_REGISTRY.json
+          if git diff --cached --quiet; then
+            echo 'Rebound artifacts already current.'
+            exit 0
+          fi
+          git commit -m 'papers(orion-08): rebind manuscript render and Tier-B packages to the 2026-09-02 sources'
+          git push origin "HEAD:refs/heads/${{ inputs.branch }}"
+      - name: Archive rebuilt artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: one-shot-orion08-tierb-rebind-${{ inputs.head-sha }}
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            papers/orion-08-typed-state/manuscript/main.pdf
+            papers/orion-08-typed-state/manuscript/main.log
