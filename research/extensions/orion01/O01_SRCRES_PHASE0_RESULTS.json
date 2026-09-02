@@ -1,0 +1,164 @@
+{
+  "authority": "PHASE0_SOURCE_RESOLUTION_ONLY__NO_REGISTRY_AUTHORITY__NO_MOVE_COMPLETENESS_UPGRADE__NO_SEMANTIC_TESTING__NO_PAPER_CLAIM",
+  "base_revision": "c268872a666b69dbbcb93be4059e22b8d4ac4bf2",
+  "evidence": {
+    "channel2": {
+      "agreement": true,
+      "available": true,
+      "endpoint": "repos/Quantomatic/pyzx/commits/dade7d46f193635bbdaefd8fcde837f9449fddc5",
+      "returned_sha": "dade7d46f193635bbdaefd8fcde837f9449fddc5",
+      "tool": "/opt/homebrew/bin/gh"
+    },
+    "clone": {
+      "advertised_peeled_targets_missing_in_object_db": [],
+      "advertised_refs_missing_in_clone": [],
+      "exit_code": 0,
+      "fetch_stderr_sha256": "b5cecbfd6cc7c068b75d0c7b75759f8a83c53ef69fef3dbd33089d8af4f4c797",
+      "path": "/tmp/o01-srcres-scratch/pyzx-bare-20260902T220831Z",
+      "refs_heads_tags_in_clone": 30,
+      "shallow": "false"
+    },
+    "commit": {
+      "commit_object_sha256": "a5c07c7f6dafd3be3386cc08f51241251ac6ca753b71318f354db1a0b8415540",
+      "commit_parents": [
+        "fcbb247a134e18a2f55f94279ca164e67ac049e3",
+        "799dc97f4e86df53282fc69cc266b7b7e4d33b1f"
+      ],
+      "commit_tree": "3885a1acc34fbfdaf95ff9cb01c75abea9c36721",
+      "tags_pointing_at_commit": []
+    },
+    "manifest": {
+      "required_fields": [
+        "path",
+        "git_mode",
+        "git_blob_object",
+        "byte_length",
+        "sha256",
+        "classification"
+      ],
+      "stats": {
+        "by_classification": {
+          "EXCLUDED_TEST_DOCUMENTATION_EXAMPLE": 106,
+          "OTHER_TRACKED_EXCLUDED": 647,
+          "PACKAGING": 1,
+          "PYZX_PACKAGE_PYTHON": 121,
+          "PYZX_PACKAGE_RESOURCE": 10
+        },
+        "included_in_byte_corpus": 132,
+        "rows": 885
+      },
+      "tree_entry_count": 885
+    },
+    "object": {
+      "full_commit": "dade7d46f193635bbdaefd8fcde837f9449fddc5",
+      "hex40_lowercase": true,
+      "type": "commit"
+    },
+    "pins": {
+      "CORPUS_MANIFEST.json": {
+        "actual": "0fe44821212a30364608e56ca47ad0b675f5c33d018a213e2156eb9ac159ea12",
+        "match": true,
+        "pinned": "0fe44821212a30364608e56ca47ad0b675f5c33d018a213e2156eb9ac159ea12"
+      },
+      "EXPECTED_TERMINALS.json": {
+        "actual": "a65148dcf4ab248c4c4bb0d075549926cd83d6825c83a45649765dd64343a60e",
+        "match": true,
+        "pinned": "a65148dcf4ab248c4c4bb0d075549926cd83d6825c83a45649765dd64343a60e"
+      },
+      "PROTOCOL.json": {
+        "actual": "116fefe48e470eea4cefb877c4ecf9ccf12e8e009573a162b2cf578bef9eabe4",
+        "match": true,
+        "pinned": "116fefe48e470eea4cefb877c4ecf9ccf12e8e009573a162b2cf578bef9eabe4"
+      },
+      "registry_protocol_checker_v1.py": {
+        "actual": "3e34d0c2473fa8b0dd3817b7f46d83ec26553f2892e0483b0bd80a46329517ac",
+        "match": true,
+        "pinned": "3e34d0c2473fa8b0dd3817b7f46d83ec26553f2892e0483b0bd80a46329517ac"
+      }
+    },
+    "prefix": "dade7d46",
+    "ref_advertisement": {
+      "exit_code": 0,
+      "refs_heads": 12,
+      "refs_tags_peeled": 13,
+      "refs_tags_unpeeled": 18,
+      "refs_total": 339,
+      "sha256": "1fc54d961d50d97aa0a000b8ce75f86943f3acc50922b4a5473c1bf99b71097e"
+    },
+    "remote": "https://github.com/Quantomatic/pyzx.git",
+    "resolution": {
+      "disambiguate_all_object_types": [
+        "dade7d46f193635bbdaefd8fcde837f9449fddc5"
+      ],
+      "matching_commit_count": 1,
+      "matching_commits": [
+        "dade7d46f193635bbdaefd8fcde837f9449fddc5"
+      ],
+      "rev_list_total_commits": 2071,
+      "uniqueness_scope": "object database reachable from advertised refs/heads/* and refs/tags/* at the recorded advertisement"
+    },
+    "submodule_check": {
+      "declared_submodules": [],
+      "gitmodules_present": false,
+      "policy": "fail closed until every required submodule is separately commit-pinned and hashed"
+    }
+  },
+  "extra": {},
+  "gates": {
+    "g0_canonical_checker": true,
+    "g0_frozen_dir_pristine": true,
+    "g1_advertisement_acquired": {
+      "refs/heads/dqn": "08f8b94e0fa5ed46c3ea76bad522222cd4fcf364",
+      "refs/heads/dqn-broken": "d8233d4382c067ebd85085ee5954e2482ffb2462",
+      "refs/heads/feature/symbolic": "45da2349dda19fc21a3d0658ebefd07b7c2f50ce",
+      "refs/heads/inputs": "478f9bf318012908490950298399c693b044ef02",
+      "refs/heads/master": "7947c19b655db4ab434d8026b2e1a3877af38b94",
+      "refs/heads/multigraph": "5b7ea03b0ab1010152bb2efda27b5ecddac635fe",
+      "refs/heads/remove-quantomatic-features": "3de596926272290d8a8cde99180bb3de5b469ef8",
+      "refs/heads/revert-110-quimb-fix": "845802ceb4acef09351bf1666d39afee2041fb3f",
+      "refs/heads/scalar-refactor": "ed43c26382fce2400c2cd5023ad459bd3e84e677",
+      "refs/heads/steiner-decomp": "bf7e58fe7431c28faba41cde44692cda7614a324",
+      "refs/heads/steiner_decomp": "734316464916fc3378844c8e26ab89a6877f01ef",
+      "refs/heads/zh": "26f5291acff52c07a6ef3fe042198f5d559984bb"
+    },
+    "g2_fresh_full_bare_clone": true,
+    "g3_unique_prefix_match": true,
+    "g4_object_is_commit": true,
+    "g5_channel2_agreement": true,
+    "g6_no_semantic_testing": true,
+    "g7_no_unpinned_submodule": true,
+    "g8_no_instrument_import": true,
+    "g9_manifest_complete": true
+  },
+  "novelty_authority": false,
+  "paper_authority_delta": "NONE",
+  "physical_quantum_advantage_claim": false,
+  "protocol_sha256": "08fe1d142a149b18266af798c8ce6cef3f2dd54dacc0b332cc3ccd43187c724f",
+  "registration_pins": {
+    "CORPUS_MANIFEST.json": {
+      "actual": "0fe44821212a30364608e56ca47ad0b675f5c33d018a213e2156eb9ac159ea12",
+      "match": true,
+      "pinned": "0fe44821212a30364608e56ca47ad0b675f5c33d018a213e2156eb9ac159ea12"
+    },
+    "EXPECTED_TERMINALS.json": {
+      "actual": "a65148dcf4ab248c4c4bb0d075549926cd83d6825c83a45649765dd64343a60e",
+      "match": true,
+      "pinned": "a65148dcf4ab248c4c4bb0d075549926cd83d6825c83a45649765dd64343a60e"
+    },
+    "PROTOCOL.json": {
+      "actual": "116fefe48e470eea4cefb877c4ecf9ccf12e8e009573a162b2cf578bef9eabe4",
+      "match": true,
+      "pinned": "116fefe48e470eea4cefb877c4ecf9ccf12e8e009573a162b2cf578bef9eabe4"
+    },
+    "registry_protocol_checker_v1.py": {
+      "actual": "3e34d0c2473fa8b0dd3817b7f46d83ec26553f2892e0483b0bd80a46329517ac",
+      "match": true,
+      "pinned": "3e34d0c2473fa8b0dd3817b7f46d83ec26553f2892e0483b0bd80a46329517ac"
+    }
+  },
+  "result_digest": "420b1f018365739ee501afbb893e75ddbbbb354606d6ec4c4f95f4ba3848f02a",
+  "schema": "ORION.ORION01.SrcResPhase0.v1",
+  "study_id": "O01-P0-SRCRES-V1",
+  "terminal": "SOURCE_RESOLVED",
+  "wall_clock_seconds": 29.0
+}

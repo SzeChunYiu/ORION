@@ -1,0 +1,56 @@
+{
+  "dependency_lock_hash": "15c9cb46644156001fb453316c8a630a6dd5eb9beeb41330a1247175fb56e89f",
+  "hash_seed": "unset",
+  "installation_source": "the uniquely resolved commit object only: no checkout, no install, no import in phase 0",
+  "locale": {
+    "LANG": "C.UTF-8",
+    "LC_ALL": null,
+    "getdefaultlocale": [
+      null,
+      "UTF-8"
+    ]
+  },
+  "operating_system_facts": {
+    "machine": "arm64",
+    "platform": "macOS-26.4-arm64-arm-64bit-Mach-O",
+    "release": "25.4.0",
+    "sw_vers": {
+      "BuildVersion": "\t\t25E246",
+      "ProductName": "\t\tmacOS",
+      "ProductVersion": "\t\t26.4"
+    },
+    "system": "Darwin",
+    "version": "Darwin Kernel Version 25.4.0: Thu Mar 19 19:31:09 PDT 2026; root:xnu-12377.101.15~1/RELEASE_ARM64_T8132"
+  },
+  "operating_system_image_digest": "17b9635612ff3ddea2ec8c999ed5aeff4117682f3f1b8f441568f026c0db9d53",
+  "optional_accelerators_disabled_or_pinned": "not_applicable_no_accelerators_git_and_gh_subprocess_only",
+  "phase": 0,
+  "protocol_identity": "orion-01-production-completeness-v1-2026-08-29",
+  "python_implementation": "CPython",
+  "python_version": "3.13.12",
+  "random_seed_policy": "no PRNG in phase 0: driver imports no random/numpy; all ordering is byte-deterministic",
+  "required_fields_covered": [
+    "operating_system_image_digest",
+    "python_implementation",
+    "python_version",
+    "dependency_lock_hash",
+    "locale",
+    "timezone",
+    "hash_seed",
+    "random_seed_policy",
+    "optional_accelerators_disabled_or_pinned"
+  ],
+  "schema": "ORION.ORION01.EnvironmentReceipt.v1",
+  "timezone": {
+    "TZ": null,
+    "tzname": [
+      "CET",
+      "CEST"
+    ]
+  },
+  "toolchain": {
+    "gh": "gh version 2.89.0 (2026-03-26)",
+    "git": "git version 2.50.1 (Apple Git-155)"
+  },
+  "utc_timestamp": "2026-09-02T22:08:35+00:00"
+}
