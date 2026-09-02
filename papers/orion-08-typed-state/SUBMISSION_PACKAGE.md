@@ -1,5 +1,14 @@
 # ORION-04 submission package
 
+> **Superseded 2026-09-02.** "ORION-04" is this paper's legacy internal
+> catalogue code; the paper is ORION-08. This file is the 2026-08-22 planning
+> snapshot from the manuscript-V2 era and no longer describes the filing
+> surface: the canonical manuscript, authority and package are designated in
+> `submission/CANONICAL_SOURCE_DECISION.md` (LaTeX tree, `CLAIM_LEDGER_V4.md`,
+> `submission/publication-ready-20260831` and `submission/tier-b-final-20260901`).
+> The real-data studies it lists as "future" have since executed and are bounded
+> by `PUBLICATION_FREEZE_ADDENDUM_V2.md`. Retained as a historical record only.
+
 **Current paper type:** exact-synthetic mechanism-isolation + reusable benchmark suite.  
 **Future higher-claim path:** the preregistered real scientific-decision study.
 

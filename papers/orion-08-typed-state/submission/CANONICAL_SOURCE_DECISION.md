@@ -3,6 +3,17 @@
 **Decision.** The canonical manuscript is the LaTeX tree
 `papers/orion-08-typed-state/manuscript/`.
 
+**2026-09-02 TMLR-route pass.** The multiplicity disclosure was completed on the
+route the preserved analysis supports (exact sign tests over win/loss counts,
+Holm--Bonferroni across the twelve-comparison family,
+`analysis/familywise-multiplicity-v1/`), the fixed-heuristic proxy arms were
+relabelled away from model-measurement wording throughout, and the mixed
+real-data held-out results are stated in the abstract and introduction. The
+freeze record for that surface is `PUBLICATION_FREEZE_ADDENDUM_V2.md`. The
+Tier-B package binds this tree by hash through
+`submission/publication-ready-20260831` and
+`submission/tier-b-final-20260901`, regenerated after those edits.
+
 **Scientific authority.** The governing claim ledger is
 `papers/orion-08-typed-state/CLAIM_LEDGER_V4.md`. It supersedes V3 because the
 real-data successor studies executed and because the refinement theorem required

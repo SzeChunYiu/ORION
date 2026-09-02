@@ -2,8 +2,8 @@
 
 - Scoped versus never-reopen intervals cross zero in both registered reopening regimes, so no scoped-versus-never superiority is claimed.
 - The remint-unnecessary transport regime is an exact tie; a positive advantage there would have invalidated the synthetic study.
-- Twelve synthetic mean comparisons are reported without family-wise corrected bootstrap intervals; targeted verification and acquisition against the deterministic proxy are most exposed.
-- Language-model-labelled comparators are deterministic proxies and do not measure language models.
+- Twelve synthetic mean comparisons are reported with per-comparison intervals only: family-wise corrected bootstrap intervals on the mean are non-recomputable from the preserved analysis, and the executed exact sign-test route with Holm-Bonferroni adjustment concerns direction reliability and upgrades no undetermined row.
+- Arms labelled fixed-heuristic proxies are fixed heuristics by construction and are not measurements of any deployed model, including language models.
 - Transport-chain identifiers are construction identifiers, not cryptographic digests; the 200/200 census is not real adversarial-security evidence.
 - No minimal or complete epistemic-state schema and no universal necessity or lower-bound theorem across all mechanism families is established.
 - An ideal value-of-information donor exactly absorbs the allocation-policy residual in the first negative study.
