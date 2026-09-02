@@ -1,0 +1,321 @@
+{
+  "atlas_id": "matched-polarity-necessity-v2",
+  "coordinate_necessity": [
+    {
+      "arm_id": "remove_referent",
+      "contrast": {
+        "applied": true,
+        "arm_id": "remove_referent",
+        "cases": 80,
+        "cases_treated": 80,
+        "decisions_changed": 4,
+        "effect_rate": 0.05,
+        "resolution": 0.0125,
+        "treatment_definition": "both projections' referent_ids emptied",
+        "treatment_rate": 1.0
+      },
+      "detail": "remove_referent changed 4 of 80 treated decisions (both projections' referent_ids emptied)",
+      "outcome": "PASS",
+      "reason": "COORDINATE_LOAD_BEARING"
+    },
+    {
+      "arm_id": "remove_construct",
+      "contrast": {
+        "applied": true,
+        "arm_id": "remove_construct",
+        "cases": 80,
+        "cases_treated": 67,
+        "decisions_changed": 4,
+        "effect_rate": 0.05970149253731343,
+        "resolution": 0.014925373134328358,
+        "treatment_definition": "both projections' construct_ids emptied",
+        "treatment_rate": 0.8375
+      },
+      "detail": "remove_construct changed 4 of 67 treated decisions (both projections' construct_ids emptied)",
+      "outcome": "PASS",
+      "reason": "COORDINATE_LOAD_BEARING"
+    },
+    {
+      "arm_id": "remove_measurement",
+      "contrast": {
+        "applied": true,
+        "arm_id": "remove_measurement",
+        "cases": 80,
+        "cases_treated": 48,
+        "decisions_changed": 4,
+        "effect_rate": 0.08333333333333333,
+        "resolution": 0.020833333333333332,
+        "treatment_definition": "both projections' measurement_ids emptied",
+        "treatment_rate": 0.6
+      },
+      "detail": "remove_measurement changed 4 of 48 treated decisions (both projections' measurement_ids emptied)",
+      "outcome": "PASS",
+      "reason": "COORDINATE_LOAD_BEARING"
+    },
+    {
+      "arm_id": "remove_temporal_context",
+      "contrast": {
+        "applied": true,
+        "arm_id": "remove_temporal_context",
+        "cases": 80,
+        "cases_treated": 48,
+        "decisions_changed": 4,
+        "effect_rate": 0.08333333333333333,
+        "resolution": 0.020833333333333332,
+        "treatment_definition": "both projections' temporal_context_ids emptied",
+        "treatment_rate": 0.6
+      },
+      "detail": "remove_temporal_context changed 4 of 48 treated decisions (both projections' temporal_context_ids emptied)",
+      "outcome": "PASS",
+      "reason": "COORDINATE_LOAD_BEARING"
+    },
+    {
+      "arm_id": "remove_modality_polarity_attribution_discourse",
+      "contrast": {
+        "applied": true,
+        "arm_id": "remove_modality_polarity_attribution_discourse",
+        "cases": 80,
+        "cases_treated": 67,
+        "decisions_changed": 6,
+        "effect_rate": 0.08955223880597014,
+        "resolution": 0.014925373134328358,
+        "treatment_definition": "both projections' modality, polarity, attribution and discourse relation erased",
+        "treatment_rate": 0.8375
+      },
+      "detail": "remove_modality_polarity_attribution_discourse changed 6 of 67 treated decisions (both projections' modality, polarity, attribution and discourse relation erased)",
+      "outcome": "PASS",
+      "reason": "COORDINATE_LOAD_BEARING"
+    },
+    {
+      "arm_id": "force_compatibility_without_obstruction",
+      "contrast": {
+        "applied": true,
+        "arm_id": "force_compatibility_without_obstruction",
+        "cases": 80,
+        "cases_treated": 80,
+        "decisions_changed": 22,
+        "effect_rate": 0.275,
+        "resolution": 0.0125,
+        "treatment_definition": "equal predicates short-circuited to COMPATIBLE, bypassing the obstruction rule",
+        "treatment_rate": 1.0
+      },
+      "detail": "force_compatibility_without_obstruction changed 22 of 80 treated decisions (equal predicates short-circuited to COMPATIBLE, bypassing the obstruction rule)",
+      "outcome": "PASS",
+      "reason": "COORDINATE_LOAD_BEARING"
+    }
+  ],
+  "identity_guards": [
+    {
+      "detail": "orion: 0 violations in 22 opportunities (one pair whose gold relation forbids merging; a pair that is genuinely the same thing offers no opportunity to merge it falsely)",
+      "exercises": [
+        {
+          "arm_id": "orion",
+          "exercised": true,
+          "guard_id": "P3.FALSE_SCIENTIFIC_MERGE",
+          "opportunities": 22,
+          "opportunity_definition": "one pair whose gold relation forbids merging; a pair that is genuinely the same thing offers no opportunity to merge it falsely",
+          "resolution": 0.045454545454545456,
+          "violation_rate": 0.0,
+          "violations": 0
+        }
+      ],
+      "guard_id": "P3.FALSE_SCIENTIFIC_MERGE",
+      "outcome": "PASS",
+      "reason": "HELD_UNDER_EXERCISE"
+    },
+    {
+      "detail": "exact_coordinate_conservative had 0 opportunities to violate P3.FALSE_SCIENTIFIC_SPLIT while orion had 58; there is no comparator rate to be no worse than",
+      "exercises": [
+        {
+          "arm_id": "orion",
+          "exercised": true,
+          "guard_id": "P3.FALSE_SCIENTIFIC_SPLIT",
+          "opportunities": 58,
+          "opportunity_definition": "one pair whose gold relation permits merging, scored by an arm that declines to merge somewhere in the atlas; an arm that never separates cannot separate wrongly, so it has no false-split denominator on any corpus",
+          "resolution": 0.017241379310344827,
+          "violation_rate": 0.0,
+          "violations": 0
+        },
+        {
+          "arm_id": "exact_coordinate_conservative",
+          "exercised": false,
+          "guard_id": "P3.FALSE_SCIENTIFIC_SPLIT",
+          "opportunities": 0,
+          "opportunity_definition": "one pair whose gold relation permits merging, scored by an arm that declines to merge somewhere in the atlas; an arm that never separates cannot separate wrongly, so it has no false-split denominator on any corpus",
+          "resolution": null,
+          "violation_rate": null,
+          "violations": 0
+        }
+      ],
+      "guard_id": "P3.FALSE_SCIENTIFIC_SPLIT",
+      "outcome": "CANNOT_CHECK",
+      "reason": "COMPARATOR_NEVER_EXERCISED"
+    },
+    {
+      "detail": "orion had 0 opportunities to violate P3.OVERRESOLVED_UNRESOLVED_CASE (one pair whose gold relation is UNRESOLVED; an atlas that adjudicates every pair offers no opportunity to over-resolve one); zero violations out of zero opportunities is an absent measurement, not a guard that held",
+      "exercises": [
+        {
+          "arm_id": "orion",
+          "exercised": false,
+          "guard_id": "P3.OVERRESOLVED_UNRESOLVED_CASE",
+          "opportunities": 0,
+          "opportunity_definition": "one pair whose gold relation is UNRESOLVED; an atlas that adjudicates every pair offers no opportunity to over-resolve one",
+          "resolution": null,
+          "violation_rate": null,
+          "violations": 0
+        }
+      ],
+      "guard_id": "P3.OVERRESOLVED_UNRESOLVED_CASE",
+      "outcome": "CANNOT_CHECK",
+      "reason": "NEVER_EXERCISED"
+    }
+  ],
+  "ledger": {
+    "arms": [
+      "exact_coordinate_conservative",
+      "flat_predicate_canonicalization",
+      "orion"
+    ],
+    "atlas_id": "matched-polarity-necessity-v2",
+    "by_arm": {
+      "exact_coordinate_conservative": {
+        "decision_kinds": {
+          "ABSTAINED_AS_GOLD_REQUIRES": 0,
+          "ABSTAINED_ON_MERGEABLE": 0,
+          "ABSTAINED_ON_SEPARABLE": 22,
+          "FALSE_MERGE": 0,
+          "FALSE_SPLIT": 0,
+          "MERGED_CORRECTLY": 58,
+          "MERGED_WHERE_GOLD_UNRESOLVED": 0,
+          "SEPARATED_CORRECTLY": 0,
+          "SEPARATED_WHERE_GOLD_UNRESOLVED": 0
+        },
+        "false_merge_exercise": {
+          "arm_id": "exact_coordinate_conservative",
+          "exercised": true,
+          "guard_id": "P3.FALSE_SCIENTIFIC_MERGE",
+          "opportunities": 22,
+          "opportunity_definition": "one pair whose gold relation forbids merging; a pair that is genuinely the same thing offers no opportunity to merge it falsely",
+          "resolution": 0.045454545454545456,
+          "violation_rate": 0.0,
+          "violations": 0
+        },
+        "false_split_exercise": {
+          "arm_id": "exact_coordinate_conservative",
+          "exercised": false,
+          "guard_id": "P3.FALSE_SCIENTIFIC_SPLIT",
+          "opportunities": 0,
+          "opportunity_definition": "one pair whose gold relation permits merging, scored by an arm that declines to merge somewhere in the atlas; an arm that never separates cannot separate wrongly, so it has no false-split denominator on any corpus",
+          "resolution": null,
+          "violation_rate": null,
+          "violations": 0
+        },
+        "separations_emitted": 0,
+        "unresolved_calibration_exercise": {
+          "arm_id": "exact_coordinate_conservative",
+          "exercised": false,
+          "guard_id": "P3.OVERRESOLVED_UNRESOLVED_CASE",
+          "opportunities": 0,
+          "opportunity_definition": "one pair whose gold relation is UNRESOLVED; an atlas that adjudicates every pair offers no opportunity to over-resolve one",
+          "resolution": null,
+          "violation_rate": null,
+          "violations": 0
+        }
+      },
+      "flat_predicate_canonicalization": {
+        "decision_kinds": {
+          "ABSTAINED_AS_GOLD_REQUIRES": 0,
+          "ABSTAINED_ON_MERGEABLE": 0,
+          "ABSTAINED_ON_SEPARABLE": 0,
+          "FALSE_MERGE": 22,
+          "FALSE_SPLIT": 0,
+          "MERGED_CORRECTLY": 58,
+          "MERGED_WHERE_GOLD_UNRESOLVED": 0,
+          "SEPARATED_CORRECTLY": 0,
+          "SEPARATED_WHERE_GOLD_UNRESOLVED": 0
+        },
+        "false_merge_exercise": {
+          "arm_id": "flat_predicate_canonicalization",
+          "exercised": true,
+          "guard_id": "P3.FALSE_SCIENTIFIC_MERGE",
+          "opportunities": 22,
+          "opportunity_definition": "one pair whose gold relation forbids merging; a pair that is genuinely the same thing offers no opportunity to merge it falsely",
+          "resolution": 0.045454545454545456,
+          "violation_rate": 1.0,
+          "violations": 22
+        },
+        "false_split_exercise": {
+          "arm_id": "flat_predicate_canonicalization",
+          "exercised": false,
+          "guard_id": "P3.FALSE_SCIENTIFIC_SPLIT",
+          "opportunities": 0,
+          "opportunity_definition": "one pair whose gold relation permits merging, scored by an arm that declines to merge somewhere in the atlas; an arm that never separates cannot separate wrongly, so it has no false-split denominator on any corpus",
+          "resolution": null,
+          "violation_rate": null,
+          "violations": 0
+        },
+        "separations_emitted": 0,
+        "unresolved_calibration_exercise": {
+          "arm_id": "flat_predicate_canonicalization",
+          "exercised": false,
+          "guard_id": "P3.OVERRESOLVED_UNRESOLVED_CASE",
+          "opportunities": 0,
+          "opportunity_definition": "one pair whose gold relation is UNRESOLVED; an atlas that adjudicates every pair offers no opportunity to over-resolve one",
+          "resolution": null,
+          "violation_rate": null,
+          "violations": 0
+        }
+      },
+      "orion": {
+        "decision_kinds": {
+          "ABSTAINED_AS_GOLD_REQUIRES": 0,
+          "ABSTAINED_ON_MERGEABLE": 0,
+          "ABSTAINED_ON_SEPARABLE": 0,
+          "FALSE_MERGE": 0,
+          "FALSE_SPLIT": 0,
+          "MERGED_CORRECTLY": 58,
+          "MERGED_WHERE_GOLD_UNRESOLVED": 0,
+          "SEPARATED_CORRECTLY": 22,
+          "SEPARATED_WHERE_GOLD_UNRESOLVED": 0
+        },
+        "false_merge_exercise": {
+          "arm_id": "orion",
+          "exercised": true,
+          "guard_id": "P3.FALSE_SCIENTIFIC_MERGE",
+          "opportunities": 22,
+          "opportunity_definition": "one pair whose gold relation forbids merging; a pair that is genuinely the same thing offers no opportunity to merge it falsely",
+          "resolution": 0.045454545454545456,
+          "violation_rate": 0.0,
+          "violations": 0
+        },
+        "false_split_exercise": {
+          "arm_id": "orion",
+          "exercised": true,
+          "guard_id": "P3.FALSE_SCIENTIFIC_SPLIT",
+          "opportunities": 58,
+          "opportunity_definition": "one pair whose gold relation permits merging, scored by an arm that declines to merge somewhere in the atlas; an arm that never separates cannot separate wrongly, so it has no false-split denominator on any corpus",
+          "resolution": 0.017241379310344827,
+          "violation_rate": 0.0,
+          "violations": 0
+        },
+        "separations_emitted": 22,
+        "unresolved_calibration_exercise": {
+          "arm_id": "orion",
+          "exercised": false,
+          "guard_id": "P3.OVERRESOLVED_UNRESOLVED_CASE",
+          "opportunities": 0,
+          "opportunity_definition": "one pair whose gold relation is UNRESOLVED; an atlas that adjudicates every pair offers no opportunity to over-resolve one",
+          "resolution": null,
+          "violation_rate": null,
+          "violations": 0
+        }
+      }
+    },
+    "n_cases": 80,
+    "n_receipts": 240,
+    "schema_version": "orion.p3.identity-opportunity.v1"
+  },
+  "n_cases": 80,
+  "overall_outcome": "CANNOT_CHECK",
+  "schema_version": "orion.p3.public-reference-audit.v1"
+}

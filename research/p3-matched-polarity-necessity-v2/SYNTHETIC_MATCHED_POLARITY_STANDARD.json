@@ -1,0 +1,117 @@
+{
+  "construct_registry": [
+    "scifact:claim:30",
+    "scifact:claim:32",
+    "scifact:claim:34",
+    "scifact:claim:39",
+    "scifact:claim:40",
+    "scischema:https://scischema.org/schemas/materials/metal-organic-cage-synthesis/1.0.0/master-schema.json",
+    "scischema:https://scischema.org/schemas/materials/solvent-casting/1.0.0/master-schema.json",
+    "scischema:https://scischema.org/schemas/materials/steam-reforming/1.0.0/master-schema.json",
+    "scischema:https://scischema.org/schemas/physics/neutrino-event-reconstruction/1.0.0/master-schema.json",
+    "scischema:https://scischema.org/schemas/psychology/stroop-task/1.0.0/master-schema.json",
+    "scischema:https://scischema.org/schemas/psychology/ttct/1.0.0/master-schema.json"
+  ],
+  "derivation_rule": "identity:frozen-registry-distinctness",
+  "derivation_rule_statement": "Two projections that agree on every exposed coordinate are COMPATIBLE. Two that agree on construct, measurement and temporal context and name distinct registry referents of this table are DISTINCT_REFERENT. Two that agree on referent, measurement and temporal context and name distinct registry constructs of this table are DISTINCT_CONSTRUCT.",
+  "disciplines": [
+    "biology",
+    "chemistry",
+    "materials",
+    "physics"
+  ],
+  "external_validity": "The added cases are synthetic: gold follows from this standard table by the rule identity:frozen-registry-distinctness, not from an upstream expert corpus. This atlas can establish that a coordinate is load-bearing in the comparison rule; it cannot establish that such pairs are frequent in public scientific corpora.",
+  "measurement_dimensions": [
+    {
+      "dimension": "angle",
+      "representative_unit": "deg"
+    },
+    {
+      "dimension": "concentration",
+      "representative_unit": "M"
+    },
+    {
+      "dimension": "energy",
+      "representative_unit": "GeV"
+    },
+    {
+      "dimension": "frequency",
+      "representative_unit": "GHz"
+    },
+    {
+      "dimension": "length",
+      "representative_unit": "cm"
+    },
+    {
+      "dimension": "mass",
+      "representative_unit": "g"
+    },
+    {
+      "dimension": "photoelectron_count",
+      "representative_unit": "PE"
+    },
+    {
+      "dimension": "pressure",
+      "representative_unit": "MPa"
+    },
+    {
+      "dimension": "temperature",
+      "representative_unit": "K"
+    },
+    {
+      "dimension": "time",
+      "representative_unit": "ms"
+    },
+    {
+      "dimension": "volume",
+      "representative_unit": "L"
+    }
+  ],
+  "modality_both_sides": "ASSERTED",
+  "not_an_accuracy_benchmark": "The added cases are an ablation denominator, not an accuracy benchmark. No accuracy, false-merge or superiority number over this atlas is evidence about ORION's competence on the added cases.",
+  "observation_epochs": [
+    "1996-01-01/1999-12-31",
+    "2000-01-01/2003-12-31",
+    "2004-01-01/2007-12-31",
+    "2008-01-01/2011-12-31",
+    "2012-01-01/2015-12-31",
+    "2016-01-01/2019-12-31",
+    "2020-01-01/2023-12-31",
+    "2024-01-01/2027-12-31"
+  ],
+  "polarity_both_sides": "POSITIVE",
+  "protocol_id": "P3.matched-polarity-necessity-extension.v2",
+  "referent_registry": [
+    "muse:240507114635088FIIGCD:coref:R2",
+    "muse:240507114635299DHAGEC:coref:R1",
+    "muse:240507114635505FDBAHE:coref:R2",
+    "muse:240507114635919EIBCCH:coref:R1",
+    "muse:240507114636127IIIGFG:coref:R1",
+    "muse:240507114637168ADBGCF:coref:R1",
+    "muse:240507114637377AACADH:coref:R1",
+    "muse:240507114638209BFBGBC:coref:R1",
+    "muse:240507114638415IFFAHC:coref:R1",
+    "muse:240507114638629IBDCIF:coref:R1",
+    "muse:240512163939103HAHIGC:coref:R2",
+    "muse:240512163939933IFFGED:coref:R3",
+    "muse:240512163939933IFFGED:coref:R5",
+    "scifact:claim:30",
+    "scifact:claim:32",
+    "scifact:claim:34",
+    "scifact:claim:39",
+    "scifact:claim:40",
+    "scischema:https://scischema.org/schemas/materials/metal-organic-cage-synthesis/1.0.0/master-schema.json",
+    "scischema:https://scischema.org/schemas/materials/solvent-casting/1.0.0/master-schema.json",
+    "scischema:https://scischema.org/schemas/materials/steam-reforming/1.0.0/master-schema.json",
+    "scischema:https://scischema.org/schemas/physics/neutrino-event-reconstruction/1.0.0/master-schema.json",
+    "scischema:https://scischema.org/schemas/psychology/stroop-task/1.0.0/master-schema.json",
+    "scischema:https://scischema.org/schemas/psychology/ttct/1.0.0/master-schema.json"
+  ],
+  "registry_source": {
+    "note": "distinct referent_ids/construct_ids values attested in the 32 non-synthetic rows of the frozen v1 parent atlas, sorted",
+    "path": "research/p3-coordinate-necessity-v1/cases.jsonl",
+    "rows": 32,
+    "sha256": "271ef70de685ab49a74b322dc6382f488e5f2cd9b1f82a946cf79e838ebb695c"
+  },
+  "schema_version": "orion.p3.synthetic-matched-polarity-standard.v1"
+}
