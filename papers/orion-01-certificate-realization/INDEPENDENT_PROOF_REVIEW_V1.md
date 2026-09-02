@@ -1,5 +1,34 @@
 # ORION-01 — Independent adversarial proof review V1
 
+> **V4 status header — added 2026-09-02 (additive; the audit body below is unchanged).**
+>
+> This review targeted the **V2-era theory manuscripts** (`theory-A-MANUSCRIPT_V2.md`,
+> `theory-B-MANUSCRIPT_V2.md`). The canonical ORION-01 surfaces are now
+> `MANUSCRIPT_V4.md` and `CLAIM_LEDGER_V4.md`. Each finding's status in V4 was
+> verified against those two files on 2026-09-02 as follows; nothing here promotes
+> any claim (`scientific_authority_delta: NONE` unchanged).
+>
+> | Finding | Status in V4 | Verified basis in `MANUSCRIPT_V4.md` / `CLAIM_LEDGER_V4.md` |
+> |---|---|---|
+> | A-F1 | Closed in V4 | §3 and §5 fix the term: "A subsequence selects an arbitrary set of positions and need not be contiguous", used consistently thereafter. |
+> | A-F2 | Closed in V4 | Theorem 2 proof is a global descent (Assumption 4, strict total-support decrease, termination) delivering the existential-optimum/universal-generator form; the post-theorem remark names the quantifier. |
+> | A-F3 | Closed in V4 | Assumption 2 is stated whole-instance: deletion "preserves every constraint of the full instance, not only constraints local to R". |
+> | A-F4 | Closed in V4 | §6.2 states the one-occurrence incidence ("this is the only Restore term containing the letter...; replaces exactly the l-th argument of this one term"); §7 adds the telescoping additivity step; §12 summarizes the verifier coverage. |
+> | A-F5 | Closed in V4 | §4 fixes `A_R` as "the set of signatures realizable by any admissible local state of that instance, fixed before optimization"; §6 adds "not from a selected optimum". |
+> | A-F6 | Closed in V4 | §6 derives the nonzero total from the global-symplectic-product-as-sum-of-local-products identity. |
+> | A-F7 | Closed in V4 | The named `Z_n`/`{1}` counterexample appears immediately after Theorem 3, restricting the identity to the elementary binary setting. |
+> | A-F8 | Closed in V4 | §3 defines `zsf` with the explicit `{0}` union: "The explicit zero handles degenerate alphabets." |
+> | A-F9 | Closed in V4 | §7 names the hypothesis ("the identity and at least two distinct nonidentity letters") in the definition of `F_b`; ledger row O1-V4-C4 repeats it as a boundary. |
+> | B-F1 | Closed in V4 | Definition 1 has no epistemic clause: "An upper theorem and a lower witness establish its exact value; they are not part of the definition." |
+> | B-F2 | Closed in V4 | §5 argues the deleted set cannot be the whole word (nonzero total preserved) and states "A word is terminal precisely when it is zero-sum-free." |
+> | B-F3 | Closed in V4 | §8 and §9 name the frozen unit objectives `C_M` and `C_I`; §9: "Every comparison below keeps the relevant objective and support statistic fixed." |
+> | B-F4 | Closed 2026-09-02 | The V2 abstract phrase "arbitrarily loose" is absent from all V4 surfaces; the V4 abstract was further narrowed on 2026-09-02 to name the one-rule scope and the true-by-construction status of the budget's exactness. See `PUBLICATION_FREEZE_ADDENDUM_V2.md` for the recorded old/new wording. |
+> | B-F5 | Closed in V4 | Proposition 10 composes the lower bound via the union of disjoint bases as a terminal zero-sum-free word; §10 labels the product "a definitional amplification... not an independent compiler phenomenon"; ledger O1-V4-C11 states the defining assumptions. |
+> | B-F6 | Closed in V4 | §10.1 separates the `n -> infinity` (fixed `t`) and `t`-growth limits explicitly. |
+> | B-F7 | Closed in V4 | §5 renames the quantity "certifiable support budget" with the collision-avoidance sentence; §11 disclaims propositional proof complexity. |
+>
+> CLEAN items C1-C10 were attacks, not defects, and need no closure.
+
 **Schema:** `ORION.PaperClosure.IndependentProofReview.v1`
 **Date:** 2026-08-28
 **Subjects:** `theory-A-MANUSCRIPT_V2.md` (sha256 `596217cf…`), `theory-B-MANUSCRIPT_V2.md` (sha256 `66654d73…`)
