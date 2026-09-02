@@ -1,0 +1,65 @@
+name: ORION A2 P12 harness and policy freeze v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a2-p12-harness-policy-freeze-v1.yml"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/P12_HARNESS_AND_POLICY_FREEZE_V1.json"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/P12_HARNESS_AND_POLICY_FREEZE_V1.md"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/campaign_derivation_v1.py"
+permissions:
+  contents: read
+jobs:
+  harness-policy-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Derivation pipeline + hostile self-tests (no model call, no substrate)
+        run: |
+          python papers/orion-22-adaptive-state-reasoning/top_tier/campaign_derivation_v1.py --self-test
+      - name: Freeze flags must all be false
+        run: |
+          python - <<'PY'
+          import json
+          d = json.load(open('papers/orion-22-adaptive-state-reasoning/top_tier/P12_HARNESS_AND_POLICY_FREEZE_V1.json'))
+          assert all(v is False for v in d['flags'].values()), d['flags']
+          assert d['scientific_authority_delta'] == 'NONE__PRE_OUTCOME_PROTOCOL_ONLY'
+          gold = set(d['gold_isolation']['runner_forbidden_parquet_fields'])
+          readable = set(d['gold_isolation']['runner_readable_parquet_fields'])
+          assert not (gold & readable)
+          print('P12_HARNESS_FREEZE_FLAGS_GREEN')
+          PY
+      - name: Real-substrate signal validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check pyarrow==17.0.0
+          url='https://huggingface.co/datasets/osunlp/ScienceAgentBench/resolve/5c930ba210e4e481a08cc93bdcc11ff1620b3646/data/verified-00000-of-00001.parquet'
+          curl --fail --location --retry 3 --retry-all-errors --output /tmp/sab.parquet "$url"
+          printf '%s  %s\n' 'c6f937863a220bd1762a00c20a0f79cc8dfca900b819bdb552150310731ae147' /tmp/sab.parquet | sha256sum --check --strict
+          python - <<'PY'
+          import json, sys
+          sys.path.insert(0, 'papers/orion-22-adaptive-state-reasoning/top_tier')
+          import pyarrow.parquet as pq
+          from campaign_derivation_v1 import family_signals, readable_row, GoldIsolationError
+          prereg = json.load(open('papers/orion-22-adaptive-state-reasoning/top_tier/P12_CAMPAIGN_PREREG_V1.json'))
+          rows = pq.read_table('/tmp/sab.parquet').to_pylist()
+          clean = [readable_row(r) for r in rows if r['instance_id'] not in {3,32,46,53,54,84}]
+          sigs = {f['family_id']: family_signals(f, clean) for f in prereg['families']}
+          assert len(sigs) == 28
+          assert all(s['S_DECLARED_SERVE_EXCHANGE_RATE'] == 1.0 for s in sigs.values())
+          g = clean[0]['__guard__']
+          try:
+              g('gold_program_name'); raise SystemExit('gold guard failed')
+          except GoldIsolationError:
+              pass
+          print('P12_REAL_SUBSTRATE_SIGNALS_GREEN', len(sigs))
+          PY
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
