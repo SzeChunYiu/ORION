@@ -1,0 +1,806 @@
+{
+  "environment": {
+    "node": "BillydeMac-mini.local",
+    "numpy": "2.4.4",
+    "python": "3.13.12"
+  },
+  "gates": {
+    "G1_confident_set": {
+      "pass": false,
+      "violations": [
+        "openml-6332"
+      ]
+    },
+    "G2_calibration": {
+      "inside": 8,
+      "n": 16,
+      "p_value": 0.007,
+      "pass": false
+    },
+    "G4_zero_stratum": {
+      "pass": true,
+      "violations": []
+    },
+    "R2_arm_reproduction": {
+      "max_abs_diff": 0.0,
+      "n_compared": 15,
+      "status": "OK"
+    },
+    "R2_mc_closed_form": {
+      "pass": true,
+      "violations": []
+    },
+    "sensitivity_jeffreys": {
+      "pass": true,
+      "sign_breaks": []
+    }
+  },
+  "mc": {
+    "chunk": 2000,
+    "draws": 10000,
+    "seed": 20260902
+  },
+  "phase_D": {
+    "status": "D4J_SKIPPED_DATA_UNAVAILABLE"
+  },
+  "rows": [
+    {
+      "closed_form_mean_delta": 0.01150002278423331,
+      "confident": false,
+      "confident_sign": 1,
+      "d": 7,
+      "data_id": 31,
+      "dhat_v1_parent_posterior": 0.01150002278423331,
+      "jeffreys": {
+        "ci80": [
+          -0.008,
+          0.034
+        ],
+        "mc_se_mean": 0.00016233715766661658,
+        "mean_delta": 0.0128476,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.1956,
+        "p_typed_beats_infogain": 0.7674,
+        "std_delta": 0.016233715766661657
+      },
+      "mc_vs_closed_form_diff": 0.0003964227842333107,
+      "n": 1000,
+      "n_R_fibres": 65,
+      "name": "credit-g",
+      "observed": {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.0,
+          "refined_typed": -0.01
+        },
+        "oracle_utility": 0.3,
+        "typed_delta": -0.01,
+        "typed_sign": -1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          -0.01,
+          0.032
+        ],
+        "mc_se_mean": 0.00016121093511471253,
+        "mean_delta": 0.0111036,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.2257,
+        "p_typed_beats_infogain": 0.7341,
+        "std_delta": 0.016121093511471254
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.010937499999999998,
+      "confident": false,
+      "confident_sign": 1,
+      "d": 8,
+      "data_id": 37,
+      "dhat_v1_parent_posterior": -0.0666935322151998,
+      "jeffreys": {
+        "ci80": [
+          -0.015625,
+          0.044270833333333315
+        ],
+        "mc_se_mean": 0.0002293150709451109,
+        "mean_delta": 0.014335677083333335,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.2448,
+        "p_typed_beats_infogain": 0.7163,
+        "std_delta": 0.02293150709451109
+      },
+      "mc_vs_closed_form_diff": 0.00014947916666666408,
+      "n": 768,
+      "n_R_fibres": 77,
+      "name": "diabetes",
+      "observed": {
+        "arms": {
+          "coarse": 0.3802083333333333,
+          "infogain_refine": 0.3802083333333333,
+          "refined_typed": 0.3307291666666667
+        },
+        "oracle_utility": 0.6510416666666666,
+        "typed_delta": -0.04947916666666663,
+        "typed_sign": -1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          -0.01822916666666663,
+          0.0390625
+        ],
+        "mc_se_mean": 0.00022294434094219612,
+        "mean_delta": 0.010788020833333333,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.2876,
+        "p_typed_beats_infogain": 0.6696,
+        "std_delta": 0.022294434094219613
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.09438295872041316,
+      "confident": true,
+      "confident_sign": 1,
+      "d": 57,
+      "data_id": 44,
+      "dhat_v1_parent_posterior": 0.09456517190388386,
+      "jeffreys": {
+        "ci80": [
+          0.0743478260869565,
+          0.11434782608695651
+        ],
+        "mc_se_mean": 0.00015545138890619208,
+        "mean_delta": 0.094523,
+        "mean_delta_infogain": 0.17174178260869563,
+        "p_delta_neg": 0.0,
+        "p_typed_beats_infogain": 0.0,
+        "std_delta": 0.015545138890619209
+      },
+      "mc_vs_closed_form_diff": 0.0001790021986740331,
+      "n": 4601,
+      "n_R_fibres": 4,
+      "name": "spambase",
+      "observed": {
+        "arms": {
+          "coarse": 0.21164710995219468,
+          "infogain_refine": 0.39765319426336376,
+          "refined_typed": 0.29595827900912647
+        },
+        "oracle_utility": 0.6058235549760973,
+        "typed_delta": 0.08431116905693178,
+        "typed_sign": 1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          0.07434782608695653,
+          0.11391304347826087
+        ],
+        "mc_se_mean": 0.0001528227627856179,
+        "mean_delta": 0.09420395652173913,
+        "mean_delta_infogain": 0.1714471304347826,
+        "p_delta_neg": 0.0,
+        "p_typed_beats_infogain": 0.0,
+        "std_delta": 0.015282276278561789
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.0,
+      "confident": false,
+      "confident_sign": 0,
+      "d": 41,
+      "data_id": 1494,
+      "dhat_v1_parent_posterior": 0.0,
+      "jeffreys": {
+        "ci80": [
+          0.0,
+          0.0
+        ],
+        "mc_se_mean": 0.0,
+        "mean_delta": 0.0,
+        "mean_delta_infogain": 0.06638823529411765,
+        "p_delta_neg": 0.0,
+        "p_typed_beats_infogain": 0.0014,
+        "std_delta": 0.0
+      },
+      "mc_vs_closed_form_diff": 0.0,
+      "n": 1055,
+      "n_R_fibres": 27,
+      "name": "qsar-biodeg",
+      "observed": {
+        "arms": {
+          "coarse": 0.4147727272727273,
+          "infogain_refine": 0.4602272727272727,
+          "refined_typed": 0.4147727272727273
+        },
+        "oracle_utility": 0.6628787878787878,
+        "typed_delta": 0.0,
+        "typed_sign": 0
+      },
+      "predicted_zero_v1": true,
+      "uniform": {
+        "ci80": [
+          0.0,
+          0.0
+        ],
+        "mc_se_mean": 0.0,
+        "mean_delta": 0.0,
+        "mean_delta_infogain": 0.06024876660341556,
+        "p_delta_neg": 0.0,
+        "p_typed_beats_infogain": 0.0031,
+        "std_delta": 0.0
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.005889208490378892,
+      "confident": false,
+      "confident_sign": 1,
+      "d": 30,
+      "data_id": 1510,
+      "dhat_v1_parent_posterior": -0.005582657715533623,
+      "jeffreys": {
+        "ci80": [
+          -0.014084507042253558,
+          0.02816901408450706
+        ],
+        "mc_se_mean": 0.00017471202539095013,
+        "mean_delta": 0.006885211267605633,
+        "mean_delta_infogain": 0.017788380281690143,
+        "p_delta_neg": 0.3104,
+        "p_typed_beats_infogain": 0.2991,
+        "std_delta": 0.017471202539095013
+      },
+      "mc_vs_closed_form_diff": 0.0001794534814520939,
+      "n": 569,
+      "n_R_fibres": 28,
+      "name": "wdbc",
+      "observed": {
+        "arms": {
+          "coarse": 0.47368421052631576,
+          "infogain_refine": 0.5403508771929825,
+          "refined_typed": 0.43157894736842106
+        },
+        "oracle_utility": 0.6280701754385964,
+        "typed_delta": -0.0421052631578947,
+        "typed_sign": -1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          -0.017605633802816878,
+          0.02816901408450706
+        ],
+        "mc_se_mean": 0.00017046323948319408,
+        "mean_delta": 0.006068661971830986,
+        "mean_delta_infogain": 0.016689084507042252,
+        "p_delta_neg": 0.32,
+        "p_typed_beats_infogain": 0.2981,
+        "std_delta": 0.017046323948319408
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.039943132784761734,
+      "confident": false,
+      "confident_sign": 1,
+      "d": 500,
+      "data_id": 1485,
+      "dhat_v1_parent_posterior": 0.0485018489570823,
+      "jeffreys": {
+        "ci80": [
+          0.018461538461538467,
+          0.07461538461538461
+        ],
+        "mc_se_mean": 0.00021696400574761242,
+        "mean_delta": 0.0469743076923077,
+        "mean_delta_infogain": 0.035899692307692306,
+        "p_delta_neg": 0.0171,
+        "p_typed_beats_infogain": 0.6774,
+        "std_delta": 0.021696400574761243
+      },
+      "mc_vs_closed_form_diff": 0.0004320558616848144,
+      "n": 2600,
+      "n_R_fibres": 239,
+      "name": "openml-1485",
+      "observed": {
+        "arms": {
+          "coarse": -0.013846153846153847,
+          "infogain_refine": -0.011538461538461539,
+          "refined_typed": -0.01769230769230769
+        },
+        "oracle_utility": 0.5,
+        "typed_delta": -0.0038461538461538446,
+        "typed_sign": -1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          0.011538461538461539,
+          0.06692307692307692
+        ],
+        "mc_se_mean": 0.0002156857005439261,
+        "mean_delta": 0.03951107692307692,
+        "mean_delta_infogain": 0.030362076923076922,
+        "p_delta_neg": 0.0333,
+        "p_typed_beats_infogain": 0.6487,
+        "std_delta": 0.02156857005439261
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.0025957798206252287,
+      "confident": false,
+      "confident_sign": 1,
+      "d": 89,
+      "data_id": 1486,
+      "dhat_v1_parent_posterior": 0.002694758669895797,
+      "jeffreys": {
+        "ci80": [
+          0.0005222841225626662,
+          0.004816620241411329
+        ],
+        "mc_se_mean": 1.6772697053532372e-05,
+        "mean_delta": 0.0026550023212627673,
+        "mean_delta_infogain": 0.001629155060352832,
+        "p_delta_neg": 0.0557,
+        "p_typed_beats_infogain": 0.8881,
+        "std_delta": 0.001677269705353237
+      },
+      "mc_vs_closed_form_diff": 7.127560990370478e-06,
+      "n": 34465,
+      "n_R_fibres": 25,
+      "name": "openml-1486",
+      "observed": {
+        "arms": {
+          "coarse": 0.1406023327337086,
+          "infogain_refine": 0.14234317878488945,
+          "refined_typed": 0.14420008123948239
+        },
+        "oracle_utility": 0.2856148087970754,
+        "typed_delta": 0.0035977485057737957,
+        "typed_sign": 1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          0.00045844939647167156,
+          0.00475858867223769
+        ],
+        "mc_se_mean": 1.677319885262574e-05,
+        "mean_delta": 0.002602907381615599,
+        "mean_delta_infogain": 0.001573479572887651,
+        "p_delta_neg": 0.0581,
+        "p_typed_beats_infogain": 0.891,
+        "std_delta": 0.001677319885262574
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.0,
+      "confident": false,
+      "confident_sign": 0,
+      "d": 72,
+      "data_id": 1487,
+      "dhat_v1_parent_posterior": 0.0,
+      "jeffreys": {
+        "ci80": [
+          0.0,
+          0.0
+        ],
+        "mc_se_mean": 0.0,
+        "mean_delta": 0.0,
+        "mean_delta_infogain": 0.0003998421468034728,
+        "p_delta_neg": 0.0,
+        "p_typed_beats_infogain": 0.126,
+        "std_delta": 0.0
+      },
+      "mc_vs_closed_form_diff": 0.0,
+      "n": 2534,
+      "n_R_fibres": 139,
+      "name": "openml-1487",
+      "observed": {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": -0.0015785319652722968,
+          "refined_typed": 0.0
+        },
+        "oracle_utility": 0.06314127861089187,
+        "typed_delta": 0.0,
+        "typed_sign": 0
+      },
+      "predicted_zero_v1": true,
+      "uniform": {
+        "ci80": [
+          0.0,
+          0.0
+        ],
+        "mc_se_mean": 0.0,
+        "mean_delta": 0.0,
+        "mean_delta_infogain": 0.00027205998421468036,
+        "p_delta_neg": 0.0,
+        "p_typed_beats_infogain": 0.1757,
+        "std_delta": 0.0
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.06671104360651942,
+      "confident": true,
+      "confident_sign": 1,
+      "d": 5,
+      "data_id": 1489,
+      "dhat_v1_parent_posterior": 0.06744412331747535,
+      "jeffreys": {
+        "ci80": [
+          0.055144337527757215,
+          0.08549222797927461
+        ],
+        "mc_se_mean": 0.00011862084265814747,
+        "mean_delta": 0.07032864544781643,
+        "mean_delta_infogain": 0.0379919689119171,
+        "p_delta_neg": 0.0,
+        "p_typed_beats_infogain": 1.0,
+        "std_delta": 0.011862084265814747
+      },
+      "mc_vs_closed_form_diff": 0.00011193936905423696,
+      "n": 5404,
+      "n_R_fibres": 78,
+      "name": "openml-1489",
+      "observed": {
+        "arms": {
+          "coarse": 0.035899333826794964,
+          "infogain_refine": 0.0688378978534419,
+          "refined_typed": 0.09585492227979274
+        },
+        "oracle_utility": 0.2934863064396743,
+        "typed_delta": 0.059955588452997775,
+        "typed_sign": 1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          0.05181347150259068,
+          0.08179126572908957
+        ],
+        "mc_se_mean": 0.00011765722588729601,
+        "mean_delta": 0.06682298297557365,
+        "mean_delta_infogain": 0.036725943745373794,
+        "p_delta_neg": 0.0,
+        "p_typed_beats_infogain": 0.9999,
+        "std_delta": 0.0117657225887296
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.00306642059994531,
+      "confident": false,
+      "confident_sign": 1,
+      "d": 6,
+      "data_id": 1590,
+      "dhat_v1_parent_posterior": 0.00306642059994531,
+      "jeffreys": {
+        "ci80": [
+          0.00032758691290282955,
+          0.00565087424757381
+        ],
+        "mc_se_mean": 2.086561383687104e-05,
+        "mean_delta": 0.003019053273821711,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.0749,
+        "p_typed_beats_infogain": 0.9217,
+        "std_delta": 0.002086561383687104
+      },
+      "mc_vs_closed_form_diff": 2.4948096771811815e-05,
+      "n": 48842,
+      "n_R_fibres": 27,
+      "name": "openml-1590",
+      "observed": {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.0,
+          "refined_typed": -0.0007780189181442202
+        },
+        "oracle_utility": 0.23926129151140413,
+        "typed_delta": -0.0007780189181442202,
+        "typed_sign": -1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          0.0004094836411285369,
+          0.005691822611686663
+        ],
+        "mc_se_mean": 2.078886332231676e-05,
+        "mean_delta": 0.003041472503173498,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.0708,
+        "p_typed_beats_infogain": 0.9262,
+        "std_delta": 0.002078886332231676
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.02437129408755307,
+      "confident": false,
+      "confident_sign": 1,
+      "d": 1776,
+      "data_id": 4134,
+      "dhat_v1_parent_posterior": 0.024680686808854158,
+      "jeffreys": {
+        "ci80": [
+          0.004266666666666669,
+          0.0448
+        ],
+        "mc_se_mean": 0.0001578053022085072,
+        "mean_delta": 0.0247568,
+        "mean_delta_infogain": 0.15141109333333333,
+        "p_delta_neg": 0.0587,
+        "p_typed_beats_infogain": 0.0,
+        "std_delta": 0.01578053022085072
+      },
+      "mc_vs_closed_form_diff": 0.00013243924578026575,
+      "n": 3751,
+      "n_R_fibres": 34,
+      "name": "openml-4134",
+      "observed": {
+        "arms": {
+          "coarse": 0.02771855010660981,
+          "infogain_refine": 0.1988272921108742,
+          "refined_typed": 0.030383795309168442
+        },
+        "oracle_utility": 0.4578891257995736,
+        "typed_delta": 0.002665245202558633,
+        "typed_sign": 1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          0.004266666666666669,
+          0.0448
+        ],
+        "mc_se_mean": 0.00015751781716944954,
+        "mean_delta": 0.024503733333333336,
+        "mean_delta_infogain": 0.14907482666666666,
+        "p_delta_neg": 0.0581,
+        "p_typed_beats_infogain": 0.0,
+        "std_delta": 0.015751781716944954
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.07647266313932981,
+      "confident": true,
+      "confident_sign": 1,
+      "d": 18,
+      "data_id": 6332,
+      "dhat_v1_parent_posterior": 0.04517805150655388,
+      "jeffreys": {
+        "ci80": [
+          0.05185185185185184,
+          0.14074074074074075
+        ],
+        "mc_se_mean": 0.0003511714476189476,
+        "mean_delta": 0.09629666666666667,
+        "mean_delta_infogain": 0.045963333333333335,
+        "p_delta_neg": 0.0029,
+        "p_typed_beats_infogain": 0.872,
+        "std_delta": 0.03511714476189476
+      },
+      "mc_vs_closed_form_diff": 0.00034511463844796864,
+      "n": 540,
+      "n_R_fibres": 128,
+      "name": "openml-6332",
+      "observed": {
+        "arms": {
+          "coarse": 0.14444444444444443,
+          "infogain_refine": 0.13703703703703704,
+          "refined_typed": 0.08888888888888889
+        },
+        "oracle_utility": 0.5777777777777777,
+        "typed_delta": -0.05555555555555554,
+        "typed_sign": -1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          0.029629629629629645,
+          0.12222222222222222
+        ],
+        "mc_se_mean": 0.00035159567130519655,
+        "mean_delta": 0.07681777777777778,
+        "mean_delta_infogain": 0.03885851851851852,
+        "p_delta_neg": 0.0126,
+        "p_typed_beats_infogain": 0.8064,
+        "std_delta": 0.03515956713051965
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.008163351178075564,
+      "confident": true,
+      "confident_sign": 1,
+      "d": 21,
+      "data_id": 23517,
+      "dhat_v1_parent_posterior": 0.008178872684015414,
+      "jeffreys": {
+        "ci80": [
+          0.004173588039867112,
+          0.012147009966777408
+        ],
+        "mc_se_mean": 3.0891352570178605e-05,
+        "mean_delta": 0.008200897009966778,
+        "mean_delta_infogain": 0.0019221262458471763,
+        "p_delta_neg": 0.0035,
+        "p_typed_beats_infogain": 0.9642,
+        "std_delta": 0.003089135257017861
+      },
+      "mc_vs_closed_form_diff": 5.432044515798692e-06,
+      "n": 96320,
+      "n_R_fibres": 243,
+      "name": "openml-23517",
+      "observed": {
+        "arms": {
+          "coarse": 0.012645348837209303,
+          "infogain_refine": 0.011316445182724252,
+          "refined_typed": 0.015614617940199336
+        },
+        "oracle_utility": 0.5051702657807309,
+        "typed_delta": 0.0029692691029900332,
+        "typed_sign": 1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          0.004194352159468437,
+          0.012147009966777408
+        ],
+        "mc_se_mean": 3.091037056496108e-05,
+        "mean_delta": 0.008168783222591363,
+        "mean_delta_infogain": 0.0018873442691029901,
+        "p_delta_neg": 0.0044,
+        "p_typed_beats_infogain": 0.9653,
+        "std_delta": 0.003091037056496108
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.0,
+      "confident": false,
+      "confident_sign": 0,
+      "d": 16,
+      "data_id": 40701,
+      "dhat_v1_parent_posterior": 0.0,
+      "jeffreys": {
+        "ci80": [
+          0.0,
+          0.0
+        ],
+        "mc_se_mean": 0.0,
+        "mean_delta": 0.0,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.0,
+        "p_typed_beats_infogain": 0.0,
+        "std_delta": 0.0
+      },
+      "mc_vs_closed_form_diff": 0.0,
+      "n": 5000,
+      "n_R_fibres": 81,
+      "name": "openml-40701",
+      "observed": {
+        "arms": {
+          "coarse": 0.0,
+          "infogain_refine": 0.0,
+          "refined_typed": 0.0
+        },
+        "oracle_utility": 0.1412,
+        "typed_delta": 0.0,
+        "typed_sign": 0
+      },
+      "predicted_zero_v1": true,
+      "uniform": {
+        "ci80": [
+          0.0,
+          0.0
+        ],
+        "mc_se_mean": 0.0,
+        "mean_delta": 0.0,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.0,
+        "p_typed_beats_infogain": 0.0,
+        "std_delta": 0.0
+      }
+    },
+    {
+      "data_id": 40927,
+      "error": "md5 checksum of local file for https://openml.org/data/v1/download/16797613/CIFAR_10.arff does not match description: expected: 556e01684912de400da7557c57155b97"
+    },
+    {
+      "closed_form_mean_delta": 0.014610655662163114,
+      "confident": true,
+      "confident_sign": 1,
+      "d": 5,
+      "data_id": 40983,
+      "dhat_v1_parent_posterior": -0.009434402230468542,
+      "jeffreys": {
+        "ci80": [
+          0.010748243075651143,
+          0.021909880115750235
+        ],
+        "mc_se_mean": 4.2606640861835426e-05,
+        "mean_delta": 0.016259735427862753,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.0001,
+        "p_typed_beats_infogain": 0.9999,
+        "std_delta": 0.004260664086183543
+      },
+      "mc_vs_closed_form_diff": 5.0030571817868616e-05,
+      "n": 4839,
+      "n_R_fibres": 65,
+      "name": "openml-40983",
+      "observed": {
+        "arms": {
+          "coarse": 0.8917355371900827,
+          "infogain_refine": 0.8917355371900827,
+          "refined_typed": 0.9099173553719008
+        },
+        "oracle_utility": 0.9458677685950413,
+        "typed_delta": 0.018181818181818077,
+        "typed_sign": 1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          0.009094667217858676,
+          0.02025630425795788
+        ],
+        "mc_se_mean": 4.2978168443879315e-05,
+        "mean_delta": 0.014660686233980983,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.0002,
+        "p_typed_beats_infogain": 0.9996,
+        "std_delta": 0.004297816844387931
+      }
+    },
+    {
+      "closed_form_mean_delta": 0.008571428571428572,
+      "confident": false,
+      "confident_sign": 1,
+      "d": 18,
+      "data_id": 40994,
+      "dhat_v1_parent_posterior": -0.23018216110070566,
+      "jeffreys": {
+        "ci80": [
+          -0.01851851851851849,
+          0.040740740740740744
+        ],
+        "mc_se_mean": 0.0002349361271639745,
+        "mean_delta": 0.010465555555555554,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.3014,
+        "p_typed_beats_infogain": 0.6402,
+        "std_delta": 0.02349361271639745
+      },
+      "mc_vs_closed_form_diff": 0.00014550264550264314,
+      "n": 540,
+      "n_R_fibres": 78,
+      "name": "openml-40994",
+      "observed": {
+        "arms": {
+          "coarse": 0.8296296296296296,
+          "infogain_refine": 0.8296296296296296,
+          "refined_typed": 0.7555555555555555
+        },
+        "oracle_utility": 0.9148148148148149,
+        "typed_delta": -0.07407407407407407,
+        "typed_sign": -1
+      },
+      "predicted_zero_v1": false,
+      "uniform": {
+        "ci80": [
+          -0.022222222222222143,
+          0.037037037037037035
+        ],
+        "mc_se_mean": 0.0002277327741015036,
+        "mean_delta": 0.008425925925925929,
+        "mean_delta_infogain": 0.0,
+        "p_delta_neg": 0.3266,
+        "p_typed_beats_infogain": 0.6127,
+        "std_delta": 0.02277327741015036
+      }
+    }
+  ],
+  "schema": "ORION08.FINITE_SAMPLE_LAW.v2",
+  "terminal": "LAW_V2_PARTIAL_G1_G2"
+}
