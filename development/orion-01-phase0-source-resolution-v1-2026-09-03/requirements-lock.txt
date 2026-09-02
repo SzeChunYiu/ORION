@@ -1,0 +1,7 @@
+# O01-P0-SRCRES-V1 phase-0 lock: no third-party Python dependencies.
+# The driver uses Python stdlib only; all git operations run through /usr/bin/git
+# subprocesses and the second resolution channel through the `gh` CLI. No pyzx
+# import, checkout, or installation occurs in phase 0.
+python-stdlib-only=true
+git-subprocess=/usr/bin/git
+channel2-cli=gh
