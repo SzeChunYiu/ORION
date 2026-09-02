@@ -49,18 +49,19 @@ separates route stopping from task closure, screens route distinctness by
 provenance, distinguishes content identity from question-conditioned processing,
 and retains unresolved material routes as open obligations. A
 \OfflineTaskCount{}-task complete-gold index supplies descriptive mechanism
-evidence: mean recall is 0.979487 with no premature task closure, but the study
-does not establish superiority. In a 400-case exact-contract battery, the
-controller matches all 400 declared labels, compared with 250 for an authored
-comparator assembled from prior mechanisms but excluding unavailable material
-routes. An
+evidence only: mean recall is 0.979487 with no premature task closure, and the
+study does not establish superiority. Figure~\ref{fig:p2-2} traces the
+controlled index's recall--resource frontier. In a 400-case exact-contract
+battery, the controller matches 400 of 400 declared closure labels; an authored
+comparator assembled from prior mechanisms, excluding unavailable material
+routes from the closure denominator, matches 250 of 400. An
 information-equivalent comparator also matches 400, bounding the claim to the
 closure contract. A descriptive TREC-COVID comparison is adverse on recall and
 cost. Against BM25,
 recall@100 is lower by 0.01769, with a 95\% bootstrap interval of
-$[-0.02729,-0.00906]$, and reads increase by 175.7\%. Although nDCG@10 is
-higher by 0.1488, that secondary result cannot replace the recall and cost
-criteria. Density-normalized and query-conditional BEIR successors leave all
+$[-0.02729,-0.00906]$, and reads increase by 175.7\%. nDCG@10 is higher by 0.1488; that secondary
+result cannot replace the recall and cost criteria. Density-normalized and
+query-conditional BEIR successors leave all
 five ArguAna decisions unchanged. These transformations are decision-inert
 under the tested rule. The contribution is therefore a bounded control method,
 not evidence of external retrieval superiority or open-world completeness.
@@ -218,6 +219,24 @@ routes are excluded from the declared closure denominator. These results demonst
 under authored contracts. They do not estimate real-web difficulty or prove
 that the declared route registry contains every material route.
 
+The offline companion is also underpowered against its frozen precision
+target, and the label follows from the plan rather than from any observed
+outcome: the generated suite facts record the plan's underpowered flag for this
+campaign as \OfflineUnderpowered{}. The frozen statistical plan set a
+superiority margin of $0.03$ for the primary standalone rate before outcomes
+were inspected, while the achieved half-width at the assembled variant count is
+\OfflineAchievedHalfWidth{}, so the margin is not met and no superiority
+decision is promoted from the offline companion. Repeats and variants do not
+change this: the honest statistical unit is the topic, and the suite's
+\OfflineTaskCount{} task variants, \OfflineSystemCount{} systems, and
+\OfflineRepeatCount{} deterministic repeats nest within \OfflineTopicCount{}
+topics. The same preregistered arithmetic records the independent units a
+standalone rate requires at each precision level: 1068 at half-width $0.03$,
+385 at $0.05$, 171 at $0.075$, and 97 at $0.10$. The assembled suite offers
+\OfflineTaskCount{} task variants but only \OfflineTopicCount{} independent
+topics, so the controlled-index numbers are read as mechanism diagnostics
+rather than as estimates with superiority resolution.
+
 The TREC-COVID result is the strongest external stress test in the present
 paper because it compares the controller with public collection judgments
 \cite{voorhees2020treccovid}. It is descriptive rather than prospective: no
@@ -282,8 +301,8 @@ identity from provenance, distinguishes content identity from
 question-conditioned processing, keeps route stopping local, and retains
 unresolved material routes as open obligations. Controlled and exact-contract
 tests show that these rules behave as designed. The descriptive TREC-COVID
-comparison nevertheless shows lower recall and higher read cost, while favorable
-nDCG does not establish overall superiority. The later density-normalized and query-conditional successors
+comparison shows lower recall and higher read cost; the favorable nDCG@10
+difference does not establish overall superiority. The later density-normalized and query-conditional successors
 also leave every ArguAna stopping decision unchanged. Both registered
 transformations are decision-inert there under the tested rule. The present contribution is therefore a bounded, reproducible
 control method for representing acquisition authority. External retrieval
