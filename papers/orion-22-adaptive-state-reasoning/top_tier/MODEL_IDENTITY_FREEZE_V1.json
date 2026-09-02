@@ -1,0 +1,53 @@
+{
+ "schema": "ORION.A2.ModelIdentityFreeze.v1",
+ "date": "2026-09-02",
+ "paper_ids": ["ORION-21", "ORION-22"],
+ "issue_binding": "SzeChunYiu/ORION#2139 Stage 0; harness freeze P12_HARNESS_AND_POLICY_FREEZE_V1.json section 7",
+ "artifact_class": "FROZEN_BEFORE_PROTECTED_EVALUATION",
+ "flags": {
+  "protected_outcomes_accessed": false,
+  "campaign_executed": false,
+  "execution_started": false,
+  "tuning_thresholds_bound": false,
+  "results_exist": false
+ },
+ "execution_host": {
+  "name": "billy-old",
+  "designation": "operator-designated 2026-09-02 (conversation directives: 'or you can run things on laptop old'; 'claude is usable on laptop old'; spend authorized 'i authorize you to do all tasks to finish them in order to reach top tier')",
+  "os": "linux",
+  "cores": 12,
+  "reachable_via": "tailscale 100.104.240.15; also gates LUNARC via ControlMaster for scale work",
+  "orion_workspace": "~/orion-a2-campaign (worktree of ~/ORION at origin/main)",
+  "single_host_manifest": true
+ },
+ "model_identities": [
+  {
+   "class": "GPT_CLASS",
+   "model_family_id": "gpt-5.5-codexcli",
+   "provider_lane": "codex CLI (operator ChatGPT subscription)",
+   "cli_version": "codex-cli 0.129.0-alpha.15",
+   "model_id": "gpt-5.5",
+   "host_config": {"service_tier": "fast", "model_reasoning_effort": "medium"},
+   "invocation_contract": "codex exec, single-turn, non-interactive; harness passes the terminal/unit prompt as the sole argument and reads stdout; effort/service tier taken from the frozen host config above, never mutated per call",
+   "decoding": "provider-default, non-configurable via CLI; nondeterminism carried by the 1-run-per-cell repeat policy (campaign prereg)",
+   "liveness_probe_2026_09_02": "VERIFIED — trivial non-campaign echo returned expected token (15,962 tokens accounted)"
+  },
+  {
+   "class": "CLAUDE_OR_GEMINI_CLASS",
+   "model_family_id": "claude-fable-5-claudecli",
+   "provider_lane": "claude CLI (operator claude.ai subscription)",
+   "cli_version": "claude CLI 2.1.143 (Claude Code)",
+   "model_id": "claude-fable-5",
+   "invocation_contract": "claude -p --model claude-fable-5, single-turn print mode, non-interactive; harness passes the prompt on stdin/arg and reads stdout; no agentic tool use is requested by any campaign prompt",
+   "decoding": "provider-default, non-configurable via CLI; nondeterminism carried by the 1-run-per-cell repeat policy",
+   "liveness_probe_2026_09_02": "AUTHENTICATED_VERIFIED — CLI reaches the service under the operator account; account usage window resets 2026-09-04 03:00 Europe/Stockholm, so campaign calls on this lane are scheduled after that instant; a full echo probe is repeated at window start before any tuning call"
+  }
+ ],
+ "open_weight_class": {
+  "status": "PHASE_2_ONLY",
+  "note": "no open-weight runtime on the execution host at freeze time; Phase 1 (ScienceAgentBench stop/go) requires only >=2 model families, satisfied above; Phase 2 (LongMemEval model-stratified) adds this class via a successor identity freeze before its own runs"
+ },
+ "ordering_rule": "no tuning-split model call before both lanes pass a same-day echo probe; no protected-family call before P12_TUNING_BINDING_V1.json is committed; the sealed Stage-3 manifest binds this file's sha256",
+ "scientific_authority_delta": "NONE__IDENTITY_BINDING_ONLY",
+ "successor_rule": "changing host, CLI version, model id or invocation contract after any tuning or protected call requires a successor freeze and invalidates nothing retroactively only if no protected outcome was accessed"
+}
