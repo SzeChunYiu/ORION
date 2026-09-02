@@ -62,7 +62,7 @@ ROWS: list[tuple[str, tuple[str, ...], str, str]] = [
         "regret reduction",
     ),
     ("N4-E", ("decision_voi_vs_infogain_utility",), "decision VOI vs.\\ information gain", "utility"),
-    ("N4-E", ("decision_voi_vs_llm_proxy_utility",), "decision VOI vs.\\ LLM proxy", "utility"),
+    ("N4-E", ("decision_voi_vs_llm_proxy_utility",), "decision VOI vs.\\ fixed-heuristic proxy", "utility"),
     (
         "N4-F3",
         ("mixed_typed_vs_naive_utility",),
@@ -113,7 +113,11 @@ def main() -> int:
         "artifact). Win/tie/loss is the paired decomposition over the same $n$ pairs. "
         "Intervals are per-comparison and are \\emph{not} adjusted for the twelve comparisons "
         "shown; any family-wise adjustment widens them, so rows already containing "
-        "zero would continue to contain zero. Rows marked $\\dagger$ have an interval "
+        "zero would continue to contain zero. In the other direction, exact sign tests "
+        "over the win/loss counts, Holm--Bonferroni-adjusted across the family of twelve, "
+        "leave every interval-positive row surviving (\\texttt{analysis/familywise-multiplicity-v1/}); "
+        "that route concerns direction reliability, not the mean, and upgrades no "
+        "undetermined row. Rows marked $\\dagger$ have an interval "
         "containing zero: the contrast is \\emph{undetermined} at this $n$ and is not a "
         "positive result. The row marked $\\ddagger$ is the prespecified remint-unnecessary "
         "regime, where the exact tie on all pairs is the passing outcome and a positive "

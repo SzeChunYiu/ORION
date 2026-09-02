@@ -1,5 +1,10 @@
 # ORION-08 publication-freeze addendum V1
 
+> **Superseded 2026-09-02** by `PUBLICATION_FREEZE_ADDENDUM_V2.md` (additive
+> successor: real-data studies executed and entered the manuscript; no boundary
+> below is regressed). Retained as the freeze record of the exact-synthetic
+> ceiling as of 2026-08-31.
+
 **Freeze date:** 2026-08-31  
 **Status:** `CURRENT_EARNED_CEILING_FROZEN__EXACT_SYNTHETIC__REAL_SYSTEM_SUCCESSOR_ONLY`
 

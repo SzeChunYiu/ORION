@@ -3,7 +3,7 @@
 % Every value is transcribed from the source JSON. No new estimate is derived.
 \begin{table}[t]
   \centering
-  \caption{Paired uncertainty for every synthetic comparison in the preserved publication analysis. Intervals are 95\,\% percentile bootstrap intervals over paired episode differences (5000 deterministic resamples, seeds recorded per row in the source artifact). Win/tie/loss is the paired decomposition over the same $n$ pairs. Intervals are per-comparison and are \emph{not} adjusted for the twelve comparisons shown; any family-wise adjustment widens them, so rows already containing zero would continue to contain zero. Rows marked $\dagger$ have an interval containing zero: the contrast is \emph{undetermined} at this $n$ and is not a positive result. The row marked $\ddagger$ is the prespecified remint-unnecessary regime, where the exact tie on all pairs is the passing outcome and a positive advantage would have invalidated the study; its interval is $[0,0]$ by construction and is not an undetermined contrast.}
+  \caption{Paired uncertainty for every synthetic comparison in the preserved publication analysis. Intervals are 95\,\% percentile bootstrap intervals over paired episode differences (5000 deterministic resamples, seeds recorded per row in the source artifact). Win/tie/loss is the paired decomposition over the same $n$ pairs. Intervals are per-comparison and are \emph{not} adjusted for the twelve comparisons shown; any family-wise adjustment widens them, so rows already containing zero would continue to contain zero. In the other direction, exact sign tests over the win/loss counts, Holm--Bonferroni-adjusted across the family of twelve, leave every interval-positive row surviving (\texttt{analysis/familywise-multiplicity-v1/}); that route concerns direction reliability, not the mean, and upgrades no undetermined row. Rows marked $\dagger$ have an interval containing zero: the contrast is \emph{undetermined} at this $n$ and is not a positive result. The row marked $\ddagger$ is the prespecified remint-unnecessary regime, where the exact tie on all pairs is the passing outcome and a positive advantage would have invalidated the study; its interval is $[0,0]$ by construction and is not an undetermined contrast.}
   \label{tab:paired-uncertainty}
   \footnotesize
   \begin{tabularx}{\textwidth}{l>{\raggedright\arraybackslash}X r r r r}
@@ -18,7 +18,7 @@
     Reopening & scoped vs.\ unscoped reopen (stale) & 6.973 & $[5.740,\ 8.255]$ & 200 & 0.52/0.35/0.13 \\
     Verify & interval-Pareto vs.\ random verification & 0.142 & $[0.100,\ 0.187]$ & 400 & 0.26/0.67/0.07 \\
     Acquire & decision VOI vs.\ information gain & 2.146 & $[1.976,\ 2.299]$ & 400 & 0.95/0.03/0.02 \\
-    Acquire & decision VOI vs.\ LLM proxy & 0.277 & $[0.119,\ 0.412]$ & 400 & 0.45/0.44/0.14 \\
+    Acquire & decision VOI vs.\ fixed-heuristic proxy & 0.277 & $[0.119,\ 0.412]$ & 400 & 0.45/0.44/0.14 \\
     Transport & typed transport vs.\ naive carry-forward & 17.242 & $[15.577,\ 18.836]$ & 200 & 0.69/0.30/0.00 \\
     Transport & typed transport vs.\ re-derivation (mixed) & 2.264 & $[1.717,\ 2.825]$ & 200 & 0.32/0.69/0.00 \\
     Transport & typed transport vs.\ re-derivation (no remint needed)$\ddagger$ & 0.000 & $[0.000,\ 0.000]$ & 200 & 0.00/1.00/0.00 \\

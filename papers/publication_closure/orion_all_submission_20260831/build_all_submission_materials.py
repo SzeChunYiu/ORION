@@ -79,7 +79,7 @@ SPECS = [
         "Six exact-synthetic matched-information families isolate how typed epistemic bindings change decisions, while a corrected finite criterion and three real-data instantiations delimit mixed held-out transfer.",
         [
             "Scoped versus never-reopen intervals cross zero in both registered regimes, and the remint-unnecessary transport regime is an exact tie.",
-            "Twelve synthetic mean comparisons are reported without family-wise corrected bootstrap intervals; targeted verification and the deterministic-proxy acquisition contrast are most exposed.",
+            "Twelve synthetic mean comparisons are reported with per-comparison intervals only: family-wise corrected bootstrap intervals on the mean are non-recomputable from the preserved analysis, and the executed exact sign-test route with Holm-Bonferroni adjustment concerns direction reliability and upgrades no undetermined row.",
             "The ideal value-of-information donor absorbs the allocation-policy residual; the model-selection donor ties on the original world and leaves only a bounded misspecification result.",
             "The earlier refinement strictness wording was underspecified and is withdrawn; merely splitting an impure fibre does not guarantee lower risk.",
             "Same-distribution agreement on OpenML-CC18 and Defects4J is an algebraic instantiation, not independent theorem confirmation.",
