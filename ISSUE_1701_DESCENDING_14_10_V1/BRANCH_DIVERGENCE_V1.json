@@ -1,0 +1,61 @@
+{
+  "comparisons_against_live_main": [
+    {
+      "ahead_by": 38,
+      "allowed_action": "reconcile audits and rebuild package against live bytes; do not copy old filing objects",
+      "behind_by": 128,
+      "branch": "codex/wave1-orion14-closeout-20260828",
+      "head": "a5c5225f039a51809f81a015e1aa3fab80bd1c9e",
+      "merge_base": "f5e015f878bf9c7cae8119246a9c0b5f2e18d726",
+      "paper": 14,
+      "purpose": "TMLR closeout",
+      "status": "diverged"
+    },
+    {
+      "ahead_by": 2,
+      "allowed_action": "recover additive directory path-by-path after checker replay",
+      "behind_by": 47,
+      "branch": "claude/orion14-promotion-reduct-20260828",
+      "head": "bee9829ae05fb317e1d381d50c64b7f7d2a430a2",
+      "merge_base": "c8d8a725a9618239fd8d9808e6bb39e1c549ab14",
+      "paper": 14,
+      "purpose": "optional promotion reduct",
+      "status": "diverged"
+    },
+    {
+      "ahead_by": 1,
+      "allowed_action": "recover additive directory path-by-path after checker replay",
+      "behind_by": 72,
+      "branch": "claude/orion13-minimal-semantic-separator-20260828",
+      "head": "b6dd5ed5c57562acaa2d47b1f7b1d7e49837c3b4",
+      "merge_base": "882b88e3ab83de6f6bc57c4cfd4cc3d0caa7ee73",
+      "paper": 13,
+      "purpose": "minimal semantic separator",
+      "status": "diverged"
+    },
+    {
+      "ahead_by": 31,
+      "allowed_action": "use as editorial donor only; rebuild package against live main",
+      "behind_by": 128,
+      "branch": "codex/wave1-orion12-closeout-20260828",
+      "head": "ae670d943228ea07b53de28a1a1c174a4f1494c5",
+      "merge_base": "f5e015f878bf9c7cae8119246a9c0b5f2e18d726",
+      "paper": 12,
+      "purpose": "IP&M closeout",
+      "status": "diverged"
+    },
+    {
+      "ahead_by": 1,
+      "allowed_action": "recover additive directory path-by-path after checker replay",
+      "behind_by": 49,
+      "branch": "claude/orion10-explanation-gap-20260828",
+      "head": "424756c05fde5ae05a95bd9a3fdd7849bbf92fe4",
+      "merge_base": "8a8283a628d37bcce6b80766596b5fb7583ed65d",
+      "paper": 10,
+      "purpose": "certificate explanation gap",
+      "status": "diverged"
+    }
+  ],
+  "schema": "ORION.Issue1701.BranchDivergence.14_10.v1",
+  "whole_branch_merge_allowed": false
+}

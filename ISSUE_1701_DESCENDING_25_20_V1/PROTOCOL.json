@@ -1,0 +1,96 @@
+{
+  "authority": {
+    "external_investigator_authority": false,
+    "organizational_independence_self_certifiable": false,
+    "packet_type": "INTEGRATION_AND_OUTCOME_FREE_PROTOCOL",
+    "scientific_authority_delta": "NONE",
+    "submission_authority": false
+  },
+  "base": {
+    "branch_to_create": "shadow/issue1701-descending-closure-20260829",
+    "commit_sha": "b8fd5d2ca8eb1f6547592893591ba3aa93bf96c8",
+    "repository": "SzeChunYiu/ORION",
+    "tree_sha": "e4a89bd9a1679e15bc4d4989438597909013813c"
+  },
+  "frozen_at_utc": "2026-08-28T22:44:06Z",
+  "global_rules": [
+    "preserve adverse and CANNOT_CHECK evidence",
+    "do not recover stale branches wholesale",
+    "do not edit registered gates after outcomes",
+    "do not count same-team key separation as organizational independence",
+    "do not duplicate canonical active lanes",
+    "do not convert engineering smoke tests into scientific executions",
+    "do not call a registered-order minimizer structurally indispensable"
+  ],
+  "identity": "ORION.ISSUE1701.DESCENDING_CLOSURE.25_20.v1",
+  "orion20_stop": {
+    "minimal_singleton_bases": [
+      [
+        8
+      ],
+      [
+        14
+      ]
+    ],
+    "new_rescue_started": false,
+    "structural_indispensability": false,
+    "unique_by_registered_order": true
+  },
+  "orion21_execution": {
+    "registered_command": "sbatch papers/orion-21-state-as-computation/experiments/tie-robust-phase-v1/run_tie_robust_phase.sbatch",
+    "scientific_execution_run": false,
+    "semantic_changes_permitted_before_run": false
+  },
+  "orion23_handoff": {
+    "canonical_pull_request": 1691,
+    "duplicate_work": false,
+    "external_acquisition_executed_by_this_packet": false
+  },
+  "orion24_handoff": {
+    "canonical_pull_request": 1698,
+    "duplicate_work": false,
+    "real_event_stream_executed": false,
+    "retrospective_events_count_as_prospective": false
+  },
+  "orion25_external_successor": {
+    "case_families": [
+      "VALID_NATIVE_ARTIFACT",
+      "CONTENT_CORRUPTION",
+      "BENIGN_REENCODING_WHEN_NATIVE_SEMANTICS_DEFINE_EQUIVALENCE",
+      "SINGLE_TRUST_DOMAIN_COMPROMISE",
+      "MULTI_DOMAIN_OR_THRESHOLD_SATISFIED",
+      "STALE_EXPIRED_REVOKED_OR_ROLLBACK",
+      "WRONG_IDENTITY_ROLE_OR_AUTHORITY"
+    ],
+    "identity": "ORION25.EXTERNAL_NATIVE_TRUST_DOMAINS.v1",
+    "minimum_structurally_distinct_systems": 2,
+    "outcome_accessed": false,
+    "primary_endpoints": [
+      "native_verifier_false_promotion",
+      "native_verifier_false_rejection",
+      "policy_disposition_agreement"
+    ],
+    "promotion_gate": "No external-trust promotion unless native objective verification is green, two systems are complete, every adverse case is retained, and custody/governance independence is proven by evidence not authored by the candidate team.",
+    "protocol_frozen": true,
+    "registered_systems": [
+      "cosign",
+      "python-tuf",
+      "in-toto"
+    ],
+    "secondary_endpoints": [
+      "verification_runtime",
+      "artifact_bytes",
+      "operator_and_custody_count"
+    ],
+    "stop_rule": "Stop after all frozen cases for at least two registered systems have one native-verifier run and one independent replay, or emit CANNOT_CHECK for each unreachable native case without replacement."
+  },
+  "paper_order": [
+    25,
+    24,
+    23,
+    22,
+    21,
+    20
+  ],
+  "schema": "ORION.Issue1701.DescendingClosure.Protocol.v1"
+}

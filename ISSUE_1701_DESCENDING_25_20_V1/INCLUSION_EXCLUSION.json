@@ -1,0 +1,21 @@
+{
+  "excluded": [
+    "wholesale stale-branch merges",
+    "unresolvable pull request 1722 as authority",
+    "manuscript edits",
+    "scientific outcome generation for unexecuted successors",
+    "same-team agents or keys as external-investigator evidence",
+    "retrospective events relabelled prospective",
+    "LUNARC smoke tests relabelled registered execution",
+    "ORION-20 rescue using the same scientific object"
+  ],
+  "included": [
+    "live main commit and tree identities",
+    "live main evidence files with exact Git blob identities",
+    "open canonical pull requests 1698 and 1691 as handoff references",
+    "official release/tag/package metadata for cosign, python-tuf and in-toto",
+    "adverse, negative and CANNOT_CHECK states"
+  ],
+  "replacement_policy": "An unavailable external system or case remains CANNOT_CHECK. No replacement may be selected after observing outcomes under the same protocol identity.",
+  "schema": "ORION.Issue1701.DescendingClosure.InclusionExclusion.v1"
+}
