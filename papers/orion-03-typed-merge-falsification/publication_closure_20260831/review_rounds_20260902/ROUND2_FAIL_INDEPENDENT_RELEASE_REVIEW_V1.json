@@ -1,0 +1,333 @@
+{
+  "academic_paper_skills": {
+    "applicable_fd5_release_integrity_controls": {
+      "candidate_phase_boundary": "PASS: candidate manifest still declares CANDIDATE_ONLY__NOT_RELEASE_READY and does not claim final release status.",
+      "exact_archive_member_binding": "PASS",
+      "local_path_release_payload_guard": "PASS",
+      "payload_bearing_zip_directory_guard": "PASS",
+      "single_reader_authority_binding": "PASS"
+    },
+    "baseline_rewritten": false,
+    "candidate_revision": "488fc5310b84e578431f4a9a176d55bf9a3f0b99",
+    "candidate_revision_matches_live_origin_main": null,
+    "closure_application_record": {
+      "byte_count": null,
+      "content_and_release_revision_roles_explicit": null,
+      "repository_relative_path": null,
+      "result": "NOT_PRESENT_IN_CANDIDATE_PACKAGE_AND_NOT_CHECKED_THIS_ROUND",
+      "sha256": null,
+      "stale_future_refresh_promise_removed": null
+    },
+    "content_editing_baseline_revision": null,
+    "final_release_integrity_revision": "488fc5310b84e578431f4a9a176d55bf9a3f0b99",
+    "live_origin_main_fetch_result": "NOT_RUN_THIS_ROUND",
+    "live_origin_main_revision_checked_immediately_before_receipt": null
+  },
+  "atomic_claim_coverage": {
+    "all_artifact_pointers_resolve": true,
+    "blocked_or_nonclosing_target_status_count": 0,
+    "claim_count_declared": 378,
+    "claim_count_reviewed": 378,
+    "coverage_basis": "ATOMIC_CLAIM_INVENTORY.json declares 378 claims and contains 378 unique claim rows. All rows have scope_match MATCH; support statuses are BOUNDS or ENTAILS; target statuses are only BOUNDED_INFERENCE, COHERENT_DEFINITION, or VERIFIED. I spot-checked claims across metadata, abstract, related work, Cedar null, OpenSSL controls, origin-witness cost/identity, Limitations, and conclusion, including C_LIT_027 for dekleer1986, C_LIM_031 for the new expressiveness boundary, and C_LIM_032 for the same-programme single-author disclosure. All non-empty artifact pointers resolve as package paths or package-path anchors; 26 literature/general rows intentionally have no artifact pointer.",
+    "decision": "PASS",
+    "scope_match": "MATCH",
+    "scope_match_counts": {
+      "MATCH": 378
+    },
+    "support_status_counts": {
+      "BOUNDS": 95,
+      "ENTAILS": 283
+    },
+    "target_release_status_counts": {
+      "BOUNDED_INFERENCE": 96,
+      "COHERENT_DEFINITION": 37,
+      "VERIFIED": 245
+    },
+    "verification_scope": "full_manuscript"
+  },
+  "authority_limitations": [
+    "This FAIL certifies only that the exact candidate bytes were independently inspected and that one release-blocking inventory/citation-order defect was found.",
+    "It does not change the candidate declaration CANDIDATE_ONLY__NOT_RELEASE_READY; final release generation and verification remain separate.",
+    "It does not certify scientific truth beyond the bounded evidence and inference statuses recorded in the 378-atom inventory.",
+    "It does not convert any null, adverse, harmful, timeout, retraction, quarantine, or CANNOT_CHECK result into a positive result.",
+    "It does not certify external peer review, independent external replication, Cedar or Lean native replay, security, usability, deployment, production prevalence, or production value.",
+    "It does not certify a clean Git state, a merged commit, submission-portal upload, venue-rule acceptance, editorial acceptance, journal acceptance, publication, or an external mirror.",
+    "It does not confer broader novelty on generic fixed-point, Datalog, provenance, truth-maintenance, minimal-support, causality, deletion-robustness, or expressiveness-separation mathematics."
+  ],
+  "build_and_executable_evidence": {
+    "clean_source_archive_builds": {
+      "byte_identical_to_each_other": null,
+      "byte_identical_to_reader_pdf": null,
+      "count": 0,
+      "overfull_boxes": 0,
+      "resulting_pdf_sha256": "ed34801f5c2009259f84d61a9c15bae25f91c3d9c0c5e51519453b102a331da1",
+      "undefined_controls": 0,
+      "unresolved_citations": 0,
+      "unresolved_references": 0
+    },
+    "closure_regression_tests": {
+      "failed": null,
+      "passed": null,
+      "result": "NOT_RUN_READ_ONLY_CANDIDATE_REVIEW"
+    },
+    "decision": "NOT_RERUN_READ_ONLY_INSPECTION_ONLY_WITH_EXPLICIT_NATIVE_REPLAY_CANNOT_CHECK_BOUNDARY",
+    "packaged_examples": {
+      "count": 13,
+      "passed": null,
+      "result": "NOT_RUN_READ_ONLY_CANDIDATE_REVIEW"
+    },
+    "packaged_paper_evaluator": {
+      "failed": null,
+      "framework": "unittest",
+      "result": "NOT_RUN_READ_ONLY_CANDIDATE_REVIEW",
+      "tests_run": null
+    },
+    "packaged_reusable_evaluator": {
+      "failed": null,
+      "framework": "pytest",
+      "passed": null,
+      "result": "NOT_RUN_READ_ONLY_CANDIDATE_REVIEW"
+    },
+    "round2_binding": {
+      "authority": "BOUNDED_R2_EVIDENCE_REMAINS_BOUND__NO_NATIVE_ENGINE_RERUN",
+      "duplicate_receipt_pairs_identical": null,
+      "mismatches": null,
+      "result": "INSPECTED_BOUND_RECEIPTS_ONLY",
+      "verified": null
+    },
+    "standalone_round1_native_replay": {
+      "classification": "Native replay was not run in this read-only review; the manuscript and ledger retain the CANNOT_CHECK boundary rather than promoting it.",
+      "command_scope": "not run",
+      "observed_terminal": null,
+      "promoted_to_pass": false,
+      "result": "NOT_RUN_READ_ONLY_CANDIDATE_REVIEW"
+    }
+  },
+  "candidate": {
+    "candidate_file_count": 413,
+    "declared_state_at_review": "CANDIDATE_ONLY__NOT_RELEASE_READY",
+    "directory": "orion03_independent_release_review/candidate_package",
+    "immutable_objects": {
+      "artifact_archive": {
+        "byte_count": 628381,
+        "member_count": 368,
+        "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_artifact.zip",
+        "sha256": "9c47d459952e84672876391e5a6601fa6f810236104fc20cd481fb8f2b467542"
+      },
+      "atomic_claim_inventory": {
+        "byte_count": 415983,
+        "path": "ATOMIC_CLAIM_INVENTORY.json",
+        "sha256": "f22be0912d64d9ae01fdde21ea3098259fe78794fa621a7023d9807f4f1fa721"
+      },
+      "author_confirmation": {
+        "byte_count": 1121,
+        "path": "review_records/AUTHOR_CONFIRMATION_V2.json",
+        "sha256": "b3a5c557775043b0e11fe715f5fdab347c37e25d3d2be0a48069e72493f674c4",
+        "status": "PASS"
+      },
+      "candidate_review_manifest": {
+        "byte_count": 107478,
+        "path": "CANDIDATE_REVIEW_MANIFEST.json",
+        "sha256": "9f6fc39ece9ee0deec73c2f96aeb9955750848d7ebaac5fc41d3c47efa28f058"
+      },
+      "canonical_claim_ledger": {
+        "byte_count": 4020,
+        "path": "CLAIM_LEDGER.md",
+        "sha256": "6dca07cc8f96557e08228a2dfe5100f4b66e819abf42ee2bbbe9207e095e1f8c"
+      },
+      "canonical_manuscript": {
+        "byte_count": 36521,
+        "path": "MANUSCRIPT.md",
+        "sha256": "d394b915afe4dd5761d5f0169dac8e6ff45116ec8430047ae2d885468cc895d7"
+      },
+      "component_binding_manifest": {
+        "byte_count": 106678,
+        "path": "COMPONENT_BINDING_MANIFEST.json",
+        "sha256": "cb33dd6233979c9239b05cfcbad2aad0c92f639891824c4fa0bd6fc2fccd6265"
+      },
+      "packaged_release_verifier": {
+        "byte_count": 23795,
+        "path": "review_records/verify_release.py",
+        "sha256": "52f92f46c766ad1a92b2c4bd0b5f198a5a9d2d412f461fc66006fa6f1e0aac5f"
+      },
+      "pinned_openssl_build_record": {
+        "byte_count": 1243,
+        "path": "submission/artifact/papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/PINNED_OPENSSL_BUILD.md",
+        "sha256": "190ea91cdc6d763fbc08599bc31db1b0fb9d39ef0f29248d2d11ec659c96815a"
+      },
+      "reader_pdf": {
+        "byte_count": 121521,
+        "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion.pdf",
+        "sha256": "ed34801f5c2009259f84d61a9c15bae25f91c3d9c0c5e51519453b102a331da1"
+      },
+      "sha256sums": {
+        "byte_count": 82835,
+        "path": "SHA256SUMS",
+        "sha256": "5d1a475e513d3f13c45d85b046bda5aa5f0e7867056104a76ee6ed2651f3e88f"
+      },
+      "source_archive": {
+        "byte_count": 59106,
+        "member_count": 8,
+        "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_source.zip",
+        "sha256": "d4e3851aa4c6dd61ae4c43d966ba4f3bab884482a1b71a5e812b322d6f72fde7"
+      }
+    },
+    "repository_head_note": "Repository context supplied by the review protocol: lane head 2af2da44a549a73631d0cfd5cc444c74659ed607 on branch tierb/orion-03-jar-20260902, described as prior lane head 684dbff730 plus the same-programme single-author disclosure commit with intervening main merges, and candidate rebuilt from this lane head on 2026-09-02. This review workspace is not a Git checkout, so git rev-parse could not independently observe the head; exact reviewed bytes are bound by package manifests and SHA-256 checks.",
+    "repository_head_observed": "2af2da44a549a73631d0cfd5cc444c74659ed607"
+  },
+  "candidate_custody": {
+    "after_snapshot": {
+      "byte_count": 84511,
+      "file_count": 413,
+      "sha256": "9fd263aba153d93f9b8ed5218033ee494040a99a8f68837993d126b10e77fa82"
+    },
+    "before_snapshot": null,
+    "candidate_bytes_modified_by_reviewer": false,
+    "decision": "PASS_WITH_LIMITED_CUSTODY_EVIDENCE",
+    "snapshots_byte_identical": null
+  },
+  "citation_coverage": {
+    "all_cited_keys_resolve": true,
+    "bibliography_keys": 17,
+    "citation_sequence_matches_inventory": false,
+    "citation_use_rows": 25,
+    "decision": "FAIL",
+    "email_at_sign_excluded": true,
+    "manuscript_citation_occurrences": 25,
+    "uncited_bibliography_keys": 0
+  },
+  "decision": "FAIL",
+  "decision_basis": [
+    "FAIL: ATOMIC_CLAIM_INVENTORY.json citation_uses is stale in order relative to the edited manuscript. A source-order scan of MANUSCRIPT.md places the related-work citations as doyle1979, dekleer1986, martins1988, agm1985; the inventory orders those rows as doyle1979, martins1988, agm1985, dekleer1986. The citation multiset is exact and every key resolves, but the inventory sequence does not match the current manuscript.",
+    "Every scoped immutable-object hash and byte count matched the current candidate bytes.",
+    "The 412-entry SHA256SUMS inventory covers all 413 candidate files except only the candidate-root SHA256SUMS file itself, and every listed digest matched.",
+    "CANDIDATE_REVIEW_MANIFEST.json and COMPONENT_BINDING_MANIFEST.json matched actual bytes for canonical science, ledger, reader PDF, source archive, artifact archive, atomic-claim inventory where applicable, and exact archive member sets.",
+    "Both ZIP archives had exact safe member sets, matching member hashes and sizes, no duplicate/encrypted/symlink/directory entries, no absolute or parent-relative paths, and byte-matching expanded members.",
+    "The canonical manuscript contains the new expressiveness-gate Limitations paragraph, the new same-programme single-author disclosure sentence, and the dekleer1986 citation; the canonical claim ledger hash remains unchanged from the prior reviewed candidate.",
+    "PDF text extraction was non-empty and rendered both new Limitations passages and the de Kleer DOI-bearing reference; pdfinfo reported a sane unencrypted 15-page A4 PDF with expected title and author metadata.",
+    "All 378 atomic claim rows have closing target statuses, scope_match MATCH, and spot-checked claims across the full manuscript matched the candidate manuscript.",
+    "Crossref resolved DOI 10.1016/0004-3702(86)90080-9 to Johan de Kleer, An assumption-based TMS, Artificial Intelligence, 1986.",
+    "Delta review found no PROVEN/VERIFIED status upgrade, new positive claim, or removed limitation; the edits are narrowing/clarifying, including an expressiveness non-claim and an explicit same-programme single-author disclosure.",
+    "The Cedar null, zero-request setup failure, five OpenSSL anchoring disagreements, analytic origin-witness identity, two-parent cost, and native replay CANNOT_CHECK boundary remain visible and unpromoted."
+  ],
+  "negative_evidence_review": {
+    "analytic_identity_not_promoted_to_detector_performance": true,
+    "decision": "PASS",
+    "five_openssl_disagreements_retained": true,
+    "native_replay_cannot_check_retained": true,
+    "null_adverse_results_retained": true,
+    "retraction_bound_to_declared_algebra": true,
+    "timeouts_or_quarantines_relabelled_as_positive": false,
+    "two_parent_cost_retained": true,
+    "zero_request_failure_retained": true
+  },
+  "package_integrity": {
+    "all_listed_hashes_match": true,
+    "artifact_archive": {
+      "all_member_hashes_and_sizes_match": true,
+      "exact_member_set": true,
+      "expanded_tree_byte_match": true,
+      "member_count": 368
+    },
+    "candidate_local_path_or_prior_receipt_leaks": 0,
+    "checksum_member_set_exact": true,
+    "decision": "PASS",
+    "json_files_parsed": 65,
+    "manifest_namespaces_resolve_internally": true,
+    "privacy_markers_checked": [
+      "review workspace path",
+      "prior-review receipt names",
+      "Unix home absolute paths",
+      "Windows user absolute paths"
+    ],
+    "sha256sums_entry_count": 412,
+    "sha256sums_exclusion": "candidate-root SHA256SUMS only; nested files named SHA256SUMS remain included if present",
+    "source_archive": {
+      "all_member_hashes_and_sizes_match": true,
+      "exact_member_set": true,
+      "expanded_tree_byte_match": true,
+      "member_count": 8
+    },
+    "zip_safety": {
+      "absolute_path_entries": 0,
+      "directory_entries": 0,
+      "duplicate_entries": 0,
+      "encrypted_entries": 0,
+      "path_traversal_entries": 0,
+      "symlink_entries": 0
+    }
+  },
+  "package_verification_scope": "full_candidate_package",
+  "paper": "ORION-03",
+  "pdf_review": {
+    "clipping": null,
+    "decision": "PASS",
+    "fresh_visual_inspection": false,
+    "future_public_repository_promises_remaining": 0,
+    "metadata_matches": true,
+    "missing_glyphs": 0,
+    "overlap": null,
+    "page_count": 15,
+    "page_size": "A4",
+    "reader_pdf_sha256": "ed34801f5c2009259f84d61a9c15bae25f91c3d9c0c5e51519453b102a331da1",
+    "rendered_page_coverage": "pdftotext extraction pages 1-15; no raster visual inspection performed",
+    "unresolved_markers": 0
+  },
+  "preserved_terminals": [
+    "CEDAR_EXTERNAL_TRANSFER_NULL",
+    "CEDAR_ZERO_REQUEST_PATH_BINDING_FAILURE",
+    "OPENSSL_ANCHOR_186_OF_191_WITH_FIVE_DISAGREEMENTS",
+    "ORIGIN_WITNESS_PERFECT_ROW_IS_ANALYTIC_IDENTITY",
+    "ORIGIN_WITNESS_TWO_PARENT_EVALUATION_COST",
+    "PACKAGE_NATIVE_REPLAY_CANNOT_CHECK_BOUNDARIES"
+  ],
+  "receipt_lineage": {
+    "current_event": "FRESH_REVIEW_OF_UPDATED_CANDIDATE",
+    "original_review": {
+      "byte_count": 10687,
+      "event": "ORIGINAL_INDEPENDENT_REVIEW",
+      "reviewed_at_utc": "2026-08-31T16:33:53Z",
+      "sha256": "5ed689ae14acb94c7534055a588cbba9760a914eaa7d53dbeed3185c03db8a34"
+    },
+    "prior_conclusions_copied_without_recheck": false,
+    "prior_fresh_review": {
+      "byte_count": 14608,
+      "event": "FRESH_REVIEW_OF_UPDATED_CANDIDATE",
+      "reviewed_at_utc": "2026-08-31T17:29:21Z",
+      "sha256": "aba3b9970a11ebce4f40882bf6cd0a7831ac39c274a63a4b7dd353312129fcd9"
+    },
+    "privacy_reissue": {
+      "basis": "academic-paper-skills PR number 25 local-path privacy rule",
+      "byte_count": 11362,
+      "event": "PRIVACY_SANITIZATION_REISSUE",
+      "reissued_at_utc": "2026-08-31T17:00:49Z",
+      "sha256": "4ddd8f1bd528681bd1b3f64a60dff29afafb83592d0a9f37fe1ebba1762ec7fc"
+    }
+  },
+  "receipt_type": "ORION-03 fresh independent candidate and package re-review",
+  "reviewed_at_utc": "2026-09-02T13:31:53Z",
+  "reviewer": {
+    "candidate_bytes_modified": false,
+    "identity": "OpenAI Codex independent read-only review lane /root/orion03_independent_release_review",
+    "methods": [
+      "exact SHA-256 and byte-count verification",
+      "exhaustive checksum-set and manifest binding audit",
+      "ZIP central-directory, member-set, member-hash, path-safety, and expanded-member audit",
+      "canonical manuscript and frozen ledger byte binding",
+      "pdftotext extraction and pdfinfo/pdffonts metadata inspection",
+      "packaged LaTeX log inspection for unresolved citations/references, overfull boxes, and missing glyph warnings",
+      "full-manuscript atomic-claim status and spot-check reconciliation",
+      "manuscript citation-key extraction with email-at-sign exclusion and comparison to packaged references.bib and inventory citation rows",
+      "live Crossref DOI lookup for dekleer1986",
+      "delta review for claim-widening, status upgrades, and removed limitations",
+      "candidate privacy/path marker scan"
+    ],
+    "role": "independent candidate-package and full-manuscript atomic-claim reviewer",
+    "separate_from_candidate_authoring_lane": true
+  },
+  "schema": "1.0",
+  "scope_match": "MATCH",
+  "superseded_by": null,
+  "supersession_resolution": "NOT_APPLICABLE_CURRENT_NO_SUPERSESSION",
+  "verification_scope": "full_manuscript"
+}

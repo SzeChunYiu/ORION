@@ -1,0 +1,18 @@
+{
+  "schema": "orion-03-author-confirmation-v2",
+  "record_type": "AUTHOR_CONFIRMATION",
+  "version": "V2",
+  "confirmed_at_utc": "2026-09-02T00:00:00Z",
+  "scope": "affiliation only; every other confirmation in AUTHOR_CONFIRMATION_V1.json remains in force unchanged",
+  "affiliation": "Stockholm University",
+  "corresponding_email": "sze-chun.yiu@fysik.su.se",
+  "evidence": [
+    "submission/tier-b-final-20260901/journal/TITLE_PAGE.md states affiliation Stockholm University",
+    "submission/tier-b-final-20260901/arxiv/metadata.json states affiliation Stockholm University",
+    "submission/tier-b-final-20260901/HUMAN_INPUTS_REQUIRED.md item 'Canonical affiliation: Stockholm University' is checked",
+    "corresponding email domain fysik.su.se resolves to Stockholm University"
+  ],
+  "supersedes": "The single line 'The affiliation is Independent Researcher.' in review_records/AUTHOR_CONFIRMATION_V1.json; that record remains authoritative for all other confirmations and is retained verbatim.",
+  "sha256_of_v1": "cf0b78081c7a7d3f9265612ec4ee32751110a03ed2647cf66141a6f26ee7443b",
+  "author": "Sze Chun Yiu"
+}

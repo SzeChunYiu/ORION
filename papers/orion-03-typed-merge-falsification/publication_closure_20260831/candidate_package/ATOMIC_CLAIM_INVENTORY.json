@@ -5,11 +5,11 @@
     "sha256": "6dca07cc8f96557e08228a2dfe5100f4b66e819abf42ee2bbbe9207e095e1f8c"
   },
   "canonical_science": {
-    "byte_count": 34232,
+    "byte_count": 36521,
     "path": "MANUSCRIPT.md",
-    "sha256": "7181bd6d64c375a29fc2d037cfa5a03f67e6dc69d6b32d0af95961ce410fa1ee"
+    "sha256": "d394b915afe4dd5761d5f0169dac8e6ff45116ec8430047ae2d885468cc895d7"
   },
-  "citation_use_count": 24,
+  "citation_use_count": 25,
   "citation_uses": [
     {
       "citation_id": "CITE_INTRO_doyle1979",
@@ -66,6 +66,14 @@
       ],
       "location": "Related work, belief maintenance, sentence 1",
       "source_key": "doyle1979"
+    },
+    {
+      "citation_id": "CITE_RW_DEKLEER",
+      "claim_ids": [
+        "C_LIT_027"
+      ],
+      "location": "Related work, belief maintenance, assumption-environments sentence",
+      "source_key": "dekleer1986"
     },
     {
       "citation_id": "CITE_RW_MARTINS",
@@ -204,7 +212,7 @@
       "source_key": "rfc5280"
     }
   ],
-  "claim_count": 375,
+  "claim_count": 378,
   "claims": [
     {
       "artifact_pointer": "MANUSCRIPT.md#title",
@@ -291,7 +299,7 @@
       "warrant_type": "method_record"
     },
     {
-      "artifact_pointer": "review_records/AUTHOR_CONFIRMATION_V1.json",
+      "artifact_pointer": "review_records/AUTHOR_CONFIRMATION_V2.json",
       "boundary_or_uncertainty": "Bounded to the exact proposition and stated manuscript scope.",
       "claim_class": "availability_or_compliance",
       "claim_id": "C_META_005",
@@ -307,7 +315,7 @@
       "source_keys": [],
       "support_status": "ENTAILS",
       "target_release_status": "VERIFIED",
-      "text": "The author's stated affiliation is Independent Researcher.",
+      "text": "The author's stated affiliation is Stockholm University.",
       "verification_method": "authoritative_project_record",
       "warrant_type": "method_record"
     },
@@ -2036,6 +2044,29 @@
       "text": "The evidence-license layer preserves store-origin distinctions but does not replace the native X.509 engine.",
       "verification_method": "deterministic_recompute",
       "warrant_type": "analysis"
+    },
+    {
+      "artifact_pointer": null,
+      "boundary_or_uncertainty": "Bounded to the exact proposition and stated manuscript scope.",
+      "claim_class": "literature_fact",
+      "claim_id": "C_LIT_027",
+      "counterevidence_search_required": false,
+      "cross_section_locations": [],
+      "dependencies_and_hidden_premises": "The definitions, qualifiers, and evidence boundary stated at the cited location.",
+      "importance": "supporting",
+      "location": "Related work: Belief maintenance and revision",
+      "qualifiers_and_scope": "Bounded to the exact proposition and stated manuscript scope.",
+      "release_action": "retain exactly as bounded",
+      "risk": "normal",
+      "scope_match": "MATCH",
+      "source_keys": [
+        "dekleer1986"
+      ],
+      "support_status": "ENTAILS",
+      "target_release_status": "VERIFIED",
+      "text": "De Kleer's assumption-based truth maintenance computes, for each derived node, the assumption environments under which it holds.",
+      "verification_method": "independent_model_with_retrieved_source",
+      "warrant_type": "literature"
     },
     {
       "artifact_pointer": "MANUSCRIPT.md#Claims-licenses-seeds-and-capped-rules",
@@ -7212,6 +7243,48 @@
       "warrant_type": "analysis"
     },
     {
+      "artifact_pointer": "submission/artifact/papers/orion-03-typed-merge-falsification/CLAIM_LEDGER_V3.md",
+      "boundary_or_uncertainty": "Bounded to the exact proposition and stated manuscript scope.",
+      "claim_class": "interpretation",
+      "claim_id": "C_LIM_031",
+      "counterevidence_search_required": false,
+      "cross_section_locations": [],
+      "dependencies_and_hidden_premises": "The definitions, qualifiers, and evidence boundary stated at the cited location.",
+      "importance": "major",
+      "location": "Limitations",
+      "qualifiers_and_scope": "Bounded to the exact proposition and stated manuscript scope.",
+      "release_action": "retain exactly as bounded",
+      "risk": "normal",
+      "scope_match": "MATCH",
+      "source_keys": [],
+      "support_status": "BOUNDS",
+      "target_release_status": "BOUNDED_INFERENCE",
+      "text": "The relationship to annotated-logic, provenance-semiring, and assumption-based truth-maintenance frameworks is a declared donor relationship rather than a demonstrated formal separation, and whether a separation exists at the level of propagation-time enforcement, per-decision evaluation cost, or vocabulary curation remains open.",
+      "verification_method": "deterministic_recompute",
+      "warrant_type": "analysis"
+    },
+    {
+      "artifact_pointer": "submission/artifact/papers/orion-03-typed-merge-falsification/CLAIM_LEDGER_V3.md",
+      "boundary_or_uncertainty": "Bounded to the exact proposition and stated manuscript scope.",
+      "claim_class": "interpretation",
+      "claim_id": "C_LIM_032",
+      "counterevidence_search_required": false,
+      "cross_section_locations": [],
+      "dependencies_and_hidden_premises": "The definitions, qualifiers, and evidence boundary stated at the cited location.",
+      "importance": "major",
+      "location": "Limitations",
+      "qualifiers_and_scope": "Bounded to the exact proposition and stated manuscript scope.",
+      "release_action": "retain exactly as bounded",
+      "risk": "normal",
+      "scope_match": "MATCH",
+      "source_keys": [],
+      "support_status": "BOUNDS",
+      "target_release_status": "BOUNDED_INFERENCE",
+      "text": "All gold labels, audits, adjudications, and the in-repository reproducer were produced within the same single-author research programme using AI assistance; no result reported has been checked by an out-of-programme reviewer or an implementation outside this repository.",
+      "verification_method": "deterministic_recompute",
+      "warrant_type": "analysis"
+    },
+    {
       "artifact_pointer": "submission/artifact/papers/orion-03-typed-merge-falsification/evidence_license_evaluator.py",
       "boundary_or_uncertainty": "Bounded to the exact proposition and stated manuscript scope.",
       "claim_class": "availability_or_compliance",
@@ -8300,7 +8373,7 @@
   "component_binding_manifest": {
     "byte_count": 106678,
     "path": "COMPONENT_BINDING_MANIFEST.json",
-    "sha256": "93b86538ee51e2107370745932713ec3e5b3ef143626201532ab450eb20e36db"
+    "sha256": "cb33dd6233979c9239b05cfcbad2aad0c92f639891824c4fa0bd6fc2fccd6265"
   },
   "does_not_certify": [
     "independent_review_pass",
@@ -8311,9 +8384,9 @@
   "independent_review_status": "PENDING",
   "paper": "ORION-03",
   "reader_pdf": {
-    "byte_count": 118823,
+    "byte_count": 121521,
     "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion.pdf",
-    "sha256": "8bef2f1938ba328120b6bebfc5bbedb7ad72cfa8092f482a1b11a6a30ecf1a21"
+    "sha256": "ed34801f5c2009259f84d61a9c15bae25f91c3d9c0c5e51519453b102a331da1"
   },
   "schema": "ORION.PublicationClosure.AtomicClaimInventory.v1",
   "state": "IMMUTABLE_INDEPENDENT_REVIEW_INPUT"

@@ -1,5 +1,9 @@
 # ORION-03 publication-freeze addendum V1
 
+> **SUPERSEDED (2026-09-02):** the current frozen surface is `MANUSCRIPT_V3.md` +
+> `CLAIM_LEDGER_V3.md`, named by the successor `PUBLICATION_FREEZE_ADDENDUM_V2.md`.
+> This V1 record is preserved unchanged below and names the superseded V2/R2 surface.
+
 **Freeze date:** 2026-08-27  
 **Status:** `CURRENT_EARNED_CEILING_FROZEN__EXTERNAL_POLICY_VALIDATION_SUCCESSOR_ONLY`
 

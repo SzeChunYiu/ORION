@@ -1,0 +1,338 @@
+{
+  "schema": "1.0",
+  "paper": "ORION-03",
+  "receipt_type": "ORION-03 fresh independent candidate and package re-review",
+  "reviewed_at_utc": "2026-09-02T12:53:23Z",
+  "reviewer": {
+    "identity": "OpenAI Codex independent read-only review lane /root/orion03_independent_release_review",
+    "role": "independent candidate-package and full-manuscript atomic-claim reviewer",
+    "separate_from_candidate_authoring_lane": true,
+    "methods": [
+      "sha256sum -c over candidate_package/SHA256SUMS and independent file-set comparison",
+      "independent SHA-256 and byte-count recomputation for manifest-bound immutable objects",
+      "ZIP central-directory member-set, member-hash, member-size, duplicate, encryption, symlink, absolute-path, traversal, and workspace-path audit",
+      "component-binding manifest path/hash/byte-count audit against package bytes",
+      "canonical manuscript, claim-ledger, edit-delta, and author-confirmation text inspection with rg/sed/jq/python",
+      "atomic-claim inventory parse, count, uniqueness, status, source-key, and spot-check inspection",
+      "citation-key extraction from the manuscript with email-at-sign exclusion and comparison to packaged references.bib",
+      "Crossref REST DOI lookup for 10.1016/0004-3702(86)90080-9",
+      "pdftotext extraction and pdfinfo metadata/page-count inspection of the reader PDF"
+    ],
+    "candidate_bytes_modified": false
+  },
+  "verification_scope": "full_manuscript",
+  "scope_match": "MISMATCH",
+  "candidate": {
+    "directory": "/root/orion03_independent_release_review/candidate_package",
+    "candidate_file_count": 412,
+    "declared_state_at_review": "CANDIDATE_ONLY__NOT_RELEASE_READY",
+    "repository_head_observed": "2af2da44a549a73631d0cfd5cc444c74659ed607",
+    "repository_head_note": "Instruction-declared lane head on branch tierb/orion-03-jar-20260902: prior lane head 684dbff730 plus the same-programme single-author disclosure commit, with intervening main merges noted, and the candidate rebuilt from this lane head at 2026-09-02. The review workspace has no .git directory, so this commit could not be independently rev-parsed locally; exact reviewed bytes are bound by the checksum and manifest audits.",
+    "immutable_objects": {
+      "artifact_archive": {
+        "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_artifact.zip",
+        "byte_count": 628381,
+        "sha256": "9c47d459952e84672876391e5a6601fa6f810236104fc20cd481fb8f2b467542",
+        "member_count": 368
+      },
+      "atomic_claim_inventory": {
+        "path": "ATOMIC_CLAIM_INVENTORY.json",
+        "byte_count": 412078,
+        "sha256": "126560bf6e5bbd7c0bf545572ef611b26ae1e3d09757a82fd47a891225d7d9c2"
+      },
+      "author_confirmation": {
+        "path": "review_records/AUTHOR_CONFIRMATION_V1.json",
+        "byte_count": 1038,
+        "sha256": "cf0b78081c7a7d3f9265612ec4ee32751110a03ed2647cf66141a6f26ee7443b",
+        "status": "PASS"
+      },
+      "candidate_review_manifest": {
+        "path": "CANDIDATE_REVIEW_MANIFEST.json",
+        "byte_count": 107478,
+        "sha256": "2e27896340c19193dc257bf02fe827a7681d6629d94e9c2f6964424b0651d58b"
+      },
+      "canonical_claim_ledger": {
+        "path": "CLAIM_LEDGER.md",
+        "byte_count": 4020,
+        "sha256": "6dca07cc8f96557e08228a2dfe5100f4b66e819abf42ee2bbbe9207e095e1f8c"
+      },
+      "canonical_manuscript": {
+        "path": "MANUSCRIPT.md",
+        "byte_count": 36521,
+        "sha256": "d394b915afe4dd5761d5f0169dac8e6ff45116ec8430047ae2d885468cc895d7"
+      },
+      "component_binding_manifest": {
+        "path": "COMPONENT_BINDING_MANIFEST.json",
+        "byte_count": 106678,
+        "sha256": "cb33dd6233979c9239b05cfcbad2aad0c92f639891824c4fa0bd6fc2fccd6265"
+      },
+      "packaged_release_verifier": {
+        "path": "review_records/verify_release.py",
+        "byte_count": 23795,
+        "sha256": "52f92f46c766ad1a92b2c4bd0b5f198a5a9d2d412f461fc66006fa6f1e0aac5f"
+      },
+      "pinned_openssl_build_record": {
+        "path": "submission/artifact/papers/orion-03-typed-merge-falsification/evidence/round2-x509-truststore/PINNED_OPENSSL_BUILD.md",
+        "byte_count": 1243,
+        "sha256": "190ea91cdc6d763fbc08599bc31db1b0fb9d39ef0f29248d2d11ec659c96815a"
+      },
+      "reader_pdf": {
+        "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion.pdf",
+        "byte_count": 121521,
+        "sha256": "ed34801f5c2009259f84d61a9c15bae25f91c3d9c0c5e51519453b102a331da1"
+      },
+      "sha256sums": {
+        "path": "SHA256SUMS",
+        "byte_count": 82726,
+        "sha256": "db17eb40c3e44be1e95961dd10f06e0091b57a4af6838ffdd4b612ed13ae4863"
+      },
+      "source_archive": {
+        "path": "submission/Typed_Evidence_Licenses_for_Fail_Closed_Nonpromotion_source.zip",
+        "byte_count": 59106,
+        "sha256": "d4e3851aa4c6dd61ae4c43d966ba4f3bab884482a1b71a5e812b322d6f72fde7",
+        "member_count": 8
+      }
+    }
+  },
+  "candidate_custody": {
+    "before_snapshot": null,
+    "after_snapshot": {
+      "file_count": 412,
+      "file_path_list_sha256": "a6f1d25487bcc39b02efc5bc292aead83a443046518515f83b55da3c7cb4104e",
+      "file_path_and_size_list_sha256": "3f1a713c8ad8451a3fed32f85dc8dfb01182149c37d99abb52516cab68117ab8"
+    },
+    "candidate_bytes_modified_by_reviewer": false,
+    "snapshots_byte_identical": null,
+    "decision": "NO_FORMAL_BEFORE_AFTER_SNAPSHOT_PAIR",
+    "custody_evidence": "No formal pre-review candidate snapshot was taken. The package arrived as a read-only copy for this lane; only read-only inspection commands were run against candidate_package. The only file written by this review is the root-level INDEPENDENT_RELEASE_REVIEW_V1.json, outside candidate_package."
+  },
+  "atomic_claim_coverage": {
+    "claim_count_declared": 375,
+    "claim_count_reviewed": 375,
+    "blocked_or_nonclosing_target_status_count": 0,
+    "decision": "FAIL",
+    "scope_match": "MISMATCH",
+    "verification_scope": "full_manuscript",
+    "scope_match_counts": {
+      "MATCH": 375
+    },
+    "support_status_counts": {
+      "ENTAILS": 282,
+      "BOUNDS": 93
+    },
+    "target_release_status_counts": {
+      "BOUNDED_INFERENCE": 94,
+      "COHERENT_DEFINITION": 37,
+      "VERIFIED": 244
+    },
+    "coverage_basis": "The inventory is internally parseable, has 375 unique claims matching claim_count, and all target statuses are closing statuses. However it does not cover the current full manuscript: it omits the new dekleer1986 citation use, omits atoms for the new expressiveness-gate Limitations paragraph, omits atoms for the new same-single-author-programme/out-of-programme disclosure sentence, and still asserts the author affiliation as Independent Researcher while the canonical manuscript metadata says Stockholm University.",
+    "spot_checked_claim_ids": [
+      "C_META_004",
+      "C_META_005",
+      "C_LIT_001",
+      "C_LIT_002",
+      "C_LIT_003",
+      "C_LIT_004",
+      "C_LIT_017",
+      "C_LIT_018",
+      "C_LIM_021",
+      "C_LIM_030",
+      "C_CONC_011"
+    ],
+    "spot_check_result": "FAIL_CURRENT_MANUSCRIPT_MISMATCH_FOR_C_META_005_AND_DELTA_COVERAGE_GAPS"
+  },
+  "pdf_review": {
+    "decision": "FAIL",
+    "reader_pdf_sha256": "ed34801f5c2009259f84d61a9c15bae25f91c3d9c0c5e51519453b102a331da1",
+    "text_extract_nonempty": true,
+    "extracted_text_byte_count": 38894,
+    "page_count": 15,
+    "page_size": "A4",
+    "metadata_sane": true,
+    "metadata_observed": {
+      "title": "Typed Evidence Licenses for Fail-Closed Nonpromotion in Finite Rule Systems",
+      "author": "Sze Chun Yiu",
+      "creator": "LaTeX with hyperref",
+      "producer": "xdvipdfmx (0.1)",
+      "creation_date": "Mon Aug 31 14:00:00 2026 CEST",
+      "pdf_version": "1.5",
+      "encrypted": false
+    },
+    "new_limitations_expressiveness_passage_renders": true,
+    "new_same_programme_single_author_disclosure_renders": true,
+    "dekleer1986_reference_renders": true,
+    "preserved_terminal_exact_strings_in_pdf_text": false,
+    "preserved_terminal_exact_strings_in_manuscript_text": false,
+    "visual_inspection_performed": false,
+    "rendered_page_coverage": null
+  },
+  "citation_coverage": {
+    "decision": "FAIL",
+    "all_cited_keys_resolve": true,
+    "email_at_sign_excluded": true,
+    "manuscript_citation_occurrences": 25,
+    "manuscript_unique_citation_keys": 17,
+    "bibliography_keys": 17,
+    "uncited_bibliography_keys": 0,
+    "missing_bibliography_keys": [],
+    "citation_use_rows": 24,
+    "citation_sequence_matches_inventory": false,
+    "inventory_missing_new_citation_key": "dekleer1986",
+    "dekleer1986_crossref": {
+      "lookup_url": "https://api.crossref.org/works/10.1016%2F0004-3702%2886%2990080-9",
+      "status": "ok",
+      "doi": "10.1016/0004-3702(86)90080-9",
+      "title": "An assumption-based TMS",
+      "container_title": "Artificial Intelligence",
+      "published": "1986-03",
+      "author": "Johan de Kleer"
+    }
+  },
+  "negative_evidence_review": {
+    "decision": "FAIL",
+    "null_adverse_results_retained_semantically": true,
+    "zero_request_failure_retained_semantically": true,
+    "five_openssl_disagreements_retained_semantically": true,
+    "analytic_identity_not_promoted_to_detector_performance": true,
+    "two_parent_cost_retained_semantically": true,
+    "native_replay_cannot_check_boundary_retained_in_prior_manifest": true,
+    "preserved_terminal_exact_strings_retained_in_manuscript_text": false,
+    "timeouts_or_quarantines_relabelled_as_positive": false,
+    "retraction_bound_to_declared_algebra": true
+  },
+  "package_integrity": {
+    "decision": "FAIL",
+    "all_listed_hashes_match": true,
+    "sha256sums_entry_count": 411,
+    "candidate_file_count": 412,
+    "checksum_member_set_exact": false,
+    "checksum_member_set_note": "All 411 SHA256SUMS entries verified successfully, and no listed file is missing. Strict comparison to the candidate tree leaves the root SHA256SUMS file itself unlisted; its hash was recomputed separately for immutable_objects.",
+    "files_missing_from_sha256sums": [
+      "SHA256SUMS"
+    ],
+    "listed_files_missing_from_tree": [],
+    "manifest_bound_objects_match": true,
+    "manifest_namespaces_resolve_internally": true,
+    "component_binding_manifest_path_hash_records_checked": 5,
+    "candidate_local_path_or_prior_receipt_leaks_in_zip_member_names": 0,
+    "source_archive": {
+      "member_count": 8,
+      "exact_member_set": true,
+      "all_member_hashes_and_sizes_match": true,
+      "expanded_tree_byte_match_for_manifest_members": true,
+      "expanded_submission_source_has_extra_build_byproducts_not_in_source_zip": [
+        "main.aux",
+        "main.bbl",
+        "main.blg",
+        "main.log",
+        "main.out",
+        "main.pdf"
+      ]
+    },
+    "artifact_archive": {
+      "member_count": 368,
+      "exact_member_set": true,
+      "all_member_hashes_and_sizes_match": true,
+      "expanded_tree_byte_match": true
+    },
+    "zip_safety": {
+      "absolute_path_entries": 0,
+      "path_traversal_entries": 0,
+      "review_workspace_path_entries": 0,
+      "duplicate_entries": 0,
+      "directory_entries": 0,
+      "encrypted_entries": 0,
+      "symlink_entries": 0
+    }
+  },
+  "build_and_executable_evidence": {
+    "decision": "NOT_RERUN_READ_ONLY_REVIEW_SCOPE",
+    "packaged_release_verifier": {
+      "path": "review_records/verify_release.py",
+      "byte_count": 23795,
+      "sha256": "52f92f46c766ad1a92b2c4bd0b5f198a5a9d2d412f461fc66006fa6f1e0aac5f",
+      "executed": false
+    },
+    "clean_source_archive_builds": {
+      "executed": false
+    },
+    "packaged_tests": {
+      "executed": false
+    },
+    "round2_binding": {
+      "recomputed": false
+    },
+    "note": "Executable tests and clean rebuilds were not run because this review was constrained to read-only inspection commands and candidate_package must not be modified. Package-embedded build/test evidence was not promoted beyond byte binding."
+  },
+  "authority_limitations": [
+    "This FAIL certifies only the scoped independent review of the exact candidate bytes and bindings recorded here.",
+    "It does not change the candidate declaration CANDIDATE_ONLY__NOT_RELEASE_READY.",
+    "It does not certify scientific truth beyond bounded evidence and inference statuses recorded in the inventory.",
+    "It does not convert any null, adverse, harmful, timeout, retraction, quarantine, or CANNOT_CHECK result into a positive result.",
+    "It does not certify external peer review, independent external replication, Cedar or Lean native replay, security, usability, deployment, production prevalence, production value, submission-portal upload, venue acceptance, journal acceptance, publication, or an external mirror.",
+    "The FAIL decision is based on release-package coverage/binding defects, not on an independent adjudication that the manuscript's scientific claims are false."
+  ],
+  "preserved_terminals": [
+    "CEDAR_EXTERNAL_TRANSFER_NULL",
+    "CEDAR_ZERO_REQUEST_PATH_BINDING_FAILURE",
+    "OPENSSL_ANCHOR_186_OF_191_WITH_FIVE_DISAGREEMENTS",
+    "ORIGIN_WITNESS_PERFECT_ROW_IS_ANALYTIC_IDENTITY",
+    "ORIGIN_WITNESS_TWO_PARENT_EVALUATION_COST",
+    "PACKAGE_NATIVE_REPLAY_CANNOT_CHECK_BOUNDARIES"
+  ],
+  "package_verification_scope": "full_candidate_package",
+  "decision": "FAIL",
+  "decision_basis": [
+    "FAIL: The atomic-claim inventory is stale relative to the current canonical manuscript. It omits the new dekleer1986 citation use, the new expressiveness-gate Limitations paragraph, and the new same-single-author-programme/out-of-programme disclosure sentence.",
+    "FAIL: The inventory and AUTHOR_CONFIRMATION_V1.json still bind the author affiliation as Independent Researcher, but candidate_package/MANUSCRIPT.md metadata states affiliation: Stockholm University.",
+    "FAIL: The prior preserved terminal-result strings do not appear as exact strings in candidate_package/MANUSCRIPT.md or in extracted reader-PDF text; only semantic prose for several boundaries remains visible.",
+    "FAIL under strict checksum-set audit wording: all listed SHA256SUMS entries match and no listed file is missing, but SHA256SUMS itself is an unlisted file in the candidate tree.",
+    "The updated manuscript does contain the new expressiveness Limitations paragraph, the new same-programme single-author disclosure sentence, and a dekleer1986 citation; the packaged bibliography resolves all 17 manuscript citation keys, and Crossref verified DOI 10.1016/0004-3702(86)90080-9 for Johan de Kleer, An assumption-based TMS, Artificial Intelligence, 1986.",
+    "The candidate review manifest hashes and byte counts match the actual canonical manuscript, claim ledger, reader PDF, atomic inventory, component manifest, and both submission archives; both ZIP archives match their manifest member sets and member hashes with no unsafe member paths.",
+    "The claim ledger is byte-identical to the frozen packaged CLAIM_LEDGER_V3.md and retains sha256 6dca07cc8f96557e08228a2dfe5100f4b66e819abf42ee2bbbe9207e095e1f8c.",
+    "Delta review found no PROVEN or VERIFIED status-token additions, and limitations were added rather than removed, but the delta adds factual related-work/manuscript assertions that are not covered by the stale inventory."
+  ],
+  "superseded_by": null,
+  "supersession_resolution": "NOT_APPLICABLE_CURRENT_NO_SUPERSESSION",
+  "receipt_lineage": {
+    "original_review": {
+      "byte_count": 10687,
+      "event": "ORIGINAL_INDEPENDENT_REVIEW",
+      "reviewed_at_utc": "2026-08-31T16:33:53Z",
+      "sha256": "5ed689ae14acb94c7534055a588cbba9760a914eaa7d53dbeed3185c03db8a34"
+    },
+    "privacy_reissue": {
+      "basis": "academic-paper-skills PR number 25 local-path privacy rule",
+      "byte_count": 11362,
+      "event": "PRIVACY_SANITIZATION_REISSUE",
+      "reissued_at_utc": "2026-08-31T17:00:49Z",
+      "sha256": "4ddd8f1bd528681bd1b3f64a60dff29afafb83592d0a9f37fe1ebba1762ec7fc"
+    },
+    "prior_fresh_review": {
+      "event": "FRESH_REVIEW_OF_UPDATED_CANDIDATE",
+      "reviewed_at_utc": "2026-08-31T17:29:21Z",
+      "sha256": "aba3b9970a11ebce4f40882bf6cd0a7831ac39c274a63a4b7dd353312129fcd9",
+      "byte_count": 14608
+    },
+    "current_event": "FRESH_REVIEW_OF_UPDATED_CANDIDATE",
+    "prior_conclusions_copied_without_recheck": false
+  },
+  "academic_paper_skills": {
+    "candidate_build_pinned_revision": "488fc5310b84e578431f4a9a176d55bf9a3f0b99",
+    "candidate_manifest_revision_matches": "488fc5310b84e578431f4a9a176d55bf9a3f0b99",
+    "controls_exercised": {
+      "candidate_phase_boundary": "PASS: manifest state is CANDIDATE_ONLY__NOT_RELEASE_READY and this review does not promote it to final release.",
+      "exact_archive_member_binding": "PASS: both ZIP member sets, sizes, and sha256 values match CANDIDATE_REVIEW_MANIFEST.json.",
+      "payload_bearing_zip_directory_guard": "PASS: artifact zip member set exactly matches submission/artifact; source zip member set exactly matches manifest and corresponding source member bytes.",
+      "local_path_release_payload_guard": "PASS for ZIP member names: no absolute paths, traversal entries, or review-workspace paths were found in either archive.",
+      "single_reader_authority_binding": "PASS: manifest reader_pdf hash and byte_count match the submission reader PDF; pdfinfo/pdftotext inspected that file."
+    },
+    "controls_not_exercised": [
+      "live origin/main fetch",
+      "clean rebuild",
+      "packaged test execution",
+      "final release manifest generation",
+      "external mirror verification"
+    ]
+  }
+}
