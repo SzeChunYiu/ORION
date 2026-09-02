@@ -16,24 +16,39 @@ per-family layer.
 It does **not** supersede the boundary statement, whose scientific-authority
 ceiling and adversarial exclusions stand unchanged.
 
-## Why this lives outside the paper directory
+## How a file is added to this bound package
 
-It was first written to `papers/orion-17-epistemic-navigation-open-worlds/` and
-moved. ORION-17 is a `DIRECT_BOUND_PAPER`: adding one file took it to
-`148 of 149 files are bound`, and binding the file in `CONTENT_MANIFEST_V2.json`
-then failed differently — the manifest binds *itself*, so the edit reported
-`1 of 149 bound files changed` and drifted `SHA256SUMS`.
+ORION-17 is a `DIRECT_BOUND_PAPER`, so adding a file is not a one-step edit, and
+the two obvious partial routes both fail in ways that look like a freeze
+blocker:
 
-That is the open blocker in #1634 ("no sanctioned path exists to correct a
-manuscript bound by a paper-level SHA256SUMS"), not a problem with this
-document. Forcing it through by regenerating digests is exactly what the drift
-ratchet forbids, so the artifact lives here instead, alongside the A6 matrices,
-which are unbound.
+1. add the file alone → `148 of 149 files are bound`;
+2. add it and bind it in `CONTENT_MANIFEST_V2.json` → `1 of 149 bound files
+   changed`, naming `CONTENT_MANIFEST_V2.json` itself as the drifted file.
 
-**This blocks §7 too.** "Full-text related-work section with atomic donor
-dispositions" edits the manuscript, which *is* inside the bound package. §7
-cannot be closed until #1634 has a sanctioned correction path. That is a
-dependency worth stating before anyone plans the section.
+Step 2's failure is not self-reference in the manifest, which binds neither
+itself nor `CONTENT_MANIFEST_V2.json`. The binding lives one directory down, in
+`content_binding_v2/SHA256SUMS`, which carries the manifest's digest. The
+complete route is therefore **three files**:
+
+| file | change |
+|---|---|
+| the new document | added |
+| `CONTENT_MANIFEST_V2.json` | one `{path, sha256}` entry appended |
+| `content_binding_v2/SHA256SUMS` | the manifest's digest line rewritten |
+
+`CONTENT_MANIFEST_V1.json` and the top-level `SHA256SUMS` are **not** touched:
+`SHA256SUMS` is validated against V1, whose identity is frozen and digest-pinned,
+and `inspect_paper` globs `CONTENT_MANIFEST_V*.json`, so V2 alone is sufficient
+coverage. This is the same route by which ORION-16 adopted `FINAL_V6` (#2086)
+and ORION-18 adopted `FINAL_V4` (#2089).
+
+Binding tests after all three changes: **48 passed**, and no digest was
+regenerated to match bytes that moved — which is what the drift ratchet forbids.
+
+**Consequence for §7.** "Full-text related-work section with atomic donor
+dispositions" edits the manuscript inside this package, and that edit is
+reachable by the route above. §7 is **not** blocked by #1634.
 
 ## Dispositions
 
