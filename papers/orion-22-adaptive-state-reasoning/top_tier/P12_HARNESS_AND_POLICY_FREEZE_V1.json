@@ -1,0 +1,90 @@
+{
+ "schema": "ORION.A2.P12HarnessAndPolicyFreeze.v1",
+ "date": "2026-09-02",
+ "paper_ids": ["ORION-21", "ORION-22"],
+ "issue_binding": "SzeChunYiu/ORION#2139 Stage 2 (+ Stage 0 slots); SzeChunYiu/ORION-paper#49 A2 Phase 1",
+ "artifact_class": "FROZEN_BEFORE_PROTECTED_EVALUATION",
+ "flags": {
+  "protected_outcomes_accessed": false,
+  "campaign_executed": false,
+  "execution_started": false,
+  "model_identities_frozen": false,
+  "tuning_thresholds_bound": false,
+  "results_exist": false
+ },
+ "consumes_verbatim": {
+  "menus": "p12_stopgo_frozen_menus_v1.json",
+  "campaign_prereg": "P12_CAMPAIGN_PREREG_V1.json",
+  "substrate_freeze": "P12_SCIENCEAGENTBENCH_VERIFIED_SUBSTRATE_FREEZE_V1.json",
+  "analyzer": "analyze_p12_stopgo_final_v1.py"
+ },
+ "episode_unit": "(family, model_identity); one action per episode; family-level state artifacts cached and reused across the family's instances",
+ "unit_output_byte_caps": {
+  "family_state_artifact_S1": 6000,
+  "instance_state_artifact_S2": 3000,
+  "reasoning_unit_R1": 3000,
+  "reasoning_unit_R2": 3000
+ },
+ "signals": {
+  "S_PENDING_MULTIPLICITY": "clean instance count of the family (campaign prereg families[].n)",
+  "S_DECLARED_MATERIALIZATION_COST": "sum over family instances of utf8_bytes(dataset_folder_tree) + utf8_bytes(dataset_preview), divided by 10000.0",
+  "S_DECLARED_SERVE_EXCHANGE_RATE": "1.0 constant (FLAT pricing frozen for this campaign; menu retained unchanged)",
+  "S_FAMILY_DIFFICULTY_PRIOR": "committed families[].difficulty_prior from P12_CAMPAIGN_PREREG_V1.json"
+ },
+ "policies": {
+  "state_value": "v = S_PENDING_MULTIPLICITY / (S_DECLARED_MATERIALIZATION_COST * S_DECLARED_SERVE_EXCHANGE_RATE)",
+  "ONE_SIGNAL_STATE": "A_STATE_MAX if S_PENDING_MULTIPLICITY >= theta_m else A_RETAIN_MINIMAL",
+  "ONE_SIGNAL_REASON": "A_REASON_MAX if S_FAMILY_DIFFICULTY_PRIOR >= theta_d else A_RETAIN_MINIMAL",
+  "ADAPTIVE": "S=[v>=theta_v], R=[S_FAMILY_DIFFICULTY_PRIOR>=theta_r]; A_BALANCED if S and R; A_STATE_MAX if S; A_REASON_MAX if R; else A_RETAIN_MINIMAL"
+ },
+ "threshold_fitting": {
+  "split": "tuning families only (P12_CAMPAIGN_PREREG_V1.json split.tuning_family_ids)",
+  "candidate_grid": "midpoints between consecutive sorted tuning-family values of the relevant signal, plus one candidate below the minimum and one above the maximum",
+  "objective": "maximize the policy's mean tuning-family score; ties toward the smaller threshold",
+  "adaptive_fit_order": "theta_v then theta_r, each by the same grid rule, jointly re-checked by exhaustive grid product",
+  "stronger_one_signal_selection": "higher mean tuning score; tie -> ONE_SIGNAL_STATE (declared before outcomes)",
+  "binding_artifact": {
+   "path": "P12_TUNING_BINDING_V1.json",
+   "schema": "ORION.A2.P12TuningBinding.v1",
+   "required_fields": ["thetas", "selected_one_signal_arm", "tuning_scores_by_arm", "bound_before_any_protected_model_call"],
+   "must_be_committed_before": "any protected-family model call"
+  }
+ },
+ "terminal_step": {
+  "charged": false,
+  "arm_blind": true,
+  "template_id": "P12_TERMINAL_V1",
+  "template_text": "You are completing a scientific programming task.\n\nTASK INSTRUCTION:\n{task_inst}\n\nDATASET TREE:\n{dataset_folder_tree}\n\nDATASET PREVIEW:\n{dataset_preview}\n{auxiliary_block}\nWrite one complete, self-contained Python program that accomplishes the task and saves the required output to the specified path. Reply with exactly one fenced Python code block and nothing else.",
+  "auxiliary_block_rule": "concatenation, in fixed order, of whichever intermediate artifacts the action produced (family state artifact, instance state artifact, plan 1, plan 2), each under a neutral header naming neither the arm nor the action; empty string for A_RETAIN_MINIMAL",
+  "output_contract": "single fenced Python block; the program is executed by the pinned upstream evaluator"
+ },
+ "scoring": {
+  "instance_outcome": "primary task-success boolean of the pinned upstream ScienceAgentBench evaluator (OSU-NLP-Group/ScienceAgentBench @ c26e151ed601ba109dc4d35e057ff8e73fec469d)",
+  "family_score": "100.0 * mean(instance successes) per (arm, model); normalized points = percentage points",
+  "hindsight_oracle": "per (family, model): max over the four actions of the family score",
+  "execution_shape": "4-action matrix executed once per (instance, model); arm scores derived by policy lookup, never re-run"
+ },
+ "gold_isolation": {
+  "runner_readable_parquet_fields": ["instance_id", "domain", "github_name", "task_inst", "domain_knowledge", "dataset_folder_tree", "dataset_preview", "output_fname"],
+  "runner_forbidden_parquet_fields": ["gold_program_name", "eval_script_name", "src_file_or_path"],
+  "note": "output_fname is part of the task statement (where to save results) and carries no gold content; evaluation happens only in the upstream evaluator"
+ },
+ "model_identity_slots": {
+  "required_classes": ["GPT_CLASS", "CLAUDE_OR_GEMINI_CLASS"],
+  "optional_phase2_class": "OPEN_WEIGHT",
+  "binding_artifact": "MODEL_IDENTITY_FREEZE_V1.json",
+  "probed_candidate_lanes_2026_09_02": {
+   "GPT_CLASS": "codex CLI (operator ChatGPT subscription), single-turn exec, tools disabled",
+   "CLAUDE_OR_GEMINI_CLASS": "claude CLI (operator claude.ai subscription), -p print mode, tools disabled"
+  },
+  "decoding_note": "CLI lanes expose no temperature control; provider-default decoding recorded as non-configurable; 1-run-per-cell repeat policy (campaign prereg) carries the consequence"
+ },
+ "execution_host_rule": "laptop-billy or a LUNARC compute node; never the Mac mini; sealed pre-run manifest (Stage 3) binds all digests first",
+ "result_assembly": {
+  "emits_schema": "ORION.A2.P12StopGoResultInput.v1",
+  "unseal_rule": "protected_outcomes_unsealed set true only by the post-run assembly step on the execution host",
+  "cannot_check_rule": "missing model class, missing family, or scope shortfall assembles a CANNOT_CHECK posture; silent narrowing forbidden"
+ },
+ "scientific_authority_delta": "NONE__PRE_OUTCOME_PROTOCOL_ONLY",
+ "successor_rule": "editing any frozen value here after any protected model call is forbidden; a successor requires its own preregistration"
+}
