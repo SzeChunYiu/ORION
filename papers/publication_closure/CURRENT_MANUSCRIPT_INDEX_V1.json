@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-02",
+  "papers": {
+    "ORION-16": {
+      "adopted_by": "#2086",
+      "current_manuscript": "papers/orion-16-formal-epistemic-structures-and-mechanics/manuscript/FINAL_V6.md",
+      "note": "README.md still points at FINAL_V4/V5 and is frozen.",
+      "superseded": "FINAL_V5.md"
+    },
+    "ORION-17": {
+      "adopted_by": "#2100",
+      "current_manuscript": "papers/orion-17-epistemic-navigation-open-worlds/manuscript/FINAL_V5.md",
+      "note": "Adds the related-work section required by JOURNAL_READINESS section 7.",
+      "superseded": "FINAL_V4.md"
+    },
+    "ORION-18": {
+      "adopted_by": "#2109",
+      "current_manuscript": "papers/orion-18-epistemic-authority-autonomous-science/manuscript/FINAL_V5.md",
+      "note": "Corrects the abstract state count: 3,072 states / 39,936 evaluations.",
+      "superseded": "FINAL_V4.md"
+    },
+    "ORION-22": {
+      "adopted_by": "#2110",
+      "current_manuscript": "papers/orion-22-adaptive-state-reasoning/MANUSCRIPT_V2.md",
+      "note": "Resolves the duplicated passages in section 1 and section 9.",
+      "superseded": "MANUSCRIPT.md"
+    }
+  },
+  "schema": "orion.current-manuscript-index.v1",
+  "scientific_authority_delta": "NONE",
+  "why": "Each paper's README.md is bound in CONTENT_MANIFEST_V1 and the paper-level SHA256SUMS, so it cannot be corrected in place when a successor manuscript is adopted. This index is the pointer instead. It names the current working manuscript, which is NOT the same as the venue submission -- see VENUE_PACKAGE_CURRENCY_V1.md."
+}
