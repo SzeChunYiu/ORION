@@ -323,7 +323,8 @@ def run(workdir: Path) -> dict[str, Any]:
         "sha256": sha256_bytes(adv.stdout),
         "refs_total": len(adv_refs),
         "refs_heads": len(adv_heads),
-        "refs_tags": len(adv_tags),
+        "refs_tags_unpeeled": sum(1 for k in adv_tags if not k.endswith("^{}")),
+        "refs_tags_peeled": sum(1 for k in adv_tags if k.endswith("^{}")),
     }
     gates["g1_advertisement_acquired"] = adv.returncode == 0 and (adv_heads or adv_tags)
     if not gates["g1_advertisement_acquired"]:
@@ -331,6 +332,10 @@ def run(workdir: Path) -> dict[str, Any]:
                        {"stage": "ls-remote", "stderr_head": adv.stderr.decode('utf-8', 'replace')[:400]})
 
     # ---- G2: fresh full bare clone ----
+    # v1.1 correction: ls-remote advertises peeled pseudo-refs `refs/tags/X^{}`
+    # (annotated-tag target commits). A bare clone never stores them as refs, so
+    # they are excluded from the ref-name comparison; instead their target
+    # objects must exist in the clone object database (cat-file -e).
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     clone = workdir / f"pyzx-bare-{stamp}"
     clone.parent.mkdir(parents=True, exist_ok=True)
@@ -344,20 +349,31 @@ def run(workdir: Path) -> dict[str, Any]:
                               "refs/heads", "refs/tags"], cwd=clone).splitlines():
             name, _, oid = line.partition(" ")
             clone_refs[name] = oid
-    adv_ht = {**adv_heads, **adv_tags}
+    adv_ht = {name: oid for name, oid in {**adv_heads, **adv_tags}.items()
+              if not name.endswith("^{}")}          # real refs only
+    peeled_targets = sorted({oid for name, oid in {**adv_heads, **adv_tags}.items()
+                             if name.endswith("^{}")})
     missing_refs = sorted(name for name, oid in adv_ht.items() if clone_refs.get(name) != oid)
+    missing_peeled_objects = sorted(
+        oid for oid in peeled_targets
+        if subprocess.run([GIT, "cat-file", "-e", oid + "^{commit}"], cwd=str(clone),
+                          capture_output=True, env=git_env(), check=False).returncode != 0)
     gates["g2_fresh_full_bare_clone"] = (
-        clone_proc.returncode == 0 and shallow == "false" and not missing_refs
+        clone_proc.returncode == 0 and shallow == "false"
+        and not missing_refs and not missing_peeled_objects
     )
     evidence["clone"] = {
         "path": str(clone), "exit_code": clone_proc.returncode,
         "shallow": shallow, "refs_heads_tags_in_clone": len(clone_refs),
         "advertised_refs_missing_in_clone": missing_refs,
+        "advertised_peeled_targets_missing_in_object_db": missing_peeled_objects,
         "fetch_stderr_sha256": sha256_bytes(clone_proc.stderr),
     }
     if not gates["g2_fresh_full_bare_clone"]:
         return adverse(failure_map["network_or_ref_advertisement_unavailable"],
-                       {"stage": "clone", "missing_refs": missing_refs, "shallow": shallow})
+                       {"stage": "clone", "missing_refs": missing_refs,
+                        "missing_peeled_objects": missing_peeled_objects,
+                        "shallow": shallow})
 
     # ---- G3: prefix matches over commits reachable from all refs ----
     rev_list = [line for line in git_text(["rev-list", "--all"], cwd=clone).splitlines() if line]

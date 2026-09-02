@@ -53,7 +53,11 @@ The frozen predecessor directory is never written to. The canonical checker's
    no alternates, no grafts, no shallow) of the declared remote into an uncommitted
    scratch directory; assert non-shallow.
 2. Record the remote-ref advertisement (`git ls-remote`, byte hash + per-kind
-  counts); assert every advertised head/tag is present in the clone.
+  counts); assert every advertised head/tag **real ref** (ls-remote peeled
+  pseudo-refs `refs/tags/X^{}` are advertisement-only and never exist as clone
+  refs) is present in the clone with an identical object name, and every
+  advertised peeled target object exists in the clone object database
+  (v1.1 correction; see the correction section below).
 3. `git rev-list --all` in the bare clone; retain object names beginning exactly
    with the frozen prefix; require the frozen match count.
 4. Require 40 lowercase hex and `git cat-file -t` == `commit`; record tree,
@@ -72,7 +76,7 @@ The frozen predecessor directory is never written to. The canonical checker's
 |---|---|---|
 | G0 | canonical checker `run_checks()` passes, terminal `PROTOCOL_FREEZE_VALIDATED__NO_SOURCE_OUTCOME`; frozen dir sha256 set matches the registration pin | exit 3, no protocol terminal |
 | G1 | advertisement acquired (ls-remote exit 0, >=1 head or tag ref) | `CANNOT_RESOLVE_SOURCE` |
-| G2 | fresh full bare clone: non-shallow, all advertised heads+tags present | `CANNOT_RESOLVE_SOURCE` |
+| G2 | fresh full bare clone: non-shallow, all advertised heads+tags **real refs** present with identical OIDs, all advertised peeled tag targets present in the object database (v1.1) | `CANNOT_RESOLVE_SOURCE` |
 | G3 | prefix match count == `required_match_count` | 0 -> `SOURCE_PREFIX_UNRESOLVED`; >1 -> `SOURCE_PREFIX_AMBIGUOUS` |
 | G4 | unique object is `commit`, 40 lowercase hex | `SOURCE_OBJECT_NOT_COMMIT` |
 | G5 | channel-2 (REST) returns the identical full object name | unavailable -> `CANNOT_RESOLVE_SOURCE`; disagreement -> exit 3 |
@@ -133,3 +137,27 @@ Study-level consistency terminals (exit 3, NO protocol terminal claimed):
   frozen identity (uniqueness is prefix-length dependent by git's object model).
 - `CANNOT_RESOLVE_SOURCE` (submodule) — lever: a pinning-amendment lane that
   commit-pins and hashes every declared submodule, then re-runs Phase 0 fresh.
+
+## Registration correction V1.1 (2026-09-03, same session, BEFORE any merge)
+
+The first registered driver (registration commit `cc1c0b8e901d5d12ccfb80ee9669b328a13d6dbd`)
+implemented G2's ref-completeness comparison over the raw ls-remote advertisement,
+including peeled pseudo-ref lines (`refs/tags/v0.10.0^{}` etc.). A bare clone never
+stores those as refs (they are advertisement-only entries naming the commit an
+annotated tag dereferences to), so G2 compared incommensurable ref sets and failed
+on a complete, non-shallow, successful clone. The single outcome run executed at
+that registration SHA therefore emitted `CANNOT_RESOLVE_SOURCE`
+(result digest `1613ed693be9472bb6c5440676e822f8e4ab657d43a1d48be6c5888db6e6f000`)
+as a **harness defect, not a source-resolution fact**: the clone was exit 0,
+non-shallow, with all 12 advertised heads and all 18 real advertised tags present
+(30 clone refs); the only "missing" names were the 13 peeled pseudo-refs. That run
+is **VOID** and is not claimed as an outcome; its log is retained as
+`RUN_O01_SRCRES_PHASE0_VOID1.log` for the audit trail.
+
+Correction (this commit): G2 compares only real advertised refs (exact OID match)
+and checks advertised peeled targets for object presence in the clone via
+`git cat-file -e <oid>^{commit}` — preserving the strengthening intent (no missing
+tag targets, no silent partial fetch) with the correct mechanism. G1 evidence now
+reports `refs_tags_unpeeled`/`refs_tags_peeled` instead of a combined count. The
+registered outcome run executes at the v1.1 registration SHA. No terminal set,
+failure mapping, or authority ceiling changed.
