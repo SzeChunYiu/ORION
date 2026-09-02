@@ -167,9 +167,11 @@ def run_dataset(X: np.ndarray, y: np.ndarray, name: str, data_id: int) -> dict:
     r_to_c, r_to_t, r_to_i = {}, {}, {}
     for rf in np.unique(R_E):
         m = R_E == rf
-        r_to_c[int(rf)] = ca[int(ce[m][0])]
-        r_to_t[int(rf)] = ta[int(te_[m][0])]
-        r_to_i[int(rf)] = ia[int(ie[m][0])]
+        # DERIVATION_V3 s6 fallback: arm codes unseen in S score action 0
+        # (E-occupied fibres need not be S-occupied; S and E are disjoint)
+        r_to_c[int(rf)] = ca.get(int(ce[m][0]), 0)
+        r_to_t[int(rf)] = ta.get(int(te_[m][0]), 0)
+        r_to_i[int(rf)] = ia.get(int(ie[m][0]), 0)
 
     arms_R = {"coarse": r_to_c, "refined_typed": r_to_t, "infogain_refine": r_to_i}
     mc = predictive_mc(R_E, ye_h, len(yte), arms_R, "uniform")

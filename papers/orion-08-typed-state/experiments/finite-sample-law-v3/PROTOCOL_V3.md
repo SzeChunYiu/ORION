@@ -49,3 +49,13 @@ MC seed 20260903; the /n_te scale convention (V2-equivalent at n_te = n_tr,
 see DERIVATION_V3 §5). Frozen Tier-B package and V1/V2 artifacts untouched;
 additive only. V2's verdict is not re-litigated — V3 tests a different
 law (selection-corrected), registered here before its outcome.
+
+## Amendment A1-V3 (2026-09-02, pre-verdict)
+
+Pass 0 crashed on the first dataset before any outcome was consumed
+(KeyError lifting an E-occupied R-fibre whose arm-partition code is never
+occupied in S — S and E are disjoint, so E-fibres need not be S-fibres; V2
+never faced this because actions and refinement shared rows). Fix: apply the
+ALREADY-REGISTERED fallback of DERIVATION_V3 §6 ("arm codes unseen in S score
+action 0") in the R-fibre action lift, exactly as `observed()` already did.
+No gate, threshold, cohort, or model constant changed.
