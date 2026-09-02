@@ -1,5 +1,21 @@
 # ORION-01 — Independent adversarial proof review V1
 
+> **Subject-version note (2026-09-02).** This document audits
+> `theory-A/B-MANUSCRIPT_V2.md`, **not** the canonical `MANUSCRIPT_V4.md`
+> (designated 2026-09-01). Do not report its findings as live without checking
+> them against V4. Checked 2026-09-02: V4 closes A-F1 (subsequence
+> explicitly non-contiguous), B-F1 (Definition 1 purely mathematical, the
+> epistemic clause moved out), and the remaining A-F/B-F findings; the
+> abstract phrase flagged by B-F4 no longer appears, and the V4 abstract
+> carries the explicit boundary sentence ("The separation is relative to the
+> declared proof language and does not imply a lower bound for richer
+> systems, a production-compiler transfer, or a physical quantum
+> advantage."). B-F4's underlying significance question -- whether a
+> rank-only proof language is externally meaningful -- is not a textual
+> defect and remains the venue-fit decision tracked in
+> SzeChunYiu/ORION-paper#78.
+
+
 **Schema:** `ORION.PaperClosure.IndependentProofReview.v1`
 **Date:** 2026-08-28
 **Subjects:** `theory-A-MANUSCRIPT_V2.md` (sha256 `596217cf…`), `theory-B-MANUSCRIPT_V2.md` (sha256 `66654d73…`)

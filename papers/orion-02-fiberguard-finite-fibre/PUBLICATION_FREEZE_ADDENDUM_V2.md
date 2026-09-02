@@ -13,6 +13,7 @@ The V1 addendum named `MANUSCRIPT_V2.md` + `CLAIM_LEDGER_R2.md` as the frozen co
 
 - **Canonical manuscript:** `MANUSCRIPT_V3.md`. `MANUSCRIPT_V2.md` remains immutable historical evidence and is superseded for submission; it must not be used to generate a journal PDF or cover letter.
 - **Canonical claim ledger:** `CLAIM_LEDGER_V3.md` (with its dated decision-(a) section of 2026-09-02).
+- **Superseded filing package (history):** `submission/tier-b-final-20260901/journal/` was the pre-decision-(a) TMLR packet frozen relative to the V3 surface; decision (a) replaces it as the filing object with the short note below. It remains on disk as immutable evidence and must not be submitted.
 
 ## Superseded theory (recorded, not deleted)
 

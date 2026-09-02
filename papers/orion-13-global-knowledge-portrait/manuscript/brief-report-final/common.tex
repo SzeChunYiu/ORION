@@ -227,6 +227,25 @@ and discourse group produced the same change. Ablations of referent, construct,
 measurement and temporal context produced zero measured change on this panel.
 Those nulls indicate absent comparison opportunity, not dispensability.
 
+The preserved null-and-baseline battery makes both degeneracies explicit, and
+we state them because they bound the headline. Within compared pairs, ten of
+the eleven comparison coordinates tracked by the battery (all but polarity,
+including the predicate itself) never differ on either panel, and a minimal rule
+restricted to predicate, modality and polarity reproduces every decision of
+the full mechanism exactly (accuracy 1.0000, no false merges, no false splits,
+on both 32-case panels). On this evidence the complete coordinate set is
+sufficient but only its polarity-bearing subset is exercised; the panels do
+not demonstrate that the remaining coordinates are necessary. The registered
+flat rule is degenerate in the complementary direction: predicate equality
+holds in all 32 cases, so it merges every pair, and its false-merge rate is
+the panel's non-merge base rate (0.1875 on the confirmatory holdout, 0.125 on
+the initial panel). The headline contrast therefore separates the mechanism
+from a constant always-merge policy, not from a competitive integrator. As
+paired significance evidence, exact two-sided McNemar tests give $p=0.03125$
+on the confirmatory holdout (six discordant pairs) and $p=0.125$ on the
+initial panel (four discordant pairs); all ten discordant pairs favour the
+coordinate-governed rule, and no pooled test was computed by protocol.
+
 A standard-library scorer that imports none of the original analysis code
 reproduced the holdout decisions and verdict from the frozen records. It shares
 repository snapshot and custody and is therefore an implementation check, not
@@ -254,9 +273,20 @@ reproduces that contract.
 
 Several limits determine the interpretation. First, all observed
 discrimination lies in one authored family; the other 19 holdout cases and four
-coordinate-ablation cells are null. Second, the comparator that fails on the
-holdout was designed to be weak, and no strong same-universe external
-integration system was executed. Third, the holdout is identifier-disjoint but
+coordinate-ablation cells are null, and a three-coordinate restriction
+reproduces every decision, so coordinate necessity beyond the polarity-bearing
+subset is untested. Second, the comparator that fails on the
+holdout was designed to be weak --- on these panels it is a constant
+always-merge classifier whose error rate equals the base rate --- and no
+strong same-universe external integration system was executed. The paired
+evidence accordingly rests on ten discordant pairs across the two panels.
+Two established lineages bound what such an external comparison would mean:
+truth-discovery and conflicting-data integration methods resolve disagreement
+through source-reliability estimation rather than typed identity coordinates
+\cite{yin2008truthfinder,dong2009dependence,li2016truthsurvey}, and the OAEI
+campaigns evaluate schema- and instance-level correspondence systems at scale
+\cite{euzenat2011oaei}; no method from either lineage was executed on these
+panels, so no relative claim against them is made. Third, the holdout is identifier-disjoint but
 not fully source-disjoint, and its expected decisions and candidate rule remain
 within one authorship and research programme. Fourth, the 400-record battery contains only
 eight distinct candidate-visible states, and the strong semantic product
