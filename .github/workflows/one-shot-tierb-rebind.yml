@@ -9,7 +9,9 @@ name: one-shot-tierb-rebind
 # "orion-08-typed-state,orion-13-global-knowledge-portrait"): each paper
 # gets its tracked manuscript/main.pdf re-rendered at its source epoch.
 # The paper whose slug starts with "orion-08" additionally runs the
-# publication-ready builder and the Tier-B finalize step.
+# publication-ready builder and the Tier-B finalize step. A slug containing
+# "orion-12" additionally runs build_submission_package.py (xelatex) and
+# commits the filing PDFs + submission/publication-final package.
 
 on:
   workflow_dispatch:
@@ -51,7 +53,7 @@ jobs:
           sudo apt-get install -y -qq --no-install-recommends \
             latexmk texlive-binaries texlive-base texlive-latex-base \
             texlive-latex-recommended texlive-latex-extra texlive-pictures \
-            texlive-publishers \
+            texlive-publishers texlive-xetex \
             texlive-fonts-recommended texlive-bibtex-extra texlive-science \
             texlive-plain-generic texlive-lang-greek lmodern fonts-lmodern \
             fonts-texgyre fonts-texgyre-math fonts-urw-base35 libkpathsea6 \
@@ -205,6 +207,19 @@ jobs:
             --closure-file submission/tier-b-closure-20260901/RESULT_RETENTION.md \
             --closure-file submission/tier-b-closure-20260901/REVIEWER_AUDIT.md \
             --closure-file submission/tier-b-closure-20260901/VENUE_RESOLUTION.md
+      - name: Rebuild ORION-12 submission package (orion-12 only)
+        if: contains(inputs.papers, 'orion-12')
+        shell: bash
+        run: |
+          set -euo pipefail
+          # build_submission_package.py invokes "python" (not python3) for the
+          # adapter check; setup-python normally exposes both, but guard anyway.
+          command -v python >/dev/null || {
+            pydir="$(dirname "$(command -v python3)")"
+            sudo ln -s "$(command -v python3)" "$pydir/python"
+          }
+          cd papers/orion-12-open-world-scientific-discovery
+          python3 scripts/build_submission_package.py
       - name: Commit rebound artifacts to the PR branch
         shell: bash
         run: |
@@ -229,6 +244,12 @@ jobs:
               papers/orion-08-typed-state/submission/tier-b-final-20260901 \
               papers/publication_closure/orion_all_submission_20260831/CLOSURE_REGISTRY.json
           fi
+          if echo "${{ inputs.papers }}" | grep -q 'orion-12'; then
+            git add \
+              papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.pdf \
+              papers/orion-12-open-world-scientific-discovery/manuscript/arxiv_submission.pdf \
+              papers/orion-12-open-world-scientific-discovery/submission/publication-final-20260901
+          fi
           if git diff --cached --quiet; then
             echo 'Rebound artifacts already current.'
             exit 0
@@ -245,3 +266,5 @@ jobs:
           path: |
             papers/*/manuscript/main.pdf
             papers/orion-08-typed-state/manuscript/main.log
+            papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.pdf
+            papers/orion-12-open-world-scientific-discovery/manuscript/arxiv_submission.pdf
