@@ -1,0 +1,58 @@
+name: ORION A2 P12 campaign prereg v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a2-p12-campaign-prereg-v1.yml"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/P12_CAMPAIGN_PREREG_V1.json"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/P12_CAMPAIGN_PREREG_V1.md"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_campaign_prereg_v1.py"
+permissions:
+  contents: read
+jobs:
+  campaign-prereg:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned Parquet reader
+        run: python -m pip install --disable-pip-version-check pyarrow==17.0.0
+      - name: Fetch exact verified split
+        shell: bash
+        run: |
+          set -euo pipefail
+          url='https://huggingface.co/datasets/osunlp/ScienceAgentBench/resolve/5c930ba210e4e481a08cc93bdcc11ff1620b3646/data/verified-00000-of-00001.parquet'
+          curl --fail --location --retry 3 --retry-all-errors --output /tmp/scienceagentbench-verified.parquet "$url"
+          printf '%s  %s\n' 'c6f937863a220bd1762a00c20a0f79cc8dfca900b819bdb552150310731ae147' /tmp/scienceagentbench-verified.parquet | sha256sum --check --strict
+      - name: Hostile self-test against the real substrate
+        run: |
+          python papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_campaign_prereg_v1.py \
+            --self-test --parquet /tmp/scienceagentbench-verified.parquet
+      - name: Verify frozen prereg against recomputation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python papers/orion-22-adaptive-state-reasoning/top_tier/check_p12_campaign_prereg_v1.py \
+            --freeze papers/orion-22-adaptive-state-reasoning/top_tier/P12_CAMPAIGN_PREREG_V1.json \
+            --parquet /tmp/scienceagentbench-verified.parquet | tee /tmp/prereg-result.json
+      - name: Assert pre-outcome scope only
+        run: |
+          python - <<'PY'
+          import json
+          d = json.load(open('/tmp/prereg-result.json'))
+          assert d['decision'] == 'GREEN'
+          assert d['families'] == 28
+          assert d['tuning_families'] == 6
+          assert d['protected_families'] == 22
+          assert d['protected_instances'] == 79
+          assert len(d['protected_domains']) == 4
+          assert d['flags_all_false'] is True
+          print('P12_CAMPAIGN_PREREG_GREEN', d['protected_families'], 'protected families')
+          PY
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
