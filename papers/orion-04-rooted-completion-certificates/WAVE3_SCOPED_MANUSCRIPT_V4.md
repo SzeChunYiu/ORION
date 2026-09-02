@@ -10,19 +10,23 @@ We determine the fourth generalized Davenport constant of the elementary abelian
 \[
 D_4(C_5^3)=30.
 \]
-The committed recurrence then yields \(D_k(C_5^3)=5k+10\) for every \(k\ge2\). A submission-date priority audit found no retrieved source already establishing this exact value; accordingly the paper claims the exact theorem but avoids absolute “first” language. External human proof review, externally checked per-branch certificates, and final custody/sign-off remain deferred to journal review or later independent validation and are not represented as locally earned authority.
+The committed recurrence then yields \(D_k(C_5^3)=5k+10\) for every \(k\ge2\). A refreshed submission-date priority audit (2026-09-02) found no retrieved source establishing this exact value, but it did establish that the lower-bound half is published: Theorem 4.1 of Freeze and Schmid (Discrete Math. 310 (2010) 3373–3389), instantiated at \(s=3\), \(t=1\), \(\delta=1\), gives \(D_k(C_5^3)\ge 13+6+1+5(k-2)=5k+10\) for every \(k\ge2\). The contribution claimed here is therefore the matching upper bound — proving the Freeze–Schmid lower bound tight for \(C_5^3\) from \(k=2\) onward — and the paper avoids absolute “first” language for the exact value as well. External human proof review, externally checked per-branch certificates, and final custody/sign-off remain deferred to journal review or later independent validation and are not represented as locally earned authority.
 
 ## 1. Problem and theorem
 
-For a finite abelian group \(G\), let \(D_k(G)\) be the least length forcing \(k\) pairwise disjoint nonempty zero-sum subsequences. Earlier ORION-04 work established
+For a finite abelian group \(G\), let \(D_k(G)\) be the least length forcing \(k\) pairwise disjoint nonempty zero-sum subsequences. The lower-bound half of the corridor below is published prior work: Freeze and Schmid, Theorem 4.1 (Discrete Math. 310 (2010) 3373–3389), applied to \(G=C_5^3\) with \(s=3\), \(t=1\) (the hypothesis \(s(s-1)/2\le r-t+1\) holds with equality) and \(\delta=1\) since \(n_t=5\) is odd, gives
 \[
-5k+10\le D_k(C_5^3)\le 5k+11\qquad(k\ge4),
+D_k(C_5^3)\ \ge\ \mathsf D^*(C_5^3) + 3\lfloor 5/2\rfloor + 1 + (k-2)\cdot 5 \ =\ 5k+10\qquad(k\ge2).
+\]
+Earlier ORION-04 work established the width-one upper companion
+\[
+D_k(C_5^3)\le 5k+11\qquad(k\ge4),
 \]
 with the conditional implication
 \[
 D_4(C_5^3)=30\Longrightarrow D_k(C_5^3)=5k+10\qquad(k\ge2).
 \]
-Thus the unresolved numerical question was whether a length-31 total-zero sequence could avoid every zero-sum subsequence of lengths one through five.
+Thus the unresolved numerical question was whether a length-31 total-zero sequence could avoid every zero-sum subsequence of lengths one through five — equivalently, whether the Freeze–Schmid lower bound is attained.
 
 > **Theorem 1.** No length-31 total-zero sequence over \(C_5^3\) is free of nonempty zero-sum subsequences of lengths one through five. Consequently \(31\in C_0(C_5^3)\), \(D_4(C_5^3)=30\), and \(D_k(C_5^3)=5k+10\) for every \(k\ge2\).
 
@@ -66,9 +70,11 @@ Assume a length-31 total-zero short-zero-free sequence exists. Saturation forces
 
 ## 6. Priority and novelty scope
 
-A dedicated priority audit searched the closest generalized/multiwise Davenport-constant literature and found no retrieved source that already establishes the exact value \(D_4(C_5^3)=30\). This closes the local literature-audit task but is not an omniscient global priority certificate. The manuscript therefore states the exact theorem and its relation to the closest retrieved work while avoiding absolute “first”, “unique”, or equivalent language.
+A dedicated priority audit, refreshed 2026-09-02 with ORION vocabulary stripped (record: `PRIORITY_AUDIT_ADDENDUM_2026-09-02.md`), found no retrieved source that already establishes the exact value \(D_4(C_5^3)=30\) or any exact \(D_k(C_5^3)\), and found that the lower bound \(D_k(C_5^3)\ge 5k+10\) \((k\ge2)\) is a direct instance of Freeze–Schmid Theorem 4.1, as stated in Section 1. Supporting the exact value being otherwise open: \(\eta(C_5^3)\) has no published exact value (Fan–Gao–Zhong, J. Number Theory 131 (2011), prove \(s(C_5^3)=\eta(C_5^3)+4\) only), so no exact \(D_k(C_5^3)\) follows from the known upper-bound machinery, and the 2025 state of the art (Zhong, Combinatorica) records exact \(D_k\) values only for rank at most two, elementary 2-groups of rank at most five, and \(C_3^3\). MathSciNet and zbMATH were not accessible to this audit and remain explicitly `CANNOT_CHECK`; the audit closes the local literature task but is not an omniscient global priority certificate. The manuscript therefore states the exact theorem and its relation to the closest retrieved work while avoiding absolute “first”, “unique”, or equivalent language.
 
-The paper does not claim novelty of generic Davenport machinery, saturation, projective-space methods, recurrence arguments, or exact-search methodology in the abstract. The contribution claimed here is the exact bounded theorem, its finite branch reduction, and the independently reconstructed verification path for this instance.
+The nearest published exact rank-three companion sharpens what is new here. For \(C_3^3\) (Bhowmik–Schlage-Puchta 2007, as recorded by Freeze–Schmid Remark 5.3), the known values are \(D_1=7\), \(D_2=11\), and \(D_k=3k+6\) for \(k\ge3\): the Freeze–Schmid bound \(D_k(C_3^3)\ge 3k+5\) is attained at \(k=2\) but strictly exceeded from \(k=3\) onward. The present theorem shows the opposite regime for \(C_5^3\): the Freeze–Schmid bound is attained for every \(k\ge2\). Where the tightness threshold sits as a function of \(p\) for \(C_p^3\) is, to our retrieval, open, and the \(p=3\) versus \(p=5\) contrast is stated as data rather than explained.
+
+The paper does not claim novelty of generic Davenport machinery, saturation, projective-space methods, recurrence arguments, or exact-search methodology in the abstract, and it does not claim the lower bound, which is Freeze–Schmid's. The contribution claimed here is the matching upper bound and hence exactness — the exact bounded theorem, its finite branch reduction, and the independently reconstructed verification path for this instance.
 
 ## 7. External-review boundary
 
