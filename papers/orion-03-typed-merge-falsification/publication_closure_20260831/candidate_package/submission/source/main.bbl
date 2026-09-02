@@ -1,6 +1,6 @@
 %% BioMed_Central_Bib_Style_v1.01
 
-\begin{thebibliography}{16}
+\begin{thebibliography}{17}
 % BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
 \ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
 \ifx \binits  \undefined \def \binits#1{#1}\fi
@@ -132,6 +132,19 @@ pp. \bfpage{31}--\blpage{40}
 \endbibitem
 
 %%% 7
+\bibitem[\protect\citeauthoryear{de~Kleer}{1986}]{dekleer1986}
+\begin{barticle}
+\bauthor{\bsnm{Kleer}, \binits{J.}}:
+\batitle{An assumption-based tms}.
+\bjtitle{Artificial Intelligence}
+\bvolume{28}(\bissue{2}),
+\bfpage{127}--\blpage{162}
+(\byear{1986})
+\doiurl{10.1016/0004-3702(86)90080-9}
+\end{barticle}
+\endbibitem
+
+%%% 8
 \bibitem[\protect\citeauthoryear{Bourgaux et~al.}{2022}]{bourgaux2022}
 \begin{bchapter}
 \bauthor{\bsnm{Bourgaux}, \binits{C.}},
@@ -147,7 +160,7 @@ pp. \bfpage{91}--\blpage{101}
 \end{bchapter}
 \endbibitem
 
-%%% 8
+%%% 9
 \bibitem[\protect\citeauthoryear{Abo~Khamis et~al.}{2022}]{abokhamis2022}
 \begin{bchapter}
 \bauthor{\bsnm{Abo~Khamis}, \binits{M.}},
@@ -164,7 +177,7 @@ pp. \bfpage{105}--\blpage{117}
 \end{bchapter}
 \endbibitem
 
-%%% 9
+%%% 10
 \bibitem[\protect\citeauthoryear{Bonatti et~al.}{2011}]{bonatti2011}
 \begin{barticle}
 \bauthor{\bsnm{Bonatti}, \binits{P.A.}},
@@ -181,7 +194,7 @@ pp. \bfpage{105}--\blpage{117}
 \end{barticle}
 \endbibitem
 
-%%% 10
+%%% 11
 \bibitem[\protect\citeauthoryear{Buneman et~al.}{2002}]{buneman2002}
 \begin{bchapter}
 \bauthor{\bsnm{Buneman}, \binits{P.}},
@@ -196,7 +209,7 @@ pp. \bfpage{150}--\blpage{158}
 \end{bchapter}
 \endbibitem
 
-%%% 11
+%%% 12
 \bibitem[\protect\citeauthoryear{Meliou et~al.}{2010}]{meliou2010}
 \begin{barticle}
 \bauthor{\bsnm{Meliou}, \binits{A.}},
@@ -213,7 +226,7 @@ pp. \bfpage{150}--\blpage{158}
 \end{barticle}
 \endbibitem
 
-%%% 12
+%%% 13
 \bibitem[\protect\citeauthoryear{Thapa and Staab}{2026a}]{thapa2026minimal}
 \begin{botherref}
 \oauthor{\bsnm{Thapa}, \binits{R.B.}},
@@ -225,7 +238,7 @@ Accepted for RuleML+RR 2026; \url{https://arxiv.org/abs/2607.16443v2}
 \end{botherref}
 \endbibitem
 
-%%% 13
+%%% 14
 \bibitem[\protect\citeauthoryear{Thapa and Staab}{2026b}]{thapa2026stratified}
 \begin{botherref}
 \oauthor{\bsnm{Thapa}, \binits{R.B.}},
@@ -237,7 +250,7 @@ Preprint; \url{https://arxiv.org/abs/2608.21141v1}
 \end{botherref}
 \endbibitem
 
-%%% 14
+%%% 15
 \bibitem[\protect\citeauthoryear{Cutler et~al.}{2024}]{cutler2024}
 \begin{barticle}
 \bauthor{\bsnm{Cutler}, \binits{J.W.}},
@@ -265,7 +278,7 @@ Preprint; \url{https://arxiv.org/abs/2608.21141v1}
 \end{barticle}
 \endbibitem
 
-%%% 15
+%%% 16
 \bibitem[\protect\citeauthoryear{Cooper et~al.}{2008}]{rfc5280}
 \begin{botherref}
 \oauthor{\bsnm{Cooper}, \binits{D.}},
@@ -283,7 +296,7 @@ RFC Editor
 \end{botherref}
 \endbibitem
 
-%%% 16
+%%% 17
 \bibitem[\protect\citeauthoryear{{The OpenSSL Project}}{2026}]{openssl364}
 \begin{botherref}
 \oauthor{\bsnm{{The OpenSSL Project}}}:

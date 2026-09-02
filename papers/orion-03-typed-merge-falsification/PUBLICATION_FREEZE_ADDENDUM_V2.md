@@ -47,13 +47,17 @@ journal authority, or submission authority. A future mechanically scored public
 policy/configuration corpus is successor work and must not retroactively promote the
 current bounded calculus.
 
-## Build-surface note (for the filer)
+## Build-surface note (for the filer) — RESOLVED 2026-09-02
 
 The frozen reader PDF named in `CANONICAL_SUBMISSION_V3.md`
-(SHA-256 `4a1b74604880deccaebfac7697794ee0864b8f0a33271db6d293af51e46f0dc9`) predates
-the 2026-09-02 clarification edits to `MANUSCRIPT_V3.md` and
-`publication_closure_20260831/references.bib`. The source, PDF, checksums, and release
-manifest must be rebuilt from the edited sources on a build-capable host before portal
-filing. No build was run in this closure session (text edits only, per directive).
-
-skills-applied: nature-writing, nature-citation, nature-publication-closure
+(SHA-256 `4a1b74604880deccaebfac7697794ee0864b8f0a33271db6d293af51e46f0dc9`) predates the 2026-09-02 clarification edits to `MANUSCRIPT_V3.md`
+and `publication_closure_20260831/references.bib`. **The rebuild has since been
+executed on a build-capable host** (billy-old, 2026-09-02): the candidate package
+under `publication_closure_20260831/candidate_package/` was rebuilt from the edited
+sources and passed the round-3 independent release review at full candidate+package
+scope (`review_rounds_20260902/ROUND3_PASS_INDEPENDENT_RELEASE_REVIEW_20260902.json`;
+rounds 1–2 FAILed and their records are retained alongside). The canonical reader
+PDF hash in `CANONICAL_SUBMISSION_V3.md` and the
+`submission/tier-b-final-20260901/` packet digests are rebound to the rebuilt render
+(SHA-256 `ed34801f5c2009259f84d61a9c15bae25f91c3d9c0c5e51519453b102a331da1`). The `submission/publication-ready-20260831/` package predates the
+edits and remains checksum-closed history under its own hashes.
