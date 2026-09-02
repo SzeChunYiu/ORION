@@ -238,7 +238,7 @@ The three scientific-record cases are bounded mechanism demonstrations. They do 
 
 The X.509 task population is derived from one pinned OpenSSL test corpus and one native engine version. The 46 hybrid tasks are not an estimate of production prevalence. Forty-five depend on native policy decisions that the structural model does not reproduce. The observed policy costs therefore remain conditional on the frozen task construction and engine semantics.
 
-The origin-witness policy is definitionally aligned with the parent-authorized reference. Its zero error counts cannot support a superiority claim, and its two-parent evaluation cost may be unacceptable in settings with different latency or trust requirements. No user study, deployment evaluation, or security assessment was performed.
+The origin-witness policy is definitionally aligned with the parent-authorized reference. Its zero error counts cannot support a superiority claim, and its two-parent evaluation cost may be unacceptable in settings with different latency or trust requirements. No user study, deployment evaluation, or security assessment was performed. Finally, all gold labels, audits, adjudications, and the in-repository reproducer were produced within the same single-author research programme using AI assistance; no result reported here has been checked by an out-of-programme reviewer or an implementation outside this repository.
 
 # Reproducibility
 

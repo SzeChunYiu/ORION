@@ -31,7 +31,12 @@ is not airtight, and internal constructions indicate it is false as naturally ma
 authorization logics in Related Work, adding the verified `dekleer1986` citation; and
 (c) restates the filed claim as a formal license-propagation system plus one measured
 hybrid-authorization phenomenon (46 hybrid authorizations among 1,962 third-party merge
-tasks; `evidence/round2-x509-truststore/ROUND2_RESULTS_V2.json`).
+tasks; `evidence/round2-x509-truststore/ROUND2_RESULTS_V2.json`); and (d) adds the
+tier-wide disclosure sentence to Limitations stating that all gold labels, audits,
+adjudications, and the in-repository reproducer are same-programme, single-author work
+using AI assistance, with no out-of-programme reviewer — required by the issue-#78
+cross-cutting box and stated plainly where an independent check is impossible before
+filing.
 
 ## Frozen boundary (unchanged from V1 in substance)
 
