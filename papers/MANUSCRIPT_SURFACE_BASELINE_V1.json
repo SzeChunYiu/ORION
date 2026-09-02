@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-02",
+  "entries": {
+    "number_conflict::authority states::3,072,39,936": "NOT A DEFECT. FINAL_V5's change note quotes V4's wrong phrasing in order to correct it; both substantive statements say 3,072 distinct states / 39,936 evaluations. A correction note that quotes what it corrects always looks like a conflict.",
+    "number_conflict::exact authority::3,072,39,936": "NOT A DEFECT. Same cause as the row above -- the quoted V4 phrasing inside the V5 change note.",
+    "number_conflict::family blocks::16,32": "FALSE POSITIVE of the bigram heuristic. Two different protocols: 'P12A uses 16 family blocks. P12B uses 32 independent family blocks, eight in each fixed noise stratum' (4x8).",
+    "number_conflict::frozen cases::16,18": "FALSE POSITIVE of the bigram heuristic. Two different studies: 'ETS, 18 frozen cases in three six-case families' (3x6) and 'Heterogeneous transition audit, 16 frozen cases in four real-domain families' (4x4). Both arithmetically correct and correctly labelled; the heuristic cannot tell two studies apart.",
+    "repeated_sentence::A composite holds a closure coordinate exactly when both leg": "NOT A DEFECT. Legitimate technical restatement: the coordinate-transport axiom is stated in section 18 and restated 226 lines later in section 19 when the exact-containment rule is introduced. Rewording it to satisfy the similarity cutoff would make the paper worse."
+  },
+  "false_positive_note": "Three of the five entries are false positives of the bigram heuristic rather than tolerated defects. That rate is stated here on purpose: a checker that cries wolf on its first real run gets switched off, and the mitigation is that each entry carries a judged reason and the gate reds only on NEW findings.",
+  "note": "Entries leave this baseline by reconciling the manuscript, never by loosening the similarity threshold. Legitimate technical restatement is correct writing; rewording it to satisfy a cutoff makes the paper worse.",
+  "schema": "orion.manuscript-surface-baseline.v1",
+  "scientific_authority_delta": "NONE",
+  "targets": [
+    "papers/orion-16-formal-epistemic-structures-and-mechanics/manuscript/FINAL_V6.md",
+    "papers/orion-17-epistemic-navigation-open-worlds/manuscript/FINAL_V5.md",
+    "papers/orion-18-epistemic-authority-autonomous-science/manuscript/FINAL_V5.md",
+    "papers/orion-22-adaptive-state-reasoning/MANUSCRIPT_V2.md"
+  ]
+}
