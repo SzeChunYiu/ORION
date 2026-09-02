@@ -1,6 +1,9 @@
 % Canonical anonymous IP&M filing source.
+% [numbers]: cas-sc loads natbib author-year by default; the filing cites
+% numerically against \bibliographystyle{plain}, so numeric mode is declared
+% explicitly (a clean -halt-on-error render requires it).
 \documentclass[a4paper,fleqn]{cas-sc}
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{booktabs}
 \usepackage{array}

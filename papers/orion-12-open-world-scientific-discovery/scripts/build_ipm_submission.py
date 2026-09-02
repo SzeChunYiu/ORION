@@ -28,11 +28,14 @@ def render(source: str) -> str:
     rendered = replace_once(
         rendered,
         "% Canonical anonymous IP&M filing source.\n"
+        "% [numbers]: cas-sc loads natbib author-year by default; the filing cites\n"
+        "% numerically against \\bibliographystyle{plain}, so numeric mode is declared\n"
+        "% explicitly (a clean -halt-on-error render requires it).\n"
         "\\documentclass[a4paper,fleqn]{cas-sc}\n"
-        "\\usepackage{natbib}\n",
+        "\\usepackage[numbers]{natbib}\n",
         "% Generated attributed arXiv adapter from ipm_submission.tex; do not edit by hand.\n"
         "\\documentclass[11pt]{article}\n"
-        "\\usepackage{natbib}\n"
+        "\\usepackage[numbers]{natbib}\n"
         "\\usepackage[margin=1in]{geometry}\n"
         "\\usepackage[hidelinks]{hyperref}\n",
     )
