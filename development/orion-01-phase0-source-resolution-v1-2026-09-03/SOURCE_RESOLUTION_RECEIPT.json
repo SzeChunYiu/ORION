@@ -1,0 +1,37 @@
+{
+  "blob_reads_for_hashing_only": true,
+  "commit_object_sha256": "a5c07c7f6dafd3be3386cc08f51241251ac6ca753b71318f354db1a0b8415540",
+  "commit_parents": [
+    "fcbb247a134e18a2f55f94279ca164e67ac049e3",
+    "799dc97f4e86df53282fc69cc266b7b7e4d33b1f"
+  ],
+  "commit_prefix": "dade7d46",
+  "commit_tree": "3885a1acc34fbfdaf95ff9cb01c75abea9c36721",
+  "environment_receipt_sha256": "19a4d58d69b93df891ad6b083a3c163c1bbf9c093815ba3395457fd5fdb169a3",
+  "full_commit": "dade7d46f193635bbdaefd8fcde837f9449fddc5",
+  "git_version": "git version 2.50.1 (Apple Git-155)",
+  "manifest_row_count": 885,
+  "matching_commit_count": 1,
+  "old_execution_commit": "9e9b870b795b6ae0b3726031ced0b9ebef004897",
+  "old_execution_commit_matches_resolved": false,
+  "protocol_identity": "orion-01-production-completeness-v1-2026-08-29",
+  "ref_advertisement_sha256": "1fc54d961d50d97aa0a000b8ce75f86943f3acc50922b4a5473c1bf99b71097e",
+  "remote": "https://github.com/Quantomatic/pyzx.git",
+  "resolution_channel1": "git ls-remote advertisement + fresh full bare clone + rev-list --all",
+  "resolution_channel2": {
+    "agreement": true,
+    "available": true,
+    "endpoint": "repos/Quantomatic/pyzx/commits/dade7d46f193635bbdaefd8fcde837f9449fddc5",
+    "returned_sha": "dade7d46f193635bbdaefd8fcde837f9449fddc5",
+    "tool": "/opt/homebrew/bin/gh"
+  },
+  "resolved_before_semantic_testing": true,
+  "run_utc_timestamp": "20260902T220831Z",
+  "schema": "ORION.ORION01.SourceResolutionReceipt.v1",
+  "scratch_clone_path": "/tmp/o01-srcres-scratch/pyzx-bare-20260902T220831Z",
+  "semantic_testing_performed": false,
+  "source_file_manifest_sha256": "04937e4f30ff06808069d366f4173f4adf1282fc8e4ef2ba0e141185eeda96de",
+  "terminal": "SOURCE_RESOLVED",
+  "uniqueness_scope": "object database reachable from advertised refs/heads/* and refs/tags/* at the recorded advertisement",
+  "utc_timestamp": "2026-09-02T22:08:58+00:00"
+}
