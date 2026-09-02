@@ -18,6 +18,18 @@
 > This header records no novelty authority and does not change
 > `novelty_authority_established: false`.
 
+> **Subject-version note (2026-09-02).** This audit's subject is
+> `theory-A/B-MANUSCRIPT_V2.md`, **not** the canonical `MANUSCRIPT_V4.md`
+> (designated 2026-09-01). Its per-contribution classifications (NO SURVIVING
+> DELTA / THIN / SURVIVING) describe the V2 billing, and V4 has since absorbed
+> the conclusion into its own text: V4 Section 1 states that the binary rank
+> identity, Davenport-type theory, generic proof-system relativity and
+> direct-product arithmetic are scaffolds rather than standalone novelty, and
+> the V4 claim surface is built on the surviving items only. Do not cite this
+> audit's V2 line numbers or contribution list as the live billing; the
+> venue-fit consequence is tracked in SzeChunYiu/ORION-paper#78.
+
+
 **Schema:** `ORION.PaperClosure.PrimarySourceNoveltyAudit.v1`
 **Date:** 2026-08-28
 **Subjects:** `theory-A-MANUSCRIPT_V2.md`, `theory-B-MANUSCRIPT_V2.md`
