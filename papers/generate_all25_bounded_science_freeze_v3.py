@@ -70,6 +70,242 @@ def template_of(source: str) -> str:
     return normalized
 
 
+# The V2 checker validates a property of HEAD, not of the freeze:
+#
+#     head   = git.resolve_commit("HEAD")
+#     parent = git.resolve_commit(f"{head}^")
+#     require(parent == content_base, ...)
+#
+# so it passes only while HEAD *is* the freeze commit, and the next commit on
+# main turns it into FREEZE_INVALID with no way to tell "never well formed" from
+# "unrelated PRs have landed". That is how the V2 freeze became valid only at
+# fe5da5332, and it happened again to V3 within hours of taking it.
+#
+# The patches below move every attestation check onto the freeze commit, which is
+# located by identity rather than assumed to be HEAD, and turn post-freeze paper
+# movement into a reported outcome instead of an invalidation. `scripts/
+# read_all25_freeze_state_v1.py` implements the same separation for freezes whose
+# checker predates this change.
+#
+# Each patch asserts its own replacement count, so a drifted upstream checker
+# fails loudly here rather than silently emitting a half-patched validator.
+READABLE_PATCHES: tuple[tuple[str, str, int], ...] = (
+    (
+        "def validate_exact_freeze_commit(git: GitRepo, head: str) -> None:\n"
+        '    content_base = CONSTANTS["content_base_commit"]\n'
+        '    parent = git.resolve_commit(f"{head}^")\n',
+        "def locate_freeze_commit(git: GitRepo, rev: str) -> str:\n"
+        '    """The single commit in rev\'s ancestry that ADDS the manifest.\n\n'
+        "    Identity, not position. --diff-filter=A is what makes this the freeze\n"
+        "    commit rather than any later commit that merely touched the file.\n"
+        '    """\n'
+        "    out = git.text(\n"
+        '        "log", rev, "--diff-filter=A", "--format=%H", "--",\n'
+        '        CONSTANTS["manifest_relative"],\n'
+        "    ).split()\n"
+        "    if not out:\n"
+        "        raise CannotCheck(\n"
+        '            f"no commit in {rev}\'s ancestry adds "\n'
+        '            f"{CONSTANTS[\'manifest_relative\']}"\n'
+        "        )\n"
+        "    if len(out) > 1:\n"
+        "        raise CannotCheck(\n"
+        '            "ambiguous history: more than one commit adds the manifest: "\n'
+        '            + ", ".join(oid[:12] for oid in out)\n'
+        "        )\n"
+        "    return out[0]\n"
+        "\n"
+        "\n"
+        "def measure_post_freeze_drift(\n"
+        "    git: GitRepo, manifest: dict[str, Any], rev: str\n"
+        ") -> list[dict[str, Any]]:\n"
+        '    """Papers whose tree has moved since the freeze. Information, not a fault."""\n'
+        "    drift = []\n"
+        '    for paper in manifest["papers"]:\n'
+        '        directory = paper["canonical_directory"]\n'
+        "        try:\n"
+        "            current = git.tree_oid(rev, directory)\n"
+        "        except ValidationError:\n"
+        "            current = None\n"
+        '        if current != paper["final_tree_oid"]:\n'
+        "            drift.append(\n"
+        "                {\n"
+        '                    "paper_id": paper["paper_id"],\n'
+        '                    "canonical_directory": directory,\n'
+        '                    "frozen_tree_oid": paper["final_tree_oid"],\n'
+        '                    "current_tree_oid": current,\n'
+        '                    "state": "ABSENT" if current is None else "MOVED",\n'
+        "                }\n"
+        "            )\n"
+        "    return drift\n"
+        "\n"
+        "\n"
+        "def validate_exact_freeze_commit(git: GitRepo, freeze: str) -> None:\n"
+        '    content_base = CONSTANTS["content_base_commit"]\n'
+        '    parent = git.resolve_commit(f"{freeze}^")\n',
+        1,
+    ),
+    (
+        '    for line in git.text("diff", "--name-status", content_base, head, "--").splitlines():',
+        '    for line in git.text("diff", "--name-status", content_base, freeze, "--").splitlines():',
+        1,
+    ),
+    (
+        "def validate_git_bindings(git: GitRepo, manifest: dict[str, Any], head: str) -> None:",
+        "def validate_git_bindings(git: GitRepo, manifest: dict[str, Any], freeze: str) -> None:",
+        1,
+    ),
+    (
+        '    require(git.is_ancestor(content_base, head), "content base is not an ancestor of HEAD")',
+        '    require(\n'
+        '        git.is_ancestor(content_base, freeze),\n'
+        '        "content base is not an ancestor of the freeze commit",\n'
+        "    )",
+        1,
+    ),
+    (
+        "        for commit in (audited, content_base, head):",
+        "        for commit in (audited, content_base, freeze):",
+        1,
+    ),
+    (
+        '        require(git.tree_oid(head, path) == paper["final_tree_oid"], f"{paper_id}: post-freeze paper-tree drift")',
+        '        require(\n'
+        '            git.tree_oid(freeze, path) == paper["final_tree_oid"],\n'
+        '            f"{paper_id}: paper tree at the freeze commit does not match its pin",\n'
+        "        )",
+        1,
+    ),
+    (
+        "class ValidationError(RuntimeError):\n    pass",
+        "class ValidationError(RuntimeError):\n"
+        '    """The freeze does not hold."""\n'
+        "\n"
+        "\n"
+        "class CannotCheck(RuntimeError):\n"
+        '    """Inputs absent or history ambiguous. Distinct from a failure."""',
+        1,
+    ),
+    (
+        '    require(status == "", f"worktree is dirty or untracked:\\n{status}")',
+        "    if status:\n"
+        '        raise CannotCheck(f"worktree is dirty or untracked:\\n{status}")',
+        1,
+    ),
+    (
+        '    parser.add_argument("--repo", type=Path, default=Path.cwd(), help="ORION repository root")\n'
+        "    return parser.parse_args(argv)",
+        '    parser.add_argument("--repo", type=Path, default=Path.cwd(), help="ORION repository root")\n'
+        '    parser.add_argument("--rev", default="HEAD", help="revision to read the freeze from")\n'
+        "    parser.add_argument(\n"
+        '        "--require-no-drift",\n'
+        '        action="store_true",\n'
+        '        help="also fail when a paper has moved since the freeze, and require a "\n'
+        '        "clean worktree; use when TAKING a freeze, not in routine reading",\n'
+        "    )\n"
+        "    return parser.parse_args(argv)",
+        1,
+    ),
+    (
+        "    git = GitRepo(args.repo)\n"
+        '    head = git.resolve_commit("HEAD")\n'
+        "    validate_exact_freeze_commit(git, head)\n"
+        '    manifest_path = git.root / CONSTANTS["manifest_relative"]\n'
+        "    try:\n"
+        '        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))\n'
+        "    except (OSError, json.JSONDecodeError) as exc:\n"
+        '        raise ValidationError(f"cannot read committed V2 manifest: {exc}") from exc\n'
+        "    validate_manifest_shape(manifest)\n"
+        "    validate_git_bindings(git, manifest, head)\n"
+        "    validate_clean_worktree(git)\n"
+        "    print(\n"
+        '        "BOUNDED_FREEZE_VALID "\n'
+        "        f\"content_base={CONSTANTS['content_base_commit']} \"\n"
+        "        f\"head={head} papers={len(CONSTANTS['papers'])} \"\n"
+        '        "authority=submission:false,top-tier:false,external:false,production:false"\n'
+        "    )\n"
+        "    return 0",
+        "    git = GitRepo(args.repo)\n"
+        "    rev = git.resolve_commit(args.rev)\n"
+        "    freeze = locate_freeze_commit(git, rev)\n"
+        "    validate_exact_freeze_commit(git, freeze)\n"
+        "    try:\n"
+        "        manifest = json.loads(\n"
+        '            git.blob_bytes(freeze, CONSTANTS["manifest_relative"]).decode("utf-8")\n'
+        "        )\n"
+        "    except (ValidationError, UnicodeDecodeError, json.JSONDecodeError) as exc:\n"
+        "        raise CannotCheck(\n"
+        '            f"cannot read the manifest at the freeze commit: {exc}"\n'
+        "        ) from exc\n"
+        "    validate_manifest_shape(manifest)\n"
+        "    validate_git_bindings(git, manifest, freeze)\n"
+        "    drift = measure_post_freeze_drift(git, manifest, rev)\n"
+        "    if args.require_no_drift:\n"
+        "        validate_clean_worktree(git)\n"
+        "    terminal = (\n"
+        '        "BOUNDED_FREEZE_ATTESTATION_HOLDS__POST_FREEZE_DRIFT"\n'
+        "        if drift\n"
+        '        else "BOUNDED_FREEZE_VALID"\n'
+        "    )\n"
+        "    print(\n"
+        '        f"{terminal} "\n'
+        "        f\"content_base={CONSTANTS['content_base_commit']} \"\n"
+        '        f"freeze_commit={freeze} rev={rev} "\n'
+        "        f\"papers={len(CONSTANTS['papers'])} drifted={len(drift)} \"\n"
+        '        "authority=submission:false,top-tier:false,external:false,production:false"\n'
+        "    )\n"
+        "    for row in drift:\n"
+        "        print(f\"  DRIFTED {row['paper_id']}: {row['state']}\")\n"
+        "    if drift and args.require_no_drift:\n"
+        "        raise ValidationError(\n"
+        '            "--require-no-drift was set and papers have moved since the freeze"\n'
+        "        )\n"
+        "    return 0",
+        1,
+    ),
+    (
+        "if __name__ == \"__main__\":\n"
+        "    try:\n"
+        "        raise SystemExit(main())\n"
+        "    except ValidationError as exc:\n"
+        '        print(f"FREEZE_INVALID: {exc}", file=sys.stderr)\n'
+        "        raise SystemExit(1)",
+        "if __name__ == \"__main__\":\n"
+        "    try:\n"
+        "        raise SystemExit(main())\n"
+        "    except CannotCheck as exc:\n"
+        '        print(f"FREEZE_CANNOT_CHECK: {exc}", file=sys.stderr)\n'
+        "        raise SystemExit(3)\n"
+        "    except ValidationError as exc:\n"
+        '        print(f"FREEZE_INVALID: {exc}", file=sys.stderr)\n'
+        "        raise SystemExit(1)",
+        1,
+    ),
+)
+
+
+def readable_template(template: str) -> str:
+    """Move the checker's attestation from HEAD onto the freeze commit."""
+    patched = template
+    for old, new, expected in READABLE_PATCHES:
+        count = patched.count(old)
+        if count == expected:
+            patched = patched.replace(old, new)
+        else:
+            raise SystemExit(
+                "cannot patch the checker template for readability: expected "
+                f"{expected} occurrence(s) of a fragment, found {count}. The "
+                "upstream checker has drifted; reconcile it rather than emitting "
+                "a half-patched validator."
+            )
+    if "head" in patched[patched.find("OID_RE ="):]:
+        raise SystemExit(
+            "patched template still refers to `head`; the attestation would "
+            "remain tied to the reading position"
+        )
+    return patched
+
+
 def verify_immutable(constants: dict, ref: str) -> None:
     """Refuse to re-freeze if the audited evidence base moved."""
     bad = []
@@ -95,7 +331,11 @@ def verify_immutable(constants: dict, ref: str) -> None:
         )
 
 
-def build(content_base: str, allow_unreachable: bool = False) -> tuple[dict, str]:
+def build(
+    content_base: str,
+    allow_unreachable: bool = False,
+    legacy_checker: bool = False,
+) -> tuple[dict, str]:
     source, constants = load_v2()
     verify_immutable(constants, content_base)
 
@@ -204,6 +444,8 @@ def build(content_base: str, allow_unreachable: bool = False) -> tuple[dict, str
             print(f"   {pid}  {field}  -> {oid[:12]}  {path}")
 
     template = template_of(source)
+    if not legacy_checker:
+        template = readable_template(template)
     new["checker_template_binding"] = {
         "algorithm": "sha256",
         "normalization": constants["checker_template_binding"]["normalization"],
@@ -223,12 +465,20 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--date", default=None)
     parser.add_argument("--disposition-unreachable", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--legacy-checker",
+        action="store_true",
+        help="emit the unpatched V2-derived checker, which validates a property "
+        "of HEAD and therefore reads as invalid from the next commit onward",
+    )
     args = parser.parse_args(argv)
     if args.date is None:
         import datetime
         args.date = datetime.date.today().isoformat()
 
-    constants, template = build(args.content_base, args.disposition_unreachable)
+    constants, template = build(
+        args.content_base, args.disposition_unreachable, args.legacy_checker
+    )
     blob = json.dumps(constants, indent=2, sort_keys=True, ensure_ascii=False)
     checker = template.replace(PLACEHOLDER, blob)
 
