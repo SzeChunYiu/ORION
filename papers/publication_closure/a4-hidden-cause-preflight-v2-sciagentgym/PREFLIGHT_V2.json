@@ -1,0 +1,98 @@
+{
+ "schema": "ORION.A4.HiddenCauseExternalBenchmarkPreflight.v2",
+ "date": "2026-09-02",
+ "issue_binding": "SzeChunYiu/ORION-paper#49 A4; successor to papers/publication_closure/a4-hidden-cause-preflight-v1/ (SciAgentArena: gated-access blocker, PR #2041)",
+ "artifact_class": "PRE_OUTCOME_PREFLIGHT",
+ "protected_agent_runs_executed": false,
+ "protected_outcomes_accessed": false,
+ "confirmatory_subset_selected": false,
+ "preflight_dimensions": ["licence", "dataset", "tools", "executable_tasks", "intervention_fit"],
+ "primary_proposed_substrate": {
+  "name": "SciAgentGym",
+  "paper": "arXiv:2602.12984v2 (Benchmarking Multi-step Scientific Tool-use in LLM Agents)",
+  "code_and_data_repository": {
+   "repository": "CMarsRover/SciAgentGYM",
+   "pinned_commit": "e9dbbea4369d67694e38bf8be67bedbcaf9e9300",
+   "license_spdx": "Apache-2.0",
+   "license_blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+   "license_terminal": "REPO_LICENSE_VERIFIED_PERMISSIVE",
+   "data_in_repo": true,
+   "gated_downloads": false
+  },
+  "task_storage": {
+   "files": ["dataset/refine_merged_multi_questions.json", "dataset/refine_merged_single_questions.json"],
+   "base_records": 131,
+   "augmented_plus_refined_total": 259,
+   "subquestions_total": 1134,
+   "per_record_fields": ["id", "filename", "question", "answer", "metadata.subject", "metadata.topic", "metadata.image_path", "metadata.solution_steps", "metadata.tool_expected", "metadata.golden_answer", "usage_tool_protocol", "augmented_versions", "refined_versions"],
+   "images_in_repo": "gym/test_images/ (>=1000 files; API listing capped)"
+  },
+  "domain_census_base_and_total": {
+   "Physics": [65, 128],
+   "Chemistry": [22, 44],
+   "Materials Science": [20, 39],
+   "Life Science": [16, 32],
+   "Astronomy": [5, 10],
+   "Statistics": [3, 6]
+  },
+  "scope_verdict": {
+   "large_domain_task_total": 243,
+   "large_domains": ["Physics", "Chemistry", "Materials Science", "Life Science"],
+   "meets_120_tasks_4_domains": true,
+   "conservative_base_only_provenance_clean_count": 67,
+   "conservative_count_meets_bar": false,
+   "recorded_stance": "count all 259 tasks citing the paper's aggregate licence-compliance claim and Appendix B.2 Table 6; document the per-task provenance gap as a limitation; do not author replacement tasks"
+  },
+  "upstream_licences_from_paper_table_6": {
+   "SciInstruct": "CC BY 4.0",
+   "GPQA": "CC BY 4.0",
+   "BMMR": "Apache-2.0",
+   "SFE": "MIT",
+   "RBench-V": "Apache-2.0"
+  },
+  "per_task_provenance": {
+   "machine_readable_source_field": false,
+   "filename_recoverable": {"GPQA": 45, "RBench-V": 22, "BMMR_M_full": 5, "L_full": 4, "statis": 3},
+   "ambiguous_base_tasks": 64,
+   "terminal": "CANNOT_CHECK_PER_TASK_PROVENANCE_FOR_64_BASE_TASKS__AGGREGATE_PAPER_CLAIM_ONLY"
+  },
+  "scienceqa_flag": "the paper's tool-construction footnote names ScienceQA (CC BY-NC-SA) among analyzed benchmarks while the task-source table lists SciInstruct; zero scienceqa-named artifacts found in the repository; treated as tool-inspiration only and recorded here",
+  "executability": {
+   "environment": "conda python 3.11, pip-only dependencies, versions unpinned",
+   "gpu_required": false,
+   "network_touching_tools": ["pubchempy (PubChem REST, keyless)", "astroquery", "mp_api (optional MP_API_KEY with fallback paths)"],
+   "shipped_llm_config_hazard": "gym/config/config.py hardcodes a third-party proxy base URL that must be replaced before any run",
+   "terminal": "CANNOT_CHECK_EXECUTABILITY_UNTIL_STRATIFIED_DRY_RUN"
+  },
+  "intervention_fit": {
+   "INFORMATION": "withhold a benchmark-provided data file / DB row",
+   "ACCESSIBILITY": "unregister or rename a registered tool in usage_tool_protocol; alter parsing/access path with bytes preserved",
+   "COMPUTATION": "raise the registered tool-call/reasoning budget",
+   "RECONSTRUCTION": "one registered replan/reformulation operation",
+   "stepwise_verification": "per-sub-question closed-loop checking (1,134 sub-questions)"
+  },
+  "top_risks": [
+   "49% of base tasks provenance-ambiguous (filename-only mapping; no source field); freeze can only cite the paper's aggregate compliance claim",
+   "executability untested and dependencies unpinned; stratified dry-run required before freezing executable counts",
+   "domain skew: Physics 49% of tasks; all Life Science gpqa_cellbio and all Astronomy tasks are GPQA-derived, so an exclusion wave hitting GPQA breaks domain breadth before the 120 count"
+  ]
+ },
+ "named_fallback_substrate": {
+  "name": "DiscoveryBench",
+  "repository": "allenai/discoverybench (HF)",
+  "license_spdx": "ODC-By",
+  "tasks": "264 real across 6 domains",
+  "weakness": "hypothesis-matching (LLM-judged) success metric; mitigation would be a deterministic sub-check layer added in the A4 harness, documented as harness addition, never substrate modification"
+ },
+ "rejected_reuse": {
+  "substrate": "ScienceAgentBench (osunlp)",
+  "reasons": ["102 tasks < 120", "substrate shared with the frozen A2 campaign makes the two studies' error structures dependent"]
+ },
+ "next_gates_before_substrate_freeze": [
+  "stratified dry-run: one task per large domain executed end-to-end on the execution host (never the Mac mini), per-sub-question verification observed",
+  "pin dependency versions for the run environment",
+  "replace the shipped third-party proxy config with the frozen model-lane configuration",
+  "freeze domain-stratified development/primary/replication partitions per the A4 prereg before any protected agent run"
+ ],
+ "scientific_authority_delta": "NONE__PREFLIGHT_ONLY"
+}
