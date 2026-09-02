@@ -1,0 +1,74 @@
+{
+  "design": {
+    "bonferroni_family": 2,
+    "bootstrap_draws": 5000,
+    "delta": 0.3,
+    "module_seed": 20260821,
+    "n_ext": 4000,
+    "seed_ext": "20260902"
+  },
+  "environment": {
+    "node": "BillydeMac-mini.local",
+    "python": "3.13.12"
+  },
+  "monitoring": {
+    "decision_voi_vs_infogain_utility": {
+      "frozen_mean": 2.145505301683211,
+      "within_10pct": true
+    },
+    "decision_voi_vs_llm_proxy_utility": {
+      "frozen_mean": 0.27696597535950657,
+      "within_10pct": false
+    }
+  },
+  "p1_prefix": {
+    "decision_voi_vs_infogain_utility": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    },
+    "decision_voi_vs_llm_proxy_utility": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    }
+  },
+  "schema": "ORION08.N4E_POWER.v1",
+  "split_half": {
+    "decision_voi_vs_infogain_utility": {
+      "first2000_mean": 2.125002088745431,
+      "full_mean": 2.1160586599943803,
+      "second2000_mean": 2.10711523124333
+    },
+    "decision_voi_vs_llm_proxy_utility": {
+      "first2000_mean": 0.3044922653332423,
+      "full_mean": 0.3116865832527521,
+      "second2000_mean": 0.31888090117226187
+    }
+  },
+  "targets": {
+    "decision_voi_vs_infogain_utility": {
+      "ci_975": [
+        2.054257975383617,
+        2.1778244272282725
+      ],
+      "loss": 0.0265,
+      "mean": 2.1160586599943803,
+      "n": 4000,
+      "tie": 0.03675,
+      "verdict": "RESOLVED_POSITIVE",
+      "win": 0.93675
+    },
+    "decision_voi_vs_llm_proxy_utility": {
+      "ci_975": [
+        0.2538351197970153,
+        0.36766871677428803
+      ],
+      "loss": 0.14425,
+      "mean": 0.3116865832527521,
+      "n": 4000,
+      "tie": 0.42025,
+      "verdict": "RESOLVED_POSITIVE",
+      "win": 0.4565
+    }
+  },
+  "terminal": "N4E_POWER_DETERMINED_BOTH"
+}

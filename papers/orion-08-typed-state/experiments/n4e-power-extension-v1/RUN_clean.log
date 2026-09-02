@@ -1,0 +1,21 @@
+P1 decision_voi_vs_llm_proxy_utility: max|diff|=0.000e+00 PASS
+P1 decision_voi_vs_infogain_utility: max|diff|=0.000e+00 PASS
+decision_voi_vs_llm_proxy_utility: mean=+0.3117 CI97.5=[+0.2538,+0.3677] win/loss/tie=0.457/0.144/0.420 -> RESOLVED_POSITIVE
+decision_voi_vs_infogain_utility: mean=+2.1161 CI97.5=[+2.0543,+2.1778] win/loss/tie=0.937/0.026/0.037 -> RESOLVED_POSITIVE
+{
+  "targets": {
+    "decision_voi_vs_llm_proxy_utility": "RESOLVED_POSITIVE",
+    "decision_voi_vs_infogain_utility": "RESOLVED_POSITIVE"
+  },
+  "monitoring": {
+    "decision_voi_vs_llm_proxy_utility": {
+      "frozen_mean": 0.27696597535950657,
+      "within_10pct": false
+    },
+    "decision_voi_vs_infogain_utility": {
+      "frozen_mean": 2.145505301683211,
+      "within_10pct": true
+    }
+  },
+  "terminal": "N4E_POWER_DETERMINED_BOTH"
+}
