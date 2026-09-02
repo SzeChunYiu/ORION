@@ -1,0 +1,107 @@
+name: one-shot ORION-11 bind current render
+
+on:
+  push:
+    branches:
+      - codex/orion11-local-package-blocker-correction
+    paths:
+      - '.github/workflows/one-shot-orion11-bind-current-render.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  bind-pdf:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: codex/orion11-local-package-blocker-correction
+          fetch-depth: 0
+      - name: Install pinned render toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            latexmk texlive-binaries texlive-base texlive-latex-base \
+            texlive-latex-recommended texlive-latex-extra texlive-pictures \
+            texlive-publishers texlive-fonts-recommended texlive-bibtex-extra \
+            texlive-science texlive-plain-generic texlive-lang-greek lmodern \
+            fonts-lmodern fonts-texgyre fonts-texgyre-math fonts-urw-base35 \
+            libkpathsea6 libptexenc1 libsynctex2 libtexlua53-5 poppler-utils \
+            libpoppler134 poppler-data fontconfig libc-bin
+          cat > /tmp/expected.tsv <<'EOF'
+          texlive-binaries	2023.20230311.66589-9build3
+          texlive-base	2023.20240207-1
+          texlive-latex-base	2023.20240207-1
+          texlive-latex-recommended	2023.20240207-1
+          texlive-latex-extra	2023.20240207-1
+          texlive-fonts-recommended	2023.20240207-1
+          texlive-bibtex-extra	2023.20240207-1
+          texlive-science	2023.20240207-1
+          texlive-pictures	2023.20240207-1
+          texlive-publishers	2023.20240207-1
+          texlive-plain-generic	2023.20240207-1
+          texlive-lang-greek	2023.20240207-1
+          latexmk	1:4.83-1
+          libkpathsea6	2023.20230311.66589-9build3
+          libptexenc1	2023.20230311.66589-9build3
+          libsynctex2	2023.20230311.66589-9build3
+          libtexlua53-5	2023.20230311.66589-9build3
+          fonts-lmodern	2.005-1
+          lmodern	2.005-1
+          fonts-texgyre	20180621-6
+          fonts-texgyre-math	20180621-6
+          fonts-urw-base35	20200910-8
+          poppler-utils	24.02.0-1ubuntu9.9
+          libpoppler134	24.02.0-1ubuntu9.9
+          poppler-data	0.4.12-1
+          fontconfig	2.15.0-1.1ubuntu2
+          libc-bin	2.39-0ubuntu8.8
+          EOF
+          while IFS=$'\t' read -r pkg expected; do
+            actual="$(dpkg-query -W -f='${Version}' "$pkg")"
+            test "$actual" = "$expected" || {
+              echo "toolchain drift: $pkg expected $expected got $actual" >&2
+              exit 1
+            }
+          done < /tmp/expected.tsv
+      - name: Rebuild exact ORION-11 PDF and verify audit-artifact SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          p=papers/orion-11-recursive-epistemic-reconstruction/manuscript
+          epoch="$(git log -1 --format=%ct -- "$p" ":(exclude)$p/main.pdf")"
+          test -n "$epoch"
+          export SOURCE_DATE_EPOCH="$epoch"
+          export FORCE_SOURCE_DATE=1
+          cd "$p"
+          latexmk -C main.tex >/dev/null
+          latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex
+          if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references|undefined citations' main.log; then
+            echo 'undefined reference or citation' >&2
+            exit 1
+          fi
+          actual="$(sha256sum main.pdf | awk '{print $1}')"
+          expected=7a813d78d16c4f07c48e2e2a31c56c422bfb4475d4956426a180a82ea2be736b
+          test "$actual" = "$expected" || {
+            echo "PDF mismatch: expected $expected got $actual" >&2
+            exit 1
+          }
+      - name: Commit only the verified PDF bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add papers/orion-11-recursive-epistemic-reconstruction/manuscript/main.pdf
+          test -n "$(git diff --cached --name-only)" || {
+            echo 'tracked PDF already matches verified render'
+            exit 0
+          }
+          test "$(git diff --cached --name-only)" = 'papers/orion-11-recursive-epistemic-reconstruction/manuscript/main.pdf'
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'chore(ORION-11): bind exact current manuscript PDF'
+          git push origin HEAD:codex/orion11-local-package-blocker-correction

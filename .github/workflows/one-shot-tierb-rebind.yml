@@ -1,0 +1,270 @@
+name: one-shot-tierb-rebind
+
+# One-shot: rebind tracked manuscript/main.pdf (and, for ORION-08, both
+# Tier-B packages) after Tier-B source passes. The clipping audit gates PR
+# bytes against exactly this pinned toolchain, so the rebuild that produces
+# committed artifacts must run on it too.
+#
+# papers input (comma-separated, e.g. "orion-08-typed-state" or
+# "orion-08-typed-state,orion-13-global-knowledge-portrait"): each paper
+# gets its tracked manuscript/main.pdf re-rendered at its source epoch.
+# The paper whose slug starts with "orion-08" additionally runs the
+# publication-ready builder and the Tier-B finalize step. A slug containing
+# "orion-12" additionally runs build_submission_package.py (xelatex) and
+# commits the filing PDFs + submission/publication-final package.
+
+on:
+  workflow_dispatch:
+    inputs:
+      head-sha:
+        description: 'Commit sha carrying the edited sources'
+        required: true
+      branch:
+        description: 'Branch to push the rebound artifacts to'
+        required: true
+      papers:
+        description: 'Comma-separated paper slugs (e.g. orion-08-typed-state,orion-13-global-knowledge-portrait)'
+        required: true
+      extra-tex:
+        description: 'Optional comma-separated .tex paths to also render + commit (e.g. papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.tex); sibling class dirs are added to TEXINPUTS'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  rebind:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ inputs.head-sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned PDF and TeX toolchains
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            latexmk texlive-binaries texlive-base texlive-latex-base \
+            texlive-latex-recommended texlive-latex-extra texlive-pictures \
+            texlive-publishers texlive-xetex \
+            texlive-fonts-recommended texlive-bibtex-extra texlive-science \
+            texlive-plain-generic texlive-lang-greek lmodern fonts-lmodern \
+            fonts-texgyre fonts-texgyre-math fonts-urw-base35 libkpathsea6 \
+            libptexenc1 libsynctex2 libtexlua53-5 poppler-utils libpoppler134 \
+            poppler-data fontconfig libc-bin
+          # Same version pins as manuscript-clipping-audit.yml: a drift here
+          # is a byte drift in the committed PDF, so fail loudly instead.
+          cat > /tmp/expected-render-packages.tsv <<'EOF'
+          texlive-binaries	2023.20230311.66589-9build3
+          texlive-base	2023.20240207-1
+          texlive-latex-base	2023.20240207-1
+          texlive-latex-recommended	2023.20240207-1
+          texlive-latex-extra	2023.20240207-1
+          texlive-fonts-recommended	2023.20240207-1
+          texlive-bibtex-extra	2023.20240207-1
+          texlive-science	2023.20240207-1
+          texlive-pictures	2023.20240207-1
+          texlive-publishers	2023.20240207-1
+          texlive-plain-generic	2023.20240207-1
+          texlive-lang-greek	2023.20240207-1
+          latexmk	1:4.83-1
+          libkpathsea6	2023.20230311.66589-9build3
+          libptexenc1	2023.20230311.66589-9build3
+          libsynctex2	2023.20230311.66589-9build3
+          libtexlua53-5	2023.20230311.66589-9build3
+          fonts-lmodern	2.005-1
+          lmodern	2.005-1
+          fonts-texgyre	20180621-6
+          fonts-texgyre-math	20180621-6
+          fonts-urw-base35	20200910-8
+          poppler-utils	24.02.0-1ubuntu9.9
+          libpoppler134	24.02.0-1ubuntu9.9
+          poppler-data	0.4.12-1
+          fontconfig	2.15.0-1.1ubuntu2
+          libc-bin	2.39-0ubuntu8.8
+          EOF
+          while IFS=$'\t' read -r package expected; do
+            actual="$(dpkg-query -W -f='${Version}' "$package")"
+            test "$actual" = "$expected" || {
+              echo "render toolchain drift: $package expected $expected, got $actual" >&2
+              exit 1
+            }
+          done < /tmp/expected-render-packages.tsv
+      - name: Rebuild each paper's tracked main.pdf at its source epoch
+        shell: bash
+        run: |
+          set -euo pipefail
+          IFS=',' read -ra PAPERS <<< "${{ inputs.papers }}"
+          test "${#PAPERS[@]}" -ge 1
+          for slug in "${PAPERS[@]}"; do
+            slug="$(echo "$slug" | xargs)"
+            manuscript_dir="papers/$slug/manuscript"
+            test -f "$manuscript_dir/main.tex" || {
+              echo "::error::no manuscript entry point for $slug" >&2
+              exit 1
+            }
+            source_epoch="$(git log -1 --format=%ct -- \
+              "$manuscript_dir" \
+              ":(exclude)$manuscript_dir/main.pdf")"
+            test -n "$source_epoch"
+            echo "rendering $slug at SOURCE_DATE_EPOCH=$source_epoch"
+            (
+              cd "$manuscript_dir"
+              export SOURCE_DATE_EPOCH="$source_epoch"
+              export FORCE_SOURCE_DATE=1
+              latexmk -C main.tex >/dev/null
+              if ! latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex; then
+                missing="$(grep -oE "File \`[^']+\.(sty|cls)' not found" main.log | head -3 || true)"
+                if [ -n "$missing" ]; then
+                  echo "::error::TOOLCHAIN GAP, not a source defect: $slug needs $missing" >&2
+                else
+                  echo "::error::LaTeX build failed for $slug" >&2
+                fi
+                exit 1
+              fi
+              if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references|undefined citations' main.log; then
+                echo "undefined reference or citation in $slug" >&2
+                exit 1
+              fi
+              cp main.pdf /tmp/first.pdf
+              latexmk -C main.tex >/dev/null
+              latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error main.tex
+              cmp /tmp/first.pdf main.pdf   # determinism: two clean builds agree
+            )
+          done
+      - name: Render extra filing surfaces (optional)
+        if: inputs.extra-tex != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          head_epoch="$(git log -1 --format=%ct)"
+          IFS=',' read -ra EXTRA <<< "${{ inputs.extra-tex }}"
+          for tex in "${EXTRA[@]}"; do
+            tex="$(echo "$tex" | xargs)"
+            test -f "$tex" || {
+              echo "::error::no such tex: $tex" >&2
+              exit 1
+            }
+            dir="$(dirname "$tex")"
+            base="$(basename "$tex" .tex)"
+            (
+              cd "$dir"
+              export SOURCE_DATE_EPOCH="$head_epoch"
+              export FORCE_SOURCE_DATE=1
+              # Vendored class/style dirs (e.g. elsevier-cas/) are not on the
+              # default search path; add every immediate subdir holding a
+              # .cls file so the filing source finds its own class files.
+              classpath=""
+              for sub in */; do
+                if compgen -G "$sub*.cls" >/dev/null; then
+                  classpath="$classpath${sub}:"
+                fi
+              done
+              export TEXINPUTS="${classpath}"
+              latexmk -C "$base.tex" >/dev/null
+              if ! latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error "$base.tex"; then
+                echo "::error::LaTeX build failed for $tex" >&2
+                exit 1
+              fi
+              if grep -Eq 'LaTeX Warning: (Citation|Reference).*undefined|There were undefined references|undefined citations' "$base.log"; then
+                echo "undefined reference or citation in $tex" >&2
+                exit 1
+              fi
+              cp "$base.pdf" /tmp/extra-first.pdf
+              latexmk -C "$base.tex" >/dev/null
+              latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error "$base.tex"
+              cmp /tmp/extra-first.pdf "$base.pdf"   # determinism: two clean builds agree
+            )
+          done
+      - name: Rebuild publication-ready package (ORION-08 only)
+        if: contains(inputs.papers, 'orion-08')
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd papers/publication_closure/orion_all_submission_20260831
+          ORION_PAPERS=ORION-08 python3 build_all_submission_materials.py
+      - name: Finalize Tier-B package (ORION-08 only)
+        if: contains(inputs.papers, 'orion-08')
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 papers/publication_closure/tier_b_20260901/finalize_tier_b_package.py \
+            --paper-dir orion-08-typed-state \
+            --paper-id ORION-08 \
+            --authority CLAIM_LEDGER_V4.md \
+            --terminal ORION08_COMPLETE__CONTROLLED_MECHANISMS_AND_BOUNDED_TRANSFER \
+            --closure-file submission/tier-b-closure-20260901/ACCEPTANCE_OPTIMIZATION_PLAN.json \
+            --closure-file submission/tier-b-closure-20260901/ATOMIC_CLAIM_INVENTORY.json \
+            --closure-file submission/tier-b-closure-20260901/LITERATURE_AND_LINEAGE_REFRESH.md \
+            --closure-file submission/tier-b-closure-20260901/PAPER_EXISTENCE_SCIENTIFIC_MASS.json \
+            --closure-file submission/tier-b-closure-20260901/RESULT_RETENTION.md \
+            --closure-file submission/tier-b-closure-20260901/REVIEWER_AUDIT.md \
+            --closure-file submission/tier-b-closure-20260901/VENUE_RESOLUTION.md
+      - name: Rebuild ORION-12 submission package (orion-12 only)
+        if: contains(inputs.papers, 'orion-12')
+        shell: bash
+        run: |
+          set -euo pipefail
+          # build_submission_package.py invokes "python" (not python3) for the
+          # adapter check; setup-python normally exposes both, but guard anyway.
+          command -v python >/dev/null || {
+            pydir="$(dirname "$(command -v python3)")"
+            sudo ln -s "$(command -v python3)" "$pydir/python"
+          }
+          cd papers/orion-12-open-world-scientific-discovery
+          python3 scripts/build_submission_package.py
+      - name: Commit rebound artifacts to the PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          IFS=',' read -ra PAPERS <<< "${{ inputs.papers }}"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for slug in "${PAPERS[@]}"; do
+            slug="$(echo "$slug" | xargs)"
+            git add "papers/$slug/manuscript/main.pdf"
+          done
+          if [ -n "${{ inputs.extra-tex }}" ]; then
+            IFS=',' read -ra EXTRA <<< "${{ inputs.extra-tex }}"
+            for tex in "${EXTRA[@]}"; do
+              tex="$(echo "$tex" | xargs)"
+              git add "${tex%.tex}.pdf"
+            done
+          fi
+          if echo "${{ inputs.papers }}" | grep -q 'orion-08'; then
+            git add \
+              papers/orion-08-typed-state/submission/publication-ready-20260831 \
+              papers/orion-08-typed-state/submission/tier-b-final-20260901 \
+              papers/publication_closure/orion_all_submission_20260831/CLOSURE_REGISTRY.json
+          fi
+          if echo "${{ inputs.papers }}" | grep -q 'orion-12'; then
+            git add \
+              papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.pdf \
+              papers/orion-12-open-world-scientific-discovery/manuscript/arxiv_submission.pdf \
+              papers/orion-12-open-world-scientific-discovery/submission/publication-final-20260901
+          fi
+          if git diff --cached --quiet; then
+            echo 'Rebound artifacts already current.'
+            exit 0
+          fi
+          git commit -m "papers: rebind tracked manuscript renders on the pinned toolchain (${{ inputs.papers }})"
+          git push origin "HEAD:refs/heads/${{ inputs.branch }}"
+      - name: Archive rebuilt artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: one-shot-tierb-rebind-${{ inputs.head-sha }}
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            papers/*/manuscript/main.pdf
+            papers/orion-08-typed-state/manuscript/main.log
+            papers/orion-12-open-world-scientific-discovery/manuscript/ipm_submission.pdf
+            papers/orion-12-open-world-scientific-discovery/manuscript/arxiv_submission.pdf

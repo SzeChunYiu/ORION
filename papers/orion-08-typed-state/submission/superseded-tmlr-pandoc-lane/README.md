@@ -26,3 +26,7 @@ The current cover letter and availability statement governing the filing live
 in `submission/tier-b-final-20260901/journal/` (and its source in
 `submission/publication-ready-20260831/journal/`). Nothing in this directory
 is an input to any package; do not build from it.
+
+See also: `theory/binding-sufficiency-lattice-v1/THEOREM_CORRECTION_2026-09-01.md`
+(V4 theorem correction the pandoc master predates) and
+`../PUBLICATION_FREEZE_ADDENDUM_V2.md`.

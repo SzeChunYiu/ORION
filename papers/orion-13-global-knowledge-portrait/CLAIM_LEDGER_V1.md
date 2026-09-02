@@ -39,6 +39,25 @@
 > **Scientific identity is a target-bound authorization relation above representational compatibility. On the registered structured-integration contracts, making that identity relation explicit eliminates the false integrations produced by weaker semantic products while preserving clean integration, and the same decisions are recoverable in an information-equivalent implementation.**
 
 This headline is supported by ORION-13.C5, ORION-13.C10 and ORION-13.C11 together. It does not claim raw-text extraction superiority or downstream answer-quality improvement.
+
+> **Annotation (2026-09-02, brief-report supersession).** The block above is the
+> pre-rewrite full-paper headline and is retained as history only. The shipped
+> publication object is the F1000Research Brief Report
+> (`manuscript/brief-report-final/`, venue decision of 2026-09-01), whose frozen
+> conclusion is strictly narrower and is the operative publication headline:
+> *"These panels support a bounded observation: the complete polarity-sensitive
+> non-merge condition avoids the six false agreements created by the registered
+> flat rule. They do not establish population error rates, superiority over
+> deployed integration systems, the independent value of every coordinate,
+> raw-text extraction performance or downstream scientific utility."*
+> No manuscript sentence may state authority above the brief-report conclusion
+> while the brief report is the filing object. The preserved
+> `evidence/null-and-baseline-battery-v1/BATTERY_V1.json` additionally bounds
+> the mechanism evidence (minimal predicate/modality/polarity rule reproduces
+> all decisions; registered flat rule is constant always-merge; exact McNemar
+> p=0.03125 confirmatory / p=0.125 initial) and the manuscript now discloses
+> these facts. Reopening the wider headline requires the full-paper successor
+> programme, not a wording change.
 | ORION-13.C10 | In the separate protected zero-error representation-transition programme, ORION-JUMP adds no incremental value over the verified representation-regime revision parent on either disjoint frozen split; Paper III therefore retains correspondence/preservation/obstruction/reopening semantics while making no distinct representation-invention claim. | `research/extensions/orion-jump-recursive-atoms/zero_error_jump/ZERO_ERROR_JUMP_EXPECTED_V2.json`; merged #598 science tree | **MERGED STRONGEST-PARENT EQUIVALENCE / NEGATIVE OWNERSHIP BOUNDARY** — not pooled with ORION-13/ORION-13-X; no general representation-invention authority |
 
 ## Promotion rule
