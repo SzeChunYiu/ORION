@@ -1,0 +1,154 @@
+{
+  "artifacts": {
+    "QG5B_EXACT_FORECASTER_RESULTS.json": {
+      "bytes": 42939,
+      "path": "research/extensions/orion-qg/QG5B_EXACT_FORECASTER_RESULTS.json",
+      "sha256": "7701d4fb708a0a235493a0e4da72076d5d8b77a3e19fa9997ab6a5de51997f16"
+    },
+    "QG5_CERTIFIED_FORECAST_RESULTS.json": {
+      "bytes": 87684,
+      "path": "research/extensions/orion-qg/QG5_CERTIFIED_FORECAST_RESULTS.json",
+      "sha256": "f5ef5c7599cb4331d18d4edb95b434961efa55c2f9ac18263bdbfb017df5fc3e"
+    },
+    "QG7E_TWELVE_STATES_RESULTS.json": {
+      "bytes": 265182,
+      "path": "research/extensions/orion-qg/QG7E_TWELVE_STATES_RESULTS.json",
+      "sha256": "b452ac0ae11f610099f0a1813786f6a806847c76752dd065edc559707dcb7fd8"
+    },
+    "QG7E_V2_PP_SINGLE_PINNER_RESULTS.json": {
+      "bytes": 1440,
+      "path": "research/extensions/orion-qg/QG7E_V2_PP_SINGLE_PINNER_RESULTS.json",
+      "sha256": "c5368796d0ccf6267e252ec06614bfeed73af80815859106b64ab7dbd7ab08d8"
+    },
+    "QG7F_CHAIN_REPRESENTATION_AUDIT_RESULTS.json": {
+      "bytes": 1573,
+      "path": "research/extensions/orion-qg/QG7F_CHAIN_REPRESENTATION_AUDIT_RESULTS.json",
+      "sha256": "1caf27ed2c5782c3d276cf811bbdf28cf7467c03fcf2f12925829e859ea5fa99"
+    }
+  },
+  "checker_sha256": "b0e6ab74a483bfe54cc79d4edd70ff6bad2c8c86a913963437694286b82c1c9a",
+  "checks": [
+    {
+      "detail": "pinned 7701d4fb708a0a235493a0e4da72076d5d8b77a3e19fa9997ab6a5de51997f16, observed 7701d4fb708a0a235493a0e4da72076d5d8b77a3e19fa9997ab6a5de51997f16",
+      "id": "digest.QG5B_EXACT_FORECASTER_RESULTS.json",
+      "status": "pass"
+    },
+    {
+      "detail": "pinned f5ef5c7599cb4331d18d4edb95b434961efa55c2f9ac18263bdbfb017df5fc3e, observed f5ef5c7599cb4331d18d4edb95b434961efa55c2f9ac18263bdbfb017df5fc3e",
+      "id": "digest.QG5_CERTIFIED_FORECAST_RESULTS.json",
+      "status": "pass"
+    },
+    {
+      "detail": "pinned b452ac0ae11f610099f0a1813786f6a806847c76752dd065edc559707dcb7fd8, observed b452ac0ae11f610099f0a1813786f6a806847c76752dd065edc559707dcb7fd8",
+      "id": "digest.QG7E_TWELVE_STATES_RESULTS.json",
+      "status": "pass"
+    },
+    {
+      "detail": "pinned c5368796d0ccf6267e252ec06614bfeed73af80815859106b64ab7dbd7ab08d8, observed c5368796d0ccf6267e252ec06614bfeed73af80815859106b64ab7dbd7ab08d8",
+      "id": "digest.QG7E_V2_PP_SINGLE_PINNER_RESULTS.json",
+      "status": "pass"
+    },
+    {
+      "detail": "pinned 1caf27ed2c5782c3d276cf811bbdf28cf7467c03fcf2f12925829e859ea5fa99, observed 1caf27ed2c5782c3d276cf811bbdf28cf7467c03fcf2f12925829e859ea5fa99",
+      "id": "digest.QG7F_CHAIN_REPRESENTATION_AUDIT_RESULTS.json",
+      "status": "pass"
+    },
+    {
+      "detail": "roles=27 distinct=27; expected unordered pairs=378; seen=378; bad rows=0",
+      "id": "p1e.geometry_set",
+      "status": "pass"
+    },
+    {
+      "detail": "geometry_count=378 geometries_closed=378 residue_total=0 holds=True",
+      "id": "p1e.closure",
+      "status": "pass"
+    },
+    {
+      "detail": "total_states=6341787648 == 378*2^24=6341787648",
+      "id": "p1e.state_arithmetic",
+      "status": "pass"
+    },
+    {
+      "detail": "dispatched_closed=135604 open=0 census_sum=135604 domain=2^29",
+      "id": "p2.census_dispatch",
+      "status": "pass"
+    },
+    {
+      "detail": "steps=[1, 2, 3, 4, 5, 6, '6b', 7, 8, 9, 10, 11]",
+      "id": "chain.shape",
+      "status": "pass"
+    },
+    {
+      "detail": "terminal=True statement=\"C_DP == min(C_D+, f_B', f_B'') for all n, unit-cost TARE\"",
+      "id": "chain.terminal",
+      "status": "pass"
+    },
+    {
+      "detail": "step7 claim admits domination with strictly fewer comm-s2 blocks; step8 measure strictly decreases",
+      "id": "chain.composition_links",
+      "status": "pass"
+    },
+    {
+      "detail": "E1='CANNOT CLOSE (exact, serialized)' E2='CLOSES' E3='SETTLES 12/12'",
+      "id": "chain.attack_outcomes",
+      "status": "pass"
+    },
+    {
+      "detail": "n_gates=12 all_true=True",
+      "id": "gates.all_true",
+      "status": "pass"
+    },
+    {
+      "detail": "mirror 2^24 holds=True; gauges 6*2^24 holds=True; GP rows=5340816 mismatches=0; t4b 2^29 census=135604",
+      "id": "links.domains",
+      "status": "pass"
+    },
+    {
+      "detail": "PP_ALL_N=True product_domain=133349376 CHAIN_ALL_N=False GLOBAL_B''_COMPLETENESS=False",
+      "id": "deadroute.v2_single_pinner",
+      "status": "pass"
+    },
+    {
+      "detail": "tag=[1, 1, 1] wt=3; blocks B,C M1-comm-s2-irreducible; class-(0,0) reducible coordinates empty in both",
+      "id": "deadroute.qg7f_representation",
+      "status": "pass"
+    },
+    {
+      "detail": "total=9546 = structured 9261 + fresh 240 + chemistry 45; errors=1 (fresh idx 7, n=3, C_DP 10 vs predicted 11)",
+      "id": "counts.qg5_benchmark",
+      "status": "pass"
+    },
+    {
+      "detail": "9,547 events = 1 refuting re-audit + 9,261 structured + 240 fresh + 45 chemistry; nonzero_error_total=0; no_dp_call_in_forecast_path=True",
+      "id": "counts.qg5b_events",
+      "status": "pass"
+    }
+  ],
+  "counts": {
+    "census_patterns": 135604,
+    "chemistry_rows_total": 45,
+    "comparison_events": 9547,
+    "distinct_inputs": 9546,
+    "gp_domain_rows": 5340816,
+    "p1e_geometries": 378,
+    "p1e_total_states": 6341787648,
+    "qg5_chemistry_listing_nonzero_errors": {
+      "H4": 0,
+      "N2": 0
+    },
+    "qg5_chemistry_verbatim_listing": {
+      "H4": 15,
+      "N2": 15
+    },
+    "v2_product_domain": 133349376
+  },
+  "exit_code": 0,
+  "host": "BillydeMac-mini.local",
+  "python": "3.13.12",
+  "repo_root_relative_artifacts": "research/extensions/orion-qg",
+  "schema": "ORION10_CHECK_ENVELOPE_COMPOSITION_V1",
+  "scope_note": "Receipt-level re-derivation of the committed composition arithmetic; the 6,341,787,648-state enumeration itself is the scientific run bound by the QG-7e receipt and is not re-executed.",
+  "utc": "2026-09-02T11:32:41+00:00",
+  "verdict": "PASS",
+  "version": "1.0"
+}
