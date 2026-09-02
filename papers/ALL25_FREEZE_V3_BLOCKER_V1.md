@@ -36,8 +36,24 @@ No re-derivation can repair this. The V2 record validated in August because thos
 reachable then; they are not now. **The generator refuses rather than emitting a freeze that
 cites provenance nobody can fetch**, which would be a freeze weaker than no freeze.
 
-This needs a disposition, not a re-run: recover the commits if they exist elsewhere, or record
-the provenance as `CANNOT_CHECK` with the reason retained.
+**Dispositioned.** Under `--disposition-unreachable`, the generator retains each identifier in
+a new `unreachable_source_result_commits` field with
+`UNREACHABLE_PROVENANCE__CANNOT_CHECK` and the reason, and leaves `source_result_commits` to
+mean exactly what the checker enforces: commits that resolve. The provenance claim and its
+failure are both preserved; nothing is withdrawn and nothing is silently re-derived. The flag
+is required so that writing a freeze around unreachable provenance is a deliberate act.
+
+With that, all three of the checker's validators pass on the generated pair:
+`validate_manifest_shape`, `validate_checker_template_binding`, `validate_git_bindings`.
+
+## What still gates the freeze itself
+
+`validate_exact_freeze_commit` requires the freeze commit's parent to be the declared content
+base. Taking the freeze here would anchor it to an unmerged branch — which is precisely how V2
+ended up valid-but-unreachable at `fe5da5332`, 639 commits behind main. The V3 freeze must
+therefore be taken **on main, after the content PRs land**: #2086 (ORION-16 FINAL_V6), #2089
+(ORION-18 FINAL_V4), #2091 (A6 tie gate). Freezing before them reproduces the staleness being
+repaired.
 
 ## What the generator does once that is dispositioned
 

@@ -95,7 +95,7 @@ def verify_immutable(constants: dict, ref: str) -> None:
         )
 
 
-def build(content_base: str) -> tuple[dict, str]:
+def build(content_base: str, allow_unreachable: bool = False) -> tuple[dict, str]:
     source, constants = load_v2()
     verify_immutable(constants, content_base)
 
@@ -105,28 +105,53 @@ def build(content_base: str) -> tuple[dict, str]:
     new["manifest_relative"] = V3_MANIFEST_REL
     new["checker_relative"] = V3_CHECKER_REL
 
-    # Provenance must still be reachable. The V2 freeze recorded source result
-    # commits that were reachable in August; at least one has since become
-    # unreachable ("not our ref" from the remote), which no re-derivation can
-    # repair. Refuse and name them rather than emitting a freeze that points at
-    # provenance nobody can fetch.
+    # Provenance that has become unreachable is dispositioned, not dropped and not
+    # silently re-derived. The V2 record cites source result commits that were
+    # reachable in August and are now absent locally and refused by the remote as
+    # "not our ref"; nothing can re-derive them. Retaining the identifier under an
+    # explicit CANNOT_CHECK disposition preserves the provenance claim and its
+    # failure, while leaving `source_result_commits` to mean exactly what the
+    # checker enforces: commits that resolve. Requires --disposition-unreachable
+    # so that writing a freeze around unreachable provenance is a deliberate act.
     unreachable: list[tuple[str, str]] = []
     for pid, paper in new["papers"].items():
+        keep, lost = [], []
         for commit in paper.get("source_result_commits") or []:
             probe = subprocess.run(
                 ["/usr/bin/git", "cat-file", "-e", f"{commit}^{{commit}}"],
                 cwd=ROOT, capture_output=True,
             )
-            if probe.returncode != 0:
-                unreachable.append((pid, commit))
-    if unreachable:
+            (keep if probe.returncode == 0 else lost).append(commit)
+        if lost:
+            unreachable.extend((pid, c) for c in lost)
+            if not allow_unreachable:
+                continue
+            paper["source_result_commits"] = keep
+            paper["unreachable_source_result_commits"] = [
+                {
+                    "commit": c,
+                    "disposition": "UNREACHABLE_PROVENANCE__CANNOT_CHECK",
+                    "note": (
+                        "cited by the V2 freeze and reachable at that time; absent from this "
+                        "repository and refused by the remote as 'not our ref'. Retained as a "
+                        "provenance claim that can no longer be checked, not withdrawn."
+                    ),
+                }
+                for c in lost
+            ]
+    if unreachable and not allow_unreachable:
         for pid, commit in unreachable:
             print(f"UNREACHABLE PROVENANCE: {pid} source_result_commit {commit}", file=sys.stderr)
         raise SystemExit(
             "refusing to re-freeze: the V2 record cites source result commits that no "
-            "longer exist in this repository or on the remote. That is a provenance "
-            "finding requiring a disposition, not something a re-take can re-derive."
+            "longer exist. Re-run with --disposition-unreachable to retain them under an "
+            "explicit UNREACHABLE_PROVENANCE__CANNOT_CHECK disposition."
         )
+    if unreachable:
+        print(f"dispositioned {len(unreachable)} unreachable source result commit(s) "
+              f"as UNREACHABLE_PROVENANCE__CANNOT_CHECK:")
+        for pid, commit in unreachable:
+            print(f"   {pid}  {commit}")
 
     moved = 0
     repinned: list[tuple[str, str, str, str]] = []
@@ -193,13 +218,14 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--content-base", required=True)
     parser.add_argument("--out-dir", type=Path, default=ROOT)
     parser.add_argument("--date", default=None)
+    parser.add_argument("--disposition-unreachable", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
     if args.date is None:
         import datetime
         args.date = datetime.date.today().isoformat()
 
-    constants, template = build(args.content_base)
+    constants, template = build(args.content_base, args.disposition_unreachable)
     blob = json.dumps(constants, indent=2, sort_keys=True, ensure_ascii=False)
     checker = template.replace(PLACEHOLDER, blob)
 
