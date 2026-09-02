@@ -23,7 +23,7 @@ from random import Random
 from statistics import fmean
 
 HERE = Path(__file__).resolve().parent
-PARENT = HERE.parent  # papers/orion-08-typed-state
+PARENT = HERE.parent.parent  # papers/orion-08-typed-state
 N_EXT = 2000
 FROZEN_N = 200
 DELTA = 1.0  # practical-equivalence bound (registered)
@@ -90,10 +90,14 @@ def main() -> int:
     frozen = json.loads((PARENT / "PUBLICATION_PAIRED_ANALYSIS_V1.json").read_text())
     frozen_rows = frozen["studies"]["N4_B"]
 
-    # episodes: continue the frozen stream (REGIMES order, N_EXT per regime)
+    # episodes: A1-N4B layout — frozen blocks first (both regimes' prefixes
+    # byte-identical to the frozen analysis), then extend each block in order
     rng = Random(m.SEED)
-    episodes = {reg: [m.generate_episode(reg, rng) for _ in range(N_EXT)]
+    episodes = {reg: [m.generate_episode(reg, rng) for _ in range(FROZEN_N)]
                 for reg in m.REGIMES}
+    for reg in m.REGIMES:
+        episodes[reg].extend(m.generate_episode(reg, rng)
+                             for _ in range(N_EXT - FROZEN_N))
 
     # ---- P1 prefix cross-check (gated, first) ----
     p1 = {}

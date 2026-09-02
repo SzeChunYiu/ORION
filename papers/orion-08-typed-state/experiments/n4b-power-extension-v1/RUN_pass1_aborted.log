@@ -1,0 +1,20 @@
+P1 STALE_MATTERS: max|diff|=0.000e+00 PASS
+P1 REOPEN_WASTEFUL: max|diff|=2.279e-01 FAIL
+{
+  "environment": {
+    "node": "BillydeMac-mini.local",
+    "python": "3.13.12"
+  },
+  "p1_prefix": {
+    "REOPEN_WASTEFUL": {
+      "max_abs_diff": 0.22788543376583242,
+      "pass": false
+    },
+    "STALE_MATTERS": {
+      "max_abs_diff": 0.0,
+      "pass": true
+    }
+  },
+  "schema": "ORION08.N4B_POWER.v1",
+  "terminal": "N4B_POWER_PREFIX_FAIL"
+}

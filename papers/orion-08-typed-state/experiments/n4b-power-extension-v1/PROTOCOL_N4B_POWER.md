@@ -49,3 +49,24 @@ is registered here before the first run. The frozen protocol, module, and
 published analysis are untouched; the extension is additive. An aborted or
 crashed pass is retained as a receipt (suffix `_aborted`) and never
 silently retried without an amendment naming the defect.
+
+## Amendment A1-N4B (2026-09-02, pre-verdict — P1 aborted pass 1)
+
+Pass 1 hit the registered P1 gate and aborted with
+`N4B_POWER_PREFIX_FAIL` (exit 3) before any target was computed:
+STALE_MATTERS reproduced the frozen prefix exactly (max |diff| = 0.0) but
+REOPEN_WASTEFUL did not (0.2279). **Defect:** the registered stream layout
+allocated the extension as one STALE block of 2000 followed by one REOPEN
+block, which places REOPEN's first 200 at stream draws 2001..2200 — the
+frozen REOPEN prefix lives at draws 201..400, so no block allocation after
+a longer first block can reproduce it. Only the first regime's prefix can
+ever match under that layout; the derivation's prefix claim was wrong for
+every regime but the first. **Fix (stream layout only):** generate the
+frozen layout first (STALE 1..200, REOPEN 1..200 — draws 1..400,
+byte-identical to the frozen analysis), then extend each regime's block in
+`REGIMES` order on the same stream (STALE 201..2000 = draws 401..2200,
+REOPEN 201..2000 = draws 2201..4000). Both prefixes now reproduce; the
+extension mass is still the same regime-stationary generator, and no
+gate, threshold, δ, family, seed, or target changes. Pass 1 receipt
+retained (`RESULTS_pass1_aborted.json`, `RUN_pass1_aborted.log`); no
+outcome was consumed.

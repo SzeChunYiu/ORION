@@ -19,12 +19,16 @@ Nothing about the frozen protocol changes: same module
 same seed (20260821), same arms (`ORION_SCOPED_REOPEN` treatment,
 `NEVER_REOPEN` comparator), same metric (`mean_round_utility`), same paired
 estimand (per-episode difference, mean over episodes). The extension only
-**continues the frozen RNG stream** past its first
-200 episodes per regime: `random.Random(SEED)` consumed in `REGIMES` order
-(STALE_MATTERS first), `N_EXT = 2000` per regime — so the frozen 200 are a
-**prefix** of the extension (byte-identical episodes by determinism of
-`random.Random`), and episodes 201..2000 are the new, pre-outcome-registered
-mass. No re-seeding, no stratification, no selection.
+**continues the frozen RNG stream**: the frozen layout is generated first
+(STALE_MATTERS 1..200 then REOPEN_WASTEFUL 1..200 — stream draws 1..400,
+byte-identical to the frozen analysis by determinism of `random.Random`),
+then each regime's block is extended in `REGIMES` order on the same stream
+(STALE 201..2000 = draws 401..2200, REOPEN 201..2000 = draws 2201..4000),
+so **both frozen 200-blocks are prefixes** of the extension and episodes
+201..2000 are the new, pre-outcome-registered mass. No re-seeding, no
+stratification, no selection. (A1-N4B: the originally registered
+block-of-2000 layout could only ever reproduce the first regime's prefix —
+P1 caught it; see the protocol amendment.)
 
 ## Power arithmetic (from the frozen intervals only)
 
