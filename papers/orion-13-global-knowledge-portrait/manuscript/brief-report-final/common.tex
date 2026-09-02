@@ -47,14 +47,16 @@ Scientific information extraction, schema induction and knowledge-graph
 construction supply increasingly structured upstream representations
 \cite{muse2026,scier2024,scischema2026,scopes2026,schemaContracts2026}.
 Ontology matching studies equivalence, subsumption and disjointness
-\cite{euzenat2007ontology}; alignment repair also shows that individually
-plausible correspondences can make a combined ontology incoherent
-\cite{santos2015alignment}. Ontological unpacking, I-ADOPT and FAIR 2.0 make
+\cite{euzenat2007ontology}, and its evaluation campaigns compare matching
+systems on shared test cases \cite{oaei2023results}; alignment repair also
+shows that individually plausible correspondences can make a combined
+ontology incoherent \cite{santos2015alignment}. Ontological unpacking, I-ADOPT and FAIR 2.0 make
 scientific-variable structure and mapping conditions explicit
 \cite{bernasconi2022interoperability,iadopt2021,fair2024}.
 Provenance-bearing statements and target-relative stance further motivate
 preserving source and polarity rather than collapsing them into a scalar match
-\cite{dec2026,hardalov2022stance}. The present contribution is smaller than
+\cite{dec2026,hardalov2022stance}. Truth discovery selects among conflicting
+values supplied by different sources \cite{li2016truthdiscovery}. The present contribution is smaller than
 these extraction, matching and modelling programmes: it tests a claim-relative
 merge rule only after the source projections have already been constructed.
 
@@ -263,6 +265,32 @@ eight distinct candidate-visible states, and the strong semantic product
 has a narrower terminal alphabet. These facts prevent population-like or
 general-superiority interpretations.
 
+\subsection{Disclosures and limits of the comparison}
+
+A separate null-and-baseline battery sharpens these limits. On both 32-case
+panels, a minimal rule comparing only predicate, modality and polarity
+reproduced every decision of the complete mechanism (accuracy 1.0000, no
+false merges, no false splits, $n=32$ per panel), and in the battery's
+cascade census ten of the eleven coordinate categories never differed
+between paired records; only polarity did. The remaining coordinates are
+therefore untested on these panels, not demonstrated to be necessary. The
+flat comparator is likewise degenerate as a classifier here: every paired
+record has an equal predicate (predicate-equal fraction 1.0), so the
+registered flat rule merges every case, and its false-merge rate equals the
+panel non-merge base rate (0.1875 on the holdout, 0.125 on the initial
+panel). The headline contrast is therefore a comparison against a constant
+always-merge baseline, which bounds the strength of the comparison.
+
+Exact paired tests accompany the bootstrap diagnostics. The exact two-sided
+McNemar test gives $p=0.03125$ on the confirmatory holdout (six discordant
+pairs, all flat-only false merges) and $p=0.125$ on the initial panel (four
+discordant pairs), which is not significant on its own. The ten discordant
+pairs across the two disjoint panels all favour the coordinate-governed
+rule; no pooled significance test was computed, by protocol, and the panels
+are not pooled. Finally, all gold labels, audits and adjudications were
+produced within the same single-author research programme; no independent
+out-of-programme check exists.
+
 The report also says nothing about recovering the coordinates from raw text,
 expert agreement over a broader atlas, naturalistic transport, deployed
 integration, or downstream answer quality. The result is best read as a small
@@ -288,7 +316,10 @@ evaluator is \path{src/orion/knowledge/semantics.py}; the four-way contract and
 its independent reconstruction are
 \path{research/claim_expansion/p3/P3_X_PROTOCOL_V1.md} and
 \path{research/claim_expansion/p3/verify_p3_x_independent.py} at the repository
-root. Code is licensed under
+root. The null-and-baseline disclosure battery behind the Disclosures
+subsection is
+\path{papers/orion-13-global-knowledge-portrait/evidence/null-and-baseline-battery-v1/BATTERY_V1.json}
+in the ORION repository. Code is licensed under
 Apache-2.0 and manuscript text under the Creative Commons Attribution 4.0
 International licence; upstream resource licences remain controlling.
 Restricted third-party text is not redistributed. A repository DOI may be

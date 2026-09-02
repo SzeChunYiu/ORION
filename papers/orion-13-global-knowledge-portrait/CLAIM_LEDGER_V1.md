@@ -36,9 +36,13 @@
 
 ## Strongest allowed headline
 
-> **Scientific identity is a target-bound authorization relation above representational compatibility. On the registered structured-integration contracts, making that identity relation explicit eliminates the false integrations produced by weaker semantic products while preserving clean integration, and the same decisions are recoverable in an information-equivalent implementation.**
+> **[SUPERSEDED 2026-09-02 — full-paper headline, retained for the record; see the governing brief-report headline below.]** Scientific identity is a target-bound authorization relation above representational compatibility. On the registered structured-integration contracts, making that identity relation explicit eliminates the false integrations produced by weaker semantic products while preserving clean integration, and the same decisions are recoverable in an information-equivalent implementation.
 
-This headline is supported by ORION-13.C5, ORION-13.C10 and ORION-13.C11 together. It does not claim raw-text extraction superiority or downstream answer-quality improvement.
+*(Historical note: this superseded headline was supported by ORION-13.C5, ORION-13.C10 and ORION-13.C11 together and did not claim raw-text extraction superiority or downstream answer-quality improvement.)*
+
+> **Governing headline (2026-09-02; equals the shipped Brief Report `manuscript/brief-report-final/common.tex`, Abstract "Conclusions" and Discussion):** on a prospectively frozen, case-identifier-disjoint 32-case holdout of already-structured scientific projections, the complete polarity-sensitive non-merge condition avoided the six false agreements created by the registered flat predicate-canonicalization rule, with the predeclared false-split guard satisfied; a separate deterministic eight-state conformance battery and an information-equivalent typed implementation reproduce the registered interfaces. This is a bounded fixed-panel methods observation: it does not establish population error rates, superiority over deployed integration systems, the independent value of every coordinate, raw-text extraction performance or downstream scientific utility.
+
+A manuscript sentence may not state a stronger authority than the governing headline. The superseded full-paper headline above is not authorized for the shipped Brief Report; any future widening reopens the corresponding evidence gates under the promotion rule below.
 | ORION-13.C10 | In the separate protected zero-error representation-transition programme, ORION-JUMP adds no incremental value over the verified representation-regime revision parent on either disjoint frozen split; Paper III therefore retains correspondence/preservation/obstruction/reopening semantics while making no distinct representation-invention claim. | `research/extensions/orion-jump-recursive-atoms/zero_error_jump/ZERO_ERROR_JUMP_EXPECTED_V2.json`; merged #598 science tree | **MERGED STRONGEST-PARENT EQUIVALENCE / NEGATIVE OWNERSHIP BOUNDARY** — not pooled with ORION-13/ORION-13-X; no general representation-invention authority |
 
 ## Promotion rule
