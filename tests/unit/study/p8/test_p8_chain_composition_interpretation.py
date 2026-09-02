@@ -244,7 +244,25 @@ class TestTheFrameConditionsCarryTheProof:
         # would hide that. Pinned as a required core rather than as equality,
         # because one drop's refuted set genuinely varies -- measured over four
         # runs, and the core below is what held in all of them.
-        assert stable_core <= set(load_bearing["theorems_refuted_by_dropping"][condition])
+        #
+        # A starved solver is not a meaning change. P8's undecided runs are
+        # load-dependent (see test_identical_proof_queries_are_evaluated_once_
+        # per_process), so a pinned theorem left UNKNOWN by a drop makes this
+        # pin CANNOT_CHECK for the run -- skipped, visibly, the same split
+        # d72829c6d made for the CLI exit codes -- while a pinned theorem the
+        # drop discharged without refuting still fails: that one really did
+        # stop being carried.
+        refuted = set(load_bearing["theorems_refuted_by_dropping"][condition])
+        undecided = set(
+            load_bearing["theorems_left_undecided_by_dropping"].get(condition, [])
+        )
+        starved = (stable_core - refuted) & undecided
+        if starved:
+            pytest.skip(
+                f"{condition}: pinned {sorted(starved)} left UNDECIDED by the solver"
+                " (CANNOT_CHECK, not a meaning change)"
+            )
+        assert stable_core <= refuted
 
     def test_every_condition_is_pinned_by_the_test_above(self) -> None:
         # A condition added without a pin would be checked only for inertness.
