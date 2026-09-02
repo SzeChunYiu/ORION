@@ -1,0 +1,248 @@
+{
+  "adversarial_control_refuted_seed": {
+    "cells": [
+      {
+        "claims": 2,
+        "licenses": 1,
+        "rules": 1
+      },
+      {
+        "claims": 2,
+        "licenses": 2,
+        "rules": 1
+      }
+    ],
+    "documents": 1728,
+    "q_equality_breaks": 32,
+    "q_equality_holds": 1696
+  },
+  "authority": "BOUNDED_DOCUMENTATION_LEVEL_CERTIFICATE_ONLY__NO_EXPRESSIVENESS_CLAIM_NO_LEDGER_CHANGE_NO_WIDENING_OF_FROZEN_V3_SURFACE",
+  "authority_flags": {
+    "novelty_authority": false,
+    "physical_quantum_advantage_claim": false,
+    "scientific_authority_delta": "NONE"
+  },
+  "base_revision": "0a2fb65b1f74ce553a450d4bd7507a9f53516009",
+  "enumeration": {
+    "actual_total": 2960848,
+    "cap_respected": true,
+    "cells_reported_before_stop": 26,
+    "enumeration_cap": 4000000,
+    "planned_total": 2960848
+  },
+  "import_gate": {
+    "forbidden_substrings": [
+      "numpy",
+      "scipy",
+      "pandas",
+      "requests",
+      "urllib",
+      "socket",
+      "http",
+      "qiskit",
+      "openfermion",
+      "cirq",
+      "pyscf"
+    ],
+    "found_imports": [
+      "__future__",
+      "argparse",
+      "ast",
+      "evidence_license_evaluator",
+      "hashlib",
+      "itertools",
+      "json",
+      "pathlib",
+      "subprocess",
+      "sys",
+      "typing"
+    ],
+    "passed": true
+  },
+  "machinery": {
+    "digest_pinned_at_registration": true,
+    "module": "papers/orion-03-typed-merge-falsification/evidence_license_evaluator.py",
+    "sha256": "82ecb77dcdbce97d3980152d5053a166227d6a0403d11f021a6f478108b1b86a"
+  },
+  "machinery_controls": {
+    "duplicate_claim_id_rejected": true,
+    "unknown_rule_head_rejected": true
+  },
+  "protocol_sha256": "fc8fd0a3cf8999afc206f7756f8beb085a63b5c6505c94a2d9151b087c86c0ae",
+  "questions": {
+    "rq1_baseline_q_coordinate_lfp_preservation": {
+      "documents_checked": 2960848,
+      "documents_failed": 0
+    },
+    "rq2_final_refutation_regime_q_coordinate_lfp_preservation": {
+      "documents_checked": 2960848,
+      "documents_failed": 0
+    },
+    "rq3_retracted_pairs_q_preservation": {
+      "documents_checked": 2960848,
+      "documents_failed": 0
+    }
+  },
+  "registered_grid": [
+    {
+      "claims": 1,
+      "licenses": 1,
+      "planned_documents": 4,
+      "rules": 0
+    },
+    {
+      "claims": 1,
+      "licenses": 1,
+      "planned_documents": 8,
+      "rules": 1
+    },
+    {
+      "claims": 1,
+      "licenses": 1,
+      "planned_documents": 12,
+      "rules": 2
+    },
+    {
+      "claims": 2,
+      "licenses": 1,
+      "planned_documents": 16,
+      "rules": 0
+    },
+    {
+      "claims": 2,
+      "licenses": 1,
+      "planned_documents": 192,
+      "rules": 1
+    },
+    {
+      "claims": 2,
+      "licenses": 1,
+      "planned_documents": 1248,
+      "rules": 2
+    },
+    {
+      "claims": 3,
+      "licenses": 1,
+      "planned_documents": 64,
+      "rules": 0
+    },
+    {
+      "claims": 3,
+      "licenses": 1,
+      "planned_documents": 2688,
+      "rules": 1
+    },
+    {
+      "claims": 3,
+      "licenses": 1,
+      "planned_documents": 57792,
+      "rules": 2
+    },
+    {
+      "claims": 1,
+      "licenses": 2,
+      "planned_documents": 8,
+      "rules": 0
+    },
+    {
+      "claims": 1,
+      "licenses": 2,
+      "planned_documents": 32,
+      "rules": 1
+    },
+    {
+      "claims": 1,
+      "licenses": 2,
+      "planned_documents": 80,
+      "rules": 2
+    },
+    {
+      "claims": 2,
+      "licenses": 2,
+      "planned_documents": 64,
+      "rules": 0
+    },
+    {
+      "claims": 2,
+      "licenses": 2,
+      "planned_documents": 1536,
+      "rules": 1
+    },
+    {
+      "claims": 2,
+      "licenses": 2,
+      "planned_documents": 19200,
+      "rules": 2
+    },
+    {
+      "claims": 3,
+      "licenses": 2,
+      "planned_documents": 512,
+      "rules": 0
+    },
+    {
+      "claims": 3,
+      "licenses": 2,
+      "planned_documents": 43008,
+      "rules": 1
+    },
+    {
+      "claims": 3,
+      "licenses": 2,
+      "planned_documents": 1827840,
+      "rules": 2
+    },
+    {
+      "claims": 1,
+      "licenses": 3,
+      "planned_documents": 16,
+      "rules": 0
+    },
+    {
+      "claims": 1,
+      "licenses": 3,
+      "planned_documents": 128,
+      "rules": 1
+    },
+    {
+      "claims": 1,
+      "licenses": 3,
+      "planned_documents": 576,
+      "rules": 2
+    },
+    {
+      "claims": 2,
+      "licenses": 3,
+      "planned_documents": 256,
+      "rules": 0
+    },
+    {
+      "claims": 2,
+      "licenses": 3,
+      "planned_documents": 12288,
+      "rules": 1
+    },
+    {
+      "claims": 2,
+      "licenses": 3,
+      "planned_documents": 301056,
+      "rules": 2
+    },
+    {
+      "claims": 3,
+      "licenses": 3,
+      "planned_documents": 4096,
+      "rules": 0
+    },
+    {
+      "claims": 3,
+      "licenses": 3,
+      "planned_documents": 688128,
+      "rules": 1
+    }
+  ],
+  "result_digest": "de8bdc085038a2fdbe04c4108942d0ce228a4fb3cf7e648cb67586a4a87814cc",
+  "schema": "ORION.ORION03.CapSeedSimulationBoundedExhaustive.v1",
+  "study": "O3CS1",
+  "terminal": "O3_CS1_CAP_SEED_SIMULATION_VERIFIED__BOUNDED_EXHAUSTIVE_ALL_QUESTIONS"
+}
