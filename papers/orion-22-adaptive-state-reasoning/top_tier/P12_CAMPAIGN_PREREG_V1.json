@@ -1,0 +1,518 @@
+{
+ "schema": "ORION.A2.P12CampaignPrereg.v1",
+ "date": "2026-09-02",
+ "paper_ids": [
+  "ORION-21",
+  "ORION-22"
+ ],
+ "issue_binding": "SzeChunYiu/ORION#2139 Stage 1; SzeChunYiu/ORION-paper#49 A2 Phase 1",
+ "artifact_class": "FROZEN_BEFORE_PROTECTED_EVALUATION",
+ "consumes_verbatim": {
+  "substrate_freeze": "P12_SCIENCEAGENTBENCH_VERIFIED_SUBSTRATE_FREEZE_V1.json",
+  "menus": "p12_stopgo_frozen_menus_v1.json",
+  "final_gate": "P12_STOPGO_FINAL_ANALYSIS_FREEZE_V1.json"
+ },
+ "flags": {
+  "protected_outcomes_accessed": false,
+  "campaign_executed": false,
+  "execution_started": false,
+  "model_identities_frozen": false,
+  "results_exist": false
+ },
+ "family_rule": {
+  "family_key": "github_name",
+  "matches": "P12_SCIENCEAGENTBENCH_VERIFIED_SUBSTRATE_FREEZE_V1.json scientific_unit.family_key",
+  "primary_domain_rule": "the domain holding the most of the family's clean instances; ties broken lexicographically",
+  "multi_domain_families": [
+   "deepchem/deepchem",
+   "mad-lab-fau/BioPsyKit"
+  ],
+  "domain_aggregation_rule": "gate criteria 3 (per-domain direction, leave-one-domain-out) aggregate at instance-domain level, not primary-domain level"
+ },
+ "difficulty_prior": {
+  "signal_id": "S_FAMILY_DIFFICULTY_PRIOR",
+  "gold_fields_forbidden": [
+   "gold_program_name",
+   "output_fname",
+   "eval_script_name",
+   "src_file_or_path"
+  ],
+  "licensed_input_fields": [
+   "task_inst",
+   "domain_knowledge",
+   "dataset_folder_tree",
+   "subtask_categories"
+  ],
+  "instance_formula": "d_i = z(log(1+utf8_bytes(task_inst))) + z(log(1+utf8_bytes(domain_knowledge or ''))) + z(log(1+file_count(dataset_folder_tree or ''))) + z(comma_count(subtask_categories or ''))",
+  "definitions": {
+   "file_count": "number of non-empty lines of dataset_folder_tree whose stripped form does not end with '/'",
+   "comma_count": "number of non-empty comma-separated entries of subtask_categories",
+   "z": "population z-score (mean and population std) over exactly the 96 clean instances",
+   "log": "natural logarithm"
+  },
+  "family_value": "arithmetic mean of d_i over the family's clean instances, rounded to 6 decimals",
+  "frozen_before_any_model_call": true
+ },
+ "split": {
+  "purpose": "tuning split selects the stronger one-signal arm before protected evaluation, per the frozen menus section 4",
+  "algorithm": "families sorted by family_id within each primary domain (domains iterated in sorted order); k = max(1, floor(n_domain/4)) tuning indices drawn by python random.Random(20260902).sample(range(n_domain), k), remainder protected",
+  "seed": 20260902,
+  "tuning_families": 6,
+  "protected_families": 22,
+  "tuning_instances": 17,
+  "protected_instances": 79,
+  "protected_minimums_check": {
+   "families_ge_20": true,
+   "domains_ge_3": true
+  },
+  "tuning_family_ids": [
+   "swansonk14/admet_ai",
+   "martin-sicho/papyrus-scaffold-visualizer",
+   "uw-cmg/MAST-ML",
+   "ajdawson/eofs/",
+   "geopandas/geopandas",
+   "ZitongLu1996/EEG2EEG"
+  ],
+  "protected_family_ids": [
+   "anikaliu/CAMDA-DILI",
+   "kexinhuang12345/DeepPurpose",
+   "psa-lab/predicting-activity-by-machine-learning",
+   "scverse/scanpy-tutorials",
+   "scverse/scirpy",
+   "scverse/scvi-tutorials",
+   "OlivierBeq/Papyrus-scripts",
+   "chemosim-lab/ProLIF",
+   "deepchem/deepchem",
+   "felixjwong/antibioticsai",
+   "materialsproject/pymatgen",
+   "ppdebreuck/modnet",
+   "OGGM/oggm",
+   "OGGM/tutorials",
+   "ResidentMario/geoplot",
+   "SciTools/iris",
+   "Solve-Geosolutions/transform_2022",
+   "https://github.com/GeoStat-Framework/PyKrige",
+   "brand-d/cogsci-jnmf",
+   "mad-lab-fau/BioPsyKit",
+   "neuropsychology/NeuroKit",
+   "nriesterer/syllogistic-nvc"
+  ]
+ },
+ "repeat_and_decoding_policy": {
+  "protected_runs_per_cell": 1,
+  "cell": "(instance, action, model_identity)",
+  "decoding": "deterministic where the provider supports it (temperature 0 or provider equivalent), frozen per model identity at Stage 0",
+  "retries": "infrastructure failures only, retried with logged retry count under #664 accounting; a completed run is never re-rolled",
+  "accounting_note": "repeats and retries are execution evidence, never additional statistical units"
+ },
+ "families": [
+  {
+   "family_id": "OGGM/oggm",
+   "primary_domain": "Geographical Information Science",
+   "domains": [
+    "Geographical Information Science"
+   ],
+   "instance_ids": [
+    74
+   ],
+   "n": 1,
+   "difficulty_prior": 1.809832
+  },
+  {
+   "family_id": "OGGM/tutorials",
+   "primary_domain": "Geographical Information Science",
+   "domains": [
+    "Geographical Information Science"
+   ],
+   "instance_ids": [
+    64,
+    65
+   ],
+   "n": 2,
+   "difficulty_prior": -0.011544
+  },
+  {
+   "family_id": "OlivierBeq/Papyrus-scripts",
+   "primary_domain": "Computational Chemistry",
+   "domains": [
+    "Computational Chemistry"
+   ],
+   "instance_ids": [
+    22
+   ],
+   "n": 1,
+   "difficulty_prior": 0.521219
+  },
+  {
+   "family_id": "ResidentMario/geoplot",
+   "primary_domain": "Geographical Information Science",
+   "domains": [
+    "Geographical Information Science"
+   ],
+   "instance_ids": [
+    88,
+    89
+   ],
+   "n": 2,
+   "difficulty_prior": -2.031366
+  },
+  {
+   "family_id": "SciTools/iris",
+   "primary_domain": "Geographical Information Science",
+   "domains": [
+    "Geographical Information Science"
+   ],
+   "instance_ids": [
+    55,
+    56,
+    86,
+    87
+   ],
+   "n": 4,
+   "difficulty_prior": -1.750021
+  },
+  {
+   "family_id": "Solve-Geosolutions/transform_2022",
+   "primary_domain": "Geographical Information Science",
+   "domains": [
+    "Geographical Information Science"
+   ],
+   "instance_ids": [
+    76,
+    77
+   ],
+   "n": 2,
+   "difficulty_prior": 2.70393
+  },
+  {
+   "family_id": "ZitongLu1996/EEG2EEG",
+   "primary_domain": "Psychology and Cognitive science",
+   "domains": [
+    "Psychology and Cognitive science"
+   ],
+   "instance_ids": [
+    71,
+    72,
+    73
+   ],
+   "n": 3,
+   "difficulty_prior": -0.007704
+  },
+  {
+   "family_id": "ajdawson/eofs/",
+   "primary_domain": "Geographical Information Science",
+   "domains": [
+    "Geographical Information Science"
+   ],
+   "instance_ids": [
+    48,
+    49,
+    50
+   ],
+   "n": 3,
+   "difficulty_prior": -0.730059
+  },
+  {
+   "family_id": "anikaliu/CAMDA-DILI",
+   "primary_domain": "Bioinformatics",
+   "domains": [
+    "Bioinformatics"
+   ],
+   "instance_ids": [
+    18,
+    19,
+    27,
+    40,
+    41
+   ],
+   "n": 5,
+   "difficulty_prior": 2.395186
+  },
+  {
+   "family_id": "brand-d/cogsci-jnmf",
+   "primary_domain": "Psychology and Cognitive science",
+   "domains": [
+    "Psychology and Cognitive science"
+   ],
+   "instance_ids": [
+    66,
+    67,
+    68,
+    90,
+    91,
+    92,
+    93
+   ],
+   "n": 7,
+   "difficulty_prior": 0.600057
+  },
+  {
+   "family_id": "chemosim-lab/ProLIF",
+   "primary_domain": "Computational Chemistry",
+   "domains": [
+    "Computational Chemistry"
+   ],
+   "instance_ids": [
+    26,
+    38,
+    39
+   ],
+   "n": 3,
+   "difficulty_prior": -0.690889
+  },
+  {
+   "family_id": "deepchem/deepchem",
+   "primary_domain": "Computational Chemistry",
+   "domains": [
+    "Bioinformatics",
+    "Computational Chemistry"
+   ],
+   "instance_ids": [
+    1,
+    9,
+    11,
+    51,
+    52,
+    78,
+    94,
+    95,
+    97
+   ],
+   "n": 9,
+   "difficulty_prior": 0.41827
+  },
+  {
+   "family_id": "felixjwong/antibioticsai",
+   "primary_domain": "Computational Chemistry",
+   "domains": [
+    "Computational Chemistry"
+   ],
+   "instance_ids": [
+    16
+   ],
+   "n": 1,
+   "difficulty_prior": 0.061576
+  },
+  {
+   "family_id": "geopandas/geopandas",
+   "primary_domain": "Geographical Information Science",
+   "domains": [
+    "Geographical Information Science"
+   ],
+   "instance_ids": [
+    4,
+    10,
+    14,
+    21,
+    23,
+    33,
+    47
+   ],
+   "n": 7,
+   "difficulty_prior": -0.138254
+  },
+  {
+   "family_id": "https://github.com/GeoStat-Framework/PyKrige",
+   "primary_domain": "Geographical Information Science",
+   "domains": [
+    "Geographical Information Science"
+   ],
+   "instance_ids": [
+    83
+   ],
+   "n": 1,
+   "difficulty_prior": 2.501614
+  },
+  {
+   "family_id": "kexinhuang12345/DeepPurpose",
+   "primary_domain": "Bioinformatics",
+   "domains": [
+    "Bioinformatics"
+   ],
+   "instance_ids": [
+    12,
+    13
+   ],
+   "n": 2,
+   "difficulty_prior": 1.508904
+  },
+  {
+   "family_id": "mad-lab-fau/BioPsyKit",
+   "primary_domain": "Psychology and Cognitive science",
+   "domains": [
+    "Bioinformatics",
+    "Psychology and Cognitive science"
+   ],
+   "instance_ids": [
+    24,
+    25,
+    36,
+    37,
+    44,
+    45,
+    85
+   ],
+   "n": 7,
+   "difficulty_prior": -1.301647
+  },
+  {
+   "family_id": "martin-sicho/papyrus-scaffold-visualizer",
+   "primary_domain": "Computational Chemistry",
+   "domains": [
+    "Computational Chemistry"
+   ],
+   "instance_ids": [
+    17
+   ],
+   "n": 1,
+   "difficulty_prior": 2.490184
+  },
+  {
+   "family_id": "materialsproject/pymatgen",
+   "primary_domain": "Computational Chemistry",
+   "domains": [
+    "Computational Chemistry"
+   ],
+   "instance_ids": [
+    28,
+    30,
+    31
+   ],
+   "n": 3,
+   "difficulty_prior": -0.216459
+  },
+  {
+   "family_id": "neuropsychology/NeuroKit",
+   "primary_domain": "Psychology and Cognitive science",
+   "domains": [
+    "Psychology and Cognitive science"
+   ],
+   "instance_ids": [
+    29,
+    34,
+    35,
+    42,
+    43,
+    63
+   ],
+   "n": 6,
+   "difficulty_prior": 0.028313
+  },
+  {
+   "family_id": "nriesterer/syllogistic-nvc",
+   "primary_domain": "Psychology and Cognitive science",
+   "domains": [
+    "Psychology and Cognitive science"
+   ],
+   "instance_ids": [
+    57,
+    58,
+    59,
+    60,
+    61,
+    62
+   ],
+   "n": 6,
+   "difficulty_prior": 2.680843
+  },
+  {
+   "family_id": "ppdebreuck/modnet",
+   "primary_domain": "Computational Chemistry",
+   "domains": [
+    "Computational Chemistry"
+   ],
+   "instance_ids": [
+    101,
+    102
+   ],
+   "n": 2,
+   "difficulty_prior": -1.074601
+  },
+  {
+   "family_id": "psa-lab/predicting-activity-by-machine-learning",
+   "primary_domain": "Bioinformatics",
+   "domains": [
+    "Bioinformatics"
+   ],
+   "instance_ids": [
+    5,
+    6,
+    7,
+    8
+   ],
+   "n": 4,
+   "difficulty_prior": -2.340976
+  },
+  {
+   "family_id": "scverse/scanpy-tutorials",
+   "primary_domain": "Bioinformatics",
+   "domains": [
+    "Bioinformatics"
+   ],
+   "instance_ids": [
+    79,
+    80,
+    81,
+    82,
+    96,
+    99,
+    100
+   ],
+   "n": 7,
+   "difficulty_prior": -2.564655
+  },
+  {
+   "family_id": "scverse/scirpy",
+   "primary_domain": "Bioinformatics",
+   "domains": [
+    "Bioinformatics"
+   ],
+   "instance_ids": [
+    98
+   ],
+   "n": 1,
+   "difficulty_prior": 0.520063
+  },
+  {
+   "family_id": "scverse/scvi-tutorials",
+   "primary_domain": "Bioinformatics",
+   "domains": [
+    "Bioinformatics"
+   ],
+   "instance_ids": [
+    69,
+    70,
+    75
+   ],
+   "n": 3,
+   "difficulty_prior": 1.986082
+  },
+  {
+   "family_id": "swansonk14/admet_ai",
+   "primary_domain": "Bioinformatics",
+   "domains": [
+    "Bioinformatics"
+   ],
+   "instance_ids": [
+    15,
+    20
+   ],
+   "n": 2,
+   "difficulty_prior": -1.135191
+  },
+  {
+   "family_id": "uw-cmg/MAST-ML",
+   "primary_domain": "Computational Chemistry",
+   "domains": [
+    "Computational Chemistry"
+   ],
+   "instance_ids": [
+    2
+   ],
+   "n": 1,
+   "difficulty_prior": -0.647459
+  }
+ ],
+ "scientific_authority_delta": "NONE__PRE_OUTCOME_PREREG_ONLY",
+ "successor_rule": "editing any frozen value here after any protected model call is forbidden; a successor campaign requires its own preregistration"
+}
