@@ -759,6 +759,13 @@
       "reason": "GitHub connector transport reproduced the exact validated subject tree; bind to the reachable uploaded commit.",
       "scientific_authority_delta": "NONE",
       "subject_tree": "197a37fbbf6310233203484be80667f89d186d17"
+    },
+    {
+      "new_subject_commit": "23888eeb9c0356f8ee0f82f09a894b99ec142145",
+      "prior_subject_commit": "ccf53603aa389c7b031fbd0e1f57fc762c88bb2c",
+      "reason": "Squash transport (#2118) carried the exact validated bound bytes to main; the pre-squash branch commit is unreachable from main. Pin moved to the reachable main commit that first contains those bytes (#2132); all 155 bound-file digests verified byte-identical there before and after the move. Record appended afterwards so the transport stays visible in the manifest itself.",
+      "scientific_authority_delta": "NONE",
+      "subject_tree": "fb4ed013b3637ff9277e7d15fd32371fc9843466"
     }
   ]
 }
