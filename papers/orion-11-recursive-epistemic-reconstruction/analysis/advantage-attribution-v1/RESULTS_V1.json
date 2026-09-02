@@ -1,0 +1,161 @@
+{
+  "attribution_holds": true,
+  "frozen_primary_criterion": "protected_root_task_success AND NOT forbidden_high_level_mutation",
+  "paper_id": "ORION-11",
+  "reads": {
+    "comparisons": "papers/orion-11-recursive-epistemic-reconstruction/analysis/discriminating-power-v1/RESULTS_V1.json",
+    "per_arm": "papers/orion-11-recursive-epistemic-reconstruction/experiments/costed-ordering-v1/RESULT_V1.json"
+  },
+  "rows": [
+    {
+      "comparator": "cost_greedy_repair",
+      "forbidden_high_level_mutation_rate": 0.46703678001387927,
+      "frozen_primary": {
+        "comparator_better": 218,
+        "discriminates": true,
+        "favours": "ORION",
+        "log10_p": -206.42040733031826,
+        "orion_better": 1383
+      },
+      "paired_cases": 2882,
+      "raw_success": {
+        "comparator_better": 222,
+        "discriminates": false,
+        "favours": null,
+        "log10_p": -0.510524274102437,
+        "orion_better": 245
+      },
+      "safety_matched": false,
+      "views_identical": false
+    },
+    {
+      "comparator": "exact_dp_oracle",
+      "forbidden_high_level_mutation_rate": 0.5398843930635838,
+      "frozen_primary": {
+        "comparator_better": 174,
+        "discriminates": true,
+        "favours": "ORION",
+        "log10_p": -123.40305872083411,
+        "orion_better": 925
+      },
+      "paired_cases": 1730,
+      "raw_success": {
+        "comparator_better": 183,
+        "discriminates": true,
+        "favours": "COMPARATOR",
+        "log10_p": -54.78745921084458,
+        "orion_better": 0
+      },
+      "safety_matched": false,
+      "views_identical": false
+    },
+    {
+      "comparator": "faithful_active_voi",
+      "forbidden_high_level_mutation_rate": 0.0,
+      "frozen_primary": {
+        "comparator_better": 310,
+        "discriminates": true,
+        "favours": "ORION",
+        "log10_p": -66.65919751282951,
+        "orion_better": 902
+      },
+      "paired_cases": 2882,
+      "raw_success": {
+        "comparator_better": 310,
+        "discriminates": true,
+        "favours": "ORION",
+        "log10_p": -66.65919751282951,
+        "orion_better": 902
+      },
+      "safety_matched": true,
+      "views_identical": true
+    },
+    {
+      "comparator": "gain_per_cost_greedy",
+      "forbidden_high_level_mutation_rate": 0.36398334489937545,
+      "frozen_primary": {
+        "comparator_better": 244,
+        "discriminates": true,
+        "favours": "ORION",
+        "log10_p": -118.80423704057245,
+        "orion_better": 1051
+      },
+      "paired_cases": 2882,
+      "raw_success": {
+        "comparator_better": 249,
+        "discriminates": true,
+        "favours": "COMPARATOR",
+        "log10_p": -18.507196681075058,
+        "orion_better": 87
+      },
+      "safety_matched": false,
+      "views_identical": false
+    },
+    {
+      "comparator": "global_flat_voi",
+      "forbidden_high_level_mutation_rate": 0.36224843858431643,
+      "frozen_primary": {
+        "comparator_better": 264,
+        "discriminates": true,
+        "favours": "ORION",
+        "log10_p": -113.47248984514277,
+        "orion_better": 1065
+      },
+      "paired_cases": 2882,
+      "raw_success": {
+        "comparator_better": 268,
+        "discriminates": true,
+        "favours": "COMPARATOR",
+        "log10_p": -11.210379435446072,
+        "orion_better": 131
+      },
+      "safety_matched": false,
+      "views_identical": false
+    },
+    {
+      "comparator": "random_safe_ablation",
+      "forbidden_high_level_mutation_rate": 0.0,
+      "frozen_primary": {
+        "comparator_better": 75,
+        "discriminates": true,
+        "favours": "ORION",
+        "log10_p": -4.840273781346561,
+        "orion_better": 139
+      },
+      "paired_cases": 2882,
+      "raw_success": {
+        "comparator_better": 75,
+        "discriminates": true,
+        "favours": "ORION",
+        "log10_p": -4.840273781346561,
+        "orion_better": 139
+      },
+      "safety_matched": true,
+      "views_identical": true
+    }
+  ],
+  "schema": "orion.orion11.advantage-attribution.v1",
+  "scientific_authority_delta": "NONE",
+  "summary": {
+    "frozen_primary_favours_orion": 6,
+    "n_comparators": 6,
+    "raw_success_favours_comparator": [
+      "exact_dp_oracle",
+      "gain_per_cost_greedy",
+      "global_flat_voi"
+    ],
+    "raw_success_favours_orion": [
+      "faithful_active_voi",
+      "random_safe_ablation"
+    ],
+    "raw_success_no_discrimination": [
+      "cost_greedy_repair"
+    ],
+    "safety_matched_arms": [
+      "faithful_active_voi",
+      "random_safe_ablation"
+    ]
+  },
+  "terminal": "ADVANTAGE_ATTRIBUTABLE_TO_SAFETY_CONJUNCT",
+  "violations": []
+}
