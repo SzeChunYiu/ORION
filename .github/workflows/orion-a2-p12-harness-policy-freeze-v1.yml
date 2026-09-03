@@ -8,6 +8,7 @@ on:
       - "papers/orion-22-adaptive-state-reasoning/top_tier/P12_HARNESS_AND_POLICY_FREEZE_V1.md"
       - "papers/orion-22-adaptive-state-reasoning/top_tier/campaign_derivation_v1.py"
       - "papers/orion-22-adaptive-state-reasoning/top_tier/campaign_runner_v1.py"
+      - "papers/orion-22-adaptive-state-reasoning/top_tier/campaign_tuning_driver_v1.py"
 permissions:
   contents: read
 jobs:
@@ -22,7 +23,7 @@ jobs:
       - name: Derivation pipeline + hostile self-tests (no model call, no substrate)
         run: |
           python papers/orion-22-adaptive-state-reasoning/top_tier/campaign_derivation_v1.py --self-test
-          cd papers/orion-22-adaptive-state-reasoning/top_tier && python campaign_runner_v1.py --self-test && cd -
+          cd papers/orion-22-adaptive-state-reasoning/top_tier && python campaign_runner_v1.py --self-test && python campaign_tuning_driver_v1.py --self-test && cd -
       - name: Freeze flags must all be false
         run: |
           python - <<'PY'
