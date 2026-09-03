@@ -12,7 +12,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        subject: [H4, N2]
+        # N2 runs only as a committed LUNARC receipt: measured 2026-09-03 it
+        # exceeds 2h40m single-core (CI rc=124 at 9600s) against this job's
+        # 30-minute timeout, while H4 completes in 58.3s. The N2 execution is
+        # certified by 8h-budget LUNARC jobs whose receipts are validated by
+        # max_r5h_lunarc_receipt_validator.py below.
+        subject: [H4]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -26,3 +31,8 @@ jobs:
           cd research/extensions/orion-q
           python max_r5h_subject_fast.py '${{ matrix.subject }}' | tee /tmp/r5h-subject.txt
           grep '^ORIONQ_MAX_R5H_SUBJECT=' /tmp/r5h-subject.txt
+      - name: Validate committed LUNARC subject receipts (N2/DEV)
+        run: |
+          cd research/extensions/orion-q
+          python max_r5h_lunarc_receipt_validator.py | tee /tmp/r5h-receipts.txt
+          grep '^ORIONQ_MAX_R5H_RECEIPTS=' /tmp/r5h-receipts.txt

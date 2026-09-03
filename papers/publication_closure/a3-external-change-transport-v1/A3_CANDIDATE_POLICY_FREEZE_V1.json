@@ -1,0 +1,69 @@
+{
+  "schema": "ORION.A3.CandidatePolicyFreeze.v1",
+  "date": "2026-09-03",
+  "issue_binding": "SzeChunYiu/ORION-paper#49 A3 baselines: current candidate responsibility/closure-aware policy",
+  "artifact_class": "FROZEN_BEFORE_PROTECTED_PREDICTIONS_AND_GOLD",
+  "purpose": "Freeze the exact executable identity of the A3 candidate policy before any protected prediction, baseline selection or gold reveal. Closes the missing CANDIDATE arm of EXECUTION_AND_ANALYSIS_FREEZE_V1.json baseline_identities.",
+  "candidate_policy_identity": {
+    "policy_id": "A3_TRANSPORT_THREE_VALUED_V1",
+    "executable": "papers/publication_closure/a3-external-change-transport-v1/candidate_policy_v1.py",
+    "executable_sha256": "a25f87a3bdd71f4422b597a3171dad35172fbdeeaee6a73f82e59d182421a987",
+    "decision_rule": "any CONTRADICTED premise -> REOPEN; else any UNKNOWN premise -> CANNOT_CHECK; else REUSE",
+    "premise_universe": "every normalized member-manifest entry of the BEFORE RO-Crate of the frozen version pair (certificate issuance state); members present only in the AFTER crate are not premises and do not enter the decision",
+    "status_assignment": {
+      "UNCHANGED": "member path present in AFTER with identical normalized entry (bytes, sha256, kind, executable)",
+      "CONTRADICTED": "member path present in AFTER with a differing normalized entry",
+      "UNKNOWN": "member path absent from the AFTER crate",
+      "ENTAILED": "never assigned by extractor v1; no mechanical entailment receipt exists in the frozen substrate"
+    },
+    "terminal_alphabet": ["REUSE", "REOPEN", "CANNOT_CHECK"],
+    "revoke_spelling": "the transport law's REVOKE is spelled REOPEN per the A3 terminal alphabet in EXECUTION_AND_ANALYSIS_FREEZE_V1.json",
+    "free_parameters": [],
+    "run_time_resolution": "NONE"
+  },
+  "scientific_lineage_bound_verbatim": {
+    "transport_law_theory": {
+      "path": "papers/orion-23-responsibility-carrying-state/transport-law-v1/THEORY.md",
+      "sha256": "18d108f521613787daae05e5db7a173ec90d64d0b627ba728bbc43d1da7e6505"
+    },
+    "transport_law_checker": {
+      "path": "papers/orion-23-responsibility-carrying-state/transport-law-v1/check_transport_law.py",
+      "sha256": "a3491fbc830c04d808d65b272cff73aa1b60cfbec839b80d18c84a4e3c8d6757"
+    },
+    "transport_law_result": {
+      "path": "papers/orion-23-responsibility-carrying-state/transport-law-v1/RESULT_V1.json",
+      "sha256": "5c59eea7001b127483b86b9808033bf1e4a16968bfa19f01931c72021c55aba9"
+    },
+    "execution_and_analysis_freeze": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/EXECUTION_AND_ANALYSIS_FREEZE_V1.json",
+      "sha256": "10fc6d217109dcb42171140b110eee79f830b144ded885347f09c95abd6c1982"
+    },
+    "noncandidate_baselines_module": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/baselines_v1.py",
+      "sha256": "d83bb4bbfc33951615f55e0951235541b0619963644abb93a6d15551621a83e7"
+    },
+    "rocrate_normalization": {
+      "path": "papers/publication_closure/a3-external-change-transport-v1/bind_workflowhub_rocrate_content_v1.py",
+      "sha256": "41e43337d98768d7cc4a39bf04ce2d4960d92cd97234681b43ae515d0a0abda3"
+    }
+  },
+  "candidate_visible_record_contract": {
+    "schema": "ORION.A3.CandidateVisibleMemberManifests.v1",
+    "required_keys": ["schema", "workflow_id", "version_before", "version_after", "before_manifest", "after_manifest"],
+    "manifest_entry_fields": ["path", "bytes", "sha256", "kind", "executable"],
+    "normalization_source": "bind_workflowhub_rocrate_content_v1.py normalized_content_manifest, frozen v2 preflight, applied verbatim",
+    "forbidden_fields": ["gold", "reuse_gold", "adjudicated_target", "reuse_reopen_target", "candidate_prediction", "baseline_prediction", "outcome", "protected_outcome"]
+  },
+  "independence": "the candidate is not one of the five non-candidate baselines in baselines_v1.py and shares no code path with them; the analyzer's strongest_noncandidate_baseline_id can never resolve to A3_TRANSPORT_THREE_VALUED_V1",
+  "prediction_sequencing": "candidate predictions are computed only after the EligibleChangeClusterPool is allocated (strata already externally adjudicated); gold stays escrowed with the external curator until every candidate and baseline prediction is sealed",
+  "flags": {
+    "protected_outcomes_accessed": false,
+    "candidate_predictions_executed_on_real_clusters": false,
+    "gold_present": false,
+    "thresholds_or_tuning_present": false,
+    "results_exist": false
+  },
+  "validator": "papers/publication_closure/a3-external-change-transport-v1/validate_candidate_policy_freeze_v1.py",
+  "grants_scientific_authority": false,
+  "scientific_authority_delta": "NONE__POLICY_IDENTITY_FREEZE_ONLY"
+}

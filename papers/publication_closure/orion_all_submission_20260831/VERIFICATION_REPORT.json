@@ -1,5 +1,5 @@
 {
-  "aggregate": "PASS",
+  "aggregate": "SUPERSEDED",
   "builder_sha256": "69c7131b3ea69d321652edfe324161b48e45405b88739175a39554d7d10b7b37",
   "global_checks": [
     "registry_exact_25",
@@ -986,5 +986,37 @@
     }
   ],
   "schema": "ORION.all-dual-submission-verification.v1",
+  "superseded": {
+    "consumers_that_read_this_file": [
+      ".github/workflows/orion-paper-mirror-13-24-20260831.yml (inline python: aggregate/builder/verifier/manifest asserts)",
+      "scripts/mirror_orion_papers_all.py::verify_full_report (called first in main(); blocks the mirror transport)"
+    ],
+    "fail_closed_note": "Both consumers require aggregate == PASS. With SUPERSEDED they refuse to transport a mirror bound to a stale full-build record. That is intended: it forces regeneration rather than letting a 2026-09-01 PASS certify a later tree. Both consumers were already blocked before this change by the stale builder_sha256, so this marks an existing block honestly rather than introducing a new one.",
+    "independent_staleness_proofs": [
+      "builder_sha256 recorded here (69c7131b3ea69d32...) no longer matches build_all_submission_materials.py (ba9f6a1c8ff5bfc1...).",
+      "per-paper manifest_sha256 is stale for ORION-02, ORION-03, ORION-08, ORION-10 (4/25).",
+      "the recorded aggregate PASS contradicts the live gate result of 21/25.",
+      "in the SzeChunYiu/ORION-paper mirror the per-paper 'package' paths do not resolve at all: v1-papers/ carries combined objects (orion-01-05-..., orion-09-10-...) where this record names the separate ORION-side slugs."
+    ],
+    "live_gate_result_at_supersession": {
+      "aggregate": "FAIL",
+      "failing_rows": {
+        "ORION-01": "active-authority hash mismatch",
+        "ORION-08": "academic-paper-skills release authority mismatch",
+        "ORION-10": "academic-paper-skills release authority mismatch",
+        "ORION-13": "active-authority hash mismatch"
+      },
+      "gate": "papers/publication_closure/orion_all_submission_20260831/verify_all_submission_materials.py",
+      "note": "CI run 33721708560 (head 3fe35fb2, 2026-09-03T06:06Z) reported 20/25 with ORION-02 additionally failing; the ORION-02 active-authority rebind in this change restores 21/25.",
+      "passing": 21,
+      "total": 25,
+      "workflow": "ORION-paper exact mirror -- ORION-01--25"
+    },
+    "reason": "This file recorded aggregate PASS for a full clean-build run of 2026-09-01. The gate it describes has not been PASS since. Leaving the PASS in place would make a rendered status stand in for the thing it describes, so the aggregate field is set to SUPERSEDED and the per-paper rows below are retained unchanged as the historical record of that run. Do not read any row here as current evidence.",
+    "record_written_by_commit": "bf2a35750229798d2656f39e9f5045e450aff1d1",
+    "record_written_on": "2026-09-01T09:17:59+02:00",
+    "regeneration_required": "Regenerate by running verify_all_submission_materials.py with neither ORION_VERIFY_SKIP_CLEAN_BUILDS nor ORION_VERIFY_NO_REPORT_WRITE set, on a host with latexmk and poppler, once all 25 rows PASS. A SKIP_CLEAN_BUILDS regeneration is not acceptable: it emits clean_builds_deferred_to_bound_full_verification_report instead of clean_arxiv_build/clean_journal_build, which both consumers reject.",
+    "superseded_on": "2026-09-03"
+  },
   "verifier_sha256": "fa406fd3823563a6cd1a97d4798ac167829d1060456016c1582f38900b300d23"
 }

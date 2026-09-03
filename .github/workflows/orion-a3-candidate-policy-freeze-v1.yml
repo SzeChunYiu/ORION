@@ -1,0 +1,48 @@
+name: ORION A3 candidate policy freeze v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a3-candidate-policy-freeze-v1.yml"
+      - "papers/publication_closure/a3-external-change-transport-v1/candidate_policy_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/A3_CANDIDATE_POLICY_FREEZE_V1.json"
+      - "papers/publication_closure/a3-external-change-transport-v1/validate_candidate_policy_freeze_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/EXECUTION_AND_ANALYSIS_FREEZE_V1.json"
+      - "papers/publication_closure/a3-external-change-transport-v1/baselines_v1.py"
+      - "papers/publication_closure/a3-external-change-transport-v1/bind_workflowhub_rocrate_content_v1.py"
+      - "papers/orion-23-responsibility-carrying-state/transport-law-v1/**"
+permissions:
+  contents: read
+jobs:
+  candidate-policy-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Freeze validator (lineage hashes, self-test, AST parameter scan, transport-law conformance)
+        run: |
+          python papers/publication_closure/a3-external-change-transport-v1/validate_candidate_policy_freeze_v1.py --self-test
+      - name: Freeze flags and custody assertions
+        run: |
+          python - <<'PY'
+          import json
+          d = json.load(open('papers/publication_closure/a3-external-change-transport-v1/A3_CANDIDATE_POLICY_FREEZE_V1.json'))
+          assert d['schema'] == 'ORION.A3.CandidatePolicyFreeze.v1'
+          assert d['artifact_class'] == 'FROZEN_BEFORE_PROTECTED_PREDICTIONS_AND_GOLD'
+          assert all(v is False for v in d['flags'].values()), d['flags']
+          assert d['scientific_authority_delta'] == 'NONE__POLICY_IDENTITY_FREEZE_ONLY'
+          assert d['grants_scientific_authority'] is False
+          ident = d['candidate_policy_identity']
+          assert ident['policy_id'] == 'A3_TRANSPORT_THREE_VALUED_V1'
+          assert ident['free_parameters'] == []
+          assert ident['run_time_resolution'] == 'NONE'
+          assert sorted(ident['terminal_alphabet']) == ['CANNOT_CHECK', 'REOPEN', 'REUSE']
+          print('A3_CANDIDATE_POLICY_FREEZE_FLAGS_GREEN')
+          PY
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code

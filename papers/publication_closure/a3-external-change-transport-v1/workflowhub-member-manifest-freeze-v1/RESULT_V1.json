@@ -1,0 +1,47 @@
+{
+  "schema": "ORION.A3.MemberManifestFreezeResult.v1",
+  "date": "2026-09-03",
+  "purpose": "Outcome-blind attempt to materialize member-level normalized RO-Crate manifests for all 128 families of the frozen WorkflowHub successor frame, bound to the frame's frozen per-family before/after normalized-content aggregate SHA-256 values. The attempt fails closed for 95 of 128 families: the live registry regenerates two crate members per request, so no fetch can reproduce the v2-preflight aggregate bytes for those families. This result records the boundary; it does not weaken, rebind, or re-derive the frozen frame.",
+  "successor_frame_sha256": "a47d9255aa37de056cb5cdd7c140bcccb487aa3285790655a48abb5e538c2993",
+  "successor_frame_rebound": false,
+  "frozen_normalization_authority": "papers/publication_closure/a3-external-change-transport-v1/bind_workflowhub_rocrate_content_v1.py (imported verbatim by the harvest)",
+  "harvester": "papers/publication_closure/a3-external-change-transport-v1/harvest_member_manifests_v1.py",
+  "terminal": "CANNOT_CHECK_MEMBER_MANIFEST_REPRODUCIBILITY",
+  "partition": {
+    "frame_n": 128,
+    "stable_reproduces_frozen_n": 33,
+    "volatile_request_generated_n": 95,
+    "stable_workflow_ids": ["44", "109", "110", "111", "112", "113", "137", "138", "155", "246", "247", "248", "249", "386", "395", "397", "398", "399", "400", "401", "403", "420", "439", "502", "561", "563", "579", "612", "613", "615", "622", "625", "631"],
+    "volatile_request_generated_workflow_ids": ["29", "54", "55", "56", "57", "64", "106", "114", "120", "122", "127", "128", "129", "130", "131", "132", "154", "189", "195", "196", "220", "221", "226", "237", "244", "254", "255", "258", "259", "260", "261", "262", "276", "277", "278", "279", "280", "281", "282", "283", "284", "285", "286", "287", "289", "290", "291", "292", "293", "294", "295", "296", "297", "298", "299", "301", "303", "326", "328", "336", "360", "363", "367", "373", "383", "384", "390", "452", "453", "462", "465", "467", "468", "471", "472", "474", "482", "506", "510", "511", "513", "514", "548", "549", "550", "551", "552", "553", "556", "567", "599", "601", "602", "603", "605"],
+    "partition_is_exact_frame_cover": true,
+    "includes_both_replacements_625_631_in_stable": true
+  },
+  "evidence": {
+    "volatile_member_paths": ["ro-crate-metadata.json", "ro-crate-preview.html"],
+    "volatile_mechanism": "For volatile families the ro_crate endpoint regenerates ro-crate-metadata.json and ro-crate-preview.html at request time. Three consecutive fetches of the SAME version of workflow 29 returned three distinct normalized-content aggregates (063d0238ae12b1af36af9bb1f626bc74c63f3bb9c195b70145e5a96a31b01d33, f043abd56dcc5659dcec4daee319e2b5e72c0c90e835500c874931db81f16ce9, 7935da4a688b2f0dee8d6fae53078c9d0d4e6a28f2d25c7fead575a517d85214) while the frozen v2 value is 7233f021d7b37390ab19b2591156280f23bdad0bd227cf6adbe5a4d5fd8c5369. The member set was identical across those fetches and the only differing members were the two generated files above; all workflow-content members were byte-identical.",
+    "stable_mechanism": "For stable families three consecutive fetches of the same version reproduce identical normalized aggregates that exactly match the frozen frame values (verified for 44, 625, 631 in the volatility diagnostic; all 33 stable families reproduced their frozen before/after aggregates in the full-frame harvest).",
+    "consequence": "The v2-preflight aggregates for the 95 volatile families bound single-request bytes that are irretrievable from the live registry. Member-level candidate-visible manifests bound to the frozen frame aggregates are therefore unobtainable for 95/128 families by any fetch strategy, and the harvester fails closed rather than emitting partial or unverifiable manifests.",
+    "workflow_content_members_unaffected": "The scientific content members (workflow documents and payload files) were byte-stable across fetches for both classes; the instability is confined to the two request-generated crate files."
+  },
+  "required_next_step_not_taken_by_this_lane": "Any re-derivation of the member substrate for volatile families requires a NEW frozen normalization decision (for example a v3 normalization that excludes or canonicalizes request-generated members) with its own preflight, its own durable snapshot, and a successor-frame rebind executed through freeze governance. The frozen frame, the frozen v2 normalization, and the frozen validators are untouched by this result and remain the authorities.",
+  "run_environment": {
+    "egress_probe_sbatch_job_id": "3569314",
+    "egress_probe_result": "workflowhub_http=200 from compute node cosmos2",
+    "full_frame_harvest_sbatch_job_id": "3569824",
+    "full_frame_harvest_node": "cn004",
+    "full_frame_harvest_outcome": "all 128 families fetched (both versions); 33 reproduced frozen aggregates; 95 mismatched; harvester exited fail-closed before emitting any chunk",
+    "volatility_diagnostic_sbatch_job_id": "3569845",
+    "volatility_diagnostic_samples": ["29", "54", "625", "631", "44", "326"],
+    "stage_root": "/home/scyiu/orion-a3-campaign/harvest-20260903 (LUNARC, same home storage area the A4 dry-runs used per sacct -j 3566264 WorkDir=/home/scyiu/orion-a4-preflight)"
+  },
+  "flags": {
+    "change_stratum_adjudicated": false,
+    "external_gold_accessed": false,
+    "candidate_predictions_computed": false,
+    "protected_outcomes_accessed": false,
+    "member_manifests_committed": false,
+    "successor_frame_rebound": false
+  },
+  "grants_scientific_authority": false,
+  "scientific_authority_delta": "NONE__SUBSTRATE_DIAGNOSIS_ONLY"
+}

@@ -27,8 +27,13 @@ jobs:
           cd research/extensions/orion-q
           python max_r5g_h4_independent_replay.py | tee /tmp/r5g-h4.txt
           grep '^ORIONQ_MAX_R5G_H4_INDEPENDENT=' /tmp/r5g-h4.txt
-      - name: Run mixed-cardinality donor-composed development
+      # The mixed-cardinality DEV leg is dropped from CI: measured 2026-09-03
+      # it exceeds 2h40m single-core (rc=124 at 9600s against the 30-minute
+      # job timeout). Its execution is certified by an 8h-budget LUNARC job
+      # whose receipt is validated by max_r5h_lunarc_receipt_validator.py
+      # (also run by orion-q-max-r5h.yml for the N2 subject).
+      - name: Validate committed LUNARC DEV receipt
         run: |
           cd research/extensions/orion-q
-          python max_r5h_mixed_cardinality_development_fast.py | tee /tmp/r5h.txt
-          grep '^ORIONQ_MAX_R5H_DEV=' /tmp/r5h.txt
+          python max_r5h_lunarc_receipt_validator.py | tee /tmp/r5h-receipts.txt
+          grep '^ORIONQ_MAX_R5H_RECEIPTS=' /tmp/r5h-receipts.txt

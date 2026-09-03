@@ -1,0 +1,60 @@
+QG47_N2_FULL_SWEEP_CAMPAIGN — execution log (2026-09-02/03)
+============================================================
+
+Study      : QG47 exhaustive full-alphabet n=2 sweep (1350 tasks, ordered enumeration)
+Protocol   : development/orion-qg-regime-geometry/QG47_N2_FULL_SWEEP_PROTOCOL_V1.md (PR #2167)
+Driver     : development/orion-qg-regime-geometry/qg47_campaign.sh
+Engine     : research/extensions/orion-qg/qg47_n2_full_sweep.py (certified, selftest in PR #2167)
+Host       : LUNARC batch (cosmos), account lu2026-2-51, partition lu48, waves of 250 (last wave 100)
+Registration merge: PR #2167 -> main (3ebc07e912c5788587eac2f36b0aef50eb3f7aaa)
+
+Branch fix history (recorded honestly, all landed inside PR #2167's squash):
+  6b76fcd1c  registration (protocol + driver + campaign script)
+  d82b6efbe  fix campaign pack-closure (parts pack missed by first array attempt)
+  c1bf44a75  fix SLURM_SUBMIT_DIR resolution inside array jobs
+  0e9778a17  merge origin/main (bring qg3 2400s stage-1 budget, #2168)
+
+FAILED FIRST ATTEMPT (honest record):
+  The first array submission produced zero usable parts. Root causes found and
+  fixed forward (never hidden): (1) pack closure — the campaign tarball did not
+  carry the complete engine closure, fixed in d82b6efbe; (2) SLURM_SUBMIT_DIR
+  resolution inside array jobs, fixed in c1bf44a75. Both fixes are IN the
+  registered branch that PR #2167 merged; no part of the failed attempt feeds
+  the merged results.
+
+Waves (LUNARC job ids, cluster times):
+  05:10:31  wave   0-249  -> 3567787   (250 parts, 0 failures)
+  05:42:53  wave 250-499  -> 3568039   (250 parts, 0 failures)
+  06:14:14  wave 500-749  -> 3568292   (250 parts, 0 failures)
+  06:46:35  wave 750-999  -> 3568545   (250 parts, 0 failures)
+  07:18:55  wave 1000-1249-> 3568795   (250 parts, 0 failures)
+  07:52:17  wave 1250-1349-> 3569070   (100 parts, final wave)
+  ALL_WAVES_SUBMITTED; every element COMPLETED (3 sacct records per element).
+
+Mid-campaign validation (750/1350 parts, on real landed parts):
+  python3 research/extensions/orion-qg/qg47_n2_full_sweep.py --merge (dry, redirected)
+  -> parts=750 probe_failures=0 format_problems=0
+     problems = ["missing tasks: 600 e.g. [750,751,...]"] + 3 instance-total
+     mismatches, ALL missingness-driven (tr2 at exactly 1/3 expected total;
+     two tr3 instances at 0 with all their tasks in the un-run range).
+     digest=d7f6f02934542a753af80cd22969d206850c1b679773e1333d19e80a3773283c
+  The consistency machinery caught incomplete instances exactly as designed;
+  no data defect surfaced.
+
+Final collection: parts relayed LUNARC -> billy-old -> Mac worktree; 1350/1350
+present before the certified merge below. Parts archived (tarball) on billy-old
+home; git carries the merge digest, not the raw parts.
+
+CERTIFIED MERGE:
+  executed 2026-09-03 08:28-08:36 CEST (Mac worktree, all 1350 parts local):
+  python3 research/extensions/orion-qg/qg47_n2_full_sweep.py --merge
+  -> rc=0  parts=1350  probe_failures=0  problems=[]
+     digest=67c73bf9db92d272a7ab88f60f8aef3e74b53fd12ffabf62b05b160abd6769db
+     terminal=QG47_N2_FRONTIER_EMPTY  total_witnesses=0
+  All three mid-campaign instance mismatches vanished at completion exactly as
+  predicted (they were purely missingness-driven). The exhaustive full-alphabet
+  n=2 frontier is EMPTY: zero witnesses survive the frozen gates across all
+  15 letters x 90 ordered pairs x 1350 tasks. Recorded as a certified negative;
+  revival/conditioning analysis is a separate follow-up lane, not part of this
+  outcome. Parts archived: ~/qg47_parts_1350_20260903.tar on billy-old.
+  Output: research/extensions/orion-qg/QG47_N2_FULL_SWEEP_RESULTS.json

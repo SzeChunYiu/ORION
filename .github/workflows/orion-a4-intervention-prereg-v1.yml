@@ -1,0 +1,44 @@
+name: ORION A4 intervention prereg v1
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/orion-a4-intervention-prereg-v1.yml"
+      - "papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym/**"
+permissions:
+  contents: read
+jobs:
+  prereg:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Transforms hostile self-test
+        run: |
+          python papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym/a4_intervention_transforms_v1.py --self-test
+      - name: Checker hostile self-test
+        run: |
+          python papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym/check_a4_intervention_prereg_v1.py \
+            --self-test --prereg papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym/A4_INTERVENTION_PREREG_V1.json
+      - name: Live verification against the pinned substrate commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          base='https://raw.githubusercontent.com/CMarsRover/SciAgentGYM/e9dbbea4369d67694e38bf8be67bedbcaf9e9300'
+          dir='papers/publication_closure/a4-hidden-cause-preflight-v2-sciagentgym'
+          mkdir -p /tmp/a4gym
+          curl --fail --location --retry 3 --retry-all-errors -o /tmp/a4gym/test_executor.py "$base/gym/test_executor.py"
+          curl --fail --location --retry 3 --retry-all-errors -o /tmp/a4gym/config.py "$base/gym/config/config.py"
+          curl --fail --location --retry 3 --retry-all-errors -o /tmp/a4gym/agent.py "$base/gym/agent.py"
+          curl --fail --location --retry 3 --retry-all-errors -o /tmp/multi.json "$base/dataset/refine_merged_multi_questions.json"
+          curl --fail --location --retry 3 --retry-all-errors -o /tmp/single.json "$base/dataset/refine_merged_single_questions.json"
+          python "$dir/check_a4_intervention_prereg_v1.py" \
+            --prereg "$dir/A4_INTERVENTION_PREREG_V1.json" \
+            --gym-dir /tmp/a4gym --multi /tmp/multi.json --single /tmp/single.json
+      - name: Repository cleanliness
+        run: |
+          git diff --check
+          git diff --exit-code
