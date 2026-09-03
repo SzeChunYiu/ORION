@@ -91,7 +91,7 @@ jobs:
           assert v3['targets_n']==5 and v3['bound_in_resume_n']==0 and v3['still_cannot_check_n']==5
           assert v3['terminal']=='ARXIV_CC_BY_EXACT_VERSION_FULLTEXT_POOL_BINDING_RESUME_EXECUTED_ALL_FIVE_PERMANENTLY_ABSENT'
           assert v3['network_policy']['allowed_hosts']==['arxiv.org','export.arxiv.org']
-          assert v3['network_policy']['minimum_request_interval_seconds']>=3.1
+          assert v3['network_policy']['min_interval_seconds']>=3.1
           assert v3['protected_outcomes_accessed'] is False and v3['case_eligibility_adjudicated'] is False
           rows=[json.loads(l) for l in open('development/a5-precondition-closure-2026-09-03/source_binding/arxiv-cc-by-fulltext-pool-binding-resume-v3/ACCESS_LOG_V3.jsonl')]
           assert len(rows)==30 and all(r['http_status']==404 for r in rows)
