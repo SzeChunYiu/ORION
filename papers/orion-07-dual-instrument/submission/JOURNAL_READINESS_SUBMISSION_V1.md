@@ -102,3 +102,36 @@ ceiling, and the checks are complete and independent of the template.
 8. **Licence election** for the deposited artifacts.
 
 Also required before filing: **convert to TMLR's submission template** (tmlr.sty) and record the anonymisation decision.
+
+---
+
+## Addendum 2026-09-03 — identity correction and template-gap closure (tier-B filing-surface pass)
+
+Two items above are resolved or corrected, with receipts:
+
+1. **"What changed" item 3 (title) never landed in the canonical tree.**
+   `git log -S'a First Three-Question Series' -- manuscript/main.tex` is empty
+   while the control pattern `-S'Receipted Benchmark and First Measurement'`
+   resolves; #1957 landed the Wave-1 branch artifacts "keeping main's newer
+   prose", so the canonical title has carried the single-benchmark identity
+   since 3a1a83178 (2026-08-27). The three-question title exists only in the
+   `submission_tmlr/` wrapper (2026-08-29 generation, built from the Q3-cited
+   Markdown), which is now marked superseded — see `submission_tmlr/README.md`
+   and the banner on `editorial/CANONICAL_SUBMISSION_DESIGNATION.md`. The
+   canonical manuscript still reports the three-unit series and the
+   joint-misdiagnosis counterexample inside (sections 03/04/06), per
+   `submission/CANONICAL_SOURCE_DECISION.md`.
+2. **The venue-format conversion is closed.**
+   `submission/publication-ready-20260831/journal/source.zip` (bf2a35750,
+   2026-09-01) carries the official TMLR assets — `tmlr.sty` (6560 B),
+   `tmlr.bst` (26969 B), `fancyhdr.sty` — in double-blind anonymous form built
+   on the canonical identity (anonymisation decision: double-blind, as packaged);
+   both route zips carry the canonical title. The "tmlr.sty not obtainable from
+   the toolchain used in this pass" blocker no longer exists.
+3. **Remaining human inputs reduce to portal-side elections**: the TMLR
+   public-discussion opt-in and reviewer exclusions, the public archival deposit
+   DOI, and the licence election. Name, affiliation, email, funding, and
+   competing interests are already recorded (`papers/AUTHOR_IDENTITY_V1.json`;
+   no funding, no competing interests). With the template gap closed, this
+   record's operative terminal advances from `READY_PENDING_TEMPLATE` to
+   `PORTAL_ACTIONS_ONLY`.

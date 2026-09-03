@@ -1,5 +1,18 @@
 # ORION-06 — submission readiness record
 
+> **SUPERSEDED by `JOURNAL_READINESS_SUBMISSION_V2.md`** (terminal
+> `PUBLICATION_PACKAGE_CLOSED__ONE_PROGRAMME_CASE_STUDY__CROSS_DOMAIN_UNDETERMINED`,
+> 2026-08-31). V2 closes every open item below: the official TMLR wrapper and
+> anonymous source/review packages are assembled under `submission_tmlr/`
+> (verified current 2026-09-03 — the package and `manuscript/main.tex` were both
+> last touched by #2179 ae3d79144, and the intervening sections change b0bc85431
+> is an ancestor of it), while the named canonical manuscript is retained
+> separately for release/accepted-paper use. The `READY_PENDING_TEMPLATE` label
+> and the remaining-inputs list below are historical; only V2's external filing
+> inputs (OpenReview account/profile metadata, conflict declarations) remain
+> open, and they are portal-side, not repo-side.
+> Supersession recorded 2026-09-03 (tier-B filing-surface closure pass).
+
 **Terminal: `READY_PENDING_TEMPLATE`** (Wave-1 filing bar, defined in
 `WAVE1_UPGRADE_LANE_VENUE_DECISIONS_V1.md` — PR #1692, pending). A complete
 standalone manuscript exists and compiles with zero undefined references; it is
