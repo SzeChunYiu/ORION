@@ -1,6 +1,22 @@
 # ORION-01--25 dual-route verification
 
-**Aggregate:** `PASS`  
+> **SUPERSEDED 2026-09-03 — do not read this file as a pass.**
+> The `PASS` below is the record of a full clean-build run written on 2026-09-01
+> (`bf2a3575`). The gate has not been PASS since. Live result at supersession:
+> **`FAIL`, 21/25** — `ORION-01` and `ORION-13` active-authority hash mismatch,
+> `ORION-08` and `ORION-10` academic-paper-skills release authority mismatch.
+> (CI run `33721708560`, head `3fe35fb2`, reported 20/25; the `ORION-02`
+> active-authority rebind landed with this notice restores 21/25.)
+> Three further checks show the record is stale on its own terms: the recorded
+> `builder_sha256` no longer matches `build_all_submission_materials.py`, four of
+> the twenty-five per-paper `manifest_sha256` values are stale (`ORION-02`,
+> `ORION-03`, `ORION-08`, `ORION-10`), and in the `SzeChunYiu/ORION-paper` mirror
+> the per-paper package paths do not resolve at all.
+> The rows below are retained unchanged as the historical record of that run.
+> See the `superseded` block in `VERIFICATION_REPORT.json` for the regeneration
+> requirement.
+
+**Aggregate:** `SUPERSEDED` (record: `PASS`, 2026-09-01)  
 **Packages checked:** 25/25  
 **Global checks:** 4  
 **Verifier:** `fa406fd3823563a6cd1a97d4798ac167829d1060456016c1582f38900b300d23`
