@@ -1,0 +1,79 @@
+# O6R4CNS1 certified run log — 2026-09-03
+
+## Provenance
+
+- Registration commit `09d05a22d` (protocol + driver, no outcome) could not
+  execute: the driver's partial-clone call omitted the required `cwd`
+  argument (TypeError before any library access). Fix commit
+  `fbf373b5b` ("fix(o6r4cns1): supply clone cwd…", driver only, 2 lines,
+  protocol byte-identical). Both runs below executed at `fbf373b5b`,
+  recorded in the receipt as `base_revision`. `protocol_sha256` identical
+  across registration and outcome commits (protocol file untouched).
+- Host: Mac mini (single deterministic minutes-scale run — established
+  precedent; no CI/test suite, no worker pool, no repo-tree clone beyond
+  the blob:none tree cache of the pinned library).
+
+## Certified double run (sequential, same worktree, same SHA)
+
+- Run 1: exit 0, wall 24.2 s (19.19 s user), stdout stage-1 digest
+  `1bcf85198ce1f4f0a0d073c0009aab51b071bd0af8192f99e3c1b2ed67906e30`,
+  result digest `987b1cac862c8f3d98d6908822d818eafd34be6e3eaf9bb435ce34805582d8b4`.
+- Run 2: exit 0, wall 19.6 s (19.28 s user), stage-1 digest identical,
+  result digest identical.
+- `cmp` of the two result JSONs: BYTE_IDENTICAL (no runtime fields in the
+  receipt; determinism gate green).
+
+## Ladder (outcome-blind, all reasons structural)
+
+Rejected before admission (reason `no_matching_lines`, per-cell non-identity
+counts all zero): `QDrift.ipynb` (17 cells), `commute.ipynb` (5),
+`diagonalize.ipynb` (13), `hamiltonian.ipynb` (4), `phase.ipynb` (6),
+`plots.ipynb` (12).
+
+Admitted: `script.ipynb` (blob `dd8fd9df59c3a8d9540806b0cd7a6552725b1273`,
+git blob sha-1 verified at fetch), subject cell 0, L = 14 non-identity
+terms, n = 4 qubits — the SAME exact-enumeration scale as the committed
+H2 subject (135,135 perfect matchings, 91 pair edges). Coefficients differ
+from the committed simulation-H2 subject (e.g. one-body 0.137166 /
+−0.130363; two-body 0.163268 … 0.106229; XYYX/YXXY/YYXX/XXYY at
+±0.049198): a genuinely distinct Hamiltonian print, never read before this
+run. No molecule-family claim is made or recorded.
+
+## Control (committed H2 replay, before the fresh verdict)
+
+`r1.run_r4c(r1._protocol())` end-to-end: notebook sha verified
+(`terms_exact: true`), matching_count 135,135, every
+`legacy_frontier_binding` row pass, revival_outcome IMPROVED,
+original_negative_preserved True.
+
+## Fresh-subject verdict
+
+- Pareto points: 13; in the 1.01x legacy-parent `Lambda_joint` budget: 13.
+- Strict parent-dominating points: 1 → terminal
+  `ORION06_R4C_NS1_PROSPECTIVE_STRICT_PARENT_DOMINANCE_CONFIRMED__ONE_FRESH_NOTEBOOK_ONLY`,
+  revival_outcome IMPROVED.
+- Parent (min-legacy_Lambda, ties by serialized matching): legacy_Lambda =
+  Lambda_joint = 1.575097140091084, direct_unitary_blocks 0,
+  parity_CNOT 0, controlled_Rz 21, controlled_H 21,
+  controlled_Pauli_support 45, AND2 14, scratch 1.
+- Strict point: legacy_Lambda = Lambda_joint = 1.575097140091084
+  (identical), direct_unitary_blocks 0, parity_CNOT 0, controlled_Rz 21,
+  controlled_H 21, **controlled_Pauli_support 41**, AND2 14, scratch 1.
+- Mechanism reading: on this fresh subject the R4C lever's win is a
+  pure re-pairing at EQUAL legacy and actual lambda that strictly reduces
+  controlled_Pauli_support by 4 (45 → 41) with every other coordinate
+  unchanged — strict seven-coordinate domination inside the frozen budget.
+
+## Gates
+
+All 13 receipt gates green (anti-instrument imports; protocol sha recorded;
+tree-listing digest matches frozen `ae173445…`; subject blob sha-1
+verified; family exclusions hold; subject-cell rule applied; L even and in
+[6, 14]; matchings == 13!! = 135,135; all witness checks pass; control
+assertions pass; stage-1 digest emitted before any frontier quantity;
+ladder outcome-blind).
+
+Authority: prospective ONE-fresh-notebook mechanism confirmation only.
+No novelty, no freeze, not R6, not end-to-end, no new-molecule-family
+claim. Result file sha256
+`913ef0eeba4e4d8b08060eb3d8b48c636124e57f6620201ce5e8fbdf0d05e373`.
