@@ -1,0 +1,45 @@
+name: shadow-davenport-defect-core
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-defect-core-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  minimal-core-signatures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Enumerate minimal-core signatures
+        run: |
+          python research/experiments/davenport-c7-frontier/check_packing_defect_minimal_signatures_v1.py | tee /tmp/signatures-primary.json
+      - name: Independently verify minimal-core signatures
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_packing_defect_minimal_signatures_independent_v1.py | tee /tmp/signatures-independent.json
+      - name: Compare complete signature receipts
+        run: |
+          python - <<'PY'
+          import json
+          a=json.load(open('/tmp/signatures-primary.json'))
+          b=json.load(open('/tmp/signatures-independent.json'))
+          assert a['canonical_sha256']==b['canonical_sha256']
+          assert a['raw_signatures']==b['raw_signatures']==322
+          assert a['short_atom_removed']==b['short_atom_removed']==8
+          assert a['corridor_removed']==b['corridor_removed']==13
+          assert a['pruned_signatures']==b['pruned_signatures']==301
+          assert a['raw_by_m']==b['raw_by_m']
+          assert a['pruned_by_m']==b['pruned_by_m']
+          print('MINIMAL_DEFECT_SIGNATURE_RECEIPTS_AGREE',a['canonical_sha256'])
+          PY
