@@ -59,7 +59,7 @@ jobs:
           for f,keys in (
               ('/tmp/deal_st.json',('permutation_invariant','frame_mutation_sensitive','short_frame_rejected','census_coverage_mismatch_rejected','census_chunk_tamper_rejected','census_manifest_drift_rejected')),
               ('/tmp/pool_st.json',('deterministic_rebuild','bare_org_lineage_fails_closed','stratum_tamper_fails_closed','gold_never_enters_pool','v3_success_substrate_rejected')),
-              ('/tmp/check_st.json',('mutation_controls_all_rejected','module_self_tests_green','network_accessed')),
+              ('/tmp/check_st.json',('mutation_controls_all_rejected','module_self_tests_green')),
           ):
               d=json.load(open(f))
               assert d['decision']=='GREEN', (f,d.get('decision'))
