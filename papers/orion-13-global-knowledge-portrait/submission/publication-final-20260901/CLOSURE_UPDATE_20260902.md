@@ -110,3 +110,32 @@ the operator performs the Zenodo deposit using
 `zenodo-deposition-metadata.json`, inserts the minted DOI into the Data
 and software availability section, and rebuilds (HUMAN_INPUTS_REQUIRED.md
 item 1).
+
+
+## Rebuild addendum 2026-09-03
+
+The 2026-09-02 rebuild described above never reached the repository: only
+this receipt and `zenodo-deposition-metadata.json` were committed, while the
+rebuilt PDF/DOCX/ZIP bytes stayed on the build host, so the package in git
+still bound the pre-disclosure 2026-09-01 build. In addition, the manuscript
+sources were revised after that rebuild (disclosures woven into Results and
+Discussion instead of a separate subsection, and the truth-discovery/OAEI
+lineage citations added), superseding the built revision.
+
+The package has therefore been rebuilt again on the same build host from the
+current committed sources (`common.tex` sha256
+`da5cbcfb3c50957ab253df81b2d0e7e7da5748f520571ccb312801906dc3e769`,
+`bibliography.bib` sha256
+`e57d185140ae52197f3bc524aea436a3ba8efa967c2070aa8bbe343cb6874460`)
+with the same toolchain and procedure. The digests in the "Rebuild" section
+above are superseded by:
+
+- `journal/manuscript.pdf` sha256 `75ffae29176e634b8477ffafed93e00f62dd8433d88a6a78f8197b844606036c`, 7 pages;
+- `arxiv/manuscript.pdf` sha256 `e6ab1226eba191afbb24a8c15962290413e5934c5ed6003385a217ef5f4c89cd`, 7 pages;
+- `journal/manuscript.docx` sha256 `d89d367802d232ad9139dc8df3fa2561997a54ca61d7d2efbf569486eacada09`.
+
+Both route archives again reproduce their PDFs byte-exactly
+(`source_archive_rebuild_exact: true`). The four mandatory disclosures and
+the paired-test reporting are present in the rendered text of both PDFs.
+`PACKAGE_MANIFEST.json` and `SHA256SUMS` bind every file of this package,
+including this receipt and the Zenodo metadata.
