@@ -56,6 +56,8 @@ class LaneAdapter:
     def call(self, prompt: str, timeout: int = 1800) -> dict:
         t0 = time.time()
         if self.fake:
+            if prompt.startswith("Reply with exactly: "):
+                return {"output": prompt.split(": ", 1)[1], "seconds": 0.0, "rc": 0}
             out = f"FAKE_OUTPUT sha={hashlib.sha256(prompt.encode()).hexdigest()[:12]}\n```python\nprint('ok')\n```"
             return {"output": out, "seconds": 0.0, "rc": 0}
         lane = self.identity["provider_lane"]
