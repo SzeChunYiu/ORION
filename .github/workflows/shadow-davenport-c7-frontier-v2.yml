@@ -30,6 +30,24 @@ jobs:
         run: python research/experiments/davenport-c7-frontier/check_corridor_line_fiber_avoidance_v1.py
       - name: Independently verify corridor projective line fibers
         run: python research/experiments/davenport-c7-frontier/verify_corridor_line_fiber_independent_v1.py
+      - name: Check packing-defect core formalism
+        run: |
+          python research/experiments/davenport-c7-frontier/check_packing_defect_core_formalism_v1.py | tee /tmp/defect-primary.json
+      - name: Independently verify packing-defect core formalism
+        run: |
+          python research/experiments/davenport-c7-frontier/verify_packing_defect_core_independent_v1.py | tee /tmp/defect-independent.json
+      - name: Compare independent packing-defect receipts
+        run: |
+          python - <<'PY2'
+          import json
+          a=json.load(open('/tmp/defect-primary.json'))
+          b=json.load(open('/tmp/defect-independent.json'))
+          assert a['canonical_sha256']==b['canonical_sha256']
+          assert a['p7_q1_total_signatures']==b['p7_q1_total_signatures']==219
+          assert a['p7_m3_raw_signatures']==b['p7_m3_raw_signatures']==19
+          assert a['p7_m3_donor_corridors']==b['p7_m3_donor_corridors']==6
+          print('PACKING_DEFECT_RECEIPTS_AGREE',a['canonical_sha256'])
+          PY2
       - name: Check Zhao 4p resonance controls
         run: python research/experiments/davenport-c7-frontier/check_zhao_4p_resonance_v1.py
       - name: Check Fan length-37 hostile-control witness
