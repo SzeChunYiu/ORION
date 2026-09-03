@@ -1,7 +1,7 @@
 # Venue requirements - Transactions on Machine Learning Research
 
-**Article type:** Research article  
-**Review audience:** double_blind  
+**Article type:** Research article
+**Review audience:** double_blind
 **Requirements checked:** 2026-08-31
 
 ## Official sources
