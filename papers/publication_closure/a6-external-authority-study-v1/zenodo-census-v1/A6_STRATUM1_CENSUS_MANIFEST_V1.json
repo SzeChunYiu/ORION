@@ -1,0 +1,37 @@
+{
+  "cannot_check_family_failure_n": 23,
+  "chunks": [
+    {
+      "path": "papers/publication_closure/a6-external-authority-study-v1/zenodo-census-v1/ROWS_001_100.json",
+      "rows": 100,
+      "sha256": "425bd4d13566a9ed3ab508a13f5621e49e4138b171c32e736bdf17aba3b358e0"
+    },
+    {
+      "path": "papers/publication_closure/a6-external-authority-study-v1/zenodo-census-v1/ROWS_101_200.json",
+      "rows": 100,
+      "sha256": "838b48b82b61121c93826afe5cb09b0ad97814db4226380d8858ed4832ea38f4"
+    },
+    {
+      "path": "papers/publication_closure/a6-external-authority-study-v1/zenodo-census-v1/ROWS_201_228.json",
+      "rows": 28,
+      "sha256": "9636567c44d0872305c7a5c2f1229ad9025d636aea400ba85e3b9579c57f49fc"
+    }
+  ],
+  "decision": "A6_STRATUM1_ZENODO_SOFTWARE_RELEASE_CAPACITY_AT_LEAST_20_DISJOINT_ORG_LINEAGES",
+  "distinct_artifact_lineage_n": 228,
+  "distinct_normalized_organization_lineage_n": 211,
+  "distinct_source_family_n": 228,
+  "gold_adjudicated": false,
+  "latest_software_hits_scanned": 400,
+  "licensed_latest_families_attempted": 394,
+  "packet_candidate_n": 228,
+  "packet_candidate_rows_sha256": "204b73b3bc7ad6456339041d8c308a11b109ae853177217751eedb71113ecb87",
+  "protected_orion_predictions_accessed": false,
+  "quota_note": "capacity statement only; the 20/20/20 primary quota and replication quota stay unallocated until the eligible pool and externally frozen replication quotas exist",
+  "schema": "ORION.A6.Stratum1ZenodoSoftwareReleaseCensusResult.v1",
+  "scientific_authority_delta": "NONE__OUTCOME_BLIND_SOURCE_CENSUS_ONLY",
+  "skipped_family_n": 143,
+  "stratum": "scientific_software_release_provenance_attestation",
+  "stratum_eligibility_adjudicated": false,
+  "version_order_rule": "ascending (publication_date, record id); two most recent licensed open versions form the release transition"
+}

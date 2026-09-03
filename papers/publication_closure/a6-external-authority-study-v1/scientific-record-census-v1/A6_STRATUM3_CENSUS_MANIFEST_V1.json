@@ -1,0 +1,35 @@
+{
+  "cannot_check_record_failure_n": 0,
+  "chunks": [
+    {
+      "path": "papers/publication_closure/a6-external-authority-study-v1/scientific-record-census-v1/ROWS_001_100.json",
+      "rows": 100,
+      "sha256": "0ee6baae6de55ec0ff5ee060dcb8d600a22b205b821ecffd953ddb6650b488e2"
+    },
+    {
+      "path": "papers/publication_closure/a6-external-authority-study-v1/scientific-record-census-v1/ROWS_101_188.json",
+      "rows": 88,
+      "sha256": "261dd537c8096d5110c66b6acfe8f3394f04a5a7764625e36fe68279d7cba70c"
+    }
+  ],
+  "correction_subroute_blocker": "Crossref relation vocabulary (server-enumerated 2026-09-03) contains no correction relation type (no is-correction-for/has-correction); OpenAlex type:erratum reaches the original work only through algorithmic related_works, not a typed relation, so article->correction pairs cannot be mechanically bound without fuzzy title matching; not padded.",
+  "decision": "A6_STRATUM3_SCIENTIFIC_RECORD_TRANSITION_CAPACITY_AT_LEAST_20_DISJOINT_ORG_LINEAGES",
+  "distinct_artifact_lineage_n": 188,
+  "distinct_normalized_organization_lineage_n": 25,
+  "distinct_source_family_n": 87,
+  "gold_adjudicated": false,
+  "metadata_only_no_fulltext_fetched": true,
+  "packet_candidate_n": 188,
+  "packet_candidate_rows_sha256": "53b4296e5a5cffdf63e2af4b45bc225304c2ad454441a7361608722ea6fcd2ad",
+  "protected_orion_predictions_accessed": false,
+  "quota_note": "capacity statement only; the 20/20/20 primary quota and replication quota stay unallocated until the eligible pool and externally frozen replication quotas exist",
+  "schema": "ORION.A6.Stratum3ScientificRecordTransitionCensusResult.v1",
+  "scientific_authority_delta": "NONE__OUTCOME_BLIND_SOURCE_CENSUS_ONLY",
+  "skipped_record_n": 112,
+  "software_subroute_blocker": "Software-side IsSupplementTo relations use URL identifiers (GitHub links; 15/15 sampled 2026-09-03), never DOIs, so the supplemented article record is not mechanically reachable for software; the bound sub-route is Dataset-side (DOI-typed IsSupplementTo enumerated from DataCite).",
+  "stratum": "scientific_record_transition",
+  "stratum_eligibility_adjudicated": false,
+  "supplement_records_scanned": 300,
+  "universe_ordering": "DataCite default ordering (most recently updated first), page[size]=100",
+  "universe_query": "relatedIdentifiers.relationType:IsSupplementTo AND types.resourceTypeGeneral:Dataset"
+}
