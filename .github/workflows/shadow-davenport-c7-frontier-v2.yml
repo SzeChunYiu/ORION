@@ -1,0 +1,70 @@
+name: shadow-davenport-c7-frontier-v2
+
+on:
+  push:
+    branches:
+      - shadow/davenport-c7-frontier-20260903
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shadow-davenport-c7-frontier-v2-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analytic-cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check atom corridor
+        run: python research/experiments/davenport-c7-frontier/check_atom_length_corridor_v1.py
+      - name: Check Zhao 4p resonance controls
+        run: python research/experiments/davenport-c7-frontier/check_zhao_4p_resonance_v1.py
+      - name: Regenerate projective support cover
+        run: |
+          python research/experiments/davenport-c7-frontier/generate_support7_projective_arcs_v1.py \
+            --write-reps /tmp/support7-reps.txt --json
+          cmp /tmp/support7-reps.txt research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt
+      - name: Check bound result record
+        run: python research/experiments/davenport-c7-frontier/check_support7_all_result_v1.py
+
+  primary-support7:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile primary exact search
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/search_support7_all_v1.cpp -o /tmp/search-support7
+      - name: Replay all support-7 candidates
+        run: |
+          /tmp/search-support7 research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt | tee /tmp/primary.log
+          grep -E '^total=3418800 shortfree=14860 pack4=14860 bad=0 ' /tmp/primary.log
+
+  independent-support7:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        shard:
+          - '0 9'
+          - '9 18'
+          - '18 27'
+          - '27 36'
+          - '36 45'
+          - '45 54'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile independent verifier
+        run: g++ -O3 -std=c++17 research/experiments/davenport-c7-frontier/verify_support7_all_independent_v1.cpp -o /tmp/verify-support7
+      - name: Verify projective-class shard
+        run: |
+          set -- ${{ matrix.shard }}
+          /tmp/verify-support7 research/experiments/davenport-c7-frontier/SUPPORT7_PROJECTIVE_REPS_V1.txt "$1" "$2" | tee /tmp/independent.log
+          grep -E ' bad=0 ' /tmp/independent.log
