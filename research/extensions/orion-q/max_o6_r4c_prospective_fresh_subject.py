@@ -171,7 +171,8 @@ def pinned_tree_listing() -> list[tuple[str, str]]:
             shutil.rmtree(clone)
         clone.parent.mkdir(parents=True, exist_ok=True)
         _git(
-            ["clone", "--quiet", "--filter=blob:none", "--no-checkout", CLONE_URL, str(clone)]
+            ["clone", "--quiet", "--filter=blob:none", "--no-checkout", CLONE_URL, str(clone)],
+            clone.parent,
         )
         if _git(["cat-file", "-t", PINNED_COMMIT], clone).strip() != "commit":
             raise AssertionError({"r4c_ns1_pinned_commit_unreachable": PINNED_COMMIT})
