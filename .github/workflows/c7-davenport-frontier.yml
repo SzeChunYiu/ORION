@@ -1,0 +1,132 @@
+name: c7-davenport-frontier
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'research/extensions/orion-math-c7-davenport/**'
+      - '.github/workflows/c7-davenport-frontier.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-frontier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: |
+            pyproject.toml
+            packages/orion-research-harness/pyproject.toml
+
+      - name: Install canonical ORION research harness
+        run: python -m pip install -e 'packages/orion-research-harness'
+
+      - name: Verify canonical mechanics are structurally discoverable
+        run: orion-harness mechanics-coverage | tee c7-mechanics-coverage.json
+
+      - name: Run exact bounded verifier directly
+        run: |
+          python research/extensions/orion-math-c7-davenport/verify_c7_44.py \
+            | tee c7-direct-result.json
+
+      - name: Freeze A7 in an isolated ORION workspace
+        shell: bash
+        run: |
+          set -euo pipefail
+          WS=/tmp/orion-c7-davenport
+          PROJECT="$GITHUB_WORKSPACE/research/extensions/orion-math-c7-davenport"
+          rm -rf "$WS"
+          orion-harness init "$WS" --project-root "$PROJECT" --allow-process-tools \
+            | tee c7-harness-init.json
+          orion-harness problem-add "$WS" c7-a7 \
+            'Does there exist a length-44 total-zero sequence over C_7^3 with no nonempty zero-sum subsequence of length at most 7?' \
+            --scope 'Bounded finite atom only; donor construction attributed; no novelty authority.' \
+            --domain 'zero-sum-theory' \
+            --domain 'finite-abelian-groups' \
+            --criterion 'Accept YES only with an explicit length-44 total-zero witness.' \
+            --criterion 'Independently reject all zero-sum submultisets of sizes 1 through 7 by two exact algorithms.' \
+            --criterion 'Preserve donor attribution, hostile controls, packing diagnosis, and CANNOT_CHECK priority status.' \
+            | tee c7-problem-add.json
+          orion-harness navigate 'counterexample guided completion' \
+            | tee c7-mechanic-navigation.json
+          orion-harness saturation-surface \
+            | tee c7-saturation-surface.json
+
+      - name: Issue and service the exact verifier through the harness
+        shell: bash
+        run: |
+          set -euo pipefail
+          WS=/tmp/orion-c7-davenport
+          PAYLOAD="$(python - <<'PY'
+          import json
+          print(json.dumps({
+              'code': "import runpy; runpy.run_path('verify_c7_44.py', run_name='__main__')",
+              'cwd': '.',
+              'timeout': 120,
+              'max_output_bytes': 100000,
+          }))
+          PY
+          )"
+          REQUEST_JSON="$(orion-harness request-tool "$WS" PYTHON --json "$PAYLOAD")"
+          printf '%s\n' "$REQUEST_JSON" | tee c7-harness-request.json
+          REQUEST_ID="$(printf '%s' "$REQUEST_JSON" | python -c 'import json,sys; print(json.load(sys.stdin)["request_id"])')"
+          orion-harness show-request "$WS" "$REQUEST_ID" \
+            | tee c7-harness-request-bound.json
+          orion-harness service-local "$WS" "$REQUEST_ID" \
+            | tee c7-harness-service.json
+          orion-harness pending "$WS" | tee c7-harness-pending.json
+
+      - name: Require direct and digest-bound harness executions to agree
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          direct = json.loads(Path('c7-direct-result.json').read_text())
+          service = json.loads(Path('c7-harness-service.json').read_text())
+          serviced = service.get('serviced', [])
+          assert len(serviced) == 1, service
+          receipt = serviced[0]
+          assert receipt.get('success') is True, receipt
+          output = receipt.get('output')
+          assert isinstance(output, dict), receipt
+          assert output.get('returncode') == 0, output
+          harness_result = json.loads(output.get('stdout', ''))
+          assert harness_result == direct, (harness_result, direct)
+          assert direct['checks']['witness_44_sum_zero'] is True
+          assert direct['checks']['witness_44_short_zero_free_dp'] is True
+          assert direct['checks']['witness_44_short_zero_free_counts'] is True
+          assert direct['packing']['exact_zz'] == 5
+          assert direct['authority']['literature_priority_of_44_not_in_C0'] == 'CANNOT_CHECK'
+          print('ORION_C7_A7_DIGEST_BOUND_EXECUTION_AGREES')
+          PY
+
+      - name: Pack immutable harness workspace for inspection
+        run: tar -czf c7-orion-harness-workspace.tgz -C /tmp orion-c7-davenport
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: c7-davenport-frontier-receipts
+          if-no-files-found: error
+          retention-days: 30
+          path: |
+            c7-direct-result.json
+            c7-mechanics-coverage.json
+            c7-harness-init.json
+            c7-problem-add.json
+            c7-mechanic-navigation.json
+            c7-saturation-surface.json
+            c7-harness-request.json
+            c7-harness-request-bound.json
+            c7-harness-service.json
+            c7-harness-pending.json
+            c7-orion-harness-workspace.tgz
